@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goods Asset Register</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    * {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background-attachment: fixed;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .stat-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .shimmer {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body class="min-h-screen py-8 px-4">
+
+  <!-- Container -->
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Header -->
+    <div class="glass rounded-3xl p-8 mb-6 fade-in shadow-2xl">
+      <div class="flex items-center justify-between flex-wrap gap-4">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900 mb-2">Asset Register</h1>
+          <p class="text-gray-600 font-light">Real-time tracking across remote communities</p>
+        </div>
+        <div class="flex gap-3">
+          <button onclick="window.location.href='/'" class="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium rounded-xl transition-all shadow-lg hover:shadow-xl">
+            Report Issue
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loading" class="glass rounded-3xl p-12 text-center shadow-2xl">
+      <div class="w-16 h-16 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin mx-auto mb-4"></div>
+      <p class="text-gray-600 font-light">Loading dashboard...</p>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard" style="display: none;">
+
+      <!-- Stats Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+
+        <!-- Total Assets -->
+        <div class="glass rounded-2xl p-6 stat-card fade-in shadow-xl">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-gray-500 mb-1">Total Assets</p>
+            <p id="totalAssets" class="text-4xl font-bold text-gray-900">-</p>
+            <p class="text-xs text-gray-500 mt-2">All tracked items</p>
+          </div>
+        </div>
+
+        <!-- Beds -->
+        <div class="glass rounded-2xl p-6 stat-card fade-in shadow-xl" style="animation-delay: 0.1s;">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-gray-500 mb-1">Beds</p>
+            <p id="totalBeds" class="text-4xl font-bold text-gray-900">-</p>
+            <p class="text-xs text-emerald-600 mt-2 font-medium">● Active</p>
+          </div>
+        </div>
+
+        <!-- Washers -->
+        <div class="glass rounded-2xl p-6 stat-card fade-in shadow-xl" style="animation-delay: 0.2s;">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-gray-500 mb-1">Washers</p>
+            <p id="totalWashers" class="text-4xl font-bold text-gray-900">-</p>
+            <p class="text-xs text-purple-600 mt-2 font-medium">● Monitored</p>
+          </div>
+        </div>
+
+        <!-- Communities -->
+        <div class="glass rounded-2xl p-6 stat-card fade-in shadow-xl" style="animation-delay: 0.3s;">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center shadow-lg">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-gray-500 mb-1">Communities</p>
+            <p id="totalCommunities" class="text-4xl font-bold text-gray-900">-</p>
+            <p class="text-xs text-amber-600 mt-2 font-medium">● Locations</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Charts Row -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+
+        <!-- Assets by Community Chart -->
+        <div class="glass rounded-3xl p-8 fade-in shadow-xl" style="animation-delay: 0.4s;">
+          <h2 class="text-xl font-bold text-gray-900 mb-6">Assets by Community</h2>
+          <div class="h-80">
+            <canvas id="communityChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Product Distribution Chart -->
+        <div class="glass rounded-3xl p-8 fade-in shadow-xl" style="animation-delay: 0.5s;">
+          <h2 class="text-xl font-bold text-gray-900 mb-6">Product Distribution</h2>
+          <div class="h-80">
+            <canvas id="productChart"></canvas>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Search and Filters -->
+      <div class="glass rounded-3xl p-8 mb-6 fade-in shadow-xl" style="animation-delay: 0.6s;">
+        <h2 class="text-xl font-bold text-gray-900 mb-6">Search & Filter</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search by ID, name, or location..."
+              class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+            />
+          </div>
+          <div>
+            <select id="communityFilter" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all">
+              <option value="">All Communities</option>
+            </select>
+          </div>
+          <div>
+            <select id="productFilter" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all">
+              <option value="">All Products</option>
+              <option value="Basket Bed">Basket Bed</option>
+              <option value="Weave Bed">Weave Bed</option>
+              <option value="ID Washing Machine">Washing Machine</option>
+            </select>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center justify-between">
+          <p id="resultsInfo" class="text-sm text-gray-600">Loading...</p>
+          <button id="clearFilters" onclick="clearAllFilters()" class="px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors" style="display: none;">
+            Clear Filters
+          </button>
+        </div>
+      </div>
+
+      <!-- Assets Table -->
+      <div class="glass rounded-3xl p-8 fade-in shadow-xl" style="animation-delay: 0.7s;">
+        <h2 class="text-xl font-bold text-gray-900 mb-6">Asset Register</h2>
+
+        <!-- Table -->
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="border-b border-gray-200">
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Asset ID</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Product</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden md:table-cell">Community</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden lg:table-cell">Location</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden xl:table-cell">Last Check-in</th>
+                <th class="px-6 py-4 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="assetsTable" class="divide-y divide-gray-100">
+              <!-- Assets will be inserted here -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- No Results -->
+        <div id="noResults" class="text-center py-12" style="display: none;">
+          <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">No assets found</h3>
+          <p class="text-gray-600 mb-4">Try adjusting your search or filters</p>
+          <button onclick="clearAllFilters()" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg transition-colors">
+            Clear Filters
+          </button>
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-6 flex items-center justify-between border-t border-gray-200 pt-6">
+          <div class="flex items-center gap-2">
+            <span class="text-sm text-gray-600">Show</span>
+            <select id="pageSize" onchange="updatePagination()" class="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+              <option value="10">10</option>
+              <option value="25" selected>25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+            <span class="text-sm text-gray-600">per page</span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="previousPage()" id="prevBtn" class="px-4 py-2 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+              Previous
+            </button>
+            <span id="pageInfo" class="text-sm text-gray-600 px-4">Page 1 of 1</span>
+            <button onclick="nextPage()" id="nextBtn" class="px-4 py-2 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+              Next
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Supabase JavaScript Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    // Supabase Configuration
+    const SUPABASE_URL = 'https://cwsyhpiuepvdjtxaozwf.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let allAssets = [];
+    let filteredAssets = [];
+    let currentPage = 1;
+    let pageSize = 25;
+    let communityChart, productChart;
+
+    // Load all assets
+    async function loadAssets() {
+      try {
+        const { data, error } = await supabase
+          .from('assets')
+          .select('*')
+          .order('unique_id', { ascending: true });
+
+        if (error) throw error;
+
+        allAssets = data;
+        filteredAssets = data;
+
+        // Update everything
+        updateStats();
+        populateCommunityFilter();
+        createCharts();
+        renderTable();
+
+        // Show dashboard, hide loading
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('loading').innerHTML = `
+          <div class="bg-red-50 border border-red-200 rounded-2xl p-6 text-center">
+            <p class="text-red-900 font-semibold mb-2">Error Loading Dashboard</p>
+            <p class="text-red-700 text-sm">${error.message}</p>
+          </div>
+        `;
+      }
+    }
+
+    // Update statistics
+    function updateStats() {
+      const totalAssets = allAssets.length;
+      const totalBeds = allAssets.filter(a => a.product.includes('Bed')).length;
+      const totalWashers = allAssets.filter(a => a.product === 'ID Washing Machine').length;
+      const communities = new Set(allAssets.map(a => a.community));
+
+      document.getElementById('totalAssets').textContent = totalAssets.toLocaleString();
+      document.getElementById('totalBeds').textContent = totalBeds.toLocaleString();
+      document.getElementById('totalWashers').textContent = totalWashers.toLocaleString();
+      document.getElementById('totalCommunities').textContent = communities.size.toLocaleString();
+    }
+
+    // Populate community filter
+    function populateCommunityFilter() {
+      const communities = [...new Set(allAssets.map(a => a.community))].sort();
+      const select = document.getElementById('communityFilter');
+      communities.forEach(community => {
+        const option = document.createElement('option');
+        option.value = community;
+        option.textContent = community;
+        select.appendChild(option);
+      });
+    }
+
+    // Create charts
+    function createCharts() {
+      // Community Chart
+      const communityData = {};
+      allAssets.forEach(asset => {
+        communityData[asset.community] = (communityData[asset.community] || 0) + 1;
+      });
+
+      const ctx1 = document.getElementById('communityChart').getContext('2d');
+      communityChart = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+          labels: Object.keys(communityData),
+          datasets: [{
+            label: 'Assets',
+            data: Object.values(communityData),
+            backgroundColor: 'rgba(102, 126, 234, 0.8)',
+            borderColor: 'rgba(102, 126, 234, 1)',
+            borderWidth: 0,
+            borderRadius: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: 'rgba(0, 0, 0, 0.8)',
+              padding: 12,
+              borderRadius: 8,
+              titleFont: { size: 14, weight: 'bold' },
+              bodyFont: { size: 13 }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: { color: 'rgba(0, 0, 0, 0.05)' },
+              ticks: { font: { size: 12 }, color: '#6B7280' }
+            },
+            x: {
+              grid: { display: false },
+              ticks: { font: { size: 12 }, color: '#6B7280' }
+            }
+          }
+        }
+      });
+
+      // Product Chart
+      const productData = {};
+      allAssets.forEach(asset => {
+        productData[asset.product] = (productData[asset.product] || 0) + 1;
+      });
+
+      const ctx2 = document.getElementById('productChart').getContext('2d');
+      productChart = new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+          labels: Object.keys(productData),
+          datasets: [{
+            data: Object.values(productData),
+            backgroundColor: [
+              'rgba(16, 185, 129, 0.8)',
+              'rgba(59, 130, 246, 0.8)',
+              'rgba(168, 85, 247, 0.8)'
+            ],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                padding: 20,
+                font: { size: 13 },
+                usePointStyle: true,
+                pointStyle: 'circle'
+              }
+            },
+            tooltip: {
+              backgroundColor: 'rgba(0, 0, 0, 0.8)',
+              padding: 12,
+              borderRadius: 8,
+              titleFont: { size: 14, weight: 'bold' },
+              bodyFont: { size: 13 }
+            }
+          }
+        }
+      });
+    }
+
+    // Render table with pagination
+    function renderTable() {
+      const table = document.getElementById('assetsTable');
+      const noResults = document.getElementById('noResults');
+
+      if (filteredAssets.length === 0) {
+        table.parentElement.parentElement.querySelector('.overflow-x-auto').style.display = 'none';
+        table.parentElement.parentElement.querySelector('.mt-6').style.display = 'none';
+        noResults.style.display = 'block';
+        return;
+      }
+
+      table.parentElement.parentElement.querySelector('.overflow-x-auto').style.display = 'block';
+      table.parentElement.parentElement.querySelector('.mt-6').style.display = 'flex';
+      noResults.style.display = 'none';
+
+      const start = (currentPage - 1) * pageSize;
+      const end = start + pageSize;
+      const pageAssets = filteredAssets.slice(start, end);
+
+      table.innerHTML = pageAssets.map(asset => {
+        const productColor = asset.product.includes('Bed') ? 'emerald' : 'purple';
+        const lastCheckin = asset.last_checkin_date
+          ? new Date(asset.last_checkin_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+          : 'Never';
+
+        return `
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="px-6 py-4">
+              <div class="flex items-center">
+                <span class="font-mono font-semibold text-gray-900">${asset.unique_id}</span>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-${productColor}-100 text-${productColor}-700">
+                ${asset.product}
+              </span>
+            </td>
+            <td class="px-6 py-4 hidden md:table-cell">
+              <span class="text-sm text-gray-900">${asset.community}</span>
+            </td>
+            <td class="px-6 py-4 hidden lg:table-cell">
+              <span class="text-sm text-gray-600">${asset.place || '-'}</span>
+            </td>
+            <td class="px-6 py-4 hidden xl:table-cell">
+              <span class="text-sm text-gray-600">${lastCheckin}</span>
+            </td>
+            <td class="px-6 py-4 text-right">
+              <a href="/?asset_id=${asset.unique_id}" class="inline-flex items-center px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-colors">
+                View
+              </a>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      updatePaginationInfo();
+      updateResultsInfo();
+    }
+
+    // Pagination
+    function updatePaginationInfo() {
+      const totalPages = Math.ceil(filteredAssets.length / pageSize);
+      document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${totalPages}`;
+      document.getElementById('prevBtn').disabled = currentPage === 1;
+      document.getElementById('nextBtn').disabled = currentPage === totalPages;
+    }
+
+    function nextPage() {
+      const totalPages = Math.ceil(filteredAssets.length / pageSize);
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderTable();
+      }
+    }
+
+    function previousPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        renderTable();
+      }
+    }
+
+    function updatePagination() {
+      pageSize = parseInt(document.getElementById('pageSize').value);
+      currentPage = 1;
+      renderTable();
+    }
+
+    // Apply filters
+    function applyFilters() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const community = document.getElementById('communityFilter').value;
+      const product = document.getElementById('productFilter').value;
+
+      filteredAssets = allAssets.filter(asset => {
+        const matchesSearch = !searchTerm ||
+          asset.unique_id.toLowerCase().includes(searchTerm) ||
+          (asset.name && asset.name.toLowerCase().includes(searchTerm)) ||
+          asset.community.toLowerCase().includes(searchTerm) ||
+          (asset.place && asset.place.toLowerCase().includes(searchTerm));
+
+        const matchesCommunity = !community || asset.community === community;
+        const matchesProduct = !product || asset.product === product;
+
+        return matchesSearch && matchesCommunity && matchesProduct;
+      });
+
+      currentPage = 1;
+      renderTable();
+      updateClearButton();
+    }
+
+    function updateResultsInfo() {
+      const info = document.getElementById('resultsInfo');
+      if (filteredAssets.length === allAssets.length) {
+        info.textContent = `Showing all ${allAssets.length.toLocaleString()} assets`;
+      } else {
+        info.textContent = `Showing ${filteredAssets.length.toLocaleString()} of ${allAssets.length.toLocaleString()} assets`;
+      }
+    }
+
+    function updateClearButton() {
+      const hasFilters = document.getElementById('searchInput').value ||
+                         document.getElementById('communityFilter').value ||
+                         document.getElementById('productFilter').value;
+      document.getElementById('clearFilters').style.display = hasFilters ? 'block' : 'none';
+    }
+
+    function clearAllFilters() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('communityFilter').value = '';
+      document.getElementById('productFilter').value = '';
+      applyFilters();
+    }
+
+    // Event listeners
+    document.getElementById('searchInput').addEventListener('input', applyFilters);
+    document.getElementById('communityFilter').addEventListener('change', applyFilters);
+    document.getElementById('productFilter').addEventListener('change', applyFilters);
+
+    // Initialize
+    loadAssets();
+  </script>
+
+</body>
+</html>
