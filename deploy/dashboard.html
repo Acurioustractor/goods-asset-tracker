@@ -237,11 +237,36 @@
           <table class="w-full">
             <thead>
               <tr class="border-b border-gray-200">
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Asset ID</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Product</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden md:table-cell">Community</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden lg:table-cell">Location</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden xl:table-cell">Last Check-in</th>
+                <th onclick="sortTable('unique_id')" class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-50 transition-colors select-none">
+                  <div class="flex items-center gap-2">
+                    Asset ID
+                    <span id="sort-unique_id" class="text-gray-400">↕</span>
+                  </div>
+                </th>
+                <th onclick="sortTable('product')" class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-50 transition-colors select-none">
+                  <div class="flex items-center gap-2">
+                    Product
+                    <span id="sort-product" class="text-gray-400">↕</span>
+                  </div>
+                </th>
+                <th onclick="sortTable('community')" class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden md:table-cell cursor-pointer hover:bg-gray-50 transition-colors select-none">
+                  <div class="flex items-center gap-2">
+                    Community
+                    <span id="sort-community" class="text-gray-400">↕</span>
+                  </div>
+                </th>
+                <th onclick="sortTable('place')" class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden lg:table-cell cursor-pointer hover:bg-gray-50 transition-colors select-none">
+                  <div class="flex items-center gap-2">
+                    Location
+                    <span id="sort-place" class="text-gray-400">↕</span>
+                  </div>
+                </th>
+                <th onclick="sortTable('last_checkin_date')" class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden xl:table-cell cursor-pointer hover:bg-gray-50 transition-colors select-none">
+                  <div class="flex items-center gap-2">
+                    Last Check-in
+                    <span id="sort-last_checkin_date" class="text-gray-400">↕</span>
+                  </div>
+                </th>
                 <th class="px-6 py-4 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
@@ -309,6 +334,59 @@
     let currentPage = 1;
     let pageSize = 25;
     let communityChart, productChart;
+    let sortField = 'unique_id';
+    let sortDirection = 'asc';
+
+    // Sort table by column
+    function sortTable(field) {
+      // Toggle direction if clicking same column
+      if (sortField === field) {
+        sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+      } else {
+        sortField = field;
+        sortDirection = 'asc';
+      }
+
+      // Update sort indicators
+      document.querySelectorAll('[id^="sort-"]').forEach(el => {
+        el.textContent = '↕';
+        el.className = 'text-gray-400';
+      });
+
+      const indicator = document.getElementById(`sort-${field}`);
+      if (indicator) {
+        indicator.textContent = sortDirection === 'asc' ? '↑' : '↓';
+        indicator.className = 'text-purple-600';
+      }
+
+      // Sort filtered assets
+      filteredAssets.sort((a, b) => {
+        let aVal = a[field];
+        let bVal = b[field];
+
+        // Handle null/undefined
+        if (!aVal) return 1;
+        if (!bVal) return -1;
+
+        // Handle dates
+        if (field === 'last_checkin_date') {
+          aVal = aVal ? new Date(aVal).getTime() : 0;
+          bVal = bVal ? new Date(bVal).getTime() : 0;
+        }
+
+        // Compare
+        if (typeof aVal === 'string') {
+          return sortDirection === 'asc'
+            ? aVal.localeCompare(bVal)
+            : bVal.localeCompare(aVal);
+        } else {
+          return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
+        }
+      });
+
+      currentPage = 1;
+      renderTable();
+    }
 
     // Load all assets
     async function loadAssets() {
@@ -328,6 +406,13 @@
         populateCommunityFilter();
         createCharts();
         renderTable();
+
+        // Set initial sort indicator
+        const indicator = document.getElementById(`sort-${sortField}`);
+        if (indicator) {
+          indicator.textContent = '↑';
+          indicator.className = 'text-purple-600';
+        }
 
         // Show dashboard, hide loading
         document.getElementById('loading').style.display = 'none';
@@ -572,6 +657,23 @@
         const matchesProduct = !product || asset.product === product;
 
         return matchesSearch && matchesCommunity && matchesProduct;
+      });
+
+      // Apply current sort without toggling
+      filteredAssets.sort((a, b) => {
+        let aVal = a[sortField];
+        let bVal = b[sortField];
+        if (!aVal) return 1;
+        if (!bVal) return -1;
+        if (sortField === 'last_checkin_date') {
+          aVal = aVal ? new Date(aVal).getTime() : 0;
+          bVal = bVal ? new Date(bVal).getTime() : 0;
+        }
+        if (typeof aVal === 'string') {
+          return sortDirection === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+        } else {
+          return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
+        }
       });
 
       currentPage = 1;
