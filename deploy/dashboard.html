@@ -468,16 +468,18 @@
     function renderTable() {
       const table = document.getElementById('assetsTable');
       const noResults = document.getElementById('noResults');
+      const tableContainer = table.closest('.overflow-x-auto');
+      const paginationContainer = document.querySelector('.mt-6.flex.items-center');
 
       if (filteredAssets.length === 0) {
-        table.parentElement.parentElement.querySelector('.overflow-x-auto').style.display = 'none';
-        table.parentElement.parentElement.querySelector('.mt-6').style.display = 'none';
+        if (tableContainer) tableContainer.style.display = 'none';
+        if (paginationContainer) paginationContainer.style.display = 'none';
         noResults.style.display = 'block';
         return;
       }
 
-      table.parentElement.parentElement.querySelector('.overflow-x-auto').style.display = 'block';
-      table.parentElement.parentElement.querySelector('.mt-6').style.display = 'flex';
+      if (tableContainer) tableContainer.style.display = 'block';
+      if (paginationContainer) paginationContainer.style.display = 'flex';
       noResults.style.display = 'none';
 
       const start = (currentPage - 1) * pageSize;
