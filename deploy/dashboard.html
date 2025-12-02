@@ -17,52 +17,68 @@
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
     * {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
     body {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      background-attachment: fixed;
+      background: #fafafa;
+      color: #1a1a1a;
     }
 
-    .glass {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Navigation */
+    .nav {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      margin-bottom: 2rem;
     }
 
-    .stat-card {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    .nav-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .stat-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    .nav-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1a1a1a;
     }
 
-    .fade-in {
-      animation: fadeIn 0.6s ease-out;
+    .nav-links {
+      display: flex;
+      gap: 2rem;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .nav-link {
+      color: #666;
+      text-decoration: none;
+      font-size: 0.9375rem;
+      transition: color 0.2s;
     }
 
-    .shimmer {
-      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.5s infinite;
+    .nav-link:hover {
+      color: #1a1a1a;
     }
 
-    @keyframes shimmer {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
+    /* Card styles */
+    .card {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: #1a1a1a;
     }
 
     /* Custom scrollbar */
@@ -72,46 +88,40 @@
     }
 
     ::-webkit-scrollbar-track {
-      background: transparent;
+      background: #f5f5f5;
     }
 
     ::-webkit-scrollbar-thumb {
-      background: rgba(0, 0, 0, 0.2);
+      background: #d4d4d4;
       border-radius: 4px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background: rgba(0, 0, 0, 0.3);
+      background: #a3a3a3;
     }
   </style>
 </head>
-<body class="min-h-screen py-8 px-4">
+<body class="min-h-screen">
 
-  <!-- Container -->
-  <div class="max-w-7xl mx-auto">
-
-    <!-- Header -->
-    <div class="glass rounded-3xl p-8 mb-6 fade-in shadow-2xl">
-      <div class="flex items-center justify-between flex-wrap gap-4">
-        <div>
-          <h1 class="text-3xl font-bold text-gray-900 mb-2">Asset Register</h1>
-          <p class="text-gray-600 font-light">Real-time tracking across remote communities</p>
-        </div>
-        <div class="flex gap-3">
-          <button onclick="window.location.href='products.html'" class="px-6 py-3 bg-white hover:bg-gray-50 text-purple-600 font-medium rounded-xl transition-all shadow-lg hover:shadow-xl border border-purple-200">
-            Products
-          </button>
-          <button onclick="window.location.href='index.html'" class="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium rounded-xl transition-all shadow-lg hover:shadow-xl">
-            Report Issue
-          </button>
-        </div>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-content">
+      <div class="nav-title">Goods Asset Tracker</div>
+      <div class="nav-links">
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="index.html" class="nav-link">Support</a>
       </div>
     </div>
+  </nav>
+
+  <!-- Container -->
+  <div class="max-w-7xl mx-auto px-4 pb-8">
 
     <!-- Loading State -->
-    <div id="loading" class="glass rounded-3xl p-12 text-center shadow-2xl">
-      <div class="w-16 h-16 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin mx-auto mb-4"></div>
-      <p class="text-gray-600 font-light">Loading dashboard...</p>
+    <div id="loading" class="card p-12 text-center">
+      <div class="w-16 h-16 border-4 border-gray-200 border-t-gray-900 rounded-full animate-spin mx-auto mb-4"></div>
+      <p class="text-gray-600">Loading dashboard...</p>
     </div>
 
     <!-- Main Dashboard -->
@@ -121,9 +131,9 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
 
         <!-- Total Assets -->
-        <div class="glass rounded-2xl p-6 stat-card fade-in shadow-xl">
+        <div class="card rounded-lg p-6 border border-gray-200">
           <div class="flex items-start justify-between mb-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+            <div class="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center border border-gray-200">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
               </svg>
@@ -137,9 +147,9 @@
         </div>
 
         <!-- Beds -->
-        <div class="glass rounded-2xl p-6 stat-card fade-in shadow-xl" style="animation-delay: 0.1s;">
+        <div class="card rounded-lg p-6 border border-gray-200">
           <div class="flex items-start justify-between mb-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
+            <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center border border-gray-200">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
               </svg>
@@ -148,14 +158,14 @@
           <div>
             <p class="text-sm font-medium text-gray-500 mb-1">Beds</p>
             <p id="totalBeds" class="text-4xl font-bold text-gray-900">-</p>
-            <p class="text-xs text-emerald-600 mt-2 font-medium">● Active</p>
+            <p class="text-xs text-gray-600 mt-2 font-medium">● Active</p>
           </div>
         </div>
 
         <!-- Washers -->
-        <div class="glass rounded-2xl p-6 stat-card fade-in shadow-xl" style="animation-delay: 0.2s;">
+        <div class="card rounded-lg p-6 border border-gray-200">
           <div class="flex items-start justify-between mb-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+            <div class="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center border border-gray-200">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
               </svg>
@@ -164,14 +174,14 @@
           <div>
             <p class="text-sm font-medium text-gray-500 mb-1">Washers</p>
             <p id="totalWashers" class="text-4xl font-bold text-gray-900">-</p>
-            <p class="text-xs text-purple-600 mt-2 font-medium">● Monitored</p>
+            <p class="text-xs text-gray-900 mt-2 font-medium">● Monitored</p>
           </div>
         </div>
 
         <!-- Communities -->
-        <div class="glass rounded-2xl p-6 stat-card fade-in shadow-xl" style="animation-delay: 0.3s;">
+        <div class="card rounded-lg p-6 border border-gray-200">
           <div class="flex items-start justify-between mb-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center shadow-lg">
+            <div class="w-12 h-12 bg-gray-600 rounded-lg flex items-center justify-center border border-gray-200">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
               </svg>
@@ -180,7 +190,7 @@
           <div>
             <p class="text-sm font-medium text-gray-500 mb-1">Communities</p>
             <p id="totalCommunities" class="text-4xl font-bold text-gray-900">-</p>
-            <p class="text-xs text-amber-600 mt-2 font-medium">● Locations</p>
+            <p class="text-xs text-gray-600 mt-2 font-medium">● Locations</p>
           </div>
         </div>
 
@@ -190,7 +200,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
 
         <!-- Assets by Community Chart -->
-        <div class="glass rounded-3xl p-8 fade-in shadow-xl" style="animation-delay: 0.4s;">
+        <div class="card rounded-lg p-8 border border-gray-200">
           <h2 class="text-xl font-bold text-gray-900 mb-6">Assets by Community</h2>
           <div class="h-80">
             <canvas id="communityChart"></canvas>
@@ -198,7 +208,7 @@
         </div>
 
         <!-- Product Distribution Chart -->
-        <div class="glass rounded-3xl p-8 fade-in shadow-xl" style="animation-delay: 0.5s;">
+        <div class="card rounded-lg p-8 border border-gray-200">
           <h2 class="text-xl font-bold text-gray-900 mb-6">Product Distribution</h2>
           <div class="h-80">
             <canvas id="productChart"></canvas>
@@ -208,7 +218,7 @@
       </div>
 
       <!-- Search and Filters -->
-      <div class="glass rounded-3xl p-8 mb-6 fade-in shadow-xl" style="animation-delay: 0.6s;">
+      <div class="card rounded-lg p-8 mb-6 border border-gray-200">
         <h2 class="text-xl font-bold text-gray-900 mb-6">Search & Filter</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
@@ -216,16 +226,16 @@
               type="text"
               id="searchInput"
               placeholder="Search by ID, name, or location..."
-              class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+              class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
             />
           </div>
           <div>
-            <select id="communityFilter" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all">
+            <select id="communityFilter" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all">
               <option value="">All Communities</option>
             </select>
           </div>
           <div>
-            <select id="productFilter" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all">
+            <select id="productFilter" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all">
               <option value="">All Products</option>
               <option value="Basket Bed">Basket Bed</option>
               <option value="Weave Bed">Weave Bed</option>
@@ -242,7 +252,7 @@
       </div>
 
       <!-- Assets Table -->
-      <div class="glass rounded-3xl p-8 fade-in shadow-xl" style="animation-delay: 0.7s;">
+      <div class="card rounded-lg p-8 border border-gray-200">
         <h2 class="text-xl font-bold text-gray-900 mb-6">Asset Register</h2>
 
         <!-- Table -->
@@ -298,7 +308,7 @@
           </div>
           <h3 class="text-lg font-semibold text-gray-900 mb-2">No assets found</h3>
           <p class="text-gray-600 mb-4">Try adjusting your search or filters</p>
-          <button onclick="clearAllFilters()" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg transition-colors">
+          <button onclick="clearAllFilters()" class="px-4 py-2 bg-gray-900 hover:bg-gray-800 text-white font-medium rounded-lg transition-colors">
             Clear Filters
           </button>
         </div>
@@ -330,14 +340,14 @@
       </div>
 
       <!-- Asset Distribution Map -->
-      <div class="glass rounded-3xl p-8 mt-6 fade-in shadow-xl" style="animation-delay: 0.8s;">
+      <div class="card rounded-lg p-8 mt-6 border border-gray-200">
         <div class="flex items-center justify-between mb-6">
           <div>
             <h2 class="text-xl font-bold text-gray-900">Asset Distribution Map</h2>
             <p class="text-sm text-gray-600 mt-1">Geographic distribution across remote communities</p>
           </div>
           <div class="flex gap-2">
-            <button id="mapViewBtn" onclick="toggleMapView('map')" class="px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-lg transition-colors">
+            <button id="mapViewBtn" onclick="toggleMapView('map')" class="px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-lg transition-colors">
               Map View
             </button>
             <button id="clusterViewBtn" onclick="toggleMapView('cluster')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium rounded-lg transition-colors">
@@ -347,7 +357,7 @@
         </div>
 
         <!-- Map Container -->
-        <div id="map" class="rounded-xl overflow-hidden shadow-lg" style="height: 500px; width: 100%;"></div>
+        <div id="map" class="rounded-lg overflow-hidden border border-gray-200" style="height: 500px; width: 100%;"></div>
 
         <!-- Map Legend -->
         <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -517,7 +527,7 @@
 
       // Update buttons
       if (mode === 'map') {
-        document.getElementById('mapViewBtn').className = 'px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-lg transition-colors';
+        document.getElementById('mapViewBtn').className = 'px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-lg transition-colors';
         document.getElementById('clusterViewBtn').className = 'px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium rounded-lg transition-colors';
 
         // Remove cluster layer, add markers layer
@@ -527,7 +537,7 @@
         }
       } else {
         document.getElementById('mapViewBtn').className = 'px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium rounded-lg transition-colors';
-        document.getElementById('clusterViewBtn').className = 'px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-lg transition-colors';
+        document.getElementById('clusterViewBtn').className = 'px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-lg transition-colors';
 
         // Remove markers layer, add cluster layer
         map.removeLayer(markersLayer);
@@ -558,7 +568,7 @@
       const indicator = document.getElementById(`sort-${field}`);
       if (indicator) {
         indicator.textContent = sortDirection === 'asc' ? '↑' : '↓';
-        indicator.className = 'text-purple-600';
+        indicator.className = 'text-gray-900';
       }
 
       // Sort filtered assets
@@ -613,7 +623,7 @@
         const indicator = document.getElementById(`sort-${sortField}`);
         if (indicator) {
           indicator.textContent = '↑';
-          indicator.className = 'text-purple-600';
+          indicator.className = 'text-gray-900';
         }
 
         // Show dashboard, hide loading
@@ -628,7 +638,7 @@
       } catch (error) {
         console.error('Error:', error);
         document.getElementById('loading').innerHTML = `
-          <div class="bg-red-50 border border-red-200 rounded-2xl p-6 text-center">
+          <div class="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
             <p class="text-red-900 font-semibold mb-2">Error Loading Dashboard</p>
             <p class="text-red-700 text-sm">${error.message}</p>
           </div>
@@ -806,7 +816,7 @@
               <span class="text-sm text-gray-600">${lastCheckin}</span>
             </td>
             <td class="px-6 py-4 text-right">
-              <a href="/?asset_id=${asset.unique_id}" class="inline-flex items-center px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-colors">
+              <a href="/?asset_id=${asset.unique_id}" class="inline-flex items-center px-3 py-1.5 bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium rounded-lg transition-colors">
                 View
               </a>
             </td>

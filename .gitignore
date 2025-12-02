@@ -66,3 +66,6 @@ htmlcov/
 
 # CLI config (user-specific)
 .goods-tracker/
+
+# Local Netlify folder
+.netlify
