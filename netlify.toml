@@ -1,0 +1,63 @@
+# Netlify Configuration
+# Professional deployment settings for Goods Asset Tracker
+
+[build]
+  # Publish the deploy directory
+  publish = "deploy"
+
+  # No build command needed - static HTML
+  command = ""
+
+# Redirects and rewrites
+[[redirects]]
+  # Redirect root to index.html with query params preserved
+  from = "/"
+  to = "/index.html"
+  status = 200
+  force = false
+
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # CORS for Supabase
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization"
+
+# Cache static assets
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Environment-specific settings
+[context.production]
+  command = ""
+
+[context.deploy-preview]
+  command = ""
+
+[context.branch-deploy]
+  command = ""
+
+# Functions configuration (if needed in future)
+[functions]
+  directory = "functions"
+  node_bundler = "esbuild"

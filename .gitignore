@@ -1,0 +1,68 @@
+# Secrets and credentials
+.env
+.env.local
+.env.production
+*.pem
+*.key
+config.json
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production builds
+/build
+/dist
+/.next
+out/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Operating System
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+.coverage
+.pytest_cache/
+htmlcov/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# QR code generation (keep these in repo for now, but could move to CDN later)
+# data/qr_codes/png/*.png
+# data/qr_codes/svg/*.svg
+
+# CLI config (user-specific)
+.goods-tracker/
