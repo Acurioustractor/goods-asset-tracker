@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Products - Goods Asset Tracker</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: #1f2937;
+    }
+
+    .nav {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #667eea;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      color: #4b5563;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+    }
+
+    .nav-link:hover {
+      color: #667eea;
+      background: rgba(102, 126, 234, 0.1);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .hero {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 16px;
+      padding: 4rem 3rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: #6b7280;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .product-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    }
+
+    .product-content {
+      padding: 2rem;
+    }
+
+    .product-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #1f2937;
+    }
+
+    .product-description {
+      color: #6b7280;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .product-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-features li {
+      padding: 0.5rem 0;
+      color: #4b5563;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .product-features li:before {
+      content: "✓";
+      color: #10b981;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .product-tag {
+      display: inline-block;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    .stories-section {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 16px;
+      padding: 3rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .stories-section h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-align: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stories-intro {
+      text-align: center;
+      color: #6b7280;
+      font-size: 1.125rem;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+    }
+
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .story-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid #667eea;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .story-card:hover {
+      transform: translateX(8px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .story-quote {
+      font-size: 1.125rem;
+      color: #374151;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    .story-author {
+      font-weight: 700;
+      color: #667eea;
+      font-size: 1rem;
+    }
+
+    .story-location {
+      color: #9ca3af;
+      font-size: 0.875rem;
+    }
+
+    .impact-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: #6b7280;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .nav-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-content">
+      <div class="nav-title">Goods Asset Tracker</div>
+      <div class="nav-links">
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="index.html" class="nav-link">Support</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero">
+      <h1>Indigenous-Made Goods</h1>
+      <p>Beautifully crafted beds and essential appliances designed and made by Indigenous artisans across remote Australian communities. Each piece represents cultural heritage, sustainability, and community empowerment.</p>
+    </div>
+
+    <div class="products-grid">
+      <!-- Basket Bed -->
+      <div class="product-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/61f4edfd98e16d052ff9f9c8/9ed3f9b4-3fd7-4cd5-8c63-b2e9dbeb7cbe/Weave+Bed+Construction.jpg" alt="Basket Bed" class="product-image">
+        <div class="product-content">
+          <h3 class="product-title">Basket Bed</h3>
+          <p class="product-description">
+            A lightweight, durable bed frame woven by Indigenous artisans using traditional basket-weaving techniques. Made from sustainable materials, this bed provides comfortable sleeping surfaces while supporting cultural practices.
+          </p>
+          <ul class="product-features">
+            <li>Handwoven by Indigenous artisans</li>
+            <li>Sustainable, locally-sourced materials</li>
+            <li>Lightweight and portable design</li>
+            <li>Supports cultural knowledge transfer</li>
+            <li>Suitable for tropical climates</li>
+          </ul>
+          <span class="product-tag">Traditional Craft</span>
+        </div>
+      </div>
+
+      <!-- Weave Bed -->
+      <div class="product-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/61f4edfd98e16d052ff9f9c8/4d89be7a-e9a9-4d8a-8af0-eb72a2a26357/IMG_1761.jpg" alt="Weave Bed" class="product-image">
+        <div class="product-content">
+          <h3 class="product-title">Weave Bed</h3>
+          <p class="product-description">
+            An advanced weaving technique creates this robust bed frame that combines modern ergonomics with traditional Indigenous design principles. Perfect for families seeking comfort and cultural connection.
+          </p>
+          <ul class="product-features">
+            <li>Enhanced structural support</li>
+            <li>Ergonomic design for better sleep</li>
+            <li>Made in remote communities</li>
+            <li>Weather-resistant construction</li>
+            <li>Supports local employment</li>
+          </ul>
+          <span class="product-tag">Premium Design</span>
+        </div>
+      </div>
+
+      <!-- Washing Machine -->
+      <div class="product-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/61f4edfd98e16d052ff9f9c8/1699931068772-ZDVBQO4SKJBZ0XQTX59L/image-asset.jpeg" alt="Pakkimjalki Kari - Washing Machine" class="product-image">
+        <div class="product-content">
+          <h3 class="product-title">Pakkimjalki Kari</h3>
+          <p class="product-description">
+            A culturally-designed washing machine ("Pakkimjalki Kari" meaning "washing thing" in local language) that brings essential laundry services to remote communities. Energy-efficient and built for harsh conditions.
+          </p>
+          <ul class="product-features">
+            <li>Energy-efficient operation</li>
+            <li>Built for remote conditions</li>
+            <li>Low water consumption</li>
+            <li>Community-appropriate design</li>
+            <li>Easy maintenance and repair</li>
+          </ul>
+          <span class="product-tag">Essential Appliance</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stories-section">
+      <h2>Community Stories</h2>
+      <p class="stories-intro">
+        Hear from the people who make these products and the communities they serve. These stories highlight the impact of Indigenous-made goods on health, culture, and economic independence.
+      </p>
+
+      <div class="impact-stats">
+        <div class="stat-card">
+          <div class="stat-number">389</div>
+          <div class="stat-label">Assets Tracked</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">8+</div>
+          <div class="stat-label">Communities Served</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">369</div>
+          <div class="stat-label">Beds Delivered</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">20</div>
+          <div class="stat-label">Washers in Use</div>
+        </div>
+      </div>
+
+      <div class="stories-grid">
+        <div class="story-card">
+          <p class="story-quote">
+            "These beds are made by our people, for our people. When we weave, we're keeping our culture alive and providing something essential for our families."
+          </p>
+          <div class="story-author">Annie Morrison</div>
+          <div class="story-location">Tennant Creek</div>
+        </div>
+
+        <div class="story-card">
+          <p class="story-quote">
+            "Having a proper bed changed everything for my kids. They sleep better, wake up healthier, and I know it was made with care by someone who understands our community."
+          </p>
+          <div class="story-author">Patricia Frank</div>
+          <div class="story-location">Palm Island</div>
+        </div>
+
+        <div class="story-card">
+          <p class="story-quote">
+            "The washing machines mean we don't have to travel hours just to do laundry. It's given us time back to focus on family and community activities."
+          </p>
+          <div class="story-author">Linda Turner</div>
+          <div class="story-location">Maningrida</div>
+        </div>
+
+        <div class="story-card">
+          <p class="story-quote">
+            "Working on these beds has given me purpose and income. I'm teaching my daughters the weaving techniques my grandmother taught me. It's more than work—it's cultural preservation."
+          </p>
+          <div class="story-author">Community Artisan</div>
+          <div class="story-location">Utopia Homelands</div>
+        </div>
+
+        <div class="story-card">
+          <p class="story-quote">
+            "Before these beds, my children were sleeping on the floor. Now they have dignity, comfort, and a bed that represents our culture and resilience."
+          </p>
+          <div class="story-author">Community Member</div>
+          <div class="story-location">Alice Homelands</div>
+        </div>
+
+        <div class="story-card">
+          <p class="story-quote">
+            "These goods aren't just products—they're solutions designed with deep understanding of what our communities actually need. That makes all the difference."
+          </p>
+          <div class="story-author">Elder & Advisor</div>
+          <div class="story-location">Kalgoorlie</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border-radius: 12px; text-align: center;">
+        <h3 style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem;">
+          Building Sustainable Futures
+        </h3>
+        <p style="color: #6b7280; font-size: 1rem; line-height: 1.8; max-width: 800px; margin: 0 auto;">
+          Every product tracked in this system represents more than just an asset—it's a step toward community self-sufficiency, cultural preservation, and economic independence. By combining traditional Indigenous knowledge with modern technology, we're creating sustainable solutions that honor heritage while addressing contemporary needs.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
