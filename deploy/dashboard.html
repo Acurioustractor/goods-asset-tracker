@@ -6,6 +6,16 @@
   <title>Goods Asset Register</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Leaflet MarkerCluster -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -316,6 +326,52 @@
 
       </div>
 
+      <!-- Asset Distribution Map -->
+      <div class="glass rounded-3xl p-8 mt-6 fade-in shadow-xl" style="animation-delay: 0.8s;">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h2 class="text-xl font-bold text-gray-900">Asset Distribution Map</h2>
+            <p class="text-sm text-gray-600 mt-1">Geographic distribution across remote communities</p>
+          </div>
+          <div class="flex gap-2">
+            <button id="mapViewBtn" onclick="toggleMapView('map')" class="px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-lg transition-colors">
+              Map View
+            </button>
+            <button id="clusterViewBtn" onclick="toggleMapView('cluster')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium rounded-lg transition-colors">
+              Cluster View
+            </button>
+          </div>
+        </div>
+
+        <!-- Map Container -->
+        <div id="map" class="rounded-xl overflow-hidden shadow-lg" style="height: 500px; width: 100%;"></div>
+
+        <!-- Map Legend -->
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="flex items-center gap-3 p-4 bg-white rounded-lg border border-gray-200">
+            <div class="w-4 h-4 bg-emerald-500 rounded-full"></div>
+            <div>
+              <p class="text-sm font-semibold text-gray-900">Beds</p>
+              <p class="text-xs text-gray-600" id="mapBedCount">-</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 p-4 bg-white rounded-lg border border-gray-200">
+            <div class="w-4 h-4 bg-purple-500 rounded-full"></div>
+            <div>
+              <p class="text-sm font-semibold text-gray-900">Washers</p>
+              <p class="text-xs text-gray-600" id="mapWasherCount">-</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 p-4 bg-white rounded-lg border border-gray-200">
+            <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
+            <div>
+              <p class="text-sm font-semibold text-gray-900">Communities</p>
+              <p class="text-xs text-gray-600" id="mapCommunityCount">-</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -336,6 +392,149 @@
     let communityChart, productChart;
     let sortField = 'unique_id';
     let sortDirection = 'asc';
+    let map, markersLayer, clusterLayer;
+    let mapViewMode = 'map';
+
+    // Community coordinates (approximate locations)
+    const communityCoords = {
+      'Palm Island': [-18.7544, 146.5806],
+      'Tennant Creek': [-19.6545, 134.1932],
+      'Kalgoorlie': [-30.7489, 121.4658],
+      'Darwin': [-12.4634, 130.8456],
+      'Alice Springs': [-23.6980, 133.8807],
+      'Mount Isa': [-20.7258, 139.4928],
+      'Alice Homelands': [-23.7, 133.9],
+      'Maningrida': [-12.0563, 134.2342],
+      'Utopia Homelands': [-22.2833, 135.0333]
+    };
+
+    // Initialize map
+    function initMap() {
+      // Create map centered on Australia
+      map = L.map('map').setView([-25, 133], 5);
+
+      // Add tile layer
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+        maxZoom: 18
+      }).addTo(map);
+
+      // Initialize layers
+      markersLayer = L.layerGroup().addTo(map);
+      clusterLayer = L.markerClusterGroup({
+        chunkedLoading: true,
+        spiderfyOnMaxZoom: true,
+        showCoverageOnHover: false,
+        zoomToBoundsOnClick: true
+      });
+
+      // Plot assets on map
+      plotAssetsOnMap();
+    }
+
+    // Plot assets on map
+    function plotAssetsOnMap() {
+      if (!map) return;
+
+      // Clear existing markers
+      markersLayer.clearLayers();
+      clusterLayer.clearLayers();
+
+      // Group assets by community
+      const communityGroups = {};
+      let bedsCount = 0;
+      let washersCount = 0;
+
+      allAssets.forEach(asset => {
+        if (!communityGroups[asset.community]) {
+          communityGroups[asset.community] = [];
+        }
+        communityGroups[asset.community].push(asset);
+
+        if (asset.product.includes('Bed')) bedsCount++;
+        else if (asset.product === 'ID Washing Machine') washersCount++;
+      });
+
+      // Create markers for each community
+      Object.keys(communityGroups).forEach(community => {
+        const coords = communityCoords[community];
+        if (!coords) return;
+
+        const assets = communityGroups[community];
+        const beds = assets.filter(a => a.product.includes('Bed')).length;
+        const washers = assets.filter(a => a.product === 'ID Washing Machine').length;
+
+        // Create custom icon based on dominant product type
+        const iconColor = beds > washers ? '#10b981' : '#a855f7';
+        const icon = L.divIcon({
+          className: 'custom-marker',
+          html: `<div style="background: ${iconColor}; width: 32px; height: 32px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;">${assets.length}</div>`,
+          iconSize: [32, 32],
+          iconAnchor: [16, 16]
+        });
+
+        // Create marker
+        const marker = L.marker(coords, { icon });
+
+        // Popup content
+        const popupContent = `
+          <div style="padding: 8px; min-width: 200px;">
+            <h3 style="font-weight: bold; font-size: 16px; margin-bottom: 8px;">${community}</h3>
+            <div style="margin-bottom: 4px;">
+              <span style="color: #10b981; font-weight: 600;">${beds} Beds</span>
+            </div>
+            <div style="margin-bottom: 8px;">
+              <span style="color: #a855f7; font-weight: 600;">${washers} Washers</span>
+            </div>
+            <div style="border-top: 1px solid #e5e7eb; padding-top: 8px; margin-top: 8px;">
+              <strong>Total Assets:</strong> ${assets.length}
+            </div>
+          </div>
+        `;
+
+        marker.bindPopup(popupContent);
+
+        // Add to appropriate layer
+        if (mapViewMode === 'cluster') {
+          clusterLayer.addLayer(marker);
+        } else {
+          markersLayer.addLayer(marker);
+        }
+      });
+
+      // Update legend
+      document.getElementById('mapBedCount').textContent = `${bedsCount} assets`;
+      document.getElementById('mapWasherCount').textContent = `${washersCount} assets`;
+      document.getElementById('mapCommunityCount').textContent = `${Object.keys(communityGroups).length} locations`;
+    }
+
+    // Toggle map view mode
+    function toggleMapView(mode) {
+      mapViewMode = mode;
+
+      // Update buttons
+      if (mode === 'map') {
+        document.getElementById('mapViewBtn').className = 'px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-lg transition-colors';
+        document.getElementById('clusterViewBtn').className = 'px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium rounded-lg transition-colors';
+
+        // Remove cluster layer, add markers layer
+        map.removeLayer(clusterLayer);
+        if (!map.hasLayer(markersLayer)) {
+          map.addLayer(markersLayer);
+        }
+      } else {
+        document.getElementById('mapViewBtn').className = 'px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium rounded-lg transition-colors';
+        document.getElementById('clusterViewBtn').className = 'px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-lg transition-colors';
+
+        // Remove markers layer, add cluster layer
+        map.removeLayer(markersLayer);
+        if (!map.hasLayer(clusterLayer)) {
+          map.addLayer(clusterLayer);
+        }
+      }
+
+      plotAssetsOnMap();
+    }
 
     // Sort table by column
     function sortTable(field) {
@@ -417,6 +616,11 @@
         // Show dashboard, hide loading
         document.getElementById('loading').style.display = 'none';
         document.getElementById('dashboard').style.display = 'block';
+
+        // Initialize map after DOM is visible
+        setTimeout(() => {
+          initMap();
+        }, 100);
 
       } catch (error) {
         console.error('Error:', error);
