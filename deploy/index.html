@@ -252,6 +252,20 @@
       <!-- Asset details loaded here -->
     </div>
 
+    <div id="manualEntry" class="asset-info" style="display: none;">
+      <h2>Enter Asset ID</h2>
+      <p style="margin-bottom: 12px;">Can't scan the QR code? Enter the asset ID manually below.</p>
+      <div style="display: flex; gap: 8px;">
+        <input type="text" id="manualAssetId" placeholder="e.g. GB0-1 or GB0-22-3" style="flex: 1; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px;">
+        <button type="button" onclick="lookupAsset()" style="padding: 12px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap;">
+          Look Up
+        </button>
+      </div>
+      <div style="margin-top: 8px; font-size: 12px; color: #6c757d;">
+        💡 The asset ID is printed on the product label
+      </div>
+    </div>
+
     <form id="supportForm">
       <div id="messageBox" class="message"></div>
 
@@ -316,11 +330,12 @@
 
     // Get asset ID from URL parameter (from QR code)
     const urlParams = new URLSearchParams(window.location.search);
-    const assetId = urlParams.get('asset_id');
+    let assetId = urlParams.get('asset_id');
 
-    async function loadAssetDetails() {
-      if (!assetId) {
-        showMessage('No asset ID provided. Please scan a QR code.', 'error');
+    async function loadAssetDetails(id = assetId) {
+      if (!id) {
+        // Show manual entry option instead of error
+        document.getElementById('manualEntry').style.display = 'block';
         return;
       }
 
@@ -328,12 +343,18 @@
         const { data, error } = await supabase
           .from('assets')
           .select('unique_id, name, product, community, place')
-          .eq('unique_id', assetId)
+          .eq('unique_id', id)
           .single();
 
         if (error) throw error;
 
         if (data) {
+          // Update global assetId if this was a manual lookup
+          assetId = data.unique_id;
+
+          // Hide manual entry, show asset info
+          document.getElementById('manualEntry').style.display = 'none';
+
           const assetInfoDiv = document.getElementById('assetInfo');
           assetInfoDiv.style.display = 'block';
           assetInfoDiv.innerHTML = `
@@ -343,12 +364,39 @@
             <p><strong>Location:</strong> ${data.community}${data.place ? ', ' + data.place : ''}</p>
             <span class="tag">${data.product}</span>
           `;
+
+          showMessage('✓ Asset found! You can now submit your support request below.', 'success');
         }
       } catch (error) {
         console.error('Error loading asset:', error);
-        showMessage('Could not load asset details. You can still submit a ticket.', 'info');
+        showMessage('Could not find that asset ID. Please check the ID and try again, or submit without an asset ID.', 'error');
       }
     }
+
+    // Manual asset lookup function
+    async function lookupAsset() {
+      const manualId = document.getElementById('manualAssetId').value.trim().toUpperCase();
+
+      if (!manualId) {
+        showMessage('Please enter an asset ID', 'error');
+        return;
+      }
+
+      await loadAssetDetails(manualId);
+    }
+
+    // Allow Enter key to trigger lookup
+    document.addEventListener('DOMContentLoaded', () => {
+      const manualInput = document.getElementById('manualAssetId');
+      if (manualInput) {
+        manualInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            lookupAsset();
+          }
+        });
+      }
+    });
 
     // ============================================================================
     // FORM SUBMISSION
