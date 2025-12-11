@@ -3,7 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Deliver Asset - Goods Tracker</title>
+  <title>Deliver Bed - Goods Tracker</title>
+
+  <!-- PWA Support -->
+  <meta name="theme-color" content="#1d4ed8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+
   <style>
     * {
       box-sizing: border-box;
@@ -70,6 +77,24 @@
       position: relative;
     }
 
+    .offline-badge {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #f59e0b;
+      color: #000;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      display: none;
+    }
+
+    .offline-badge.show {
+      display: block;
+    }
+
     /* Search Section */
     .search-section {
       padding: 16px;
@@ -108,8 +133,89 @@
       border: none;
       border-radius: 10px;
       color: white;
+      font-size: 18px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .scan-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* QR Scanner Modal */
+    .scanner-modal {
+      position: fixed;
+      inset: 0;
+      background: #0f172a;
+      z-index: 400;
+      display: none;
+      flex-direction: column;
+    }
+
+    .scanner-modal.show {
+      display: flex;
+    }
+
+    .scanner-header {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1e293b;
+    }
+
+    .scanner-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .scanner-close {
+      background: #ef4444;
+      border: none;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
       font-size: 20px;
       cursor: pointer;
+    }
+
+    .scanner-viewport {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #qr-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .scanner-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .scanner-frame {
+      width: 250px;
+      height: 250px;
+      border: 3px solid #3b82f6;
+      border-radius: 20px;
+      box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+    }
+
+    .scanner-hint {
+      position: absolute;
+      bottom: 100px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: white;
+      font-size: 14px;
     }
 
     /* Asset Card */
@@ -171,6 +277,7 @@
       font-size: 14px;
       font-weight: 500;
       text-align: right;
+      max-width: 60%;
     }
 
     /* Delivery Form */
@@ -245,6 +352,12 @@
 
     #photoInput {
       display: none;
+    }
+
+    .photo-size {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 8px;
     }
 
     /* Location */
@@ -390,6 +503,10 @@
       transform: scale(1.02);
     }
 
+    .submit-btn:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+
     .submit-btn:disabled {
       opacity: 0.6;
       cursor: not-allowed;
@@ -514,6 +631,10 @@
       background: #3b82f6;
     }
 
+    .message.success {
+      background: #10b981;
+    }
+
     /* Loading overlay */
     .loading-overlay {
       position: fixed;
@@ -557,6 +678,17 @@
       font-weight: 600;
       margin-bottom: 12px;
       color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .recent-count {
+      background: #3b82f6;
+      color: white;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 13px;
     }
 
     .recent-item {
@@ -577,6 +709,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 16px;
     }
 
     .recent-info {
@@ -593,21 +726,71 @@
       color: #64748b;
     }
 
+    .recent-pending {
+      background: #f59e0b;
+    }
+
     /* Empty state */
     .empty-state {
       text-align: center;
-      padding: 60px 20px;
+      padding: 40px 20px;
       color: #64748b;
     }
 
     .empty-icon {
-      font-size: 64px;
-      margin-bottom: 16px;
+      font-size: 48px;
+      margin-bottom: 12px;
       opacity: 0.5;
     }
 
     .empty-text {
-      font-size: 16px;
+      font-size: 14px;
+    }
+
+    /* Batch mode toggle */
+    .batch-toggle {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #1e293b;
+      margin: 0 16px 16px;
+      border-radius: 12px;
+    }
+
+    .batch-toggle label {
+      flex: 1;
+      font-size: 14px;
+    }
+
+    .toggle-switch {
+      width: 50px;
+      height: 28px;
+      background: #334155;
+      border-radius: 14px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .toggle-switch.active {
+      background: #10b981;
+    }
+
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      background: white;
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+      transition: transform 0.3s;
+    }
+
+    .toggle-switch.active::after {
+      transform: translateX(22px);
     }
   </style>
 </head>
@@ -616,13 +799,14 @@
     <div class="header">
       <a href="dashboard.html" class="header-link" title="Back to Dashboard">&larr;</a>
       <h1>Deliver Bed</h1>
-      <p>Scan or enter asset ID to record delivery</p>
+      <p>Scan QR or enter asset ID</p>
+      <div id="offlineBadge" class="offline-badge">OFFLINE</div>
     </div>
 
     <div class="search-section">
       <div class="search-box">
         <input type="text" id="assetSearch" class="search-input" placeholder="Enter Asset ID (e.g. GB0-152-1)" autocomplete="off">
-        <button class="scan-btn" id="scanBtn" title="Scan QR Code">QR</button>
+        <button class="scan-btn" id="scanBtn" title="Scan QR Code">📷</button>
       </div>
     </div>
 
@@ -655,7 +839,7 @@
 
     <div id="deliveryForm" class="delivery-form">
       <div class="form-section">
-        <div class="section-title">Photo of Delivery</div>
+        <div class="section-title">📸 Photo of Delivery</div>
         <div class="photo-capture" id="photoCapture">
           <div id="photoPlaceholder">
             <div class="photo-icon">📷</div>
@@ -666,48 +850,67 @@
           </div>
           <img id="photoPreview" style="display: none;">
         </div>
+        <div id="photoSize" class="photo-size"></div>
         <input type="file" id="photoInput" accept="image/*" capture="environment">
       </div>
 
       <div class="form-section">
-        <div class="section-title">GPS Location</div>
+        <div class="section-title">📍 GPS Location</div>
         <div class="location-box">
           <div class="location-status">
             <div id="locationIcon" class="location-icon">📍</div>
             <div class="location-info">
               <div class="location-label">Coordinates</div>
-              <div id="locationValue" class="location-value">Not captured yet</div>
+              <div id="locationValue" class="location-value">Getting location...</div>
             </div>
           </div>
-          <button id="locationBtn" class="location-btn">Capture Current Location</button>
+          <button id="locationBtn" class="location-btn" style="display: none;">Refresh Location</button>
         </div>
       </div>
 
       <div class="form-section">
-        <div class="section-title">Recipient Name (Optional)</div>
+        <div class="section-title">👤 Recipient Name (Optional)</div>
         <input type="text" id="recipientInput" class="recipient-input" placeholder="Name of person receiving the bed">
       </div>
 
       <div class="form-section">
-        <div class="section-title">Delivery Notes (Optional)</div>
+        <div class="section-title">📝 Delivery Notes (Optional)</div>
         <textarea id="notesInput" class="notes-input" placeholder="Any notes about this delivery..."></textarea>
       </div>
     </div>
 
     <div id="submitSection" class="submit-section">
       <button id="submitBtn" class="submit-btn">
-        <span>Confirm Delivery</span>
+        ✓ Confirm Delivery
       </button>
     </div>
 
     <div class="recent-section">
-      <div class="recent-title">Today's Deliveries</div>
+      <div class="recent-title">
+        Today's Deliveries
+        <span id="deliveryCount" class="recent-count">0</span>
+      </div>
       <div id="recentDeliveries">
         <div class="empty-state">
           <div class="empty-icon">📦</div>
           <div class="empty-text">No deliveries yet today</div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- QR Scanner Modal -->
+  <div id="scannerModal" class="scanner-modal">
+    <div class="scanner-header">
+      <span class="scanner-title">Scan QR Code</span>
+      <button class="scanner-close" id="scannerClose">✕</button>
+    </div>
+    <div class="scanner-viewport">
+      <video id="qr-video" playsinline></video>
+      <div class="scanner-overlay">
+        <div class="scanner-frame"></div>
+      </div>
+      <div class="scanner-hint">Point camera at QR code on bed</div>
     </div>
   </div>
 
@@ -730,7 +933,7 @@
         <span id="successLocation" class="success-detail-value">Captured</span>
       </div>
     </div>
-    <button id="nextBtn" class="next-btn">Deliver Next Bed</button>
+    <button id="nextBtn" class="next-btn">📦 Deliver Next Bed</button>
   </div>
 
   <!-- Loading Overlay -->
@@ -743,6 +946,9 @@
 
   <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- QR Scanner Library -->
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 
   <script>
     // ============================================================================
@@ -758,8 +964,12 @@
     // ============================================================================
     let currentAsset = null;
     let capturedPhoto = null;
+    let compressedPhotoBlob = null;
     let capturedLocation = null;
     let todayDeliveries = [];
+    let pendingDeliveries = []; // For offline mode
+    let html5QrCode = null;
+    let isOnline = navigator.onLine;
 
     // ============================================================================
     // DOM ELEMENTS
@@ -772,6 +982,7 @@
     const photoInput = document.getElementById('photoInput');
     const photoPreview = document.getElementById('photoPreview');
     const photoPlaceholder = document.getElementById('photoPlaceholder');
+    const photoSize = document.getElementById('photoSize');
     const locationBtn = document.getElementById('locationBtn');
     const locationIcon = document.getElementById('locationIcon');
     const locationValue = document.getElementById('locationValue');
@@ -779,6 +990,155 @@
     const successScreen = document.getElementById('successScreen');
     const loadingOverlay = document.getElementById('loadingOverlay');
     const messageBox = document.getElementById('messageBox');
+    const scannerModal = document.getElementById('scannerModal');
+    const offlineBadge = document.getElementById('offlineBadge');
+
+    // ============================================================================
+    // OFFLINE SUPPORT
+    // ============================================================================
+
+    window.addEventListener('online', () => {
+      isOnline = true;
+      offlineBadge.classList.remove('show');
+      showMessage('Back online! Syncing...', 'success');
+      syncPendingDeliveries();
+    });
+
+    window.addEventListener('offline', () => {
+      isOnline = false;
+      offlineBadge.classList.add('show');
+      showMessage('You are offline. Deliveries will sync when connected.', 'info');
+    });
+
+    function loadPendingDeliveries() {
+      try {
+        const stored = localStorage.getItem('pendingDeliveries');
+        if (stored) {
+          pendingDeliveries = JSON.parse(stored);
+        }
+      } catch (e) {
+        console.error('Error loading pending deliveries:', e);
+      }
+    }
+
+    function savePendingDeliveries() {
+      try {
+        localStorage.setItem('pendingDeliveries', JSON.stringify(pendingDeliveries));
+      } catch (e) {
+        console.error('Error saving pending deliveries:', e);
+      }
+    }
+
+    async function syncPendingDeliveries() {
+      if (pendingDeliveries.length === 0 || !isOnline) return;
+
+      showLoading('Syncing offline deliveries...');
+
+      for (let i = pendingDeliveries.length - 1; i >= 0; i--) {
+        const delivery = pendingDeliveries[i];
+        try {
+          // Upload photo from base64
+          const photoBlob = await fetch(delivery.photoData).then(r => r.blob());
+          const fileName = `delivery_${delivery.assetId}_${Date.now()}.jpg`;
+          const filePath = `deliveries/${fileName}`;
+
+          await supabase.storage.from('ticket-photos').upload(filePath, photoBlob);
+          const { data: urlData } = supabase.storage.from('ticket-photos').getPublicUrl(filePath);
+
+          // Update asset
+          await supabase.from('assets').update({
+            supply_date: delivery.timestamp,
+            last_checkin_date: delivery.timestamp,
+            gps: delivery.gps,
+            photo: [urlData.publicUrl],
+            name: delivery.recipientName || undefined,
+            notes: delivery.notes || undefined
+          }).eq('unique_id', delivery.assetId);
+
+          // Create checkin
+          await supabase.from('checkins').insert({
+            asset_id: delivery.assetId,
+            visitor_name: delivery.recipientName || 'Delivery Driver',
+            status: 'Good',
+            comments: `Delivered (synced). GPS: ${delivery.gps}`,
+            photo_url: urlData.publicUrl
+          });
+
+          // Remove from pending
+          pendingDeliveries.splice(i, 1);
+          savePendingDeliveries();
+
+        } catch (error) {
+          console.error('Error syncing delivery:', error);
+        }
+      }
+
+      hideLoading();
+      loadTodayDeliveries();
+      showMessage(`Synced ${pendingDeliveries.length === 0 ? 'all' : 'some'} offline deliveries`, 'success');
+    }
+
+    // ============================================================================
+    // QR SCANNER
+    // ============================================================================
+
+    document.getElementById('scanBtn').addEventListener('click', startScanner);
+    document.getElementById('scannerClose').addEventListener('click', stopScanner);
+
+    async function startScanner() {
+      scannerModal.classList.add('show');
+
+      try {
+        html5QrCode = new Html5Qrcode("qr-video");
+
+        await html5QrCode.start(
+          { facingMode: "environment" },
+          {
+            fps: 10,
+            qrbox: { width: 250, height: 250 }
+          },
+          onScanSuccess,
+          onScanFailure
+        );
+      } catch (err) {
+        console.error("Error starting scanner:", err);
+        showMessage('Could not access camera. Please enter ID manually.', 'error');
+        stopScanner();
+      }
+    }
+
+    function onScanSuccess(decodedText, decodedResult) {
+      // Extract asset ID from QR code URL or direct ID
+      let assetId = decodedText;
+
+      // Handle URL format: https://domain.com/?asset_id=GB0-152-1
+      if (decodedText.includes('asset_id=')) {
+        const url = new URL(decodedText);
+        assetId = url.searchParams.get('asset_id');
+      }
+      // Handle direct ID format
+      else if (decodedText.match(/GB0-\d+(-\d+)?/)) {
+        assetId = decodedText.match(/GB0-\d+(-\d+)?/)[0];
+      }
+
+      if (assetId) {
+        stopScanner();
+        assetSearch.value = assetId.toUpperCase();
+        searchAsset(assetId.toUpperCase());
+      }
+    }
+
+    function onScanFailure(error) {
+      // Ignore - continuous scanning
+    }
+
+    function stopScanner() {
+      scannerModal.classList.remove('show');
+      if (html5QrCode) {
+        html5QrCode.stop().catch(err => console.log("Scanner stop error:", err));
+        html5QrCode = null;
+      }
+    }
 
     // ============================================================================
     // ASSET SEARCH
@@ -846,7 +1206,7 @@
       const isDelivered = asset.supply_date &&
         new Date(asset.supply_date).toDateString() === new Date().toDateString();
       document.getElementById('statusDisplay').textContent =
-        isDelivered ? 'Delivered Today' : (asset.supply_date ? 'Previously Delivered' : 'Not Delivered');
+        isDelivered ? '✅ Delivered Today' : (asset.supply_date ? '📦 Previously Delivered' : '⏳ Not Delivered');
 
       assetCard.classList.add('show');
       deliveryForm.classList.add('show');
@@ -866,34 +1226,74 @@
     }
 
     // ============================================================================
-    // PHOTO CAPTURE
+    // PHOTO CAPTURE + COMPRESSION
     // ============================================================================
 
     photoCapture.addEventListener('click', () => {
       photoInput.click();
     });
 
-    photoInput.addEventListener('change', (e) => {
+    photoInput.addEventListener('change', async (e) => {
       const file = e.target.files[0];
       if (file) {
         capturedPhoto = file;
 
+        // Show original
         const reader = new FileReader();
-        reader.onload = (e) => {
+        reader.onload = async (e) => {
           photoPreview.src = e.target.result;
           photoPreview.style.display = 'block';
           photoPlaceholder.style.display = 'none';
           photoCapture.classList.add('has-photo');
+
+          // Compress the image
+          photoSize.textContent = `Original: ${(file.size / 1024).toFixed(0)} KB - Compressing...`;
+          compressedPhotoBlob = await compressImage(file);
+          photoSize.textContent = `Compressed: ${(compressedPhotoBlob.size / 1024).toFixed(0)} KB (was ${(file.size / 1024).toFixed(0)} KB)`;
         };
         reader.readAsDataURL(file);
       }
     });
 
+    async function compressImage(file, maxWidth = 1200, quality = 0.7) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            let width = img.width;
+            let height = img.height;
+
+            // Scale down if needed
+            if (width > maxWidth) {
+              height = (height * maxWidth) / width;
+              width = maxWidth;
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+
+            canvas.toBlob((blob) => {
+              resolve(blob);
+            }, 'image/jpeg', quality);
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
     // ============================================================================
     // GPS LOCATION
     // ============================================================================
 
-    locationBtn.addEventListener('click', () => {
+    locationBtn.addEventListener('click', captureLocation);
+
+    function captureLocation() {
       if (!navigator.geolocation) {
         showMessage('GPS not supported on this device', 'error');
         return;
@@ -901,8 +1301,7 @@
 
       locationIcon.classList.add('loading');
       locationIcon.textContent = '...';
-      locationBtn.disabled = true;
-      locationBtn.textContent = 'Getting location...';
+      locationValue.textContent = 'Getting location...';
 
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -914,26 +1313,27 @@
 
           locationIcon.classList.remove('loading');
           locationIcon.classList.add('success');
-          locationIcon.textContent = 'check';
+          locationIcon.textContent = '✓';
           locationValue.textContent = `${capturedLocation.lat.toFixed(6)}, ${capturedLocation.lng.toFixed(6)}`;
-          locationBtn.textContent = 'Location Captured';
-          locationBtn.disabled = true;
+          locationBtn.textContent = 'Refresh Location';
+          locationBtn.style.display = 'block';
         },
         (error) => {
           console.error('GPS Error:', error);
           locationIcon.classList.remove('loading');
-          locationIcon.textContent = 'X';
-          locationBtn.disabled = false;
+          locationIcon.textContent = '❌';
+          locationValue.textContent = 'Could not get location';
           locationBtn.textContent = 'Try Again';
-          showMessage('Could not get location. Make sure GPS is enabled.', 'error');
+          locationBtn.style.display = 'block';
+          showMessage('Enable location in your browser settings', 'error');
         },
         {
           enableHighAccuracy: true,
-          timeout: 10000,
+          timeout: 15000,
           maximumAge: 0
         }
       );
-    });
+    }
 
     // ============================================================================
     // SUBMIT DELIVERY
@@ -945,26 +1345,33 @@
         return;
       }
 
-      if (!capturedPhoto) {
+      if (!compressedPhotoBlob && !capturedPhoto) {
         showMessage('Please take a photo of the delivery', 'error');
         return;
       }
 
       if (!capturedLocation) {
-        showMessage('Please capture the GPS location', 'error');
+        showMessage('Please wait for GPS location', 'error');
+        return;
+      }
+
+      // Offline mode - save locally
+      if (!isOnline) {
+        await saveOfflineDelivery();
         return;
       }
 
       showLoading('Uploading photo...');
 
       try {
-        // 1. Upload photo
+        // 1. Upload compressed photo
+        const photoToUpload = compressedPhotoBlob || capturedPhoto;
         const fileName = `delivery_${currentAsset.unique_id}_${Date.now()}.jpg`;
         const filePath = `deliveries/${fileName}`;
 
         const { error: uploadError } = await supabase.storage
           .from('ticket-photos')
-          .upload(filePath, capturedPhoto);
+          .upload(filePath, photoToUpload);
 
         if (uploadError) throw uploadError;
 
@@ -1007,7 +1414,7 @@
         if (updateError) throw updateError;
 
         // 3. Create a check-in record
-        const { error: checkinError } = await supabase
+        await supabase
           .from('checkins')
           .insert({
             asset_id: currentAsset.unique_id,
@@ -1016,8 +1423,6 @@
             comments: `Delivered. GPS: ${gpsString}${notes ? '. Notes: ' + notes : ''}`,
             photo_url: photoUrl
           });
-
-        // Don't fail if checkin fails, delivery is the main thing
 
         // 4. Show success
         hideLoading();
@@ -1030,6 +1435,35 @@
       }
     });
 
+    async function saveOfflineDelivery() {
+      // Convert photo to base64 for local storage
+      const reader = new FileReader();
+      reader.onload = () => {
+        const delivery = {
+          assetId: currentAsset.unique_id,
+          timestamp: new Date().toISOString(),
+          gps: `${capturedLocation.lat},${capturedLocation.lng}`,
+          recipientName: document.getElementById('recipientInput').value.trim(),
+          notes: document.getElementById('notesInput').value.trim(),
+          photoData: reader.result
+        };
+
+        pendingDeliveries.push(delivery);
+        savePendingDeliveries();
+
+        // Add to today's deliveries display
+        todayDeliveries.unshift({
+          id: currentAsset.unique_id,
+          time: new Date(),
+          pending: true
+        });
+        updateRecentDeliveries();
+
+        showSuccess();
+      };
+      reader.readAsDataURL(compressedPhotoBlob || capturedPhoto);
+    }
+
     // ============================================================================
     // SUCCESS & RESET
     // ============================================================================
@@ -1040,11 +1474,13 @@
       document.getElementById('successLocation').textContent =
         capturedLocation ? `${capturedLocation.lat.toFixed(4)}, ${capturedLocation.lng.toFixed(4)}` : 'Captured';
 
-      // Add to today's deliveries
-      todayDeliveries.unshift({
-        id: currentAsset.unique_id,
-        time: new Date()
-      });
+      // Add to today's deliveries if not already added (online mode)
+      if (!todayDeliveries.find(d => d.id === currentAsset.unique_id)) {
+        todayDeliveries.unshift({
+          id: currentAsset.unique_id,
+          time: new Date()
+        });
+      }
       updateRecentDeliveries();
 
       successScreen.classList.add('show');
@@ -1055,12 +1491,15 @@
       successScreen.classList.remove('show');
       assetSearch.value = '';
       assetSearch.focus();
+
+      // Re-capture GPS for next delivery
+      captureLocation();
     });
 
     function resetForm() {
       currentAsset = null;
       capturedPhoto = null;
-      capturedLocation = null;
+      compressedPhotoBlob = null;
 
       hideAssetCard();
 
@@ -1070,13 +1509,7 @@
       photoPreview.style.display = 'none';
       photoPlaceholder.style.display = 'block';
       photoCapture.classList.remove('has-photo');
-
-      // Reset location
-      locationIcon.classList.remove('success', 'loading');
-      locationIcon.textContent = 'location';
-      locationValue.textContent = 'Not captured yet';
-      locationBtn.textContent = 'Capture Current Location';
-      locationBtn.disabled = false;
+      photoSize.textContent = '';
 
       // Reset inputs
       document.getElementById('recipientInput').value = '';
@@ -1085,6 +1518,9 @@
 
     function updateRecentDeliveries() {
       const container = document.getElementById('recentDeliveries');
+      const countEl = document.getElementById('deliveryCount');
+
+      countEl.textContent = todayDeliveries.length;
 
       if (todayDeliveries.length === 0) {
         container.innerHTML = `
@@ -1098,10 +1534,12 @@
 
       container.innerHTML = todayDeliveries.map(d => `
         <div class="recent-item">
-          <div class="recent-check">✓</div>
+          <div class="recent-check ${d.pending ? 'recent-pending' : ''}">
+            ${d.pending ? '⏳' : '✓'}
+          </div>
           <div class="recent-info">
             <div class="recent-id">${d.id}</div>
-            <div class="recent-time">${d.time.toLocaleTimeString()}</div>
+            <div class="recent-time">${d.time.toLocaleTimeString()}${d.pending ? ' (pending sync)' : ''}</div>
           </div>
         </div>
       `).join('');
@@ -1142,13 +1580,28 @@
           .select('unique_id, supply_date')
           .gte('supply_date', today.toISOString())
           .order('supply_date', { ascending: false })
-          .limit(10);
+          .limit(20);
 
         if (data) {
           todayDeliveries = data.map(d => ({
             id: d.unique_id,
             time: new Date(d.supply_date)
           }));
+
+          // Add pending deliveries
+          pendingDeliveries.forEach(p => {
+            if (!todayDeliveries.find(d => d.id === p.assetId)) {
+              todayDeliveries.push({
+                id: p.assetId,
+                time: new Date(p.timestamp),
+                pending: true
+              });
+            }
+          });
+
+          // Sort by time
+          todayDeliveries.sort((a, b) => b.time - a.time);
+
           updateRecentDeliveries();
         }
       } catch (error) {
@@ -1156,36 +1609,28 @@
       }
     }
 
-    // Initialize
+    // ============================================================================
+    // INITIALIZE
+    // ============================================================================
+
+    // Load pending deliveries from localStorage
+    loadPendingDeliveries();
+
+    // Load today's deliveries from server
     loadTodayDeliveries();
 
     // Auto-capture GPS on page load
-    if (navigator.geolocation) {
-      locationIcon.classList.add('loading');
-      locationIcon.textContent = '...';
-      locationBtn.textContent = 'Getting location...';
+    captureLocation();
 
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          capturedLocation = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-            accuracy: position.coords.accuracy
-          };
-          locationIcon.classList.remove('loading');
-          locationIcon.classList.add('success');
-          locationIcon.textContent = '\u2713';
-          locationValue.textContent = `${capturedLocation.lat.toFixed(6)}, ${capturedLocation.lng.toFixed(6)}`;
-          locationBtn.textContent = 'Location Captured';
-          locationBtn.disabled = true;
-        },
-        (error) => {
-          locationIcon.classList.remove('loading');
-          locationIcon.textContent = '\uD83D\uDCCD';
-          locationBtn.textContent = 'Capture Current Location';
-        },
-        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
-      );
+    // Check online status
+    if (!navigator.onLine) {
+      isOnline = false;
+      offlineBadge.classList.add('show');
+    }
+
+    // Sync any pending deliveries if online
+    if (isOnline && pendingDeliveries.length > 0) {
+      setTimeout(syncPendingDeliveries, 2000);
     }
   </script>
 </body>
