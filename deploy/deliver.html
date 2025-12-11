@@ -33,14 +33,137 @@
       flex-direction: column;
     }
 
+    /* Hamburger Menu */
+    .hamburger-nav {
+      background: #1e293b;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #334155;
+    }
+
+    .hamburger-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 8px;
+      line-height: 1;
+    }
+
+    .nav-title-small {
+      font-size: 14px;
+      color: #94a3b8;
+    }
+
+    .offline-indicator {
+      background: #f59e0b;
+      color: #000;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      display: none;
+    }
+
+    .offline-indicator.show {
+      display: block;
+    }
+
+    /* Slide-out Menu */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 500;
+      display: none;
+    }
+
+    .menu-overlay.show {
+      display: block;
+    }
+
+    .slide-menu {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 280px;
+      height: 100%;
+      background: #1e293b;
+      z-index: 501;
+      transition: left 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide-menu.show {
+      left: 0;
+    }
+
+    .menu-header {
+      padding: 20px;
+      border-bottom: 1px solid #334155;
+    }
+
+    .menu-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .menu-header p {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    .menu-items {
+      flex: 1;
+      padding: 16px 0;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+
+    .menu-item:hover {
+      background: #334155;
+    }
+
+    .menu-item.active {
+      background: #3b82f6;
+    }
+
+    .menu-item-icon {
+      font-size: 20px;
+      width: 28px;
+      text-align: center;
+    }
+
+    .menu-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
     /* Header */
     .header {
       background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
       padding: 20px;
       text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
     }
 
     .header h1 {
@@ -56,43 +179,6 @@
       font-size: 13px;
       opacity: 0.9;
       margin-top: 4px;
-    }
-
-    .header-link {
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: white;
-      text-decoration: none;
-      font-size: 24px;
-      opacity: 0.8;
-    }
-
-    .header-link:hover {
-      opacity: 1;
-    }
-
-    .header {
-      position: relative;
-    }
-
-    .offline-badge {
-      position: absolute;
-      right: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: #f59e0b;
-      color: #000;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 10px;
-      font-weight: 700;
-      display: none;
-    }
-
-    .offline-badge.show {
-      display: block;
     }
 
     /* Search Section */
@@ -142,80 +228,62 @@
       transform: scale(0.95);
     }
 
-    /* QR Scanner Modal */
-    .scanner-modal {
-      position: fixed;
-      inset: 0;
-      background: #0f172a;
-      z-index: 400;
-      display: none;
-      flex-direction: column;
-    }
-
-    .scanner-modal.show {
-      display: flex;
-    }
-
-    .scanner-header {
-      padding: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    /* QR Scanner Modal - Using native camera input */
+    .scanner-section {
       background: #1e293b;
+      margin: 16px;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      display: none;
+    }
+
+    .scanner-section.show {
+      display: block;
     }
 
     .scanner-title {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
+      margin-bottom: 12px;
     }
 
-    .scanner-close {
-      background: #ef4444;
-      border: none;
-      color: white;
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
-      font-size: 20px;
-      cursor: pointer;
+    .scanner-preview {
+      background: #0f172a;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
     }
 
-    .scanner-viewport {
-      flex: 1;
-      position: relative;
-      overflow: hidden;
-    }
-
-    #qr-video {
+    .scanner-preview video {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      max-width: 300px;
+      border-radius: 8px;
     }
 
-    .scanner-overlay {
-      position: absolute;
-      inset: 0;
+    .scanner-actions {
       display: flex;
-      align-items: center;
+      gap: 12px;
       justify-content: center;
     }
 
-    .scanner-frame {
-      width: 250px;
-      height: 250px;
-      border: 3px solid #3b82f6;
-      border-radius: 20px;
-      box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+    .scanner-btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
     }
 
-    .scanner-hint {
-      position: absolute;
-      bottom: 100px;
-      left: 0;
-      right: 0;
-      text-align: center;
+    .scanner-btn.primary {
+      background: #3b82f6;
       color: white;
-      font-size: 14px;
+    }
+
+    .scanner-btn.secondary {
+      background: #334155;
+      color: white;
     }
 
     /* Asset Card */
@@ -746,67 +814,65 @@
     .empty-text {
       font-size: 14px;
     }
-
-    /* Batch mode toggle */
-    .batch-toggle {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
-      background: #1e293b;
-      margin: 0 16px 16px;
-      border-radius: 12px;
-    }
-
-    .batch-toggle label {
-      flex: 1;
-      font-size: 14px;
-    }
-
-    .toggle-switch {
-      width: 50px;
-      height: 28px;
-      background: #334155;
-      border-radius: 14px;
-      position: relative;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .toggle-switch.active {
-      background: #10b981;
-    }
-
-    .toggle-switch::after {
-      content: '';
-      position: absolute;
-      width: 22px;
-      height: 22px;
-      background: white;
-      border-radius: 50%;
-      top: 3px;
-      left: 3px;
-      transition: transform 0.3s;
-    }
-
-    .toggle-switch.active::after {
-      transform: translateX(22px);
-    }
   </style>
 </head>
 <body>
   <div class="app">
+    <!-- Hamburger Navigation -->
+    <div class="hamburger-nav">
+      <button class="hamburger-btn" id="menuBtn">&#9776;</button>
+      <span class="nav-title-small">Goods Asset Tracker</span>
+      <div id="offlineBadge" class="offline-indicator">OFFLINE</div>
+    </div>
+
+    <!-- Slide-out Menu -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="slide-menu" id="slideMenu">
+      <button class="menu-close" id="menuClose">&times;</button>
+      <div class="menu-header">
+        <h2>Goods Asset Tracker</h2>
+        <p>Asset Management System</p>
+      </div>
+      <div class="menu-items">
+        <a href="dashboard.html" class="menu-item">
+          <span class="menu-item-icon">📊</span>
+          Dashboard
+        </a>
+        <a href="deliver.html" class="menu-item active">
+          <span class="menu-item-icon">🚚</span>
+          Deliver Bed
+        </a>
+        <a href="products.html" class="menu-item">
+          <span class="menu-item-icon">📦</span>
+          Products
+        </a>
+        <a href="index.html" class="menu-item">
+          <span class="menu-item-icon">🎫</span>
+          Support Ticket
+        </a>
+      </div>
+    </div>
+
     <div class="header">
-      <a href="dashboard.html" class="header-link" title="Back to Dashboard">&larr;</a>
       <h1>Deliver Bed</h1>
       <p>Scan QR or enter asset ID</p>
-      <div id="offlineBadge" class="offline-badge">OFFLINE</div>
     </div>
 
     <div class="search-section">
       <div class="search-box">
         <input type="text" id="assetSearch" class="search-input" placeholder="Enter Asset ID (e.g. GB0-152-1)" autocomplete="off">
         <button class="scan-btn" id="scanBtn" title="Scan QR Code">📷</button>
+      </div>
+    </div>
+
+    <!-- QR Scanner Section (inline, not modal) -->
+    <div id="scannerSection" class="scanner-section">
+      <div class="scanner-title">Scan QR Code</div>
+      <div class="scanner-preview">
+        <div id="qr-reader" style="width: 100%;"></div>
+      </div>
+      <div class="scanner-actions">
+        <button class="scanner-btn secondary" id="stopScanBtn">Cancel</button>
       </div>
     </div>
 
@@ -899,21 +965,6 @@
     </div>
   </div>
 
-  <!-- QR Scanner Modal -->
-  <div id="scannerModal" class="scanner-modal">
-    <div class="scanner-header">
-      <span class="scanner-title">Scan QR Code</span>
-      <button class="scanner-close" id="scannerClose">✕</button>
-    </div>
-    <div class="scanner-viewport">
-      <video id="qr-video" playsinline></video>
-      <div class="scanner-overlay">
-        <div class="scanner-frame"></div>
-      </div>
-      <div class="scanner-hint">Point camera at QR code on bed</div>
-    </div>
-  </div>
-
   <!-- Success Screen -->
   <div id="successScreen" class="success-screen">
     <div class="success-icon">✓</div>
@@ -990,8 +1041,31 @@
     const successScreen = document.getElementById('successScreen');
     const loadingOverlay = document.getElementById('loadingOverlay');
     const messageBox = document.getElementById('messageBox');
-    const scannerModal = document.getElementById('scannerModal');
+    const scannerSection = document.getElementById('scannerSection');
     const offlineBadge = document.getElementById('offlineBadge');
+
+    // Menu elements
+    const menuBtn = document.getElementById('menuBtn');
+    const menuClose = document.getElementById('menuClose');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const slideMenu = document.getElementById('slideMenu');
+
+    // ============================================================================
+    // HAMBURGER MENU
+    // ============================================================================
+
+    menuBtn.addEventListener('click', () => {
+      slideMenu.classList.add('show');
+      menuOverlay.classList.add('show');
+    });
+
+    menuClose.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+
+    function closeMenu() {
+      slideMenu.classList.remove('show');
+      menuOverlay.classList.remove('show');
+    }
 
     // ============================================================================
     // OFFLINE SUPPORT
@@ -1079,30 +1153,33 @@
     }
 
     // ============================================================================
-    // QR SCANNER
+    // QR SCANNER - Using html5-qrcode with proper initialization
     // ============================================================================
 
     document.getElementById('scanBtn').addEventListener('click', startScanner);
-    document.getElementById('scannerClose').addEventListener('click', stopScanner);
+    document.getElementById('stopScanBtn').addEventListener('click', stopScanner);
 
     async function startScanner() {
-      scannerModal.classList.add('show');
+      scannerSection.classList.add('show');
 
       try {
-        html5QrCode = new Html5Qrcode("qr-video");
+        html5QrCode = new Html5Qrcode("qr-reader");
+
+        const config = {
+          fps: 10,
+          qrbox: { width: 250, height: 250 },
+          aspectRatio: 1.0
+        };
 
         await html5QrCode.start(
           { facingMode: "environment" },
-          {
-            fps: 10,
-            qrbox: { width: 250, height: 250 }
-          },
+          config,
           onScanSuccess,
           onScanFailure
         );
       } catch (err) {
         console.error("Error starting scanner:", err);
-        showMessage('Could not access camera. Please enter ID manually.', 'error');
+        showMessage('Could not access camera: ' + err.message, 'error');
         stopScanner();
       }
     }
@@ -1113,8 +1190,14 @@
 
       // Handle URL format: https://domain.com/?asset_id=GB0-152-1
       if (decodedText.includes('asset_id=')) {
-        const url = new URL(decodedText);
-        assetId = url.searchParams.get('asset_id');
+        try {
+          const url = new URL(decodedText);
+          assetId = url.searchParams.get('asset_id');
+        } catch (e) {
+          // Try regex extraction if URL parsing fails
+          const match = decodedText.match(/asset_id=([^&]+)/);
+          if (match) assetId = match[1];
+        }
       }
       // Handle direct ID format
       else if (decodedText.match(/GB0-\d+(-\d+)?/)) {
@@ -1133,10 +1216,11 @@
     }
 
     function stopScanner() {
-      scannerModal.classList.remove('show');
-      if (html5QrCode) {
-        html5QrCode.stop().catch(err => console.log("Scanner stop error:", err));
-        html5QrCode = null;
+      scannerSection.classList.remove('show');
+      if (html5QrCode && html5QrCode.isScanning) {
+        html5QrCode.stop().then(() => {
+          html5QrCode.clear();
+        }).catch(err => console.log("Scanner stop error:", err));
       }
     }
 
