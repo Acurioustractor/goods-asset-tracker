@@ -14,7 +14,7 @@
   from = "/"
   to = "/home.html"
   status = 200
-  force = false
+  force = true
 
 [[redirects]]
   # QR codes with asset_id go to support form (index.html)
