@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Goods Asset Tracker</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f1f5f9;
+      min-height: 100vh;
+      color: #1e293b;
+    }
+
+    /* Header */
+    .header {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .logo span {
+      color: #3b82f6;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+    }
+
+    .btn-secondary {
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
+
+    /* Main Content */
+    .main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .stat-value.green { color: #10b981; }
+    .stat-value.blue { color: #3b82f6; }
+    .stat-value.orange { color: #f59e0b; }
+    .stat-value.red { color: #ef4444; }
+
+    .stat-change {
+      font-size: 12px;
+      color: #10b981;
+      margin-top: 4px;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      background: white;
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      overflow-x: auto;
+    }
+
+    .tab {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #64748b;
+      cursor: pointer;
+      border: none;
+      background: none;
+      white-space: nowrap;
+    }
+
+    .tab:hover {
+      color: #1e293b;
+      background: #f1f5f9;
+    }
+
+    .tab.active {
+      background: #3b82f6;
+      color: white;
+    }
+
+    /* Content Panels */
+    .panel {
+      display: none;
+    }
+
+    .panel.active {
+      display: block;
+    }
+
+    /* Table */
+    .table-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .table-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .table-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 8px;
+    }
+
+    .search-input {
+      padding: 8px 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 14px;
+      width: 240px;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+
+    .filter-select {
+      padding: 8px 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 14px;
+      background: white;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    td {
+      padding: 14px 16px;
+      font-size: 14px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    tr:hover {
+      background: #f8fafc;
+    }
+
+    .asset-id {
+      font-weight: 600;
+      color: #3b82f6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .badge-green {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .badge-yellow {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .badge-gray {
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .badge-blue {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .badge-red {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .photo-thumb {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .no-photo {
+      width: 40px;
+      height: 40px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      font-size: 16px;
+    }
+
+    .gps-link {
+      color: #3b82f6;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .gps-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #64748b;
+    }
+
+    .empty-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    /* Map placeholder */
+    .map-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .map-placeholder {
+      background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+      border-radius: 8px;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #3b82f6;
+    }
+
+    .map-placeholder-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .action-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+    }
+
+    .action-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .action-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .action-icon.green { background: #d1fae5; color: #059669; }
+    .action-icon.blue { background: #dbeafe; color: #2563eb; }
+    .action-icon.purple { background: #ede9fe; color: #7c3aed; }
+    .action-icon.orange { background: #ffedd5; color: #ea580c; }
+
+    .action-content h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .action-content p {
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .table-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-box {
+        flex-direction: column;
+      }
+
+      .search-input {
+        width: 100%;
+      }
+
+      th, td {
+        padding: 10px 12px;
+      }
+
+      .main {
+        padding: 16px;
+      }
+    }
+
+    /* Photo Modal */
+    .photo-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 20px;
+    }
+
+    .photo-modal.show {
+      display: flex;
+    }
+
+    .photo-modal img {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 8px;
+    }
+
+    .photo-modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Loading */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid #e2e8f0;
+      border-top-color: #3b82f6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 20px;
+    }
+
+    .page-btn {
+      padding: 8px 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      background: white;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .page-btn:hover {
+      background: #f1f5f9;
+    }
+
+    .page-btn.active {
+      background: #3b82f6;
+      color: white;
+      border-color: #3b82f6;
+    }
+
+    .page-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">Goods <span>Tracker</span></div>
+      <div class="header-actions">
+        <a href="deliver.html" class="btn btn-primary">+ New Delivery</a>
+        <a href="index.html" class="btn btn-secondary">Support Form</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Assets</div>
+        <div id="statTotal" class="stat-value">-</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Delivered Today</div>
+        <div id="statToday" class="stat-value green">-</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">With GPS Location</div>
+        <div id="statGps" class="stat-value blue">-</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Open Tickets</div>
+        <div id="statTickets" class="stat-value orange">-</div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <a href="deliver.html" class="action-card">
+        <div class="action-icon green">truck</div>
+        <div class="action-content">
+          <h3>Record Delivery</h3>
+          <p>Capture photo + GPS for bed delivery</p>
+        </div>
+      </a>
+      <a href="index.html" class="action-card">
+        <div class="action-icon blue">help</div>
+        <div class="action-content">
+          <h3>Support Form</h3>
+          <p>Report issues with assets</p>
+        </div>
+      </a>
+      <a href="#" class="action-card" onclick="exportData(); return false;">
+        <div class="action-icon purple">download</div>
+        <div class="action-content">
+          <h3>Export Data</h3>
+          <p>Download asset list as CSV</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" data-tab="deliveries">Recent Deliveries</button>
+      <button class="tab" data-tab="all">All Assets</button>
+      <button class="tab" data-tab="tickets">Support Tickets</button>
+      <button class="tab" data-tab="communities">By Community</button>
+    </div>
+
+    <!-- Deliveries Panel -->
+    <div id="deliveries-panel" class="panel active">
+      <div class="table-container">
+        <div class="table-header">
+          <div class="table-title">Recent Deliveries</div>
+          <div class="search-box">
+            <select id="deliveryFilter" class="filter-select">
+              <option value="all">All Time</option>
+              <option value="today" selected>Today</option>
+              <option value="week">This Week</option>
+              <option value="month">This Month</option>
+            </select>
+          </div>
+        </div>
+        <div id="deliveriesTable">
+          <div class="loading"><div class="spinner"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- All Assets Panel -->
+    <div id="all-panel" class="panel">
+      <div class="table-container">
+        <div class="table-header">
+          <div class="table-title">All Assets</div>
+          <div class="search-box">
+            <input type="text" id="assetSearch" class="search-input" placeholder="Search by ID, name, community...">
+            <select id="communityFilter" class="filter-select">
+              <option value="">All Communities</option>
+            </select>
+            <select id="productFilter" class="filter-select">
+              <option value="">All Products</option>
+              <option value="Basket Bed">Basket Bed</option>
+              <option value="Weave Bed">Weave Bed</option>
+              <option value="ID Washing Machine">Washing Machine</option>
+            </select>
+          </div>
+        </div>
+        <div id="assetsTable">
+          <div class="loading"><div class="spinner"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tickets Panel -->
+    <div id="tickets-panel" class="panel">
+      <div class="table-container">
+        <div class="table-header">
+          <div class="table-title">Support Tickets</div>
+          <div class="search-box">
+            <select id="ticketStatusFilter" class="filter-select">
+              <option value="">All Status</option>
+              <option value="Open" selected>Open</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Resolved">Resolved</option>
+              <option value="Closed">Closed</option>
+            </select>
+          </div>
+        </div>
+        <div id="ticketsTable">
+          <div class="loading"><div class="spinner"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Communities Panel -->
+    <div id="communities-panel" class="panel">
+      <div class="table-container">
+        <div class="table-header">
+          <div class="table-title">Assets by Community</div>
+        </div>
+        <div id="communitiesTable">
+          <div class="loading"><div class="spinner"></div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Photo Modal -->
+  <div id="photoModal" class="photo-modal">
+    <button class="photo-modal-close" onclick="closePhotoModal()">X</button>
+    <img id="modalPhoto" src="">
+  </div>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    // ============================================================================
+    // CONFIGURATION
+    // ============================================================================
+    const SUPABASE_URL = 'https://cwsyhpiuepvdjtxaozwf.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMwNzY5NTAsImV4cCI6MjA0ODY1Mjk1MH0.FNk8EYYfMi5vwfyRQJqZs5jG5O4k9TzPfCHhQPn1xZA';
+
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // ============================================================================
+    // STATE
+    // ============================================================================
+    let allAssets = [];
+    let allTickets = [];
+    let communities = [];
+
+    // ============================================================================
+    // TABS
+    // ============================================================================
+
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab + '-panel').classList.add('active');
+      });
+    });
+
+    // ============================================================================
+    // LOAD DATA
+    // ============================================================================
+
+    async function loadStats() {
+      try {
+        // Total assets
+        const { count: totalCount } = await supabase
+          .from('assets')
+          .select('*', { count: 'exact', head: true });
+
+        document.getElementById('statTotal').textContent = totalCount || 0;
+
+        // Today's deliveries
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const { count: todayCount } = await supabase
+          .from('assets')
+          .select('*', { count: 'exact', head: true })
+          .gte('supply_date', today.toISOString());
+
+        document.getElementById('statToday').textContent = todayCount || 0;
+
+        // With GPS
+        const { count: gpsCount } = await supabase
+          .from('assets')
+          .select('*', { count: 'exact', head: true })
+          .not('gps', 'is', null);
+
+        document.getElementById('statGps').textContent = gpsCount || 0;
+
+        // Open tickets
+        const { count: ticketCount } = await supabase
+          .from('tickets')
+          .select('*', { count: 'exact', head: true })
+          .eq('status', 'Open');
+
+        document.getElementById('statTickets').textContent = ticketCount || 0;
+
+      } catch (error) {
+        console.error('Error loading stats:', error);
+      }
+    }
+
+    async function loadDeliveries(filter = 'today') {
+      const container = document.getElementById('deliveriesTable');
+      container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+
+      try {
+        let query = supabase
+          .from('assets')
+          .select('*')
+          .not('supply_date', 'is', null)
+          .order('supply_date', { ascending: false })
+          .limit(100);
+
+        const now = new Date();
+        if (filter === 'today') {
+          const today = new Date(now);
+          today.setHours(0, 0, 0, 0);
+          query = query.gte('supply_date', today.toISOString());
+        } else if (filter === 'week') {
+          const weekAgo = new Date(now);
+          weekAgo.setDate(weekAgo.getDate() - 7);
+          query = query.gte('supply_date', weekAgo.toISOString());
+        } else if (filter === 'month') {
+          const monthAgo = new Date(now);
+          monthAgo.setMonth(monthAgo.getMonth() - 1);
+          query = query.gte('supply_date', monthAgo.toISOString());
+        }
+
+        const { data, error } = await query;
+
+        if (error) throw error;
+
+        if (!data || data.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon">package</div>
+              <p>No deliveries found for this period</p>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>Asset ID</th>
+                <th>Product</th>
+                <th>Recipient</th>
+                <th>Community</th>
+                <th>Delivered</th>
+                <th>Photo</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${data.map(asset => `
+                <tr>
+                  <td><span class="asset-id">${asset.unique_id}</span></td>
+                  <td>${asset.product || '-'}</td>
+                  <td>${asset.name || '-'}</td>
+                  <td>${asset.community || '-'}</td>
+                  <td>${formatDate(asset.supply_date)}</td>
+                  <td>${renderPhoto(asset.photo)}</td>
+                  <td>${renderGps(asset.gps)}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+
+      } catch (error) {
+        console.error('Error:', error);
+        container.innerHTML = '<div class="empty-state"><p>Error loading deliveries</p></div>';
+      }
+    }
+
+    async function loadAssets() {
+      const container = document.getElementById('assetsTable');
+      container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+
+      try {
+        const { data, error } = await supabase
+          .from('assets')
+          .select('*')
+          .order('unique_id');
+
+        if (error) throw error;
+
+        allAssets = data || [];
+
+        // Get unique communities
+        communities = [...new Set(allAssets.map(a => a.community).filter(Boolean))].sort();
+        const communitySelect = document.getElementById('communityFilter');
+        communitySelect.innerHTML = '<option value="">All Communities</option>' +
+          communities.map(c => `<option value="${c}">${c}</option>`).join('');
+
+        renderAssets(allAssets);
+
+      } catch (error) {
+        console.error('Error:', error);
+        container.innerHTML = '<div class="empty-state"><p>Error loading assets</p></div>';
+      }
+    }
+
+    function renderAssets(assets) {
+      const container = document.getElementById('assetsTable');
+
+      if (!assets || assets.length === 0) {
+        container.innerHTML = '<div class="empty-state"><p>No assets found</p></div>';
+        return;
+      }
+
+      container.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Asset ID</th>
+              <th>Product</th>
+              <th>Name</th>
+              <th>Community</th>
+              <th>Status</th>
+              <th>Photo</th>
+              <th>GPS</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${assets.slice(0, 100).map(asset => `
+              <tr>
+                <td><span class="asset-id">${asset.unique_id}</span></td>
+                <td>${asset.product || '-'}</td>
+                <td>${asset.name || '-'}</td>
+                <td>${asset.community || '-'}</td>
+                <td>${renderDeliveryStatus(asset)}</td>
+                <td>${renderPhoto(asset.photo)}</td>
+                <td>${renderGps(asset.gps)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+        ${assets.length > 100 ? '<div style="padding: 16px; text-align: center; color: #64748b;">Showing first 100 of ' + assets.length + ' assets</div>' : ''}
+      `;
+    }
+
+    async function loadTickets() {
+      const container = document.getElementById('ticketsTable');
+      container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+
+      try {
+        const { data, error } = await supabase
+          .from('tickets')
+          .select('*')
+          .order('submit_date', { ascending: false })
+          .limit(100);
+
+        if (error) throw error;
+
+        allTickets = data || [];
+
+        if (allTickets.length === 0) {
+          container.innerHTML = '<div class="empty-state"><p>No tickets found</p></div>';
+          return;
+        }
+
+        renderTickets(allTickets);
+
+      } catch (error) {
+        console.error('Error:', error);
+        container.innerHTML = '<div class="empty-state"><p>Error loading tickets</p></div>';
+      }
+    }
+
+    function renderTickets(tickets) {
+      const container = document.getElementById('ticketsTable');
+
+      container.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Asset</th>
+              <th>Issue</th>
+              <th>Contact</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Submitted</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${tickets.map(ticket => `
+              <tr>
+                <td><span class="asset-id">${ticket.asset_id || '-'}</span></td>
+                <td>${(ticket.issue_description || '').substring(0, 50)}${ticket.issue_description?.length > 50 ? '...' : ''}</td>
+                <td>${ticket.user_name || '-'}<br><small style="color: #64748b">${ticket.user_contact || ''}</small></td>
+                <td>${renderPriority(ticket.priority)}</td>
+                <td>${renderStatus(ticket.status)}</td>
+                <td>${formatDate(ticket.submit_date)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    async function loadCommunities() {
+      const container = document.getElementById('communitiesTable');
+      container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+
+      try {
+        const { data, error } = await supabase
+          .from('assets')
+          .select('community, product, gps, supply_date');
+
+        if (error) throw error;
+
+        // Group by community
+        const communityStats = {};
+        data.forEach(asset => {
+          const comm = asset.community || 'Unknown';
+          if (!communityStats[comm]) {
+            communityStats[comm] = { total: 0, delivered: 0, withGps: 0, products: {} };
+          }
+          communityStats[comm].total++;
+          if (asset.supply_date) communityStats[comm].delivered++;
+          if (asset.gps) communityStats[comm].withGps++;
+
+          const prod = asset.product || 'Other';
+          communityStats[comm].products[prod] = (communityStats[comm].products[prod] || 0) + 1;
+        });
+
+        const sortedCommunities = Object.entries(communityStats)
+          .sort((a, b) => b[1].total - a[1].total);
+
+        container.innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>Community</th>
+                <th>Total Assets</th>
+                <th>Delivered</th>
+                <th>With GPS</th>
+                <th>Products</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${sortedCommunities.map(([community, stats]) => `
+                <tr>
+                  <td><strong>${community}</strong></td>
+                  <td>${stats.total}</td>
+                  <td>${stats.delivered} <small style="color: #64748b">(${Math.round(stats.delivered/stats.total*100)}%)</small></td>
+                  <td>${stats.withGps}</td>
+                  <td>${Object.entries(stats.products).map(([p, c]) => `<span class="badge badge-gray">${p}: ${c}</span>`).join(' ')}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+
+      } catch (error) {
+        console.error('Error:', error);
+        container.innerHTML = '<div class="empty-state"><p>Error loading communities</p></div>';
+      }
+    }
+
+    // ============================================================================
+    // FILTERS
+    // ============================================================================
+
+    document.getElementById('deliveryFilter').addEventListener('change', (e) => {
+      loadDeliveries(e.target.value);
+    });
+
+    document.getElementById('assetSearch').addEventListener('input', (e) => {
+      filterAssets();
+    });
+
+    document.getElementById('communityFilter').addEventListener('change', () => {
+      filterAssets();
+    });
+
+    document.getElementById('productFilter').addEventListener('change', () => {
+      filterAssets();
+    });
+
+    document.getElementById('ticketStatusFilter').addEventListener('change', (e) => {
+      const status = e.target.value;
+      if (status) {
+        renderTickets(allTickets.filter(t => t.status === status));
+      } else {
+        renderTickets(allTickets);
+      }
+    });
+
+    function filterAssets() {
+      const search = document.getElementById('assetSearch').value.toLowerCase();
+      const community = document.getElementById('communityFilter').value;
+      const product = document.getElementById('productFilter').value;
+
+      let filtered = allAssets;
+
+      if (search) {
+        filtered = filtered.filter(a =>
+          (a.unique_id || '').toLowerCase().includes(search) ||
+          (a.name || '').toLowerCase().includes(search) ||
+          (a.community || '').toLowerCase().includes(search)
+        );
+      }
+
+      if (community) {
+        filtered = filtered.filter(a => a.community === community);
+      }
+
+      if (product) {
+        filtered = filtered.filter(a => a.product === product);
+      }
+
+      renderAssets(filtered);
+    }
+
+    // ============================================================================
+    // HELPERS
+    // ============================================================================
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '-';
+      const date = new Date(dateStr);
+      const now = new Date();
+      const isToday = date.toDateString() === now.toDateString();
+
+      if (isToday) {
+        return 'Today ' + date.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' });
+      }
+
+      return date.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+
+    function renderPhoto(photoArray) {
+      if (!photoArray || photoArray.length === 0) {
+        return '<div class="no-photo">-</div>';
+      }
+      const url = Array.isArray(photoArray) ? photoArray[photoArray.length - 1] : photoArray;
+      return `<img src="${url}" class="photo-thumb" onclick="showPhoto('${url}')">`;
+    }
+
+    function renderGps(gps) {
+      if (!gps) return '<span style="color: #94a3b8">-</span>';
+      const [lat, lng] = gps.split(',');
+      if (!lat || !lng) return '<span style="color: #94a3b8">-</span>';
+      return `<a href="https://maps.google.com/?q=${lat},${lng}" target="_blank" class="gps-link">View Map</a>`;
+    }
+
+    function renderDeliveryStatus(asset) {
+      if (asset.supply_date) {
+        return '<span class="badge badge-green">Delivered</span>';
+      }
+      return '<span class="badge badge-gray">Pending</span>';
+    }
+
+    function renderPriority(priority) {
+      const colors = {
+        'Low': 'badge-gray',
+        'Medium': 'badge-blue',
+        'High': 'badge-yellow',
+        'Urgent': 'badge-red'
+      };
+      return `<span class="badge ${colors[priority] || 'badge-gray'}">${priority || '-'}</span>`;
+    }
+
+    function renderStatus(status) {
+      const colors = {
+        'Open': 'badge-yellow',
+        'In Progress': 'badge-blue',
+        'Resolved': 'badge-green',
+        'Closed': 'badge-gray'
+      };
+      return `<span class="badge ${colors[status] || 'badge-gray'}">${status || '-'}</span>`;
+    }
+
+    function showPhoto(url) {
+      document.getElementById('modalPhoto').src = url;
+      document.getElementById('photoModal').classList.add('show');
+    }
+
+    function closePhotoModal() {
+      document.getElementById('photoModal').classList.remove('show');
+    }
+
+    document.getElementById('photoModal').addEventListener('click', (e) => {
+      if (e.target.id === 'photoModal') {
+        closePhotoModal();
+      }
+    });
+
+    async function exportData() {
+      try {
+        const { data, error } = await supabase
+          .from('assets')
+          .select('*')
+          .order('unique_id');
+
+        if (error) throw error;
+
+        // Convert to CSV
+        const headers = ['unique_id', 'product', 'name', 'community', 'place', 'gps', 'supply_date', 'notes'];
+        const csv = [
+          headers.join(','),
+          ...data.map(row =>
+            headers.map(h => {
+              let val = row[h] || '';
+              if (typeof val === 'string' && (val.includes(',') || val.includes('"'))) {
+                val = '"' + val.replace(/"/g, '""') + '"';
+              }
+              return val;
+            }).join(',')
+          )
+        ].join('\n');
+
+        // Download
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `assets_export_${new Date().toISOString().split('T')[0]}.csv`;
+        a.click();
+
+      } catch (error) {
+        console.error('Export error:', error);
+        alert('Failed to export data');
+      }
+    }
+
+    // ============================================================================
+    // INITIALIZE
+    // ============================================================================
+
+    loadStats();
+    loadDeliveries('today');
+    loadAssets();
+    loadTickets();
+    loadCommunities();
+  </script>
+</body>
+</html>

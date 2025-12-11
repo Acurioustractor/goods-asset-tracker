@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Deliver Asset - Goods Tracker</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0f172a;
+      min-height: 100vh;
+      color: white;
+    }
+
+    .app {
+      max-width: 500px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .header p {
+      font-size: 13px;
+      opacity: 0.9;
+      margin-top: 4px;
+    }
+
+    /* Search Section */
+    .search-section {
+      padding: 16px;
+      background: #1e293b;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 8px;
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 14px 16px;
+      font-size: 16px;
+      border: 2px solid #334155;
+      border-radius: 10px;
+      background: #0f172a;
+      color: white;
+      text-transform: uppercase;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+
+    .search-input::placeholder {
+      color: #64748b;
+      text-transform: none;
+    }
+
+    .scan-btn {
+      padding: 14px 20px;
+      background: #3b82f6;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    /* Asset Card */
+    .asset-card {
+      background: #1e293b;
+      margin: 16px;
+      border-radius: 16px;
+      overflow: hidden;
+      display: none;
+    }
+
+    .asset-card.show {
+      display: block;
+    }
+
+    .asset-header {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .asset-id {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .asset-type {
+      background: rgba(255,255,255,0.2);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .asset-details {
+      padding: 20px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #334155;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .detail-label {
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    .detail-value {
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: right;
+    }
+
+    /* Delivery Form */
+    .delivery-form {
+      padding: 16px;
+      display: none;
+    }
+
+    .delivery-form.show {
+      display: block;
+    }
+
+    .form-section {
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Photo Capture */
+    .photo-capture {
+      background: #0f172a;
+      border: 2px dashed #334155;
+      border-radius: 12px;
+      padding: 30px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .photo-capture:hover {
+      border-color: #3b82f6;
+      background: #1e293b;
+    }
+
+    .photo-capture.has-photo {
+      padding: 0;
+      border-style: solid;
+      border-color: #10b981;
+    }
+
+    .photo-capture img {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .photo-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .photo-text {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .photo-text strong {
+      color: white;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    #photoInput {
+      display: none;
+    }
+
+    /* Location */
+    .location-box {
+      background: #0f172a;
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .location-status {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .location-icon {
+      width: 40px;
+      height: 40px;
+      background: #334155;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .location-icon.success {
+      background: #10b981;
+    }
+
+    .location-icon.loading {
+      background: #f59e0b;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .location-info {
+      flex: 1;
+    }
+
+    .location-label {
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    .location-value {
+      font-size: 14px;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    .location-btn {
+      width: 100%;
+      padding: 12px;
+      background: #3b82f6;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .location-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Notes */
+    .notes-input {
+      width: 100%;
+      padding: 14px;
+      background: #0f172a;
+      border: 2px solid #334155;
+      border-radius: 10px;
+      color: white;
+      font-size: 16px;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .notes-input:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+
+    .notes-input::placeholder {
+      color: #64748b;
+    }
+
+    /* Recipient */
+    .recipient-input {
+      width: 100%;
+      padding: 14px;
+      background: #0f172a;
+      border: 2px solid #334155;
+      border-radius: 10px;
+      color: white;
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .recipient-input:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+
+    /* Submit Button */
+    .submit-section {
+      padding: 16px;
+      padding-bottom: 32px;
+      display: none;
+    }
+
+    .submit-section.show {
+      display: block;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: transform 0.2s;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      transform: scale(1.02);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* Success Screen */
+    .success-screen {
+      position: fixed;
+      inset: 0;
+      background: #0f172a;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      z-index: 200;
+    }
+
+    .success-screen.show {
+      display: flex;
+    }
+
+    .success-icon {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      margin-bottom: 24px;
+      animation: scaleIn 0.5s ease-out;
+    }
+
+    @keyframes scaleIn {
+      0% { transform: scale(0); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .success-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .success-subtitle {
+      color: #94a3b8;
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .success-details {
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 20px;
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 32px;
+    }
+
+    .success-detail {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+    }
+
+    .success-detail-label {
+      color: #94a3b8;
+    }
+
+    .success-detail-value {
+      font-weight: 600;
+    }
+
+    .next-btn {
+      width: 100%;
+      max-width: 300px;
+      padding: 16px;
+      background: #3b82f6;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Message */
+    .message {
+      position: fixed;
+      top: 80px;
+      left: 16px;
+      right: 16px;
+      max-width: 468px;
+      margin: 0 auto;
+      padding: 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 150;
+      display: none;
+      animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    .message.error {
+      background: #ef4444;
+    }
+
+    .message.info {
+      background: #3b82f6;
+    }
+
+    /* Loading overlay */
+    .loading-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 300;
+    }
+
+    .loading-overlay.show {
+      display: flex;
+    }
+
+    .loading-content {
+      text-align: center;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid #334155;
+      border-top-color: #3b82f6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Recent deliveries */
+    .recent-section {
+      padding: 16px;
+    }
+
+    .recent-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #94a3b8;
+    }
+
+    .recent-item {
+      background: #1e293b;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .recent-check {
+      width: 32px;
+      height: 32px;
+      background: #10b981;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .recent-info {
+      flex: 1;
+    }
+
+    .recent-id {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .recent-time {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #64748b;
+    }
+
+    .empty-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    .empty-text {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="header">
+      <h1>Deliver Bed</h1>
+      <p>Scan or enter asset ID to record delivery</p>
+    </div>
+
+    <div class="search-section">
+      <div class="search-box">
+        <input type="text" id="assetSearch" class="search-input" placeholder="Enter Asset ID (e.g. GB0-152-1)" autocomplete="off">
+        <button class="scan-btn" id="scanBtn" title="Scan QR Code">QR</button>
+      </div>
+    </div>
+
+    <div id="messageBox" class="message"></div>
+
+    <div id="assetCard" class="asset-card">
+      <div class="asset-header">
+        <span id="assetIdDisplay" class="asset-id">GB0-152-1</span>
+        <span id="assetTypeDisplay" class="asset-type">Basket Bed</span>
+      </div>
+      <div class="asset-details">
+        <div class="detail-row">
+          <span class="detail-label">Recipient</span>
+          <span id="recipientDisplay" class="detail-value">-</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Community</span>
+          <span id="communityDisplay" class="detail-value">-</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Address</span>
+          <span id="placeDisplay" class="detail-value">-</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Status</span>
+          <span id="statusDisplay" class="detail-value">Not Delivered</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="deliveryForm" class="delivery-form">
+      <div class="form-section">
+        <div class="section-title">Photo of Delivery</div>
+        <div class="photo-capture" id="photoCapture">
+          <div id="photoPlaceholder">
+            <div class="photo-icon">camera</div>
+            <div class="photo-text">
+              <strong>Take a Photo</strong>
+              Show the bed at delivery location
+            </div>
+          </div>
+          <img id="photoPreview" style="display: none;">
+        </div>
+        <input type="file" id="photoInput" accept="image/*" capture="environment">
+      </div>
+
+      <div class="form-section">
+        <div class="section-title">GPS Location</div>
+        <div class="location-box">
+          <div class="location-status">
+            <div id="locationIcon" class="location-icon">location</div>
+            <div class="location-info">
+              <div class="location-label">Coordinates</div>
+              <div id="locationValue" class="location-value">Not captured yet</div>
+            </div>
+          </div>
+          <button id="locationBtn" class="location-btn">Capture Current Location</button>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="section-title">Recipient Name (Optional)</div>
+        <input type="text" id="recipientInput" class="recipient-input" placeholder="Name of person receiving the bed">
+      </div>
+
+      <div class="form-section">
+        <div class="section-title">Delivery Notes (Optional)</div>
+        <textarea id="notesInput" class="notes-input" placeholder="Any notes about this delivery..."></textarea>
+      </div>
+    </div>
+
+    <div id="submitSection" class="submit-section">
+      <button id="submitBtn" class="submit-btn">
+        <span>Confirm Delivery</span>
+      </button>
+    </div>
+
+    <div class="recent-section">
+      <div class="recent-title">Today's Deliveries</div>
+      <div id="recentDeliveries">
+        <div class="empty-state">
+          <div class="empty-icon">package</div>
+          <div class="empty-text">No deliveries yet today</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Screen -->
+  <div id="successScreen" class="success-screen">
+    <div class="success-icon">check</div>
+    <div class="success-title">Delivered!</div>
+    <div class="success-subtitle">Asset has been marked as delivered with photo and location</div>
+    <div class="success-details">
+      <div class="success-detail">
+        <span class="success-detail-label">Asset ID</span>
+        <span id="successAssetId" class="success-detail-value">-</span>
+      </div>
+      <div class="success-detail">
+        <span class="success-detail-label">Time</span>
+        <span id="successTime" class="success-detail-value">-</span>
+      </div>
+      <div class="success-detail">
+        <span class="success-detail-label">Location</span>
+        <span id="successLocation" class="success-detail-value">Captured</span>
+      </div>
+    </div>
+    <button id="nextBtn" class="next-btn">Deliver Next Bed</button>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="loading-content">
+      <div class="spinner"></div>
+      <div id="loadingText">Saving delivery...</div>
+    </div>
+  </div>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    // ============================================================================
+    // CONFIGURATION
+    // ============================================================================
+    const SUPABASE_URL = 'https://cwsyhpiuepvdjtxaozwf.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMwNzY5NTAsImV4cCI6MjA0ODY1Mjk1MH0.FNk8EYYfMi5vwfyRQJqZs5jG5O4k9TzPfCHhQPn1xZA';
+
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // ============================================================================
+    // STATE
+    // ============================================================================
+    let currentAsset = null;
+    let capturedPhoto = null;
+    let capturedLocation = null;
+    let todayDeliveries = [];
+
+    // ============================================================================
+    // DOM ELEMENTS
+    // ============================================================================
+    const assetSearch = document.getElementById('assetSearch');
+    const assetCard = document.getElementById('assetCard');
+    const deliveryForm = document.getElementById('deliveryForm');
+    const submitSection = document.getElementById('submitSection');
+    const photoCapture = document.getElementById('photoCapture');
+    const photoInput = document.getElementById('photoInput');
+    const photoPreview = document.getElementById('photoPreview');
+    const photoPlaceholder = document.getElementById('photoPlaceholder');
+    const locationBtn = document.getElementById('locationBtn');
+    const locationIcon = document.getElementById('locationIcon');
+    const locationValue = document.getElementById('locationValue');
+    const submitBtn = document.getElementById('submitBtn');
+    const successScreen = document.getElementById('successScreen');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const messageBox = document.getElementById('messageBox');
+
+    // ============================================================================
+    // ASSET SEARCH
+    // ============================================================================
+
+    assetSearch.addEventListener('keyup', async (e) => {
+      if (e.key === 'Enter') {
+        await searchAsset(assetSearch.value.trim().toUpperCase());
+      }
+    });
+
+    assetSearch.addEventListener('blur', async () => {
+      const value = assetSearch.value.trim().toUpperCase();
+      if (value && value !== currentAsset?.unique_id) {
+        await searchAsset(value);
+      }
+    });
+
+    // Check URL for asset_id parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlAssetId = urlParams.get('asset_id');
+    if (urlAssetId) {
+      assetSearch.value = urlAssetId;
+      searchAsset(urlAssetId);
+    }
+
+    async function searchAsset(assetId) {
+      if (!assetId) return;
+
+      showLoading('Loading asset...');
+
+      try {
+        const { data, error } = await supabase
+          .from('assets')
+          .select('*')
+          .eq('unique_id', assetId)
+          .single();
+
+        if (error) throw error;
+
+        if (data) {
+          currentAsset = data;
+          displayAsset(data);
+        } else {
+          showMessage('Asset not found: ' + assetId, 'error');
+          hideAssetCard();
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showMessage('Asset not found. Check the ID and try again.', 'error');
+        hideAssetCard();
+      } finally {
+        hideLoading();
+      }
+    }
+
+    function displayAsset(asset) {
+      document.getElementById('assetIdDisplay').textContent = asset.unique_id;
+      document.getElementById('assetTypeDisplay').textContent = asset.product || 'Asset';
+      document.getElementById('recipientDisplay').textContent = asset.name || '-';
+      document.getElementById('communityDisplay').textContent = asset.community || '-';
+      document.getElementById('placeDisplay').textContent = asset.place || '-';
+
+      // Check if already delivered today
+      const isDelivered = asset.supply_date &&
+        new Date(asset.supply_date).toDateString() === new Date().toDateString();
+      document.getElementById('statusDisplay').textContent =
+        isDelivered ? 'Delivered Today' : (asset.supply_date ? 'Previously Delivered' : 'Not Delivered');
+
+      assetCard.classList.add('show');
+      deliveryForm.classList.add('show');
+      submitSection.classList.add('show');
+
+      // Pre-fill recipient if available
+      if (asset.name) {
+        document.getElementById('recipientInput').value = asset.name;
+      }
+    }
+
+    function hideAssetCard() {
+      currentAsset = null;
+      assetCard.classList.remove('show');
+      deliveryForm.classList.remove('show');
+      submitSection.classList.remove('show');
+    }
+
+    // ============================================================================
+    // PHOTO CAPTURE
+    // ============================================================================
+
+    photoCapture.addEventListener('click', () => {
+      photoInput.click();
+    });
+
+    photoInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        capturedPhoto = file;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          photoPreview.src = e.target.result;
+          photoPreview.style.display = 'block';
+          photoPlaceholder.style.display = 'none';
+          photoCapture.classList.add('has-photo');
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // ============================================================================
+    // GPS LOCATION
+    // ============================================================================
+
+    locationBtn.addEventListener('click', () => {
+      if (!navigator.geolocation) {
+        showMessage('GPS not supported on this device', 'error');
+        return;
+      }
+
+      locationIcon.classList.add('loading');
+      locationIcon.textContent = '...';
+      locationBtn.disabled = true;
+      locationBtn.textContent = 'Getting location...';
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          capturedLocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+            accuracy: position.coords.accuracy
+          };
+
+          locationIcon.classList.remove('loading');
+          locationIcon.classList.add('success');
+          locationIcon.textContent = 'check';
+          locationValue.textContent = `${capturedLocation.lat.toFixed(6)}, ${capturedLocation.lng.toFixed(6)}`;
+          locationBtn.textContent = 'Location Captured';
+          locationBtn.disabled = true;
+        },
+        (error) => {
+          console.error('GPS Error:', error);
+          locationIcon.classList.remove('loading');
+          locationIcon.textContent = 'X';
+          locationBtn.disabled = false;
+          locationBtn.textContent = 'Try Again';
+          showMessage('Could not get location. Make sure GPS is enabled.', 'error');
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0
+        }
+      );
+    });
+
+    // ============================================================================
+    // SUBMIT DELIVERY
+    // ============================================================================
+
+    submitBtn.addEventListener('click', async () => {
+      if (!currentAsset) {
+        showMessage('Please select an asset first', 'error');
+        return;
+      }
+
+      if (!capturedPhoto) {
+        showMessage('Please take a photo of the delivery', 'error');
+        return;
+      }
+
+      if (!capturedLocation) {
+        showMessage('Please capture the GPS location', 'error');
+        return;
+      }
+
+      showLoading('Uploading photo...');
+
+      try {
+        // 1. Upload photo
+        const fileName = `delivery_${currentAsset.unique_id}_${Date.now()}.jpg`;
+        const filePath = `deliveries/${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from('ticket-photos')
+          .upload(filePath, capturedPhoto);
+
+        if (uploadError) throw uploadError;
+
+        // Get public URL
+        const { data: urlData } = supabase.storage
+          .from('ticket-photos')
+          .getPublicUrl(filePath);
+
+        const photoUrl = urlData.publicUrl;
+
+        // 2. Update asset with delivery info
+        document.getElementById('loadingText').textContent = 'Saving delivery...';
+
+        const gpsString = `${capturedLocation.lat},${capturedLocation.lng}`;
+        const notes = document.getElementById('notesInput').value.trim();
+        const recipientName = document.getElementById('recipientInput').value.trim();
+
+        const updateData = {
+          supply_date: new Date().toISOString(),
+          last_checkin_date: new Date().toISOString(),
+          gps: gpsString,
+          photo: currentAsset.photo ? [...currentAsset.photo, photoUrl] : [photoUrl]
+        };
+
+        if (recipientName) {
+          updateData.name = recipientName;
+        }
+
+        if (notes) {
+          updateData.notes = currentAsset.notes
+            ? `${currentAsset.notes}\n[Delivery ${new Date().toLocaleDateString()}]: ${notes}`
+            : `[Delivery ${new Date().toLocaleDateString()}]: ${notes}`;
+        }
+
+        const { error: updateError } = await supabase
+          .from('assets')
+          .update(updateData)
+          .eq('unique_id', currentAsset.unique_id);
+
+        if (updateError) throw updateError;
+
+        // 3. Create a check-in record
+        const { error: checkinError } = await supabase
+          .from('checkins')
+          .insert({
+            asset_id: currentAsset.unique_id,
+            visitor_name: recipientName || 'Delivery Driver',
+            status: 'Good',
+            comments: `Delivered. GPS: ${gpsString}${notes ? '. Notes: ' + notes : ''}`,
+            photo_url: photoUrl
+          });
+
+        // Don't fail if checkin fails, delivery is the main thing
+
+        // 4. Show success
+        hideLoading();
+        showSuccess();
+
+      } catch (error) {
+        console.error('Error:', error);
+        hideLoading();
+        showMessage('Failed to save delivery: ' + error.message, 'error');
+      }
+    });
+
+    // ============================================================================
+    // SUCCESS & RESET
+    // ============================================================================
+
+    function showSuccess() {
+      document.getElementById('successAssetId').textContent = currentAsset.unique_id;
+      document.getElementById('successTime').textContent = new Date().toLocaleTimeString();
+      document.getElementById('successLocation').textContent =
+        capturedLocation ? `${capturedLocation.lat.toFixed(4)}, ${capturedLocation.lng.toFixed(4)}` : 'Captured';
+
+      // Add to today's deliveries
+      todayDeliveries.unshift({
+        id: currentAsset.unique_id,
+        time: new Date()
+      });
+      updateRecentDeliveries();
+
+      successScreen.classList.add('show');
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      resetForm();
+      successScreen.classList.remove('show');
+      assetSearch.value = '';
+      assetSearch.focus();
+    });
+
+    function resetForm() {
+      currentAsset = null;
+      capturedPhoto = null;
+      capturedLocation = null;
+
+      hideAssetCard();
+
+      // Reset photo
+      photoInput.value = '';
+      photoPreview.src = '';
+      photoPreview.style.display = 'none';
+      photoPlaceholder.style.display = 'block';
+      photoCapture.classList.remove('has-photo');
+
+      // Reset location
+      locationIcon.classList.remove('success', 'loading');
+      locationIcon.textContent = 'location';
+      locationValue.textContent = 'Not captured yet';
+      locationBtn.textContent = 'Capture Current Location';
+      locationBtn.disabled = false;
+
+      // Reset inputs
+      document.getElementById('recipientInput').value = '';
+      document.getElementById('notesInput').value = '';
+    }
+
+    function updateRecentDeliveries() {
+      const container = document.getElementById('recentDeliveries');
+
+      if (todayDeliveries.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">package</div>
+            <div class="empty-text">No deliveries yet today</div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = todayDeliveries.map(d => `
+        <div class="recent-item">
+          <div class="recent-check">check</div>
+          <div class="recent-info">
+            <div class="recent-id">${d.id}</div>
+            <div class="recent-time">${d.time.toLocaleTimeString()}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ============================================================================
+    // HELPERS
+    // ============================================================================
+
+    function showMessage(text, type) {
+      messageBox.textContent = text;
+      messageBox.className = `message ${type} show`;
+      setTimeout(() => {
+        messageBox.classList.remove('show');
+      }, 4000);
+    }
+
+    function showLoading(text) {
+      document.getElementById('loadingText').textContent = text || 'Loading...';
+      loadingOverlay.classList.add('show');
+    }
+
+    function hideLoading() {
+      loadingOverlay.classList.remove('show');
+    }
+
+    // ============================================================================
+    // LOAD TODAY'S DELIVERIES ON START
+    // ============================================================================
+
+    async function loadTodayDeliveries() {
+      try {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const { data, error } = await supabase
+          .from('assets')
+          .select('unique_id, supply_date')
+          .gte('supply_date', today.toISOString())
+          .order('supply_date', { ascending: false })
+          .limit(10);
+
+        if (data) {
+          todayDeliveries = data.map(d => ({
+            id: d.unique_id,
+            time: new Date(d.supply_date)
+          }));
+          updateRecentDeliveries();
+        }
+      } catch (error) {
+        console.error('Error loading today deliveries:', error);
+      }
+    }
+
+    // Initialize
+    loadTodayDeliveries();
+  </script>
+</body>
+</html>
