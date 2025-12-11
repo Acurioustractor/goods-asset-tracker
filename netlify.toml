@@ -10,8 +10,24 @@
 
 # Redirects and rewrites
 [[redirects]]
-  # Redirect root to index.html with query params preserved
+  # Root goes to new home screen (unless has asset_id param)
   from = "/"
+  to = "/home.html"
+  status = 200
+  force = false
+
+[[redirects]]
+  # QR codes with asset_id go to support form (index.html)
+  # This handles: https://goodsoncountry.netlify.app/?asset_id=GB0-1
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Query = ["asset_id"]}
+  force = true
+
+[[redirects]]
+  # /support path goes to support form
+  from = "/support"
   to = "/index.html"
   status = 200
   force = false

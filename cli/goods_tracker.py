@@ -658,5 +658,280 @@ def config_reset():
     else:
         info("No configuration to reset")
 
+
+# ============================================================================
+# AUDIT COMMANDS
+# ============================================================================
+
+@cli.group()
+def audit():
+    """QR code audit and validation commands."""
+    pass
+
+
+@audit.command('full')
+@click.option('--save', '-s', is_flag=True, help='Save results to database')
+@click.option('--json', '-j', 'as_json', is_flag=True, help='Output as JSON')
+def audit_full(save, as_json):
+    """Run all QR code validation checks."""
+    if not as_json:
+        header("QR Code Audit - Full Validation")
+
+    script_path = PROJECT_ROOT / 'scripts' / 'qr_audit.py'
+
+    if not script_path.exists():
+        error(f"Audit script not found: {script_path}")
+        sys.exit(1)
+
+    args = ['python3', str(script_path), 'full']
+    if save:
+        args.append('--save')
+    if as_json:
+        args.append('--json')
+
+    try:
+        result = subprocess.run(args, cwd=PROJECT_ROOT)
+        sys.exit(result.returncode)
+    except Exception as e:
+        error(f"Audit failed: {e}")
+        sys.exit(1)
+
+
+@audit.command('database')
+@click.option('--json', '-j', 'as_json', is_flag=True, help='Output as JSON')
+def audit_database(as_json):
+    """Validate database assets have required fields and valid values."""
+    if not as_json:
+        header("QR Code Audit - Database Validation")
+
+    script_path = PROJECT_ROOT / 'scripts' / 'qr_audit.py'
+
+    if not script_path.exists():
+        error(f"Audit script not found: {script_path}")
+        sys.exit(1)
+
+    args = ['python3', str(script_path), 'database']
+    if as_json:
+        args.append('--json')
+
+    try:
+        result = subprocess.run(args, cwd=PROJECT_ROOT)
+        sys.exit(result.returncode)
+    except Exception as e:
+        error(f"Audit failed: {e}")
+        sys.exit(1)
+
+
+@audit.command('urls')
+@click.option('--json', '-j', 'as_json', is_flag=True, help='Output as JSON')
+def audit_urls(as_json):
+    """Validate all QR URLs have correct format and domain."""
+    if not as_json:
+        header("QR Code Audit - URL Validation")
+
+    script_path = PROJECT_ROOT / 'scripts' / 'qr_audit.py'
+
+    if not script_path.exists():
+        error(f"Audit script not found: {script_path}")
+        sys.exit(1)
+
+    args = ['python3', str(script_path), 'urls']
+    if as_json:
+        args.append('--json')
+
+    try:
+        result = subprocess.run(args, cwd=PROJECT_ROOT)
+        sys.exit(result.returncode)
+    except Exception as e:
+        error(f"Audit failed: {e}")
+        sys.exit(1)
+
+
+@audit.command('qr-files')
+@click.option('--json', '-j', 'as_json', is_flag=True, help='Output as JSON')
+def audit_qr_files(as_json):
+    """Check that QR code files exist for all assets."""
+    if not as_json:
+        header("QR Code Audit - QR File Validation")
+
+    script_path = PROJECT_ROOT / 'scripts' / 'qr_audit.py'
+
+    if not script_path.exists():
+        error(f"Audit script not found: {script_path}")
+        sys.exit(1)
+
+    args = ['python3', str(script_path), 'qr-files']
+    if as_json:
+        args.append('--json')
+
+    try:
+        result = subprocess.run(args, cwd=PROJECT_ROOT)
+        sys.exit(result.returncode)
+    except Exception as e:
+        error(f"Audit failed: {e}")
+        sys.exit(1)
+
+
+@audit.command('consistency')
+@click.option('--json', '-j', 'as_json', is_flag=True, help='Output as JSON')
+def audit_consistency(as_json):
+    """Cross-check database against QR manifest."""
+    if not as_json:
+        header("QR Code Audit - Consistency Check")
+
+    script_path = PROJECT_ROOT / 'scripts' / 'qr_audit.py'
+
+    if not script_path.exists():
+        error(f"Audit script not found: {script_path}")
+        sys.exit(1)
+
+    args = ['python3', str(script_path), 'consistency']
+    if as_json:
+        args.append('--json')
+
+    try:
+        result = subprocess.run(args, cwd=PROJECT_ROOT)
+        sys.exit(result.returncode)
+    except Exception as e:
+        error(f"Audit failed: {e}")
+        sys.exit(1)
+
+
+@audit.command('report')
+@click.option('--save', '-s', is_flag=True, help='Save results to database')
+def audit_report(save):
+    """Generate a comprehensive audit report."""
+    header("QR Code Audit - Full Report")
+
+    script_path = PROJECT_ROOT / 'scripts' / 'qr_audit.py'
+
+    if not script_path.exists():
+        error(f"Audit script not found: {script_path}")
+        sys.exit(1)
+
+    args = ['python3', str(script_path), 'report']
+    if save:
+        args.append('--save')
+
+    try:
+        result = subprocess.run(args, cwd=PROJECT_ROOT)
+        sys.exit(result.returncode)
+    except Exception as e:
+        error(f"Audit failed: {e}")
+        sys.exit(1)
+
+
+@audit.command('history')
+@click.option('--limit', '-n', default=10, help='Number of records to show')
+def audit_history(limit):
+    """Show recent audit history from database."""
+    header("QR Code Audit - History")
+
+    config = load_config()
+
+    # Try to get Supabase credentials from config or use defaults
+    supabase_url = config.get('supabase_url', 'https://cwsyhpiuepvdjtxaozwf.supabase.co')
+    supabase_key = config.get('supabase_anon_key', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw')
+
+    try:
+        response = requests.get(
+            f"{supabase_url}/rest/v1/qr_audit_logs?select=*&order=audit_date.desc&limit={limit}",
+            headers={'apikey': supabase_key}
+        )
+
+        if response.status_code == 200:
+            audits = response.json()
+            if not audits:
+                info("No audit records found")
+                info("Run 'goods-tracker audit full --save' to create one")
+                return
+
+            for audit in audits:
+                date = audit.get('audit_date', 'Unknown')[:19]
+                audit_type = audit.get('audit_type', 'unknown')
+                passed = audit.get('passed', 0)
+                failed = audit.get('failed', 0)
+                summary = audit.get('summary', '')
+
+                status_color = Colors.OKGREEN if failed == 0 else Colors.FAIL
+                status = "PASS" if failed == 0 else "FAIL"
+
+                click.echo(f"\n{Colors.BOLD}{date}{Colors.ENDC}")
+                click.echo(f"  Type: {audit_type}")
+                click.echo(f"  Status: {status_color}[{status}]{Colors.ENDC} {passed}/{passed + failed} checks passed")
+                if summary:
+                    click.echo(f"  Summary: {summary}")
+
+        elif response.status_code == 404:
+            warning("Audit logs table not found")
+            info("Deploy schema with: goods-tracker deploy database")
+        else:
+            error(f"Failed to fetch history: HTTP {response.status_code}")
+            sys.exit(1)
+
+    except requests.exceptions.RequestException as e:
+        error(f"Connection error: {e}")
+        sys.exit(1)
+
+
+@audit.command('changes')
+@click.option('--limit', '-n', default=20, help='Number of records to show')
+@click.option('--asset', '-a', help='Filter by asset ID')
+def audit_changes(limit, asset):
+    """Show recent asset changes from database."""
+    header("Asset Change History")
+
+    config = load_config()
+
+    # Try to get Supabase credentials from config or use defaults
+    supabase_url = config.get('supabase_url', 'https://cwsyhpiuepvdjtxaozwf.supabase.co')
+    supabase_key = config.get('supabase_anon_key', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw')
+
+    try:
+        url = f"{supabase_url}/rest/v1/asset_change_log?select=*&order=change_date.desc&limit={limit}"
+        if asset:
+            url += f"&asset_id=eq.{asset}"
+
+        response = requests.get(url, headers={'apikey': supabase_key})
+
+        if response.status_code == 200:
+            changes = response.json()
+            if not changes:
+                info("No change records found")
+                if asset:
+                    info(f"No changes recorded for asset {asset}")
+                return
+
+            for change in changes:
+                date = change.get('change_date', 'Unknown')[:19]
+                asset_id = change.get('asset_id', 'unknown')
+                change_type = change.get('change_type', 'unknown')
+                changed_fields = change.get('changed_fields', [])
+
+                # Color code by change type
+                if change_type == 'created':
+                    type_color = Colors.OKGREEN
+                elif change_type == 'updated':
+                    type_color = Colors.WARNING
+                else:  # deleted
+                    type_color = Colors.FAIL
+
+                click.echo(f"\n{Colors.BOLD}{date}{Colors.ENDC} - {type_color}{change_type.upper()}{Colors.ENDC}")
+                click.echo(f"  Asset: {asset_id}")
+                if changed_fields:
+                    click.echo(f"  Changed: {', '.join(changed_fields)}")
+
+        elif response.status_code == 404:
+            warning("Asset change log table not found")
+            info("Deploy schema with: goods-tracker deploy database")
+        else:
+            error(f"Failed to fetch changes: HTTP {response.status_code}")
+            sys.exit(1)
+
+    except requests.exceptions.RequestException as e:
+        error(f"Connection error: {e}")
+        sys.exit(1)
+
+
 if __name__ == '__main__':
     cli()
