@@ -939,6 +939,11 @@
       </div>
 
       <div class="form-section">
+        <div class="section-title">🏠 Delivery Address/Place</div>
+        <input type="text" id="placeInput" class="recipient-input" placeholder="e.g., House 14, Lot 23, Unit 5">
+      </div>
+
+      <div class="form-section">
         <div class="section-title">👤 Recipient Name (Optional)</div>
         <input type="text" id="recipientInput" class="recipient-input" placeholder="Name of person receiving the bed">
       </div>
@@ -1128,6 +1133,7 @@
             supply_date: delivery.timestamp,
             last_checkin_date: delivery.timestamp,
             gps: delivery.gps,
+            place: delivery.place || undefined,
             photo: [urlData.publicUrl],
             name: delivery.recipientName || undefined,
             notes: delivery.notes || undefined
@@ -1138,7 +1144,7 @@
             asset_id: delivery.assetId,
             visitor_name: delivery.recipientName || 'Delivery Driver',
             status: 'Good',
-            comments: `Delivered (synced). GPS: ${delivery.gps}. Photo: ${urlData.publicUrl}`
+            comments: `Delivered${delivery.place ? ' to ' + delivery.place : ''} (synced). GPS: ${delivery.gps}`
           });
 
           // Remove from pending
@@ -1298,6 +1304,11 @@
       assetCard.classList.add('show');
       deliveryForm.classList.add('show');
       submitSection.classList.add('show');
+
+      // Pre-fill place if available
+      if (asset.place) {
+        document.getElementById('placeInput').value = asset.place;
+      }
 
       // Pre-fill recipient if available
       if (asset.name) {
@@ -1475,6 +1486,7 @@
         const gpsString = `${capturedLocation.lat},${capturedLocation.lng}`;
         const notes = document.getElementById('notesInput').value.trim();
         const recipientName = document.getElementById('recipientInput').value.trim();
+        const place = document.getElementById('placeInput').value.trim();
 
         const updateData = {
           supply_date: new Date().toISOString(),
@@ -1482,6 +1494,11 @@
           gps: gpsString,
           photo: currentAsset.photo ? [...currentAsset.photo, photoUrl] : [photoUrl]
         };
+
+        // Always update place if provided
+        if (place) {
+          updateData.place = place;
+        }
 
         if (recipientName) {
           updateData.name = recipientName;
@@ -1507,7 +1524,7 @@
             asset_id: currentAsset.unique_id,
             visitor_name: recipientName || 'Delivery Driver',
             status: 'Good',
-            comments: `Delivered. GPS: ${gpsString}${notes ? '. Notes: ' + notes : ''}. Photo: ${photoUrl}`
+            comments: `Delivered${place ? ' to ' + place : ''}. GPS: ${gpsString}${notes ? '. Notes: ' + notes : ''}`
           });
 
         // 4. Show success
@@ -1529,6 +1546,7 @@
           assetId: currentAsset.unique_id,
           timestamp: new Date().toISOString(),
           gps: `${capturedLocation.lat},${capturedLocation.lng}`,
+          place: document.getElementById('placeInput').value.trim(),
           recipientName: document.getElementById('recipientInput').value.trim(),
           notes: document.getElementById('notesInput').value.trim(),
           photoData: reader.result
@@ -1598,6 +1616,7 @@
       photoSize.textContent = '';
 
       // Reset inputs
+      document.getElementById('placeInput').value = '';
       document.getElementById('recipientInput').value = '';
       document.getElementById('notesInput').value = '';
     }
