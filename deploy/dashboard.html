@@ -1267,15 +1267,9 @@
           <label class="form-label">Recipient Name</label>
           <input type="text" class="form-input" id="editName" placeholder="Name of recipient" />
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Supply Date</label>
-            <input type="date" class="form-input" id="editSupplyDate" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">Install Date</label>
-            <input type="date" class="form-input" id="editInstallDate" />
-          </div>
+        <div class="form-group">
+          <label class="form-label">Supply Date</label>
+          <input type="date" class="form-input" id="editSupplyDate" />
         </div>
         <div class="form-group">
           <label class="form-label">Delivery Notes</label>
@@ -1840,6 +1834,62 @@
     }
 
     // ============================================================================
+    // PHOTO UPLOAD
+    // ============================================================================
+    let pendingPhotoFile = null;
+    let pendingPhotoUrl = null;
+
+    async function handleNewPhoto(input) {
+      if (!input.files || !input.files[0]) return;
+
+      const file = input.files[0];
+      pendingPhotoFile = file;
+
+      // Show preview immediately
+      const photoPlaceholder = document.getElementById('photoPlaceholder');
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        pendingPhotoUrl = e.target.result;
+        photoPlaceholder.innerHTML = `
+          <img src="${e.target.result}" class="photo-thumb" alt="New photo preview"/>
+          <div style="margin-top: 10px; display: flex; gap: 8px; justify-content: center;">
+            <input type="file" id="newPhotoInput" accept="image/*" capture="environment" style="display: none;" onchange="handleNewPhoto(this)" />
+            <button type="button" class="btn btn-secondary" style="width: auto; padding: 10px 16px;" onclick="document.getElementById('newPhotoInput').click()">
+              Change
+            </button>
+            <span style="color: var(--warning); font-size: 12px; display: flex; align-items: center;">New photo - save to upload</span>
+          </div>
+        `;
+      };
+
+      reader.readAsDataURL(file);
+    }
+
+    async function uploadPhoto(file, assetId) {
+      const timestamp = Date.now();
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${assetId}_${timestamp}.${fileExt}`;
+      const filePath = `delivery-photos/${fileName}`;
+
+      const { data, error } = await supabase.storage
+        .from('ticket-photos')
+        .upload(filePath, file, {
+          cacheControl: '3600',
+          upsert: true
+        });
+
+      if (error) throw error;
+
+      // Get public URL
+      const { data: urlData } = supabase.storage
+        .from('ticket-photos')
+        .getPublicUrl(filePath);
+
+      return urlData.publicUrl;
+    }
+
+    // ============================================================================
     // EDIT MODAL
     // ============================================================================
     function populateEditCommunities() {
@@ -1866,7 +1916,6 @@
       document.getElementById('editPlace').value = editingAsset.place || '';
       document.getElementById('editName').value = editingAsset.name || '';
       document.getElementById('editSupplyDate').value = editingAsset.supply_date ? editingAsset.supply_date.split('T')[0] : '';
-      document.getElementById('editInstallDate').value = editingAsset.install_date ? editingAsset.install_date.split('T')[0] : '';
       document.getElementById('editNotes').value = editingAsset.notes || '';
 
       // GPS info
@@ -1878,14 +1927,31 @@
         document.getElementById('gpsSection').style.display = 'none';
       }
 
-      // Photo preview
+      // Photo preview - check both photo_url and photo array
       const photoPreview = document.getElementById('photoPreview');
       const photoPlaceholder = document.getElementById('photoPlaceholder');
 
-      if (editingAsset.photo_url) {
-        photoPlaceholder.innerHTML = `<img src="${editingAsset.photo_url}" class="photo-thumb" alt="Delivery photo" onerror="this.parentElement.innerHTML='Photo not available'"/>`;
+      // Get photo URL from either photo_url or the photo array
+      const photoUrl = editingAsset.photo_url || (editingAsset.photo && editingAsset.photo.length > 0 ? editingAsset.photo[0] : null);
+
+      if (photoUrl) {
+        photoPlaceholder.innerHTML = `
+          <img src="${photoUrl}" class="photo-thumb" alt="Delivery photo" onerror="this.parentElement.innerHTML='Photo not available'"/>
+          <div style="margin-top: 10px;">
+            <input type="file" id="newPhotoInput" accept="image/*" capture="environment" style="display: none;" onchange="handleNewPhoto(this)" />
+            <button type="button" class="btn btn-secondary" style="width: auto; padding: 10px 16px;" onclick="document.getElementById('newPhotoInput').click()">
+              Replace Photo
+            </button>
+          </div>
+        `;
       } else {
-        photoPlaceholder.innerHTML = 'No photo attached';
+        photoPlaceholder.innerHTML = `
+          <div style="color: var(--gray); margin-bottom: 12px;">No photo attached</div>
+          <input type="file" id="newPhotoInput" accept="image/*" capture="environment" style="display: none;" onchange="handleNewPhoto(this)" />
+          <button type="button" class="btn btn-primary" style="width: auto; padding: 10px 16px;" onclick="document.getElementById('newPhotoInput').click()">
+            Add Photo
+          </button>
+        `;
       }
 
       // Reset save status
@@ -1901,6 +1967,8 @@
       document.getElementById('editModal').classList.remove('show');
       document.body.style.overflow = '';
       editingAsset = null;
+      pendingPhotoFile = null;
+      pendingPhotoUrl = null;
     }
 
     async function saveAssetChanges() {
@@ -1917,11 +1985,23 @@
         place: document.getElementById('editPlace').value || null,
         name: document.getElementById('editName').value || null,
         supply_date: document.getElementById('editSupplyDate').value || null,
-        install_date: document.getElementById('editInstallDate').value || null,
         notes: document.getElementById('editNotes').value || null
       };
 
       try {
+        // Upload new photo if one was selected
+        if (pendingPhotoFile) {
+          saveStatus.textContent = 'Uploading photo...';
+          saveStatus.className = 'save-status show';
+
+          const photoUrl = await uploadPhoto(pendingPhotoFile, editingAsset.unique_id);
+          updates.photo_url = photoUrl;
+
+          // Also update the photo array
+          const existingPhotos = editingAsset.photo || [];
+          updates.photo = [...existingPhotos, photoUrl];
+        }
+
         const { error } = await supabase
           .from('assets')
           .update(updates)
@@ -1943,6 +2023,10 @@
         updateStats();
         renderRecentActivity();
         applyFilters();
+
+        // Clear pending photo
+        pendingPhotoFile = null;
+        pendingPhotoUrl = null;
 
         // Close modal after brief delay
         setTimeout(() => {
