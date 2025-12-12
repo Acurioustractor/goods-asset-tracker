@@ -147,10 +147,22 @@
       border: 1px solid var(--border);
       text-align: center;
       transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .stat-card:hover {
+      border-color: var(--primary);
+      background: rgba(59, 130, 246, 0.1);
     }
 
     .stat-card:active {
       transform: scale(0.97);
+    }
+
+    .stat-card.active {
+      border-color: var(--primary);
+      background: rgba(59, 130, 246, 0.15);
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
     }
 
     .stat-number {
@@ -697,6 +709,326 @@
       }
     }
 
+    /* Recent Activity */
+    .activity-section {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .activity-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .activity-title {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .activity-subtitle {
+      font-size: 12px;
+      color: var(--light-gray);
+    }
+
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .activity-item {
+      background: rgba(255,255,255,0.03);
+      border-radius: 14px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .activity-item:hover {
+      border-color: var(--success);
+      background: rgba(16, 185, 129, 0.1);
+    }
+
+    .activity-item:active {
+      transform: scale(0.98);
+    }
+
+    .activity-info {
+      flex: 1;
+    }
+
+    .activity-id {
+      font-size: 15px;
+      font-weight: 700;
+      font-family: 'SF Mono', 'Menlo', monospace;
+      color: var(--success);
+      margin-bottom: 4px;
+    }
+
+    .activity-details {
+      font-size: 13px;
+      color: var(--light-gray);
+    }
+
+    .activity-time {
+      font-size: 11px;
+      color: var(--gray);
+      text-align: right;
+    }
+
+    .activity-actions {
+      display: flex;
+      gap: 8px;
+      margin-left: 12px;
+    }
+
+    .edit-btn {
+      background: rgba(59, 130, 246, 0.2);
+      color: var(--primary);
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .edit-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .no-activity {
+      text-align: center;
+      padding: 32px;
+      color: var(--light-gray);
+    }
+
+    .no-activity-icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+      opacity: 0.5;
+    }
+
+    /* Edit Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--card-bg);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--light-gray);
+      font-size: 28px;
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+    }
+
+    .modal-close:hover {
+      color: white;
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--light-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      color: white;
+      font-size: 15px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: rgba(59, 130, 246, 0.1);
+    }
+
+    .form-input:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .form-input::placeholder {
+      color: var(--gray);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .modal-footer {
+      padding: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.1);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .save-status {
+      text-align: center;
+      padding: 10px;
+      font-size: 13px;
+      color: var(--success);
+      display: none;
+    }
+
+    .save-status.show {
+      display: block;
+    }
+
+    .save-status.error {
+      color: var(--danger);
+    }
+
+    /* GPS Display */
+    .gps-display {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 8px;
+    }
+
+    .gps-label {
+      font-size: 11px;
+      color: var(--success);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .gps-coords {
+      font-size: 12px;
+      font-family: 'SF Mono', 'Menlo', monospace;
+      color: var(--light-gray);
+    }
+
+    /* Photo Preview */
+    .photo-preview {
+      margin-top: 12px;
+    }
+
+    .photo-thumb {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .photo-placeholder {
+      background: rgba(255,255,255,0.05);
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      color: var(--gray);
+    }
+
     /* Accessibility */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -756,21 +1088,38 @@
     <!-- Stats Grid -->
     <div class="section-title">Overview</div>
     <div class="stats-grid">
-      <div class="stat-card">
+      <div class="stat-card" onclick="filterByStat('all')" id="statAll">
         <div id="totalAssets" class="stat-number stat-blue loading">--</div>
         <div class="stat-label">Total Assets</div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card" onclick="filterByStat('beds')" id="statBeds">
         <div id="totalBeds" class="stat-number stat-green loading">--</div>
         <div class="stat-label">Beds</div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card" onclick="filterByStat('washers')" id="statWashers">
         <div id="totalWashers" class="stat-number stat-purple loading">--</div>
         <div class="stat-label">Washers</div>
       </div>
-      <div class="stat-card">
-        <div id="totalCommunities" class="stat-number stat-orange loading">--</div>
-        <div class="stat-label">Communities</div>
+      <div class="stat-card" onclick="filterByStat('today')" id="statToday">
+        <div id="totalToday" class="stat-number stat-orange loading">--</div>
+        <div class="stat-label">Today</div>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="section-title">Recent Deliveries</div>
+    <div class="activity-section">
+      <div class="activity-header">
+        <div>
+          <div class="activity-title">Today's Activity</div>
+          <div class="activity-subtitle" id="activityDate">Loading...</div>
+        </div>
+      </div>
+      <div class="activity-list" id="activityList">
+        <div class="no-activity">
+          <div class="no-activity-icon">📦</div>
+          <div>Loading deliveries...</div>
+        </div>
       </div>
     </div>
 
@@ -886,6 +1235,71 @@
 
   </div>
 
+  <!-- Edit Asset Modal -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title">Edit Asset</h2>
+        <button class="modal-close" onclick="closeEditModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Asset ID</label>
+          <input type="text" class="form-input" id="editAssetId" disabled />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Product Type</label>
+          <input type="text" class="form-input" id="editProduct" disabled />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Community</label>
+            <select class="form-input" id="editCommunity">
+              <option value="">Select community</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Location/Place</label>
+            <input type="text" class="form-input" id="editPlace" placeholder="e.g., House 14" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Recipient Name</label>
+          <input type="text" class="form-input" id="editName" placeholder="Name of recipient" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Supply Date</label>
+            <input type="date" class="form-input" id="editSupplyDate" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Install Date</label>
+            <input type="date" class="form-input" id="editInstallDate" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Delivery Notes</label>
+          <textarea class="form-input" id="editNotes" rows="3" placeholder="Any additional notes..."></textarea>
+        </div>
+        <div id="gpsSection" style="display: none;">
+          <div class="gps-display">
+            <div class="gps-label">GPS Location</div>
+            <div class="gps-coords" id="editGpsCoords">-</div>
+          </div>
+        </div>
+        <div class="photo-preview" id="photoPreview">
+          <label class="form-label">Delivery Photo</label>
+          <div class="photo-placeholder" id="photoPlaceholder">No photo attached</div>
+        </div>
+        <div class="save-status" id="saveStatus"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveAssetChanges()" id="saveBtn">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -909,6 +1323,8 @@
     let sortDirection = 'asc';
     let currentView = 'cards';
     let communityChart, productChart;
+    let currentStatFilter = null;
+    let editingAsset = null;
 
     // ============================================================================
     // LOAD DATA
@@ -928,7 +1344,9 @@
         // Update UI
         updateStats();
         populateCommunityFilter();
+        populateEditCommunities();
         createCharts();
+        renderRecentActivity();
         renderAssets();
 
         // Show view toggle on desktop
@@ -952,11 +1370,14 @@
     // STATS WITH ANIMATION
     // ============================================================================
     function updateStats() {
+      const today = new Date().toISOString().split('T')[0];
+      const todayDeliveries = allAssets.filter(a => a.supply_date && a.supply_date.startsWith(today));
+
       const stats = {
         totalAssets: allAssets.length,
         totalBeds: allAssets.filter(a => a.product && a.product.includes('Bed')).length,
         totalWashers: allAssets.filter(a => a.product === 'ID Washing Machine').length,
-        totalCommunities: new Set(allAssets.map(a => a.community).filter(Boolean)).size
+        totalToday: todayDeliveries.length
       };
 
       Object.keys(stats).forEach(key => {
@@ -1300,6 +1721,242 @@
     }
 
     // ============================================================================
+    // STAT CARD FILTERING
+    // ============================================================================
+    function filterByStat(type) {
+      // Update active stat card
+      document.querySelectorAll('.stat-card').forEach(card => card.classList.remove('active'));
+
+      const today = new Date().toISOString().split('T')[0];
+
+      // Clear other filters first
+      document.getElementById('searchInput').value = '';
+      document.getElementById('communityFilter').value = '';
+      document.getElementById('productFilter').value = '';
+
+      currentStatFilter = type;
+
+      switch(type) {
+        case 'all':
+          document.getElementById('statAll').classList.add('active');
+          filteredAssets = [...allAssets];
+          break;
+        case 'beds':
+          document.getElementById('statBeds').classList.add('active');
+          filteredAssets = allAssets.filter(a => a.product && a.product.includes('Bed'));
+          break;
+        case 'washers':
+          document.getElementById('statWashers').classList.add('active');
+          filteredAssets = allAssets.filter(a => a.product === 'ID Washing Machine');
+          break;
+        case 'today':
+          document.getElementById('statToday').classList.add('active');
+          filteredAssets = allAssets.filter(a => a.supply_date && a.supply_date.startsWith(today));
+          break;
+        default:
+          filteredAssets = [...allAssets];
+      }
+
+      // Sort by most recent first for today view
+      if (type === 'today') {
+        filteredAssets.sort((a, b) => {
+          const dateA = a.supply_date ? new Date(a.supply_date) : new Date(0);
+          const dateB = b.supply_date ? new Date(b.supply_date) : new Date(0);
+          return dateB - dateA;
+        });
+      } else {
+        sortAssets();
+      }
+
+      currentPage = 1;
+      renderAssets();
+      updateClearButton();
+
+      // Scroll to assets section
+      setTimeout(() => {
+        document.querySelector('.assets-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+
+    // ============================================================================
+    // RECENT ACTIVITY
+    // ============================================================================
+    function renderRecentActivity() {
+      const today = new Date();
+      const todayStr = today.toISOString().split('T')[0];
+
+      document.getElementById('activityDate').textContent = today.toLocaleDateString('en-AU', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      });
+
+      // Get today's deliveries and recent ones (last 7 days)
+      const recentDeliveries = allAssets
+        .filter(a => a.supply_date)
+        .sort((a, b) => new Date(b.supply_date) - new Date(a.supply_date))
+        .slice(0, 10);
+
+      const todayDeliveries = recentDeliveries.filter(a => a.supply_date.startsWith(todayStr));
+
+      const activityList = document.getElementById('activityList');
+
+      if (recentDeliveries.length === 0) {
+        activityList.innerHTML = `
+          <div class="no-activity">
+            <div class="no-activity-icon">📦</div>
+            <div>No recent deliveries</div>
+          </div>
+        `;
+        return;
+      }
+
+      activityList.innerHTML = recentDeliveries.map(asset => {
+        const isToday = asset.supply_date.startsWith(todayStr);
+        const deliveryDate = new Date(asset.supply_date);
+        const timeStr = isToday
+          ? 'Today'
+          : deliveryDate.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' });
+
+        return `
+          <div class="activity-item" onclick="openEditModal('${asset.unique_id}')">
+            <div class="activity-info">
+              <div class="activity-id">${asset.unique_id}</div>
+              <div class="activity-details">
+                ${asset.product || 'Unknown'} → ${asset.community || 'Unknown'} ${asset.place ? `(${asset.place})` : ''}
+              </div>
+            </div>
+            <div class="activity-time">${timeStr}</div>
+            <div class="activity-actions">
+              <button class="edit-btn" onclick="event.stopPropagation(); openEditModal('${asset.unique_id}')">Edit</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ============================================================================
+    // EDIT MODAL
+    // ============================================================================
+    function populateEditCommunities() {
+      const communities = [...new Set(allAssets.map(a => a.community).filter(Boolean))].sort();
+      const select = document.getElementById('editCommunity');
+      select.innerHTML = '<option value="">Select community</option>';
+
+      communities.forEach(community => {
+        const option = document.createElement('option');
+        option.value = community;
+        option.textContent = community;
+        select.appendChild(option);
+      });
+    }
+
+    function openEditModal(assetId) {
+      editingAsset = allAssets.find(a => a.unique_id === assetId);
+      if (!editingAsset) return;
+
+      // Populate form
+      document.getElementById('editAssetId').value = editingAsset.unique_id;
+      document.getElementById('editProduct').value = editingAsset.product || '';
+      document.getElementById('editCommunity').value = editingAsset.community || '';
+      document.getElementById('editPlace').value = editingAsset.place || '';
+      document.getElementById('editName').value = editingAsset.name || '';
+      document.getElementById('editSupplyDate').value = editingAsset.supply_date ? editingAsset.supply_date.split('T')[0] : '';
+      document.getElementById('editInstallDate').value = editingAsset.install_date ? editingAsset.install_date.split('T')[0] : '';
+      document.getElementById('editNotes').value = editingAsset.delivery_notes || '';
+
+      // GPS info
+      if (editingAsset.gps_latitude && editingAsset.gps_longitude) {
+        document.getElementById('gpsSection').style.display = 'block';
+        document.getElementById('editGpsCoords').textContent =
+          `${editingAsset.gps_latitude.toFixed(6)}, ${editingAsset.gps_longitude.toFixed(6)}`;
+      } else {
+        document.getElementById('gpsSection').style.display = 'none';
+      }
+
+      // Photo preview
+      const photoPreview = document.getElementById('photoPreview');
+      const photoPlaceholder = document.getElementById('photoPlaceholder');
+
+      if (editingAsset.photo_url) {
+        photoPlaceholder.innerHTML = `<img src="${editingAsset.photo_url}" class="photo-thumb" alt="Delivery photo" onerror="this.parentElement.innerHTML='Photo not available'"/>`;
+      } else {
+        photoPlaceholder.innerHTML = 'No photo attached';
+      }
+
+      // Reset save status
+      document.getElementById('saveStatus').className = 'save-status';
+      document.getElementById('saveStatus').textContent = '';
+
+      // Show modal
+      document.getElementById('editModal').classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeEditModal() {
+      document.getElementById('editModal').classList.remove('show');
+      document.body.style.overflow = '';
+      editingAsset = null;
+    }
+
+    async function saveAssetChanges() {
+      if (!editingAsset) return;
+
+      const saveBtn = document.getElementById('saveBtn');
+      const saveStatus = document.getElementById('saveStatus');
+
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Saving...';
+
+      const updates = {
+        community: document.getElementById('editCommunity').value || null,
+        place: document.getElementById('editPlace').value || null,
+        name: document.getElementById('editName').value || null,
+        supply_date: document.getElementById('editSupplyDate').value || null,
+        install_date: document.getElementById('editInstallDate').value || null,
+        delivery_notes: document.getElementById('editNotes').value || null
+      };
+
+      try {
+        const { error } = await supabase
+          .from('assets')
+          .update(updates)
+          .eq('unique_id', editingAsset.unique_id);
+
+        if (error) throw error;
+
+        // Update local data
+        const index = allAssets.findIndex(a => a.unique_id === editingAsset.unique_id);
+        if (index !== -1) {
+          allAssets[index] = { ...allAssets[index], ...updates };
+        }
+
+        // Show success
+        saveStatus.textContent = 'Changes saved successfully!';
+        saveStatus.className = 'save-status show';
+
+        // Refresh UI
+        updateStats();
+        renderRecentActivity();
+        applyFilters();
+
+        // Close modal after brief delay
+        setTimeout(() => {
+          closeEditModal();
+        }, 1000);
+
+      } catch (error) {
+        console.error('Error saving changes:', error);
+        saveStatus.textContent = 'Error: ' + error.message;
+        saveStatus.className = 'save-status show error';
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.textContent = 'Save Changes';
+      }
+    }
+
+    // ============================================================================
     // EVENT LISTENERS
     // ============================================================================
     document.getElementById('searchInput').addEventListener('input', applyFilters);
@@ -1314,6 +1971,20 @@
       } else {
         toggle.style.display = 'none';
         setView('cards');
+      }
+    });
+
+    // Close modal on overlay click
+    document.getElementById('editModal').addEventListener('click', (e) => {
+      if (e.target.classList.contains('modal-overlay')) {
+        closeEditModal();
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && document.getElementById('editModal').classList.contains('show')) {
+        closeEditModal();
       }
     });
 
