@@ -350,6 +350,114 @@
       line-height: 1.5;
     }
 
+    /* QR Scanner */
+    .scan-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .scan-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+    }
+
+    .scan-btn:active {
+      transform: scale(0.98);
+    }
+
+    .scan-icon {
+      font-size: 20px;
+    }
+
+    .scanner-container {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .scanner-container.show {
+      display: block;
+    }
+
+    .scanner-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .scanner-header h3 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .scanner-close {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: white;
+      font-size: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #qr-reader {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    #qr-reader video {
+      border-radius: 12px;
+    }
+
+    .scanner-hint {
+      text-align: center;
+      color: var(--light-gray);
+      font-size: 13px;
+      margin-top: 12px;
+    }
+
+    .or-divider {
+      display: flex;
+      align-items: center;
+      margin: 16px 0;
+      color: var(--gray);
+      font-size: 13px;
+    }
+
+    .or-divider::before,
+    .or-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .or-divider span {
+      padding: 0 16px;
+    }
+
     /* Form */
     .form-card {
       background: var(--card-bg);
@@ -586,10 +694,28 @@
       <!-- Asset details loaded here -->
     </div>
 
+    <!-- QR Scanner Container -->
+    <div id="scannerContainer" class="scanner-container">
+      <div class="scanner-header">
+        <h3>📷 Scan QR Code</h3>
+        <button class="scanner-close" onclick="stopScanner()">✕</button>
+      </div>
+      <div id="qr-reader"></div>
+      <p class="scanner-hint">Point your camera at the QR code on the product</p>
+    </div>
+
     <!-- Manual Entry (shown when no asset_id) -->
     <div id="manualEntry" class="manual-entry" style="display: none;">
-      <h2>Enter Asset ID</h2>
-      <p>Can't scan the QR code? Enter the asset ID manually below.</p>
+      <h2>Identify Your Product</h2>
+      <p>Scan the QR code on your product or enter the ID manually.</p>
+
+      <button type="button" class="scan-btn" onclick="startScanner()">
+        <span class="scan-icon">📷</span>
+        Scan QR Code
+      </button>
+
+      <div class="or-divider"><span>OR</span></div>
+
       <input type="text" id="manualAssetId" class="manual-input" placeholder="e.g. GB0-1 or GB0-22-3">
       <button type="button" class="lookup-btn" onclick="lookupAsset()">
         Look Up Asset
@@ -651,6 +777,9 @@
   <!-- Supabase JavaScript Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+  <!-- QR Scanner Library -->
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+
   <script>
     // ============================================================================
     // CONFIGURATION
@@ -659,6 +788,78 @@
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw';
 
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // ============================================================================
+    // QR SCANNER
+    // ============================================================================
+    let html5QrCode = null;
+
+    function startScanner() {
+      const scannerContainer = document.getElementById('scannerContainer');
+      scannerContainer.classList.add('show');
+
+      html5QrCode = new Html5Qrcode("qr-reader");
+
+      const config = {
+        fps: 10,
+        qrbox: { width: 250, height: 250 },
+        aspectRatio: 1.0
+      };
+
+      html5QrCode.start(
+        { facingMode: "environment" },
+        config,
+        onScanSuccess,
+        onScanFailure
+      ).catch(err => {
+        console.error('Error starting scanner:', err);
+        showMessage('Could not access camera. Please enter the asset ID manually.', 'error');
+        stopScanner();
+      });
+    }
+
+    function stopScanner() {
+      const scannerContainer = document.getElementById('scannerContainer');
+      scannerContainer.classList.remove('show');
+
+      if (html5QrCode) {
+        html5QrCode.stop().catch(err => {
+          console.log('Error stopping scanner:', err);
+        });
+        html5QrCode = null;
+      }
+    }
+
+    function onScanSuccess(decodedText, decodedResult) {
+      // Stop scanner immediately
+      stopScanner();
+
+      // Extract asset ID from URL or use as-is
+      let scannedAssetId = decodedText;
+
+      // Check if it's a URL with asset_id parameter
+      if (decodedText.includes('asset_id=')) {
+        const url = new URL(decodedText);
+        scannedAssetId = url.searchParams.get('asset_id');
+      } else if (decodedText.includes('?')) {
+        // Try to extract from query string
+        const params = new URLSearchParams(decodedText.split('?')[1]);
+        if (params.has('asset_id')) {
+          scannedAssetId = params.get('asset_id');
+        }
+      }
+
+      if (scannedAssetId) {
+        // Look up the asset
+        loadAssetDetails(scannedAssetId.toUpperCase());
+      } else {
+        showMessage('QR code scanned but no asset ID found. Please try again or enter manually.', 'error');
+      }
+    }
+
+    function onScanFailure(error) {
+      // Silent - don't show errors for failed scan attempts
+    }
 
     // ============================================================================
     // ASSET LOADING
