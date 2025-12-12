@@ -2,767 +2,917 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Goods Asset Register</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Dashboard - Goods on Country</title>
+
+  <!-- PWA Support -->
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Google Fonts - Match home.html -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-
-  <!-- Leaflet CSS & JS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-  <!-- Leaflet MarkerCluster -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
   <style>
     * {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #1d4ed8;
+      --success: #10b981;
+      --success-dark: #059669;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --dark: #0f172a;
+      --dark-lighter: #1e293b;
+      --gray: #64748b;
+      --light-gray: #94a3b8;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --purple: #8b5cf6;
+      --pink: #ec4899;
     }
 
     body {
-      background: #fafafa;
-      color: #1a1a1a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--dark);
+      min-height: 100vh;
+      color: white;
+      overflow-x: hidden;
     }
 
-    /* Hamburger Menu */
-    .hamburger-nav {
-      background: #ffffff;
-      padding: 12px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #e5e5e5;
+    /* Animated background */
+    .bg-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Header Navigation */
+    .header-nav {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 16px;
       position: sticky;
       top: 0;
       z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .hamburger-btn {
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--light-gray);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 10px;
+      transition: all 0.2s;
+    }
+
+    .back-btn:active {
+      background: rgba(255,255,255,0.1);
+      transform: scale(0.95);
+    }
+
+    .header-title {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .menu-btn {
       background: none;
       border: none;
-      color: #1a1a1a;
+      color: white;
       font-size: 24px;
-      cursor: pointer;
       padding: 8px;
+      cursor: pointer;
+    }
+
+    /* Main Container */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+      padding-bottom: 100px;
+    }
+
+    /* Section Title */
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--light-gray);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 14px;
+      padding-left: 4px;
+    }
+
+    /* Stats Grid - Bento Style */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .stat-card:active {
+      transform: scale(0.97);
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
       line-height: 1;
+      margin-bottom: 6px;
     }
 
-    .nav-title-small {
-      font-size: 16px;
+    .stat-number.loading {
+      background: linear-gradient(90deg, var(--border) 25%, var(--card-bg) 50%, var(--border) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 8px;
+      color: transparent;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .stat-label {
+      font-size: 12px;
       font-weight: 600;
-      color: #1a1a1a;
+      color: var(--light-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
-    /* Slide-out Menu */
-    .menu-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 500;
+    .stat-blue { color: var(--primary); }
+    .stat-green { color: var(--success); }
+    .stat-orange { color: var(--warning); }
+    .stat-purple { color: var(--purple); }
+
+    /* Search Section */
+    .search-section {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .search-input-wrap {
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: var(--light-gray);
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 14px 14px 14px 46px;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      color: white;
+      font-size: 16px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: rgba(59, 130, 246, 0.1);
+    }
+
+    .search-input::placeholder {
+      color: var(--gray);
+    }
+
+    .filter-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .filter-select {
+      width: 100%;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 18px;
+    }
+
+    .filter-select:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .filter-select option {
+      background: var(--dark-lighter);
+      color: white;
+    }
+
+    .results-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .results-count {
+      font-size: 13px;
+      color: var(--light-gray);
+      font-weight: 500;
+    }
+
+    .clear-btn {
+      background: rgba(239, 68, 68, 0.2);
+      border: none;
+      color: #f87171;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
       display: none;
     }
 
-    .menu-overlay.show {
+    .clear-btn.show {
       display: block;
     }
 
-    .slide-menu {
-      position: fixed;
-      top: 0;
-      left: -280px;
-      width: 280px;
-      height: 100%;
-      background: #1e293b;
-      z-index: 501;
-      transition: left 0.3s ease;
+    /* Asset Cards - Mobile First */
+    .assets-section {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .assets-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .assets-title {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .view-toggle {
+      display: flex;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 4px;
+    }
+
+    .view-btn {
+      background: none;
+      border: none;
+      color: var(--light-gray);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .view-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Card View (default for mobile) */
+    .asset-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .asset-card {
+      background: rgba(255,255,255,0.03);
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .asset-card:active {
+      transform: scale(0.98);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .asset-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .asset-id {
+      font-size: 16px;
+      font-weight: 700;
+      font-family: 'SF Mono', 'Menlo', monospace;
+    }
+
+    .asset-badge {
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-bed {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--success);
+    }
+
+    .badge-washer {
+      background: rgba(139, 92, 246, 0.2);
+      color: var(--purple);
+    }
+
+    .asset-card-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .asset-detail {
       display: flex;
       flex-direction: column;
     }
 
-    .slide-menu.show {
-      left: 0;
+    .detail-label {
+      font-size: 11px;
+      color: var(--gray);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
     }
 
-    .menu-header {
-      padding: 20px;
-      border-bottom: 1px solid #334155;
+    .detail-value {
+      font-size: 14px;
+      font-weight: 500;
       color: white;
     }
 
-    .menu-header h2 {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .menu-header p {
-      font-size: 12px;
-      color: #94a3b8;
-    }
-
-    .menu-items {
-      flex: 1;
-      padding: 16px 0;
-    }
-
-    .menu-item {
+    .asset-card-footer {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      padding: 14px 20px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .last-checkin {
+      font-size: 12px;
+      color: var(--light-gray);
+    }
+
+    .view-asset-btn {
+      background: var(--primary);
       color: white;
-      text-decoration: none;
-      font-size: 15px;
-      transition: background 0.2s;
-    }
-
-    .menu-item:hover {
-      background: #334155;
-    }
-
-    .menu-item.active {
-      background: #3b82f6;
-    }
-
-    .menu-item-icon {
-      font-size: 20px;
-      width: 28px;
-      text-align: center;
-    }
-
-    .menu-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: none;
       border: none;
-      color: #94a3b8;
-      font-size: 24px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .view-asset-btn:active {
+      transform: scale(0.95);
+      background: var(--primary-dark);
+    }
+
+    /* Table View (hidden on mobile by default) */
+    .table-view {
+      display: none;
+      overflow-x: auto;
+    }
+
+    .assets-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .assets-table th {
+      text-align: left;
+      padding: 14px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--light-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
       cursor: pointer;
     }
 
-    /* Desktop nav - hidden on mobile */
-    .desktop-nav {
-      display: none;
+    .assets-table th:hover {
+      color: white;
     }
 
+    .assets-table td {
+      padding: 14px 12px;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      white-space: nowrap;
+    }
+
+    .assets-table tr:hover td {
+      background: rgba(255,255,255,0.03);
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .page-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .page-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .page-btn:not(:disabled):active {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .page-info {
+      font-size: 13px;
+      color: var(--light-gray);
+      padding: 0 16px;
+    }
+
+    /* Loading Skeleton */
+    .skeleton-card {
+      background: rgba(255,255,255,0.02);
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .skeleton-line {
+      height: 16px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--border) 25%, var(--card-bg) 50%, var(--border) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      margin-bottom: 10px;
+    }
+
+    .skeleton-line.short { width: 40%; }
+    .skeleton-line.medium { width: 70%; }
+    .skeleton-line:last-child { margin-bottom: 0; }
+
+    /* No Results */
+    .no-results {
+      text-align: center;
+      padding: 48px 20px;
+    }
+
+    .no-results-icon {
+      font-size: 56px;
+      margin-bottom: 16px;
+      opacity: 0.4;
+    }
+
+    .no-results-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .no-results-text {
+      font-size: 14px;
+      color: var(--light-gray);
+      margin-bottom: 20px;
+    }
+
+    .no-results-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Charts Section */
+    .charts-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .chart-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 20px;
+      border: 1px solid var(--border);
+    }
+
+    .chart-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .chart-container {
+      height: 200px;
+      position: relative;
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .action-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.2s;
+    }
+
+    .action-card:active {
+      transform: scale(0.97);
+    }
+
+    .action-card.primary {
+      background: linear-gradient(135deg, var(--success) 0%, var(--success-dark) 100%);
+      border: none;
+    }
+
+    .action-icon {
+      font-size: 28px;
+    }
+
+    .action-text h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .action-text p {
+      font-size: 12px;
+      color: var(--light-gray);
+    }
+
+    .action-card.primary .action-text p {
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* Desktop Styles */
     @media (min-width: 768px) {
-      .hamburger-nav {
+      .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .filter-row {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      .charts-section {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .chart-container {
+        height: 280px;
+      }
+
+      .quick-actions {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .container {
+        padding: 24px;
+      }
+
+      .table-view.show {
+        display: block;
+      }
+
+      .asset-cards.hide {
         display: none;
       }
-      .desktop-nav {
-        display: block;
-        background: #ffffff;
-        border-bottom: 1px solid #e5e5e5;
-        padding: 1rem 2rem;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-      }
-      .nav-content {
-        max-width: 1400px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .nav-title {
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: #1a1a1a;
-      }
-      .nav-links {
-        display: flex;
-        gap: 2rem;
-      }
-      .nav-link {
-        color: #666;
-        text-decoration: none;
-        font-size: 0.9375rem;
-        transition: color 0.2s;
-      }
-      .nav-link:hover {
-        color: #1a1a1a;
-      }
     }
 
-    /* Card styles */
-    .card {
-      background: #ffffff;
-      border: 1px solid #e5e5e5;
-      border-radius: 8px;
-      transition: border-color 0.2s;
-    }
-
-    .card:hover {
-      border-color: #1a1a1a;
-    }
-
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #f5f5f5;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #d4d4d4;
-      border-radius: 4px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: #a3a3a3;
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
-<body class="min-h-screen">
+<body>
+  <div class="bg-pattern"></div>
 
-  <!-- Mobile Hamburger Navigation -->
-  <div class="hamburger-nav">
-    <button class="hamburger-btn" id="menuBtn">&#9776;</button>
-    <span class="nav-title-small">Goods Asset Tracker</span>
-    <div></div>
-  </div>
-
-  <!-- Slide-out Menu -->
-  <div class="menu-overlay" id="menuOverlay"></div>
-  <div class="slide-menu" id="slideMenu">
-    <button class="menu-close" id="menuClose">&times;</button>
-    <div class="menu-header">
-      <h2>Goods Asset Tracker</h2>
-      <p>Asset Management System</p>
-    </div>
-    <div class="menu-items">
-      <a href="home.html" class="menu-item">
-        <span class="menu-item-icon">🏠</span>
-        Home
-      </a>
-      <a href="dashboard.html" class="menu-item active">
-        <span class="menu-item-icon">📊</span>
-        Dashboard
-      </a>
-      <a href="deliver.html" class="menu-item">
-        <span class="menu-item-icon">🚚</span>
-        Deliver Bed
-      </a>
-      <a href="products.html" class="menu-item">
-        <span class="menu-item-icon">📦</span>
-        Products
-      </a>
-      <a href="index.html" class="menu-item">
-        <span class="menu-item-icon">🎫</span>
-        Support Ticket
-      </a>
-    </div>
-  </div>
-
-  <!-- Desktop Navigation -->
-  <nav class="desktop-nav">
-    <div class="nav-content">
-      <div class="nav-title"><a href="home.html" style="color: inherit; text-decoration: none;">Goods Asset Tracker</a></div>
-      <div class="nav-links">
-        <a href="home.html" class="nav-link">Home</a>
-        <a href="dashboard.html" class="nav-link" style="font-weight: 600; color: #1a1a1a;">Dashboard</a>
-        <a href="deliver.html" class="nav-link" style="background: #10b981; color: white; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600;">+ Deliver</a>
-        <a href="products.html" class="nav-link">Products</a>
-        <a href="index.html" class="nav-link">Support</a>
-      </div>
-    </div>
+  <!-- Header Navigation -->
+  <nav class="header-nav">
+    <a href="home.html" class="back-btn">
+      <span>←</span> Home
+    </a>
+    <span class="header-title">Dashboard</span>
+    <div style="width: 60px;"></div>
   </nav>
 
-  <!-- Container -->
-  <div class="max-w-7xl mx-auto px-4 pb-8">
+  <div class="container">
 
-    <!-- Loading State -->
-    <div id="loading" class="card p-12 text-center">
-      <div class="w-16 h-16 border-4 border-gray-200 border-t-gray-900 rounded-full animate-spin mx-auto mb-4"></div>
-      <p class="text-gray-600">Loading dashboard...</p>
+    <!-- Quick Actions -->
+    <div class="section-title">Quick Actions</div>
+    <div class="quick-actions">
+      <a href="deliver.html" class="action-card primary">
+        <span class="action-icon">📷</span>
+        <div class="action-text">
+          <h4>Deliver Bed</h4>
+          <p>Scan & deliver</p>
+        </div>
+      </a>
+      <a href="index.html" class="action-card">
+        <span class="action-icon">🎫</span>
+        <div class="action-text">
+          <h4>Support</h4>
+          <p>Report issue</p>
+        </div>
+      </a>
+      <a href="products.html" class="action-card">
+        <span class="action-icon">📦</span>
+        <div class="action-text">
+          <h4>Products</h4>
+          <p>View catalog</p>
+        </div>
+      </a>
+      <a href="home.html" class="action-card">
+        <span class="action-icon">🏠</span>
+        <div class="action-text">
+          <h4>Home</h4>
+          <p>Main menu</p>
+        </div>
+      </a>
     </div>
 
-    <!-- Main Dashboard -->
-    <div id="dashboard" style="display: none;">
-
-      <!-- Stats Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-
-        <!-- Total Assets -->
-        <div class="card rounded-lg p-6 border border-gray-200">
-          <div class="flex items-start justify-between mb-4">
-            <div class="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center border border-gray-200">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
-              </svg>
-            </div>
-          </div>
-          <div>
-            <p class="text-sm font-medium text-gray-500 mb-1">Total Assets</p>
-            <p id="totalAssets" class="text-4xl font-bold text-gray-900">-</p>
-            <p class="text-xs text-gray-500 mt-2">All tracked items</p>
-          </div>
-        </div>
-
-        <!-- Beds -->
-        <div class="card rounded-lg p-6 border border-gray-200">
-          <div class="flex items-start justify-between mb-4">
-            <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center border border-gray-200">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-              </svg>
-            </div>
-          </div>
-          <div>
-            <p class="text-sm font-medium text-gray-500 mb-1">Beds</p>
-            <p id="totalBeds" class="text-4xl font-bold text-gray-900">-</p>
-            <p class="text-xs text-gray-600 mt-2 font-medium">● Active</p>
-          </div>
-        </div>
-
-        <!-- Washers -->
-        <div class="card rounded-lg p-6 border border-gray-200">
-          <div class="flex items-start justify-between mb-4">
-            <div class="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center border border-gray-200">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-              </svg>
-            </div>
-          </div>
-          <div>
-            <p class="text-sm font-medium text-gray-500 mb-1">Washers</p>
-            <p id="totalWashers" class="text-4xl font-bold text-gray-900">-</p>
-            <p class="text-xs text-gray-900 mt-2 font-medium">● Monitored</p>
-          </div>
-        </div>
-
-        <!-- Communities -->
-        <div class="card rounded-lg p-6 border border-gray-200">
-          <div class="flex items-start justify-between mb-4">
-            <div class="w-12 h-12 bg-gray-600 rounded-lg flex items-center justify-center border border-gray-200">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-              </svg>
-            </div>
-          </div>
-          <div>
-            <p class="text-sm font-medium text-gray-500 mb-1">Communities</p>
-            <p id="totalCommunities" class="text-4xl font-bold text-gray-900">-</p>
-            <p class="text-xs text-gray-600 mt-2 font-medium">● Locations</p>
-          </div>
-        </div>
-
+    <!-- Stats Grid -->
+    <div class="section-title">Overview</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div id="totalAssets" class="stat-number stat-blue loading">--</div>
+        <div class="stat-label">Total Assets</div>
       </div>
-
-      <!-- Charts Row -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-
-        <!-- Assets by Community Chart -->
-        <div class="card rounded-lg p-8 border border-gray-200">
-          <h2 class="text-xl font-bold text-gray-900 mb-6">Assets by Community</h2>
-          <div class="h-80">
-            <canvas id="communityChart"></canvas>
-          </div>
-        </div>
-
-        <!-- Product Distribution Chart -->
-        <div class="card rounded-lg p-8 border border-gray-200">
-          <h2 class="text-xl font-bold text-gray-900 mb-6">Product Distribution</h2>
-          <div class="h-80">
-            <canvas id="productChart"></canvas>
-          </div>
-        </div>
-
+      <div class="stat-card">
+        <div id="totalBeds" class="stat-number stat-green loading">--</div>
+        <div class="stat-label">Beds</div>
       </div>
+      <div class="stat-card">
+        <div id="totalWashers" class="stat-number stat-purple loading">--</div>
+        <div class="stat-label">Washers</div>
+      </div>
+      <div class="stat-card">
+        <div id="totalCommunities" class="stat-number stat-orange loading">--</div>
+        <div class="stat-label">Communities</div>
+      </div>
+    </div>
 
-      <!-- Search and Filters -->
-      <div class="card rounded-lg p-8 mb-6 border border-gray-200">
-        <h2 class="text-xl font-bold text-gray-900 mb-6">Search & Filter</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <input
-              type="text"
-              id="searchInput"
-              placeholder="Search by ID, name, or location..."
-              class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-900 transition-all"
-            />
-          </div>
-          <div>
-            <select id="communityFilter" class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-900 transition-all cursor-pointer">
-              <option value="">All Communities</option>
-            </select>
-          </div>
-          <div>
-            <select id="productFilter" class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-900 transition-all cursor-pointer">
-              <option value="">All Products</option>
-              <option value="Basket Bed">Basket Bed</option>
-              <option value="Weave Bed">Weave Bed</option>
-              <option value="ID Washing Machine">Washing Machine</option>
-            </select>
-          </div>
+    <!-- Charts -->
+    <div class="section-title">Distribution</div>
+    <div class="charts-section">
+      <div class="chart-card">
+        <div class="chart-title">Assets by Community</div>
+        <div class="chart-container">
+          <canvas id="communityChart"></canvas>
         </div>
-        <div class="mt-4 flex items-center justify-between">
-          <p id="resultsInfo" class="text-sm text-gray-600">Loading...</p>
-          <button id="clearFilters" onclick="clearAllFilters()" class="px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors" style="display: none;">
-            Clear Filters
-          </button>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Product Types</div>
+        <div class="chart-container">
+          <canvas id="productChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search & Filter -->
+    <div class="section-title">Search & Filter</div>
+    <div class="search-section">
+      <div class="search-input-wrap">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search by ID, name, location..."
+        />
+      </div>
+      <div class="filter-row">
+        <select id="communityFilter" class="filter-select">
+          <option value="">All Communities</option>
+        </select>
+        <select id="productFilter" class="filter-select">
+          <option value="">All Products</option>
+          <option value="Basket Bed">Basket Bed</option>
+          <option value="Weave Bed">Weave Bed</option>
+          <option value="ID Washing Machine">Washer</option>
+        </select>
+      </div>
+      <div class="results-bar">
+        <span id="resultsCount" class="results-count">Loading assets...</span>
+        <button id="clearBtn" class="clear-btn" onclick="clearFilters()">Clear</button>
+      </div>
+    </div>
+
+    <!-- Assets List -->
+    <div class="section-title">Asset Register</div>
+    <div class="assets-section">
+      <div class="assets-header">
+        <span class="assets-title">All Assets</span>
+        <div class="view-toggle" id="viewToggle" style="display: none;">
+          <button class="view-btn active" onclick="setView('cards')" id="cardsViewBtn">Cards</button>
+          <button class="view-btn" onclick="setView('table')" id="tableViewBtn">Table</button>
         </div>
       </div>
 
-      <!-- Assets Table -->
-      <div class="card rounded-lg p-8 border border-gray-200">
-        <h2 class="text-xl font-bold text-gray-900 mb-6">Asset Register</h2>
-
-        <!-- Table -->
-        <div class="overflow-x-auto">
-          <table class="w-full">
-            <thead>
-              <tr class="border-b border-gray-200">
-                <th onclick="sortTable('unique_id')" class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-50 transition-colors select-none">
-                  <div class="flex items-center gap-2">
-                    Asset ID
-                    <span id="sort-unique_id" class="text-gray-400">↕</span>
-                  </div>
-                </th>
-                <th onclick="sortTable('product')" class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-50 transition-colors select-none">
-                  <div class="flex items-center gap-2">
-                    Product
-                    <span id="sort-product" class="text-gray-400">↕</span>
-                  </div>
-                </th>
-                <th onclick="sortTable('community')" class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden md:table-cell cursor-pointer hover:bg-gray-50 transition-colors select-none">
-                  <div class="flex items-center gap-2">
-                    Community
-                    <span id="sort-community" class="text-gray-400">↕</span>
-                  </div>
-                </th>
-                <th onclick="sortTable('place')" class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden lg:table-cell cursor-pointer hover:bg-gray-50 transition-colors select-none">
-                  <div class="flex items-center gap-2">
-                    Location
-                    <span id="sort-place" class="text-gray-400">↕</span>
-                  </div>
-                </th>
-                <th onclick="sortTable('last_checkin_date')" class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden xl:table-cell cursor-pointer hover:bg-gray-50 transition-colors select-none">
-                  <div class="flex items-center gap-2">
-                    Last Check-in
-                    <span id="sort-last_checkin_date" class="text-gray-400">↕</span>
-                  </div>
-                </th>
-                <th class="px-6 py-4 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="assetsTable" class="divide-y divide-gray-100">
-              <!-- Assets will be inserted here -->
-            </tbody>
-          </table>
+      <!-- Card View (Mobile Default) -->
+      <div id="assetCards" class="asset-cards">
+        <!-- Skeleton Loading -->
+        <div class="skeleton-card">
+          <div class="skeleton-line short"></div>
+          <div class="skeleton-line medium"></div>
+          <div class="skeleton-line"></div>
         </div>
-
-        <!-- No Results -->
-        <div id="noResults" class="text-center py-12" style="display: none;">
-          <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-gray-900 mb-2">No assets found</h3>
-          <p class="text-gray-600 mb-4">Try adjusting your search or filters</p>
-          <button onclick="clearAllFilters()" class="px-4 py-2 bg-gray-900 hover:bg-gray-800 text-white font-medium rounded-lg transition-colors">
-            Clear Filters
-          </button>
+        <div class="skeleton-card">
+          <div class="skeleton-line short"></div>
+          <div class="skeleton-line medium"></div>
+          <div class="skeleton-line"></div>
         </div>
-
-        <!-- Pagination -->
-        <div class="mt-6 flex items-center justify-between border-t border-gray-200 pt-6">
-          <div class="flex items-center gap-2">
-            <span class="text-sm text-gray-600">Show</span>
-            <select id="pageSize" onchange="updatePagination()" class="px-3 py-2 bg-white border-2 border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-900 cursor-pointer transition-all">
-              <option value="10">10</option>
-              <option value="25" selected>25</option>
-              <option value="50">50</option>
-              <option value="100">100</option>
-            </select>
-            <span class="text-sm text-gray-600">per page</span>
-          </div>
-
-          <div class="flex items-center gap-2">
-            <button onclick="previousPage()" id="prevBtn" class="px-4 py-2 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-              Previous
-            </button>
-            <span id="pageInfo" class="text-sm text-gray-600 px-4">Page 1 of 1</span>
-            <button onclick="nextPage()" id="nextBtn" class="px-4 py-2 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-              Next
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Asset Distribution Map -->
-      <div class="card rounded-lg p-8 mt-6 border border-gray-200">
-        <div class="flex items-center justify-between mb-6">
-          <div>
-            <h2 class="text-xl font-bold text-gray-900">Asset Distribution Map</h2>
-            <p class="text-sm text-gray-600 mt-1">Geographic distribution across remote communities</p>
-          </div>
-          <div class="flex gap-2">
-            <button id="mapViewBtn" onclick="toggleMapView('map')" class="px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-lg transition-colors">
-              Map View
-            </button>
-            <button id="clusterViewBtn" onclick="toggleMapView('cluster')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium rounded-lg transition-colors">
-              Cluster View
-            </button>
-          </div>
-        </div>
-
-        <!-- Map Container -->
-        <div id="map" class="rounded-lg overflow-hidden border border-gray-200" style="height: 500px; width: 100%;"></div>
-
-        <!-- Map Legend -->
-        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div class="flex items-center gap-3 p-4 bg-white rounded-lg border border-gray-200">
-            <div class="w-4 h-4 bg-emerald-500 rounded-full"></div>
-            <div>
-              <p class="text-sm font-semibold text-gray-900">Beds</p>
-              <p class="text-xs text-gray-600" id="mapBedCount">-</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-3 p-4 bg-white rounded-lg border border-gray-200">
-            <div class="w-4 h-4 bg-purple-500 rounded-full"></div>
-            <div>
-              <p class="text-sm font-semibold text-gray-900">Washers</p>
-              <p class="text-xs text-gray-600" id="mapWasherCount">-</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-3 p-4 bg-white rounded-lg border border-gray-200">
-            <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
-            <div>
-              <p class="text-sm font-semibold text-gray-900">Communities</p>
-              <p class="text-xs text-gray-600" id="mapCommunityCount">-</p>
-            </div>
-          </div>
+        <div class="skeleton-card">
+          <div class="skeleton-line short"></div>
+          <div class="skeleton-line medium"></div>
+          <div class="skeleton-line"></div>
         </div>
       </div>
 
+      <!-- Table View (Desktop) -->
+      <div id="tableView" class="table-view">
+        <table class="assets-table">
+          <thead>
+            <tr>
+              <th onclick="sortTable('unique_id')">Asset ID ↕</th>
+              <th onclick="sortTable('product')">Product ↕</th>
+              <th onclick="sortTable('community')">Community ↕</th>
+              <th onclick="sortTable('place')">Location ↕</th>
+              <th onclick="sortTable('supply_date')">Delivered ↕</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- No Results -->
+      <div id="noResults" class="no-results" style="display: none;">
+        <div class="no-results-icon">🔍</div>
+        <div class="no-results-title">No assets found</div>
+        <div class="no-results-text">Try adjusting your search or filters</div>
+        <button class="no-results-btn" onclick="clearFilters()">Clear Filters</button>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="pagination">
+        <button class="page-btn" onclick="prevPage()" id="prevBtn" disabled>← Prev</button>
+        <span class="page-info" id="pageInfo">Page 1 of 1</span>
+        <button class="page-btn" onclick="nextPage()" id="nextBtn">Next →</button>
+      </div>
     </div>
 
   </div>
 
-  <!-- Supabase JavaScript Client -->
+  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
-    // Supabase Configuration
+    // ============================================================================
+    // CONFIGURATION
+    // ============================================================================
     const SUPABASE_URL = 'https://cwsyhpiuepvdjtxaozwf.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw';
+
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+    // ============================================================================
+    // STATE
+    // ============================================================================
     let allAssets = [];
     let filteredAssets = [];
     let currentPage = 1;
-    let pageSize = 25;
-    let communityChart, productChart;
+    let pageSize = 20;
     let sortField = 'unique_id';
     let sortDirection = 'asc';
-    let map, markersLayer, clusterLayer;
-    let mapViewMode = 'map';
+    let currentView = 'cards';
+    let communityChart, productChart;
 
-    // Community coordinates (approximate locations)
-    const communityCoords = {
-      'Palm Island': [-18.7544, 146.5806],
-      'Tennant Creek': [-19.6545, 134.1932],
-      'Kalgoorlie': [-30.7489, 121.4658],
-      'Darwin': [-12.4634, 130.8456],
-      'Alice Springs': [-23.6980, 133.8807],
-      'Mount Isa': [-20.7258, 139.4928],
-      'Alice Homelands': [-23.7, 133.9],
-      'Maningrida': [-12.0563, 134.2342],
-      'Utopia Homelands': [-22.2833, 135.0333]
-    };
-
-    // Initialize map
-    function initMap() {
-      // Create map centered on Australia
-      map = L.map('map').setView([-25, 133], 5);
-
-      // Add tile layer
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors',
-        maxZoom: 18
-      }).addTo(map);
-
-      // Initialize layers
-      markersLayer = L.layerGroup().addTo(map);
-      clusterLayer = L.markerClusterGroup({
-        chunkedLoading: true,
-        spiderfyOnMaxZoom: true,
-        showCoverageOnHover: false,
-        zoomToBoundsOnClick: true
-      });
-
-      // Plot assets on map
-      plotAssetsOnMap();
-    }
-
-    // Plot assets on map
-    function plotAssetsOnMap() {
-      if (!map) return;
-
-      // Clear existing markers
-      markersLayer.clearLayers();
-      clusterLayer.clearLayers();
-
-      // Group assets by community
-      const communityGroups = {};
-      let bedsCount = 0;
-      let washersCount = 0;
-
-      allAssets.forEach(asset => {
-        if (!communityGroups[asset.community]) {
-          communityGroups[asset.community] = [];
-        }
-        communityGroups[asset.community].push(asset);
-
-        if (asset.product.includes('Bed')) bedsCount++;
-        else if (asset.product === 'ID Washing Machine') washersCount++;
-      });
-
-      // Create markers for each community
-      Object.keys(communityGroups).forEach(community => {
-        const coords = communityCoords[community];
-        if (!coords) return;
-
-        const assets = communityGroups[community];
-        const beds = assets.filter(a => a.product.includes('Bed')).length;
-        const washers = assets.filter(a => a.product === 'ID Washing Machine').length;
-
-        // Create custom icon based on dominant product type
-        const iconColor = beds > washers ? '#10b981' : '#a855f7';
-        const icon = L.divIcon({
-          className: 'custom-marker',
-          html: `<div style="background: ${iconColor}; width: 32px; height: 32px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;">${assets.length}</div>`,
-          iconSize: [32, 32],
-          iconAnchor: [16, 16]
-        });
-
-        // Create marker
-        const marker = L.marker(coords, { icon });
-
-        // Popup content
-        const popupContent = `
-          <div style="padding: 8px; min-width: 200px;">
-            <h3 style="font-weight: bold; font-size: 16px; margin-bottom: 8px;">${community}</h3>
-            <div style="margin-bottom: 4px;">
-              <span style="color: #10b981; font-weight: 600;">${beds} Beds</span>
-            </div>
-            <div style="margin-bottom: 8px;">
-              <span style="color: #a855f7; font-weight: 600;">${washers} Washers</span>
-            </div>
-            <div style="border-top: 1px solid #e5e7eb; padding-top: 8px; margin-top: 8px;">
-              <strong>Total Assets:</strong> ${assets.length}
-            </div>
-          </div>
-        `;
-
-        marker.bindPopup(popupContent);
-
-        // Add to appropriate layer
-        if (mapViewMode === 'cluster') {
-          clusterLayer.addLayer(marker);
-        } else {
-          markersLayer.addLayer(marker);
-        }
-      });
-
-      // Update legend
-      document.getElementById('mapBedCount').textContent = `${bedsCount} assets`;
-      document.getElementById('mapWasherCount').textContent = `${washersCount} assets`;
-      document.getElementById('mapCommunityCount').textContent = `${Object.keys(communityGroups).length} locations`;
-    }
-
-    // Toggle map view mode
-    function toggleMapView(mode) {
-      mapViewMode = mode;
-
-      // Update buttons
-      if (mode === 'map') {
-        document.getElementById('mapViewBtn').className = 'px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-lg transition-colors';
-        document.getElementById('clusterViewBtn').className = 'px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium rounded-lg transition-colors';
-
-        // Remove cluster layer, add markers layer
-        map.removeLayer(clusterLayer);
-        if (!map.hasLayer(markersLayer)) {
-          map.addLayer(markersLayer);
-        }
-      } else {
-        document.getElementById('mapViewBtn').className = 'px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium rounded-lg transition-colors';
-        document.getElementById('clusterViewBtn').className = 'px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-lg transition-colors';
-
-        // Remove markers layer, add cluster layer
-        map.removeLayer(markersLayer);
-        if (!map.hasLayer(clusterLayer)) {
-          map.addLayer(clusterLayer);
-        }
-      }
-
-      plotAssetsOnMap();
-    }
-
-    // Sort table by column
-    function sortTable(field) {
-      // Toggle direction if clicking same column
-      if (sortField === field) {
-        sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
-      } else {
-        sortField = field;
-        sortDirection = 'asc';
-      }
-
-      // Update sort indicators
-      document.querySelectorAll('[id^="sort-"]').forEach(el => {
-        el.textContent = '↕';
-        el.className = 'text-gray-400';
-      });
-
-      const indicator = document.getElementById(`sort-${field}`);
-      if (indicator) {
-        indicator.textContent = sortDirection === 'asc' ? '↑' : '↓';
-        indicator.className = 'text-gray-900';
-      }
-
-      // Sort filtered assets
-      filteredAssets.sort((a, b) => {
-        let aVal = a[field];
-        let bVal = b[field];
-
-        // Handle null/undefined
-        if (!aVal) return 1;
-        if (!bVal) return -1;
-
-        // Handle dates
-        if (field === 'last_checkin_date') {
-          aVal = aVal ? new Date(aVal).getTime() : 0;
-          bVal = bVal ? new Date(bVal).getTime() : 0;
-        }
-
-        // Compare
-        if (typeof aVal === 'string') {
-          return sortDirection === 'asc'
-            ? aVal.localeCompare(bVal)
-            : bVal.localeCompare(aVal);
-        } else {
-          return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
-        }
-      });
-
-      currentPage = 1;
-      renderTable();
-    }
-
-    // Load all assets
+    // ============================================================================
+    // LOAD DATA
+    // ============================================================================
     async function loadAssets() {
       try {
         const { data, error } = await supabase
@@ -772,111 +922,113 @@
 
         if (error) throw error;
 
-        allAssets = data;
-        filteredAssets = data;
+        allAssets = data || [];
+        filteredAssets = [...allAssets];
 
-        // Update everything
+        // Update UI
         updateStats();
         populateCommunityFilter();
         createCharts();
-        renderTable();
+        renderAssets();
 
-        // Set initial sort indicator
-        const indicator = document.getElementById(`sort-${sortField}`);
-        if (indicator) {
-          indicator.textContent = '↑';
-          indicator.className = 'text-gray-900';
+        // Show view toggle on desktop
+        if (window.innerWidth >= 1024) {
+          document.getElementById('viewToggle').style.display = 'flex';
         }
 
-        // Show dashboard, hide loading
-        document.getElementById('loading').style.display = 'none';
-        document.getElementById('dashboard').style.display = 'block';
-
-        // Initialize map after DOM is visible
-        setTimeout(() => {
-          initMap();
-        }, 100);
-
       } catch (error) {
-        console.error('Error:', error);
-        document.getElementById('loading').innerHTML = `
-          <div class="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
-            <p class="text-red-900 font-semibold mb-2">Error Loading Dashboard</p>
-            <p class="text-red-700 text-sm">${error.message}</p>
+        console.error('Error loading assets:', error);
+        document.getElementById('assetCards').innerHTML = `
+          <div class="no-results">
+            <div class="no-results-icon">⚠️</div>
+            <div class="no-results-title">Error Loading Data</div>
+            <div class="no-results-text">${error.message}</div>
           </div>
         `;
       }
     }
 
-    // Update statistics
+    // ============================================================================
+    // STATS WITH ANIMATION
+    // ============================================================================
     function updateStats() {
-      const totalAssets = allAssets.length;
-      const totalBeds = allAssets.filter(a => a.product.includes('Bed')).length;
-      const totalWashers = allAssets.filter(a => a.product === 'ID Washing Machine').length;
-      const communities = new Set(allAssets.map(a => a.community));
+      const stats = {
+        totalAssets: allAssets.length,
+        totalBeds: allAssets.filter(a => a.product && a.product.includes('Bed')).length,
+        totalWashers: allAssets.filter(a => a.product === 'ID Washing Machine').length,
+        totalCommunities: new Set(allAssets.map(a => a.community).filter(Boolean)).size
+      };
 
-      document.getElementById('totalAssets').textContent = totalAssets.toLocaleString();
-      document.getElementById('totalBeds').textContent = totalBeds.toLocaleString();
-      document.getElementById('totalWashers').textContent = totalWashers.toLocaleString();
-      document.getElementById('totalCommunities').textContent = communities.size.toLocaleString();
-    }
-
-    // Populate community filter
-    function populateCommunityFilter() {
-      const communities = [...new Set(allAssets.map(a => a.community))].sort();
-      const select = document.getElementById('communityFilter');
-      communities.forEach(community => {
-        const option = document.createElement('option');
-        option.value = community;
-        option.textContent = community;
-        select.appendChild(option);
+      Object.keys(stats).forEach(key => {
+        animateNumber(key, stats[key]);
       });
     }
 
-    // Create charts
+    function animateNumber(elementId, targetValue) {
+      const el = document.getElementById(elementId);
+      el.classList.remove('loading');
+
+      const duration = 500;
+      const startTime = performance.now();
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        const currentValue = Math.round(targetValue * easeOut);
+
+        el.textContent = currentValue.toLocaleString();
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    // ============================================================================
+    // CHARTS
+    // ============================================================================
     function createCharts() {
       // Community Chart
       const communityData = {};
       allAssets.forEach(asset => {
-        communityData[asset.community] = (communityData[asset.community] || 0) + 1;
+        if (asset.community) {
+          communityData[asset.community] = (communityData[asset.community] || 0) + 1;
+        }
       });
 
+      const sortedCommunities = Object.entries(communityData)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 8);
+
       const ctx1 = document.getElementById('communityChart').getContext('2d');
+      if (communityChart) communityChart.destroy();
+
       communityChart = new Chart(ctx1, {
         type: 'bar',
         data: {
-          labels: Object.keys(communityData),
+          labels: sortedCommunities.map(c => c[0].length > 12 ? c[0].substring(0, 12) + '...' : c[0]),
           datasets: [{
-            label: 'Assets',
-            data: Object.values(communityData),
-            backgroundColor: 'rgba(102, 126, 234, 0.8)',
-            borderColor: 'rgba(102, 126, 234, 1)',
-            borderWidth: 0,
-            borderRadius: 8
+            data: sortedCommunities.map(c => c[1]),
+            backgroundColor: 'rgba(59, 130, 246, 0.8)',
+            borderRadius: 6
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              backgroundColor: 'rgba(0, 0, 0, 0.8)',
-              padding: 12,
-              borderRadius: 8,
-              titleFont: { size: 14, weight: 'bold' },
-              bodyFont: { size: 13 }
-            }
-          },
+          plugins: { legend: { display: false } },
           scales: {
             y: {
               beginAtZero: true,
-              grid: { color: 'rgba(0, 0, 0, 0.05)' },
-              ticks: { font: { size: 12 }, color: '#6B7280' }
+              grid: { color: 'rgba(255,255,255,0.05)' },
+              ticks: { color: '#94a3b8', font: { size: 10 } }
             },
             x: {
               grid: { display: false },
-              ticks: { font: { size: 12 }, color: '#6B7280' }
+              ticks: { color: '#94a3b8', font: { size: 10 }, maxRotation: 45 }
             }
           }
         }
@@ -885,10 +1037,14 @@
       // Product Chart
       const productData = {};
       allAssets.forEach(asset => {
-        productData[asset.product] = (productData[asset.product] || 0) + 1;
+        if (asset.product) {
+          productData[asset.product] = (productData[asset.product] || 0) + 1;
+        }
       });
 
       const ctx2 = document.getElementById('productChart').getContext('2d');
+      if (productChart) productChart.destroy();
+
       productChart = new Chart(ctx2, {
         type: 'doughnut',
         data: {
@@ -898,7 +1054,7 @@
             backgroundColor: [
               'rgba(16, 185, 129, 0.8)',
               'rgba(59, 130, 246, 0.8)',
-              'rgba(168, 85, 247, 0.8)'
+              'rgba(139, 92, 246, 0.8)'
             ],
             borderWidth: 0
           }]
@@ -910,206 +1066,261 @@
             legend: {
               position: 'bottom',
               labels: {
-                padding: 20,
-                font: { size: 13 },
-                usePointStyle: true,
-                pointStyle: 'circle'
+                color: '#94a3b8',
+                padding: 12,
+                font: { size: 11 },
+                usePointStyle: true
               }
-            },
-            tooltip: {
-              backgroundColor: 'rgba(0, 0, 0, 0.8)',
-              padding: 12,
-              borderRadius: 8,
-              titleFont: { size: 14, weight: 'bold' },
-              bodyFont: { size: 13 }
             }
           }
         }
       });
     }
 
-    // Render table with pagination
-    function renderTable() {
-      const table = document.getElementById('assetsTable');
-      const noResults = document.getElementById('noResults');
-      const tableContainer = table.closest('.overflow-x-auto');
-      const paginationContainer = document.querySelector('.mt-6.flex.items-center');
+    // ============================================================================
+    // FILTERS
+    // ============================================================================
+    function populateCommunityFilter() {
+      const communities = [...new Set(allAssets.map(a => a.community).filter(Boolean))].sort();
+      const select = document.getElementById('communityFilter');
 
-      if (filteredAssets.length === 0) {
-        if (tableContainer) tableContainer.style.display = 'none';
-        if (paginationContainer) paginationContainer.style.display = 'none';
-        noResults.style.display = 'block';
-        return;
-      }
-
-      if (tableContainer) tableContainer.style.display = 'block';
-      if (paginationContainer) paginationContainer.style.display = 'flex';
-      noResults.style.display = 'none';
-
-      const start = (currentPage - 1) * pageSize;
-      const end = start + pageSize;
-      const pageAssets = filteredAssets.slice(start, end);
-
-      table.innerHTML = pageAssets.map(asset => {
-        const productColor = asset.product.includes('Bed') ? 'emerald' : 'purple';
-        const lastCheckin = asset.last_checkin_date
-          ? new Date(asset.last_checkin_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-          : 'Never';
-
-        return `
-          <tr class="hover:bg-gray-50 transition-colors">
-            <td class="px-6 py-4">
-              <div class="flex items-center">
-                <span class="font-mono font-semibold text-gray-900">${asset.unique_id}</span>
-              </div>
-            </td>
-            <td class="px-6 py-4">
-              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-${productColor}-100 text-${productColor}-700">
-                ${asset.product}
-              </span>
-            </td>
-            <td class="px-6 py-4 hidden md:table-cell">
-              <span class="text-sm text-gray-900">${asset.community}</span>
-            </td>
-            <td class="px-6 py-4 hidden lg:table-cell">
-              <span class="text-sm text-gray-600">${asset.place || '-'}</span>
-            </td>
-            <td class="px-6 py-4 hidden xl:table-cell">
-              <span class="text-sm text-gray-600">${lastCheckin}</span>
-            </td>
-            <td class="px-6 py-4 text-right">
-              <a href="/?asset_id=${asset.unique_id}" class="inline-flex items-center px-3 py-1.5 bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium rounded-lg transition-colors">
-                View
-              </a>
-            </td>
-          </tr>
-        `;
-      }).join('');
-
-      updatePaginationInfo();
-      updateResultsInfo();
+      communities.forEach(community => {
+        const option = document.createElement('option');
+        option.value = community;
+        option.textContent = community;
+        select.appendChild(option);
+      });
     }
 
-    // Pagination
-    function updatePaginationInfo() {
-      const totalPages = Math.ceil(filteredAssets.length / pageSize);
-      document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${totalPages}`;
-      document.getElementById('prevBtn').disabled = currentPage === 1;
-      document.getElementById('nextBtn').disabled = currentPage === totalPages;
-    }
-
-    function nextPage() {
-      const totalPages = Math.ceil(filteredAssets.length / pageSize);
-      if (currentPage < totalPages) {
-        currentPage++;
-        renderTable();
-      }
-    }
-
-    function previousPage() {
-      if (currentPage > 1) {
-        currentPage--;
-        renderTable();
-      }
-    }
-
-    function updatePagination() {
-      pageSize = parseInt(document.getElementById('pageSize').value);
-      currentPage = 1;
-      renderTable();
-    }
-
-    // Apply filters
     function applyFilters() {
-      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const search = document.getElementById('searchInput').value.toLowerCase().trim();
       const community = document.getElementById('communityFilter').value;
       const product = document.getElementById('productFilter').value;
 
       filteredAssets = allAssets.filter(asset => {
-        const matchesSearch = !searchTerm ||
-          asset.unique_id.toLowerCase().includes(searchTerm) ||
-          (asset.name && asset.name.toLowerCase().includes(searchTerm)) ||
-          asset.community.toLowerCase().includes(searchTerm) ||
-          (asset.place && asset.place.toLowerCase().includes(searchTerm));
+        // Search filter
+        const matchesSearch = !search ||
+          (asset.unique_id && asset.unique_id.toLowerCase().includes(search)) ||
+          (asset.name && asset.name.toLowerCase().includes(search)) ||
+          (asset.community && asset.community.toLowerCase().includes(search)) ||
+          (asset.place && asset.place.toLowerCase().includes(search));
 
+        // Community filter
         const matchesCommunity = !community || asset.community === community;
+
+        // Product filter
         const matchesProduct = !product || asset.product === product;
 
         return matchesSearch && matchesCommunity && matchesProduct;
       });
 
-      // Apply current sort without toggling
-      filteredAssets.sort((a, b) => {
-        let aVal = a[sortField];
-        let bVal = b[sortField];
-        if (!aVal) return 1;
-        if (!bVal) return -1;
-        if (sortField === 'last_checkin_date') {
-          aVal = aVal ? new Date(aVal).getTime() : 0;
-          bVal = bVal ? new Date(bVal).getTime() : 0;
-        }
-        if (typeof aVal === 'string') {
-          return sortDirection === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
-        } else {
-          return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
-        }
-      });
+      // Apply sort
+      sortAssets();
 
       currentPage = 1;
-      renderTable();
+      renderAssets();
       updateClearButton();
     }
 
-    function updateResultsInfo() {
-      const info = document.getElementById('resultsInfo');
-      if (filteredAssets.length === allAssets.length) {
-        info.textContent = `Showing all ${allAssets.length.toLocaleString()} assets`;
-      } else {
-        info.textContent = `Showing ${filteredAssets.length.toLocaleString()} of ${allAssets.length.toLocaleString()} assets`;
-      }
-    }
-
-    function updateClearButton() {
-      const hasFilters = document.getElementById('searchInput').value ||
-                         document.getElementById('communityFilter').value ||
-                         document.getElementById('productFilter').value;
-      document.getElementById('clearFilters').style.display = hasFilters ? 'block' : 'none';
-    }
-
-    function clearAllFilters() {
+    function clearFilters() {
       document.getElementById('searchInput').value = '';
       document.getElementById('communityFilter').value = '';
       document.getElementById('productFilter').value = '';
       applyFilters();
     }
 
-    // Event listeners
+    function updateClearButton() {
+      const hasFilters =
+        document.getElementById('searchInput').value ||
+        document.getElementById('communityFilter').value ||
+        document.getElementById('productFilter').value;
+
+      document.getElementById('clearBtn').classList.toggle('show', hasFilters);
+    }
+
+    // ============================================================================
+    // SORTING
+    // ============================================================================
+    function sortTable(field) {
+      if (sortField === field) {
+        sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+      } else {
+        sortField = field;
+        sortDirection = 'asc';
+      }
+
+      sortAssets();
+      currentPage = 1;
+      renderAssets();
+    }
+
+    function sortAssets() {
+      filteredAssets.sort((a, b) => {
+        let aVal = a[sortField] || '';
+        let bVal = b[sortField] || '';
+
+        if (sortField === 'supply_date' || sortField === 'last_checkin_date') {
+          aVal = aVal ? new Date(aVal).getTime() : 0;
+          bVal = bVal ? new Date(bVal).getTime() : 0;
+        }
+
+        if (typeof aVal === 'string') {
+          return sortDirection === 'asc'
+            ? aVal.localeCompare(bVal)
+            : bVal.localeCompare(aVal);
+        }
+
+        return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
+      });
+    }
+
+    // ============================================================================
+    // RENDER
+    // ============================================================================
+    function renderAssets() {
+      const start = (currentPage - 1) * pageSize;
+      const end = start + pageSize;
+      const pageAssets = filteredAssets.slice(start, end);
+
+      // Update results count
+      document.getElementById('resultsCount').textContent =
+        filteredAssets.length === allAssets.length
+          ? `Showing all ${allAssets.length} assets`
+          : `Showing ${filteredAssets.length} of ${allAssets.length} assets`;
+
+      // Check for no results
+      if (filteredAssets.length === 0) {
+        document.getElementById('assetCards').innerHTML = '';
+        document.getElementById('tableBody').innerHTML = '';
+        document.getElementById('noResults').style.display = 'block';
+        document.getElementById('pagination').style.display = 'none';
+        return;
+      }
+
+      document.getElementById('noResults').style.display = 'none';
+      document.getElementById('pagination').style.display = 'flex';
+
+      // Render cards
+      document.getElementById('assetCards').innerHTML = pageAssets.map(asset => {
+        const isBed = asset.product && asset.product.includes('Bed');
+        const badgeClass = isBed ? 'badge-bed' : 'badge-washer';
+        const deliveryDate = asset.supply_date
+          ? new Date(asset.supply_date).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' })
+          : 'Not delivered';
+
+        return `
+          <div class="asset-card" onclick="viewAsset('${asset.unique_id}')">
+            <div class="asset-card-header">
+              <span class="asset-id">${asset.unique_id}</span>
+              <span class="asset-badge ${badgeClass}">${asset.product || 'Unknown'}</span>
+            </div>
+            <div class="asset-card-body">
+              <div class="asset-detail">
+                <span class="detail-label">Community</span>
+                <span class="detail-value">${asset.community || '-'}</span>
+              </div>
+              <div class="asset-detail">
+                <span class="detail-label">Location</span>
+                <span class="detail-value">${asset.place || asset.name || '-'}</span>
+              </div>
+            </div>
+            <div class="asset-card-footer">
+              <span class="last-checkin">Delivered: ${deliveryDate}</span>
+              <a href="/?asset_id=${asset.unique_id}" class="view-asset-btn" onclick="event.stopPropagation()">View</a>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Render table
+      document.getElementById('tableBody').innerHTML = pageAssets.map(asset => {
+        const isBed = asset.product && asset.product.includes('Bed');
+        const badgeClass = isBed ? 'badge-bed' : 'badge-washer';
+        const deliveryDate = asset.supply_date
+          ? new Date(asset.supply_date).toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })
+          : '-';
+
+        return `
+          <tr>
+            <td style="font-weight: 600; font-family: monospace;">${asset.unique_id}</td>
+            <td><span class="asset-badge ${badgeClass}">${asset.product || '-'}</span></td>
+            <td>${asset.community || '-'}</td>
+            <td style="color: var(--light-gray);">${asset.place || asset.name || '-'}</td>
+            <td style="color: var(--light-gray);">${deliveryDate}</td>
+            <td><a href="/?asset_id=${asset.unique_id}" class="view-asset-btn">View</a></td>
+          </tr>
+        `;
+      }).join('');
+
+      updatePagination();
+    }
+
+    function viewAsset(assetId) {
+      window.location.href = `/?asset_id=${assetId}`;
+    }
+
+    // ============================================================================
+    // PAGINATION
+    // ============================================================================
+    function updatePagination() {
+      const totalPages = Math.ceil(filteredAssets.length / pageSize) || 1;
+      document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${totalPages}`;
+      document.getElementById('prevBtn').disabled = currentPage === 1;
+      document.getElementById('nextBtn').disabled = currentPage >= totalPages;
+    }
+
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        renderAssets();
+        window.scrollTo({ top: document.querySelector('.assets-section').offsetTop - 80, behavior: 'smooth' });
+      }
+    }
+
+    function nextPage() {
+      const totalPages = Math.ceil(filteredAssets.length / pageSize);
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderAssets();
+        window.scrollTo({ top: document.querySelector('.assets-section').offsetTop - 80, behavior: 'smooth' });
+      }
+    }
+
+    // ============================================================================
+    // VIEW TOGGLE
+    // ============================================================================
+    function setView(view) {
+      currentView = view;
+
+      document.getElementById('cardsViewBtn').classList.toggle('active', view === 'cards');
+      document.getElementById('tableViewBtn').classList.toggle('active', view === 'table');
+
+      document.getElementById('assetCards').classList.toggle('hide', view === 'table');
+      document.getElementById('tableView').classList.toggle('show', view === 'table');
+    }
+
+    // ============================================================================
+    // EVENT LISTENERS
+    // ============================================================================
     document.getElementById('searchInput').addEventListener('input', applyFilters);
     document.getElementById('communityFilter').addEventListener('change', applyFilters);
     document.getElementById('productFilter').addEventListener('change', applyFilters);
 
-    // Initialize
-    loadAssets();
-
-    // Hamburger Menu
-    const menuBtn = document.getElementById('menuBtn');
-    const menuClose = document.getElementById('menuClose');
-    const menuOverlay = document.getElementById('menuOverlay');
-    const slideMenu = document.getElementById('slideMenu');
-
-    menuBtn.addEventListener('click', () => {
-      slideMenu.classList.add('show');
-      menuOverlay.classList.add('show');
+    // Handle window resize for view toggle
+    window.addEventListener('resize', () => {
+      const toggle = document.getElementById('viewToggle');
+      if (window.innerWidth >= 1024) {
+        toggle.style.display = 'flex';
+      } else {
+        toggle.style.display = 'none';
+        setView('cards');
+      }
     });
 
-    function closeMenu() {
-      slideMenu.classList.remove('show');
-      menuOverlay.classList.remove('show');
-    }
-
-    menuClose.addEventListener('click', closeMenu);
-    menuOverlay.addEventListener('click', closeMenu);
+    // ============================================================================
+    // INITIALIZE
+    // ============================================================================
+    loadAssets();
   </script>
-
 </body>
 </html>
