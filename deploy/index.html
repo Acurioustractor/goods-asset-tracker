@@ -642,7 +642,7 @@
 
   <!-- Header Navigation -->
   <nav class="header-nav">
-    <a href="home.html" class="back-btn">
+    <a href="public-home.html" class="back-btn">
       <span>←</span> Home
     </a>
     <span class="header-title">Support</span>
@@ -658,17 +658,9 @@
       <p>Asset Management System</p>
     </div>
     <div class="menu-items">
-      <a href="home.html" class="menu-item">
+      <a href="public-home.html" class="menu-item">
         <span class="menu-item-icon">🏠</span>
         Home
-      </a>
-      <a href="dashboard.html" class="menu-item">
-        <span class="menu-item-icon">📊</span>
-        Dashboard
-      </a>
-      <a href="deliver.html" class="menu-item">
-        <span class="menu-item-icon">🚚</span>
-        Deliver Bed
       </a>
       <a href="products.html" class="menu-item">
         <span class="menu-item-icon">📦</span>
@@ -676,7 +668,11 @@
       </a>
       <a href="index.html" class="menu-item active">
         <span class="menu-item-icon">🎫</span>
-        Support Ticket
+        Support
+      </a>
+      <a href="thank-you.html" class="menu-item">
+        <span class="menu-item-icon">❓</span>
+        FAQ
       </a>
     </div>
   </div>
@@ -996,13 +992,9 @@
 
         if (error) throw error;
 
-        showMessage(
-          '✅ Support request submitted successfully! We\'ll contact you at ' + formData.contact,
-          'success'
-        );
-
-        document.getElementById('supportForm').reset();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Redirect to thank you page with ticket reference
+        const ticketId = data && data[0] ? data[0].id : '';
+        window.location.href = `thank-you.html${ticketId ? '?ticket=' + ticketId : ''}`;
 
       } catch (error) {
         console.error('Submission error:', error);

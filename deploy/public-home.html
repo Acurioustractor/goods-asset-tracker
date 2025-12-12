@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goods on Country - Providing Essential Furniture to Remote Communities</title>
+  <meta name="description" content="Goods on Country provides quality furniture and essential goods to remote Indigenous communities across Australia. Supporting dignity and comfort for all.">
+
+  <!-- PWA Support -->
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Goods on Country">
+  <meta property="og:description" content="Providing essential furniture to remote Indigenous communities across Australia.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #1d4ed8;
+      --success: #10b981;
+      --success-dark: #059669;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --dark: #0f172a;
+      --dark-lighter: #1e293b;
+      --gray: #64748b;
+      --light-gray: #94a3b8;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --purple: #8b5cf6;
+      --pink: #ec4899;
+      --teal: #14b8a6;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--dark);
+      min-height: 100vh;
+      color: white;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Animated background */
+    .bg-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Header Navigation */
+    .header-nav {
+      background: rgba(30, 41, 59, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .logo-icon {
+      font-size: 32px;
+    }
+
+    .logo-text {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-link {
+      color: var(--light-gray);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 10px;
+      transition: all 0.2s;
+    }
+
+    .nav-link:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link.primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .nav-link.primary:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Main Content */
+    .main-content {
+      position: relative;
+      z-index: 1;
+      padding-top: 60px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 20px 60px;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--success);
+      margin-bottom: 28px;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 7vw, 60px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInUp 0.6s ease-out 0.1s both;
+    }
+
+    .hero p {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--light-gray);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      animation: fadeInUp 0.6s ease-out 0.2s both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.6s ease-out 0.3s both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 28px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn-secondary {
+      background: var(--card-bg);
+      color: white;
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--dark-lighter);
+      border-color: var(--light-gray);
+    }
+
+    /* Stats Section */
+    .stats-section {
+      padding: 40px 20px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 24px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .stat-icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .stat-number {
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-number.loading {
+      background: linear-gradient(90deg, var(--border) 25%, var(--card-bg) 50%, var(--border) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 8px;
+      color: transparent;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .stat-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--light-gray);
+    }
+
+    .stat-blue .stat-number { color: var(--primary); }
+    .stat-green .stat-number { color: var(--success); }
+    .stat-purple .stat-number { color: var(--purple); }
+    .stat-teal .stat-number { color: var(--teal); }
+
+    /* Mission Section */
+    .mission-section {
+      padding: 80px 20px;
+      background: linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.05) 50%, transparent 100%);
+    }
+
+    .mission-content {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--light-gray);
+      max-width: 700px;
+      margin: 0 auto 48px;
+    }
+
+    .mission-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      text-align: left;
+    }
+
+    .mission-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      transition: all 0.3s;
+    }
+
+    .mission-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .mission-card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .mission-card.blue .mission-card-icon { background: rgba(59, 130, 246, 0.2); }
+    .mission-card.green .mission-card-icon { background: rgba(16, 185, 129, 0.2); }
+    .mission-card.purple .mission-card-icon { background: rgba(139, 92, 246, 0.2); }
+
+    .mission-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .mission-card p {
+      font-size: 15px;
+      color: var(--light-gray);
+      line-height: 1.7;
+    }
+
+    /* Products Section */
+    .products-section {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .products-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: white;
+      display: block;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background: linear-gradient(135deg, var(--dark-lighter) 0%, var(--card-bg) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+    }
+
+    .product-content {
+      padding: 24px;
+    }
+
+    .product-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .product-badge.green { background: rgba(16, 185, 129, 0.2); color: var(--success); }
+    .product-badge.purple { background: rgba(139, 92, 246, 0.2); color: var(--purple); }
+    .product-badge.teal { background: rgba(20, 184, 166, 0.2); color: var(--teal); }
+
+    .product-card h3 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .product-card p {
+      font-size: 14px;
+      color: var(--light-gray);
+      margin-bottom: 16px;
+    }
+
+    .product-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .product-link svg {
+      transition: transform 0.2s;
+    }
+
+    .product-card:hover .product-link svg {
+      transform: translateX(4px);
+    }
+
+    /* Communities Section */
+    .communities-section {
+      padding: 80px 20px;
+      background: linear-gradient(180deg, transparent 0%, rgba(16, 185, 129, 0.05) 50%, transparent 100%);
+    }
+
+    .communities-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .community-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
+    .community-tag {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 12px 20px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .community-tag:hover {
+      border-color: var(--success);
+      background: rgba(16, 185, 129, 0.1);
+    }
+
+    .community-tag .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 80px 20px 100px;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .cta-card {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
+      border-radius: 28px;
+      padding: 48px 32px;
+      box-shadow: 0 30px 60px rgba(59, 130, 246, 0.3);
+    }
+
+    .cta-card h2 {
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .cta-card p {
+      font-size: 16px;
+      opacity: 0.9;
+      margin-bottom: 32px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-card .btn {
+      background: white;
+      color: var(--primary-dark);
+    }
+
+    .cta-card .btn:hover {
+      background: #f1f5f9;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      padding: 40px 20px;
+    }
+
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .footer-logo span {
+      font-size: 28px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      color: var(--light-gray);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-copy {
+      width: 100%;
+      text-align: center;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    /* Mobile Menu Button */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero {
+        padding: 60px 20px 40px;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .mission-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    /* High contrast mode */
+    @media (prefers-contrast: high) {
+      .stat-card, .mission-card, .product-card {
+        border-width: 2px;
+      }
+    }
+
+    /* Mobile Menu Overlay */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 200;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .mobile-menu.show {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 600;
+      padding: 12px 24px;
+    }
+
+    .mobile-menu-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 32px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-pattern"></div>
+
+  <!-- Header Navigation -->
+  <nav class="header-nav">
+    <a href="/" class="logo-link">
+      <span class="logo-icon">🛏️</span>
+      <span class="logo-text">Goods on Country</span>
+    </a>
+    <div class="nav-links">
+      <a href="#mission" class="nav-link">Our Mission</a>
+      <a href="#products" class="nav-link">Products</a>
+      <a href="#communities" class="nav-link">Communities</a>
+      <a href="index.html" class="nav-link primary">Get Support</a>
+    </div>
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu">☰</button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">&times;</button>
+    <a href="#mission" onclick="toggleMobileMenu()">Our Mission</a>
+    <a href="#products" onclick="toggleMobileMenu()">Products</a>
+    <a href="#communities" onclick="toggleMobileMenu()">Communities</a>
+    <a href="index.html">Get Support</a>
+  </div>
+
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-badge">
+        <span>🌟</span>
+        Supporting Remote Communities Across Australia
+      </div>
+      <h1>Quality Furniture for Every Home on Country</h1>
+      <p>Goods on Country provides essential furniture and household items to remote Indigenous communities, ensuring dignity, comfort, and quality of life for all Australians.</p>
+      <div class="hero-buttons">
+        <a href="index.html" class="btn btn-primary">
+          <span>🎫</span>
+          Get Support
+        </a>
+        <a href="#products" class="btn btn-secondary">
+          <span>📦</span>
+          View Products
+        </a>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-card stat-blue">
+          <span class="stat-icon">🛏️</span>
+          <div id="totalAssets" class="stat-number loading">--</div>
+          <div class="stat-label">Total Assets Deployed</div>
+        </div>
+        <div class="stat-card stat-green">
+          <span class="stat-icon">✅</span>
+          <div id="deliveredAssets" class="stat-number loading">--</div>
+          <div class="stat-label">Beds Delivered</div>
+        </div>
+        <div class="stat-card stat-purple">
+          <span class="stat-icon">🏘️</span>
+          <div id="communitiesServed" class="stat-number loading">--</div>
+          <div class="stat-label">Communities Served</div>
+        </div>
+        <div class="stat-card stat-teal">
+          <span class="stat-icon">🎫</span>
+          <div id="ticketsResolved" class="stat-number loading">--</div>
+          <div class="stat-label">Issues Resolved</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section" id="mission">
+      <div class="mission-content">
+        <h2 class="section-title">Our Mission</h2>
+        <p class="section-subtitle">We believe every Australian deserves access to quality household essentials, regardless of where they live.</p>
+
+        <div class="mission-cards">
+          <div class="mission-card blue">
+            <div class="mission-card-icon">🎯</div>
+            <h3>Quality First</h3>
+            <p>We source and deliver durable, comfortable furniture designed to withstand the unique conditions of remote living while providing maximum comfort.</p>
+          </div>
+          <div class="mission-card green">
+            <div class="mission-card-icon">🤝</div>
+            <h3>Community Partnership</h3>
+            <p>Working closely with local communities, health services, and housing organizations to understand and meet the real needs of residents.</p>
+          </div>
+          <div class="mission-card purple">
+            <div class="mission-card-icon">🔄</div>
+            <h3>Ongoing Support</h3>
+            <p>Our commitment doesn't end at delivery. We provide warranty support, repairs, and replacements to ensure lasting value and satisfaction.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+      <div class="products-header">
+        <h2 class="section-title">Our Products</h2>
+        <p class="section-subtitle">Purpose-built furniture designed for durability, comfort, and the unique needs of remote communities.</p>
+      </div>
+
+      <div class="products-grid">
+        <a href="product-basket-bed.html" class="product-card">
+          <div class="product-image">🛏️</div>
+          <div class="product-content">
+            <span class="product-badge green">Most Popular</span>
+            <h3>Basket Bed</h3>
+            <p>Durable steel frame bed with integrated storage and comfortable mattress, designed for remote conditions.</p>
+            <span class="product-link">
+              Learn more
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="product-weave-bed.html" class="product-card">
+          <div class="product-image">🛌</div>
+          <div class="product-content">
+            <span class="product-badge purple">Premium</span>
+            <h3>Weave Bed</h3>
+            <p>Premium woven design with natural materials and modern comfort. A perfect blend of tradition and function.</p>
+            <span class="product-link">
+              Learn more
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="product-washing-machine.html" class="product-card">
+          <div class="product-image">🧺</div>
+          <div class="product-content">
+            <span class="product-badge teal">Essential</span>
+            <h3>Washing Machine</h3>
+            <p>Heavy-duty washing machines built for remote conditions with easy maintenance and repair support.</p>
+            <span class="product-link">
+              Learn more
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Communities Section -->
+    <section class="communities-section" id="communities">
+      <div class="communities-content">
+        <h2 class="section-title">Communities We Serve</h2>
+        <p class="section-subtitle">Delivering essential goods to remote communities across the Northern Territory, Western Australia, and Queensland.</p>
+
+        <div class="community-tags" id="communityTags">
+          <!-- Will be populated by JavaScript -->
+          <div class="community-tag"><span class="dot"></span>Loading communities...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-card">
+        <h2>Need Help with Your Goods?</h2>
+        <p>Have a question about your bed, need repairs, or want to report an issue? Our support team is here to help.</p>
+        <a href="index.html" class="btn">
+          <span>🎫</span>
+          Submit a Support Request
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <span>🛏️</span>
+        Goods on Country
+      </div>
+      <div class="footer-links">
+        <a href="#mission">Our Mission</a>
+        <a href="#products">Products</a>
+        <a href="#communities">Communities</a>
+        <a href="index.html">Support</a>
+      </div>
+      <div class="footer-copy">
+        &copy; 2025 Goods on Country. Supporting remote communities across Australia.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    // ============================================================================
+    // CONFIGURATION
+    // ============================================================================
+    const SUPABASE_URL = 'https://cwsyhpiuepvdjtxaozwf.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw';
+
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // ============================================================================
+    // MOBILE MENU
+    // ============================================================================
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('show');
+    }
+
+    // ============================================================================
+    // LOAD STATS WITH ANIMATION
+    // ============================================================================
+    async function loadStats() {
+      try {
+        // Total assets
+        const { count: totalAssets } = await supabase
+          .from('assets')
+          .select('*', { count: 'exact', head: true });
+
+        animateNumber('totalAssets', totalAssets || 0);
+
+        // Delivered assets (has supply_date)
+        const { count: deliveredAssets } = await supabase
+          .from('assets')
+          .select('*', { count: 'exact', head: true })
+          .not('supply_date', 'is', null);
+
+        animateNumber('deliveredAssets', deliveredAssets || 0);
+
+        // Communities served (unique communities)
+        const { data: communityData } = await supabase
+          .from('assets')
+          .select('community')
+          .not('community', 'is', null);
+
+        const uniqueCommunities = new Set(communityData?.map(a => a.community).filter(Boolean));
+        animateNumber('communitiesServed', uniqueCommunities.size);
+
+        // Update community tags
+        updateCommunityTags(Array.from(uniqueCommunities));
+
+        // Resolved tickets
+        const { count: resolvedTickets } = await supabase
+          .from('tickets')
+          .select('*', { count: 'exact', head: true })
+          .eq('status', 'Resolved');
+
+        animateNumber('ticketsResolved', resolvedTickets || 0);
+
+      } catch (error) {
+        console.error('Error loading stats:', error);
+        ['totalAssets', 'deliveredAssets', 'communitiesServed', 'ticketsResolved'].forEach(id => {
+          const el = document.getElementById(id);
+          el.classList.remove('loading');
+          el.textContent = '—';
+        });
+      }
+    }
+
+    // Animate numbers counting up
+    function animateNumber(elementId, targetValue) {
+      const el = document.getElementById(elementId);
+      el.classList.remove('loading');
+
+      const duration = 800;
+      const startTime = performance.now();
+      const startValue = 0;
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Ease out cubic
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        const currentValue = Math.round(startValue + (targetValue - startValue) * easeOut);
+
+        el.textContent = currentValue.toLocaleString();
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    // Update community tags
+    function updateCommunityTags(communities) {
+      const container = document.getElementById('communityTags');
+
+      if (communities.length === 0) {
+        container.innerHTML = '<div class="community-tag"><span class="dot"></span>Communities loading...</div>';
+        return;
+      }
+
+      // Sort alphabetically and filter out invalid entries
+      const validCommunities = communities
+        .filter(c => c && c.trim() && c.toLowerCase() !== 'nan')
+        .sort();
+
+      container.innerHTML = validCommunities.map(community => `
+        <div class="community-tag">
+          <span class="dot"></span>
+          ${community}
+        </div>
+      `).join('');
+    }
+
+    // ============================================================================
+    // INITIALIZE
+    // ============================================================================
+    loadStats();
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

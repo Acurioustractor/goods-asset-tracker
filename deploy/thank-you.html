@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You - Goods on Country</title>
+  <meta name="description" content="Your support request has been submitted. Find answers to common questions and more ways to get help.">
+
+  <!-- PWA Support -->
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #1d4ed8;
+      --success: #10b981;
+      --success-dark: #059669;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --dark: #0f172a;
+      --dark-lighter: #1e293b;
+      --gray: #64748b;
+      --light-gray: #94a3b8;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --purple: #8b5cf6;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--dark);
+      min-height: 100vh;
+      color: white;
+      line-height: 1.6;
+    }
+
+    /* Animated background */
+    .bg-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Header Navigation */
+    .header-nav {
+      background: rgba(30, 41, 59, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .logo-icon {
+      font-size: 28px;
+    }
+
+    .logo-text {
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .nav-link {
+      color: var(--light-gray);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 10px;
+      transition: all 0.2s;
+    }
+
+    .nav-link:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Main Content */
+    .main-content {
+      position: relative;
+      z-index: 1;
+      padding: 100px 20px 60px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Success Card */
+    .success-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 48px 32px;
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeInUp 0.5s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--success) 0%, var(--success-dark) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      margin: 0 auto 24px;
+      box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3);
+      animation: successPop 0.5s ease-out 0.2s both;
+    }
+
+    @keyframes successPop {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .success-card h1 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .success-card p {
+      font-size: 16px;
+      color: var(--light-gray);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .ticket-ref {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--success);
+      margin-top: 20px;
+    }
+
+    /* What Happens Next */
+    .next-steps {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      margin-bottom: 40px;
+      animation: fadeInUp 0.5s ease-out 0.1s both;
+    }
+
+    .next-steps h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .step-list {
+      list-style: none;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .step-number {
+      width: 32px;
+      height: 32px;
+      background: rgba(59, 130, 246, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .step-content h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .step-content p {
+      font-size: 14px;
+      color: var(--light-gray);
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      margin-bottom: 40px;
+      animation: fadeInUp 0.5s ease-out 0.2s both;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .faq-item:hover {
+      border-color: var(--primary);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 20px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: inherit;
+    }
+
+    .faq-question:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .faq-arrow {
+      font-size: 20px;
+      transition: transform 0.3s;
+      color: var(--light-gray);
+    }
+
+    .faq-item.open .faq-arrow {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 500px;
+    }
+
+    .faq-answer-content {
+      padding: 0 20px 20px;
+      font-size: 15px;
+      color: var(--light-gray);
+      line-height: 1.7;
+    }
+
+    /* Contact Options */
+    .contact-section {
+      animation: fadeInUp 0.5s ease-out 0.3s both;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: white;
+      display: block;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-icon {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    .contact-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .contact-card p {
+      font-size: 13px;
+      color: var(--light-gray);
+    }
+
+    /* Back Home Button */
+    .back-home {
+      text-align: center;
+      margin-top: 48px;
+      animation: fadeInUp 0.5s ease-out 0.4s both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary {
+      background: var(--card-bg);
+      color: white;
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--dark-lighter);
+      border-color: var(--light-gray);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .main-content {
+        padding: 80px 16px 40px;
+      }
+
+      .success-card {
+        padding: 36px 20px;
+      }
+
+      .success-card h1 {
+        font-size: 24px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-pattern"></div>
+
+  <!-- Header Navigation -->
+  <nav class="header-nav">
+    <a href="public-home.html" class="logo-link">
+      <span class="logo-icon">🛏️</span>
+      <span class="logo-text">Goods on Country</span>
+    </a>
+    <a href="index.html" class="nav-link">New Request</a>
+  </nav>
+
+  <main class="main-content">
+    <!-- Success Card -->
+    <div class="success-card">
+      <div class="success-icon">✓</div>
+      <h1>Thank You!</h1>
+      <p>Your support request has been submitted successfully. Our team will review it and get back to you as soon as possible.</p>
+      <div class="ticket-ref" id="ticketRef">Request submitted</div>
+    </div>
+
+    <!-- What Happens Next -->
+    <div class="next-steps">
+      <h2>📋 What Happens Next</h2>
+      <ul class="step-list">
+        <li class="step-item">
+          <span class="step-number">1</span>
+          <div class="step-content">
+            <h3>Review</h3>
+            <p>Our support team will review your request within 1-2 business days.</p>
+          </div>
+        </li>
+        <li class="step-item">
+          <span class="step-number">2</span>
+          <div class="step-content">
+            <h3>Contact</h3>
+            <p>If we need more information, we'll reach out using the contact details you provided.</p>
+          </div>
+        </li>
+        <li class="step-item">
+          <span class="step-number">3</span>
+          <div class="step-content">
+            <h3>Resolution</h3>
+            <p>We'll work to resolve your issue as quickly as possible, whether that's a repair, replacement, or other support.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+      <h2 class="section-title">❓ Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How long does a repair usually take?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Repair times vary depending on the issue and your location. For minor repairs, we aim to resolve issues within 1-2 weeks. More complex repairs or those requiring replacement parts may take 2-4 weeks. We'll keep you informed of the timeline once we assess your request.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What does the warranty cover?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Our warranty covers manufacturing defects and normal wear and tear for the duration of the warranty period. This includes structural issues with bed frames, mattress defects, and mechanical problems with washing machines. The warranty does not cover damage from misuse, accidents, or unauthorized modifications.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Can I get a replacement instead of a repair?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            In some cases, yes. If the item cannot be reasonably repaired or the repair would cost more than replacement, we'll arrange for a replacement. Our team will assess your situation and discuss the best options with you.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How do I find my Asset ID?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Your Asset ID is printed on a QR code sticker attached to your item. For beds, it's usually on the frame near the head or foot of the bed. For washing machines, check the side panel or back of the machine. The ID starts with "GB0-" followed by numbers (e.g., GB0-152-1).
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What if I can't find the QR code?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            If you can't find the QR code or it's damaged, you can still submit a support request. Just provide as much information as possible about your item, including when and where it was delivered. Our team can help identify your item from our records.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Is there a cost for repairs?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Most repairs under warranty are provided at no cost to you. If your item is out of warranty or the damage isn't covered, we'll discuss any costs with you before proceeding. We always aim to find the most affordable solution.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Options -->
+    <div class="contact-section">
+      <h2 class="section-title">📞 Other Ways to Get Help</h2>
+
+      <div class="contact-grid">
+        <a href="tel:1800000000" class="contact-card">
+          <div class="contact-icon">📞</div>
+          <h3>Call Us</h3>
+          <p>1800 000 000<br>Mon-Fri, 9am-5pm</p>
+        </a>
+
+        <a href="mailto:support@goodsoncountry.org.au" class="contact-card">
+          <div class="contact-icon">📧</div>
+          <h3>Email Support</h3>
+          <p>support@goodsoncountry.org.au</p>
+        </a>
+
+        <a href="index.html" class="contact-card">
+          <div class="contact-icon">🎫</div>
+          <h3>New Request</h3>
+          <p>Submit another support ticket</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- Back Home -->
+    <div class="back-home">
+      <a href="public-home.html" class="btn btn-secondary">
+        <span>←</span>
+        Back to Home
+      </a>
+    </div>
+  </main>
+
+  <script>
+    // Toggle FAQ accordion
+    function toggleFaq(button) {
+      const faqItem = button.parentElement;
+      const wasOpen = faqItem.classList.contains('open');
+
+      // Close all FAQs
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('open');
+      });
+
+      // Open this one if it wasn't already open
+      if (!wasOpen) {
+        faqItem.classList.add('open');
+      }
+    }
+
+    // Get ticket reference from URL if present
+    const urlParams = new URLSearchParams(window.location.search);
+    const ticketId = urlParams.get('ticket');
+    if (ticketId) {
+      document.getElementById('ticketRef').textContent = `Reference: #${ticketId}`;
+    }
+  </script>
+</body>
+</html>

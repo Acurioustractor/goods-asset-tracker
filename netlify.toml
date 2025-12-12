@@ -28,9 +28,16 @@
   force = false
 
 [[redirects]]
-  # Root without params goes to home screen
+  # /admin goes to admin dashboard
+  from = "/admin"
+  to = "/admin.html"
+  status = 200
+  force = false
+
+[[redirects]]
+  # Root without params goes to PUBLIC home page
   from = "/"
-  to = "/home.html"
+  to = "/public-home.html"
   status = 200
   force = false
 
