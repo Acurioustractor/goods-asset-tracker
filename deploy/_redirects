@@ -1,6 +1,11 @@
-# Netlify redirects - these take priority
-# Home page first
-/  /home.html  200!
+# Netlify redirects
+# IMPORTANT: Query parameter rules must come BEFORE the catch-all
 
-# QR codes with asset_id go to support form
-/*  asset_id=:id  /index.html?asset_id=:id  200
+# QR codes with asset_id parameter go to support form (index.html)
+/*  asset_id=:id  /index.html?asset_id=:id  200!
+
+# Root without params goes to home
+/  /home.html  200
+
+# Direct support path
+/support  /index.html  200

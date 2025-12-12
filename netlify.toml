@@ -9,12 +9,7 @@
   command = ""
 
 # Redirects and rewrites
-[[redirects]]
-  # Root goes to new home screen (unless has asset_id param)
-  from = "/"
-  to = "/home.html"
-  status = 200
-  force = true
+# IMPORTANT: Query parameter rules must come FIRST
 
 [[redirects]]
   # QR codes with asset_id go to support form (index.html)
@@ -22,13 +17,20 @@
   from = "/*"
   to = "/index.html"
   status = 200
-  conditions = {Query = ["asset_id"]}
+  conditions = {Query = {asset_id = ":id"}}
   force = true
 
 [[redirects]]
   # /support path goes to support form
   from = "/support"
   to = "/index.html"
+  status = 200
+  force = false
+
+[[redirects]]
+  # Root without params goes to home screen
+  from = "/"
+  to = "/home.html"
   status = 200
   force = false
 
