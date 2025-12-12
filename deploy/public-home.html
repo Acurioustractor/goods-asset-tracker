@@ -247,6 +247,17 @@
       border-color: var(--light-gray);
     }
 
+    .btn-danger {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: white;
+      box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3);
+    }
+
+    .btn-danger:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(239, 68, 68, 0.4);
+    }
+
     /* Stats Section */
     .stats-section {
       padding: 40px 20px 80px;
@@ -739,6 +750,7 @@
       <a href="#mission" class="nav-link">Our Mission</a>
       <a href="#products" class="nav-link">Products</a>
       <a href="#communities" class="nav-link">Communities</a>
+      <a href="report-machine.html" class="nav-link">🧺 Report Machine</a>
       <a href="index.html" class="nav-link primary">Get Support</a>
     </div>
     <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu">☰</button>
@@ -750,6 +762,7 @@
     <a href="#mission" onclick="toggleMobileMenu()">Our Mission</a>
     <a href="#products" onclick="toggleMobileMenu()">Products</a>
     <a href="#communities" onclick="toggleMobileMenu()">Communities</a>
+    <a href="report-machine.html">🧺 Report Broken Machine</a>
     <a href="index.html">Get Support</a>
   </div>
 
@@ -766,6 +779,10 @@
         <a href="index.html" class="btn btn-primary">
           <span>🎫</span>
           Get Support
+        </a>
+        <a href="report-machine.html" class="btn btn-danger">
+          <span>🧺</span>
+          Report Broken Machine
         </a>
         <a href="#products" class="btn btn-secondary">
           <span>📦</span>

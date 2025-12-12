@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Broken Washing Machine - Goods on Country</title>
+  <meta name="description" content="Quickly report a broken washing machine in your community. Help us track and support machine repairs.">
+
+  <!-- PWA Support -->
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #14b8a6;
+      --primary-dark: #0d9488;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --success: #10b981;
+      --dark: #0f172a;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --gray: #64748b;
+      --light-gray: #94a3b8;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--dark);
+      min-height: 100vh;
+      color: white;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .back-link {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 24px;
+      padding: 8px;
+      opacity: 0.9;
+    }
+
+    .header-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .header h1 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .header p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    /* Container */
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Info Banner */
+    .info-banner {
+      background: rgba(20, 184, 166, 0.1);
+      border: 1px solid rgba(20, 184, 166, 0.3);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+
+    .info-banner h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-banner p {
+      font-size: 13px;
+      color: var(--light-gray);
+      line-height: 1.5;
+    }
+
+    /* Form */
+    .form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .form-section {
+      margin-bottom: 24px;
+    }
+
+    .form-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .required {
+      color: var(--danger);
+      font-size: 12px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      color: white;
+      font-size: 16px;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--gray);
+    }
+
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 20px;
+      padding-right: 44px;
+    }
+
+    .form-textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    /* Issue Type Buttons */
+    .issue-types {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .issue-type {
+      background: rgba(0, 0, 0, 0.2);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .issue-type:hover {
+      border-color: var(--primary);
+    }
+
+    .issue-type.selected {
+      border-color: var(--primary);
+      background: rgba(20, 184, 166, 0.15);
+    }
+
+    .issue-type-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .issue-type-label {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .issue-type input {
+      display: none;
+    }
+
+    /* Photo Upload */
+    .photo-upload {
+      background: rgba(0, 0, 0, 0.2);
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .photo-upload:hover {
+      border-color: var(--primary);
+    }
+
+    .photo-upload.has-photo {
+      border-style: solid;
+      border-color: var(--success);
+      padding: 0;
+    }
+
+    .photo-upload img {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .photo-upload-icon {
+      font-size: 40px;
+      margin-bottom: 8px;
+      opacity: 0.7;
+    }
+
+    .photo-upload-text {
+      font-size: 14px;
+      color: var(--light-gray);
+    }
+
+    .photo-upload-text strong {
+      color: white;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    #photoInput {
+      display: none;
+    }
+
+    /* GPS Button */
+    .gps-section {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .gps-btn {
+      padding: 14px 20px;
+      background: var(--primary);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .gps-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .gps-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .gps-status {
+      flex: 1;
+      font-size: 13px;
+      color: var(--light-gray);
+    }
+
+    .gps-status.success {
+      color: var(--success);
+    }
+
+    /* Submit Button */
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, var(--danger) 0%, #dc2626 100%);
+      border: none;
+      border-radius: 14px;
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .submit-btn .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      display: none;
+    }
+
+    .submit-btn.loading .spinner {
+      display: block;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Success Screen */
+    .success-screen {
+      position: fixed;
+      inset: 0;
+      background: var(--dark);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      z-index: 100;
+    }
+
+    .success-screen.show {
+      display: flex;
+    }
+
+    .success-icon {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      margin-bottom: 24px;
+      animation: scaleIn 0.5s ease-out;
+    }
+
+    @keyframes scaleIn {
+      0% { transform: scale(0); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .success-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .success-subtitle {
+      font-size: 16px;
+      color: var(--light-gray);
+      text-align: center;
+      margin-bottom: 32px;
+      max-width: 300px;
+      line-height: 1.5;
+    }
+
+    .success-btn {
+      padding: 16px 32px;
+      background: var(--primary);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100px);
+      background: var(--danger);
+      color: white;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      z-index: 200;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Help Text */
+    .help-text {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 8px;
+    }
+
+    /* Footer Note */
+    .footer-note {
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    .footer-note a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="toast" id="toast"></div>
+
+  <!-- Header -->
+  <div class="header">
+    <a href="public-home.html" class="back-link">←</a>
+    <div class="header-icon">🧺</div>
+    <h1>Report Broken Machine</h1>
+    <p>Help us track washing machines that need repair</p>
+  </div>
+
+  <div class="container">
+    <!-- Info Banner -->
+    <div class="info-banner">
+      <h3>💡 Why Report?</h3>
+      <p>Reporting broken machines helps us understand where repairs are needed and connect communities with local enterprises that can help fix or replace machines.</p>
+    </div>
+
+    <!-- Report Form -->
+    <form id="reportForm">
+      <div class="form-card">
+        <!-- Community Selection -->
+        <div class="form-section">
+          <label class="form-label">
+            📍 Community <span class="required">*</span>
+          </label>
+          <select id="community" class="form-select" required>
+            <option value="">-- Select your community --</option>
+            <option value="Alice Springs">Alice Springs</option>
+            <option value="Tennant Creek">Tennant Creek</option>
+            <option value="Darwin">Darwin</option>
+            <option value="Palm Island">Palm Island</option>
+            <option value="Maningrida">Maningrida</option>
+            <option value="Kalgoorlie">Kalgoorlie</option>
+            <option value="Utopia Homelands">Utopia Homelands</option>
+            <option value="Mount Isa">Mount Isa</option>
+            <option value="Other">Other (specify below)</option>
+          </select>
+        </div>
+
+        <!-- Issue Type -->
+        <div class="form-section">
+          <label class="form-label">
+            ❌ What's the problem? <span class="required">*</span>
+          </label>
+          <div class="issue-types">
+            <label class="issue-type" data-type="not-working">
+              <input type="radio" name="issue_type" value="Not Working" required>
+              <div class="issue-type-icon">🔌</div>
+              <div class="issue-type-label">Won't Turn On</div>
+            </label>
+            <label class="issue-type" data-type="leaking">
+              <input type="radio" name="issue_type" value="Leaking">
+              <div class="issue-type-icon">💧</div>
+              <div class="issue-type-label">Leaking Water</div>
+            </label>
+            <label class="issue-type" data-type="noisy">
+              <input type="radio" name="issue_type" value="Making Noise">
+              <div class="issue-type-icon">🔊</div>
+              <div class="issue-type-label">Strange Noise</div>
+            </label>
+            <label class="issue-type" data-type="other">
+              <input type="radio" name="issue_type" value="Other Issue">
+              <div class="issue-type-icon">❓</div>
+              <div class="issue-type-label">Other Issue</div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="form-section">
+          <label class="form-label">
+            🏠 Address / House Number
+          </label>
+          <input type="text" id="address" class="form-input" placeholder="e.g., House 14, Lot 23">
+          <div class="help-text">Optional - helps us locate the machine for repairs</div>
+        </div>
+
+        <!-- GPS Location -->
+        <div class="form-section">
+          <label class="form-label">
+            📍 GPS Location
+          </label>
+          <div class="gps-section">
+            <button type="button" id="gpsBtn" class="gps-btn">📍 Get Location</button>
+            <div id="gpsStatus" class="gps-status">Tap to capture GPS</div>
+          </div>
+          <input type="hidden" id="gpsCoords">
+        </div>
+
+        <!-- Photo -->
+        <div class="form-section">
+          <label class="form-label">
+            📷 Photo of Machine
+          </label>
+          <div class="photo-upload" id="photoUpload">
+            <div id="photoPlaceholder">
+              <div class="photo-upload-icon">📷</div>
+              <div class="photo-upload-text">
+                <strong>Tap to take photo</strong>
+                Optional - helps identify the issue
+              </div>
+            </div>
+            <img id="photoPreview" style="display: none;">
+          </div>
+          <input type="file" id="photoInput" accept="image/*" capture="environment">
+        </div>
+
+        <!-- Additional Details -->
+        <div class="form-section">
+          <label class="form-label">
+            📝 Additional Details
+          </label>
+          <textarea id="details" class="form-textarea" placeholder="Any other information about the problem..."></textarea>
+        </div>
+
+        <!-- Contact (Optional) -->
+        <div class="form-section">
+          <label class="form-label">
+            📞 Contact Number
+          </label>
+          <input type="tel" id="contact" class="form-input" placeholder="Optional - if you'd like us to follow up">
+          <div class="help-text">We'll only use this to contact you about the repair</div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn" id="submitBtn">
+        <span class="spinner"></span>
+        <span id="submitText">🚨 Report Broken Machine</span>
+      </button>
+    </form>
+
+    <div class="footer-note">
+      Have a different issue? <a href="index.html">Submit a full support request</a>
+    </div>
+  </div>
+
+  <!-- Success Screen -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">✓</div>
+    <div class="success-title">Report Submitted!</div>
+    <div class="success-subtitle">Thank you for letting us know. We'll use this information to help get machines fixed in your community.</div>
+    <a href="public-home.html" class="success-btn">Back to Home</a>
+  </div>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL = 'https://cwsyhpiuepvdjtxaozwf.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw';
+
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let capturedPhoto = null;
+    let gpsCoords = null;
+
+    // Issue type selection
+    document.querySelectorAll('.issue-type').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('.issue-type').forEach(t => t.classList.remove('selected'));
+        el.classList.add('selected');
+      });
+    });
+
+    // Photo upload
+    const photoUpload = document.getElementById('photoUpload');
+    const photoInput = document.getElementById('photoInput');
+    const photoPreview = document.getElementById('photoPreview');
+    const photoPlaceholder = document.getElementById('photoPlaceholder');
+
+    photoUpload.addEventListener('click', () => photoInput.click());
+
+    photoInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        capturedPhoto = file;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          photoPreview.src = e.target.result;
+          photoPreview.style.display = 'block';
+          photoPlaceholder.style.display = 'none';
+          photoUpload.classList.add('has-photo');
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // GPS capture
+    const gpsBtn = document.getElementById('gpsBtn');
+    const gpsStatus = document.getElementById('gpsStatus');
+
+    gpsBtn.addEventListener('click', () => {
+      if (!navigator.geolocation) {
+        showToast('GPS not supported on this device');
+        return;
+      }
+
+      gpsBtn.disabled = true;
+      gpsStatus.textContent = 'Getting location...';
+      gpsStatus.classList.remove('success');
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          gpsCoords = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          gpsStatus.textContent = `✓ Location captured`;
+          gpsStatus.classList.add('success');
+          gpsBtn.textContent = '✓ Got Location';
+          gpsBtn.disabled = false;
+        },
+        (error) => {
+          gpsStatus.textContent = 'Could not get location';
+          gpsBtn.disabled = false;
+          showToast('Please enable location access');
+        },
+        { enableHighAccuracy: true, timeout: 10000 }
+      );
+    });
+
+    // Form submission
+    document.getElementById('reportForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const community = document.getElementById('community').value;
+      const issueType = document.querySelector('input[name="issue_type"]:checked')?.value;
+
+      if (!community || !issueType) {
+        showToast('Please select community and issue type');
+        return;
+      }
+
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.classList.add('loading');
+      submitBtn.disabled = true;
+
+      try {
+        let photoUrl = null;
+
+        // Upload photo if provided
+        if (capturedPhoto) {
+          const fileName = `machine_report_${Date.now()}.jpg`;
+          const filePath = `machine-reports/${fileName}`;
+
+          const { error: uploadError } = await supabase.storage
+            .from('ticket-photos')
+            .upload(filePath, capturedPhoto);
+
+          if (!uploadError) {
+            const { data: urlData } = supabase.storage
+              .from('ticket-photos')
+              .getPublicUrl(filePath);
+            photoUrl = urlData.publicUrl;
+          }
+        }
+
+        // Create the report - using tickets table with special category
+        const { error } = await supabase
+          .from('tickets')
+          .insert([{
+            asset_id: 'WASHING-MACHINE-REPORT',
+            description: `${issueType}${document.getElementById('details').value ? ': ' + document.getElementById('details').value : ''}`,
+            issue_type: 'Appliance Issue',
+            category: 'Washing Machine Report',
+            community: community,
+            location: document.getElementById('address').value || null,
+            gps: gpsCoords ? `${gpsCoords.lat},${gpsCoords.lng}` : null,
+            contact: document.getElementById('contact').value || null,
+            photo_urls: photoUrl ? [photoUrl] : null,
+            status: 'Open',
+            priority: 'Medium'
+          }]);
+
+        if (error) throw error;
+
+        // Show success
+        document.getElementById('successScreen').classList.add('show');
+
+      } catch (error) {
+        console.error('Error:', error);
+        showToast('Error submitting report. Please try again.');
+      } finally {
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+      }
+    });
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+  </script>
+</body>
+</html>
