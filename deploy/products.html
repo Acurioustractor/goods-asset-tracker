@@ -2,8 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products - Goods Asset Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Products - Goods on Country</title>
+
+  <!-- PWA Support -->
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
@@ -11,237 +22,386 @@
       padding: 0;
     }
 
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #1d4ed8;
+      --success: #10b981;
+      --success-dark: #059669;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --dark: #0f172a;
+      --dark-lighter: #1e293b;
+      --gray: #64748b;
+      --light-gray: #94a3b8;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --purple: #8b5cf6;
+      --pink: #ec4899;
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #ffffff;
-      color: #1a1a1a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--dark);
+      min-height: 100vh;
+      color: white;
       line-height: 1.6;
     }
 
-    /* Navigation */
-    .nav {
-      background: #ffffff;
-      border-bottom: 1px solid #e5e5e5;
-      padding: 1rem 2rem;
+    /* Animated background */
+    .bg-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Header Navigation */
+    .header-nav {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 16px;
       position: sticky;
       top: 0;
       z-index: 100;
-    }
-
-    .nav-content {
-      max-width: 1200px;
-      margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .nav-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #1a1a1a;
-    }
-
-    .nav-links {
+    .back-btn {
       display: flex;
-      gap: 2rem;
-    }
-
-    .nav-link {
-      color: #666;
+      align-items: center;
+      gap: 8px;
+      color: var(--light-gray);
       text-decoration: none;
-      font-size: 0.9375rem;
-      transition: color 0.2s;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 10px;
+      transition: all 0.2s;
     }
 
-    .nav-link:hover {
-      color: #1a1a1a;
+    .back-btn:active {
+      background: rgba(255,255,255,0.1);
+      transform: scale(0.95);
+    }
+
+    .header-title {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .menu-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    /* Mobile Menu */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .menu-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .slide-menu {
+      position: fixed;
+      top: 0;
+      right: -280px;
+      width: 280px;
+      height: 100%;
+      background: var(--card-bg);
+      z-index: 201;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid var(--border);
+    }
+
+    .slide-menu.show {
+      right: 0;
+    }
+
+    .menu-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: none;
+      border: none;
+      color: var(--light-gray);
+      font-size: 28px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .menu-header {
+      padding: 24px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .menu-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .menu-header p {
+      font-size: 13px;
+      color: var(--light-gray);
+    }
+
+    .menu-items {
+      padding: 12px;
+      flex: 1;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      transition: background 0.2s;
+    }
+
+    .menu-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .menu-item.active {
+      background: rgba(59, 130, 246, 0.2);
+      color: var(--primary);
+    }
+
+    .menu-item-icon {
+      font-size: 20px;
     }
 
     /* Container */
     .container {
+      position: relative;
+      z-index: 1;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 4rem 2rem;
+      padding: 24px 16px;
+      padding-bottom: 60px;
     }
 
     /* Hero */
     .hero {
       text-align: center;
-      margin-bottom: 6rem;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
+      margin-bottom: 48px;
+      padding: 32px 16px;
     }
 
     .hero h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      color: #1a1a1a;
-      margin-bottom: 1rem;
+      font-size: 2rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 16px;
       letter-spacing: -0.02em;
     }
 
     .hero p {
-      font-size: 1.25rem;
-      color: #666;
+      font-size: 1rem;
+      color: var(--light-gray);
       line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    /* Products Section */
-    .products-section {
-      margin-bottom: 8rem;
-    }
-
+    /* Section Title */
     .section-title {
-      font-size: 2rem;
+      font-size: 12px;
       font-weight: 700;
-      color: #1a1a1a;
-      margin-bottom: 3rem;
-      letter-spacing: -0.02em;
+      color: var(--light-gray);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+      padding-left: 4px;
     }
 
+    /* Products Grid */
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 3rem;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-bottom: 48px;
     }
 
     .product-card {
-      background: #ffffff;
-      border: 1px solid #e5e5e5;
-      border-radius: 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
       overflow: hidden;
-      transition: border-color 0.2s;
+      transition: all 0.3s ease;
     }
 
     .product-card:hover {
-      border-color: #1a1a1a;
+      border-color: var(--primary);
+      transform: translateY(-4px);
     }
 
     .product-image {
       width: 100%;
-      height: 280px;
+      height: 220px;
       object-fit: cover;
       display: block;
     }
 
     .product-content {
-      padding: 2rem;
+      padding: 24px;
     }
 
     .product-name {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #1a1a1a;
-      margin-bottom: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 12px;
     }
 
     .product-description {
-      color: #666;
+      color: var(--light-gray);
       font-size: 0.9375rem;
       line-height: 1.7;
-      margin-bottom: 1.5rem;
+      margin-bottom: 20px;
     }
 
     .product-features {
       list-style: none;
-      margin-bottom: 1.5rem;
     }
 
     .product-features li {
-      color: #666;
+      color: var(--light-gray);
       font-size: 0.875rem;
-      padding: 0.5rem 0;
-      border-top: 1px solid #f5f5f5;
+      padding: 10px 0;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .product-features li:first-child {
       border-top: none;
     }
 
-    /* Stats */
+    .product-features li::before {
+      content: "✓";
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    /* Stats Section */
     .stats-section {
-      background: #fafafa;
-      border-top: 1px solid #e5e5e5;
-      border-bottom: 1px solid #e5e5e5;
-      padding: 4rem 2rem;
-      margin-bottom: 8rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 20px;
+      margin-bottom: 48px;
     }
 
     .stats-grid {
-      max-width: 1200px;
-      margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 3rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
       text-align: center;
     }
 
+    .stat-item {
+      padding: 16px;
+    }
+
     .stat-number {
-      font-size: 3rem;
-      font-weight: 700;
-      color: #1a1a1a;
-      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 4px;
       letter-spacing: -0.02em;
     }
 
     .stat-label {
-      color: #666;
-      font-size: 0.875rem;
+      color: var(--light-gray);
+      font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.5px;
+      font-weight: 600;
     }
 
     /* Storytellers */
-    .storytellers-section {
-      margin-bottom: 4rem;
-    }
-
     .storytellers-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 48px;
     }
 
     .storyteller-card {
-      background: #ffffff;
-      border: 1px solid #e5e5e5;
-      border-radius: 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
       overflow: hidden;
-      transition: border-color 0.2s;
+      transition: all 0.3s ease;
     }
 
     .storyteller-card:hover {
-      border-color: #1a1a1a;
+      border-color: var(--success);
     }
 
     .storyteller-image {
       width: 100%;
-      height: 320px;
+      height: 280px;
       object-fit: cover;
       display: block;
     }
 
     .storyteller-content {
-      padding: 1.5rem;
+      padding: 20px;
     }
 
     .storyteller-name {
       font-size: 1.125rem;
-      font-weight: 600;
-      color: #1a1a1a;
-      margin-bottom: 0.25rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 4px;
     }
 
     .storyteller-location {
-      color: #999;
-      font-size: 0.875rem;
-      margin-bottom: 1rem;
+      color: var(--success);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      margin-bottom: 12px;
     }
 
     .storyteller-quote {
-      color: #666;
+      color: var(--light-gray);
       font-size: 0.9375rem;
       line-height: 1.7;
       font-style: italic;
@@ -249,228 +409,280 @@
 
     /* Footer CTA */
     .cta-section {
-      background: #1a1a1a;
-      color: #ffffff;
-      padding: 4rem 2rem;
+      background: linear-gradient(135deg, var(--success) 0%, var(--success-dark) 100%);
+      border-radius: 20px;
+      padding: 40px 24px;
       text-align: center;
-      margin-top: 8rem;
-    }
-
-    .cta-content {
-      max-width: 800px;
-      margin: 0 auto;
+      margin-top: 32px;
     }
 
     .cta-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 12px;
     }
 
     .cta-text {
-      color: #999;
-      font-size: 1.125rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1rem;
       line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     /* Responsive */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2rem;
+    @media (min-width: 640px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .hero p {
-        font-size: 1rem;
-      }
-
-      .products-grid,
       .storytellers-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero h1 {
+        font-size: 2.5rem;
       }
 
-      .section-title {
-        font-size: 1.5rem;
+      .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .storytellers-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .product-image {
+        height: 260px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="nav-content">
-      <div class="nav-title">Goods Asset Tracker</div>
-      <div class="nav-links">
-        <a href="dashboard.html" class="nav-link">Dashboard</a>
-        <a href="products.html" class="nav-link">Products</a>
-        <a href="index.html" class="nav-link">Support</a>
-      </div>
-    </div>
+  <div class="bg-pattern"></div>
+
+  <!-- Header Navigation -->
+  <nav class="header-nav">
+    <a href="home.html" class="back-btn">
+      <span>←</span> Home
+    </a>
+    <span class="header-title">Products</span>
+    <button class="menu-btn" id="menuBtn">☰</button>
   </nav>
 
-  <!-- Hero -->
+  <!-- Mobile Menu Overlay -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <div class="slide-menu" id="slideMenu">
+    <button class="menu-close" id="menuClose">&times;</button>
+    <div class="menu-header">
+      <h2>Goods on Country</h2>
+      <p>Asset Management System</p>
+    </div>
+    <div class="menu-items">
+      <a href="home.html" class="menu-item">
+        <span class="menu-item-icon">🏠</span>
+        Home
+      </a>
+      <a href="dashboard.html" class="menu-item">
+        <span class="menu-item-icon">📊</span>
+        Dashboard
+      </a>
+      <a href="deliver.html" class="menu-item">
+        <span class="menu-item-icon">🚚</span>
+        Deliver Bed
+      </a>
+      <a href="products.html" class="menu-item active">
+        <span class="menu-item-icon">📦</span>
+        Products
+      </a>
+      <a href="index.html" class="menu-item">
+        <span class="menu-item-icon">🎫</span>
+        Support Ticket
+      </a>
+    </div>
+  </div>
+
   <div class="container">
+
+    <!-- Hero -->
     <div class="hero">
       <h1>Indigenous-Made Goods</h1>
       <p>Beautifully crafted beds and essential appliances designed and made by Indigenous artisans across remote Australian communities. Each piece represents cultural heritage, sustainability, and community empowerment.</p>
     </div>
 
     <!-- Products -->
-    <section class="products-section">
-      <h2 class="section-title">Our Products</h2>
-      <div class="products-grid">
-        <!-- Basket Bed -->
-        <div class="product-card">
-          <img src="https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686e5122692fd1a0ee508f2e_20250628-IMG_6872.jpg" alt="Basket Bed" class="product-image">
-          <div class="product-content">
-            <h3 class="product-name">Basket Bed</h3>
-            <p class="product-description">A locally co-designed, modular bed system made from recycled plastic. Lightweight, durable, and woven by Indigenous artisans using traditional basket-weaving techniques.</p>
-            <ul class="product-features">
-              <li>Handwoven by Indigenous artisans</li>
-              <li>Made from recycled plastic materials</li>
-              <li>Modular design for easy assembly</li>
-              <li>Suitable for tropical climates</li>
-              <li>Supports cultural knowledge transfer</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Weave Bed -->
-        <div class="product-card">
-          <img src="https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f06aca919ac39a08c6cbc_20250629-IMG_7731.jpg" alt="Weave Bed" class="product-image">
-          <div class="product-content">
-            <h3 class="product-name">Weave Bed</h3>
-            <p class="product-description">Next-generation sleeping solution using innovative blends of rope fibres. Enhanced structural support with ergonomic design that combines modern comfort with traditional Indigenous principles.</p>
-            <ul class="product-features">
-              <li>Innovative rope fibre technology</li>
-              <li>Enhanced structural support</li>
-              <li>Ergonomic design for better sleep</li>
-              <li>Weather-resistant construction</li>
-              <li>Made in remote communities</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Washing Machine -->
-        <div class="product-card">
-          <img src="https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f0a19b97e3e9c7b4dc6f0_20250628-IMG_6976.jpg" alt="Pakkimjalki Kari" class="product-image">
-          <div class="product-content">
-            <h3 class="product-name">Pakkimjalki Kari</h3>
-            <p class="product-description">Community-tough washing machines built for resilience and simplicity. Designed specifically for remote conditions with energy efficiency and ease of maintenance in mind.</p>
-            <ul class="product-features">
-              <li>Built for extreme conditions</li>
-              <li>Energy-efficient operation</li>
-              <li>Low water consumption</li>
-              <li>Simple, reliable mechanics</li>
-              <li>Easy community maintenance</li>
-            </ul>
-          </div>
+    <div class="section-title">Our Products</div>
+    <div class="products-grid">
+      <!-- Basket Bed -->
+      <div class="product-card">
+        <img src="https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686e5122692fd1a0ee508f2e_20250628-IMG_6872.jpg" alt="Basket Bed" class="product-image">
+        <div class="product-content">
+          <h3 class="product-name">Basket Bed</h3>
+          <p class="product-description">A locally co-designed, modular bed system made from recycled plastic. Lightweight, durable, and woven by Indigenous artisans using traditional basket-weaving techniques.</p>
+          <ul class="product-features">
+            <li>Handwoven by Indigenous artisans</li>
+            <li>Made from recycled plastic materials</li>
+            <li>Modular design for easy assembly</li>
+            <li>Suitable for tropical climates</li>
+            <li>Supports cultural knowledge transfer</li>
+          </ul>
         </div>
       </div>
-    </section>
-  </div>
 
-  <!-- Stats -->
-  <section class="stats-section">
-    <div class="stats-grid">
-      <div>
-        <div class="stat-number">389</div>
-        <div class="stat-label">Assets Tracked</div>
+      <!-- Weave Bed -->
+      <div class="product-card">
+        <img src="https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f06aca919ac39a08c6cbc_20250629-IMG_7731.jpg" alt="Weave Bed" class="product-image">
+        <div class="product-content">
+          <h3 class="product-name">Weave Bed</h3>
+          <p class="product-description">Next-generation sleeping solution using innovative blends of rope fibres. Enhanced structural support with ergonomic design that combines modern comfort with traditional Indigenous principles.</p>
+          <ul class="product-features">
+            <li>Innovative rope fibre technology</li>
+            <li>Enhanced structural support</li>
+            <li>Ergonomic design for better sleep</li>
+            <li>Weather-resistant construction</li>
+            <li>Made in remote communities</li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <div class="stat-number">8+</div>
-        <div class="stat-label">Communities Served</div>
-      </div>
-      <div>
-        <div class="stat-number">369</div>
-        <div class="stat-label">Beds Delivered</div>
-      </div>
-      <div>
-        <div class="stat-number">20</div>
-        <div class="stat-label">Washers In Use</div>
+
+      <!-- Washing Machine -->
+      <div class="product-card">
+        <img src="https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f0a19b97e3e9c7b4dc6f0_20250628-IMG_6976.jpg" alt="Pakkimjalki Kari" class="product-image">
+        <div class="product-content">
+          <h3 class="product-name">Pakkimjalki Kari</h3>
+          <p class="product-description">Community-tough washing machines built for resilience and simplicity. Designed specifically for remote conditions with energy efficiency and ease of maintenance in mind.</p>
+          <ul class="product-features">
+            <li>Built for extreme conditions</li>
+            <li>Energy-efficient operation</li>
+            <li>Low water consumption</li>
+            <li>Simple, reliable mechanics</li>
+            <li>Easy community maintenance</li>
+          </ul>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- Storytellers -->
-  <div class="container">
-    <section class="storytellers-section">
-      <h2 class="section-title">Community Voices</h2>
-      <div class="storytellers-grid">
-        <!-- Annie Morrison -->
-        <div class="storyteller-card">
-          <img src="https://cdn.prod.website-files.com/64ea91d96ff3fda1ff23fc38/682be138b6216edeb9c3f159_IMG_2592.jpg" alt="Annie Morrison" class="storyteller-image">
-          <div class="storyteller-content">
-            <h3 class="storyteller-name">Annie Morrison</h3>
-            <p class="storyteller-location">Tennant Creek</p>
-            <p class="storyteller-quote">"These beds are made by our people, for our people. When we weave, we're keeping our culture alive and providing something essential for our families."</p>
-          </div>
+    <!-- Stats -->
+    <div class="section-title">Impact</div>
+    <div class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">389</div>
+          <div class="stat-label">Assets Tracked</div>
         </div>
-
-        <!-- Patricia Frank -->
-        <div class="storyteller-card">
-          <img src="https://cdn.prod.website-files.com/64ea91d96ff3fda1ff23fc38/682be1fa2b10661a712b7279_IMG_2575%20(1).jpg" alt="Patricia Frank" class="storyteller-image">
-          <div class="storyteller-content">
-            <h3 class="storyteller-name">Patricia Frank</h3>
-            <p class="storyteller-location">Palm Island</p>
-            <p class="storyteller-quote">"Having a proper bed changed everything for my kids. They sleep better, wake up healthier, and I know it was made with care by someone who understands our community."</p>
-          </div>
+        <div class="stat-item">
+          <div class="stat-number">8+</div>
+          <div class="stat-label">Communities</div>
         </div>
-
-        <!-- Linda Turner -->
-        <div class="storyteller-card">
-          <img src="https://cdn.prod.website-files.com/64ea91d96ff3fda1ff23fc38/682be1c72b10661a712b4fb0_IMG_2438%20(1).jpg" alt="Linda Turner" class="storyteller-image">
-          <div class="storyteller-content">
-            <h3 class="storyteller-name">Linda Turner</h3>
-            <p class="storyteller-location">Maningrida</p>
-            <p class="storyteller-quote">"The washing machines mean we don't have to travel hours just to do laundry. It's given us time back to focus on family and community activities."</p>
-          </div>
+        <div class="stat-item">
+          <div class="stat-number">369</div>
+          <div class="stat-label">Beds Delivered</div>
         </div>
-
-        <!-- Georgina Byron AM -->
-        <div class="storyteller-card">
-          <img src="https://cdn.prod.website-files.com/64ea91d96ff3fda1ff23fc38/682be186b6216edeb9c4220c_IMG_2919.jpg" alt="Georgina Byron AM" class="storyteller-image">
-          <div class="storyteller-content">
-            <h3 class="storyteller-name">Georgina Byron AM</h3>
-            <p class="storyteller-location">Community Elder</p>
-            <p class="storyteller-quote">"A healthy home starts with the basics. These products provide dignity and comfort while honoring our cultural values and traditions."</p>
-          </div>
-        </div>
-
-        <!-- Norman Frank -->
-        <div class="storyteller-card">
-          <img src="https://cdn.prod.website-files.com/64ea91d96ff3fda1ff23fc38/682be13fde985a13def93b09_IMG_2783.jpg" alt="Norman Frank" class="storyteller-image">
-          <div class="storyteller-content">
-            <h3 class="storyteller-name">Norman Frank</h3>
-            <p class="storyteller-location">Tennant Creek</p>
-            <p class="storyteller-quote">"Working on these beds has given me purpose and income. I'm teaching my sons the techniques my father taught me. It's more than work—it's cultural preservation."</p>
-          </div>
-        </div>
-
-        <!-- Cliff Plummer -->
-        <div class="storyteller-card">
-          <img src="https://cdn.prod.website-files.com/64ea91d96ff3fda1ff23fc38/682be1007554ed634e82c605_IMG_1937.jpg" alt="Cliff Plummer" class="storyteller-image">
-          <div class="storyteller-content">
-            <h3 class="storyteller-name">Cliff Plummer</h3>
-            <p class="storyteller-location">Community Member</p>
-            <p class="storyteller-quote">"Before these beds, my children were sleeping on the floor. Now they have dignity, comfort, and a bed that represents our culture and resilience."</p>
-          </div>
+        <div class="stat-item">
+          <div class="stat-number">20</div>
+          <div class="stat-label">Washers</div>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
 
-  <!-- Footer CTA -->
-  <section class="cta-section">
-    <div class="cta-content">
+    <!-- Community Voices -->
+    <div class="section-title">Community Voices</div>
+    <div class="storytellers-grid">
+      <!-- Annie Morrison -->
+      <div class="storyteller-card">
+        <img src="https://cdn.prod.website-files.com/64ea91d96ff3fda1ff23fc38/682be138b6216edeb9c3f159_IMG_2592.jpg" alt="Annie Morrison" class="storyteller-image">
+        <div class="storyteller-content">
+          <h3 class="storyteller-name">Annie Morrison</h3>
+          <p class="storyteller-location">Tennant Creek</p>
+          <p class="storyteller-quote">"These beds are made by our people, for our people. When we weave, we're keeping our culture alive and providing something essential for our families."</p>
+        </div>
+      </div>
+
+      <!-- Patricia Frank -->
+      <div class="storyteller-card">
+        <img src="https://cdn.prod.website-files.com/64ea91d96ff3fda1ff23fc38/682be1fa2b10661a712b7279_IMG_2575%20(1).jpg" alt="Patricia Frank" class="storyteller-image">
+        <div class="storyteller-content">
+          <h3 class="storyteller-name">Patricia Frank</h3>
+          <p class="storyteller-location">Palm Island</p>
+          <p class="storyteller-quote">"Having a proper bed changed everything for my kids. They sleep better, wake up healthier, and I know it was made with care."</p>
+        </div>
+      </div>
+
+      <!-- Linda Turner -->
+      <div class="storyteller-card">
+        <img src="https://cdn.prod.website-files.com/64ea91d96ff3fda1ff23fc38/682be1c72b10661a712b4fb0_IMG_2438%20(1).jpg" alt="Linda Turner" class="storyteller-image">
+        <div class="storyteller-content">
+          <h3 class="storyteller-name">Linda Turner</h3>
+          <p class="storyteller-location">Maningrida</p>
+          <p class="storyteller-quote">"The washing machines mean we don't have to travel hours just to do laundry. It's given us time back to focus on family."</p>
+        </div>
+      </div>
+
+      <!-- Georgina Byron AM -->
+      <div class="storyteller-card">
+        <img src="https://cdn.prod.website-files.com/64ea91d96ff3fda1ff23fc38/682be186b6216edeb9c4220c_IMG_2919.jpg" alt="Georgina Byron AM" class="storyteller-image">
+        <div class="storyteller-content">
+          <h3 class="storyteller-name">Georgina Byron AM</h3>
+          <p class="storyteller-location">Community Elder</p>
+          <p class="storyteller-quote">"A healthy home starts with the basics. These products provide dignity and comfort while honoring our cultural values."</p>
+        </div>
+      </div>
+
+      <!-- Norman Frank -->
+      <div class="storyteller-card">
+        <img src="https://cdn.prod.website-files.com/64ea91d96ff3fda1ff23fc38/682be13fde985a13def93b09_IMG_2783.jpg" alt="Norman Frank" class="storyteller-image">
+        <div class="storyteller-content">
+          <h3 class="storyteller-name">Norman Frank</h3>
+          <p class="storyteller-location">Tennant Creek</p>
+          <p class="storyteller-quote">"Working on these beds has given me purpose and income. I'm teaching my sons the techniques my father taught me."</p>
+        </div>
+      </div>
+
+      <!-- Cliff Plummer -->
+      <div class="storyteller-card">
+        <img src="https://cdn.prod.website-files.com/64ea91d96ff3fda1ff23fc38/682be1007554ed634e82c605_IMG_1937.jpg" alt="Cliff Plummer" class="storyteller-image">
+        <div class="storyteller-content">
+          <h3 class="storyteller-name">Cliff Plummer</h3>
+          <p class="storyteller-location">Community Member</p>
+          <p class="storyteller-quote">"Before these beds, my children were sleeping on the floor. Now they have dignity, comfort, and a bed that represents our culture."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="cta-section">
       <h2 class="cta-title">Building Sustainable Futures</h2>
-      <p class="cta-text">Every product tracked in this system represents more than just an asset—it's a step toward community self-sufficiency, cultural preservation, and economic independence. By combining traditional Indigenous knowledge with modern technology, we're creating sustainable solutions that honor heritage while addressing contemporary needs.</p>
+      <p class="cta-text">Every product tracked in this system represents more than just an asset—it's a step toward community self-sufficiency, cultural preservation, and economic independence.</p>
     </div>
-  </section>
+
+  </div>
+
+  <script>
+    // Mobile menu functionality
+    const menuBtn = document.getElementById('menuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const slideMenu = document.getElementById('slideMenu');
+    const menuClose = document.getElementById('menuClose');
+
+    menuBtn.addEventListener('click', () => {
+      slideMenu.classList.add('show');
+      menuOverlay.classList.add('show');
+    });
+
+    function closeMenu() {
+      slideMenu.classList.remove('show');
+      menuOverlay.classList.remove('show');
+    }
+
+    menuClose.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+  </script>
 </body>
 </html>

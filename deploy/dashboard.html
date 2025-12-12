@@ -1269,7 +1269,7 @@
         </div>
         <div class="form-group">
           <label class="form-label">Supply Date</label>
-          <input type="date" class="form-input" id="editSupplyDate" />
+          <input type="date" class="form-input" id="editSupplyDate" style="max-width: 100%;" />
         </div>
         <div class="form-group">
           <label class="form-label">Delivery Notes</label>
@@ -1285,6 +1285,21 @@
           <label class="form-label">Delivery Photo</label>
           <div class="photo-placeholder" id="photoPlaceholder">No photo attached</div>
         </div>
+
+        <!-- Reset/Move Product Section -->
+        <div class="reset-section" id="resetSection" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);">
+          <label class="form-label" style="color: var(--warning);">Product Actions</label>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button type="button" class="btn btn-warning" onclick="resetProduct()" id="resetBtn" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; flex: 1; min-width: 140px;">
+              Reset for Move
+            </button>
+            <button type="button" class="btn btn-danger" onclick="deletePhoto()" id="deletePhotoBtn" style="background: rgba(239, 68, 68, 0.2); color: #f87171; flex: 1; min-width: 140px; display: none;">
+              Delete Photo
+            </button>
+          </div>
+          <p style="font-size: 11px; color: var(--gray); margin-top: 8px;">Reset clears delivery data so product can be reassigned to a new location.</p>
+        </div>
+
         <div class="save-status" id="saveStatus"></div>
       </div>
       <div class="modal-footer">
@@ -1958,6 +1973,14 @@
       document.getElementById('saveStatus').className = 'save-status';
       document.getElementById('saveStatus').textContent = '';
 
+      // Show/hide delete photo button based on whether photo exists
+      const deletePhotoBtn = document.getElementById('deletePhotoBtn');
+      if (photoUrl) {
+        deletePhotoBtn.style.display = 'block';
+      } else {
+        deletePhotoBtn.style.display = 'none';
+      }
+
       // Show modal
       document.getElementById('editModal').classList.add('show');
       document.body.style.overflow = 'hidden';
@@ -2040,6 +2063,142 @@
       } finally {
         saveBtn.disabled = false;
         saveBtn.textContent = 'Save Changes';
+      }
+    }
+
+    // ============================================================================
+    // RESET PRODUCT (for moving to new location)
+    // ============================================================================
+    async function resetProduct() {
+      if (!editingAsset) return;
+
+      const confirmed = confirm(
+        `Are you sure you want to reset "${editingAsset.unique_id}"?\n\n` +
+        `This will clear:\n` +
+        `• Location/Place\n` +
+        `• Recipient Name\n` +
+        `• Supply Date\n` +
+        `• GPS Coordinates\n` +
+        `• Delivery Notes\n\n` +
+        `The product will be ready to deliver to a new location.`
+      );
+
+      if (!confirmed) return;
+
+      const resetBtn = document.getElementById('resetBtn');
+      const saveStatus = document.getElementById('saveStatus');
+
+      resetBtn.disabled = true;
+      resetBtn.textContent = 'Resetting...';
+
+      const resetData = {
+        place: null,
+        name: null,
+        supply_date: null,
+        last_checkin_date: null,
+        gps: null,
+        gps_latitude: null,
+        gps_longitude: null,
+        notes: null
+        // Keep: community, product, photo_url, photo (history)
+      };
+
+      try {
+        const { error } = await supabase
+          .from('assets')
+          .update(resetData)
+          .eq('unique_id', editingAsset.unique_id);
+
+        if (error) throw error;
+
+        // Update local data
+        const index = allAssets.findIndex(a => a.unique_id === editingAsset.unique_id);
+        if (index !== -1) {
+          allAssets[index] = { ...allAssets[index], ...resetData };
+        }
+
+        saveStatus.textContent = 'Product reset! Ready for new delivery.';
+        saveStatus.className = 'save-status show';
+
+        // Refresh UI
+        updateStats();
+        renderRecentActivity();
+        applyFilters();
+
+        setTimeout(() => {
+          closeEditModal();
+        }, 1500);
+
+      } catch (error) {
+        console.error('Error resetting product:', error);
+        saveStatus.textContent = 'Error: ' + error.message;
+        saveStatus.className = 'save-status show error';
+      } finally {
+        resetBtn.disabled = false;
+        resetBtn.textContent = 'Reset for Move';
+      }
+    }
+
+    // ============================================================================
+    // DELETE PHOTO
+    // ============================================================================
+    async function deletePhoto() {
+      if (!editingAsset) return;
+
+      const confirmed = confirm('Are you sure you want to delete the photo? This cannot be undone.');
+      if (!confirmed) return;
+
+      const deleteBtn = document.getElementById('deletePhotoBtn');
+      const saveStatus = document.getElementById('saveStatus');
+
+      deleteBtn.disabled = true;
+      deleteBtn.textContent = 'Deleting...';
+
+      try {
+        const { error } = await supabase
+          .from('assets')
+          .update({
+            photo_url: null,
+            photo: null
+          })
+          .eq('unique_id', editingAsset.unique_id);
+
+        if (error) throw error;
+
+        // Update local data
+        const index = allAssets.findIndex(a => a.unique_id === editingAsset.unique_id);
+        if (index !== -1) {
+          allAssets[index].photo_url = null;
+          allAssets[index].photo = null;
+        }
+
+        // Update the photo placeholder in modal
+        const photoPlaceholder = document.getElementById('photoPlaceholder');
+        photoPlaceholder.innerHTML = `
+          <div style="color: var(--gray); margin-bottom: 12px;">No photo attached</div>
+          <input type="file" id="newPhotoInput" accept="image/*" capture="environment" style="display: none;" onchange="handleNewPhoto(this)" />
+          <button type="button" class="btn btn-primary" style="width: auto; padding: 10px 16px;" onclick="document.getElementById('newPhotoInput').click()">
+            Add Photo
+          </button>
+        `;
+
+        // Hide delete button
+        document.getElementById('deletePhotoBtn').style.display = 'none';
+
+        saveStatus.textContent = 'Photo deleted successfully!';
+        saveStatus.className = 'save-status show';
+
+        // Clear editing asset photo data
+        editingAsset.photo_url = null;
+        editingAsset.photo = null;
+
+      } catch (error) {
+        console.error('Error deleting photo:', error);
+        saveStatus.textContent = 'Error: ' + error.message;
+        saveStatus.className = 'save-status show error';
+      } finally {
+        deleteBtn.disabled = false;
+        deleteBtn.textContent = 'Delete Photo';
       }
     }
 
