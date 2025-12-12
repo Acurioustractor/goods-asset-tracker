@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Assets - Goods on Country</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #1d4ed8;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --dark: #0f172a;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --gray: #64748b;
+      --light-gray: #94a3b8;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--dark);
+      min-height: 100vh;
+      color: white;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .back-btn {
+      width: 44px;
+      height: 44px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      background: var(--border);
+    }
+
+    .header-text h1 {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .header-text p {
+      color: var(--light-gray);
+      font-size: 14px;
+    }
+
+    /* Form Card */
+    .form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .form-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--light-gray);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: white;
+      font-size: 16px;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 20px;
+      padding-right: 40px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Batch Mode */
+    .batch-toggle {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .batch-toggle input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--primary);
+    }
+
+    .batch-toggle label {
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+    }
+
+    .batch-toggle p {
+      font-size: 12px;
+      color: var(--light-gray);
+      margin-top: 4px;
+    }
+
+    .batch-options {
+      display: none;
+      padding: 16px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .batch-options.show {
+      display: block;
+    }
+
+    /* Submit Button */
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border: none;
+      border-radius: 14px;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .submit-btn .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      display: none;
+    }
+
+    .submit-btn.loading .spinner {
+      display: block;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Results */
+    .results {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      display: none;
+    }
+
+    .results.show {
+      display: block;
+    }
+
+    .results-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .results-list {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .result-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 10px;
+      margin-bottom: 8px;
+    }
+
+    .result-item.success {
+      border-left: 3px solid var(--success);
+    }
+
+    .result-item.error {
+      border-left: 3px solid var(--danger);
+    }
+
+    .result-icon {
+      font-size: 20px;
+    }
+
+    .result-text {
+      flex: 1;
+    }
+
+    .result-id {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .result-message {
+      font-size: 12px;
+      color: var(--light-gray);
+    }
+
+    /* Info Box */
+    .info-box {
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .info-box h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--warning);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-box p {
+      font-size: 13px;
+      color: var(--light-gray);
+      line-height: 1.5;
+    }
+
+    /* Next ID Preview */
+    .next-id-preview {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .next-id-preview label {
+      font-size: 12px;
+      color: var(--light-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .next-id-preview .preview-id {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--success);
+      margin-top: 8px;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100px);
+      background: var(--success);
+      color: white;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .toast.error {
+      background: var(--danger);
+    }
+  </style>
+</head>
+<body>
+  <div class="toast" id="toast"></div>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <a href="home.html" class="back-btn">←</a>
+      <div class="header-text">
+        <h1>Add New Assets</h1>
+        <p>Register beds without QR codes for manual tracking</p>
+      </div>
+    </div>
+
+    <!-- Info Box -->
+    <div class="info-box">
+      <h4>QR Codes Pending</h4>
+      <p>Assets added here will be marked as "QR CODE PENDING" in the notes field. You can print and attach QR codes later using the existing QR generation tools.</p>
+    </div>
+
+    <!-- Add Asset Form -->
+    <div class="form-card">
+      <div class="form-title">Add Asset</div>
+
+      <!-- Batch Mode Toggle -->
+      <div class="batch-toggle">
+        <input type="checkbox" id="batchMode" onchange="toggleBatchMode()">
+        <div>
+          <label for="batchMode">Batch Mode - Add Multiple Assets</label>
+          <p>Create multiple assets with sequential IDs</p>
+        </div>
+      </div>
+
+      <!-- Batch Options -->
+      <div id="batchOptions" class="batch-options">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Start Number</label>
+            <input type="number" id="startNumber" value="1" min="1" onchange="updatePreview()">
+          </div>
+          <div class="form-group">
+            <label>Quantity</label>
+            <input type="number" id="quantity" value="10" min="1" max="100" onchange="updatePreview()">
+          </div>
+        </div>
+      </div>
+
+      <!-- Next ID Preview -->
+      <div class="next-id-preview">
+        <label>Next Asset ID</label>
+        <div class="preview-id" id="previewId">GB0-154-1</div>
+      </div>
+
+      <form id="addAssetForm" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Batch ID</label>
+            <input type="text" id="batchId" value="GB0-154" required pattern="GB0-\d+" placeholder="GB0-154">
+          </div>
+          <div class="form-group" id="singleNumberGroup">
+            <label>Item Number</label>
+            <input type="number" id="itemNumber" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Product Type</label>
+          <select id="productType" required>
+            <option value="Weave Bed">Weave Bed</option>
+            <option value="Basket Bed">Basket Bed</option>
+            <option value="Pakkimjalki Kari">Pakkimjalki Kari (Washing Machine)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Community (Initial Assignment)</label>
+          <select id="community">
+            <option value="Pending Delivery">Pending Delivery</option>
+            <option value="Alice Springs">Alice Springs</option>
+            <option value="Tennant Creek">Tennant Creek</option>
+            <option value="Darwin">Darwin</option>
+            <option value="Palm Island">Palm Island</option>
+            <option value="Maningrida">Maningrida</option>
+            <option value="Kalgoorlie">Kalgoorlie</option>
+            <option value="Utopia Homelands">Utopia Homelands</option>
+            <option value="Mount Isa">Mount Isa</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Recipient Name (Optional)</label>
+          <input type="text" id="recipientName" placeholder="Leave blank for 'Pending Assignment'">
+        </div>
+
+        <div class="form-group">
+          <label>Notes</label>
+          <textarea id="notes" rows="3" placeholder="Additional notes...">QR CODE PENDING - To be printed and attached</textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span class="spinner"></span>
+          <span id="submitText">Add Asset</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Results -->
+    <div class="results" id="results">
+      <div class="results-title">Results</div>
+      <div class="results-list" id="resultsList"></div>
+    </div>
+  </div>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL = 'https://cwsyhpiuepvdjtxaozwf.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw';
+
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let batchMode = false;
+
+    function toggleBatchMode() {
+      batchMode = document.getElementById('batchMode').checked;
+      document.getElementById('batchOptions').classList.toggle('show', batchMode);
+      document.getElementById('singleNumberGroup').style.display = batchMode ? 'none' : 'block';
+      document.getElementById('submitText').textContent = batchMode ? 'Add Assets' : 'Add Asset';
+      updatePreview();
+    }
+
+    function updatePreview() {
+      const batchId = document.getElementById('batchId').value || 'GB0-154';
+
+      if (batchMode) {
+        const start = parseInt(document.getElementById('startNumber').value) || 1;
+        const qty = parseInt(document.getElementById('quantity').value) || 1;
+        const end = start + qty - 1;
+        document.getElementById('previewId').textContent = `${batchId}-${start} to ${batchId}-${end}`;
+      } else {
+        const num = document.getElementById('itemNumber').value || '1';
+        document.getElementById('previewId').textContent = `${batchId}-${num}`;
+      }
+    }
+
+    // Update preview when batch ID changes
+    document.getElementById('batchId').addEventListener('input', updatePreview);
+    document.getElementById('itemNumber').addEventListener('input', updatePreview);
+
+    function showToast(message, isError = false) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.toggle('error', isError);
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    async function handleSubmit(e) {
+      e.preventDefault();
+
+      const btn = document.getElementById('submitBtn');
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      const batchId = document.getElementById('batchId').value;
+      const product = document.getElementById('productType').value;
+      const community = document.getElementById('community').value;
+      const name = document.getElementById('recipientName').value || 'Pending Assignment';
+      const notes = document.getElementById('notes').value;
+
+      const results = [];
+
+      try {
+        if (batchMode) {
+          const start = parseInt(document.getElementById('startNumber').value);
+          const qty = parseInt(document.getElementById('quantity').value);
+
+          for (let i = 0; i < qty; i++) {
+            const num = start + i;
+            const uniqueId = `${batchId}-${num}`;
+
+            const result = await addAsset({
+              unique_id: uniqueId,
+              id: batchId,
+              product: product,
+              community: community,
+              name: name,
+              notes: notes,
+              number: num,
+              qr_url: `https://goodsoncountry.netlify.app/?asset_id=${uniqueId}`
+            });
+
+            results.push({ id: uniqueId, ...result });
+          }
+        } else {
+          const num = parseInt(document.getElementById('itemNumber').value);
+          const uniqueId = `${batchId}-${num}`;
+
+          const result = await addAsset({
+            unique_id: uniqueId,
+            id: batchId,
+            product: product,
+            community: community,
+            name: name,
+            notes: notes,
+            number: num,
+            qr_url: `https://goodsoncountry.netlify.app/?asset_id=${uniqueId}`
+          });
+
+          results.push({ id: uniqueId, ...result });
+        }
+
+        displayResults(results);
+
+        const successCount = results.filter(r => r.success).length;
+        if (successCount > 0) {
+          showToast(`Successfully added ${successCount} asset${successCount > 1 ? 's' : ''}!`);
+        }
+
+      } catch (error) {
+        showToast('Error: ' + error.message, true);
+      } finally {
+        btn.classList.remove('loading');
+        btn.disabled = false;
+      }
+    }
+
+    async function addAsset(assetData) {
+      try {
+        const { data, error } = await supabase
+          .from('assets')
+          .insert([assetData])
+          .select();
+
+        if (error) {
+          // Check if it's a duplicate key error
+          if (error.code === '23505') {
+            return { success: false, message: 'Asset ID already exists' };
+          }
+          // Check if it's an RLS error
+          if (error.code === '42501') {
+            return {
+              success: false,
+              message: 'Permission denied. Run the SQL policy in Supabase first.'
+            };
+          }
+          return { success: false, message: error.message };
+        }
+
+        return { success: true, message: 'Created successfully' };
+      } catch (err) {
+        return { success: false, message: err.message };
+      }
+    }
+
+    function displayResults(results) {
+      const container = document.getElementById('results');
+      const list = document.getElementById('resultsList');
+
+      container.classList.add('show');
+
+      list.innerHTML = results.map(r => `
+        <div class="result-item ${r.success ? 'success' : 'error'}">
+          <span class="result-icon">${r.success ? '✓' : '✗'}</span>
+          <div class="result-text">
+            <div class="result-id">${r.id}</div>
+            <div class="result-message">${r.message}</div>
+          </div>
+        </div>
+      `).join('');
+
+      // Scroll to results
+      container.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Initialize
+    updatePreview();
+  </script>
+</body>
+</html>
