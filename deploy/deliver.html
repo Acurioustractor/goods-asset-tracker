@@ -979,6 +979,21 @@
       </div>
 
       <div class="form-section">
+        <div class="section-title">📍 Community</div>
+        <select id="communityInput" class="recipient-input" style="appearance: auto; padding-right: 30px;">
+          <option value="">-- Select Community --</option>
+          <option value="Alice Springs">Alice Springs</option>
+          <option value="Tennant Creek">Tennant Creek</option>
+          <option value="Darwin">Darwin</option>
+          <option value="Palm Island">Palm Island</option>
+          <option value="Maningrida">Maningrida</option>
+          <option value="Kalgoorlie">Kalgoorlie</option>
+          <option value="Utopia Homelands">Utopia Homelands</option>
+          <option value="Mount Isa">Mount Isa</option>
+        </select>
+      </div>
+
+      <div class="form-section">
         <div class="section-title">👤 Recipient Name (Optional)</div>
         <input type="text" id="recipientInput" class="recipient-input" placeholder="Name of person receiving the bed">
       </div>
@@ -1583,6 +1598,7 @@
         const notes = document.getElementById('notesInput').value.trim();
         const recipientName = document.getElementById('recipientInput').value.trim();
         const place = document.getElementById('placeInput').value.trim();
+        const community = document.getElementById('communityInput').value;
 
         const updateData = {
           supply_date: new Date().toISOString(),
@@ -1594,6 +1610,31 @@
         // Always update place if provided
         if (place) {
           updateData.place = place;
+        }
+
+        // Update community - prioritize dropdown selection, then auto-detect from place
+        if (community) {
+          updateData.community = community;
+        } else if (place) {
+          // Auto-detect community from place/address as fallback
+          const placeLower = place.toLowerCase();
+          if (placeLower.includes('alice') || placeLower.includes('springs')) {
+            updateData.community = 'Alice Springs';
+          } else if (placeLower.includes('tennant') || placeLower.includes('creek')) {
+            updateData.community = 'Tennant Creek';
+          } else if (placeLower.includes('darwin')) {
+            updateData.community = 'Darwin';
+          } else if (placeLower.includes('palm') || placeLower.includes('island')) {
+            updateData.community = 'Palm Island';
+          } else if (placeLower.includes('maningrida')) {
+            updateData.community = 'Maningrida';
+          } else if (placeLower.includes('kalgoorlie')) {
+            updateData.community = 'Kalgoorlie';
+          } else if (placeLower.includes('utopia') || placeLower.includes('homelands')) {
+            updateData.community = 'Utopia Homelands';
+          } else if (placeLower.includes('mount') || placeLower.includes('isa')) {
+            updateData.community = 'Mount Isa';
+          }
         }
 
         if (recipientName) {
