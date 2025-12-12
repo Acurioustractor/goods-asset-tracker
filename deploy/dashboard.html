@@ -1933,21 +1933,20 @@
       document.getElementById('editSupplyDate').value = editingAsset.supply_date ? editingAsset.supply_date.split('T')[0] : '';
       document.getElementById('editNotes').value = editingAsset.notes || '';
 
-      // GPS info
-      if (editingAsset.gps_latitude && editingAsset.gps_longitude) {
+      // GPS info - gps is stored as "lat,lng" string
+      if (editingAsset.gps) {
         document.getElementById('gpsSection').style.display = 'block';
-        document.getElementById('editGpsCoords').textContent =
-          `${editingAsset.gps_latitude.toFixed(6)}, ${editingAsset.gps_longitude.toFixed(6)}`;
+        document.getElementById('editGpsCoords').textContent = editingAsset.gps;
       } else {
         document.getElementById('gpsSection').style.display = 'none';
       }
 
-      // Photo preview - check both photo_url and photo array
+      // Photo preview - photo is stored as array
       const photoPreview = document.getElementById('photoPreview');
       const photoPlaceholder = document.getElementById('photoPlaceholder');
 
-      // Get photo URL from either photo_url or the photo array
-      const photoUrl = editingAsset.photo_url || (editingAsset.photo && editingAsset.photo.length > 0 ? editingAsset.photo[0] : null);
+      // Get photo URL from the photo array
+      const photoUrl = editingAsset.photo && editingAsset.photo.length > 0 ? editingAsset.photo[0] : null;
 
       if (photoUrl) {
         photoPlaceholder.innerHTML = `
@@ -2018,9 +2017,8 @@
           saveStatus.className = 'save-status show';
 
           const photoUrl = await uploadPhoto(pendingPhotoFile, editingAsset.unique_id);
-          updates.photo_url = photoUrl;
 
-          // Also update the photo array
+          // Update the photo array (no photo_url column exists)
           const existingPhotos = editingAsset.photo || [];
           updates.photo = [...existingPhotos, photoUrl];
         }
@@ -2098,7 +2096,7 @@
         last_checkin_date: null,
         gps: null,
         notes: null
-        // Keep: community, product, photo_url, photo (history)
+        // Keep: community, product, photo (history)
       };
 
       try {
@@ -2156,7 +2154,6 @@
         const { error } = await supabase
           .from('assets')
           .update({
-            photo_url: null,
             photo: null
           })
           .eq('unique_id', editingAsset.unique_id);
@@ -2166,7 +2163,6 @@
         // Update local data
         const index = allAssets.findIndex(a => a.unique_id === editingAsset.unique_id);
         if (index !== -1) {
-          allAssets[index].photo_url = null;
           allAssets[index].photo = null;
         }
 
@@ -2187,7 +2183,6 @@
         saveStatus.className = 'save-status show';
 
         // Clear editing asset photo data
-        editingAsset.photo_url = null;
         editingAsset.photo = null;
 
       } catch (error) {

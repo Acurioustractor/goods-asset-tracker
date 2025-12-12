@@ -1128,7 +1128,6 @@
             supply_date: delivery.timestamp,
             last_checkin_date: delivery.timestamp,
             gps: delivery.gps,
-            photo_url: urlData.publicUrl,
             photo: [urlData.publicUrl],
             name: delivery.recipientName || undefined,
             notes: delivery.notes || undefined
@@ -1139,8 +1138,7 @@
             asset_id: delivery.assetId,
             visitor_name: delivery.recipientName || 'Delivery Driver',
             status: 'Good',
-            comments: `Delivered (synced). GPS: ${delivery.gps}`,
-            photo_url: urlData.publicUrl
+            comments: `Delivered (synced). GPS: ${delivery.gps}. Photo: ${urlData.publicUrl}`
           });
 
           // Remove from pending
@@ -1482,7 +1480,6 @@
           supply_date: new Date().toISOString(),
           last_checkin_date: new Date().toISOString(),
           gps: gpsString,
-          photo_url: photoUrl,
           photo: currentAsset.photo ? [...currentAsset.photo, photoUrl] : [photoUrl]
         };
 
@@ -1510,8 +1507,7 @@
             asset_id: currentAsset.unique_id,
             visitor_name: recipientName || 'Delivery Driver',
             status: 'Good',
-            comments: `Delivered. GPS: ${gpsString}${notes ? '. Notes: ' + notes : ''}`,
-            photo_url: photoUrl
+            comments: `Delivered. GPS: ${gpsString}${notes ? '. Notes: ' + notes : ''}. Photo: ${photoUrl}`
           });
 
         // 4. Show success
