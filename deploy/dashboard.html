@@ -1867,7 +1867,7 @@
       document.getElementById('editName').value = editingAsset.name || '';
       document.getElementById('editSupplyDate').value = editingAsset.supply_date ? editingAsset.supply_date.split('T')[0] : '';
       document.getElementById('editInstallDate').value = editingAsset.install_date ? editingAsset.install_date.split('T')[0] : '';
-      document.getElementById('editNotes').value = editingAsset.delivery_notes || '';
+      document.getElementById('editNotes').value = editingAsset.notes || '';
 
       // GPS info
       if (editingAsset.gps_latitude && editingAsset.gps_longitude) {
@@ -1918,7 +1918,7 @@
         name: document.getElementById('editName').value || null,
         supply_date: document.getElementById('editSupplyDate').value || null,
         install_date: document.getElementById('editInstallDate').value || null,
-        delivery_notes: document.getElementById('editNotes').value || null
+        notes: document.getElementById('editNotes').value || null
       };
 
       try {
