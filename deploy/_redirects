@@ -1,0 +1,6 @@
+# Netlify redirects - these take priority
+# Home page first
+/  /home.html  200!
+
+# QR codes with asset_id go to support form
+/*  asset_id=:id  /index.html?asset_id=:id  200

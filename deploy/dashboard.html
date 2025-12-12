@@ -1630,7 +1630,7 @@
           : 'Not delivered';
 
         return `
-          <div class="asset-card" onclick="viewAsset('${asset.unique_id}')">
+          <div class="asset-card" onclick="openEditModal('${asset.unique_id}')">
             <div class="asset-card-header">
               <span class="asset-id">${asset.unique_id}</span>
               <span class="asset-badge ${badgeClass}">${asset.product || 'Unknown'}</span>
@@ -1647,7 +1647,10 @@
             </div>
             <div class="asset-card-footer">
               <span class="last-checkin">Delivered: ${deliveryDate}</span>
-              <a href="/?asset_id=${asset.unique_id}" class="view-asset-btn" onclick="event.stopPropagation()">View</a>
+              <div style="display: flex; gap: 8px;">
+                <button class="edit-btn" onclick="event.stopPropagation(); openEditModal('${asset.unique_id}')">Edit</button>
+                <a href="/?asset_id=${asset.unique_id}" class="view-asset-btn" onclick="event.stopPropagation()">View</a>
+              </div>
             </div>
           </div>
         `;
@@ -1668,7 +1671,10 @@
             <td>${asset.community || '-'}</td>
             <td style="color: var(--light-gray);">${asset.place || asset.name || '-'}</td>
             <td style="color: var(--light-gray);">${deliveryDate}</td>
-            <td><a href="/?asset_id=${asset.unique_id}" class="view-asset-btn">View</a></td>
+            <td style="display: flex; gap: 8px;">
+              <button class="edit-btn" onclick="openEditModal('${asset.unique_id}')">Edit</button>
+              <a href="/?asset_id=${asset.unique_id}" class="view-asset-btn">View</a>
+            </td>
           </tr>
         `;
       }).join('');
@@ -1676,9 +1682,6 @@
       updatePagination();
     }
 
-    function viewAsset(assetId) {
-      window.location.href = `/?asset_id=${assetId}`;
-    }
 
     // ============================================================================
     // PAGINATION
