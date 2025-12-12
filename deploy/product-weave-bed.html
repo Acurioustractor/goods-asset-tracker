@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Weave Bed - Rope Fibre Technology | Goods on Country</title>
+  <meta name="description" content="Next-generation sleeping solution using innovative rope fibre technology. Enhanced structural support with ergonomic design made by Indigenous artisans.">
+
+  <!-- PWA Support -->
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Weave Bed - Goods on Country">
+  <meta property="og:description" content="Innovative rope fibre beds made by Indigenous artisans combining modern comfort with traditional principles">
+  <meta property="og:image" content="https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f06aca919ac39a08c6cbc_20250629-IMG_7731.jpg">
+  <meta property="og:type" content="product">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #1d4ed8;
+      --success: #10b981;
+      --success-dark: #059669;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --dark: #0f172a;
+      --dark-lighter: #1e293b;
+      --gray: #64748b;
+      --light-gray: #94a3b8;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --purple: #8b5cf6;
+      --orange: #f97316;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--dark);
+      min-height: 100vh;
+      color: white;
+      line-height: 1.6;
+    }
+
+    /* Animated background */
+    .bg-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Header Navigation */
+    .header-nav {
+      background: rgba(30, 41, 59, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--light-gray);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 10px;
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .header-title {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .menu-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    /* Mobile Menu */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .menu-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .slide-menu {
+      position: fixed;
+      top: 0;
+      right: -280px;
+      width: 280px;
+      height: 100%;
+      background: var(--card-bg);
+      z-index: 201;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid var(--border);
+    }
+
+    .slide-menu.show {
+      right: 0;
+    }
+
+    .menu-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: none;
+      border: none;
+      color: var(--light-gray);
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .menu-header {
+      padding: 24px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .menu-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .menu-header p {
+      font-size: 13px;
+      color: var(--light-gray);
+    }
+
+    .menu-items {
+      padding: 12px;
+      flex: 1;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      transition: background 0.2s;
+    }
+
+    .menu-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .menu-item.active {
+      background: rgba(59, 130, 246, 0.2);
+      color: var(--primary);
+    }
+
+    .menu-item-icon {
+      font-size: 20px;
+    }
+
+    /* Container */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Product Hero - Two Column Layout */
+    .product-hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 24px 16px;
+    }
+
+    @media (min-width: 1024px) {
+      .product-hero {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 48px;
+        padding: 48px 24px;
+      }
+    }
+
+    /* Image Gallery */
+    .gallery-section {
+      position: relative;
+    }
+
+    .main-image-container {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--card-bg);
+      aspect-ratio: 4/3;
+    }
+
+    .main-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: zoom-in;
+      transition: transform 0.3s ease;
+    }
+
+    .main-image:hover {
+      transform: scale(1.02);
+    }
+
+    .image-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--purple);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .zoom-btn {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+      border: none;
+      color: white;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .zoom-btn:hover {
+      background: rgba(0,0,0,0.8);
+      transform: scale(1.05);
+    }
+
+    /* Thumbnails */
+    .thumbnail-nav {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: thin;
+    }
+
+    .thumbnail-btn {
+      flex-shrink: 0;
+      width: 80px;
+      height: 60px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--card-bg);
+      padding: 0;
+    }
+
+    .thumbnail-btn:hover {
+      border-color: var(--light-gray);
+    }
+
+    .thumbnail-btn.active {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.3);
+    }
+
+    .thumbnail-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumbnail-btn.video-thumb {
+      position: relative;
+    }
+
+    .thumbnail-btn.video-thumb::after {
+      content: "▶";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.7);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+    }
+
+    /* Product Info */
+    .product-info {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .product-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(139, 92, 246, 0.15);
+      color: var(--purple);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      width: fit-content;
+    }
+
+    .product-title {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    @media (min-width: 1024px) {
+      .product-title {
+        font-size: 2.5rem;
+      }
+    }
+
+    .product-tagline {
+      font-size: 1.125rem;
+      color: var(--light-gray);
+      line-height: 1.7;
+    }
+
+    /* Key Features Pills */
+    .feature-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .feature-pill {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 10px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      color: var(--light-gray);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feature-pill-icon {
+      font-size: 16px;
+    }
+
+    /* Price/CTA Section */
+    .cta-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+    }
+
+    .cta-label {
+      font-size: 12px;
+      color: var(--light-gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--purple) 0%, #6d28d9 100%);
+      color: white;
+      border: none;
+      padding: 18px 32px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--primary);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 16px 32px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(59, 130, 246, 0.25);
+    }
+
+    .trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--light-gray);
+    }
+
+    .trust-badge-icon {
+      font-size: 16px;
+    }
+
+    /* Content Sections */
+    .content-section {
+      padding: 48px 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (min-width: 1024px) {
+      .content-section {
+        padding: 64px 24px;
+      }
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--purple);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    @media (min-width: 1024px) {
+      .section-title {
+        font-size: 2.25rem;
+      }
+    }
+
+    .section-subtitle {
+      color: var(--light-gray);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Video Section */
+    .video-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .video-wrapper {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--card-bg);
+      aspect-ratio: 16/9;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--card-bg) 0%, var(--dark) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .video-placeholder:hover {
+      background: linear-gradient(135deg, var(--dark-lighter) 0%, var(--dark) 100%);
+    }
+
+    .play-button {
+      width: 80px;
+      height: 80px;
+      background: var(--purple);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: white;
+      margin-bottom: 16px;
+      transition: all 0.3s;
+    }
+
+    .video-placeholder:hover .play-button {
+      transform: scale(1.1);
+      box-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
+    }
+
+    .video-label {
+      font-size: 14px;
+      color: var(--light-gray);
+    }
+
+    /* Specifications Grid */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 640px) {
+      .specs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .specs-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .spec-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .spec-card:hover {
+      border-color: var(--purple);
+      transform: translateY(-4px);
+    }
+
+    .spec-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .spec-label {
+      font-size: 12px;
+      color: var(--light-gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .spec-value {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .testimonial-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      transition: all 0.3s;
+    }
+
+    .testimonial-card:hover {
+      border-color: var(--purple);
+    }
+
+    .testimonial-quote {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--light-gray);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .testimonial-quote::before {
+      content: '"';
+      font-size: 3rem;
+      color: var(--purple);
+      line-height: 0;
+      display: block;
+      margin-bottom: 8px;
+      opacity: 0.5;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .testimonial-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border);
+    }
+
+    .testimonial-name {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 2px;
+    }
+
+    .testimonial-location {
+      font-size: 13px;
+      color: var(--purple);
+      font-weight: 600;
+    }
+
+    /* EOI Form Section */
+    .eoi-section {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eoi-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .eoi-form {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: white;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px 18px;
+      background: var(--dark);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: white;
+      font-size: 16px;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+    }
+
+    .form-input::placeholder {
+      color: var(--gray);
+    }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 20px;
+      padding-right: 48px;
+    }
+
+    .form-hint {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 6px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--purple) 0%, #6d28d9 100%);
+      color: white;
+      border: none;
+      padding: 18px 32px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-success {
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid var(--purple);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      display: none;
+    }
+
+    .form-success.show {
+      display: block;
+    }
+
+    .form-success-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .form-success-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .form-success-text {
+      color: var(--light-gray);
+      font-size: 14px;
+    }
+
+    /* Contact Options */
+    .contact-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
+    .contact-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--light-gray);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .contact-option:hover {
+      border-color: var(--purple);
+      color: white;
+    }
+
+    .contact-option-icon {
+      font-size: 18px;
+    }
+
+    /* Related Products */
+    .related-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 640px) {
+      .related-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .related-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      text-decoration: none;
+      color: white;
+      transition: all 0.3s;
+    }
+
+    .related-card:hover {
+      border-color: var(--purple);
+      transform: translateY(-4px);
+    }
+
+    .related-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .related-content {
+      padding: 20px;
+    }
+
+    .related-name {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .related-desc {
+      font-size: 14px;
+      color: var(--light-gray);
+      line-height: 1.6;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lightbox.show {
+      display: flex;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: white;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .lightbox-image {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: white;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .lightbox-prev {
+      left: 20px;
+    }
+
+    .lightbox-next {
+      right: 20px;
+    }
+
+    /* Sticky Mobile CTA */
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      padding: 16px;
+      z-index: 99;
+      gap: 12px;
+    }
+
+    @media (max-width: 1023px) {
+      .sticky-cta {
+        display: flex;
+      }
+    }
+
+    .sticky-cta .btn-primary {
+      flex: 1;
+      padding: 14px 20px;
+    }
+
+    .sticky-cta .btn-secondary {
+      padding: 14px 20px;
+    }
+
+    /* Add padding at bottom for sticky CTA */
+    @media (max-width: 1023px) {
+      body {
+        padding-bottom: 80px;
+      }
+    }
+
+    /* Accessibility */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid var(--purple);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-pattern"></div>
+
+  <!-- Header Navigation -->
+  <nav class="header-nav">
+    <a href="products.html" class="back-btn">
+      <span>←</span> Products
+    </a>
+    <span class="header-title">Weave Bed</span>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <div class="slide-menu" id="slideMenu">
+    <button class="menu-close" id="menuClose" aria-label="Close menu">&times;</button>
+    <div class="menu-header">
+      <h2>Goods on Country</h2>
+      <p>Asset Management System</p>
+    </div>
+    <div class="menu-items">
+      <a href="home.html" class="menu-item">
+        <span class="menu-item-icon">🏠</span>
+        Home
+      </a>
+      <a href="dashboard.html" class="menu-item">
+        <span class="menu-item-icon">📊</span>
+        Dashboard
+      </a>
+      <a href="deliver.html" class="menu-item">
+        <span class="menu-item-icon">🚚</span>
+        Deliver Bed
+      </a>
+      <a href="products.html" class="menu-item active">
+        <span class="menu-item-icon">📦</span>
+        Products
+      </a>
+      <a href="index.html" class="menu-item">
+        <span class="menu-item-icon">🎫</span>
+        Support Ticket
+      </a>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Product Hero -->
+    <section class="product-hero">
+      <!-- Gallery -->
+      <div class="gallery-section">
+        <div class="main-image-container">
+          <img id="mainImage"
+               src="https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f06aca919ac39a08c6cbc_20250629-IMG_7731.jpg"
+               alt="Weave Bed - innovative rope fibre bed made by Indigenous artisans"
+               class="main-image"
+               onclick="openLightbox(0)">
+          <span class="image-badge">Next Generation</span>
+          <button class="zoom-btn" onclick="openLightbox(currentImageIndex)" aria-label="Zoom image">🔍</button>
+        </div>
+
+        <div class="thumbnail-nav" role="tablist" aria-label="Product images">
+          <button class="thumbnail-btn active" onclick="changeImage(0)" role="tab" aria-selected="true" aria-label="View image 1">
+            <img src="https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f06aca919ac39a08c6cbc_20250629-IMG_7731.jpg" alt="Weave bed front view" loading="lazy">
+          </button>
+          <button class="thumbnail-btn" onclick="changeImage(1)" role="tab" aria-selected="false" aria-label="View image 2">
+            <img src="https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686e5122692fd1a0ee508f2e_20250628-IMG_6872.jpg" alt="Weave bed detail" loading="lazy">
+          </button>
+          <button class="thumbnail-btn" onclick="changeImage(2)" role="tab" aria-selected="false" aria-label="View image 3">
+            <img src="https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f0a19b97e3e9c7b4dc6f0_20250628-IMG_6976.jpg" alt="Weave bed in community" loading="lazy">
+          </button>
+          <button class="thumbnail-btn video-thumb" onclick="scrollToVideo()" role="tab" aria-label="Watch video">
+            <img src="https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f06aca919ac39a08c6cbc_20250629-IMG_7731.jpg" alt="Watch product video" loading="lazy">
+          </button>
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="product-info">
+        <span class="product-badge">
+          <span>★</span> Enhanced Comfort
+        </span>
+
+        <h1 class="product-title">Weave Bed</h1>
+
+        <p class="product-tagline">
+          Next-generation sleeping solution using innovative blends of rope fibres.
+          Enhanced structural support with ergonomic design that combines modern comfort
+          with traditional Indigenous principles for better sleep and wellbeing.
+        </p>
+
+        <div class="feature-pills">
+          <span class="feature-pill">
+            <span class="feature-pill-icon">🧵</span>
+            Rope Fibre Tech
+          </span>
+          <span class="feature-pill">
+            <span class="feature-pill-icon">💪</span>
+            Enhanced Support
+          </span>
+          <span class="feature-pill">
+            <span class="feature-pill-icon">🌿</span>
+            Ergonomic Design
+          </span>
+          <span class="feature-pill">
+            <span class="feature-pill-icon">🌧️</span>
+            Weather Resistant
+          </span>
+        </div>
+
+        <div class="cta-card">
+          <div class="cta-label">Interested in this product?</div>
+          <div class="cta-buttons">
+            <a href="#eoi-section" class="btn-primary">
+              <span>📝</span>
+              Register Interest
+            </a>
+            <a href="mailto:info@goodsoncountry.com.au?subject=Weave%20Bed%20Enquiry" class="btn-secondary">
+              <span>✉️</span>
+              Contact Us
+            </a>
+          </div>
+          <div class="trust-badges">
+            <span class="trust-badge">
+              <span class="trust-badge-icon">🇦🇺</span>
+              Made in Australia
+            </span>
+            <span class="trust-badge">
+              <span class="trust-badge-icon">🤝</span>
+              Community Owned
+            </span>
+            <span class="trust-badge">
+              <span class="trust-badge-icon">🔬</span>
+              Innovative Design
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="content-section" id="video-section">
+      <div class="section-header">
+        <p class="section-label">See It In Action</p>
+        <h2 class="section-title">The Weaving Process</h2>
+        <p class="section-subtitle">Discover how our artisans combine innovative rope fibre technology with traditional weaving techniques to create the ultimate sleeping solution.</p>
+      </div>
+
+      <div class="video-container">
+        <div class="video-wrapper">
+          <div class="video-placeholder" id="videoPlaceholder" onclick="playVideo()">
+            <div class="play-button">▶</div>
+            <span class="video-label">Click to play video</span>
+          </div>
+          <!-- Video will be inserted here when play is clicked -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Specifications -->
+    <section class="content-section">
+      <div class="section-header">
+        <p class="section-label">Product Details</p>
+        <h2 class="section-title">Specifications</h2>
+      </div>
+
+      <div class="specs-grid">
+        <div class="spec-card">
+          <div class="spec-icon">📐</div>
+          <div class="spec-label">Dimensions</div>
+          <div class="spec-value">Single / Double / Queen</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">⚖️</div>
+          <div class="spec-label">Weight</div>
+          <div class="spec-value">~12kg</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">💪</div>
+          <div class="spec-label">Load Capacity</div>
+          <div class="spec-value">Up to 250kg</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">🧵</div>
+          <div class="spec-label">Material</div>
+          <div class="spec-value">Premium Rope Fibre Blend</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">🔧</div>
+          <div class="spec-label">Assembly</div>
+          <div class="spec-value">No tools required</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">🛡️</div>
+          <div class="spec-label">Warranty</div>
+          <div class="spec-value">5 Years</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="content-section">
+      <div class="section-header">
+        <p class="section-label">Community Voices</p>
+        <h2 class="section-title">What People Are Saying</h2>
+        <p class="section-subtitle">Hear from the communities who use and create our products.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-quote">The new weave design is even more comfortable than before. My back feels so much better after switching to this bed.</p>
+          <div class="testimonial-author">
+            <img src="https://cdn.prod.website-files.com/64ea91d96ff3fda1ff23fc38/682be1fa2b10661a712b7279_IMG_2575%20(1).jpg" alt="Patricia Frank" class="testimonial-avatar" loading="lazy">
+            <div>
+              <div class="testimonial-name">Patricia Frank</div>
+              <div class="testimonial-location">Palm Island</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="testimonial-quote">The rope fibre technique we use is something our elders developed. It's incredible to see it used in such an innovative way.</p>
+          <div class="testimonial-author">
+            <img src="https://cdn.prod.website-files.com/64ea91d96ff3fda1ff23fc38/682be13fde985a13def93b09_IMG_2783.jpg" alt="Norman Frank" class="testimonial-avatar" loading="lazy">
+            <div>
+              <div class="testimonial-name">Norman Frank</div>
+              <div class="testimonial-location">Tennant Creek</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="testimonial-quote">These beds survive the wet season like nothing else. The weave design means water runs right through and it dries quickly.</p>
+          <div class="testimonial-author">
+            <img src="https://cdn.prod.website-files.com/64ea91d96ff3fda1ff23fc38/682be1c72b10661a712b4fb0_IMG_2438%20(1).jpg" alt="Linda Turner" class="testimonial-avatar" loading="lazy">
+            <div>
+              <div class="testimonial-name">Linda Turner</div>
+              <div class="testimonial-location">Maningrida</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="testimonial-quote">Innovation that honors tradition. The weave bed represents the best of both worlds - modern comfort with cultural heritage.</p>
+          <div class="testimonial-author">
+            <img src="https://cdn.prod.website-files.com/64ea91d96ff3fda1ff23fc38/682be186b6216edeb9c4220c_IMG_2919.jpg" alt="Georgina Byron AM" class="testimonial-avatar" loading="lazy">
+            <div>
+              <div class="testimonial-name">Georgina Byron AM</div>
+              <div class="testimonial-location">Community Elder</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EOI Form Section -->
+    <section class="content-section eoi-section" id="eoi-section">
+      <div class="section-header">
+        <p class="section-label">Get Started</p>
+        <h2 class="section-title">Register Your Interest</h2>
+        <p class="section-subtitle">Interested in purchasing weave beds for your community, organization, or home? Fill out the form below and we'll be in touch.</p>
+      </div>
+
+      <div class="eoi-container">
+        <form class="eoi-form" id="eoiForm">
+          <div class="form-group">
+            <label class="form-label" for="name">Your Name *</label>
+            <input type="text" class="form-input" id="name" name="name" required placeholder="Enter your full name">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address *</label>
+            <input type="email" class="form-input" id="email" name="email" required placeholder="you@example.com">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone Number</label>
+            <input type="tel" class="form-input" id="phone" name="phone" placeholder="04XX XXX XXX">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="organization">Organization (if applicable)</label>
+            <input type="text" class="form-input" id="organization" name="organization" placeholder="e.g., Community Health Center">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="quantity">Estimated Quantity *</label>
+            <select class="form-input form-select" id="quantity" name="quantity" required>
+              <option value="">Select quantity range</option>
+              <option value="1-5">1-5 beds</option>
+              <option value="6-20">6-20 beds</option>
+              <option value="21-50">21-50 beds</option>
+              <option value="50+">50+ beds</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="location">Delivery Location *</label>
+            <input type="text" class="form-input" id="location" name="location" required placeholder="City/Town, State">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="message">Additional Information</label>
+            <textarea class="form-input" id="message" name="message" placeholder="Tell us about your needs, timeline, or any questions you have..."></textarea>
+            <p class="form-hint">Include any specific requirements or questions you may have.</p>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <span>📝</span>
+            Submit Expression of Interest
+          </button>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          <div class="form-success-icon">✅</div>
+          <div class="form-success-title">Thank You!</div>
+          <p class="form-success-text">Your expression of interest has been received. Our team will be in touch within 2-3 business days.</p>
+        </div>
+
+        <div class="contact-options">
+          <a href="mailto:info@goodsoncountry.com.au" class="contact-option">
+            <span class="contact-option-icon">✉️</span>
+            info@goodsoncountry.com.au
+          </a>
+          <a href="tel:+61400000000" class="contact-option">
+            <span class="contact-option-icon">📞</span>
+            Call Us
+          </a>
+          <a href="https://goodsoncountry.com.au" target="_blank" rel="noopener" class="contact-option">
+            <span class="contact-option-icon">🌐</span>
+            Visit Website
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="content-section">
+      <div class="section-header">
+        <p class="section-label">Explore More</p>
+        <h2 class="section-title">Related Products</h2>
+      </div>
+
+      <div class="related-grid">
+        <a href="product-basket-bed.html" class="related-card">
+          <img src="https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686e5122692fd1a0ee508f2e_20250628-IMG_6872.jpg" alt="Basket Bed" class="related-image" loading="lazy">
+          <div class="related-content">
+            <h3 class="related-name">Basket Bed</h3>
+            <p class="related-desc">Handwoven modular bed system made from recycled plastic using traditional basket-weaving techniques.</p>
+          </div>
+        </a>
+
+        <a href="product-washing-machine.html" class="related-card">
+          <img src="https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f0a19b97e3e9c7b4dc6f0_20250628-IMG_6976.jpg" alt="Pakkimjalki Kari" class="related-image" loading="lazy">
+          <div class="related-content">
+            <h3 class="related-name">Pakkimjalki Kari</h3>
+            <p class="related-desc">Community-tough washing machines built for resilience, simplicity, and remote conditions.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <!-- Sticky Mobile CTA -->
+  <div class="sticky-cta">
+    <a href="#eoi-section" class="btn-primary">Register Interest</a>
+    <a href="mailto:info@goodsoncountry.com.au" class="btn-secondary">✉️</a>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="Image viewer" aria-hidden="true">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+    <button class="lightbox-nav lightbox-prev" onclick="prevImage()" aria-label="Previous image">❮</button>
+    <img class="lightbox-image" id="lightboxImage" src="" alt="Product image enlarged">
+    <button class="lightbox-nav lightbox-next" onclick="nextImage()" aria-label="Next image">❯</button>
+  </div>
+
+  <script>
+    // Image Gallery
+    const images = [
+      'https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f06aca919ac39a08c6cbc_20250629-IMG_7731.jpg',
+      'https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686e5122692fd1a0ee508f2e_20250628-IMG_6872.jpg',
+      'https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f0a19b97e3e9c7b4dc6f0_20250628-IMG_6976.jpg'
+    ];
+    let currentImageIndex = 0;
+
+    function changeImage(index) {
+      currentImageIndex = index;
+      document.getElementById('mainImage').src = images[index];
+
+      // Update active thumbnail
+      document.querySelectorAll('.thumbnail-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+        btn.setAttribute('aria-selected', i === index);
+      });
+    }
+
+    // Lightbox
+    function openLightbox(index) {
+      currentImageIndex = index;
+      const lightbox = document.getElementById('lightbox');
+      document.getElementById('lightboxImage').src = images[index];
+      lightbox.classList.add('show');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('show');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function nextImage() {
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      document.getElementById('lightboxImage').src = images[currentImageIndex];
+    }
+
+    function prevImage() {
+      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+      document.getElementById('lightboxImage').src = images[currentImageIndex];
+    }
+
+    // Close lightbox on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+    });
+
+    // Video
+    function scrollToVideo() {
+      document.getElementById('video-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function playVideo() {
+      // Replace with actual video URL when available
+      const placeholder = document.getElementById('videoPlaceholder');
+      const wrapper = placeholder.parentElement;
+
+      // For now, show a message. Replace with actual video embed when ready.
+      placeholder.innerHTML = `
+        <div style="text-align: center; padding: 40px;">
+          <div style="font-size: 48px; margin-bottom: 16px;">🎬</div>
+          <div style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Video Coming Soon</div>
+          <div style="color: var(--light-gray); font-size: 14px;">We're preparing an amazing video showcasing the weave bed creation process.</div>
+        </div>
+      `;
+
+      // When you have a video URL, use this:
+      // wrapper.innerHTML = '<video controls autoplay src="YOUR_VIDEO_URL.mp4"></video>';
+      // Or for YouTube:
+      // wrapper.innerHTML = '<iframe src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1" allowfullscreen></iframe>';
+    }
+
+    // Form submission
+    document.getElementById('eoiForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>⏳</span> Submitting...';
+
+      // Simulate form submission - replace with actual Supabase call
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      // Show success
+      document.getElementById('eoiForm').style.display = 'none';
+      document.getElementById('formSuccess').classList.add('show');
+
+      // In production, submit to Supabase:
+      /*
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        organization: document.getElementById('organization').value,
+        quantity: document.getElementById('quantity').value,
+        location: document.getElementById('location').value,
+        message: document.getElementById('message').value,
+        product: 'Weave Bed',
+        created_at: new Date().toISOString()
+      };
+
+      const { error } = await supabase.from('enquiries').insert(formData);
+      */
+    });
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const slideMenu = document.getElementById('slideMenu');
+    const menuClose = document.getElementById('menuClose');
+
+    menuBtn.addEventListener('click', () => {
+      slideMenu.classList.add('show');
+      menuOverlay.classList.add('show');
+    });
+
+    function closeMenu() {
+      slideMenu.classList.remove('show');
+      menuOverlay.classList.remove('show');
+    }
+
+    menuClose.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

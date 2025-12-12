@@ -319,6 +319,34 @@
       font-weight: 700;
     }
 
+    .product-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .product-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+    }
+
+    .product-link-arrow {
+      transition: transform 0.2s;
+    }
+
+    .product-link:hover .product-link-arrow {
+      transform: translateX(4px);
+    }
+
     /* Stats Section */
     .stats-section {
       background: var(--card-bg);
@@ -533,6 +561,9 @@
             <li>Suitable for tropical climates</li>
             <li>Supports cultural knowledge transfer</li>
           </ul>
+          <a href="product-basket-bed.html" class="product-link">
+            View Details <span class="product-link-arrow">→</span>
+          </a>
         </div>
       </div>
 
@@ -549,6 +580,9 @@
             <li>Weather-resistant construction</li>
             <li>Made in remote communities</li>
           </ul>
+          <a href="product-weave-bed.html" class="product-link">
+            View Details <span class="product-link-arrow">→</span>
+          </a>
         </div>
       </div>
 
@@ -565,6 +599,9 @@
             <li>Simple, reliable mechanics</li>
             <li>Easy community maintenance</li>
           </ul>
+          <a href="product-washing-machine.html" class="product-link">
+            View Details <span class="product-link-arrow">→</span>
+          </a>
         </div>
       </div>
     </div>
