@@ -9,7 +9,7 @@
   command = ""
 
 # Redirects and rewrites
-# IMPORTANT: Query parameter rules must come FIRST
+# IMPORTANT: Order matters! More specific rules first.
 
 [[redirects]]
   # QR codes with asset_id go to support form (index.html)
@@ -18,6 +18,14 @@
   to = "/index.html"
   status = 200
   conditions = {Query = {asset_id = ":id"}}
+  force = true
+
+[[redirects]]
+  # Root URL goes to PUBLIC home page (NOT index.html)
+  # force = true overrides the default index.html behavior
+  from = "/"
+  to = "/public-home.html"
+  status = 200
   force = true
 
 [[redirects]]
@@ -31,13 +39,6 @@
   # /admin goes to admin dashboard
   from = "/admin"
   to = "/admin.html"
-  status = 200
-  force = false
-
-[[redirects]]
-  # Root without params goes to PUBLIC home page
-  from = "/"
-  to = "/public-home.html"
   status = 200
   force = false
 
