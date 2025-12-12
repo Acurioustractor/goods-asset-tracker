@@ -1124,10 +1124,14 @@
           const { data: urlData } = supabase.storage.from('ticket-photos').getPublicUrl(filePath);
 
           // Update asset
+          const [lat, lng] = delivery.gps.split(',').map(Number);
           await supabase.from('assets').update({
             supply_date: delivery.timestamp,
             last_checkin_date: delivery.timestamp,
             gps: delivery.gps,
+            gps_latitude: lat,
+            gps_longitude: lng,
+            photo_url: urlData.publicUrl,
             photo: [urlData.publicUrl],
             name: delivery.recipientName || undefined,
             notes: delivery.notes || undefined
@@ -1481,6 +1485,9 @@
           supply_date: new Date().toISOString(),
           last_checkin_date: new Date().toISOString(),
           gps: gpsString,
+          gps_latitude: capturedLocation.lat,
+          gps_longitude: capturedLocation.lng,
+          photo_url: photoUrl,
           photo: currentAsset.photo ? [...currentAsset.photo, photoUrl] : [photoUrl]
         };
 
