@@ -1128,16 +1128,18 @@
           await supabase.storage.from('ticket-photos').upload(filePath, photoBlob);
           const { data: urlData } = supabase.storage.from('ticket-photos').getPublicUrl(filePath);
 
-          // Update asset
-          await supabase.from('assets').update({
+          // Update asset - build object without undefined values
+          const updateData = {
             supply_date: delivery.timestamp,
             last_checkin_date: delivery.timestamp,
             gps: delivery.gps,
-            place: delivery.place || undefined,
-            photo: [urlData.publicUrl],
-            name: delivery.recipientName || undefined,
-            notes: delivery.notes || undefined
-          }).eq('unique_id', delivery.assetId);
+            photo: [urlData.publicUrl]
+          };
+          if (delivery.place) updateData.place = delivery.place;
+          if (delivery.recipientName) updateData.name = delivery.recipientName;
+          if (delivery.notes) updateData.notes = delivery.notes;
+
+          await supabase.from('assets').update(updateData).eq('unique_id', delivery.assetId);
 
           // Create checkin
           await supabase.from('checkins').insert({
@@ -1391,6 +1393,30 @@
 
     locationBtn.addEventListener('click', captureLocation);
 
+    // Reverse geocoding to get address from GPS
+    async function reverseGeocode(lat, lng) {
+      try {
+        const response = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&addressdetails=1`,
+          { headers: { 'User-Agent': 'GoodsAssetTracker/1.0' } }
+        );
+        const data = await response.json();
+        if (data && data.address) {
+          // Build a concise address string
+          const addr = data.address;
+          const parts = [];
+          if (addr.house_number) parts.push(addr.house_number);
+          if (addr.road) parts.push(addr.road);
+          if (addr.suburb || addr.neighbourhood) parts.push(addr.suburb || addr.neighbourhood);
+          if (addr.city || addr.town || addr.village) parts.push(addr.city || addr.town || addr.village);
+          return parts.join(', ') || data.display_name?.split(',').slice(0, 3).join(',') || null;
+        }
+      } catch (e) {
+        console.log('Reverse geocoding unavailable:', e);
+      }
+      return null;
+    }
+
     function captureLocation() {
       if (!navigator.geolocation) {
         showMessage('GPS not supported on this device', 'error');
@@ -1402,7 +1428,7 @@
       locationValue.textContent = 'Getting location...';
 
       navigator.geolocation.getCurrentPosition(
-        (position) => {
+        async (position) => {
           capturedLocation = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
@@ -1415,6 +1441,19 @@
           locationValue.textContent = `${capturedLocation.lat.toFixed(6)}, ${capturedLocation.lng.toFixed(6)}`;
           locationBtn.textContent = 'Refresh Location';
           locationBtn.style.display = 'block';
+
+          // Auto-fill address from GPS if place field is empty
+          const placeInput = document.getElementById('placeInput');
+          if (!placeInput.value.trim() && isOnline) {
+            placeInput.placeholder = 'Looking up address...';
+            const address = await reverseGeocode(capturedLocation.lat, capturedLocation.lng);
+            if (address && !placeInput.value.trim()) {
+              placeInput.value = address;
+              placeInput.placeholder = 'e.g., House 14, Lot 23, Unit 5';
+            } else {
+              placeInput.placeholder = 'e.g., House 14, Lot 23, Unit 5';
+            }
+          }
         },
         (error) => {
           console.error('GPS Error:', error);
