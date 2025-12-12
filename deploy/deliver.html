@@ -299,6 +299,35 @@
       display: block;
     }
 
+    .delivery-warning {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(234, 88, 12, 0.15) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 16px 16px 0 16px;
+      display: none;
+    }
+
+    .delivery-warning.show {
+      display: block;
+    }
+
+    .delivery-warning-title {
+      color: #fbbf24;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .delivery-warning-text {
+      color: #fcd34d;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
     .asset-header {
       background: linear-gradient(135deg, #10b981 0%, #059669 100%);
       padding: 16px 20px;
@@ -882,6 +911,12 @@
 
     <div id="messageBox" class="message"></div>
 
+    <!-- Warning banner for already delivered beds -->
+    <div id="deliveryWarning" class="delivery-warning">
+      <div class="delivery-warning-title">⚠️ Already Delivered</div>
+      <div class="delivery-warning-text" id="deliveryWarningText">This bed was already delivered.</div>
+    </div>
+
     <div id="assetCard" class="asset-card">
       <div class="asset-header">
         <span id="assetIdDisplay" class="asset-id">GB0-152-1</span>
@@ -1297,11 +1332,32 @@
       document.getElementById('communityDisplay').textContent = asset.community || '-';
       document.getElementById('placeDisplay').textContent = asset.place || '-';
 
-      // Check if already delivered today
-      const isDelivered = asset.supply_date &&
-        new Date(asset.supply_date).toDateString() === new Date().toDateString();
-      document.getElementById('statusDisplay').textContent =
-        isDelivered ? '✅ Delivered Today' : (asset.supply_date ? '📦 Previously Delivered' : '⏳ Not Delivered');
+      // Check if already delivered
+      const deliveryWarning = document.getElementById('deliveryWarning');
+      const deliveryWarningText = document.getElementById('deliveryWarningText');
+
+      if (asset.supply_date) {
+        const deliveryDate = new Date(asset.supply_date);
+        const isToday = deliveryDate.toDateString() === new Date().toDateString();
+        const formattedDate = deliveryDate.toLocaleDateString('en-AU', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        });
+
+        // Show warning banner
+        deliveryWarning.classList.add('show');
+        if (isToday) {
+          deliveryWarningText.textContent = `This bed was already delivered today (${formattedDate}). Recording another delivery will update the existing record.`;
+        } else {
+          deliveryWarningText.textContent = `This bed was already delivered on ${formattedDate}. Recording another delivery will update the existing record.`;
+        }
+
+        document.getElementById('statusDisplay').textContent = isToday ? '✅ Delivered Today' : '📦 Previously Delivered';
+      } else {
+        deliveryWarning.classList.remove('show');
+        document.getElementById('statusDisplay').textContent = '⏳ Not Delivered';
+      }
 
       assetCard.classList.add('show');
       deliveryForm.classList.add('show');
@@ -1323,6 +1379,7 @@
       assetCard.classList.remove('show');
       deliveryForm.classList.remove('show');
       submitSection.classList.remove('show');
+      document.getElementById('deliveryWarning').classList.remove('show');
     }
 
     // ============================================================================
