@@ -187,6 +187,65 @@
       background: #1e293b;
     }
 
+    /* Available Beds Dropdown */
+    .available-beds-section {
+      margin-bottom: 16px;
+    }
+
+    .available-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #10b981;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .available-select {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 15px;
+      border: 2px solid #10b981;
+      border-radius: 10px;
+      background: #0f172a;
+      color: white;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2310b981'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 20px;
+      cursor: pointer;
+    }
+
+    .available-select:focus {
+      outline: none;
+      border-color: #34d399;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+    }
+
+    .search-divider {
+      display: flex;
+      align-items: center;
+      margin: 16px 0;
+      color: #64748b;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .search-divider::before,
+    .search-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #334155;
+    }
+
+    .search-divider span {
+      padding: 0 12px;
+    }
+
     .search-box {
       display: flex;
       gap: 8px;
@@ -892,6 +951,18 @@
     </div>
 
     <div class="search-section">
+      <!-- Select from available beds (no QR needed) -->
+      <div class="available-beds-section" id="availableBedsSection">
+        <label class="available-label">Select Available Bed (No QR)</label>
+        <select id="availableBedSelect" class="available-select">
+          <option value="">-- Loading available beds... --</option>
+        </select>
+      </div>
+
+      <div class="search-divider">
+        <span>or scan/enter ID</span>
+      </div>
+
       <div class="search-box">
         <input type="text" id="assetSearch" class="search-input" placeholder="Enter Asset ID (e.g. GB0-152-1)" autocomplete="off">
         <button class="scan-btn" id="scanBtn" title="Scan QR Code">📷</button>
@@ -1284,6 +1355,73 @@
         }).catch(err => console.log("Scanner stop error:", err));
       }
     }
+
+    // ============================================================================
+    // AVAILABLE BEDS DROPDOWN
+    // ============================================================================
+
+    const availableBedSelect = document.getElementById('availableBedSelect');
+
+    async function loadAvailableBeds() {
+      try {
+        // Get beds that haven't been delivered yet (no supply_date)
+        const { data, error } = await supabase
+          .from('assets')
+          .select('unique_id, product, community, name, notes')
+          .is('supply_date', null)
+          .in('product', ['Weave Bed', 'Basket Bed'])
+          .order('unique_id', { ascending: true });
+
+        if (error) throw error;
+
+        if (data && data.length > 0) {
+          availableBedSelect.innerHTML = `<option value="">-- Select from ${data.length} available beds --</option>`;
+
+          // Group by product type
+          const weaveBeds = data.filter(d => d.product === 'Weave Bed');
+          const basketBeds = data.filter(d => d.product === 'Basket Bed');
+
+          if (weaveBeds.length > 0) {
+            const optgroup = document.createElement('optgroup');
+            optgroup.label = `Weave Beds (${weaveBeds.length})`;
+            weaveBeds.forEach(bed => {
+              const option = document.createElement('option');
+              option.value = bed.unique_id;
+              const qrStatus = bed.notes && bed.notes.includes('QR CODE PENDING') ? ' [No QR]' : '';
+              option.textContent = `${bed.unique_id}${qrStatus} - ${bed.name || 'Unassigned'}`;
+              optgroup.appendChild(option);
+            });
+            availableBedSelect.appendChild(optgroup);
+          }
+
+          if (basketBeds.length > 0) {
+            const optgroup = document.createElement('optgroup');
+            optgroup.label = `Basket Beds (${basketBeds.length})`;
+            basketBeds.forEach(bed => {
+              const option = document.createElement('option');
+              option.value = bed.unique_id;
+              const qrStatus = bed.notes && bed.notes.includes('QR CODE PENDING') ? ' [No QR]' : '';
+              option.textContent = `${bed.unique_id}${qrStatus} - ${bed.name || 'Unassigned'}`;
+              optgroup.appendChild(option);
+            });
+            availableBedSelect.appendChild(optgroup);
+          }
+        } else {
+          availableBedSelect.innerHTML = '<option value="">-- No available beds --</option>';
+        }
+      } catch (error) {
+        console.error('Error loading available beds:', error);
+        availableBedSelect.innerHTML = '<option value="">-- Error loading beds --</option>';
+      }
+    }
+
+    availableBedSelect.addEventListener('change', async () => {
+      const selectedId = availableBedSelect.value;
+      if (selectedId) {
+        assetSearch.value = selectedId;
+        await searchAsset(selectedId);
+      }
+    });
 
     // ============================================================================
     // ASSET SEARCH
@@ -1731,7 +1869,11 @@
       resetForm();
       successScreen.classList.remove('show');
       assetSearch.value = '';
+      availableBedSelect.value = '';
       assetSearch.focus();
+
+      // Refresh available beds list (remove the one just delivered)
+      loadAvailableBeds();
 
       // Re-capture GPS for next delivery
       captureLocation();
@@ -1860,6 +2002,9 @@
 
     // Load today's deliveries from server
     loadTodayDeliveries();
+
+    // Load available beds dropdown
+    loadAvailableBeds();
 
     // Auto-capture GPS on page load
     captureLocation();
