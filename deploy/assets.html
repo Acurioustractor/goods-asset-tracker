@@ -124,7 +124,7 @@
             <option value="">All Products</option>
             <option value="Basket Bed">Basket Bed</option>
             <option value="Weave Bed">Weave Bed</option>
-            <option value="ID Washing Machine">ID Washing Machine</option>
+            <option value="Washing Machine">Washing Machine</option>
           </select>
         </div>
       </div>
@@ -210,7 +210,7 @@
     function updateStats() {
       const totalAssets = allAssets.length;
       const totalBeds = allAssets.filter(a => a.product.includes('Bed')).length;
-      const totalWashers = allAssets.filter(a => a.product === 'ID Washing Machine').length;
+      const totalWashers = allAssets.filter(a => a.product === 'Washing Machine').length;
       const communities = new Set(allAssets.map(a => a.community));
 
       document.getElementById('totalAssets').textContent = totalAssets;
