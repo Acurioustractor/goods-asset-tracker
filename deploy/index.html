@@ -274,6 +274,85 @@
       text-transform: uppercase;
     }
 
+    /* Claim Section */
+    .claim-section {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .claim-prompt, .claim-claimed {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .claim-icon {
+      font-size: 18px;
+    }
+
+    .claim-prompt span:not(.claim-icon),
+    .claim-claimed span:not(.claim-icon) {
+      font-size: 14px;
+      color: var(--light-gray);
+    }
+
+    .claim-btn {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-left: auto;
+      transition: transform 0.2s;
+    }
+
+    .claim-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .claim-btn-link {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-left: auto;
+      transition: transform 0.2s;
+    }
+
+    .claim-btn-link:hover {
+      transform: scale(1.05);
+    }
+
+    .claim-claimed {
+      background: rgba(16, 185, 129, 0.1);
+      padding: 10px 14px;
+      border-radius: 10px;
+    }
+
+    .claim-claimed .claim-icon {
+      color: var(--success);
+    }
+
+    .claim-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-left: auto;
+    }
+
+    .claim-link:hover {
+      text-decoration: underline;
+    }
+
     /* Manual Entry */
     .manual-entry {
       background: var(--card-bg);
@@ -863,6 +942,116 @@
 
     const urlParams = new URLSearchParams(window.location.search);
     let assetId = urlParams.get('asset_id');
+    let currentAssetData = null;
+    let currentUser = null;
+
+    // ============================================================================
+    // AUTH CHECK & CLAIM FUNCTIONS
+    // ============================================================================
+
+    async function checkClaimStatus(assetUniqueId) {
+      try {
+        // Check if user is logged in
+        const { data: { user } } = await supabase.auth.getUser();
+        currentUser = user;
+
+        const claimSection = document.getElementById('claimSection');
+        if (!claimSection) return;
+
+        if (user) {
+          // Check if already claimed by this user
+          const { data: claim } = await supabase
+            .from('user_assets')
+            .select('id')
+            .eq('profile_id', user.id)
+            .eq('asset_id', assetUniqueId)
+            .eq('claim_status', 'active')
+            .single();
+
+          if (claim) {
+            claimSection.style.display = 'block';
+            claimSection.innerHTML = `
+              <div class="claim-claimed">
+                <span class="claim-icon">✓</span>
+                <span>This is your item</span>
+                <a href="my-items.html" class="claim-link">View My Items</a>
+              </div>
+            `;
+          } else {
+            claimSection.style.display = 'block';
+            claimSection.innerHTML = `
+              <div class="claim-prompt">
+                <span class="claim-icon">🛏️</span>
+                <span>Is this yours?</span>
+                <button onclick="claimThisItem()" class="claim-btn">Claim It</button>
+              </div>
+            `;
+          }
+
+          // Pre-fill form with profile info
+          const { data: profile } = await supabase
+            .from('profiles')
+            .select('display_name, phone')
+            .eq('id', user.id)
+            .single();
+
+          if (profile) {
+            const nameInput = document.getElementById('name');
+            const contactInput = document.getElementById('contact');
+            if (nameInput && !nameInput.value) nameInput.value = profile.display_name || '';
+            if (contactInput && !contactInput.value) contactInput.value = profile.phone || '';
+          }
+        } else {
+          // Not logged in - show sign in prompt
+          claimSection.style.display = 'block';
+          claimSection.innerHTML = `
+            <div class="claim-prompt">
+              <span class="claim-icon">👤</span>
+              <span>Is this your item?</span>
+              <a href="login.html?asset_id=${assetUniqueId}" class="claim-btn-link">Sign In to Claim</a>
+            </div>
+          `;
+        }
+      } catch (error) {
+        console.error('Error checking claim status:', error);
+      }
+    }
+
+    async function claimThisItem() {
+      if (!currentUser || !currentAssetData) return;
+
+      try {
+        const { error } = await supabase
+          .from('user_assets')
+          .insert({
+            profile_id: currentUser.id,
+            asset_id: currentAssetData.unique_id
+          });
+
+        if (error) throw error;
+
+        showMessage('Item claimed! You can now view it in My Items.', 'success');
+
+        // Update UI
+        const claimSection = document.getElementById('claimSection');
+        if (claimSection) {
+          claimSection.innerHTML = `
+            <div class="claim-claimed">
+              <span class="claim-icon">✓</span>
+              <span>This is your item</span>
+              <a href="my-items.html" class="claim-link">View My Items</a>
+            </div>
+          `;
+        }
+      } catch (error) {
+        console.error('Error claiming item:', error);
+        if (error.message.includes('duplicate')) {
+          showMessage('You have already claimed this item', 'error');
+        } else {
+          showMessage('Error claiming item: ' + error.message, 'error');
+        }
+      }
+    }
 
     async function loadAssetDetails(id = assetId) {
       if (!id) {
@@ -881,6 +1070,7 @@
 
         if (data) {
           assetId = data.unique_id;
+          currentAssetData = data;
           document.getElementById('manualEntry').style.display = 'none';
 
           const assetInfoDiv = document.getElementById('assetInfo');
@@ -891,9 +1081,13 @@
             <p><strong>Type:</strong> ${data.product}</p>
             <p><strong>Location:</strong> ${data.community}${data.place ? ', ' + data.place : ''}</p>
             <span class="asset-tag">${data.product}</span>
+            <div id="claimSection" class="claim-section" style="display: none;"></div>
           `;
 
           showMessage('✓ Asset found! You can now submit your support request below.', 'success');
+
+          // Check auth and show claim option
+          checkClaimStatus(data.unique_id);
         }
       } catch (error) {
         console.error('Error loading asset:', error);

@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>My Items - Goods on Country</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #3b82f6;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --dark: #0f172a;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --text-muted: #94a3b8;
+      --purple: #8b5cf6;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--dark);
+      min-height: 100vh;
+      color: white;
+    }
+
+    .app {
+      max-width: 500px;
+      margin: 0 auto;
+      min-height: 100vh;
+      padding-bottom: 100px;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-icon {
+      font-size: 28px;
+    }
+
+    .header h1 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .header-subtitle {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .sign-out-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .sign-out-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Loading State */
+    .loading-state {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Section */
+    .section {
+      padding: 16px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    /* Item Cards */
+    .items-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .item-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+
+    .item-card:active {
+      transform: scale(0.98);
+    }
+
+    .item-header {
+      padding: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .item-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .item-icon.bed {
+      background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+    }
+
+    .item-icon.washer {
+      background: linear-gradient(135deg, var(--primary) 0%, #2563eb 100%);
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .item-name {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .item-id {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .item-badge {
+      background: rgba(16, 185, 129, 0.15);
+      color: #6ee7b7;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .item-details {
+      padding: 0 16px 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .detail-item {
+      background: var(--dark);
+      padding: 10px 12px;
+      border-radius: 8px;
+    }
+
+    .detail-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .detail-value {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* Quick Actions */
+    .actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .action-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .action-card:active {
+      transform: scale(0.95);
+    }
+
+    .action-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .action-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .action-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .action-badge {
+      background: var(--danger);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: 4px;
+    }
+
+    /* Content Feed */
+    .content-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .content-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: var(--border);
+    }
+
+    .content-body {
+      padding: 16px;
+    }
+
+    .content-caption {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .content-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--card-bg);
+      border-radius: 16px;
+    }
+
+    .empty-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    .empty-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .empty-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .empty-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    /* Claim Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 20px;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 400px;
+      overflow: hidden;
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+      padding: 24px;
+      text-align: center;
+    }
+
+    .modal-header-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .modal-header h2 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .claim-preview {
+      background: var(--dark);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .claim-preview-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .claim-preview-row:last-child {
+      border-bottom: none;
+    }
+
+    .claim-preview-label {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .claim-preview-value {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .modal-btn {
+      flex: 1;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+    }
+
+    .modal-btn-primary {
+      background: var(--success);
+      color: white;
+    }
+
+    .modal-btn-secondary {
+      background: var(--border);
+      color: white;
+    }
+
+    /* Message */
+    .message {
+      position: fixed;
+      top: 80px;
+      left: 16px;
+      right: 16px;
+      max-width: 468px;
+      margin: 0 auto;
+      padding: 14px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      z-index: 150;
+      display: none;
+      animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    .message.error {
+      background: rgba(239, 68, 68, 0.9);
+    }
+
+    .message.success {
+      background: rgba(16, 185, 129, 0.9);
+    }
+
+    /* Not Logged In State */
+    .not-logged-in {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .not-logged-in-icon {
+      font-size: 64px;
+      margin-bottom: 20px;
+    }
+
+    .not-logged-in h2 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .not-logged-in p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .login-btn {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 4px;
+      margin: 16px;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 12px;
+      text-align: center;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+      color: var(--text-muted);
+    }
+
+    .tab.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-left">
+        <span class="header-icon">🛏️</span>
+        <div>
+          <h1>My Items</h1>
+          <div class="header-subtitle" id="userPhone">Loading...</div>
+        </div>
+      </div>
+      <button class="sign-out-btn" onclick="signOut()">Sign Out</button>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="loading-state">
+      <div class="loading-spinner"></div>
+      <p>Loading your items...</p>
+    </div>
+
+    <!-- Not Logged In State -->
+    <div id="notLoggedIn" class="not-logged-in" style="display: none;">
+      <div class="not-logged-in-icon">🔐</div>
+      <h2>Sign In Required</h2>
+      <p>Sign in to view your beds and washing machines</p>
+      <a href="login.html" class="login-btn">Sign In</a>
+    </div>
+
+    <!-- Main Content (shown when logged in) -->
+    <div id="mainContent" style="display: none;">
+      <!-- Tabs -->
+      <div class="tabs">
+        <div class="tab active" data-tab="items">My Items</div>
+        <div class="tab" data-tab="messages">Messages <span id="unreadBadge" class="action-badge" style="display: none;">0</span></div>
+        <div class="tab" data-tab="requests">Requests</div>
+      </div>
+
+      <!-- Items Tab -->
+      <div id="items-panel" class="tab-panel active">
+        <div class="section">
+          <div class="section-title">Your Claimed Items</div>
+          <div id="itemsContainer" class="items-grid">
+            <!-- Items loaded dynamically -->
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="section">
+          <div class="section-title">Quick Actions</div>
+          <div class="actions-grid">
+            <a href="index.html" class="action-card">
+              <div class="action-icon">🎫</div>
+              <div class="action-title">Report Issue</div>
+              <div class="action-subtitle">Get support</div>
+            </a>
+            <a href="#" onclick="showRequestModal()" class="action-card">
+              <div class="action-icon">🛏️</div>
+              <div class="action-title">Request Item</div>
+              <div class="action-subtitle">Blankets, pillows</div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Compassion Content -->
+        <div class="section" id="contentSection" style="display: none;">
+          <div class="section-title">Updates About Your Items</div>
+          <div id="contentFeed">
+            <!-- Content loaded dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages Tab -->
+      <div id="messages-panel" class="tab-panel">
+        <div class="section">
+          <div id="messagesContainer">
+            <div class="empty-state">
+              <div class="empty-icon">💬</div>
+              <div class="empty-title">No Messages Yet</div>
+              <div class="empty-text">Messages from the Goods on Country team will appear here</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Requests Tab -->
+      <div id="requests-panel" class="tab-panel">
+        <div class="section">
+          <div id="requestsContainer">
+            <div class="empty-state">
+              <div class="empty-icon">📦</div>
+              <div class="empty-title">No Requests</div>
+              <div class="empty-text">You haven't made any requests yet</div>
+              <button onclick="showRequestModal()" class="empty-btn">Request an Item</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Message Box -->
+    <div id="messageBox" class="message"></div>
+
+    <!-- Claim Modal -->
+    <div id="claimModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-header-icon" id="claimModalIcon">🛏️</div>
+          <h2>Claim This Item?</h2>
+        </div>
+        <div class="modal-body">
+          <div class="claim-preview">
+            <div class="claim-preview-row">
+              <span class="claim-preview-label">Product</span>
+              <span class="claim-preview-value" id="claimProduct">-</span>
+            </div>
+            <div class="claim-preview-row">
+              <span class="claim-preview-label">ID</span>
+              <span class="claim-preview-value" id="claimId">-</span>
+            </div>
+            <div class="claim-preview-row">
+              <span class="claim-preview-label">Community</span>
+              <span class="claim-preview-value" id="claimCommunity">-</span>
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button class="modal-btn modal-btn-secondary" onclick="closeClaimModal()">Cancel</button>
+            <button class="modal-btn modal-btn-primary" id="confirmClaimBtn" onclick="confirmClaim()">Yes, Claim It</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Request Modal -->
+    <div id="requestModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+          <div class="modal-header-icon">📦</div>
+          <h2>Request an Item</h2>
+        </div>
+        <div class="modal-body">
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 13px; color: #94a3b8; margin-bottom: 8px;">What do you need?</label>
+            <select id="requestType" style="width: 100%; padding: 14px; background: #0f172a; border: 2px solid #334155; border-radius: 10px; color: white; font-size: 15px;">
+              <option value="">Select item...</option>
+              <option value="blanket">Blanket</option>
+              <option value="pillow">Pillow</option>
+              <option value="parts">Replacement Parts</option>
+              <option value="checkin">Schedule a Check-in</option>
+              <option value="pickup">Request Pickup</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 13px; color: #94a3b8; margin-bottom: 8px;">For which item?</label>
+            <select id="requestAsset" style="width: 100%; padding: 14px; background: #0f172a; border: 2px solid #334155; border-radius: 10px; color: white; font-size: 15px;">
+              <option value="">Select item...</option>
+            </select>
+          </div>
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; font-size: 13px; color: #94a3b8; margin-bottom: 8px;">Details (optional)</label>
+            <textarea id="requestDetails" rows="3" placeholder="Any additional details..." style="width: 100%; padding: 14px; background: #0f172a; border: 2px solid #334155; border-radius: 10px; color: white; font-size: 15px; resize: none;"></textarea>
+          </div>
+          <div class="modal-actions">
+            <button class="modal-btn modal-btn-secondary" onclick="closeRequestModal()">Cancel</button>
+            <button class="modal-btn modal-btn-primary" style="background: #f59e0b;" onclick="submitRequest()">Submit Request</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    // ============================================================================
+    // CONFIGURATION
+    // ============================================================================
+    const SUPABASE_URL = 'https://cwsyhpiuepvdjtxaozwf.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw';
+
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // ============================================================================
+    // STATE
+    // ============================================================================
+    let currentUser = null;
+    let userItems = [];
+    let claimAssetData = null;
+
+    // ============================================================================
+    // DOM ELEMENTS
+    // ============================================================================
+    const loadingState = document.getElementById('loadingState');
+    const notLoggedIn = document.getElementById('notLoggedIn');
+    const mainContent = document.getElementById('mainContent');
+    const itemsContainer = document.getElementById('itemsContainer');
+    const messageBox = document.getElementById('messageBox');
+    const claimModal = document.getElementById('claimModal');
+    const requestModal = document.getElementById('requestModal');
+
+    // ============================================================================
+    // TABS
+    // ============================================================================
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab + '-panel').classList.add('active');
+      });
+    });
+
+    // ============================================================================
+    // INITIALIZATION
+    // ============================================================================
+    async function init() {
+      try {
+        // Check auth
+        const { data: { user } } = await supabase.auth.getUser();
+
+        if (!user) {
+          loadingState.style.display = 'none';
+          notLoggedIn.style.display = 'block';
+          return;
+        }
+
+        currentUser = user;
+        document.getElementById('userPhone').textContent = user.phone || 'User';
+
+        // Check for claim parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const claimId = urlParams.get('claim');
+
+        if (claimId) {
+          // Remove from URL
+          window.history.replaceState({}, '', 'my-items.html');
+
+          // Load asset to claim
+          const { data: asset } = await supabase
+            .from('assets')
+            .select('*')
+            .eq('unique_id', claimId)
+            .single();
+
+          if (asset) {
+            showClaimModal(asset);
+          }
+        }
+
+        // Load user's items
+        await loadUserItems();
+
+        // Load messages count
+        await loadUnreadCount();
+
+        // Show main content
+        loadingState.style.display = 'none';
+        mainContent.style.display = 'block';
+
+      } catch (error) {
+        console.error('Init error:', error);
+        showMessage('Error loading: ' + error.message, 'error');
+      }
+    }
+
+    // ============================================================================
+    // LOAD USER ITEMS
+    // ============================================================================
+    async function loadUserItems() {
+      try {
+        const { data, error } = await supabase
+          .from('user_assets')
+          .select(`
+            *,
+            assets (
+              unique_id,
+              name,
+              product,
+              community,
+              place,
+              photo,
+              supply_date
+            )
+          `)
+          .eq('profile_id', currentUser.id)
+          .eq('claim_status', 'active');
+
+        if (error) throw error;
+
+        userItems = data || [];
+
+        if (userItems.length === 0) {
+          itemsContainer.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon">📦</div>
+              <div class="empty-title">No Items Yet</div>
+              <div class="empty-text">Scan the QR code on your bed or washing machine to claim it</div>
+              <a href="index.html" class="empty-btn">Scan QR Code</a>
+            </div>
+          `;
+        } else {
+          renderItems();
+          populateRequestAssets();
+          loadCompassionContent();
+        }
+
+      } catch (error) {
+        console.error('Error loading items:', error);
+        itemsContainer.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">⚠️</div>
+            <div class="empty-title">Error Loading Items</div>
+            <div class="empty-text">${error.message}</div>
+          </div>
+        `;
+      }
+    }
+
+    function renderItems() {
+      itemsContainer.innerHTML = userItems.map(item => {
+        const asset = item.assets;
+        const isBed = asset.product?.toLowerCase().includes('bed');
+        const isWasher = asset.product?.toLowerCase().includes('washing') || asset.product?.toLowerCase().includes('machine');
+
+        const iconClass = isBed ? 'bed' : (isWasher ? 'washer' : '');
+        const icon = isBed ? '🛏️' : (isWasher ? '🧺' : '📦');
+
+        const claimedDate = new Date(item.claimed_at).toLocaleDateString('en-AU', {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric'
+        });
+
+        return `
+          <div class="item-card">
+            <div class="item-header">
+              <div class="item-icon ${iconClass}">${icon}</div>
+              <div class="item-info">
+                <div class="item-name">${asset.product || 'Item'}</div>
+                <div class="item-id">${asset.unique_id}</div>
+              </div>
+              <span class="item-badge">Claimed</span>
+            </div>
+            <div class="item-details">
+              <div class="detail-item">
+                <div class="detail-label">Community</div>
+                <div class="detail-value">${asset.community || '-'}</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">Claimed</div>
+                <div class="detail-value">${claimedDate}</div>
+              </div>
+              ${asset.name ? `
+              <div class="detail-item" style="grid-column: span 2;">
+                <div class="detail-label">Recipient</div>
+                <div class="detail-value">${asset.name}</div>
+              </div>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ============================================================================
+    // CLAIM FLOW
+    // ============================================================================
+    function showClaimModal(asset) {
+      claimAssetData = asset;
+
+      const isBed = asset.product?.toLowerCase().includes('bed');
+      const isWasher = asset.product?.toLowerCase().includes('washing');
+
+      document.getElementById('claimModalIcon').textContent = isBed ? '🛏️' : (isWasher ? '🧺' : '📦');
+      document.getElementById('claimProduct').textContent = asset.product || 'Item';
+      document.getElementById('claimId').textContent = asset.unique_id;
+      document.getElementById('claimCommunity').textContent = asset.community || '-';
+
+      claimModal.classList.add('show');
+    }
+
+    function closeClaimModal() {
+      claimModal.classList.remove('show');
+      claimAssetData = null;
+    }
+
+    async function confirmClaim() {
+      if (!claimAssetData) return;
+
+      const btn = document.getElementById('confirmClaimBtn');
+      btn.disabled = true;
+      btn.textContent = 'Claiming...';
+
+      try {
+        // Check if already claimed by this user
+        const { data: existing } = await supabase
+          .from('user_assets')
+          .select('id')
+          .eq('profile_id', currentUser.id)
+          .eq('asset_id', claimAssetData.unique_id)
+          .single();
+
+        if (existing) {
+          showMessage('You have already claimed this item', 'error');
+          closeClaimModal();
+          return;
+        }
+
+        // Create claim
+        const { error } = await supabase
+          .from('user_assets')
+          .insert({
+            profile_id: currentUser.id,
+            asset_id: claimAssetData.unique_id
+          });
+
+        if (error) throw error;
+
+        showMessage('Item claimed successfully!', 'success');
+        closeClaimModal();
+
+        // Reload items
+        await loadUserItems();
+
+      } catch (error) {
+        console.error('Claim error:', error);
+        showMessage('Error claiming item: ' + error.message, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Yes, Claim It';
+      }
+    }
+
+    // ============================================================================
+    // REQUESTS
+    // ============================================================================
+    function showRequestModal() {
+      if (userItems.length === 0) {
+        showMessage('You need to claim an item first', 'error');
+        return;
+      }
+      requestModal.classList.add('show');
+    }
+
+    function closeRequestModal() {
+      requestModal.classList.remove('show');
+    }
+
+    function populateRequestAssets() {
+      const select = document.getElementById('requestAsset');
+      select.innerHTML = '<option value="">Select item...</option>' +
+        userItems.map(item => `
+          <option value="${item.asset_id}">${item.assets.product} (${item.asset_id})</option>
+        `).join('');
+    }
+
+    async function submitRequest() {
+      const type = document.getElementById('requestType').value;
+      const assetId = document.getElementById('requestAsset').value;
+      const details = document.getElementById('requestDetails').value;
+
+      if (!type) {
+        showMessage('Please select what you need', 'error');
+        return;
+      }
+
+      if (!assetId) {
+        showMessage('Please select which item', 'error');
+        return;
+      }
+
+      try {
+        const { error } = await supabase
+          .from('user_requests')
+          .insert({
+            profile_id: currentUser.id,
+            asset_id: assetId,
+            request_type: type,
+            description: details || null
+          });
+
+        if (error) throw error;
+
+        showMessage('Request submitted!', 'success');
+        closeRequestModal();
+
+        // Reset form
+        document.getElementById('requestType').value = '';
+        document.getElementById('requestAsset').value = '';
+        document.getElementById('requestDetails').value = '';
+
+      } catch (error) {
+        console.error('Request error:', error);
+        showMessage('Error submitting request: ' + error.message, 'error');
+      }
+    }
+
+    // ============================================================================
+    // MESSAGES
+    // ============================================================================
+    async function loadUnreadCount() {
+      try {
+        const { count, error } = await supabase
+          .from('messages')
+          .select('*', { count: 'exact', head: true })
+          .eq('profile_id', currentUser.id)
+          .eq('direction', 'outbound')
+          .is('read_at', null);
+
+        if (error) throw error;
+
+        const badge = document.getElementById('unreadBadge');
+        if (count > 0) {
+          badge.textContent = count;
+          badge.style.display = 'inline';
+        }
+      } catch (error) {
+        console.error('Error loading unread count:', error);
+      }
+    }
+
+    // ============================================================================
+    // COMPASSION CONTENT
+    // ============================================================================
+    async function loadCompassionContent() {
+      try {
+        const assetIds = userItems.map(i => i.asset_id);
+
+        const { data, error } = await supabase
+          .from('compassion_content')
+          .select('*')
+          .in('asset_id', assetIds)
+          .order('created_at', { ascending: false })
+          .limit(10);
+
+        if (error) throw error;
+
+        if (data && data.length > 0) {
+          document.getElementById('contentSection').style.display = 'block';
+          document.getElementById('contentFeed').innerHTML = data.map(content => `
+            <div class="content-card">
+              ${content.media_url ? `<img src="${content.media_url}" class="content-image" alt="">` : ''}
+              <div class="content-body">
+                <div class="content-caption">${content.caption || ''}</div>
+                <div class="content-meta">
+                  ${new Date(content.created_at).toLocaleDateString('en-AU', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                  })}
+                </div>
+              </div>
+            </div>
+          `).join('');
+        }
+      } catch (error) {
+        console.error('Error loading content:', error);
+      }
+    }
+
+    // ============================================================================
+    // SIGN OUT
+    // ============================================================================
+    async function signOut() {
+      await supabase.auth.signOut();
+      window.location.href = 'public-home.html';
+    }
+
+    // ============================================================================
+    // HELPERS
+    // ============================================================================
+    function showMessage(text, type) {
+      messageBox.textContent = text;
+      messageBox.className = `message ${type} show`;
+      setTimeout(() => {
+        messageBox.classList.remove('show');
+      }, 4000);
+    }
+
+    // Close modals on background click
+    claimModal.addEventListener('click', (e) => {
+      if (e.target === claimModal) closeClaimModal();
+    });
+
+    requestModal.addEventListener('click', (e) => {
+      if (e.target === requestModal) closeRequestModal();
+    });
+
+    // ============================================================================
+    // START
+    // ============================================================================
+    init();
+  </script>
+</body>
+</html>
