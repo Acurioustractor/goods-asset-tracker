@@ -4,8 +4,8 @@
 # QR codes with asset_id parameter go to support form (index.html)
 /*  asset_id=:id  /index.html?asset_id=:id  200!
 
-# Root without params goes to home
-/  /home.html  200
+# Root without params goes to public home page
+/  /public-home.html  200!
 
 # Direct support path
 /support  /index.html  200
