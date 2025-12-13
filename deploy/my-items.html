@@ -698,6 +698,31 @@
   <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+  <!-- Go High Level Integration -->
+  <script src="js/ghl-integration.js"></script>
+
+  <!-- GHL Configuration - UPDATE THESE VALUES WHEN READY -->
+  <script>
+    // Initialize GHL when your number is approved
+    // Uncomment and fill in your credentials:
+    /*
+    GHL.init({
+      apiKey: 'YOUR_GHL_API_KEY',
+      locationId: 'YOUR_GHL_LOCATION_ID',
+      customFields: {
+        assetId: 'your_asset_id_field',
+        product: 'your_product_field',
+        community: 'your_community_field',
+        claimedAt: 'your_claimed_at_field'
+      },
+      workflows: {
+        newClaim: 'workflow_id_for_new_claims',
+        newRequest: 'workflow_id_for_requests'
+      }
+    });
+    */
+  </script>
+
   <script>
     // ============================================================================
     // CONFIGURATION
@@ -944,6 +969,21 @@
 
         if (error) throw error;
 
+        // Sync with Go High Level (creates/updates contact)
+        if (window.GHL && GHL.config.enabled) {
+          await GHL.createOrUpdateContact(
+            { phone: currentUser.phone, display_name: currentUser.user_metadata?.display_name },
+            claimAssetData
+          );
+        } else {
+          // Log event locally when GHL is disabled
+          GHL?.logEvent('claim', {
+            phone: currentUser.phone,
+            asset: claimAssetData.unique_id,
+            product: claimAssetData.product
+          });
+        }
+
         showMessage('Item claimed successfully!', 'success');
         closeClaimModal();
 
@@ -1008,6 +1048,19 @@
           });
 
         if (error) throw error;
+
+        // Sync with Go High Level
+        if (window.GHL && GHL.config.enabled) {
+          await GHL.logRequest(currentUser.phone, type, assetId, details);
+        } else {
+          // Log event locally when GHL is disabled
+          GHL?.logEvent('request', {
+            phone: currentUser.phone,
+            type,
+            assetId,
+            details
+          });
+        }
 
         showMessage('Request submitted!', 'success');
         closeRequestModal();

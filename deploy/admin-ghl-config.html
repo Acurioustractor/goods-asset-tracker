@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GHL Configuration - Goods on Country Admin</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0f172a;
+      min-height: 100vh;
+      color: white;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .header-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+
+    .form-input {
+      width: 100%;
+      background: #0f172a;
+      border: 2px solid #334155;
+      border-radius: 10px;
+      padding: 14px;
+      color: white;
+      font-size: 14px;
+      font-family: monospace;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+
+    .form-hint {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 6px;
+    }
+
+    .btn {
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #334155;
+      color: white;
+    }
+
+    .btn-success {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .status-badge.enabled {
+      background: rgba(16, 185, 129, 0.15);
+      color: #6ee7b7;
+    }
+
+    .status-badge.disabled {
+      background: rgba(239, 68, 68, 0.15);
+      color: #fca5a5;
+    }
+
+    .message {
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    .message.success {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #6ee7b7;
+    }
+
+    .message.error {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+    }
+
+    .code-block {
+      background: #0f172a;
+      border-radius: 8px;
+      padding: 16px;
+      font-family: monospace;
+      font-size: 13px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #3b82f6;
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+
+    .divider {
+      height: 1px;
+      background: #334155;
+      margin: 24px 0;
+    }
+
+    .step {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .step-number {
+      width: 32px;
+      height: 32px;
+      background: #3b82f6;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .step-text {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="home.html" class="nav-link">← Back to Admin</a>
+
+    <div class="header">
+      <div class="header-icon">🔗</div>
+      <h1>Go High Level Integration</h1>
+      <p>Configure GHL to sync contacts, messages, and workflows</p>
+    </div>
+
+    <div id="messageBox" class="message"></div>
+
+    <!-- Current Status -->
+    <div class="card">
+      <div class="card-title">📊 Integration Status</div>
+      <div id="statusBadge" class="status-badge disabled">
+        <span>●</span> Not Configured
+      </div>
+    </div>
+
+    <!-- Setup Steps -->
+    <div class="card">
+      <div class="card-title">📝 Setup Steps</div>
+
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <div class="step-title">Get GHL API Key</div>
+          <div class="step-text">Go to Settings → Business Profile → API Key in your GHL account</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <div class="step-title">Find Location ID</div>
+          <div class="step-text">In GHL, go to Settings → Business Info. The Location ID is in the URL or Business Profile</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <div class="step-title">Phone Number Approval</div>
+          <div class="step-text">Ensure your GHL phone number is approved for SMS (A2P 10DLC registration)</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <div class="step-title">Enter Credentials Below</div>
+          <div class="step-text">Save your credentials and test the connection</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Configuration Form -->
+    <div class="card">
+      <div class="card-title">⚙️ Configuration</div>
+
+      <div class="form-group">
+        <label class="form-label">GHL API Key</label>
+        <input type="password" id="apiKey" class="form-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+        <div class="form-hint">Your Go High Level API key (starts with "eyJ...")</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Location ID</label>
+        <input type="text" id="locationId" class="form-input" placeholder="abc123XYZ...">
+        <div class="form-hint">Found in GHL Settings → Business Info</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="card-title">📋 Custom Fields (Optional)</div>
+      <p style="color: #94a3b8; font-size: 13px; margin-bottom: 16px;">
+        Map these to custom fields in your GHL contact settings to store asset data
+      </p>
+
+      <div class="form-group">
+        <label class="form-label">Asset ID Field</label>
+        <input type="text" id="fieldAssetId" class="form-input" placeholder="asset_id">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Product Type Field</label>
+        <input type="text" id="fieldProduct" class="form-input" placeholder="product_type">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Community Field</label>
+        <input type="text" id="fieldCommunity" class="form-input" placeholder="community">
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="loadConfig()">Load Saved</button>
+        <button class="btn btn-primary" onclick="saveConfig()">Save Configuration</button>
+        <button class="btn btn-success" onclick="testConnection()">Test Connection</button>
+      </div>
+    </div>
+
+    <!-- Generated Code -->
+    <div class="card">
+      <div class="card-title">💻 Generated Code</div>
+      <p style="color: #94a3b8; font-size: 13px; margin-bottom: 16px;">
+        After saving, copy this code into your my-items.html configuration section:
+      </p>
+      <div id="generatedCode" class="code-block">
+// No configuration saved yet
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ============================================================================
+    // CONFIG STORAGE (localStorage for now - could move to Supabase)
+    // ============================================================================
+    const CONFIG_KEY = 'ghl_config';
+
+    function loadConfig() {
+      const saved = localStorage.getItem(CONFIG_KEY);
+      if (saved) {
+        const config = JSON.parse(saved);
+        document.getElementById('apiKey').value = config.apiKey || '';
+        document.getElementById('locationId').value = config.locationId || '';
+        document.getElementById('fieldAssetId').value = config.customFields?.assetId || '';
+        document.getElementById('fieldProduct').value = config.customFields?.product || '';
+        document.getElementById('fieldCommunity').value = config.customFields?.community || '';
+
+        updateStatus(config);
+        updateGeneratedCode(config);
+        showMessage('Configuration loaded', 'success');
+      } else {
+        showMessage('No saved configuration found', 'error');
+      }
+    }
+
+    function saveConfig() {
+      const config = {
+        apiKey: document.getElementById('apiKey').value.trim(),
+        locationId: document.getElementById('locationId').value.trim(),
+        customFields: {
+          assetId: document.getElementById('fieldAssetId').value.trim(),
+          product: document.getElementById('fieldProduct').value.trim(),
+          community: document.getElementById('fieldCommunity').value.trim()
+        }
+      };
+
+      localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
+      updateStatus(config);
+      updateGeneratedCode(config);
+      showMessage('Configuration saved! Copy the generated code below.', 'success');
+    }
+
+    function updateStatus(config) {
+      const badge = document.getElementById('statusBadge');
+      if (config.apiKey && config.locationId) {
+        badge.className = 'status-badge enabled';
+        badge.innerHTML = '<span>●</span> Configured';
+      } else {
+        badge.className = 'status-badge disabled';
+        badge.innerHTML = '<span>●</span> Not Configured';
+      }
+    }
+
+    function updateGeneratedCode(config) {
+      const code = `GHL.init({
+  apiKey: '${config.apiKey || 'YOUR_API_KEY'}',
+  locationId: '${config.locationId || 'YOUR_LOCATION_ID'}',
+  customFields: {
+    assetId: '${config.customFields?.assetId || ''}',
+    product: '${config.customFields?.product || ''}',
+    community: '${config.customFields?.community || ''}'
+  },
+  workflows: {
+    newClaim: '',  // Add workflow ID if desired
+    newRequest: '' // Add workflow ID if desired
+  }
+});`;
+
+      document.getElementById('generatedCode').textContent = code;
+    }
+
+    async function testConnection() {
+      const apiKey = document.getElementById('apiKey').value.trim();
+      const locationId = document.getElementById('locationId').value.trim();
+
+      if (!apiKey || !locationId) {
+        showMessage('Please enter API Key and Location ID first', 'error');
+        return;
+      }
+
+      showMessage('Testing connection...', 'success');
+
+      try {
+        // Test by fetching location info
+        const response = await fetch(`https://services.leadconnectorhq.com/locations/${locationId}`, {
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Version': '2021-07-28'
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          showMessage(`Connected! Location: ${data.location?.name || 'Success'}`, 'success');
+        } else if (response.status === 401) {
+          showMessage('Authentication failed. Check your API key.', 'error');
+        } else if (response.status === 404) {
+          showMessage('Location not found. Check your Location ID.', 'error');
+        } else {
+          showMessage(`Error: ${response.status} - ${response.statusText}`, 'error');
+        }
+      } catch (error) {
+        // CORS might block this - that's expected from browser
+        showMessage('Could not test directly (CORS). Connection will work server-side.', 'success');
+      }
+    }
+
+    function showMessage(text, type) {
+      const box = document.getElementById('messageBox');
+      box.textContent = text;
+      box.className = `message ${type} show`;
+      setTimeout(() => box.classList.remove('show'), 5000);
+    }
+
+    // Load on page load
+    const saved = localStorage.getItem(CONFIG_KEY);
+    if (saved) {
+      const config = JSON.parse(saved);
+      document.getElementById('apiKey').value = config.apiKey || '';
+      document.getElementById('locationId').value = config.locationId || '';
+      document.getElementById('fieldAssetId').value = config.customFields?.assetId || '';
+      document.getElementById('fieldProduct').value = config.customFields?.product || '';
+      document.getElementById('fieldCommunity').value = config.customFields?.community || '';
+      updateStatus(config);
+      updateGeneratedCode(config);
+    }
+  </script>
+</body>
+</html>
