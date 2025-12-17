@@ -1025,7 +1025,7 @@
         const deliveredAssets = await getExactCount(
           client
             .from('assets')
-            .neq('supply_date', null)
+            .filter('supply_date', 'not.is', null)
             .ilike('product', '%Bed%')
         );
         animateNumber('deliveredAssets', deliveredAssets);
