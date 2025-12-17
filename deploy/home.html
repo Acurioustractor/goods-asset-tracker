@@ -964,7 +964,7 @@
   </div>
 
   <!-- Supabase -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.88.0/dist/umd/supabase.js"></script>
 
   <script>
     // ============================================================================
@@ -974,10 +974,42 @@
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw';
 
     let supabase;
-    try {
+    async function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const el = document.createElement('script');
+        el.src = src;
+        el.async = true;
+        el.crossOrigin = 'anonymous';
+        el.onload = () => resolve();
+        el.onerror = () => reject(new Error('Failed to load: ' + src));
+        document.head.appendChild(el);
+      });
+    }
+
+    async function ensureSupabase() {
+      if (supabase) return supabase;
+
+      // If jsdelivr is blocked/down, try a fallback CDN.
+      if (!window.supabase?.createClient) {
+        const fallbacks = [
+          'https://unpkg.com/@supabase/supabase-js@2.88.0/dist/umd/supabase.js'
+        ];
+        for (const url of fallbacks) {
+          try {
+            await loadScript(url);
+            if (window.supabase?.createClient) break;
+          } catch (e) {
+            console.warn(e.message);
+          }
+        }
+      }
+
+      if (!window.supabase?.createClient) {
+        throw new Error('Supabase library not available (blocked by network/adblocker).');
+      }
+
       supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    } catch (e) {
-      console.error('Supabase client failed to initialize. If this only fails online, your network may be blocking the CDN (jsdelivr).', e);
+      return supabase;
     }
 
     async function getExactCount(query) {
@@ -1061,10 +1093,10 @@
       });
 
       try {
-        if (!supabase) throw new Error('Supabase not available');
+        const client = await ensureSupabase();
 
         // Total assets
-        await animateNumber('totalAssets', await getExactCount(supabase.from('assets')));
+        await animateNumber('totalAssets', await getExactCount(client.from('assets')));
 
         // Delivered today
         const today = new Date();
@@ -1073,7 +1105,7 @@
         await animateNumber(
           'deliveredToday',
           await getExactCount(
-            supabase
+            client
               .from('assets')
               .gte('supply_date', today.toISOString())
           )
@@ -1083,7 +1115,7 @@
         await animateNumber(
           'openTickets',
           await getExactCount(
-            supabase
+            client
               .from('tickets')
               .eq('status', 'Open')
           )
@@ -1091,6 +1123,7 @@
 
       } catch (error) {
         console.error('Error loading stats:', error);
+        console.error('If this only happens on some devices, check adblock/VPN/firewall rules for `cdn.jsdelivr.net`, `unpkg.com`, and `*.supabase.co`.');
         console.error('If you see "permission denied for relation", run `supabase/grants.sql` in Supabase SQL Editor to grant API access to anon/authenticated roles.');
         elements.forEach(id => {
           const el = document.getElementById(id);
