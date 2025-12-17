@@ -1043,11 +1043,12 @@
         updateCommunityTags(Array.from(uniqueCommunities));
 
         // Resolved tickets
-        const resolvedTickets = await getExactCount(
-          client
-            .from('tickets')
-            .eq('status', 'Resolved')
-        );
+        const { data: ticketData, error: ticketError } = await client
+          .from('tickets')
+          .select('status');
+        if (ticketError) throw ticketError;
+
+        const resolvedTickets = (ticketData || []).filter(ticket => ticket.status === 'Resolved').length;
         animateNumber('ticketsResolved', resolvedTickets);
 
       } catch (error) {
