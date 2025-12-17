@@ -548,6 +548,22 @@ ORDER BY last_audit DESC;
 COMMENT ON VIEW audit_summary IS 'Summary of audit results by type';
 
 -- ============================================================================
+-- SUPABASE API GRANTS (Required for client-side access)
+-- ============================================================================
+-- RLS policies control *which rows* are accessible; GRANTs control whether
+-- Supabase API roles (anon/authenticated) can access the tables at all.
+--
+-- If your deployed site shows blank/— stats or "permission denied for relation ..."
+-- errors, run `supabase/grants.sql` in Supabase SQL Editor.
+GRANT USAGE ON SCHEMA public TO anon, authenticated;
+GRANT SELECT, UPDATE ON TABLE public.assets TO anon;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.assets TO authenticated;
+GRANT SELECT, INSERT ON TABLE public.tickets TO anon;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.tickets TO authenticated;
+GRANT SELECT, INSERT ON TABLE public.asset_change_log TO anon, authenticated;
+GRANT SELECT, INSERT ON TABLE public.qr_audit_logs TO anon, authenticated;
+
+-- ============================================================================
 -- COMPLETION MESSAGE
 -- ============================================================================
 

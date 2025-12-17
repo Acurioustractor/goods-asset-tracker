@@ -953,7 +953,23 @@
     const SUPABASE_URL = 'https://cwsyhpiuepvdjtxaozwf.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw';
 
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    let supabase;
+    try {
+      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    } catch (e) {
+      console.error('Supabase client failed to initialize. If this only fails online, your network may be blocking the CDN (jsdelivr).', e);
+    }
+
+    async function getExactCount(query) {
+      // Avoid `head: true` count queries (some environments fail to read counts from HEAD responses).
+      // This uses a normal GET with `limit(1)` and still returns an exact total via Content-Range.
+      const { count, error } = await query.select('unique_id', { count: 'exact' }).limit(1);
+      if (error) throw error;
+      if (count === null || typeof count !== 'number') {
+        throw new Error('Count not returned by Supabase (check CORS/Prefer/Content-Range headers).');
+      }
+      return count;
+    }
 
     // ============================================================================
     // MOBILE MENU
@@ -967,26 +983,27 @@
     // ============================================================================
     async function loadStats() {
       try {
+        if (!supabase) throw new Error('Supabase not available');
+
         // Total assets
-        const { count: totalAssets } = await supabase
-          .from('assets')
-          .select('*', { count: 'exact', head: true });
+        const totalAssets = await getExactCount(supabase.from('assets'));
+        animateNumber('totalAssets', totalAssets);
 
-        animateNumber('totalAssets', totalAssets || 0);
-
-        // Delivered assets (has supply_date)
-        const { count: deliveredAssets } = await supabase
-          .from('assets')
-          .select('*', { count: 'exact', head: true })
-          .not('supply_date', 'is', null);
-
-        animateNumber('deliveredAssets', deliveredAssets || 0);
+        // Beds delivered (has supply_date + product includes 'Bed')
+        const deliveredAssets = await getExactCount(
+          supabase
+            .from('assets')
+            .not('supply_date', 'is', null)
+            .ilike('product', '%Bed%')
+        );
+        animateNumber('deliveredAssets', deliveredAssets);
 
         // Communities served (unique communities)
-        const { data: communityData } = await supabase
+        const { data: communityData, error: communityError } = await supabase
           .from('assets')
           .select('community')
           .not('community', 'is', null);
+        if (communityError) throw communityError;
 
         const uniqueCommunities = new Set(communityData?.map(a => a.community).filter(Boolean));
         animateNumber('communitiesServed', uniqueCommunities.size);
@@ -995,15 +1012,16 @@
         updateCommunityTags(Array.from(uniqueCommunities));
 
         // Resolved tickets
-        const { count: resolvedTickets } = await supabase
-          .from('tickets')
-          .select('*', { count: 'exact', head: true })
-          .eq('status', 'Resolved');
-
-        animateNumber('ticketsResolved', resolvedTickets || 0);
+        const resolvedTickets = await getExactCount(
+          supabase
+            .from('tickets')
+            .eq('status', 'Resolved')
+        );
+        animateNumber('ticketsResolved', resolvedTickets);
 
       } catch (error) {
         console.error('Error loading stats:', error);
+        console.error('If you see "permission denied for relation", run `supabase/grants.sql` in Supabase SQL Editor to grant API access to anon/authenticated roles.');
         ['totalAssets', 'deliveredAssets', 'communitiesServed', 'ticketsResolved'].forEach(id => {
           const el = document.getElementById(id);
           el.classList.remove('loading');

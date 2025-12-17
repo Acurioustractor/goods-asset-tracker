@@ -521,6 +521,136 @@
     .tab-panel.active {
       display: block;
     }
+
+    /* Messages */
+    .messages-thread {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .message-bubble {
+      max-width: 85%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-size: 14px;
+      line-height: 1.35;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .message-bubble.inbound {
+      align-self: flex-end;
+      background: rgba(59, 130, 246, 0.2);
+      border: 1px solid rgba(59, 130, 246, 0.35);
+    }
+
+    .message-bubble.outbound {
+      align-self: flex-start;
+      background: rgba(148, 163, 184, 0.12);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+    }
+
+    .message-meta {
+      margin-top: 6px;
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    .message-compose {
+      margin-top: 14px;
+      background: #0f172a;
+      border: 2px solid #334155;
+      border-radius: 14px;
+      padding: 12px;
+    }
+
+    .compose-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .compose-select {
+      width: 100%;
+      padding: 12px;
+      background: #0b1220;
+      border: 2px solid #334155;
+      border-radius: 10px;
+      color: white;
+      font-size: 14px;
+    }
+
+    .compose-textarea {
+      width: 100%;
+      min-height: 88px;
+      padding: 12px;
+      background: #0b1220;
+      border: 2px solid #334155;
+      border-radius: 10px;
+      color: white;
+      font-size: 14px;
+      resize: vertical;
+    }
+
+    .compose-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 10px;
+    }
+
+    .compose-send {
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .compose-send:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* Requests */
+    .request-card {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+
+    .request-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .request-type {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .request-status {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      color: #cbd5e1;
+      white-space: nowrap;
+    }
+
+    .request-meta {
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.4;
+    }
   </style>
 </head>
 <body>
@@ -598,11 +728,17 @@
       <!-- Messages Tab -->
       <div id="messages-panel" class="tab-panel">
         <div class="section">
-          <div id="messagesContainer">
-            <div class="empty-state">
-              <div class="empty-icon">💬</div>
-              <div class="empty-title">No Messages Yet</div>
-              <div class="empty-text">Messages from the Goods on Country team will appear here</div>
+          <div id="messagesContainer"></div>
+
+          <div class="message-compose">
+            <div class="compose-row">
+              <select id="messageAsset" class="compose-select">
+                <option value="">About which item? (optional)</option>
+              </select>
+            </div>
+            <textarea id="messageInput" class="compose-textarea" placeholder="Write a message to the Goods on Country team..."></textarea>
+            <div class="compose-actions">
+              <button id="sendMessageBtn" class="compose-send" onclick="sendMessage()">Send Message</button>
             </div>
           </div>
         </div>
@@ -611,13 +747,9 @@
       <!-- Requests Tab -->
       <div id="requests-panel" class="tab-panel">
         <div class="section">
-          <div id="requestsContainer">
-            <div class="empty-state">
-              <div class="empty-icon">📦</div>
-              <div class="empty-title">No Requests</div>
-              <div class="empty-text">You haven't made any requests yet</div>
-              <button onclick="showRequestModal()" class="empty-btn">Request an Item</button>
-            </div>
+          <div id="requestsContainer"></div>
+          <div style="margin-top: 12px;">
+            <button onclick="showRequestModal()" class="empty-btn">Request an Item</button>
           </div>
         </div>
       </div>
@@ -749,6 +881,8 @@
     const messageBox = document.getElementById('messageBox');
     const claimModal = document.getElementById('claimModal');
     const requestModal = document.getElementById('requestModal');
+    const messagesContainer = document.getElementById('messagesContainer');
+    const requestsContainer = document.getElementById('requestsContainer');
 
     // ============================================================================
     // TABS
@@ -806,6 +940,9 @@
         // Load messages count
         await loadUnreadCount();
 
+        // Load requests + messages
+        await Promise.all([loadRequests(), loadMessages()]);
+
         // Show main content
         loadingState.style.display = 'none';
         mainContent.style.display = 'block';
@@ -854,6 +991,7 @@
         } else {
           renderItems();
           populateRequestAssets();
+          populateMessageAssets();
           loadCompassionContent();
         }
 
@@ -1022,6 +1160,16 @@
         `).join('');
     }
 
+    function populateMessageAssets() {
+      const select = document.getElementById('messageAsset');
+      if (!select) return;
+
+      select.innerHTML = '<option value="">About which item? (optional)</option>' +
+        userItems.map(item => `
+          <option value="${item.asset_id}">${item.assets.product} (${item.asset_id})</option>
+        `).join('');
+    }
+
     async function submitRequest() {
       const type = document.getElementById('requestType').value;
       const assetId = document.getElementById('requestAsset').value;
@@ -1069,11 +1217,75 @@
         document.getElementById('requestType').value = '';
         document.getElementById('requestAsset').value = '';
         document.getElementById('requestDetails').value = '';
+        await loadRequests();
 
       } catch (error) {
         console.error('Request error:', error);
         showMessage('Error submitting request: ' + error.message, 'error');
       }
+    }
+
+    async function loadRequests() {
+      try {
+        if (!currentUser) return;
+
+        const { data, error } = await supabase
+          .from('user_requests')
+          .select('id, asset_id, request_type, description, priority, status, created_at, fulfilled_at, fulfillment_notes')
+          .eq('profile_id', currentUser.id)
+          .order('created_at', { ascending: false })
+          .limit(50);
+
+        if (error) throw error;
+        renderRequests(data || []);
+      } catch (error) {
+        console.error('Error loading requests:', error);
+        requestsContainer.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">⚠️</div>
+            <div class="empty-title">Couldn’t load requests</div>
+            <div class="empty-text">${error.message}</div>
+          </div>
+        `;
+      }
+    }
+
+    function renderRequests(requests) {
+      if (!requests || requests.length === 0) {
+        requestsContainer.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">📦</div>
+            <div class="empty-title">No Requests</div>
+            <div class="empty-text">You haven't made any requests yet</div>
+          </div>
+        `;
+        return;
+      }
+
+      requestsContainer.innerHTML = requests.map(r => {
+        const created = r.created_at ? new Date(r.created_at).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
+        const status = (r.status || 'pending').replace(/_/g, ' ');
+        const asset = r.asset_id ? `Item: ${r.asset_id}` : 'Item: (not set)';
+        const details = r.description ? r.description : 'No details';
+        const fulfilled = r.fulfilled_at ? `Fulfilled: ${new Date(r.fulfilled_at).toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })}` : '';
+        const notes = r.fulfillment_notes ? `Notes: ${r.fulfillment_notes}` : '';
+
+        return `
+          <div class="request-card">
+            <div class="request-top">
+              <div class="request-type">${(r.request_type || 'request').toUpperCase()}</div>
+              <div class="request-status">${status}</div>
+            </div>
+            <div class="request-meta">
+              <div>${asset}</div>
+              <div>Created: ${created}${r.priority ? ` • Priority: ${r.priority}` : ''}</div>
+              <div style="margin-top: 6px; color: #cbd5e1;">${details}</div>
+              ${fulfilled ? `<div style="margin-top: 6px;">${fulfilled}</div>` : ''}
+              ${notes ? `<div style="margin-top: 6px;">${notes}</div>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
     // ============================================================================
@@ -1097,6 +1309,105 @@
         }
       } catch (error) {
         console.error('Error loading unread count:', error);
+      }
+    }
+
+    async function loadMessages() {
+      try {
+        if (!currentUser) return;
+
+        const { data, error } = await supabase
+          .from('messages')
+          .select('id, asset_id, direction, message_text, sender_name, created_at')
+          .eq('profile_id', currentUser.id)
+          .order('created_at', { ascending: true })
+          .limit(200);
+
+        if (error) throw error;
+        renderMessages(data || []);
+      } catch (error) {
+        console.error('Error loading messages:', error);
+        messagesContainer.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">⚠️</div>
+            <div class="empty-title">Couldn’t load messages</div>
+            <div class="empty-text">${error.message}</div>
+          </div>
+        `;
+      }
+    }
+
+    function renderMessages(messages) {
+      if (!messages || messages.length === 0) {
+        messagesContainer.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">💬</div>
+            <div class="empty-title">No Messages Yet</div>
+            <div class="empty-text">Messages from the Goods on Country team will appear here</div>
+          </div>
+        `;
+        return;
+      }
+
+      messagesContainer.innerHTML = `
+        <div class="messages-thread">
+          ${messages.map(m => {
+            const cls = m.direction === 'inbound' ? 'inbound' : 'outbound';
+            const when = m.created_at
+              ? new Date(m.created_at).toLocaleString('en-AU', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
+              : '';
+            const header = m.asset_id ? `About ${m.asset_id}` : (m.sender_name ? m.sender_name : '');
+            return `
+              <div class="message-bubble ${cls}">
+                ${m.message_text || ''}
+                <div class="message-meta">${[header, when].filter(Boolean).join(' • ')}</div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById('messageInput');
+      const btn = document.getElementById('sendMessageBtn');
+      const assetSelect = document.getElementById('messageAsset');
+
+      const text = input.value.trim();
+      const assetId = assetSelect?.value || null;
+
+      if (!text) {
+        showMessage('Please type a message first', 'error');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      try {
+        const senderName = currentUser?.user_metadata?.display_name || currentUser?.phone || 'User';
+        const { error } = await supabase
+          .from('messages')
+          .insert({
+            profile_id: currentUser.id,
+            asset_id: assetId || null,
+            direction: 'inbound',
+            message_text: text,
+            sender_name: senderName
+          });
+
+        if (error) throw error;
+
+        input.value = '';
+        showMessage('Message sent', 'success');
+        await loadMessages();
+
+      } catch (error) {
+        console.error('Send message error:', error);
+        showMessage('Error sending message: ' + error.message, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
       }
     }
 

@@ -104,6 +104,10 @@ python3 scripts/verify_deployment.py
 - QR scan URLs work (loads asset details)
 - Database API accessible
 
+**If live numbers / asset data don’t load online**
+- In Supabase Dashboard → SQL Editor, run: `supabase/grants.sql`
+- This fixes the common case where RLS policies exist, but the API roles (`anon`/`authenticated`) are missing table GRANTs (browser errors like `permission denied for relation assets`).
+
 Expected output:
 ```
 Testing frontend: https://YOUR-SITE-NAME.netlify.app

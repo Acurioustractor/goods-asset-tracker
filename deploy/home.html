@@ -973,7 +973,23 @@
     const SUPABASE_URL = 'https://cwsyhpiuepvdjtxaozwf.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw';
 
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    let supabase;
+    try {
+      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    } catch (e) {
+      console.error('Supabase client failed to initialize. If this only fails online, your network may be blocking the CDN (jsdelivr).', e);
+    }
+
+    async function getExactCount(query) {
+      // Avoid `head: true` count queries (some environments fail to read counts from HEAD responses).
+      // This uses a normal GET with `limit(1)` and still returns an exact total via Content-Range.
+      const { count, error } = await query.select('unique_id', { count: 'exact' }).limit(1);
+      if (error) throw error;
+      if (count === null || typeof count !== 'number') {
+        throw new Error('Count not returned by Supabase (check CORS/Prefer/Content-Range headers).');
+      }
+      return count;
+    }
 
     // ============================================================================
     // PULL TO REFRESH
@@ -1045,34 +1061,37 @@
       });
 
       try {
-        // Total assets
-        const { count: totalAssets } = await supabase
-          .from('assets')
-          .select('*', { count: 'exact', head: true });
+        if (!supabase) throw new Error('Supabase not available');
 
-        await animateNumber('totalAssets', totalAssets || 0);
+        // Total assets
+        await animateNumber('totalAssets', await getExactCount(supabase.from('assets')));
 
         // Delivered today
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
-        const { count: deliveredToday } = await supabase
-          .from('assets')
-          .select('*', { count: 'exact', head: true })
-          .gte('supply_date', today.toISOString());
-
-        await animateNumber('deliveredToday', deliveredToday || 0);
+        await animateNumber(
+          'deliveredToday',
+          await getExactCount(
+            supabase
+              .from('assets')
+              .gte('supply_date', today.toISOString())
+          )
+        );
 
         // Open tickets
-        const { count: openTickets } = await supabase
-          .from('tickets')
-          .select('*', { count: 'exact', head: true })
-          .eq('status', 'Open');
-
-        await animateNumber('openTickets', openTickets || 0);
+        await animateNumber(
+          'openTickets',
+          await getExactCount(
+            supabase
+              .from('tickets')
+              .eq('status', 'Open')
+          )
+        );
 
       } catch (error) {
         console.error('Error loading stats:', error);
+        console.error('If you see "permission denied for relation", run `supabase/grants.sql` in Supabase SQL Editor to grant API access to anon/authenticated roles.');
         elements.forEach(id => {
           const el = document.getElementById(id);
           el.classList.remove('loading');

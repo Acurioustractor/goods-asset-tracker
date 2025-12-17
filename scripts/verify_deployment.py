@@ -77,7 +77,7 @@ def test_database(config):
             'Authorization': f'Bearer {anon_key}'
         }
         response = requests.get(
-            f"{supabase_url}/rest/v1/assets?select=count",
+            f"{supabase_url}/rest/v1/assets?select=unique_id&limit=1",
             headers=headers,
             timeout=10
         )
@@ -87,6 +87,11 @@ def test_database(config):
             return True
         else:
             print(f"  ✗ Database returned status {response.status_code}")
+            # Helpful when GRANTs/RLS block access
+            try:
+                print(f"    {response.text[:300]}")
+            except Exception:
+                pass
             return False
     except Exception as e:
         print(f"  ✗ Database test failed: {e}")

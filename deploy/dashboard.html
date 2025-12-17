@@ -1338,6 +1338,16 @@
     // ============================================================================
     // LOAD DATA
     // ============================================================================
+    function isBedProduct(product) {
+      return typeof product === 'string' && product.toLowerCase().includes('bed');
+    }
+
+    function isWasherProduct(product) {
+      if (typeof product !== 'string') return false;
+      const p = product.toLowerCase();
+      return p.includes('washing') || p.includes('washer') || p.includes('machine');
+    }
+
     async function loadAssets() {
       try {
         const { data, error } = await supabase
@@ -1384,8 +1394,8 @@
 
       const stats = {
         totalAssets: allAssets.length,
-        totalBeds: allAssets.filter(a => a.product && a.product.includes('Bed')).length,
-        totalWashers: allAssets.filter(a => a.product === 'Washing Machine').length,
+        totalBeds: allAssets.filter(a => isBedProduct(a.product)).length,
+        totalWashers: allAssets.filter(a => isWasherProduct(a.product) && !isBedProduct(a.product)).length,
         totalToday: todayDeliveries.length
       };
 
@@ -1755,11 +1765,11 @@
           break;
         case 'beds':
           document.getElementById('statBeds').classList.add('active');
-          filteredAssets = allAssets.filter(a => a.product && a.product.includes('Bed'));
+          filteredAssets = allAssets.filter(a => isBedProduct(a.product));
           break;
         case 'washers':
           document.getElementById('statWashers').classList.add('active');
-          filteredAssets = allAssets.filter(a => a.product === 'Washing Machine');
+          filteredAssets = allAssets.filter(a => isWasherProduct(a.product) && !isBedProduct(a.product));
           break;
         case 'today':
           document.getElementById('statToday').classList.add('active');

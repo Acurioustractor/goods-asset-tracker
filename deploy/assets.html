@@ -169,6 +169,16 @@
     let allAssets = [];
     let filteredAssets = [];
 
+    function isBedProduct(product) {
+      return typeof product === 'string' && product.toLowerCase().includes('bed');
+    }
+
+    function isWasherProduct(product) {
+      if (typeof product !== 'string') return false;
+      const p = product.toLowerCase();
+      return p.includes('washing') || p.includes('washer') || p.includes('machine');
+    }
+
     // Load all assets
     async function loadAssets() {
       try {
@@ -209,8 +219,8 @@
     // Update statistics
     function updateStats() {
       const totalAssets = allAssets.length;
-      const totalBeds = allAssets.filter(a => a.product.includes('Bed')).length;
-      const totalWashers = allAssets.filter(a => a.product === 'Washing Machine').length;
+      const totalBeds = allAssets.filter(a => isBedProduct(a.product)).length;
+      const totalWashers = allAssets.filter(a => isWasherProduct(a.product) && !isBedProduct(a.product)).length;
       const communities = new Set(allAssets.map(a => a.community));
 
       document.getElementById('totalAssets').textContent = totalAssets;
@@ -247,7 +257,7 @@
       noResults.style.display = 'none';
 
       grid.innerHTML = filteredAssets.map(asset => {
-        const productColor = asset.product.includes('Bed') ? 'green' : 'purple';
+        const productColor = isBedProduct(asset.product) ? 'green' : 'purple';
         const lastCheckin = asset.last_checkin_date
           ? new Date(asset.last_checkin_date).toLocaleDateString()
           : 'Never';

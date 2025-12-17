@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Link QR Code - Goods Tracker</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0f172a;
+      min-height: 100vh;
+      color: white;
+    }
+
+    .app {
+      max-width: 500px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Hamburger Menu */
+    .hamburger-nav {
+      background: #1e293b;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #334155;
+    }
+
+    .hamburger-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 8px;
+      line-height: 1;
+    }
+
+    .nav-title-small {
+      font-size: 14px;
+      color: #94a3b8;
+    }
+
+    /* Slide-out Menu */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 500;
+      display: none;
+    }
+
+    .menu-overlay.show {
+      display: block;
+    }
+
+    .slide-menu {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 280px;
+      height: 100%;
+      background: #1e293b;
+      z-index: 501;
+      transition: left 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide-menu.show {
+      left: 0;
+    }
+
+    .menu-header {
+      padding: 20px;
+      border-bottom: 1px solid #334155;
+    }
+
+    .menu-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .menu-header p {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    .menu-items {
+      flex: 1;
+      padding: 16px 0;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+
+    .menu-item:hover {
+      background: #334155;
+    }
+
+    .menu-item.active {
+      background: #3b82f6;
+    }
+
+    .menu-item-icon {
+      font-size: 20px;
+      width: 28px;
+      text-align: center;
+    }
+
+    .menu-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .header p {
+      font-size: 13px;
+      opacity: 0.9;
+      margin-top: 4px;
+    }
+
+    /* Instructions */
+    .instructions {
+      background: #1e293b;
+      margin: 16px;
+      padding: 16px;
+      border-radius: 12px;
+      border-left: 4px solid #f59e0b;
+    }
+
+    .instructions h3 {
+      font-size: 14px;
+      color: #f59e0b;
+      margin-bottom: 8px;
+    }
+
+    .instructions p {
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    /* Form Section */
+    .form-section {
+      padding: 16px;
+    }
+
+    .form-group {
+      background: #1e293b;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .form-select {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 15px;
+      border: 2px solid #334155;
+      border-radius: 10px;
+      background: #0f172a;
+      color: white;
+      appearance: auto;
+      cursor: pointer;
+    }
+
+    .form-select:focus {
+      outline: none;
+      border-color: #f59e0b;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 16px;
+      border: 2px solid #334155;
+      border-radius: 10px;
+      background: #0f172a;
+      color: white;
+      text-transform: uppercase;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #f59e0b;
+    }
+
+    .form-input::placeholder {
+      text-transform: none;
+      color: #64748b;
+    }
+
+    /* Preview */
+    .preview-box {
+      background: #0f172a;
+      border: 2px solid #334155;
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+
+    .preview-box.ready {
+      border-color: #10b981;
+    }
+
+    .preview-title {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 8px;
+    }
+
+    .preview-content {
+      font-size: 14px;
+    }
+
+    .preview-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+    }
+
+    .preview-label {
+      color: #94a3b8;
+    }
+
+    .preview-value {
+      font-weight: 600;
+    }
+
+    /* Submit Button */
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: transform 0.2s;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      transform: scale(1.02);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Message */
+    .message {
+      position: fixed;
+      top: 80px;
+      left: 16px;
+      right: 16px;
+      max-width: 468px;
+      margin: 0 auto;
+      padding: 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 150;
+      display: none;
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    .message.error {
+      background: #ef4444;
+    }
+
+    .message.success {
+      background: #10b981;
+    }
+
+    /* Success Screen */
+    .success-screen {
+      position: fixed;
+      inset: 0;
+      background: #0f172a;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      z-index: 200;
+    }
+
+    .success-screen.show {
+      display: flex;
+    }
+
+    .success-icon {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      margin-bottom: 24px;
+    }
+
+    .success-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .success-subtitle {
+      color: #94a3b8;
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .next-btn {
+      width: 100%;
+      max-width: 300px;
+      padding: 16px;
+      background: #3b82f6;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Loading overlay */
+    .loading-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 300;
+    }
+
+    .loading-overlay.show {
+      display: flex;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid #334155;
+      border-top-color: #f59e0b;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- Hamburger Navigation -->
+    <div class="hamburger-nav">
+      <button class="hamburger-btn" id="menuBtn">&#9776;</button>
+      <span class="nav-title-small">Goods Asset Tracker</span>
+      <div></div>
+    </div>
+
+    <!-- Slide-out Menu -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="slide-menu" id="slideMenu">
+      <button class="menu-close" id="menuClose">&times;</button>
+      <div class="menu-header">
+        <h2>Goods Asset Tracker</h2>
+        <p>Asset Management System</p>
+      </div>
+      <div class="menu-items">
+        <a href="home.html" class="menu-item">
+          <span class="menu-item-icon">&#127968;</span>
+          Home
+        </a>
+        <a href="dashboard.html" class="menu-item">
+          <span class="menu-item-icon">&#128202;</span>
+          Dashboard
+        </a>
+        <a href="deliver.html" class="menu-item">
+          <span class="menu-item-icon">&#128666;</span>
+          Deliver Bed
+        </a>
+        <a href="link-qr.html" class="menu-item active">
+          <span class="menu-item-icon">&#128279;</span>
+          Link QR Code
+        </a>
+        <a href="products.html" class="menu-item">
+          <span class="menu-item-icon">&#128230;</span>
+          Products
+        </a>
+      </div>
+    </div>
+
+    <div class="header">
+      <h1>Link QR Code to Machine</h1>
+      <p>Assign a printed QR code to an existing washing machine</p>
+    </div>
+
+    <div class="instructions">
+      <h3>How this works</h3>
+      <p>When you stick a QR code on a washing machine, use this page to link the QR code number to the existing machine record. This keeps all the original data (location, recipient name, community) intact.</p>
+    </div>
+
+    <div id="messageBox" class="message"></div>
+
+    <div class="form-section">
+      <div class="form-group">
+        <label class="form-label">1. Select Washing Machine</label>
+        <select id="machineSelect" class="form-select">
+          <option value="">-- Loading machines... --</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">2. Enter New QR Code ID</label>
+        <input type="text" id="qrCodeInput" class="form-input" placeholder="e.g., GB0-154-3">
+        <div class="preview-box" id="previewBox">
+          <div class="preview-title">Preview</div>
+          <div class="preview-content" id="previewContent">
+            Select a machine and enter a QR code to preview the change
+          </div>
+        </div>
+      </div>
+
+      <button id="submitBtn" class="submit-btn" disabled>
+        Link QR Code
+      </button>
+    </div>
+  </div>
+
+  <!-- Success Screen -->
+  <div id="successScreen" class="success-screen">
+    <div class="success-icon">&#10003;</div>
+    <div class="success-title">QR Code Linked!</div>
+    <div id="successMessage" class="success-subtitle">The QR code has been linked to the machine</div>
+    <button id="nextBtn" class="next-btn">Link Another</button>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL = 'https://cwsyhpiuepvdjtxaozwf.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw';
+
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let machines = [];
+    let selectedMachine = null;
+
+    // DOM elements
+    const machineSelect = document.getElementById('machineSelect');
+    const qrCodeInput = document.getElementById('qrCodeInput');
+    const previewBox = document.getElementById('previewBox');
+    const previewContent = document.getElementById('previewContent');
+    const submitBtn = document.getElementById('submitBtn');
+    const messageBox = document.getElementById('messageBox');
+    const successScreen = document.getElementById('successScreen');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+
+    // Menu
+    const menuBtn = document.getElementById('menuBtn');
+    const menuClose = document.getElementById('menuClose');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const slideMenu = document.getElementById('slideMenu');
+
+    menuBtn.addEventListener('click', () => {
+      slideMenu.classList.add('show');
+      menuOverlay.classList.add('show');
+    });
+
+    menuClose.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+
+    function closeMenu() {
+      slideMenu.classList.remove('show');
+      menuOverlay.classList.remove('show');
+    }
+
+    // Load washing machines
+    async function loadMachines() {
+      try {
+        const { data, error } = await supabase
+          .from('assets')
+          .select('unique_id, product, community, name, place')
+          .eq('product', 'Washing Machine')
+          .order('community', { ascending: true });
+
+        if (error) throw error;
+
+        machines = data || [];
+
+        if (machines.length === 0) {
+          machineSelect.innerHTML = '<option value="">-- No washing machines found --</option>';
+          return;
+        }
+
+        // Group by community
+        const byComm = {};
+        machines.forEach(m => {
+          const comm = m.community || 'Unknown';
+          if (!byComm[comm]) byComm[comm] = [];
+          byComm[comm].push(m);
+        });
+
+        machineSelect.innerHTML = '<option value="">-- Select a washing machine --</option>';
+
+        Object.keys(byComm).sort().forEach(comm => {
+          const optgroup = document.createElement('optgroup');
+          optgroup.label = `${comm} (${byComm[comm].length})`;
+
+          byComm[comm].forEach(m => {
+            const option = document.createElement('option');
+            option.value = m.unique_id;
+            option.textContent = `${m.unique_id} - ${m.name || 'No name'}`;
+            optgroup.appendChild(option);
+          });
+
+          machineSelect.appendChild(optgroup);
+        });
+
+      } catch (error) {
+        console.error('Error loading machines:', error);
+        machineSelect.innerHTML = '<option value="">-- Error loading --</option>';
+      }
+    }
+
+    // Handle machine selection
+    machineSelect.addEventListener('change', () => {
+      const id = machineSelect.value;
+      selectedMachine = machines.find(m => m.unique_id === id) || null;
+      updatePreview();
+    });
+
+    // Handle QR code input
+    qrCodeInput.addEventListener('input', () => {
+      qrCodeInput.value = qrCodeInput.value.toUpperCase();
+      updatePreview();
+    });
+
+    // Update preview
+    function updatePreview() {
+      const qrCode = qrCodeInput.value.trim();
+
+      if (!selectedMachine || !qrCode) {
+        previewBox.classList.remove('ready');
+        previewContent.innerHTML = 'Select a machine and enter a QR code to preview the change';
+        submitBtn.disabled = true;
+        return;
+      }
+
+      previewBox.classList.add('ready');
+      previewContent.innerHTML = `
+        <div class="preview-row">
+          <span class="preview-label">Machine:</span>
+          <span class="preview-value">${selectedMachine.name || 'Unnamed'}</span>
+        </div>
+        <div class="preview-row">
+          <span class="preview-label">Community:</span>
+          <span class="preview-value">${selectedMachine.community || 'Unknown'}</span>
+        </div>
+        <div class="preview-row">
+          <span class="preview-label">Old ID:</span>
+          <span class="preview-value">${selectedMachine.unique_id}</span>
+        </div>
+        <div class="preview-row">
+          <span class="preview-label">New ID:</span>
+          <span class="preview-value" style="color: #10b981;">${qrCode}</span>
+        </div>
+      `;
+      submitBtn.disabled = false;
+    }
+
+    // Submit
+    submitBtn.addEventListener('click', async () => {
+      if (!selectedMachine) {
+        showMessage('Please select a machine', 'error');
+        return;
+      }
+
+      const newQrCode = qrCodeInput.value.trim().toUpperCase();
+      if (!newQrCode) {
+        showMessage('Please enter a QR code', 'error');
+        return;
+      }
+
+      // Validate format
+      if (!newQrCode.match(/^GB0-\d+(-\d+)?$/)) {
+        showMessage('Invalid QR code format. Use GB0-XXX or GB0-XXX-Y', 'error');
+        return;
+      }
+
+      // Check if QR code already exists
+      const { data: existing } = await supabase
+        .from('assets')
+        .select('unique_id')
+        .eq('unique_id', newQrCode)
+        .single();
+
+      if (existing) {
+        showMessage(`QR code ${newQrCode} is already in use`, 'error');
+        return;
+      }
+
+      loadingOverlay.classList.add('show');
+
+      try {
+        // Update the unique_id
+        const { error } = await supabase
+          .from('assets')
+          .update({
+            unique_id: newQrCode,
+            notes: (selectedMachine.notes || '') + `\n[QR Linked ${new Date().toLocaleDateString()}]: Changed from ${selectedMachine.unique_id} to ${newQrCode}`
+          })
+          .eq('unique_id', selectedMachine.unique_id);
+
+        if (error) throw error;
+
+        loadingOverlay.classList.remove('show');
+
+        // Show success
+        document.getElementById('successMessage').textContent =
+          `${selectedMachine.unique_id} is now ${newQrCode}`;
+        successScreen.classList.add('show');
+
+      } catch (error) {
+        console.error('Error:', error);
+        loadingOverlay.classList.remove('show');
+        showMessage('Failed to link QR code: ' + error.message, 'error');
+      }
+    });
+
+    // Next button
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      successScreen.classList.remove('show');
+      machineSelect.value = '';
+      qrCodeInput.value = '';
+      selectedMachine = null;
+      updatePreview();
+      loadMachines(); // Refresh list
+    });
+
+    // Message
+    function showMessage(text, type) {
+      messageBox.textContent = text;
+      messageBox.className = `message ${type} show`;
+      setTimeout(() => {
+        messageBox.classList.remove('show');
+      }, 4000);
+    }
+
+    // Initialize
+    loadMachines();
+  </script>
+</body>
+</html>

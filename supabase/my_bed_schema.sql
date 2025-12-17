@@ -212,6 +212,18 @@ CREATE POLICY "Staff can manage compassion_content" ON compassion_content
 FOR ALL USING (auth.role() = 'authenticated');
 
 -- ============================================================================
+-- SUPABASE API GRANTS (Required for client-side access)
+-- ============================================================================
+-- These tables are accessed via Supabase Auth (role: authenticated).
+-- RLS policies restrict rows, but GRANTs are still required for API access.
+GRANT USAGE ON SCHEMA public TO anon, authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.profiles TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.user_assets TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.messages TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.user_requests TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.compassion_content TO authenticated;
+
+-- ============================================================================
 -- TRIGGERS
 -- ============================================================================
 
