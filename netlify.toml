@@ -15,7 +15,7 @@
   # QR codes with asset_id go to support form (index.html)
   # This handles: https://goodsoncountry.netlify.app/?asset_id=GB0-1
   from = "/*"
-  to = "/index.html"
+  to = "/support.html"
   status = 200
   conditions = {Query = {asset_id = ":id"}}
   force = true
@@ -31,14 +31,14 @@
 [[redirects]]
   # /support path goes to support form
   from = "/support"
-  to = "/index.html"
+  to = "/support.html"
   status = 200
   force = true
 
 [[redirects]]
   # /support/* should also route to support form
   from = "/support/*"
-  to = "/index.html"
+  to = "/support.html"
   status = 200
   force = true
 
