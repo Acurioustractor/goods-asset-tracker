@@ -1018,26 +1018,25 @@
         const client = await ensureSupabase();
 
         // Total assets
-        const totalAssets = await getExactCount(client.from('assets'));
+        const { data: assetsData, error: assetsError } = await client
+          .from('assets')
+          .select('supply_date, product, community');
+        if (assetsError) throw assetsError;
+
+        const totalAssets = (assetsData || []).length;
         animateNumber('totalAssets', totalAssets);
 
-        // Beds delivered (has supply_date + product includes 'Bed')
-        const deliveredAssets = await getExactCount(
-          client
-            .from('assets')
-            .filter('supply_date', 'not.is', null)
-            .ilike('product', '%Bed%')
-        );
+        const deliveredAssets = (assetsData || []).filter(asset => {
+          return asset.supply_date && asset.product && asset.product.toLowerCase().includes('bed');
+        }).length;
         animateNumber('deliveredAssets', deliveredAssets);
 
-        // Communities served (unique communities)
-        const { data: communityData, error: communityError } = await client
-          .from('assets')
-          .select('community')
-          .not('community', 'is', null);
-        if (communityError) throw communityError;
-
-        const uniqueCommunities = new Set(communityData?.map(a => a.community).filter(Boolean));
+        const uniqueCommunities = new Set(
+          (assetsData || [])
+            .map(asset => asset.community)
+            .filter(Boolean)
+            .map(c => c.toString().trim())
+        );
         animateNumber('communitiesServed', uniqueCommunities.size);
 
         // Update community tags
