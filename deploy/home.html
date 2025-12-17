@@ -973,7 +973,7 @@
     const SUPABASE_URL = 'https://cwsyhpiuepvdjtxaozwf.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw';
 
-    let supabase;
+    let supabaseClient;
     async function loadScript(src) {
       return new Promise((resolve, reject) => {
         const el = document.createElement('script');
@@ -987,7 +987,7 @@
     }
 
     async function ensureSupabase() {
-      if (supabase) return supabase;
+      if (supabaseClient) return supabaseClient;
 
       // If jsdelivr is blocked/down, try a fallback CDN.
       if (!window.supabase?.createClient) {
@@ -1008,8 +1008,8 @@
         throw new Error('Supabase library not available (blocked by network/adblocker).');
       }
 
-      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-      return supabase;
+      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      return supabaseClient;
     }
 
     async function getExactCount(query) {
