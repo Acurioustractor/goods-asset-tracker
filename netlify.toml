@@ -33,7 +33,14 @@
   from = "/support"
   to = "/index.html"
   status = 200
-  force = false
+  force = true
+
+[[redirects]]
+  # /support/* should also route to support form
+  from = "/support/*"
+  to = "/index.html"
+  status = 200
+  force = true
 
 [[redirects]]
   # /admin goes to admin dashboard
