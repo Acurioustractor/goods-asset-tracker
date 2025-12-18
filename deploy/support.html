@@ -780,7 +780,7 @@
     </div>
 
     <!-- Manual Entry (shown when no asset_id) -->
-    <div id="manualEntry" class="manual-entry" style="display: none;">
+    <div id="manualEntry" class="manual-entry">
       <h2>Identify Your Product</h2>
       <p>Scan the QR code on your product or enter the ID manually.</p>
 
@@ -849,11 +849,15 @@
 
   </div>
 
-  <!-- Supabase JavaScript Client -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Supabase JavaScript Client (pinned + CDN fallback) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.88.0/dist/umd/supabase.js"
+    onerror="this.onerror=null;this.src='https://unpkg.com/@supabase/supabase-js@2.88.0/dist/umd/supabase.js'"></script>
 
-  <!-- QR Scanner Library -->
-  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <!-- QR Scanner Library (pinned + CDN fallback) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js"
+    onerror="this.onerror=null;this.src='https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js'"></script>
 
   <script>
     // ============================================================================
@@ -862,7 +866,26 @@
     const SUPABASE_URL = 'https://cwsyhpiuepvdjtxaozwf.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw';
 
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    let client = null;
+
+    function getSupabaseClient() {
+      if (client) return client;
+      if (window.supabase && typeof window.supabase.createClient === 'function') {
+        client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        return client;
+      }
+      return null;
+    }
+
+    async function waitForSupabaseClient({ timeoutMs = 2500 } = {}) {
+      const start = Date.now();
+      while (Date.now() - start < timeoutMs) {
+        const c = getSupabaseClient();
+        if (c) return c;
+        await new Promise((r) => setTimeout(r, 150));
+      }
+      return null;
+    }
 
     // ============================================================================
     // QR SCANNER
@@ -870,6 +893,11 @@
     let html5QrCode = null;
 
     function startScanner() {
+      if (typeof window.Html5Qrcode !== 'function') {
+        showMessage('QR scanner failed to load. Please enter the asset ID manually.', 'error');
+        return;
+      }
+
       const scannerContainer = document.getElementById('scannerContainer');
       scannerContainer.classList.add('show');
 
@@ -951,8 +979,11 @@
 
     async function checkClaimStatus(assetUniqueId) {
       try {
+        const supabaseClient = await waitForSupabaseClient();
+        if (!supabaseClient) return;
+
         // Check if user is logged in
-        const { data: { user } } = await supabase.auth.getUser();
+        const { data: { user } } = await supabaseClient.auth.getUser();
         currentUser = user;
 
         const claimSection = document.getElementById('claimSection');
@@ -960,7 +991,7 @@
 
         if (user) {
           // Check if already claimed by this user
-          const { data: claim } = await supabase
+          const { data: claim } = await supabaseClient
             .from('user_assets')
             .select('id')
             .eq('profile_id', user.id)
@@ -989,7 +1020,7 @@
           }
 
           // Pre-fill form with profile info
-          const { data: profile } = await supabase
+          const { data: profile } = await supabaseClient
             .from('profiles')
             .select('display_name, phone')
             .eq('id', user.id)
@@ -1021,7 +1052,10 @@
       if (!currentUser || !currentAssetData) return;
 
       try {
-        const { error } = await supabase
+        const supabaseClient = await waitForSupabaseClient();
+        if (!supabaseClient) throw new Error('Unable to connect. Please refresh and try again.');
+
+        const { error } = await supabaseClient
           .from('user_assets')
           .insert({
             profile_id: currentUser.id,
@@ -1060,7 +1094,14 @@
       }
 
       try {
-        const { data, error } = await supabase
+        const supabaseClient = await waitForSupabaseClient();
+        if (!supabaseClient) {
+          document.getElementById('manualEntry').style.display = 'block';
+          showMessage('Support is still loading. If this persists, disable adblock/VPN for this site.', 'info');
+          return;
+        }
+
+        const { data, error } = await supabaseClient
           .from('assets')
           .select('unique_id, name, product, community, place')
           .eq('unique_id', id)
@@ -1133,6 +1174,9 @@
       btnText.innerHTML = '<span class="loading-spinner"></span>Submitting...';
 
       try {
+        const supabaseClient = await waitForSupabaseClient();
+        if (!supabaseClient) throw new Error('Support is still loading. Please refresh and try again.');
+
         const formData = {
           name: document.getElementById('name').value.trim(),
           contact: document.getElementById('contact').value.trim(),
@@ -1153,7 +1197,7 @@
           const fileName = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
           const filePath = `tickets/${fileName}`;
 
-          const { error: uploadError } = await supabase.storage
+          const { error: uploadError } = await supabaseClient.storage
             .from('ticket-photos')
             .upload(filePath, formData.photoFile);
 
@@ -1162,7 +1206,7 @@
             throw new Error('Failed to upload photo. Please try without photo.');
           }
 
-          const { data: urlData } = supabase.storage
+          const { data: urlData } = supabaseClient.storage
             .from('ticket-photos')
             .getPublicUrl(filePath);
 
@@ -1171,7 +1215,7 @@
 
         btnText.innerHTML = '<span class="loading-spinner"></span>Creating ticket...';
 
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
           .from('tickets')
           .insert([{
             asset_id: assetId,
@@ -1219,6 +1263,8 @@
     // INITIALIZATION
     // ============================================================================
 
+    // Show manual entry by default; try asset lookup if asset_id provided.
+    document.getElementById('manualEntry').style.display = 'block';
     loadAssetDetails();
 
     // Mobile menu functionality
