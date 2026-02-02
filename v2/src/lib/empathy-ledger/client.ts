@@ -15,12 +15,18 @@ import type {
   StoriesQueryParams,
   StorytellersQueryParams,
   PlacementsQueryParams,
+  SyndicationStoryteller,
+  SyndicationStorytellersResponse,
+  SyndicationStorytellerResponse,
+  ProjectInsights,
 } from './types';
 
 // Environment configuration
 const EMPATHY_LEDGER_URL = process.env.EMPATHY_LEDGER_API_URL || 'https://empathy-ledger.vercel.app';
 const EMPATHY_LEDGER_API_KEY = process.env.EMPATHY_LEDGER_API_KEY || '';
 const GOODS_PROJECT_CODE = process.env.EMPATHY_LEDGER_PROJECT_CODE || 'goods-on-country';
+const GOODS_SITE_SLUG = process.env.EMPATHY_LEDGER_SITE_SLUG || 'goods-on-country';
+const GOODS_PROJECT_ID = process.env.EMPATHY_LEDGER_PROJECT_ID || '';
 
 // Feature flag to enable/disable Empathy Ledger
 const ENABLE_EMPATHY_LEDGER = process.env.ENABLE_EMPATHY_LEDGER !== 'false';
@@ -73,6 +79,38 @@ async function fetchFromEmpathyLedger<T>(
 
   if (!response.ok) {
     throw new Error(`Empathy Ledger API error: ${response.status} ${response.statusText}`);
+  }
+
+  return response.json();
+}
+
+/**
+ * Make authenticated request to the Empathy Ledger Syndication API
+ * Uses /api/v1/sites/{siteSlug}/ endpoints which return rich analysis data
+ */
+async function fetchFromSyndicationAPI<T>(
+  endpoint: string,
+  params: Record<string, unknown> = {},
+  options: { revalidate?: number } = {}
+): Promise<T> {
+  const queryString = buildQueryString(params);
+  const url = `${EMPATHY_LEDGER_URL}/api/v1/sites/${GOODS_SITE_SLUG}${endpoint}${queryString ? `?${queryString}` : ''}`;
+
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+  };
+
+  if (EMPATHY_LEDGER_API_KEY) {
+    headers['X-API-Key'] = EMPATHY_LEDGER_API_KEY;
+  }
+
+  const response = await fetch(url, {
+    headers,
+    next: { revalidate: options.revalidate ?? 300 },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Empathy Ledger Syndication API error: ${response.status} ${response.statusText}`);
   }
 
   return response.json();
@@ -310,6 +348,89 @@ export const empathyLedger = {
   async getSlotUrl(slotKey: string): Promise<string | undefined> {
     const placements = await this.getPlacements({ slotKey });
     return placements[slotKey]?.media?.url;
+  },
+
+  // =============================================================
+  // Syndication API — rich analysis data (themes, quotes, impact)
+  // =============================================================
+
+  /**
+   * Fetch storytellers for the Goods project with full analysis data
+   * (themes, quotes, impact dimensions, ALMA signals)
+   */
+  async getProjectStorytellers(params: {
+    projectId?: string;
+    limit?: number;
+    offset?: number;
+  } = {}): Promise<SyndicationStoryteller[]> {
+    if (!ENABLE_EMPATHY_LEDGER) return [];
+
+    const projectId = params.projectId || GOODS_PROJECT_ID;
+    if (!projectId) {
+      console.warn('[EmpathyLedger] No project ID configured — set EMPATHY_LEDGER_PROJECT_ID');
+      return [];
+    }
+
+    try {
+      const response = await fetchFromSyndicationAPI<SyndicationStorytellersResponse>(
+        `/projects/${projectId}/storytellers`,
+        {
+          limit: params.limit ?? 50,
+          offset: params.offset ?? 0,
+        }
+      );
+
+      console.log(`[EmpathyLedger] Syndication: ${response.storytellers.length} storytellers with analysis`);
+      return response.storytellers;
+    } catch (error) {
+      console.error('[EmpathyLedger] Failed to fetch project storytellers:', error);
+      return [];
+    }
+  },
+
+  /**
+   * Fetch a single storyteller's full profile + analysis
+   */
+  async getStoryteller(storytellerId: string): Promise<SyndicationStoryteller | null> {
+    if (!ENABLE_EMPATHY_LEDGER) return null;
+
+    try {
+      const response = await fetchFromSyndicationAPI<SyndicationStorytellerResponse>(
+        `/storytellers/${storytellerId}`
+      );
+
+      console.log(`[EmpathyLedger] Syndication: storyteller ${response.storyteller.name} loaded`);
+      return response.storyteller;
+    } catch (error) {
+      console.error(`[EmpathyLedger] Failed to fetch storyteller ${storytellerId}:`, error);
+      return null;
+    }
+  },
+
+  /**
+   * Fetch project-level aggregated insights
+   * (aggregated themes, top quotes, impact dimensions, ALMA signals)
+   */
+  async getProjectInsights(projectId?: string): Promise<ProjectInsights | null> {
+    if (!ENABLE_EMPATHY_LEDGER) return null;
+
+    const id = projectId || GOODS_PROJECT_ID;
+    if (!id) {
+      console.warn('[EmpathyLedger] No project ID configured — set EMPATHY_LEDGER_PROJECT_ID');
+      return null;
+    }
+
+    try {
+      const response = await fetchFromSyndicationAPI<ProjectInsights>(
+        `/projects/${id}/insights`
+      );
+
+      console.log(`[EmpathyLedger] Syndication: project insights loaded (${response.themes.length} themes)`);
+      return response;
+    } catch (error) {
+      console.error('[EmpathyLedger] Failed to fetch project insights:', error);
+      return null;
+    }
   },
 };
 

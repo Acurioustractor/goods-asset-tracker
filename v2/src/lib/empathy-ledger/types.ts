@@ -52,7 +52,7 @@ export interface EmpathyLedgerStory {
   consentVerified: boolean;
 }
 
-// Storyteller/artisan profile
+// Storyteller/artisan profile (basic — from content-hub)
 export interface EmpathyLedgerStoryteller {
   id: string;
   displayName: string;
@@ -64,6 +64,89 @@ export interface EmpathyLedgerStoryteller {
   storyCount: number;
   featured: boolean;
   community: string | null;
+}
+
+// --- Syndication API types (rich analysis data) ---
+
+export interface StorytellerTheme {
+  name: string;
+  displayName: string;
+  weight: number;
+  culturalContext?: string | null;
+  countryConnection?: string | null;
+}
+
+export interface StorytellerQuote {
+  text: string;
+  context: string | null;
+  culturalSignificance?: string | null;
+  theme?: string | null;
+  impactScore: number | null;
+  storytellerName?: string;
+}
+
+export interface CulturalMarker {
+  type: string;
+  content: string;
+  significance: string | null;
+  intergenerational: boolean;
+  countryConnection: string | null;
+}
+
+export interface ImpactDimensions {
+  individual?: Record<string, number>;
+  community?: Record<string, number>;
+  environmental?: Record<string, number>;
+  alma?: Record<string, number>;
+  [key: string]: Record<string, number> | undefined;
+}
+
+// Storyteller with analysis data (from syndication API)
+export interface SyndicationStoryteller {
+  id: string;
+  name: string;
+  bio: string | null;
+  avatarUrl: string | null;
+  culturalBackground: string[];
+  location: string | null;
+  isElder: boolean;
+  themes: StorytellerTheme[];
+  quotes: StorytellerQuote[];
+  impactDimensions: ImpactDimensions | null;
+  emotionalTone: string | null;
+  qualityScore: number | null;
+  transcriptCount: number;
+  // Full profile fields (from individual storyteller endpoint)
+  expertiseAreas?: string[];
+  languageSkills?: string[];
+  almaSignals?: Record<string, unknown> | null;
+  culturalMarkers?: CulturalMarker[];
+  mediaCount?: number;
+  analyzedAt?: string | null;
+}
+
+// Project insights (from syndication API)
+export interface ProjectInsights {
+  project: {
+    id: string;
+    name: string;
+    storytellerCount: number;
+    transcriptCount: number;
+  };
+  themes: Array<{
+    name: string;
+    displayName: string;
+    frequency: number;
+    storytellerCount: number;
+    culturalContexts: string[];
+  }>;
+  topQuotes: StorytellerQuote[];
+  impactDimensions: Record<string, unknown>;
+  almaSignals: Record<string, unknown> | null;
+  lcaaRhythm: Record<string, unknown> | null;
+  conservationOutcomes: Record<string, unknown> | null;
+  sovereigntyIndicators: Record<string, unknown> | null;
+  analyzedAt: string | null;
 }
 
 // API Response wrappers
@@ -169,4 +252,19 @@ export interface PlacementsQueryParams {
   tags?: string[];
   slotKey?: string;
   includeEmpty?: boolean;
+}
+
+// Syndication API response wrappers
+export interface SyndicationStorytellersResponse {
+  storytellers: SyndicationStoryteller[];
+  pagination: {
+    total: number;
+    limit: number;
+    offset: number;
+    hasMore: boolean;
+  };
+}
+
+export interface SyndicationStorytellerResponse {
+  storyteller: SyndicationStoryteller;
 }

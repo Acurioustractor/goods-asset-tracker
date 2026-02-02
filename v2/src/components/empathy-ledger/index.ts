@@ -6,6 +6,7 @@
 export { StoryCard, StoryCardSkeleton } from './story-card';
 export { MediaGallery, MediaGallerySkeleton } from './media-gallery';
 export { StorytellerCard, StorytellerCardSkeleton } from './storyteller-card';
+export { SyndicationStorytellerCard, SyndicationStorytellerCardSkeleton } from './syndication-storyteller-card';
 export {
   FeaturedStories,
   FeaturedStoriesSkeleton,

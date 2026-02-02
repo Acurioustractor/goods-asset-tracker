@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import Link from 'next/link';
 import { empathyLedger } from '@/lib/empathy-ledger';
 import { MediaGallery, MediaGallerySkeleton } from '@/components/empathy-ledger/media-gallery';
-import { StorytellerCard, StorytellerCardSkeleton } from '@/components/empathy-ledger/storyteller-card';
+import { SyndicationStorytellerCard, SyndicationStorytellerCardSkeleton } from '@/components/empathy-ledger/syndication-storyteller-card';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -92,10 +92,10 @@ async function MediaFromLedger() {
   }
 }
 
-// Fetch storytellers from Empathy Ledger
+// Fetch storytellers from Empathy Ledger syndication API (with analysis data)
 async function StorytellersFromLedger() {
   try {
-    const storytellers = await empathyLedger.getStorytellers({ featured: true, limit: 6 });
+    const storytellers = await empathyLedger.getProjectStorytellers({ limit: 6 });
 
     if (storytellers.length === 0) {
       return null;
@@ -118,7 +118,69 @@ async function StorytellersFromLedger() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {storytellers.map((storyteller) => (
-              <StorytellerCard key={storyteller.id} storyteller={storyteller} />
+              <SyndicationStorytellerCard
+                key={storyteller.id}
+                storyteller={storyteller}
+                linkTo={`/story?id=${storyteller.id}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  } catch {
+    return null;
+  }
+}
+
+// Fetch top quotes from project insights
+async function TopQuotesFromLedger() {
+  try {
+    const insights = await empathyLedger.getProjectInsights();
+
+    if (!insights || insights.topQuotes.length === 0) {
+      return null;
+    }
+
+    return (
+      <section className="py-16 md:py-20 bg-foreground text-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-widest text-background/50 mb-4">
+              From the Empathy Ledger
+            </p>
+            <h2 className="text-3xl font-light mb-4" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
+              Highest Impact Quotes
+            </h2>
+            <p className="max-w-xl mx-auto text-background/60">
+              The most impactful words from {insights.project.storytellerCount} storytellers
+              across {insights.project.transcriptCount} conversations
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {insights.topQuotes.slice(0, 6).map((quote, i) => (
+              <div
+                key={i}
+                className="rounded-lg bg-background/5 border border-background/10 p-6"
+              >
+                <p
+                  className="text-lg leading-relaxed text-background/90 mb-4"
+                  style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+                >
+                  &ldquo;{quote.text}&rdquo;
+                </p>
+                <div className="flex items-center justify-between">
+                  <p className="text-sm text-background/60">
+                    {quote.storytellerName}
+                  </p>
+                  {quote.impactScore && (
+                    <span className="text-xs text-background/40">
+                      Impact: {quote.impactScore.toFixed(1)}
+                    </span>
+                  )}
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -135,7 +197,7 @@ function StorytellersLoadingSkeleton() {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {[1, 2, 3].map((i) => (
-            <StorytellerCardSkeleton key={i} />
+            <SyndicationStorytellerCardSkeleton key={i} />
           ))}
         </div>
       </div>
@@ -476,6 +538,10 @@ export default function StoriesPage() {
 
       <Suspense fallback={<StorytellersLoadingSkeleton />}>
         <StorytellersFromLedger />
+      </Suspense>
+
+      <Suspense fallback={null}>
+        <TopQuotesFromLedger />
       </Suspense>
 
       {/* ============================================================
