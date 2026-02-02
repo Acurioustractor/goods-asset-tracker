@@ -11,7 +11,7 @@ export const brand = {
   hero: {
     home: {
       headline: 'The Stretch Bed',
-      subheadline: 'Tension-weave design born from community knowledge. Lighter, stronger, built to last. Every bed supports remote Indigenous communities across Australia.',
+      subheadline: 'Recycled plastic, galvanised steel, heavy-duty canvas. 12kg, flat-packs, no tools. Every bed supports remote Indigenous communities across Australia.',
     },
     shop: {
       headline: 'Shop the Collection',
@@ -89,28 +89,28 @@ export const impact = {
 
 export const productCategories = [
   {
-    id: 'beds',
-    name: 'Beds',
-    description: 'Basket Beds and Stretch Beds — designed with communities, no tools required, fully washable.',
-    products: ['basket-bed-single', 'basket-bed-double', 'stretch-bed-single', 'stretch-bed-double'],
+    id: 'stretch-bed',
+    name: 'The Stretch Bed',
+    description: 'Recycled HDPE plastic, galvanised steel poles, heavy-duty canvas. 12kg, flat-packs, no tools. Made on country from collected community plastic.',
+    products: ['stretch-bed-single'],
     status: 'available',
     icon: 'bed',
   },
   {
     id: 'washers',
     name: 'Washing Machines',
-    description: 'Pakkimjalki Kari — commercial-grade Speed Queen base, one-button operation, named in Warumungu language.',
+    description: 'Pakkimjalki Kari — commercial-grade Speed Queen base, one-button operation, named in Warumungu language. Currently in prototype with communities.',
     products: ['washing-machine-standard'],
-    status: 'available',
+    status: 'register-interest',
     icon: 'washer',
   },
   {
-    id: 'refrigeration',
-    name: 'Refrigeration',
-    description: 'In development: Solar-compatible refrigeration for communities with intermittent power.',
-    products: [],
-    status: 'coming-soon',
-    icon: 'fridge',
+    id: 'basket-bed',
+    name: 'Basket Bed',
+    description: 'Our first prototype — collapsible baskets with zip ties and toppers. Single, double, and stackable. Now open source — download the plans and build your own.',
+    products: ['basket-bed-single'],
+    status: 'open-source',
+    icon: 'basket',
   },
 ];
 
@@ -461,6 +461,16 @@ export const videoTestimonials = [
     description: 'Cliff speaks about how essential goods connect to dignity and community health.',
     consent: 'EXTERNAL-LITE',
   },
+  {
+    id: 'dianne-washing-machine',
+    title: 'Pakkimjalki Kari',
+    person: 'Dianne Stokes',
+    location: 'Tennant Creek',
+    descriptUrl: undefined as string | undefined, // TODO: Add Descript URL when available
+    embedUrl: undefined as string | undefined,     // TODO: Add Descript embed URL when available
+    description: 'Elder Dianne Stokes on co-designing and naming the Pakkimjalki Kari washing machine in Warumungu language.',
+    consent: 'EXTERNAL-LITE',
+  },
 ];
 
 // Community partnerships
@@ -480,7 +490,7 @@ export const communityPartnerships = [
     name: 'Alice Springs',
     region: 'Northern Territory',
     headline: 'Traditional knowledge meets modern design',
-    description: 'Through the Oonchiumpa consultancy, Alice Springs became the co-design hub for Goods products. The Greate Bed was developed through deep consultation with the Oonchiumpa Bloomfield family, combining traditional knowledge with modern durability. Kristy Bloomfield leads this 100% Aboriginal-owned consultancy.',
+    description: 'Through the Oonchiumpa consultancy, Alice Springs became the co-design hub for Goods products. The Stretch Bed was developed through deep consultation with the Oonchiumpa Bloomfield family, combining traditional knowledge with modern durability. Kristy Bloomfield leads this 100% Aboriginal-owned consultancy.',
     keyPeople: ['Kristy Bloomfield', 'Oonchiumpa family'],
     bedsDelivered: 60,
     highlight: 'Oonchiumpa — 100% Aboriginal-owned consultancy leading co-design',
@@ -513,7 +523,7 @@ export const processSteps = [
     step: 1,
     title: 'Source',
     subtitle: 'Collecting recycled plastic',
-    description: 'Every Stretch Bed starts with recycled HDPE plastic collected from communities. Each bed diverts 25kg of plastic from landfill, turning waste into a health resource.',
+    description: 'Every Stretch Bed starts with recycled HDPE plastic collected from communities. Each bed diverts 21kg of plastic from landfill, turning waste into a health resource.',
     icon: 'recycle',
   },
   {
@@ -533,15 +543,15 @@ export const processSteps = [
   {
     step: 4,
     title: 'Build',
-    subtitle: 'Assembling frame components',
-    description: 'Skilled hands assemble the hardwood frame with powder-coated steel legs. No tools required for the end user — the frame clicks together in 5 minutes.',
+    subtitle: 'Pressing recycled plastic legs',
+    description: 'Melted HDPE plastic is pressed into four sturdy bed legs using moulds in the containerised factory. These recycled plastic components are the foundation of every Stretch Bed — strong, weather-resistant, and made entirely from community waste.',
     icon: 'wrench',
   },
   {
     step: 5,
-    title: 'Weave',
-    subtitle: 'Tension-weave construction',
-    description: 'The signature tension-weave technique creates natural flexibility. This is where traditional knowledge meets modern design — the bed literally adapts to your body.',
+    title: 'Assemble',
+    subtitle: 'Steel poles through canvas',
+    description: 'Two galvanised steel poles (26.9mm OD) thread through sleeves sewn into heavy-duty Australian canvas. The recycled plastic legs click onto the poles. No tools, under 5 minutes. 200kg load capacity.',
     icon: 'weave',
   },
   {
@@ -593,7 +603,7 @@ export const investmentCase = {
     capacity: '~30 beds per week when deployed for 2 months',
     model: 'One container with shredder fills 200 tubs with processed plastic; production container arrives to build 200 beds from that plastic.',
     futureCapability: 'Same facility will produce washing machines and fridges using different molds and cut files.',
-    plasticPerBed: '25kg (fits in 25L tub)',
+    plasticPerBed: '21kg per bed',
   },
 
   risks: [
@@ -702,6 +712,153 @@ export const investmentCase = {
     { name: 'Circular Future Fund', focus: 'Circular economy and plastic waste' },
   ],
 };
+
+// Storyteller profiles — for the stories grid
+// Only includes people with verified quotes + photos
+export const storytellerProfiles = [
+  {
+    id: 'dianne-stokes',
+    name: 'Dianne Stokes',
+    role: 'Elder & Co-Designer',
+    location: 'Tennant Creek, NT',
+    photo: '/images/people/dianne-stokes.jpg',
+    keyQuote: 'Working both ways — cultural side in white society and Indigenous society.',
+    isElder: true,
+    hasVideo: false,
+    themes: ['co-design'],
+  },
+  {
+    id: 'norman-frank',
+    name: 'Norman Frank',
+    role: 'Warumungu Elder',
+    location: 'Tennant Creek, NT',
+    photo: '/images/people/norman-frank.jpg',
+    keyQuote: 'I want to see a better future for our kids and better housing for our people.',
+    isElder: true,
+    hasVideo: false,
+    themes: ['community-need', 'co-design'],
+  },
+  {
+    id: 'linda-turner',
+    name: 'Linda Turner',
+    location: 'Tennant Creek, NT',
+    photo: '/images/people/linda-turner.jpg',
+    keyQuote: 'We\'ve never been asked at what sort of house we\'d like to live in.',
+    isElder: false,
+    hasVideo: false,
+    themes: ['co-design'],
+  },
+  {
+    id: 'ivy',
+    name: 'Ivy',
+    location: 'Palm Island, QLD',
+    photo: '/images/people/ivy.jpg',
+    keyQuote: 'Hardly anyone around the community has beds. When family comes to visit, people sleep on the floor.',
+    isElder: false,
+    hasVideo: false,
+    themes: ['community-need', 'dignity'],
+  },
+  {
+    id: 'alfred-johnson',
+    name: 'Alfred Johnson',
+    location: 'Palm Island, QLD',
+    photo: '/images/people/alfred-johnson.jpg',
+    keyQuote: 'Having a bed is something you need; you feel more safe when you sleep in a bed.',
+    isElder: false,
+    hasVideo: false,
+    themes: ['dignity', 'health'],
+  },
+  {
+    id: 'patricia-frank',
+    name: 'Patricia Frank',
+    location: 'Tennant Creek, NT',
+    photo: '/images/people/patricia-frank.jpg',
+    keyQuote: 'They truly wanna a washing machine to wash their blanket, to wash their clothes, and it\'s right there at home.',
+    isElder: false,
+    hasVideo: false,
+    themes: ['washing-machine', 'community-need'],
+  },
+  {
+    id: 'cliff-plummer',
+    name: 'Cliff Plummer',
+    role: 'Health Practitioner',
+    location: 'Tennant Creek, NT',
+    photo: '/images/people/cliff-plummer.jpg',
+    keyQuote: 'You got to get health messages across.',
+    isElder: false,
+    hasVideo: true,
+    videoEmbed: 'https://share.descript.com/embed/2gxa5x40r9N',
+    themes: ['health'],
+  },
+  {
+    id: 'brian-russell',
+    name: 'Brian Russell',
+    location: 'Tennant Creek, NT',
+    photo: '/images/people/brian-russell.jpg',
+    keyQuote: 'It\'s gonna be home for me now.',
+    isElder: false,
+    hasVideo: false,
+    themes: ['health', 'dignity'],
+  },
+];
+
+// Video gallery items — local videos + external embeds
+export const videoGallery = [
+  {
+    id: 'jaquilane-testimony',
+    title: 'Jaquilane\'s Story',
+    description: 'A community member shares their experience with Goods on Country.',
+    src: '/video/jaquilane-testimony.mp4',
+    poster: '/video/jaquilane-poster.jpg',
+    type: 'local' as const,
+    category: 'testimony',
+  },
+  {
+    id: 'cliff-beds-dignity',
+    title: 'Beds and Dignity',
+    description: 'Cliff Plummer speaks about how essential goods connect to dignity and community health.',
+    person: 'Cliff Plummer',
+    embedUrl: 'https://share.descript.com/embed/2gxa5x40r9N',
+    type: 'embed' as const,
+    category: 'testimony',
+  },
+  {
+    id: 'building-together',
+    title: 'Building Together',
+    description: 'Community members assembling beds together on country.',
+    src: '/video/building-together-desktop.mp4',
+    poster: '/video/building-together-poster.jpg',
+    type: 'local' as const,
+    category: 'process',
+  },
+  {
+    id: 'community-gathering',
+    title: 'Community',
+    description: 'Community gathering for bed delivery and assembly.',
+    src: '/video/community-desktop.mp4',
+    poster: '/video/community-poster.jpg',
+    type: 'local' as const,
+    category: 'community',
+  },
+  {
+    id: 'recycling-plant',
+    title: 'The Recycling Plant',
+    description: 'Inside the containerised factory where community plastic becomes beds.',
+    src: '/video/recycling-plant-desktop.mp4',
+    poster: '/video/recycling-plant-poster.jpg',
+    type: 'local' as const,
+    category: 'process',
+  },
+  {
+    id: 'stretch-bed-assembly',
+    title: 'The Stretch Bed',
+    description: 'Close-up of the bed assembly — no tools, under 5 minutes.',
+    src: '/video/stretch-bed-desktop.mp4',
+    poster: '/video/stretch-bed-poster.jpg',
+    type: 'local' as const,
+    category: 'product',
+  },
+];
 
 // Themes from community voices
 export const communityThemes = [
