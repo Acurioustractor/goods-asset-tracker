@@ -7,10 +7,12 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { CartButton } from '@/components/cart';
 
 const navigation = [
+  { name: 'Our Story', href: '/story' },
   { name: 'Shop', href: '/shop' },
   { name: 'How It\'s Made', href: '/process' },
-  { name: 'Community', href: '/community' },
-  { name: 'Stories', href: '/stories' },
+  { name: 'Gallery', href: '/gallery' },
+  { name: 'Impact', href: '/impact' },
+  { name: 'Support', href: '/support' },
   { name: 'Partner', href: '/partner' },
 ];
 
