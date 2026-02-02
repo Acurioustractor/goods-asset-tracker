@@ -714,7 +714,19 @@ export const investmentCase = {
 };
 
 // Community locations — coordinates for map
-export const communityLocations = [
+export type CommunityLocation = {
+  id: string;
+  name: string;
+  region: string;
+  lat: number;
+  lng: number;
+  storytellerCount: number;
+  bedsDelivered: number;
+  description: string;
+  highlight: string;
+};
+
+export const communityLocations: CommunityLocation[] = [
   {
     id: 'tennant-creek',
     name: 'Tennant Creek',
@@ -857,6 +869,25 @@ export const storytellerProfiles = [
     themes: ['health', 'dignity'],
   },
 ];
+
+// Local enrichment for EL storytellers — adds fields not stored in EL
+// Keyed by storyteller name (matched case-insensitively at merge time)
+export const storytellerEnrichment: Record<string, {
+  community?: string;
+  hasVideo?: boolean;
+  videoEmbed?: string;
+  localPhoto?: string;
+  role?: string;
+}> = {
+  'Dianne Stokes': { community: 'tennant-creek', localPhoto: '/images/people/dianne-stokes.jpg', role: 'Elder & Co-Designer' },
+  'Norman Frank': { community: 'tennant-creek', localPhoto: '/images/people/norman-frank.jpg', role: 'Warumungu Elder' },
+  'Linda Turner': { community: 'tennant-creek', localPhoto: '/images/people/linda-turner.jpg' },
+  'Ivy': { community: 'palm-island', localPhoto: '/images/people/ivy.jpg' },
+  'Alfred Johnson': { community: 'palm-island', localPhoto: '/images/people/alfred-johnson.jpg' },
+  'Patricia Frank': { community: 'tennant-creek', localPhoto: '/images/people/patricia-frank.jpg' },
+  'Cliff Plummer': { community: 'tennant-creek', localPhoto: '/images/people/cliff-plummer.jpg', hasVideo: true, videoEmbed: 'https://share.descript.com/embed/2gxa5x40r9N', role: 'Health Practitioner' },
+  'Brian Russell': { community: 'tennant-creek', localPhoto: '/images/people/brian-russell.jpg' },
+};
 
 // Video gallery items — local videos + external embeds
 export const videoGallery = [

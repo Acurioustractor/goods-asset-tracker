@@ -7,9 +7,10 @@ import { SyndicationStorytellerCard, SyndicationStorytellerCardSkeleton } from '
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { storytellerProfiles, videoGallery, journeyStories, quotes } from '@/lib/data/content';
+import { storytellerProfiles, storytellerEnrichment, videoGallery, journeyStories, quotes } from '@/lib/data/content';
 import { storyPersonMedia } from '@/lib/data/media';
 import { MediaSlot } from '@/components/ui/media-slot';
+import type { SyndicationStoryteller } from '@/lib/empathy-ledger/types';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -44,6 +45,66 @@ const themeGroups = [
     themes: ['community-need', 'freight-tax', 'dignity'],
   },
 ];
+
+// Shape used by the storytellers grid
+interface StorytellerGridProfile {
+  id: string;
+  name: string;
+  role?: string;
+  location: string;
+  community: string;
+  photo: string;
+  keyQuote: string;
+  isElder: boolean;
+  hasVideo: boolean;
+  videoEmbed?: string;
+  themes: string[];
+}
+
+/**
+ * Map EL SyndicationStoryteller to the shape the grid needs,
+ * merging local enrichment data.
+ */
+function mapELToGridProfile(s: SyndicationStoryteller): StorytellerGridProfile {
+  const enrichment = storytellerEnrichment[s.name] ?? {};
+  return {
+    id: s.id,
+    name: s.name,
+    role: enrichment.role,
+    location: s.location ?? '',
+    community: enrichment.community ?? '',
+    photo: s.avatarUrl ?? enrichment.localPhoto ?? '/images/people/placeholder.jpg',
+    keyQuote: s.quotes[0]?.text ?? '',
+    isElder: s.isElder,
+    hasVideo: enrichment.hasVideo ?? false,
+    videoEmbed: enrichment.videoEmbed,
+    themes: s.themes.map((t) => t.name),
+  };
+}
+
+/**
+ * Fetch storytellers from EL API with fallback to hardcoded profiles.
+ */
+async function getStorytellersForGrid(): Promise<StorytellerGridProfile[]> {
+  const elStorytellers = await empathyLedger.getProjectStorytellers({ limit: 50 });
+  if (elStorytellers.length > 0) {
+    return elStorytellers.map(mapELToGridProfile);
+  }
+  // Fallback to hardcoded data
+  return storytellerProfiles.map((p) => ({
+    id: p.id,
+    name: p.name,
+    role: p.role,
+    location: p.location,
+    community: p.community,
+    photo: p.photo,
+    keyQuote: p.keyQuote,
+    isElder: p.isElder,
+    hasVideo: p.hasVideo,
+    videoEmbed: 'videoEmbed' in p ? (p.videoEmbed as string) : undefined,
+    themes: p.themes,
+  }));
+}
 
 // Fetch media gallery from Empathy Ledger
 async function MediaFromLedger() {
@@ -197,9 +258,10 @@ function StorytellersLoadingSkeleton() {
   );
 }
 
-export default function StoriesPage() {
-  const elders = storytellerProfiles.filter((p) => p.isElder);
-  const others = storytellerProfiles.filter((p) => !p.isElder);
+export default async function StoriesPage() {
+  const allStorytellers = await getStorytellersForGrid();
+  const elders = allStorytellers.filter((p) => p.isElder);
+  const others = allStorytellers.filter((p) => !p.isElder);
   const testimonies = videoGallery.filter((v) => v.category === 'testimony');
   const bRoll = videoGallery.filter((v) => v.category !== 'testimony');
 
@@ -605,7 +667,7 @@ export default function StoriesPage() {
                   </div>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {groupQuotes.map((quote, qi) => {
-                      const profile = storytellerProfiles.find((p) => p.name === quote.author);
+                      const profile = allStorytellers.find((p) => p.name === quote.author);
                       return (
                         <Card key={qi} className="border-0 shadow-sm bg-background hover:shadow-md transition-shadow">
                           <CardContent className="p-5">

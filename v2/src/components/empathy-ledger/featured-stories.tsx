@@ -1,8 +1,12 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { empathyLedger } from '@/lib/empathy-ledger';
 import { StoryCard, StoryCardSkeleton } from './story-card';
 import { MediaGallery, MediaGallerySkeleton } from './media-gallery';
+import { journeyStories } from '@/lib/data/content';
+import { storyPersonMedia } from '@/lib/data/media';
 
 interface FeaturedStoriesProps {
   title?: string;
@@ -12,31 +16,61 @@ interface FeaturedStoriesProps {
   maxStories?: number;
 }
 
+// Theme labels and colors
+const themeStyles: Record<string, { label: string; className: string }> = {
+  'housing-journey': { label: 'Housing', className: 'bg-blue-100 text-blue-800' },
+  health: { label: 'Health', className: 'bg-red-100 text-red-800' },
+  dignity: { label: 'Dignity', className: 'bg-purple-100 text-purple-800' },
+  'co-design': { label: 'Co-Design', className: 'bg-amber-100 text-amber-800' },
+  'washing-machine': { label: 'Washing Machines', className: 'bg-green-100 text-green-800' },
+};
+
 export async function FeaturedStories({
-  title = 'Community Stories',
-  subtitle = 'Voices from the communities we serve',
+  title = 'Community Voices',
+  subtitle = '15 storytellers across 6 communities have shaped and validated the Goods approach',
   showViewAll = true,
   viewAllLink = '/stories',
   maxStories = 3,
 }: FeaturedStoriesProps) {
   const stories = await empathyLedger.getStories({ limit: maxStories });
 
-  if (stories.length === 0) {
-    // Fallback content when no stories from Empathy Ledger
+  // If EL has stories, use them
+  if (stories.length > 0) {
     return (
       <section className="py-16 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground">{title}</h2>
-            <p className="mt-2 text-muted-foreground">{subtitle}</p>
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-bold text-foreground">{title}</h2>
+              <p className="mt-2 text-muted-foreground">{subtitle}</p>
+            </div>
+            {showViewAll && (
+              <Button variant="outline" asChild className="hidden sm:inline-flex">
+                <Link href={viewAllLink}>View All Stories</Link>
+              </Button>
+            )}
           </div>
-          <div className="text-center py-12 text-muted-foreground">
-            <p>Stories coming soon...</p>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {stories.map((story) => (
+              <StoryCard key={story.id} story={story} />
+            ))}
           </div>
+
+          {showViewAll && (
+            <div className="mt-8 text-center sm:hidden">
+              <Button asChild>
+                <Link href={viewAllLink}>View All Stories</Link>
+              </Button>
+            </div>
+          )}
         </div>
       </section>
     );
   }
+
+  // Fallback: use local journey stories with profile images, quotes, and locations
+  const featured = journeyStories.slice(0, maxStories);
 
   return (
     <section className="py-16 md:py-20">
@@ -48,21 +82,59 @@ export async function FeaturedStories({
           </div>
           {showViewAll && (
             <Button variant="outline" asChild className="hidden sm:inline-flex">
-              <Link href={viewAllLink}>View All Stories</Link>
+              <Link href={viewAllLink}>Read All Stories</Link>
             </Button>
           )}
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {stories.map((story) => (
-            <StoryCard key={story.id} story={story} />
-          ))}
+          {featured.map((story) => {
+            const photoUrl = storyPersonMedia[story.id];
+            const theme = themeStyles[story.theme] ?? { label: story.theme, className: 'bg-muted text-muted-foreground' };
+
+            return (
+              <Card key={story.id} className="overflow-hidden group">
+                <CardContent className="p-0">
+                  {/* Quote area */}
+                  <div className="p-6 pb-4">
+                    <span className={`inline-block text-xs font-medium px-2.5 py-1 rounded-full mb-4 ${theme.className}`}>
+                      {theme.label}
+                    </span>
+                    <blockquote className="text-lg font-medium text-foreground leading-relaxed mb-4">
+                      &ldquo;{story.pullQuote}&rdquo;
+                    </blockquote>
+                  </div>
+
+                  {/* Person */}
+                  <div className="px-6 pb-6 flex items-center gap-3">
+                    {photoUrl ? (
+                      <Image
+                        src={photoUrl}
+                        alt={story.person}
+                        width={48}
+                        height={48}
+                        className="rounded-full object-cover w-12 h-12"
+                      />
+                    ) : (
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold text-lg">
+                        {story.person.charAt(0)}
+                      </div>
+                    )}
+                    <div>
+                      <div className="font-semibold text-foreground text-sm">{story.person}</div>
+                      <div className="text-xs text-muted-foreground">{story.location}</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
 
         {showViewAll && (
           <div className="mt-8 text-center sm:hidden">
             <Button asChild>
-              <Link href={viewAllLink}>View All Stories</Link>
+              <Link href={viewAllLink}>Read All Stories</Link>
             </Button>
           </div>
         )}
@@ -73,8 +145,8 @@ export async function FeaturedStories({
 
 // Loading state
 export function FeaturedStoriesSkeleton({
-  title = 'Community Stories',
-  subtitle = 'Voices from the communities we serve',
+  title = 'Community Voices',
+  subtitle = '15 storytellers across 6 communities have shaped and validated the Goods approach',
   count = 3,
 }: {
   title?: string;
