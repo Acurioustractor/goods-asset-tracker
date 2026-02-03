@@ -137,7 +137,7 @@ export default function ProcessPage() {
             </h2>
             <div className="grid gap-6 sm:grid-cols-3 mb-10">
               <div>
-                <div className="text-3xl font-bold text-primary">25kg</div>
+                <div className="text-3xl font-bold text-primary">21kg</div>
                 <div className="text-sm text-muted-foreground mt-1">Plastic diverted from landfill per bed</div>
               </div>
               <div>
@@ -151,7 +151,7 @@ export default function ProcessPage() {
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild>
-                <Link href="/shop/weave-bed-single">Shop the Stretch Bed</Link>
+                <Link href="/shop/stretch-bed-single">Shop the Stretch Bed</Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
                 <Link href="/partner">Partner With Us</Link>

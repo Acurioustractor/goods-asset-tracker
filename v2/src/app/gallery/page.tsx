@@ -55,7 +55,7 @@ function buildPhotos(storytellers: GalleryStoryteller[]): GalleryPhoto[] {
     });
   });
 
-  // Products
+  // Products - Stretch Bed
   if (media.product.stretchBedHero) {
     photos.push({
       id: 'product-stretch-bed',
@@ -66,16 +66,68 @@ function buildPhotos(storytellers: GalleryStoryteller[]): GalleryPhoto[] {
       subcaption: 'Recycled HDPE plastic, galvanised steel, heavy-duty canvas',
     });
   }
-  if (media.product.greateBed) {
+  if (media.product.stretchBedAssembly) {
     photos.push({
-      id: 'product-greate-bed',
-      src: media.product.greateBed,
-      alt: 'The Greate Bed',
+      id: 'product-stretch-bed-assembly',
+      src: media.product.stretchBedAssembly,
+      alt: 'Stretch Bed assembly',
       category: 'product',
-      caption: 'The Greate Bed',
-      subcaption: 'Community prototype',
+      caption: 'Easy Assembly',
+      subcaption: '5 minutes, no tools required',
     });
   }
+  if (media.product.stretchBedInUse) {
+    photos.push({
+      id: 'product-stretch-bed-in-use',
+      src: media.product.stretchBedInUse,
+      alt: 'Stretch Bed in use',
+      category: 'product',
+      caption: 'In Use',
+      subcaption: 'Community-tested durability',
+    });
+  }
+  if (media.product.stretchBedCommunity) {
+    photos.push({
+      id: 'product-stretch-bed-community',
+      src: media.product.stretchBedCommunity,
+      alt: 'Stretch Bed in community',
+      category: 'product',
+      caption: 'Community Delivery',
+      subcaption: 'Beds reaching remote families',
+    });
+  }
+  if (media.product.stretchBedDetail) {
+    photos.push({
+      id: 'product-stretch-bed-detail',
+      src: media.product.stretchBedDetail,
+      alt: 'Stretch Bed detail',
+      category: 'product',
+      caption: 'Built to Last',
+      subcaption: 'Heavy-duty canvas and recycled plastic',
+    });
+  }
+  if (media.product.stretchBedKidsBuilding) {
+    photos.push({
+      id: 'product-stretch-bed-kids-building',
+      src: media.product.stretchBedKidsBuilding,
+      alt: 'Kids building a Stretch Bed',
+      category: 'product',
+      caption: 'Kids Can Build It',
+      subcaption: 'Simple enough for anyone to assemble',
+    });
+  }
+  // Products - Basket Bed
+  if (media.product.basketBedHero) {
+    photos.push({
+      id: 'product-basket-bed',
+      src: media.product.basketBedHero,
+      alt: 'The Basket Bed',
+      category: 'product',
+      caption: 'The Basket Bed',
+      subcaption: 'Our first prototype — now open source',
+    });
+  }
+  // Products - Washing Machine
   if (media.product.washingMachine) {
     photos.push({
       id: 'product-washing-machine',
@@ -86,6 +138,42 @@ function buildPhotos(storytellers: GalleryStoryteller[]): GalleryPhoto[] {
       community: 'tennant-creek',
       caption: 'Pakkimjalki Kari',
       subcaption: 'Named in Warumungu language by Elder Dianne Stokes',
+    });
+  }
+  if (media.product.washingMachineInstalled) {
+    photos.push({
+      id: 'product-washing-machine-installed',
+      src: media.product.washingMachineInstalled,
+      alt: 'Washing machine installed in community',
+      category: 'product',
+      location: 'Tennant Creek, NT',
+      community: 'tennant-creek',
+      caption: 'Installed',
+      subcaption: 'Commercial-grade Speed Queen in recycled housing',
+    });
+  }
+  if (media.product.washingMachineName) {
+    photos.push({
+      id: 'product-washing-machine-name',
+      src: media.product.washingMachineName,
+      alt: 'Pakkimjalki Kari naming',
+      category: 'product',
+      location: 'Tennant Creek, NT',
+      community: 'tennant-creek',
+      caption: 'Pakkimjalki Kari',
+      subcaption: '"Water that cleans" in Warumungu',
+    });
+  }
+  if (media.product.washingMachineCommunity) {
+    photos.push({
+      id: 'product-washing-machine-community',
+      src: media.product.washingMachineCommunity,
+      alt: 'Washing machine in community',
+      category: 'product',
+      location: 'Tennant Creek, NT',
+      community: 'tennant-creek',
+      caption: 'Community Testing',
+      subcaption: '8 prototype units deployed',
     });
   }
 

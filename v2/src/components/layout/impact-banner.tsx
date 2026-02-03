@@ -4,7 +4,7 @@ const stats = [
   { value: '369+', label: 'beds delivered' },
   { value: '8', label: 'communities' },
   { value: '40%', label: 'back to community' },
-  { value: '25kg', label: 'plastic diverted per bed' },
+  { value: '21kg', label: 'plastic diverted per bed' },
 ];
 
 export function ImpactBanner() {

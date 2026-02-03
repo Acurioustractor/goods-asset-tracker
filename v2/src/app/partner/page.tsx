@@ -82,7 +82,7 @@ const impactMetrics = [
   { value: '369+', label: 'Beds delivered' },
   { value: '8+', label: 'Communities' },
   { value: '40%', label: 'Returns to community' },
-  { value: '25kg', label: 'Plastic diverted per bed' },
+  { value: '21kg', label: 'Plastic diverted per bed' },
 ];
 
 const fundingPartners = [
@@ -152,7 +152,7 @@ export default function PartnerPage() {
                     ))}
                   </ul>
                   <Button asChild className="w-full">
-                    <Link href={`mailto:goods-support@acurioustractor.com?subject=${encodeURIComponent(option.cta)}`}>
+                    <Link href={`mailto:hi@act.place?subject=${encodeURIComponent(option.cta)}`}>
                       {option.cta}
                     </Link>
                   </Button>

@@ -64,7 +64,7 @@ export default async function AdminProductsPage() {
 
   const productTypeLabels: Record<string, string> = {
     basket_bed: 'Basket Bed',
-    weave_bed: 'Weave Bed',
+    stretch_bed: 'Stretch Bed',
     washing_machine: 'Washing Machine',
     accessory: 'Accessory',
   };

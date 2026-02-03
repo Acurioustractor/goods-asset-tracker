@@ -1,7 +1,7 @@
 // Database types for Goods v2
 // These should be regenerated from Supabase when schema changes
 
-export type ProductType = 'basket_bed' | 'weave_bed' | 'washing_machine' | 'accessory';
+export type ProductType = 'stretch_bed' | 'basket_bed' | 'washing_machine' | 'accessory';
 
 export interface Product {
   id: string;

@@ -80,7 +80,7 @@ async function ImpactDashboard() {
             <div className="text-center">
               <p className="text-4xl md:text-5xl font-light text-white mb-1">{stats.totalBeds}</p>
               <p className="text-sm text-white/90 font-medium">Beds</p>
-              <p className="text-xs text-white/60 mt-1">Basket & weave beds</p>
+              <p className="text-xs text-white/60 mt-1">Stretch & basket beds</p>
             </div>
             <div className="text-center">
               <p className="text-4xl md:text-5xl font-light text-white mb-1">{stats.totalWashingMachines}</p>
@@ -192,10 +192,10 @@ async function ImpactDashboard() {
                   </svg>
                 </div>
                 <p className="text-3xl font-light mb-2" style={{ color: '#C45C3E' }}>
-                  {Math.round(stats.totalBeds * 25)}kg
+                  {Math.round(stats.totalBeds * 21)}kg
                 </p>
                 <p className="font-medium" style={{ color: '#2E2E2E' }}>Plastic Diverted</p>
-                <p className="text-sm" style={{ color: '#5E5E5E' }}>25kg per bed from landfill</p>
+                <p className="text-sm" style={{ color: '#5E5E5E' }}>21kg per bed from landfill</p>
               </CardContent>
             </Card>
           </div>

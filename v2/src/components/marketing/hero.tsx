@@ -79,7 +79,7 @@ export function Hero({
               <Button
                 size="lg"
                 asChild
-                className="bg-white text-foreground hover:bg-white/90 font-semibold text-base px-8"
+                className="bg-amber-600 text-white hover:bg-amber-700 font-semibold text-base px-8"
               >
                 <Link href={primaryCta.href}>{primaryCta.text}</Link>
               </Button>
@@ -87,7 +87,7 @@ export function Hero({
                 size="lg"
                 variant="outline"
                 asChild
-                className="border-white/60 text-white hover:bg-white/10 font-semibold text-base px-8"
+                className="bg-transparent border-white/60 text-white hover:bg-white/10 hover:text-white font-semibold text-base px-8"
               >
                 <Link href={secondaryCta.href}>{secondaryCta.text}</Link>
               </Button>

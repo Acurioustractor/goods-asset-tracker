@@ -1,73 +1,50 @@
-import { Suspense } from 'react';
 import Link from 'next/link';
-import { createClient } from '@/lib/supabase/server';
-import { ProductCard, ProductCardSkeleton } from '@/components/marketing/product-card';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import type { Product } from '@/lib/types/database';
+import { media } from '@/lib/data/media';
 
 export const metadata = {
   title: 'Shop | Goods on Country',
   description: 'Browse handcrafted beds and washing machines made for remote Indigenous communities.',
 };
 
-async function getProducts(): Promise<Product[]> {
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from('products')
-    .select('*')
-    .eq('is_active', true)
-    .order('is_featured', { ascending: false })
-    .order('created_at', { ascending: false });
-
-  if (error) {
-    console.error('Error fetching products:', error);
-    return [];
-  }
-
-  return data as Product[];
-}
-
-async function ProductGrid() {
-  const products = await getProducts();
-
-  if (products.length === 0) {
-    return (
-      <div className="text-center py-16">
-        <div
-          className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center"
-          style={{ backgroundColor: '#E8DED4' }}
-        >
-          <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#8B9D77' }}>
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-          </svg>
-        </div>
-        <h3 className="text-xl font-light mb-2" style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}>
-          Products Coming Soon
-        </h3>
-        <p style={{ color: '#5E5E5E' }}>Check back soon for our full product range.</p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
-  );
-}
-
-function ProductGridSkeleton() {
-  return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {Array.from({ length: 6 }).map((_, i) => (
-        <ProductCardSkeleton key={i} />
-      ))}
-    </div>
-  );
-}
+// Static product cards - bypassing Supabase which has wrong data
+const products = [
+  {
+    slug: 'stretch-bed-single',
+    name: 'The Stretch Bed',
+    description: 'Recycled HDPE plastic legs, galvanised steel poles, heavy-duty canvas. 12kg, flat-packs, no tools needed.',
+    price: 600,
+    image: media.product.stretchBedHero,
+    badge: 'Available',
+    badgeColor: 'bg-primary text-primary-foreground',
+    cta: 'Shop Now',
+    href: '/shop/stretch-bed-single',
+  },
+  {
+    slug: 'pakkimjalki-kari',
+    name: 'Pakkimjalki Kari',
+    description: 'Commercial-grade Speed Queen in recycled plastic housing. Named in Warumungu language by Elder Dianne Stokes.',
+    price: null,
+    image: media.product.washingMachine,
+    badge: 'Prototype',
+    badgeColor: 'bg-amber-600 text-white',
+    cta: 'Register Interest',
+    href: '/partner',
+  },
+  {
+    slug: 'basket-bed-plans',
+    name: 'Basket Bed Plans',
+    description: 'Our first prototype — collapsible baskets with zip ties and toppers. Now open source — download and build your own.',
+    price: null,
+    image: media.product.basketBedHero,
+    badge: 'Open Source',
+    badgeColor: 'bg-muted-foreground/20 text-foreground',
+    cta: 'Download Plans',
+    href: '/basket-bed-plans',
+  },
+];
 
 export default function ShopPage() {
   return (
@@ -84,7 +61,7 @@ export default function ShopPage() {
             </h1>
             <p className="text-lg" style={{ color: '#5E5E5E' }}>
               Every purchase supports remote Indigenous communities across Australia.
-              Each bed diverts 25kg of plastic from landfill.
+              Each bed diverts 21kg of plastic from landfill.
             </p>
           </div>
         </div>
@@ -93,9 +70,45 @@ export default function ShopPage() {
       {/* Products Grid */}
       <section className="pb-16 md:pb-20">
         <div className="container mx-auto px-4">
-          <Suspense fallback={<ProductGridSkeleton />}>
-            <ProductGrid />
-          </Suspense>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
+            {products.map((product) => (
+              <Card key={product.slug} className="overflow-hidden group">
+                <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                  {product.image ? (
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-cover transition-transform group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-full">
+                      <svg className="h-16 w-16 text-muted-foreground/30" fill="none" viewBox="0 0 24 24" strokeWidth="1" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+                      </svg>
+                    </div>
+                  )}
+                  <div className="absolute top-3 left-3">
+                    <span className={`${product.badgeColor} text-xs font-medium px-2 py-1 rounded`}>
+                      {product.badge}
+                    </span>
+                  </div>
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold text-foreground mb-2">{product.name}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{product.description}</p>
+                  {product.price && (
+                    <p className="text-lg font-bold text-primary mb-4">${product.price}</p>
+                  )}
+                  <Button asChild className="w-full" variant={product.price ? 'default' : 'outline'}>
+                    <Link href={product.href}>
+                      {product.cta}{product.price ? ` — $${product.price}` : ''}
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -160,34 +173,31 @@ export default function ShopPage() {
       <section className="py-16 md:py-20" style={{ backgroundColor: '#FDF8F3' }}>
         <div className="container mx-auto px-4">
           <div className="grid gap-12 lg:grid-cols-2 items-center max-w-6xl mx-auto">
-            {/* Image placeholder */}
-            <div
-              className="aspect-square rounded-2xl flex items-center justify-center"
-              style={{ backgroundColor: '#E8DED4' }}
-            >
-              <div className="text-center p-8">
-                <svg className="w-16 h-16 mx-auto mb-4 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#8B9D77' }}>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <p className="text-sm" style={{ color: '#8B9D77' }}>Product photography</p>
-              </div>
+            {/* Stretch Bed Image */}
+            <div className="relative aspect-square rounded-2xl overflow-hidden">
+              <Image
+                src={media.product.stretchBedInUse || '/images/product/stretch-bed-hero.jpg'}
+                alt="The Stretch Bed in use"
+                fill
+                className="object-cover"
+              />
             </div>
 
             <div>
               <p className="text-sm uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
-                The Greate Bed
+                The Stretch Bed
               </p>
               <h2 className="text-3xl font-light mb-6" style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}>
                 Co-designed with Community
               </h2>
               <p className="mb-6" style={{ color: '#5E5E5E' }}>
                 500+ minutes of community feedback shapes every product we make.
-                The Greate Bed is designed to meet the specific needs of remote living.
+                The Stretch Bed is designed to meet the specific needs of remote living.
               </p>
 
               <div className="space-y-4 mb-8">
                 {[
-                  'Made from 25kg recycled plastic',
+                  'Made from 21kg recycled plastic',
                   '5-minute assembly, no tools required',
                   'Washable mattress components',
                   'Built to last 10+ years',

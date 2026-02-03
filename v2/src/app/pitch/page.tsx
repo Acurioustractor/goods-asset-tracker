@@ -92,7 +92,7 @@ export default function PitchPage() {
               {/* Product image — /public/images/product/stretch-bed-hero.jpg */}
               <MediaSlot
                 src={media.product.stretchBedHero}
-                alt="The Stretch Bed — tension-weave design by Goods on Country"
+                alt="The Stretch Bed — recycled plastic, steel and canvas by Goods on Country"
                 label="Stretch Bed hero photo"
                 aspect="4/3"
                 className="order-2 lg:order-1"
@@ -110,8 +110,8 @@ export default function PitchPage() {
                   Lasts 5+ years.
                 </h2>
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  Tension-weave design born from community knowledge. No tools. 5-minute assembly.
-                  Works inside and outside. Each bed diverts 25kg of plastic from landfill.
+                  Recycled HDPE plastic legs, galvanised steel poles, heavy-duty canvas. No tools. 5-minute assembly.
+                  Works inside and outside. Each bed diverts 21kg of plastic from landfill.
                 </p>
                 <div className="grid grid-cols-3 gap-3">
                   <div className="text-center p-4 rounded-xl bg-background border border-border">
@@ -154,7 +154,7 @@ export default function PitchPage() {
                 { value: '369+', label: 'beds delivered' },
                 { value: '8+', label: 'communities' },
                 { value: '40%', label: 'back to community' },
-                { value: '25kg', label: 'plastic per bed' },
+                { value: '21kg', label: 'plastic per bed' },
               ].map((stat) => (
                 <div key={stat.label} className="text-center p-6 rounded-xl bg-background/5 border border-background/10">
                   <div className="text-3xl md:text-4xl font-bold text-primary mb-1">{stat.value}</div>
@@ -459,7 +459,7 @@ export default function PitchPage() {
                 Download as PDF
               </Link>
               <span className="text-muted-foreground/30">|</span>
-              <span>goods-support@acurioustractor.com</span>
+              <span>hi@act.place</span>
             </div>
           </div>
         </div>

@@ -110,10 +110,10 @@ export default function CountryFirstPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-light text-stone-900 mb-4" style={{ fontFamily: 'Georgia, serif' }}>
-              The Greate Bed
+              The Stretch Bed
             </h2>
             <p className="text-stone-600 max-w-xl mx-auto">
-              Stackable, washable, and built to last. Each bed diverts 25kg of plastic from landfill.
+              Stackable, washable, and built to last. Each bed diverts 21kg of plastic from landfill.
             </p>
           </div>
 

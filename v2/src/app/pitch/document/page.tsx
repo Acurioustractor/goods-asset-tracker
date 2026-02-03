@@ -104,7 +104,7 @@ export default function PitchDocumentPage() {
               <div>
                 <p className="font-medium text-black mb-1">A Curious Tractor</p>
                 <p>Nicholas Marchesi, Founder</p>
-                <p>goods-support@acurioustractor.com</p>
+                <p>hi@act.place</p>
               </div>
               <div>
                 <p className="font-medium text-black mb-1">Partners</p>
@@ -197,7 +197,7 @@ export default function PitchDocumentPage() {
             The Stretch Bed
           </h2>
           <p className="text-base text-neutral-600 mb-8 max-w-2xl leading-relaxed">
-            Tension-weave design born from community knowledge. At just 12kg, carried by one person,
+            Recycled HDPE plastic legs, galvanised steel poles, heavy-duty Australian canvas. At just 12kg, carried by one person,
             supports 200kg, and lasts 5+ years in remote conditions. Works inside and outside.
           </p>
 
@@ -206,7 +206,7 @@ export default function PitchDocumentPage() {
               '12kg — carried by one person',
               '200kg load capacity',
               '5-minute assembly, no tools',
-              '25kg plastic diverted per bed',
+              '21kg plastic diverted per bed',
               'Cleanable, movable, works outside',
               'Colours matched to community choice',
             ].map((feature) => (
@@ -311,7 +311,7 @@ export default function PitchDocumentPage() {
               <p className="text-xs text-neutral-500">Capacity</p>
             </div>
             <div className="bg-neutral-50 rounded-lg p-3 text-center border border-neutral-100">
-              <p className="font-bold text-black">25kg plastic</p>
+              <p className="font-bold text-black">21kg plastic</p>
               <p className="text-xs text-neutral-500">Diverted per bed</p>
             </div>
             <div className="bg-neutral-50 rounded-lg p-3 text-center border border-neutral-100">
@@ -506,7 +506,7 @@ export default function PitchDocumentPage() {
                 creating jobs and pride while displacing the disposable furniture cycle
                 that fills community dumps.
               </p>
-              <p className="text-sm font-medium text-black">goods-support@acurioustractor.com</p>
+              <p className="text-sm font-medium text-black">hi@act.place</p>
             </div>
           </div>
         </section>

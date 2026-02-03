@@ -267,7 +267,7 @@ export const enterpriseOpportunity = {
   ],
   philosophy: 'Our goal is to become unnecessary.',
   cta: 'Express Interest',
-  email: 'goods-support@acurioustractor.com',
+  email: 'hi@act.place',
 };
 
 // Key partners for about page
@@ -514,6 +514,26 @@ export const communityPartnerships = [
     keyPeople: ['Regional logistics partners'],
     bedsDelivered: 0,
     highlight: 'Regional hub reducing the "freight tax" on remote communities',
+  },
+  {
+    id: 'utopia-homelands',
+    name: 'Utopia Homelands',
+    region: 'Northern Territory',
+    headline: 'Art and culture meets practical solutions',
+    description: 'Utopia Homelands, famous for its art movement and the legacy of Emily Kame Kngwarreye, is home to multiple outstations across Anmatyerr and Alyawarr country. Beds are delivered to families living on homelands where access to essential goods has long been a challenge.',
+    keyPeople: ['Community elders', 'Homeland coordinators'],
+    bedsDelivered: 24,
+    highlight: 'Supporting families on remote outstations',
+  },
+  {
+    id: 'maningrida',
+    name: 'Maningrida',
+    region: 'Northern Territory',
+    headline: 'Arnhem Land partnership',
+    description: 'Maningrida sits on the banks of the Liverpool River in Arnhem Land. This diverse community of over 2,500 people from multiple language groups is a hub for Indigenous art and culture. Goods partners with local organisations to deliver beds to families across the region.',
+    keyPeople: ['Local organisations', 'Community leaders'],
+    bedsDelivered: 18,
+    highlight: 'Serving multiple language groups across Arnhem Land',
   },
 ];
 
@@ -770,6 +790,28 @@ export const communityLocations: CommunityLocation[] = [
     bedsDelivered: 0,
     description: 'Regional logistics hub connecting production to remote communities across North Queensland.',
     highlight: 'Reducing the "freight tax" on remote communities',
+  },
+  {
+    id: 'utopia-homelands',
+    name: 'Utopia Homelands',
+    region: 'Northern Territory',
+    lat: -22.0,
+    lng: 134.8,
+    storytellerCount: 0,
+    bedsDelivered: 24,
+    description: 'Famous for its art movement and the legacy of Emily Kame Kngwarreye. Multiple outstations across Anmatyerr and Alyawarr country.',
+    highlight: 'Supporting families on remote outstations',
+  },
+  {
+    id: 'maningrida',
+    name: 'Maningrida',
+    region: 'Northern Territory',
+    lat: -12.056,
+    lng: 134.269,
+    storytellerCount: 0,
+    bedsDelivered: 18,
+    description: 'On the banks of the Liverpool River in Arnhem Land. A diverse community of over 2,500 people from multiple language groups.',
+    highlight: 'Serving multiple language groups across Arnhem Land',
   },
 ];
 

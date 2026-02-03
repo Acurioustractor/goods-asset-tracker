@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { brand, story, quotes, communityPartnerships, videoTestimonials, productCategories } from '@/lib/data/content';
+import { brand, story, quotes, communityPartnerships, videoTestimonials } from '@/lib/data/content';
 import { media } from '@/lib/data/media';
 import { empathyLedger } from '@/lib/empathy-ledger';
 import { MediaSlot, VideoSlot } from '@/components/ui/media-slot';
@@ -64,19 +64,22 @@ const STORY_VIDEOS = {
 // These define the initial photo sets for product detail sections.
 // The "Add photo" button in each section links to an admin upload flow.
 const STRETCH_BED_PHOTOS = [
-  { src: media.product.stretchBedHero, alt: 'Stretch Bed tension weave detail', label: 'Stretch Bed hero' },
-  { src: media.process.weave, alt: 'Tension-weave construction close-up', label: 'Weave process' },
-  { src: media.process.build, alt: 'Frame assembly, no tools required', label: 'Assembly' },
+  { src: media.product.stretchBedHero, alt: 'Stretch Bed alone at golden hour showing recycled plastic X-legs', label: 'Product shot' },
+  { src: media.product.stretchBedInUse, alt: 'Person resting on Stretch Bed in the outback', label: 'In use' },
+  { src: media.product.stretchBedAssembly, alt: 'Two people assembling a Stretch Bed together', label: 'Assembly' },
+  { src: media.product.stretchBedCommunity, alt: 'Elder woman presenting her new Stretch Bed', label: 'Community' },
 ];
 
 const WASHING_MACHINE_PHOTOS = [
-  { src: media.product.washingMachine, alt: 'Pakkimjalki Kari washing machine', label: 'Washing machine' },
+  { src: media.product.washingMachine, alt: 'Pakkimjalki Kari washing machine with recycled plastic enclosure', label: 'Product shot' },
+  { src: media.product.washingMachineName, alt: 'Close-up showing Pakkimjalki Kari name in Warumungu', label: 'Name detail' },
+  { src: media.product.washingMachineInstalled, alt: 'Washing machine installed in community laundry', label: 'Installed' },
 ];
 
 const RECYCLING_PLANT_PHOTOS = [
-  { src: media.process.source, alt: 'Shredded HDPE plastic ready for pressing', label: 'Source material' },
-  { src: media.process.process, alt: 'Hydraulic press forming recycled sheets', label: 'Press process' },
-  { src: media.process.cut, alt: 'CNC cutting bed components from sheets', label: 'Precision cutting' },
+  { src: media.manufacturing.containerFactory, alt: 'Containerised recycling factory with shredder', label: 'Container factory' },
+  { src: media.manufacturing.hydraulicPress, alt: 'Hydraulic press forming recycled plastic sheets', label: 'Press' },
+  { src: media.manufacturing.pressedSheets, alt: 'Stack of colorful recycled plastic sheets', label: 'Pressed sheets' },
 ];
 
 const TIMELINE = [
@@ -88,7 +91,7 @@ const TIMELINE = [
   { year: '2025', title: 'Washing Machines', description: 'Pakkimjalki Kari, named in Warumungu language by Elder Dianne Stokes. Commercial-grade, one-button operation. 8+ communities served.' },
 ];
 
-function PhotoGallery({ photos, addLabel }: { photos: typeof STRETCH_BED_PHOTOS; addLabel: string }) {
+function PhotoGallery({ photos }: { photos: { src: string | undefined; alt: string; label: string }[] }) {
   return (
     <div className="grid grid-cols-2 gap-3">
       {photos.map((photo, i) => (
@@ -100,15 +103,6 @@ function PhotoGallery({ photos, addLabel }: { photos: typeof STRETCH_BED_PHOTOS;
           aspect="4/3"
         />
       ))}
-      {/* Placeholder slot for future photo */}
-      <div
-        className="aspect-[4/3] rounded-2xl border-2 border-dashed border-border flex flex-col items-center justify-center gap-2 text-muted-foreground"
-      >
-        <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
-        </svg>
-        <span className="text-xs font-medium">{addLabel}</span>
-      </div>
     </div>
   );
 }
@@ -202,24 +196,14 @@ export default async function StoryPage() {
             ════════════════════════════════════════════════════════════ */}
         <section className="min-h-screen snap-start flex items-center justify-center relative overflow-hidden">
           {/* Full-page Norman Frank portrait */}
-          {avatarMap[normanQuote?.author ?? ''] ? (
-            <Image
-              src={avatarMap[normanQuote!.author]}
-              alt={normanQuote!.author}
-              fill
-              className="object-cover"
-              sizes="100vw"
-              priority
-            />
-          ) : (
-            <MediaSlot
-              src={media.community.tennantCreek}
-              alt="Community gathering in Tennant Creek"
-              label="Community background"
-              className="absolute inset-0 w-full h-full"
-              fill
-            />
-          )}
+          <Image
+            src={avatarMap[normanQuote?.author ?? ''] || media.people.normFrank || '/images/people/norman-frank.jpg'}
+            alt={normanQuote?.author ?? 'Norman Frank'}
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
           <div className="relative z-10 container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
@@ -301,8 +285,8 @@ export default async function StoryPage() {
               No tools. 5 minutes.
             </h2>
             <p className="text-xl text-white/60 max-w-2xl mx-auto">
-              Tension-weave design born from community knowledge.
-              Each bed diverts 25kg of recycled plastic from landfill.
+              Recycled plastic legs, galvanised steel poles, heavy-duty canvas.
+              Each bed diverts 21kg of plastic from landfill.
             </p>
           </div>
         </section>
@@ -324,8 +308,9 @@ export default async function StoryPage() {
                   </h2>
                   <div className="space-y-4 text-muted-foreground leading-relaxed mb-8">
                     <p>
-                      Tension-weave construction creates natural flexibility. The bed literally
-                      adapts to your body. Hardwood frame with powder-coated steel legs.
+                      Two galvanised steel poles thread through heavy-duty Australian canvas.
+                      Four legs made from recycled HDPE plastic — collected, shredded, and pressed on country.
+                      Each bed diverts 21kg of plastic from landfill.
                     </p>
                     <p>
                       No-tool assembly in 5 minutes. Works inside and outside. Fully washable.
@@ -344,7 +329,7 @@ export default async function StoryPage() {
                   </div>
                   <div className="flex gap-3">
                     <Button asChild>
-                      <Link href="/shop/weave-bed-single">Shop Stretch Bed</Link>
+                      <Link href="/shop/stretch-bed-single">Shop Stretch Bed</Link>
                     </Button>
                     <Button variant="outline" asChild>
                       <Link href="/process">How It&rsquo;s Made</Link>
@@ -352,7 +337,7 @@ export default async function StoryPage() {
                   </div>
                 </div>
                 <div>
-                  <PhotoGallery photos={STRETCH_BED_PHOTOS} addLabel="Add Stretch Bed photo" />
+                  <PhotoGallery photos={STRETCH_BED_PHOTOS} />
                 </div>
               </div>
             </div>
@@ -425,7 +410,7 @@ export default async function StoryPage() {
             6. WASHING MACHINE — Full-page video with overlay
             ════════════════════════════════════════════════════════════ */}
         <section className="min-h-screen snap-start flex items-center justify-center relative overflow-hidden bg-foreground">
-          {/* Background video placeholder — replace with real washing machine video */}
+          {/* Background: video if available, otherwise product image or gradient */}
           {STORY_VIDEOS.washingMachine ? (
             <video
               className="absolute inset-0 w-full h-full object-cover"
@@ -436,6 +421,14 @@ export default async function StoryPage() {
             >
               <source src={STORY_VIDEOS.washingMachine} type="video/mp4" />
             </video>
+          ) : media.product.washingMachine ? (
+            <Image
+              src={media.product.washingMachine}
+              alt="Pakkimjalki Kari washing machine"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-foreground via-foreground to-primary/20" />
           )}
@@ -469,7 +462,7 @@ export default async function StoryPage() {
                     className="text-3xl md:text-4xl font-light text-foreground mb-6 leading-snug"
                     style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
                   >
-                    Pakkimjalji Kari
+                    Pakkimjalki Kari
                   </h2>
                   <div className="space-y-4 text-muted-foreground leading-relaxed mb-8">
                     <p>
@@ -486,11 +479,11 @@ export default async function StoryPage() {
                     </p>
                   </div>
                   <Button asChild>
-                    <Link href="/shop?category=washers">View Washing Machines</Link>
+                    <Link href="/partner">Register Interest</Link>
                   </Button>
                 </div>
                 <div>
-                  <PhotoGallery photos={WASHING_MACHINE_PHOTOS} addLabel="Add washing machine photo" />
+                  <PhotoGallery photos={WASHING_MACHINE_PHOTOS} />
                 </div>
               </div>
             </div>
@@ -664,7 +657,7 @@ export default async function StoryPage() {
                       bed components.
                     </p>
                     <p>
-                      Capacity: ~30 beds per week. Each bed diverts 25kg of HDPE plastic from landfill.
+                      Capacity: ~30 beds per week. Each bed diverts 21kg of HDPE plastic from landfill.
                       Local people operate the machinery. Real jobs, real skills, real ownership.
                     </p>
                   </div>
@@ -674,7 +667,7 @@ export default async function StoryPage() {
                       <div className="text-xs text-muted-foreground mt-1">beds/week</div>
                     </div>
                     <div className="text-center p-4 rounded-xl border border-border bg-background">
-                      <div className="text-2xl font-bold text-primary">25kg</div>
+                      <div className="text-2xl font-bold text-primary">21kg</div>
                       <div className="text-xs text-muted-foreground mt-1">plastic per bed</div>
                     </div>
                     <div className="text-center p-4 rounded-xl border border-border bg-background">
@@ -704,7 +697,7 @@ export default async function StoryPage() {
                   </div>
                 </div>
                 <div>
-                  <PhotoGallery photos={RECYCLING_PLANT_PHOTOS} addLabel="Add plant photo" />
+                  <PhotoGallery photos={RECYCLING_PLANT_PHOTOS} />
                 </div>
               </div>
             </div>
@@ -726,7 +719,13 @@ export default async function StoryPage() {
               <source src={STORY_VIDEOS.projectStats} type="video/mp4" />
             </video>
           ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-foreground via-foreground to-accent/20" />
+            <Image
+              src="/video/building-together-poster.jpg"
+              alt="Community building together"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
           )}
           <div className="absolute inset-0 bg-black/60" />
           <div className="relative z-10 container mx-auto px-4">
@@ -743,7 +742,7 @@ export default async function StoryPage() {
                   { value: '369+', label: 'beds delivered' },
                   { value: '8+', label: 'communities served' },
                   { value: '40%', label: 'back to community' },
-                  { value: '25kg', label: 'plastic per bed diverted' },
+                  { value: '21kg', label: 'plastic per bed diverted' },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center p-6 rounded-xl bg-white/5 border border-white/10">
                     <div className="text-3xl md:text-4xl font-bold text-primary mb-1">{stat.value}</div>
@@ -855,10 +854,22 @@ export default async function StoryPage() {
                 She named it &ldquo;Pakkimjalki Kari&rdquo; in Warumungu language. She didn&rsquo;t just
                 receive a product. She co-designed it, tested it, and named it for her community.
               </p>
-              <VideoSlot
-                src={STORY_VIDEOS.dianneStokes}
-                label="Dianne Stokes on the Pakkimjalki Kari washing machine"
-              />
+              {STORY_VIDEOS.dianneStokes ? (
+                <VideoSlot
+                  src={STORY_VIDEOS.dianneStokes}
+                  label="Dianne Stokes on the Pakkimjalki Kari washing machine"
+                />
+              ) : media.people.dianneStokes ? (
+                <div className="relative w-full aspect-video rounded-xl overflow-hidden">
+                  <Image
+                    src={media.people.dianneStokes}
+                    alt="Elder Dianne Stokes"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 768px"
+                  />
+                </div>
+              ) : null}
               <blockquote className="mt-8 text-center">
                 <p
                   className="text-lg text-foreground leading-relaxed"
@@ -912,12 +923,12 @@ export default async function StoryPage() {
                 <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8">
                   <Link href="/sponsor">Sponsor a Bed</Link>
                 </Button>
-                <Button size="lg" variant="outline" asChild className="border-background/20 text-background hover:bg-background/10 text-base px-8">
+                <Button size="lg" variant="outline" asChild className="bg-transparent border-white/50 text-white hover:bg-white/10 hover:text-white text-base px-8">
                   <Link href="/shop">Shop the Collection</Link>
                 </Button>
               </div>
-              <p className="text-sm text-background/30">
-                goods-support@acurioustractor.com
+              <p className="text-sm text-white/30">
+                hi@act.place
               </p>
             </div>
           </div>

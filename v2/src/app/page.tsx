@@ -1,41 +1,12 @@
 import Link from 'next/link';
 import { Suspense } from 'react';
-import { Hero, ImpactStats, ProductCard } from '@/components/marketing';
+import { Hero, ImpactStats } from '@/components/marketing';
 import { FeaturedStories, FeaturedStoriesSkeleton, CommunityGallery, CommunityGallerySkeleton } from '@/components/empathy-ledger';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { createClient } from '@/lib/supabase/server';
-import type { Product } from '@/lib/types/database';
-import { brand, story, productCategories, enterpriseOpportunity } from '@/lib/data/content';
-import { getFeaturedSupporters } from '@/lib/data/supporters';
-
-const communities = [
-  { name: 'Palm Island', items: 141 },
-  { name: 'Tennant Creek', items: 139 },
-  { name: 'Alice Homelands', items: 60 },
-  { name: 'Maningrida', items: 24 },
-  { name: 'Kalgoorlie', items: 20 },
-];
-
-async function getProducts(): Promise<Product[]> {
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from('products')
-    .select('*')
-    .eq('is_active', true)
-    .order('is_featured', { ascending: false })
-    .limit(3);
-
-  if (error) {
-    console.error('Error fetching products:', error);
-    return [];
-  }
-
-  return data as Product[];
-}
+import { brand, story, enterpriseOpportunity, communityPartnerships } from '@/lib/data/content';
 
 export default async function HomePage() {
-  const products = await getProducts();
 
   return (
     <>
@@ -43,7 +14,7 @@ export default async function HomePage() {
       <Hero
         title={brand.hero.home.headline}
         subtitle={brand.hero.home.subheadline}
-        primaryCta={{ text: 'Shop the Stretch Bed', href: '/shop/weave-bed-single' }}
+        primaryCta={{ text: 'Shop the Stretch Bed', href: '/shop/stretch-bed-single' }}
         secondaryCta={{ text: 'How It\'s Made', href: '/process' }}
         videoSrc={{
           desktop: '/video/hero-desktop.mp4',
@@ -51,10 +22,10 @@ export default async function HomePage() {
           poster: '/video/hero-poster.jpg',
         }}
         imageSrc="https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f06aca919ac39a08c6cbc_20250629-IMG_7731.jpg"
-        imageAlt="The Stretch Bed - tension-weave design by Goods on Country"
+        imageAlt="The Stretch Bed - recycled plastic, steel and canvas bed by Goods on Country"
       />
 
-      {/* What We Make - Product Categories */}
+      {/* What We Make - Product Categories with Images */}
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -65,81 +36,80 @@ export default async function HomePage() {
           </div>
 
           <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
-            {productCategories.map((category) => (
-              <Card key={category.id} className={`text-center ${category.status === 'coming-soon' ? 'opacity-70' : ''}`}>
-                <CardContent className="p-8">
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    {category.icon === 'bed' && (
-                      <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                      </svg>
-                    )}
-                    {category.icon === 'washer' && (
-                      <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
-                      </svg>
-                    )}
-                    {category.icon === 'fridge' && (
-                      <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5V18M15 7.5V18M3 16.811V8.69c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 010 1.954l-7.108 4.061A1.125 1.125 0 013 16.811z" />
-                      </svg>
-                    )}
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">{category.name}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">{category.description}</p>
-                  {category.status === 'available' ? (
-                    <Button variant="outline" size="sm" asChild>
-                      <Link href={`/shop?category=${category.id}`}>View Products</Link>
-                    </Button>
-                  ) : (
-                    <span className="text-xs uppercase tracking-wide text-muted-foreground bg-muted px-3 py-1 rounded-full">
-                      Coming Soon
-                    </span>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
+            {/* Stretch Bed - Available for Purchase */}
+            <Card className="overflow-hidden group">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img
+                  src="/images/product/stretch-bed-hero.jpg"
+                  alt="The Stretch Bed"
+                  className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                />
+                <div className="absolute top-3 left-3">
+                  <span className="bg-primary text-primary-foreground text-xs font-medium px-2 py-1 rounded">Available</span>
+                </div>
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold text-foreground mb-2">The Stretch Bed</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Recycled HDPE plastic legs, galvanised steel poles, heavy-duty canvas. 12kg, flat-packs, no tools needed. $600.
+                </p>
+                <Button asChild className="w-full">
+                  <Link href="/shop/stretch-bed-single">Shop Now — $600</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Washing Machine - Register Interest */}
+            <Card className="overflow-hidden group">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img
+                  src="/images/product/washing-machine-hero.jpg"
+                  alt="Pakkimjalki Kari Washing Machine"
+                  className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                />
+                <div className="absolute top-3 left-3">
+                  <span className="bg-amber-600 text-white text-xs font-medium px-2 py-1 rounded">Prototype</span>
+                </div>
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold text-foreground mb-2">Pakkimjalki Kari</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Commercial-grade Speed Queen in recycled plastic housing. Named in Warumungu language by Elder Dianne Stokes.
+                </p>
+                <Button variant="outline" asChild className="w-full">
+                  <Link href="/partner">Register Interest</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Basket Bed - Open Source Plans */}
+            <Card className="overflow-hidden group">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img
+                  src="/images/product/basket-bed-hero.jpg"
+                  alt="The Basket Bed"
+                  className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                />
+                <div className="absolute top-3 left-3">
+                  <span className="bg-muted-foreground/20 text-foreground text-xs font-medium px-2 py-1 rounded">Open Source</span>
+                </div>
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold text-foreground mb-2">Basket Bed</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Our first prototype — collapsible baskets with zip ties and toppers. Now open source — download plans and build your own.
+                </p>
+                <Button variant="outline" asChild className="w-full">
+                  <Link href="/basket-bed-plans">Download Plans</Link>
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* Impact Stats */}
       <ImpactStats fetchLive={true} />
-
-      {/* Featured Products */}
-      <section className="py-16 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="flex items-end justify-between mb-8">
-            <div>
-              <h2 className="text-3xl font-bold text-foreground">Our Products</h2>
-              <p className="mt-2 text-muted-foreground">
-                Every purchase supports remote Indigenous communities
-              </p>
-            </div>
-            <Button variant="outline" asChild className="hidden sm:inline-flex">
-              <Link href="/shop">View All Products</Link>
-            </Button>
-          </div>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {products.length > 0 ? (
-              products.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))
-            ) : (
-              <p className="col-span-full text-center text-muted-foreground py-8">
-                Products coming soon...
-              </p>
-            )}
-          </div>
-
-          <div className="mt-8 text-center sm:hidden">
-            <Button asChild>
-              <Link href="/shop">View All Products</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
 
       {/* Our Approach - from content data */}
       <section className="bg-muted/30 py-16 md:py-20">
@@ -189,7 +159,7 @@ export default async function HomePage() {
         <FeaturedStories
           title="Community Voices"
           subtitle="15 storytellers across 6 communities have shaped and validated the Goods approach"
-          maxStories={3}
+          maxStories={6}
         />
       </Suspense>
 
@@ -208,16 +178,17 @@ export default async function HomePage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground">Communities We Serve</h2>
             <p className="mt-2 text-muted-foreground">
-              Delivering essential goods across remote Australia
+              100% community-made, delivering essential goods across remote Australia
             </p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {communities.map((community) => (
-              <Card key={community.name} className="text-center">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {communityPartnerships.filter(p => p.bedsDelivered > 0).map((p) => (
+              <Card key={p.id} className="text-center">
                 <CardContent className="p-6">
-                  <div className="text-2xl font-bold text-primary">{community.items}</div>
-                  <div className="mt-1 text-sm text-muted-foreground">{community.name}</div>
+                  <div className="text-2xl font-bold text-primary">{p.bedsDelivered}</div>
+                  <div className="mt-1 text-sm font-medium text-foreground">{p.name}</div>
+                  <div className="mt-1 text-xs text-muted-foreground">{p.region}</div>
                 </CardContent>
               </Card>
             ))}
@@ -225,7 +196,7 @@ export default async function HomePage() {
 
           <div className="mt-8 text-center">
             <Button variant="outline" asChild>
-              <Link href="/communities">Learn About Our Communities</Link>
+              <Link href="/community">Learn About Our Communities</Link>
             </Button>
           </div>
         </div>

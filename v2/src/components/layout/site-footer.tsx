@@ -2,13 +2,12 @@ import Link from 'next/link';
 
 const footerLinks = {
   shop: [
-    { name: 'Stretch Bed', href: '/shop/weave-bed-single' },
-    { name: 'Greate Bed', href: '/shop/basket-bed-single' },
-    { name: 'Washing Machines', href: '/shop/washing-machine-standard' },
-    { name: 'Accessories', href: '/shop' },
+    { name: 'The Stretch Bed', href: '/shop/stretch-bed-single' },
+    { name: 'Washing Machines', href: '/partner' },
+    { name: 'Basket Bed (Open Source)', href: '/basket-bed-plans' },
   ],
   about: [
-    { name: 'Our Story', href: '/about' },
+    { name: 'Our Story', href: '/story' },
     { name: 'How It\'s Made', href: '/process' },
     { name: 'Communities', href: '/community' },
     { name: 'Impact', href: '/impact' },
@@ -16,12 +15,14 @@ const footerLinks = {
   support: [
     { name: 'Contact', href: '/contact' },
     { name: 'Sponsor a Bed', href: '/sponsor' },
-    { name: 'Stories', href: '/stories' },
+    { name: 'My Items', href: '/my-items' },
+    { name: 'Community Stories', href: '/stories' },
     { name: 'FAQ', href: '/support' },
   ],
   partners: [
     { name: 'Partner With Us', href: '/partner' },
     { name: 'Pitch Deck', href: '/pitch' },
+    { name: 'Impact & Evidence', href: '/impact' },
     { name: 'Community Partners', href: '/community' },
     { name: 'Media Inquiries', href: '/contact' },
   ],

@@ -50,20 +50,44 @@ import type { ContentPlacement } from '@/lib/empathy-ledger';
 export const media = {
   // --- Products ---
   product: {
-    stretchBedHero: undefined as string | undefined,
-    // stretchBedHero: '/images/product/stretch-bed-hero.jpg',
-    greateBed: undefined as string | undefined,
-    washingMachine: undefined as string | undefined,
+    // Main Stretch Bed hero shot (bed alone at golden hour with Goods. branding)
+    stretchBedHero: '/images/product/stretch-bed-hero.jpg',
+    // Basket Bed hero shot (mattress/topper style in outback)
+    basketBedHero: '/images/product/basket-bed-hero.jpg',
+    // Additional Stretch Bed photos from community shoots
+    stretchBedAssembly: '/images/product/stretch-bed-assembly.jpg',
+    stretchBedInUse: '/images/product/stretch-bed-in-use.jpg',
+    stretchBedCommunity: '/images/product/stretch-bed-community.jpg',
+    stretchBedDetail: '/images/product/stretch-bed-detail.jpg',
+    stretchBedKidsBuilding: '/images/product/stretch-bed-kids-building.jpg',
+    // Legacy video thumbnails (smaller resolution)
+    stretchBedLegs: '/images/product/stretch-bed-legs.jpg',
+    stretchBedPoles: '/images/product/stretch-bed-poles.jpg',
+    // Pakkimjalki Kari washing machine (recycled plastic enclosure + Speed Queen)
+    washingMachine: '/images/product/washing-machine-hero.jpg',
+    washingMachineName: '/images/product/washing-machine-name.jpg',
+    washingMachineInstalled: '/images/product/washing-machine-installed.jpg',
+    washingMachineCommunity: '/images/product/washing-machine-community.jpg',
   },
 
   // --- Process steps (photo or video URL) ---
   process: {
-    source: undefined as string | undefined,
-    process: undefined as string | undefined,
-    cut: undefined as string | undefined,
-    build: undefined as string | undefined,
-    weave: undefined as string | undefined,
-    deliver: undefined as string | undefined,
+    source: '/images/process/01-source.jpg',
+    process: '/images/process/02-process.jpg',
+    cut: '/images/process/03-cut.jpg',
+    build: '/images/process/04-build.jpg',
+    weave: '/images/process/05-weave.jpg',
+    deliver: '/images/process/06-deliver.jpg',
+  },
+
+  // --- Manufacturing / Recycling Plant ---
+  manufacturing: {
+    containerFactory: '/images/process/container-factory.jpg',
+    factoryOverview: '/images/process/factory-overview.jpg',
+    hydraulicPress: '/images/process/hydraulic-press.jpg',
+    cncCutter: '/images/process/cnc-cutter.jpg',
+    pressedSheets: '/images/process/pressed-sheets.jpg',
+    colorSamples: '/images/process/color-samples.jpg',
   },
 
   // --- Process step videos (embed URLs) ---
@@ -87,14 +111,14 @@ export const media = {
   // --- People portraits / context shots ---
   people: {
     zeldaHogan: undefined as string | undefined,
-    brianRussell: undefined as string | undefined,
-    ivy: undefined as string | undefined,
-    dianneStokes: undefined as string | undefined,
-    lindaTurner: undefined as string | undefined,
-    patriciaFrank: undefined as string | undefined,
-    alfredJohnson: undefined as string | undefined,
-    normFrank: undefined as string | undefined,
-    cliffPlummer: undefined as string | undefined,
+    brianRussell: '/images/people/brian-russell.jpg',
+    ivy: '/images/people/ivy.jpg',
+    dianneStokes: '/images/people/dianne-stokes.jpg',
+    lindaTurner: '/images/people/linda-turner.jpg',
+    patriciaFrank: '/images/people/patricia-frank.jpg',
+    alfredJohnson: '/images/people/alfred-johnson.jpg',
+    normFrank: '/images/people/norman-frank.jpg',
+    cliffPlummer: '/images/people/cliff-plummer.jpg',
   },
 
   // --- Pitch-specific ---

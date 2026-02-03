@@ -176,7 +176,7 @@ export default function CommunityVoicesPage() {
                 The Product
               </p>
               <h2 className="text-3xl md:text-4xl font-light mb-6" style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}>
-                The Greate Bed
+                The Stretch Bed
               </h2>
               <p className="text-lg mb-6" style={{ color: '#5E5E5E' }}>
                 Co-designed with communities over 500+ minutes of feedback. Built from recycled plastic,
@@ -185,7 +185,7 @@ export default function CommunityVoicesPage() {
 
               <div className="space-y-3 mb-8">
                 {[
-                  'Made from 25kg recycled plastic',
+                  'Made from 21kg recycled plastic',
                   '5-minute assembly, no tools required',
                   'Washable mattress components',
                   'Built to last 10+ years',

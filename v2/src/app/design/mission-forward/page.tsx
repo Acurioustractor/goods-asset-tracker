@@ -14,7 +14,7 @@ const steps = [
   {
     number: '02',
     title: 'We Build',
-    description: 'Artisans craft each bed from 25kg of recycled plastic.',
+    description: 'Artisans craft each bed from 21kg of recycled plastic.',
     icon: '🔧',
   },
   {
@@ -205,11 +205,11 @@ export default function MissionForwardPage() {
                 The Product
               </p>
               <h2 className="text-3xl md:text-4xl font-black mb-6" style={{ color: '#111111' }}>
-                The Greate Bed
+                The Stretch Bed
               </h2>
               <p className="text-lg text-gray-600 mb-8">
                 Purpose-built for remote Australia. Stackable, washable, and made from
-                recycled plastic. Each bed diverts 25kg from landfill.
+                recycled plastic. Each bed diverts 21kg from landfill.
               </p>
 
               <div className="space-y-4 mb-8">
