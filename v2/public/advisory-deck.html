@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Goods Advisory Group Check-In — Feb 2026</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #1a1a1a;
+    --text: #f5f5f0;
+    --muted: #a0a0a0;
+    --amber: #d97706;
+    --amber-light: #f59e0b;
+    --serif: Georgia, 'Times New Roman', serif;
+    --sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Slide container */
+  .deck {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 6vh 8vw;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    overflow: hidden;
+  }
+
+  .slide.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Video / image backgrounds */
+  .slide-bg-video, .slide-bg-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .slide-bg-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .slide-bg-image {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .slide-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+  }
+
+  .slide-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    width: 100%;
+  }
+
+  /* Typography */
+  h1 { font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; font-weight: 400; margin-bottom: 1.5rem; }
+  h2 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.15; font-weight: 400; margin-bottom: 1.25rem; }
+  h3 { font-family: var(--serif); font-size: clamp(1.25rem, 2.5vw, 2rem); line-height: 1.2; font-weight: 400; margin-bottom: 1rem; }
+  p, li { font-size: clamp(1rem, 1.5vw, 1.25rem); line-height: 1.6; color: var(--muted); }
+  .highlight { color: var(--amber); }
+  .text-white { color: var(--text); }
+
+  /* Stat grid */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+  }
+
+  .stat-value {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: var(--amber);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+
+  /* Community map */
+  .map-container {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    margin: 2rem auto 0;
+  }
+
+  .map-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .map-pin {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    cursor: default;
+  }
+
+  .map-pin .dot {
+    width: 14px;
+    height: 14px;
+    background: var(--amber);
+    border-radius: 50%;
+    margin: 0 auto 4px;
+    box-shadow: 0 0 0 4px rgba(217,119,6,0.25);
+    animation: pulse-dot 3s ease-in-out infinite;
+  }
+
+  .map-pin.minor .dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(217,119,6,0.5);
+    box-shadow: none;
+    animation: none;
+  }
+
+  .map-pin .pin-label {
+    font-size: 0.75rem;
+    color: var(--text);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .map-pin .pin-count {
+    font-size: 0.65rem;
+    color: var(--amber-light);
+    font-weight: 600;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(217,119,6,0.25); }
+    50% { box-shadow: 0 0 0 10px rgba(217,119,6,0); }
+  }
+
+  /* Quote grid */
+  .quote-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .quote-card {
+    padding: 1.5rem;
+    border-left: 3px solid var(--amber);
+    background: rgba(255,255,255,0.03);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .quote-card blockquote {
+    font-family: var(--serif);
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    color: var(--text);
+    line-height: 1.5;
+    font-style: italic;
+    margin-bottom: 0.75rem;
+  }
+
+  .quote-card cite {
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--amber);
+  }
+
+  /* Specs list */
+  .specs-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem 2rem;
+    margin-top: 1.5rem;
+  }
+
+  .specs-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .specs-list .spec-label { color: var(--amber); font-weight: 600; white-space: nowrap; }
+  .specs-list .spec-value { color: var(--text); }
+
+  /* Questions list */
+  .questions-list {
+    list-style: none;
+    counter-reset: q;
+    margin-top: 1.5rem;
+  }
+
+  .questions-list li {
+    counter-increment: q;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .questions-list li::before {
+    content: counter(q);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--amber);
+    color: #000;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-right: 1rem;
+    vertical-align: middle;
+  }
+
+  /* Two-column layout */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .two-col { grid-template-columns: 1fr; gap: 1.5rem; }
+    .slide {
+      padding: 3vh 5vw;
+      padding-bottom: 8vh;
+      overflow-y: auto;
+      justify-content: flex-start;
+      padding-top: 5vh;
+    }
+    .slide-content { max-width: 100%; }
+    h1 { font-size: 2rem; margin-bottom: 1rem; }
+    h2 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+    p, li { font-size: 0.95rem; }
+    .subtitle { font-size: 1rem !important; }
+    .eyebrow { font-size: 0.7rem; margin-bottom: 0.5rem; }
+
+    .stat-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .stat-card { padding: 0.75rem; }
+    .stat-value { font-size: 1.5rem; }
+    .stat-label { font-size: 0.75rem; }
+
+    .quote-grid {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+    .quote-card {
+      padding: 1rem;
+      flex-direction: column !important;
+      gap: 0.75rem !important;
+    }
+    .quote-card img {
+      width: 48px !important;
+      height: 48px !important;
+    }
+    .quote-card blockquote { font-size: 0.9rem !important; }
+
+    .specs-list {
+      grid-template-columns: 1fr !important;
+      gap: 0.25rem 0;
+      margin-top: 1rem;
+    }
+    .specs-list li { font-size: 0.85rem; padding: 0.35rem 0; }
+
+    .bullet-list li { font-size: 0.9rem; padding: 0.25rem 0; }
+
+    .questions-list li {
+      font-size: 0.95rem;
+      padding: 0.75rem 0;
+    }
+    .questions-list li::before {
+      width: 1.5rem;
+      height: 1.5rem;
+      font-size: 0.75rem;
+      margin-right: 0.75rem;
+    }
+
+    /* Map slide */
+    #community-map { height: 50vh !important; }
+
+    /* Photo strips */
+    .slide img[style*="height:90px"],
+    .slide img[style*="height:80px"],
+    .slide img[style*="height:70px"] {
+      height: 50px !important;
+    }
+
+    /* Washing machine slide grid */
+    [style*="grid-template-columns:280px"] {
+      grid-template-columns: 1fr !important;
+    }
+    [style*="grid-template-columns:280px"] > div:first-child img {
+      max-width: 200px;
+      margin: 0 auto 1rem;
+      display: block;
+    }
+
+    /* Stretch bed gallery */
+    .two-col[style*="align-items:center"] {
+      gap: 1rem !important;
+    }
+    .two-col[style*="align-items:center"] > div:last-child img {
+      max-height: 150px;
+    }
+
+    /* Nav zones larger on mobile for easier tapping */
+    .nav-zone { width: 25%; }
+
+    /* Progress bar and counter */
+    .slide-counter {
+      bottom: 0.75rem;
+      right: 1rem;
+      font-size: 0.7rem;
+    }
+    .progress-bar { height: 2px; }
+  }
+
+  /* Fix photo strips from stretching */
+  @media (max-width: 768px) {
+    /* Photo strip containers */
+    [style*="display:flex"][style*="gap:0.5rem"] {
+      flex-wrap: wrap;
+    }
+    [style*="display:flex"][style*="gap:0.5rem"] > img {
+      flex: 1 1 calc(33% - 0.5rem) !important;
+      min-width: 80px;
+      max-width: none;
+      height: 60px !important;
+    }
+
+    /* Map slide header - stack on mobile */
+    [style*="display:flex"][style*="margin-bottom:1rem"] {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 0.75rem !important;
+    }
+    [style*="margin-left:auto"][style*="font-size:0.8rem"] {
+      margin-left: 0 !important;
+      flex-wrap: wrap;
+      gap: 0.75rem !important;
+    }
+
+    /* Washing machine header with Dianne photo */
+    [style*="display:flex"][style*="margin-bottom:1.5rem"] {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 1rem !important;
+    }
+    [style*="width:70px"][style*="height:70px"] {
+      width: 56px !important;
+      height: 56px !important;
+    }
+
+    /* Washing machine grid layout */
+    [style*="grid-template-columns:280px 1fr"] {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 1.5rem !important;
+    }
+    [style*="grid-template-columns:280px 1fr"] > div:first-child {
+      order: 2;
+    }
+    [style*="grid-template-columns:280px 1fr"] > div:first-child img {
+      max-width: 220px !important;
+      margin: 0 auto;
+      display: block;
+    }
+
+    /* Stretch bed two-col images */
+    .two-col[style*="align-items:center"] > div:last-child {
+      width: 100%;
+    }
+    .two-col[style*="align-items:center"] > div:last-child > img:first-child {
+      max-height: 200px;
+      object-fit: cover;
+      width: 100%;
+    }
+    .two-col[style*="align-items:center"] [style*="display:flex"][style*="gap:0.5rem"] > img {
+      height: 60px !important;
+    }
+  }
+
+  /* Very small screens */
+  @media (max-width: 480px) {
+    .slide { padding: 2.5vh 4vw; padding-top: 4vh; padding-bottom: 10vh; }
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.35rem; }
+    .stat-grid { grid-template-columns: 1fr; }
+    .stat-value { font-size: 1.75rem; }
+
+    .quote-card img { display: none !important; }
+
+    #community-map { height: 40vh !important; }
+
+    /* Hide photo strips on very small screens */
+    [style*="display:flex"][style*="gap:0.5rem"]:has(> img[style*="height"]) {
+      display: none !important;
+    }
+
+    /* Washing machine image smaller */
+    [style*="grid-template-columns:280px 1fr"] > div:first-child img {
+      max-width: 160px !important;
+    }
+  }
+
+  .bullet-list {
+    list-style: none;
+    margin-top: 1rem;
+  }
+
+  .bullet-list li {
+    padding: 0.4rem 0;
+    color: var(--text);
+  }
+
+  .bullet-list li::before {
+    content: '—';
+    color: var(--amber);
+    margin-right: 0.75rem;
+  }
+
+  /* Subtitle / eyebrow */
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.8rem;
+    color: var(--amber);
+    margin-bottom: 0.75rem;
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: var(--amber);
+    transition: width 0.4s ease;
+    z-index: 100;
+  }
+
+  /* Slide counter */
+  .slide-counter {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    z-index: 100;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Nav arrows (click zones) */
+  .nav-zone {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 15%;
+    z-index: 50;
+    cursor: pointer;
+  }
+  .nav-zone.left { left: 0; }
+  .nav-zone.right { right: 0; }
+
+  /* Subtitle under h1 */
+  .subtitle {
+    font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 700px;
+  }
+
+  .center { text-align: center; display: flex; flex-direction: column; align-items: center; }
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1: Title -->
+  <div class="slide active" data-slide="0">
+    <div class="slide-bg-video">
+      <video autoplay muted loop playsinline poster="/video/hero-poster.jpg">
+        <source src="/video/hero-desktop.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="slide-bg-overlay"></div>
+    <div class="slide-content center">
+      <p class="eyebrow">Advisory Group Check-In</p>
+      <h1>Goods.</h1>
+      <p class="subtitle">February 2026</p>
+      <p style="margin-top:3rem;color:var(--muted);font-size:0.85rem;">Use arrow keys to navigate &middot; Press 1&ndash;9 to jump</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: Mission -->
+  <div class="slide" data-slide="1">
+    <div class="slide-bg-video">
+      <video autoplay muted loop playsinline poster="/video/building-together-poster.jpg">
+        <source src="/video/building-together-desktop.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="slide-bg-overlay" style="background:rgba(0,0,0,0.7);"></div>
+    <div class="slide-content center">
+      <p class="eyebrow">Our Mission</p>
+      <h2>Building the Toyota Troopy<br>of house goods.</h2>
+      <p class="subtitle" style="margin-top:1rem;">Beds, washing machines, and refrigerators designed with communities, manufactured sustainably, and eventually owned by them.</p>
+      <div style="margin-top:3rem;padding:1.5rem 2rem;border:1px solid rgba(255,255,255,0.1);border-radius:12px;background:rgba(255,255,255,0.03);max-width:600px;">
+        <p style="font-family:var(--serif);font-size:clamp(1.1rem,1.6vw,1.35rem);color:var(--text);font-style:italic;">"A good bed can prevent heart disease."</p>
+        <p style="margin-top:0.5rem;font-size:0.85rem;color:var(--amber);">Our job is to become unnecessary.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: The Problem -->
+  <div class="slide" data-slide="2">
+    <div class="slide-bg-image" style="background-image:url('/images/community/tennant-creek.jpg');"></div>
+    <div class="slide-bg-overlay" style="background:rgba(0,0,0,0.75);"></div>
+    <div class="slide-content">
+      <p class="eyebrow">The Problem</p>
+      <h2>A failure of infrastructure, not culture</h2>
+      <div class="stat-grid" style="margin-top:1.5rem;">
+        <div class="stat-card">
+          <span class="stat-value">59%</span>
+          <span class="stat-label">of remote homes lack washing machines</span>
+          <span style="font-size:0.7rem;color:var(--muted);display:block;margin-top:0.3rem;">FRRR, 2022</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">1 in 3</span>
+          <span class="stat-label">children have scabies at any time</span>
+          <span style="font-size:0.7rem;color:var(--muted);display:block;margin-top:0.3rem;">PLOS Neglected Tropical Diseases</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">55%</span>
+          <span class="stat-label">of very remote First Nations homes are overcrowded</span>
+          <span style="font-size:0.7rem;color:var(--muted);display:block;margin-top:0.3rem;">AIHW, 2021 Census</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">1-2 yrs</span>
+          <span class="stat-label">lifespan of standard washing machines (vs 10-15)</span>
+          <span style="font-size:0.7rem;color:var(--muted);display:block;margin-top:0.3rem;">East Arnhem Spin Project</span>
+        </div>
+      </div>
+      <p style="margin-top:2rem;font-family:var(--serif);font-style:italic;font-size:clamp(1rem,1.4vw,1.15rem);color:var(--text);text-align:center;max-width:750px;margin-left:auto;margin-right:auto;">"We don't need fancy solutions. We need beds that don't break, washing machines that can be fixed here, and people who actually listen."<br><span style="font-style:normal;color:var(--amber);font-size:0.85rem;">— Community voice, Palm Island</span></p>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: Progress to Date -->
+  <div class="slide" data-slide="3">
+    <div class="slide-bg-video">
+      <video autoplay muted loop playsinline poster="/video/community-poster.jpg">
+        <source src="/video/community-desktop.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="slide-bg-overlay" style="background:rgba(0,0,0,0.7);"></div>
+    <div class="slide-content">
+      <p class="eyebrow">Progress to Date</p>
+      <h2>Where we are</h2>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <span class="stat-value">389</span>
+          <span class="stat-label">Assets tracked in register</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">340+</span>
+          <span class="stat-label">Beds delivered</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">8+</span>
+          <span class="stat-label">Communities served</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">200–350</span>
+          <span class="stat-label">Beds currently requested</span>
+        </div>
+      </div>
+      <p style="margin-top:2rem;font-size:0.95rem;color:var(--muted);">One Alice Springs provider sells <span class="highlight">$3M/yr</span> of washing machines into remote communities — most end up in dumps within months.</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: Community Map -->
+  <div class="slide" data-slide="4">
+    <div class="slide-content" style="max-width:100%;padding:2vh 3vw;">
+      <div style="display:flex;align-items:center;gap:2rem;margin-bottom:1rem;">
+        <div>
+          <p class="eyebrow">Community Partnerships</p>
+          <h2 style="margin-bottom:0;">Where we work</h2>
+        </div>
+        <div style="display:flex;gap:1.5rem;margin-left:auto;font-size:0.8rem;color:var(--muted);">
+          <span><span style="display:inline-block;width:10px;height:10px;background:var(--amber);border-radius:50%;margin-right:4px;"></span> Active community</span>
+          <span><span style="display:inline-block;width:8px;height:8px;background:rgba(217,119,6,0.5);border-radius:50%;margin-right:4px;"></span> Support hub</span>
+        </div>
+      </div>
+      <div id="community-map" style="width:100%;height:70vh;border-radius:12px;overflow:hidden;"></div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: Stretch Bed -->
+  <div class="slide" data-slide="5">
+    <div class="slide-bg-video">
+      <video autoplay muted loop playsinline poster="/video/stretch-bed-poster.jpg">
+        <source src="/video/stretch-bed-desktop.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="slide-bg-overlay"></div>
+    <div class="slide-content">
+      <div class="two-col" style="align-items:center;">
+        <div>
+          <p class="eyebrow">Flagship Product</p>
+          <h2>The Stretch Bed</h2>
+          <p class="subtitle">Recycled HDPE plastic, galvanised steel poles, heavy-duty canvas. Flat-packs, no tools, 5 minutes.</p>
+          <ul class="specs-list" style="grid-template-columns:1fr;">
+            <li><span class="spec-label">Weight</span><span class="spec-value">12 kg</span></li>
+            <li><span class="spec-label">Capacity</span><span class="spec-value">200 kg</span></li>
+            <li><span class="spec-label">Size</span><span class="spec-value">188 &times; 92 &times; 25 cm</span></li>
+            <li><span class="spec-label">Assembly</span><span class="spec-value">Under 5 mins, no tools</span></li>
+            <li><span class="spec-label">Plastic diverted</span><span class="spec-value">21 kg per bed</span></li>
+            <li><span class="spec-label">Cost</span><span class="spec-value">~$350 per bed</span></li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <img src="/images/product/stretch-bed-assembled.jpg" alt="The Stretch Bed assembled" style="width:100%;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.5);">
+          <div style="display:flex;gap:0.5rem;">
+            <img src="/images/product/stretch-bed-poles.jpg" alt="Steel poles and canvas" style="flex:1;height:90px;object-fit:cover;border-radius:8px;">
+            <img src="/images/product/stretch-bed-legs.jpg" alt="Recycled HDPE legs" style="flex:1;height:90px;object-fit:cover;border-radius:8px;">
+            <img src="/images/product/stretch-bed-in-use.jpg" alt="Bed in use on country" style="flex:1;height:90px;object-fit:cover;border-radius:8px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: Stretch Bed Next Steps -->
+  <div class="slide" data-slide="6">
+    <div class="slide-content">
+      <p class="eyebrow">Next Steps</p>
+      <h2>Stretch Bed — What's Next</h2>
+      <div class="two-col">
+        <div>
+          <h3>Scaling Production</h3>
+          <ul class="bullet-list">
+            <li>100 beds funded and deploying Q1 2026</li>
+            <li>200-350 beds currently requested by communities</li>
+            <li>Targeting cost reduction from $550-650 range</li>
+            <li>Building toward 1,000-bed inventory</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Community Programs</h3>
+          <ul class="bullet-list">
+            <li>On-country manufacturing jobs</li>
+            <li>Youth training with Red Dust Robotics</li>
+            <li>Community shed plastic collection hubs</li>
+            <li>Circuit production runs across NT</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:2rem;padding:1.25rem 1.5rem;background:rgba(217,119,6,0.1);border-radius:8px;border:1px solid rgba(217,119,6,0.2);">
+        <p style="color:var(--text);font-size:1rem;"><span class="highlight">Demand signal:</span> Diane Stokes received one bed, requested 20 more within two weeks — offering to fund them herself. Utopian homelands want beds for every child (~$150,000 worth).</p>
+      </div>
+      <!-- Photo gallery strip -->
+      <div style="display:flex;gap:0.5rem;margin-top:1.5rem;overflow:hidden;border-radius:8px;">
+        <img src="/images/product/stretch-bed-assembly.jpg" alt="Assembly on country" style="flex:1;height:90px;object-fit:cover;border-radius:4px;">
+        <img src="/images/product/stretch-bed-assembled.jpg" alt="Assembled bed" style="flex:1;height:90px;object-fit:cover;border-radius:4px;">
+        <img src="/images/product/stretch-bed-community.jpg" alt="Community testing" style="flex:1;height:90px;object-fit:cover;border-radius:4px;">
+        <img src="/images/product/stretch-bed-in-use.jpg" alt="Bed in use" style="flex:1;height:90px;object-fit:cover;border-radius:4px;">
+        <img src="/images/product/stretch-bed-poles.jpg" alt="Steel poles + canvas" style="flex:1;height:90px;object-fit:cover;border-radius:4px;">
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: Washing Machine -->
+  <div class="slide" data-slide="7">
+    <div class="slide-content">
+      <div style="display:flex;align-items:center;gap:2rem;margin-bottom:1.5rem;">
+        <div>
+          <p class="eyebrow">Product #2</p>
+          <h2 style="margin-bottom:0;">Pakkimjalki Kari</h2>
+          <h3 style="color:var(--muted);font-style:italic;margin-top:0.25rem;">Named in Warumungu language by Elder Dianne Stokes</h3>
+        </div>
+        <img src="/images/people/dianne-stokes.jpg" alt="Dianne Stokes" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid var(--amber);flex-shrink:0;">
+      </div>
+      <div style="display:grid;grid-template-columns:280px 1fr;gap:2rem;align-items:start;">
+        <div>
+          <img src="/images/product/washing-machine.jpg" alt="Pakkimjalki Kari washing machine" style="width:100%;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+        </div>
+        <div>
+          <h3>Overview</h3>
+          <ul class="bullet-list">
+            <li>Commercial-grade Speed Queen base</li>
+            <li>One-button operation</li>
+            <li>8 test units deployed in communities</li>
+            <li>Prototype stage — collecting feedback</li>
+          </ul>
+          <h3 style="margin-top:1.5rem;">Why It Matters</h3>
+          <p style="color:var(--text);font-size:1rem;line-height:1.6;">Standard machines last 1-2 years in remote conditions vs 10-15 years in urban areas. One Alice Springs provider sells <span class="highlight">$3M/yr</span> of machines — most end up in dumps within months.</p>
+          <blockquote style="margin-top:1.25rem;font-family:var(--serif);font-style:italic;color:var(--text);border-left:3px solid var(--amber);padding-left:1rem;font-size:1rem;">
+            "Scabies often leads to Rheumatic Heart Disease, so washing machines are essential."
+            <cite style="display:block;margin-top:0.5rem;font-style:normal;color:var(--amber);font-size:0.85rem;">— Jessica Allardyce, Miwatj Health</cite>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: Community Voices -->
+  <div class="slide" data-slide="8">
+    <div class="slide-content">
+      <p class="eyebrow">Community Voices</p>
+      <h2>In their words</h2>
+      <div class="quote-grid">
+        <div class="quote-card" style="display:flex;gap:1rem;align-items:start;">
+          <img src="/images/people/dianne-stokes.jpg" alt="Dianne Stokes" style="width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--amber);">
+          <div>
+            <blockquote>"Working both ways — cultural side in white society and Indigenous society."</blockquote>
+            <cite>Dianne Stokes — Elder, Tennant Creek</cite>
+          </div>
+        </div>
+        <div class="quote-card" style="display:flex;gap:1rem;align-items:start;">
+          <img src="/images/people/norman-frank.jpg" alt="Norman Frank" style="width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--amber);">
+          <div>
+            <blockquote>"I want to see a better future for our kids and better housing for our people."</blockquote>
+            <cite>Norman Frank — Elder, Tennant Creek</cite>
+          </div>
+        </div>
+        <div class="quote-card" style="display:flex;gap:1rem;align-items:start;">
+          <img src="/images/people/ivy.jpg" alt="Ivy" style="width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--amber);">
+          <div>
+            <blockquote>"Hardly anyone around the community has beds. When family comes to visit, people sleep on the floor."</blockquote>
+            <cite>Ivy — Palm Island</cite>
+          </div>
+        </div>
+        <div class="quote-card" style="display:flex;gap:1rem;align-items:start;">
+          <img src="/images/people/brian-russell.jpg" alt="Brian Russell" style="width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--amber);">
+          <div>
+            <blockquote>"It's gonna be home for me now."</blockquote>
+            <cite>Brian Russell — Tennant Creek</cite>
+          </div>
+        </div>
+        <div class="quote-card" style="display:flex;gap:1rem;align-items:start;">
+          <img src="/images/people/linda-turner.jpg" alt="Linda Turner" style="width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--amber);">
+          <div>
+            <blockquote>"We've never been asked at what sort of house we'd like to live in."</blockquote>
+            <cite>Linda Turner — Tennant Creek</cite>
+          </div>
+        </div>
+        <div class="quote-card" style="display:flex;gap:1rem;align-items:start;">
+          <img src="/images/people/alfred-johnson.jpg" alt="Alfred Johnson" style="width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--amber);">
+          <div>
+            <blockquote>"Having a bed is something you need; you feel more safe when you sleep in a bed."</blockquote>
+            <cite>Alfred Johnson — Palm Island</cite>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: On-Country Production -->
+  <div class="slide" data-slide="9">
+    <div class="slide-bg-video">
+      <video autoplay muted loop playsinline poster="/video/recycling-plant-poster.jpg">
+        <source src="/video/recycling-plant-desktop.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="slide-bg-overlay"></div>
+    <div class="slide-content">
+      <p class="eyebrow">Manufacturing</p>
+      <h2>On-Country Production</h2>
+      <p class="subtitle">A containerised factory that turns community plastic waste into beds.</p>
+      <div class="two-col" style="margin-top:2rem;">
+        <div>
+          <h3 style="color:var(--text);">How It Works</h3>
+          <ul class="bullet-list">
+            <li>Shredder container collects &amp; processes plastic</li>
+            <li>Production container arrives to build beds</li>
+            <li>Computer-controlled router cuts components</li>
+            <li>~30 beds per week capacity</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="color:var(--text);">The Vision</h3>
+          <ul class="bullet-list">
+            <li>Community-owned manufacturing</li>
+            <li>Local jobs on country</li>
+            <li>Same facility makes washing machines &amp; fridges</li>
+            <li>~$100K already invested (TFN + ACT)</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:1.5rem;font-family:var(--serif);font-style:italic;font-size:clamp(1rem,1.4vw,1.2rem);color:var(--text);text-align:center;">"We don't license — we transfer. Communities keep 100% of what they make and sell."</p>
+      <!-- Process steps strip -->
+      <div style="display:flex;gap:0.5rem;margin-top:1.5rem;overflow:hidden;border-radius:8px;">
+        <img src="/images/process/01-source.jpg" alt="Source" style="flex:1;height:70px;object-fit:cover;border-radius:4px;">
+        <img src="/images/process/02-process.jpg" alt="Process" style="flex:1;height:70px;object-fit:cover;border-radius:4px;">
+        <img src="/images/process/03-cut.jpg" alt="Cut" style="flex:1;height:70px;object-fit:cover;border-radius:4px;">
+        <img src="/images/process/04-build.jpg" alt="Build" style="flex:1;height:70px;object-fit:cover;border-radius:4px;">
+        <img src="/images/process/05-weave.jpg" alt="Assemble" style="flex:1;height:70px;object-fit:cover;border-radius:4px;">
+        <img src="/images/process/06-deliver.jpg" alt="Deliver" style="flex:1;height:70px;object-fit:cover;border-radius:4px;">
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:0.6rem;color:var(--muted);margin-top:0.3rem;padding:0 0.25rem;">
+        <span>Source</span><span>Process</span><span>Cut</span><span>Build</span><span>Assemble</span><span>Deliver</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 11: Key Questions -->
+  <div class="slide" data-slide="10">
+    <div class="slide-content">
+      <p class="eyebrow">Discussion</p>
+      <h2>Key Questions</h2>
+      <ol class="questions-list">
+        <li>How do we balance scaling bed production with maintaining the community co-design process?</li>
+        <li>What's the right payment model for the on-country production plant — community purchase, lease, or philanthropic subsidy?</li>
+        <li>How do we measure and communicate impact beyond "beds delivered" — health outcomes, dignity, economic participation?</li>
+        <li>What partnerships should we prioritise for the next 12 months to move from 340 beds to 1,000+?</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- SLIDE 12: Thank You -->
+  <div class="slide" data-slide="11">
+    <div class="slide-bg-video">
+      <video autoplay muted loop playsinline poster="/video/community-poster.jpg">
+        <source src="/video/community-desktop.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="slide-bg-overlay"></div>
+    <div class="slide-content center">
+      <h1>Goods that heal.</h1>
+      <p class="subtitle" style="margin-top:1rem;">Built with communities, not for them.</p>
+      <div style="margin-top:3rem;color:var(--muted);font-size:0.95rem;">
+        <p style="color:var(--text);">hi@act.place</p>
+        <p style="margin-top:0.5rem;">A Curious Tractor &middot; Goods on Country &middot; 2026</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Progress bar -->
+<div class="progress-bar" id="progress"></div>
+
+<!-- Slide counter -->
+<div class="slide-counter" id="counter">1 / 12</div>
+
+<!-- Click nav zones -->
+<div class="nav-zone left" id="nav-left"></div>
+<div class="nav-zone right" id="nav-right"></div>
+
+<script>
+// --- Leaflet community map ---
+(function() {
+  var map = L.map('community-map', {
+    center: [-24, 134],
+    zoom: 5,
+    zoomControl: false,
+    attributionControl: false,
+    scrollWheelZoom: false,
+    dragging: true
+  });
+
+  // Dark map tiles (CartoDB Dark Matter)
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    subdomains: 'abcd',
+    maxZoom: 10
+  }).addTo(map);
+
+  var communities = [
+    { lat: -19.648, lng: 134.192, name: 'Tennant Creek', beds: 139, major: true },
+    { lat: -23.698, lng: 133.880, name: 'Alice Springs', beds: 60, major: true },
+    { lat: -18.735, lng: 146.581, name: 'Palm Island', beds: 141, major: true },
+    { lat: -19.258, lng: 146.816, name: 'Townsville', beds: 0, major: false, note: 'Logistics hub' },
+    { lat: -30.749, lng: 121.473, name: 'Kalgoorlie', beds: 0, major: false, note: 'Support worker beds' },
+  ];
+
+  communities.forEach(function(c) {
+    var size = c.major ? 12 : 7;
+    var icon = L.divIcon({
+      className: '',
+      html: '<div style="width:'+size+'px;height:'+size+'px;background:#d97706;border-radius:50%;box-shadow:0 0 0 4px rgba(217,119,6,0.3);"></div>',
+      iconSize: [size, size],
+      iconAnchor: [size/2, size/2]
+    });
+    var marker = L.marker([c.lat, c.lng], { icon: icon }).addTo(map);
+    var label = '<div style="font-family:system-ui;text-align:center;"><strong style="font-size:13px;">' + c.name + '</strong><br>';
+    if (c.beds > 0) label += '<span style="color:#f59e0b;font-weight:600;">' + c.beds + ' beds</span>';
+    else label += '<span style="color:#a0a0a0;">' + (c.note || '') + '</span>';
+    label += '</div>';
+    marker.bindTooltip(label, { permanent: true, direction: 'top', offset: [0, -8], className: 'map-tooltip' });
+  });
+
+  // Invalidate size when slide becomes visible
+  var observer = new MutationObserver(function() {
+    var slide = document.querySelector('[data-slide="4"]');
+    if (slide && slide.classList.contains('active')) {
+      setTimeout(function() { map.invalidateSize(); }, 100);
+    }
+  });
+  document.querySelectorAll('.slide').forEach(function(s) {
+    observer.observe(s, { attributes: true, attributeFilter: ['class'] });
+  });
+})();
+</script>
+
+<style>
+  .map-tooltip {
+    background: rgba(26,26,26,0.9) !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    color: #f5f5f0 !important;
+    border-radius: 8px !important;
+    padding: 6px 10px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4) !important;
+    font-size: 12px !important;
+  }
+  .map-tooltip::before { border-top-color: rgba(26,26,26,0.9) !important; }
+  .leaflet-container { background: var(--bg) !important; }
+</style>
+
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  function goTo(n) {
+    if (n < 0 || n >= total) return;
+    slides[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    document.getElementById('progress').style.width = ((current + 1) / total * 100) + '%';
+    document.getElementById('counter').textContent = (current + 1) + ' / ' + total;
+
+    // Pause videos on non-active slides, play on active
+    slides.forEach(function(s, i) {
+      var v = s.querySelector('video');
+      if (v) {
+        if (i === current) { v.play().catch(function(){}); }
+        else { v.pause(); }
+      }
+    });
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); goTo(0); }
+    else if (e.key === 'ArrowDown') { e.preventDefault(); goTo(total - 1); }
+    else if (e.key >= '1' && e.key <= '9') { goTo(parseInt(e.key) - 1); }
+    else if (e.key === '0') { goTo(9); }
+  });
+
+  // Click navigation
+  document.getElementById('nav-left').addEventListener('click', function() { goTo(current - 1); });
+  document.getElementById('nav-right').addEventListener('click', function() { goTo(current + 1); });
+
+  // Touch swipe
+  var touchStartX = 0;
+  document.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; });
+  document.addEventListener('touchend', function(e) {
+    var diff = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) goTo(current + 1);
+      else goTo(current - 1);
+    }
+  });
+
+  // Init
+  goTo(0);
+})();
+</script>
+
+</body>
+</html>
