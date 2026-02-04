@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { CartButton } from '@/components/cart';
+import { AuthNavItem } from '@/components/layout/auth-nav-item';
 
 const navigation = [
   { name: 'Our Story', href: '/story' },
@@ -39,6 +40,7 @@ export function SiteHeader() {
               {item.name}
             </Link>
           ))}
+          <AuthNavItem className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary" />
         </div>
 
         {/* CTA Buttons & Cart */}
@@ -85,6 +87,10 @@ export function SiteHeader() {
                   {item.name}
                 </Link>
               ))}
+              <AuthNavItem
+                className="text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
+                onClick={() => setMobileMenuOpen(false)}
+              />
               <div className="mt-4 flex flex-col gap-3">
                 <Button variant="outline" asChild>
                   <Link href="/shop" onClick={() => setMobileMenuOpen(false)}>

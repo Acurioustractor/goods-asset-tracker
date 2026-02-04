@@ -2,9 +2,15 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
 // Routes that require user authentication (phone-based)
-const protectedUserRoutes = ['/my-items', '/community']
+const protectedUserRoutes = ['/my-items', '/community', '/production']
 
 export async function middleware(request: NextRequest) {
+  // QR code redirect: /?asset_id=GB0-153-1 → /claim/GB0-153-1
+  const assetId = request.nextUrl.searchParams.get('asset_id');
+  if (assetId) {
+    return NextResponse.redirect(new URL(`/claim/${assetId}`, request.url));
+  }
+
   let supabaseResponse = NextResponse.next({
     request,
   })
@@ -42,6 +48,7 @@ export async function middleware(request: NextRequest) {
   if (isProtectedUserRoute && !user) {
     // Redirect to phone login with return URL
     const loginUrl = new URL('/auth/phone-login', request.url)
+    loginUrl.searchParams.set('from', pathname)
 
     // If accessing claim page, preserve asset_id
     if (pathname.startsWith('/claim/')) {

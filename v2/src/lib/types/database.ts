@@ -404,6 +404,29 @@ export interface ProductMetadata {
   enterprise_opportunity?: EnterpriseOpportunity;
 }
 
+// ============================================================================
+// PRODUCTION TYPES
+// ============================================================================
+
+export interface ProductionShift {
+  id: string;
+  operator: string;
+  shift_date: string;
+  sheets_produced: number;
+  sheets_cooling: number;
+  plastic_shredded_kg: number;
+  diesel_level: 'low' | 'medium' | 'full';
+  issues: string[];
+  issue_notes: string | null;
+  handover_notes: string | null;
+  total_sheets_to_date: number | null;
+  user_id: string | null;
+  voice_note_urls: string[];
+  photo_urls: string[];
+  created_at: string;
+  updated_at: string;
+}
+
 // Utility types
 export type Tables = {
   // E-commerce
@@ -429,4 +452,6 @@ export type Tables = {
   community_ideas: CommunityIdea;
   idea_votes: IdeaVote;
   announcements: Announcement;
+  // Production
+  production_shifts: ProductionShift;
 };

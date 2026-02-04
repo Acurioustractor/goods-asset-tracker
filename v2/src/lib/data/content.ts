@@ -989,6 +989,140 @@ export const videoGallery = [
   },
 ];
 
+// --- Thematic Analysis Feature ---
+
+// Theme type for type safety
+export type ThemeId =
+  | 'co-design'
+  | 'health'
+  | 'dignity'
+  | 'community-need'
+  | 'product-feedback'
+  | 'washing-machine'
+  | 'freight-tax';
+
+// Theme definitions with styling
+export const themeDefinitions: Record<
+  ThemeId,
+  {
+    id: ThemeId;
+    title: string;
+    subtitle: string;
+    color: string;
+    className: string;
+  }
+> = {
+  'co-design': {
+    id: 'co-design',
+    title: 'Community Voice',
+    subtitle: 'Built with communities, not for them',
+    color: 'amber',
+    className: 'bg-amber-100 text-amber-800 border-amber-200',
+  },
+  health: {
+    id: 'health',
+    title: 'Health & Wellbeing',
+    subtitle: 'Beds and washing machines as health hardware',
+    color: 'red',
+    className: 'bg-red-100 text-red-800 border-red-200',
+  },
+  dignity: {
+    id: 'dignity',
+    title: 'Dignity & Safety',
+    subtitle: 'The emotional impact of having a proper bed',
+    color: 'purple',
+    className: 'bg-purple-100 text-purple-800 border-purple-200',
+  },
+  'community-need': {
+    id: 'community-need',
+    title: 'Basic Needs',
+    subtitle: 'Why this work is necessary',
+    color: 'blue',
+    className: 'bg-blue-100 text-blue-800 border-blue-200',
+  },
+  'product-feedback': {
+    id: 'product-feedback',
+    title: 'Product Feedback',
+    subtitle: 'What people say about the beds',
+    color: 'green',
+    className: 'bg-green-100 text-green-800 border-green-200',
+  },
+  'washing-machine': {
+    id: 'washing-machine',
+    title: 'Washing Machines',
+    subtitle: 'Clean bedding breaks the scabies cycle',
+    color: 'teal',
+    className: 'bg-teal-100 text-teal-800 border-teal-200',
+  },
+  'freight-tax': {
+    id: 'freight-tax',
+    title: 'The Freight Tax',
+    subtitle: 'Every remote community pays a remoteness premium',
+    color: 'slate',
+    className: 'bg-slate-100 text-slate-800 border-slate-200',
+  },
+};
+
+// Spotlight theme groups for homepage tabs
+export const spotlightThemeGroups = [
+  {
+    id: 'health-wellbeing',
+    title: 'Health & Wellbeing',
+    themes: ['health'] as ThemeId[],
+    color: 'red',
+  },
+  {
+    id: 'community-voice',
+    title: 'Community Voice',
+    themes: ['co-design'] as ThemeId[],
+    color: 'amber',
+  },
+  {
+    id: 'dignity-safety',
+    title: 'Dignity & Safety',
+    themes: ['dignity'] as ThemeId[],
+    color: 'purple',
+  },
+  {
+    id: 'basic-needs',
+    title: 'Basic Needs',
+    themes: ['community-need', 'freight-tax'] as ThemeId[],
+    color: 'blue',
+  },
+];
+
+// Helper: Get count of quotes per theme
+export function getThemeCounts(): Record<ThemeId, number> {
+  const counts: Record<ThemeId, number> = {
+    'co-design': 0,
+    health: 0,
+    dignity: 0,
+    'community-need': 0,
+    'product-feedback': 0,
+    'washing-machine': 0,
+    'freight-tax': 0,
+  };
+
+  for (const quote of quotes) {
+    const theme = quote.theme as ThemeId;
+    if (theme in counts) {
+      counts[theme]++;
+    }
+  }
+
+  return counts;
+}
+
+// Helper: Get quotes filtered by theme
+export function getQuotesByTheme(themeId: ThemeId) {
+  return quotes.filter((q) => q.theme === themeId);
+}
+
+// Helper: Get all quotes for multiple themes
+export function getQuotesByThemes(themeIds: ThemeId[]) {
+  return quotes.filter((q) => themeIds.includes(q.theme as ThemeId));
+}
+
 // Themes from community voices
 export const communityThemes = [
   {

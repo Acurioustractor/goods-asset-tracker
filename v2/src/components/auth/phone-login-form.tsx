@@ -19,6 +19,7 @@ export function PhoneLoginForm({ className }: PhoneLoginFormProps) {
   const [error, setError] = React.useState<string | null>(null);
 
   const assetId = searchParams.get('asset_id');
+  const from = searchParams.get('from');
 
   // Format phone number as user types: 412 345 678
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,10 +86,13 @@ export function PhoneLoginForm({ className }: PhoneLoginFormProps) {
         throw new Error(data.error || 'Failed to send verification code');
       }
 
-      // Store phone and asset_id in sessionStorage for OTP page
+      // Store phone, asset_id, and return path in sessionStorage for OTP page
       sessionStorage.setItem('verify_phone', formattedPhone);
       if (assetId) {
         sessionStorage.setItem('claim_asset', assetId);
+      }
+      if (from) {
+        sessionStorage.setItem('auth_return_to', from);
       }
 
       // Redirect to OTP verification

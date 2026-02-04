@@ -1,12 +1,32 @@
 import Link from 'next/link';
 import { Suspense } from 'react';
-import { Hero, ImpactStats } from '@/components/marketing';
+import { Hero, ImpactStats, ThemeSpotlight, ThemeSpotlightSkeleton } from '@/components/marketing';
 import { FeaturedStories, FeaturedStoriesSkeleton, CommunityGallery, CommunityGallerySkeleton } from '@/components/empathy-ledger';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { brand, story, enterpriseOpportunity, communityPartnerships } from '@/lib/data/content';
+import { brand, story, enterpriseOpportunity, communityPartnerships, quotes, spotlightThemeGroups, storytellerProfiles } from '@/lib/data/content';
 
 export default async function HomePage() {
+  // Build spotlight data from quotes and theme groups
+  const spotlightData = spotlightThemeGroups.map((group) => {
+    const groupQuotes = quotes.filter((q) =>
+      group.themes.includes(q.theme as typeof group.themes[number])
+    );
+    return {
+      id: group.id,
+      title: group.title,
+      color: group.color,
+      quotes: groupQuotes.slice(0, 4).map((q) => {
+        const profile = storytellerProfiles.find((p) => p.name === q.author);
+        return {
+          text: q.text,
+          author: q.author,
+          context: q.context,
+          photo: profile?.photo,
+        };
+      }),
+    };
+  });
 
   return (
     <>
@@ -161,6 +181,11 @@ export default async function HomePage() {
           subtitle="15 storytellers across 6 communities have shaped and validated the Goods approach"
           maxStories={6}
         />
+      </Suspense>
+
+      {/* Theme Spotlight - auto-rotating thematic tabs */}
+      <Suspense fallback={<ThemeSpotlightSkeleton />}>
+        <ThemeSpotlight themeGroups={spotlightData} autoRotateInterval={8000} />
       </Suspense>
 
       {/* Community Gallery - from Empathy Ledger */}

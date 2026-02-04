@@ -65,8 +65,10 @@ export default function VerifyOTPPage() {
 
       setSuccess('Verified! Redirecting...');
 
-      // Clear session storage
+      // Clear session storage and determine redirect
       sessionStorage.removeItem('verify_phone');
+      const returnTo = sessionStorage.getItem('auth_return_to');
+      sessionStorage.removeItem('auth_return_to');
 
       // Check if there's an asset to claim
       const claimAsset = sessionStorage.getItem('claim_asset');
@@ -74,7 +76,7 @@ export default function VerifyOTPPage() {
         sessionStorage.removeItem('claim_asset');
         router.push(`/my-items?claim=${claimAsset}`);
       } else {
-        router.push('/my-items');
+        router.push(returnTo || '/my-items');
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong');

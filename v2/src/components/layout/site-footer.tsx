@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { AuthNavItem } from '@/components/layout/auth-nav-item';
 
 const footerLinks = {
   shop: [
@@ -9,13 +10,14 @@ const footerLinks = {
   about: [
     { name: 'Our Story', href: '/story' },
     { name: 'How It\'s Made', href: '/process' },
+    { name: 'Gallery', href: '/gallery' },
     { name: 'Communities', href: '/community' },
     { name: 'Impact', href: '/impact' },
   ],
   support: [
     { name: 'Contact', href: '/contact' },
     { name: 'Sponsor a Bed', href: '/sponsor' },
-    { name: 'My Items', href: '/my-items' },
+    { name: 'Production', href: '/production' },
     { name: 'Community Stories', href: '/stories' },
     { name: 'FAQ', href: '/support' },
   ],
@@ -148,6 +150,9 @@ export function SiteFooter() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <AuthNavItem className="text-sm text-muted-foreground hover:text-primary" />
+              </li>
             </ul>
           </div>
 

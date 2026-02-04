@@ -4,12 +4,12 @@ import Link from 'next/link';
 import { empathyLedger } from '@/lib/empathy-ledger';
 import { MediaGallery, MediaGallerySkeleton } from '@/components/empathy-ledger/media-gallery';
 import { SyndicationStorytellerCard, SyndicationStorytellerCardSkeleton } from '@/components/empathy-ledger/syndication-storyteller-card';
+import { StoriesClient } from '@/components/stories';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { storytellerProfiles, storytellerEnrichment, videoGallery, journeyStories, quotes } from '@/lib/data/content';
 import { storyPersonMedia } from '@/lib/data/media';
-import { MediaSlot } from '@/components/ui/media-slot';
 import type { SyndicationStoryteller } from '@/lib/empathy-ledger/types';
 import type { Metadata } from 'next';
 
@@ -17,34 +17,6 @@ export const metadata: Metadata = {
   title: 'Community Stories',
   description: 'Real stories from the communities we serve. Hear directly from families whose lives have been changed by Goods on Country.',
 };
-
-// --- Thematic quote groups ---
-const themeGroups = [
-  {
-    id: 'co-design',
-    title: 'Co-Design',
-    subtitle: 'Built with communities, not for them',
-    themes: ['co-design'],
-  },
-  {
-    id: 'health',
-    title: 'Health',
-    subtitle: 'Beds and washing machines as health hardware',
-    themes: ['health'],
-  },
-  {
-    id: 'product-feedback',
-    title: 'Product Feedback',
-    subtitle: 'What people say about the beds',
-    themes: ['product-feedback', 'washing-machine'],
-  },
-  {
-    id: 'community-need',
-    title: 'Community Need',
-    subtitle: 'Why this work matters',
-    themes: ['community-need', 'freight-tax', 'dignity'],
-  },
-];
 
 // Shape used by the storytellers grid
 interface StorytellerGridProfile {
@@ -545,168 +517,14 @@ export default async function StoriesPage() {
       </section>
 
       {/* ============================================================
-          JOURNEY STORIES — editorial long-form
+          FILTERABLE STORIES AND QUOTES — Client Component
           ============================================================ */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <p className="text-sm uppercase tracking-widest text-accent mb-4">
-              Stories
-            </p>
-            <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
-              Every Bed Has a Story
-            </h2>
-            <p className="max-w-xl mx-auto text-muted-foreground">
-              Real journeys from the people behind the numbers
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto space-y-16">
-            {journeyStories.map((story, index) => (
-              <article
-                key={story.id}
-                className={`relative ${index > 0 ? 'pt-16 border-t border-border' : ''}`}
-              >
-                <Badge variant="outline" className="mb-6 text-xs">
-                  {story.theme === 'co-design' && 'Co-Design'}
-                  {story.theme === 'health' && 'Health'}
-                  {story.theme === 'dignity' && 'Dignity'}
-                  {story.theme === 'housing-journey' && 'Housing Journey'}
-                  {story.theme === 'washing-machine' && 'Washing Machine'}
-                </Badge>
-
-                <blockquote className="mb-8">
-                  <p
-                    className="text-2xl md:text-3xl font-light leading-relaxed text-foreground"
-                    style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-                  >
-                    &ldquo;{story.pullQuote}&rdquo;
-                  </p>
-                </blockquote>
-
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm font-medium overflow-hidden">
-                    {storyPersonMedia[story.id] ? (
-                      <img src={storyPersonMedia[story.id]} alt={story.person} className="w-full h-full object-cover" />
-                    ) : (
-                      story.person[0]
-                    )}
-                  </div>
-                  <div>
-                    <p className="font-medium text-foreground">{story.person}</p>
-                    <p className="text-sm text-muted-foreground">{story.location}</p>
-                  </div>
-                </div>
-
-                {storyPersonMedia[story.id] && (
-                  <div className="mb-8">
-                    <MediaSlot
-                      src={storyPersonMedia[story.id]}
-                      alt={`${story.person} — ${story.location}`}
-                      aspect="16/9"
-                    />
-                  </div>
-                )}
-
-                <div className="prose prose-stone max-w-none">
-                  <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
-                    {story.narrative}
-                  </p>
-                </div>
-
-                {story.quotes.length > 1 && (
-                  <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                    {story.quotes.map((q, qi) => (
-                      <div
-                        key={qi}
-                        className="rounded-lg bg-muted/50 p-5 border-l-2 border-primary/30"
-                      >
-                        <p className="text-sm text-foreground italic leading-relaxed">
-                          &ldquo;{q.text}&rdquo;
-                        </p>
-                        <p className="text-xs text-muted-foreground mt-2">{q.context}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================
-          THEMATIC VOICE GRID — grouped by theme
-          ============================================================ */}
-      <section className="py-16 md:py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <p className="text-sm uppercase tracking-widest text-accent mb-4">
-              Voices
-            </p>
-            <h2 className="text-3xl font-light text-foreground mb-4" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
-              What Communities Say
-            </h2>
-            <p className="max-w-xl mx-auto text-muted-foreground">
-              Organised by theme — every quote is from a real conversation
-            </p>
-          </div>
-
-          <div className="max-w-6xl mx-auto space-y-16">
-            {themeGroups.map((group) => {
-              const groupQuotes = quotes.filter((q) =>
-                group.themes.includes(q.theme)
-              );
-              if (groupQuotes.length === 0) return null;
-
-              return (
-                <div key={group.id}>
-                  <div className="mb-6">
-                    <h3 className="text-xl font-semibold text-foreground">{group.title}</h3>
-                    <p className="text-sm text-muted-foreground">{group.subtitle}</p>
-                  </div>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {groupQuotes.map((quote, qi) => {
-                      const profile = allStorytellers.find((p) => p.name === quote.author);
-                      return (
-                        <Card key={qi} className="border-0 shadow-sm bg-background hover:shadow-md transition-shadow">
-                          <CardContent className="p-5">
-                            <p
-                              className="text-sm leading-relaxed text-foreground mb-3"
-                              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-                            >
-                              &ldquo;{quote.text}&rdquo;
-                            </p>
-                            <div className="flex items-center gap-2 pt-3 border-t border-border">
-                              <div className="relative w-7 h-7 rounded-full overflow-hidden bg-primary flex items-center justify-center text-primary-foreground text-xs font-medium flex-shrink-0">
-                                {profile?.photo ? (
-                                  <Image
-                                    src={profile.photo}
-                                    alt={quote.author}
-                                    fill
-                                    className="object-cover"
-                                    sizes="28px"
-                                  />
-                                ) : (
-                                  <span>{quote.author[0]}</span>
-                                )}
-                              </div>
-                              <div>
-                                <p className="text-xs font-medium text-primary">{quote.author}</p>
-                                <p className="text-xs text-muted-foreground">{quote.context}</p>
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <StoriesClient
+        quotes={quotes}
+        journeyStories={journeyStories}
+        storytellers={allStorytellers}
+        storyPersonMedia={storyPersonMedia}
+      />
 
       {/* ============================================================
           EMPATHY LEDGER — dynamic content (renders if API connected)
