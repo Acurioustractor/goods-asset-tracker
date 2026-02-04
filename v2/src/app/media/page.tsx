@@ -238,25 +238,26 @@ export default function MediaPackPage() {
             {team.map((member) => (
               <Card key={member.id} className="border-0 shadow-lg bg-white overflow-hidden">
                 <CardContent className="p-0">
-                  <div className="flex flex-col md:flex-row">
-                    <div className="w-full md:w-1/3 aspect-square md:aspect-auto relative bg-gray-100">
-                      {member.image ? (
+                  <div className="flex flex-col">
+                    {member.image ? (
+                      <div className="relative w-full">
                         <Image
                           src={member.image}
                           alt={member.name}
-                          fill
-                          className="object-cover"
+                          width={600}
+                          height={600}
+                          className="w-full h-auto"
                           unoptimized
                         />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center" style={{ backgroundColor: '#E8DED4' }}>
-                          <svg className="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#8B9D77' }}>
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                          </svg>
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-6 md:w-2/3">
+                      </div>
+                    ) : (
+                      <div className="w-full aspect-[4/3] flex items-center justify-center" style={{ backgroundColor: '#E8DED4' }}>
+                        <svg className="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#8B9D77' }}>
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
+                    )}
+                    <div className="p-6">
                       <h3 className="text-xl font-medium mb-1" style={{ color: '#2E2E2E' }}>{member.name}</h3>
                       <p className="text-sm mb-3" style={{ color: '#C45C3E' }}>{member.role}</p>
                       <p className="text-sm leading-relaxed" style={{ color: '#5E5E5E' }}>{member.bio}</p>
@@ -270,6 +271,23 @@ export default function MediaPackPage() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Team photo */}
+          <div className="max-w-3xl mx-auto mt-12">
+            <div className="rounded-lg overflow-hidden shadow-lg">
+              <Image
+                src="/images/people/nic-and-ben-warumungu.jpg"
+                alt="Ben and Nic in Warumungu Country with the Basket Bed and the washing machine"
+                width={1200}
+                height={800}
+                className="w-full h-auto"
+                unoptimized
+              />
+            </div>
+            <p className="text-sm text-center mt-3" style={{ color: '#5E5E5E' }}>
+              Ben and Nic in Warumungu Country with the Basket Bed and the washing machine
+            </p>
           </div>
         </div>
       </section>
