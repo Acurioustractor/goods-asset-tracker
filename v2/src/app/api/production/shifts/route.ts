@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/server';
+import { notifyShiftToTelegram } from '@/lib/telegram/notify-shift';
 
 export async function GET() {
   try {
@@ -100,6 +101,11 @@ export async function POST(request: Request) {
       console.error('Error creating production shift:', error);
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
+
+    // Fire-and-forget Telegram notification — never blocks the response
+    notifyShiftToTelegram(shift).catch((err) =>
+      console.error('Telegram notification error:', err)
+    );
 
     return NextResponse.json({ shift, success: true });
   } catch (error) {
