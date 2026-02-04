@@ -17,7 +17,7 @@ const footerLinks = {
   support: [
     { name: 'Contact', href: '/contact' },
     { name: 'Sponsor a Bed', href: '/sponsor' },
-    { name: 'Production', href: '/production' },
+    { name: 'Crew Login', href: '/production' },
     { name: 'Community Stories', href: '/stories' },
     { name: 'FAQ', href: '/support' },
   ],
