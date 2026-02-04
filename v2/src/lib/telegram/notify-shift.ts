@@ -12,8 +12,8 @@ interface ShiftData {
   total_sheets_to_date: number;
 }
 
-function escapeMarkdown(text: string): string {
-  return text.replace(/[_*[\]()~`>#+\-=|{}.!]/g, '\\$&');
+function esc(text: string): string {
+  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
 function formatShiftMessage(shift: ShiftData): string {
@@ -25,34 +25,34 @@ function formatShiftMessage(shift: ShiftData): string {
 
   const dieselEmoji = shift.diesel_level === 'full' ? '🟢' : shift.diesel_level === 'medium' ? '🟡' : '🔴';
 
-  let msg = `📋 *Shift Log — ${escapeMarkdown(date)}*\n\n`;
-  msg += `👷 *Operator:* ${escapeMarkdown(shift.operator)}\n`;
-  msg += `📊 *Sheets:* ${shift.sheets_produced} produced, ${shift.sheets_cooling} cooling\n`;
-  msg += `📦 *Total to date:* ${shift.total_sheets_to_date}\n`;
+  let msg = `📋 <b>Shift Log — ${esc(date)}</b>\n\n`;
+  msg += `👷 <b>Operator:</b> ${esc(shift.operator)}\n`;
+  msg += `📊 <b>Sheets:</b> ${shift.sheets_produced} produced, ${shift.sheets_cooling} cooling\n`;
+  msg += `📦 <b>Total to date:</b> ${shift.total_sheets_to_date}\n`;
 
   if (shift.plastic_shredded_kg > 0) {
-    msg += `♻️ *Plastic shredded:* ${shift.plastic_shredded_kg}kg\n`;
+    msg += `♻️ <b>Plastic shredded:</b> ${shift.plastic_shredded_kg}kg\n`;
   }
 
-  msg += `${dieselEmoji} *Diesel:* ${escapeMarkdown(shift.diesel_level.charAt(0).toUpperCase() + shift.diesel_level.slice(1))}\n`;
+  msg += `${dieselEmoji} <b>Diesel:</b> ${esc(shift.diesel_level.charAt(0).toUpperCase() + shift.diesel_level.slice(1))}\n`;
 
   if (shift.issues && shift.issues.length > 0) {
-    msg += `\n⚠️ *Issues:* ${escapeMarkdown(shift.issues.join(', '))}\n`;
+    msg += `\n⚠️ <b>Issues:</b> ${esc(shift.issues.join(', '))}\n`;
     if (shift.issue_notes) {
-      msg += `${escapeMarkdown(shift.issue_notes)}\n`;
+      msg += `${esc(shift.issue_notes)}\n`;
     }
   }
 
   if (shift.handover_notes) {
-    msg += `\n📝 *Handover:* ${escapeMarkdown(shift.handover_notes)}\n`;
+    msg += `\n📝 <b>Handover:</b> ${esc(shift.handover_notes)}\n`;
   }
 
   if (shift.voice_note_transcripts && shift.voice_note_transcripts.length > 0) {
     const transcripts = shift.voice_note_transcripts.filter(Boolean);
     if (transcripts.length > 0) {
-      msg += `\n🎙️ *Voice notes:*\n`;
+      msg += `\n🎙️ <b>Voice notes:</b>\n`;
       for (const t of transcripts) {
-        msg += `_"${escapeMarkdown(t)}"_\n`;
+        msg += `<i>"${esc(t)}"</i>\n`;
       }
     }
   }
@@ -77,7 +77,7 @@ export async function notifyShiftToTelegram(shift: ShiftData): Promise<void> {
     body: JSON.stringify({
       chat_id: chatId,
       text,
-      parse_mode: 'MarkdownV2',
+      parse_mode: 'HTML',
     }),
   });
 
