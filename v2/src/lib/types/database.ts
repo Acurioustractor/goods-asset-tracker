@@ -422,6 +422,7 @@ export interface ProductionShift {
   total_sheets_to_date: number | null;
   user_id: string | null;
   voice_note_urls: string[];
+  voice_note_transcripts: string[];
   photo_urls: string[];
   created_at: string;
   updated_at: string;

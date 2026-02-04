@@ -42,6 +42,7 @@ interface Shift {
   handover_notes: string | null;
   total_sheets_to_date: number | null;
   voice_note_urls: string[];
+  voice_note_transcripts: string[];
   photo_urls: string[];
   created_at: string;
 }
@@ -65,6 +66,7 @@ export function ShiftLogForm() {
   const [voiceBlob, setVoiceBlob] = React.useState<Blob | null>(null);
   const [voiceMimeType, setVoiceMimeType] = React.useState<string>('');
   const [voicePreviewUrl, setVoicePreviewUrl] = React.useState<string | null>(null);
+  const [voiceTranscript, setVoiceTranscript] = React.useState('');
   const [photos, setPhotos] = React.useState<File[]>([]);
 
   // UI state
@@ -188,6 +190,7 @@ export function ShiftLogForm() {
           handover_notes: handoverNotes || null,
           user_id: userId || null,
           voice_note_urls: voiceNoteUrls,
+          voice_note_transcripts: voiceTranscript ? [voiceTranscript] : [],
           photo_urls: photoUrls,
         }),
       });
@@ -208,6 +211,7 @@ export function ShiftLogForm() {
       setIssueNotes('');
       setHandoverNotes('');
       handleRecordingRemoved();
+      setVoiceTranscript('');
       setPhotos([]);
       setUploadStatus(null);
 
@@ -440,6 +444,7 @@ export function ShiftLogForm() {
           <VoiceRecorder
             onRecordingComplete={handleRecordingComplete}
             onRecordingRemoved={handleRecordingRemoved}
+            onTranscriptReady={setVoiceTranscript}
             hasRecording={!!voiceBlob}
             recordingUrl={voicePreviewUrl}
           />
@@ -546,7 +551,14 @@ export function ShiftLogForm() {
                     {shift.voice_note_urls && shift.voice_note_urls.length > 0 && (
                       <div className="mt-2 space-y-1">
                         {shift.voice_note_urls.map((url, i) => (
-                          <audio key={i} controls src={url} className="w-full h-8" />
+                          <div key={i} className="space-y-1">
+                            <audio controls src={url} className="w-full h-8" />
+                            {shift.voice_note_transcripts?.[i] && (
+                              <p className="text-sm text-muted-foreground bg-muted/50 rounded-lg p-2 italic">
+                                {shift.voice_note_transcripts[i]}
+                              </p>
+                            )}
+                          </div>
                         ))}
                       </div>
                     )}

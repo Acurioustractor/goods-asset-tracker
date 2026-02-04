@@ -44,6 +44,7 @@ export async function POST(request: Request) {
       handover_notes,
       user_id,
       voice_note_urls,
+      voice_note_transcripts,
       photo_urls,
     } = body;
 
@@ -89,6 +90,7 @@ export async function POST(request: Request) {
         total_sheets_to_date: totalSheetsToDate,
         user_id: user_id || null,
         voice_note_urls: voice_note_urls || [],
+        voice_note_transcripts: voice_note_transcripts || [],
         photo_urls: photo_urls || [],
       })
       .select()
