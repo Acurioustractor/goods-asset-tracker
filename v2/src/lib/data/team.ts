@@ -22,7 +22,7 @@ export const team: TeamMember[] = [
     name: 'Benjamin Knight',
     role: 'Co-founder & Technology',
     bio: 'Ben brings design and technology expertise to Goods, building the systems that connect products to communities. His background spans social enterprise, Indigenous partnerships, and digital platforms. He believes in technology as a tool for community empowerment, not extraction.',
-    image: 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/230063a8-57ec-4f21-99b4-c2e198e76577/AIME_BK-1.jpg',
+    image: '/images/people/ben-knight.jpg',
     email: 'benjamin@act.place',
   },
 ];
