@@ -26,7 +26,7 @@ const footerLinks = {
     { name: 'Pitch Deck', href: '/pitch' },
     { name: 'Impact & Evidence', href: '/impact' },
     { name: 'Community Partners', href: '/community' },
-    { name: 'Media Inquiries', href: '/contact' },
+    { name: 'Media Pack', href: '/media' },
   ],
 };
 

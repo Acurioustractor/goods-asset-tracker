@@ -1123,6 +1123,56 @@ export function getQuotesByThemes(themeIds: ThemeId[]) {
   return quotes.filter((q) => themeIds.includes(q.theme as ThemeId));
 }
 
+// ---------- Media Pack ----------
+
+export const mediaPack = {
+  // About A Curious Tractor — the parent organisation
+  aboutACT: `A Curious Tractor is the organisation behind Goods on Country. Founded in September 2023 by Nicholas Marchesi and Benjamin Knight, ACT exists to design, manufacture, and transfer ownership of essential goods to remote Indigenous communities across Australia. The name reflects the approach: curiosity-driven problem solving applied to entrenched disadvantage. ACT is a registered charity and social enterprise.`, // TODO: Ben to review and refine
+
+  // Copy-paste-ready press boilerplate
+  pressBoilerplate: `Goods on Country is a social enterprise delivering durable, community-designed essential goods to remote Indigenous communities across Australia. The flagship product — the Stretch Bed — is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty Australian canvas. Each bed diverts 21kg of plastic from landfill, assembles in under five minutes with no tools, and supports up to 200kg. With 400+ beds delivered across 8+ communities, Goods on Country addresses the environmental health conditions that drive preventable disease — including Rheumatic Heart Disease — by putting health hardware directly into the hands of families who need it. The organisation's long-term goal is to transfer manufacturing capability to community-owned enterprises. Founded in 2023, Goods on Country is a project of A Curious Tractor.`,
+
+  // Brand color palette
+  brandColors: [
+    { name: 'Cream', hex: '#FDF8F3' },
+    { name: 'Sage', hex: '#8B9D77' },
+    { name: 'Rust', hex: '#C45C3E' },
+    { name: 'Charcoal', hex: '#2E2E2E' },
+  ],
+
+  // Video slots for media pack — placeholder entries for Ben to fill in
+  videos: [
+    { title: 'Goods on Country Overview', description: 'A 2-minute introduction to the project, the problem, and the approach.', url: undefined as string | undefined }, // TODO: Add URL
+    { title: 'The Stretch Bed', description: 'Close-up of the bed assembly process — no tools, under 5 minutes.', url: undefined as string | undefined }, // TODO: Add URL
+    { title: 'Community Voices', description: 'Interviews with community members sharing their experience with Goods products.', url: undefined as string | undefined }, // TODO: Add URL
+    { title: 'The Recycling Plant', description: 'Inside the containerised factory where community plastic becomes beds.', url: undefined as string | undefined }, // TODO: Add URL
+  ],
+
+  // Photo gallery — add new photos by adding entries here
+  // src: path relative to /public/ (drop images into /public/images/<category>/)
+  // caption: shown below the photo and used as alt text
+  photos: [
+    { src: '/images/product/stretch-bed-hero.jpg', caption: 'The Stretch Bed — recycled HDPE plastic, galvanised steel, heavy-duty canvas' },
+    { src: '/images/product/stretch-bed-assembly.jpg', caption: 'Assembly — no tools, under 5 minutes' },
+    { src: '/images/product/stretch-bed-in-use.jpg', caption: 'A Stretch Bed in use on community' },
+    { src: '/images/product/stretch-bed-community.jpg', caption: 'Community bed delivery' },
+    { src: '/images/product/stretch-bed-kids-building.jpg', caption: 'Kids helping build beds on country' },
+    { src: '/images/product/stretch-bed-detail.jpg', caption: 'Stretch Bed detail — recycled plastic legs' },
+    { src: '/images/product/washing-machine-hero.jpg', caption: 'Pakkimjalki Kari washing machine' },
+    { src: '/images/product/washing-machine-community.jpg', caption: 'Washing machine deployed in community' },
+    { src: '/images/process/01-source.jpg', caption: 'Collecting recycled plastic from communities' },
+    { src: '/images/process/04-build.jpg', caption: 'Pressing recycled plastic in the containerised factory' },
+    { src: '/images/process/container-factory.jpg', caption: 'The containerised production facility' },
+    { src: '/images/process/hydraulic-press.jpg', caption: 'Hydraulic press for recycled plastic sheets' },
+  ],
+
+  // External download links — placeholders
+  externalLinks: {
+    photoLibrary: undefined as string | undefined, // TODO: Add Google Drive / Dropbox URL for full photo library
+    logoPack: undefined as string | undefined, // TODO: Add Google Drive / Dropbox URL for logo pack
+  },
+};
+
 // Themes from community voices
 export const communityThemes = [
   {
