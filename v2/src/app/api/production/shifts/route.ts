@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/server';
 import { notifyShiftToTelegram } from '@/lib/telegram/notify-shift';
+import { transcribeAudio } from '@/lib/openai/transcribe';
 
 export async function GET() {
   try {
@@ -102,10 +103,39 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    // Fire-and-forget Telegram notification — never blocks the response
-    notifyShiftToTelegram(shift).catch((err) =>
-      console.error('Telegram notification error:', err)
-    );
+    // Fire-and-forget: transcribe voice notes, update DB, then notify Telegram
+    (async () => {
+      try {
+        let updatedShift = shift;
+
+        // Transcribe voice notes if present and no transcript was provided
+        const urls: string[] = shift.voice_note_urls || [];
+        const transcripts: string[] = shift.voice_note_transcripts || [];
+        const hasTranscripts = transcripts.some((t: string) => t && t.trim().length > 0);
+
+        if (urls.length > 0 && !hasTranscripts) {
+          const newTranscripts = await Promise.all(
+            urls.map((url: string) => transcribeAudio(url))
+          );
+          const filtered = newTranscripts.map((t) => t || '');
+
+          if (filtered.some((t) => t.length > 0)) {
+            const { data: updated } = await supabase
+              .from('production_shifts')
+              .update({ voice_note_transcripts: filtered })
+              .eq('id', shift.id)
+              .select()
+              .single();
+
+            if (updated) updatedShift = updated;
+          }
+        }
+
+        await notifyShiftToTelegram(updatedShift);
+      } catch (err) {
+        console.error('Transcription/notification error:', err);
+      }
+    })();
 
     return NextResponse.json({ shift, success: true });
   } catch (error) {
