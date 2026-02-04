@@ -371,7 +371,7 @@ export default function MediaPackPage() {
             </h2>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 max-w-4xl mx-auto">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
             {mediaPack.videos.map((video) => (
               <Card key={video.title} className="border-0 shadow-sm bg-white">
                 <CardContent className="p-6">
@@ -386,13 +386,27 @@ export default function MediaPackPage() {
                   </div>
                   <h3 className="text-lg font-medium mb-2" style={{ color: '#2E2E2E' }}>{video.title}</h3>
                   <p className="text-sm mb-4" style={{ color: '#5E5E5E' }}>{video.description}</p>
-                  {video.url ? (
-                    <a href={video.url} target="_blank" rel="noopener noreferrer" className="text-sm underline" style={{ color: '#8B9D77' }}>
-                      Watch video &rarr;
-                    </a>
-                  ) : (
-                    <p className="text-xs italic" style={{ color: '#8B9D77' }}>Link coming soon</p>
-                  )}
+                  <div className="flex flex-wrap gap-3">
+                    {video.url && (
+                      <a href={video.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm underline" style={{ color: '#8B9D77' }}>
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                        </svg>
+                        Watch
+                      </a>
+                    )}
+                    {video.downloadSrc && (
+                      <a href={video.downloadSrc} download className="inline-flex items-center gap-1.5 text-sm underline" style={{ color: '#C45C3E' }}>
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        Download
+                      </a>
+                    )}
+                    {!video.url && !video.downloadSrc && (
+                      <p className="text-xs italic" style={{ color: '#8B9D77' }}>Coming soon</p>
+                    )}
+                  </div>
                 </CardContent>
               </Card>
             ))}

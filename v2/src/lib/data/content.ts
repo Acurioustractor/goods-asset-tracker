@@ -1140,12 +1140,53 @@ export const mediaPack = {
     { name: 'Charcoal', hex: '#2E2E2E' },
   ],
 
-  // Video slots for media pack — placeholder entries for Ben to fill in
+  // Video slots for media pack
+  // url: Descript share link (for streaming/watching)
+  // downloadSrc: local file in /public/video/ (for download button)
+  // To add a Descript link: just paste the share URL into the url field
   videos: [
-    { title: 'Goods on Country Overview', description: 'A 2-minute introduction to the project, the problem, and the approach.', url: undefined as string | undefined }, // TODO: Add URL
-    { title: 'The Stretch Bed', description: 'Close-up of the bed assembly process — no tools, under 5 minutes.', url: undefined as string | undefined }, // TODO: Add URL
-    { title: 'Community Voices', description: 'Interviews with community members sharing their experience with Goods products.', url: undefined as string | undefined }, // TODO: Add URL
-    { title: 'The Recycling Plant', description: 'Inside the containerised factory where community plastic becomes beds.', url: undefined as string | undefined }, // TODO: Add URL
+    {
+      title: 'Goods on Country Overview',
+      description: 'Introduction to the project — the problem, the approach, and the community.',
+      url: undefined as string | undefined,
+      downloadSrc: '/video/hero-desktop.mp4',
+    },
+    {
+      title: 'The Stretch Bed',
+      description: 'Close-up of the bed assembly process — no tools, under 5 minutes.',
+      url: undefined as string | undefined,
+      downloadSrc: '/video/stretch-bed-desktop.mp4',
+    },
+    {
+      title: 'Community Voices — Jaquilane',
+      description: 'A community member shares their experience with Goods on Country.',
+      url: undefined as string | undefined,
+      downloadSrc: '/video/jaquilane-testimony.mp4',
+    },
+    {
+      title: 'Beds & Dignity — Cliff Plummer',
+      description: 'Cliff speaks about how essential goods connect to dignity and community health.',
+      url: 'https://share.descript.com/view/2gxa5x40r9N',
+      downloadSrc: undefined as string | undefined,
+    },
+    {
+      title: 'Building Together',
+      description: 'Community members assembling beds together on country.',
+      url: undefined as string | undefined,
+      downloadSrc: '/video/building-together-desktop.mp4',
+    },
+    {
+      title: 'The Recycling Plant',
+      description: 'Inside the containerised factory where community plastic becomes beds.',
+      url: undefined as string | undefined,
+      downloadSrc: '/video/recycling-plant-desktop.mp4',
+    },
+    {
+      title: 'Community Gathering',
+      description: 'Community gathering for bed delivery and assembly.',
+      url: undefined as string | undefined,
+      downloadSrc: '/video/community-desktop.mp4',
+    },
   ],
 
   // Photo gallery — add new photos by adding entries here
@@ -1164,6 +1205,8 @@ export const mediaPack = {
     { src: '/images/process/04-build.jpg', caption: 'Pressing recycled plastic in the containerised factory' },
     { src: '/images/process/container-factory.jpg', caption: 'The containerised production facility' },
     { src: '/images/process/hydraulic-press.jpg', caption: 'Hydraulic press for recycled plastic sheets' },
+    { src: '/images/product/washing-machine-installed.jpg', caption: 'Washing machine installed in community' },
+    { src: '/images/product/washing-machine-name.jpg', caption: 'Pakkimjalki Kari — named in Warumungu language by Elder Dianne Stokes' },
   ],
 
   // External download links — placeholders
