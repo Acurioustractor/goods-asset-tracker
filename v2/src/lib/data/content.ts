@@ -1140,51 +1140,71 @@ export const mediaPack = {
     { name: 'Charcoal', hex: '#2E2E2E' },
   ],
 
-  // Video slots for media pack
-  // url: Descript share link (for streaming/watching)
-  // downloadSrc: local file in /public/video/ (for download button)
-  // To add a Descript link: just paste the share URL into the url field
+  // ──────────────────────────────────────────────────────────────
+  // VIDEOS — How to add/edit:
+  //
+  // 1. To ADD a new video, copy-paste this template:
+  //    {
+  //      title: 'Video Title',
+  //      description: 'What the video shows.',
+  //      embedUrl: 'https://share.descript.com/embed/XXXXX',  // Descript embed URL
+  //      downloadSrc: '/video/filename.mp4',                  // local file for download
+  //    },
+  //
+  // 2. To get the Descript EMBED URL:
+  //    - Open the video in Descript → Share → Embed → copy the URL
+  //    - It looks like: https://share.descript.com/embed/XXXXX
+  //
+  // 3. To add a DOWNLOADABLE video file:
+  //    - Drop the .mp4 into v2/public/video/
+  //    - Set downloadSrc to '/video/your-filename.mp4'
+  //
+  // 4. Either embedUrl or downloadSrc can be left as undefined
+  //    - embedUrl only = embed player, no download
+  //    - downloadSrc only = download button, no embed
+  //    - both set = embed player + download button underneath
+  // ──────────────────────────────────────────────────────────────
   videos: [
     {
       title: 'Goods on Country Overview',
       description: 'Introduction to the project — the problem, the approach, and the community.',
-      url: undefined as string | undefined,
+      embedUrl: undefined as string | undefined,
       downloadSrc: '/video/hero-desktop.mp4',
     },
     {
       title: 'The Stretch Bed',
       description: 'Close-up of the bed assembly process — no tools, under 5 minutes.',
-      url: undefined as string | undefined,
+      embedUrl: undefined as string | undefined,
       downloadSrc: '/video/stretch-bed-desktop.mp4',
     },
     {
       title: 'Community Voices — Jaquilane',
       description: 'A community member shares their experience with Goods on Country.',
-      url: undefined as string | undefined,
+      embedUrl: undefined as string | undefined,
       downloadSrc: '/video/jaquilane-testimony.mp4',
     },
     {
       title: 'Beds & Dignity — Cliff Plummer',
       description: 'Cliff speaks about how essential goods connect to dignity and community health.',
-      url: 'https://share.descript.com/view/2gxa5x40r9N',
+      embedUrl: 'https://share.descript.com/embed/2gxa5x40r9N',
       downloadSrc: undefined as string | undefined,
     },
     {
       title: 'Building Together',
       description: 'Community members assembling beds together on country.',
-      url: undefined as string | undefined,
+      embedUrl: undefined as string | undefined,
       downloadSrc: '/video/building-together-desktop.mp4',
     },
     {
       title: 'The Recycling Plant',
       description: 'Inside the containerised factory where community plastic becomes beds.',
-      url: undefined as string | undefined,
+      embedUrl: undefined as string | undefined,
       downloadSrc: '/video/recycling-plant-desktop.mp4',
     },
     {
       title: 'Community Gathering',
       description: 'Community gathering for bed delivery and assembly.',
-      url: undefined as string | undefined,
+      embedUrl: undefined as string | undefined,
       downloadSrc: '/video/community-desktop.mp4',
     },
   ],

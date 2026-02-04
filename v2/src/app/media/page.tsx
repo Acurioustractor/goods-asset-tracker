@@ -389,40 +389,59 @@ export default function MediaPackPage() {
             </h2>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
+          <div className="grid gap-8 sm:grid-cols-2 max-w-4xl mx-auto">
             {mediaPack.videos.map((video) => (
-              <Card key={video.title} className="border-0 shadow-sm bg-white">
-                <CardContent className="p-6">
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center mb-4"
-                    style={{ backgroundColor: '#C45C3E' }}
-                  >
-                    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-medium mb-2" style={{ color: '#2E2E2E' }}>{video.title}</h3>
-                  <p className="text-sm mb-4" style={{ color: '#5E5E5E' }}>{video.description}</p>
-                  <div className="flex flex-wrap gap-3">
-                    {video.url && (
-                      <a href={video.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm underline" style={{ color: '#8B9D77' }}>
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                        </svg>
-                        Watch
-                      </a>
-                    )}
+              <Card key={video.title} className="border-0 shadow-md bg-white overflow-hidden">
+                <CardContent className="p-0">
+                  {/* Descript embed */}
+                  {video.embedUrl ? (
+                    <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                      <iframe
+                        src={video.embedUrl}
+                        className="absolute inset-0 w-full h-full"
+                        allow="autoplay; fullscreen"
+                        allowFullScreen
+                        style={{ border: 0 }}
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className="relative w-full flex items-center justify-center"
+                      style={{ paddingBottom: '56.25%', backgroundColor: '#2E2E2E' }}
+                    >
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center">
+                          <div
+                            className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3"
+                            style={{ backgroundColor: '#C45C3E' }}
+                          >
+                            <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                          </div>
+                          <p className="text-xs text-white/60">Embed coming soon</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Title, description, download */}
+                  <div className="p-5">
+                    <h3 className="text-lg font-medium mb-1" style={{ color: '#2E2E2E' }}>{video.title}</h3>
+                    <p className="text-sm mb-3" style={{ color: '#5E5E5E' }}>{video.description}</p>
                     {video.downloadSrc && (
-                      <a href={video.downloadSrc} download className="inline-flex items-center gap-1.5 text-sm underline" style={{ color: '#C45C3E' }}>
+                      <a
+                        href={video.downloadSrc}
+                        download
+                        className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-md border transition-colors hover:text-white hover:bg-[#C45C3E]"
+                        style={{ borderColor: '#C45C3E', color: '#C45C3E' }}
+                      >
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                         </svg>
-                        Download
+                        Download Video
                       </a>
-                    )}
-                    {!video.url && !video.downloadSrc && (
-                      <p className="text-xs italic" style={{ color: '#8B9D77' }}>Coming soon</p>
                     )}
                   </div>
                 </CardContent>
