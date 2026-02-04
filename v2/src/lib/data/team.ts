@@ -20,7 +20,7 @@ export const team: TeamMember[] = [
   {
     id: 'ben',
     name: 'Benjamin Knight',
-    role: 'Co-founder & Technology',
+    role: 'Co-founder, Story & Technology',
     bio: 'Ben brings design and technology expertise to Goods, building the systems that connect products to communities. His background spans social enterprise, Indigenous partnerships, and digital platforms. He believes in technology as a tool for community empowerment, not extraction.',
     image: '/images/people/ben-knight.jpg',
     email: 'benjamin@act.place',
