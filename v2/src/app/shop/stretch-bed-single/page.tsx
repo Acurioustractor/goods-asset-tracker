@@ -4,7 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import { MediaSlot } from '@/components/ui/media-slot';
+import { AssemblySequence } from '@/components/pitch/assembly-sequence';
+import { CyclingImage } from '@/components/pitch/cycling-image';
 import { media } from '@/lib/data/media';
+import { quotes } from '@/lib/data/content';
 
 export const metadata = {
   title: 'The Stretch Bed | Goods on Country',
@@ -269,6 +273,170 @@ export default function StretchBedPage() {
           </div>
         </section>
       </div>
+
+      {/* How It's Made — 5-step manufacturing strip, dark bg */}
+      <section className="py-16 md:py-20 bg-foreground text-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <p className="text-sm uppercase tracking-widest text-background/40 mb-4">
+              On-Country Manufacturing
+            </p>
+            <h2
+              className="text-3xl md:text-4xl font-light mb-4 leading-snug"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+            >
+              From rubbish to bed
+            </h2>
+            <p className="text-background/60 mb-12 max-w-2xl">
+              A containerised production plant that turns community plastic waste into bed components. Local people do the making.
+            </p>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
+              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
+                <MediaSlot src="/images/process/color-samples.jpg" alt="Sorted recycled plastic from community waste" label="Collect" aspect="4/3" />
+                <div className="p-5">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">1</div>
+                    <h3 className="text-lg font-semibold text-background">Collect</h3>
+                  </div>
+                  <p className="text-sm text-background/60 leading-relaxed">Local people gather plastic waste from around community. Sorted by colour, cleaned, ready for shredding.</p>
+                </div>
+              </div>
+
+              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
+                <MediaSlot src="/images/process/container-factory.jpg" alt="Plastic shredder inside containerised production plant" label="Shred" aspect="4/3" />
+                <div className="p-5">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">2</div>
+                    <h3 className="text-lg font-semibold text-background">Shred</h3>
+                  </div>
+                  <p className="text-sm text-background/60 leading-relaxed">Plastic goes into the shredder — a containerised unit that stays on site between production runs.</p>
+                </div>
+              </div>
+
+              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
+                <CyclingImage
+                  images={[
+                    { src: '/images/process/hydraulic-press.jpg', alt: 'Hydraulic press compressing recycled plastic into sheets' },
+                    { src: '/images/process/pressed-sheets.jpg', alt: 'Stack of pressed recycled plastic legs in multiple colours' },
+                  ]}
+                  aspect="4/3"
+                />
+                <div className="p-5">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">3</div>
+                    <h3 className="text-lg font-semibold text-background">Press</h3>
+                  </div>
+                  <p className="text-sm text-background/60 leading-relaxed">Shredded plastic is heated and pressed into durable sheets. Each colour is unique — made from whatever plastic the community collected.</p>
+                </div>
+              </div>
+
+              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
+                <MediaSlot src="/images/process/cnc-cutter.jpg" alt="CNC router cutting bed leg components from pressed plastic sheet" label="Cut" aspect="4/3" />
+                <div className="p-5">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">4</div>
+                    <h3 className="text-lg font-semibold text-background">Cut</h3>
+                  </div>
+                  <p className="text-sm text-background/60 leading-relaxed">A CNC router cuts bed leg components from the pressed sheets. Precise, repeatable, minimal waste.</p>
+                </div>
+              </div>
+
+              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
+                <CyclingImage
+                  images={[
+                    { src: '/images/pitch/bed-seq-1-leg-pole.jpg', alt: 'First pole threads through canvas sleeve' },
+                    { src: '/images/pitch/bed-seq-2-legs-pole.jpg', alt: 'Second pole through the other side' },
+                    { src: '/images/pitch/bed-seq-3-all-parts.jpg', alt: 'Legs clip onto both poles' },
+                    { src: '/images/pitch/bed-assembled.jpg', alt: 'Assembled Stretch Bed' },
+                  ]}
+                  aspect="4/3"
+                />
+                <div className="p-5">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">5</div>
+                    <h3 className="text-lg font-semibold text-background">Assemble</h3>
+                  </div>
+                  <p className="text-sm text-background/60 leading-relaxed">Thread one pole through each side of the canvas. Clip the legs on. Done in under 5 minutes, no tools.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <p className="text-background/40 text-sm">~30 beds per week &middot; 21kg plastic diverted per bed</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Community Assembly + Voices */}
+      <section className="py-16 md:py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid gap-12 lg:grid-cols-2 items-start">
+              {/* Assembly slideshow */}
+              <div>
+                <h2
+                  className="text-2xl md:text-3xl font-light text-foreground mb-6 leading-snug"
+                  style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+                >
+                  Built by community
+                </h2>
+                <AssemblySequence />
+              </div>
+
+              {/* Community quotes */}
+              <div className="space-y-8">
+                <h2
+                  className="text-2xl md:text-3xl font-light text-foreground mb-6 leading-snug"
+                  style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+                >
+                  Community voices
+                </h2>
+                {quotes
+                  .filter((q) => q.theme === 'dignity' || q.theme === 'product-feedback')
+                  .slice(0, 3)
+                  .map((q) => (
+                    <blockquote key={q.author + q.theme} className="border-l-2 border-primary pl-6">
+                      <p
+                        className="text-lg text-foreground leading-relaxed mb-2"
+                        style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+                      >
+                        &ldquo;{q.text}&rdquo;
+                      </p>
+                      <footer className="text-sm text-muted-foreground">
+                        <span className="font-medium text-foreground">{q.author}</span>
+                        <span> &mdash; {q.context}</span>
+                      </footer>
+                    </blockquote>
+                  ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Expanded Gallery — manufacturing + community photos */}
+      <section className="py-16 md:py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <h2
+              className="text-2xl md:text-3xl font-light text-foreground mb-8 leading-snug"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+            >
+              From factory to country
+            </h2>
+            <div className="grid gap-4 grid-cols-2 md:grid-cols-3">
+              <MediaSlot src="/images/media-pack/woman-on-red-stretch-bed.jpg" alt="Woman sitting on Stretch Bed with red recycled plastic legs" aspect="4/3" />
+              <MediaSlot src="/images/media-pack/community-bed-assembly.jpg" alt="Community members threading canvas over the bed frame" aspect="4/3" />
+              <MediaSlot src="/images/media-pack/community-testing-bed-golden-hour.jpg" alt="Community member testing the Stretch Bed at golden hour" aspect="4/3" />
+              <MediaSlot src="/images/process/hydraulic-press.jpg" alt="Hydraulic press compressing recycled plastic" aspect="4/3" />
+              <MediaSlot src="/images/process/pressed-sheets.jpg" alt="Stack of pressed recycled plastic legs in multiple colours" aspect="4/3" />
+              <MediaSlot src="/images/product/stretch-bed-kids-building.jpg" alt="Kids in community building Stretch Beds together" aspect="4/3" />
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

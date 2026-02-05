@@ -8,13 +8,10 @@ import { CartButton } from '@/components/cart';
 import { AuthNavItem } from '@/components/layout/auth-nav-item';
 
 const navigation = [
-  { name: 'Our Story', href: '/story' },
-  { name: 'Shop', href: '/shop' },
+  { name: 'The Stretch Bed', href: '/shop/stretch-bed-single' },
   { name: 'How It\'s Made', href: '/process' },
-  { name: 'Gallery', href: '/gallery' },
-  { name: 'Impact', href: '/impact' },
+  { name: 'Our Story', href: '/story' },
   { name: 'Support', href: '/support' },
-  { name: 'Partner', href: '/partner' },
 ];
 
 export function SiteHeader() {
@@ -45,11 +42,8 @@ export function SiteHeader() {
 
         {/* CTA Buttons & Cart */}
         <div className="hidden md:flex md:items-center md:gap-3">
-          <Button variant="outline" size="sm" asChild>
-            <Link href="/shop">Shop Beds</Link>
-          </Button>
           <Button size="sm" asChild>
-            <Link href="/sponsor">Sponsor a Bed</Link>
+            <Link href="/shop/stretch-bed-single">Buy Now</Link>
           </Button>
           <CartButton />
         </div>
@@ -92,14 +86,9 @@ export function SiteHeader() {
                 onClick={() => setMobileMenuOpen(false)}
               />
               <div className="mt-4 flex flex-col gap-3">
-                <Button variant="outline" asChild>
-                  <Link href="/shop" onClick={() => setMobileMenuOpen(false)}>
-                    Shop Beds
-                  </Link>
-                </Button>
                 <Button asChild>
-                  <Link href="/sponsor" onClick={() => setMobileMenuOpen(false)}>
-                    Sponsor a Bed
+                  <Link href="/shop/stretch-bed-single" onClick={() => setMobileMenuOpen(false)}>
+                    Buy Now
                   </Link>
                 </Button>
               </div>

@@ -1,36 +1,15 @@
 import Link from 'next/link';
-import { Suspense } from 'react';
-import { Hero, ImpactStats, ThemeSpotlight, ThemeSpotlightSkeleton } from '@/components/marketing';
-import { FeaturedStories, FeaturedStoriesSkeleton, CommunityGallery, CommunityGallerySkeleton } from '@/components/empathy-ledger';
+import { Hero, ImpactStats } from '@/components/marketing';
+import { AssemblySequence } from '@/components/pitch/assembly-sequence';
+import { CyclingImage } from '@/components/pitch/cycling-image';
+import { MediaSlot } from '@/components/ui/media-slot';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { brand, story, enterpriseOpportunity, communityPartnerships, quotes, spotlightThemeGroups, storytellerProfiles } from '@/lib/data/content';
+import { brand } from '@/lib/data/content';
 
 export default async function HomePage() {
-  // Build spotlight data from quotes and theme groups
-  const spotlightData = spotlightThemeGroups.map((group) => {
-    const groupQuotes = quotes.filter((q) =>
-      group.themes.includes(q.theme as typeof group.themes[number])
-    );
-    return {
-      id: group.id,
-      title: group.title,
-      color: group.color,
-      quotes: groupQuotes.slice(0, 4).map((q) => {
-        const profile = storytellerProfiles.find((p) => p.name === q.author);
-        return {
-          text: q.text,
-          author: q.author,
-          context: q.context,
-          photo: profile?.photo,
-        };
-      }),
-    };
-  });
-
   return (
     <>
-      {/* Hero Section - Stretch Bed as hero product */}
+      {/* 1. Hero — Video bg, Stretch Bed as hero product */}
       <Hero
         title={brand.hero.home.headline}
         subtitle={brand.hero.home.subheadline}
@@ -45,207 +24,221 @@ export default async function HomePage() {
         imageAlt="The Stretch Bed - recycled plastic, steel and canvas bed by Goods on Country"
       />
 
-      {/* What We Make - Product Categories with Images */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      {/* 2. The Stretch Bed — Materials + Assembly + Price comparison */}
+      <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground">What We Make</h2>
-            <p className="mt-2 text-muted-foreground max-w-2xl mx-auto">
-              {brand.tagline}
+          <div className="max-w-5xl mx-auto">
+            <p className="text-sm uppercase tracking-widest text-accent mb-4">
+              The Stretch Bed
             </p>
-          </div>
+            <h2
+              className="text-3xl md:text-4xl font-light text-foreground mb-4 leading-snug"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+            >
+              Three materials. No tools. Five minutes.
+            </h2>
+            <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
+              12kg, supports 200kg, lasts 5+ years. Each bed diverts 21kg of plastic from landfill.
+            </p>
 
-          <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
-            {/* Stretch Bed - Available for Purchase */}
-            <Card className="overflow-hidden group">
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img
-                  src="/images/product/stretch-bed-hero.jpg"
-                  alt="The Stretch Bed"
-                  className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                />
-                <div className="absolute top-3 left-3">
-                  <span className="bg-primary text-primary-foreground text-xs font-medium px-2 py-1 rounded">Available</span>
+            <div className="grid gap-12 lg:grid-cols-2 items-start">
+              {/* Left: 4 material boxes */}
+              <div className="grid gap-4 grid-cols-2">
+                <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
+                  <MediaSlot
+                    src="/images/pitch/bed-frame-legs.jpg"
+                    alt="Recycled HDPE plastic legs — pressed from community waste"
+                    label="Recycled plastic legs"
+                    aspect="4/3"
+                  />
+                  <div className="p-3">
+                    <h3 className="font-semibold text-foreground text-sm mb-0.5">Recycled Plastic Frame</h3>
+                    <p className="text-xs text-muted-foreground">HDPE legs from community plastic. 21kg diverted per bed.</p>
+                  </div>
+                </div>
+
+                <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
+                  <MediaSlot
+                    src="/images/pitch/bed-poles.jpg"
+                    alt="Galvanised steel pole — 26.9mm OD"
+                    label="Steel pole"
+                    aspect="4/3"
+                  />
+                  <div className="p-3">
+                    <h3 className="font-semibold text-foreground text-sm mb-0.5">Galvanised Steel Poles</h3>
+                    <p className="text-xs text-muted-foreground">Two 26.9mm poles thread through canvas sleeves.</p>
+                  </div>
+                </div>
+
+                <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
+                  <MediaSlot
+                    src="/images/pitch/bed-canvas.jpg"
+                    alt="Heavy-duty Australian canvas with Goods. branding"
+                    label="Canvas"
+                    aspect="4/3"
+                  />
+                  <div className="p-3">
+                    <h3 className="font-semibold text-foreground text-sm mb-0.5">Heavy-Duty Canvas</h3>
+                    <p className="text-xs text-muted-foreground">Washable, repairable, built for remote conditions.</p>
+                  </div>
+                </div>
+
+                <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
+                  <MediaSlot
+                    src="/images/media-pack/nic-with-elder-on-verandah.jpg"
+                    alt="Nic sitting on a Stretch Bed with an elder on a verandah — ongoing support and connection"
+                    label="Support system"
+                    aspect="4/3"
+                  />
+                  <div className="p-3">
+                    <h3 className="font-semibold text-foreground text-sm mb-0.5">Support System</h3>
+                    <p className="text-xs text-muted-foreground">Every bed tracked. Ask questions, stay connected, get support.</p>
+                  </div>
                 </div>
               </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold text-foreground mb-2">The Stretch Bed</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Recycled HDPE plastic legs, galvanised steel poles, heavy-duty canvas. 12kg, flat-packs, no tools needed. $600.
-                </p>
-                <Button asChild className="w-full">
-                  <Link href="/shop/stretch-bed-single">Shop Now — $600</Link>
-                </Button>
-              </CardContent>
-            </Card>
 
-            {/* Washing Machine - Register Interest */}
-            <Card className="overflow-hidden group">
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img
-                  src="/images/product/washing-machine-hero.jpg"
-                  alt="Pakkimjalki Kari Washing Machine"
-                  className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                />
-                <div className="absolute top-3 left-3">
-                  <span className="bg-amber-600 text-white text-xs font-medium px-2 py-1 rounded">Prototype</span>
+              {/* Right: Assembly sequence + price comparison */}
+              <div>
+                <AssemblySequence />
+                <div className="grid grid-cols-3 gap-3 mt-8">
+                  <div className="text-center p-3 rounded-xl border border-border">
+                    <div className="text-xl font-bold text-primary">$350</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">to make</div>
+                  </div>
+                  <div className="text-center p-3 rounded-xl border border-border">
+                    <div className="text-xl font-bold text-primary">$600</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">RRP</div>
+                  </div>
+                  <div className="text-center p-3 rounded-xl border border-border">
+                    <div className="text-xl font-bold text-primary">$1,500</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">regular bed in community</div>
+                  </div>
                 </div>
               </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold text-foreground mb-2">Pakkimjalki Kari</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Commercial-grade Speed Queen in recycled plastic housing. Named in Warumungu language by Elder Dianne Stokes.
-                </p>
-                <Button variant="outline" asChild className="w-full">
-                  <Link href="/partner">Register Interest</Link>
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Basket Bed - Open Source Plans */}
-            <Card className="overflow-hidden group">
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img
-                  src="/images/product/basket-bed-hero.jpg"
-                  alt="The Basket Bed"
-                  className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                />
-                <div className="absolute top-3 left-3">
-                  <span className="bg-muted-foreground/20 text-foreground text-xs font-medium px-2 py-1 rounded">Open Source</span>
-                </div>
-              </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold text-foreground mb-2">Basket Bed</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Our first prototype — collapsible baskets with zip ties and toppers. Now open source — download plans and build your own.
-                </p>
-                <Button variant="outline" asChild className="w-full">
-                  <Link href="/basket-bed-plans">Download Plans</Link>
-                </Button>
-              </CardContent>
-            </Card>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Impact Stats */}
+      {/* 3. From Rubbish to Bed — 5-step production flow, dark bg */}
+      <section className="py-16 md:py-20 bg-foreground text-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <p className="text-sm uppercase tracking-widest text-background/40 mb-4">
+              On-Country Manufacturing
+            </p>
+            <h2
+              className="text-3xl md:text-4xl font-light mb-4 leading-snug"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+            >
+              From rubbish to bed
+            </h2>
+            <p className="text-background/60 mb-12 max-w-2xl">
+              A containerised production plant that turns community plastic waste into bed components. Local people do the making.
+            </p>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
+              {/* Step 1: Collect */}
+              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
+                <MediaSlot
+                  src="/images/process/color-samples.jpg"
+                  alt="Sorted recycled plastic from community waste"
+                  label="Collect"
+                  aspect="4/3"
+                />
+                <div className="p-5">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">1</div>
+                    <h3 className="text-lg font-semibold text-background">Collect</h3>
+                  </div>
+                  <p className="text-sm text-background/60 leading-relaxed">Local people gather plastic waste from around community. Sorted by colour, cleaned, ready for shredding.</p>
+                </div>
+              </div>
+
+              {/* Step 2: Shred */}
+              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
+                <MediaSlot
+                  src="/images/process/container-factory.jpg"
+                  alt="Plastic shredder inside containerised production plant"
+                  label="Shred"
+                  aspect="4/3"
+                />
+                <div className="p-5">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">2</div>
+                    <h3 className="text-lg font-semibold text-background">Shred</h3>
+                  </div>
+                  <p className="text-sm text-background/60 leading-relaxed">Plastic goes into the shredder — a containerised unit that stays on site between production runs.</p>
+                </div>
+              </div>
+
+              {/* Step 3: Press */}
+              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
+                <CyclingImage
+                  images={[
+                    { src: '/images/process/hydraulic-press.jpg', alt: 'Hydraulic press compressing recycled plastic into sheets' },
+                    { src: '/images/process/pressed-sheets.jpg', alt: 'Stack of pressed recycled plastic legs in multiple colours' },
+                  ]}
+                  aspect="4/3"
+                />
+                <div className="p-5">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">3</div>
+                    <h3 className="text-lg font-semibold text-background">Press</h3>
+                  </div>
+                  <p className="text-sm text-background/60 leading-relaxed">Shredded plastic is heated and pressed into durable sheets. Each colour is unique — made from whatever plastic the community collected.</p>
+                </div>
+              </div>
+
+              {/* Step 4: Cut */}
+              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
+                <MediaSlot
+                  src="/images/process/cnc-cutter.jpg"
+                  alt="CNC router cutting bed leg components from pressed plastic sheet"
+                  label="Cut"
+                  aspect="4/3"
+                />
+                <div className="p-5">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">4</div>
+                    <h3 className="text-lg font-semibold text-background">Cut</h3>
+                  </div>
+                  <p className="text-sm text-background/60 leading-relaxed">A CNC router cuts bed leg components from the pressed sheets. Precise, repeatable, minimal waste.</p>
+                </div>
+              </div>
+
+              {/* Step 5: Assemble */}
+              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
+                <CyclingImage
+                  images={[
+                    { src: '/images/pitch/bed-seq-1-leg-pole.jpg', alt: 'First pole threads through canvas sleeve' },
+                    { src: '/images/pitch/bed-seq-2-legs-pole.jpg', alt: 'Second pole through the other side' },
+                    { src: '/images/pitch/bed-seq-3-all-parts.jpg', alt: 'Legs clip onto both poles' },
+                    { src: '/images/pitch/bed-assembled.jpg', alt: 'Assembled Stretch Bed' },
+                  ]}
+                  aspect="4/3"
+                />
+                <div className="p-5">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">5</div>
+                    <h3 className="text-lg font-semibold text-background">Assemble</h3>
+                  </div>
+                  <p className="text-sm text-background/60 leading-relaxed">Thread one pole through each side of the canvas. Clip the legs on. Done in under 5 minutes, no tools.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <p className="text-background/40 text-sm">~30 beds per week &middot; 21kg plastic diverted per bed</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Impact Stats */}
       <ImpactStats fetchLive={true} />
 
-      {/* Our Approach - from content data */}
-      <section className="bg-muted/30 py-16 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground">{story.solution.headline}</h2>
-            <p className="mt-2 text-muted-foreground max-w-2xl mx-auto">
-              Community-led design meets circular economy manufacturing
-            </p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-4">
-            {story.solution.points.map((point, index) => (
-              <div key={point.title} className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
-                  {index === 0 && (
-                    <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
-                    </svg>
-                  )}
-                  {index === 1 && (
-                    <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
-                    </svg>
-                  )}
-                  {index === 2 && (
-                    <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
-                    </svg>
-                  )}
-                  {index === 3 && (
-                    <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
-                    </svg>
-                  )}
-                </div>
-                <h3 className="mb-2 font-semibold text-foreground">{point.title}</h3>
-                <p className="text-sm text-muted-foreground">{point.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Community Stories - from Empathy Ledger */}
-      <Suspense fallback={<FeaturedStoriesSkeleton />}>
-        <FeaturedStories
-          title="Community Voices"
-          subtitle="15 storytellers across 6 communities have shaped and validated the Goods approach"
-          maxStories={6}
-        />
-      </Suspense>
-
-      {/* Community Gallery - from Empathy Ledger */}
-      <Suspense fallback={<CommunityGallerySkeleton />}>
-        <CommunityGallery
-          title="Our Impact in Pictures"
-          subtitle="Elder-approved images from our communities"
-          maxImages={6}
-        />
-      </Suspense>
-
-      {/* Communities We Serve */}
-      <section className="py-16 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground">Communities We Serve</h2>
-            <p className="mt-2 text-muted-foreground">
-              100% community-made, delivering essential goods across remote Australia
-            </p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {communityPartnerships.filter(p => p.bedsDelivered > 0).map((p) => (
-              <Card key={p.id} className="text-center">
-                <CardContent className="p-6">
-                  <div className="text-2xl font-bold text-primary">{p.bedsDelivered}</div>
-                  <div className="mt-1 text-sm font-medium text-foreground">{p.name}</div>
-                  <div className="mt-1 text-xs text-muted-foreground">{p.region}</div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="mt-8 text-center">
-            <Button variant="outline" asChild>
-              <Link href="/community">Learn About Our Communities</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Enterprise Opportunity */}
-      <section className="py-16 md:py-20 bg-muted/50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-4">{enterpriseOpportunity.headline}</h2>
-            <p className="text-lg text-muted-foreground mb-8">{enterpriseOpportunity.description}</p>
-            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 mb-8">
-              {enterpriseOpportunity.benefits.map((benefit) => (
-                <div key={benefit} className="flex items-center gap-2 text-sm text-foreground">
-                  <svg className="h-5 w-5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                  </svg>
-                  <span>{benefit}</span>
-                </div>
-              ))}
-            </div>
-            <Button size="lg" asChild>
-              <Link href={`mailto:${enterpriseOpportunity.email}`}>{enterpriseOpportunity.cta}</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
+      {/* 5. CTA — Buy + How It's Made */}
       <section className="bg-accent py-16 md:py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-accent-foreground md:text-4xl">
@@ -253,14 +246,13 @@ export default async function HomePage() {
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-accent-foreground/80">
             Every purchase supports community-led design and manufacturing in remote Australia.
-            {' '}{brand.philosophy}
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button size="lg" variant="secondary" asChild>
-              <Link href="/shop">Shop Products</Link>
+            <Button size="lg" className="bg-accent-foreground text-accent hover:bg-accent-foreground/90" asChild>
+              <Link href="/shop/stretch-bed-single">Buy Now</Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent border-accent-foreground text-accent-foreground hover:bg-accent-foreground/10" asChild>
-              <Link href="/about">Our Story</Link>
+              <Link href="/process">How It&apos;s Made</Link>
             </Button>
           </div>
         </div>

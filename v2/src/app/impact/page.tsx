@@ -26,17 +26,17 @@ async function getImpactStats(): Promise<ImpactStats> {
     .from('assets')
     .select('*', { count: 'exact', head: true });
 
-  // Get beds count
+  // Get beds count (Basket Bed + Weave Bed — "Weave Bed" in DB = Stretch Bed)
   const { count: totalBeds } = await supabase
     .from('assets')
     .select('*', { count: 'exact', head: true })
-    .ilike('product_type', '%bed%');
+    .ilike('product', '%bed%');
 
   // Get washing machines count
   const { count: totalWashingMachines } = await supabase
     .from('assets')
     .select('*', { count: 'exact', head: true })
-    .ilike('product_type', '%washing%');
+    .ilike('product', '%washing%');
 
   // Get community breakdown
   const { data: communityData } = await supabase
