@@ -1262,6 +1262,242 @@ export const mediaPack = {
   },
 };
 
+// Oonchiumpa/Bloomfield family partnership — for pitch page
+export const oonchiumpaPartnership = {
+  headline: 'Oonchiumpa / Bloomfield Family',
+  subheadline: '100% Aboriginal-owned consultancy, deep roots in Central Australia',
+  description: 'Two years co-designing products "around the fire", building washing machines together, and planning a production facility in Alice Springs. Kristy Bloomfield leads cultural consultation at university-equivalent rates (~$3,800/day).',
+  // TODO: Replace with verified Kristy Bloomfield quote when available
+  kristyQuote: {
+    text: 'We see this as bigger than beds. It\'s about families owning the whole thing — the making, the business, the future.',
+    author: 'Kristy Bloomfield',
+    context: 'Oonchiumpa Consultancy, Alice Springs',
+    verified: false, // PLACEHOLDER — needs real quote from Kristy
+  },
+  fredVideo: {
+    title: 'Community Voices — Fred, Oonchiumpa',
+    embedUrl: 'https://share.descript.com/embed/YQwAcYfxzkn',
+  },
+};
+
+// Partnership iteration journey — how the relationship evolved
+export const partnershipJourney = [
+  {
+    step: 1,
+    title: 'The first beds',
+    description: 'Started with a simple question: what if we built beds that actually survived remote conditions? Early prototypes went to families in Kalgoorlie.',
+  },
+  {
+    step: 2,
+    title: 'Dianne Stokes and washing machines',
+    description: 'Elder Dianne Stokes co-designed the Pakkimjalki Kari washing machine, named it in Warumungu language, and opened doors across the NT.',
+  },
+  {
+    step: 3,
+    title: 'Advisory support for the Stretch Bed',
+    description: 'Norman Frank, NPY Women\'s Council, and health organisations shaped the Stretch Bed into something communities actually wanted.',
+  },
+  {
+    step: 4,
+    title: 'Defy Design and recycling knowledge',
+    description: 'Partnered with Defy Design to learn plastic recycling and build the containerised production plant — turning community waste into bed components.',
+  },
+  {
+    step: 5,
+    title: 'Owning our own plant',
+    description: 'Built a two-container production facility. One container shreds and collects plastic, the other presses sheets and cuts bed parts. ~30 beds per week.',
+  },
+  {
+    step: 6,
+    title: 'Oonchiumpa delivering beds on country',
+    description: 'Oonchiumpa consultancy became the cultural backbone — going into communities together, delivering beds, building washing machines side by side.',
+  },
+  {
+    step: 7,
+    title: 'The bigger vision',
+    description: 'Exploring Indigenous sovereignty and enterprise. Family lineage and cultural authority guiding how products are made, who makes them, and who owns the future.',
+  },
+  {
+    step: 8,
+    title: 'Enterprise growing through action',
+    description: 'Not waiting for permission. Building, delivering, iterating. Seeing how enterprise grows when communities lead and outsiders support.',
+  },
+];
+
+// Advisory board — the people guiding Goods on Country
+export const advisoryGroup = [
+  {
+    name: 'Kristy Bloomfield',
+    title: 'Cultural Lead & Co-Design Director',
+    org: 'Oonchiumpa Consultancy',
+  },
+  {
+    name: 'Nicholas Marchesi',
+    title: 'Founder & CEO',
+    org: 'A Curious Tractor',
+  },
+  {
+    name: 'Sally Grimsley-Ballard',
+    title: 'Strategic Partner',
+    org: 'Snow Foundation',
+  },
+  {
+    name: 'Sam Davies',
+    title: 'Recycling & Manufacturing',
+    org: 'Defy Design',
+  },
+  {
+    name: 'Judith Meiklejohn',
+    title: 'Advisory',
+    org: 'Orange Sky',
+  },
+  {
+    name: 'Corey Tutt',
+    title: 'CEO',
+    org: 'DeadlyScience',
+  },
+  {
+    name: 'April Long',
+    title: 'Advisory',
+    org: 'SMART Recovery Australia',
+  },
+  {
+    name: 'Susan Clear',
+    title: 'Advisory',
+    org: '',
+  },
+  {
+    name: 'Nina Fitzgerald',
+    title: 'Advisory',
+    org: '',
+  },
+  {
+    name: 'Daniel Pittman',
+    title: 'Industry Partner',
+    org: 'Zinus',
+  },
+  {
+    name: 'Shaun Fisher',
+    title: 'Advisory',
+    org: 'Fishers Oysters',
+  },
+];
+
+// Community partners and people in the Goods orbit
+export const goodsOrbit = [
+  {
+    name: 'Dianne Stokes',
+    title: 'Elder & Co-Designer',
+    org: 'Tennant Creek',
+    role: 'Named the Pakkimjalki Kari washing machine in Warumungu language. Refines product designs "around the fire" with family.',
+  },
+  {
+    name: 'Norman Frank Jupurrurla',
+    title: 'Warumungu Elder',
+    org: 'Wilya Janta, Tennant Creek',
+    role: 'Housing advocate and founder of Wilya Janta. Leads demonstration home partnership and community engagement.',
+  },
+  {
+    name: 'Ebony & Jahvan Oui',
+    title: 'Future Manufacturing Leads',
+    org: 'Palm Island',
+    role: 'Training with Defy Design for on-country production. Building the skills to lead community manufacturing.',
+  },
+  {
+    name: 'Red Dust Robotics',
+    title: 'Youth STEM Education',
+    org: 'Darwin / Remote NT',
+    role: 'Young people learning 3D printing, robotics, and manufacturing skills.',
+  },
+  {
+    name: 'Centre of Appropriate Technology',
+    title: 'Remote Technology Specialists',
+    org: 'Alice Springs',
+    role: 'Decades of experience designing appropriate technology for remote communities.',
+  },
+  {
+    name: 'NPY Women\'s Council',
+    title: 'Community Distribution',
+    org: 'NPY Lands',
+    role: '"Always looking for beds." Established network across Ngaanyatjarra, Pitjantjatjara, and Yankunytjatjara lands.',
+  },
+  {
+    name: 'Tennant Creek Community Shed',
+    title: 'Plastic Collection Hub',
+    org: 'Tennant Creek',
+    role: 'Hosting shredding and plastic collection operations.',
+  },
+  {
+    name: 'Palm Island Community Company',
+    title: 'Community Distribution Partner',
+    org: 'Palm Island, QLD',
+    role: 'Ensuring beds reach families who need them, guided by Elder advisory.',
+  },
+  {
+    name: 'Anyinginyi Health',
+    title: 'Health Partner',
+    org: 'Tennant Creek, NT',
+    role: 'Connecting beds and washing machines to community health outcomes.',
+  },
+  {
+    name: 'Miwatj Health',
+    title: 'Health Partner',
+    org: 'East Arnhem, NT',
+    role: 'Jessica Allardyce: linking washing machines to RHD prevention.',
+  },
+  {
+    name: 'Purple House',
+    title: 'Health Partner',
+    org: 'Central Australia',
+    role: 'Supporting dialysis patients and remote health across Central Australia.',
+  },
+  {
+    name: 'Wilya Janta',
+    title: 'Housing Advocacy',
+    org: 'Tennant Creek, NT',
+    role: 'Founded by Norman Frank and Dr. Simon Quilty. Demonstration home partnership.',
+  },
+  {
+    name: 'Homeland Schools Company',
+    title: 'Education Partner',
+    org: 'Maningrida, NT',
+    role: 'Requested 65 beds for kids across Maningrida communities.',
+  },
+  {
+    name: 'QIC',
+    title: 'Corporate Engagement',
+    org: 'Brisbane, QLD',
+    role: 'Expressed interest in building 50 beds with staff for NAIDOC week.',
+  },
+  {
+    name: 'Angela Lynch',
+    title: 'Community Distribution',
+    org: 'NPY Women\'s Council',
+    role: '"Always looking for beds." Key contact across NPY lands.',
+  },
+  {
+    name: 'Dr. Simon Quilty',
+    title: 'Wilya Janta CEO',
+    org: 'Tennant Creek, NT',
+    role: '20+ years NT health experience. Housing and health advocacy.',
+  },
+];
+
+// Enterprise vision — for pitch page "Enterprise & Training" section
+export const enterpriseVision = {
+  headline: 'Local Enterprise, Not Charity',
+  description: 'The bigger picture is community ownership of manufacturing. Local people collecting waste, making products, running the business. Our job is to become unnecessary.',
+  jobs: [
+    'Plastic collection from community',
+    'Shredding and sorting',
+    'Pressing sheets and cutting components',
+    'Bed assembly and quality checks',
+    'Logistics and delivery',
+  ],
+  youthPathways: 'Young people learning manufacturing, business skills, and robotics through Red Dust partnership. A pathway from community engagement to employment.',
+  ownership: 'Communities eventually own and run the whole operation. We transfer manufacturing capability, supply chain connections, and quality frameworks — then step back.',
+};
+
 // Themes from community voices
 export const communityThemes = [
   {

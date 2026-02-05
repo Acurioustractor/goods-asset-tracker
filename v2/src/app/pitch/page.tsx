@@ -1,25 +1,26 @@
 import Link from 'next/link';
-import { story, impact, communityPartnerships, investmentCase, quotes, journeyStories, videoTestimonials } from '@/lib/data/content';
-import { media } from '@/lib/data/media';
+import { communityPartnerships, investmentCase, quotes, oonchiumpaPartnership, partnershipJourney, advisoryGroup, goodsOrbit, storytellerProfiles, enterpriseVision } from '@/lib/data/content';
 import { MediaSlot } from '@/components/ui/media-slot';
+import { AssemblySequence } from '@/components/pitch/assembly-sequence';
+import { CyclingImage } from '@/components/pitch/cycling-image';
 
 export const metadata = {
   title: 'Pitch | Goods on Country',
-  description: 'A good bed can prevent heart disease. Goods on Country is scaling on-country production of beds and essential goods for remote Australian Indigenous communities.',
+  description: 'Community-designed beds from recycled plastic. Local jobs, community ownership, Indigenous enterprise.',
 };
 
 // Pick specific quotes for the pitch
-const heroQuote = quotes.find(q => q.author === 'Linda Turner');
-const healthQuote = quotes.find(q => q.author === 'Jessica Allardyce');
 const dignityQuote = quotes.find(q => q.author === 'Alfred Johnson');
+const healthQuote = quotes.find(q => q.author === 'Jessica Allardyce');
 const codesignQuote = quotes.find(q => q.author === 'Dianne Stokes');
+const normanQuote = quotes.find(q => q.author === 'Norman Frank' && q.theme === 'community-need');
 
 export default function PitchPage() {
   return (
     <main>
 
       {/* ================================================================
-          1. THE HOOK — One line that stops you
+          1. THE HOOK
           ================================================================ */}
       <section className="min-h-[85vh] flex items-center justify-center bg-foreground text-background relative overflow-hidden">
         <div className="container mx-auto px-4 text-center py-20 relative z-10">
@@ -30,13 +31,14 @@ export default function PitchPage() {
             className="text-4xl md:text-6xl lg:text-7xl font-light max-w-4xl mx-auto mb-10 leading-[1.1]"
             style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
           >
-            Thousands of people in remote Australia sleep on the floor tonight.
+            What if communities owned the factory, ran the business, and built enterprise from their own waste?
           </h1>
-          <p className="text-xl text-background/50 max-w-2xl mx-auto">
-            Not because they choose to. Because no one has built products that survive remote conditions — until now.
+          <p className="text-xl text-background/70 max-w-2xl mx-auto leading-relaxed">
+            Thousands of people in remote Australia sleep on the floor tonight.
+            We&rsquo;re building a model where communities manufacture health solutions, create local jobs,
+            and own the whole thing.
           </p>
         </div>
-        {/* Subtle scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
           <svg className="w-5 h-5 text-background/20" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
@@ -45,86 +47,99 @@ export default function PitchPage() {
       </section>
 
       {/* ================================================================
-          2. THE NUMBERS — Quick, visceral
+          2. THE STRETCH BED — 4 component boxes
           ================================================================ */}
-      <section className="py-6 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-center gap-8 md:gap-16 flex-wrap text-center">
-            {story.problem.stats.map((stat) => (
-              <div key={stat.label}>
-                <span className="text-2xl md:text-3xl font-bold">{stat.value}</span>
-                <span className="text-primary-foreground/60 text-sm ml-2">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          3. THE VOICE — Let a community member speak
-          ================================================================ */}
-      <section className="py-24 md:py-32 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <blockquote>
-              <p
-                className="text-3xl md:text-4xl lg:text-5xl font-light text-foreground leading-snug mb-8"
-                style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-              >
-                &ldquo;{heroQuote?.text}&rdquo;
-              </p>
-              <footer className="text-muted-foreground">
-                <span className="font-medium text-foreground">{heroQuote?.author}</span>
-                <span className="text-muted-foreground/60"> &mdash; {heroQuote?.context}</span>
-              </footer>
-            </blockquote>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          4. WHAT WE BUILD — Product hero, not specs
-          ================================================================ */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            <div className="grid gap-12 lg:grid-cols-2 items-center">
-              {/* Product image — /public/images/product/stretch-bed-hero.jpg */}
-              <MediaSlot
-                src={media.product.stretchBedHero}
-                alt="The Stretch Bed — recycled plastic, steel and canvas by Goods on Country"
-                label="Stretch Bed hero photo"
-                aspect="4/3"
-                className="order-2 lg:order-1"
-              />
+            <p className="text-sm uppercase tracking-widest text-accent mb-4">
+              The Stretch Bed
+            </p>
+            <h2
+              className="text-3xl md:text-4xl font-light text-foreground mb-4 leading-snug"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+            >
+              Three materials. No tools. Five minutes.
+            </h2>
+            <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
+              12kg, supports 200kg, lasts 5+ years. Each bed diverts 21kg of plastic from landfill.
+            </p>
 
-              <div className="order-1 lg:order-2">
-                <p className="text-sm uppercase tracking-widest text-accent mb-3">
-                  The Stretch Bed
-                </p>
-                <h2
-                  className="text-3xl md:text-4xl font-light text-foreground mb-6 leading-snug"
-                  style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-                >
-                  12kg. Supports 200kg.<br />
-                  Lasts 5+ years.
-                </h2>
-                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  Recycled HDPE plastic legs, galvanised steel poles, heavy-duty canvas. No tools. 5-minute assembly.
-                  Works inside and outside. Each bed diverts 21kg of plastic from landfill.
-                </p>
-                <div className="grid grid-cols-3 gap-3">
-                  <div className="text-center p-4 rounded-xl bg-background border border-border">
-                    <div className="text-2xl font-bold text-primary">$600</div>
-                    <div className="text-xs text-muted-foreground mt-1">to make</div>
+            <div className="grid gap-12 lg:grid-cols-2 items-start">
+              {/* Left: 4 component boxes */}
+              <div className="grid gap-4 grid-cols-2">
+                {/* Recycled plastic frame */}
+                <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
+                  <MediaSlot
+                    src="/images/pitch/bed-frame-legs.jpg"
+                    alt="Recycled HDPE plastic legs — pressed from community waste"
+                    label="Recycled plastic legs"
+                    aspect="4/3"
+                  />
+                  <div className="p-3">
+                    <h3 className="font-semibold text-foreground text-sm mb-0.5">Recycled Plastic Frame</h3>
+                    <p className="text-xs text-muted-foreground">HDPE legs from community plastic. 21kg diverted per bed.</p>
                   </div>
-                  <div className="text-center p-4 rounded-xl bg-background border border-border">
-                    <div className="text-2xl font-bold text-primary">$850</div>
-                    <div className="text-xs text-muted-foreground mt-1">sponsored</div>
+                </div>
+
+                {/* Steel poles */}
+                <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
+                  <MediaSlot
+                    src="/images/pitch/bed-poles.jpg"
+                    alt="Galvanised steel pole — 26.9mm OD"
+                    label="Steel pole"
+                    aspect="4/3"
+                  />
+                  <div className="p-3">
+                    <h3 className="font-semibold text-foreground text-sm mb-0.5">Galvanised Steel Poles</h3>
+                    <p className="text-xs text-muted-foreground">Two 26.9mm poles thread through canvas sleeves.</p>
                   </div>
-                  <div className="text-center p-4 rounded-xl bg-background border border-border">
-                    <div className="text-2xl font-bold text-primary">$1,200</div>
-                    <div className="text-xs text-muted-foreground mt-1">retail</div>
+                </div>
+
+                {/* Canvas */}
+                <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
+                  <MediaSlot
+                    src="/images/pitch/bed-canvas.jpg"
+                    alt="Heavy-duty Australian canvas with Goods. branding"
+                    label="Canvas"
+                    aspect="4/3"
+                  />
+                  <div className="p-3">
+                    <h3 className="font-semibold text-foreground text-sm mb-0.5">Heavy-Duty Canvas</h3>
+                    <p className="text-xs text-muted-foreground">Washable, repairable, built for remote conditions.</p>
+                  </div>
+                </div>
+
+                {/* QR Code Tracking */}
+                <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
+                  <MediaSlot
+                    src="/images/media-pack/nic-with-elder-on-verandah.jpg"
+                    alt="Nic sitting on a Stretch Bed with an elder on a verandah — ongoing support and connection"
+                    label="Support system"
+                    aspect="4/3"
+                  />
+                  <div className="p-3">
+                    <h3 className="font-semibold text-foreground text-sm mb-0.5">Support System</h3>
+                    <p className="text-xs text-muted-foreground">Every bed tracked. Ask questions, stay connected, get support.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Assembly sequence animation */}
+              <div>
+                <AssemblySequence />
+                <div className="grid grid-cols-3 gap-3 mt-8">
+                  <div className="text-center p-3 rounded-xl border border-border">
+                    <div className="text-xl font-bold text-primary">$350</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">to make</div>
+                  </div>
+                  <div className="text-center p-3 rounded-xl border border-border">
+                    <div className="text-xl font-bold text-primary">$600</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">RRP</div>
+                  </div>
+                  <div className="text-center p-3 rounded-xl border border-border">
+                    <div className="text-xl font-bold text-primary">$1,500</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">regular bed in community</div>
                   </div>
                 </div>
               </div>
@@ -134,7 +149,246 @@ export default function PitchPage() {
       </section>
 
       {/* ================================================================
-          5. WHAT'S ALREADY HAPPENED — Proof, not promises
+          3. HERO IMAGE — Large photo of finished bed in use
+          ================================================================ */}
+      <section className="bg-muted/30">
+        <div className="container mx-auto px-4 py-4">
+          <div className="max-w-5xl mx-auto">
+            <MediaSlot
+              src="/images/media-pack/woman-on-red-stretch-bed.jpg"
+              alt="A woman sitting on a Stretch Bed with red recycled plastic legs in Alice Springs"
+              label="Stretch Bed in use — red legs, Alice Springs"
+              aspect="16/9"
+              className="rounded-2xl overflow-hidden"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================
+          4. ON-COUNTRY MANUFACTURING — Rubbish to bed
+          ================================================================ */}
+      <section className="py-20 bg-foreground text-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <p className="text-sm uppercase tracking-widest text-background/40 mb-4">
+              On-Country Manufacturing
+            </p>
+            <h2
+              className="text-3xl md:text-4xl font-light mb-4 leading-snug"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+            >
+              From rubbish to bed
+            </h2>
+            <p className="text-background/60 mb-12 max-w-2xl">
+              A containerised production plant that turns community plastic waste into bed components. Local people do the making.
+            </p>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
+              {/* Step 1: Collect */}
+              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
+                <MediaSlot
+                  src="/images/process/color-samples.jpg"
+                  alt="Sorted recycled plastic from community waste"
+                  label="Collect"
+                  aspect="4/3"
+                />
+                <div className="p-5">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">1</div>
+                    <h3 className="text-lg font-semibold text-background">Collect</h3>
+                  </div>
+                  <p className="text-sm text-background/60 leading-relaxed">Local people gather plastic waste from around community. Sorted by colour, cleaned, ready for shredding.</p>
+                </div>
+              </div>
+
+              {/* Step 2: Shred */}
+              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
+                <MediaSlot
+                  src="/images/process/container-factory.jpg"
+                  alt="Plastic shredder inside containerised production plant"
+                  label="Shred"
+                  aspect="4/3"
+                />
+                <div className="p-5">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">2</div>
+                    <h3 className="text-lg font-semibold text-background">Shred</h3>
+                  </div>
+                  <p className="text-sm text-background/60 leading-relaxed">Plastic goes into the shredder — a containerised unit that stays on site between production runs.</p>
+                </div>
+              </div>
+
+              {/* Step 3: Press (cycling images) */}
+              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
+                <CyclingImage
+                  images={[
+                    { src: '/images/process/hydraulic-press.jpg', alt: 'Hydraulic press compressing recycled plastic into sheets' },
+                    { src: '/images/process/pressed-sheets.jpg', alt: 'Stack of pressed recycled plastic legs in multiple colours' },
+                  ]}
+                  aspect="4/3"
+                />
+                <div className="p-5">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">3</div>
+                    <h3 className="text-lg font-semibold text-background">Press</h3>
+                  </div>
+                  <p className="text-sm text-background/60 leading-relaxed">Shredded plastic is heated and pressed into durable sheets. Each colour is unique — made from whatever plastic the community collected.</p>
+                </div>
+              </div>
+
+              {/* Step 4: Cut */}
+              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
+                <MediaSlot
+                  src="/images/process/cnc-cutter.jpg"
+                  alt="CNC router cutting bed leg components from pressed plastic sheet"
+                  label="Cut"
+                  aspect="4/3"
+                />
+                <div className="p-5">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">4</div>
+                    <h3 className="text-lg font-semibold text-background">Cut</h3>
+                  </div>
+                  <p className="text-sm text-background/60 leading-relaxed">A CNC router cuts bed leg components from the pressed sheets. Precise, repeatable, minimal waste.</p>
+                </div>
+              </div>
+
+              {/* Step 5: Assemble (cycling images) */}
+              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
+                <CyclingImage
+                  images={[
+                    { src: '/images/pitch/bed-seq-1-leg-pole.jpg', alt: 'First pole threads through canvas sleeve' },
+                    { src: '/images/pitch/bed-seq-2-legs-pole.jpg', alt: 'Second pole through the other side' },
+                    { src: '/images/pitch/bed-seq-3-all-parts.jpg', alt: 'Legs clip onto both poles' },
+                    { src: '/images/pitch/bed-assembled.jpg', alt: 'Assembled Stretch Bed' },
+                  ]}
+                  aspect="4/3"
+                />
+                <div className="p-5">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">5</div>
+                    <h3 className="text-lg font-semibold text-background">Assemble</h3>
+                  </div>
+                  <p className="text-sm text-background/60 leading-relaxed">Thread one pole through each side of the canvas. Clip the legs on. Done in under 5 minutes, no tools.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <p className="text-background/40 text-sm">~30 beds per week &middot; 21kg plastic diverted per bed</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================
+          5. THE PARTNERSHIP — Oonchiumpa, community ownership, sovereignty
+          ================================================================ */}
+      <section className="py-20 md:py-28 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <p className="text-sm uppercase tracking-widest text-accent mb-4">
+              The Partnership
+            </p>
+            <h2
+              className="text-3xl md:text-5xl font-light text-foreground mb-6 leading-snug"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+            >
+              Start to finish, owned and run by community
+            </h2>
+            <p className="text-lg text-muted-foreground mb-4 max-w-3xl">
+              Through our partnership with {oonchiumpaPartnership.headline} — {oonchiumpaPartnership.subheadline} —
+              we&rsquo;re building a model where the entire process is community-led.
+              From collecting waste to delivering beds. Support enterprise, health outcomes, pride, and sovereignty.
+            </p>
+
+            <div className="grid gap-12 lg:grid-cols-2 items-start mt-12">
+              <div>
+                <p className="text-muted-foreground leading-relaxed mb-8">
+                  {oonchiumpaPartnership.description}
+                </p>
+
+                {/* What community ownership means */}
+                <div className="space-y-4 mb-8">
+                  {[
+                    { title: 'Enterprise', desc: 'Community-owned manufacturing — local people making and selling products' },
+                    { title: 'Health outcomes', desc: 'Beds preventing disease, washing machines breaking the scabies cycle' },
+                    { title: 'Pride & sovereignty', desc: 'Indigenous intelligence guiding design, production, and business decisions' },
+                    { title: 'New ideas', desc: 'A platform for other products and enterprises generated by and from community' },
+                  ].map((item) => (
+                    <div key={item.title} className="flex gap-4 items-start">
+                      <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      <div>
+                        <span className="font-semibold text-foreground">{item.title}</span>
+                        <span className="text-muted-foreground"> — {item.desc}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Kristy Bloomfield quote */}
+                <blockquote className="border-l-2 border-primary pl-6">
+                  <p
+                    className="text-xl text-foreground leading-relaxed mb-3"
+                    style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+                  >
+                    &ldquo;{oonchiumpaPartnership.kristyQuote.text}&rdquo;
+                  </p>
+                  <footer className="text-sm text-muted-foreground">
+                    <span className="font-medium text-foreground">{oonchiumpaPartnership.kristyQuote.author}</span>
+                    <span> &mdash; {oonchiumpaPartnership.kristyQuote.context}</span>
+                  </footer>
+                </blockquote>
+              </div>
+
+              {/* Fred's video testimonial */}
+              <div>
+                <div className="aspect-video rounded-xl overflow-hidden bg-muted mb-4">
+                  <iframe
+                    src={oonchiumpaPartnership.fredVideo.embedUrl}
+                    className="w-full h-full"
+                    allow="autoplay; fullscreen"
+                    allowFullScreen
+                  />
+                </div>
+                <p className="text-sm text-muted-foreground text-center">
+                  {oonchiumpaPartnership.fredVideo.title}
+                </p>
+              </div>
+            </div>
+
+            {/* Partnership iteration journey */}
+            <div className="mt-20">
+              <h3
+                className="text-2xl md:text-3xl font-light text-foreground mb-10"
+                style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+              >
+                How we got here
+              </h3>
+              <div className="relative">
+                <div className="absolute left-5 top-0 bottom-0 w-px bg-border hidden md:block" />
+                <div className="space-y-8">
+                  {partnershipJourney.map((step) => (
+                    <div key={step.step} className="flex gap-6 items-start">
+                      <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0 relative z-10">
+                        {step.step}
+                      </div>
+                      <div className="pt-1.5">
+                        <h4 className="font-semibold text-foreground mb-1">{step.title}</h4>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================
+          6. IMPACT TO DATE
           ================================================================ */}
       <section className="py-20 bg-foreground text-background">
         <div className="container mx-auto px-4">
@@ -149,11 +403,11 @@ export default function PitchPage() {
               This isn&rsquo;t a concept. It&rsquo;s working.
             </h2>
 
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-16">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-12">
               {[
                 { value: '369+', label: 'beds delivered' },
                 { value: '8+', label: 'communities' },
-                { value: '40%', label: 'back to community' },
+                { value: '2+', label: 'years with Bloomfield family' },
                 { value: '21kg', label: 'plastic per bed' },
               ].map((stat) => (
                 <div key={stat.label} className="text-center p-6 rounded-xl bg-background/5 border border-background/10">
@@ -163,7 +417,6 @@ export default function PitchPage() {
               ))}
             </div>
 
-            {/* Community partnerships — compact */}
             <div className="grid gap-4 sm:grid-cols-2">
               {communityPartnerships.filter(p => p.bedsDelivered > 0).map((p) => (
                 <div key={p.id} className="rounded-xl bg-background/5 border border-background/10 p-5">
@@ -186,14 +439,17 @@ export default function PitchPage() {
       </section>
 
       {/* ================================================================
-          6. COMMUNITY VOICES — Three quotes, emotional punch
+          7. COMMUNITY VOICES
           ================================================================ */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            <div className="grid gap-8 md:grid-cols-3">
-              {[dignityQuote, healthQuote, codesignQuote].filter(Boolean).map((q) => (
-                <div key={q!.author} className="flex flex-col">
+            <p className="text-sm uppercase tracking-widest text-accent mb-4">
+              Community voices
+            </p>
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mt-8">
+              {[dignityQuote, healthQuote, codesignQuote, normanQuote].filter(Boolean).map((q) => (
+                <div key={q!.author + q!.theme} className="flex flex-col">
                   <blockquote className="flex-1">
                     <p
                       className="text-lg text-foreground leading-relaxed mb-4"
@@ -214,194 +470,170 @@ export default function PitchPage() {
       </section>
 
       {/* ================================================================
-          7. THE MODEL — Simple, memorable
-          ================================================================ */}
-      <section className="py-20 bg-accent">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-sm uppercase tracking-widest text-accent-foreground/50 mb-4">
-              The Model
-            </p>
-            <h2
-              className="text-3xl md:text-5xl font-light text-accent-foreground mb-4"
-              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-            >
-              Commerce, not charity
-            </h2>
-            <p className="text-lg text-accent-foreground/70 mb-12 max-w-xl mx-auto">
-              Products that are Aboriginal owned and controlled, sold commercially.
-              Our job is to become unnecessary.
-            </p>
-
-            <div className="grid gap-4 md:grid-cols-3 mb-12">
-              <div className="bg-accent-foreground/10 rounded-2xl p-8">
-                <div className="text-5xl font-bold text-accent-foreground mb-2">40%</div>
-                <div className="text-accent-foreground/70">
-                  of every sale goes directly back to communities
-                </div>
-              </div>
-              <div className="bg-accent-foreground/10 rounded-2xl p-8">
-                <div className="text-5xl font-bold text-accent-foreground mb-2">100%</div>
-                <div className="text-accent-foreground/70">
-                  community ownership is the end goal
-                </div>
-              </div>
-              <div className="bg-accent-foreground/10 rounded-2xl p-8">
-                <div className="text-5xl font-bold text-accent-foreground mb-2">$0</div>
-                <div className="text-accent-foreground/70">
-                  licensing fees &mdash; they keep everything they make
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          8. THE OPPORTUNITY — Market size, demand
-          ================================================================ */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <p className="text-sm uppercase tracking-widest text-accent mb-4">
-              The Opportunity
-            </p>
-            <h2
-              className="text-3xl md:text-4xl font-light text-foreground mb-4"
-              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-            >
-              200&ndash;350 beds already requested
-            </h2>
-            <p className="text-muted-foreground mb-10 max-w-2xl">
-              Organic demand from communities and health organisations. Not manufactured need &mdash; real people asking for real products.
-            </p>
-
-            <div className="grid gap-6 md:grid-cols-2 mb-12">
-              {investmentCase.demand.slice(0, 4).map((item, i) => (
-                <div key={i} className="flex gap-4 items-start p-5 rounded-xl border border-border">
-                  <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">
-                    {i + 1}
-                  </div>
-                  <div>
-                    <p className="text-sm text-foreground leading-relaxed">{item.text}</p>
-                    <p className="text-xs text-muted-foreground mt-2">{item.person}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* The $3M stat */}
-            <div className="bg-foreground text-background rounded-2xl p-8 md:p-10 text-center">
-              <p className="text-4xl md:text-5xl font-bold text-primary mb-3">$3M / year</p>
-              <p className="text-background/60 max-w-xl mx-auto">
-                One Alice Springs provider sells $3 million of washing machines annually into communities &mdash;
-                most ending up in dumps within 12 months. These communities deserve products built for their conditions.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          9. VIDEO — Let them see it
-          ================================================================ */}
-      {videoTestimonials[0] && (
-        <section className="py-20 bg-foreground">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center mb-10">
-              <p className="text-sm uppercase tracking-widest text-background/40 mb-4">
-                Hear from community
-              </p>
-              <h2
-                className="text-2xl md:text-3xl font-light text-background"
-                style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-              >
-                {videoTestimonials[0].title}
-              </h2>
-              <p className="text-background/50 mt-2">{videoTestimonials[0].person} &middot; {videoTestimonials[0].location}</p>
-            </div>
-            <div className="max-w-3xl mx-auto">
-              <div className="aspect-video rounded-xl overflow-hidden bg-background/5">
-                <iframe
-                  src={videoTestimonials[0].embedUrl}
-                  className="w-full h-full"
-                  allow="autoplay; fullscreen"
-                  allowFullScreen
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ================================================================
-          10. PRODUCTION — The asset, not the cost
+          8. ADVISORY BOARD
           ================================================================ */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            <div className="grid gap-12 lg:grid-cols-2 items-center">
-              <div>
-                <p className="text-sm uppercase tracking-widest text-accent mb-3">
-                  On-Country Production
-                </p>
-                <h2
-                  className="text-3xl md:text-4xl font-light text-foreground mb-6 leading-snug"
-                  style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-                >
-                  A portable factory that creates jobs where they&rsquo;re needed most
-                </h2>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  A containerised production plant that travels to communities. Local people shred plastic waste,
-                  press it into sheets, and cut bed components. ~30 beds per week. Local jobs. Local waste into local products.
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  <span className="font-medium text-foreground">Two-container model:</span> {investmentCase.productionPlant.model}
-                </p>
-              </div>
-              {/* Production plant — /public/images/pitch/production-plant.jpg */}
-              <MediaSlot
-                src={media.pitch.productionPlant}
-                alt="Containerised production plant — shredding plastic waste into bed components"
-                label="Production plant photo"
-                aspect="4/3"
-              />
+            <p className="text-sm uppercase tracking-widest text-accent mb-4">
+              Advisory board
+            </p>
+            <h2
+              className="text-3xl md:text-4xl font-light text-foreground mb-12 leading-snug"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+            >
+              Who guides this
+            </h2>
+
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {advisoryGroup.map((person) => (
+                <div key={person.name} className="rounded-xl bg-background border border-border p-5">
+                  <h3 className="font-semibold text-foreground">{person.name}</h3>
+                  <p className="text-sm text-primary font-medium">{person.title}</p>
+                  {person.org && <p className="text-xs text-muted-foreground mt-1">{person.org}</p>}
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* ================================================================
-          11. THE ASK — Clear, direct
+          9. GOODS ORBIT — Community partners and people we engage with
+          ================================================================ */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <p className="text-sm uppercase tracking-widest text-accent mb-4">
+              The Goods orbit
+            </p>
+            <h2
+              className="text-2xl md:text-3xl font-light text-foreground mb-3 leading-snug"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+            >
+              People and partners we work with
+            </h2>
+            <p className="text-muted-foreground mb-10 max-w-2xl">
+              The community members, organisations, and allies who have been part of the journey — co-designing, testing, delivering, and advocating.
+            </p>
+
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {goodsOrbit.map((person) => (
+                <div key={person.name} className="rounded-xl border border-border p-4">
+                  <h3 className="font-semibold text-foreground text-sm">{person.name}</h3>
+                  <p className="text-xs text-primary font-medium">{person.title}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{person.org}</p>
+                  <p className="text-xs text-muted-foreground/70 mt-2 leading-relaxed">{person.role}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================
+          10. STORYTELLERS — Community voices, Empathy Ledger
+          ================================================================ */}
+      <section className="py-16 bg-foreground text-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <p className="text-sm uppercase tracking-widest text-background/40 mb-4">
+              Storytellers
+            </p>
+            <h2
+              className="text-2xl md:text-3xl font-light mb-3"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+            >
+              Listening to impact
+            </h2>
+            <p className="text-background/60 mb-10 max-w-2xl">
+              Every product decision is refined by community feedback. Through our Empathy Ledger process,
+              storytellers own their narratives — sharing on their terms, shaping what gets built next.
+            </p>
+
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {storytellerProfiles.map((person) => (
+                <div key={person.id} className="rounded-xl bg-background/5 border border-background/10 p-4">
+                  <h3 className="font-semibold text-background text-sm">{person.name}</h3>
+                  {person.role && <p className="text-xs text-primary">{person.role}</p>}
+                  <p className="text-xs text-background/40 mt-0.5">{person.location}</p>
+                  <p
+                    className="text-xs text-background/50 mt-2 leading-relaxed italic"
+                    style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+                  >
+                    &ldquo;{person.keyQuote.length > 80 ? person.keyQuote.slice(0, 80) + '...' : person.keyQuote}&rdquo;
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-xs text-background/30 mt-6 text-center">
+              All stories shared with consent through Empathy Ledger &mdash; community members own their narratives.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================
+          11. THE ASK — $500K scaling vision
           ================================================================ */}
       <section className="py-24 bg-foreground text-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-sm uppercase tracking-widest text-background/40 mb-6">
-              What we need
+              The ask
             </p>
             <h2
-              className="text-4xl md:text-6xl font-light mb-4"
+              className="text-4xl md:text-6xl font-light mb-6"
               style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
             >
-              {investmentCase.totalAsk}
+              $500,000
             </h2>
-            <p className="text-xl text-background/50 mb-16 max-w-xl mx-auto">
-              To prove the model at scale and build the infrastructure for community ownership.
+            <p className="text-xl text-background/60 mb-16 max-w-2xl mx-auto">
+              To go hard now — support a model that brings enterprise ownership back to community,
+              and design something that can be copied by every community across Australia.
             </p>
 
-            <div className="grid gap-6 md:grid-cols-2 max-w-2xl mx-auto mb-16">
-              {investmentCase.fundingLines.map((line) => (
-                <div key={line.id} className="rounded-2xl bg-background/5 border border-background/10 p-8 text-left">
-                  <div className="text-3xl font-bold text-primary mb-2">{line.amount}</div>
-                  <h3 className="text-lg font-semibold text-background mb-3">{line.title}</h3>
-                  <p className="text-sm text-background/50 leading-relaxed">{line.description}</p>
-                </div>
-              ))}
+            <div className="grid gap-6 md:grid-cols-3 max-w-3xl mx-auto mb-16">
+              <div className="rounded-2xl bg-background/5 border border-background/10 p-8 text-left">
+                <div className="text-3xl font-bold text-primary mb-2">$150K</div>
+                <h3 className="text-lg font-semibold text-background mb-3">Production at Scale</h3>
+                <p className="text-sm text-background/50 leading-relaxed">
+                  Complete and deploy the production plant. Capacity for 30+ beds per week across multiple communities.
+                </p>
+              </div>
+              <div className="rounded-2xl bg-background/5 border border-background/10 p-8 text-left">
+                <div className="text-3xl font-bold text-primary mb-2">$200K</div>
+                <h3 className="text-lg font-semibold text-background mb-3">Beds to Community</h3>
+                <p className="text-sm text-background/50 leading-relaxed">
+                  300+ beds deployed through community partnerships. Health hardware reaching families who need it.
+                </p>
+              </div>
+              <div className="rounded-2xl bg-background/5 border border-background/10 p-8 text-left">
+                <div className="text-3xl font-bold text-primary mb-2">$150K</div>
+                <h3 className="text-lg font-semibold text-background mb-3">Enterprise Model</h3>
+                <p className="text-sm text-background/50 leading-relaxed">
+                  Build the replicable model — training, documentation, and support for community-owned enterprises.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-background/5 border border-background/10 rounded-2xl p-8 md:p-10 max-w-2xl mx-auto mb-16 text-left">
+              <h3
+                className="text-xl font-light text-background mb-4"
+                style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+              >
+                The story this tells
+              </h3>
+              <p className="text-background/60 leading-relaxed">
+                Indigenous intelligence and ownership. A model designed by community, run by community,
+                that tells the story of what&rsquo;s possible when enterprise grows through action —
+                not just in Australia, but everywhere communities want to manufacture their own future.
+              </p>
             </div>
 
             {/* Supported by */}
-            <div className="mb-16">
+            <div>
               <p className="text-xs uppercase tracking-widest text-background/30 mb-4">Supported by</p>
               <div className="flex flex-wrap items-center justify-center gap-6">
                 {investmentCase.funders.map((f) => (
@@ -416,7 +648,7 @@ export default function PitchPage() {
       </section>
 
       {/* ================================================================
-          12. CLOSING — Emotional, memorable
+          11. CLOSING
           ================================================================ */}
       <section className="py-24 md:py-32 bg-background">
         <div className="container mx-auto px-4">
@@ -426,11 +658,11 @@ export default function PitchPage() {
               style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
             >
               We&rsquo;re not building beds.<br />
-              We&rsquo;re building a model where communities manufacture their own future.
+              We&rsquo;re building local enterprise.
             </h2>
             <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">
               Durable products from community waste. Local jobs. Community ownership.
-              The disposable furniture cycle ends here.
+              A model that can be copied everywhere.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
