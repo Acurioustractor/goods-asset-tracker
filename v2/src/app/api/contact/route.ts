@@ -65,18 +65,23 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Log the inquiry
+    // Log the inquiry with full GHL result for debugging
     console.log('[Contact Form]', {
       name: body.name,
       email: body.email,
       subject: body.subject,
+      organisation: body.organisation,
       type: isMediaRequest ? 'media-request' : 'general-inquiry',
       ghlSuccess: ghlResult.success,
+      ghlError: ghlResult.error,
+      ghlSimulated: ghlResult.simulated,
+      ghlContactId: ghlResult.contact?.id,
     });
 
     return NextResponse.json({
       success: true,
       message: 'Your message has been received. We will get back to you soon.',
+      debug: { ghlSuccess: ghlResult.success, ghlError: ghlResult.error, ghlSimulated: ghlResult.simulated },
     });
   } catch (error) {
     console.error('Contact form error:', error);
