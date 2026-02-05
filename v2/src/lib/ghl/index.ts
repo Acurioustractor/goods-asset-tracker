@@ -45,6 +45,7 @@ const TAGS = {
   bedOwner: 'bed-owner',
   washerOwner: 'washer-owner',
   partnerLead: 'goods-partner-lead',
+  mediaRequest: 'goods-media',
   supportRequest: 'support-request',
   newsletter: 'goods-newsletter',
   // User account tags
@@ -378,12 +379,13 @@ Submitted: ${new Date().toLocaleString('en-AU')}
    * Create contact from partnership inquiry
    */
   async createPartnershipContact(data: PartnershipInquiryData): Promise<GHLResponse> {
+    const isMedia = data.partnershipType === 'Media Pack Request';
     const result = await createOrUpdateContact({
       email: data.contactEmail,
       phone: data.contactPhone,
       name: data.contactName,
-      tags: [TAGS.partnerLead],
-      source: 'Partnership Inquiry',
+      tags: isMedia ? [TAGS.mediaRequest] : [TAGS.partnerLead],
+      source: isMedia ? 'Media Pack Request' : 'Partnership Inquiry',
     });
 
     // Add inquiry details as a note

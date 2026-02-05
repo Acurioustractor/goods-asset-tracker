@@ -80,8 +80,8 @@ The answer became Goods: durable, repairable, community-designed "health hardwar
 export const impact = {
   headline: 'Real Impact',
   stats: [
-    { value: '389', label: 'Assets tracked in register', icon: 'bed' },
-    { value: '200-350', label: 'Beds currently requested', icon: 'demand' },
+    { value: '400+', label: 'Assets tracked in register', icon: 'bed' },
+    { value: '107', label: 'Stretch Beds on order', icon: 'demand' },
     { value: '8+', label: 'Communities served', icon: 'community' },
     { value: '$3M/yr', label: 'Washing machines sold → dumps', icon: 'problem', source: 'Alice Springs provider' },
   ],
@@ -1166,68 +1166,94 @@ export const mediaPack = {
   // ──────────────────────────────────────────────────────────────
   videos: [
     {
-      title: 'Goods on Country Overview',
-      description: 'Introduction to the project — the problem, the approach, and the community.',
-      embedUrl: undefined as string | undefined,
-      downloadSrc: '/video/hero-desktop.mp4',
-    },
-    {
-      title: 'The Stretch Bed',
-      description: 'Close-up of the bed assembly process — no tools, under 5 minutes.',
-      embedUrl: undefined as string | undefined,
-      downloadSrc: '/video/stretch-bed-desktop.mp4',
-    },
-    {
-      title: 'Community Voices — Jaquilane',
-      description: 'A community member shares their experience with Goods on Country.',
-      embedUrl: undefined as string | undefined,
-      downloadSrc: '/video/jaquilane-testimony.mp4',
-    },
-    {
       title: 'Beds & Dignity — Cliff Plummer',
       description: 'Cliff speaks about how essential goods connect to dignity and community health.',
       embedUrl: 'https://share.descript.com/embed/2gxa5x40r9N',
       downloadSrc: undefined as string | undefined,
     },
     {
-      title: 'Building Together',
-      description: 'Community members assembling beds together on country.',
-      embedUrl: undefined as string | undefined,
-      downloadSrc: '/video/building-together-desktop.mp4',
-    },
-    {
       title: 'The Recycling Plant',
       description: 'Inside the containerised factory where community plastic becomes beds.',
-      embedUrl: undefined as string | undefined,
+      embedUrl: 'https://share.descript.com/embed/haRZJbfJadJ',
       downloadSrc: '/video/recycling-plant-desktop.mp4',
     },
     {
-      title: 'Community Gathering',
-      description: 'Community gathering for bed delivery and assembly.',
-      embedUrl: undefined as string | undefined,
-      downloadSrc: '/video/community-desktop.mp4',
+      title: 'Community Voices — Bed Recipient, Alice Springs',
+      description: 'A community member and Stretch Bed recipient from Alice Springs shares their experience.',
+      embedUrl: 'https://share.descript.com/embed/LAT0KNJMxmH',
+      downloadSrc: undefined as string | undefined,
+    },
+    {
+      title: 'Stretch Bed Making Timelapse — Alice Springs',
+      description: 'Timelapse of the Stretch Bed being made at the Alice Springs household production facility.',
+      embedUrl: 'https://share.descript.com/embed/Xtrc5ZYsym6',
+      downloadSrc: undefined as string | undefined,
+    },
+    {
+      title: 'Community Voices — Fred, Oonchiumpa',
+      description: 'Fred from Oonchiumpa, a core Goods on Country community partner, shares his perspective.',
+      embedUrl: 'https://share.descript.com/embed/YQwAcYfxzkn',
+      downloadSrc: undefined as string | undefined,
     },
   ],
 
-  // Photo gallery — add new photos by adding entries here
-  // src: path relative to /public/ (drop images into /public/images/<category>/)
-  // caption: shown below the photo and used as alt text
+  // ──────────────────────────────────────────────────────────────
+  // INSTAGRAM-READY — short-form vertical/square videos for social
+  // ──────────────────────────────────────────────────────────────
+  instagramVideos: [
+    {
+      title: 'On Country Production Facility Overview Part #1',
+      embedUrl: 'https://share.descript.com/embed/j6PXvhBP62i',
+    },
+    {
+      title: 'On Country Production Facility Overview Part #2',
+      embedUrl: 'https://share.descript.com/embed/J5GBQV00la8',
+    },
+    {
+      title: 'Stretch Bed Overview',
+      embedUrl: 'https://share.descript.com/embed/elrx8lXpDxW',
+    },
+  ],
+
+  // ──────────────────────────────────────────────────────────────
+  // RAW FOOTAGE (no captions/subtitles) — same format as videos above
+  // These are the uncaptioned versions for partners who need clean footage
+  // ──────────────────────────────────────────────────────────────
+  rawVideos: [
+    {
+      title: 'Recycling Production Facility Walkthrough',
+      embedUrl: 'https://share.descript.com/embed/QRzMJxd1Jo3',
+      downloadSrc: undefined as string | undefined,
+    },
+  ],
+
+  // ──────────────────────────────────────────────────────────────
+  // PHOTOS — How to add/edit:
+  //
+  // 1. Drop the image file into v2/public/images/media-pack/
+  // 2. Add an entry below with src, caption, and optional vertical flag:
+  //    { src: '/images/media-pack/my-photo.jpg', caption: 'Description here' },
+  //    { src: '/images/media-pack/tall-photo.jpg', caption: 'Vertical shot', vertical: true },
+  //
+  // Set vertical: true for portrait/tall images so they display at full height.
+  // ──────────────────────────────────────────────────────────────
   photos: [
     { src: '/images/product/stretch-bed-hero.jpg', caption: 'The Stretch Bed — recycled HDPE plastic, galvanised steel, heavy-duty canvas' },
-    { src: '/images/product/stretch-bed-assembly.jpg', caption: 'Assembly — no tools, under 5 minutes' },
-    { src: '/images/product/stretch-bed-in-use.jpg', caption: 'A Stretch Bed in use on community' },
-    { src: '/images/product/stretch-bed-community.jpg', caption: 'Community bed delivery' },
-    { src: '/images/product/stretch-bed-kids-building.jpg', caption: 'Kids helping build beds on country' },
-    { src: '/images/product/stretch-bed-detail.jpg', caption: 'Stretch Bed detail — recycled plastic legs' },
-    { src: '/images/product/washing-machine-hero.jpg', caption: 'Pakkimjalki Kari washing machine' },
-    { src: '/images/product/washing-machine-community.jpg', caption: 'Washing machine deployed in community' },
-    { src: '/images/process/01-source.jpg', caption: 'Collecting recycled plastic from communities' },
-    { src: '/images/process/04-build.jpg', caption: 'Pressing recycled plastic in the containerised factory' },
-    { src: '/images/process/container-factory.jpg', caption: 'The containerised production facility' },
-    { src: '/images/process/hydraulic-press.jpg', caption: 'Hydraulic press for recycled plastic sheets' },
+    { src: '/images/media-pack/community-bed-assembly.jpg', caption: 'Community members assembling a Stretch Bed on country' },
+    { src: '/images/media-pack/thumbs-up-stretch-bed.jpg', caption: 'Trying out the Stretch Bed — recycled plastic legs, canvas surface, built to last' },
+    { src: '/images/media-pack/lying-on-stretch-bed.jpg', caption: 'Testing the Stretch Bed — designed for comfort, durability, and easy flat-packing' },
+    { src: '/images/media-pack/woman-on-red-stretch-bed.jpg', caption: 'A Stretch Bed with red recycled plastic legs in Alice Springs' },
+    { src: '/images/media-pack/community-testing-bed-golden-hour.jpg', caption: 'Community members testing a Stretch Bed at golden hour, Tennant Creek' },
+    { src: '/images/media-pack/nic-with-elder-on-verandah.jpg', caption: 'Nic yarning with an Elder and community member on a verandah with the Stretch Bed' },
+    { src: '/images/media-pack/goods-branding-golden-hour.jpg', caption: 'Goods branding on the Stretch Bed canvas at golden hour', vertical: true },
+    { src: '/images/media-pack/washing-machine-enclosure-sunset.jpg', caption: 'Pakkimjalki Kari washing machine enclosure — recycled plastic panels at sunset' },
+    { src: '/images/media-pack/speed-queen-controls.jpg', caption: 'Nic showing Speed Queen washing machine controls to a community member' },
     { src: '/images/product/washing-machine-installed.jpg', caption: 'Washing machine installed in community' },
     { src: '/images/product/washing-machine-name.jpg', caption: 'Pakkimjalki Kari — named in Warumungu language by Elder Dianne Stokes' },
-  ],
+    { src: '/images/product/stretch-bed-kids-building.jpg', caption: 'Kids helping build beds on country' },
+    { src: '/images/process/container-factory.jpg', caption: 'The containerised production facility' },
+    { src: '/images/process/hydraulic-press.jpg', caption: 'Hydraulic press for recycled plastic sheets' },
+  ] as { src: string; caption: string; vertical?: boolean }[],
 
   // External download links — placeholders
   externalLinks: {

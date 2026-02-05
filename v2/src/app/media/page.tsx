@@ -15,6 +15,7 @@ export default function MediaPackPage() {
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordError, setPasswordError] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [editMode, setEditMode] = useState(false);
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [formError, setFormError] = useState('');
 
@@ -126,6 +127,23 @@ export default function MediaPackPage() {
 
   return (
     <main style={{ backgroundColor: '#FDF8F3' }}>
+      {/* Edit mode toggle — fixed bottom-right */}
+      <button
+        onClick={() => setEditMode(!editMode)}
+        className="fixed bottom-4 right-4 z-50 px-4 py-2 rounded-full text-xs font-medium shadow-lg transition-colors"
+        style={{
+          backgroundColor: editMode ? '#C45C3E' : '#2E2E2E',
+          color: '#fff',
+        }}
+      >
+        {editMode ? 'Exit Edit Mode' : 'Edit Text'}
+      </button>
+      {editMode && (
+        <div className="fixed bottom-14 right-4 z-50 px-3 py-1.5 rounded-md text-xs shadow-md" style={{ backgroundColor: '#fff', color: '#5E5E5E', border: '1px solid #d1d5db' }}>
+          Click any text to edit. Changes are preview-only — update content.ts to save.
+        </div>
+      )}
+
       {/* 1. Hero */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
@@ -240,7 +258,7 @@ export default function MediaPackPage() {
                 <CardContent className="p-0">
                   <div className="flex flex-col">
                     {member.image ? (
-                      <div className="relative w-full">
+                      <div className="relative w-full group/photo">
                         <Image
                           src={member.image}
                           alt={member.name}
@@ -249,6 +267,18 @@ export default function MediaPackPage() {
                           className="w-full h-auto"
                           unoptimized
                         />
+                        <a
+                          href={member.image}
+                          download
+                          className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover/photo:bg-black/30 transition-colors duration-300"
+                          title={`Download: ${member.name}`}
+                        >
+                          <span className="opacity-0 group-hover/photo:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-3 shadow-lg">
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#2E2E2E' }}>
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                          </span>
+                        </a>
                       </div>
                     ) : (
                       <div className="w-full aspect-[4/3] flex items-center justify-center" style={{ backgroundColor: '#E8DED4' }}>
@@ -275,7 +305,7 @@ export default function MediaPackPage() {
 
           {/* Team photo */}
           <div className="max-w-3xl mx-auto mt-12">
-            <div className="rounded-lg overflow-hidden shadow-lg">
+            <div className="relative rounded-lg overflow-hidden shadow-lg group/joint">
               <Image
                 src="/images/people/nic-and-ben-warumungu.jpg"
                 alt="Ben and Nic in Warumungu Country with the Basket Bed and the washing machine"
@@ -284,8 +314,25 @@ export default function MediaPackPage() {
                 className="w-full h-auto"
                 unoptimized
               />
+              <a
+                href="/images/people/nic-and-ben-warumungu.jpg"
+                download
+                className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover/joint:bg-black/30 transition-colors duration-300"
+                title="Download: Ben and Nic in Warumungu Country"
+              >
+                <span className="opacity-0 group-hover/joint:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-3 shadow-lg">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#2E2E2E' }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                </span>
+              </a>
             </div>
-            <p className="text-sm text-center mt-3" style={{ color: '#5E5E5E' }}>
+            <p
+              className="text-sm text-center mt-3"
+              style={{ color: '#5E5E5E', outline: editMode ? '1px dashed #8B9D77' : 'none', padding: editMode ? '2px 4px' : undefined }}
+              contentEditable={editMode}
+              suppressContentEditableWarning
+            >
               Ben and Nic in Warumungu Country with the Basket Bed and the washing machine
             </p>
           </div>
@@ -332,15 +379,16 @@ export default function MediaPackPage() {
             </p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 max-w-6xl mx-auto">
             {mediaPack.photos.map((photo) => (
-              <div key={photo.src} className="group">
-                <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-gray-100">
+              <div key={photo.src} className="group break-inside-avoid mb-4">
+                <div className="relative rounded-lg overflow-hidden bg-gray-100">
                   <Image
                     src={photo.src}
                     alt={photo.caption}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    width={photo.vertical ? 1333 : 2000}
+                    height={photo.vertical ? 2000 : 1333}
+                    className="w-full h-auto group-hover:scale-105 transition-transform duration-300"
                   />
                   {/* Download overlay */}
                   <a
@@ -356,7 +404,12 @@ export default function MediaPackPage() {
                     </span>
                   </a>
                 </div>
-                <p className="text-xs mt-2" style={{ color: '#5E5E5E' }}>{photo.caption}</p>
+                <p
+                  className="text-xs mt-2"
+                  style={{ color: '#5E5E5E', outline: editMode ? '1px dashed #8B9D77' : 'none', padding: editMode ? '2px 4px' : undefined }}
+                  contentEditable={editMode}
+                  suppressContentEditableWarning
+                >{photo.caption}</p>
               </div>
             ))}
           </div>
@@ -377,7 +430,7 @@ export default function MediaPackPage() {
         </div>
       </section>
 
-      {/* 7. Videos */}
+      {/* 7. Videos — Captioned */}
       <section className="py-16 md:py-20" style={{ backgroundColor: '#FDF8F3' }}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -385,15 +438,17 @@ export default function MediaPackPage() {
               Film
             </p>
             <h2 className="text-3xl font-light" style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}>
-              Videos
+              Videos — Captioned
             </h2>
+            <p className="mt-3 text-sm" style={{ color: '#5E5E5E' }}>
+              All videos are downloadable — click through to the Descript site (top right), then click the three dots in the bottom right to download directly to your device.
+            </p>
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2 max-w-4xl mx-auto">
             {mediaPack.videos.map((video) => (
               <Card key={video.title} className="border-0 shadow-md bg-white overflow-hidden">
                 <CardContent className="p-0">
-                  {/* Descript embed */}
                   {video.embedUrl ? (
                     <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                       <iframe
@@ -426,14 +481,24 @@ export default function MediaPackPage() {
                     </div>
                   )}
 
-                  {/* Title, description, download */}
                   <div className="p-5">
-                    <h3 className="text-lg font-medium mb-1" style={{ color: '#2E2E2E' }}>{video.title}</h3>
-                    <p className="text-sm mb-3" style={{ color: '#5E5E5E' }}>{video.description}</p>
-                    {video.downloadSrc && (
+                    <h3
+                      className="text-lg font-medium mb-1"
+                      style={{ color: '#2E2E2E', outline: editMode ? '1px dashed #8B9D77' : 'none', padding: editMode ? '2px 4px' : undefined }}
+                      contentEditable={editMode}
+                      suppressContentEditableWarning
+                    >{video.title}</h3>
+                    <p
+                      className="text-sm mb-3"
+                      style={{ color: '#5E5E5E', outline: editMode ? '1px dashed #8B9D77' : 'none', padding: editMode ? '2px 4px' : undefined }}
+                      contentEditable={editMode}
+                      suppressContentEditableWarning
+                    >{video.description}</p>
+                    {video.embedUrl && (
                       <a
-                        href={video.downloadSrc}
-                        download
+                        href={video.embedUrl.replace('/embed/', '/view/')}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-md border transition-colors hover:text-white hover:bg-[#C45C3E]"
                         style={{ borderColor: '#C45C3E', color: '#C45C3E' }}
                       >
@@ -450,6 +515,124 @@ export default function MediaPackPage() {
           </div>
         </div>
       </section>
+
+      {/* 7b. Videos — Instagram Ready */}
+      {mediaPack.instagramVideos.length > 0 && (
+        <section className="py-16 md:py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <p className="text-sm uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
+                Social
+              </p>
+              <h2 className="text-3xl font-light" style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}>
+                Instagram Ready
+              </h2>
+              <p className="mt-3 text-sm" style={{ color: '#5E5E5E' }}>
+                Short-form videos ready for Instagram Reels and Stories.
+              </p>
+            </div>
+
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
+              {mediaPack.instagramVideos.map((video) => (
+                <Card key={video.title} className="border-0 shadow-md bg-white overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                      <iframe
+                        src={video.embedUrl}
+                        className="absolute inset-0 w-full h-full"
+                        allow="autoplay; fullscreen"
+                        allowFullScreen
+                        style={{ border: 0 }}
+                      />
+                    </div>
+                    <div className="p-5 flex items-center justify-between">
+                      <h3 className="text-sm font-medium" style={{ color: '#2E2E2E' }}>{video.title}</h3>
+                      <a
+                        href={video.embedUrl.replace('/embed/', '/view/')}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-md border transition-colors hover:text-white hover:bg-[#C45C3E] flex-shrink-0 ml-3"
+                        style={{ borderColor: '#C45C3E', color: '#C45C3E' }}
+                      >
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        Download
+                      </a>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 7c. Videos — Raw Footage (no captions) */}
+      {mediaPack.rawVideos.length > 0 && (
+        <section className="py-16 md:py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <p className="text-sm uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
+                Raw Footage
+              </p>
+              <h2 className="text-3xl font-light" style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}>
+                Videos — No Captions
+              </h2>
+              <p className="mt-3" style={{ color: '#5E5E5E' }}>
+                Clean footage without subtitles for your own editing and production.
+              </p>
+            </div>
+
+            <div className="grid gap-8 sm:grid-cols-2 max-w-4xl mx-auto">
+              {mediaPack.rawVideos.map((video) => (
+                <Card key={video.title} className="border-0 shadow-md bg-white overflow-hidden">
+                  <CardContent className="p-0">
+                    {video.embedUrl ? (
+                      <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                        <iframe
+                          src={video.embedUrl}
+                          className="absolute inset-0 w-full h-full"
+                          allow="autoplay; fullscreen"
+                          allowFullScreen
+                          style={{ border: 0 }}
+                        />
+                      </div>
+                    ) : (
+                      <div
+                        className="relative w-full flex items-center justify-center"
+                        style={{ paddingBottom: '56.25%', backgroundColor: '#2E2E2E' }}
+                      >
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <p className="text-xs text-white/60">Embed coming soon</p>
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="p-5 flex items-center justify-between">
+                      <h3 className="text-lg font-medium" style={{ color: '#2E2E2E' }}>{video.title}</h3>
+                      {video.embedUrl && (
+                        <a
+                          href={video.embedUrl.replace('/embed/', '/view/')}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-md border transition-colors hover:text-white hover:bg-[#C45C3E]"
+                          style={{ borderColor: '#C45C3E', color: '#C45C3E' }}
+                        >
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                          </svg>
+                          Download
+                        </a>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* 8. Brand Assets */}
       <section className="py-16 md:py-20 bg-white">

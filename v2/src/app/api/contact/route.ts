@@ -31,35 +31,47 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create contact in GHL with inquiry details
-    const tags = ['goods-inquiry'];
-    if (body.subscribe) {
-      tags.push('goods-newsletter');
+    // Route to appropriate GHL method based on subject
+    const isMediaRequest = body.subject === 'Media Pack Request';
+
+    let ghlResult;
+
+    if (isMediaRequest) {
+      // Media pack requests → partnership contact with goods-media tag
+      ghlResult = await ghl.createPartnershipContact({
+        organizationName: body.message.split('\n')[0]?.replace('Organisation: ', '') || 'Not provided',
+        contactName: body.name,
+        contactEmail: body.email,
+        contactPhone: body.phone,
+        partnershipType: 'Media Pack Request',
+        message: body.message,
+      });
+    } else {
+      // General inquiries
+      const tags = ['goods-inquiry'];
+      if (body.subscribe) {
+        tags.push('goods-newsletter');
+      }
+
+      ghlResult = await ghl.createOrderContact({
+        email: body.email,
+        name: body.name,
+        phone: body.phone,
+        orderNumber: `INQ-${Date.now()}`,
+        totalCents: 0,
+        isSponsorship: false,
+        productTypes: ['inquiry'],
+      });
     }
 
-    const ghlResult = await ghl.createOrderContact({
-      email: body.email,
-      name: body.name,
-      phone: body.phone,
-      orderNumber: `INQ-${Date.now()}`, // Inquiry reference
-      totalCents: 0,
-      isSponsorship: false,
-      productTypes: ['inquiry'],
-    });
-
-    // Log the inquiry even if GHL fails
+    // Log the inquiry
     console.log('[Contact Form]', {
       name: body.name,
       email: body.email,
       subject: body.subject,
+      type: isMediaRequest ? 'media-request' : 'general-inquiry',
       ghlSuccess: ghlResult.success,
     });
-
-    // If GHL is enabled and worked, add a note with the message
-    if (ghlResult.success && ghlResult.contact?.id) {
-      // The contact was created, message is logged
-      console.log(`Contact inquiry from ${body.email} logged to GHL`);
-    }
 
     return NextResponse.json({
       success: true,
