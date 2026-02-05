@@ -183,11 +183,6 @@ export default async function HomePage() {
         />
       </Suspense>
 
-      {/* Theme Spotlight - auto-rotating thematic tabs */}
-      <Suspense fallback={<ThemeSpotlightSkeleton />}>
-        <ThemeSpotlight themeGroups={spotlightData} autoRotateInterval={8000} />
-      </Suspense>
-
       {/* Community Gallery - from Empathy Ledger */}
       <Suspense fallback={<CommunityGallerySkeleton />}>
         <CommunityGallery

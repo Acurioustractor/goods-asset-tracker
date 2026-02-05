@@ -23,6 +23,7 @@ const CUSTOM_FIELDS = {
   community: process.env.GHL_FIELD_COMMUNITY || '',
   orderNumber: process.env.GHL_FIELD_ORDER_NUMBER || '',
   orderTotal: process.env.GHL_FIELD_ORDER_TOTAL || '',
+  message: process.env.GHL_FIELD_MESSAGE || '',
 };
 
 // Workflow IDs (configure in GHL dashboard)
@@ -70,6 +71,7 @@ interface ContactData {
   email: string;
   name?: string;
   phone?: string;
+  companyName?: string;
   tags?: string[];
   customFields?: Record<string, string>;
   source?: string;
@@ -195,6 +197,7 @@ async function createOrUpdateContact(data: ContactData): Promise<GHLResponse> {
       email: data.email,
       name: data.name,
       phone: data.phone,
+      companyName: data.companyName,
       tags: data.tags || [],
       source: data.source || 'Goods on Country Website',
     };
@@ -380,11 +383,18 @@ Submitted: ${new Date().toLocaleString('en-AU')}
    */
   async createPartnershipContact(data: PartnershipInquiryData): Promise<GHLResponse> {
     const isMedia = data.partnershipType === 'Media Pack Request';
+    const customFields: Record<string, string> = {};
+    if (CUSTOM_FIELDS.message && data.message) {
+      customFields[CUSTOM_FIELDS.message] = data.message;
+    }
+
     const result = await createOrUpdateContact({
       email: data.contactEmail,
       phone: data.contactPhone,
       name: data.contactName,
+      companyName: data.organizationName,
       tags: isMedia ? [TAGS.mediaRequest] : [TAGS.partnerLead],
+      customFields,
       source: isMedia ? 'Media Pack Request' : 'Partnership Inquiry',
     });
 

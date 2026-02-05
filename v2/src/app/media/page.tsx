@@ -99,11 +99,14 @@ export default function MediaPackPage() {
     setFormError('');
 
     const form = e.currentTarget;
+    const organisation = (form.elements.namedItem('organisation') as HTMLInputElement).value || '';
+    const messageText = (form.elements.namedItem('message') as HTMLTextAreaElement).value || '';
     const data = {
       name: (form.elements.namedItem('name') as HTMLInputElement).value,
       email: (form.elements.namedItem('email') as HTMLInputElement).value,
       subject: 'Media Pack Request',
-      message: `Organisation: ${(form.elements.namedItem('organisation') as HTMLInputElement).value || 'Not provided'}\n\n${(form.elements.namedItem('message') as HTMLTextAreaElement).value}`,
+      organisation,
+      message: organisation ? `Organisation: ${organisation}\n\n${messageText}` : messageText,
     };
 
     try {

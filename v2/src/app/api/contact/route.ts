@@ -7,6 +7,7 @@ interface ContactFormData {
   phone?: string;
   subject: string;
   message: string;
+  organisation?: string;
   subscribe?: boolean;
 }
 
@@ -39,7 +40,7 @@ export async function POST(request: NextRequest) {
     if (isMediaRequest) {
       // Media pack requests → partnership contact with goods-media tag
       ghlResult = await ghl.createPartnershipContact({
-        organizationName: body.message.split('\n')[0]?.replace('Organisation: ', '') || 'Not provided',
+        organizationName: body.organisation || 'Not provided',
         contactName: body.name,
         contactEmail: body.email,
         contactPhone: body.phone,
