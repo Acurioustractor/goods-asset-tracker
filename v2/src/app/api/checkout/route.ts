@@ -92,6 +92,9 @@ export async function POST(request: NextRequest) {
       line_items: lineItems,
       ...(customerEmail && { customer_email: customerEmail }),
       billing_address_collection: 'required',
+      phone_number_collection: {
+        enabled: true,
+      },
       shipping_address_collection: {
         allowed_countries: ['AU'], // Australia only for now
       },
