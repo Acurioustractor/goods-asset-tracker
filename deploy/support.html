@@ -859,6 +859,9 @@
     src="https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js"
     onerror="this.onerror=null;this.src='https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js'"></script>
 
+  <!-- GoHighLevel Integration -->
+  <script src="js/ghl-integration.js"></script>
+
   <script>
     // ============================================================================
     // CONFIGURATION
@@ -1229,6 +1232,24 @@
           .select();
 
         if (error) throw error;
+
+        // Send to GoHighLevel for triage
+        if (window.GHL && GHL.config.enabled) {
+          btnText.innerHTML = '<span class="loading-spinner"></span>Notifying support team...';
+
+          try {
+            // Create/find contact and send message
+            await GHL.sendMessage(
+              formData.contact,
+              `🎫 Support Ticket\nAsset: ${assetId || 'Unknown'}\nPriority: ${formData.priority}\nIssue: ${formData.description}`,
+              assetId
+            );
+            console.log('GHL notification sent');
+          } catch (ghlError) {
+            // Don't fail the submission if GHL fails
+            console.warn('GHL notification failed:', ghlError);
+          }
+        }
 
         // Redirect to thank you page with ticket reference
         const ticketId = data && data[0] ? data[0].id : '';

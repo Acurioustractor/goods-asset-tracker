@@ -21,7 +21,7 @@ const defaultStats: ImpactStat[] = [
   { value: 389, label: 'Beds Delivered' },
   { value: 8, label: 'Communities Served' },
   { value: 1500, label: 'Lives Impacted', prefix: '~' },
-  { value: 100, label: 'Australian Made', suffix: '%' },
+  { value: 100, label: 'Community Designed & Led', suffix: '%' },
 ];
 
 export function ImpactStats({
@@ -60,7 +60,7 @@ export function ImpactStats({
           { value: totalAssets || 0, label: 'Beds Delivered' },
           { value: uniqueCommunities, label: 'Communities Served' },
           { value: livesImpacted, label: 'Lives Impacted', prefix: '~' },
-          { value: 100, label: 'Australian Made', suffix: '%' },
+          { value: 100, label: 'Community Designed & Led', suffix: '%' },
         ]);
       } catch (error) {
         console.error('Error fetching impact stats:', error);

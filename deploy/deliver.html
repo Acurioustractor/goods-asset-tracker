@@ -1131,6 +1131,9 @@
   <!-- QR Scanner Library -->
   <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 
+  <!-- GoHighLevel Integration -->
+  <script src="js/ghl-integration.js"></script>
+
   <script>
     // ============================================================================
     // CONFIGURATION
@@ -1369,7 +1372,7 @@
           .from('assets')
           .select('unique_id, product, community, name, notes')
           .is('supply_date', null)
-          .in('product', ['Weave Bed', 'Basket Bed'])
+          .in('product', ['Stretch Bed', 'Basket Bed'])
           .order('unique_id', { ascending: true });
 
         if (error) throw error;
@@ -1378,13 +1381,13 @@
           availableBedSelect.innerHTML = `<option value="">-- Select from ${data.length} available beds --</option>`;
 
           // Group by product type
-          const weaveBeds = data.filter(d => d.product === 'Weave Bed');
+          const stretchBeds = data.filter(d => d.product === 'Stretch Bed');
           const basketBeds = data.filter(d => d.product === 'Basket Bed');
 
-          if (weaveBeds.length > 0) {
+          if (stretchBeds.length > 0) {
             const optgroup = document.createElement('optgroup');
-            optgroup.label = `Weave Beds (${weaveBeds.length})`;
-            weaveBeds.forEach(bed => {
+            optgroup.label = `Stretch Beds (${stretchBeds.length})`;
+            stretchBeds.forEach(bed => {
               const option = document.createElement('option');
               option.value = bed.unique_id;
               const qrStatus = bed.notes && bed.notes.includes('QR CODE PENDING') ? ' [No QR]' : '';

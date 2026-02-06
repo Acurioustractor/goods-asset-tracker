@@ -130,32 +130,77 @@ export const empathyLedger = {
 
   /**
    * Fetch media assets (photos, videos, audio)
-   * NOTE: The content-hub /media endpoint is not available on the current API.
-   * Returns empty array to use local fallbacks.
    */
-  async getMedia(_params: MediaQueryParams = {}): Promise<EmpathyLedgerMedia[]> {
-    // Content-hub API endpoints not available - use local fallbacks
-    return [];
+  async getMedia(params: MediaQueryParams = {}): Promise<EmpathyLedgerMedia[]> {
+    if (!ENABLE_EMPATHY_LEDGER) return [];
+
+    try {
+      const response = await fetchFromEmpathyLedger<MediaResponse>('/media', {
+        type: params.type,
+        elder_approved: params.elderApproved,
+        cultural_tags: params.culturalTags?.join(','),
+        project_code: params.projectCode ?? GOODS_PROJECT_CODE,
+        limit: params.limit,
+        page: params.page,
+      });
+      return response.media;
+    } catch (error) {
+      console.error('[EmpathyLedger] Failed to fetch media:', error);
+      return [];
+    }
+  },
+
+  /**
+   * Fetch a single story by ID
+   */
+  async getStory(id: string): Promise<EmpathyLedgerStory | null> {
+    if (!ENABLE_EMPATHY_LEDGER) return null;
+
+    try {
+      const story = await fetchFromEmpathyLedger<EmpathyLedgerStory>(`/stories/${id}`);
+      return story;
+    } catch (error) {
+      console.error(`[EmpathyLedger] Failed to fetch story ${id}:`, error);
+      return null;
+    }
   },
 
   /**
    * Fetch stories
-   * NOTE: The content-hub /stories endpoint is not available on the current API.
-   * Returns empty array to use local fallbacks (journeyStories from content.ts).
    */
-  async getStories(_params: StoriesQueryParams = {}): Promise<EmpathyLedgerStory[]> {
-    // Content-hub API endpoints not available - use local fallbacks
-    return [];
+  async getStories(params: StoriesQueryParams = {}): Promise<EmpathyLedgerStory[]> {
+    if (!ENABLE_EMPATHY_LEDGER) return [];
+
+    try {
+      const response = await fetchFromEmpathyLedger<StoriesResponse>('/stories', {
+        theme: params.theme,
+        limit: params.limit,
+        page: params.page,
+      });
+      return response.stories;
+    } catch (error) {
+      console.error('[EmpathyLedger] Failed to fetch stories:', error);
+      return [];
+    }
   },
 
   /**
    * Fetch storyteller/artisan profiles
-   * NOTE: The content-hub /storytellers endpoint is not available on the current API.
-   * Returns empty array to use local fallbacks.
    */
-  async getStorytellers(_params: StorytellersQueryParams = {}): Promise<EmpathyLedgerStoryteller[]> {
-    // Content-hub API endpoints not available - use local fallbacks
-    return [];
+  async getStorytellers(params: StorytellersQueryParams = {}): Promise<EmpathyLedgerStoryteller[]> {
+    if (!ENABLE_EMPATHY_LEDGER) return [];
+
+    try {
+      const response = await fetchFromEmpathyLedger<{ storytellers: EmpathyLedgerStoryteller[] }>('/storytellers', {
+        featured: params.featured,
+        limit: params.limit,
+        page: params.page,
+      });
+      return response.storytellers;
+    } catch (error) {
+      console.error('[EmpathyLedger] Failed to fetch storytellers:', error);
+      return [];
+    }
   },
 
   /**
@@ -303,16 +348,34 @@ export const empathyLedger = {
 
   /**
    * Fetch storytellers for the Goods project with full analysis data
-   * NOTE: The syndication API endpoints return 404 - API may not be configured.
-   * Returns empty array to use local fallbacks.
    */
-  async getProjectStorytellers(_params: {
+  async getProjectStorytellers(params: {
     projectId?: string;
     limit?: number;
     offset?: number;
   } = {}): Promise<SyndicationStoryteller[]> {
-    // Syndication API not available - use local fallbacks
-    return [];
+    if (!ENABLE_EMPATHY_LEDGER) return [];
+
+    const projectId = params.projectId || GOODS_PROJECT_ID;
+    if (!projectId) {
+      console.warn('[EmpathyLedger] No project ID — set EMPATHY_LEDGER_PROJECT_ID');
+      return [];
+    }
+
+    try {
+      const response = await fetchFromSyndicationAPI<SyndicationStorytellersResponse>(
+        `/projects/${projectId}/storytellers`,
+        {
+          limit: params.limit,
+          offset: params.offset,
+        }
+      );
+      console.log(`[EmpathyLedger] Syndication: ${response.storytellers.length} storytellers loaded`);
+      return response.storytellers;
+    } catch (error) {
+      console.error('[EmpathyLedger] Failed to fetch project storytellers:', error);
+      return [];
+    }
   },
 
   /**

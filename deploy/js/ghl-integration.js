@@ -12,12 +12,12 @@ const GHL = {
   // CONFIGURATION - Update these when your GHL number is approved
   // ============================================================================
   config: {
-    apiKey: '',           // Your GHL API Key
-    locationId: '',       // Your GHL Location ID
+    apiKey: 'pit-cb1a0ada-0097-4ece-8b7d-e1229b40dac9',
+    locationId: 'agzsSZWgovjwgpcoASWG',
     baseUrl: 'https://services.leadconnectorhq.com',
 
     // Set to true when ready to enable GHL integration
-    enabled: false,
+    enabled: true,
 
     // Custom field IDs in GHL (map these to your GHL custom fields)
     customFields: {

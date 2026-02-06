@@ -11,6 +11,7 @@ const navigation = [
   { name: 'The Stretch Bed', href: '/shop/stretch-bed-single' },
   { name: 'How It\'s Made', href: '/process' },
   { name: 'Our Story', href: '/story' },
+  { name: 'Community', href: '/community' },
   { name: 'Support', href: '/support' },
 ];
 

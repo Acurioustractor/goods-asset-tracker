@@ -197,16 +197,16 @@ export default function PitchDocumentPage() {
             The Stretch Bed
           </h2>
           <p className="text-base text-neutral-600 mb-8 max-w-2xl leading-relaxed">
-            Recycled HDPE plastic legs, galvanised steel poles, heavy-duty Australian canvas. At just 12kg, carried by one person,
+            Recycled HDPE plastic legs, galvanised steel poles, heavy-duty Australian canvas. At just 20kg, carried by one person,
             supports 200kg, and lasts 5+ years in remote conditions. Works inside and outside.
           </p>
 
           <div className="grid grid-cols-2 gap-x-8 gap-y-3 mb-10">
             {[
-              '12kg — carried by one person',
+              '20kg — carried by one person',
               '200kg load capacity',
               '5-minute assembly, no tools',
-              '21kg plastic diverted per bed',
+              '14kg plastic diverted per bed',
               'Cleanable, movable, works outside',
               'Colours matched to community choice',
             ].map((feature) => (
@@ -311,7 +311,7 @@ export default function PitchDocumentPage() {
               <p className="text-xs text-neutral-500">Capacity</p>
             </div>
             <div className="bg-neutral-50 rounded-lg p-3 text-center border border-neutral-100">
-              <p className="font-bold text-black">21kg plastic</p>
+              <p className="font-bold text-black">14kg plastic</p>
               <p className="text-xs text-neutral-500">Diverted per bed</p>
             </div>
             <div className="bg-neutral-50 rounded-lg p-3 text-center border border-neutral-100">

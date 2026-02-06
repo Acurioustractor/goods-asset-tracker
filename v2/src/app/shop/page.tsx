@@ -14,7 +14,7 @@ const products = [
   {
     slug: 'stretch-bed-single',
     name: 'The Stretch Bed',
-    description: 'Recycled HDPE plastic legs, galvanised steel poles, heavy-duty canvas. 12kg, flat-packs, no tools needed.',
+    description: 'Recycled HDPE plastic legs, galvanised steel poles, heavy-duty canvas. 20kg, flat-packs, no tools needed.',
     price: 600,
     image: media.product.stretchBedHero,
     badge: 'Available',
@@ -61,7 +61,7 @@ export default function ShopPage() {
             </h1>
             <p className="text-lg" style={{ color: '#5E5E5E' }}>
               Every purchase supports remote Indigenous communities across Australia.
-              Each bed diverts 21kg of plastic from landfill.
+              Each bed diverts 14kg of plastic from landfill.
             </p>
           </div>
         </div>
@@ -197,7 +197,7 @@ export default function ShopPage() {
 
               <div className="space-y-4 mb-8">
                 {[
-                  'Made from 21kg recycled plastic',
+                  'Made from 14kg recycled plastic',
                   '5-minute assembly, no tools required',
                   'Washable mattress components',
                   'Built to last 10+ years',

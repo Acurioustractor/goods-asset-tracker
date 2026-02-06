@@ -185,7 +185,7 @@ export default function CommunityVoicesPage() {
 
               <div className="space-y-3 mb-8">
                 {[
-                  'Made from 21kg recycled plastic',
+                  'Made from 14kg recycled plastic',
                   '5-minute assembly, no tools required',
                   'Washable mattress components',
                   'Built to last 10+ years',

@@ -1,14 +1,3 @@
-# Netlify redirects
-# IMPORTANT: Query parameter rules must come BEFORE the catch-all
-
-# QR codes with asset_id parameter go to support form
-/*  asset_id=:id  /support.html?asset_id=:id  200!
-
-# Support form (stable pretty URL; avoid index.html -> / rewriting)
-/support  /support.html  200!
-/support/*  /support.html  200!
-
-# Root without params goes to public home page
-/  /public-home.html  200!
-
-# (Deprecated) Direct support path handled above
+# Redirect all legacy Netlify traffic to v2 Vercel deployment
+# The ! forces redirect even if a file exists at that path
+/*  https://goodsoncountry.com.au/:splat  301!

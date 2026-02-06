@@ -1,0 +1,19 @@
+# Old static site (legacy)
+deploy/
+
+# Build artifacts
+v2/.next/
+v2/node_modules/
+
+# Media files (large binaries)
+media/raw/
+media/analysis-*/
+v2/public/video/*.mp4
+
+# IDE / OS
+.obsidian/
+.tldr/
+.DS_Store
+
+# Session data
+.claude/cache/

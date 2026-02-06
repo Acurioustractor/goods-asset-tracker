@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
           currency: item.currency.toLowerCase(),
           product_data: {
             name: productName,
-            ...(item.image && { images: [item.image] }),
+            ...(item.image && item.image.startsWith('http') && { images: [item.image] }),
             metadata: {
               product_id: productId,
               is_sponsorship: String(item.is_sponsorship || false),

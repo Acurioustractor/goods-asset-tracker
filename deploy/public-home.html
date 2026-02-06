@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Goods on Country - Providing Essential Furniture to Remote Communities</title>
-  <meta name="description" content="Goods on Country provides quality furniture and essential goods to remote Indigenous communities across Australia. Supporting dignity and comfort for all.">
+  <title>Goods on Country - Quality Furniture for Remote Communities</title>
+  <meta name="description" content="Goods on Country provides quality furniture and essential goods to remote Indigenous communities across Australia. The Stretch Bed - built for comfort, built to last.">
 
   <!-- PWA Support -->
-  <meta name="theme-color" content="#0f172a">
+  <meta name="theme-color" content="#0a0a0a">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="manifest.json">
@@ -15,293 +15,592 @@
 
   <!-- Open Graph -->
   <meta property="og:title" content="Goods on Country">
-  <meta property="og:description" content="Providing essential furniture to remote Indigenous communities across Australia.">
+  <meta property="og:description" content="Quality furniture for remote Indigenous communities across Australia.">
   <meta property="og:type" content="website">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    * {
+    /* ================================================================
+       RESET & BASE
+       ================================================================ */
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
     :root {
-      --primary: #3b82f6;
-      --primary-dark: #1d4ed8;
-      --success: #10b981;
-      --success-dark: #059669;
-      --warning: #f59e0b;
-      --danger: #ef4444;
-      --dark: #0f172a;
-      --dark-lighter: #1e293b;
-      --gray: #64748b;
-      --light-gray: #94a3b8;
-      --card-bg: #1e293b;
-      --border: #334155;
-      --purple: #8b5cf6;
-      --pink: #ec4899;
-      --teal: #14b8a6;
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --off-white: #f5f5f0;
+      --warm-gray: #a8a29e;
+      --mid-gray: #57534e;
+      --dark-gray: #1c1917;
+      --accent: #d97706;
+      --accent-light: #fbbf24;
+      --earth: #92400e;
+      --earth-light: #b45309;
     }
 
     html {
       scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      overflow-x: hidden;
     }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--dark);
-      min-height: 100vh;
-      color: white;
+      background: var(--black);
+      color: var(--white);
       line-height: 1.6;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Animated background */
-    .bg-pattern {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image:
-        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 60%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Header Navigation */
-    .header-nav {
-      background: rgba(30, 41, 59, 0.95);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 20px;
+    /* ================================================================
+       NAVIGATION
+       ================================================================ */
+    .nav {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 100;
+      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: background 0.4s ease, padding 0.4s ease;
     }
 
-    .logo-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .nav.scrolled {
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 14px 40px;
+    }
+
+    .nav-brand {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
       text-decoration: none;
-      color: white;
-    }
-
-    .logo-icon {
-      font-size: 32px;
-    }
-
-    .logo-text {
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 32px;
     }
 
-    .nav-link {
-      color: var(--light-gray);
+    .nav-links a {
+      color: var(--warm-gray);
       text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      padding: 8px 16px;
-      border-radius: 10px;
-      transition: all 0.2s;
-    }
-
-    .nav-link:hover {
-      color: white;
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .nav-link.primary {
-      background: var(--primary);
-      color: white;
-    }
-
-    .nav-link.primary:hover {
-      background: var(--primary-dark);
-    }
-
-    /* Main Content */
-    .main-content {
-      position: relative;
-      z-index: 1;
-      padding-top: 60px;
-    }
-
-    /* Hero Section */
-    .hero {
-      padding: 80px 20px 60px;
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      padding: 8px 16px;
-      border-radius: 100px;
       font-size: 13px;
-      font-weight: 600;
-      color: var(--success);
-      margin-bottom: 28px;
-      animation: fadeInUp 0.6s ease-out;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
     }
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .nav-links a:hover {
+      color: var(--white);
     }
 
-    .hero h1 {
-      font-size: clamp(36px, 7vw, 60px);
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 24px;
-      background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: fadeInUp 0.6s ease-out 0.1s both;
+    .nav-links a.cta {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 10px 20px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
     }
 
-    .hero p {
-      font-size: clamp(16px, 2.5vw, 20px);
-      color: var(--light-gray);
-      max-width: 600px;
-      margin: 0 auto 40px;
-      animation: fadeInUp 0.6s ease-out 0.2s both;
+    .nav-links a.cta:hover {
+      background: var(--white);
+      color: var(--black);
     }
 
-    .hero-buttons {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-      animation: fadeInUp 0.6s ease-out 0.3s both;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 16px 28px;
-      border-radius: 14px;
-      font-size: 16px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all 0.2s;
+    /* Mobile menu */
+    .nav-toggle {
+      display: none;
+      background: none;
       border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      margin: 6px 0;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--black);
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .mobile-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-overlay a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+    }
+
+    .mobile-close {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 32px;
       cursor: pointer;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      color: white;
-      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    /* ================================================================
+       FULL-SCREEN SECTIONS
+       ================================================================ */
+    .section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+    /* ================================================================
+       HERO SECTION (Video Background)
+       ================================================================ */
+    .hero {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 80px 60px;
     }
 
-    .btn-secondary {
-      background: var(--card-bg);
-      color: white;
-      border: 1px solid var(--border);
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
     }
 
-    .btn-secondary:hover {
-      background: var(--dark-lighter);
-      border-color: var(--light-gray);
+    .hero-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .btn-danger {
-      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-      color: white;
-      box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3);
+    /* Placeholder gradient until real video is added */
+    .hero-bg-placeholder {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg,
+          #1a0f00 0%,
+          #2d1810 25%,
+          #1c1917 50%,
+          #0f1419 75%,
+          #0a0a0a 100%
+        );
+      z-index: 0;
     }
 
-    .btn-danger:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 40px rgba(239, 68, 68, 0.4);
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(10, 10, 10, 0.8) 0%,
+        rgba(10, 10, 10, 0.2) 40%,
+        rgba(10, 10, 10, 0.1) 100%
+      );
+      z-index: 1;
     }
 
-    /* Stats Section */
-    .stats-section {
-      padding: 40px 20px 80px;
-      max-width: 1100px;
-      margin: 0 auto;
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
     }
 
-    .stats-grid {
+    .hero-tagline {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 80px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 300;
+      color: var(--warm-gray);
+      max-width: 540px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 32px;
+      background: var(--white);
+      color: var(--black);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .hero-cta:hover {
+      background: var(--accent-light);
+      color: var(--black);
+    }
+
+    .hero-cta svg {
+      transition: transform 0.3s ease;
+    }
+
+    .hero-cta:hover svg {
+      transform: translateX(4px);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--warm-gray);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--warm-gray), transparent);
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.5; transform: translateX(-50%) translateY(0); }
+      50% { opacity: 1; transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ================================================================
+       PRODUCT SECTIONS (Full-Screen Image + Text)
+       ================================================================ */
+    .product-section {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      scroll-snap-align: start;
     }
 
-    .stat-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 28px 24px;
-      text-align: center;
-      transition: all 0.3s;
+    .product-section.reverse {
+      direction: rtl;
     }
 
-    .stat-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--primary);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    .product-section.reverse > * {
+      direction: ltr;
     }
 
-    .stat-icon {
-      font-size: 40px;
-      margin-bottom: 12px;
+    .product-image-panel {
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+    }
+
+    .product-image-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
     }
 
+    /* Placeholder gradients until real product photos */
+    .product-image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-image-placeholder.stretch-bed {
+      background: linear-gradient(160deg, #292524 0%, #44403c 40%, #1c1917 100%);
+    }
+
+    .product-image-placeholder.washing-machine {
+      background: linear-gradient(160deg, #1e293b 0%, #334155 40%, #0f172a 100%);
+    }
+
+    .product-image-placeholder.basket-bed {
+      background: linear-gradient(160deg, #1a2e05 0%, #365314 40%, #14210a 100%);
+    }
+
+    .placeholder-label {
+      font-size: 14px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.25);
+      font-weight: 500;
+    }
+
+    .product-text-panel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 60px;
+      background: var(--black);
+    }
+
+    .product-text-inner {
+      max-width: 480px;
+    }
+
+    .product-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .product-text-inner h2 {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .product-text-inner p {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--warm-gray);
+      line-height: 1.8;
+      margin-bottom: 36px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .product-features {
+      list-style: none;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .product-features li {
+      font-size: 14px;
+      color: var(--warm-gray);
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .product-features li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .product-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--white);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--white);
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .product-link-btn:hover {
+      color: var(--accent-light);
+      border-color: var(--accent-light);
+    }
+
+    .product-link-btn svg {
+      transition: transform 0.3s ease;
+    }
+
+    .product-link-btn:hover svg {
+      transform: translateX(4px);
+    }
+
+    /* Open source badge */
+    .open-source-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--warm-gray);
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .open-source-badge svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ================================================================
+       IMPACT SECTION (Stats over background)
+       ================================================================ */
+    .impact-section {
+      position: relative;
+      padding: 120px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .impact-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #1c1917 0%, #0a0a0a 50%, #1a0f00 100%);
+      z-index: 0;
+    }
+
+    .impact-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 80%, rgba(217, 119, 6, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(251, 191, 36, 0.06) 0%, transparent 60%);
+    }
+
+    .impact-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    .impact-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .impact-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 60px;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
     .stat-number {
-      font-size: 42px;
+      font-size: clamp(36px, 5vw, 56px);
       font-weight: 900;
       letter-spacing: -0.02em;
       line-height: 1;
       margin-bottom: 8px;
+      color: var(--white);
     }
 
     .stat-number.loading {
-      background: linear-gradient(90deg, var(--border) 25%, var(--card-bg) 50%, var(--border) 75%);
+      background: linear-gradient(90deg, var(--dark-gray) 25%, #292524 50%, var(--dark-gray) 75%);
       background-size: 200% 100%;
       animation: shimmer 1.5s infinite;
       border-radius: 8px;
@@ -314,190 +613,46 @@
     }
 
     .stat-label {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--light-gray);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
     }
 
-    .stat-blue .stat-number { color: var(--primary); }
-    .stat-green .stat-number { color: var(--success); }
-    .stat-purple .stat-number { color: var(--purple); }
-    .stat-teal .stat-number { color: var(--teal); }
-
-    /* Mission Section */
-    .mission-section {
-      padding: 80px 20px;
-      background: linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.05) 50%, transparent 100%);
-    }
-
-    .mission-content {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .section-title {
-      font-size: clamp(28px, 5vw, 40px);
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      margin-bottom: 20px;
-    }
-
-    .section-subtitle {
-      font-size: 18px;
-      color: var(--light-gray);
-      max-width: 700px;
-      margin: 0 auto 48px;
-    }
-
-    .mission-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      text-align: left;
-    }
-
-    .mission-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 28px;
-      transition: all 0.3s;
-    }
-
-    .mission-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .mission-card-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-
-    .mission-card.blue .mission-card-icon { background: rgba(59, 130, 246, 0.2); }
-    .mission-card.green .mission-card-icon { background: rgba(16, 185, 129, 0.2); }
-    .mission-card.purple .mission-card-icon { background: rgba(139, 92, 246, 0.2); }
-
-    .mission-card h3 {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .mission-card p {
-      font-size: 15px;
-      color: var(--light-gray);
-      line-height: 1.7;
-    }
-
-    /* Products Section */
-    .products-section {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .products-header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-    }
-
-    .product-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      overflow: hidden;
-      transition: all 0.3s;
-      text-decoration: none;
-      color: white;
-      display: block;
-    }
-
-    .product-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-    }
-
-    .product-image {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      background: linear-gradient(135deg, var(--dark-lighter) 0%, var(--card-bg) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 80px;
-    }
-
-    .product-content {
-      padding: 24px;
-    }
-
-    .product-badge {
-      display: inline-block;
-      padding: 6px 12px;
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .product-badge.green { background: rgba(16, 185, 129, 0.2); color: var(--success); }
-    .product-badge.purple { background: rgba(139, 92, 246, 0.2); color: var(--purple); }
-    .product-badge.teal { background: rgba(20, 184, 166, 0.2); color: var(--teal); }
-
-    .product-card h3 {
-      font-size: 22px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .product-card p {
-      font-size: 14px;
-      color: var(--light-gray);
-      margin-bottom: 16px;
-    }
-
-    .product-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--primary);
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .product-link svg {
-      transition: transform 0.2s;
-    }
-
-    .product-card:hover .product-link svg {
-      transform: translateX(4px);
-    }
-
-    /* Communities Section */
+    /* ================================================================
+       COMMUNITIES SECTION
+       ================================================================ */
     .communities-section {
-      padding: 80px 20px;
-      background: linear-gradient(180deg, transparent 0%, rgba(16, 185, 129, 0.05) 50%, transparent 100%);
+      position: relative;
+      padding: 120px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--dark-gray);
     }
 
     .communities-content {
-      max-width: 1000px;
-      margin: 0 auto;
-      text-align: center;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .communities-content .impact-label {
+      margin-bottom: 16px;
+    }
+
+    .communities-content .impact-title {
+      margin-bottom: 20px;
+    }
+
+    .communities-subtitle {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--warm-gray);
+      line-height: 1.8;
+      max-width: 600px;
+      margin: 0 auto 48px;
     }
 
     .community-tags {
@@ -505,167 +660,294 @@
       flex-wrap: wrap;
       gap: 12px;
       justify-content: center;
-      margin-top: 32px;
     }
 
     .community-tag {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 22px;
       border-radius: 100px;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 500;
+      color: var(--warm-gray);
       display: flex;
       align-items: center;
-      gap: 8px;
-      transition: all 0.2s;
+      gap: 10px;
+      transition: all 0.3s ease;
     }
 
     .community-tag:hover {
-      border-color: var(--success);
-      background: rgba(16, 185, 129, 0.1);
+      border-color: var(--accent);
+      color: var(--white);
+      background: rgba(217, 119, 6, 0.08);
     }
 
     .community-tag .dot {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: var(--success);
+      background: var(--accent);
     }
 
-    /* CTA Section */
+    /* ================================================================
+       CTA SECTION
+       ================================================================ */
     .cta-section {
-      padding: 80px 20px 100px;
-      max-width: 800px;
-      margin: 0 auto;
+      position: relative;
+      padding: 120px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      background: var(--black);
+      min-height: 60vh;
+      scroll-snap-align: start;
     }
 
-    .cta-card {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
-      border-radius: 28px;
-      padding: 48px 32px;
-      box-shadow: 0 30px 60px rgba(59, 130, 246, 0.3);
+    .cta-content {
+      max-width: 700px;
     }
 
-    .cta-card h2 {
-      font-size: clamp(24px, 4vw, 32px);
+    .cta-content h2 {
+      font-size: clamp(28px, 4vw, 44px);
       font-weight: 800;
-      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
     }
 
-    .cta-card p {
+    .cta-content p {
       font-size: 16px;
-      opacity: 0.9;
-      margin-bottom: 32px;
+      font-weight: 300;
+      color: var(--warm-gray);
+      line-height: 1.8;
+      margin-bottom: 40px;
       max-width: 500px;
       margin-left: auto;
       margin-right: auto;
     }
 
-    .cta-card .btn {
-      background: white;
-      color: var(--primary-dark);
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
-    .cta-card .btn:hover {
-      background: #f1f5f9;
+    .btn-solid {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      background: var(--white);
+      color: var(--black);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.3s ease;
     }
 
-    /* Footer */
+    .btn-solid:hover {
+      background: var(--accent-light);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      background: transparent;
+      color: var(--white);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--white);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* ================================================================
+       FOOTER
+       ================================================================ */
     .footer {
-      background: var(--card-bg);
-      border-top: 1px solid var(--border);
-      padding: 40px 20px;
+      padding: 60px 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      background: var(--black);
     }
 
-    .footer-content {
-      max-width: 1100px;
+    .footer-inner {
+      max-width: 1200px;
       margin: 0 auto;
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
       gap: 20px;
     }
 
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 18px;
+    .footer-brand {
+      font-size: 14px;
       font-weight: 700;
-    }
-
-    .footer-logo span {
-      font-size: 28px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
 
     .footer-links {
       display: flex;
-      gap: 24px;
+      gap: 28px;
     }
 
     .footer-links a {
-      color: var(--light-gray);
+      color: var(--mid-gray);
       text-decoration: none;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
-      transition: color 0.2s;
+      letter-spacing: 0.04em;
+      transition: color 0.3s ease;
     }
 
     .footer-links a:hover {
-      color: white;
+      color: var(--white);
     }
 
     .footer-copy {
       width: 100%;
       text-align: center;
-      margin-top: 24px;
+      margin-top: 40px;
       padding-top: 24px;
-      border-top: 1px solid var(--border);
-      font-size: 13px;
-      color: var(--gray);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 12px;
+      color: var(--mid-gray);
+      letter-spacing: 0.04em;
     }
 
-    /* Mobile Menu Button */
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 24px;
-      padding: 8px;
-      cursor: pointer;
+    /* ================================================================
+       SCROLL REVEAL ANIMATION
+       ================================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Responsive */
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered children */
+    .reveal-stagger .reveal:nth-child(1) { transition-delay: 0s; }
+    .reveal-stagger .reveal:nth-child(2) { transition-delay: 0.1s; }
+    .reveal-stagger .reveal:nth-child(3) { transition-delay: 0.2s; }
+    .reveal-stagger .reveal:nth-child(4) { transition-delay: 0.3s; }
+    .reveal-stagger .reveal:nth-child(5) { transition-delay: 0.4s; }
+    .reveal-stagger .reveal:nth-child(6) { transition-delay: 0.5s; }
+
+    /* Hero specific animation (on load, not scroll) */
+    .hero-loaded .hero-tagline,
+    .hero-loaded .hero h1,
+    .hero-loaded .hero-subtitle,
+    .hero-loaded .hero-cta {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-loaded .hero-tagline { transition-delay: 0.2s; }
+    .hero-loaded .hero h1 { transition-delay: 0.4s; }
+    .hero-loaded .hero-subtitle { transition-delay: 0.6s; }
+    .hero-loaded .hero-cta { transition-delay: 0.8s; }
+
+    /* ================================================================
+       RESPONSIVE
+       ================================================================ */
+    @media (max-width: 1024px) {
+      .product-section {
+        grid-template-columns: 1fr;
+      }
+
+      .product-section.reverse {
+        direction: ltr;
+      }
+
+      .product-image-panel {
+        min-height: 50vh;
+      }
+
+      .product-text-panel {
+        padding: 60px 40px;
+        min-height: 50vh;
+      }
+
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+    }
+
     @media (max-width: 768px) {
+      .nav {
+        padding: 16px 24px;
+      }
+
+      .nav.scrolled {
+        padding: 12px 24px;
+      }
+
       .nav-links {
         display: none;
       }
 
-      .mobile-menu-btn {
+      .nav-toggle {
         display: block;
       }
 
       .hero {
-        padding: 60px 20px 40px;
+        padding: 60px 24px;
+        align-items: center;
+        text-align: center;
       }
 
-      .stats-grid {
+      .hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .product-image-panel {
+        min-height: 40vh;
+      }
+
+      .product-text-panel {
+        padding: 48px 24px;
+      }
+
+      .impact-section,
+      .communities-section,
+      .cta-section {
+        padding: 80px 24px;
+      }
+
+      .stats-row {
         grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
       }
 
-      .mission-cards {
-        grid-template-columns: 1fr;
+      .footer {
+        padding: 40px 24px;
       }
 
-      .products-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-content {
+      .footer-inner {
         flex-direction: column;
         text-align: center;
       }
@@ -676,264 +958,303 @@
       }
     }
 
-    /* Accessibility */
+    @media (max-width: 480px) {
+      .stats-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn-solid,
+      .btn-outline {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* ================================================================
+       ACCESSIBILITY
+       ================================================================ */
     @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+        scroll-snap-type: none;
+      }
+
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
 
-      html {
-        scroll-behavior: auto;
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+
+      .hero-tagline,
+      .hero h1,
+      .hero-subtitle,
+      .hero-cta,
+      .product-label,
+      .product-text-inner h2,
+      .product-text-inner p,
+      .product-features,
+      .product-link-btn,
+      .open-source-badge {
+        opacity: 1;
+        transform: none;
       }
     }
 
-    /* High contrast mode */
     @media (prefers-contrast: high) {
-      .stat-card, .mission-card, .product-card {
+      .community-tag {
         border-width: 2px;
       }
-    }
 
-    /* Mobile Menu Overlay */
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(10px);
-      z-index: 200;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .mobile-menu.show {
-      display: flex;
-    }
-
-    .mobile-menu a {
-      color: white;
-      text-decoration: none;
-      font-size: 20px;
-      font-weight: 600;
-      padding: 12px 24px;
-    }
-
-    .mobile-menu-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 32px;
-      cursor: pointer;
+      .nav-links a.cta {
+        border-width: 2px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="bg-pattern"></div>
 
-  <!-- Header Navigation -->
-  <nav class="header-nav">
-    <a href="/" class="logo-link">
-      <span class="logo-icon">🛏️</span>
-      <span class="logo-text">Goods on Country</span>
-    </a>
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav class="nav" id="mainNav">
+    <a href="/" class="nav-brand">Goods on Country</a>
     <div class="nav-links">
-      <a href="#mission" class="nav-link">Our Mission</a>
-      <a href="#products" class="nav-link">Products</a>
-      <a href="#communities" class="nav-link">Communities</a>
-      <a href="report-machine.html" class="nav-link">🧺 Report Machine</a>
-      <a href="/support" class="nav-link primary">Get Support</a>
+      <a href="#stretch-bed">Stretch Bed</a>
+      <a href="#washing-machine">Washing Machines</a>
+      <a href="#impact">Impact</a>
+      <a href="#communities">Communities</a>
+      <a href="/support" class="cta">Get Support</a>
     </div>
-    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu">☰</button>
+    <button class="nav-toggle" onclick="toggleMobile()" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
   <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">&times;</button>
-    <a href="#mission" onclick="toggleMobileMenu()">Our Mission</a>
-    <a href="#products" onclick="toggleMobileMenu()">Products</a>
-    <a href="#communities" onclick="toggleMobileMenu()">Communities</a>
-    <a href="report-machine.html">🧺 Report Broken Machine</a>
-    <a href="/support">Get Support</a>
+  <div class="mobile-overlay" id="mobileOverlay">
+    <button class="mobile-close" onclick="toggleMobile()" aria-label="Close menu">&times;</button>
+    <a href="#stretch-bed" onclick="toggleMobile()">Stretch Bed</a>
+    <a href="#washing-machine" onclick="toggleMobile()">Washing Machines</a>
+    <a href="#basket-bed" onclick="toggleMobile()">Open Source Bed</a>
+    <a href="#impact" onclick="toggleMobile()">Impact</a>
+    <a href="#communities" onclick="toggleMobile()">Communities</a>
+    <a href="/support" onclick="toggleMobile()">Get Support</a>
   </div>
 
-  <main class="main-content">
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-badge">
-        <span>🌟</span>
-        Supporting Remote Communities Across Australia
-      </div>
-      <h1>Quality Furniture for Every Home on Country</h1>
-      <p>Goods on Country provides essential furniture and household items to remote Indigenous communities, ensuring dignity, comfort, and quality of life for all Australians.</p>
-      <div class="hero-buttons">
-        <a href="/support" class="btn btn-primary">
-          <span>🎫</span>
-          Get Support
-        </a>
-        <a href="report-machine.html" class="btn btn-danger">
-          <span>🧺</span>
-          Report Broken Machine
-        </a>
-        <a href="#products" class="btn btn-secondary">
-          <span>📦</span>
-          View Products
-        </a>
-      </div>
-    </section>
+  <!-- ============================================================
+       HERO - Full Screen Video Background
+       ============================================================ -->
+  <section class="section hero" id="hero">
+    <div class="hero-bg">
+      <video class="hero-video" autoplay muted loop playsinline poster="video/hero-poster.jpg">
+        <source src="video/hero-desktop.mp4" media="(min-width: 768px)" type="video/mp4">
+        <source src="video/hero-mobile.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-overlay"></div>
 
-    <!-- Stats Section -->
-    <section class="stats-section">
-      <div class="stats-grid">
-        <div class="stat-card stat-blue">
-          <span class="stat-icon">🛏️</span>
-          <div id="totalAssets" class="stat-number loading">--</div>
-          <div class="stat-label">Total Assets Deployed</div>
+    <div class="hero-content">
+      <div class="hero-tagline">Built for Country, Built to Last</div>
+      <h1>The Stretch Bed</h1>
+      <p class="hero-subtitle">Purpose-built furniture for remote Australian communities. Designed for durability, comfort, and dignity.</p>
+      <a href="#stretch-bed" class="hero-cta">
+        Discover More
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STRETCH BED - Primary Product (Full Screen)
+       ============================================================ -->
+  <section class="product-section" id="stretch-bed">
+    <div class="product-image-panel">
+      <!-- Replace with: <img src="img/stretch-bed.jpg" alt="The Stretch Bed" loading="lazy"> -->
+      <div class="product-image-placeholder stretch-bed">
+        <span class="placeholder-label">Product Image</span>
+      </div>
+    </div>
+    <div class="product-text-panel">
+      <div class="product-text-inner">
+        <div class="product-label reveal">Our Flagship Product</div>
+        <h2 class="reveal">The Stretch Bed</h2>
+        <p class="reveal">A new standard in durable, comfortable furniture for remote communities. Engineered from the ground up for the unique conditions of living on Country.</p>
+        <ul class="product-features reveal">
+          <li>Heavy-duty steel frame construction</li>
+          <li>All-weather materials</li>
+          <li>Tool-free assembly</li>
+          <li>Integrated storage system</li>
+          <li>10-year structural warranty</li>
+        </ul>
+        <a href="product-stretch-bed.html" class="product-link-btn reveal">
+          View Product
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WASHING MACHINE - Secondary Product
+       ============================================================ -->
+  <section class="product-section reverse" id="washing-machine">
+    <div class="product-image-panel">
+      <!-- Replace with: <img src="img/washing-machine.jpg" alt="Heavy-Duty Washing Machine" loading="lazy"> -->
+      <div class="product-image-placeholder washing-machine">
+        <span class="placeholder-label">Product Image</span>
+      </div>
+    </div>
+    <div class="product-text-panel">
+      <div class="product-text-inner">
+        <div class="product-label reveal">Community Essential</div>
+        <h2 class="reveal">Washing Machines</h2>
+        <p class="reveal">Heavy-duty machines selected for reliability in remote conditions. Available for community organisations to purchase with full support and maintenance included.</p>
+        <ul class="product-features reveal">
+          <li>Commercial-grade durability</li>
+          <li>Low water consumption</li>
+          <li>Remote service support</li>
+          <li>Replacement parts guaranteed</li>
+        </ul>
+        <a href="product-washing-machine.html" class="product-link-btn reveal">
+          View Details
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BASKET BED - Open Source / Discontinuing
+       ============================================================ -->
+  <section class="product-section" id="basket-bed">
+    <div class="product-image-panel">
+      <!-- Replace with: <img src="img/basket-bed.jpg" alt="The Basket Bed" loading="lazy"> -->
+      <div class="product-image-placeholder basket-bed">
+        <span class="placeholder-label">Product Image</span>
+      </div>
+    </div>
+    <div class="product-text-panel">
+      <div class="product-text-inner">
+        <div class="open-source-badge reveal">
+          <svg viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          Open Source Design
         </div>
-        <div class="stat-card stat-green">
-          <span class="stat-icon">✅</span>
+        <h2 class="reveal">The Basket Bed</h2>
+        <p class="reveal">Our original bed design, now available as open source documentation. We're making the plans, materials list, and assembly guides freely available so anyone can build them.</p>
+        <ul class="product-features reveal">
+          <li>Full build documentation</li>
+          <li>Materials sourcing guide</li>
+          <li>Assembly instructions</li>
+          <li>Community-tested design</li>
+        </ul>
+        <a href="product-basket-bed.html" class="product-link-btn reveal">
+          View Documentation
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       IMPACT STATS
+       ============================================================ -->
+  <section class="section impact-section" id="impact">
+    <div class="impact-bg"></div>
+    <div class="impact-content">
+      <div class="impact-label reveal">Our Impact</div>
+      <h2 class="impact-title reveal">Making a Difference on Country</h2>
+      <div class="stats-row reveal-stagger">
+        <div class="stat-item reveal">
+          <div id="totalAssets" class="stat-number loading">--</div>
+          <div class="stat-label">Assets Deployed</div>
+        </div>
+        <div class="stat-item reveal">
           <div id="deliveredAssets" class="stat-number loading">--</div>
           <div class="stat-label">Beds Delivered</div>
         </div>
-        <div class="stat-card stat-purple">
-          <span class="stat-icon">🏘️</span>
+        <div class="stat-item reveal">
           <div id="communitiesServed" class="stat-number loading">--</div>
-          <div class="stat-label">Communities Served</div>
+          <div class="stat-label">Communities</div>
         </div>
-        <div class="stat-card stat-teal">
-          <span class="stat-icon">🎫</span>
+        <div class="stat-item reveal">
           <div id="ticketsResolved" class="stat-number loading">--</div>
           <div class="stat-label">Issues Resolved</div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Mission Section -->
-    <section class="mission-section" id="mission">
-      <div class="mission-content">
-        <h2 class="section-title">Our Mission</h2>
-        <p class="section-subtitle">We believe every Australian deserves access to quality household essentials, regardless of where they live.</p>
-
-        <div class="mission-cards">
-          <div class="mission-card blue">
-            <div class="mission-card-icon">🎯</div>
-            <h3>Quality First</h3>
-            <p>We source and deliver durable, comfortable furniture designed to withstand the unique conditions of remote living while providing maximum comfort.</p>
-          </div>
-          <div class="mission-card green">
-            <div class="mission-card-icon">🤝</div>
-            <h3>Community Partnership</h3>
-            <p>Working closely with local communities, health services, and housing organizations to understand and meet the real needs of residents.</p>
-          </div>
-          <div class="mission-card purple">
-            <div class="mission-card-icon">🔄</div>
-            <h3>Ongoing Support</h3>
-            <p>Our commitment doesn't end at delivery. We provide warranty support, repairs, and replacements to ensure lasting value and satisfaction.</p>
-          </div>
-        </div>
+  <!-- ============================================================
+       COMMUNITIES
+       ============================================================ -->
+  <section class="section communities-section" id="communities">
+    <div class="communities-content">
+      <div class="impact-label reveal">Where We Work</div>
+      <h2 class="impact-title reveal">Communities We Serve</h2>
+      <p class="communities-subtitle reveal">Delivering essential goods to remote communities across the Northern Territory, Western Australia, and Queensland.</p>
+      <div class="community-tags reveal" id="communityTags">
+        <div class="community-tag"><span class="dot"></span>Loading communities...</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Products Section -->
-    <section class="products-section" id="products">
-      <div class="products-header">
-        <h2 class="section-title">Our Products</h2>
-        <p class="section-subtitle">Purpose-built furniture designed for durability, comfort, and the unique needs of remote communities.</p>
-      </div>
-
-      <div class="products-grid">
-        <a href="product-basket-bed.html" class="product-card">
-          <div class="product-image">🛏️</div>
-          <div class="product-content">
-            <span class="product-badge green">Most Popular</span>
-            <h3>Basket Bed</h3>
-            <p>Durable steel frame bed with integrated storage and comfortable mattress, designed for remote conditions.</p>
-            <span class="product-link">
-              Learn more
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </div>
+  <!-- ============================================================
+       CTA
+       ============================================================ -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2 class="reveal">Need Help with Your Goods?</h2>
+      <p class="reveal">Have a question about your bed, need repairs, or want to report an issue? Our support team is here to help.</p>
+      <div class="cta-buttons reveal">
+        <a href="/support" class="btn-solid">
+          Get Support
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </a>
-
-        <a href="product-weave-bed.html" class="product-card">
-          <div class="product-image">🛌</div>
-          <div class="product-content">
-            <span class="product-badge purple">Premium</span>
-            <h3>Weave Bed</h3>
-            <p>Premium woven design with natural materials and modern comfort. A perfect blend of tradition and function.</p>
-            <span class="product-link">
-              Learn more
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </div>
-        </a>
-
-        <a href="product-washing-machine.html" class="product-card">
-          <div class="product-image">🧺</div>
-          <div class="product-content">
-            <span class="product-badge teal">Essential</span>
-            <h3>Washing Machine</h3>
-            <p>Heavy-duty washing machines built for remote conditions with easy maintenance and repair support.</p>
-            <span class="product-link">
-              Learn more
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </div>
-        </a>
+        <a href="report-machine.html" class="btn-outline">Report Broken Machine</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Communities Section -->
-    <section class="communities-section" id="communities">
-      <div class="communities-content">
-        <h2 class="section-title">Communities We Serve</h2>
-        <p class="section-subtitle">Delivering essential goods to remote communities across the Northern Territory, Western Australia, and Queensland.</p>
-
-        <div class="community-tags" id="communityTags">
-          <!-- Will be populated by JavaScript -->
-          <div class="community-tag"><span class="dot"></span>Loading communities...</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-      <div class="cta-card">
-        <h2>Need Help with Your Goods?</h2>
-        <p>Have a question about your bed, need repairs, or want to report an issue? Our support team is here to help.</p>
-        <a href="/support" class="btn">
-          <span>🎫</span>
-          Submit a Support Request
-        </a>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
   <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-logo">
-        <span>🛏️</span>
-        Goods on Country
-      </div>
+    <div class="footer-inner">
+      <div class="footer-brand">Goods on Country</div>
       <div class="footer-links">
-        <a href="#mission">Our Mission</a>
-        <a href="#products">Products</a>
+        <a href="#stretch-bed">Stretch Bed</a>
+        <a href="#washing-machine">Washing Machines</a>
+        <a href="#basket-bed">Open Source Bed</a>
         <a href="#communities">Communities</a>
         <a href="/support">Support</a>
       </div>
@@ -943,17 +1264,20 @@
     </div>
   </footer>
 
-  <!-- Supabase -->
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.88.0/dist/umd/supabase.js"></script>
 
   <script>
-    // ============================================================================
+    // ================================================================
     // CONFIGURATION
-    // ============================================================================
+    // ================================================================
     const SUPABASE_URL = 'https://cwsyhpiuepvdjtxaozwf.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw';
 
     let supabaseClient;
+
     async function loadScript(src) {
       return new Promise((resolve, reject) => {
         const el = document.createElement('script');
@@ -968,8 +1292,6 @@
 
     async function ensureSupabase() {
       if (supabaseClient) return supabaseClient;
-
-      // If jsdelivr is blocked/down, try a fallback CDN.
       if (!window.supabase?.createClient) {
         const fallbacks = [
           'https://unpkg.com/@supabase/supabase-js@2.88.0/dist/umd/supabase.js'
@@ -983,153 +1305,163 @@
           }
         }
       }
-
       if (!window.supabase?.createClient) {
-        throw new Error('Supabase library not available (blocked by network/adblocker).');
+        throw new Error('Supabase library not available.');
       }
-
       supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       return supabaseClient;
     }
 
-    async function getExactCount(query) {
-      // Avoid `head: true` count queries (some environments fail to read counts from HEAD responses).
-      // This uses a normal GET with `limit(1)` and still returns an exact total via Content-Range.
-      const { count, error } = await query.select('unique_id', { count: 'exact' }).limit(1);
-      if (error) throw error;
-      if (count === null || typeof count !== 'number') {
-        throw new Error('Count not returned by Supabase (check CORS/Prefer/Content-Range headers).');
-      }
-      return count;
-    }
-
-    // ============================================================================
+    // ================================================================
     // MOBILE MENU
-    // ============================================================================
-    function toggleMobileMenu() {
-      document.getElementById('mobileMenu').classList.toggle('show');
+    // ================================================================
+    function toggleMobile() {
+      document.getElementById('mobileOverlay').classList.toggle('open');
     }
 
-    // ============================================================================
-    // LOAD STATS WITH ANIMATION
-    // ============================================================================
-    async function loadStats() {
-      try {
-        const client = await ensureSupabase();
+    // ================================================================
+    // NAVIGATION - scroll background
+    // ================================================================
+    const nav = document.getElementById('mainNav');
+    let lastScroll = 0;
 
-        // Total assets
-        const { data: assetsData, error: assetsError } = await client
-          .from('assets')
-          .select('supply_date, product, community');
-        if (assetsError) throw assetsError;
-
-        const totalAssets = (assetsData || []).length;
-        animateNumber('totalAssets', totalAssets);
-
-        const deliveredAssets = (assetsData || []).filter(asset => {
-          return asset.supply_date && asset.product && asset.product.toLowerCase().includes('bed');
-        }).length;
-        animateNumber('deliveredAssets', deliveredAssets);
-
-        const uniqueCommunities = new Set(
-          (assetsData || [])
-            .map(asset => asset.community)
-            .filter(Boolean)
-            .map(c => c.toString().trim())
-        );
-        animateNumber('communitiesServed', uniqueCommunities.size);
-
-        // Update community tags
-        updateCommunityTags(Array.from(uniqueCommunities));
-
-        // Resolved tickets
-        const { data: ticketData, error: ticketError } = await client
-          .from('tickets')
-          .select('status');
-        if (ticketError) throw ticketError;
-
-        const resolvedTickets = (ticketData || []).filter(ticket => ticket.status === 'Resolved').length;
-        animateNumber('ticketsResolved', resolvedTickets);
-
-      } catch (error) {
-        console.error('Error loading stats:', error);
-        console.error('If this only happens on some devices, check adblock/VPN/firewall rules for `cdn.jsdelivr.net`, `unpkg.com`, and `*.supabase.co`.');
-        console.error('If you see "permission denied for relation", run `supabase/grants.sql` in Supabase SQL Editor to grant API access to anon/authenticated roles.');
-        ['totalAssets', 'deliveredAssets', 'communitiesServed', 'ticketsResolved'].forEach(id => {
-          const el = document.getElementById(id);
-          el.classList.remove('loading');
-          el.textContent = '—';
-        });
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (scrollY > 60) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
       }
-    }
+      lastScroll = scrollY;
+    }, { passive: true });
 
-    // Animate numbers counting up
-    function animateNumber(elementId, targetValue) {
-      const el = document.getElementById(elementId);
-      el.classList.remove('loading');
+    // ================================================================
+    // SCROLL REVEAL (Intersection Observer)
+    // ================================================================
+    const revealElements = document.querySelectorAll('.reveal');
 
-      const duration = 800;
-      const startTime = performance.now();
-      const startValue = 0;
-
-      function update(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-
-        // Ease out cubic
-        const easeOut = 1 - Math.pow(1 - progress, 3);
-        const currentValue = Math.round(startValue + (targetValue - startValue) * easeOut);
-
-        el.textContent = currentValue.toLocaleString();
-
-        if (progress < 1) {
-          requestAnimationFrame(update);
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
         }
-      }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -60px 0px'
+    });
 
-      requestAnimationFrame(update);
-    }
+    revealElements.forEach(el => revealObserver.observe(el));
 
-    // Update community tags
-    function updateCommunityTags(communities) {
-      const container = document.getElementById('communityTags');
+    // ================================================================
+    // HERO ENTRANCE ANIMATION
+    // ================================================================
+    window.addEventListener('load', () => {
+      document.querySelector('.hero').classList.add('hero-loaded');
+    });
 
-      if (communities.length === 0) {
-        container.innerHTML = '<div class="community-tag"><span class="dot"></span>Communities loading...</div>';
-        return;
-      }
-
-      // Sort alphabetically and filter out invalid entries
-      const validCommunities = communities
-        .filter(c => c && c.trim() && c.toLowerCase() !== 'nan')
-        .sort();
-
-      container.innerHTML = validCommunities.map(community => `
-        <div class="community-tag">
-          <span class="dot"></span>
-          ${community}
-        </div>
-      `).join('');
-    }
-
-    // ============================================================================
-    // INITIALIZE
-    // ============================================================================
-    loadStats();
-
-    // Smooth scroll for anchor links
+    // ================================================================
+    // SMOOTH SCROLL for anchor links
+    // ================================================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     });
+
+    // ================================================================
+    // STATS
+    // ================================================================
+    function animateNumber(elementId, targetValue) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      el.classList.remove('loading');
+
+      const duration = 1200;
+      const startTime = performance.now();
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(targetValue * easeOut).toLocaleString();
+        if (progress < 1) requestAnimationFrame(update);
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    function updateCommunityTags(communities) {
+      const container = document.getElementById('communityTags');
+      if (!container) return;
+
+      const valid = communities
+        .filter(c => c && c.trim() && c.toLowerCase() !== 'nan')
+        .sort();
+
+      if (valid.length === 0) {
+        container.innerHTML = '<div class="community-tag"><span class="dot"></span>Loading...</div>';
+        return;
+      }
+
+      container.innerHTML = valid.map(c => `
+        <div class="community-tag">
+          <span class="dot"></span>
+          ${c}
+        </div>
+      `).join('');
+    }
+
+    async function loadStats() {
+      try {
+        const client = await ensureSupabase();
+
+        const { data: assetsData, error: assetsError } = await client
+          .from('assets')
+          .select('supply_date, product, community');
+        if (assetsError) throw assetsError;
+
+        const all = assetsData || [];
+        animateNumber('totalAssets', all.length);
+
+        const beds = all.filter(a => a.supply_date && a.product && a.product.toLowerCase().includes('bed'));
+        animateNumber('deliveredAssets', beds.length);
+
+        const communities = [...new Set(
+          all.map(a => a.community).filter(Boolean).map(c => c.toString().trim())
+        )];
+        animateNumber('communitiesServed', communities.length);
+        updateCommunityTags(communities);
+
+        const { data: ticketData, error: ticketError } = await client
+          .from('tickets')
+          .select('status');
+        if (ticketError) throw ticketError;
+
+        const resolved = (ticketData || []).filter(t => t.status === 'Resolved').length;
+        animateNumber('ticketsResolved', resolved);
+
+      } catch (error) {
+        console.error('Error loading stats:', error);
+        ['totalAssets', 'deliveredAssets', 'communitiesServed', 'ticketsResolved'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.classList.remove('loading');
+            el.textContent = '\u2014';
+          }
+        });
+      }
+    }
+
+    // ================================================================
+    // INITIALIZE
+    // ================================================================
+    loadStats();
   </script>
 </body>
 </html>
