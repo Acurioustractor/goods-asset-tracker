@@ -327,6 +327,9 @@ export const ghl = {
     if (CUSTOM_FIELDS.orderTotal) {
       customFields[CUSTOM_FIELDS.orderTotal] = (data.totalCents / 100).toFixed(2);
     }
+    if (CUSTOM_FIELDS.productType && data.productTypes.length > 0) {
+      customFields[CUSTOM_FIELDS.productType] = data.productTypes.join(', ');
+    }
     if (data.sponsoredCommunity && CUSTOM_FIELDS.community) {
       customFields[CUSTOM_FIELDS.community] = data.sponsoredCommunity;
     }
