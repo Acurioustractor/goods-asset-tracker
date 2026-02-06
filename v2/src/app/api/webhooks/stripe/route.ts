@@ -97,7 +97,7 @@ async function handleCheckoutSessionCompleted(
   // Retrieve full session with line items
   const stripe = getStripe();
   const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
-    expand: ['line_items.data.price.product', 'customer_details', 'shipping_details'],
+    expand: ['line_items.data.price.product'],
   });
 
   // Parse items metadata from session
