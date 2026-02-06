@@ -213,9 +213,12 @@ async function createOrUpdateContact(data: ContactData): Promise<GHLResponse> {
       source: data.source || 'Goods on Country Website',
     };
 
-    // Add custom fields if configured
+    // Add custom fields if configured (GHL expects array of {id, value} objects)
     if (data.customFields && Object.keys(data.customFields).length > 0) {
-      contactData.customFields = data.customFields;
+      contactData.customFields = Object.entries(data.customFields).map(([id, value]) => ({
+        id,
+        value,
+      }));
     }
 
     let response;
