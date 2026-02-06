@@ -215,7 +215,7 @@ async function createOrUpdateContact(data: ContactData): Promise<GHLResponse> {
 
     // Add custom fields if configured
     if (data.customFields && Object.keys(data.customFields).length > 0) {
-      contactData.customField = data.customFields;
+      contactData.customFields = data.customFields;
     }
 
     let response;
