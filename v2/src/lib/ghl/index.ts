@@ -183,6 +183,15 @@ async function findContact(emailOrPhone: string): Promise<{ id: string } | null>
  * Create or update a contact in GHL
  */
 async function createOrUpdateContact(data: ContactData): Promise<GHLResponse> {
+  console.log('[GHL] createOrUpdateContact called', {
+    enabled: GHL_ENABLED,
+    hasApiKey: !!GHL_API_KEY,
+    hasLocationId: !!GHL_LOCATION_ID,
+    envEnabled: process.env.GHL_ENABLED,
+    email: data.email,
+    phone: data.phone,
+  });
+
   if (!GHL_ENABLED) {
     console.log('[GHL] Disabled - would create contact:', data.email);
     return { success: true, simulated: true };
@@ -190,7 +199,9 @@ async function createOrUpdateContact(data: ContactData): Promise<GHLResponse> {
 
   try {
     // Try to find existing contact
+    console.log('[GHL] Searching for existing contact:', data.email);
     const existingContact = await findContact(data.email);
+    console.log('[GHL] Existing contact search result:', existingContact ? `Found: ${existingContact.id}` : 'Not found');
 
     const contactData: Record<string, unknown> = {
       locationId: GHL_LOCATION_ID,
@@ -210,18 +221,22 @@ async function createOrUpdateContact(data: ContactData): Promise<GHLResponse> {
     let response;
     if (existingContact) {
       // Update existing contact
+      console.log('[GHL] Updating existing contact:', existingContact.id);
       response = await ghlRequest<{ contact: { id: string } }>(
         `/contacts/${existingContact.id}`,
         'PUT',
         contactData
       );
+      console.log('[GHL] Contact updated successfully:', response.contact.id);
     } else {
       // Create new contact
+      console.log('[GHL] Creating new contact with data:', { email: data.email, phone: data.phone });
       response = await ghlRequest<{ contact: { id: string } }>(
         '/contacts/',
         'POST',
         contactData
       );
+      console.log('[GHL] Contact created successfully:', response.contact.id);
     }
 
     return { success: true, contact: response.contact };
