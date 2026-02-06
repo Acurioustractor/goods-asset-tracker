@@ -39,6 +39,25 @@ const WORKFLOWS = {
   userRequest: process.env.GHL_WORKFLOW_USER_REQUEST || '',
 };
 
+/**
+ * Format product type slug to human-readable name
+ */
+function formatProductType(slug: string): string {
+  const productNames: Record<string, string> = {
+    'stretch_bed': 'Stretch Bed',
+    'stretch-bed-single': 'Stretch Bed',
+    'basket_bed': 'Basket Bed',
+    'basket-bed-single': 'Basket Bed',
+    'basket-bed-double': 'Basket Bed (Double)',
+    'washing_machine': 'Washing Machine',
+    'washing-machine': 'Washing Machine',
+  };
+
+  return productNames[slug] || slug.split(/[-_]/).map(word =>
+    word.charAt(0).toUpperCase() + word.slice(1)
+  ).join(' ');
+}
+
 // Tags
 const TAGS = {
   customer: 'goods-customer',
@@ -328,7 +347,7 @@ export const ghl = {
       customFields[CUSTOM_FIELDS.orderTotal] = (data.totalCents / 100).toFixed(2);
     }
     if (CUSTOM_FIELDS.productType && data.productTypes.length > 0) {
-      customFields[CUSTOM_FIELDS.productType] = data.productTypes.join(', ');
+      customFields[CUSTOM_FIELDS.productType] = data.productTypes.map(formatProductType).join(', ');
     }
     if (data.sponsoredCommunity && CUSTOM_FIELDS.community) {
       customFields[CUSTOM_FIELDS.community] = data.sponsoredCommunity;
