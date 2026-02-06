@@ -220,7 +220,7 @@ async function handleCheckoutSessionCompleted(
 
   // Create/update contact in GoHighLevel CRM
   const productTypes = orderItems.map((item) => item.product_type || 'unknown');
-  const ghlResult = await ghl.createOrderContact({
+  const ghlContactData = {
     email: customerDetails?.email || '',
     name: shippingDetails?.name || customerDetails?.name || undefined,
     phone: customerDetails?.phone || undefined,
@@ -229,12 +229,31 @@ async function handleCheckoutSessionCompleted(
     isSponsorship: isSponsorship,
     sponsoredCommunity: sponsoredCommunity || undefined,
     productTypes: productTypes,
+  };
+
+  console.log(`[GHL] Attempting to create contact for order ${order.order_number}`, {
+    hasEmail: !!ghlContactData.email,
+    hasName: !!ghlContactData.name,
+    hasPhone: !!ghlContactData.phone,
+    orderNumber: ghlContactData.orderNumber,
+    totalCents: ghlContactData.totalCents,
+    isSponsorship: ghlContactData.isSponsorship,
+    productTypes: ghlContactData.productTypes,
+  });
+
+  const ghlResult = await ghl.createOrderContact(ghlContactData);
+
+  console.log(`[GHL] Result for order ${order.order_number}:`, {
+    success: ghlResult.success,
+    error: ghlResult.error,
+    contactId: ghlResult.contact?.id,
+    fullResponse: JSON.stringify(ghlResult),
   });
 
   if (ghlResult.success) {
-    console.log(`GHL contact created/updated for order ${order.order_number}`);
+    console.log(`[GHL] ✓ Contact created/updated for order ${order.order_number}, contact ID: ${ghlResult.contact?.id}`);
   } else {
-    console.warn(`GHL contact creation failed: ${ghlResult.error}`);
+    console.error(`[GHL] ✗ Contact creation failed for order ${order.order_number}: ${ghlResult.error}`);
   }
 
   console.log(`Successfully processed checkout session ${session.id}`);
