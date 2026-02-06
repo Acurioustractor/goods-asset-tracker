@@ -366,6 +366,8 @@ export const ghl = {
     if (result.success && result.contact?.id) {
       const workflowId = data.isSponsorship ? WORKFLOWS.newSponsor : WORKFLOWS.newOrder;
       if (workflowId) {
+        // Small delay to ensure custom fields are propagated in GHL before workflow runs
+        await new Promise(resolve => setTimeout(resolve, 2000));
         await triggerWorkflow(workflowId, result.contact.id);
       }
     }
