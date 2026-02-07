@@ -1,6 +1,6 @@
 'use server';
 
-import { createClient } from '@/lib/supabase/server';
+import { createServiceClient } from '@/lib/supabase/server';
 import { unstable_cache } from 'next/cache';
 
 // Cache dashboard data for 5 minutes
@@ -46,7 +46,7 @@ export interface InventoryStatus {
 // Get high-level KPI metrics
 export const getMetrics = unstable_cache(
   async (): Promise<DashboardMetrics> => {
-    const supabase = await createClient();
+    const supabase = await createServiceClient();
 
     // Get all orders
     const { data: orders, error } = await supabase
@@ -126,7 +126,7 @@ export const getMetrics = unstable_cache(
 // Get revenue over time (daily for last 30 days)
 export const getRevenueData = unstable_cache(
   async (days: number = 30): Promise<RevenueDataPoint[]> => {
-    const supabase = await createClient();
+    const supabase = await createServiceClient();
 
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - days);
@@ -177,7 +177,7 @@ export const getRevenueData = unstable_cache(
 // Get product performance
 export const getProductPerformance = unstable_cache(
   async (): Promise<ProductPerformance[]> => {
-    const supabase = await createClient();
+    const supabase = await createServiceClient();
 
     const { data: orderItems, error } = await supabase
       .from('order_items')
@@ -238,7 +238,7 @@ export const getProductPerformance = unstable_cache(
 // Get geographic distribution
 export const getGeographicData = unstable_cache(
   async (): Promise<GeographicData[]> => {
-    const supabase = await createClient();
+    const supabase = await createServiceClient();
 
     const { data: orders, error } = await supabase
       .from('orders')
@@ -295,7 +295,7 @@ export const getGeographicData = unstable_cache(
 // Get inventory status
 export const getInventoryStatus = unstable_cache(
   async (): Promise<InventoryStatus[]> => {
-    const supabase = await createClient();
+    const supabase = await createServiceClient();
 
     const { data: products, error } = await supabase
       .from('products')

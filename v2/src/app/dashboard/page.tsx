@@ -3,6 +3,7 @@ import { Card } from '@/components/ui/card';
 import { KPICard } from '@/components/dashboard/kpi-card';
 import { RevenueChart } from '@/components/dashboard/revenue-chart';
 import { ProductPerformanceChart } from '@/components/dashboard/product-performance-chart';
+import { ProtectedRoute } from '@/components/auth/protected-route';
 import {
   getMetrics,
   getRevenueData,
@@ -29,7 +30,8 @@ export default async function DashboardPage() {
     ]);
 
   return (
-    <div className="min-h-screen bg-neutral-50 py-8 px-4 sm:px-6 lg:px-8">
+    <ProtectedRoute requiredRole="admin">
+      <div className="min-h-screen bg-neutral-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -185,6 +187,7 @@ export default async function DashboardPage() {
         </div>
       </div>
     </div>
+    </ProtectedRoute>
   );
 }
 
