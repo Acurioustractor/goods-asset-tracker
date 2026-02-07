@@ -51,7 +51,7 @@ export const getMetrics = unstable_cache(
     // Get all orders
     const { data: orders, error } = await supabase
       .from('orders')
-      .select('total, created_at, payment_status')
+      .select('total_cents, created_at, payment_status')
       .eq('payment_status', 'paid');
 
     if (error) {
@@ -73,7 +73,7 @@ export const getMetrics = unstable_cache(
     const lastMonthYear = currentMonth === 0 ? currentYear - 1 : currentYear;
 
     // Calculate metrics
-    const totalRevenue = orders.reduce((sum, order) => sum + (order.total || 0), 0);
+    const totalRevenue = orders.reduce((sum, order) => sum + (order.total_cents || 0) / 100, 0);
     const totalOrders = orders.length;
     const averageOrderValue = totalOrders > 0 ? totalRevenue / totalOrders : 0;
 
@@ -87,7 +87,7 @@ export const getMetrics = unstable_cache(
     });
     const ordersThisMonth = currentMonthOrders.length;
     const revenueThisMonth = currentMonthOrders.reduce(
-      (sum, order) => sum + (order.total || 0),
+      (sum, order) => sum + (order.total_cents || 0) / 100,
       0
     );
 
@@ -100,7 +100,7 @@ export const getMetrics = unstable_cache(
       );
     });
     const revenueLastMonth = lastMonthOrders.reduce(
-      (sum, order) => sum + (order.total || 0),
+      (sum, order) => sum + (order.total_cents || 0) / 100,
       0
     );
 
@@ -133,7 +133,7 @@ export const getRevenueData = unstable_cache(
 
     const { data: orders, error } = await supabase
       .from('orders')
-      .select('total, created_at')
+      .select('total_cents, created_at')
       .eq('payment_status', 'paid')
       .gte('created_at', startDate.toISOString());
 
@@ -149,7 +149,7 @@ export const getRevenueData = unstable_cache(
       const date = new Date(order.created_at).toISOString().split('T')[0];
       const current = revenueByDate.get(date) || { revenue: 0, orders: 0 };
       revenueByDate.set(date, {
-        revenue: current.revenue + (order.total || 0),
+        revenue: current.revenue + (order.total_cents || 0) / 100,
         orders: current.orders + 1,
       });
     });
@@ -185,7 +185,7 @@ export const getProductPerformance = unstable_cache(
         `
         product_type,
         quantity,
-        price,
+        unit_price_cents,
         orders!inner (
           payment_status
         )
@@ -212,7 +212,7 @@ export const getProductPerformance = unstable_cache(
         units: 0,
       };
 
-      current.revenue += (item.price || 0) * (item.quantity || 0);
+      current.revenue += ((item.unit_price_cents || 0) / 100) * (item.quantity || 0);
       current.units += item.quantity || 0;
 
       productMap.set(product, current);
@@ -242,7 +242,7 @@ export const getGeographicData = unstable_cache(
 
     const { data: orders, error } = await supabase
       .from('orders')
-      .select('id, total, shipping_address')
+      .select('id, total_cents, shipping_address')
       .eq('payment_status', 'paid');
 
     if (error) {
@@ -267,7 +267,7 @@ export const getGeographicData = unstable_cache(
       };
 
       current.orders += 1;
-      current.revenue += order.total || 0;
+      current.revenue += (order.total_cents || 0) / 100;
       if (address?.email) {
         current.customers.add(address.email);
       }
@@ -299,7 +299,7 @@ export const getInventoryStatus = unstable_cache(
 
     const { data: products, error } = await supabase
       .from('products')
-      .select('name, stock_quantity, reserved_quantity, low_stock_threshold');
+      .select('name, inventory_count');
 
     if (error) {
       console.error('Error fetching inventory:', error);
@@ -307,10 +307,10 @@ export const getInventoryStatus = unstable_cache(
     }
 
     return products.map((product) => {
-      const inStock = product.stock_quantity || 0;
-      const reserved = product.reserved_quantity || 0;
+      const inStock = product.inventory_count || 0;
+      const reserved = 0; // Not tracked yet
       const available = inStock - reserved;
-      const threshold = product.low_stock_threshold || 10;
+      const threshold = 10; // Default threshold
 
       return {
         product: product.name,
