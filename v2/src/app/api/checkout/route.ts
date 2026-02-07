@@ -78,6 +78,7 @@ export async function POST(request: NextRequest) {
           id: item.id,
           slug: item.slug,
           quantity: item.quantity,
+          product_type: item.product_type,
           is_sponsorship: item.is_sponsorship,
           sponsored_community: item.sponsored_community,
         }))

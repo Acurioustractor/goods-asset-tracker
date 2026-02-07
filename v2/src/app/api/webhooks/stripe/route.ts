@@ -189,15 +189,16 @@ async function handleCheckoutSessionCompleted(
 
   // Create order items from line items
   const lineItems = fullSession.line_items?.data || [];
-  const orderItems = lineItems.map((lineItem) => {
+  const orderItems = lineItems.map((lineItem, index) => {
     const product = lineItem.price?.product as Stripe.Product | undefined;
     const metadata = product?.metadata || {};
+    const itemMetadata = itemsMetadata[index] || {};
 
     return {
       order_id: order.id,
-      product_id: metadata.product_id || null,
+      product_id: metadata.product_id || itemMetadata.id?.split('-')[0] || null,
       product_name: product?.name || lineItem.description || 'Unknown Product',
-      product_type: metadata.product_type || null,
+      product_type: itemMetadata.product_type || metadata.product_type || null,
       product_image: product?.images?.[0] || null,
       quantity: lineItem.quantity || 1,
       unit_price_cents: lineItem.price?.unit_amount || 0,
