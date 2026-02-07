@@ -144,10 +144,6 @@ export default function ProcessPage() {
                 <div className="text-3xl font-bold text-primary">5 min</div>
                 <div className="text-sm text-muted-foreground mt-1">Assembly time, no tools required</div>
               </div>
-              <div>
-                <div className="text-3xl font-bold text-primary">40%</div>
-                <div className="text-sm text-muted-foreground mt-1">Of every sale returns to community</div>
-              </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild>

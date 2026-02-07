@@ -439,10 +439,6 @@ function ImpactSection() {
             <div className="text-4xl font-bold text-accent-foreground">20+</div>
             <div className="text-sm text-accent-foreground/80 mt-1">Washing machines</div>
           </div>
-          <div>
-            <div className="text-4xl font-bold text-accent-foreground">40%</div>
-            <div className="text-sm text-accent-foreground/80 mt-1">Back to community</div>
-          </div>
         </div>
         <Button size="lg" variant="secondary" asChild>
           <Link href="/partner">Partner With Us</Link>
