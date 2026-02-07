@@ -1,10 +1,6 @@
-import { Metadata } from 'next';
-import Link from 'next/link';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Travelling Facility Manual | Goods Wiki',
-  description: 'Operations, Safety & Training Manual for the Travelling On-Country Plastic Re-Production Facility',
-};
+import Link from 'next/link';
 
 export default function FacilityManualPage() {
   return (
