@@ -5,6 +5,7 @@ import { CyclingImage } from '@/components/pitch/cycling-image';
 import { MediaSlot } from '@/components/ui/media-slot';
 import { Button } from '@/components/ui/button';
 import { brand } from '@/lib/data/content';
+import { videoUrl } from '@/lib/data/media';
 
 export default async function HomePage() {
   return (
@@ -16,8 +17,8 @@ export default async function HomePage() {
         primaryCta={{ text: 'Shop the Stretch Bed', href: '/shop/stretch-bed-single' }}
         secondaryCta={{ text: 'How It\'s Made', href: '/process' }}
         videoSrc={{
-          desktop: '/video/hero-desktop.mp4',
-          mobile: '/video/hero-mobile.mp4',
+          desktop: videoUrl('hero-desktop.mp4'),
+          mobile: videoUrl('hero-mobile.mp4'),
           poster: '/video/hero-poster.jpg',
         }}
         imageSrc="https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f06aca919ac39a08c6cbc_20250629-IMG_7731.jpg"

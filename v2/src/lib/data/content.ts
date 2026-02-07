@@ -1,3 +1,5 @@
+import { videoUrl } from '@/lib/data/media';
+
 // Core content and messaging for Goods on Country
 // Source: COMPENDIUM_JANUARY_2026.md
 
@@ -937,7 +939,7 @@ export const videoGallery = [
     id: 'jaquilane-testimony',
     title: 'Jaquilane\'s Story',
     description: 'A community member shares their experience with Goods on Country.',
-    src: '/video/jaquilane-testimony.mp4',
+    src: videoUrl('jaquilane-testimony.mp4'),
     poster: '/video/jaquilane-poster.jpg',
     type: 'local' as const,
     category: 'testimony',
@@ -955,7 +957,7 @@ export const videoGallery = [
     id: 'building-together',
     title: 'Building Together',
     description: 'Community members assembling beds together on country.',
-    src: '/video/building-together-desktop.mp4',
+    src: videoUrl('building-together-desktop.mp4'),
     poster: '/video/building-together-poster.jpg',
     type: 'local' as const,
     category: 'process',
@@ -964,7 +966,7 @@ export const videoGallery = [
     id: 'community-gathering',
     title: 'Community',
     description: 'Community gathering for bed delivery and assembly.',
-    src: '/video/community-desktop.mp4',
+    src: videoUrl('community-desktop.mp4'),
     poster: '/video/community-poster.jpg',
     type: 'local' as const,
     category: 'community',
@@ -973,7 +975,7 @@ export const videoGallery = [
     id: 'recycling-plant',
     title: 'The Recycling Plant',
     description: 'Inside the containerised factory where community plastic becomes beds.',
-    src: '/video/recycling-plant-desktop.mp4',
+    src: videoUrl('recycling-plant-desktop.mp4'),
     poster: '/video/recycling-plant-poster.jpg',
     type: 'local' as const,
     category: 'process',
@@ -982,7 +984,7 @@ export const videoGallery = [
     id: 'stretch-bed-assembly',
     title: 'The Stretch Bed',
     description: 'Close-up of the bed assembly — no tools, under 5 minutes.',
-    src: '/video/stretch-bed-desktop.mp4',
+    src: videoUrl('stretch-bed-desktop.mp4'),
     poster: '/video/stretch-bed-poster.jpg',
     type: 'local' as const,
     category: 'product',
@@ -1175,7 +1177,7 @@ export const mediaPack = {
       title: 'The Recycling Plant',
       description: 'Inside the containerised factory where community plastic becomes beds.',
       embedUrl: 'https://share.descript.com/embed/haRZJbfJadJ',
-      downloadSrc: '/video/recycling-plant-desktop.mp4',
+      downloadSrc: videoUrl('recycling-plant-desktop.mp4'),
     },
     {
       title: 'Community Voices — Bed Recipient, Alice Springs',

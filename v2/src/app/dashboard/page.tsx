@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { Suspense } from 'react';
 import { Card } from '@/components/ui/card';
 import { KPICard } from '@/components/dashboard/kpi-card';

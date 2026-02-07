@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { brand, story, quotes, communityPartnerships, videoTestimonials } from '@/lib/data/content';
-import { media } from '@/lib/data/media';
+import { media, videoUrl } from '@/lib/data/media';
 import { empathyLedger } from '@/lib/empathy-ledger';
 import { MediaSlot, VideoSlot } from '@/components/ui/media-slot';
 import { Button } from '@/components/ui/button';
@@ -24,37 +24,37 @@ const codesignQuote = quotes.find(q => q.author === 'Dianne Stokes');
 const STORY_VIDEOS = {
   // Hero: community people arriving + assembling beds (0:20-1:20 from Stretch Bed Overlay)
   heroCommunity: {
-    desktop: '/video/community-desktop.mp4',
-    mobile: '/video/community-mobile.mp4',
+    desktop: videoUrl('community-desktop.mp4'),
+    mobile: videoUrl('community-mobile.mp4'),
     poster: '/video/community-poster.jpg',
   },
   // Stretch Bed: close-up assembly/weave detail (1:10-2:30 from Stretch Bed Overlay)
   stretchBed: {
-    desktop: '/video/stretch-bed-desktop.mp4',
-    mobile: '/video/stretch-bed-mobile.mp4',
+    desktop: videoUrl('stretch-bed-desktop.mp4'),
+    mobile: videoUrl('stretch-bed-mobile.mp4'),
     poster: '/video/stretch-bed-poster.jpg',
   },
   // Young person helping build: group building (0:35-1:10 from Stretch Bed Overlay)
   buildingTogether: {
-    desktop: '/video/building-together-desktop.mp4',
-    mobile: '/video/building-together-mobile.mp4',
+    desktop: videoUrl('building-together-desktop.mp4'),
+    mobile: videoUrl('building-together-mobile.mp4'),
     poster: '/video/building-together-poster.jpg',
   },
   // Jaquilane: overlay background (silent, 0:05-0:35 from Jaquilane mum full)
   jaquilaneOverlay: {
-    desktop: '/video/jaquilane-overlay-desktop.mp4',
-    mobile: '/video/jaquilane-overlay-mobile.mp4',
+    desktop: videoUrl('jaquilane-overlay-desktop.mp4'),
+    mobile: videoUrl('jaquilane-overlay-mobile.mp4'),
     poster: '/video/jaquilane-poster.jpg',
   },
   // Jaquilane: full testimony with audio (0:10-2:10 from Jaquilane mum full)
-  jaquilaneTestimony: '/video/jaquilane-testimony.mp4',
+  jaquilaneTestimony: videoUrl('jaquilane-testimony.mp4'),
   washingMachine: undefined as string | undefined,      // Replace with washing machine background video
   projectStats: undefined as string | undefined,         // Full-page stats overlay video
   dianneStokes: undefined as string | undefined,         // Dianne Stokes washing machine video (Descript)
   // Recycling plant: containerised factory footage (0:00-0:50 from recycling gear.mp4)
   recyclingPlant: {
-    desktop: '/video/recycling-plant-desktop.mp4',
-    mobile: '/video/recycling-plant-mobile.mp4',
+    desktop: videoUrl('recycling-plant-desktop.mp4'),
+    mobile: videoUrl('recycling-plant-mobile.mp4'),
     poster: '/video/recycling-plant-poster.jpg',
   },
   cliffPlummer: videoTestimonials[0]?.embedUrl,           // Cliff Plummer — beds and dignity
