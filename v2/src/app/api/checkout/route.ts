@@ -59,6 +59,7 @@ export async function POST(request: NextRequest) {
             ...(item.image && item.image.startsWith('http') && { images: [item.image] }),
             metadata: {
               product_id: productId,
+              product_type: item.product_type || '',
               is_sponsorship: String(item.is_sponsorship || false),
               sponsored_community: item.sponsored_community || '',
               dedication_message: item.dedication_message || '',
