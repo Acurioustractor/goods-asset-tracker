@@ -146,7 +146,7 @@ export default function StretchBedPage() {
                   price_cents: product.price * 100,
                   currency: product.currency,
                   featured_image: product.images[0].src,
-                  product_type: 'weave_bed',
+                  product_type: 'stretch_bed',
                 }}
                 size="lg"
                 className="w-full"
