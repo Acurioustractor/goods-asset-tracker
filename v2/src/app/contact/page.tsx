@@ -19,16 +19,53 @@ export default function ContactPage() {
   const [inquiryType, setInquiryType] = useState('general');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    const formData = new FormData(e.currentTarget);
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    // Map inquiry type to subject
+    const subjectMap: Record<string, string> = {
+      'partnership': 'Partnership Inquiry',
+      'bulk-order': 'Bulk Order Inquiry',
+      'media': 'Media Pack Request',
+      'general': 'General Inquiry',
+    };
+
+    const payload = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string || undefined,
+      organisation: formData.get('organization') as string || undefined,
+      subject: subjectMap[inquiryType] || 'General Inquiry',
+      message: formData.get('message') as string,
+    };
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
+      setIsSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
@@ -186,6 +223,13 @@ export default function ContactPage() {
                         className="border-[#E8DED4] focus:border-[#C45C3E] focus:ring-[#C45C3E]"
                       />
                     </div>
+
+                    {/* Error Message */}
+                    {error && (
+                      <div className="p-4 rounded-xl bg-red-50 border border-red-200">
+                        <p className="text-sm text-red-800">{error}</p>
+                      </div>
+                    )}
 
                     <Button
                       type="submit"
