@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { WikiSearch } from '@/components/wiki/wiki-search';
 
 export const metadata: Metadata = {
   title: 'Goods Wiki & Knowledge Base | Goods on Country',
@@ -15,10 +16,15 @@ export default function WikiPage() {
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Goods Wiki & Knowledge Base
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl">
+          <p className="text-xl text-gray-600 max-w-3xl mb-8">
             Everything you need to know about Goods on Country — from operating
             recycling plants to product guides, community support, and the full story.
           </p>
+
+          {/* Search */}
+          <div className="flex justify-center">
+            <WikiSearch />
+          </div>
         </div>
       </header>
 
