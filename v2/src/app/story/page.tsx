@@ -741,7 +741,6 @@ export default async function StoryPage() {
                 {[
                   { value: '369+', label: 'beds delivered' },
                   { value: '8+', label: 'communities served' },
-                  { value: '40%', label: 'back to community' },
                   { value: '14kg', label: 'plastic per bed diverted' },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center p-6 rounded-xl bg-white/5 border border-white/10">
@@ -789,10 +788,6 @@ export default async function StoryPage() {
                 Our job is to become unnecessary.
               </p>
               <div className="grid gap-4 md:grid-cols-3 mb-12">
-                <div className="bg-accent-foreground/10 rounded-2xl p-8">
-                  <div className="text-5xl font-bold text-accent-foreground mb-2">40%</div>
-                  <div className="text-accent-foreground/70">of every sale goes directly back to communities</div>
-                </div>
                 <div className="bg-accent-foreground/10 rounded-2xl p-8">
                   <div className="text-5xl font-bold text-accent-foreground mb-2">100%</div>
                   <div className="text-accent-foreground/70">community ownership is the end goal</div>

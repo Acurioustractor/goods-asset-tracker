@@ -100,20 +100,6 @@ export default async function HomePage() {
               {/* Right: Assembly sequence + price comparison */}
               <div>
                 <AssemblySequence />
-                <div className="grid grid-cols-3 gap-3 mt-8">
-                  <div className="text-center p-3 rounded-xl border border-border">
-                    <div className="text-xl font-bold text-primary">$350</div>
-                    <div className="text-xs text-muted-foreground mt-0.5">to make</div>
-                  </div>
-                  <div className="text-center p-3 rounded-xl border border-border">
-                    <div className="text-xl font-bold text-primary">$600</div>
-                    <div className="text-xs text-muted-foreground mt-0.5">RRP</div>
-                  </div>
-                  <div className="text-center p-3 rounded-xl border border-border">
-                    <div className="text-xl font-bold text-primary">$1,500</div>
-                    <div className="text-xs text-muted-foreground mt-0.5">regular bed in community</div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

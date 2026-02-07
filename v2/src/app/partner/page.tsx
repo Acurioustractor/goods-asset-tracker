@@ -81,7 +81,6 @@ const partnerOptions = [
 const impactMetrics = [
   { value: '369+', label: 'Beds delivered' },
   { value: '8+', label: 'Communities' },
-  { value: '40%', label: 'Returns to community' },
   { value: '14kg', label: 'Plastic diverted per bed' },
 ];
 

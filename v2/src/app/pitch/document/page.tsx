@@ -265,10 +265,6 @@ export default function PitchDocumentPage() {
 
           <div className="grid grid-cols-3 gap-6 mb-12">
             <div className="avoid-break text-center border border-neutral-200 rounded-lg p-6">
-              <p className="text-4xl font-bold text-black mb-1">40%</p>
-              <p className="text-sm text-neutral-600">of every sale returns to communities</p>
-            </div>
-            <div className="avoid-break text-center border border-neutral-200 rounded-lg p-6">
               <p className="text-4xl font-bold text-black mb-1">100%</p>
               <p className="text-sm text-neutral-600">community ownership is the goal</p>
             </div>
