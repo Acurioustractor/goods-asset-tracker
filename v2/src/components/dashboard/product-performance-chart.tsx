@@ -85,7 +85,7 @@ export function ProductPerformanceChart({
               border: '1px solid #e5e5e5',
               borderRadius: '8px',
             }}
-            formatter={(value: number) => `$${value.toFixed(2)}`}
+            formatter={(value: number | undefined) => value != null ? `$${value.toFixed(2)}` : '$0.00'}
           />
           <Legend />
           <Bar dataKey="revenue" name="Revenue" radius={[4, 4, 0, 0]}>
