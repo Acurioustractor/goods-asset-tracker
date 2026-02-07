@@ -5,6 +5,8 @@ import { createClient } from '@/lib/supabase/server';
 import { PhoneLoginForm } from '@/components/auth/phone-login-form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Sign In - Goods on Country',
   description: 'Sign in to access your items, messages, and requests',

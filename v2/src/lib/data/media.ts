@@ -1,4 +1,17 @@
 /**
+ * Returns a public Supabase Storage URL for a video file.
+ * Videos are stored in the "video" bucket on Supabase Storage.
+ * Falls back to local /video/ path if NEXT_PUBLIC_SUPABASE_URL is not set.
+ */
+export function videoUrl(filename: string): string {
+  const base = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  if (base) {
+    return `${base}/storage/v1/object/public/video/${filename}`;
+  }
+  return `/video/${filename}`;
+}
+
+/**
  * Media map — single source of truth for all image/video paths.
  *
  * Resolution order:
