@@ -12,6 +12,7 @@ const navigation = [
   { name: 'How It\'s Made', href: '/process' },
   { name: 'Our Story', href: '/story' },
   { name: 'Community', href: '/community' },
+  { name: 'Wiki', href: '/wiki' },
   { name: 'Support', href: '/support' },
 ];
 
