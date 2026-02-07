@@ -240,9 +240,12 @@ async function handleCheckoutSessionCompleted(
     totalCents: ghlContactData.totalCents,
     isSponsorship: ghlContactData.isSponsorship,
     productTypes: ghlContactData.productTypes,
+    fullContactData: JSON.stringify(ghlContactData),
   });
 
+  console.log('[GHL] About to call ghl.createOrderContact...');
   const ghlResult = await ghl.createOrderContact(ghlContactData);
+  console.log('[GHL] Call completed, result:', JSON.stringify(ghlResult));
 
   console.log(`[GHL] Result for order ${order.order_number}:`, {
     success: ghlResult.success,
