@@ -44,3 +44,4 @@ next-env.d.ts
 # video files (re-generate with ffmpeg from source)
 public/video/*.mp4
 public/video/*.mov
+.env*.local
