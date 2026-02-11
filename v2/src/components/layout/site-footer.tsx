@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { FeedbackWidget } from '@/components/feedback/feedback-widget';
 
 const footerLinks = {
   product: [
@@ -152,6 +153,7 @@ export function SiteFooter() {
               <Link href="/terms" className="hover:text-primary">
                 Terms of Service
               </Link>
+              <FeedbackWidget />
             </div>
           </div>
         </div>
