@@ -154,6 +154,9 @@ export function SiteFooter() {
                 Terms of Service
               </Link>
               <FeedbackWidget />
+              <Link href="/dashboard" className="hover:text-primary">
+                Dashboard
+              </Link>
             </div>
           </div>
         </div>
