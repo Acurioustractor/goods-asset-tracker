@@ -7,6 +7,7 @@ import { SiteFooter } from '@/components/layout/site-footer';
 import { ImpactBanner } from '@/components/layout/impact-banner';
 import { CartProvider } from '@/lib/cart';
 import { CartDrawer } from '@/components/cart';
+import { FeedbackWidget } from '@/components/feedback/feedback-widget';
 import { OrganizationJsonLd, WebSiteJsonLd } from '@/components/seo';
 
 const inter = Inter({
@@ -79,6 +80,7 @@ export default function RootLayout({
             <SiteFooter />
           </div>
           <CartDrawer />
+          <FeedbackWidget />
         </CartProvider>
       </body>
     </html>
