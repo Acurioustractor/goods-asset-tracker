@@ -13,7 +13,8 @@ import {
   getGeographicData,
   getInventoryStatus,
 } from './actions';
-import { DollarSignIcon, ShoppingCartIcon, TrendingUpIcon } from 'lucide-react';
+import { DollarSignIcon, ShoppingCartIcon, TrendingUpIcon, MessageSquareIcon } from 'lucide-react';
+import Link from 'next/link';
 
 export const metadata = {
   title: 'Dashboard | Goods on Country',
@@ -186,6 +187,10 @@ export default async function DashboardPage() {
         {/* Footer Note */}
         <div className="mt-8 text-center text-sm text-neutral-500">
           Dashboard data refreshes every 5 minutes
+          <span className="mx-2">·</span>
+          <Link href="/dashboard/feedback" className="text-neutral-400 hover:text-neutral-600">
+            Feedback
+          </Link>
         </div>
       </div>
     </div>
