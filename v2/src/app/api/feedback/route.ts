@@ -105,8 +105,8 @@ ${body.message}
       );
     }
 
-    // Send Telegram notification (non-blocking — don't fail the request if this errors)
-    sendTelegramNotification(page, email, body.message);
+    // Send Telegram notification (awaited so it completes before serverless function exits)
+    await sendTelegramNotification(page, email, body.message);
 
     console.log('[Feedback]', { page, email, messageLength: body.message.length });
 
