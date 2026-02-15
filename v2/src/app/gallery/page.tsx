@@ -149,7 +149,7 @@ function buildPhotos(storytellers: GalleryStoryteller[]): GalleryPhoto[] {
       location: 'Tennant Creek, NT',
       community: 'tennant-creek',
       caption: 'Installed',
-      subcaption: 'Commercial-grade Speed Queen in recycled housing',
+      subcaption: 'Commercial-grade Speed Queen in recycled plastic housing',
     });
   }
   if (media.product.washingMachineName) {

@@ -62,7 +62,7 @@ export default function PitchPage() {
               Three materials. No tools. Five minutes.
             </h2>
             <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
-              26kg, supports 200kg, lasts 5+ years. Each bed diverts 20kg of plastic from landfill.
+              26kg, supports 200kg, 10+ year lifespan. Each bed diverts 20kg of plastic from landfill.
             </p>
 
             <div className="grid gap-12 lg:grid-cols-2 items-start">
@@ -130,16 +130,16 @@ export default function PitchPage() {
                 <AssemblySequence />
                 <div className="grid grid-cols-3 gap-3 mt-8">
                   <div className="text-center p-3 rounded-xl border border-border">
-                    <div className="text-xl font-bold text-primary">$350</div>
-                    <div className="text-xs text-muted-foreground mt-0.5">to make</div>
-                  </div>
-                  <div className="text-center p-3 rounded-xl border border-border">
                     <div className="text-xl font-bold text-primary">$600</div>
-                    <div className="text-xs text-muted-foreground mt-0.5">RRP</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">production cost</div>
                   </div>
                   <div className="text-center p-3 rounded-xl border border-border">
-                    <div className="text-xl font-bold text-primary">$1,500</div>
-                    <div className="text-xs text-muted-foreground mt-0.5">regular bed in community</div>
+                    <div className="text-xl font-bold text-primary">$850</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">sponsored</div>
+                  </div>
+                  <div className="text-center p-3 rounded-xl border border-border">
+                    <div className="text-xl font-bold text-primary">$1,200</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">retail</div>
                   </div>
                 </div>
               </div>

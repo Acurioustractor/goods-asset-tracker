@@ -243,8 +243,8 @@ export default function StretchBedGuidePage() {
             <h2>Key Design Features</h2>
             <div className="not-prose grid md:grid-cols-2 gap-6 mt-6">
               <div className="border border-gray-200 rounded-lg p-6">
-                <h3 className="font-semibold text-lg mb-2">🌊 Tension-Weave Surface</h3>
-                <p className="text-gray-700">Canvas stretched across frame creates natural flexibility. Bed adapts to body shape like a catamaran trampoline - breathable and comfortable.</p>
+                <h3 className="font-semibold text-lg mb-2">🌊 Tensioned Canvas Surface</h3>
+                <p className="text-gray-700">Heavy-duty canvas stretched across the steel frame creates natural flexibility. The bed adapts to body shape — breathable and comfortable in all conditions.</p>
               </div>
 
               <div className="border border-gray-200 rounded-lg p-6">

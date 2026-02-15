@@ -141,9 +141,9 @@ function SupportPageContent() {
                 </p>
               )}
               <p className="text-sm text-gray-600">
-                If your issue is urgent, please call us directly at{' '}
-                <a href="tel:+61123456789" className="text-blue-600 hover:underline">
-                  (02) 1234 5678
+                If your issue is urgent, please{' '}
+                <a href="/contact" className="text-blue-600 hover:underline">
+                  contact us directly
                 </a>
               </p>
               <Button
@@ -346,9 +346,9 @@ function SupportPageContent() {
         {/* Emergency Contact */}
         <div className="mt-6 text-center text-sm text-gray-600">
           <p>
-            For urgent matters, call us directly at{' '}
-            <a href="tel:+61123456789" className="text-blue-600 hover:underline font-medium">
-              (02) 1234 5678
+            For urgent matters,{' '}
+            <a href="/contact" className="text-blue-600 hover:underline font-medium">
+              contact us directly
             </a>
           </p>
         </div>

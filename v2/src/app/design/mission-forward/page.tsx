@@ -14,7 +14,7 @@ const steps = [
   {
     number: '02',
     title: 'We Build',
-    description: 'Artisans craft each bed from 20kg of recycled plastic.',
+    description: 'Community members build each bed from 20kg of recycled plastic.',
     icon: '🔧',
   },
   {

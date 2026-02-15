@@ -198,7 +198,7 @@ export default function PitchDocumentPage() {
           </h2>
           <p className="text-base text-neutral-600 mb-8 max-w-2xl leading-relaxed">
             Recycled HDPE plastic legs, galvanised steel poles, heavy-duty Australian canvas. At just 26kg, carried by one person,
-            supports 200kg, and lasts 5+ years in remote conditions. Works inside and outside.
+            supports 200kg, with a 10+ year lifespan in remote conditions. Works inside and outside.
           </p>
 
           <div className="grid grid-cols-2 gap-x-8 gap-y-3 mb-10">
