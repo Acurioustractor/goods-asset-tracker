@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { NewsletterSignup } from '@/components/newsletter-signup';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -180,23 +181,11 @@ export default function BasketBedPlansPage() {
                 </p>
                 <Card>
                   <CardContent className="p-6">
-                    <form
-                      action="/api/contact"
-                      method="POST"
-                      className="space-y-4"
-                    >
-                      <input type="hidden" name="type" value="basket-bed-plans" />
-                      <input
-                        type="email"
-                        name="email"
-                        required
-                        placeholder="your@email.com"
-                        className="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                      />
-                      <Button type="submit" className="w-full">
-                        Notify Me When Plans Are Ready
-                      </Button>
-                    </form>
+                    <NewsletterSignup
+                      tag="basket-bed-plans"
+                      buttonText="Notify Me When Plans Are Ready"
+                      successMessage="We'll notify you when plans are ready to download."
+                    />
                   </CardContent>
                 </Card>
               </div>

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { FeedbackWidget } from '@/components/feedback/feedback-widget';
+import { NewsletterForm } from '@/components/layout/newsletter-form';
 
 const footerLinks = {
   product: [
@@ -32,26 +33,7 @@ export function SiteFooter() {
             <p className="text-sm text-muted-foreground mb-6">
               Get updates on new products, community stories, and farm content.
             </p>
-            <form
-              action="/api/contact"
-              method="POST"
-              className="flex flex-col sm:flex-row gap-3"
-            >
-              <input type="hidden" name="type" value="newsletter" />
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="your@email.com"
-                className="flex-1 rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-              />
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
-              >
-                Subscribe
-              </button>
-            </form>
+            <NewsletterForm />
           </div>
         </div>
       </div>
