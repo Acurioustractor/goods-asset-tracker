@@ -13,7 +13,7 @@ export const brand = {
   hero: {
     home: {
       headline: 'The Stretch Bed',
-      subheadline: 'Recycled plastic, galvanised steel, heavy-duty canvas. 20kg, flat-packs, no tools. Every bed supports remote Indigenous communities across Australia.',
+      subheadline: 'Recycled plastic, galvanised steel, heavy-duty canvas. 26kg, flat-packs, no tools. Every bed supports remote Indigenous communities across Australia.',
     },
     shop: {
       headline: 'Shop the Collection',
@@ -93,8 +93,8 @@ export const productCategories = [
   {
     id: 'stretch-bed',
     name: 'The Stretch Bed',
-    description: 'Recycled HDPE plastic, galvanised steel poles, heavy-duty canvas. 20kg, flat-packs, no tools. Made on country from collected community plastic.',
-    products: ['stretch-bed-single'],
+    description: 'Recycled HDPE plastic, galvanised steel poles, heavy-duty canvas. 26kg, flat-packs, no tools. Made on country from collected community plastic.',
+    products: ['stretch-bed'],
     status: 'available',
     icon: 'bed',
   },
@@ -545,7 +545,7 @@ export const processSteps = [
     step: 1,
     title: 'Source',
     subtitle: 'Collecting recycled plastic',
-    description: 'Every Stretch Bed starts with recycled HDPE plastic collected from communities. Each bed diverts 14kg of plastic from landfill, turning waste into a health resource.',
+    description: 'Every Stretch Bed starts with recycled HDPE plastic collected from communities. Each bed diverts 20kg of plastic from landfill, turning waste into a health resource.',
     icon: 'recycle',
   },
   {
@@ -625,7 +625,7 @@ export const investmentCase = {
     capacity: '~30 beds per week when deployed for 2 months',
     model: 'One container with shredder fills 200 tubs with processed plastic; production container arrives to build 200 beds from that plastic.',
     futureCapability: 'Same facility will produce washing machines and fridges using different molds and cut files.',
-    plasticPerBed: '14kg per bed',
+    plasticPerBed: '20kg per bed',
   },
 
   risks: [
@@ -1132,7 +1132,7 @@ export const mediaPack = {
   aboutACT: `A Curious Tractor is the organisation behind Goods on Country. Founded in September 2023 by Nicholas Marchesi and Benjamin Knight, ACT exists to design, manufacture, and transfer ownership of essential goods to remote Indigenous communities across Australia. The name reflects the approach: curiosity-driven problem solving applied to entrenched disadvantage. ACT is a registered charity and social enterprise.`, // TODO: Ben to review and refine
 
   // Copy-paste-ready press boilerplate
-  pressBoilerplate: `Goods on Country is a social enterprise delivering durable, community-designed essential goods to remote Indigenous communities across Australia. The flagship product — the Stretch Bed — is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty Australian canvas. Each bed diverts 14kg of plastic from landfill, assembles in under five minutes with no tools, and supports up to 200kg. With 400+ beds delivered across 8+ communities, Goods on Country addresses the environmental health conditions that drive preventable disease — including Rheumatic Heart Disease — by putting health hardware directly into the hands of families who need it. The organisation's long-term goal is to transfer manufacturing capability to community-owned enterprises. Founded in 2023, Goods on Country is a project of A Curious Tractor.`,
+  pressBoilerplate: `Goods on Country is a social enterprise delivering durable, community-designed essential goods to remote Indigenous communities across Australia. The flagship product — the Stretch Bed — is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty Australian canvas. Each bed diverts 20kg of plastic from landfill, assembles in under five minutes with no tools, and supports up to 200kg. With 400+ beds delivered across 8+ communities, Goods on Country addresses the environmental health conditions that drive preventable disease — including Rheumatic Heart Disease — by putting health hardware directly into the hands of families who need it. The organisation's long-term goal is to transfer manufacturing capability to community-owned enterprises. Founded in 2023, Goods on Country is a project of A Curious Tractor.`,
 
   // Brand color palette
   brandColors: [

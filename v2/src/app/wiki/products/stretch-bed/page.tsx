@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import { STRETCH_BED } from '@/lib/data/products';
 
 export const metadata: Metadata = {
   title: 'The Stretch Bed - Complete Guide | Goods Wiki',
@@ -36,7 +37,7 @@ export default function StretchBedGuidePage() {
           <div className="grid md:grid-cols-3 gap-4 text-sm">
             <div>
               <div className="font-medium text-gray-700">Assembly Time</div>
-              <div className="text-gray-900">~30 minutes</div>
+              <div className="text-gray-900">~5 minutes</div>
             </div>
             <div>
               <div className="font-medium text-gray-700">Tools Required</div>
@@ -44,7 +45,7 @@ export default function StretchBedGuidePage() {
             </div>
             <div>
               <div className="font-medium text-gray-700">Weight</div>
-              <div className="text-gray-900">12kg</div>
+              <div className="text-gray-900">{STRETCH_BED.specs.weight}</div>
             </div>
             <div>
               <div className="font-medium text-gray-700">Load Capacity</div>
@@ -86,12 +87,8 @@ export default function StretchBedGuidePage() {
               <table className="min-w-full divide-y divide-gray-200 border border-gray-200">
                 <tbody className="divide-y divide-gray-200">
                   <tr>
-                    <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Production Cost</td>
-                    <td className="px-4 py-3">$550-650 per bed ($600 at 100 units)</td>
-                  </tr>
-                  <tr>
                     <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Weight</td>
-                    <td className="px-4 py-3">12kg</td>
+                    <td className="px-4 py-3">{STRETCH_BED.specs.weight}</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Load Capacity</td>
@@ -103,7 +100,7 @@ export default function StretchBedGuidePage() {
                   </tr>
                   <tr>
                     <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Assembly Time</td>
-                    <td className="px-4 py-3">~30 minutes</td>
+                    <td className="px-4 py-3">~5 minutes</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Warranty</td>
@@ -119,7 +116,7 @@ export default function StretchBedGuidePage() {
                   </tr>
                   <tr>
                     <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Plastic Diverted</td>
-                    <td className="px-4 py-3">21kg HDPE per bed</td>
+                    <td className="px-4 py-3">{STRETCH_BED.specs.plasticDiverted}</td>
                   </tr>
                 </tbody>
               </table>
@@ -169,8 +166,8 @@ export default function StretchBedGuidePage() {
             </div>
             <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <p className="text-sm text-blue-900">
-                <strong>Environmental Impact:</strong> Each bed diverts 21kg of HDPE plastic from landfill.
-                The recycled HDPE is currently sourced from Defy Design's Sydney operations. Future vision:
+                <strong>Environmental Impact:</strong> Each bed diverts 20kg of HDPE plastic from landfill.
+                The recycled HDPE is currently sourced from Defy Design&apos;s Sydney operations. Future vision:
                 on-country collection and processing in community-owned facilities.
               </p>
             </div>
@@ -179,7 +176,7 @@ export default function StretchBedGuidePage() {
           {/* Assembly Instructions */}
           <section id="assembly" className="mb-12">
             <h2>Assembly Instructions</h2>
-            <p><strong>Total Time:</strong> ~30 minutes | <strong>People:</strong> 1-2 | <strong>Tools:</strong> None required</p>
+            <p><strong>Total Time:</strong> ~5 minutes | <strong>People:</strong> 1-2 | <strong>Tools:</strong> None required</p>
 
             <div className="not-prose space-y-6 mt-6">
               <div className="border-l-4 border-green-500 pl-4">

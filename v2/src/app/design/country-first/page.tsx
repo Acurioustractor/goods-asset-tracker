@@ -113,7 +113,7 @@ export default function CountryFirstPage() {
               The Stretch Bed
             </h2>
             <p className="text-stone-600 max-w-xl mx-auto">
-              Stackable, washable, and built to last. Each bed diverts 14kg of plastic from landfill.
+              Stackable, washable, and built to last. Each bed diverts 20kg of plastic from landfill.
             </p>
           </div>
 

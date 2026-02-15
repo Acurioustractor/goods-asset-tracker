@@ -192,10 +192,10 @@ async function ImpactDashboard() {
                   </svg>
                 </div>
                 <p className="text-3xl font-light mb-2" style={{ color: '#C45C3E' }}>
-                  {Math.round(stats.totalBeds * 14)}kg
+                  {Math.round(stats.totalBeds * 20)}kg
                 </p>
                 <p className="font-medium" style={{ color: '#2E2E2E' }}>Plastic Diverted</p>
-                <p className="text-sm" style={{ color: '#5E5E5E' }}>14kg per bed from landfill</p>
+                <p className="text-sm" style={{ color: '#5E5E5E' }}>20kg per bed from landfill</p>
               </CardContent>
             </Card>
           </div>

@@ -3,7 +3,7 @@ import Link from 'next/link';
 const stats = [
   { value: '369+', label: 'beds delivered' },
   { value: '8', label: 'communities' },
-  { value: '14kg', label: 'plastic diverted per bed' },
+  { value: '20kg', label: 'plastic diverted per bed' },
 ];
 
 export function ImpactBanner() {

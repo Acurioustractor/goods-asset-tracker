@@ -8,56 +8,56 @@
 -- Accessories: covers, frames, toppers
 
 INSERT INTO products (slug, name, description, short_description, price_cents, product_type, images, featured_image, is_active, is_featured, metadata) VALUES
--- Stretch Bed - HERO PRODUCT, premium tension-weave design (listed first)
-('stretch-bed', 'Stretch Bed',
-'The Stretch Bed represents the next evolution in community-made sleeping solutions. Born from collaboration between traditional weavers and modern designers, it uses an innovative tension-weave technique that creates natural flexibility — the bed literally adapts to your body as you rest.
+-- Stretch Bed - HERO PRODUCT, flat-packable washable bed (listed first)
+('stretch-bed', 'The Stretch Bed',
+'The Stretch Bed is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty Australian canvas. Designed in partnership with remote Indigenous communities across Australia.
 
-This design emerged from listening to community feedback. People wanted something lighter, easier to transport between camps and houses. At just 12kg, the Stretch Bed can be carried by one person, yet still supports 200kg and carries the same 5-year warranty as our Greate Bed.
+Two galvanised steel poles thread through canvas sleeves. Recycled plastic legs click onto the poles. Done. No tools, no complicated assembly, just a bed that works.
 
-Like all Goods products, the Stretch Bed is built on a foundation of community ownership. 40% of every sale returns directly to the artisans and their communities. Products can be Aboriginal owned and controlled while sold commercially — that''s the model we''re proving works.
-
-The premium price reflects the additional skill and time required for the tension-weave construction, and supports the training of new weavers in this technique. Every Stretch Bed purchased helps preserve and evolve traditional weaving knowledge.
+Every bed diverts 20kg of HDPE plastic from landfill. The manufacturing process is designed to be transferred to community ownership — we''re building the infrastructure for communities to make their own beds.
 
 **Specifications:**
-• Weight: ~12kg (lighter design for portability)
+• Weight: 26kg
 • Load capacity: 200kg
-• Assembly time: 5 minutes (no tools required)
+• Dimensions: 188 × 92 × 25cm
+• Assembly time: ~5 minutes (no tools required)
 • Warranty: 5 years
-• Materials: Woven cord, hardwood frame',
-'Premium tension-weave design. Lighter, flexible, adapts to your body. 40% returns to community.',
+• Design lifespan: 10+ years
+• Materials: Recycled HDPE plastic legs, galvanised steel poles (26.9mm OD), heavy-duty Australian canvas',
+'Flat-packable, washable bed. Recycled plastic, galvanised steel, heavy-duty canvas. 26kg, 200kg capacity.',
 120000, 'stretch_bed',
 ARRAY['https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f06aca919ac39a08c6cbc_20250629-IMG_7731.jpg', 'https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686e5122692fd1a0ee508f2e_20250628-IMG_6872.jpg', 'https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f0a19b97e3e9c7b4dc6f0_20250628-IMG_6976.jpg'],
 'https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f06aca919ac39a08c6cbc_20250629-IMG_7731.jpg',
 true, true,
 '{
   "dimensions": "188cm x 92cm x 25cm",
-  "weight_kg": 12,
+  "weight_kg": 26,
   "load_capacity_kg": 200,
   "assembly_time": "5 minutes",
   "warranty": "5 years",
-  "materials": "Woven cord, hardwood frame",
-  "community_share_percent": 40,
-  "plastic_diverted_kg": 25,
+  "design_lifespan": "10+ years",
+  "materials": "Recycled HDPE plastic legs, galvanised steel poles (26.9mm OD), heavy-duty Australian canvas",
+  "plastic_diverted_kg": 20,
   "display_order": 1,
   "components": [
     {
-      "name": "Hardwood Frame",
-      "description": "Lightweight hardwood frame with powder-coated steel reinforcement. Supports up to 200kg.",
+      "name": "Galvanised Steel Poles (x2)",
+      "description": "26.9mm OD x 2.6mm wall galvanised steel pipe. Thread through canvas sleeves to form the frame. Supports up to 200kg.",
       "image": "https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686e5122692fd1a0ee508f2e_20250628-IMG_6872.jpg"
     },
     {
-      "name": "Tension-Weave Surface",
-      "description": "Innovative woven cord sleeping surface that adapts to body shape. Combines traditional weaving knowledge with modern materials.",
+      "name": "Heavy-Duty Canvas",
+      "description": "Australian canvas sleeping surface with sewn sleeves for steel poles. Fully washable, quick-drying.",
       "image": "https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f06aca919ac39a08c6cbc_20250629-IMG_7731.jpg"
     },
     {
-      "name": "Cord Bindings",
-      "description": "Strong cord bindings secure the weave to the frame. Made from recycled HDPE plastic.",
+      "name": "Recycled HDPE Plastic Legs (x4)",
+      "description": "Pressed from community-collected plastic waste. Click onto steel poles. Virtually indestructible.",
       "image": "https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f0a19b97e3e9c7b4dc6f0_20250628-IMG_6976.jpg"
     },
     {
-      "name": "Leg Assemblies (x4)",
-      "description": "Powder-coated steel legs with tool-free attachment. Raises bed 25cm off ground.",
+      "name": "End Caps & Joinery",
+      "description": "27mm ribbed tube end caps and slot-together T-section joinery. No screws or hardware needed.",
       "image": "https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686e5122692fd1a0ee508f2e_20250628-IMG_6872.jpg"
     }
   ],
@@ -65,38 +65,36 @@ true, true,
     {
       "step": 1,
       "title": "Unpack components",
-      "description": "Remove the frame, weave surface, and four legs from packaging. Lay frame flat on the ground.",
+      "description": "Remove the two steel poles, canvas, four recycled plastic legs, and end caps from packaging.",
       "image": "https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686e5122692fd1a0ee508f2e_20250628-IMG_6872.jpg"
     },
     {
       "step": 2,
-      "title": "Attach the legs",
-      "description": "Insert each leg into the corner sockets on the frame. Twist clockwise until locked.",
+      "title": "Thread poles through canvas",
+      "description": "Slide each galvanised steel pole through the sewn sleeves on either side of the canvas.",
       "image": "https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f06aca919ac39a08c6cbc_20250629-IMG_7731.jpg"
     },
     {
       "step": 3,
-      "title": "Flip the frame",
-      "description": "With legs attached, carefully flip the frame so it stands on its legs.",
+      "title": "Attach the legs",
+      "description": "Click the four recycled plastic legs onto the steel poles at each corner.",
       "image": "https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f0a19b97e3e9c7b4dc6f0_20250628-IMG_6976.jpg"
     },
     {
       "step": 4,
-      "title": "Attach the weave",
-      "description": "Position the tension-weave surface on top of the frame. Hook the cord bindings at each attachment point.",
+      "title": "Add end caps and check",
+      "description": "Attach end caps to exposed pipe ends. Test stability by applying weight. Done in under 5 minutes.",
       "image": "https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686e5122692fd1a0ee508f2e_20250628-IMG_6872.jpg"
     }
   ],
   "sustainability": {
-    "plastic_diverted_kg": 25,
-    "carbon_saved_kg": 10,
-    "local_jobs_supported": 1,
-    "community_share_percent": 40
+    "plastic_diverted_kg": 20,
+    "local_jobs_supported": 1
   },
   "enterprise_opportunity": {
     "enabled": true,
     "title": "Run this enterprise in your community",
-    "description": "Communities can learn the tension-weave technique to manufacture and distribute Stretch Beds locally, creating employment and keeping 100% of profits in community.",
+    "description": "Communities receive full training, manufacturing capability, and documentation to produce Stretch Beds locally, creating employment and keeping 100% of profits in community.",
     "benefits": [
       "Full training in tension-weave technique",
       "Supply chain and material connections",

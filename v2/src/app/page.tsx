@@ -39,7 +39,7 @@ export default async function HomePage() {
               Three materials. No tools. Five minutes.
             </h2>
             <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
-              20kg, supports 200kg, lasts 5+ years. Each bed diverts 14kg of plastic from landfill.
+              26kg, supports 200kg, lasts 5+ years. Each bed diverts 20kg of plastic from landfill.
             </p>
 
             <div className="grid gap-12 lg:grid-cols-2 items-start">
@@ -54,7 +54,7 @@ export default async function HomePage() {
                   />
                   <div className="p-3">
                     <h3 className="font-semibold text-foreground text-sm mb-0.5">Recycled Plastic Frame</h3>
-                    <p className="text-xs text-muted-foreground">HDPE legs from community plastic. 14kg diverted per bed.</p>
+                    <p className="text-xs text-muted-foreground">HDPE legs from community plastic. 20kg diverted per bed.</p>
                   </div>
                 </div>
 
@@ -216,7 +216,7 @@ export default async function HomePage() {
             </div>
 
             <div className="text-center">
-              <p className="text-background/40 text-sm">~30 beds per week &middot; 14kg plastic diverted per bed</p>
+              <p className="text-background/40 text-sm">~30 beds per week &middot; 20kg plastic diverted per bed</p>
             </div>
           </div>
         </div>

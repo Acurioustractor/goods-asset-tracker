@@ -3,18 +3,18 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { media } from '@/lib/data/media';
+import { STRETCH_BED, WASHING_MACHINE, BASKET_BED } from '@/lib/data/products';
 
 export const metadata = {
   title: 'Shop | Goods on Country',
   description: 'Browse handcrafted beds and washing machines made for remote Indigenous communities.',
 };
 
-// Static product cards - bypassing Supabase which has wrong data
 const products = [
   {
-    slug: 'stretch-bed-single',
-    name: 'The Stretch Bed',
-    description: 'Recycled HDPE plastic legs, galvanised steel poles, heavy-duty canvas. 20kg, flat-packs, no tools needed.',
+    slug: STRETCH_BED.slug,
+    name: STRETCH_BED.name,
+    description: `Recycled HDPE plastic legs, galvanised steel poles, heavy-duty canvas. ${STRETCH_BED.specs.weight}, flat-packs, no tools needed.`,
     price: 600,
     image: media.product.stretchBedHero,
     badge: 'Available',
@@ -23,9 +23,9 @@ const products = [
     href: '/shop/stretch-bed-single',
   },
   {
-    slug: 'pakkimjalki-kari',
-    name: 'Pakkimjalki Kari',
-    description: 'Commercial-grade Speed Queen in recycled plastic housing. Named in Warumungu language by Elder Dianne Stokes.',
+    slug: WASHING_MACHINE.slug,
+    name: WASHING_MACHINE.name,
+    description: WASHING_MACHINE.tagline,
     price: null,
     image: media.product.washingMachine,
     badge: 'Prototype',
@@ -34,8 +34,8 @@ const products = [
     href: '/partner',
   },
   {
-    slug: 'basket-bed-plans',
-    name: 'Basket Bed Plans',
+    slug: BASKET_BED.slug,
+    name: `${BASKET_BED.name} Plans`,
     description: 'Our first prototype — collapsible baskets with zip ties and toppers. Now open source — download and build your own.',
     price: null,
     image: media.product.basketBedHero,
@@ -61,7 +61,7 @@ export default function ShopPage() {
             </h1>
             <p className="text-lg" style={{ color: '#5E5E5E' }}>
               Every purchase supports remote Indigenous communities across Australia.
-              Each bed diverts 14kg of plastic from landfill.
+              Each bed diverts 20kg of plastic from landfill.
             </p>
           </div>
         </div>
@@ -197,7 +197,7 @@ export default function ShopPage() {
 
               <div className="space-y-4 mb-8">
                 {[
-                  'Made from 14kg recycled plastic',
+                  'Made from 20kg recycled plastic',
                   '5-minute assembly, no tools required',
                   'Washable mattress components',
                   'Built to last 10+ years',

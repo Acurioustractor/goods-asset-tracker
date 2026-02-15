@@ -137,7 +137,7 @@ export default function ProcessPage() {
             </h2>
             <div className="grid gap-6 sm:grid-cols-3 mb-10">
               <div>
-                <div className="text-3xl font-bold text-primary">14kg</div>
+                <div className="text-3xl font-bold text-primary">20kg</div>
                 <div className="text-sm text-muted-foreground mt-1">Plastic diverted from landfill per bed</div>
               </div>
               <div>

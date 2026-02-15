@@ -281,12 +281,12 @@ export default async function StoryPage() {
               className="text-4xl md:text-6xl font-light text-white mb-6 leading-[1.1]"
               style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
             >
-              20kg. Supports 200kg.<br />
+              26kg. Supports 200kg.<br />
               No tools. 5 minutes.
             </h2>
             <p className="text-xl text-white/60 max-w-2xl mx-auto">
               Recycled plastic legs, galvanised steel poles, heavy-duty canvas.
-              Each bed diverts 14kg of plastic from landfill.
+              Each bed diverts 20kg of plastic from landfill.
             </p>
           </div>
         </section>
@@ -310,7 +310,7 @@ export default async function StoryPage() {
                     <p>
                       Two galvanised steel poles thread through heavy-duty Australian canvas.
                       Four legs made from recycled HDPE plastic — collected, shredded, and pressed on country.
-                      Each bed diverts 14kg of plastic from landfill.
+                      Each bed diverts 20kg of plastic from landfill.
                     </p>
                     <p>
                       No-tool assembly in 5 minutes. Works inside and outside. Fully washable.
@@ -657,7 +657,7 @@ export default async function StoryPage() {
                       bed components.
                     </p>
                     <p>
-                      Capacity: ~30 beds per week. Each bed diverts 14kg of HDPE plastic from landfill.
+                      Capacity: ~30 beds per week. Each bed diverts 20kg of HDPE plastic from landfill.
                       Local people operate the machinery. Real jobs, real skills, real ownership.
                     </p>
                   </div>
@@ -667,7 +667,7 @@ export default async function StoryPage() {
                       <div className="text-xs text-muted-foreground mt-1">beds/week</div>
                     </div>
                     <div className="text-center p-4 rounded-xl border border-border bg-background">
-                      <div className="text-2xl font-bold text-primary">14kg</div>
+                      <div className="text-2xl font-bold text-primary">20kg</div>
                       <div className="text-xs text-muted-foreground mt-1">plastic per bed</div>
                     </div>
                     <div className="text-center p-4 rounded-xl border border-border bg-background">
@@ -741,7 +741,7 @@ export default async function StoryPage() {
                 {[
                   { value: '369+', label: 'beds delivered' },
                   { value: '8+', label: 'communities served' },
-                  { value: '14kg', label: 'plastic per bed diverted' },
+                  { value: '20kg', label: 'plastic per bed diverted' },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center p-6 rounded-xl bg-white/5 border border-white/10">
                     <div className="text-3xl md:text-4xl font-bold text-primary mb-1">{stat.value}</div>

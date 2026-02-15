@@ -12,14 +12,14 @@ export const STRETCH_BED = {
   shortDescription:
     'A flat-packable, washable bed designed for remote Australia. Made from recycled plastic, galvanised steel, and heavy-duty canvas.',
   specs: {
-    weight: '20kg',
+    weight: '26kg',
     loadCapacity: '200kg',
     dimensions: '188 × 92 × 25cm',
     assemblyTime: '~5 minutes',
     toolsRequired: 'None',
     designLifespan: '10+ years',
     warranty: '5 years',
-    plasticDiverted: '14kg HDPE per bed',
+    plasticDiverted: '20kg HDPE per bed',
   },
   materials: {
     frame: {

@@ -10,41 +10,35 @@ import { AssemblySequence } from '@/components/pitch/assembly-sequence';
 import { CyclingImage } from '@/components/pitch/cycling-image';
 import { media } from '@/lib/data/media';
 import { quotes } from '@/lib/data/content';
+import { STRETCH_BED } from '@/lib/data/products';
 
 export const metadata = {
   title: 'The Stretch Bed | Goods on Country',
-  description: 'Flat-packable, washable bed made from recycled HDPE plastic, galvanised steel poles, and heavy-duty canvas. 20kg, 200kg capacity, assembles in 5 minutes.',
+  description: 'Flat-packable, washable bed made from recycled HDPE plastic, galvanised steel poles, and heavy-duty canvas. 26kg, 200kg capacity, assembles in 5 minutes.',
 };
 
 const product = {
-  name: 'The Stretch Bed',
+  name: STRETCH_BED.name,
   slug: 'stretch-bed-single',
   price: 600,
   currency: 'AUD',
-  shortDescription: 'A flat-packable, washable bed designed for remote Australia. Made from recycled plastic, galvanised steel, and heavy-duty canvas.',
+  shortDescription: STRETCH_BED.shortDescription,
   description: `The Stretch Bed is the flagship product from Goods on Country — a bed designed in partnership with remote Indigenous communities across Australia.
 
 Two galvanised steel poles thread through canvas sleeves. Recycled plastic legs click onto the poles. Done. No tools, no complicated assembly, just a bed that works.
 
-Every bed diverts 14kg of HDPE plastic from landfill. The manufacturing process is designed to be transferred to community ownership — we're building the infrastructure for communities to make their own beds, not a dependency on outside suppliers.
+Every bed diverts ${STRETCH_BED.specs.plasticDiverted.replace(' per bed', '')} from landfill. The manufacturing process is designed to be transferred to community ownership — we're building the infrastructure for communities to make their own beds, not a dependency on outside suppliers.
 
-The canvas sleeping surface is fully washable. The recycled plastic legs are virtually indestructible. The steel poles are rated for 200kg. This bed is built for the conditions of remote Australia.`,
+The canvas sleeping surface is fully washable. The recycled plastic legs are virtually indestructible. The steel poles are rated for ${STRETCH_BED.specs.loadCapacity}. This bed is built for the conditions of remote Australia.`,
   specs: {
-    weight: '20kg',
-    capacity: '200kg',
-    dimensions: '188 × 92 × 25cm',
+    weight: STRETCH_BED.specs.weight,
+    capacity: STRETCH_BED.specs.loadCapacity,
+    dimensions: STRETCH_BED.specs.dimensions,
     assembly: '5 minutes, no tools',
-    materials: 'Recycled HDPE plastic, galvanised steel (26.9mm OD), heavy-duty Australian canvas',
-    plastic: '14kg HDPE diverted per bed',
+    materials: `Recycled HDPE plastic, galvanised steel (${STRETCH_BED.materials.frame.detail.split(',')[0]}), heavy-duty Australian canvas`,
+    plastic: STRETCH_BED.specs.plasticDiverted,
   },
-  features: [
-    'Flat-packs for easy transport',
-    'Washable canvas sleeping surface',
-    'No tools required for assembly',
-    'Recycled plastic legs — virtually indestructible',
-    'Galvanised steel poles — 200kg capacity',
-    'Designed with 500+ minutes of community feedback',
-  ],
+  features: [...STRETCH_BED.features],
   images: [
     { src: media.product.stretchBedHero, alt: 'The Stretch Bed at golden hour showing recycled plastic X-legs' },
     { src: media.product.stretchBedInUse, alt: 'Person resting on Stretch Bed in the outback' },
@@ -172,7 +166,7 @@ export default function StretchBedPage() {
                   <div>
                     <p className="font-medium text-foreground">Your Impact</p>
                     <p className="text-sm text-muted-foreground">
-                      Each bed diverts 14kg of plastic from landfill and supports community-led manufacturing in remote Australia.
+                      Each bed diverts 20kg of plastic from landfill and supports community-led manufacturing in remote Australia.
                     </p>
                   </div>
                 </div>
@@ -236,7 +230,7 @@ export default function StretchBedPage() {
                   </svg>
                 </div>
                 <h3 className="font-semibold text-foreground mb-1">Recycled Plastic Legs</h3>
-                <p className="text-sm text-muted-foreground">14kg of HDPE diverted from landfill per bed. Virtually indestructible in any conditions.</p>
+                <p className="text-sm text-muted-foreground">20kg of HDPE diverted from landfill per bed. Virtually indestructible in any conditions.</p>
               </CardContent>
             </Card>
             <Card>
@@ -372,7 +366,7 @@ export default function StretchBedPage() {
             </div>
 
             <div className="text-center">
-              <p className="text-background/40 text-sm">~30 beds per week &middot; 14kg plastic diverted per bed</p>
+              <p className="text-background/40 text-sm">~30 beds per week &middot; 20kg plastic diverted per bed</p>
             </div>
           </div>
         </div>

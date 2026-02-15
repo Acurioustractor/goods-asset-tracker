@@ -75,25 +75,31 @@ export default function WikiPage() {
               <span className="text-green-600 text-sm font-medium">View manual →</span>
             </Link>
 
-            <div className="block p-6 bg-gray-50 border border-gray-200 rounded-lg">
-              <h3 className="text-xl font-semibold text-gray-400 mb-2">
+            <Link
+              href="/wiki/manufacturing/machine-specs"
+              className="block p-6 bg-white border border-gray-200 rounded-lg hover:shadow-lg transition-shadow"
+            >
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 🔧 Machine Specifications
               </h3>
-              <p className="text-gray-500 text-sm mb-4">
+              <p className="text-gray-600 text-sm mb-4">
                 Technical specs for shredder, heat press, CNC router, and other equipment.
               </p>
-              <span className="text-gray-400 text-sm font-medium">Coming soon</span>
-            </div>
+              <span className="text-green-600 text-sm font-medium">View specs →</span>
+            </Link>
 
-            <div className="block p-6 bg-gray-50 border border-gray-200 rounded-lg">
-              <h3 className="text-xl font-semibold text-gray-400 mb-2">
+            <Link
+              href="/wiki/manufacturing/plastic-processing"
+              className="block p-6 bg-white border border-gray-200 rounded-lg hover:shadow-lg transition-shadow"
+            >
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 ♻️ Plastic Processing Guide
               </h3>
-              <p className="text-gray-500 text-sm mb-4">
+              <p className="text-gray-600 text-sm mb-4">
                 Material types, sorting, safety, and quality control for plastic recycling.
               </p>
-              <span className="text-gray-400 text-sm font-medium">Coming soon</span>
-            </div>
+              <span className="text-green-600 text-sm font-medium">View guide →</span>
+            </Link>
 
           </div>
         </section>
@@ -103,25 +109,31 @@ export default function WikiPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Products</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <div className="block p-6 bg-gray-50 border border-gray-200 rounded-lg">
-              <h3 className="text-xl font-semibold text-gray-400 mb-2">
+            <Link
+              href="/wiki/products/stretch-bed"
+              className="block p-6 bg-white border border-gray-200 rounded-lg hover:shadow-lg transition-shadow"
+            >
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 🛏️ Stretch Bed Guide
               </h3>
-              <p className="text-gray-500 text-sm mb-4">
+              <p className="text-gray-600 text-sm mb-4">
                 Assembly instructions, specifications, care & maintenance for the Stretch Bed.
               </p>
-              <span className="text-gray-400 text-sm font-medium">Coming soon</span>
-            </div>
+              <span className="text-green-600 text-sm font-medium">View guide →</span>
+            </Link>
 
-            <div className="block p-6 bg-gray-50 border border-gray-200 rounded-lg">
-              <h3 className="text-xl font-semibold text-gray-400 mb-2">
+            <Link
+              href="/wiki/products/washing-machine"
+              className="block p-6 bg-white border border-gray-200 rounded-lg hover:shadow-lg transition-shadow"
+            >
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 🧺 Washing Machine Guide
               </h3>
-              <p className="text-gray-500 text-sm mb-4">
+              <p className="text-gray-600 text-sm mb-4">
                 Setup, operation, troubleshooting for Pakkimjalki Kari washing machines.
               </p>
-              <span className="text-gray-400 text-sm font-medium">Coming soon</span>
-            </div>
+              <span className="text-green-600 text-sm font-medium">View guide →</span>
+            </Link>
 
             <div className="block p-6 bg-gray-50 border border-gray-200 rounded-lg">
               <h3 className="text-xl font-semibold text-gray-400 mb-2">
@@ -252,7 +264,7 @@ export default function WikiPage() {
             </p>
             <div className="grid md:grid-cols-3 gap-6 mt-8">
               <div className="text-center">
-                <div className="text-4xl font-bold text-green-600 mb-2">21kg</div>
+                <div className="text-4xl font-bold text-green-600 mb-2">20kg</div>
                 <div className="text-sm text-gray-600">HDPE plastic diverted per bed</div>
               </div>
               <div className="text-center">

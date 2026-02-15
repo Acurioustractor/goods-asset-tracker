@@ -30,12 +30,13 @@ media/                       <- Raw video footage and analysis
 
 ### 1. The Stretch Bed (FLAGSHIP — for sale)
 - **What it is:** A flat-packable, washable bed
-- **Materials:** Recycled HDPE plastic panels (legs), 2x galvanised steel poles (26.9mm OD), heavy-duty Australian canvas (sleeping surface)
+- **Materials:** Recycled HDPE plastic panels (legs), 2x galvanised steel poles (26.9mm OD × 2.6mm wall), heavy-duty Australian canvas (sleeping surface)
 - **How it works:** Two steel poles thread through canvas sleeves. Recycled plastic legs click onto the poles. Done.
-- **Specs:** 12kg, 200kg capacity, 188x92x25cm, assembles in 5 mins, no tools
-- **Plastic:** 21kg of HDPE diverted per bed
+- **Specs:** 26kg, 200kg capacity, 188×92×25cm, assembles in ~5 mins, no tools, 10+ year design lifespan, 5-year warranty
+- **Plastic:** 20kg of HDPE diverted per bed
 - **Manufacturing:** On-country plant — collect plastic, shred, melt, press into bed components. This plant can move to community ownership.
-- **Supabase slug:** `stretch-bed-single` (was incorrectly `weave-bed-single`)
+- **Canonical data:** `v2/src/lib/data/products.ts` is the single source of truth for all product specs
+- **Supabase slug:** `stretch-bed` (canonical). Shop page URL is still `/shop/stretch-bed-single`.
 - **Ecommerce:** Buy now with Stripe. This is the ONLY product for direct sale.
 
 ### 2. Washing Machines (PROTOTYPE — register interest)
@@ -111,7 +112,8 @@ cd v2 && npm run lint     # ESLint
 
 ## Mistakes to Avoid
 - Do NOT modify files in `deploy/` — that's the old static site
-- Do NOT use `weave-bed` slugs or `weave_bed` product types — the Weave Bed is discontinued. The Stretch Bed slug is `stretch-bed-single`.
+- Do NOT use `weave-bed` slugs or `weave_bed` product types — the Weave Bed is discontinued. The canonical Stretch Bed slug is `stretch-bed`.
+- Do NOT hardcode product specs — import from `v2/src/lib/data/products.ts` (the single source of truth)
 - Do NOT describe Stretch Bed as "woven cord" or "hardwood frame" — it's recycled HDPE plastic + galvanised steel poles + canvas
 - Do NOT hardcode Supabase URLs — use env vars via `createClient()`
 - Do NOT add `use client` to pages unless necessary — prefer Server Components
