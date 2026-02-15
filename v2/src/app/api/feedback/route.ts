@@ -6,6 +6,37 @@ interface FeedbackPayload {
   email?: string;
 }
 
+async function sendTelegramNotification(page: string, email: string, message: string) {
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+
+  if (!botToken || !chatId) {
+    console.log('[Feedback] Telegram not configured, skipping notification');
+    return;
+  }
+
+  const text = `📬 *New Site Feedback*
+
+📄 *Page:* ${page}
+👤 *From:* ${email}
+
+💬 ${message}`;
+
+  try {
+    await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text,
+        parse_mode: 'Markdown',
+      }),
+    });
+  } catch (error) {
+    console.error('[Feedback] Telegram notification failed:', error);
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = (await request.json()) as FeedbackPayload;
@@ -73,6 +104,9 @@ ${body.message}
         { status: 500 }
       );
     }
+
+    // Send Telegram notification (non-blocking — don't fail the request if this errors)
+    sendTelegramNotification(page, email, body.message);
 
     console.log('[Feedback]', { page, email, messageLength: body.message.length });
 
