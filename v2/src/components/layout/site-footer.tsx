@@ -6,7 +6,7 @@ const footerLinks = {
   product: [
     { name: 'The Stretch Bed', href: '/shop/stretch-bed-single' },
     { name: 'How It\'s Made', href: '/process' },
-    { name: 'Washing Machines (Coming)', href: '/partner' },
+    { name: 'Washing Machines', href: '/shop/washing-machine' },
   ],
   about: [
     { name: 'Our Story', href: '/story' },

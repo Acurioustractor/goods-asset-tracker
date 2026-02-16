@@ -44,6 +44,20 @@ const WIKI_PAGES: SearchResult[] = [
     category: 'Products',
   },
   {
+    title: 'Machine Specifications',
+    url: '/wiki/manufacturing/machine-specs',
+    description:
+      'Technical specs for shredder, heat press, CNC router, cooling rack, and flip table',
+    category: 'Manufacturing',
+  },
+  {
+    title: 'Plastic Processing Guide',
+    url: '/wiki/manufacturing/plastic-processing',
+    description:
+      'HDPE plastic sorting, shredding, sheet forming, quality control, and safety procedures',
+    category: 'Manufacturing',
+  },
+  {
     title: 'Wiki Home',
     url: '/wiki',
     description:

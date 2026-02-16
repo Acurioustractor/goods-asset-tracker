@@ -31,7 +31,7 @@ const products = [
     badge: 'Prototype',
     badgeColor: 'bg-amber-600 text-white',
     cta: 'Register Interest',
-    href: '/partner',
+    href: '/shop/washing-machine',
   },
   {
     slug: BASKET_BED.slug,
