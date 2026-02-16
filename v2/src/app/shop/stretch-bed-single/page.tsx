@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { MediaSlot } from '@/components/ui/media-slot';
-import { AddToCartButton } from '@/components/cart';
+import { BuyNowForm } from '@/components/shop/buy-now-form';
 import { AssemblySequence } from '@/components/pitch/assembly-sequence';
 import { CyclingImage } from '@/components/pitch/cycling-image';
 import { media } from '@/lib/data/media';
@@ -132,16 +132,10 @@ export default function StretchBedPage() {
 
             {/* Actions */}
             <div className="space-y-3">
-              <AddToCartButton
-                product={{
-                  id: '915cf791-d288-4d19-b558-76d001fc1aaa',
-                  slug: product.slug,
-                  name: product.name,
-                  price_cents: product.price * 100,
-                  currency: product.currency,
-                  featured_image: product.images[0].src,
-                  product_type: 'stretch_bed',
-                }}
+              <BuyNowForm
+                productName={product.name}
+                pricePerUnit={product.price}
+                currency={product.currency}
                 size="lg"
                 className="w-full"
               />
