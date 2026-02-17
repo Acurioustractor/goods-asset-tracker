@@ -139,6 +139,12 @@ export function SiteFooter() {
               <Link href="/dashboard" className="hover:text-primary">
                 Dashboard
               </Link>
+              <Link href="/portal" className="hover:text-primary">
+                Portal
+              </Link>
+              <Link href="/production" className="hover:text-primary">
+                Shift Log
+              </Link>
             </div>
           </div>
         </div>
