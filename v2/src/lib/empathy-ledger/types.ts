@@ -41,7 +41,7 @@ export interface EmpathyLedgerStory {
   authorName: string;
   authorId: string | null;
   publishedAt: string;
-  themes: string[];
+  themes: (string | { name: string })[];
   visibility: string;
   isPublic: boolean;
   featuredImageUrl: string | null;

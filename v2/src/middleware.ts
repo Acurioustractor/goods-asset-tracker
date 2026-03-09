@@ -39,8 +39,15 @@ export async function middleware(request: NextRequest) {
   // Refresh session if expired
   const { data: { user } } = await supabase.auth.getUser()
 
-  // Check if current path requires user authentication
   const pathname = request.nextUrl.pathname
+
+  // Admin auth: protect /admin routes except login and unauthorized pages
+  const isAdminRoute = pathname.startsWith('/admin') && !pathname.startsWith('/admin/login') && !pathname.startsWith('/admin/unauthorized')
+  if (isAdminRoute && !user) {
+    return NextResponse.redirect(new URL('/admin/login', request.url))
+  }
+
+  // Check if current path requires user authentication
   const isProtectedUserRoute = protectedUserRoutes.some(route =>
     pathname === route || pathname.startsWith(`${route}/`)
   )

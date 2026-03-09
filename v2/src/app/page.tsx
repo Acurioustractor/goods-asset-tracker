@@ -6,6 +6,7 @@ import { MediaSlot } from '@/components/ui/media-slot';
 import { Button } from '@/components/ui/button';
 import { brand } from '@/lib/data/content';
 import { videoUrl } from '@/lib/data/media';
+import { FeaturedStories } from '@/components/empathy-ledger/featured-stories';
 
 export default async function HomePage() {
   return (
@@ -225,7 +226,14 @@ export default async function HomePage() {
       {/* 4. Impact Stats */}
       <ImpactStats fetchLive={true} />
 
-      {/* 5. CTA — Buy + How It's Made */}
+      {/* 5. Community Voices — from Empathy Ledger */}
+      <FeaturedStories
+        title="Community Voices"
+        subtitle="33 storytellers across 8 communities have shaped and validated the Goods approach"
+        maxStories={3}
+      />
+
+      {/* 6. CTA — Buy + How It's Made */}
       <section className="bg-accent py-16 md:py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-accent-foreground md:text-4xl">

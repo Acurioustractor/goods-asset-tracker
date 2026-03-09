@@ -11,12 +11,15 @@ export default async function AdminLayout({
   const supabase = await createClient();
 
   // Check if user is authenticated
+  // Middleware handles redirect for unauthenticated users on protected admin routes,
+  // but login/unauthorized pages still render through this layout
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
+  // For login/unauthorized pages, render children without admin chrome
   if (!user) {
-    redirect('/admin/login');
+    return <>{children}</>;
   }
 
   // Check if user has admin role (stored in user metadata or app_metadata)
@@ -64,6 +67,12 @@ export default async function AdminLayout({
                   className="text-sm text-gray-600 hover:text-gray-900"
                 >
                   Messages
+                </Link>
+                <Link
+                  href="/admin/fleet"
+                  className="text-sm text-gray-600 hover:text-gray-900"
+                >
+                  Fleet
                 </Link>
                 <Link
                   href="/admin/requests"

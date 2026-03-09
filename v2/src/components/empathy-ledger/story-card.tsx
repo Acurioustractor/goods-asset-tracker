@@ -5,6 +5,11 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import type { EmpathyLedgerStory } from '@/lib/empathy-ledger/types';
 
+/** Normalize theme value — handles both string and {name: string} formats from API */
+function themeLabel(theme: string | { name: string }): string {
+  return typeof theme === 'string' ? theme : theme?.name || '';
+}
+
 interface StoryCardProps {
   story: EmpathyLedgerStory;
   variant?: 'default' | 'compact' | 'featured';
@@ -83,9 +88,9 @@ export function StoryCard({ story, variant = 'default' }: StoryCardProps) {
             {/* Themes */}
             {story.themes.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-3">
-                {story.themes.slice(0, 3).map((theme) => (
-                  <Badge key={theme} variant="secondary" className="text-xs">
-                    {theme}
+                {story.themes.slice(0, 3).map((theme, i) => (
+                  <Badge key={themeLabel(theme) || i} variant="secondary" className="text-xs">
+                    {themeLabel(theme)}
                   </Badge>
                 ))}
               </div>
@@ -161,9 +166,9 @@ export function StoryCard({ story, variant = 'default' }: StoryCardProps) {
         {/* Themes */}
         {story.themes.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mb-2">
-            {story.themes.slice(0, 2).map((theme) => (
-              <Badge key={theme} variant="secondary" className="text-xs">
-                {theme}
+            {story.themes.slice(0, 2).map((theme, i) => (
+              <Badge key={themeLabel(theme) || i} variant="secondary" className="text-xs">
+                {themeLabel(theme)}
               </Badge>
             ))}
           </div>

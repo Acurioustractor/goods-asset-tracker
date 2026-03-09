@@ -428,6 +428,114 @@ export interface ProductionShift {
   updated_at: string;
 }
 
+// ============================================================================
+// FLEET TELEMETRY TYPES
+// ============================================================================
+
+export type TelemetryEventType =
+  | 'cycle_complete'
+  | 'heartbeat'
+  | 'restart'
+  | 'offline'
+  | 'online'
+  | 'firmware_update';
+
+export interface UsageLog {
+  id: string;
+  asset_id: string | null;
+  power_kwh: number | null;
+  cycle_type: string | null;
+  duration_min: number | null;
+  water_temp_c: number | null;
+  status: string | null;
+  raw_ping: Record<string, unknown> | null;
+  // Fleet telemetry extensions
+  event_type: TelemetryEventType | null;
+  event_id: string | null;
+  machine_id: string | null;
+  site_name: string | null;
+  firmware_version: string | null;
+  restart_counter: number | null;
+  energy_kwh_total: number | null;
+  cycle_count_total: number | null;
+  signal_rssi: number | null;
+  online: boolean;
+  created_at: string;
+}
+
+export type AlertSeverity = 'Low' | 'Medium' | 'High' | 'Critical';
+export type AlertType =
+  | 'machine_offline'
+  | 'high_energy_usage'
+  | 'frequent_restarts'
+  | 'peer_divergence'
+  | 'rising_energy';
+
+export interface Alert {
+  id: string;
+  asset_id: string | null;
+  alert_date: string;
+  type: AlertType;
+  severity: AlertSeverity;
+  details: string;
+  resolved: boolean;
+  resolved_date: string | null;
+  resolved_by: string | null;
+  created_at: string;
+}
+
+export type CommentaryType = 'observation' | 'maintenance' | 'recommendation' | 'anomaly';
+
+export interface MachineCommentary {
+  id: string;
+  machine_id: string;
+  asset_id: string | null;
+  commentary: string;
+  commentary_type: CommentaryType;
+  created_by: string | null;
+  report_date: string | null;
+  created_at: string;
+}
+
+export interface DailyMachineRollup {
+  machine_id: string;
+  rollup_date: string;
+  cycles: number;
+  kwh_used: number;
+  avg_kwh_per_cycle: number;
+  restart_count: number;
+  last_seen_at: string;
+}
+
+export interface FleetKPIs {
+  total_cycles: number;
+  total_kwh: number;
+  avg_kwh_per_cycle: number;
+  machines_online: number;
+  machines_total: number;
+  open_alerts: number;
+}
+
+// ============================================================================
+// FLEET DASHBOARD TYPES
+// ============================================================================
+
+export interface MachineOverview {
+  machine_id: string;
+  asset_id: string | null;
+  name: string | null;
+  community: string | null;
+  site_name: string | null;
+  firmware_version: string | null;
+  online: boolean;
+  last_seen_at: string | null;
+  today_cycles: number;
+  week_kwh: number;
+  avg_kwh_per_cycle: number;
+  restart_counter: number | null;
+  open_alert_count: number;
+}
+
 // Utility types
 export type Tables = {
   // E-commerce
@@ -455,4 +563,8 @@ export type Tables = {
   announcements: Announcement;
   // Production
   production_shifts: ProductionShift;
+  // Fleet telemetry
+  usage_logs: UsageLog;
+  alerts: Alert;
+  machine_commentary: MachineCommentary;
 };
