@@ -4,38 +4,24 @@ import { NextResponse, type NextRequest } from 'next/server'
 // Routes that require user authentication (phone-based)
 const protectedUserRoutes = ['/my-items', '/community', '/production']
 
-// Routes protected by simple password (basic auth)
+// Routes protected by simple password (cookie-based)
 const passwordProtectedRoutes = ['/impact', '/api/impact']
+const PASSWORD_COOKIE = 'impact_auth'
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
-  // Password-protect specific routes via HTTP Basic Auth
+  // Password-protect specific routes via cookie
   const isPasswordProtected = passwordProtectedRoutes.some(
     (route) => pathname === route || pathname.startsWith(`${route}/`)
   )
-  if (isPasswordProtected) {
-    const authHeader = request.headers.get('authorization')
-    if (authHeader) {
-      const [scheme, encoded] = authHeader.split(' ')
-      if (scheme === 'Basic' && encoded) {
-        const decoded = atob(encoded)
-        const [, password] = decoded.split(':')
-        const expectedPassword = process.env.IMPACT_PASSWORD || 'goods2026'
-        if (password === expectedPassword) {
-          // Auth passed — continue
-        } else {
-          return new NextResponse('Unauthorized', {
-            status: 401,
-            headers: { 'WWW-Authenticate': 'Basic realm="Impact Model"' },
-          })
-        }
-      }
-    } else {
-      return new NextResponse('Unauthorized', {
-        status: 401,
-        headers: { 'WWW-Authenticate': 'Basic realm="Impact Model"' },
-      })
+  if (isPasswordProtected && pathname !== '/impact/login') {
+    const authCookie = request.cookies.get(PASSWORD_COOKIE)?.value
+    const expectedPassword = process.env.IMPACT_PASSWORD || 'goods2026'
+    if (authCookie !== expectedPassword) {
+      const loginUrl = new URL('/impact/login', request.url)
+      loginUrl.searchParams.set('from', pathname)
+      return NextResponse.redirect(loginUrl)
     }
   }
 
