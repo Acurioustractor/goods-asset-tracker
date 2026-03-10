@@ -96,7 +96,7 @@ export const REVENUE_SEGMENTS: RevenueSegment[] = [
     id: 'b2b',
     name: 'B2B Sales',
     description: 'Direct sales to organisations distributing to communities',
-    currentEvidence: '109 beds sold to Chumba (first substantial commercial transaction)',
+    currentEvidence: '109 beds sold to Centrecorp (first substantial commercial transaction)',
     projectedShare: 45,
   },
   {
@@ -510,7 +510,7 @@ export const DEFAULT_OPPORTUNITIES: OptimizationOpportunity[] = [
   {
     id: 'b2b-pipeline',
     title: 'B2B channel has strongest commercial evidence',
-    description: '109 beds sold to Chumba demonstrates demand. Emergency services are a natural fit — NT already calls them "cyclone beds." Secure letters of intent from potential B2B clients.',
+    description: '109 beds sold to Centrecorp demonstrates demand. Emergency services are a natural fit — NT already calls them "cyclone beds." Secure letters of intent from potential B2B clients.',
     dimension: 'economic',
     potential: 'high',
     dataSource: 'Revenue segments + meeting notes',

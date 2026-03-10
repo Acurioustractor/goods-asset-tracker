@@ -598,7 +598,7 @@ function PartnersSection() {
       color: '#8B9D77',
     },
     {
-      name: 'Chumba',
+      name: 'Centrecorp',
       location: 'Distribution Partner',
       role: 'B2B Sales & Distribution',
       model: 'First substantial commercial transaction — 109 beds purchased for distribution to communities. Demonstrates trade at scale and provides evidence of commercial viability for funding applications.',
