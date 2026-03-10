@@ -4,7 +4,41 @@ import { NextResponse, type NextRequest } from 'next/server'
 // Routes that require user authentication (phone-based)
 const protectedUserRoutes = ['/my-items', '/community', '/production']
 
+// Routes protected by simple password (basic auth)
+const passwordProtectedRoutes = ['/impact', '/api/impact']
+
 export async function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname
+
+  // Password-protect specific routes via HTTP Basic Auth
+  const isPasswordProtected = passwordProtectedRoutes.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`)
+  )
+  if (isPasswordProtected) {
+    const authHeader = request.headers.get('authorization')
+    if (authHeader) {
+      const [scheme, encoded] = authHeader.split(' ')
+      if (scheme === 'Basic' && encoded) {
+        const decoded = atob(encoded)
+        const [, password] = decoded.split(':')
+        const expectedPassword = process.env.IMPACT_PASSWORD || 'goods2026'
+        if (password === expectedPassword) {
+          // Auth passed — continue
+        } else {
+          return new NextResponse('Unauthorized', {
+            status: 401,
+            headers: { 'WWW-Authenticate': 'Basic realm="Impact Model"' },
+          })
+        }
+      }
+    } else {
+      return new NextResponse('Unauthorized', {
+        status: 401,
+        headers: { 'WWW-Authenticate': 'Basic realm="Impact Model"' },
+      })
+    }
+  }
+
   // QR code redirect: /?asset_id=GB0-153-1 → /claim/GB0-153-1
   const assetId = request.nextUrl.searchParams.get('asset_id');
   if (assetId) {
@@ -38,8 +72,6 @@ export async function middleware(request: NextRequest) {
 
   // Refresh session if expired
   const { data: { user } } = await supabase.auth.getUser()
-
-  const pathname = request.nextUrl.pathname
 
   // Admin auth: protect /admin routes except login and unauthorized pages
   const isAdminRoute = pathname.startsWith('/admin') && !pathname.startsWith('/admin/login') && !pathname.startsWith('/admin/unauthorized')
