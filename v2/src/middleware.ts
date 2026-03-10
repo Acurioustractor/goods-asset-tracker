@@ -15,7 +15,7 @@ export async function middleware(request: NextRequest) {
   const isPasswordProtected = passwordProtectedRoutes.some(
     (route) => pathname === route || pathname.startsWith(`${route}/`)
   )
-  if (isPasswordProtected && pathname !== '/impact/login') {
+  if (isPasswordProtected && pathname !== '/impact/login' && pathname !== '/api/impact/auth') {
     const authCookie = request.cookies.get(PASSWORD_COOKIE)?.value
     const expectedPassword = process.env.IMPACT_PASSWORD || 'goods2026'
     if (authCookie !== expectedPassword) {
