@@ -106,19 +106,19 @@ function LossFunctionSection({ snapshot }: { snapshot: ImpactSnapshot }) {
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-4 md:gap-6">
           {[
             { value: summary.totalAssets, label: 'Assets Deployed', sub: 'beds + washers' },
             { value: `${(summary.livesImpacted).toLocaleString()}+`, label: 'Lives Impacted', sub: 'avg 2.5 per bed' },
             { value: `${(summary.plasticDivertedKg / 1000).toFixed(1)}t`, label: 'Plastic Diverted', sub: `${summary.plasticDivertedKg.toLocaleString()}kg` },
             { value: summary.communitiesServed, label: 'Communities', sub: 'across Australia' },
-            { value: summary.employmentHoursCreated.toLocaleString(), label: 'Employment Hours', sub: `${TOTAL_LABOUR_HOURS_PER_BED.toFixed(1)}hrs/bed` },
-            { value: `$${(summary.totalInvestment / 1000).toFixed(0)}K`, label: 'Total Investment', sub: `$${(summary.totalInvestment / summary.totalAssets).toFixed(0)}/asset` },
+            { value: summary.employmentHoursCreated.toLocaleString(), label: 'Employment Hrs', sub: `${TOTAL_LABOUR_HOURS_PER_BED.toFixed(1)}hrs/bed` },
+            { value: `$${(summary.totalInvestment / 1000).toFixed(0)}K`, label: 'Invested', sub: `$${(summary.totalInvestment / summary.totalAssets).toFixed(0)}/asset` },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <p className="text-3xl md:text-4xl font-light text-white mb-1">{stat.value}</p>
-              <p className="text-sm text-white/90 font-medium">{stat.label}</p>
-              <p className="text-xs text-white/50 mt-0.5">{stat.sub}</p>
+              <p className="text-2xl md:text-4xl font-light text-white mb-1">{stat.value}</p>
+              <p className="text-xs md:text-sm text-white/90 font-medium">{stat.label}</p>
+              <p className="text-xs text-white/50 mt-0.5 hidden md:block">{stat.sub}</p>
             </div>
           ))}
         </div>
@@ -302,20 +302,20 @@ function HealthCascadeSection({ cascade }: { cascade: ImpactSnapshot['healthCasc
           </div>
 
           {/* Summary stats */}
-          <div className="grid grid-cols-3 gap-4 mt-10 pt-6 border-t border-white/10">
+          <div className="grid grid-cols-3 gap-2 md:gap-4 mt-10 pt-6 border-t border-white/10">
             <div className="text-center">
-              <p className="text-2xl font-light text-white">{cascade.bedsDelivered}</p>
-              <p className="text-xs text-white/50">Beds interrupting floor sleeping</p>
+              <p className="text-xl md:text-2xl font-light text-white">{cascade.bedsDelivered}</p>
+              <p className="text-[10px] md:text-xs text-white/50">Beds interrupting floor sleeping</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-light" style={{ color: '#8B9D77' }}>
+              <p className="text-xl md:text-2xl font-light" style={{ color: '#8B9D77' }}>
                 {cascade.totalWashCycles.toLocaleString()}
               </p>
-              <p className="text-xs text-white/50">Wash cycles breaking scabies chain</p>
+              <p className="text-[10px] md:text-xs text-white/50">Wash cycles breaking scabies chain</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-light text-white">{cascade.machinesOnline}</p>
-              <p className="text-xs text-white/50">Machines online now</p>
+              <p className="text-xl md:text-2xl font-light text-white">{cascade.machinesOnline}</p>
+              <p className="text-[10px] md:text-xs text-white/50">Machines online now</p>
             </div>
           </div>
         </div>
@@ -415,8 +415,8 @@ function ProductionCostSection() {
           </div>
 
           {/* Production breakdown table */}
-          <div className="rounded-lg overflow-hidden border" style={{ borderColor: '#E8DED4' }}>
-            <table className="w-full text-sm">
+          <div className="rounded-lg overflow-x-auto border" style={{ borderColor: '#E8DED4' }}>
+            <table className="w-full text-sm min-w-[480px]">
               <thead>
                 <tr style={{ backgroundColor: '#E8DED4' }}>
                   <th className="text-left px-4 py-3 font-medium" style={{ color: '#2E2E2E' }}>
@@ -532,7 +532,7 @@ function HowWeTrackSection() {
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
             {[
               {
                 title: 'QR Code Tracking',
@@ -713,7 +713,7 @@ function ImpactSkeleton() {
   return (
     <section className="py-12" style={{ backgroundColor: '#C45C3E' }}>
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-4 md:gap-6">
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <div key={i} className="text-center">
               <div className="h-10 bg-white/20 rounded animate-pulse mx-auto w-20 mb-2" />
