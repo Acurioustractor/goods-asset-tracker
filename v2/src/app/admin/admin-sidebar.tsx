@@ -3,26 +3,28 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { 
-  LayoutDashboard, 
-  Activity, 
-  Truck, 
-  Calculator, 
-  ShoppingCart, 
-  Kanban, 
-  Wrench, 
-  AlertCircle, 
-  Heart, 
-  MessageSquare, 
-  Handshake, 
-  BookOpen, 
-  Megaphone, 
-  Map as MapIcon, 
-  Lightbulb, 
+import {
+  LayoutDashboard,
+  Activity,
+  Truck,
+  Calculator,
+  ShoppingCart,
+  Kanban,
+  Wrench,
+  AlertCircle,
+  Heart,
+  MessageSquare,
+  Handshake,
+  BookOpen,
+  Megaphone,
+  Map as MapIcon,
+  Lightbulb,
   Users,
   Menu,
   X,
-  LogOut
+  LogOut,
+  Library,
+  Globe,
 } from 'lucide-react';
 
 const navigation = [
@@ -30,9 +32,11 @@ const navigation = [
     group: 'Command Center',
     items: [
       { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
+      { name: 'Compendium', href: '/admin/compendium', icon: Library },
       { name: 'Ops', href: '/admin/ops', icon: Activity },
       { name: 'Fleet', href: '/admin/fleet', icon: Truck },
       { name: 'Unit Economics', href: '/admin/economics', icon: Calculator },
+      { name: 'Communities', href: '/admin/communities', icon: Globe },
     ],
   },
   {

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { getAdminKPIs, getPipelineAssets, getRecentActivity } from './actions';
+import { getFundingSummary, getDemandTotal, getDeploymentTotals } from '@/lib/data/compendium';
 import type { AssetStatus } from '@/lib/types/database';
 
 export const dynamic = 'force-dynamic';
@@ -13,11 +14,15 @@ export default async function AdminDashboard() {
     getRecentActivity(),
   ]);
 
+  const fundingSummary = getFundingSummary();
+  const demandTotal = getDemandTotal();
+  const deploymentTotals = getDeploymentTotals();
+
   const stats = [
     {
       title: 'Beds Deployed',
-      value: kpis.bedsDeployed,
-      description: 'In communities',
+      value: kpis.bedsDeployed || deploymentTotals.beds,
+      description: `${deploymentTotals.communities} communities`,
     },
     {
       title: 'Beds in Pipeline',
@@ -26,14 +31,14 @@ export default async function AdminDashboard() {
       highlight: kpis.bedsInPipeline > 0,
     },
     {
-      title: 'Communities Served',
-      value: kpis.communitiesServed,
-      description: 'Distinct locations',
+      title: 'Funding Received',
+      value: `$${(fundingSummary.received / 1000).toFixed(0)}K`,
+      description: `$${(fundingSummary.pending / 1000).toFixed(0)}K pending`,
     },
     {
-      title: 'Trade Revenue',
-      value: kpis.totalRevenue > 0 ? `$${kpis.totalRevenue.toLocaleString()}` : '$0',
-      description: 'AUD from orders',
+      title: 'Demand Pipeline',
+      value: `$${(demandTotal / 1000).toFixed(0)}K`,
+      description: `$${(fundingSummary.receivables / 1000).toFixed(0)}K receivables`,
     },
   ];
 
@@ -139,11 +144,31 @@ export default async function AdminDashboard() {
       </Card>
 
       {/* Quick Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <Link href="/admin/compendium">
+          <Card className="hover:border-orange-300 transition-colors cursor-pointer bg-orange-50/50">
+            <CardContent className="pt-6">
+              <h3 className="font-medium">Compendium</h3>
+              <p className="text-sm text-gray-500 mt-1">
+                Master data source
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
+        <Link href="/admin/communities">
+          <Card className="hover:border-orange-300 transition-colors cursor-pointer">
+            <CardContent className="pt-6">
+              <h3 className="font-medium">Communities</h3>
+              <p className="text-sm text-gray-500 mt-1">
+                Deployments & targets
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
         <Link href="/admin/ops">
           <Card className="hover:border-orange-300 transition-colors cursor-pointer">
             <CardContent className="pt-6">
-              <h3 className="font-medium">Ops Dashboard</h3>
+              <h3 className="font-medium">Ops</h3>
               <p className="text-sm text-gray-500 mt-1">
                 Operations overview
               </p>
@@ -151,31 +176,11 @@ export default async function AdminDashboard() {
           </Card>
         </Link>
         <Link href="/admin/economics">
-          <Card className="hover:border-orange-300 transition-colors cursor-pointer bg-orange-50/50">
+          <Card className="hover:border-orange-300 transition-colors cursor-pointer">
             <CardContent className="pt-6">
               <h3 className="font-medium">Unit Economics</h3>
               <p className="text-sm text-gray-500 mt-1">
-                First-Principles Models
-              </p>
-            </CardContent>
-          </Card>
-        </Link>
-        <Link href="/admin/fleet">
-          <Card className="hover:border-orange-300 transition-colors cursor-pointer">
-            <CardContent className="pt-6">
-              <h3 className="font-medium">Fleet</h3>
-              <p className="text-sm text-gray-500 mt-1">
-                Washing machine telemetry
-              </p>
-            </CardContent>
-          </Card>
-        </Link>
-        <Link href="/admin/production">
-          <Card className="hover:border-orange-300 transition-colors cursor-pointer">
-            <CardContent className="pt-6">
-              <h3 className="font-medium">Production</h3>
-              <p className="text-sm text-gray-500 mt-1">
-                Manufacturing shifts
+                First-principles models
               </p>
             </CardContent>
           </Card>
