@@ -40,6 +40,30 @@ export default async function StoryDetailPage({ params }: Props) {
     notFound();
   }
 
+  // Consent gate — show respectful message instead of the story
+  if (story.consentWithdrawnAt || story.isArchived || !story.syndicationEnabled) {
+    return (
+      <main>
+        <section className="py-20 md:py-28">
+          <div className="container mx-auto px-4 text-center">
+            <h1
+              className="text-3xl md:text-4xl font-light text-foreground mb-6"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+            >
+              Story Not Available
+            </h1>
+            <p className="text-muted-foreground max-w-md mx-auto mb-8">
+              This story has been removed at the storyteller&apos;s request or is no longer available for display.
+            </p>
+            <Button variant="outline" asChild>
+              <Link href="/stories">Back to Stories</Link>
+            </Button>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
   const publishedDate = new Date(story.publishedAt).toLocaleDateString('en-AU', {
     year: 'numeric',
     month: 'long',
@@ -50,6 +74,8 @@ export default async function StoryDetailPage({ params }: Props) {
   const themeNames = (story.themes || []).map((t: string | { name: string }) =>
     typeof t === 'string' ? t : t.name
   );
+
+  const displayName = story.storytellerName || story.authorName;
 
   return (
     <main>
@@ -101,7 +127,13 @@ export default async function StoryDetailPage({ params }: Props) {
             )}
 
             <div className="flex items-center justify-center gap-3 text-white/60 text-sm">
-              <span className="font-medium text-white">{story.authorName}</span>
+              {story.elderApproved && (
+                <>
+                  <Badge className="bg-emerald-600 text-white border-0">Elder Approved</Badge>
+                  <span>&middot;</span>
+                </>
+              )}
+              <span className="font-medium text-white">{displayName}</span>
               <span>&middot;</span>
               <time dateTime={story.publishedAt}>{publishedDate}</time>
             </div>
@@ -125,16 +157,27 @@ export default async function StoryDetailPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Author + Back */}
+      {/* Author + Back + Removal link */}
       <section className="py-12 border-t border-border">
         <div className="container mx-auto px-4">
           <div className="max-w-[65ch] mx-auto flex items-center justify-between">
             <div className="text-sm text-muted-foreground">
-              Written by <span className="font-medium text-foreground">{story.authorName}</span>
+              Written by <span className="font-medium text-foreground">{displayName}</span>
             </div>
             <Button variant="outline" size="sm" asChild>
               <Link href="/stories">Back to Stories</Link>
             </Button>
+          </div>
+          <div className="max-w-[65ch] mx-auto mt-8 pt-6 border-t border-border/50">
+            <p className="text-xs text-muted-foreground">
+              If you are featured in this story and would like it removed,{' '}
+              <Link
+                href={`/support?subject=story-removal&story_id=${story.id}`}
+                className="underline hover:text-foreground"
+              >
+                contact us
+              </Link>.
+            </p>
           </div>
         </div>
       </section>

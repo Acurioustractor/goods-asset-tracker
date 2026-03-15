@@ -12,6 +12,8 @@
 const GHL_API_KEY = process.env.GHL_API_KEY || '';
 const GHL_LOCATION_ID = process.env.GHL_LOCATION_ID || '';
 const GHL_BASE_URL = 'https://services.leadconnectorhq.com';
+const GHL_DEFAULT_PIPELINE_NAME = process.env.GHL_PIPELINE_STRATEGIC_DEFAULT_NAME || '';
+const GHL_DEFAULT_STAGE_NAME = process.env.GHL_STAGE_STRATEGIC_DEFAULT_STAGE_NAME || '';
 
 // Feature flag
 const GHL_ENABLED = process.env.GHL_ENABLED === 'true' && !!GHL_API_KEY && !!GHL_LOCATION_ID;
@@ -37,6 +39,33 @@ const WORKFLOWS = {
   newClaim: process.env.GHL_WORKFLOW_NEW_CLAIM || '',
   userMessage: process.env.GHL_WORKFLOW_USER_MESSAGE || '',
   userRequest: process.env.GHL_WORKFLOW_USER_REQUEST || '',
+};
+
+const STRATEGIC_PIPELINES: Record<StrategicTargetType, StrategicPipelineConfig> = {
+  buyer: {
+    pipelineId: process.env.GHL_PIPELINE_STRATEGIC_BUYER || '',
+    stageId: process.env.GHL_STAGE_STRATEGIC_BUYER_NEW || '',
+    pipelineName: process.env.GHL_PIPELINE_STRATEGIC_BUYER_NAME || GHL_DEFAULT_PIPELINE_NAME || 'Goods',
+    stageName: process.env.GHL_STAGE_STRATEGIC_BUYER_NEW_NAME || GHL_DEFAULT_STAGE_NAME || 'New Lead',
+    label: 'Goods Sales',
+    stageLabel: 'New buyer lead',
+  },
+  capital: {
+    pipelineId: process.env.GHL_PIPELINE_STRATEGIC_CAPITAL || '',
+    stageId: process.env.GHL_STAGE_STRATEGIC_CAPITAL_NEW || '',
+    pipelineName: process.env.GHL_PIPELINE_STRATEGIC_CAPITAL_NAME || GHL_DEFAULT_PIPELINE_NAME || 'Goods',
+    stageName: process.env.GHL_STAGE_STRATEGIC_CAPITAL_NEW_NAME || GHL_DEFAULT_STAGE_NAME || 'New Lead',
+    label: 'Capital / Philanthropy',
+    stageLabel: 'Research and warm intro',
+  },
+  partner: {
+    pipelineId: process.env.GHL_PIPELINE_STRATEGIC_PARTNER || '',
+    stageId: process.env.GHL_STAGE_STRATEGIC_PARTNER_NEW || '',
+    pipelineName: process.env.GHL_PIPELINE_STRATEGIC_PARTNER_NAME || GHL_DEFAULT_PIPELINE_NAME || 'Goods',
+    stageName: process.env.GHL_STAGE_STRATEGIC_PARTNER_NEW_NAME || GHL_DEFAULT_STAGE_NAME || 'New Lead',
+    label: 'Community Partnerships',
+    stageLabel: 'Community partner discovery',
+  },
 };
 
 /**
@@ -82,12 +111,19 @@ interface GHLResponse {
     phone?: string;
     name?: string;
   };
+  opportunity?: {
+    id: string;
+    pipelineId?: string;
+    pipelineStageId?: string;
+  };
+  opportunityCreated?: boolean;
+  pipelineConfigured?: boolean;
   error?: string;
   simulated?: boolean;
 }
 
 interface ContactData {
-  email: string;
+  email?: string;
   name?: string;
   phone?: string;
   companyName?: string;
@@ -116,6 +152,22 @@ interface SupportTicketData {
   category?: string;
   community?: string;
   productType?: string;
+  assetConditionStatus?: 'Good' | 'Needs Repair' | 'Damaged' | 'Missing' | 'Replaced';
+  serviceability?: 'fully_usable' | 'limited_use' | 'unsafe' | 'not_usable';
+  failureCause?:
+    | 'wear'
+    | 'rust'
+    | 'mould'
+    | 'frame_damage'
+    | 'fabric_damage'
+    | 'electrical_fault'
+    | 'water_fault'
+    | 'freight_damage'
+    | 'unknown';
+  outcomeWanted?: 'repair' | 'replace' | 'pickup' | 'assessment' | 'dispose';
+  oldItemDisposition?: 'still_in_use' | 'stored' | 'awaiting_pickup' | 'dumped' | 'returned' | 'unknown';
+  safetyRisk?: boolean;
+  issueObservedAt?: string;
 }
 
 interface PartnershipInquiryData {
@@ -151,6 +203,62 @@ interface UserRequestData {
   description?: string;
   community?: string;
   productType?: string;
+}
+
+interface StrategicTargetContactData {
+  organizationName: string;
+  contactName?: string;
+  contactEmail?: string;
+  contactPhone?: string;
+  targetType: 'buyer' | 'capital' | 'partner';
+  regionFocus?: string;
+  relationshipStatus?: string;
+  nextAction?: string;
+  contactSurface?: string;
+  whyPlausible?: string;
+  sourceUrl?: string;
+  communityFocusName?: string;
+  communityFocusPostcode?: string;
+  communityFocusState?: string;
+  suggestedPipelineLabel?: string;
+  suggestedStageLabel?: string;
+  sourceOrgName: string;
+  sourceOrgAbn?: string;
+  sourceEntityGsId?: string;
+  sourceIdentityName?: string;
+  tags?: string[];
+}
+
+type StrategicTargetType = StrategicTargetContactData['targetType'];
+
+type StrategicPipelineConfig = {
+  pipelineId: string;
+  stageId: string;
+  pipelineName: string;
+  stageName: string;
+  label: string;
+  stageLabel: string;
+};
+
+type GhlPipelineStage = {
+  id?: string;
+  _id?: string;
+  name?: string;
+  label?: string;
+};
+
+type GhlPipeline = {
+  id?: string;
+  _id?: string;
+  name?: string;
+  label?: string;
+  stages?: GhlPipelineStage[];
+  pipelineStages?: GhlPipelineStage[];
+};
+
+function cleanString(value?: string | null): string | undefined {
+  const trimmed = String(value || '').trim();
+  return trimmed ? trimmed : undefined;
 }
 
 /**
@@ -202,32 +310,38 @@ async function findContact(emailOrPhone: string): Promise<{ id: string } | null>
  * Create or update a contact in GHL
  */
 async function createOrUpdateContact(data: ContactData): Promise<GHLResponse> {
+  const email = cleanString(data.email);
+  const phone = cleanString(data.phone);
+  const companyName = cleanString(data.companyName);
+  const name = cleanString(data.name) || companyName;
+
   console.log('[GHL] createOrUpdateContact called', {
     enabled: GHL_ENABLED,
     hasApiKey: !!GHL_API_KEY,
     hasLocationId: !!GHL_LOCATION_ID,
     envEnabled: process.env.GHL_ENABLED,
-    email: data.email,
-    phone: data.phone,
+    email,
+    phone,
   });
 
   if (!GHL_ENABLED) {
-    console.log('[GHL] Disabled - would create contact:', data.email);
+    console.log('[GHL] Disabled - would create contact:', email || phone || companyName || name);
     return { success: true, simulated: true };
   }
 
   try {
     // Try to find existing contact
-    console.log('[GHL] Searching for existing contact:', data.email);
-    const existingContact = await findContact(data.email);
+    const duplicateKey = phone || email;
+    console.log('[GHL] Searching for existing contact:', duplicateKey || '(none)');
+    const existingContact = duplicateKey ? await findContact(duplicateKey) : null;
     console.log('[GHL] Existing contact search result:', existingContact ? `Found: ${existingContact.id}` : 'Not found');
 
     const contactData: Record<string, unknown> = {
       locationId: GHL_LOCATION_ID,
-      email: data.email,
-      name: data.name,
-      phone: data.phone,
-      companyName: data.companyName,
+      ...(email ? { email } : {}),
+      ...(name ? { name } : {}),
+      ...(phone ? { phone } : {}),
+      ...(companyName ? { companyName } : {}),
       tags: data.tags || [],
       source: data.source || 'Goods on Country Website',
     };
@@ -252,7 +366,7 @@ async function createOrUpdateContact(data: ContactData): Promise<GHLResponse> {
       console.log('[GHL] Contact updated successfully:', response.contact.id);
     } else {
       // Create new contact
-      console.log('[GHL] Creating new contact with data:', { email: data.email, phone: data.phone });
+      console.log('[GHL] Creating new contact with data:', { email, phone, companyName, name });
       response = await ghlRequest<{ contact: { id: string } }>(
         '/contacts/',
         'POST',
@@ -304,6 +418,151 @@ async function addContactNote(contactId: string, note: string): Promise<boolean>
     console.error('[GHL] Error adding note:', error);
     return false;
   }
+}
+
+let strategicPipelinesCache: GhlPipeline[] | null = null;
+
+function normalizeGhlName(value?: string | null) {
+  return String(value || '')
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, ' ');
+}
+
+async function loadStrategicPipelines() {
+  if (strategicPipelinesCache) {
+    return strategicPipelinesCache;
+  }
+
+  const response = await ghlRequest<{ pipelines?: GhlPipeline[] } | GhlPipeline[]>(
+    `/opportunities/pipelines?locationId=${encodeURIComponent(GHL_LOCATION_ID)}`
+  );
+
+  const pipelines = Array.isArray(response)
+    ? response
+    : Array.isArray(response?.pipelines)
+      ? response.pipelines
+      : [];
+
+  strategicPipelinesCache = pipelines;
+  return pipelines;
+}
+
+async function resolveStrategicPipelineConfig(targetType: StrategicTargetType) {
+  const config = STRATEGIC_PIPELINES[targetType];
+  if (config.pipelineId && config.stageId) {
+    return config;
+  }
+
+  if (!GHL_ENABLED) {
+    return config.pipelineName && config.stageName ? config : null;
+  }
+
+  const pipelines = await loadStrategicPipelines();
+  const pipeline = pipelines.find((candidate) => {
+    const candidateName = normalizeGhlName(candidate.name || candidate.label);
+    return candidateName === normalizeGhlName(config.pipelineName);
+  });
+
+  if (!pipeline) {
+    return null;
+  }
+
+  const stages = Array.isArray(pipeline.stages)
+    ? pipeline.stages
+    : Array.isArray(pipeline.pipelineStages)
+      ? pipeline.pipelineStages
+      : [];
+
+  const stage = stages.find((candidate) => {
+    const candidateName = normalizeGhlName(candidate.name || candidate.label);
+    return candidateName === normalizeGhlName(config.stageName);
+  });
+
+  if (!stage) {
+    return null;
+  }
+
+  return {
+    ...config,
+    pipelineId: pipeline.id || pipeline._id || config.pipelineId,
+    stageId: stage.id || stage._id || config.stageId,
+  };
+}
+
+async function createStrategicOpportunity(params: {
+  contactId: string;
+  organizationName: string;
+  targetType: StrategicTargetType;
+  communityFocusName?: string;
+  communityFocusPostcode?: string;
+  communityFocusState?: string;
+  nextAction?: string;
+  whyPlausible?: string;
+  suggestedPipelineLabel?: string;
+  suggestedStageLabel?: string;
+}) {
+  const config = await resolveStrategicPipelineConfig(params.targetType);
+  if (!config) {
+    return {
+      opportunity: null,
+      opportunityCreated: false,
+      pipelineConfigured: false,
+      simulated: false,
+    };
+  }
+
+  const pipelineLabel = params.suggestedPipelineLabel || config.label;
+  const stageLabel = params.suggestedStageLabel || config.stageLabel;
+  const locationLabel = [params.communityFocusName, params.communityFocusState].filter(Boolean).join(' · ');
+  const opportunityName = [params.organizationName, pipelineLabel, locationLabel || undefined]
+    .filter(Boolean)
+    .join(' — ');
+  const description = [
+    params.communityFocusName ? `Community focus: ${params.communityFocusName}` : undefined,
+    params.communityFocusPostcode ? `Postcode: ${params.communityFocusPostcode}` : undefined,
+    params.communityFocusState ? `State: ${params.communityFocusState}` : undefined,
+    params.nextAction ? `Next action: ${params.nextAction}` : undefined,
+    params.whyPlausible ? `Why plausible: ${params.whyPlausible}` : undefined,
+  ]
+    .filter(Boolean)
+    .join('\n');
+
+  if (!GHL_ENABLED) {
+    return {
+      opportunity: {
+        id: `sim-${params.targetType}-${params.contactId}`,
+        pipelineId: config.pipelineId,
+        pipelineStageId: config.stageId,
+      },
+      opportunityCreated: true,
+      pipelineConfigured: true,
+      simulated: true,
+    };
+  }
+
+  const response = await ghlRequest<{ opportunity?: { id: string; pipelineId?: string; pipelineStageId?: string } }>(
+    '/opportunities/upsert',
+    'POST',
+    {
+      locationId: GHL_LOCATION_ID,
+      contactId: params.contactId,
+      pipelineId: config.pipelineId,
+      pipelineStageId: config.stageId,
+      name: opportunityName,
+      status: 'open',
+      source: 'GrantScope Goods Workspace',
+      description,
+      stageName: stageLabel,
+    }
+  );
+
+  return {
+    opportunity: response?.opportunity || null,
+    opportunityCreated: Boolean(response?.opportunity?.id),
+    pipelineConfigured: true,
+    simulated: false,
+  };
 }
 
 // ============================================================================
@@ -401,6 +660,13 @@ export const ghl = {
 Asset: ${data.assetId}
 Priority: ${data.priority}
 Category: ${data.category || 'General'}
+${data.assetConditionStatus ? `Condition: ${data.assetConditionStatus}` : ''}
+${data.serviceability ? `Serviceability: ${data.serviceability}` : ''}
+${data.failureCause ? `Failure cause: ${data.failureCause}` : ''}
+${data.outcomeWanted ? `Outcome wanted: ${data.outcomeWanted}` : ''}
+${data.oldItemDisposition ? `Old item disposition: ${data.oldItemDisposition}` : ''}
+${typeof data.safetyRisk === 'boolean' ? `Safety risk: ${data.safetyRisk ? 'yes' : 'no'}` : ''}
+${data.issueObservedAt ? `Observed at: ${data.issueObservedAt}` : ''}
 Issue: ${data.issueDescription}
 Submitted: ${new Date().toLocaleString('en-AU')}
       `.trim();
@@ -455,6 +721,84 @@ Submitted: ${new Date().toLocaleString('en-AU')}
       // Trigger workflow
       if (WORKFLOWS.newPartnership) {
         await triggerWorkflow(WORKFLOWS.newPartnership, result.contact.id);
+      }
+    }
+
+    return result;
+  },
+
+  /**
+   * Create/update a strategic buyer, capital, or partner target from CivicGraph.
+   */
+  async createStrategicTargetContact(data: StrategicTargetContactData): Promise<GHLResponse> {
+    const tags = [
+      'goods',
+      'goods-strategic-target',
+      `goods-${data.targetType}-target`,
+      ...(data.relationshipStatus ? [`goods-${data.relationshipStatus}`] : []),
+      ...(data.tags || []),
+    ];
+
+    const result = await createOrUpdateContact({
+      email: data.contactEmail,
+      phone: data.contactPhone,
+      name: data.contactName || data.organizationName,
+      companyName: data.organizationName,
+      tags,
+      source: 'GrantScope Goods Workspace',
+    });
+
+    if (result.success && result.contact?.id) {
+      const noteText = `
+🎯 Goods Strategic Target
+Target type: ${data.targetType}
+Organisation: ${data.organizationName}
+Source identity: ${data.sourceIdentityName || data.sourceOrgName}${data.sourceOrgAbn ? ` (ABN ${data.sourceOrgAbn})` : ''}
+${data.sourceEntityGsId ? `Source graph entity: ${data.sourceEntityGsId}` : ''}
+${data.communityFocusName ? `Community focus: ${data.communityFocusName}` : ''}
+${data.communityFocusPostcode ? `Community postcode: ${data.communityFocusPostcode}` : ''}
+${data.communityFocusState ? `Community state: ${data.communityFocusState}` : ''}
+${data.regionFocus ? `Region focus: ${data.regionFocus}` : ''}
+${data.relationshipStatus ? `Relationship status: ${data.relationshipStatus}` : ''}
+${data.contactSurface ? `Contact surface: ${data.contactSurface}` : ''}
+${data.nextAction ? `Next action: ${data.nextAction}` : ''}
+${data.whyPlausible ? `Why plausible: ${data.whyPlausible}` : ''}
+${data.suggestedPipelineLabel ? `Suggested pipeline: ${data.suggestedPipelineLabel}` : ''}
+${data.suggestedStageLabel ? `Suggested stage: ${data.suggestedStageLabel}` : ''}
+${data.sourceUrl ? `Source URL: ${data.sourceUrl}` : ''}
+Synced: ${new Date().toLocaleString('en-AU')}
+      `.trim();
+
+      await addContactNote(result.contact.id, noteText);
+
+      try {
+        const opportunityResult = await createStrategicOpportunity({
+          contactId: result.contact.id,
+          organizationName: data.organizationName,
+          targetType: data.targetType,
+          communityFocusName: data.communityFocusName,
+          communityFocusPostcode: data.communityFocusPostcode,
+          communityFocusState: data.communityFocusState,
+          nextAction: data.nextAction,
+          whyPlausible: data.whyPlausible,
+          suggestedPipelineLabel: data.suggestedPipelineLabel,
+          suggestedStageLabel: data.suggestedStageLabel,
+        });
+
+        return {
+          ...result,
+          opportunity: opportunityResult.opportunity || undefined,
+          opportunityCreated: opportunityResult.opportunityCreated,
+          pipelineConfigured: opportunityResult.pipelineConfigured,
+          simulated: result.simulated || opportunityResult.simulated,
+        };
+      } catch (error) {
+        console.error('[GHL] Error creating strategic opportunity:', error);
+        return {
+          ...result,
+          opportunityCreated: false,
+          pipelineConfigured: Boolean(await resolveStrategicPipelineConfig(data.targetType)),
+        };
       }
     }
 

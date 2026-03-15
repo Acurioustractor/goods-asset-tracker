@@ -212,6 +212,9 @@ export interface Partner {
   updated_at: string;
 }
 
+// Asset status for bed distribution pipeline
+export type AssetStatus = 'requested' | 'allocated' | 'demo' | 'deployed' | 'retired';
+
 // Existing Goods v1 types (for reference)
 export interface Asset {
   unique_id: string;
@@ -232,6 +235,9 @@ export interface Asset {
   place: string | null;
   photo: string | null;
   supply_date: string | null;
+  // Pipeline fields
+  quantity: number;
+  partner_name: string | null;
 }
 
 // ============================================================================
@@ -428,6 +434,44 @@ export interface ProductionShift {
   updated_at: string;
 }
 
+export interface ProductionInventory {
+  id: string;
+  snapshot_date: string;
+  operator: string;
+  raw_plastic_kg: number;
+  chipped_plastic_sheets: number;
+  tab_sheets_finished: number;
+  tab_sheets_in_cooker: number;
+  tab_sheets_cooling: number;
+  tabs_ready: number;
+  leg_sheets_uncut: number;
+  legs_ready: number;
+  steel_poles: number;
+  canvas_ready: number;
+  beds_possible: number;
+  notes: string | null;
+  photo_urls: string[];
+  voice_note_urls: string[];
+  voice_note_transcripts: string[];
+  created_at: string;
+}
+
+export type JournalEntryType = 'reflection' | 'issue' | 'cost_idea' | 'general';
+
+export interface ProductionJournal {
+  id: string;
+  entry_date: string;
+  operator: string;
+  entry_type: JournalEntryType;
+  title: string;
+  content: string | null;
+  voice_note_urls: string[];
+  voice_note_transcripts: string[];
+  photo_urls: string[];
+  is_resolved: boolean;
+  created_at: string;
+}
+
 // ============================================================================
 // FLEET TELEMETRY TYPES
 // ============================================================================
@@ -563,6 +607,8 @@ export type Tables = {
   announcements: Announcement;
   // Production
   production_shifts: ProductionShift;
+  production_inventory: ProductionInventory;
+  production_journal: ProductionJournal;
   // Fleet telemetry
   usage_logs: UsageLog;
   alerts: Alert;

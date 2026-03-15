@@ -17,6 +17,20 @@ interface AssetInfo {
 }
 
 type Priority = 'Low' | 'Medium' | 'High' | 'Urgent';
+type AssetConditionStatus = 'Good' | 'Needs Repair' | 'Damaged' | 'Missing' | 'Replaced';
+type Serviceability = 'fully_usable' | 'limited_use' | 'unsafe' | 'not_usable';
+type FailureCause =
+  | 'wear'
+  | 'rust'
+  | 'mould'
+  | 'frame_damage'
+  | 'fabric_damage'
+  | 'electrical_fault'
+  | 'water_fault'
+  | 'freight_damage'
+  | 'unknown';
+type OutcomeWanted = 'repair' | 'replace' | 'pickup' | 'assessment' | 'dispose';
+type OldItemDisposition = 'still_in_use' | 'stored' | 'awaiting_pickup' | 'dumped' | 'returned' | 'unknown';
 
 interface SubmitResult {
   success: boolean;
@@ -27,6 +41,10 @@ interface SubmitResult {
 function SupportPageContent() {
   const searchParams = useSearchParams();
   const assetIdParam = searchParams.get('asset_id');
+  const subjectParam = searchParams.get('subject');
+  const storyIdParam = searchParams.get('story_id');
+
+  const isStoryRemoval = subjectParam === 'story-removal';
 
   const [assetId, setAssetId] = useState(assetIdParam || '');
   const [asset, setAsset] = useState<AssetInfo | null>(null);
@@ -37,9 +55,20 @@ function SupportPageContent() {
   // Form fields
   const [userName, setUserName] = useState('');
   const [userContact, setUserContact] = useState('');
-  const [issueDescription, setIssueDescription] = useState('');
+  const [issueDescription, setIssueDescription] = useState(
+    isStoryRemoval
+      ? `I would like to request removal of a story from the Goods on Country website.${storyIdParam ? `\n\nStory ID: ${storyIdParam}` : ''}\n\nReason: `
+      : ''
+  );
   const [priority, setPriority] = useState<Priority>('Medium');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState(isStoryRemoval ? 'other' : '');
+  const [assetConditionStatus, setAssetConditionStatus] = useState<AssetConditionStatus>('Needs Repair');
+  const [serviceability, setServiceability] = useState<Serviceability>('limited_use');
+  const [failureCause, setFailureCause] = useState<FailureCause>('unknown');
+  const [outcomeWanted, setOutcomeWanted] = useState<OutcomeWanted>('assessment');
+  const [oldItemDisposition, setOldItemDisposition] = useState<OldItemDisposition>('still_in_use');
+  const [safetyRisk, setSafetyRisk] = useState(false);
+  const [issueObservedAt, setIssueObservedAt] = useState('');
 
   // Auto-lookup asset when page loads with asset_id
   useEffect(() => {
@@ -95,6 +124,13 @@ function SupportPageContent() {
           issueDescription: issueDescription.trim(),
           priority,
           category: category || undefined,
+          assetConditionStatus: asset ? assetConditionStatus : undefined,
+          serviceability: asset ? serviceability : undefined,
+          failureCause: asset ? failureCause : undefined,
+          outcomeWanted: asset ? outcomeWanted : undefined,
+          oldItemDisposition: asset ? oldItemDisposition : undefined,
+          safetyRisk: asset ? safetyRisk : undefined,
+          issueObservedAt: asset && issueObservedAt ? issueObservedAt : undefined,
         }),
       });
 
@@ -167,9 +203,13 @@ function SupportPageContent() {
       <div className="max-w-lg mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Goods Support</h1>
+          <h1 className="text-3xl font-bold text-gray-900">
+            {isStoryRemoval ? 'Story Removal Request' : 'Goods Support'}
+          </h1>
           <p className="text-gray-600 mt-2">
-            Need help with your bed or washing machine? We&apos;re here to assist.
+            {isStoryRemoval
+              ? 'If you are featured in a story and would like it removed, please fill out the form below.'
+              : 'Need help with your bed or washing machine? We\u2019re here to assist.'}
           </p>
         </div>
 
@@ -249,14 +289,14 @@ function SupportPageContent() {
 
         {/* Support Form */}
         <Card>
-          <CardHeader>
-            <CardTitle>Submit Support Request</CardTitle>
-            <CardDescription>
-              Tell us about your issue and we&apos;ll get back to you as soon as possible.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <CardHeader>
+              <CardTitle>Submit Support Request</CardTitle>
+              <CardDescription>
+                Tell us about your issue and we&apos;ll get back to you as soon as possible. This form is designed to work on low signal. Photos are optional, but the quick fields below help us track repair, replacement, and dump risk properly.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-4">
               {/* Name */}
               <div className="space-y-2">
                 <Label htmlFor="name">Your Name (optional)</Label>
@@ -303,6 +343,128 @@ function SupportPageContent() {
                   <option value="other">Other</option>
                 </select>
               </div>
+
+              {asset && !isStoryRemoval ? (
+                <div className="space-y-4 rounded-lg border border-amber-200 bg-amber-50 p-4">
+                  <div>
+                    <p className="text-sm font-semibold text-amber-900">Quick condition check</p>
+                    <p className="text-xs text-amber-700">
+                      Use these structured fields so Goods can track repair, replacement, and end-of-life pressure across communities.
+                    </p>
+                  </div>
+
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <div className="space-y-2">
+                      <Label htmlFor="assetConditionStatus">Current condition</Label>
+                      <select
+                        id="assetConditionStatus"
+                        value={assetConditionStatus}
+                        onChange={(e) => setAssetConditionStatus(e.target.value as AssetConditionStatus)}
+                        className="w-full border rounded-md px-3 py-2 text-sm"
+                      >
+                        <option value="Good">Good</option>
+                        <option value="Needs Repair">Needs Repair</option>
+                        <option value="Damaged">Damaged</option>
+                        <option value="Missing">Missing</option>
+                        <option value="Replaced">Replaced</option>
+                      </select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="serviceability">Can it still be used?</Label>
+                      <select
+                        id="serviceability"
+                        value={serviceability}
+                        onChange={(e) => setServiceability(e.target.value as Serviceability)}
+                        className="w-full border rounded-md px-3 py-2 text-sm"
+                      >
+                        <option value="fully_usable">Yes, fully usable</option>
+                        <option value="limited_use">Yes, but limited</option>
+                        <option value="unsafe">No, unsafe to use</option>
+                        <option value="not_usable">No, not usable</option>
+                      </select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="failureCause">Main issue</Label>
+                      <select
+                        id="failureCause"
+                        value={failureCause}
+                        onChange={(e) => setFailureCause(e.target.value as FailureCause)}
+                        className="w-full border rounded-md px-3 py-2 text-sm"
+                      >
+                        <option value="unknown">Not sure yet</option>
+                        <option value="wear">Wear and tear</option>
+                        <option value="rust">Rust / corrosion</option>
+                        <option value="mould">Mould / mildew</option>
+                        <option value="frame_damage">Frame or structure damage</option>
+                        <option value="fabric_damage">Mattress / fabric damage</option>
+                        <option value="electrical_fault">Electrical fault</option>
+                        <option value="water_fault">Water / plumbing fault</option>
+                        <option value="freight_damage">Freight or delivery damage</option>
+                      </select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="outcomeWanted">What do you need next?</Label>
+                      <select
+                        id="outcomeWanted"
+                        value={outcomeWanted}
+                        onChange={(e) => setOutcomeWanted(e.target.value as OutcomeWanted)}
+                        className="w-full border rounded-md px-3 py-2 text-sm"
+                      >
+                        <option value="assessment">Assessment / advice</option>
+                        <option value="repair">Repair</option>
+                        <option value="replace">Replacement</option>
+                        <option value="pickup">Pickup / removal</option>
+                        <option value="dispose">Disposal support</option>
+                      </select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="oldItemDisposition">What happened to the old item?</Label>
+                      <select
+                        id="oldItemDisposition"
+                        value={oldItemDisposition}
+                        onChange={(e) => setOldItemDisposition(e.target.value as OldItemDisposition)}
+                        className="w-full border rounded-md px-3 py-2 text-sm"
+                      >
+                        <option value="still_in_use">Still in use</option>
+                        <option value="stored">Stored</option>
+                        <option value="awaiting_pickup">Waiting for pickup</option>
+                        <option value="dumped">Dumped / tipped</option>
+                        <option value="returned">Returned</option>
+                        <option value="unknown">Not sure</option>
+                      </select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="issueObservedAt">When did you notice it?</Label>
+                      <Input
+                        id="issueObservedAt"
+                        type="date"
+                        value={issueObservedAt}
+                        onChange={(e) => setIssueObservedAt(e.target.value)}
+                      />
+                    </div>
+                  </div>
+
+                  <label className="flex items-start gap-3 rounded-md border border-amber-300 bg-white px-3 py-2 text-sm text-amber-900">
+                    <input
+                      type="checkbox"
+                      checked={safetyRisk}
+                      onChange={(e) => setSafetyRisk(e.target.checked)}
+                      className="mt-1"
+                    />
+                    <span>
+                      This is a safety risk right now
+                      <span className="mt-1 block text-xs text-amber-700">
+                        Tick this if the item is unsafe, causing injury risk, electrical risk, mould exposure, or should be taken out of service now.
+                      </span>
+                    </span>
+                  </label>
+                </div>
+              ) : null}
 
               {/* Priority */}
               <div className="space-y-2">

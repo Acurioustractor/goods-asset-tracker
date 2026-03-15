@@ -85,6 +85,80 @@ async function fetchFromEmpathyLedger<T>(
 }
 
 /**
+ * Make request to the plain Empathy Ledger API (/api/stories)
+ * Returns full story records with content, images, and consent fields
+ */
+async function fetchFromPlainAPI<T>(
+  endpoint: string,
+  params: Record<string, unknown> = {},
+  options: { revalidate?: number } = {}
+): Promise<T> {
+  const queryString = buildQueryString(params);
+  const url = `${EMPATHY_LEDGER_URL}/api${endpoint}${queryString ? `?${queryString}` : ''}`;
+
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+  };
+
+  if (EMPATHY_LEDGER_API_KEY) {
+    headers['X-API-Key'] = EMPATHY_LEDGER_API_KEY;
+  }
+
+  const response = await fetch(url, {
+    headers,
+    next: { revalidate: options.revalidate ?? 300 },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Empathy Ledger API error: ${response.status} ${response.statusText}`);
+  }
+
+  return response.json();
+}
+
+/**
+ * Map a snake_case story from the plain API to camelCase EmpathyLedgerStory
+ */
+function mapStoryFromAPI(raw: Record<string, unknown>): EmpathyLedgerStory {
+  return {
+    id: String(raw.id ?? ''),
+    title: String(raw.title ?? ''),
+    summary: (raw.summary as string) ?? (raw.excerpt as string) ?? null,
+    content: (raw.content as string) ?? null,
+    authorName: (raw.author_name as string) ?? (raw.storyteller_name as string) ?? 'Unknown',
+    authorId: (raw.author_id as string) ?? (raw.storyteller_id as string) ?? null,
+    publishedAt: String(raw.published_at ?? raw.created_at ?? ''),
+    themes: (raw.themes as (string | { name: string })[]) ?? [],
+    visibility: (raw.visibility as string) ?? 'public',
+    isPublic: raw.is_public !== false,
+    featuredImageUrl: (raw.featured_image_url as string) ?? (raw.featuredImageUrl as string) ?? null,
+    culturalSensitivity: (raw.cultural_sensitivity as string) ?? null,
+    elderApproved: Boolean(raw.elder_approved ?? raw.elderApproved ?? false),
+    consentVerified: Boolean(raw.consent_verified ?? raw.consentVerified ?? false),
+    syndicationEnabled: Boolean(raw.syndication_enabled ?? false),
+    consentWithdrawnAt: (raw.consent_withdrawn_at as string) ?? null,
+    isArchived: Boolean(raw.is_archived ?? false),
+    storytellerId: (raw.storyteller_id as string) ?? null,
+    storytellerName: (raw.storyteller_name as string) ?? null,
+    tags: (raw.tags as string[]) ?? [],
+    excerpt: (raw.excerpt as string) ?? null,
+    storyImageUrl: (raw.featured_image_url as string) ?? (raw.featuredImageUrl as string) ?? null,
+  };
+}
+
+/**
+ * Filter stories by consent and syndication rules
+ */
+function filterByConsent(stories: EmpathyLedgerStory[]): EmpathyLedgerStory[] {
+  return stories.filter((story) => {
+    if (story.consentWithdrawnAt) return false;
+    if (story.isArchived) return false;
+    if (!story.syndicationEnabled) return false;
+    return true;
+  });
+}
+
+/**
  * Make authenticated request to the Empathy Ledger Syndication API
  * Uses /api/v1/sites/{siteSlug}/ endpoints which return rich analysis data
  */
@@ -151,13 +225,14 @@ export const empathyLedger = {
   },
 
   /**
-   * Fetch a single story by ID
+   * Fetch a single story by ID (uses plain API for full data)
    */
   async getStory(id: string): Promise<EmpathyLedgerStory | null> {
     if (!ENABLE_EMPATHY_LEDGER) return null;
 
     try {
-      const story = await fetchFromEmpathyLedger<EmpathyLedgerStory>(`/stories/${id}`);
+      const raw = await fetchFromPlainAPI<Record<string, unknown>>(`/stories/${id}`);
+      const story = mapStoryFromAPI(raw);
       return story;
     } catch (error) {
       console.error(`[EmpathyLedger] Failed to fetch story ${id}:`, error);
@@ -166,18 +241,21 @@ export const empathyLedger = {
   },
 
   /**
-   * Fetch stories
+   * Fetch stories (uses plain API with consent filtering)
    */
   async getStories(params: StoriesQueryParams = {}): Promise<EmpathyLedgerStory[]> {
     if (!ENABLE_EMPATHY_LEDGER) return [];
 
     try {
-      const response = await fetchFromEmpathyLedger<StoriesResponse>('/stories', {
+      const response = await fetchFromPlainAPI<{ stories: Record<string, unknown>[] }>('/stories', {
+        projectCode: params.projectCode ?? GOODS_PROJECT_CODE,
         theme: params.theme,
-        limit: params.limit,
+        limit: params.limit ? params.limit * 3 : 50, // Fetch extra to account for consent filtering
         page: params.page,
       });
-      return response.stories;
+      const mapped = (response.stories || []).map(mapStoryFromAPI);
+      const safe = filterByConsent(mapped);
+      return params.limit ? safe.slice(0, params.limit) : safe;
     } catch (error) {
       console.error('[EmpathyLedger] Failed to fetch stories:', error);
       return [];

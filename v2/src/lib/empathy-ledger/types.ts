@@ -50,6 +50,20 @@ export interface EmpathyLedgerStory {
   culturalSensitivity: string | null;
   elderApproved: boolean;
   consentVerified: boolean;
+
+  // Consent & syndication
+  syndicationEnabled: boolean;
+  consentWithdrawnAt: string | null;
+  isArchived: boolean;
+
+  // Storyteller
+  storytellerId: string | null;
+  storytellerName: string | null;
+
+  // Extended fields from plain API
+  tags: string[];
+  excerpt: string | null;
+  storyImageUrl: string | null;
 }
 
 // Storyteller/artisan profile (basic — from content-hub)

@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const stats = [
   { value: '369+', label: 'beds delivered' },
@@ -7,6 +10,12 @@ const stats = [
 ];
 
 export function ImpactBanner() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
+
   return (
     <div className="bg-foreground text-background">
       <div className="container mx-auto px-4">

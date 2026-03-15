@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { FeedbackWidget } from '@/components/feedback/feedback-widget';
 import { NewsletterForm } from '@/components/layout/newsletter-form';
 
@@ -23,6 +26,12 @@ const footerLinks = {
 };
 
 export function SiteFooter() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
+
   return (
     <footer className="border-t bg-muted/30">
       {/* Newsletter */}
