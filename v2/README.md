@@ -78,6 +78,28 @@ Optional:
 - `STRIPE_SECRET_KEY` - Stripe payments (when implemented)
 - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` - Stripe client key
 
+GoHighLevel strategic target execution:
+- `GHL_ENABLED` - Set to `true` to enable GHL contact + opportunity sync
+- `GHL_API_KEY` - GoHighLevel API key
+- `GHL_LOCATION_ID` - GoHighLevel location id. You can copy this from the URL when you are inside the location in GHL, e.g. `/v2/location/<location_id>/...`
+- `GRANTSCOPE_SYNC_SECRET` or `GOODS_GRANTSCOPE_SYNC_SECRET` - shared secret for CivicGraph -> Goods target pushes
+- `GHL_PIPELINE_STRATEGIC_BUYER` - Buyer opportunity pipeline id
+- `GHL_STAGE_STRATEGIC_BUYER_NEW` - Default buyer stage id
+- `GHL_PIPELINE_STRATEGIC_CAPITAL` - Capital/philanthropy pipeline id
+- `GHL_STAGE_STRATEGIC_CAPITAL_NEW` - Default capital stage id
+- `GHL_PIPELINE_STRATEGIC_PARTNER` - Partner/community pipeline id
+- `GHL_STAGE_STRATEGIC_PARTNER_NEW` - Default partner stage id
+
+If the strategic pipeline ids are missing, Goods will still create/update contacts and notes from CivicGraph pushes, but it will not create pipeline opportunities yet.
+
+Simplest setup:
+- set `GHL_API_KEY`
+- set `GHL_LOCATION_ID`
+- set `GHL_PIPELINE_STRATEGIC_DEFAULT_NAME=Goods`
+- set `GHL_PIPELINE_STRATEGIC_DEFAULT_STAGE_NAME=New Lead`
+
+With those four values in place, the Goods integration will resolve the pipeline/stage by name and use them for buyer, capital, and partner opportunities. Raw pipeline/stage ids are now optional.
+
 ## Deployment
 
 Deploy to Vercel:

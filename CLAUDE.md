@@ -1,5 +1,16 @@
 # Goods on Country
 
+## CRITICAL — Read First
+
+### Supabase MCP is the WRONG project
+The Supabase MCP server is connected to project `bhwyqqbovcjoefezgfnq` (a DIFFERENT project). The v2 app uses `cwsyhpiuepvdjtxaozwf`. **NEVER use MCP for v2 database operations.** Use `curl` with the service role key from `.env.local`, or `psql` with the connection string. If you catch yourself running `mcp__supabase__execute_sql` for v2 data, STOP — you're querying the wrong database.
+
+### Build, Don't Plan
+Do NOT enter extended planning modes unless explicitly asked. When given a task, start implementing immediately. If clarification is needed, ask a focused question — do not write multi-phase plan documents. If a plan IS requested, keep it to bullet points and ask for approval before continuing.
+
+### Verify Approach Before Implementing
+Before writing code for a non-trivial task, state your approach in 2-3 bullets: (1) what you'll do, (2) what tools/APIs you'll use, (3) what could go wrong. Then proceed unless redirected. This is NOT a plan — it's a 3-line sanity check.
+
 ## What This Is
 A social enterprise delivering quality furniture to remote Indigenous communities across Australia. The flagship product is the **Stretch Bed** — a washable, flat-packable bed made from recycled plastic, heavy-duty canvas, and galvanised steel.
 
@@ -110,6 +121,18 @@ cd v2 && npm run lint     # ESLint
 - Use real community language ("deadly" = excellent)
 - Always centre Indigenous voices and agency
 
+## Database Operations
+- **DDL (CREATE, ALTER, DROP):** Use `psql` directly — the Supabase `exec_sql` RPC does not support DDL.
+- **Always check actual schema** before writing queries — do not assume column names or primary keys from memory. Read `v2/src/lib/types/database.ts` or query `information_schema.columns`.
+- **When batch operations hit rate limits or API errors**, switch providers/approaches quickly rather than retrying the same failing method.
+- **For v2 database work**, use `curl` with the service role key from `.env.local` or `psql` — NOT the Supabase MCP.
+
+## TypeScript Conventions
+- Always ensure clean `npm run build` before considering work complete.
+- Fix Recharts and other library type errors immediately — don't leave them.
+- Use existing patterns in the codebase for imports, API routes, and component structure.
+- When editing files, read them first to understand existing patterns.
+
 ## Mistakes to Avoid
 - Do NOT modify files in `deploy/` — that's the old static site
 - Do NOT use `weave-bed` slugs or `weave_bed` product types — the Weave Bed is discontinued. The canonical Stretch Bed slug is `stretch-bed`.
@@ -119,4 +142,5 @@ cd v2 && npm run lint     # ESLint
 - Do NOT add `use client` to pages unless necessary — prefer Server Components
 - Do NOT put washing machines or basket beds as "for sale" — only the Stretch Bed is purchasable
 - Large videos go in `public/video/`, not Supabase Storage (too big for API)
-- The Supabase MCP server is connected to a DIFFERENT project (`bhwyqqbovcjoefezgfnq`). The v2 app uses `cwsyhpiuepvdjtxaozwf`. Use curl or the dashboard for v2 database work.
+- Do NOT use Supabase MCP for v2 data — it's connected to the wrong project (see "CRITICAL" section above)
+- When user says "open" or "show me", they want to see the running app — open browser URLs or launch dev servers, don't continue code walkthroughs

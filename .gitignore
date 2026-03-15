@@ -88,3 +88,14 @@ scripts-global
 
 # SQL scripts
 supabase/*.sql
+
+# Local tools and temp files
+.obsidian/
+.tldr/
+.vercel/
+autoresearch-macos/
+media/
+idiot_index_model.py
+v2/check_requests.js
+v2/test_queries.ts
+v2/wash_report_week10_2026.json

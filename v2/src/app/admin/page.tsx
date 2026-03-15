@@ -1,65 +1,39 @@
 import Link from 'next/link';
-import { createClient } from '@/lib/supabase/server';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { formatAmountFromStripe } from '@/lib/stripe';
+import { getAdminKPIs, getPipelineAssets, getRecentActivity } from './actions';
+import type { AssetStatus } from '@/lib/types/database';
+
+export const dynamic = 'force-dynamic';
 
 export default async function AdminDashboard() {
-  const supabase = await createClient();
-
-  // Fetch dashboard stats
-  const [ordersResult, productsResult, recentOrdersResult] = await Promise.all([
-    // Order stats
-    supabase
-      .from('orders')
-      .select('status, total_cents', { count: 'exact' }),
-    // Product count
-    supabase
-      .from('products')
-      .select('id', { count: 'exact' })
-      .eq('is_active', true),
-    // Recent orders
-    supabase
-      .from('orders')
-      .select('*')
-      .order('created_at', { ascending: false })
-      .limit(5),
+  const [kpis, pipeline, activity] = await Promise.all([
+    getAdminKPIs(),
+    getPipelineAssets(),
+    getRecentActivity(),
   ]);
-
-  const orders = ordersResult.data || [];
-  const productCount = productsResult.count || 0;
-  const recentOrders = recentOrdersResult.data || [];
-
-  // Calculate stats
-  const totalOrders = orders.length;
-  const pendingOrders = orders.filter(
-    (o) => o.status === 'paid' || o.status === 'processing'
-  ).length;
-  const totalRevenue = orders
-    .filter((o) => o.status !== 'cancelled' && o.status !== 'refunded')
-    .reduce((sum, o) => sum + (o.total_cents || 0), 0);
 
   const stats = [
     {
-      title: 'Total Orders',
-      value: totalOrders,
-      description: 'All time',
+      title: 'Beds Deployed',
+      value: kpis.bedsDeployed,
+      description: 'In communities',
     },
     {
-      title: 'Pending Fulfillment',
-      value: pendingOrders,
-      description: 'Need attention',
-      highlight: pendingOrders > 0,
+      title: 'Beds in Pipeline',
+      value: kpis.bedsInPipeline,
+      description: 'Requested + allocated',
+      highlight: kpis.bedsInPipeline > 0,
     },
     {
-      title: 'Total Revenue',
-      value: `$${formatAmountFromStripe(totalRevenue).toLocaleString()}`,
-      description: 'AUD',
+      title: 'Communities Served',
+      value: kpis.communitiesServed,
+      description: 'Distinct locations',
     },
     {
-      title: 'Active Products',
-      value: productCount,
-      description: 'In catalog',
+      title: 'Trade Revenue',
+      value: kpis.totalRevenue > 0 ? `$${kpis.totalRevenue.toLocaleString()}` : '$0',
+      description: 'AUD from orders',
     },
   ];
 
@@ -68,11 +42,11 @@ export default async function AdminDashboard() {
       <div>
         <h1 className="text-2xl font-bold">Dashboard</h1>
         <p className="text-gray-500 mt-1">
-          Welcome to the Goods on Country admin panel
+          Goods on Country operations overview
         </p>
       </div>
 
-      {/* Stats Grid */}
+      {/* KPI Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat) => (
           <Card key={stat.title}>
@@ -93,44 +67,70 @@ export default async function AdminDashboard() {
         ))}
       </div>
 
-      {/* Recent Orders */}
+      {/* Bed Pipeline */}
       <Card>
-        <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle>Recent Orders</CardTitle>
-          <Link
-            href="/admin/orders"
-            className="text-sm text-blue-600 hover:underline"
-          >
-            View all
-          </Link>
+        <CardHeader>
+          <CardTitle>Bed Pipeline</CardTitle>
         </CardHeader>
         <CardContent>
-          {recentOrders.length === 0 ? (
-            <p className="text-gray-500 text-sm">No orders yet</p>
+          {pipeline.length === 0 ? (
+            <p className="text-gray-500 text-sm">No beds in pipeline</p>
           ) : (
-            <div className="space-y-4">
-              {recentOrders.map((order) => (
-                <div
-                  key={order.id}
-                  className="flex items-center justify-between py-2 border-b last:border-0"
-                >
-                  <div>
-                    <Link
-                      href={`/admin/orders/${order.id}`}
-                      className="font-medium hover:underline"
-                    >
-                      {order.order_number}
-                    </Link>
-                    <p className="text-sm text-gray-500">
-                      {order.customer_email}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <StatusBadge status={order.status} />
-                    <span className="font-medium">
-                      ${formatAmountFromStripe(order.total_cents)}
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b text-left text-gray-500">
+                    <th className="pb-2 font-medium">ID</th>
+                    <th className="pb-2 font-medium">Status</th>
+                    <th className="pb-2 font-medium">Community</th>
+                    <th className="pb-2 font-medium text-right">Qty</th>
+                    <th className="pb-2 font-medium">Partner</th>
+                    <th className="pb-2 font-medium">Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {pipeline.map((entry) => (
+                    <tr key={entry.unique_id} className="border-b last:border-0">
+                      <td className="py-2 font-mono text-xs">{entry.unique_id}</td>
+                      <td className="py-2">
+                        <StatusBadge status={entry.status as AssetStatus} />
+                      </td>
+                      <td className="py-2">{entry.community}</td>
+                      <td className="py-2 text-right font-medium">{entry.quantity}</td>
+                      <td className="py-2 text-gray-600">{entry.partner_name || '—'}</td>
+                      <td className="py-2 text-gray-500 text-xs max-w-[200px] truncate">
+                        {entry.notes || '—'}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Recent Activity */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Recent Activity</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {activity.length === 0 ? (
+            <p className="text-gray-500 text-sm">No recent activity</p>
+          ) : (
+            <div className="space-y-3">
+              {activity.map((event, i) => (
+                <div key={i} className="flex items-center justify-between py-1">
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs font-medium uppercase text-gray-400 w-20">
+                      {event.type}
                     </span>
+                    <span className="text-sm">{event.label}</span>
                   </div>
+                  <span className="text-xs text-gray-400">
+                    {formatRelativeDate(event.timestamp)}
+                  </span>
                 </div>
               ))}
             </div>
@@ -139,23 +139,43 @@ export default async function AdminDashboard() {
       </Card>
 
       {/* Quick Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Link href="/admin/orders?status=paid">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <Link href="/admin/ops">
           <Card className="hover:border-orange-300 transition-colors cursor-pointer">
             <CardContent className="pt-6">
-              <h3 className="font-medium">Orders to Process</h3>
+              <h3 className="font-medium">Ops Dashboard</h3>
               <p className="text-sm text-gray-500 mt-1">
-                View orders ready for fulfillment
+                Operations overview
               </p>
             </CardContent>
           </Card>
         </Link>
-        <Link href="/admin/products">
+        <Link href="/admin/economics">
+          <Card className="hover:border-orange-300 transition-colors cursor-pointer bg-orange-50/50">
+            <CardContent className="pt-6">
+              <h3 className="font-medium">Unit Economics</h3>
+              <p className="text-sm text-gray-500 mt-1">
+                First-Principles Models
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
+        <Link href="/admin/fleet">
           <Card className="hover:border-orange-300 transition-colors cursor-pointer">
             <CardContent className="pt-6">
-              <h3 className="font-medium">Manage Products</h3>
+              <h3 className="font-medium">Fleet</h3>
               <p className="text-sm text-gray-500 mt-1">
-                Update inventory and pricing
+                Washing machine telemetry
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
+        <Link href="/admin/production">
+          <Card className="hover:border-orange-300 transition-colors cursor-pointer">
+            <CardContent className="pt-6">
+              <h3 className="font-medium">Production</h3>
+              <p className="text-sm text-gray-500 mt-1">
+                Manufacturing shifts
               </p>
             </CardContent>
           </Card>
@@ -163,9 +183,9 @@ export default async function AdminDashboard() {
         <Link href="/" target="_blank">
           <Card className="hover:border-orange-300 transition-colors cursor-pointer">
             <CardContent className="pt-6">
-              <h3 className="font-medium">View Storefront</h3>
+              <h3 className="font-medium">Storefront</h3>
               <p className="text-sm text-gray-500 mt-1">
-                See your live website
+                View live website
               </p>
             </CardContent>
           </Card>
@@ -175,20 +195,32 @@ export default async function AdminDashboard() {
   );
 }
 
-function StatusBadge({ status }: { status: string }) {
+function StatusBadge({ status }: { status: AssetStatus | string }) {
   const variants: Record<string, string> = {
-    pending: 'bg-gray-100 text-gray-800',
-    paid: 'bg-blue-100 text-blue-800',
-    processing: 'bg-yellow-100 text-yellow-800',
-    shipped: 'bg-purple-100 text-purple-800',
-    delivered: 'bg-green-100 text-green-800',
-    cancelled: 'bg-red-100 text-red-800',
-    refunded: 'bg-gray-100 text-gray-800',
+    requested: 'bg-blue-100 text-blue-800',
+    allocated: 'bg-yellow-100 text-yellow-800',
+    demo: 'bg-purple-100 text-purple-800',
+    deployed: 'bg-green-100 text-green-800',
+    retired: 'bg-gray-100 text-gray-800',
   };
 
   return (
-    <Badge className={variants[status] || variants.pending}>
+    <Badge className={variants[status] || 'bg-gray-100 text-gray-800'}>
       {status.charAt(0).toUpperCase() + status.slice(1)}
     </Badge>
   );
+}
+
+function formatRelativeDate(dateStr: string): string {
+  const date = new Date(dateStr);
+  const now = new Date();
+  const diffMs = now.getTime() - date.getTime();
+  const diffMins = Math.floor(diffMs / 60000);
+  const diffHours = Math.floor(diffMs / 3600000);
+  const diffDays = Math.floor(diffMs / 86400000);
+
+  if (diffMins < 60) return `${diffMins}m ago`;
+  if (diffHours < 24) return `${diffHours}h ago`;
+  if (diffDays < 7) return `${diffDays}d ago`;
+  return date.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' });
 }
