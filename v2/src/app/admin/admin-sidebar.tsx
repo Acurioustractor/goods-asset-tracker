@@ -56,7 +56,7 @@ const navigation = [
       { name: 'Compassion', href: '/admin/compassion', icon: Heart },
       { name: 'Messages', href: '/admin/messages', icon: MessageSquare },
       { name: 'People', href: '/admin/partners', icon: Users },
-      { name: 'Grants', href: '/admin/grants', icon: FileText },
+      { name: 'Grants & Foundations', href: '/admin/grants', icon: FileText },
     ],
   },
   {
