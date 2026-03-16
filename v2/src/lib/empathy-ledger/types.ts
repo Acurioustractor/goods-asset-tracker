@@ -64,6 +64,11 @@ export interface EmpathyLedgerStory {
   tags: string[];
   excerpt: string | null;
   storyImageUrl: string | null;
+
+  // Video
+  videoLink: string | null;
+  videoEmbedCode: string | null;
+  storyType: string | null;
 }
 
 // Storyteller/artisan profile (basic — from content-hub)
@@ -281,4 +286,29 @@ export interface SyndicationStorytellersResponse {
 
 export interface SyndicationStorytellerResponse {
   storyteller: SyndicationStoryteller;
+}
+
+// Gallery types (from EL Supabase)
+export interface ELGalleryPhoto {
+  id: string;
+  title: string | null;
+  url: string;
+  thumbnailUrl: string | null;
+  altText: string | null;
+  fileName: string | null;
+  width: number | null;
+  height: number | null;
+  sortOrder: number;
+  caption: string | null;
+  isCoverImage: boolean;
+}
+
+export interface ELGallery {
+  id: string;
+  title: string;
+  description: string | null;
+  slug: string | null;
+  photoCount: number;
+  coverImage: string | null;
+  photos: ELGalleryPhoto[];
 }

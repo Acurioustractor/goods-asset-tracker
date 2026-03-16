@@ -141,19 +141,50 @@ export default async function StoryDetailPage({ params }: Props) {
         </div>
       </section>
 
+      {/* Video embed (if present) */}
+      {story.videoLink && (
+        <section className="py-8 md:py-12 bg-foreground">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              {story.videoEmbedCode ? (
+                <div
+                  className="aspect-video rounded-lg overflow-hidden bg-black"
+                  dangerouslySetInnerHTML={{ __html: story.videoEmbedCode }}
+                />
+              ) : (
+                <div className="aspect-video rounded-lg overflow-hidden bg-black">
+                  <iframe
+                    src={story.videoLink}
+                    className="w-full h-full"
+                    allowFullScreen
+                    title={story.title}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Content */}
       <section className="py-12 md:py-16" style={{ backgroundColor: '#FDF8F3' }}>
         <div className="container mx-auto px-4">
-          <article
-            className="max-w-[65ch] mx-auto prose prose-lg prose-stone
-              prose-headings:font-light prose-headings:tracking-tight
-              prose-p:leading-relaxed prose-p:text-muted-foreground
-              prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-              prose-blockquote:border-primary/30 prose-blockquote:italic
-              prose-img:rounded-xl"
-            style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-            dangerouslySetInnerHTML={{ __html: formatContent(story.content || '') }}
-          />
+          {story.content ? (
+            <article
+              className="max-w-[65ch] mx-auto prose prose-lg prose-stone
+                prose-headings:font-light prose-headings:tracking-tight
+                prose-p:leading-relaxed prose-p:text-muted-foreground
+                prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+                prose-blockquote:border-primary/30 prose-blockquote:italic
+                prose-img:rounded-xl"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+              dangerouslySetInnerHTML={{ __html: formatContent(story.content) }}
+            />
+          ) : !story.videoLink ? (
+            <p className="max-w-[65ch] mx-auto text-muted-foreground italic text-center">
+              This story doesn&apos;t have written content yet. Check back soon.
+            </p>
+          ) : null}
         </div>
       </section>
 
@@ -169,6 +200,16 @@ export default async function StoryDetailPage({ params }: Props) {
             </Button>
           </div>
           <div className="max-w-[65ch] mx-auto mt-8 pt-6 border-t border-border/50">
+            <div className="flex items-start gap-3 text-sm text-muted-foreground mb-6">
+              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span className="text-primary text-xs font-bold">O</span>
+              </div>
+              <p>
+                This story is owned by <span className="font-medium text-foreground">{displayName}</span> and
+                shared with their permission through the Empathy Ledger. OCAP principles apply — the storyteller
+                retains full ownership, control, access, and possession.
+              </p>
+            </div>
             <p className="text-xs text-muted-foreground">
               If you are featured in this story and would like it removed,{' '}
               <Link

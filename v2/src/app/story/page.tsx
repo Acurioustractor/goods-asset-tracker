@@ -1179,7 +1179,7 @@ export default async function StoryPage() {
                 </Link>
               </div>
               <p className="text-sm text-white/30">
-                hi@act.place &middot; goodsoncountry.au
+                hi@act.place &middot; goodsoncountry.com
               </p>
             </div>
           </div>

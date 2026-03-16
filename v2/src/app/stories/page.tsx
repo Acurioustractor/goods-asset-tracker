@@ -10,6 +10,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { storytellerProfiles, storytellerEnrichment, videoGallery, journeyStories, quotes } from '@/lib/data/content';
 import { storyPersonMedia } from '@/lib/data/media';
+import { curatedQuotes } from '@/lib/data/curated-quotes';
 import type { SyndicationStoryteller } from '@/lib/empathy-ledger/types';
 import type { Metadata } from 'next';
 
@@ -27,10 +28,13 @@ interface StorytellerGridProfile {
   community: string;
   photo: string;
   keyQuote: string;
+  quotes: { text: string; context: string | null }[];
   isElder: boolean;
   hasVideo: boolean;
   videoEmbed?: string;
   themes: string[];
+  transcriptCount: number;
+  emotionalTone: string | null;
 }
 
 /**
@@ -39,6 +43,12 @@ interface StorytellerGridProfile {
  */
 function mapELToGridProfile(s: SyndicationStoryteller): StorytellerGridProfile {
   const enrichment = storytellerEnrichment[s.name] ?? {};
+  // Prefer curated quotes (cleaned up for public display) over raw API quotes
+  const curated = curatedQuotes[s.name];
+  const quotesForDisplay = curated && curated.length > 0
+    ? curated
+    : s.quotes.map((q) => ({ text: q.text, context: q.context }));
+
   return {
     id: s.id,
     name: s.name,
@@ -46,11 +56,14 @@ function mapELToGridProfile(s: SyndicationStoryteller): StorytellerGridProfile {
     location: s.location ?? '',
     community: enrichment.community ?? '',
     photo: s.avatarUrl ?? enrichment.localPhoto ?? '/images/people/placeholder.jpg',
-    keyQuote: s.quotes[0]?.text ?? '',
+    keyQuote: quotesForDisplay[0]?.text ?? '',
+    quotes: quotesForDisplay,
     isElder: s.isElder,
     hasVideo: enrichment.hasVideo ?? false,
     videoEmbed: enrichment.videoEmbed,
-    themes: s.themes.map((t) => t.name),
+    themes: s.themes.map((t) => t.displayName || t.name),
+    transcriptCount: s.transcriptCount,
+    emotionalTone: s.emotionalTone,
   };
 }
 
@@ -58,8 +71,10 @@ function mapELToGridProfile(s: SyndicationStoryteller): StorytellerGridProfile {
  * Fetch storytellers from EL API with fallback to hardcoded profiles.
  */
 async function getStorytellersForGrid(): Promise<StorytellerGridProfile[]> {
-  const elStorytellers = await empathyLedger.getProjectStorytellers({ limit: 50 });
-  if (elStorytellers.length > 0) {
+  const rawStorytellers = await empathyLedger.getProjectStorytellers({ limit: 50 });
+  if (rawStorytellers.length > 0) {
+    // Enrich with cross-project quotes (some storytellers have transcripts under other projects)
+    const elStorytellers = await empathyLedger.enrichStorytellersWithQuotes(rawStorytellers);
     return elStorytellers.map(mapELToGridProfile);
   }
   // Fallback to hardcoded data
@@ -71,10 +86,13 @@ async function getStorytellersForGrid(): Promise<StorytellerGridProfile[]> {
     community: p.community,
     photo: p.photo,
     keyQuote: p.keyQuote,
+    quotes: [{ text: p.keyQuote, context: null }].filter((q) => q.text),
     isElder: p.isElder,
     hasVideo: p.hasVideo,
     videoEmbed: 'videoEmbed' in p ? (p.videoEmbed as string) : undefined,
     themes: p.themes,
+    transcriptCount: 0,
+    emotionalTone: null,
   }));
 }
 
@@ -232,10 +250,15 @@ function StorytellersLoadingSkeleton() {
 
 export default async function StoriesPage() {
   const allStorytellers = await getStorytellersForGrid();
+  const publishedStories = await empathyLedger.getProjectStories({ limit: 20 });
   const elders = allStorytellers.filter((p) => p.isElder);
   const others = allStorytellers.filter((p) => !p.isElder);
   const testimonies = videoGallery.filter((v) => v.category === 'testimony');
   const bRoll = videoGallery.filter((v) => v.category !== 'testimony');
+
+  // Split into text and video stories
+  const textStories = publishedStories.filter((s) => !s.videoLink);
+  const videoStoryLinks = publishedStories.filter((s) => s.videoLink);
 
   return (
     <main>
@@ -308,6 +331,103 @@ export default async function StoriesPage() {
       </section>
 
       {/* ============================================================
+          PUBLISHED STORIES — from Empathy Ledger
+          ============================================================ */}
+      {(textStories.length > 0 || videoStoryLinks.length > 0) && (
+        <section className="py-16 md:py-24 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <p className="text-sm uppercase tracking-widest text-accent mb-4">
+                From the Community
+              </p>
+              <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
+                Published Stories
+              </h2>
+              <p className="max-w-xl mx-auto text-muted-foreground">
+                Written by community members and shared with their permission
+              </p>
+            </div>
+
+            <div className="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {textStories.map((story) => (
+                <Link key={story.id} href={`/stories/${story.id}`} className="group block">
+                  <Card className="overflow-hidden border-0 shadow-sm hover:shadow-lg transition-shadow h-full">
+                    <CardContent className="p-0">
+                      {story.featuredImageUrl ? (
+                        <div className="relative aspect-[16/10] bg-muted">
+                          <Image
+                            src={story.featuredImageUrl}
+                            alt={story.title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-300"
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                          />
+                        </div>
+                      ) : (
+                        <div className="aspect-[16/10] bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center">
+                          <p className="text-4xl opacity-20" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>&ldquo;</p>
+                        </div>
+                      )}
+                      <div className="p-5">
+                        <h3
+                          className="text-lg font-light text-foreground group-hover:text-primary transition-colors mb-2 line-clamp-2"
+                          style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+                        >
+                          {story.title}
+                        </h3>
+                        {story.excerpt && (
+                          <p className="text-sm text-muted-foreground line-clamp-2 mb-3">{story.excerpt}</p>
+                        )}
+                        <div className="flex items-center gap-2">
+                          <p className="text-xs font-medium text-foreground">{story.storytellerName || story.authorName}</p>
+                          {story.elderApproved && (
+                            <Badge className="bg-emerald-600 text-white text-[10px] border-0">Elder Approved</Badge>
+                          )}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+
+              {videoStoryLinks.map((story) => (
+                <Link key={story.id} href={`/stories/${story.id}`} className="group block">
+                  <Card className="overflow-hidden border-0 shadow-sm hover:shadow-lg transition-shadow h-full">
+                    <CardContent className="p-0">
+                      <div className="aspect-[16/10] bg-gray-900 relative flex items-center justify-center">
+                        <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center">
+                          <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 010 1.972l-11.54 6.347a1.125 1.125 0 01-1.667-.986V5.653z" />
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="p-5">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Badge variant="outline" className="text-[10px] gap-1">
+                            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 010 1.972l-11.54 6.347a1.125 1.125 0 01-1.667-.986V5.653z" />
+                            </svg>
+                            Video
+                          </Badge>
+                        </div>
+                        <h3
+                          className="text-lg font-light text-foreground group-hover:text-primary transition-colors mb-2 line-clamp-2"
+                          style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+                        >
+                          {story.title}
+                        </h3>
+                        <p className="text-xs font-medium text-foreground">{story.storytellerName || story.authorName}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ============================================================
           STORYTELLERS GRID — thumbnails, names, locations, key quotes
           ============================================================ */}
       <section className="py-16 md:py-24">
@@ -351,23 +471,28 @@ export default async function StoriesPage() {
                           {person.role && (
                             <p className="text-sm text-accent-foreground mb-1">{person.role}</p>
                           )}
-                          <p className="text-sm text-muted-foreground mb-3">{person.location}</p>
-                          <blockquote className="border-l-2 border-primary/30 pl-3">
-                            <p
-                              className="text-sm italic text-foreground/80 line-clamp-3"
-                              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-                            >
-                              &ldquo;{person.keyQuote}&rdquo;
-                            </p>
-                          </blockquote>
-                          {person.hasVideo && (
-                            <div className="mt-3">
-                              <Badge variant="outline" className="text-xs gap-1">
-                                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-                                  <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 010 1.972l-11.54 6.347a1.125 1.125 0 01-1.667-.986V5.653z" />
-                                </svg>
-                                Video
-                              </Badge>
+                          <p className="text-sm text-muted-foreground mb-1">{person.location}</p>
+                          <p className="text-xs text-muted-foreground mb-3">
+                            {person.transcriptCount} recording{person.transcriptCount !== 1 ? 's' : ''}
+                            {person.emotionalTone && <span> &middot; {person.emotionalTone}</span>}
+                          </p>
+                          {person.keyQuote && (
+                            <blockquote className="border-l-2 border-primary/30 pl-3 mb-3">
+                              <p
+                                className="text-sm italic text-foreground/80 line-clamp-3"
+                                style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+                              >
+                                &ldquo;{person.keyQuote}&rdquo;
+                              </p>
+                            </blockquote>
+                          )}
+                          {person.themes.length > 0 && (
+                            <div className="flex flex-wrap gap-1 mt-auto">
+                              {person.themes.slice(0, 4).map((theme) => (
+                                <Badge key={theme} variant="secondary" className="text-[10px] capitalize">
+                                  {theme}
+                                </Badge>
+                              ))}
                             </div>
                           )}
                         </div>
@@ -411,13 +536,33 @@ export default async function StoriesPage() {
                       {person.role && (
                         <p className="text-xs text-accent-foreground mb-0.5">{person.role}</p>
                       )}
-                      <p className="text-sm text-muted-foreground mb-3">{person.location}</p>
-                      <p
-                        className="text-sm italic text-foreground/70 line-clamp-2"
-                        style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-                      >
-                        &ldquo;{person.keyQuote}&rdquo;
+                      <p className="text-sm text-muted-foreground mb-1">{person.location}</p>
+                      <p className="text-xs text-muted-foreground mb-3">
+                        {person.transcriptCount} recording{person.transcriptCount !== 1 ? 's' : ''}
+                        {person.emotionalTone && <span> &middot; {person.emotionalTone}</span>}
                       </p>
+                      {person.keyQuote && (
+                        <p
+                          className="text-sm italic text-foreground/70 line-clamp-3 mb-3"
+                          style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+                        >
+                          &ldquo;{person.keyQuote}&rdquo;
+                        </p>
+                      )}
+                      {person.themes.length > 0 && (
+                        <div className="flex flex-wrap gap-1">
+                          {person.themes.slice(0, 3).map((theme) => (
+                            <Badge key={theme} variant="secondary" className="text-[10px] capitalize">
+                              {theme}
+                            </Badge>
+                          ))}
+                          {person.themes.length > 3 && (
+                            <Badge variant="secondary" className="text-[10px]">
+                              +{person.themes.length - 3}
+                            </Badge>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </CardContent>
                 </Card>

@@ -19,6 +19,8 @@ import type {
   SyndicationStorytellersResponse,
   SyndicationStorytellerResponse,
   ProjectInsights,
+  ELGallery,
+  ELGalleryPhoto,
 } from './types';
 
 // Environment configuration
@@ -143,6 +145,9 @@ function mapStoryFromAPI(raw: Record<string, unknown>): EmpathyLedgerStory {
     tags: (raw.tags as string[]) ?? [],
     excerpt: (raw.excerpt as string) ?? null,
     storyImageUrl: (raw.featured_image_url as string) ?? (raw.featuredImageUrl as string) ?? null,
+    videoLink: (raw.video_link as string) ?? null,
+    videoEmbedCode: (raw.video_embed_code as string) ?? null,
+    storyType: (raw.story_type as string) ?? null,
   };
 }
 
@@ -194,6 +199,31 @@ async function fetchFromSyndicationAPI<T>(
 /**
  * Empathy Ledger Client
  */
+// Direct Supabase access for project-scoped queries
+// The production EL API resolves projectCode to a different tenant context,
+// so we query the EL Supabase directly for Goods project stories.
+const EL_SUPABASE_URL = process.env.EMPATHY_LEDGER_SUPABASE_URL || '';
+const EL_SUPABASE_KEY = process.env.EMPATHY_LEDGER_SUPABASE_KEY || '';
+
+async function fetchFromELSupabase<T>(
+  table: string,
+  queryParams: string,
+  options: { revalidate?: number } = {}
+): Promise<T> {
+  const url = `${EL_SUPABASE_URL}/rest/v1/${table}?${queryParams}`;
+  const response = await fetch(url, {
+    headers: {
+      'apikey': EL_SUPABASE_KEY,
+      'Authorization': `Bearer ${EL_SUPABASE_KEY}`,
+    },
+    next: { revalidate: options.revalidate ?? 300 },
+  });
+  if (!response.ok) {
+    throw new Error(`EL Supabase error: ${response.status}`);
+  }
+  return response.json();
+}
+
 export const empathyLedger = {
   /**
    * Check if Empathy Ledger integration is enabled
@@ -225,15 +255,30 @@ export const empathyLedger = {
   },
 
   /**
-   * Fetch a single story by ID (uses plain API for full data)
+   * Fetch a single story by ID.
+   * Uses direct Supabase access (the plain API returns 401 for Goods tenant stories).
    */
   async getStory(id: string): Promise<EmpathyLedgerStory | null> {
     if (!ENABLE_EMPATHY_LEDGER) return null;
 
     try {
+      // Try direct Supabase first (works for Goods project stories)
+      if (EL_SUPABASE_URL && EL_SUPABASE_KEY) {
+        const rows = await fetchFromELSupabase<Record<string, unknown>[]>(
+          'stories',
+          `id=eq.${id}&select=*,storyteller:storytellers(id,display_name,location,is_elder)&limit=1`
+        );
+        if (rows.length > 0) {
+          return {
+            ...mapStoryFromAPI(rows[0]),
+            storytellerName: (rows[0].storyteller as Record<string, unknown>)?.display_name as string ?? null,
+          };
+        }
+      }
+
+      // Fallback to plain API
       const raw = await fetchFromPlainAPI<Record<string, unknown>>(`/stories/${id}`);
-      const story = mapStoryFromAPI(raw);
-      return story;
+      return mapStoryFromAPI(raw);
     } catch (error) {
       console.error(`[EmpathyLedger] Failed to fetch story ${id}:`, error);
       return null;
@@ -498,6 +543,263 @@ export const empathyLedger = {
     } catch (error) {
       console.error('[EmpathyLedger] Failed to fetch project insights:', error);
       return null;
+    }
+  },
+  // =============================================================
+  // Direct Supabase queries — bypass tenant-scoped API
+  // =============================================================
+
+  /**
+   * Fetch stories directly from EL Supabase by project_id.
+   * This bypasses the tenant-scoped production API which returns
+   * stories from a different tenant context.
+   */
+  async getProjectStories(params: {
+    projectId?: string;
+    limit?: number;
+    syndicatedOnly?: boolean;
+  } = {}): Promise<EmpathyLedgerStory[]> {
+    if (!ENABLE_EMPATHY_LEDGER) return [];
+
+    const projectId = params.projectId || GOODS_PROJECT_ID;
+    if (!projectId) return [];
+
+    try {
+      let query = `project_id=eq.${projectId}&status=eq.published&is_public=eq.true&order=created_at.desc`;
+      if (params.syndicatedOnly) {
+        query += '&syndication_enabled=eq.true';
+      }
+      if (params.limit) {
+        query += `&limit=${params.limit}`;
+      }
+      query += '&select=*,storyteller:storytellers(id,display_name,location,is_elder)';
+
+      const rows = await fetchFromELSupabase<Record<string, unknown>[]>('stories', query);
+      return rows.map((raw) => ({
+        ...mapStoryFromAPI(raw),
+        storytellerName: (raw.storyteller as Record<string, unknown>)?.display_name as string ?? null,
+      }));
+    } catch (error) {
+      console.error('[EmpathyLedger] Failed to fetch project stories:', error);
+      return [];
+    }
+  },
+  /**
+   * Fetch galleries for the Goods project from EL Supabase.
+   * Uses project_galleries → galleries → gallery_media_associations → media_assets.
+   */
+  async getProjectGalleries(params: {
+    projectId?: string;
+  } = {}): Promise<ELGallery[]> {
+    if (!ENABLE_EMPATHY_LEDGER || !EL_SUPABASE_URL || !EL_SUPABASE_KEY) return [];
+
+    const projectId = params.projectId || GOODS_PROJECT_ID;
+    if (!projectId) return [];
+
+    try {
+      // 1. Get gallery IDs linked to this project
+      const junctions = await fetchFromELSupabase<{ gallery_id: string }[]>(
+        'project_galleries',
+        `project_id=eq.${projectId}&select=gallery_id`
+      );
+      if (!junctions.length) return [];
+
+      const galleryIds = junctions.map((j) => j.gallery_id);
+
+      // 2. Get gallery details
+      const galleries = await fetchFromELSupabase<Record<string, unknown>[]>(
+        'galleries',
+        `id=in.(${galleryIds.join(',')})&select=id,title,description,slug,photo_count,cover_image,status&status=eq.active&order=title`
+      );
+
+      // 3. Get media associations for all galleries
+      const associations = await fetchFromELSupabase<Record<string, unknown>[]>(
+        'gallery_media_associations',
+        `gallery_id=in.(${galleryIds.join(',')})&select=gallery_id,sort_order,caption,is_cover_image,media_asset_id&order=sort_order`
+      );
+
+      // 4. If there are associations, resolve media assets
+      let mediaMap: Record<string, Record<string, unknown>> = {};
+      if (associations.length > 0) {
+        const assetIds = [...new Set(associations.map((a) => String(a.media_asset_id)))];
+        const assets = await fetchFromELSupabase<Record<string, unknown>[]>(
+          'media_assets',
+          `id=in.(${assetIds.join(',')})&select=id,title,cdn_url,thumbnail_url,alt_text,original_filename,width,height`
+        );
+        mediaMap = Object.fromEntries(assets.map((a) => [String(a.id), a]));
+      }
+
+      // 5. Build gallery objects with photos
+      return galleries.map((g) => {
+        const gId = String(g.id);
+        const galleryAssocs = associations.filter((a) => a.gallery_id === gId);
+
+        const photos: ELGalleryPhoto[] = galleryAssocs
+          .map((a) => {
+            const media = mediaMap[String(a.media_asset_id)];
+            if (!media) return null;
+            return {
+              id: String(media.id),
+              title: (media.title as string) || null,
+              url: String(media.cdn_url || ''),
+              thumbnailUrl: (media.thumbnail_url as string) || null,
+              altText: (media.alt_text as string) || null,
+              fileName: (media.original_filename as string) || null,
+              width: (media.width as number) || null,
+              height: (media.height as number) || null,
+              sortOrder: (a.sort_order as number) || 0,
+              caption: (a.caption as string) || null,
+              isCoverImage: Boolean(a.is_cover_image),
+            };
+          })
+          .filter((p): p is ELGalleryPhoto => p !== null);
+
+        return {
+          id: gId,
+          title: String(g.title || 'Untitled'),
+          description: (g.description as string) || null,
+          slug: (g.slug as string) || null,
+          photoCount: (g.photo_count as number) || photos.length,
+          coverImage: (g.cover_image as string) || null,
+          photos,
+        };
+      });
+    } catch (error) {
+      console.error('[EmpathyLedger] Failed to fetch project galleries:', error);
+      return [];
+    }
+  },
+
+  /**
+   * Enrich storytellers with cross-project quotes from the storyteller_quotes table.
+   * The syndication API only returns quotes from Goods project transcripts,
+   * but some storytellers have transcripts under other projects.
+   */
+  async enrichStorytellersWithQuotes(
+    storytellers: SyndicationStoryteller[]
+  ): Promise<SyndicationStoryteller[]> {
+    if (!EL_SUPABASE_URL || !EL_SUPABASE_KEY) return storytellers;
+
+    // Find storytellers missing quotes
+    const missingQuotes = storytellers.filter((s) => s.quotes.length === 0);
+    if (missingQuotes.length === 0) return storytellers;
+
+    try {
+      const ids = missingQuotes.map((s) => s.id).join(',');
+
+      // 1. Try storyteller_quotes table first
+      const rows = await fetchFromELSupabase<Record<string, unknown>[]>(
+        'storyteller_quotes',
+        `storyteller_id=in.(${ids})&select=storyteller_id,quote_text,themes,quote_category&order=quotability_score.desc.nullslast&limit=50`
+      );
+
+      // Group by storyteller
+      const quotesByStId: Record<string, { text: string; context: string | null }[]> = {};
+      for (const row of rows) {
+        const sid = String(row.storyteller_id);
+        if (!quotesByStId[sid]) quotesByStId[sid] = [];
+        quotesByStId[sid].push({
+          text: String(row.quote_text || ''),
+          context: (row.quote_category as string) || null,
+        });
+      }
+
+      // 2. Get transcripts with key_quotes for storytellers still missing quotes
+      const stillMissing = missingQuotes.filter((s) => !quotesByStId[s.id]);
+      if (stillMissing.length > 0) {
+        const stillMissingIds = stillMissing.map((s) => s.id).join(',');
+        const transcriptsWithQuotes = await fetchFromELSupabase<Record<string, unknown>[]>(
+          'transcripts',
+          `storyteller_id=in.(${stillMissingIds})&key_quotes=not.is.null&select=storyteller_id,key_quotes`
+        );
+
+        for (const t of transcriptsWithQuotes) {
+          const sid = String(t.storyteller_id);
+          const rawQuotes = t.key_quotes as (string | Record<string, unknown>)[];
+          if (!rawQuotes || !Array.isArray(rawQuotes) || rawQuotes.length === 0) continue;
+
+          if (!quotesByStId[sid]) quotesByStId[sid] = [];
+          for (const q of rawQuotes) {
+            try {
+              const parsed = typeof q === 'string' ? JSON.parse(q) : q;
+              if (parsed.text) {
+                quotesByStId[sid].push({
+                  text: String(parsed.text),
+                  context: (parsed.theme as string) || null,
+                });
+              }
+            } catch {
+              // Skip unparseable quotes
+            }
+          }
+        }
+      }
+
+      // 3. Get transcript counts across all projects
+      const transcriptRows = await fetchFromELSupabase<Record<string, unknown>[]>(
+        'transcripts',
+        `storyteller_id=in.(${ids})&select=storyteller_id`
+      );
+      const tcBySt: Record<string, number> = {};
+      for (const t of transcriptRows) {
+        const sid = String(t.storyteller_id);
+        tcBySt[sid] = (tcBySt[sid] || 0) + 1;
+      }
+
+      return storytellers.map((st) => {
+        const enrichedQuotes = quotesByStId[st.id];
+        const crossProjectTc = tcBySt[st.id];
+        if (!enrichedQuotes && !crossProjectTc) return st;
+
+        return {
+          ...st,
+          transcriptCount: crossProjectTc || st.transcriptCount,
+          quotes: enrichedQuotes
+            ? enrichedQuotes.slice(0, 5).map((q) => ({
+                text: q.text,
+                context: q.context,
+                impactScore: null,
+              }))
+            : st.quotes,
+        };
+      });
+    } catch (error) {
+      console.error('[EmpathyLedger] Failed to enrich storytellers:', error);
+      return storytellers;
+    }
+  },
+
+  /**
+   * Fetch uncategorized media from the Goods tenant.
+   * Returns real community photos (IMG_*, DJI_*) not in any gallery.
+   */
+  async getProjectMedia(params: {
+    limit?: number;
+  } = {}): Promise<ELGalleryPhoto[]> {
+    if (!ENABLE_EMPATHY_LEDGER || !EL_SUPABASE_URL || !EL_SUPABASE_KEY) return [];
+
+    try {
+      const projectId = GOODS_PROJECT_ID;
+      if (!projectId) return [];
+      const query = `project_id=eq.${projectId}&file_type=ilike.image*&select=id,title,cdn_url,thumbnail_url,alt_text,original_filename,width,height&order=created_at.desc&limit=${params.limit || 60}`;
+      const rows = await fetchFromELSupabase<Record<string, unknown>[]>('media_assets', query);
+
+      return rows.map((m) => ({
+          id: String(m.id),
+          title: (m.title as string) || null,
+          url: String(m.cdn_url || ''),
+          thumbnailUrl: (m.thumbnail_url as string) || null,
+          altText: (m.alt_text as string) || null,
+          fileName: (m.original_filename as string) || null,
+          width: (m.width as number) || null,
+          height: (m.height as number) || null,
+          sortOrder: 0,
+          caption: null,
+          isCoverImage: false,
+        }));
+    } catch (error) {
+      console.error('[EmpathyLedger] Failed to fetch project media:', error);
+      return [];
     }
   },
 };

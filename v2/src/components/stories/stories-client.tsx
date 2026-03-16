@@ -38,10 +38,13 @@ interface StorytellerProfile {
   community: string;
   photo: string;
   keyQuote: string;
+  quotes: { text: string; context: string | null }[];
   isElder: boolean;
   hasVideo: boolean;
   videoEmbed?: string;
   themes: string[];
+  transcriptCount: number;
+  emotionalTone: string | null;
 }
 
 interface StoriesClientProps {
