@@ -580,6 +580,74 @@ export interface MachineOverview {
   open_alert_count: number;
 }
 
+// ============================================================================
+// CRM TYPES
+// ============================================================================
+
+export type ContactRole =
+  | 'storyteller'
+  | 'partner'
+  | 'supplier'
+  | 'staff'
+  | 'advisory'
+  | 'supporter'
+  | 'inquiry'
+  | 'buyer'
+  | 'funder'
+  | 'community_leader'
+  | 'philanthropy'
+  | 'procurement'
+  | 'community_rep'
+  | 'government'
+  | 'health'
+  | 'manufacturing';
+
+export type ContactStatus = 'active' | 'inactive' | 'prospect' | 'archived';
+export type RelationshipStatus = 'active' | 'warm' | 'prospect' | 'dormant';
+
+export interface CrmContact {
+  id: string;
+  name: string;
+  email: string | null;
+  phone: string | null;
+  avatar_url: string | null;
+  organization: string | null;
+  job_title: string | null;
+  location: string | null;
+  roles: ContactRole[];
+  status: ContactStatus;
+  empathy_ledger_id: string | null;
+  grantscope_id: string | null;
+  compendium_partner_id: string | null;
+  supabase_partner_id: string | null;
+  relationship_status: RelationshipStatus;
+  first_contact_date: string | null;
+  last_contact_date: string | null;
+  next_follow_up: string | null;
+  assigned_to: string | null;
+  bio: string | null;
+  tags: string[];
+  website: string | null;
+  is_elder: boolean;
+  cultural_background: string | null;
+  metadata: Record<string, unknown>;
+  created_at: string;
+  updated_at: string;
+}
+
+export type NoteType = 'note' | 'milestone' | 'email' | 'call' | 'meeting' | 'delivery' | 'follow_up';
+
+export interface CrmNote {
+  id: string;
+  contact_id: string;
+  note_type: NoteType;
+  title: string | null;
+  content: string;
+  created_by: string | null;
+  is_pinned: boolean;
+  created_at: string;
+}
+
 // Utility types
 export type Tables = {
   // E-commerce
@@ -613,4 +681,7 @@ export type Tables = {
   usage_logs: UsageLog;
   alerts: Alert;
   machine_commentary: MachineCommentary;
+  // CRM
+  crm_contacts: CrmContact;
+  crm_notes: CrmNote;
 };
