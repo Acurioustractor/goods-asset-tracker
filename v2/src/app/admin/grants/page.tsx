@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -73,17 +73,50 @@ const PRIORITY_DOT: Record<string, string> = {
 
 const ALL_STATUSES: RelationshipStatus[] = ['active', 'warm', 'applied', 'prospect', 'research'];
 
+const STORAGE_KEY_TARGETS = 'goods-grants-targets';
+const STORAGE_KEY_NOTES = 'goods-grants-notes';
+
+function loadTargets(): OutreachTarget[] {
+  if (typeof window === 'undefined') return initialTargets;
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY_TARGETS);
+    if (!stored) return initialTargets;
+    const parsed = JSON.parse(stored) as { version: number; data: OutreachTarget[] };
+    // Merge: keep stored edits/additions, add any new targets from static data
+    const storedIds = new Set(parsed.data.map((t: OutreachTarget) => t.id));
+    const newFromStatic = initialTargets.filter(t => !storedIds.has(t.id));
+    return [...parsed.data, ...newFromStatic];
+  } catch { return initialTargets; }
+}
+
+function loadNotes(): Record<string, LocalNote> {
+  if (typeof window === 'undefined') return {};
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY_NOTES);
+    return stored ? JSON.parse(stored) : {};
+  } catch { return {}; }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Main Page
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function GrantsPage() {
   const [activeTab, setActiveTab] = useState<Tab>('pipeline');
-  const [targets, setTargets] = useState<OutreachTarget[]>(initialTargets);
-  const [notes, setNotes] = useState<Record<string, LocalNote>>({});
+  const [targets, setTargets] = useState<OutreachTarget[]>(loadTargets);
+  const [notes, setNotes] = useState<Record<string, LocalNote>>(loadNotes);
   const [selectedTarget, setSelectedTarget] = useState<OutreachTarget | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [addDialogOpen, setAddDialogOpen] = useState(false);
+
+  // Persist targets & notes to localStorage on change
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY_TARGETS, JSON.stringify({ version: 1, data: targets }));
+  }, [targets]);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY_NOTES, JSON.stringify(notes));
+  }, [notes]);
 
   const summary = getFundingSummary();
   const totalPipeline = summary.received + summary.pending + summary.receivables;
