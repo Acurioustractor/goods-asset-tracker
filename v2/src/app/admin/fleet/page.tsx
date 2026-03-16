@@ -13,7 +13,7 @@ import type { Alert, MachineOverview } from '@/lib/types/database';
 export default async function FleetDashboardPage() {
   const supabase = await createClient();
 
-  // Fetch fleet KPIs via database function
+  // Fetch fleet KPIs via database function (last 7 days)
   const { data: kpiRows } = await supabase.rpc('get_fleet_kpis');
   const kpis = kpiRows?.[0] || {
     total_cycles: 0,
@@ -23,6 +23,21 @@ export default async function FleetDashboardPage() {
     machines_total: 0,
     open_alerts: 0,
   };
+
+  // All-time cycle count (since many imported events lack kWh, show volume separately)
+  const { count: allTimeCycles } = await supabase
+    .from('usage_logs')
+    .select('id', { count: 'exact', head: true })
+    .eq('event_type', 'cycle_complete');
+
+  // Active machines = reported in last 7 days (wider window than 24h online check)
+  const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+  const { data: recentMachines } = await supabase
+    .from('usage_logs')
+    .select('machine_id')
+    .gte('created_at', sevenDaysAgo)
+    .not('machine_id', 'is', null);
+  const activeMachineCount = new Set((recentMachines || []).map(r => r.machine_id)).size;
 
   // Fetch open alerts
   const { data: alerts } = await supabase
@@ -65,13 +80,13 @@ export default async function FleetDashboardPage() {
     .gte('created_at', weekStart.toISOString())
     .not('machine_id', 'is', null);
 
-  // Get daily rollups for fleet chart (last 14 days)
-  const fourteenDaysAgo = new Date();
-  fourteenDaysAgo.setDate(fourteenDaysAgo.getDate() - 14);
+  // Get daily rollups for fleet chart (last 30 days)
+  const thirtyDaysAgo = new Date();
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
   const { data: dailyRollups } = await supabase
     .from('daily_machine_rollups')
     .select('*')
-    .gte('rollup_date', fourteenDaysAgo.toISOString().split('T')[0])
+    .gte('rollup_date', thirtyDaysAgo.toISOString().split('T')[0])
     .order('rollup_date', { ascending: true });
 
   // Get alert counts per asset
@@ -152,6 +167,9 @@ export default async function FleetDashboardPage() {
     }
   }
 
+  // Consider a machine "online" if it reported in the last 7 days
+  const recentMachineIds = new Set((recentMachines || []).map(r => r.machine_id));
+
   const machines: MachineOverview[] = (machineAssets || []).map((asset) => {
     const latest = latestByMachine.get(asset.machine_id!);
     const weekKwh = weekKwhByMachine.get(asset.machine_id!) || 0;
@@ -164,7 +182,7 @@ export default async function FleetDashboardPage() {
       community: asset.community || asset.place,
       site_name: latest?.site_name || null,
       firmware_version: latest?.firmware_version || null,
-      online: latest?.online ?? false,
+      online: recentMachineIds.has(asset.machine_id!),
       last_seen_at: latest?.created_at || null,
       today_cycles: todayCountByMachine.get(asset.machine_id!) || 0,
       week_kwh: weekKwh,
@@ -216,24 +234,24 @@ export default async function FleetDashboardPage() {
       {/* KPI Cards */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <KPICard
-          label="Wash Cycles"
-          value={Number(kpis.total_cycles).toLocaleString()}
-          subtitle="Last 7 days"
+          label="Total Washes"
+          value={(allTimeCycles ?? 0).toLocaleString()}
+          subtitle="All time"
         />
         <KPICard
-          label="Energy Used"
-          value={`${Number(kpis.total_kwh).toFixed(1)} kWh`}
-          subtitle="Last 7 days"
+          label="This Week"
+          value={Number(kpis.total_cycles).toLocaleString()}
+          subtitle={`${Number(kpis.total_kwh).toFixed(1)} kWh used`}
         />
         <KPICard
           label="Efficiency"
-          value={`${Number(kpis.avg_kwh_per_cycle).toFixed(3)} kWh`}
-          subtitle="Per cycle average"
+          value={Number(kpis.avg_kwh_per_cycle) > 0 ? `${Number(kpis.avg_kwh_per_cycle).toFixed(2)} kWh` : '—'}
+          subtitle="Per cycle (when metered)"
         />
         <KPICard
-          label="Online"
-          value={`${kpis.machines_online} / ${kpis.machines_total}`}
-          subtitle="Reporting last 24h"
+          label="Active"
+          value={`${activeMachineCount} / ${kpis.machines_total}`}
+          subtitle="Reporting last 7 days"
         />
         <KPICard
           label="Open Alerts"
@@ -250,7 +268,7 @@ export default async function FleetDashboardPage() {
       {/* Fleet Activity Chart */}
       <Card>
         <CardHeader>
-          <CardTitle>Fleet Activity — Last 14 Days</CardTitle>
+          <CardTitle>Fleet Activity — Last 30 Days</CardTitle>
         </CardHeader>
         <CardContent>
           <FleetDailyChart data={fleetDailyData} />
@@ -385,6 +403,40 @@ export default async function FleetDashboardPage() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Telemetry Setup */}
+      <Card className="border-dashed border-orange-200 bg-orange-50/50">
+        <CardHeader>
+          <CardTitle className="text-sm">Particle.io Webhook Setup</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3 text-sm">
+          <p className="text-gray-600">
+            To bypass Zapier and send telemetry directly, create a Particle Integration webhook:
+          </p>
+          <div className="bg-white rounded border p-3 font-mono text-xs space-y-1">
+            <p><strong>URL:</strong> https://www.goodsoncountry.com/api/webhooks/particle</p>
+            <p><strong>Request Type:</strong> POST</p>
+            <p><strong>Request Format:</strong> JSON</p>
+            <p><strong>Device:</strong> Any (or select specific devices)</p>
+            <p><strong>Event:</strong> wash_event, heartbeat, restart</p>
+          </div>
+          <div className="flex items-start gap-2">
+            <Badge className="bg-yellow-100 text-yellow-800 shrink-0 mt-0.5">Device Mapping</Badge>
+            <p className="text-gray-500 text-xs">
+              {machines.filter(m => /^[a-f0-9]{24}$/.test(m.machine_id)).length} of {machines.length} machines
+              have Particle coreids mapped. Unmapped machines use human-readable names.
+              Use <code className="bg-gray-100 px-1 rounded">POST /api/admin/fleet/map-device</code> to link coreids.
+            </p>
+          </div>
+          <div className="flex items-start gap-2">
+            <Badge className="bg-blue-100 text-blue-800 shrink-0 mt-0.5">CSV Import</Badge>
+            <p className="text-gray-500 text-xs">
+              To import historical data from the &ldquo;Goods Washer&rdquo; Google Sheet, export as CSV and POST to{' '}
+              <code className="bg-gray-100 px-1 rounded">/api/admin/fleet/import-csv</code>
+            </p>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Operational Notes */}
       {fleetCommentary && fleetCommentary.length > 0 && (
