@@ -8,16 +8,17 @@ import { Badge } from '@/components/ui/badge';
 
 export default function EconomicsDashboard() {
   // --- 1. aBOM STATE (ATOMIC COSTS) ---
-  const [steelLengthMeter, setSteelLengthMeter] = useState(1.5);
-  const [steelPricePerMeter, setSteelPricePerMeter] = useState(6.00);
-  
-  const [hdpeWeightKg, setHdpeWeightKg] = useState(4.5);
-  const [hdpePricePerKg, setHdpePricePerKg] = useState(-0.50); // Negative cost rebate
-  
-  const [canvasLengthMeter, setCanvasLengthMeter] = useState(2.1);
-  const [canvasPricePerMeter, setCanvasPricePerMeter] = useState(5.00);
-  
-  const [laborMinutes, setLaborMinutes] = useState(14);
+  // Real supply chain data as of March 2026
+  const [steelLengthMeter, setSteelLengthMeter] = useState(1.88); // 2x poles @ 940mm each
+  const [steelPricePerMeter, setSteelPricePerMeter] = useState(5.50); // 26.9mm OD galv steel
+
+  const [hdpeWeightKg, setHdpeWeightKg] = useState(20.0); // 20kg HDPE diverted per bed
+  const [hdpePricePerKg, setHdpePricePerKg] = useState(-0.30); // Recycled plastic rebate
+
+  const [canvasLengthMeter, setCanvasLengthMeter] = useState(2.1); // Heavy-duty AU canvas
+  const [canvasPricePerMeter, setCanvasPricePerMeter] = useState(4.80);
+
+  const [laborMinutes, setLaborMinutes] = useState(14); // CNC + assembly
   const [laborRatePerHour, setLaborRatePerHour] = useState(35.00);
 
   // Derived aBOM costs
@@ -34,13 +35,15 @@ export default function EconomicsDashboard() {
   const isIdiotIndexGood = parseFloat(idiotIndex) < 6.0 && parseFloat(idiotIndex) > 0;
 
   // --- 2. LOGISTICS STATE ---
+  // AU Standard Pallet 1165×1165mm, max height 1500mm
   const [palletW, setPalletW] = useState(1165);
   const [palletL, setPalletL] = useState(1165);
   const [palletH, setPalletH] = useState(1500);
-  
+
+  // Stretch Bed flat-pack: 291×1165×25mm per unit → 60 beds/pallet
   const [bedW, setBedW] = useState(291);
   const [bedL, setBedL] = useState(1165);
-  const [bedH, setBedH] = useState(100);
+  const [bedH, setBedH] = useState(25); // True flat-pack height
   const [shippingCost, setShippingCost] = useState(800);
 
   const [logistics, setLogistics] = useState({
@@ -70,9 +73,9 @@ export default function EconomicsDashboard() {
   }, [palletW, palletL, palletH, bedW, bedL, bedH, shippingCost]);
 
   // --- 3. HARDWARE AS A SERVICE (OPEX) STATE ---
-  const [retailPrice, setRetailPrice] = useState(250.0);
-  const [opexMonthly, setOpexMonthly] = useState(9.00);
-  const [canvasCost, setCanvasCost] = useState(totalCanvasCost); // Replacement uses atomic cost
+  const [retailPrice, setRetailPrice] = useState(249.0); // Current retail price
+  const [opexMonthly, setOpexMonthly] = useState(9.00); // $9/mo lease = $540 over 5yr
+  const [canvasCost, setCanvasCost] = useState(totalCanvasCost); // Canvas replacement @ year 3
   
   const totalCostBuild = totalFactoryCost + logistics.costPerBed;
   const capexProfit = retailPrice - totalCostBuild;
@@ -89,7 +92,7 @@ export default function EconomicsDashboard() {
   const [quoteAgency, setQuoteAgency] = useState('NIAA / Dept of Defence');
   
   const totalContainers = logistics.bedsPerPallet > 0 ? Math.ceil(quoteQuantity / logistics.bedsPerPallet) : 0;
-  const standardContainers = Math.ceil(quoteQuantity / 30); // Using legacy 30 beds/pallet average
+  const standardContainers = Math.ceil(quoteQuantity / 12); // Traditional mattress: ~12 per pallet
   const freightSavings = (standardContainers - totalContainers) * shippingCost;
   const totalQuoteRevenue = opexRevenue5yr * quoteQuantity;
   const totalQuoteProfit = opexProfit * quoteQuantity;

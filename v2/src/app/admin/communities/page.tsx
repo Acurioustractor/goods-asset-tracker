@@ -1,4 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import Link from 'next/link';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
   deployments,
@@ -85,7 +86,7 @@ export default async function CommunitiesPage() {
         <Card>
           <CardContent className="pt-4 text-center">
             <p className="text-xs text-gray-500 uppercase">Demand Pipeline</p>
-            <p className="text-2xl font-bold text-orange-700">${(demandTotal / 1000).toFixed(0)}K</p>
+            <p className="text-2xl font-bold text-orange-700">${(demandTotal / 1000000).toFixed(1)}M</p>
           </CardContent>
         </Card>
       </div>
@@ -130,9 +131,9 @@ export default async function CommunitiesPage() {
                   <p className="text-xs text-gray-500">Contacts: {d.contacts.join(', ')}</p>
                 )}
                 {voicesByComm[d.community] && (
-                  <p className="text-xs text-orange-600">
-                    {voicesByComm[d.community]} community voice{voicesByComm[d.community] > 1 ? 's' : ''} recorded
-                  </p>
+                  <Link href="/admin/stories" className="text-xs text-orange-600 hover:text-orange-800 hover:underline block">
+                    {voicesByComm[d.community]} community voice{voicesByComm[d.community] > 1 ? 's' : ''} recorded →
+                  </Link>
                 )}
               </CardContent>
             </Card>
@@ -204,21 +205,21 @@ export default async function CommunitiesPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b text-left text-gray-500">
-                <th className="pb-2 font-medium">Requester</th>
-                <th className="pb-2 font-medium">Request</th>
-                <th className="pb-2 font-medium text-right">Est. Value</th>
-                <th className="pb-2 font-medium">Status</th>
+                <th className="pb-2 pr-4 font-medium">Requester</th>
+                <th className="pb-2 pr-4 font-medium">Request</th>
+                <th className="pb-2 pr-4 font-medium text-right">Est. Value</th>
+                <th className="pb-2 font-medium text-center">Status</th>
               </tr>
             </thead>
             <tbody>
               {documentedDemand.map((d) => (
                 <tr key={d.id} className="border-b last:border-0">
-                  <td className="py-2 font-medium">{d.requester}</td>
-                  <td className="py-2 text-gray-600">{d.request}</td>
-                  <td className="py-2 text-right font-mono">
+                  <td className="py-2 pr-4 font-medium whitespace-nowrap">{d.requester}</td>
+                  <td className="py-2 pr-4 text-gray-600">{d.request}</td>
+                  <td className="py-2 pr-4 text-right font-mono whitespace-nowrap">
                     {d.estimatedValue > 0 ? `$${d.estimatedValue.toLocaleString()}` : '—'}
                   </td>
-                  <td className="py-2">
+                  <td className="py-2 text-center">
                     <Badge className={
                       d.status === 'approved' ? 'bg-green-100 text-green-800' :
                       d.status === 'requested' ? 'bg-blue-100 text-blue-800' :
@@ -245,24 +246,24 @@ export default async function CommunitiesPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b text-left text-gray-500">
-                <th className="pb-2 font-medium w-8">#</th>
-                <th className="pb-2 font-medium">Community</th>
-                <th className="pb-2 font-medium">State</th>
-                <th className="pb-2 font-medium text-right">Pop.</th>
-                <th className="pb-2 font-medium">Why</th>
+                <th className="pb-2 pr-3 font-medium w-8">#</th>
+                <th className="pb-2 pr-3 font-medium">Community</th>
+                <th className="pb-2 pr-3 font-medium">State</th>
+                <th className="pb-2 pr-4 font-medium text-right">Pop.</th>
+                <th className="pb-2 pr-3 font-medium">Why</th>
                 <th className="pb-2 font-medium">Housing Body</th>
               </tr>
             </thead>
             <tbody>
               {expansionTargets.map((t) => (
                 <tr key={t.priority} className="border-b last:border-0">
-                  <td className="py-2 text-gray-400 font-mono text-xs">{t.priority}</td>
-                  <td className="py-2 font-medium">{t.community}</td>
-                  <td className="py-2">
+                  <td className="py-2 pr-3 text-gray-400 font-mono text-xs">{t.priority}</td>
+                  <td className="py-2 pr-3 font-medium">{t.community}</td>
+                  <td className="py-2 pr-3">
                     <Badge variant="outline" className="text-xs">{t.state}</Badge>
                   </td>
-                  <td className="py-2 text-right font-mono">~{t.pop.toLocaleString()}</td>
-                  <td className="py-2 text-gray-600 text-xs max-w-[300px]">{t.reason}</td>
+                  <td className="py-2 pr-4 text-right font-mono">~{t.pop.toLocaleString()}</td>
+                  <td className="py-2 pr-3 text-gray-600 text-xs max-w-[300px]">{t.reason}</td>
                   <td className="py-2 text-gray-500 text-xs">{t.housingBody}</td>
                 </tr>
               ))}

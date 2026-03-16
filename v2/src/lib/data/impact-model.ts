@@ -9,6 +9,8 @@
  * The "loss function" is impact per dollar. Everything else is a hyperparameter.
  */
 
+import { getFundingSummary, financialSnapshot } from './compendium';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -479,9 +481,9 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
 // ---------------------------------------------------------------------------
 
 export const FINANCIAL_SUMMARY = {
-  totalInvestment: 445_000, // total funding received to date
-  tradeRevenue: 50_000, // approximate trade revenue to date
-  productionPlantInvestment: 100_000, // TFN + ACT in containerised facility
+  totalInvestment: getFundingSummary().received, // derived from compendium funding data
+  tradeRevenue: financialSnapshot.tradeRevenue,
+  productionPlantInvestment: financialSnapshot.productionPlantInvestment,
   currentCostPerUnit: TOTAL_COST_PER_BED,
   targetCostPerUnit: { year1: 520, year3: 350, vision2030: 280 },
 };

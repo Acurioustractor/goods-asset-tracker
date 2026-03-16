@@ -278,6 +278,19 @@ export function getFundingSummary() {
 }
 
 // ---------------------------------------------------------------------------
+// Financial Snapshot (from Xero — manually synced until API integration)
+// Last updated: March 15, 2026
+// ---------------------------------------------------------------------------
+
+export const financialSnapshot = {
+  lastUpdated: '2026-03-15',
+  tradeRevenue: 50_000, // Approximate trade revenue to date
+  productionPlantInvestment: 100_000, // TFN $80K + ACT $20K in containerised facility
+  outstandingReceivables: 490_086, // Centrecorp $420K + PICC $36K + Homeland School $34K
+  xeroIntegrated: false, // TODO: OAuth2 Xero API integration for live data
+};
+
+// ---------------------------------------------------------------------------
 // Deployments
 // ---------------------------------------------------------------------------
 
