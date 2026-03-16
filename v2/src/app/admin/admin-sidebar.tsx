@@ -25,6 +25,7 @@ import {
   LogOut,
   Library,
   Globe,
+  FileText,
 } from 'lucide-react';
 
 const navigation = [
@@ -32,6 +33,7 @@ const navigation = [
     group: 'Command Center',
     items: [
       { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
+      { name: 'Mission', href: '/mission', icon: Handshake },
       { name: 'Compendium', href: '/admin/compendium', icon: Library },
       { name: 'Ops', href: '/admin/ops', icon: Activity },
       { name: 'Fleet', href: '/admin/fleet', icon: Truck },
@@ -53,7 +55,8 @@ const navigation = [
     items: [
       { name: 'Compassion', href: '/admin/compassion', icon: Heart },
       { name: 'Messages', href: '/admin/messages', icon: MessageSquare },
-      { name: 'Partners', href: '/admin/partners', icon: Handshake },
+      { name: 'People', href: '/admin/partners', icon: Users },
+      { name: 'Grants', href: '/admin/grants', icon: FileText },
     ],
   },
   {
