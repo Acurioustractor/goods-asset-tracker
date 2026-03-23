@@ -808,12 +808,14 @@ Synced: ${new Date().toLocaleString('en-AU')}
   /**
    * Add contact to newsletter
    */
-  async addToNewsletter(email: string, name?: string): Promise<GHLResponse> {
+  async addToNewsletter(email: string, name?: string, tag?: string): Promise<GHLResponse> {
+    const tags = [TAGS.newsletter];
+    if (tag) tags.push(`goods-${tag}`);
     return createOrUpdateContact({
       email,
       name,
-      tags: [TAGS.newsletter],
-      source: 'Newsletter Signup',
+      tags,
+      source: tag ? `Newsletter Signup (${tag})` : 'Newsletter Signup',
     });
   },
 

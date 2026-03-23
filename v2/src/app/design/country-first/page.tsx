@@ -227,7 +227,7 @@ export default function CountryFirstPage() {
             <Button size="lg" className="bg-white hover:bg-white/90" style={{ color: '#2D5A47' }}>
               Shop Now
             </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10">
               Sponsor a Bed
             </Button>
           </div>

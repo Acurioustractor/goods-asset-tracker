@@ -239,7 +239,7 @@ export default function ShopPage() {
             <Button size="lg" style={{ backgroundColor: '#C45C3E' }} asChild>
               <Link href="/sponsor">Sponsor a Bed</Link>
             </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10" asChild>
+            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10" asChild>
               <Link href="/stories">Read Community Stories</Link>
             </Button>
           </div>

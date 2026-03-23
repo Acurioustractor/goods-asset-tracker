@@ -331,14 +331,14 @@ export default function MissionForwardPage() {
             <Button
               size="lg"
               variant="outline"
-              className="text-white border-white hover:bg-white/10"
+              className="bg-transparent text-white border-white hover:bg-white/10"
             >
               Sponsor a Bed
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="text-white border-white hover:bg-white/10"
+              className="bg-transparent text-white border-white hover:bg-white/10"
             >
               Partner With Us
             </Button>

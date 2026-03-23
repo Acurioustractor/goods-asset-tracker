@@ -280,7 +280,7 @@ export default function CommunityVoicesPage() {
             <Button size="lg" style={{ backgroundColor: '#C45C3E' }}>
               Sponsor a Bed
             </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10">
               Shop for Yourself
             </Button>
           </div>

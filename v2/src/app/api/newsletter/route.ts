@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const ghlResult = await ghl.addToNewsletter(email);
+    const ghlResult = await ghl.addToNewsletter(email, undefined, tag);
 
     console.log('[Newsletter Signup]', {
       email,

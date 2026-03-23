@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { MediaSlot } from '@/components/ui/media-slot';
+import { ProductImageCarousel } from '@/components/shop/product-image-carousel';
 import { media } from '@/lib/data/media';
 import { quotes } from '@/lib/data/content';
 import { WASHING_MACHINE } from '@/lib/data/products';
@@ -52,35 +53,10 @@ export default function WashingMachinePage() {
         {/* Product Detail - Two Column Layout */}
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           {/* LEFT: Image Gallery */}
-          <div className="space-y-4">
-            {/* Main Image */}
-            <div className="relative aspect-square overflow-hidden rounded-lg bg-muted">
-              <Image
-                src={product.images[0].src || '/images/product/washing-machine-hero.jpg'}
-                alt={product.images[0].alt}
-                fill
-                className="object-cover"
-                priority
-              />
-              <Badge className="absolute top-4 left-4 bg-amber-600 text-white">
-                Prototype
-              </Badge>
-            </div>
-
-            {/* Thumbnail Grid */}
-            <div className="grid grid-cols-3 gap-3">
-              {product.images.slice(1).map((image, i) => (
-                <div key={i} className="relative aspect-square overflow-hidden rounded-lg bg-muted">
-                  <Image
-                    src={image.src || '/images/product/washing-machine-hero.jpg'}
-                    alt={image.alt}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+          <ProductImageCarousel
+            images={product.images.map((img) => img.src || '/images/product/washing-machine-hero.jpg')}
+            productName={product.name}
+          />
 
           {/* RIGHT: Product Info */}
           <div className="flex flex-col">
@@ -298,7 +274,7 @@ export default function WashingMachinePage() {
                     src="/images/product/washing-machine-community.jpg"
                     alt="Community members with the Pakkimjalki Kari washing machine"
                     fill
-                    className="object-cover"
+                    className="object-cover object-top"
                   />
                 </div>
               </div>
@@ -387,7 +363,7 @@ export default function WashingMachinePage() {
             <Button size="lg" style={{ backgroundColor: '#C45C3E' }} asChild>
               <Link href="/partner">Register Interest</Link>
             </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10" asChild>
+            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10" asChild>
               <Link href="/wiki/products/washing-machine">Read the Full Wiki Guide</Link>
             </Button>
           </div>

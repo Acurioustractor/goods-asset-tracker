@@ -25,10 +25,13 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // QR code redirect: /?asset_id=GB0-153-1 → /claim/GB0-153-1
-  const assetId = request.nextUrl.searchParams.get('asset_id');
-  if (assetId) {
-    return NextResponse.redirect(new URL(`/claim/${assetId}`, request.url));
+  // QR code redirect: /?asset_id=GB0-153-1 → /bed/GB0-153-1
+  // Only redirect from the root path (old QR codes encode /?asset_id=X)
+  if (pathname === '/') {
+    const assetId = request.nextUrl.searchParams.get('asset_id');
+    if (assetId) {
+      return NextResponse.redirect(new URL(`/bed/${assetId}`, request.url));
+    }
   }
 
   let supabaseResponse = NextResponse.next({

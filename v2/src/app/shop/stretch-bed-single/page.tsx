@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { MediaSlot } from '@/components/ui/media-slot';
+import { ProductImageCarousel } from '@/components/shop/product-image-carousel';
 import { BuyNowForm } from '@/components/shop/buy-now-form';
 import { AssemblySequence } from '@/components/pitch/assembly-sequence';
 import { CyclingImage } from '@/components/pitch/cycling-image';
@@ -74,35 +75,10 @@ export default function StretchBedPage() {
         {/* Product Detail - Two Column Layout */}
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           {/* LEFT: Image Gallery */}
-          <div className="space-y-4">
-            {/* Main Image */}
-            <div className="relative aspect-square overflow-hidden rounded-lg bg-muted">
-              <Image
-                src={product.images[0].src || '/images/product/stretch-bed-hero.jpg'}
-                alt={product.images[0].alt}
-                fill
-                className="object-cover"
-                priority
-              />
-              <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">
-                Available Now
-              </Badge>
-            </div>
-
-            {/* Thumbnail Grid */}
-            <div className="grid grid-cols-3 gap-3">
-              {product.images.slice(1).map((image, i) => (
-                <div key={i} className="relative aspect-square overflow-hidden rounded-lg bg-muted">
-                  <Image
-                    src={image.src || '/images/product/stretch-bed-hero.jpg'}
-                    alt={image.alt}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+          <ProductImageCarousel
+            images={product.images.map((img) => img.src || '/images/product/stretch-bed-hero.jpg')}
+            productName={product.name}
+          />
 
           {/* RIGHT: Product Info */}
           <div className="flex flex-col">

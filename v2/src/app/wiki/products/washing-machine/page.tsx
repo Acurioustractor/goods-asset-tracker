@@ -321,9 +321,9 @@ export default function WashingMachinePage() {
               <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden">
                 <Image
                   src="/images/product/washing-machine-community.jpg"
-                  alt="Community members with the Pakkimjalki Kari washing machine"
+                  alt="Community members engaging with the Pakkimjalki Kari washing machine"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                 />
               </div>
               <p className="text-xs text-gray-500 italic">

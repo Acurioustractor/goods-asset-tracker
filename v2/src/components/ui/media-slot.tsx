@@ -1,12 +1,16 @@
+'use client';
+
+import { useState, useCallback } from 'react';
 import Image from 'next/image';
 
 /**
- * MediaSlot — drop-in image slot with graceful placeholder fallback.
+ * MediaSlot — drop-in image slot with graceful placeholder fallback and lightbox.
  *
  * Usage:
  *   <MediaSlot src="/images/product/stretch-bed-hero.jpg" alt="..." aspect="video" />
  *
  * When `src` is provided and the file exists, it renders a Next.js Image.
+ * Clicking opens a fullscreen lightbox.
  * When `src` is omitted, it renders a styled placeholder with the label.
  *
  * File convention:
@@ -27,6 +31,7 @@ interface MediaSlotProps {
   fill?: boolean;
   sizes?: string;
   overlay?: boolean;
+  lightbox?: boolean;
 }
 
 const aspectClasses: Record<string, string> = {
@@ -47,25 +52,48 @@ export function MediaSlot({
   fill = false,
   sizes = '(max-width: 768px) 100vw, 50vw',
   overlay = false,
+  lightbox = true,
 }: MediaSlotProps) {
+  const [isOpen, setIsOpen] = useState(false);
   const aspectClass = fill ? '' : aspectClasses[aspect] || 'aspect-video';
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setIsOpen(true);
+    }
+  }, []);
 
   // Has real image
   if (src) {
     return (
-      <div className={`relative overflow-hidden rounded-2xl ${aspectClass} ${className}`}>
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          className="object-cover"
-          priority={priority}
-          sizes={sizes}
-        />
-        {overlay && (
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+      <>
+        <div
+          className={`relative overflow-hidden rounded-2xl ${aspectClass} ${className} ${lightbox ? 'cursor-zoom-in group' : ''}`}
+          onClick={lightbox ? () => setIsOpen(true) : undefined}
+          onKeyDown={lightbox ? handleKeyDown : undefined}
+          role={lightbox ? 'button' : undefined}
+          tabIndex={lightbox ? 0 : undefined}
+          aria-label={lightbox ? `View ${alt} fullscreen` : undefined}
+        >
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            className={`object-cover ${lightbox ? 'group-hover:scale-105 transition-transform duration-300' : ''}`}
+            priority={priority}
+            sizes={sizes}
+          />
+          {overlay && (
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          )}
+        </div>
+
+        {/* Lightbox */}
+        {lightbox && isOpen && (
+          <MediaLightbox src={src} alt={alt} onClose={() => setIsOpen(false)} />
         )}
-      </div>
+      </>
     );
   }
 
@@ -88,6 +116,56 @@ export function MediaSlot({
         </svg>
         <p className="text-xs text-muted-foreground/40">{label || alt}</p>
       </div>
+    </div>
+  );
+}
+
+/**
+ * Inline lightbox overlay for a single image
+ */
+function MediaLightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+  // Close on Escape
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') onClose();
+  }, [onClose]);
+
+  return (
+    <div
+      className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+      onClick={onClose}
+      onKeyDown={handleKeyDown}
+      role="dialog"
+      aria-modal="true"
+      aria-label={alt}
+      tabIndex={-1}
+    >
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 text-white/70 hover:text-white z-10"
+        aria-label="Close lightbox"
+      >
+        <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div
+        className="relative max-w-[90vw] max-h-[90vh] w-full h-full"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-contain"
+          sizes="90vw"
+          priority
+        />
+      </div>
+
+      <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/60 text-sm max-w-lg text-center">
+        {alt}
+      </p>
     </div>
   );
 }

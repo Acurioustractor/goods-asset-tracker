@@ -10,6 +10,7 @@ import { AuthNavItem } from '@/components/layout/auth-nav-item';
 
 const navigation = [
   { name: 'The Stretch Bed', href: '/shop/stretch-bed-single' },
+  { name: 'Pakkimjalki Kari', href: '/shop/washing-machine' },
   { name: 'How It\'s Made', href: '/process' },
   { name: 'Our Story', href: '/story' },
   { name: 'My Goods', href: '/community' },
