@@ -48,21 +48,17 @@ export async function POST(request: NextRequest) {
         message: body.message,
       });
     } else {
-      // General inquiries
-      const tags = ['goods-inquiry'];
-      if (body.subscribe) {
-        tags.push('goods-newsletter');
-      }
+      // General inquiries — create contact with inquiry tags
+      const subjectTag = body.subject
+        ? `goods-${body.subject.toLowerCase().replace(/\s+/g, '-')}`
+        : 'goods-inquiry';
 
-      ghlResult = await ghl.createOrderContact({
-        email: body.email,
-        name: body.name,
-        phone: body.phone,
-        orderNumber: `INQ-${Date.now()}`,
-        totalCents: 0,
-        isSponsorship: false,
-        productTypes: ['inquiry'],
-      });
+      ghlResult = await ghl.addToNewsletter(body.email, body.name, subjectTag);
+
+      // If they opted into newsletter, add that too
+      if (body.subscribe) {
+        await ghl.addToNewsletter(body.email, body.name, 'contact-form-subscribe');
+      }
     }
 
     // Log the inquiry with full GHL result for debugging
