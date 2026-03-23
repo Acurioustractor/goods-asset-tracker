@@ -9,6 +9,7 @@ import { MediaSlot } from '@/components/ui/media-slot';
 import { NewsletterSignup } from '@/components/newsletter-signup';
 import { BedPhotoGallery } from './bed-photo-gallery';
 import { BedMapWrapper } from './bed-map-wrapper';
+import { QuickConnectForm } from './quick-connect-form';
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -121,6 +122,11 @@ export default async function BedPage({ params }: BedPageProps) {
           </div>
         </div>
       </section>
+
+      {/* Quick connect CTA */}
+      <div className="max-w-3xl mx-auto px-4 mt-6">
+        <QuickConnectForm />
+      </div>
 
       {/* Map — where is this bed? */}
       {allAssets && allAssets.length > 0 && (
