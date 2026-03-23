@@ -856,10 +856,18 @@ Synced: ${new Date().toLocaleString('en-AU')}
       source: tag ? `Newsletter Signup (${tag})` : 'Newsletter Signup',
     });
 
-    // Trigger event-specific workflows
+    // Trigger event-specific workflows + add context notes
     if (result.success && result.contact?.id) {
-      if (tag === 'parliament-house-demo' && WORKFLOWS.parliamentHouse) {
-        await triggerWorkflow(WORKFLOWS.parliamentHouse, result.contact.id);
+      if (tag === 'parliament-house-demo') {
+        await addContactNote(result.contact.id,
+          `🏛️ Parliament House Event Signup\n` +
+          `Scanned a Stretch Bed QR code at Parliament House, Canberra.\n` +
+          `Signed up for updates on ${new Date().toLocaleDateString('en-AU')}.\n` +
+          `Interested in: Goods on Country, bed tracking, community impact.`
+        );
+        if (WORKFLOWS.parliamentHouse) {
+          await triggerWorkflow(WORKFLOWS.parliamentHouse, result.contact.id);
+        }
       }
     }
 
