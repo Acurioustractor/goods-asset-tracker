@@ -48,16 +48,16 @@ export async function POST(request: NextRequest) {
         message: body.message,
       });
     } else {
-      // General inquiries — create contact with inquiry tags
+      // General inquiries — create contact with inquiry tag
       const subjectTag = body.subject
         ? `goods-${body.subject.toLowerCase().replace(/\s+/g, '-')}`
         : 'goods-inquiry';
 
-      ghlResult = await ghl.addToNewsletter(body.email, body.name, subjectTag);
+      ghlResult = await ghl.createInquiryContact(body.email, body.name, [subjectTag]);
 
-      // If they opted into newsletter, add that too
+      // If they opted into newsletter, also add to newsletter
       if (body.subscribe) {
-        await ghl.addToNewsletter(body.email, body.name, 'contact-form-subscribe');
+        await ghl.addToNewsletter(body.email, body.name, 'contact-form');
       }
     }
 

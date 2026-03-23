@@ -39,6 +39,8 @@ const WORKFLOWS = {
   newClaim: process.env.GHL_WORKFLOW_NEW_CLAIM || '',
   userMessage: process.env.GHL_WORKFLOW_USER_MESSAGE || '',
   userRequest: process.env.GHL_WORKFLOW_USER_REQUEST || '',
+  // Event-specific workflows
+  parliamentHouse: process.env.GHL_WORKFLOW_PARLIAMENT_HOUSE || '',
 };
 
 const STRATEGIC_PIPELINES: Record<StrategicTargetType, StrategicPipelineConfig> = {
@@ -847,11 +849,32 @@ Synced: ${new Date().toLocaleString('en-AU')}
   async addToNewsletter(email: string, name?: string, tag?: string): Promise<GHLResponse> {
     const tags = [TAGS.newsletter];
     if (tag) tags.push(`goods-src-${tag}`);
-    return createOrUpdateContact({
+    const result = await createOrUpdateContact({
       email,
       name,
       tags,
       source: tag ? `Newsletter Signup (${tag})` : 'Newsletter Signup',
+    });
+
+    // Trigger event-specific workflows
+    if (result.success && result.contact?.id) {
+      if (tag === 'parliament-house-demo' && WORKFLOWS.parliamentHouse) {
+        await triggerWorkflow(WORKFLOWS.parliamentHouse, result.contact.id);
+      }
+    }
+
+    return result;
+  },
+
+  /**
+   * Create/update contact from a general inquiry (not a newsletter signup)
+   */
+  async createInquiryContact(email: string, name?: string, tags?: string[]): Promise<GHLResponse> {
+    return createOrUpdateContact({
+      email,
+      name,
+      tags: ['goods-inquiry', ...(tags || [])],
+      source: 'Website Inquiry',
     });
   },
 
