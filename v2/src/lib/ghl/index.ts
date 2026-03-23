@@ -87,20 +87,56 @@ function formatProductType(slug: string): string {
   ).join(' ');
 }
 
-// Tags
+// ============================================================================
+// TAGS — All tags use `goods-` prefix for GHL smart list filtering
+//
+// SMART LIST SEGMENTS:
+//
+// 1. SUPPORTERS (bought/sponsored)
+//    goods-customer, goods-sponsor
+//
+// 2. COMMUNITY (recipients who received goods)
+//    goods-recipient, goods-bed-owner, goods-washer-owner
+//
+// 3. NEWSLETTER (opted in to updates)
+//    goods-newsletter + source tags (goods-src-footer, goods-src-parliament-house, etc.)
+//
+// 4. PARTNERS & STAKEHOLDERS
+//    goods-partner-lead, goods-media, goods-strategic-target
+//
+// 5. PRODUCT OWNERS (claimed via QR)
+//    goods-claimed-bed, goods-claimed-washer
+//
+// 6. SUPPORT (reported issues)
+//    goods-support-request
+//
+// 7. PIPELINE (strategic targets from Grantscope)
+//    goods-strategic-target, goods-buyer-target, goods-capital-target, goods-partner-target
+//
+// ============================================================================
 const TAGS = {
+  // --- Supporters (purchased or sponsored) ---
   customer: 'goods-customer',
   sponsor: 'goods-sponsor',
-  bedOwner: 'bed-owner',
-  washerOwner: 'washer-owner',
+
+  // --- Product type (what they bought/own) ---
+  bedOwner: 'goods-bed-owner',
+  washerOwner: 'goods-washer-owner',
+
+  // --- Partners & stakeholders ---
   partnerLead: 'goods-partner-lead',
   mediaRequest: 'goods-media',
-  supportRequest: 'support-request',
+
+  // --- Support ---
+  supportRequest: 'goods-support-request',
+
+  // --- Newsletter ---
   newsletter: 'goods-newsletter',
-  // User account tags
+
+  // --- Community recipients ---
   recipient: 'goods-recipient',
-  claimedBed: 'claimed-bed',
-  claimedWasher: 'claimed-washer',
+  claimedBed: 'goods-claimed-bed',
+  claimedWasher: 'goods-claimed-washer',
 };
 
 interface GHLResponse {
@@ -810,7 +846,7 @@ Synced: ${new Date().toLocaleString('en-AU')}
    */
   async addToNewsletter(email: string, name?: string, tag?: string): Promise<GHLResponse> {
     const tags = [TAGS.newsletter];
-    if (tag) tags.push(`goods-${tag}`);
+    if (tag) tags.push(`goods-src-${tag}`);
     return createOrUpdateContact({
       email,
       name,
