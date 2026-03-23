@@ -157,8 +157,9 @@ export function BedMap({ currentAssetId, assets }: BedMapProps) {
     const p = a.product?.toLowerCase() || '';
     return (p.includes('wash') || p.includes('machine')) && a.community !== 'Pending Delivery';
   }).length;
+  const EXCLUDE_FROM_COUNT = ['Unknown', 'Pending Delivery', 'Canberra'];
   const communityCount = new Set(
-    assets.filter((a) => a.community && a.community !== 'Unknown' && a.community !== 'Pending Delivery').map((a) => a.community)
+    assets.filter((a) => a.community && !EXCLUDE_FROM_COUNT.includes(a.community)).map((a) => a.community)
   ).size;
 
   return (
