@@ -130,7 +130,7 @@ export default async function BedPage({ params }: BedPageProps) {
 
       {/* Map — where is this bed? */}
       {allAssets && allAssets.length > 0 && (
-        <div className="max-w-5xl mx-auto px-4 -mt-8 relative z-10">
+        <div className="max-w-5xl mx-auto px-4 mt-6 relative z-0">
           <div className="bg-card border rounded-2xl shadow-xl overflow-hidden">
             <div className="p-4 pb-2">
               <h2 className="font-display text-lg font-bold">Where Is This Bed?</h2>
