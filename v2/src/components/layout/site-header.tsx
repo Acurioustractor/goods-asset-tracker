@@ -13,7 +13,7 @@ const navigation = [
   { name: 'Pakkimjalki Kari', href: '/shop/washing-machine' },
   { name: 'How It\'s Made', href: '/process' },
   { name: 'Our Story', href: '/story' },
-  { name: 'My Goods', href: '/community' },
+  { name: 'My Bed', href: '/my-items' },
 ];
 
 export function SiteHeader() {
