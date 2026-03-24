@@ -8,6 +8,7 @@ import { ImpactBanner } from '@/components/layout/impact-banner';
 import { CartProvider } from '@/lib/cart';
 import { CartDrawer } from '@/components/cart';
 
+import { Analytics } from '@vercel/analytics/react';
 import { OrganizationJsonLd, WebSiteJsonLd } from '@/components/seo';
 
 const inter = Inter({
@@ -81,6 +82,7 @@ export default function RootLayout({
           </div>
           <CartDrawer />
         </CartProvider>
+        <Analytics />
       </body>
     </html>
   );
