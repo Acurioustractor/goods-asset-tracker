@@ -44,7 +44,6 @@ export function SiteHeader() {
               {item.name}
             </Link>
           ))}
-          <AuthNavItem className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary" />
         </div>
 
         {/* CTA Buttons & Cart */}
@@ -88,10 +87,6 @@ export function SiteHeader() {
                   {item.name}
                 </Link>
               ))}
-              <AuthNavItem
-                className="text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
-                onClick={() => setMobileMenuOpen(false)}
-              />
               <div className="mt-4 flex flex-col gap-3">
                 <Button asChild>
                   <Link href="/shop/stretch-bed-single" onClick={() => setMobileMenuOpen(false)}>
