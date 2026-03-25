@@ -5,6 +5,7 @@ import { getMetrics } from '@/app/dashboard/actions';
 import { FINANCIAL_SUMMARY, TOTAL_COST_PER_BED } from '@/lib/data/impact-model';
 import { createServiceClient } from '@/lib/supabase/server';
 import { empathyLedger } from '@/lib/empathy-ledger/client';
+import { ghl } from '@/lib/ghl';
 import type { ProductionShift, ProductionInventory, ProductionJournal, Partner } from '@/lib/types/database';
 
 // ---------------------------------------------------------------------------
@@ -103,6 +104,20 @@ export async function getSystemHealth(): Promise<SystemCheck[]> {
     });
   } catch {
     checks.push({ label: 'Empathy Ledger', status: 'red', detail: 'Down' });
+  }
+
+  // GHL CRM
+  try {
+    const start = Date.now();
+    const tags = await ghl.getTags();
+    const elapsed = Date.now() - start;
+    checks.push({
+      label: 'GHL CRM',
+      status: tags.length > 0 ? (elapsed < 3000 ? 'green' : 'amber') : 'red',
+      detail: tags.length > 0 ? `${tags.length} tags, ${elapsed}ms` : 'No response',
+    });
+  } catch {
+    checks.push({ label: 'GHL CRM', status: ghl.isEnabled() ? 'red' : 'amber', detail: ghl.isEnabled() ? 'Down' : 'Disabled' });
   }
 
   // Stripe / Orders
@@ -431,4 +446,79 @@ export async function getStoriesSummary(): Promise<StoriesSummary> {
     latestStory: latest ? { title: latest.title, date: latest.publishedAt } : null,
     communityIdeas: { submitted, inProgress, completed },
   };
+}
+
+// ---------------------------------------------------------------------------
+// CRM & Engagement Summary
+// ---------------------------------------------------------------------------
+
+export interface CRMSummary {
+  totalContacts: number;
+  goodsTaggedContacts: number;
+  tagBreakdown: { tag: string; count: number }[];
+  sourceBreakdown: { source: string; count: number }[];
+  recentContacts: { name: string; tags: string[]; date: string }[];
+  pipelineSummary: { pipeline: string; count: number }[];
+}
+
+export async function getCRMSummary(): Promise<CRMSummary> {
+  try {
+    const contacts = await ghl.getContacts();
+    const goodsContacts = contacts.filter((c) =>
+      c.tags?.some((t) => t.startsWith('goods-'))
+    );
+
+    // Tag breakdown (goods- tags only)
+    const tagCounts = new Map<string, number>();
+    for (const c of goodsContacts) {
+      for (const t of c.tags) {
+        if (t.startsWith('goods-')) {
+          tagCounts.set(t, (tagCounts.get(t) || 0) + 1);
+        }
+      }
+    }
+    const tagBreakdown = [...tagCounts.entries()]
+      .map(([tag, count]) => ({ tag, count }))
+      .sort((a, b) => b.count - a.count);
+
+    // Source breakdown
+    const sourceCounts = new Map<string, number>();
+    for (const c of contacts) {
+      const src = c.source || 'Unknown';
+      sourceCounts.set(src, (sourceCounts.get(src) || 0) + 1);
+    }
+    const sourceBreakdown = [...sourceCounts.entries()]
+      .map(([source, count]) => ({ source, count }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 10);
+
+    // Recent goods contacts (last 10)
+    const recentContacts = goodsContacts
+      .sort((a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime())
+      .slice(0, 10)
+      .map((c) => ({
+        name: c.contactName || c.email || 'Unknown',
+        tags: c.tags.filter((t) => t.startsWith('goods-')),
+        date: c.dateAdded,
+      }));
+
+    return {
+      totalContacts: contacts.length,
+      goodsTaggedContacts: goodsContacts.length,
+      tagBreakdown,
+      sourceBreakdown,
+      recentContacts,
+      pipelineSummary: [],
+    };
+  } catch (error) {
+    console.error('[Ops] CRM summary error:', error);
+    return {
+      totalContacts: 0,
+      goodsTaggedContacts: 0,
+      tagBreakdown: [],
+      sourceBreakdown: [],
+      recentContacts: [],
+      pipelineSummary: [],
+    };
+  }
 }

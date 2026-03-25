@@ -5,6 +5,7 @@ import {
   getProductionSummary,
   getFundingSummary,
   getStoriesSummary,
+  getCRMSummary,
 } from './actions';
 import { SystemHealthStrip } from '@/components/ops/system-health-strip';
 import { OpsKPIGrid } from '@/components/ops/ops-kpi-grid';
@@ -12,17 +13,19 @@ import { FleetSummaryCard } from '@/components/ops/fleet-summary-card';
 import { ProductionSummaryCard } from '@/components/ops/production-summary-card';
 import { FundingSummaryCard } from '@/components/ops/funding-summary-card';
 import { StoriesSummaryCard } from '@/components/ops/stories-summary-card';
+import { CRMSummaryCard } from '@/components/ops/crm-summary-card';
 
 export const revalidate = 300; // 5 min cache
 
 export default async function OpsPage() {
-  const [health, kpis, fleet, production, funding, stories] = await Promise.all([
+  const [health, kpis, fleet, production, funding, stories, crm] = await Promise.all([
     getSystemHealth(),
     getImpactKPIs(),
     getFleetSummary(),
     getProductionSummary(),
     getFundingSummary(),
     getStoriesSummary(),
+    getCRMSummary(),
   ]);
 
   return (
@@ -67,7 +70,7 @@ export default async function OpsPage() {
         </section>
       </div>
 
-      {/* Section 5 & 6: Funding + Stories side by side */}
+      {/* Section 5, 6, 7: Funding + Stories + CRM */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <section>
           <h2 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">
@@ -78,11 +81,19 @@ export default async function OpsPage() {
 
         <section>
           <h2 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">
-            Stories & Community
+            CRM & Engagement
           </h2>
-          <StoriesSummaryCard data={stories} />
+          <CRMSummaryCard data={crm} />
         </section>
       </div>
+
+      {/* Section 8: Stories */}
+      <section>
+        <h2 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">
+          Stories & Community
+        </h2>
+        <StoriesSummaryCard data={stories} />
+      </section>
     </div>
   );
 }

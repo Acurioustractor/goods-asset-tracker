@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { ghl } from '@/lib/ghl';
 
 export async function GET(
   request: Request,
@@ -95,9 +96,21 @@ export async function POST(
       );
     }
 
-    // TODO: Sync with GHL when enabled
-    // const ghl = await import('@/lib/ghl');
-    // await ghl.updateContactWithClaim(user.phone, asset_id, asset.product, asset.community);
+    // Sync claim to GHL for CRM tracking
+    try {
+      if (ghl.isEnabled() && user.phone) {
+        await ghl.createRecipientContact({
+          phone: user.phone,
+          name: user.user_metadata?.display_name || user.user_metadata?.full_name,
+          assetId: asset_id,
+          productType: asset.product || 'unknown',
+          community: asset.community || 'unknown',
+        });
+      }
+    } catch (ghlError) {
+      // Don't fail the claim if GHL sync fails
+      console.error('[Claim] GHL sync error (non-fatal):', ghlError);
+    }
 
     return NextResponse.json({
       success: true,

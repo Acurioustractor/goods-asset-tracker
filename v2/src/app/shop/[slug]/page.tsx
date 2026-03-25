@@ -16,6 +16,7 @@ import {
   ProductTabs,
   EnterpriseOpportunity,
 } from '@/components/shop';
+import { ProductJsonLd } from '@/components/seo';
 import type { Product, ProductMetadata } from '@/lib/types/database';
 
 interface Props {
@@ -142,6 +143,7 @@ export default async function ProductPage({ params }: Props) {
 
   return (
     <main className="py-8 md:py-12">
+      <ProductJsonLd product={product} baseUrl="https://www.goodsoncountry.com" />
       <div className="container mx-auto px-4">
         {/* Breadcrumb */}
         <nav className="mb-6 text-sm">
