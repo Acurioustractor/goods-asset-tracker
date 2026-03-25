@@ -33,6 +33,7 @@ const ROLE_CONFIG: Record<ContactRole, { label: string; color: string; bg: strin
 };
 
 const SOURCE_LABELS: Record<string, string> = {
+  ghl: 'GoHighLevel',
   crm: 'CRM',
   empathy_ledger: 'Empathy Ledger',
   grantscope: 'Grantscope',
@@ -40,6 +41,7 @@ const SOURCE_LABELS: Record<string, string> = {
 };
 
 const SOURCE_DOT: Record<string, string> = {
+  ghl: 'bg-green-500',
   crm: 'bg-violet-500',
   empathy_ledger: 'bg-orange-500',
   grantscope: 'bg-sky-500',

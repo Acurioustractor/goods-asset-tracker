@@ -607,6 +607,125 @@ async function createStrategicOpportunity(params: {
 // PUBLIC API
 // ============================================================================
 
+// ============================================================================
+// GHL Contact List Types (for admin CRM)
+// ============================================================================
+
+export interface GHLContact {
+  id: string;
+  firstName: string | null;
+  lastName: string | null;
+  contactName: string | null;
+  email: string | null;
+  phone: string | null;
+  companyName: string | null;
+  tags: string[];
+  source: string | null;
+  city: string | null;
+  state: string | null;
+  country: string | null;
+  dateAdded: string;
+  dateUpdated: string;
+  type: string | null;
+  website: string | null;
+  profilePhoto: string | null;
+  customFields: Array<{ id: string; value: string; field_key?: string }>;
+}
+
+export interface GHLTag {
+  id: string;
+  name: string;
+  locationId: string;
+}
+
+/**
+ * Fetch all contacts from GHL with pagination.
+ * Optionally filter to only goods-tagged contacts.
+ */
+async function fetchAllGHLContacts(opts?: { goodsOnly?: boolean }): Promise<GHLContact[]> {
+  if (!GHL_ENABLED) return [];
+
+  const allContacts: GHLContact[] = [];
+  let startAfterId: string | undefined;
+  let startAfter: number | undefined;
+  let page = 0;
+  const maxPages = 20; // Safety limit (20 × 100 = 2000 contacts max)
+
+  try {
+    while (page < maxPages) {
+      let url = `/contacts/?locationId=${GHL_LOCATION_ID}&limit=100`;
+      if (startAfterId && startAfter) {
+        url += `&startAfter=${startAfter}&startAfterId=${startAfterId}`;
+      }
+
+      const response = await ghlRequest<{
+        contacts: GHLContact[];
+        meta: {
+          total: number;
+          startAfterId?: string;
+          startAfter?: number;
+          nextPage?: number;
+        };
+      }>(url);
+
+      const contacts = response.contacts || [];
+      if (contacts.length === 0) break;
+
+      if (opts?.goodsOnly) {
+        allContacts.push(
+          ...contacts.filter((c) =>
+            c.tags?.some((t) => t.startsWith('goods-'))
+          )
+        );
+      } else {
+        allContacts.push(...contacts);
+      }
+
+      // Check for next page
+      if (!response.meta?.startAfterId || !response.meta?.nextPage) break;
+      startAfterId = response.meta.startAfterId;
+      startAfter = response.meta.startAfter;
+      page++;
+    }
+  } catch (error) {
+    console.error('[GHL] Error fetching contacts:', error);
+  }
+
+  return allContacts;
+}
+
+/**
+ * Fetch all tags from the GHL location
+ */
+async function fetchGHLTags(): Promise<GHLTag[]> {
+  if (!GHL_ENABLED) return [];
+
+  try {
+    const response = await ghlRequest<{ tags: GHLTag[] }>(
+      `/locations/${GHL_LOCATION_ID}/tags`
+    );
+    return response.tags || [];
+  } catch (error) {
+    console.error('[GHL] Error fetching tags:', error);
+    return [];
+  }
+}
+
+/**
+ * Delete a tag by ID
+ */
+async function deleteGHLTag(tagId: string): Promise<boolean> {
+  if (!GHL_ENABLED) return false;
+
+  try {
+    await ghlRequest(`/locations/${GHL_LOCATION_ID}/tags/${tagId}`, 'DELETE');
+    return true;
+  } catch (error) {
+    console.error('[GHL] Error deleting tag:', tagId, error);
+    return false;
+  }
+}
+
 export const ghl = {
   /**
    * Check if GHL integration is enabled
@@ -1057,6 +1176,27 @@ Submitted: ${new Date().toLocaleString('en-AU')}
       enabled: GHL_ENABLED,
       data,
     });
+  },
+
+  /**
+   * Fetch all contacts (optionally goods-tagged only)
+   */
+  async getContacts(opts?: { goodsOnly?: boolean }): Promise<GHLContact[]> {
+    return fetchAllGHLContacts(opts);
+  },
+
+  /**
+   * Fetch all tags for the location
+   */
+  async getTags(): Promise<GHLTag[]> {
+    return fetchGHLTags();
+  },
+
+  /**
+   * Delete a tag by ID (for cleanup)
+   */
+  async deleteTag(tagId: string): Promise<boolean> {
+    return deleteGHLTag(tagId);
   },
 };
 

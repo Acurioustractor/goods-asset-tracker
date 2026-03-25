@@ -4,6 +4,7 @@ import {
   getGrantscopeBuyers,
   getGrantscopeCapital,
 } from '@/lib/grantscope/client';
+import { ghl, type GHLContact } from '@/lib/ghl';
 import {
   advisoryBoard,
   communityPartners,
@@ -30,7 +31,7 @@ export interface UnifiedContact {
   isElder: boolean;
   bio: string | null;
   tags: string[];
-  source: 'crm' | 'empathy_ledger' | 'grantscope' | 'compendium';
+  source: 'ghl' | 'crm' | 'empathy_ledger' | 'grantscope' | 'compendium';
   sourceId: string | null;
   website: string | null;
   // Extra context
@@ -41,10 +42,42 @@ export interface UnifiedContact {
   contactSurface?: string;
 }
 
+// Map GHL tags → CRM contact roles
+function mapGHLTagsToRoles(tags: string[]): ContactRole[] {
+  const roles: ContactRole[] = [];
+  const tagSet = new Set(tags.map((t) => t.toLowerCase()));
+
+  if (tagSet.has('goods-customer') || tagSet.has('goods-sponsor')) roles.push('supporter');
+  if (tagSet.has('goods-partner-lead') || tagSet.has('goods-partner') || tagSet.has('partner')) roles.push('partner');
+  if (tagSet.has('goods-media')) roles.push('inquiry');
+  if (tagSet.has('goods-newsletter') || tagSet.has('goods-nurture')) roles.push('supporter');
+  if (tagSet.has('goods-recipient') || tagSet.has('goods-claimed-bed') || tagSet.has('goods-claimed-washer')) roles.push('community_rep');
+  if (tagSet.has('goods-funder') || tagSet.has('funder')) roles.push('funder');
+  if (tagSet.has('goods-advisory')) roles.push('advisory');
+  if (tagSet.has('goods-community')) roles.push('community_rep');
+  if (tagSet.has('storyteller') || tagSet.has('empathy ledger') || tagSet.has('empathy-ledger')) roles.push('storyteller');
+  if (tagSet.has('government')) roles.push('government');
+  if (tagSet.has('goods-hot') || tagSet.has('goods-warm')) roles.push('buyer');
+
+  // Deduplicate
+  const defaulted = roles.length > 0 ? roles : (['inquiry'] as ContactRole[]);
+  return [...new Set(defaulted)] as ContactRole[];
+}
+
+// Map GHL contact type to relationship status
+function mapGHLTypeToStatus(type: string | null): RelationshipStatus {
+  switch (type) {
+    case 'customer': return 'active';
+    case 'lead': return 'prospect';
+    default: return 'prospect';
+  }
+}
+
 export default async function PeoplePage() {
   // Fetch all sources in parallel
-  const [crmContacts, elStorytellers, gsBuyers, gsCapital] = await Promise.all([
+  const [crmContacts, ghlContacts, elStorytellers, gsBuyers, gsCapital] = await Promise.all([
     getContacts().catch(() => []),
+    ghl.getContacts({ goodsOnly: true }).catch(() => []),
     empathyLedger.getProjectStorytellers({ limit: 100 }).catch(() => []),
     getGrantscopeBuyers().catch(() => []),
     getGrantscopeCapital().catch(() => []),
@@ -55,10 +88,44 @@ export default async function PeoplePage() {
   const linkedGsIds = new Set(crmContacts.filter((c) => c.grantscope_id).map((c) => c.grantscope_id));
   const linkedCompIds = new Set(crmContacts.filter((c) => c.compendium_partner_id).map((c) => c.compendium_partner_id));
 
+  // Track GHL emails/phones for dedup against other sources
+  const ghlEmails = new Set(ghlContacts.map((c) => c.email?.toLowerCase()).filter(Boolean));
+  const ghlPhones = new Set(ghlContacts.map((c) => c.phone).filter(Boolean));
+
   const unified: UnifiedContact[] = [];
 
-  // 1. CRM contacts (primary source)
+  // 0. GHL contacts (primary live source)
+  for (const c of ghlContacts) {
+    const name = c.contactName ||
+      [c.firstName, c.lastName].filter(Boolean).join(' ') ||
+      c.email ||
+      'Unknown';
+
+    unified.push({
+      id: `ghl-${c.id}`,
+      name,
+      email: c.email,
+      phone: c.phone,
+      avatarUrl: c.profilePhoto,
+      organization: c.companyName,
+      jobTitle: null,
+      location: [c.city, c.state].filter(Boolean).join(', ') || null,
+      roles: mapGHLTagsToRoles(c.tags),
+      relationshipStatus: mapGHLTypeToStatus(c.type),
+      isElder: false,
+      bio: null,
+      tags: c.tags,
+      source: 'ghl',
+      sourceId: c.id,
+      website: c.website,
+    });
+  }
+
+  // 1. CRM contacts (skip if already in GHL by email/phone)
   for (const c of crmContacts) {
+    if (c.email && ghlEmails.has(c.email.toLowerCase())) continue;
+    if (c.phone && ghlPhones.has(c.phone)) continue;
+
     unified.push({
       id: c.id,
       name: c.name,
@@ -301,10 +368,12 @@ export default async function PeoplePage() {
     });
   }
 
-  // Sort: CRM first, then by name
+  // Sort: GHL first, then CRM, then by name
+  const sourceOrder: Record<string, number> = { ghl: 0, crm: 1, empathy_ledger: 2, grantscope: 3, compendium: 4 };
   unified.sort((a, b) => {
-    if (a.source === 'crm' && b.source !== 'crm') return -1;
-    if (b.source === 'crm' && a.source !== 'crm') return 1;
+    const aOrder = sourceOrder[a.source] ?? 5;
+    const bOrder = sourceOrder[b.source] ?? 5;
+    if (aOrder !== bOrder) return aOrder - bOrder;
     return a.name.localeCompare(b.name);
   });
 
