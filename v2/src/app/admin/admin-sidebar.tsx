@@ -26,6 +26,7 @@ import {
   Library,
   Globe,
   FileText,
+  Rocket,
 } from 'lucide-react';
 
 const navigation = [
@@ -57,6 +58,7 @@ const navigation = [
       { name: 'Messages', href: '/admin/messages', icon: MessageSquare },
       { name: 'People', href: '/admin/partners', icon: Users },
       { name: 'Grants & Foundations', href: '/admin/grants', icon: FileText },
+      { name: 'Campaign Engine', href: '/admin/campaign-engine', icon: Rocket },
     ],
   },
   {

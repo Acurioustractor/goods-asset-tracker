@@ -16,6 +16,18 @@
     {
       "path": "/api/cron/weekly-digest",
       "schedule": "0 22 * * 0"
+    },
+    {
+      "path": "/api/cron/campaign/engagement-scoring",
+      "schedule": "0 6 * * 1"
+    },
+    {
+      "path": "/api/cron/campaign/ghl-sync",
+      "schedule": "0 7 * * *"
+    },
+    {
+      "path": "/api/cron/campaign/pipeline-followup",
+      "schedule": "0 8 * * 3"
     }
   ],
   "headers": [
