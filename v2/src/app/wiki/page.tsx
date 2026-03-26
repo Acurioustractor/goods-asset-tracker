@@ -153,15 +153,18 @@ export default function WikiPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Support & Troubleshooting</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <div className="block p-6 bg-gray-50 border border-gray-200 rounded-lg">
-              <h3 className="text-xl font-semibold text-gray-400 mb-2">
+            <Link
+              href="/wiki/support/faq"
+              className="block p-6 bg-white border border-gray-200 rounded-lg hover:shadow-lg transition-shadow"
+            >
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 ❓ FAQ
               </h3>
-              <p className="text-gray-500 text-sm mb-4">
+              <p className="text-gray-600 text-sm mb-4">
                 Common questions about products, ordering, shipping, and community support.
               </p>
-              <span className="text-gray-400 text-sm font-medium">Coming soon</span>
-            </div>
+              <span className="text-green-600 text-sm font-medium">View FAQ →</span>
+            </Link>
 
             <div className="block p-6 bg-gray-50 border border-gray-200 rounded-lg">
               <h3 className="text-xl font-semibold text-gray-400 mb-2">
@@ -173,15 +176,18 @@ export default function WikiPage() {
               <span className="text-gray-400 text-sm font-medium">Coming soon</span>
             </div>
 
-            <div className="block p-6 bg-gray-50 border border-gray-200 rounded-lg">
-              <h3 className="text-xl font-semibold text-gray-400 mb-2">
+            <Link
+              href="/support"
+              className="block p-6 bg-white border border-gray-200 rounded-lg hover:shadow-lg transition-shadow"
+            >
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 📞 Contact Support
               </h3>
-              <p className="text-gray-500 text-sm mb-4">
+              <p className="text-gray-600 text-sm mb-4">
                 Get help from the Goods team via email, SMS, or community channels.
               </p>
-              <span className="text-gray-400 text-sm font-medium">Coming soon</span>
-            </div>
+              <span className="text-green-600 text-sm font-medium">Get support →</span>
+            </Link>
 
           </div>
         </section>
@@ -189,27 +195,46 @@ export default function WikiPage() {
         {/* Community Section */}
         <section id="community" className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Community & Stories</h2>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <div className="block p-6 bg-gray-50 border border-gray-200 rounded-lg">
-              <h3 className="text-xl font-semibold text-gray-400 mb-2">
-                🌏 Community Partners
+            <Link
+              href="/wiki/community/partner-guide"
+              className="block p-6 bg-white border border-gray-200 rounded-lg hover:shadow-lg transition-shadow"
+            >
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                🤝 Partner Guide
               </h3>
-              <p className="text-gray-500 text-sm mb-4">
-                Map and directory of communities using Goods products and facilities.
+              <p className="text-gray-600 text-sm mb-4">
+                Sponsorship tiers, procurement partnerships, and how to work with us.
               </p>
-              <span className="text-gray-400 text-sm font-medium">Coming soon</span>
-            </div>
+              <span className="text-green-600 text-sm font-medium">View guide →</span>
+            </Link>
 
-            <div className="block p-6 bg-gray-50 border border-gray-200 rounded-lg">
-              <h3 className="text-xl font-semibold text-gray-400 mb-2">
+            <Link
+              href="/wiki/community/tracking-model"
+              className="block p-6 bg-white border border-gray-200 rounded-lg hover:shadow-lg transition-shadow"
+            >
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                📊 Goods Tracking Model
+              </h3>
+              <p className="text-gray-600 text-sm mb-4">
+                How we track essential goods through their lifecycle in remote communities.
+              </p>
+              <span className="text-green-600 text-sm font-medium">View model →</span>
+            </Link>
+
+            <Link
+              href="/stories"
+              className="block p-6 bg-white border border-gray-200 rounded-lg hover:shadow-lg transition-shadow"
+            >
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 📖 Impact Stories
               </h3>
-              <p className="text-gray-500 text-sm mb-4">
-                Real stories from communities using Goods products to grow food and build resilience.
+              <p className="text-gray-600 text-sm mb-4">
+                Real stories from communities, powered by Empathy Ledger.
               </p>
-              <span className="text-gray-400 text-sm font-medium">Coming soon</span>
-            </div>
+              <span className="text-green-600 text-sm font-medium">Read stories →</span>
+            </Link>
 
           </div>
         </section>
@@ -219,15 +244,31 @@ export default function WikiPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-6">How-To Guides</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <div className="block p-6 bg-gray-50 border border-gray-200 rounded-lg">
-              <h3 className="text-xl font-semibold text-gray-400 mb-2">
-                🌱 Growing Guide
+            <Link
+              href="/wiki/guides/operations"
+              className="block p-6 bg-white border border-gray-200 rounded-lg hover:shadow-lg transition-shadow"
+            >
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                📋 Operations Handbook
               </h3>
-              <p className="text-gray-500 text-sm mb-4">
-                How to use Stretch Beds for organic growing, companion planting, and soil health.
+              <p className="text-gray-600 text-sm mb-4">
+                Daily operations guide — orders, production, fleet, campaign engine, and cron jobs.
               </p>
-              <span className="text-gray-400 text-sm font-medium">Coming soon</span>
-            </div>
+              <span className="text-green-600 text-sm font-medium">View handbook →</span>
+            </Link>
+
+            <Link
+              href="/wiki/guides/story-templates"
+              className="block p-6 bg-white border border-gray-200 rounded-lg hover:shadow-lg transition-shadow"
+            >
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                📝 Story Templates
+              </h3>
+              <p className="text-gray-600 text-sm mb-4">
+                Templates for creating delivery stories, community voices, and impact reports.
+              </p>
+              <span className="text-green-600 text-sm font-medium">View templates →</span>
+            </Link>
 
             <div className="block p-6 bg-gray-50 border border-gray-200 rounded-lg">
               <h3 className="text-xl font-semibold text-gray-400 mb-2">
@@ -235,16 +276,6 @@ export default function WikiPage() {
               </h3>
               <p className="text-gray-500 text-sm mb-4">
                 Youth training programs, operator certifications, and workshop guides.
-              </p>
-              <span className="text-gray-400 text-sm font-medium">Coming soon</span>
-            </div>
-
-            <div className="block p-6 bg-gray-50 border border-gray-200 rounded-lg">
-              <h3 className="text-xl font-semibold text-gray-400 mb-2">
-                📋 Checklists & Templates
-              </h3>
-              <p className="text-gray-500 text-sm mb-4">
-                Downloadable safety checklists, inventory sheets, and maintenance logs.
               </p>
               <span className="text-gray-400 text-sm font-medium">Coming soon</span>
             </div>
