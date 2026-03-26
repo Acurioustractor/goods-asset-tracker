@@ -12,8 +12,6 @@ import {
   Kanban,
   Wrench,
   AlertCircle,
-  Heart,
-  MessageSquare,
   Handshake,
   BookOpen,
   Megaphone,
@@ -25,8 +23,7 @@ import {
   LogOut,
   Library,
   Globe,
-  FileText,
-  Rocket,
+  Network,
 } from 'lucide-react';
 
 const navigation = [
@@ -54,12 +51,8 @@ const navigation = [
   {
     group: 'Network & Impact',
     items: [
-      { name: 'Compassion', href: '/admin/compassion', icon: Heart },
-      { name: 'Messages', href: '/admin/messages', icon: MessageSquare },
-      { name: 'People', href: '/admin/partners', icon: Users },
-      { name: 'Grants & Foundations', href: '/admin/grants', icon: FileText },
-      { name: 'Campaign Engine', href: '/admin/campaign-engine', icon: Rocket },
-      { name: 'CRM & Pipelines', href: '/admin/crm', icon: Kanban },
+      { name: 'Network', href: '/admin/network', icon: Network },
+      { name: 'Deals', href: '/admin/deals', icon: Handshake },
       { name: 'Brand & Content', href: '/admin/brand', icon: Globe },
     ],
   },

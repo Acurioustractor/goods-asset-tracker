@@ -159,6 +159,43 @@ export async function GET(request: NextRequest) {
       }
     }
 
+    // ── 7. LinkedIn & Gmail Engagement (from GHL tags) ──
+    // Fetch GHL contacts once — reused for tag sync below
+    const ghlContactsCache = ghl.isEnabled() ? await ghl.getContacts({ goodsOnly: true }) : [];
+
+    for (const c of ghlContactsCache) {
+      const tags = c.tags || [];
+      const email = c.email;
+      const name = c.contactName || [c.firstName, c.lastName].filter(Boolean).join(' ') || null;
+
+      if (!email) continue;
+
+      // Key partner tag (Kristy, Tanya, Narelle, Rachel, etc.)
+      if (tags.includes('goods-key-partner')) {
+        addScore(email, name, 'key_partner', 1);
+      }
+
+      // LinkedIn tier scoring
+      if (tags.includes('goods-linkedin-hot')) {
+        addScore(email, name, 'linkedin_hot', 1);
+      } else if (tags.includes('goods-linkedin-strategic')) {
+        addScore(email, name, 'linkedin_strategic', 1);
+      } else if (tags.includes('goods-linkedin-warm')) {
+        addScore(email, name, 'linkedin_warm', 1);
+      }
+
+      // LinkedIn posts engaged (each goods-li-* tag = 1 post)
+      const postTags = tags.filter(t => t.startsWith('goods-li-'));
+      if (postTags.length > 0) {
+        addScore(email, name, 'linkedin_post_engaged', postTags.length);
+      }
+
+      // Gmail active correspondence
+      if (tags.includes('goods-gmail-active')) {
+        addScore(email, name, 'gmail_active', 1);
+      }
+    }
+
     // ── Compile Results ──
     const tierDistribution: Record<EngagementTier, number> = {
       aware: 0,
@@ -195,11 +232,9 @@ export async function GET(request: NextRequest) {
     let ghlErrors = 0;
 
     if (ghl.isEnabled()) {
-      // Get all GHL contacts to match emails
-      const ghlContacts = await ghl.getContacts({ goodsOnly: true });
       const ghlByEmail = new Map<string, { id: string; tags: string[] }>();
 
-      for (const c of ghlContacts) {
+      for (const c of ghlContactsCache) {
         if (c.email) {
           ghlByEmail.set(c.email.toLowerCase(), {
             id: c.id,

@@ -400,7 +400,7 @@ function DealRow({ deal, isExpanded, onToggle, onAdvance, onStageChange }: {
 
   return (
     <div>
-      <button onClick={onToggle} className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 text-left transition-colors">
+      <div role="button" tabIndex={0} onClick={onToggle} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') onToggle(); }} className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 text-left transition-colors cursor-pointer">
         <span className="text-gray-400">
           {isExpanded ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
         </span>
@@ -438,7 +438,7 @@ function DealRow({ deal, isExpanded, onToggle, onAdvance, onStageChange }: {
             <ArrowRight className="h-4 w-4" />
           </button>
         )}
-      </button>
+      </div>
 
       {isExpanded && (
         <div className="px-12 pb-4 bg-gray-50 border-t border-gray-100">

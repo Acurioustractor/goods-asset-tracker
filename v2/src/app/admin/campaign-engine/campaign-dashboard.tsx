@@ -24,6 +24,9 @@ import {
   Handshake,
   Newspaper,
   BookOpen,
+  Linkedin,
+  Globe,
+  Star,
 } from 'lucide-react';
 import {
   type ScoredContact,
@@ -108,6 +111,12 @@ const ACTION_ICONS: Record<ScoringAction, typeof ShoppingCart> = {
   partnership_inquiry: Handshake,
   contact_form: Mail,
   story_contribution: BookOpen,
+  linkedin_hot: Linkedin,
+  linkedin_strategic: Linkedin,
+  linkedin_warm: Linkedin,
+  linkedin_post_engaged: Globe,
+  gmail_active: Mail,
+  key_partner: Star,
 };
 
 // ── Main Component ──

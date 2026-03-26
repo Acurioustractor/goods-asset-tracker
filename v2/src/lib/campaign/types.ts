@@ -24,6 +24,12 @@ export const SCORING_WEIGHTS = {
   partnership_inquiry: 4,
   contact_form: 1,
   story_contribution: 3,
+  linkedin_hot: 8,
+  linkedin_strategic: 4,
+  linkedin_warm: 2,
+  linkedin_post_engaged: 1,
+  gmail_active: 3,
+  key_partner: 10,
 } as const;
 
 export type ScoringAction = keyof typeof SCORING_WEIGHTS;
