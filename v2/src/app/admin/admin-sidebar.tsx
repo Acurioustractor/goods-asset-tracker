@@ -59,6 +59,7 @@ const navigation = [
       { name: 'People', href: '/admin/partners', icon: Users },
       { name: 'Grants & Foundations', href: '/admin/grants', icon: FileText },
       { name: 'Campaign Engine', href: '/admin/campaign-engine', icon: Rocket },
+      { name: 'CRM & Pipelines', href: '/admin/crm', icon: Kanban },
     ],
   },
   {
