@@ -24,6 +24,7 @@ export default async function RequisitionsPage() {
     .order('created_time', { ascending: false });
 
   // Get recently fulfilled (deployed in last 30 days)
+  // eslint-disable-next-line react-hooks/purity
   const thirtyDaysAgo = new Date(Date.now() - 30 * 86400000).toISOString();
   const { data: recentlyFulfilled } = await supabase
     .from('assets')

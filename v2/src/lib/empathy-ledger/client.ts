@@ -9,7 +9,6 @@ import type {
   EmpathyLedgerStoryteller,
   ContentPlacement,
   MediaResponse,
-  StoriesResponse,
   PlacementsResponse,
   MediaQueryParams,
   StoriesQueryParams,

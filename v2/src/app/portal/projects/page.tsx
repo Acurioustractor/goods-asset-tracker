@@ -95,6 +95,7 @@ export default function ProjectsPage() {
 
   const createProject = (template: typeof PROJECT_TEMPLATES[0]) => {
     const project: Project = {
+      // eslint-disable-next-line react-hooks/purity
       id: Date.now().toString(),
       title: template.id === 'custom' ? 'New Project' : template.title,
       description: template.description,

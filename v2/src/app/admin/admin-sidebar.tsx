@@ -75,7 +75,7 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const NavContent = () => (
+  const renderNavContent = () => (
     <div className="flex h-full flex-col overflow-y-auto bg-slate-900 border-r border-slate-800 px-6 pb-4 pt-6">
       <div className="flex h-12 shrink-0 items-center justify-between">
          <span className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
@@ -156,7 +156,7 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
           <div className="fixed inset-0 bg-gray-900/80 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
           <div className="fixed inset-0 flex">
             <div className="relative mr-16 flex w-full max-w-xs flex-1 transform transition shadow-2xl">
-              <NavContent />
+              {renderNavContent()}
             </div>
           </div>
         </div>
@@ -164,7 +164,7 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
 
       {/* Desktop Sidebar */}
       <div className="hidden md:fixed md:inset-y-0 md:z-50 md:flex md:w-72 md:flex-col shadow-xl">
-        <NavContent />
+        {renderNavContent()}
       </div>
     </>
   );

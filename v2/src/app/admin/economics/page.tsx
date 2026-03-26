@@ -65,6 +65,7 @@ export default function EconomicsDashboard() {
     const bedsVol = (bedW * bedL * bedH) * maxBeds;
     const wastedPct = palletVol > 0 ? ((1 - (bedsVol / palletVol)) * 100) : 0;
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLogistics({
       bedsPerPallet: maxBeds,
       costPerBed: costPer,

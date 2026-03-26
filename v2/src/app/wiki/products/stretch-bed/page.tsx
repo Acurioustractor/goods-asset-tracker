@@ -158,7 +158,7 @@ export default function StretchBedGuidePage() {
                   </tr>
                   <tr>
                     <td className="px-4 py-3 font-medium">Joinery</td>
-                    <td className="px-4 py-3">Slot-together "T" section<br/><span className="text-sm text-gray-600">No screws or hardware needed</span></td>
+                    <td className="px-4 py-3">Slot-together &quot;T&quot; section<br/><span className="text-sm text-gray-600">No screws or hardware needed</span></td>
                     <td className="px-4 py-3">Custom manufactured</td>
                   </tr>
                 </tbody>
@@ -186,7 +186,7 @@ export default function StretchBedGuidePage() {
 
               <div className="border-l-4 border-green-500 pl-4">
                 <h3 className="font-semibold text-lg mb-2">Step 2: Frame Assembly</h3>
-                <p className="text-gray-700 mb-2">Connect steel pipe pieces using the slot-together "T" section joinery.</p>
+                <p className="text-gray-700 mb-2">Connect steel pipe pieces using the slot-together &quot;T&quot; section joinery.</p>
                 <ul className="list-disc list-inside text-gray-700 space-y-1">
                   <li>No tools or fasteners needed</li>
                   <li>Pieces click together</li>
@@ -233,7 +233,7 @@ export default function StretchBedGuidePage() {
             <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
               <p className="text-sm text-yellow-900">
                 <strong>Community Assembly:</strong> Typically assembled on-country with community members.
-                A trained "bed mechanic" often assists with first-time assembly to ensure proper setup.
+                A trained &quot;bed mechanic&quot; often assists with first-time assembly to ensure proper setup.
               </p>
             </div>
           </section>
@@ -259,7 +259,7 @@ export default function StretchBedGuidePage() {
 
               <div className="border border-gray-200 rounded-lg p-6">
                 <h3 className="font-semibold text-lg mb-2">☀️ Outdoor-Ready</h3>
-                <p className="text-gray-700">Canvas + galvanised steel handles extreme weather. Won't rust. Designed for dust, heat, humidity, and harsh conditions.</p>
+                <p className="text-gray-700">Canvas + galvanised steel handles extreme weather. Won&apos;t rust. Designed for dust, heat, humidity, and harsh conditions.</p>
               </div>
 
               <div className="border border-gray-200 rounded-lg p-6">
@@ -298,7 +298,7 @@ export default function StretchBedGuidePage() {
             <ul>
               <li>Stain-resistant and UV-resistant</li>
               <li>Stays clean in harsh conditions</li>
-              <li>Unlike painted surfaces, HDPE doesn't trap dirt</li>
+              <li>Unlike painted surfaces, HDPE doesn&apos;t trap dirt</li>
               <li>Wipe with damp cloth</li>
             </ul>
 
@@ -308,7 +308,7 @@ export default function StretchBedGuidePage() {
               <li>Components can be swapped individually</li>
               <li>Canvas can be replaced if worn</li>
               <li>Frame parts modular and replaceable</li>
-              <li>Local "bed mechanics" can perform repairs</li>
+              <li>Local &quot;bed mechanics&quot; can perform repairs</li>
             </ul>
           </section>
 
@@ -365,22 +365,22 @@ export default function StretchBedGuidePage() {
 
             <div className="not-prose space-y-4 mt-6">
               <div className="border-l-4 border-blue-500 pl-4 bg-blue-50 p-4 rounded-r">
-                <h3 className="font-semibold mb-2">"We want to move it around"</h3>
+                <h3 className="font-semibold mb-2">&quot;We want to move it around&quot;</h3>
                 <p className="text-gray-700">Communities needed a lighter, more portable bed that flat-packs smaller for easier relocation between homes or rooms.</p>
               </div>
 
               <div className="border-l-4 border-blue-500 pl-4 bg-blue-50 p-4 rounded-r">
-                <h3 className="font-semibold mb-2">"We want it high off the ground"</h3>
+                <h3 className="font-semibold mb-2">&quot;We want it high off the ground&quot;</h3>
                 <p className="text-gray-700">Elevated sleeping reduces exposure to insects, vermin, cold floors, and provides stable support for larger households.</p>
               </div>
 
               <div className="border-l-4 border-blue-500 pl-4 bg-blue-50 p-4 rounded-r">
-                <h3 className="font-semibold mb-2">"We don't want the foam"</h3>
-                <p className="text-gray-700">Foam toppers couldn't be washed, retained moisture, developed mould, and broke down in washing machines. Canvas solves all these issues - it can be hosed down completely.</p>
+                <h3 className="font-semibold mb-2">&quot;We don&apos;t want the foam&quot;</h3>
+                <p className="text-gray-700">Foam toppers couldn&apos;t be washed, retained moisture, developed mould, and broke down in washing machines. Canvas solves all these issues - it can be hosed down completely.</p>
               </div>
 
               <div className="border-l-4 border-blue-500 pl-4 bg-blue-50 p-4 rounded-r">
-                <h3 className="font-semibold mb-2">"We want a MAD bed!"</h3>
+                <h3 className="font-semibold mb-2">&quot;We want a MAD bed!&quot;</h3>
                 <p className="text-gray-700">The advisory group pushed for more innovative, body-adaptive design that goes beyond basic functionality.</p>
               </div>
             </div>
@@ -388,7 +388,7 @@ export default function StretchBedGuidePage() {
             <div className="mt-6 p-6 bg-green-50 border border-green-200 rounded-lg">
               <p className="text-lg font-medium text-green-900 mb-2">Community Verdict</p>
               <blockquote className="text-gray-700 italic">
-                "These ones are the best so far... in terms of flexibility, ease of use and reduction in skin disease stuff."
+                &quot;These ones are the best so far... in terms of flexibility, ease of use and reduction in skin disease stuff.&quot;
               </blockquote>
             </div>
           </section>

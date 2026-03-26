@@ -204,7 +204,7 @@ export const getProductPerformance = unstable_cache(
       { orders: Set<string>; revenue: number; units: number }
     >();
 
-    orderItems.forEach((item: any) => {
+    orderItems.forEach((item: { product_type?: string; quantity?: number; unit_price_cents?: number }) => {
       const product = item.product_type || 'unknown';
       const current = productMap.get(product) || {
         orders: new Set<string>(),
@@ -257,7 +257,7 @@ export const getGeographicData = unstable_cache(
     >();
 
     orders.forEach((order) => {
-      const address = order.shipping_address as any;
+      const address = order.shipping_address as { state?: string; email?: string } | null;
       const state = address?.state || 'Unknown';
 
       const current = stateMap.get(state) || {

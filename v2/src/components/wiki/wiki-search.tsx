@@ -69,28 +69,16 @@ const WIKI_PAGES: SearchResult[] = [
 export function WikiSearch() {
   const router = useRouter();
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState<SearchResult[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    if (query.length < 2) {
-      setResults([]);
-      setIsOpen(false);
-      return;
-    }
-
-    // Simple keyword search
-    const searchLower = query.toLowerCase();
-    const filtered = WIKI_PAGES.filter(
-      (page) =>
-        page.title.toLowerCase().includes(searchLower) ||
-        page.description.toLowerCase().includes(searchLower) ||
-        page.category.toLowerCase().includes(searchLower)
-    );
-
-    setResults(filtered);
-    setIsOpen(filtered.length > 0);
-  }, [query]);
+  // Derive results directly from query
+  const searchLower = query.toLowerCase();
+  const results = query.length < 2 ? [] : WIKI_PAGES.filter(
+    (page) =>
+      page.title.toLowerCase().includes(searchLower) ||
+      page.description.toLowerCase().includes(searchLower) ||
+      page.category.toLowerCase().includes(searchLower)
+  );
 
   const handleResultClick = (url: string) => {
     router.push(url);

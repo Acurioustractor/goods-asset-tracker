@@ -98,140 +98,143 @@ async function getStorytellersForGrid(): Promise<StorytellerGridProfile[]> {
 
 // Fetch media gallery from Empathy Ledger
 async function MediaFromLedger() {
+  let media;
   try {
-    const media = await empathyLedger.getMedia({
+    media = await empathyLedger.getMedia({
       type: 'image',
       elderApproved: true,
       limit: 12
     });
-
-    if (media.length === 0) {
-      return null;
-    }
-
-    return (
-      <section className="py-16 md:py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-widest text-accent mb-4">
-              Community Gallery
-            </p>
-            <h2 className="text-3xl font-light text-foreground mb-4" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
-              Moments from Country
-            </h2>
-            <p className="max-w-xl mx-auto text-muted-foreground">
-              Elder-approved photos shared by community members
-            </p>
-          </div>
-
-          <div className="max-w-6xl mx-auto">
-            <MediaGallery media={media} columns={4} showAttribution />
-          </div>
-        </div>
-      </section>
-    );
   } catch {
     return null;
   }
+
+  if (!media || media.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="py-16 md:py-20 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <p className="text-sm uppercase tracking-widest text-accent mb-4">
+            Community Gallery
+          </p>
+          <h2 className="text-3xl font-light text-foreground mb-4" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
+            Moments from Country
+          </h2>
+          <p className="max-w-xl mx-auto text-muted-foreground">
+            Elder-approved photos shared by community members
+          </p>
+        </div>
+
+        <div className="max-w-6xl mx-auto">
+          <MediaGallery media={media} columns={4} showAttribution />
+        </div>
+      </div>
+    </section>
+  );
 }
 
 // Fetch storytellers from Empathy Ledger syndication API (with analysis data)
 async function StorytellersFromLedger() {
+  let storytellers;
   try {
-    const storytellers = await empathyLedger.getProjectStorytellers({ limit: 20 });
-
-    if (storytellers.length === 0) {
-      return null;
-    }
-
-    return (
-      <section className="py-16 md:py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-widest text-accent mb-4">
-              From the Empathy Ledger
-            </p>
-            <h2 className="text-3xl font-light text-foreground mb-4" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
-              Deeper Analysis
-            </h2>
-            <p className="max-w-xl mx-auto text-muted-foreground">
-              AI-assisted analysis of community conversations — themes, impact, and insights
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {storytellers.slice(0, 6).map((storyteller) => (
-              <SyndicationStorytellerCard
-                key={storyteller.id}
-                storyteller={storyteller}
-                linkTo={`/story?id=${storyteller.id}`}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-    );
+    storytellers = await empathyLedger.getProjectStorytellers({ limit: 20 });
   } catch {
     return null;
   }
+
+  if (!storytellers || storytellers.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="py-16 md:py-20 bg-muted/30">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <p className="text-sm uppercase tracking-widest text-accent mb-4">
+            From the Empathy Ledger
+          </p>
+          <h2 className="text-3xl font-light text-foreground mb-4" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
+            Deeper Analysis
+          </h2>
+          <p className="max-w-xl mx-auto text-muted-foreground">
+            AI-assisted analysis of community conversations — themes, impact, and insights
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {storytellers.slice(0, 6).map((storyteller) => (
+            <SyndicationStorytellerCard
+              key={storyteller.id}
+              storyteller={storyteller}
+              linkTo={`/story?id=${storyteller.id}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 // Fetch top quotes from project insights
 async function TopQuotesFromLedger() {
+  let insights;
   try {
-    const insights = await empathyLedger.getProjectInsights();
-
-    if (!insights || insights.topQuotes.length === 0) {
-      return null;
-    }
-
-    return (
-      <section className="py-16 md:py-20 bg-foreground text-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-widest text-background/50 mb-4">
-              From the Empathy Ledger
-            </p>
-            <h2 className="text-3xl font-light mb-4" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
-              Highest Impact Quotes
-            </h2>
-            <p className="max-w-xl mx-auto text-background/60">
-              The most impactful words from {insights.project.storytellerCount} storytellers
-              across {insights.project.transcriptCount} conversations
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {insights.topQuotes.slice(0, 6).map((quote, i) => (
-              <div
-                key={i}
-                className="rounded-lg bg-background/5 border border-background/10 p-6"
-              >
-                <p
-                  className="text-lg leading-relaxed text-background/90 mb-4"
-                  style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-                >
-                  &ldquo;{quote.text}&rdquo;
-                </p>
-                <div className="flex items-center justify-between">
-                  <p className="text-sm text-background/60">
-                    {quote.storytellerName}
-                  </p>
-                  {quote.impactScore && (
-                    <span className="text-xs text-background/40">
-                      Impact: {quote.impactScore.toFixed(1)}
-                    </span>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
+    insights = await empathyLedger.getProjectInsights();
   } catch {
     return null;
   }
+
+  if (!insights || insights.topQuotes.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="py-16 md:py-20 bg-foreground text-background">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <p className="text-sm uppercase tracking-widest text-background/50 mb-4">
+            From the Empathy Ledger
+          </p>
+          <h2 className="text-3xl font-light mb-4" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
+            Highest Impact Quotes
+          </h2>
+          <p className="max-w-xl mx-auto text-background/60">
+            The most impactful words from {insights.project.storytellerCount} storytellers
+            across {insights.project.transcriptCount} conversations
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {insights.topQuotes.slice(0, 6).map((quote, i) => (
+            <div
+              key={i}
+              className="rounded-lg bg-background/5 border border-background/10 p-6"
+            >
+              <p
+                className="text-lg leading-relaxed text-background/90 mb-4"
+                style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+              >
+                &ldquo;{quote.text}&rdquo;
+              </p>
+              <div className="flex items-center justify-between">
+                <p className="text-sm text-background/60">
+                  {quote.storytellerName}
+                </p>
+                {quote.impactScore && (
+                  <span className="text-xs text-background/40">
+                    Impact: {quote.impactScore.toFixed(1)}
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function StorytellersLoadingSkeleton() {

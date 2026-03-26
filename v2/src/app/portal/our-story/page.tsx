@@ -60,6 +60,7 @@ export default function OurStoryPage() {
   const [addAttribution, setAddAttribution] = useState('');
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setReports(loadReports());
   }, []);
 

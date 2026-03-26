@@ -57,7 +57,6 @@ interface SpeechRecognitionInstance extends EventTarget {
   stop(): void;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getSpeechRecognition(): (new () => SpeechRecognitionInstance) | null {
   if (typeof window === 'undefined') return null;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -132,6 +131,7 @@ export function VoiceRecorder({
       mediaRecorderRef.current = recorder;
       recorder.start(1000);
       setIsRecording(true);
+      // eslint-disable-next-line react-hooks/purity
       startTimeRef.current = Date.now();
 
       // Reset transcript state

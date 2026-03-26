@@ -20,6 +20,17 @@ type PipelineAsset = {
   created_at: string;
 };
 
+type BatchedGroup = {
+  id: string;
+  community: string;
+  product: string | null;
+  partner_name: string | null;
+  status: string;
+  total_quantity: number;
+  asset_count: number;
+  assets: PipelineAsset[];
+};
+
 const STAGES = ['requested', 'allocated', 'demo', 'deployed', 'retired'] as const;
 
 const STAGE_COLORS: Record<string, string> = {
@@ -92,14 +103,15 @@ export default function PipelineBoard({ assets }: { assets: PipelineAsset[] }) {
   const batchedGroups = useMemo(() => {
     if (viewMode === 'individual') return null;
 
-    const result: Record<string, any[]> = {};
+    const result: Record<string, BatchedGroup[]> = {};
     for (const stage of STAGES) {
       const stageAssets = grouped[stage];
-      const map = new Map<string, any>();
+      const map = new Map<string, BatchedGroup>();
       for (const a of stageAssets) {
         const key = `${a.community}|${a.product}|${a.partner_name || ''}`;
-        if (!map.has(key)) {
-          map.set(key, {
+        let b = map.get(key);
+        if (!b) {
+          b = {
             id: key,
             community: a.community,
             product: a.product,
@@ -108,9 +120,9 @@ export default function PipelineBoard({ assets }: { assets: PipelineAsset[] }) {
             total_quantity: 0,
             asset_count: 0,
             assets: [],
-          });
+          };
+          map.set(key, b);
         }
-        const b = map.get(key);
         b.total_quantity += (a.quantity || 1);
         b.asset_count += 1;
         b.assets.push(a);
@@ -338,7 +350,7 @@ export default function PipelineBoard({ assets }: { assets: PipelineAsset[] }) {
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   if (confirm(`Move all ${batch.total_quantity} items to ${s}?`)) {
-                                    batch.assets.forEach((a: any) => handleStatusChange(a.unique_id, s));
+                                    batch.assets.forEach((a: PipelineAsset) => handleStatusChange(a.unique_id, s));
                                   }
                                 }}
                                 className={`text-[10px] px-1.5 py-0.5 rounded ${STAGE_COLORS[s]} hover:opacity-80`}
@@ -353,7 +365,7 @@ export default function PipelineBoard({ assets }: { assets: PipelineAsset[] }) {
                             <div className="pt-3 mt-2 border-t space-y-2">
                               <p className="text-xs font-semibold text-gray-700">Individual Asset IDs:</p>
                               <div className="flex flex-wrap gap-1">
-                                {batch.assets.slice(0, 15).map((a: any) => (
+                                {batch.assets.slice(0, 15).map((a: PipelineAsset) => (
                                   <Badge key={a.unique_id} variant="secondary" className="text-[9px] font-mono font-normal">
                                     {a.unique_id}
                                   </Badge>

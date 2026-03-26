@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -43,7 +42,6 @@ export function CommunityMap({
 }: CommunityMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
-  const [activePopup, setActivePopup] = useState<string | null>(null);
 
   useEffect(() => {
     if (!mapRef.current || mapInstanceRef.current) return;
@@ -126,7 +124,6 @@ export function CommunityMap({
         .bindPopup(popup);
 
       marker.on('click', () => {
-        setActivePopup(loc.id);
         onSelectCommunity?.(loc.id);
       });
     });

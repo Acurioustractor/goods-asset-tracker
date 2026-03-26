@@ -59,6 +59,7 @@ export default function GoalsPage() {
     if (!title) return;
 
     const goal: Goal = {
+      // eslint-disable-next-line react-hooks/purity
       id: Date.now().toString(),
       title,
       description,

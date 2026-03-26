@@ -81,6 +81,7 @@ export default async function AdminProductionPage() {
   const latestDiesel = shifts[0]?.diesel_level || '-';
   const openIssues = journalEntries.filter((e) => e.entry_type === 'issue' && !e.is_resolved).length;
   const daysSinceCount = latestInventory
+    // eslint-disable-next-line react-hooks/purity
     ? Math.floor((Date.now() - new Date(latestInventory.snapshot_date + 'T00:00:00').getTime()) / 86400000)
     : -1;
 

@@ -8,6 +8,7 @@ import { MachineListTable } from '@/components/fleet/machine-list-table';
 import { AlertsList } from '@/components/fleet/alerts-list';
 import { FleetDailyChart } from '@/components/fleet/fleet-daily-chart';
 import { FleetRecommendations } from '@/components/fleet/fleet-recommendations';
+import { FleetMap } from './fleet-map';
 import type { Alert, MachineOverview } from '@/lib/types/database';
 
 export default async function FleetDashboardPage() {
@@ -30,55 +31,13 @@ export default async function FleetDashboardPage() {
     .select('id', { count: 'exact', head: true })
     .eq('event_type', 'cycle_complete');
 
-  // Active machines = reported in last 7 days (wider window than 24h online check)
-  const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
-  const { data: recentMachines } = await supabase
-    .from('usage_logs')
-    .select('machine_id')
-    .gte('created_at', sevenDaysAgo)
-    .not('machine_id', 'is', null);
-  const activeMachineCount = new Set((recentMachines || []).map(r => r.machine_id)).size;
-
-  // Fetch open alerts
+  // Fetch open alerts for the sidebar
   const { data: alerts } = await supabase
     .from('alerts')
     .select('*')
     .or('resolved.is.null,resolved.eq.false')
     .order('created_at', { ascending: false })
     .limit(20);
-
-  // Get all assets with machine_id
-  const { data: machineAssets } = await supabase
-    .from('assets')
-    .select('unique_id, machine_id, name, community, place, contact_household, supply_date')
-    .not('machine_id', 'is', null);
-
-  // Get latest usage_log per machine for status
-  const { data: latestLogs } = await supabase
-    .from('usage_logs')
-    .select('machine_id, online, firmware_version, site_name, restart_counter, created_at')
-    .not('machine_id', 'is', null)
-    .order('created_at', { ascending: false });
-
-  // Get today's cycle counts per machine
-  const todayStart = new Date();
-  todayStart.setHours(0, 0, 0, 0);
-  const { data: todayCycles } = await supabase
-    .from('usage_logs')
-    .select('machine_id')
-    .eq('event_type', 'cycle_complete')
-    .gte('created_at', todayStart.toISOString())
-    .not('machine_id', 'is', null);
-
-  // Get this week's kWh per machine
-  const weekStart = new Date();
-  weekStart.setDate(weekStart.getDate() - 7);
-  const { data: weekLogs } = await supabase
-    .from('usage_logs')
-    .select('machine_id, power_kwh')
-    .eq('event_type', 'cycle_complete')
-    .gte('created_at', weekStart.toISOString())
-    .not('machine_id', 'is', null);
 
   // Get daily rollups for fleet chart (last 30 days)
   const thirtyDaysAgo = new Date();
@@ -88,12 +47,6 @@ export default async function FleetDashboardPage() {
     .select('*')
     .gte('rollup_date', thirtyDaysAgo.toISOString().split('T')[0])
     .order('rollup_date', { ascending: true });
-
-  // Get alert counts per asset
-  const { data: alertCounts } = await supabase
-    .from('alerts')
-    .select('asset_id')
-    .or('resolved.is.null,resolved.eq.false');
 
   // Get fleet commentary
   const { data: fleetCommentary } = await supabase
@@ -130,67 +83,24 @@ export default async function FleetDashboardPage() {
     }))
     .sort((a, b) => a.date.localeCompare(b.date));
 
-  // Build machine overviews
-  const latestByMachine = new Map<string, {
-    online: boolean;
-    firmware_version: string | null;
-    site_name: string | null;
-    restart_counter: number | null;
-    created_at: string;
-  }>();
-  for (const log of latestLogs || []) {
-    if (log.machine_id && !latestByMachine.has(log.machine_id)) {
-      latestByMachine.set(log.machine_id, log);
-    }
-  }
-
-  const todayCountByMachine = new Map<string, number>();
-  for (const log of todayCycles || []) {
-    if (log.machine_id) {
-      todayCountByMachine.set(log.machine_id, (todayCountByMachine.get(log.machine_id) || 0) + 1);
-    }
-  }
-
-  const weekKwhByMachine = new Map<string, number>();
-  const weekCyclesByMachine = new Map<string, number>();
-  for (const log of weekLogs || []) {
-    if (log.machine_id) {
-      weekKwhByMachine.set(log.machine_id, (weekKwhByMachine.get(log.machine_id) || 0) + (log.power_kwh || 0));
-      weekCyclesByMachine.set(log.machine_id, (weekCyclesByMachine.get(log.machine_id) || 0) + 1);
-    }
-  }
-
-  const alertCountByAsset = new Map<string, number>();
-  for (const alert of alertCounts || []) {
-    if (alert.asset_id) {
-      alertCountByAsset.set(alert.asset_id as string, (alertCountByAsset.get(alert.asset_id as string) || 0) + 1);
-    }
-  }
-
-  // Consider a machine "online" if it reported in the last 7 days
-  const recentMachineIds = new Set((recentMachines || []).map(r => r.machine_id));
-
-  const machines: MachineOverview[] = (machineAssets || []).map((asset) => {
-    const latest = latestByMachine.get(asset.machine_id!);
-    const weekKwh = weekKwhByMachine.get(asset.machine_id!) || 0;
-    const weekCycles = weekCyclesByMachine.get(asset.machine_id!) || 0;
-
-    return {
-      machine_id: asset.machine_id!,
-      asset_id: asset.unique_id,
-      name: asset.name,
-      community: asset.community || asset.place,
-      site_name: latest?.site_name || null,
-      firmware_version: latest?.firmware_version || null,
-      online: recentMachineIds.has(asset.machine_id!),
-      last_seen_at: latest?.created_at || null,
-      today_cycles: todayCountByMachine.get(asset.machine_id!) || 0,
-      week_kwh: weekKwh,
-      avg_kwh_per_cycle: weekCycles > 0 ? weekKwh / weekCycles : 0,
-      restart_counter: latest?.restart_counter || null,
-      open_alert_count: alertCountByAsset.get(asset.unique_id) || 0,
-    };
-  });
+  // Get aggregated machine stats from the database instead of manually mapping
+  const { data: statsData } = await supabase.rpc('get_fleet_machine_stats');
+  
+  const machines: MachineOverview[] = (statsData || []).map((row: any) => ({
+    machine_id: row.machine_id,
+    asset_id: row.asset_id,
+    name: row.name,
+    community: row.community,
+    site_name: row.site_name,
+    firmware_version: row.firmware_version,
+    online: row.online,
+    last_seen_at: row.last_seen_at,
+    today_cycles: Number(row.today_cycles),
+    week_kwh: Number(row.week_kwh),
+    avg_kwh_per_cycle: Number(row.week_cycles) > 0 ? Number(row.week_kwh) / Number(row.week_cycles) : 0,
+    restart_counter: row.restart_counter,
+    open_alert_count: Number(row.open_alert_count),
+  }));
 
   // Sort: alerts first, then online, then name
   machines.sort((a, b) => {
@@ -199,6 +109,8 @@ export default async function FleetDashboardPage() {
     if (a.online !== b.online) return a.online ? -1 : 1;
     return (a.name || a.machine_id).localeCompare(b.name || b.machine_id);
   });
+
+  const activeMachineCount = machines.filter((m) => m.online).length;
 
   // Calculate fleet median efficiency
   const efficiencies = machines
@@ -265,15 +177,26 @@ export default async function FleetDashboardPage() {
         />
       </div>
 
-      {/* Fleet Activity Chart */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Fleet Activity — Last 30 Days</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <FleetDailyChart data={fleetDailyData} />
-        </CardContent>
-      </Card>
+      {/* Fleet Map & Activity Chart */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card className="flex flex-col">
+          <CardHeader>
+            <CardTitle>Fleet Distribution</CardTitle>
+          </CardHeader>
+          <CardContent className="flex-1 flex min-h-[400px]">
+            <FleetMap machines={machines} />
+          </CardContent>
+        </Card>
+
+        <Card className="flex flex-col">
+          <CardHeader>
+            <CardTitle>Fleet Activity — Last 30 Days</CardTitle>
+          </CardHeader>
+          <CardContent className="flex-1">
+            <FleetDailyChart data={fleetDailyData} />
+          </CardContent>
+        </Card>
+      </div>
 
       {/* Recommendations + Alerts side by side */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
