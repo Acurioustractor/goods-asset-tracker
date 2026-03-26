@@ -60,6 +60,7 @@ const navigation = [
       { name: 'Grants & Foundations', href: '/admin/grants', icon: FileText },
       { name: 'Campaign Engine', href: '/admin/campaign-engine', icon: Rocket },
       { name: 'CRM & Pipelines', href: '/admin/crm', icon: Kanban },
+      { name: 'Brand & Content', href: '/admin/brand', icon: Globe },
     ],
   },
   {

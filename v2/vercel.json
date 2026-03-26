@@ -28,6 +28,10 @@
     {
       "path": "/api/cron/campaign/pipeline-followup",
       "schedule": "0 8 * * 3"
+    },
+    {
+      "path": "/api/cron/campaign/ghl-activity-sync",
+      "schedule": "0 9 * * *"
     }
   ],
   "headers": [
