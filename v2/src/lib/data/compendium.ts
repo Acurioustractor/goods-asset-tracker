@@ -264,6 +264,17 @@ export const funding: FundingRecord[] = [
   { id: 'dusseldorp', source: 'Dusseldorp Forum', amount: 0, status: 'pipeline', notes: 'Meeting held Oct 2025' },
   { id: 'giant-leap', source: 'Giant Leap', amount: 0, status: 'pipeline', notes: 'Sally recommended, Impact VC' },
   { id: 'acf', source: 'Australian Communities Foundation', amount: 0, status: 'pipeline', notes: 'Collective giving, community-led solutions' },
+  { id: 'rio-tinto', source: 'Rio Tinto Foundation', amount: 0, status: 'pipeline', notes: 'Remote manufacturing + jobs. Co-investment for systems-change scale.' },
+  { id: 'fortescue', source: 'Fortescue Foundation', amount: 0, status: 'pipeline', notes: 'Indigenous employment + circular economy. Co-investment.' },
+  { id: 'qcf', source: 'Queensland Community Foundation', amount: 0, status: 'pipeline', contact: 'Tara Castle (CEO)', notes: 'LinkedIn warm lead — multi-post engager. Husband has Palm Island connection.' },
+  { id: 'iba-loan', source: 'Indigenous Business Australia', amount: 5000000, program: 'Business Loan', status: 'pipeline', notes: 'Up to $5M for manufacturing plant. Start-Up Finance gives 30% as grant. 50%+ Aboriginal ownership required.' },
+  { id: 'circular-future', source: 'Circular Future Fund / Planet Ark', amount: 0, status: 'pipeline', notes: 'Strong circular economy fit — 20kg HDPE diverted per bed.' },
+  { id: 'sedi', source: 'Social Enterprise Development Initiative', amount: 0, program: 'Government grant', status: 'pipeline', notes: 'Explicit social enterprise fit. Federal program.' },
+
+  // Government Procurement Pathways (not grants — procurement revenue)
+  { id: 'nt-housing', source: 'NT Remote Housing Program', amount: 0, program: '$4B over 10yr, 2700 homes', status: 'pipeline', notes: 'Register on NT Housing Infrastructure Panel when furniture/fitout panel opens. Beds for every new home.' },
+  { id: 'qld-qpp', source: 'QLD Government (QPP 2026)', amount: 0, program: 'Social procurement', status: 'pipeline', notes: '$35B annual spend. Social enterprise preference under $500K. Register as social enterprise supplier.' },
+  { id: 'supply-nation', source: 'Supply Nation Certification', amount: 0, program: 'Certification (FREE)', status: 'pipeline', notes: 'CRITICAL: Certified suppliers get 3x more contracts ($2.3B of $3.8B). Apply via Oonchiumpa. DEADLINE: July 1 2026 for 51% ownership rule.' },
 
   // Outstanding Receivables (Xero-verified, March 27 2026)
   // INV-0291 Centrecorp $85,712 — NOW PAID, moved to received trade revenue

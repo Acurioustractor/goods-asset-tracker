@@ -27,6 +27,7 @@ import {
   Target,
   TrendingUp,
   Crosshair,
+  ShieldCheck,
 } from 'lucide-react';
 
 const navigation = [
@@ -58,6 +59,7 @@ const navigation = [
       { name: 'Strategy', href: '/admin/strategy', icon: Target },
       { name: 'Growth', href: '/admin/growth', icon: TrendingUp },
       { name: 'Deal Room', href: '/admin/deal-room', icon: Crosshair },
+      { name: 'Procurement', href: '/admin/procurement', icon: ShieldCheck },
       { name: 'Brand & Content', href: '/admin/brand', icon: Globe },
     ],
   },
