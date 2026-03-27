@@ -567,7 +567,7 @@ export default function ProcurementPage() {
                       {est.pathway}
                     </span>
                     <span className="text-gray-500">
-                      {fmt(est.low)} \u2013 {fmt(est.high)}
+                      {fmt(est.low)} – {fmt(est.high)}
                     </span>
                   </div>
                   <div className="relative h-5 w-full overflow-hidden rounded-full bg-slate-100">
@@ -588,7 +588,7 @@ export default function ProcurementPage() {
               <div className="flex items-center justify-between text-base font-bold">
                 <span className="text-gray-900">Total</span>
                 <span className="text-orange-600">
-                  {fmt(totalLow)} \u2013 {fmt(totalHigh)}
+                  {fmt(totalLow)} – {fmt(totalHigh)}
                 </span>
               </div>
               <div className="relative mt-2 h-6 w-full overflow-hidden rounded-full bg-slate-100">

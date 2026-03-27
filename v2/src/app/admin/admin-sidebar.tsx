@@ -28,6 +28,9 @@ import {
   TrendingUp,
   Crosshair,
   ShieldCheck,
+  BadgeCheck,
+  Search,
+  Recycle,
 } from 'lucide-react';
 
 const navigation = [
@@ -49,6 +52,8 @@ const navigation = [
       { name: 'Orders', href: '/admin/orders', icon: ShoppingCart },
       { name: 'Pipeline', href: '/admin/pipeline', icon: Kanban },
       { name: 'Production', href: '/admin/production', icon: Wrench },
+      { name: 'HDPE Catalog', href: '/admin/hdpe-catalog', icon: Recycle },
+      { name: 'Logistics', href: '/admin/logistics', icon: Truck },
       { name: 'Requests', href: '/admin/requests', icon: AlertCircle },
     ],
   },
@@ -60,6 +65,8 @@ const navigation = [
       { name: 'Growth', href: '/admin/growth', icon: TrendingUp },
       { name: 'Deal Room', href: '/admin/deal-room', icon: Crosshair },
       { name: 'Procurement', href: '/admin/procurement', icon: ShieldCheck },
+      { name: 'Supply Nation', href: '/admin/supply-nation', icon: BadgeCheck },
+      { name: 'AusTender', href: '/admin/austender', icon: Search },
       { name: 'Brand & Content', href: '/admin/brand', icon: Globe },
     ],
   },

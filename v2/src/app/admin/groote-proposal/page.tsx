@@ -1,6 +1,7 @@
 import { STRETCH_BED, WASHING_MACHINE, PRODUCTION_FACILITY, ENTERPRISE } from '@/lib/data/products';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { PrintButton } from './print-button';
 
 export const metadata = {
   title: 'Proposal for WHSAC — Groote Archipelago | Goods on Country',
@@ -72,6 +73,7 @@ function Stat({ value, label, sub }: { value: string; label: string; sub?: strin
 export default function GrooteProposalPage() {
   return (
     <div className="min-h-screen bg-white print:bg-white print:p-0">
+      <PrintButton />
       {/* ----------------------------------------------------------------- */}
       {/* 1. COVER / HEADER */}
       {/* ----------------------------------------------------------------- */}
