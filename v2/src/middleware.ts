@@ -64,7 +64,8 @@ export async function middleware(request: NextRequest) {
 
   // Admin auth: protect /admin routes except login and unauthorized pages
   const isAdminRoute = pathname.startsWith('/admin') && !pathname.startsWith('/admin/login') && !pathname.startsWith('/admin/unauthorized')
-  if (isAdminRoute && !user) {
+  const isLocalDev = process.env.NODE_ENV === 'development' && (request.headers.get('host')?.startsWith('localhost') || request.headers.get('host')?.startsWith('127.0.0.1'))
+  if (isAdminRoute && !user && !isLocalDev) {
     return NextResponse.redirect(new URL('/admin/login', request.url))
   }
 
