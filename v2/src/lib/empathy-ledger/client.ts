@@ -126,7 +126,7 @@ function mapStoryFromAPI(raw: Record<string, unknown>): EmpathyLedgerStory {
     title: String(raw.title ?? ''),
     summary: (raw.summary as string) ?? (raw.excerpt as string) ?? null,
     content: (raw.content as string) ?? null,
-    authorName: (raw.author_name as string) ?? (raw.storyteller_name as string) ?? 'Unknown',
+    authorName: (raw.authorName as string) ?? (raw.author_name as string) ?? (raw.storyteller_name as string) ?? ((raw.storyteller as Record<string, unknown>)?.display_name as string) ?? 'Unknown',
     authorId: (raw.author_id as string) ?? (raw.storyteller_id as string) ?? null,
     publishedAt: String(raw.published_at ?? raw.created_at ?? ''),
     themes: (raw.themes as (string | { name: string })[]) ?? [],
