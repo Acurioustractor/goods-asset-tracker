@@ -31,6 +31,9 @@ import {
   BadgeCheck,
   Search,
   Recycle,
+  Map as MapIcon2,
+  FileCheck,
+  Landmark,
 } from 'lucide-react';
 
 const navigation = [
@@ -67,6 +70,9 @@ const navigation = [
       { name: 'Procurement', href: '/admin/procurement', icon: ShieldCheck },
       { name: 'Supply Nation', href: '/admin/supply-nation', icon: BadgeCheck },
       { name: 'AusTender', href: '/admin/austender', icon: Search },
+      { name: 'IBA Loan', href: '/admin/iba-loan', icon: Landmark },
+      { name: 'Deployment Map', href: '/admin/deployment-map', icon: MapIcon2 },
+      { name: 'Xero Recon', href: '/admin/xero-reconciliation', icon: FileCheck },
       { name: 'Brand & Content', href: '/admin/brand', icon: Globe },
     ],
   },
