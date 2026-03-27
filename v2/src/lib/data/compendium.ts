@@ -2,7 +2,7 @@
  * Goods on Country — Master Compendium (Structured Data)
  *
  * Source: docs/COMPENDIUM_MARCH_2026.md
- * Last synced: March 15, 2026
+ * Last synced: March 27, 2026
  *
  * This file structures the compendium into typed, queryable data
  * for use across admin dashboards, reports, and grant applications.
@@ -106,15 +106,15 @@ export const communityPartners: CommunityPartner[] = [
     name: 'Homeland Schools Company',
     category: 'core',
     location: 'Maningrida, NT',
-    description: '65 beds requested for kids.',
-    keyFacts: ['$34K invoice outstanding (INV-0303)'],
+    description: '1 washing machine delivered (INV-0303 $4,950). 65 beds requested separately (no invoice yet).',
+    keyFacts: ['INV-0303 $4,950 AUTHORISED — 1x washing machine, unpaid'],
   },
   {
     id: 'qic',
     name: 'QIC',
     category: 'core',
     location: 'Brisbane',
-    description: 'Corporate engagement: interested in building 50 beds with staff for NAIDOC week.',
+    description: '20 beds delivered (INV-0232 PAID $12,000). RAP commitment. Originally discussed 50 beds for NAIDOC week.',
   },
 
   // Health Partners
@@ -252,9 +252,10 @@ export const funding: FundingRecord[] = [
   // Pending / In Discussion
   { id: 'snow-4', source: 'Snow Foundation (Round 4)', amount: 200000, status: 'pending', contact: 'Sally Grimsley-Ballard' },
   { id: 'sefa', source: 'SEFA', amount: 500000, program: 'Social impact loan', status: 'pending', contact: 'Joel Bird', notes: '23 communications' },
-  { id: 'pfi', source: 'PFI (QLD Treasury)', amount: 640000, program: 'Repayable', status: 'pending', contactEmail: 'PFIFund@treasury.qld.gov.au', notes: 'EOI due Mar 15, 2026' },
-  { id: 'real', source: 'REAL Innovation Fund', amount: 0, program: 'Federal grant', status: 'pending', notes: 'EOI submitted Mar 2, DEWR' },
-  { id: 'qbe', source: 'QBE Foundation', amount: 0, program: 'Grant', status: 'pending', notes: 'Submitted' },
+  { id: 'real-alice', source: 'REAL Innovation Fund — Alice Springs', amount: 1200000, program: 'Federal grant — 4yr', status: 'pending', notes: 'EOI submitted Mar 2, DEWR. Oonchiumpa as lead.' },
+  { id: 'real-townsville', source: 'REAL Innovation Fund — Townsville', amount: 1200000, program: 'Federal grant — 4yr', status: 'pending', notes: 'EOI submitted Mar 2, DEWR. PICC as lead.' },
+  { id: 'qbe-1', source: 'QBE Foundation (Tranche 1)', amount: 10000, program: 'Grant', status: 'received', when: '2026' },
+  { id: 'qbe-2', source: 'QBE Foundation (Remaining)', amount: 140000, program: 'Grant', status: 'pending', notes: 'Est $140K remaining — QBE typically $100-250K for community resilience' },
   { id: 'sedg', source: 'Social Enterprise Development Grants', amount: 75000, program: 'Grant', status: 'pending', notes: 'Draft (82% fit)' },
 
   // Pipeline
@@ -264,10 +265,14 @@ export const funding: FundingRecord[] = [
   { id: 'giant-leap', source: 'Giant Leap', amount: 0, status: 'pipeline', notes: 'Sally recommended, Impact VC' },
   { id: 'acf', source: 'Australian Communities Foundation', amount: 0, status: 'pipeline', notes: 'Collective giving, community-led solutions' },
 
-  // Outstanding Receivables
-  { id: 'recv-centrecorp', source: 'Centrecorp Foundation', amount: 420000, status: 'receivable', notes: '107 beds for Utopia Homelands' },
-  { id: 'recv-picc', source: 'PICC (Palm Island)', amount: 36000, status: 'receivable', notes: '40-bed order' },
-  { id: 'recv-homeland', source: 'Homeland School Company', amount: 34086, status: 'receivable', notes: 'INV-0303, overdue' },
+  // Outstanding Receivables (Xero-verified, March 27 2026)
+  // INV-0291 Centrecorp $85,712 — NOW PAID, moved to received trade revenue
+  { id: 'recv-snow-r4', source: 'Snow Foundation', amount: 132000, status: 'receivable', notes: 'INV-0321 AUTHORISED $132K — beds + production plant. Awaiting payment.' },
+  { id: 'recv-shed-plant-1', source: 'Our Community Shed', amount: 163900, status: 'receivable', notes: 'QU-0011 DRAFT $163,900 (inc GST) — Plant Part 1: shredding. 12mo @ $12K/mo + $5K transport.' },
+  { id: 'recv-shed-plant-2', source: 'Our Community Shed', amount: 93498, status: 'receivable', notes: 'QU-0012 DRAFT $93,498 (inc GST) — Plant Part 2: moulding. 6mo @ $13.3K/mo + $5K transport.' },
+  { id: 'recv-picc', source: 'PICC (Palm Island)', amount: 36300, status: 'receivable', notes: 'INV-0317 AUTHORISED $36,300 — 40 Stretch Beds @ $750 + $3K delivery' },
+  { id: 'recv-rotary', source: 'Rotary Eclub Outback Australia', amount: 82500, status: 'receivable', notes: 'INV-0222 OVERDUE $82,500 (inc GST) — 200 Basket Beds v1 @ $350 + $5K project. Due 24 Apr 2025. 11 MONTHS OVERDUE.' },
+  { id: 'recv-homeland', source: 'Homeland School Company', amount: 4950, status: 'receivable', notes: 'INV-0303 AUTHORISED $4,950 — 1x Indestructible Washing Machine v1.1, unpaid' },
 ];
 
 export function getFundingSummary() {
@@ -279,14 +284,21 @@ export function getFundingSummary() {
 
 // ---------------------------------------------------------------------------
 // Financial Snapshot (from Xero — manually synced until API integration)
-// Last updated: March 15, 2026
+// Last updated: March 27, 2026
 // ---------------------------------------------------------------------------
 
 export const financialSnapshot = {
-  lastUpdated: '2026-03-15',
-  tradeRevenue: 50_000, // Approximate trade revenue to date
+  lastUpdated: '2026-03-27',
+  // Xero-verified trade revenue (all PAID invoices):
+  // INV-0291 Centrecorp $85,712 + INV-0232 QIC $12,000 + INV-0283 Mala'la $5,434
+  // + INV-0260 Our Community Shed $13,500 + INV-0259 Centrecorp $37,620
+  // + INV-0258 Snow $5,545 + INV-0255 Red Dust $15,950
+  // + INV-0308 Our Community Shed $6,765 + INV-0282 Julalikari $19,800
+  // + INV-1602 Defy $36,947
+  tradeRevenue: 239_273,
   productionPlantInvestment: 100_000, // TFN $80K + ACT $20K in containerised facility
-  outstandingReceivables: 490_086, // Centrecorp $420K + PICC $36K + Homeland School $34K
+  // Outstanding: Shed Part 1 $163.9K + Snow $132K + Shed Part 2 $93.5K + Rotary $82.5K + PICC $36.3K + Homeland $4.95K
+  outstandingReceivables: 513_148,
   xeroIntegrated: false, // TODO: OAuth2 Xero API integration for live data
 };
 
@@ -342,7 +354,7 @@ export const documentedDemand: DemandRecord[] = [
   { id: 'utopia-kids', requester: 'Utopia Homelands', request: 'Beds for every child', estimatedValue: 150000, status: 'requested' },
   { id: 'homeland-65', requester: 'Homeland Schools Company', request: '65 beds for kids, Maningrida', estimatedValue: 65000, status: 'requested' },
   { id: 'groote', requester: 'Groote Archipelago (WHSAC)', request: '500 mattresses + 300 washing machines', estimatedValue: 1700000, status: 'exploring' },
-  { id: 'centrecorp', requester: 'Centre Corp Foundation', request: '107 beds APPROVED (Jan 30, 2026)', estimatedValue: 107000, status: 'approved' },
+  { id: 'centrecorp', requester: 'Centrecorp Foundation', request: '107 beds APPROVED (Jan 30, 2026) — INV-0291 PAID', estimatedValue: 85712, status: 'approved' },
   { id: 'npy-ongoing', requester: 'NPY Women\'s Council', request: '"Always looking for beds"', estimatedValue: 0, status: 'ongoing' },
   { id: 'picc-40', requester: 'PICC (Palm Island)', request: '40 beds discussed', estimatedValue: 36000, status: 'requested' },
 ];

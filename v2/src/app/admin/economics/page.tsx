@@ -74,7 +74,7 @@ export default function EconomicsDashboard() {
   }, [palletW, palletL, palletH, bedW, bedL, bedH, shippingCost]);
 
   // --- 3. HARDWARE AS A SERVICE (OPEX) STATE ---
-  const [retailPrice, setRetailPrice] = useState(249.0); // Current retail price
+  const [retailPrice, setRetailPrice] = useState(600.0); // Retail price (verified from Xero)
   const [opexMonthly, setOpexMonthly] = useState(9.00); // $9/mo lease = $540 over 5yr
   const [canvasCost, setCanvasCost] = useState(totalCanvasCost); // Canvas replacement @ year 3
   

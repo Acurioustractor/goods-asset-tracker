@@ -51,7 +51,7 @@ export default function CompendiumPage() {
         <p className="text-gray-500 mt-1">
           Master data source — all partnerships, funding, deployments, community voices, and impact data in one place.
         </p>
-        <p className="text-xs text-gray-400 mt-1">Last synced from COMPENDIUM_MARCH_2026.md — March 15, 2026</p>
+        <p className="text-xs text-gray-400 mt-1">Last synced from COMPENDIUM_MARCH_2026.md — March 27, 2026</p>
       </div>
 
       {/* Top-level KPIs */}

@@ -335,7 +335,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         id: 'revenue',
         name: 'Annual Revenue',
         unit: '$',
-        current: 50000, // approximate from trade + sales
+        current: 239273, // Xero-verified trade revenue (March 2026)
         targets: { year1: 1_100_000, year3: 4_000_000, vision2030: 15_000_000 },
         source: 'xero',
         sourceDetail: 'Xero — goods project tagged transactions',

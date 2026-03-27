@@ -24,6 +24,9 @@ import {
   Library,
   Globe,
   Network,
+  Target,
+  TrendingUp,
+  Crosshair,
 } from 'lucide-react';
 
 const navigation = [
@@ -52,7 +55,9 @@ const navigation = [
     group: 'Network & Impact',
     items: [
       { name: 'Network', href: '/admin/network', icon: Network },
-      { name: 'Deals', href: '/admin/deals', icon: Handshake },
+      { name: 'Strategy', href: '/admin/strategy', icon: Target },
+      { name: 'Growth', href: '/admin/growth', icon: TrendingUp },
+      { name: 'Deal Room', href: '/admin/deal-room', icon: Crosshair },
       { name: 'Brand & Content', href: '/admin/brand', icon: Globe },
     ],
   },

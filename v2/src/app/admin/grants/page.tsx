@@ -143,7 +143,7 @@ export default function GrantsPage() {
 
     // Actions
     if (criticalProspects.length > 0) recs.push({ type: 'action', text: `${criticalProspects.length} critical-priority targets still at prospect/research stage: ${criticalProspects.map(t => t.name).join(', ')}. Prioritise outreach.` });
-    if (summary.receivables > 0) recs.push({ type: 'action', text: `${formatCurrency(summary.receivables)} in outstanding receivables — follow up on invoices (Centrecorp $420K, PICC $36K, Homeland $34K).` });
+    if (summary.receivables > 0) recs.push({ type: 'action', text: `${formatCurrency(summary.receivables)} in outstanding receivables — follow up on invoices (Shed Plant $258K, Snow $132K, Rotary $82.5K OVERDUE, PICC $36.3K, Homeland $4.95K).` });
     if (appliedCount > 0) recs.push({ type: 'action', text: `${appliedCount} applications submitted and waiting — schedule follow-ups to keep momentum.` });
 
     // Opportunities
