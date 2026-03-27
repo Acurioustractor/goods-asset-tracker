@@ -1,0 +1,136 @@
+
+> v2@0.1.0 lint
+> eslint
+
+
+/Users/benknight/Code/Goods Asset Register/v2/check_requests.js
+  1:26  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:1   error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/admin/actions.ts
+  4:15  warning  'AssetStatus' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/admin/compendium/page.tsx
+  12:3  warning  'advisoryBoard' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/admin/economics/page.tsx
+  12:28  warning  'setSteelLengthMeter' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  15:24  warning  'setHdpeWeightKg' is assigned a value but never used       @typescript-eslint/no-unused-vars
+  18:29  warning  'setCanvasLengthMeter' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  21:24  warning  'setLaborMinutes' is assigned a value but never used       @typescript-eslint/no-unused-vars
+  39:19  warning  'setPalletW' is assigned a value but never used            @typescript-eslint/no-unused-vars
+  40:19  warning  'setPalletL' is assigned a value but never used            @typescript-eslint/no-unused-vars
+  41:19  warning  'setPalletH' is assigned a value but never used            @typescript-eslint/no-unused-vars
+  79:22  warning  'setCanvasCost' is assigned a value but never used         @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/admin/fleet/[machine_id]/page.tsx
+  155:9  warning  'onlineStatus' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/admin/grants/page.tsx
+    10:36  warning  'FundingRecord' is defined but never used                      @typescript-eslint/no-unused-vars
+    11:24  warning  'compendiumPartners' is defined but never used                 @typescript-eslint/no-unused-vars
+    17:3   warning  'capitalTargets' is defined but never used                     @typescript-eslint/no-unused-vars
+    18:3   warning  'healthBuyers' is defined but never used                       @typescript-eslint/no-unused-vars
+    19:3   warning  'procurementBuyers' is defined but never used                  @typescript-eslint/no-unused-vars
+    20:3   warning  'communityAndManufacturingPartners' is defined but never used  @typescript-eslint/no-unused-vars
+  1049:12  warning  'notes' is defined but never used                              @typescript-eslint/no-unused-vars
+  1185:12  warning  'notes' is defined but never used                              @typescript-eslint/no-unused-vars
+  1325:12  warning  'notes' is defined but never used                              @typescript-eslint/no-unused-vars
+  1453:12  warning  'notes' is defined but never used                              @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/admin/ideas/page.tsx
+  5:10  warning  'Button' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/admin/messages/page.tsx
+  2:10  warning  'createClient' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/admin/ops/actions.ts
+  8:53  warning  'ProductionJournal' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/admin/orders/[id]/page.tsx
+    1:20  warning  'redirect' is defined but never used                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+   16:11  warning  'V1Asset' is defined but never used                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+   47:9   warning  'billingAddress' is assigned a value but never used                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+   90:18  warning  'addTracking' is defined but never used                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+  198:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/admin/partners/[id]/page.tsx
+   5:10  warning  'Button' is defined but never used                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+  24:7   warning  'NOTE_ICONS' is assigned a value but never used                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  59:11  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/admin/partners/actions.ts
+  5:36  warning  'ContactRole' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/admin/partners/new/page.tsx
+  6:29  warning  'CardHeader' is defined but never used  @typescript-eslint/no-unused-vars
+  6:41  warning  'CardTitle' is defined but never used   @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/admin/partners/people-crm.tsx
+  177:7  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  580:3  warning  'expandedId' is defined but never used                                                                                                                                                                                                                                                   @typescript-eslint/no-unused-vars
+  581:3  warning  'onToggle' is defined but never used                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/admin/pipeline/page.tsx
+  3:10  warning  'Card' is defined but never used         @typescript-eslint/no-unused-vars
+  3:16  warning  'CardContent' is defined but never used  @typescript-eslint/no-unused-vars
+  3:29  warning  'CardHeader' is defined but never used   @typescript-eslint/no-unused-vars
+  3:41  warning  'CardTitle' is defined but never used    @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/admin/products/page.tsx
+  89:17  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/admin/team/page.tsx
+  4:29  warning  'CardHeader' is defined but never used  @typescript-eslint/no-unused-vars
+  4:41  warning  'CardTitle' is defined but never used   @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/admin/team/team-manager.tsx
+  122:23  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/api/admin/fleet/import-csv/route.ts
+  87:13  warning  'amps' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/api/admin/fleet/map-device/route.ts
+  63:27  warning  'request' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/api/support/route.ts
+  41:10  warning  'getV1SupabaseUrl' is defined but never used  @typescript-eslint/no-unused-vars
+  45:10  warning  'getV1SupabaseKey' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/api/webhooks/particle/route.ts
+  108:11  warning  'powerW' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/claim/[asset_id]/page.tsx
+  1:10  warning  'redirect' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/community/ideas/page.tsx
+  45:6  warning  React Hook React.useEffect has a missing dependency: 'loadIdeas'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/dashboard/page.tsx
+  16:60  warning  'MessageSquareIcon' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/mission/page.tsx
+   2:8   warning  'Image' is defined but never used              @typescript-eslint/no-unused-vars
+   5:10  warning  'curatedQuotes' is defined but never used      @typescript-eslint/no-unused-vars
+  14:3   warning  'videoTestimonials' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/pitch/page.tsx
+  2:148  warning  'enterpriseVision' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/portal/projects/page.tsx
+  185:11  warning  'statusInfo' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/shop/washing-machine/page.tsx
+  9:10  warning  'quotes' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/app/wiki/products/stretch-bed/page.tsx
+  3:8  warning  'Image' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/components/community-map.tsx
+  3:29  warning  'useState' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/benknight/Code/Goods Asset Register/v2/src/components/wiki/wiki-search.tsx
+  3:20  warning  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 65 problems (2 errors, 63 warnings)
+

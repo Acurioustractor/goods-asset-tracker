@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type DragEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   DollarSign,
@@ -15,9 +15,8 @@ import {
   ArrowRight,
   ChevronDown,
   ChevronRight,
-  Mail,
-  Calendar,
   X,
+  GripVertical,
 } from 'lucide-react';
 import {
   type PipelineOverview,
@@ -30,13 +29,13 @@ import {
 
 // ── Config ──
 
-const STAGE_CONFIG: Record<PipelineStage, { label: string; color: string; bgColor: string; borderColor: string }> = {
-  lead: { label: 'Lead', color: 'text-gray-700', bgColor: 'bg-gray-50', borderColor: 'border-gray-300' },
-  qualified: { label: 'Qualified', color: 'text-blue-700', bgColor: 'bg-blue-50', borderColor: 'border-blue-300' },
-  proposal: { label: 'Proposal', color: 'text-amber-700', bgColor: 'bg-amber-50', borderColor: 'border-amber-300' },
-  negotiation: { label: 'Negotiation', color: 'text-purple-700', bgColor: 'bg-purple-50', borderColor: 'border-purple-300' },
-  won: { label: 'Won', color: 'text-emerald-700', bgColor: 'bg-emerald-50', borderColor: 'border-emerald-300' },
-  lost: { label: 'Lost', color: 'text-red-700', bgColor: 'bg-red-50', borderColor: 'border-red-300' },
+const STAGE_CONFIG: Record<PipelineStage, { label: string; color: string; bgColor: string; borderColor: string; dropHighlight: string }> = {
+  lead: { label: 'Lead', color: 'text-gray-700', bgColor: 'bg-gray-50', borderColor: 'border-gray-300', dropHighlight: 'ring-gray-400 bg-gray-100' },
+  qualified: { label: 'Qualified', color: 'text-blue-700', bgColor: 'bg-blue-50', borderColor: 'border-blue-300', dropHighlight: 'ring-blue-400 bg-blue-100' },
+  proposal: { label: 'Proposal', color: 'text-amber-700', bgColor: 'bg-amber-50', borderColor: 'border-amber-300', dropHighlight: 'ring-amber-400 bg-amber-100' },
+  negotiation: { label: 'Negotiation', color: 'text-purple-700', bgColor: 'bg-purple-50', borderColor: 'border-purple-300', dropHighlight: 'ring-purple-400 bg-purple-100' },
+  won: { label: 'Won', color: 'text-emerald-700', bgColor: 'bg-emerald-50', borderColor: 'border-emerald-300', dropHighlight: 'ring-emerald-400 bg-emerald-100' },
+  lost: { label: 'Lost', color: 'text-red-700', bgColor: 'bg-red-50', borderColor: 'border-red-300', dropHighlight: 'ring-red-400 bg-red-100' },
 };
 
 const TYPE_CONFIG: Record<DealType, { label: string; icon: typeof DollarSign; color: string }> = {
@@ -49,7 +48,7 @@ const TYPE_CONFIG: Record<DealType, { label: string; icon: typeof DollarSign; co
 const ACTIVE_STAGES: PipelineStage[] = ['lead', 'qualified', 'proposal', 'negotiation'];
 
 function formatCurrency(cents: number): string {
-  if (cents === 0) return '';
+  if (cents === 0) return '$0';
   return `$${(cents / 100).toLocaleString('en-AU', { maximumFractionDigits: 0 })}`;
 }
 
@@ -59,6 +58,8 @@ export function KanbanBoard({ overview }: { overview: PipelineOverview }) {
   const [typeFilter, setTypeFilter] = useState<DealType | 'all'>('all');
   const [showNewDeal, setShowNewDeal] = useState(false);
   const [showWonLost, setShowWonLost] = useState(false);
+  const [dragOverStage, setDragOverStage] = useState<PipelineStage | null>(null);
+  const [draggingId, setDraggingId] = useState<string | null>(null);
   const router = useRouter();
 
   const filteredColumns = {} as Record<PipelineStage, KanbanDeal[]>;
@@ -73,14 +74,55 @@ export function KanbanBoard({ overview }: { overview: PipelineOverview }) {
     router.refresh();
   }
 
+  // Drag handlers
+  function handleDragStart(e: DragEvent, deal: KanbanDeal) {
+    e.dataTransfer.setData('text/plain', deal.id);
+    e.dataTransfer.effectAllowed = 'move';
+    setDraggingId(deal.id);
+  }
+
+  function handleDragEnd() {
+    setDraggingId(null);
+    setDragOverStage(null);
+  }
+
+  function handleDragOver(e: DragEvent, stage: PipelineStage) {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    setDragOverStage(stage);
+  }
+
+  function handleDragLeave() {
+    setDragOverStage(null);
+  }
+
+  async function handleDrop(e: DragEvent, stage: PipelineStage) {
+    e.preventDefault();
+    const dealId = e.dataTransfer.getData('text/plain');
+    setDragOverStage(null);
+    setDraggingId(null);
+    if (dealId) {
+      await handleMoveDeal(dealId, stage);
+    }
+  }
+
+  // Compute totals across all active columns
+  const activeTotalValue = ACTIVE_STAGES.reduce((sum, stage) =>
+    sum + filteredColumns[stage].reduce((s, d) => s + d.amount_cents, 0), 0
+  );
+  const activeTotalDeals = ACTIVE_STAGES.reduce((sum, stage) =>
+    sum + filteredColumns[stage].length, 0
+  );
+  const wonTotalValue = filteredColumns.won.reduce((s, d) => s + d.amount_cents, 0);
+
   return (
     <div className="space-y-5">
       {/* Stats Row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <StatCard label="Active Pipeline" value={formatCurrency(overview.stats.totalPipeline) || '$0'} sub={`${overview.stats.activeDeals} deals`} icon={TrendingUp} color="text-blue-600" />
-        <StatCard label="Total Won" value={formatCurrency(overview.stats.totalWon) || '$0'} sub="All time" icon={CheckCircle} color="text-emerald-600" />
+        <StatCard label="Active Pipeline" value={formatCurrency(activeTotalValue)} sub={`${activeTotalDeals} deals`} icon={TrendingUp} color="text-blue-600" />
+        <StatCard label="Total Won" value={formatCurrency(wonTotalValue)} sub={`${filteredColumns.won.length} deals`} icon={CheckCircle} color="text-emerald-600" />
         <StatCard label="Needs Action" value={String(overview.stats.needsAction)} sub="Stale >7 days" icon={AlertTriangle} color="text-amber-600" />
-        <StatCard label="In Pipeline" value={String(overview.stats.activeDeals)} sub="Active deals" icon={Clock} color="text-gray-600" />
+        <StatCard label="In Pipeline" value={String(activeTotalDeals)} sub="Active deals" icon={Clock} color="text-gray-600" />
       </div>
 
       {/* Filters + Actions */}
@@ -126,30 +168,50 @@ export function KanbanBoard({ overview }: { overview: PipelineOverview }) {
           const cfg = STAGE_CONFIG[stage];
           const deals = filteredColumns[stage];
           const colValue = deals.reduce((s, d) => s + d.amount_cents, 0);
+          const colWeighted = deals.reduce((s, d) => s + Math.round(d.amount_cents * d.probability / 100), 0);
           const nextStage = ACTIVE_STAGES[ACTIVE_STAGES.indexOf(stage) + 1] || 'won';
+          const isDragOver = dragOverStage === stage;
 
           return (
-            <div key={stage} className={`rounded-xl border-2 ${cfg.borderColor} ${cfg.bgColor} flex flex-col`}>
+            <div
+              key={stage}
+              className={`rounded-xl border-2 ${cfg.borderColor} ${cfg.bgColor} flex flex-col transition-all ${
+                isDragOver ? `ring-2 ${cfg.dropHighlight}` : ''
+              }`}
+              onDragOver={e => handleDragOver(e, stage)}
+              onDragLeave={handleDragLeave}
+              onDrop={e => handleDrop(e, stage)}
+            >
               {/* Column Header */}
               <div className="px-3 py-2.5 border-b border-gray-200/50">
                 <div className="flex items-center justify-between">
                   <span className={`font-semibold text-sm ${cfg.color}`}>{cfg.label}</span>
                   <span className="text-xs font-medium text-gray-400">{deals.length}</span>
                 </div>
-                {colValue > 0 && (
-                  <p className="text-xs text-gray-500 mt-0.5">{formatCurrency(colValue)}</p>
-                )}
+                <div className="flex items-center gap-2 mt-0.5">
+                  <span className="text-xs font-semibold text-gray-700">{formatCurrency(colValue)}</span>
+                  {colWeighted > 0 && colWeighted !== colValue && (
+                    <span className="text-[10px] text-gray-400">({formatCurrency(colWeighted)} weighted)</span>
+                  )}
+                </div>
               </div>
 
               {/* Cards */}
-              <div className="p-2 space-y-2 flex-1 min-h-[120px] max-h-[500px] overflow-y-auto">
+              <div className={`p-2 space-y-2 flex-1 min-h-[120px] max-h-[500px] overflow-y-auto ${
+                isDragOver ? 'bg-opacity-80' : ''
+              }`}>
                 {deals.length === 0 ? (
-                  <p className="text-xs text-gray-400 text-center py-6">No deals</p>
+                  <p className="text-xs text-gray-400 text-center py-6">
+                    {isDragOver ? 'Drop here' : 'No deals'}
+                  </p>
                 ) : (
                   deals.map(deal => (
                     <DealCard
                       key={deal.id}
                       deal={deal}
+                      isDragging={draggingId === deal.id}
+                      onDragStart={e => handleDragStart(e, deal)}
+                      onDragEnd={handleDragEnd}
                       onAdvance={() => handleMoveDeal(deal.id, nextStage as PipelineStage)}
                       onMove={(s) => handleMoveDeal(deal.id, s)}
                     />
@@ -161,13 +223,36 @@ export function KanbanBoard({ overview }: { overview: PipelineOverview }) {
         })}
       </div>
 
+      {/* Pipeline Totals Bar */}
+      <div className="bg-white rounded-xl border border-gray-200 p-3">
+        <div className="flex items-center gap-6 text-sm">
+          <span className="font-semibold text-gray-700">Pipeline Totals:</span>
+          {ACTIVE_STAGES.map(stage => {
+            const deals = filteredColumns[stage];
+            const value = deals.reduce((s, d) => s + d.amount_cents, 0);
+            const cfg = STAGE_CONFIG[stage];
+            return (
+              <div key={stage} className="flex items-center gap-1.5">
+                <span className={`text-xs font-medium ${cfg.color}`}>{cfg.label}</span>
+                <span className="text-xs text-gray-900 font-semibold">{formatCurrency(value)}</span>
+                <span className="text-[10px] text-gray-400">({deals.length})</span>
+              </div>
+            );
+          })}
+          <div className="ml-auto flex items-center gap-1.5 border-l pl-4 border-gray-200">
+            <span className="text-xs font-medium text-gray-500">Total</span>
+            <span className="text-sm text-gray-900 font-bold">{formatCurrency(activeTotalValue)}</span>
+          </div>
+        </div>
+      </div>
+
       {/* Won/Lost Toggle */}
       <button
         onClick={() => setShowWonLost(!showWonLost)}
         className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700"
       >
         {showWonLost ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
-        Closed ({filteredColumns.won.length} won, {filteredColumns.lost.length} lost)
+        Closed ({filteredColumns.won.length} won · {formatCurrency(wonTotalValue)}, {filteredColumns.lost.length} lost)
       </button>
 
       {showWonLost && (
@@ -175,14 +260,32 @@ export function KanbanBoard({ overview }: { overview: PipelineOverview }) {
           {(['won', 'lost'] as PipelineStage[]).map(stage => {
             const cfg = STAGE_CONFIG[stage];
             const deals = filteredColumns[stage];
+            const totalValue = deals.reduce((s, d) => s + d.amount_cents, 0);
             return (
-              <div key={stage} className={`rounded-xl border ${cfg.borderColor} ${cfg.bgColor}`}>
-                <div className="px-3 py-2 border-b border-gray-200/50">
+              <div
+                key={stage}
+                className={`rounded-xl border ${cfg.borderColor} ${cfg.bgColor} ${
+                  dragOverStage === stage ? `ring-2 ${cfg.dropHighlight}` : ''
+                }`}
+                onDragOver={e => handleDragOver(e, stage)}
+                onDragLeave={handleDragLeave}
+                onDrop={e => handleDrop(e, stage)}
+              >
+                <div className="px-3 py-2 border-b border-gray-200/50 flex items-center justify-between">
                   <span className={`font-semibold text-sm ${cfg.color}`}>{cfg.label} ({deals.length})</span>
+                  <span className={`text-xs font-semibold ${cfg.color}`}>{formatCurrency(totalValue)}</span>
                 </div>
                 <div className="p-2 space-y-2 max-h-[300px] overflow-y-auto">
                   {deals.map(deal => (
-                    <DealCard key={deal.id} deal={deal} onAdvance={() => {}} onMove={(s) => handleMoveDeal(deal.id, s)} />
+                    <DealCard
+                      key={deal.id}
+                      deal={deal}
+                      isDragging={draggingId === deal.id}
+                      onDragStart={e => handleDragStart(e, deal)}
+                      onDragEnd={handleDragEnd}
+                      onAdvance={() => {}}
+                      onMove={(s) => handleMoveDeal(deal.id, s)}
+                    />
                   ))}
                 </div>
               </div>
@@ -211,8 +314,11 @@ function StatCard({ label, value, sub, icon: Icon, color }: {
   );
 }
 
-function DealCard({ deal, onAdvance, onMove }: {
+function DealCard({ deal, isDragging, onDragStart, onDragEnd, onAdvance, onMove }: {
   deal: KanbanDeal;
+  isDragging: boolean;
+  onDragStart: (e: DragEvent<HTMLDivElement>) => void;
+  onDragEnd: () => void;
   onAdvance: () => void;
   onMove: (stage: PipelineStage) => void;
 }) {
@@ -221,11 +327,17 @@ function DealCard({ deal, onAdvance, onMove }: {
   const TypeIcon = typeCfg.icon;
 
   return (
-    <div className={`bg-white rounded-lg border shadow-sm p-3 space-y-2 ${
-      deal.needs_action ? 'border-amber-300 ring-1 ring-amber-100' : 'border-gray-200'
-    }`}>
-      {/* Title + Type */}
-      <div className="flex items-start gap-2">
+    <div
+      draggable
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
+      className={`bg-white rounded-lg border shadow-sm p-3 space-y-2 cursor-grab active:cursor-grabbing transition-opacity ${
+        deal.needs_action ? 'border-amber-300 ring-1 ring-amber-100' : 'border-gray-200'
+      } ${isDragging ? 'opacity-40' : 'opacity-100'}`}
+    >
+      {/* Title + Type + Drag handle */}
+      <div className="flex items-start gap-1.5">
+        <GripVertical className="h-4 w-4 text-gray-300 mt-0.5 shrink-0" />
         <TypeIcon className={`h-4 w-4 mt-0.5 shrink-0 ${typeCfg.color}`} />
         <div className="flex-1 min-w-0">
           <p className="text-sm font-medium text-gray-900 leading-tight truncate">{deal.title}</p>

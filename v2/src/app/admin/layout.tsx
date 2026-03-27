@@ -37,7 +37,7 @@ export default async function AdminLayout({
       {/* Main Content Area */}
       <div className="flex-1 md:pl-72 flex flex-col min-h-screen max-w-[100vw]">
         {/* We use main container to house the individual dashboard segments */}
-        <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+        <main className="flex-1 w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
           {children}
         </main>
       </div>

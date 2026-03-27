@@ -12,7 +12,7 @@ export default async function NetworkPage() {
       <div>
         <h1 className="text-2xl font-bold text-gray-900">Network</h1>
         <p className="mt-1 text-sm text-gray-500">
-          All contacts across LinkedIn, Gmail, GHL, and CRM — scored and prioritised
+          Relationships, deals, and actions — everything in one place
         </p>
       </div>
       <Suspense fallback={<div className="animate-pulse h-96 bg-gray-100 rounded-lg" />}>

@@ -1,6 +1,8 @@
 import { createServiceClient } from '@/lib/supabase/server';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { getChecklistState } from './actions';
+import { ChecklistSteps, type Step } from './checklist-steps';
 
 export const dynamic = 'force-dynamic';
 
@@ -21,6 +23,26 @@ export default async function DealRoomPage() {
     .order('amount_cents', { ascending: false });
 
   const deals = relatedDeals || [];
+
+  const checklistState = await getChecklistState();
+
+  const grooteSteps: Step[] = [
+    { action: 'Connect with Simone Grimmond at WHSAC', owner: 'Nic', when: 'This week', urgent: true },
+    { action: 'Build proposal: 500 beds + 300 washers + freight comparison', owner: 'Nic/Ben', when: 'Next week', urgent: true },
+    { action: 'Site visit to Groote — logistics, community needs', owner: 'Nic', when: 'April', urgent: false },
+    { action: 'Identify funding pathway — self-fund or grant co-fund?', owner: 'Nic', when: 'April', urgent: false },
+    { action: 'Connect to Townsville plant via REAL Fund', owner: 'Nic', when: 'May', urgent: false },
+    { action: 'Draft MOU / purchase agreement', owner: 'Nic', when: 'June', urgent: false },
+  ];
+
+  const realSteps: Step[] = [
+    { action: 'Follow up with DEWR on EOI status', owner: 'Nic', when: 'This week', urgent: true },
+    { action: 'Prepare full application (if EOI progresses)', owner: 'Nic/Ben', when: 'April', urgent: true },
+    { action: 'Letters of support from Oonchiumpa + PICC', owner: 'Nic', when: 'April', urgent: false },
+    { action: 'Include Groote demand data ($1.7M) in application', owner: 'Ben', when: 'April', urgent: false },
+    { action: 'Confirm production economics with Defy', owner: 'Sam', when: 'April', urgent: false },
+    { action: 'Detailed budget: $1.2M × 4yr per site', owner: 'Ben', when: 'May', urgent: false },
+  ];
 
   return (
     <div className="space-y-8 pb-12">
@@ -166,32 +188,7 @@ export default async function DealRoomPage() {
           </div>
 
           {/* Next steps */}
-          <div className="rounded-xl border overflow-hidden">
-            <div className="bg-gray-50 px-5 py-3 border-b">
-              <div className="text-xs font-bold text-gray-500 uppercase tracking-wide">Next Steps — Groote</div>
-            </div>
-            <div className="p-5 space-y-3">
-              {[
-                { action: 'Connect with Simone Grimmond at WHSAC', owner: 'Nic', when: 'This week', urgent: true },
-                { action: 'Build proposal: 500 beds + 300 washers + freight comparison', owner: 'Nic/Ben', when: 'Next week', urgent: true },
-                { action: 'Site visit to Groote — logistics, community needs', owner: 'Nic', when: 'April', urgent: false },
-                { action: 'Identify funding pathway — self-fund or grant co-fund?', owner: 'Nic', when: 'April', urgent: false },
-                { action: 'Connect to Townsville plant via REAL Fund', owner: 'Nic', when: 'May', urgent: false },
-                { action: 'Draft MOU / purchase agreement', owner: 'Nic', when: 'June', urgent: false },
-              ].map((s, i) => (
-                <div key={i} className={`flex items-start gap-3 ${s.urgent ? '' : 'opacity-70'}`}>
-                  <div className={`mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 ${s.urgent ? 'border-orange-400 bg-orange-50' : 'border-gray-200'}`}>
-                    <span className="text-[10px] font-bold text-gray-400">{i + 1}</span>
-                  </div>
-                  <div className="flex-1">
-                    <div className={`text-sm ${s.urgent ? 'font-semibold' : ''}`}>{s.action}</div>
-                    <div className="text-xs text-gray-400">{s.owner} &middot; {s.when}</div>
-                  </div>
-                  {s.urgent && <Badge className="bg-orange-100 text-orange-800 text-[10px] shrink-0">NOW</Badge>}
-                </div>
-              ))}
-            </div>
-          </div>
+          <ChecklistSteps steps={grooteSteps} prefix="groote" initialState={checklistState} accentColor="orange" />
 
           {/* Risks */}
           <div className="rounded-xl border overflow-hidden">
@@ -313,32 +310,7 @@ export default async function DealRoomPage() {
           ))}
 
           {/* Next steps */}
-          <div className="rounded-xl border overflow-hidden">
-            <div className="bg-gray-50 px-5 py-3 border-b">
-              <div className="text-xs font-bold text-gray-500 uppercase tracking-wide">Next Steps — REAL Fund</div>
-            </div>
-            <div className="p-5 space-y-3">
-              {[
-                { action: 'Follow up with DEWR on EOI status', owner: 'Nic', when: 'This week', urgent: true },
-                { action: 'Prepare full application (if EOI progresses)', owner: 'Nic/Ben', when: 'April', urgent: true },
-                { action: 'Letters of support from Oonchiumpa + PICC', owner: 'Nic', when: 'April', urgent: false },
-                { action: 'Include Groote demand data ($1.7M) in application', owner: 'Ben', when: 'April', urgent: false },
-                { action: 'Confirm production economics with Defy', owner: 'Sam', when: 'April', urgent: false },
-                { action: 'Detailed budget: $1.2M × 4yr per site', owner: 'Ben', when: 'May', urgent: false },
-              ].map((s, i) => (
-                <div key={i} className={`flex items-start gap-3 ${s.urgent ? '' : 'opacity-70'}`}>
-                  <div className={`mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 ${s.urgent ? 'border-blue-400 bg-blue-50' : 'border-gray-200'}`}>
-                    <span className="text-[10px] font-bold text-gray-400">{i + 1}</span>
-                  </div>
-                  <div className="flex-1">
-                    <div className={`text-sm ${s.urgent ? 'font-semibold' : ''}`}>{s.action}</div>
-                    <div className="text-xs text-gray-400">{s.owner} &middot; {s.when}</div>
-                  </div>
-                  {s.urgent && <Badge className="bg-blue-100 text-blue-800 text-[10px] shrink-0">NOW</Badge>}
-                </div>
-              ))}
-            </div>
-          </div>
+          <ChecklistSteps steps={realSteps} prefix="real" initialState={checklistState} accentColor="blue" />
 
           {/* Risks */}
           <div className="rounded-xl border overflow-hidden">

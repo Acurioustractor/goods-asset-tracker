@@ -4,6 +4,8 @@ import { Badge } from '@/components/ui/badge';
 import { ProductionKPIGrid } from '@/components/production/production-kpi-grid';
 import { InventoryPositionCard } from '@/components/production/inventory-position-card';
 import { ProductionTrendChart } from '@/components/production/production-trend-chart';
+import { SupplyDemandCard, type CommittedOrder, type SupplierQuote } from '@/components/production/supply-demand-card';
+import { BedReconciliation, type AssetSummary, type DemandSummary } from '@/components/production/bed-reconciliation';
 import type { ProductionInventory, ProductionShift, ProductionJournal } from '@/lib/types/database';
 
 export const revalidate = 300; // 5 min cache
@@ -11,7 +13,7 @@ export const revalidate = 300; // 5 min cache
 async function getProductionData() {
   const supabase = createServiceClient();
 
-  const [shiftsRes, inventoryRes, journalRes] = await Promise.all([
+  const [shiftsRes, inventoryRes, journalRes, dealsRes, assetsRes] = await Promise.all([
     supabase
       .from('production_shifts')
       .select('*')
@@ -30,12 +32,144 @@ async function getProductionData() {
       .order('entry_date', { ascending: false })
       .order('created_at', { ascending: false })
       .limit(10),
+    // Deals with bed units for supply/demand tracking
+    supabase
+      .from('crm_deals')
+      .select('id, title, deal_type, pipeline_stage, amount_cents, units, maker, delivery_status, notes, crm_contacts(name, organization)')
+      .gt('units', 0)
+      .order('units', { ascending: false }),
+    // All assets for reconciliation
+    supabase
+      .from('assets')
+      .select('unique_id, status, community, quantity, product, notes'),
   ]);
+
+  // Parse deals
+  const bedDeals = ((dealsRes.data || []) as Array<Record<string, unknown>>).map(d => ({
+    id: d.id as string,
+    title: d.title as string,
+    deal_type: d.deal_type as string,
+    pipeline_stage: d.pipeline_stage as string,
+    amount_cents: d.amount_cents as number,
+    units: (d.units as number) || 0,
+    maker: (d.maker as string) || null,
+    delivery_status: (d.delivery_status as string) || null,
+    notes: (d.notes as string) || null,
+    crm_contacts: Array.isArray(d.crm_contacts) && d.crm_contacts.length > 0
+      ? d.crm_contacts[0] as { name: string; organization: string }
+      : d.crm_contacts as { name: string; organization: string } | null,
+  }));
+
+  // Build asset summary for reconciliation
+  const rawAssets = (assetsRes.data || []) as Array<{ unique_id: string; status: string; community: string; quantity: number; product: string; notes: string | null }>;
+  const communityMap = new Map<string, number>();
+  const productMap = new Map<string, { deployed: number; demo: number; allocated: number; requested: number; retired: number }>();
+  let deployed = 0, demo = 0, allocated = 0, requested = 0, retired = 0, inTransitCount = 0;
+
+  for (const a of rawAssets) {
+    const qty = a.quantity || 1;
+    const product = a.product || 'Unknown';
+    const isInTransit = (a.notes || '').toLowerCase().includes('transit');
+
+    // Per-product tracking
+    if (!productMap.has(product)) {
+      productMap.set(product, { deployed: 0, demo: 0, allocated: 0, requested: 0, retired: 0 });
+    }
+    const pm = productMap.get(product)!;
+
+    if (isInTransit) {
+      inTransitCount += qty;
+    } else {
+      switch (a.status) {
+        case 'deployed': deployed += qty; pm.deployed += qty; break;
+        case 'demo': demo += qty; pm.demo += qty; break;
+        case 'allocated': allocated += qty; pm.allocated += qty; break;
+        case 'requested': requested += qty; pm.requested += qty; break;
+        case 'retired': retired += qty; pm.retired += qty; break;
+      }
+    }
+    if (a.community && a.status === 'deployed') {
+      communityMap.set(a.community, (communityMap.get(a.community) || 0) + qty);
+    }
+  }
+
+  const byCommunity = [...communityMap.entries()]
+    .map(([community, count]) => ({ community, count }))
+    .sort((a, b) => b.count - a.count);
+
+  const byProduct = [...productMap.entries()]
+    .map(([product, counts]) => ({
+      product,
+      ...counts,
+      total: counts.deployed + counts.demo + counts.allocated + counts.requested + counts.retired,
+    }))
+    .sort((a, b) => b.total - a.total);
+
+  // Beds being manufactured by external partners (from deals)
+  const inProduction = bedDeals
+    .filter(d => d.delivery_status === 'in-production')
+    .reduce((sum, d) => sum + d.units, 0);
+
+  const assetSummary: AssetSummary = {
+    deployed,
+    demo,
+    allocated,
+    requested,
+    retired,
+    inTransit: inTransitCount,
+    inProduction,
+    total: deployed + demo + allocated + requested + retired + inProduction + inTransitCount,
+    byCommunity,
+    byProduct,
+  };
+
+  // Build demand summary from ALL deals (including units=0 for deal counts)
+  const allDealsRes = await supabase
+    .from('crm_deals')
+    .select('pipeline_stage, units, deal_type')
+    .in('deal_type', ['sale', 'procurement'])
+    .not('pipeline_stage', 'eq', 'lost');
+
+  const allSaleDeals = (allDealsRes.data || []) as Array<{ pipeline_stage: string; units: number; deal_type: string }>;
+
+  const demandByStage: Record<string, { count: number; units: number }> = {
+    won: { count: 0, units: 0 },
+    negotiation: { count: 0, units: 0 },
+    proposal: { count: 0, units: 0 },
+    qualified: { count: 0, units: 0 },
+    lead: { count: 0, units: 0 },
+  };
+
+  let totalDemandUnits = 0;
+  let totalDemandDeals = 0;
+
+  for (const d of allSaleDeals) {
+    const stage = d.pipeline_stage;
+    if (demandByStage[stage]) {
+      demandByStage[stage].count++;
+      demandByStage[stage].units += d.units || 0;
+      totalDemandUnits += d.units || 0;
+      totalDemandDeals++;
+    }
+  }
+
+  const demandSummary: DemandSummary = {
+    won: demandByStage.won,
+    negotiation: demandByStage.negotiation,
+    proposal: demandByStage.proposal,
+    qualified: demandByStage.qualified,
+    lead: demandByStage.lead,
+    totalUnits: totalDemandUnits,
+    totalDeals: totalDemandDeals,
+  };
 
   return {
     shifts: (shiftsRes.data || []) as ProductionShift[],
     inventorySnapshots: (inventoryRes.data || []) as ProductionInventory[],
     journalEntries: (journalRes.data || []) as ProductionJournal[],
+    bedDeals,
+    assetSummary,
+    demandSummary,
   };
 }
 
@@ -53,10 +187,61 @@ const ENTRY_TYPE_BADGES: Record<string, string> = {
 };
 
 export default async function AdminProductionPage() {
-  const { shifts, inventorySnapshots, journalEntries } = await getProductionData();
+  const { shifts, inventorySnapshots, journalEntries, bedDeals, assetSummary, demandSummary } = await getProductionData();
 
   const latestInventory = inventorySnapshots[0] || null;
   const bedsPossible = latestInventory?.beds_possible ?? 0;
+
+  // Build committed orders from live deals that have units > 0
+  const committedOrders: CommittedOrder[] = bedDeals.map(d => {
+    // Derive delivery status from deal data
+    let status: CommittedOrder['status'] = 'awaiting-stock';
+    if (d.delivery_status === 'in-production') status = 'in-production';
+    else if (d.delivery_status === 'shipped') status = 'delivered'; // close enough
+    else if (d.delivery_status === 'delivered') status = 'delivered';
+    else if (d.pipeline_stage === 'won' && !d.delivery_status) status = 'awaiting-stock';
+    else if (d.pipeline_stage === 'negotiation' || d.pipeline_stage === 'proposal') status = 'quoted';
+    else if (d.pipeline_stage === 'qualified' || d.pipeline_stage === 'lead') status = 'quoted';
+
+    const contact = d.crm_contacts;
+    const customer = contact?.organization || contact?.name || d.title.split('—')[0].trim();
+
+    return {
+      id: d.id,
+      title: d.title,
+      customer,
+      beds: d.units,
+      value: d.amount_cents / 100,
+      maker: (d.maker as 'defy' | 'act' | 'tbc') || 'tbc',
+      status,
+      notes: d.notes || undefined,
+    };
+  });
+
+  // Pending supplier quotes — these stay semi-static since quotes aren't in the DB yet
+  // TODO: Add a supplier_quotes table when volume justifies it
+  const pendingQuotes: SupplierQuote[] = [
+    {
+      id: 'qu-0380',
+      reference: 'QU-0380',
+      supplier: 'Defy Manufacturing',
+      description: '1,200kg recycled plastic shred (2 bulka bags) + 20x 1200x1200x19mm Jungle Mix panels + freight (3 pallets to Witta)',
+      amount: 8525,
+      bedsEquivalent: 60,
+      expires: '2026-04-23',
+      status: 'pending',
+    },
+    {
+      id: 'qu-0381',
+      reference: 'QU-0381',
+      supplier: 'Defy Manufacturing',
+      description: '50 bed kits in 19mm Jungle recycled plastic — CNC cut & finished. Does not include assembly, hardware, packing, or freight.',
+      amount: 18923,
+      bedsEquivalent: 50,
+      expires: '2026-04-23',
+      status: 'pending',
+    },
+  ];
 
   // KPI calculations
   const last30DaysShifts = shifts.filter((s) => {
@@ -114,6 +299,22 @@ export default async function AdminProductionPage() {
 
       {/* KPIs */}
       <ProductionKPIGrid kpis={kpis} />
+
+      {/* Bed Reconciliation */}
+      <BedReconciliation data={{
+        assets: assetSummary,
+        demand: demandSummary,
+        bedsPossible,
+        rawPlasticKg: rawPlasticStock,
+      }} />
+
+      {/* Supply & Demand */}
+      <SupplyDemandCard
+        bedsPossible={bedsPossible}
+        orders={committedOrders}
+        quotes={pendingQuotes}
+        rawPlasticKg={rawPlasticStock}
+      />
 
       {/* Inventory Position */}
       <InventoryPositionCard 
