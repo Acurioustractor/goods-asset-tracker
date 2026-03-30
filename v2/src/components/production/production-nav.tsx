@@ -7,6 +7,7 @@ const PRODUCTION_LINKS = [
   { href: '/production', label: 'Shift Log' },
   { href: '/production/inventory', label: 'Inventory' },
   { href: '/production/journal', label: 'Journal' },
+  { href: '/production/progress', label: 'My Progress' },
 ];
 
 export function ProductionNav() {

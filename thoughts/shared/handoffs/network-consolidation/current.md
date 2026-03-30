@@ -1,5 +1,5 @@
 ---
-date: 2026-03-27T11:30:00Z
+date: 2026-03-27T18:00:00Z
 session_name: network-consolidation
 branch: main
 status: active
@@ -8,77 +8,84 @@ status: active
 # Work Stream: network-consolidation
 
 ## Ledger
-**Updated:** 2026-03-27T11:30:00Z
-**Goal:** Unified CRM + Production command center with Xero-verified financial data, strategic sales pipeline, and deal room for $5M compound opportunity.
+**Updated:** 2026-03-27T18:00:00Z
+**Goal:** Unified CRM + Production command center with Xero-verified financial data, strategic sales pipeline, procurement strategy, and deal room for $5M compound opportunity.
 **Branch:** main
-**Test:** npm run dev (localhost:3000)
+**Test:** npm run dev (localhost:3001)
 
 ### Now
-[->] Deployed. Next: Groote proposal document or REAL Fund follow-up or Rotary chase
+[->] Capability statement one-pager, Groote outreach email, mobile responsiveness fixes
 
 ### This Session
-- [x] Xero invoice sweep — 13 new deals added, 5 fixed, 2 deleted across crm_deals
-- [x] Added: Snow wages $110K, Snow beds $5.5K, Centrecorp 60 beds $37.6K, Red Dust $15.9K, Mala'la $5.4K, Julalikari $19.8K, Our Community Shed (washer $6.8K + 30 beds $13.5K), Defy $36.9K
-- [x] Added: Rotary Eclub (Anyinginyi) $82,500 OVERDUE 11 months — INV-0222 200 Basket Beds
-- [x] Added: Our Community Shed Plant Part 1 QU-0011 $163,900 (shredding, 12mo)
-- [x] Added: Our Community Shed Plant Part 2 QU-0012 $93,498 (moulding, 6mo)
-- [x] Added: Snow Foundation Round 4 INV-0321 $132K — moved to won (awaiting payment)
-- [x] Fixed: PICC $36,000 → $36,300 (INV-0317 verified)
-- [x] Fixed: Production facility deal was Centrecorp → actually Our Community Shed
-- [x] Split: REAL Innovation Fund into 2 × $1.2M (Alice Springs + Townsville)
-- [x] Split: QBE Foundation $10K received + $140K pending
-- [x] Deleted: PFI QLD Treasury (not real), duplicate Snow Round 4
-- [x] Updated: 5 funding deals marked PAID (Snow other, VFFF, FRRR, TFN, AMP)
-- [x] Compendium: trade revenue $50K → $239K, receivables $126K → $513K
-- [x] Compendium: fixed Homeland Schools, QIC descriptions, all dates → March 27
-- [x] Economics: retail price $249 → $600
-- [x] Impact model: annual revenue $50K → $239K
-- [x] Grants page: fixed stale receivables text (was "Centrecorp $420K")
-- [x] Dashboard: rebuilt as Command Center — 6 KPIs, urgent actions, top pipeline, deployments, production, funding
-- [x] Strategy page: interactive deals table with filters (status/type/section), table/card view, dynamic totals
-- [x] Growth page: 2 regions (Central NT + North QLD), communities + expansion targets + procurement channels + funding, plant economics, freight economics, grant keywords
-- [x] Deal Room: $5M compound opportunity — REAL Fund + Groote, dark hero, 5-step pipeline, side-by-side deal cards, 4-year trajectory, community ownership endgame
-- [x] Sidebar: added Strategy, Growth, Deal Room links
-- [x] Data consistency audit: all admin pages verified clean
-- [x] Committed and pushed to main (c32dec7)
+- [x] Supply Nation certification page (/admin/supply-nation) — July 1 deadline tracker, 5-step checklist, competitive landscape, Oonchiumpa profile
+- [x] AusTender registration guide (/admin/austender) — UNSPSC codes, priority panels, search terms, $125K threshold
+- [x] Backloading logistics calculator (/admin/logistics) — 5 routes, interactive bed qty/route selector, freight vs traditional comparison
+- [x] HDPE product catalog (/admin/hdpe-catalog) — 5 expansion products (wall panels, shelving, tables, outdoor furniture, playground)
+- [x] HDPE catalog data in products.ts — HDPE_CATALOG array with specs, market fit, price estimates
+- [x] Supplier quotes data (supplier-quotes.ts) — BOM, COGS $149/bed, 73% margin, all 4 suppliers structured
+- [x] NIAA Alice Springs meeting prep (/admin/niaa-prep) — 30min talking points, deployment evidence, objection handling, leave-behinds
+- [x] Groote proposal PDF export — PrintButton component, browser print with existing print styles
+- [x] Procurement page unicode fix — literal \u2013 → actual en-dash in revenue estimates
+- [x] 3 LinkedIn warm leads → CRM deals (Tara Castle QCF, Nick Miller Fortitude $330M, Bradley Clair)
+- [x] Community deployment map (/admin/deployment-map) — Leaflet map, 7 communities, 412+ beds, pipeline communities
+- [x] Xero reconciliation dashboard (/admin/xero-reconciliation) — overdue/awaiting/paid, amount mismatches, invoice-linked vs unlinked
+- [x] IBA Business Loan prep (/admin/iba-loan) — $5M structure (30% grant), use of funds, 4-year projections, checklist
+- [x] Sidebar updated: Supply Nation, AusTender, HDPE Catalog, Logistics, IBA Loan, Deployment Map, Xero Recon
+- [x] Gmail drafts confirmed ready: DEWR follow-up + Rotary $82.5K chase
+- [x] 3 commits pushed to main (a75bb0f, f32c4ff)
+- [x] All deployed to Vercel
+
+### Previous Sessions
+- [x] Groote proposal page, Deal Room checklists, Procurement strategy dashboard
+- [x] Building supply chain section, 10 pipeline entries, procurement strategy doc
+- [x] Gmail drafts (DEWR + Rotary), local dev auth bypass
+- [x] Xero invoice sweep, Command Center dashboard, Strategy + Growth + Deal Room pages
+- [x] Sidebar consolidated 7→3 groups, economics/compendium updates
 
 ### Next
-- [ ] BUILD: Groote proposal document — PDF for WHSAC with freight comparison, pricing, community impact
-- [ ] ACTION: Follow up with DEWR on REAL Fund EOI (25 days since submission)
-- [ ] ACTION: Chase Rotary $82.5K overdue (INV-0222, 11 months)
-- [ ] BUILD: Xero API OAuth2 integration for live invoice sync
-- [ ] CLEANUP: Defy supplier quotes — consider supplier_quotes table
-- [ ] BUILD: Make Deal Room next steps interactive (checkboxes that persist)
+- [ ] BUILD: Capability statement one-pager (PDF for NIAA, AusTender, grant apps)
+- [ ] BUILD: Groote outreach email draft to Simone Grimmond (WHSAC)
+- [ ] FIX: Mobile responsiveness — Groote pricing table, Deal Room CRM table, Procurement pipeline tables
+- [ ] ACTION: Send Gmail drafts (DEWR follow-up + Rotary chase) — drafts ready, user needs to hit send
+- [ ] ACTION: Register on austender.gov.au (guide built at /admin/austender)
+- [ ] ACTION: Start Supply Nation application via Oonchiumpa (checklist at /admin/supply-nation)
+- [ ] BUILD: Contact Simone Grimmond — draft intro email with Groote proposal link
+- [ ] BUILD: Groote proposal → improve print CSS for cleaner PDF output
+- [ ] BUILD: Standing Offer Arrangement template for NT Dept of Housing
 
 ### Decisions
 - Unified Network page replaces separate Deals page ✓
-- Bed pricing: Stretch $560 institutional, Basket $370, Retail $600 (from Xero) ✓
-- PICC price $750/bed (may include GST — unconfirmed) ✓
-- Production facility quotes are from Our Community Shed (not Centrecorp) ✓
-- REAL Fund is two separate $1.2M grants (one per site) ✓
-- QBE has $10K received, $140K pending ✓
-- PFI QLD Treasury deleted (not real) ✓
-- Double the Grant section removed (was speculative) ✓
-- Rotary Eclub = Anyinginyi community connection ✓
-- Deal status derived from notes (PAID/OVERDUE/AUTHORISED) ✓
+- Xero OAuth2 NOT needed here — already exists in separate codebase ✓
+- Tim Cook supply chain model as procurement strategy framework ✓
+- Stacking advantage: 6 preferential procurement categories simultaneously ✓
+- Building supply chain = the bigger play (bed is wedge, housing fitout is market) ✓
+- Local dev bypasses auth on localhost (middleware + layout) ✓
+- 200 beds @ $560 = $112K — under $125K Commonwealth threshold (no tender needed) ✓
+- Supply Nation Certification is FREE and gives 3x more contracts ✓
+- IBA Business Loan up to $5M with 30% grant component ✓
+- NT Remote Housing Program = $4B over 10yr, 2,700 homes need beds ✓
+- COGS per Stretch Bed = $149.20 (Defy $45 + Steel $36 + Canvas $65 + Caps $3.20) ✓
+- Margin at institutional price ($560) = 73% ✓
+- Leaflet map reused from existing community-map.tsx component ✓
 
 ### Open Questions
 - UNCONFIRMED: PICC bed price $750 vs $560 — is $750 inc GST?
 - UNCONFIRMED: Groote/WHSAC — has Simone been contacted? What's the procurement pathway?
 - UNCONFIRMED: REAL Fund EOI status — any response from DEWR?
-- UNCONFIRMED: Alice Springs plant location + timeline
-- UNCONFIRMED: Townsville plant — confirmed PICC-based?
 - UNCONFIRMED: Rotary $82.5K — any payment plan or dispute?
+- UNCONFIRMED: Oonchiumpa ownership structure — does it meet 51% threshold for July 1 IPP change?
+- UNCONFIRMED: Is Goods/ACT registered on AusTender?
+- UNCONFIRMED: Supply Nation application started?
 
 ### Workflow State
 pattern: research-architect-build
-phase: 4
+phase: 5
 total_phases: 5
 retries: 0
 max_retries: 3
 
 #### Resolved
-- goal: "Unified CRM + Production command center with Xero-verified financial data, strategic sales pipeline, and $5M deal room"
+- goal: "Unified CRM + Production command center + procurement strategy with Cook supply chain model"
 - resource_allocation: aggressive
 
 #### Unknowns
@@ -86,48 +93,9 @@ max_retries: 3
 - groote_contact_status: UNKNOWN
 - real_fund_eoi_response: UNKNOWN
 - rotary_payment_status: UNKNOWN
+- oonchiumpa_ownership_51pct: UNKNOWN
+- austender_registration: UNKNOWN
+- supply_nation_status: UNKNOWN
 
 #### Last Failure
 (none)
-
----
-
-## Context
-
-### Key Financial Summary (Xero-verified, March 27 2026)
-- Trade revenue (PAID invoices): $239,273
-- Outstanding receivables: $513,148
-- Grants received: $455,685
-- Grants pending: $3,265,000 (incl REAL $2.4M, SEFA $500K, QBE $140K, SEDG $75K, Snow R4 $200K)
-- Active pipeline: ~$3.5M in deals
-
-### Pages Built/Rebuilt This Session
-- `/admin` — Command Center dashboard (live KPIs, urgent actions, pipeline, deployments, production, funding)
-- `/admin/strategy` — Interactive deals table with filters + bed pricing + funding summary
-- `/admin/growth` — Regional growth strategy (NT + QLD) with procurement channels, expansion targets, plant economics
-- `/admin/deal-room` — $5M compound opportunity war room (REAL Fund + Groote)
-
-### CRM Deals Added (13 new)
-All tagged `xero-verified`. Key additions:
-- Rotary Eclub (Anyinginyi) — $82,500 OVERDUE, 200 Basket Beds, INV-0222
-- Our Community Shed Plant Part 1 — $163,900, QU-0011 (shredding, 12mo)
-- Our Community Shed Plant Part 2 — $93,498, QU-0012 (moulding, 6mo)
-- Snow Foundation wages — $110,000 PAID, INV-0268
-- Snow Foundation Round 4 — $132,000 won (awaiting payment), INV-0321
-- REAL Innovation Fund Alice Springs — $1,200,000, EOI submitted
-- REAL Innovation Fund Townsville — $1,200,000, EOI submitted
-- Defy Manufacturing — $36,947 PAID, INV-1602 (16 beds)
-- Plus: Mala'la $5,434, Julalikari $19,800, Red Dust $15,950, Centrecorp 60 beds $37,620, Snow 10 beds $5,545, Our Community Shed 30 beds $13,500, Our Community Shed washer $6,765
-
-### Key Files Changed
-- `v2/src/app/admin/page.tsx` — Command Center dashboard
-- `v2/src/app/admin/strategy/page.tsx` — Strategy page (new)
-- `v2/src/app/admin/growth/page.tsx` — Growth page (new)
-- `v2/src/app/admin/deal-room/page.tsx` — Deal Room (new)
-- `v2/src/components/strategy/deals-table.tsx` — Interactive deals table (new)
-- `v2/src/app/admin/admin-sidebar.tsx` — Strategy, Growth, Deal Room links
-- `v2/src/lib/data/compendium.ts` — Full financial overhaul
-- `v2/src/lib/data/impact-model.ts` — Revenue updated
-- `v2/src/app/admin/economics/page.tsx` — Retail price fix
-- `v2/src/app/admin/grants/page.tsx` — Receivables text fix
-- `v2/src/app/admin/compendium/page.tsx` — Sync date fix

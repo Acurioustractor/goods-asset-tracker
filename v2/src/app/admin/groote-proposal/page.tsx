@@ -469,70 +469,70 @@ export default function GrooteProposalPage() {
         <section className="print:break-before-page">
           <SectionHeading id="pricing">Pricing</SectionHeading>
 
-          <div className="border border-stone-200 rounded-xl overflow-hidden">
+          <div className="border border-stone-200 rounded-xl overflow-x-auto">
             <table className="w-full text-left">
               <thead>
                 <tr className="bg-stone-100">
-                  <th className="px-6 py-4 text-sm font-semibold text-stone-700">Item</th>
-                  <th className="px-6 py-4 text-sm font-semibold text-stone-700 text-right">Qty</th>
-                  <th className="px-6 py-4 text-sm font-semibold text-stone-700 text-right">
+                  <th className="px-3 py-3 md:px-6 md:py-4 text-sm font-semibold text-stone-700">Item</th>
+                  <th className="px-3 py-3 md:px-6 md:py-4 text-sm font-semibold text-stone-700 text-right">Qty</th>
+                  <th className="px-3 py-3 md:px-6 md:py-4 text-sm font-semibold text-stone-700 text-right">
                     Unit Price
                   </th>
-                  <th className="px-6 py-4 text-sm font-semibold text-stone-700 text-right">
+                  <th className="px-3 py-3 md:px-6 md:py-4 text-sm font-semibold text-stone-700 text-right">
                     Line Total
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-t border-stone-200">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-3 md:px-6 md:py-4">
                     <div className="font-medium text-stone-800">{PRICING.beds.label}</div>
                     <div className="text-sm text-stone-500">
                       Recycled HDPE + galvanised steel + canvas
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-right text-stone-700">
+                  <td className="px-3 py-3 md:px-6 md:py-4 text-right text-stone-700">
                     {PRICING.beds.qty.toLocaleString()}
                   </td>
-                  <td className="px-6 py-4 text-right text-stone-700">
+                  <td className="px-3 py-3 md:px-6 md:py-4 text-right text-stone-700">
                     {currency(PRICING.beds.unitPrice)}
                   </td>
-                  <td className="px-6 py-4 text-right font-medium text-stone-800">
+                  <td className="px-3 py-3 md:px-6 md:py-4 text-right font-medium text-stone-800">
                     {currency(bedTotal)}
                   </td>
                 </tr>
                 <tr className="border-t border-stone-200">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-3 md:px-6 md:py-4">
                     <div className="font-medium text-stone-800">{PRICING.washers.label}</div>
                     <div className="text-sm text-stone-500">
                       Commercial Speed Queen base, IoT-connected
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-right text-stone-700">
+                  <td className="px-3 py-3 md:px-6 md:py-4 text-right text-stone-700">
                     {PRICING.washers.qty.toLocaleString()}
                   </td>
-                  <td className="px-6 py-4 text-right text-stone-700">
+                  <td className="px-3 py-3 md:px-6 md:py-4 text-right text-stone-700">
                     {currency(PRICING.washers.unitPrice)}
                   </td>
-                  <td className="px-6 py-4 text-right font-medium text-stone-800">
+                  <td className="px-3 py-3 md:px-6 md:py-4 text-right font-medium text-stone-800">
                     {currency(washerTotal)}
                   </td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr className="border-t-2 border-stone-300 bg-stone-50">
-                  <td className="px-6 py-4 font-bold text-stone-800" colSpan={3}>
+                  <td className="px-3 py-3 md:px-6 md:py-4 font-bold text-stone-800" colSpan={3}>
                     Total Package
                   </td>
-                  <td className="px-6 py-4 text-right font-bold text-2xl text-amber-700 font-serif">
+                  <td className="px-3 py-3 md:px-6 md:py-4 text-right font-bold text-2xl text-amber-700 font-serif">
                     {currency(packageTotal)}
                   </td>
                 </tr>
                 <tr className="border-t border-stone-200 bg-amber-50">
-                  <td className="px-6 py-3 text-stone-600 text-sm" colSpan={3}>
+                  <td className="px-3 py-2 md:px-6 md:py-3 text-stone-600 text-sm" colSpan={3}>
                     Estimated freight savings (vs standard mattresses for 500 beds)
                   </td>
-                  <td className="px-6 py-3 text-right font-bold text-amber-700">
+                  <td className="px-3 py-2 md:px-6 md:py-3 text-right font-bold text-amber-700">
                     {currency(totalFreightSavings)}
                   </td>
                 </tr>

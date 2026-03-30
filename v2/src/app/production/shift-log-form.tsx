@@ -12,7 +12,7 @@ import { createClient } from '@/lib/supabase/client';
 import { uploadProductionMedia } from '@/lib/supabase/storage';
 import { compressImage } from '@/lib/utils/compress-image';
 
-const DEFAULT_OPERATORS = ['Nic', 'Ben', 'Jimmy', 'Community Member'];
+const DEFAULT_OPERATORS = ['Joey', 'Nic', 'Ben', 'Jimmy', 'Community Member'];
 
 const COMMON_ISSUES = [
   'Shredder jam',
@@ -36,6 +36,7 @@ interface Shift {
   sheets_produced: number;
   sheets_cooling: number;
   plastic_shredded_kg: number;
+  beds_assembled: number;
   diesel_level: string;
   issues: string[];
   issue_notes: string | null;
@@ -60,6 +61,7 @@ export function ShiftLogForm() {
   const [dieselLevel, setDieselLevel] = React.useState('medium');
   const [issues, setIssues] = React.useState<string[]>([]);
   const [issueNotes, setIssueNotes] = React.useState('');
+  const [bedsAssembled, setBedsAssembled] = React.useState(0);
   const [handoverNotes, setHandoverNotes] = React.useState('');
 
   // Media state
@@ -184,6 +186,7 @@ export function ShiftLogForm() {
           sheets_produced: sheetsProduced,
           sheets_cooling: sheetsCooling,
           plastic_shredded_kg: plasticShreddedKg,
+          beds_assembled: bedsAssembled,
           diesel_level: dieselLevel,
           issues,
           issue_notes: issueNotes || null,
@@ -206,6 +209,7 @@ export function ShiftLogForm() {
       setSheetsProduced(0);
       setSheetsCooling(0);
       setPlasticShreddedKg(0);
+      setBedsAssembled(0);
       setDieselLevel('medium');
       setIssues([]);
       setIssueNotes('');
@@ -328,6 +332,24 @@ export function ShiftLogForm() {
             min={0}
             max={999}
             step={0.5}
+          />
+        </CardContent>
+      </Card>
+
+      {/* Beds Assembled */}
+      <Card>
+        <CardContent>
+          <Label
+            className="text-base font-semibold mb-3 block"
+            style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+          >
+            Beds Assembled
+          </Label>
+          <NumberStepper
+            value={bedsAssembled}
+            onChange={setBedsAssembled}
+            min={0}
+            max={20}
           />
         </CardContent>
       </Card>
@@ -519,7 +541,7 @@ export function ShiftLogForm() {
                         Diesel: {shift.diesel_level}
                       </Badge>
                     </div>
-                    <div className="grid grid-cols-3 gap-3 text-center mb-3">
+                    <div className="grid grid-cols-4 gap-2 text-center mb-3">
                       <div className="bg-muted rounded-lg p-2">
                         <p className="text-2xl font-bold tabular-nums">{shift.sheets_produced}</p>
                         <p className="text-xs text-muted-foreground">Sheets</p>
@@ -531,6 +553,10 @@ export function ShiftLogForm() {
                       <div className="bg-muted rounded-lg p-2">
                         <p className="text-2xl font-bold tabular-nums">{shift.plastic_shredded_kg}</p>
                         <p className="text-xs text-muted-foreground">kg Shredded</p>
+                      </div>
+                      <div className="bg-muted rounded-lg p-2">
+                        <p className="text-2xl font-bold tabular-nums">{shift.beds_assembled || 0}</p>
+                        <p className="text-xs text-muted-foreground">Beds</p>
                       </div>
                     </div>
                     {shift.issues && shift.issues.length > 0 && (

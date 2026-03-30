@@ -34,6 +34,8 @@ import {
   Map as MapIcon2,
   FileCheck,
   Landmark,
+  FileText,
+  Mail,
 } from 'lucide-react';
 
 const navigation = [
@@ -73,6 +75,8 @@ const navigation = [
       { name: 'IBA Loan', href: '/admin/iba-loan', icon: Landmark },
       { name: 'Deployment Map', href: '/admin/deployment-map', icon: MapIcon2 },
       { name: 'Xero Recon', href: '/admin/xero-reconciliation', icon: FileCheck },
+      { name: 'Capability Statement', href: '/admin/capability-statement', icon: FileText },
+      { name: 'Groote Outreach', href: '/admin/groote-outreach', icon: Mail },
       { name: 'Brand & Content', href: '/admin/brand', icon: Globe },
     ],
   },

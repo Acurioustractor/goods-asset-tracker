@@ -13,7 +13,7 @@ import { uploadProductionMedia } from '@/lib/supabase/storage';
 import { compressImage } from '@/lib/utils/compress-image';
 import type { ProductionJournal } from '@/lib/types/database';
 
-const DEFAULT_OPERATORS = ['Nic', 'Ben', 'Jimmy', 'Community Member'];
+const DEFAULT_OPERATORS = ['Joey', 'Nic', 'Ben', 'Jimmy', 'Community Member'];
 
 const ENTRY_TYPES = [
   { value: 'reflection', label: 'Reflection', color: 'bg-blue-500 text-white' },

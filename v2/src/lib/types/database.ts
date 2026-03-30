@@ -421,6 +421,7 @@ export interface ProductionShift {
   sheets_produced: number;
   sheets_cooling: number;
   plastic_shredded_kg: number;
+  beds_assembled: number;
   diesel_level: 'low' | 'medium' | 'full';
   issues: string[];
   issue_notes: string | null;
