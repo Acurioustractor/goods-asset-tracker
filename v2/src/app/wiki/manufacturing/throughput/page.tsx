@@ -41,9 +41,9 @@ export default function ThroughputPage() {
           <li>2. Fill frame and press sheet 1 (2 hours)</li>
           <li>3. Fill frame and press sheet 2 (2 hours)</li>
           <li>4. CNC cut both sheets (45 min)</li>
-          <li>5. Edge finish all parts (30 min)</li>
-          <li>6. Pre-drill (15 min)</li>
-          <li>7. Assemble the bed (30 min)</li>
+          <li>5. Edge finish all parts (5 min)</li>
+          <li>6. Pre-drill (5 min)</li>
+          <li>7. Assemble the bed (5 min)</li>
         </ol>
         <div className="mt-4 p-4 bg-red-100 rounded-lg">
           <p className="font-bold text-red-800">Total: ~6.5 hours = $325 labour per bed</p>
@@ -164,9 +164,9 @@ export default function ThroughputPage() {
               ['Shredder', 'Ongoing', 'No', false],
               ['Heat Press', '90 min/sheet', 'Yes', true],
               ['CNC Router', '~45 min/sheet', 'Yes', false],
-              ['Edge Finishing', '~30 min/bed', 'No', false],
-              ['Pre-drilling', '~15 min/bed', 'No', false],
-              ['Assembly', '~30 min/bed', 'No', false],
+              ['Edge Finishing', '~5 min/bed', 'No', false],
+              ['Pre-drilling', '~5 min/bed', 'No', false],
+              ['Assembly', '~5 min/bed', 'No', false],
             ].map(([station, time, unattended, bottleneck]) => (
               <tr key={station as string} className={bottleneck ? 'bg-amber-50' : ''}>
                 <td className="border border-stone-200 p-3 font-medium">{station}</td>
