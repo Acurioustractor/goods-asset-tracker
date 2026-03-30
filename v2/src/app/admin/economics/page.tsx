@@ -6,290 +6,183 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 
+type Model = 'factory' | 'panels' | 'kits' | 'community';
+
+const MODEL_INFO: Record<Model, { label: string; color: string; bg: string; border: string; desc: string }> = {
+  factory:   { label: 'Factory Production',  color: 'text-green-800', bg: 'bg-green-50',  border: 'border-green-200', desc: 'Raw shred, press + CNC + finish' },
+  panels:    { label: 'Defy Panels',         color: 'text-blue-800',  bg: 'bg-blue-50',   border: 'border-blue-200',  desc: 'Pre-pressed panels, CNC + finish' },
+  kits:      { label: 'Defy Bed Kits',       color: 'text-amber-800', bg: 'bg-amber-50',  border: 'border-amber-200', desc: 'Pre-cut kits, assembly only' },
+  community: { label: 'Community Model',     color: 'text-purple-800',bg: 'bg-purple-50', border: 'border-purple-200',desc: 'Free plastic + volunteer labour' },
+};
+
 export default function EconomicsDashboard() {
-  // --- PRODUCTION MODEL TOGGLE ---
-  const [model, setModel] = useState<'factory' | 'defy'>('factory');
+  const [model, setModel] = useState<Model>('factory');
 
-  // --- THROUGHPUT MODEL ---
-  const [bedsPerDay, setBedsPerDay] = useState(5);
-  const [operators, setOperators] = useState(1);
-  const [hoursPerDay, setHoursPerDay] = useState(8);
+  // --- SHARED INPUTS ---
   const [laborRatePerHour, setLaborRatePerHour] = useState(50.00);
-
+  const [hoursPerDay, setHoursPerDay] = useState(8);
+  const [operators, setOperators] = useState(1);
   const dailyLabourCost = operators * hoursPerDay * laborRatePerHour;
-  const labourPerBed = bedsPerDay > 0 ? dailyLabourCost / bedsPerDay : 0;
 
-  // --- DIESEL (daily model) ---
+  // --- DIESEL ---
   const [dieselPricePerLitre, setDieselPricePerLitre] = useState(3.00);
-  const [dieselLitresPerDay, setDieselLitresPerDay] = useState(25); // Joey's observed ~25L/day
-  const dailyDieselCost = dieselLitresPerDay * dieselPricePerLitre;
-  const dieselPerBed = bedsPerDay > 0 ? dailyDieselCost / bedsPerDay : 0;
+  const [dieselLitresPerDay, setDieselLitresPerDay] = useState(25);
 
-  // --- PLASTIC MATERIAL ---
+  // --- MATERIAL COSTS ---
   const [plasticPricePerKg, setPlasticPricePerKg] = useState(2.00);
-  const [deliveryPricePerKg, setDeliveryPricePerKg] = useState(0.75); // ~$900/1200kg
-  const plasticTotalPerKg = plasticPricePerKg + deliveryPricePerKg;
-  const plasticKgPerBed = 20; // 10kg per side × 2 sides
-  const extraFactor = 1.05; // 5% overfill
-  const plasticCostPerBed = plasticKgPerBed * extraFactor * plasticTotalPerKg;
+  const [deliveryPricePerKg, setDeliveryPricePerKg] = useState(0.75);
+  const plasticRatePerKg = plasticPricePerKg + deliveryPricePerKg;
+  const plasticKgPerBed = 20 * 1.05; // 20kg + 5% overfill
 
-  // --- HARDWARE (per bed, same for both models) ---
-  const [steelLengthMeter, setSteelLengthMeter] = useState(1.88);
+  // --- HARDWARE (same for all models) ---
   const [steelPricePerMeter, setSteelPricePerMeter] = useState(5.50);
-  const [canvasLengthMeter, setCanvasLengthMeter] = useState(2.1);
+  const steelLengthMeter = 1.88;
   const [canvasPricePerMeter, setCanvasPricePerMeter] = useState(4.80);
-  const [screwsCostPerBed, setScrewsCostPerBed] = useState(3.50);
-
+  const canvasLengthMeter = 2.1;
+  const [screwsCost, setScrewsCost] = useState(3.50);
   const steelCost = steelLengthMeter * steelPricePerMeter;
   const canvasCost = canvasLengthMeter * canvasPricePerMeter;
-  const hardwareCost = steelCost + canvasCost + screwsCostPerBed;
+  const hardwareCost = steelCost + canvasCost + screwsCost;
 
-  // --- FACTORY MODEL TOTALS ---
-  const factoryTotalPerBed = plasticCostPerBed + dieselPerBed + labourPerBed + hardwareCost;
+  // --- DEFY PRICING ---
+  const [defyPanelPrice, setDefyPanelPrice] = useState(200.00); // per 1200x1200 panel (INV-1731)
+  const [defyKitPrice, setDefyKitPrice] = useState(344.05);     // per bed kit (INV-1732)
+  const [defyKitFreight, setDefyKitFreight] = useState(25.00);  // est per kit
 
-  // --- DEFY KIT MODEL ---
-  const [defyKitPrice, setDefyKitPrice] = useState(344.05);
-  const [defyKitFreight, setDefyKitFreight] = useState(0);
-  const [defyAssemblyBedsPerDay, setDefyAssemblyBedsPerDay] = useState(10); // Assembly-only throughput
-  const defyLabourPerBed = defyAssemblyBedsPerDay > 0 ? dailyLabourCost / defyAssemblyBedsPerDay : 0;
-  const defyTotalPerBed = defyKitPrice + defyKitFreight + defyLabourPerBed + hardwareCost;
-
-  // --- COMMUNITY MODEL (free plastic, volunteer labour) ---
-  const communityTotalPerBed = dieselPerBed + hardwareCost;
-
-  // --- ACTIVE MODEL ---
-  const activeCost = model === 'factory' ? factoryTotalPerBed : defyTotalPerBed;
+  // --- THROUGHPUT PER MODEL ---
+  const [factoryBedsPerDay, setFactoryBedsPerDay] = useState(5);
+  const [panelBedsPerDay, setPanelBedsPerDay] = useState(7.5);   // skip pressing
+  const [kitBedsPerDay, setKitBedsPerDay] = useState(10);        // assembly only
 
   // --- PRICING ---
   const [retailPrice, setRetailPrice] = useState(600.00);
   const [institutionalPrice, setInstitutionalPrice] = useState(560.00);
-  const retailMargin = retailPrice - activeCost;
-  const institutionalMargin = institutionalPrice - activeCost;
+
+  // ========================
+  // COST CALCULATIONS
+  // ========================
+
+  // Factory: raw shred, full production
+  const factoryPlastic = plasticKgPerBed * plasticRatePerKg;
+  const factoryDiesel = factoryBedsPerDay > 0 ? (dieselLitresPerDay * dieselPricePerLitre) / factoryBedsPerDay : 0;
+  const factoryLabour = factoryBedsPerDay > 0 ? dailyLabourCost / factoryBedsPerDay : 0;
+  const factoryTotal = factoryPlastic + factoryDiesel + factoryLabour + hardwareCost;
+
+  // Defy Panels: buy 1200x1200 panels, CNC + finish on site
+  const panelPlastic = defyPanelPrice * 2; // 2 panels per bed
+  const panelDiesel = panelBedsPerDay > 0 ? ((dieselLitresPerDay * 0.5) * dieselPricePerLitre) / panelBedsPerDay : 0; // ~50% diesel (CNC only, no press)
+  const panelLabour = panelBedsPerDay > 0 ? dailyLabourCost / panelBedsPerDay : 0;
+  const panelTotal = panelPlastic + panelDiesel + panelLabour + hardwareCost;
+
+  // Defy Kits: buy pre-cut + finished kits, assembly only
+  const kitPlastic = defyKitPrice + defyKitFreight;
+  const kitDiesel = 0; // no machines
+  const kitLabour = kitBedsPerDay > 0 ? dailyLabourCost / kitBedsPerDay : 0;
+  const kitTotal = kitPlastic + kitDiesel + kitLabour + hardwareCost;
+
+  // Community: free plastic, volunteer labour
+  const communityPlastic = 0;
+  const communityDiesel = factoryBedsPerDay > 0 ? (dieselLitresPerDay * dieselPricePerLitre) / factoryBedsPerDay : 0;
+  const communityLabour = 0;
+  const communityTotal = communityPlastic + communityDiesel + hardwareCost;
+
+  // Active model
+  const costs: Record<Model, { plastic: number; diesel: number; labour: number; total: number; throughput: number }> = {
+    factory:   { plastic: factoryPlastic, diesel: factoryDiesel, labour: factoryLabour, total: factoryTotal, throughput: factoryBedsPerDay },
+    panels:    { plastic: panelPlastic,   diesel: panelDiesel,   labour: panelLabour,   total: panelTotal,   throughput: panelBedsPerDay },
+    kits:      { plastic: kitPlastic,     diesel: kitDiesel,     labour: kitLabour,     total: kitTotal,     throughput: kitBedsPerDay },
+    community: { plastic: communityPlastic,diesel: communityDiesel,labour: communityLabour,total: communityTotal, throughput: factoryBedsPerDay },
+  };
+
+  const active = costs[model];
+  const retailMargin = retailPrice - active.total;
+  const instMargin = institutionalPrice - active.total;
 
   // --- LOGISTICS ---
-  const [palletW] = useState(1165);
-  const [palletL] = useState(1165);
-  const [palletH] = useState(1500);
   const [bedW, setBedW] = useState(291);
   const [bedL, setBedL] = useState(1165);
   const [bedH, setBedH] = useState(25);
   const [shippingCost, setShippingCost] = useState(800);
+  const palletW = 1165, palletL = 1165, palletH = 1500;
   const [logistics, setLogistics] = useState({ bedsPerPallet: 0, costPerBed: 0, wastedVolumePct: 0 });
 
   useEffect(() => {
-    const fitW = bedW > palletW ? 1 : Math.floor(palletW / bedW);
-    const fitL = bedL > palletL ? 1 : Math.floor(palletL / bedL);
-    const bedsPerLayer = fitW * fitL;
-    const layers = bedH > palletH ? 1 : Math.floor(palletH / bedH);
-    const maxBeds = bedsPerLayer * layers;
-    const costPer = maxBeds > 0 ? (shippingCost / maxBeds) : 0;
-    const palletVol = palletW * palletL * palletH;
-    const bedsVol = (bedW * bedL * bedH) * maxBeds;
-    const wastedPct = palletVol > 0 ? ((1 - (bedsVol / palletVol)) * 100) : 0;
+    const fitW = Math.floor(palletW / bedW);
+    const fitL = Math.floor(palletL / bedL);
+    const layers = Math.floor(palletH / bedH);
+    const maxBeds = fitW * fitL * layers;
+    const costPer = maxBeds > 0 ? shippingCost / maxBeds : 0;
+    const wastedPct = ((1 - ((bedW * bedL * bedH * maxBeds) / (palletW * palletL * palletH))) * 100);
     setLogistics({ bedsPerPallet: maxBeds, costPerBed: costPer, wastedVolumePct: wastedPct });
-  }, [palletW, palletL, palletH, bedW, bedL, bedH, shippingCost]);
+  }, [bedW, bedL, bedH, shippingCost]);
 
-  const totalCostDelivered = activeCost + logistics.costPerBed;
+  const totalDelivered = active.total + logistics.costPerBed;
 
-  // --- OPEX / HWaaS ---
+  // --- OPEX ---
   const [opexMonthly, setOpexMonthly] = useState(9.00);
-  const capexProfit = retailPrice - totalCostDelivered;
-  const opexRevenue5yr = (opexMonthly * 12) * 5;
-  const opexCost5yr = totalCostDelivered + canvasCost;
-  const opexProfit = opexRevenue5yr - opexCost5yr;
+  const capexProfit = retailPrice - totalDelivered;
+  const opexRevenue5yr = opexMonthly * 12 * 5;
+  const opexProfit = opexRevenue5yr - (totalDelivered + canvasCost);
   const opexMultiplier = capexProfit > 0 ? (opexProfit / capexProfit).toFixed(2) : '0';
 
-  // --- B2G QUOTING ---
+  // --- B2G ---
   const [quoteQuantity, setQuoteQuantity] = useState(1000);
-  const totalContainers = logistics.bedsPerPallet > 0 ? Math.ceil(quoteQuantity / logistics.bedsPerPallet) : 0;
-  const standardContainers = Math.ceil(quoteQuantity / 12);
-  const freightSavings = (standardContainers - totalContainers) * shippingCost;
-  const totalQuoteRevenue = opexRevenue5yr * quoteQuantity;
-  const totalQuoteProfit = opexProfit * quoteQuantity;
+  const totalPallets = logistics.bedsPerPallet > 0 ? Math.ceil(quoteQuantity / logistics.bedsPerPallet) : 0;
+  const standardPallets = Math.ceil(quoteQuantity / 12);
 
-  // --- WEEKLY/MONTHLY PROJECTIONS ---
-  const bedsPerWeek = bedsPerDay * 5;
+  // --- PROJECTIONS ---
+  const bedsPerWeek = active.throughput * 5;
   const bedsPerMonth = bedsPerWeek * 4;
-  const weeklyRevenue = bedsPerWeek * retailPrice;
-  const weeklyProfit = bedsPerWeek * retailMargin;
-  const monthlyRevenue = bedsPerMonth * retailPrice;
-  const monthlyProfit = bedsPerMonth * retailMargin;
 
   const fmt = (n: number) => '$' + n.toFixed(2);
   const fmtK = (n: number) => n >= 1000 ? '$' + (n / 1000).toFixed(1) + 'k' : fmt(n);
+  const pct = (margin: number, price: number) => price > 0 ? ((margin / price) * 100).toFixed(0) + '%' : '0%';
 
   return (
     <div className="space-y-8 p-6 max-w-6xl mx-auto">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Stretch Bed Economics</h1>
-        <p className="text-gray-500 mt-2">
-          Throughput-based cost model from March 2026 production data (Joey, weeks 5-7).
-        </p>
+        <p className="text-gray-500 mt-2">Throughput-based cost model. Four supply paths compared.</p>
       </div>
 
       {/* MODEL TOGGLE */}
-      <div className="flex gap-2">
-        <button onClick={() => setModel('factory')} className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${model === 'factory' ? 'bg-green-700 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
-          Factory Production
-        </button>
-        <button onClick={() => setModel('defy')} className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${model === 'defy' ? 'bg-green-700 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
-          Defy Kit Supply
-        </button>
+      <div className="flex flex-wrap gap-2">
+        {(Object.keys(MODEL_INFO) as Model[]).map(m => (
+          <button key={m} onClick={() => setModel(m)} className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${model === m ? 'bg-green-700 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
+            {MODEL_INFO[m].label}
+          </button>
+        ))}
       </div>
 
       {/* TOP-LINE SUMMARY */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-white rounded-xl border p-4 text-center">
           <p className="text-xs text-gray-500 uppercase">Cost / Bed</p>
-          <p className="text-2xl font-bold text-gray-800">{fmt(activeCost)}</p>
+          <p className="text-2xl font-bold text-gray-800">{fmt(active.total)}</p>
         </div>
         <div className={`rounded-xl border p-4 text-center ${retailMargin > 0 ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
           <p className="text-xs text-gray-500 uppercase">Retail Margin</p>
           <p className={`text-2xl font-bold ${retailMargin > 0 ? 'text-green-700' : 'text-red-700'}`}>{fmt(retailMargin)}</p>
-          <p className="text-xs text-gray-400">{retailPrice > 0 ? ((retailMargin / retailPrice) * 100).toFixed(0) : 0}%</p>
+          <p className="text-xs text-gray-400">{pct(retailMargin, retailPrice)}</p>
         </div>
         <div className="bg-white rounded-xl border p-4 text-center">
           <p className="text-xs text-gray-500 uppercase">Weekly Output</p>
           <p className="text-2xl font-bold text-gray-800">{bedsPerWeek} beds</p>
-          <p className="text-xs text-gray-400">{fmtK(weeklyRevenue)} revenue</p>
+          <p className="text-xs text-gray-400">{fmtK(bedsPerWeek * retailPrice)} revenue</p>
         </div>
         <div className="bg-white rounded-xl border p-4 text-center">
           <p className="text-xs text-gray-500 uppercase">Monthly Profit</p>
-          <p className="text-2xl font-bold text-green-700">{fmtK(monthlyProfit)}</p>
+          <p className="text-2xl font-bold text-green-700">{fmtK(bedsPerMonth * retailMargin)}</p>
           <p className="text-xs text-gray-400">{bedsPerMonth} beds</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-        {/* SECTION 1: THROUGHPUT + LABOUR */}
-        <Card>
-          <CardHeader>
-            <CardTitle>1. Daily Throughput</CardTitle>
-            <p className="text-sm text-gray-500">Operator multitasks across stations. Press and CNC run unattended.</p>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-1">
-                <Label className="text-xs">Beds / Day</Label>
-                <Input type="number" value={bedsPerDay} onChange={e => setBedsPerDay(Number(e.target.value))} />
-              </div>
-              <div className="space-y-1">
-                <Label className="text-xs">Operators</Label>
-                <Input type="number" value={operators} onChange={e => setOperators(Number(e.target.value))} />
-              </div>
-              <div className="space-y-1">
-                <Label className="text-xs">Hours / Day</Label>
-                <Input type="number" value={hoursPerDay} onChange={e => setHoursPerDay(Number(e.target.value))} />
-              </div>
-              <div className="space-y-1">
-                <Label className="text-xs">Rate ($/hr)</Label>
-                <Input type="number" value={laborRatePerHour} onChange={e => setLaborRatePerHour(Number(e.target.value))} />
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4 mt-2">
-              <div className="p-3 bg-gray-50 rounded border text-center">
-                <p className="text-xs text-gray-500">Daily Labour Cost</p>
-                <p className="text-xl font-bold">{fmt(dailyLabourCost)}</p>
-              </div>
-              <div className="p-3 bg-green-50 rounded border border-green-200 text-center">
-                <p className="text-xs text-gray-500">Labour / Bed</p>
-                <p className="text-xl font-bold text-green-700">{fmt(labourPerBed)}</p>
-              </div>
-            </div>
-            {model === 'defy' && (
-              <div className="space-y-1 pt-2 border-t">
-                <Label className="text-xs">Assembly-only throughput (beds/day)</Label>
-                <Input type="number" value={defyAssemblyBedsPerDay} onChange={e => setDefyAssemblyBedsPerDay(Number(e.target.value))} />
-                <p className="text-xs text-gray-400">Kits arrive pre-cut. Assembly only = higher throughput.</p>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* SECTION 2: MATERIALS + DIESEL */}
-        <Card>
-          <CardHeader>
-            <CardTitle>2. Materials + Energy</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {model === 'factory' ? (
-              <>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1">
-                    <Label className="text-xs">Plastic ($/kg)</Label>
-                    <Input type="number" step="0.10" value={plasticPricePerKg} onChange={e => setPlasticPricePerKg(Number(e.target.value))} />
-                  </div>
-                  <div className="space-y-1">
-                    <Label className="text-xs">Delivery ($/kg)</Label>
-                    <Input type="number" step="0.10" value={deliveryPricePerKg} onChange={e => setDeliveryPricePerKg(Number(e.target.value))} />
-                  </div>
-                  <div className="space-y-1">
-                    <Label className="text-xs">Diesel ($/L)</Label>
-                    <Input type="number" step="0.10" value={dieselPricePerLitre} onChange={e => setDieselPricePerLitre(Number(e.target.value))} />
-                  </div>
-                  <div className="space-y-1">
-                    <Label className="text-xs">Diesel (L/day)</Label>
-                    <Input type="number" value={dieselLitresPerDay} onChange={e => setDieselLitresPerDay(Number(e.target.value))} />
-                  </div>
-                </div>
-                <div className="grid grid-cols-3 gap-3 mt-2">
-                  <div className="p-3 bg-gray-50 rounded border text-center">
-                    <p className="text-xs text-gray-500">Plastic / Bed</p>
-                    <p className="text-lg font-bold">{fmt(plasticCostPerBed)}</p>
-                    <p className="text-xs text-gray-400">{(plasticKgPerBed * extraFactor).toFixed(1)}kg @ {fmt(plasticTotalPerKg)}/kg</p>
-                  </div>
-                  <div className="p-3 bg-gray-50 rounded border text-center">
-                    <p className="text-xs text-gray-500">Diesel / Bed</p>
-                    <p className="text-lg font-bold">{fmt(dieselPerBed)}</p>
-                    <p className="text-xs text-gray-400">{(dieselLitresPerDay / bedsPerDay).toFixed(1)}L</p>
-                  </div>
-                  <div className="p-3 bg-gray-50 rounded border text-center">
-                    <p className="text-xs text-gray-500">Hardware / Bed</p>
-                    <p className="text-lg font-bold">{fmt(hardwareCost)}</p>
-                    <p className="text-xs text-gray-400">steel + canvas + screws</p>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1">
-                    <Label className="text-xs">Defy Kit ($/kit)</Label>
-                    <Input type="number" step="0.01" value={defyKitPrice} onChange={e => setDefyKitPrice(Number(e.target.value))} />
-                  </div>
-                  <div className="space-y-1">
-                    <Label className="text-xs">Kit Freight ($/kit)</Label>
-                    <Input type="number" step="0.01" value={defyKitFreight} onChange={e => setDefyKitFreight(Number(e.target.value))} />
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-3 mt-2">
-                  <div className="p-3 bg-gray-50 rounded border text-center">
-                    <p className="text-xs text-gray-500">Kit Cost</p>
-                    <p className="text-lg font-bold">{fmt(defyKitPrice + defyKitFreight)}</p>
-                  </div>
-                  <div className="p-3 bg-gray-50 rounded border text-center">
-                    <p className="text-xs text-gray-500">Hardware / Bed</p>
-                    <p className="text-lg font-bold">{fmt(hardwareCost)}</p>
-                  </div>
-                </div>
-                <div className="p-3 bg-amber-50 rounded border border-amber-200 mt-2">
-                  <p className="text-xs text-amber-800">Defy kit freight TBC. Ref: INV-1732 (27 Mar 2026). 40 kits per pallet (~1000kg).</p>
-                </div>
-              </>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* SECTION 3: FULL COST BREAKDOWN */}
+        {/* SECTION 1: ALL MODELS COMPARISON */}
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle className="flex justify-between items-center">
-              <span>3. Full Cost Breakdown</span>
-              <Badge className={activeCost < institutionalPrice ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
-                {fmt(activeCost)} / bed
-              </Badge>
-            </CardTitle>
+            <CardTitle>1. All Supply Paths Compared</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
@@ -297,176 +190,259 @@ export default function EconomicsDashboard() {
                 <thead>
                   <tr className="border-b text-left text-gray-500">
                     <th className="py-2">Component</th>
-                    <th className="py-2 text-right">Cost</th>
-                    <th className="py-2 text-right">% of Total</th>
+                    <th className="py-2 text-right">Factory</th>
+                    <th className="py-2 text-right">Defy Panels</th>
+                    <th className="py-2 text-right">Defy Kits</th>
+                    <th className="py-2 text-right">Community</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {model === 'factory' ? (
-                    <>
-                      <tr className="border-b"><td className="py-2">Recycled plastic ({(plasticKgPerBed * extraFactor).toFixed(1)}kg @ {fmt(plasticTotalPerKg)}/kg)</td><td className="py-2 text-right">{fmt(plasticCostPerBed)}</td><td className="py-2 text-right text-gray-400">{(plasticCostPerBed / factoryTotalPerBed * 100).toFixed(0)}%</td></tr>
-                      <tr className="border-b"><td className="py-2">Diesel ({(dieselLitresPerDay / bedsPerDay).toFixed(1)}L @ {fmt(dieselPricePerLitre)}/L)</td><td className="py-2 text-right">{fmt(dieselPerBed)}</td><td className="py-2 text-right text-gray-400">{(dieselPerBed / factoryTotalPerBed * 100).toFixed(0)}%</td></tr>
-                      <tr className="border-b"><td className="py-2">Labour ({operators} op × {hoursPerDay}hr ÷ {bedsPerDay} beds)</td><td className="py-2 text-right">{fmt(labourPerBed)}</td><td className="py-2 text-right text-gray-400">{(labourPerBed / factoryTotalPerBed * 100).toFixed(0)}%</td></tr>
-                      <tr className="border-b"><td className="py-2">Steel poles ({steelLengthMeter}m @ {fmt(steelPricePerMeter)}/m)</td><td className="py-2 text-right">{fmt(steelCost)}</td><td className="py-2 text-right text-gray-400">{(steelCost / factoryTotalPerBed * 100).toFixed(0)}%</td></tr>
-                      <tr className="border-b"><td className="py-2">Canvas ({canvasLengthMeter}m @ {fmt(canvasPricePerMeter)}/m)</td><td className="py-2 text-right">{fmt(canvasCost)}</td><td className="py-2 text-right text-gray-400">{(canvasCost / factoryTotalPerBed * 100).toFixed(0)}%</td></tr>
-                      <tr className="border-b"><td className="py-2">Screws / hardware</td><td className="py-2 text-right">{fmt(screwsCostPerBed)}</td><td className="py-2 text-right text-gray-400">{(screwsCostPerBed / factoryTotalPerBed * 100).toFixed(0)}%</td></tr>
-                    </>
-                  ) : (
-                    <>
-                      <tr className="border-b"><td className="py-2">Defy kit (pre-cut plastic)</td><td className="py-2 text-right">{fmt(defyKitPrice)}</td><td className="py-2 text-right text-gray-400">{(defyKitPrice / defyTotalPerBed * 100).toFixed(0)}%</td></tr>
-                      <tr className="border-b"><td className="py-2">Kit freight</td><td className="py-2 text-right">{fmt(defyKitFreight)}</td><td className="py-2 text-right text-gray-400">{defyTotalPerBed > 0 ? (defyKitFreight / defyTotalPerBed * 100).toFixed(0) : 0}%</td></tr>
-                      <tr className="border-b"><td className="py-2">Assembly labour ({fmt(dailyLabourCost)}/day ÷ {defyAssemblyBedsPerDay} beds)</td><td className="py-2 text-right">{fmt(defyLabourPerBed)}</td><td className="py-2 text-right text-gray-400">{(defyLabourPerBed / defyTotalPerBed * 100).toFixed(0)}%</td></tr>
-                      <tr className="border-b"><td className="py-2">Steel poles</td><td className="py-2 text-right">{fmt(steelCost)}</td><td className="py-2 text-right text-gray-400">{(steelCost / defyTotalPerBed * 100).toFixed(0)}%</td></tr>
-                      <tr className="border-b"><td className="py-2">Canvas</td><td className="py-2 text-right">{fmt(canvasCost)}</td><td className="py-2 text-right text-gray-400">{(canvasCost / defyTotalPerBed * 100).toFixed(0)}%</td></tr>
-                      <tr className="border-b"><td className="py-2">Screws / hardware</td><td className="py-2 text-right">{fmt(screwsCostPerBed)}</td><td className="py-2 text-right text-gray-400">{(screwsCostPerBed / defyTotalPerBed * 100).toFixed(0)}%</td></tr>
-                    </>
-                  )}
+                  <tr className="border-b">
+                    <td className="py-2 text-gray-600">Plastic / panels / kit</td>
+                    <td className="py-2 text-right">{fmt(factoryPlastic)}</td>
+                    <td className="py-2 text-right">{fmt(panelPlastic)}</td>
+                    <td className="py-2 text-right">{fmt(kitPlastic)}</td>
+                    <td className="py-2 text-right text-green-600">$0.00</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="py-2 text-gray-600">Diesel</td>
+                    <td className="py-2 text-right">{fmt(factoryDiesel)}</td>
+                    <td className="py-2 text-right">{fmt(panelDiesel)}</td>
+                    <td className="py-2 text-right">$0.00</td>
+                    <td className="py-2 text-right">{fmt(communityDiesel)}</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="py-2 text-gray-600">Labour</td>
+                    <td className="py-2 text-right">{fmt(factoryLabour)}</td>
+                    <td className="py-2 text-right">{fmt(panelLabour)}</td>
+                    <td className="py-2 text-right">{fmt(kitLabour)}</td>
+                    <td className="py-2 text-right text-green-600">$0.00</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="py-2 text-gray-600">Steel + Canvas + Screws</td>
+                    <td className="py-2 text-right">{fmt(hardwareCost)}</td>
+                    <td className="py-2 text-right">{fmt(hardwareCost)}</td>
+                    <td className="py-2 text-right">{fmt(hardwareCost)}</td>
+                    <td className="py-2 text-right">{fmt(hardwareCost)}</td>
+                  </tr>
                 </tbody>
                 <tfoot>
-                  <tr className="bg-gray-50 font-bold text-base">
-                    <td className="py-3">TOTAL PER BED</td>
-                    <td className="py-3 text-right">{fmt(activeCost)}</td>
-                    <td className="py-3 text-right">100%</td>
+                  <tr className="font-bold text-base bg-gray-50">
+                    <td className="py-3">TOTAL / BED</td>
+                    <td className="py-3 text-right text-green-700">{fmt(factoryTotal)}</td>
+                    <td className="py-3 text-right text-blue-700">{fmt(panelTotal)}</td>
+                    <td className="py-3 text-right text-amber-700">{fmt(kitTotal)}</td>
+                    <td className="py-3 text-right text-purple-700">{fmt(communityTotal)}</td>
+                  </tr>
+                  <tr className="text-sm">
+                    <td className="py-2 text-gray-500">Retail margin ($600)</td>
+                    <td className="py-2 text-right font-semibold text-green-600">{fmt(retailPrice - factoryTotal)} ({pct(retailPrice - factoryTotal, retailPrice)})</td>
+                    <td className="py-2 text-right font-semibold text-blue-600">{fmt(retailPrice - panelTotal)} ({pct(retailPrice - panelTotal, retailPrice)})</td>
+                    <td className="py-2 text-right font-semibold text-amber-600">{fmt(retailPrice - kitTotal)} ({pct(retailPrice - kitTotal, retailPrice)})</td>
+                    <td className="py-2 text-right font-semibold text-purple-600">{fmt(retailPrice - communityTotal)} ({pct(retailPrice - communityTotal, retailPrice)})</td>
+                  </tr>
+                  <tr className="text-sm">
+                    <td className="py-2 text-gray-500">Institutional margin ($560)</td>
+                    <td className="py-2 text-right text-green-600">{fmt(institutionalPrice - factoryTotal)} ({pct(institutionalPrice - factoryTotal, institutionalPrice)})</td>
+                    <td className="py-2 text-right text-blue-600">{fmt(institutionalPrice - panelTotal)} ({pct(institutionalPrice - panelTotal, institutionalPrice)})</td>
+                    <td className="py-2 text-right text-amber-600">{fmt(institutionalPrice - kitTotal)} ({pct(institutionalPrice - kitTotal, institutionalPrice)})</td>
+                    <td className="py-2 text-right text-purple-600">{fmt(institutionalPrice - communityTotal)} ({pct(institutionalPrice - communityTotal, institutionalPrice)})</td>
+                  </tr>
+                  <tr className="text-sm border-t">
+                    <td className="py-2 text-gray-500">Throughput</td>
+                    <td className="py-2 text-right">{factoryBedsPerDay}/day</td>
+                    <td className="py-2 text-right">{panelBedsPerDay}/day</td>
+                    <td className="py-2 text-right">{kitBedsPerDay}/day</td>
+                    <td className="py-2 text-right">{factoryBedsPerDay}/day</td>
+                  </tr>
+                  <tr className="text-sm">
+                    <td className="py-2 text-gray-500">Facility needed</td>
+                    <td className="py-2 text-right text-xs">Full (press+CNC+router)</td>
+                    <td className="py-2 text-right text-xs">Partial (CNC+router)</td>
+                    <td className="py-2 text-right text-xs">Shed + impact driver</td>
+                    <td className="py-2 text-right text-xs">Full (volunteer-run)</td>
+                  </tr>
+                  <tr className="text-sm">
+                    <td className="py-2 text-gray-500">Best for</td>
+                    <td className="py-2 text-right text-xs">Ongoing production</td>
+                    <td className="py-2 text-right text-xs">Press busy/broken</td>
+                    <td className="py-2 text-right text-xs">Remote sites, no facility</td>
+                    <td className="py-2 text-right text-xs">Community ownership</td>
                   </tr>
                 </tfoot>
               </table>
             </div>
 
-            {/* Three-model comparison */}
-            <div className="grid grid-cols-3 gap-4 mt-6">
-              <div className="p-4 bg-green-50 rounded-xl border border-green-200 text-center">
-                <p className="text-xs text-green-600 uppercase font-semibold">Community Model</p>
-                <p className="text-2xl font-bold text-green-800 mt-1">{fmt(communityTotalPerBed)}</p>
-                <p className="text-xs text-green-600 mt-1">Free plastic + volunteer</p>
-              </div>
-              <div className={`p-4 rounded-xl border text-center ${model === 'factory' ? 'bg-blue-50 border-blue-200' : 'bg-gray-50'}`}>
-                <p className="text-xs text-blue-600 uppercase font-semibold">Factory Model</p>
-                <p className="text-2xl font-bold text-blue-800 mt-1">{fmt(factoryTotalPerBed)}</p>
-                <p className="text-xs text-blue-600 mt-1">Paid materials + operator</p>
-              </div>
-              <div className={`p-4 rounded-xl border text-center ${model === 'defy' ? 'bg-amber-50 border-amber-200' : 'bg-gray-50'}`}>
-                <p className="text-xs text-amber-600 uppercase font-semibold">Defy Kit Model</p>
-                <p className="text-2xl font-bold text-amber-800 mt-1">{fmt(defyTotalPerBed)}</p>
-                <p className="text-xs text-amber-600 mt-1">Pre-cut kits + assembly</p>
-              </div>
+            {/* Visual comparison cards */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
+              {(Object.keys(MODEL_INFO) as Model[]).map(m => {
+                const c = costs[m];
+                const info = MODEL_INFO[m];
+                const margin = retailPrice - c.total;
+                return (
+                  <div key={m} className={`p-4 rounded-xl border text-center cursor-pointer transition-all ${model === m ? `${info.bg} ${info.border} ring-2 ring-offset-1 ring-green-500` : 'bg-white hover:bg-gray-50'}`} onClick={() => setModel(m)}>
+                    <p className={`text-xs font-semibold uppercase ${info.color}`}>{info.label}</p>
+                    <p className={`text-2xl font-bold mt-1 ${info.color}`}>{fmt(c.total)}</p>
+                    <p className="text-xs text-gray-500 mt-1">{fmt(margin)} margin ({pct(margin, retailPrice)})</p>
+                    <p className="text-xs text-gray-400">{c.throughput}/day</p>
+                  </div>
+                );
+              })}
             </div>
           </CardContent>
         </Card>
 
-        {/* SECTION 4: MARGIN ANALYSIS */}
-        <Card>
-          <CardHeader>
-            <CardTitle>4. Margin Analysis</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-1">
-                <Label className="text-xs">Retail ($)</Label>
-                <Input type="number" value={retailPrice} onChange={e => setRetailPrice(Number(e.target.value))} />
-              </div>
-              <div className="space-y-1">
-                <Label className="text-xs">Institutional ($)</Label>
-                <Input type="number" value={institutionalPrice} onChange={e => setInstitutionalPrice(Number(e.target.value))} />
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4 mt-2">
-              <div className={`p-4 rounded-lg text-center border ${retailMargin > 0 ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
-                <p className="text-xs text-gray-500 mb-1">Retail</p>
-                <p className={`text-2xl font-bold ${retailMargin > 0 ? 'text-green-700' : 'text-red-700'}`}>{fmt(retailMargin)}</p>
-                <p className="text-xs text-gray-400">{retailPrice > 0 ? ((retailMargin / retailPrice) * 100).toFixed(0) : 0}% margin</p>
-              </div>
-              <div className={`p-4 rounded-lg text-center border ${institutionalMargin > 0 ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
-                <p className="text-xs text-gray-500 mb-1">Institutional</p>
-                <p className={`text-2xl font-bold ${institutionalMargin > 0 ? 'text-green-700' : 'text-red-700'}`}>{fmt(institutionalMargin)}</p>
-                <p className="text-xs text-gray-400">{institutionalPrice > 0 ? ((institutionalMargin / institutionalPrice) * 100).toFixed(0) : 0}% margin</p>
-              </div>
-            </div>
-            <div className="p-3 bg-gray-50 rounded border text-xs text-gray-500">
-              + Delivery freight {fmt(logistics.costPerBed)}/bed = delivered cost {fmt(totalCostDelivered)}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* SECTION 5: OPEX FLYWHEEL */}
+        {/* SECTION 2: ACTIVE MODEL DETAIL */}
         <Card>
           <CardHeader>
             <CardTitle className="flex justify-between items-center">
-              <span>5. HWaaS Flywheel</span>
+              <span>2. {MODEL_INFO[model].label} Detail</span>
+              <Badge className={`${MODEL_INFO[model].bg} ${MODEL_INFO[model].color}`}>{fmt(active.total)}</Badge>
+            </CardTitle>
+            <p className="text-sm text-gray-500">{MODEL_INFO[model].desc}</p>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-1"><Label className="text-xs">Labour ($/hr)</Label><Input type="number" value={laborRatePerHour} onChange={e => setLaborRatePerHour(Number(e.target.value))} /></div>
+              <div className="space-y-1"><Label className="text-xs">Hours / Day</Label><Input type="number" value={hoursPerDay} onChange={e => setHoursPerDay(Number(e.target.value))} /></div>
+            </div>
+
+            {model === 'factory' && (
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1"><Label className="text-xs">Beds / Day</Label><Input type="number" step="0.5" value={factoryBedsPerDay} onChange={e => setFactoryBedsPerDay(Number(e.target.value))} /></div>
+                <div className="space-y-1"><Label className="text-xs">Plastic ($/kg)</Label><Input type="number" step="0.10" value={plasticPricePerKg} onChange={e => setPlasticPricePerKg(Number(e.target.value))} /></div>
+                <div className="space-y-1"><Label className="text-xs">Delivery ($/kg)</Label><Input type="number" step="0.10" value={deliveryPricePerKg} onChange={e => setDeliveryPricePerKg(Number(e.target.value))} /></div>
+                <div className="space-y-1"><Label className="text-xs">Diesel (L/day)</Label><Input type="number" value={dieselLitresPerDay} onChange={e => setDieselLitresPerDay(Number(e.target.value))} /></div>
+              </div>
+            )}
+            {model === 'panels' && (
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1"><Label className="text-xs">Beds / Day</Label><Input type="number" step="0.5" value={panelBedsPerDay} onChange={e => setPanelBedsPerDay(Number(e.target.value))} /></div>
+                <div className="space-y-1"><Label className="text-xs">Panel Price ($)</Label><Input type="number" step="1" value={defyPanelPrice} onChange={e => setDefyPanelPrice(Number(e.target.value))} /></div>
+              </div>
+            )}
+            {model === 'kits' && (
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1"><Label className="text-xs">Beds / Day (assembly)</Label><Input type="number" step="0.5" value={kitBedsPerDay} onChange={e => setKitBedsPerDay(Number(e.target.value))} /></div>
+                <div className="space-y-1"><Label className="text-xs">Kit Price ($)</Label><Input type="number" step="0.01" value={defyKitPrice} onChange={e => setDefyKitPrice(Number(e.target.value))} /></div>
+                <div className="space-y-1"><Label className="text-xs">Kit Freight ($)</Label><Input type="number" step="1" value={defyKitFreight} onChange={e => setDefyKitFreight(Number(e.target.value))} /></div>
+              </div>
+            )}
+            {model === 'community' && (
+              <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
+                <p className="text-sm text-purple-800">
+                  Community collects waste plastic (free). Volunteers or CDP participants operate the facility.
+                  Only costs are diesel for the generator and hardware (steel, canvas, screws).
+                </p>
+              </div>
+            )}
+
+            {/* Cost stack bar */}
+            <div className="mt-4">
+              <div className="flex rounded-lg overflow-hidden h-8 text-xs font-medium text-white">
+                {active.plastic > 0 && <div className="bg-blue-500 flex items-center justify-center" style={{ width: `${(active.plastic / active.total) * 100}%` }}>{active.total > 0 && (active.plastic / active.total * 100) > 10 ? 'Plastic' : ''}</div>}
+                {active.diesel > 0 && <div className="bg-amber-500 flex items-center justify-center" style={{ width: `${(active.diesel / active.total) * 100}%` }}>{active.total > 0 && (active.diesel / active.total * 100) > 10 ? 'Diesel' : ''}</div>}
+                {active.labour > 0 && <div className="bg-purple-500 flex items-center justify-center" style={{ width: `${(active.labour / active.total) * 100}%` }}>{active.total > 0 && (active.labour / active.total * 100) > 10 ? 'Labour' : ''}</div>}
+                <div className="bg-gray-400 flex items-center justify-center" style={{ width: `${(hardwareCost / active.total) * 100}%` }}>{active.total > 0 && (hardwareCost / active.total * 100) > 10 ? 'Hardware' : ''}</div>
+              </div>
+              <div className="flex gap-4 mt-2 text-xs text-gray-500">
+                <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-blue-500 inline-block" /> Plastic {fmt(active.plastic)}</span>
+                <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-amber-500 inline-block" /> Diesel {fmt(active.diesel)}</span>
+                <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-purple-500 inline-block" /> Labour {fmt(active.labour)}</span>
+                <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-gray-400 inline-block" /> Hardware {fmt(hardwareCost)}</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* SECTION 3: MARGIN + PRICING */}
+        <Card>
+          <CardHeader><CardTitle>3. Pricing + Margin</CardTitle></CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-1"><Label className="text-xs">Retail ($)</Label><Input type="number" value={retailPrice} onChange={e => setRetailPrice(Number(e.target.value))} /></div>
+              <div className="space-y-1"><Label className="text-xs">Institutional ($)</Label><Input type="number" value={institutionalPrice} onChange={e => setInstitutionalPrice(Number(e.target.value))} /></div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className={`p-4 rounded-lg text-center border ${retailMargin > 0 ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
+                <p className="text-xs text-gray-500">Retail</p>
+                <p className={`text-2xl font-bold ${retailMargin > 0 ? 'text-green-700' : 'text-red-700'}`}>{fmt(retailMargin)}</p>
+                <p className="text-xs text-gray-400">{pct(retailMargin, retailPrice)}</p>
+              </div>
+              <div className={`p-4 rounded-lg text-center border ${instMargin > 0 ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
+                <p className="text-xs text-gray-500">Institutional</p>
+                <p className={`text-2xl font-bold ${instMargin > 0 ? 'text-green-700' : 'text-red-700'}`}>{fmt(instMargin)}</p>
+                <p className="text-xs text-gray-400">{pct(instMargin, institutionalPrice)}</p>
+              </div>
+            </div>
+            <div className="p-3 bg-gray-50 rounded border text-xs text-gray-500">
+              + Freight {fmt(logistics.costPerBed)}/bed = delivered {fmt(totalDelivered)}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* SECTION 4: OPEX */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex justify-between items-center">
+              <span>4. HWaaS Flywheel</span>
               <Badge className="bg-blue-100 text-blue-800">{opexMultiplier}x over 5yr</Badge>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="space-y-1">
-              <Label className="text-xs">Monthly Lease ($)</Label>
-              <Input type="number" value={opexMonthly} onChange={e => setOpexMonthly(Number(e.target.value))} />
-            </div>
-            <div className="grid grid-cols-2 gap-4 mt-2">
+            <div className="space-y-1"><Label className="text-xs">Monthly Lease ($)</Label><Input type="number" value={opexMonthly} onChange={e => setOpexMonthly(Number(e.target.value))} /></div>
+            <div className="grid grid-cols-2 gap-4">
               <div className="p-4 bg-gray-50 rounded-lg text-center border">
-                <p className="text-xs text-gray-500 mb-1">CapEx Sale</p>
+                <p className="text-xs text-gray-500">CapEx Sale</p>
                 <p className="text-2xl font-bold text-gray-700">{fmt(capexProfit)}</p>
               </div>
               <div className="p-4 bg-blue-50 rounded-lg text-center border border-blue-100">
-                <p className="text-xs text-blue-600 mb-1">OpEx 5yr Net</p>
+                <p className="text-xs text-blue-600">OpEx 5yr Net</p>
                 <p className="text-2xl font-bold text-blue-800">{fmt(opexProfit)}</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* SECTION 6: LOGISTICS */}
-        <Card className="lg:col-span-2">
+        {/* SECTION 5: LOGISTICS */}
+        <Card>
           <CardHeader>
             <CardTitle className="flex justify-between items-center">
-              <span>6. Freight Density</span>
-              <Badge className={logistics.wastedVolumePct < 5 ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
-                {logistics.bedsPerPallet} beds/pallet
-              </Badge>
+              <span>5. Freight Density</span>
+              <Badge className="bg-green-100 text-green-800">{logistics.bedsPerPallet} beds/pallet</Badge>
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="space-y-4 md:col-span-2">
-                <div className="grid grid-cols-3 gap-2">
-                  <div className="space-y-1"><Label className="text-xs">Width (mm)</Label><Input type="number" value={bedW} onChange={e => setBedW(Number(e.target.value))} /></div>
-                  <div className="space-y-1"><Label className="text-xs">Length (mm)</Label><Input type="number" value={bedL} onChange={e => setBedL(Number(e.target.value))} /></div>
-                  <div className="space-y-1"><Label className="text-xs">Height (mm)</Label><Input type="number" value={bedH} onChange={e => setBedH(Number(e.target.value))} /></div>
-                </div>
-                <div className="space-y-1"><Label className="text-xs">Pallet Cost ($)</Label><Input type="number" value={shippingCost} onChange={e => setShippingCost(Number(e.target.value))} /></div>
-              </div>
-              <div className="flex flex-col space-y-3 justify-center">
-                <div className="p-3 bg-gray-50 rounded border text-center">
-                  <p className="text-xs text-gray-500">Beds / Pallet</p>
-                  <p className="text-xl font-bold">{logistics.bedsPerPallet}</p>
-                </div>
-                <div className="p-3 bg-gray-50 rounded border text-center">
-                  <p className="text-xs text-gray-500">Freight / Bed</p>
-                  <p className="text-xl font-bold">{fmt(logistics.costPerBed)}</p>
-                </div>
-              </div>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-3 gap-2">
+              <div className="space-y-1"><Label className="text-xs">Width</Label><Input type="number" value={bedW} onChange={e => setBedW(Number(e.target.value))} /></div>
+              <div className="space-y-1"><Label className="text-xs">Length</Label><Input type="number" value={bedL} onChange={e => setBedL(Number(e.target.value))} /></div>
+              <div className="space-y-1"><Label className="text-xs">Height</Label><Input type="number" value={bedH} onChange={e => setBedH(Number(e.target.value))} /></div>
+            </div>
+            <div className="space-y-1"><Label className="text-xs">Pallet Cost ($)</Label><Input type="number" value={shippingCost} onChange={e => setShippingCost(Number(e.target.value))} /></div>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="p-3 bg-gray-50 rounded border text-center"><p className="text-xs text-gray-500">Beds / Pallet</p><p className="text-xl font-bold">{logistics.bedsPerPallet}</p></div>
+              <div className="p-3 bg-gray-50 rounded border text-center"><p className="text-xs text-gray-500">Freight / Bed</p><p className="text-xl font-bold">{fmt(logistics.costPerBed)}</p></div>
             </div>
           </CardContent>
         </Card>
 
-        {/* SECTION 7: B2G QUOTING */}
+        {/* SECTION 6: B2G */}
         <Card className="lg:col-span-2 bg-slate-900 border-slate-800 text-white">
-          <CardHeader>
-            <CardTitle className="text-orange-400">7. B2G Quoting Engine</CardTitle>
-          </CardHeader>
+          <CardHeader><CardTitle className="text-orange-400">6. B2G Quoting Engine</CardTitle></CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-1">
                 <Label className="text-slate-300">Volume (units)</Label>
                 <Input className="bg-slate-800 border-slate-700 text-white" type="number" value={quoteQuantity} onChange={e => setQuoteQuantity(Number(e.target.value))} />
               </div>
-              <div className="flex flex-col justify-center">
-                <div className="p-4 border border-slate-700 bg-slate-800/50 rounded-lg">
-                  <ul className="space-y-2 text-sm text-slate-300">
-                    <li className="flex justify-between"><span>5yr OpEx Revenue:</span><span className="font-mono text-white">${totalQuoteRevenue.toLocaleString()}</span></li>
-                    <li className="flex justify-between border-b border-slate-700 pb-2"><span>Net Profit:</span><span className="font-mono text-green-400 font-bold">${totalQuoteProfit.toLocaleString()}</span></li>
-                    <li className="flex justify-between pt-1"><span>Pallets:</span><span className="font-mono text-orange-400">{totalContainers} <span className="text-slate-500 line-through pl-1">{standardContainers}</span></span></li>
-                    <li className="flex justify-between"><span>Freight saved:</span><span className="font-mono text-white">${freightSavings.toLocaleString()}</span></li>
-                  </ul>
-                </div>
+              <div className="p-4 border border-slate-700 bg-slate-800/50 rounded-lg">
+                <ul className="space-y-2 text-sm text-slate-300">
+                  <li className="flex justify-between"><span>5yr OpEx Revenue:</span><span className="font-mono text-white">${(opexRevenue5yr * quoteQuantity).toLocaleString()}</span></li>
+                  <li className="flex justify-between border-b border-slate-700 pb-2"><span>Net Profit:</span><span className="font-mono text-green-400 font-bold">${(opexProfit * quoteQuantity).toLocaleString()}</span></li>
+                  <li className="flex justify-between pt-1"><span>Pallets:</span><span className="font-mono text-orange-400">{totalPallets} <span className="text-slate-500 line-through pl-1">{standardPallets}</span></span></li>
+                  <li className="flex justify-between"><span>Freight saved:</span><span className="font-mono text-white">${((standardPallets - totalPallets) * shippingCost).toLocaleString()}</span></li>
+                  <li className="flex justify-between"><span>Production time:</span><span className="font-mono text-white">{Math.ceil(quoteQuantity / active.throughput)} days ({Math.ceil(quoteQuantity / (active.throughput * 5))} weeks)</span></li>
+                </ul>
               </div>
             </div>
           </CardContent>
