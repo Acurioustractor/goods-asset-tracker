@@ -74,6 +74,7 @@ const navigation = [
       { name: 'Supply Nation', href: '/admin/supply-nation', icon: BadgeCheck },
       { name: 'AusTender', href: '/admin/austender', icon: Search },
       { name: 'QBE Program', href: '/admin/qbe-program', icon: GraduationCap },
+      { name: 'QBE Actions', href: '/admin/qbe-actions', icon: Target },
       { name: 'LOI Tracker', href: '/admin/loi-tracker', icon: FileText },
       { name: 'Finance Engine', href: '/admin/finance-model', icon: Calculator },
       { name: 'Impact Dashboard', href: '/admin/impact-dashboard', icon: Activity },
