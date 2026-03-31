@@ -36,6 +36,7 @@ import {
   Landmark,
   FileText,
   Mail,
+  GraduationCap,
 } from 'lucide-react';
 
 const navigation = [
@@ -72,6 +73,11 @@ const navigation = [
       { name: 'Procurement', href: '/admin/procurement', icon: ShieldCheck },
       { name: 'Supply Nation', href: '/admin/supply-nation', icon: BadgeCheck },
       { name: 'AusTender', href: '/admin/austender', icon: Search },
+      { name: 'QBE Program', href: '/admin/qbe-program', icon: GraduationCap },
+      { name: 'LOI Tracker', href: '/admin/loi-tracker', icon: FileText },
+      { name: 'Finance Engine', href: '/admin/finance-model', icon: Calculator },
+      { name: 'Impact Dashboard', href: '/admin/impact-dashboard', icon: Activity },
+      { name: 'Foundation Matcher', href: '/admin/foundation-matcher', icon: Search },
       { name: 'IBA Loan', href: '/admin/iba-loan', icon: Landmark },
       { name: 'Deployment Map', href: '/admin/deployment-map', icon: MapIcon2 },
       { name: 'Xero Recon', href: '/admin/xero-reconciliation', icon: FileCheck },
