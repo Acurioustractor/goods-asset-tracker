@@ -183,16 +183,31 @@ async function fetchFromSyndicationAPI<T>(
     headers['Authorization'] = `Bearer ${EMPATHY_LEDGER_API_KEY}`;
   }
 
-  const response = await fetch(url, {
-    headers,
-    next: { revalidate: options.revalidate ?? 300 },
-  });
+  let response: Response;
+  try {
+    response = await fetch(url, {
+      headers,
+      next: { revalidate: options.revalidate ?? 300 },
+    });
+  } catch (networkError) {
+    // Network failure (DNS, timeout, etc). Soft-fail so caller can fall back.
+    const message = networkError instanceof Error ? networkError.message : String(networkError);
+    throw new SyndicationFetchError(`Network error: ${message}`);
+  }
 
   if (!response.ok) {
-    throw new Error(`Empathy Ledger Syndication API error: ${response.status} ${response.statusText}`);
+    // Upstream non-2xx. Soft-fail with a typed error caller can handle.
+    throw new SyndicationFetchError(`Upstream ${response.status} ${response.statusText}`);
   }
 
   return response.json();
+}
+
+class SyndicationFetchError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'SyndicationFetchError';
+  }
 }
 
 /**
@@ -495,7 +510,8 @@ export const empathyLedger = {
       console.log(`[EmpathyLedger] Syndication: ${response.storytellers.length} storytellers loaded`);
       return response.storytellers;
     } catch (error) {
-      console.error('[EmpathyLedger] Failed to fetch project storytellers:', error);
+      // Soft-fail: log but do not throw. Caller falls back to local data.
+      console.warn('[EmpathyLedger] Storytellers fetch failed, using fallback:', error instanceof Error ? error.message : error);
       return [];
     }
   },

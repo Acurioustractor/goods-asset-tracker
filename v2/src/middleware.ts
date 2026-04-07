@@ -1,5 +1,6 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
+import { FUNDER_PAGES } from '@/lib/data/funder-pages'
 
 // Routes that require user authentication (phone-based)
 const protectedUserRoutes = ['/my-items', '/community', '/production']
@@ -22,6 +23,24 @@ export async function middleware(request: NextRequest) {
       const loginUrl = new URL('/impact/login', request.url)
       loginUrl.searchParams.set('from', pathname)
       return NextResponse.redirect(loginUrl)
+    }
+  }
+
+  // Funder landing pages — per-slug password gate
+  // URLs: /funders/<slug> (gated) + /funders/<slug>/login (public) + /api/funders/<slug>/auth (public)
+  const funderMatch = pathname.match(/^\/funders\/([^/]+)(?:\/(.*))?$/)
+  if (funderMatch) {
+    const slug = funderMatch[1]
+    const subPath = funderMatch[2] || ''
+    const isLoginPage = subPath === 'login'
+    if (!isLoginPage) {
+      const funder = FUNDER_PAGES.find((f) => f.slug === slug)
+      if (funder) {
+        const authCookie = request.cookies.get(`funder_${slug}`)?.value
+        if (authCookie !== funder.password) {
+          return NextResponse.redirect(new URL(`/funders/${slug}/login`, request.url))
+        }
+      }
     }
   }
 

@@ -331,13 +331,13 @@ export interface CommunityDeployment {
 }
 
 export const deployments: CommunityDeployment[] = [
-  { id: 'palm-island', community: 'Palm Island', traditionalName: 'Bwgcolman', state: 'QLD', beds: 141, washers: 0, status: 'active', partner: 'PICC / Plate It Forward', contacts: ['Eb & Jahvan Oui'] },
+  { id: 'palm-island', community: 'Palm Island', traditionalName: 'Bwgcolman', state: 'QLD', beds: 141, washers: 4, status: 'active', partner: 'PICC', contacts: ['Eb & Jahvan Oui'] },
   { id: 'tennant-creek', community: 'Tennant Creek', traditionalName: 'Wumpurrarni', state: 'NT', beds: 139, washers: 5, status: 'active', partner: 'Wilya Janta', contacts: ['Norman Frank', 'Dr Simon Quilty'] },
   { id: 'alice-homelands', community: 'Alice Homelands', state: 'NT', beds: 60, washers: 0, status: 'active', partner: 'Oonchiumpa', contacts: ['Kristy Bloomfield'] },
   { id: 'maningrida', community: 'Maningrida', state: 'NT', beds: 24, washers: 0, status: 'active', partner: 'Homeland Schools Co.' },
-  { id: 'kalgoorlie', community: 'Kalgoorlie', traditionalName: 'Ninga Mia', state: 'WA', beds: 20, washers: 0, status: 'active' },
-  { id: 'utopia', community: 'Utopia Homelands', state: 'NT', beds: 24, washers: 0, status: 'active' },
-  { id: 'mt-isa', community: 'Mt Isa', traditionalName: 'Kalkadoon', state: 'QLD', beds: 4, washers: 0, status: 'testing' },
+  { id: 'kalgoorlie', community: 'Kalgoorlie', traditionalName: 'Ninga Mia', state: 'WA', beds: 20, washers: 0, status: 'active', partner: 'The Community Shed' },
+  { id: 'utopia', community: 'Utopia Homelands', state: 'NT', beds: 24, washers: 0, status: 'active', partner: 'Oonchiumpa' },
+  { id: 'mt-isa', community: 'Mt Isa', traditionalName: 'Kalkadoon', state: 'QLD', beds: 4, washers: 0, status: 'testing', partner: 'BG Fit & Men\'s Shed' },
 ];
 
 export function getDeploymentTotals() {

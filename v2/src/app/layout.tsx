@@ -2,9 +2,11 @@
 import type { Metadata } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
-import { SiteHeader } from '@/components/layout/site-header';
-import { SiteFooter } from '@/components/layout/site-footer';
-import { ImpactBanner } from '@/components/layout/impact-banner';
+import {
+  ConditionalSiteHeader,
+  ConditionalSiteFooter,
+  ConditionalImpactBanner,
+} from '@/components/layout/conditional-chrome';
 import { CartProvider } from '@/lib/cart';
 import { CartDrawer } from '@/components/cart';
 
@@ -75,10 +77,10 @@ export default function RootLayout({
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
         <CartProvider>
           <div className="flex min-h-screen flex-col">
-            <SiteHeader />
-            <ImpactBanner />
+            <ConditionalSiteHeader />
+            <ConditionalImpactBanner />
             <main className="flex-1">{children}</main>
-            <SiteFooter />
+            <ConditionalSiteFooter />
           </div>
           <CartDrawer />
         </CartProvider>
