@@ -57,21 +57,21 @@ export default async function FunderPage({ params }: PageProps) {
 
   return (
     <main className="min-h-screen" style={{ backgroundColor: '#FDF8F3', color: '#2E2E2E' }}>
-      <div className="max-w-4xl mx-auto px-6 py-16 md:py-24">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         {/* Header */}
-        <header className="mb-16">
+        <header className="mb-12 sm:mb-16">
           <p className="text-xs uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
             Investor Brief · April 2026 · Confidential
           </p>
           <h1
-            className="text-4xl md:text-5xl font-light mb-6 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-light mb-6 leading-tight"
             style={{ fontFamily: 'Georgia, serif' }}
           >
             Goods on Country
             <br />
             <span style={{ color: '#C45C3E' }}>× {funder.name}</span>
           </h1>
-          <p className="text-lg md:text-xl leading-relaxed mb-8" style={{ color: '#5E5E5E' }}>
+          <p className="text-base sm:text-lg md:text-xl leading-relaxed mb-8" style={{ color: '#5E5E5E' }}>
             {funder.intro}
           </p>
           <figure className="rounded-2xl overflow-hidden" style={{ border: '1px solid #E8DED4' }}>
@@ -94,7 +94,7 @@ export default async function FunderPage({ params }: PageProps) {
             {[funder.ask, ...(funder.alternativeAsks || [])].map((ask, i) => (
               <div
                 key={i}
-                className="p-8 rounded-2xl"
+                className="p-5 sm:p-6 md:p-8 rounded-2xl"
                 style={{
                   backgroundColor: '#FFFFFF',
                   border: '1px solid #E8DED4',
@@ -105,11 +105,14 @@ export default async function FunderPage({ params }: PageProps) {
                     {ask.label}
                   </p>
                 )}
-                <p className="text-3xl md:text-4xl font-light mb-3" style={{ fontFamily: 'Georgia, serif' }}>
+                <p className="text-2xl sm:text-3xl md:text-4xl font-light mb-3 leading-tight" style={{ fontFamily: 'Georgia, serif' }}>
                   {ask.amount}{' '}
-                  <span style={{ color: '#5E5E5E', fontSize: '0.6em' }}>· {ask.instrument}</span>
+                  <span className="block sm:inline text-base sm:text-inherit" style={{ color: '#5E5E5E', fontSize: 'inherit' }}>
+                    <span className="hidden sm:inline" style={{ fontSize: '0.6em' }}>· </span>
+                    <span className="sm:text-[0.6em]">{ask.instrument}</span>
+                  </span>
                 </p>
-                <p className="text-base leading-relaxed" style={{ color: '#5E5E5E' }}>
+                <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#5E5E5E' }}>
                   {ask.purpose}
                 </p>
               </div>
@@ -396,26 +399,28 @@ export default async function FunderPage({ params }: PageProps) {
             Live buyer pipeline
           </h2>
           <div className="rounded-xl overflow-hidden mb-4" style={{ border: '1px solid #E8DED4' }}>
-            <table className="w-full text-sm">
-              <thead>
-                <tr style={{ backgroundColor: '#F4ECE2' }}>
-                  <th className="text-left p-4 font-medium">Buyer</th>
-                  <th className="text-left p-4 font-medium">Volume</th>
-                  <th className="text-left p-4 font-medium">Value</th>
-                  <th className="text-left p-4 font-medium">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {BUYER_PIPELINE.map((row, i) => (
-                  <tr key={row.buyer} style={{ backgroundColor: i % 2 === 0 ? '#FFFFFF' : '#FDF8F3' }}>
-                    <td className="p-4 font-medium">{row.buyer}</td>
-                    <td className="p-4" style={{ color: '#5E5E5E' }}>{row.volume}</td>
-                    <td className="p-4" style={{ color: '#5E5E5E' }}>{row.value}</td>
-                    <td className="p-4 text-xs" style={{ color: '#8B9D77' }}>{row.status}</td>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm min-w-[560px]">
+                <thead>
+                  <tr style={{ backgroundColor: '#F4ECE2' }}>
+                    <th className="text-left p-3 md:p-4 font-medium whitespace-nowrap">Buyer</th>
+                    <th className="text-left p-3 md:p-4 font-medium">Volume</th>
+                    <th className="text-left p-3 md:p-4 font-medium whitespace-nowrap">Value</th>
+                    <th className="text-left p-3 md:p-4 font-medium">Status</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {BUYER_PIPELINE.map((row, i) => (
+                    <tr key={row.buyer} style={{ backgroundColor: i % 2 === 0 ? '#FFFFFF' : '#FDF8F3' }}>
+                      <td className="p-3 md:p-4 font-medium">{row.buyer}</td>
+                      <td className="p-3 md:p-4" style={{ color: '#5E5E5E' }}>{row.volume}</td>
+                      <td className="p-3 md:p-4 whitespace-nowrap" style={{ color: '#5E5E5E' }}>{row.value}</td>
+                      <td className="p-3 md:p-4 text-xs" style={{ color: '#8B9D77' }}>{row.status}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
           <Link href="/gallery" className="text-sm font-medium underline" style={{ color: '#C45C3E' }}>
             See community deployments in the gallery →
@@ -471,31 +476,33 @@ export default async function FunderPage({ params }: PageProps) {
             The blended capital stack
           </h2>
           <div className="rounded-xl overflow-hidden" style={{ border: '1px solid #E8DED4' }}>
-            <table className="w-full text-sm">
-              <thead>
-                <tr style={{ backgroundColor: '#F4ECE2' }}>
-                  <th className="text-left p-4 font-medium">Layer</th>
-                  <th className="text-left p-4 font-medium">Source</th>
-                  <th className="text-left p-4 font-medium">Amount</th>
-                  <th className="text-left p-4 font-medium">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {CAPITAL_STACK.map((row, i) => (
-                  <tr
-                    key={row.layer}
-                    style={{
-                      backgroundColor: row.highlight ? '#FFF1E8' : i % 2 === 0 ? '#FFFFFF' : '#FDF8F3',
-                    }}
-                  >
-                    <td className="p-4 font-medium">{row.layer}</td>
-                    <td className="p-4" style={{ color: '#5E5E5E' }}>{row.source}</td>
-                    <td className="p-4 font-medium">{row.amount}</td>
-                    <td className="p-4 text-xs" style={{ color: '#8B9D77' }}>{row.status}</td>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm min-w-[640px]">
+                <thead>
+                  <tr style={{ backgroundColor: '#F4ECE2' }}>
+                    <th className="text-left p-3 md:p-4 font-medium whitespace-nowrap">Layer</th>
+                    <th className="text-left p-3 md:p-4 font-medium">Source</th>
+                    <th className="text-left p-3 md:p-4 font-medium whitespace-nowrap">Amount</th>
+                    <th className="text-left p-3 md:p-4 font-medium">Status</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {CAPITAL_STACK.map((row, i) => (
+                    <tr
+                      key={row.layer}
+                      style={{
+                        backgroundColor: row.highlight ? '#FFF1E8' : i % 2 === 0 ? '#FFFFFF' : '#FDF8F3',
+                      }}
+                    >
+                      <td className="p-3 md:p-4 font-medium">{row.layer}</td>
+                      <td className="p-3 md:p-4" style={{ color: '#5E5E5E' }}>{row.source}</td>
+                      <td className="p-3 md:p-4 font-medium whitespace-nowrap">{row.amount}</td>
+                      <td className="p-3 md:p-4 text-xs" style={{ color: '#8B9D77' }}>{row.status}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
 

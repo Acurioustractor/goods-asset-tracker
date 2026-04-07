@@ -130,9 +130,9 @@ export default async function FunderCommunitiesPage({ params }: PageProps) {
 
   return (
     <main className="min-h-screen" style={{ backgroundColor: '#FDF8F3', color: '#2E2E2E' }}>
-      <div className="max-w-5xl mx-auto px-6 py-16 md:py-24">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         {/* Header */}
-        <header className="mb-12">
+        <header className="mb-10 sm:mb-12">
           <Link
             href={`/funders/${slug}`}
             className="text-xs uppercase tracking-widest underline mb-6 inline-block"
@@ -192,37 +192,39 @@ export default async function FunderCommunitiesPage({ params }: PageProps) {
             Active community deployments
           </h2>
           <div className="rounded-xl overflow-hidden" style={{ border: '1px solid #E8DED4' }}>
-            <table className="w-full text-sm">
-              <thead>
-                <tr style={{ backgroundColor: '#F4ECE2' }}>
-                  <th className="text-left p-4 font-medium">Community</th>
-                  <th className="text-left p-4 font-medium">State</th>
-                  <th className="text-left p-4 font-medium">Beds</th>
-                  <th className="text-left p-4 font-medium">Washers</th>
-                  <th className="text-left p-4 font-medium">Partner</th>
-                  <th className="text-left p-4 font-medium">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {deployments.map((d, i) => (
-                  <tr key={d.id} style={{ backgroundColor: i % 2 === 0 ? '#FFFFFF' : '#FDF8F3' }}>
-                    <td className="p-4 font-medium">
-                      {d.community}
-                      {d.traditionalName && (
-                        <span className="block text-xs italic" style={{ color: '#8B9D77' }}>
-                          {d.traditionalName}
-                        </span>
-                      )}
-                    </td>
-                    <td className="p-4" style={{ color: '#5E5E5E' }}>{d.state}</td>
-                    <td className="p-4 font-medium">{d.beds}</td>
-                    <td className="p-4" style={{ color: '#5E5E5E' }}>{d.washers}</td>
-                    <td className="p-4 text-xs" style={{ color: '#5E5E5E' }}>{d.partner || '·'}</td>
-                    <td className="p-4 text-xs" style={{ color: '#8B9D77' }}>{d.status}</td>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm min-w-[720px]">
+                <thead>
+                  <tr style={{ backgroundColor: '#F4ECE2' }}>
+                    <th className="text-left p-3 md:p-4 font-medium">Community</th>
+                    <th className="text-left p-3 md:p-4 font-medium">State</th>
+                    <th className="text-left p-3 md:p-4 font-medium">Beds</th>
+                    <th className="text-left p-3 md:p-4 font-medium">Washers</th>
+                    <th className="text-left p-3 md:p-4 font-medium">Partner</th>
+                    <th className="text-left p-3 md:p-4 font-medium">Status</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {deployments.map((d, i) => (
+                    <tr key={d.id} style={{ backgroundColor: i % 2 === 0 ? '#FFFFFF' : '#FDF8F3' }}>
+                      <td className="p-3 md:p-4 font-medium">
+                        {d.community}
+                        {d.traditionalName && (
+                          <span className="block text-xs italic" style={{ color: '#8B9D77' }}>
+                            {d.traditionalName}
+                          </span>
+                        )}
+                      </td>
+                      <td className="p-3 md:p-4" style={{ color: '#5E5E5E' }}>{d.state}</td>
+                      <td className="p-3 md:p-4 font-medium">{d.beds}</td>
+                      <td className="p-3 md:p-4" style={{ color: '#5E5E5E' }}>{d.washers}</td>
+                      <td className="p-3 md:p-4 text-xs" style={{ color: '#5E5E5E' }}>{d.partner || '·'}</td>
+                      <td className="p-3 md:p-4 text-xs" style={{ color: '#8B9D77' }}>{d.status}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
 
@@ -240,30 +242,32 @@ export default async function FunderCommunitiesPage({ params }: PageProps) {
             need rationale. Combined population reach across this list: {totalReachPopulation.toLocaleString()} people.
           </p>
           <div className="rounded-xl overflow-hidden" style={{ border: '1px solid #E8DED4' }}>
-            <table className="w-full text-sm">
-              <thead>
-                <tr style={{ backgroundColor: '#F4ECE2' }}>
-                  <th className="text-left p-3 font-medium">#</th>
-                  <th className="text-left p-3 font-medium">Community</th>
-                  <th className="text-left p-3 font-medium">State</th>
-                  <th className="text-left p-3 font-medium">Population</th>
-                  <th className="text-left p-3 font-medium">Need rationale</th>
-                  <th className="text-left p-3 font-medium">Procurement contact</th>
-                </tr>
-              </thead>
-              <tbody>
-                {expansionTargets.map((t, i) => (
-                  <tr key={t.community} style={{ backgroundColor: i % 2 === 0 ? '#FFFFFF' : '#FDF8F3' }}>
-                    <td className="p-3 text-xs font-medium" style={{ color: '#C45C3E' }}>{t.priority}</td>
-                    <td className="p-3 font-medium">{t.community}</td>
-                    <td className="p-3" style={{ color: '#5E5E5E' }}>{t.state}</td>
-                    <td className="p-3 font-medium">{t.pop.toLocaleString()}</td>
-                    <td className="p-3 text-xs leading-relaxed" style={{ color: '#5E5E5E' }}>{t.reason}</td>
-                    <td className="p-3 text-xs" style={{ color: '#5E5E5E' }}>{t.housingBody}</td>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm min-w-[820px]">
+                <thead>
+                  <tr style={{ backgroundColor: '#F4ECE2' }}>
+                    <th className="text-left p-3 font-medium">#</th>
+                    <th className="text-left p-3 font-medium">Community</th>
+                    <th className="text-left p-3 font-medium">State</th>
+                    <th className="text-left p-3 font-medium">Population</th>
+                    <th className="text-left p-3 font-medium">Need rationale</th>
+                    <th className="text-left p-3 font-medium">Procurement contact</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {expansionTargets.map((t, i) => (
+                    <tr key={t.community} style={{ backgroundColor: i % 2 === 0 ? '#FFFFFF' : '#FDF8F3' }}>
+                      <td className="p-3 text-xs font-medium" style={{ color: '#C45C3E' }}>{t.priority}</td>
+                      <td className="p-3 font-medium">{t.community}</td>
+                      <td className="p-3" style={{ color: '#5E5E5E' }}>{t.state}</td>
+                      <td className="p-3 font-medium">{t.pop.toLocaleString()}</td>
+                      <td className="p-3 text-xs leading-relaxed" style={{ color: '#5E5E5E' }}>{t.reason}</td>
+                      <td className="p-3 text-xs" style={{ color: '#5E5E5E' }}>{t.housingBody}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
 
@@ -282,45 +286,47 @@ export default async function FunderCommunitiesPage({ params }: PageProps) {
               identified. {grantscopeCommunities.length} communities currently in the feed.
             </p>
             <div className="rounded-xl overflow-hidden" style={{ border: '1px solid #E8DED4' }}>
-              <table className="w-full text-sm">
-                <thead>
-                  <tr style={{ backgroundColor: '#F4ECE2' }}>
-                    <th className="text-left p-3 font-medium">Community</th>
-                    <th className="text-left p-3 font-medium">State</th>
-                    <th className="text-left p-3 font-medium">Beds delivered</th>
-                    <th className="text-left p-3 font-medium">Bed demand</th>
-                    <th className="text-left p-3 font-medium">Washer demand</th>
-                    <th className="text-left p-3 font-medium">Partners</th>
-                    <th className="text-left p-3 font-medium">Known buyer</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {grantscopeCommunities.map((g, i) => (
-                    <tr key={g.id} style={{ backgroundColor: i % 2 === 0 ? '#FFFFFF' : '#FDF8F3' }}>
-                      <td className="p-3 font-medium">
-                        {g.community}
-                        {g.regionLabel && (
-                          <span className="block text-xs italic" style={{ color: '#8B9D77' }}>
-                            {g.regionLabel}
-                          </span>
-                        )}
-                      </td>
-                      <td className="p-3" style={{ color: '#5E5E5E' }}>{g.state}</td>
-                      <td className="p-3" style={{ color: '#5E5E5E' }}>{g.bedsDelivered}</td>
-                      <td className="p-3 font-medium">{g.demandBeds}</td>
-                      <td className="p-3" style={{ color: '#5E5E5E' }}>{g.demandWashers}</td>
-                      <td className="p-3 text-xs" style={{ color: '#5E5E5E' }}>
-                        {g.keyPartnerNames && g.keyPartnerNames.length > 0
-                          ? g.keyPartnerNames.join(', ')
-                          : '·'}
-                      </td>
-                      <td className="p-3 text-xs" style={{ color: '#8B9D77' }}>
-                        {g.knownBuyer || '·'}
-                      </td>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm min-w-[860px]">
+                  <thead>
+                    <tr style={{ backgroundColor: '#F4ECE2' }}>
+                      <th className="text-left p-3 font-medium">Community</th>
+                      <th className="text-left p-3 font-medium">State</th>
+                      <th className="text-left p-3 font-medium">Beds delivered</th>
+                      <th className="text-left p-3 font-medium">Bed demand</th>
+                      <th className="text-left p-3 font-medium">Washer demand</th>
+                      <th className="text-left p-3 font-medium">Partners</th>
+                      <th className="text-left p-3 font-medium">Known buyer</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {grantscopeCommunities.map((g, i) => (
+                      <tr key={g.id} style={{ backgroundColor: i % 2 === 0 ? '#FFFFFF' : '#FDF8F3' }}>
+                        <td className="p-3 font-medium">
+                          {g.community}
+                          {g.regionLabel && (
+                            <span className="block text-xs italic" style={{ color: '#8B9D77' }}>
+                              {g.regionLabel}
+                            </span>
+                          )}
+                        </td>
+                        <td className="p-3" style={{ color: '#5E5E5E' }}>{g.state}</td>
+                        <td className="p-3" style={{ color: '#5E5E5E' }}>{g.bedsDelivered}</td>
+                        <td className="p-3 font-medium">{g.demandBeds}</td>
+                        <td className="p-3" style={{ color: '#5E5E5E' }}>{g.demandWashers}</td>
+                        <td className="p-3 text-xs" style={{ color: '#5E5E5E' }}>
+                          {g.keyPartnerNames && g.keyPartnerNames.length > 0
+                            ? g.keyPartnerNames.join(', ')
+                            : '·'}
+                        </td>
+                        <td className="p-3 text-xs" style={{ color: '#8B9D77' }}>
+                          {g.knownBuyer || '·'}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </section>
         )}
@@ -334,28 +340,30 @@ export default async function FunderCommunitiesPage({ params }: PageProps) {
             Documented community demand
           </h2>
           <div className="rounded-xl overflow-hidden" style={{ border: '1px solid #E8DED4' }}>
-            <table className="w-full text-sm">
-              <thead>
-                <tr style={{ backgroundColor: '#F4ECE2' }}>
-                  <th className="text-left p-4 font-medium">Requester</th>
-                  <th className="text-left p-4 font-medium">Request</th>
-                  <th className="text-left p-4 font-medium">Estimated value</th>
-                  <th className="text-left p-4 font-medium">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {documentedDemand.map((d, i) => (
-                  <tr key={d.id} style={{ backgroundColor: i % 2 === 0 ? '#FFFFFF' : '#FDF8F3' }}>
-                    <td className="p-4 font-medium">{d.requester}</td>
-                    <td className="p-4" style={{ color: '#5E5E5E' }}>{d.request}</td>
-                    <td className="p-4 font-medium">
-                      {d.estimatedValue > 0 ? `$${d.estimatedValue.toLocaleString()}` : 'TBD'}
-                    </td>
-                    <td className="p-4 text-xs" style={{ color: '#8B9D77' }}>{d.status}</td>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm min-w-[640px]">
+                <thead>
+                  <tr style={{ backgroundColor: '#F4ECE2' }}>
+                    <th className="text-left p-3 md:p-4 font-medium">Requester</th>
+                    <th className="text-left p-3 md:p-4 font-medium">Request</th>
+                    <th className="text-left p-3 md:p-4 font-medium whitespace-nowrap">Estimated value</th>
+                    <th className="text-left p-3 md:p-4 font-medium">Status</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {documentedDemand.map((d, i) => (
+                    <tr key={d.id} style={{ backgroundColor: i % 2 === 0 ? '#FFFFFF' : '#FDF8F3' }}>
+                      <td className="p-3 md:p-4 font-medium">{d.requester}</td>
+                      <td className="p-3 md:p-4" style={{ color: '#5E5E5E' }}>{d.request}</td>
+                      <td className="p-3 md:p-4 font-medium whitespace-nowrap">
+                        {d.estimatedValue > 0 ? `$${d.estimatedValue.toLocaleString()}` : 'TBD'}
+                      </td>
+                      <td className="p-3 md:p-4 text-xs" style={{ color: '#8B9D77' }}>{d.status}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
 
