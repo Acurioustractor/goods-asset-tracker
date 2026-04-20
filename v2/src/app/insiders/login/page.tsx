@@ -28,8 +28,7 @@ function LoginForm() {
         setLoading(false)
         return
       }
-      router.replace(from)
-      router.refresh()
+      window.location.href = from
     } catch {
       setError('Something went wrong. Try again.')
       setLoading(false)
