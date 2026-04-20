@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "wiki:sync": "rm -rf .wiki-content && mkdir -p .wiki-content && cp -R ../wiki/articles/. .wiki-content/",
+    "wiki:sync": "if [ -d ../wiki/articles ]; then rm -rf .wiki-content && mkdir -p .wiki-content && cp -R ../wiki/articles/. .wiki-content/; else echo 'wiki:sync skipped (../wiki/articles absent; using tracked .wiki-content/)'; fi",
     "prebuild": "npm run wiki:sync"
   },
   "dependencies": {
