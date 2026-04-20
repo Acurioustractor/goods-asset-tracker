@@ -46,5 +46,5 @@ public/video/*.mp4
 public/video/*.mov
 .env*.local
 
-# wiki sync (populated by prebuild)
-/.wiki-content/
+# wiki sync: committed tracked copy (Vercel root is v2/, can't see sibling wiki/).
+# Kept in sync with wiki/articles/ by `npm run wiki:sync` (runs automatically on prebuild).
