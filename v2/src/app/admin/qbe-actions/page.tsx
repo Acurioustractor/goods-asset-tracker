@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
+const KV_KEY = 'qbe-actions-checked-v1';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -44,17 +46,20 @@ const WEEKS: Week[] = [
   {
     number: 1, dates: 'Mar 31 - Apr 4', title: 'FOUNDATIONS', focus: 'Easter week. Jay on leave. Set up everything.',
     actions: [
+      { text: 'OVERDUE: Complete Induction Evaluation Survey (https://survey.zohopublic.com/zs/dwt4Xl) — was due COB Fri 3 Apr', done: false, critical: true },
       { text: 'Chase INV-0289 ($10,800 outstanding QBE participation grant)', done: false, critical: true },
       { text: 'Register for all 4 webinars at socialimpacthub.org (code: CATALYSINGIMPACT)', done: false, critical: true },
-      { text: 'Request "Impact Investment Readiness" diagnostic from Jay/Adam', done: false, critical: true },
+      { text: 'Download Funder Letter from Zoho WorkDrive — use when approaching SEFA/Mindaroo/IBA', done: false, critical: true },
+      { text: 'Wait for Sarah Gregory intro to PIN diagnostic lead', done: false, contact: 'Sarah Gregory (SIH Head of People)' },
       { text: 'Review Finance Engine (/admin/finance-model) — run all 4 scenarios', done: false },
       { text: 'Review LOI Tracker (/admin/loi-tracker) — confirm buyer details current', done: false },
     ],
   },
   {
     number: 2, dates: 'Apr 7 - Apr 11', title: 'LOIs START', focus: 'Get buyer commitments on paper. Every LOI = more Stage 2 dollars.',
-    events: ['Webinar: Finding Money (Apr 7, 12:30pm)'],
+    events: ['Webinar: Finding Money (Apr 7, 12:30pm)', 'Mentoring Survey due COB Fri 10 Apr'],
     actions: [
+      { text: 'DUE 10 APR: Complete Mentoring Preferences Survey (https://survey.zohopublic.com/zs/2htaT2)', done: false, critical: true },
       { text: 'Attend webinar: Finding Money (Apr 7)', done: false },
       { text: 'Email Centre Corp (Randle Walker) — request formal LOI for 107 beds ($59,920)', done: false, critical: true, contact: 'Randle Walker' },
       { text: 'Email Miwatj Health (Jessica Allardyce) — request written expression of interest for 8-clinic fleet', done: false, critical: true, contact: 'Jessica Allardyce' },
@@ -65,7 +70,7 @@ const WEEKS: Week[] = [
   {
     number: 3, dates: 'Apr 14 - Apr 18', title: 'SEFA CONVERSATION', focus: 'THE highest-leverage action in the whole program. Hannah has $9M to deploy.',
     actions: [
-      { text: 'Email SEFA (Hannah/Joel Bird) — introduce Goods, reference QBE program, request initial conversation', done: false, critical: true, contact: 'Hannah (SEFA CEO)' },
+      { text: 'Email Hanna Ebeling direct (hanna.ebeling@sefa.com.au / 0475 084 855) — reference QBE cohort, propose Procurement Readiness Impact Loan for confirmed procurement pipeline (Centre Corp 107 beds, Miwatj 8 clinics, NPY 200-350, WHSAC 500)', done: false, critical: true, contact: 'Hanna Ebeling (Sefa CEO)' },
       { text: 'Prepare SEFA package: exec summary, Finance Engine P&L, Impact Dashboard numbers, LOIs to date', done: false, critical: true },
       { text: 'Follow up Groote/WHSAC (Simone Grimmond) — 500 mattresses + 300 washers procurement pathway', done: false, contact: 'Simone Grimmond' },
       { text: 'Follow up Homeland Schools $34,086 invoice (9 days overdue)', done: false },
@@ -148,8 +153,10 @@ const WEEKS: Week[] = [
 
 const KEY_CONTACTS = [
   { name: 'Jay', org: 'QBE Foundation', role: 'Program coordinator', action: 'On leave Easter week. Adam is backup.' },
-  { name: 'Hannah', org: 'SEFA (CEO)', role: 'Impact lender', action: 'START CONVERSATION WEEK 3. $9M ready.' },
-  { name: 'Joel Bird', org: 'SEFA', role: 'Investment team', action: '23 comms logged. Package blended ask.' },
+  { name: 'Hanna Ebeling', org: 'Sefa (CEO)', role: 'hanna.ebeling@sefa.com.au · 0475 084 855', action: 'START WEEK 3. Procurement Readiness Impact Loan fit.' },
+  { name: 'Renee Martin', org: 'Sefa', role: 'Head of Impact & Advisory · renee.martin@sefa.com.au · 0409 926 646', action: 'Alt contact if Hanna unavailable.' },
+  { name: 'Jennifer Turner', org: 'Sefa', role: 'Head of Impact Investment · jennifer.turner@sefa.com.au · 0408 480 313', action: 'Investment process lead.' },
+  { name: 'Joel Bird', org: 'Sefa', role: 'Investment team', action: '23 comms logged. Package blended ask.' },
   { name: 'Sally Grimsley-Ballard', org: 'Snow Foundation', role: 'Anchor funder', action: 'Blended capital: grant + guarantee.' },
   { name: 'Rebecca Parkinson', org: 'Freshly Impact Network', role: 'Diagnostic advisor', action: 'Impact Investment Readiness diagnostic.' },
   { name: 'Randle Walker', org: 'Centre Corp', role: '107 beds approved', action: 'GET LOI ON LETTERHEAD (Week 2)' },
@@ -161,8 +168,65 @@ const KEY_CONTACTS = [
 
 // ─── Page ───────────────────────────────────────────────────────────────────
 
+type SaveStatus = 'idle' | 'loading' | 'saving' | 'saved' | 'error';
+
 export default function QBEActionsPage() {
   const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
+  const [hydrated, setHydrated] = useState(false);
+  const [status, setStatus] = useState<SaveStatus>('loading');
+  const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Load shared state from Supabase via API on mount
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(`/api/admin/kv-state?key=${encodeURIComponent(KV_KEY)}`, {
+          cache: 'no-store',
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        if (cancelled) return;
+        const arr = Array.isArray(data?.value?.checked) ? (data.value.checked as string[]) : [];
+        setCheckedItems(new Set(arr));
+        setStatus('idle');
+      } catch {
+        if (!cancelled) setStatus('error');
+      } finally {
+        if (!cancelled) setHydrated(true);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Debounced save to Supabase whenever checkedItems changes (after hydration)
+  useEffect(() => {
+    if (!hydrated) return;
+    if (saveTimer.current) clearTimeout(saveTimer.current);
+    setStatus('saving');
+    saveTimer.current = setTimeout(async () => {
+      try {
+        const res = await fetch('/api/admin/kv-state', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            key: KV_KEY,
+            value: { checked: Array.from(checkedItems), updated_at: new Date().toISOString() },
+          }),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        setStatus('saved');
+        setTimeout(() => setStatus('idle'), 1500);
+      } catch {
+        setStatus('error');
+      }
+    }, 400);
+    return () => {
+      if (saveTimer.current) clearTimeout(saveTimer.current);
+    };
+  }, [checkedItems, hydrated]);
 
   const toggleItem = (key: string) => {
     setCheckedItems(prev => {
@@ -171,6 +235,12 @@ export default function QBEActionsPage() {
       else next.add(key);
       return next;
     });
+  };
+
+  const resetAll = () => {
+    if (confirm('Clear all checked actions for everyone? This syncs across all browsers.')) {
+      setCheckedItems(new Set());
+    }
   };
 
   const totalActions = WEEKS.reduce((s, w) => s + w.actions.length, 0);
@@ -373,9 +443,38 @@ export default function QBEActionsPage() {
         </CardContent>
       </Card>
 
-      <div className="text-xs text-slate-400 border-t border-slate-200 pt-4">
-        Also available as markdown: <code>thoughts/shared/qbe-program/weekly-action-plan.md</code> (paste into Notion).
-        Checkboxes are session-only — for persistent tracking, use Notion or the admin task system.
+      <div className="flex items-center justify-between border-t border-slate-200 pt-4 gap-4">
+        <div className="text-xs text-slate-400">
+          Also available as markdown: <code>thoughts/shared/qbe-program/weekly-action-plan.md</code> (paste into Notion).
+          Checked actions sync across all browsers and devices via Supabase.
+        </div>
+        <div className="flex items-center gap-3 shrink-0">
+          <span
+            className={`text-xs ${
+              status === 'error'
+                ? 'text-red-600'
+                : status === 'saved'
+                ? 'text-emerald-600'
+                : status === 'saving'
+                ? 'text-blue-500'
+                : status === 'loading'
+                ? 'text-slate-400'
+                : 'text-slate-400'
+            }`}
+          >
+            {status === 'loading' && 'Loading…'}
+            {status === 'saving' && 'Saving…'}
+            {status === 'saved' && '✓ Saved'}
+            {status === 'error' && '⚠ Save failed'}
+            {status === 'idle' && 'Synced'}
+          </span>
+          <button
+            onClick={resetAll}
+            className="text-xs text-slate-500 hover:text-red-600 underline underline-offset-2"
+          >
+            Reset all
+          </button>
+        </div>
       </div>
     </div>
   );

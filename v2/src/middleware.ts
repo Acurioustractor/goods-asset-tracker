@@ -9,6 +9,9 @@ const protectedUserRoutes = ['/my-items', '/community', '/production']
 const passwordProtectedRoutes = ['/impact', '/api/impact']
 const PASSWORD_COOKIE = 'impact_auth'
 
+// Insiders wiki password gate (shared password, cookie-based)
+const INSIDERS_COOKIE = 'insiders_auth'
+
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
@@ -21,6 +24,21 @@ export async function middleware(request: NextRequest) {
     const expectedPassword = process.env.IMPACT_PASSWORD || 'goods2026'
     if (authCookie !== expectedPassword) {
       const loginUrl = new URL('/impact/login', request.url)
+      loginUrl.searchParams.set('from', pathname)
+      return NextResponse.redirect(loginUrl)
+    }
+  }
+
+  // Insiders wiki — global password gate
+  if (
+    (pathname === '/insiders' || pathname.startsWith('/insiders/')) &&
+    pathname !== '/insiders/login' &&
+    pathname !== '/api/insiders/auth'
+  ) {
+    const authCookie = request.cookies.get(INSIDERS_COOKIE)?.value
+    const expectedPassword = process.env.INSIDERS_PASSWORD || 'goods2026'
+    if (authCookie !== expectedPassword) {
+      const loginUrl = new URL('/insiders/login', request.url)
       loginUrl.searchParams.set('from', pathname)
       return NextResponse.redirect(loginUrl)
     }

@@ -37,6 +37,7 @@ import {
   Star,
   Zap,
   MessageSquare,
+  FileText,
 } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
@@ -107,11 +108,11 @@ const INVESTOR_MATCHES: InvestorMatch[] = [
   {
     name: 'SEFA (Social Enterprise Finance Australia)',
     type: 'Impact Lender',
-    capitalType: 'Variable/Standard Debt',
-    amountRange: '$200K-$500K',
+    capitalType: 'Procurement Readiness Loan + Growth Impact Loan',
+    amountRange: '$200K-$1M+',
     status: 'warm',
-    qbeAlignment: 'Hannah (CEO) presented at QBE session. $9M undeployed. Personalized approach, values impact governance.',
-    nextStep: 'Package Snow-backed blended capital ask. Reference QBE program participation.',
+    qbeAlignment: 'Hanna Ebeling (CEO) presented at QBE session. $160M unlocked since 2011, 170+ orgs backed, 75+ deals. Acted as syndicate agent for Jigsaw $3M raise (Snow Foundation in that deal). Procurement Readiness Impact Loan is an exact fit: "Secure finance to fulfil a confirmed procurement contract with government or another party" — this maps directly to our Centre Corp 107 beds, Miwatj 8 clinics, NPY 200-350 beds, and WHSAC 500 mattress pipeline.',
+    nextStep: 'Email Hanna Ebeling DIRECTLY at hanna.ebeling@sefa.com.au (0475 084 855). Reference QBE cohort participation, propose Procurement Readiness Impact Loan to bridge confirmed procurement pipeline. Alt contacts: Renee Martin (Head of Impact & Advisory, renee.martin@sefa.com.au, 0409 926 646), Jennifer Turner (Head of Impact Investment, jennifer.turner@sefa.com.au, 0408 480 313). Prep debt-readiness docs in parallel: historical + forecast financials, constitution, org chart, business plan, theory of change, impact measurement evidence.',
     priority: 'critical',
   },
   {
@@ -198,7 +199,10 @@ const INVESTOR_MATCHES: InvestorMatch[] = [
 
 const TIMELINE: TimelineEvent[] = [
   { date: '2026-03-31', title: 'QBE Session 1: Blended Finance & Investor Panel', description: 'Types of capital, blended finance, SEFA/QBE Ventures/Beck panel, peer sharing', type: 'session', completed: true },
+  { date: '2026-04-03', title: 'DEADLINE: Induction Evaluation Survey', description: 'Short survey + baseline data for impact measurement. Link in Induction tab.', type: 'deadline' },
   { date: '2026-04-07', title: 'Webinar: Finding Money', description: 'Revenue strategy for purpose organisations. 12:30-1:30pm AEST', type: 'webinar' },
+  { date: '2026-04-10', title: 'DEADLINE: Mentoring Survey', description: 'Complete preferences survey so Social Impact Hub can match a mentor.', type: 'deadline' },
+  { date: '2026-04-13', title: 'Jay Boolkin returns from leave', description: 'Adam Long (adam@socialimpacthub.org / 0421 498 170) is backup until then.', type: 'milestone' },
   { date: '2026-04-24', title: 'Impact Investing 101', description: 'Types of investors, types of capital. 12-1pm AEST', type: 'webinar' },
   { date: '2026-05-01', title: 'How Legal Structures Shape Impact Investing', description: 'Keith Rovers (Mint Ellison). Hybrid entities, legal toolkit preview. 12-1pm AEST', type: 'webinar' },
   { date: '2026-05-08', title: 'Deal Anatomy: Inside an Impact Investment Transaction', description: 'Real deal walkthrough with investor + enterprise. 12-1pm AEST', type: 'webinar' },
@@ -288,7 +292,60 @@ const PRIORITY_COLORS: Record<string, string> = {
   medium: 'bg-slate-100 text-slate-600',
 };
 
-type Tab = 'overview' | 'strategy' | 'financial-model' | 'capital-types' | 'investor-pipeline' | 'match-tracker' | 'session-notes';
+type Tab = 'overview' | 'induction' | 'strategy' | 'financial-model' | 'capital-types' | 'investor-pipeline' | 'match-tracker' | 'session-notes';
+
+// ─── Induction Data (from April 2 email from Jay Boolkin) ──────────────────
+
+const INDUCTION_MATERIALS = [
+  { title: 'Induction Slides (PDF, 62 pages)', url: '/qbe/induction-slides.pdf', note: 'Full deck from 31 March 2026 induction. Includes capital types, blended finance theory, Jigsaw/Dismantle/Victoria Theatre case studies, Sefa product suite and contacts.' },
+  { title: 'Investor Alignment Tool (xlsx)', url: '/qbe/investor-alignment-tool.xlsx', note: 'CASE Smart Impact Capital worksheet — knockout criteria + fit criteria template for scoring potential investors.' },
+  { title: 'Funder Letter — A Curious Tractor (PDF)', url: '/qbe/funder-letter.pdf', note: 'Our personalised Catalysing Impact participation letter from QBE/SIH. Use this when approaching Sefa, Snow, Mindaroo, IBA etc. as proof of program participation and catalytic positioning.' },
+  { title: 'Funder Letter — Zoho WorkDrive (backup)', url: 'https://workdrive.zohoexternal.com/external/6e4c54f60ccd083fab3b05b6287bfeee5444ffc7f6acdf5a43ecef11b7af29a9', note: 'Original shared link from Jay in case the local copy is out of date.' },
+  { title: 'Cohort Group Photo', url: '/qbe/cohort-photo.jpeg', note: 'From the 31 March in-person induction at QBE Sydney.' },
+  { title: 'Induction Evaluation Survey', url: 'https://survey.zohopublic.com/zs/dwt4Xl', note: 'DUE COB Fri 3 Apr — includes baseline impact data questions.' },
+  { title: 'Mentoring Preferences Survey', url: 'https://survey.zohopublic.com/zs/2htaT2', note: 'DUE COB Fri 10 Apr — informs mentor matching.' },
+];
+
+const COHORT_ATTENDEES: { name: string; org: string; us?: boolean }[] = [
+  { name: 'Benjamin Knight', org: 'A Curious Tractor', us: true },
+  { name: 'Geoff McGinley', org: 'Adapt Homes' },
+  { name: 'Rebecca Stoeckel', org: 'Adapt Homes' },
+  { name: 'Sefano Katz', org: 'Envirotech Education' },
+  { name: 'Shelly Bengiat', org: 'Envirotech Education' },
+  { name: 'Kirra Johnson', org: 'Good Cycles' },
+  { name: 'Lynn Crawford', org: 'Good Cycles' },
+  { name: "Carlena D'Arma", org: 'Hepburn Energy' },
+  { name: 'Moragh Mackay', org: 'Mycelia Renewables' },
+  { name: 'Latrell Norman', org: 'Ngardara Project' },
+  { name: 'Luke Mahoney', org: 'Ngardara Project' },
+  { name: 'Scott McDinny', org: 'Ngardara Project' },
+  { name: 'Madie Sturgess', org: 'Original Power' },
+  { name: 'Lucy Henry', org: 'Plate It Forward' },
+  { name: 'Vivek Reddy', org: 'Plate It Forward' },
+  { name: 'Guido Verbist', org: 'Revolve Recycling' },
+  { name: 'Daniel Hillyer', org: 'RoboFit' },
+  { name: 'Maryanne Harris', org: 'RoboFit' },
+];
+
+const COHORT_HOSTS: { name: string; org: string; role: string }[] = [
+  { name: 'James Aiken', org: 'QBE Foundation', role: 'Funder' },
+  { name: 'Lauren Hicks', org: 'QBE Foundation', role: 'Funder' },
+  { name: 'Sarah Bassam', org: 'QBE Foundation', role: 'Funder' },
+  { name: 'Alex Taylor', org: 'QBE Ventures', role: 'Corporate VC' },
+  { name: 'Hanna Ebeling', org: 'Sefa', role: 'Impact Debt' },
+  { name: 'Rebecca Parkinson', org: 'Professional Impact Network', role: 'Advisor' },
+  { name: 'Adam Long', org: 'Social Impact Hub', role: 'Facilitator (Jay backup)' },
+  { name: 'Jay Boolkin', org: 'Social Impact Hub', role: 'Program Lead (on leave until 13 Apr)' },
+  { name: 'Jessica Mendoza-Roth', org: 'Social Impact Hub', role: 'Facilitator' },
+  { name: 'Sarah Gregory', org: 'Social Impact Hub', role: 'Head of People (diagnostic intros)' },
+];
+
+const INDUCTION_NEXT_STEPS = [
+  { label: 'Evaluation Survey', due: 'COB Fri 3 Apr', status: 'overdue' as const, detail: 'Short eval + baseline data for program impact measurement.' },
+  { label: 'Mentoring Survey', due: 'COB Fri 10 Apr', status: 'due-soon' as const, detail: 'Informs mentor matching. Tomorrow.' },
+  { label: 'Diagnostic Session', due: 'TBA', status: 'waiting' as const, detail: 'Sarah Gregory will introduce the PIN member running our diagnostic.' },
+  { label: 'Mentor Matching', due: 'After 10 Apr', status: 'waiting' as const, detail: 'Social Impact Hub matches a mentor based on survey responses.' },
+];
 
 // ─── Components ─────────────────────────────────────────────────────────────
 
@@ -332,6 +389,7 @@ export default function QBEProgramPage() {
 
   const tabs: { id: Tab; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
     { id: 'overview', label: 'Overview', icon: GraduationCap },
+    { id: 'induction', label: 'Induction', icon: Users },
     { id: 'strategy', label: '7 Layers', icon: Zap },
     { id: 'financial-model', label: 'Financial Model', icon: TrendingUp },
     { id: 'capital-types', label: 'Capital Types', icon: Layers },
@@ -515,6 +573,176 @@ export default function QBEProgramPage() {
                   This makes SEFA and IBA more comfortable lending because there&apos;s a philanthropic cushion above them.
                   Snow&apos;s guarantee provides additional protection. This is the Jigsaw model applied to Goods.
                 </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {activeTab === 'induction' && (
+        <div className="space-y-6">
+          <Card className="border-blue-200 bg-blue-50">
+            <CardContent className="p-4">
+              <p className="text-sm text-blue-900">
+                <strong>Session 1 Induction — QBE Offices, Sydney, 31 March 2026.</strong>{' '}
+                Materials, cohort list, and follow-up deadlines from Jay Boolkin&apos;s 2 April recap email.
+                Jay on leave until 13 April — Adam Long (adam@socialimpacthub.org / 0421 498 170) is backup.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Clock className="h-5 w-5 text-orange-600" />
+                Outstanding Next Steps
+              </CardTitle>
+              <CardDescription>Surveys and diagnostic intros due this week.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                {INDUCTION_NEXT_STEPS.map((step, i) => {
+                  const colors = {
+                    overdue: 'bg-red-50 border-red-200 text-red-900',
+                    'due-soon': 'bg-amber-50 border-amber-200 text-amber-900',
+                    waiting: 'bg-slate-50 border-slate-200 text-slate-700',
+                  };
+                  const badges = {
+                    overdue: 'bg-red-100 text-red-800',
+                    'due-soon': 'bg-amber-100 text-amber-800',
+                    waiting: 'bg-slate-100 text-slate-600',
+                  };
+                  return (
+                    <div key={i} className={`flex items-center gap-3 p-3 rounded-lg border ${colors[step.status]}`}>
+                      <Badge className={`text-xs ${badges[step.status]} whitespace-nowrap`}>{step.due}</Badge>
+                      <div className="flex-1">
+                        <div className="font-semibold text-sm">{step.label}</div>
+                        <div className="text-xs opacity-80">{step.detail}</div>
+                      </div>
+                      {step.status === 'overdue' && <AlertTriangle className="h-4 w-4 text-red-600" />}
+                    </div>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <FileText className="h-5 w-5 text-blue-600" />
+                Induction Materials
+              </CardTitle>
+              <CardDescription>Slides, investor alignment tool, funder letter, surveys.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                {INDUCTION_MATERIALS.map((m, i) => (
+                  <div key={i} className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
+                    <FileText className="h-4 w-4 text-slate-500 mt-0.5 shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-semibold text-sm text-slate-900">{m.title}</span>
+                        {m.url !== '#' && (
+                          <a
+                            href={m.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-blue-600 hover:underline flex items-center gap-0.5"
+                          >
+                            Open <ExternalLink className="h-3 w-3" />
+                          </a>
+                        )}
+                      </div>
+                      <p className="text-xs text-slate-500 mt-0.5 break-words">{m.note}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Users className="h-5 w-5 text-emerald-600" />
+                Cohort ({COHORT_ATTENDEES.length} enterprises)
+              </CardTitle>
+              <CardDescription>
+                Contact details not shared by default — connect via LinkedIn. For a specific intro, email Jay/Adam.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                {COHORT_ATTENDEES.map((a, i) => (
+                  <div
+                    key={i}
+                    className={`flex items-center gap-2 p-2 rounded text-sm ${
+                      a.us ? 'bg-emerald-50 border border-emerald-200' : 'bg-slate-50'
+                    }`}
+                  >
+                    <span className={`font-medium ${a.us ? 'text-emerald-900' : 'text-slate-900'}`}>{a.name}</span>
+                    <span className="text-slate-400">·</span>
+                    <span className={a.us ? 'text-emerald-700' : 'text-slate-500'}>{a.org}</span>
+                    {a.us && <Badge className="ml-auto text-xs bg-emerald-100 text-emerald-800">Us</Badge>}
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Handshake className="h-5 w-5 text-purple-600" />
+                Program Hosts &amp; Funders
+              </CardTitle>
+              <CardDescription>QBE, Sefa, PIN, Social Impact Hub team.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                {COHORT_HOSTS.map((h, i) => (
+                  <div key={i} className="flex items-start gap-2 p-2 bg-purple-50 rounded text-sm">
+                    <div className="flex-1">
+                      <div className="font-medium text-slate-900">{h.name}</div>
+                      <div className="text-xs text-slate-500">
+                        {h.org} · {h.role}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <BookOpen className="h-5 w-5 text-amber-600" />
+                Learning Opportunities
+              </CardTitle>
+              <CardDescription>
+                Free access to Social Impact Hub webinars — promo code <strong>CATALYSINGIMPACT</strong>
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                {[
+                  { date: 'Fri 7 Apr', title: 'Finding Money', desc: 'Where for-purpose orgs go wrong and how to get revenue strategy right', time: '12:30-1:30pm AEST' },
+                  { date: 'Fri 24 Apr', title: 'Impact Investing 101', desc: 'Types of investors, types of capital', time: '12-1pm AEST' },
+                  { date: 'Fri 1 May', title: 'How Legal Structures Shape Impact Investing', desc: 'Keith Rovers (Mint Ellison) — hybrid entities', time: '12-1pm AEST' },
+                  { date: 'Fri 8 May', title: 'Deal Anatomy', desc: 'Inside an impact investment transaction', time: '12-1pm AEST' },
+                ].map((w, i) => (
+                  <div key={i} className="flex items-center gap-3 p-2 bg-amber-50 rounded">
+                    <div className="text-xs font-bold text-amber-800 w-20 shrink-0">{w.date}</div>
+                    <div className="flex-1">
+                      <div className="font-medium text-sm text-slate-900">{w.title}</div>
+                      <div className="text-xs text-slate-500">
+                        {w.desc} · {w.time}
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
@@ -1259,6 +1487,60 @@ export default function QBEProgramPage() {
                 <p className="text-xs text-amber-800">
                   <strong>Key for Goods:</strong> Snow Foundation is already in the Jigsaw deal AND already a Goods funder.
                   SEFA acted as syndicate agent. This is the exact template for a Goods blended raise.
+                </p>
+              </div>
+            </div>
+          </CollapsibleCard>
+
+          <CollapsibleCard title="Sefa: 6 Loan Products (Hanna Ebeling's slides)" icon={Banknote}>
+            <div className="space-y-3">
+              <p className="text-xs text-slate-600">
+                <strong>$160M unlocked since 2011. 170+ orgs backed. 75+ deals. $50M+ direct loans.</strong>
+              </p>
+              <div className="grid gap-2">
+                {[
+                  { name: 'Transition Loan', desc: 'Working capital to meet next milestone — grant payment, contract kick-off, launch date' },
+                  { name: 'Home for Impact Loan', desc: 'Buy, lease, or fit out a building for impact' },
+                  { name: 'Growth Impact Loan', desc: 'Invest in people, programs, systems to grow impact without giving up equity or control' },
+                  { name: 'Procurement Readiness Impact Loan', desc: 'Secure finance to fulfil a confirmed procurement contract with government or another party', fit: true },
+                  { name: 'Blended Finance', desc: 'Assemble philanthropy + government grants + investors for complex projects' },
+                  { name: 'Co-investment Syndicates', desc: 'Bring together partners and investors to co-create large-scale deals (Sefa was syndicate agent for Jigsaw $3M raise)' },
+                ].map((p, i) => (
+                  <div
+                    key={i}
+                    className={`flex items-start gap-2 p-2 rounded ${
+                      p.fit ? 'bg-emerald-50 border border-emerald-300' : 'bg-slate-50'
+                    }`}
+                  >
+                    {p.fit ? (
+                      <Star className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+                    ) : (
+                      <Circle className="h-4 w-4 text-slate-300 shrink-0 mt-0.5" />
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-sm text-slate-900">{p.name}</div>
+                      <div className="text-xs text-slate-600">{p.desc}</div>
+                      {p.fit && (
+                        <Badge className="mt-1 text-xs bg-emerald-100 text-emerald-800">
+                          Best fit: Centre Corp 107 beds, Miwatj 8 clinics, NPY 200-350 beds, WHSAC 500 mattress pipeline
+                        </Badge>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="bg-blue-50 rounded-lg p-3 mt-2">
+                <p className="text-xs font-semibold text-blue-900 mb-2">Direct Contacts (from slide 59):</p>
+                <div className="text-xs text-blue-800 space-y-1">
+                  <div><strong>Hanna Ebeling</strong> — CEO · hanna.ebeling@sefa.com.au · 0475 084 855</div>
+                  <div><strong>Renee Martin</strong> — Head of Impact & Advisory · renee.martin@sefa.com.au · 0409 926 646</div>
+                  <div><strong>Jennifer Turner</strong> — Head of Impact Investment · jennifer.turner@sefa.com.au · 0408 480 313</div>
+                </div>
+              </div>
+              <div className="bg-amber-50 rounded-lg p-3">
+                <p className="text-xs text-amber-900">
+                  <strong>Debt docs Sefa wants to see:</strong> historical financials, forecast financials, constitution,
+                  org chart, business plan / pitch deck, theory of change, evidence of impact measurement.
                 </p>
               </div>
             </div>

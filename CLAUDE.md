@@ -22,10 +22,19 @@ v2/                          <- THE ACTIVE CODEBASE (Next.js 16 + React 19)
   src/components/            <- auth, cart, empathy-ledger, layout, marketing, shop, ui
   src/lib/                   <- cart, data, empathy-ledger, ghl, stripe, supabase, types
   public/video/              <- Background videos (hero, stretch-bed, community)
+wiki/                        <- LLM knowledge base (Karpathy pattern) — see wiki/AGENTS.md
+  raw/                       <- source material (emails, clippings) — never hand-edited
+  articles/                  <- LLM-compiled wiki articles, INDEX.md is the map
+  outputs/                   <- generated briefings/reports
 deploy/                      <- OLD static HTML site (legacy, do not modify)
 tools/                       <- FFmpeg video processing scripts
 media/                       <- Raw video footage and analysis
 ```
+
+**Goods Wiki:** lightweight LLM knowledge base at `wiki/`. Follows the Karpathy pattern: raw
+sources in `wiki/raw/`, LLM-compiled articles in `wiki/articles/`, rules in `wiki/AGENTS.md`.
+For deep ACT ecosystem knowledge, cross-reference the ACT Tractorpedia at
+`/Users/benknight/Code/act-global-infrastructure/wiki/` (124 articles) — don't duplicate.
 
 **Always work in `v2/`.** The `deploy/` folder is the old site and should not be modified.
 

@@ -1,0 +1,128 @@
+/* Typography for rendered wiki markdown. Scoped via .wiki-prose. */
+
+.wiki-prose {
+  --wiki-ink: #1c1917;
+  --wiki-muted: #57534e;
+  --wiki-subtle: #78716c;
+  --wiki-accent: #C45C3E;
+  --wiki-sage: #8B9D77;
+  --wiki-rule: #e7e5e4;
+  --wiki-surface: #fafaf9;
+  color: var(--wiki-ink);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.wiki-prose h1,
+.wiki-prose h2,
+.wiki-prose h3,
+.wiki-prose h4 {
+  font-family: Georgia, 'Times New Roman', serif;
+  letter-spacing: -0.01em;
+  color: var(--wiki-ink);
+  scroll-margin-top: 2rem;
+}
+.wiki-prose h1 { font-size: 2rem; margin-top: 0; margin-bottom: 1rem; font-weight: 700; }
+.wiki-prose h2 { font-size: 1.4rem; margin-top: 2.5rem; margin-bottom: 0.75rem; font-weight: 600; border-bottom: 1px solid var(--wiki-rule); padding-bottom: 0.4rem; }
+.wiki-prose h3 { font-size: 1.15rem; margin-top: 2rem; margin-bottom: 0.6rem; font-weight: 600; }
+.wiki-prose h4 { font-size: 1rem; margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--wiki-muted); }
+
+.wiki-prose p { margin: 0 0 1.15rem 0; }
+.wiki-prose ul, .wiki-prose ol { margin: 0 0 1.15rem 0; padding-left: 1.5rem; }
+.wiki-prose li { margin-bottom: 0.35rem; }
+.wiki-prose li::marker { color: var(--wiki-subtle); }
+
+.wiki-prose a {
+  color: var(--wiki-accent);
+  text-decoration: underline;
+  text-decoration-color: rgba(196, 92, 62, 0.3);
+  text-underline-offset: 3px;
+  transition: all 0.15s ease;
+}
+.wiki-prose a:hover {
+  text-decoration-color: var(--wiki-accent);
+}
+
+.wiki-prose a h1, .wiki-prose a h2, .wiki-prose a h3, .wiki-prose a h4 {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wiki-prose blockquote {
+  border-left: 3px solid var(--wiki-sage);
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  margin: 0 0 1.5rem 0;
+  color: var(--wiki-muted);
+  font-style: italic;
+  background: rgba(139, 157, 119, 0.05);
+}
+.wiki-prose blockquote p { margin-bottom: 0.5rem; }
+.wiki-prose blockquote p:last-child { margin-bottom: 0; }
+
+.wiki-prose code {
+  font-family: 'SF Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85em;
+  background: var(--wiki-surface);
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+  border: 1px solid var(--wiki-rule);
+}
+.wiki-prose pre {
+  background: #1c1917;
+  color: #fafaf9;
+  padding: 1rem 1.15rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+}
+.wiki-prose pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+.wiki-prose hr {
+  border: 0;
+  border-top: 1px solid var(--wiki-rule);
+  margin: 2.5rem 0;
+}
+
+.wiki-table-wrap {
+  overflow-x: auto;
+  margin: 0 0 1.5rem 0;
+  border: 1px solid var(--wiki-rule);
+  border-radius: 6px;
+}
+.wiki-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.9rem;
+}
+.wiki-prose th, .wiki-prose td {
+  text-align: left;
+  padding: 0.6rem 0.85rem;
+  border-bottom: 1px solid var(--wiki-rule);
+  vertical-align: top;
+}
+.wiki-prose th {
+  background: var(--wiki-surface);
+  font-weight: 600;
+  color: var(--wiki-ink);
+  border-bottom-width: 2px;
+}
+.wiki-prose tr:last-child td { border-bottom: 0; }
+
+.wiki-deadlink {
+  color: #a8a29e;
+  border-bottom: 1px dotted #d6d3d1;
+  cursor: help;
+}
+
+.wiki-prose strong { color: var(--wiki-ink); font-weight: 600; }
+.wiki-prose em { font-style: italic; }

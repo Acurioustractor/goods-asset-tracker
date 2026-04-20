@@ -7,7 +7,7 @@ import { ImpactBanner } from './impact-banner';
 
 // Routes that should render WITHOUT the public site header, footer, and impact banner.
 // Funder briefs are confidential investor docs and should not display the public nav.
-const STANDALONE_PATH_PREFIXES = ['/funders'];
+const STANDALONE_PATH_PREFIXES = ['/funders', '/insiders', '/admin'];
 
 function isStandalone(pathname: string | null) {
   if (!pathname) return false;

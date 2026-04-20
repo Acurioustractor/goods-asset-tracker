@@ -45,3 +45,6 @@ next-env.d.ts
 public/video/*.mp4
 public/video/*.mov
 .env*.local
+
+# wiki sync (populated by prebuild)
+/.wiki-content/
