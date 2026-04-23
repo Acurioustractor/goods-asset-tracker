@@ -15,7 +15,7 @@ import { FundingSummaryCard } from '@/components/ops/funding-summary-card';
 import { StoriesSummaryCard } from '@/components/ops/stories-summary-card';
 import { CRMSummaryCard } from '@/components/ops/crm-summary-card';
 
-export const revalidate = 300; // 5 min cache
+export const dynamic = 'force-dynamic';
 
 export default async function OpsPage() {
   const [health, kpis, fleet, production, funding, stories, crm] = await Promise.all([

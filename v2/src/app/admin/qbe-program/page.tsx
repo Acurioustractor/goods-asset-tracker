@@ -1,8 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import {
+  capitalTargets as goodsCapitalTargets,
+  healthBuyers,
+  procurementBuyers,
+  communityAndManufacturingPartners,
+} from '@/lib/data/outreach-targets';
 import {
   GraduationCap,
   DollarSign,
@@ -41,6 +47,9 @@ import {
 } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
+
+const CIVICGRAPH_GOODS_WORKSPACE_URL = 'https://civicgraph.vercel.app/goods-workspace';
+const CIVICGRAPH_SYNC_LABEL = 'GrantScope snapshot synced into Goods outreach targets (16 Mar 2026)';
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -81,6 +90,50 @@ interface SessionKey {
   insight: string;
   actionForGoods: string;
 }
+
+type IntakeLedgerState = 'in_ghl' | 'crm_only' | 'unworked';
+
+type IntakeLedgerStatus = {
+  targetId: string;
+  state: IntakeLedgerState;
+  crmMatched: boolean;
+  ghlMatched: boolean;
+  grantscopeLinked: boolean;
+  crmContactId: string | null;
+  crmContactName: string | null;
+  ghlContactId: string | null;
+  crmMatchBasis: string | null;
+  ghlMatchBasis: string | null;
+};
+
+type IntakeLedgerResponse = {
+  statuses: IntakeLedgerStatus[];
+  summary: {
+    totalTargets: number;
+    inGhl: number;
+    crmOnly: number;
+    unworked: number;
+    grantscopeLinked: number;
+    ghlEnabled: boolean;
+  };
+};
+
+type BackfillDetail = {
+  contactId: string;
+  contactLabel: string;
+  contactEmail?: string | null;
+  contactOrganization?: string | null;
+  targetId?: string;
+  targetName?: string;
+  basis?: string;
+  reviewBasis?: 'email' | 'contact' | 'organization' | 'name' | null;
+  reviewedAt?: string | null;
+  candidateTargets?: Array<{ id: string; name: string }>;
+  candidateTargetNames?: string[];
+  status: 'updated' | 'ambiguous' | 'unmatched' | 'reviewed';
+};
+
+type BackfillReviewFilter = 'strongest' | 'decision' | 'unmatched';
 
 // ─── Data ───────────────────────────────────────────────────────────────────
 
@@ -373,11 +426,159 @@ function CollapsibleCard({ title, icon: Icon, children, defaultOpen = false }: {
   );
 }
 
+function intakeStateClassName(state?: IntakeLedgerState) {
+  switch (state) {
+    case 'in_ghl':
+      return 'bg-emerald-100 text-emerald-800';
+    case 'crm_only':
+      return 'bg-amber-100 text-amber-800';
+    default:
+      return 'bg-slate-100 text-slate-700';
+  }
+}
+
+function intakeStateLabel(state?: IntakeLedgerState) {
+  switch (state) {
+    case 'in_ghl':
+      return 'In GHL';
+    case 'crm_only':
+      return 'CRM only';
+    default:
+      return 'Unworked';
+  }
+}
+
+function intakeRecordHref(status?: IntakeLedgerStatus) {
+  const exactCrmMatch =
+    !!status?.crmContactId &&
+    (status.crmMatchBasis === 'email' || status.crmMatchBasis === 'contact');
+
+  if (exactCrmMatch) {
+    return `/admin/partners/${status.crmContactId}`;
+  }
+  return '/admin/partners';
+}
+
+function intakeRecordLabel(status?: IntakeLedgerStatus) {
+  const exactCrmMatch =
+    !!status?.crmContactId &&
+    (status.crmMatchBasis === 'email' || status.crmMatchBasis === 'contact');
+
+  if (exactCrmMatch) {
+    return 'Open contact';
+  }
+  return 'Open People';
+}
+
+function matchBasisLabel(basis?: string | null) {
+  switch (basis) {
+    case 'grantscope_id':
+      return 'Matched by target ID';
+    case 'email':
+      return 'Matched by email';
+    case 'contact':
+      return 'Matched by contact';
+    case 'organization':
+      return 'Matched by organisation';
+    case 'name':
+      return 'Matched by name';
+    default:
+      return null;
+  }
+}
+
+function backfillContextLine(detail: Pick<BackfillDetail, 'contactEmail' | 'contactOrganization'>) {
+  if (detail.contactEmail && detail.contactOrganization) {
+    return `${detail.contactEmail} · ${detail.contactOrganization}`;
+  }
+
+  return detail.contactEmail || detail.contactOrganization || null;
+}
+
+function backfillStatusWeight(status: BackfillDetail['status']) {
+  const order = { updated: 0, ambiguous: 1, unmatched: 2, reviewed: 3 };
+  return order[status];
+}
+
+function backfillBasisWeight(basis?: BackfillDetail['reviewBasis'] | BackfillDetail['basis']) {
+  switch (basis) {
+    case 'email':
+      return 0;
+    case 'contact':
+      return 1;
+    case 'organization':
+      return 2;
+    case 'name':
+      return 3;
+    case 'manual':
+      return 4;
+    default:
+      return 5;
+  }
+}
+
+function sortBackfillDetails(details: BackfillDetail[]) {
+  return [...details].sort((a, b) => {
+    const statusDelta = backfillStatusWeight(a.status) - backfillStatusWeight(b.status);
+    if (statusDelta !== 0) return statusDelta;
+
+    const basisDelta =
+      backfillBasisWeight(a.status === 'ambiguous' || a.status === 'unmatched' ? a.reviewBasis : a.basis) -
+      backfillBasisWeight(b.status === 'ambiguous' || b.status === 'unmatched' ? b.reviewBasis : b.basis);
+    if (basisDelta !== 0) return basisDelta;
+
+    return a.contactLabel.localeCompare(b.contactLabel);
+  });
+}
+
+function formatBackfillReviewLine(detail: BackfillDetail) {
+  const context = backfillContextLine(detail);
+  const basis =
+    detail.status === 'ambiguous' || detail.status === 'unmatched'
+      ? matchBasisLabel(detail.reviewBasis)
+      : matchBasisLabel(detail.basis);
+
+  if (detail.status === 'ambiguous') {
+    return [
+      detail.contactLabel,
+      context ? `(${context})` : null,
+      basis ? `- ${basis}` : null,
+      `→ candidates: ${detail.candidateTargetNames?.join(' · ') || 'Multiple candidates'}`,
+    ]
+      .filter(Boolean)
+      .join(' ');
+  }
+
+  return [
+    detail.contactLabel,
+    context ? `(${context})` : null,
+    basis ? `- ${basis}` : null,
+    '→ no Goods outreach target match found',
+  ]
+    .filter(Boolean)
+    .join(' ');
+}
+
 // ─── Page ───────────────────────────────────────────────────────────────────
 
 export default function QBEProgramPage() {
   const [activeTab, setActiveTab] = useState<Tab>('overview');
   const [capitalFilter, setCapitalFilter] = useState<CapitalTier | 'all'>('all');
+  const [intakeLedger, setIntakeLedger] = useState<IntakeLedgerResponse | null>(null);
+  const [intakeLedgerLoading, setIntakeLedgerLoading] = useState(true);
+  const [intakePushTargetId, setIntakePushTargetId] = useState<string | null>(null);
+  const [intakeBackfillLoading, setIntakeBackfillLoading] = useState(false);
+  const [intakeResolveContactId, setIntakeResolveContactId] = useState<string | null>(null);
+  const [intakeReviewContactId, setIntakeReviewContactId] = useState<string | null>(null);
+  const [intakeUndoReviewContactId, setIntakeUndoReviewContactId] = useState<string | null>(null);
+  const [intakeBulkReviewLoading, setIntakeBulkReviewLoading] = useState(false);
+  const [intakeBulkUndoReviewLoading, setIntakeBulkUndoReviewLoading] = useState(false);
+  const [intakeActionMessage, setIntakeActionMessage] = useState<string | null>(null);
+  const [backfillDetails, setBackfillDetails] = useState<BackfillDetail[]>([]);
+  const [backfillReviewFilter, setBackfillReviewFilter] = useState<BackfillReviewFilter>('strongest');
+  const [showReviewedBackfill, setShowReviewedBackfill] = useState(false);
+  const [showAllBackfillRows, setShowAllBackfillRows] = useState(false);
+  const [backfillGeneratedAt, setBackfillGeneratedAt] = useState<string | null>(null);
 
   const filteredCapital = capitalFilter === 'all'
     ? CAPITAL_TYPES
@@ -386,6 +587,429 @@ export default function QBEProgramPage() {
   const pipelineTotal = MATCH_FUNDING_TRACKER.sources
     .filter(s => s.status !== 'conditional')
     .reduce((sum, s) => sum + s.amount, 0);
+
+  const discoveryBuyers = [...healthBuyers, ...procurementBuyers]
+    .filter((target) => target.priority === 'critical' || target.priority === 'high')
+    .slice(0, 4);
+
+  const discoveryCapital = goodsCapitalTargets
+    .filter((target) => target.priority === 'critical' || target.priority === 'high')
+    .slice(0, 4);
+
+  const discoveryPartners = communityAndManufacturingPartners
+    .filter((target) => target.priority === 'critical' || target.priority === 'high')
+    .slice(0, 4);
+
+  async function loadIntakeLedger(signal?: AbortSignal) {
+    try {
+      setIntakeLedgerLoading(true);
+      const response = await fetch('/api/admin/targets/intake-status', {
+        credentials: 'include',
+        cache: 'no-store',
+        signal,
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to load intake ledger status (${response.status})`);
+      }
+
+      const data = await response.json() as IntakeLedgerResponse;
+      setIntakeLedger(data);
+    } catch (error) {
+      if ((error as Error).name === 'AbortError') return;
+      console.error('Failed to load intake ledger status', error);
+      setIntakeLedger(null);
+    } finally {
+      setIntakeLedgerLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    const controller = new AbortController();
+    void loadIntakeLedger(controller.signal);
+    return () => {
+      controller.abort();
+    };
+  }, []);
+
+  async function handlePushTarget(target: (typeof discoveryBuyers)[number]) {
+    try {
+      setIntakePushTargetId(target.id);
+      setIntakeActionMessage(null);
+      setBackfillDetails([]);
+
+      const response = await fetch('/api/admin/targets/push-outreach', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          targets: [target],
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Push failed (${response.status})`);
+      }
+
+      const data = await response.json() as {
+        successful: number;
+        failed: number;
+      };
+
+      if (data.successful < 1) {
+        throw new Error('Target was not pushed into GHL');
+      }
+
+      setIntakeActionMessage(`${target.name} pushed into GHL`);
+      await loadIntakeLedger();
+    } catch (error) {
+      console.error('Failed to push outreach target', error);
+      setIntakeActionMessage(error instanceof Error ? error.message : 'Failed to push target into GHL');
+    } finally {
+      setIntakePushTargetId(null);
+    }
+  }
+
+  async function handleBackfillTargetIds() {
+    try {
+      setIntakeBackfillLoading(true);
+      setIntakeActionMessage(null);
+      setBackfillDetails([]);
+
+      const response = await fetch('/api/admin/targets/backfill-identities', {
+        method: 'POST',
+        credentials: 'include',
+      });
+
+      if (!response.ok) {
+        throw new Error(`Backfill failed (${response.status})`);
+      }
+
+      const data = await response.json() as {
+        generatedAt: string;
+        summary: {
+          updated: number;
+          ambiguous: number;
+          unmatched: number;
+          reviewed: number;
+        };
+        details: BackfillDetail[];
+      };
+
+      setIntakeActionMessage(
+        `Backfill complete: ${data.summary.updated} linked, ${data.summary.ambiguous} ambiguous, ${data.summary.unmatched} unmatched, ${data.summary.reviewed} reviewed`
+      );
+      setBackfillGeneratedAt(data.generatedAt || null);
+      setBackfillDetails(sortBackfillDetails(data.details || []));
+      await loadIntakeLedger();
+    } catch (error) {
+      console.error('Failed to backfill target identities', error);
+      setIntakeActionMessage(error instanceof Error ? error.message : 'Failed to backfill target IDs');
+    } finally {
+      setIntakeBackfillLoading(false);
+    }
+  }
+
+  async function handleResolveBackfill(contactId: string, targetId: string, targetName: string) {
+    try {
+      setIntakeResolveContactId(contactId);
+      setIntakeActionMessage(null);
+
+      const response = await fetch('/api/admin/targets/resolve-identity', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contactId,
+          targetId,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Resolve failed (${response.status})`);
+      }
+
+      setBackfillDetails((current) =>
+        sortBackfillDetails(
+          current
+          .map((detail): BackfillDetail => {
+            if (detail.contactId !== contactId) return detail;
+
+            return {
+              ...detail,
+              status: 'updated',
+              targetId,
+              targetName,
+              basis: 'manual',
+              reviewBasis: undefined,
+              candidateTargets: undefined,
+              candidateTargetNames: undefined,
+            };
+          })
+        )
+      );
+
+      setIntakeActionMessage(`Resolved ${targetName} for this contact`);
+      await loadIntakeLedger();
+    } catch (error) {
+      console.error('Failed to resolve outreach target identity', error);
+      setIntakeActionMessage(error instanceof Error ? error.message : 'Failed to resolve target identity');
+    } finally {
+      setIntakeResolveContactId(null);
+    }
+  }
+
+  async function handleReviewBackfill(contactId: string, contactLabel: string) {
+    try {
+      setIntakeReviewContactId(contactId);
+      setIntakeActionMessage(null);
+
+      const response = await fetch('/api/admin/targets/review-identity', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contactId,
+          action: 'review',
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Review failed (${response.status})`);
+      }
+
+      setBackfillDetails((current) =>
+        sortBackfillDetails(
+          current.map((detail): BackfillDetail => {
+            if (detail.contactId !== contactId) return detail;
+            return {
+              ...detail,
+              status: 'reviewed',
+              reviewedAt: new Date().toISOString(),
+              candidateTargets: undefined,
+              candidateTargetNames: undefined,
+              reviewBasis: undefined,
+            };
+          })
+        )
+      );
+      setIntakeActionMessage(`Marked ${contactLabel} as reviewed`);
+    } catch (error) {
+      console.error('Failed to mark outreach identity as reviewed', error);
+      setIntakeActionMessage(error instanceof Error ? error.message : 'Failed to mark contact as reviewed');
+    } finally {
+      setIntakeReviewContactId(null);
+    }
+  }
+
+  async function handleUndoReviewBackfill(contactId: string, contactLabel: string) {
+    try {
+      setIntakeUndoReviewContactId(contactId);
+      setIntakeActionMessage(null);
+
+      const response = await fetch('/api/admin/targets/review-identity', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contactId,
+          action: 'undo',
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Undo failed (${response.status})`);
+      }
+
+      setBackfillDetails((current) =>
+        sortBackfillDetails(
+          current.map((detail): BackfillDetail => {
+            if (detail.contactId !== contactId) return detail;
+            return {
+              ...detail,
+              status: 'unmatched',
+              reviewedAt: null,
+            };
+          })
+        )
+      );
+      setIntakeActionMessage(`Returned ${contactLabel} to the review queue`);
+    } catch (error) {
+      console.error('Failed to undo reviewed outreach identity', error);
+      setIntakeActionMessage(error instanceof Error ? error.message : 'Failed to undo reviewed contact');
+    } finally {
+      setIntakeUndoReviewContactId(null);
+    }
+  }
+
+  async function handleBulkReviewBackfill(details: BackfillDetail[]) {
+    const contactIds = details.map((detail) => detail.contactId);
+    if (contactIds.length === 0) {
+      setIntakeActionMessage('No unmatched rows in this view');
+      return;
+    }
+
+    try {
+      setIntakeBulkReviewLoading(true);
+      setIntakeActionMessage(null);
+
+      const response = await fetch('/api/admin/targets/review-identity', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contactIds,
+          action: 'review',
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Bulk review failed (${response.status})`);
+      }
+
+      const reviewedAt = new Date().toISOString();
+      setBackfillDetails((current) =>
+        sortBackfillDetails(
+          current.map((detail): BackfillDetail => {
+            if (!contactIds.includes(detail.contactId)) return detail;
+            return {
+              ...detail,
+              status: 'reviewed',
+              reviewedAt,
+              candidateTargets: undefined,
+              candidateTargetNames: undefined,
+              reviewBasis: undefined,
+            };
+          })
+        )
+      );
+      setIntakeActionMessage(`Marked ${contactIds.length} contacts as reviewed`);
+    } catch (error) {
+      console.error('Failed to bulk mark outreach identities as reviewed', error);
+      setIntakeActionMessage(error instanceof Error ? error.message : 'Failed to mark contacts as reviewed');
+    } finally {
+      setIntakeBulkReviewLoading(false);
+    }
+  }
+
+  async function handleBulkUndoReviewBackfill(details: BackfillDetail[]) {
+    const contactIds = details.map((detail) => detail.contactId);
+    if (contactIds.length === 0) {
+      setIntakeActionMessage('No reviewed rows in this view');
+      return;
+    }
+
+    try {
+      setIntakeBulkUndoReviewLoading(true);
+      setIntakeActionMessage(null);
+
+      const response = await fetch('/api/admin/targets/review-identity', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contactIds,
+          action: 'undo',
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Bulk undo failed (${response.status})`);
+      }
+
+      setBackfillDetails((current) =>
+        sortBackfillDetails(
+          current.map((detail): BackfillDetail => {
+            if (!contactIds.includes(detail.contactId)) return detail;
+            return {
+              ...detail,
+              status: 'unmatched',
+              reviewedAt: null,
+            };
+          })
+        )
+      );
+      setIntakeActionMessage(`Returned ${contactIds.length} contacts to the review queue`);
+    } catch (error) {
+      console.error('Failed to bulk undo reviewed outreach identities', error);
+      setIntakeActionMessage(error instanceof Error ? error.message : 'Failed to restore reviewed contacts');
+    } finally {
+      setIntakeBulkUndoReviewLoading(false);
+    }
+  }
+
+  const intakeStatusById = new Map(
+    intakeLedger?.statuses.map((status) => [status.targetId, status]) || []
+  );
+  const backfillLinkedCount = backfillDetails.filter((detail) => detail.status === 'updated').length;
+  const backfillAmbiguousCount = backfillDetails.filter((detail) => detail.status === 'ambiguous').length;
+  const backfillUnmatchedCount = backfillDetails.filter((detail) => detail.status === 'unmatched').length;
+  const backfillReviewedCount = backfillDetails.filter((detail) => detail.status === 'reviewed').length;
+  const filteredBackfillDetails = backfillDetails.filter((detail) => {
+    if (detail.status === 'reviewed') return showReviewedBackfill;
+    if (backfillReviewFilter === 'decision') return detail.status === 'ambiguous';
+    if (backfillReviewFilter === 'unmatched') return detail.status === 'unmatched';
+    return true;
+  });
+  const unresolvedFilteredBackfillDetails = filteredBackfillDetails.filter(
+    (detail) => detail.status === 'ambiguous' || detail.status === 'unmatched'
+  );
+  const allFilteredLinkedDetails = filteredBackfillDetails.filter((detail) => detail.status === 'updated');
+  const allFilteredAmbiguousDetails = filteredBackfillDetails.filter((detail) => detail.status === 'ambiguous');
+  const allFilteredUnmatchedDetails = filteredBackfillDetails.filter((detail) => detail.status === 'unmatched');
+  const allFilteredReviewedDetails = filteredBackfillDetails.filter((detail) => detail.status === 'reviewed');
+  const reviewDisplayLimit = showAllBackfillRows ? Number.POSITIVE_INFINITY : 5;
+  const filteredLinkedDetails = allFilteredLinkedDetails.slice(0, reviewDisplayLimit);
+  const filteredAmbiguousDetails = allFilteredAmbiguousDetails.slice(0, reviewDisplayLimit);
+  const filteredUnmatchedDetails = allFilteredUnmatchedDetails.slice(0, reviewDisplayLimit);
+  const filteredReviewedDetails = allFilteredReviewedDetails.slice(0, reviewDisplayLimit);
+  const hasBackfillAudit = backfillDetails.length > 0;
+  const backfillGeneratedLabel = backfillGeneratedAt
+    ? new Date(backfillGeneratedAt).toLocaleString('en-AU')
+    : null;
+  const hiddenBackfillRowsCount =
+    Math.max(allFilteredLinkedDetails.length - filteredLinkedDetails.length, 0) +
+    Math.max(allFilteredAmbiguousDetails.length - filteredAmbiguousDetails.length, 0) +
+    Math.max(allFilteredUnmatchedDetails.length - filteredUnmatchedDetails.length, 0) +
+    Math.max(allFilteredReviewedDetails.length - filteredReviewedDetails.length, 0);
+
+  async function handleCopyUnresolvedList() {
+    try {
+      if (unresolvedFilteredBackfillDetails.length === 0) {
+        setIntakeActionMessage('No unresolved rows in this view');
+        return;
+      }
+
+      const heading =
+        backfillReviewFilter === 'decision'
+          ? 'Goods backfill review — needs decision'
+          : backfillReviewFilter === 'unmatched'
+            ? 'Goods backfill review — unmatched only'
+            : 'Goods backfill review — strongest first';
+
+      const body = unresolvedFilteredBackfillDetails
+        .map((detail, index) => `${index + 1}. ${formatBackfillReviewLine(detail)}`)
+        .join('\n');
+
+      await navigator.clipboard.writeText(`${heading}\n\n${body}`);
+      setIntakeActionMessage(`Copied ${unresolvedFilteredBackfillDetails.length} unresolved rows`);
+    } catch (error) {
+      console.error('Failed to copy unresolved review list', error);
+      setIntakeActionMessage('Failed to copy unresolved list');
+    }
+  }
 
   const tabs: { id: Tab; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
     { id: 'overview', label: 'Overview', icon: GraduationCap },
@@ -411,6 +1035,48 @@ export default function QBEProgramPage() {
           Blended finance accelerator. Goal: unlock $400K matched funding by stacking grant + debt + catalytic capital.
         </p>
       </div>
+
+      <Card className="border-blue-200 bg-blue-50">
+        <CardHeader className="pb-3">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <CardTitle className="text-lg text-slate-900">Weekly cockpit</CardTitle>
+              <CardDescription className="mt-1 text-slate-600">
+                Run the live weekly Goods raise here. Use CivicGraph to discover targets, push approved leads into GHL, then work them back from this hub.
+              </CardDescription>
+            </div>
+            <a
+              href={CIVICGRAPH_GOODS_WORKSPACE_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-100"
+            >
+              Open CivicGraph Goods Workspace
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-3">
+          <div className="rounded-lg border border-slate-200 bg-white p-4">
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">1. Discovery</div>
+            <p className="mt-2 text-sm text-slate-700">
+              CivicGraph finds buyers, funders, community demand, and partner paths across the external landscape.
+            </p>
+          </div>
+          <div className="rounded-lg border border-slate-200 bg-white p-4">
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">2. Relationship system</div>
+            <p className="mt-2 text-sm text-slate-700">
+              GHL is the relationship ledger. Push approved targets there and track owner, stage, and next follow-up in one place.
+            </p>
+          </div>
+          <div className="rounded-lg border border-slate-200 bg-white p-4">
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">3. Weekly execution</div>
+            <p className="mt-2 text-sm text-slate-700">
+              Use QBE Program and QBE Actions as the live weekly cockpit for capital strategy, deadlines, and immediate next moves.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Top Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -444,6 +1110,48 @@ export default function QBEProgramPage() {
         </Card>
       </div>
 
+      <Card className="border-sky-200 bg-white">
+        <CardContent className="flex flex-wrap items-center justify-between gap-4 p-4">
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Identity health</div>
+            <div className="mt-1 text-sm text-slate-700">
+              {hasBackfillAudit
+                ? 'Current Goods target-ID resolution state across linked, decision, unmatched, and reviewed contacts.'
+                : 'Run a backfill once to generate the current identity audit for Goods outreach contacts.'}
+            </div>
+            {backfillGeneratedLabel && (
+              <div className="mt-1 text-[11px] text-slate-500">Last checked {backfillGeneratedLabel}</div>
+            )}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <div className="rounded-md border border-emerald-200 bg-emerald-50 px-3 py-2">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-700">Linked</div>
+              <div className="mt-1 text-lg font-bold text-emerald-900">{hasBackfillAudit ? backfillLinkedCount : '—'}</div>
+            </div>
+            <div className="rounded-md border border-amber-200 bg-amber-50 px-3 py-2">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-amber-700">Needs decision</div>
+              <div className="mt-1 text-lg font-bold text-amber-900">{hasBackfillAudit ? backfillAmbiguousCount : '—'}</div>
+            </div>
+            <div className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-600">Unmatched</div>
+              <div className="mt-1 text-lg font-bold text-slate-900">{hasBackfillAudit ? backfillUnmatchedCount : '—'}</div>
+            </div>
+            <div className="rounded-md border border-violet-200 bg-violet-50 px-3 py-2">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-violet-700">Reviewed</div>
+              <div className="mt-1 text-lg font-bold text-violet-900">{hasBackfillAudit ? backfillReviewedCount : '—'}</div>
+            </div>
+            <button
+              type="button"
+              onClick={() => void handleBackfillTargetIds()}
+              disabled={intakeBackfillLoading}
+              className="inline-flex items-center gap-2 rounded-md border border-sky-300 bg-sky-50 px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-sky-900 hover:bg-sky-100 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {intakeBackfillLoading ? 'Refreshing…' : hasBackfillAudit ? 'Refresh identity check' : 'Run identity check'}
+            </button>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Tab Navigation */}
       <div className="flex gap-1 bg-slate-100 rounded-lg p-1 overflow-x-auto">
         {tabs.map(tab => (
@@ -465,6 +1173,547 @@ export default function QBEProgramPage() {
       {/* Tab Content */}
       {activeTab === 'overview' && (
         <div className="space-y-6">
+          <Card className="border-sky-200 bg-sky-50">
+            <CardHeader>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <CardTitle className="flex items-center gap-2">
+                    <Search className="h-5 w-5 text-sky-700" />
+                    Discovery intake
+                  </CardTitle>
+                  <CardDescription className="mt-1">
+                    {CIVICGRAPH_SYNC_LABEL}. Use this as feeder input, then move approved targets into GHL and track weekly progress here.
+                  </CardDescription>
+                  {backfillDetails.length > 0 && (
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <div className="rounded-md border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-800">
+                        Linked {backfillLinkedCount}
+                      </div>
+                      <div className="rounded-md border border-amber-200 bg-amber-50 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-800">
+                        Needs manual resolution {backfillAmbiguousCount}
+                      </div>
+                      <div className="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-700">
+                        Unmatched {backfillUnmatchedCount}
+                      </div>
+                      <div className="rounded-md border border-violet-200 bg-violet-50 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-violet-800">
+                        Reviewed {backfillReviewedCount}
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <a
+                  href={CIVICGRAPH_GOODS_WORKSPACE_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-md border border-sky-300 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-100"
+                >
+                  Open CivicGraph
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+                <button
+                  type="button"
+                  onClick={() => void handleBackfillTargetIds()}
+                  disabled={intakeBackfillLoading}
+                  className="inline-flex items-center gap-2 rounded-md border border-sky-300 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {intakeBackfillLoading ? 'Backfilling…' : 'Backfill target IDs'}
+                </button>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid gap-3 md:grid-cols-4">
+                <div className="rounded-lg border border-sky-200 bg-white p-4">
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Capital targets</div>
+                  <div className="mt-2 text-2xl font-bold text-slate-900">{goodsCapitalTargets.length}</div>
+                  <div className="mt-1 text-xs text-slate-500">grant, catalytic, debt, Aboriginal trust pathways</div>
+                </div>
+                <div className="rounded-lg border border-sky-200 bg-white p-4">
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Buyer targets</div>
+                  <div className="mt-2 text-2xl font-bold text-slate-900">{healthBuyers.length + procurementBuyers.length}</div>
+                  <div className="mt-1 text-xs text-slate-500">health buyers and procurement channels</div>
+                </div>
+                <div className="rounded-lg border border-sky-200 bg-white p-4">
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Partner targets</div>
+                  <div className="mt-2 text-2xl font-bold text-slate-900">{communityAndManufacturingPartners.length}</div>
+                  <div className="mt-1 text-xs text-slate-500">community, manufacturing, and distribution partners</div>
+                </div>
+                <div className="rounded-lg border border-sky-200 bg-white p-4">
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Operating rule</div>
+                  <div className="mt-2 text-sm font-semibold text-slate-900">Discovery in CivicGraph. Relationships in GHL. Weekly control here.</div>
+                </div>
+              </div>
+              <div className="grid gap-3 md:grid-cols-4">
+                <div className="rounded-lg border border-sky-200 bg-white p-4">
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Already in GHL</div>
+                  <div className="mt-2 text-2xl font-bold text-slate-900">
+                    {intakeLedgerLoading ? '—' : intakeLedger?.summary.inGhl ?? 0}
+                  </div>
+                  <div className="mt-1 text-xs text-slate-500">active relationship-ledger coverage</div>
+                </div>
+                <div className="rounded-lg border border-sky-200 bg-white p-4">
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">CRM only</div>
+                  <div className="mt-2 text-2xl font-bold text-slate-900">
+                    {intakeLedgerLoading ? '—' : intakeLedger?.summary.crmOnly ?? 0}
+                  </div>
+                  <div className="mt-1 text-xs text-slate-500">known internally but not yet worked from GHL</div>
+                </div>
+                <div className="rounded-lg border border-sky-200 bg-white p-4">
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Still unworked</div>
+                  <div className="mt-2 text-2xl font-bold text-slate-900">
+                    {intakeLedgerLoading ? '—' : intakeLedger?.summary.unworked ?? 0}
+                  </div>
+                  <div className="mt-1 text-xs text-slate-500">discovery targets with no ledger footprint yet</div>
+                </div>
+                <div className="rounded-lg border border-sky-200 bg-white p-4">
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Source-linked contacts</div>
+                  <div className="mt-2 text-2xl font-bold text-slate-900">
+                    {intakeLedgerLoading ? '—' : intakeLedger?.summary.grantscopeLinked ?? 0}
+                  </div>
+                  <div className="mt-1 text-xs text-slate-500">
+                    {intakeLedger?.summary.ghlEnabled === false ? 'GHL disabled in this environment' : 'CRM contacts carrying a Grantscope link'}
+                  </div>
+                </div>
+              </div>
+              {intakeActionMessage && (
+                <div className="rounded-lg border border-sky-200 bg-white px-4 py-3 text-sm text-slate-700">
+                  {intakeActionMessage}
+                </div>
+              )}
+              {backfillDetails.length > 0 && (
+                <div className="rounded-lg border border-sky-200 bg-white p-4">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Backfill review</div>
+                      {backfillGeneratedLabel && (
+                        <div className="mt-1 text-[11px] text-slate-500">Last checked {backfillGeneratedLabel}</div>
+                      )}
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {allFilteredUnmatchedDetails.length > 0 && (
+                        <button
+                          type="button"
+                          onClick={() => void handleBulkReviewBackfill(allFilteredUnmatchedDetails)}
+                          disabled={intakeBulkReviewLoading}
+                          className="rounded-md border border-slate-300 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-900 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
+                        >
+                          {intakeBulkReviewLoading
+                            ? 'Reviewing…'
+                            : `Mark ${allFilteredUnmatchedDetails.length} unmatched reviewed`}
+                        </button>
+                      )}
+                      {showReviewedBackfill && allFilteredReviewedDetails.length > 0 && (
+                        <button
+                          type="button"
+                          onClick={() => void handleBulkUndoReviewBackfill(allFilteredReviewedDetails)}
+                          disabled={intakeBulkUndoReviewLoading}
+                          className="rounded-md border border-violet-300 bg-violet-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-violet-900 hover:bg-violet-100 disabled:cursor-not-allowed disabled:opacity-60"
+                        >
+                          {intakeBulkUndoReviewLoading
+                            ? 'Restoring…'
+                            : `Undo ${allFilteredReviewedDetails.length} reviewed`}
+                        </button>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => void handleCopyUnresolvedList()}
+                        className="rounded-md border border-slate-300 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-900 hover:bg-slate-50"
+                      >
+                        Copy unresolved list
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setShowAllBackfillRows((current) => !current)}
+                        className={`rounded-md border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${
+                          showAllBackfillRows
+                            ? 'border-sky-300 bg-sky-50 text-sky-900'
+                            : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                        }`}
+                      >
+                        {showAllBackfillRows ? 'Show fewer rows' : 'Show all rows'}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setShowReviewedBackfill((current) => !current)}
+                        className={`rounded-md border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${
+                          showReviewedBackfill
+                            ? 'border-violet-300 bg-violet-50 text-violet-900'
+                            : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                        }`}
+                      >
+                        {showReviewedBackfill ? 'Hide reviewed' : 'Show reviewed'}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setBackfillReviewFilter('strongest')}
+                        className={`rounded-md border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${
+                          backfillReviewFilter === 'strongest'
+                            ? 'border-sky-300 bg-sky-50 text-sky-900'
+                            : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                        }`}
+                      >
+                        Strongest first
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setBackfillReviewFilter('decision')}
+                        className={`rounded-md border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${
+                          backfillReviewFilter === 'decision'
+                            ? 'border-amber-300 bg-amber-50 text-amber-900'
+                            : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                        }`}
+                      >
+                        Needs decision
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setBackfillReviewFilter('unmatched')}
+                        className={`rounded-md border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${
+                          backfillReviewFilter === 'unmatched'
+                            ? 'border-slate-300 bg-slate-100 text-slate-900'
+                            : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                        }`}
+                      >
+                        Unmatched only
+                      </button>
+                    </div>
+                  </div>
+                  <div className={`mt-3 grid gap-3 ${showReviewedBackfill ? 'xl:grid-cols-4' : 'xl:grid-cols-3'}`}>
+                    <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-3">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">
+                          Linked {allFilteredLinkedDetails.length}
+                        </div>
+                        {!showAllBackfillRows && allFilteredLinkedDetails.length > filteredLinkedDetails.length && (
+                          <div className="text-[10px] text-emerald-700">Showing {filteredLinkedDetails.length}</div>
+                        )}
+                      </div>
+                      <div className="mt-2 space-y-2">
+                        {filteredLinkedDetails.map((detail) => (
+                          <div key={detail.contactId} className="text-xs text-slate-700">
+                            <div className="font-semibold text-slate-900">{detail.contactLabel}</div>
+                            {backfillContextLine(detail) && (
+                              <div className="mt-0.5 text-[11px] text-slate-500">{backfillContextLine(detail)}</div>
+                            )}
+                            <div>{detail.targetName} · {matchBasisLabel(detail.basis) || detail.basis}</div>
+                            <div className="mt-2">
+                              <a
+                                href={`/admin/partners/${detail.contactId}`}
+                                className="inline-flex items-center gap-2 rounded-md border border-emerald-300 bg-white px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-900 hover:bg-emerald-100"
+                              >
+                                Open contact
+                              </a>
+                            </div>
+                          </div>
+                        ))}
+                        {filteredLinkedDetails.length === 0 && (
+                          <div className="text-xs text-slate-500">No linked rows in this view.</div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="rounded-lg border border-amber-200 bg-amber-50 p-3">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-700">
+                          Ambiguous {allFilteredAmbiguousDetails.length}
+                        </div>
+                        {!showAllBackfillRows && allFilteredAmbiguousDetails.length > filteredAmbiguousDetails.length && (
+                          <div className="text-[10px] text-amber-700">Showing {filteredAmbiguousDetails.length}</div>
+                        )}
+                      </div>
+                      <div className="mt-2 space-y-2">
+                        {filteredAmbiguousDetails.map((detail) => (
+                          <div key={detail.contactId} className="text-xs text-slate-700">
+                            <div className="font-semibold text-slate-900">{detail.contactLabel}</div>
+                            {backfillContextLine(detail) && (
+                              <div className="mt-0.5 text-[11px] text-slate-500">{backfillContextLine(detail)}</div>
+                            )}
+                            {detail.reviewBasis && (
+                              <div className="mt-0.5 text-[11px] text-slate-500">{matchBasisLabel(detail.reviewBasis)}</div>
+                            )}
+                            <div>{detail.candidateTargetNames?.join(' · ') || 'Multiple candidates'}</div>
+                            {detail.candidateTargets && detail.candidateTargets.length > 0 && (
+                              <div className="mt-2 flex flex-wrap gap-2">
+                                {detail.candidateTargets.map((target) => (
+                                  <button
+                                    key={target.id}
+                                    type="button"
+                                    onClick={() => void handleResolveBackfill(detail.contactId, target.id, target.name)}
+                                    disabled={intakeResolveContactId === detail.contactId}
+                                    className="inline-flex items-center gap-2 rounded-md border border-amber-300 bg-white px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-amber-900 hover:bg-amber-100 disabled:cursor-not-allowed disabled:opacity-60"
+                                  >
+                                    {intakeResolveContactId === detail.contactId ? 'Resolving…' : `Use ${target.name}`}
+                                  </button>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                        {filteredAmbiguousDetails.length === 0 && (
+                          <div className="text-xs text-slate-500">No ambiguous rows in this view.</div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
+                          Unmatched {allFilteredUnmatchedDetails.length}
+                        </div>
+                        {!showAllBackfillRows && allFilteredUnmatchedDetails.length > filteredUnmatchedDetails.length && (
+                          <div className="text-[10px] text-slate-500">Showing {filteredUnmatchedDetails.length}</div>
+                        )}
+                      </div>
+                      <div className="mt-2 space-y-2">
+                        {filteredUnmatchedDetails.map((detail) => (
+                          <div key={detail.contactId} className="text-xs text-slate-700">
+                            <div className="font-semibold text-slate-900">{detail.contactLabel}</div>
+                            {backfillContextLine(detail) && (
+                              <div className="mt-0.5 text-[11px] text-slate-500">{backfillContextLine(detail)}</div>
+                            )}
+                            {detail.reviewBasis && (
+                              <div className="mt-0.5 text-[11px] text-slate-500">{matchBasisLabel(detail.reviewBasis)}</div>
+                            )}
+                            <div>No Goods outreach target match found</div>
+                            <div className="mt-2 flex flex-wrap gap-2">
+                              <a
+                                href={`/admin/partners/${detail.contactId}`}
+                                className="inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-900 hover:bg-slate-100"
+                              >
+                                Open contact
+                              </a>
+                              <button
+                                type="button"
+                                onClick={() => void handleReviewBackfill(detail.contactId, detail.contactLabel)}
+                                disabled={intakeReviewContactId === detail.contactId}
+                                className="inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-900 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-60"
+                              >
+                                {intakeReviewContactId === detail.contactId ? 'Saving…' : 'Mark reviewed'}
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                        {filteredUnmatchedDetails.length === 0 && (
+                          <div className="text-xs text-slate-500">No unmatched rows in this view.</div>
+                        )}
+                      </div>
+                    </div>
+                    {showReviewedBackfill && (
+                      <div className="rounded-lg border border-violet-200 bg-violet-50 p-3">
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-700">
+                            Reviewed {allFilteredReviewedDetails.length}
+                          </div>
+                          {!showAllBackfillRows && allFilteredReviewedDetails.length > filteredReviewedDetails.length && (
+                            <div className="text-[10px] text-violet-700">Showing {filteredReviewedDetails.length}</div>
+                          )}
+                        </div>
+                        <div className="mt-2 space-y-2">
+                          {filteredReviewedDetails.map((detail) => (
+                            <div key={detail.contactId} className="text-xs text-slate-700">
+                              <div className="font-semibold text-slate-900">{detail.contactLabel}</div>
+                              {backfillContextLine(detail) && (
+                                <div className="mt-0.5 text-[11px] text-slate-500">{backfillContextLine(detail)}</div>
+                              )}
+                              <div className="mt-0.5 text-[11px] text-slate-500">
+                                Reviewed {detail.reviewedAt ? new Date(detail.reviewedAt).toLocaleDateString('en-AU') : 'recently'}
+                              </div>
+                              <div className="mt-2 flex flex-wrap gap-2">
+                                <a
+                                  href={`/admin/partners/${detail.contactId}`}
+                                  className="inline-flex items-center gap-2 rounded-md border border-violet-300 bg-white px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-violet-900 hover:bg-violet-100"
+                                >
+                                  Open contact
+                                </a>
+                                <button
+                                  type="button"
+                                  onClick={() => void handleUndoReviewBackfill(detail.contactId, detail.contactLabel)}
+                                  disabled={intakeUndoReviewContactId === detail.contactId}
+                                  className="inline-flex items-center gap-2 rounded-md border border-violet-300 bg-white px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-violet-900 hover:bg-violet-100 disabled:cursor-not-allowed disabled:opacity-60"
+                                >
+                                  {intakeUndoReviewContactId === detail.contactId ? 'Restoring…' : 'Undo reviewed'}
+                                </button>
+                              </div>
+                            </div>
+                          ))}
+                          {filteredReviewedDetails.length === 0 && (
+                            <div className="text-xs text-slate-500">No reviewed rows in this view.</div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  {!showAllBackfillRows && hiddenBackfillRowsCount > 0 && (
+                    <div className="mt-3 text-[11px] text-slate-500">
+                      {hiddenBackfillRowsCount} additional rows are hidden in this view. Show all rows before doing a full-panel sweep.
+                    </div>
+                  )}
+                </div>
+              )}
+              <div className="grid gap-4 xl:grid-cols-3">
+                <div className="rounded-lg border border-sky-200 bg-white p-4">
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Top buyer intake</div>
+                  <div className="mt-3 space-y-3">
+                    {discoveryBuyers.map((target) => (
+                      <div key={target.id} className="border-l-2 border-sky-300 pl-3">
+                        {(() => {
+                          const status = intakeStatusById.get(target.id);
+                          return (
+                            <>
+                        <div className="flex items-center gap-2">
+                          <span className="font-semibold text-sm text-slate-900">{target.name}</span>
+                          <Badge className={target.priority === 'critical' ? 'bg-red-100 text-red-800' : 'bg-orange-100 text-orange-800'}>
+                            {target.priority}
+                          </Badge>
+                          <Badge className={intakeStateClassName(status?.state)}>
+                            {intakeLedgerLoading ? 'Checking' : intakeStateLabel(status?.state)}
+                          </Badge>
+                          {status?.grantscopeLinked && (
+                            <Badge className="bg-sky-100 text-sky-800">Linked</Badge>
+                          )}
+                        </div>
+                        <p className="mt-1 text-xs text-slate-600">{target.nextAction}</p>
+                        {!intakeLedgerLoading && (status?.crmMatchBasis || status?.ghlMatchBasis) && (
+                          <p className="mt-1 text-[11px] text-slate-500">
+                            {status?.state === 'in_ghl'
+                              ? matchBasisLabel(status.ghlMatchBasis) || matchBasisLabel(status.crmMatchBasis)
+                              : matchBasisLabel(status.crmMatchBasis)}
+                          </p>
+                        )}
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {status?.state !== 'in_ghl' && (
+                            <button
+                              type="button"
+                              onClick={() => void handlePushTarget(target)}
+                              disabled={intakePushTargetId === target.id}
+                              className="inline-flex items-center gap-2 rounded-md border border-sky-300 bg-sky-50 px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-900 hover:bg-sky-100 disabled:cursor-not-allowed disabled:opacity-60"
+                            >
+                              {intakePushTargetId === target.id ? 'Pushing…' : 'Push to GHL'}
+                            </button>
+                          )}
+                          <a
+                            href={intakeRecordHref(status)}
+                            className="inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-900 hover:bg-slate-100"
+                          >
+                            {intakeRecordLabel(status)}
+                          </a>
+                        </div>
+                            </>
+                          );
+                        })()}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="rounded-lg border border-sky-200 bg-white p-4">
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Top capital intake</div>
+                  <div className="mt-3 space-y-3">
+                    {discoveryCapital.map((target) => (
+                      <div key={target.id} className="border-l-2 border-sky-300 pl-3">
+                        {(() => {
+                          const status = intakeStatusById.get(target.id);
+                          return (
+                            <>
+                        <div className="flex items-center gap-2">
+                          <span className="font-semibold text-sm text-slate-900">{target.name}</span>
+                          <Badge className={target.priority === 'critical' ? 'bg-red-100 text-red-800' : 'bg-orange-100 text-orange-800'}>
+                            {target.priority}
+                          </Badge>
+                          <Badge className={intakeStateClassName(status?.state)}>
+                            {intakeLedgerLoading ? 'Checking' : intakeStateLabel(status?.state)}
+                          </Badge>
+                          {status?.grantscopeLinked && (
+                            <Badge className="bg-sky-100 text-sky-800">Linked</Badge>
+                          )}
+                        </div>
+                        <p className="mt-1 text-xs text-slate-600">{target.nextAction}</p>
+                        {!intakeLedgerLoading && (status?.crmMatchBasis || status?.ghlMatchBasis) && (
+                          <p className="mt-1 text-[11px] text-slate-500">
+                            {status?.state === 'in_ghl'
+                              ? matchBasisLabel(status.ghlMatchBasis) || matchBasisLabel(status.crmMatchBasis)
+                              : matchBasisLabel(status.crmMatchBasis)}
+                          </p>
+                        )}
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {status?.state !== 'in_ghl' && (
+                            <button
+                              type="button"
+                              onClick={() => void handlePushTarget(target)}
+                              disabled={intakePushTargetId === target.id}
+                              className="inline-flex items-center gap-2 rounded-md border border-sky-300 bg-sky-50 px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-900 hover:bg-sky-100 disabled:cursor-not-allowed disabled:opacity-60"
+                            >
+                              {intakePushTargetId === target.id ? 'Pushing…' : 'Push to GHL'}
+                            </button>
+                          )}
+                          <a
+                            href={intakeRecordHref(status)}
+                            className="inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-900 hover:bg-slate-100"
+                          >
+                            {intakeRecordLabel(status)}
+                          </a>
+                        </div>
+                            </>
+                          );
+                        })()}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="rounded-lg border border-sky-200 bg-white p-4">
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Top partner intake</div>
+                  <div className="mt-3 space-y-3">
+                    {discoveryPartners.map((target) => (
+                      <div key={target.id} className="border-l-2 border-sky-300 pl-3">
+                        {(() => {
+                          const status = intakeStatusById.get(target.id);
+                          return (
+                            <>
+                        <div className="flex items-center gap-2">
+                          <span className="font-semibold text-sm text-slate-900">{target.name}</span>
+                          <Badge className={target.priority === 'critical' ? 'bg-red-100 text-red-800' : 'bg-orange-100 text-orange-800'}>
+                            {target.priority}
+                          </Badge>
+                          <Badge className={intakeStateClassName(status?.state)}>
+                            {intakeLedgerLoading ? 'Checking' : intakeStateLabel(status?.state)}
+                          </Badge>
+                          {status?.grantscopeLinked && (
+                            <Badge className="bg-sky-100 text-sky-800">Linked</Badge>
+                          )}
+                        </div>
+                        <p className="mt-1 text-xs text-slate-600">{target.nextAction}</p>
+                        {!intakeLedgerLoading && (status?.crmMatchBasis || status?.ghlMatchBasis) && (
+                          <p className="mt-1 text-[11px] text-slate-500">
+                            {status?.state === 'in_ghl'
+                              ? matchBasisLabel(status.ghlMatchBasis) || matchBasisLabel(status.crmMatchBasis)
+                              : matchBasisLabel(status.crmMatchBasis)}
+                          </p>
+                        )}
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {status?.state !== 'in_ghl' && (
+                            <button
+                              type="button"
+                              onClick={() => void handlePushTarget(target)}
+                              disabled={intakePushTargetId === target.id}
+                              className="inline-flex items-center gap-2 rounded-md border border-sky-300 bg-sky-50 px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-900 hover:bg-sky-100 disabled:cursor-not-allowed disabled:opacity-60"
+                            >
+                              {intakePushTargetId === target.id ? 'Pushing…' : 'Push to GHL'}
+                            </button>
+                          )}
+                          <a
+                            href={intakeRecordHref(status)}
+                            className="inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-900 hover:bg-slate-100"
+                          >
+                            {intakeRecordLabel(status)}
+                          </a>
+                        </div>
+                            </>
+                          );
+                        })()}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Program Timeline */}
           <Card>
             <CardHeader>

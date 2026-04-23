@@ -12,7 +12,7 @@ const PASSWORD_COOKIE = 'impact_auth'
 // Insiders wiki password gate (shared password, cookie-based)
 const INSIDERS_COOKIE = 'insiders_auth'
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
   // Password-protect specific routes via cookie
@@ -65,9 +65,9 @@ export async function middleware(request: NextRequest) {
   // QR code redirect: /?asset_id=GB0-153-1 → /bed/GB0-153-1
   // Only redirect from the root path (old QR codes encode /?asset_id=X)
   if (pathname === '/') {
-    const assetId = request.nextUrl.searchParams.get('asset_id');
+    const assetId = request.nextUrl.searchParams.get('asset_id')
     if (assetId) {
-      return NextResponse.redirect(new URL(`/bed/${assetId}`, request.url));
+      return NextResponse.redirect(new URL(`/bed/${assetId}`, request.url))
     }
   }
 
@@ -97,18 +97,26 @@ export async function middleware(request: NextRequest) {
   )
 
   // Refresh session if expired
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
   // Admin auth: protect /admin routes except login and unauthorized pages
-  const isAdminRoute = pathname.startsWith('/admin') && !pathname.startsWith('/admin/login') && !pathname.startsWith('/admin/unauthorized')
-  const isLocalDev = process.env.NODE_ENV === 'development' && (request.headers.get('host')?.startsWith('localhost') || request.headers.get('host')?.startsWith('127.0.0.1'))
+  const isAdminRoute =
+    pathname.startsWith('/admin') &&
+    !pathname.startsWith('/admin/login') &&
+    !pathname.startsWith('/admin/unauthorized')
+  const isLocalDev =
+    process.env.NODE_ENV === 'development' &&
+    (request.headers.get('host')?.startsWith('localhost') ||
+      request.headers.get('host')?.startsWith('127.0.0.1'))
   if (isAdminRoute && !user && !isLocalDev) {
     return NextResponse.redirect(new URL('/admin/login', request.url))
   }
 
   // Check if current path requires user authentication
-  const isProtectedUserRoute = protectedUserRoutes.some(route =>
-    pathname === route || pathname.startsWith(`${route}/`)
+  const isProtectedUserRoute = protectedUserRoutes.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`)
   )
 
   if (isProtectedUserRoute && !user) {

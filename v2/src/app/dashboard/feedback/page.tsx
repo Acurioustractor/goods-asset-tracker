@@ -63,7 +63,6 @@ const getFeedbackIssues = unstable_cache(
     const repo = process.env.GITHUB_REPO;
 
     if (!token || !repo) {
-      console.error('[Feedback Dashboard] Missing GITHUB_FEEDBACK_TOKEN or GITHUB_REPO');
       return [];
     }
 
