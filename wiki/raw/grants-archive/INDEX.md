@@ -120,6 +120,11 @@ Specific club: **Rotary E-Club of Outback Australia**. President 2025-2026: **Pe
 | 2026-03-22 | Community Assessment | [Drive doc](https://docs.google.com/document/d/1Fn03UbsEf2eIjjzJAd0BGrmA4MelPOEHUFAyDrAkDcY/edit) |
 | 2026-04-13 | Status: "documentation in system, working on partners for funds" | Gmail thread `19d13685bbf18877` |
 
+### Myer Foundation — Innovation Fund application submitted
+Subfolder: [`myer-foundation/`](./myer-foundation/)
+**Long-form pull-together doc in folder:**
+- `2026_Myer_Innovation_Fund_Application_KMIF25-202.pdf` — 24-page Goods on Country application to the Myer Innovation Fund (KMIF25-202).
+
 ### Catalysing Impact (QBE Foundation + SIH) — Stage 2 in flight
 Subfolder: [`catalysing-impact-eoi/`](./catalysing-impact-eoi/)
 
