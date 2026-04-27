@@ -83,6 +83,10 @@ Canonical source: `v2/src/lib/data/products.ts`. Do not duplicate specs.
 ### [[enterprise/README|enterprise/]]
 Durable versions of the 10 QBE diagnostic topics (parallel to time-boxed `thoughts/shared/qbe-program/diagnostic/`).
 
+## Grants archive
+
+- [Grants Archive INDEX](../raw/grants-archive/INDEX.md) — every Goods grant application, report, and partner letter located across Gmail, Notion, and Drive. Subfolders: FRRR, Snow Foundation, REAL Innovation Fund, Rotary, TFN, VFFF, AMP Spark, PFI/PRF, Minderoo, partner letters.
+
 ## Raw sources captured
 
 | Date | File | What |

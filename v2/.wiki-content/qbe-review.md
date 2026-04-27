@@ -89,6 +89,7 @@ Other grant materials and reference docs the mentor may want. Not published to `
 | Strategy PD | `v2/docs/GOODS_STRATEGY_PD.md` | Position description / strategy summary |
 | ACT 5-year cashflow model | `act-global-infrastructure/wiki/finance/five-year-cashflow-model.md` | Until Goods-only 3-statement v0.1 lands, this is the closest thing |
 | R&DTI claim strategy | `act-global-infrastructure/wiki/finance/rdti-claim-strategy.md` | Backs the R&D refund line in capital stack |
+| **Grants archive index** | `wiki/raw/grants-archive/INDEX.md` | Treasure-map of every Goods grant application/report/letter (FRRR, Snow, REAL Innovation, Rotary, TFN, VFFF, AMP, PFI, Minderoo, Centrecorp). Drop downloaded PDFs into matching subfolder. |
 
 ## 8. Raw sources (disk only — not published)
 
