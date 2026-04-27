@@ -100,3 +100,10 @@ v2/check_requests.js
 v2/test_queries.ts
 v2/wash_report_week10_2026.json
 .gstack/
+
+# Grant attachment binaries — synced to Drive instead
+wiki/raw/grants-archive/**/*.pdf
+wiki/raw/grants-archive/**/*.docx
+wiki/raw/grants-archive/**/*.doc
+wiki/raw/grants-archive/**/*.xlsx
+wiki/raw/grants-archive/**/*.xls
