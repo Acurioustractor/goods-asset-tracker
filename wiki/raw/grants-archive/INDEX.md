@@ -7,7 +7,11 @@ publish: false
 
 # Grants Archive — Index
 
-> Single folder containing every Goods grant trail we have records of. Designed to be dragged into Google Drive in one go and linked from the wiki. Searched 2026-04-28 across `benjamin@act.place` + `nicholas@act.place` Gmail, [Goods HQ](https://www.notion.so/acurioustractor/Goods-HQ-177ebcf981cf805fb111f407079f9794) Notion workspace, and shared Drive.
+> Single folder containing every Goods grant trail we have records of. Searched 2026-04-28 across `benjamin@act.place` + `nicholas@act.place` Gmail, [Goods HQ](https://www.notion.so/acurioustractor/Goods-HQ-177ebcf981cf805fb111f407079f9794) Notion workspace, and shared Drive.
+
+## 🔗 Live Drive copy
+
+**[Goods on Country — Grants Archive (Drive)](https://drive.google.com/drive/folders/1HhLJ0k66oc8tQ9-yugN7JD4MX_JE2y1v)** — same structure scaffolded in Google Drive. 19 funder subfolders ready for PDF drops. Share this link with the crew + mentors.
 
 **Start with [`FUNDING-JOURNEY.md`](./FUNDING-JOURNEY.md)** for the one-page narrative summary mentors should read first.
 

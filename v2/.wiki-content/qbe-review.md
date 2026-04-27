@@ -7,6 +7,17 @@ description: One-page landing that gathers every QBE Catalysing Impact artefact 
 
 > Everything QBE in one place. Browse the wiki articles via wikilinks, hit the live dashboards on the dev server, or open raw sources from disk. Password for `/insiders`: `goods2026` (env: `INSIDERS_PASSWORD`).
 
+## 📁 Raw documents (Google Drive)
+
+**[Goods on Country — Grants Archive](https://drive.google.com/drive/folders/1HhLJ0k66oc8tQ9-yugN7JD4MX_JE2y1v)** — single Drive folder with subfolders for every funder. Drop downloaded PDFs in here and they're shareable with the crew.
+
+Inside:
+- **[FUNDING-JOURNEY](https://drive.google.com/file/d/1yLRSBBp-KOqAuuUNUksolfgMHko-8YzEcHyqnlszIC8)** — one-page narrative summary (read first)
+- **[INDEX](https://drive.google.com/file/d/1bdI31ySk1XShRpuN1eeZHjCSB1aX6mVyZL1JiB9gjWU)** — full source-by-source treasure map
+- 19 funder/partner subfolders (FRRR+VFFF, Snow, TFN, AMP Spark, Dusseldorp, QBE, REAL Innovation, Rotary, Minderoo, PRF, TFFF, Bryan Foundation, partner-letters, Anyinginyi, Our Community Shed, Bunnings, Civeo, Zinus, PICC)
+
+Local mirror in repo: `wiki/raw/grants-archive/`.
+
 ## 1. Program
 
 - [[program/qbe-catalysing-impact-2026]] — program overview

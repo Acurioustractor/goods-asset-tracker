@@ -23,10 +23,11 @@ Not yet self-sustaining. Revenue ($537K cumulative, $50K recent year actual) run
 |---|---|---|
 | Snow Foundation | $193,000 | Core program + R&D |
 | The Funding Network (TFN) | $130,000 | Production + delivery |
-| FRRR | $50,000 | Remote communities |
-| Vincent Fairfax Family Foundation (VFFF) | $50,000 | Core |
+| FRRR + VFFF (joint Backing the Future grant) | $50,000 | Palm Island delivery |
 | AMP Spark | $21,900 | Innovation |
-| ACT internal / other | Remaining balance to $445K | R&D, ops |
+| Dusseldorp Forum | $15,000 | Mounty Backyard (Dec 2025) |
+| QBE Foundation Stage 1 | $10,000 | Catalysing Impact participation (INV-0289 outstanding) |
+| ACT internal / other | Balance to $445K | R&D, ops |
 
 Books of record: Xero at the A Curious Tractor Pty Ltd / ACT-GD cost code level.
 

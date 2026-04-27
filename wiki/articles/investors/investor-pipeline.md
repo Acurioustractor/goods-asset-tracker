@@ -27,21 +27,24 @@ reason: live pipeline state, commercially sensitive
 | [[sefa]] | Sub-debt | $300K+ | Cold outreach | Email Hannah Ebeling to open | Ben |
 | [[iba]] | Debt + grant blend | up to $5M | Conversation (eligibility ✓) | Business plan to qualify | Nick |
 | [[pfi]] | Recoverable grant | $640K | DD (their side) | Await feedback on EOI | Ben |
-| [[mindaroo]] | Recoverable grant | $200K | Research | Confirm catalytic bucket fit, warm intro via Beck | Ben |
+| [[mindaroo]] | Recoverable grant | $200K target (no app yet) | Relationship-only | Justice/Container alignment via Lucy Stronach; Minderoo Board June 2026 | Ben |
 | [[first-australians-capital]] | Debt | $100-500K (indicative) | Research | Intro via IBA or SIH | Nick |
-| [[tim-fairfax]] | Grant | $50-150K (indicative) | Research | Review giving priorities | Ben |
-| [[dusseldorp]] | Grant | $50-150K (indicative) | Research | Connect via JustReinvest | Ben |
+| [[tim-fairfax]] | Grant | $50-150K (indicative) | Advisory | Katie Norman warm; FY25 report shared | Ben |
+| [[dusseldorp]] | Grant | **$15K received Dec 2025** + warm for follow-on | Active | Mounty Backyard delivered; longer-term partnership flagged | Ben |
 | [[qbe-ventures]] | Equity (Lighthouse) | small | Deferred | Re-evaluate 2027 after structure decisions | Ben |
 
-## Already received ($445K)
+## Already received (~$420K)
 
 | Funder | Amount | Year |
 |---|---|---|
-| Snow Foundation | $193K | Multi-year |
-| TFN (The Funding Network) | $130K | 2025 |
-| VFFF (Vincent Fairfax Family Foundation) | $50K | 2025 |
-| FRRR | $50K | 2025 |
-| AMP Spark | $21.9K | 2025 |
+| Snow Foundation | $193,785 | Multi-year (2023-2025) |
+| TFN (The Funding Network) | $130,000 | Dec 2025 |
+| FRRR + VFFF Backing the Future (joint) | $50,000 | Jul 2025 |
+| AMP Spark | $21,900 | Jun 2024 |
+| Dusseldorp Forum | $15,000 | Dec 2025 |
+| QBE Foundation Stage 1 | $10,000 | Mar 2026 |
+
+**Note:** the wiki previously listed FRRR and VFFF as separate $50K grants. They are jointly the same Backing the Future $50K. See [grants archive INDEX](../../raw/grants-archive/INDEX.md).
 
 ## Active advisors and connectors
 

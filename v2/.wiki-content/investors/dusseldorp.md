@@ -9,8 +9,11 @@
 
 ## Current state
 
-- Research phase.
+- **$15,000 received Dec 2025** for Mounty Backyard (Workbee + Contained plans).
+- Longer-term partnership flagged by Teya Dusseldorp.
+- Contacts: Teya Dusseldorp, Jess Wilson.
 - Intro pathway: JustReinvest network (ACT has existing relationship).
+- Source: Gmail thread `19b0a14ca8fc43dd` (2025-12-10).
 
 ## Related
 

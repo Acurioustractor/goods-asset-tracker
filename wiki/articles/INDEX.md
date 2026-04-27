@@ -85,7 +85,9 @@ Durable versions of the 10 QBE diagnostic topics (parallel to time-boxed `though
 
 ## Grants archive
 
-- [Grants Archive INDEX](../raw/grants-archive/INDEX.md) — every Goods grant application, report, and partner letter located across Gmail, Notion, and Drive. Subfolders: FRRR, Snow Foundation, REAL Innovation Fund, Rotary, TFN, VFFF, AMP Spark, PFI/PRF, Minderoo, partner letters.
+- **[Goods Grants Archive on Drive](https://drive.google.com/drive/folders/1HhLJ0k66oc8tQ9-yugN7JD4MX_JE2y1v)** — live Drive folder. Drop PDFs here.
+- [Grants Archive INDEX](../raw/grants-archive/INDEX.md) — local treasure-map: every Goods grant application, report, and partner letter located across Gmail, Notion, and Drive. 19 funder subfolders.
+- [FUNDING-JOURNEY](../raw/grants-archive/FUNDING-JOURNEY.md) — one-page narrative summary mentors should read first.
 
 ## Raw sources captured
 
