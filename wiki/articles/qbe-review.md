@@ -51,7 +51,17 @@ Dev server: `cd v2 && npm run dev` → http://localhost:3000 (or next free port)
 - `/admin/qbe-actions` — 10-week checklist
 - `/admin/loi-tracker` · `/admin/finance-model` · `/admin/foundation-matcher` · `/admin/strategy` · `/admin/growth`
 
-## 5. Thoughts (working drafts)
+## 5. April 2026 mentor prep outputs
+
+These are the meatiest mentor-prep artefacts. Read in order when resuming:
+
+- `wiki/outputs/2026-04-25-qbe-mentor-prep-ceo-review.md` — Mentor pack design, top 5 questions, 7-day sprint
+- `wiki/outputs/2026-04-25-qbe-ecosystem-inventory.md` — Three-repo asset map (Goods v2, Grantscope, ACT), revised pack design (live walkthrough + 4-page PDF + 1-page ACT credibility), meta-review revisions
+- `wiki/outputs/2026-04-25-qbe-diagnostic-readiness-ledger.md` — 10-domain Solid vs Needs Work audit. Working tool for the 3-hour PIN diagnostic. 18-action stack
+- `wiki/outputs/2026-04-27-borroloola-ngardara-strategic-implications.md` — ARENA-backed Ngardara microgrid; adopt as pattern, explore as thread, push back on scope creep
+- `wiki/outputs/2026-04-27-qbe-prep-session-handoff.md` — Single resume entry point, top 5 critical actions, diagnostic scoreboard
+
+## 6. Thoughts (working drafts)
 
 - `thoughts/shared/qbe-program/submission-strategy.md`
 - `thoughts/shared/qbe-program/session-1-learnings.md`
@@ -59,7 +69,28 @@ Dev server: `cd v2 && npm run dev` → http://localhost:3000 (or next free port)
 - `thoughts/shared/qbe-program/pfi-application-summary.md`
 - `thoughts/shared/qbe-program/diagnostic/` — 10 topic drafts + INDEX + cover letter
 
-## 6. Raw sources (disk only — not published)
+## 7. Supplementary docs (outside the wiki)
+
+Other grant materials and reference docs the mentor may want. Not published to `/insiders` — share as PDF or repo link on request.
+
+| Doc | Path | Why useful |
+|---|---|---|
+| Snow Foundation pitch + funder feedback | `v2/docs/Final Snow pitch with Snow feedback and reflections.md` | Demonstrates reflexivity: shows how a successful funder critiqued us and what we changed |
+| Snow submission self-review (Feb 2026) | `SNOW_SUBMISSION_REVIEW_FEBRUARY_2026.md` | Self-critique of our own pitch quality |
+| PFI application summary | `thoughts/shared/qbe-program/pfi-application-summary.md` | $640K repayable grant in pipeline |
+| Catalysing Impact application draft | `Catalysing_Impact_Application_DRAFT.md` | The actual EOI we submitted |
+| Goods Compendium March 2026 | `v2/docs/COMPENDIUM_MARCH_2026.md` | Single doc with all community data, funding, partners |
+| Go-to-market — Thousands | `GO_TO_MARKET_THOUSANDS_2026.md` | Path from 389 deployed to thousands |
+| Market intelligence 2026 | `MARKET_INTELLIGENCE_2026.md` | Competitor + remote procurement landscape |
+| Operations handbook | `v2/docs/OPERATIONS_HANDBOOK.md` | Production run-book; addresses key-person risk |
+| Production facility guide | `v2/docs/PRODUCTION_FACILITY_GUIDE.md` | Plant manual; supports community-ownership-as-end-state |
+| Community partner guide | `v2/docs/PARTNER_GUIDE.md` | How communities engage; legitimises PICC handover plan |
+| Procurement strategy | `v2/docs/procurement-strategy.md` | IPP, Indigenous procurement, 8 channels |
+| Strategy PD | `v2/docs/GOODS_STRATEGY_PD.md` | Position description / strategy summary |
+| ACT 5-year cashflow model | `act-global-infrastructure/wiki/finance/five-year-cashflow-model.md` | Until Goods-only 3-statement v0.1 lands, this is the closest thing |
+| R&DTI claim strategy | `act-global-infrastructure/wiki/finance/rdti-claim-strategy.md` | Backs the R&D refund line in capital stack |
+
+## 8. Raw sources (disk only — not published)
 
 All in `wiki/raw/`:
 
@@ -75,11 +106,11 @@ All in `wiki/raw/`:
 | `2026-03-31-investor-alignment-tool-case.xlsx` | CASE Smart Impact Capital tool |
 | `2026-04-02-email-jay-boolkin-qbe-induction-recap.md` | Post-induction recap |
 
-## 7. Publish guidance
+## 9. Publish guidance
 
 See [PUBLISH.md](../PUBLISH.md) for Obsidian Publish setup and what to share externally vs keep internal.
 
-## 8. Related
+## 10. Related
 
 - [[linked-wikis]] — ACT Tractorpedia, Empathy Ledger, codebase
 - [[INDEX]] — full wiki map

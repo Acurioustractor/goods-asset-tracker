@@ -28,9 +28,9 @@ reason: live pipeline state, commercially sensitive
 | [[iba]] | Debt + grant blend | up to $5M | Conversation (eligibility ✓) | Business plan to qualify | Nick |
 | [[pfi]] | Recoverable grant | $640K | DD (their side) | Await feedback on EOI | Ben |
 | [[mindaroo]] | Recoverable grant | $200K | Research | Confirm catalytic bucket fit, warm intro via Beck | Ben |
-| [[first-australians-capital]] | Debt | TBD | Research | Intro via IBA or SIH | Nick |
-| [[tim-fairfax]] | Grant | TBD | Research | Review giving priorities | Ben |
-| [[dusseldorp]] | Grant | TBD | Research | Connect via JustReinvest | Ben |
+| [[first-australians-capital]] | Debt | $100-500K (indicative) | Research | Intro via IBA or SIH | Nick |
+| [[tim-fairfax]] | Grant | $50-150K (indicative) | Research | Review giving priorities | Ben |
+| [[dusseldorp]] | Grant | $50-150K (indicative) | Research | Connect via JustReinvest | Ben |
 | [[qbe-ventures]] | Equity (Lighthouse) | small | Deferred | Re-evaluate 2027 after structure decisions | Ben |
 
 ## Already received ($445K)

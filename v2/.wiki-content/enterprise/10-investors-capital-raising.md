@@ -4,7 +4,7 @@
 
 ## Raise headline
 
-**Yes, actively.** QBE Catalysing Impact target: demonstrate **$400K matched funding by 31 August 2026** to unlock up to **$200K QBE Foundation grant**. This is the first tranche of a broader blended-finance round whose full target is in the range of $2.5M-$5M across grant + debt + catalytic + guarantees, phased over 18 months.
+**Yes, actively.** QBE Catalysing Impact target: demonstrate matched funding by 31 August 2026 to unlock up to **$200K QBE Foundation grant**. The **$400K headline is the upper bound**; our **operating target is $100-200K of cash-equivalent commitments** that meaningfully advance the model. This is the first tranche of a broader blended-finance round whose full target is in the range of $2.5M-$5M across grant + debt + catalytic + guarantees, phased over 18 months.
 
 ## Blended finance stack (proposed)
 
@@ -20,7 +20,7 @@ CATALYTIC        Mindaroo recoverable              $200K (warm)
                  PFI repayable grant               $640K (EOI submitted)
 SUB DEBT         SEFA working capital              $300K (conversation opening)
 SENIOR DEBT      IBA Business Loan (up to 70%)     up to $5M (eligibility confirmed)
-COMMUNITY EQUITY PICC plant purchase (Yr 3-4)      TBD
+COMMUNITY EQUITY PICC plant purchase (Yr 3-4)      scoped at diagnostic
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -36,8 +36,8 @@ COMMUNITY EQUITY PICC plant purchase (Yr 3-4)      TBD
 | **PFI** | Repayable grant | EOI submitted | $640K | Catalytic |
 | **Mindaroo** | Recoverable grant | Warm | $200K | Catalytic capital bucket |
 | **IBA** | Debt + grant blend | Eligibility confirmed | Up to $5M | Indigenous business |
-| **Tim Fairfax Family Foundation** | Grant | Target | TBD | 33 comms focus |
-| **Dusseldorp Forum** | Grant | Target | TBD | JustReinvest connection |
+| **Tim Fairfax Family Foundation** | Grant | Target | $50-150K (indicative) | 33 comms focus |
+| **Dusseldorp Forum** | Grant | Target | $50-150K (indicative) | JustReinvest connection |
 | **Beck Parkinson** | Advisor | Active | — | Ex-SVA, ex-DFAT, selection committee |
 
 ## Capital we have received

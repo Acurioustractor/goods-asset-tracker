@@ -16,7 +16,7 @@ CATALYTIC        Mindaroo recoverable                       $200K (warm)
                  PFI repayable                              $640K (EOI submitted)
 SUB DEBT         SEFA working capital                       $300K (opening)
 SENIOR DEBT      IBA Business Loan (up to 70%)              up to $5M (eligibility ✓)
-COMMUNITY EQUITY PICC plant purchase (Yr 3-4)               TBD
+COMMUNITY EQUITY PICC plant purchase (Yr 3-4)               scoped at diagnostic
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
