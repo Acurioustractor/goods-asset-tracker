@@ -136,7 +136,11 @@ Subfolder: [`catalysing-impact-eoi/`](./catalysing-impact-eoi/)
 
 ### Minderoo — pre-grant (June 2026 Board decision)
 Subfolder: [`minderoo/`](./minderoo/)
-Contact: Lucy Stronach (lstronach@minderoo.org). **Correction:** wiki lists "$200K target, warm" but there is **no application yet** — relationship-only via JusticeHub/Container conversations. Justice strategy proposal goes to Minderoo Board June 2026.
+Contact: Lucy Stronach (lstronach@minderoo.org). **Correction:** wiki lists "$200K target, warm" but there is **no formal application yet** — relationship-only via JusticeHub/Container conversations. Justice strategy proposal goes to Minderoo Board June 2026.
+
+**Long-form pull-together docs in folder:**
+- `Beyond-Shadows-Strategy.pdf` — 24-page strategy doc (originally pitched to Starfish Ventures, being repurposed/updated for Minderoo Justice Strategy June 2026 Board decision)
+- `JusticeHub-Strategy.pdf` — 6-page pitch-deck-style platform overview ($500K ask, $1.05M total opportunity per Notion JusticeHub project page)
 
 | Date | Doc | Source |
 |---|---|---|
@@ -146,10 +150,14 @@ Contact: Lucy Stronach (lstronach@minderoo.org). **Correction:** wiki lists "$20
 | 2026-04-01 | "BK and Lucy // JusticeHub and Container vibes" | Gmail thread `19d4796dab4204ce` |
 | 2026-04-08 | Post-call thank you | Gmail thread `19d6ba03d76ea3ca` |
 
-### PFI / Paul Ramsay Foundation — relationship only (correction)
+### PFI / Paul Ramsay Foundation — Fellowship submitted; org EOI status TBC
 Subfolder: [`pfi-paul-ramsay/`](./pfi-paul-ramsay/)
-Contacts: Jonas Kubitscheck (jonas@paulramsayfoundation.org.au), Will Frazer, Prebhjot Kaur.
-**Critical correction:** wiki currently lists PFI as "$640K EOI submitted" but Gmail shows **no formal EOI body has been sent**. Relationship is at conversation/lunch stage. The `thoughts/shared/qbe-program/pfi-application-summary.md` may describe a *proposed* application not yet submitted. **Verify with Nick + Ben before mentor session and correct the pipeline status.**
+Contacts: Jonas Kubitscheck (jonas@paulramsayfoundation.org.au), Will Frazer, Prebhjot Kaur. Fellowship contacts: Katie Norman (TFFF surfaced opportunity).
+
+**Long-form pull-together doc in folder:**
+- `2025-11-15_PRF-Fellowship-submission_JusticeHub.pdf` — 14-page **PRF Fellowship 2026 application** by Benjamin Knight, $250K personal Fellowship. Topic: Contained installation + JusticeHub digital platform integration for youth justice systems change. Host org: A Curious Tractor / ACT.
+
+**Note on the $640K wiki claim:** the wiki lists PFI as "$640K EOI submitted" — Gmail shows **no formal organisational $640K EOI has been sent** (only lunches, meetings, and Ben's personal $250K Fellowship submission). The `thoughts/shared/qbe-program/pfi-application-summary.md` may describe a *proposed* organisational application not yet submitted. **Verify with Nick + Ben before mentor session.**
 
 | Date | Doc | Source |
 |---|---|---|
