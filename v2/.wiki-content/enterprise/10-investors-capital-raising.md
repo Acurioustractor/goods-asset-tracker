@@ -4,7 +4,7 @@
 
 ## Raise headline
 
-**Yes, actively.** QBE Catalysing Impact target: demonstrate matched funding by 31 August 2026 to unlock up to **$200K QBE Foundation grant**. The **$400K headline is the upper bound**; our **operating target is $100-200K of cash-equivalent commitments** that meaningfully advance the model. This is the first tranche of a broader blended-finance round whose full target is in the range of $2.5M-$5M across grant + debt + catalytic + guarantees, phased over 18 months.
+**Yes, actively.** QBE Catalysing Impact target: demonstrate **$400K matched funding by 31 August 2026** to unlock up to **$400K QBE Foundation grant**. Our operating target is to land $100-200K of cash-equivalent commitments that meaningfully advance the model, with the full $400K as the upper bound. This is the first tranche of a broader blended-finance round whose full target is in the range of $2.5M-$5M across grant + debt + catalytic + guarantees, phased over 18 months.
 
 ## Blended finance stack (proposed)
 
@@ -12,7 +12,7 @@
 GOODS BLENDED FINANCE STACK (working design)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 GUARANTEES       Snow Foundation letter of support
-GRANTS           QBE Foundation                    up to $200K (match-contingent)
+GRANTS           QBE Foundation                    up to $400K (match-contingent)
                  Snow Foundation R4                $200K (pipeline)
                  IBA 30% grant component           up to $1.5M
                  Existing funders (received)       $445K
@@ -28,7 +28,7 @@ COMMUNITY EQUITY PICC plant purchase (Yr 3-4)      scoped at diagnostic
 
 | Name | Role | Status | Check size | Fit |
 |---|---|---|---|---|
-| **QBE Foundation** | Anchor grant | Cohort selected, match needed | Up to $200K | Climate resilience + inclusion |
+| **QBE Foundation** | Anchor grant | Cohort selected, match needed | Up to $400K | Climate resilience + inclusion |
 | **Social Impact Hub / Jess G.** | Program facilitator | Active | — | Orchestrator |
 | **SEFA (Hannah Ebeling)** | Subordinated debt | Conversation opening | $300K+ | Impact lender, $9M undeployed |
 | **QBE Ventures (Alex)** | CVC equity | Lighthouse program plausible | $5-15M (std), Lighthouse small | Insurance adjacency thesis |

@@ -29,7 +29,7 @@ Beck Parkinson's framing from Session 1: once one catalytic funder commits, they
 ## For Goods
 
 The explicit catalytic layers in our stack:
-- **QBE Foundation grant (up to $200K)** — designed to be catalytic, match-contingent.
+- **QBE Foundation grant (up to $400K)** — designed to be catalytic, match-contingent.
 - **Mindaroo recoverable grant ($200K target)** — catalytic bucket.
 - **PFI repayable grant ($640K target)** — recoverable-grant instrument.
 - **Snow Foundation letter of support** — non-cash catalytic (guarantee of association).

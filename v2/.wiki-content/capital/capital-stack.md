@@ -8,7 +8,7 @@
 GOODS BLENDED FINANCE STACK (working)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 GUARANTEES       Snow Foundation letter of support        non-cash
-GRANTS           QBE Foundation                            up to $200K (match-contingent)
+GRANTS           QBE Foundation                            up to $400K (match-contingent)
                  Snow Foundation R4                         $200K (pipeline)
                  IBA 30% grant component                    up to $1.5M
                  Existing received                          $445K
@@ -36,7 +36,7 @@ COMMUNITY EQUITY PICC plant purchase (Yr 3-4)               scoped at diagnostic
 
 ## Tranche sizing
 
-- **Tranche A (close by 31 Aug 2026):** $400K matched → unlocks up to $200K QBE match. Composition: SEFA commitment + Mindaroo commitment + PFI commitment + IBA letter of offer.
+- **Tranche A (close by 31 Aug 2026):** $400K matched → unlocks up to $400K QBE Foundation grant. Composition: SEFA commitment + Mindaroo commitment + PFI commitment + IBA letter of offer.
 - **Tranche B (close Q4 2026):** full Snow R4 drawdown + IBA first drawdown for Circuit 1 plant.
 - **Tranche C (2027):** IBA expansion + Mindaroo follow-on + Circuit 2 plant.
 

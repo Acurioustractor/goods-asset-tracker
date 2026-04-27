@@ -22,7 +22,7 @@ reason: live pipeline state, commercially sensitive
 
 | Investor | Capital type | Target | Stage | Next action | Owner |
 |---|---|---|---|---|---|
-| [[qbe-foundation]] | Grant | $200K (match-contingent) | Stage 1 active (program) | Complete PIN diagnostic by 31 May | Ben |
+| [[qbe-foundation]] | Grant | $400K (match-contingent) | Stage 1 active (program) | Complete PIN diagnostic by 31 May | Ben |
 | [[snow-foundation]] | Grant + support letter | $200K (R4) | Conversation | Draft R4 proposal | Ben + Nick |
 | [[sefa]] | Sub-debt | $300K+ | Cold outreach | Email Hannah Ebeling to open | Ben |
 | [[iba]] | Debt + grant blend | up to $5M | Conversation (eligibility ✓) | Business plan to qualify | Nick |

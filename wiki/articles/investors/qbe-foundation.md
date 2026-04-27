@@ -12,7 +12,7 @@ Guiding principles: Sustainable Impact, Empowerment, Engagement, Strategic Align
 
 ## What they fund
 
-- Grants, small-to-medium ($10K-$200K via this program; $1M pool).
+- Grants, up to $400K per enterprise via this program (match-contingent); $1M pool across the cohort.
 - Match-contingent catalytic capital.
 - Skilled volunteering time from QBE employees.
 - Hackathon days (1-day per enterprise, August).

@@ -11,7 +11,7 @@ QBE Foundation + Social Impact Hub run Catalysing Impact as a cohort-based accel
 purpose-driven enterprises. The 2026 cohort kicked off with an in-person induction at QBE
 Sydney on 31 March 2026. Goods is represented by Benjamin Knight (A Curious Tractor).
 The program runs approximately March-November 2026, with a $400K match-funding milestone
-(deadline 31 August 2026) that unlocks up to $200K of matched grant from QBE.
+(deadline 31 August 2026) that unlocks up to $400K of matched grant from QBE.
 
 ## Key Dates
 | Date | Event | Status |
@@ -36,7 +36,7 @@ Goods peers of note:
 - **Ngardara Project** (Latrell, Luke, Scott) — likely strong alignment with Goods' remote community work
 
 ## Capital Stack Target
-- QBE Foundation Grant — $200K (conditional on match)
+- QBE Foundation Grant — $400K (conditional on match)
 - Snow Foundation R4 — $200K (pipeline)
 - SEFA Working Capital Loan — $300K (warm, needs formal ask)
 - PFI Repayable Grant — $640K (EOI submitted)
