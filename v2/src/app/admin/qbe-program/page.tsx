@@ -48,7 +48,7 @@ import {
 
 export const dynamic = 'force-dynamic';
 
-const CIVICGRAPH_GOODS_WORKSPACE_URL = 'https://civicgraph.vercel.app/goods-workspace';
+const CIVICGRAPH_GOODS_WORKSPACE_URL = 'https://civicgraph.app/org/act/goods';
 const CIVICGRAPH_SYNC_LABEL = 'GrantScope snapshot synced into Goods outreach targets (16 Mar 2026)';
 
 // ─── Types ──────────────────────────────────────────────────────────────────

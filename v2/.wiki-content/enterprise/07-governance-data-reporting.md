@@ -1,117 +1,158 @@
 # 7. Governance, Data and Reporting
 
-> Is the organisation well governed, with the right skilled Board?
+> Governance is real but early. We have founder accountability, A Curious Tractor Pty Ltd as the current company home, A Kind Tractor Ltd as dormant charitable infrastructure, a named Goods advisory board, community partner accountability, funder reporting, and emerging story/data infrastructure. We do not yet have a finished investor-ready governance system that shows who decides what, how conflicts are handled, how risk is reviewed, and how consent travels with stories and product data.
 
-## Honest headline
+## The human version
 
-Goods trades under A Curious Tractor Pty Ltd and inherits governance at the ACT parent level. ACT operates as a dual-entity structure (Foundation CLG + Ventures trading). A formal independent-majority Goods-specific board does not yet exist; a 10-member advisory group provides functional oversight, and the QBE/SEFA pathway will require us to formalise a board structure in 2026. We are treating this as a priority gap, not a solved problem.
+The strongest governance practice is not paperwork yet.
 
-## Current governance structure
+- We keep going back.
+- We show people what has happened with their words and images.
+- We ask what is wrong with the product.
+- We change the product when the answer is clear.
+- We try to make sure community partners are not just evidence for someone else's pitch.
 
-### ACT parent entities
+That matters because Goods is not just selling beds. We are asking communities to trust a new product system: rubbish collection, local production, delivery, repair, feedback, story use and eventually ownership.
 
-| Entity | Type | Role |
-|---|---|---|
-| **ACT Foundation** | Company Limited by Guarantee (charitable) | Grants, DGR donations, R&D |
-| **ACT Ventures / A Curious Tractor Pty Ltd** (ABN 21 591 780 066) | Trading entity | Goods trades here |
+The governance job is to put enough structure around that trust so it can scale without turning into a sterile corporate process.
 
-**Directors (ACT):** Benjamin Knight, Nicholas Marchesi OAM (co-founders).
-Current board is founder-only. Independent directors are the immediate governance upgrade.
+## Governance reality today
 
-### Goods advisory group (10 members, functional oversight)
+| Area | What exists now | What it proves | What is not settled |
+| --- | --- | --- | --- |
+| Legal vehicle | **A Curious Tractor Pty Ltd** is the expected trading home for Goods. | The work is moving out of sole-trader history and into a company vehicle. | Whether Goods stays inside ACT, becomes a subsidiary, or uses a hybrid/community-controlled structure. |
+| Wider ACT entity context | **A Kind Tractor Ltd** exists as charitable infrastructure in the wider ACT world. Current ACT core facts say it is dormant and not DGR. | There is charitable infrastructure to consider for grants and philanthropy if activated later. | It is not the main Goods operating vehicle today and should not be presented as active Goods governance. |
+| Founder leadership | We currently carry the work day to day. | The work has clear accountable humans, not a faceless project. | Founder authority needs to be translated into roles, delegations and reporting lines. |
+| Advisory board | A Goods advisory board includes Kristy Bloomfield, Nicholas Marchesi OAM, Sally Grimsley-Ballard, Sam Davies, Judith Meiklejohn, Corey Tutt, April Long, Susan Clear, Nina Fitzgerald, Daniel Pittman and Shaun Fisher. | Goods has named external advice across community, manufacturing, design, philanthropy, health and social enterprise. | It is advisory, not a formal board with fiduciary authority. Adeem and Dr Simon Quilty sit in the wider support/partner network, not on the advisory board. |
+| Community accountability | Return visits, partner check-ins, story consent practice, photos/videos shared back, and ongoing conversations with people such as Dianne Stokes, Oonchiumpa, PICC and Tennant Creek partners. | Accountability is relational and place-based, not only upward to funders. | The practice needs a written consent, data and story-use standard before it scales. |
+| Financial reporting | ACT-level finance records, Xero, grant acquittals and funder updates. | Financial evidence exists. | Goods-specific reporting cadence, management accounts and board-style review are not yet mature. |
+| Risk management | A working risk register exists and is being shaped around product safety, cashflow, debt, community trust and environmental risk. | The right risks are visible. | It is not yet a board-approved or routinely reviewed risk process. |
 
-| Name | Organisation | Contribution |
-|---|---|---|
-| April Long | SRAU | Sector advisor |
-| Cory Tutt | Deadly Science | First Nations advisor |
-| Sally Grimsley-Ballard | Snow Foundation | Funder + strategic advisor |
-| Nina Fitzgerald | Independent | Advisor |
-| Shaun Fisher | Fishers Oysters | Industry / operations |
-| Daniel Pittman | Zinus | Industry (mattress / manufacturing) |
-| (Walking on Country) | Walking on Country | Community voice |
-| Judith | Orange Sky | Social enterprise peer |
-| Adeem | CYP | Community services |
-| Nicholas Marchesi | ACT | Project lead |
+## Who is already around the work
 
-This group meets on a regular cadence and provides real strategic input. It is not a governance substitute; it is strategic advisory.
+This is the real governance-adjacent network. It should be shown plainly, with roles kept precise.
 
-## Board formalisation (in-flight)
+| Name / organisation | Current role | Governance relevance |
+| --- | --- | --- |
+| **A Curious Tractor Pty Ltd** | Current Goods trading home. | Company accountability, contracts, sales, finance, product liability and employment. |
+| **A Kind Tractor Ltd** | Wider ACT charity. Current ACT core facts say it is dormant and not DGR. | Possible philanthropy or charitable-purpose pathway if activated later, but not the current Goods operating vehicle. |
+| **Kristy Bloomfield / Oonchiumpa Consultancy** | Cultural lead, Alice Springs partner and potential production pathway. | First Nations leadership, Central Australian governance context and possible Supply Nation/IPP pathway. |
+| **Karen Liddle / Tanya Turner / Fred Campbell / Oonchiumpa** | Oonchiumpa leadership/operating context recorded in the compendium. | Local governance, management, youth pathway and community-led operating design. |
+| **Dianne Stokes** | Waramungu and Warlmanpa Elder, Tennant Creek co-designer and naming partner for Pakkimjalki Kari. | Story consent, product feedback, cultural authority and relationship accountability. |
+| **Palm Island Community Company (PICC)** | Palm Island partner and possible production-facility owner/operator. | Community-controlled delivery and future plant ownership question. |
+| **Ebony and Jahvan Oui** | Palm Island production pathway connected to Defy training. | Future local manufacturing capability and operator pathway. |
+| **Sally Grimsley-Ballard / Snow Foundation** | Strategic funder partner and advisory group member. | Funder judgement, long-term relationship discipline and capital pathway advice. |
+| **Sam Davies / Defy Design** | Manufacturing partner and advisory group member. | Product quality, recycled plastic, production transfer and training. |
+| **Daniel Pittman / Zinus** | Industry partner and advisory group member. | Bedding industry and manufacturing perspective. |
+| **Dr Simon Quilty / Wilya Janta** | NT health and healthy-homes partner. | Housing, health hardware and Tennant Creek system context. |
+| **Judith Meiklejohn / Orange Sky** | Social enterprise advisor. | Social enterprise operating experience and remote laundry-sector context. |
+| **Corey Tutt / DeadlyScience** | CEO/advisor. | First Nations social enterprise and national community trust. |
+| **Keith Rovers / Mint Ellison** | QBE program legal-structures support pathway. | Hybrid entity, impact-investment and community-ownership legal questions. |
+| **Social Impact Hub / PIN / QBE** | Program support, diagnostic, mentoring and capital-readiness support. | External challenge, expert advice, investor-readiness discipline and Stage 2 pathway. |
 
-Per the SEFA conversation (Hannah Ebeling, 31 March 2026): SEFA requires **independent director majority** as a loan covenant, or at minimum a structured advisory group. This aligns with our intent. Proposed path:
+## Advisory group versus board
 
-1. Recruit 3 independent directors by end Q3 2026. Target skills: finance / impact investment, First Nations governance, product / manufacturing.
-2. Set up quarterly board cycle with risk, finance, strategy standing items.
-3. AICD director training (scholarships available) for existing and incoming directors.
-4. Governance Institute of Australia scholarships (available via Mindaroo for regional/remote boards) worth exploring.
+The advisory group should be shown clearly because it is useful. It should not be overclaimed.
 
-## Reporting
+| Function | Current state | Investor-readiness question |
+| --- | --- | --- |
+| Cultural and community advice | Present through Oonchiumpa, Dianne Stokes, PICC, Tennant Creek relationships and place-based advisors. | Who has formal authority to stop or reshape work when community risk is high? |
+| Product and manufacturing advice | Present through Defy Design, Zinus, product partners and production training pathways. | Who signs off product safety, warranty exposure, quality standards and scale readiness? |
+| Philanthropy and social enterprise advice | Present through Snow Foundation, Orange Sky, DeadlyScience, SIH/PIN and QBE program support. | Who helps decide the right mix of grants, loans, sales revenue and patient capital? |
+| Commercial scaling advice | Still a gap. | Who has real experience scaling product, procurement, working capital, inventory and operations? |
+| Legal board authority | Not yet a Goods-specific board structure. | Does ACT need independent directors, an advisory committee charter, or a separate Goods/community board before repayable capital? |
 
-### Internal
+## Reporting rhythm today
 
-- **Monthly:** financial close (Xero), operational KPIs, Empathy Ledger story pipeline.
-- **Quarterly:** strategic review with advisory group; funder updates (Snow, TFN, etc.).
-- **Ad-hoc:** community partner check-ins (LCAA "listen" cycle).
+Goods does not yet have one polished reporting pack. It has several live reporting routes that need to be brought together.
 
-### External
+| Reporting route | Evidence today | What the QBE pack should show |
+| --- | --- | --- |
+| Community reporting | Face-to-face feedback, story consent, follow-up messages, shared media and partner check-ins. | A plain story/data consent practice and examples of how feedback changed products. |
+| Funder reporting | Grant applications, acquittals, Snow Foundation material, QBE application material and funding journey notes. | A finance/funder trail that distinguishes confirmed funding, applications, misses and live opportunities. |
+| Product reporting | Product specs, delivery notes, QR/product ID thinking, repair pathways and usage telemetry for washing-machine prototypes. | A product lifecycle view: delivered, checked, repaired, washed, moved, replaced or retired. |
+| Finance reporting | ACT financial records and cumulative revenue evidence. | Goods-specific monthly reporting: revenue, cost of goods, working capital, cash runway, grants receivable and debt exposure. |
+| Governance reporting | Advisory conversations and working risk register. | A regular governance pack: decisions, risks, conflicts, data issues, finance and community feedback. |
 
-- **Funders:** grant acquittal reports per funder schedule (Snow, FRRR, VFFF, TFN, AMP all on current cycles).
-- **Regulators:** ATO (BAS quarterly, income tax), ASIC (annual return), ACNC (ACT Foundation side).
-- **Public:** impact page on goodsoncountry.com (live metrics fed from Supabase); Empathy Ledger stories (consent-filtered).
+## Minimum governance pack we need next
 
-## Data governance
+This should be practical. It should help us run the work, not just impress funders.
 
-Strongest area in this section. See topic 6 for detail. Key points:
+| Output | Why it matters | Status |
+| --- | --- | --- |
+| One-page governance map | Shows who advises, who decides and who is accountable. | Needed |
+| Advisory group terms of reference | Stops advisory roles being vague or overclaimed. | Needed |
+| Delegation matrix | Clarifies who can approve product changes, spend, contracts, story use, data access, procurement and capital decisions. | Needed |
+| Conflict-of-interest register | Needed before board, investor or procurement scrutiny. | Needed |
+| Board-ready risk register | Turns the working risk picture into owner, trigger, action and review cadence. | Draft base exists |
+| Story/data consent policy | Makes consent, withdrawal, image use, transcript use and dashboard access practical. | Draft practice exists |
+| Monthly Goods reporting pack | Brings finance, product, delivery, community feedback, risk and decisions into one rhythm. | Needed |
+| Legal-structure options note | Tests A Curious Tractor Pty Ltd, A Kind Tractor Ltd, Goods subsidiary, Aboriginal-controlled/local operators and IP/equipment/shared-services model. | Needed with legal input |
 
-- **Consent-first:** every piece of community data has explicit, renewable consent. One-click withdrawal cascades.
-- **OCAP principles:** Ownership, Control, Access, Possession respected in architecture.
-- **Indigenous data sovereignty:** the default, not a bolt-on.
-- **Separation of duties:** Empathy Ledger is a separate platform and database from Goods operational data; storytellers own their records.
+## Data and story governance
 
-## Policies and documents
+The rule should be simple: stories are not raw material.
 
-**In place:**
-- Brand voice guide (inside ACT identity docs).
-- Consent framework (Empathy Ledger).
-- Operations Handbook.
-- Partner Guide.
-- Privacy notice (ecommerce site).
+Goods is building around the idea that people should know where their story is used, be able to change permissions, and be able to retract a story. That is the right direction, but the pack should be careful not to claim every transcript, photo, video and story already flows through a complete automated consent system.
 
-**Draft / in progress:**
-- Formal risk register (topic 5).
-- Whistleblower policy.
-- Conflict of interest register.
-- Child safety framework.
-- Modern slavery statement (not yet required by turnover).
+What can be said now:
 
-**Not in place / to do:**
-- Formal board charter.
-- Director induction pack.
-- Delegations of authority matrix.
+- Goods records and reviews interviews, community conversations and product feedback.
+- Photos and videos are shared back with community members as part of trust-building.
+- The team checks with people when stories are being used, including ongoing checks with people such as Dianne Stokes.
+- Empathy Ledger is the technical direction for consent-led storytelling.
+- QR codes and bed IDs are being trialled as a product-care and feedback spine.
+- The reporting order should be community and partners first, funders and investors second, internal dashboards third.
 
-## Compliance state
+What should not be overstated:
 
-- **ACNC:** ACT Foundation registered.
-- **ASIC:** A Curious Tractor Pty Ltd current.
-- **ATO:** BAS lodged current; DGR status at Foundation level.
-- **Insurance:** public liability (QBE-held), product liability, workers comp. Specifics available on request.
+- Not every historical story has been fully reviewed for external sharing.
+- Not every product has a mature data record yet.
+- Raw household, location or story data should not be exposed in the QBE pack.
+- Story data, product data and CRM follow-up should not be merged without explicit consent rules.
 
-## Gaps we are honest about
+## What funders and investors will need
 
-1. **Founder-only board at trading entity.** Independent directors are the top governance priority.
-2. **No board charter or delegations matrix** specific to Goods.
-3. **Some policies (whistleblower, COI register) are draft.**
-4. **Impact reporting to funders** is strong on story, lighter on longitudinal outcome metrics.
+- A clear legal vehicle and governance authority.
+- A simple board/advisory map showing who advises, who decides and who is accountable.
+- Conflict-of-interest policy and register.
+- Risk register with owner, review date and mitigation status.
+- Goods-specific finance reporting cadence.
+- Evidence rules for what impact claims can be made today versus what is still being tested.
+- Plain-language data sovereignty and consent practice.
+- A decision record for major calls: legal structure, capital type, plant ownership, product liability and community data.
+- A clear answer on whether advisory members convert into formal governance, stay advisory, or sit beside a separate board.
 
-## What we are asking from the diagnostic
+## Human review questions
 
-- Sanity-check our board recruitment plan (skills matrix, sequencing, induction).
-- Point us at SEFA / QBE / SIH expectations on board structure so we formalise once, not twice.
-- Share templates for board charter, risk register, delegations matrix that other cohort enterprises have used successfully.
+- Who should have formal authority over Goods decisions before the first repayable capital lands?
+- Which advisory members are public and which should remain internal?
+- What are the minimum governance documents needed now: advisory terms of reference, conflict register, risk register, delegation matrix, consent policy and finance reporting pack?
+- What does community accountability look like in writing without flattening it into a Western board template?
+- What data can mentors see, what can funders see, and what must stay internal until consent is checked?
 
-## Source documents
+## Next outputs to create
 
-- ACT identity + dual entity: `act-global-infrastructure/wiki/concepts/act-identity.md`
-- Consent architecture: `act-global-infrastructure/wiki/concepts/consent-as-infrastructure.md`
-- Governance + consent: `act-global-infrastructure/wiki/concepts/governance-consent.md`
-- OCAP: `act-global-infrastructure/wiki/concepts/ocap-principles.md`
-- Indigenous data sovereignty: `act-global-infrastructure/wiki/concepts/indigenous-data-sovereignty.md`
+- One-page governance map.
+- Advisory group terms of reference.
+- Goods decision and delegation matrix.
+- Conflict-of-interest register.
+- Board-ready risk register.
+- Data and story governance note written in plain language.
+- Monthly Goods reporting template.
+
+## Sources
+
+- [[../governance/board-structure]]
+- [[../governance/legal-structure]]
+- [[../governance/risk-register]]
+- [[../governance/data-sovereignty]]
+- [[../support-network/advisory-group]]
+- [[../support-network/mint-ellison-legal]]
+- [[../support-network/social-impact-hub]]
+- [[../sources/community-voices-from-the-ground]]
+- [[../sources/community-essential-goods-tracking-model]]
+- [[../sources/qbe-actions-dashboard]]
+- [[../sources/march-2026-compendium]]
+- [[../sources/act-core-facts]]
+- [[../sources/may-2026-founder-working-conversation]].

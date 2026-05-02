@@ -1,32 +1,35 @@
-# Palm Island — PICC
+# Palm Island and PICC
 
-> Palm Island Community Company (Bwgcolman). Primary deployment partner. 141 beds deployed. **Signalled intent to buy the production plant** (the designated community-ownership endpoint). REAL Innovation Fund (DEWR) consortium partner alongside Oonchiumpa and ACT.
+> Palm Island Community Company is a serious relationship and a possible future plant partner. The relationship is live, with strong interest but still work to do on resourcing, model and timing.
 
 ## Relationship
 
-- PICC = Palm Island Community Company.
-- 20-year community-control precedent; ACT's proof case of what community ownership looks like.
-- Deep existing relationship (see ACT Tractorpedia `projects/picc/`).
+PICC is one of the clearest examples of the kind of community-controlled organisation Goods wants to work with.
 
-## Deployment state
+Ben said the opportunity with capital is that Goods could work more deeply with PICC without always needing PICC to bring resources first. That would speed up testing, iteration and trust-building on the island.
 
-- 141 beds deployed.
-- Palm Island Housing in active expansion discussions.
-- REAL Innovation Fund application underway (DEWR), consortium: PICC + Oonchiumpa + ACT.
+## Current significance
 
-## Strategic significance
+- important deployment and relationship partner
+- potential plant or local production pathway
+- useful test of how community ownership could work in practice
+- strong fit with ACT's community-control philosophy
 
-- First signalled plant buyer.
-- Community-ownership transition is the designated "exit" for Goods' investors.
-- Capital stack narrative closes when PICC owns the Queensland plant.
+## What is still open
+
+- whether PICC becomes an operator, buyer, co-owner or another structure
+- what capital is needed to support the relationship properly
+- how much local production happens on Palm Island versus elsewhere
+- what governance and profit-sharing model is right
 
 ## Related
 
 - [[../products/plant-design]]
-- [[../governance/legal-structure]] (community-ownership vehicle)
-- ACT wiki: `projects/picc/picc.md`
+- [[../governance/legal-structure]]
+- [[alice-springs-oonchiumpa]]
 
 ## Sources
 
-- `v2/src/lib/data/compendium.ts`
-- ACT wiki: `projects/goods-on-country.md`
+- [[../sources/may-2026-founder-working-conversation]].
+- [[../sources/march-2026-compendium]]
+- Additional ACT/PICC context should be translated into this page before mentor use.

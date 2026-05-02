@@ -4,18 +4,21 @@
 > where to find what, so agents don't duplicate knowledge that already exists.
 
 ## The ACT Tractorpedia
-**Path:** `/Users/benknight/Code/act-global-infrastructure/wiki/`
-**Size:** 124 articles (as of 2026-04-07)
-**Domains:** projects, concepts, communities, people, stories, art, finance, technical, decisions, research
 
-Tractorpedia is the Karpathy-pattern LLM knowledge base for the whole A Curious Tractor
-ecosystem. It's the "big brain." Goods is one of several projects inside it.
+Tractorpedia is the broader A Curious Tractor knowledge base. It contains ACT identity, method, people, community context, finance concepts and cross-project history.
 
-### Goods content in Tractorpedia
-- `projects/goods-on-country.md` — 293-line project article covering the Goods story, products, partners
-- `raw/` — includes many cross-project articles that touch Goods (storytelling, community context)
-- `people/benjamin-knight.md`, `people/nicholas-marchesi.md` — co-founder context
-- `communities/` — Palm Island, Mount Isa, Tennant Creek community context
+- [ACT Tractorpedia public viewer](https://act-global-infrastructure.vercel.app/tractorpedia.html)
+- [ACT Command Center wiki](https://act-global-infrastructure.vercel.app/wiki)
+
+For mentor use, the link is acceptable as backup evidence. The working rule is still to pull the relevant content into this Goods wiki first, so reviewers do not need to hunt through the whole ACT knowledge base to understand a Goods claim.
+
+### Goods content to translate when needed
+
+- Goods project story, products and partners.
+- founder context.
+- Community context for Palm Island, Mount Isa and Tennant Creek.
+- ACT identity, LCAA method and Beautiful Obsolescence ideas.
+- Finance and governance concepts that support the QBE pack.
 
 ### When to read from Tractorpedia
 - Anything about ACT identity, LCAA method, Beautiful Obsolescence, Third Reality methodology
@@ -30,28 +33,28 @@ ecosystem. It's the "big brain." Goods is one of several projects inside it.
 - Community procurement conversations
 - Funder-specific intel (SEFA, Snow, Mindaroo, IBA, PFI)
 
-## Codebase Data (Canonical)
-**Path:** `v2/src/lib/data/`
-Treat these files as the single source of truth:
-- `products.ts` — Stretch Bed, washing machine, basket bed specs
-- `content.ts` — brand copy, voice
-- `compendium.ts` — community partnerships, funding, voices, deployments
-- `impact-model.ts` — impact calculations
-- `media.ts` — image/video URLs
-- `v2/docs/COMPENDIUM_MARCH_2026.md` — narrative compendium
+## Codebase Data
 
-**Rule:** if a fact lives in one of these files, link to the file from this wiki — don't duplicate.
+Code and data remain the internal source of truth for the app, but mentor-facing pages should link to the translated source pages:
+
+- [[sources/canonical-product-data]]
+- [[sources/march-2026-compendium]]
+- [[sources/impact-model-data]]
+- [[sources/community-essential-goods-tracking-model]]
+- [[sources/qr-code-data]]
+
+**Rule:** if a fact starts in code or another local system, translate the useful fact into this wiki before relying on it in the QBE pack.
 
 ## Memory Notes
-**Path:** `~/.claude/projects/-Users-benknight-Code-Goods-Asset-Register/memory/`
-Fast-access facts the Claude agent loads every session. Short-form. For enduring context
-(not articles). See `MEMORY.md` for the index.
+
+Internal memory notes may help agents resume work, but they are not review documents. Durable context should be written into wiki pages or Notion decisions.
 
 ## External Systems (Query, Don't Duplicate)
 - **Supabase** `cwsyhpiuepvdjtxaozwf` — orders, fleet telemetry, stories, deployments
 - **Xero** — invoices, bed pricing, cash flow
 - **Empathy Ledger** — 12 Goods-project stories, syndicated
-- **Grantscope** — `/Users/benknight/Code/grantscope/` — outreach targets, grant matching
+- **Grantscope** — opportunity, grant and procurement matching, governed through [[program/grantscope-capital-procurement-loop]]
 
 ## Sources
-Scaffolded from: `raw/2026-04-02-email-jay-boolkin-qbe-induction-recap.md` (bootstrap session 2026-04-09).
+- [[program/qbe-catalysing-impact-2026]]
+- [[program/source-register]]

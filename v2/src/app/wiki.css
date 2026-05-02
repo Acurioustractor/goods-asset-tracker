@@ -29,7 +29,16 @@
 .wiki-prose h4 { font-size: 1rem; margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--wiki-muted); }
 
 .wiki-prose p { margin: 0 0 1.15rem 0; }
-.wiki-prose ul, .wiki-prose ol { margin: 0 0 1.15rem 0; padding-left: 1.5rem; }
+.wiki-prose ul,
+.wiki-prose ol {
+  margin: 0 0 1.15rem 0;
+  padding-left: 1.5rem;
+  list-style-position: outside;
+}
+.wiki-prose ul { list-style-type: disc; }
+.wiki-prose ol { list-style-type: decimal; }
+.wiki-prose ul ul { list-style-type: circle; }
+.wiki-prose ol ol { list-style-type: lower-alpha; }
 .wiki-prose li { margin-bottom: 0.35rem; }
 .wiki-prose li::marker { color: var(--wiki-subtle); }
 
@@ -97,18 +106,28 @@
   margin: 0 0 1.5rem 0;
   border: 1px solid var(--wiki-rule);
   border-radius: 6px;
+  max-width: 100%;
 }
 .wiki-prose table {
   width: 100%;
+  min-width: 980px;
   border-collapse: collapse;
   font-family: system-ui, -apple-system, sans-serif;
   font-size: 0.9rem;
+  line-height: 1.55;
 }
 .wiki-prose th, .wiki-prose td {
   text-align: left;
   padding: 0.6rem 0.85rem;
   border-bottom: 1px solid var(--wiki-rule);
   vertical-align: top;
+  min-width: 9rem;
+}
+.wiki-prose th:first-child,
+.wiki-prose td:first-child {
+  min-width: 9rem;
+  width: 9rem;
+  white-space: nowrap;
 }
 .wiki-prose th {
   background: var(--wiki-surface);
@@ -117,6 +136,47 @@
   border-bottom-width: 2px;
 }
 .wiki-prose tr:last-child td { border-bottom: 0; }
+
+.wiki-media-grid,
+.wiki-media-strip {
+  display: grid;
+  gap: 1rem;
+  margin: 1.25rem 0 1.75rem;
+}
+
+.wiki-media-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.wiki-media-strip {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.wiki-prose figure {
+  margin: 0;
+  border: 1px solid var(--wiki-rule);
+  background: #fff;
+}
+
+.wiki-prose img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.wiki-media-grid img,
+.wiki-media-strip img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.wiki-prose figcaption {
+  padding: 0.75rem 0.85rem 0.85rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--wiki-muted);
+}
 
 .wiki-deadlink {
   color: #a8a29e;

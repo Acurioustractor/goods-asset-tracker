@@ -14,16 +14,16 @@
 
 ## What this locks in for Goods
 
-- **Debt: yes** → SEFA, IBA, possibly PRI Debt from Mindaroo.
-- **Equity: deferred** → no 2026 round; revisit in 2027 once CLG/Ventures structure decisions land (see [[../governance/legal-structure]]).
-- **Grant + recoverable: yes** → QBE, Snow, PFI, Mindaroo.
-- **Guarantees: yes** → Snow letter of support as catalytic signal.
-- **Crowdfunding: plausible but not 2026** → Kindship-style DPO for community investors could work later.
+- **Debt: yes** -> SEFA, IBA, possibly PRI Debt from Mindaroo.
+- **Equity: deferred** -> no 2026 round; revisit in 2027 once CLG/Ventures structure decisions land (see [[../governance/legal-structure]]).
+- **Grant + recoverable: yes** -> QBE, Snow, PFI, Mindaroo.
+- **Guarantees: yes** -> Snow letter of support as catalytic signal.
+- **Crowdfunding: plausible but not 2026** -> Kindship-style DPO for community investors could work later.
 
 ## Sources
 
-- `raw/2026-03-31-qbe-induction-slides-fulltext.md`
-- `raw/2026-03-31-qbe-induction-slides.pdf` (slide ~30)
+- [[../program/qbe-catalysing-impact-2026]]
+- [[../sources/case-investor-alignment-tool]]
 
 ## Related
 

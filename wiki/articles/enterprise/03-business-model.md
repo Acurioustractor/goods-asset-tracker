@@ -1,98 +1,451 @@
 # 3. Business Model Clarity
 
-> Can the organisation clearly articulate its business model?
+> Goods is currently a product social enterprise moving out of grant-funded batches and into a clearer product business. The Stretch Bed is the commercial anchor: a real product, available for sale, with photos, specs, community feedback and institutional demand. Pakkimjalki Kari is still a prototype. The production plant is the bridge from selling products to transferring capability: community waste becomes product, local work becomes part of the margin, and the long-term customer is not only the funder or council, but the person, family or community organisation that chooses the product because it works.
 
-## One-line description
+## The Business In Plain English
 
-Goods designs durable household goods for remote communities, manufactures them in containerised plants sited On-Country, sells them B2B (housing, health, schools) and B2C (retail + sponsored-bed), and transfers plant ownership to community partners over time.
+Goods designs essential household goods with remote Indigenous communities, builds them for remote conditions, and sells them through the channels that can actually get them into homes.
 
-## Revenue streams
+The current model is not a clean ecommerce business yet. It is a mix of:
 
-1. **Institutional B2B (current primary)**
-   - Housing providers, health services, schools, community-controlled organisations.
-   - Institutional price: $560 (Stretch Bed single), with volume terms.
-   - Pipeline: Centrecorp 107 beds (approved), NT Housing $4B program (qualifying), Homeland Schools 65 beds, NPY 200-350 beds standing interest.
+- funded bed batches,
+- institutional purchase by councils, schools, health services, community organisations and foundations,
+- corporate or philanthropic purchase for community deployment,
+- direct online sale of the Stretch Bed,
+- future resident purchase when price, supply and local servicing are strong enough,
+- future production partnerships where local organisations make, repair and sell the product.
 
-2. **Direct B2C retail**
-   - goodsoncountry.com (Next.js + Stripe, live).
-   - Retail price: $600-850 depending on channel.
-   - Sponsor-a-Bed: donor buys, bed goes to a community request.
+That mixed model is not a weakness by itself. It matches the market. Remote households face high freight, irregular supply, broken retail pathways, predatory lending and low availability of fit-for-purpose goods. The business model has to work through the buyers who currently hold the money while still moving toward resident and community ownership.
 
-3. **Production services and licensing (emerging)**
-   - Community production partnerships (revenue share model).
-   - License the plant design to partners (long-term).
-   - Training and consulting.
+![The Stretch Bed in community use](/images/media-pack/woman-on-red-stretch-bed.jpg)
 
-## Unit economics (Stretch Bed)
+## What We Sell Now
 
-| Line | Value | Source |
+### The Stretch Bed
+
+The Stretch Bed is the only product currently ready for direct sale.
+
+It is a flat-pack bed made from:
+
+- recycled HDPE plastic legs,
+- two galvanised steel poles,
+- heavy-duty Australian canvas.
+
+The current product claims are:
+
+| Feature | Current claim |
+|---|---|
+| Weight | 26kg |
+| Load capacity | 200kg |
+| Dimensions | 188 x 92 x 25cm |
+| Assembly | About 5 minutes |
+| Tools required | None |
+| Design life | 10+ years |
+| Warranty | 5 years |
+| Plastic diverted | 20kg HDPE per bed in the current product data |
+| Current commercial status | Available for sale |
+
+The product is simple on purpose. Two poles slide through the canvas. The recycled plastic legs slot onto the poles. The canvas can be washed. Parts can be replaced. It flat-packs for freight and storage.
+
+![Stretch Bed parts before assembly](/images/pitch/bed-seq-3-all-parts.jpg)
+
+![Assembled Stretch Bed](/images/pitch/bed-assembled.jpg)
+
+### Pakkimjalki Kari Washing Machine
+
+Pakkimjalki Kari is not for sale yet. It is a prototype and interest-register product.
+
+What is real:
+
+- the base unit is a commercial-grade Speed Queen,
+- the machine has been adapted for remote conditions,
+- the name Pakkimjalki Kari was given in Warumungu language by Elder Dianne Stokes,
+- the product direction is repairability, durability and simpler controls,
+- the current prototype is still too expensive for the resident-ownership goal.
+
+The commercial challenge is clear: keep the durability, reduce the price, and build a support model that means repairs can happen closer to community.
+
+![Pakkimjalki Kari name panel](/images/product/washing-machine-name.jpg)
+
+![Washing machine enclosure in recycled plastic panels](/images/media-pack/washing-machine-enclosure-sunset.jpg)
+
+### Basket Bed And Future Products
+
+The Basket Bed is legacy. It can be referenced as product history or open-source learning, but it is not the current offer.
+
+Fridges and other HDPE products are future possibilities. They should not be presented as commercial products yet. The fridge idea matters strategically because a fridge is always on, used daily, and could become a household resource hub for cold storage, power, water and phone charging. But it is still concept-stage.
+
+## Who Pays Today
+
+The person who should ultimately benefit is the resident and household. The payer today is usually someone else.
+
+| Buyer type | What they buy | Why this channel matters now |
 |---|---|---|
-| Production cost (small batch, today) | $550-650 | v2/src/lib/data/products.ts |
-| Production cost at scale (5,000+/yr) | ~$350 | pathway, not current |
-| Institutional wholesale price | $560 | Xero verified |
-| Retail price | $600 | live ecommerce |
-| Gross margin at scale | 50-55% | strategy PD |
-| Community profit share | 40% of profit | non-negotiable |
+| Community-controlled organisations | Bed batches, future plant partnerships | They know local need and can govern distribution better than a distant buyer |
+| Health services | Beds and washing-machine pathways | They understand the link between bedding, hygiene, scabies, RHD and household health |
+| Schools and homeland organisations | Beds for children and families | They see day-to-day need and can aggregate demand across homelands |
+| Councils and local governments | Waste collection, beds, plant hosting, landfill reduction | They may benefit from plastic diversion and fewer bulky goods in dumps |
+| Philanthropic funders | Sponsored deployments, R&D, plant setup | They can fund the transition while the product market matures |
+| Corporates | Staff builds, sponsored batches, RAP or place-based commitments | Useful where the work is place-aligned and not extractive |
+| Individual customers | Stretch Beds through ecommerce | Early direct proof, but not yet the main remote-community pathway |
+| NDIS, aged care and OT pathways | Beds for specific clients | A real pathway when a bed solves mobility, hygiene or safe-sleep needs |
 
-The margin is thin at current scale and becomes healthy at scale. The QBE match-funding round is how we bridge to scale economics.
+The resident-ownership pathway remains the north star, but the current business cannot pretend that every household can already buy direct at full price. The stronger claim is that Goods is using institutional channels now to build product proof, supply and trust, while working toward direct affordability.
 
-## Cost structure (high level)
+## Why People Want It
 
-- **Direct production:** materials (HDPE pellets / recycled feedstock, steel poles, canvas), labour, packaging.
-- **Plant operating:** containerised facility power, maintenance, consumables.
-- **Logistics:** freight to remote communities (high cost; offset over time by On-Country production).
-- **Overhead (ACT shared):** design and engineering, storytelling (Empathy Ledger), admin, compliance.
-- **R&D:** ongoing product iteration, washing machine prototype, fridge design.
+The demand signal is strongest where people have seen or used the product.
 
-## Product portfolio
+Ivy on Palm Island described the basic need:
 
-| Product | Status | Role |
+> "Hardly anyone around the community has beds."
+
+Alfred Johnson explained the access problem:
+
+> "You can't just go down to the store and buy beds."
+
+Dianne Stokes in Tennant Creek received one bed and came back asking for 20 more. Norman Frank asked for three beds in maroon after his daughter tried one. Homeland Schools Company has a 65-bed request recorded. Utopia Homelands has a pathway for beds for children. PICC has discussed a 40-bed order. Groote Archipelago has an exploratory request for 500 mattresses and 300 washing machines.
+
+Those are not all the same category. Some are approved, some are requested, some are exploratory. But together they show a pattern: people are not asking for an abstract "innovation program". They are asking for beds and washers that can survive the place.
+
+![Community members assembling a Stretch Bed](/images/media-pack/community-bed-assembly.jpg)
+
+## How Money Flows Today
+
+The current operating loop looks like this:
+
+1. A partner, funder, council, school, health service or community organisation identifies need.
+2. Goods scopes a batch or product deployment.
+3. Funding, invoice payment or grant support pays for materials, production, travel and delivery.
+4. Beds or machines are built, delivered and tracked.
+5. Community feedback informs the next design and business decision.
+6. The QR/register system begins to turn the product into a trackable asset, not a one-off handout.
+
+This is why the founders describe Goods as sitting between a program and a product business. The product is real, but the operating model still depends heavily on funded batches and relationship-led sales.
+
+## Procurement And Relationship Pathways
+
+The business model will not mature through one generic sales funnel. Different buyers need different evidence, timing and follow-up.
+
+| Pathway | Typical buyer | What they need to see | Likely product | Finance implication | CRM/GHL status needed |
+|---|---|---|---|---|---|
+| Community partner | Aboriginal-controlled organisations, local community companies, homelands organisations | Product proof, community fit, local role, delivery plan, consent and ownership pathway | Stretch Bed batches, future plant partnerships | May need grant/philanthropy support, partner contribution or staged orders | `goods-partner-target`, place, relationship owner, next action |
+| Health buyer | ACCHOs, remote health services, environmental health teams | Link between bedding, washing, scabies, hygiene, RHD risk and household health hardware | Stretch Beds, washing-machine pathway | Could support program funding, health grants or funded deployments | `goods-buyer-target`, health evidence, decision maker, procurement timing |
+| Procurement buyer | Councils, schools, housing providers, government programs, institutional buyers | Lifecycle cost, warranty, repair, freight, compliance, delivery capacity and references | Stretch Beds first, later washers | Needs quotes, payment terms, delivery schedule and working-capital planning | Deal stage, quote status, order signal, procurement method |
+| Impact finance | QBE, SEFA, foundations, impact lenders, patient capital | Revenue logic, risk controls, use of funds, governance, reporting and repayment confidence | Inventory, plant readiness, operating capacity | Capital should match demand and working-capital cycle, not general optimism | `goods-capital-target`, capital type, conditions, readiness gaps |
+| Aboriginal trust or royalty pathway | Trusts, royalty bodies, place-based benefit funds | Community benefit, resident ownership, local employment, governance and product durability | Beds for residents, local production or repair capability | Can unlock resident access without predatory credit | `aboriginal_trust`, place, decision process, cultural authority |
+| Corporate or philanthropic sponsor | Corporates, foundations, workplace-giving or RAP partners | Human proof, place alignment, impact evidence, delivery cost and consented stories | Sponsored batches or production readiness support | Useful bridge capital, but can drift into charity framing | sponsor pathway, story permissions, deployment approval |
+| Direct customer | Individual customers, allies, campers, metro buyers, remote residents where affordable | Product page, price, freight, warranty and support | Stretch Bed | Useful product-market proof and margin, but not yet the main remote access pathway | ecommerce order, support path, product feedback |
+
+Each pathway should have its own evidence pack. A health buyer should not receive the same material as an impact lender. A community partner should not be treated like a procurement department. This is where the wiki, Notion, HighLevel/GHL and Grantscope need to work together.
+
+## Grantscope, HighLevel/GHL And Supabase Loop
+
+The operating system should be simple:
+
+1. Grantscope finds or tracks the opportunity.
+2. The wiki/source register holds the evidence and reusable artefacts.
+3. Notion holds the human review, decisions and workshop notes.
+4. HighLevel/GHL holds approved relationship follow-up.
+5. Supabase holds live operational truth once something becomes an actual contact, deal, order, product, story, bed journey or production record.
+
+| System | Role in the business model | What should not happen |
 |---|---|---|
-| **Stretch Bed** | Commercial (v4) | Flagship, for sale, revenue anchor |
-| **Pakkimjalki Kari Washing Machine** | Prototype, 5-11 deployed | Register interest, not for sale yet |
-| **Basket Bed** | Discontinued | Open-sourced (free plans) |
-| **Fridge** | Concept | Future, same plant/molds |
+| Wiki/repo | Canonical working pack, source pages, evidence, topic logic and reusable pitch/procurement material. | Do not leave business-critical facts hidden in local code, draft files or raw folders as the only answer. |
+| Notion | founder review, comments, decisions, source queue, workshop outputs and human judgement. | Do not make Notion the only source of truth for structured product, finance or CRM data. |
+| Grantscope | Opportunity discovery, grant/funder mapping, philanthropy pipeline and fit against Goods artefacts. | Do not treat every opportunity as a lead worth pursuing. |
+| HighLevel/GHL | Follow-up engine for buyers, funders, partners and procurement targets after human approval. | Do not push raw research notes or sensitive community stories into CRM. |
+| Supabase | Operational truth for contacts, deals, orders, products, stories, bed journeys and production/fleet data in the v2 project. | Do not use the wrong Supabase project or expose raw household/story data externally. |
 
-Note: the Weave Bed is discontinued; any reference in older decks is legacy.
+The useful business discipline is not "more tools". It is one handoff rule: an opportunity only moves from research to CRM when a human has approved the pathway, evidence, next action and sensitivity level.
 
-## Customer segments
+## The Price And Cost Logic
 
-- **Community-controlled organisations** (PICC, Oonchiumpa, Centrecorp, Julalikari, Anyinginyi, NPY, Wilya Janta).
-- **Housing providers** (NT Housing, Homeland Schools, Aboriginal Housing Victoria).
-- **Health services** (Healthy Homes programs, OT workers, Aboriginal Community Controlled Health Organisations).
-- **Schools** (Homeland Schools Company is the first named buyer).
-- **Retail consumers and donors** (B2C and Sponsor-a-Bed).
-- **Philanthropic funders** (not a customer, but a capital source).
+Older strategy material lists Stretch Bed production cost at roughly $550 to $650 per bed at 100-unit scale, with B2B, retail and sponsored prices above that. Treat those numbers as planning assumptions, not final investor-grade unit economics.
 
-## Channels
+The current commercial logic is:
 
-- Direct relationships with community partners (primary).
-- Ecommerce site (goodsoncountry.com) for retail and donors.
-- Advisory network introductions (10-member advisory group).
-- Forums and on-Country visits.
+- Goods does not need to be the cheapest bed in Australia.
+- Goods does need to beat the true remote cost of bad products.
+- The true cost includes freight, replacement, breakage, landfill, poor sleep, hygiene risk, lost dignity and money leaving community.
 
-## Key partners (activity-critical)
+The cost-reduction levers are practical:
 
-- **Oonchiumpa Consultancy** (Alice Springs): confirmed manufacturing partner, Fred Campbell cultural lead.
-- **PICC** (Palm Island): deployment partner, signalled buyer of plant, REAL Innovation Fund consortium partner.
-- **Snow Foundation**: anchor funder, long-term partner.
-- **Zinus**: mattress manufacturing industry advisor.
-- **University of Melbourne**: design research.
-- **Our Community Shed**: production partner.
-- **Plate It Forward**: PICC integration.
+| Lever | How it could improve the model | Current status |
+|---|---|---|
+| Component purchasing | Buy steel, canvas and hardware more efficiently as volume grows | Live assumption, needs supplier agreements |
+| Waste plastic | Move plastic from a bought input to a paid collection stream | Possible through councils and waste partners |
+| Local labour | Assembly, sorting, shredding and delivery can become paid local work | Core intent, needs plant economics |
+| Freight | Flat-pack design reduces freight burden | Real product feature |
+| Backloading | Delivery trucks return with waste plastic | Procurement strategy idea, not yet proven |
+| Rebates | Energy, landfill or waste-reduction rebates may offset consumer price | Needs place-by-place work |
+| Warranty and repair | Higher upfront cost can be justified if life is materially longer | Needs long-term tracking data |
 
-## Competitive position
+The washing machine has a different challenge. Current prototypes have cost several thousand dollars. The target is a much lower resident-relevant price, likely through redesign, volume, subsidy, rebates, institutional purchasing or a lease/service model. That is not solved yet.
 
-We are not competing on price with IKEA. We are competing on total cost of ownership with the shadow market of disposable furniture that already drains community budgets. Our moat is: (1) product actually designed for the conditions, (2) community co-design legitimacy, (3) On-Country manufacturing loop, (4) ACT ecosystem relationships (Empathy Ledger, PICC, Oonchiumpa).
+## Revenue Types To Keep Separate
 
-## Where the model is still evolving
+The pack should not blur all money together. Goods needs separate revenue and capital categories because each one proves something different.
 
-- **Community ownership transition economics.** What does the P&L look like for PICC the day they buy the plant? Not modelled yet.
-- **Optimal plant density.** One container feeds how many communities, at what freight cost, is still being calibrated.
-- **B2C retail viability.** Retail is live but small; we do not yet know if it scales to a material channel or stays as a donor/brand touchpoint.
+| Type | What it is | What it proves | What it does not prove yet |
+|---|---|---|---|
+| Product sales | Stretch Beds sold direct or through buyers. | Product demand and price acceptance. | Long-term remote resident affordability. |
+| Funded deployments | Philanthropy, grants or sponsors pay for a batch. | Partners want the product and can fund delivery. | Resident purchase behaviour. |
+| Institutional procurement | Councils, schools, health services or housing providers buy through procurement. | The product can fit formal buyer systems. | That procurement will be fast or repeatable. |
+| Waste/plastic revenue | Councils or partners pay for collection, diversion or processing. | Raw material may become revenue rather than cost. | That waste economics work in every place. |
+| Plant/setup funding | Capital or grants pay for facility readiness. | The production model can be backed. | That a local plant is profitable without ongoing support. |
+| Patient debt | Loan capital for inventory, working capital or plant readiness. | Funders trust repayment potential. | That debt should be taken before revenue timing is proven. |
+| Shared services/fees | ACT/Goods receives support fees, licence fees, equipment rental or training fees. | The central support model may be sustainable. | That community ownership is protected unless fees and rights are designed carefully. |
 
-## Source documents
+## The Production Model
 
-- Strategy PD Part 5 (Business Model), Part 6 (Production), Part 7 (Partnerships), Part 8 (Go-to-Market): `v2/docs/GOODS_STRATEGY_PD.md`
-- Canonical product specs and pricing: `v2/src/lib/data/products.ts`
-- Compendium (deployments, partners, funding): `v2/src/lib/data/compendium.ts`
+The production plant is the business model's most important strategic asset because it changes who can make money from the product.
+
+The system includes:
+
+- a 20ft container for shredding and plastic collection,
+- a 40ft production container,
+- a Zerma granulator,
+- a heat press,
+- a hydraulic press,
+- a cooling press,
+- a CNC router,
+- edge finishing,
+- dust extraction,
+- a diesel generator,
+- batch logs and safety procedures.
+
+The production process is:
+
+1. collect plastic,
+2. sort plastic,
+3. shred,
+4. weigh,
+5. fill trays,
+6. heat,
+7. press,
+8. cool,
+9. cut,
+10. finish edges,
+11. assemble beds.
+
+![Containerised production facility](/images/process/container-factory.jpg)
+
+![Shredded plastic ready for production](/images/process/shredded-plastic-tubs.jpg)
+
+![Pressed recycled plastic sheets](/images/process/pressed-sheets.jpg)
+
+The current plant story is not "we have solved distributed manufacturing." It is "we have enough plant, process and documentation to test distributed manufacturing properly."
+
+The next proof is whether a local partner can run enough of the process, safely and repeatedly, with Goods providing support rather than doing everything.
+
+## What A Repeatable Deal Should Contain
+
+A serious buyer, funder or partner conversation should result in a standard deal record, not just a memory in one founder's head.
+
+| Deal field | Why it matters |
+|---|---|
+| Buyer or partner category | Clarifies whether the relationship is procurement, health, community, capital, trust, sponsor or direct sale. |
+| Place | Keeps the opportunity tied to community context and avoids generic scaling language. |
+| Product | Stretch Bed, washing-machine pathway, production facility, repair/support or future product. |
+| Quantity or demand signal | Separates paid, approved, requested, warm pipeline and exploratory numbers. |
+| Evidence used | Links the buyer to the source page, quote, photo, product sheet, pitch deck or case study used. |
+| Sensitivity | Shows whether stories, photos or place details can be shared externally. |
+| Price and payment path | Records whether the model is sale, grant, sponsor, trust, rebate, debt-funded or blended. |
+| Delivery and support pathway | Shows how products get to households and who handles follow-up. |
+| Next action | Makes the relationship operational in HighLevel/GHL. |
+| Supabase record | Links to live contact, deal, order, product or bed journey once the opportunity becomes operational. |
+
+## The Community Ownership Model
+
+The long-term business model is not just sales. It is transfer.
+
+The strongest version is:
+
+- local people collect plastic,
+- local teams sort and shred,
+- local teams press and cut,
+- local teams assemble and deliver,
+- local organisations sell, repair and track,
+- ACT/Goods provides R&D, design, quality systems, training, capital support and back-office services only where useful.
+
+Older documents mention a 40 percent community profit share. The March 2026 compendium correctly flags that as a placeholder concept, not a final committed structure. The more honest current position is that the community benefit model is being designed and may include:
+
+- local wages,
+- community-owned enterprises,
+- equipment transfer,
+- local revenue retention,
+- training and certification,
+- shared services,
+- partner-owned plant models,
+- place-specific governance.
+
+The principle is settled. The legal and financial mechanism is not.
+
+## Sales Channels To Test
+
+### 1. Funded Community Batches
+
+This is the current strongest channel. It works when a funder, foundation, council, school or health service can fund a batch and Goods can deliver with the right community partner.
+
+Strength: immediate impact and proof.
+
+Risk: Goods becomes dependent on grants and does not prove product-market fit with paying customers.
+
+### 2. Institutional Buyers
+
+This includes health organisations, schools, homeland organisations, councils, housing providers, Aboriginal community-controlled organisations and government programs.
+
+Strength: one buyer can aggregate real demand across many households.
+
+Risk: procurement cycles are slow, and the user may not be the buyer.
+
+### 3. Direct Ecommerce
+
+The Stretch Bed can be sold through the website.
+
+Strength: simple transaction and direct product proof.
+
+Risk: this may serve campers, allies or metro buyers before it solves remote resident access.
+
+### 4. Sponsor A Bed Or Corporate Partnership
+
+Useful for supporters who want to fund beds now.
+
+Strength: fast capital for production and deployment.
+
+Risk: can drift into charity framing if the resident has no choice or ownership.
+
+### 5. Community Store And Retail Pathways
+
+Outback Stores, ALPA or local stores could become channels if pricing, freight, stock, service and finance are solved.
+
+Strength: makes the product visible where people already shop.
+
+Risk: retail markups and payment-plan dynamics could recreate the same affordability problem.
+
+### 6. NDIS, Aged Care And OT Pathways
+
+There is a possible fit where washable, movable, lower-height or safer sleeping products meet a person's funded support needs.
+
+Strength: resident-specific funding and clear health justification.
+
+Risk: requires clinical specification, documentation and admin capacity.
+
+### 7. Disaster, Temporary Accommodation And Workforce Channels
+
+The bed may work in disaster recovery, ranger programs, agricultural accommodation, camps and temporary housing.
+
+Strength: could create margin that supports remote-community work.
+
+Risk: can distract from the core mission if not governed carefully.
+
+## Competitive Position
+
+Goods does have competitors if the frame is broad:
+
+- standard beds,
+- mattresses,
+- camp stretchers,
+- washing machines,
+- laundries,
+- furniture suppliers,
+- recycling programs,
+- employment programs,
+- social enterprises.
+
+The useful competitive question is narrower:
+
+| Need | Existing market problem | Goods position |
+|---|---|---|
+| A bed for remote homes | Standard beds and mattresses are hard to freight, hard to clean and often fail | Flat-pack, washable, repairable, no tools, made from recycled HDPE and steel |
+| A washer for remote homes | Standard machines break and repairs are difficult | Prototype using commercial-grade base and remote-condition housing |
+| Waste reduction | Plastic and broken goods accumulate in dumps | Community plastic can become bed components |
+| Local work | Products are usually imported into community | Plant model creates sorting, shredding, pressing, assembly, delivery and repair work |
+| Evidence | Donations often disappear after delivery | QR and asset register can track assets, check-ins and repairs |
+
+The differentiation is not one feature. It is the combination of product design, community feedback, circular material flow, local production, repairability and tracking.
+
+## What The Photos And Stories Prove
+
+This page should be able to stand without us explaining it live.
+
+The photos show:
+
+- the Stretch Bed exists,
+- it is assembled by people, not just rendered,
+- the washing-machine prototype exists,
+- the containerised production plant exists,
+- recycled plastic is being processed,
+- product tracking exists.
+
+The stories show:
+
+- people are asking for beds,
+- freight and access are real barriers,
+- the product has been tested in homes and communities,
+- design changes came from lived use,
+- the health case is understood by community and health partners.
+
+![QR code on bed for tracking and support](/images/pitch/bed-qr-code.jpg)
+
+## What Is Clear Enough To Say
+
+- Goods has one current commercial product: the Stretch Bed.
+- Goods has one current prototype product: Pakkimjalki Kari.
+- The current payer is usually institutional, philanthropic, corporate or community-controlled.
+- The desired future customer includes residents and locally owned enterprises.
+- The plant is the pathway from product sales to local production and community ownership.
+- The business model is plausible but not yet fully proven.
+
+## What Is Not Clear Enough Yet
+
+- Final unit economics for a locally owned plant.
+- Standalone Goods P&L and cashflow model.
+- Resident purchase price and finance pathway.
+- Washing-machine price reduction path.
+- Legal form for community ownership or plant transfer.
+- Which sales channels should be pursued first and which should be parked.
+- Repeat-purchase, repair and retention evidence over multiple years.
+- Approval rules for when a Grantscope opportunity becomes a GHL contact/deal.
+- How shared-service fees, licence fees or equipment rental work without weakening community ownership.
+- Which buyer pathways have enough proof for 2026 and which should stay in research.
+
+## Human Review Questions For Ben And Nicholas
+
+1. Which customer are we prioritising for the next six months: funders, institutional buyers, resident purchase, or plant partners?
+2. What is the cleanest current Stretch Bed price story for wholesale, funded batches, direct ecommerce and sponsor pathways?
+3. Which demand items are paid, approved, requested, warm pipeline or exploratory?
+4. What price would make resident ownership realistic without pushing people into bad credit?
+5. What parts of plant revenue belong to the community operator versus ACT/Goods shared services?
+6. What channels should we explicitly not pursue in 2026 because they distract from the mission?
+7. What proof would make us comfortable taking patient debt for inventory?
+8. Which photos and stories are approved for this pack?
+9. Which pathway should HighLevel/GHL treat as the default first pipeline: health buyers, community partners, procurement buyers, capital targets or Aboriginal trusts?
+10. Which Grantscope opportunities should be killed now because they are too off-mission or too costly to pursue?
+
+## Evidence Used
+
+The substance above is drawn into the document, not left only as links. The source pages below are the reviewable locations for checking and improving the claims.
+
+- Founder working conversation and notes, May 2026.
+- Goods HQ Notion page and linked product/production pages, fetched 2026-05-02.
+- Product facts: [[../sources/canonical-product-data]].
+- Strategy facts: [[../sources/goods-strategy-pd]].
+- Community, demand and finance facts: [[../sources/march-2026-compendium]].
+- Procurement pathways: [[../sources/procurement-strategy]].
+- Community story evidence: [[../sources/community-voices-from-the-ground]].
+- Production evidence: [[../sources/production-facility-guide]].
+- CRM/procurement operating logic aligned with [[../program/grantscope-capital-procurement-loop]], [[../sources/procurement-strategy]] and the v2 HighLevel/GHL patterns.
+
+## Related
+
+- [[01-vision-and-ambition]]
+- [[02-social-objective-impact]]
+- [[04-financial-management]]
+- [[10-investors-capital-raising]]
+- [[../program/grantscope-capital-procurement-loop]]
+- [[../sources/procurement-strategy]]
+- [[../products/stretch-bed]]
+- [[../products/washing-machine]]
+- [[../products/plant-design]]

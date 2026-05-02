@@ -1,129 +1,203 @@
 # 10. Investors and Capital Raising
 
-> Is the organisation seeking to raise capital and ready for impact investment?
+> Goods should raise the cheapest, most patient and most mission-fit capital it can. The aim is not to look investable in a generic way. The aim is to fund inventory, production, people, partner capacity and proof without bending the work away from community ownership, repairable products, washable health hardware and resident agency.
 
-## Raise headline
+## The Human Version
 
-**Yes, actively.** QBE Catalysing Impact target: demonstrate **$400K matched funding by 31 August 2026** to unlock up to **$400K QBE Foundation grant**. Our operating target is to land $100-200K of cash-equivalent commitments that meaningfully advance the model, with the full $400K as the upper bound. This is the first tranche of a broader blended-finance round whose full target is in the range of $2.5M-$5M across grant + debt + catalytic + guarantees, phased over 18 months.
+The honest capital story is that Goods arrived here by curiosity, pressure and need.
 
-## Blended finance stack (proposed)
+QBE is useful because it forces the hard questions:
 
-```
-GOODS BLENDED FINANCE STACK (working design)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-GUARANTEES       Snow Foundation letter of support
-GRANTS           QBE Foundation                    up to $400K (match-contingent)
-                 Snow Foundation R4                $200K (pipeline)
-                 IBA 30% grant component           up to $1.5M
-                 Existing funders (received)       $445K
-CATALYTIC        Mindaroo recoverable              $200K (warm)
-                 PFI repayable grant               $640K (EOI submitted)
-SUB DEBT         SEFA working capital              $300K (conversation opening)
-SENIOR DEBT      IBA Business Loan (up to 70%)     up to $5M (eligibility confirmed)
-COMMUNITY EQUITY PICC plant purchase (Yr 3-4)      scoped at diagnostic
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
+- What capital is actually right for this work?
+- What should stay grant-funded?
+- What could responsibly carry debt?
+- What needs procurement or confirmed demand behind it?
+- What should not be funded because it would distort the model?
+- What would community ownership of capital look like later?
 
-## Investor pipeline (live)
+Goods is not trying to become a venture-backed consumer-goods company. Conventional equity is not the near-term centre of gravity. Equity only becomes interesting if communities are owners, not if external investors need an exit.
 
-| Name | Role | Status | Check size | Fit |
-|---|---|---|---|---|
-| **QBE Foundation** | Anchor grant | Cohort selected, match needed | Up to $400K | Climate resilience + inclusion |
-| **Social Impact Hub / Jess G.** | Program facilitator | Active | — | Orchestrator |
-| **SEFA (Hannah Ebeling)** | Subordinated debt | Conversation opening | $300K+ | Impact lender, $9M undeployed |
-| **QBE Ventures (Alex)** | CVC equity | Lighthouse program plausible | $5-15M (std), Lighthouse small | Insurance adjacency thesis |
-| **Snow Foundation** | Grant + LOI | Long-term partner, R4 pipeline | $200K | Partnership model |
-| **PFI** | Repayable grant | EOI submitted | $640K | Catalytic |
-| **Mindaroo** | Recoverable grant | Warm | $200K | Catalytic capital bucket |
-| **IBA** | Debt + grant blend | Eligibility confirmed | Up to $5M | Indigenous business |
-| **Tim Fairfax Family Foundation** | Grant | Target | $50-150K (indicative) | 33 comms focus |
-| **Dusseldorp Forum** | Grant | Target | $50-150K (indicative) | JustReinvest connection |
-| **Beck Parkinson** | Advisor | Active | — | Ex-SVA, ex-DFAT, selection committee |
+The working register for money already received, warm funder options and relationship status is [[../capital/funder-register]]. That page should be the first stop before reading individual investor profiles.
 
-## Capital we have received
+## Current QBE Requirement
 
-$445,685 total philanthropic (Snow, TFN, VFFF, FRRR, AMP). See topic 4 for breakdown.
-
-## Investment readiness assessment (honest)
-
-| Criterion | State | Notes |
-|---|---|---|
-| Clear ask | In progress | Stack designed, tranche sizing needs sharpening per investor |
-| Investment memo | Draft | Pitch deck exists; formal IM to be finalised |
-| Financial model (3-statement) | Not yet | 5-year cashflow exists; integrated model is a gap |
-| Valuation | Not yet | Required before any equity / convertible conversation |
-| Board governance | Gap | Independent directors in recruitment; see topic 7 |
-| Use-of-proceeds by tranche | Drafted | Plant infrastructure, working capital, team |
-| Data room | Partial | Funder-gated due-diligence pages live on v2 site; materials being collated |
-| Exit / ownership transition | Mapped | PICC plant purchase is the designated exit-equivalent |
-
-## The three-question investor test (Alex, QBE Ventures)
-
-1. **Why is what you're doing important?**
-   Because 389 products in 8 communities already show the cost of disposable furniture failure, the child-health-attendance-income chain it breaks, and the $3M/yr waste cycle in Alice Springs alone. Every dollar we displace buys ten-year durability instead.
-
-2. **Why are YOU the right org?**
-   Because ACT has spent two years co-designing with Oonchiumpa, is the delivery partner PICC trusts, and has built consent-first impact infrastructure (Empathy Ledger) that most social enterprises do not. Our product survives conditions that kill competitor products. We are not building a brand; we are building a handover.
-
-3. **Is it achievable?**
-   Yes. Demand exceeds current supply by 3-10x (200-350 bed waiting list against current throughput). Unit economics at scale support debt. NT Housing $4B program is the institutional demand anchor. Capital stack is designed and partially warm.
-
-## The insurance adjacency angle (for QBE specifically)
-
-Alex's prompt: "Think about who might care about this thing and what is the lever for making this bigger."
-
-For QBE, the adjacency is clear:
-- Remote housing = insurable assets.
-- Durable furniture = longer housing-fitout asset life = lower claims on remote housing portfolios.
-- Flat-pack, rapidly deployable beds = post-cyclone / post-flood disaster resilience capability.
-- HDPE recycling loop = environmental credit for ESG reporting.
-- Community stability (local jobs, plant ownership) = lower social risk = lower insurance exposure.
-
-This reframes Goods from "nice social enterprise we give to" into "infrastructure that reduces QBE's own claims exposure." It is a QBE Ventures Lighthouse pitch as much as a Foundation one.
-
-## Knockout criteria we apply to prospective investors (Beck Parkinson discipline)
-
-We will drop mismatches fast:
-1. Investment geography: NT / remote Australia must be in mandate.
-2. Legal structure: invests in CLG + Pty Ltd + hybrid.
-3. Investment size: matches the tranche we need.
-4. Return expectations: realistic on timeframe (5-10 years) and social-first return.
-5. Capital type: offers the instrument we need in the stack.
-6. Stage: invests at early commercial stage, not seed and not growth.
-
-## Timeline
-
-| Date | Milestone |
+| Requirement | Current read |
 |---|---|
-| 2026-04-07 | Webinar: Finding Money |
-| 2026-04-24 | Webinar: Impact Investing 101 |
-| 2026-05-01 | Webinar: Legal Structures (Mint Ellison) |
-| 2026-05-08 | Webinar: Deal Anatomy |
-| 2026-05-31 | PIN Diagnostic complete |
-| 2026-06-30 | Investment memo + financial model ready |
-| 2026-08-31 | **QBE match-funding milestone ($400K)** |
-| 2026-11-30 | Program close, full round targeted |
+| Program | QBE Catalysing Impact Stage 2. |
+| Possible QBE funding | Up to `$400,000` from a `$1M` pool. |
+| Match requirement | External matched investment required. |
+| Match deadline | 31 August 2026. |
+| Stage 2 submission | September 2026. |
+| Current status | Stage 1 active, capital-readiness work underway. |
 
-## Gaps we are honest about
+This requirement is real. It should drive discipline, not panic.
 
-1. **Integrated 3-statement financial model** to investor standard: not yet built.
-2. **Formal investment memo:** draft only.
-3. **Valuation:** not yet determined; needed for any equity conversation.
-4. **Independent directors:** in recruitment; investors will want this before close.
-5. **Data room:** partial; needs finalising for SEFA due diligence.
+## Working Raise Ambition
 
-## What we want from the diagnostic
+The `$2.5M-$5M` ambition should stay labelled as directional.
 
-- Pressure-test the blended finance stack design (right instruments, right sizing, right sequencing).
-- Identify the most time-critical gaps between "investor-ready on paper" and "investor-ready in practice."
-- Referrals: independent directors, CFO advisor, investment memo template.
-- Sanity-check the QBE Ventures Lighthouse angle.
+It comes from:
 
-## Source documents
+- the amount of inventory that would change readiness,
+- likely grant and funder sizes,
+- production facility needs,
+- staff gaps,
+- working capital requirements,
+- community-partner support needs,
+- conversations already in the pipeline.
 
-- Session 1 learnings (capital types, investor panel): `thoughts/shared/qbe-program/session-1-learnings.md`
-- Live QBE dashboard: `v2/src/app/admin/qbe-program/page.tsx`
-- Weekly action tracker: `v2/src/app/admin/qbe-actions/page.tsx`
-- Wiki article: `wiki/articles/qbe-catalysing-impact-2026.md`
-- Funder-gated due-diligence pages: live on goodsoncountry.com (funder section)
-- Grantscope integration for funder intelligence: `/Users/benknight/Code/grantscope`
+It is not yet a modelled raise. It needs a use-of-funds table, tranche logic, cashflow model and debt-capacity test.
+
+## Capital Types That Fit
+
+| Capital type | Fit for Goods | Watch-outs |
+|---|---|---|
+| Grants | Strong fit for R&D, co-design, early plant proof, evaluation and community engagement. | Can keep Goods batch-funded if not paired with sales and working capital. |
+| Philanthropy | Strong fit for proof, partner support and patient growth. | Needs reporting discipline and clear claims. |
+| Recoverable grants | Possible fit if repayment is patient and tied to credible cashflow. | Dangerous if treated like a grant. |
+| Patient loans | Possible fit for inventory or confirmed-order working capital. | Needs debt-service model and governance. |
+| Procurement revenue | Strong fit if it supports local ownership and product-of-choice demand. | Can pull Goods toward institutional buyers if resident ownership is forgotten. |
+| Guarantees or letters of support | Useful to unlock working capital and funder confidence. | Needs legal and finance review. |
+| Community-owned equity | Interesting later. | Not a 2026 assumption without structure, governance and legal advice. |
+| Conventional external equity | Low near-term fit. | Could reduce flexibility and create the wrong incentives. |
+
+## Working Capital Stack
+
+| Layer | Possible source | Current status | What it could fund |
+|---|---|---|---|
+| QBE Stage 2 | QBE Foundation | Program opportunity, match required. | Matched growth funding and capital-readiness execution. |
+| Snow R4 | Snow Foundation | Relationship and draft proposal pathway. | Production-scale support, R&D or operating capacity. |
+| Philanthropy | TFN, FRRR/VFFF, AMP, Snow-style family and community foundations | Some received, some alumni or warm. | Proof, delivery, evaluation and partner support. |
+| Government grants | REAL Innovation, Rotary, Myer and similar | Some live applications or pending decisions. | Plant, jobs, community delivery and health hardware. |
+| Patient or catalytic capital | PFI/Paul Ramsay, Minderoo or similar | Relationship/research stage unless confirmed otherwise. | Recoverable growth capital, if fit is real. |
+| Debt | SEFA, IBA, First Australians Capital or similar | Needs verification and readiness work. | Inventory or confirmed-order working capital. |
+| Procurement revenue | Councils, health, community partners, institutional buyers | Emerging, not yet predictable enough. | Repeatable sales and production demand. |
+
+## Pipeline Hygiene
+
+The funding journey warns that several older pipeline labels need correction.
+
+| Pipeline item | Current caution |
+|---|---|
+| FRRR/VFFF | Do not count as two separate `$50K` grants. It is one joint `$50K` Backing the Future stream. |
+| PFI/Paul Ramsay | Local source trail says no formal organisational `$640K` EOI was found in Gmail. Verify before saying it was submitted. |
+| Minderoo | Relationship/alignment pathway, not a formal Goods grant application unless another record exists. |
+| IBA | Eligibility or conversation status needs the actual record surfaced. |
+| SEFA | Conversation opening appears thin in source trail. Verify before presenting as active. |
+| Dusseldorp | Do not count the known `$15K` as Goods funding. It belongs to Mounty Backyard / Contained / JusticeHub unless a Goods-specific record is found. |
+
+## What The Capital Would Fund
+
+| Use of funds | Why it matters | Best capital fit |
+|---|---|---|
+| Stretch Bed inventory | Stops Goods waiting for a funded batch before it can respond to demand. | Grants, patient working capital, procurement-backed debt. |
+| Production facility deployment | Turns local waste and labour into On-Country production. | Grants, philanthropy, government jobs/waste funding, patient capital. |
+| Materials and freight | Bridges timing between purchase, build, delivery and payment. | Working capital tied to confirmed demand. |
+| Sales and procurement capability | Moves Goods beyond founder-led relationships. | Grant-funded capacity first, then sales-funded role. |
+| Operations and general management | Reduces founder bottleneck. | Philanthropy, grants, early revenue. |
+| Finance and reporting | Makes repayable capital responsible. | QBE support, philanthropy or operating budget. |
+| Community partner capacity | Lets partners participate without carrying the full resource burden. | Grants, philanthropy, government/community ownership funds. |
+| Impact and evaluation | Builds evidence without turning story into extraction. | Grants and philanthropy, not fast-repay debt. |
+
+## Investor Pack Needed
+
+The next investor pack should be modular, not a single glossy deck.
+
+- One-page plain-language Goods story.
+- Product proof sheet for Stretch Bed.
+- Current product status sheet for washing machines and future fridge.
+- Finance summary with reconciled received funding and pipeline.
+- Use-of-funds by tranche.
+- 12-month cashflow and working-capital ask.
+- Unit economics and price pathway.
+- Governance and legal structure note.
+- Data sovereignty and consent note.
+- Risk register.
+- Impact evidence and measurement gaps.
+- Partner and demand evidence.
+- Grants/funder source trail from [[../sources/grants-archive-index]].
+
+## Readiness Gates Before Raising Repayable Capital
+
+Repayable capital should not be taken until these are answered:
+
+- What revenue will repay it?
+- What payment timing supports repayment?
+- What is the downside case?
+- What happens if a grant is delayed?
+- What happens if a batch costs more than expected?
+- Which assets or orders secure the capital?
+- Who has governance responsibility for repayment?
+- Does repayment pressure compromise community ownership or product quality?
+
+## How Grantscope/CivicScope Fits
+
+Grantscope/CivicScope should find and rank opportunities, not decide.
+
+For each funder, grant, procurement buyer or capital partner, the system should return:
+
+- opportunity type,
+- amount signal,
+- deadline,
+- fit reasons,
+- source URL,
+- likely evidence needs,
+- relationship warmth,
+- governance risk,
+- suggested next action,
+- whether it belongs in Notion review.
+
+Only after human review should anything become a GHL action.
+
+## What Goes To GHL
+
+GHL should receive approved follow-up only.
+
+Allowed after approval:
+
+- funder or buyer target,
+- relationship owner,
+- pipeline stage,
+- next touch,
+- tags such as `goods-capital-target`, `goods-buyer-target` or `goods-partner-target`,
+- short note pointing back to the evidence page.
+
+Not allowed without explicit review:
+
+- raw story material,
+- household or asset-level data,
+- private contact notes,
+- unverified funding claims,
+- speculative relationship details.
+
+## Human Review Questions
+
+- What is the true near-term raise target once finance is reconciled?
+- Which capital is needed in the next 90 days versus the next 12 months?
+- Which funders are received, live, warm, research-only or no-go?
+- What is the minimum matched capital path for QBE Stage 2?
+- Which capital can fund inventory without unsafe repayment pressure?
+- Which costs should remain grant-funded?
+- Which procurement pathways create revenue without undermining resident ownership?
+- What legal structure is needed before debt or community ownership capital?
+
+## Next Outputs
+
+- Capital stack by tranche.
+- Matched funding plan for QBE Stage 2.
+- Investor/funder pipeline with corrected status.
+- Use-of-funds table tied to finance model.
+- Repayable-capital readiness checklist.
+- Modular investor pack.
+- GHL-approved follow-up list.
+
+## Sources
+
+- [[../sources/funding-journey]]
+- [[../sources/grants-archive-index]]
+- [[../sources/case-investor-alignment-tool]]
+- [[../capital/capital-stack]]
+- [[../investors/investor-pipeline]]
+- [[../investors/alignment-tool]]
+- [[../program/grantscope-capital-procurement-loop]]
+- [[../sources/may-2026-founder-working-conversation]].

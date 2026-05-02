@@ -9,7 +9,7 @@
 const GRANTSCOPE_BASE_URL =
   process.env.GRANTSCOPE_API_URL ||
   process.env.NEXT_PUBLIC_GRANTSCOPE_URL ||
-  'https://civicgraph.vercel.app';
+  'https://civicgraph.app';
 
 const GRANTSCOPE_SECRET =
   process.env.GRANTSCOPE_SYNC_SECRET ||

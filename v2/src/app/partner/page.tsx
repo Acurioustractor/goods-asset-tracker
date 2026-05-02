@@ -65,7 +65,7 @@ const partnerOptions = [
     description: 'Support through grants, impact investment, or philanthropic funding. Full transparency and reporting.',
     pricing: 'Flexible — aligned to your program',
     features: [
-      'Detailed impact measurement (ALMA framework)',
+      'Detailed impact measurement using the Australian Living Map of Alternatives',
       'Quarterly reporting and community updates',
       'Site visits and community introductions',
       'Co-design of impact outcomes',

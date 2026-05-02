@@ -120,7 +120,7 @@ ACT has five named methodologies in the Tractorpedia (951 articles total, 12 to 
 
 ### Founder pay (red flag worth naming)
 
-ACT records show **Ben Knight has invoiced $0** through FY26 to date. Nick Marchesi has invoiced $238.6K, ~40% R&D eligible. Ben's zero-pay status is a sustainability risk a mentor will surface within the first 30 minutes of conversation if it stays uncorrected. It is also leaving R&D refund cash on the table (~$41K incremental on a $100K founder invoice).
+ACT records show **Ben Knight has invoiced $0** through FY26 to date. Nicholas Marchesi has invoiced $238.6K, ~40% R&D eligible. Ben's zero-pay status is a sustainability risk a mentor will surface within the first 30 minutes of conversation if it stays uncorrected. It is also leaving R&D refund cash on the table (~$41K incremental on a $100K founder invoice).
 
 ### Sibling ventures and what Goods learns
 

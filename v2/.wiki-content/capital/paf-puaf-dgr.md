@@ -16,13 +16,15 @@ Australian Private Ancillary Funds (PAFs) and Public Ancillary Funds (PuAFs) are
 
 **Losses** on loans to DGRs are also credited as distributions.
 
-## Why it matters to Goods
+## Why it might matter to Goods
 
-The ACT Foundation (CLG, DGR-eligible) can receive below-market loans from PAFs and PuAFs that satisfy the funder's distribution requirement while funding Goods R&D. This turns "debt to a charity" into a philanthropic-compliant instrument on both sides of the table.
+This is a possible capital pathway only if the legal and DGR position is confirmed. Current ACT core facts say **A Kind Tractor Ltd** is ACNC-registered, dormant and **not DGR**, with the DGR application parked. Do not describe any **ACT Foundation** as a legal entity or assume DGR eligibility.
+
+If A Kind Tractor Ltd later becomes an appropriate and eligible charitable vehicle, below-market loans from PAFs and PuAFs may be worth legal/accounting review. Until then, this page is a mechanism note, not a current Goods financing route.
 
 Practical opening moves:
-- Ask Mindaroo Foundation if they will structure their recoverable grant as a below-market loan into ACT Foundation.
-- Check whether Snow Foundation's R4 could include a loan component (not just grant) through the same mechanism.
+- Ask Standard Ledger and legal counsel whether A Kind Tractor Ltd can or should be used for any Goods funding pathway.
+- Check whether Mindaroo Foundation or Snow Foundation would even consider recoverable grant or below-market loan structures once the entity position is clear.
 - PFI's repayable grant is already structured compatibly.
 
 ## Regulatory references
@@ -30,14 +32,23 @@ Practical opening moves:
 - **PuAFs:** Section 15 of the Public Ancillary Fund Guidelines 2022.
 - **PAFs:** Section 15 of the Private Ancillary Fund Guidelines 2019.
 
-## ACT Foundation DGR status
+## A Kind Tractor Ltd status
 
-A Curious Tractor runs a dual entity. The Foundation side is ACNC-registered and DGR-eligible. The Ventures side (A Curious Tractor Pty Ltd) is not. For PAF/PuAF loans to count for distribution purposes, they need to land in the Foundation. See [[../governance/legal-structure]].
+The current Goods pack should say:
+
+- A Curious Tractor Pty Ltd is the expected Goods trading home.
+- A Kind Tractor Ltd exists as the ACT charity.
+- Current ACT core facts say A Kind Tractor Ltd is dormant and not DGR.
+- DGR status and ancillary-fund eligibility must be verified before any funder-facing claim.
+- ACT Foundation and ACT Ventures are not current legal entity names.
+
+See [[../governance/legal-structure]] and [[../sources/act-core-facts]].
 
 ## Sources
 
-- `raw/2026-03-31-qbe-induction-slides-fulltext.md`
-- `raw/2026-03-31-qbe-induction-slides.pdf`
+- [[../program/qbe-catalysing-impact-2026]]
+- [[../sources/case-investor-alignment-tool]]
+- [[../sources/act-core-facts]]
 - ATO: Public Ancillary Fund Guidelines 2022, Private Ancillary Fund Guidelines 2019
 
 ## Related

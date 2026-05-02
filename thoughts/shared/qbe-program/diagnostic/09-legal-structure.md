@@ -1,79 +1,61 @@
 # 9. Legal Structure
 
-> Does the organisation's legal structure enable delivery of its strategic objectives and vision?
+> The legal structure is not finished. Goods is now moving under A Curious Tractor Pty Ltd, after operating for a long time through Nicholas's sole-trader structure. A charity entity exists, but it is not the main Goods vehicle today. The next decision is how to create a structure that can trade, take grants or loans, protect the mission and let community-owned plants make sense.
 
-## Current structure
+## Current state
 
-Goods trades inside **A Curious Tractor Pty Ltd** (ABN 21 591 780 066), the ACT Ventures trading entity. ACT operates a **dual-entity** structure:
+A Curious Tractor Pty Ltd has only recently been registered. Goods is expected to sit there as the trading activity.
 
-| Entity | Type | Role | Goods involvement |
-|---|---|---|---|
-| **ACT Foundation** | Company Limited by Guarantee (CLG), charitable, DGR | Receives philanthropic grants, DGR donations, runs R&D | Holds grant funding for Goods R&D; DGR pathway for donor-funded beds |
-| **ACT Ventures / A Curious Tractor Pty Ltd** | Proprietary company (trading) | Revenue, social enterprise trading | Goods sales, manufacturing, commercial contracts |
+There is a charity entity in the wider ACT world, but it is "very much not used" for Goods at the moment. That is important. The dual-entity setup should not be described as more settled than it is.
 
-The separation is deliberate:
-- Foundation takes on R&D risk with grant capital.
-- Ventures takes on commercial risk with earned revenue and debt.
-- Mission stays locked even under commercial pressure because the Foundation holds the intent.
+## What the structure needs to do
 
-## Why this structure (strategic fit)
+- sell products
+- receive grants where appropriate
+- carry product and plant liability
+- take repayable capital only when ready
+- make room for Aboriginal-controlled or locally owned production entities
+- hold IP, machinery, design support and shared services without centralising all power
+- protect the social and environmental purpose
 
-1. **Philanthropic + commercial capital at once.** Many social enterprises get stuck choosing between charitable (DGR but can't trade well) and for-profit (can trade but can't receive grants). Dual-entity solves both.
-2. **Community ownership pathway.** When PICC (Palm Island) buys the plant, the transaction sits cleanly in Ventures without unwinding charitable status.
-3. **Mission lock.** Ventures is mission-locked to the shared ACT purpose; Foundation constitution reinforces it. Profit share (40% to community) survives director changes.
-4. **Impact investment readiness.** Ventures can take debt and (if structured right) catalytic / PRI capital. Foundation can take grants. Investors pick the instrument that matches their capital.
+## Models being explored
 
-## What works today
+Several possible shapes are still on the table:
 
-- **Grant eligibility** via Foundation (Snow, FRRR, VFFF, TFN, AMP all received through this pathway).
-- **Revenue and ecommerce** via Ventures (Stripe, Xero, B2B invoicing).
-- **R&D tax incentive** claimable via the trading entity (see `act-global-infrastructure/wiki/finance/rdti-claim-strategy.md`).
-- **Separation of books** (ACT-GD cost code tracks Goods specifically inside ACT books).
+- Goods remains inside A Curious Tractor Pty Ltd for now.
+- Goods becomes its own subsidiary or sub-entity.
+- A charitable function is used where philanthropy genuinely fits.
+- Community-owned or Aboriginal-controlled entities run recycling, production, sales and maintenance On-Country.
+- A holding entity provides IP, machinery, funding support and shared services.
+- The relationship could look like a franchise, fee-for-service, licence, equipment rental or something more community-led.
 
-## What is under active review
+None of those should be written as the answer yet.
 
-### Sub-entity for Goods
+## Charity trade-off
 
-The QBE program (Keith Rovers / Mint Ellison legal structures webinar, 1 May 2026) is one of the prompts we are using to decide whether Goods should become its **own sub-entity** (e.g. a subsidiary of A Curious Tractor Pty Ltd, or a separate CLG with mission lock). Triggers for sub-entity formation:
-- A capital raise that requires a clean investment vehicle.
-- PICC / community ownership transaction requiring a transferable equity-like interest.
-- Liability ring-fencing as product volume grows.
+A charitable function could open up more philanthropy.
 
-Decision: target by end Q3 2026, informed by QBE program legal sessions and our chosen capital stack.
+The risk is that it pulls Goods away from commercial discipline and resident choice. If a foundation buys beds and gives them away, Goods only has one customer to satisfy. That is useful in the short term, but it is not the same as proving that people want and value the product enough to own it.
 
-### Co-operative or community-ownership vehicle
+## Mission protection
 
-PICC has signalled intent to buy the plant. We are exploring:
-- **Co-operative structure** (Patburn Co-op in the QBE cohort is a 2,000-member co-op, useful template).
-- **Aboriginal community-controlled corporation** (ORIC-registered) if the plant moves into community hands.
-- **Hybrid** (head-licence from ACT Ventures to a community-controlled operating entity).
+There is not yet a formal mission-protection mechanism such as B Corp, purpose lock or a detailed community-ownership constitution for Goods.
 
-### DPO / community equity
+The stronger current protection is cultural: values, relationships, advisory input, and the stated intent to learn from Indigenous governance rather than defaulting to Western boards and paperwork just because investors understand them.
 
-Crowdfunding Equity / DPO (Kindship example from Session 1: 800 investors, avg $2K, $1.1M raised) is interesting for the B2C / community-investor side. Not a 2026 priority but on the map.
+That still needs legal form before capital lands.
 
-## Compliance state
+## Open questions
 
-- **ASIC:** A Curious Tractor Pty Ltd current.
-- **ACNC:** ACT Foundation registered.
-- **ATO:** BAS current; DGR active on Foundation side.
-- **ORIC:** not currently registered; may be relevant if community-controlled operating entity spins up.
-- **Trademark / IP:** "Goods on Country" brand used; formal IP register is a to-do.
+- Should Goods have its own entity before or after the first repayable capital?
+- What structure best supports a community-owned plant?
+- What should ACT own centrally: IP, machinery, brand, contracts, data, training?
+- How does a local entity pay for shared services without becoming dependent?
+- What mission lock is enough for funders, founders and community partners?
+- When does ORIC or another Aboriginal-controlled legal structure become the right path?
 
-## Risks flagged by the structure
+## Sources
 
-1. **Tax complexity.** Cross-entity flows (grant-funded R&D feeding commercial product) need clean accounting and arms-length pricing. Audit documentation exists.
-2. **DGR edge cases.** Donor-funded beds going to community vs commercial beds sold to the same community need clean logic; we use Sponsor-a-Bed as the designated DGR-compatible product flow.
-3. **Loan covenants.** SEFA and IBA will both require governance conditions (independent directors) at the trading entity. Aligns with our governance plan.
-
-## What we want from the diagnostic
-
-- View on whether we should form a Goods-specific sub-entity now or wait for a triggering transaction.
-- Keith Rovers / Mint Ellison precedent on co-operative vs CLG vs trust structures for community-ownership transfer.
-- Referrals for Indigenous corporation legal specialists (ORIC).
-
-## Source documents
-
-- ACT dual-entity detail: `act-global-infrastructure/wiki/concepts/act-identity.md`
-- Session 1 legal notes: `thoughts/shared/qbe-program/session-1-learnings.md`
-- Capital stack design: topic 10 below
+- May 2026 founder transcript and notes, user-provided.
+- QBE legal structures session references: `wiki/articles/support-network/mint-ellison-legal.md`.
+- ACT legal and identity references in ACT Tractorpedia.

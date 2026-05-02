@@ -16,13 +16,13 @@
 |---|---|
 | **Jess Grebenschikoff** | Program facilitator |
 | **Adam** | Crowdfunding expert, backup to Jay |
-| **Sarah Gregory** | Director, People — leads PIN diagnostic |
+| **Sarah Gregory** | Director, People — leads PIN working session |
 | **Jay Boolkin** | QBE Foundation program coordinator |
 
 ## What they provide for Goods
 
 - Access to PIN members for advisory, mentoring, skilled volunteering.
-- 3-hour diagnostic workshop + insights report.
+- 3-hour PIN working session + insights report.
 - Connection to Keith Rovers / Mint Ellison (legal).
 - Webinar access (CATALYSINGIMPACT code).
 - Syndicate facilitation for Stage 2.
@@ -38,8 +38,9 @@
 
 ## Sources
 
-- `raw/2026-03-31-qbe-induction-slides.pdf`
-- `raw/2026-04-02-email-jay-boolkin-qbe-induction-recap.md`
+- [[../program/qbe-catalysing-impact-2026]]
+- [[../program/program-structure]]
+- [[../program/program-expectations]]
 
 ## Related
 

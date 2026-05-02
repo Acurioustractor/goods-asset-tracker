@@ -1,64 +1,67 @@
-# Our Investment Needs (Tab 1 equivalent)
+# Our Investment Needs
 
-> Markdown recreation of Tab 1 from the CASE Investor Alignment Tool. Our side of the table — what Goods is actually looking for in a capital partner. Edit in Obsidian as we refine.
+> Goods needs capital that fits an early product social enterprise, not capital that forces the organisation to pretend it is already a mature company. Grants, patient debt, recoverable funding and sales revenue are the near-term fit. Conventional equity is not a 2026 priority.
 
-## Priority scale
+## What we need capital for
 
-- **H** = High (most important to be aligned on)
-- **M** = Medium
-- **L** = Low
+- build inventory rather than waiting for each funded batch
+- deploy the first On-Country production facility
+- cover materials, labour and delivery timing
+- hire or contract sales, operations, procurement and finance capability
+- support community partners during testing and setup
+- improve impact measurement without extracting stories
 
-## Knockout criteria (all six must align)
+## Capital that fits now
 
-| # | Criterion | Our need |
+| Type | Fit | Notes |
 |---|---|---|
-| 1 | **Investment Geography** | Invests across remote Australia (NT priority, plus QLD Palm Island, WA Ninga Mia, SA remote). National mandate fine, state-restricted is a deal-breaker unless it includes NT. |
-| 2 | **Legal Structure** | Can fund a CLG (ACT Foundation) or a trading Pty Ltd (A Curious Tractor Pty Ltd). Hybrid/dual-entity experience preferred. |
-| 3 | **Investment Size** | $100K-$5M per entity per tranche. Tranche A (Aug 2026): $400K matched. Full round target $2.5M-$5M over 18 months. |
-| 4 | **Return Expectations** | Social-first. Financial return acceptable at concessionary rates for catalytic capital, market-rate for senior debt. Timeframe 5-10 years. Exit = community-ownership transfer (PICC plant purchase), not IPO or acquisition. |
-| 5 | **Capital Type** | Tranche-dependent: grants, recoverable grants, loan guarantees, PRI debt, variable-repayment debt, standard debt, sub-debt. Not equity for 2026. |
-| 6 | **Stage of Growth** | Early commercial (post-prototype, pre-scale). 389 products deployed, $537K cumulative revenue, first revenue-generating plant stand-up underway. |
+| Grants | High | Best for R&D, engagement, early measurement and partner setup |
+| Recoverable grants | Possible | Useful if repayment terms are patient and tied to success |
+| Below-market debt | Possible | Only where revenue timing is credible |
+| Working capital | Possible | Needs clear orders, inventory and repayment timing |
+| Sales revenue | Essential | The long-term discipline |
+| Conventional equity | Low for 2026 | Too likely to reduce flexibility unless community ownership is the equity pathway |
 
-## Fit criteria: mission and vision
+## Investor filters
 
-| Priority | Criterion | Our need |
-|---|---|---|
-| H | **Social Mission** | Aligned with remote Indigenous communities, circular economy, durable manufactured goods, On-Country ownership. |
-| H | **Company Vision** | Supports vision that production transfers to community ownership over 5-10 years (PICC is first designated buyer). Not a "grow to sell" model. |
+The right capital partner should:
 
-## Fit criteria: expected from us
+- understand remote Australia or be willing to learn properly
+- accept an early commercial stage
+- value community ownership rather than an exit
+- be comfortable with uncertainty around legal structure while it is being worked through
+- help Goods get clearer instead of only demanding polish
+- offer useful introductions to procurement, government, finance or governance expertise
 
-| Priority | Criterion | Our state |
-|---|---|---|
-| H | **Governance** | Willing to recruit independent directors; SEFA-style board covenant acceptable. See [[../governance/board-structure]]. |
-| H | **Restrictions** | Willing to accept project / geography / impact-milestone restrictions within reason. |
-| M | **Impact Evidence** | Strong on story (Empathy Ledger, 33 storytellers), medium on longitudinal outcome metrics. See [[../impact/alma-framework]]. |
+## What we should not claim yet
 
-## Fit criteria: expected from our investors
+- that the full $2.5 million to $5 million raise is modelled
+- that the community-ownership vehicle is decided
+- that impact metrics are fully live
+- that resident purchase has been proven at scale
+- that debt can be serviced without a proper model
 
-| Priority | Criterion | Our need |
-|---|---|---|
-| H | **Connections** | Investor can introduce us to syndicate partners, government procurement, or community organisations. |
-| H | **Geography experience** | Knows remote Australia, ideally NT specifically. Otherwise cultural briefing burden falls on us. |
-| H | **Industry experience** | Ideally has funded manufacturing / social enterprise / Indigenous-led business before. |
-| M | **Business challenge experience** | Has worked with organisations scaling from prototype to commercial. |
-| M | **Impact on future investments** | Their participation credibly unlocks follow-on capital (signalling value). |
+## Next materials to build
 
-## Matchable summary
-
-What we are effectively filtering for:
-
-> A funder operating in remote Australia, comfortable with dual-entity structures, prepared to commit $100K-$5M via grant or recoverable or debt, time horizon 5-10 years, social-first returns, prepared to accept community-ownership exit, culturally literate on remote Indigenous context, and whose name credibly unlocks the next funder.
+- one-page narrative
+- product and demand proof
+- modular investor deck
+- simple financial model
+- use-of-funds by tranche
+- current risk register
+- governance and legal-structure note
+- impact evidence note separating current from proposed metrics
 
 ## Sources
 
-- `raw/2026-03-31-investor-alignment-tool-case.xlsx` (Tab 1)
-- `raw/2026-03-31-qbe-induction-slides-fulltext.md`
-- `thoughts/shared/qbe-program/session-1-learnings.md`
+- [[../sources/may-2026-founder-working-conversation]].
+- [[../sources/case-investor-alignment-tool]]
+- [[../program/qbe-catalysing-impact-2026]]
+- [[../enterprise/10-investors-capital-raising]]
 
 ## Related
 
 - [[knockout-criteria]]
 - [[alignment-tool]]
 - [[../capital/capital-stack]]
-- [[../governance/legal-structure]]
+- [[../enterprise/10-investors-capital-raising]]

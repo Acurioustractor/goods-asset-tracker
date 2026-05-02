@@ -519,7 +519,7 @@ function HowWeTrackSection() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-sm uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
-              ALMA Framework
+              Australian Living Map of Alternatives
             </p>
             <h2
               className="text-3xl font-light mb-2"
@@ -528,7 +528,7 @@ function HowWeTrackSection() {
               How We Measure
             </h2>
             <p className="text-sm" style={{ color: '#5E5E5E' }}>
-              Every item tracked from creation to delivery and beyond — real-time data from the field.
+              Our learning and accountability lens for holding product data, community feedback, consent and practical change together.
             </p>
           </div>
 

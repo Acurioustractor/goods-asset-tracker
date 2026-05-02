@@ -250,10 +250,10 @@ export const funding: FundingRecord[] = [
   { id: 'amp', source: 'AMP Spark', amount: 21900, program: 'Program funding', status: 'received', when: '2025' },
 
   // Pending / In Discussion
-  { id: 'snow-4', source: 'Snow Foundation (Round 4)', amount: 200000, status: 'pending', contact: 'Sally Grimsley-Ballard' },
+  { id: 'snow-4', source: 'Snow Foundation (Round 4)', amount: 130000, status: 'pending', contact: 'Sally Grimsley-Ballard' },
   { id: 'sefa', source: 'SEFA', amount: 500000, program: 'Social impact loan', status: 'pending', contact: 'Joel Bird', notes: '23 communications' },
-  { id: 'real-alice', source: 'REAL Innovation Fund — Alice Springs', amount: 1200000, program: 'Federal grant — 4yr', status: 'pending', notes: 'EOI submitted Mar 2, DEWR. Oonchiumpa as lead.' },
-  { id: 'real-townsville', source: 'REAL Innovation Fund — Townsville', amount: 1200000, program: 'Federal grant — 4yr', status: 'pending', notes: 'EOI submitted Mar 2, DEWR. PICC as lead.' },
+  { id: 'real-alice', source: 'REAL Innovation Fund — Alice Springs', amount: 1200000, program: 'Federal grant — 3yr', status: 'pending', notes: 'EOI submitted Mar 2, DEWR. Alice Springs / Central Australia site pathway.' },
+  { id: 'real-townsville', source: 'REAL Innovation Fund — Townsville', amount: 1200000, program: 'Federal grant — 3yr', status: 'pending', notes: 'EOI submitted Mar 2, DEWR. Townsville / North Queensland site pathway.' },
   { id: 'qbe-1', source: 'QBE Foundation (Tranche 1)', amount: 10000, program: 'Grant', status: 'received', when: '2026' },
   { id: 'qbe-2', source: 'QBE Foundation (Remaining)', amount: 140000, program: 'Grant', status: 'pending', notes: 'Est $140K remaining — QBE typically $100-250K for community resilience' },
   { id: 'sedg', source: 'Social Enterprise Development Grants', amount: 75000, program: 'Grant', status: 'pending', notes: 'Draft (82% fit)' },

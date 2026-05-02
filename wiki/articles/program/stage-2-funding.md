@@ -27,7 +27,7 @@ Our plan: by 31 August 2026, hold LOIs from at least 3 of: SEFA, IBA, Mindaroo, 
 How the funding stack will be deployed:
 - Pitch deck (exists, needs polish)
 - Business plan (Strategy PD covers much of this)
-- **Financial model** (3-statement integrated; **not yet built** — priority gap)
+- **Financial model** (3-statement integrated; **not yet built**: priority gap)
 
 ### 4. Impact demonstration
 - Impact Measurement Report (see [[../impact/alma-framework]], [[../impact/empathy-ledger-impact]])
@@ -36,7 +36,7 @@ How the funding stack will be deployed:
 ### 5. Corporate structure and governance
 - Corporate structure (see [[../governance/legal-structure]])
 - Financials (audited or accountant-endorsed)
-- Governance documents (board charter, risk register, policies — see [[../governance/policies-register]])
+- Governance documents (board charter, risk register, policies: see [[../governance/policies-register]])
 
 ## Pitch and interview (1 hour)
 
@@ -64,8 +64,8 @@ Standard checks + confirm funding commitments with investors, lenders, funders d
 | Pitch deck | Exists, polish needed |
 | Business plan | Strategy PD approximates; formalisation needed |
 | 3-statement financial model | **Not built (priority)** |
-| Impact Measurement Report | ALMA framework articulated; report to be compiled |
-| Audited financials | ACT Foundation audited; Goods-specific not audited (Xero exports + accountant endorsement acceptable) |
+| Impact Measurement Report | Australian Living Map of Alternatives framework articulated; report to be compiled |
+| Audited financials | A Kind Tractor Ltd compliance context exists, but Goods-specific financials are not audited (Xero exports + accountant endorsement acceptable) |
 | Governance docs | **In recruitment / draft (priority)** |
 
 ## Related
@@ -78,5 +78,6 @@ Standard checks + confirm funding commitments with investors, lenders, funders d
 
 ## Sources
 
-- `raw/2026-03-31-qbe-induction-slides-fulltext.md`
-- `raw/2026-03-31-qbe-enterprise-agreement-signed.pdf`
+- QBE induction material and signed enterprise agreement, summarised in [[program-structure]] and [[program-expectations]].
+- [[qbe-catalysing-impact-2026]]
+- [[../sources/qbe-actions-dashboard]]

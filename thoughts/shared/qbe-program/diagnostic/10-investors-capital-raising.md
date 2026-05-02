@@ -1,129 +1,87 @@
 # 10. Investors and Capital Raising
 
-> Is the organisation seeking to raise capital and ready for impact investment?
+> Goods is learning its way into impact investment. The founders are open to grants, loans, sales revenue and catalytic capital, but not conventional equity in the short term. The best investor story is not a polished capital stack. It is a practical question: what kind of capital lets us build inventory, hire the missing roles and support community partners without turning Goods into the wrong kind of organisation?
 
-## Raise headline
+## Current QBE requirement
 
-**Yes, actively.** QBE Catalysing Impact target: demonstrate **$400K matched funding by 31 August 2026** to unlock up to **$200K QBE Foundation grant**. This is the first tranche of a broader blended-finance round whose full target is in the range of $2.5M-$5M across grant + debt + catalytic + guarantees, phased over 18 months.
+QBE Catalysing Impact Stage 2 can provide up to $400,000 from a $1 million pool, with matched external investment required. The program deadline for demonstrating matched capital is 31 August 2026, with Stage 2 submission in September 2026.
 
-## Blended finance stack (proposed)
+That program requirement is real. The $2.5 million to $5 million figure is much less precise. Treat it as a rough number based on current conversations, warm funders and the usual $200,000 to $400,000 scale of grant opportunities.
 
-```
-GOODS BLENDED FINANCE STACK (working design)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-GUARANTEES       Snow Foundation letter of support
-GRANTS           QBE Foundation                    up to $200K (match-contingent)
-                 Snow Foundation R4                $200K (pipeline)
-                 IBA 30% grant component           up to $1.5M
-                 Existing funders (received)       $445K
-CATALYTIC        Mindaroo recoverable              $200K (warm)
-                 PFI repayable grant               $640K (EOI submitted)
-SUB DEBT         SEFA working capital              $300K (conversation opening)
-SENIOR DEBT      IBA Business Loan (up to 70%)     up to $5M (eligibility confirmed)
-COMMUNITY EQUITY PICC plant purchase (Yr 3-4)      TBD
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
+It should be treated as a working ambition, not a fully modelled raise.
 
-## Investor pipeline (live)
+## How we got here
 
-| Name | Role | Status | Check size | Fit |
-|---|---|---|---|---|
-| **QBE Foundation** | Anchor grant | Cohort selected, match needed | Up to $200K | Climate resilience + inclusion |
-| **Social Impact Hub / Jess G.** | Program facilitator | Active | — | Orchestrator |
-| **SEFA (Hannah Ebeling)** | Subordinated debt | Conversation opening | $300K+ | Impact lender, $9M undeployed |
-| **QBE Ventures (Alex)** | CVC equity | Lighthouse program plausible | $5-15M (std), Lighthouse small | Insurance adjacency thesis |
-| **Snow Foundation** | Grant + LOI | Long-term partner, R4 pipeline | $200K | Partnership model |
-| **PFI** | Repayable grant | EOI submitted | $640K | Catalytic |
-| **Mindaroo** | Recoverable grant | Warm | $200K | Catalytic capital bucket |
-| **IBA** | Debt + grant blend | Eligibility confirmed | Up to $5M | Indigenous business |
-| **Tim Fairfax Family Foundation** | Grant | Target | TBD | 33 comms focus |
-| **Dusseldorp Forum** | Grant | Target | TBD | JustReinvest connection |
-| **Beck Parkinson** | Advisor | Active | — | Ex-SVA, ex-DFAT, selection committee |
+The honest answer is: partly by fluke, partly by curiosity, and partly by following what the work seems to need.
 
-## Capital we have received
+QBE is being used as a learning process. If impact investment fits, good. If it does not, the program should still leave Goods clearer about what kind of capital not to take.
 
-$445,685 total philanthropic (Snow, TFN, VFFF, FRRR, AMP). See topic 4 for breakdown.
+## Capital types we are open to
 
-## Investment readiness assessment (honest)
+- grants
+- recoverable grants
+- patient or below-market loans
+- working capital tied to confirmed demand
+- sales revenue
+- guarantees or letters of support
+- possibly community-owned equity later
 
-| Criterion | State | Notes |
-|---|---|---|
-| Clear ask | In progress | Stack designed, tranche sizing needs sharpening per investor |
-| Investment memo | Draft | Pitch deck exists; formal IM to be finalised |
-| Financial model (3-statement) | Not yet | 5-year cashflow exists; integrated model is a gap |
-| Valuation | Not yet | Required before any equity / convertible conversation |
-| Board governance | Gap | Independent directors in recruitment; see topic 7 |
-| Use-of-proceeds by tranche | Drafted | Plant infrastructure, working capital, team |
-| Data room | Partial | Funder-gated due-diligence pages live on v2 site; materials being collated |
-| Exit / ownership transition | Mapped | PICC plant purchase is the designated exit-equivalent |
+Conventional equity is not a short-term priority because it could reduce the flexibility to pivot. Equity becomes more interesting if communities are the owners, not if external investors are pushing the enterprise toward an exit.
 
-## The three-question investor test (Alex, QBE Ventures)
+## What the capital would fund
 
-1. **Why is what you're doing important?**
-   Because 389 products in 8 communities already show the cost of disposable furniture failure, the child-health-attendance-income chain it breaks, and the $3M/yr waste cycle in Alice Springs alone. Every dollar we displace buys ten-year durability instead.
+- building inventory so Goods is not always batch-by-batch
+- first On-Country production facility deployment
+- working capital for materials, labour and delivery
+- key staff: general manager, operations, sales, procurement, design and development
+- better financial model and investor reporting
+- support for partners such as Palm Island Community Company without always asking them to bring money first
 
-2. **Why are YOU the right org?**
-   Because ACT has spent two years co-designing with Oonchiumpa, is the delivery partner PICC trusts, and has built consent-first impact infrastructure (Empathy Ledger) that most social enterprises do not. Our product survives conditions that kill competitor products. We are not building a brand; we are building a handover.
+Nicholas used the example of having 10,000 beds ready for deployment. That is not the current operating state. It is the kind of inventory position that working capital could make possible.
 
-3. **Is it achievable?**
-   Yes. Demand exceeds current supply by 3-10x (200-350 bed waiting list against current throughput). Unit economics at scale support debt. NT Housing $4B program is the institutional demand anchor. Capital stack is designed and partially warm.
+## Investor materials
 
-## The insurance adjacency angle (for QBE specifically)
+There is not yet one standard investor pack.
 
-Alex's prompt: "Think about who might care about this thing and what is the lever for making this bigger."
+The current approach has been trust-based and tailored: talk to Snow, PFI, a foundation or another funder, then build what that funder asks for.
 
-For QBE, the adjacency is clear:
-- Remote housing = insurable assets.
-- Durable furniture = longer housing-fitout asset life = lower claims on remote housing portfolios.
-- Flat-pack, rapidly deployable beds = post-cyclone / post-flood disaster resilience capability.
-- HDPE recycling loop = environmental credit for ESG reporting.
-- Community stability (local jobs, plant ownership) = lower social risk = lower insurance exposure.
+The better next step is a modular set of materials:
 
-This reframes Goods from "nice social enterprise we give to" into "infrastructure that reduces QBE's own claims exposure." It is a QBE Ventures Lighthouse pitch as much as a Foundation one.
+- one-page plain story
+- product and market proof
+- use-of-funds by tranche
+- simple financial model
+- risk register
+- governance plan
+- impact evidence and measurement gaps
+- partner letters and demand evidence
 
-## Knockout criteria we apply to prospective investors (Beck Parkinson discipline)
+That lets Goods tailor without reinventing everything.
 
-We will drop mismatches fast:
-1. Investment geography: NT / remote Australia must be in mandate.
-2. Legal structure: invests in CLG + Pty Ltd + hybrid.
-3. Investment size: matches the tranche we need.
-4. Return expectations: realistic on timeframe (5-10 years) and social-first return.
-5. Capital type: offers the instrument we need in the stack.
-6. Stage: invests at early commercial stage, not seed and not growth.
+## Debt risk
 
-## Timeline
+Goods has not had to pay money back before. That is a real shift.
 
-| Date | Milestone |
-|---|---|
-| 2026-04-07 | Webinar: Finding Money |
-| 2026-04-24 | Webinar: Impact Investing 101 |
-| 2026-05-01 | Webinar: Legal Structures (Mint Ellison) |
-| 2026-05-08 | Webinar: Deal Anatomy |
-| 2026-05-31 | PIN Diagnostic complete |
-| 2026-06-30 | Investment memo + financial model ready |
-| 2026-08-31 | **QBE match-funding milestone ($400K)** |
-| 2026-11-30 | Program close, full round targeted |
+The cheapest capital is preferable, but cheap capital is still dangerous if repayment timing does not match cashflow. Any loan should be matched to credible revenue, confirmed orders or a patient structure that understands the stage of the business.
 
-## Gaps we are honest about
+## The three questions from QBE Ventures
 
-1. **Integrated 3-statement financial model** to investor standard: not yet built.
-2. **Formal investment memo:** draft only.
-3. **Valuation:** not yet determined; needed for any equity conversation.
-4. **Independent directors:** in recruitment; investors will want this before close.
-5. **Data room:** partial; needs finalising for SEFA due diligence.
+**Why is this important?** Because remote communities are still paying too much for products that break, cannot be repaired and end up in dumps. The same failure affects sleep, hygiene, school, work, household budgets and the environment.
 
-## What we want from the diagnostic
+**Why are we the right organisation?** Because Goods has spent the time in community, built and rebuilt the product with feedback, and is willing to hand over production rather than own everything centrally.
 
-- Pressure-test the blended finance stack design (right instruments, right sizing, right sequencing).
-- Identify the most time-critical gaps between "investor-ready on paper" and "investor-ready in practice."
-- Referrals: independent directors, CFO advisor, investment memo template.
-- Sanity-check the QBE Ventures Lighthouse angle.
+**Is it achievable?** It is achievable if supply, price, production and partner capacity catch up to demand. It is not yet proven at scale.
 
-## Source documents
+## What the program should help with
 
-- Session 1 learnings (capital types, investor panel): `thoughts/shared/qbe-program/session-1-learnings.md`
-- Live QBE dashboard: `v2/src/app/admin/qbe-program/page.tsx`
-- Weekly action tracker: `v2/src/app/admin/qbe-actions/page.tsx`
-- Wiki article: `wiki/articles/qbe-catalysing-impact-2026.md`
-- Funder-gated due-diligence pages: live on goodsoncountry.com (funder section)
-- Grantscope integration for funder intelligence: `/Users/benknight/Code/grantscope`
+- Pressure-test whether repayable capital fits the current stage.
+- Help separate grant-funded R&D, working capital and long-term plant finance.
+- Identify the minimum investor pack needed.
+- Find advisors who understand social enterprise, product, procurement and community ownership.
+- Keep the materials human enough that they sound like the people behind the work.
+
+## Sources
+
+- May 2026 founder transcript and notes, user-provided.
+- QBE induction slides: `wiki/raw/2026-03-31-qbe-induction-slides-summary.md`.
+- Investor pipeline references in `wiki/articles/investors/`.

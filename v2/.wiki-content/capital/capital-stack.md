@@ -1,83 +1,76 @@
 # Goods Capital Stack (2026)
 
-> Proposed blended-finance stack for the 2026 round. Target: demonstrate $400K matched capital by 31 August 2026 to unlock QBE Foundation grant. Broader round target $2.5M-$5M across 18 months.
+> This is a working capital stack, not a committed raise. QBE requires matched external investment for Stage 2. Goods is using that requirement to learn which mix of grant, patient debt, recoverable funding and sales revenue actually fits the business.
 
-## Current design
+## Current target
 
-```
-GOODS BLENDED FINANCE STACK (working)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-GUARANTEES       Snow Foundation letter of support        non-cash
-GRANTS           QBE Foundation                            up to $400K (match-contingent)
-                 Snow Foundation R4                         $200K (pipeline)
-                 IBA 30% grant component                    up to $1.5M
-                 Existing received                          $445K
-CATALYTIC        Mindaroo recoverable                       $200K (warm)
-                 PFI repayable                              $640K (EOI submitted)
-SUB DEBT         SEFA working capital                       $300K (opening)
-SENIOR DEBT      IBA Business Loan (up to 70%)              up to $5M (eligibility ✓)
-COMMUNITY EQUITY PICC plant purchase (Yr 3-4)               scoped at diagnostic
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
+QBE Stage 2 can provide up to $400,000 from a $1 million program pool, with matched external investment required. The match deadline is 31 August 2026.
 
-## Rationale by layer
+The $2.5 million to $5 million ambition should be treated as directional. It came from current conversations, possible funder sizes and the amount of capital that would materially change inventory, staffing and plant deployment. It is not yet backed by a finished integrated financial model.
 
-| Layer | Why this instrument |
-|---|---|
-| **Snow letter of support** | Long-term funder. Non-cash credibility signal. Can be cited in other LOIs. |
-| **QBE grant** | Catalytic by design, match-contingent. Designed to pull in other capital. |
-| **Snow R4** | Pattern-matched to their multi-round partnership model. |
-| **IBA 30% grant** | Sits inside their loan product — not a separate raise. |
-| **Mindaroo recoverable** | Their catalytic bucket; repayable without interest or written off. |
-| **PFI repayable** | High-trust recoverable grant for infrastructure. |
-| **SEFA sub-debt** | Working capital for institutional B2B cashflow cycle. |
-| **IBA senior debt** | Anchor. Indigenous business loan, largest cheque, most senior. |
-| **PICC community equity** | Ownership transfer, designated "exit" equivalent for an NFP social enterprise. |
+Use [[funder-register]] as the simple working table for money already received, warm options, relationship stage and next capital actions.
 
-## Tranche sizing
+## Working stack
 
-- **Tranche A (close by 31 Aug 2026):** $400K matched → unlocks up to $400K QBE Foundation grant. Composition: SEFA commitment + Mindaroo commitment + PFI commitment + IBA letter of offer.
-- **Tranche B (close Q4 2026):** full Snow R4 drawdown + IBA first drawdown for Circuit 1 plant.
-- **Tranche C (2027):** IBA expansion + Mindaroo follow-on + Circuit 2 plant.
+| Layer | Possible source | Current read |
+|---|---|---|
+| Grant | QBE Foundation | Program opportunity, match required |
+| Grant | Snow Foundation R4 | Pipeline, existing relationship |
+| Recoverable or catalytic | PFI, Mindaroo or similar | Worth exploring, not committed |
+| Working capital debt | SEFA or similar lender | Fit depends on model and governance |
+| Indigenous business finance | IBA or similar | Possible if structure and partner pathway fit |
+| Sales revenue | Institutions, councils, direct purchase | Needs supply and sales discipline |
+| Community ownership capital | Future local plant owner | Interesting later, not a 2026 assumption |
 
-## The map to QBE's Stage 2 submission
+## What capital should fund
 
-QBE Stage 2 (September 2026) requires:
-- Evidence of funding commitments (legally binding: LOIs, loan agreements, investment agreements).
-- Supporting materials showing how the stack will be deployed.
-- Impact Measurement Report (see [[../impact/alma-framework]]).
-- Corporate structure, audited or accountant-endorsed financials, governance documents.
+- inventory so Goods is not always waiting for the next funded batch
+- plant deployment and setup
+- materials, labour and delivery timing gaps
+- sales, operations and procurement capability
+- finance model and reporting capability
+- support for community partners to test the model without carrying all the cost
 
-So every cell in the stack above needs a paper trail. Deal-room state: partial. See admin dashboard at `v2/src/app/admin/deal-room`.
+## What should stay grant-funded
 
-## Alignment with the big questions
+- R&D that may not repay quickly
+- early impact measurement
+- community engagement and co-design
+- evaluation and learning
+- work that would become extractive if forced to repay too quickly
 
-- **Debt repayments?** Yes, margin at scale supports. SEFA comfortable at our revenue trajectory.
-- **Exit?** Community ownership transfer (PICC); no IPO / acquisition.
-- **Valuation?** Not required for 2026 round (debt + grant + recoverable). Required if we open equity later.
-- **Growth rate 3-10x?** Yes, achievable against NT Housing $4B program demand curve.
-- **Customise per investor?** Yes, every investor is bespoke.
+## What could carry debt
 
-## What's missing
+Debt should only attach to activities with believable repayment timing:
 
-- **3-statement integrated financial model** at Goods granularity.
-- **Formal investment memo** (draft only).
-- **Legally binding LOIs from each partner** (we have letters of support, not commitments).
-- **Independent director recruitment** (SEFA covenant).
+- confirmed or near-confirmed institutional orders
+- working capital against inventory that can sell
+- plant equipment where demand and operator capacity are credible
+
+Debt should not be used to cover uncertainty that belongs in grants.
+
+## Missing pieces before closing capital
+
+- Goods-specific financial model.
+- Clear use-of-funds by tranche.
+- Written demand evidence.
+- Governance plan.
+- Legal vehicle decision.
+- Risk register and debt-service scenarios.
+- Investor materials that sound like Goods, not a generic impact deck.
 
 ## Sources
 
-- `raw/2026-03-31-qbe-induction-slides-fulltext.md`
-- `raw/2026-03-31-qbe-enterprise-agreement-signed.pdf`
-- `raw/2026-03-31-qbe-letter-to-funders.pdf`
-- `thoughts/shared/qbe-program/session-1-learnings.md`
-- `v2/src/app/admin/qbe-program/page.tsx` (live state)
+- [[../sources/may-2026-founder-working-conversation]].
+- [[../program/qbe-catalysing-impact-2026]]
+- [[../program/stage-2-funding]]
+- [[../sources/funding-journey]]
+- [[../sources/case-investor-alignment-tool]]
 
 ## Related
 
 - [[capital-types]]
 - [[blended-finance]]
-- [[catalytic-capital]]
-- [[australian-case-studies]]
-- [[../investors/README]]
-- [[../program/qbe-catalysing-impact-2026]]
+- [[funder-register]]
+- [[../enterprise/10-investors-capital-raising]]
+- [[../program/diagnostic-pack]]

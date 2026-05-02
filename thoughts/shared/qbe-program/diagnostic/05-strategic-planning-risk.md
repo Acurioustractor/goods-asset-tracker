@@ -1,79 +1,67 @@
 # 5. Strategic Planning and Risk Management
 
-> Is there a clearly defined strategic planning process and risk management process?
+> Goods plans through live relationships, not a fixed map. That is a strength in community work and a weakness when funders want neat quarterly certainty. The strategic task for the QBE program is to turn the real operating judgement into a clearer risk and planning system without pretending the work is more settled than it is.
 
-## Strategic planning process
+## How planning actually happens
 
-**Current rhythm:**
-- **Annual strategy PD refresh** (current version: January 2026, v1.0). Document lives at `v2/docs/GOODS_STRATEGY_PD.md` and is the live strategic artefact.
-- **Quarterly review** with advisory group.
-- **Weekly operational action tracking** via live admin dashboards (`v2/src/app/admin/qbe-actions/page.tsx`, `v2/src/app/admin/qbe-program/page.tsx`).
-- **Monthly ACT-level leadership check-ins** (Ben + Nick).
+There is a top-down vision: change the product ecosystem in remote communities.
 
-**Operating methodology: LCAA.** ACT's strategic method is not a linear roadmap. It is a practice loop: Listen, Curiosity, Action, Art. Every initiative moves through the cycle. "Art" returns you to "Listen." The discipline is staying honest about where you actually are rather than forcing forward motion when the listening is not done. Full description at `act-global-infrastructure/wiki/concepts/lcaa-method.md`.
+There is also a bottom-up operating reality: a plant location depends on community readiness, partner capacity, funding outcomes, freight, people and timing. Tennant Creek can be the lead option one month and become less likely the next if funding does not land. Alice Springs, Palm Island, Mount Isa and Tennant Creek have all been discussed as possible plant locations.
 
-**Why this matters for planning:** we plan in directional arcs, not Gantt charts. We commit to outcomes (community ownership of plant, revenue milestones, impact thresholds) and stay flexible on path. This is a feature when working with remote community partners and a weakness when dealing with funders who want quarterly deliverables; we flex by producing both views.
+That does not mean there is no plan. It means the plan is a set of live choices, not a locked Gantt chart.
 
-## Risk register (working draft)
+## Six-month priority
 
-This is an honest working view. A formal risk register on a board-grade template has not yet been adopted; we are including below what we actively track.
+Deploy the first On-Country production facility, with August 2026 as the working target from the current QBE diagnostic period. Location is still to be decided.
 
-### Strategic risks
+The plant decision should be based on:
 
-| # | Risk | Likelihood | Impact | Mitigation |
-|---|---|---|---|---|
-| S1 | QBE match-funding target ($400K) not met by 31 Aug 2026 | Medium | High | Multiple capital sources in parallel (SEFA debt, PFI repayable, Snow R4, Mindaroo catalytic); LOI template + conditional commitments |
-| S2 | Community partner disengagement at a key site | Low | High | Deep LCAA-based relationship work, multiple partner depth at each site, no single point of failure |
-| S3 | Mission drift under commercial pressure | Medium | High | 40% community profit share is non-negotiable; ACT dual-entity structure insulates mission |
+- community demand and readiness
+- partner capability
+- funding and capital timing
+- ability to collect, shred and use local plastic
+- delivery pathway for beds
+- local employment and governance potential
 
-### Operational risks
+## Risk frame
 
-| # | Risk | Likelihood | Impact | Mitigation |
-|---|---|---|---|---|
-| O1 | Production delays | Medium | High | Buffer stock, multiple suppliers, Zinus industry advisor |
-| O2 | Transport costs to remote communities | High | Medium | Containerised On-Country production is the long-term answer |
-| O3 | Quality issues / product returns | Low | High | Field testing program, feedback loops via Empathy Ledger, 5-year warranty |
-| O4 | Key person risk (Ben and Nick) | High | High | Advisory group, ACT shared services, documented processes (Operations Handbook) |
+Nicholas named the main risk test clearly: do no harm.
 
-### Financial risks
+That starts with product safety. A bed, washing machine or plant cannot create avoidable injury or unsafe work.
 
-| # | Risk | Likelihood | Impact | Mitigation |
-|---|---|---|---|---|
-| F1 | Cashflow gap (Tennant Creek $36K + general working capital) | High (current) | Medium | SEFA working capital loan conversation opening; grant bridging in interim |
-| F2 | Grant dependency | High | High | Diversify to debt + catalytic + earned revenue (this is the QBE program thesis) |
-| F3 | Debt servicing if volume misses | Low-Med | High | Stress-tested unit economics; only take debt aligned to confirmed contracts |
+The next layer is unintended consequences. We cannot claim circular economy while sending more product into dumps. We cannot claim community ownership while forcing a Western governance shape that community does not trust. We cannot claim dignity while using stories in a way people cannot control.
 
-### Reputational / cultural risks
+## Working risk register
 
-| # | Risk | Likelihood | Impact | Mitigation |
-|---|---|---|---|---|
-| R1 | Inappropriate use of community voice / story | Low | Very High | Empathy Ledger consent-first architecture; OCAP principles; Fred Campbell cultural consultation |
-| R2 | Perceived savior framing in external comms | Medium | High | Brand voice guide (ACT); explicit "not a First Nations organisation" positioning; Indigenous co-design in every public narrative |
-| R3 | Data sovereignty breach | Low | Very High | Empathy Ledger architecture (see diagnostic topic 6) |
+| Area | Risk | Current read | What we need to do |
+|---|---|---|---|
+| Capital | QBE match or the wider raise does not land | Live risk | Keep multiple funding paths open; avoid betting the year on one grant |
+| Cashflow | Orders and grants arrive after costs | Live risk | Build working capital model and payment timing plan |
+| Product safety | Product failure causes harm | Always high consequence | Keep testing, QA, warranty and service loops practical |
+| Environmental | Products or materials still end up in dumps | Needs more work | Add a proper environmental risk line, including end-of-life |
+| Community trust | Partner disengagement or poor follow-through | Always live | Keep communication, return visits and local partner authority strong |
+| Story use | Community voice is used without enough control | High consequence | Consent, story return, retraction rights and careful approvals |
+| Key people | Ben and Nicholas carry too much | Already happening | Move production, operations and sales into clearer roles |
+| Debt | First repayable capital creates pressure | Future risk | Only take debt against credible revenue and timing |
 
-### Compliance / legal risks
+## What was missing in the old risk material
 
-| # | Risk | Likelihood | Impact | Mitigation |
-|---|---|---|---|---|
-| L1 | Product liability (injury from bed failure) | Low | High | Australian Standards testing, 200kg capacity verified, 5-year warranty, public liability insurance (QBE-held) |
-| L2 | Worker safety in community production | Medium | Medium | Training, supervision, SOPs (Production Facility Guide), WHS framework |
-| L3 | Tax / structuring (trading vs charitable) | Low | Medium | ACT dual-entity structure; Mint Ellison consulted via QBE program |
+The previous pack read like a template. It did not show enough of the real risks:
 
-## Gaps we are honest about
+- environmental risk from products failing or creating new waste
+- risk of over-growing faster than operations can carry
+- risk of relying on Ben and Nicholas for too many parts of the system
+- risk of taking capital before the finance model is ready
+- risk of community governance being squeezed into structures that suit funders more than place
 
-- **No formal risk register document on a standard template.** We plan to adopt one during this program (PIN / SIH templates welcome).
-- **No formal board-level risk oversight cadence** (linked to governance topic 7).
-- **Scenario planning is light.** We plan the base case and a downside on capital raise; full scenario set not modelled.
+## What good looks like from here
 
-## Scenario / contingency thinking
+The next version of the risk register should be short, real and used. It should include current owner, review cadence, what would make the risk worse, and what decision is needed next.
 
-**Downside scenario (QBE match miss):** raise falls short of $400K. Response: retrench to Queensland + NT only, defer Circuit 2 plant, extend grant runway, delay washing machine commercialisation. Enterprise survives; growth compresses.
+It should also be different by place. A Palm Island plant, Alice Springs plant and Tennant Creek plant will not carry the same risk profile.
 
-**Upside scenario (over-raise):** match hits $400K+ with excess interest. Response: accelerate Circuit 2, bring forward PICC ownership transition, open Pacific Islands conversation.
+## Sources
 
-## Source documents
-
-- Strategy PD Part 13 (Risks): `v2/docs/GOODS_STRATEGY_PD.md`
-- LCAA method: `act-global-infrastructure/wiki/concepts/lcaa-method.md`
-- QBE live admin dashboards: `v2/src/app/admin/qbe-program/page.tsx` and `/qbe-actions`
-- Session 1 learnings (capital stack): `thoughts/shared/qbe-program/session-1-learnings.md`
+- May 2026 founder transcript and notes, user-provided.
+- Strategy PD Part 13: `v2/docs/GOODS_STRATEGY_PD.md`.
+- ACT Tractorpedia: `concepts/lcaa-method.md`.

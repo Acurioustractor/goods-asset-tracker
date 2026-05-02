@@ -40,9 +40,9 @@
 
 ## Sources
 
-- `raw/2026-03-31-qbe-induction-slides-fulltext.md`
-- `raw/2026-03-31-qbe-induction-slides.pdf` (slide ~32)
-- `raw/2026-03-31-investor-alignment-tool-case.xlsx`
+- [[../program/qbe-catalysing-impact-2026]]
+- [[../sources/case-investor-alignment-tool]]
+- [[alignment-tool]]
 
 ## Related
 

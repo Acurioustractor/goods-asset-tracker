@@ -10,4 +10,4 @@
 ## Related
 
 - [[../products/stretch-bed]]
-- ACT wiki: `projects/bg-fit.md`
+- Additional BG Fit / Mount Isa context should be translated into this page before mentor use.

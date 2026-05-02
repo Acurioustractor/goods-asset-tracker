@@ -255,7 +255,7 @@ For SEFA / IBA debt diligence, what level of compliance / IT security / MRP form
 
 - Honest opening: founder-only board at trading entity, priority gap not solved (`enterprise/07-governance-data-reporting.md` line 7).
 - Dual-entity structure documented (lines 13-19): ACT Foundation CLG charitable + ACT Ventures Pty Ltd trading.
-- 10-member advisory group named with organisations (lines 23-34): April Long (SRAU), Cory Tutt (Deadly Science), Sally Grimsley-Ballard (Snow), Nina Fitzgerald, Shaun Fisher (Fishers Oysters), Daniel Pittman (Zinus), Walking on Country, Judith (Orange Sky), Adeem (CYP), Nick Marchesi.
+- 10-member advisory group named with organisations (lines 23-34): April Long (SRAU), Cory Tutt (Deadly Science), Sally Grimsley-Ballard (Snow), Nina Fitzgerald, Shaun Fisher (Fishers Oysters), Daniel Pittman (Zinus), Walking on Country, Judith (Orange Sky), Adeem (CYP), Nicholas Marchesi.
 - Board formalisation pathway articulated (lines 39-46): 3 independent directors by end Q3 2026, target skills (finance/impact, First Nations governance, product/manufacturing), AICD director training, Mindaroo-funded scholarships for regional/remote boards explored.
 - SEFA covenant requirement explicitly named (line 40): independent director majority OR structured advisory group.
 - Reporting cadence: monthly close, quarterly strategic with advisory, ad-hoc community check-ins, funder schedules current (lines 50-58).

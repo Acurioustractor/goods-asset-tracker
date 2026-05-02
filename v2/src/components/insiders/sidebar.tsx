@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { ChevronRight, Home, BookOpen } from 'lucide-react'
 import type { WikiTreeNode } from '@/lib/wiki/types'
 import { cn } from '@/lib/utils'
@@ -13,6 +13,14 @@ type Props = {
 }
 
 export function InsidersSidebar({ tree, currentSlug }: Props) {
+  const pathname = usePathname()
+  const activeSlug = useMemo(() => {
+    if (currentSlug !== null) return currentSlug
+    if (pathname === '/insiders') return null
+    if (!pathname.startsWith('/insiders/')) return null
+    return pathname.replace(/^\/insiders\/?/, '').replace(/\/$/, '')
+  }, [currentSlug, pathname])
+
   return (
     <aside className="hidden lg:block lg:w-72 xl:w-80 shrink-0 border-r border-stone-200/70 bg-stone-50/40">
       <div className="sticky top-0 max-h-screen overflow-y-auto">
@@ -33,7 +41,7 @@ export function InsidersSidebar({ tree, currentSlug }: Props) {
             href="/insiders"
             className={cn(
               'flex items-center gap-2 rounded-md px-3 py-2 text-sm text-stone-700 hover:bg-stone-100 transition-colors',
-              currentSlug === null && 'bg-stone-100 text-stone-900 font-medium'
+              activeSlug === null && 'bg-stone-100 text-stone-900 font-medium'
             )}
           >
             <Home className="h-3.5 w-3.5" strokeWidth={1.5} />
@@ -41,7 +49,7 @@ export function InsidersSidebar({ tree, currentSlug }: Props) {
           </Link>
           <div className="mt-4 space-y-1">
             {tree.map((node) => (
-              <TreeNode key={node.slugPath} node={node} currentSlug={currentSlug} depth={0} />
+              <TreeNode key={node.slugPath} node={node} currentSlug={activeSlug} depth={0} />
             ))}
           </div>
         </nav>
@@ -59,7 +67,6 @@ function TreeNode({
   currentSlug: string | null
   depth: number
 }) {
-  const pathname = usePathname()
   const isCurrent = currentSlug === node.slugPath
   const hasActiveChild =
     node.kind === 'folder' && node.children?.some((c) => c.slugPath === currentSlug)
@@ -69,10 +76,11 @@ function TreeNode({
     return (
       <Link
         href={`/insiders/${node.slugPath}`}
+        aria-current={isCurrent ? 'page' : undefined}
         className={cn(
-          'block rounded-md px-3 py-1.5 text-sm text-stone-600 hover:bg-stone-100 hover:text-stone-900 transition-colors',
+          'block rounded-md border-l-2 border-transparent px-3 py-1.5 text-sm text-stone-600 hover:bg-stone-100 hover:text-stone-900 transition-colors',
           depth > 0 && 'ml-4',
-          isCurrent && 'bg-[#C45C3E]/10 text-[#C45C3E] font-medium'
+          isCurrent && 'border-[#C45C3E] bg-[#C45C3E]/10 text-[#9F452D] font-semibold shadow-sm'
         )}
       >
         {node.label}

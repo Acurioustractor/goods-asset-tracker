@@ -12,8 +12,8 @@
 
 | PIN role | How we use it |
 |---|---|
-| **Diagnostic** workshop facilitator | Sarah Gregory + assigned members run the 3-hour session |
-| **Advisor** | Highest-priority gap area from diagnostic (likely financial modelling or governance) |
+| **Workshop facilitator** | Sarah Gregory + assigned members run the 3-hour session |
+| **Advisor** | Highest-priority gap area from the working review (likely financial modelling or governance) |
 | **Mentor** | 1:1, 6 × 1-hour sessions over 6 months — growth, leadership, decision-making |
 | **Skilled volunteers** | QBE staff (engaged via PIN coordination) on a specific challenge |
 

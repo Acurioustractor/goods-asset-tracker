@@ -1,96 +1,83 @@
 # 8. People and Organisation
 
-> Does the organisation optimise its structure, capabilities, and staffing (including volunteers) to deliver the strategic objectives and vision?
+> Goods is carried by two founders, a small ACT shared-services base and a growing circle of partners. That is powerful because it keeps the work close to relationship and product. It is also the capacity ceiling. The next people moves are sales, operations, procurement, production leadership and commercial governance, not generic headcount.
 
-## Structure (today)
+## Team today
 
-Goods operates as a program inside ACT (A Curious Tractor). Some roles sit in Goods; others are shared services from ACT parent.
+Ben and Nicholas are the only two full-time equivalent people consistently holding Goods, although they are not paid as fixed Goods employees. They draw ad hoc contractor-style payments through ACT rather than full Goods salaries.
 
-### Core team
+That matters for investment readiness. The work is real, but the organisation is still subsidised by founder flexibility, ACT shared services and cashflow from other projects.
 
-| Name | Role | Entity |
-|---|---|---|
-| **Nicholas Marchesi OAM** | Co-founder, project lead | ACT |
-| **Benjamin Knight** | Co-founder, strategy, capital, tech | ACT |
-| **Fred Campbell** | Cultural consultation, co-design (Western Arrernte) | Oonchiumpa partner |
-| (Production team) | Assembly, QA, logistics | Contractors + Oonchiumpa |
-| (Empathy Ledger team) | Storytelling, consent management | ACT shared |
-| (Design + engineering) | Product iteration, plant design | ACT shared + partners |
+## What Ben brings
 
-### Advisory group (10 members)
+Ben's background includes work in the Gulf of Queensland with Queensland Corrective Services, Australian Indigenous Mentoring Experience, youth justice, strategy, storytelling and community-owned organisations.
 
-See topic 7. Strategic input from SRAU, Deadly Science, Snow Foundation, Zinus, Orange Sky and others. Not a governance body.
+His practice is to listen deeply, ask what is not working, bring feedback into design, and make sure people keep sovereignty over their stories.
 
-### Partner roles
+## What Nicholas brings
 
-- **Oonchiumpa Consultancy** (Alice Springs, 100% Aboriginal-staffed): confirmed Central Australian manufacturing partner. Two years of co-design relationship.
-- **PICC** (Palm Island): deployment partner, signalled buyer of plant.
-- **Our Community Shed**: production partner.
-- **University of Melbourne**: design research partnership.
+Nicholas has more than 10 years of remote-community experience and a track record of taking unusual ideas into the real world, from Orange Sky to product and service innovations.
 
-## Capability map
+His strength is curiosity with action: seeing a broken product system, then building something, testing it, getting trust and moving again.
 
-| Capability | Depth | Notes |
-|---|---|---|
-| Product design | Strong | 4 generations of Stretch Bed, Zinus industry advisor |
-| Community engagement / LCAA | Strong | This is ACT's core craft |
-| Manufacturing + plant ops | Medium | Scaling with Oonchiumpa partner |
-| Sales (B2B institutional) | Medium | Relationships are strong; pipeline discipline is the gap |
-| Sales (B2C retail) | Early | Ecommerce live, marketing function is light |
-| Impact measurement | Strong | ALMA framework + Empathy Ledger |
-| Finance + capital raise | Medium | Ben leads; no CFO yet |
-| Governance + compliance | Medium | ACT shared; priority upgrade |
-| Technology + data | Strong | Full-stack team, live platform |
-| Storytelling + comms | Strong | Empathy Ledger is production-grade |
+## Partners and advisors
 
-## Key-person risk
+Goods also relies on:
 
-This is our biggest people risk. Ben and Nick carry a lot. Mitigations:
-- Advisory group for strategic redundancy.
-- ACT shared services for finance, compliance, tech.
-- Documented processes (Operations Handbook, Production Facility Guide, Partner Guide).
-- Community partner depth so site-level delivery does not depend on ACT presence.
+- community partners and cultural advisors
+- production and assembly partners
+- industrial design partners such as Defy Design
+- industry advisors such as Zenas Australia
+- philanthropy supporters
+- ACT shared services
+- Empathy Ledger and technology support
 
-We are not trying to hire our way out of this in the next 12 months; we are trying to transfer capability to community partners (consistent with Beautiful Obsolescence) and to formalise the governance layer.
+These are not decorations around the founders. They are part of how Goods works.
+
+## Capacity risk
+
+Ben and Nicholas acknowledged they may already be limiting the organisation's capacity.
+
+The good sign is that production is already moving away from founder dependency. Nicholas described how, only months ago, he and Ben were teaching themselves shredding, pressing, CNC and assembly. Now a lower-skilled operator can run parts of the production process without them physically doing every step.
+
+That is the direction: founders design and build the system, then hand more of it to people and partners who can operate it.
+
+## Skill gaps
+
+The clearest gaps are:
+
+- sales
+- operations
+- procurement
+- production management
+- finance and modelling
+- investor materials
+- governance and board depth
+- community relationship capacity as more places come online
+
+## Hiring direction
+
+The next hires should not be about making ACT feel bigger. They should remove real constraints.
+
+Likely priorities:
+
+1. sales and relationship management for institutional buyers
+2. operations and procurement lead
+3. production lead
+4. finance or CFO support
+5. general manager when the scale justifies it
+6. local engagement or coordinator roles embedded with partners where possible
+
+Nicholas was clear that he would love to bring in someone better than the founders at scaling product or FMCG-style operations. That is a strength, not a threat.
 
 ## Culture
 
-Four voice characteristics inherited from ACT brand:
-- Grounded yet Visionary
-- Humble yet Confident
-- Warm yet Challenging
-- Poetic yet Clear
+The useful culture line is simple: do the work because it matters, stay curious, listen properly, and avoid building a big organisation for ego.
 
-And an explicit "what we avoid" list:
-- Savior framing ("helping communities in need").
-- Extractive language ("harvesting data").
-- Corporate jargon ("leveraging synergies").
-- Overclaiming ("world's first / best").
+That is stronger than the old list of brand adjectives.
 
-## Recruitment priorities (next 12 months)
+## Sources
 
-1. **Independent directors (3)** — see topic 7.
-2. **Operations / production lead** — to take manufacturing ramp off Nick's plate.
-3. **Part-time finance / CFO** — to formalise modelling and investor reporting.
-4. **Community relationships coordinator** — likely embedded with Oonchiumpa or PICC, not central.
-
-We are deliberately slow to centralise hires; every hire at ACT central is a hire not made in community. The logic is structural, not economic.
-
-## Volunteers and in-kind
-
-- Advisory group members (unpaid).
-- Pro-bono legal (Mint Ellison via QBE program, contact Keith Rovers).
-- Community co-design time (we aim to pay, not accept as volunteer; this is a cultural-safety principle).
-
-## Gaps we are honest about
-
-- **No formal HR function or policies.** People policies exist at ACT level but are light.
-- **No succession plan** beyond informal understanding between co-founders.
-- **Thin middle.** Between the two co-founders and the community partners, there is not a strong tier of operational managers yet.
-
-## Source documents
-
-- Strategy PD Part 7 (Partnerships): `v2/docs/GOODS_STRATEGY_PD.md`
-- ACT identity: `act-global-infrastructure/wiki/concepts/act-identity.md`
-- Beautiful Obsolescence (why we do not over-hire): `act-global-infrastructure/wiki/concepts/beautiful-obsolescence.md`
-- Ways of working: `act-global-infrastructure/wiki/concepts/ways-of-working.md`
+- May 2026 founder transcript and notes, user-provided.
+- ACT identity references in ACT Tractorpedia.
+- Strategy PD: `v2/docs/GOODS_STRATEGY_PD.md`.

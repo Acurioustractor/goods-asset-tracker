@@ -1,6 +1,6 @@
-# Enterprise (QBE Diagnostic Topics — durable versions)
+# Enterprise
 
-> The 10 QBE diagnostic topics as **durable, evolving** wiki articles. Working drafts live at `thoughts/shared/qbe-program/diagnostic/` (time-boxed for the diagnostic session). These wiki versions are the long-lived reference.
+> These are the durable versions of the 10 QBE working topics. They are written as a plain operating snapshot: specific, candid and clear about what is real today versus what is still being built.
 
 ## The 10 articles
 
@@ -15,23 +15,19 @@
 9. [[09-legal-structure]]
 10. [[10-investors-capital-raising]]
 
-## How these differ from the diagnostic drafts
+## Authoring rule
 
-| Property | Diagnostic drafts (thoughts/) | Wiki articles (enterprise/) |
-|---|---|---|
-| Purpose | Pre-reading for 3-hour session | Durable reference |
-| Lifespan | Time-boxed to diagnostic window | Ongoing |
-| Editing | Ad-hoc for the session | Maintained as state changes |
-| Audience | QBE / SIH / PIN diagnostic team | Anyone on the Goods team + funders |
+Use three categories:
 
-## State (2026-04-20)
+- what we know
+- what we are testing
+- what we do not know yet
 
-All 10 articles are populated (mirrored from the diagnostic drafts on 2026-04-20). Browse them via the wikilinks above, or jump direct:
+Do not turn a dashboard, idea, metric or possible structure into a finished operating claim.
 
-- [[01-vision-and-ambition]] · [[02-social-objective-impact]] · [[03-business-model]] · [[04-financial-management]] · [[05-strategic-planning-risk]]
-- [[06-process-and-technology]] · [[07-governance-data-reporting]] · [[08-people-and-organisation]] · [[09-legal-structure]] · [[10-investors-capital-raising]]
+## Working drafts
 
-Cover letter: [[../program/cover-letter]]. Time-boxed drafts still live at `thoughts/shared/qbe-program/diagnostic/` — treat the wiki copies here as the durable version and fold session learnings back in after each workshop.
+Older time-boxed drafts exist internally. These durable pages are the reviewable source for the current QBE working pack.
 
 ## Related
 

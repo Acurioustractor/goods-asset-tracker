@@ -9,7 +9,7 @@
 - Application Mar 2025 → Award May 2025 → Agreement Jul 2025 → Mid-point Feb 2026 → **Acquittal complete Mar 2026** (Palm Island deployment).
 - Contact: Steph Pearson (`s.pearson@frrr.org.au`).
 - Cohort 6 induction context (2025).
-- Source: see [grants archive](../../raw/grants-archive/INDEX.md) — `frrr/`.
+- Source trail: [[../sources/grants-archive-index]] and [[../sources/funding-journey]].
 
 ## Note
 

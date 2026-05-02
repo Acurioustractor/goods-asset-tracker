@@ -1,104 +1,60 @@
 # 4. Financial Management and Performance
 
-> Is the organisation financially sustainable?
+> Goods is not yet financially self-sustaining. It has real revenue, real philanthropic backing and real product costs, but it is still grant-paced and batch-based. The honest financial story is that the model needs working capital, cleaner budgeting and a Goods-specific forecast before it can responsibly carry repayable capital.
 
-## Honest headline
+## Current position
 
-Not yet self-sustaining. Revenue ($537K cumulative, $50K recent year actual) runs below cost base; grants have bridged the gap. The QBE match-funding round and the shift from prototype to commercial production is the bridge to sustainability. Unit economics work at scale; the path is real but not yet walked.
+The cumulative revenue figure in the pack is $537,595. Treat this as cumulative Goods revenue recorded through ACT, mostly from philanthropic support and funded delivery work.
 
-## Financial snapshot
+Goods currently sits inside A Curious Tractor financially. That lets ACT smooth cashflow across projects, but it also means Goods needs cleaner standalone reporting as it moves toward investment readiness.
 
-| Line | Value | Source |
-|---|---|---|
-| Cumulative revenue recorded (ACT-GD cost code) | $537,595 | Xero |
-| Recent-year actual revenue | $50,000 | Strategy PD |
-| Total philanthropic funding received | $445,685 | Xero |
-| Total secured funding (incl. multi-year) | $550,000 | Strategy PD exec summary |
-| Outstanding receivable (QBE participation, INV-0289) | $10,800 | Live AR |
-| Outstanding unfunded delivery (Tennant Creek 200 v1 beds) | ~$36,000 | Cashflow gap from 2025 |
+## Main cost drivers
 
-## Funders (philanthropic capital received)
+- raw materials: plastic feedstock or recycled HDPE, steel, canvas, hardware and packaging
+- manufacturing and assembly labour
+- freight and delivery to remote communities
+- time in community for delivery, feedback and follow-up
+- R&D for product improvement, washing machines and future products
+- shared services through ACT: finance, communications, website, admin and technology
 
-| Funder | Amount | Purpose |
-|---|---|---|
-| Snow Foundation | $193,000 | Core program + R&D |
-| The Funding Network (TFN) | $130,000 | Production + delivery |
-| FRRR | $50,000 | Remote communities |
-| Vincent Fairfax Family Foundation (VFFF) | $50,000 | Core |
-| AMP Spark | $21,900 | Innovation |
-| ACT internal / other | Remaining balance to $445K | R&D, ops |
+## What is clear
 
-Books of record: Xero at the A Curious Tractor Pty Ltd / ACT-GD cost code level.
+Goods is still operating between program and product. A typical pattern is: funder supports a batch, Goods builds the batch, the team or partner delivers it, feedback comes back, then the cycle starts again.
 
-## Pricing (verified, from Xero invoices)
+That is different from a mature ecommerce business where inventory exists, orders flow through, production is predictable and cash comes back fast enough to fund the next round.
 
-| Line | Price |
-|---|---|
-| Stretch Bed (institutional) | $560 |
-| Stretch Bed (retail) | $600 |
-| Basket Bed (legacy) | $370 |
-| Workshop day | $6,000 |
+## Cashflow
 
-## Unit economics (at scale targets)
+Cashflow is tight and timing-sensitive. Delayed payments from Snow Foundation and an overdue debt from another organisation are examples of why working capital matters.
 
-- Production cost at scale (5,000+/yr): ~$350/bed (currently $550-650 at small batch).
-- Institutional price: $560-850.
-- Gross margin at scale: 50-55%.
-- Community profit share (non-negotiable): 40% of net profit.
+The financial risk is more than "not enough money". A good product can still stall if the money arrives after materials, labour or delivery costs are already due.
 
-## Cashflow state
+## Budgeting and forecasts
 
-- **Tight.** The outstanding Tennant Creek delivery created a 2025 cashflow gap that has constrained R&D capacity.
-- **Grant-paced.** Revenue lumps on funder schedules rather than smooth commercial cashflow; SEFA working capital is designed to solve this.
-- **No long-term debt currently on the trading entity.** IBA and SEFA debt is the first planned debt capital.
+Budgeting currently happens through ACT rather than a fully separate Goods finance function.
 
-## Financial systems
+Three-year forecasts are directional, not modelled. That phrase should not be dressed up. It means grant timing, order timing and capital outcomes are volatile enough that forecasts change quickly. A January funding assumption can move to mid-year and change the whole cashflow picture.
 
-- **Accounting:** Xero (ACT-GD cost code separates Goods from wider ACT).
-- **Payments (inbound):** Stripe (ecommerce), bank transfer (institutional invoices).
-- **Payments (outbound):** Xero payroll + supplier bills.
-- **Reporting cadence:** monthly close, quarterly review with advisory group, annual audit.
-- **R&D tax incentive:** claimable via trading entity; strategy documented in ACT wiki (`act-global-infrastructure/wiki/finance/rdti-claim-strategy.md`).
+There is not yet a formal enterprise valuation capability in place. That is fine while the focus is grants, loans and sales revenue, but it becomes a gap if equity or convertible instruments are considered later.
 
-## Five-year cashflow model
+## Investment-readiness gaps
 
-A 5-year cashflow model exists at the ACT level (`act-global-infrastructure/wiki/finance/five-year-cashflow-model.md`). A Goods-specific integrated 3-statement model is on the immediate build list for the QBE round; the 5-year cashflow input is the starting point.
+- Goods-specific integrated financial model.
+- Cleaner unit economics by product, channel and plant location.
+- Formal budget process for Goods as distinct from ACT.
+- Part-time CFO or finance advisor support.
+- Investor materials that connect financial assumptions to the operational reality.
+- Debt-servicing scenarios before taking on repayable capital.
 
-## Financial sustainability thesis
+## What capital would change
 
-Goods becomes sustainable when:
-1. Container-plant unit economics hit target (production cost < $400/bed, institutional sell $560+).
-2. Each plant operates at >60% capacity utilisation (throughput serving multiple community partners).
-3. Institutional B2B revenue covers direct costs and overhead; grant funding retreats to R&D-only.
-4. Community ownership transfers shift the model from vertically-integrated to license + support.
+Capital would let Goods stop waiting for each funded batch before it builds. It could fund inventory, plant deployment, key hires and partner support.
 
-The QBE blended finance round is the capital needed to cross (1) and (2). Phase 3-4 are the scale-out.
+The financial discipline is to avoid treating repayable capital like a grant. Goods has not had to pay money back before. That changes the quality of forecasting, reporting and governance needed.
 
-## Gaps we are honest about
+## Sources
 
-1. **No integrated 3-statement model** at Goods granularity (P&L, BS, CF linked). Priority build for QBE round.
-2. **Valuation not yet determined.** Required before any equity / convertible conversation.
-3. **No CFO.** Finance runs through Ben + ACT shared services; part-time CFO advisor is the 2026 hire.
-4. **Financial forecasts beyond 3 years** are directional, not modelled.
-
-## Documents that exist and can be shared
-
-- Most recent Xero P&L (ACT-GD cost code) — available on request.
-- Strategy PD with financial section (`v2/docs/GOODS_STRATEGY_PD.md` Parts 5 + 8 + 14).
-- Compendium with funding history (`v2/docs/COMPENDIUM_MARCH_2026.md`).
-- QBE live admin dashboard with current receivables / payables state (`v2/src/app/admin/qbe-program/page.tsx`).
-- 5-year ACT-level cashflow model (wiki reference above).
-
-## Documents that do not yet exist
-
-- Formal audited financial statements (ACT Foundation has its own; Goods-only audit not yet performed).
-- 3-statement integrated Goods-specific model.
-- Full Board finance pack (linked to governance upgrade in topic 7).
-
-## Source documents
-
-- Strategy PD Part 5 (Business Model / Pricing), Part 8 (Go-to-Market budgets): `v2/docs/GOODS_STRATEGY_PD.md`
-- Pricing verified: `v2/src/lib/data/products.ts` and Xero
-- Compendium: `v2/docs/COMPENDIUM_MARCH_2026.md`
-- RDTI strategy: `act-global-infrastructure/wiki/finance/rdti-claim-strategy.md`
-- 5-year cashflow: `act-global-infrastructure/wiki/finance/five-year-cashflow-model.md`
+- May 2026 founder transcript and notes, user-provided.
+- Xero ACT-GD cost code, referenced in existing diagnostic pack.
+- Strategy PD: `v2/docs/GOODS_STRATEGY_PD.md`.
+- Compendium: `v2/docs/COMPENDIUM_MARCH_2026.md`.

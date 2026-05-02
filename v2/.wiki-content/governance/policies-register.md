@@ -6,18 +6,18 @@
 
 - **Brand voice guide** (in ACT identity docs).
 - **Consent framework** (via Empathy Ledger, OCAP-compliant).
-- **Operations Handbook** (`v2/docs/OPERATIONS_HANDBOOK.md`).
-- **Partner Guide** (`v2/docs/PARTNER_GUIDE.md`).
+- **Operations Handbook** ([[../sources/operations-handbook]]).
+- **Partner Guide** (needs source-page packaging before mentor use).
 - **Privacy notice** on ecommerce site.
 - **Public liability, product liability, workers compensation** insurance (QBE).
 
 ## Draft / in progress
 
-- **Risk register** — this wiki's [[risk-register]] is working draft.
-- **Whistleblower policy** — draft.
-- **Conflict of interest register** — draft.
-- **Child safety framework** — draft (Fred Campbell consultation).
-- **Modern slavery statement** — not yet required by turnover, tracking threshold.
+- **Risk register:** this wiki's [[risk-register]] is working draft.
+- **Whistleblower policy:** draft.
+- **Conflict of interest register:** draft.
+- **Child safety process:** draft (Fred Campbell consultation).
+- **Modern slavery statement:** not yet required by turnover, tracking threshold.
 
 ## Not in place (priority for 2026)
 

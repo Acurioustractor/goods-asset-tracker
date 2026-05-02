@@ -1,117 +1,73 @@
 # 7. Governance, Data and Reporting
 
-> Is the organisation well governed, with the right skilled Board?
+> Governance is real but early. Goods is moving from Nicholas's sole-trader history into A Curious Tractor Pty Ltd, with a Goods-specific advisory group and a lot of trust-based accountability. The gap is not awareness. The gap is formal structure, reporting rhythm and investor-ready governance without losing community accountability.
 
-## Honest headline
+## Current structure
 
-Goods trades under A Curious Tractor Pty Ltd and inherits governance at the ACT parent level. ACT operates as a dual-entity structure (Foundation CLG + Ventures trading). A formal independent-majority Goods-specific board does not yet exist; a 10-member advisory group provides functional oversight, and the QBE/SEFA pathway will require us to formalise a board structure in 2026. We are treating this as a priority gap, not a solved problem.
+A Curious Tractor Pty Ltd has recently been registered, after a long period where the work operated through Nicholas's sole-trader structure. Goods now sits under A Curious Tractor.
 
-## Current governance structure
+There is also a charity entity, but Ben and Nicholas were clear that it is not currently the main vehicle for Goods. Any charity, CLG, subsidiary or hybrid structure should be treated as under review until legal advice and capital needs settle it.
 
-### ACT parent entities
+## Advisory group
 
-| Entity | Type | Role |
-|---|---|---|
-| **ACT Foundation** | Company Limited by Guarantee (charitable) | Grants, DGR donations, R&D |
-| **ACT Ventures / A Curious Tractor Pty Ltd** (ABN 21 591 780 066) | Trading entity | Goods trades here |
+Goods has a specific advisory group. It is not a board, but it gives regular input and can be called on between meetings.
 
-**Directors (ACT):** Benjamin Knight, Nicholas Marchesi OAM (co-founders).
-Current board is founder-only. Independent directors are the immediate governance upgrade.
+The group includes Aboriginal leaders, industry people, design partners, philanthropic supporters and social enterprise peers. Examples include Zenas Australia, Defy Design and philanthropy supporters.
 
-### Goods advisory group (10 members, functional oversight)
+The gap Ben and Nicholas named is commercial and social enterprise depth: people who have scaled product, sales, operations and impact investment without turning the organisation into something it is not.
 
-| Name | Organisation | Contribution |
-|---|---|---|
-| April Long | SRAU | Sector advisor |
-| Cory Tutt | Deadly Science | First Nations advisor |
-| Sally Grimsley-Ballard | Snow Foundation | Funder + strategic advisor |
-| Nina Fitzgerald | Independent | Advisor |
-| Shaun Fisher | Fishers Oysters | Industry / operations |
-| Daniel Pittman | Zinus | Industry (mattress / manufacturing) |
-| (Walking on Country) | Walking on Country | Community voice |
-| Judith | Orange Sky | Social enterprise peer |
-| Adeem | CYP | Community services |
-| Nicholas Marchesi | ACT | Project lead |
+## Reporting today
 
-This group meets on a regular cadence and provides real strategic input. It is not a governance substitute; it is strategic advisory.
+Formal annual reporting is not yet a Goods habit. Reporting mostly happens through:
 
-## Board formalisation (in-flight)
+- grant acquittals
+- funder updates
+- direct community partner check-ins
+- advisory group conversations
+- product delivery feedback
+- Xero and ACT-level finance records
 
-Per the SEFA conversation (Hannah Ebeling, 31 March 2026): SEFA requires **independent director majority** as a loan covenant, or at minimum a structured advisory group. This aligns with our intent. Proposed path:
+That is workable at the current stage, but not enough for repayable capital.
 
-1. Recruit 3 independent directors by end Q3 2026. Target skills: finance / impact investment, First Nations governance, product / manufacturing.
-2. Set up quarterly board cycle with risk, finance, strategy standing items.
-3. AICD director training (scholarships available) for existing and incoming directors.
-4. Governance Institute of Australia scholarships (available via Mindaroo for regional/remote boards) worth exploring.
+## Accountability to community
 
-## Reporting
+The strongest accountability practice is relational, not formal.
 
-### Internal
+Examples:
 
-- **Monthly:** financial close (Xero), operational KPIs, Empathy Ledger story pipeline.
-- **Quarterly:** strategic review with advisory group; funder updates (Snow, TFN, etc.).
-- **Ad-hoc:** community partner check-ins (LCAA "listen" cycle).
+- telling communities what is happening and when the team is coming back
+- sharing photos and videos back with community members rather than extracting content
+- keeping strong communication with partners such as the Ntumbu group in Alice Springs
+- checking with people like Dianne Stokes about how their stories are being used
+- letting people retract or change story permissions
 
-### External
-
-- **Funders:** grant acquittal reports per funder schedule (Snow, FRRR, VFFF, TFN, AMP all on current cycles).
-- **Regulators:** ATO (BAS quarterly, income tax), ASIC (annual return), ACNC (ACT Foundation side).
-- **Public:** impact page on goodsoncountry.com (live metrics fed from Supabase); Empathy Ledger stories (consent-filtered).
+This is not a substitute for governance, but it is part of the operating practice the pack should show clearly.
 
 ## Data governance
 
-Strongest area in this section. See topic 6 for detail. Key points:
+The philosophy is that people should own their stories. They should know where a story is being used and be able to take it back.
 
-- **Consent-first:** every piece of community data has explicit, renewable consent. One-click withdrawal cascades.
-- **OCAP principles:** Ownership, Control, Access, Possession respected in architecture.
-- **Indigenous data sovereignty:** the default, not a bolt-on.
-- **Separation of duties:** Empathy Ledger is a separate platform and database from Goods operational data; storytellers own their records.
+Empathy Ledger is the technical direction for that, but the current wiki should not overclaim that every impact story is already flowing through a complete automated system. The present practice is a mix of consent infrastructure, transcripts, photos, videos, relationship check-ins and emerging data systems.
 
-## Policies and documents
+## What funders will need
 
-**In place:**
-- Brand voice guide (inside ACT identity docs).
-- Consent framework (Empathy Ledger).
-- Operations Handbook.
-- Partner Guide.
-- Privacy notice (ecommerce site).
+- Clear legal vehicle.
+- Board or advisory structure with the right authority.
+- Conflict of interest process.
+- Risk register that is actually used.
+- Finance reporting cadence.
+- Evidence rules for impact claims.
+- Data sovereignty and consent process in plain language.
 
-**Draft / in progress:**
-- Formal risk register (topic 5).
-- Whistleblower policy.
-- Conflict of interest register.
-- Child safety framework.
-- Modern slavery statement (not yet required by turnover).
+## What the program can help with
 
-**Not in place / to do:**
-- Formal board charter.
-- Director induction pack.
-- Delegations of authority matrix.
+- Help choosing the minimum governance upgrade that gives investors confidence.
+- Board or advisory templates that do not overbuild the organisation too early.
+- Advice on independent directors, commercial advisors and First Nations governance expertise.
+- Help turning story-rich reporting into investor-ready reporting without making it sterile.
 
-## Compliance state
+## Sources
 
-- **ACNC:** ACT Foundation registered.
-- **ASIC:** A Curious Tractor Pty Ltd current.
-- **ATO:** BAS lodged current; DGR status at Foundation level.
-- **Insurance:** public liability (QBE-held), product liability, workers comp. Specifics available on request.
-
-## Gaps we are honest about
-
-1. **Founder-only board at trading entity.** Independent directors are the top governance priority.
-2. **No board charter or delegations matrix** specific to Goods.
-3. **Some policies (whistleblower, COI register) are draft.**
-4. **Impact reporting to funders** is strong on story, lighter on longitudinal outcome metrics.
-
-## What we are asking from the diagnostic
-
-- Sanity-check our board recruitment plan (skills matrix, sequencing, induction).
-- Point us at SEFA / QBE / SIH expectations on board structure so we formalise once, not twice.
-- Share templates for board charter, risk register, delegations matrix that other cohort enterprises have used successfully.
-
-## Source documents
-
-- ACT identity + dual entity: `act-global-infrastructure/wiki/concepts/act-identity.md`
-- Consent architecture: `act-global-infrastructure/wiki/concepts/consent-as-infrastructure.md`
-- Governance + consent: `act-global-infrastructure/wiki/concepts/governance-consent.md`
-- OCAP: `act-global-infrastructure/wiki/concepts/ocap-principles.md`
-- Indigenous data sovereignty: `act-global-infrastructure/wiki/concepts/indigenous-data-sovereignty.md`
+- May 2026 founder transcript and notes, user-provided.
+- ACT identity and legal references in ACT Tractorpedia.
+- Empathy Ledger references: `/Users/benknight/Code/empathy-ledger-v2/`.

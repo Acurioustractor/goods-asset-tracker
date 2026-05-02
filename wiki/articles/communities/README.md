@@ -1,25 +1,27 @@
 # Communities
 
-> Place-based relationships. Deployment partners, co-designers, signalled plant buyers. Each community article captures relationship state, deployment state, and who the signing authority is.
+> Community pages should record relationship state honestly. A place can be important without being locked. Use "candidate", "possible", "in discussion" and "confirmed" carefully.
 
 ## Articles
 
-- [[palm-island-picc]] — PICC, 141 beds, signalled plant buyer
-- [[tennant-creek]] — Centrecorp, Anyinginyi, Julalikari, 139 beds + washing machine fleet
-- [[alice-springs-oonchiumpa]] — Oonchiumpa Consultancy, confirmed Central Australian manufacturing partner
-- [[maningrida]] — 24 beds, Homeland Schools Company connection
-- [[ninga-mia-kalgoorlie]] — 20 beds
-- [[mount-isa]] — 4 beds, BG Fit overlap
-- [[darwin]] — planned circuit deployment
-- [[npy-council]] — NPY Women's Council, 200-350 beds standing interest
+- [[overview]]: overall community table, deployment counts, partners, demand signals and storytellers
+- [[alice-springs-oonchiumpa]]: Central Australia relationship and potential plant pathway
+- [[palm-island-picc]]: PICC relationship and possible community-ownership pathway
+- [[tennant-creek]]: co-design history, washing-machine learning and possible future plant site
+- [[maningrida]]: Homeland Schools Company connection
+- [[ninga-mia-kalgoorlie]]
+- [[mount-isa]]
+- [[darwin]]
+- [[npy-council]]
 
 ## Related
 
 - [[../products/plant-design]]
-- [[../investors/iba]]
+- [[../enterprise/05-strategic-planning-risk]]
 
 ## Canonical data
 
-- Compendium: `v2/src/lib/data/compendium.ts`
-- Deployments: Supabase `cwsyhpiuepvdjtxaozwf`
-- ACT wiki: `communities/palm-island.md`, etc.
+- Compendium and demand snapshot: [[../sources/march-2026-compendium]]
+- Human story evidence: [[../sources/community-voices-from-the-ground]]
+- Deployments: Supabase v2 operational data where verified and safe to aggregate
+- ACT community context where available, translated into these wiki pages before mentor use
