@@ -16,6 +16,18 @@ import {
   WebhookHealthBanner,
   type WebhookHealth,
 } from '@/components/fleet/webhook-health-banner';
+import {
+  PipelineHealthDiagram,
+  type PipelineHealth,
+} from '@/components/fleet/pipeline-health';
+import {
+  SilenceTimeline,
+  type SilenceEvent,
+} from '@/components/fleet/silence-timeline';
+import {
+  InvestigationCards,
+  type InvestigationMachine,
+} from '@/components/fleet/investigation-cards';
 import { FleetMap } from './fleet-map';
 import type { Alert, MachineOverview } from '@/lib/types/database';
 
@@ -139,6 +151,77 @@ export default async function FleetDashboardPage() {
     last_received_at: h.last_received_at,
     distinct_machines_24h: h.machines24.size,
   }));
+
+  // Per-machine monthly activity for the investigation sparklines
+  const { data: monthlyRows } = await supabase.rpc('get_machine_monthly_activity');
+  const monthlyByMachine = new Map<string, { month: string; events: number }[]>();
+  for (const r of (monthlyRows || []) as Array<{ machine_id: string; month_start: string; events: number }>) {
+    const arr = monthlyByMachine.get(r.machine_id) || [];
+    arr.push({ month: r.month_start, events: Number(r.events) });
+    monthlyByMachine.set(r.machine_id, arr);
+  }
+  // Pad each machine's history with zero months so the sparkline has a consistent x-axis
+  const today = new Date();
+  const allMonths: string[] = [];
+  for (let i = 11; i >= 0; i--) {
+    const d = new Date(today.getFullYear(), today.getMonth() - i, 1);
+    allMonths.push(d.toISOString().slice(0, 7) + '-01');
+  }
+
+  // Pipeline health summary
+  const lastEventAt = deployments
+    .map((d) => d.last_seen_at)
+    .filter((x): x is string => !!x)
+    .sort()
+    .at(-1) || null;
+  const reportingMachines = deployments.filter((d) => d.connectivity_status === 'reporting').length;
+  const totalMachinesWithHardware = deployments.filter((d) => d.has_telemetry_hw).length;
+  const pipelineHealth: PipelineHealth = {
+    reportingMachines,
+    totalMachinesWithHardware,
+    lastEventAt,
+    webhookReceiptsLast24h: webhookHealth.reduce((acc, h) => acc + h.last_24h, 0),
+  };
+
+  // Silence timeline — every machine that ever reported, ordered by last seen
+  const silenceEvents: SilenceEvent[] = deployments
+    .filter((d) => d.has_telemetry_hw && d.last_seen_at)
+    .map((d) => ({
+      machine_id: d.machine_id || '',
+      display_name: d.name || d.machine_id || '—',
+      community: d.community,
+      last_seen_at: d.last_seen_at,
+      total_cycle_events: d.total_cycle_events ?? 0,
+      last_firmware: d.last_firmware ?? null,
+      status: d.connectivity_status,
+    }));
+
+  // Investigation cards — one per telemetry-touched machine, with monthly activity
+  const investigationMachines: InvestigationMachine[] = deployments
+    .filter((d) => d.has_telemetry_hw)
+    .map((d) => {
+      const raw = monthlyByMachine.get(d.machine_id || '') || [];
+      const map = new Map(raw.map((r) => [r.month, r.events]));
+      const padded = allMonths.map((m) => ({ month: m, events: map.get(m) || 0 }));
+      return {
+        machine_id: d.machine_id || '',
+        display_name: d.name || d.machine_id || '—',
+        community: d.community,
+        household: d.contact_household,
+        asset_id: d.unique_id,
+        last_seen_at: d.last_seen_at,
+        last_event_type: d.last_event_type ?? null,
+        last_firmware: d.last_firmware ?? null,
+        total_cycle_events: d.total_cycle_events ?? 0,
+        monthly_activity: padded,
+      };
+    })
+    .sort((a, b) => {
+      // Reporting first, then most-recently-silent, then long-silent
+      const aDays = a.last_seen_at ? Date.now() - new Date(a.last_seen_at).getTime() : Infinity;
+      const bDays = b.last_seen_at ? Date.now() - new Date(b.last_seen_at).getTime() : Infinity;
+      return aDays - bDays;
+    });
   
   const machines: MachineOverview[] = (statsData || []).map((row: any) => ({
     machine_id: row.machine_id,
@@ -292,8 +375,19 @@ export default async function FleetDashboardPage() {
         )}
       </div>
 
+      {/* Pipeline health diagram */}
+      <PipelineHealthDiagram health={pipelineHealth} />
+
+      {/* Silence timeline — when did each machine last report */}
+      {silenceEvents.length > 0 && <SilenceTimeline events={silenceEvents} />}
+
       {/* Webhook health banner */}
       {webhookHealth.length > 0 && <WebhookHealthBanner health={webhookHealth} />}
+
+      {/* Per-machine investigation cards */}
+      {investigationMachines.length > 0 && (
+        <InvestigationCards machines={investigationMachines} />
+      )}
 
       {/* All deployments (telemetry + non-telemetry) by community */}
       {deployments.length > 0 && <DeploymentsByCommunity deployments={deployments} />}
