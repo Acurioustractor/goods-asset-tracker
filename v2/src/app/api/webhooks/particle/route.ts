@@ -42,6 +42,7 @@ interface WashEventData {
 function mapEventType(event: string): string {
   switch (event) {
     case 'wash_event':
+    case 'zapier-new-wash':
       return 'cycle_complete';
     case 'heartbeat':
     case 'spark/status':
