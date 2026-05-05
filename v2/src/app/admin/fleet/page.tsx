@@ -8,6 +8,10 @@ import { MachineListTable } from '@/components/fleet/machine-list-table';
 import { AlertsList } from '@/components/fleet/alerts-list';
 import { FleetDailyChart } from '@/components/fleet/fleet-daily-chart';
 import { FleetRecommendations } from '@/components/fleet/fleet-recommendations';
+import {
+  DeploymentsByCommunity,
+  type WashingDeployment,
+} from '@/components/fleet/deployments-by-community';
 import { FleetMap } from './fleet-map';
 import type { Alert, MachineOverview } from '@/lib/types/database';
 
@@ -85,6 +89,11 @@ export default async function FleetDashboardPage() {
 
   // Get aggregated machine stats from the database instead of manually mapping
   const { data: statsData } = await supabase.rpc('get_fleet_machine_stats');
+
+  // All washing deployments (Tennant Creek + Palm Island + Maningrida + ...).
+  // Falls back silently if the RPC hasn't been migrated yet.
+  const { data: deploymentRows } = await supabase.rpc('get_all_washing_deployments');
+  const deployments: WashingDeployment[] = (deploymentRows || []) as WashingDeployment[];
   
   const machines: MachineOverview[] = (statsData || []).map((row: any) => ({
     machine_id: row.machine_id,
@@ -131,8 +140,16 @@ export default async function FleetDashboardPage() {
         <div>
           <h1 className="text-2xl font-bold">Fleet Dashboard</h1>
           <p className="text-gray-500 mt-1">
-            Pakkimjalki Kari washing machine fleet — {machines.length} machines across{' '}
+            Pakkimjalki Kari telemetry — {machines.length} connected machines across{' '}
             {new Set(machines.map((m) => m.community).filter(Boolean)).size} communities
+            {deployments.length > machines.length && (
+              <>
+                {' '}·{' '}
+                <span className="text-gray-700">
+                  {deployments.length} total deployments tracked (incl. units without telemetry hardware)
+                </span>
+              </>
+            )}
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -230,11 +247,14 @@ export default async function FleetDashboardPage() {
         )}
       </div>
 
-      {/* Machine List */}
+      {/* All deployments (telemetry + non-telemetry) by community */}
+      {deployments.length > 0 && <DeploymentsByCommunity deployments={deployments} />}
+
+      {/* Machine List — telemetry-enabled subset */}
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle>Machines</CardTitle>
+            <CardTitle>Telemetry-enabled Machines</CardTitle>
             <p className="text-sm text-gray-500">
               Sorted by alerts, then online status
             </p>
