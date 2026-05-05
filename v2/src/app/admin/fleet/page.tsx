@@ -12,6 +12,10 @@ import {
   DeploymentsByCommunity,
   type WashingDeployment,
 } from '@/components/fleet/deployments-by-community';
+import {
+  WebhookHealthBanner,
+  type WebhookHealth,
+} from '@/components/fleet/webhook-health-banner';
 import { FleetMap } from './fleet-map';
 import type { Alert, MachineOverview } from '@/lib/types/database';
 
@@ -94,6 +98,47 @@ export default async function FleetDashboardPage() {
   // Falls back silently if the RPC hasn't been migrated yet.
   const { data: deploymentRows } = await supabase.rpc('get_all_washing_deployments');
   const deployments: WashingDeployment[] = (deploymentRows || []) as WashingDeployment[];
+
+  // Webhook health (last 24h / 7d). Degrades silently if the table isn't there.
+  const dayAgoIso = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+  const sevenDaysAgoIso = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+  const { data: receipts24h } = await supabase
+    .from('webhook_receipts')
+    .select('source, status_code, machine_id, received_at')
+    .gte('received_at', sevenDaysAgoIso);
+
+  type HealthAcc = WebhookHealth & { machines24: Set<string> };
+  const webhookHealthMap = new Map<string, HealthAcc>();
+  for (const r of receipts24h || []) {
+    const key = r.source as string;
+    const existing: HealthAcc = webhookHealthMap.get(key) || {
+      source: key,
+      last_24h: 0,
+      last_7d: 0,
+      errors_24h: 0,
+      last_received_at: null,
+      distinct_machines_24h: 0,
+      machines24: new Set<string>(),
+    };
+    existing.last_7d += 1;
+    if (r.received_at >= dayAgoIso) {
+      existing.last_24h += 1;
+      if (r.machine_id) existing.machines24.add(r.machine_id);
+      if ((r.status_code as number) >= 400) existing.errors_24h += 1;
+    }
+    if (!existing.last_received_at || r.received_at > existing.last_received_at) {
+      existing.last_received_at = r.received_at;
+    }
+    webhookHealthMap.set(key, existing);
+  }
+  const webhookHealth: WebhookHealth[] = Array.from(webhookHealthMap.values()).map((h) => ({
+    source: h.source,
+    last_24h: h.last_24h,
+    last_7d: h.last_7d,
+    errors_24h: h.errors_24h,
+    last_received_at: h.last_received_at,
+    distinct_machines_24h: h.machines24.size,
+  }));
   
   const machines: MachineOverview[] = (statsData || []).map((row: any) => ({
     machine_id: row.machine_id,
@@ -246,6 +291,9 @@ export default async function FleetDashboardPage() {
           </Card>
         )}
       </div>
+
+      {/* Webhook health banner */}
+      {webhookHealth.length > 0 && <WebhookHealthBanner health={webhookHealth} />}
 
       {/* All deployments (telemetry + non-telemetry) by community */}
       {deployments.length > 0 && <DeploymentsByCommunity deployments={deployments} />}

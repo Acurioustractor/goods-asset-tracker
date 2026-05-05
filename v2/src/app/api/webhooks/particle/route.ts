@@ -55,7 +55,39 @@ function mapEventType(event: string): string {
   }
 }
 
+async function logReceipt(
+  supabase: ReturnType<typeof createServiceClient>,
+  fields: {
+    status_code: number;
+    event_type?: string | null;
+    machine_id?: string | null;
+    body_size: number;
+    user_agent?: string | null;
+    remote_ip?: string | null;
+    duplicate?: boolean;
+    error_message?: string | null;
+    raw_body?: unknown;
+  }
+) {
+  // Best-effort — never let receipt-logging failures take down the webhook.
+  try {
+    await supabase.from('webhook_receipts').insert({
+      source: 'particle',
+      ...fields,
+    });
+  } catch {
+    /* swallow */
+  }
+}
+
 export async function POST(request: NextRequest) {
+  const userAgent = request.headers.get('user-agent');
+  const remoteIp =
+    request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+    request.headers.get('x-real-ip') ||
+    null;
+  const supabaseLog = createServiceClient();
+
   let body: string;
   let payload: ParticlePayload;
 
@@ -63,10 +95,25 @@ export async function POST(request: NextRequest) {
     body = await request.text();
     payload = JSON.parse(body);
   } catch {
+    await logReceipt(supabaseLog, {
+      status_code: 400,
+      body_size: 0,
+      user_agent: userAgent,
+      remote_ip: remoteIp,
+      error_message: 'Invalid JSON',
+    });
     return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
   }
 
   if (!payload.coreid || !payload.event) {
+    await logReceipt(supabaseLog, {
+      status_code: 400,
+      body_size: body.length,
+      user_agent: userAgent,
+      remote_ip: remoteIp,
+      error_message: 'Missing required fields: coreid, event',
+      raw_body: payload,
+    });
     return NextResponse.json(
       { error: 'Missing required fields: coreid, event' },
       { status: 400 }
@@ -130,9 +177,27 @@ export async function POST(request: NextRequest) {
     if (insertError) {
       // Duplicate event_id — idempotent, return success
       if (insertError.code === '23505') {
+        await logReceipt(supabaseLog, {
+          status_code: 200,
+          event_type: eventType,
+          machine_id: payload.coreid,
+          body_size: body.length,
+          user_agent: userAgent,
+          remote_ip: remoteIp,
+          duplicate: true,
+        });
         return NextResponse.json({ received: true, duplicate: true });
       }
       console.error('Particle webhook insert error:', insertError);
+      await logReceipt(supabaseLog, {
+        status_code: 500,
+        event_type: eventType,
+        machine_id: payload.coreid,
+        body_size: body.length,
+        user_agent: userAgent,
+        remote_ip: remoteIp,
+        error_message: insertError.message,
+      });
       return NextResponse.json(
         { error: 'Database error', detail: insertError.message },
         { status: 500 }
@@ -147,6 +212,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    await logReceipt(supabaseLog, {
+      status_code: 200,
+      event_type: eventType,
+      machine_id: payload.coreid,
+      body_size: body.length,
+      user_agent: userAgent,
+      remote_ip: remoteIp,
+    });
+
     return NextResponse.json({
       received: true,
       event_type: eventType,
@@ -157,6 +231,15 @@ export async function POST(request: NextRequest) {
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Unknown error';
     console.error('Particle webhook handler error:', message);
+    await logReceipt(supabaseLog, {
+      status_code: 500,
+      event_type: undefined,
+      machine_id: payload.coreid,
+      body_size: body.length,
+      user_agent: userAgent,
+      remote_ip: remoteIp,
+      error_message: message,
+    });
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
