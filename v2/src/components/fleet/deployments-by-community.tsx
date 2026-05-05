@@ -16,11 +16,15 @@ export interface WashingDeployment {
   last_seen_at: string | null;
   cycles_7d: number;
   kwh_7d: number;
+  total_cycle_events?: number;
+  last_event_type?: string | null;
+  last_firmware?: string | null;
   connectivity_status:
     | 'reporting'
     | 'lagging'
     | 'silent'
     | 'never_reported'
+    | 'placeholder_only'
     | 'no_telemetry_hw'
     | 'pending_assignment';
 }
@@ -30,6 +34,7 @@ const STATUS_LABEL: Record<WashingDeployment['connectivity_status'], string> = {
   lagging: 'Lagging',
   silent: 'Silent',
   never_reported: 'Never reported',
+  placeholder_only: 'Placeholder (no real device)',
   no_telemetry_hw: 'No telemetry HW',
   pending_assignment: 'Pending assignment',
 };
@@ -39,6 +44,7 @@ const STATUS_COLOUR: Record<WashingDeployment['connectivity_status'], string> = 
   lagging: 'bg-amber-100 text-amber-800',
   silent: 'bg-red-100 text-red-800',
   never_reported: 'bg-rose-100 text-rose-800',
+  placeholder_only: 'bg-purple-100 text-purple-800',
   no_telemetry_hw: 'bg-slate-100 text-slate-700',
   pending_assignment: 'bg-blue-50 text-blue-800',
 };
@@ -177,6 +183,9 @@ export function DeploymentsByCommunity({
                     <th className="text-left px-2">Status</th>
                     <th className="text-right px-2">Last seen</th>
                     <th className="text-right px-2">7d cycles</th>
+                    <th className="text-right px-2">Total cycles</th>
+                    <th className="text-left px-2">Last event</th>
+                    <th className="text-left px-2">FW</th>
                     <th className="text-right pr-4">Supplied</th>
                   </tr>
                 </thead>
@@ -201,6 +210,15 @@ export function DeploymentsByCommunity({
                         </td>
                         <td className="text-right px-2 text-gray-600">
                           {d.has_telemetry_hw ? d.cycles_7d : '—'}
+                        </td>
+                        <td className="text-right px-2 text-gray-600">
+                          {d.has_telemetry_hw ? (d.total_cycle_events ?? 0) : '—'}
+                        </td>
+                        <td className="px-2 text-xs text-gray-500">
+                          {d.last_event_type || '—'}
+                        </td>
+                        <td className="px-2 text-xs text-gray-500">
+                          {d.last_firmware || '—'}
                         </td>
                         <td className="text-right pr-4 text-gray-500">
                           {supplied === null ? '—' : `${supplied}d ago`}
