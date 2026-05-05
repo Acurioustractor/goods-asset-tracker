@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { communityLocations } from '@/lib/data/content';
 import { MachineOverview } from '@/lib/types/database';
@@ -12,98 +11,108 @@ interface FleetMapProps {
 
 export function FleetMap({ machines }: FleetMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
-  const mapInstanceRef = useRef<L.Map | null>(null);
+  // Use any here because leaflet is loaded dynamically on the client only;
+  // importing the type at module top would re-introduce the SSR `window is not defined` crash.
+  const mapInstanceRef = useRef<any>(null);
 
   useEffect(() => {
     if (!mapRef.current || mapInstanceRef.current) return;
 
-    // Center on Central Australia
-    const map = L.map(mapRef.current, {
-      scrollWheelZoom: false,
-    }).setView([-21.5, 138.5], 5);
+    let cancelled = false;
+    let cleanup: (() => void) | null = null;
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-    }).addTo(map);
+    (async () => {
+      const L = (await import('leaflet')).default;
+      if (cancelled || !mapRef.current) return;
 
-    // Group machines by community
-    const communityStats = new Map<string, { online: number; offline: number }>();
-    
-    machines.forEach((m) => {
-      // Normalise community name since some are "Palm Island" and others are generic places
-      const community = m.community ? m.community.trim() : null;
-      if (!community) return;
-      
-      const stats = communityStats.get(community) || { online: 0, offline: 0 };
-      if (m.online) stats.online++;
-      else stats.offline++;
-      communityStats.set(community, stats);
-    });
+      const map = L.map(mapRef.current, {
+        scrollWheelZoom: false,
+      }).setView([-21.5, 138.5], 5);
 
-    // We manually add some hardcoded aliases mapping locations if strict matches fail.
-    const getStats = (locName: string, locId: string) => {
-      return communityStats.get(locName) || communityStats.get(locId) || null;
-    };
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+      }).addTo(map);
 
-    communityLocations.forEach((loc) => {
-      const stats = getStats(loc.name, loc.id);
-      if (!stats) return; // Only plot if there are machines in this location
+      const communityStats = new Map<string, { online: number; offline: number }>();
 
-      const total = stats.online + stats.offline;
-      const percentOnline = total > 0 ? (stats.online / total) * 100 : 0;
-      
-      let colorClass = 'bg-emerald-500';
-      if (percentOnline === 0) colorClass = 'bg-red-500';
-      else if (percentOnline < 100) colorClass = 'bg-amber-500';
+      machines.forEach((m) => {
+        const community = m.community ? m.community.trim() : null;
+        if (!community) return;
 
-      const icon = L.divIcon({
-        className: 'fleet-marker',
-        html: `
-          <div style="
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 14px;
-          " class="${colorClass}">${total}</div>
-        `,
-        iconSize: [36, 36],
-        iconAnchor: [18, 18],
+        const stats = communityStats.get(community) || { online: 0, offline: 0 };
+        if (m.online) stats.online++;
+        else stats.offline++;
+        communityStats.set(community, stats);
       });
 
-      const popup = L.popup({
-        maxWidth: 250,
-        className: 'fleet-popup',
-      }).setContent(`
-        <div style="font-family:system-ui,sans-serif; padding: 4px;">
-          <h3 style="margin:0 0 8px;font-size:16px;font-weight:600;">${loc.name}</h3>
-          <div style="display:flex; justify-content: space-between; margin-bottom: 4px; font-size: 13px;">
-            <span style="color:#059669; font-weight: 500;">● Online</span>
-            <strong>${stats.online}</strong>
-          </div>
-          <div style="display:flex; justify-content: space-between; font-size: 13px;">
-            <span style="color:#dc2626; font-weight: 500;">● Offline</span>
-            <strong>${stats.offline}</strong>
-          </div>
-        </div>
-      `);
+      const getStats = (locName: string, locId: string) => {
+        return communityStats.get(locName) || communityStats.get(locId) || null;
+      };
 
-      L.marker([loc.lat, loc.lng], { icon })
-        .addTo(map)
-        .bindPopup(popup);
-    });
+      communityLocations.forEach((loc) => {
+        const stats = getStats(loc.name, loc.id);
+        if (!stats) return;
 
-    mapInstanceRef.current = map;
+        const total = stats.online + stats.offline;
+        const percentOnline = total > 0 ? (stats.online / total) * 100 : 0;
+
+        let colorClass = 'bg-emerald-500';
+        if (percentOnline === 0) colorClass = 'bg-red-500';
+        else if (percentOnline < 100) colorClass = 'bg-amber-500';
+
+        const icon = L.divIcon({
+          className: 'fleet-marker',
+          html: `
+            <div style="
+              width: 36px;
+              height: 36px;
+              border-radius: 50%;
+              border: 3px solid white;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+              font-weight: bold;
+              font-size: 14px;
+            " class="${colorClass}">${total}</div>
+          `,
+          iconSize: [36, 36],
+          iconAnchor: [18, 18],
+        });
+
+        const popup = L.popup({
+          maxWidth: 250,
+          className: 'fleet-popup',
+        }).setContent(`
+          <div style="font-family:system-ui,sans-serif; padding: 4px;">
+            <h3 style="margin:0 0 8px;font-size:16px;font-weight:600;">${loc.name}</h3>
+            <div style="display:flex; justify-content: space-between; margin-bottom: 4px; font-size: 13px;">
+              <span style="color:#059669; font-weight: 500;">● Online</span>
+              <strong>${stats.online}</strong>
+            </div>
+            <div style="display:flex; justify-content: space-between; font-size: 13px;">
+              <span style="color:#dc2626; font-weight: 500;">● Offline</span>
+              <strong>${stats.offline}</strong>
+            </div>
+          </div>
+        `);
+
+        L.marker([loc.lat, loc.lng], { icon })
+          .addTo(map)
+          .bindPopup(popup);
+      });
+
+      mapInstanceRef.current = map;
+      cleanup = () => {
+        map.remove();
+        mapInstanceRef.current = null;
+      };
+    })();
 
     return () => {
-      map.remove();
-      mapInstanceRef.current = null;
+      cancelled = true;
+      if (cleanup) cleanup();
     };
   }, [machines]);
 
