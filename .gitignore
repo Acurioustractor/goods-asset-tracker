@@ -5,6 +5,8 @@
 *.pem
 *.key
 config.json
+secure/
+private/
 
 # Dependencies
 node_modules/
