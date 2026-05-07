@@ -1,9 +1,22 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { brand, story, partners } from '@/lib/data/content';
 import { STRETCH_BED } from '@/lib/data/products';
 import { getFeaturedVoices, getHeroQuotes, getJourneyNarratives } from '@/lib/empathy-ledger/featured-voices';
+
+// Count actual image files at build time so the library never lies about itself.
+async function countImagesIn(dir: string, filter?: (name: string) => boolean): Promise<number> {
+  try {
+    const full = path.join(process.cwd(), 'public', 'images', dir);
+    const entries = await fs.readdir(full);
+    return entries.filter((e) => /\.(jpg|jpeg|png|webp|svg)$/i.test(e) && (!filter || filter(e))).length;
+  } catch {
+    return 0;
+  }
+}
 
 export const metadata = {
   title: 'Brand & Comms | Goods on Country',
@@ -56,20 +69,38 @@ const bannedSamples = [
   'em dashes',
 ];
 
-const imageCategories = [
-  { name: 'Stretch Bed', count: 14, sample: '/images/product/stretch-bed-hero.jpg' },
-  { name: 'Pakkimjalki Kari', count: 6, sample: '/images/media-pack/washing-machine-enclosure-sunset.jpg' },
-  { name: 'Storyteller portraits', count: 8, sample: '/images/people/dianne-stokes.jpg' },
-  { name: 'Process & manufacturing', count: 16, sample: '/images/process/04-build.jpg' },
-  { name: 'Community context', count: 1, sample: '/images/community/tennant-creek.jpg' },
-  { name: 'Brand & lifestyle', count: 9, sample: '/images/media-pack/goods-branding-golden-hour.jpg' },
-];
+async function buildImageCategories() {
+  const [
+    stretchBedCount,
+    washingMachineCount,
+    peopleCount,
+    processCount,
+    communityCount,
+    mediaPackCount,
+  ] = await Promise.all([
+    countImagesIn('product', (n) => n.startsWith('stretch-bed')),
+    countImagesIn('product', (n) => n.startsWith('washing-machine')),
+    countImagesIn('people'),
+    countImagesIn('process'),
+    countImagesIn('community'),
+    countImagesIn('media-pack'),
+  ]);
+  return [
+    { name: 'Stretch Bed', count: stretchBedCount, sample: '/images/product/stretch-bed-hero.jpg' },
+    { name: 'Pakkimjalki Kari', count: washingMachineCount, sample: '/images/media-pack/washing-machine-enclosure-sunset.jpg' },
+    { name: 'Storyteller portraits', count: peopleCount, sample: '/images/people/dianne-stokes.jpg' },
+    { name: 'Process & manufacturing', count: processCount, sample: '/images/process/04-build.jpg' },
+    { name: 'Community context', count: communityCount, sample: '/images/community/tennant-creek.jpg' },
+    { name: 'Brand & lifestyle', count: mediaPackCount, sample: '/images/media-pack/goods-branding-golden-hour.jpg' },
+  ];
+}
 
 export default async function BrandPage() {
-  const [featuredStorytellers, heroQuotes, journeyNarratives] = await Promise.all([
+  const [featuredStorytellers, heroQuotes, journeyNarratives, imageCategories] = await Promise.all([
     getFeaturedVoices(8),
     getHeroQuotes(),
     getJourneyNarratives(),
+    buildImageCategories(),
   ]);
   const liveCount = featuredStorytellers.filter((v) => v.liveFromEL).length;
 
