@@ -3,6 +3,8 @@
 // local content.ts data when EL is disabled or returns empty.
 //
 // Used by v2/src/app/brand/page.tsx. ISR cached at 5 minutes via the EL client.
+// EL is hosted at empathy-ledger-v2.vercel.app (NOT on goodsoncountry.com);
+// see v2/src/lib/empathy-ledger/client.ts for the EMPATHY_LEDGER_API_URL.
 
 import { empathyLedger } from './client';
 import { quotes, journeyStories } from '@/lib/data/content';

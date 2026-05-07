@@ -55,8 +55,8 @@ Image map and Empathy Ledger fallback: [v2/src/lib/data/media.ts](../../v2/src/l
 | Project slug | `goods` |
 | Project code (aggregator) | `goods-on-country` (returns ~18 stories including PICC, BG Fit) |
 | Goods-only stories | 12 syndicated |
-| API base | `https://empathy-ledger-v2.vercel.app` |
-| Plain stories endpoint | `https://www.goodsoncountry.com/api/stories?projectCode=goods-on-country` |
+| API base | `https://empathy-ledger-v2.vercel.app` (note the `-v2` suffix; un-suffixed host is not reachable) |
+| Plain stories endpoint | `https://empathy-ledger-v2.vercel.app/api/stories?projectCode=goods-on-country` (NOT goodsoncountry.com) |
 | Auto-sync | `/api/cron/el-sync` daily |
 | Client code | [v2/src/lib/empathy-ledger/client.ts](../../v2/src/lib/empathy-ledger/client.ts) |
 | Types | [v2/src/lib/empathy-ledger/types.ts](../../v2/src/lib/empathy-ledger/types.ts) |

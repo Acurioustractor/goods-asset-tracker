@@ -173,9 +173,11 @@ For pieces that need a 200-300 word narrative, use these pre-written arcs from [
 ## Pulling fresh from Empathy Ledger
 
 ```bash
-# All Goods stories (filtered for syndication + consent)
-curl "https://www.goodsoncountry.com/api/stories?projectCode=goods-on-country&limit=20"
+# All Goods stories (filtered for syndication + consent on the EL side)
+curl "https://empathy-ledger-v2.vercel.app/api/stories?projectCode=goods-on-country&limit=20"
 ```
+
+The Goods site does NOT proxy this endpoint. The EL API is hosted on `empathy-ledger-v2.vercel.app` (note the `-v2` suffix). Server-side code in `v2/src/lib/empathy-ledger/client.ts` calls it via the `EMPATHY_LEDGER_API_URL` env var.
 
 EL Supabase direct (when API down):
 - `EMPATHY_LEDGER_SUPABASE_URL` and `EMPATHY_LEDGER_SUPABASE_KEY` in `.env.local`
