@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { brand, story, quotes, journeyStories, partners } from '@/lib/data/content';
+import { brand, story, partners } from '@/lib/data/content';
 import { STRETCH_BED } from '@/lib/data/products';
+import { getFeaturedVoices, getHeroQuotes, getJourneyNarratives } from '@/lib/empathy-ledger/featured-voices';
 
 export const metadata = {
   title: 'Brand & Comms | Goods on Country',
@@ -10,18 +11,10 @@ export const metadata = {
     'Voice, photography, storyteller voices, slide deck, and asset library for Goods on Country. For media, funders, partners, and anyone telling our story.',
 };
 
-const ASSET_EMAIL = 'hi@act.place';
+// Re-validate from Empathy Ledger every 5 minutes so consent state stays fresh.
+export const revalidate = 300;
 
-const featuredStorytellers = [
-  { id: 'dianne-stokes', name: 'Dianne Stokes', location: 'Elder, Tennant Creek', photo: '/images/people/dianne-stokes.jpg' },
-  { id: 'linda-turner', name: 'Linda Turner', location: 'Tennant Creek', photo: '/images/people/linda-turner.jpg' },
-  { id: 'norman-frank', name: 'Norman Frank', location: 'Elder, Tennant Creek', photo: '/images/people/norman-frank.jpg' },
-  { id: 'patricia-frank', name: 'Patricia Frank', location: 'Tennant Creek', photo: '/images/people/patricia-frank.jpg' },
-  { id: 'cliff-plummer', name: 'Cliff Plummer', location: 'Tennant Creek', photo: '/images/people/cliff-plummer.jpg' },
-  { id: 'ivy', name: 'Ivy', location: 'Palm Island', photo: '/images/people/ivy.jpg' },
-  { id: 'alfred-johnson', name: 'Alfred Johnson', location: 'Palm Island', photo: '/images/people/alfred-johnson.jpg' },
-  { id: 'brian-russell', name: 'Brian Russell', location: 'Tennant Creek', photo: '/images/people/brian-russell.jpg' },
-] as const;
+const ASSET_EMAIL = 'hi@act.place';
 
 const voicePrinciples = [
   {
@@ -72,11 +65,13 @@ const imageCategories = [
   { name: 'Brand & lifestyle', count: 9, sample: '/images/media-pack/goods-branding-golden-hour.jpg' },
 ];
 
-export default function BrandPage() {
-  // Pick three storyteller pull quotes for the hero band
-  const heroQuotes = quotes
-    .filter((q) => q.verified && ['Linda Turner', 'Ivy', 'Cliff Plummer'].includes(q.author))
-    .slice(0, 3);
+export default async function BrandPage() {
+  const [featuredStorytellers, heroQuotes, journeyNarratives] = await Promise.all([
+    getFeaturedVoices(8),
+    getHeroQuotes(),
+    getJourneyNarratives(),
+  ]);
+  const liveCount = featuredStorytellers.filter((v) => v.liveFromEL).length;
 
   return (
     <main style={{ backgroundColor: '#FDF8F3', color: '#2E2E2E' }}>
@@ -190,6 +185,12 @@ export default function BrandPage() {
                 Every quote is verified. Consent is on file. Storytellers can update or remove anytime.
                 Always credit by name and community.
               </p>
+              {liveCount > 0 && (
+                <p className="text-xs mb-4 flex items-center gap-2" style={{ color: '#8B9D77' }}>
+                  <span className="inline-block w-2 h-2 rounded-full" style={{ backgroundColor: '#8B9D77' }} />
+                  {liveCount} of {featuredStorytellers.length} pulled live from Empathy Ledger (consent verified)
+                </p>
+              )}
               <Link
                 href="/stories"
                 className="text-sm underline underline-offset-4"
@@ -205,11 +206,19 @@ export default function BrandPage() {
                     <div className="aspect-square relative rounded overflow-hidden mb-2 bg-stone-100">
                       <Image
                         src={s.photo}
-                        alt={`${s.name}, ${s.location}`}
+                        alt={s.photoAlt}
                         fill
                         className="object-cover"
                         sizes="(max-width: 640px) 50vw, 25vw"
                       />
+                      {s.liveFromEL && (
+                        <span
+                          className="absolute top-1 right-1 w-2 h-2 rounded-full"
+                          style={{ backgroundColor: '#8B9D77' }}
+                          aria-label="Live syndicated story in Empathy Ledger"
+                          title="Live syndicated story in Empathy Ledger"
+                        />
+                      )}
                     </div>
                     <p className="text-xs font-medium leading-tight">{s.name}</p>
                     <p className="text-xs" style={{ color: '#8B9D77' }}>
@@ -428,11 +437,22 @@ export default function BrandPage() {
             Six narrative arcs ready to use.
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {journeyStories.map((j) => (
-              <div key={j.id} className="border rounded p-5" style={{ borderColor: '#E8DED4' }}>
-                <p className="text-xs uppercase tracking-wider mb-2" style={{ color: '#8B9D77' }}>
-                  {j.location}
-                </p>
+            {journeyNarratives.map((j) => (
+              <div key={j.id} className="border rounded p-5 relative" style={{ borderColor: '#E8DED4' }}>
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-xs uppercase tracking-wider" style={{ color: '#8B9D77' }}>
+                    {j.location}
+                  </p>
+                  {j.liveFromEL && (
+                    <span
+                      className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded"
+                      style={{ backgroundColor: 'rgba(139, 157, 119, 0.15)', color: '#8B9D77' }}
+                      title="Live syndicated story in Empathy Ledger"
+                    >
+                      Live
+                    </span>
+                  )}
+                </div>
                 <h3 className="text-base font-medium mb-2">{j.title}</h3>
                 <p
                   className="text-sm italic mb-3"
@@ -570,7 +590,8 @@ export default function BrandPage() {
             </Button>
           </div>
           <p className="text-xs mt-8" style={{ color: '#7A7A7A' }}>
-            {partners.communityPartners.length}+ community partners · {featuredStorytellers.length} storytellers featured · 400+ beds delivered.
+            {partners.communityPartners.length}+ community partners · {featuredStorytellers.length} storytellers featured
+            {liveCount > 0 ? ` (${liveCount} live from Empathy Ledger)` : ''} · 400+ beds delivered.
             Last revised May 2026.
           </p>
         </div>
