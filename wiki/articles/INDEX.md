@@ -7,6 +7,17 @@
 - [[linked-wikis]] — cross-wiki ties (ACT Tractorpedia, Empathy Ledger, codebase, etc.)
 - [[qbe-catalysing-impact-2026]] — legacy pointer → see [[program/]]
 
+### [[brand-comms/README|brand-comms/]]
+Brand voice, comms templates, storyteller voices, image library, slide deck. Use this before drafting any external copy.
+- [[brand-comms/01-voice-and-tone]] — voice rules, banned phrases, before/after
+- [[brand-comms/02-storyteller-voices]] — community voices library with consent state
+- [[brand-comms/03-product-image-library]] — shot list, photo direction, gaps to fill
+- [[brand-comms/04-email-templates]] — funder, procurement, community, media, internal
+- [[brand-comms/05-pipelines-x-brand]] — pipeline stage × template × URL
+- [[brand-comms/06-asset-register]] — single source of truth pointers
+- [[brand-comms/07-slide-deck]] — the one simple deck for live sessions
+- [[brand-comms/08-agent-prompt-pack]] — reusable LLM prompts for Goods copy
+
 ## Topic folders
 
 ### [[capital/README|capital/]]
