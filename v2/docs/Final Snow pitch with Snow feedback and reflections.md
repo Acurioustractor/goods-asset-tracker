@@ -1,3 +1,5 @@
+<!-- historical / internal-reference doc, not external comms -->
+<!-- brand-lint-disable -->
 Hey Nic, (and Ben)
 
 Thanks for sending this!
@@ -38,7 +40,7 @@ Also quick run though AI again – assuming have you looked at: 
 
 **![📈](https://fonts.gstatic.com/s/e/notoemoji/16.0/1f4c8/72.png)** **Other Innovation & Impact Investors**
 
-**Giant Leap** – a VC fund in Australia investing in impact start‑ups that blend social/environmental benefits with scalable models — could be relevant if moving toward scalable social enterprise.
+**Giant Leap** – a VC fund in Australia investing in impact start‑ups that blend social/environmental benefits with scalable models, could be relevant if moving toward scalable social enterprise.
 
 **Circular economy funds (e.g., Planet Ark & Boston Global’s Circular Future Fund)** – targeting waste reduction and circular innovation; while large and emerging, they represent broader sector interest in sustainable solutions and could be a co‑investment conversation.
 
@@ -100,9 +102,9 @@ This proposal responds to **200-350 bed requests** from communities and health
 
 We envision a future where:
 
-**1. Product ubiquity** — Visit any remote community in Australia and you'll see a Goods bed, either in use or available for purchase. It becomes the product of first choice, naturally displacing inferior alternatives.
+**1. Product ubiquity** . Visit any remote community in Australia and you'll see a Goods bed, either in use or available for purchase. It becomes the product of first choice, naturally displacing inferior alternatives.
 
-**2. Environmental impact** — By creating a highly desirable product that people _want_, we slow the flood of cheap, disposable furniture into communities. When one Alice Springs provider sells **$3 million of washing machines annually**into communities — most ending up in dumps — we see the scale of the problem. Our solution is to introduce a "virus" of better products that people choose first, naturally reducing demand for disposable alternatives.
+**2. Environmental impact** . By creating a highly desirable product that people _want_, we slow the flood of cheap, disposable furniture into communities. When one Alice Springs provider sells **$3 million of washing machines annually**into communities, most ending up in dumps, we see the scale of the problem. Our solution is to introduce a "virus" of better products that people choose first, naturally reducing demand for disposable alternatives.
 
 **Evidence of demand:**
 
@@ -212,17 +214,17 @@ ACT has invested heavily in deep cultural consultation with the Oonchiumpa Bloom
 - Red Dust Robotics (young fella teaching kids 3D printing and robotics)
 - Deadly Science
 - Centre of Appropriate Technology
-- NPY Women's Council (Angela Lynch) — "always looking for beds"
+- NPY Women's Council (Angela Lynch). "always looking for beds"
 - Tennant Creek Community Shed (interested in hosting shredding and plastic collection)
 - Mayor Sid in Tennant Creek (exploring night patrol involvement in plastic collection)
 
-**Philosophy:** Products can be Aboriginal owned and controlled while sold commercially, with programs run through partner organisations. No need to create separate "Goods charity" or Aboriginal-controlled entity — leverage existing strong community organisations.
+**Philosophy:** Products can be Aboriginal owned and controlled while sold commercially, with programs run through partner organisations. No need to create separate "Goods charity" or Aboriginal-controlled entity, leverage existing strong community organisations.
 
 ---
 
 ### Production Facility: Asset Value and Monetisation
 
-The production facility is **not a sunk cost — it's a impact asset.**
+The production facility is **not a sunk cost, it's a impact asset.**
 
 **Evidence of commercial interest:**
 
@@ -237,7 +239,7 @@ The production facility is **not a sunk cost — it's a impact asset.**
 - Model: Use philanthropy to build production plant, then loan or rent to communities creating revenue for reinvestment
 - If ACT could build 1,000 beds with stock on hand and sell them, this creates revenue stream for program reinvestment
 
-**Current challenge:** Product sales generate no margin — funds come in, products go out. This investment helps shift toward sustainable model.
+**Current challenge:** Product sales generate no margin, funds come in, products go out. This investment helps shift toward sustainable model.
 
 ---
 
@@ -395,7 +397,7 @@ ACT is taking a **measured approach to scale:**
 
 **✓ Trust and relationship building:** Nic and Ben's relationship with Bloomfields described as "far greater than any piece of paper"; two years of iterative engagement
 
-**✓ Reciprocity:** "What footprints are we leaving?" — Leaving production assets, skills, revenue-generating capacity, not just consumable products
+**✓ Reciprocity:** "What footprints are we leaving?". Leaving production assets, skills, revenue-generating capacity, not just consumable products
 
 **✓ Do no harm:** Measured scale-up approach; testing extensively before mass production; acknowledging when things aren't ready (washing/sanitising solution still needed)
 
@@ -419,9 +421,9 @@ ACT is taking a **measured approach to scale:**
 
 ### Investment Priorities (in order)
 
-1. **More beds** — Immediate demand and field testing expansion
-2. **Production facility** — Infrastructure for sustainable scale and job creation
-3. **Nic and Ben's time** — R&D, partnership development, and program delivery
+1. **More beds** . Immediate demand and field testing expansion
+2. **Production facility** . Infrastructure for sustainable scale and job creation
+3. **Nic and Ben's time** . R&D, partnership development, and program delivery
 
 This $120,000 request focuses on priorities 1 and 2, positioning ACT to move toward financial sustainability that will support priority 3 through earned revenue.
 
@@ -435,7 +437,7 @@ This $120,000 request focuses on priorities 1 and 2, positioning ACT to move tow
 - The Funding Network (~$80K for production facility, actual costs exceeded $100K)
 - Centre Corp Foundation
 
-This context has catalysed ACT's thinking about **self-determination through social enterprise** — not abandoning philanthropy, but building financial independence to control our own future while maintaining deep community partnerships.
+This context has catalysed ACT's thinking about **self-determination through social enterprise** . not abandoning philanthropy, but building financial independence to control our own future while maintaining deep community partnerships.
 
 ---
 

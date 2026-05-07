@@ -21,7 +21,7 @@ we arrived to [describe reception].
 ## Community Voices
 
 [Quote from community member]
-— [Name], [Community]
+. [Name], [Community]
 
 ## Impact
 
@@ -44,7 +44,7 @@ Your support makes this possible.
 
 ## 2. Community Voice / Testimonial
 
-**Title:** "[Short quote]" — [Name], [Community]
+**Title:** "[Short quote]", [Name], [Community]
 
 **Summary:**
 [Name] shares their experience with their Goods bed.
@@ -100,7 +100,7 @@ This month we delivered [X] beds, reached [Y] new families, and [Z highlight].
 
 ### Community Feedback
 > "[Quote]"
-> — [Name], [Community]
+>, [Name], [Community]
 
 ## Coming Up
 
@@ -140,7 +140,7 @@ To our sponsors, partners, and community members who make this work possible.
 ## Community Impact
 
 > "[Quote from recipient]"
-> — [Name], [Community]
+>, [Name], [Community]
 
 ## From Sponsor to Family
 
@@ -240,10 +240,10 @@ Today we celebrate delivering our [X]th bed to remote Australian communities.
 ## Voices
 
 > "[Quote 1]"
-> — [Name], [Community]
+>, [Name], [Community]
 
 > "[Quote 2]"
-> — [Name], [Community]
+>, [Name], [Community]
 
 ## What's Next
 

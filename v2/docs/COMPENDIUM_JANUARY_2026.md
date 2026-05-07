@@ -1,3 +1,5 @@
+<!-- historical / internal-reference doc, not external comms -->
+<!-- brand-lint-disable -->
 # Goods on Country - Compendium January 2026
 
 > **Authoritative source document for all Goods content and messaging.**

@@ -1,4 +1,4 @@
-# Fleet Connectivity Audit — May 2026
+# Fleet Connectivity Audit. May 2026
 
 Snapshot taken 2026-05-05. Purpose: explain who is connected, who is dark, why
 the dashboard was lying, and what to do about each gap.
@@ -34,23 +34,23 @@ the dashboard was lying, and what to do about each gap.
 
 ### Tennant Creek deployment timeline
 
-- 2025-07-02 — Norman (Norm's House), Barkley Arts, Jimmy, Jimmy's Uncle (4)
-- 2025-09-15 → 2025-11-17 — Particle devices come online (4E5, 507, 098, F25, plus 3 ghost coreids)
-- 2025-12-03 — 10-machine "GB0-154" shipment lands ("Pending Assignment" except Nicole Frank)
-- 2025-12-13 — Nicole Frank assigned to GB0-154-2
+- 2025-07-02. Norman (Norm's House), Barkley Arts, Jimmy, Jimmy's Uncle (4)
+- 2025-09-15 → 2025-11-17. Particle devices come online (4E5, 507, 098, F25, plus 3 ghost coreids)
+- 2025-12-03. 10-machine "GB0-154" shipment lands ("Pending Assignment" except Nicole Frank)
+- 2025-12-13. Nicole Frank assigned to GB0-154-2
 
 ### Palm Island deployment timeline
 
-- 2025-07-09 — Rangers Station
-- 2025-08-05 — Additional Washers ×2
-- 2025-08-12 — Oochiumpa ×3, Workers House, Luella Bligh, Ebs Aunty
-- 2025-09-28 — Club Kuta machine
+- 2025-07-09. Rangers Station
+- 2025-08-05. Additional Washers ×2
+- 2025-08-12. Oochiumpa ×3, Workers House, Luella Bligh, Ebs Aunty
+- 2025-09-28. Club Kuta machine
 
-All 10 are tracked manually only — no Particle device, no signal.
+All 10 are tracked manually only, no Particle device, no signal.
 
 ### Maningrida deployment timeline
 
-- 2025-10-20 — Maningrida Laundry ×6
+- 2025-10-20. Maningrida Laundry ×6
 
 All 6 are manual-tracking only.
 
@@ -66,8 +66,8 @@ Particle Photon (washer)
    → /admin/fleet (KPI RPC + machine stats RPC)
 ```
 
-There is also `/api/webhooks/openfields` for the Openfields Solutions feed —
-HMAC signed — but no live data has been observed coming through this path
+There is also `/api/webhooks/openfields` for the Openfields Solutions feed.
+HMAC signed, but no live data has been observed coming through this path
 recently.
 
 ## Per-machine signal history (live data, 2026-05-05)
@@ -87,7 +87,7 @@ recently.
 
 ## Bugs found and fixed
 
-### Bug 1 — Leaflet SSR crash (`/admin/fleet` top half blank)
+### Bug 1. Leaflet SSR crash (`/admin/fleet` top half blank)
 - File: `v2/src/app/admin/fleet/fleet-map.tsx`
 - Cause: top-level `import L from 'leaflet'` ran during server render; Leaflet
   references `window` at module-load → `ReferenceError: window is not defined`
@@ -96,7 +96,7 @@ recently.
 - Fix: defer Leaflet import to inside `useEffect` so it only ever runs in the
   browser. Commit `cb78634` on `codex/goods-qbe-signoff`.
 
-### Bug 2 — `event_type` drift (KPIs read zero)
+### Bug 2. `event_type` drift (KPIs read zero)
 - File: `v2/src/app/api/webhooks/particle/route.ts`
 - Cause: Zapier forwards Particle wash events with `event="zapier-new-wash"`,
   but `mapEventType()` only knew about `wash_event`. Result: 212 historical
@@ -109,7 +109,7 @@ recently.
   historical rows + refresh the rollup view. Migration file:
   `supabase/migrations/20260505000001_fleet_event_type_normalisation.sql`.
 
-### Bug 3 — Dashboard hides 28 of 38 deployments
+### Bug 3. Dashboard hides 28 of 38 deployments
 - File: `v2/supabase/migrations/20260322000001_fleet_aggregations.sql`
 - Cause: `get_fleet_machine_stats()` ends with `WHERE a.machine_id IS NOT
   NULL`, so any washer without a paired Particle/named telemetry id falls off
@@ -128,11 +128,11 @@ recently.
 These were active for months but are not in `assets`. Until they're claimed,
 they're orphan signals.
 
-- `e00fce68c4b97878b9a2b323` — 296 events Aug 2025 → 2026-03-29. Last cycle
+- `e00fce68c4b97878b9a2b323`. 296 events Aug 2025 → 2026-03-29. Last cycle
   count 48 (heavy daily use). **Likely a real deployed machine somewhere.**
-- `e00fce68fe6c048ccec66ab1` — 279 events Sep 2025 → 2026-03-21. Mix of
+- `e00fce68fe6c048ccec66ab1`. 279 events Sep 2025 → 2026-03-21. Mix of
   cycles + heartbeats.
-- `e00fce689f1dd0daf5987cf2` — 28 events Sep 2025 only. Possibly a test or
+- `e00fce689f1dd0daf5987cf2`. 28 events Sep 2025 only. Possibly a test or
   swapped-out unit.
 
 Action: Ben to confirm what each coreid was. Once known, INSERT/UPDATE rows
@@ -141,13 +141,13 @@ in `assets` so they land on the dashboard.
 ### 2. Decide the silent-fleet response
 9 of 10 telemetry-enabled Tennant Creek machines have stopped reporting. The
 named-only ones (Barkley Arts, 8D1, Dian Stokes Sons House, Red Dust) only
-ever recorded a single `offline` event on 2026-03-01 — they may have never
+ever recorded a single `offline` event on 2026-03-01, they may have never
 had real Particle hardware behind their human-readable `machine_id`. Triage
 order:
-1. **4E5** (last seen 14d ago) — most recently healthy, easiest to recover.
+1. **4E5** (last seen 14d ago), most recently healthy, easiest to recover.
 2. **507** (36d ago).
 3. **098** (65d, only 3 events ever).
-4. Named-only machines — confirm whether hardware was ever installed.
+4. Named-only machines, confirm whether hardware was ever installed.
 
 For each: check Particle Cloud console for last-seen + signal strength,
 verify Zapier zap is enabled, then site visit if no remote fix lands.
@@ -156,13 +156,13 @@ verify Zapier zap is enabled, then site visit if no remote fix lands.
 Currently they don't, by choice or by gap. The wiki note in
 `wiki/articles/products/washing-machine.md` says telemetry is "useful for
 fleet learning, but it should not be overdescribed as a complete live fleet
-system yet" — i.e. selective, not universal. If a Palm Island laundry should
+system yet", i.e. selective, not universal. If a Palm Island laundry should
 report, hardware needs to be shipped + fitted + paired. Otherwise the
 dashboard's `no_telemetry_hw` badge is the correct steady state.
 
 ### 4. Stale `machine_commentary` rows
 Every row in `machine_commentary` has `created_at = 2026-03-09T21:37:10.532872`
-— a one-shot batch run from March 9. The "5 days ago" / "3 days ago" /
+. a one-shot batch run from March 9. The "5 days ago" / "3 days ago" /
 "Not reporting this week" notes the dashboard surfaces are *frozen as of
 March 9*, not live observations. They should be re-generated on a schedule
 (weekly cron) or removed if the operational-notes job has been retired.

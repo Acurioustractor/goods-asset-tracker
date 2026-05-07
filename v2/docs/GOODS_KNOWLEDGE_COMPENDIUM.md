@@ -1,4 +1,6 @@
-# Goods on Country — Knowledge Compendium
+<!-- internal strategy / knowledge reference doc, not external comms surface -->
+<!-- brand-lint-disable -->
+# Goods on Country. Knowledge Compendium
 
 **Version:** 2.0
 **Date:** January 2026
@@ -11,7 +13,7 @@
 
 ## Overview
 
-This compendium is the single source of truth for Goods on Country. It anchors all decisions in LCAA methodology and ALMA learning signals. It is a field guide, not a report—meant to be used in meetings, on Country, in code reviews, and in the quiet hours where decisions are made.
+This compendium is the single source of truth for Goods on Country. It anchors all decisions in LCAA methodology and ALMA learning signals. It is a field guide, not a report.meant to be used in meetings, on Country, in code reviews, and in the quiet hours where decisions are made.
 
 **One-liner:** Goods delivers comfort to Country through community-owned, circular economy beds and essential items.
 
@@ -29,11 +31,11 @@ To revolutionise how essential goods are created by transferring ownership of pr
 
 We envision a future where:
 
-1. **Product Ubiquity** — Visit any remote community in Australia and you'll see a Goods bed, either in use or available for purchase. It becomes the product of first choice.
+1. **Product Ubiquity**. Visit any remote community in Australia and you'll see a Goods bed, either in use or available for purchase. It becomes the product of first choice.
 
-2. **Environmental Impact** — By creating highly desirable products, we slow the flood of cheap, disposable furniture into communities. When one Alice Springs provider sells $3 million of washing machines annually into communities — most ending up in dumps — we see the scale of the problem.
+2. **Environmental Impact**. By creating highly desirable products, we slow the flood of cheap, disposable furniture into communities. When one Alice Springs provider sells $3 million of washing machines annually into communities, most ending up in dumps, we see the scale of the problem.
 
-3. **Community Ownership** — 40% profit-sharing with communities, production facilities owned locally, jobs created on Country.
+3. **Community Ownership**. 40% profit-sharing with communities, production facilities owned locally, jobs created on Country.
 
 ### LCAA Alignment
 
@@ -46,16 +48,16 @@ We envision a future where:
 
 ### Principles Applied
 
-1. **Country sets the pace** — We deliver to community readiness, not investor timelines
-2. **Community authority comes first** — OCAP enforced in all data practices
-3. **Identity before product** — We build relationships before beds
-4. **Build for handover** — Local manufacturing training, community ownership model
-5. **Make with lived experience** — 40% profit share, employment pathways
-6. **Enterprise funds the commons** — Revenue supports community value, not extraction
-7. **Evidence is story** — Empathy Ledger testimonials over surveillance metrics
-8. **Tools create space** — Asset tracking reduces admin, increases transparency
-9. **Share with care** — Consent-first storytelling, cultural sensitivity tagging
-10. **Art returns us to Listen** — Stories flow back to inform next design cycle
+1. **Country sets the pace**. We deliver to community readiness, not investor timelines
+2. **Community authority comes first**. OCAP enforced in all data practices
+3. **Identity before product**. We build relationships before beds
+4. **Build for handover**. Local manufacturing training, community ownership model
+5. **Make with lived experience**. 40% profit share, employment pathways
+6. **Enterprise funds the commons**. Revenue supports community value, not extraction
+7. **Evidence is story**. Empathy Ledger testimonials over surveillance metrics
+8. **Tools create space**. Asset tracking reduces admin, increases transparency
+9. **Share with care**. Consent-first storytelling, cultural sensitivity tagging
+10. **Art returns us to Listen**. Stories flow back to inform next design cycle
 
 ---
 
@@ -95,7 +97,7 @@ A stackable bed frame with washable mattresses designed specifically for remote 
 
 ### Pakkimjalki Kari Machine
 
-"Indestructible Washing Machine" — Community-tough washing machines for resilience and hygiene.
+"Indestructible Washing Machine". Community-tough washing machines for resilience and hygiene.
 
 **Key Features:**
 - Built on commercial-grade Speed Queen chassis
@@ -133,9 +135,9 @@ Real requests driving our work:
 | **Total requests** | Communities + organisations | **200-350 beds** |
 
 **Community Voice:**
-> "It took just five minutes to put together, and it's properly comfortable" — Mark, community member
+> "It took just five minutes to put together, and it's properly comfortable". Mark, community member
 
-> "I need a good mattress so I can rest my back...and ability to wash it due to disability needs" — Community member
+> "I need a good mattress so I can rest my back...and ability to wash it due to disability needs". Community member
 
 ---
 
@@ -152,7 +154,7 @@ Circular design connecting environmental care with community benefit. Products t
 Built for local success. Co-designed with communities, not for them. Community voice in every decision.
 
 #### 3. Place-Based Adaptation
-Made for Country. Products adapted to specific conditions — heat, dust, humidity, remoteness.
+Made for Country. Products adapted to specific conditions, heat, dust, humidity, remoteness.
 
 ### Product Design Framework
 
@@ -869,4 +871,4 @@ API Routes:
 
 *Like a tractor's power take-off, we transfer capacity to communities driving their own futures. We design for our own obsolescence.*
 
-*— Aligned with LCAA, ALMA, OCAP*
+*. Aligned with LCAA, ALMA, OCAP*

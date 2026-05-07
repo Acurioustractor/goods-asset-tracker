@@ -44,7 +44,7 @@ As a **Community Storyteller**, they can:
 **Add a testimonial (5 min):**
 ```
 1. New Story → Type: Testimonial
-2. Title: "[Quote excerpt]" — Name, Community
+2. Title: "[Quote excerpt]". Name, Community
 3. Summary: Brief context
 4. Content: Full quote + attribution
 5. Themes: testimonial, [community-name]

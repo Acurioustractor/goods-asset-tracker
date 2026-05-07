@@ -80,6 +80,7 @@ For press, journalism, and storytelling collaborators.
 
 Three quotes from named community storytellers (consent verified) are available in [wiki/articles/brand-comms/02-storyteller-voices.md](../../wiki/articles/brand-comms/02-storyteller-voices.md).
 
+<!-- brand-lint-disable -->
 ## Brand voice in partner communications
 
 When representing or referencing Goods on Country, follow these rules:
@@ -93,6 +94,7 @@ When representing or referencing Goods on Country, follow these rules:
 Banned in Goods communications: "donate" / "donation" / "charity" framing, "beneficiaries", "empower", "unlock", "leverage", "synergy", em dashes, generic Indigenous Australia imagery as decoration.
 
 Full voice rules: [wiki/articles/brand-comms/01-voice-and-tone.md](../../wiki/articles/brand-comms/01-voice-and-tone.md).
+<!-- brand-lint-enable -->
 
 ## Photo and asset use
 
@@ -121,8 +123,10 @@ For corporate sponsorships above $20,000:
 
 ## FAQ
 
+<!-- brand-lint-disable -->
 **Are these donations?**
 No. Sponsorship and procurement, not donations. Tax-deductible receipts are available where applicable, but the framing is enterprise: communities are co-designers and customers, not beneficiaries.
+<!-- brand-lint-enable -->
 
 **How do you choose communities?**
 We don't. Communities approach us through health services, Aboriginal corporations, or trusted introducers. We work where invited. Currently active in Tennant Creek, Palm Island, Alice Springs, Utopia, Maningrida, and others. New communities are added when relationships warrant.

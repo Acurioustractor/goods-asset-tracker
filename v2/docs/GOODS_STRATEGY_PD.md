@@ -1,3 +1,5 @@
+<!-- internal strategy / knowledge reference doc, not external comms surface -->
+<!-- brand-lint-disable -->
 # Goods. Strategy Product Document
 
 **Version:** 1.0
@@ -20,11 +22,11 @@
 
 We envision a future where:
 
-1. **Product Ubiquity** — Visit any remote community in Australia and you'll see a Goods bed, either in use or available for purchase. It becomes the product of first choice.
+1. **Product Ubiquity**. Visit any remote community in Australia and you'll see a Goods bed, either in use or available for purchase. It becomes the product of first choice.
 
-2. **Environmental Impact** — By creating highly desirable products, we slow the flood of cheap, disposable furniture into communities. When one Alice Springs provider sells $3 million of washing machines annually into communities — most ending up in dumps — we see the scale of the problem.
+2. **Environmental Impact**. By creating highly desirable products, we slow the flood of cheap, disposable furniture into communities. When one Alice Springs provider sells $3 million of washing machines annually into communities, most ending up in dumps, we see the scale of the problem.
 
-3. **Community Ownership** — 40% profit-sharing with communities, production facilities owned locally, jobs created on Country.
+3. **Community Ownership**. 40% profit-sharing with communities, production facilities owned locally, jobs created on Country.
 
 ---
 
@@ -92,13 +94,13 @@ A stackable bed frame with washable mattresses designed specifically for remote 
 - Ongoing feedback integration from Palm Island, Ninga Mia communities
 
 **Community Voice:**
-> "It took just five minutes to put together, and it's properly comfortable" — Mark, community member
+> "It took just five minutes to put together, and it's properly comfortable". Mark, community member
 
-> "I need a good mattress so I can rest my back...and ability to wash it due to disability needs" — Community member
+> "I need a good mattress so I can rest my back...and ability to wash it due to disability needs". Community member
 
 ### 2. Pakkimjalki Kari Machine (Washing Machine)
 
-"Indestructible Washing Machine" — Community-tough washing machines for resilience and hygiene.
+"Indestructible Washing Machine". Community-tough washing machines for resilience and hygiene.
 
 **Key Features:**
 - Built on commercial-grade Speed Queen chassis
@@ -135,7 +137,7 @@ Circular design connecting environmental care with community benefit. Products t
 Built for local success. Co-designed with communities, not for them. Community voice in every decision.
 
 #### 3. Place-Based Adaptation
-Made for Country. Products adapted to specific conditions — heat, dust, humidity, remoteness.
+Made for Country. Products adapted to specific conditions, heat, dust, humidity, remoteness.
 
 ### Product Design Framework
 
@@ -666,4 +668,4 @@ Goods follows ACT's Curious Tractor philosophy:
 
 *"Like a tractor's power take-off, we transfer capacity to communities driving their own futures. We design for our own obsolescence."*
 
-— A Curious Tractor
+. A Curious Tractor

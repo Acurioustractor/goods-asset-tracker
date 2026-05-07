@@ -1,3 +1,5 @@
+<!-- historical / internal-reference doc, not external comms -->
+<!-- brand-lint-disable -->
 # Empathy Ledger Integration Architecture
 
 ## Overview
