@@ -1,0 +1,156 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - navigation [ref=e4]:
+        - link "Goods on Country" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e6]: Goods
+          - generic [ref=e7]: on Country
+        - generic [ref=e8]:
+          - link "The Stretch Bed" [ref=e9] [cursor=pointer]:
+            - /url: /shop/stretch-bed-single
+          - link "Pakkimjalki Kari" [ref=e10] [cursor=pointer]:
+            - /url: /shop/washing-machine
+          - link "How It's Made" [ref=e11] [cursor=pointer]:
+            - /url: /process
+          - link "Our Story" [ref=e12] [cursor=pointer]:
+            - /url: /story
+          - link "My Goods" [ref=e13] [cursor=pointer]:
+            - /url: /my-items
+        - generic [ref=e14]:
+          - link "Buy Now" [ref=e15] [cursor=pointer]:
+            - /url: /shop/stretch-bed-single
+          - button "Shopping cart with 0 items" [ref=e16]:
+            - img
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - generic [ref=e22]: 369+
+          - generic [ref=e23]: beds delivered
+        - generic [ref=e24]:
+          - generic [ref=e25]: "8"
+          - generic [ref=e26]: communities
+        - generic [ref=e27]:
+          - generic [ref=e28]: 20kg
+          - generic [ref=e29]: plastic diverted per bed
+      - link "Our impact" [ref=e30] [cursor=pointer]:
+        - /url: /impact
+        - text: Our impact
+        - img [ref=e31]
+    - main [ref=e33]:
+      - main [ref=e34]:
+        - generic [ref=e35]:
+          - generic [ref=e36]:
+            - paragraph [ref=e37]: Tools
+            - heading "Brand voice linter" [level=1] [ref=e38]
+            - paragraph [ref=e39]:
+              - text: Paste any Goods on Country draft. Get every voice violation flagged before you send. Rules come from
+              - link "the brand guide" [ref=e40] [cursor=pointer]:
+                - /url: /brand
+              - text: and stay in sync with the Notion mirror.
+          - generic [ref=e41]:
+            - generic [ref=e42]:
+              - generic [ref=e43]:
+                - generic [ref=e44]: Your draft
+                - button "Load a bad sample" [ref=e45]
+              - textbox "Your draft" [ref=e46]:
+                - /placeholder: Paste an email, post, deck slide, page copy...
+              - generic [ref=e47]:
+                - generic [ref=e48]: 0 chars
+                - button "Clear" [disabled]
+            - generic [ref=e49]:
+              - generic [ref=e50]: Result
+              - paragraph [ref=e52]: Paste a draft to see violations.
+          - generic [ref=e53]:
+            - generic [ref=e54]:
+              - heading "Programmatic use" [level=3] [ref=e55]
+              - generic [ref=e56]: "curl -X POST \\ /api/brand-lint \\ -H 'content-type: application/json' \\ -d '{\"text\":\"draft...\"}'"
+            - generic [ref=e57]:
+              - heading "Press kit JSON" [level=3] [ref=e58]
+              - paragraph [ref=e59]: Verified quotes, photo URLs, specs, contact, voice rules.
+              - link "GET /api/press-kit" [ref=e60] [cursor=pointer]:
+                - /url: /api/press-kit
+            - generic [ref=e61]:
+              - heading "The full brand guide" [level=3] [ref=e62]
+              - paragraph [ref=e63]: Voice principles, banned words, before/after examples, capitalisation rules.
+              - link "/brand" [ref=e64] [cursor=pointer]:
+                - /url: /brand
+    - contentinfo [ref=e65]:
+      - generic [ref=e68]:
+        - heading "Join the movement" [level=3] [ref=e69]
+        - paragraph [ref=e70]: Get updates on new products, community stories, and farm content.
+        - generic [ref=e71]:
+          - textbox "your@email.com" [ref=e72]
+          - button "Subscribe" [ref=e73]
+      - generic [ref=e74]:
+        - generic [ref=e75]:
+          - generic [ref=e76]:
+            - link "Goods on Country" [ref=e77] [cursor=pointer]:
+              - /url: /
+              - text: Goods
+              - generic [ref=e78]: on Country
+            - paragraph [ref=e79]: Delivering essential items to remote Australian Indigenous communities. Every purchase makes a difference.
+            - link "LinkedIn" [ref=e81] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/a-curious-tractor/
+              - img [ref=e82]
+          - generic [ref=e84]:
+            - heading "Product" [level=3] [ref=e85]
+            - list [ref=e86]:
+              - listitem [ref=e87]:
+                - link "The Stretch Bed" [ref=e88] [cursor=pointer]:
+                  - /url: /shop/stretch-bed-single
+              - listitem [ref=e89]:
+                - link "How It's Made" [ref=e90] [cursor=pointer]:
+                  - /url: /process
+              - listitem [ref=e91]:
+                - link "Washing Machines" [ref=e92] [cursor=pointer]:
+                  - /url: /shop/washing-machine
+          - generic [ref=e93]:
+            - heading "About" [level=3] [ref=e94]
+            - list [ref=e95]:
+              - listitem [ref=e96]:
+                - link "Our Story" [ref=e97] [cursor=pointer]:
+                  - /url: /story
+              - listitem [ref=e98]:
+                - link "Communities" [ref=e99] [cursor=pointer]:
+                  - /url: /community
+              - listitem [ref=e100]:
+                - link "Impact" [ref=e101] [cursor=pointer]:
+                  - /url: /impact
+              - listitem [ref=e102]:
+                - link "Gallery" [ref=e103] [cursor=pointer]:
+                  - /url: /gallery
+          - generic [ref=e104]:
+            - heading "Connect" [level=3] [ref=e105]
+            - list [ref=e106]:
+              - listitem [ref=e107]:
+                - link "Partner With Us" [ref=e108] [cursor=pointer]:
+                  - /url: /partner
+              - listitem [ref=e109]:
+                - link "Sponsor a Bed" [ref=e110] [cursor=pointer]:
+                  - /url: /sponsor
+              - listitem [ref=e111]:
+                - link "Brand & Comms" [ref=e112] [cursor=pointer]:
+                  - /url: /brand
+              - listitem [ref=e113]:
+                - link "Support / FAQ" [ref=e114] [cursor=pointer]:
+                  - /url: /support
+              - listitem [ref=e115]:
+                - link "Contact" [ref=e116] [cursor=pointer]:
+                  - /url: /contact
+        - generic [ref=e117]:
+          - paragraph [ref=e119]: Goods on Country acknowledges the Traditional Owners of the lands on which we live and work. We pay our respects to Elders past, present, and emerging.
+          - generic [ref=e120]:
+            - paragraph [ref=e121]: © 2026 Goods on Country. All rights reserved.
+            - generic [ref=e122]:
+              - link "Privacy Policy" [ref=e123] [cursor=pointer]:
+                - /url: /privacy
+              - link "Terms of Service" [ref=e124] [cursor=pointer]:
+                - /url: /terms
+              - button "Feedback" [ref=e125]
+              - link "Dashboard" [ref=e126] [cursor=pointer]:
+                - /url: /dashboard
+              - link "Shift Log" [ref=e127] [cursor=pointer]:
+                - /url: /production
+  - button "Open Next.js Dev Tools" [ref=e133] [cursor=pointer]:
+    - img [ref=e134]

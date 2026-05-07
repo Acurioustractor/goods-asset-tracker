@@ -9,14 +9,14 @@ reason: live pipeline state, commercially sensitive
 
 ## Pipeline stages
 
-1. **Research** — investor identified, due diligence on them underway.
-2. **Cold outreach** — first contact drafted or sent.
-3. **Conversation** — dialogue open.
-4. **Pitched** — deck/memo sent, meeting held.
-5. **DD (their side)** — they are doing their due diligence on us.
-6. **LOI / term sheet** — conditional commitment in writing.
-7. **Signed** — closed.
-8. **Received** — cash in the door.
+1. **Research**, investor identified, due diligence on them underway.
+2. **Cold outreach**, first contact drafted or sent.
+3. **Conversation**, dialogue open.
+4. **Pitched**, deck/memo sent, meeting held.
+5. **DD (their side)**, they are doing their due diligence on us.
+6. **LOI / term sheet**, conditional commitment in writing.
+7. **Signed**, closed.
+8. **Received**, cash in the door.
 
 ## Current state (as of April 2026)
 
@@ -45,11 +45,11 @@ reason: live pipeline state, commercially sensitive
 
 ## Active advisors and connectors
 
-- **Beck Parkinson** — impact investment advisor; ex-SVA, ex-DFAT; selection committee member.
-- **Jess Grebenschikoff** — Social Impact Hub, QBE program facilitator.
-- **Sarah Gregory** — SIH Director, People; leads PIN diagnostic.
-- **Jay Boolkin** — QBE program coordinator.
-- **Adam** — SIH crowdfunding specialist.
+- **Beck Parkinson**, impact investment advisor; ex-SVA, ex-DFAT; selection committee member.
+- **Jess Grebenschikoff**. Social Impact Hub, QBE program facilitator.
+- **Sarah Gregory**. SIH Director, People; leads PIN diagnostic.
+- **Jay Boolkin**. QBE program coordinator.
+- **Adam**. SIH crowdfunding specialist.
 
 ## Sources
 

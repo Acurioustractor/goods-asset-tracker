@@ -29,7 +29,7 @@ COMMUNITY EQUITY PICC plant purchase (Yr 3-4)      TBD
 | Name | Role | Status | Check size | Fit |
 |---|---|---|---|---|
 | **QBE Foundation** | Anchor grant | Cohort selected, match needed | Up to $200K | Climate resilience + inclusion |
-| **Social Impact Hub / Jess G.** | Program facilitator | Active | — | Orchestrator |
+| **Social Impact Hub / Jess G.** | Program facilitator | Active | | Orchestrator |
 | **SEFA (Hannah Ebeling)** | Subordinated debt | Conversation opening | $300K+ | Impact lender, $9M undeployed |
 | **QBE Ventures (Alex)** | CVC equity | Lighthouse program plausible | $5-15M (std), Lighthouse small | Insurance adjacency thesis |
 | **Snow Foundation** | Grant + LOI | Long-term partner, R4 pipeline | $200K | Partnership model |
@@ -38,7 +38,7 @@ COMMUNITY EQUITY PICC plant purchase (Yr 3-4)      TBD
 | **IBA** | Debt + grant blend | Eligibility confirmed | Up to $5M | Indigenous business |
 | **Tim Fairfax Family Foundation** | Grant | Target | TBD | 33 comms focus |
 | **Dusseldorp Forum** | Grant | Target | TBD | JustReinvest connection |
-| **Beck Parkinson** | Advisor | Active | — | Ex-SVA, ex-DFAT, selection committee |
+| **Beck Parkinson** | Advisor | Active | | Ex-SVA, ex-DFAT, selection committee |
 
 ## Capital we have received
 

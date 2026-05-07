@@ -83,7 +83,7 @@ The QBE blended finance round is the capital needed to cross (1) and (2). Phase 
 
 ## Documents that exist and can be shared
 
-- Most recent Xero P&L (ACT-GD cost code) — available on request.
+- Most recent Xero P&L (ACT-GD cost code), available on request.
 - Strategy PD with financial section (`v2/docs/GOODS_STRATEGY_PD.md` Parts 5 + 8 + 14).
 - Compendium with funding history (`v2/docs/COMPENDIUM_MARCH_2026.md`).
 - QBE live admin dashboard with current receivables / payables state (`v2/src/app/admin/qbe-program/page.tsx`).

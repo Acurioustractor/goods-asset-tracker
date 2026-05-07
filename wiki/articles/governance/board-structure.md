@@ -34,9 +34,9 @@ Ten-member advisory group. Meets on regular cadence. Not a governance body, but 
 
 Recruit three independent directors to the trading entity board by end Q3 2026. Target skills:
 
-1. **Finance / impact investment** — someone who has taken an organisation through a blended raise. Pipeline: via Beck Parkinson network.
-2. **First Nations governance** — community-controlled organisation experience, cultural authority.
-3. **Product / manufacturing / operations** — scale-up experience in manufacturing, complementary to Nick's product side.
+1. **Finance / impact investment**, someone who has taken an organisation through a blended raise. Pipeline: via Beck Parkinson network.
+2. **First Nations governance**, community-controlled organisation experience, cultural authority.
+3. **Product / manufacturing / operations**, scale-up experience in manufacturing, complementary to Nick's product side.
 
 ## Recruitment path
 
@@ -46,8 +46,8 @@ Recruit three independent directors to the trading entity board by end Q3 2026. 
 
 ## Training and scholarships
 
-- **AICD** — director training scholarships available.
-- **Governance Institute of Australia** — scholarships via Mindaroo Foundation for regional/remote boards.
+- **AICD**, director training scholarships available.
+- **Governance Institute of Australia**, scholarships via Mindaroo Foundation for regional/remote boards.
 
 ## Board charter and supporting docs
 

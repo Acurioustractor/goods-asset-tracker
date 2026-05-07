@@ -4,10 +4,10 @@
 
 ## Articles
 
-- [[stretch-bed]] — flagship, for sale, revenue anchor
-- [[washing-machine]] — Pakkimjalki Kari, prototype, register-interest
-- [[basket-bed-legacy]] — discontinued, open-source plans
-- [[plant-design]] — containerised production facility
+- [[stretch-bed]], flagship, for sale, revenue anchor
+- [[washing-machine]]. Pakkimjalki Kari, prototype, register-interest
+- [[basket-bed-legacy]], discontinued, open-source plans
+- [[plant-design]], containerised production facility
 
 ## Canonical sources
 

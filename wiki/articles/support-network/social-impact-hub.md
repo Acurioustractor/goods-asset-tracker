@@ -16,7 +16,7 @@
 |---|---|
 | **Jess Grebenschikoff** | Program facilitator |
 | **Adam** | Crowdfunding expert, backup to Jay |
-| **Sarah Gregory** | Director, People — leads PIN diagnostic |
+| **Sarah Gregory** | Director, People, leads PIN diagnostic |
 | **Jay Boolkin** | QBE Foundation program coordinator |
 
 ## What they provide for Goods
@@ -30,11 +30,11 @@
 
 ## Resources they point to
 
-- **Lend for Good** — crowdfunding debt platform (SIH is a provider).
-- **Impact Investing Australia** — national deal tracker.
-- **Impact Investment Legal Toolkit** (forthcoming) — standard form agreements, pitch deck advice.
-- **AICD** — scholarships.
-- **Governance Institute of Australia** — Mindaroo-funded regional/remote board scholarships.
+- **Lend for Good**, crowdfunding debt platform (SIH is a provider).
+- **Impact Investing Australia**, national deal tracker.
+- **Impact Investment Legal Toolkit** (forthcoming), standard form agreements, pitch deck advice.
+- **AICD**, scholarships.
+- **Governance Institute of Australia**. Mindaroo-funded regional/remote board scholarships.
 
 ## Sources
 

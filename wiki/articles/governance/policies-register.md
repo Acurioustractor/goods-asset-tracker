@@ -13,11 +13,11 @@
 
 ## Draft / in progress
 
-- **Risk register** — this wiki's [[risk-register]] is working draft.
-- **Whistleblower policy** — draft.
-- **Conflict of interest register** — draft.
-- **Child safety framework** — draft (Fred Campbell consultation).
-- **Modern slavery statement** — not yet required by turnover, tracking threshold.
+- **Risk register**, this wiki's [[risk-register]] is working draft.
+- **Whistleblower policy**, draft.
+- **Conflict of interest register**, draft.
+- **Child safety framework**, draft (Fred Campbell consultation).
+- **Modern slavery statement**, not yet required by turnover, tracking threshold.
 
 ## Not in place (priority for 2026)
 

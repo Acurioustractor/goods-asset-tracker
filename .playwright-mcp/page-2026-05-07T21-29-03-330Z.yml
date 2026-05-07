@@ -1,0 +1,446 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - navigation [ref=e4]:
+        - link "Goods on Country" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e6]: Goods
+          - generic [ref=e7]: on Country
+        - generic [ref=e8]:
+          - link "The Stretch Bed" [ref=e9] [cursor=pointer]:
+            - /url: /shop/stretch-bed-single
+          - link "Pakkimjalki Kari" [ref=e10] [cursor=pointer]:
+            - /url: /shop/washing-machine
+          - link "How It's Made" [ref=e11] [cursor=pointer]:
+            - /url: /process
+          - link "Our Story" [ref=e12] [cursor=pointer]:
+            - /url: /story
+          - link "My Goods" [ref=e13] [cursor=pointer]:
+            - /url: /my-items
+        - generic [ref=e14]:
+          - link "Buy Now" [ref=e15] [cursor=pointer]:
+            - /url: /shop/stretch-bed-single
+          - button "Shopping cart with 0 items" [ref=e16]:
+            - img
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - generic [ref=e22]: 369+
+          - generic [ref=e23]: beds delivered
+        - generic [ref=e24]:
+          - generic [ref=e25]: "8"
+          - generic [ref=e26]: communities
+        - generic [ref=e27]:
+          - generic [ref=e28]: 20kg
+          - generic [ref=e29]: plastic diverted per bed
+      - link "Our impact" [ref=e30] [cursor=pointer]:
+        - /url: /impact
+        - text: Our impact
+        - img [ref=e31]
+    - main [ref=e33]:
+      - main [ref=e34]:
+        - generic [ref=e36]:
+          - paragraph [ref=e37]: Brand & Comms
+          - heading "Built with communities, not for them." [level=1] [ref=e38]
+          - paragraph [ref=e39]: Voice, storyteller voices, image library, and the deck used in every live session. For media, funders, partners, and anyone telling the Goods on Country story.
+          - generic [ref=e40]:
+            - link "Open the live deck" [ref=e41] [cursor=pointer]:
+              - /url: /decks/live-session-deck.html
+            - link "Request assets" [ref=e42] [cursor=pointer]:
+              - /url: mailto:hi@act.place?subject=Goods%20brand%20assets%20request
+            - link "Storyteller library" [ref=e43] [cursor=pointer]:
+              - /url: /stories
+        - generic [ref=e46]:
+          - generic [ref=e47]:
+            - paragraph [ref=e48]: 01 / Voice
+            - heading "Five principles. Hard rules." [level=2] [ref=e49]
+          - generic [ref=e50]:
+            - generic [ref=e51]:
+              - generic [ref=e52]: "01"
+              - generic [ref=e53]:
+                - heading "Lead with impact, not charity" [level=3] [ref=e54]
+                - paragraph [ref=e55]: A washing machine is cardiac prevention. A bed is medical recovery. We are an enterprise, never a gift.
+            - generic [ref=e56]:
+              - generic [ref=e57]: "02"
+              - generic [ref=e58]:
+                - heading "Centre community voices" [level=3] [ref=e59]
+                - paragraph [ref=e60]: Quote real people by name, with location, with consent. Their words carry the work. Ours frames it.
+            - generic [ref=e61]:
+              - generic [ref=e62]: "03"
+              - generic [ref=e63]:
+                - heading "Be specific" [level=3] [ref=e64]
+                - paragraph [ref=e65]: Real numbers, real materials, real places. "26kg, 200kg load" beats "lightweight". "Tennant Creek" beats "remote Australia".
+            - generic [ref=e66]:
+              - generic [ref=e67]: "04"
+              - generic [ref=e68]:
+                - heading "Plain, not polished" [level=3] [ref=e69]
+                - paragraph [ref=e70]: Short sentences. Concrete nouns. Active verbs. No corporate gloss.
+            - generic [ref=e71]:
+              - generic [ref=e72]: "05"
+              - generic [ref=e73]:
+                - heading "Show the model" [level=3] [ref=e74]
+                - paragraph [ref=e75]: Manufacturing transfers to community ownership. Our job is to become unnecessary.
+            - generic [ref=e76]:
+              - paragraph [ref=e77]: Banned, no exceptions
+              - generic [ref=e78]:
+                - generic [ref=e79]: donate
+                - generic [ref=e80]: donation
+                - generic [ref=e81]: charity
+                - generic [ref=e82]: beneficiaries
+                - generic [ref=e83]: empower
+                - generic [ref=e84]: unlock
+                - generic [ref=e85]: leverage
+                - generic [ref=e86]: synergy
+                - generic [ref=e87]: ecosystem
+                - generic [ref=e88]: GTM
+                - generic [ref=e89]: disrupting
+                - generic [ref=e90]: innovative
+                - generic [ref=e91]: game-changer
+                - generic [ref=e92]: em dashes
+              - paragraph [ref=e93]: "Always capitalise: On-Country, Country, Elder, First Nations, Pakkimjalki Kari, Stretch Bed."
+        - generic [ref=e96]:
+          - generic [ref=e97]:
+            - paragraph [ref=e98]: 02 / Voices
+            - heading "Listen to the people we work with." [level=2] [ref=e99]
+            - paragraph [ref=e100]: Every quote is verified. Consent is on file. Storytellers can update or remove anytime. Always credit by name and community.
+            - link "Full storyteller library →" [ref=e101] [cursor=pointer]:
+              - /url: /stories
+          - generic [ref=e102]:
+            - generic [ref=e103]:
+              - generic [ref=e104]:
+                - img "Dianne Stokes, Elder, Tennant Creek" [ref=e106]
+                - paragraph [ref=e107]: Dianne Stokes
+                - paragraph [ref=e108]: Elder, Tennant Creek
+              - generic [ref=e109]:
+                - img "Linda Turner, Tennant Creek" [ref=e111]
+                - paragraph [ref=e112]: Linda Turner
+                - paragraph [ref=e113]: Tennant Creek
+              - generic [ref=e114]:
+                - img "Norman Frank, Elder, Tennant Creek" [ref=e116]
+                - paragraph [ref=e117]: Norman Frank
+                - paragraph [ref=e118]: Elder, Tennant Creek
+              - generic [ref=e119]:
+                - img "Patricia Frank, Tennant Creek" [ref=e121]
+                - paragraph [ref=e122]: Patricia Frank
+                - paragraph [ref=e123]: Tennant Creek
+              - generic [ref=e124]:
+                - img "Cliff Plummer, Tennant Creek" [ref=e126]
+                - paragraph [ref=e127]: Cliff Plummer
+                - paragraph [ref=e128]: Tennant Creek
+              - generic [ref=e129]:
+                - img "Ivy, Palm Island" [ref=e131]
+                - paragraph [ref=e132]: Ivy
+                - paragraph [ref=e133]: Palm Island
+              - generic [ref=e134]:
+                - img "Alfred Johnson, Palm Island" [ref=e136]
+                - paragraph [ref=e137]: Alfred Johnson
+                - paragraph [ref=e138]: Palm Island
+              - generic [ref=e139]:
+                - img "Brian Russell, Tennant Creek" [ref=e141]
+                - paragraph [ref=e142]: Brian Russell
+                - paragraph [ref=e143]: Tennant Creek
+            - generic [ref=e144]:
+              - blockquote [ref=e145]:
+                - paragraph [ref=e146]: “We've never been asked at what sort of house we'd like to live in.”
+                - generic [ref=e147]: Linda Turner, Tennant Creek
+              - blockquote [ref=e148]:
+                - paragraph [ref=e149]: “Hardly anyone around the community has beds. When family comes to visit, people sleep on the floor.”
+                - generic [ref=e150]: Ivy, Palm Island
+              - blockquote [ref=e151]:
+                - paragraph [ref=e152]: “You got to get health messages across.”
+                - generic [ref=e153]: Cliff Plummer, Health Practitioner, Tennant Creek
+        - generic [ref=e156]:
+          - generic [ref=e157]:
+            - paragraph [ref=e158]: 03 / The product
+            - heading "The Stretch Bed" [level=2] [ref=e159]
+            - paragraph [ref=e160]: A flat-packable, washable bed made from recycled plastic, heavy-duty canvas, and galvanised steel.
+            - generic [ref=e161]:
+              - term [ref=e162]: Weight
+              - definition [ref=e163]: 26kg
+              - term [ref=e164]: Load capacity
+              - definition [ref=e165]: 200kg
+              - term [ref=e166]: Dimensions
+              - definition [ref=e167]: 188 × 92 × 25cm
+              - term [ref=e168]: Assembly
+              - definition [ref=e169]: ~5 minutes
+              - term [ref=e170]: Plastic diverted
+              - definition [ref=e171]: 20kg HDPE per bed
+              - term [ref=e172]: Warranty
+              - definition [ref=e173]: 5 years
+              - term [ref=e174]: Design life
+              - definition [ref=e175]: 10+ years
+            - paragraph [ref=e176]: Recycled HDPE plastic legs. Galvanised steel poles (26.9mm OD × 2.6mm wall, 1950mm length, DNA Steel Direct, Alice Springs). Heavy-duty Australian canvas (Centre Canvas, Alice Springs).
+          - img "The Stretch Bed at golden hour" [ref=e178]
+        - generic [ref=e181]:
+          - generic [ref=e182]:
+            - paragraph [ref=e183]: 04 / Live deck
+            - heading "Ten slides. Five minutes. The same deck for every live session." [level=2] [ref=e184]
+            - paragraph [ref=e185]: Open the deck to present from a browser, share the URL with a funder, or print to PDF. Speaker notes built in, audience-specific asks for slide 10.
+            - generic [ref=e186]:
+              - link "Open deck" [ref=e187] [cursor=pointer]:
+                - /url: /decks/live-session-deck.html
+              - link "Open in new tab" [ref=e188] [cursor=pointer]:
+                - /url: /decks/live-session-deck.html#1
+            - paragraph [ref=e189]: "Keys inside the deck: ← → space to navigate, n speaker notes, o overview, p print to PDF."
+          - iframe [ref=e191]:
+            - generic [active] [ref=f2e1]:
+              - generic [ref=f2e7]:
+                - generic [ref=f2e8]: Goods on Country
+                - heading "Built with communities, not for them." [level=1] [ref=f2e9]:
+                  - text: Built with communities,
+                  - text: not for them.
+                - paragraph [ref=f2e10]: A First Nations social enterprise designing essential goods with remote Indigenous communities. Manufacturing transfers to community ownership.
+              - generic [ref=f2e14]: 1 / 10
+              - generic [ref=f2e15]: ← → arrows · n notes · o overview · p print
+              - generic [ref=f2e16]:
+                - heading "Speaker notes" [level=4] [ref=f2e17]
+                - list [ref=f2e19]:
+                  - listitem [ref=f2e20]: "One breath of context: what country you are on, why we are here, who introduced us."
+                  - listitem [ref=f2e21]: Do not list achievements yet. Set the scene.
+        - generic [ref=e194]:
+          - generic [ref=e195]:
+            - paragraph [ref=e196]: 05 / Photography
+            - heading "Real moments On-Country." [level=2] [ref=e197]
+            - paragraph [ref=e198]: No stock. No staged sets. No imported lifestyle photography. Golden hour by default. Elders centred. Honest backgrounds.
+            - paragraph [ref=e199]:
+              - text: For specific photos with usage rights and credits, request from
+              - link "hi@act.place" [ref=e200] [cursor=pointer]:
+                - /url: mailto:hi@act.place?subject=Goods%20photo%20request
+              - text: .
+          - generic [ref=e201]:
+            - generic [ref=e202]:
+              - img "Stretch Bed" [ref=e204]
+              - paragraph [ref=e205]: Stretch Bed
+              - paragraph [ref=e206]: 14 images
+            - generic [ref=e207]:
+              - img "Pakkimjalki Kari" [ref=e209]
+              - paragraph [ref=e210]: Pakkimjalki Kari
+              - paragraph [ref=e211]: 6 images
+            - generic [ref=e212]:
+              - img "Storyteller portraits" [ref=e214]
+              - paragraph [ref=e215]: Storyteller portraits
+              - paragraph [ref=e216]: 8 images
+            - generic [ref=e217]:
+              - img "Process & manufacturing" [ref=e219]
+              - paragraph [ref=e220]: Process & manufacturing
+              - paragraph [ref=e221]: 16 images
+            - generic [ref=e222]:
+              - img "Community context" [ref=e224]
+              - paragraph [ref=e225]: Community context
+              - paragraph [ref=e226]: 1 image
+            - generic [ref=e227]:
+              - img "Brand & lifestyle" [ref=e229]
+              - paragraph [ref=e230]: Brand & lifestyle
+              - paragraph [ref=e231]: 9 images
+        - generic [ref=e234]:
+          - generic [ref=e235]:
+            - paragraph [ref=e236]: 06 / Origin
+            - heading "A good bed can prevent heart disease." [level=2] [ref=e237]
+          - generic [ref=e238]:
+            - paragraph [ref=e239]: "In 2018, Nicholas Marchesi attended a health conference where Dr. Bo Remenyi spoke about Rheumatic Heart Disease. Her message was clear: RHD is entirely preventable through good environmental health, yet she was filling out death certificates for children in remote communities dying from this disease."
+            - paragraph [ref=e240]: "This confronted Nicholas with the reality of disadvantage in remote Australia. Combined with his experience at Orange Sky (now serving a third of its operations in remote communities) where he witnessed people without beds, without working washing machines, and children with skin infections that cascade into RHD, it sparked the question: What can we actually build that makes a difference?"
+            - paragraph [ref=e241]: "The answer became Goods: durable, repairable, community-designed \"health hardware\" that addresses the environmental conditions driving preventable disease."
+            - paragraph [ref=e242]:
+              - strong [ref=e243]: Our job is to become unnecessary.
+        - generic [ref=e245]:
+          - paragraph [ref=e246]: 07 / Pre-written narratives
+          - heading "Six narrative arcs ready to use." [level=2] [ref=e247]
+          - generic [ref=e248]:
+            - generic [ref=e249]:
+              - paragraph [ref=e251]: Tennant Creek, NT
+              - heading "From a Tin Shed to a Home" [level=3] [ref=e252]
+              - paragraph [ref=e253]: “A good night's sleep is important... from a big day from work.”
+              - paragraph [ref=e254]: Zelda Hogan
+            - generic [ref=e255]:
+              - paragraph [ref=e257]: Tennant Creek, NT
+              - heading "Rest After a Heart Attack" [level=3] [ref=e258]
+              - paragraph [ref=e259]: “It's gonna be home for me now.”
+              - paragraph [ref=e260]: Brian Russell
+            - generic [ref=e261]:
+              - paragraph [ref=e263]: Palm Island, QLD
+              - heading "From Floor to Bed" [level=3] [ref=e264]
+              - paragraph [ref=e265]: “Hardly anyone around the community has beds.”
+              - paragraph [ref=e266]: Ivy
+            - generic [ref=e267]:
+              - paragraph [ref=e269]: Tennant Creek, NT
+              - heading "Co-Designer, Not Recipient" [level=3] [ref=e270]
+              - paragraph [ref=e271]: “Working both ways. Cultural side in white society and Indigenous society.”
+              - paragraph [ref=e272]: Dianne Stokes
+            - generic [ref=e273]:
+              - paragraph [ref=e275]: Tennant Creek, NT
+              - heading "Never Been Asked" [level=3] [ref=e276]
+              - paragraph [ref=e277]: “We've never been asked at what sort of house we'd like to live in.”
+              - paragraph [ref=e278]: Linda Turner
+            - generic [ref=e279]:
+              - paragraph [ref=e281]: Tennant Creek, NT
+              - heading "A Washing Machine at Home" [level=3] [ref=e282]
+              - paragraph [ref=e283]: “They truly wanna a washing machine to wash their blanket, to wash their clothes, and it's right there at home.”
+              - paragraph [ref=e284]: Patricia Frank
+          - paragraph [ref=e285]:
+            - text: Full narratives at
+            - link "/stories" [ref=e286] [cursor=pointer]:
+              - /url: /stories
+            - text: . Pull from
+            - code [ref=e287]: v2/src/lib/data/content.ts
+            - text: for code-level use.
+        - generic [ref=e290]:
+          - generic [ref=e291]:
+            - paragraph [ref=e292]: 08 / Asset register
+            - heading "Everything, in one place." [level=2] [ref=e293]
+          - generic [ref=e294]:
+            - link "Live session deck 10 slides, HTML, keyboard nav, print-to-PDF Open →" [ref=e295] [cursor=pointer]:
+              - /url: /decks/live-session-deck.html
+              - generic [ref=e296]:
+                - paragraph [ref=e297]: Live session deck
+                - paragraph [ref=e298]: 10 slides, HTML, keyboard nav, print-to-PDF
+              - generic [ref=e299]: Open →
+            - link "Storyteller library Quotes, profiles, photos, consent state Browse →" [ref=e300] [cursor=pointer]:
+              - /url: /stories
+              - generic [ref=e301]:
+                - paragraph [ref=e302]: Storyteller library
+                - paragraph [ref=e303]: Quotes, profiles, photos, consent state
+              - generic [ref=e304]: Browse →
+            - link "Product page (Stretch Bed) Specs, materials, pricing View →" [ref=e305] [cursor=pointer]:
+              - /url: /shop/stretch-bed-single
+              - generic [ref=e306]:
+                - paragraph [ref=e307]: Product page (Stretch Bed)
+                - paragraph [ref=e308]: Specs, materials, pricing
+              - generic [ref=e309]: View →
+            - link "Process page The 6-step On-Country production model View →" [ref=e310] [cursor=pointer]:
+              - /url: /process
+              - generic [ref=e311]:
+                - paragraph [ref=e312]: Process page
+                - paragraph [ref=e313]: The 6-step On-Country production model
+              - generic [ref=e314]: View →
+            - link "Communities Per-community deployment stories View →" [ref=e315] [cursor=pointer]:
+              - /url: /communities
+              - generic [ref=e316]:
+                - paragraph [ref=e317]: Communities
+                - paragraph [ref=e318]: Per-community deployment stories
+              - generic [ref=e319]: View →
+            - link "Impact dashboard Live numbers, theory of change, partnerships View →" [ref=e320] [cursor=pointer]:
+              - /url: /impact
+              - generic [ref=e321]:
+                - paragraph [ref=e322]: Impact dashboard
+                - paragraph [ref=e323]: Live numbers, theory of change, partnerships
+              - generic [ref=e324]: View →
+            - link "About Origin, philosophy, the team View →" [ref=e325] [cursor=pointer]:
+              - /url: /about
+              - generic [ref=e326]:
+                - paragraph [ref=e327]: About
+                - paragraph [ref=e328]: Origin, philosophy, the team
+              - generic [ref=e329]: View →
+            - 'link "Insiders wiki (password gated) Full operational depth, capital, governance, QBE program. Password: goods2026 Enter →" [ref=e330] [cursor=pointer]':
+              - /url: /insiders
+              - generic [ref=e331]:
+                - paragraph [ref=e332]: Insiders wiki (password gated)
+                - paragraph [ref=e333]: "Full operational depth, capital, governance, QBE program. Password: goods2026"
+              - generic [ref=e334]: Enter →
+            - link "Media pack (password gated) Logos, hi-res photos, fact sheet for journalists Enter →" [ref=e335] [cursor=pointer]:
+              - /url: /media
+              - generic [ref=e336]:
+                - paragraph [ref=e337]: Media pack (password gated)
+                - paragraph [ref=e338]: Logos, hi-res photos, fact sheet for journalists
+              - generic [ref=e339]: Enter →
+            - link "Brand voice guide (Notion) Voice rules, banned words, before/after examples Open →" [ref=e340] [cursor=pointer]:
+              - /url: https://www.notion.so/359ebcf981cf810aa2afe9d8b3dcd375
+              - generic [ref=e341]:
+                - paragraph [ref=e342]: Brand voice guide (Notion)
+                - paragraph [ref=e343]: Voice rules, banned words, before/after examples
+              - generic [ref=e344]: Open →
+            - 'link "Source code GitHub: Acurioustractor/goods-asset-tracker View →" [ref=e345] [cursor=pointer]':
+              - /url: https://github.com/Acurioustractor/goods-asset-tracker
+              - generic [ref=e346]:
+                - paragraph [ref=e347]: Source code
+                - paragraph [ref=e348]: "GitHub: Acurioustractor/goods-asset-tracker"
+              - generic [ref=e349]: View →
+        - generic [ref=e351]:
+          - paragraph [ref=e352]: Get in touch
+          - heading "Need an asset, a quote, an interview, or a partnership conversation?" [level=2] [ref=e353]
+          - paragraph [ref=e354]: We respond within 24 hours for media and procurement. Community partnership conversations move at community pace.
+          - generic [ref=e355]:
+            - link "hi@act.place" [ref=e356] [cursor=pointer]:
+              - /url: mailto:hi@act.place
+            - link "Contact form" [ref=e357] [cursor=pointer]:
+              - /url: /contact
+          - paragraph [ref=e358]: 4+ community partners · 8 storytellers featured · 400+ beds delivered. Last revised May 2026.
+    - contentinfo [ref=e359]:
+      - generic [ref=e362]:
+        - heading "Join the movement" [level=3] [ref=e363]
+        - paragraph [ref=e364]: Get updates on new products, community stories, and farm content.
+        - generic [ref=e365]:
+          - textbox "your@email.com" [ref=e366]
+          - button "Subscribe" [ref=e367]
+      - generic [ref=e368]:
+        - generic [ref=e369]:
+          - generic [ref=e370]:
+            - link "Goods on Country" [ref=e371] [cursor=pointer]:
+              - /url: /
+              - text: Goods
+              - generic [ref=e372]: on Country
+            - paragraph [ref=e373]: Delivering essential items to remote Australian Indigenous communities. Every purchase makes a difference.
+            - link "LinkedIn" [ref=e375] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/a-curious-tractor/
+              - img [ref=e376]
+          - generic [ref=e378]:
+            - heading "Product" [level=3] [ref=e379]
+            - list [ref=e380]:
+              - listitem [ref=e381]:
+                - link "The Stretch Bed" [ref=e382] [cursor=pointer]:
+                  - /url: /shop/stretch-bed-single
+              - listitem [ref=e383]:
+                - link "How It's Made" [ref=e384] [cursor=pointer]:
+                  - /url: /process
+              - listitem [ref=e385]:
+                - link "Washing Machines" [ref=e386] [cursor=pointer]:
+                  - /url: /shop/washing-machine
+          - generic [ref=e387]:
+            - heading "About" [level=3] [ref=e388]
+            - list [ref=e389]:
+              - listitem [ref=e390]:
+                - link "Our Story" [ref=e391] [cursor=pointer]:
+                  - /url: /story
+              - listitem [ref=e392]:
+                - link "Communities" [ref=e393] [cursor=pointer]:
+                  - /url: /community
+              - listitem [ref=e394]:
+                - link "Impact" [ref=e395] [cursor=pointer]:
+                  - /url: /impact
+              - listitem [ref=e396]:
+                - link "Gallery" [ref=e397] [cursor=pointer]:
+                  - /url: /gallery
+          - generic [ref=e398]:
+            - heading "Connect" [level=3] [ref=e399]
+            - list [ref=e400]:
+              - listitem [ref=e401]:
+                - link "Partner With Us" [ref=e402] [cursor=pointer]:
+                  - /url: /partner
+              - listitem [ref=e403]:
+                - link "Sponsor a Bed" [ref=e404] [cursor=pointer]:
+                  - /url: /sponsor
+              - listitem [ref=e405]:
+                - link "Brand & Comms" [ref=e406] [cursor=pointer]:
+                  - /url: /brand
+              - listitem [ref=e407]:
+                - link "Support / FAQ" [ref=e408] [cursor=pointer]:
+                  - /url: /support
+              - listitem [ref=e409]:
+                - link "Contact" [ref=e410] [cursor=pointer]:
+                  - /url: /contact
+        - generic [ref=e411]:
+          - paragraph [ref=e413]: Goods on Country acknowledges the Traditional Owners of the lands on which we live and work. We pay our respects to Elders past, present, and emerging.
+          - generic [ref=e414]:
+            - paragraph [ref=e415]: © 2026 Goods on Country. All rights reserved.
+            - generic [ref=e416]:
+              - link "Privacy Policy" [ref=e417] [cursor=pointer]:
+                - /url: /privacy
+              - link "Terms of Service" [ref=e418] [cursor=pointer]:
+                - /url: /terms
+              - button "Feedback" [ref=e419]
+              - link "Dashboard" [ref=e420] [cursor=pointer]:
+                - /url: /dashboard
+              - link "Shift Log" [ref=e421] [cursor=pointer]:
+                - /url: /production
+  - button "Open Next.js Dev Tools" [ref=e427] [cursor=pointer]:
+    - img [ref=e428]
+  - alert [ref=e431]

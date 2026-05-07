@@ -1,4 +1,4 @@
-# Ninga Mia — Kalgoorlie
+# Ninga Mia. Kalgoorlie
 
 > 20 beds deployed in the Ninga Mia community at Kalgoorlie, WA.
 

@@ -1,6 +1,6 @@
 # NPY Women's Council
 
-> Cross-border (NT / WA / SA) women's council. Ongoing relationship. **200-350 beds standing interest** — the largest single demand signal in our pipeline.
+> Cross-border (NT / WA / SA) women's council. Ongoing relationship. **200-350 beds standing interest**, the largest single demand signal in our pipeline.
 
 ## Status
 

@@ -69,10 +69,10 @@ And an explicit "what we avoid" list:
 
 ## Recruitment priorities (next 12 months)
 
-1. **Independent directors (3)** — see topic 7.
-2. **Operations / production lead** — to take manufacturing ramp off Nick's plate.
-3. **Part-time finance / CFO** — to formalise modelling and investor reporting.
-4. **Community relationships coordinator** — likely embedded with Oonchiumpa or PICC, not central.
+1. **Independent directors (3)**, see topic 7.
+2. **Operations / production lead**, to take manufacturing ramp off Nick's plate.
+3. **Part-time finance / CFO**, to formalise modelling and investor reporting.
+4. **Community relationships coordinator**, likely embedded with Oonchiumpa or PICC, not central.
 
 We are deliberately slow to centralise hires; every hire at ACT central is a hire not made in community. The logic is structural, not economic.
 

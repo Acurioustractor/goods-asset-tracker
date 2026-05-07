@@ -1,4 +1,4 @@
-# Palm Island — PICC
+# Palm Island. PICC
 
 > Palm Island Community Company (Bwgcolman). Primary deployment partner. 141 beds deployed. **Signalled intent to buy the production plant** (the designated community-ownership endpoint). REAL Innovation Fund (DEWR) consortium partner alongside Oonchiumpa and ACT.
 

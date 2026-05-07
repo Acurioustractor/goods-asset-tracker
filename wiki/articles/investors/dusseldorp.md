@@ -1,6 +1,6 @@
 # Dusseldorp Forum
 
-> Family foundation. JustReinvest connection point — entry via justice-reinvestment network.
+> Family foundation. JustReinvest connection point, entry via justice-reinvestment network.
 
 ## Mandate
 

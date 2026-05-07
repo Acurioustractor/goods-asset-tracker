@@ -1,6 +1,6 @@
 # Our Investment Needs (Tab 1 equivalent)
 
-> Markdown recreation of Tab 1 from the CASE Investor Alignment Tool. Our side of the table — what Goods is actually looking for in a capital partner. Edit in Obsidian as we refine.
+> Markdown recreation of Tab 1 from the CASE Investor Alignment Tool. Our side of the table, what Goods is actually looking for in a capital partner. Edit in Obsidian as we refine.
 
 ## Priority scale
 

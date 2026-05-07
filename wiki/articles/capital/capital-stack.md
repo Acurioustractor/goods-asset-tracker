@@ -27,7 +27,7 @@ COMMUNITY EQUITY PICC plant purchase (Yr 3-4)               TBD
 | **Snow letter of support** | Long-term funder. Non-cash credibility signal. Can be cited in other LOIs. |
 | **QBE grant** | Catalytic by design, match-contingent. Designed to pull in other capital. |
 | **Snow R4** | Pattern-matched to their multi-round partnership model. |
-| **IBA 30% grant** | Sits inside their loan product — not a separate raise. |
+| **IBA 30% grant** | Sits inside their loan product, not a separate raise. |
 | **Mindaroo recoverable** | Their catalytic bucket; repayable without interest or written off. |
 | **PFI repayable** | High-trust recoverable grant for infrastructure. |
 | **SEFA sub-debt** | Working capital for institutional B2B cashflow cycle. |

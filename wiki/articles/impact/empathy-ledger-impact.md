@@ -24,7 +24,7 @@
 ## Why this differentiates Goods as an investee
 
 Most social enterprises extract stories for fundraising and never give them back. Our architecture reverses that. In QBE Stage 2 terms:
-- "Demonstration of your impact (Impact Measurement Report, demographics)" — Empathy Ledger-sourced, consented.
+- "Demonstration of your impact (Impact Measurement Report, demographics)". Empathy Ledger-sourced, consented.
 - Governance of story use is a board-grade control, not a marketing choice.
 - Risk of inappropriate use of community voice (R1 in [[../governance/risk-register]]) is structurally managed, not just policy-managed.
 

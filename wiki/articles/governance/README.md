@@ -4,12 +4,12 @@
 
 ## Articles
 
-- [[board-structure]] — current state, proposed structure, recruitment plan
-- [[risk-register]] — strategic, operational, financial, reputational, compliance risks
-- [[legal-structure]] — ACT dual-entity (CLG + Ventures), sub-entity decision, community-ownership vehicle
-- [[policies-register]] — what's in place, draft, and to-do
-- [[compliance]] — ACNC, ASIC, ATO, ORIC, insurance
-- [[data-sovereignty]] — OCAP, consent architecture via Empathy Ledger
+- [[board-structure]], current state, proposed structure, recruitment plan
+- [[risk-register]], strategic, operational, financial, reputational, compliance risks
+- [[legal-structure]]. ACT dual-entity (CLG + Ventures), sub-entity decision, community-ownership vehicle
+- [[policies-register]], what's in place, draft, and to-do
+- [[compliance]]. ACNC, ASIC, ATO, ORIC, insurance
+- [[data-sovereignty]]. OCAP, consent architecture via Empathy Ledger
 
 ## Why this is a priority in 2026
 
