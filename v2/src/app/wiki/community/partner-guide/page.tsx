@@ -89,7 +89,7 @@ export default function PartnerGuidePage() {
           </table>
         </div>
 
-        <p>All sponsors receive tax-deductible donation receipts (where applicable), delivery photos, impact stories, and invitations to community events.</p>
+        <p>All sponsors receive sponsorship receipts (tax-deductible where applicable), delivery photos, impact stories, and invitations to community events.</p>
 
         <h3>Procurement Partnership</h3>
         <p>

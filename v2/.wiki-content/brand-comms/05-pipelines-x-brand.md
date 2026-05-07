@@ -122,9 +122,7 @@ Slowest pipeline. Brand discipline matters most here, because the cost of gettin
 
 ## Per-funder URL recommendations
 
-Canonical source: [v2/src/lib/data/funder-url-map.ts](../../v2/src/lib/data/funder-url-map.ts). Both this table and the typed map should stay in sync. When you add or change a funder, update the `.ts` map first, then this table.
-
-Match the specific funder to the right URL.
+Pulled from Grantscope outreach targets. Match the specific funder to the right URL.
 
 | Funder | First URL | Why |
 |--------|-----------|-----|
@@ -157,8 +155,7 @@ Match the specific funder to the right URL.
 
 ## Cross-references
 
-- **Canonical funder→URL map:** [v2/src/lib/data/funder-url-map.ts](../../v2/src/lib/data/funder-url-map.ts) (typed, importable in any Goods code or agent).
-- Funder profiles: [wiki/articles/investors/](../investors/).
+- Grantscope outreach targets list: `/Users/benknight/Code/grantscope/apps/web/src/lib/goods-workspace/data/goods-outreach-targets.ts` (45+ targets).
+- Procurement matcher: `/Users/benknight/Code/grantscope/scripts/goods-procurement-matcher.mjs`.
 - QBE Catalysing Impact program structure: [wiki/articles/program/qbe-catalysing-impact-2026.md](../program/qbe-catalysing-impact-2026.md).
 - Investment case: [v2/src/lib/data/content.ts:591](../../v2/src/lib/data/content.ts:591).
-- Grantscope (separate repo) has its own outreach surfaces. As of 2026-05, the structure is in flux. Re-integration with Grantscope should consume this `funder-url-map.ts` rather than maintain a parallel list.

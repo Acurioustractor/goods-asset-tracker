@@ -24,11 +24,11 @@ const product = {
   price: 600,
   currency: 'AUD',
   shortDescription: STRETCH_BED.shortDescription,
-  description: `The Stretch Bed is the flagship product from Goods on Country — a bed designed in partnership with remote Indigenous communities across Australia.
+  description: `The Stretch Bed is the flagship product from Goods on Country. A bed designed in partnership with remote Indigenous communities across Australia.
 
 Two galvanised steel poles thread through canvas sleeves. Recycled plastic legs click onto the poles. Done. No tools, no complicated assembly, just a bed that works.
 
-Every bed diverts ${STRETCH_BED.specs.plasticDiverted.replace(' per bed', '')} from landfill. The manufacturing process is designed to be transferred to community ownership — we're building the infrastructure for communities to make their own beds, not a dependency on outside suppliers.
+Every bed diverts ${STRETCH_BED.specs.plasticDiverted.replace(' per bed', '')} from landfill. The manufacturing process is designed to be transferred to community ownership. We're building the infrastructure for communities to make their own beds, not a dependency on outside suppliers.
 
 The canvas sleeping surface is fully washable. The recycled plastic legs are virtually indestructible. The steel poles are rated for ${STRETCH_BED.specs.loadCapacity}. This bed is built for the conditions of remote Australia.`,
   specs: {
@@ -283,7 +283,7 @@ export default function StretchBedPage() {
                     <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">2</div>
                     <h3 className="text-lg font-semibold text-background">Shred</h3>
                   </div>
-                  <p className="text-sm text-background/60 leading-relaxed">Plastic goes into the shredder — a containerised unit that stays on site between production runs.</p>
+                  <p className="text-sm text-background/60 leading-relaxed">Plastic goes into the shredder. A containerised unit that stays on site between production runs.</p>
                 </div>
               </div>
 
@@ -300,7 +300,7 @@ export default function StretchBedPage() {
                     <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">3</div>
                     <h3 className="text-lg font-semibold text-background">Press</h3>
                   </div>
-                  <p className="text-sm text-background/60 leading-relaxed">Shredded plastic is heated and pressed into durable sheets. Each colour is unique — made from whatever plastic the community collected.</p>
+                  <p className="text-sm text-background/60 leading-relaxed">Shredded plastic is heated and pressed into durable sheets. Each colour is unique, made from whatever plastic the community collected.</p>
                 </div>
               </div>
 
@@ -379,7 +379,7 @@ export default function StretchBedPage() {
                       </p>
                       <footer className="text-sm text-muted-foreground">
                         <span className="font-medium text-foreground">{q.author}</span>
-                        <span> &mdash; {q.context}</span>
+                        <span>, {q.context}</span>
                       </footer>
                     </blockquote>
                   ))}

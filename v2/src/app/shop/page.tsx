@@ -36,7 +36,7 @@ const products = [
   {
     slug: BASKET_BED.slug,
     name: `${BASKET_BED.name} Plans`,
-    description: 'Our first prototype — collapsible baskets with zip ties and toppers. Now open source — download and build your own.',
+    description: 'Our first prototype: collapsible baskets with zip ties and toppers. Now open source. Download and build your own.',
     price: null,
     image: media.product.basketBedHero,
     badge: 'Open Source',
@@ -102,7 +102,7 @@ export default function ShopPage() {
                   )}
                   <Button asChild className="w-full" variant={product.price ? 'default' : 'outline'}>
                     <Link href={product.href}>
-                      {product.cta}{product.price ? ` — $${product.price}` : ''}
+                      {product.cta}{product.price ? ` $${product.price}` : ''}
                     </Link>
                   </Button>
                 </CardContent>

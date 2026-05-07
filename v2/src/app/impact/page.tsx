@@ -179,7 +179,7 @@ function DimensionCard({ dimension }: { dimension: ImpactDimension }) {
               &ldquo;{dimension.communityQuote.text}&rdquo;
             </p>
             <p className="text-xs mt-1" style={{ color: '#8B9D77' }}>
-              — {dimension.communityQuote.author}, {dimension.communityQuote.context}
+              {dimension.communityQuote.author}, {dimension.communityQuote.context}
             </p>
           </div>
         )}
@@ -204,7 +204,7 @@ function FiveDimensionsSection({ dimensions }: { dimensions: ImpactDimension[] }
           </h2>
           <p className="text-sm max-w-xl mx-auto" style={{ color: '#5E5E5E' }}>
             Each dimension tracks live metrics from our asset register, fleet telemetry, and community
-            engagement — with clear targets for Year 1, Year 3, and 2030.
+            engagement, with clear targets for Year 1, Year 3, and 2030.
           </p>
         </div>
 
@@ -235,7 +235,7 @@ function HealthCascadeSection({ cascade }: { cascade: ImpactSnapshot['healthCasc
             </h2>
             <p className="text-sm text-white/60">
               Rheumatic Heart Disease kills children in remote Australia. This is the chain
-              we&apos;re breaking — and where our products intervene.
+              we&apos;re breaking, and where our products intervene.
             </p>
           </div>
 
@@ -346,7 +346,7 @@ function OptimizationSection({
               Optimization Opportunities
             </h2>
             <p className="text-sm" style={{ color: '#5E5E5E' }}>
-              Patterns identified from live data — where each improvement dollar has the most impact.
+              Patterns identified from live data. Where each improvement dollar has the most impact.
             </p>
           </div>
 
@@ -528,7 +528,7 @@ function HowWeTrackSection() {
               How We Measure
             </h2>
             <p className="text-sm" style={{ color: '#5E5E5E' }}>
-              Every item tracked from creation to delivery and beyond — real-time data from the field.
+              Every item tracked from creation to delivery and beyond. Real-time data from the field.
             </p>
           </div>
 
@@ -586,23 +586,23 @@ function PartnersSection() {
       location: 'Alice Springs, NT',
       role: 'Cultural Lead & Co-Design',
       model: '100% Aboriginal-owned consultancy. Two years co-designing products "around the fire." Paid at university-equivalent cultural consultation rates (~$3,800/day). Planning to host production facility in Alice Springs.',
-      status: 'Active — delivering beds on country together',
+      status: 'Active. Delivering beds On Country together',
       color: '#C45C3E',
     },
     {
       name: 'Palm Island Community Company',
       location: 'Palm Island, QLD',
       role: 'Production & Youth Employment',
-      model: 'New production site at Palm Island. PICC has existing funding to support at-risk youth through training programs. The WISE model in action — young people run production, learn manufacturing skills, earn wages.',
-      status: 'Active — new production site, youth pathways',
+      model: 'New production site at Palm Island. PICC has existing funding to support at-risk youth through training programs. The WISE model in action. Young people run production, learn manufacturing skills, earn wages.',
+      status: 'Active. New production site, youth pathways',
       color: '#8B9D77',
     },
     {
       name: 'Centrecorp',
       location: 'Distribution Partner',
       role: 'B2B Sales & Distribution',
-      model: 'First substantial commercial transaction — 109 beds purchased for distribution to communities. Demonstrates trade at scale and provides evidence of commercial viability for funding applications.',
-      status: '109 beds sold — first B2B evidence',
+      model: 'First substantial commercial transaction. 109 beds purchased for distribution to communities. Demonstrates trade at scale and provides evidence of commercial viability for funding applications.',
+      status: '109 beds sold. First B2B evidence',
       color: '#D4A574',
     },
     {
@@ -610,7 +610,7 @@ function PartnersSection() {
       location: 'Tennant Creek, NT',
       role: 'Elder Advisory & Co-Design',
       model: 'Elder Dianne named the washing machine "Pakkimjalki Kari" in Warumungu language. Norman Frank founded Wilya Janta for housing advocacy. Both shape product design through direct community feedback.',
-      status: 'Ongoing — Elder-led product refinement',
+      status: 'Ongoing. Elder-led product refinement',
       color: '#7C6F64',
     },
     {
@@ -618,7 +618,7 @@ function PartnersSection() {
       location: 'Sydney / On-country',
       role: 'Recycling & Manufacturing',
       model: 'Taught ACT plastic recycling and helped build the containerised production plant. Training Palm Island team (Ebony & Jahvan Oui) in production skills for community manufacturing transfer.',
-      status: 'Active — skills transfer ongoing',
+      status: 'Active. Skills transfer ongoing',
       color: '#5E7D9A',
     },
   ];
@@ -638,7 +638,7 @@ function PartnersSection() {
               How It Works
             </h2>
             <p className="text-sm text-white/60 max-w-lg mx-auto">
-              Not licensing — transferring. Communities receive full training, manufacturing capability,
+              Not licensing. Transferring. Communities receive full training, manufacturing capability,
               and documentation. They keep 100% of what they make and sell.
             </p>
           </div>

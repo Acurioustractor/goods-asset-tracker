@@ -75,7 +75,7 @@ export const FUNDER_PAGES: FunderPage[] = [
         instrument: 'Grant plus loan',
         amount: '$1.5M',
         purpose:
-          '$840K non-repayable for the facility fit-out, plus $660K recoverable working capital to ramp production once the plant is built. Funds the bricks and mortar AND the cashflow runway in a single commitment. The most catalytic version: fully unlocks the QBE match and de-risks SEFA in one move.',
+          '$840K non-repayable for the facility fit-out, plus $660K recoverable working capital to ramp production once the plant is built. Funds the bricks and mortar AND the cashflow runway in a single commitment. The most catalytic version: fully meets the QBE match and de-risks SEFA in one move.',
       },
     ],
     facility: {
@@ -115,7 +115,7 @@ export const FUNDER_PAGES: FunderPage[] = [
     whyUs: [
       "DGR1 status. Minderoo can count sub-market returns toward grant targets without the concessional treatment penalty.",
       'Self-servicing economics. At roughly $750 a bed with cost-to-make well below sale price, the recoverable portion pays itself back across the existing buyer pipeline within two to three years.',
-      "Catalytic position. Your commitment is what unlocks SEFA's senior debt and triggers QBE's $400K dollar-for-dollar match.",
+      "Catalytic position. Your commitment is what activates SEFA's senior debt and triggers QBE's $400K dollar-for-dollar match.",
       "Aligned to Minderoo's existing playbook. You've done recoverable grants like this before, and Goods is a clean fit.",
       "First Nations led, On-Country manufacturing. Direct alignment with Minderoo's Generation One and Thrive by Five priorities.",
     ],

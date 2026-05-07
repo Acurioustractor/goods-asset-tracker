@@ -35,7 +35,7 @@ const GOAL_SUGGESTIONS = [
   { title: 'Local manufacturing', description: 'Set up and run our own production facility on country.' },
   { title: 'Employ local people', description: 'Create paid jobs for community members in manufacturing and distribution.' },
   { title: 'Divert community plastic', description: 'Collect and recycle plastic waste from our community into bed components.' },
-  { title: 'Community-owned enterprise', description: 'Full ownership transfer — our community runs the business independently.' },
+  { title: 'Community-owned enterprise', description: 'Full ownership transfer. Our community runs the business independently.' },
   { title: 'Train young operators', description: 'Youth training program for shredder, press, and CNC operation.' },
 ];
 
@@ -85,7 +85,7 @@ export default function GoalsPage() {
     if (!selectedGoal || !progressNote.trim()) return;
     const updated = goals.map(g =>
       g.id === selectedGoal.id
-        ? { ...g, progress: [...g.progress, `${new Date().toLocaleDateString('en-AU')} — ${progressNote.trim()}`] }
+        ? { ...g, progress: [...g.progress, `${new Date().toLocaleDateString('en-AU')}: ${progressNote.trim()}`] }
         : g
     );
     setGoals(updated);

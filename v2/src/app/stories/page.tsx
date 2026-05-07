@@ -160,7 +160,7 @@ async function StorytellersFromLedger() {
             Deeper Analysis
           </h2>
           <p className="max-w-xl mx-auto text-muted-foreground">
-            AI-assisted analysis of community conversations — themes, impact, and insights
+            AI-assisted analysis of community conversations: themes, impact, and insights
           </p>
         </div>
 
@@ -304,7 +304,7 @@ export default async function StoriesPage() {
 
             <p className="mt-10 text-lg text-background/70 max-w-2xl">
               That&rsquo;s why Goods exists. Every bed, every washing machine, every product
-              starts with a conversation — not a catalogue. These are the voices that
+              starts with a conversation. Not a catalogue. These are the voices that
               shape what we build.
             </p>
           </div>

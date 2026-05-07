@@ -194,7 +194,7 @@ export default function OurStoryPage() {
                       {item.type === 'quote' ? `"${item.content}"` : item.content}
                     </p>
                     {item.attribution && (
-                      <p className="text-xs text-stone-500 mt-1">— {item.attribution}</p>
+                      <p className="text-xs text-stone-500 mt-1">{item.attribution}</p>
                     )}
                     {item.caption && (
                       <p className="text-xs text-stone-400 mt-1 italic">{item.caption}</p>

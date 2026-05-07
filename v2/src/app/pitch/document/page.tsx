@@ -120,7 +120,7 @@ export default function PitchDocumentPage() {
             ================================================================ */}
         <section className="page-break px-12 py-16">
           <p className="text-xs uppercase tracking-[0.3em] text-neutral-400 mb-6">
-            01 &mdash; The Problem
+            01 / The Problem
           </p>
           <h2
             className="text-3xl font-light text-black mb-4"
@@ -145,7 +145,7 @@ export default function PitchDocumentPage() {
           <div className="avoid-break bg-neutral-50 rounded-lg p-6 border border-neutral-100">
             <p className="text-2xl font-bold text-black mb-2">$3M / year</p>
             <p className="text-sm text-neutral-600">
-              One Alice Springs provider sells $3 million of washing machines annually into communities &mdash; most
+              One Alice Springs provider sells $3 million of washing machines annually into communities. Most
               ending up in dumps. Our solution: a &ldquo;virus&rdquo; of better products people choose first.
             </p>
           </div>
@@ -203,7 +203,7 @@ export default function PitchDocumentPage() {
 
           <div className="grid grid-cols-2 gap-x-8 gap-y-3 mb-10">
             {[
-              '26kg — carried by one person',
+              '26kg, carried by one person',
               '200kg load capacity',
               '5-minute assembly, no tools',
               '20kg plastic diverted per bed',
@@ -249,7 +249,7 @@ export default function PitchDocumentPage() {
             ================================================================ */}
         <section className="page-break px-12 py-16">
           <p className="text-xs uppercase tracking-[0.3em] text-neutral-400 mb-6">
-            04 &mdash; The Model
+            04 / The Model
           </p>
           <h2
             className="text-3xl font-light text-black mb-4"
@@ -259,7 +259,7 @@ export default function PitchDocumentPage() {
           </h2>
           <p className="text-base text-neutral-600 mb-10 max-w-2xl leading-relaxed">
             Products can be Aboriginal owned and controlled while sold commercially.
-            No need for a separate &ldquo;Goods charity&rdquo; &mdash; leverage existing
+            No need for a separate &ldquo;Goods charity&rdquo;. We work through existing
             strong community organisations.
           </p>
 
@@ -270,7 +270,7 @@ export default function PitchDocumentPage() {
             </div>
             <div className="avoid-break text-center border border-neutral-200 rounded-lg p-6">
               <p className="text-4xl font-bold text-black mb-1">$0</p>
-              <p className="text-sm text-neutral-600">licensing fees &mdash; communities keep everything</p>
+              <p className="text-sm text-neutral-600">licensing fees. Communities keep everything.</p>
             </div>
           </div>
 
