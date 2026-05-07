@@ -41,7 +41,15 @@ const RULES = [
   { id: 'banned-ecosystem', severity: 'warning', pattern: /\becosystem\b/gi, msg: () => '"ecosystem" overused jargon.' },
   { id: 'banned-gtm', severity: 'error', pattern: /\b(GTM|go-to-market)\b/gi, msg: m => `"${m}" sales jargon.` },
   { id: 'banned-disrupting', severity: 'error', pattern: /\b(disrupt(ive|ing|or)?)\b/gi, msg: m => `"${m}" hype.` },
-  { id: 'banned-innovative', severity: 'warning', pattern: /\binnovati(ve|on|ng)\b/gi, msg: m => `"${m}" hype.` },
+  {
+    id: 'banned-innovative', severity: 'warning',
+    pattern: /\binnovati(ve|on|ng)\b/gi,
+    msg: m => `"${m}" hype.`,
+    allowIfNear: [
+      /REAL\s+Innovation\s+Fund/i,
+      /Innovation\s+Fund/i,
+    ],
+  },
   { id: 'banned-revolutionary', severity: 'error', pattern: /\brevolutionar(y|ies)\b/gi, msg: () => '"revolutionary" hype.' },
   { id: 'banned-game-changer', severity: 'error', pattern: /\bgame.?changer\b/gi, msg: () => '"game-changer" hype.' },
   { id: 'banned-best-in-class', severity: 'warning', pattern: /\bbest.?in.?class\b/gi, msg: () => '"best-in-class" hype.' },

@@ -84,7 +84,7 @@ This reframes Goods from "nice social enterprise we give to" into "infrastructur
 ## Knockout criteria we apply to prospective investors (Beck Parkinson discipline)
 
 We will drop mismatches fast:
-1. Investment geography: NT / remote Australia must be in mandate.
+1. Investment geography: NT / remote Australia must be in mandate. <!-- brand-lint-ignore-line: remote-australia -->
 2. Legal structure: invests in CLG + Pty Ltd + hybrid.
 3. Investment size: matches the tranche we need.
 4. Return expectations: realistic on timeframe (5-10 years) and social-first return.

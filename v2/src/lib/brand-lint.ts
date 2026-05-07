@@ -151,6 +151,11 @@ const RULES: RuleSpec[] = [
     describe: (m) => ({
       message: `"${m}" is hype language. Describe the specific thing instead.`,
     }),
+    allowIfNear: [
+      // Real proper nouns of funds / programs we genuinely partner with
+      /REAL\s+Innovation\s+Fund/i,
+      /Innovation\s+Fund/i, // covers AMP "Innovation grant" funder column too
+    ],
   },
   {
     id: 'banned-revolutionary',

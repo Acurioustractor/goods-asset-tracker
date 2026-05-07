@@ -11,7 +11,7 @@
 **Name:** Goods on Country
 **Tagline:** "Goods that heal." *(primary)* | "Built with communities, not for them." | "Health hardware, community owned."
 **One-liner:** *"A good bed can prevent heart disease."*
-**Mission:** To transform essential household goods, beds, washing machines, refrigerators, into community-owned assets that improve lives in remote Australia, designed with communities and eventually manufactured by them.
+**Mission:** To transform essential household goods, beds, washing machines, refrigerators, into community-owned assets that improve lives in remote First Nations communities across the NT, QLD, and WA, designed with communities and eventually manufactured by them.
 **Philosophy:** *"Our job is to become unnecessary."*
 **Website:** goodsoncountry.au
 **E-commerce:** Live (Stretch Bed for sale via Stripe)
@@ -37,7 +37,7 @@ Social entrepreneur with 15+ years founding and scaling community-led ventures.
 > "Orange Sky taught me that dignity lives in the details. Clean clothes aren't just practical, they restore something essential. Dr. Bo Remenyi showed me what's at stake. RHD doesn't exist because medicine failed, it exists because housing and 'health hardware' failed."
 
 ### Benjamin Knight. Co-founder & Technology
-20+ years in community-led innovation: youth refuges (2004–2006), QLD Corrective Services Gulf communities (2010–2014), QFCC Youth Advocate (2015–2016), Orange Sky (2016–2020), AIME (2020–2023).
+20+ years in community-led design: youth refuges (2004–2006), QLD Corrective Services Gulf communities (2010–2014), QFCC Youth Advocate (2015–2016), Orange Sky (2016–2020), AIME (2020–2023).
 - Built Empathy Ledger ethical storytelling infrastructure
 - Built Goods Asset Register (389 tracked assets, QR-coded lifecycle monitoring)
 - JusticeHub Digital Platform (launching 2026)
@@ -160,7 +160,7 @@ Social entrepreneur with 15+ years founding and scaling community-led ventures.
 1. "We want to move it around", lighter, more portable
 2. "We want it high off the ground", safety (snakes, floods)
 3. "We don't want the foam", couldn't wash, broke down
-4. "We want a MAD bed!", more innovative design
+4. "We want a MAD bed!", more flexible design
 
 **Verdict:** "These ones are the best so far... in terms of flexibility, ease of use and reduction in skin disease stuff."
 
@@ -452,7 +452,7 @@ Video: https://share.descript.com/embed/2gxa5x40r9N
 ### Alice Springs (Mbantua). 60 beds
 
 **Fred Campbell** (Youth Case Worker, Oonchiumpa):
-> "That's something Central Australia need, just something so simple, especially coming out of recycled, and is turning into something so unique for our mob in the bush or on the communities."
+> "That's something Central Australia need, just something so simple, especially coming out of recycled, and is turning into something so unique for our mob in the bush or on the communities." <!-- brand-lint-ignore-line: outback-bush -->
 > "It's essential. The families right now... the beds were on the ground. It's a safety thing... a lot of snakes, so everyone wants to be off the ground."
 > "In Aboriginal culture, we tend to move away from the places when there's a death in the family. They just chuck their swags on the ground. Now they know they can just chuck that in."
 On youth (Xavier building beds):

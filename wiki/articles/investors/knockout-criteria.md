@@ -6,7 +6,7 @@
 
 | # | Criterion | Test | Goods' hard requirement |
 |---|---|---|---|
-| 1 | **Investment Geography** | Invests in places we operate or are headquartered | Must invest in NT, QLD, WA, SA remote Australia |
+| 1 | **Investment Geography** | Invests in places we operate or are headquartered | Must invest in NT, QLD, WA, SA remote Australia | <!-- brand-lint-ignore-line: remote-australia -->
 | 2 | **Legal Structure** | Invests in our legal structure | CLG (Foundation) + Pty Ltd (Ventures); hybrid acceptable |
 | 3 | **Investment Size** | Generally invests the amount we are seeking | Tranche-dependent: $100K-$5M range |
 | 4 | **Return Expectations** | Aligns on financial / social return | 5-10 year horizon; social-first; community-ownership exit |

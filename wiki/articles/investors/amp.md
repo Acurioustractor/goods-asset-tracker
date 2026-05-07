@@ -1,6 +1,6 @@
 # AMP Spark
 
-> Received $21.9K (innovation grant).
+> Received $21.9K (R&D grant).
 
 ## Status
 

@@ -9,7 +9,7 @@
 
 ## Note
 
-FRRR is part of the QBE ecosystem already (QBE-supported Local Division Partnership). This means they may be more receptive to a second ask coordinated with the QBE match process.
+FRRR is part of the QBE network already (QBE-supported Local Division Partnership). This means they may be more receptive to a second ask coordinated with the QBE match process.
 
 ## Related
 

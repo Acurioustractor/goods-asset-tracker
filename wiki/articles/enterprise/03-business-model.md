@@ -83,7 +83,7 @@ Note: the Weave Bed is discontinued; any reference in older decks is legacy.
 
 ## Competitive position
 
-We are not competing on price with IKEA. We are competing on total cost of ownership with the shadow market of disposable furniture that already drains community budgets. Our moat is: (1) product actually designed for the conditions, (2) community co-design legitimacy, (3) On-Country manufacturing loop, (4) ACT ecosystem relationships (Empathy Ledger, PICC, Oonchiumpa).
+We are not competing on price with IKEA. We are competing on total cost of ownership with the shadow market of disposable furniture that already drains community budgets. Our moat is: (1) product actually designed for the conditions, (2) community co-design legitimacy, (3) On-Country manufacturing loop, (4) ACT network of partners (Empathy Ledger, PICC, Oonchiumpa).
 
 ## Where the model is still evolving
 

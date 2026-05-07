@@ -24,7 +24,7 @@ Close QBE match-funding target of $400K. Stand up the first containerised produc
 **Horizon 2 (2027-2028): scale the circuit.**
 Multiple containerised facilities operating, each anchored by a community partner (Oonchiumpa, PICC, Centrecorp). Institutional sales channel live (NT Housing, health services, schools). Washing machine product moves from prototype to commercial. First plant transitioned to community ownership.
 
-**Horizon 3 (2029+): the ecosystem becomes unnecessary.**
+**Horizon 3 (2029+): the whole structure becomes unnecessary.**
 ACT hands plants to community owners (PICC is the first signalled buyer). Goods becomes a license / design-and-support layer, not a vertically integrated manufacturer. Beautiful Obsolescence fulfilled.
 
 ## Why this ambition is credible

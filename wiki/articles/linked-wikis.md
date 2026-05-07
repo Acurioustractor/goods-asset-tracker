@@ -9,7 +9,7 @@
 **Domains:** projects, concepts, communities, people, stories, art, finance, technical, decisions, research
 
 Tractorpedia is the Karpathy-pattern LLM knowledge base for the whole A Curious Tractor
-ecosystem. It's the "big brain." Goods is one of several projects inside it.
+network. It's the "big brain." Goods is one of several projects inside it.
 
 ### Goods content in Tractorpedia
 - `projects/goods-on-country.md`. 293-line project article covering the Goods story, products, partners
