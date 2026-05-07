@@ -69,15 +69,43 @@ Another organisation duplicating the Brand & Comms HQ would clone the database s
 - Consent state changes need to be reflected in BOTH places until we automate the sync.
 - Multi-select options proliferate (themes, use-cases). Need a small editorial discipline to avoid two slightly-different terms ("RHD prevention" vs "rhd-prevention").
 
-## Recommendation: extend the pattern
+## Funders database (built 2026-05-08)
 
-The same restructure makes sense for these other tables (in priority order):
+Same pattern applied to the Funders table. Lives under [05. Pipelines × Brand](https://www.notion.so/359ebcf981cf8176bdbddd3be80bc307).
 
-1. **Funders database** under [05. Pipelines × Brand](https://www.notion.so/359ebcf981cf8176bdbddd3be80bc307). Schema: Name, Type, Primary URL, Secondary URL, Recommended Voice, Stage, Contact, Rationale, Status. Already exists in code as `funder-url-map.ts` (21 entries) so populating is a copy-paste.
-2. **Banned terms database** under [01. Voice and Tone](https://www.notion.so/359ebcf981cf81d5bb44c3d3f8af9934). Schema: Term, Severity, Reason, Suggestion, Allowed-near phrases, Examples. Already exists in code as `brand-lint.ts` rules. Filterable: "show me all errors", "show me all rules with allowlists".
-3. **Email templates database** under [04. Email and Comms Templates](https://www.notion.so/359ebcf981cf815ea10de9f84f0f31dc). Schema: Name, Audience, Subject pattern, Body skeleton, Anti-patterns, Last revised. Currently 7 templates in markdown.
-4. **Slide deck slides database** under [07. Live Session Slide Deck](https://www.notion.so/359ebcf981cf81b3a4b1d37f74c6a222). Schema: Slide number, Title, Body, Image slot, Speaker notes, Per-audience asks. Currently a single markdown doc.
-5. **Photo categories database** under [03. Product Image Library](https://www.notion.so/359ebcf981cf81f8846fe5bd663dec9f). Schema: Category, Sample, Count, Location, Gap status, Priority. Some of this already auto-derives via `buildImageCategories()` on /brand.
+**Database URL:** [notion.so/a06fb37b6de845adb276e24a22e47b0d](https://www.notion.so/a06fb37b6de845adb276e24a22e47b0d)
+**Data source ID:** `8aa553ee-03bd-4718-a318-7e30787d4506`
+
+22 rows populated from `v2/src/lib/data/funder-url-map.ts`. 13 typed properties:
+
+| Property | Type | Purpose |
+|----------|------|---------|
+| Funder | Title | Display name |
+| Slug | Text | Stable key matching funder-url-map.ts |
+| Type | Select (14 options) | foundation-* / investor-* / procurement-* / community-partner |
+| Primary URL | Text | Canonical landing page on goodsoncountry.com |
+| Secondary URL | Text | Optional follow-up URL |
+| Recommended Voice | Select | Storyteller key whose quote resonates with this funder type |
+| Stage | Select | Researching / Cold intro / Warm intro / First meeting / Proposal/DD / Active / Alumni / Declined |
+| Direct only | Checkbox | True for community partners where URL on first contact is wrong |
+| Contact | Text | Person name + role (when known) |
+| Last activity | Date | When we last touched this relationship |
+| Rationale | Text | Why this funder gets this URL + voice |
+| Notes | Text | Pipeline detail, ask amount, contact context |
+
+Views:
+- **Pipeline (by stage)** — board grouped by Stage. Quick visual of where every relationship sits.
+- **By type** — board grouped by Type. Foundations vs investors vs procurement vs partners.
+- **Active outreach** — table filtered to Stage NOT IN (Researching, Declined, Alumni). The "in flight right now" list.
+- **Capital stack candidates** — table filtered to investor-catalytic / impact / blended types.
+
+## Recommendation: extend the pattern further
+
+The same restructure makes sense for these remaining tables (in priority order):
+1. **Banned terms database** under [01. Voice and Tone](https://www.notion.so/359ebcf981cf81d5bb44c3d3f8af9934). Schema: Term, Severity, Reason, Suggestion, Allowed-near phrases, Examples. Already exists in code as `brand-lint.ts` rules. Filterable: "show me all errors", "show me all rules with allowlists".
+2. **Email templates database** under [04. Email and Comms Templates](https://www.notion.so/359ebcf981cf815ea10de9f84f0f31dc). Schema: Name, Audience, Subject pattern, Body skeleton, Anti-patterns, Last revised. Currently 7 templates in markdown.
+3. **Slide deck slides database** under [07. Live Session Slide Deck](https://www.notion.so/359ebcf981cf81b3a4b1d37f74c6a222). Schema: Slide number, Title, Body, Image slot, Speaker notes, Per-audience asks. Currently a single markdown doc.
+4. **Photo categories database** under [03. Product Image Library](https://www.notion.so/359ebcf981cf81f8846fe5bd663dec9f). Schema: Category, Sample, Count, Location, Gap status, Priority. Some of this already auto-derives via `buildImageCategories()` on /brand.
 
 ## Next session
 
