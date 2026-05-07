@@ -40,6 +40,12 @@ export interface FunderPage {
   password: string;
   name: string;            // e.g. "Minderoo Foundation"
   contactName?: string;    // person we're addressing
+  /**
+   * Key into FUNDER_URL_MAP from `funder-url-map.ts`. When set, the page
+   * features the recommended storyteller voice for this funder type and
+   * surfaces the recommended next-step URL.
+   */
+  urlMapKey?: string;
   ask: AskOption;          // primary ask
   alternativeAsks?: AskOption[]; // additional or alternative ask options
   facility?: FacilitySection;    // optional infrastructure pathway section
@@ -55,6 +61,7 @@ export const FUNDER_PAGES: FunderPage[] = [
     slug: 'minderoo',
     password: 'minderoo2026',
     name: 'Minderoo Foundation',
+    urlMapKey: 'minderoo-foundation',
     ask: {
       label: 'Option A. Grant',
       instrument: 'Non-repayable grant',
@@ -133,6 +140,7 @@ export const FUNDER_PAGES: FunderPage[] = [
     slug: 'paul-ramsay',
     password: 'pramsay2026',
     name: 'Paul Ramsay Foundation',
+    urlMapKey: 'paul-ramsay-foundation',
     ask: {
       instrument: 'Recoverable grant + program funding',
       amount: '$500K',
@@ -154,6 +162,7 @@ export const FUNDER_PAGES: FunderPage[] = [
     slug: 'tim-fairfax',
     password: 'tfairfax2026',
     name: 'Tim Fairfax Family Foundation',
+    urlMapKey: 'tim-fairfax-family-foundation',
     ask: {
       instrument: 'Program grant',
       amount: '$300K',

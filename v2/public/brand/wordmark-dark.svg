@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Placeholder wordmark — Goods on Country. To be replaced by a designed mark. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 120" width="480" height="120">
+  <title>Goods on Country</title>
+  <desc>Goods on Country wordmark, dark background. Placeholder version.</desc>
+  <text x="0" y="72" font-family="Georgia, 'Times New Roman', serif" font-size="60" font-weight="400" fill="#FDF8F3" letter-spacing="-1">Goods</text>
+  <text x="0" y="104" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#8B9D77" letter-spacing="3">ON COUNTRY</text>
+  <line x1="200" y1="60" x2="220" y2="60" stroke="#C45C3E" stroke-width="3"/>
+</svg>

@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { FunderMap } from './funder-map';
 import { getFunderPage } from '@/lib/data/funder-pages';
+import { getFunderRecommendation } from '@/lib/data/funder-voice-resolver';
 import {
   deployments,
   documentedDemand,
@@ -38,6 +39,11 @@ export default async function FunderPage({ params }: PageProps) {
   const { slug } = await params;
   const funder = getFunderPage(slug);
   if (!funder) notFound();
+
+  // Funder-specific voice + URL pulled from the central map
+  const recommendation = funder.urlMapKey
+    ? getFunderRecommendation(funder.urlMapKey, '')
+    : null;
 
   // Aggregate due-diligence stats from the live compendium and expansion target list
   const deploymentTotals = getDeploymentTotals();
@@ -83,6 +89,47 @@ export default async function FunderPage({ params }: PageProps) {
             />
           </figure>
         </header>
+
+        {/* Featured voice — picked from funder-url-map.ts to match this funder's profile */}
+        {recommendation?.voice && (
+          <section className="mb-16">
+            <p className="text-xs uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
+              Voice from community
+            </p>
+            <div
+              className="grid sm:grid-cols-[160px_1fr] gap-6 sm:gap-8 p-6 sm:p-8 rounded-2xl items-start"
+              style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}
+            >
+              <div className="aspect-square sm:aspect-auto sm:h-40 w-full rounded-xl overflow-hidden" style={{ backgroundColor: '#E8DED4' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={recommendation.voice.photo}
+                  alt={recommendation.voice.photoAlt}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <blockquote
+                  className="text-xl sm:text-2xl md:text-3xl font-light leading-snug mb-4"
+                  style={{ fontFamily: 'Georgia, serif' }}
+                >
+                  &ldquo;{recommendation.voice.quote}&rdquo;
+                </blockquote>
+                <p className="text-sm font-medium" style={{ color: '#2E2E2E' }}>
+                  {recommendation.voice.name}
+                </p>
+                <p className="text-sm" style={{ color: '#8B9D77' }}>
+                  {recommendation.voice.location} · {recommendation.voice.quoteContext}
+                </p>
+                {recommendation.entry.rationale && (
+                  <p className="text-xs mt-4 italic" style={{ color: '#7A7A7A' }}>
+                    Selected for {funder.name} because: {recommendation.entry.rationale.toLowerCase()}
+                  </p>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* The Ask */}
         <section className="mb-16">
