@@ -1,0 +1,46 @@
+name: brand-lint
+
+on:
+  pull_request:
+    paths:
+      - 'wiki/articles/**/*.md'
+      - 'v2/docs/**/*.md'
+      - 'v2/src/lib/data/content.ts'
+      - 'v2/src/lib/data/products.ts'
+      - 'v2/src/lib/data/compendium.ts'
+      - 'v2/src/app/**/*.tsx'
+      - 'tools/lint-docs.mjs'
+      - '.github/workflows/brand-lint.yml'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run brand voice linter on docs and wiki
+        id: lint
+        run: |
+          node tools/lint-docs.mjs --json > brand-lint-report.json
+          ERRORS=$(node -e "console.log(JSON.parse(require('fs').readFileSync('brand-lint-report.json','utf8')).reduce((s,r)=>s+r.errors,0))")
+          WARNS=$(node -e "console.log(JSON.parse(require('fs').readFileSync('brand-lint-report.json','utf8')).reduce((s,r)=>s+r.warnings,0))")
+          echo "errors=$ERRORS" >> $GITHUB_OUTPUT
+          echo "warnings=$WARNS" >> $GITHUB_OUTPUT
+          echo "## Brand voice lint report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**$ERRORS errors / $WARNS warnings** across docs and wiki articles." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          node tools/lint-docs.mjs >> $GITHUB_STEP_SUMMARY || true
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Run \`npm run lint:brand\` locally for details, or \`npm run lint:brand:fix\` to auto-fix em dashes." >> $GITHUB_STEP_SUMMARY
+      - name: Upload report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: brand-lint-report
+          path: brand-lint-report.json
+      - name: Note (informational only)
+        run: |
+          echo "Brand lint runs as advisory. New PRs are not blocked, but reviewers can check the step summary above for any new voice violations."
