@@ -100,7 +100,7 @@ export default function IdeasPage() {
               <p className="text-sm opacity-90">Share and vote on ideas</p>
             </div>
             <Button asChild variant="secondary" size="sm">
-              <Link href="/community/ideas/new">Submit Idea</Link>
+              <Link href="/communities/ideas/new">Submit Idea</Link>
             </Button>
           </div>
         </div>
@@ -153,7 +153,7 @@ export default function IdeasPage() {
                 Be the first to share an idea!
               </p>
               <Button asChild>
-                <Link href="/community/ideas/new">Submit an Idea</Link>
+                <Link href="/communities/ideas/new">Submit an Idea</Link>
               </Button>
             </CardContent>
           </Card>
@@ -167,7 +167,7 @@ export default function IdeasPage() {
 
         {/* Back link */}
         <div className="text-center pt-4">
-          <Link href="/community" className="text-sm text-muted-foreground hover:text-primary">
+          <Link href="/communities" className="text-sm text-muted-foreground hover:text-primary">
             ← Back to Community
           </Link>
         </div>

@@ -52,7 +52,7 @@ export default function NewIdeaPage() {
       }
 
       // Redirect to ideas list
-      router.push('/community/ideas');
+      router.push('/communities/ideas');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to submit idea');
     } finally {
@@ -149,7 +149,7 @@ export default function NewIdeaPage() {
         </Card>
 
         <div className="text-center pt-6">
-          <Link href="/community/ideas" className="text-sm text-muted-foreground hover:text-primary">
+          <Link href="/communities/ideas" className="text-sm text-muted-foreground hover:text-primary">
             ← Back to Ideas
           </Link>
         </div>

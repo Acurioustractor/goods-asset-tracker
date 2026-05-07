@@ -516,13 +516,13 @@ async function CommunityHub() {
           </h3>
           <div className="grid grid-cols-2 gap-3">
             <Card className="hover:bg-muted/50 transition-colors">
-              <Link href="/community/ideas" className="block p-4 text-center">
+              <Link href="/communities/ideas" className="block p-4 text-center">
                 <div className="text-2xl mb-1">Ideas</div>
                 <div className="text-xs text-muted-foreground">Share &amp; vote</div>
               </Link>
             </Card>
             <Card className="hover:bg-muted/50 transition-colors">
-              <Link href="/community/ideas/new" className="block p-4 text-center">
+              <Link href="/communities/ideas/new" className="block p-4 text-center">
                 <div className="text-2xl mb-1">Submit</div>
                 <div className="text-xs text-muted-foreground">Tell us yours</div>
               </Link>
@@ -536,14 +536,14 @@ async function CommunityHub() {
               <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
                 Popular Ideas
               </h3>
-              <Link href="/community/ideas" className="text-sm text-primary hover:underline">
+              <Link href="/communities/ideas" className="text-sm text-primary hover:underline">
                 View all
               </Link>
             </div>
             <div className="space-y-2">
               {topIdeas!.map((idea) => (
                 <Card key={idea.id}>
-                  <Link href="/community/ideas">
+                  <Link href="/communities/ideas">
                     <CardContent className="p-3 flex items-center justify-between">
                       <div>
                         <h4 className="font-medium text-sm">{idea.title}</h4>

@@ -13,7 +13,7 @@ const footerLinks = {
   ],
   about: [
     { name: 'Our Story', href: '/story' },
-    { name: 'Communities', href: '/community' },
+    { name: 'Communities', href: '/communities' },
     { name: 'Impact', href: '/impact' },
     { name: 'Gallery', href: '/gallery' },
   ],
