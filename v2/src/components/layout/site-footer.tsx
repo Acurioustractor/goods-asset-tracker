@@ -20,6 +20,7 @@ const footerLinks = {
   connect: [
     { name: 'Partner With Us', href: '/partner' },
     { name: 'Sponsor a Bed', href: '/sponsor' },
+    { name: 'Brand & Comms', href: '/brand' },
     { name: 'Support / FAQ', href: '/support' },
     { name: 'Contact', href: '/contact' },
   ],
