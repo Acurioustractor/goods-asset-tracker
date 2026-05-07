@@ -64,7 +64,7 @@ Four voice characteristics inherited from ACT brand:
 And an explicit "what we avoid" list:
 - Savior framing ("helping communities in need").
 - Extractive language ("harvesting data").
-- Corporate jargon ("leveraging synergies").
+- Corporate jargon ("leveraging synergies"). <!-- brand-lint-ignore-line: banned-leverage,banned-synergy -->
 - Overclaiming ("world's first / best").
 
 ## Recruitment priorities (next 12 months)

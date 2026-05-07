@@ -1,6 +1,6 @@
 # Professional Impact Network (PIN)
 
-> An innovative and selective member network that leverages the talent of highly skilled members for social good. Established 2019. 100+ vetted members. Administered by Social Impact Hub.
+> A selective member network that draws on the talent of highly skilled members for social good. Established 2019. 100+ vetted members. Administered by Social Impact Hub.
 
 ## What it is
 

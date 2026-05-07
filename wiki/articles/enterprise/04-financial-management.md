@@ -25,7 +25,7 @@ Not yet self-sustaining. Revenue ($537K cumulative, $50K recent year actual) run
 | The Funding Network (TFN) | $130,000 | Production + delivery |
 | FRRR | $50,000 | Remote communities |
 | Vincent Fairfax Family Foundation (VFFF) | $50,000 | Core |
-| AMP Spark | $21,900 | Innovation |
+| AMP Spark | $21,900 | Innovation | <!-- brand-lint-ignore-line: banned-innovative -->
 | ACT internal / other | Remaining balance to $445K | R&D, ops |
 
 Books of record: Xero at the A Curious Tractor Pty Ltd / ACT-GD cost code level.
@@ -97,7 +97,7 @@ The QBE blended finance round is the capital needed to cross (1) and (2). Phase 
 
 ## Source documents
 
-- Strategy PD Part 5 (Business Model / Pricing), Part 8 (Go-to-Market budgets): `v2/docs/GOODS_STRATEGY_PD.md`
+- Strategy PD Part 5 (Business Model / Pricing), Part 8 (Sales pathway budgets): `v2/docs/GOODS_STRATEGY_PD.md`
 - Pricing verified: `v2/src/lib/data/products.ts` and Xero
 - Compendium: `v2/docs/COMPENDIUM_MARCH_2026.md`
 - RDTI strategy: `act-global-infrastructure/wiki/finance/rdti-claim-strategy.md`

@@ -10,7 +10,7 @@
 4. **Metrics** ([[metrics-tracked]]) with ALMA signals ([[alma-framework]]).
 5. **Story evidence** ([[empathy-ledger-impact]]): consented quotes, consented photos, consented journey records.
 6. **Gaps we are honest about** (no longitudinal outcomes yet; self-report and story are the current evidence base).
-7. **What the capital unlocks** (next-layer impact: jobs at plant, plastic volumes at scale).
+7. **What the capital activates** (next-layer impact: jobs at plant, plastic volumes at scale).
 
 ## Current state
 

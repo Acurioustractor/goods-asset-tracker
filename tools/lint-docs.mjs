@@ -15,7 +15,24 @@ const ROOT = path.resolve(__dirname, '..');
 // Mirrors v2/src/lib/brand-lint.ts. Update in lockstep.
 const RULES = [
   { id: 'em-dash', severity: 'error', pattern: /—|&mdash;/g, msg: () => 'Em dash banned. Use period, colon, or parentheses.' },
-  { id: 'banned-donate', severity: 'error', pattern: /\b(donate|donation|donations|donating|charity|charitable)\b/gi, msg: m => `"${m}" frames as charity.` },
+  {
+    id: 'banned-donate', severity: 'error',
+    pattern: /\b(donate|donation|donations|donating|charity|charitable)\b/gi,
+    msg: m => `"${m}" frames as charity.`,
+    allowIfNear: [
+      /\bDGR\s+/i,
+      /donor-/i,
+      /\btax-deductible\s+/i,
+      /charity-framed/i,
+      /charitable[,\s]+(DGR|status|structure|purpose|trading|loan|tax|funded|relationships)/i,
+      /\b(trading\s+vs\.?\s+charitable|vs\s+charitable)/i,
+      /\(charitable\)/i,
+      /\(CLG[,\s]/i,
+      /\bcharitable\s+(loan|status|structure|trust|entity)/i,
+      /\bphilanthropic\s+grants?,?\s*DGR\b/i,
+      /\bDGR-/i,
+    ],
+  },
   { id: 'banned-beneficiary', severity: 'error', pattern: /\b(beneficiar(y|ies))\b/gi, msg: m => `"${m}" is paternalistic.` },
   { id: 'banned-empower', severity: 'error', pattern: /\b(empower(ed|ing|ment|s)?)\b/gi, msg: m => `"${m}" implies power was not there.` },
   { id: 'banned-unlock', severity: 'error', pattern: /\b(unlock(s|ed|ing)?)\b/gi, msg: m => `"${m}" buzzword.` },
@@ -29,20 +46,78 @@ const RULES = [
   { id: 'banned-game-changer', severity: 'error', pattern: /\bgame.?changer\b/gi, msg: () => '"game-changer" hype.' },
   { id: 'banned-best-in-class', severity: 'warning', pattern: /\bbest.?in.?class\b/gi, msg: () => '"best-in-class" hype.' },
   { id: 'helping-them', severity: 'error', pattern: /\b(helping|help) them\b/gi, msg: m => `"${m}" paternalistic.` },
-  { id: 'capitalisation-on-country', severity: 'error', pattern: /\bon[- ]country\b/g, msg: m => `Capitalise: "${m.replace(/on([- ])country/, 'On$1Country')}".` },
+  { id: 'capitalisation-on-country', severity: 'error', pattern: /(?<![\/\-])\bon[- ]country\b(?![-\/])/g, msg: m => `Capitalise: "${m.replace(/on([- ])country/, 'On$1Country')}".` },
   { id: 'capitalisation-first-nations', severity: 'error', pattern: /\bfirst nations\b/g, msg: () => 'Always capitalise First Nations.' },
   { id: 'indigenous-people-block', severity: 'warning', pattern: /\b(Indigenous|indigenous) people\b(?! of)/g, msg: () => '"Indigenous people" treats diverse population as a block.' },
   { id: 'outback-bush', severity: 'warning', pattern: /\b(the outback|the bush)\b/gi, msg: m => `"${m}" generic identifier.` },
   { id: 'remote-australia', severity: 'warning', pattern: /\bremote Australia\b/g, msg: () => '"remote Australia" generic.' },
 ];
 
+function computeIgnoreMask(input) {
+  const ignores = [];
+
+  const inlineCode = /`[^`\n]+`/g;
+  let m;
+  while ((m = inlineCode.exec(input)) !== null) {
+    ignores.push({ start: m.index, end: m.index + m[0].length });
+  }
+
+  const fences = /```[\s\S]*?```/g;
+  while ((m = fences.exec(input)) !== null) {
+    ignores.push({ start: m.index, end: m.index + m[0].length });
+  }
+
+  // Block disable / enable
+  const blockDisable = /<!--\s*brand-lint-disable\s*-->/g;
+  const blockEnable = /<!--\s*brand-lint-enable\s*-->/g;
+  let dm;
+  while ((dm = blockDisable.exec(input)) !== null) {
+    blockEnable.lastIndex = dm.index + dm[0].length;
+    const em = blockEnable.exec(input);
+    ignores.push({ start: dm.index, end: em ? em.index + em[0].length : input.length });
+  }
+
+  const lineIgnore = /<!--\s*brand-lint-ignore-line(?::\s*([\w,-]+))?\s*-->/g;
+  while ((m = lineIgnore.exec(input)) !== null) {
+    const lineStart = input.lastIndexOf('\n', m.index) + 1;
+    const lineEndRaw = input.indexOf('\n', m.index);
+    const lineEnd = lineEndRaw === -1 ? input.length : lineEndRaw;
+    const rules = m[1] ? new Set(m[1].split(',').map(s => s.trim())) : null;
+    ignores.push({ start: lineStart, end: lineEnd, rules });
+  }
+
+  return ignores;
+}
+
+function isIgnored(ranges, pos, ruleId) {
+  for (const r of ranges) {
+    if (pos < r.start || pos >= r.end) continue;
+    if (!r.rules || r.rules.has(ruleId)) return true;
+  }
+  return false;
+}
+
 function lint(input) {
   const violations = [];
+  const ignores = computeIgnoreMask(input);
   for (const rule of RULES) {
     rule.pattern.lastIndex = 0;
     let m;
     while ((m = rule.pattern.exec(input)) !== null) {
-      violations.push({ ruleId: rule.id, severity: rule.severity, start: m.index, match: m[0], message: rule.msg(m[0]) });
+      if (!isIgnored(ignores, m.index, rule.id)) {
+        let allowed = false;
+        if (rule.allowIfNear && rule.allowIfNear.length > 0) {
+          const winStart = Math.max(0, m.index - 40);
+          const winEnd = Math.min(input.length, m.index + m[0].length + 40);
+          const window = input.slice(winStart, winEnd);
+          for (const p of rule.allowIfNear) {
+            if (p.test(window)) { allowed = true; break; }
+          }
+        }
+        if (!allowed) {
+          violations.push({ ruleId: rule.id, severity: rule.severity, start: m.index, match: m[0], message: rule.msg(m[0]) });
+        }
+      }
       if (m[0].length === 0) rule.pattern.lastIndex++;
     }
   }

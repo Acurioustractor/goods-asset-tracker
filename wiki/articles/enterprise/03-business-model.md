@@ -74,7 +74,7 @@ Note: the Weave Bed is discontinued; any reference in older decks is legacy.
 ## Key partners (activity-critical)
 
 - **Oonchiumpa Consultancy** (Alice Springs): confirmed manufacturing partner, Fred Campbell cultural lead.
-- **PICC** (Palm Island): deployment partner, signalled buyer of plant, REAL Innovation Fund consortium partner.
+- **PICC** (Palm Island): deployment partner, signalled buyer of plant, REAL Innovation Fund consortium partner. <!-- brand-lint-ignore-line: banned-innovative -->
 - **Snow Foundation**: anchor funder, long-term partner.
 - **Zinus**: mattress manufacturing industry advisor.
 - **University of Melbourne**: design research.
@@ -93,6 +93,6 @@ We are not competing on price with IKEA. We are competing on total cost of owner
 
 ## Source documents
 
-- Strategy PD Part 5 (Business Model), Part 6 (Production), Part 7 (Partnerships), Part 8 (Go-to-Market): `v2/docs/GOODS_STRATEGY_PD.md`
+- Strategy PD Part 5 (Business Model), Part 6 (Production), Part 7 (Partnerships), Part 8 (Sales pathway): `v2/docs/GOODS_STRATEGY_PD.md`
 - Canonical product specs and pricing: `v2/src/lib/data/products.ts`
 - Compendium (deployments, partners, funding): `v2/src/lib/data/compendium.ts`

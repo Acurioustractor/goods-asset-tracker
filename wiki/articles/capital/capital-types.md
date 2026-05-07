@@ -7,7 +7,7 @@
 | Instrument | Description |
 |---|---|
 | **Grant** | Gift of cash, restricted (milestones/deliverables) or unrestricted. No repayment. |
-| **Crowdfunding Donations** | Small contributions from many people, usually via a platform. |
+| **Crowdfunding Donations** | Small contributions from many people, usually via a platform. | <!-- brand-lint-ignore-line: banned-donate -->
 | **Pay For Success** | Contract between government, service provider, and investor tied to a social outcome. |
 | **Loan Guarantee** | Third-party capital that protects an investor if an investment doesn't come back in full. |
 | **Recoverable Grant** | High-risk loan that will either be repaid or written off by a certain date. |
@@ -26,7 +26,7 @@
 
 | Instrument | Description |
 |---|---|
-| **PRI Equity** | Charitable investment by a private foundation in exchange for shares. |
+| **PRI Equity** | Charitable investment by a private foundation in exchange for shares. | <!-- brand-lint-ignore-line: banned-donate -->
 | **Equity** | Capital for ownership shares. |
 | **Crowdfunding Equity / DPO** | Advertising an equity opportunity to the public. |
 

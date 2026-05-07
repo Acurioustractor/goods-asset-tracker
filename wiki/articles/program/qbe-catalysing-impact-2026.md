@@ -1,7 +1,7 @@
 # QBE Catalysing Impact 2026
 
 > The 2026 QBE/Social Impact Hub blended-finance accelerator that Goods on Country (via
-> A Curious Tractor) is participating in. Goal: unlock $400K matched funding by stacking
+> A Curious Tractor) is participating in. Goal: trigger $400K matched funding by stacking
 > grant + debt + catalytic capital. This article is the wiki-side mirror of the live
 > admin dashboard at `v2/src/app/admin/qbe-program/page.tsx`, the dashboard is authoritative
 > for operational state; this article is for context and history.
@@ -11,7 +11,7 @@ QBE Foundation + Social Impact Hub run Catalysing Impact as a cohort-based accel
 purpose-driven enterprises. The 2026 cohort kicked off with an in-person induction at QBE
 Sydney on 31 March 2026. Goods is represented by Benjamin Knight (A Curious Tractor).
 The program runs approximately March-November 2026, with a $400K match-funding milestone
-(deadline 31 August 2026) that unlocks up to $200K of matched grant from QBE.
+(deadline 31 August 2026) that triggers up to $200K of matched grant from QBE.
 
 ## Key Dates
 | Date | Event | Status |
@@ -47,7 +47,7 @@ Goods peers of note:
 - **Alex (QBE Ventures):** 3 questions any investor asks, (1) Why is this important? (2) Why are YOU the right org? (3) Is it achievable? Impact numbers work as well as revenue numbers.
 - **Beck Parkinson (PIN):** Know EXACTLY what capital you want. Be targeted. Drop mismatches fast. A quick "no" saves months.
 - **Hannah Ebeling (SEFA CEO):** $9M undeployed. Debt brings future cashflow forward. Grants are the most scarce. Requires independent board majority.
-- **Jess (SIH):** QBE grant is designed to crowd in other capital. Use the funder letter to unlock conditional commitments from other funders.
+- **Jess (SIH):** QBE grant is designed to crowd in other capital. Use the funder letter to open conditional commitments from other funders.
 
 ## Next Actions (for Goods)
 Authoritative list at `v2/src/app/admin/qbe-actions/page.tsx`. In summary for April:
@@ -56,7 +56,7 @@ Authoritative list at `v2/src/app/admin/qbe-actions/page.tsx`. In summary for Ap
 3. Chase $10,800 on INV-0289 (QBE participation grant)
 4. Register for all 4 webinars with code `CATALYSINGIMPACT`
 5. Wait for Sarah Gregory intro to PIN diagnostic lead
-6. Email SEFA (Hannah/Joel Bird) to open conversation, highest-leverage action
+6. Email SEFA (Hannah/Joel Bird) to open conversation, highest-impact action
 7. Draft LOI template, chase written commitments from Centre Corp, Miwatj, NPY
 
 ## Sources

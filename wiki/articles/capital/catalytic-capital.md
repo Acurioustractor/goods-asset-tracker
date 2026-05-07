@@ -6,7 +6,7 @@
 
 > "Going where no one else will, for the purpose of releasing other capital."
 
-Catalytic capital accepts disproportionate risk or concessionary returns so that other, more conservative capital can participate. The explicit intent is market-building: one catalytic dollar unlocks many commercial dollars.
+Catalytic capital accepts disproportionate risk or concessionary returns so that other, more conservative capital can participate. The explicit intent is market-building: one catalytic dollar crowds in many commercial dollars.
 
 ## Three ways it shows up
 
@@ -24,7 +24,7 @@ Catalytic capital accepts disproportionate risk or concessionary returns so that
 
 ## Catalytic ≈ "going first"
 
-Beck Parkinson's framing from Session 1: once one catalytic funder commits, they unlock the others by removing the perceived risk of being first. **The QBE letter of invitation is itself a catalytic signal** we should use to open conditional commitments from SEFA, Snow R4, Mindaroo, PFI.
+Beck Parkinson's framing from Session 1: once one catalytic funder commits, they open the way for others by removing the perceived risk of being first. **The QBE letter of invitation is itself a catalytic signal** we should use to open conditional commitments from SEFA, Snow R4, Mindaroo, PFI.
 
 ## For Goods
 

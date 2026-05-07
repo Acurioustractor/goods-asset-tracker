@@ -1,6 +1,6 @@
 # Goods Capital Stack (2026)
 
-> Proposed blended-finance stack for the 2026 round. Target: demonstrate $400K matched capital by 31 August 2026 to unlock QBE Foundation grant. Broader round target $2.5M-$5M across 18 months.
+> Proposed blended-finance stack for the 2026 round. Target: demonstrate $400K matched capital by 31 August 2026 to trigger QBE Foundation grant. Broader round target $2.5M-$5M across 18 months.
 
 ## Current design
 
@@ -36,7 +36,7 @@ COMMUNITY EQUITY PICC plant purchase (Yr 3-4)               TBD
 
 ## Tranche sizing
 
-- **Tranche A (close by 31 Aug 2026):** $400K matched → unlocks up to $200K QBE match. Composition: SEFA commitment + Mindaroo commitment + PFI commitment + IBA letter of offer.
+- **Tranche A (close by 31 Aug 2026):** $400K matched → triggers up to $200K QBE match. Composition: SEFA commitment + Mindaroo commitment + PFI commitment + IBA letter of offer.
 - **Tranche B (close Q4 2026):** full Snow R4 drawdown + IBA first drawdown for Circuit 1 plant.
 - **Tranche C (2027):** IBA expansion + Mindaroo follow-on + Circuit 2 plant.
 

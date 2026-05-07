@@ -42,13 +42,13 @@
 | H | **Geography experience** | Knows remote Australia, ideally NT specifically. Otherwise cultural briefing burden falls on us. |
 | H | **Industry experience** | Ideally has funded manufacturing / social enterprise / Indigenous-led business before. |
 | M | **Business challenge experience** | Has worked with organisations scaling from prototype to commercial. |
-| M | **Impact on future investments** | Their participation credibly unlocks follow-on capital (signalling value). |
+| M | **Impact on future investments** | Their participation credibly signals to follow-on capital (signalling value). |
 
 ## Matchable summary
 
 What we are effectively filtering for:
 
-> A funder operating in remote Australia, comfortable with dual-entity structures, prepared to commit $100K-$5M via grant or recoverable or debt, time horizon 5-10 years, social-first returns, prepared to accept community-ownership exit, culturally literate on remote Indigenous context, and whose name credibly unlocks the next funder.
+> A funder operating across remote NT, QLD, and WA, comfortable with dual-entity structures, prepared to commit $100K-$5M via grant or recoverable or debt, time horizon 5-10 years, social-first returns, prepared to accept community-ownership exit, culturally literate on remote First Nations context, and whose name credibly opens the next funder conversation.
 
 ## Sources
 

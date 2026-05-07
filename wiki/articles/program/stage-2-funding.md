@@ -1,6 +1,6 @@
 # Stage 2 Funding Application (September 2026)
 
-> The grant application that unlocks up to $400K. Must demonstrate matched external investment. Repayable finance prioritised over grant funding.
+> The grant application that triggers up to $400K. Must demonstrate matched external investment. Repayable finance prioritised over grant funding.
 
 ## Key dates
 
@@ -31,7 +31,7 @@ How the funding stack will be deployed:
 
 ### 4. Impact demonstration
 - Impact Measurement Report (see [[../impact/alma-framework]], [[../impact/empathy-ledger-impact]])
-- Demographics of beneficiaries (8 communities, 1,000+ lives)
+- Demographics of communities served (8 communities, 1,000+ people)
 
 ### 5. Corporate structure and governance
 - Corporate structure (see [[../governance/legal-structure]])

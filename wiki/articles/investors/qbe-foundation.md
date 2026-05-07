@@ -8,7 +8,7 @@ Two priorities:
 1. **Climate Resilience**, physical + financial risk understanding, mitigation options, low-carbon transition.
 2. **Inclusion**, access to opportunity for excluded groups, thought leadership, financial inclusion skills.
 
-Guiding principles: Sustainable Impact, Empowerment, Engagement, Strategic Alignment, Partner for Innovation.
+Guiding principles: Sustainable Impact, Empowerment, Engagement, Strategic Alignment, Partner for Innovation. <!-- brand-lint-ignore-line: banned-empower,banned-innovative -->
 
 ## What they fund
 

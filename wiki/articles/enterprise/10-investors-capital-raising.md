@@ -4,7 +4,7 @@
 
 ## Raise headline
 
-**Yes, actively.** QBE Catalysing Impact target: demonstrate **$400K matched funding by 31 August 2026** to unlock up to **$200K QBE Foundation grant**. This is the first tranche of a broader blended-finance round whose full target is in the range of $2.5M-$5M across grant + debt + catalytic + guarantees, phased over 18 months.
+**Yes, actively.** QBE Catalysing Impact target: demonstrate **$400K matched funding by 31 August 2026** to trigger up to **$200K QBE Foundation grant**. This is the first tranche of a broader blended-finance round whose full target is in the range of $2.5M-$5M across grant + debt + catalytic + guarantees, phased over 18 months.
 
 ## Blended finance stack (proposed)
 
