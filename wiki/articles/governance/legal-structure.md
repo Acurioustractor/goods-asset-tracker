@@ -57,7 +57,7 @@ Kindship pattern (800 investors, avg $2K, $1.1M raised) is interesting for commu
 
 - **Tax complexity** in cross-entity flows (see [[risk-register]] L3).
 - **DGR edge cases** between donor-funded and commercial beds to the same community (Sponsor-a-Bed handles this).
-- **Loan covenants** (SEFA + IBA want independent directors at trading entity — see [[board-structure]]).
+- **Loan covenants** (SEFA + IBA want independent directors at trading entity, see [[board-structure]]).
 
 ## Related
 

@@ -1,4 +1,4 @@
-# Alice Springs — Oonchiumpa Consultancy
+# Alice Springs. Oonchiumpa Consultancy
 
 > Confirmed Central Australian manufacturing partner. 100% Aboriginal-staffed. Two years of co-design. Fred Campbell (Western Arrernte man) leads cultural consultation on product design.
 

@@ -1,3 +1,5 @@
+<!-- historical / internal-reference doc, not external comms -->
+<!-- brand-lint-disable -->
 # Goods Homepage Design Exploration
 
 **10 Distinct Concepts for Review**
@@ -9,9 +11,9 @@
 From the Knowledge Compendium:
 
 ### Core Philosophy
-1. **Respecting Country and Community** — Circular design connecting environmental care with community benefit
-2. **Community-Driven Construction** — Built for local success, co-designed with communities
-3. **Place-Based Adaptation** — Made for Country, adapted to specific conditions
+1. **Respecting Country and Community**. Circular design connecting environmental care with community benefit
+2. **Community-Driven Construction**. Built for local success, co-designed with communities
+3. **Place-Based Adaptation**. Made for Country, adapted to specific conditions
 
 ### Brand Voice (Curious Tractor)
 - Grounded yet Visionary
@@ -166,7 +168,7 @@ Large portrait photo of community member with their bed, quote overlay
 │   │   │ "It took just five minutes to  │      │   │
 │   │   │  put together, and it's        │      │   │
 │   │   │  properly comfortable"         │      │   │
-│   │   │              — Mark, Palm Island│      │   │
+│   │   │             . Mark, Palm Island│      │   │
 │   │   └────────────────────────────────┘      │   │
 │   │                                            │   │
 │   └────────────────────────────────────────────┘   │

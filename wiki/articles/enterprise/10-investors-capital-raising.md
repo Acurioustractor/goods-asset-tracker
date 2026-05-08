@@ -4,7 +4,7 @@
 
 ## Raise headline
 
-**Yes, actively.** QBE Catalysing Impact target: demonstrate **$400K matched funding by 31 August 2026** to unlock up to **$200K QBE Foundation grant**. This is the first tranche of a broader blended-finance round whose full target is in the range of $2.5M-$5M across grant + debt + catalytic + guarantees, phased over 18 months.
+**Yes, actively.** QBE Catalysing Impact target: demonstrate **$400K matched funding by 31 August 2026** to trigger up to **$200K QBE Foundation grant**. This is the first tranche of a broader blended-finance round whose full target is in the range of $2.5M-$5M across grant + debt + catalytic + guarantees, phased over 18 months.
 
 ## Blended finance stack (proposed)
 
@@ -29,7 +29,7 @@ COMMUNITY EQUITY PICC plant purchase (Yr 3-4)      TBD
 | Name | Role | Status | Check size | Fit |
 |---|---|---|---|---|
 | **QBE Foundation** | Anchor grant | Cohort selected, match needed | Up to $200K | Climate resilience + inclusion |
-| **Social Impact Hub / Jess G.** | Program facilitator | Active | — | Orchestrator |
+| **Social Impact Hub / Jess G.** | Program facilitator | Active | | Orchestrator |
 | **SEFA (Hannah Ebeling)** | Subordinated debt | Conversation opening | $300K+ | Impact lender, $9M undeployed |
 | **QBE Ventures (Alex)** | CVC equity | Lighthouse program plausible | $5-15M (std), Lighthouse small | Insurance adjacency thesis |
 | **Snow Foundation** | Grant + LOI | Long-term partner, R4 pipeline | $200K | Partnership model |
@@ -38,7 +38,7 @@ COMMUNITY EQUITY PICC plant purchase (Yr 3-4)      TBD
 | **IBA** | Debt + grant blend | Eligibility confirmed | Up to $5M | Indigenous business |
 | **Tim Fairfax Family Foundation** | Grant | Target | TBD | 33 comms focus |
 | **Dusseldorp Forum** | Grant | Target | TBD | JustReinvest connection |
-| **Beck Parkinson** | Advisor | Active | — | Ex-SVA, ex-DFAT, selection committee |
+| **Beck Parkinson** | Advisor | Active | | Ex-SVA, ex-DFAT, selection committee |
 
 ## Capital we have received
 
@@ -84,7 +84,7 @@ This reframes Goods from "nice social enterprise we give to" into "infrastructur
 ## Knockout criteria we apply to prospective investors (Beck Parkinson discipline)
 
 We will drop mismatches fast:
-1. Investment geography: NT / remote Australia must be in mandate.
+1. Investment geography: NT / remote Australia must be in mandate. <!-- brand-lint-ignore-line: remote-australia -->
 2. Legal structure: invests in CLG + Pty Ltd + hybrid.
 3. Investment size: matches the tranche we need.
 4. Return expectations: realistic on timeframe (5-10 years) and social-first return.

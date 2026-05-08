@@ -1,6 +1,6 @@
 # FRRR (Foundation for Rural and Regional Renewal)
 
-> Received $50K. FRRR partners with QBE Foundation (see induction slides — they are a QBE Local Division Partnership).
+> Received $50K. FRRR partners with QBE Foundation (see induction slides, they are a QBE Local Division Partnership).
 
 ## Status
 
@@ -9,7 +9,7 @@
 
 ## Note
 
-FRRR is part of the QBE ecosystem already (QBE-supported Local Division Partnership). This means they may be more receptive to a second ask coordinated with the QBE match process.
+FRRR is part of the QBE network already (QBE-supported Local Division Partnership). This means they may be more receptive to a second ask coordinated with the QBE match process.
 
 ## Related
 

@@ -1,4 +1,6 @@
-# LinkedIn Posts — Goods on Country Related
+<!-- historical / internal-reference doc, not external comms -->
+<!-- brand-lint-disable -->
+# LinkedIn Posts. Goods on Country Related
 
 Collected 2026-03-26 from Ben Knight and Nic Marchesi's LinkedIn profiles.
 
@@ -76,7 +78,7 @@ Want to follow along? Like this post and we will keep you updated
 
 ---
 
-### 4. Community Bed Building — Urapuntja Homelands
+### 4. Community Bed Building. Urapuntja Homelands
 
 Community lead bed building.
 
@@ -86,7 +88,7 @@ Imagine household goods that heal community and are also healed (repaired) by th
 
 ---
 
-### 5. Nic Tribute — Goods Mention
+### 5. Nic Tribute. Goods Mention
 
 Nicholas Marchesi OAM (Him/He) has taught me more about being an artist than any course or mentor ever could.
 
@@ -361,7 +363,7 @@ So much more coming soon...
 
 ---
 
-### 11. Farm My School / Colac (Goods adjacent — ACT)
+### 11. Farm My School / Colac (Goods adjacent. ACT)
 
 What happens when 600 people pick up shovels instead of waiting for permission?
 
@@ -431,7 +433,7 @@ The power of laundry in Remote Communities
 
 ---
 
-### 3. Stretch Bed Origin Story (shared — Nick Cave post)
+### 3. Stretch Bed Origin Story (shared. Nick Cave post)
 
 Nick Cave talks about how making something - a song, a letter, a line - is itself the act of thinking. You don't figure it out first and then build. You build, and the understanding comes through the work.
 
@@ -525,7 +527,7 @@ https://lnkd.in/g9YGM33P
 
 ---
 
-### 8. Fiji Fellowship — Health Hardware
+### 8. Fiji Fellowship. Health Hardware
 
 For many of us, Fiji is the location for a relaxing getaway or of fond family memories; however, many people across Fiji struggle with accessing facilities to wash clothing and bedding.
 
@@ -570,7 +572,7 @@ https://lnkd.in/gnx_Hqya
 
 18 months ago, Nicholas and I were given a fellowship by A Curious Tractor to answer a question:
 
-What happens when you give a community a place to grow food, cook together, and make things — and let them shape it from day one?
+What happens when you give a community a place to grow food, cook together, and make things, and let them shape it from day one?
 
 We found a property in Witta, in the Sunshine Coast Hinterland. Rammed earth walls, hinterland views, and a polytunnel that needs some love.
 
@@ -578,11 +580,11 @@ We're calling it The Harvest.
 
 It's not a cafe. It's not a co-working space. It's not a farm gate.
 
-It's three zones — a garden, a kitchen, and an art space — designed with the community, not for them.
+It's three zones, a garden, a kitchen, and an art space, designed with the community, not for them.
 
 This Saturday we're opening the doors for the first time. No pitch deck. Just oysters, neighbours, and a conversation about what this place becomes.
 
-If you're interested in community-led placemaking, regenerative design, or just want to follow along — I'll be sharing the journey here.
+If you're interested in community-led placemaking, regenerative design, or just want to follow along. I'll be sharing the journey here.
 
 ---
 
@@ -622,7 +624,7 @@ He couldn't understand it.
 
 Not the conditions. Not the concrete. Not the isolation cells. He literally could not comprehend that a country like Australia would treat young people that way.
 
-[Full CONTAINED / Diagrama post — shared between Ben and Nic]
+[Full CONTAINED / Diagrama post, shared between Ben and Nic]
 
 ---
 
@@ -664,7 +666,7 @@ Orange Sky's School Laundry Program supports young people to succeed by providin
 
 ---
 
-### 18. The Washing Machine Project — YouTube Growth
+### 18. The Washing Machine Project. YouTube Growth
 
 The Washing Machine Project has been quietly building its YouTube strategy… and then the numbers exploded.
 

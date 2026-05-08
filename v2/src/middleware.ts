@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { FUNDER_PAGES } from '@/lib/data/funder-pages'
 
 // Routes that require user authentication (phone-based)
-const protectedUserRoutes = ['/my-items', '/community', '/production']
+const protectedUserRoutes = ['/my-items', '/communities', '/production']
 
 // Routes protected by simple password (cookie-based)
 const passwordProtectedRoutes = ['/impact', '/api/impact']

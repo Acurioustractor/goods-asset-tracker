@@ -33,9 +33,9 @@ Each enterprise receives a **$10,000 participation grant** plus:
 
 ### Required submission materials
 - Application form.
-- Evidence of funding commitments (LOIs, loan agreements, investment agreements — legally binding).
+- Evidence of funding commitments (LOIs, loan agreements, investment agreements, legally binding).
 - Supporting materials (pitch docs, business plans, financial models).
-- Impact Measurement Report, beneficiary demographics.
+- Impact Measurement Report, community-served demographics.
 - Corporate structure, financials (audited or accountant-endorsed), governance documents.
 
 ### Pitch and interview (1 hour)

@@ -1,11 +1,11 @@
-# Stretch Bed Production Facility — Operations Guide
+# Stretch Bed Production Facility. Operations Guide
 
 > *"Our job is to become unnecessary."*
-> This guide transfers operational knowledge for producing stretch beds from community plastic waste — designed so any community can own and run this process.
+> This guide transfers operational knowledge for producing stretch beds from community plastic waste, designed so any community can own and run this process.
 
-**Version:** 1.0 — February 2026
+**Version:** 1.0. February 2026
 **Source:** Video walkthrough (IMG_8873.MOV, 5 Feb 2026) + production notes from first shift
-**Status:** Active — 9 sheets completed, production ongoing
+**Status:** Active. 9 sheets completed, production ongoing
 
 ---
 
@@ -56,9 +56,9 @@ The production facility consists of two shipping containers and a diesel generat
 
 ### Power
 
-- **Generator:** RW Pacific Traders DG23000SE3 — Diesel, 50Hz, Silent-type
+- **Generator:** RW Pacific Traders DG23000SE3. Diesel, 50Hz, Silent-type
 - **Constraint:** Can only run ONE major machine at a time (heat press OR chipper, not both)
-- **Fuel:** Uses significant diesel — budget accordingly for remote deployment
+- **Fuel:** Uses significant diesel, budget accordingly for remote deployment
 
 ---
 
@@ -78,19 +78,19 @@ COLLECT → SORT → SHRED → WEIGH → FILL TRAY → HEAT → PRESS → COOL �
 ### Step 1: Collection & Sorting
 
 **Where:** Community collection points
-**Equipment:** None — manual sorting
+**Equipment:** None, manual sorting
 
 - Collect plastic waste: bottle caps, containers, off-cuts
-- Sort strictly — **HDPE and PP only**
-- **NEVER process PVC** — releases toxic chlorine gas when heated
+- Sort strictly, **HDPE and PP only**
+- **NEVER process PVC**, releases toxic chlorine gas when heated
 - Remove non-plastic contaminants (metal, labels, food residue)
 - Store sorted plastic in labelled bins
 
 **Quality check:** If unsure about plastic type, check recycling number:
-- 2 (HDPE) — Yes
-- 5 (PP) — Yes
-- 3 (PVC) — NEVER
-- Everything else — No
+- 2 (HDPE). Yes
+- 5 (PP). Yes
+- 3 (PVC). NEVER
+- Everything else. No
 
 ---
 
@@ -102,15 +102,15 @@ COLLECT → SORT → SHRED → WEIGH → FILL TRAY → HEAT → PRESS → COOL �
 
 1. Start generator
 2. Ensure dust extraction is running
-3. Feed sorted plastic into granulator hopper — don't overload
+3. Feed sorted plastic into granulator hopper, don't overload
 4. Flakes collect in bin below the machine
 5. Transfer flakes to labelled clear storage tubs
 6. Weigh each tub and note contents
 
 **Watch out for:**
-- Oversized pieces — pre-cut anything too large for the hopper
-- Foreign objects — metal will damage blades
-- Noise — ear protection required in 20ft container
+- Oversized pieces, pre-cut anything too large for the hopper
+- Foreign objects, metal will damage blades
+- Noise, ear protection required in 20ft container
 
 ---
 
@@ -121,8 +121,8 @@ COLLECT → SORT → SHRED → WEIGH → FILL TRAY → HEAT → PRESS → COOL �
 
 1. Place metal tray on prep table
 2. Weigh out **15kg** of plastic flakes (use digital scales)
-3. Spread flakes evenly across the tray — no gaps, no hills
-4. Ensure edges are filled — uneven loading creates weak spots in the finished sheet
+3. Spread flakes evenly across the tray, no gaps, no hills
+4. Ensure edges are filled, uneven loading creates weak spots in the finished sheet
 
 **Tip from first shift:** Even distribution is the most important factor in sheet quality. Take time here.
 
@@ -139,22 +139,22 @@ COLLECT → SORT → SHRED → WEIGH → FILL TRAY → HEAT → PRESS → COOL �
 3. Jack up the press so the tray is held firmly between heating elements
 4. Set temperature to **180°C**
 5. Heat for **2-4 hours** (check periodically for full melt)
-6. **Keep ventilation running** — doors open, extractor on
+6. **Keep ventilation running**, doors open, extractor on
 
 **Watch out for:**
-- Hot surfaces — gloves and long sleeves essential
-- Fumes — maintain ventilation at all times
-- Duration varies — first-timers should check frequently
+- Hot surfaces, gloves and long sleeves essential
+- Fumes, maintain ventilation at all times
+- Duration varies, first-timers should check frequently
 
 ---
 
 ### Step 5: Pressing
 
 **Where:** Hydraulic press (same unit)
-**Equipment:** Red hydraulic jack — 5000 PSI capacity
+**Equipment:** Red hydraulic jack. 5000 PSI capacity
 
 1. Once plastic is fully melted, jack up the press
-2. Apply **5000 PSI pressure** — use the gauge to confirm
+2. Apply **5000 PSI pressure**, use the gauge to confirm
 3. This compresses the melted plastic to the correct sheet thickness
 4. Hold pressure while hot
 
@@ -169,8 +169,8 @@ COLLECT → SORT → SHRED → WEIGH → FILL TRAY → HEAT → PRESS → COOL �
 
 1. Transfer hot tray from heat press to cooling press
 2. Jack up to apply light, even pressure
-3. **Leave to cool** — overnight is ideal
-4. Cooling press has **two layers** — can hold **2 sheets per layer** (4 total at a time)
+3. **Leave to cool**, overnight is ideal
+4. Cooling press has **two layers**, can hold **2 sheets per layer** (4 total at a time)
 5. Once cool, release pressure and slide sheet out
 
 **Current status:** 9 sheets completed, one in cooling press.
@@ -183,7 +183,7 @@ COLLECT → SORT → SHRED → WEIGH → FILL TRAY → HEAT → PRESS → COOL �
 **Equipment:** Carbatec CNC router + connected laptop
 **Power:** Generator
 
-**Note:** CNC is not currently operational — contact Jimmy re: setup.
+**Note:** CNC is not currently operational, contact Jimmy re: setup.
 
 1. Secure cooled sheet on CNC bed
 2. Connect dust extractor hose to CNC
@@ -203,7 +203,7 @@ COLLECT → SORT → SHRED → WEIGH → FILL TRAY → HEAT → PRESS → COOL �
 
 1. Take cut parts to router station
 2. Run router along all cut edges
-3. Goal: **smooth, rounded edges** — no sharp corners or burrs
+3. Goal: **smooth, rounded edges**, no sharp corners or burrs
 4. Check all surfaces by hand
 
 ---
@@ -228,8 +228,8 @@ COLLECT → SORT → SHRED → WEIGH → FILL TRAY → HEAT → PRESS → COOL �
 
 | Item | When |
 |------|------|
-| Safety gloves | Always — especially near heat press and chipper |
-| Safety goggles | Always — plastic fragments during shredding and cutting |
+| Safety gloves | Always, especially near heat press and chipper |
+| Safety goggles | Always, plastic fragments during shredding and cutting |
 | Dust/fume mask | During shredding, CNC cutting, and heating |
 | Closed-toe shoes | Always |
 | Long sleeves | Near heat press (burns from hot surfaces/plastic) |
@@ -237,13 +237,13 @@ COLLECT → SORT → SHRED → WEIGH → FILL TRAY → HEAT → PRESS → COOL �
 
 ### Critical Rules
 
-1. **No lone working** — Always have a buddy for hot processes (heating, pressing)
-2. **Ventilation** — Extractor always on during operations; container doors open during heating
-3. **One machine at a time** — Generator cannot power chipper and heat press simultaneously
-4. **No PVC** — Never process PVC plastic (releases toxic chlorine gas)
-5. **Hot surface awareness** — Trays, press, sheets are all extremely hot during/after heating
-6. **Fire extinguisher** — Located in each container. Know where it is before starting
-7. **First aid kit** — Located in 40ft container
+1. **No lone working**. Always have a buddy for hot processes (heating, pressing)
+2. **Ventilation**. Extractor always on during operations; container doors open during heating
+3. **One machine at a time**. Generator cannot power chipper and heat press simultaneously
+4. **No PVC**. Never process PVC plastic (releases toxic chlorine gas)
+5. **Hot surface awareness**. Trays, press, sheets are all extremely hot during/after heating
+6. **Fire extinguisher**. Located in each container. Know where it is before starting
+7. **First aid kit**. Located in 40ft container
 
 ### Emergency Contacts
 
@@ -260,7 +260,7 @@ COLLECT → SORT → SHRED → WEIGH → FILL TRAY → HEAT → PRESS → COOL �
 ### Start of Shift
 
 1. **Read handover notes** from previous shift
-2. Walk the facility — check all equipment is in expected state
+2. Walk the facility, check all equipment is in expected state
 3. Check diesel level in generator
 4. Check PPE is available and in good condition
 5. Review the day's production target
@@ -279,10 +279,10 @@ COLLECT → SORT → SHRED → WEIGH → FILL TRAY → HEAT → PRESS → COOL �
 2. Secure generator
 3. Close and lock both containers
 4. Complete handover notes:
-   - **Current status** — What's in progress (e.g. "1 sheet in cooling press")
-   - **Completed** — How many sheets finished this shift
-   - **Issues** — Anything broken, running low, or unusual
-   - **Next shift actions** — What the next person should start with
+   - **Current status**. What's in progress (e.g. "1 sheet in cooling press")
+   - **Completed**. How many sheets finished this shift
+   - **Issues**. Anything broken, running low, or unusual
+   - **Next shift actions**. What the next person should start with
 
 ### Handover Note Template
 
@@ -316,11 +316,11 @@ ACTIONS FOR NEXT SHIFT:
 | Issue | Likely Cause | Fix |
 |-------|-------------|-----|
 | Uneven sheets | Flakes not spread evenly in tray | Redistribute before heating; take more time on prep |
-| Sheets too thick/thin | Pressure not consistent | Check gauge — target 5000 PSI; ensure even jack |
+| Sheets too thick/thin | Pressure not consistent | Check gauge, target 5000 PSI; ensure even jack |
 | Bubbles in sheet | Moisture in flakes or air pockets | Pre-dry flakes; spread more evenly |
 | CNC drift | Calibration off | Recalibrate; check sheet is secured flat |
 | Shredder jamming | Oversized pieces or foreign objects | Clear blockage; pre-cut large items |
-| Weak final product | Wrong plastic type mixed in | Check sorting — HDPE/PP only |
+| Weak final product | Wrong plastic type mixed in | Check sorting. HDPE/PP only |
 | Generator won't start | Low fuel, flat battery | Check diesel level; check battery connections |
 | Fumes during heating | Normal (within reason) or PVC contamination | Ensure ventilation; if unusual smell, stop and check plastic source |
 
@@ -362,7 +362,7 @@ ACTIONS FOR NEXT SHIFT:
 
 The shift handover and production tracking should live in a system accessible on-site, ideally from a phone or tablet. Three options in order of recommendation:
 
-#### Option A: Notion (Current — Good for Now)
+#### Option A: Notion (Current. Good for Now)
 
 **Structure:**
 ```
@@ -390,7 +390,7 @@ Goods Production
 **Pros:** Already in use, free, works offline with app, good for docs
 **Cons:** Not designed for production workflows, no barcode/QR support
 
-#### Option B: Simple Web App (Future — When Scaling)
+#### Option B: Simple Web App (Future. When Scaling)
 
 A lightweight progressive web app (PWA) that:
 - Works offline (critical for remote communities with poor connectivity)
@@ -407,7 +407,7 @@ This would be worth building when:
 - Tracking needs to scale beyond one facility
 - You need real-time dashboards for funders/management
 
-#### Option C: Hybrid — Notion Now, App Later
+#### Option C: Hybrid. Notion Now, App Later
 
 Start with Notion for the current single-site setup. Structure the data cleanly so it can be migrated to a custom app when needed. The Notion databases become the spec for the app's data model.
 
@@ -430,8 +430,8 @@ See: docs/PRODUCTION_FACILITY_GUIDE.md
 - Output: 1 flat-pack bed frame per sheet
 - CNC time: 3-5 hours per bed
 - Capacity: ~30 beds per week (when running full production)
-- Generator: RW Pacific DG23000SE3 (diesel, 50Hz) — one machine at a time
-- Key constraint: Power — chipper and heat press cannot run simultaneously
+- Generator: RW Pacific DG23000SE3 (diesel, 50Hz), one machine at a time
+- Key constraint: Power, chipper and heat press cannot run simultaneously
 ```
 
 ---
@@ -445,14 +445,14 @@ See: docs/PRODUCTION_FACILITY_GUIDE.md
 - [ ] Ventilation systems tested and working
 
 ### Equipment Walkthrough
-- [ ] Zerma granulator — operation demonstrated, safety explained
-- [ ] Heat press — temperature settings, tray loading, jack operation
-- [ ] Hydraulic press — PSI gauge reading, jack operation
-- [ ] Cooling press — two-layer system explained, timing
-- [ ] CNC router — cutting file loading, computer connection
-- [ ] Edge router — technique for smooth edges
-- [ ] Dust extractor — bag emptied, filters checked
-- [ ] Generator — start/stop, diesel check, power switching
+- [ ] Zerma granulator, operation demonstrated, safety explained
+- [ ] Heat press, temperature settings, tray loading, jack operation
+- [ ] Hydraulic press. PSI gauge reading, jack operation
+- [ ] Cooling press, two-layer system explained, timing
+- [ ] CNC router, cutting file loading, computer connection
+- [ ] Edge router, technique for smooth edges
+- [ ] Dust extractor, bag emptied, filters checked
+- [ ] Generator, start/stop, diesel check, power switching
 
 ### Safety Induction
 - [ ] PPE locations shown (gloves, goggles, masks, ear protection)

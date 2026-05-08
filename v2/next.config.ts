@@ -40,6 +40,13 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      // /community → /communities (singular path was historic; plural is canonical)
+      { source: '/community', destination: '/communities', permanent: true },
+      { source: '/community/:path*', destination: '/communities/:path*', permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

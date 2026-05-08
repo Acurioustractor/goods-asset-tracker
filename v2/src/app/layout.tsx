@@ -26,35 +26,53 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Goods on Country | Beds That Change Lives',
+    default: 'Goods on Country | Built with communities, not for them.',
     template: '%s | Goods on Country',
   },
   description:
-    'Goods on Country delivers essential items like beds and washing machines to remote Australian Indigenous communities. Shop to support or sponsor a bed today.',
+    'Goods on Country builds Stretch Beds and Pakkimjalki Kari washing machines with First Nations communities across remote Australia. Co-designed, made On-Country, manufacturing transferred to community ownership.',
   keywords: [
-    'beds',
-    'Indigenous communities',
+    'Stretch Bed',
+    'Pakkimjalki Kari',
+    'First Nations',
     'social enterprise',
-    'Australia',
-    'charity',
     'remote communities',
-    'bed delivery',
-    'washing machines',
+    'On-Country manufacturing',
+    'recycled HDPE plastic',
+    'community ownership',
+    'co-design',
   ],
   authors: [{ name: 'Goods on Country' }],
+  icons: {
+    icon: [
+      { url: '/brand/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/brand/favicon.svg',
+  },
   openGraph: {
-    title: 'Goods on Country | Beds That Change Lives',
+    title: 'Goods on Country | Built with communities, not for them.',
     description:
-      'Delivering essential items to remote Australian Indigenous communities. Every purchase makes a difference.',
+      'A First Nations social enterprise designing essential goods with remote Indigenous communities. Stretch Beds and Pakkimjalki Kari washing machines, co-designed and made On-Country.',
     type: 'website',
     locale: 'en_AU',
     siteName: 'Goods on Country',
+    url: 'https://www.goodsoncountry.com',
+    images: [
+      {
+        url: '/brand/og-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Goods on Country. Built with communities, not for them.',
+        type: 'image/svg+xml',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Goods on Country | Beds That Change Lives',
+    title: 'Goods on Country | Built with communities, not for them.',
     description:
-      'Delivering essential items to remote Australian Indigenous communities.',
+      'A First Nations social enterprise designing essential goods with remote Indigenous communities.',
+    images: ['/brand/og-image.svg'],
   },
   robots: {
     index: true,

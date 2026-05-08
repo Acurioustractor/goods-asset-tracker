@@ -1,6 +1,6 @@
 # Stretch Bed (flagship)
 
-> Flat-packable, washable bed for remote conditions. Co-designed with Elders across Central Australia, Top End, Palm Island, Kalgoorlie. The product investors buy the story of when we pitch. Canonical specs at `v2/src/lib/data/products.ts` — do not duplicate.
+> Flat-packable, washable bed for remote conditions. Co-designed with Elders across Central Australia, Top End, Palm Island, Kalgoorlie. The product investors buy the story of when we pitch. Canonical specs at `v2/src/lib/data/products.ts`, do not duplicate.
 
 ## One-sentence description
 

@@ -18,7 +18,7 @@
 ## Notes
 
 - Co-investor in Jigsaw (see [[../capital/australian-case-studies]]).
-- Already funds enterprises via the CDFI ecosystem.
+- Already funds enterprises via the CDFI sector. <!-- brand-lint-ignore-line: banned-ecosystem -->
 
 ## Alignment score
 

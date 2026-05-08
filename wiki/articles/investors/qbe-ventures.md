@@ -15,7 +15,7 @@ Three questions any investor asks:
 2. Why are YOU the right person / org?
 3. Is it achievable?
 
-Key insight: "Numbers going up don't have to be money — impact going up works for CVC."
+Key insight: "Numbers going up don't have to be money, impact going up works for CVC."
 
 Insurance cares about risk reduction → think adjacencies (preventing claims, disaster prevention).
 

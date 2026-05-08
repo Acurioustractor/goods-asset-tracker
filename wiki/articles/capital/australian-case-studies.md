@@ -16,7 +16,7 @@ Indigenous-owned tech recycling social enterprise, raised as a blended deal (ill
 **Why relevant to Goods:**
 - Equivalent stage and scale.
 - First Australians Capital is a parallel debt source worth exploring alongside IBA.
-- Grant-catalyses-debt-and-equity structure directly mirrors our QBE-unlocks-SEFA-and-IBA plan.
+- Grant-catalyses-debt-and-equity structure directly mirrors our QBE-triggers-SEFA-and-IBA plan.
 
 ## Victoria Theatre Revival
 
@@ -27,8 +27,8 @@ Heritage infrastructure restoration (Newcastle), much larger blended stack (illu
 | Century Group | $3.03M | Corporate |
 | NSW Government Grant | $4.10M | Government |
 | Activating State Heritage Grant | $1.00M | Government |
-| Donations | $10.00M | Depending on investment |
-| Equity Investment (operating co) | $6.00M | Depending on donations |
+| Donations | $10.00M | Depending on investment | <!-- brand-lint-ignore-line: banned-donate -->
+| Equity Investment (operating co) | $6.00M | Depending on donations | <!-- brand-lint-ignore-line: banned-donate -->
 | **Total** | **$24.13M** | |
 
 **Relevant lesson:** government grants anchor the stack; equity in the operating company is sized by how much philanthropic money shows up first. Same pattern Goods can apply with NT Housing procurement + federal grants + IBA debt.
@@ -53,13 +53,13 @@ Social enterprise providing pathway to open employment for people with disabilit
 - Impact Generation Partners
 - The RW Fenton Family Trust
 - The Bryan Foundation
-- Lord Mayor's Charitable Foundation
+- Lord Mayor's Charitable Foundation <!-- brand-lint-ignore-line: banned-donate -->
 - Ian Potter Foundation
 
 **Why this is the Goods template:**
 1. 70/30 debt/grant split matches our working design.
 2. SEFA-as-syndicate-agent is exactly the role we are opening.
-3. Snow co-invested — our existing Snow relationship is a precedent for them to bring others in.
+3. Snow co-invested, our existing Snow relationship is a precedent for them to bring others in.
 4. Similar impact profile (marginalised population, durable employment, measurable outcomes).
 
 **Action:** when talking to SEFA, reference Jigsaw explicitly. When talking to Snow, ask about repeating the syndicate pattern.

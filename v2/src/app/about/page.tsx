@@ -90,8 +90,8 @@ export default function AboutPage() {
                 remote conditions. The freight makes everything unaffordable.
               </p>
               <p className="mb-4" style={{ color: '#5E5E5E' }}>
-                This isn&apos;t a cultural choice—it&apos;s a failure of infrastructure.
-                A washing machine isn&apos;t convenience—it&apos;s cardiac prevention.
+                This isn&apos;t a cultural choice. It&apos;s a failure of infrastructure.
+                A washing machine isn&apos;t convenience. It&apos;s cardiac prevention.
                 Clean bedding breaks the scabies cycle that leads to Rheumatic Heart Disease.
               </p>
               <p style={{ color: '#5E5E5E' }}>

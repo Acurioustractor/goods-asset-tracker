@@ -4,7 +4,7 @@
 
 ## Mandate
 
-- Queensland and remote Australia focus.
+- Queensland and remote Australia focus. <!-- brand-lint-ignore-line: remote-australia -->
 - Community development, Indigenous programs, education, rural.
 
 ## Current state

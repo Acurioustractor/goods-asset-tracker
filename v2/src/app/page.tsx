@@ -49,7 +49,7 @@ export default async function HomePage() {
                 <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
                   <MediaSlot
                     src="/images/pitch/bed-frame-legs.jpg"
-                    alt="Recycled HDPE plastic legs — pressed from community waste"
+                    alt="Recycled HDPE plastic legs, pressed from community waste"
                     label="Recycled plastic legs"
                     aspect="4/3"
                   />
@@ -62,7 +62,7 @@ export default async function HomePage() {
                 <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
                   <MediaSlot
                     src="/images/pitch/bed-poles.jpg"
-                    alt="Galvanised steel pole — 26.9mm OD"
+                    alt="Galvanised steel pole, 26.9mm OD"
                     label="Steel pole"
                     aspect="4/3"
                   />
@@ -88,7 +88,7 @@ export default async function HomePage() {
                 <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
                   <MediaSlot
                     src="/images/media-pack/nic-with-elder-on-verandah.jpg"
-                    alt="Nic sitting on a Stretch Bed with an elder on a verandah — ongoing support and connection"
+                    alt="Nic sitting on a Stretch Bed with an Elder on a verandah. Ongoing support and connection."
                     label="Support system"
                     aspect="4/3"
                   />
@@ -156,7 +156,7 @@ export default async function HomePage() {
                     <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">2</div>
                     <h3 className="text-lg font-semibold text-background">Shred</h3>
                   </div>
-                  <p className="text-sm text-background/60 leading-relaxed">Plastic goes into the shredder — a containerised unit that stays on site between production runs.</p>
+                  <p className="text-sm text-background/60 leading-relaxed">Plastic goes into the shredder. A containerised unit that stays on site between production runs.</p>
                 </div>
               </div>
 
@@ -174,7 +174,7 @@ export default async function HomePage() {
                     <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">3</div>
                     <h3 className="text-lg font-semibold text-background">Press</h3>
                   </div>
-                  <p className="text-sm text-background/60 leading-relaxed">Shredded plastic is heated and pressed into durable sheets. Each colour is unique — made from whatever plastic the community collected.</p>
+                  <p className="text-sm text-background/60 leading-relaxed">Shredded plastic is heated and pressed into durable sheets. Each colour is unique, made from whatever plastic the community collected.</p>
                 </div>
               </div>
 

@@ -4,9 +4,9 @@
 
 ## Partners
 
-- **Centrecorp** — approved 107 beds for Utopia Homelands; applications for 100 beds across 4 communities submitted.
-- **Anyinginyi Health** — requested washing machine fleet; specs in negotiation.
-- **Julalikari** — introduced ACT to Anyinginyi Health.
+- **Centrecorp**, approved 107 beds for Utopia Homelands; applications for 100 beds across 4 communities submitted.
+- **Anyinginyi Health**, requested washing machine fleet; specs in negotiation.
+- **Julalikari**, introduced ACT to Anyinginyi Health.
 
 ## Fleet
 

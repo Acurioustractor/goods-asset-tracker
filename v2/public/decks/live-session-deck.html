@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Goods on Country / Live Session Deck</title>
+<meta name="description" content="Goods on Country: built with communities, not for them. The standard 10-slide deck for live sessions.">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:#FDF8F3;color:#2E2E2E;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden}
+  .display{font-family:Georgia,"Times New Roman",serif;font-weight:300}
+  .deck{position:relative;width:100vw;height:100vh}
+  .slide{position:absolute;inset:0;display:flex;flex-direction:column;padding:5vh 8vw;opacity:0;visibility:hidden;transition:opacity .3s ease}
+  .slide.active{opacity:1;visibility:visible}
+  .slide-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
+  .slide-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(46,46,46,.45) 0%,rgba(46,46,46,.75) 100%)}
+  .slide-content{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%;max-width:900px}
+  .slide.dark{color:#FDF8F3}
+  .slide.dark .slide-content{color:#FDF8F3}
+  .eyebrow{font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;opacity:.5;margin-bottom:1.5rem}
+  .title{font-size:clamp(2rem,5vw,4rem);line-height:1.1;margin-bottom:1.5rem}
+  .subtitle{font-size:clamp(1rem,1.5vw,1.25rem);line-height:1.5;opacity:.85;max-width:700px;margin-bottom:1.5rem}
+  .body{font-size:1rem;line-height:1.6;opacity:.9}
+  .body p{margin-bottom:.75rem}
+  .body ul{list-style:none;padding:0}
+  .body li{padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.1)}
+  .body li:last-child{border-bottom:0}
+  .slide.light .body li{border-bottom-color:rgba(46,46,46,.1)}
+  .quote{font-family:Georgia,serif;font-style:italic;font-size:clamp(1.25rem,2vw,1.75rem);line-height:1.4;margin:1rem 0;border-left:3px solid rgba(255,255,255,.4);padding-left:1.5rem}
+  .slide.light .quote{border-left-color:rgba(46,46,46,.3)}
+  .cite{font-size:.875rem;opacity:.6;margin-top:.25rem}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem;margin:1rem 0}
+  .stat{padding:1rem 0}
+  .stat-num{font-family:Georgia,serif;font-size:2.5rem;line-height:1;display:block;margin-bottom:.25rem}
+  .stat-label{font-size:.875rem;opacity:.75}
+  .stat-source{font-size:.7rem;opacity:.5;margin-top:.25rem}
+  table{width:100%;border-collapse:collapse;font-size:.95rem}
+  th,td{padding:.6rem 0;text-align:left;border-bottom:1px solid rgba(255,255,255,.1)}
+  .slide.light th,.slide.light td{border-bottom-color:rgba(46,46,46,.1)}
+  th{font-weight:500;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;opacity:.5}
+  .num{text-align:right;font-variant-numeric:tabular-nums}
+  .triptych{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0;max-width:700px}
+  .triptych .face{aspect-ratio:1;background-size:cover;background-position:center top;border-radius:8px}
+  .ask-list{margin-top:1.5rem;padding:1rem 1.5rem;background:rgba(255,255,255,.08);border-radius:8px;font-size:.95rem}
+  .slide.light .ask-list{background:rgba(46,46,46,.04)}
+  .ask-list strong{display:block;font-weight:500;margin-bottom:.25rem}
+  .ask-list>div+div{margin-top:.75rem;padding-top:.75rem;border-top:1px solid rgba(255,255,255,.1)}
+  .slide.light .ask-list>div+div{border-top-color:rgba(46,46,46,.08)}
+  .nav{position:fixed;bottom:1.5rem;right:1.5rem;display:flex;gap:.5rem;z-index:10;font-size:.75rem;opacity:.5;letter-spacing:.05em}
+  .progress{position:fixed;top:0;left:0;right:0;height:2px;background:rgba(46,46,46,.05);z-index:10}
+  .progress-bar{height:100%;background:#C45C3E;transition:width .3s ease;width:10%}
+  .help{position:fixed;bottom:1.5rem;left:1.5rem;font-size:.7rem;opacity:.4;letter-spacing:.05em;z-index:10}
+  .notes{position:fixed;bottom:0;left:0;right:0;background:#2E2E2E;color:#FDF8F3;padding:1.5rem 2rem;font-size:.875rem;line-height:1.5;border-top:2px solid #C45C3E;transform:translateY(100%);transition:transform .3s ease;z-index:20;max-height:40vh;overflow-y:auto}
+  .notes.show{transform:translateY(0)}
+  .notes h4{font-size:.7rem;text-transform:uppercase;letter-spacing:.2em;opacity:.5;margin-bottom:.5rem}
+  .notes ul{padding-left:1rem}
+  .notes li{padding:.2rem 0}
+  .overview{position:fixed;inset:0;background:#FDF8F3;display:none;padding:2rem;overflow-y:auto;z-index:30}
+  .overview.show{display:block}
+  .overview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;max-width:1200px;margin:0 auto}
+  .overview-card{aspect-ratio:16/10;background:#fff;border:1px solid rgba(46,46,46,.1);border-radius:8px;padding:1rem;cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;font-size:.75rem;background-size:cover;background-position:center;color:#FDF8F3;text-shadow:0 1px 2px rgba(0,0,0,.5);position:relative;overflow:hidden}
+  .overview-card::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.7) 100%)}
+  .overview-card>*{position:relative;z-index:1}
+  .overview-card-num{font-size:.65rem;letter-spacing:.2em;opacity:.7}
+  .overview-card-title{font-family:Georgia,serif;font-size:1rem;line-height:1.2;margin-top:.25rem}
+  .overview-card:hover{border-color:#C45C3E}
+  @media print{
+    body{overflow:visible;height:auto}
+    .deck{height:auto}
+    .slide{position:relative;opacity:1!important;visibility:visible!important;height:100vh;page-break-after:always;break-after:page}
+    .nav,.progress,.help,.notes,.overview{display:none!important}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress"><div class="progress-bar" id="progress"></div></div>
+
+<div class="deck" id="deck">
+
+  <!-- Slide 1: Title -->
+  <section class="slide dark active" data-slide="1">
+    <div class="slide-bg" style="background-image:url('/images/media-pack/goods-branding-golden-hour.jpg')"></div>
+    <div class="slide-content">
+      <div class="eyebrow">Goods on Country</div>
+      <h1 class="title display">Built with communities,<br>not for them.</h1>
+      <p class="subtitle">A First Nations social enterprise designing essential goods with remote Indigenous communities. Manufacturing transfers to community ownership.</p>
+    </div>
+  </section>
+
+  <!-- Slide 2: The problem -->
+  <section class="slide dark" data-slide="2">
+    <div class="slide-bg" style="background-image:url('/images/media-pack/community-testing-bed-golden-hour.jpg')"></div>
+    <div class="slide-content">
+      <div class="eyebrow">02 / The problem</div>
+      <h2 class="title display">This is preventable.</h2>
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-num">59%</span>
+          <div class="stat-label">of remote homes lack a working washing machine</div>
+          <div class="stat-source">FRRR, 2022</div>
+        </div>
+        <div class="stat">
+          <span class="stat-num">1 in 3</span>
+          <div class="stat-label">children have scabies at any time</div>
+          <div class="stat-source">PLOS Neglected Tropical Diseases</div>
+        </div>
+        <div class="stat">
+          <span class="stat-num">55%</span>
+          <div class="stat-label">very remote First Nations homes overcrowded</div>
+          <div class="stat-source">AIHW, 2021 Census</div>
+        </div>
+      </div>
+      <blockquote class="quote">"Hardly anyone around the community has beds. When family comes to visit, people sleep on the floor."</blockquote>
+      <div class="cite">Ivy, Palm Island</div>
+    </div>
+  </section>
+
+  <!-- Slide 3: What is Goods -->
+  <section class="slide dark" data-slide="3">
+    <div class="slide-bg" style="background-image:url('/images/media-pack/nic-with-elder-on-verandah.jpg')"></div>
+    <div class="slide-content">
+      <div class="eyebrow">03 / What is Goods</div>
+      <h2 class="title display">We make beds, washing machines, and refrigerators with First Nations communities. Then we transfer the manufacturing to community ownership.</h2>
+      <ul class="body">
+        <li>A social enterprise, not a charity.</li>
+        <li>Co-designed with Elders, made On-Country.</li>
+        <li>Our job is to become unnecessary.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 4: The Stretch Bed -->
+  <section class="slide dark" data-slide="4">
+    <div class="slide-bg" style="background-image:url('/images/product/stretch-bed-hero.jpg')"></div>
+    <div class="slide-content">
+      <div class="eyebrow">04 / The Stretch Bed</div>
+      <h2 class="title display">The Stretch Bed.</h2>
+      <table>
+        <tr><td>Weight</td><td class="num">26kg</td></tr>
+        <tr><td>Load capacity</td><td class="num">200kg</td></tr>
+        <tr><td>Dimensions</td><td class="num">188 × 92 × 25cm</td></tr>
+        <tr><td>Assembly</td><td class="num">~5 minutes, no tools</td></tr>
+        <tr><td>Plastic diverted per bed</td><td class="num">20kg HDPE</td></tr>
+        <tr><td>Design life</td><td class="num">10+ years</td></tr>
+        <tr><td>Warranty</td><td class="num">5 years</td></tr>
+      </table>
+      <p class="body" style="margin-top:1.5rem">Recycled HDPE plastic legs. Galvanised steel poles (DNA Steel, Alice Springs). Heavy-duty Australian canvas (Centre Canvas, Alice Springs).</p>
+    </div>
+  </section>
+
+  <!-- Slide 5: Pakkimjalki Kari -->
+  <section class="slide dark" data-slide="5">
+    <div class="slide-bg" style="background-image:url('/images/media-pack/washing-machine-enclosure-sunset.jpg')"></div>
+    <div class="slide-content">
+      <div class="eyebrow">05 / Pakkimjalki Kari</div>
+      <h2 class="title display">Pakkimjalki Kari.</h2>
+      <p class="subtitle">Named in Warumungu language by Elder Dianne Stokes. Commercial-grade Speed Queen base. Recycled HDPE plastic enclosure. One-button operation. In prototype with several communities.</p>
+      <blockquote class="quote">"They truly wanna a washing machine to wash their blanket, to wash their clothes, and it's right there at home."</blockquote>
+      <div class="cite">Patricia Frank, Tennant Creek</div>
+    </div>
+  </section>
+
+  <!-- Slide 6: How it's made -->
+  <section class="slide light" data-slide="6">
+    <div class="slide-content">
+      <div class="eyebrow">06 / How it's made</div>
+      <h2 class="title display">Six steps. Designed to move On-Country.</h2>
+      <ul class="body" style="margin-top:1.5rem;font-size:1.05rem">
+        <li><strong>1. Source.</strong> Collect plastic from communities.</li>
+        <li><strong>2. Process.</strong> Shred, melt, press into sheets.</li>
+        <li><strong>3. Cut.</strong> CNC router shapes the bed legs.</li>
+        <li><strong>4. Build.</strong> Hydraulic press forms the legs.</li>
+        <li><strong>5. Assemble.</strong> Poles thread through canvas, legs click on.</li>
+        <li><strong>6. Deliver.</strong> Family assembles in five minutes.</li>
+      </ul>
+      <p class="body" style="margin-top:1.5rem;opacity:.7;font-size:.9rem">Two shipping containers. ~$100K invested already (TFN and ACT). ~30 beds per week when deployed for two months. The plant is designed to move to community ownership.</p>
+    </div>
+  </section>
+
+  <!-- Slide 7: Where we work -->
+  <section class="slide light" data-slide="7">
+    <div class="slide-content">
+      <div class="eyebrow">07 / Where we work</div>
+      <h2 class="title display">Eight communities. 400+ beds. Every one with consent.</h2>
+      <table style="margin-top:1.5rem">
+        <thead><tr><th>Community</th><th class="num">Beds</th><th>Highlight</th></tr></thead>
+        <tbody>
+          <tr><td>Tennant Creek</td><td class="num">139</td><td>Where it began. Dianne named the washer.</td></tr>
+          <tr><td>Palm Island</td><td class="num">141</td><td>"Hardly anyone has beds." Ivy.</td></tr>
+          <tr><td>Alice Springs</td><td class="num">60</td><td>Co-design hub via Oonchiumpa.</td></tr>
+          <tr><td>Utopia Homelands</td><td class="num">24</td><td>Family-by-family deployment.</td></tr>
+          <tr><td>Maningrida</td><td class="num">18</td><td>Arnhem Land partnership.</td></tr>
+          <tr><td>Townsville</td><td class="num">hub</td><td>Reduces freight tax to Palm Island.</td></tr>
+        </tbody>
+      </table>
+      <p class="body" style="margin-top:1.5rem;opacity:.7;font-size:.9rem">107 more on order. Every community has a partner organisation: Anyinginyi, PICC, Oonchiumpa.</p>
+    </div>
+  </section>
+
+  <!-- Slide 8: Voices -->
+  <section class="slide light" data-slide="8">
+    <div class="slide-content">
+      <div class="eyebrow">08 / Voices</div>
+      <h2 class="title display">Listen to the people we work with.</h2>
+      <div class="triptych">
+        <div class="face" style="background-image:url('/images/people/dianne-stokes.jpg')"></div>
+        <div class="face" style="background-image:url('/images/people/linda-turner.jpg')"></div>
+        <div class="face" style="background-image:url('/images/people/cliff-plummer.jpg')"></div>
+      </div>
+      <blockquote class="quote">"We've never been asked at what sort of house we'd like to live in."</blockquote>
+      <div class="cite">Linda Turner, Tennant Creek</div>
+      <blockquote class="quote" style="margin-top:1rem">"Working both ways. Cultural side in white society and Indigenous society."</blockquote>
+      <div class="cite">Dianne Stokes, Elder, Tennant Creek</div>
+    </div>
+  </section>
+
+  <!-- Slide 9: The model -->
+  <section class="slide dark" data-slide="9">
+    <div class="slide-bg" style="background-image:url('/images/product/stretch-bed-kids-building.jpg')"></div>
+    <div class="slide-content">
+      <div class="eyebrow">09 / The model</div>
+      <h2 class="title display">Enterprise transferred to community ownership.</h2>
+      <ul class="body">
+        <li>We sell the Stretch Bed. Revenue funds the work.</li>
+        <li>The plant is designed to move to community ownership.</li>
+        <li>Communities co-design, name, manufacture, sell.</li>
+        <li>We become unnecessary.</li>
+      </ul>
+      <div class="ask-list">
+        <strong>Pathways</strong>
+        <div>1. Sponsor beds (philanthropy)</div>
+        <div>2. Buy beds (procurement)</div>
+        <div>3. Host or own a plant (enterprise transfer)</div>
+        <div>4. Catalytic capital (blended finance)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: The ask -->
+  <section class="slide light" data-slide="10">
+    <div class="slide-content">
+      <div class="eyebrow">10 / The ask</div>
+      <h2 class="title display">Decisions belong to the people the work is for. We're here to listen.</h2>
+      <div class="ask-list" style="margin-top:1.5rem">
+        <strong>Default ask (catalytic funders, Q1 2026)</strong>
+        <div>100 beds for communities: $60,000.</div>
+        <div>Complete the On-Country production plant: $60,000.</div>
+        <div>Total: $120,000.</div>
+      </div>
+      <ul class="body" style="margin-top:1.5rem;font-size:.95rem">
+        <li><strong>Funder:</strong> 30 minutes to walk through the proposal.</li>
+        <li><strong>Procurement:</strong> Specs and lead time on request.</li>
+        <li><strong>Community:</strong> Just a yarn, on your terms.</li>
+        <li><strong>Catalytic capital:</strong> QBE Catalysing Impact 2026 cohort. Capital stack open.</li>
+      </ul>
+      <p class="body" style="margin-top:1.5rem;opacity:.6;font-size:.85rem">goodsoncountry.com  ·  hi@act.place</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="progress"><div class="progress-bar" id="progress-bar"></div></div>
+<div class="nav"><span id="counter">1 / 10</span></div>
+<div class="help">← → arrows · n notes · o overview · p print</div>
+
+<div class="notes" id="notes">
+  <h4>Speaker notes</h4>
+  <div id="notes-content"></div>
+</div>
+
+<div class="overview" id="overview">
+  <h2 class="display" style="font-size:1.5rem;margin-bottom:1.5rem;text-align:center">Slide overview</h2>
+  <div class="overview-grid" id="overview-grid"></div>
+</div>
+
+<script>
+  const speakerNotes = {
+    1: ['One breath of context: what country you are on, why we are here, who introduced us.', 'Do not list achievements yet. Set the scene.'],
+    2: ['Land Ivy\'s quote first. Then say "the numbers behind that are these."', 'Health funders care about the scabies stat (it leads to RHD). Procurement audiences care about the overcrowding stat.'],
+    3: ['This is the brand promise. Do not decorate it.', '"Our job is to become unnecessary" lands. Pause after it.', 'If asked about charity vs enterprise: we sell the products. The revenue flows into the work.'],
+    4: ['Specs first. Story second.', 'If you have one with you, hand it round. The bed is the hero.', 'The "20kg of plastic per bed" line lands well with circular economy funders.'],
+    5: ['Always credit Dianne for the name. Always say "in Warumungu language", not "in their language".', 'The health pathway is here: clean clothes break the scabies cycle. Scabies leads to RHD.', 'This product is not yet for sale. Anyone who wants one registers interest.'],
+    6: ['~$100K invested already (TFN and ACT). ~30 beds per week when deployed for two months.', '"We can move the plant to a community" is the model. Communities can host or own it.', 'This is the answer to "how does this scale?" — not by us scaling, by communities owning.'],
+    7: ['We never deploy without invitation.', 'Every community has a partner organisation we work through.', '107 more beds on order.'],
+    8: ['Read each quote slowly. Pause between.', 'Linda\'s quote is the spine of why Goods exists. Land it.', 'Cliff\'s full video is at share.descript.com/view/2gxa5x40r9N if asked.'],
+    9: ['Different audiences need different pathway emphasis. Funder: 1 and 4. Health service: 2. Community: 3.', 'The community ownership model is what differentiates us from any other social-enterprise furniture brand.'],
+    10: ['Always ask for one specific thing.', 'Always offer a clear next step (the deck, a call, a site visit).', 'Sit with the silence after the ask. Do not fill it.', 'Closing line: "Decisions belong to the people the work is for. We are here to listen."'],
+  };
+
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  const counter = document.getElementById('counter');
+  const progressBar = document.getElementById('progress-bar');
+  const notesEl = document.getElementById('notes');
+  const notesContent = document.getElementById('notes-content');
+  const overview = document.getElementById('overview');
+  const overviewGrid = document.getElementById('overview-grid');
+  let current = 1;
+
+  function go(n) {
+    n = Math.max(1, Math.min(total, n));
+    slides.forEach(s => s.classList.toggle('active', parseInt(s.dataset.slide) === n));
+    current = n;
+    counter.textContent = `${n} / ${total}`;
+    progressBar.style.width = `${(n / total) * 100}%`;
+    updateNotes();
+    history.replaceState(null, '', `#${n}`);
+  }
+  function updateNotes() {
+    const items = speakerNotes[current] || [];
+    notesContent.innerHTML = items.length ? `<ul>${items.map(i => `<li>${i}</li>`).join('')}</ul>` : '<p>(no notes)</p>';
+  }
+  function buildOverview() {
+    overviewGrid.innerHTML = Array.from(slides).map(s => {
+      const num = s.dataset.slide;
+      const bg = s.querySelector('.slide-bg')?.style.backgroundImage || '';
+      const titleEl = s.querySelector('.title');
+      const title = titleEl ? titleEl.textContent.trim() : '';
+      const eyebrow = s.querySelector('.eyebrow')?.textContent || '';
+      return `<div class="overview-card" data-go="${num}" style="background-image:${bg}"><div class="overview-card-num">${eyebrow}</div><div class="overview-card-title">${title}</div></div>`;
+    }).join('');
+    overviewGrid.querySelectorAll('.overview-card').forEach(card => {
+      card.addEventListener('click', () => {
+        go(parseInt(card.dataset.go));
+        overview.classList.remove('show');
+      });
+    });
+  }
+  document.addEventListener('keydown', e => {
+    if (overview.classList.contains('show')) {
+      if (e.key === 'Escape' || e.key === 'o') { overview.classList.remove('show'); return; }
+    }
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); go(current + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(current - 1); }
+    else if (e.key === 'Home') { go(1); }
+    else if (e.key === 'End') { go(total); }
+    else if (e.key === 'n') { notesEl.classList.toggle('show'); }
+    else if (e.key === 'o') { overview.classList.toggle('show'); }
+    else if (e.key === 'p') { window.print(); }
+  });
+
+  buildOverview();
+  const initial = parseInt(location.hash.replace('#','')) || 1;
+  go(initial);
+</script>
+
+</body>
+</html>

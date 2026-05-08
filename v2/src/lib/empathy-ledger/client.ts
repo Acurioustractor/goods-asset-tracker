@@ -23,7 +23,11 @@ import type {
 } from './types';
 
 // Environment configuration
-const EMPATHY_LEDGER_URL = process.env.EMPATHY_LEDGER_API_URL || 'https://empathy-ledger.vercel.app';
+// Default points at the live empathy-ledger-v2 deployment. Override via
+// EMPATHY_LEDGER_API_URL env var in non-prod environments. Note the "-v2"
+// suffix in the hostname; the un-suffixed empathy-ledger.vercel.app is
+// not reachable.
+const EMPATHY_LEDGER_URL = process.env.EMPATHY_LEDGER_API_URL || 'https://empathy-ledger-v2.vercel.app';
 const EMPATHY_LEDGER_API_KEY = process.env.EMPATHY_LEDGER_API_KEY || '';
 const GOODS_PROJECT_CODE = process.env.EMPATHY_LEDGER_PROJECT_CODE || 'goods-on-country';
 const GOODS_SITE_SLUG = process.env.EMPATHY_LEDGER_SITE_SLUG || 'goods-asset-register';

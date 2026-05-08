@@ -10,8 +10,8 @@
 | **Adapt Homes** | Geoff, Rebecca | Extra-large tiny homes for disaster recovery. Insurance adjacency overlap with QBE. |
 | **RoboFit** | Daniel, Maryanne | Exoskeletons. QLD Govt $200K revenue-linked investment. **Template for a similar NT-Housing-linked instrument for Goods.** |
 | **Ngardara Project** | Latrell, Luke, Scott | Likely strong alignment with Goods' remote community work. Worth a direct conversation. |
-| **Patburn Co-op** | — | 2,000 members, 2 wind turbines, $9M raised (co-op + grants + bank loan). **Template if we go co-op route for plant ownership.** |
-| **Play it Forward** | — | Grant-funded DGR1 entity. Useful comparator. |
+| **Patburn Co-op** | | 2,000 members, 2 wind turbines, $9M raised (co-op + grants + bank loan). **Template if we go co-op route for plant ownership.** |
+| **Play it Forward** | | Grant-funded DGR1 entity. Useful comparator. |
 
 Plus enterprises across environmental, First Nations, education, Pacific Islands focus.
 

@@ -1,4 +1,4 @@
-# Goods on Country — Master Compendium (March 2026)
+# Goods on Country. Master Compendium (March 2026)
 
 > **Authoritative source document for all Goods content, partnerships, funding, and impact data.**
 > Last updated: March 9, 2026
@@ -11,50 +11,50 @@
 **Name:** Goods on Country
 **Tagline:** "Goods that heal." *(primary)* | "Built with communities, not for them." | "Health hardware, community owned."
 **One-liner:** *"A good bed can prevent heart disease."*
-**Mission:** To transform essential household goods — beds, washing machines, refrigerators — into community-owned assets that improve lives in remote Australia, designed with communities and eventually manufactured by them.
+**Mission:** To transform essential household goods, beds, washing machines, refrigerators, into community-owned assets that improve lives in remote First Nations communities across the NT, QLD, and WA, designed with communities and eventually manufactured by them.
 **Philosophy:** *"Our job is to become unnecessary."*
 **Website:** goodsoncountry.au
 **E-commerce:** Live (Stretch Bed for sale via Stripe)
 
 ### Voice Guidelines
 **Use:** "Working with", "co-designing with", "partnering", "communities lead", name the specific place
-**Avoid:** "Helping", "charity", "giving to", "beneficiaries", "recipients", "empowering" (implies power wasn't there)
+**Avoid:** "Helping", "charity", "giving to", "beneficiaries", "recipients", "empowering" (implies power wasn't there) <!-- brand-lint-ignore-line: banned-donate,banned-beneficiary,banned-empower -->
 **Litmus test:** *"Would this language feel respectful if I said it directly to Norman Frank or Dianne Stokes?"*
 
 ---
 
 ## The Team
 
-### Nicholas Marchesi OAM — Co-founder & Project Lead
+### Nicholas Marchesi OAM. Co-founder & Project Lead
 Social entrepreneur with 15+ years founding and scaling community-led ventures.
-- Co-founded Orange Sky (2014) — now 280+ shifts/week, 1.2M+ kg laundry, 207K+ hours of conversation, 1/3 of operations in remote communities
+- Co-founded Orange Sky (2014), now 280+ shifts/week, 1.2M+ kg laundry, 207K+ hours of conversation, 1/3 of operations in remote communities
 - Stanford Executive Program in Social Entrepreneurship (2020), Graduate AICD (2019)
 - Medal of the Order of Australia (OAM, 2020), Young Australian of the Year (2016, joint)
 - Obama Foundation Leader: Asia-Pacific (2019), Forbes 30 Under 30 (2019), Westpac Social Change Fellow (2023)
 - Founding Partner, Global Wash Alliance (2025); Director, Stanford Australia Foundation (2023)
 - Caretaker, Black Cockatoo Valley (150-acre regeneration estate)
 
-> "Orange Sky taught me that dignity lives in the details. Clean clothes aren't just practical — they restore something essential. Dr. Bo Remenyi showed me what's at stake. RHD doesn't exist because medicine failed — it exists because housing and 'health hardware' failed."
+> "Orange Sky taught me that dignity lives in the details. Clean clothes aren't just practical, they restore something essential. Dr. Bo Remenyi showed me what's at stake. RHD doesn't exist because medicine failed, it exists because housing and 'health hardware' failed."
 
-### Benjamin Knight — Co-founder & Technology
-20+ years in community-led innovation: youth refuges (2004–2006), QLD Corrective Services Gulf communities (2010–2014), QFCC Youth Advocate (2015–2016), Orange Sky (2016–2020), AIME (2020–2023).
+### Benjamin Knight. Co-founder & Technology
+20+ years in community-led design: youth refuges (2004–2006), QLD Corrective Services Gulf communities (2010–2014), QFCC Youth Advocate (2015–2016), Orange Sky (2016–2020), AIME (2020–2023).
 - Built Empathy Ledger ethical storytelling infrastructure
 - Built Goods Asset Register (389 tracked assets, QR-coded lifecycle monitoring)
 - JusticeHub Digital Platform (launching 2026)
 
 > "From 20 years on the frontline: we don't need better programs delivered to communities; we need better infrastructure owned by communities."
 
-**How they met:** Ben joined Orange Sky in 2016 as Brand and Communication Manager. Four years together during remote community expansion. Co-founded A Curious Tractor October 2022. The name comes from Nic's farm — a tractor's "power take-off" provides drive to other implements. ACT brings the drive; communities take the keys.
+**How they met:** Ben joined Orange Sky in 2016 as Brand and Communication Manager. Four years together during remote community expansion. Co-founded A Curious Tractor October 2022. The name comes from Nic's farm, a tractor's "power take-off" provides drive to other implements. ACT brings the drive; communities take the keys.
 
 ### Legal Structure
-- **A Kind Tractor Ltd** (ABN 50 001 350 152) — Company Limited by Guarantee, ACNC registered charity, DGR status
-- **A Curious Tractor Pty Ltd** (ABN 21 591 780 066) — Mission-locked trading company (Nic + Ben equal shareholders via family trusts)
+- **A Kind Tractor Ltd** (ABN 50 001 350 152). Company Limited by Guarantee, ACNC registered charity, DGR status
+- **A Curious Tractor Pty Ltd** (ABN 21 591 780 066). Mission-locked trading company (Nic + Ben equal shareholders via family trusts)
 
 ---
 
 ## The Origin Story
 
-**2018:** Nicholas attends health conference where Dr. Bo Remenyi (2018 NT Australian of the Year) speaks about Rheumatic Heart Disease — entirely preventable through good environmental health, yet she's filling out death certificates for children. Combined with Orange Sky's remote community work, the question emerged: *What can we actually build that makes a difference?*
+**2018:** Nicholas attends health conference where Dr. Bo Remenyi (2018 NT Australian of the Year) speaks about Rheumatic Heart Disease, entirely preventable through good environmental health, yet she's filling out death certificates for children. Combined with Orange Sky's remote community work, the question emerged: *What can we actually build that makes a difference?*
 
 **The Health Cascade (RHD Pathway):**
 1. No washing machine → dirty bedding → **scabies**
@@ -77,13 +77,13 @@ Social entrepreneur with 15+ years founding and scaling community-led ventures.
 | Sept 2023 | A Curious Tractor formally incorporated |
 | 2024 | Active bed pilots begin; 389 assets tracked in register |
 | Oct 2024 | Snow Foundation relationship begins |
-| Sept 2025 | The Funding Network pitch — $130K raised (largest single raise) |
+| Sept 2025 | The Funding Network pitch, $130K raised (largest single raise) |
 | Jan 2026 | 15–20 V4 Stretch Beds deployed with ~8 families; Centre Corp approves 107 beds (Jan 30) |
 | Late Jan 2026 | Nic travels to Alice Springs + Tennant Creek; builds 5 washing machines with Bloomfield family |
 | Feb 2026 | Envirobank recycled HDPE supply partnership discussions; Snow Q4 proposal submitted |
 | Feb 2026 | V.2 Stretch Beds well-received by Tennant Creek Foundation Board (had reservations about V.1) |
-| Mar 2, 2026 | REAL Innovation Fund EOI submitted (via Oonchiumpa) — DEWR confirmed receipt |
-| Mar 2026 | PFI (QLD Partnering for Impact Fund) EOI in preparation — deadline Mar 15 |
+| Mar 2, 2026 | REAL Innovation Fund EOI submitted (via Oonchiumpa). DEWR confirmed receipt |
+| Mar 2026 | PFI (QLD Partnering for Impact Fund) EOI in preparation, deadline Mar 15 |
 
 ---
 
@@ -93,16 +93,16 @@ Social entrepreneur with 15+ years founding and scaling community-led ventures.
 
 | Community | Location | Beds | Washers | Status |
 |-----------|----------|------|---------|--------|
-| Palm Island (Bwgcolman) | QLD | 141 | — | Active |
+| Palm Island (Bwgcolman) | QLD | 141 |, | Active |
 | Tennant Creek (Wumpurrarni) | NT | 139 | 5 | Active |
-| Alice Homelands | NT | 60 | — | Active |
-| Maningrida | NT | 24 | — | Active |
-| Kalgoorlie (Ninga Mia) | WA | 20 | — | Active |
-| Utopia Homelands | NT | 24 | — | Active |
-| Mt Isa (Kalkadoon) | QLD | 4 | — | Testing |
+| Alice Homelands | NT | 60 |, | Active |
+| Maningrida | NT | 24 |, | Active |
+| Kalgoorlie (Ninga Mia) | WA | 20 |, | Active |
+| Utopia Homelands | NT | 24 |, | Active |
+| Mt Isa (Kalkadoon) | QLD | 4 |, | Testing |
 | **TOTAL** | | **~389** | **5** | |
 
-**Note on numbers:** Asset register tracks 389 total (363 Basket Beds + 6 Weave Beds + 20 Washers). Catalysing Impact application references "369+ beds" — likely active beds vs total assets. Clarify for external use.
+**Note on numbers:** Asset register tracks 389 total (363 Basket Beds + 6 Weave Beds + 20 Washers). Catalysing Impact application references "369+ beds", likely active beds vs total assets. Clarify for external use.
 
 ### Key Metrics
 
@@ -137,7 +137,7 @@ Social entrepreneur with 15+ years founding and scaling community-led ventures.
 
 ## Products
 
-### 1. The Stretch Bed (FLAGSHIP — For Sale)
+### 1. The Stretch Bed (FLAGSHIP. For Sale)
 
 | Spec | Detail |
 |------|--------|
@@ -157,16 +157,16 @@ Social entrepreneur with 15+ years founding and scaling community-led ventures.
 **Component costs:** Steel frame ~$27/bed (DNA Steel Direct), Canvas ~$93.50/bed (Centre Canvas), Recycled HDPE legs from community waste.
 
 **Design evolution:** V1–V3 Basket Beds → V4 Stretch Bed (informed by 140+ deployments). Community feedback drove every change:
-1. "We want to move it around" — lighter, more portable
-2. "We want it high off the ground" — safety (snakes, floods)
-3. "We don't want the foam" — couldn't wash, broke down
-4. "We want a MAD bed!" — more innovative design
+1. "We want to move it around", lighter, more portable
+2. "We want it high off the ground", safety (snakes, floods)
+3. "We don't want the foam", couldn't wash, broke down
+4. "We want a MAD bed!", more flexible design
 
 **Verdict:** "These ones are the best so far... in terms of flexibility, ease of use and reduction in skin disease stuff."
 
 **V.1 vs V.2 Note (Feb 2026):** Tennant Creek Foundation Board had "reservations about V.1 beds" but received V.2 Stretch Beds positively. All future deployments should be V.2/Stretch.
 
-### 2. Pakkimjalki Kari — Washing Machine (PROTOTYPE)
+### 2. Pakkimjalki Kari. Washing Machine (PROTOTYPE)
 
 | Spec | Detail |
 |------|--------|
@@ -183,18 +183,18 @@ Social entrepreneur with 15+ years founding and scaling community-led ventures.
 - Reduced to ONE button ("we don't know what all these buttons mean")
 - Glass top protected/removed
 - Customisable language panel (swappable per community)
-- Built-in telemetry (GPS, power monitoring — knows when it breaks)
+- Built-in telemetry (GPS, power monitoring, knows when it breaks)
 - Simplified water cycle
 
 **Feb 2026 update:** Quote sent to Anyinginyi Health for 4 additional V.1 washing machines.
 
-### 3. Refrigeration (IN DEVELOPMENT — concept phase)
+### 3. Refrigeration (IN DEVELOPMENT, concept phase)
 
 Target: First prototype in Norman Frank's Wilya Janta demonstration home.
 Challenges: Power instability (pre-payment meters), 40°C+ heat, local repairability.
 Research: Chest freezer conversions, 12V systems, BLUETTI portable power.
 
-### 4. Basket Bed (ARCHIVED — open source)
+### 4. Basket Bed (ARCHIVED, open source)
 
 Design files available, sales discontinued. 16× collapsible baskets + 96× zip ties + 2× washable toppers. ~$350/unit. Superseded by Stretch Bed based on community feedback.
 
@@ -229,13 +229,13 @@ Design files available, sales discontinued. 16× collapsible baskets + 96× zip 
 - Communities may pay ~$5,000/week to host facility
 
 ### Oonchiumpa Warehouse Options (assessed Jan 2026)
-1. Old CfAT Office (32 Priest Street, Ciccone) — $75K/year — ❌ too expensive
-2. Commercial Shed (36 Ghan Road, Ciccone) — purpose-built industrial — short-term option
-3. Kristy's Property — private land — ✅ best for pilot phase
+1. Old CfAT Office (32 Priest Street, Ciccone), $75K/year, ❌ too expensive
+2. Commercial Shed (36 Ghan Road, Ciccone), purpose-built industrial, short-term option
+3. Kristy's Property, private land, ✅ best for pilot phase
 **Recommended:** Start Kristy's (Q1–Q2), commercial shed (Q3+), full hub (2027+).
 
-### Supply Chain Partner (NEW — Feb 2026)
-**Envirobank** — Recycled HDPE supply partnership in discussion. Indigenous-led supply chain alignment. Contact: Marty Taylor, Narelle Anderson. Meeting held Feb 11, 2026.
+### Supply Chain Partner (NEW. Feb 2026)
+**Envirobank**. Recycled HDPE supply partnership in discussion. Indigenous-led supply chain alignment. Contact: Marty Taylor, Narelle Anderson. Meeting held Feb 11, 2026.
 
 ---
 
@@ -258,51 +258,51 @@ Design files available, sales discontinued. 16× collapsible baskets + 96× zip 
 - Active bed testing and co-design
 
 **Palm Island Community Company (PICC)** (Palm Island, QLD)
-- 141 beds deployed — largest single community deployment
+- 141 beds deployed, largest single community deployment
 - Said "we'll buy it" re: production facility itself
 - Contact: Narelle
-- Feb 2026: 40-bed order discussed (some miscommunication resolved — testing before bulk purchase)
+- Feb 2026: 40-bed order discussed (some miscommunication resolved, testing before bulk purchase)
 
-**NPY Women's Council** (NPY Lands — SA/NT/WA)
-- Contact: Angela Lynch — "Always looking for beds"
+**NPY Women's Council** (NPY Lands. SA/NT/WA)
+- Contact: Angela Lynch. "Always looking for beds"
 - Established network across Ngaanyatjarra, Pitjantjatjara, and Yankunytjatjara lands
 
 **Homeland Schools Company** (Maningrida, NT)
 - 65 beds requested for kids; $34K invoice outstanding (INV-0303, 9 days overdue as of Feb 2026)
 
-**Tennant Creek Community Shed** — Plastic collection and shredding hub interest
-**Our Community Shed** — Active production partner
-**QIC** (Brisbane) — Corporate engagement: interested in building 50 beds with staff for NAIDOC week
+**Tennant Creek Community Shed**. Plastic collection and shredding hub interest
+**Our Community Shed**. Active production partner
+**QIC** (Brisbane). Corporate engagement: interested in building 50 beds with staff for NAIDOC week
 
 ### Health Partners
 
-**Anyinginyi Health** (Tennant Creek) — Health outcomes tracking, 5 washing machines deployed, quote for 4 more (Feb 2026). Contact: Tony.
-**Miwatj Health** (East Arnhem) — RHD prevention, fleet deployment across 8 clinics being explored. Contact: Jessica Allardyce.
-**Purple House** (Central Australia) — Dialysis patients, remote health partner.
-**Red Dust** (Darwin) — Health partner.
-**Red Dust Robotics** (Darwin) — Youth STEM education, manufacturing skills pathway.
+**Anyinginyi Health** (Tennant Creek). Health outcomes tracking, 5 washing machines deployed, quote for 4 more (Feb 2026). Contact: Tony.
+**Miwatj Health** (East Arnhem). RHD prevention, fleet deployment across 8 clinics being explored. Contact: Jessica Allardyce.
+**Purple House** (Central Australia). Dialysis patients, remote health partner.
+**Red Dust** (Darwin). Health partner.
+**Red Dust Robotics** (Darwin). Youth STEM education, manufacturing skills pathway.
 
 ### Manufacturing & Technical Partners
 
-**Defy Design** (Sydney) — Contact: Sam Davies (sam@defydesign.org). Recycling & manufacturing training. Ebony + Jahvan Oui training for on-country production. Knowledge transfer for containerised plant build. **Key manufacturing partner.**
-**Zinus** — Contact: Daniel Pittman (daniel.pittman@zinus.com). Industry partner (mattress manufacturing). Advisory board.
-**Envirobank** — Contact: Marty Taylor, Narelle Anderson. Recycled HDPE supply. Active discussions Feb 2026.
-**Centre of Appropriate Technology** (Alice Springs) — Remote technology specialists. Decades of experience. Potential partner.
+**Defy Design** (Sydney). Contact: Sam Davies (sam@defydesign.org). Recycling & manufacturing training. Ebony + Jahvan Oui training for On-Country production. Knowledge transfer for containerised plant build. **Key manufacturing partner.**
+**Zinus**. Contact: Daniel Pittman (daniel.pittman@zinus.com). Industry partner (mattress manufacturing). Advisory board.
+**Envirobank**. Contact: Marty Taylor, Narelle Anderson. Recycled HDPE supply. Active discussions Feb 2026.
+**Centre of Appropriate Technology** (Alice Springs). Remote technology specialists. Decades of experience. Potential partner.
 
 ### Government Partners
 
-**NT Government** — Contact: Anna Philip (anna.philip2@nt.gov.au). Check-in meeting Jan 2026.
-**DEWR** — REAL Innovation Fund EOI received Mar 2, 2026.
+**NT Government**. Contact: Anna Philip (anna.philip2@nt.gov.au). Check-in meeting Jan 2026.
+**DEWR**. REAL Innovation Fund EOI received Mar 2, 2026.
 
 ### Strategic Partners
 
-**Orange Sky Laundry** — Judith Meiklejohn (judith@orangesky.org.au). Strategic advisor. Nic's former org.
-**DeadlyScience** — Corey Tutt (ceo@deadlyscience.org.au). CEO, advisory board.
-**Dusseldorp Forum + JustReinvest** — Meeting held Oct 2025 re: CONTAINED & Goods.
+**Orange Sky Laundry**. Judith Meiklejohn (judith@orangesky.org.au). Strategic advisor. Nic's former org.
+**DeadlyScience**. Corey Tutt (ceo@deadlyscience.org.au). CEO, advisory board.
+**Dusseldorp Forum + JustReinvest**. Meeting held Oct 2025 re: CONTAINED & Goods.
 
 ### Future Manufacturing Leads
 
-**Ebony (Eb) and Jahvan Oui** (Palm Island) — Training with Defy Design for on-country production. Jahvan visited Defy factory in Sydney — future-CEO training.
+**Ebony (Eb) and Jahvan Oui** (Palm Island). Training with Defy Design for On-Country production. Jahvan visited Defy factory in Sydney, future-CEO training.
 > "Everything gets around by word of mouth on Palm Island... I don't think every household needs one, but a lot of people share."
 
 ---
@@ -323,7 +323,7 @@ Design files available, sales discontinued. 16× collapsible baskets + 96× zip 
 | Daniel Pittman | Zinus | daniel.pittman@zinus.com | Industry |
 | Shaun Fisher | Fishers Oysters | fishers.oysters@gmail.com | Advisory |
 | Adeem | CYP | adeemal@cyp.org.au | Community Services |
-| Dr. Simon Quilty | Wilya Janta | — | CEO, NT Health |
+| Dr. Simon Quilty | Wilya Janta |, | CEO, NT Health |
 
 Monthly advisory group check-ins. Next: May 5, 2026.
 
@@ -360,15 +360,15 @@ Monthly advisory group check-ins. Next: May 5, 2026.
 | SEFA | $500,000 | Social impact loan | 23 communications | Joel Bird |
 | PFI (QLD Treasury) | $640,000 | Repayable | EOI due Mar 15, 2026 | PFIFund@treasury.qld.gov.au |
 | REAL Innovation Fund | TBD | Federal grant | EOI submitted Mar 2 | DEWR |
-| QBE Foundation | TBD | Grant | Submitted | — |
-| Social Enterprise Development Grants | $75,000 | Grant | Draft (82% fit) | — |
+| QBE Foundation | TBD | Grant | Submitted |, |
+| Social Enterprise Development Grants | $75,000 | Grant | Draft (82% fit) |, |
 
 ### Outstanding Receivables (~$498,750)
 
 | Customer | Amount | Status |
 |----------|--------|--------|
-| Centrecorp Foundation | ~$420K+ | Outstanding — 107 beds for Utopia Homelands |
-| PICC (Palm Island) | ~$36K | Outstanding — 40-bed order |
+| Centrecorp Foundation | ~$420K+ | Outstanding. 107 beds for Utopia Homelands |
+| PICC (Palm Island) | ~$36K | Outstanding. 40-bed order |
 | Homeland School Company | $34,086 | 9 days overdue (INV-0303) |
 
 ### Potential Funders (Pipeline)
@@ -377,20 +377,20 @@ Monthly advisory group check-ins. Next: May 5, 2026.
 |--------|------|---------|-------|
 | Minderoo Foundation | Philanthropy | Lucy Stronach (20 comms) | Sally recommended |
 | Tim Fairfax Family Foundation | Philanthropy | Katie Norman (33 comms) | QLD focus |
-| Dusseldorp Forum | Philanthropy | — | Meeting held Oct 2025 |
-| Giant Leap | Impact VC | — | Sally recommended |
-| SEDI | Government | — | Social enterprise development |
-| Australian Communities Foundation | Collective giving | — | Community-led solutions |
-| SELF | Loan | — | Complements SEFA |
-| Circular Future Fund / Planet Ark | Fund | — | Long-term |
-| First Nations Business Acceleration (QLD) | Government | — | QLD operations |
-| NTRAI | Government | — | NT operations |
+| Dusseldorp Forum | Philanthropy |, | Meeting held Oct 2025 |
+| Giant Leap | Impact VC |, | Sally recommended |
+| SEDI | Government |, | Social enterprise development |
+| Australian Communities Foundation | Collective giving |, | Community-led solutions |
+| SELF | Loan |, | Complements SEFA |
+| Circular Future Fund / Planet Ark | Fund |, | Long-term |
+| First Nations Business Acceleration (QLD) | Government |, | QLD operations |
+| NTRAI | Government |, | NT operations |
 
 ---
 
 ## Community Voices (15+ Storytellers, 7+ Communities)
 
-### Palm Island (Bwgcolman Country, QLD) — 141 beds
+### Palm Island (Bwgcolman Country, QLD). 141 beds
 
 **Ivy** (Community Member):
 > "Hardly anyone around the community has beds. When family comes to visit, people sleep on the floor."
@@ -407,11 +407,11 @@ Monthly advisory group check-ins. Next: May 5, 2026.
 **Jason** (Long-term Resident):
 > "The beds are suitable for outdoor spaces and versatile in their use... Try the beds for yourselves and see the benefits firsthand."
 
-### Tennant Creek (Wumpurrarni Country, NT) — 139 beds, 5 washers
+### Tennant Creek (Wumpurrarni Country, NT). 139 beds, 5 washers
 
 **Dianne Stokes** (Waramungu and Warlmanpa Elder, Co-Designer):
 Named the washing machine "Pakkimjalki Kari". Refines designs "around the fire with her family." Returned to ancestral land 23 years ago with nothing but her car.
-> "Working both ways — cultural side in white society and Indigenous society."
+> "Working both ways, cultural side in white society and Indigenous society."
 > "Hardly any people around the community have beds."
 *Received 1 bed → returned within 2 weeks requesting 20 more, offered to self-fund.*
 
@@ -437,22 +437,22 @@ Boards: Anyinginyi Health, Julalikari Council, Central Land Council.
 > "You got to get health messages across."
 Video: https://share.descript.com/embed/2gxa5x40r9N
 
-**Zelda Hogan** (Community Member — moved family from tin shed to house):
+**Zelda Hogan** (Community Member, moved family from tin shed to house):
 > "A good night's sleep is important... from a big day from work."
 
-**Brian Russell** (Community Member — heart attack survivor):
+**Brian Russell** (Community Member, heart attack survivor):
 > "It's gonna be home for me now."
 
-**Melissa Jackson** (Community Member — feedback shaped lower bed design):
+**Melissa Jackson** (Community Member, feedback shaped lower bed design):
 > "I think it's a great bed. Nice bed. And it's more lower, um, more comfortable."
 
 **Annie Morrison** (Elder):
 > "I like to do more, you know, but helping all the people."
 
-### Alice Springs (Mbantua) — 60 beds
+### Alice Springs (Mbantua). 60 beds
 
 **Fred Campbell** (Youth Case Worker, Oonchiumpa):
-> "That's something Central Australia need — just something so simple, especially coming out of recycled, and is turning into something so unique for our mob in the bush or on the communities."
+> "That's something Central Australia need, just something so simple, especially coming out of recycled, and is turning into something so unique for our mob in the bush or on the communities." <!-- brand-lint-ignore-line: outback-bush -->
 > "It's essential. The families right now... the beds were on the ground. It's a safety thing... a lot of snakes, so everyone wants to be off the ground."
 > "In Aboriginal culture, we tend to move away from the places when there's a death in the family. They just chuck their swags on the ground. Now they know they can just chuck that in."
 On youth (Xavier building beds):
@@ -460,21 +460,21 @@ On youth (Xavier building beds):
 Video: https://share.descript.com/embed/YQwAcYfxzkn
 
 **Jacqueline** (Western Arrernte / Pertame woman, Top Camp):
-> "From the waste, plastic. Perfect. That's really a perfect idea. Because it's very expensive buying bed — it's like three, four hundred. But with this here, it's so amazing. With just waste."
+> "From the waste, plastic. Perfect. That's really a perfect idea. Because it's very expensive buying bed, it's like three, four hundred. But with this here, it's so amazing. With just waste."
 > "In the shops when they go and buy, it's easily to break 'cause it's too soft. But this here, it's look like it's really gonna stand like that, not break."
 
-### Kalgoorlie (Goldfields, WA) — 20 beds
+### Kalgoorlie (Goldfields, WA). 20 beds
 
 **Chloe** (Aboriginal Homeless Fringe Support Worker, Bega):
-> "As a support worker here, I see how much proper bedding is needed in the community. So many people are sleeping on the floor or on old, unsuitable mattresses. Something as simple as a good bed makes a huge difference — it improves their health, helps with mobility, and gives them dignity."
+> "As a support worker here, I see how much proper bedding is needed in the community. So many people are sleeping on the floor or on old, unsuitable mattresses. Something as simple as a good bed makes a huge difference, it improves their health, helps with mobility, and gives them dignity."
 
 **Gloria** (Elder, dialysis patient, great-grandmother):
 Connects mattress quality directly to chronic disease management.
 
-### Mt Isa (Kalkadoon Country, QLD) — 4 beds (testing)
+### Mt Isa (Kalkadoon Country, QLD). 4 beds (testing)
 
 **Tracy McCartney** (Support Worker):
-> "The new mattress design is not just about comfort — it's about dignity and health. Lightweight, washable, and off the ground, it addresses real challenges people face living rough or moving between camps."
+> "The new mattress design is not just about comfort, it's about dignity and health. Lightweight, washable, and off the ground, it addresses real challenges people face living rough or moving between camps."
 
 ### East Arnhem (via Miwatj Health)
 
@@ -484,7 +484,7 @@ Connects mattress quality directly to chronic disease management.
 ### Groote Archipelago (via WHSAC)
 
 **Simone Grimmond**:
-> "We are on an island — literally. Therefore anything we purchase is so much more expensive due to freight."
+> "We are on an island, literally. Therefore anything we purchase is so much more expensive due to freight."
 **Scale of need:** 500 mattresses, 300 washing machines from single community.
 
 ---
@@ -514,7 +514,7 @@ Connects mattress quality directly to chronic disease management.
 
 ### Why People Sleep on Floors
 1. Overcrowding (55% of very remote homes)
-2. Cost ($1,200+ for mattress — 2x city price)
+2. Cost ($1,200+ for mattress. 2x city price)
 3. Freight ("The freight is very, very dear")
 4. Products don't survive (mould, dust, heavy use)
 5. Housing quality (54.6% with major structural problems)
@@ -546,16 +546,16 @@ The actual model is being **co-designed with communities** and may include:
 - Training and skills transfer
 - Hybrid models
 
-**Philosophy:** "We don't license — we transfer. Communities receive full training, manufacturing capability, and documentation. They keep 100% of what they make and sell. Our goal is to become unnecessary."
+**Philosophy:** "We don't license, we transfer. Communities receive full training, manufacturing capability, and documentation. They keep 100% of what they make and sell. Our goal is to become unnecessary."
 
 ---
 
 ## Five-Year Vision (2030)
 
-> "In five years time, our dream is to have the best products in the world made by and with the communities themselves. We want to not be seeing our washing machines ending up in landfill. We don't want to be seeing our fridges empty and not impacting the people that are purchasing them. Most importantly, we want to see people having amazing nights on beds that are appropriate for the communities." — Nic
+> "In five years time, our dream is to have the best products in the world made by and with the communities themselves. We want to not be seeing our washing machines ending up in landfill. We don't want to be seeing our fridges empty and not impacting the people that are purchasing them. Most importantly, we want to see people having amazing nights on beds that are appropriate for the communities.". Nic
 
 **Success metrics:**
-1. Product success: Most desired, repairable, requested items — don't end up in landfill
+1. Product success: Most desired, repairable, requested items, don't end up in landfill
 2. Community ownership: Communities running production 3+ days/week without ACT
 3. Economic impact: 30+ community members employed in manufacturing
 4. Health outcomes: Measurable reductions in scabies, RHD, poor sleep
@@ -588,9 +588,9 @@ The actual model is being **co-designed with communities** and may include:
 |-------|--------|------|
 | Beds & Dignity | Cliff Plummer | https://share.descript.com/embed/2gxa5x40r9N |
 | The Recycling Plant | Factory tour | https://share.descript.com/embed/haRZJbfJadJ |
-| Community Voices — Alice Springs | Bed recipient | https://share.descript.com/embed/LAT0KNJMxmH |
+| Community Voices. Alice Springs | Bed recipient | https://share.descript.com/embed/LAT0KNJMxmH |
 | Stretch Bed Timelapse | Alice Springs | https://share.descript.com/embed/Xtrc5ZYsym6 |
-| Community Voices — Fred | Fred Campbell | https://share.descript.com/embed/YQwAcYfxzkn |
+| Community Voices. Fred | Fred Campbell | https://share.descript.com/embed/YQwAcYfxzkn |
 | On Country Production #1 | Facility | https://share.descript.com/embed/j6PXvhBP62i |
 | On Country Production #2 | Facility | https://share.descript.com/embed/J5GBQV00la8 |
 | Stretch Bed Overview | Product | https://share.descript.com/embed/elrx8lXpDxW |
@@ -623,7 +623,7 @@ The actual model is being **co-designed with communities** and may include:
 - **Features:** E-commerce, "Sponsor a Bed", impact dashboard, community stories, partnership portal
 
 ### Impact Measurement (ALMA Framework)
-**Adaptive Learning for Meaningful Accountability** — six signals:
+**Adaptive Learning for Meaningful Accountability**, six signals:
 1. Authority (who holds decision-making power?)
 2. Evidence (what type of evidence is this?)
 3. Harm Risk (what's the risk of sharing?)
@@ -635,16 +635,16 @@ The actual model is being **co-designed with communities** and may include:
 
 ## Corrections & Flags
 
-### False — Do NOT Use
-- ❌ "Linda Turner's 4-hour laundry trips" — cannot be verified
-- ❌ "Founded 2019, first deliveries 2020" — project kicked off Nov 2022, entity Sep 2023
-- ❌ "$850 single bed, $1,100 double" — Basket Bed ~$350/unit; those were aspirational retail
-- ❌ "Pakkimjalki Kari is Warlpiri" — it's Warumungu (Tennant Creek)
+### False. Do NOT Use
+- ❌ "Linda Turner's 4-hour laundry trips", cannot be verified
+- ❌ "Founded 2019, first deliveries 2020", project kicked off Nov 2022, entity Sep 2023
+- ❌ "$850 single bed, $1,100 double". Basket Bed ~$350/unit; those were aspirational retail
+- ❌ "Pakkimjalki Kari is Warlpiri", it's Warumungu (Tennant Creek)
 
-### Placeholders — Verify Before External Use
-- ⚠️ "40% community share" — placeholder concept, not committed. Say "community benefit model" instead.
-- ⚠️ Kristy Bloomfield quote in content.ts — marked PLACEHOLDER, not verified. Do NOT use.
-- ⚠️ Bed count: 369 (Catalysing Impact) vs 389 (Asset Register) — 389 includes all asset types.
+### Placeholders. Verify Before External Use
+- ⚠️ "40% community share", placeholder concept, not committed. Say "community benefit model" instead.
+- ⚠️ Kristy Bloomfield quote in content.ts, marked PLACEHOLDER, not verified. Do NOT use.
+- ⚠️ Bed count: 369 (Catalysing Impact) vs 389 (Asset Register). 389 includes all asset types.
 - ⚠️ Washing machine count: 5 deployed (Tennant Creek) vs "20+" (may include field testing). Verify.
 
 ---

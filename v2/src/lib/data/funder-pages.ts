@@ -40,6 +40,12 @@ export interface FunderPage {
   password: string;
   name: string;            // e.g. "Minderoo Foundation"
   contactName?: string;    // person we're addressing
+  /**
+   * Key into FUNDER_URL_MAP from `funder-url-map.ts`. When set, the page
+   * features the recommended storyteller voice for this funder type and
+   * surfaces the recommended next-step URL.
+   */
+  urlMapKey?: string;
   ask: AskOption;          // primary ask
   alternativeAsks?: AskOption[]; // additional or alternative ask options
   facility?: FacilitySection;    // optional infrastructure pathway section
@@ -55,6 +61,7 @@ export const FUNDER_PAGES: FunderPage[] = [
     slug: 'minderoo',
     password: 'minderoo2026',
     name: 'Minderoo Foundation',
+    urlMapKey: 'minderoo-foundation',
     ask: {
       label: 'Option A. Grant',
       instrument: 'Non-repayable grant',
@@ -75,7 +82,7 @@ export const FUNDER_PAGES: FunderPage[] = [
         instrument: 'Grant plus loan',
         amount: '$1.5M',
         purpose:
-          '$840K non-repayable for the facility fit-out, plus $660K recoverable working capital to ramp production once the plant is built. Funds the bricks and mortar AND the cashflow runway in a single commitment. The most catalytic version: fully unlocks the QBE match and de-risks SEFA in one move.',
+          '$840K non-repayable for the facility fit-out, plus $660K recoverable working capital to ramp production once the plant is built. Funds the bricks and mortar AND the cashflow runway in a single commitment. The most catalytic version: fully meets the QBE match and de-risks SEFA in one move.',
       },
     ],
     facility: {
@@ -115,7 +122,7 @@ export const FUNDER_PAGES: FunderPage[] = [
     whyUs: [
       "DGR1 status. Minderoo can count sub-market returns toward grant targets without the concessional treatment penalty.",
       'Self-servicing economics. At roughly $750 a bed with cost-to-make well below sale price, the recoverable portion pays itself back across the existing buyer pipeline within two to three years.',
-      "Catalytic position. Your commitment is what unlocks SEFA's senior debt and triggers QBE's $400K dollar-for-dollar match.",
+      "Catalytic position. Your commitment is what activates SEFA's senior debt and triggers QBE's $400K dollar-for-dollar match.",
       "Aligned to Minderoo's existing playbook. You've done recoverable grants like this before, and Goods is a clean fit.",
       "First Nations led, On-Country manufacturing. Direct alignment with Minderoo's Generation One and Thrive by Five priorities.",
     ],
@@ -133,6 +140,7 @@ export const FUNDER_PAGES: FunderPage[] = [
     slug: 'paul-ramsay',
     password: 'pramsay2026',
     name: 'Paul Ramsay Foundation',
+    urlMapKey: 'paul-ramsay-foundation',
     ask: {
       instrument: 'Recoverable grant + program funding',
       amount: '$500K',
@@ -154,6 +162,7 @@ export const FUNDER_PAGES: FunderPage[] = [
     slug: 'tim-fairfax',
     password: 'tfairfax2026',
     name: 'Tim Fairfax Family Foundation',
+    urlMapKey: 'tim-fairfax-family-foundation',
     ask: {
       instrument: 'Program grant',
       amount: '$300K',

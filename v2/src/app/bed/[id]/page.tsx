@@ -114,7 +114,7 @@ export default async function BedPage({ params }: BedPageProps) {
           <div className="relative h-64 md:h-full md:min-h-[400px]">
             <Image
               src="/images/product/stretch-bed-hero.jpg"
-              alt="The Stretch Bed — recycled plastic, galvanised steel, heavy-duty canvas"
+              alt="The Stretch Bed. Recycled plastic, galvanised steel, heavy-duty canvas."
               fill
               className="object-cover"
               priority
@@ -334,7 +334,7 @@ export default async function BedPage({ params }: BedPageProps) {
               {
                 step: '2',
                 title: 'QR Code Applied',
-                desc: 'A tamper-proof QR sticker links the physical bed to its digital record — specs, journey, and support.',
+                desc: 'A tamper-proof QR sticker links the physical bed to its digital record. Specs, journey, and support.',
               },
               {
                 step: '3',
@@ -385,7 +385,7 @@ export default async function BedPage({ params }: BedPageProps) {
             <div className="relative min-h-[200px]">
               <Image
                 src="/images/product/washing-machine-hero.jpg"
-                alt="Pakkimjalki Kari — washing machine by Goods on Country"
+                alt="Pakkimjalki Kari, the washing machine by Goods on Country"
                 fill
                 className="object-cover"
               />
@@ -409,8 +409,8 @@ export default async function BedPage({ params }: BedPageProps) {
         <section className="bg-gradient-to-br from-stone-100 to-amber-50 dark:from-stone-900 dark:to-amber-950/30 rounded-2xl p-8 text-center">
           <h2 className="font-display text-2xl font-bold mb-2">Follow Our Journey</h2>
           <p className="text-muted-foreground text-sm mb-4 max-w-md mx-auto">
-            Goods on Country is building a new model for remote community infrastructure
-            — beds, washing machines, and eventually community-owned manufacturing.
+            Goods on Country is building a new model for remote community infrastructure:
+            beds, washing machines, and eventually community-owned manufacturing.
           </p>
           <p className="text-muted-foreground text-sm mb-6 max-w-md mx-auto">
             Subscribe to hear how the project grows, where beds are being delivered,

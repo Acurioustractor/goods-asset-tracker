@@ -206,7 +206,7 @@ export default async function StoryDetailPage({ params }: Props) {
               </div>
               <p>
                 This story is owned by <span className="font-medium text-foreground">{displayName}</span> and
-                shared with their permission through the Empathy Ledger. OCAP principles apply — the storyteller
+                shared with their permission through the Empathy Ledger. OCAP principles apply. The storyteller
                 retains full ownership, control, access, and possession.
               </p>
             </div>

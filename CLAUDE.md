@@ -125,10 +125,41 @@ cd v2 && npm run lint     # ESLint
 ```
 
 ## Brand Voice
-- Warm, grounded, community-first
-- Lead with impact, not charity
-- Use real community language ("deadly" = excellent)
-- Always centre Indigenous voices and agency
+- Warm, grounded, community-first. Lead with impact, not charity. Centre named community voices.
+- **Canonical guide:** [wiki/articles/brand-comms/](wiki/articles/brand-comms/) (9 files: voice rules, storyteller voices, image library, email templates, pipelines × brand, asset register, slide deck, agent prompt pack).
+- **Mirrored to Notion** under Goods. HQ → Brand & Comms HQ, linked from QBE Catalysing Impact HQ.
+- **Public-facing:** [/brand](v2/src/app/brand/page.tsx) on goodsoncountry.com.
+- Use real community language ("deadly" = excellent). Always centre Indigenous voices and agency.
+
+### Hard rules (zero tolerance)
+- **No em dashes anywhere.** Use periods, colons, parentheses, or recast.
+- **No** "donate / donation / charity" framing. Goods is enterprise, not charity. Use "sponsorship" or "purchase".
+- **No** "empower / unlock / leverage / synergy / GTM / disrupting / innovative / game-changer".
+- **No** "Indigenous people" as a singular block. Use community name, language group, or "First Nations".
+- **Always capitalise:** On-Country, Country, Elder (when title), First Nations, Pakkimjalki Kari, Stretch Bed.
+- **Never invent quotes.** Pull verified text from `v2/src/lib/data/content.ts` (the `quotes` array, `journeyStories`, `impactStories`).
+
+### Tooling
+- **Lint a doc:** `cd v2 && npm run lint:brand` (or `node tools/lint-docs.mjs <path-filter>` from repo root).
+- **Auto-fix em dashes:** `cd v2 && npm run lint:brand:fix` (conservative replacement: spaced em dash becomes period or comma based on next-word capitalisation).
+- **Lint a draft via API:** `POST /api/brand-lint` with `{"text":"..."}` (or use the UI at `/tools/brand-lint`).
+- **Press kit JSON:** `GET /api/press-kit` returns verified quotes, photos, specs, voice rules.
+- **Email signature:** `/tools/signature` generates a brand-aligned plain or HTML signature.
+- **Live session deck:** `/decks/live-session-deck.html` (10 slides, keyboard nav, print-to-PDF).
+- **CI:** `.github/workflows/brand-lint.yml` posts a per-PR report on changed docs and source files.
+
+### Reusable agent prompts
+[wiki/articles/brand-comms/08-agent-prompt-pack.md](wiki/articles/brand-comms/08-agent-prompt-pack.md) has paste-ready prompts: rewrite-in-Goods-voice, draft funder email, draft procurement email, LinkedIn post, funder report, slide content, brand-violation audit. Drop into any agent before drafting Goods copy.
+
+### Consent and Empathy Ledger (CRITICAL for any storyteller-related work)
+
+- **EL leads.** Empathy Ledger is the canonical source for storyteller records, consent state, and stories. The repo and Notion mirror EL.
+- **Never publish a storyteller's voice externally** without first checking [the Storyteller Voices Notion DB](https://www.notion.so/1fe6ebeb9ed845d2bc0e7d2349321fe3): the row's `Consent` field must be `Verified`. If it says `Pending review`, the voice is internal-only.
+- **Verified means:** EL has at least one story for that storyteller with `syndication_enabled = true`, `consent_withdrawn_at IS NULL`, `is_archived = false`. Today (2026-05-08) only 3 storytellers meet that bar: Dianne Stokes, Cliff Plummer, Fred Campbell.
+- **The other ~13 storytellers** in the Notion DB are `Pending review` — their EL records exist (mostly) but consent flow hasn't completed. Quotes from them are in `content.ts` as drafts but should not be used externally yet.
+- **The full process** to move someone from Pending → Verified: [wiki/articles/brand-comms/CONSENT_PROCESS.md](wiki/articles/brand-comms/CONSENT_PROCESS.md). Six steps: confirm EL record → consent conversation → record consent → refresh mirrors → verify on website → use the voice.
+- **Sync script:** `node tools/sync-storytellers-from-el.mjs` reports drift between EL and Notion. With NOTION_TOKEN set, `--apply` mode applies the changes.
+- **Architecture decision** (why EL leads, 2026-05-08): [wiki/articles/brand-comms/EL_LED_ARCHITECTURE.md](wiki/articles/brand-comms/EL_LED_ARCHITECTURE.md).
 
 ## Database Operations
 - **DDL (CREATE, ALTER, DROP):** Use `psql` directly — the Supabase `exec_sql` RPC does not support DDL.

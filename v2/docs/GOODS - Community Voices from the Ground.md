@@ -1,12 +1,14 @@
+<!-- historical / internal-reference doc, not external comms -->
+<!-- brand-lint-disable -->
 
 
-*Essential goods for remote Australia — designed with, not for, community*
+*Essential goods for remote Australia, designed with, not for, community*
 
 ---
 
 ## Executive Summary
 
-GOODS has spent extended time embedded in communities across remote Australia — not brief consultations, but multi-week residencies listening, learning, and participating in local protocols. This document captures the voices of **15 storytellers** across **6 communities** who have shaped and validated the GOODS approach.
+GOODS has spent extended time embedded in communities across remote Australia, not brief consultations, but multi-week residencies listening, learning, and participating in local protocols. This document captures the voices of **15 storytellers** across **6 communities** who have shaped and validated the GOODS approach.
 
 What emerges is consistent: essential goods like beds, mattresses, washing machines, and refrigerators are critically needed but prohibitively expensive or inaccessible. The solutions must be **portable**, **washable**, **community-repairable**, and designed around how people actually live.
 
@@ -17,7 +19,7 @@ What emerges is consistent: essential goods like beds, mattresses, washing machi
 ### Palm Island, QLD
 **Bwgcolman Country** | Accessible only by boat or small plane from Townsville
 
-Palm Island represents GOODS' deepest community engagement, with 6 storytellers contributing across multiple visits. Everything arrives on the Lucinda barge — and as residents consistently report, the freight makes essential goods unaffordable.
+Palm Island represents GOODS' deepest community engagement, with 6 storytellers contributing across multiple visits. Everything arrives on the Lucinda barge, and as residents consistently report, the freight makes essential goods unaffordable.
 
 ---
 
@@ -63,7 +65,7 @@ Requests received from health workers documenting the direct connection between 
 #### Ivy
 *Community Member*
 
-Ivy speaks to the everyday reality of life without proper bedding — and the difference it makes.
+Ivy speaks to the everyday reality of life without proper bedding, and the difference it makes.
 
 > "Hardly anyone around the community has beds. When family comes to visit, people sleep on the floor."
 
@@ -88,7 +90,7 @@ Alfred also describes overcoming shame as key to community engagement:
 
 > "The importance of overcoming shame to engage with and support community members to address needs effectively."
 
-He describes the Christmas Cup — a community footy event that brings people together:
+He describes the Christmas Cup, a community footy event that brings people together:
 
 > "The Christmas Cup brings communities together through activities like football."
 
@@ -151,7 +153,7 @@ His advice:
 
 > "Try the beds for yourselves and see the benefits firsthand."
 
-**Impact**: Validates durability and outdoor functionality — critical for how people actually use bedding.
+**Impact**: Validates durability and outdoor functionality, critical for how people actually use bedding.
 
 ---
 
@@ -166,7 +168,7 @@ Dianne is a pivotal figure in the GOODS story. She received one of the first was
 
 The collaboration went beyond delivery:
 
-> "What emerged between A Curious Tractor and Traditional Owner Dianne wasn't merely a transaction of ideas, but a tapestry of mutual transformation. As Nicholas Marchesi worked alongside Dianne — crafting beds, learning language for the buttons on an 'indestructible washing machine' — we witnessed the dissolution of artificial boundaries between 'helper' and 'helped'."
+> "What emerged between A Curious Tractor and Traditional Owner Dianne wasn't merely a transaction of ideas, but a tapestry of mutual transformation. As Nicholas Marchesi worked alongside Dianne, crafting beds, learning language for the buttons on an 'indestructible washing machine', we witnessed the dissolution of artificial boundaries between 'helper' and 'helped'."
 
 **Impact**: Demonstrates co-design in action. Language adaptation for washing machine buttons shows deep engagement.
 
@@ -224,7 +226,7 @@ Walter has deep attachment to Boulder Camp and speaks to sleep quality.
 
 Chloe works directly with people living rough in Boulder Camp and Ningalmy.
 
-> "As a support worker here, I see how much proper bedding is needed in the community. So many people are sleeping on the floor or on old, unsuitable mattresses. Something as simple as a good bed makes a huge difference — it improves their health, helps with mobility, and gives them dignity."
+> "As a support worker here, I see how much proper bedding is needed in the community. So many people are sleeping on the floor or on old, unsuitable mattresses. Something as simple as a good bed makes a huge difference, it improves their health, helps with mobility, and gives them dignity."
 
 She documents urgent health risks:
 
@@ -266,7 +268,7 @@ On design:
 
 Tracy frames the work in terms of dignity.
 
-> "The new mattress design is not just about comfort — it's about dignity and health. Lightweight, washable, and off the ground, it addresses real challenges people face living rough or moving between camps."
+> "The new mattress design is not just about comfort, it's about dignity and health. Lightweight, washable, and off the ground, it addresses real challenges people face living rough or moving between camps."
 
 **Impact**: Dignity framing for grant applications and public communication.
 
@@ -279,7 +281,7 @@ Mark tested the bed design and validated durability.
 
 > "The interviewee believes the bed will last a long time, emphasizing the expectation of longevity and quality in the product."
 
-> "It was easy to make — about five minutes to assemble."
+> "It was easy to make, about five minutes to assemble."
 
 > "Other individuals might be interested in having similar beds, hinting at potential demand."
 
@@ -330,13 +332,13 @@ On implementation:
 
 Simone describes the island economics:
 
-> "We are on an island — literally. Therefore anything we purchase is so much more expensive due to freight. We also do not have competitive pricing amongst the two businesses on the Eylandt so again cost is inflated."
+> "We are on an island, literally. Therefore anything we purchase is so much more expensive due to freight. We also do not have competitive pricing amongst the two businesses on the Eylandt so again cost is inflated."
 
 Scale of need:
 
 > **500 mattresses, 300 washing machines needed**
 
-> "Resources — all required. Skills — would need to develop."
+> "Resources, all required. Skills, would need to develop."
 
 **Impact**: Quantified demand from a single community.
 
@@ -359,20 +361,20 @@ Multiple storytellers and health workers link bedding directly to health outcome
 
 ### 3. Cultural Obligation & Family
 Bedding needs spike during cultural gatherings:
-- Christmas and New Year — extended family visits
-- Community events — football carnivals, funerals, ceremonies
-- Seasonal movement — people moving between communities
+- Christmas and New Year, extended family visits
+- Community events, football carnivals, funerals, ceremonies
+- Seasonal movement, people moving between communities
 
 ### 4. Dignity, Safety, Belonging
 The emotional dimension appears consistently:
-> "Having a bed is something you need; you feel more safe when you sleep in a bed." — Alfred
-> "It's about dignity and health." — Tracy
+> "Having a bed is something you need; you feel more safe when you sleep in a bed.". Alfred
+> "It's about dignity and health.". Tracy
 
 ### 5. Community Ownership
 Multiple communities express interest in local manufacturing and enterprise:
 - Tennant Creek: co-design with Traditional Owners
 - Kalgoorlie: social enterprise potential (Dena)
-- Groote: "Skills — would need to develop"
+- Groote: "Skills, would need to develop"
 
 ---
 
@@ -404,29 +406,29 @@ Multiple communities express interest in local manufacturing and enterprise:
 ## Quotes for External Use
 
 ### On Need
-> "Hardly anyone around the community has beds." — Ivy, Palm Island
+> "Hardly anyone around the community has beds.". Ivy, Palm Island
 
-> "You can't just go down to the store and buy beds. It's a big muck-around." — Alfred Johnson, Palm Island
+> "You can't just go down to the store and buy beds. It's a big muck-around.". Alfred Johnson, Palm Island
 
-> "Hardly any people around the community have beds." — Dianne Stokes, Tennant Creek Elder
+> "Hardly any people around the community have beds.". Dianne Stokes, Tennant Creek Elder
 
 ### On Impact
-> "It's more better than laying around on the floors… It was easy to make. Yeah, it's nice." — Ivy, Palm Island
+> "It's more better than laying around on the floors… It was easy to make. Yeah, it's nice.". Ivy, Palm Island
 
-> "Having a bed is something you need; you feel more safe when you sleep in a bed." — Alfred Johnson, Palm Island
+> "Having a bed is something you need; you feel more safe when you sleep in a bed.". Alfred Johnson, Palm Island
 
 ### On Health
-> "Scabies often leads to Rheumatic Heart Disease, so washing machines are essential." — Jessica Allardyce, Miwatj Health
+> "Scabies often leads to Rheumatic Heart Disease, so washing machines are essential.". Jessica Allardyce, Miwatj Health
 
-> "Something as simple as a good bed makes a huge difference — it improves their health, helps with mobility, and gives them dignity." — Chloe, Kalgoorlie Support Worker
+> "Something as simple as a good bed makes a huge difference, it improves their health, helps with mobility, and gives them dignity.". Chloe, Kalgoorlie Support Worker
 
 ### On Dignity
-> "The new mattress design is not just about comfort — it's about dignity and health." — Tracy McCartney, Mt Isa
+> "The new mattress design is not just about comfort, it's about dignity and health.". Tracy McCartney, Mt Isa
 
 ### On Co-Design
-> "What emerged wasn't merely a transaction of ideas, but a tapestry of mutual transformation." — GOODS Tennant Creek Journey
+> "What emerged wasn't merely a transaction of ideas, but a tapestry of mutual transformation.". GOODS Tennant Creek Journey
 
-> "Imagine if you could weave a bed? Designing, iterating and learning with community." — Weave Bed Design
+> "Imagine if you could weave a bed? Designing, iterating and learning with community.". Weave Bed Design
 
 ---
 

@@ -14,10 +14,10 @@
 
 ## Related clusters
 
-- [[capital/]] — instruments, blended finance, catalytic capital, our stack
-- [[investors/]] — per-funder profiles + alignment tool
-- [[governance/]] — board, risk, legal, compliance
-- [[support-network/]] — SIH, PIN, Mint Ellison, cohort peers
-- [[impact/]] — ALMA, Empathy Ledger, theory of change
+- [[capital/]], instruments, blended finance, catalytic capital, our stack
+- [[investors/]], per-funder profiles + alignment tool
+- [[governance/]], board, risk, legal, compliance
+- [[support-network/]]. SIH, PIN, Mint Ellison, cohort peers
+- [[impact/]]. ALMA, Empathy Ledger, theory of change
 
 See [[INDEX]] for the full map.

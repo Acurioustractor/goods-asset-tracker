@@ -1,6 +1,6 @@
 # Stage 2 Funding Application (September 2026)
 
-> The grant application that unlocks up to $400K. Must demonstrate matched external investment. Repayable finance prioritised over grant funding.
+> The grant application that triggers up to $400K. Must demonstrate matched external investment. Repayable finance prioritised over grant funding.
 
 ## Key dates
 
@@ -27,16 +27,16 @@ Our plan: by 31 August 2026, hold LOIs from at least 3 of: SEFA, IBA, Mindaroo, 
 How the funding stack will be deployed:
 - Pitch deck (exists, needs polish)
 - Business plan (Strategy PD covers much of this)
-- **Financial model** (3-statement integrated; **not yet built** — priority gap)
+- **Financial model** (3-statement integrated; **not yet built**, priority gap)
 
 ### 4. Impact demonstration
 - Impact Measurement Report (see [[../impact/alma-framework]], [[../impact/empathy-ledger-impact]])
-- Demographics of beneficiaries (8 communities, 1,000+ lives)
+- Demographics of communities served (8 communities, 1,000+ people)
 
 ### 5. Corporate structure and governance
 - Corporate structure (see [[../governance/legal-structure]])
 - Financials (audited or accountant-endorsed)
-- Governance documents (board charter, risk register, policies — see [[../governance/policies-register]])
+- Governance documents (board charter, risk register, policies, see [[../governance/policies-register]])
 
 ## Pitch and interview (1 hour)
 

@@ -4,11 +4,11 @@
 
 ## Articles
 
-- [[alma-framework]] — six signals for adaptive, non-extractive impact measurement
-- [[theory-of-change]] — one-paragraph + one diagram version
-- [[empathy-ledger-impact]] — how stories become evidence without extraction
-- [[metrics-tracked]] — environmental, health, economic, story-based
-- [[impact-measurement-report]] — what we submit with Stage 2 funding application
+- [[alma-framework]], six signals for adaptive, non-extractive impact measurement
+- [[theory-of-change]], one-paragraph + one diagram version
+- [[empathy-ledger-impact]], how stories become evidence without extraction
+- [[metrics-tracked]], environmental, health, economic, story-based
+- [[impact-measurement-report]], what we submit with Stage 2 funding application
 
 ## Related
 

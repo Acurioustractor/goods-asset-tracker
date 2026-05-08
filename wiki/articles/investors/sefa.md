@@ -20,9 +20,9 @@ Debt fits activities that will generate predictable revenue by a known date. Str
 
 ## Process (3 phases)
 
-1. **Initial (2-4 weeks)** — enquiry / referral → initial conversation → mutual understanding.
-2. **Analysis (2-3 months)** — DD, structuring, Investment Committee (documentation, information gathering, scenario analysis → investment proposal → decision).
-3. **Execution (2-4 weeks)** — legal documentation (letter of offer, facility deed, mortgage, general security deed) → drawdown conditions → disbursement → ongoing reporting.
+1. **Initial (2-4 weeks)**, enquiry / referral → initial conversation → mutual understanding.
+2. **Analysis (2-3 months)**. DD, structuring, Investment Committee (documentation, information gathering, scenario analysis → investment proposal → decision).
+3. **Execution (2-4 weeks)**, legal documentation (letter of offer, facility deed, mortgage, general security deed) → drawdown conditions → disbursement → ongoing reporting.
 
 ## Covenant requirements
 
@@ -37,8 +37,8 @@ Debt fits activities that will generate predictable revenue by a known date. Str
 
 ## Key people
 
-- **Hannah Ebeling** — CEO. Direct conversation opener is email (not LinkedIn).
-- **Joel Bird** — SEFA (23 community connections from Grantscope work).
+- **Hannah Ebeling**. CEO. Direct conversation opener is email (not LinkedIn).
+- **Joel Bird**. SEFA (23 community connections from Grantscope work).
 
 ## Current state
 

@@ -18,7 +18,7 @@ Australian Private Ancillary Funds (PAFs) and Public Ancillary Funds (PuAFs) are
 
 ## Why it matters to Goods
 
-The ACT Foundation (CLG, DGR-eligible) can receive below-market loans from PAFs and PuAFs that satisfy the funder's distribution requirement while funding Goods R&D. This turns "debt to a charity" into a philanthropic-compliant instrument on both sides of the table.
+The ACT Foundation (CLG, DGR-eligible) can receive below-market loans from PAFs and PuAFs that satisfy the funder's distribution requirement while funding Goods R&D. This turns "debt to a charity" into a philanthropic-compliant instrument on both sides of the table. <!-- brand-lint-ignore-line: banned-donate -->
 
 Practical opening moves:
 - Ask Mindaroo Foundation if they will structure their recoverable grant as a below-market loan into ACT Foundation.

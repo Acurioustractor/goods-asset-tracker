@@ -15,7 +15,7 @@ reason: internal investor scoring matrix
 | **2** | Somewhat aligned |
 | **1** | Unclear / needs research |
 | **0** | Not aligned |
-| **—** | Not applicable / knockout fail |
+| **.** | Not applicable / knockout fail |
 
 A knockout score of 0 on any of the six knockout criteria removes the investor from the pipeline. Fit criteria are weighted by the priority set in [[our-investment-needs]].
 

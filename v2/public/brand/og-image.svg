@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Placeholder Open Graph image — 1200x630, Goods on Country. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <title>Goods on Country</title>
+  <rect width="1200" height="630" fill="#2E2E2E"/>
+  <g transform="translate(80, 200)">
+    <text x="0" y="0" font-family="Georgia, 'Times New Roman', serif" font-size="120" font-weight="400" fill="#FDF8F3" letter-spacing="-3">Goods</text>
+    <text x="0" y="60" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="28" font-weight="500" fill="#8B9D77" letter-spacing="6">ON COUNTRY</text>
+    <line x1="0" y1="120" x2="80" y2="120" stroke="#C45C3E" stroke-width="6"/>
+    <text x="0" y="200" font-family="Georgia, 'Times New Roman', serif" font-size="56" font-weight="300" fill="#FDF8F3" letter-spacing="-1">Built with communities,</text>
+    <text x="0" y="270" font-family="Georgia, 'Times New Roman', serif" font-size="56" font-weight="300" fill="#FDF8F3" letter-spacing="-1">not for them.</text>
+  </g>
+  <text x="80" y="580" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" fill="#8B9D77" letter-spacing="2">goodsoncountry.com</text>
+</svg>

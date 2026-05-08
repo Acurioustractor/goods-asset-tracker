@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Placeholder monogram mark — Goods on Country. To be replaced by a designed mark. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>Goods on Country mark</title>
+  <circle cx="32" cy="32" r="30" fill="#2E2E2E"/>
+  <text x="32" y="44" font-family="Georgia, serif" font-size="36" font-weight="400" fill="#FDF8F3" text-anchor="middle">G</text>
+  <line x1="22" y1="50" x2="42" y2="50" stroke="#C45C3E" stroke-width="2"/>
+</svg>

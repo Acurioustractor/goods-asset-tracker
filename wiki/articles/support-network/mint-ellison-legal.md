@@ -1,4 +1,4 @@
-# Mint Ellison (Keith Rovers) — Legal
+# Mint Ellison (Keith Rovers). Legal
 
 > Top-tier Australian law firm. Keith Rovers is presenting the "How Legal Structures Shape Impact Investing" webinar on 1 May 2026. Pro-bono legal support pathway for cohort enterprises through the QBE program.
 

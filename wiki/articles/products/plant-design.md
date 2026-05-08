@@ -26,7 +26,7 @@
 
 ## 2026 deployment circuit
 
-1. Alice Springs (Oonchiumpa Bloomfield partnership) — confirmed manufacturing partner.
+1. Alice Springs (Oonchiumpa Bloomfield partnership), confirmed manufacturing partner.
 2. Tennant Creek.
 3. Katherine.
 4. Darwin.

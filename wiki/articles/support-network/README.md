@@ -4,23 +4,23 @@
 
 ## Organisations
 
-- [[social-impact-hub]] — program host, runs PIN, Jess + Adam + Sarah + Jay
-- [[pin-professional-impact-network]] — 100+ vetted members providing advisory, mentoring, skilled volunteering
-- [[mint-ellison-legal]] — Keith Rovers on legal structures (QBE program webinar)
-- [[cohort-peers]] — other 2026 cohort enterprises
+- [[social-impact-hub]], program host, runs PIN, Jess + Adam + Sarah + Jay
+- [[pin-professional-impact-network]]. 100+ vetted members providing advisory, mentoring, skilled volunteering
+- [[mint-ellison-legal]]. Keith Rovers on legal structures (QBE program webinar)
+- [[cohort-peers]], other 2026 cohort enterprises
 
 ## People
 
-- [[advisory-group]] — our 10-member Goods advisory group
-- [[../investors/beck-parkinson|Beck Parkinson]] — impact investment advisor
+- [[advisory-group]], our 10-member Goods advisory group
+- [[../investors/beck-parkinson|Beck Parkinson]], impact investment advisor
 
 ## Categories we need
 
-- **Finance / CFO advisory** — recruiting
-- **Independent directors** — recruiting (see [[../governance/board-structure]])
-- **Investment memo / model specialist** — needed for Stage 2
-- **Cultural consultation** — Fred Campbell (Oonchiumpa, Western Arrernte)
-- **Industry advisory** — Daniel Pittman (Zinus, mattress manufacturing)
+- **Finance / CFO advisory**, recruiting
+- **Independent directors**, recruiting (see [[../governance/board-structure]])
+- **Investment memo / model specialist**, needed for Stage 2
+- **Cultural consultation**. Fred Campbell (Oonchiumpa, Western Arrernte)
+- **Industry advisory**. Daniel Pittman (Zinus, mattress manufacturing)
 
 ## Related
 

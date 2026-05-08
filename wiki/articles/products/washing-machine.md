@@ -13,7 +13,7 @@
 - 11 machines registered, all Tennant Creek.
 - 1 with Particle coreid for live telemetry.
 - 69 usage logs captured across 12 machine_ids.
-- Real cycle data: Norm's House — 4 cycles, 0.98 kWh.
+- Real cycle data: Norm's House. 4 cycles, 0.98 kWh.
 - Rollup cron every 6 hours.
 
 ## Related

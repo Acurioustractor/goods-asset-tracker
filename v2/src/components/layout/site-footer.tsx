@@ -13,13 +13,14 @@ const footerLinks = {
   ],
   about: [
     { name: 'Our Story', href: '/story' },
-    { name: 'Communities', href: '/community' },
+    { name: 'Communities', href: '/communities' },
     { name: 'Impact', href: '/impact' },
     { name: 'Gallery', href: '/gallery' },
   ],
   connect: [
     { name: 'Partner With Us', href: '/partner' },
     { name: 'Sponsor a Bed', href: '/sponsor' },
+    { name: 'Brand & Comms', href: '/brand' },
     { name: 'Support / FAQ', href: '/support' },
     { name: 'Contact', href: '/contact' },
   ],

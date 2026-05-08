@@ -21,7 +21,7 @@ reason: live operational state, mirror of admin dashboard
 3. Chase $10,800 on INV-0289 (QBE participation grant).
 4. Register for all 4 webinars with code CATALYSINGIMPACT.
 5. Sarah Gregory intro to PIN diagnostic lead.
-6. **Email SEFA (Hannah / Joel Bird)** — highest-leverage action.
+6. **Email SEFA (Hannah / Joel Bird)**, highest-impact action.
 7. Draft LOI template, chase written commitments from Centre Corp, Miwatj, NPY.
 
 ## Related

@@ -111,10 +111,10 @@ export default function ProcessPage() {
                           const stepKey = step.icon === 'flame' ? 'process' : step.icon === 'recycle' ? 'source' : step.icon === 'scissors' ? 'cut' : step.icon === 'wrench' ? 'build' : step.icon === 'weave' ? 'weave' : 'deliver';
                           const stepMedia = processStepMedia[stepKey];
                           if (stepMedia?.video) {
-                            return <VideoSlot src={stepMedia.video} label={`${step.title} — ${step.subtitle}`} />;
+                            return <VideoSlot src={stepMedia.video} label={`${step.title}: ${step.subtitle}`} />;
                           }
                           if (stepMedia?.photo) {
-                            return <MediaSlot src={stepMedia.photo} alt={`${step.title} — ${step.subtitle}`} aspect="video" />;
+                            return <MediaSlot src={stepMedia.photo} alt={`${step.title}: ${step.subtitle}`} aspect="video" />;
                           }
                           return <VideoSlot label={`${step.title} video coming soon`} />;
                         })()}

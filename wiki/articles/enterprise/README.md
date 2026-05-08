@@ -1,4 +1,4 @@
-# Enterprise (QBE Diagnostic Topics — durable versions)
+# Enterprise (QBE Diagnostic Topics, durable versions)
 
 > The 10 QBE diagnostic topics as **durable, evolving** wiki articles. Working drafts live at `thoughts/shared/qbe-program/diagnostic/` (time-boxed for the diagnostic session). These wiki versions are the long-lived reference.
 
@@ -31,7 +31,7 @@ All 10 articles are populated (mirrored from the diagnostic drafts on 2026-04-20
 - [[01-vision-and-ambition]] · [[02-social-objective-impact]] · [[03-business-model]] · [[04-financial-management]] · [[05-strategic-planning-risk]]
 - [[06-process-and-technology]] · [[07-governance-data-reporting]] · [[08-people-and-organisation]] · [[09-legal-structure]] · [[10-investors-capital-raising]]
 
-Cover letter: [[../program/cover-letter]]. Time-boxed drafts still live at `thoughts/shared/qbe-program/diagnostic/` — treat the wiki copies here as the durable version and fold session learnings back in after each workshop.
+Cover letter: [[../program/cover-letter]]. Time-boxed drafts still live at `thoughts/shared/qbe-program/diagnostic/`, treat the wiki copies here as the durable version and fold session learnings back in after each workshop.
 
 ## Related
 
