@@ -149,6 +149,7 @@ If any box is unchecked: **don't publish**. Pull a different voice or wait for t
 
 ## See also
 
+- [CONSENT_BACKLOG.md](CONSENT_BACKLOG.md) — the working list of what's blocked and what to capture next field trip
 - [02. Storyteller Voices](02-storyteller-voices.md) — the curated voices library
 - [EL_LED_ARCHITECTURE.md](EL_LED_ARCHITECTURE.md) — why EL leads
 - [REUSABLE_PACK_POC.md](REUSABLE_PACK_POC.md) — the six databases

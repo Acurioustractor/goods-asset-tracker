@@ -16,6 +16,9 @@ Canonical home: this folder (`wiki/articles/brand-comms/`). Mirrored to Notion u
 | [06-asset-register.md](06-asset-register.md) | Where every canonical brand asset lives: code, photos, video, wiki, deck, Notion. |
 | [07-slide-deck.md](07-slide-deck.md) | The one simple deck used for every live session. Ten slides. Speaker notes. Links to assets. |
 | [08-agent-prompt-pack.md](08-agent-prompt-pack.md) | Reusable prompts for any LLM that drafts Goods copy. Drop these into ChatGPT, Claude, or any agent. |
+| [CONSENT_PROCESS.md](CONSENT_PROCESS.md) | The six-step playbook for moving a storyteller from Pending review to Verified. EL leads, repo and Notion mirror. |
+| [CONSENT_BACKLOG.md](CONSENT_BACKLOG.md) | The working list of who is blocked on what. Use when planning the next On-Country trip. |
+| [EL_LED_ARCHITECTURE.md](EL_LED_ARCHITECTURE.md) | Why Empathy Ledger is the consent-bearing source of truth, and how the repo and Notion mirror it. |
 
 ## Working principle
 
