@@ -1,12 +1,16 @@
 // Resolves a funder URL-map entry to a fully-fledged voice record:
 // photo, name, location, verified pull quote, and the recommended URL.
 //
-// Used by /funders/[slug] to feature the right storyteller for the right
-// funder type at the top of the brief, instead of a one-size-fits-all gallery.
+// EL-led: a quote is only included when the recommended storyteller has
+// at least one consent-clean Goods story in Empathy Ledger. If EL says the
+// storyteller's consent state is Pending review or Withdrawn, the voice
+// section returns with quote = "" and consentVerified = false; the funder
+// page should hide the quote block in that case.
 
 import { quotes, journeyStories } from '@/lib/data/content';
 import type { FunderUrlEntry, StorytellerKey } from '@/lib/data/funder-url-map';
 import { FUNDER_URL_MAP } from '@/lib/data/funder-url-map';
+import { fetchELStorytellers } from '@/lib/empathy-ledger/featured-voices';
 
 export interface ResolvedFunderVoice {
   /** Storyteller key, also serves as photo filename slug */
@@ -19,10 +23,12 @@ export interface ResolvedFunderVoice {
   photo: string;
   /** Photo alt text */
   photoAlt: string;
-  /** Verified pull quote */
+  /** Verified pull quote (empty string if EL consent is not yet verified) */
   quote: string;
   /** Context line under the quote (e.g. "On the freight tax") */
   quoteContext: string;
+  /** True when this storyteller has at least one consent-clean Goods story in EL. */
+  consentVerified: boolean;
 }
 
 export interface ResolvedFunderRecommendation {
@@ -50,13 +56,27 @@ const STORYTELLER_TO_AUTHOR: Record<StorytellerKey, { author: string; preferThem
   'jessica-allardyce': { author: 'Jessica Allardyce', preferTheme: 'health', photo: '/images/people/jessica-allardyce.jpg', location: 'Miwatj Health, East Arnhem' },
 };
 
-function resolveVoice(key: StorytellerKey): ResolvedFunderVoice | null {
+function resolveVoice(key: StorytellerKey, consentVerified: boolean): ResolvedFunderVoice | null {
   const directory = STORYTELLER_TO_AUTHOR[key];
   if (!directory) return null;
 
+  // If EL consent is not verified, return the photo + name + role
+  // but blank the quote — the funder page should hide the quote block.
+  if (!consentVerified) {
+    return {
+      id: key,
+      name: directory.author,
+      location: directory.location,
+      photo: directory.photo,
+      photoAlt: `${directory.author}, ${directory.location}`,
+      quote: '',
+      quoteContext: '',
+      consentVerified: false,
+    };
+  }
+
   const verified = quotes.filter((q) => q.author === directory.author && q.verified);
   if (verified.length === 0) {
-    // Fall back to journey stories pull quote
     const journey = journeyStories.find((j) => j.person === directory.author);
     if (!journey) return null;
     return {
@@ -67,10 +87,10 @@ function resolveVoice(key: StorytellerKey): ResolvedFunderVoice | null {
       photoAlt: `${directory.author}, ${directory.location}`,
       quote: journey.pullQuote,
       quoteContext: journey.location,
+      consentVerified: true,
     };
   }
 
-  // Prefer the themed quote if available, else first verified
   const preferred = directory.preferTheme
     ? verified.find((q) => q.theme === directory.preferTheme)
     : undefined;
@@ -84,21 +104,38 @@ function resolveVoice(key: StorytellerKey): ResolvedFunderVoice | null {
     photoAlt: `${directory.author}, ${directory.location}`,
     quote: chosen.text,
     quoteContext: chosen.context,
+    consentVerified: true,
   };
 }
 
 /**
  * Resolve a funder's URL map entry into the renderable bundle.
+ * Async because we check EL Supabase for the recommended storyteller's
+ * consent state before deciding whether to surface their quote.
+ *
  * Returns null if the funder is not in FUNDER_URL_MAP.
  */
-export function getFunderRecommendation(
+export async function getFunderRecommendation(
   urlMapKey: string,
   host = 'https://www.goodsoncountry.com'
-): ResolvedFunderRecommendation | null {
+): Promise<ResolvedFunderRecommendation | null> {
   const entry = FUNDER_URL_MAP[urlMapKey];
   if (!entry) return null;
 
-  const voice = entry.recommendedVoice ? resolveVoice(entry.recommendedVoice) : null;
+  let consentVerified = false;
+  if (entry.recommendedVoice) {
+    const directory = STORYTELLER_TO_AUTHOR[entry.recommendedVoice];
+    if (directory) {
+      const elVoices = await fetchELStorytellers();
+      if (elVoices) {
+        consentVerified = elVoices.some((v) =>
+          (v.storyteller.display_name ?? '').toLowerCase() === directory.author.toLowerCase()
+        );
+      }
+    }
+  }
+
+  const voice = entry.recommendedVoice ? resolveVoice(entry.recommendedVoice, consentVerified) : null;
 
   const toAbsolute = (path: string | undefined) => {
     if (!path) return undefined;

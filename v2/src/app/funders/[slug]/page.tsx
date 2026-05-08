@@ -40,9 +40,11 @@ export default async function FunderPage({ params }: PageProps) {
   const funder = getFunderPage(slug);
   if (!funder) notFound();
 
-  // Funder-specific voice + URL pulled from the central map
+  // Funder-specific voice + URL pulled from the central map.
+  // The resolver checks EL consent state; voice.quote will be empty when
+  // the recommended storyteller is not yet consent-verified in EL.
   const recommendation = funder.urlMapKey
-    ? getFunderRecommendation(funder.urlMapKey, '')
+    ? await getFunderRecommendation(funder.urlMapKey, '')
     : null;
 
   // Aggregate due-diligence stats from the live compendium and expansion target list
@@ -90,8 +92,11 @@ export default async function FunderPage({ params }: PageProps) {
           </figure>
         </header>
 
-        {/* Featured voice — picked from funder-url-map.ts to match this funder's profile */}
-        {recommendation?.voice && (
+        {/* Featured voice — only shown when the recommended storyteller has
+            consent-clean Goods stories in Empathy Ledger. If not, the voice
+            section is hidden until the consent flow completes (see
+            wiki/articles/brand-comms/CONSENT_PROCESS.md). */}
+        {recommendation?.voice && recommendation.voice.consentVerified && (
           <section className="mb-16">
             <p className="text-xs uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
               Voice from community

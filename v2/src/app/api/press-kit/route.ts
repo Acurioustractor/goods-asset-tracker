@@ -2,9 +2,10 @@
 // or any external integration that wants verified quotes, key stats,
 // product specs, photo URLs, and brand contact info.
 //
-// All quotes are from content.ts (verified field). Photos are absolute URLs
-// that resolve at the request host. Empathy Ledger liveness is reported
-// per voice but never substituted for verified text.
+// EL-led: storytellers and headline quotes are gated on Empathy Ledger
+// consent state. Only voices with consent-clean Goods stories in EL appear
+// in this response. Quote text itself is curated in content.ts; EL is the
+// gate, not the source of verbatim text.
 //
 // GET /api/press-kit?host=https://www.goodsoncountry.com
 //
@@ -19,35 +20,39 @@ export const revalidate = 300;
 
 const ASSET_EMAIL = 'hi@act.place';
 
-const HEADLINE_QUOTES = ['Linda Turner', 'Ivy', 'Cliff Plummer', 'Dianne Stokes', 'Jessica Allardyce'];
-
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const explicitHost = url.searchParams.get('host');
   const host = (explicitHost ?? `${url.protocol}//${url.host}`).replace(/\/$/, '');
 
-  const [voices] = await Promise.all([getFeaturedVoices(8)]);
+  // Voices come from EL-led featured-voices.ts. Only consent-verified storytellers.
+  const voices = await getFeaturedVoices(20);
+  const verifiedAuthors = new Set(voices.filter((v) => v.liveFromEL).map((v) => v.name));
 
-  const headlineQuotes = HEADLINE_QUOTES.map((author) => {
-    const q = quotes.find((entry) => entry.author === author && entry.verified);
-    return q
-      ? {
-          text: q.text,
-          author: q.author,
-          context: q.context,
-          theme: q.theme,
-        }
-      : null;
-  }).filter((q): q is NonNullable<typeof q> => q !== null);
+  // Headline quotes only published when the speaker is currently EL-verified.
+  // Order: prioritise verified authors, drop drafts entirely.
+  const headlineQuotes = quotes
+    .filter((q) => q.verified && verifiedAuthors.has(q.author))
+    .slice(0, 5)
+    .map((q) => ({
+      text: q.text,
+      author: q.author,
+      context: q.context,
+      theme: q.theme,
+      consentSource: 'Empathy Ledger',
+    }));
 
   const payload = {
     meta: {
       generatedAt: new Date().toISOString(),
       revalidateSeconds: 300,
-      schemaVersion: '1',
+      schemaVersion: '2',
       contact: ASSET_EMAIL,
+      consentModel:
+        'Empathy Ledger leads. A storyteller appears in this response only when EL has at least one consent-clean Goods story for them (syndication_enabled = true, consent_withdrawn_at IS NULL, is_archived = false). Storytellers can withdraw consent at any time; the response refreshes within 5 minutes of EL state change.',
+      verifiedStorytellerCount: verifiedAuthors.size,
       mediaPolicy:
-        'All quotes verified, all storyteller photos consent-on-file. Always credit by name and community. Storytellers retain ownership of their stories.',
+        'Always credit by name and community. Storytellers retain ownership of their stories. If you publish, link back to goodsoncountry.com/stories.',
     },
     brand: {
       name: brand.name,
@@ -89,10 +94,12 @@ export async function GET(request: Request) {
       id: v.id,
       name: v.name,
       location: v.location,
-      photo: `${host}${v.photo}`,
+      photo: v.photo ? (v.photo.startsWith('http') ? v.photo : `${host}${v.photo}`) : null,
       photoAlt: v.photoAlt,
-      consentVerified: true,
+      consentVerified: v.liveFromEL,
       activeInEmpathyLedger: v.liveFromEL,
+      isElder: v.isElder ?? false,
+      storyCount: v.storyCount ?? 0,
       attributionFormat: `${v.name}, ${v.location}`,
     })),
     partners: {
