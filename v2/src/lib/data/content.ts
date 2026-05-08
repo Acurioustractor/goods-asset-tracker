@@ -230,7 +230,7 @@ export const quotes = [
   {
     text: 'The new mattress design is not just about comfort. It\'s about dignity and health.',
     author: 'Tracy McCartney',
-    context: 'Support Worker, Mt Isa',
+    context: 'Support Worker, Kalgoorlie',
     theme: 'health',
     verified: true,
   },

@@ -130,7 +130,7 @@ The Empathy Ledger client at [v2/src/lib/empathy-ledger/client.ts](../../v2/src/
 - Pull quotes:
   - "Something as simple as a good bed makes a huge difference. It improves their health, helps with mobility, and gives them dignity."
 
-**Tracy McCartney** — Support Worker, Mt Isa
+**Tracy McCartney** - Support Worker, Kalgoorlie
 - Themes: dignity, health
 - Pull quotes:
   - "The new mattress design is not just about comfort. It's about dignity and health."

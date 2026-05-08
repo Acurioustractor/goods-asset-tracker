@@ -106,7 +106,7 @@ The 2026-05-08 audit surfaced six data-quality issues that need closing:
 | Jessica Allardyce | Not in EL at all | Same. She is the Miwatj Health voice on the scabies-RHD pathway. Important for health funder briefs. |
 | Ivy | EL has two records: "Aunty Ivy" (Mt Isa) and "Ivy" (Palm Island) | Confirm which is the Goods-related one. Either consolidate (mark one as primary) or disambiguate the names so EL search lands on the right person. |
 | Alfred Johnson | EL location says "Brisbane", content.ts says "Palm Island" | Confirm with Alfred which is correct. Update the wrong one. |
-| Tracy McCartney | EL location says "Adelaide", content.ts says "Mt Isa" | Same — confirm and reconcile. |
+| Tracy McCartney | EL location was "Adelaide", content.ts says "Mt Isa". Both wrong. | Resolved 2026-05-08: Tracy is from Kalgoorlie. EL updated to "Kalgoorlie, Western Australia, Australia". `v2/src/lib/data/compendium.ts` still says Mt Isa and needs updating to "Kalgoorlie, WA". |
 
 Track these in the [Storyteller Voices Notion DB](https://www.notion.so/1fe6ebeb9ed845d2bc0e7d2349321fe3) under the row's `EL Story ID` field — each note already documents the specific issue.
 

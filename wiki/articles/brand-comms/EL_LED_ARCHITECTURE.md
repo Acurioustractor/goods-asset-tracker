@@ -79,8 +79,8 @@ These are real data quality gaps that should be addressed in EL (or in our conte
 | Zelda Hogan | Not in EL at all | Create EL storyteller record before any external use |
 | Jessica Allardyce | Not in EL at all | Create EL storyteller record before any external use |
 | Ivy | Two EL records: "Aunty Ivy" (Mount Isa) and "Ivy" (Palm Island) | Confirm which is the Goods-related record; consolidate or disambiguate |
-| Alfred Johnson | EL says Brisbane, content.ts says Palm Island | Confirm primary location; update one or both |
-| Tracy McCartney | EL says Adelaide, content.ts says Mt Isa | Same |
+| Alfred Johnson | EL said Brisbane, content.ts said Palm Island | Resolved 2026-05-08: Alfred is Palm Island. EL updated. |
+| Tracy McCartney | EL said Adelaide, content.ts said Mt Isa | Resolved 2026-05-08: Tracy is Kalgoorlie. EL + content.ts + wiki updated. |
 
 These were invisible until we connected the two systems. That's the value of EL leading.
 

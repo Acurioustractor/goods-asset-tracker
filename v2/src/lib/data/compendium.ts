@@ -503,10 +503,10 @@ export const communityVoices: CommunityVoice[] = [
     quotes: ['As a support worker here, I see how much proper bedding is needed in the community. So many people are sleeping on the floor or on old, unsuitable mattresses. Something as simple as a good bed makes a huge difference — it improves their health, helps with mobility, and gives them dignity.'],
   },
 
-  // Mt Isa
+  // Kalgoorlie
   {
-    id: 'tracy', name: 'Tracy McCartney', role: 'Support Worker', community: 'Mt Isa', state: 'QLD',
-    quotes: ["The new mattress design is not just about comfort — it's about dignity and health. Lightweight, washable, and off the ground, it addresses real challenges people face living rough or moving between camps."],
+    id: 'tracy', name: 'Tracy McCartney', role: 'Support Worker', community: 'Kalgoorlie', state: 'WA',
+    quotes: ["The new mattress design is not just about comfort. It's about dignity and health. Lightweight, washable, and off the ground, it addresses real challenges people face living rough or moving between camps."],
   },
 
   // East Arnhem
