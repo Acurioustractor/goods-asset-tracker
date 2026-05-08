@@ -103,9 +103,11 @@ Views:
 
 The same restructure makes sense for these remaining tables (in priority order):
 1. **Banned terms database** under [01. Voice and Tone](https://www.notion.so/359ebcf981cf81d5bb44c3d3f8af9934). Schema: Term, Severity, Reason, Suggestion, Allowed-near phrases, Examples. Already exists in code as `brand-lint.ts` rules. Filterable: "show me all errors", "show me all rules with allowlists".
-2. **Email templates database** under [04. Email and Comms Templates](https://www.notion.so/359ebcf981cf815ea10de9f84f0f31dc). Schema: Name, Audience, Subject pattern, Body skeleton, Anti-patterns, Last revised. Currently 7 templates in markdown.
-3. **Slide deck slides database** under [07. Live Session Slide Deck](https://www.notion.so/359ebcf981cf81b3a4b1d37f74c6a222). Schema: Slide number, Title, Body, Image slot, Speaker notes, Per-audience asks. Currently a single markdown doc.
-4. **Photo categories database** under [03. Product Image Library](https://www.notion.so/359ebcf981cf81f8846fe5bd663dec9f). Schema: Category, Sample, Count, Location, Gap status, Priority. Some of this already auto-derives via `buildImageCategories()` on /brand.
+1. **Email templates database** under [04. Email and Comms Templates](https://www.notion.so/359ebcf981cf815ea10de9f84f0f31dc). Schema: Name, Audience, Subject pattern, Body skeleton, Anti-patterns, Last revised. Currently 7 templates in markdown.
+2. **Slide deck slides database** under [07. Live Session Slide Deck](https://www.notion.so/359ebcf981cf81b3a4b1d37f74c6a222). Schema: Slide number, Title, Body, Image slot, Speaker notes, Per-audience asks. Currently a single markdown doc.
+3. **Photo categories database** under [03. Product Image Library](https://www.notion.so/359ebcf981cf81f8846fe5bd663dec9f). Schema: Category, Sample, Count, Location, Gap status, Priority. Some of this already auto-derives via `buildImageCategories()` on /brand.
+
+After 3-4 databases, the next phase is the Notion-API consumer: a small `v2/src/lib/notion/` module that lets the surfaces (`/brand`, press kit, lint UI, agent prompts) read live from Notion. At that point the source-of-truth question becomes real: do we make Notion canonical, or keep repo canonical and treat Notion as the editor? Worth a deliberate decision then.
 
 ## Next session
 
