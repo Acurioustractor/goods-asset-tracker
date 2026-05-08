@@ -141,14 +141,29 @@ Templates seeded:
 
 Each Body skeleton is the full template including subject line, salutation, body structure, sign-off. Drag a template into Gmail / Apple Mail / Outlook compose. The Anti-patterns column documents what to avoid for each one.
 
+## Slide deck database (built 2026-05-08)
+
+Same pattern applied to the live session deck. Lives under [07. Live Session Slide Deck](https://www.notion.so/359ebcf981cf81b3a4b1d37f74c6a222).
+
+**Database URL:** [notion.so/b59c3fa3e0c24cdf925d058ed07f0fa1](https://www.notion.so/b59c3fa3e0c24cdf925d058ed07f0fa1)
+**Data source ID:** `60318477-f3df-4417-abc3-9c3ed034f75d`
+
+10 rows (one per slide), 10 typed properties (Slide, Number, Section, Title, Body, Voice, Image slot, Speaker notes, Per-audience asks, Active). Mirrors `wiki/articles/brand-comms/07-slide-deck.md` and `v2/public/decks/live-session-deck.html`.
+
+Two views:
+
+- **Deck order** — table sorted by Number. The presenter's runsheet.
+- **Slides with audience switches** — table filtered to slides that have per-audience customisation (slides 2, 4, 8, 10). The "what to swap per audience" cheat sheet.
+
+Most useful column: **Per-audience asks**. For slide 10 (the ask) it captures the four versions (funder, procurement, community, catalytic capital) so a presenter can swap on the fly. For slide 8 (voices) it documents which 3 storytellers to feature for which audience type.
+
 ## Recommendation: extend the pattern further
 
-Four databases now exist. Pattern thoroughly proven. Remaining tables (in priority order):
+Five databases now exist. Pattern thoroughly proven. One remaining table:
 
-1. **Slide deck slides database** under [07. Live Session Slide Deck](https://www.notion.so/359ebcf981cf81b3a4b1d37f74c6a222). Schema: Slide number, Title, Body, Image slot, Speaker notes, Per-audience asks. Currently a single markdown doc.
-2. **Photo categories database** under [03. Product Image Library](https://www.notion.so/359ebcf981cf81f8846fe5bd663dec9f). Schema: Category, Sample, Count, Location, Gap status, Priority. Some of this already auto-derives via `buildImageCategories()` on /brand.
+1. **Photo categories database** under [03. Product Image Library](https://www.notion.so/359ebcf981cf81f8846fe5bd663dec9f). Schema: Category, Sample, Count, Location, Gap status, Priority. Some of this already auto-derives via `buildImageCategories()` on /brand.
 
-After the next 1-2 databases, the next phase is the Notion-API consumer: a small `v2/src/lib/notion/` module that lets the surfaces (`/brand`, press kit, lint UI, agent prompts) read live from Notion. At that point the source-of-truth question becomes real: do we make Notion canonical, or keep repo canonical and treat Notion as the editor? Worth a deliberate decision then.
+After all 5-6 databases, the next phase is the Notion-API consumer: a small `v2/src/lib/notion/` module that lets the surfaces (`/brand`, press kit, lint UI, agent prompts) read live from Notion. At that point the source-of-truth question becomes real: do we make Notion canonical, or keep repo canonical and treat Notion as the editor? Worth a deliberate decision then.
 
 ## Last revised
 2026-05-08, end of POC build.
