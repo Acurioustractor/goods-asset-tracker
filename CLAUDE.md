@@ -151,6 +151,16 @@ cd v2 && npm run lint     # ESLint
 ### Reusable agent prompts
 [wiki/articles/brand-comms/08-agent-prompt-pack.md](wiki/articles/brand-comms/08-agent-prompt-pack.md) has paste-ready prompts: rewrite-in-Goods-voice, draft funder email, draft procurement email, LinkedIn post, funder report, slide content, brand-violation audit. Drop into any agent before drafting Goods copy.
 
+### Consent and Empathy Ledger (CRITICAL for any storyteller-related work)
+
+- **EL leads.** Empathy Ledger is the canonical source for storyteller records, consent state, and stories. The repo and Notion mirror EL.
+- **Never publish a storyteller's voice externally** without first checking [the Storyteller Voices Notion DB](https://www.notion.so/1fe6ebeb9ed845d2bc0e7d2349321fe3): the row's `Consent` field must be `Verified`. If it says `Pending review`, the voice is internal-only.
+- **Verified means:** EL has at least one story for that storyteller with `syndication_enabled = true`, `consent_withdrawn_at IS NULL`, `is_archived = false`. Today (2026-05-08) only 3 storytellers meet that bar: Dianne Stokes, Cliff Plummer, Fred Campbell.
+- **The other ~13 storytellers** in the Notion DB are `Pending review` — their EL records exist (mostly) but consent flow hasn't completed. Quotes from them are in `content.ts` as drafts but should not be used externally yet.
+- **The full process** to move someone from Pending → Verified: [wiki/articles/brand-comms/CONSENT_PROCESS.md](wiki/articles/brand-comms/CONSENT_PROCESS.md). Six steps: confirm EL record → consent conversation → record consent → refresh mirrors → verify on website → use the voice.
+- **Sync script:** `node tools/sync-storytellers-from-el.mjs` reports drift between EL and Notion. With NOTION_TOKEN set, `--apply` mode applies the changes.
+- **Architecture decision** (why EL leads, 2026-05-08): [wiki/articles/brand-comms/EL_LED_ARCHITECTURE.md](wiki/articles/brand-comms/EL_LED_ARCHITECTURE.md).
+
 ## Database Operations
 - **DDL (CREATE, ALTER, DROP):** Use `psql` directly — the Supabase `exec_sql` RPC does not support DDL.
 - **Always check actual schema** before writing queries — do not assume column names or primary keys from memory. Read `v2/src/lib/types/database.ts` or query `information_schema.columns`.
