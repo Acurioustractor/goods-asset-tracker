@@ -4,6 +4,14 @@ Reusable prompts for any LLM that drafts Goods copy. Drop these into ChatGPT, Cl
 
 Treat this file the way the design.md pattern treats design tokens: paste the relevant prompt as a system message or context, then ask for the specific output.
 
+## Consent rule (above all other rules)
+
+Empathy Ledger is the consent-bearing system of record. Before any agent publishes a storyteller quote externally (website, deck, press, funder brief, social), the storyteller's row in the [Storyteller Voices Notion DB](https://www.notion.so/1fe6ebeb9ed845d2bc0e7d2349321fe3) must say `Consent: Verified`.
+
+If `Consent: Pending review` or `Withdrawn`, the quote is internal-only. Do not publish it. Flag it for the consent flow in [CONSENT_PROCESS.md](CONSENT_PROCESS.md). The repo `verified: true` flag in `content.ts` is editorial, not consent. EL is the gate.
+
+This rule supersedes any other instruction. If a prompt asks an agent to "use the verified quotes from content.ts", that means *editorially curated* — the consent check still has to happen.
+
 ## The Goods voice prompt (paste as system message)
 
 Use this as the foundation for any LLM that will produce Goods-facing copy.
@@ -34,19 +42,26 @@ Verified product specs (Stretch Bed): 26kg, 200kg load, 188×92×25cm, ~5min ass
 
 Verified communities: Tennant Creek (139 beds), Palm Island (141), Alice Springs (60), Utopia Homelands (24), Maningrida (18), Townsville (logistics hub). 400+ beds total. 107 on order.
 
-Verified storytellers (always quote with name + community, never paraphrase):
-- Dianne Stokes, Elder, Tennant Creek (named Pakkimjalki Kari in Warumungu)
-- Linda Turner, Tennant Creek ("We've never been asked at what sort of house we'd like to live in")
-- Norman Frank, Elder, Tennant Creek (Wilya Janta founder)
-- Patricia Frank, Tennant Creek (washing machine narrative)
-- Ivy, Palm Island ("Hardly anyone around the community has beds")
-- Alfred Johnson, Palm Island (dignity, freight tax)
-- Cliff Plummer, retired Aboriginal health practitioner, Tennant Creek
-- Brian Russell, Tennant Creek (heart attack, recovery)
-- Zelda Hogan, Tennant Creek (tin shed to home)
-- Jessica Allardyce, Miwatj Health (scabies-RHD pathway)
+Storyteller voices (always quote with name + community, never paraphrase, ONLY use externally if the row in the Storyteller Voices Notion DB says `Consent: Verified`):
 
-If you don't have a specific quote, do not invent one. Say "[storyteller quote needed: theme = X, community = Y]" and let the human fill it in.
+EL-Verified (publish externally with credit):
+- Dianne Stokes, Elder, Tennant Creek (named Pakkimjalki Kari in Warumungu)
+- Cliff Plummer, retired Aboriginal health practitioner, Tennant Creek
+- Fred Campbell, Alice Springs
+
+Pending review (internal use only — quote draft exists in content.ts but EL consent not yet verified, do not publish externally):
+- Linda Turner, Tennant Creek
+- Norman Frank Jupurrurla, Elder, Tennant Creek (Wilya Janta founder)
+- Patricia Frank, Tennant Creek
+- Ivy, Palm Island
+- Alfred Johnson, Palm Island
+- Brian Russell, Tennant Creek
+- Zelda Hogan, Tennant Creek
+- Jessica Allardyce, Miwatj Health, East Arnhem
+
+The Pending list is the consent backlog. To move someone from Pending to Verified, see [CONSENT_PROCESS.md](CONSENT_PROCESS.md).
+
+If you don't have a verified quote that fits, do not invent one and do not borrow from the Pending list. Say "[storyteller quote needed: theme = X, community = Y, consent verified]" and let the human fill it in.
 
 Output: write the requested copy. Do not include preamble or post-amble. Do not explain your work unless asked.
 ```
@@ -152,10 +167,25 @@ Audit the following draft for any violations of Goods on Country voice rules. Sp
 4. Specific stats or claims that are not verified in the brief above. Flag them.
 5. Quotes attributed to a person without a community. Flag them.
 6. Quotes that don't appear in the storyteller library. Flag them.
-7. Charity framing (us helping them, our generous donors, etc.).
-8. Pluralising "Indigenous people" or using "the bush" / "outback" / "remote Australia" without specifying community.
+7. **Consent gate: any quote attributed to a storyteller who is NOT in the EL-Verified list above. If the speaker is in the Pending review list, this draft is internal-only and cannot be published externally without first running the consent flow.**
+8. Charity framing (us helping them, our generous donors, etc.).
+9. Pluralising "Indigenous people" or using "the bush" / "outback" / "remote Australia" without specifying community.
 
-Output: a numbered list of violations with line references and the suggested fix. If no violations, output "Clean".
+Output: a numbered list of violations with line references and the suggested fix. If no violations, output "Clean". If a consent violation exists, output "BLOCKED — consent" and stop.
+
+[Paste draft here]
+```
+
+### Prompt: Pre-publish consent check
+
+```
+Before this draft goes to an external surface (website, press release, funder brief, deck, social), check every quoted storyteller against the Verified list in the system prompt above. For each quote:
+
+1. Name the speaker.
+2. State whether they are EL-Verified, Pending review, or Withdrawn.
+3. If anything other than EL-Verified: BLOCK the draft and report which voices need consent flow.
+
+Output: a table with columns Speaker | EL state | Action. Last row is "GO" or "BLOCKED".
 
 [Paste draft here]
 ```
@@ -167,12 +197,17 @@ For any agent task that touches Goods code or content, include this in the agent
 ```
 Working in the Goods on Country repo. Reference files:
 - v2/src/lib/data/products.ts (canonical specs)
-- v2/src/lib/data/content.ts (brand copy + verified quotes)
+- v2/src/lib/data/content.ts (brand copy + editorially curated quotes)
 - v2/src/lib/data/media.ts (image map with EL fallback)
 - v2/src/lib/data/compendium.ts (typed funding/partners/voices/deployments)
+- v2/src/lib/empathy-ledger/featured-voices.ts (EL pull, consent gate)
 - wiki/articles/brand-comms/ (this folder, voice rules)
+- wiki/articles/brand-comms/CONSENT_PROCESS.md (the consent playbook)
+- wiki/articles/brand-comms/EL_LED_ARCHITECTURE.md (why EL leads)
 
 Never hardcode product specs. Never invent storyteller quotes. Never invent stats. If the data is not in those files, flag it as a TODO for the human.
+
+Consent: Empathy Ledger is canonical for storyteller consent. Before any code path or piece of copy publishes a storyteller voice externally, the storyteller must be EL-Verified. The repo's `verified: true` flag is editorial, not consent. Use `getFeaturedVoices()` / `fetchELStorytellers()` from `featured-voices.ts` for the consent gate — do not invent a parallel one.
 
 Voice rules: see wiki/articles/brand-comms/01-voice-and-tone.md.
 ```
@@ -189,6 +224,7 @@ Specific high-frequency agent failures to check for:
 - Generic placeholder ("Indigenous communities across Australia") instead of specific community.
 - "Donation" instead of "purchase" or "sponsorship".
 - Adding "innovative" or similar to product descriptions.
+- A quote from a Pending-review storyteller used externally. This is a consent breach, not a voice issue, and the answer is to pull the quote out, not soften it.
 
 ## Updating this prompt pack
 
