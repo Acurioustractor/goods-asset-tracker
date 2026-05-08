@@ -99,19 +99,32 @@ Views:
 - **Active outreach** — table filtered to Stage NOT IN (Researching, Declined, Alumni). The "in flight right now" list.
 - **Capital stack candidates** — table filtered to investor-catalytic / impact / blended types.
 
+## Banned Terms database (built 2026-05-08)
+
+Same token-database pattern applied to brand voice rules. Lives under [01. Voice and Tone](https://www.notion.so/359ebcf981cf81d5bb44c3d3f8af9934).
+
+**Database URL:** [notion.so/91bb91f851c041f39961c9c5ac56dc61](https://www.notion.so/91bb91f851c041f39961c9c5ac56dc61)
+**Data source ID:** `88901bf0-322b-4c21-8c43-8e736d2d32cb`
+
+20 rows, one per linter rule, populated from `v2/src/lib/brand-lint.ts`. 11 typed properties (Term, Rule ID, Category, Severity, Pattern, Why banned, Suggestion, Allowed near, Active, Notes).
+
+Three views:
+
+- **By category** — board grouped by Punctuation / Banned word / Capitalisation / Generic identifier
+- **Errors only** — table filtered to Severity = Error (14 rules, the must-fix-before-publishing list)
+- **With allowlist** — table filtered to rules with legitimate compound exceptions (banned-donate, banned-empower, banned-unlock, banned-innovative, capitalisation-on-country, outback-bush, indigenous-people-block, remote-australia)
+
+The "Allowed near" column is the most useful new surface: it documents WHY a banned word is sometimes allowed (DGR donations, charitable structure, REAL Innovation Fund, investor-mandate "remote Australia", etc.) so future authors can see the rule and its escape hatches in one place.
+
 ## Recommendation: extend the pattern further
 
-The same restructure makes sense for these remaining tables (in priority order):
-1. **Banned terms database** under [01. Voice and Tone](https://www.notion.so/359ebcf981cf81d5bb44c3d3f8af9934). Schema: Term, Severity, Reason, Suggestion, Allowed-near phrases, Examples. Already exists in code as `brand-lint.ts` rules. Filterable: "show me all errors", "show me all rules with allowlists".
+Three databases now exist. Pattern is solidly proven. Remaining tables (in priority order):
+
 1. **Email templates database** under [04. Email and Comms Templates](https://www.notion.so/359ebcf981cf815ea10de9f84f0f31dc). Schema: Name, Audience, Subject pattern, Body skeleton, Anti-patterns, Last revised. Currently 7 templates in markdown.
 2. **Slide deck slides database** under [07. Live Session Slide Deck](https://www.notion.so/359ebcf981cf81b3a4b1d37f74c6a222). Schema: Slide number, Title, Body, Image slot, Speaker notes, Per-audience asks. Currently a single markdown doc.
 3. **Photo categories database** under [03. Product Image Library](https://www.notion.so/359ebcf981cf81f8846fe5bd663dec9f). Schema: Category, Sample, Count, Location, Gap status, Priority. Some of this already auto-derives via `buildImageCategories()` on /brand.
 
 After 3-4 databases, the next phase is the Notion-API consumer: a small `v2/src/lib/notion/` module that lets the surfaces (`/brand`, press kit, lint UI, agent prompts) read live from Notion. At that point the source-of-truth question becomes real: do we make Notion canonical, or keep repo canonical and treat Notion as the editor? Worth a deliberate decision then.
-
-## Next session
-
-Pick one of the above (Funders is highest leverage, Banned terms is the cleanest fit) and apply the same pattern. After 2-3 of these databases exist, we should write a small Notion-API consumer in `v2/src/lib/notion/` so that surfaces (`/brand`, press kit, lint UI, etc.) can read live from Notion if Notion drift becomes a real problem. Until then, repo is canonical.
 
 ## Last revised
 2026-05-08, end of POC build.
