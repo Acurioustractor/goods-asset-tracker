@@ -157,13 +157,58 @@ Two views:
 
 Most useful column: **Per-audience asks**. For slide 10 (the ask) it captures the four versions (funder, procurement, community, catalytic capital) so a presenter can swap on the fly. For slide 8 (voices) it documents which 3 storytellers to feature for which audience type.
 
-## Recommendation: extend the pattern further
+## Photo categories database (built 2026-05-08)
 
-Five databases now exist. Pattern thoroughly proven. One remaining table:
+Same pattern applied to the photo library inventory + gap list. Lives under [03. Product Image Library](https://www.notion.so/359ebcf981cf81f8846fe5bd663dec9f).
 
-1. **Photo categories database** under [03. Product Image Library](https://www.notion.so/359ebcf981cf81f8846fe5bd663dec9f). Schema: Category, Sample, Count, Location, Gap status, Priority. Some of this already auto-derives via `buildImageCategories()` on /brand.
+**Database URL:** [notion.so/b2316c742d5b422592922e6205a2ddc7](https://www.notion.so/b2316c742d5b422592922e6205a2ddc7)
+**Data source ID:** `e845e50a-f9ec-49aa-a016-8858fca757ec`
 
-After all 5-6 databases, the next phase is the Notion-API consumer: a small `v2/src/lib/notion/` module that lets the surfaces (`/brand`, press kit, lint UI, agent prompts) read live from Notion. At that point the source-of-truth question becomes real: do we make Notion canonical, or keep repo canonical and treat Notion as the editor? Worth a deliberate decision then.
+14 rows: 6 categories we have, 8 gap categories from the photography brief. 11 typed properties (Name, Folder, Type [Have/Gap/Mixed], Sample, Live count, Target count, Priority, Use cases, Gap details, Brief link, Active).
+
+Two views:
+
+- **Gaps to commission** — table filtered to Type = Gap or Mixed, sorted by Priority. The list a photographer would action.
+- **By priority** — board grouped by Critical / High / Medium / Low / None.
+
+The photography brief now has a structured queryable backing. When a shoot lands, update the row's Type from "Gap" to "Have" and bump the Live count.
+
+Critical gaps (commission first): **Production plant in operation** (9 shots) and **Maningrida community** (5 shots). Both unblock 2026 funder decks.
+
+## Six databases done. Pattern complete.
+
+All six tables in the brand & comms system are now token-databases:
+
+| # | Database | Rows | Lives under |
+|---|----------|-----:|-------------|
+| 1 | Storyteller Voices | 16 | 02. Storyteller Voices |
+| 2 | Funders | 22 | 05. Pipelines × Brand |
+| 3 | Banned Terms | 20 | 01. Voice and Tone |
+| 4 | Email Templates | 7 | 04. Email and Comms Templates |
+| 5 | Slide deck | 10 | 07. Live Session Slide Deck |
+| 6 | Photo categories | 14 | 03. Product Image Library |
+
+**89 rows total. 70-ish typed properties across all schemas.**
+
+## Next phase: Notion-API consumer
+
+With all six databases in place, the next move is wiring code surfaces to read from them. A small `v2/src/lib/notion/` module that:
+
+1. Auths via a Notion integration token (env var)
+2. Caches reads at the same ISR level as the rest of /brand (5-min)
+3. Exposes typed helpers: `getStorytellers()`, `getFunders()`, `getBannedTerms()`, `getEmailTemplates()`, `getSlides()`, `getPhotoCategories()`
+4. Falls back gracefully to local data (`v2/src/lib/data/*.ts`) if Notion is unreachable
+
+**Source-of-truth direction (decision needed):**
+
+- **Option A: Notion-canonical.** Repo files become read-only generated artefacts. Notion becomes the editing surface. Pros: brand team edits without touching code. Cons: build pipeline depends on Notion API uptime.
+- **Option B: Repo-canonical, Notion is mirror.** Repo stays the source. A sync script periodically pushes from repo into Notion (or pulls from Notion as a sanity check). Pros: build determinism, version control. Cons: brand team edits in code.
+- **Option C: Bi-directional with conflict resolution.** Last-write-wins or row-by-row reconciliation. Pros: flexible. Cons: complex, easy to lose data.
+
+Recommendation: **Option B (repo-canonical, Notion mirror)** for now. Lowest engineering cost, clear ownership. Revisit only if the brand team starts editing in Notion directly and we see drift.
+
+## Last revised
+2026-05-08, end of POC build (six databases shipped).
 
 ## Last revised
 2026-05-08, end of POC build.
