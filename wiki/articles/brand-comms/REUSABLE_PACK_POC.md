@@ -116,15 +116,39 @@ Three views:
 
 The "Allowed near" column is the most useful new surface: it documents WHY a banned word is sometimes allowed (DGR donations, charitable structure, REAL Innovation Fund, investor-mandate "remote Australia", etc.) so future authors can see the rule and its escape hatches in one place.
 
+## Email Templates database (built 2026-05-08)
+
+Same pattern applied to outreach templates. Lives under [04. Email and Comms Templates](https://www.notion.so/359ebcf981cf815ea10de9f84f0f31dc).
+
+**Database URL:** [notion.so/da884c5de3d94f4fbac364ddbc978605](https://www.notion.so/da884c5de3d94f4fbac364ddbc978605)
+**Data source ID:** `9d39b82f-20d9-4040-bec6-7a3c98d93388`
+
+7 templates populated from `wiki/articles/brand-comms/04-email-templates.md`. 10 typed properties (Name, Audience, Stage, Subject pattern, Body skeleton, Tone, Anti-patterns, Response time, Active, Notes).
+
+Two views:
+
+- **By audience** — board grouped by Funder / Procurement / Community / Media / Internal
+- **Quick reference** — table with name, subject pattern, response time, tone summary. The "I need to send something now" lookup table.
+
+Templates seeded:
+1. Funder intro (cold or warm)
+2. Funder follow-up (post meeting)
+3. Funder report (quarterly or campaign-end)
+4. Procurement / B2B
+5. Community partner ("Yarn about beds")
+6. Media (press release with named storyteller quotes)
+7. Internal handoff
+
+Each Body skeleton is the full template including subject line, salutation, body structure, sign-off. Drag a template into Gmail / Apple Mail / Outlook compose. The Anti-patterns column documents what to avoid for each one.
+
 ## Recommendation: extend the pattern further
 
-Three databases now exist. Pattern is solidly proven. Remaining tables (in priority order):
+Four databases now exist. Pattern thoroughly proven. Remaining tables (in priority order):
 
-1. **Email templates database** under [04. Email and Comms Templates](https://www.notion.so/359ebcf981cf815ea10de9f84f0f31dc). Schema: Name, Audience, Subject pattern, Body skeleton, Anti-patterns, Last revised. Currently 7 templates in markdown.
-2. **Slide deck slides database** under [07. Live Session Slide Deck](https://www.notion.so/359ebcf981cf81b3a4b1d37f74c6a222). Schema: Slide number, Title, Body, Image slot, Speaker notes, Per-audience asks. Currently a single markdown doc.
-3. **Photo categories database** under [03. Product Image Library](https://www.notion.so/359ebcf981cf81f8846fe5bd663dec9f). Schema: Category, Sample, Count, Location, Gap status, Priority. Some of this already auto-derives via `buildImageCategories()` on /brand.
+1. **Slide deck slides database** under [07. Live Session Slide Deck](https://www.notion.so/359ebcf981cf81b3a4b1d37f74c6a222). Schema: Slide number, Title, Body, Image slot, Speaker notes, Per-audience asks. Currently a single markdown doc.
+2. **Photo categories database** under [03. Product Image Library](https://www.notion.so/359ebcf981cf81f8846fe5bd663dec9f). Schema: Category, Sample, Count, Location, Gap status, Priority. Some of this already auto-derives via `buildImageCategories()` on /brand.
 
-After 3-4 databases, the next phase is the Notion-API consumer: a small `v2/src/lib/notion/` module that lets the surfaces (`/brand`, press kit, lint UI, agent prompts) read live from Notion. At that point the source-of-truth question becomes real: do we make Notion canonical, or keep repo canonical and treat Notion as the editor? Worth a deliberate decision then.
+After the next 1-2 databases, the next phase is the Notion-API consumer: a small `v2/src/lib/notion/` module that lets the surfaces (`/brand`, press kit, lint UI, agent prompts) read live from Notion. At that point the source-of-truth question becomes real: do we make Notion canonical, or keep repo canonical and treat Notion as the editor? Worth a deliberate decision then.
 
 ## Last revised
 2026-05-08, end of POC build.
