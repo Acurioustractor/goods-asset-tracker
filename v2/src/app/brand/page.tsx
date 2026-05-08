@@ -216,10 +216,14 @@ export default async function BrandPage() {
                 Every quote is verified. Consent is on file. Storytellers can update or remove anytime.
                 Always credit by name and community.
               </p>
-              {liveCount > 0 && (
+              {liveCount > 0 ? (
                 <p className="text-xs mb-4 flex items-center gap-2" style={{ color: '#8B9D77' }}>
                   <span className="inline-block w-2 h-2 rounded-full" style={{ backgroundColor: '#8B9D77' }} />
-                  {liveCount} of {featuredStorytellers.length} pulled live from Empathy Ledger (consent verified)
+                  {liveCount} {liveCount === 1 ? 'voice' : 'voices'} below pulled live from Empathy Ledger with consent verified. The library expands as more storytellers complete the EL consent flow.
+                </p>
+              ) : (
+                <p className="text-xs mb-4" style={{ color: '#8B9D77' }}>
+                  Showing local fallback voices (Empathy Ledger temporarily unreachable).
                 </p>
               )}
               <Link
@@ -235,13 +239,23 @@ export default async function BrandPage() {
                 {featuredStorytellers.map((s) => (
                   <div key={s.id} className="text-center">
                     <div className="aspect-square relative rounded overflow-hidden mb-2 bg-stone-100">
-                      <Image
-                        src={s.photo}
-                        alt={s.photoAlt}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 640px) 50vw, 25vw"
-                      />
+                      {s.photo ? (
+                        <Image
+                          src={s.photo}
+                          alt={s.photoAlt}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 640px) 50vw, 25vw"
+                        />
+                      ) : (
+                        <div
+                          className="absolute inset-0 flex items-center justify-center text-xs"
+                          style={{ color: '#8B9D77' }}
+                          aria-label={s.photoAlt}
+                        >
+                          (portrait pending)
+                        </div>
+                      )}
                       {s.liveFromEL && (
                         <span
                           className="absolute top-1 right-1 w-2 h-2 rounded-full"

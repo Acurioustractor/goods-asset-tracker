@@ -1,159 +1,286 @@
-// Server helper: returns featured storyteller voices for the /brand page,
-// pulling live from Empathy Ledger with consent filtering, falling back to
-// local content.ts data when EL is disabled or returns empty.
+// Server helper: returns featured storyteller voices for the /brand page.
 //
-// Used by v2/src/app/brand/page.tsx. ISR cached at 5 minutes via the EL client.
-// EL is hosted at empathy-ledger-v2.vercel.app (NOT on goodsoncountry.com);
-// see v2/src/lib/empathy-ledger/client.ts for the EMPATHY_LEDGER_API_URL.
+// EL-led architecture (2026-05-08): Empathy Ledger is canonical for
+// storyteller and consent state. We query EL Supabase directly for Goods
+// stories with syndication_enabled, consent_not_withdrawn, not_archived,
+// then join to the storytellers table for profile + photo.
+//
+// Local content.ts FALLBACK_VOICES is used only when EL is unreachable.
+// The hardcoded VOICE_DIRECTORY is gone; EL drives the gallery.
+//
+// Photo URL resolution:
+//   1. EL profile_image_url (if present and non-empty)
+//   2. Local /images/people/{name-slug}.jpg (if file exists; we don't
+//      fs-check at request time — the client handles broken image src)
+//   3. Empty string (the page renders the alt text instead)
+//
+// Used by v2/src/app/brand/page.tsx and v2/src/app/api/press-kit/route.ts.
+// ISR cached at 5 minutes via the calling page.
 
-import { empathyLedger } from './client';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { quotes, journeyStories } from '@/lib/data/content';
 
 export interface FeaturedVoice {
-  /** Stable ID. Maps to journeyStories slug or EL story ID. */
+  /** Stable ID. EL storyteller UUID when sourced from EL, name-slug otherwise. */
   id: string;
-  /** Public-facing name as the storyteller wants to be credited. */
+  /** Public-facing name. */
   name: string;
   /** "Community" or "Role, Community" */
   location: string;
-  /** Local photo path. Always points to v2/public/images/people/. */
+  /** Photo URL: EL profile_image_url, or local fallback path. */
   photo: string;
   /** Photo alt text */
   photoAlt: string;
-  /** True if EL has a fresh, consent-verified story for this voice. */
+  /** True if the row came from a live EL pull with consent verified. */
   liveFromEL: boolean;
+  /** True if EL marks the storyteller as an Elder. */
+  isElder?: boolean;
+  /** Number of consent-clean Goods stories on this person in EL. */
+  storyCount?: number;
 }
 
 export interface PullQuote {
   text: string;
   author: string;
   context: string;
-  /** True if this quote came from a live EL pull. */
+  /** True if the speaker has at least one consent-clean EL story for Goods. */
   liveFromEL: boolean;
 }
 
-// Canonical map of storyteller name → local photo + display location.
-// Add entries here when a new storyteller is on file.
-const VOICE_DIRECTORY: Record<
-  string,
-  { id: string; photo: string; location: string }
-> = {
-  'Dianne Stokes': { id: 'dianne-stokes', photo: '/images/people/dianne-stokes.jpg', location: 'Elder, Tennant Creek' },
-  'Norman Frank': { id: 'norman-frank', photo: '/images/people/norman-frank.jpg', location: 'Elder, Tennant Creek' },
-  'Norman Frank Jupurrurla': { id: 'norman-frank', photo: '/images/people/norman-frank.jpg', location: 'Elder, Tennant Creek' },
-  'Linda Turner': { id: 'linda-turner', photo: '/images/people/linda-turner.jpg', location: 'Tennant Creek' },
-  'Patricia Frank': { id: 'patricia-frank', photo: '/images/people/patricia-frank.jpg', location: 'Tennant Creek' },
-  'Cliff Plummer': { id: 'cliff-plummer', photo: '/images/people/cliff-plummer.jpg', location: 'Tennant Creek' },
-  'Brian Russell': { id: 'brian-russell', photo: '/images/people/brian-russell.jpg', location: 'Tennant Creek' },
-  Ivy: { id: 'ivy', photo: '/images/people/ivy.jpg', location: 'Palm Island' },
-  'Alfred Johnson': { id: 'alfred-johnson', photo: '/images/people/alfred-johnson.jpg', location: 'Palm Island' },
+// ---- EL Supabase client (lazy, server-only) -------------------------------
+
+let _elClient: SupabaseClient | null = null;
+function elClient(): SupabaseClient | null {
+  if (_elClient) return _elClient;
+  const url = process.env.EMPATHY_LEDGER_SUPABASE_URL;
+  const key = process.env.EMPATHY_LEDGER_SUPABASE_KEY;
+  if (!url || !key) return null;
+  _elClient = createClient(url, key, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+  return _elClient;
+}
+
+const GOODS_PROJECT_ID =
+  process.env.EMPATHY_LEDGER_PROJECT_ID || '6bd47c8a-e676-456f-aa25-ddcbb5a31047';
+
+// ---- Local fallback (only used on EL outage) ------------------------------
+
+function nameToSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+const LOCAL_PHOTO_BY_NAME: Record<string, string> = {
+  'Dianne Stokes': '/images/people/dianne-stokes.jpg',
+  'Norman Frank': '/images/people/norman-frank.jpg',
+  'Norman Frank Jupurrurla': '/images/people/norman-frank.jpg',
+  'Linda Turner': '/images/people/linda-turner.jpg',
+  'Patricia Frank': '/images/people/patricia-frank.jpg',
+  'Cliff Plummer': '/images/people/cliff-plummer.jpg',
+  'Brian Russell': '/images/people/brian-russell.jpg',
+  Ivy: '/images/people/ivy.jpg',
+  'Alfred Johnson': '/images/people/alfred-johnson.jpg',
 };
 
-const HERO_QUOTE_AUTHORS = ['Linda Turner', 'Ivy', 'Cliff Plummer'] as const;
-
 const FALLBACK_VOICES: FeaturedVoice[] = [
-  { id: 'dianne-stokes', name: 'Dianne Stokes', location: 'Elder, Tennant Creek', photo: '/images/people/dianne-stokes.jpg', photoAlt: 'Dianne Stokes, Elder, Tennant Creek', liveFromEL: false },
-  { id: 'linda-turner', name: 'Linda Turner', location: 'Tennant Creek', photo: '/images/people/linda-turner.jpg', photoAlt: 'Linda Turner, Tennant Creek', liveFromEL: false },
-  { id: 'norman-frank', name: 'Norman Frank', location: 'Elder, Tennant Creek', photo: '/images/people/norman-frank.jpg', photoAlt: 'Norman Frank, Elder, Tennant Creek', liveFromEL: false },
-  { id: 'patricia-frank', name: 'Patricia Frank', location: 'Tennant Creek', photo: '/images/people/patricia-frank.jpg', photoAlt: 'Patricia Frank, Tennant Creek', liveFromEL: false },
+  { id: 'dianne-stokes', name: 'Dianne Stokes', location: 'Elder, Tennant Creek', photo: '/images/people/dianne-stokes.jpg', photoAlt: 'Dianne Stokes, Elder, Tennant Creek', liveFromEL: false, isElder: true },
   { id: 'cliff-plummer', name: 'Cliff Plummer', location: 'Tennant Creek', photo: '/images/people/cliff-plummer.jpg', photoAlt: 'Cliff Plummer, Tennant Creek', liveFromEL: false },
-  { id: 'ivy', name: 'Ivy', location: 'Palm Island', photo: '/images/people/ivy.jpg', photoAlt: 'Ivy, Palm Island', liveFromEL: false },
-  { id: 'alfred-johnson', name: 'Alfred Johnson', location: 'Palm Island', photo: '/images/people/alfred-johnson.jpg', photoAlt: 'Alfred Johnson, Palm Island', liveFromEL: false },
-  { id: 'brian-russell', name: 'Brian Russell', location: 'Tennant Creek', photo: '/images/people/brian-russell.jpg', photoAlt: 'Brian Russell, Tennant Creek', liveFromEL: false },
+  { id: 'fred-campbell', name: 'Fred Campbell', location: 'Alice Springs', photo: '', photoAlt: 'Fred Campbell, Alice Springs (portrait pending)', liveFromEL: false },
 ];
 
+// ---- EL query: Goods storytellers with consent-clean stories --------------
+
+interface ELStoryRow {
+  id: string;
+  title: string | null;
+  storyteller_id: string | null;
+  story_image_url: string | null;
+  location: string | null;
+  themes: unknown;
+  published_at: string | null;
+}
+
+interface ELStorytellerRow {
+  id: string;
+  display_name: string | null;
+  location: string | null;
+  bio: string | null;
+  is_elder: boolean | null;
+  is_featured: boolean | null;
+  is_active: boolean | null;
+  profile_image_url: string | null;
+  cultural_background: string | null;
+  tags: unknown;
+}
+
+interface ELStorytellerVoice {
+  storyteller: ELStorytellerRow;
+  stories: ELStoryRow[];
+}
+
 /**
- * Pull featured storyteller voices for the /brand page.
- * Tries EL first (consent-verified, current). Falls back to local on failure.
+ * Query EL Supabase for Goods storytellers with consent-clean stories.
+ * Returns null on any failure (caller falls back to local).
+ */
+async function fetchELStorytellers(): Promise<ELStorytellerVoice[] | null> {
+  const client = elClient();
+  if (!client) return null;
+
+  try {
+    const { data: stories, error: storiesErr } = await client
+      .from('stories')
+      .select('id,title,storyteller_id,story_image_url,location,themes,published_at')
+      .eq('project_id', GOODS_PROJECT_ID)
+      .eq('syndication_enabled', true)
+      .is('consent_withdrawn_at', null)
+      .eq('is_archived', false)
+      .not('storyteller_id', 'is', null)
+      .order('published_at', { ascending: false, nullsFirst: false });
+
+    if (storiesErr) {
+      console.error('[featured-voices] EL stories query failed:', storiesErr.message);
+      return null;
+    }
+    if (!stories || stories.length === 0) return [];
+
+    const storytellerIds = [
+      ...new Set((stories as ELStoryRow[]).map((s) => s.storyteller_id).filter((id): id is string => Boolean(id))),
+    ];
+    if (storytellerIds.length === 0) return [];
+
+    const { data: storytellers, error: stErr } = await client
+      .from('storytellers')
+      .select('id,display_name,location,bio,is_elder,is_featured,is_active,profile_image_url,cultural_background,tags')
+      .in('id', storytellerIds);
+
+    if (stErr) {
+      console.error('[featured-voices] EL storytellers query failed:', stErr.message);
+      return null;
+    }
+
+    const tellerById = new Map<string, ELStorytellerRow>();
+    for (const t of (storytellers ?? []) as ELStorytellerRow[]) tellerById.set(t.id, t);
+
+    const grouped = new Map<string, ELStorytellerVoice>();
+    for (const s of stories as ELStoryRow[]) {
+      const sid = s.storyteller_id;
+      if (!sid) continue;
+      const teller = tellerById.get(sid);
+      if (!teller || teller.is_active === false) continue;
+      // Skip non-person organisational records (heuristic: contains "Team" or "Organization")
+      if (teller.display_name && /\bteam|organization|organisation\b/i.test(teller.display_name)) {
+        continue;
+      }
+      if (!grouped.has(sid)) grouped.set(sid, { storyteller: teller, stories: [] });
+      grouped.get(sid)!.stories.push(s);
+    }
+
+    return Array.from(grouped.values());
+  } catch (err) {
+    console.error('[featured-voices] EL pull threw:', err);
+    return null;
+  }
+}
+
+function shortLocation(loc: string | null): string {
+  if (!loc) return '';
+  // EL stores "Tennant Creek, Northern Territory, Australia"; we want the first part
+  return loc.split(',')[0].trim();
+}
+
+function elToFeaturedVoice(v: ELStorytellerVoice): FeaturedVoice {
+  const t = v.storyteller;
+  const name = t.display_name ?? '';
+  const community = shortLocation(t.location);
+  const role = t.is_elder ? `Elder, ${community}` : community;
+
+  // Photo resolution: EL first, local by-name fallback, empty string
+  const photo =
+    (t.profile_image_url && t.profile_image_url.trim()) ||
+    LOCAL_PHOTO_BY_NAME[name] ||
+    '';
+
+  return {
+    id: t.id,
+    name,
+    location: role,
+    photo,
+    photoAlt: `${name}${role ? `, ${role}` : ''}`,
+    liveFromEL: true,
+    isElder: !!t.is_elder,
+    storyCount: v.stories.length,
+  };
+}
+
+// ---- Public API -----------------------------------------------------------
+
+/**
+ * Featured storyteller voices for the /brand page and press kit.
+ *
+ * EL-led: returns only storytellers with consent-clean Goods stories in EL.
+ * If EL is unreachable, returns the local FALLBACK_VOICES list (3 entries
+ * matching the EL audit on 2026-05-08: Dianne, Cliff, Fred).
  *
  * @param limit max number of voices to return (default 8)
  */
 export async function getFeaturedVoices(limit = 8): Promise<FeaturedVoice[]> {
-  try {
-    const stories = await empathyLedger.getStories({ limit: 20 });
-
-    if (stories.length === 0) {
-      return FALLBACK_VOICES.slice(0, limit);
-    }
-
-    // Build a deduped list of unique storytellers with photo lookup.
-    const seen = new Set<string>();
-    const voices: FeaturedVoice[] = [];
-
-    for (const story of stories) {
-      const name = story.storytellerName ?? story.authorName;
-      if (!name || seen.has(name)) continue;
-
-      const directory = VOICE_DIRECTORY[name];
-      if (!directory) continue; // Skip storytellers without a local photo on file
-
-      seen.add(name);
-      voices.push({
-        id: directory.id,
-        name,
-        location: directory.location,
-        photo: directory.photo,
-        photoAlt: `${name}, ${directory.location}`,
-        liveFromEL: true,
-      });
-
-      if (voices.length >= limit) break;
-    }
-
-    // If EL didn't yield enough mapped voices, top up with fallback (no duplicates)
-    if (voices.length < limit) {
-      for (const fallback of FALLBACK_VOICES) {
-        if (voices.length >= limit) break;
-        if (!seen.has(fallback.name)) {
-          seen.add(fallback.name);
-          voices.push(fallback);
-        }
-      }
-    }
-
-    return voices;
-  } catch (err) {
-    console.error('[featured-voices] EL pull failed, using fallback:', err);
+  const elVoices = await fetchELStorytellers();
+  if (elVoices === null) {
     return FALLBACK_VOICES.slice(0, limit);
   }
+  if (elVoices.length === 0) {
+    return FALLBACK_VOICES.slice(0, limit);
+  }
+
+  const sorted = [...elVoices].sort((a, b) => {
+    const af = a.storyteller.is_featured ? 1 : 0;
+    const bf = b.storyteller.is_featured ? 1 : 0;
+    if (af !== bf) return bf - af;
+    return b.stories.length - a.stories.length;
+  });
+
+  return sorted.slice(0, limit).map(elToFeaturedVoice);
 }
 
 /**
  * Three pull quotes for the brand-page hero band.
- * Always uses verified content.ts quotes (single source of truth for direct
- * quotations) to avoid risk of EL summary text being treated as a verbatim quote.
- * The `liveFromEL` flag tracks whether the storyteller is also represented
- * in a current EL syndicated story.
+ *
+ * Quotes themselves come from content.ts (verbatim text we've editorially
+ * curated and verified). The liveFromEL flag indicates whether the speaker
+ * also has a current consent-clean story in EL — when false, we should
+ * not publish the quote externally without re-confirming consent.
  */
 export async function getHeroQuotes(): Promise<PullQuote[]> {
-  let liveAuthors: Set<string> = new Set();
-
-  try {
-    const stories = await empathyLedger.getStories({ limit: 20 });
-    liveAuthors = new Set(
-      stories
-        .map((s) => s.storytellerName ?? s.authorName)
-        .filter((n): n is string => Boolean(n))
-    );
-  } catch {
-    // Ignore — fall back to non-EL-flagged quotes
+  const heroAuthors = ['Dianne Stokes', 'Cliff Plummer', 'Fred Campbell'] as const;
+  const elVoices = await fetchELStorytellers();
+  const liveAuthors = new Set<string>();
+  if (elVoices) {
+    for (const v of elVoices) {
+      if (v.storyteller.display_name) liveAuthors.add(v.storyteller.display_name);
+    }
   }
 
-  return HERO_QUOTE_AUTHORS.map((author) => {
+  const result: PullQuote[] = [];
+  for (const author of heroAuthors) {
     const q = quotes.find((entry) => entry.author === author && entry.verified);
-    if (!q) return null;
-    return {
-      text: q.text,
-      author: q.author,
-      context: q.context,
-      liveFromEL: liveAuthors.has(author),
-    };
-  }).filter((q): q is PullQuote => q !== null);
+    if (q) {
+      result.push({
+        text: q.text,
+        author: q.author,
+        context: q.context,
+        liveFromEL: liveAuthors.has(author),
+      });
+    }
+  }
+  return result;
 }
 
 /**
  * Six pre-written narrative arcs from journeyStories (always from content.ts).
- * Returns the list with a flag if the storyteller has an active EL story.
+ * Returns the list with a flag if the storyteller has a consent-clean EL story.
  */
 export async function getJourneyNarratives(): Promise<
   Array<{
@@ -165,17 +292,12 @@ export async function getJourneyNarratives(): Promise<
     liveFromEL: boolean;
   }>
 > {
-  let liveAuthors: Set<string> = new Set();
-
-  try {
-    const stories = await empathyLedger.getStories({ limit: 20 });
-    liveAuthors = new Set(
-      stories
-        .map((s) => s.storytellerName ?? s.authorName)
-        .filter((n): n is string => Boolean(n))
-    );
-  } catch {
-    // Ignore
+  const elVoices = await fetchELStorytellers();
+  const liveAuthors = new Set<string>();
+  if (elVoices) {
+    for (const v of elVoices) {
+      if (v.storyteller.display_name) liveAuthors.add(v.storyteller.display_name);
+    }
   }
 
   return journeyStories.map((j) => ({
@@ -187,3 +309,6 @@ export async function getJourneyNarratives(): Promise<
     liveFromEL: liveAuthors.has(j.person),
   }));
 }
+
+// Re-export for tests / internal use
+export { fetchELStorytellers, nameToSlug };
