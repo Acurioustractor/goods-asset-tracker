@@ -9,6 +9,10 @@ export const metadata = {
   description: 'View visitor feedback submitted via the site',
 };
 
+// Auth-gated page (uses ProtectedRoute + Supabase server client). Skip static
+// prerender — env-derived clients can't be constructed at build time.
+export const dynamic = 'force-dynamic';
+
 interface GitHubIssue {
   id: number;
   number: number;
