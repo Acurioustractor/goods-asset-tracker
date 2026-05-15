@@ -128,7 +128,11 @@ export default async function AssetRegisterPage() {
                 {' '}<code className="rounded bg-white px-1.5 py-0.5">Pending Delivery</code>. Update each row in-field as it&apos;s placed.
               </div>
             </div>
-            <div className="flex gap-2 text-xs">
+            <div className="flex flex-wrap gap-2 text-xs">
+              <Link className="rounded-md border border-amber-400 bg-amber-600 px-3 py-1.5 font-semibold text-white hover:bg-amber-700"
+                href="/admin/assets/batch/156">
+                Allocate batch →
+              </Link>
               <a className="rounded-md border border-amber-300 bg-white px-3 py-1.5 font-medium text-amber-900 hover:bg-amber-100"
                 href="/api/admin/assets/batch/156/manifest">
                 Download manifest CSV

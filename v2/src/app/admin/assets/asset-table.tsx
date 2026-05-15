@@ -168,7 +168,15 @@ export function AssetTable({ rows }: { rows: AssetRow[] }) {
                 <Td className="whitespace-nowrap text-xs text-gray-500">
                   {r.supply_date ? new Date(r.supply_date).toLocaleDateString('en-AU') : '--'}
                 </Td>
-                <Td className="font-mono text-xs">{r.batch || '--'}</Td>
+                <Td className="font-mono text-xs">
+                  {r.batch ? (
+                    <Link href={`/admin/assets/batch/${r.batch}`} className="text-orange-600 hover:underline">
+                      {r.batch}
+                    </Link>
+                  ) : (
+                    '--'
+                  )}
+                </Td>
                 <Td><TelemetryDot product={r.product} lastSeen={r.last_telemetry} /></Td>
                 <Td className="pr-4">
                   <div className="flex justify-end gap-1.5">
