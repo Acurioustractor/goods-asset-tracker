@@ -38,9 +38,9 @@ export function SiteFooter() {
       <div className="border-b">
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-xl mx-auto text-center">
-            <h3 className="text-xl font-bold text-foreground mb-2">Join the movement</h3>
+            <h3 className="text-xl font-bold text-foreground mb-2">Stay close to the story</h3>
             <p className="text-sm text-muted-foreground mb-6">
-              Get updates on new products, community stories, and farm content.
+              Updates on new beds, new communities, and what&apos;s happening On-Country. No spam, ever.
             </p>
             <NewsletterForm />
           </div>
@@ -56,8 +56,7 @@ export function SiteFooter() {
               <span className="block text-sm text-muted-foreground">on Country</span>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">
-              Delivering essential items to remote Australian Indigenous communities.
-              Every purchase makes a difference.
+              Community-designed health hardware. Manufactured On-Country. Made by community, made for community.
             </p>
             {/* Social Links */}
             <div className="mt-4 flex gap-4">
@@ -137,20 +136,17 @@ export function SiteFooter() {
             <p className="text-xs text-muted-foreground">
               &copy; {new Date().getFullYear()} Goods on Country. All rights reserved.
             </p>
-            <div className="flex gap-4 text-xs text-muted-foreground">
+            <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">
               <Link href="/privacy" className="hover:text-primary">
-                Privacy Policy
+                Privacy
               </Link>
               <Link href="/terms" className="hover:text-primary">
-                Terms of Service
+                Terms
+              </Link>
+              <Link href="/contact" className="hover:text-primary">
+                Contact
               </Link>
               <FeedbackWidget />
-              <Link href="/dashboard" className="hover:text-primary">
-                Dashboard
-              </Link>
-              <Link href="/production" className="hover:text-primary">
-                Shift Log
-              </Link>
             </div>
           </div>
         </div>

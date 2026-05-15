@@ -31,9 +31,9 @@ export const brand = {
 };
 
 export const story = {
-  origin: `In 2018, Nicholas Marchesi attended a health conference where Dr. Bo Remenyi spoke about Rheumatic Heart Disease. Her message was clear: RHD is entirely preventable through good environmental health — yet she was filling out death certificates for children in remote communities dying from this disease.
+  origin: `In 2018, Nicholas Marchesi attended a health conference where Dr. Bo Remenyi spoke about Rheumatic Heart Disease. Her message was clear: RHD is entirely preventable through good environmental health, yet she was filling out death certificates for children in remote communities dying from this disease.
 
-This confronted Nicholas with the reality of disadvantage in remote Australia. Combined with his experience at Orange Sky — now serving a third of its operations in remote communities — where he witnessed people without beds, without working washing machines, and children with skin infections that cascade into RHD, it sparked the question: What can we actually build that makes a difference?
+This confronted Nicholas with the reality of disadvantage in remote Australia. Combined with his experience at Orange Sky, now serving a third of its operations in remote communities, where he witnessed people without beds, without working washing machines, and children with skin infections that cascade into RHD, it sparked the question: What can we actually build that makes a difference?
 
 The answer became Goods: durable, repairable, community-designed "health hardware" that addresses the environmental conditions driving preventable disease.`,
 
@@ -53,7 +53,7 @@ The answer became Goods: durable, repairable, community-designed "health hardwar
       { value: '55%', label: 'of very remote First Nations homes are overcrowded', source: 'AIHW, 2021 Census' },
       { value: '1-2 yrs', label: 'lifespan of standard washing machines (vs 10-15)', source: 'East Arnhem Spin Project' },
     ],
-    description: 'Thousands of people in remote Australia sleep on the floor or share beds. Essential appliances fail within months because they were never designed for remote conditions. The freight makes everything unaffordable. This isn\'t a cultural choice — it\'s a failure of infrastructure.',
+    description: 'Thousands of people in remote Australia sleep on the floor or share beds. Essential appliances fail within months because they were never designed for remote conditions. The freight makes everything unaffordable. This isn\'t a cultural choice. It\'s a failure of infrastructure.',
   },
 
   solution: {
@@ -69,7 +69,7 @@ The answer became Goods: durable, repairable, community-designed "health hardwar
       },
       {
         title: 'Health Hardware',
-        description: 'A washing machine isn\'t convenience — it\'s cardiac prevention. Clean bedding breaks the scabies cycle.',
+        description: 'A washing machine isn\'t convenience. It\'s cardiac prevention. Clean bedding breaks the scabies cycle.',
       },
       {
         title: 'Community Ownership',
@@ -101,7 +101,7 @@ export const productCategories = [
   {
     id: 'washers',
     name: 'Washing Machines',
-    description: 'Pakkimjalki Kari — commercial-grade Speed Queen base, one-button operation, named in Warumungu language. Currently in prototype with communities.',
+    description: 'Pakkimjalki Kari: commercial-grade Speed Queen base, one-button operation, named in Warumungu language. Currently in prototype with communities.',
     products: ['washing-machine-standard'],
     status: 'register-interest',
     icon: 'washer',
@@ -109,7 +109,7 @@ export const productCategories = [
   {
     id: 'basket-bed',
     name: 'Basket Bed',
-    description: 'Our first prototype — collapsible baskets with zip ties and toppers. Single, double, and stackable. Now open source — download the plans and build your own.',
+    description: 'Our first prototype: collapsible baskets with zip ties and toppers. Single, double, and stackable. Now open source. Download the plans and build your own.',
     products: ['basket-bed-single'],
     status: 'open-source',
     icon: 'basket',
@@ -260,7 +260,7 @@ export const quotes = [
 
 export const enterpriseOpportunity = {
   headline: 'Community production partnerships',
-  description: 'We don\'t license — we transfer. Communities receive full training, manufacturing capability, and documentation. They keep 100% of what they make and sell.',
+  description: 'We don\'t license. We transfer. Communities receive full training, manufacturing capability, and documentation. They keep 100% of what they make and sell.',
   benefits: [
     'Full training and ongoing support',
     'Manufacturing capability transfer',
@@ -315,7 +315,7 @@ export const partners = {
   ],
 };
 
-// Journey stories — longer narrative arcs with before/after
+// Journey stories: longer narrative arcs with before/after
 // Source: Empathy Ledger v2 interviews + Community Voices fieldwork
 export const journeyStories = [
   {
@@ -325,7 +325,7 @@ export const journeyStories = [
     location: 'Tennant Creek, NT',
     theme: 'housing-journey',
     pullQuote: 'A good night\'s sleep is important... from a big day from work.',
-    narrative: 'Zelda moved her family from a tin shed to a house in Tennant Creek. For her, the bed wasn\'t furniture — it was the first real sign that things were changing. Her children go to school. She works. And at the end of the day, she sleeps properly. "It\'s better here. Yeah. At house." Simple words from a mother who knows what stability feels like because she lived without it.',
+    narrative: 'Zelda moved her family from a tin shed to a house in Tennant Creek. For her, the bed wasn\'t furniture. It was the first real sign that things were changing. Her children go to school. She works. And at the end of the day, she sleeps properly. "It\'s better here. Yeah. At house." Simple words from a mother who knows what stability feels like because she lived without it.',
     quotes: [
       { text: 'It\'s better here. Yeah. At house.', context: 'On moving from a tin shed' },
       { text: 'A good night\'s sleep is important... from a big day from work.', context: 'On why beds matter' },
@@ -339,7 +339,7 @@ export const journeyStories = [
     location: 'Tennant Creek, NT',
     theme: 'health',
     pullQuote: 'It\'s gonna be home for me now.',
-    narrative: 'Brian had a heart attack last year. He has no bone in his feet. He chose Tennant Creek over his hometown of Doomadgee because the community here supports him. For Brian, a bed isn\'t comfort — it\'s medical necessity. Sleeping on the floor with his conditions risks pneumonia, falls, and slower recovery. When he says "It\'s gonna be home for me now," he means a place where he can rest properly and heal.',
+    narrative: 'Brian had a heart attack last year. He has no bone in his feet. He chose Tennant Creek over his hometown of Doomadgee because the community here supports him. For Brian, a bed isn\'t comfort. It\'s medical necessity. Sleeping on the floor with his conditions risks pneumonia, falls, and slower recovery. When he says "It\'s gonna be home for me now," he means a place where he can rest properly and heal.',
     quotes: [
       { text: 'I had a heart attack last year... I got no bone in my feet.', context: 'On his health' },
       { text: 'I like Tennant Creek more better than back home.', context: 'On choosing community' },
@@ -353,7 +353,7 @@ export const journeyStories = [
     location: 'Palm Island, QLD',
     theme: 'dignity',
     pullQuote: 'Hardly anyone around the community has beds.',
-    narrative: 'Ivy slept on the floor for years. Not by choice — there simply weren\'t beds available on Palm Island. When family visited, everyone slept on the floor together. After receiving a Goods bed, the change was immediate. "It\'s more better than laying around on the floors... It was easy to make. Yeah, it\'s nice." Simple words that capture a shift in daily dignity. The bed was assembled in minutes, no tools required.',
+    narrative: 'Ivy slept on the floor for years. Not by choice: there simply weren\'t beds available on Palm Island. When family visited, everyone slept on the floor together. After receiving a Goods bed, the change was immediate. "It\'s more better than laying around on the floors... It was easy to make. Yeah, it\'s nice." Simple words that capture a shift in daily dignity. The bed was assembled in minutes, no tools required.',
     quotes: [
       { text: 'Hardly anyone around the community has beds. When family comes to visit, people sleep on the floor.', context: 'Describing the need' },
       { text: 'It\'s more better than laying around on the floors... It was easy to make. Yeah, it\'s nice.', context: 'After receiving a bed' },
@@ -366,7 +366,7 @@ export const journeyStories = [
     location: 'Tennant Creek, NT',
     theme: 'co-design',
     pullQuote: 'Working both ways — cultural side in white society and Indigenous society.',
-    narrative: 'Elder Dianne Stokes didn\'t just receive a bed — she helped design it. She sat around the fire with her family refining the bed\'s construction. She named the washing machine "Pakkimjalki Kari" in Warumungu language. When she received the first bed, she came back within two weeks requesting twenty more for her community. Dianne embodies the Goods philosophy: community members aren\'t recipients, they\'re co-designers.',
+    narrative: 'Elder Dianne Stokes didn\'t just receive a bed. She helped design it. She sat around the fire with her family refining the bed\'s construction. She named the washing machine "Pakkimjalki Kari" in Warumungu language. When she received the first bed, she came back within two weeks requesting twenty more for her community. Dianne embodies the Goods philosophy: community members aren\'t recipients, they\'re co-designers.',
     quotes: [
       { text: 'Working both ways — cultural side in white society and Indigenous society.', context: 'On the co-design approach' },
     ],
@@ -378,7 +378,7 @@ export const journeyStories = [
     location: 'Tennant Creek, NT',
     theme: 'co-design',
     pullQuote: 'We\'ve never been asked at what sort of house we\'d like to live in.',
-    narrative: 'Linda Turner grew up in the bush. She watched the intervention reshape perceptions of Aboriginal men. She saw decisions made about her community without her community\'s input. "We\'ve never been asked at what sort of house we\'d like to live in." That single sentence captures why Goods exists — because the opposite of charity is asking people what they actually need. Linda is now setting up a business sharing culture and bush medicine. "We\'re setting this up for our kids and grandkids... independence, being in charge of your own destiny."',
+    narrative: 'Linda Turner grew up in the bush. She watched the intervention reshape perceptions of Aboriginal men. She saw decisions made about her community without her community\'s input. "We\'ve never been asked at what sort of house we\'d like to live in." That single sentence captures why Goods exists, because the opposite of charity is asking people what they actually need. Linda is now setting up a business sharing culture and bush medicine. "We\'re setting this up for our kids and grandkids... independence, being in charge of your own destiny."',
     quotes: [
       { text: 'We\'ve never been asked at what sort of house we\'d like to live in.', context: 'On community voice' },
       { text: 'We\'re setting this up for our kids and grandkids... independence, being in charge of your own destiny.', context: 'On self-determination' },
@@ -391,7 +391,7 @@ export const journeyStories = [
     location: 'Tennant Creek, NT',
     theme: 'washing-machine',
     pullQuote: 'They truly wanna a washing machine to wash their blanket, to wash their clothes, and it\'s right there at home.',
-    narrative: 'Patricia Frank works at an Aboriginal corporation in Tennant Creek. She\'s from the Oo Tribe, White Cockatoo clan group. She sees the need every day — families without working washing machines, dirty blankets contributing to skin infections, children missing school. "They truly wanna a washing machine to wash their blanket, to wash their clothes, and it\'s right there at home." Patricia helped connect Goods with language groups across the NT, building relationships that made the Pakkimjalki Kari washing machine possible.',
+    narrative: 'Patricia Frank works at an Aboriginal corporation in Tennant Creek. She\'s from the Oo Tribe, White Cockatoo clan group. She sees the need every day: families without working washing machines, dirty blankets contributing to skin infections, children missing school. "They truly wanna a washing machine to wash their blanket, to wash their clothes, and it\'s right there at home." Patricia helped connect Goods with language groups across the NT, building relationships that made the Pakkimjalki Kari washing machine possible.',
     quotes: [
       { text: 'They truly wanna a washing machine to wash their blanket, to wash their clothes, and it\'s right there at home.', context: 'On the need for washing machines' },
       { text: 'We wanna help family throughout the NT and their First Nation People.', context: 'On extending reach' },
@@ -407,7 +407,7 @@ export const impactStories = [
     person: 'Alfred Johnson',
     location: 'Palm Island, QLD',
     quote: 'Having a bed is something you need; you feel more safe when you sleep in a bed.',
-    summary: 'Alfred articulated something deeper than comfort — a sense of safety that comes from having a proper bed.',
+    summary: 'Alfred articulated something deeper than comfort: a sense of safety that comes from having a proper bed.',
   },
   {
     id: 'melissa-comfort',
@@ -415,7 +415,7 @@ export const impactStories = [
     person: 'Melissa Jackson',
     location: 'Tennant Creek, NT',
     quote: 'I think it\'s a great bed. Nice bed. And it\'s more lower, um, more comfortable.',
-    summary: 'Melissa\'s family in Tennant Creek chose the lower bed design. Her feedback shaped the next iteration — beds designed with families, not for them.',
+    summary: 'Melissa\'s family in Tennant Creek chose the lower bed design. Her feedback shaped the next iteration: beds designed with families, not for them.',
   },
   {
     id: 'gloria-health',
@@ -423,7 +423,7 @@ export const impactStories = [
     person: 'Gloria',
     location: 'Kalgoorlie, WA',
     quote: 'The impact of a mattress on overall health.',
-    summary: 'Gloria is a great-grandmother on dialysis. For her, a mattress isn\'t about comfort — it\'s about managing chronic illness.',
+    summary: 'Gloria is a great-grandmother on dialysis. For her, a mattress isn\'t about comfort. It\'s about managing chronic illness.',
   },
   {
     id: 'norman-future',
@@ -431,7 +431,7 @@ export const impactStories = [
     person: 'Norman Frank',
     location: 'Tennant Creek, NT',
     quote: 'I want to see a better future for our kids and better housing for our people.',
-    summary: 'Elder Norman Frank founded Wilya Janta to advocate for housing. When his daughter tried a Goods bed, he called asking for three more — in maroon.',
+    summary: 'Elder Norman Frank founded Wilya Janta to advocate for housing. When his daughter tried a Goods bed, he called asking for three more, in maroon.',
   },
   {
     id: 'jessica-health-connection',
@@ -439,7 +439,7 @@ export const impactStories = [
     person: 'Jessica Allardyce',
     location: 'Gapuwiyak, East Arnhem, NT',
     quote: 'Scabies often leads to Rheumatic Heart Disease, so washing machines are essential.',
-    summary: 'A washing machine isn\'t a convenience — it\'s cardiac prevention. Clean bedding breaks the scabies cycle.',
+    summary: 'A washing machine isn\'t a convenience. It\'s cardiac prevention. Clean bedding breaks the scabies cycle.',
   },
   {
     id: 'cliff-health-messages',
@@ -447,7 +447,7 @@ export const impactStories = [
     person: 'Cliff Plummer',
     location: 'Tennant Creek, NT',
     quote: 'You got to get health messages across.',
-    summary: 'Cliff is a retired Aboriginal health practitioner. He connects beds to community health — sleeping on cold ground leads to pneumonia, poor rest, slower healing.',
+    summary: 'Cliff is a retired Aboriginal health practitioner. He connects beds to community health: sleeping on cold ground leads to pneumonia, poor rest, slower healing.',
   },
 ];
 
@@ -495,7 +495,7 @@ export const communityPartnerships = [
     description: 'Through the Oonchiumpa consultancy, Alice Springs became the co-design hub for Goods products. The Stretch Bed was developed through deep consultation with the Oonchiumpa Bloomfield family, combining traditional knowledge with modern durability. Kristy Bloomfield leads this 100% Aboriginal-owned consultancy.',
     keyPeople: ['Kristy Bloomfield', 'Oonchiumpa family'],
     bedsDelivered: 60,
-    highlight: 'Oonchiumpa — 100% Aboriginal-owned consultancy leading co-design',
+    highlight: 'Oonchiumpa: 100% Aboriginal-owned consultancy leading co-design',
   },
   {
     id: 'palm-island',
@@ -559,14 +559,14 @@ export const processSteps = [
     step: 3,
     title: 'Cut',
     subtitle: 'Cutting shapes from sheets',
-    description: 'Precision cutting creates the components for each bed frame. Every cut is optimised to minimise waste — what remains gets fed back into the next batch.',
+    description: 'Precision cutting creates the components for each bed frame. Every cut is optimised to minimise waste. What remains gets fed back into the next batch.',
     icon: 'scissors',
   },
   {
     step: 4,
     title: 'Build',
     subtitle: 'Pressing recycled plastic legs',
-    description: 'Melted HDPE plastic is pressed into four sturdy bed legs using moulds in the containerised factory. These recycled plastic components are the foundation of every Stretch Bed — strong, weather-resistant, and made entirely from community waste.',
+    description: 'Melted HDPE plastic is pressed into four sturdy bed legs using moulds in the containerised factory. These recycled plastic components are the foundation of every Stretch Bed: strong, weather-resistant, and made entirely from community waste.',
     icon: 'wrench',
   },
   {
@@ -580,12 +580,12 @@ export const processSteps = [
     step: 6,
     title: 'Deliver',
     subtitle: 'Beds reaching communities',
-    description: 'Finished beds travel to remote communities across Australia. Every delivery is an event — families gather, beds are assembled together, and community grows stronger.',
+    description: 'Finished beds travel to remote communities across Australia. Every delivery is an event: families gather, beds are assembled together, and community grows stronger.',
     icon: 'truck',
   },
 ];
 
-// Investment case — sourced from Snow Foundation Q1 2026 proposal
+// Investment case: sourced from Snow Foundation Q1 2026 proposal
 // Sally's feedback incorporated: removed Deadly Heart Trek reference,
 // added Do No Harm principle, fleshed out risks + mitigations
 export const investmentCase = {
@@ -607,12 +607,12 @@ export const investmentCase = {
   ],
 
   demand: [
-    { text: 'Diane Stokes received one bed, requested 20 more within two weeks — offering to fund them herself', person: 'Diane Stokes, Tennant Creek' },
+    { text: 'Diane Stokes received one bed, requested 20 more within two weeks, offering to fund them herself', person: 'Diane Stokes, Tennant Creek' },
     { text: 'Norm Frank called requesting three beds in maroon after his daughter tried them', person: 'Norman Frank, Tennant Creek' },
     { text: 'Utopian homelands want beds for every child (~$150,000 worth)', person: 'Utopia Homelands, NT' },
     { text: 'Homeland Schools Company requesting 65 beds for kids across Maningrida communities', person: 'Maningrida, NT' },
     { text: 'Four health organisations reached out following last year\'s forum', person: 'Healthy Homes coordinators, OT workers' },
-    { text: 'NPY Women\'s Council — "always looking for beds"', person: 'Angela Lynch, NPY Women\'s Council' },
+    { text: 'NPY Women\'s Council: "always looking for beds"', person: 'Angela Lynch, NPY Women\'s Council' },
   ],
 
   productionPlant: {
@@ -641,7 +641,7 @@ export const investmentCase = {
     },
     {
       risk: 'Payment model sustainability',
-      detail: 'Current model has no margin — funds come in, products go out. Not financially sustainable long-term.',
+      detail: 'Current model has no margin: funds come in, products go out. Not financially sustainable long-term.',
       mitigation: 'This investment helps shift toward sustainable model. Social enterprise pathway: use philanthropy to build plant, then loan or rent to communities creating revenue. If ACT could build 1,000 beds on hand and sell them, this creates revenue stream for reinvestment.',
     },
     {
@@ -651,13 +651,13 @@ export const investmentCase = {
     },
     {
       risk: 'Key learnings from iteration',
-      detail: 'Each production run reveals improvements needed — V4 iterations still evolving.',
+      detail: 'Each production run reveals improvements needed. V4 iterations still evolving.',
       mitigation: 'Measured approach: deploy, gather feedback, iterate. Field testing from expanded deployment informs next version. Production cost targeting reduction from $550-650 range.',
     },
     {
       risk: 'Do no harm',
       detail: 'Risk of disrupting community dynamics, creating dependency, or cultural harm through imposed solutions.',
-      mitigation: 'Two years of iterative engagement with Bloomfield family. Products co-designed "around the fire," not imposed. Community members are co-designers, not recipients. Dynamic consent — communities choose what they need, when. Partnership models through existing strong community organisations.',
+      mitigation: 'Two years of iterative engagement with Bloomfield family. Products co-designed "around the fire," not imposed. Community members are co-designers, not recipients. Dynamic consent: communities choose what they need, when. Partnership models through existing strong community organisations.',
     },
   ],
 
@@ -670,7 +670,7 @@ export const investmentCase = {
     {
       name: 'Red Dust Robotics',
       role: 'Youth STEM education',
-      detail: 'Young fella teaching kids 3D printing and robotics — potential manufacturing skills pathway.',
+      detail: 'Young fella teaching kids 3D printing and robotics: potential manufacturing skills pathway.',
     },
     {
       name: 'Centre of Appropriate Technology',
@@ -735,7 +735,7 @@ export const investmentCase = {
   ],
 };
 
-// Community locations — coordinates for map
+// Community locations: coordinates for map
 export type CommunityLocation = {
   id: string;
   name: string;
@@ -780,7 +780,7 @@ export const communityLocations: CommunityLocation[] = [
     storytellerCount: 0,
     bedsDelivered: 60,
     description: 'Through the Oonchiumpa consultancy, Alice Springs became the co-design hub for Goods products.',
-    highlight: 'Oonchiumpa — 100% Aboriginal-owned consultancy leading co-design',
+    highlight: 'Oonchiumpa: 100% Aboriginal-owned consultancy leading co-design',
   },
   {
     id: 'townsville',
@@ -817,7 +817,7 @@ export const communityLocations: CommunityLocation[] = [
   },
 ];
 
-// Storyteller profiles — for the stories grid
+// Storyteller profiles: for the stories grid
 // Only includes people with verified quotes + photos
 export const storytellerProfiles = [
   {
@@ -914,7 +914,7 @@ export const storytellerProfiles = [
   },
 ];
 
-// Local enrichment for EL storytellers — adds fields not stored in EL
+// Local enrichment for EL storytellers: adds fields not stored in EL
 // Keyed by storyteller name (matched case-insensitively at merge time)
 export const storytellerEnrichment: Record<string, {
   community?: string;
@@ -933,7 +933,7 @@ export const storytellerEnrichment: Record<string, {
   'Brian Russell': { community: 'tennant-creek', localPhoto: '/images/people/brian-russell.jpg' },
 };
 
-// Video gallery items — local videos + external embeds
+// Video gallery items: local videos + external embeds
 export const videoGallery = [
   {
     id: 'jaquilane-testimony',
@@ -983,7 +983,7 @@ export const videoGallery = [
   {
     id: 'stretch-bed-assembly',
     title: 'The Stretch Bed',
-    description: 'Close-up of the bed assembly — no tools, under 5 minutes.',
+    description: 'Close-up of the bed assembly: no tools, under 5 minutes.',
     src: videoUrl('stretch-bed-desktop.mp4'),
     poster: '/video/stretch-bed-poster.jpg',
     type: 'local' as const,
@@ -1128,11 +1128,11 @@ export function getQuotesByThemes(themeIds: ThemeId[]) {
 // ---------- Media Pack ----------
 
 export const mediaPack = {
-  // About A Curious Tractor — the parent organisation
+  // About A Curious Tractor: the parent organisation
   aboutACT: `A Curious Tractor is the organisation behind Goods on Country. Founded in September 2023 by Nicholas Marchesi and Benjamin Knight, ACT exists to design, manufacture, and transfer ownership of essential goods to remote Indigenous communities across Australia. The name reflects the approach: curiosity-driven problem solving applied to entrenched disadvantage. ACT is a registered charity and social enterprise.`, // TODO: Ben to review and refine
 
   // Copy-paste-ready press boilerplate
-  pressBoilerplate: `Goods on Country is a social enterprise delivering durable, community-designed essential goods to remote Indigenous communities across Australia. The flagship product — the Stretch Bed — is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty Australian canvas. Each bed diverts 20kg of plastic from landfill, assembles in under five minutes with no tools, and supports up to 200kg. With 400+ beds delivered across 8+ communities, Goods on Country addresses the environmental health conditions that drive preventable disease — including Rheumatic Heart Disease — by putting health hardware directly into the hands of families who need it. The organisation's long-term goal is to transfer manufacturing capability to community-owned enterprises. Founded in 2023, Goods on Country is a project of A Curious Tractor.`,
+  pressBoilerplate: `Goods on Country is a social enterprise delivering durable, community-designed essential goods to remote Indigenous communities across Australia. The flagship product, the Stretch Bed, is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty Australian canvas. Each bed diverts 20kg of plastic from landfill, assembles in under five minutes with no tools, and supports up to 200kg. With 400+ beds delivered across 8+ communities, Goods on Country addresses the environmental health conditions that drive preventable disease, including Rheumatic Heart Disease, by putting health hardware directly into the hands of families who need it. The organisation's long-term goal is to transfer manufacturing capability to community-owned enterprises. Founded in 2023, Goods on Country is a project of A Curious Tractor.`,
 
   // Brand color palette
   brandColors: [
@@ -1143,7 +1143,7 @@ export const mediaPack = {
   ],
 
   // ──────────────────────────────────────────────────────────────
-  // VIDEOS — How to add/edit:
+  // VIDEOS: How to add/edit:
   //
   // 1. To ADD a new video, copy-paste this template:
   //    {
@@ -1168,7 +1168,7 @@ export const mediaPack = {
   // ──────────────────────────────────────────────────────────────
   videos: [
     {
-      title: 'Beds & Dignity — Cliff Plummer',
+      title: 'Beds & Dignity: Cliff Plummer',
       description: 'Cliff speaks about how essential goods connect to dignity and community health.',
       embedUrl: 'https://share.descript.com/embed/2gxa5x40r9N',
       downloadSrc: undefined as string | undefined,
@@ -1180,19 +1180,19 @@ export const mediaPack = {
       downloadSrc: videoUrl('recycling-plant-desktop.mp4'),
     },
     {
-      title: 'Community Voices — Bed Recipient, Alice Springs',
+      title: 'Community Voices: Bed Recipient, Alice Springs',
       description: 'A community member and Stretch Bed recipient from Alice Springs shares their experience.',
       embedUrl: 'https://share.descript.com/embed/LAT0KNJMxmH',
       downloadSrc: undefined as string | undefined,
     },
     {
-      title: 'Stretch Bed Making Timelapse — Alice Springs',
+      title: 'Stretch Bed Making Timelapse: Alice Springs',
       description: 'Timelapse of the Stretch Bed being made at the Alice Springs household production facility.',
       embedUrl: 'https://share.descript.com/embed/Xtrc5ZYsym6',
       downloadSrc: undefined as string | undefined,
     },
     {
-      title: 'Community Voices — Fred, Oonchiumpa',
+      title: 'Community Voices: Fred, Oonchiumpa',
       description: 'Fred from Oonchiumpa, a core Goods on Country community partner, shares his perspective.',
       embedUrl: 'https://share.descript.com/embed/YQwAcYfxzkn',
       downloadSrc: undefined as string | undefined,
@@ -1200,7 +1200,7 @@ export const mediaPack = {
   ],
 
   // ──────────────────────────────────────────────────────────────
-  // INSTAGRAM-READY — short-form vertical/square videos for social
+  // INSTAGRAM-READY: short-form vertical/square videos for social
   // ──────────────────────────────────────────────────────────────
   instagramVideos: [
     {
@@ -1218,7 +1218,7 @@ export const mediaPack = {
   ],
 
   // ──────────────────────────────────────────────────────────────
-  // RAW FOOTAGE (no captions/subtitles) — same format as videos above
+  // RAW FOOTAGE (no captions/subtitles): same format as videos above
   // These are the uncaptioned versions for partners who need clean footage
   // ──────────────────────────────────────────────────────────────
   rawVideos: [
@@ -1230,7 +1230,7 @@ export const mediaPack = {
   ],
 
   // ──────────────────────────────────────────────────────────────
-  // PHOTOS — How to add/edit:
+  // PHOTOS: How to add/edit:
   //
   // 1. Drop the image file into v2/public/images/media-pack/
   // 2. Add an entry below with src, caption, and optional vertical flag:
@@ -1240,49 +1240,49 @@ export const mediaPack = {
   // Set vertical: true for portrait/tall images so they display at full height.
   // ──────────────────────────────────────────────────────────────
   photos: [
-    { src: '/images/product/stretch-bed-hero.jpg', caption: 'The Stretch Bed — recycled HDPE plastic, galvanised steel, heavy-duty canvas' },
+    { src: '/images/product/stretch-bed-hero.jpg', caption: 'The Stretch Bed: recycled HDPE plastic, galvanised steel, heavy-duty canvas' },
     { src: '/images/media-pack/community-bed-assembly.jpg', caption: 'Community members assembling a Stretch Bed on country' },
-    { src: '/images/media-pack/thumbs-up-stretch-bed.jpg', caption: 'Trying out the Stretch Bed — recycled plastic legs, canvas surface, built to last' },
-    { src: '/images/media-pack/lying-on-stretch-bed.jpg', caption: 'Testing the Stretch Bed — designed for comfort, durability, and easy flat-packing' },
+    { src: '/images/media-pack/thumbs-up-stretch-bed.jpg', caption: 'Trying out the Stretch Bed: recycled plastic legs, canvas surface, built to last' },
+    { src: '/images/media-pack/lying-on-stretch-bed.jpg', caption: 'Testing the Stretch Bed: designed for comfort, durability, and easy flat-packing' },
     { src: '/images/media-pack/woman-on-red-stretch-bed.jpg', caption: 'A Stretch Bed with red recycled plastic legs in Alice Springs' },
     { src: '/images/media-pack/community-testing-bed-golden-hour.jpg', caption: 'Community members testing a Stretch Bed at golden hour, Tennant Creek' },
     { src: '/images/media-pack/nic-with-elder-on-verandah.jpg', caption: 'Nic yarning with an Elder and community member on a verandah with the Stretch Bed' },
     { src: '/images/media-pack/goods-branding-golden-hour.jpg', caption: 'Goods branding on the Stretch Bed canvas at golden hour', vertical: true },
-    { src: '/images/media-pack/washing-machine-enclosure-sunset.jpg', caption: 'Pakkimjalki Kari washing machine enclosure — recycled plastic panels at sunset' },
+    { src: '/images/media-pack/washing-machine-enclosure-sunset.jpg', caption: 'Pakkimjalki Kari washing machine enclosure: recycled plastic panels at sunset' },
     { src: '/images/media-pack/speed-queen-controls.jpg', caption: 'Nic showing Speed Queen washing machine controls to a community member' },
     { src: '/images/product/washing-machine-installed.jpg', caption: 'Washing machine installed in community' },
-    { src: '/images/product/washing-machine-name.jpg', caption: 'Pakkimjalki Kari — named in Warumungu language by Elder Dianne Stokes' },
+    { src: '/images/product/washing-machine-name.jpg', caption: 'Pakkimjalki Kari: named in Warumungu language by Elder Dianne Stokes' },
     { src: '/images/product/stretch-bed-kids-building.jpg', caption: 'Kids helping build beds on country' },
     { src: '/images/process/container-factory.jpg', caption: 'The containerised production facility' },
     { src: '/images/process/hydraulic-press.jpg', caption: 'Hydraulic press for recycled plastic sheets' },
   ] as { src: string; caption: string; vertical?: boolean }[],
 
-  // External download links — placeholders
+  // External download links: placeholders
   externalLinks: {
     photoLibrary: undefined as string | undefined, // TODO: Add Google Drive / Dropbox URL for full photo library
     logoPack: undefined as string | undefined, // TODO: Add Google Drive / Dropbox URL for logo pack
   },
 };
 
-// Oonchiumpa/Bloomfield family partnership — for pitch page
+// Oonchiumpa/Bloomfield family partnership: for pitch page
 export const oonchiumpaPartnership = {
   headline: 'Oonchiumpa / Bloomfield Family',
   subheadline: '100% Aboriginal-owned consultancy, deep roots in Central Australia',
   description: 'Two years co-designing products "around the fire", building washing machines together, and planning a production facility in Alice Springs. Kristy Bloomfield leads cultural consultation at university-equivalent rates (~$3,800/day).',
   // TODO: Replace with verified Kristy Bloomfield quote when available
   kristyQuote: {
-    text: 'We see this as bigger than beds. It\'s about families owning the whole thing — the making, the business, the future.',
+    text: 'We see this as bigger than beds. It\'s about families owning the whole thing: the making, the business, the future.',
     author: 'Kristy Bloomfield',
     context: 'Oonchiumpa Consultancy, Alice Springs',
-    verified: false, // PLACEHOLDER — needs real quote from Kristy
+    verified: false, // PLACEHOLDER: needs real quote from Kristy
   },
   fredVideo: {
-    title: 'Community Voices — Fred, Oonchiumpa',
+    title: 'Community Voices: Fred, Oonchiumpa',
     embedUrl: 'https://share.descript.com/embed/YQwAcYfxzkn',
   },
 };
 
-// Partnership iteration journey — how the relationship evolved
+// Partnership iteration journey: how the relationship evolved
 export const partnershipJourney = [
   {
     step: 1,
@@ -1302,7 +1302,7 @@ export const partnershipJourney = [
   {
     step: 4,
     title: 'Defy Design and recycling knowledge',
-    description: 'Partnered with Defy Design to learn plastic recycling and build the containerised production plant — turning community waste into bed components.',
+    description: 'Partnered with Defy Design to learn plastic recycling and build the containerised production plant, turning community waste into bed components.',
   },
   {
     step: 5,
@@ -1312,7 +1312,7 @@ export const partnershipJourney = [
   {
     step: 6,
     title: 'Oonchiumpa delivering beds on country',
-    description: 'Oonchiumpa consultancy became the cultural backbone — going into communities together, delivering beds, building washing machines side by side.',
+    description: 'Oonchiumpa consultancy became the cultural backbone: going into communities together, delivering beds, building washing machines side by side.',
   },
   {
     step: 7,
@@ -1326,7 +1326,7 @@ export const partnershipJourney = [
   },
 ];
 
-// Advisory board — the people guiding Goods on Country
+// Advisory board: the people guiding Goods on Country
 export const advisoryGroup = [
   {
     name: 'Kristy Bloomfield',
@@ -1485,7 +1485,7 @@ export const goodsOrbit = [
   },
 ];
 
-// Enterprise vision — for pitch page "Enterprise & Training" section
+// Enterprise vision: for pitch page "Enterprise & Training" section
 export const enterpriseVision = {
   headline: 'Local Enterprise, Not Charity',
   description: 'The bigger picture is community ownership of manufacturing. Local people collecting waste, making products, running the business. Our job is to become unnecessary.',
@@ -1497,7 +1497,7 @@ export const enterpriseVision = {
     'Logistics and delivery',
   ],
   youthPathways: 'Young people learning manufacturing, business skills, and robotics through Red Dust partnership. A pathway from community engagement to employment.',
-  ownership: 'Communities eventually own and run the whole operation. We transfer manufacturing capability, supply chain connections, and quality frameworks — then step back.',
+  ownership: 'Communities eventually own and run the whole operation. We transfer manufacturing capability, supply chain connections, and quality frameworks, then step back.',
 };
 
 // Themes from community voices
@@ -1517,13 +1517,13 @@ export const communityThemes = [
   },
   {
     title: 'Cultural Obligation & Family',
-    description: 'Bedding needs spike during cultural gatherings — Christmas, funerals, ceremonies.',
+    description: 'Bedding needs spike during cultural gatherings: Christmas, funerals, ceremonies.',
     quote: 'Sometimes family don\'t have extra mattresses. Kids sleep out with family.',
     attribution: 'Carmelita, Palm Island',
   },
   {
     title: 'Dignity, Safety, Belonging',
-    description: 'The emotional dimension appears consistently — beds provide safety and dignity.',
+    description: 'The emotional dimension appears consistently: beds provide safety and dignity.',
     quote: 'Having a bed is something you need; you feel more safe when you sleep in a bed.',
     attribution: 'Alfred, Palm Island',
   },

@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { PartnershipForm } from '@/components/partnership-form';
 
 export const metadata = {
-  title: 'Partner With Us | Goods on Country',
+  title: 'Partner With Us',
   description: 'Sponsor beds, license the model, or partner on distribution. Join the movement for community-owned manufacturing.',
 };
 

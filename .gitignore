@@ -109,3 +109,20 @@ wiki/raw/grants-archive/**/*.docx
 wiki/raw/grants-archive/**/*.doc
 wiki/raw/grants-archive/**/*.xlsx
 wiki/raw/grants-archive/**/*.xls
+
+# Scratch screenshots from debugging sessions
+/asset-register*.png
+/bed-norman-machine.png
+/edit-page-f25.png
+/filter-applied.png
+/filter-popover.png
+/final-1920.png
+/fleet-*.png
+/retired-hidden.png
+/telemetry-*.png
+/user-viewport-*.png
+
+# Tooling state directories
+/.agents/
+/.codex/
+/.playwright-mcp/

@@ -8,12 +8,14 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { CartButton } from '@/components/cart';
 import { AuthNavItem } from '@/components/layout/auth-nav-item';
 
-const navigation = [
-  { name: 'The Stretch Bed', href: '/shop/stretch-bed-single' },
-  { name: 'Pakkimjalki Kari', href: '/shop/washing-machine' },
+type NavItem = { name: string; href: string; subtitle?: string };
+
+const navigation: NavItem[] = [
+  { name: 'Stretch Bed', href: '/shop/stretch-bed-single' },
+  { name: 'Pakkimjalki Kari', subtitle: 'Washing Machine', href: '/shop/washing-machine' },
   { name: 'How It\'s Made', href: '/process' },
   { name: 'Our Story', href: '/story' },
-  { name: 'My Goods', href: '/my-items' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export function SiteHeader() {
@@ -39,9 +41,14 @@ export function SiteHeader() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
+              className="group text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
             >
-              {item.name}
+              <span>{item.name}</span>
+              {item.subtitle && (
+                <span className="ml-1 text-xs text-muted-foreground group-hover:text-primary/70">
+                  ({item.subtitle})
+                </span>
+              )}
             </Link>
           ))}
         </div>
@@ -85,6 +92,9 @@ export function SiteHeader() {
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
+                  {item.subtitle && (
+                    <span className="ml-2 text-sm text-muted-foreground">({item.subtitle})</span>
+                  )}
                 </Link>
               ))}
               <div className="mt-4 flex flex-col gap-3">

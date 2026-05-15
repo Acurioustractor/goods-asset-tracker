@@ -1,5 +1,5 @@
 /**
- * Goods on Country — Master Compendium (Structured Data)
+ * Goods on Country: Master Compendium (Structured Data)
  *
  * Source: docs/COMPENDIUM_MARCH_2026.md
  * Last synced: March 27, 2026
@@ -88,7 +88,7 @@ export const communityPartners: CommunityPartner[] = [
     name: 'Palm Island Community Company (PICC)',
     category: 'core',
     location: 'Palm Island, QLD',
-    description: '141 beds deployed — largest single community deployment. Said "we\'ll buy it" re: production facility itself.',
+    description: '141 beds deployed: largest single community deployment. Said "we\'ll buy it" re: production facility itself.',
     contacts: [{ name: 'Narelle' }],
     keyFacts: ['40-bed order discussed Feb 2026'],
   },
@@ -96,7 +96,7 @@ export const communityPartners: CommunityPartner[] = [
     id: 'npy',
     name: 'NPY Women\'s Council',
     category: 'core',
-    location: 'NPY Lands — SA/NT/WA',
+    location: 'NPY Lands: SA/NT/WA',
     description: 'Established network across Ngaanyatjarra, Pitjantjatjara, and Yankunytjatjara lands.',
     contacts: [{ name: 'Angela Lynch' }],
     keyFacts: ['"Always looking for beds"'],
@@ -107,7 +107,7 @@ export const communityPartners: CommunityPartner[] = [
     category: 'core',
     location: 'Maningrida, NT',
     description: '1 washing machine delivered (INV-0303 $4,950). 65 beds requested separately (no invoice yet).',
-    keyFacts: ['INV-0303 $4,950 AUTHORISED — 1x washing machine, unpaid'],
+    keyFacts: ['INV-0303 $4,950 AUTHORISED: 1x washing machine, unpaid'],
   },
   {
     id: 'qic',
@@ -221,7 +221,7 @@ export const communityPartners: CommunityPartner[] = [
     name: 'Ebony & Jahvan Oui',
     category: 'future',
     location: 'Palm Island',
-    description: 'Training with Defy Design for on-country production. Jahvan visited Defy factory in Sydney — future-CEO training.',
+    description: 'Training with Defy Design for on-country production. Jahvan visited Defy factory in Sydney: future-CEO training.',
   },
 ];
 
@@ -252,10 +252,10 @@ export const funding: FundingRecord[] = [
   // Pending / In Discussion
   { id: 'snow-4', source: 'Snow Foundation (Round 4)', amount: 130000, status: 'pending', contact: 'Sally Grimsley-Ballard' },
   { id: 'sefa', source: 'SEFA', amount: 500000, program: 'Social impact loan', status: 'pending', contact: 'Joel Bird', notes: '23 communications' },
-  { id: 'real-alice', source: 'REAL Innovation Fund — Alice Springs', amount: 1200000, program: 'Federal grant — 3yr', status: 'pending', notes: 'EOI submitted Mar 2, DEWR. Alice Springs / Central Australia site pathway.' },
-  { id: 'real-townsville', source: 'REAL Innovation Fund — Townsville', amount: 1200000, program: 'Federal grant — 3yr', status: 'pending', notes: 'EOI submitted Mar 2, DEWR. Townsville / North Queensland site pathway.' },
+  { id: 'real-alice', source: 'REAL Innovation Fund: Alice Springs', amount: 1200000, program: 'Federal grant, 3yr', status: 'pending', notes: 'EOI submitted Mar 2, DEWR. Alice Springs / Central Australia site pathway.' },
+  { id: 'real-townsville', source: 'REAL Innovation Fund: Townsville', amount: 1200000, program: 'Federal grant, 3yr', status: 'pending', notes: 'EOI submitted Mar 2, DEWR. Townsville / North Queensland site pathway.' },
   { id: 'qbe-1', source: 'QBE Foundation (Tranche 1)', amount: 10000, program: 'Grant', status: 'received', when: '2026' },
-  { id: 'qbe-2', source: 'QBE Foundation (Remaining)', amount: 140000, program: 'Grant', status: 'pending', notes: 'Est $140K remaining — QBE typically $100-250K for community resilience' },
+  { id: 'qbe-2', source: 'QBE Foundation (Remaining)', amount: 140000, program: 'Grant', status: 'pending', notes: 'Est $140K remaining. QBE typically $100-250K for community resilience' },
   { id: 'sedg', source: 'Social Enterprise Development Grants', amount: 75000, program: 'Grant', status: 'pending', notes: 'Draft (82% fit)' },
 
   // Pipeline
@@ -266,24 +266,24 @@ export const funding: FundingRecord[] = [
   { id: 'acf', source: 'Australian Communities Foundation', amount: 0, status: 'pipeline', notes: 'Collective giving, community-led solutions' },
   { id: 'rio-tinto', source: 'Rio Tinto Foundation', amount: 0, status: 'pipeline', notes: 'Remote manufacturing + jobs. Co-investment for systems-change scale.' },
   { id: 'fortescue', source: 'Fortescue Foundation', amount: 0, status: 'pipeline', notes: 'Indigenous employment + circular economy. Co-investment.' },
-  { id: 'qcf', source: 'Queensland Community Foundation', amount: 0, status: 'pipeline', contact: 'Tara Castle (CEO)', notes: 'LinkedIn warm lead — multi-post engager. Husband has Palm Island connection.' },
+  { id: 'qcf', source: 'Queensland Community Foundation', amount: 0, status: 'pipeline', contact: 'Tara Castle (CEO)', notes: 'LinkedIn warm lead, multi-post engager. Husband has Palm Island connection.' },
   { id: 'iba-loan', source: 'Indigenous Business Australia', amount: 5000000, program: 'Business Loan', status: 'pipeline', notes: 'Up to $5M for manufacturing plant. Start-Up Finance gives 30% as grant. 50%+ Aboriginal ownership required.' },
-  { id: 'circular-future', source: 'Circular Future Fund / Planet Ark', amount: 0, status: 'pipeline', notes: 'Strong circular economy fit — 20kg HDPE diverted per bed.' },
+  { id: 'circular-future', source: 'Circular Future Fund / Planet Ark', amount: 0, status: 'pipeline', notes: 'Strong circular economy fit: 20kg HDPE diverted per bed.' },
   { id: 'sedi', source: 'Social Enterprise Development Initiative', amount: 0, program: 'Government grant', status: 'pipeline', notes: 'Explicit social enterprise fit. Federal program.' },
 
-  // Government Procurement Pathways (not grants — procurement revenue)
+  // Government Procurement Pathways (not grants: procurement revenue)
   { id: 'nt-housing', source: 'NT Remote Housing Program', amount: 0, program: '$4B over 10yr, 2700 homes', status: 'pipeline', notes: 'Register on NT Housing Infrastructure Panel when furniture/fitout panel opens. Beds for every new home.' },
   { id: 'qld-qpp', source: 'QLD Government (QPP 2026)', amount: 0, program: 'Social procurement', status: 'pipeline', notes: '$35B annual spend. Social enterprise preference under $500K. Register as social enterprise supplier.' },
   { id: 'supply-nation', source: 'Supply Nation Certification', amount: 0, program: 'Certification (FREE)', status: 'pipeline', notes: 'CRITICAL: Certified suppliers get 3x more contracts ($2.3B of $3.8B). Apply via Oonchiumpa. DEADLINE: July 1 2026 for 51% ownership rule.' },
 
   // Outstanding Receivables (Xero-verified, March 27 2026)
-  // INV-0291 Centrecorp $85,712 — NOW PAID, moved to received trade revenue
-  { id: 'recv-snow-r4', source: 'Snow Foundation', amount: 132000, status: 'receivable', notes: 'INV-0321 AUTHORISED $132K — beds + production plant. Awaiting payment.' },
-  { id: 'recv-shed-plant-1', source: 'Our Community Shed', amount: 163900, status: 'receivable', notes: 'QU-0011 DRAFT $163,900 (inc GST) — Plant Part 1: shredding. 12mo @ $12K/mo + $5K transport.' },
-  { id: 'recv-shed-plant-2', source: 'Our Community Shed', amount: 93498, status: 'receivable', notes: 'QU-0012 DRAFT $93,498 (inc GST) — Plant Part 2: moulding. 6mo @ $13.3K/mo + $5K transport.' },
-  { id: 'recv-picc', source: 'PICC (Palm Island)', amount: 36300, status: 'receivable', notes: 'INV-0317 AUTHORISED $36,300 — 40 Stretch Beds @ $750 + $3K delivery' },
-  { id: 'recv-rotary', source: 'Rotary Eclub Outback Australia', amount: 82500, status: 'receivable', notes: 'INV-0222 OVERDUE $82,500 (inc GST) — 200 Basket Beds v1 @ $350 + $5K project. Due 24 Apr 2025. 11 MONTHS OVERDUE.' },
-  { id: 'recv-homeland', source: 'Homeland School Company', amount: 4950, status: 'receivable', notes: 'INV-0303 AUTHORISED $4,950 — 1x Indestructible Washing Machine v1.1, unpaid' },
+  // INV-0291 Centrecorp $85,712: NOW PAID, moved to received trade revenue
+  { id: 'recv-snow-r4', source: 'Snow Foundation', amount: 132000, status: 'receivable', notes: 'INV-0321 AUTHORISED $132K: beds + production plant. Awaiting payment.' },
+  { id: 'recv-shed-plant-1', source: 'Our Community Shed', amount: 163900, status: 'receivable', notes: 'QU-0011 DRAFT $163,900 (inc GST), Plant Part 1: shredding. 12mo @ $12K/mo + $5K transport.' },
+  { id: 'recv-shed-plant-2', source: 'Our Community Shed', amount: 93498, status: 'receivable', notes: 'QU-0012 DRAFT $93,498 (inc GST), Plant Part 2: moulding. 6mo @ $13.3K/mo + $5K transport.' },
+  { id: 'recv-picc', source: 'PICC (Palm Island)', amount: 36300, status: 'receivable', notes: 'INV-0317 AUTHORISED $36,300: 40 Stretch Beds @ $750 + $3K delivery' },
+  { id: 'recv-rotary', source: 'Rotary Eclub Outback Australia', amount: 82500, status: 'receivable', notes: 'INV-0222 OVERDUE $82,500 (inc GST): 200 Basket Beds v1 @ $350 + $5K project. Due 24 Apr 2025. 11 MONTHS OVERDUE.' },
+  { id: 'recv-homeland', source: 'Homeland School Company', amount: 4950, status: 'receivable', notes: 'INV-0303 AUTHORISED $4,950: 1x Indestructible Washing Machine v1.1, unpaid' },
 ];
 
 export function getFundingSummary() {
@@ -294,7 +294,7 @@ export function getFundingSummary() {
 }
 
 // ---------------------------------------------------------------------------
-// Financial Snapshot (from Xero — manually synced until API integration)
+// Financial Snapshot (from Xero, manually synced until API integration)
 // Last updated: March 27, 2026
 // ---------------------------------------------------------------------------
 
@@ -365,7 +365,7 @@ export const documentedDemand: DemandRecord[] = [
   { id: 'utopia-kids', requester: 'Utopia Homelands', request: 'Beds for every child', estimatedValue: 150000, status: 'requested' },
   { id: 'homeland-65', requester: 'Homeland Schools Company', request: '65 beds for kids, Maningrida', estimatedValue: 65000, status: 'requested' },
   { id: 'groote', requester: 'Groote Archipelago (WHSAC)', request: '500 mattresses + 300 washing machines', estimatedValue: 1700000, status: 'exploring' },
-  { id: 'centrecorp', requester: 'Centrecorp Foundation', request: '107 beds APPROVED (Jan 30, 2026) — INV-0291 PAID', estimatedValue: 85712, status: 'approved' },
+  { id: 'centrecorp', requester: 'Centrecorp Foundation', request: '107 beds APPROVED (Jan 30, 2026): INV-0291 PAID', estimatedValue: 85712, status: 'approved' },
   { id: 'npy-ongoing', requester: 'NPY Women\'s Council', request: '"Always looking for beds"', estimatedValue: 0, status: 'ongoing' },
   { id: 'picc-40', requester: 'PICC (Palm Island)', request: '40 beds discussed', estimatedValue: 36000, status: 'requested' },
 ];
@@ -612,11 +612,11 @@ export const timeline: Milestone[] = [
   { date: 'Sept 2023', event: 'A Curious Tractor formally incorporated' },
   { date: '2024', event: 'Active bed pilots begin; 389 assets tracked in register' },
   { date: 'Oct 2024', event: 'Snow Foundation relationship begins' },
-  { date: 'Sept 2025', event: 'The Funding Network pitch — $130K raised (largest single raise)' },
+  { date: 'Sept 2025', event: 'The Funding Network pitch: $130K raised (largest single raise)' },
   { date: 'Jan 2026', event: '15–20 V4 Stretch Beds deployed with ~8 families; Centre Corp approves 107 beds' },
   { date: 'Late Jan 2026', event: 'Nic travels to Alice Springs + Tennant Creek; builds 5 washing machines with Bloomfield family' },
   { date: 'Feb 2026', event: 'Envirobank recycled HDPE supply partnership discussions; Snow Q4 proposal submitted' },
-  { date: 'Mar 2, 2026', event: 'REAL Innovation Fund EOI submitted (via Oonchiumpa) — DEWR confirmed receipt' },
+  { date: 'Mar 2, 2026', event: 'REAL Innovation Fund EOI submitted (via Oonchiumpa): DEWR confirmed receipt' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -648,7 +648,7 @@ export const risks: Risk[] = [
 export const vision2030 = {
   quote: "In five years time, our dream is to have the best products in the world made by and with the communities themselves.",
   metrics: [
-    'Product success: Most desired, repairable, requested items — don\'t end up in landfill',
+    'Product success: Most desired, repairable, requested items, don\'t end up in landfill',
     'Community ownership: Communities running production 3+ days/week without ACT',
     'Economic impact: 30+ community members employed in manufacturing',
     'Health outcomes: Measurable reductions in scabies, RHD, poor sleep',
@@ -670,9 +670,9 @@ export interface VideoAsset {
 export const videoTestimonials: VideoAsset[] = [
   { title: 'Beds & Dignity', person: 'Cliff Plummer', url: 'https://share.descript.com/embed/2gxa5x40r9N' },
   { title: 'The Recycling Plant', url: 'https://share.descript.com/embed/haRZJbfJadJ' },
-  { title: 'Community Voices — Alice Springs', url: 'https://share.descript.com/embed/LAT0KNJMxmH' },
+  { title: 'Community Voices: Alice Springs', url: 'https://share.descript.com/embed/LAT0KNJMxmH' },
   { title: 'Stretch Bed Timelapse', url: 'https://share.descript.com/embed/Xtrc5ZYsym6' },
-  { title: 'Community Voices — Fred', person: 'Fred Campbell', url: 'https://share.descript.com/embed/YQwAcYfxzkn' },
+  { title: 'Community Voices: Fred', person: 'Fred Campbell', url: 'https://share.descript.com/embed/YQwAcYfxzkn' },
   { title: 'On Country Production #1', url: 'https://share.descript.com/embed/j6PXvhBP62i' },
   { title: 'On Country Production #2', url: 'https://share.descript.com/embed/J5GBQV00la8' },
   { title: 'Stretch Bed Overview', url: 'https://share.descript.com/embed/elrx8lXpDxW' },
@@ -685,15 +685,15 @@ export const videoTestimonials: VideoAsset[] = [
 
 export const corrections = {
   doNotUse: [
-    '"Linda Turner\'s 4-hour laundry trips" — cannot be verified',
-    '"Founded 2019, first deliveries 2020" — project kicked off Nov 2022, entity Sep 2023',
-    '"$850 single bed, $1,100 double" — Basket Bed ~$350/unit; those were aspirational retail',
-    '"Pakkimjalki Kari is Warlpiri" — it\'s Warumungu (Tennant Creek)',
+    '"Linda Turner\'s 4-hour laundry trips": cannot be verified',
+    '"Founded 2019, first deliveries 2020": project kicked off Nov 2022, entity Sep 2023',
+    '"$850 single bed, $1,100 double": Basket Bed ~$350/unit; those were aspirational retail',
+    '"Pakkimjalki Kari is Warlpiri": it\'s Warumungu (Tennant Creek)',
   ],
   placeholders: [
-    '"40% community share" — placeholder concept, not committed. Say "community benefit model" instead.',
-    'Kristy Bloomfield quote in content.ts — marked PLACEHOLDER, not verified.',
-    'Bed count: 369 (Catalysing Impact) vs 389 (Asset Register) — 389 includes all asset types.',
+    '"40% community share": placeholder concept, not committed. Say "community benefit model" instead.',
+    'Kristy Bloomfield quote in content.ts: marked PLACEHOLDER, not verified.',
+    'Bed count: 369 (Catalysing Impact) vs 389 (Asset Register): 389 includes all asset types.',
     'Washing machine count: 5 deployed (Tennant Creek) vs "20+" (may include field testing).',
   ],
 };

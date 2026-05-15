@@ -14,7 +14,7 @@ import { quotes } from '@/lib/data/content';
 import { STRETCH_BED } from '@/lib/data/products';
 
 export const metadata = {
-  title: 'The Stretch Bed | Goods on Country',
+  title: 'The Stretch Bed',
   description: 'Flat-packable, washable bed made from recycled HDPE plastic, galvanised steel poles, and heavy-duty canvas. 26kg, 200kg capacity, assembles in 5 minutes.',
 };
 

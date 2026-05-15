@@ -38,13 +38,12 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
+    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <AdminSidebar userEmail={user?.email || (isLocalDev ? 'Local Dev' : 'Admin')} />
 
-      {/* Main Content Area */}
-      <div className="flex-1 md:pl-72 flex flex-col min-h-screen max-w-[100vw]">
-        {/* We use main container to house the individual dashboard segments */}
-        <main className="flex-1 w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+      {/* Main Content Area — sidebar is md:fixed w-72, so we only need left padding */}
+      <div className="md:pl-72 min-w-0 overflow-x-hidden">
+        <main className="w-full px-4 sm:px-6 py-8 md:py-10 min-w-0 overflow-x-hidden">
           {children}
         </main>
       </div>

@@ -5,7 +5,7 @@ import { NewsletterSignup } from '@/components/newsletter-signup';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Basket Bed Plans (Open Source) | Goods on Country',
+  title: 'Basket Bed Plans (Open Source)',
   description: 'Download open-source plans for the Basket Bed — our first prototype that served hundreds of families. The lessons learned shaped the Stretch Bed.',
 };
 

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
-import { STRETCH_BED } from '@/lib/data/products';
+import { STRETCH_BED, WASHING_MACHINE } from '@/lib/data/products';
 import { story } from '@/lib/data/content';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -10,15 +10,53 @@ import { NewsletterSignup } from '@/components/newsletter-signup';
 import { BedPhotoGallery } from './bed-photo-gallery';
 import { BedMapWrapper } from './bed-map-wrapper';
 import { QuickConnectForm } from './quick-connect-form';
+import { InstallLogger } from './install-logger';
+
+const KNOWN_COMMUNITIES = [
+  'Tennant Creek',
+  'Palm Island',
+  'Utopia Homelands',
+  'Alice Springs',
+  'Maningrida',
+  'Kalgoorlie',
+  'Mount Isa',
+  'Mutitjulu',
+  'Darwin',
+  'Canberra',
+  'Pending Delivery',
+];
+
+type AdminUserShape = {
+  email?: string | null;
+  app_metadata?: Record<string, unknown>;
+  user_metadata?: Record<string, unknown>;
+} | null;
+
+function isAdminUser(user: AdminUserShape) {
+  if (!user) return false;
+  if ((user.app_metadata as { role?: string })?.role === 'admin') return true;
+  if ((user.user_metadata as { role?: string })?.role === 'admin') return true;
+  const allow = (process.env.ADMIN_EMAILS || '').split(',').map((s) => s.trim()).filter(Boolean);
+  return allow.includes(user.email || '');
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
+  const supabase = await createClient();
+  const { data: asset } = await supabase
+    .from('assets')
+    .select('product, name')
+    .eq('unique_id', id)
+    .single();
+  const isMachine = /machine/i.test(asset?.product || '');
+  const label = isMachine ? 'Washing Machine' : 'Stretch Bed';
+  const noun = isMachine ? 'machine' : 'bed';
   return {
-    title: `Bed ${id} — Track Your Goods`,
-    description: `Follow the journey of Stretch Bed ${id} — from recycled plastic to community impact. Made by Goods on Country.`,
+    title: `${label} ${id}: Track Your Goods`,
+    description: `Follow the journey of ${label} ${id}, from recycled plastic to community impact. Made by Goods on Country.`,
     openGraph: {
-      title: `Stretch Bed ${id} | Goods on Country`,
-      description: 'Follow this bed\'s journey from recycled materials to community impact.',
+      title: `${label} ${id}`,
+      description: `Follow this ${noun}'s journey from recycled materials to community impact.`,
     },
   };
 }
@@ -43,10 +81,14 @@ export default async function BedPage({ params }: BedPageProps) {
   const { id } = await params;
   const supabase = await createClient();
 
+  // Check if visitor is an admin (Goods staff in the field)
+  const { data: { user } } = await supabase.auth.getUser();
+  const isAdmin = isAdminUser(user);
+
   // Fetch asset details
   const { data: asset } = await supabase
     .from('assets')
-    .select('unique_id, name, product, community, place, status, supply_date, created_time, photo')
+    .select('unique_id, name, product, community, place, status, supply_date, created_time, photo, gps')
     .eq('unique_id', id)
     .single();
 
@@ -63,6 +105,13 @@ export default async function BedPage({ params }: BedPageProps) {
     .order('event_date', { ascending: true });
 
   const events = journeyEvents || [];
+
+  const isMachine = /machine/i.test(asset?.product || '');
+  const productLabel = isMachine ? 'Washing Machine' : 'Stretch Bed';
+  const productNoun = isMachine ? 'machine' : 'bed';
+  const heroImage = isMachine
+    ? '/images/product/washing-machine-hero.jpg'
+    : '/images/product/stretch-bed-hero.jpg';
 
   if (!asset) {
     return (
@@ -93,16 +142,16 @@ export default async function BedPage({ params }: BedPageProps) {
               Goods on Country
             </p>
             <h1 className="font-display text-4xl md:text-5xl font-bold mb-4">
-              This Is Your Bed
+              {isMachine ? 'This Is Your Washing Machine' : 'This Is Your Bed'}
             </h1>
             <p className="text-white/80 text-lg mb-6">
-              Every Goods bed has a story. Scan the QR code to see where it came from,
+              Every Goods {productNoun} has a story. Scan the QR code to see where it came from,
               what it&apos;s made of, and the community it supports.
             </p>
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur rounded-full px-5 py-2.5 text-sm">
               <span className="text-amber-300 font-mono font-bold">{asset.unique_id}</span>
               <span className="text-white/50">|</span>
-              <span>{asset.product || 'Stretch Bed'}</span>
+              <span>{asset.product || productLabel}</span>
               {asset.community && (
                 <>
                   <span className="text-white/50">|</span>
@@ -113,8 +162,10 @@ export default async function BedPage({ params }: BedPageProps) {
           </div>
           <div className="relative h-64 md:h-full md:min-h-[400px]">
             <Image
-              src="/images/product/stretch-bed-hero.jpg"
-              alt="The Stretch Bed — recycled plastic, galvanised steel, heavy-duty canvas"
+              src={heroImage}
+              alt={isMachine
+                ? 'Pakkimjalki Kari: washing machine by Goods on Country'
+                : 'The Stretch Bed: recycled plastic, galvanised steel, heavy-duty canvas'}
               fill
               className="object-cover"
               priority
@@ -123,12 +174,28 @@ export default async function BedPage({ params }: BedPageProps) {
         </div>
       </section>
 
+      {/* Goods-staff install logger: only renders for authed admins */}
+      {isAdmin && user?.email && (
+        <InstallLogger
+          uniqueId={asset.unique_id}
+          productLabel={productLabel}
+          adminEmail={user.email}
+          knownCommunities={KNOWN_COMMUNITIES}
+          initial={{
+            community: asset.community,
+            place: asset.place,
+            gps: asset.gps,
+            status: asset.status,
+          }}
+        />
+      )}
+
       {/* Quick connect CTA */}
       <div className="max-w-3xl mx-auto px-4 mt-6">
         <QuickConnectForm />
       </div>
 
-      {/* Map — where is this bed? */}
+      {/* Map: where is this bed? */}
       {allAssets && allAssets.length > 0 && (
         <div className="max-w-5xl mx-auto px-4 mt-6 relative z-0">
           <div className="bg-card border rounded-2xl shadow-xl overflow-hidden">
@@ -144,18 +211,30 @@ export default async function BedPage({ params }: BedPageProps) {
       )}
 
       <div className="max-w-3xl mx-auto px-4 py-12 space-y-16">
-        {/* What is this bed? */}
+        {/* What is this product? */}
         <section>
-          <h2 className="font-display text-2xl font-bold mb-6">What Is the Stretch Bed?</h2>
+          <h2 className="font-display text-2xl font-bold mb-6">
+            {isMachine ? `What Is the ${WASHING_MACHINE.name}?` : 'What Is the Stretch Bed?'}
+          </h2>
           <div className="grid sm:grid-cols-3 gap-4">
-            {[
-              { label: 'Weight', value: STRETCH_BED.specs.weight },
-              { label: 'Capacity', value: STRETCH_BED.specs.loadCapacity },
-              { label: 'Dimensions', value: STRETCH_BED.specs.dimensions },
-              { label: 'Assembly', value: STRETCH_BED.specs.assemblyTime },
-              { label: 'Tools', value: STRETCH_BED.specs.toolsRequired },
-              { label: 'Plastic Diverted', value: STRETCH_BED.specs.plasticDiverted },
-            ].map((spec) => (
+            {(isMachine
+              ? [
+                  { label: 'Base unit', value: WASHING_MACHINE.specs.baseUnit },
+                  { label: 'Designed lifespan', value: '10–15 years in remote conditions' },
+                  { label: 'Operation', value: 'One-button, washable, low-water' },
+                  { label: 'Housing', value: 'Recycled HDPE plastic skin' },
+                  { label: 'Status', value: 'Prototype: deployed in TC, MNG, PI' },
+                  { label: 'Named by', value: 'Elder Dianne Stokes (Warumungu)' },
+                ]
+              : [
+                  { label: 'Weight', value: STRETCH_BED.specs.weight },
+                  { label: 'Capacity', value: STRETCH_BED.specs.loadCapacity },
+                  { label: 'Dimensions', value: STRETCH_BED.specs.dimensions },
+                  { label: 'Assembly', value: STRETCH_BED.specs.assemblyTime },
+                  { label: 'Tools', value: STRETCH_BED.specs.toolsRequired },
+                  { label: 'Plastic Diverted', value: STRETCH_BED.specs.plasticDiverted },
+                ]
+            ).map((spec) => (
               <div key={spec.label} className="bg-muted rounded-lg p-4">
                 <p className="text-xs text-muted-foreground uppercase tracking-wide">{spec.label}</p>
                 <p className="font-semibold mt-1">{spec.value}</p>
@@ -163,12 +242,22 @@ export default async function BedPage({ params }: BedPageProps) {
             ))}
           </div>
           <p className="text-muted-foreground mt-4 text-sm leading-relaxed">
-            {STRETCH_BED.shortDescription} Designed with over 500 minutes of community
-            feedback, the Stretch Bed is built to last 10+ years in remote conditions.
+            {isMachine ? (
+              <>
+                {WASHING_MACHINE.shortDescription} Co-designed with community in Tennant Creek, named in
+                Warumungu language by Elder Dianne Stokes, built to last 10–15 years where standard
+                machines die in 1–2.
+              </>
+            ) : (
+              <>
+                {STRETCH_BED.shortDescription} Designed with over 500 minutes of community feedback, the
+                Stretch Bed is built to last 10+ years in remote conditions.
+              </>
+            )}
           </p>
         </section>
 
-        {/* Video — community voices */}
+        {/* Video: community voices */}
         <section>
           <h2 className="font-display text-2xl font-bold mb-2">Hear from Community</h2>
           <p className="text-muted-foreground text-sm mb-4">
@@ -181,7 +270,7 @@ export default async function BedPage({ params }: BedPageProps) {
                 className="w-full h-full"
                 allow="autoplay; fullscreen"
                 allowFullScreen
-                title="Community voices — Stretch Bed recipient"
+                title="Community voices: Stretch Bed recipient"
               />
             </div>
             <div className="grid sm:grid-cols-2 gap-4">
@@ -191,7 +280,7 @@ export default async function BedPage({ params }: BedPageProps) {
                   className="w-full h-full"
                   allow="autoplay; fullscreen"
                   allowFullScreen
-                  title="Cliff Plummer — Beds and dignity"
+                  title="Cliff Plummer: Beds and dignity"
                 />
               </div>
               <div className="aspect-video rounded-xl overflow-hidden bg-black">
@@ -200,14 +289,14 @@ export default async function BedPage({ params }: BedPageProps) {
                   className="w-full h-full"
                   allow="autoplay; fullscreen"
                   allowFullScreen
-                  title="Fred — Community voices from Oonchiumpa"
+                  title="Fred: Community voices from Oonchiumpa"
                 />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Dianne Stokes — co-designer */}
+        {/* Dianne Stokes: co-designer */}
         <section className="bg-muted/50 rounded-2xl p-6 md:p-8">
           <div className="grid sm:grid-cols-[200px_1fr] gap-6 items-start">
             <div className="relative aspect-square rounded-xl overflow-hidden">
@@ -228,7 +317,7 @@ export default async function BedPage({ params }: BedPageProps) {
               </blockquote>
               <p className="text-sm text-muted-foreground">
                 Dianne named the washing machine &ldquo;Pakkimjalki Kari&rdquo; in Warumungu language.
-                She didn&apos;t just receive a product &mdash; she co-designed it, tested it,
+                She didn&apos;t just receive a product. She co-designed it, tested it,
                 and named it for her community in Tennant Creek.
               </p>
             </div>
@@ -301,7 +390,7 @@ export default async function BedPage({ params }: BedPageProps) {
           )}
         </section>
 
-        {/* In community — timelapse */}
+        {/* In community: timelapse */}
         <section>
           <h2 className="font-display text-2xl font-bold mb-2">In Community</h2>
           <p className="text-muted-foreground text-sm mb-4">
@@ -313,7 +402,7 @@ export default async function BedPage({ params }: BedPageProps) {
               className="w-full h-full"
               allow="autoplay; fullscreen"
               allowFullScreen
-              title="Stretch Bed making timelapse — Alice Springs"
+              title="Stretch Bed making timelapse: Alice Springs"
             />
           </div>
         </section>
@@ -334,7 +423,7 @@ export default async function BedPage({ params }: BedPageProps) {
               {
                 step: '2',
                 title: 'QR Code Applied',
-                desc: 'A tamper-proof QR sticker links the physical bed to its digital record — specs, journey, and support.',
+                desc: 'A tamper-proof QR sticker links the physical bed to its digital record: specs, journey, and support.',
               },
               {
                 step: '3',
@@ -379,27 +468,37 @@ export default async function BedPage({ params }: BedPageProps) {
           </div>
         </section>
 
-        {/* Washing machine teaser */}
+        {/* Sibling product teaser: show the OTHER product to scanners */}
         <section className="bg-foreground text-background rounded-2xl overflow-hidden">
           <div className="grid sm:grid-cols-2">
             <div className="relative min-h-[200px]">
               <Image
-                src="/images/product/washing-machine-hero.jpg"
-                alt="Pakkimjalki Kari — washing machine by Goods on Country"
+                src={isMachine
+                  ? '/images/product/stretch-bed-hero.jpg'
+                  : '/images/product/washing-machine-hero.jpg'}
+                alt={isMachine
+                  ? 'The Stretch Bed: recycled plastic, galvanised steel, heavy-duty canvas'
+                  : 'Pakkimjalki Kari: washing machine by Goods on Country'}
                 fill
                 className="object-cover"
               />
             </div>
             <div className="p-6 md:p-8 flex flex-col justify-center">
-              <p className="text-background/50 text-xs uppercase tracking-widest mb-2">Coming Soon</p>
-              <h3 className="font-display text-xl font-bold mb-2">Pakkimjalki Kari</h3>
+              <p className="text-background/50 text-xs uppercase tracking-widest mb-2">
+                {isMachine ? 'Also from Goods' : 'Coming Soon'}
+              </p>
+              <h3 className="font-display text-xl font-bold mb-2">
+                {isMachine ? 'The Stretch Bed' : 'Pakkimjalki Kari'}
+              </h3>
               <p className="text-background/70 text-sm mb-4">
-                A commercial-grade washing machine in recycled plastic housing.
-                Named in Warumungu language by Elder Dianne Stokes.
-                Built to last 10-15 years, not 1-2.
+                {isMachine
+                  ? 'A flat-packable, washable bed made from recycled plastic, galvanised steel, and heavy-duty canvas. 26kg, 200kg capacity, 10+ year design life.'
+                  : 'A commercial-grade washing machine in recycled plastic housing. Named in Warumungu language by Elder Dianne Stokes. Built to last 10-15 years, not 1-2.'}
               </p>
               <Button asChild variant="secondary" size="sm" className="w-fit">
-                <Link href="/shop/washing-machine">Learn More</Link>
+                <Link href={isMachine ? '/shop/stretch-bed-single' : '/shop/washing-machine'}>
+                  Learn More
+                </Link>
               </Button>
             </div>
           </div>
@@ -410,7 +509,7 @@ export default async function BedPage({ params }: BedPageProps) {
           <h2 className="font-display text-2xl font-bold mb-2">Follow Our Journey</h2>
           <p className="text-muted-foreground text-sm mb-4 max-w-md mx-auto">
             Goods on Country is building a new model for remote community infrastructure
-            — beds, washing machines, and eventually community-owned manufacturing.
+            beds, washing machines, and eventually community-owned manufacturing.
           </p>
           <p className="text-muted-foreground text-sm mb-6 max-w-md mx-auto">
             Subscribe to hear how the project grows, where beds are being delivered,
@@ -429,7 +528,9 @@ export default async function BedPage({ params }: BedPageProps) {
         <section className="text-center pb-8">
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button asChild size="lg">
-              <Link href="/shop/stretch-bed-single">Buy a Stretch Bed</Link>
+              <Link href={isMachine ? '/shop/washing-machine' : '/shop/stretch-bed-single'}>
+                {isMachine ? 'Register Interest' : 'Buy a Stretch Bed'}
+              </Link>
             </Button>
             <Button asChild variant="outline" size="lg">
               <Link href="/story">Read Our Story</Link>

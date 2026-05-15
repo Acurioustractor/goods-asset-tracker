@@ -55,6 +55,7 @@ const navigation = [
   {
     group: 'Supply Chain & Assets',
     items: [
+      { name: 'Asset Register', href: '/admin/assets', icon: Library },
       { name: 'Orders', href: '/admin/orders', icon: ShoppingCart },
       { name: 'Pipeline', href: '/admin/pipeline', icon: Kanban },
       { name: 'Production', href: '/admin/production', icon: Wrench },
@@ -104,7 +105,7 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const renderNavContent = () => (
-    <div className="flex h-full flex-col overflow-y-auto bg-slate-900 border-r border-slate-800 px-6 pb-4 pt-6">
+    <div className="admin-sidebar-scroll flex h-full flex-col overflow-y-auto bg-slate-900 border-r border-slate-800 px-6 pb-4 pt-6">
       <div className="flex h-12 shrink-0 items-center justify-between">
          <span className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
             <span className="text-orange-500">Goods</span> Admin

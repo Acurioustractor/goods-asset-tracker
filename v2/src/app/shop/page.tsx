@@ -6,7 +6,7 @@ import { media } from '@/lib/data/media';
 import { STRETCH_BED, WASHING_MACHINE, BASKET_BED } from '@/lib/data/products';
 
 export const metadata = {
-  title: 'Shop | Goods on Country',
+  title: 'Shop',
   description: 'Browse handcrafted beds and washing machines made for remote Indigenous communities.',
 };
 

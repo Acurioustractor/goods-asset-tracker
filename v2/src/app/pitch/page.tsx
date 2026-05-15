@@ -47,7 +47,7 @@ export default function PitchPage() {
       </section>
 
       {/* ================================================================
-          2. THE STRETCH BED — 4 component boxes
+          2. THE STRETCH BED: 4 component boxes
           ================================================================ */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -72,7 +72,7 @@ export default function PitchPage() {
                 <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
                   <MediaSlot
                     src="/images/pitch/bed-frame-legs.jpg"
-                    alt="Recycled HDPE plastic legs — pressed from community waste"
+                    alt="Recycled HDPE plastic legs, pressed from community waste"
                     label="Recycled plastic legs"
                     aspect="4/3"
                   />
@@ -86,7 +86,7 @@ export default function PitchPage() {
                 <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
                   <MediaSlot
                     src="/images/pitch/bed-poles.jpg"
-                    alt="Galvanised steel pole — 26.9mm OD"
+                    alt="Galvanised steel pole, 26.9mm OD"
                     label="Steel pole"
                     aspect="4/3"
                   />
@@ -114,7 +114,7 @@ export default function PitchPage() {
                 <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
                   <MediaSlot
                     src="/images/media-pack/nic-with-elder-on-verandah.jpg"
-                    alt="Nic sitting on a Stretch Bed with an elder on a verandah — ongoing support and connection"
+                    alt="Nic sitting on a Stretch Bed with an elder on a verandah, ongoing support and connection"
                     label="Support system"
                     aspect="4/3"
                   />
@@ -149,7 +149,7 @@ export default function PitchPage() {
       </section>
 
       {/* ================================================================
-          3. HERO IMAGE — Large photo of finished bed in use
+          3. HERO IMAGE: Large photo of finished bed in use
           ================================================================ */}
       <section className="bg-muted/30">
         <div className="container mx-auto px-4 py-4">
@@ -157,7 +157,7 @@ export default function PitchPage() {
             <MediaSlot
               src="/images/media-pack/woman-on-red-stretch-bed.jpg"
               alt="A woman sitting on a Stretch Bed with red recycled plastic legs in Alice Springs"
-              label="Stretch Bed in use — red legs, Alice Springs"
+              label="Stretch Bed in use: red legs, Alice Springs"
               aspect="16/9"
               className="rounded-2xl overflow-hidden"
             />
@@ -166,7 +166,7 @@ export default function PitchPage() {
       </section>
 
       {/* ================================================================
-          4. ON-COUNTRY MANUFACTURING — Rubbish to bed
+          4. ON-COUNTRY MANUFACTURING: Rubbish to bed
           ================================================================ */}
       <section className="py-20 bg-foreground text-background">
         <div className="container mx-auto px-4">
@@ -215,7 +215,7 @@ export default function PitchPage() {
                     <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">2</div>
                     <h3 className="text-lg font-semibold text-background">Shred</h3>
                   </div>
-                  <p className="text-sm text-background/60 leading-relaxed">Plastic goes into the shredder — a containerised unit that stays on site between production runs.</p>
+                  <p className="text-sm text-background/60 leading-relaxed">Plastic goes into the shredder: a containerised unit that stays on site between production runs.</p>
                 </div>
               </div>
 
@@ -233,7 +233,7 @@ export default function PitchPage() {
                     <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">3</div>
                     <h3 className="text-lg font-semibold text-background">Press</h3>
                   </div>
-                  <p className="text-sm text-background/60 leading-relaxed">Shredded plastic is heated and pressed into durable sheets. Each colour is unique — made from whatever plastic the community collected.</p>
+                  <p className="text-sm text-background/60 leading-relaxed">Shredded plastic is heated and pressed into durable sheets. Each colour is unique, made from whatever plastic the community collected.</p>
                 </div>
               </div>
 
@@ -283,7 +283,7 @@ export default function PitchPage() {
       </section>
 
       {/* ================================================================
-          5. THE PARTNERSHIP — Oonchiumpa, community ownership, sovereignty
+          5. THE PARTNERSHIP: Oonchiumpa, community ownership, sovereignty
           ================================================================ */}
       <section className="py-20 md:py-28 bg-background">
         <div className="container mx-auto px-4">
@@ -298,7 +298,7 @@ export default function PitchPage() {
               Start to finish, owned and run by community
             </h2>
             <p className="text-lg text-muted-foreground mb-4 max-w-3xl">
-              Through our partnership with {oonchiumpaPartnership.headline} — {oonchiumpaPartnership.subheadline} —
+              Through our partnership with {oonchiumpaPartnership.headline} ({oonchiumpaPartnership.subheadline}),
               we&rsquo;re building a model where the entire process is community-led.
               From collecting waste to delivering beds. Support enterprise, health outcomes, pride, and sovereignty.
             </p>
@@ -312,7 +312,7 @@ export default function PitchPage() {
                 {/* What community ownership means */}
                 <div className="space-y-4 mb-8">
                   {[
-                    { title: 'Enterprise', desc: 'Community-owned manufacturing — local people making and selling products' },
+                    { title: 'Enterprise', desc: 'Community-owned manufacturing: local people making and selling products' },
                     { title: 'Health outcomes', desc: 'Beds preventing disease, washing machines breaking the scabies cycle' },
                     { title: 'Pride & sovereignty', desc: 'Indigenous intelligence guiding design, production, and business decisions' },
                     { title: 'New ideas', desc: 'A platform for other products and enterprises generated by and from community' },
@@ -321,7 +321,7 @@ export default function PitchPage() {
                       <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
                       <div>
                         <span className="font-semibold text-foreground">{item.title}</span>
-                        <span className="text-muted-foreground"> — {item.desc}</span>
+                        <span className="text-muted-foreground">: {item.desc}</span>
                       </div>
                     </div>
                   ))}
@@ -337,7 +337,7 @@ export default function PitchPage() {
                   </p>
                   <footer className="text-sm text-muted-foreground">
                     <span className="font-medium text-foreground">{oonchiumpaPartnership.kristyQuote.author}</span>
-                    <span> &mdash; {oonchiumpaPartnership.kristyQuote.context}</span>
+                    <span>, {oonchiumpaPartnership.kristyQuote.context}</span>
                   </footer>
                 </blockquote>
               </div>
@@ -460,7 +460,7 @@ export default function PitchPage() {
                   </blockquote>
                   <footer className="text-sm">
                     <span className="font-medium text-foreground">{q!.author}</span>
-                    <span className="text-muted-foreground"> &mdash; {q!.context}</span>
+                    <span className="text-muted-foreground">, {q!.context}</span>
                   </footer>
                 </div>
               ))}
@@ -499,7 +499,7 @@ export default function PitchPage() {
       </section>
 
       {/* ================================================================
-          9. GOODS ORBIT — Community partners and people we engage with
+          9. GOODS ORBIT: Community partners and people we engage with
           ================================================================ */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
@@ -514,7 +514,7 @@ export default function PitchPage() {
               People and partners we work with
             </h2>
             <p className="text-muted-foreground mb-10 max-w-2xl">
-              The community members, organisations, and allies who have been part of the journey — co-designing, testing, delivering, and advocating.
+              The community members, organisations, and allies who have been part of the journey: co-designing, testing, delivering, and advocating.
             </p>
 
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -532,7 +532,7 @@ export default function PitchPage() {
       </section>
 
       {/* ================================================================
-          10. STORYTELLERS — Community voices, Empathy Ledger
+          10. STORYTELLERS: Community voices, Empathy Ledger
           ================================================================ */}
       <section className="py-16 bg-foreground text-background">
         <div className="container mx-auto px-4">
@@ -548,7 +548,7 @@ export default function PitchPage() {
             </h2>
             <p className="text-background/60 mb-10 max-w-2xl">
               Every product decision is refined by community feedback. Through our Empathy Ledger process,
-              storytellers own their narratives — sharing on their terms, shaping what gets built next.
+              storytellers own their narratives, sharing on their terms, shaping what gets built next.
             </p>
 
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -568,14 +568,14 @@ export default function PitchPage() {
             </div>
 
             <p className="text-xs text-background/30 mt-6 text-center">
-              All stories shared with consent through Empathy Ledger &mdash; community members own their narratives.
+              All stories shared with consent through Empathy Ledger. Community members own their narratives.
             </p>
           </div>
         </div>
       </section>
 
       {/* ================================================================
-          11. THE ASK — $500K scaling vision
+          11. THE ASK: $500K scaling vision
           ================================================================ */}
       <section className="py-24 bg-foreground text-background">
         <div className="container mx-auto px-4">
@@ -590,7 +590,7 @@ export default function PitchPage() {
               $500,000
             </h2>
             <p className="text-xl text-background/60 mb-16 max-w-2xl mx-auto">
-              To go hard now — support a model that brings enterprise ownership back to community,
+              To go hard now: support a model that brings enterprise ownership back to community,
               and design something that can be copied by every community across Australia.
             </p>
 
@@ -613,7 +613,7 @@ export default function PitchPage() {
                 <div className="text-3xl font-bold text-primary mb-2">$150K</div>
                 <h3 className="text-lg font-semibold text-background mb-3">Enterprise Model</h3>
                 <p className="text-sm text-background/50 leading-relaxed">
-                  Build the replicable model — training, documentation, and support for community-owned enterprises.
+                  Build the replicable model: training, documentation, and support for community-owned enterprises.
                 </p>
               </div>
             </div>
@@ -627,7 +627,7 @@ export default function PitchPage() {
               </h3>
               <p className="text-background/60 leading-relaxed">
                 Indigenous intelligence and ownership. A model designed by community, run by community,
-                that tells the story of what&rsquo;s possible when enterprise grows through action —
+                that tells the story of what&rsquo;s possible when enterprise grows through action,
                 not just in Australia, but everywhere communities want to manufacture their own future.
               </p>
             </div>

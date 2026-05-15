@@ -160,7 +160,7 @@ async function StorytellersFromLedger() {
             Deeper Analysis
           </h2>
           <p className="max-w-xl mx-auto text-muted-foreground">
-            AI-assisted analysis of community conversations — themes, impact, and insights
+            AI-assisted analysis of community conversations: themes, impact, and insights
           </p>
         </div>
 
@@ -266,7 +266,7 @@ export default async function StoriesPage() {
   return (
     <main>
       {/* ============================================================
-          HERO — Linda Turner's quote as the centrepiece
+          HERO: Linda Turner's quote as the centrepiece
           ============================================================ */}
       <section className="relative min-h-[70vh] flex items-center bg-foreground text-background overflow-hidden">
         <div className="absolute inset-0 opacity-5">
@@ -275,9 +275,10 @@ export default async function StoriesPage() {
 
         <div className="relative z-10 container mx-auto px-4 py-20 md:py-28">
           <div className="max-w-4xl">
-            <p className="text-sm uppercase tracking-widest text-background/50 mb-8">
+            <p className="text-sm uppercase tracking-widest text-background/50 mb-3">
               Community Voices
             </p>
+            <h1 className="sr-only">Community Stories</h1>
 
             <blockquote>
               <p
@@ -304,7 +305,7 @@ export default async function StoriesPage() {
 
             <p className="mt-10 text-lg text-background/70 max-w-2xl">
               That&rsquo;s why Goods exists. Every bed, every washing machine, every product
-              starts with a conversation — not a catalogue. These are the voices that
+              starts with a conversation, not a catalogue. These are the voices that
               shape what we build.
             </p>
           </div>
@@ -334,7 +335,7 @@ export default async function StoriesPage() {
       </section>
 
       {/* ============================================================
-          PUBLISHED STORIES — from Empathy Ledger
+          PUBLISHED STORIES: from Empathy Ledger
           ============================================================ */}
       {(textStories.length > 0 || videoStoryLinks.length > 0) && (
         <section className="py-16 md:py-24 bg-white">
@@ -431,7 +432,7 @@ export default async function StoriesPage() {
       )}
 
       {/* ============================================================
-          STORYTELLERS GRID — thumbnails, names, locations, key quotes
+          STORYTELLERS GRID: thumbnails, names, locations, key quotes
           ============================================================ */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
@@ -507,7 +508,7 @@ export default async function StoriesPage() {
             </div>
           )}
 
-          {/* Other storytellers — compact grid */}
+          {/* Other storytellers: compact grid */}
           <div className="max-w-6xl mx-auto">
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {others.map((person) => (
@@ -576,7 +577,7 @@ export default async function StoriesPage() {
       </section>
 
       {/* ============================================================
-          VIDEO GALLERY — testimonials + b-roll
+          VIDEO GALLERY: testimonials + b-roll
           ============================================================ */}
       <section className="py-16 md:py-24 bg-foreground text-background">
         <div className="container mx-auto px-4">
@@ -592,7 +593,7 @@ export default async function StoriesPage() {
             </p>
           </div>
 
-          {/* Testimonials — large */}
+          {/* Testimonials: large */}
           {testimonies.length > 0 && (
             <div className="max-w-4xl mx-auto mb-16">
               <h3 className="text-sm uppercase tracking-widest text-background/40 mb-6">
@@ -634,7 +635,7 @@ export default async function StoriesPage() {
             </div>
           )}
 
-          {/* B-roll — smaller grid */}
+          {/* B-roll: smaller grid */}
           {bRoll.length > 0 && (
             <div className="max-w-6xl mx-auto">
               <h3 className="text-sm uppercase tracking-widest text-background/40 mb-6">
@@ -665,7 +666,7 @@ export default async function StoriesPage() {
       </section>
 
       {/* ============================================================
-          FILTERABLE STORIES AND QUOTES — Client Component
+          FILTERABLE STORIES AND QUOTES: Client Component
           ============================================================ */}
       <StoriesClient
         quotes={quotes}
@@ -675,7 +676,7 @@ export default async function StoriesPage() {
       />
 
       {/* ============================================================
-          EMPATHY LEDGER — dynamic content (renders if API connected)
+          EMPATHY LEDGER: dynamic content (renders if API connected)
           ============================================================ */}
       <Suspense fallback={
         <section className="py-16 md:py-20 bg-white">
@@ -696,7 +697,7 @@ export default async function StoriesPage() {
       </Suspense>
 
       {/* ============================================================
-          DATA SOVEREIGNTY — OCAP principles
+          DATA SOVEREIGNTY: OCAP principles
           ============================================================ */}
       <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">

@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Our Story | Goods on Country',
+  title: 'Our Story',
   description: 'How a question about preventable disease became a movement for community ownership. The Goods on Country story, from floor to bed, from charity to commerce.',
 };
 
@@ -55,7 +55,7 @@ const STORY_VIDEOS = {
     mobile: videoUrl('recycling-plant-mobile.mp4'),
     poster: '/video/recycling-plant-poster.jpg',
   },
-  cliffPlummer: videoTestimonials[0]?.embedUrl,           // Cliff Plummer — beds and dignity
+  cliffPlummer: videoTestimonials[0]?.embedUrl,           // Cliff Plummer: beds and dignity
 };
 
 // ─── Photo gallery slots ───────────────────────────────────
@@ -151,10 +151,10 @@ export default async function StoryPage() {
       <div className="story-scroll">
 
         {/* ════════════════════════════════════════════════════════════════
-            1. HERO — Community building video (NOT timelapse)
+            1. HERO: Community building video (NOT timelapse)
             ════════════════════════════════════════════════════════════ */}
         <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-          {/* Background video — community people building */}
+          {/* Background video: community people building */}
           <video
             className="absolute inset-0 w-full h-full object-cover"
             autoPlay
@@ -191,7 +191,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            2. THE PROBLEM — Stats
+            2. THE PROBLEM: Stats
             ════════════════════════════════════════════════════════════ */}
         <section id="problem" className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#FDF8F3' }}>
           <div className="container mx-auto px-4">
@@ -219,7 +219,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            2b. THE CASCADE — Health intervention
+            2b. THE CASCADE: Health intervention
             ════════════════════════════════════════════════════════════ */}
         <section id="cascade" className="min-h-screen flex items-center justify-center bg-foreground text-background">
           <div className="container mx-auto px-4">
@@ -270,7 +270,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            3. THE VOICE — Norman Frank, full-page image background
+            3. THE VOICE: Norman Frank, full-page image background
             ════════════════════════════════════════════════════════════ */}
         <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
           {/* Full-page Norman Frank portrait */}
@@ -303,7 +303,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            4. THE ORIGIN — How it started
+            4. THE ORIGIN: How it started
             ════════════════════════════════════════════════════════════ */}
         <section className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#FDF8F3' }}>
           <div className="container mx-auto px-4">
@@ -338,7 +338,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            5. STRETCH BED — Full-page video with overlay
+            5. STRETCH BED: Full-page video with overlay
             ════════════════════════════════════════════════════════════ */}
         <section id="stretch-bed" className="min-h-screen flex items-center justify-center relative overflow-hidden">
           <video
@@ -370,7 +370,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            5b. STRETCH BED — Detail + photos
+            5b. STRETCH BED: Detail + photos
             ════════════════════════════════════════════════════════════ */}
         <section className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#FDF8F3' }}>
           <div className="container mx-auto px-4">
@@ -387,7 +387,7 @@ export default async function StoryPage() {
                   <div className="space-y-4 text-muted-foreground leading-relaxed mb-8">
                     <p>
                       Two galvanised steel poles thread through heavy-duty Australian canvas.
-                      Four legs made from recycled HDPE plastic — collected, shredded, and pressed on country.
+                      Four legs made from recycled HDPE plastic, collected, shredded, and pressed on country.
                       Each bed diverts 20kg of plastic from landfill.
                     </p>
                     <p>
@@ -423,7 +423,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            5c. JAQUILANE — Video overlay: "What the Stretch Bed means"
+            5c. JAQUILANE: Video overlay: "What the Stretch Bed means"
             ════════════════════════════════════════════════════════════ */}
         <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
           <video
@@ -453,7 +453,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            5d. JAQUILANE — Embedded testimony (with audio)
+            5d. JAQUILANE: Embedded testimony (with audio)
             ════════════════════════════════════════════════════════════ */}
         <section className="min-h-screen flex items-center justify-center bg-foreground text-background">
           <div className="container mx-auto px-4">
@@ -485,7 +485,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            6. WASHING MACHINE — Full-page video with overlay
+            6. WASHING MACHINE: Full-page video with overlay
             ════════════════════════════════════════════════════════════ */}
         <section id="washing-machine" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-foreground">
           {/* Background: video if available, otherwise product image or gradient */}
@@ -528,7 +528,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            6b. WASHING MACHINE — Detail + photos
+            6b. WASHING MACHINE: Detail + photos
             ════════════════════════════════════════════════════════════ */}
         <section className="min-h-screen flex items-center justify-center bg-background">
           <div className="container mx-auto px-4">
@@ -569,7 +569,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            7. THE JOURNEY — Timeline
+            7. THE JOURNEY: Timeline
             ════════════════════════════════════════════════════════════ */}
         <section id="journey" className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#FDF8F3' }}>
           <div className="container mx-auto px-4">
@@ -595,7 +595,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            8. COMMUNITY VOICES — Full-bleed quote panels
+            8. COMMUNITY VOICES: Full-bleed quote panels
             ════════════════════════════════════════════════════════════ */}
         <div id="voices" />
         {[
@@ -649,7 +649,7 @@ export default async function StoryPage() {
         ))}
 
         {/* ════════════════════════════════════════════════════════════════
-            8b. FREIGHT TAX — The cost of remoteness
+            8b. FREIGHT TAX: The cost of remoteness
             ════════════════════════════════════════════════════════════ */}
         <section className="flex items-center justify-center py-16 bg-foreground">
           <div className="container mx-auto px-4">
@@ -660,7 +660,7 @@ export default async function StoryPage() {
               >
                 <span className="text-primary text-4xl md:text-5xl font-bold">$1,200+</span>
                 <br />
-                for a mattress in remote areas &mdash; 2&times; the city price.
+                for a mattress in remote areas, 2&times; the city price.
                 <br />
                 <span className="text-white/40 text-lg">Lasts weeks, not years.</span>
               </p>
@@ -669,7 +669,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            8c. BUILDING TOGETHER — Young person helping build
+            8c. BUILDING TOGETHER: Young person helping build
             ════════════════════════════════════════════════════════════ */}
         <section className="min-h-screen flex items-end relative overflow-hidden">
           <video
@@ -705,7 +705,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            8c. RECYCLING PLANT — Full-page video overlay
+            8c. RECYCLING PLANT: Full-page video overlay
             ════════════════════════════════════════════════════════════ */}
         <section id="manufacturing" className="min-h-screen flex items-center justify-center relative overflow-hidden">
           <video
@@ -737,7 +737,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            8d. RECYCLING PLANT — Detail + photos
+            8d. RECYCLING PLANT: Detail + photos
             ════════════════════════════════════════════════════════════ */}
         <section className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#FDF8F3' }}>
           <div className="container mx-auto px-4">
@@ -806,7 +806,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            9. IMPACT VIDEO — Full-page stats overlay
+            9. IMPACT VIDEO: Full-page stats overlay
             ════════════════════════════════════════════════════════════ */}
         <section id="impact" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-foreground">
           {STORY_VIDEOS.projectStats ? (
@@ -872,7 +872,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            10. THE MODEL — Commerce, not charity
+            10. THE MODEL: Commerce, not charity
             ════════════════════════════════════════════════════════════ */}
         <section className="min-h-screen flex items-center justify-center bg-accent">
           <div className="container mx-auto px-4">
@@ -903,7 +903,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            11. CLIFF PLUMMER — Community testimony video
+            11. CLIFF PLUMMER: Community testimony video
             ════════════════════════════════════════════════════════════ */}
         <section className="min-h-screen flex items-center justify-center bg-foreground text-background">
           <div className="container mx-auto px-4">
@@ -932,7 +932,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            11b. FRED CAMPBELL — Oonchiumpa community voice
+            11b. FRED CAMPBELL: Oonchiumpa community voice
             ════════════════════════════════════════════════════════════ */}
         <section className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#FDF8F3' }}>
           <div className="container mx-auto px-4">
@@ -944,7 +944,7 @@ export default async function StoryPage() {
                 className="text-2xl md:text-3xl font-light text-foreground text-center mb-3"
                 style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
               >
-                Fred &mdash; Oonchiumpa
+                Fred, Oonchiumpa
               </h2>
               <p className="text-muted-foreground text-center mb-8 max-w-lg mx-auto">
                 Fred from the Oonchiumpa Bloomfield family on why community-led manufacturing matters and the path to ownership.
@@ -961,7 +961,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            12. DIANNE STOKES — The washing machine, in her words
+            12. DIANNE STOKES: The washing machine, in her words
             ════════════════════════════════════════════════════════════ */}
         <section className="min-h-screen flex items-center justify-center bg-background">
           <div className="container mx-auto px-4">
@@ -1028,7 +1028,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            13. PARTNERS — Who makes this possible
+            13. PARTNERS: Who makes this possible
             ════════════════════════════════════════════════════════════ */}
         <section id="partners" className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#FDF8F3' }}>
           <div className="container mx-auto px-4">
@@ -1095,7 +1095,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            14. WHAT'S NEXT — Vision and scale
+            14. WHAT'S NEXT: Vision and scale
             ════════════════════════════════════════════════════════════ */}
         <section id="future" className="min-h-screen flex items-center justify-center relative overflow-hidden">
           <video
@@ -1121,8 +1121,8 @@ export default async function StoryPage() {
               </h2>
               <div className="grid gap-4 md:grid-cols-3 mb-12">
                 {[
-                  { year: 'Year 1 (2026–27)', place: 'QLD Flagship — Jinibara Country', stat: '1,500 beds · 6 jobs' },
-                  { year: 'Year 2 (2027–28)', place: 'Central Australia — Oonchiumpa', stat: '3,500 beds · 12 jobs' },
+                  { year: 'Year 1 (2026–27)', place: 'QLD Flagship: Jinibara Country', stat: '1,500 beds · 6 jobs' },
+                  { year: 'Year 2 (2027–28)', place: 'Central Australia: Oonchiumpa', stat: '3,500 beds · 12 jobs' },
                   { year: 'Year 3 (2028–29)', place: 'Top End or Torres Strait', stat: '5,000 beds · 18 jobs · 125t plastic diverted' },
                 ].map((phase) => (
                   <div key={phase.year} className="rounded-xl bg-white/5 border border-white/10 p-6 text-center">
@@ -1145,7 +1145,7 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            15. THE INVITATION — CTA
+            15. THE INVITATION: CTA
             ════════════════════════════════════════════════════════════ */}
         <section className="min-h-screen flex items-center justify-center bg-foreground text-background">
           <div className="container mx-auto px-4">
