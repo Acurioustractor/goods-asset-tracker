@@ -146,14 +146,14 @@ export default async function CommunitiesPage() {
             <thead className="bg-gray-50">
               <tr className="border-b text-left text-xs uppercase tracking-wider text-gray-500">
                 <th className="py-2 px-3 font-medium">Community</th>
-                <th className="py-2 px-3 font-medium">State</th>
+                <th className="hidden sm:table-cell py-2 px-3 font-medium">State</th>
                 <th className="py-2 px-3 font-medium">Status</th>
-                <th className="py-2 px-3 font-medium">Partner</th>
-                <th className="py-2 px-3 font-medium text-right">Beds Deployed</th>
-                <th className="py-2 px-3 font-medium text-right">Washers</th>
-                <th className="py-2 px-3 font-medium text-right">Ready / Allocated</th>
-                <th className="py-2 px-3 font-medium text-right">Open Demand</th>
-                <th className="py-2 px-3 font-medium text-right">CRM Pipeline</th>
+                <th className="hidden md:table-cell py-2 px-3 font-medium">Partner</th>
+                <th className="py-2 px-3 font-medium text-right">Beds</th>
+                <th className="hidden sm:table-cell py-2 px-3 font-medium text-right">Washers</th>
+                <th className="hidden md:table-cell py-2 px-3 font-medium text-right">Ready / Alloc</th>
+                <th className="py-2 px-3 font-medium text-right">Demand</th>
+                <th className="hidden lg:table-cell py-2 px-3 font-medium text-right">CRM Pipeline</th>
               </tr>
             </thead>
             <tbody>
@@ -167,9 +167,10 @@ export default async function CommunitiesPage() {
                         {r.traditional_name && (
                           <div className="text-xs text-gray-500 italic">{r.traditional_name}</div>
                         )}
+                        <div className="sm:hidden mt-0.5 text-[11px] text-gray-500">{r.state}{r.partner && <> · {r.partner}</>}</div>
                       </Link>
                     </td>
-                    <td className="py-2 px-3">
+                    <td className="hidden sm:table-cell py-2 px-3">
                       <Badge variant="outline" className="text-xs">{r.state}</Badge>
                     </td>
                     <td className="py-2 px-3">
@@ -177,10 +178,10 @@ export default async function CommunitiesPage() {
                         {r.status}
                       </span>
                     </td>
-                    <td className="py-2 px-3 text-xs text-gray-600">{r.partner || '—'}</td>
+                    <td className="hidden md:table-cell py-2 px-3 text-xs text-gray-600">{r.partner || '—'}</td>
                     <td className="py-2 px-3 text-right font-mono">{r.deployed_beds > 0 ? fmt(r.deployed_beds) : <span className="text-gray-300">0</span>}</td>
-                    <td className="py-2 px-3 text-right font-mono">{r.deployed_machines > 0 ? fmt(r.deployed_machines) : <span className="text-gray-300">0</span>}</td>
-                    <td className="py-2 px-3 text-right font-mono text-xs">
+                    <td className="hidden sm:table-cell py-2 px-3 text-right font-mono">{r.deployed_machines > 0 ? fmt(r.deployed_machines) : <span className="text-gray-300">0</span>}</td>
+                    <td className="hidden md:table-cell py-2 px-3 text-right font-mono text-xs">
                       {r.ready_beds > 0 && <span className="text-amber-700">{fmt(r.ready_beds)} ready</span>}
                       {r.ready_beds > 0 && r.allocated_beds > 0 && <span className="text-gray-400"> / </span>}
                       {r.allocated_beds > 0 && <span className="text-blue-700">{fmt(r.allocated_beds)} alloc</span>}
@@ -196,7 +197,7 @@ export default async function CommunitiesPage() {
                         <span className="text-gray-300">—</span>
                       )}
                     </td>
-                    <td className="py-2 px-3 text-right font-mono text-xs">
+                    <td className="hidden lg:table-cell py-2 px-3 text-right font-mono text-xs">
                       {r.active_pipeline_cents > 0 && <div className="text-blue-700">{fmtMoney(r.active_pipeline_cents)}</div>}
                       {r.won_revenue_cents > 0 && <div className="text-emerald-700">{fmtMoney(r.won_revenue_cents)} won</div>}
                       {r.active_pipeline_cents === 0 && r.won_revenue_cents === 0 && <span className="text-gray-300">—</span>}

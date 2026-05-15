@@ -127,7 +127,7 @@ export function BulkAllocateForm({
           <select
             value={communityId}
             onChange={(e) => setCommunityId(e.target.value)}
-            className="w-full rounded-md border border-amber-300 bg-white px-2 py-1.5 text-sm"
+            className="w-full rounded-md border border-amber-300 bg-white px-3 py-2.5 text-base md:py-1.5 md:text-sm"
           >
             <option value="">— Pick a community —</option>
             {STATUS_GROUP_ORDER.filter((s) => grouped.has(s)).map((s) => (
@@ -145,7 +145,7 @@ export function BulkAllocateForm({
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="w-full rounded-md border border-amber-300 bg-white px-2 py-1.5 text-sm"
+            className="w-full rounded-md border border-amber-300 bg-white px-3 py-2.5 text-base md:py-1.5 md:text-sm"
           >
             {STATUS_OPTIONS.map((o) => (
               <option key={o.value} value={o.value}>{o.label}</option>
@@ -159,13 +159,13 @@ export function BulkAllocateForm({
             value={note}
             onChange={(e) => setNote(e.target.value)}
             placeholder="leave blank for auto"
-            className="w-full rounded-md border border-amber-300 bg-white px-2 py-1.5 text-sm"
+            className="w-full rounded-md border border-amber-300 bg-white px-3 py-2.5 text-base md:py-1.5 md:text-sm"
           />
         </label>
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
-        <Button size="sm" onClick={submit} disabled={pending}>
+        <Button size="lg" onClick={submit} disabled={pending} className="md:size-default">
           {pending ? 'Allocating…' : `Allocate ${toUpdate} of ${assets.length}`}
         </Button>
         {excluded.size > 0 && (
@@ -185,28 +185,34 @@ export function BulkAllocateForm({
         <table className="w-full text-sm">
           <thead className="bg-gray-50">
             <tr className="border-b text-left text-xs uppercase tracking-wider text-gray-500">
-              <th className="py-2 px-3 font-medium w-10"></th>
+              <th className="py-2 px-3 font-medium w-12"></th>
               <th className="py-2 px-3 font-medium">ID</th>
-              <th className="py-2 px-3 font-medium">Current status</th>
-              <th className="py-2 px-3 font-medium">Current community</th>
+              <th className="py-2 px-3 font-medium">Status</th>
+              <th className="hidden sm:table-cell py-2 px-3 font-medium">Current community</th>
             </tr>
           </thead>
           <tbody>
             {assets.map((a) => {
               const isExcluded = excluded.has(a.unique_id);
               return (
-                <tr key={a.unique_id} className={`border-b last:border-0 ${isExcluded ? 'opacity-40' : 'hover:bg-gray-50'}`}>
-                  <td className="py-1.5 px-3">
+                <tr
+                  key={a.unique_id}
+                  className={`border-b last:border-0 cursor-pointer ${isExcluded ? 'opacity-40' : 'hover:bg-gray-50'}`}
+                  onClick={() => toggleExclude(a.unique_id)}
+                >
+                  <td className="py-2.5 px-3">
                     <input
                       type="checkbox"
                       checked={!isExcluded}
                       onChange={() => toggleExclude(a.unique_id)}
+                      onClick={(e) => e.stopPropagation()}
                       aria-label={`Include ${a.unique_id}`}
+                      className="h-5 w-5 cursor-pointer accent-amber-600"
                     />
                   </td>
-                  <td className="py-1.5 px-3 font-mono text-xs">{a.unique_id}</td>
-                  <td className="py-1.5 px-3 text-xs">{a.status?.replace(/_/g, ' ') || '—'}</td>
-                  <td className="py-1.5 px-3 text-xs text-gray-600">{a.community || '—'}</td>
+                  <td className="py-2.5 px-3 font-mono text-xs sm:text-sm">{a.unique_id}</td>
+                  <td className="py-2.5 px-3 text-xs">{a.status?.replace(/_/g, ' ') || '—'}</td>
+                  <td className="hidden sm:table-cell py-2.5 px-3 text-xs text-gray-600">{a.community || '—'}</td>
                 </tr>
               );
             })}

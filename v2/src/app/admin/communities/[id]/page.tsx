@@ -142,7 +142,7 @@ export default async function CommunityDetailPage({
   const escapeForIlike = (s: string) => s.replace(/[%_]/g, (m) => `\\${m}`);
   const orFilter = matchNames.map((n) => `community.ilike.${escapeForIlike(n)}`).join(',');
 
-  const [assetsRes, demandRes, dealsRes] = await Promise.all([
+  const [assetsRes, demandRes, dealsRes, machineAssetsRes] = await Promise.all([
     supabase
       .from('assets')
       .select('unique_id, name, product, status, supply_date, partner_name, quantity, notes')
@@ -160,11 +160,49 @@ export default async function CommunityDetailPage({
       .select('id, title, pipeline_stage, amount_cents, units, deal_type, updated_at')
       .filter('metadata->>community_id', 'eq', id)
       .order('amount_cents', { ascending: false }),
+    // Machines deployed here (for fleet cross-link)
+    supabase
+      .from('assets')
+      .select('unique_id, name, machine_id, status')
+      .eq('community_id', id)
+      .ilike('product', '%machine%')
+      .not('machine_id', 'is', null),
   ]);
 
   const assets = (assetsRes.data || []) as AssetRow[];
   const demand = (demandRes.data || []) as DemandRow[];
   const deals = (dealsRes.data || []) as DealRow[];
+
+  // Fleet cross-link: machine assets at this community, with last-seen + alert count
+  type MachineAsset = { unique_id: string; name: string | null; machine_id: string; status: string | null };
+  const machineAssets = (machineAssetsRes.data || []) as MachineAsset[];
+  const machineIds = machineAssets.map((m) => m.machine_id).filter(Boolean);
+  let lastSeenByMachine = new Map<string, string>();
+  let openAlertsByMachine = new Map<string, number>();
+  if (machineIds.length > 0) {
+    const [usageRes, alertsRes] = await Promise.all([
+      supabase
+        .from('usage_logs')
+        .select('machine_id, created_at')
+        .in('machine_id', machineIds)
+        .order('created_at', { ascending: false })
+        .limit(2000),
+      supabase
+        .from('alerts')
+        .select('machine_id')
+        .in('machine_id', machineIds)
+        .or('resolved.is.null,resolved.eq.false'),
+    ]);
+    for (const r of (usageRes.data || []) as Array<{ machine_id: string | null; created_at: string | null }>) {
+      if (!r.machine_id || !r.created_at) continue;
+      const prev = lastSeenByMachine.get(r.machine_id);
+      if (!prev || r.created_at > prev) lastSeenByMachine.set(r.machine_id, r.created_at);
+    }
+    for (const r of (alertsRes.data || []) as Array<{ machine_id: string | null }>) {
+      if (!r.machine_id) continue;
+      openAlertsByMachine.set(r.machine_id, (openAlertsByMachine.get(r.machine_id) || 0) + 1);
+    }
+  }
 
   // Human stories: compendium (sync) + Empathy Ledger (async, swallow failures)
   const communityMatch = { name: community.name, aliases: aliases };
@@ -259,11 +297,11 @@ export default async function CommunityDetailPage({
               <thead className="bg-gray-50">
                 <tr className="border-b text-left text-xs uppercase tracking-wider text-gray-500">
                   <th className="py-2 px-3 font-medium">Requested by</th>
-                  <th className="py-2 px-3 font-medium">Product</th>
+                  <th className="hidden sm:table-cell py-2 px-3 font-medium">Product</th>
                   <th className="py-2 px-3 font-medium text-right">Qty</th>
-                  <th className="py-2 px-3 font-medium text-right">Est. Value</th>
+                  <th className="hidden md:table-cell py-2 px-3 font-medium text-right">Est. Value</th>
                   <th className="py-2 px-3 font-medium">Status</th>
-                  <th className="py-2 px-3 font-medium">Notes</th>
+                  <th className="hidden lg:table-cell py-2 px-3 font-medium">Notes</th>
                   <th className="py-2 px-3 font-medium text-right w-16"></th>
                 </tr>
               </thead>
@@ -368,11 +406,11 @@ export default async function CommunityDetailPage({
               <thead className="bg-gray-50">
                 <tr className="border-b text-left text-xs uppercase tracking-wider text-gray-500">
                   <th className="py-2 px-3 font-medium">ID</th>
-                  <th className="py-2 px-3 font-medium">Name</th>
-                  <th className="py-2 px-3 font-medium">Product</th>
+                  <th className="hidden md:table-cell py-2 px-3 font-medium">Name</th>
+                  <th className="hidden sm:table-cell py-2 px-3 font-medium">Product</th>
                   <th className="py-2 px-3 font-medium">Status</th>
-                  <th className="py-2 px-3 font-medium">Supplied</th>
-                  <th className="py-2 px-3 font-medium">Partner</th>
+                  <th className="hidden md:table-cell py-2 px-3 font-medium">Supplied</th>
+                  <th className="hidden lg:table-cell py-2 px-3 font-medium">Partner</th>
                 </tr>
               </thead>
               <tbody>
@@ -383,15 +421,15 @@ export default async function CommunityDetailPage({
                         {a.unique_id}
                       </Link>
                     </td>
-                    <td className="py-2 px-3 text-xs text-gray-700">{a.name || '—'}</td>
-                    <td className="py-2 px-3 text-xs text-gray-600">{a.product || '—'}</td>
+                    <td className="hidden md:table-cell py-2 px-3 text-xs text-gray-700">{a.name || '—'}</td>
+                    <td className="hidden sm:table-cell py-2 px-3 text-xs text-gray-600">{a.product || '—'}</td>
                     <td className="py-2 px-3">
                       <Badge className={`text-xs ${ASSET_STATUS_STYLE[a.status || 'unknown'] || 'bg-gray-100 text-gray-700'}`}>
                         {(a.status || 'unknown').replace(/_/g, ' ')}
                       </Badge>
                     </td>
-                    <td className="py-2 px-3 text-xs text-gray-500">{a.supply_date || '—'}</td>
-                    <td className="py-2 px-3 text-xs text-gray-500">{a.partner_name || '—'}</td>
+                    <td className="hidden md:table-cell py-2 px-3 text-xs text-gray-500">{a.supply_date || '—'}</td>
+                    <td className="hidden lg:table-cell py-2 px-3 text-xs text-gray-500">{a.partner_name || '—'}</td>
                   </tr>
                 ))}
               </tbody>
@@ -404,6 +442,84 @@ export default async function CommunityDetailPage({
           </div>
         )}
       </section>
+
+      {/* Fleet: washing machines deployed here */}
+      {machineAssets.length > 0 && (
+        <section className="space-y-3">
+          <div className="flex flex-wrap items-baseline justify-between gap-3">
+            <div>
+              <h2 className="text-base font-semibold">Washing Machines</h2>
+              <p className="text-xs text-gray-500">
+                {machineAssets.length} machine{machineAssets.length === 1 ? '' : 's'} deployed.
+                {' '}<Link href="/admin/fleet" className="text-orange-600 hover:underline">Open fleet dashboard ↗</Link>
+              </p>
+            </div>
+            {[...openAlertsByMachine.values()].reduce((s, n) => s + n, 0) > 0 && (
+              <Badge className="bg-red-100 text-red-800 text-xs">
+                {[...openAlertsByMachine.values()].reduce((s, n) => s + n, 0)} open alert{[...openAlertsByMachine.values()].reduce((s, n) => s + n, 0) === 1 ? '' : 's'}
+              </Badge>
+            )}
+          </div>
+          <div className="overflow-x-auto rounded-lg border">
+            <table className="w-full text-sm">
+              <thead className="bg-gray-50">
+                <tr className="border-b text-left text-xs uppercase tracking-wider text-gray-500">
+                  <th className="py-2 px-3 font-medium">Asset</th>
+                  <th className="py-2 px-3 font-medium">Device</th>
+                  <th className="py-2 px-3 font-medium">Status</th>
+                  <th className="py-2 px-3 font-medium">Last Seen</th>
+                  <th className="py-2 px-3 font-medium">Alerts</th>
+                </tr>
+              </thead>
+              <tbody>
+                {machineAssets.map((m) => {
+                  const lastSeen = lastSeenByMachine.get(m.machine_id);
+                  const alertCount = openAlertsByMachine.get(m.machine_id) || 0;
+                  const lastSeenLabel = lastSeen
+                    ? `${Math.floor((Date.now() - new Date(lastSeen).getTime()) / 86400000)}d ago`
+                    : 'never';
+                  const isSilent = !lastSeen || Date.now() - new Date(lastSeen).getTime() > 7 * 86400000;
+                  return (
+                    <tr key={m.unique_id} className="border-b last:border-0 hover:bg-gray-50">
+                      <td className="py-2 px-3">
+                        <Link href={`/bed/${m.unique_id}`} className="font-mono text-xs text-orange-600 hover:underline">
+                          {m.unique_id}
+                        </Link>
+                        {m.name && <div className="text-xs text-gray-600">{m.name}</div>}
+                      </td>
+                      <td className="py-2 px-3">
+                        <Link
+                          href={`/admin/fleet/${encodeURIComponent(m.machine_id)}`}
+                          className="font-mono text-xs text-blue-600 hover:underline"
+                        >
+                          {m.machine_id.slice(0, 12)}…
+                        </Link>
+                      </td>
+                      <td className="py-2 px-3">
+                        <Badge className={`text-xs ${ASSET_STATUS_STYLE[m.status || 'unknown'] || 'bg-gray-100 text-gray-700'}`}>
+                          {(m.status || 'unknown').replace(/_/g, ' ')}
+                        </Badge>
+                      </td>
+                      <td className={`py-2 px-3 text-xs ${isSilent ? 'text-red-700' : 'text-emerald-700'}`}>
+                        {lastSeenLabel}
+                      </td>
+                      <td className="py-2 px-3">
+                        {alertCount > 0 ? (
+                          <span className="inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 rounded-full">
+                            {alertCount}
+                          </span>
+                        ) : (
+                          <span className="text-xs text-gray-400">—</span>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
 
       {/* Deals linked via metadata->>community_id */}
       <section className="space-y-3">

@@ -38,9 +38,9 @@ export function DemandRowItem({ row }: { row: DemandRow }) {
     return (
       <tr className="border-b last:border-0 hover:bg-gray-50">
         <td className="py-2 px-3 font-medium">{row.requested_by || <span className="text-gray-400">—</span>}</td>
-        <td className="py-2 px-3 text-xs text-gray-600">{row.product}</td>
+        <td className="hidden sm:table-cell py-2 px-3 text-xs text-gray-600">{row.product}</td>
         <td className="py-2 px-3 text-right font-mono">{row.qty}</td>
-        <td className="py-2 px-3 text-right font-mono">
+        <td className="hidden md:table-cell py-2 px-3 text-right font-mono">
           {row.estimated_value_cents
             ? `$${(row.estimated_value_cents / 100).toLocaleString('en-AU')}`
             : '—'}
@@ -50,7 +50,7 @@ export function DemandRowItem({ row }: { row: DemandRow }) {
             {row.status}
           </Badge>
         </td>
-        <td className="py-2 px-3 text-xs text-gray-500 max-w-[280px] truncate">{row.notes || '—'}</td>
+        <td className="hidden lg:table-cell py-2 px-3 text-xs text-gray-500 max-w-[280px] truncate">{row.notes || '—'}</td>
         <td className="py-2 px-3 text-right">
           <button
             type="button"
@@ -66,7 +66,7 @@ export function DemandRowItem({ row }: { row: DemandRow }) {
 
   return (
     <tr className="border-b last:border-0 bg-amber-50/40">
-      <td colSpan={7} className="py-3 px-3">
+      <td colSpan={7} className="py-3 px-2 sm:px-3">
         <form
           action={(fd) => {
             setError(null);

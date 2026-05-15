@@ -5,6 +5,7 @@ import type { MachineOverview } from '@/lib/types/database';
 
 interface MachineListTableProps {
   machines: MachineOverview[];
+  communityNameToId?: Map<string, string>;
 }
 
 function timeAgo(dateString: string | null): string {
@@ -19,7 +20,7 @@ function timeAgo(dateString: string | null): string {
   return `${Math.floor(seconds / 86400)}d ago`;
 }
 
-export function MachineListTable({ machines }: MachineListTableProps) {
+export function MachineListTable({ machines, communityNameToId }: MachineListTableProps) {
   if (machines.length === 0) {
     return (
       <p className="text-gray-500 text-center py-8">
@@ -61,7 +62,18 @@ export function MachineListTable({ machines }: MachineListTableProps) {
                 )}
               </td>
               <td className="py-4 text-sm text-gray-600">
-                {machine.community || machine.site_name || '\u2014'}
+                {(() => {
+                  const label = machine.community || machine.site_name || '\u2014';
+                  const id = machine.community ? communityNameToId?.get(machine.community.toLowerCase()) : undefined;
+                  if (id) {
+                    return (
+                      <Link href={`/admin/communities/${id}`} className="text-orange-600 hover:underline">
+                        {label}
+                      </Link>
+                    );
+                  }
+                  return label;
+                })()}
               </td>
               <td className="py-4">
                 <MachineStatusBadge
