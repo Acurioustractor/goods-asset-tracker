@@ -3,17 +3,25 @@
 import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 
+type CommunityOption = {
+  id: string;
+  name: string;
+  state: string;
+  status: string;
+};
+
 type Props = {
   uniqueId: string;
   productLabel: string;
   initial: {
     community: string | null;
+    community_id: string | null;
     place: string | null;
     gps: string | null;
     status: string | null;
   };
   adminEmail: string;
-  knownCommunities: string[];
+  communityOptions: CommunityOption[];
 };
 
 const STATUS_OPTIONS = [
@@ -24,17 +32,26 @@ const STATUS_OPTIONS = [
   { value: 'retired', label: 'Retired' },
 ];
 
-export function InstallLogger({ uniqueId, productLabel, initial, adminEmail, knownCommunities }: Props) {
+// Group communities by status for the dropdown
+const STATUS_GROUP_LABEL: Record<string, string> = {
+  active: 'Active deployments',
+  testing: 'Testing',
+  exploring: 'Exploring',
+  prospect: 'Prospects',
+  administrative: 'Admin / staging',
+};
+const STATUS_GROUP_ORDER = ['active', 'testing', 'exploring', 'prospect', 'administrative'];
+
+export function InstallLogger({ uniqueId, productLabel, initial, adminEmail, communityOptions }: Props) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [open, setOpen] = useState(false);
 
-  const isPendingDelivery = initial.community === 'Pending Delivery';
+  const isPendingDelivery = initial.community_id === 'pending-delivery' || initial.community === 'Pending Delivery';
 
-  const [community, setCommunity] = useState(
-    isPendingDelivery ? '' : initial.community || ''
+  const [communityId, setCommunityId] = useState(
+    isPendingDelivery ? '' : initial.community_id || ''
   );
-  const [otherCommunity, setOtherCommunity] = useState('');
   const [place, setPlace] = useState(initial.place || '');
   const [gps, setGps] = useState(initial.gps || '');
   const [status, setStatus] = useState(initial.status || 'deployed');
@@ -68,17 +85,18 @@ export function InstallLogger({ uniqueId, productLabel, initial, adminEmail, kno
     );
   };
 
+  const selectedCommunity = communityOptions.find((c) => c.id === communityId);
+
   const onSave = () => {
-    const finalCommunity = community === 'Other' ? otherCommunity.trim() : community.trim();
-    if (!finalCommunity) {
-      setSaveError('Pick a community (or use Other → free text).');
+    if (!communityId) {
+      setSaveError('Pick a community from the list.');
       return;
     }
     setSaveError('');
     setSaved(false);
 
     const today = new Date().toISOString().slice(0, 10);
-    const stamp = `[${today}] installed by ${adminEmail} → ${finalCommunity}${place ? ` / ${place}` : ''}${gps ? ` (gps ${gps})` : ''}`;
+    const stamp = `[${today}] installed by ${adminEmail} → ${selectedCommunity?.name || communityId}${place ? ` / ${place}` : ''}${gps ? ` (gps ${gps})` : ''}`;
 
     startTransition(async () => {
       try {
@@ -86,7 +104,7 @@ export function InstallLogger({ uniqueId, productLabel, initial, adminEmail, kno
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            community: finalCommunity,
+            community_id: communityId,
             place: place || null,
             gps: gps || null,
             status,
@@ -105,6 +123,13 @@ export function InstallLogger({ uniqueId, productLabel, initial, adminEmail, kno
       }
     });
   };
+
+  // Group options by status
+  const grouped = new Map<string, CommunityOption[]>();
+  for (const opt of communityOptions) {
+    if (!grouped.has(opt.status)) grouped.set(opt.status, []);
+    grouped.get(opt.status)!.push(opt);
+  }
 
   if (!open) {
     return (
@@ -157,25 +182,28 @@ export function InstallLogger({ uniqueId, productLabel, initial, adminEmail, kno
           <div>
             <label className="block text-xs font-medium text-amber-900 mb-1">Community</label>
             <select
-              value={community}
-              onChange={(e) => setCommunity(e.target.value)}
+              value={communityId}
+              onChange={(e) => setCommunityId(e.target.value)}
               className="w-full rounded-lg border border-amber-300 bg-white px-3 py-2.5 text-base"
             >
               <option value="">— Pick a community —</option>
-              {knownCommunities.map((c) => (
-                <option key={c} value={c}>{c}</option>
+              {STATUS_GROUP_ORDER.filter((s) => grouped.has(s)).map((s) => (
+                <optgroup key={s} label={STATUS_GROUP_LABEL[s] || s}>
+                  {grouped.get(s)!.map((opt) => (
+                    <option key={opt.id} value={opt.id}>
+                      {opt.name} ({opt.state})
+                    </option>
+                  ))}
+                </optgroup>
               ))}
-              <option value="Other">Other (type below)</option>
             </select>
-            {community === 'Other' && (
-              <input
-                type="text"
-                placeholder="Community name"
-                value={otherCommunity}
-                onChange={(e) => setOtherCommunity(e.target.value)}
-                className="mt-2 w-full rounded-lg border border-amber-300 bg-white px-3 py-2.5 text-base"
-              />
-            )}
+            <p className="mt-1 text-xs text-amber-800/70">
+              Don&apos;t see the community?{' '}
+              <a className="underline" href="/admin/communities" target="_blank" rel="noreferrer">
+                Add it in the register
+              </a>{' '}
+              first, then come back.
+            </p>
           </div>
 
           <div>

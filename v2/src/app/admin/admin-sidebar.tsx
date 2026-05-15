@@ -5,97 +5,58 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import {
   LayoutDashboard,
-  Activity,
   Truck,
-  Calculator,
   ShoppingCart,
-  Kanban,
   Wrench,
   AlertCircle,
-  Handshake,
   BookOpen,
   Megaphone,
-  Map as MapIcon,
-  Lightbulb,
   Users,
   Menu,
   X,
   LogOut,
   Library,
   Globe,
-  Network,
-  Target,
   TrendingUp,
   Crosshair,
-  ShieldCheck,
-  BadgeCheck,
-  Search,
-  Recycle,
-  Map as MapIcon2,
   FileCheck,
-  Landmark,
-  FileText,
-  Mail,
-  GraduationCap,
+  Heart,
 } from 'lucide-react';
 
-const navigation = [
+type NavItem = { name: string; href: string; icon: React.ComponentType<{ className?: string }> };
+type NavGroup = { group: string; items: NavItem[] };
+
+// Operational backbone: pages that read live data and update from reality.
+const navigation: NavGroup[] = [
   {
-    group: 'Command Center',
+    group: 'Operations',
     items: [
-      { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
-      { name: 'Mission', href: '/mission', icon: Handshake },
-      { name: 'Compendium', href: '/admin/compendium', icon: Library },
-      { name: 'Ops', href: '/admin/ops', icon: Activity },
-      { name: 'Fleet', href: '/admin/fleet', icon: Truck },
-      { name: 'Unit Economics', href: '/admin/economics', icon: Calculator },
+      { name: 'Dashboard',   href: '/admin',             icon: LayoutDashboard },
+      { name: 'Assets',      href: '/admin/assets',      icon: Library },
+      { name: 'Fleet',       href: '/admin/fleet',       icon: Truck },
+      { name: 'Production',  href: '/admin/production',  icon: Wrench },
       { name: 'Communities', href: '/admin/communities', icon: Globe },
+      { name: 'Orders',      href: '/admin/orders',      icon: ShoppingCart },
+      { name: 'Requests',    href: '/admin/requests',    icon: AlertCircle },
     ],
   },
   {
-    group: 'Supply Chain & Assets',
+    group: 'Pipeline & Revenue',
     items: [
-      { name: 'Asset Register', href: '/admin/assets', icon: Library },
-      { name: 'Orders', href: '/admin/orders', icon: ShoppingCart },
-      { name: 'Pipeline', href: '/admin/pipeline', icon: Kanban },
-      { name: 'Production', href: '/admin/production', icon: Wrench },
-      { name: 'HDPE Catalog', href: '/admin/hdpe-catalog', icon: Recycle },
-      { name: 'Logistics', href: '/admin/logistics', icon: Truck },
-      { name: 'Requests', href: '/admin/requests', icon: AlertCircle },
+      { name: 'Deals (CRM)',     href: '/admin/strategy',            icon: Crosshair },
+      { name: 'Growth Funnel',   href: '/admin/growth',              icon: TrendingUp },
+      { name: 'Deal Room',       href: '/admin/deal-room',           icon: Crosshair },
+      { name: 'Xero Recon',      href: '/admin/xero-reconciliation', icon: FileCheck },
     ],
   },
   {
-    group: 'Network & Impact',
+    group: 'Content',
     items: [
-      { name: 'Network', href: '/admin/network', icon: Network },
-      { name: 'Strategy', href: '/admin/strategy', icon: Target },
-      { name: 'Growth', href: '/admin/growth', icon: TrendingUp },
-      { name: 'Deal Room', href: '/admin/deal-room', icon: Crosshair },
-      { name: 'Procurement', href: '/admin/procurement', icon: ShieldCheck },
-      { name: 'Supply Nation', href: '/admin/supply-nation', icon: BadgeCheck },
-      { name: 'AusTender', href: '/admin/austender', icon: Search },
-      { name: 'QBE Program', href: '/admin/qbe-program', icon: GraduationCap },
-      { name: 'QBE Actions', href: '/admin/qbe-actions', icon: Target },
-      { name: 'LOI Tracker', href: '/admin/loi-tracker', icon: FileText },
-      { name: 'Finance Engine', href: '/admin/finance-model', icon: Calculator },
-      { name: 'Impact Dashboard', href: '/admin/impact-dashboard', icon: Activity },
-      { name: 'Foundation Matcher', href: '/admin/foundation-matcher', icon: Search },
-      { name: 'IBA Loan', href: '/admin/iba-loan', icon: Landmark },
-      { name: 'Deployment Map', href: '/admin/deployment-map', icon: MapIcon2 },
-      { name: 'Xero Recon', href: '/admin/xero-reconciliation', icon: FileCheck },
-      { name: 'Capability Statement', href: '/admin/capability-statement', icon: FileText },
-      { name: 'Groote Outreach', href: '/admin/groote-outreach', icon: Mail },
-      { name: 'Brand & Content', href: '/admin/brand', icon: Globe },
-    ],
-  },
-  {
-    group: 'Content & Community',
-    items: [
-      { name: 'Stories', href: '/admin/stories', icon: BookOpen },
+      { name: 'Stories',       href: '/admin/stories',       icon: BookOpen },
       { name: 'Announcements', href: '/admin/announcements', icon: Megaphone },
-      { name: 'Journeys', href: '/admin/journeys', icon: MapIcon },
-      { name: 'Ideas', href: '/admin/ideas', icon: Lightbulb },
-      { name: 'Team', href: '/admin/team', icon: Users },
+      { name: 'Team',          href: '/admin/team',          icon: Users },
+      { name: 'Brand',         href: '/admin/brand',         icon: Globe },
+      { name: 'Compassion',    href: '/admin/compassion',    icon: Heart },
     ],
   },
 ];
@@ -131,8 +92,8 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
                         onClick={() => setMobileMenuOpen(false)}
                         className={`
                           group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-medium transition-all
-                          ${isActive 
-                            ? 'bg-orange-500 text-white shadow-md' 
+                          ${isActive
+                            ? 'bg-orange-500 text-white shadow-md'
                             : 'text-slate-300 hover:text-white hover:bg-slate-800'
                           }
                         `}
@@ -146,8 +107,15 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
               </ul>
             </li>
           ))}
-          
+
           <li className="mt-auto pt-8">
+             <div className="px-2 pt-3 pb-1 text-[10px] uppercase tracking-wider text-slate-500 border-t border-slate-800">
+               Archived decks (moved 2026-05-15)
+             </div>
+             <p className="px-2 pb-2 text-[10px] leading-snug text-slate-600">
+               One-shot proposal pages now live in <code>_archive/2026-05-15-admin-decks/</code>.
+               See <code>RESTORE.md</code> to bring one back.
+             </p>
              <div className="flex items-center gap-x-4 px-2 py-3 text-sm font-medium leading-6 text-slate-400 border-t border-slate-800">
                <span className="truncate">{userEmail}</span>
              </div>

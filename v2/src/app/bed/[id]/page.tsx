@@ -12,20 +12,6 @@ import { BedMapWrapper } from './bed-map-wrapper';
 import { QuickConnectForm } from './quick-connect-form';
 import { InstallLogger } from './install-logger';
 
-const KNOWN_COMMUNITIES = [
-  'Tennant Creek',
-  'Palm Island',
-  'Utopia Homelands',
-  'Alice Springs',
-  'Maningrida',
-  'Kalgoorlie',
-  'Mount Isa',
-  'Mutitjulu',
-  'Darwin',
-  'Canberra',
-  'Pending Delivery',
-];
-
 type AdminUserShape = {
   email?: string | null;
   app_metadata?: Record<string, unknown>;
@@ -88,9 +74,19 @@ export default async function BedPage({ params }: BedPageProps) {
   // Fetch asset details
   const { data: asset } = await supabase
     .from('assets')
-    .select('unique_id, name, product, community, place, status, supply_date, created_time, photo, gps')
+    .select('unique_id, name, product, community, community_id, place, status, supply_date, created_time, photo, gps')
     .eq('unique_id', id)
     .single();
+
+  // Canonical community options (only fetched when an admin is on this page)
+  const communityOptions = isAdmin
+    ? ((await supabase
+        .from('communities')
+        .select('id, name, state, status')
+        .order('status', { ascending: true })
+        .order('name', { ascending: true })
+      ).data || [])
+    : [];
 
   // Fetch all assets for the map (aggregate by community)
   const { data: allAssets } = await supabase
@@ -180,9 +176,10 @@ export default async function BedPage({ params }: BedPageProps) {
           uniqueId={asset.unique_id}
           productLabel={productLabel}
           adminEmail={user.email}
-          knownCommunities={KNOWN_COMMUNITIES}
+          communityOptions={communityOptions}
           initial={{
             community: asset.community,
+            community_id: asset.community_id,
             place: asset.place,
             gps: asset.gps,
             status: asset.status,

@@ -6,6 +6,9 @@ import { InventoryPositionCard } from '@/components/production/inventory-positio
 import { ProductionTrendChart } from '@/components/production/production-trend-chart';
 import { SupplyDemandCard, type CommittedOrder, type SupplierQuote } from '@/components/production/supply-demand-card';
 import { BedReconciliation, type AssetSummary, type DemandSummary } from '@/components/production/bed-reconciliation';
+import { CostPerBatchCard, type BatchSummary } from '@/components/production/cost-per-batch-card';
+import { stretchBedCOGS } from '@/lib/data/supplier-quotes';
+import { getSupplierActuals } from '@/lib/data/supplier-cost-actuals';
 import type { ProductionInventory, ProductionShift, ProductionJournal } from '@/lib/types/database';
 
 export const revalidate = 300; // 5 min cache
@@ -64,6 +67,7 @@ async function getProductionData() {
   const rawAssets = (assetsRes.data || []) as Array<{ unique_id: string; status: string; community: string; quantity: number; product: string; notes: string | null }>;
   const communityMap = new Map<string, number>();
   const productMap = new Map<string, { deployed: number; demo: number; allocated: number; requested: number; retired: number }>();
+  const batchMap = new Map<string, number>();
   let deployed = 0, demo = 0, allocated = 0, requested = 0, retired = 0, inTransitCount = 0;
 
   for (const a of rawAssets) {
@@ -90,6 +94,13 @@ async function getProductionData() {
     }
     if (a.community && a.status === 'deployed') {
       communityMap.set(a.community, (communityMap.get(a.community) || 0) + qty);
+    }
+    // Per-batch counts for COGS rollup (only Stretch Beds)
+    if (/bed/i.test(product) && a.status !== 'retired') {
+      const m = a.unique_id?.match(/^GB0-([A-Za-z0-9]+)/);
+      if (m) {
+        batchMap.set(m[1], (batchMap.get(m[1]) || 0) + qty);
+      }
     }
   }
 
@@ -163,6 +174,22 @@ async function getProductionData() {
     totalDeals: totalDemandDeals,
   };
 
+  // Build batch summary (cost-per-batch view)
+  const batchSummary: BatchSummary[] = [...batchMap.entries()]
+    .map(([batch, bedCount]) => ({
+      batch,
+      bedCount,
+      cogs: bedCount * stretchBedCOGS,
+      marginAtInstitutional: bedCount * (560 - stretchBedCOGS),
+    }))
+    .sort((a, b) => {
+      // Sort numerically when batch is a number (e.g. "156"), else alphabetically
+      const na = Number(a.batch);
+      const nb = Number(b.batch);
+      if (!Number.isNaN(na) && !Number.isNaN(nb)) return nb - na;
+      return a.batch.localeCompare(b.batch);
+    });
+
   return {
     shifts: (shiftsRes.data || []) as ProductionShift[],
     inventorySnapshots: (inventoryRes.data || []) as ProductionInventory[],
@@ -170,6 +197,7 @@ async function getProductionData() {
     bedDeals,
     assetSummary,
     demandSummary,
+    batchSummary,
   };
 }
 
@@ -187,7 +215,14 @@ const ENTRY_TYPE_BADGES: Record<string, string> = {
 };
 
 export default async function AdminProductionPage() {
-  const { shifts, inventorySnapshots, journalEntries, bedDeals, assetSummary, demandSummary } = await getProductionData();
+  const [{ shifts, inventorySnapshots, journalEntries, bedDeals, assetSummary, demandSummary, batchSummary }, supplierActuals] = await Promise.all([
+    getProductionData(),
+    getSupplierActuals(),
+  ]);
+
+  // Lifetime bed count for the actual $/bed denominator: count every Stretch Bed
+  // that exists in the register (deployed + ready + allocated + demo + retired etc).
+  const bedsLifetime = batchSummary.reduce((s, b) => s + b.bedCount, 0);
 
   const latestInventory = inventorySnapshots[0] || null;
   const bedsPossible = latestInventory?.beds_possible ?? 0;
@@ -299,6 +334,9 @@ export default async function AdminProductionPage() {
 
       {/* KPIs */}
       <ProductionKPIGrid kpis={kpis} />
+
+      {/* Cost per bed + per batch (BOM-driven from supplier-quotes.ts + Xero ACCPAY actuals) */}
+      <CostPerBatchCard batches={batchSummary} actuals={supplierActuals} bedsLifetime={bedsLifetime} />
 
       {/* Bed Reconciliation */}
       <BedReconciliation data={{

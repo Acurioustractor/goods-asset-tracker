@@ -6,6 +6,7 @@ export const dynamic = 'force-dynamic';
 const EDITABLE_FIELDS = new Set([
   'name',
   'community',
+  'community_id',
   'place',
   'status',
   'notes',
@@ -57,12 +58,29 @@ export async function PATCH(
     const existing = current?.notes ? `${current.notes}\n` : '';
     patch.notes = `${existing}${appendNote}`;
   }
+
+  // If community_id is provided, look up the canonical name to keep the
+  // denormalised `community` column in sync. Explicit `community` in the body
+  // wins (lets callers override display name if needed).
+  if (typeof patch.community_id === 'string' && patch.community_id && !('community' in body)) {
+    const { data: community } = await supabase
+      .from('communities')
+      .select('name')
+      .eq('id', patch.community_id)
+      .maybeSingle();
+    if (community?.name) {
+      patch.community = community.name;
+    } else {
+      return NextResponse.json({ error: `community_id "${patch.community_id}" not found` }, { status: 400 });
+    }
+  }
+
   const { data, error } = await supabase
     .from('assets')
     .update(patch)
     .eq('unique_id', unique_id)
     .select(
-      'unique_id, name, community, place, status, notes, partner_name, gps, supply_date, product, qr_url'
+      'unique_id, name, community, community_id, place, status, notes, partner_name, gps, supply_date, product, qr_url'
     )
     .single();
 
