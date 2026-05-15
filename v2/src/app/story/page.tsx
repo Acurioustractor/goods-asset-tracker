@@ -648,6 +648,21 @@ export default async function StoryPage() {
           </section>
         ))}
 
+        {/* Discrete entry point to the full voices grid */}
+        <section className="py-12 bg-foreground text-background">
+          <div className="container mx-auto px-4 text-center">
+            <Link
+              href="/stories"
+              className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.25em] text-background/70 hover:text-background transition-colors"
+            >
+              Read all community voices
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
+          </div>
+        </section>
+
         {/* ════════════════════════════════════════════════════════════════
             8b. FREIGHT TAX: The cost of remoteness
             ════════════════════════════════════════════════════════════ */}
