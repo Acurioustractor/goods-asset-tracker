@@ -136,3 +136,14 @@
 .animate-shake {
   animation: shake 0.4s ease-in-out;
 }
+
+/* Hide scrollbar inside the admin sidebar while keeping scroll behavior */
+.admin-sidebar-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.admin-sidebar-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}

@@ -28,7 +28,7 @@ export function AssemblySequence() {
       onClick={() => setPaused((p) => !p)}
       role="button"
       tabIndex={0}
-      aria-label="Assembly sequence — click to pause"
+      aria-label="Assembly sequence, click to pause"
       onKeyDown={(e) => { if (e.key === ' ' || e.key === 'Enter') setPaused((p) => !p); }}
     >
       <div className="aspect-[3/2] relative rounded-2xl overflow-hidden bg-muted">

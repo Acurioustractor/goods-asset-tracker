@@ -3,9 +3,9 @@ publish: false
 reason: internal investor scoring matrix
 ---
 
-# Investor Alignment Tool (markdown)
+# Investor Alignment Tool
 
-> Markdown recreation of Tab 3 from the CASE Smart Impact Capital spreadsheet. Score each investor 0-3 against our [[our-investment-needs|needs]]. Lives in Obsidian so we can edit in pairs (advisor + Ben) during calls. The xlsx original is preserved at `raw/2026-03-31-investor-alignment-tool-case.xlsx`.
+> Reviewable investor-fit matrix based on the CASE Smart Impact Capital tool. Use it to choose fit-for-purpose capital, not to create fake precision. The source summary is [[../sources/case-investor-alignment-tool]].
 
 ## Scoring legend
 
@@ -62,12 +62,12 @@ Link out from rows above.
 
 ## Export
 
-The original xlsx tool with dropdowns, conditional formatting, and formulas is at `raw/2026-03-31-investor-alignment-tool-case.xlsx`. For formal submissions (e.g. QBE Stage 2 data room), regenerate the xlsx from this markdown using a script in `outputs/` (not yet written).
+For formal submissions, use a Drive-controlled spreadsheet export and keep this page as the readable logic. Do not ask mentors to inspect the raw spreadsheet.
 
 ## Sources
 
-- `raw/2026-03-31-investor-alignment-tool-case.xlsx`
-- `raw/2026-03-31-qbe-induction-slides-fulltext.md`
+- [[../sources/case-investor-alignment-tool]]
+- [[../program/qbe-catalysing-impact-2026]]
 
 ## Related
 

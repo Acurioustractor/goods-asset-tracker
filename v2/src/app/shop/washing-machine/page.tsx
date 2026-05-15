@@ -11,9 +11,9 @@ import { quotes } from '@/lib/data/content';
 import { WASHING_MACHINE } from '@/lib/data/products';
 
 export const metadata = {
-  title: 'Pakkimjalki Kari — Washing Machine | Goods on Country',
+  title: 'Pakkimjalki Kari: Washing Machine',
   description:
-    'Commercial-grade Speed Queen in recycled plastic housing. Named in Warumungu language by Elder Dianne Stokes. Currently in prototype — register your interest.',
+    'Commercial-grade Speed Queen in recycled plastic housing. Named in Warumungu language by Elder Dianne Stokes. Currently in prototype. Register your interest.',
 };
 
 const product = {
@@ -22,14 +22,14 @@ const product = {
   shortDescription: WASHING_MACHINE.shortDescription,
   description: `One Alice Springs provider sells $3 million per year of washing machines into remote communities. Most end up in dumps within months.
 
-Consumer-grade machines aren't built for remote conditions — extreme heat, dust, hard water, and no access to repairs. Communities cycle through cheap machines that fail in 1-2 years, while commercial laundromat machines last 10-15.
+Consumer-grade machines aren't built for remote conditions: extreme heat, dust, hard water, and no access to repairs. Communities cycle through cheap machines that fail in 1-2 years, while commercial laundromat machines last 10-15.
 
-Pakkimjalki Kari starts with a Speed Queen commercial washer — the same machines that survive thousands of cycles in laundromats — and adapts it for remote community use. Recycled HDPE plastic housing panels (made from the same material as Stretch Bed legs) protect the machine from dust and the elements.
+Pakkimjalki Kari starts with a Speed Queen commercial washer (the same machines that survive thousands of cycles in laundromats) and adapts it for remote community use. Recycled HDPE plastic housing panels (made from the same material as Stretch Bed legs) protect the machine from dust and the elements.
 
-Elder Dianne Stokes named it "Pakkimjalki Kari" in Warumungu language. This isn't just branding — it reflects community ownership of the design process.`,
+Elder Dianne Stokes named it "Pakkimjalki Kari" in Warumungu language. This isn't just branding. It reflects community ownership of the design process.`,
   images: [
     { src: media.product.washingMachine, alt: 'Pakkimjalki Kari washing machine with recycled plastic enclosure' },
-    { src: media.product.washingMachineName, alt: 'Pakkimjalki Kari — named in Warumungu language by Elder Dianne Stokes' },
+    { src: media.product.washingMachineName, alt: 'Pakkimjalki Kari: named in Warumungu language by Elder Dianne Stokes' },
     { src: media.product.washingMachineInstalled, alt: 'Washing machine installed and operating in community' },
     { src: media.product.washingMachineCommunity, alt: 'Community members with the Pakkimjalki Kari washing machine' },
   ],
@@ -78,7 +78,7 @@ export default function WashingMachinePage() {
             {/* Price / Status */}
             <div className="mt-4 flex items-baseline gap-3">
               <span className="text-lg font-medium text-amber-600">
-                Prototype — Not Yet for Sale
+                Prototype: Not Yet for Sale
               </span>
             </div>
 
@@ -117,7 +117,7 @@ export default function WashingMachinePage() {
                   <div>
                     <p className="font-medium text-foreground">Health Hardware</p>
                     <p className="text-sm text-muted-foreground">
-                      A washing machine isn&apos;t convenience &mdash; it&apos;s cardiac prevention.
+                      A washing machine isn&apos;t convenience. It&apos;s cardiac prevention.
                       Clean bedding breaks the scabies cycle that leads to Rheumatic Heart Disease.
                     </p>
                   </div>
@@ -155,7 +155,7 @@ export default function WashingMachinePage() {
           </div>
         </section>
 
-        {/* The Problem — Stats */}
+        {/* The Problem: Stats */}
         <section className="mt-12">
           <h2 className="text-2xl font-bold text-foreground mb-6">The Problem</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -163,7 +163,7 @@ export default function WashingMachinePage() {
               { value: '$3M/yr', label: 'washing machines sold into remote communities that end up in dumps', source: 'Alice Springs provider' },
               { value: '59%', label: 'of remote homes lack working washing machines', source: 'FRRR, 2022' },
               { value: '1-2 yrs', label: 'lifespan of consumer machines in remote conditions (vs 10-15)', source: 'East Arnhem Spin Project' },
-              { value: '1 in 3', label: 'children have scabies at any time — linked to dirty bedding', source: 'PLOS NTD' },
+              { value: '1 in 3', label: 'children have scabies at any time, linked to dirty bedding', source: 'PLOS NTD' },
             ].map((stat) => (
               <Card key={stat.value}>
                 <CardContent className="p-4 text-center">
@@ -183,8 +183,8 @@ export default function WashingMachinePage() {
             {[
               'Commercial motor built for thousands of cycles',
               'Metal internals where consumer machines use plastic',
-              'Simple controls — no digital displays to fail',
-              'Standard parts — repairable, not disposable',
+              'Simple controls, no digital displays to fail',
+              'Standard parts: repairable, not disposable',
               'Handles extreme heat, dust, bore water',
               'Recycled plastic housing for environmental protection',
             ].map((feature) => (
@@ -243,7 +243,7 @@ export default function WashingMachinePage() {
           <p className="text-accent-foreground/80 max-w-xl mx-auto mb-6">
             Whether you&apos;re a community that needs reliable washing machines,
             a funder who wants to support the prototype stage, or someone with
-            technical expertise &mdash; we&apos;d love to hear from you.
+            technical expertise, we&apos;d love to hear from you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" asChild>
@@ -256,7 +256,7 @@ export default function WashingMachinePage() {
         </section>
       </div>
 
-      {/* Community Voices — Full Width */}
+      {/* Community Voices: Full Width */}
       <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
@@ -291,7 +291,7 @@ export default function WashingMachinePage() {
                   </p>
                   <footer className="text-sm text-muted-foreground">
                     <span className="font-medium text-foreground">Patricia Frank</span>
-                    <span> &mdash; Tennant Creek</span>
+                    <span>, Tennant Creek</span>
                   </footer>
                 </blockquote>
 
@@ -305,7 +305,7 @@ export default function WashingMachinePage() {
                   </p>
                   <footer className="text-sm text-muted-foreground">
                     <span className="font-medium text-foreground">Jessica Allardyce</span>
-                    <span> &mdash; Miwatj Health</span>
+                    <span>, Miwatj Health</span>
                   </footer>
                 </blockquote>
 
@@ -318,7 +318,7 @@ export default function WashingMachinePage() {
                   </p>
                   <footer className="text-sm text-muted-foreground">
                     <span className="font-medium text-foreground">Dianne Stokes</span>
-                    <span> &mdash; Elder, Tennant Creek</span>
+                    <span>, Elder, Tennant Creek</span>
                   </footer>
                 </blockquote>
               </div>
@@ -327,7 +327,7 @@ export default function WashingMachinePage() {
         </div>
       </section>
 
-      {/* Gallery — media pack photos */}
+      {/* Gallery: media pack photos */}
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
@@ -339,7 +339,7 @@ export default function WashingMachinePage() {
             </h2>
             <div className="grid gap-4 grid-cols-2 md:grid-cols-3">
               <MediaSlot src="/images/product/washing-machine-installed.jpg" alt="Washing machine installed in community" aspect="4/3" />
-              <MediaSlot src="/images/product/washing-machine-name.jpg" alt="Pakkimjalki Kari — named in Warumungu language" aspect="4/3" />
+              <MediaSlot src="/images/product/washing-machine-name.jpg" alt="Pakkimjalki Kari: named in Warumungu language" aspect="4/3" />
               <MediaSlot src="/images/media-pack/washing-machine-enclosure-sunset.jpg" alt="Recycled plastic washing machine enclosure at sunset" aspect="4/3" />
               <MediaSlot src="/images/media-pack/speed-queen-controls.jpg" alt="Speed Queen controls demonstration" aspect="4/3" />
               <MediaSlot src="/images/product/washing-machine-community.jpg" alt="Community members with washing machine" aspect="4/3" />
@@ -349,11 +349,11 @@ export default function WashingMachinePage() {
         </div>
       </section>
 
-      {/* Final CTA — dark */}
+      {/* Final CTA: dark */}
       <section className="py-16 md:py-20" style={{ backgroundColor: '#2E2E2E' }}>
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-light text-white mb-6" style={{ fontFamily: 'Georgia, serif' }}>
-            A washing machine isn&apos;t convenience &mdash; it&apos;s health hardware.
+            A washing machine isn&apos;t convenience. It&apos;s health hardware.
           </h2>
           <p className="text-white/70 max-w-xl mx-auto mb-8">
             Register your interest and we&apos;ll let you know when Pakkimjalki Kari

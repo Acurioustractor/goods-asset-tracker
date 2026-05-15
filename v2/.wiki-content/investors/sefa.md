@@ -58,5 +58,6 @@ See [[alignment-tool]]. Very high across the board. Main gap: our governance (ne
 
 ## Sources
 
-- `raw/2026-03-31-qbe-induction-slides.pdf`
-- `thoughts/shared/qbe-program/session-1-learnings.md`
+- [[../program/qbe-catalysing-impact-2026]]
+- [[../program/stage-2-funding]]
+- [[../sources/case-investor-alignment-tool]]

@@ -6,7 +6,7 @@ import { processStepMedia } from '@/lib/data/media';
 import { MediaSlot, VideoSlot } from '@/components/ui/media-slot';
 
 export const metadata = {
-  title: 'How It\'s Made | Goods on Country',
+  title: 'How It\'s Made',
   description: 'Follow the journey of a Stretch Bed — from recycled plastic to community-owned sleeping solutions.',
 };
 

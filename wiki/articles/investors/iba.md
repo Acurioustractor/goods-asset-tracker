@@ -19,7 +19,7 @@
 - Eligibility confirmed (early 2026).
 - Business plan in development.
 - Not yet formally submitted.
-- Admin workspace: `v2/src/app/admin/iba-loan/page.tsx`.
+- Internal admin workspace exists, but mentor-facing readiness should be shown through the business plan, capital stack and legal structure pages.
 
 ## Role in the stack
 
@@ -33,5 +33,5 @@ See [[alignment-tool]]. High across the board. Minor gap on restrictions (govern
 
 - [[../capital/capital-types]] (Debt, Grant)
 - [[../capital/capital-stack]]
-- [[../../communities/picc|PICC]] (see ACT Tractorpedia)
+- [[../communities/palm-island-picc|PICC]] and [ACT Tractorpedia public viewer](https://act-global-infrastructure.vercel.app/tractorpedia.html)
 - [[first-australians-capital]] (alternative / complementary)

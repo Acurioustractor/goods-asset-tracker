@@ -1,17 +1,17 @@
 # Impact
 
-> How Goods measures, governs, and tells the story of its impact. ALMA framework is the anchor. Empathy Ledger is the infrastructure. OCAP and consent-as-infrastructure are the governance defaults.
+> Goods impact evidence is strongest when it stays close to what people use, say and ask for. This section separates current evidence from intended measurement so the wiki does not make trial systems sound finished.
 
 ## Articles
 
-- [[alma-framework]] — six signals for adaptive, non-extractive impact measurement
-- [[theory-of-change]] — one-paragraph + one diagram version
-- [[empathy-ledger-impact]] — how stories become evidence without extraction
-- [[metrics-tracked]] — environmental, health, economic, story-based
-- [[impact-measurement-report]] — what we submit with Stage 2 funding application
+- [[metrics-tracked]]: current evidence, near-term build and possible future metrics
+- [[alma-framework]]: Australian Living Map of Alternatives as a review lens, not a finished answer
+- [[theory-of-change]]: plain theory of change
+- [[empathy-ledger-impact]]: consented story practice and technical reference
+- [[impact-measurement-report]]: what the Stage 2 report should contain
 
 ## Related
 
 - [[../governance/data-sovereignty]]
-- [[../investors/qbe-foundation]] (requires Impact Measurement Report in Stage 2)
-- ACT wiki: `concepts/alma.md`, `concepts/ocap-principles.md`, `concepts/consent-as-infrastructure.md`
+- [[../investors/qbe-foundation]]
+- ACT framework concepts should be translated into the impact and governance pages before mentor use.

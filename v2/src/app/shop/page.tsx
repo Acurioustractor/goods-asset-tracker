@@ -6,8 +6,8 @@ import { media } from '@/lib/data/media';
 import { STRETCH_BED, WASHING_MACHINE, BASKET_BED } from '@/lib/data/products';
 
 export const metadata = {
-  title: 'Shop | Goods on Country',
-  description: 'Browse handcrafted beds and washing machines made for remote Indigenous communities.',
+  title: 'Shop',
+  description: 'Browse handcrafted beds and washing machines made for remote First Nations communities.',
 };
 
 const products = [
@@ -60,7 +60,7 @@ export default function ShopPage() {
               Shop Beds
             </h1>
             <p className="text-lg" style={{ color: '#5E5E5E' }}>
-              Every purchase supports remote Indigenous communities across Australia.
+              Every purchase supports remote First Nations communities across Australia.
               Each bed diverts 20kg of plastic from landfill.
             </p>
           </div>

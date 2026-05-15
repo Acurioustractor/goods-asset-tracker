@@ -1,39 +1,48 @@
-# Empathy Ledger (as Goods impact infrastructure)
+# Empathy Ledger and Goods Impact
 
-> Empathy Ledger is ACT's consent-first storytelling platform. For Goods it is the impact-measurement backbone. 33 Goods-connected storytellers, all with active consent. Auto-sync daily.
+> Empathy Ledger matters because Goods relies on story and consent, not because a dashboard can replace relationship. It is the technical home for consented storytelling, but the current public story base is still early. Use it carefully and do not overclaim what is live.
 
-## What it does for Goods
+## What it is for
 
-- Captures community voice with explicit, renewable consent.
-- Every story has an owner (the storyteller). One-click withdrawal cascades.
-- OCAP-compliant architecture.
-- Elder review workflow for sensitive content.
-- Trigger warnings.
-- Syndication controls (storyteller decides where the story flows).
+Empathy Ledger gives ACT a way to manage stories with consent, withdrawal and context attached. For Goods, that matters because product feedback often comes through photos, videos, delivery conversations, community visits and long relationships.
 
-## Technical hooks
+The principle is simple: people should own their stories and be able to take them back.
 
-- API: `https://empathy-ledger-v2.vercel.app`
-- Project code: `goods-on-country`
-- Project ID: `6bd47c8a-e676-456f-aa25-ddcbb5a31047`
-- Aggregated project code: `goods-on-country` returns ~18 stories (Goods + PICC + BG Fit etc).
-- Client integration: `v2/src/lib/empathy-ledger/client.ts`, types: `v2/src/lib/empathy-ledger/types.ts`.
-- Consent filtering: `consent_withdrawn_at`, `is_archived`, `syndication_enabled` applied everywhere.
-- Cron: `/api/cron/el-sync` daily.
+## What Goods does now
 
-## Why this differentiates Goods as an investee
+- Records interviews and community conversations where appropriate.
+- Uses transcripts and notes to find design and delivery themes.
+- Shares photos and videos back with community members.
+- Checks with people such as Dianne Stokes about how their stories are being used.
+- Keeps story use tied to consent rather than treating content as marketing stock.
 
-Most social enterprises extract stories for fundraising and never give them back. Our architecture reverses that. In QBE Stage 2 terms:
-- "Demonstration of your impact (Impact Measurement Report, demographics)" — Empathy Ledger-sourced, consented.
-- Governance of story use is a board-grade control, not a marketing choice.
-- Risk of inappropriate use of community voice (R1 in [[../governance/risk-register]]) is structurally managed, not just policy-managed.
+## What not to overclaim
 
-## Source / cross-link
+Do not describe Empathy Ledger as if it already solves all Goods impact measurement.
 
-Empathy Ledger v2 repo: `/Users/benknight/Code/empathy-ledger-v2/`
-ACT wiki: `act-global-infrastructure/wiki/concepts/consent-as-infrastructure.md`
+The project has a strong consent direction, but Goods still needs to compile evidence manually, separate current metrics from intended metrics, and decide what is reported to community, funders and internal teams.
+
+## Technical reference
+
+- Empathy Ledger is the intended consent-led story infrastructure.
+- Goods uses the `goods-on-country` project context.
+- The app integration should be treated as internal implementation evidence, not mentor-facing proof.
+- Consent filtering is part of the direction, but story-shareability still needs human review.
+
+## Why funders should care
+
+The differentiator is not a technology claim. It is a governance claim: Goods is trying to avoid extracting stories from communities and using them without follow-through.
+
+That is still work in progress, but it is the right work.
+
+## Sources
+
+- [[../sources/may-2026-founder-working-conversation]].
+- [[../sources/community-voices-from-the-ground]]
+- [[../governance/data-sovereignty]]
 
 ## Related
 
 - [[alma-framework]]
+- [[metrics-tracked]]
 - [[../governance/data-sovereignty]]

@@ -302,7 +302,7 @@ export default async function AdminDashboard() {
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <CardTitle className="text-base">Funding</CardTitle>
-              <Link href="/admin/grants" className="text-xs text-orange-600 hover:text-orange-700 font-medium">
+              <Link href="/admin/xero-reconciliation" className="text-xs text-orange-600 hover:text-orange-700 font-medium">
                 Details &rarr;
               </Link>
             </div>
@@ -333,11 +333,11 @@ export default async function AdminDashboard() {
       {/* Quick Navigation */}
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
         {[
-          { name: 'Strategy', href: '/admin/strategy', desc: 'Sales & pipeline', highlight: true },
-          { name: 'Network', href: '/admin/network', desc: 'CRM & contacts' },
-          { name: 'Production', href: '/admin/production', desc: 'Factory ops' },
-          { name: 'Economics', href: '/admin/economics', desc: 'Unit costs' },
-          { name: 'Compendium', href: '/admin/compendium', desc: 'Master data' },
+          { name: 'Assets', href: '/admin/assets', desc: 'Beds + machines', highlight: true },
+          { name: 'Communities', href: '/admin/communities', desc: 'Demand vs supply' },
+          { name: 'Production', href: '/admin/production', desc: 'Factory ops + COGS' },
+          { name: 'Fleet', href: '/admin/fleet', desc: 'Device telemetry' },
+          { name: 'Deals (CRM)', href: '/admin/strategy', desc: 'Sales & pipeline' },
           { name: 'Storefront', href: '/', desc: 'Live website', external: true },
         ].map((item) => (
           <Link key={item.name} href={item.href} target={'external' in item ? '_blank' : undefined}>

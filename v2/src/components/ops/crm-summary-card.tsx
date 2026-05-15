@@ -28,7 +28,7 @@ export function CRMSummaryCard({ data }: { data: CRMSummary }) {
       <CardContent className="pt-6">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold">CRM & Engagement</h3>
-          <Link href="/admin/partners" className="text-xs text-orange-600 hover:underline">
+          <Link href="/admin/strategy" className="text-xs text-orange-600 hover:underline">
             View all →
           </Link>
         </div>

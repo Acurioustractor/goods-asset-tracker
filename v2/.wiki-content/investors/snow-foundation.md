@@ -15,12 +15,12 @@ Rebecca Parkinson (QBE induction): "Snow Foundation partners long-term, flexible
 
 - **Sally Grimsley-Ballard** sits on Goods advisory group.
 - Primary anchor funder, relationship 2+ years.
-- "Final Snow pitch with Snow feedback and reflections" archived at `v2/docs/Final Snow pitch with Snow feedback and reflections.md`.
+- Snow pitch/reflection material is summarised at [[../sources/snow-pitch-feedback-reflections]].
 
 ## Current state
 
 - Received: $193K cumulative.
-- Pipeline: Snow R4 at $200K target.
+- Pipeline: Snow R4 at $130K target.
 - Proposed 2026 role: **letter of support** acting as catalytic signal to open SEFA + Mindaroo + PFI commitments.
 
 ## Playbook
@@ -41,5 +41,6 @@ See [[alignment-tool]]. Perfect or near-perfect across every dimension. Partners
 
 ## Sources
 
-- `v2/docs/Final Snow pitch with Snow feedback and reflections.md`
-- `thoughts/shared/qbe-program/session-1-learnings.md`
+- [[../sources/snow-pitch-feedback-reflections]]
+- [[../sources/funding-journey]]
+- [[../program/qbe-catalysing-impact-2026]]

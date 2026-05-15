@@ -4,7 +4,6 @@ import {
   getArticle,
   getBacklinks,
   getFolderChildren,
-  getFolderLanding,
   getSlugMap,
   getTree,
 } from '@/lib/wiki/loader'
@@ -69,8 +68,11 @@ export default async function InsidersArticlePage({ params }: { params: Promise<
 
   const backlinks = getBacklinks(article.slugPath)
 
+  const hasTable = /\n\|.+\|\n\|[-:\s|]+\|/.test(article.body)
+  const pageWidthClass = article.frontmatter.wide || hasTable ? 'max-w-7xl' : 'max-w-3xl'
+
   return (
-    <div className="max-w-3xl mx-auto px-6 lg:px-10 py-10 lg:py-16">
+    <div className={`${pageWidthClass} mx-auto px-6 lg:px-10 py-10 lg:py-16`}>
       <InsidersBreadcrumbs crumbs={crumbs} />
 
       <header className="mt-6 mb-10">

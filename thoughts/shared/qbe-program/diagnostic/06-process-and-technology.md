@@ -1,84 +1,72 @@
 # 6. Process and Technology Maturity
 
-> Are fit for purpose and efficient processes and supporting technology/systems in place?
+> Goods has strong technical capability and early operating systems, but the actual processes are still startup processes: useful, moving and incomplete. The operating rule is clear: AI should support the human work, not become the voice of the organisation.
 
-## Tech stack (live)
+## Current maturity
 
-| Layer | System | Status |
-|---|---|---|
-| Website + ecommerce | Next.js 16 (App Router), React 19, Tailwind 4, shadcn/ui | Live at goodsoncountry.com |
-| Database | Supabase (PostgreSQL) | Live (project cwsyhpiuepvdjtxaozwf) |
-| Payments | Stripe | Live (Stretch Bed only) |
-| Hosting | Vercel | Live |
-| CRM / outreach | GHL | Integrated |
-| Storytelling infrastructure | Empathy Ledger (see below) | Live, 33 Goods-connected storytellers |
-| Accounting | Xero (ACT-GD cost code) | Live, book of record |
-| Fleet telemetry | Particle.io + custom webhooks for washing machines | 1 of 11 machines instrumented; scaling |
-| Knowledge base (internal) | Goods Wiki (Karpathy pattern) + ACT Tractorpedia | Live |
-| Grant intelligence | Grantscope integration | Live |
+Process maturity is mixed. The team knows the tools, builds quickly and can automate, but many procedures are still being formed while the work is happening.
 
-## Operational processes documented
+That is different from saying "fit-for-purpose systems are in place" across the organisation. Some are. Some are drafts. Some are still in Ben and Nicholas's heads.
 
-- **Operations Handbook:** `v2/docs/OPERATIONS_HANDBOOK.md`
-- **Production Facility Guide:** `v2/docs/PRODUCTION_FACILITY_GUIDE.md`
-- **Partner Guide:** `v2/docs/PARTNER_GUIDE.md`
-- **Procurement Strategy:** `v2/docs/procurement-strategy.md`
-- **Empathy Ledger Operations:** `v2/docs/empathy-ledger-operations.md`
-- **Content Pipeline:** `v2/docs/content-pipeline.md`
+## What is live
 
-## Asset tracking
+- Next.js ecommerce site for the Stretch Bed.
+- Stripe for direct purchases.
+- Xero through ACT for finance.
+- Supabase for product, order and asset data.
+- Goods Wiki and ACT Tractorpedia as internal knowledge bases.
+- Empathy Ledger as the consent and story infrastructure.
+- Early washing-machine telemetry, with only part of the fleet instrumented.
+- Internal admin dashboards for QBE and operational tracking.
 
-- Every bed has a unique ID and a journey record (`bed_journeys` table).
-- QR codes on assets link to a consented story and service record.
-- Current v2 database has 389 assets tracked.
-- Washing machine fleet tracked via `assets` + `usage_logs` + `daily_machine_rollups` with a 6-hourly rollup cron.
+## What is still manual
 
-## Data sovereignty and cultural safety
+- B2B sales pipeline.
+- Production planning and inventory.
+- Grant acquittal and funder reporting.
+- Manufacturing bottleneck tracking.
+- Repeatable partner onboarding.
+- Support for someone assembling a bed without calling Nicholas or Ben.
+- Clear separation between current metrics and possible future metrics.
 
-This is where we think Goods is stronger than most social enterprises at our stage, because we sit on ACT's Empathy Ledger infrastructure.
+## How AI is being used
 
-**Empathy Ledger (relevant to Goods):**
-- Consent-first architecture. Every story has explicit consent; withdrawal is one click and cascades through the system.
-- OCAP-compliant (Ownership, Control, Access, Possession) for First Nations data.
-- 33 Goods-connected storytellers, all with active consent.
-- Auto-sync cron at `/api/cron/el-sync` runs daily.
-- `EMPATHY_LEDGER_SUPABASE_URL` + API integration in `v2/src/lib/empathy-ledger/`.
-- Governance: Elder review workflow, trigger warnings, ongoing consent (renewable with expiry).
+The current pattern is custom, not off-the-shelf. Ben mostly uses Claude Code and custom agents to hold organisational information, query transcripts, assemble documents and reduce admin load.
 
-**Why this matters for impact work:** most social enterprises extract community stories for fundraising and never give them back. Our architecture reverses that: stories are sovereign assets owned by storytellers. This is the cultural-safety foundation under our entire impact measurement capability.
+The reason is practical: if AI can carry some COO or CFO-style aggregation work, Ben and Nicholas can spend more time on engagement, design, sketching, iteration and community support.
 
-## Process maturity by area
+That is the right intent. The risk is that if AI does too much of the public-facing explanation, the heart of the work disappears.
 
-| Area | Maturity | Notes |
-|---|---|---|
-| Product design + iteration | High | V1-V4 documented, field feedback loop |
-| Manufacturing SOPs | Medium | Documented, scaling to container format |
-| Sales + order fulfilment | Medium | Ecommerce live, B2B manual |
-| Impact capture | High | Empathy Ledger is production-grade |
-| Finance + bookkeeping | Medium-High | Xero, monthly cycle |
-| Risk + compliance | Medium | Documented, not board-formalised |
-| People + HR | Early | ACT shared services; no dedicated HR |
-| IT security | Medium | Supabase RLS, auth, consent gates; no formal audit |
+## Automation ideas
 
-## Where we are under-invested
+- Ecommerce-style order flow adapted to local manufacturing: an order lands online, is made in Alice Springs, and is delivered locally.
+- Washing-machine telemetry that can trigger support: low use, power spikes, maintenance checks or simple "is everything okay?" messages.
+- Grant reporting and acquittal support.
+- Production controls: Kanban, reorder points, bottleneck identification, bolts and consumables ordered before they stop production.
+- Sales timing around known community payment cycles, handled carefully so it does not become extractive.
 
-- **Formal ERP / MRP** for production planning. We are still at spreadsheet-plus-docs level.
-- **CRM pipeline discipline.** We use GHL but have not fully systematised the B2B sales pipeline (Grantscope covers funder side; B2B buyer side is less structured).
-- **Compliance automation** (WHS, product liability checks).
-- **Data warehouse / BI.** Live dashboards exist in-app but there is no separate analytics layer.
+## AI guardrails
 
-## Recent builds worth noting
+AI can summarise and retrieve. Humans need to hold the story, the judgement and the relationship.
 
-- **Funder-gated due diligence pages** (recent commit: password-gated funder landing pages). Each target funder gets a link with tailored due-diligence material.
-- **QBE Program admin dashboards** (live operational state of this very process).
-- **Fleet webhooks** for washing machine usage telemetry (Particle.io + Openfields HMAC-signed).
-- **Admin KV state** for cross-session state persistence.
+For wiki and investor material, that means:
 
-## Source documents
+- write from what was actually said or verified
+- mark ideas as ideas
+- stop presenting dashboards as if they are daily operating habits when they are not
+- keep community voice under consent and control
+- remove inflated language that makes ordinary work sound grander than it is
 
-- Strategy PD Part 10 (Technology Platform): `v2/docs/GOODS_STRATEGY_PD.md`
-- Ops handbook: `v2/docs/OPERATIONS_HANDBOOK.md`
-- Production guide: `v2/docs/PRODUCTION_FACILITY_GUIDE.md`
-- Empathy Ledger integration: `v2/docs/EMPATHY_LEDGER_INTEGRATION.md`
-- Consent architecture: `act-global-infrastructure/wiki/concepts/consent-as-infrastructure.md`
-- Indigenous data sovereignty: `act-global-infrastructure/wiki/concepts/indigenous-data-sovereignty.md`
+## What to build next
+
+- A lean production and inventory system.
+- A better B2B sales CRM process.
+- A support path for assembly, repairs and feedback.
+- A reporting system that starts with community partners, then funders, then internal dashboards.
+- A clearer rule for what AI can draft and what Ben or Nicholas must rewrite in their own voice before sharing.
+
+## Sources
+
+- May 2026 founder transcript and notes, user-provided.
+- Technical references: `v2/src/app/admin/qbe-program/page.tsx`, `v2/src/lib/empathy-ledger/`, `v2/src/lib/data/impact-model.ts`.
+- Operations docs: `v2/docs/OPERATIONS_HANDBOOK.md`, `v2/docs/PRODUCTION_FACILITY_GUIDE.md`.

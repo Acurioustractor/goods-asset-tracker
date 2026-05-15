@@ -10,9 +10,9 @@ Catalytic capital accepts disproportionate risk or concessionary returns so that
 
 ## Three ways it shows up
 
-1. **Fund earlier** — feasibility studies, seed stage, pre-revenue work where commercial investors cannot yet underwrite.
-2. **Fund around the edges** — learning, evaluation, impact measurement, governance capacity, advisory.
-3. **Fund higher-risk piece on concessional terms** — first-loss tranches, guarantees, longer-term lower-cost debt.
+1. **Fund earlier**: feasibility studies, seed stage, pre-revenue work where commercial investors cannot yet underwrite.
+2. **Fund around the edges**: learning, evaluation, impact measurement, governance capacity, advisory.
+3. **Fund higher-risk piece on concessional terms**: first-loss tranches, guarantees, longer-term lower-cost debt.
 
 ## Who deploys it
 
@@ -29,18 +29,18 @@ Beck Parkinson's framing from Session 1: once one catalytic funder commits, they
 ## For Goods
 
 The explicit catalytic layers in our stack:
-- **QBE Foundation grant (up to $200K)** — designed to be catalytic, match-contingent.
-- **Mindaroo recoverable grant ($200K target)** — catalytic bucket.
-- **PFI repayable grant ($640K target)** — recoverable-grant instrument.
-- **Snow Foundation letter of support** — non-cash catalytic (guarantee of association).
+- **QBE Foundation grant (up to $400K)**: designed to be catalytic, match-contingent.
+- **Mindaroo recoverable grant ($200K target)**: catalytic bucket.
+- **PFI repayable grant ($640K target)**: recoverable-grant instrument.
+- **Snow Foundation letter of support**: non-cash catalytic (guarantee of association).
 
 These de-risk the senior commercial debt (IBA, SEFA) and make it underwritable.
 
 ## Sources
 
-- `raw/2026-03-31-qbe-induction-slides-fulltext.md`
-- `raw/2026-03-31-qbe-induction-slides.pdf`
-- Session 1 notes: `../../../thoughts/shared/qbe-program/session-1-learnings.md`
+- [[../program/qbe-catalysing-impact-2026]]
+- [[../program/stage-2-funding]]
+- [[../sources/case-investor-alignment-tool]]
 
 ## Related
 

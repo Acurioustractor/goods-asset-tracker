@@ -14,4 +14,4 @@ Alumni network connector. TFN introduced Goods to multiple downstream funders. W
 ## Related
 
 - [[snow-foundation]]
-- [[../../stories/tfn-pitch|TFN pitch story]] (if created)
+- TFN pitch story: needs a source page before it becomes a wiki link.

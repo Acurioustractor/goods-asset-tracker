@@ -106,6 +106,19 @@ export default async function FleetDashboardPage() {
   // Get aggregated machine stats from the database instead of manually mapping
   const { data: statsData } = await supabase.rpc('get_fleet_machine_stats');
 
+  // Build community name → id map for cross-linking. Includes name_aliases so
+  // legacy free-text values ("Mount Isa" etc) resolve to canonical pages too.
+  const { data: communityRows } = await supabase
+    .from('communities')
+    .select('id, name, name_aliases');
+  const communityNameToId = new Map<string, string>();
+  for (const c of (communityRows || []) as Array<{ id: string; name: string; name_aliases: string[] | null }>) {
+    communityNameToId.set(c.name.toLowerCase(), c.id);
+    for (const alias of c.name_aliases || []) {
+      communityNameToId.set(alias.toLowerCase(), c.id);
+    }
+  }
+
   // All washing deployments (Tennant Creek + Palm Island + Maningrida + ...).
   // Falls back silently if the RPC hasn't been migrated yet.
   const { data: deploymentRows } = await supabase.rpc('get_all_washing_deployments');
@@ -403,7 +416,7 @@ export default async function FleetDashboardPage() {
           </div>
         </CardHeader>
         <CardContent>
-          <MachineListTable machines={machines} />
+          <MachineListTable machines={machines} communityNameToId={communityNameToId} />
         </CardContent>
       </Card>
 

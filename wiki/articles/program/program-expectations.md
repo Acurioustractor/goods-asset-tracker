@@ -1,25 +1,62 @@
 # Program Expectations
 
-> Four expectations QBE sets on cohort enterprises. Obligations we accepted by signing the Enterprise Agreement.
+> Goods accepted practical obligations by entering Catalysing Impact. This page translates those obligations into operating behaviour for the QBE working pack.
 
-## The four
+## The Four Expectations
 
-1. **Active Participation.** Commit to engaging fully in all program components.
-2. **Collaboration and Communication.** Maintain open communication with SIH team and PIN members.
-3. **Impact Reporting.** Complete all surveys and submit a report within 6 months of program completion.
-4. **Representation.** Acknowledge Catalysing Impact and QBE Foundation in communications and materials. **Must seek approval via Jay** before external use of the QBE or Catalysing Impact name/logo.
+| Expectation | Plain meaning for Goods |
+|---|---|
+| Active participation | Show up to program sessions, surveys, webinars, mentoring and working-review sessions. |
+| Collaboration and communication | Keep SIH, PIN, QBE and relevant mentors informed without burying them in messy internal material. |
+| Impact reporting | Complete required surveys and submit the post-program report. Make sure impact claims are evidence-based and not overclaimed. |
+| Representation | Acknowledge Catalysing Impact and QBE Foundation properly, and seek approval before using the QBE or Catalysing Impact name/logo externally. |
 
-## What this means operationally
+## Operating Rules
 
-- Complete **every** survey: induction evaluation, mentoring preferences, mid-program, end-of-program, 6-month follow-up.
-- Attend all webinars in the program (register with code CATALYSINGIMPACT).
-- Acknowledge QBE in all Goods-external communications related to program outcomes (LinkedIn, press, funder updates, website).
-- Route any press / social / grant-application mentions of QBE through Jay for approval.
+- Keep program dates and actions visible in [[weekly-actions]].
+- Use [[document-readiness]] to decide what should be sent before workshops.
+- Use [[source-library]] instead of sending people to internal source mechanics.
+- Use [[workshop-evidence-map]] to align the material to the ten QBE working prompts.
+- Send mentor-facing material only after consent, sensitivity and source status are checked.
+- Route any QBE name/logo use through the correct program contact before publishing.
+
+## What This Means For The Wiki
+
+The wiki should make Goods easier to assess, not harder.
+
+That means:
+
+- no hidden source trails as the main answer,
+- no workshop-process language presented as content,
+- no claims that sound more mature than the evidence,
+- no story, image or community detail used without consent review,
+- clear labels for draft, internal, review-needed and shareable material.
+
+## What This Means For Notion
+
+Notion is the human review layer.
+
+Use it for:
+
+- founder comments,
+- workshop decisions,
+- evidence gaps,
+- source review,
+- approval of CRM/procurement follow-up,
+- final decision notes after mentor conversations.
+
+## Human Review Questions
+
+- Have all required surveys and program admin items been completed?
+- Which mentor-facing material still needs human voice review before sharing?
+- Which impact claims need to be softened or supported with stronger evidence?
+- Which QBE references need approval before external use?
 
 ## Sources
 
-- `raw/2026-03-31-qbe-induction-slides-fulltext.md`
-- `raw/2026-03-31-qbe-enterprise-agreement-signed.pdf`
+- QBE induction material and enterprise agreement, summarised for review in [[program-structure]].
+- [[qbe-catalysing-impact-2026]]
+- [[weekly-actions]]
 
 ## Related
 

@@ -9,8 +9,12 @@
 
 ## Current state
 
-- Research phase.
+- **Advisory relationship**, no Goods grant agreement yet.
+- TFFF FY25 Annual Report shared with Ben (Sep 2025).
+- Katie Norman surfaced 2026 PRF Fellowship to Goods network (Oct 2025).
+- Qld Place Network Dashboard collaboration (Sep 2025).
 - Potential fit for the grant layer alongside Snow R4.
+- Source: Gmail threads `1993607b476a7ea4`, `19974122c9b827b2`, `19a2801cb3b2072e`.
 
 ## Key contact
 

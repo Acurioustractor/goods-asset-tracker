@@ -11,7 +11,7 @@ import { FeaturedStories } from '@/components/empathy-ledger/featured-stories';
 export default async function HomePage() {
   return (
     <>
-      {/* 1. Hero — Video bg, Stretch Bed as hero product */}
+      {/* 1. Hero: Video bg, Stretch Bed as hero product */}
       <Hero
         title={brand.hero.home.headline}
         subtitle={brand.hero.home.subheadline}
@@ -22,11 +22,11 @@ export default async function HomePage() {
           mobile: videoUrl('hero-mobile.mp4'),
           poster: '/video/hero-poster.jpg',
         }}
-        imageSrc="https://cdn.prod.website-files.com/64ea91d86ff3fda1ff23fb95/686f06aca919ac39a08c6cbc_20250629-IMG_7731.jpg"
-        imageAlt="The Stretch Bed - recycled plastic, steel and canvas bed by Goods on Country"
+        imageSrc="/images/hero/stretch-bed-on-country.jpg"
+        imageAlt="The Stretch Bed on Country: recycled plastic legs, galvanised steel poles, heavy-duty canvas"
       />
 
-      {/* 2. The Stretch Bed — Materials + Assembly + Price comparison */}
+      {/* 2. The Stretch Bed: Materials + Assembly + Price comparison */}
       <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
@@ -49,7 +49,7 @@ export default async function HomePage() {
                 <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
                   <MediaSlot
                     src="/images/pitch/bed-frame-legs.jpg"
-                    alt="Recycled HDPE plastic legs — pressed from community waste"
+                    alt="Recycled HDPE plastic legs, pressed from community waste"
                     label="Recycled plastic legs"
                     aspect="4/3"
                   />
@@ -62,7 +62,7 @@ export default async function HomePage() {
                 <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
                   <MediaSlot
                     src="/images/pitch/bed-poles.jpg"
-                    alt="Galvanised steel pole — 26.9mm OD"
+                    alt="Galvanised steel pole, 26.9mm OD"
                     label="Steel pole"
                     aspect="4/3"
                   />
@@ -88,7 +88,7 @@ export default async function HomePage() {
                 <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
                   <MediaSlot
                     src="/images/media-pack/nic-with-elder-on-verandah.jpg"
-                    alt="Nic sitting on a Stretch Bed with an elder on a verandah — ongoing support and connection"
+                    alt="Nic sitting on a Stretch Bed with an elder on a verandah, ongoing support and connection"
                     label="Support system"
                     aspect="4/3"
                   />
@@ -108,7 +108,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 3. From Rubbish to Bed — 5-step production flow, dark bg */}
+      {/* 3. From Rubbish to Bed: 5-step production flow, dark bg */}
       <section className="py-16 md:py-20 bg-foreground text-background">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
@@ -156,7 +156,7 @@ export default async function HomePage() {
                     <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">2</div>
                     <h3 className="text-lg font-semibold text-background">Shred</h3>
                   </div>
-                  <p className="text-sm text-background/60 leading-relaxed">Plastic goes into the shredder — a containerised unit that stays on site between production runs.</p>
+                  <p className="text-sm text-background/60 leading-relaxed">Plastic goes into the shredder: a containerised unit that stays on site between production runs.</p>
                 </div>
               </div>
 
@@ -174,7 +174,7 @@ export default async function HomePage() {
                     <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">3</div>
                     <h3 className="text-lg font-semibold text-background">Press</h3>
                   </div>
-                  <p className="text-sm text-background/60 leading-relaxed">Shredded plastic is heated and pressed into durable sheets. Each colour is unique — made from whatever plastic the community collected.</p>
+                  <p className="text-sm text-background/60 leading-relaxed">Shredded plastic is heated and pressed into durable sheets. Each colour is unique, made from whatever plastic the community collected.</p>
                 </div>
               </div>
 
@@ -226,28 +226,25 @@ export default async function HomePage() {
       {/* 4. Impact Stats */}
       <ImpactStats fetchLive={true} />
 
-      {/* 5. Community Voices — from Empathy Ledger */}
+      {/* 5. Community Voices: from Empathy Ledger */}
       <FeaturedStories
         title="Community Voices"
         subtitle="33 storytellers across 8 communities have shaped and validated the Goods approach"
         maxStories={3}
       />
 
-      {/* 6. CTA — Buy + How It's Made */}
+      {/* 6. Final CTA — single clear next step */}
       <section className="bg-accent py-16 md:py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-accent-foreground md:text-4xl">
             {brand.oneLiner}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-accent-foreground/80">
-            Every purchase supports community-led design and manufacturing in remote Australia.
+            Community-designed. Manufactured On-Country. Built to last more than ten years in remote Australia.
           </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-8 flex justify-center">
             <Button size="lg" className="bg-accent-foreground text-accent hover:bg-accent-foreground/90" asChild>
-              <Link href="/shop/stretch-bed-single">Buy Now</Link>
-            </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-accent-foreground text-accent-foreground hover:bg-accent-foreground/10" asChild>
-              <Link href="/process">How It&apos;s Made</Link>
+              <Link href="/shop/stretch-bed-single">Shop the Stretch Bed</Link>
             </Button>
           </div>
         </div>

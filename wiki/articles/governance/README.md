@@ -1,26 +1,18 @@
 # Governance
 
-> Board, risk, policies, legal structure, and compliance. Priority focus area 2026: recruit independent directors to pass SEFA covenant and satisfy QBE Stage 2 governance requirement.
+> Governance is a live build. Goods has founder leadership, a Goods-specific advisory group, a newly formalising ACT company structure, and a strong story-sovereignty intent. It does not yet have a finished board, legal vehicle or investor-ready governance pack.
 
 ## Articles
 
-- [[board-structure]] — current state, proposed structure, recruitment plan
-- [[risk-register]] — strategic, operational, financial, reputational, compliance risks
-- [[legal-structure]] — ACT dual-entity (CLG + Ventures), sub-entity decision, community-ownership vehicle
-- [[policies-register]] — what's in place, draft, and to-do
-- [[compliance]] — ACNC, ASIC, ATO, ORIC, insurance
-- [[data-sovereignty]] — OCAP, consent architecture via Empathy Ledger
-
-## Why this is a priority in 2026
-
-Two forcing functions:
-1. **SEFA covenant** requires independent director majority or structured advisory group.
-2. **QBE Stage 2** requires governance documents in the September 2026 submission.
-
-We are using the QBE program legal webinars (Keith Rovers, Mint Ellison) to close these gaps once, not twice.
+- [[board-structure]]: current advisory group and board gap
+- [[legal-structure]]: current ACT Pty Ltd position and options under review
+- [[risk-register]]: working risk picture, including environmental and key-person risks
+- [[data-sovereignty]]: story ownership, consent and reporting order
+- [[policies-register]]: what is in place, draft and to-do
+- [[compliance]]: ASIC, ACNC, ATO, ORIC and insurance notes
 
 ## Related
 
-- [[../investors/sefa]]
-- [[../program/qbe-catalysing-impact-2026]]
-- [[../support-network/mint-ellison-legal]]
+- [[../enterprise/07-governance-data-reporting]]
+- [[../enterprise/09-legal-structure]]
+- [[../impact/empathy-ledger-impact]]

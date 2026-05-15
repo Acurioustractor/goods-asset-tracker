@@ -1,44 +1,78 @@
 # Containerised Production Plant
 
-> The infrastructure asset at the heart of the capital raise. One container with shredder fills 200 tubs with processed plastic. A second container produces 200 beds from that plastic. Same facility can produce washing machines and fridges with different molds.
+> The plant is the piece that could move Goods from delivery program to local production system. It is still being placed and tested. Candidate locations have included Alice Springs, Palm Island, Mount Isa and Tennant Creek, with the final choice depending on funding, readiness and partner fit.
 
-## Current model
+## What it does
 
-**Phase 1 (centralised):**
-- Production facility in Brisbane.
-- Shipped to communities.
-- High transport costs.
-- Limited local employment.
+The production setup is designed to collect and process plastic, press it into sheets, cut components and assemble Stretch Beds.
 
-## Future model (what the raise funds)
+The long-term idea is that the same core production capability can support other recycled-plastic product components, including washing-machine and fridge parts, if those products mature.
 
-**Phase 2 (distributed / On-Country):**
-- Containerised production facilities.
-- Deploy to communities for local manufacturing.
-- Plastic collection creates local jobs.
-- Assembly creates local jobs.
-- Reduces transport costs.
+## Why On-Country production matters
 
-## Investment to date
+- less freight of finished bulky goods
+- local collection and sorting work
+- local assembly and repair work
+- stronger feedback loop between maker and user
+- a pathway to local ownership rather than ACT owning every plant forever
 
-- ~$100K (TFN + ACT).
-- Additional required: $60K (Snow Foundation).
+## Current state
 
-## 2026 deployment circuit
+The plant model is not yet a finished roll-out system. It is moving from central production and partner production toward a place-based model.
 
-1. Alice Springs (Oonchiumpa Bloomfield partnership) — confirmed manufacturing partner.
-2. Tennant Creek.
-3. Katherine.
-4. Darwin.
+The next deployment should prove:
 
-## Why this matters for blended finance
+- who operates the machinery
+- how training works
+- what plastic can be collected locally
+- how much inventory a plant can produce
+- how repairs and replacement parts flow
+- what the P&L looks like for a local operator
 
-The plant is the **project** in "project-level blended finance" (see [[../capital/blended-finance]]). QBE match, SEFA working capital, IBA senior debt, and the Mindaroo / PFI catalytic layer all finance different pieces of the same asset.
+## Candidate locations
+
+Locations under consideration:
+
+- Alice Springs
+- Palm Island
+- Mount Isa
+- Tennant Creek
+
+Older documents may name fixed circuits. Treat those as planning versions, not final commitments.
+
+## Production evidence
+
+The reviewable source is [[../sources/production-facility-guide]]. It records the practical process:
+
+- collect plastic,
+- sort HDPE/PP and exclude unsafe materials,
+- shred,
+- weigh and fill trays,
+- heat and press,
+- cool sheets,
+- CNC cut parts,
+- edge finish,
+- assemble beds.
+
+The current proof is process maturity, not full multi-site maturity. The next proof is whether a local partner can run enough of the process safely, repeatedly and with a fair local economic model.
+
+## Review cautions
+
+- Reconcile bed-per-sheet and throughput assumptions before external use.
+- Confirm current equipment status before claiming readiness.
+- Use photos and diagrams that are approved for mentor/funder use.
+- Keep community ownership as a design question, not a finished legal claim.
+
+## Sources
+
+- [[../sources/may-2026-founder-working-conversation]].
+- [[../sources/production-facility-guide]]
+- [[../sources/canonical-product-data]]
+- [[../sources/goods-strategy-pd]]
 
 ## Related
 
 - [[stretch-bed]]
 - [[washing-machine]]
-- [[../capital/blended-finance]]
-- [[../capital/capital-stack]]
+- [[../enterprise/05-strategic-planning-risk]]
 - [[../communities/README]]

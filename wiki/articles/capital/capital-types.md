@@ -32,7 +32,7 @@
 
 ## What Goods is using
 
-The current Goods stack touches grant, recoverable grant, loan guarantee, PRI debt, variable repayment debt, standard debt, and possibly crowdfunding equity (DPO). Equity at the ACT Ventures level is legally possible but not prioritised for 2026.
+The current Goods stack touches grant, recoverable grant, loan guarantee, PRI debt, variable repayment debt, standard debt, and possibly crowdfunding equity (DPO). Equity in A Curious Tractor Pty Ltd or any future Goods entity is legally possible, but not prioritised for 2026.
 
 See [[capital-stack]] for the assembled picture.
 
@@ -49,9 +49,9 @@ Goods can service debt (margin supports it), is not planning a conventional exit
 
 ## Sources
 
-- `raw/2026-03-31-qbe-induction-slides-fulltext.md`
-- `raw/2026-03-31-qbe-induction-slides.pdf` (slides ~27-31)
-- `raw/2026-03-31-investor-alignment-tool-case.xlsx`
+- [[../program/qbe-catalysing-impact-2026]]
+- [[../program/stage-2-funding]]
+- [[../sources/case-investor-alignment-tool]]
 
 ## Related
 

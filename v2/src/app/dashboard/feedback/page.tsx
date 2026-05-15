@@ -9,6 +9,10 @@ export const metadata = {
   description: 'View visitor feedback submitted via the site',
 };
 
+// Auth-gated page (uses ProtectedRoute + Supabase server client). Skip static
+// prerender — env-derived clients can't be constructed at build time.
+export const dynamic = 'force-dynamic';
+
 interface GitHubIssue {
   id: number;
   number: number;
@@ -63,7 +67,6 @@ const getFeedbackIssues = unstable_cache(
     const repo = process.env.GITHUB_REPO;
 
     if (!token || !repo) {
-      console.error('[Feedback Dashboard] Missing GITHUB_FEEDBACK_TOKEN or GITHUB_REPO');
       return [];
     }
 

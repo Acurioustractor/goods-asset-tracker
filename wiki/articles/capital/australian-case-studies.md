@@ -59,16 +59,16 @@ Social enterprise providing pathway to open employment for people with disabilit
 **Why this is the Goods template:**
 1. 70/30 debt/grant split matches our working design.
 2. SEFA-as-syndicate-agent is exactly the role we are opening.
-3. Snow co-invested — our existing Snow relationship is a precedent for them to bring others in.
+3. Snow co-invested: our existing Snow relationship is a precedent for them to bring others in.
 4. Similar impact profile (marginalised population, durable employment, measurable outcomes).
 
 **Action:** when talking to SEFA, reference Jigsaw explicitly. When talking to Snow, ask about repeating the syndicate pattern.
 
 ## Sources
 
-- `raw/2026-03-31-qbe-induction-slides-fulltext.md`
-- `raw/2026-03-31-qbe-induction-slides.pdf` (slides ~40-45)
-- `thoughts/shared/qbe-program/session-1-learnings.md`
+- [[../program/qbe-catalysing-impact-2026]]
+- [[../program/stage-2-funding]]
+- [[../sources/case-investor-alignment-tool]]
 
 ## Related
 

@@ -44,7 +44,7 @@ export const philanthropyActive: OutreachTarget[] = [
   {
     id: 'snow', name: 'Snow Foundation', category: 'philanthropy_active', status: 'active', priority: 'critical',
     contactName: 'Sally Grimsley-Ballard', contactEmail: 's.grimsley-ballard@snowfoundation.org.au',
-    amountSignal: '$193K received + $200K Round 4 pending', instrument: 'grant',
+    amountSignal: '$193K received + $130K Round 4 pending', instrument: 'grant',
     nextAction: 'Convert from anchor grantmaker into co-investment validator for production-scale capital.',
     grantRelevance: 'Anchor funder — reference in every application. Sally travelled to Tennant Creek.',
   },
@@ -79,7 +79,7 @@ export const philanthropyActive: OutreachTarget[] = [
 export const philanthropyPipeline: OutreachTarget[] = [
   {
     id: 'snow-4', name: 'Snow Foundation Round 4', category: 'philanthropy_pipeline', status: 'applied', priority: 'critical',
-    contactName: 'Sally Grimsley-Ballard', amountSignal: '$200K ($60K beds + $60K production facility)', instrument: 'grant',
+    contactName: 'Sally Grimsley-Ballard', amountSignal: '$130K Round 4 pending', instrument: 'grant',
     nextAction: 'Follow up on Q1 2026 proposal status.',
     grantRelevance: 'If approved, validates production-scale thesis for other funders.',
   },
@@ -91,9 +91,9 @@ export const philanthropyPipeline: OutreachTarget[] = [
   },
   {
     id: 'real', name: 'REAL Innovation Fund (DEWR)', category: 'government_grant', status: 'applied', priority: 'critical',
-    amountSignal: 'TBD', instrument: 'federal grant',
-    nextAction: 'EOI submitted Mar 2 via Oonchiumpa. Await invitation to full application.',
-    grantRelevance: 'Federal recognition. Oonchiumpa as lead applicant.',
+    amountSignal: '$2.4M total ($1.2M Townsville + $1.2M Alice Springs over 3 years)', instrument: 'federal grant',
+    nextAction: 'EOI submitted Mar 2. Confirm full-application status, lead entities, and whether both Townsville and Alice Springs remain in scope.',
+    grantRelevance: 'Federal recognition. Two place-based production and jobs pathways: Townsville / North Queensland and Alice Springs / Central Australia.',
   },
   {
     id: 'sedg', name: 'Social Enterprise Development Grants', category: 'government_grant', status: 'applied', priority: 'medium',

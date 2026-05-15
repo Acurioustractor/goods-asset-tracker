@@ -1,23 +1,29 @@
+---
+wide: true
+---
+
 # Key Dates (all in one place)
 
-> Every QBE Catalysing Impact 2026 date that matters.
+> Every QBE Catalysing Impact 2026 date that matters. Refreshed 2 May 2026.
 
 | Date | Event | Status |
 |---|---|---|
-| 2026-03-31 | Session 1 induction, QBE Sydney | ✅ Complete |
-| 2026-04-03 | Induction Evaluation Survey deadline | 🔴 Overdue |
-| 2026-04-07 | Webinar: Finding Money (12:30-1:30 AEST) | Upcoming |
-| 2026-04-10 | Mentoring Preferences Survey deadline | Due |
-| 2026-04-13 | Jay Boolkin returns from Easter leave | — |
-| 2026-04-24 | Webinar: Impact Investing 101 (12-1 AEST) | Upcoming |
-| 2026-05-01 | Webinar: Legal Structures (Keith Rovers, Mint Ellison; 12-1 AEST) | Upcoming |
-| 2026-05-08 | Webinar: Deal Anatomy (12-1 AEST) | Upcoming |
-| 2026-05-31 | PIN Diagnostic deadline | Pending |
-| 2026-08 | Hackathon day (TBD) | Scheduled |
-| 2026-08-31 | **QBE Match Funding milestone ($400K)** | Critical |
-| 2026-09 | Stage 2 application deadline | Critical |
-| 2026-10 | Steering Committee assessment | Upcoming |
-| 2026-11 | Funding outcomes announced | — |
+| 31 Mar 2026 | Session 1 induction, QBE Sydney | Complete |
+| 3 Apr 2026 | Induction Evaluation Survey deadline | Needs check |
+| 7 Apr 2026 | Webinar: Finding Money | Complete |
+| 10 Apr 2026 | Mentoring Preferences Survey deadline | Needs check |
+| 13 Apr 2026 | Jay Boolkin returned from Easter leave | Complete |
+| 24 Apr 2026 | Webinar: Impact Investing 101 | Complete |
+| 1 May 2026 | Webinar: Legal Structures, Keith Rovers and Mint Ellison, 12-1 AEST | Needs recording / notes check |
+| 8 May 2026 | Webinar: Deal Anatomy, 12-1 AEST | Upcoming |
+| 31 May 2026 | PIN Diagnostic deadline, date to be confirmed by Sarah Gregory | Pending |
+| 30 Jun 2026 | Investment memo and Goods 3-statement model v0.1 target | Internal target |
+| Aug 2026 | Hackathon day, exact date to be confirmed | Scheduled |
+| 31 Aug 2026 | **QBE Match Funding milestone, $400K upper bound and $100-200K operating target** | Critical |
+| 3 Sep 2026 | First Nations Clean Energy Advice Grant Round 1 deadline | Pipeline |
+| Sep 2026 | Stage 2 application deadline, exact date to be confirmed | Critical |
+| Oct 2026 | Steering Committee assessment, exact date to be confirmed | Upcoming |
+| Nov 2026 | Funding outcomes announced, exact date to be confirmed | To be confirmed |
 
 ## Promo code (webinars)
 

@@ -398,7 +398,7 @@ export default function StretchBedGuidePage() {
             <h2>Safety Information</h2>
             <ul>
               <li><strong>Load capacity:</strong> 200kg tested and verified</li>
-              <li><strong>Durability testing:</strong> Conducted before deployment (ALMA Signal 3: Harm Risk protocol)</li>
+              <li><strong>Durability testing:</strong> Conducted before deployment using the Australian Living Map of Alternatives harm-risk protocol</li>
               <li><strong>Weather resistance:</strong> Designed for extreme conditions - dust, heat, humidity</li>
               <li><strong>Pest resistance:</strong> No fabric crevices like traditional mattresses - resistant to bed bugs</li>
               <li><strong>Elevation:</strong> Lifts sleeper off ground, reducing exposure to vermin, insects, cold, and wet surfaces</li>

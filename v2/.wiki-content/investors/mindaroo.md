@@ -10,9 +10,11 @@
 
 ## Current state
 
-- Warm lead, not yet formally engaged.
-- Target: $200K recoverable grant.
-- Research needed: confirm remote Indigenous community manufacturing fits their current priorities.
+- **Relationship-only** as of April 2026. **No formal application submitted yet.**
+- Active conversations 2026-01 to 2026-04 with Lucy Stronach (`lstronach@minderoo.org`) via JusticeHub / CONTAINED national tour alignment.
+- Lucy confirmed justice strategy proposal goes to Minderoo Board **June 2026** — that is the gate.
+- Target: $200K recoverable grant from catalytic bucket (subject to fit confirmation).
+- Source: Gmail threads `19bb463b344b00e9`, `19d0351114841974`, `19d18192e105254b`, `19d4796dab4204ce`, `19d6ba03d76ea3ca`.
 
 ## Playbook
 

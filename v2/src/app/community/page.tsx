@@ -16,12 +16,33 @@ export const metadata = {
 
 // ─── Data fetching ──────────────────────────────────────────
 
+// Display names that represent system accounts / shared inboxes / team rollups,
+// not individual storytellers. Filtered out of public-facing storyteller grids.
+// Update here if EL v2 adds new non-person entries.
+const NON_PERSON_DISPLAY_NAMES = new Set([
+  'Accounts ACT',
+  'ACT Production Team',
+  'E2E Super Admin',
+  'PICC Community Hub Team',
+  "PICC Women's Healing Service Team",
+  "PICC Women's Shelter Team",
+  'YPA Team',
+]);
+
+function isRealPerson(s: SyndicationStoryteller): boolean {
+  if (NON_PERSON_DISPLAY_NAMES.has(s.name)) return false;
+  if (/\bteam\b/i.test(s.name)) return false;
+  if (/\b(admin|account|production)\b/i.test(s.name) && !/^[A-Z][a-z]+ [A-Z]/.test(s.name)) return false;
+  return true;
+}
+
 async function getProjectData() {
-  const [storytellers, insights, photos] = await Promise.all([
+  const [storytellersRaw, insights, photos] = await Promise.all([
     empathyLedger.getProjectStorytellers({ limit: 50 }),
     empathyLedger.getProjectInsights(),
     empathyLedger.getMedia({ type: 'image', elderApproved: true, limit: 12 }),
   ]);
+  const storytellers = storytellersRaw.filter(isRealPerson);
   return { storytellers, insights, photos };
 }
 
@@ -163,13 +184,6 @@ function StorytellersGrid({ storytellers }: { storytellers: SyndicationStorytell
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center text-5xl font-light text-muted-foreground/50">
                         {person.name.charAt(0)}
-                      </div>
-                    )}
-                    {person.transcriptCount > 0 && (
-                      <div className="absolute top-3 right-3">
-                        <span className="bg-black/60 text-white text-xs px-2 py-1 rounded-full">
-                          {person.transcriptCount} transcript{person.transcriptCount !== 1 ? 's' : ''}
-                        </span>
                       </div>
                     )}
                   </div>

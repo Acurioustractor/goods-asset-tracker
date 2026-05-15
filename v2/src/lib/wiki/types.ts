@@ -4,6 +4,7 @@ export type WikiFrontmatter = {
   type?: string
   publish?: boolean
   reason?: string
+  wide?: boolean
 }
 
 export type WikiArticle = {

@@ -1,11 +1,15 @@
 # FRRR (Foundation for Rural and Regional Renewal)
 
-> Received $50K. FRRR partners with QBE Foundation (see induction slides — they are a QBE Local Division Partnership).
+> Received $50K (joint with VFFF — Backing the Future grant). FRRR partners with QBE Foundation (see induction slides — they are a QBE Local Division Partnership).
 
 ## Status
 
-- Received: $50K.
-- Current relationship active.
+- Received: $50K (Backing the Future, jointly funded with [[vfff]]).
+- FRRR is the administering body; VFFF is the co-funder.
+- Application Mar 2025 → Award May 2025 → Agreement Jul 2025 → Mid-point Feb 2026 → **Acquittal complete Mar 2026** (Palm Island deployment).
+- Contact: Steph Pearson (`s.pearson@frrr.org.au`).
+- Cohort 6 induction context (2025).
+- Source trail: [[../sources/grants-archive-index]] and [[../sources/funding-journey]].
 
 ## Note
 

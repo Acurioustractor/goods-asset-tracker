@@ -1,26 +1,31 @@
 # Cover Letter: Goods on Country Diagnostic Materials
 
 **To:** SIH / PIN Diagnostic Team
-**From:** Benjamin Knight, A Curious Tractor (Goods on Country)
-**Re:** Pre-workshop document pack for QBE Catalysing Impact diagnostic
 
-Thank you for the upcoming diagnostic session. In the spirit of your note (nothing new created, drafts are fine), this pack gathers what we have across the ten topic areas. Some sections are mature (financials, business model, impact evidence), some are genuinely in-progress (formal board, risk register, capital-raising strategy), and we have flagged both honestly. We would rather use the three hours to work on the real gaps than present a polished facade.
+**From:** Benjamin Knight, A Curious Tractor (Goods on Country)
+
+**Re:** Goods on Country working pack for QBE Catalysing Impact
+
+This pack is designed to support a practical working conversation and to stand up when we are not in the room. It gathers what we have across the ten topic areas and keeps the stage of each area visible. Some sections are mature enough to build from. Others, especially impact measurement, legal structure, governance, finance modelling, sales discipline and working capital, still need sharper human review.
 
 A few things worth knowing up front:
 
-1. **Goods sits inside ACT (A Curious Tractor)**, a dual-entity social enterprise (CLG Foundation + Ventures trading entity). Goods is the ecommerce and manufacturing arm; it trades under A Curious Tractor Pty Ltd. Some governance and overhead sits at the ACT parent level and cascades down.
+- **Goods sits inside A Curious Tractor Pty Ltd.** The company has recently been registered and Goods is expected to sit there as the trading activity. A Kind Tractor Ltd exists in the ACT ecosystem, but it is not the main Goods vehicle today.
 
-2. **Community ownership is the end state, not an aspiration.** The Palm Island Community Company (PICC) has signalled intent to buy the production plant. Oonchiumpa (Alice Springs) is the confirmed Central Australian manufacturing partner. Our design discipline (Beautiful Obsolescence) treats handover as the measure of success.
+- **Community ownership is the direction of travel.** PICC, Oonchiumpa and other partners are part of live conversations about production, repair, delivery and governance. The structure is not settled yet, and that is one of the important questions to work through.
 
-3. **Our scale is real but small.** 389 products deployed, 8 communities, $537K cumulative revenue, $445K philanthropic capital received. We are past prototype, not yet at commercial scale. The QBE match-funding milestone is the bridge.
+- **Our scale is real but still early.** Goods has products in market, cumulative revenue recorded through ACT, philanthropic support and warm partner demand. It is past concept stage, but not yet a reliable product business with inventory, sales discipline and repeatable operations.
 
-4. **Storytelling is infrastructure, not marketing.** Impact evidence flows through Empathy Ledger, a consent-first storytelling platform ACT built. 33 community storytellers are currently documenting Goods. This gives us sovereign, consented impact data that most social enterprises lack.
+- **Storytelling is infrastructure, not marketing.** Goods is building a consent-first evidence practice where people keep control over their stories. Some of that is already happening through interviews, partner check-ins and Empathy Ledger infrastructure. It should not be overstated as a finished measurement system.
 
-We look forward to the conversation.
+- **This is still working material.** The next pass should happen with us, then move into Notion as the basis for a deeper workshop.
 
 Ben Knight
-On behalf of Nick Marchesi OAM (co-founder) and the Goods team
+
+On behalf of Nicholas Marchesi OAM (co-founder) and the Goods team
 
 ---
 
-**Pack contents:** see [INDEX](00-INDEX.md).
+**Pack contents:** see [[../INDEX|INDEX]].
+
+![Goods on Country cover letter image](/images/program/qbe-cover-letter-photo.jpeg)

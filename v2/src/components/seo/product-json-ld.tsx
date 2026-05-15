@@ -57,7 +57,7 @@ export function OrganizationJsonLd({
     url: baseUrl,
     logo: `${baseUrl}/logo.png`,
     description:
-      'Goods on Country delivers essential items like beds and washing machines to remote Australian Indigenous communities.',
+      'Goods on Country delivers essential items like beds and washing machines to remote First Nations communities across Australia.',
     sameAs: [
       'https://www.instagram.com/goodsoncountry',
       'https://www.facebook.com/goodsoncountry',

@@ -1,0 +1,31 @@
+ePrint Online — order brief for batch GB0-156
+
+Product:        QR Code Table Stickers (Vinyl)  (under: Signage & Banners > QR Code Printing)
+Size:           60mm × 60mm
+Quantity:       107 stickers
+Variations:     107   (set this to 107 — each sticker is a unique design)
+Stock:          Polymeric Vinyl - Standard
+Print Process:  8 COLOUR UV INKS
+Laminating:     No
+Shape:          Rectangle
+Cut & Supply:   Kiss Cut, Kiss-Cut Individually (Easy Peel)
+Weeding:        No
+File correct?:  Yes — supplied print-ready with 3mm bleed
+
+File to upload: Goods_Batch156_ePrint_VariableData.pdf
+  - 107-page PDF, each page is 66mm × 66mm
+  - 60mm × 60mm trim + 3mm bleed all sides
+  - Style: cream
+  - Brand palette from v2/src/lib/data/content.ts (Cream/Sage/Rust/Charcoal)
+
+Variable data fallback:
+  If ePrint prefer a dataset + template path instead of the multi-page PDF,
+  send the same PDF as the visual template AND attach the CSV:
+    Goods_Batch156_ePrint_dataset.csv
+  Columns: row_number, asset_id, qr_url
+
+What it's for:
+  Peel-and-stick vinyl QR labels for the HDPE legs of Stretch Beds in the
+  GB0-156 batch. Each QR resolves to https://www.goodsoncountry.com/bed/GB0-156-N
+  which renders a product-aware Stretch Bed landing page (journey, story,
+  support link). Asset records are live in our Supabase asset register.

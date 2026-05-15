@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
+import { createClient, createServiceClient } from '@/lib/supabase/server';
 import { ghl } from '@/lib/ghl';
 
 export const dynamic = 'force-dynamic';
@@ -60,6 +60,94 @@ function mapRelationshipStatus(status: string): string {
     research: 'research',
   };
   return map[status] || status;
+}
+
+async function persistOutreachTargetIdentity(target: OutreachTarget) {
+  const supabase = createServiceClient();
+  const normalizedEmail = String(target.contactEmail || '').trim().toLowerCase();
+
+  let existingId: string | null = null;
+
+  const byTargetId = await supabase
+    .from('crm_contacts')
+    .select('id')
+    .eq('grantscope_id', target.id)
+    .limit(1)
+    .maybeSingle();
+
+  if (!byTargetId.error && byTargetId.data?.id) {
+    existingId = byTargetId.data.id;
+  }
+
+  if (!existingId && normalizedEmail) {
+    const byEmail = await supabase
+      .from('crm_contacts')
+      .select('id')
+      .ilike('email', normalizedEmail)
+      .limit(1)
+      .maybeSingle();
+
+    if (!byEmail.error && byEmail.data?.id) {
+      existingId = byEmail.data.id;
+    }
+  }
+
+  if (!existingId) {
+    const byOrg = await supabase
+      .from('crm_contacts')
+      .select('id')
+      .ilike('organization', target.name)
+      .limit(1)
+      .maybeSingle();
+
+    if (!byOrg.error && byOrg.data?.id) {
+      existingId = byOrg.data.id;
+    }
+  }
+
+  const payload = {
+    name: target.contactName || target.name,
+    email: target.contactEmail || null,
+    organization: target.name,
+    roles: [mapTargetType(target.category)],
+    status: 'active',
+    relationship_status: target.status === 'active' ? 'active' : target.status === 'warm' ? 'warm' : 'prospect',
+    grantscope_id: target.id,
+    tags: [
+      'goods-strategic-target',
+      `goods-${mapTargetType(target.category)}-target`,
+      `goods-outreach-${target.category}`,
+    ],
+    metadata: {
+      outreach_target_id: target.id,
+      outreach_category: target.category,
+      outreach_priority: target.priority,
+    },
+  };
+
+  if (existingId) {
+    const { error } = await supabase
+      .from('crm_contacts')
+      .update(payload)
+      .eq('id', existingId);
+
+    if (error) {
+      throw new Error(`Failed to update CRM contact: ${error.message}`);
+    }
+    return existingId;
+  }
+
+  const { data, error } = await supabase
+    .from('crm_contacts')
+    .insert(payload)
+    .select('id')
+    .single();
+
+  if (error) {
+    throw new Error(`Failed to create CRM contact: ${error.message}`);
+  }
+
+  return data.id as string;
 }
 
 export async function POST(request: Request) {
@@ -131,6 +219,8 @@ export async function POST(request: Request) {
             sourceIdentityName: 'Goods on Country',
           });
 
+          const crmContactId = await persistOutreachTargetIdentity(target);
+
           return {
             targetId: target.id,
             name: target.name,
@@ -138,6 +228,7 @@ export async function POST(request: Request) {
             success: result.success,
             simulated: result.simulated ?? false,
             contactId: result.contact?.id || null,
+            crmContactId,
             opportunityId: result.opportunity?.id || null,
             opportunityCreated: result.opportunityCreated ?? false,
             error: result.error || null,
@@ -150,6 +241,7 @@ export async function POST(request: Request) {
             success: false,
             simulated: false,
             contactId: null,
+            crmContactId: null,
             opportunityId: null,
             opportunityCreated: false,
             error: error instanceof Error ? error.message : 'Unknown error',

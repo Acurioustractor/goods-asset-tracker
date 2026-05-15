@@ -79,7 +79,7 @@ export function Hero({
               <Button
                 size="lg"
                 asChild
-                className="bg-amber-600 text-white hover:bg-amber-700 font-semibold text-base px-8"
+                className="font-semibold text-base px-8"
               >
                 <Link href={primaryCta.href}>{primaryCta.text}</Link>
               </Button>

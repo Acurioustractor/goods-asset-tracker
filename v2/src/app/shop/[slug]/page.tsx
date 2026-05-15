@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props) {
   }
 
   return {
-    title: `${product.name} | Goods on Country`,
+    title: `${product.name}`,
     description: product.short_description || product.description?.slice(0, 160),
   };
 }

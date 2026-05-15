@@ -23,9 +23,9 @@ Plus enterprises across environmental, First Nations, education, Pacific Islands
 
 ## Sources
 
-- `raw/2026-03-31-qbe-induction-cohort-photo.jpeg`
-- `raw/2026-04-02-email-jay-boolkin-qbe-induction-recap.md`
-- `thoughts/shared/qbe-program/session-1-learnings.md`
+- [[../program/qbe-catalysing-impact-2026]]
+- [[../program/program-structure]]
+- Session 1 founder/program notes, internal.
 
 ## Related
 

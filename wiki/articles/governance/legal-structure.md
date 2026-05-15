@@ -1,72 +1,61 @@
 # Legal Structure
 
-> Goods trades inside A Curious Tractor Pty Ltd (ABN 21 591 780 066). ACT operates a dual-entity structure: Foundation (CLG, DGR) + Ventures (trading). Sub-entity decision for Goods targeted by end Q3 2026, informed by Mint Ellison (QBE legal webinar) and the chosen capital stack.
+> Goods is currently moving under A Curious Tractor Pty Ltd. The wider ACT structure includes A Kind Tractor Ltd, but Goods' legal model is still being worked out. Do not present the dual-entity model, mission lock or community-ownership vehicle as finished.
 
-## Current structure
+## Current state
 
-| Entity | Type | Role | Goods involvement |
-|---|---|---|---|
-| **ACT Foundation** | Company Limited by Guarantee, charitable, DGR | Philanthropic grants, DGR donations, R&D | Holds grant funding for R&D; DGR pathway for donor-funded beds |
-| **A Curious Tractor Pty Ltd** (Ventures) | Proprietary company (trading) | Revenue, social enterprise trading | Goods sales, manufacturing, commercial contracts |
+Goods is expected to trade through A Curious Tractor Pty Ltd.
 
-## Why dual-entity
+Before that, much of the work sat under Nicholas Marchesi OAM's sole-trader setup. The company structure is new enough that legal and capital decisions should be treated as live.
 
-1. Philanthropic + commercial capital at once (the primary reason).
-2. Mission lock via Foundation constitution + Ventures mission-lock clauses.
-3. Clean pathway for community ownership (PICC plant purchase sits in Ventures).
-4. Impact investment readiness (Ventures takes debt; Foundation takes grants).
+A Kind Tractor Ltd exists as the ACT charity. Current ACT core facts say it is dormant and not DGR. Goods is not currently operating as a charity-led program.
 
-## What works today
+Do not use ACT Foundation or ACT Ventures as legal entity names. They are older conceptual labels, not current legal entities.
 
-- Grant eligibility via Foundation.
-- Revenue and ecommerce via Ventures.
-- R&D tax incentive claimable via Ventures (see ACT wiki `finance/rdti-claim-strategy.md`).
-- Separation of books (ACT-GD cost code tracks Goods inside ACT books).
+## What the legal structure has to solve
 
-## Decisions under review (H2 2026)
+- normal product sales
+- grants and philanthropy where useful
+- patient loans or working capital when ready
+- product liability
+- worker and plant safety
+- IP, machinery and shared services
+- local production entities
+- community ownership and control
+- mission protection
 
-### 1. Sub-entity for Goods
+## Structures being considered
 
-Whether to spin Goods out as its own subsidiary or separate CLG. Triggers:
-- Capital raise requiring a clean investment vehicle.
-- PICC / community ownership transaction requiring a transferable interest.
-- Liability ring-fencing at volume.
+Several possibilities are being considered:
 
-**Decision target:** end Q3 2026. Informed by QBE program legal sessions (Keith Rovers, Mint Ellison, 1 May webinar).
+- keep Goods inside A Curious Tractor Pty Ltd for now
+- create a Goods-specific subsidiary or sub-entity
+- use A Kind Tractor Ltd only where a charitable function genuinely fits
+- create Aboriginal-controlled or locally owned operating entities for recycling, production, sales and maintenance
+- use a head entity for IP, equipment, R&D, funding and shared services
+- structure local relationships through licence, fee-for-service, franchise-like models or another community-led form
 
-### 2. Co-operative or community-ownership vehicle
+## Charity question
 
-PICC has signalled intent to buy the plant. Options:
-- **Co-operative structure** (Patburn Co-op in cohort: 2,000 members, $9M raised).
-- **Aboriginal Community Controlled Corporation** (ORIC-registered).
-- **Hybrid:** head licence from Ventures to community-controlled operating entity.
+A charitable pathway can unlock philanthropy. It can also make the work feel like distribution rather than product ownership.
 
-### 3. DPO / community equity
+That is the trade-off to hold: philanthropy may be needed, but Goods is trying to prove products people want and can own.
 
-Kindship pattern (800 investors, avg $2K, $1.1M raised) is interesting for community-investor side. Not 2026 priority.
+## Mission protection
 
-## Compliance state
+Formal mission protection is not yet settled. Options could include purpose clauses, B Corp or purpose certification, shareholder agreements, community ownership rights, licence conditions or other legal protections.
 
-- **ASIC:** A Curious Tractor Pty Ltd current.
-- **ACNC:** ACT Foundation registered.
-- **ATO:** BAS current; DGR active on Foundation side.
-- **ORIC:** not currently registered; may be relevant if community-controlled operating entity spins up.
-- **Trademark / IP:** "Goods on Country" brand used; formal IP register is a to-do.
-
-## Structure-driven risks
-
-- **Tax complexity** in cross-entity flows (see [[risk-register]] L3).
-- **DGR edge cases** between donor-funded and commercial beds to the same community (Sponsor-a-Bed handles this).
-- **Loan covenants** (SEFA + IBA want independent directors at trading entity — see [[board-structure]]).
+Values and culture matter too. Goods wants to learn from Indigenous governance models rather than only copying Western entity structures because funders understand them.
 
 ## Related
 
 - [[board-structure]]
-- [[compliance]]
-- [[../capital/paf-puaf-dgr]]
+- [[risk-register]]
+- [[data-sovereignty]]
+- [[../enterprise/09-legal-structure]]
 - [[../support-network/mint-ellison-legal]]
 
 ## Sources
 
-- ACT identity wiki: `act-global-infrastructure/wiki/concepts/act-identity.md`
-- Diagnostic pack topic 9: `thoughts/shared/qbe-program/diagnostic/09-legal-structure.md`
+- [[../sources/may-2026-founder-working-conversation]].
+- [[../sources/act-core-facts]]

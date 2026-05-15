@@ -5,7 +5,7 @@ reason: live pipeline state, commercially sensitive
 
 # Investor Pipeline
 
-> Live snapshot of who is at what stage in our 2026 raise. The authoritative version is the admin dashboard at `v2/src/app/admin/qbe-program/page.tsx`. This article is the human-readable mirror.
+> Working snapshot of who is at what stage in the 2026 raise. This page is the human-readable mirror; detailed actions should move through Notion review and approved HighLevel/GHL follow-up.
 
 ## Pipeline stages
 
@@ -22,40 +22,45 @@ reason: live pipeline state, commercially sensitive
 
 | Investor | Capital type | Target | Stage | Next action | Owner |
 |---|---|---|---|---|---|
-| [[qbe-foundation]] | Grant | $200K (match-contingent) | Stage 1 active (program) | Complete PIN diagnostic by 31 May | Ben |
-| [[snow-foundation]] | Grant + support letter | $200K (R4) | Conversation | Draft R4 proposal | Ben + Nick |
+| [[qbe-foundation]] | Grant | $400K (match-contingent) | Stage 1 active (program) | Complete PIN working session by 31 May | Ben |
+| [[snow-foundation]] | Grant + support letter | $130K (R4) | Conversation | Draft R4 proposal | Ben + Nicholas |
 | [[sefa]] | Sub-debt | $300K+ | Cold outreach | Email Hannah Ebeling to open | Ben |
-| [[iba]] | Debt + grant blend | up to $5M | Conversation (eligibility ✓) | Business plan to qualify | Nick |
+| [[iba]] | Debt + grant blend | up to $5M | Conversation (eligibility ✓) | Business plan to qualify | Nicholas |
 | [[pfi]] | Recoverable grant | $640K | DD (their side) | Await feedback on EOI | Ben |
-| [[mindaroo]] | Recoverable grant | $200K | Research | Confirm catalytic bucket fit, warm intro via Beck | Ben |
-| [[first-australians-capital]] | Debt | TBD | Research | Intro via IBA or SIH | Nick |
-| [[tim-fairfax]] | Grant | TBD | Research | Review giving priorities | Ben |
-| [[dusseldorp]] | Grant | TBD | Research | Connect via JustReinvest | Ben |
+| [[mindaroo]] | Recoverable grant | $200K target (no app yet) | Relationship-only | Justice/Container alignment via Lucy Stronach; Minderoo Board June 2026 | Ben |
+| [[first-australians-capital]] | Debt | $100-500K (indicative) | Research | Intro via IBA or SIH | Nicholas |
+| [[tim-fairfax]] | Grant | $50-150K (indicative) | Advisory | Katie Norman warm; FY25 report shared | Ben |
 | [[qbe-ventures]] | Equity (Lighthouse) | small | Deferred | Re-evaluate 2027 after structure decisions | Ben |
 
-## Already received ($445K)
+## Already received (~$405K)
 
 | Funder | Amount | Year |
 |---|---|---|
-| Snow Foundation | $193K | Multi-year |
-| TFN (The Funding Network) | $130K | 2025 |
-| VFFF (Vincent Fairfax Family Foundation) | $50K | 2025 |
-| FRRR | $50K | 2025 |
-| AMP Spark | $21.9K | 2025 |
+| Snow Foundation | $193,785 | Multi-year (2023-2025) |
+| TFN (The Funding Network) | $130,000 | Dec 2025 |
+| FRRR + VFFF Backing the Future (joint) | $50,000 | Jul 2025 |
+| AMP Spark | $21,900 | Jun 2024 |
+| QBE Foundation Stage 1 | $10,000 | Mar 2026 |
+
+**Note:** the wiki previously listed FRRR and VFFF as separate $50K grants. They are jointly the same Backing the Future $50K. See [[../sources/grants-archive-index]] and [[../sources/funding-journey]].
+
+**Do not include Dusseldorp in Goods received funding.** The known $15K Dusseldorp record belongs to Mounty Backyard / Contained / JusticeHub work, not Goods on Country.
 
 ## Active advisors and connectors
 
 - **Beck Parkinson** — impact investment advisor; ex-SVA, ex-DFAT; selection committee member.
 - **Jess Grebenschikoff** — Social Impact Hub, QBE program facilitator.
-- **Sarah Gregory** — SIH Director, People; leads PIN diagnostic.
+- **Sarah Gregory** — SIH Director, People; leads PIN working session.
 - **Jay Boolkin** — QBE program coordinator.
 - **Adam** — SIH crowdfunding specialist.
 
 ## Sources
 
-- `v2/src/app/admin/qbe-program/page.tsx` (authoritative operational state)
-- `v2/src/app/admin/qbe-actions/page.tsx` (weekly action tracker)
-- `thoughts/shared/qbe-program/session-1-learnings.md`
+- [[../program/qbe-catalysing-impact-2026]]
+- [[../sources/funding-journey]]
+- [[../sources/grants-archive-index]]
+- [[../sources/case-investor-alignment-tool]]
+- [[../program/grantscope-capital-procurement-loop]]
 
 ## Related
 

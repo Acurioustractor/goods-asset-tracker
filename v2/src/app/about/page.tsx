@@ -1,395 +1,263 @@
-import Link from 'next/link';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import Link from 'next/link';
 import type { Metadata } from 'next';
-import { team } from '@/lib/data/team';
-import { getFeaturedSupporters } from '@/lib/data/supporters';
-import { brand, story } from '@/lib/data/content';
 
 export const metadata: Metadata = {
-  title: 'About Us',
-  description: 'Learn about Goods on Country - a social enterprise delivering essential items to remote Australian Indigenous communities.',
+  title: 'About',
+  description:
+    'Goods on Country is a social enterprise designing, manufacturing, and transferring essential health hardware to remote First Nations communities across Australia.',
 };
+
+const CREAM = '#FDF8F3';
+const RUST = '#C45C3E';
+const CHARCOAL = '#2E2E2E';
+const SAGE = '#8B9D77';
+
+const FACTS = [
+  { value: '520+', label: 'beds across Australia' },
+  { value: '14', label: 'washing machines confirmed on Country' },
+  { value: '8', label: 'communities partnered' },
+  { value: '20kg', label: 'plastic diverted per bed' },
+];
 
 const VALUES = [
   {
-    title: 'Community-Led Design',
-    description: 'Products refined "around the fire" with Elders and families. We listen first, design second.',
+    title: 'Community-led design',
+    body: 'Products are refined around the fire with Elders and families. We listen first, design second, build third.',
   },
   {
-    title: 'Transparency',
-    description: 'We track every item we deliver. Real data, real impact, no hidden costs.',
+    title: 'Made On-Country',
+    body: 'Manufacturing happens close to the communities served. Local repairability, local skills, local jobs.',
   },
   {
-    title: 'Built for Remote',
-    description: 'Commercial-grade foundations, local repairability. The Toyota Troopy of household goods.',
+    title: 'Earned, not given',
+    body: 'Commerce over charity. Every bed is paid for at fair market rates and built to outlast its warranty.',
   },
   {
-    title: 'Community Ownership',
-    description: 'Our goal is to transfer manufacturing to community-owned enterprises. We become unnecessary.',
+    title: 'Community ownership',
+    body: "Our long-term goal is to transfer manufacturing to community-owned enterprises. We become unnecessary.",
   },
 ];
-
-const TIMELINE = [
-  { year: '2018', title: 'The Spark', description: 'Nic hears Dr. Bo Remenyi speak about preventable Rheumatic Heart Disease in remote communities.' },
-  { year: '2022', title: 'Project Begins', description: 'Goods project kicks off with advisory session in November.' },
-  { year: '2023', title: 'A Curious Tractor Founded', description: 'Organisation formally established in September. First bed prototypes developed.' },
-  { year: '2024', title: '400+ Beds Delivered', description: 'Active pilots deliver beds across Palm Island, Tennant Creek, Mt Isa, and more.' },
-  { year: '2025', title: 'Washing Machines Launch', description: 'Pakkimjalki Kari (Speed Queen-based) washing machines deployed. 8+ communities served.' },
-];
-
-const featuredSupporters = getFeaturedSupporters();
 
 export default function AboutPage() {
   return (
-    <main style={{ backgroundColor: '#FDF8F3' }}>
-      {/* Hero Section */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-sm uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
-              {brand.hero.about.headline}
-            </p>
-            <h1 className="text-4xl md:text-5xl font-light mb-6" style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}>
-              {brand.tagline}
-            </h1>
-            <p className="text-lg mb-8" style={{ color: '#5E5E5E' }}>
-              {brand.hero.about.subheadline}
-            </p>
-          </div>
+    <main style={{ backgroundColor: CREAM, color: CHARCOAL }}>
+      {/* Hero — the elevator pitch */}
+      <section className="px-6 sm:px-8 pt-16 sm:pt-24 pb-12 max-w-3xl mx-auto">
+        <p
+          className="text-xs uppercase tracking-[0.25em] mb-5"
+          style={{ color: RUST }}
+        >
+          About Goods on Country
+        </p>
+        <h1
+          className="font-display text-4xl sm:text-6xl leading-[1.05] tracking-tight mb-6"
+          style={{ color: CHARCOAL }}
+        >
+          Made by community.<br />Made for community.
+        </h1>
+        <p className="text-lg sm:text-xl leading-relaxed mb-8" style={{ color: `${CHARCOAL}cc` }}>
+          Goods on Country is a social enterprise designing, manufacturing, and transferring
+          essential health hardware to remote First Nations communities across Australia. Beds.
+          Washing machines. A manufacturing model that stays with the communities it serves.
+        </p>
+        <p className="text-lg leading-relaxed mb-10" style={{ color: `${CHARCOAL}cc` }}>
+          We started in 2023 with a question about preventable disease. We&apos;ve since
+          delivered over five hundred beds across eight communities, and the model is now
+          headed toward community ownership.
+        </p>
+
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href="/story"
+            className="inline-flex items-center gap-2 rounded-md px-5 py-3 text-base font-semibold transition"
+            style={{ backgroundColor: CHARCOAL, color: CREAM }}
+          >
+            Read the full story →
+          </Link>
+          <Link
+            href="/shop/stretch-bed-single"
+            className="inline-flex items-center gap-2 rounded-md border px-5 py-3 text-base font-semibold transition"
+            style={{ borderColor: `${CHARCOAL}33`, color: CHARCOAL }}
+          >
+            Shop the Stretch Bed
+          </Link>
         </div>
       </section>
 
-      {/* Mission Statement */}
-      <section className="py-16" style={{ backgroundColor: '#C45C3E' }}>
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-sm uppercase tracking-widest text-white/70 mb-4">Our Mission</p>
-            <blockquote className="text-2xl md:text-3xl font-light text-white leading-relaxed" style={{ fontFamily: 'Georgia, serif' }}>
-              &ldquo;{brand.mission}&rdquo;
-            </blockquote>
-          </div>
+      {/* Hero image — Xavier with his Stretch Bed at Oonchiumpa */}
+      <section className="px-6 sm:px-8 max-w-4xl mx-auto pb-14">
+        <div className="relative aspect-[3/2] w-full overflow-hidden rounded-3xl shadow-sm">
+          <Image
+            src="/images/people/xavier-stretch-bed-alice-springs.jpg"
+            alt="Xavier with his Stretch Bed at Oonchiumpa, Alice Springs"
+            fill
+            sizes="(max-width: 1024px) 100vw, 1024px"
+            className="object-cover"
+            priority
+          />
         </div>
+        <p className="mt-3 text-sm" style={{ color: `${CHARCOAL}99` }}>
+          Xavier with his Stretch Bed. Oonchiumpa, Alice Springs.
+        </p>
       </section>
 
-      {/* The Problem We're Solving */}
-      <section className="py-16 md:py-20" style={{ backgroundColor: '#FDF8F3' }}>
-        <div className="container mx-auto px-4">
-          <div className="grid gap-12 lg:grid-cols-2 items-center max-w-6xl mx-auto">
-            <div>
-              <p className="text-sm uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
-                The Challenge
-              </p>
-              <h2 className="text-3xl font-light mb-6" style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}>
-                {story.problem.headline}
-              </h2>
-              <p className="mb-4" style={{ color: '#5E5E5E' }}>
-                Thousands of people in remote Australia sleep on the floor or share beds.
-                Essential appliances fail within months because they were never designed for
-                remote conditions. The freight makes everything unaffordable.
-              </p>
-              <p className="mb-4" style={{ color: '#5E5E5E' }}>
-                This isn&apos;t a cultural choice—it&apos;s a failure of infrastructure.
-                A washing machine isn&apos;t convenience—it&apos;s cardiac prevention.
-                Clean bedding breaks the scabies cycle that leads to Rheumatic Heart Disease.
-              </p>
-              <p style={{ color: '#5E5E5E' }}>
-                We build durable, repairable, community-designed &quot;health hardware&quot;
-                that addresses the environmental conditions driving preventable disease.
-              </p>
-            </div>
-
-            <Card className="border-0 shadow-lg bg-white">
-              <CardContent className="p-8">
-                <h3 className="text-xl font-medium mb-6" style={{ color: '#C45C3E' }}>The Barriers</h3>
-                <div className="space-y-6">
-                  {[
-                    { num: '1', title: 'Distance & Cost', desc: 'Remote delivery can cost more than the item itself' },
-                    { num: '2', title: 'Availability', desc: "Standard retailers don't serve these communities" },
-                    { num: '3', title: 'Durability', desc: "Cheap furniture doesn't survive harsh conditions" },
-                  ].map((item) => (
-                    <div key={item.num} className="flex items-start gap-4">
-                      <div
-                        className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-white font-medium"
-                        style={{ backgroundColor: '#C45C3E' }}
-                      >
-                        {item.num}
-                      </div>
-                      <div>
-                        <p className="font-medium" style={{ color: '#2E2E2E' }}>{item.title}</p>
-                        <p className="text-sm" style={{ color: '#5E5E5E' }}>{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Values */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
-              Our Values
-            </p>
-            <h2 className="text-3xl font-light" style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}>
-              What Guides Us
-            </h2>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
-            {VALUES.map((value) => (
-              <Card key={value.title} className="border-0 shadow-sm" style={{ backgroundColor: '#FDF8F3' }}>
-                <CardContent className="p-6">
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center mb-4"
-                    style={{ backgroundColor: '#C45C3E' }}
-                  >
-                    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <h3 className="font-medium mb-2" style={{ color: '#2E2E2E' }}>{value.title}</h3>
-                  <p className="text-sm" style={{ color: '#5E5E5E' }}>{value.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section className="py-16 md:py-20" style={{ backgroundColor: '#FDF8F3' }}>
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
-              Our Journey
-            </p>
-            <h2 className="text-3xl font-light" style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}>
-              Growing Impact
-            </h2>
-          </div>
-
-          <div className="max-w-3xl mx-auto">
-            <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 md:-translate-x-0.5" style={{ backgroundColor: '#E8DED4' }} />
-
-              {TIMELINE.map((item, index) => (
-                <div
-                  key={item.year}
-                  className={`relative flex items-start gap-4 mb-8 ${
-                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                  }`}
-                >
-                  {/* Dot */}
-                  <div
-                    className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full border-4 -translate-x-1/2 z-10"
-                    style={{ backgroundColor: '#C45C3E', borderColor: '#FDF8F3' }}
-                  />
-
-                  {/* Content */}
-                  <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
-                    <span className="text-sm font-bold" style={{ color: '#C45C3E' }}>{item.year}</span>
-                    <h3 className="font-medium" style={{ color: '#2E2E2E' }}>{item.title}</h3>
-                    <p className="text-sm" style={{ color: '#5E5E5E' }}>{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* The Team */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
-              The Team
-            </p>
-            <h2 className="text-3xl font-light" style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}>
-              Who We Are
-            </h2>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
-            {team.map((member) => (
-              <Card key={member.id} className="border-0 shadow-lg bg-white overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="flex flex-col md:flex-row">
-                    <div className="w-full md:w-1/3 aspect-square md:aspect-auto relative bg-gray-100">
-                      {member.image ? (
-                        <Image
-                          src={member.image}
-                          alt={member.name}
-                          fill
-                          className="object-cover"
-                          unoptimized
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center" style={{ backgroundColor: '#E8DED4' }}>
-                          <svg className="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#8B9D77' }}>
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                          </svg>
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-6 md:w-2/3">
-                      <h3 className="text-xl font-medium mb-1" style={{ color: '#2E2E2E' }}>{member.name}</h3>
-                      <p className="text-sm mb-3" style={{ color: '#C45C3E' }}>{member.role}</p>
-                      <p className="text-sm leading-relaxed" style={{ color: '#5E5E5E' }}>{member.bio}</p>
-                      {member.email && (
-                        <a href={`mailto:${member.email}`} className="inline-block mt-3 text-sm underline" style={{ color: '#8B9D77' }}>
-                          {member.email}
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Supporters */}
-      <section className="py-16 md:py-20" style={{ backgroundColor: '#FDF8F3' }}>
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
-              Our Community
-            </p>
-            <h2 className="text-3xl font-light" style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}>
-              Featured Supporters & Partners
-            </h2>
-            <p className="mt-4 max-w-2xl mx-auto" style={{ color: '#5E5E5E' }}>
-              The people and organizations making this work possible
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-            {featuredSupporters.map((supporter) => (
-              <Card key={supporter.id} className="border-0 shadow-sm" style={{ backgroundColor: 'white' }}>
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div
-                      className="w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center"
-                      style={{ backgroundColor: supporter.type === 'foundation' ? '#C45C3E' : '#8B9D77' }}
-                    >
-                      {supporter.type === 'individual' && (
-                        <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                      )}
-                      {supporter.type === 'organization' && (
-                        <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                      )}
-                      {supporter.type === 'foundation' && (
-                        <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                        </svg>
-                      )}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-medium" style={{ color: '#2E2E2E' }}>{supporter.name}</h3>
-                      {supporter.role && (
-                        <p className="text-xs mb-1" style={{ color: '#C45C3E' }}>{supporter.role}</p>
-                      )}
-                      {supporter.location && (
-                        <p className="text-xs mb-2" style={{ color: '#8B9D77' }}>{supporter.location}</p>
-                      )}
-                      <p className="text-sm" style={{ color: '#5E5E5E' }}>{supporter.contribution}</p>
-                      {supporter.website && (
-                        <a href={supporter.website} target="_blank" rel="noopener noreferrer" className="inline-block mt-2 text-xs underline" style={{ color: '#8B9D77' }}>
-                          Visit website →
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* OCAP Section */}
-      <section className="py-16 md:py-20" style={{ backgroundColor: '#2E2E2E' }}>
-        <div className="container mx-auto px-4">
-          <div className="grid gap-12 lg:grid-cols-2 items-center max-w-5xl mx-auto">
-            <div>
-              <p className="text-sm uppercase tracking-widest text-white/60 mb-4">
-                Data Sovereignty
-              </p>
-              <h2 className="text-3xl font-light text-white mb-6" style={{ fontFamily: 'Georgia, serif' }}>
-                OCAP Principles
-              </h2>
-              <p className="text-white/80 mb-6">
-                We follow OCAP (Ownership, Control, Access, Possession) principles
-                in all our data practices. Community data belongs to communities.
-              </p>
-              <ul className="space-y-3">
-                {[
-                  'Community-owned data governance',
-                  'Transparent tracking systems',
-                  'Privacy-first approach',
-                  'Elder-approved content only',
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-3">
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: '#8B9D77' }}>
-                      <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-white/90">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="text-center">
-              <div
-                className="inline-flex items-center justify-center w-32 h-32 rounded-full mb-4"
-                style={{ backgroundColor: 'rgba(139, 157, 119, 0.2)' }}
-              >
-                <svg className="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#8B9D77' }}>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
+      {/* Facts strip */}
+      <section className="px-6 sm:px-8 max-w-3xl mx-auto pb-14">
+        <div
+          className="rounded-3xl px-6 sm:px-8 py-7 sm:py-9 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center"
+          style={{ backgroundColor: `${SAGE}1A`, border: `1px solid ${SAGE}33` }}
+        >
+          {FACTS.map((f) => (
+            <div key={f.label}>
+              <div className="font-display text-3xl sm:text-4xl leading-none" style={{ color: CHARCOAL }}>
+                {f.value}
               </div>
-              <p className="text-white/70">
-                Data sovereignty is a fundamental right
-              </p>
+              <div className="mt-2 text-xs sm:text-sm leading-snug" style={{ color: `${CHARCOAL}99` }}>
+                {f.label}
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 md:py-20" style={{ backgroundColor: '#C45C3E' }}>
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-light text-white mb-6" style={{ fontFamily: 'Georgia, serif' }}>
-            {brand.oneLiner}
+      {/* Two-up image grid — making + using */}
+      <section className="px-6 sm:px-8 max-w-4xl mx-auto pb-14">
+        <div className="grid sm:grid-cols-2 gap-4">
+          <figure>
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
+              <Image
+                src="/images/process/heat-press-full.jpg"
+                alt="The heat press at the Goods workshop, turning shredded HDPE plastic into bed leg sheets"
+                fill
+                sizes="(max-width: 640px) 100vw, 512px"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="mt-2 text-sm" style={{ color: `${CHARCOAL}99` }}>
+              Pressing recycled HDPE into bed legs.
+            </figcaption>
+          </figure>
+          <figure>
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
+              <Image
+                src="/images/product/stretch-bed-community.jpg"
+                alt="Dianne Stokes standing next to her Stretch Bed on Country in Tennant Creek"
+                fill
+                sizes="(max-width: 640px) 100vw, 512px"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="mt-2 text-sm" style={{ color: `${CHARCOAL}99` }}>
+              Dianne Stokes with her Stretch Bed.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      {/* What we believe */}
+      <section className="px-6 sm:px-8 max-w-3xl mx-auto pb-14">
+        <p
+          className="text-xs uppercase tracking-[0.25em] mb-4"
+          style={{ color: RUST }}
+        >
+          What we believe
+        </p>
+        <div className="grid sm:grid-cols-2 gap-x-8 gap-y-8">
+          {VALUES.map((v) => (
+            <div key={v.title}>
+              <h3 className="font-display text-xl mb-2" style={{ color: CHARCOAL }}>
+                {v.title}
+              </h3>
+              <p className="text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
+                {v.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* The team */}
+      <section className="px-6 sm:px-8 max-w-3xl mx-auto pb-14">
+        <p
+          className="text-xs uppercase tracking-[0.25em] mb-4"
+          style={{ color: RUST }}
+        >
+          The team
+        </p>
+        <p className="text-base leading-relaxed mb-8" style={{ color: `${CHARCOAL}cc` }}>
+          Goods on Country is a project of A Curious Tractor, founded by Nicholas Marchesi
+          and Benjamin Knight in 2023. The day-to-day is run by a small team of designers,
+          engineers, and community members across Brisbane, Tennant Creek, and the Top End.
+          Elders and community partners shape every product before it reaches a home.
+        </p>
+        <div className="grid gap-6 sm:grid-cols-2">
+          <figure className="flex items-center gap-4">
+            <div className="relative h-20 w-20 sm:h-24 sm:w-24 shrink-0 overflow-hidden rounded-full">
+              <Image
+                src="/images/people/dianne-stokes.jpg"
+                alt="Warumungu Elder Dianne Stokes"
+                fill
+                sizes="96px"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}99` }}>
+              <span className="block font-semibold" style={{ color: CHARCOAL }}>
+                Dianne Stokes
+              </span>
+              Warumungu Elder. Named the Pakkimjalki Kari washing machine in her language. Tennant Creek.
+            </figcaption>
+          </figure>
+
+          <figure className="flex items-center gap-4">
+            <div className="relative h-20 w-32 sm:h-24 sm:w-36 shrink-0 overflow-hidden rounded-2xl">
+              <Image
+                src="/images/people/nic-and-ben-warumungu.jpg"
+                alt="Nic Marchesi and Ben Knight, co-founders of Goods on Country"
+                fill
+                sizes="144px"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}99` }}>
+              <span className="block font-semibold" style={{ color: CHARCOAL }}>
+                Nic and Ben
+              </span>
+              From the Goods on Country project. A Curious Tractor co-founders.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      {/* Closing CTA */}
+      <section
+        className="px-6 sm:px-8 py-12 mt-6"
+        style={{ backgroundColor: CHARCOAL, color: CREAM }}
+      >
+        <div className="max-w-3xl mx-auto">
+          <h2 className="font-display text-3xl sm:text-4xl mb-3">
+            Want the long version?
           </h2>
-          <p className="text-white/80 max-w-xl mx-auto mb-8">
-            Every purchase supports community-led design and manufacturing in remote Australia.
-            {' '}{brand.philosophy}
+          <p className="text-base sm:text-lg leading-relaxed mb-6" style={{ color: `${CREAM}cc` }}>
+            From the conference room where it started, to the bed legs going onto a truck for
+            Utopia Homelands. The story has Elders, engineers, and a lot of plastic.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white hover:bg-white/90" style={{ color: '#C45C3E' }} asChild>
-              <Link href="/shop">Shop Products</Link>
-            </Button>
-            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10" asChild>
-              <Link href="/sponsor">Sponsor an Item</Link>
-            </Button>
-            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10" asChild>
-              <Link href="/contact">Partner With Us</Link>
-            </Button>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/story"
+              className="inline-flex items-center gap-2 rounded-md px-5 py-3 text-base font-semibold transition"
+              style={{ backgroundColor: RUST, color: CREAM }}
+            >
+              Read the full story →
+            </Link>
+            <Link
+              href="/partner"
+              className="inline-flex items-center gap-2 rounded-md border px-5 py-3 text-base font-semibold transition"
+              style={{ borderColor: `${CREAM}33`, color: CREAM }}
+            >
+              Partner with us
+            </Link>
           </div>
         </div>
       </section>

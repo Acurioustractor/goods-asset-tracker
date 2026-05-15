@@ -1,6 +1,6 @@
 # Dusseldorp Forum
 
-> Family foundation. JustReinvest connection point — entry via justice-reinvestment network.
+> ACT / JusticeHub context only unless a Goods-specific record is found. Do not count the known $15K Dusseldorp support as Goods on Country funding.
 
 ## Mandate
 
@@ -9,8 +9,18 @@
 
 ## Current state
 
-- Research phase.
+- **$15,000 received Dec 2025** for Mounty Backyard / Workbee / Contained / JusticeHub work, not Goods.
+- Longer-term partnership flagged by Teya Dusseldorp.
+- Contacts: Teya Dusseldorp, Jess Wilson.
 - Intro pathway: JustReinvest network (ACT has existing relationship).
+- Source: Gmail thread `19b0a14ca8fc43dd` (2025-12-10).
+
+## Goods Relevance
+
+- Possible relationship context only.
+- Not a current Goods funder.
+- Not included in Goods received-funding totals.
+- Only move into the Goods pipeline if there is a Goods-specific conversation, proposal or commitment.
 
 ## Related
 

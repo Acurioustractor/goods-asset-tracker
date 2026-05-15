@@ -8,7 +8,7 @@ const folderBlurbs: Record<string, string> = {
   investors: 'Funder profiles, alignment tool, pipeline state.',
   governance: 'Board, risk, legal structure, compliance, data sovereignty.',
   'support-network': 'Social Impact Hub, PIN, legal, advisory group, cohort peers.',
-  impact: 'ALMA framework, theory of change, Empathy Ledger as impact infrastructure.',
+  impact: 'Australian Living Map of Alternatives, theory of change, Empathy Ledger as impact infrastructure.',
   products: 'Stretch Bed, washing machines, containerised plant.',
   communities: 'PICC, Oonchiumpa, Tennant Creek, NPY and other deployment partners.',
   enterprise: 'Durable versions of the 10 QBE diagnostic topics.',

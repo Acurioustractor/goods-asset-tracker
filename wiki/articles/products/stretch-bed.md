@@ -1,33 +1,70 @@
-# Stretch Bed (flagship)
+# Stretch Bed
 
-> Flat-packable, washable bed for remote conditions. Co-designed with Elders across Central Australia, Top End, Palm Island, Kalgoorlie. The product investors buy the story of when we pitch. Canonical specs at `v2/src/lib/data/products.ts` — do not duplicate.
+> The Stretch Bed is the current flagship product and the only Goods product for direct sale. It is a flat-packable, washable bed for remote conditions, made from recycled HDPE, galvanised steel and heavy-duty Australian canvas. The reviewable product source is [[../sources/canonical-product-data]].
 
-## One-sentence description
+## Plain description
 
-A bed that survives ten years of remote community use: recycled HDPE plastic legs click onto two galvanised steel poles that thread through heavy-duty Australian canvas sleeves; five minutes to assemble, tool-free; hose-washable; every part individually replaceable.
+Two steel poles thread through canvas sleeves. Recycled plastic legs click onto the poles. No tools. The canvas can be washed. Individual parts can be replaced.
 
-## Why it works as investment narrative
+That simplicity is the point. Remote communities do not need another product that only works while it is new.
 
-- **Durable.** 10+ year design life vs weeks-to-months for standard imports.
-- **Circular.** 20-25 kg HDPE diverted per bed; production loop can run On-Country.
-- **Dignified.** Co-designed with communities, not for them. Fred Campbell (Oonchiumpa, Western Arrernte) leads cultural consultation.
-- **Commercial.** 50-55% gross margin at scale supports debt.
-- **Scalable.** One containerised plant produces beds + washing machines + fridges.
+## Why it matters
 
-## Deployment scale
+- It gives people a place to sleep that can be packed, moved and cleaned.
+- It avoids the unwashable mattress problem.
+- It uses recycled HDPE in the bed components.
+- It can be made through a production process that could move closer to community.
+- It creates a practical feedback loop: people can say what works, what breaks and what should change.
 
-- 389 products deployed.
-- 8 communities served (Palm Island, Tennant Creek, Alice Homelands, Maningrida, Ninga Mia, Mount Isa, Darwin, others).
-- 140+ Stretch Beds specifically.
+## Current product facts
+
+| Field | Current fact |
+|---|---|
+| Status | Available for sale |
+| Materials | Recycled HDPE plastic legs, galvanised steel poles, heavy-duty Australian canvas |
+| Weight | 26kg |
+| Load capacity | 200kg |
+| Dimensions | 188 x 92 x 25cm |
+| Assembly | About 5 minutes, no tools |
+| Design lifespan | 10+ years |
+| Warranty | 5 years |
+| Plastic diverted | 20kg HDPE per bed in current product data |
+
+## What not to say
+
+- Do not call it a Weave Bed.
+- Do not describe it as woven cord or hardwood.
+- Do not treat Basket Bed history as the current product.
+- Do not invent or repeat old specs. Check [[../sources/canonical-product-data]].
+
+## Current commercial role
+
+The Stretch Bed is the revenue anchor. It is the product most ready for:
+
+- direct purchase
+- funded batches
+- institutional buyers
+- sponsor-a-bed style support
+- disaster recovery or temporary sleeping contexts, if that channel proves useful
+
+## What is still being proved
+
+- long-term survival across more communities
+- resident purchase at the right price
+- repair and check-in behaviour
+- local plant economics
+- repeat orders beyond the first funded delivery
 
 ## Sources
 
-- Canonical specs: `v2/src/lib/data/products.ts`
-- Strategy PD Part 2: `v2/docs/GOODS_STRATEGY_PD.md`
-- ACT wiki: `projects/goods-on-country.md`
+- [[../sources/canonical-product-data]]
+- [[../sources/production-facility-guide]]
+- [[../sources/community-voices-from-the-ground]]
+- [[../sources/may-2026-founder-working-conversation]].
+- [[../sources/goods-strategy-pd]]
 
 ## Related
 
 - [[washing-machine]]
 - [[plant-design]]
-- [[../communities/README]]
+- [[../impact/metrics-tracked]]

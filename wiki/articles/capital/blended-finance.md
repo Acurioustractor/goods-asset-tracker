@@ -2,6 +2,8 @@
 
 > A strategy that combines the right mix of capital from multiple stakeholders with different risk-return requirements but common impact objectives. Grants and guarantees "catalyse" private capital by taking the risky bottom of the stack.
 
+For the Goods-specific view of money received, warm funder options, relationship status and next actions, use [[funder-register]] before this theory page.
+
 ## Definition
 
 From GIIN, Big Society Capital, and the World Bank Independent Evaluation Group:
@@ -16,7 +18,7 @@ Philanthropic funding acts as the "de-risking" layer. Private capital sits on to
 
 ```
 Private capital   ── market-rate ─┐
-                                   ├─→ Blended finance structure ─→ Investee
+                                   ├─-> Blended finance structure ─-> Investee
 Philanthropic    ── concessional ─┘                 │
 funding            "de-risking"                      ▼
        ▲                                         Repayment
@@ -61,8 +63,8 @@ The Goods stack is effectively a **project-level + company-level** blend anchore
 
 ## Sources
 
-- `raw/2026-03-31-qbe-induction-slides-fulltext.md`
-- `raw/2026-03-31-qbe-induction-slides.pdf` (slides ~33-38)
+- [[../program/qbe-catalysing-impact-2026]]
+- [[../program/stage-2-funding]]
 - The GIIN, Big Society Capital, World Bank IEG
 - CFO Coalition for the SDGs (4 types framework)
 

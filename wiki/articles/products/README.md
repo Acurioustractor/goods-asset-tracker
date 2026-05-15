@@ -1,21 +1,22 @@
 # Products
 
-> Product narrative that anchors investor conversations. **The canonical product data lives at `v2/src/lib/data/products.ts`.** Do not duplicate specs here; link.
+> Goods products should be described plainly and only from verified product truth. The Stretch Bed is for sale. The washing machine is prototype. Basket Bed is archived. The fridge is future concept.
 
 ## Articles
 
-- [[stretch-bed]] — flagship, for sale, revenue anchor
-- [[washing-machine]] — Pakkimjalki Kari, prototype, register-interest
-- [[basket-bed-legacy]] — discontinued, open-source plans
-- [[plant-design]] — containerised production facility
+- [[stretch-bed]]: flagship product, for sale
+- [[washing-machine]]: Pakkimjalki Kari, prototype, register interest only
+- [[basket-bed-legacy]]: discontinued, open-source plans
+- [[plant-design]]: containerised production plant and On-Country production pathway
 
 ## Canonical sources
 
-- Product specs: `v2/src/lib/data/products.ts`
-- Brand copy: `v2/src/lib/data/content.ts`
-- Compendium: `v2/src/lib/data/compendium.ts`
+- Product specs: [[../sources/canonical-product-data]]
+- Brand and operating context: [[../sources/march-2026-compendium]]
+- Community voice: [[../sources/community-voices-from-the-ground]]
+- Production process: [[../sources/production-facility-guide]]
 
 ## Related
 
-- [[../impact/metrics-tracked]] (plastic diverted per bed)
+- [[../impact/metrics-tracked]]
 - [[../communities/README]]

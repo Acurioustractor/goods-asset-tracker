@@ -26,35 +26,35 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Goods on Country | Beds That Change Lives',
-    template: '%s | Goods on Country',
+    default: 'Goods on Country',
+    template: '%s · Goods on Country',
   },
   description:
-    'Goods on Country delivers essential items like beds and washing machines to remote Australian Indigenous communities. Shop to support or sponsor a bed today.',
+    'Beds, washing machines, and a manufacturing model that stays with the communities it serves. Made by community. Made for community.',
   keywords: [
-    'beds',
-    'Indigenous communities',
-    'social enterprise',
-    'Australia',
-    'charity',
+    'Stretch Bed',
+    'First Nations',
     'remote communities',
-    'bed delivery',
+    'social enterprise',
+    'On-Country manufacturing',
+    'recycled plastic',
     'washing machines',
+    'Australia',
   ],
   authors: [{ name: 'Goods on Country' }],
   openGraph: {
-    title: 'Goods on Country | Beds That Change Lives',
+    title: 'Goods on Country',
     description:
-      'Delivering essential items to remote Australian Indigenous communities. Every purchase makes a difference.',
+      'Beds, washing machines, and a manufacturing model that stays with the communities it serves.',
     type: 'website',
     locale: 'en_AU',
     siteName: 'Goods on Country',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Goods on Country | Beds That Change Lives',
+    title: 'Goods on Country',
     description:
-      'Delivering essential items to remote Australian Indigenous communities.',
+      'Beds, washing machines, and a manufacturing model that stays with the communities it serves.',
   },
   robots: {
     index: true,
@@ -74,7 +74,7 @@ export default function RootLayout({
         <OrganizationJsonLd />
         <WebSiteJsonLd />
       </head>
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`} suppressHydrationWarning>
         <CartProvider>
           <div className="flex min-h-screen flex-col">
             <ConditionalSiteHeader />

@@ -37,9 +37,9 @@ For every new investor contact:
 
 ## Sources
 
-- `raw/2026-03-31-investor-alignment-tool-case.xlsx` (Tab 1 and Tab 3)
-- `raw/2026-03-31-qbe-induction-slides-fulltext.md`
-- `thoughts/shared/qbe-program/session-1-learnings.md`
+- [[../sources/case-investor-alignment-tool]]
+- [[../program/qbe-catalysing-impact-2026]]
+- [[../program/grantscope-capital-procurement-loop]]
 
 ## Related
 

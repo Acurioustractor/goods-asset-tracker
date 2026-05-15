@@ -72,6 +72,12 @@ let cache: {
   backlinks: Map<string, WikiBacklink[]>
 } | null = null
 
+function getCache() {
+  if (process.env.NODE_ENV === 'development') return buildCache()
+  if (!cache) return buildCache()
+  return cache
+}
+
 function buildCache() {
   const root = resolveWikiRoot()
   const files = walkMarkdown(root)
@@ -182,6 +188,7 @@ function buildTree(articles: WikiArticle[]): WikiTreeNode[] {
     'governance',
     'investors',
     'support-network',
+    'sources',
     'products',
     'communities',
     'enterprise',
@@ -240,39 +247,32 @@ export function resolveWikiLink(
 }
 
 export function getAllArticles(): WikiArticle[] {
-  if (!cache) buildCache()
-  return cache!.articles
+  return getCache().articles
 }
 
 export function getArticle(slug: string[]): WikiArticle | null {
-  if (!cache) buildCache()
   const sp = slug.join('/')
-  return cache!.bySlugPath.get(sp) || null
+  return getCache().bySlugPath.get(sp) || null
 }
 
 export function getTree(): WikiTreeNode[] {
-  if (!cache) buildCache()
-  return cache!.tree
+  return getCache().tree
 }
 
 export function getBacklinks(slugPath: string): WikiBacklink[] {
-  if (!cache) buildCache()
-  return cache!.backlinks.get(slugPath) || []
+  return getCache().backlinks.get(slugPath) || []
 }
 
 export function getSlugMap(): Map<string, WikiArticle> {
-  if (!cache) buildCache()
-  return cache!.bySlugPath
+  return getCache().bySlugPath
 }
 
 export function getFolderLanding(folder: string): WikiArticle | null {
-  if (!cache) buildCache()
-  return cache!.bySlugPath.get(`${folder}/README`) || null
+  return getCache().bySlugPath.get(`${folder}/README`) || null
 }
 
 export function getFolderChildren(folder: string): WikiArticle[] {
-  if (!cache) buildCache()
-  return cache!.articles.filter(
+  return getCache().articles.filter(
     (a) =>
       a.slug.length === 2 &&
       a.slug[0] === folder &&

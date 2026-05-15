@@ -1,5 +1,5 @@
 /**
- * Impact Model — Structured 5-dimension framework for measuring Goods on Country impact
+ * Impact Model: Structured 5-dimension framework for measuring Goods on Country impact
  *
  * Aligned with:
  * - PFI EOI Section 8 (impact dimensions)
@@ -82,7 +82,7 @@ export interface HealthCascadeData {
 }
 
 // ---------------------------------------------------------------------------
-// Revenue segments (from Eloise meeting — B2B, B2C, Government, Corporate)
+// Revenue segments (from Eloise meeting: B2B, B2C, Government, Corporate)
 // ---------------------------------------------------------------------------
 
 export interface RevenueSegment {
@@ -111,21 +111,21 @@ export const REVENUE_SEGMENTS: RevenueSegment[] = [
   {
     id: 'b2c',
     name: 'Direct to Consumer',
-    description: 'E-commerce sales — camping, emergency, beach use cases',
+    description: 'E-commerce sales: camping, emergency, beach use cases',
     currentEvidence: 'Community consultations suggest camping/emergency bed market; "cyclone beds" in NT',
     projectedShare: 20,
   },
   {
     id: 'corporate',
     name: 'Corporate & Events',
-    description: 'Corporate engagement — team builds, NAIDOC week, sponsorship',
+    description: 'Corporate engagement: team builds, NAIDOC week, sponsorship',
     currentEvidence: 'QIC interested in building 50 beds with staff for NAIDOC week',
     projectedShare: 10,
   },
 ];
 
 // ---------------------------------------------------------------------------
-// Production cost model (from meeting — cost per unit breakdown)
+// Production cost model (from meeting: cost per unit breakdown)
 // ---------------------------------------------------------------------------
 
 export interface ProductionCostItem {
@@ -167,7 +167,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
   {
     id: 'health',
     name: 'Health & Wellbeing',
-    description: 'Beds and washing machines as health hardware — interrupting the scabies → Strep A → RHD cascade',
+    description: 'Beds and washing machines as health hardware, interrupting the scabies → Strep A → RHD cascade',
     icon: 'heart',
     color: '#C45C3E',
     primaryMetricId: 'sleep-nights',
@@ -184,7 +184,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         current: null, // fetched live from Supabase
         targets: { year1: 1500, year3: 5000, vision2030: 25000 },
         source: 'supabase',
-        sourceDetail: 'assets table — count where product ilike %bed%',
+        sourceDetail: 'assets table: count where product ilike %bed%',
         proxyFor: 'Households with proper sleeping infrastructure',
         optimizationLevers: ['Production capacity', 'Freight partnerships', 'Community demand pipeline'],
         computeFn: 'getBedsDelivered',
@@ -208,7 +208,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         current: null,
         targets: { year1: 15000, year3: 60000, vision2030: 500000 },
         source: 'supabase',
-        sourceDetail: 'usage_logs table — count where event_type = cycle_complete',
+        sourceDetail: 'usage_logs table: count where event_type = cycle_complete',
         proxyFor: 'Scabies/RHD prevention through clean bedding',
         optimizationLevers: ['Machine uptime', 'Community adoption', 'Fleet expansion'],
         computeFn: 'getWashCycles',
@@ -217,10 +217,10 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         id: 'product-survival-rate',
         name: 'Product Survival Rate',
         unit: '%',
-        current: 95, // estimate — only 15-20 beds with 6+ months data
+        current: 95, // estimate: only 15-20 beds with 6+ months data
         targets: { year1: 90, year3: 92, vision2030: 95 },
         source: 'manual',
-        sourceDetail: 'Check-in system — % of assets still in use at 12 months',
+        sourceDetail: 'Check-in system: % of assets still in use at 12 months',
         proxyFor: 'Long-term health benefit durability',
         optimizationLevers: ['Material quality', 'Design iteration', 'Repair network'],
       },
@@ -233,7 +233,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
   {
     id: 'environmental',
     name: 'Environmental',
-    description: 'Turning community plastic waste into health infrastructure — circular economy at community scale',
+    description: 'Turning community plastic waste into health infrastructure: circular economy at community scale',
     icon: 'leaf',
     color: '#8B9D77',
     primaryMetricId: 'plastic-diverted',
@@ -262,7 +262,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         current: 10, // design target, not yet measured at scale
         targets: { year1: 10, year3: 12, vision2030: 15 },
         source: 'manual',
-        sourceDetail: 'Design target — field testing ongoing',
+        sourceDetail: 'Design target. Field testing ongoing',
         proxyFor: 'Reduced replacement cycles vs conventional products',
         optimizationLevers: ['Material science', 'UV resistance', 'Repair programs'],
       },
@@ -270,7 +270,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         id: 'local-feedstock-pct',
         name: 'Local Feedstock %',
         unit: '%',
-        current: 60, // estimate — some plastic still sourced from metro
+        current: 60, // estimate: some plastic still sourced from metro
         targets: { year1: 70, year3: 85, vision2030: 95 },
         source: 'manual',
         sourceDetail: 'Percentage of HDPE sourced from community collection vs external',
@@ -286,7 +286,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
   {
     id: 'economic',
     name: 'Economic',
-    description: 'Work-Integrated Social Enterprise (WISE) — impact through employing people typically outside the job market',
+    description: 'Work-Integrated Social Enterprise (WISE): impact through employing people typically outside the job market',
     icon: 'briefcase',
     color: '#D4A574',
     primaryMetricId: 'employment-hours',
@@ -338,7 +338,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         current: 239273, // Xero-verified trade revenue (March 2026)
         targets: { year1: 1_100_000, year3: 4_000_000, vision2030: 15_000_000 },
         source: 'xero',
-        sourceDetail: 'Xero — goods project tagged transactions',
+        sourceDetail: 'Xero: goods project tagged transactions',
         optimizationLevers: ['B2B pipeline', 'Government procurement', 'E-commerce launch'],
       },
       {
@@ -362,12 +362,12 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
   {
     id: 'community-ownership',
     name: 'Community Ownership',
-    description: 'Transfer manufacturing to community-controlled enterprise — "Our job is to become unnecessary"',
+    description: 'Transfer manufacturing to community-controlled enterprise. Our job is to become unnecessary',
     icon: 'users',
     color: '#7C6F64',
     primaryMetricId: 'storytellers-active',
     communityQuote: {
-      text: 'Working both ways — cultural side in white society and Indigenous society.',
+      text: 'Working both ways, cultural side in white society and Indigenous society.',
       author: 'Dianne Stokes',
       context: 'Elder, Tennant Creek',
     },
@@ -379,7 +379,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         current: null,
         targets: { year1: 50, year3: 100, vision2030: 300 },
         source: 'empathy-ledger',
-        sourceDetail: 'Empathy Ledger — storyteller count for goods-on-country project',
+        sourceDetail: 'Empathy Ledger: storyteller count for goods-on-country project',
         proxyFor: 'Community engagement depth and voice representation',
         optimizationLevers: ['Community visits', 'Story gathering events', 'Elder engagement'],
         computeFn: 'getStorytellerCount',
@@ -413,7 +413,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         current: null,
         targets: { year1: 12, year3: 25, vision2030: 60 },
         source: 'supabase',
-        sourceDetail: 'assets table — distinct community values',
+        sourceDetail: 'assets table: distinct community values',
         optimizationLevers: ['Distribution partnerships', 'Freight networks', 'Health org partnerships'],
         computeFn: 'getCommunitiesServed',
       },
@@ -438,7 +438,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         current: 15, // estimate during active production runs
         targets: { year1: 125, year3: 417, vision2030: 1000 },
         source: 'manual',
-        sourceDetail: 'Production logs — monthly output',
+        sourceDetail: 'Production logs: monthly output',
         optimizationLevers: ['Facility utilisation', 'Second shift', 'Additional facilities'],
       },
       {
@@ -448,7 +448,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         current: 3.5,
         targets: { year1: 3.0, year3: 2.0, vision2030: 1.0 },
         source: 'manual',
-        sourceDetail: 'Measured at production facility — largest single time cost',
+        sourceDetail: 'Measured at production facility. Largest single time cost',
         proxyFor: 'Production bottleneck efficiency',
         optimizationLevers: ['Toolpath optimisation', 'Better tooling', 'Multi-head router'],
       },
@@ -496,7 +496,7 @@ export const DEFAULT_OPPORTUNITIES: OptimizationOpportunity[] = [
   {
     id: 'cnc-optimisation',
     title: 'CNC cutting time is the largest cost driver',
-    description: `CNC cutting currently takes 3.5 hours/bed at ~$34/hr. Reducing to 2 hours saves $51/unit — $76.5K/year at 1,500 units. Investigate toolpath optimisation and multi-head routing.`,
+    description: `CNC cutting currently takes 3.5 hours/bed at ~$34/hr. Reducing to 2 hours saves $51/unit, $76.5K/year at 1,500 units. Investigate toolpath optimisation and multi-head routing.`,
     dimension: 'production',
     potential: 'high',
     dataSource: 'Production cost breakdown',
@@ -512,7 +512,7 @@ export const DEFAULT_OPPORTUNITIES: OptimizationOpportunity[] = [
   {
     id: 'b2b-pipeline',
     title: 'B2B channel has strongest commercial evidence',
-    description: '109 beds sold to Centrecorp demonstrates demand. Emergency services are a natural fit — NT already calls them "cyclone beds." Secure letters of intent from potential B2B clients.',
+    description: '109 beds sold to Centrecorp demonstrates demand. Emergency services are a natural fit: NT already calls them "cyclone beds." Secure letters of intent from potential B2B clients.',
     dimension: 'economic',
     potential: 'high',
     dataSource: 'Revenue segments + meeting notes',
@@ -531,6 +531,6 @@ export const DEFAULT_OPPORTUNITIES: OptimizationOpportunity[] = [
     description: 'Investigate what drives higher adoption in Tennant Creek vs other communities. Could inform fleet expansion strategy and community engagement model.',
     dimension: 'health',
     potential: 'medium',
-    dataSource: 'Fleet telemetry — daily_machine_rollups',
+    dataSource: 'Fleet telemetry: daily_machine_rollups',
   },
 ];

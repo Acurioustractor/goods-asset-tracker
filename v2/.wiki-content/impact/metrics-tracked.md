@@ -1,43 +1,69 @@
 # Metrics Tracked
 
-> Live metric set. Environmental, health, economic, story-based. Source: `v2/src/lib/data/impact-model.ts`.
+> Current Goods impact measurement is early and practical. We can safely say we track deliveries, communities, direct feedback, story material and some washing-machine usage. Several older "metrics tracked" items are better described as possible or intended metrics, not live reporting.
 
-## Environmental
+## Current evidence
 
-- Plastic diverted from landfill (kg/bed, total)
-- Mattresses / beds kept out of dumps
-- Carbon footprint per bed (under development)
+These are the measures and records we can talk about now:
 
-## Health and housing
+- beds and products delivered
+- communities and partners served
+- product feedback from deliveries and return visits
+- photos, videos, interviews and transcripts, subject to consent
+- partner check-ins on product use and condition
+- washing-machine usage where telemetry is connected
+- product journey records and IDs where entered in the system
 
-- Sleep quality, self-reported via story
-- Bed bug incidents reduced
-- Healthy Homes checklist items addressed
+## Near-term measurement build
 
-## Economic and social
+The next measurement step is to make every bed easier to follow without making the process heavy for families or partners.
 
-- Jobs created On-Country (collection, shredding, assembly)
-- Revenue retained locally (% and absolute)
-- Skills training hours delivered
-- Community ownership percentage (path to 100%)
+Priority build:
 
-## Story-based
+- QR or ID-based bed check-ins
+- repair and replacement requests
+- simple "still in use" checks
+- record of whether a bed has moved, been damaged, been repaired or been thrown out
+- daily review notes during major delivery trips
+- repeat purchase and referral signals
 
-- Empathy Ledger storytellers (currently 33 Goods-connected)
-- Consented photo and voice records
-- Bed journey tracking (every bed has an ID and a story)
+## Possible future metrics
 
-## Current numbers (early 2026)
+These are useful, but they should not be described as fully live yet:
 
-- 389 products deployed
-- 8 communities served
-- 1,000+ lives directly impacted
-- 9,225 kg plastic diverted
-- $537K cumulative revenue
-- 33 storytellers
+- mattress wash frequency
+- bed survival rate at 12, 24 and 36 months
+- bed bug or scabies-related indicators
+- Healthy Homes checklist items
+- plastic collected locally and reused locally
+- jobs, paid hours and skills training in each plant
+- landfill cost avoided
+- revenue retained by local partners
+- product referrals and repeat orders
+
+## Current headline numbers
+
+Keep these tied to the source system or Xero snapshot when used externally:
+
+- 389 products deployed, from existing wiki and app data
+- 8 communities served, from existing wiki and app data
+- 9,225 kg plastic diverted, computed from product counts and product assumptions
+- $537,595 cumulative revenue recorded in ACT-GD, from the working finance snapshot
+
+## Human review focus
+
+The pack must keep one line clear: "what we track today" and "what we want to track next" are different things. Possible metrics should never be presented as active metrics.
 
 ## Related
 
 - [[alma-framework]]
 - [[empathy-ledger-impact]]
 - [[impact-measurement-report]]
+
+## Sources
+
+- [[../sources/may-2026-founder-working-conversation]].
+- [[../sources/impact-model-data]]
+- [[../sources/community-essential-goods-tracking-model]]
+- [[../sources/qr-code-data]]
+- Xero ACT-GD snapshot referenced in the working finance pack.
