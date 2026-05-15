@@ -343,7 +343,6 @@ function StorytellerSection({
               <tr>
                 <th className="text-left px-4 py-2 text-xs font-medium text-gray-500">Name</th>
                 <th className="text-left px-4 py-2 text-xs font-medium text-gray-500">Location</th>
-                <th className="text-left px-4 py-2 text-xs font-medium text-gray-500">Recordings</th>
                 <th className="text-left px-4 py-2 text-xs font-medium text-gray-500">Quotes</th>
                 <th className="text-left px-4 py-2 text-xs font-medium text-gray-500">Themes</th>
               </tr>
@@ -369,7 +368,6 @@ function StorytellerSection({
                     </div>
                   </td>
                   <td className="px-4 py-2.5 text-gray-500">{st.location || '—'}</td>
-                  <td className="px-4 py-2.5 text-gray-500">{st.transcriptCount}</td>
                   <td className="px-4 py-2.5 text-gray-500">{st.quotes.length}</td>
                   <td className="px-4 py-2.5">
                     <div className="flex flex-wrap gap-1">
@@ -417,7 +415,7 @@ function StorytellerSection({
                   {st.isElder && <Badge className="bg-amber-100 text-amber-800 text-[10px]">Elder</Badge>}
                 </div>
                 <p className="text-xs text-gray-500">
-                  {st.location || 'Location unknown'} · {st.transcriptCount} recording{st.transcriptCount !== 1 ? 's' : ''} · {st.quotes.length} quote{st.quotes.length !== 1 ? 's' : ''}
+                  {st.location || 'Location unknown'}{st.quotes.length > 0 ? ` · ${st.quotes.length} quote${st.quotes.length !== 1 ? 's' : ''}` : ''}
                 </p>
               </div>
               {st.quotes.length > 0 && (
@@ -456,16 +454,11 @@ function StorytellerSection({
                 <div className="min-w-0">
                   <p className="font-semibold">{st.name}</p>
                   {st.location && <p className="text-xs text-gray-500">{st.location}</p>}
-                  <div className="flex items-center gap-2 mt-1">
-                    {st.isElder && (
+                  {st.isElder && (
+                    <div className="flex items-center gap-2 mt-1">
                       <Badge className="bg-amber-100 text-amber-800 text-[10px]">Elder</Badge>
-                    )}
-                    <span className="text-xs text-gray-400">
-                      {st.transcriptCount > 0
-                        ? `${st.transcriptCount} recording${st.transcriptCount !== 1 ? 's' : ''}`
-                        : 'No recordings yet'}
-                    </span>
-                  </div>
+                    </div>
+                  )}
                 </div>
               </div>
               {st.quotes.length > 0 && (
@@ -545,7 +538,7 @@ export function StoriesDashboard({
         <div className="mb-1">
           <h2 className="text-lg font-semibold">Video Stories</h2>
           <p className="text-xs text-gray-500 mt-0.5">
-            {videoStories.length} video{videoStories.length !== 1 ? 's' : ''} from community recordings
+            {videoStories.length} community video{videoStories.length !== 1 ? 's' : ''}
           </p>
         </div>
         <VideoSection stories={videoStories} authors={resolvedAuthors} />
@@ -679,7 +672,7 @@ export function StoriesDashboard({
         <div className="mb-1">
           <h2 className="text-lg font-semibold">Storytellers</h2>
           <p className="text-xs text-gray-500 mt-0.5">
-            {storytellers.length} from Empathy Ledger · {storytellers.filter((s) => s.quotes.length > 0).length} with quotes · {storytellers.filter((s) => s.transcriptCount === 0).length} awaiting recordings
+            {storytellers.length} community storytellers · {storytellers.filter((s) => s.quotes.length > 0).length} with published quotes
           </p>
         </div>
         <StorytellerSection storytellers={storytellers} />

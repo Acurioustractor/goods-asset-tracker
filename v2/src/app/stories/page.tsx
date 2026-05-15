@@ -3,13 +3,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { empathyLedger } from '@/lib/empathy-ledger';
 import { MediaGallery, MediaGallerySkeleton } from '@/components/empathy-ledger/media-gallery';
-import { SyndicationStorytellerCard, SyndicationStorytellerCardSkeleton } from '@/components/empathy-ledger/syndication-storyteller-card';
-import { StoriesClient } from '@/components/stories';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { storytellerProfiles, storytellerEnrichment, videoGallery, journeyStories, quotes } from '@/lib/data/content';
-import { storyPersonMedia } from '@/lib/data/media';
+import { storytellerProfiles, storytellerEnrichment, videoGallery } from '@/lib/data/content';
 import { curatedQuotes } from '@/lib/data/curated-quotes';
 import type { SyndicationStoryteller } from '@/lib/empathy-ledger/types';
 import type { Metadata } from 'next';
@@ -41,17 +38,28 @@ interface StorytellerGridProfile {
  * Map EL SyndicationStoryteller to the shape the grid needs,
  * merging local enrichment data.
  */
+// Build an index of curated quotes keyed by whitespace-normalised name,
+// so lookups hit regardless of single/double spaces in source data.
+const normaliseName = (n: string) => n.replace(/\s+/g, ' ').trim();
+const curatedQuotesByNormalisedName: Record<string, typeof curatedQuotes[string]> = {};
+for (const [k, v] of Object.entries(curatedQuotes)) {
+  curatedQuotesByNormalisedName[normaliseName(k)] = v;
+}
+
 function mapELToGridProfile(s: SyndicationStoryteller): StorytellerGridProfile {
-  const enrichment = storytellerEnrichment[s.name] ?? {};
+  // EL data sometimes carries double-spaces in names ("Alfred  Johnson");
+  // normalise to single-space so curated-quote lookups don't miss.
+  const normalisedName = normaliseName(s.name);
+  const enrichment = storytellerEnrichment[s.name] ?? storytellerEnrichment[normalisedName] ?? {};
   // Prefer curated quotes (cleaned up for public display) over raw API quotes
-  const curated = curatedQuotes[s.name];
+  const curated = curatedQuotes[s.name] ?? curatedQuotesByNormalisedName[normalisedName];
   const quotesForDisplay = curated && curated.length > 0
     ? curated
     : s.quotes.map((q) => ({ text: q.text, context: q.context }));
 
   return {
     id: s.id,
-    name: s.name,
+    name: normalisedName,
     role: enrichment.role,
     location: s.location ?? '',
     community: enrichment.community ?? '',
@@ -67,6 +75,27 @@ function mapELToGridProfile(s: SyndicationStoryteller): StorytellerGridProfile {
   };
 }
 
+// Internal team / ops accounts that get pulled in by the EL project membership
+// query but aren't community storytellers and shouldn't appear in the public grid.
+const INTERNAL_NAMES = new Set([
+  'Accounts ACT',
+  'ACT Production Team',
+  'Nicholas Marchesi',
+  'E2E Super Admin',
+  'PICC Community Hub Team',
+  "PICC Women's Healing Service Team",
+  "PICC Women's Shelter Team",
+  'YPA Team',
+]);
+
+function isPublicStoryteller(p: StorytellerGridProfile) {
+  if (INTERNAL_NAMES.has(p.name)) return false;
+  // Every public storyteller card needs at least one related quote.
+  // Profiles without any quote are placeholder rows; hide them.
+  if (!p.keyQuote || p.keyQuote.trim() === '') return false;
+  return true;
+}
+
 /**
  * Fetch storytellers from EL API with fallback to hardcoded profiles.
  */
@@ -75,7 +104,7 @@ async function getStorytellersForGrid(): Promise<StorytellerGridProfile[]> {
   if (rawStorytellers.length > 0) {
     // Enrich with cross-project quotes (some storytellers have transcripts under other projects)
     const elStorytellers = await empathyLedger.enrichStorytellersWithQuotes(rawStorytellers);
-    return elStorytellers.map(mapELToGridProfile);
+    return elStorytellers.map(mapELToGridProfile).filter(isPublicStoryteller);
   }
   // Fallback to hardcoded data
   return storytellerProfiles.map((p) => ({
@@ -136,121 +165,6 @@ async function MediaFromLedger() {
   );
 }
 
-// Fetch storytellers from Empathy Ledger syndication API (with analysis data)
-async function StorytellersFromLedger() {
-  let storytellers;
-  try {
-    storytellers = await empathyLedger.getProjectStorytellers({ limit: 20 });
-  } catch {
-    return null;
-  }
-
-  if (!storytellers || storytellers.length === 0) {
-    return null;
-  }
-
-  return (
-    <section className="py-16 md:py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <p className="text-sm uppercase tracking-widest text-accent mb-4">
-            From the Empathy Ledger
-          </p>
-          <h2 className="text-3xl font-light text-foreground mb-4" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
-            Deeper Analysis
-          </h2>
-          <p className="max-w-xl mx-auto text-muted-foreground">
-            AI-assisted analysis of community conversations: themes, impact, and insights
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {storytellers.slice(0, 6).map((storyteller) => (
-            <SyndicationStorytellerCard
-              key={storyteller.id}
-              storyteller={storyteller}
-              linkTo={`/story?id=${storyteller.id}`}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// Fetch top quotes from project insights
-async function TopQuotesFromLedger() {
-  let insights;
-  try {
-    insights = await empathyLedger.getProjectInsights();
-  } catch {
-    return null;
-  }
-
-  if (!insights || insights.topQuotes.length === 0) {
-    return null;
-  }
-
-  return (
-    <section className="py-16 md:py-20 bg-foreground text-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <p className="text-sm uppercase tracking-widest text-background/50 mb-4">
-            From the Empathy Ledger
-          </p>
-          <h2 className="text-3xl font-light mb-4" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
-            Highest Impact Quotes
-          </h2>
-          <p className="max-w-xl mx-auto text-background/60">
-            The most impactful words from {insights.project.storytellerCount} storytellers
-            across {insights.project.transcriptCount} conversations
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {insights.topQuotes.slice(0, 6).map((quote, i) => (
-            <div
-              key={i}
-              className="rounded-lg bg-background/5 border border-background/10 p-6"
-            >
-              <p
-                className="text-lg leading-relaxed text-background/90 mb-4"
-                style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-              >
-                &ldquo;{quote.text}&rdquo;
-              </p>
-              <div className="flex items-center justify-between">
-                <p className="text-sm text-background/60">
-                  {quote.storytellerName}
-                </p>
-                {quote.impactScore && (
-                  <span className="text-xs text-background/40">
-                    Impact: {quote.impactScore.toFixed(1)}
-                  </span>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function StorytellersLoadingSkeleton() {
-  return (
-    <section className="py-16 md:py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {[1, 2, 3].map((i) => (
-            <SyndicationStorytellerCardSkeleton key={i} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default async function StoriesPage() {
   const allStorytellers = await getStorytellersForGrid();
   const publishedStories = await empathyLedger.getProjectStories({ limit: 20 });
@@ -259,9 +173,47 @@ export default async function StoriesPage() {
   const testimonies = videoGallery.filter((v) => v.category === 'testimony');
   const bRoll = videoGallery.filter((v) => v.category !== 'testimony');
 
-  // Split into text and video stories
-  const textStories = publishedStories.filter((s) => !s.videoLink);
-  const videoStoryLinks = publishedStories.filter((s) => s.videoLink);
+  // Resolve a hero image for each Empathy Ledger story.
+  // Prefer the story's own featuredImageUrl; fall back to the named
+  // storyteller's portrait. Stories with neither are hidden so we never
+  // render the empty quotation-mark placeholder card.
+  type StoryWithMedia = (typeof publishedStories)[number] & {
+    heroImage: string | null;
+    hasStorytellerVideo: boolean;
+  };
+  function resolveStorytellerPhoto(name: string | null): string | null {
+    if (!name) return null;
+    const direct = storytellerEnrichment[name];
+    if (direct?.localPhoto) return direct.localPhoto;
+    const normalised = storytellerEnrichment[normaliseName(name)];
+    if (normalised?.localPhoto) return normalised.localPhoto;
+    return null;
+  }
+  function resolveStorytellerVideo(name: string | null): boolean {
+    if (!name) return false;
+    const direct = storytellerEnrichment[name];
+    if (direct?.hasVideo) return true;
+    const normalised = storytellerEnrichment[normaliseName(name)];
+    return !!normalised?.hasVideo;
+  }
+  const enrichedStories: StoryWithMedia[] = publishedStories.map((s) => ({
+    ...s,
+    heroImage:
+      s.featuredImageUrl ?? resolveStorytellerPhoto(s.storytellerName ?? s.authorName ?? null),
+    hasStorytellerVideo: resolveStorytellerVideo(s.storytellerName ?? s.authorName ?? null),
+  }));
+
+  // Split into text and video stories — only stories with usable media survive.
+  const textStories = enrichedStories.filter((s) => !s.videoLink && s.heroImage);
+  const videoStoryLinks = enrichedStories.filter((s) => s.videoLink);
+
+  // Live counts for the stats bar (replace stale hardcoded values).
+  const storytellerCount = allStorytellers.length;
+  const communityCount = new Set(
+    allStorytellers
+      .map((p) => (p.location || '').split(',')[0].trim())
+      .filter(Boolean)
+  ).size;
 
   return (
     <main>
@@ -319,10 +271,10 @@ export default async function StoriesPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
-              { value: '19', label: 'Storytellers', sub: 'across 4 communities' },
+              { value: String(storytellerCount), label: 'Storytellers', sub: `across ${communityCount} places` },
               { value: '500+', label: 'Minutes', sub: 'of community feedback' },
-              { value: '8+', label: 'Communities', sub: 'across remote Australia' },
-              { value: '369+', label: 'Beds Delivered', sub: 'and counting' },
+              { value: String(communityCount), label: 'Communities', sub: 'across remote Australia' },
+              { value: '520+', label: 'Beds Delivered', sub: 'and counting' },
             ].map((stat) => (
               <div key={stat.label}>
                 <p className="text-2xl md:text-3xl font-bold">{stat.value}</p>
@@ -357,21 +309,25 @@ export default async function StoriesPage() {
                 <Link key={story.id} href={`/stories/${story.id}`} className="group block">
                   <Card className="overflow-hidden border-0 shadow-sm hover:shadow-lg transition-shadow h-full">
                     <CardContent className="p-0">
-                      {story.featuredImageUrl ? (
-                        <div className="relative aspect-[16/10] bg-muted">
-                          <Image
-                            src={story.featuredImageUrl}
-                            alt={story.title}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-300"
-                            sizes="(max-width: 768px) 100vw, 33vw"
-                          />
-                        </div>
-                      ) : (
-                        <div className="aspect-[16/10] bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center">
-                          <p className="text-4xl opacity-20" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>&ldquo;</p>
-                        </div>
-                      )}
+                      <div className="relative aspect-[16/10] bg-muted">
+                        <Image
+                          src={story.heroImage!}
+                          alt={story.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                        {story.hasStorytellerVideo && (
+                          <div className="absolute top-3 right-3">
+                            <Badge className="bg-black/70 text-white text-[10px] gap-1 border-0">
+                              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 010 1.972l-11.54 6.347a1.125 1.125 0 01-1.667-.986V5.653z" />
+                              </svg>
+                              Video
+                            </Badge>
+                          </div>
+                        )}
+                      </div>
                       <div className="p-5">
                         <h3
                           className="text-lg font-light text-foreground group-hover:text-primary transition-colors mb-2 line-clamp-2"
@@ -475,11 +431,7 @@ export default async function StoriesPage() {
                           {person.role && (
                             <p className="text-sm text-accent-foreground mb-1">{person.role}</p>
                           )}
-                          <p className="text-sm text-muted-foreground mb-1">{person.location}</p>
-                          <p className="text-xs text-muted-foreground mb-3">
-                            {person.transcriptCount} recording{person.transcriptCount !== 1 ? 's' : ''}
-                            {person.emotionalTone && <span> &middot; {person.emotionalTone}</span>}
-                          </p>
+                          <p className="text-sm text-muted-foreground mb-3">{person.location}</p>
                           {person.keyQuote && (
                             <blockquote className="border-l-2 border-primary/30 pl-3 mb-3">
                               <p
@@ -540,11 +492,7 @@ export default async function StoriesPage() {
                       {person.role && (
                         <p className="text-xs text-accent-foreground mb-0.5">{person.role}</p>
                       )}
-                      <p className="text-sm text-muted-foreground mb-1">{person.location}</p>
-                      <p className="text-xs text-muted-foreground mb-3">
-                        {person.transcriptCount} recording{person.transcriptCount !== 1 ? 's' : ''}
-                        {person.emotionalTone && <span> &middot; {person.emotionalTone}</span>}
-                      </p>
+                      <p className="text-sm text-muted-foreground mb-3">{person.location}</p>
                       {person.keyQuote && (
                         <p
                           className="text-sm italic text-foreground/70 line-clamp-3 mb-3"
@@ -666,17 +614,10 @@ export default async function StoriesPage() {
       </section>
 
       {/* ============================================================
-          FILTERABLE STORIES AND QUOTES: Client Component
-          ============================================================ */}
-      <StoriesClient
-        quotes={quotes}
-        journeyStories={journeyStories}
-        storytellers={allStorytellers}
-        storyPersonMedia={storyPersonMedia}
-      />
-
-      {/* ============================================================
-          EMPATHY LEDGER: dynamic content (renders if API connected)
+          EMPATHY LEDGER: media gallery (renders if API connected)
+          The duplicated journey-stories + thematic-voices + syndication
+          card sections were removed 2026-05-15 (audit: 590 KB page weight,
+          storytellers were rendering four times).
           ============================================================ */}
       <Suspense fallback={
         <section className="py-16 md:py-20 bg-white">
@@ -686,14 +627,6 @@ export default async function StoriesPage() {
         </section>
       }>
         <MediaFromLedger />
-      </Suspense>
-
-      <Suspense fallback={<StorytellersLoadingSkeleton />}>
-        <StorytellersFromLedger />
-      </Suspense>
-
-      <Suspense fallback={null}>
-        <TopQuotesFromLedger />
       </Suspense>
 
       {/* ============================================================

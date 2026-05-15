@@ -1,8 +1,29 @@
 import { empathyLedger } from '@/lib/empathy-ledger/client';
 import { curatedQuotes } from '@/lib/data/curated-quotes';
 import { StoriesDashboard } from './stories-dashboard';
+import type { SyndicationStoryteller } from '@/lib/empathy-ledger/types';
 
 export const dynamic = 'force-dynamic';
+
+// Storyteller rows that represent system accounts / team rollups, not real
+// community storytellers. Filtered out of public + admin grids alike.
+const NON_PERSON_NAMES = new Set([
+  'Accounts ACT',
+  'ACT Production Team',
+  'Nicholas Marchesi',
+  'E2E Super Admin',
+  'PICC Community Hub Team',
+  "PICC Women's Healing Service Team",
+  "PICC Women's Shelter Team",
+  'YPA Team',
+]);
+
+function isRealStoryteller(st: SyndicationStoryteller): boolean {
+  if (NON_PERSON_NAMES.has(st.name)) return false;
+  if (/\bteam\b/i.test(st.name)) return false;
+  if (/\b(admin|account)\b/i.test(st.name) && !/^[A-Z][a-z]+ [A-Z]/.test(st.name)) return false;
+  return true;
+}
 
 export default async function StoriesPage() {
   const [rawStorytellers, projectStories, galleries, uncategorizedPhotos] = await Promise.all([
@@ -14,18 +35,20 @@ export default async function StoriesPage() {
 
   // Enrich storytellers with cross-project quotes, then apply curated overrides
   const enriched = await empathyLedger.enrichStorytellersWithQuotes(rawStorytellers);
-  const storytellers = enriched.map((st) => {
-    const curated = curatedQuotes[st.name];
-    if (!curated || curated.length === 0) return st;
-    return {
-      ...st,
-      quotes: curated.map((q) => ({
-        text: q.text,
-        context: q.context,
-        impactScore: null,
-      })),
-    };
-  });
+  const storytellers = enriched
+    .filter(isRealStoryteller)
+    .map((st) => {
+      const curated = curatedQuotes[st.name];
+      if (!curated || curated.length === 0) return st;
+      return {
+        ...st,
+        quotes: curated.map((q) => ({
+          text: q.text,
+          context: q.context,
+          impactScore: null,
+        })),
+      };
+    });
 
   // Build storyteller name lookup for author resolution
   const storytellerNames: Record<string, string> = {};

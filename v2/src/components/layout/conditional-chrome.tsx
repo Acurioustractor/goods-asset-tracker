@@ -9,9 +9,25 @@ import { ImpactBanner } from './impact-banner';
 // Funder briefs are confidential investor docs and should not display the public nav.
 const STANDALONE_PATH_PREFIXES = ['/funders', '/insiders', '/admin'];
 
+// Routes where the global ImpactBanner competes with page-specific stats.
+// These pages carry their own product/place numbers, so suppress the global strip.
+const IMPACT_BANNER_HIDDEN_PREFIXES = [
+  '/canberra',
+  '/shop/stretch-bed-single',
+  '/bed',
+];
+
 function isStandalone(pathname: string | null) {
   if (!pathname) return false;
   return STANDALONE_PATH_PREFIXES.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+}
+
+function hideImpactBanner(pathname: string | null) {
+  if (!pathname) return false;
+  if (isStandalone(pathname)) return true;
+  return IMPACT_BANNER_HIDDEN_PREFIXES.some(
+    (p) => pathname === p || pathname.startsWith(`${p}/`)
+  );
 }
 
 export function ConditionalSiteHeader() {
@@ -22,7 +38,7 @@ export function ConditionalSiteHeader() {
 
 export function ConditionalImpactBanner() {
   const pathname = usePathname();
-  if (isStandalone(pathname)) return null;
+  if (hideImpactBanner(pathname)) return null;
   return <ImpactBanner />;
 }
 

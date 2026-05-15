@@ -51,8 +51,8 @@ export const STRETCH_BED = {
     'Flat-packs for easy transport',
     'Washable canvas sleeping surface',
     'No tools required for assembly',
-    'Recycled plastic legs — virtually indestructible',
-    'Galvanised steel poles — 200kg capacity',
+    'Recycled plastic legs, virtually indestructible',
+    'Galvanised steel poles rated for 200kg',
     'Designed with 500+ minutes of community feedback',
   ],
 } as const;
@@ -77,9 +77,9 @@ export const BASKET_BED = {
   productType: 'basket_bed' as const,
   status: 'open-source' as const,
   tagline:
-    'Our first prototype — collapsible baskets with zip ties and toppers. Now open source.',
+    'Our first prototype: collapsible baskets with zip ties and toppers. Now open source.',
   shortDescription:
-    'Original prototype bed design using collapsible baskets. Now open-source — download plans for free.',
+    'Original prototype bed design using collapsible baskets. Now open-source. Download plans for free.',
   variants: ['Single', 'Double', 'Stackable'],
 } as const;
 
@@ -137,7 +137,7 @@ export const HDPE_CATALOG = [
       weight: '~14kg per panel',
       plasticDiverted: '14kg per panel',
     },
-    marketFit: 'NT $4B remote housing program — 2,700 new homes need interior cladding',
+    marketFit: 'NT $4B remote housing program: 2,700 new homes need interior cladding',
     priceEstimate: '$45–$65 per panel',
   },
   {
@@ -189,7 +189,7 @@ export const HDPE_CATALOG = [
     description: 'Modular playground components from recycled HDPE. Splinter-free, heat-resistant, community-assembled. Replaces imported timber/plastic sets that fail in remote conditions.',
     specs: {
       material: 'Recycled HDPE + galvanised steel connectors',
-      dimensions: 'Modular — configurable to space',
+      dimensions: 'Modular, configurable to space',
       weight: 'Varies by configuration',
       plasticDiverted: '50–100kg per installation',
     },
