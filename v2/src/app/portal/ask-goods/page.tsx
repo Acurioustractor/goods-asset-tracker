@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, Suspense } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 // Web Speech API types (not in all TS libs)
 interface SpeechRecognitionResult {
@@ -33,7 +34,7 @@ interface Message {
   timestamp: Date;
 }
 
-const SUGGESTIONS = [
+const PRODUCTION_SUGGESTIONS = [
   'How do I assemble a Stretch Bed?',
   'What temperature for the heat press?',
   'How do I fix a wobbly bed?',
@@ -42,7 +43,20 @@ const SUGGESTIONS = [
   'How does ownership transfer work?',
 ];
 
-export default function AskGoodsPage() {
+const RECIPIENT_SUGGESTIONS = [
+  'How do I set up this bed?',
+  'How do I wash the canvas?',
+  'Can I get a blanket or pillow?',
+  'How do I claim this bed to my phone?',
+  'Where was this bed made?',
+  'Something is wrong — what do I do?',
+];
+
+function AskGoodsPageContent() {
+  const searchParams = useSearchParams();
+  const assetId = searchParams.get('asset_id') || '';
+  const isRecipientContext = !!assetId;
+  const SUGGESTIONS = isRecipientContext ? RECIPIENT_SUGGESTIONS : PRODUCTION_SUGGESTIONS;
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -129,7 +143,7 @@ export default function AskGoodsPage() {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: allMessages }),
+        body: JSON.stringify({ messages: allMessages, assetId: assetId || undefined }),
       });
 
       const data = await res.json();
@@ -182,8 +196,14 @@ export default function AskGoodsPage() {
             </svg>
           </Link>
           <div>
-            <h1 className="text-lg font-bold text-stone-900">Ask Goods</h1>
-            <p className="text-xs text-stone-500">Ask anything about your beds, facility, or enterprise</p>
+            <h1 className="text-lg font-bold text-stone-900">
+              {isRecipientContext ? 'Help with your bed' : 'Ask Goods'}
+            </h1>
+            <p className="text-xs text-stone-500">
+              {isRecipientContext
+                ? `${assetId} · setup, washing, claiming, support`
+                : 'Ask anything about your beds, facility, or enterprise'}
+            </p>
           </div>
         </div>
       </div>
@@ -198,9 +218,13 @@ export default function AskGoodsPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
                 </svg>
               </div>
-              <h2 className="text-xl font-bold text-stone-900 mb-1">What can I help with?</h2>
+              <h2 className="text-xl font-bold text-stone-900 mb-1">
+                {isRecipientContext ? 'How can we help?' : 'What can I help with?'}
+              </h2>
               <p className="text-stone-500 text-sm">
-                I know about Stretch Beds, manufacturing, facility operations, and enterprise building.
+                {isRecipientContext
+                  ? 'Setup, washing, getting a blanket, how to share a story, what to do if something is wrong.'
+                  : 'I know about Stretch Beds, manufacturing, facility operations, and enterprise building.'}
               </p>
             </div>
 
@@ -302,5 +326,19 @@ export default function AskGoodsPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function AskGoodsPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center h-[calc(100vh-120px)] text-stone-500 text-sm">
+          Loading…
+        </div>
+      }
+    >
+      <AskGoodsPageContent />
+    </Suspense>
   );
 }

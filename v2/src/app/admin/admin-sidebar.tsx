@@ -8,7 +8,6 @@ import {
   Truck,
   ShoppingCart,
   Wrench,
-  AlertCircle,
   BookOpen,
   Megaphone,
   Users,
@@ -17,46 +16,57 @@ import {
   LogOut,
   Library,
   Globe,
-  TrendingUp,
   Crosshair,
   FileCheck,
   Heart,
+  Radar,
+  MessageSquare,
+  Package,
+  Boxes,
 } from 'lucide-react';
 
 type NavItem = { name: string; href: string; icon: React.ComponentType<{ className?: string }> };
 type NavGroup = { group: string; items: NavItem[] };
 
-// Operational backbone: pages that read live data and update from reality.
+// 4 groups, aligned to project mission: the work, the supply chain, the funding, the story.
+// "Today" is what the field team stares at during a trip.
 const navigation: NavGroup[] = [
+  {
+    group: 'Today',
+    items: [
+      { name: 'Dashboard',      href: '/admin',               icon: LayoutDashboard },
+      { name: 'Bed signals',    href: '/admin/bed-signals',   icon: Radar },
+      { name: 'Trip preflight', href: '/admin/bed-preflight', icon: FileCheck },
+      { name: 'Assets',         href: '/admin/assets',        icon: Library },
+      { name: 'Communities',    href: '/admin/communities',   icon: Globe },
+      { name: 'Messages',       href: '/admin/messages',      icon: MessageSquare },
+      { name: 'Compassion',     href: '/admin/compassion',    icon: Heart },
+    ],
+  },
   {
     group: 'Operations',
     items: [
-      { name: 'Dashboard',   href: '/admin',             icon: LayoutDashboard },
-      { name: 'Assets',      href: '/admin/assets',      icon: Library },
-      { name: 'Fleet',       href: '/admin/fleet',       icon: Truck },
-      { name: 'Production',  href: '/admin/production',  icon: Wrench },
-      { name: 'Communities', href: '/admin/communities', icon: Globe },
-      { name: 'Orders',      href: '/admin/orders',      icon: ShoppingCart },
-      { name: 'Requests',    href: '/admin/requests',    icon: AlertCircle },
+      { name: 'Fleet',          href: '/admin/fleet',         icon: Truck },
+      { name: 'Production',     href: '/admin/production',    icon: Wrench },
     ],
   },
   {
-    group: 'Pipeline & Revenue',
+    group: 'Money',
     items: [
-      { name: 'Deals (CRM)',     href: '/admin/strategy',            icon: Crosshair },
-      { name: 'Growth Funnel',   href: '/admin/growth',              icon: TrendingUp },
-      { name: 'Deal Room',       href: '/admin/deal-room',           icon: Crosshair },
-      { name: 'Xero Recon',      href: '/admin/xero-reconciliation', icon: FileCheck },
+      { name: 'Deals',          href: '/admin/deals',         icon: Crosshair },
+      { name: 'Xero recon',     href: '/admin/xero-reconciliation', icon: FileCheck },
+      { name: 'Orders',         href: '/admin/orders',        icon: ShoppingCart },
+      { name: 'Products',       href: '/admin/products',      icon: Package },
     ],
   },
   {
-    group: 'Content',
+    group: 'Content & people',
     items: [
-      { name: 'Stories',       href: '/admin/stories',       icon: BookOpen },
-      { name: 'Announcements', href: '/admin/announcements', icon: Megaphone },
-      { name: 'Team',          href: '/admin/team',          icon: Users },
-      { name: 'Brand',         href: '/admin/brand',         icon: Globe },
-      { name: 'Compassion',    href: '/admin/compassion',    icon: Heart },
+      { name: 'Library',        href: '/admin/library',       icon: Boxes },
+      { name: 'Stories',        href: '/admin/stories',       icon: BookOpen },
+      { name: 'Announcements',  href: '/admin/announcements', icon: Megaphone },
+      { name: 'Brand',          href: '/admin/brand',         icon: Globe },
+      { name: 'Team',           href: '/admin/team',          icon: Users },
     ],
   },
 ];

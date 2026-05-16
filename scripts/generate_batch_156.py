@@ -180,6 +180,9 @@ def generate_pdf(rows: list[dict]) -> None:
         c.drawString(x0 + 6 * mm, y0 + cell_h - 8 * mm, "Goods.")
         c.setFont("Helvetica", 7)
         c.drawString(x0 + 6 * mm, y0 + cell_h - 12 * mm, "Stretch Bed - Batch 156")
+        c.setFont("Helvetica-Oblique", 7)
+        c.drawRightString(x0 + cell_w - 6 * mm, y0 + cell_h - 8 * mm,
+                          "Scan to connect")
 
         qr_path = QR_PNG / f"qr_{row['unique_id']}.png"
         qr_x = x0 + (cell_w - qr_size) / 2
@@ -187,9 +190,12 @@ def generate_pdf(rows: list[dict]) -> None:
         c.drawImage(str(qr_path), qr_x, qr_y, qr_size, qr_size, preserveAspectRatio=True)
 
         c.setFont("Helvetica-Bold", 14)
-        c.drawCentredString(x0 + cell_w / 2, y0 + 7 * mm, row["unique_id"])
-        c.setFont("Helvetica", 6)
-        c.drawCentredString(x0 + cell_w / 2, y0 + 3 * mm, row["qr_url"])
+        c.drawCentredString(x0 + cell_w / 2, y0 + 9 * mm, row["unique_id"])
+        c.setFont("Helvetica-Oblique", 7)
+        c.drawCentredString(x0 + cell_w / 2, y0 + 5 * mm,
+                            "Scan to connect this bed to you")
+        c.setFont("Helvetica", 5.5)
+        c.drawCentredString(x0 + cell_w / 2, y0 + 2 * mm, row["qr_url"])
 
     c.save()
     print(f"  PDF:     {PDF_PATH.relative_to(REPO)}  ({(COUNT + per_page - 1) // per_page} pages)")

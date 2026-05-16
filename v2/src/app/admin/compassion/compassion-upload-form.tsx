@@ -22,6 +22,7 @@ export function CompassionUploadForm({ assets }: CompassionUploadFormProps) {
   const [contentType, setContentType] = React.useState<'photo' | 'video' | 'message'>('photo');
   const [mediaUrl, setMediaUrl] = React.useState('');
   const [caption, setCaption] = React.useState('');
+  const [isPublic, setIsPublic] = React.useState(true);
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
   const [success, setSuccess] = React.useState(false);
@@ -51,6 +52,7 @@ export function CompassionUploadForm({ assets }: CompassionUploadFormProps) {
           content_type: contentType,
           media_url: mediaUrl || null,
           caption: caption || null,
+          is_public: isPublic,
         }),
       });
 
@@ -148,6 +150,21 @@ export function CompassionUploadForm({ assets }: CompassionUploadFormProps) {
           className="w-full p-2 border rounded-md resize-none"
         />
       </div>
+
+      <label className="flex items-start gap-3 rounded-lg border bg-muted/30 p-3 text-sm cursor-pointer">
+        <input
+          type="checkbox"
+          checked={isPublic}
+          onChange={(e) => setIsPublic(e.target.checked)}
+          className="mt-1"
+        />
+        <span>
+          <strong>Show on the public bed page</strong> when someone scans the QR.
+          <span className="block text-xs text-gray-500 mt-1">
+            Untick if this is a private photo for the recipient only.
+          </span>
+        </span>
+      </label>
 
       <Button type="submit" disabled={isLoading}>
         {isLoading ? 'Uploading...' : 'Upload Content'}

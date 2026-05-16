@@ -735,6 +735,63 @@ export const ghl = {
   },
 
   /**
+   * Send an outbound SMS via the GHL Conversations API.
+   * Finds or creates the contact by phone, then POSTs /conversations/messages with type=SMS.
+   * Returns { success, messageId? } so callers can stamp sent_at.
+   *
+   * Cost: ~AU$0.05 per 160-char segment on AU mobile (Twilio rates via GHL).
+   * Inbound replies to your GHL number are free; only outbound is metered.
+   */
+  async sendSms(opts: {
+    phone: string;
+    message: string;
+    contactName?: string | null;
+    tags?: string[];
+    assetId?: string | null;
+  }): Promise<GHLResponse & { messageId?: string }> {
+    const phone = cleanString(opts.phone);
+    const message = cleanString(opts.message);
+
+    if (!phone || !message) {
+      return { success: false, error: 'Phone and message are required' };
+    }
+
+    if (!GHL_ENABLED) {
+      console.log('[GHL] Disabled — would send SMS:', { phone, message });
+      return { success: true, simulated: true };
+    }
+
+    try {
+      // Ensure contact exists (creates if not, returns id either way)
+      const upsert = await createOrUpdateContact({
+        phone,
+        name: opts.contactName || undefined,
+        tags: ['goods-bed-scan', ...(opts.tags || [])],
+        source: opts.assetId ? `Bed scan ${opts.assetId}` : 'Bed scan reminder',
+      });
+      const contactId = upsert.contact?.id;
+      if (!contactId) {
+        return { success: false, error: 'Could not resolve contact id' };
+      }
+
+      const response = await ghlRequest<{ messageId?: string; conversationId?: string }>(
+        '/conversations/messages',
+        'POST',
+        {
+          type: 'SMS',
+          contactId,
+          message,
+        },
+      );
+      return { success: true, contact: { id: contactId }, messageId: response.messageId };
+    } catch (error) {
+      const errMsg = error instanceof Error ? error.message : 'Unknown error';
+      console.error('[GHL] sendSms error:', errMsg);
+      return { success: false, error: errMsg };
+    }
+  },
+
+  /**
    * Create/update contact from an order
    */
   async createOrderContact(data: OrderContactData): Promise<GHLResponse> {

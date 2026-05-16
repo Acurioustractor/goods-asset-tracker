@@ -9,8 +9,20 @@ import { MediaSlot } from '@/components/ui/media-slot';
 import { NewsletterSignup } from '@/components/newsletter-signup';
 import { BedPhotoGallery } from './bed-photo-gallery';
 import { BedMapWrapper } from './bed-map-wrapper';
-import { QuickConnectForm } from './quick-connect-form';
 import { InstallLogger } from './install-logger';
+import { RecipientPanel } from './recipient-panel';
+import { BedGallery, type BedGalleryItem } from './bed-gallery';
+import { NameYourBed } from './name-your-bed';
+import { PulseCheck } from './pulse-check';
+import { ContactRow } from './contact-row';
+import { BedFaq } from './bed-faq';
+import { SetupVideo } from './setup-video';
+import { PartsDiagram } from './parts-diagram';
+import { CommunityBeds } from './community-beds';
+import { ReminderForm } from './reminder-form';
+import { DemandButton } from './demand-button';
+import { CoopInvite } from './coop-invite';
+import { BehindThisBed } from './behind-this-bed';
 
 type AdminUserShape = {
   email?: string | null;
@@ -74,7 +86,7 @@ export default async function BedPage({ params }: BedPageProps) {
   // Fetch asset details
   const { data: asset } = await supabase
     .from('assets')
-    .select('unique_id, name, product, community, community_id, place, status, supply_date, created_time, photo, gps')
+    .select('unique_id, name, product, community, community_id, place, status, supply_date, created_time, photo, gps, display_name, display_name_public')
     .eq('unique_id', id)
     .single();
 
@@ -88,10 +100,106 @@ export default async function BedPage({ params }: BedPageProps) {
       ).data || [])
     : [];
 
+  // Has the current user already claimed this asset?
+  let isClaimedByMe = false;
+  if (user && asset) {
+    const { data: claim } = await supabase
+      .from('user_assets')
+      .select('id')
+      .eq('profile_id', user.id)
+      .eq('asset_id', asset.unique_id)
+      .maybeSingle();
+    isClaimedByMe = !!claim;
+  }
+
   // Fetch all assets for the map (aggregate by community)
   const { data: allAssets } = await supabase
     .from('assets')
     .select('unique_id, community, gps, product, status');
+
+  // Fetch photos linked to this asset. Public gallery shows only is_public=true
+  // unless the viewer is the claimant or an admin (full visibility for the bed's owner).
+  const compassionQuery = supabase
+    .from('compassion_content')
+    .select('id, content_type, media_url, thumbnail_url, caption, created_by, created_at, is_public')
+    .eq('asset_id', id)
+    .eq('content_type', 'photo')
+    .not('media_url', 'is', null)
+    .order('created_at', { ascending: false });
+
+  const seeAllPhotos = isAdmin || isClaimedByMe;
+  const { data: compassionRows } = seeAllPhotos
+    ? await compassionQuery
+    : await compassionQuery.eq('is_public', true);
+
+  const galleryItems: BedGalleryItem[] = (compassionRows || []).map((row) => ({
+    id: row.id,
+    url: row.media_url as string,
+    thumbnail: (row.thumbnail_url as string) || null,
+    caption: (row.caption as string) || null,
+    byline: row.created_by && row.created_by !== 'Bed scan submission' ? (row.created_by as string) : null,
+    createdAt: row.created_at as string,
+  }));
+
+  // Recent production shifts for the "Behind this bed" card
+  const ninetyDaysAgo = new Date(Date.now() - 90 * 86400_000).toISOString().slice(0, 10);
+  const { data: shiftRows } = await supabase
+    .from('production_shifts')
+    .select('operator, shift_date, sheets_produced, beds_assembled, photo_urls')
+    .gte('shift_date', ninetyDaysAgo)
+    .order('shift_date', { ascending: false })
+    .limit(50);
+
+  // Aggregate by first name so "Ben Knight" + "Ben" collapse into one Ben.
+  // First-name-only is intentional for the public page (operators didn't opt in to full-name attribution).
+  const operatorMap = new Map<string, { operator: string; lastShift: string; sheetsThisYear: number }>();
+  const productionPhotos: string[] = [];
+  for (const shift of shiftRows || []) {
+    const opName = (shift.operator as string)?.trim();
+    if (opName) {
+      const firstName = opName.split(/\s+/)[0] || opName;
+      const prev = operatorMap.get(firstName);
+      if (!prev) {
+        operatorMap.set(firstName, {
+          operator: firstName,
+          lastShift: shift.shift_date as string,
+          sheetsThisYear: (shift.sheets_produced as number) || 0,
+        });
+      } else {
+        prev.sheetsThisYear += (shift.sheets_produced as number) || 0;
+        if ((shift.shift_date as string) > prev.lastShift) {
+          prev.lastShift = shift.shift_date as string;
+        }
+      }
+    }
+    for (const url of (shift.photo_urls as string[]) || []) {
+      if (productionPhotos.length < 9 && url) productionPhotos.push(url);
+    }
+  }
+  const recentOperators = Array.from(operatorMap.values()).sort(
+    (a, b) => b.sheetsThisYear - a.sheetsThisYear,
+  );
+
+  // Sibling assets in the same community (for the CommunityBeds card)
+  let siblingAssets: {
+    unique_id: string;
+    display_name: string | null;
+    display_name_public: boolean | null;
+    product: string | null;
+    status: string | null;
+  }[] = [];
+  let communityTotal = 0;
+  if (asset?.community_id) {
+    const { data: sibs, count } = await supabase
+      .from('assets')
+      .select('unique_id, display_name, display_name_public, product, status', { count: 'exact' })
+      .eq('community_id', asset.community_id)
+      .order('status', { ascending: true })
+      .order('unique_id', { ascending: true })
+      .limit(9);
+    siblingAssets = sibs || [];
+    communityTotal = count || 0;
+  }
 
   // Fetch journey events
   const { data: journeyEvents } = await supabase
@@ -137,24 +245,39 @@ export default async function BedPage({ params }: BedPageProps) {
             <p className="text-amber-300 font-medium text-sm tracking-widest uppercase mb-3">
               Goods on Country
             </p>
-            <h1 className="font-display text-4xl md:text-5xl font-bold mb-4">
-              {isMachine ? 'This Is Your Washing Machine' : 'This Is Your Bed'}
+            <h1 className="font-display text-4xl md:text-5xl font-bold mb-2">
+              {asset.display_name && asset.display_name_public
+                ? `“${asset.display_name}”`
+                : isMachine ? 'This Is Your Washing Machine' : 'This Is Your Bed'}
             </h1>
+            {asset.display_name && asset.display_name_public && (
+              <p className="text-amber-200/80 text-sm mb-3">
+                {isMachine ? 'A washing machine' : 'A bed'} by Goods on Country
+              </p>
+            )}
             <p className="text-white/80 text-lg mb-6">
               Every Goods {productNoun} has a story. Scan the QR code to see where it came from,
               what it&apos;s made of, and the community it supports.
             </p>
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur rounded-full px-5 py-2.5 text-sm">
-              <span className="text-amber-300 font-mono font-bold">{asset.unique_id}</span>
-              <span className="text-white/50">|</span>
-              <span>{asset.product || productLabel}</span>
-              {asset.community && (
-                <>
-                  <span className="text-white/50">|</span>
-                  <span>{asset.community}</span>
-                </>
-              )}
+            <div className="flex flex-wrap items-center gap-3 mb-4">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur rounded-full px-5 py-2.5 text-sm">
+                <span className="text-amber-300 font-mono font-bold">{asset.unique_id}</span>
+                <span className="text-white/50">|</span>
+                <span>{asset.product || productLabel}</span>
+                {asset.community && (
+                  <>
+                    <span className="text-white/50">|</span>
+                    <span>{asset.community}</span>
+                  </>
+                )}
+              </div>
             </div>
+            <NameYourBed
+              uniqueId={asset.unique_id}
+              productNoun={productNoun}
+              initialName={asset.display_name}
+              initialPublic={asset.display_name_public ?? true}
+            />
           </div>
           <div className="relative h-64 md:h-full md:min-h-[400px]">
             <Image
@@ -187,9 +310,75 @@ export default async function BedPage({ params }: BedPageProps) {
         />
       )}
 
-      {/* Quick connect CTA */}
+      {/* Recipient-first panel: claim, ask, story, support */}
+      <RecipientPanel
+        uniqueId={asset.unique_id}
+        productLabel={productLabel}
+        productNoun={productNoun}
+        community={asset.community}
+        communityId={asset.community_id}
+        place={asset.place}
+        status={asset.status}
+        isAuthed={!!user}
+        isClaimed={isClaimedByMe}
+      />
+
+      {/* Photos linked to this asset (Goods staff + recipient uploads) */}
+      <BedGallery items={galleryItems} productNoun={productNoun} />
+
+      {/* Pulse check — single tap, no login */}
       <div className="max-w-3xl mx-auto px-4 mt-6">
-        <QuickConnectForm />
+        <PulseCheck uniqueId={asset.unique_id} productNoun={productNoun} />
+      </div>
+
+      {/* Direct contact: WhatsApp / SMS / phone */}
+      <div className="max-w-3xl mx-auto px-4 mt-4">
+        <ContactRow uniqueId={asset.unique_id} productNoun={productNoun} />
+      </div>
+
+      {/* Setup video + quick answers */}
+      <div className="max-w-3xl mx-auto px-4 mt-6 grid gap-4 md:grid-cols-2">
+        <SetupVideo productNoun={productNoun} isMachine={isMachine} />
+        <BedFaq uniqueId={asset.unique_id} productNoun={productNoun} isMachine={isMachine} />
+      </div>
+
+      {/* Parts diagram */}
+      <div className="max-w-3xl mx-auto px-4 mt-4">
+        <PartsDiagram isMachine={isMachine} />
+      </div>
+
+      {/* Behind this bed: materials + suppliers + Alice plant team */}
+      <div className="max-w-3xl mx-auto px-4 mt-4">
+        <BehindThisBed
+          productNoun={productNoun}
+          productionPhotos={productionPhotos}
+          recentOperators={recentOperators}
+          isMachine={isMachine}
+        />
+      </div>
+
+      {/* Community context: how many beds here */}
+      {asset.community && asset.community_id && (
+        <div className="max-w-5xl mx-auto px-4 mt-6">
+          <CommunityBeds
+            community={asset.community}
+            communityId={asset.community_id}
+            currentUniqueId={asset.unique_id}
+            siblings={siblingAssets}
+            totalCount={communityTotal}
+          />
+        </div>
+      )}
+
+      {/* Stay-in-touch options: reminder, demand, workshop */}
+      <div className="max-w-3xl mx-auto px-4 mt-6 grid gap-3 md:grid-cols-3">
+        <ReminderForm uniqueId={asset.unique_id} productNoun={productNoun} />
+        <DemandButton
+          uniqueId={asset.unique_id}
+          productNoun={productNoun}
+          community={asset.community}
+        />
+        <CoopInvite uniqueId={asset.unique_id} community={asset.community} />
       </div>
 
       {/* Map: where is this bed? */}
@@ -514,7 +703,7 @@ export default async function BedPage({ params }: BedPageProps) {
           </p>
           <div className="max-w-sm mx-auto">
             <NewsletterSignup
-              tag="parliament-house-demo"
+              tag="bed-scan"
               buttonText="Subscribe to Updates"
               successMessage="Welcome aboard! We'll send you a welcome email with more about our story."
             />

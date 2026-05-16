@@ -1,354 +1,393 @@
 import Link from 'next/link';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { createServiceClient } from '@/lib/supabase/server';
-import { getFundingSummary, getDeploymentTotals, financialSnapshot, deployments } from '@/lib/data/compendium';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
+const TWENTY_FOUR_H = 24 * 60 * 60 * 1000;
+
+const SIGNAL_BADGE: Record<string, { label: string; emoji: string; tone: string }> = {
+  pulse: { label: 'Pulse', emoji: '🫀', tone: 'bg-emerald-100 text-emerald-900' },
+  reminder: { label: 'Reminder', emoji: '⏰', tone: 'bg-amber-100 text-amber-900' },
+  check_in: { label: 'Check-in', emoji: '⏰', tone: 'bg-amber-100 text-amber-900' },
+  demand_bump: { label: 'Demand', emoji: '📣', tone: 'bg-violet-100 text-violet-900' },
+  name_change: { label: 'Named', emoji: '✏️', tone: 'bg-stone-100 text-stone-900' },
+  workshop_interest: { label: 'Workshop', emoji: '🪛', tone: 'bg-orange-100 text-orange-900' },
+};
+
+function relativeTime(iso: string): string {
+  const diffMs = Date.now() - new Date(iso).getTime();
+  const mins = Math.floor(diffMs / 60_000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  const days = Math.floor(hrs / 24);
+  return `${days}d ago`;
+}
+
+function formatMoney(cents: number): string {
+  const dollars = cents / 100;
+  if (dollars >= 1_000_000) return `$${(dollars / 1_000_000).toFixed(1)}M`;
+  if (dollars >= 1_000) return `$${(dollars / 1_000).toFixed(0)}K`;
+  return `$${dollars.toFixed(0)}`;
+}
 
 export default async function AdminDashboard() {
   const supabase = createServiceClient();
-  const fundingSummary = getFundingSummary();
-  const depTotals = getDeploymentTotals();
+  const oneDayAgo = new Date(Date.now() - TWENTY_FOUR_H).toISOString();
 
-  // Fetch live data in parallel
-  const [wonRes, activeRes, assetsRes, inventoryRes] = await Promise.all([
-    supabase
-      .from('crm_deals')
-      .select('title, amount_cents, deal_type, pipeline_stage, units, notes')
-      .eq('pipeline_stage', 'won')
-      .order('amount_cents', { ascending: false }),
-    supabase
-      .from('crm_deals')
-      .select('title, amount_cents, deal_type, pipeline_stage, units, notes, updated_at')
-      .neq('pipeline_stage', 'won')
-      .neq('pipeline_stage', 'lost')
-      .order('amount_cents', { ascending: false }),
+  const [
+    bedsByCommunityRes,
+    recentSignalsRes,
+    unresolvedAlertsRes,
+    pendingRemindersRes,
+    overdueDealsRes,
+    recentCompassionRes,
+  ] = await Promise.all([
     supabase
       .from('assets')
-      .select('status, quantity, community')
-      .ilike('product', '%bed%'),
+      .select('unique_id, community, community_id, status, product, quantity, display_name')
+      .in('status', ['ready', 'allocated'])
+      .order('community', { ascending: true }),
     supabase
-      .from('production_inventory')
-      .select('beds_possible, raw_plastic_kg, snapshot_date')
-      .order('snapshot_date', { ascending: false })
-      .limit(1),
+      .from('bed_signals')
+      .select('id, asset_id, signal_type, signal_value, payload, contact, created_at')
+      .gte('created_at', oneDayAgo)
+      .order('created_at', { ascending: false })
+      .limit(15),
+    supabase
+      .from('alerts')
+      .select('id, asset_id, type, severity, details, alert_date, created_at')
+      .eq('resolved', false)
+      .order('created_at', { ascending: false })
+      .limit(10),
+    supabase
+      .from('bed_signals')
+      .select('id, asset_id, signal_type, signal_value, contact, scheduled_for')
+      .in('signal_type', ['reminder', 'check_in'])
+      .lte('scheduled_for', new Date(Date.now() + 24 * TWENTY_FOUR_H).toISOString())
+      .is('sent_at', null)
+      .order('scheduled_for', { ascending: true })
+      .limit(20),
+    supabase
+      .from('crm_deals')
+      .select('id, title, amount_cents, notes, pipeline_stage')
+      .ilike('notes', '%OVERDUE%')
+      .neq('pipeline_stage', 'lost'),
+    supabase
+      .from('compassion_content')
+      .select('id, asset_id, content_type, caption, created_at')
+      .gte('created_at', oneDayAgo)
+      .order('created_at', { ascending: false })
+      .limit(8),
   ]);
 
-  const wonDeals = wonRes.data || [];
-  const activeDeals = activeRes.data || [];
-  const assets = assetsRes.data || [];
-  const latestInventory = inventoryRes.data?.[0] || null;
+  const readyAssets = bedsByCommunityRes.data || [];
+  const signals = recentSignalsRes.data || [];
+  const alerts = unresolvedAlertsRes.data || [];
+  const dueReminders = pendingRemindersRes.data || [];
+  const overdueDeals = overdueDealsRes.data || [];
+  const recentCompassion = recentCompassionRes.data || [];
 
-  // Compute metrics
-  const totalFundingWon = wonDeals.filter(d => d.deal_type === 'funding').reduce((s, d) => s + (d.amount_cents || 0), 0);
-  const totalSalesWon = wonDeals.filter(d => d.deal_type === 'sale').reduce((s, d) => s + (d.amount_cents || 0), 0);
-  const totalUnitsWon = wonDeals.filter(d => d.deal_type === 'sale').reduce((s, d) => s + (d.units || 0), 0);
-  const activePipelineValue = activeDeals.reduce((s, d) => s + (d.amount_cents || 0), 0);
-
-  // Status breakdown from deals
-  const paidDeals = wonDeals.filter(d => (d.notes || '').toUpperCase().includes('PAID'));
-  const overdueDeals = wonDeals.filter(d => (d.notes || '').toUpperCase().includes('OVERDUE'));
-  const awaitingDeals = wonDeals.filter(d => (d.notes || '').toUpperCase().includes('AUTHORISED') && !(d.notes || '').toUpperCase().includes('PAID'));
-  const overdueTotal = overdueDeals.reduce((s, d) => s + (d.amount_cents || 0), 0);
-  const paidTotal = paidDeals.reduce((s, d) => s + (d.amount_cents || 0), 0);
-
-  // Asset counts
-  const bedsDeployed = assets.filter(a => a.status === 'deployed').reduce((s, a) => s + (a.quantity || 1), 0);
-  const bedsInPipeline = assets.filter(a => a.status === 'requested' || a.status === 'allocated').reduce((s, a) => s + (a.quantity || 1), 0);
-
-  // Community breakdown
-  const communityMap = new Map<string, number>();
-  for (const a of assets.filter(a => a.status === 'deployed')) {
-    if (a.community) communityMap.set(a.community, (communityMap.get(a.community) || 0) + (a.quantity || 1));
-  }
-  const topCommunities = [...communityMap.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 6);
-
-  // Urgent items
-  const urgentItems: { label: string; detail: string; color: string; href: string }[] = [];
-
-  for (const d of overdueDeals) {
-    urgentItems.push({
-      label: d.title,
-      detail: `$${((d.amount_cents || 0) / 100).toLocaleString('en-AU', { maximumFractionDigits: 0 })} OVERDUE`,
-      color: 'bg-red-100 text-red-800 border-red-200',
-      href: '/admin/strategy',
-    });
-  }
-
-  for (const d of awaitingDeals) {
-    urgentItems.push({
-      label: d.title,
-      detail: `$${((d.amount_cents || 0) / 100).toLocaleString('en-AU', { maximumFractionDigits: 0 })} awaiting payment`,
-      color: 'bg-amber-100 text-amber-800 border-amber-200',
-      href: '/admin/strategy',
-    });
-  }
-
-  // Top active deals (biggest pipeline items)
-  const topDeals = activeDeals.filter(d => d.amount_cents > 0).slice(0, 5);
-
-  const fmtK = (cents: number) => {
-    const val = cents / 100;
-    if (val >= 1000000) return `$${(val / 1000000).toFixed(1)}M`;
-    if (val >= 1000) return `$${(val / 1000).toFixed(0)}K`;
-    return `$${val.toFixed(0)}`;
+  type CommunityBucket = {
+    community: string;
+    communityId: string | null;
+    ready: number;
+    allocated: number;
+    ids: string[];
   };
+  const byCommunity = new Map<string, CommunityBucket>();
+  for (const a of readyAssets) {
+    const key = (a.community as string) || 'Pending Delivery';
+    const entry: CommunityBucket = byCommunity.get(key) || {
+      community: key,
+      communityId: (a.community_id as string | null) ?? null,
+      ready: 0,
+      allocated: 0,
+      ids: [],
+    };
+    if (a.status === 'ready') entry.ready += (a.quantity as number) || 1;
+    if (a.status === 'allocated') entry.allocated += (a.quantity as number) || 1;
+    entry.ids.push(a.unique_id as string);
+    byCommunity.set(key, entry);
+  }
+  const tripTargets = Array.from(byCommunity.values())
+    .filter((c) => c.ready + c.allocated > 0)
+    .sort((a, b) => b.ready + b.allocated - (a.ready + a.allocated));
+
+  const totalReady = readyAssets.filter((a) => a.status === 'ready').reduce((s, a) => s + (a.quantity || 1), 0);
+  const totalAllocated = readyAssets.filter((a) => a.status === 'allocated').reduce((s, a) => s + (a.quantity || 1), 0);
+
+  const pulses24h = signals.filter((s) => s.signal_type === 'pulse');
+  const goodPulses = pulses24h.filter((s) => s.signal_value === 'good').length;
+  const mehPulses = pulses24h.filter((s) => s.signal_value === 'meh').length;
+  const badPulses = pulses24h.filter((s) => s.signal_value === 'bad').length;
+
+  const overdueTotal = overdueDeals.reduce((s, d) => s + (d.amount_cents || 0), 0);
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold">Command Center</h1>
-        <p className="text-gray-500 mt-1">
-          Goods on Country — live operational overview
+    <div className="px-4 md:px-8 py-6 space-y-6 max-w-6xl mx-auto">
+      <header>
+        <h1 className="font-display text-2xl font-bold">Today</h1>
+        <p className="text-sm text-muted-foreground">
+          Live field state. {totalReady} beds ready · {totalAllocated} allocated · {signals.length} signals in last 24h.
         </p>
-      </div>
+      </header>
 
-      {/* Row 1: Financial KPIs */}
-      <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
-        <Card>
-          <CardContent className="pt-5 pb-4">
-            <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">Revenue</div>
-            <div className="text-2xl font-bold mt-1">${(financialSnapshot.tradeRevenue / 1000).toFixed(0)}K</div>
-            <div className="text-xs text-green-600 mt-1">Xero-verified</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-5 pb-4">
-            <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">Funding Won</div>
-            <div className="text-2xl font-bold mt-1">{fmtK(totalFundingWon)}</div>
-            <div className="text-xs text-gray-500 mt-1">{wonDeals.filter(d => d.deal_type === 'funding').length} grants</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-5 pb-4">
-            <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">Receivables</div>
-            <div className="text-2xl font-bold text-orange-600 mt-1">${(financialSnapshot.outstandingReceivables / 1000).toFixed(0)}K</div>
-            <div className="text-xs text-gray-500 mt-1">{awaitingDeals.length + overdueDeals.length} unpaid</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-5 pb-4">
-            <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">Pipeline</div>
-            <div className="text-2xl font-bold text-blue-600 mt-1">{fmtK(activePipelineValue)}</div>
-            <div className="text-xs text-gray-500 mt-1">{activeDeals.length} active deals</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-5 pb-4">
-            <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">Beds Deployed</div>
-            <div className="text-2xl font-bold mt-1">{bedsDeployed}</div>
-            <div className="text-xs text-gray-500 mt-1">{depTotals.communities} communities</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-5 pb-4">
-            <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">Units Sold</div>
-            <div className="text-2xl font-bold mt-1">{totalUnitsWon}</div>
-            <div className="text-xs text-gray-500 mt-1">beds + washers</div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Row 2: Urgent Actions + Top Pipeline */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Urgent Actions */}
-        <Card className={urgentItems.length > 0 ? 'border-red-200' : ''}>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base flex items-center gap-2">
-              {overdueDeals.length > 0 && <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />}
-              Urgent Actions
-              {urgentItems.length > 0 && (
-                <Badge className="bg-red-100 text-red-800 ml-auto">{urgentItems.length}</Badge>
-              )}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {urgentItems.length === 0 ? (
-              <p className="text-sm text-green-600">All clear — no overdue items</p>
-            ) : (
-              <div className="space-y-2">
-                {urgentItems.map((item, i) => (
-                  <Link key={i} href={item.href}>
-                    <div className={`p-3 rounded-lg border ${item.color} hover:opacity-80 transition-opacity cursor-pointer`}>
-                      <div className="font-medium text-sm">{item.label}</div>
-                      <div className="text-xs mt-0.5 opacity-80">{item.detail}</div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* Top Active Deals */}
-        <Card>
-          <CardHeader className="pb-3">
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-base">Top Pipeline Deals</CardTitle>
-              <Link href="/admin/strategy" className="text-xs text-orange-600 hover:text-orange-700 font-medium">
-                View all &rarr;
-              </Link>
-            </div>
-          </CardHeader>
-          <CardContent>
-            {topDeals.length === 0 ? (
-              <p className="text-sm text-gray-400">No active deals</p>
-            ) : (
-              <div className="space-y-2">
-                {topDeals.map((d, i) => {
-                  const stageColors: Record<string, string> = {
-                    negotiation: 'bg-amber-100 text-amber-800',
-                    proposal: 'bg-blue-100 text-blue-800',
-                    qualified: 'bg-purple-100 text-purple-800',
-                    lead: 'bg-gray-100 text-gray-800',
-                  };
-                  return (
-                    <div key={i} className="flex items-center justify-between py-1.5 border-b last:border-0">
-                      <div className="min-w-0 flex-1">
-                        <div className="text-sm font-medium truncate">{d.title}</div>
-                        <div className="flex items-center gap-2 mt-0.5">
-                          <Badge className={d.deal_type === 'funding' ? 'bg-emerald-100 text-emerald-800' : 'bg-orange-100 text-orange-800'}>
-                            {d.deal_type}
-                          </Badge>
-                          <Badge className={stageColors[d.pipeline_stage] || 'bg-gray-100 text-gray-800'}>
-                            {d.pipeline_stage}
-                          </Badge>
-                        </div>
-                      </div>
-                      <div className="text-right pl-4 shrink-0">
-                        <div className="font-bold tabular-nums">{fmtK(d.amount_cents)}</div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Row 3: Community Deployments + Production Status + Funding */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Community Deployments */}
-        <Card>
-          <CardHeader className="pb-3">
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-base">Deployments</CardTitle>
-              <Link href="/admin/communities" className="text-xs text-orange-600 hover:text-orange-700 font-medium">
-                Details &rarr;
-              </Link>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-2">
-              {topCommunities.map(([community, count], i) => (
-                <div key={i} className="flex items-center justify-between">
-                  <span className="text-sm text-gray-700">{community}</span>
-                  <div className="flex items-center gap-2">
-                    <div className="w-24 h-2 bg-gray-100 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-orange-500 rounded-full"
-                        style={{ width: `${Math.min(100, (count / (topCommunities[0]?.[1] || 1)) * 100)}%` }}
-                      />
-                    </div>
-                    <span className="text-sm font-medium tabular-nums w-8 text-right">{count}</span>
-                  </div>
-                </div>
-              ))}
-              <div className="pt-2 border-t text-xs text-gray-500">
-                {bedsDeployed} beds across {communityMap.size} communities
-                {bedsInPipeline > 0 && ` · ${bedsInPipeline} in pipeline`}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Production Status */}
-        <Card>
-          <CardHeader className="pb-3">
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-base">Production</CardTitle>
-              <Link href="/admin/production" className="text-xs text-orange-600 hover:text-orange-700 font-medium">
-                Details &rarr;
-              </Link>
-            </div>
-          </CardHeader>
-          <CardContent>
-            {latestInventory ? (
-              <div className="space-y-3">
-                <div className="flex justify-between items-baseline">
-                  <span className="text-sm text-gray-600">Beds possible</span>
-                  <span className="text-xl font-bold">{latestInventory.beds_possible}</span>
-                </div>
-                <div className="flex justify-between items-baseline">
-                  <span className="text-sm text-gray-600">Raw plastic</span>
-                  <span className="text-lg font-semibold">{latestInventory.raw_plastic_kg}kg</span>
-                </div>
-                <div className="pt-2 border-t text-xs text-gray-500">
-                  Last count: {new Date(latestInventory.snapshot_date + 'T00:00:00').toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' })}
-                </div>
-              </div>
-            ) : (
-              <p className="text-sm text-gray-400">No inventory data</p>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* Funding Summary */}
-        <Card>
-          <CardHeader className="pb-3">
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-base">Funding</CardTitle>
-              <Link href="/admin/xero-reconciliation" className="text-xs text-orange-600 hover:text-orange-700 font-medium">
-                Details &rarr;
-              </Link>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              <div className="flex justify-between items-baseline">
-                <span className="text-sm text-gray-600">Received</span>
-                <span className="text-lg font-bold text-green-700">${(fundingSummary.received / 1000).toFixed(0)}K</span>
-              </div>
-              <div className="flex justify-between items-baseline">
-                <span className="text-sm text-gray-600">Pending</span>
-                <span className="text-lg font-semibold text-amber-700">${(fundingSummary.pending / 1000).toFixed(0)}K</span>
-              </div>
-              <div className="flex justify-between items-baseline">
-                <span className="text-sm text-gray-600">Receivables</span>
-                <span className="text-lg font-semibold text-orange-700">${(fundingSummary.receivables / 1000).toFixed(0)}K</span>
-              </div>
-              <div className="pt-2 border-t flex justify-between items-baseline">
-                <span className="text-sm font-medium text-gray-700">Total tracked</span>
-                <span className="text-lg font-bold">${((fundingSummary.received + fundingSummary.pending + fundingSummary.receivables) / 1000).toFixed(0)}K</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Quick Navigation */}
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-        {[
-          { name: 'Assets', href: '/admin/assets', desc: 'Beds + machines', highlight: true },
-          { name: 'Communities', href: '/admin/communities', desc: 'Demand vs supply' },
-          { name: 'Production', href: '/admin/production', desc: 'Factory ops + COGS' },
-          { name: 'Fleet', href: '/admin/fleet', desc: 'Device telemetry' },
-          { name: 'Deals (CRM)', href: '/admin/strategy', desc: 'Sales & pipeline' },
-          { name: 'Storefront', href: '/', desc: 'Live website', external: true },
-        ].map((item) => (
-          <Link key={item.name} href={item.href} target={'external' in item ? '_blank' : undefined}>
-            <Card className={`hover:border-orange-300 transition-colors cursor-pointer h-full ${item.highlight ? 'bg-orange-50/50 border-orange-200' : ''}`}>
-              <CardContent className="pt-4 pb-3">
-                <h3 className="font-medium text-sm">{item.name}</h3>
-                <p className="text-xs text-gray-500 mt-0.5">{item.desc}</p>
-              </CardContent>
-            </Card>
+      {/* Trip targets */}
+      <section className="rounded-2xl border bg-card shadow-sm">
+        <div className="px-5 py-4 border-b flex items-center justify-between">
+          <div>
+            <h2 className="font-display text-lg font-bold">Where the beds are going</h2>
+            <p className="text-xs text-muted-foreground">
+              Communities with ready or allocated beds, ordered by volume.
+            </p>
+          </div>
+          <Link href="/admin/assets" className="text-xs underline hover:text-foreground">
+            All assets →
           </Link>
-        ))}
+        </div>
+        {tripTargets.length === 0 ? (
+          <p className="p-6 text-sm text-muted-foreground text-center">
+            No beds in pipeline. Mint a batch in{' '}
+            <Link href="/admin/assets" className="underline">
+              /admin/assets
+            </Link>
+            .
+          </p>
+        ) : (
+          <ul className="divide-y">
+            {tripTargets.slice(0, 8).map((c) => (
+              <li key={c.community} className="p-4 hover:bg-muted/30 flex items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="font-semibold text-sm">
+                    {c.communityId ? (
+                      <Link href={`/admin/communities/${c.communityId}`} className="hover:underline">
+                        {c.community}
+                      </Link>
+                    ) : (
+                      c.community
+                    )}
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    {c.ready > 0 ? `${c.ready} ready` : null}
+                    {c.ready > 0 && c.allocated > 0 ? ' · ' : null}
+                    {c.allocated > 0 ? `${c.allocated} allocated` : null}
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl font-bold">{c.ready + c.allocated}</span>
+                  <Link
+                    href={`/admin/assets?community=${encodeURIComponent(c.community)}`}
+                    className="text-xs underline hover:text-foreground whitespace-nowrap"
+                  >
+                    drill in
+                  </Link>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      {/* Live signals + needs attention */}
+      <div className="grid md:grid-cols-2 gap-4">
+        <section className="rounded-2xl border bg-card shadow-sm">
+          <div className="px-5 py-4 border-b flex items-center justify-between">
+            <div>
+              <h2 className="font-display text-lg font-bold">Live (last 24h)</h2>
+              <p className="text-xs text-muted-foreground">
+                {signals.length} signal{signals.length === 1 ? '' : 's'} · 👍 {goodPulses} 😐 {mehPulses} 👎 {badPulses}
+              </p>
+            </div>
+            <Link href="/admin/bed-signals" className="text-xs underline hover:text-foreground">
+              All →
+            </Link>
+          </div>
+          {signals.length === 0 ? (
+            <p className="p-6 text-sm text-muted-foreground text-center">
+              Quiet. Field signals land here when people scan beds.
+            </p>
+          ) : (
+            <ul className="divide-y">
+              {signals.slice(0, 8).map((s) => {
+                const badge = SIGNAL_BADGE[s.signal_type] || { label: s.signal_type, emoji: '•', tone: 'bg-stone-100 text-stone-900' };
+                return (
+                  <li key={s.id} className="px-4 py-3 flex items-start gap-3 text-sm">
+                    <span className="text-lg flex-shrink-0">{badge.emoji}</span>
+                    <div className="min-w-0 flex-1">
+                      <p className="font-medium truncate">
+                        <span className={`inline-block rounded-full px-2 py-0.5 text-[10px] font-medium ${badge.tone} mr-2`}>
+                          {badge.label}
+                        </span>
+                        {s.signal_value && <span className="font-mono text-xs">{s.signal_value}</span>}
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-0.5">
+                        <Link href={`/bed/${s.asset_id}`} className="font-mono underline hover:text-foreground">
+                          {s.asset_id}
+                        </Link>
+                        {' · '}
+                        {relativeTime(s.created_at)}
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </section>
+
+        <section className="rounded-2xl border bg-card shadow-sm">
+          <div className="px-5 py-4 border-b">
+            <h2 className="font-display text-lg font-bold">Needs attention</h2>
+            <p className="text-xs text-muted-foreground">
+              {alerts.length} alert{alerts.length === 1 ? '' : 's'} · {dueReminders.length} reminder{dueReminders.length === 1 ? '' : 's'} due ·{' '}
+              {overdueDeals.length} overdue
+            </p>
+          </div>
+          <ul className="divide-y">
+            {alerts.slice(0, 4).map((a) => (
+              <li key={a.id} className="px-4 py-3 text-sm">
+                <p className="font-medium text-red-900">
+                  <span className="inline-block rounded-full bg-red-100 text-red-900 px-2 py-0.5 text-[10px] font-medium mr-2">
+                    {a.severity} {a.type}
+                  </span>
+                </p>
+                <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{a.details}</p>
+                {a.asset_id && (
+                  <Link href={`/bed/${a.asset_id}`} className="text-xs font-mono underline hover:text-foreground mt-1 inline-block">
+                    {a.asset_id}
+                  </Link>
+                )}
+              </li>
+            ))}
+            {dueReminders.length > 0 && (
+              <li className="px-4 py-3 text-sm">
+                <p className="font-medium">
+                  <span className="inline-block rounded-full bg-amber-100 text-amber-900 px-2 py-0.5 text-[10px] font-medium mr-2">
+                    SMS dispatch
+                  </span>
+                  {dueReminders.length} reminder{dueReminders.length === 1 ? '' : 's'} fire next 8am AEST
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Earliest:{' '}
+                  {dueReminders[0]?.scheduled_for
+                    ? new Date(dueReminders[0].scheduled_for).toLocaleString('en-AU', {
+                        day: 'numeric',
+                        month: 'short',
+                      })
+                    : '—'}
+                </p>
+              </li>
+            )}
+            {overdueDeals.length > 0 && (
+              <li className="px-4 py-3 text-sm">
+                <p className="font-medium">
+                  <span className="inline-block rounded-full bg-red-100 text-red-900 px-2 py-0.5 text-[10px] font-medium mr-2">
+                    Money
+                  </span>
+                  {formatMoney(overdueTotal)} overdue across {overdueDeals.length} invoice{overdueDeals.length === 1 ? '' : 's'}
+                </p>
+                <p className="text-xs text-muted-foreground mt-1 truncate">
+                  {overdueDeals.slice(0, 3).map((d) => d.title).join(' · ')}
+                </p>
+                <Link href="/admin/xero-reconciliation" className="text-xs underline hover:text-foreground mt-1 inline-block">
+                  Xero recon →
+                </Link>
+              </li>
+            )}
+            {alerts.length === 0 && dueReminders.length === 0 && overdueDeals.length === 0 && (
+              <li className="px-4 py-6 text-sm text-muted-foreground text-center">
+                Nothing flagged. Have a good day.
+              </li>
+            )}
+          </ul>
+        </section>
+      </div>
+
+      {/* Recent photos + quick actions */}
+      <div className="grid md:grid-cols-2 gap-4">
+        <section className="rounded-2xl border bg-card shadow-sm">
+          <div className="px-5 py-4 border-b flex items-center justify-between">
+            <div>
+              <h2 className="font-display text-lg font-bold">Recent photos</h2>
+              <p className="text-xs text-muted-foreground">
+                Compassion content uploaded in the last 24h.
+              </p>
+            </div>
+            <Link href="/admin/compassion" className="text-xs underline hover:text-foreground">
+              All →
+            </Link>
+          </div>
+          {recentCompassion.length === 0 ? (
+            <p className="p-6 text-sm text-muted-foreground text-center">No new uploads today.</p>
+          ) : (
+            <ul className="divide-y">
+              {recentCompassion.slice(0, 5).map((c) => (
+                <li key={c.id} className="px-4 py-3 text-sm">
+                  <p className="font-medium truncate">
+                    <Link href={`/bed/${c.asset_id}`} className="font-mono text-xs underline hover:text-foreground">
+                      {c.asset_id}
+                    </Link>{' '}
+                    · <span className="text-xs">{c.content_type}</span>
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">
+                    {c.caption || '(no caption)'}
+                  </p>
+                  <p className="text-[10px] text-muted-foreground mt-0.5">{relativeTime(c.created_at)}</p>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+
+        <section className="rounded-2xl border bg-card shadow-sm p-5 space-y-3">
+          <div>
+            <h2 className="font-display text-lg font-bold">Quick actions</h2>
+            <p className="text-xs text-muted-foreground">
+              The things you reach for most during a trip.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <Link
+              href="/admin/bed-preflight"
+              className="rounded-xl border hover:bg-amber-50 dark:hover:bg-amber-950/30 p-3 text-center text-sm font-semibold"
+            >
+              ✈️ Preflight
+            </Link>
+            <Link
+              href="/admin/bed-signals"
+              className="rounded-xl border hover:bg-amber-50 dark:hover:bg-amber-950/30 p-3 text-center text-sm font-semibold"
+            >
+              📡 Signals
+            </Link>
+            <Link
+              href="/admin/compassion"
+              className="rounded-xl border hover:bg-amber-50 dark:hover:bg-amber-950/30 p-3 text-center text-sm font-semibold"
+            >
+              📸 Upload photo
+            </Link>
+            <Link
+              href="/admin/communities"
+              className="rounded-xl border hover:bg-amber-50 dark:hover:bg-amber-950/30 p-3 text-center text-sm font-semibold"
+            >
+              🌏 Communities
+            </Link>
+            <Link
+              href="/admin/assets"
+              className="rounded-xl border hover:bg-amber-50 dark:hover:bg-amber-950/30 p-3 text-center text-sm font-semibold"
+            >
+              📚 Assets
+            </Link>
+            <Link
+              href="/admin/deals"
+              className="rounded-xl border hover:bg-amber-50 dark:hover:bg-amber-950/30 p-3 text-center text-sm font-semibold"
+            >
+              📊 Deals
+            </Link>
+          </div>
+        </section>
       </div>
     </div>
   );

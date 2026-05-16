@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { asset_id, content_type, media_url, thumbnail_url, caption } = body;
+    const { asset_id, content_type, media_url, thumbnail_url, caption, is_public } = body;
 
     // Validate required fields
     if (!asset_id) {
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
     // Use service client to bypass RLS
     const supabase = createServiceClient();
 
-    // Create compassion content
+    // Create compassion content. Staff uploads default to public unless toggled off.
     const { data: content, error } = await supabase
       .from('compassion_content')
       .insert({
@@ -54,6 +54,7 @@ export async function POST(request: Request) {
         thumbnail_url: thumbnail_url || null,
         caption: caption || null,
         created_by: user.email || 'Staff',
+        is_public: is_public !== false,
       })
       .select()
       .single();
