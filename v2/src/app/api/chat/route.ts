@@ -1,9 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
-import Anthropic from '@anthropic-ai/sdk';
+import OpenAI from 'openai';
 import { getKnowledgeSources, buildSystemPrompt } from '@/lib/knowledge-base';
 import { createServiceClient } from '@/lib/supabase/server';
 
-const anthropic = new Anthropic();
+// Minimax via OpenAI-compatible endpoint.
+// Docs: https://platform.minimax.io/docs/api-reference/text-openai-api
+const MINIMAX_BASE_URL = process.env.MINIMAX_BASE_URL || 'https://api.minimax.io/v1';
+const MINIMAX_MODEL = process.env.MINIMAX_MODEL || 'MiniMax-M2';
+
+const openai = new OpenAI({
+  apiKey: process.env.MINIMAX_API_KEY || 'unset',
+  baseURL: MINIMAX_BASE_URL,
+});
 
 // Cache the system prompt since docs don't change at runtime
 let cachedSystemPrompt: string | null = null;
@@ -67,7 +75,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (!process.env.ANTHROPIC_API_KEY) {
+    if (!process.env.MINIMAX_API_KEY) {
       return NextResponse.json(
         { error: 'Chat is not configured yet. Please contact Ben.' },
         { status: 503 }
@@ -80,21 +88,24 @@ export async function POST(req: NextRequest) {
       if (block) systemPrompt = systemPrompt + block;
     }
 
-    // Convert messages to Anthropic format
-    const anthropicMessages = messages.map((m: { role: string; content: string }) => ({
-      role: m.role as 'user' | 'assistant',
-      content: m.content,
-    }));
+    // OpenAI-format messages — system prompt rides as the first message.
+    const chatMessages: { role: 'system' | 'user' | 'assistant'; content: string }[] = [
+      { role: 'system', content: systemPrompt },
+      ...messages.map((m: { role: string; content: string }) => ({
+        role: m.role as 'user' | 'assistant',
+        content: m.content,
+      })),
+    ];
 
-    const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-5-20250929',
+    const completion = await openai.chat.completions.create({
+      model: MINIMAX_MODEL,
       max_tokens: 1024,
-      system: systemPrompt,
-      messages: anthropicMessages,
+      messages: chatMessages,
     });
 
-    const textBlock = response.content.find(b => b.type === 'text');
-    const reply = textBlock ? textBlock.text : 'Sorry, I couldn\'t generate a response. Try asking again or talk to Ben.';
+    const reply =
+      completion.choices?.[0]?.message?.content?.trim() ||
+      "Sorry, I couldn't generate a response. Try asking again or talk to Ben.";
 
     return NextResponse.json({ reply });
   } catch (error) {

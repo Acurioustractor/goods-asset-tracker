@@ -77,10 +77,10 @@ export default async function BedPreflightPage() {
       fix: 'Vercel cron sends this in the Authorization header. Without it, dispatch crons are read-only.',
     },
     {
-      label: 'ANTHROPIC_API_KEY',
-      ok: !!process.env.ANTHROPIC_API_KEY,
-      detail: process.env.ANTHROPIC_API_KEY ? 'set' : 'missing',
-      fix: 'Powers the "Get help" chat. Without it the chat returns a 503.',
+      label: 'MINIMAX_API_KEY',
+      ok: !!process.env.MINIMAX_API_KEY,
+      detail: process.env.MINIMAX_API_KEY ? `set · model ${process.env.MINIMAX_MODEL || 'MiniMax-M2'}` : 'missing',
+      fix: 'Powers the "Get help" chat via Minimax (api.minimax.io). Without it the chat returns a 503. Get a key at platform.minimax.io.',
     },
   ];
 
