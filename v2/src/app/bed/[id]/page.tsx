@@ -310,7 +310,7 @@ export default async function BedPage({ params }: BedPageProps) {
       </div>
 
       {/* Photos linked to this asset (Goods staff + recipient uploads) */}
-      <BedGallery items={galleryItems} productNoun={productNoun} />
+      <BedGallery items={galleryItems} productNoun={productNoun} uniqueId={asset.unique_id} />
 
       {/* Direct contact: WhatsApp / SMS / phone */}
       <div className="max-w-3xl mx-auto px-4 mt-4">

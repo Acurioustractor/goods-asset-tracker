@@ -43,8 +43,10 @@ function SupportPageContent() {
   const assetIdParam = searchParams.get('asset_id');
   const subjectParam = searchParams.get('subject');
   const storyIdParam = searchParams.get('story_id');
+  const contentIdParam = searchParams.get('content_id');
 
   const isStoryRemoval = subjectParam === 'story-removal';
+  const isPhotoRemoval = subjectParam === 'photo-removal';
 
   const [assetId, setAssetId] = useState(assetIdParam || '');
   const [asset, setAsset] = useState<AssetInfo | null>(null);
@@ -58,10 +60,12 @@ function SupportPageContent() {
   const [issueDescription, setIssueDescription] = useState(
     isStoryRemoval
       ? `I would like to request removal of a story from the Goods on Country website.${storyIdParam ? `\n\nStory ID: ${storyIdParam}` : ''}\n\nReason: `
-      : ''
+      : isPhotoRemoval
+        ? `I would like a photo removed from the Goods on Country bed page.${assetIdParam ? `\n\nBed: ${assetIdParam}` : ''}${contentIdParam ? `\n\nPhoto ID: ${contentIdParam}` : ''}\n\nWhich photo: \n\nReason: `
+        : ''
   );
   const [priority, setPriority] = useState<Priority>('Medium');
-  const [category, setCategory] = useState(isStoryRemoval ? 'other' : '');
+  const [category, setCategory] = useState(isStoryRemoval || isPhotoRemoval ? 'other' : '');
   const [assetConditionStatus, setAssetConditionStatus] = useState<AssetConditionStatus>('Needs Repair');
   const [serviceability, setServiceability] = useState<Serviceability>('limited_use');
   const [failureCause, setFailureCause] = useState<FailureCause>('unknown');
@@ -204,17 +208,23 @@ function SupportPageContent() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900">
-            {isStoryRemoval ? 'Story Removal Request' : 'Goods Support'}
+            {isStoryRemoval
+              ? 'Story Removal Request'
+              : isPhotoRemoval
+                ? 'Photo Removal Request'
+                : 'Goods Support'}
           </h1>
           <p className="text-gray-600 mt-2">
             {isStoryRemoval
               ? 'If you are featured in a story and would like it removed, please fill out the form below.'
-              : 'Need help with your bed or washing machine? We\u2019re here to assist.'}
+              : isPhotoRemoval
+                ? 'If you see a photo on the bed page that you want removed, tell us which one and we\u2019ll take it down.'
+                : 'Need help with your bed or washing machine? We\u2019re here to assist.'}
           </p>
         </div>
 
-        {/* Asset Lookup (if not already found) */}
-        {!asset && (
+        {/* Asset Lookup (skip on removal-request flows — they came from a known bed page) */}
+        {!asset && !isStoryRemoval && !isPhotoRemoval && (
           <Card className="mb-6">
             <CardHeader>
               <CardTitle>Find Your Product</CardTitle>
@@ -344,7 +354,7 @@ function SupportPageContent() {
                 </select>
               </div>
 
-              {asset && !isStoryRemoval ? (
+              {asset && !isStoryRemoval && !isPhotoRemoval ? (
                 <div className="space-y-4 rounded-lg border border-amber-200 bg-amber-50 p-4">
                   <div>
                     <p className="text-sm font-semibold text-amber-900">Quick condition check</p>

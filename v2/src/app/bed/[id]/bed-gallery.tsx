@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { ImageLightbox } from '@/components/ui/image-lightbox';
 
 export type BedGalleryItem = {
@@ -15,6 +16,7 @@ export type BedGalleryItem = {
 type Props = {
   items: BedGalleryItem[];
   productNoun: string;
+  uniqueId: string;
 };
 
 function shortCaption(caption: string | null): string | null {
@@ -29,19 +31,20 @@ function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
 }
 
-export function BedGallery({ items, productNoun }: Props) {
+export function BedGallery({ items, productNoun, uniqueId }: Props) {
   if (items.length === 0) return null;
 
   const photoUrls = items.map((i) => i.url);
+  const removalHref = `/support?asset_id=${encodeURIComponent(uniqueId)}&subject=photo-removal`;
 
   return (
     <section className="max-w-5xl mx-auto px-4 mt-8">
       <div className="bg-card border rounded-2xl shadow-sm overflow-hidden">
         <div className="px-5 py-4 border-b flex items-center justify-between gap-3">
           <div>
-            <h2 className="font-display text-lg font-bold">Photos with this {productNoun.toLowerCase()}</h2>
+            <h2 className="font-display text-lg font-bold">Community gallery</h2>
             <p className="text-xs text-muted-foreground">
-              {items.length} {items.length === 1 ? 'photo' : 'photos'}. Tap any photo to view.
+              {items.length} {items.length === 1 ? 'photo' : 'photos'} with this {productNoun.toLowerCase()}. Tap any to view.
             </p>
           </div>
         </div>
@@ -81,6 +84,18 @@ export function BedGallery({ items, productNoun }: Props) {
             </div>
           )}
         </ImageLightbox>
+
+        <div className="px-5 py-3 border-t bg-muted/30 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <p className="text-muted-foreground">
+            Want a photo removed, or recognise yourself in one?
+          </p>
+          <Link
+            href={removalHref}
+            className="underline hover:text-foreground font-medium"
+          >
+            Ask us to remove it →
+          </Link>
+        </div>
       </div>
     </section>
   );
