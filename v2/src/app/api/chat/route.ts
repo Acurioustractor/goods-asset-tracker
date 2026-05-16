@@ -103,8 +103,13 @@ export async function POST(req: NextRequest) {
       messages: chatMessages,
     });
 
+    const raw = completion.choices?.[0]?.message?.content || '';
+    // Strip Minimax M2 reasoning blocks (<think>...</think>) — they shouldn't reach the user.
     const reply =
-      completion.choices?.[0]?.message?.content?.trim() ||
+      raw
+        .replace(/<think>[\s\S]*?<\/think>/gi, '')
+        .replace(/<thinking>[\s\S]*?<\/thinking>/gi, '')
+        .trim() ||
       "Sorry, I couldn't generate a response. Try asking again or talk to Ben.";
 
     return NextResponse.json({ reply });
