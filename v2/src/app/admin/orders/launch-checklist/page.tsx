@@ -1,7 +1,9 @@
+import fs from 'fs';
+import path from 'path';
 import Link from 'next/link';
 import { createServiceClient } from '@/lib/supabase/server';
 import { Card, CardContent } from '@/components/ui/card';
-import { CheckCircle2, XCircle, AlertCircle, ExternalLink, Copy } from 'lucide-react';
+import { CheckCircle2, XCircle, AlertCircle, ExternalLink } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -87,26 +89,40 @@ async function runChecks(): Promise<CheckRow[]> {
     action: { label: 'Open Stripe webhooks', href: 'https://dashboard.stripe.com/webhooks' },
   });
 
-  // 5. Active products are intentional
+  // 5. Active products are intentional. The hidden 'smoke-test' SKU is ignored —
+  // it's expected to be active so the admin can buy it through real checkout.
   const supabase = createServiceClient();
   const { data: activeProducts } = await supabase
     .from('products')
     .select('slug, name, product_type, is_active')
     .eq('is_active', true);
   const activeList = activeProducts || [];
-  const hasDeprecatedSlug = activeList.some((p) => p.slug.startsWith('weave-bed') || p.slug.startsWith('basket-bed'));
-  const hasWasherForSale = activeList.some((p) => p.slug === 'washing-machine-standard');
-  const onlyStretchBed = activeList.length > 0 && activeList.every((p) => p.slug.startsWith('stretch-bed'));
+  const customerFacing = activeList.filter((p) => p.slug !== 'smoke-test');
+  const hasDeprecatedSlug = customerFacing.some((p) => p.slug.startsWith('weave-bed') || p.slug.startsWith('basket-bed'));
+  const hasWasherForSale = customerFacing.some((p) => p.slug === 'washing-machine-standard');
+  const onlyStretchBed = customerFacing.length > 0 && customerFacing.every((p) => p.slug.startsWith('stretch-bed'));
+  const hasSmokeTest = activeList.some((p) => p.slug === 'smoke-test');
   checks.push({
     id: 'active-products',
-    title: `Active products (${activeList.length})`,
+    title: `Active customer-facing products (${customerFacing.length})`,
     status: onlyStretchBed ? 'pass' : hasDeprecatedSlug || hasWasherForSale ? 'fail' : 'warn',
-    detail: activeList.length === 0
-      ? 'No active products — the shop will be empty.'
-      : activeList.map((p) => `${p.slug} (${p.product_type})`).join(', '),
+    detail: customerFacing.length === 0
+      ? 'No active customer-facing products — the shop will be empty.'
+      : `${customerFacing.map((p) => `${p.slug} (${p.product_type})`).join(', ')}${hasSmokeTest ? ' · plus hidden smoke-test SKU' : ''}`,
     action: !onlyStretchBed
       ? { label: 'Open /admin/products', href: '/admin/products' }
       : undefined,
+  });
+
+  // 5b. Smoke-test SKU presence
+  checks.push({
+    id: 'smoke-test-sku',
+    title: 'Smoke-test SKU available',
+    status: hasSmokeTest ? 'pass' : 'warn',
+    detail: hasSmokeTest
+      ? 'Hidden $1 product exists at /shop/smoke-test. Use this for the end-to-end card test after flipping to live keys.'
+      : 'No /shop/smoke-test product. The end-to-end test will need a different hidden SKU.',
+    action: hasSmokeTest ? { label: 'Open /shop/smoke-test', href: '/shop/smoke-test' } : undefined,
   });
 
   // 6. Stretch Bed row has the canonical product_type
@@ -156,6 +172,37 @@ async function runChecks(): Promise<CheckRow[]> {
       ? 'Enabled — buyers will be upserted into GHL automatically.'
       : 'Disabled or missing API key/location id. Orders will still process, but buyers won\'t land in GHL.',
   });
+
+  // 9. Local-only migration backlog. We can't query the remote supabase_migrations
+  // schema via REST (it's not exposed), so this is an advisory check based on
+  // local file mtimes — anything modified in the last 60 days is flagged for
+  // review against `supabase migration list`.
+  try {
+    const migrationsDir = path.join(process.cwd(), 'supabase', 'migrations');
+    const files = fs.readdirSync(migrationsDir).filter((f) => f.endsWith('.sql'));
+    const sixtyDaysAgo = Date.now() - 60 * 24 * 60 * 60 * 1000;
+    const recent = files
+      .map((f) => ({ name: f, mtime: fs.statSync(path.join(migrationsDir, f)).mtimeMs }))
+      .filter((f) => f.mtime > sixtyDaysAgo)
+      .sort((a, b) => b.mtime - a.mtime);
+    checks.push({
+      id: 'migration-backlog',
+      title: `Recent migrations (${recent.length} files modified in last 60d)`,
+      status: recent.length > 0 ? 'manual' : 'pass',
+      detail:
+        recent.length === 0
+          ? 'No recent migration churn — nothing to verify.'
+          : `${recent.slice(0, 5).map((f) => f.name).join(', ')}${recent.length > 5 ? ` … (+${recent.length - 5} more)` : ''}. Run "supabase migration list" to compare local vs remote — anything missing from remote needs "supabase db push" (or paste into Studio SQL editor for one-off DDL).`,
+      action: { label: 'Open Supabase SQL editor', href: 'https://supabase.com/dashboard/project/cwsyhpiuepvdjtxaozwf/sql/new' },
+    });
+  } catch (err) {
+    checks.push({
+      id: 'migration-backlog',
+      title: 'Migration backlog',
+      status: 'manual',
+      detail: `Could not enumerate supabase/migrations/ (${err instanceof Error ? err.message : 'unknown'}). Run "supabase migration list" manually.`,
+    });
+  }
 
   return checks;
 }
