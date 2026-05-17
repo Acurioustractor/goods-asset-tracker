@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/server';
+import { ghl } from '@/lib/ghl';
 
 const EL_SUPABASE_URL = process.env.EMPATHY_LEDGER_SUPABASE_URL || '';
 const EL_SUPABASE_KEY = process.env.EMPATHY_LEDGER_SUPABASE_KEY || '';
@@ -198,6 +199,37 @@ export async function POST(
     photo_urls: photoUrl ? [photoUrl] : [],
     status: 'Open',
   });
+
+  // 3b. Upsert the submitter into GHL so they're a known customer for follow-up.
+  // Only fires when they actually shared contact info — anonymous stories stay in v2 + EL only.
+  if (contact) {
+    try {
+      const isEmail = contact.includes('@');
+      const result = await ghl.createInquiryContact(
+        isEmail ? contact : '',
+        name || undefined,
+        ['goods-story-submitter', consentToContact ? 'goods-consent-to-contact' : 'goods-no-contact'],
+      );
+      if (result.success && result.contact?.id) {
+        const note = [
+          `📖 Story submission for ${asset.unique_id}${asset.product ? ` (${asset.product})` : ''}`,
+          asset.community ? `Community: ${asset.community}` : null,
+          asset.place ? `Place: ${asset.place}` : null,
+          `Consent to share: ${consentToShare ? 'YES' : 'no'}`,
+          `Consent to contact: ${consentToContact ? 'YES' : 'no'}`,
+          story ? `\nStory:\n${story}` : null,
+          photoUrl ? `Photo: ${photoUrl}` : null,
+          audioUrl ? `Voice note: ${audioUrl}` : null,
+          `Submitted: ${new Date().toLocaleString('en-AU')}`,
+        ]
+          .filter(Boolean)
+          .join('\n');
+        await ghl.addNote(result.contact.id, note);
+      }
+    } catch (err) {
+      console.error('[bed/story] GHL sync failed:', err);
+    }
+  }
 
   // 4. Best-effort: post draft story to Empathy Ledger (only if there's actual story text)
   let elStoryId: string | null = null;

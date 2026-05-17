@@ -1020,6 +1020,14 @@ Synced: ${new Date().toLocaleString('en-AU')}
   },
 
   /**
+   * Append a free-form note to a contact (timeline entry visible in GHL).
+   * Use when a feedback/story/pulse event needs context attached to the customer record.
+   */
+  async addNote(contactId: string, note: string): Promise<boolean> {
+    return addContactNote(contactId, note);
+  },
+
+  /**
    * Add contact to newsletter
    */
   async addToNewsletter(email: string, name?: string, tag?: string): Promise<GHLResponse> {

@@ -2,8 +2,13 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { createServiceClient } from '@/lib/supabase/server';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Phone, Mail, MessageCircle } from 'lucide-react';
 import { AssetEditForm } from './asset-edit-form';
+import {
+  resolveBedOwners,
+  BED_OWNER_SOURCE_LABEL,
+  type BedOwnerGroup,
+} from '@/lib/data/bed-owners';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -53,6 +58,9 @@ export default async function AssetEditPage({
   const events = (telemetryRes.data || []).filter((e) => mapped.includes(e.machine_id || ''));
   const lastEvent = events[0];
   const daysSilent = lastEvent ? Math.floor((Date.now() - new Date(lastEvent.created_at).getTime()) / 86400000) : null;
+
+  // Resolve the "who is connected to this bed?" view across orders / claims / tickets / stories
+  const owners = await resolveBedOwners(supabase, asset.unique_id);
 
   return (
     <div className="space-y-6 pb-16">
@@ -181,6 +189,9 @@ export default async function AssetEditPage({
         </Card>
       </div>
 
+      {/* Owners & contacts (derived from orders + claims + tickets + stories) */}
+      <OwnersBlock owners={owners} />
+
       {/* Recent telemetry events */}
       {events.length > 0 && (
         <Card>
@@ -219,6 +230,127 @@ export default async function AssetEditPage({
         </Card>
       )}
     </div>
+  );
+}
+
+const SUPPORT_PHONE = (process.env.NEXT_PUBLIC_GOODS_SUPPORT_PHONE || '+61468052660').replace(/\s+/g, '');
+
+function whatsappHref(phone: string, message: string): string {
+  return `https://wa.me/${phone.replace(/^\+/, '').replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
+}
+
+function OwnersBlock({ owners }: { owners: BedOwnerGroup[] }) {
+  if (owners.length === 0) {
+    return (
+      <Card>
+        <CardContent>
+          <h2 className="mb-1 text-base font-semibold">Owners &amp; contacts</h2>
+          <p className="text-sm text-gray-500">
+            Nobody is connected to this bed yet. Connections appear here when someone buys it,
+            claims it via QR scan, opens a support ticket, or shares a story.
+          </p>
+          <p className="mt-2 text-xs text-gray-400">
+            GHL inbox: <a href="https://app.gohighlevel.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">app.gohighlevel.com</a>
+            {' · '}Support line: <a href={`tel:${SUPPORT_PHONE}`} className="text-blue-600 hover:underline">{SUPPORT_PHONE}</a>
+          </p>
+        </CardContent>
+      </Card>
+    );
+  }
+  return (
+    <Card>
+      <CardContent>
+        <div className="mb-3 flex items-baseline justify-between">
+          <h2 className="text-base font-semibold">Owners &amp; contacts</h2>
+          <span className="text-xs text-gray-500">{owners.length} {owners.length === 1 ? 'person' : 'people'}</span>
+        </div>
+        <ul className="space-y-4">
+          {owners.map((group) => (
+            <li key={group.identityKey} className="rounded-lg border border-gray-200 bg-white p-3">
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <div>
+                  <div className="text-sm font-semibold text-gray-900">
+                    {group.primaryName || group.primaryPhone || group.primaryEmail || 'Unknown contact'}
+                  </div>
+                  <div className="mt-0.5 flex flex-wrap items-center gap-2 text-xs text-gray-600">
+                    {group.primaryPhone && (
+                      <span className="inline-flex items-center gap-1">
+                        <Phone className="h-3 w-3" /> {group.primaryPhone}
+                      </span>
+                    )}
+                    {group.primaryEmail && (
+                      <span className="inline-flex items-center gap-1">
+                        <Mail className="h-3 w-3" /> {group.primaryEmail}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide text-emerald-700">
+                  {BED_OWNER_SOURCE_LABEL[group.primarySource]}
+                </span>
+              </div>
+
+              {/* Quick contact actions */}
+              {(group.primaryPhone || group.primaryEmail) && (
+                <div className="mt-3 flex flex-wrap gap-2 text-xs">
+                  {group.primaryPhone && (
+                    <a
+                      href={whatsappHref(group.primaryPhone, `Hi from Goods — checking in about your bed.`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 rounded border border-emerald-200 bg-emerald-50 px-2 py-1 text-emerald-700 hover:bg-emerald-100"
+                    >
+                      <MessageCircle className="h-3 w-3" /> WhatsApp
+                    </a>
+                  )}
+                  {group.primaryPhone && (
+                    <a
+                      href={`sms:${group.primaryPhone}`}
+                      className="inline-flex items-center gap-1 rounded border border-amber-200 bg-amber-50 px-2 py-1 text-amber-700 hover:bg-amber-100"
+                    >
+                      <MessageCircle className="h-3 w-3" /> SMS
+                    </a>
+                  )}
+                  {group.primaryPhone && (
+                    <a
+                      href={`tel:${group.primaryPhone}`}
+                      className="inline-flex items-center gap-1 rounded border border-stone-200 bg-stone-50 px-2 py-1 text-stone-700 hover:bg-stone-100"
+                    >
+                      <Phone className="h-3 w-3" /> Call
+                    </a>
+                  )}
+                  {group.primaryEmail && (
+                    <a
+                      href={`mailto:${group.primaryEmail}`}
+                      className="inline-flex items-center gap-1 rounded border border-blue-200 bg-blue-50 px-2 py-1 text-blue-700 hover:bg-blue-100"
+                    >
+                      <Mail className="h-3 w-3" /> Email
+                    </a>
+                  )}
+                </div>
+              )}
+
+              {/* Source links — every touch we know about for this person */}
+              <div className="mt-3 space-y-1 border-t border-gray-100 pt-2 text-xs text-gray-600">
+                {group.links.map((link, idx) => (
+                  <div key={`${link.source}-${idx}`} className="flex flex-wrap items-baseline gap-2">
+                    <span className="inline-block w-20 font-medium uppercase tracking-wide text-gray-500">
+                      {link.source}
+                    </span>
+                    <span className="text-gray-700">{link.detail || '—'}</span>
+                    {link.linkedAt && (
+                      <span className="text-gray-400">
+                        {new Date(link.linkedAt).toLocaleDateString('en-AU')}
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </CardContent>
+    </Card>
   );
 }
 

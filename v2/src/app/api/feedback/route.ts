@@ -1,9 +1,29 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { ghl } from '@/lib/ghl';
 
 interface FeedbackPayload {
   page: string;
   message: string;
   email?: string;
+}
+
+async function syncFeedbackToGhl(page: string, email: string, message: string) {
+  if (!email || email === 'Anonymous' || !email.includes('@')) return;
+  try {
+    const result = await ghl.createInquiryContact(email, undefined, ['goods-feedback']);
+    if (result.success && result.contact?.id) {
+      const note = [
+        '📬 Site feedback',
+        `Page: https://goodsoncountry.com${page}`,
+        `Submitted: ${new Date().toLocaleString('en-AU')}`,
+        '',
+        message,
+      ].join('\n');
+      await ghl.addNote(result.contact.id, note);
+    }
+  } catch (err) {
+    console.error('[Feedback] GHL sync failed:', err);
+  }
 }
 
 async function sendTelegramNotification(page: string, email: string, message: string) {
@@ -107,6 +127,10 @@ ${body.message}
 
     // Send Telegram notification (awaited so it completes before serverless function exits)
     await sendTelegramNotification(page, email, body.message);
+
+    // Mirror to GHL so the customer record carries the feedback alongside their other touches.
+    // Only fires when the submitter left an email — anonymous feedback stays in GitHub + Telegram only.
+    await syncFeedbackToGhl(page, email, body.message);
 
     console.log('[Feedback]', { page, email, messageLength: body.message.length });
 
