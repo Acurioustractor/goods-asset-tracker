@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient, createServiceClient } from '@/lib/supabase/server';
+import { createServiceClient } from '@/lib/supabase/server';
+import { requireAdmin } from '@/lib/auth/admin';
 import crypto from 'crypto';
 
 /**
@@ -13,15 +14,8 @@ import crypto from 'crypto';
  */
 export async function POST(request: NextRequest) {
   try {
-    const userSupabase = await createClient();
-    const { data: { user } } = await userSupabase.auth.getUser();
-    if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-
-    const isAdmin =
-      user.app_metadata?.role === 'admin' ||
-      user.user_metadata?.role === 'admin' ||
-      process.env.ADMIN_EMAILS?.split(',').includes(user.email || '');
-    if (!isAdmin) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    const guard = await requireAdmin(request);
+    if (guard) return guard;
 
     const body = await request.json();
     let rows: Array<{

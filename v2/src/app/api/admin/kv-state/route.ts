@@ -1,30 +1,14 @@
-import { NextResponse } from 'next/server';
-import { createClient, createServiceClient } from '@/lib/supabase/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { createServiceClient } from '@/lib/supabase/server';
+import { requireAdmin } from '@/lib/auth/admin';
 
 // Generic key-value state store for admin pages (checklists, filters, prefs).
 // Shared across browsers and users — no per-user scoping.
 // Table: public.admin_kv_state (key text PRIMARY KEY, value jsonb, updated_at timestamptz)
 
-async function assertAdmin() {
-  const userSupabase = await createClient();
-  const {
-    data: { user },
-  } = await userSupabase.auth.getUser();
-
-  if (!user) return { ok: false, status: 401, error: 'Unauthorized' } as const;
-
-  const isAdmin =
-    user.app_metadata?.role === 'admin' ||
-    user.user_metadata?.role === 'admin' ||
-    process.env.ADMIN_EMAILS?.split(',').includes(user.email || '');
-
-  if (!isAdmin) return { ok: false, status: 403, error: 'Forbidden' } as const;
-  return { ok: true } as const;
-}
-
-export async function GET(request: Request) {
-  const auth = await assertAdmin();
-  if (!auth.ok) return NextResponse.json({ error: auth.error }, { status: auth.status });
+export async function GET(request: NextRequest) {
+  const guard = await requireAdmin(request);
+  if (guard) return guard;
 
   const { searchParams } = new URL(request.url);
   const key = searchParams.get('key');
@@ -41,9 +25,9 @@ export async function GET(request: Request) {
   return NextResponse.json({ key, value: data?.value ?? null, updated_at: data?.updated_at ?? null });
 }
 
-export async function PUT(request: Request) {
-  const auth = await assertAdmin();
-  if (!auth.ok) return NextResponse.json({ error: auth.error }, { status: auth.status });
+export async function PUT(request: NextRequest) {
+  const guard = await requireAdmin(request);
+  if (guard) return guard;
 
   const body = await request.json();
   const { key, value } = body ?? {};

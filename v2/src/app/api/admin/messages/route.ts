@@ -1,27 +1,17 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
+import { requireAdmin } from '@/lib/auth/admin';
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
-    // Check if user is admin
+    const guard = await requireAdmin(request);
+    if (guard) return guard;
+
+    // Fetch user for audit fields (sender_name)
     const userSupabase = await createClient();
     const {
       data: { user },
     } = await userSupabase.auth.getUser();
-
-    if (!user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    // Check admin role
-    const isAdmin =
-      user.app_metadata?.role === 'admin' ||
-      user.user_metadata?.role === 'admin' ||
-      process.env.ADMIN_EMAILS?.split(',').includes(user.email || '');
-
-    if (!isAdmin) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-    }
 
     const body = await request.json();
     const { profile_id, asset_id, message_text, mark_read_id } = body;
@@ -44,7 +34,7 @@ export async function POST(request: Request) {
         asset_id: asset_id || null,
         direction: 'outbound',
         message_text: message_text.trim(),
-        sender_name: user.email || 'Staff',
+        sender_name: user?.email || 'Staff',
       })
       .select()
       .single();

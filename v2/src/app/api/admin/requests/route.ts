@@ -1,29 +1,19 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
+import { requireAdmin } from '@/lib/auth/admin';
 
 const VALID_STATUSES = ['pending', 'approved', 'in_progress', 'fulfilled', 'denied'];
 
-export async function PATCH(request: Request) {
+export async function PATCH(request: NextRequest) {
   try {
-    // Check if user is admin
+    const guard = await requireAdmin(request);
+    if (guard) return guard;
+
+    // Fetch user for audit fields (fulfilled_by)
     const userSupabase = await createClient();
     const {
       data: { user },
     } = await userSupabase.auth.getUser();
-
-    if (!user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    // Check admin role
-    const isAdmin =
-      user.app_metadata?.role === 'admin' ||
-      user.user_metadata?.role === 'admin' ||
-      process.env.ADMIN_EMAILS?.split(',').includes(user.email || '');
-
-    if (!isAdmin) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-    }
 
     const body = await request.json();
     const { request_id, status, fulfillment_notes } = body;
@@ -53,7 +43,7 @@ export async function PATCH(request: Request) {
 
     if (status === 'fulfilled') {
       updateData.fulfilled_at = new Date().toISOString();
-      updateData.fulfilled_by = user.email || 'Staff';
+      updateData.fulfilled_by = user?.email || 'Staff';
     }
 
     if (fulfillment_notes) {

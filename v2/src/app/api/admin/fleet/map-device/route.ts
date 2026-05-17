@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient, createServiceClient } from '@/lib/supabase/server';
+import { createServiceClient } from '@/lib/supabase/server';
+import { requireAdmin } from '@/lib/auth/admin';
 
 /**
  * Map a Particle coreid to an existing washing machine asset.
@@ -11,15 +12,8 @@ import { createClient, createServiceClient } from '@/lib/supabase/server';
  */
 export async function POST(request: NextRequest) {
   try {
-    const userSupabase = await createClient();
-    const { data: { user } } = await userSupabase.auth.getUser();
-    if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-
-    const isAdmin =
-      user.app_metadata?.role === 'admin' ||
-      user.user_metadata?.role === 'admin' ||
-      process.env.ADMIN_EMAILS?.split(',').includes(user.email || '');
-    if (!isAdmin) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    const guard = await requireAdmin(request);
+    if (guard) return guard;
 
     const { asset_id, particle_coreid } = await request.json();
     if (!asset_id || !particle_coreid) {
@@ -62,9 +56,8 @@ export async function POST(request: NextRequest) {
  */
 export async function GET(request: NextRequest) {
   try {
-    const userSupabase = await createClient();
-    const { data: { user } } = await userSupabase.auth.getUser();
-    if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const guard = await requireAdmin(request);
+    if (guard) return guard;
 
     const supabase = createServiceClient();
 

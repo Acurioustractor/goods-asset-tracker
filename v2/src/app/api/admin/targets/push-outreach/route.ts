@@ -1,5 +1,6 @@
-import { NextResponse } from 'next/server';
-import { createClient, createServiceClient } from '@/lib/supabase/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { createServiceClient } from '@/lib/supabase/server';
+import { requireAdmin } from '@/lib/auth/admin';
 import { ghl } from '@/lib/ghl';
 
 export const dynamic = 'force-dynamic';
@@ -150,26 +151,10 @@ async function persistOutreachTargetIdentity(target: OutreachTarget) {
   return data.id as string;
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
-    // Auth check
-    const userSupabase = await createClient();
-    const {
-      data: { user },
-    } = await userSupabase.auth.getUser();
-
-    if (!user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    const isAdmin =
-      user.app_metadata?.role === 'admin' ||
-      user.user_metadata?.role === 'admin' ||
-      process.env.ADMIN_EMAILS?.split(',').includes(user.email || '');
-
-    if (!isAdmin) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-    }
+    const guard = await requireAdmin(request);
+    if (guard) return guard;
 
     const body = await request.json();
     const targets: OutreachTarget[] = body.targets || [];

@@ -1,27 +1,17 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
+import { requireAdmin } from '@/lib/auth/admin';
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
-    // Check if user is admin
+    const guard = await requireAdmin(request);
+    if (guard) return guard;
+
+    // Fetch user for audit fields (created_by); may be null in local dev
     const userSupabase = await createClient();
     const {
       data: { user },
     } = await userSupabase.auth.getUser();
-
-    if (!user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    // Check admin role
-    const isAdmin =
-      user.app_metadata?.role === 'admin' ||
-      user.user_metadata?.role === 'admin' ||
-      process.env.ADMIN_EMAILS?.split(',').includes(user.email || '');
-
-    if (!isAdmin) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-    }
 
     const body = await request.json();
     const { asset_id, content_type, media_url, thumbnail_url, caption, is_public } = body;
@@ -53,7 +43,7 @@ export async function POST(request: Request) {
         media_url: media_url || null,
         thumbnail_url: thumbnail_url || null,
         caption: caption || null,
-        created_by: user.email || 'Staff',
+        created_by: user?.email || 'Staff',
         is_public: is_public !== false,
       })
       .select()
