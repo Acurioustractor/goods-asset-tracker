@@ -3,7 +3,12 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 
-export function PartnershipForm() {
+interface PartnershipFormProps {
+  /** Pre-select a partnership type — used when arriving via a product page CTA */
+  defaultType?: string;
+}
+
+export function PartnershipForm({ defaultType }: PartnershipFormProps = {}) {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [error, setError] = useState('');
 
@@ -107,10 +112,12 @@ export function PartnershipForm() {
           id="partnership_type"
           name="partnership_type"
           required
+          defaultValue={defaultType || ''}
           className="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
         >
           <option value="">Select an option</option>
           <option value="sponsor">Sponsor Beds</option>
+          <option value="washer-interest">Washing Machine — register interest</option>
           <option value="license">License the Model</option>
           <option value="distribution">Distribution Partner</option>
           <option value="grant">Grant or Investment</option>

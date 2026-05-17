@@ -92,7 +92,7 @@ export default function WashingMachinePage() {
             {/* Actions */}
             <div className="space-y-3">
               <Button size="lg" className="w-full" asChild>
-                <Link href="/partner">
+                <Link href="/partner?type=washer-interest">
                   Register Interest
                 </Link>
               </Button>
@@ -247,7 +247,7 @@ export default function WashingMachinePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" asChild>
-              <Link href="/partner">Register Interest</Link>
+              <Link href="/partner?type=washer-interest">Register Interest</Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent border-accent-foreground text-accent-foreground hover:bg-accent-foreground/10" asChild>
               <Link href="/contact">Get in Touch</Link>
@@ -361,7 +361,7 @@ export default function WashingMachinePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" style={{ backgroundColor: '#C45C3E' }} asChild>
-              <Link href="/partner">Register Interest</Link>
+              <Link href="/partner?type=washer-interest">Register Interest</Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10" asChild>
               <Link href="/wiki/products/washing-machine">Read the Full Wiki Guide</Link>

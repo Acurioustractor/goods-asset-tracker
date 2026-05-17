@@ -8,6 +8,8 @@ export const metadata = {
   description: 'Sponsor beds, license the model, or partner on distribution. Join the movement for community-owned manufacturing.',
 };
 
+const ALLOWED_TYPES = ['sponsor', 'washer-interest', 'license', 'distribution', 'grant', 'other'];
+
 const partnerOptions = [
   {
     title: 'Sponsor Beds',
@@ -93,7 +95,13 @@ const fundingPartners = [
   'The Funding Network',
 ];
 
-export default function PartnerPage() {
+export default async function PartnerPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ type?: string }>;
+}) {
+  const params = await searchParams;
+  const requestedType = params.type && ALLOWED_TYPES.includes(params.type) ? params.type : undefined;
   return (
     <main>
       {/* Header */}
@@ -196,7 +204,7 @@ export default function PartnerPage() {
                 Tell us how you&apos;d like to be involved and we&apos;ll be in touch.
               </p>
             </div>
-            <PartnershipForm />
+            <PartnershipForm defaultType={requestedType} />
           </div>
         </div>
       </section>

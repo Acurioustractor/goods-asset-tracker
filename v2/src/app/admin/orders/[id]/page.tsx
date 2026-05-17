@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { formatAmountFromStripe } from '@/lib/stripe';
 import type { Order, OrderItem, Address } from '@/lib/types/database';
+import { ghl, tagForAsset } from '@/lib/ghl';
 
 // V1 Asset type for display
 interface V1Asset {
@@ -45,6 +46,16 @@ export default async function OrderDetailPage({
   const orderItems = (order.order_items || []) as OrderItem[];
   const shippingAddress = order.shipping_address as Address | null;
   const billingAddress = order.billing_address as Address | null;
+
+  // Pull available beds for the allocator dropdown — status='ready' and not yet allocated.
+  // These are the candidates to assign to this order's line items.
+  const serviceClient = createServiceClient();
+  const { data: availableBeds } = await serviceClient
+    .from('assets')
+    .select('unique_id, product, community')
+    .eq('status', 'ready')
+    .order('unique_id', { ascending: true })
+    .limit(500);
 
   // Server action to update order status
   async function updateOrderStatus(formData: FormData) {
@@ -110,43 +121,93 @@ export default async function OrderDetailPage({
     revalidatePath(`/admin/orders/${id}`);
   }
 
-  // Server action to link an order item to a v1 asset
+  // Server action to allocate a v1 asset to an order item.
+  // Side effects when an asset is set: update asset status → 'allocated', stamp the
+  // shipping city as the community, and tag the buyer's GHL contact with
+  // goods-asset-{id} so the bidirectional bed↔contact link fires for buyers.
   async function linkAsset(formData: FormData) {
     'use server';
 
     const orderItemId = formData.get('order_item_id') as string;
-    const assetId = formData.get('asset_id') as string;
+    const rawAssetId = formData.get('asset_id') as string;
+    const assetId = rawAssetId?.trim() || null;
 
     if (!orderItemId) return;
 
     const supabase = createServiceClient();
 
-    // If asset_id is provided, validate it exists in v1 assets table
-    if (assetId && assetId.trim()) {
-      const { data: asset, error: assetError } = await supabase
-        .from('assets')
-        .select('unique_id')
-        .eq('unique_id', assetId.trim())
-        .single();
+    // Update the order_items row first (works whether allocating or unlinking)
+    const { error: itemErr } = await supabase
+      .from('order_items')
+      .update({ asset_id: assetId })
+      .eq('id', orderItemId);
 
-      if (assetError || !asset) {
-        console.error('Asset not found:', assetId);
-        // Still allow linking even if validation fails (v1 might be separate DB)
+    if (itemErr) {
+      console.error('Failed to link asset:', itemErr);
+      revalidatePath(`/admin/orders/${id}`);
+      return;
+    }
+
+    // If unlinking, we're done — leave the asset row alone (admin can manage it manually).
+    if (!assetId) {
+      revalidatePath(`/admin/orders/${id}`);
+      return;
+    }
+
+    // Re-read the order so we have the latest shipping address + customer info.
+    const { data: fullOrder } = await supabase
+      .from('orders')
+      .select('order_number, customer_email, customer_phone, customer_name, shipping_address, is_sponsorship, sponsored_community')
+      .eq('id', id)
+      .single();
+
+    // Pick the destination community: explicit sponsor target wins, else shipping city.
+    const shipping = (fullOrder?.shipping_address as Address | null) || null;
+    const destination =
+      fullOrder?.sponsored_community ||
+      (shipping?.city ? `${shipping.city}${shipping.state ? `, ${shipping.state}` : ''}` : null);
+
+    // Update the asset record: move status from 'ready' → 'allocated', stamp destination.
+    const { error: assetErr } = await supabase
+      .from('assets')
+      .update({
+        status: 'allocated',
+        ...(destination ? { community: destination, place: shipping?.line1 || null } : {}),
+      })
+      .eq('unique_id', assetId);
+
+    if (assetErr) {
+      console.error('Failed to update asset on allocation:', assetErr);
+    }
+
+    // Tag the buyer's GHL contact with goods-asset-{id} so the owners card on
+    // /admin/assets/{id} surfaces them. Best-effort — don't block the allocation
+    // if GHL is down.
+    if (fullOrder?.customer_email) {
+      try {
+        const result = await ghl.createInquiryContact(
+          fullOrder.customer_email,
+          fullOrder.customer_name || undefined,
+          ['goods-customer', 'goods-bed-owner', tagForAsset(assetId)],
+        );
+        if (result.success && result.contact?.id) {
+          const note = [
+            `🔗 Bed ${assetId} allocated to ${fullOrder.order_number}`,
+            destination ? `Destination: ${destination}` : null,
+            `Allocated: ${new Date().toLocaleString('en-AU')}`,
+          ]
+            .filter(Boolean)
+            .join('\n');
+          await ghl.addNote(result.contact.id, note);
+        }
+      } catch (err) {
+        console.error('[linkAsset] GHL tag failed:', err);
       }
     }
 
-    const { error } = await supabase
-      .from('order_items')
-      .update({
-        asset_id: assetId?.trim() || null,
-      })
-      .eq('id', orderItemId);
-
-    if (error) {
-      console.error('Failed to link asset:', error);
-    }
-
     revalidatePath(`/admin/orders/${id}`);
+    revalidatePath(`/admin/assets/${assetId}`);
+    revalidatePath('/admin/assets');
   }
 
   return (
@@ -213,37 +274,101 @@ export default async function OrderDetailPage({
                       </div>
                     </div>
 
-                    {/* Asset Linking Section */}
-                    <div className="mt-3 ml-20 p-3 bg-gray-50 rounded-lg">
-                      <form action={linkAsset} className="flex items-center gap-3">
-                        <input type="hidden" name="order_item_id" value={item.id} />
-                        <Label htmlFor={`asset-${item.id}`} className="text-sm text-gray-600 whitespace-nowrap">
-                          Asset ID:
-                        </Label>
-                        <Input
-                          id={`asset-${item.id}`}
-                          name="asset_id"
-                          defaultValue={item.asset_id || ''}
-                          placeholder="e.g., GB0-22-001"
-                          className="flex-1 h-8 text-sm"
-                        />
-                        <Button type="submit" size="sm" variant="outline">
-                          {item.asset_id ? 'Update' : 'Link'}
-                        </Button>
-                      </form>
+                    {/* Asset Allocation Section */}
+                    <div className="mt-3 ml-20 p-3 bg-gray-50 rounded-lg space-y-2">
+                      {(() => {
+                        // Narrow available beds to product type when we can match. The product_type
+                        // on the order_item is informal (e.g. "stretch-bed-single"); the asset row
+                        // carries "stretch_bed" / "washing_machine". Match loosely.
+                        const wantsBed = (item.product_type || item.product_name || '').toLowerCase().includes('bed');
+                        const wantsWasher = (item.product_type || item.product_name || '').toLowerCase().includes('wash');
+                        const candidates = (availableBeds || []).filter((b) => {
+                          if (wantsBed) return (b.product || '').toLowerCase().includes('bed');
+                          if (wantsWasher) return (b.product || '').toLowerCase().includes('wash');
+                          return true;
+                        });
+
+                        return (
+                          <>
+                            <form action={linkAsset} className="flex items-center gap-2">
+                              <input type="hidden" name="order_item_id" value={item.id} />
+                              <Label htmlFor={`asset-pick-${item.id}`} className="text-sm text-gray-600 whitespace-nowrap">
+                                Allocate bed:
+                              </Label>
+                              <select
+                                id={`asset-pick-${item.id}`}
+                                name="asset_id"
+                                defaultValue={item.asset_id || ''}
+                                className="flex-1 h-8 rounded border border-gray-300 px-2 text-sm bg-white"
+                              >
+                                <option value="">— pick from {candidates.length} available —</option>
+                                {item.asset_id && (
+                                  <option value={item.asset_id}>
+                                    {item.asset_id} (current)
+                                  </option>
+                                )}
+                                {candidates
+                                  .filter((b) => b.unique_id !== item.asset_id)
+                                  .map((b) => (
+                                    <option key={b.unique_id} value={b.unique_id}>
+                                      {b.unique_id}
+                                      {b.community ? ` · ${b.community}` : ''}
+                                    </option>
+                                  ))}
+                              </select>
+                              <Button type="submit" size="sm" variant="outline">
+                                {item.asset_id ? 'Update' : 'Allocate'}
+                              </Button>
+                            </form>
+
+                            <form action={linkAsset} className="flex items-center gap-2">
+                              <input type="hidden" name="order_item_id" value={item.id} />
+                              <Label htmlFor={`asset-${item.id}`} className="text-sm text-gray-600 whitespace-nowrap">
+                                Or type ID:
+                              </Label>
+                              <Input
+                                id={`asset-${item.id}`}
+                                name="asset_id"
+                                placeholder="e.g., GB0-156-7"
+                                className="flex-1 h-8 text-sm"
+                              />
+                              <Button type="submit" size="sm" variant="ghost">
+                                Link
+                              </Button>
+                            </form>
+                          </>
+                        );
+                      })()}
+
                       {item.asset_id && (
-                        <div className="mt-2 flex items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-2 pt-1">
                           <Badge className="bg-green-100 text-green-800">
                             Linked: {item.asset_id}
                           </Badge>
+                          <Link
+                            href={`/admin/assets/${item.asset_id}`}
+                            className="text-xs text-blue-600 hover:underline"
+                          >
+                            Open in admin
+                          </Link>
                           <a
-                            href={`/support?asset_id=${item.asset_id}`}
+                            href={`/bed/${item.asset_id}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-xs text-blue-600 hover:underline"
                           >
-                            View QR Support Page
+                            Public page
                           </a>
+                          <form action={linkAsset} className="inline">
+                            <input type="hidden" name="order_item_id" value={item.id} />
+                            <input type="hidden" name="asset_id" value="" />
+                            <button
+                              type="submit"
+                              className="text-xs text-red-600 hover:underline"
+                            >
+                              Unlink
+                            </button>
+                          </form>
                         </div>
                       )}
                     </div>

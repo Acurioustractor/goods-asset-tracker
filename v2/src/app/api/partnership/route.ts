@@ -58,15 +58,39 @@ export async function POST(request: NextRequest) {
       // Continue even if DB fails - still try GHL
     }
 
-    // Create contact in GHL
-    const ghlResult = await ghl.createPartnershipContact({
-      organizationName: body.organizationName,
-      contactName: body.contactName,
-      contactEmail: body.contactEmail,
-      contactPhone: body.contactPhone,
-      partnershipType: body.partnershipType,
-      message: body.message,
-    });
+    // Create contact in GHL. Washer-interest is a prospective buyer, not a partner —
+    // tag separately so reach-out segmentation stays clean.
+    const isWasherInterest = body.partnershipType === 'washer-interest';
+    let ghlResult;
+    if (isWasherInterest) {
+      ghlResult = await ghl.createInquiryContact(
+        body.contactEmail,
+        body.contactName,
+        ['goods-washer-interest'],
+      );
+      if (ghlResult.success && ghlResult.contact?.id) {
+        const note = [
+          '🌀 Washing Machine — Register Interest',
+          `Organisation: ${body.organizationName}`,
+          body.contactPhone ? `Phone: ${body.contactPhone}` : null,
+          body.howHeard ? `How heard: ${body.howHeard}` : null,
+          body.message ? `\nMessage:\n${body.message}` : null,
+          `Submitted: ${new Date().toLocaleString('en-AU')}`,
+        ]
+          .filter(Boolean)
+          .join('\n');
+        await ghl.addNote(ghlResult.contact.id, note);
+      }
+    } else {
+      ghlResult = await ghl.createPartnershipContact({
+        organizationName: body.organizationName,
+        contactName: body.contactName,
+        contactEmail: body.contactEmail,
+        contactPhone: body.contactPhone,
+        partnershipType: body.partnershipType,
+        message: body.message,
+      });
+    }
 
     console.log('[Partnership Inquiry]', {
       organization: body.organizationName,

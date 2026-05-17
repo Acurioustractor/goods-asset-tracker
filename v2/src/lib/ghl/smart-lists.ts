@@ -55,6 +55,14 @@ export const SMART_LISTS: SmartList[] = [
     hardCap: 50,
   },
   {
+    id: 'washer-interest',
+    name: 'Washing machine prospects',
+    description: 'Submitted "Register Interest" on the washing machine page. Use for product update + waitlist comms.',
+    tag: 'goods-washer-interest',
+    softCap: 50,
+    hardCap: 200,
+  },
+  {
     id: 'bed-buyers',
     name: 'Stretch Bed buyers (Stripe)',
     description:
