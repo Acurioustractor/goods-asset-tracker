@@ -1368,6 +1368,14 @@ Submitted: ${new Date().toLocaleString('en-AU')}
   },
 
   /**
+   * Generic tag-based contact search. Used by the admin reach-out tool to
+   * preview / dispatch to curated smart lists.
+   */
+  async findContactsByTag(tag: string, limit: number = 250): Promise<GHLContact[]> {
+    return searchContactsByTag(tag, limit);
+  },
+
+  /**
    * Recent SMS / WhatsApp / email previews for a single contact.
    * One API call, last-message bodies inline — meant for an admin "Recent messages"
    * teaser, not a full thread viewer (use the GHL deep link for that).
