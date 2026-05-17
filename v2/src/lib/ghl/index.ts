@@ -71,6 +71,17 @@ const STRATEGIC_PIPELINES: Record<StrategicTargetType, StrategicPipelineConfig> 
 };
 
 /**
+ * Per-asset tag — tagging is N:M, so a contact who owns 3 beds gets 3 tags
+ * (goods-asset-gb0-156-1, ...). This is the canonical bidirectional link:
+ * given any asset id, GHL can list contacts; given any contact, GHL lists assets.
+ *
+ * Tags lowercase + hyphen-safe so GHL normalises them consistently.
+ */
+export function tagForAsset(assetId: string): string {
+  return `goods-asset-${assetId.toLowerCase().replace(/[^a-z0-9-]/g, '-')}`;
+}
+
+/**
  * Format product type slug to human-readable name
  */
 function formatProductType(slug: string): string {
@@ -695,6 +706,39 @@ async function fetchAllGHLContacts(opts?: { goodsOnly?: boolean }): Promise<GHLC
 }
 
 /**
+ * Search contacts by a single tag value (e.g. "goods-asset-gb0-156-1").
+ * Returns the slim contact records — caller can re-fetch full details if needed.
+ *
+ * Powers the reverse "which contacts are linked to this bed?" lookup that the
+ * OwnersBlock uses to surface GHL-only people (e.g. someone who only WhatsApped
+ * in via the support number and never claimed the bed).
+ */
+async function searchContactsByTag(tag: string, limit: number = 25): Promise<GHLContact[]> {
+  if (!GHL_ENABLED) return [];
+  try {
+    const response = await ghlRequest<{ contacts?: GHLContact[] }>(
+      '/contacts/search',
+      'POST',
+      {
+        locationId: GHL_LOCATION_ID,
+        pageLimit: limit,
+        filters: [
+          {
+            field: 'tags',
+            operator: 'contains',
+            value: tag,
+          },
+        ],
+      },
+    );
+    return response.contacts || [];
+  } catch (error) {
+    console.error('[GHL] Error searching contacts by tag:', tag, error);
+    return [];
+  }
+}
+
+/**
  * Fetch all tags from the GHL location
  */
 async function fetchGHLTags(): Promise<GHLTag[]> {
@@ -766,7 +810,11 @@ export const ghl = {
       const upsert = await createOrUpdateContact({
         phone,
         name: opts.contactName || undefined,
-        tags: ['goods-bed-scan', ...(opts.tags || [])],
+        tags: [
+          'goods-bed-scan',
+          ...(opts.assetId ? [tagForAsset(opts.assetId)] : []),
+          ...(opts.tags || []),
+        ],
         source: opts.assetId ? `Bed scan ${opts.assetId}` : 'Bed scan reminder',
       });
       const contactId = upsert.contact?.id;
@@ -858,7 +906,7 @@ export const ghl = {
       email: isEmail ? data.userContact : '',
       phone: isEmail ? undefined : data.userContact,
       name: data.userName,
-      tags: [TAGS.supportRequest],
+      tags: [TAGS.supportRequest, tagForAsset(data.assetId)],
       customFields: {
         ...(CUSTOM_FIELDS.assetId && { [CUSTOM_FIELDS.assetId]: data.assetId }),
         ...(CUSTOM_FIELDS.community && data.community && { [CUSTOM_FIELDS.community]: data.community }),
@@ -1082,7 +1130,7 @@ Synced: ${new Date().toLocaleString('en-AU')}
     const isWasher = data.productType.toLowerCase().includes('wash') ||
                      data.productType.toLowerCase().includes('machine');
 
-    const tags = [TAGS.recipient];
+    const tags = [TAGS.recipient, tagForAsset(data.assetId)];
     if (isBed) tags.push(TAGS.claimedBed);
     if (isWasher) tags.push(TAGS.claimedWasher);
 
@@ -1140,7 +1188,7 @@ Claimed: ${new Date().toLocaleString('en-AU')}
     const isWasher = productType.toLowerCase().includes('wash') ||
                      productType.toLowerCase().includes('machine');
 
-    const tags: string[] = [];
+    const tags: string[] = [tagForAsset(assetId)];
     if (isBed) tags.push(TAGS.claimedBed);
     if (isWasher) tags.push(TAGS.claimedWasher);
 
@@ -1175,6 +1223,7 @@ Claimed: ${new Date().toLocaleString('en-AU')}
       email: '',
       phone: data.phone,
       name: data.name,
+      tags: data.assetId ? [tagForAsset(data.assetId)] : [],
       source: 'User Message',
     });
 
@@ -1206,6 +1255,7 @@ Sent: ${new Date().toLocaleString('en-AU')}
       email: '',
       phone: data.phone,
       name: data.name,
+      tags: data.assetId ? [tagForAsset(data.assetId)] : [],
       source: 'User Request',
     });
 
@@ -1248,6 +1298,16 @@ Submitted: ${new Date().toLocaleString('en-AU')}
    */
   async getContacts(opts?: { goodsOnly?: boolean }): Promise<GHLContact[]> {
     return fetchAllGHLContacts(opts);
+  },
+
+  /**
+   * Reverse lookup: which GHL contacts are linked to a given bed/machine?
+   * Returns contacts tagged with the per-asset tag (goods-asset-{slug}).
+   * Use this in admin views to surface people who exist in GHL but not in our v2 DB
+   * (e.g. someone who messaged the support number without claiming via QR).
+   */
+  async findContactsByAssetId(assetId: string, limit: number = 25): Promise<GHLContact[]> {
+    return searchContactsByTag(tagForAsset(assetId), limit);
   },
 
   /**

@@ -1,13 +1,15 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
+import { ghl } from '@/lib/ghl';
 
 /**
  * Bed owners — derived "who is connected to this bed?" view.
  *
- * Resolves across four sources without requiring a new mapping table:
- *   1. Stripe orders  (order_items.asset_id → orders.customer_*)
- *   2. QR claims      (user_assets.profile_id → profiles.phone/email)
- *   3. Support tickets (tickets.asset_id → user_contact, user_name)
+ * Resolves across five sources without requiring a new mapping table:
+ *   1. Stripe orders     (order_items.asset_id → orders.customer_*)
+ *   2. QR claims         (user_assets.profile_id → profiles.phone/email)
+ *   3. Support tickets   (tickets.asset_id → user_contact, user_name)
  *   4. Story submissions (compassion_content.asset_id → created_by)
+ *   5. GHL contacts      (tag `goods-asset-{slug}` → name/phone/email)
  *
  * Each source produces a `BedOwnerLink`. `resolveBedOwners()` returns them
  * grouped by best-effort identity (phone preferred, else email, else name)
@@ -18,7 +20,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
  * table and have writers upsert into it.
  */
 
-export type BedOwnerSource = 'purchase' | 'claim' | 'support' | 'story';
+export type BedOwnerSource = 'purchase' | 'claim' | 'support' | 'story' | 'ghl';
 
 export interface BedOwnerLink {
   source: BedOwnerSource;
@@ -39,8 +41,10 @@ export interface BedOwnerGroup {
   primaryName: string | null;
   primaryEmail: string | null;
   primaryPhone: string | null;
+  /** GHL contact id if this person has been found in GHL — lets the admin "Open in GHL" */
+  ghlContactId: string | null;
   links: BedOwnerLink[];
-  /** Most authoritative source seen, in this order: purchase > claim > support > story */
+  /** Most authoritative source seen, in this order: purchase > claim > support > story > ghl */
   primarySource: BedOwnerSource;
 }
 
@@ -49,6 +53,7 @@ const SOURCE_RANK: Record<BedOwnerSource, number> = {
   claim: 1,
   support: 2,
   story: 3,
+  ghl: 4,
 };
 
 function looksLikeEmail(value: string | null | undefined): value is string {
@@ -202,6 +207,25 @@ async function loadStoryContacts(supabase: SupabaseClient, assetId: string): Pro
     });
 }
 
+async function loadGhlOwners(assetId: string): Promise<BedOwnerLink[]> {
+  try {
+    const contacts = await ghl.findContactsByAssetId(assetId, 25);
+    return contacts.map((c) => ({
+      source: 'ghl' as const,
+      assetId,
+      name: c.contactName || [c.firstName, c.lastName].filter(Boolean).join(' ') || null,
+      email: c.email,
+      phone: c.phone,
+      ghlContactId: c.id,
+      detail: c.source ? `GHL contact (${c.source})` : 'GHL contact',
+      linkedAt: c.dateAdded || null,
+    }));
+  } catch (err) {
+    console.error('[bed-owners] GHL lookup failed:', err);
+    return [];
+  }
+}
+
 /**
  * Resolve every known link for a single bed, grouped by identity.
  * Empty array = bed has no recipient on record yet.
@@ -210,13 +234,14 @@ export async function resolveBedOwners(
   supabase: SupabaseClient,
   assetId: string,
 ): Promise<BedOwnerGroup[]> {
-  const [orders, claims, tickets, stories] = await Promise.all([
+  const [orders, claims, tickets, stories, ghlContacts] = await Promise.all([
     loadOrderOwners(supabase, assetId),
     loadClaimOwners(supabase, assetId),
     loadTicketContacts(supabase, assetId),
     loadStoryContacts(supabase, assetId),
+    loadGhlOwners(assetId),
   ]);
-  const allLinks: BedOwnerLink[] = [...orders, ...claims, ...tickets, ...stories];
+  const allLinks: BedOwnerLink[] = [...orders, ...claims, ...tickets, ...stories, ...ghlContacts];
   if (allLinks.length === 0) return [];
 
   const byIdentity = new Map<string, BedOwnerLink[]>();
@@ -236,6 +261,7 @@ export async function resolveBedOwners(
       primaryName: links.map((l) => l.name).find(Boolean) ?? null,
       primaryEmail: links.map((l) => l.email).find(Boolean) ?? null,
       primaryPhone: links.map((l) => l.phone).find(Boolean) ?? null,
+      ghlContactId: links.map((l) => l.ghlContactId).find(Boolean) ?? null,
       links,
       primarySource: primary.source,
     });
@@ -269,4 +295,5 @@ export const BED_OWNER_SOURCE_LABEL: Record<BedOwnerSource, string> = {
   claim: 'Recipient',
   support: 'Support contact',
   story: 'Story sharer',
+  ghl: 'GHL contact',
 };

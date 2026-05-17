@@ -234,9 +234,15 @@ export default async function AssetEditPage({
 }
 
 const SUPPORT_PHONE = (process.env.NEXT_PUBLIC_GOODS_SUPPORT_PHONE || '+61468052660').replace(/\s+/g, '');
+const GHL_LOCATION_ID = process.env.GHL_LOCATION_ID || '';
 
 function whatsappHref(phone: string, message: string): string {
   return `https://wa.me/${phone.replace(/^\+/, '').replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
+}
+
+function ghlContactHref(contactId: string): string | null {
+  if (!GHL_LOCATION_ID) return null;
+  return `https://app.gohighlevel.com/v2/location/${GHL_LOCATION_ID}/contacts/detail/${contactId}`;
 }
 
 function OwnersBlock({ owners }: { owners: BedOwnerGroup[] }) {
@@ -247,7 +253,8 @@ function OwnersBlock({ owners }: { owners: BedOwnerGroup[] }) {
           <h2 className="mb-1 text-base font-semibold">Owners &amp; contacts</h2>
           <p className="text-sm text-gray-500">
             Nobody is connected to this bed yet. Connections appear here when someone buys it,
-            claims it via QR scan, opens a support ticket, or shares a story.
+            claims it via QR scan, opens a support ticket, shares a story, or messages the
+            support number tagged with this bed.
           </p>
           <p className="mt-2 text-xs text-gray-400">
             GHL inbox: <a href="https://app.gohighlevel.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">app.gohighlevel.com</a>
@@ -285,9 +292,21 @@ function OwnersBlock({ owners }: { owners: BedOwnerGroup[] }) {
                     )}
                   </div>
                 </div>
-                <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide text-emerald-700">
-                  {BED_OWNER_SOURCE_LABEL[group.primarySource]}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide text-emerald-700">
+                    {BED_OWNER_SOURCE_LABEL[group.primarySource]}
+                  </span>
+                  {group.ghlContactId && ghlContactHref(group.ghlContactId) && (
+                    <a
+                      href={ghlContactHref(group.ghlContactId)!}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 rounded-full border border-indigo-200 bg-indigo-50 px-2 py-0.5 text-[11px] font-medium text-indigo-700 hover:bg-indigo-100"
+                    >
+                      <ExternalLink className="h-3 w-3" /> GHL
+                    </a>
+                  )}
+                </div>
               </div>
 
               {/* Quick contact actions */}

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/server';
-import { ghl } from '@/lib/ghl';
+import { ghl, tagForAsset } from '@/lib/ghl';
 
 const EL_SUPABASE_URL = process.env.EMPATHY_LEDGER_SUPABASE_URL || '';
 const EL_SUPABASE_KEY = process.env.EMPATHY_LEDGER_SUPABASE_KEY || '';
@@ -208,7 +208,12 @@ export async function POST(
       const result = await ghl.createInquiryContact(
         isEmail ? contact : '',
         name || undefined,
-        ['goods-story-submitter', consentToContact ? 'goods-consent-to-contact' : 'goods-no-contact'],
+        [
+          'goods-story-submitter',
+          consentToContact ? 'goods-consent-to-contact' : 'goods-no-contact',
+          // Per-asset tag = bidirectional bed↔contact link in GHL
+          tagForAsset(asset.unique_id),
+        ],
       );
       if (result.success && result.contact?.id) {
         const note = [
