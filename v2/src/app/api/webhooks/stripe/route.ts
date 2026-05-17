@@ -114,13 +114,21 @@ async function handleCheckoutSessionCompleted(
       (item: { is_sponsorship?: boolean }) => item.is_sponsorship
     )?.sponsored_community || null;
 
-  // Extract shipping address (type assertion needed as Stripe types may not include shipping_details)
-  const shippingDetails = (fullSession as Stripe.Checkout.Session & {
-    shipping_details?: {
-      name?: string | null;
-      address?: Stripe.Address | null;
-    } | null
-  }).shipping_details;
+  // Extract shipping address. Stripe API 2025-12-15.clover moved this from
+  // session.shipping_details to session.collected_information.shipping_details.
+  // We read the new path first, fall back to the legacy one so older sessions
+  // (replayed via webhook resend) still work, then fall back to the billing
+  // address since most AU customers tick "use billing as shipping" anyway.
+  const sessionAny = fullSession as Stripe.Checkout.Session & {
+    shipping_details?: { name?: string | null; address?: Stripe.Address | null } | null;
+    collected_information?: {
+      shipping_details?: { name?: string | null; address?: Stripe.Address | null } | null;
+    } | null;
+  };
+  const shippingDetails =
+    sessionAny.collected_information?.shipping_details ||
+    sessionAny.shipping_details ||
+    null;
   const shippingAddress = shippingDetails?.address
     ? {
         line1: shippingDetails.address.line1 || '',
