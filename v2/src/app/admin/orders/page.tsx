@@ -52,13 +52,19 @@ export default async function AdminOrdersPage({
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-wrap justify-between items-center gap-3">
         <div>
           <h1 className="text-2xl font-bold">Orders</h1>
           <p className="text-gray-500 mt-1">
             {count} total order{count !== 1 ? 's' : ''}
           </p>
         </div>
+        <Link
+          href="/admin/orders/launch-checklist"
+          className="inline-flex items-center gap-1 rounded border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-medium text-amber-800 hover:bg-amber-100"
+        >
+          Stripe launch checklist →
+        </Link>
       </div>
 
       {/* Status Filters */}
