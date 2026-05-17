@@ -705,6 +705,63 @@ async function fetchAllGHLContacts(opts?: { goodsOnly?: boolean }): Promise<GHLC
   return allContacts;
 }
 
+export interface GHLConversationSummary {
+  id: string;
+  contactId: string;
+  /** Slim preview from the conversations list — covers SMS, email, WhatsApp, Live Chat */
+  lastMessageBody: string | null;
+  lastMessageType: string | null;
+  lastMessageDate: string | null;
+  lastMessageDirection: 'inbound' | 'outbound' | null;
+  unreadCount: number;
+}
+
+/**
+ * Pull the most recent conversations for a contact. One API call returns
+ * last-message previews across all channels (SMS, WhatsApp, email, live chat),
+ * which is exactly what we need to surface a "Recent messages" inline panel
+ * without fetching full message threads.
+ */
+async function fetchRecentConversations(
+  contactId: string,
+  limit: number = 5,
+): Promise<GHLConversationSummary[]> {
+  if (!GHL_ENABLED) return [];
+  try {
+    const response = await ghlRequest<{
+      conversations?: Array<{
+        id?: string;
+        contactId?: string;
+        lastMessageBody?: string | null;
+        lastMessageType?: string | null;
+        lastMessageDate?: string | null;
+        lastMessageDirection?: string | null;
+        unreadCount?: number;
+      }>;
+    }>(
+      `/conversations/search?locationId=${encodeURIComponent(GHL_LOCATION_ID)}&contactId=${encodeURIComponent(contactId)}&limit=${limit}`,
+    );
+    const conversations = response.conversations || [];
+    return conversations
+      .filter((c) => c.id && c.contactId)
+      .map((c) => ({
+        id: c.id as string,
+        contactId: c.contactId as string,
+        lastMessageBody: c.lastMessageBody || null,
+        lastMessageType: c.lastMessageType || null,
+        lastMessageDate: c.lastMessageDate || null,
+        lastMessageDirection:
+          c.lastMessageDirection === 'inbound' || c.lastMessageDirection === 'outbound'
+            ? c.lastMessageDirection
+            : null,
+        unreadCount: c.unreadCount || 0,
+      }));
+  } catch (error) {
+    console.error('[GHL] Error fetching conversations for contact:', contactId, error);
+    return [];
+  }
+}
+
 /**
  * Search contacts by a single tag value (e.g. "goods-asset-gb0-156-1").
  * Returns the slim contact records — caller can re-fetch full details if needed.
@@ -1308,6 +1365,15 @@ Submitted: ${new Date().toLocaleString('en-AU')}
    */
   async findContactsByAssetId(assetId: string, limit: number = 25): Promise<GHLContact[]> {
     return searchContactsByTag(tagForAsset(assetId), limit);
+  },
+
+  /**
+   * Recent SMS / WhatsApp / email previews for a single contact.
+   * One API call, last-message bodies inline — meant for an admin "Recent messages"
+   * teaser, not a full thread viewer (use the GHL deep link for that).
+   */
+  async getRecentConversations(contactId: string, limit: number = 5): Promise<GHLConversationSummary[]> {
+    return fetchRecentConversations(contactId, limit);
   },
 
   /**

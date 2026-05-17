@@ -9,6 +9,7 @@ import {
   BED_OWNER_SOURCE_LABEL,
   type BedOwnerGroup,
 } from '@/lib/data/bed-owners';
+import { ghl, type GHLConversationSummary } from '@/lib/ghl';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -59,8 +60,21 @@ export default async function AssetEditPage({
   const lastEvent = events[0];
   const daysSilent = lastEvent ? Math.floor((Date.now() - new Date(lastEvent.created_at).getTime()) / 86400000) : null;
 
-  // Resolve the "who is connected to this bed?" view across orders / claims / tickets / stories
+  // Resolve the "who is connected to this bed?" view across orders / claims / tickets / stories / GHL
   const owners = await resolveBedOwners(supabase, asset.unique_id);
+
+  // For owners that have a known GHL contact id, pull their recent message previews
+  // in parallel so the OwnersBlock can render inline thread teasers without re-fetching.
+  const contactIdsForConvos = owners
+    .map((g) => g.ghlContactId)
+    .filter((id): id is string => Boolean(id));
+  const recentConvosByContactId = new Map<string, GHLConversationSummary[]>();
+  if (contactIdsForConvos.length > 0) {
+    const results = await Promise.all(
+      contactIdsForConvos.map(async (id) => [id, await ghl.getRecentConversations(id, 3)] as const),
+    );
+    for (const [id, convos] of results) recentConvosByContactId.set(id, convos);
+  }
 
   return (
     <div className="space-y-6 pb-16">
@@ -189,8 +203,8 @@ export default async function AssetEditPage({
         </Card>
       </div>
 
-      {/* Owners & contacts (derived from orders + claims + tickets + stories) */}
-      <OwnersBlock owners={owners} />
+      {/* Owners & contacts (derived from orders + claims + tickets + stories + GHL) */}
+      <OwnersBlock owners={owners} recentConvos={recentConvosByContactId} />
 
       {/* Recent telemetry events */}
       {events.length > 0 && (
@@ -245,7 +259,65 @@ function ghlContactHref(contactId: string): string | null {
   return `https://app.gohighlevel.com/v2/location/${GHL_LOCATION_ID}/contacts/detail/${contactId}`;
 }
 
-function OwnersBlock({ owners }: { owners: BedOwnerGroup[] }) {
+function ConvoPreview({ convos }: { convos: GHLConversationSummary[] }) {
+  if (convos.length === 0) return null;
+  const labelFor = (type: string | null): string => {
+    if (!type) return 'Message';
+    if (type.includes('SMS')) return 'SMS';
+    if (type.includes('WHATSAPP') || type.includes('Whatsapp')) return 'WhatsApp';
+    if (type.includes('EMAIL')) return 'Email';
+    if (type.includes('LIVE_CHAT')) return 'Live chat';
+    if (type.includes('CALL')) return 'Call';
+    return type.replace(/^TYPE_/, '').toLowerCase();
+  };
+  return (
+    <div className="mt-3 space-y-1.5 rounded-md border border-indigo-100 bg-indigo-50/60 px-3 py-2">
+      <div className="text-[11px] font-medium uppercase tracking-wide text-indigo-700">Recent messages</div>
+      {convos.map((c) => (
+        <div key={c.id} className="text-xs">
+          <div className="flex flex-wrap items-baseline gap-2">
+            <span
+              className={`inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-medium uppercase ${
+                c.lastMessageDirection === 'inbound'
+                  ? 'bg-emerald-100 text-emerald-800'
+                  : 'bg-stone-100 text-stone-700'
+              }`}
+            >
+              {c.lastMessageDirection === 'inbound' ? '← in' : 'out →'}
+            </span>
+            <span className="text-[10px] uppercase tracking-wide text-indigo-700">
+              {labelFor(c.lastMessageType)}
+            </span>
+            {c.lastMessageDate && (
+              <span className="text-[10px] text-gray-500">
+                {new Date(c.lastMessageDate).toLocaleString('en-AU', {
+                  day: 'numeric',
+                  month: 'short',
+                  hour: 'numeric',
+                  minute: '2-digit',
+                })}
+              </span>
+            )}
+            {c.unreadCount > 0 && (
+              <span className="inline-flex items-center rounded-full bg-red-100 px-1.5 py-0.5 text-[10px] font-medium text-red-700">
+                {c.unreadCount} unread
+              </span>
+            )}
+          </div>
+          <p className="mt-0.5 line-clamp-2 text-gray-700">{c.lastMessageBody || <em className="text-gray-400">(no preview)</em>}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function OwnersBlock({
+  owners,
+  recentConvos,
+}: {
+  owners: BedOwnerGroup[];
+  recentConvos: Map<string, GHLConversationSummary[]>;
+}) {
   if (owners.length === 0) {
     return (
       <Card>
@@ -347,6 +419,11 @@ function OwnersBlock({ owners }: { owners: BedOwnerGroup[] }) {
                     </a>
                   )}
                 </div>
+              )}
+
+              {/* Recent GHL conversation previews (SMS / WhatsApp / Email) — when a contact id is known */}
+              {group.ghlContactId && (
+                <ConvoPreview convos={recentConvos.get(group.ghlContactId) || []} />
               )}
 
               {/* Source links — every touch we know about for this person */}
