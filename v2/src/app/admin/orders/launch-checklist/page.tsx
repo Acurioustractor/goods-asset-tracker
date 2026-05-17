@@ -242,9 +242,31 @@ export default async function LaunchChecklistPage() {
   const failCount = checks.filter((c) => c.status === 'fail').length;
   const totalCount = checks.length;
   const allGreen = failCount === 0 && checks.every((c) => c.status !== 'fail');
+  // Live mode = secret key starts with sk_live_. Used to flip the banner from
+  // "Not ready" amber → "LIVE" green even if a few rows are still 'manual'.
+  const isLiveMode = (process.env.STRIPE_SECRET_KEY || '').startsWith('sk_live_');
 
   return (
     <div className="space-y-6 pb-16">
+      {/* Live mode banner — only shows when production Stripe keys are wired in */}
+      {isLiveMode && (
+        <div className="rounded-xl border border-emerald-500 bg-emerald-50 p-4">
+          <div className="flex items-center gap-3">
+            <div className="relative flex h-3 w-3">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500"></span>
+            </div>
+            <div>
+              <h2 className="text-lg font-bold text-emerald-900">Stripe is LIVE</h2>
+              <p className="text-sm text-emerald-800">
+                Real cards will be charged on this site. Test all flows in incognito with a hidden SKU and refund
+                from the Stripe dashboard before sharing the shop URL publicly.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       <header>
         <Link href="/admin/orders" className="text-sm text-gray-500 hover:text-gray-700">
           &larr; Back to Orders

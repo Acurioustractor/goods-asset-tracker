@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
 import { ghl } from '@/lib/ghl';
 import { findSmartList, estimateSegments, estimateCostCents } from '@/lib/ghl/smart-lists';
+import { requireAdmin } from '@/lib/auth/admin';
 
 export const runtime = 'nodejs';
 export const maxDuration = 60; // Vercel — allow up to 60s for a batch dispatch
@@ -10,24 +10,15 @@ export const maxDuration = 60; // Vercel — allow up to 60s for a batch dispatc
  * Dispatch a single SMS to every contact matching a smart-list tag.
  *
  * Guardrails:
- *   - Admin auth required.
+ *   - Admin auth required (with local-dev bypass).
  *   - Hard cap of 250 recipients per call (route refuses larger).
  *   - SmartList.hardCap is enforced when listId is supplied.
  *   - dryRun=true returns the cost estimate + recipient summary without sending.
  *   - 250ms delay between sends to respect GHL's rate limit.
  */
 export async function POST(request: NextRequest) {
-  // Auth check
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  const isAdmin =
-    user.app_metadata?.role === 'admin' ||
-    user.user_metadata?.role === 'admin' ||
-    process.env.ADMIN_EMAILS?.split(',').includes(user.email || '');
-  if (!isAdmin) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  const guard = await requireAdmin(request);
+  if (guard) return guard;
 
   let body: {
     listId?: string;

@@ -1,26 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
 import { ghl } from '@/lib/ghl';
 import { findSmartList } from '@/lib/ghl/smart-lists';
+import { requireAdmin } from '@/lib/auth/admin';
 
 export const runtime = 'nodejs';
 
 /**
  * Preview a smart list — returns the count + sample of contacts that would
- * receive a message. Admin-only.
+ * receive a message. Admin-only (with local-dev bypass).
  */
 export async function GET(request: NextRequest) {
-  // Auth check
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  const isAdmin =
-    user.app_metadata?.role === 'admin' ||
-    user.user_metadata?.role === 'admin' ||
-    process.env.ADMIN_EMAILS?.split(',').includes(user.email || '');
-  if (!isAdmin) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  const guard = await requireAdmin(request);
+  if (guard) return guard;
 
   const listId = request.nextUrl.searchParams.get('listId');
   const customTag = request.nextUrl.searchParams.get('tag');
