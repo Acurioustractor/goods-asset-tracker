@@ -89,6 +89,7 @@ const impactMetrics = [
 
 const fundingPartners = [
   'Snow Foundation',
+  'Centrecorp Foundation',
   'Vincent Fairfax Family Foundation',
   'FRRR (Backing the Future)',
   'AMP Spark',

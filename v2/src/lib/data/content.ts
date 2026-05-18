@@ -302,6 +302,7 @@ export const partners = {
   ],
   fundingPartners: [
     { name: 'Snow Foundation', type: 'Major strategic partner' },
+    { name: 'Centrecorp Foundation', type: 'Central Australia bed deployment support' },
     { name: 'Vincent Fairfax Family Foundation', type: 'Grant funding' },
     { name: 'FRRR (Backing the Future)', type: 'Grant funding' },
     { name: 'AMP Spark', type: 'Program funding' },
