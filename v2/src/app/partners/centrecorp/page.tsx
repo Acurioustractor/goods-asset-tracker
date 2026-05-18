@@ -168,9 +168,22 @@ const articleJsonLd = {
     url: 'https://www.goodsoncountry.com',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://www.goodsoncountry.com/logo.png',
+      url: 'https://www.goodsoncountry.com/logo.svg',
     },
   },
+  isPartOf: {
+    '@type': 'WebSite',
+    '@id': 'https://www.goodsoncountry.com/#website',
+    name: 'Goods on Country',
+  },
+  keywords: [
+    'Goods on Country Centrecorp',
+    'Centrecorp Foundation Goods on Country',
+    'A Curious Tractor Centrecorp',
+    'Utopia Homelands beds',
+    'Oonchiumpa Good News Story',
+    'Central Australia bed delivery',
+  ],
   about: [
     'Goods on Country Centrecorp partnership',
     'Centrecorp Foundation support',
@@ -192,6 +205,26 @@ const articleJsonLd = {
       name: 'Utopia Homelands',
     },
   ],
+};
+
+const videoJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: 'Oonchiumpa Good News Story video',
+  description:
+    'Community story video connected to the Goods on Country, A Curious Tractor, Oonchiumpa and Centrecorp Foundation Utopia Homelands bed delivery record.',
+  thumbnailUrl: [
+    'https://www.goodsoncountry.com/video/partners/centrecorp/utopia-good-news-full-poster.jpg',
+  ],
+  uploadDate: '2026-05-18T18:00:00+09:30',
+  duration: 'PT1M13S',
+  contentUrl: 'https://www.goodsoncountry.com/video/partners/centrecorp/utopia-good-news-full.mp4',
+  url: PAGE_URL,
+  publisher: {
+    '@type': 'Organization',
+    '@id': 'https://www.goodsoncountry.com/#organization',
+    name: 'Goods on Country',
+  },
 };
 
 const breadcrumbJsonLd = {
@@ -337,6 +370,7 @@ export default function CentrecorpPartnershipPage() {
   return (
     <main className="min-h-screen" style={{ backgroundColor: CREAM, color: CHARCOAL }}>
       <JsonLd data={articleJsonLd} />
+      <JsonLd data={videoJsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
 
       <section className="px-5 sm:px-8 pt-12 sm:pt-16 pb-12 max-w-5xl mx-auto">

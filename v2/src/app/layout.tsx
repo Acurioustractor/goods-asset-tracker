@@ -25,6 +25,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.goodsoncountry.com'),
+  applicationName: 'Goods on Country',
   title: {
     default: 'Goods on Country',
     template: '%s · Goods on Country',
@@ -40,25 +42,52 @@ export const metadata: Metadata = {
     'recycled plastic',
     'washing machines',
     'Australia',
+    'Goods on Country',
+    'A Curious Tractor',
+    'remote community beds',
+    'recycled plastic beds',
+    'Central Australia',
   ],
+  alternates: {
+    canonical: '/',
+  },
   authors: [{ name: 'Goods on Country' }],
+  creator: 'Goods on Country',
+  publisher: 'Goods on Country',
+  category: 'Social enterprise',
   openGraph: {
     title: 'Goods on Country',
     description:
       'Beds, washing machines, and a manufacturing model that stays with the communities it serves.',
+    url: '/',
     type: 'website',
     locale: 'en_AU',
     siteName: 'Goods on Country',
+    images: [
+      {
+        url: '/images/hero/stretch-bed-on-country.jpg',
+        width: 1200,
+        height: 800,
+        alt: 'The Stretch Bed on Country by Goods on Country',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Goods on Country',
     description:
       'Beds, washing machines, and a manufacturing model that stays with the communities it serves.',
+    images: ['/images/hero/stretch-bed-on-country.jpg'],
   },
   robots: {
     index: true,
     follow: true,
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/logo.svg', type: 'image/svg+xml' },
+    ],
   },
   manifest: '/manifest.json',
 };

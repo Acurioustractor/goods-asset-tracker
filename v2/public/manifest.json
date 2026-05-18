@@ -1,13 +1,12 @@
 {
-  "name": "Goods Production",
-  "short_name": "Production",
-  "description": "Shift logging for Goods on Country production facility",
-  "start_url": "/production",
+  "name": "Goods on Country",
+  "short_name": "Goods",
+  "description": "Goods on Country builds and delivers Stretch Beds and practical household infrastructure for remote First Nations communities across Australia.",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#1a1a1a",
+  "background_color": "#FDF8F3",
+  "theme_color": "#C45C3E",
   "icons": [
-    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+    { "src": "/logo.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any" }
   ]
 }

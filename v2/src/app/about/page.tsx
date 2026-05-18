@@ -6,6 +6,23 @@ export const metadata: Metadata = {
   title: 'About',
   description:
     'Goods on Country is a social enterprise designing, manufacturing, and transferring essential health hardware to remote First Nations communities across Australia.',
+  alternates: {
+    canonical: 'https://www.goodsoncountry.com/about',
+  },
+  openGraph: {
+    title: 'About Goods on Country',
+    description:
+      'Goods on Country designs, manufactures and transfers practical health hardware for remote First Nations communities across Australia.',
+    url: 'https://www.goodsoncountry.com/about',
+    images: [
+      {
+        url: 'https://www.goodsoncountry.com/images/people/xavier-stretch-bed-alice-springs.jpg',
+        width: 1200,
+        height: 800,
+        alt: 'Xavier with his Stretch Bed at Oonchiumpa, Alice Springs',
+      },
+    ],
+  },
 };
 
 const CREAM = '#FDF8F3';

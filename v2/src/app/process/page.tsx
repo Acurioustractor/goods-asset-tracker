@@ -7,7 +7,25 @@ import { MediaSlot, VideoSlot } from '@/components/ui/media-slot';
 
 export const metadata = {
   title: 'How It\'s Made',
-  description: 'Follow the journey of a Stretch Bed — from recycled plastic to community-owned sleeping solutions.',
+  description:
+    'Follow the Stretch Bed journey from recycled HDPE plastic to flat-pack bed components, community assembly and on-country manufacturing.',
+  alternates: {
+    canonical: 'https://www.goodsoncountry.com/process',
+  },
+  openGraph: {
+    title: 'How the Stretch Bed Is Made · Goods on Country',
+    description:
+      'Recycled plastic collection, pressing, CNC cutting and community assembly for the Goods on Country Stretch Bed.',
+    url: 'https://www.goodsoncountry.com/process',
+    images: [
+      {
+        url: 'https://www.goodsoncountry.com/images/process/container-factory.jpg',
+        width: 1200,
+        height: 900,
+        alt: 'Containerised recycled plastic production plant for Stretch Bed components',
+      },
+    ],
+  },
 };
 
 function StepIcon({ icon, step }: { icon: string; step: number }) {

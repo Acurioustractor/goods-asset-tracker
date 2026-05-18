@@ -14,7 +14,25 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Impact Model — Goods on Country',
-  description: 'Five-dimension impact framework measuring health, environmental, economic, community ownership, and production efficiency outcomes.',
+  description:
+    'Goods on Country impact model for health, environmental, economic, community ownership and production outcomes from Stretch Beds and practical household infrastructure.',
+  alternates: {
+    canonical: 'https://www.goodsoncountry.com/impact',
+  },
+  openGraph: {
+    title: 'Goods on Country Impact Model',
+    description:
+      'Impact reporting for Stretch Beds, recycled plastic, community ownership and practical household infrastructure in remote Australia.',
+    url: 'https://www.goodsoncountry.com/impact',
+    images: [
+      {
+        url: 'https://www.goodsoncountry.com/images/media-pack/community-testing-bed-golden-hour.jpg',
+        width: 1200,
+        height: 900,
+        alt: 'Community member testing a Goods on Country Stretch Bed',
+      },
+    ],
+  },
 };
 
 // ---------------------------------------------------------------------------

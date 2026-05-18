@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Goods on Country logo</title>
+  <desc id="desc">Goods on Country wordmark in a warm cream square.</desc>
+  <rect width="512" height="512" rx="64" fill="#FDF8F3"/>
+  <path d="M76 76h360v360H76z" fill="none" stroke="#C45C3E" stroke-width="16"/>
+  <text x="256" y="230" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="94" fill="#2E2E2E">Goods</text>
+  <text x="256" y="292" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="34" letter-spacing="5" fill="#8B9D77">ON COUNTRY</text>
+  <path d="M150 342h212" stroke="#C45C3E" stroke-width="12" stroke-linecap="round"/>
+</svg>

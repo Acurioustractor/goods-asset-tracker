@@ -12,10 +12,36 @@ import { CyclingImage } from '@/components/pitch/cycling-image';
 import { media } from '@/lib/data/media';
 import { quotes } from '@/lib/data/content';
 import { STRETCH_BED } from '@/lib/data/products';
+import { BreadcrumbJsonLd, StretchBedProductJsonLd } from '@/components/seo';
 
 export const metadata = {
   title: 'The Stretch Bed',
-  description: 'Flat-packable, washable bed made from recycled HDPE plastic, galvanised steel poles, and heavy-duty canvas. 26kg, 200kg capacity, assembles in 5 minutes.',
+  description:
+    'Flat-packable, washable Stretch Bed made from recycled HDPE plastic, galvanised steel poles, and heavy-duty canvas. 26kg, 200kg capacity, assembles in 5 minutes.',
+  alternates: {
+    canonical: 'https://www.goodsoncountry.com/shop/stretch-bed-single',
+  },
+  openGraph: {
+    title: 'The Stretch Bed · Goods on Country',
+    description:
+      'A washable, flat-pack bed for remote Australia: recycled HDPE plastic, galvanised steel poles, and heavy-duty canvas.',
+    url: 'https://www.goodsoncountry.com/shop/stretch-bed-single',
+    images: [
+      {
+        url: 'https://www.goodsoncountry.com/images/product/stretch-bed-hero.jpg',
+        width: 1200,
+        height: 900,
+        alt: 'The Stretch Bed with recycled plastic legs and heavy-duty canvas',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'The Stretch Bed · Goods on Country',
+    description:
+      'A washable, flat-pack bed for remote Australia: recycled HDPE plastic, galvanised steel poles, and heavy-duty canvas.',
+    images: ['https://www.goodsoncountry.com/images/product/stretch-bed-hero.jpg'],
+  },
 };
 
 const product = {
@@ -60,6 +86,14 @@ function formatPrice(amount: number, currency: string = 'AUD'): string {
 export default function StretchBedPage() {
   return (
     <main className="py-8 md:py-12">
+      <StretchBedProductJsonLd />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Goods on Country', path: '/' },
+          { name: 'Shop', path: '/shop' },
+          { name: STRETCH_BED.name, path: '/shop/stretch-bed-single' },
+        ]}
+      />
       <div className="container mx-auto px-4">
         {/* Breadcrumb */}
         <nav className="mb-6 text-sm">

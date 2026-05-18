@@ -5,7 +5,25 @@ import { PartnershipForm } from '@/components/partnership-form';
 
 export const metadata = {
   title: 'Partner With Us',
-  description: 'Sponsor beds, license the model, or partner on distribution. Join the movement for community-owned manufacturing.',
+  description:
+    'Sponsor beds, support Stretch Bed delivery, license the model, or partner on remote community distribution and on-country manufacturing.',
+  alternates: {
+    canonical: 'https://www.goodsoncountry.com/partner',
+  },
+  openGraph: {
+    title: 'Partner With Goods on Country',
+    description:
+      'Partnership pathways for funders, community organisations, health services, councils and manufacturers supporting practical bed infrastructure.',
+    url: 'https://www.goodsoncountry.com/partner',
+    images: [
+      {
+        url: 'https://www.goodsoncountry.com/images/media-pack/community-bed-assembly.jpg',
+        width: 1200,
+        height: 900,
+        alt: 'Community members assembling a Goods on Country Stretch Bed',
+      },
+    ],
+  },
 };
 
 const ALLOWED_TYPES = ['sponsor', 'washer-interest', 'license', 'distribution', 'grant', 'other'];

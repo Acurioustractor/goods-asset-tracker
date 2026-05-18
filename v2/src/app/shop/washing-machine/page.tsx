@@ -9,11 +9,29 @@ import { ProductImageCarousel } from '@/components/shop/product-image-carousel';
 import { media } from '@/lib/data/media';
 import { quotes } from '@/lib/data/content';
 import { WASHING_MACHINE } from '@/lib/data/products';
+import { BreadcrumbJsonLd } from '@/components/seo';
 
 export const metadata = {
   title: 'Pakkimjalki Kari: Washing Machine',
   description:
     'Commercial-grade Speed Queen in recycled plastic housing. Named in Warumungu language by Elder Dianne Stokes. Currently in prototype. Register your interest.',
+  alternates: {
+    canonical: 'https://www.goodsoncountry.com/shop/washing-machine',
+  },
+  openGraph: {
+    title: 'Pakkimjalki Kari Washing Machine · Goods on Country',
+    description:
+      'Prototype remote-community washing machine using a commercial-grade Speed Queen base and recycled plastic housing.',
+    url: 'https://www.goodsoncountry.com/shop/washing-machine',
+    images: [
+      {
+        url: 'https://www.goodsoncountry.com/images/product/washing-machine-hero.jpg',
+        width: 1200,
+        height: 900,
+        alt: 'Pakkimjalki Kari washing machine with recycled plastic housing',
+      },
+    ],
+  },
 };
 
 const product = {
@@ -38,6 +56,13 @@ Elder Dianne Stokes named it "Pakkimjalki Kari" in Warumungu language. This isn'
 export default function WashingMachinePage() {
   return (
     <main className="py-8 md:py-12">
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Goods on Country', path: '/' },
+          { name: 'Shop', path: '/shop' },
+          { name: WASHING_MACHINE.name, path: '/shop/washing-machine' },
+        ]}
+      />
       <div className="container mx-auto px-4">
         {/* Breadcrumb */}
         <nav className="mb-6 text-sm">

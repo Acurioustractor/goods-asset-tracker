@@ -4,10 +4,29 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { media } from '@/lib/data/media';
 import { STRETCH_BED, WASHING_MACHINE, BASKET_BED } from '@/lib/data/products';
+import { ItemListJsonLd } from '@/components/seo';
 
 export const metadata = {
-  title: 'Shop',
-  description: 'Browse handcrafted beds and washing machines made for remote First Nations communities.',
+  title: 'Shop Stretch Beds',
+  description:
+    'Browse Stretch Beds, washing machine prototypes and open-source Basket Bed plans made for remote First Nations communities.',
+  alternates: {
+    canonical: 'https://www.goodsoncountry.com/shop',
+  },
+  openGraph: {
+    title: 'Shop Stretch Beds · Goods on Country',
+    description:
+      'Browse practical goods made for remote First Nations communities, led by the washable, flat-pack Stretch Bed.',
+    url: 'https://www.goodsoncountry.com/shop',
+    images: [
+      {
+        url: 'https://www.goodsoncountry.com/images/product/stretch-bed-hero.jpg',
+        width: 1200,
+        height: 900,
+        alt: 'The Stretch Bed by Goods on Country',
+      },
+    ],
+  },
 };
 
 const products = [
@@ -49,6 +68,15 @@ const products = [
 export default function ShopPage() {
   return (
     <main style={{ backgroundColor: '#FDF8F3' }}>
+      <ItemListJsonLd
+        name="Goods on Country products"
+        items={products.map((product) => ({
+          name: product.name,
+          path: product.href,
+          description: product.description,
+          image: product.image,
+        }))}
+      />
       {/* Header */}
       <section className="py-16 md:py-20">
         <div className="container mx-auto px-4">

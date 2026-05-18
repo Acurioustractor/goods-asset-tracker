@@ -1,0 +1,30 @@
+# Goods on Country
+
+> Goods on Country builds and delivers practical household infrastructure for remote First Nations communities across Australia. The flagship product is the Stretch Bed: a washable, flat-pack bed made from recycled HDPE plastic, galvanised steel poles and heavy-duty Australian canvas.
+
+Goods on Country is connected to A Curious Tractor. The public website is the canonical source for product information, community impact, partnership recognition and support pathways.
+
+## Key Pages
+
+- [Home](https://www.goodsoncountry.com/): overview of Goods on Country and the Stretch Bed.
+- [The Stretch Bed](https://www.goodsoncountry.com/shop/stretch-bed-single): product details, materials, specs, price and community context.
+- [Shop](https://www.goodsoncountry.com/shop): current products, prototypes and open-source plans.
+- [Process](https://www.goodsoncountry.com/process): recycled plastic collection, pressing, CNC cutting and on-country manufacturing model.
+- [Partner With Us](https://www.goodsoncountry.com/partner): partnership pathways for funders, community organisations and service providers.
+- [Impact](https://www.goodsoncountry.com/impact): impact context and outcomes.
+- [Centrecorp Foundation Partnership](https://www.goodsoncountry.com/partners/centrecorp): public recognition and Utopia Homelands delivery story with Oonchiumpa.
+- [FAQ](https://www.goodsoncountry.com/wiki/support/faq): common questions about products, ordering, sponsorship, repairs and community support.
+- [Contact](https://www.goodsoncountry.com/contact): partnership, bulk order, media and general enquiries.
+
+## Canonical Facts
+
+- Stretch Bed materials: recycled HDPE plastic legs, two galvanised steel poles and heavy-duty Australian canvas.
+- Stretch Bed specs: 26kg, 200kg load capacity, 188 x 92 x 25cm, about 5 minutes to assemble, no tools, 10+ year design lifespan, 5-year warranty.
+- Sustainability: each Stretch Bed diverts about 20kg of HDPE plastic from landfill.
+- Washing machines are prototype-stage interest items, not direct-sale products.
+- Basket Bed is an archived open-source prototype, not the flagship product.
+- Service focus: remote First Nations communities across Australia, including Central Australia, Queensland, Northern Territory and Western Australia.
+
+## Contact
+
+Use [Contact Goods on Country](https://www.goodsoncountry.com/contact) or email hello@goodsoncountry.com.

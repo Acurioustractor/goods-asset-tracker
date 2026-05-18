@@ -1,9 +1,19 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { FAQPageJsonLd } from '@/components/seo';
 
 export const metadata: Metadata = {
   title: 'FAQ | Goods Wiki',
   description: 'Frequently asked questions about Goods on Country products, ordering, shipping, and community support.',
+  alternates: {
+    canonical: 'https://www.goodsoncountry.com/wiki/support/faq',
+  },
+  openGraph: {
+    title: 'Goods on Country FAQ',
+    description:
+      'Answers about Stretch Beds, ordering, delivery, sponsorship, repairs and community support.',
+    url: 'https://www.goodsoncountry.com/wiki/support/faq',
+  },
 };
 
 const faqs = [
@@ -90,8 +100,16 @@ const faqs = [
 ];
 
 export default function FAQPage() {
+  const faqQuestions = faqs.flatMap((section) =>
+    section.questions.map((faq) => ({
+      question: faq.q,
+      answer: faq.a,
+    }))
+  );
+
   return (
     <div className="min-h-screen bg-white">
+      <FAQPageJsonLd questions={faqQuestions} />
       <header className="bg-gradient-to-br from-green-50 to-blue-50 border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <Link href="/wiki" className="text-green-600 hover:text-green-700 text-sm font-medium mb-4 inline-block">

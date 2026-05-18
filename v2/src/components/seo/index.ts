@@ -1,1 +1,9 @@
-export { ProductJsonLd, OrganizationJsonLd, WebSiteJsonLd } from './product-json-ld';
+export {
+  BreadcrumbJsonLd,
+  FAQPageJsonLd,
+  ItemListJsonLd,
+  OrganizationJsonLd,
+  ProductJsonLd,
+  StretchBedProductJsonLd,
+  WebSiteJsonLd,
+} from './product-json-ld';
