@@ -11,6 +11,7 @@ const PAGE_TITLE = 'Goods on Country and Centrecorp Foundation Partnership';
 const PAGE_DESCRIPTION =
   'Goods on Country recognises Centrecorp Foundation support for A Curious Tractor, Oonchiumpa and Utopia Homelands bed delivery work in Central Australia.';
 const PAGE_URL = 'https://www.goodsoncountry.com/partners/centrecorp';
+const PAGE_IMAGE = 'https://www.goodsoncountry.com/images/partners/centrecorp/utopia/hero-elder-bed.jpg';
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -31,6 +32,20 @@ export const metadata: Metadata = {
     description: PAGE_DESCRIPTION,
     url: PAGE_URL,
     type: 'article',
+    images: [
+      {
+        url: PAGE_IMAGE,
+        width: 1200,
+        height: 1600,
+        alt: 'Utopia Homelands bed delivery supported by Centrecorp Foundation',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    images: [PAGE_IMAGE],
   },
   robots: {
     index: true,
@@ -122,6 +137,97 @@ const goodNewsStory = [
   'We look forward to continuing this strong partnership and remain committed to improving comfort, dignity, and wellbeing across our remote communities.',
 ];
 
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  url: PAGE_URL,
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': PAGE_URL,
+  },
+  image: [PAGE_IMAGE],
+  datePublished: '2026-05-18',
+  dateModified: '2026-05-18',
+  author: [
+    {
+      '@type': 'Organization',
+      name: 'Goods on Country',
+      url: 'https://www.goodsoncountry.com',
+    },
+    {
+      '@type': 'Organization',
+      name: 'A Curious Tractor',
+      url: 'https://www.act.place',
+    },
+  ],
+  publisher: {
+    '@type': 'Organization',
+    name: 'Goods on Country',
+    url: 'https://www.goodsoncountry.com',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://www.goodsoncountry.com/logo.png',
+    },
+  },
+  about: [
+    'Goods on Country Centrecorp partnership',
+    'Centrecorp Foundation support',
+    'Utopia Homelands bed delivery',
+    'Central Australia bed infrastructure',
+  ],
+  mentions: [
+    {
+      '@type': 'Organization',
+      name: 'Centrecorp Foundation',
+      url: 'https://www.centrecorpfoundation.com.au/',
+    },
+    {
+      '@type': 'Organization',
+      name: 'Oonchiumpa Consultancy & Services',
+    },
+    {
+      '@type': 'Place',
+      name: 'Utopia Homelands',
+    },
+  ],
+};
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Goods on Country',
+      item: 'https://www.goodsoncountry.com',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Partners',
+      item: 'https://www.goodsoncountry.com/partner',
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Centrecorp Foundation Partnership',
+      item: PAGE_URL,
+    },
+  ],
+};
+
+function JsonLd({ data }: { data: Record<string, unknown> }) {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
 function StatCard({ value, label, detail, imageSrc, imageAlt }: (typeof stats)[number]) {
   return (
     <div className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
@@ -205,9 +311,34 @@ function VideoBreak({ src, poster }: (typeof videoBreaks)[keyof typeof videoBrea
   );
 }
 
+function RecognitionBlock() {
+  return (
+    <div className="mb-12 border-y py-10 text-center sm:py-12" style={{ borderColor: '#E8DED4' }}>
+      <h2 className="font-display text-3xl sm:text-4xl leading-tight mb-5" style={{ color: CHARCOAL }}>
+        Thank you to Centrecorp Foundation.
+      </h2>
+      <p className="mx-auto max-w-3xl text-base sm:text-lg leading-relaxed mb-6" style={{ color: `${CHARCOAL}bf` }}>
+        This is the public record for the Goods on Country and Centrecorp Foundation partnership.
+        Goods on Country and A Curious Tractor acknowledge Centrecorp Foundation&apos;s support for
+        practical bed infrastructure in Central Australia.
+      </p>
+      <a
+        href="https://www.centrecorpfoundation.com.au/"
+        className="inline-flex rounded-lg px-5 py-3 text-sm font-semibold transition hover:opacity-90"
+        style={{ color: CHARCOAL, border: `1px solid ${CHARCOAL}33` }}
+      >
+        Visit Centrecorp Foundation
+      </a>
+    </div>
+  );
+}
+
 export default function CentrecorpPartnershipPage() {
   return (
     <main className="min-h-screen" style={{ backgroundColor: CREAM, color: CHARCOAL }}>
+      <JsonLd data={articleJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
+
       <section className="px-5 sm:px-8 pt-12 sm:pt-16 pb-12 max-w-5xl mx-auto">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-10">
           <Link href="/" className="inline-flex flex-col leading-none">
@@ -234,6 +365,8 @@ export default function CentrecorpPartnershipPage() {
             </div>
           </div>
         </div>
+
+        <RecognitionBlock />
 
         <div className="grid lg:grid-cols-[1fr_0.82fr] gap-8 lg:gap-12 items-center">
           <div>
@@ -369,28 +502,6 @@ export default function CentrecorpPartnershipPage() {
             <QuoteCard key={voice.name} {...voice} />
           ))}
         </div>
-      </section>
-
-      <section className="px-5 sm:px-8 py-14 max-w-3xl mx-auto text-center">
-        <p className="text-xs uppercase mb-4" style={{ color: RUST }}>
-          Recognition
-        </p>
-        <h2 className="font-display text-3xl sm:text-4xl leading-tight mb-5" style={{ color: CHARCOAL }}>
-          Thank you to Centrecorp Foundation.
-        </h2>
-        <p className="text-base sm:text-lg leading-relaxed mb-6" style={{ color: `${CHARCOAL}bf` }}>
-          Goods on Country and A Curious Tractor acknowledge Centrecorp Foundation&apos;s support for
-          practical bed infrastructure in Central Australia.
-        </p>
-        <a
-          href="https://www.centrecorpfoundation.com.au/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex rounded-lg px-5 py-3 text-sm font-semibold transition hover:opacity-90"
-          style={{ color: CHARCOAL, border: `1px solid ${CHARCOAL}33` }}
-        >
-          Visit Centrecorp Foundation
-        </a>
       </section>
     </main>
   );

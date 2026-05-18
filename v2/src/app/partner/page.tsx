@@ -88,12 +88,12 @@ const impactMetrics = [
 ];
 
 const fundingPartners = [
-  'Snow Foundation',
-  'Centrecorp Foundation',
-  'Vincent Fairfax Family Foundation',
-  'FRRR (Backing the Future)',
-  'AMP Spark',
-  'The Funding Network',
+  { name: 'Snow Foundation' },
+  { name: 'Centrecorp Foundation', href: '/partners/centrecorp' },
+  { name: 'Vincent Fairfax Family Foundation' },
+  { name: 'FRRR (Backing the Future)' },
+  { name: 'AMP Spark' },
+  { name: 'The Funding Network' },
 ];
 
 export default async function PartnerPage({
@@ -179,12 +179,22 @@ export default async function PartnerPage({
             <h2 className="text-2xl font-bold text-foreground mb-8">Our Partners</h2>
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               {fundingPartners.map((partner) => (
-                <span
-                  key={partner}
-                  className="inline-flex items-center rounded-full bg-background border border-border px-4 py-2 text-sm font-medium text-foreground"
-                >
-                  {partner}
-                </span>
+                partner.href ? (
+                  <Link
+                    key={partner.name}
+                    href={partner.href}
+                    className="inline-flex items-center rounded-full bg-background border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
+                  >
+                    {partner.name}
+                  </Link>
+                ) : (
+                  <span
+                    key={partner.name}
+                    className="inline-flex items-center rounded-full bg-background border border-border px-4 py-2 text-sm font-medium text-foreground"
+                  >
+                    {partner.name}
+                  </span>
+                )
               ))}
             </div>
             <p className="text-muted-foreground">
