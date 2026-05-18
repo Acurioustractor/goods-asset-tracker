@@ -10,6 +10,7 @@ const SAGE = '#8B9D77';
 const PAGE_TITLE = 'Goods on Country and Centrecorp Foundation Partnership';
 const PAGE_DESCRIPTION =
   'Goods on Country recognises Centrecorp Foundation support for A Curious Tractor, Oonchiumpa and Utopia Homelands bed delivery work in Central Australia.';
+const PAGE_URL = 'https://www.goodsoncountry.com/partners/centrecorp';
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -23,12 +24,12 @@ export const metadata: Metadata = {
     'Central Australia bed delivery',
   ],
   alternates: {
-    canonical: 'https://goods.act.place/partners/centrecorp',
+    canonical: PAGE_URL,
   },
   openGraph: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    url: 'https://goods.act.place/partners/centrecorp',
+    url: PAGE_URL,
     type: 'article',
   },
   robots: {

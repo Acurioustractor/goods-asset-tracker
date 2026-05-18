@@ -8,7 +8,7 @@ interface ProductJsonLdProps {
 
 export function ProductJsonLd({
   product,
-  baseUrl = 'https://goods.act.place',
+  baseUrl = 'https://www.goodsoncountry.com',
 }: ProductJsonLdProps) {
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -46,7 +46,7 @@ export function ProductJsonLd({
 }
 
 export function OrganizationJsonLd({
-  baseUrl = 'https://goods.act.place',
+  baseUrl = 'https://www.goodsoncountry.com',
 }: {
   baseUrl?: string;
 }) {
@@ -82,7 +82,7 @@ export function OrganizationJsonLd({
 }
 
 export function WebSiteJsonLd({
-  baseUrl = 'https://goods.act.place',
+  baseUrl = 'https://www.goodsoncountry.com',
 }: {
   baseUrl?: string;
 }) {
