@@ -351,7 +351,6 @@ function RecognitionBlock() {
         Thank you to Centrecorp Foundation.
       </h2>
       <p className="mx-auto max-w-3xl text-base sm:text-lg leading-relaxed mb-6" style={{ color: `${CHARCOAL}bf` }}>
-        This is the public record for the Goods on Country and Centrecorp Foundation partnership.
         Goods on Country and A Curious Tractor acknowledge Centrecorp Foundation&apos;s support for
         practical bed infrastructure in Central Australia.
       </p>
