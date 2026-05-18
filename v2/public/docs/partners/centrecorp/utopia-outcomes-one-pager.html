@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Utopia Homelands Bed Delivery Outcomes Snapshot</title>
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 12mm;
+    }
+
+    :root {
+      --cream: #fdf8f3;
+      --rust: #c45c3e;
+      --charcoal: #2e2e2e;
+      --sage: #8b9d77;
+      --line: #e8ded4;
+      --muted: #66615d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: Inter, Arial, sans-serif;
+      line-height: 1.42;
+    }
+
+    .page {
+      padding: 12px;
+      background:
+        linear-gradient(90deg, rgba(196, 92, 62, 0.12), transparent 40%),
+        var(--cream);
+    }
+
+    .shell {
+      max-width: 1060px;
+      margin: 0 auto;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 12px 20px 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      font-family: Georgia, serif;
+      font-size: 24px;
+      line-height: 0.92;
+      letter-spacing: 0;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-family: Inter, Arial, sans-serif;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .partner-logo {
+      max-width: 132px;
+      max-height: 48px;
+      object-fit: contain;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-copy {
+      padding: 14px 20px 12px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--rust);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-family: Georgia, serif;
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1.02;
+    }
+
+    .summary {
+      margin: 0 0 9px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .prepared {
+      margin: 0;
+      color: var(--charcoal);
+      font-size: 9px;
+    }
+
+    .hero-image {
+      min-height: 140px;
+      background-image:
+        linear-gradient(180deg, rgba(46, 46, 46, 0), rgba(46, 46, 46, 0.18)),
+        url("../../../images/partners/centrecorp/utopia/hero-elder-bed.jpg");
+      background-position: center;
+      background-size: cover;
+      border-left: 1px solid var(--line);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .metric {
+      min-height: 72px;
+      padding: 10px 12px;
+      border-right: 1px solid var(--line);
+    }
+
+    .metric:last-child {
+      border-right: 0;
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--rust);
+      font-family: Georgia, serif;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .metric span {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .metric p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 8.5px;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 0;
+    }
+
+    .panel {
+      padding: 12px 18px;
+      border-right: 1px solid var(--line);
+    }
+
+    .panel:last-child {
+      border-right: 0;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .check-list,
+    .evidence-list {
+      display: grid;
+      gap: 5px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .check-list li,
+    .evidence-list li {
+      position: relative;
+      padding-left: 14px;
+      color: var(--muted);
+      font-size: 8.8px;
+    }
+
+    .check-list li::before,
+    .evidence-list li::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: var(--sage);
+      content: "•";
+      font-weight: 800;
+    }
+
+    .quote {
+      margin: 8px 0 0;
+      padding: 10px;
+      border-left: 4px solid var(--rust);
+      background: var(--cream);
+    }
+
+    .quote p {
+      margin: 0 0 6px;
+      font-family: Georgia, serif;
+      font-size: 13px;
+      line-height: 1.2;
+    }
+
+    .quote cite {
+      color: var(--muted);
+      font-size: 8.5px;
+      font-style: normal;
+    }
+
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .thumb {
+      min-height: 44px;
+      background-position: center;
+      background-size: cover;
+      border: 1px solid var(--line);
+    }
+
+    .thumb.one {
+      background-image: url("../../../images/partners/centrecorp/utopia/delivery-court.jpg");
+    }
+
+    .thumb.two {
+      background-image: url("../../../images/partners/centrecorp/utopia/community-build.jpg");
+    }
+
+    .thumb.three {
+      background-image: url("../../../images/partners/centrecorp/stretch-bed-stat.jpg");
+    }
+
+    .footer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      padding: 8px 18px 9px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 8px;
+    }
+
+    .footer a {
+      color: var(--charcoal);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    @media print {
+      .page {
+        padding: 0;
+      }
+
+      .shell {
+        max-width: none;
+        border: 0;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <main class="page">
+    <article class="shell" aria-label="Utopia Homelands Bed Delivery Outcomes Snapshot">
+      <header class="topbar">
+        <div class="brand">Goods<span>On Country</span></div>
+        <img class="partner-logo" src="../../../images/partners/centrecorp-foundation.jpg" alt="Centrecorp Foundation">
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Outcomes snapshot / May 2026</p>
+          <h1>Utopia Homelands Bed Delivery</h1>
+          <p class="summary">
+            Centrecorp Foundation support helped Goods on Country and A Curious Tractor deliver
+            practical bed infrastructure into the Utopia Homelands with community partners, creating
+            a clear evidence base for future Stretch Bed delivery, community feedback and follow-up reporting.
+          </p>
+          <p class="prepared">
+            Prepared for Centrecorp Foundation by Goods on Country / A Curious Tractor with Oonchiumpa.
+          </p>
+        </div>
+        <div class="hero-image" role="img" aria-label="Two people sitting on a bed during the Utopia Homelands delivery"></div>
+      </section>
+
+      <section class="metrics" aria-label="Key outcomes">
+        <div class="metric">
+          <strong>60</strong>
+          <span>First Utopia beds</span>
+          <p>Delivered successfully on 7, 8 and 9 October 2025 with community partners.</p>
+        </div>
+        <div class="metric">
+          <strong>107</strong>
+          <span>Next round</span>
+          <p>Upcoming Stretch Bed delivery round, with new photos and stories to add after the trip.</p>
+        </div>
+        <div class="metric">
+          <strong>~5 min</strong>
+          <span>Stretch Bed setup</span>
+          <p>The next round uses the current no-tools Stretch Bed model.</p>
+        </div>
+        <div class="metric">
+          <strong>1</strong>
+          <span>Public record</span>
+          <p>Recognition page now live with Centrecorp logo, photos, video and community story.</p>
+        </div>
+      </section>
+
+      <section class="content">
+        <div class="panel">
+          <h2>Outcome Evidence Available Now</h2>
+          <ul class="evidence-list">
+            <li>Delivery photos show beds arriving, parts being unpacked, community setup and beds placed for use.</li>
+            <li>Oonchiumpa Good News Story records the partnership and reported effect for Elders Frank and Casey Holmes.</li>
+            <li>Community voices include practical need and product feedback connected to the Central Australia pathway.</li>
+            <li>Public acknowledgement page gives Centrecorp Foundation visible recognition and a single shareable link.</li>
+          </ul>
+
+          <figure class="quote">
+            <p>"Since receiving their new beds, they are no longer experiencing back pains."</p>
+            <cite>Oonchiumpa Good News Story, sharing feedback from respected Elders Frank and Casey Holmes from Antarrengeny.</cite>
+          </figure>
+        </div>
+
+        <div class="panel">
+          <h2>What To Add After The 107-Bed Round</h2>
+          <ul class="check-list">
+            <li>Final delivery count, dates and communities/homelands reached.</li>
+            <li>Approved photo set: delivery, assembly, beds in use and local partner involvement.</li>
+            <li>Three to five short consent-checked voices from families, Elders and delivery partners.</li>
+            <li>Product feedback: comfort, setup time, cleaning, repairs, missing parts and suggested changes.</li>
+            <li>Asset register reconciliation: bed IDs, QR records, follow-up requests and maintenance notes.</li>
+          </ul>
+
+          <div class="evidence-grid" aria-label="Evidence photos">
+            <div class="thumb one" role="img" aria-label="Delivery and setup area"></div>
+            <div class="thumb two" role="img" aria-label="Community bed assembly"></div>
+            <div class="thumb three" role="img" aria-label="Stretch Bed model"></div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div>
+          Public page:
+          <a href="https://www.goodsoncountry.com/partners/centrecorp">goodsoncountry.com/partners/centrecorp</a>
+          &nbsp;|&nbsp; Contact:
+          <a href="https://www.goodsoncountry.com/contact">goodsoncountry.com/contact</a>
+        </div>
+        <div>Goods on Country / A Curious Tractor</div>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
