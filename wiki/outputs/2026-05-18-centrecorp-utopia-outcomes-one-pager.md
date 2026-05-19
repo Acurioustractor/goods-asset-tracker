@@ -5,23 +5,24 @@ Date: 18 May 2026
 
 ## One-Line Summary
 
-Centrecorp Foundation support helped Goods on Country and A Curious Tractor deliver practical bed infrastructure into the Utopia Homelands with community partners, creating a clear evidence base for future Stretch Bed delivery, community feedback and follow-up reporting.
+Centrecorp Foundation support helped Goods on Country and A Curious Tractor move practical bed infrastructure into the Utopia Homelands with Oonchiumpa, creating the first evidence base for the next Stretch Bed delivery, household follow-up and consent-checked stories.
 
 ## What Happened
 
 - **60 Goods Beds delivered:** the first Utopia Homelands delivery was completed successfully on 7, 8 and 9 October 2025.
+- **60+ direct people supported:** conservative reporting floor, counted as one direct person supported per bed until household-level reach is reconciled by bed ID and consent-checked follow-up.
 - **Delivered with local partners:** Oonchiumpa supported the pathway for local guidance, delivery support and community feedback.
 - **Practical household infrastructure:** the delivery focused on beds that families could see, use, test and respond to.
-- **Next round identified:** the next Centrecorp-supported delivery round is for **107 Stretch Beds**, using the current no-tools Stretch Bed model.
+- **Next round identified:** the next Centrecorp-supported delivery round is for **107 Stretch Beds**, using the current no-tools Stretch Bed model and creating a stronger measurement opportunity.
 
-## Outcome Evidence Available Now
+## Voice Themes Already Emerging
 
-| Evidence type | Current status |
+| Theme | What the current stories point to |
 | --- | --- |
-| Delivery photos | Photos show beds arriving, parts being unpacked, community setup and beds placed for use. |
-| Community story | Oonchiumpa Good News Story records the partnership and the reported effect for Elders Frank and Casey Holmes. |
-| Product feedback | Community voices include simple need and product feedback connected to the Central Australia and Oonchiumpa pathway. |
-| Public recognition | Goods on Country now has a public Centrecorp Foundation partnership page with logo acknowledgement and story evidence. |
+| Practical need | Beds off the ground, safer rest and household infrastructure families can actually use. |
+| Circular value | Community feedback connects recycled plastic with a product that is useful, durable and cheaper than weak store-bought options. |
+| Youth pathway | Building beds can become structured skills, pride, training hours and future production roles. |
+| Local production | The next evidence step is linking delivery demand to Oonchiumpa and Central Australia production capability. |
 
 ## Community Voice
 
@@ -38,16 +39,29 @@ Additional feedback already captured for the page:
 
 Centrecorp Foundation support helped turn the Utopia Homelands delivery from product supply into a visible delivery pathway: beds were transported, unpacked, assembled and discussed with local partners and households. The work directly aligns with practical benefit for Aboriginal people in Central Australia: useful household infrastructure, delivered with local guidance and followed by community feedback.
 
+## Measurement Lens For The Next Round
+
+This should stay honest: some measures are active evidence now, while others are the next measurement build.
+
+| Lens | What to capture after the 107-bed round |
+| --- | --- |
+| Household benefit | Final bed count, household reach, direct people supported and follow-up needs. |
+| Health and comfort | Comfort, back pain, sleep, off-ground safety and whether the bed is still in use. |
+| Circular economy | Recycled HDPE per bed, local feedstock potential, repairability and product lifespan. |
+| Voice and consent | Three to five approved family, Elder, Oonchiumpa and delivery-partner voices. |
+| Production pathway | Youth training hours, assembly time, local roles, facility readiness and maintenance issues. |
+
 ## What To Add After The 107-Bed Round
 
 To make the next funding report stronger, collect:
 
 - Final count delivered, delivery dates and communities/homelands reached.
+- Household-level count where consent and records allow, separating people directly supported from wider household benefit.
 - A small approved photo set: delivery, assembly, beds in use and local partner involvement.
 - Three to five short consent-checked voices from families, Elders, Oonchiumpa and delivery partners.
 - Product feedback: comfort, setup time, cleaning, repairs, missing parts and suggested changes.
 - Asset register reconciliation: bed IDs, QR records, follow-up requests and maintenance notes.
-- Short funder acknowledgement paragraph and public update once evidence is approved.
+- Youth and local production notes: who helped build, train, move, maintain or explain the beds.
 
 ## Public Links
 
