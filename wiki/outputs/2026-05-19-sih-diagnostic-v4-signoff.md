@@ -119,6 +119,12 @@ Only market demand research sits genuinely untouched. That is the QBE skilled-vo
 
 ---
 
+## Companion documents
+
+- **Area-by-area showcase** with paragraphs + linked evidence + Butterfly overlay: [`wiki/outputs/2026-05-19-diagnostic-areas-showcase.md`](2026-05-19-diagnostic-areas-showcase.md)
+- **Butterfly Movement Ltd transition proposal** (canonical text shared with TABOO Foundation board): [`wiki/outputs/2026-05-19-butterfly-movement-transition-proposal.md`](2026-05-19-butterfly-movement-transition-proposal.md)
+- **TABOO / Butterfly handover meeting notes** (transition mechanism, financial cleanup, 1 June timeline, action items): [`wiki/outputs/2026-05-19-butterfly-taboo-handover-meeting.md`](2026-05-19-butterfly-taboo-handover-meeting.md)
+
 ## Source links: where each claim in the memo lives
 
 Every numbered point in the corrections memo above maps to one or more of these files. All paths are relative to repo root (`/Users/benknight/Code/Goods Asset Register/`).
