@@ -4,6 +4,7 @@ date: 2026-05-19
 status: ready for use in funder, investor, SIH, QBE Steering Committee and partner conversations
 audience: Ben + Nic for outbound use, SIH/PIN for diagnostic V4 sign-off context, QBE Steering Committee for Stage 2
 purpose: One paragraph per diagnostic area, paste-ready, with linked evidence and a Butterfly Movement Ltd transition overlay where the transition changes the answer
+notion_master_landing: https://www.notion.so/365ebcf981cf8102b805cc33987dc62e
 companions:
   - wiki/outputs/2026-05-19-sih-diagnostic-v4-signoff.md
   - wiki/outputs/2026-05-19-butterfly-movement-transition-proposal.md
@@ -11,6 +12,46 @@ companions:
 ---
 
 # Diagnostic areas showcase
+
+> **Published in Notion as the canonical, shareable destination:** [May 2026 Update Pack: SIH Diagnostic + Butterfly Transition (master landing)](https://www.notion.so/365ebcf981cf8102b805cc33987dc62e).
+> The wiki .md files are the source of truth; Notion is the read-only audience-facing mirror. Send the Notion URL externally; keep the .md for internal editing.
+
+## Notion page index
+
+Each diagnostic area below references a wiki `.md` source and a published Notion page. Both stay in sync via the Cockpit workflow.
+
+| Area / artefact | Notion page |
+|---|---|
+| Master landing (this pack) | [May 2026 Update Pack](https://www.notion.so/365ebcf981cf8102b805cc33987dc62e) |
+| SIH V4 Signoff Package | [SIH Diagnostic V4 Signoff Package](https://www.notion.so/365ebcf981cf8116b9e7fddcf936e1aa) |
+| Butterfly transition proposal | [Butterfly Movement Ltd Transition Proposal](https://www.notion.so/365ebcf981cf81c39789e2c0ff2b3f2e) |
+| Butterfly TABOO meeting | [Butterfly / TABOO Handover Meeting Notes](https://www.notion.so/365ebcf981cf81378ad1d676d1a437d7) |
+| Eloise outreach | [Eloise Hall outreach](https://www.notion.so/365ebcf981cf81199192dc1f47d1270a) |
+| Centrecorp narrative fixes | [Centrecorp narrative corrections](https://www.notion.so/365ebcf981cf8151bc9dccc0aef4b204) |
+| Centrecorp Utopia impact report | [Centrecorp Utopia Homelands impact report](https://www.notion.so/365ebcf981cf81448dcfdafe7640bd72) |
+| Stripe + GHL launch | [Stripe + GHL launch day handover](https://www.notion.so/365ebcf981cf81019222dd1759a0f3cb) |
+| AI / human-in-loop policy | [AI / Human-in-loop policy](https://www.notion.so/365ebcf981cf812495fcf0781ec7f9c6) |
+| Asset register handover | [Asset register handover](https://www.notion.so/365ebcf981cf815d8425d0d1def2aba0) |
+| Financial model: scope | [Scope and build plan](https://www.notion.so/35eebcf981cf81d38548fc6caab1b5f4) |
+| Financial model: kickoff | [Week 1-2 kickoff checklist](https://www.notion.so/35eebcf981cf81df9aa9f62fca124008) |
+| Financial model Day 1 | [Xero extraction + anchor reconciliation](https://www.notion.so/35eebcf981cf819493ace9166904e00c) |
+| Financial model Day 2 | [P&L summary v0.1](https://www.notion.so/35eebcf981cf8149a763c96ad16401d6) |
+| Financial model Day 3 | [Expenses + founder time sensitivity](https://www.notion.so/35eebcf981cf81bca36ee8ce091c94ad) |
+| Financial model Day 4 | [Stretch Bed unit economics v0.1](https://www.notion.so/35eebcf981cf8163af6bf513cbca6c4b) |
+| Financial model Day 5 | [Revenue model by segment v0.1](https://www.notion.so/35eebcf981cf8168a751c85c72a9c9c3) |
+| Financial model Day 6 | [36-month cashflow shell v0.1](https://www.notion.so/35eebcf981cf81cbbef8cf713d2e3a29) |
+| Financial model Day 7 | [Cashflow buffer policy](https://www.notion.so/35eebcf981cf81798e25d15c64f8d616) |
+| Financial model Day 8 | [Capital stack v0.1](https://www.notion.so/35eebcf981cf81ca901cd9802b6862c9) |
+| Financial model Day 9 | [Three scenarios Base / Upside / Downside](https://www.notion.so/35eebcf981cf81a2a9c3dc4e1f7f1bb1) |
+| Financial model Day 10 | [Butterfly DGR impact tab](https://www.notion.so/35eebcf981cf8188bf82c90c443936bb) |
+| /impact audit | [Impact page audit](https://www.notion.so/35eebcf981cf811bb820edfdb4986d52) |
+| /impact QA | [/impact Q&A walkthrough](https://www.notion.so/35eebcf981cf81e4bf40efac1ab50d1b) |
+| SIH advisory acceptance | [SIH Priority Advisory Project acceptance](https://www.notion.so/35eebcf981cf813c8ca2de1640f38600) |
+| QBE prep resume | [QBE prep action stack](https://www.notion.so/35eebcf981cf8173b333fea209b0c88e) |
+
+---
+
+# Diagnostic areas showcase (paragraphs)
 
 For each of the ten SIH diagnostic areas, the V4 score and one paragraph that can be pasted directly into a funder email, investor memo, board update or SIH/QBE follow-up. Every paragraph is backed by a specific link to a wiki output, codebase file or external evidence point. The **Butterfly overlay** notes show how the proposed Butterfly Movement Ltd transition changes the answer.
 

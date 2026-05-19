@@ -19,6 +19,10 @@ companions:
 
 # Butterfly Movement Ltd / TABOO Foundation handover meeting
 
+> **Notion (canonical, shareable):** [Butterfly / TABOO Handover Meeting Notes](https://www.notion.so/365ebcf981cf81378ad1d676d1a437d7)
+> **Master landing page:** [May 2026 Update Pack](https://www.notion.so/365ebcf981cf8102b805cc33987dc62e)
+> Companion: [Butterfly Movement Ltd Transition Proposal](https://www.notion.so/365ebcf981cf81c39789e2c0ff2b3f2e).
+
 ## Context and background
 
 - The Butterfly Movement Ltd charity is transitioning stewardship from the TABOO Foundation board to a Goods on Country / A Curious Tractor board

@@ -15,6 +15,10 @@ companions:
 
 # SIH Diagnostic V4 Sign-off Package
 
+> **Notion (canonical, shareable):** [SIH Diagnostic V4 Signoff Package](https://www.notion.so/365ebcf981cf8116b9e7fddcf936e1aa)
+> **Master landing page:** [May 2026 Update Pack](https://www.notion.so/365ebcf981cf8102b805cc33987dc62e)
+> The wiki .md is the source of truth; the Notion page is the audience-facing mirror. Send Notion externally.
+
 ## Verdict
 
 Sign off, with a short corrections-and-updates memo to Matt.

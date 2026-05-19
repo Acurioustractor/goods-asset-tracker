@@ -12,6 +12,10 @@ companions:
 
 # Butterfly Movement Ltd transition proposal
 
+> **Notion (canonical, shareable with TABOO board / prospective directors):** [Butterfly Movement Ltd Transition Proposal](https://www.notion.so/365ebcf981cf81c39789e2c0ff2b3f2e)
+> **Master landing page:** [May 2026 Update Pack](https://www.notion.so/365ebcf981cf8102b805cc33987dc62e)
+> Companion: [Butterfly / TABOO Handover Meeting Notes](https://www.notion.so/365ebcf981cf81378ad1d676d1a437d7).
+
 Purpose: invite the current directors and members to consider a respectful transition of stewardship so the charity's DGR status, constitution and public-benefit purpose can help Goods on Country scale community-led essential goods production.
 
 [Goods on Country: Beds That Change Lives](https://www.goodsoncountry.com/)
