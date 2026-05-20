@@ -15,7 +15,8 @@ function statusLabel(s: string | null | undefined) {
 
 export default async function AssetRegisterPage() {
   const supabase = createServiceClient();
-  const [assetsRes, telemetryRes] = await Promise.all([
+  const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+  const [assetsRes, telemetryRes, scansAllRes, scans7dRes] = await Promise.all([
     supabase
       .from('assets')
       .select(
@@ -29,6 +30,22 @@ export default async function AssetRegisterPage() {
       .not('machine_id', 'is', null)
       .order('created_at', { ascending: false })
       .limit(5000),
+    // Real-human scan totals per bed (excludes bots + admin views). If the
+    // bed_scans table isn't deployed yet, .error will be set and we fall back
+    // to zero counts — the column still renders, just empty.
+    supabase
+      .from('bed_scans')
+      .select('unique_id')
+      .eq('is_bot', false)
+      .eq('is_admin', false)
+      .limit(100000),
+    supabase
+      .from('bed_scans')
+      .select('unique_id')
+      .eq('is_bot', false)
+      .eq('is_admin', false)
+      .gte('scanned_at', sevenDaysAgo)
+      .limit(100000),
   ]);
 
   if (assetsRes.error) {
@@ -42,6 +59,17 @@ export default async function AssetRegisterPage() {
 
   const data = assetsRes.data || [];
   const lastSeenByAsset = buildLastSeenMap(data, telemetryRes.data || []);
+
+  // Roll up scan counts. Errors (e.g. table doesn't exist yet) → empty maps,
+  // and the column shows "--" for every row.
+  const scansTotalByAsset = new Map<string, number>();
+  for (const row of scansAllRes.data || []) {
+    scansTotalByAsset.set(row.unique_id, (scansTotalByAsset.get(row.unique_id) || 0) + 1);
+  }
+  const scans7dByAsset = new Map<string, number>();
+  for (const row of scans7dRes.data || []) {
+    scans7dByAsset.set(row.unique_id, (scans7dByAsset.get(row.unique_id) || 0) + 1);
+  }
 
   const rows: AssetRow[] = data.map((r) => ({
     unique_id: r.unique_id,
@@ -58,6 +86,8 @@ export default async function AssetRegisterPage() {
     photo_count: Array.isArray(r.photo) ? r.photo.length : r.photo ? 1 : 0,
     batch: extractBatch(r.unique_id),
     last_telemetry: lastSeenByAsset.get(r.unique_id) ?? null,
+    scans_total: scansTotalByAsset.get(r.unique_id) ?? 0,
+    scans_7d: scans7dByAsset.get(r.unique_id) ?? 0,
   }));
 
   const total = rows.length;

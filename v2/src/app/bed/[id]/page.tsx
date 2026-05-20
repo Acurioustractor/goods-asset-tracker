@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
+import { logScan } from '@/lib/scans/log-scan';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { BedMapWrapper } from './bed-map-wrapper';
@@ -14,10 +15,8 @@ import { BedFaq } from './bed-faq';
 import { SetupVideo } from './setup-video';
 import { PartsDiagram } from './parts-diagram';
 import { CommunityBeds } from './community-beds';
-import { ReminderForm } from './reminder-form';
-import { DemandButton } from './demand-button';
-import { CoopInvite } from './coop-invite';
 import { BehindThisBed } from './behind-this-bed';
+import { MoreAboutBed } from './more-about-bed';
 
 type AdminUserShape = {
   email?: string | null;
@@ -81,9 +80,16 @@ export default async function BedPage({ params }: BedPageProps) {
   // Fetch asset details
   const { data: asset } = await supabase
     .from('assets')
-    .select('unique_id, name, product, community, community_id, place, status, supply_date, created_time, photo, gps, display_name, display_name_public')
+    .select('unique_id, name, product, community, community_id, place, status, supply_date, created_time, photo, gps, display_name, display_name_public, recipient_name, install_photo_url')
     .eq('unique_id', id)
     .single();
+
+  // Log this page view as a scan. Only logs real beds (asset exists) so we
+  // don't pollute the table with typos / 404s. Fire-and-forget — never blocks
+  // render, never throws.
+  if (asset) {
+    void logScan({ unique_id: asset.unique_id, isAdmin, adminEmail: user?.email });
+  }
 
   // Canonical community options (only fetched when an admin is on this page)
   const communityOptions = isAdmin
@@ -231,6 +237,21 @@ export default async function BedPage({ params }: BedPageProps) {
     );
   }
 
+  // Field-team install photo: the one shot taken when the bed was delivered.
+  // Prepended (when present) so it's the first image visitors see in the gallery.
+  if (asset.install_photo_url) {
+    galleryItems.unshift({
+      id: `install-${asset.unique_id}`,
+      url: asset.install_photo_url,
+      thumbnail: null,
+      caption: asset.recipient_name
+        ? `Delivered to ${asset.recipient_name}${asset.place ? ` · ${asset.place}` : ''}`
+        : `Install photo${asset.place ? ` · ${asset.place}` : ''}`,
+      byline: 'Goods install team',
+      createdAt: asset.supply_date || asset.created_time || new Date().toISOString(),
+    });
+  }
+
   return (
     <div className="min-h-screen">
       {/* Hero banner with product image */}
@@ -240,16 +261,17 @@ export default async function BedPage({ params }: BedPageProps) {
             <p className="text-amber-300 font-medium text-sm tracking-widest uppercase mb-3">
               Goods on Country
             </p>
-            <h1 className="font-display text-4xl md:text-5xl font-bold mb-2">
+            <h1 className="font-display text-4xl md:text-5xl font-bold mb-3">
               {asset.display_name && asset.display_name_public
                 ? `“${asset.display_name}”`
                 : isMachine ? 'This is your washing machine' : 'This is your bed'}
             </h1>
-            <p className="text-white/80 text-base mb-4">
-              {asset.community
-                ? `Made by Goods on Country · ${asset.community}`
-                : 'Made by Goods on Country'}
-            </p>
+            {asset.community && (
+              <p className="text-white/80 text-base mb-4">
+                {asset.community}
+                {asset.place ? <span className="text-white/60"> · {asset.place}</span> : null}
+              </p>
+            )}
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur rounded-full px-4 py-2 text-xs mb-4">
               <span className="text-amber-300 font-mono font-bold">{asset.unique_id}</span>
             </div>
@@ -287,6 +309,8 @@ export default async function BedPage({ params }: BedPageProps) {
             place: asset.place,
             gps: asset.gps,
             status: asset.status,
+            recipient_name: asset.recipient_name ?? null,
+            install_photo_url: asset.install_photo_url ?? null,
           }}
         />
       )}
@@ -309,8 +333,10 @@ export default async function BedPage({ params }: BedPageProps) {
         <PulseCheck uniqueId={asset.unique_id} productNoun={productNoun} />
       </div>
 
-      {/* Photos linked to this asset (Goods staff + recipient uploads) */}
-      <BedGallery items={galleryItems} productNoun={productNoun} uniqueId={asset.unique_id} />
+      {/* Photos linked to this asset (Goods staff + recipient uploads) — only renders when there are photos to show. */}
+      {galleryItems.length > 0 && (
+        <BedGallery items={galleryItems} productNoun={productNoun} uniqueId={asset.unique_id} />
+      )}
 
       {/* Direct contact: WhatsApp / SMS / phone */}
       <div className="max-w-3xl mx-auto px-4 mt-4">
@@ -323,14 +349,21 @@ export default async function BedPage({ params }: BedPageProps) {
         <BedFaq uniqueId={asset.unique_id} productNoun={productNoun} isMachine={isMachine} />
       </div>
 
-      {/* Parts diagram */}
-      <div className="max-w-3xl mx-auto px-4 mt-4">
+      {/* Everything below this point is secondary — recipient gets it on tap. */}
+      <MoreAboutBed productNoun={productNoun}>
+        {/* Parts diagram */}
         <PartsDiagram isMachine={isMachine} />
-      </div>
 
-      {/* Community context first — emotionally closer than the supply chain */}
-      {asset.community && asset.community_id && (
-        <div className="max-w-5xl mx-auto px-4 mt-6">
+        {/* Behind this bed: materials + suppliers + Alice plant team */}
+        <BehindThisBed
+          productNoun={productNoun}
+          productionPhotos={productionPhotos}
+          recentOperators={recentOperators}
+          isMachine={isMachine}
+        />
+
+        {/* Community context */}
+        {asset.community && asset.community_id && (
           <CommunityBeds
             community={asset.community}
             communityId={asset.community_id}
@@ -338,48 +371,25 @@ export default async function BedPage({ params }: BedPageProps) {
             siblings={siblingAssets}
             totalCount={communityTotal}
           />
-        </div>
-      )}
+        )}
 
-      {/* Behind this bed: materials + suppliers + Alice plant team */}
-      <div className="max-w-3xl mx-auto px-4 mt-4">
-        <BehindThisBed
-          productNoun={productNoun}
-          productionPhotos={productionPhotos}
-          recentOperators={recentOperators}
-          isMachine={isMachine}
-        />
-      </div>
-
-      {/* Stay-in-touch options: reminder, demand, workshop */}
-      <div className="max-w-3xl mx-auto px-4 mt-6 grid gap-3 md:grid-cols-3">
-        <ReminderForm uniqueId={asset.unique_id} productNoun={productNoun} />
-        <DemandButton
-          uniqueId={asset.unique_id}
-          productNoun={productNoun}
-          community={asset.community}
-        />
-        <CoopInvite uniqueId={asset.unique_id} community={asset.community} />
-      </div>
-
-      {/* Map: where is this bed? */}
-      {allAssets && allAssets.length > 0 && (
-        <div className="max-w-5xl mx-auto px-4 mt-6 relative z-0">
-          <div className="bg-card border rounded-2xl shadow-xl overflow-hidden">
-            <div className="p-4 pb-2">
-              <h2 className="font-display text-lg font-bold">Where Is This Bed?</h2>
-              <p className="text-muted-foreground text-xs">
-                Your bed is at {asset.place || asset.community || 'its community'}. See all Goods products deployed across Australia.
-              </p>
+        {/* Map: where is this bed? */}
+        {allAssets && allAssets.length > 0 && (
+          <div className="relative z-0">
+            <div className="bg-card border rounded-2xl shadow-xl overflow-hidden">
+              <div className="p-4 pb-2">
+                <h2 className="font-display text-lg font-bold">Where Is This Bed?</h2>
+                <p className="text-muted-foreground text-xs">
+                  Your bed is at {asset.place || asset.community || 'its community'}. See all Goods products deployed across Australia.
+                </p>
+              </div>
+              <BedMapWrapper currentAssetId={id} assets={allAssets} />
             </div>
-            <BedMapWrapper currentAssetId={id} assets={allAssets} />
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Journey timeline — only if this bed actually has events. Recipient sentimental value. */}
-      {events.length > 0 && (
-        <section className="max-w-3xl mx-auto px-4 mt-6">
+        {/* Journey timeline — only if this bed actually has events. */}
+        {events.length > 0 && (
           <div className="rounded-2xl border bg-card shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b">
               <h2 className="font-display text-lg font-bold">This {productNoun.toLowerCase()}&apos;s journey</h2>
@@ -425,8 +435,8 @@ export default async function BedPage({ params }: BedPageProps) {
               })}
             </div>
           </div>
-        </section>
-      )}
+        )}
+      </MoreAboutBed>
 
       {/* Tight footer — recipient already has the bed, so no buy CTA. One link to the wider story. */}
       <footer className="max-w-3xl mx-auto px-4 py-12 text-center">

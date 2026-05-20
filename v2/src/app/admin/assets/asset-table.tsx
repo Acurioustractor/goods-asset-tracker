@@ -21,6 +21,8 @@ export type AssetRow = {
   photo_count: number;
   batch: string | null;
   last_telemetry: string | null;
+  scans_total: number;
+  scans_7d: number;
 };
 
 const STATUS_COLOR: Record<string, string> = {
@@ -132,6 +134,9 @@ export function AssetTable({ rows }: { rows: AssetRow[] }) {
               <Th>Supplied</Th>
               <Th>Batch</Th>
               <Th>Telemetry</Th>
+              <Th className="whitespace-nowrap">
+                <span title="Real human scans (bots and admin views excluded)">Scans 7d / all</span>
+              </Th>
               <Th className="text-right pr-4">Links</Th>
             </tr>
           </thead>
@@ -178,6 +183,19 @@ export function AssetTable({ rows }: { rows: AssetRow[] }) {
                   )}
                 </Td>
                 <Td><TelemetryDot product={r.product} lastSeen={r.last_telemetry} /></Td>
+                <Td className="whitespace-nowrap text-xs">
+                  {r.scans_total > 0 ? (
+                    <span>
+                      <span className={r.scans_7d > 0 ? 'font-semibold text-emerald-700' : 'text-gray-500'}>
+                        {r.scans_7d}
+                      </span>
+                      <span className="mx-1 text-gray-300">/</span>
+                      <span className="text-gray-600">{r.scans_total}</span>
+                    </span>
+                  ) : (
+                    <span className="text-gray-300">--</span>
+                  )}
+                </Td>
                 <Td className="pr-4">
                   <div className="flex justify-end gap-1.5">
                     <Link
