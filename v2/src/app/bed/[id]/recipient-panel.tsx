@@ -15,6 +15,8 @@ type Props = {
   status: string | null;
   isAuthed: boolean;
   isClaimed: boolean;
+  recipientName: string | null;
+  supplyDate: string | null;
 };
 
 const PENDING_STATUSES = new Set(['ready', 'in_production', 'created', 'quality_check']);
@@ -29,6 +31,8 @@ export function RecipientPanel({
   status,
   isAuthed,
   isClaimed,
+  recipientName,
+  supplyDate,
 }: Props) {
   const [storyOpen, setStoryOpen] = useState(false);
 
@@ -36,22 +40,50 @@ export function RecipientPanel({
   const lowerNoun = productNoun.toLowerCase();
   const where = place ? `${place} (${community || 'a community'})` : community || null;
 
+  // Personalisation: pull the first word of the recipient name for greetings.
+  // "Ray Nelson" → "Ray", "Frank family" → "Frank", "Mary T" → "Mary".
+  const firstName = recipientName ? recipientName.trim().split(/\s+/)[0] : null;
+
+  // Welcome window: first 7 days after delivery, copy is more attentive.
+  const daysSinceDelivery = supplyDate
+    ? Math.floor((Date.now() - new Date(supplyDate).getTime()) / (1000 * 60 * 60 * 24))
+    : null;
+  const isFreshlyDelivered = daysSinceDelivery !== null && daysSinceDelivery >= 0 && daysSinceDelivery <= 7;
+
+  // Headline + subline copy, three-way split (pending / fresh delivery / settled-in).
+  let headline: string;
+  let subline: string;
+  if (isPending) {
+    headline = `Your ${lowerNoun} is on its way`;
+    subline = `${uniqueId} is ready and waiting for delivery. Come back here once it's with you.`;
+  } else {
+    headline = firstName
+      ? `Hi ${firstName} — this is your ${lowerNoun}`
+      : where
+        ? `Your ${lowerNoun} lives at ${where}`
+        : `Your ${lowerNoun}`;
+
+    if (isFreshlyDelivered) {
+      subline = where
+        ? `${where} — welcome. If anything's missing or not right, tell us today.`
+        : `Welcome. If anything's missing or not right, tell us today — it's easiest to fix in the first week.`;
+    } else if (isClaimed) {
+      subline = where
+        ? `${where} — connected to your account. Photos, questions, blanket requests, repairs — we're here.`
+        : `Connected to your account. Stay close any time.`;
+    } else if (where) {
+      subline = `${where}. Tap below to add this ${lowerNoun} to your account.`;
+    } else {
+      subline = `Stay connected. Ask questions any time, share your story, or let us know how it's going.`;
+    }
+  }
+
   return (
     <div className="max-w-3xl mx-auto px-4 mt-6">
       <div className="rounded-2xl border bg-card shadow-sm overflow-hidden">
         <div className="bg-gradient-to-br from-amber-50 to-stone-50 dark:from-amber-950/30 dark:to-stone-950/30 px-5 py-4 border-b">
-          <p className="font-display text-lg font-bold text-foreground">
-            {isPending
-              ? `Your ${lowerNoun} is on its way`
-              : where
-                ? `Your ${lowerNoun} lives at ${where}`
-                : `Your ${lowerNoun}`}
-          </p>
-          <p className="text-sm text-muted-foreground mt-0.5">
-            {isPending
-              ? `${uniqueId} is ready and waiting for delivery. Come back here once it's with you.`
-              : `Stay connected. Ask questions any time, share your story, or let us know how it's going.`}
-          </p>
+          <p className="font-display text-lg font-bold text-foreground">{headline}</p>
+          <p className="text-sm text-muted-foreground mt-0.5">{subline}</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border">

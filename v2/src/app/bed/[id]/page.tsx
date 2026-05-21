@@ -326,6 +326,8 @@ export default async function BedPage({ params }: BedPageProps) {
         status={asset.status}
         isAuthed={!!user}
         isClaimed={isClaimedByMe}
+        recipientName={asset.recipient_name ?? null}
+        supplyDate={asset.supply_date ?? null}
       />
 
       {/* Pulse check — single tap, no login. Up high so it's the easiest signal to leave. */}
