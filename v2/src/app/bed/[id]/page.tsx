@@ -6,11 +6,9 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { BedMapWrapper } from './bed-map-wrapper';
 import { InstallLogger } from './install-logger';
-import { RecipientPanel } from './recipient-panel';
+import { RecipientCard } from './recipient-card';
 import { BedGallery, type BedGalleryItem } from './bed-gallery';
 import { NameYourBed } from './name-your-bed';
-import { PulseCheck } from './pulse-check';
-import { ContactRow } from './contact-row';
 import { BedFaq } from './bed-faq';
 import { SetupVideo } from './setup-video';
 import { PartsDiagram } from './parts-diagram';
@@ -315,8 +313,8 @@ export default async function BedPage({ params }: BedPageProps) {
         />
       )}
 
-      {/* Recipient-first panel: claim, ask, story, support */}
-      <RecipientPanel
+      {/* Single recipient card: greeting + pulse + help chooser + share photo + claim */}
+      <RecipientCard
         uniqueId={asset.unique_id}
         productLabel={productLabel}
         productNoun={productNoun}
@@ -330,20 +328,10 @@ export default async function BedPage({ params }: BedPageProps) {
         supplyDate={asset.supply_date ?? null}
       />
 
-      {/* Pulse check — single tap, no login. Up high so it's the easiest signal to leave. */}
-      <div className="max-w-3xl mx-auto px-4 mt-6">
-        <PulseCheck uniqueId={asset.unique_id} productNoun={productNoun} />
-      </div>
-
       {/* Photos linked to this asset (Goods staff + recipient uploads) — only renders when there are photos to show. */}
       {galleryItems.length > 0 && (
         <BedGallery items={galleryItems} productNoun={productNoun} uniqueId={asset.unique_id} />
       )}
-
-      {/* Direct contact: WhatsApp / SMS / phone */}
-      <div className="max-w-3xl mx-auto px-4 mt-4">
-        <ContactRow uniqueId={asset.unique_id} productNoun={productNoun} />
-      </div>
 
       {/* Setup video + quick answers */}
       <div className="max-w-3xl mx-auto px-4 mt-6 grid gap-4 md:grid-cols-2">
