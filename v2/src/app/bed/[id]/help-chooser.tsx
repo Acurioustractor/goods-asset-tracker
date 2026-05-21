@@ -22,10 +22,12 @@ function smsHref(uniqueId: string): string {
 }
 
 /**
- * Bottom-sheet chooser. Tapped from "Get help" — recipient picks how they
- * want to reach Goods. WhatsApp listed first because it's the most common
- * choice; AI chat last because it's the most novel and we want recipients
- * to feel they're reaching humans by default.
+ * Bottom-sheet chooser. Tapped from "Get help" — recipient picks how to message
+ * Goods. WhatsApp is the primary path because it's free, async-friendly, and
+ * routes to GHL where the team can reply on their own schedule. SMS is the
+ * fallback for anyone without WhatsApp. AI chat is for instant answers. No
+ * phone-call option: we can't commit to live pickup — all responses come back
+ * via text or WhatsApp.
  */
 export function HelpChooser({ open, onClose, uniqueId, productNoun }: Props) {
   useEffect(() => {
@@ -56,9 +58,9 @@ export function HelpChooser({ open, onClose, uniqueId, productNoun }: Props) {
       >
         <div className="flex items-start justify-between mb-4">
           <div>
-            <h2 className="font-display text-lg font-bold">How would you like to reach us?</h2>
+            <h2 className="font-display text-lg font-bold">Message us</h2>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Setup, washing, blankets, repairs — pick whichever's easiest.
+              We&apos;ll reply by text or WhatsApp — usually same day, sometimes the next.
             </p>
           </div>
           <button
@@ -77,12 +79,15 @@ export function HelpChooser({ open, onClose, uniqueId, productNoun }: Props) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={onClose}
-            className="block rounded-xl border bg-card hover:bg-emerald-50 dark:hover:bg-emerald-950/30 p-4 flex items-center gap-3 transition-colors"
+            className="block rounded-xl border-2 border-emerald-300 bg-emerald-50/40 dark:bg-emerald-950/20 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 p-4 flex items-center gap-3 transition-colors"
           >
             <span className="text-2xl" aria-hidden>💚</span>
             <div className="flex-1 min-w-0">
-              <p className="font-semibold text-sm">WhatsApp Goods</p>
-              <p className="text-xs text-muted-foreground">Opens WhatsApp with this {lowerNoun}'s ID pre-filled.</p>
+              <p className="font-semibold text-sm">
+                WhatsApp Goods
+                <span className="ml-2 text-xs font-medium text-emerald-700 dark:text-emerald-300">· fastest reply</span>
+              </p>
+              <p className="text-xs text-muted-foreground">Free, works offline-and-on. {uniqueId} pre-filled.</p>
             </div>
           </a>
 
@@ -94,19 +99,7 @@ export function HelpChooser({ open, onClose, uniqueId, productNoun }: Props) {
             <span className="text-2xl" aria-hidden>📱</span>
             <div className="flex-1 min-w-0">
               <p className="font-semibold text-sm">Text us (SMS)</p>
-              <p className="text-xs text-muted-foreground">Standard text. Works on every phone, no app.</p>
-            </div>
-          </a>
-
-          <a
-            href={`tel:${SUPPORT_PHONE_RAW}`}
-            onClick={onClose}
-            className="block rounded-xl border bg-card hover:bg-stone-50 dark:hover:bg-stone-800 p-4 flex items-center gap-3 transition-colors"
-          >
-            <span className="text-2xl" aria-hidden>📞</span>
-            <div className="flex-1 min-w-0">
-              <p className="font-semibold text-sm">Call Goods</p>
-              <p className="text-xs text-muted-foreground">For something urgent. Office hours, NT time.</p>
+              <p className="text-xs text-muted-foreground">No WhatsApp? Standard text works on every phone.</p>
             </div>
           </a>
 
@@ -118,7 +111,7 @@ export function HelpChooser({ open, onClose, uniqueId, productNoun }: Props) {
             <span className="text-2xl" aria-hidden>💡</span>
             <div className="flex-1 min-w-0">
               <p className="font-semibold text-sm">Type or talk to AI</p>
-              <p className="text-xs text-muted-foreground">Quick answer right now. Human follow-up if you need.</p>
+              <p className="text-xs text-muted-foreground">Instant answer for setup, washing, parts. Hands you off to a human if needed.</p>
             </div>
           </Link>
         </div>
