@@ -168,6 +168,13 @@ const utopia: TripStory = {
         'Alice Springs and Utopia Homelands, Northern Territory · 21–22 May 2026 · Goods on Country, with Oonchiumpa',
       media: { image: `${IMG}/04-build.jpg`, videoDesktop: `${VID}/alice-youth-desktop.mp4`, videoMobile: `${VID}/alice-youth-mobile.mp4` },
     },
+    // Arrernte welcome — the way the trip was opened. Verified phrase from
+    // the handoff; speaker and language to be confirmed before public use.
+    {
+      kind: 'bleedquote',
+      text: '"Come down and make your apmere."',
+      media: { image: `${IMG}/02-arrive.jpg` },
+    },
     {
       kind: 'read',
       tag: 'The trip',
@@ -263,6 +270,21 @@ const utopia: TripStory = {
       media: { image: `${IMG}/07-elders.jpg` },
     },
     {
+      kind: 'read',
+      tag: 'Ampilatwatja',
+      heading: 'Four beds, two Elders, one quiet morning',
+      paragraphs: [
+        'Ampilatwatja is an outstation on Alyawarr country, north-east of Utopia. The two senior men we sat with are recognised by the country and, this year, by the Order of Australia. Their identities will be added here only once they have confirmed how they would like to be named.',
+        'Four beds for the two households between them. The unloading took longer than the assembly. The yarning took longer still. The clip we kept is the part where one of the old men, having tested the surface himself, simply nodded.',
+      ],
+      pulls: [
+        {
+          quote: '"That nod was the whole trip in one second."',
+          src: 'Goods on Country team note · 21 May 2026',
+        },
+      ],
+    },
+    {
       kind: 'videos',
       heading: 'Hear it from them',
       sub:
@@ -313,13 +335,25 @@ const utopia: TripStory = {
     {
       kind: 'pathways',
       heading: 'Three ways to be part of it',
-      sub: 'One piece of work, three ways in. Plain framings for now, real links and figures to be added.',
+      sub: 'One piece of work, three ways in.',
       cards: [
-        { who: 'Supporters', title: 'Put a bed in a home', body: 'Fund a Stretch Bed and follow where it goes. The simplest way to be part of the work, one family at a time.' },
-        { who: 'Funders', title: 'Move the making to Country', body: 'Back the containerised plant and the community-ownership transfer. This is where scale and lasting jobs come from.' },
-        { who: 'Partners', title: 'Build it with your community', body: 'Bring the making to your homelands. Community leads, Goods supports, and the work becomes yours to own.' },
+        {
+          who: 'Supporters',
+          title: 'Put a bed in a home',
+          body: 'Buy a Stretch Bed at $560 institutional / $600 retail. One bed reaches one family on country. We tell you where it landed.',
+        },
+        {
+          who: 'Funders',
+          title: 'Move the making to country',
+          body: 'Back the containerised plant and the community-ownership transfer. Production is roughly 85% complete; the next round closes the gap and seeds local jobs.',
+        },
+        {
+          who: 'Partners',
+          title: 'Build it with your community',
+          body: 'Bring the making to your homelands. Community leads, Goods supports, and the assets stay where they belong.',
+        },
       ],
-      link: { label: 'Read the wider story at goodsoncountry.com', href: 'https://www.goodsoncountry.com' },
+      link: { label: 'Read the wider story', href: '/story' },
     },
     {
       kind: 'portal',

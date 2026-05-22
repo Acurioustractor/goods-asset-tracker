@@ -3,6 +3,7 @@
 import { useMemo, useState, useTransition } from 'react';
 import type { PhotoStory } from './page';
 import { reviewPhoto } from './actions';
+import { bulkUpdateTags } from './bulk-tag-actions';
 
 const COMMUNITY_LABELS: Record<string, string> = {
   'utopia-homelands': 'Utopia Homelands',
@@ -21,6 +22,32 @@ export function PhotoPicker({ photos }: { photos: PhotoStory[] }) {
   const [filterMediaType, setFilterMediaType] = useState<'all' | 'photo' | 'video'>('all');
   const [filterUse, setFilterUse] = useState<string>('');
   const [, startTransition] = useTransition();
+  const [bulkPanelOpen, setBulkPanelOpen] = useState(false);
+  const [bulkAddCsv, setBulkAddCsv] = useState('');
+  const [bulkRemoveCsv, setBulkRemoveCsv] = useState('');
+  const [bulkBusy, setBulkBusy] = useState(false);
+  const [bulkResult, setBulkResult] = useState<{ ok: number; fail: number } | null>(null);
+
+  async function runBulkTag() {
+    setBulkBusy(true);
+    setBulkResult(null);
+    try {
+      const res = await bulkUpdateTags({
+        storyIds: [...selected],
+        add: bulkAddCsv.split(',').map((t) => t.trim()).filter(Boolean),
+        remove: bulkRemoveCsv.split(',').map((t) => t.trim()).filter(Boolean),
+      });
+      setBulkResult({ ok: res.ok.length, fail: res.fail.length });
+      if (res.fail.length === 0) {
+        setBulkAddCsv('');
+        setBulkRemoveCsv('');
+        // Wait a moment for revalidation, then refresh
+        setTimeout(() => window.location.reload(), 800);
+      }
+    } finally {
+      setBulkBusy(false);
+    }
+  }
 
   async function review(id: string, action: 'approve' | 'elder-ok' | 'unpublish') {
     setPendingReview(id);
@@ -364,15 +391,27 @@ export function PhotoPicker({ photos }: { photos: PhotoStory[] }) {
           <div className="mx-auto max-w-6xl px-4 py-3">
             <div className="mb-2 flex items-center justify-between text-sm">
               <span>
-                <span className="font-bold text-amber-300">{selected.size}</span> selected for deck
+                <span className="font-bold text-amber-300">{selected.size}</span> selected
               </span>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <button
                   type="button"
                   onClick={() => setSelected(new Set())}
                   className="rounded border border-stone-700 px-3 py-1 text-xs hover:bg-stone-800"
                 >
                   Clear
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setBulkPanelOpen(!bulkPanelOpen)}
+                  className={`rounded border px-3 py-1 text-xs font-semibold ${
+                    bulkPanelOpen
+                      ? 'border-blue-500 bg-blue-600 text-white'
+                      : 'border-stone-700 text-amber-50 hover:bg-stone-800'
+                  }`}
+                  title="Add or remove tags on all selected"
+                >
+                  🏷️ Bulk tag
                 </button>
                 <button
                   type="button"
@@ -383,9 +422,62 @@ export function PhotoPicker({ photos }: { photos: PhotoStory[] }) {
                 </button>
               </div>
             </div>
-            <pre className="max-h-32 overflow-y-auto rounded bg-stone-800 p-2 text-[11px] leading-relaxed">
-              {markdown}
-            </pre>
+
+            {bulkPanelOpen ? (
+              <div className="space-y-2 rounded bg-stone-800 p-3 text-xs">
+                <p className="text-amber-200">
+                  Apply tags to all <strong className="font-bold text-amber-300">{selected.size}</strong> selected.
+                  Use the canonical taxonomy: <code className="rounded bg-stone-900 px-1 text-[10px]">participant:ray-nelson</code>{' '}
+                  <code className="rounded bg-stone-900 px-1 text-[10px]">theme:family</code>{' '}
+                  <code className="rounded bg-stone-900 px-1 text-[10px]">community:utopia-homelands</code>{' '}
+                  <code className="rounded bg-stone-900 px-1 text-[10px]">use:hero-photo</code>
+                </p>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  <label className="block">
+                    <span className="mb-1 block text-[11px] font-medium text-emerald-300">+ Add tags (comma-separated)</span>
+                    <input
+                      type="text"
+                      value={bulkAddCsv}
+                      onChange={(e) => setBulkAddCsv(e.target.value)}
+                      placeholder="theme:family, participant:ray-nelson"
+                      className="w-full rounded bg-stone-900 px-2 py-1.5 font-mono text-xs text-amber-50 placeholder-stone-500"
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="mb-1 block text-[11px] font-medium text-red-300">− Remove tags (comma-separated)</span>
+                    <input
+                      type="text"
+                      value={bulkRemoveCsv}
+                      onChange={(e) => setBulkRemoveCsv(e.target.value)}
+                      placeholder="pending-elder-review"
+                      className="w-full rounded bg-stone-900 px-2 py-1.5 font-mono text-xs text-amber-50 placeholder-stone-500"
+                    />
+                  </label>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[11px] text-stone-400">
+                    {bulkResult && (
+                      <>
+                        <span className="text-emerald-400">{bulkResult.ok} updated</span>
+                        {bulkResult.fail > 0 && <span className="text-red-400"> · {bulkResult.fail} failed</span>}
+                      </>
+                    )}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={runBulkTag}
+                    disabled={bulkBusy || (!bulkAddCsv.trim() && !bulkRemoveCsv.trim())}
+                    className="rounded bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
+                  >
+                    {bulkBusy ? 'Applying…' : `Apply to ${selected.size}`}
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <pre className="max-h-32 overflow-y-auto rounded bg-stone-800 p-2 text-[11px] leading-relaxed">
+                {markdown}
+              </pre>
+            )}
           </div>
         </div>
       )}
