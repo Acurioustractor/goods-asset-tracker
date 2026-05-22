@@ -24,6 +24,8 @@ interface AssetLite {
   place: string | null;
   recipient_name: string | null;
   product: string | null;
+  status?: string | null;
+  supply_date?: string | null;
 }
 
 export default async function ScansAnalyticsPage() {
@@ -63,6 +65,37 @@ export default async function ScansAnalyticsPage() {
   }
 
   const scans: ScanRow[] = scansRes.data || [];
+
+  // Missed installs: a non-admin, non-bot scan happened on a bed that's still
+  // status=ready more than 12 hours later. Pattern = someone scanned in the
+  // field but nobody filled in the InstallLogger form. Lets us catch ghost
+  // deliveries before they become invisible.
+  const twelveHoursAgo = new Date(now.getTime() - 12 * 60 * 60 * 1000);
+  const missedScansByBed = new Map<string, { firstScan: string; scanCount: number }>();
+  for (const s of scans) {
+    if (s.is_bot || s.is_admin) continue;
+    if (new Date(s.scanned_at) > twelveHoursAgo) continue;
+    const existing = missedScansByBed.get(s.unique_id);
+    if (!existing) {
+      missedScansByBed.set(s.unique_id, { firstScan: s.scanned_at, scanCount: 1 });
+    } else {
+      existing.scanCount += 1;
+      if (s.scanned_at < existing.firstScan) existing.firstScan = s.scanned_at;
+    }
+  }
+  const missedIds = [...missedScansByBed.keys()];
+  const missedStatusRes = missedIds.length
+    ? await supabase
+        .from('assets')
+        .select('unique_id, status, community, place, recipient_name, supply_date')
+        .in('unique_id', missedIds)
+        .eq('status', 'ready')
+    : { data: [] as AssetLite[] };
+  const missedInstalls = ((missedStatusRes.data || []) as AssetLite[]).map((a) => ({
+    ...a,
+    firstScan: missedScansByBed.get(a.unique_id)!.firstScan,
+    scanCount: missedScansByBed.get(a.unique_id)!.scanCount,
+  })).sort((a, b) => a.firstScan.localeCompare(b.firstScan));
 
   // Total counts
   const realScans = scans.filter((s) => !s.is_bot && !s.is_admin);
@@ -155,6 +188,62 @@ export default async function ScansAnalyticsPage() {
         <ExclusionBadge label="Admin views excluded" value={adminCount} color="bg-amber-100 text-amber-800" />
         <ExclusionBadge label="Unique beds scanned" value={perBed.size} color="bg-emerald-100 text-emerald-800" />
       </section>
+
+      {/* Missed installs — beds scanned in the field but still marked ready. The
+          ghost-install pattern: someone scanned but never filled the form. */}
+      {missedInstalls.length > 0 && (
+        <section>
+          <h2 className="mb-3 flex items-center gap-2 text-base font-semibold">
+            <span className="inline-flex h-2 w-2 rounded-full bg-red-500" />
+            Missed installs — {missedInstalls.length} bed{missedInstalls.length === 1 ? '' : 's'} scanned but still &ldquo;ready&rdquo;
+          </h2>
+          <Card className="border-red-200 bg-red-50/40">
+            <CardContent className="p-0">
+              <table className="min-w-full text-sm">
+                <thead className="border-b border-red-200 bg-red-100/40 text-xs uppercase tracking-wide text-red-900">
+                  <tr>
+                    <Th>Bed</Th>
+                    <Th>First scanned</Th>
+                    <Th>Scans</Th>
+                    <Th>Community</Th>
+                    <Th className="pr-4 text-right">Action</Th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-red-100 bg-white">
+                  {missedInstalls.map((m) => (
+                    <tr key={m.unique_id} className="hover:bg-red-50/40">
+                      <Td className="font-mono text-xs">
+                        <Link href={`/bed/${m.unique_id}`} target="_blank" className="text-blue-700 hover:underline">
+                          {m.unique_id}
+                        </Link>
+                      </Td>
+                      <Td className="whitespace-nowrap text-xs text-gray-600">
+                        {new Date(m.firstScan).toLocaleString('en-AU', { dateStyle: 'short', timeStyle: 'short' })}
+                      </Td>
+                      <Td className="text-xs">{m.scanCount}</Td>
+                      <Td>
+                        {m.community || <span className="text-gray-400">unassigned</span>}
+                      </Td>
+                      <Td className="pr-4 text-right">
+                        <Link
+                          href={`/admin/assets/${encodeURIComponent(m.unique_id)}`}
+                          className="inline-flex items-center gap-1 rounded border border-red-300 bg-red-100 px-2 py-1 text-xs font-semibold text-red-900 hover:bg-red-200"
+                        >
+                          Log install
+                        </Link>
+                      </Td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <p className="border-t border-red-200 bg-red-50 px-4 py-2 text-xs text-red-800">
+                These beds were scanned in the field more than 12 hours ago but never had install details recorded.
+                Tap &ldquo;Log install&rdquo; to fill in recipient + community on the asset page.
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+      )}
 
       <section>
         <h2 className="mb-3 text-base font-semibold">Last 30 days</h2>
