@@ -1,4 +1,4 @@
-# Utopia Homelands + Alice Springs Trip Report
+ a# Utopia Homelands + Alice Springs Trip Report
 
 **Dates:** 21–22 May 2026
 **Batch:** GB0-156 (107 Stretch Beds minted 14 May for this trip)
