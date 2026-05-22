@@ -55,11 +55,74 @@ function getArg(name, defaultVal = null) {
 const hasFlag = (name) => argv.includes(`--${name}`);
 
 const tripTag = getArg('trip', 'trip-may-2026');
-const communityTag = getArg('community', 'utopia-homelands');
 const productTag = getArg('product', 'stretch-bed');
-const useTag = getArg('use', 'testimonial');     // hero-video | testimonial | setup-tutorial | overlay-bg | behind-scenes
-const themeTags = (getArg('theme') || '').split(',').map(t => t.trim()).filter(Boolean);
+// CLI flags become per-file DEFAULTS. Per-file filename parsing overrides
+// these — see parseFilenameTags() below. This lets you drop a folder of
+// well-named exports and get correct tags without flag gymnastics.
+const cliCommunity = getArg('community');
+const cliUse = getArg('use');
+const cliThemes = (getArg('theme') || '').split(',').map(t => t.trim()).filter(Boolean);
 const goPublic = hasFlag('public');
+
+/**
+ * Parse our recommended filename convention:
+ *   {use}_{community}_{subject-or-theme}_{duration}s.{ext}
+ *
+ * Examples:
+ *   hero-overlay_utopia_wide-arrival_12s.mp4
+ *   testimonial_utopia_ray-nelson_42s.mov
+ *   setup_universal_stretch-bed-assembly_85s.mp4
+ *   per-bed_utopia_gb0-156-96_22s.mp4
+ *
+ * Returns {use, community, subject, durationFromName} where any field that
+ * can't be parsed is null. CLI flags fill missing fields. If everything's
+ * blank, defaults to use=testimonial / community=utopia-homelands.
+ */
+function parseFilenameTags(filename) {
+  const stem = basename(filename, extname(filename)).toLowerCase();
+  const parts = stem.split('_');
+  const KNOWN_USES = new Set(['hero-overlay', 'overlay-bg', 'hero-video', 'testimonial', 'setup', 'setup-tutorial', 'behind', 'behind-scenes', 'per-bed', 'product-shot', 'establishing']);
+  const COMMUNITY_ALIASES = {
+    'utopia': 'utopia-homelands',
+    'utopia-homelands': 'utopia-homelands',
+    'alice': 'alice-springs',
+    'alice-springs': 'alice-springs',
+    'tc': 'tennant-creek',
+    'tennant-creek': 'tennant-creek',
+    'universal': null,           // explicit "no community" marker
+  };
+
+  let use = null;
+  let community = null;
+  let subject = null;
+  let durationFromName = null;
+  let bedId = null;
+
+  if (parts.length > 0 && KNOWN_USES.has(parts[0])) {
+    // Normalise aliases
+    use = parts[0]
+      .replace('hero-overlay', 'overlay-bg')
+      .replace('setup-tutorial', 'setup')
+      .replace('behind-scenes', 'behind');
+  }
+  if (parts.length > 1 && parts[1] in COMMUNITY_ALIASES) {
+    community = COMMUNITY_ALIASES[parts[1]];
+  }
+  // Find subject (everything between community and the duration token)
+  // Duration is the last part if it matches /^\d+s$/
+  const last = parts[parts.length - 1];
+  const durMatch = last && last.match(/^(\d+)s$/);
+  if (durMatch) durationFromName = parseInt(durMatch[1], 10);
+  const subjectStart = use ? 1 : 0;
+  const subjectEnd = (parts[1] in COMMUNITY_ALIASES) ? 2 : subjectStart;
+  const subjectParts = parts.slice(Math.max(subjectStart, subjectEnd), durMatch ? -1 : undefined);
+  if (subjectParts.length > 0) subject = subjectParts.join('-');
+  // Bed ID auto-detect from subject
+  const bedMatch = subject && subject.match(/(gb\d+-\d+-\d+)/i);
+  if (bedMatch) bedId = bedMatch[1].toUpperCase();
+
+  return { use, community, subject, durationFromName, bedId };
+}
 
 const STORY_MEDIA_BUCKET = 'story-media';        // private — gated by signed URLs or RLS
 const STORY_IMAGES_BUCKET = 'story-images';      // public
@@ -111,6 +174,13 @@ function durationBucket(secs) {
 }
 
 async function createStory({ posterUrl, videoUrl, file, durationSecs }) {
+  // Parse filename for auto-tags; CLI flags act as fallback when filename
+  // doesn't carry a field. Final precedence: filename > CLI > built-in default.
+  const parsed = parseFilenameTags(file);
+  const useTag = parsed.use || cliUse || 'testimonial';
+  const communityTag = parsed.community || cliCommunity || 'utopia-homelands';
+  const themeTags = cliThemes; // themes only via CLI for now (subject ≠ theme)
+
   const tags = [
     'media-type:video',
     `trip:${tripTag}`,
@@ -122,10 +192,17 @@ async function createStory({ posterUrl, videoUrl, file, durationSecs }) {
     'goods-staff-capture',
     ...themeTags.map(t => `theme:${t}`),
   ];
+  // Auto-derived bed ID from filename (e.g. per-bed_utopia_gb0-156-96_22s.mp4)
+  if (parsed.bedId) tags.push(parsed.bedId.toLowerCase());
 
-  const title = `${basename(file, extname(file))} — ${communityTag.replace(/-/g, ' ')} (${useTag})`;
+  const subjectLabel = parsed.subject ? parsed.subject.replace(/-/g, ' ') : null;
+  const title = subjectLabel
+    ? `${subjectLabel} — ${communityTag.replace(/-/g, ' ')} (${useTag})`
+    : `${basename(file, extname(file))} — ${communityTag.replace(/-/g, ' ')} (${useTag})`;
   const content = [
     `Video from ${tripTag}. Use: ${useTag}. Community: ${communityTag}.`,
+    subjectLabel ? `Subject: ${subjectLabel}.` : null,
+    parsed.bedId ? `Bed: ${parsed.bedId}.` : null,
     durationSecs ? `Duration: ${durationSecs.toFixed(1)}s.` : null,
     themeTags.length ? `Themes: ${themeTags.join(', ')}.` : null,
     goPublic ? 'Approved for public + funder deck use.' : 'Pending elder review before public use.',
@@ -175,7 +252,12 @@ async function createStory({ posterUrl, videoUrl, file, durationSecs }) {
 
 const files = readdirSync(folder).filter(f => VIDEO_EXTS.has(extname(f).toLowerCase())).sort();
 console.log(`Found ${files.length} videos in ${folder}`);
-console.log(`Tags: trip=${tripTag} community=${communityTag} product=${productTag} use=${useTag} themes=[${themeTags.join(',')}] public=${goPublic}`);
+console.log(`Defaults: trip=${tripTag} product=${productTag} public=${goPublic}`);
+console.log(`Tags auto-derived from filenames per convention:`);
+console.log(`  {use}_{community}_{subject}_{duration}s.mp4`);
+console.log(`  e.g. hero-overlay_utopia_wide-arrival_12s.mp4`);
+console.log(`CLI overrides: --use ${cliUse || '-'}  --community ${cliCommunity || '-'}  --theme ${cliThemes.join(',') || '-'}`);
+console.log('');
 
 let ok = 0, skipped = 0, fail = 0;
 for (const f of files) {

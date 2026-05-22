@@ -68,6 +68,12 @@ export default async function FundersPage() {
                 >
                   → Generate report
                 </Link>
+                <Link
+                  href={`/admin/funders/${f.slug}/video-brief`}
+                  className="rounded border border-amber-200 bg-amber-50 px-2 py-1 text-amber-800 hover:bg-amber-100"
+                >
+                  🎬 Video brief
+                </Link>
                 {f.funderContact?.name && (
                   <span className="rounded border border-gray-100 bg-gray-50 px-2 py-1 text-gray-600">
                     Contact: {f.funderContact.name}
