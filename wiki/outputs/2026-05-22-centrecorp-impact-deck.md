@@ -162,15 +162,25 @@ Installs alert next morning.
 | **Per-bed cost (current production, ~15/mo)** | **~$550** manufactured | Day 4 unit economics v0.1, `wiki/outputs/2026-05-12-financial-model-day4-unit-economics.md` |
 | **Per-bed cost (at Year 1 target, 1,500/yr)** | **~$479** | Same source, projected at scale |
 | **Per-bed cost (Vision 2030, 12,000/yr)** | **~$270** | Same source, capacity-led |
-| **Manufacturing cost this trip (87 beds × $550)** | **~$47,850** | Cost only, excludes logistics |
-| Logistics + freight + staff (trip overhead) | **[TBD — pull from Xero]** | Verify against Goods AP for the week of 19–22 May |
-| **Total cost per delivered bed (this trip)** | **[TBD]** | (manufacturing + trip overhead) / 87 |
+| **Manufacturing cost this trip (87 beds × $550)** | **~$47,850** | Bed cost only |
+| Trip logistics (vehicle, fuel, freight, accommodation) | **est. $1,500–$2,500** | Unverified — see note below |
+| Goods staff time on country (2 staff × 2 days × loaded rate) | **est. $2,000–$3,000** | Unverified — depends on FTE assumption |
+| **Trip overhead total (rough estimate)** | **~$3,500–$5,500** | $40–$63 per delivered bed |
+| **All-in cost per delivered bed (this trip)** | **~$590–$613** | $550 manufactured + $40–$63 trip overhead |
 
-> **Verification note for the deck:** the $550/bed figure is **verified** from
-> Day 4 unit economics, based on current 15/month run-rate. Trip-specific
-> logistics costs need to be pulled from Xero (or estimated) before this slide
-> is final. See `wiki/outputs/2026-05-12-financial-model-day3-expenses-and-founder-time.md`
-> for context on real cost-of-goods.
+> **Honest verification note for the deck:**
+> - **Per-bed manufactured cost ($550)** is **verified** from Day 4 unit
+>   economics (current 15/month run-rate).
+> - **Trip overhead numbers above are unverified estimates.** As of
+>   2026-05-22, no ACCPAY invoices for this trip have been entered in Xero.
+>   Audit of the last 6 months of Goods ACCPAY shows only $339 in
+>   trip-vendor expenses tagged — clear evidence that trip overhead (fuel,
+>   accommodation, freight) is being paid through personal accounts and
+>   not yet reconciled to Goods entity.
+> - **Before sending the deck to Centrecorp:** chase the 21–22 May trip
+>   receipts (fuel, vehicle hire, accommodation, freight) so the per-bed
+>   number is defensible. Source: `wiki/outputs/2026-05-12-financial-model-day3-expenses-and-founder-time.md`
+>   confirmed the historical $86,499 of unaccounted bank spend.
 
 ---
 
