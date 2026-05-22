@@ -27,6 +27,8 @@ import {
   Camera,
   BarChart3,
   Images,
+  Receipt,
+  Presentation,
 } from 'lucide-react';
 
 type NavItem = { name: string; href: string; icon: React.ComponentType<{ className?: string }> };
@@ -45,6 +47,8 @@ const navigation: NavGroup[] = [
       { name: 'Assets',         href: '/admin/assets',        icon: Library },
       { name: 'Scans',          href: '/admin/scans',         icon: BarChart3 },
       { name: 'Photos',         href: '/admin/photos',        icon: Images },
+      { name: 'Deck preview',   href: '/admin/deck',          icon: Presentation },
+      { name: 'Trip receipts',  href: '/admin/trip-receipts', icon: Receipt },
       { name: 'Communities',    href: '/admin/communities',   icon: Globe },
       { name: 'Messages',       href: '/admin/messages',      icon: MessageSquare },
       { name: 'Reach out',      href: '/admin/reach-out',     icon: Send },

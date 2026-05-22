@@ -1,7 +1,8 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useTransition } from 'react';
 import type { PhotoStory } from './page';
+import { reviewPhoto } from './actions';
 
 const COMMUNITY_LABELS: Record<string, string> = {
   'utopia-homelands': 'Utopia Homelands',
@@ -16,6 +17,19 @@ export function PhotoPicker({ photos }: { photos: PhotoStory[] }) {
   const [filterDay, setFilterDay] = useState<string>('');
   const [filterSource, setFilterSource] = useState<string>('');
   const [onlyDecoded, setOnlyDecoded] = useState(false);
+  const [pendingReview, setPendingReview] = useState<string | null>(null);
+  const [, startTransition] = useTransition();
+
+  async function review(id: string, action: 'approve' | 'elder-ok' | 'unpublish') {
+    setPendingReview(id);
+    try {
+      const res = await reviewPhoto(id, action);
+      if (!res.ok) alert(`Review failed: ${res.error}`);
+      else startTransition(() => { /* triggers revalidation */ });
+    } finally {
+      setPendingReview(null);
+    }
+  }
 
   // Build the universe of tags + axes from the loaded photos.
   const allTags = useMemo(() => {
@@ -172,56 +186,104 @@ export function PhotoPicker({ photos }: { photos: PhotoStory[] }) {
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {filtered.map((p) => {
           const isSel = selected.has(p.id);
+          const isPending = pendingReview === p.id;
           return (
-            <button
+            <div
               key={p.id}
-              type="button"
-              onClick={() => toggle(p.id)}
-              className={`relative overflow-hidden rounded-lg border-2 bg-white text-left transition-all ${
+              className={`relative overflow-hidden rounded-lg border-2 bg-white transition-all ${
                 isSel ? 'border-amber-500 shadow-lg' : 'border-transparent hover:border-gray-300'
               }`}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={p.url}
-                alt={p.title}
-                loading="lazy"
-                className="aspect-[4/3] w-full object-cover"
-              />
-              <div className="space-y-1 p-2 text-xs">
-                <div className="font-mono font-semibold text-amber-700">
-                  {p.bedId || 'no-qr'}
+              <button
+                type="button"
+                onClick={() => toggle(p.id)}
+                className="block w-full text-left"
+                aria-label={`${isSel ? 'Deselect' : 'Select'} ${p.title}`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={p.url}
+                  alt={p.title}
+                  loading="lazy"
+                  className="aspect-[4/3] w-full object-cover"
+                />
+                <div className="space-y-1 p-2 text-xs">
+                  <div className="font-mono font-semibold text-amber-700">
+                    {p.bedId || 'no-qr'}
+                  </div>
+                  <div className="flex flex-wrap gap-1">
+                    {p.community && (
+                      <span className="rounded bg-blue-50 px-1.5 py-0.5 text-blue-700">
+                        {COMMUNITY_LABELS[p.community] || p.community}
+                      </span>
+                    )}
+                    {p.day && (
+                      <span className="rounded bg-emerald-50 px-1.5 py-0.5 text-emerald-700">
+                        {p.day.replace('day-', 'Day ')}
+                      </span>
+                    )}
+                    {p.needsElder && (
+                      <span className="rounded bg-red-50 px-1.5 py-0.5 text-red-700" title="Requires elder review">
+                        ⚠ elder
+                      </span>
+                    )}
+                    {p.isPublic && (
+                      <span className="rounded bg-emerald-100 px-1.5 py-0.5 text-emerald-800" title="Public">
+                        ✓ public
+                      </span>
+                    )}
+                    {!p.isPublic && (
+                      <span className="rounded bg-gray-100 px-1.5 py-0.5 text-gray-600" title="Not public yet">
+                        private
+                      </span>
+                    )}
+                  </div>
+                  <div className="truncate text-gray-500" title={p.title}>{p.title}</div>
                 </div>
-                <div className="flex flex-wrap gap-1">
-                  {p.community && (
-                    <span className="rounded bg-blue-50 px-1.5 py-0.5 text-blue-700">
-                      {COMMUNITY_LABELS[p.community] || p.community}
-                    </span>
-                  )}
-                  {p.day && (
-                    <span className="rounded bg-emerald-50 px-1.5 py-0.5 text-emerald-700">
-                      {p.day.replace('day-', 'Day ')}
-                    </span>
-                  )}
-                  {p.needsElder && (
-                    <span className="rounded bg-red-50 px-1.5 py-0.5 text-red-700" title="Requires elder review">
-                      ⚠ elder
-                    </span>
-                  )}
-                  {!p.isPublic && (
-                    <span className="rounded bg-gray-100 px-1.5 py-0.5 text-gray-600" title="Not public yet">
-                      private
-                    </span>
-                  )}
-                </div>
-                <div className="truncate text-gray-500" title={p.title}>{p.title}</div>
+                {isSel && (
+                  <span className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-amber-600 text-xs font-bold text-white">
+                    ✓
+                  </span>
+                )}
+              </button>
+              {/* Review action row — sits outside the toggle button so clicks
+                  don't accidentally toggle the deck selection. */}
+              <div className="flex border-t bg-gray-50 text-[10px]">
+                {!p.isPublic && (
+                  <button
+                    type="button"
+                    onClick={() => review(p.id, 'approve')}
+                    disabled={isPending}
+                    className="flex-1 py-1.5 font-semibold text-emerald-700 hover:bg-emerald-50 disabled:opacity-50"
+                    title="Mark elder-reviewed + flip to public"
+                  >
+                    {isPending ? '…' : '✓ Approve public'}
+                  </button>
+                )}
+                {p.needsElder && !p.isPublic && (
+                  <button
+                    type="button"
+                    onClick={() => review(p.id, 'elder-ok')}
+                    disabled={isPending}
+                    className="flex-1 border-l py-1.5 font-medium text-amber-700 hover:bg-amber-50 disabled:opacity-50"
+                    title="Elder-reviewed but keep private"
+                  >
+                    Elder OK
+                  </button>
+                )}
+                {p.isPublic && (
+                  <button
+                    type="button"
+                    onClick={() => review(p.id, 'unpublish')}
+                    disabled={isPending}
+                    className="flex-1 py-1.5 font-medium text-red-700 hover:bg-red-50 disabled:opacity-50"
+                    title="Unpublish (back to private)"
+                  >
+                    {isPending ? '…' : 'Unpublish'}
+                  </button>
+                )}
               </div>
-              {isSel && (
-                <span className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-amber-600 text-xs font-bold text-white">
-                  ✓
-                </span>
-              )}
-            </button>
+            </div>
           );
         })}
         {filtered.length === 0 && (
