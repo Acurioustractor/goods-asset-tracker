@@ -18,32 +18,21 @@ export function FollowForm() {
     }
     setStatus('submitting');
     try {
-      const tasks: Promise<Response>[] = [];
-      if (email) {
-        tasks.push(
-          fetch('/api/newsletter', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, tag: 'canberra-airport-2026' }),
-          })
-        );
-      }
-      tasks.push(
-        fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: name || 'Canberra Airport visitor',
-            email: email || `phone-${phone.replace(/\s/g, '')}@placeholder.goodsoncountry.com`,
-            phone,
-            subject: 'Canberra Airport — Reconciliation Week',
-            message: `${name || 'Someone'} scanned a Goods QR at Canberra Airport during Reconciliation Week 2026. Email: ${email || '—'}, Phone: ${phone || '—'}`,
-            subscribe: !!email,
-          }),
-        })
-      );
-      const results = await Promise.all(tasks);
-      if (!results.some((r) => r.ok)) throw new Error('Submit failed');
+      // Single newsletter call — accepts email OR phone OR both. GHL helper
+      // tags goods-newsletter + goods-src-canberra-airport-2026 and fires the
+      // Smart Router, which branches in-GHL on the source tag (no code
+      // change needed per event). See wiki/outputs/2026-05-18-ghl-workflow-alignment.md.
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email || undefined,
+          phone: phone || undefined,
+          name: name || undefined,
+          tag: 'canberra-airport-2026',
+        }),
+      });
+      if (!response.ok) throw new Error('Submit failed');
       setStatus('success');
     } catch {
       setStatus('error');

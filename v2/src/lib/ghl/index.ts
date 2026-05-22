@@ -26,22 +26,51 @@ const CUSTOM_FIELDS = {
   orderNumber: process.env.GHL_FIELD_ORDER_NUMBER || '',
   orderTotal: process.env.GHL_FIELD_ORDER_TOTAL || '',
   message: process.env.GHL_FIELD_MESSAGE || '',
+  // Project Designation is a SHARED dropdown across ACT projects. Goods contact
+  // handlers stamp "Goods" so the contact rolls up under the Goods program in
+  // cross-project reports. Other projects (Empathy Ledger, JusticeHub) set
+  // their own value via their own entry points.
+  projectDesignation: process.env.GHL_FIELD_PROJECT_DESIGNATION || '',
 };
 
-// Workflow IDs (configure in GHL dashboard)
+// Helper: inject the Goods project designation into a customFields map.
+// Used by every Goods-specific contact creation path so any contact that
+// touched a Goods entry point is identifiable as a Goods contact in GHL.
+function withGoodsProject(customFields: Record<string, string>): Record<string, string> {
+  if (CUSTOM_FIELDS.projectDesignation) {
+    customFields[CUSTOM_FIELDS.projectDesignation] = 'Goods';
+  }
+  return customFields;
+}
+
+// Workflow IDs (configure in GHL dashboard).
+//
+// SCALING MODEL (May 2026, decided 2026-05-22):
+// - newOrder stays as a dedicated retail-orders workflow (separate from the router).
+// - Every other Goods event (sponsorship, support, claim, partnership, message,
+//   request, plus all event-source signups like Parliament House, Canberra Airport,
+//   future pop-ups) routes through ONE Smart Router workflow that branches on
+//   the `goods-*` tag attached to the contact.
+// - New event = new tag value passed from the form + new Smart Router branch
+//   added in the GHL dashboard. **Zero code change. Zero env-var change. Zero
+//   deploy.** This is the "code does identify-and-tag, GHL decides what to send"
+//   pattern. See wiki/outputs/2026-05-18-ghl-workflow-alignment.md.
 const WORKFLOWS = {
   newOrder: process.env.GHL_WORKFLOW_NEW_ORDER || '',
-  newSponsor: process.env.GHL_WORKFLOW_NEW_SPONSOR || '',
-  newPartnership: process.env.GHL_WORKFLOW_NEW_PARTNERSHIP || '',
-  supportTicket: process.env.GHL_WORKFLOW_SUPPORT_TICKET || '',
-  highPriorityTicket: process.env.GHL_WORKFLOW_HIGH_PRIORITY || '',
-  // User account workflows
-  newClaim: process.env.GHL_WORKFLOW_NEW_CLAIM || '',
-  userMessage: process.env.GHL_WORKFLOW_USER_MESSAGE || '',
-  userRequest: process.env.GHL_WORKFLOW_USER_REQUEST || '',
-  // Event-specific workflows
-  parliamentHouse: process.env.GHL_WORKFLOW_PARLIAMENT_HOUSE || '',
+  smartRouter: process.env.GHL_WORKFLOW_SMART_ROUTER || '',
 };
+
+// Fire the Smart Router for any non-retail Goods event. The router branches
+// internally on the contact's `goods-*` tag(s). Returns true if the workflow
+// was triggered (or simulated when GHL is disabled), false if no router is
+// wired yet — in which case the contact still gets created/updated with the
+// right tags, so a Smart List dispatch still works.
+async function fireSmartRouter(contactId: string): Promise<boolean> {
+  if (!WORKFLOWS.smartRouter) return false;
+  // Small delay so custom fields propagate before the router reads them.
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  return triggerWorkflow(WORKFLOWS.smartRouter, contactId);
+}
 
 const STRATEGIC_PIPELINES: Record<StrategicTargetType, StrategicPipelineConfig> = {
   buyer: {
@@ -150,6 +179,10 @@ const TAGS = {
   recipient: 'goods-recipient',
   claimedBed: 'goods-claimed-bed',
   claimedWasher: 'goods-claimed-washer',
+
+  // --- In-app user actions (so the Smart Router has stable branch keys) ---
+  userMessage: 'goods-user-message',
+  userRequest: 'goods-user-request',
 };
 
 interface GHLResponse {
@@ -189,6 +222,7 @@ interface OrderContactData {
   totalCents: number;
   isSponsorship: boolean;
   sponsoredCommunity?: string;
+  sponsorMessage?: string;
   productTypes: string[];
 }
 
@@ -872,6 +906,7 @@ export const ghl = {
           ...(opts.assetId ? [tagForAsset(opts.assetId)] : []),
           ...(opts.tags || []),
         ],
+        customFields: withGoodsProject({}),
         source: opts.assetId ? `Bed scan ${opts.assetId}` : 'Bed scan reminder',
       });
       const contactId = upsert.contact?.id;
@@ -930,6 +965,10 @@ export const ghl = {
     if (data.sponsoredCommunity && CUSTOM_FIELDS.community) {
       customFields[CUSTOM_FIELDS.community] = data.sponsoredCommunity;
     }
+    if (data.sponsorMessage && CUSTOM_FIELDS.message) {
+      customFields[CUSTOM_FIELDS.message] = data.sponsorMessage;
+    }
+    withGoodsProject(customFields);
 
     const result = await createOrUpdateContact({
       email: data.email,
@@ -940,13 +979,14 @@ export const ghl = {
       source: data.isSponsorship ? 'Goods Sponsorship' : 'Goods Order',
     });
 
-    // Trigger appropriate workflow
+    // Retail orders fire a dedicated workflow; sponsorships go via the Smart
+    // Router (branches on goods-sponsor). See the scaling-model note in WORKFLOWS.
     if (result.success && result.contact?.id) {
-      const workflowId = data.isSponsorship ? WORKFLOWS.newSponsor : WORKFLOWS.newOrder;
-      if (workflowId) {
-        // Small delay to ensure custom fields are propagated in GHL before workflow runs
+      if (data.isSponsorship) {
+        await fireSmartRouter(result.contact.id);
+      } else if (WORKFLOWS.newOrder) {
         await new Promise(resolve => setTimeout(resolve, 2000));
-        await triggerWorkflow(workflowId, result.contact.id);
+        await triggerWorkflow(WORKFLOWS.newOrder, result.contact.id);
       }
     }
 
@@ -958,17 +998,24 @@ export const ghl = {
    */
   async createSupportTicketContact(data: SupportTicketData): Promise<GHLResponse> {
     const isEmail = data.userContact.includes('@');
+    const isUrgent = data.priority === 'High' || data.priority === 'Urgent';
+
+    // Tagging is how the Smart Router decides what to do. `goods-urgent` lets a
+    // nested branch fire an immediate SMS to on-call; absence routes to the
+    // standard ack email.
+    const tags = [TAGS.supportRequest, tagForAsset(data.assetId)];
+    if (isUrgent) tags.push('goods-urgent');
 
     const result = await createOrUpdateContact({
       email: isEmail ? data.userContact : '',
       phone: isEmail ? undefined : data.userContact,
       name: data.userName,
-      tags: [TAGS.supportRequest, tagForAsset(data.assetId)],
-      customFields: {
+      tags,
+      customFields: withGoodsProject({
         ...(CUSTOM_FIELDS.assetId && { [CUSTOM_FIELDS.assetId]: data.assetId }),
         ...(CUSTOM_FIELDS.community && data.community && { [CUSTOM_FIELDS.community]: data.community }),
         ...(CUSTOM_FIELDS.productType && data.productType && { [CUSTOM_FIELDS.productType]: data.productType }),
-      },
+      }),
       source: 'QR Code Support Request',
     });
 
@@ -992,14 +1039,8 @@ Submitted: ${new Date().toLocaleString('en-AU')}
 
       await addContactNote(result.contact.id, noteText);
 
-      // Trigger appropriate workflow
-      const workflowId = ['High', 'Urgent'].includes(data.priority)
-        ? WORKFLOWS.highPriorityTicket
-        : WORKFLOWS.supportTicket;
-
-      if (workflowId) {
-        await triggerWorkflow(workflowId, result.contact.id);
-      }
+      // Smart Router branches on goods-support-request (and nested goods-urgent).
+      await fireSmartRouter(result.contact.id);
     }
 
     return result;
@@ -1014,6 +1055,7 @@ Submitted: ${new Date().toLocaleString('en-AU')}
     if (CUSTOM_FIELDS.message && data.message) {
       customFields[CUSTOM_FIELDS.message] = data.message;
     }
+    withGoodsProject(customFields);
 
     const result = await createOrUpdateContact({
       email: data.contactEmail,
@@ -1037,10 +1079,8 @@ Submitted: ${new Date().toLocaleString('en-AU')}
 
       await addContactNote(result.contact.id, noteText);
 
-      // Trigger workflow
-      if (WORKFLOWS.newPartnership) {
-        await triggerWorkflow(WORKFLOWS.newPartnership, result.contact.id);
-      }
+      // Smart Router branches on goods-partner-lead OR goods-media.
+      await fireSmartRouter(result.contact.id);
     }
 
     return result;
@@ -1064,6 +1104,7 @@ Submitted: ${new Date().toLocaleString('en-AU')}
       name: data.contactName || data.organizationName,
       companyName: data.organizationName,
       tags,
+      customFields: withGoodsProject({}),
       source: 'GrantScope Goods Workspace',
     });
 
@@ -1133,31 +1174,53 @@ Synced: ${new Date().toLocaleString('en-AU')}
   },
 
   /**
-   * Add contact to newsletter
+   * Add contact to newsletter. Accepts email, phone, or both — at least one
+   * required. Phone-only signups (e.g. airport QR scans where someone gave a
+   * number not an email) get the same goods-newsletter + goods-src-<tag>
+   * tagging as email signups; the Smart Router branches on the source tag, not
+   * the channel.
+   *
+   * Per the Option B scaling decision (2026-05-22), this method does NOT
+   * carry event-specific copy or workflow IDs. All event acknowledgements
+   * (Parliament House, Canberra Airport, future pop-ups) are configured as
+   * Smart Router branches in the GHL dashboard, keyed on the
+   * `goods-src-<tag>` tag. Adding a new event = pass a new `tag` value from
+   * the form + add a Smart Router branch. Zero code change.
+   *
+   * Backward-compatible: the legacy positional signature
+   * `addToNewsletter(email, name?, tag?)` still works.
    */
-  async addToNewsletter(email: string, name?: string, tag?: string): Promise<GHLResponse> {
+  async addToNewsletter(
+    optsOrEmail: { email?: string; phone?: string; name?: string; tag?: string } | string,
+    name?: string,
+    tag?: string,
+  ): Promise<GHLResponse> {
+    const opts = typeof optsOrEmail === 'string'
+      ? { email: optsOrEmail, name, tag }
+      : optsOrEmail;
+
+    const email = cleanString(opts.email);
+    const phone = cleanString(opts.phone);
+    const sourceTag = opts.tag;
+
+    if (!email && !phone) {
+      return { success: false, error: 'Email or phone is required' };
+    }
+
     const tags = [TAGS.newsletter];
-    if (tag) tags.push(`goods-src-${tag}`);
+    if (sourceTag) tags.push(`goods-src-${sourceTag}`);
+
     const result = await createOrUpdateContact({
       email,
-      name,
+      phone,
+      name: opts.name,
       tags,
-      source: tag ? `Newsletter Signup (${tag})` : 'Newsletter Signup',
+      customFields: withGoodsProject({}),
+      source: sourceTag ? `Newsletter Signup (${sourceTag})` : 'Newsletter Signup',
     });
 
-    // Trigger event-specific workflows + add context notes
     if (result.success && result.contact?.id) {
-      if (tag === 'parliament-house-demo') {
-        await addContactNote(result.contact.id,
-          `🏛️ Parliament House Event Signup\n` +
-          `Scanned a Stretch Bed QR code at Parliament House, Canberra.\n` +
-          `Signed up for updates on ${new Date().toLocaleDateString('en-AU')}.\n` +
-          `Interested in: Goods on Country, bed tracking, community impact.`
-        );
-        if (WORKFLOWS.parliamentHouse) {
-          await triggerWorkflow(WORKFLOWS.parliamentHouse, result.contact.id);
-        }
-      }
+      await fireSmartRouter(result.contact.id);
     }
 
     return result;
@@ -1171,6 +1234,7 @@ Synced: ${new Date().toLocaleString('en-AU')}
       email,
       name,
       tags: ['goods-inquiry', ...(tags || [])],
+      customFields: withGoodsProject({}),
       source: 'Website Inquiry',
     });
   },
@@ -1201,6 +1265,7 @@ Synced: ${new Date().toLocaleString('en-AU')}
     if (CUSTOM_FIELDS.community) {
       customFields[CUSTOM_FIELDS.community] = data.community;
     }
+    withGoodsProject(customFields);
 
     const result = await createOrUpdateContact({
       email: '', // Phone-based users may not have email
@@ -1223,10 +1288,8 @@ Claimed: ${new Date().toLocaleString('en-AU')}
 
       await addContactNote(result.contact.id, noteText);
 
-      // Trigger claim workflow
-      if (WORKFLOWS.newClaim) {
-        await triggerWorkflow(WORKFLOWS.newClaim, result.contact.id);
-      }
+      // Smart Router branches on goods-recipient.
+      await fireSmartRouter(result.contact.id);
     }
 
     return result;
@@ -1253,6 +1316,7 @@ Claimed: ${new Date().toLocaleString('en-AU')}
       email: '',
       phone,
       tags,
+      customFields: withGoodsProject({}),
       source: 'QR Code Claim',
     });
 
@@ -1276,17 +1340,21 @@ Claimed: ${new Date().toLocaleString('en-AU')}
    * Log an inbound message from a user
    */
   async logInboundMessage(data: UserMessageData): Promise<GHLResponse> {
+    const tags = [TAGS.userMessage];
+    if (data.assetId) tags.push(tagForAsset(data.assetId));
+
     const result = await createOrUpdateContact({
       email: '',
       phone: data.phone,
       name: data.name,
-      tags: data.assetId ? [tagForAsset(data.assetId)] : [],
+      tags,
+      customFields: withGoodsProject({}),
       source: 'User Message',
     });
 
     if (result.success && result.contact?.id) {
       const noteText = `
-💬 User Message
+User Message
 ${data.assetId ? `Asset: ${data.assetId}` : ''}
 ${data.community ? `Community: ${data.community}` : ''}
 Message: ${data.message}
@@ -1295,10 +1363,8 @@ Sent: ${new Date().toLocaleString('en-AU')}
 
       await addContactNote(result.contact.id, noteText);
 
-      // Trigger message workflow
-      if (WORKFLOWS.userMessage) {
-        await triggerWorkflow(WORKFLOWS.userMessage, result.contact.id);
-      }
+      // Smart Router branches on goods-user-message.
+      await fireSmartRouter(result.contact.id);
     }
 
     return result;
@@ -1308,17 +1374,26 @@ Sent: ${new Date().toLocaleString('en-AU')}
    * Log a user request (blanket, pillow, parts, etc.)
    */
   async logUserRequest(data: UserRequestData): Promise<GHLResponse> {
+    const tags = [TAGS.userRequest];
+    if (data.assetId) tags.push(tagForAsset(data.assetId));
+    // Request-type tag lets the Smart Router branch on what's being asked for
+    // (blanket, pillow, parts, etc.) without code changes.
+    if (data.requestType) {
+      tags.push(`goods-user-request-${data.requestType.toLowerCase().replace(/[^a-z0-9-]/g, '-')}`);
+    }
+
     const result = await createOrUpdateContact({
       email: '',
       phone: data.phone,
       name: data.name,
-      tags: data.assetId ? [tagForAsset(data.assetId)] : [],
+      tags,
+      customFields: withGoodsProject({}),
       source: 'User Request',
     });
 
     if (result.success && result.contact?.id) {
       const noteText = `
-📋 User Request
+User Request
 Type: ${data.requestType}
 ${data.assetId ? `Asset: ${data.assetId}` : ''}
 ${data.productType ? `Product: ${data.productType}` : ''}
@@ -1329,10 +1404,8 @@ Submitted: ${new Date().toLocaleString('en-AU')}
 
       await addContactNote(result.contact.id, noteText);
 
-      // Trigger request workflow
-      if (WORKFLOWS.userRequest) {
-        await triggerWorkflow(WORKFLOWS.userRequest, result.contact.id);
-      }
+      // Smart Router branches on goods-user-request (+ optional sub-tag).
+      await fireSmartRouter(result.contact.id);
     }
 
     return result;

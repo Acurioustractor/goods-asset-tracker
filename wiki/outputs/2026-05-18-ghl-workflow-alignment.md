@@ -1,5 +1,15 @@
 # GHL Workflow Alignment Playbook — May 2026
 
+> **2026-05-22 update — Option B refactor shipped.** The code-side machinery was rebuilt so the Goods app no longer carries event-specific logic. There is now **ONE env var** (`GHL_WORKFLOW_SMART_ROUTER`) instead of seven, and all event copy (Parliament House, Canberra Airport, future pop-ups) lives in GHL Smart Router branches keyed on the `goods-src-<event>` tag. **Adding a new event = pass a new tag value from the form + add a Smart Router branch in the GHL dashboard. Zero code change. Zero env-var change. Zero deploy.**
+>
+> The branch designs below remain the canonical reference for what each branch should send. The "Wire the ID into Vercel" section is replaced by the simpler one-line command at the bottom.
+>
+> **Migration order (do these in sequence):**
+> 1. Build Smart Router in GHL dashboard using Branches 1-7 below
+> 2. Copy the workflow ID, set it once: `vercel env add GHL_WORKFLOW_SMART_ROUTER` across production/preview/development
+> 3. Deploy v2 production — at this point Parliament House signups stop hitting the old workflow and start hitting the Smart Router
+> 4. Delete the now-unused env vars from Vercel (optional cleanup): `GHL_WORKFLOW_NEW_SPONSOR`, `_NEW_PARTNERSHIP`, `_SUPPORT_TICKET`, `_HIGH_PRIORITY`, `_NEW_CLAIM`, `_USER_MESSAGE`, `_USER_REQUEST`, `_PARLIAMENT_HOUSE`, `_CANBERRA_AIRPORT`. The code no longer reads them.
+
 **Goal.** Build ONE Smart Router workflow that handles every Goods event (sponsor thank-you, claim SMS, support ack, partnership reply, etc.) with internal branching, instead of maintaining 8 separate workflows.
 
 **Why Smart Router.** Fewer moving parts. One trigger config, one place to edit copy, one workflow ID to wire in Vercel. The router branches internally by tag.
@@ -150,6 +160,34 @@ The branching logic uses GHL's "If/Else" workflow action. For each branch, condi
 - [ ] **Internal notification** to fulfilment: `Request from {{contact.first_name}} ({{contact.community}}) — see contact notes for type + details`
 - [ ] **SMS acknowledgement** to recipient: `Got your request — we'll get it sorted. — Goods`
 
+### Branch 7 — Canberra Airport scan (tag: `goods-src-canberra-airport-2026`)
+
+Added 2026-05-20 to support the Reconciliation Week 2026 install at Canberra Airport. The Canberra `FollowForm` posts a single call to `/api/newsletter`; the GHL helper tags `goods-newsletter` + `goods-src-canberra-airport-2026`, adds a context note, and triggers this branch via env var `GHL_WORKFLOW_CANBERRA_AIRPORT` (point at the Smart Router ID per the playbook).
+
+- [ ] **Send acknowledgement** — Email if `{{contact.email}}` exists, else SMS to `{{contact.phone}}`
+  - **Subject (email):** `Thanks for scanning at Canberra Airport`
+  - **Body:**
+    ```
+    Hi {{contact.first_name}},
+
+    Thanks for scanning the Stretch Bed at Canberra Airport during
+    Reconciliation Week.
+
+    The bed you saw is one of more than 400 living in remote homes across
+    Palm Island, Tennant Creek, Maningrida, Utopia Homelands, and beyond.
+    Each has a QR code. Each carries a story.
+
+    We will be in touch a few times a year with what is happening on
+    Country, and when new beds and washing machines reach new communities.
+
+    Thanks,
+    Ben and Nic
+    Goods on Country
+    goodsoncountry.com
+    ```
+  - **SMS body** (phone-only signups): `Thanks for scanning at Canberra Airport. We will share updates a few times a year. Reply STOP to opt out. — Goods on Country`
+- [ ] **Internal notification** to Ben + Nic: `New Canberra Airport scan from {{contact.first_name}} ({{contact.email}} / {{contact.phone}})`
+
 ### Final action
 
 - [ ] **Publish** the Smart Router (must be Published, not Draft, for the API to trigger it)
@@ -157,26 +195,20 @@ The branching logic uses GHL's "If/Else" workflow action. For each branch, condi
 
 ---
 
-## Step 2. Wire the ID into Vercel (one command)
+## Step 2. Wire the ID into Vercel (one command, Option B)
 
-Once you have the Smart Router workflow ID, paste it in place of `WF_ID` below and run **from the v2 directory**:
+Post-2026-05-22 refactor: there is now **one env var**, set once across three environments.
 
 ```bash
 WF_ID="paste-the-router-id-here"
-cd v2  # or the project root with vercel.json
+cd v2
 
 for env in production preview development; do
-  echo "$WF_ID" | vercel env add GHL_WORKFLOW_NEW_SPONSOR $env
-  echo "$WF_ID" | vercel env add GHL_WORKFLOW_NEW_PARTNERSHIP $env
-  echo "$WF_ID" | vercel env add GHL_WORKFLOW_SUPPORT_TICKET $env
-  echo "$WF_ID" | vercel env add GHL_WORKFLOW_HIGH_PRIORITY $env
-  echo "$WF_ID" | vercel env add GHL_WORKFLOW_NEW_CLAIM $env
-  echo "$WF_ID" | vercel env add GHL_WORKFLOW_USER_MESSAGE $env
-  echo "$WF_ID" | vercel env add GHL_WORKFLOW_USER_REQUEST $env
+  echo "$WF_ID" | vercel env add GHL_WORKFLOW_SMART_ROUTER $env
 done
 ```
 
-That sets 21 env-var values (7 slots × 3 environments) in one shot. Paste the router ID back to me and I'll run it for you, or run it yourself.
+That sets 3 env-var values (1 slot × 3 environments). Paste the router ID back to me and I'll run it for you, or run it yourself.
 
 Then redeploy production so the code picks up the new env vars:
 
