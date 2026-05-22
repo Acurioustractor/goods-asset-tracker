@@ -22,63 +22,55 @@ async function fetchXero<T = unknown>(
 
 // ─── Live-data resolvers ────────────────────────────────────────────────
 
+/**
+ * Apply the period window + optional community scope. Centralised so every
+ * Supabase query respects the funder's optional community filter the same
+ * way. When funder.community is empty the query is all-Goods.
+ */
+function scopedAssetsQuery(ctx: ReportContext) {
+  let q = ctx.goods
+    .from('assets')
+    .select('unique_id', { count: 'exact', head: true })
+    .gte('supply_date', ctx.period.start)
+    .lte('supply_date', ctx.period.end);
+  if (ctx.funder.community) q = q.eq('community', ctx.funder.community);
+  return q;
+}
+
 const bedsDeployedThisPeriod: MetricResolver = async (ctx) => {
-  const { data, error } = await ctx.goods
-    .from('assets')
-    .select('unique_id', { count: 'exact', head: true })
-    .gte('supply_date', ctx.period.start)
-    .lte('supply_date', ctx.period.end)
-    .eq('status', 'deployed');
-  if (error) throw new Error(error.message);
-  // `data` is null with head:true, but .count is on the wrapping object — refetch with count
-  const res = await ctx.goods
-    .from('assets')
-    .select('unique_id', { count: 'exact', head: true })
-    .gte('supply_date', ctx.period.start)
-    .lte('supply_date', ctx.period.end)
-    .eq('status', 'deployed');
+  const res = await scopedAssetsQuery(ctx).eq('status', 'deployed');
   return String(res.count ?? 0);
 };
 
 const bedsAllocatedThisPeriod: MetricResolver = async (ctx) => {
-  const res = await ctx.goods
-    .from('assets')
-    .select('unique_id', { count: 'exact', head: true })
-    .gte('supply_date', ctx.period.start)
-    .lte('supply_date', ctx.period.end)
-    .eq('status', 'allocated');
+  const res = await scopedAssetsQuery(ctx).eq('status', 'allocated');
   return String(res.count ?? 0);
 };
 
 const bedsThisPeriodAllStatuses: MetricResolver = async (ctx) => {
-  const res = await ctx.goods
-    .from('assets')
-    .select('unique_id', { count: 'exact', head: true })
-    .gte('supply_date', ctx.period.start)
-    .lte('supply_date', ctx.period.end)
-    .in('status', ['deployed', 'allocated']);
+  const res = await scopedAssetsQuery(ctx).in('status', ['deployed', 'allocated']);
   return String(res.count ?? 0);
 };
 
 const plasticKgTransferred: MetricResolver = async (ctx) => {
-  const res = await ctx.goods
-    .from('assets')
-    .select('unique_id', { count: 'exact', head: true })
-    .gte('supply_date', ctx.period.start)
-    .lte('supply_date', ctx.period.end)
-    .in('status', ['deployed', 'allocated']);
+  const res = await scopedAssetsQuery(ctx).in('status', ['deployed', 'allocated']);
   const beds = res.count ?? 0;
   const kg = beds * 20;
   return `**${kg.toLocaleString()} kg** (${(kg / 1000).toFixed(2)} tonnes) — ${beds} beds × 20 kg HDPE`;
 };
 
 const communitiesServed: MetricResolver = async (ctx) => {
-  const { data } = await ctx.goods
+  // For "communities served" we want the actual list, so re-query with the
+  // community column selected. Still respects the funder.community filter
+  // (which would short-circuit to a 1-community list when set).
+  let q = ctx.goods
     .from('assets')
     .select('community')
     .gte('supply_date', ctx.period.start)
     .lte('supply_date', ctx.period.end)
     .in('status', ['deployed', 'allocated']);
+  if (ctx.funder.community) q = q.eq('community', ctx.funder.community);
+  const { data } = await q;
   const distinct = new Set((data || []).map((r) => r.community).filter(Boolean));
   return `${distinct.size} (${[...distinct].join(', ')})`;
 };
@@ -94,18 +86,9 @@ const commitmentProgressBar: MetricResolver = async (ctx) => {
     const bar = '▓'.repeat(filled) + '░'.repeat(20 - filled);
     return `\`\`\`\nCommitment:  $${total.toLocaleString('en-AU')}\nPaid:        ${bar} ${pct}%  ($${paid.toLocaleString('en-AU')})\n\`\`\``;
   }
-  // Unit-based commitments — count delivered units in period
-  const delivered = await ctx.goods
-    .from('assets')
-    .select('unique_id', { count: 'exact', head: true })
-    .in('status', ['deployed', 'allocated']);
-  // Per-funder filter would need tags; for MVP use this-period delivered + the funder's stated totalUnits as denominator
-  const periodRes = await ctx.goods
-    .from('assets')
-    .select('unique_id', { count: 'exact', head: true })
-    .gte('supply_date', ctx.period.start)
-    .lte('supply_date', ctx.period.end)
-    .in('status', ['deployed', 'allocated']);
+  // Unit-based commitments — count delivered units in period, respecting
+  // optional community scope.
+  const periodRes = await scopedAssetsQuery(ctx).in('status', ['deployed', 'allocated']);
   const periodCount = periodRes.count ?? 0;
   const total = c.totalUnits;
   const pct = total > 0 ? Math.round((periodCount / total) * 100) : 0;

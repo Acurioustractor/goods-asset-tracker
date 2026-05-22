@@ -99,6 +99,11 @@ export interface FunderConfig {
   photoTags: string[];            // OR-tag list for EL photo fetch
   sections: SectionKey[];         // ordered include-list
   tone: ReportTone;
+  // Optional community scope — if set, every Supabase query in the metric
+  // resolvers filters `assets.community = X`. Empty = all-Goods.
+  // Use the canonical community label as stored in `assets.community`,
+  // e.g. "Utopia Homelands" / "Alice Springs" / "Tennant Creek".
+  community?: string;
   principles?: PrincipleSpec[];   // Snow style
   risks?: RiskSpec[];
   upcomingCommitments?: UpcomingCommitmentSpec[];

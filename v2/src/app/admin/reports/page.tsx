@@ -18,7 +18,7 @@ function reportStatus(slug: string, period: string): { exists: boolean; mtime?: 
 }
 
 export default async function ReportsPage() {
-  const funders = listFunders();
+  const funders = await listFunders();
   const periods = Object.keys(QUARTERS).sort();
 
   return (

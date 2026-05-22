@@ -78,7 +78,7 @@ export default async function DeckPage({ searchParams }: DeckPageProps) {
   let displayLabel: string;
   let photoTags: string[];
   if (funderSlug && periodSlug) {
-    const funder = getFunder(funderSlug);
+    const funder = await getFunder(funderSlug);
     if (!funder) {
       return (
         <div className="p-6">

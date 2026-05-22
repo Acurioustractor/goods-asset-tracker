@@ -29,6 +29,7 @@ import {
   Images,
   Receipt,
   Presentation,
+  Building2,
 } from 'lucide-react';
 
 type NavItem = { name: string; href: string; icon: React.ComponentType<{ className?: string }> };
@@ -47,6 +48,7 @@ const navigation: NavGroup[] = [
       { name: 'Assets',         href: '/admin/assets',        icon: Library },
       { name: 'Scans',          href: '/admin/scans',         icon: BarChart3 },
       { name: 'Photos',         href: '/admin/photos',        icon: Images },
+      { name: 'Funders',        href: '/admin/funders',       icon: Building2 },
       { name: 'Funder reports', href: '/admin/reports',       icon: Presentation },
       { name: 'Deck preview',   href: '/admin/deck',          icon: Presentation },
       { name: 'Trip receipts',  href: '/admin/trip-receipts', icon: Receipt },

@@ -20,7 +20,7 @@ export async function generateFunderReport(funderSlug: string, periodSlug: strin
   sections?: number;
   error?: string;
 }> {
-  const funder = getFunder(funderSlug);
+  const funder = await getFunder(funderSlug);
   if (!funder) return { ok: false, error: `Unknown funder: ${funderSlug}` };
   const q = QUARTERS[periodSlug];
   if (!q) return { ok: false, error: `Unknown period: ${periodSlug}` };
