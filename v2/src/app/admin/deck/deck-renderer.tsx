@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import type { DeckPhoto } from './page';
 
 /**
@@ -15,17 +16,78 @@ import type { DeckPhoto } from './page';
  * it (for PDF print). H1 is the cover.
  */
 export function DeckRenderer({ markdown, photos }: { markdown: string; photos: DeckPhoto[] }) {
-  // Walk through the markdown, replacing the Nth [PHOTO: ...] line with the
-  // Nth EL photo (modulo length). Other placeholders left as-is — they're
-  // useful reminders during editing.
+  // Walk the markdown and resolve every placeholder:
+  //   [PHOTO: desc]          → next still photo from EL set, modulo
+  //   [VIDEO: tag]            → first EL video with `use:tag` (or any video
+  //                            if tag matches `use:*`), rendered inline
+  //   [VIDEO_OVERLAY: text]   → first EL video with `use:overlay-bg`,
+  //                            full-bleed bg + headline text on top
+  //
+  // Other placeholder forms ([QUOTE: ...], [MAP: ...]) are left as soft
+  // reminders during editing.
   const processed = useMemo(() => {
+    const stillPhotos = photos.filter((p) => !p.isVideo);
+    const videos = photos.filter((p) => p.isVideo);
     let photoIdx = 0;
-    return markdown.replace(/^\s*\[PHOTO:([^\]]*)\]\s*$/gm, (_, desc) => {
-      const photo = photos[photoIdx++ % Math.max(photos.length, 1)];
-      if (!photo) return `<!-- no EL photo available for: ${desc.trim()} -->`;
+
+    let out = markdown;
+
+    // [VIDEO_OVERLAY: headline text] — full-bleed bg video with text on top.
+    // Picks the first video tagged use:overlay-bg if available, else first
+    // video, else falls back to a still hero.
+    out = out.replace(/^\s*\[VIDEO_OVERLAY:([^\]]*)\]\s*$/gm, (_, headline) => {
+      const overlayVid = videos.find((v) => v.use === 'overlay-bg') || videos[0];
+      const text = headline.trim() || 'Goods on Country';
+      if (overlayVid?.videoUrl) {
+        return `<div class="video-overlay">
+  <video autoplay muted loop playsinline poster="${overlayVid.url}">
+    <source src="${overlayVid.videoUrl}" type="video/mp4" />
+  </video>
+  <div class="video-overlay-text"><h1>${text}</h1></div>
+</div>`;
+      }
+      const stillFallback = stillPhotos[0];
+      if (stillFallback) {
+        return `<div class="video-overlay">
+  <img src="${stillFallback.url}" alt="${text}" />
+  <div class="video-overlay-text"><h1>${text}</h1></div>
+</div>`;
+      }
+      return `<!-- no overlay media available for: ${text} -->`;
+    });
+
+    // [VIDEO: use-tag-or-desc] — inline embedded video at this spot.
+    // If arg looks like a use tag (e.g. "testimonial"), pick by use. Else
+    // just take the next video in the set.
+    let videoIdx = 0;
+    out = out.replace(/^\s*\[VIDEO:([^\]]*)\]\s*$/gm, (_, raw) => {
+      const arg = raw.trim();
+      let vid: DeckPhoto | undefined;
+      if (arg && videos.some((v) => v.use === arg)) {
+        vid = videos.find((v) => v.use === arg);
+      } else {
+        vid = videos[videoIdx++ % Math.max(videos.length, 1)];
+      }
+      if (!vid?.videoUrl) {
+        return `<!-- no EL video available for: ${arg} -->`;
+      }
+      const caption = [vid.bedId, vid.community, vid.use ? `use:${vid.use}` : null].filter(Boolean).join(' · ');
+      return `<video controls poster="${vid.url}" preload="metadata" style="max-width:100%;height:auto;border-radius:8px;margin:16px 0 4px;">
+  <source src="${vid.videoUrl}" type="video/mp4" />
+</video>
+
+*<small>${caption || vid.title}</small>*`;
+    });
+
+    // [PHOTO: desc] — still images (skip if no still photos)
+    out = out.replace(/^\s*\[PHOTO:([^\]]*)\]\s*$/gm, (_, desc) => {
+      if (stillPhotos.length === 0) return `<!-- no still photos available for: ${desc.trim()} -->`;
+      const photo = stillPhotos[photoIdx++ % stillPhotos.length];
       const caption = [photo.bedId, photo.community].filter(Boolean).join(' · ');
       return `![${desc.trim() || caption}](${photo.url})\n\n*<small>${caption}</small>*`;
     });
+
+    return out;
   }, [markdown, photos]);
 
   return (
@@ -129,6 +191,52 @@ export function DeckRenderer({ markdown, photos }: { markdown: string; photos: D
         .deck-print li { margin: 4px 0; }
         .deck-print small { color: #78716c; font-size: 12px; }
 
+        /* Video overlay — full-bleed bg media with title text on top.
+           Behaves like a hero slide. Print-friendly: video frame becomes
+           the poster image for PDF export. */
+        .deck-print .video-overlay {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 16 / 9;
+          overflow: hidden;
+          border-radius: 12px;
+          margin: 24px 0;
+          background: #1c1917;
+        }
+        .deck-print .video-overlay video,
+        .deck-print .video-overlay img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+        .deck-print .video-overlay-text {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: flex-end;
+          padding: 32px;
+          background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 50%);
+        }
+        .deck-print .video-overlay-text h1 {
+          color: white;
+          font-size: 36px;
+          margin: 0;
+          text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+          border-bottom: none;
+          padding-bottom: 0;
+          max-width: 70%;
+        }
+
+        /* Inline videos — keep them aligned with image styling */
+        .deck-print video {
+          max-width: 100%;
+          height: auto;
+          border-radius: 8px;
+          margin: 16px 0 4px;
+          background: #1c1917;
+        }
+
         @media print {
           .deck-print {
             padding: 0;
@@ -148,7 +256,7 @@ export function DeckRenderer({ markdown, photos }: { markdown: string; photos: D
         }
       `}</style>
       <div className="deck-print">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{processed}</ReactMarkdown>
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{processed}</ReactMarkdown>
       </div>
     </>
   );

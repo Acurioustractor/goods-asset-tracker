@@ -9,7 +9,7 @@
 
 import type { SupabaseClient } from '@supabase/supabase-js';
 
-// 17 canonical section keys. Each maps to a markdown file under
+// Canonical section keys. Each maps to a markdown file under
 // wiki/templates/funder-report/sections/{nn}-{slug}.md. Per-funder configs
 // pick an ordered subset.
 export type SectionKey =
@@ -17,6 +17,7 @@ export type SectionKey =
   | 'headline'
   | 'map'
   | 'hero-photo'
+  | 'hero-video'             // overlay bg video with headline on top
   | 'photo-grid'
   | 'voices'
   | 'why-it-works'

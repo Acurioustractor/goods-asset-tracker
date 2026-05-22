@@ -18,6 +18,8 @@ export function PhotoPicker({ photos }: { photos: PhotoStory[] }) {
   const [filterSource, setFilterSource] = useState<string>('');
   const [onlyDecoded, setOnlyDecoded] = useState(false);
   const [pendingReview, setPendingReview] = useState<string | null>(null);
+  const [filterMediaType, setFilterMediaType] = useState<'all' | 'photo' | 'video'>('all');
+  const [filterUse, setFilterUse] = useState<string>('');
   const [, startTransition] = useTransition();
 
   async function review(id: string, action: 'approve' | 'elder-ok' | 'unpublish') {
@@ -56,8 +58,17 @@ export function PhotoPicker({ photos }: { photos: PhotoStory[] }) {
     return [...s].sort();
   }, [photos]);
 
+  const uses = useMemo(() => {
+    const s = new Set<string>();
+    for (const p of photos) if (p.use) s.add(p.use);
+    return [...s].sort();
+  }, [photos]);
+
   const filtered = useMemo(() => {
     return photos.filter((p) => {
+      if (filterMediaType === 'photo' && p.isVideo) return false;
+      if (filterMediaType === 'video' && !p.isVideo) return false;
+      if (filterUse && p.use !== filterUse) return false;
       if (filterTag && !p.tags.includes(filterTag)) return false;
       if (filterCommunity && p.community !== filterCommunity) return false;
       if (filterDay && p.day !== filterDay) return false;
@@ -65,7 +76,7 @@ export function PhotoPicker({ photos }: { photos: PhotoStory[] }) {
       if (onlyDecoded && !p.bedId) return false;
       return true;
     });
-  }, [photos, filterTag, filterCommunity, filterDay, filterSource, onlyDecoded]);
+  }, [photos, filterMediaType, filterUse, filterTag, filterCommunity, filterDay, filterSource, onlyDecoded]);
 
   const selectedPhotos = useMemo(
     () => photos.filter((p) => selected.has(p.id)),
@@ -101,6 +112,8 @@ export function PhotoPicker({ photos }: { photos: PhotoStory[] }) {
     setFilterDay('');
     setFilterSource('');
     setOnlyDecoded(false);
+    setFilterMediaType('all');
+    setFilterUse('');
   }
 
   async function copyMarkdown() {
@@ -115,7 +128,36 @@ export function PhotoPicker({ photos }: { photos: PhotoStory[] }) {
     <div className="space-y-4 pb-32">
       {/* Filter bar */}
       <div className="rounded-lg border bg-white p-3 space-y-3">
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        {/* Media-type segmented control — photos vs videos vs both */}
+        <div className="flex gap-1 rounded-md border bg-gray-50 p-1 w-fit text-xs">
+          {(['all', 'photo', 'video'] as const).map((t) => (
+            <button
+              key={t}
+              type="button"
+              onClick={() => setFilterMediaType(t)}
+              className={`rounded px-3 py-1 font-medium transition ${filterMediaType === t ? 'bg-white text-amber-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}
+            >
+              {t === 'all' && 'All media'}
+              {t === 'photo' && '📷 Photos'}
+              {t === 'video' && '🎬 Videos'}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
+          {uses.length > 0 && (
+            <select
+              value={filterUse}
+              onChange={(e) => setFilterUse(e.target.value)}
+              className="rounded border border-gray-300 px-2 py-1.5 text-sm"
+              title="Video use type"
+            >
+              <option value="">All uses</option>
+              {uses.map((u) => (
+                <option key={u} value={u}>use:{u}</option>
+              ))}
+            </select>
+          )}
           <select
             value={filterCommunity}
             onChange={(e) => setFilterCommunity(e.target.value)}
@@ -200,16 +242,34 @@ export function PhotoPicker({ photos }: { photos: PhotoStory[] }) {
                 className="block w-full text-left"
                 aria-label={`${isSel ? 'Deselect' : 'Select'} ${p.title}`}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={p.url}
-                  alt={p.title}
-                  loading="lazy"
-                  className="aspect-[4/3] w-full object-cover"
-                />
+                <div className="relative">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={p.url}
+                    alt={p.title}
+                    loading="lazy"
+                    className="aspect-[4/3] w-full object-cover"
+                  />
+                  {p.isVideo && (
+                    <>
+                      {/* Centred ▶ overlay */}
+                      <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-black/60 text-white shadow-lg backdrop-blur-sm">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                        </span>
+                      </span>
+                      {/* Duration badge */}
+                      {p.durationSeconds && (
+                        <span className="absolute bottom-1.5 right-1.5 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-medium text-white">
+                          {p.durationSeconds >= 60 ? `${Math.floor(p.durationSeconds / 60)}:${String(Math.round(p.durationSeconds % 60)).padStart(2, '0')}` : `0:${String(Math.round(p.durationSeconds)).padStart(2, '0')}`}
+                        </span>
+                      )}
+                    </>
+                  )}
+                </div>
                 <div className="space-y-1 p-2 text-xs">
                   <div className="font-mono font-semibold text-amber-700">
-                    {p.bedId || 'no-qr'}
+                    {p.isVideo ? (p.use ? `🎬 ${p.use}` : '🎬 video') : (p.bedId || 'no-qr')}
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {p.community && (
@@ -222,6 +282,11 @@ export function PhotoPicker({ photos }: { photos: PhotoStory[] }) {
                         {p.day.replace('day-', 'Day ')}
                       </span>
                     )}
+                    {p.themes.length > 0 && p.themes.slice(0, 2).map((t) => (
+                      <span key={t} className="rounded bg-violet-50 px-1.5 py-0.5 text-violet-700" title={`theme: ${t}`}>
+                        #{t}
+                      </span>
+                    ))}
                     {p.needsElder && (
                       <span className="rounded bg-red-50 px-1.5 py-0.5 text-red-700" title="Requires elder review">
                         ⚠ elder

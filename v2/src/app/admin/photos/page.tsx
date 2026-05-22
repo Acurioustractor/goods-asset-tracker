@@ -15,6 +15,7 @@ interface ElStory {
   story_image_url: string | null;
   media_url: string | null;
   media_urls: string[] | null;
+  media_metadata: Record<string, unknown> | null;
   tags: string[] | null;
   is_public: boolean;
   community_status: string | null;
@@ -30,7 +31,10 @@ export type PhotoStory = {
   id: string;
   title: string;
   content: string;
-  url: string;
+  url: string;             // for photos: image URL. for video: poster URL.
+  videoUrl: string | null; // only set for video stories
+  isVideo: boolean;
+  durationSeconds: number | null;
   tags: string[];
   isPublic: boolean;
   needsElder: boolean;
@@ -40,6 +44,8 @@ export type PhotoStory = {
   community: string | null;
   day: string | null;
   source: string | null;
+  use: string | null;       // hero-video / testimonial / setup / overlay-bg
+  themes: string[];
   createdAt: string;
 };
 
@@ -50,7 +56,7 @@ async function fetchPhotos(): Promise<PhotoStory[]> {
   // for instant filter response.
   const url = `${EL_URL}/rest/v1/stories` +
     `?project_id=eq.${EL_PROJECT_ID}` +
-    `&select=id,title,content,story_image_url,media_url,media_urls,tags,is_public,community_status,has_explicit_consent,requires_elder_review,elder_reviewed,cultural_permission_level,created_at,location_text` +
+    `&select=id,title,content,story_image_url,media_url,media_urls,media_metadata,tags,is_public,community_status,has_explicit_consent,requires_elder_review,elder_reviewed,cultural_permission_level,created_at,location_text` +
     `&or=(story_image_url.not.is.null,media_url.not.is.null)` +
     `&order=created_at.desc` +
     `&limit=500`;
@@ -65,27 +71,47 @@ async function fetchPhotos(): Promise<PhotoStory[]> {
   const stories: ElStory[] = await res.json();
   return stories
     .map((s) => {
-      const url = s.story_image_url || s.media_url || (s.media_urls?.[0] ?? null);
-      if (!url) return null;
       const tags = s.tags || [];
+      // Detect video stories: presence of `media-type:video` tag, OR a
+      // story_image_url that looks like a poster with a separate media_url
+      // pointing at .mp4/.mov/.webm.
+      const isVideo = tags.includes('media-type:video') ||
+        (!!s.media_url && /\.(mp4|mov|m4v|webm)(\?|$)/i.test(s.media_url));
+      // For video: url = poster (story_image_url), videoUrl = media_url
+      // For photo: url = image (story_image_url || media_url), videoUrl = null
+      const posterOrImage = s.story_image_url || s.media_url || (s.media_urls?.[0] ?? null);
+      const videoUrl = isVideo ? (s.media_url || null) : null;
+      if (!posterOrImage) return null;
+
       const bedTag = tags.find((t) => /^gb\d+-\d+-\d+$/i.test(t));
       const dayTag = tags.find((t) => /^day-\d+$/.test(t));
       const sourceTag = tags.find((t) => /-capture$|-submitted$/.test(t));
-      const communityTag = tags.find((t) => /^(utopia-homelands|alice-springs|tennant-creek|maningrida|palm-island|canberra|mt-isa|aurukun|cherbourg|borroloola)/.test(t));
+      const communityTag = tags.find((t) => /^(community:|utopia-homelands|alice-springs|tennant-creek|maningrida|palm-island|canberra|mt-isa|aurukun|cherbourg|borroloola)/.test(t));
+      const useTag = tags.find((t) => t.startsWith('use:'))?.slice(4) || null;
+      const themes = tags.filter((t) => t.startsWith('theme:')).map((t) => t.slice(6));
+
+      const meta = (s.media_metadata as { duration_seconds?: number } | null) || null;
+      const durationSeconds = meta?.duration_seconds ?? null;
+
       return {
         id: s.id,
         title: s.title || '(untitled)',
         content: s.content || '',
-        url,
+        url: posterOrImage,
+        videoUrl,
+        isVideo,
+        durationSeconds,
         tags,
         isPublic: s.is_public,
         needsElder: s.requires_elder_review && !s.elder_reviewed,
         consent: s.has_explicit_consent,
         location: s.location_text,
         bedId: bedTag ? bedTag.toUpperCase() : null,
-        community: communityTag || null,
+        community: (communityTag || '').replace(/^community:/, '') || null,
         day: dayTag || null,
-        source: sourceTag || null,
+        source: sourceTag || (useTag ? `use:${useTag}` : null),
+        use: useTag,
+        themes,
         createdAt: s.created_at,
       } as PhotoStory;
     })

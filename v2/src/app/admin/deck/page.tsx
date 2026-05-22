@@ -17,7 +17,10 @@ const LEGACY_DECK_PATH = 'wiki/outputs/2026-05-22-centrecorp-impact-deck.md';
 
 export type DeckPhoto = {
   id: string;
-  url: string;
+  url: string;              // for photos = image. for videos = poster.
+  videoUrl: string | null;
+  isVideo: boolean;
+  use: string | null;       // hero-video / testimonial / setup / overlay-bg
   bedId: string | null;
   community: string | null;
   title: string;
@@ -38,9 +41,11 @@ async function fetchTaggedPhotos(tags: string[], limit = 24): Promise<DeckPhoto[
     `&is_public=eq.true` +
     `&select=id,title,story_image_url,media_url,tags` +
     `&or=(${orClauses})` +
+    // Either a poster image OR a direct media URL is fine — videos have both.
     `&and=(or(story_image_url.not.is.null,media_url.not.is.null))` +
     `&order=created_at.desc` +
     `&limit=${limit}`;
+
   const res = await fetch(url, {
     headers: { apikey: EL_KEY, Authorization: `Bearer ${EL_KEY}` },
     cache: 'no-store',
@@ -55,12 +60,25 @@ async function fetchTaggedPhotos(tags: string[], limit = 24): Promise<DeckPhoto[
   }>;
   return stories
     .map((s) => {
-      const url = s.story_image_url || s.media_url;
-      if (!url) return null;
       const photoTags = s.tags || [];
+      const isVideo = photoTags.includes('media-type:video') ||
+        (!!s.media_url && /\.(mp4|mov|m4v|webm)(\?|$)/i.test(s.media_url));
+      const posterOrImage = s.story_image_url || s.media_url;
+      if (!posterOrImage) return null;
+      const videoUrl = isVideo ? (s.media_url || null) : null;
       const bed = photoTags.find((t) => /^gb\d+-\d+-\d+$/i.test(t)) || null;
-      const community = photoTags.find((t) => /^(utopia-homelands|alice-springs|tennant-creek)/.test(t)) || null;
-      return { id: s.id, url, bedId: bed ? bed.toUpperCase() : null, community, title: s.title || '' };
+      const community = photoTags.find((t) => /^(utopia-homelands|alice-springs|tennant-creek|community:)/.test(t)) || null;
+      const use = photoTags.find((t) => t.startsWith('use:'))?.slice(4) || null;
+      return {
+        id: s.id,
+        url: posterOrImage,
+        videoUrl,
+        isVideo,
+        use,
+        bedId: bed ? bed.toUpperCase() : null,
+        community: (community || '').replace(/^community:/, '') || null,
+        title: s.title || '',
+      };
     })
     .filter((p): p is DeckPhoto => p !== null);
 }

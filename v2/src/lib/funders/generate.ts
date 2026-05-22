@@ -22,6 +22,7 @@ const SECTION_FILES: Record<SectionKey, string> = {
   'photo-grid': '04-photo-grid.md',
   'voices': '05-voices.md',
   'why-it-works': '06-why-it-works.md',
+  'hero-video': '06b-hero-video.md',
   'how-we-track': '07-how-we-track.md',
   'impact-numbers': '08-impact-numbers.md',
   'financials-at-a-glance': '09-financials-at-a-glance.md',
