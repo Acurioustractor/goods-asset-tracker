@@ -168,12 +168,22 @@ export default async function ScansAnalyticsPage() {
   return (
     <div className="space-y-8 pb-16">
       <header>
-        <h1 className="text-2xl font-bold tracking-tight">Scans</h1>
-        <p className="mt-1 text-sm text-gray-500">
-          Every page view of <code className="text-xs">/bed/[id]</code> — i.e. every QR scan that
-          successfully opened the URL. Bots and Goods-admin views are excluded from the headline
-          counts but kept in the data for transparency.
-        </p>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight">Scans</h1>
+            <p className="mt-1 text-sm text-gray-500">
+              Every page view of <code className="text-xs">/bed/[id]</code> — i.e. every QR scan that
+              successfully opened the URL. Bots and Goods-admin views are excluded from the headline
+              counts but kept in the data for transparency.
+            </p>
+          </div>
+          <Link
+            href="/admin/alice-fill"
+            className="shrink-0 rounded-md border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-900 hover:bg-amber-100"
+          >
+            Alice Springs trip wizard →
+          </Link>
+        </div>
       </header>
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
