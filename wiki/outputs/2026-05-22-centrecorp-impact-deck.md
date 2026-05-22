@@ -84,17 +84,34 @@ it's going.
 
 ## Slide 5 — In their own words
 
-> [QUOTE: Ray Nelson — about receiving the bed]
-> *— Ray Nelson, Utopia Homelands*
+<!-- All four quotes below are DRAFT placeholders — composed to show the
+     shape, voice, and length of what each speaker might say. Replace each
+     with a verified, transcribed quote before the deck goes to Centrecorp. -->
 
-> [QUOTE: Outstation B recipient]
-> *— [Name], Utopia Homelands*
+> *"[DRAFT — replace with verified quote] The bed came at the right time.
+> Big mob of kids in the house and now everyone's got somewhere proper to
+> sleep. Set it up in five minutes, no tools."*
+> **— Ray Nelson, Utopia Homelands** · *quote to be verified*
 
-> [QUOTE: Mykel or one of the young people in Alice Springs]
-> *— [Name], Alice Springs*
+> *"[DRAFT — replace] Good bed. Easy to wash. Won't break."*
+> **— [Recipient name], Outstation [A or B], Utopia Homelands**
 
-> [QUOTE: Council or arts centre coordinator on the distribution model]
-> *— [Name], Utopia Homelands Council*
+> *"[DRAFT — replace] I scanned the code and it knew my bed straight away.
+> Now I can ask Goods if anything goes wrong without driving into town."*
+> **— [Recipient name], Alice Springs**
+
+> *"[DRAFT — replace] We can place these where they're needed most. Council
+> knows the houses. Goods knows the beds. Better way to do it."*
+> **— [Coordinator name], Utopia Homelands Council & Arts Centre**
+
+<!-- Sourcing tips:
+     - WhatsApp Ray or visit on next Alice Springs trip to verify quote.
+     - Ask outstation recipients via the council coordinator on the next
+       check-in trip.
+     - Mykel + 4 young girls + 3 others: capture via the alice-fill wizard's
+       "note" field as the data comes in.
+     - Council quote: phone or in-person on the next visit. -->
+
 
 ---
 
@@ -134,17 +151,26 @@ Installs alert next morning.
 
 ## Slide 8 — Impact numbers (this trip)
 
-| Metric | Value |
-|---|---|
-| Beds physically transferred to community | **87** |
-| Of which direct household placements | 36 |
-| Of which at Utopia Council & Arts Centre (for distribution) | 51 |
-| Recycled HDPE plastic transferred | **1,740 kg** (1.74 tonnes) |
-| Communities served | 2 (Utopia Homelands, Alice Springs) |
-| Outstations reached at Utopia | 2 (plus the council hub) |
-| Goods staff days on country | [DAYS] |
-| Trip cost (estimate) | [TBD] |
-| Cost per bed delivered (this trip) | [TBD] |
+| Metric | Value | Source |
+|---|---|---|
+| Beds physically transferred to community | **87** | Asset register |
+| Of which direct household placements | 36 | Asset register, `status=deployed` |
+| Of which at Utopia Council & Arts Centre (for distribution) | 51 | Asset register, `status=allocated` |
+| Recycled HDPE plastic transferred | **1,740 kg** (1.74 tonnes) | 87 beds × 20 kg/bed (per `products.ts`) |
+| Communities served | 2 (Utopia Homelands, Alice Springs) | Asset register |
+| Outstations reached at Utopia | 2 + council hub | Photo GPS clusters |
+| **Per-bed cost (current production, ~15/mo)** | **~$550** manufactured | Day 4 unit economics v0.1, `wiki/outputs/2026-05-12-financial-model-day4-unit-economics.md` |
+| **Per-bed cost (at Year 1 target, 1,500/yr)** | **~$479** | Same source, projected at scale |
+| **Per-bed cost (Vision 2030, 12,000/yr)** | **~$270** | Same source, capacity-led |
+| **Manufacturing cost this trip (87 beds × $550)** | **~$47,850** | Cost only, excludes logistics |
+| Logistics + freight + staff (trip overhead) | **[TBD — pull from Xero]** | Verify against Goods AP for the week of 19–22 May |
+| **Total cost per delivered bed (this trip)** | **[TBD]** | (manufacturing + trip overhead) / 87 |
+
+> **Verification note for the deck:** the $550/bed figure is **verified** from
+> Day 4 unit economics, based on current 15/month run-rate. Trip-specific
+> logistics costs need to be pulled from Xero (or estimated) before this slide
+> is final. See `wiki/outputs/2026-05-12-financial-model-day3-expenses-and-founder-time.md`
+> for context on real cost-of-goods.
 
 ---
 
