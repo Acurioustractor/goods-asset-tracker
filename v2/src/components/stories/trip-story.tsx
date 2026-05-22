@@ -215,23 +215,36 @@ function renderBlock(block: TripBlock, internal: boolean, currentSlug: string) {
           <h2 className="ts-vh ts-reveal">{block.heading}</h2>
           {block.sub && <p className="ts-vsub ts-reveal d1">{block.sub}</p>}
           <div className="ts-qgrid">
-            {cards.map((c, i) => (
-              <div key={i} className="ts-qcard ts-reveal">
-                <div className="ts-q">{c.quote}</div>
-                <div className="ts-a">
-                  {c.who}
-                  {c.community && (
-                    <>
-                      {' · '}
-                      <b>{c.community}</b>
-                    </>
-                  )}
+            {cards.map((c, i) => {
+              const linkable = c.consent === 'cleared' && c.storytellerSlug;
+              const inner = (
+                <>
+                  <div className="ts-q">{c.quote}</div>
+                  <div className="ts-a">
+                    {c.who}
+                    {c.community && (
+                      <>
+                        {' · '}
+                        <b>{c.community}</b>
+                      </>
+                    )}
+                    {linkable && <span className="ts-qcard-arrow" aria-hidden> →</span>}
+                  </div>
+                  <span className={`ts-tagpill ${c.consent}`}>
+                    {c.consent === 'cleared' ? 'cleared voice' : 'consent pending'}
+                  </span>
+                </>
+              );
+              return linkable ? (
+                <Link key={i} href={`/storytellers/${c.storytellerSlug}`} className="ts-qcard ts-qcard-link ts-reveal">
+                  {inner}
+                </Link>
+              ) : (
+                <div key={i} className="ts-qcard ts-reveal">
+                  {inner}
                 </div>
-                <span className={`ts-tagpill ${c.consent}`}>
-                  {c.consent === 'cleared' ? 'cleared voice' : 'consent pending'}
-                </span>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
       );
@@ -419,6 +432,10 @@ video.ts-bg{filter:brightness(.6) saturate(.97)}
 .ts-pcard .ts-pwho{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ochre-soft);margin-bottom:.8rem}
 .ts-pcard h3{font-family:var(--serif);font-weight:400;font-size:1.5rem;margin-bottom:.7rem;color:var(--bone)}
 .ts-pcard p{font-size:.98rem;color:var(--bone-dim);line-height:1.6}
+.ts-qcard-link{text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .25s ease,border-color .25s ease}
+.ts-qcard-link:hover{transform:translateY(-2px);border-color:var(--ochre-soft)}
+.ts-qcard-arrow{color:var(--ochre-soft);margin-left:.4rem;opacity:.7;transition:opacity .2s ease,transform .2s ease}
+.ts-qcard-link:hover .ts-qcard-arrow{opacity:1;transform:translateX(2px)}
 .ts-plink{text-align:center;margin-top:2.6rem}
 .ts-plink a{color:var(--ochre-soft);text-decoration:none;border-bottom:1px solid rgba(230,173,106,.4);font-family:var(--serif);font-size:1.2rem}
 
