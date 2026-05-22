@@ -7,6 +7,12 @@ import Link from 'next/link';
 import { communityLocations } from '@/lib/data/content';
 import type { TripStory as TripStoryData, TripBlock, MediaRef, NavLink } from '@/lib/data/trip-stories';
 import { tripStories } from '@/lib/data/trip-stories';
+import {
+  goodsBedStats, goodsBedStatsLead,
+  healthFramings,
+  problemStatement,
+  productionPlantFacts,
+} from '@/lib/data/story-atoms';
 
 // Leaflet touches `window` at import time, so the map must be client-only.
 const CommunityMap = dynamic(
@@ -319,6 +325,102 @@ function renderBlock(block: TripBlock, internal: boolean, currentSlug: string) {
           </div>
         </section>
       );
+    // ─── Atom blocks ─────────────────────────────────────────────────
+    // Each one shares the same visual shape as an existing block kind
+    // (stats, read, map) but sources its content from story-atoms.ts so
+    // every field-notes story stays in sync without copy duplication.
+    case 'goods-facts':
+      return (
+        <section className="ts-stats">
+          <div className="ts-stats-lead ts-reveal">{block.lead || goodsBedStatsLead}</div>
+          <div className="ts-stats-grid">
+            {goodsBedStats.map((s, i) => (
+              <div key={i} className="ts-stat ts-reveal">
+                <div className="ts-stat-v">{s.value}</div>
+                <div className="ts-stat-l">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+      );
+    case 'health-facts': {
+      const framing = healthFramings[block.focus];
+      if (!framing) return (
+        <section className="ts-read">
+          <p className="ts-p ts-reveal">[ATOM ERROR: health framing &quot;{block.focus}&quot; not found]</p>
+        </section>
+      );
+      return (
+        <section className="ts-read">
+          <div className="ts-tag ts-reveal">Off the ground</div>
+          <h2 className="ts-read-h ts-reveal d1">{framing.heading}</h2>
+          {framing.paragraphs.map((p, i) => (
+            <p key={i} className="ts-p ts-reveal d1">{p}</p>
+          ))}
+          {framing.pull && (
+            <blockquote className="ts-pull ts-reveal d2">
+              {framing.pull.quote}
+              <span className="ts-src">{framing.pull.src}</span>
+            </blockquote>
+          )}
+        </section>
+      );
+    }
+    case 'problem-statement':
+      return (
+        <section className="ts-read">
+          <div className="ts-tag ts-reveal">The problem we work on</div>
+          <h2 className="ts-read-h ts-reveal d1">{problemStatement.heading}</h2>
+          {problemStatement.paragraphs.map((p, i) => (
+            <p key={i} className="ts-p ts-reveal d1">{p}</p>
+          ))}
+        </section>
+      );
+    case 'production-plant-facts':
+      return (
+        <section className="ts-read">
+          <div className="ts-tag ts-reveal">The plant</div>
+          <h2 className="ts-read-h ts-reveal d1">{productionPlantFacts.heading}</h2>
+          {productionPlantFacts.paragraphs.map((p, i) => (
+            <p key={i} className="ts-p ts-reveal d1">{p}</p>
+          ))}
+          <div className="ts-stats-grid" style={{ marginTop: '2.4rem' }}>
+            {productionPlantFacts.highlights.map((h, i) => (
+              <div key={i} className="ts-stat ts-reveal d2">
+                <div className="ts-stat-v">{h.value}</div>
+                <div className="ts-stat-l">{h.label}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+      );
+    case 'live-map': {
+      // Scope to a community if requested. communityLocations is the
+      // canonical, manually-curated source today; phase 2 swaps for a
+      // server-fetched count from the assets register.
+      const scoped = block.scope?.community
+        ? communityLocations.filter((c) => c.name === block.scope!.community)
+        : communityLocations;
+      const total = scoped.reduce((s, c) => s + (c.bedsDelivered || 0), 0);
+      const heading = block.heading || (block.scope?.community
+        ? `Beds at ${block.scope.community}`
+        : 'Where the beds have gone');
+      const intro = block.intro || (block.scope?.community
+        ? `Live count for ${block.scope.community}: ${total} beds delivered.`
+        : `Live count across all Goods deployments: ${total} beds.`);
+      return (
+        <section className="ts-mapwrap">
+          <div className="ts-map-head">
+            <h2 className="ts-vh ts-reveal">{heading}</h2>
+            <p className="ts-reveal d1">{intro}</p>
+          </div>
+          <div className="ts-map ts-reveal d1">
+            <CommunityMap locations={scoped} storytellers={[]} />
+          </div>
+          {block.caveat && <p className="ts-legend ts-reveal d2">{block.caveat}</p>}
+        </section>
+      );
+    }
     case 'portal': {
       // "This is Goods" — self-aware portal at the foot of every field-notes
       // story. Lists other field notes (excludes the current story) plus

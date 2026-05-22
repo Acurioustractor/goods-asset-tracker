@@ -100,7 +100,42 @@ export type TripBlock =
       heading?: string;
       sub?: string;
       anchors: NavLink[];
-    };
+    }
+  // ─── Atom blocks ────────────────────────────────────────────────────
+  // Repeatable building blocks. Each pulls from a canonical source in
+  // story-atoms.ts (or products.ts) so every field-notes story stays in
+  // sync without duplicating copy.
+  | (WithLinks & {
+      /** Pulls goodsBedStats from story-atoms.ts (sourced from products.ts). */
+      kind: 'goods-facts';
+      lead?: string;
+    })
+  | (WithLinks & {
+      /** Pulls a named health framing from story-atoms.ts. e.g. focus='rhd-prevention'. */
+      kind: 'health-facts';
+      focus: string;
+    })
+  | (WithLinks & {
+      /** Pulls problemStatement from story-atoms.ts. Set the universal Goods framing. */
+      kind: 'problem-statement';
+    })
+  | (WithLinks & {
+      /** Pulls productionPlantFacts from story-atoms.ts. */
+      kind: 'production-plant-facts';
+    })
+  | (WithLinks & {
+      /**
+       * Live map of bed deployments. Currently renders communityLocations
+       * (manually-curated; we keep it updated as deployments land). Phase 2
+       * will switch this to a server-fetched live Supabase query at
+       * request time so counts are always exact.
+       */
+      kind: 'live-map';
+      heading?: string;
+      intro?: string;
+      caveat?: string;
+      scope?: { community?: string };
+    });
 
 export interface TripStory {
   slug: string;
@@ -169,17 +204,10 @@ const utopia: TripStory = {
         { quote: '"Yeah, I\'ll be rocking up every day to make them."', src: 'Mykel · consent pending' },
       ],
     },
+    // Atom: bed facts. Sourced from products.ts via story-atoms.ts so the
+    // numbers stay correct everywhere if specs ever change.
     {
-      kind: 'stats',
-      lead: 'One bed, in numbers',
-      items: [
-        { value: '26kg', label: 'flat-packs, one person can carry it' },
-        { value: '200kg', label: 'load capacity, rated' },
-        { value: '~5 min', label: 'to assemble, no tools' },
-        { value: '20kg', label: 'of plastic kept out of landfill, per bed' },
-        { value: '10+ yrs', label: 'design life, 5-year warranty' },
-        { value: '400+', label: 'beds in homes since 2023' },
-      ],
+      kind: 'goods-facts',
       links: [
         { label: 'See the Stretch Bed', href: '/shop/stretch-bed-single' },
         { label: 'How it is made', href: '/story' },
@@ -201,21 +229,9 @@ const utopia: TripStory = {
         'A community close by wanted beds too, more of them. We did not plan that leg. They did. We drove where we were pointed, and we unloaded.',
       media: { image: `${IMG}/06-delivery.jpg` },
     },
-    {
-      kind: 'read',
-      tag: 'Off the ground',
-      heading: 'Why a bed is health hardware',
-      paragraphs: [
-        'A bed is not a comfort upgrade. Sleeping on cold ground is tied to chest infections and to skin conditions like scabies, which can lead to Rheumatic Heart Disease. Getting families up off the floor, onto a surface that can be washed, is one of the simplest pieces of health hardware there is. People asked, unprompted, whether they could wash it. That is the feature that matters most, and the answer is yes.',
-      ],
-      pulls: [
-        {
-          quote:
-            '"Something as simple as a good bed makes a huge difference. It improves their health, helps with mobility, and gives them dignity."',
-          src: 'Chloe · Support worker, Kalgoorlie · cleared voice',
-        },
-      ],
-    },
+    // Atom: health framing. Sourced from story-atoms.ts. Swap focus to
+    // 'sleep-and-skin' or 'washing-machine-cycle' for a different angle.
+    { kind: 'health-facts', focus: 'rhd-prevention' },
     { kind: 'bleedquote', text: 'Waste into rest. A morning into a trade.', media: { image: `${IMG}/05-waste.jpg` } },
     {
       kind: 'voices',
@@ -281,13 +297,13 @@ const utopia: TripStory = {
         'That is the part Mykel pointed at without knowing it. Alice and Utopia are live candidates for the next place the making happens, not just the next place the beds arrive. The job is to make the making local, and then to become unnecessary.',
       ],
     },
+    // Atom: live map. Pulls from communityLocations (canonical, includes
+    // Utopia: 96, Ampilatwatja: 4 as of May 2026). Phase 2 swaps for a
+    // server-fetched count from the assets register at request time.
     {
-      kind: 'map',
-      heading: 'Where the beds have gone',
-      intro:
-        'More than 400 Stretch Beds are now in homes across the country. This is the March 2026 deployment snapshot. Utopia is among the newest.',
+      kind: 'live-map',
       caveat:
-        'Counts are the March 2026 compendium snapshot. Utopia also carries a separate 107-bed pathway approved with the Centrecorp Foundation, not yet counted as delivered. Numbers to be reconciled against the asset register before any public use.',
+        'Utopia also carries a separate 107-bed pathway approved with the Centrecorp Foundation, not yet counted as delivered.',
       links: [
         { label: 'Browse all communities', href: '/communities' },
         { label: 'Utopia Homelands', href: '/communities/utopia-homelands' },
