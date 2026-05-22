@@ -20,52 +20,87 @@ export interface MediaRef {
   videoMobile?: string;
 }
 
+/** A single contextual link rendered in a block's gutter. */
+export interface NavLink {
+  label: string;
+  href: string;
+}
+
+/** Shared shape for any block that can carry up to ~2 contextual gutter links. */
+interface WithLinks {
+  links?: NavLink[];
+}
+
+/**
+ * A voice card. `storytellerSlug` (optional) links to /storytellers/<slug>
+ * — only set once consent is cleared in EL.
+ */
+export interface VoiceCard {
+  quote: string;
+  who: string;
+  community?: string;
+  consent: Consent;
+  storytellerSlug?: string;
+}
+
 export type TripBlock =
-  | {
+  | (WithLinks & {
       kind: 'masthead';
       kicker: string;
       title: string;
       standfirst: string;
       dateline: string;
       media: MediaRef;
-    }
-  | {
+    })
+  | (WithLinks & {
       kind: 'read';
       tag?: string;
       heading?: string;
       paragraphs: string[];
       pulls?: { quote: string; src: string }[];
-    }
-  | {
+    })
+  | (WithLinks & {
       kind: 'immersive';
       actmark?: string;
       title: string;
       standfirst?: string;
       media: MediaRef;
-    }
-  | { kind: 'bleedquote'; text: string; media: MediaRef }
-  | { kind: 'stats'; lead: string; items: { value: string; label: string }[] }
-  | {
+    })
+  | (WithLinks & { kind: 'bleedquote'; text: string; media: MediaRef })
+  | (WithLinks & { kind: 'stats'; lead: string; items: { value: string; label: string }[] })
+  | (WithLinks & {
       kind: 'voices';
       heading: string;
       sub?: string;
-      cards: { quote: string; who: string; community?: string; consent: Consent }[];
-    }
-  | {
+      cards: VoiceCard[];
+    })
+  | (WithLinks & {
       kind: 'videos';
       heading: string;
       sub?: string;
       items: { title: string; caption: string; poster: string; src: string }[];
-    }
-  | { kind: 'map'; heading: string; intro: string; caveat: string }
-  | {
+    })
+  | (WithLinks & { kind: 'map'; heading: string; intro: string; caveat: string })
+  | (WithLinks & {
       kind: 'pathways';
       heading: string;
       sub?: string;
       cards: { who: string; title: string; body: string }[];
       link?: { label: string; href: string };
-    }
-  | { kind: 'close'; title: string; media: MediaRef };
+    })
+  | (WithLinks & { kind: 'close'; title: string; media: MediaRef })
+  | {
+      /**
+       * "This is Goods" portal — renders at the foot of every field-notes
+       * page. Self-aware: the renderer hides whichever entry's slug matches
+       * the current story so we don't link back to ourselves. `anchors` are
+       * the non-field-notes anchor links (shop / story / impact / etc.).
+       */
+      kind: 'portal';
+      heading?: string;
+      sub?: string;
+      anchors: NavLink[];
+    };
 
 export interface TripStory {
   slug: string;
@@ -144,6 +179,10 @@ const utopia: TripStory = {
         { value: '20kg', label: 'of plastic kept out of landfill, per bed' },
         { value: '10+ yrs', label: 'design life, 5-year warranty' },
         { value: '400+', label: 'beds in homes since 2023' },
+      ],
+      links: [
+        { label: 'See the Stretch Bed', href: '/shop/stretch-bed-single' },
+        { label: 'How it is made', href: '/story' },
       ],
     },
     {
@@ -249,6 +288,10 @@ const utopia: TripStory = {
         'More than 400 Stretch Beds are now in homes across the country. This is the March 2026 deployment snapshot. Utopia is among the newest.',
       caveat:
         'Counts are the March 2026 compendium snapshot. Utopia also carries a separate 107-bed pathway approved with the Centrecorp Foundation, not yet counted as delivered. Numbers to be reconciled against the asset register before any public use.',
+      links: [
+        { label: 'Browse all communities', href: '/communities' },
+        { label: 'Utopia Homelands', href: '/communities/utopia-homelands' },
+      ],
     },
     { kind: 'close', title: 'This is the first thing he built. It is not the last we will build together.', media: { image: `${IMG}/11-close.jpg` } },
     {
@@ -261,6 +304,19 @@ const utopia: TripStory = {
         { who: 'Partners', title: 'Build it with your community', body: 'Bring the making to your homelands. Community leads, Goods supports, and the work becomes yours to own.' },
       ],
       link: { label: 'Read the wider story at goodsoncountry.com', href: 'https://www.goodsoncountry.com' },
+    },
+    {
+      kind: 'portal',
+      heading: 'This story is one piece of the project',
+      sub: 'A few ways in. Each is a different way to learn the work or take part.',
+      anchors: [
+        { label: 'Where the beds have gone (map)', href: '/communities' },
+        { label: 'How we got here (origin story)', href: '/story' },
+        { label: 'The model and impact', href: '/impact' },
+        { label: 'The Stretch Bed', href: '/shop/stretch-bed-single' },
+        { label: 'The washing machine (register interest)', href: '/shop/washing-machine' },
+        { label: 'Talk to us', href: '/contact' },
+      ],
     },
   ],
 };

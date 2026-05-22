@@ -3,8 +3,10 @@
 import { useEffect } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { communityLocations } from '@/lib/data/content';
-import type { TripStory as TripStoryData, TripBlock, MediaRef } from '@/lib/data/trip-stories';
+import type { TripStory as TripStoryData, TripBlock, MediaRef, NavLink } from '@/lib/data/trip-stories';
+import { tripStories } from '@/lib/data/trip-stories';
 
 // Leaflet touches `window` at import time, so the map must be client-only.
 const CommunityMap = dynamic(
@@ -74,7 +76,7 @@ export function TripStory({ story, internal = false }: Props) {
       )}
 
       {story.blocks.map((block, i) => (
-        <BlockView key={i} block={block} internal={internal} />
+        <BlockView key={i} block={block} internal={internal} currentSlug={story.slug} />
       ))}
 
       <footer className="ts-footer">
@@ -89,7 +91,54 @@ export function TripStory({ story, internal = false }: Props) {
   );
 }
 
-function BlockView({ block, internal }: { block: TripBlock; internal: boolean }) {
+/**
+ * Renders a small list of "branch out" links beneath a block, when the
+ * block has `links` set. Voice cards, stats, maps, etc. can all carry up
+ * to ~2 contextual links so readers can branch without losing the read.
+ */
+function LinkGutter({ links }: { links?: NavLink[] }) {
+  if (!links || links.length === 0) return null;
+  return (
+    <div className="ts-links ts-reveal d2">
+      {links.map((l, i) => {
+        const external = /^https?:/.test(l.href);
+        return external ? (
+          <a key={i} href={l.href} target="_blank" rel="noopener noreferrer">
+            {l.label} <span aria-hidden>↗</span>
+          </a>
+        ) : (
+          <Link key={i} href={l.href}>
+            {l.label} <span aria-hidden>→</span>
+          </Link>
+        );
+      })}
+    </div>
+  );
+}
+
+/**
+ * Wraps a block's rendered output and tacks on a LinkGutter if the block
+ * declared `links`. Centralised so every case branch doesn't have to repeat
+ * the conditional.
+ */
+function withLinks(node: React.ReactNode, block: TripBlock): React.ReactNode {
+  if (block.kind === 'portal') return node;
+  const links = 'links' in block ? block.links : undefined;
+  if (!links || links.length === 0) return node;
+  return (
+    <>
+      {node}
+      <LinkGutter links={links} />
+    </>
+  );
+}
+
+function BlockView({ block, internal, currentSlug }: { block: TripBlock; internal: boolean; currentSlug: string }) {
+  const rendered = renderBlock(block, internal, currentSlug);
+  return <>{withLinks(rendered, block)}</>;
+}
+
+function renderBlock(block: TripBlock, internal: boolean, currentSlug: string) {
   switch (block.kind) {
     case 'masthead':
       return (
@@ -257,6 +306,57 @@ function BlockView({ block, internal }: { block: TripBlock; internal: boolean })
           </div>
         </section>
       );
+    case 'portal': {
+      // "This is Goods" — self-aware portal at the foot of every field-notes
+      // story. Lists other field notes (excludes the current story) plus
+      // anchor links into the rest of the site. Internal-only stories don't
+      // appear in the cross-story list when rendering publicly.
+      const others = tripStories.filter((s) => s.slug !== currentSlug && (internal || s.published));
+      return (
+        <section className="ts-portal">
+          <h2 className="ts-vh ts-reveal">{block.heading || 'This story is one piece of the project'}</h2>
+          {block.sub && <p className="ts-vsub ts-reveal d1">{block.sub}</p>}
+
+          {others.length > 0 && (
+            <div className="ts-portal-group ts-reveal d1">
+              <div className="ts-portal-eyebrow">Other field notes</div>
+              <ul className="ts-portal-list">
+                {others.map((s) => (
+                  <li key={s.slug}>
+                    <Link href={`/field-notes/${s.slug}`}>
+                      <span className="ts-portal-title">{s.title}</span>
+                      <span className="ts-portal-meta">{s.dateline}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <div className="ts-portal-group ts-reveal d2">
+            <div className="ts-portal-eyebrow">Across the project</div>
+            <ul className="ts-portal-list">
+              {block.anchors.map((a) => {
+                const external = /^https?:/.test(a.href);
+                return (
+                  <li key={a.href}>
+                    {external ? (
+                      <a href={a.href} target="_blank" rel="noopener noreferrer">
+                        <span className="ts-portal-title">{a.label} <span aria-hidden>↗</span></span>
+                      </a>
+                    ) : (
+                      <Link href={a.href}>
+                        <span className="ts-portal-title">{a.label} <span aria-hidden>→</span></span>
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </section>
+      );
+    }
     default:
       return null;
   }
@@ -321,6 +421,27 @@ video.ts-bg{filter:brightness(.6) saturate(.97)}
 .ts-pcard p{font-size:.98rem;color:var(--bone-dim);line-height:1.6}
 .ts-plink{text-align:center;margin-top:2.6rem}
 .ts-plink a{color:var(--ochre-soft);text-decoration:none;border-bottom:1px solid rgba(230,173,106,.4);font-family:var(--serif);font-size:1.2rem}
+
+/* Contextual gutter links - appear under any block that sets links. Small,
+   not greedy; readers branch out if they want, otherwise keep reading. */
+.ts-links{max-width:720px;margin:-2vh auto 6vh;padding:0 7vw;display:flex;flex-wrap:wrap;gap:1rem 2rem;font-size:13px;letter-spacing:.04em}
+.ts-links a{color:var(--ochre-soft);text-decoration:none;border-bottom:1px solid rgba(230,173,106,.35);padding-bottom:1px}
+.ts-links a:hover{color:var(--bone);border-bottom-color:var(--bone)}
+.ts-mapwrap + .ts-links,.ts-stats + .ts-links,.ts-voices + .ts-links{max-width:1180px}
+
+/* "This is Goods" portal — quiet, generous, two columns of links. Other field
+   notes on the left (kept-current-out), site anchors on the right. */
+.ts-portal{max-width:1100px;margin:0 auto;padding:11vh 7vw 8vh;border-top:1px solid var(--line)}
+.ts-portal .ts-vh{text-align:left}
+.ts-portal-group{margin-top:3.2rem}
+.ts-portal-eyebrow{font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.ts-portal-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.4rem 2rem}
+.ts-portal-list li{border-bottom:1px solid var(--line)}
+.ts-portal-list a{display:flex;flex-direction:column;gap:.15rem;padding:1rem 0;color:var(--bone);text-decoration:none;transition:color .2s ease}
+.ts-portal-list a:hover{color:var(--ochre-soft)}
+.ts-portal-title{font-family:var(--serif);font-size:1.2rem;line-height:1.3}
+.ts-portal-meta{font-size:12px;letter-spacing:.06em;color:var(--bone-dim)}
+
 .ts-footer{max-width:760px;margin:0 auto;padding:9vh 7vw 14vh;font-size:13px;line-height:1.75;color:var(--muted);border-top:1px solid var(--line)}
 .ts-footer strong{color:var(--bone)}
 .ts-reveal{opacity:0;transform:translateY(20px);transition:opacity 1s ease,transform 1s ease}
