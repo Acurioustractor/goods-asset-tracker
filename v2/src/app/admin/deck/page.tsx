@@ -24,14 +24,18 @@ export type DeckPhoto = {
 };
 
 /**
- * Fetch EL photos matching ANY of the supplied tags (OR semantics). The
- * funder config carries this tag list — e.g. ['snow-funded', 'trip-may-2026'].
+ * Fetch EL photos matching ANY of the supplied tags (OR semantics) AND
+ * marked is_public=true. The is_public gate keeps unreviewed / internal
+ * tracking shots (QR-sticker close-ups, recipient privacy holds) out of
+ * funder decks — only photos explicitly approved via /admin/photos
+ * "Approve public" make it here.
  */
 async function fetchTaggedPhotos(tags: string[], limit = 24): Promise<DeckPhoto[]> {
   if (!EL_URL || !EL_KEY || !EL_PROJECT_ID || tags.length === 0) return [];
   const orClauses = tags.map((t) => `tags.cs.{${t}}`).join(',');
   const url = `${EL_URL}/rest/v1/stories` +
     `?project_id=eq.${EL_PROJECT_ID}` +
+    `&is_public=eq.true` +
     `&select=id,title,story_image_url,media_url,tags` +
     `&or=(${orClauses})` +
     `&and=(or(story_image_url.not.is.null,media_url.not.is.null))` +
