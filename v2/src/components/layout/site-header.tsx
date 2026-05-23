@@ -14,6 +14,7 @@ const navigation: NavItem[] = [
   { name: 'Stretch Bed', href: '/shop/stretch-bed-single' },
   { name: 'Pakkimjalki Kari', subtitle: 'Washing Machine', href: '/shop/washing-machine' },
   { name: 'How It\'s Made', href: '/process' },
+  { name: 'Field notes', href: '/field-notes' },
   { name: 'Our Story', href: '/story' },
   { name: 'Contact', href: '/contact' },
 ];

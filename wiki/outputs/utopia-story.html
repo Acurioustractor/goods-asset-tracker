@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Utopia: seven beds, and the start of something</title>
+<!--
+  UTOPIA STORY. Internal preview. Photos from the 21-22 May 2026 trip.
+  Media lives in ./utopia-media/  (manifest: utopia-media/MANIFEST.txt)
+
+  TO ADD AN OVERLAY VIDEO TO ANY SCENE:
+  Replace that scene's
+      <div class="bg" style="background-image:url('utopia-media/XX.jpg')"></div>
+  with
+      <video class="bg" autoplay muted loop playsinline poster="utopia-media/XX.jpg">
+        <source src="utopia-media/your-clip.mp4" type="video/mp4">
+      </video>
+  The .bg rule covers both (object-fit / background-size: cover), so layout stays identical.
+  Scenes 6 (delivery / drone), 7 (Ampilatwatja Elders), 8 (before-after) are the ones you said you have video for.
+-->
+<style>
+  :root{
+    --bone:#f3ece0;--bone-dim:#cdbfa9;--ochre:#c8702e;--ochre-soft:#e6ad6a;
+    --char:#100c08;--rule:rgba(243,236,224,.18);
+    --serif:Georgia,'Times New Roman',serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--char);color:var(--bone);font-family:var(--serif);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+  .ambient{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(60% 50% at 18% 16%,rgba(200,112,46,.10),transparent 60%),radial-gradient(55% 45% at 85% 82%,rgba(162,58,34,.10),transparent 60%)}
+  .grain{position:fixed;inset:-50%;z-index:30;pointer-events:none;opacity:.045;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--ochre),var(--ochre-soft));z-index:40}
+  .banner{position:fixed;top:0;right:0;z-index:39;font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--bone-dim);background:rgba(16,12,8,.72);backdrop-filter:blur(6px);padding:8px 14px;border-bottom-left-radius:10px;border:1px solid var(--rule);border-top:0;border-right:0}
+
+  main{position:relative;z-index:2}
+
+  section{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:14vh 7vw}
+  .inner{position:relative;z-index:3;max-width:1080px;margin:0 auto;width:100%}
+
+  /* background layer: works for <div> (background-image) and <video> */
+  .bg{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;background-size:cover;background-position:center;
+    filter:brightness(.58) saturate(.96);transform:scale(1.08);transition:transform 7s ease-out}
+  section.in .bg{transform:scale(1)}
+  .scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(8,6,4,.82) 0%,rgba(8,6,4,.5) 45%,rgba(8,6,4,.2) 100%)}
+  .scrim::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,6,4,.45),transparent 22%,transparent 60%,rgba(8,6,4,.7))}
+  section.dark .scrim{background:radial-gradient(80% 70% at 50% 50%,transparent,rgba(8,6,4,.4))}
+
+  .eyebrow{font-family:var(--sans);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--ochre-soft);margin-bottom:1.6rem}
+  h1{font-weight:400;font-size:clamp(2.4rem,6.4vw,5rem);line-height:1.04;letter-spacing:-.01em;max-width:16ch}
+  .lede{font-size:clamp(1.05rem,2vw,1.4rem);color:var(--bone-dim);max-width:46ch;margin-top:2rem}
+  p.body{font-size:clamp(1.15rem,2.1vw,1.55rem);max-width:40ch;color:var(--bone);text-shadow:0 1px 24px rgba(0,0,0,.5)}
+  .body + .body{margin-top:1.4rem}
+
+  .quote{font-size:clamp(1.7rem,4.6vw,3.4rem);line-height:1.18;font-style:italic;color:var(--bone);max-width:20ch;position:relative;padding-left:1.1rem;border-left:2px solid var(--ochre);text-shadow:0 1px 30px rgba(0,0,0,.6)}
+  .who{font-family:var(--sans);font-style:normal;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--bone-dim);margin-top:1.4rem;display:block}
+  .who em{color:var(--ochre-soft);font-style:normal}
+  .ask{font-size:clamp(1.2rem,2.4vw,1.7rem);color:var(--bone-dim);max-width:34ch;margin-bottom:1.6rem;font-style:italic}
+
+  .interlude{align-items:center;text-align:center}
+  .interlude .inner{text-align:center}
+  .interlude p{font-size:clamp(1.8rem,5.2vw,4rem);line-height:1.14;max-width:24ch;margin:0 auto;color:var(--bone);text-shadow:0 2px 40px rgba(0,0,0,.7)}
+  .interlude .small{font-size:clamp(1.1rem,2.4vw,1.6rem);color:var(--bone-dim);margin-top:1.2rem;max-width:30ch}
+
+  /* video affordance caption */
+  .media-note{margin-top:2.2rem;display:inline-flex;align-items:center;gap:.7rem;font-family:var(--sans);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--bone-dim);
+    border:1px solid var(--rule);border-radius:999px;padding:.55rem 1rem;background:rgba(8,6,4,.4);backdrop-filter:blur(4px)}
+  .media-note b{color:var(--ochre-soft);font-weight:600}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--ochre);box-shadow:0 0 0 4px rgba(200,112,46,.18)}
+
+  footer{max-width:1080px;margin:0 auto;padding:8vh 7vw 14vh;font-family:var(--sans);font-size:13px;line-height:1.7;color:var(--bone-dim);border-top:1px solid var(--rule)}
+  footer strong{color:var(--bone)}
+
+  .hint{position:absolute;bottom:5vh;left:7vw;z-index:3;font-family:var(--sans);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--bone-dim);opacity:.8}
+  .hint span{display:inline-block;animation:nudge 2.2s ease-in-out infinite}
+  @keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity 1.1s ease,transform 1.1s ease}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}
+
+  @media (prefers-reduced-motion:reduce){
+    .hint span{animation:none}.reveal{opacity:1;transform:none;transition:none}.bg{transform:none;transition:none}html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+  <div class="ambient"></div>
+  <div class="grain"></div>
+  <div class="progress" id="bar"></div>
+  <div class="banner">Internal preview · consent pending · not for publishing</div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="bg" style="background-image:url('utopia-media/01-hero.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <div class="eyebrow reveal">Utopia Homelands · On Country · with Oonchiumpa · May 2026</div>
+        <h1 class="reveal d1">We brought the beds. The rest was theirs.</h1>
+        <p class="lede reveal d2">A few days in the Utopia Homelands, building beds with young people and sitting with Elders. The start of a longer relationship, not a delivery.</p>
+      </div>
+      <div class="hint reveal d3"><span>Scroll &#8595;</span></div>
+    </section>
+
+    <!-- SCENE 1 -->
+    <section>
+      <div class="bg" style="background-image:url('utopia-media/02-arrive.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <div class="eyebrow reveal">Arriving</div>
+        <p class="body reveal d1">We brought the beds to Utopia. From there it was not ours to run.</p>
+        <p class="body reveal d2">The community workers said where they went and who they were for. Our job on a trip like this is small and specific. Turn up, build, listen, and do what we are asked.</p>
+      </div>
+    </section>
+
+    <!-- INTERLUDE: materials -->
+    <section class="interlude">
+      <div class="bg" style="background-image:url('utopia-media/03-materials.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <p class="reveal">Lids. Canvas. Steel.</p>
+        <p class="small reveal d1">Everything this bed is made of was already here, or already thrown away.</p>
+      </div>
+    </section>
+
+    <!-- SCENE 2: MYKEL -->
+    <section>
+      <div class="bg" style="background-image:url('utopia-media/04-build.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <div class="eyebrow reveal">Mykel · Utopia Homelands</div>
+        <p class="body reveal d1">He kept turning it over, like he couldn't quite trust it.</p>
+      </div>
+    </section>
+
+    <section class="dark">
+      <div class="inner">
+        <p class="quote reveal">Never would've thought it would've come out like that.<span class="who">Mykel · <em>Utopia Homelands</em></span></p>
+      </div>
+    </section>
+
+    <section>
+      <div class="bg" style="background-image:url('utopia-media/04-build.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <p class="body reveal">It came out of lids. Bottle caps and scraps of plastic headed for the tip, shredded and pressed until they were strong enough to stand on.</p>
+        <p class="body reveal d1">Two steel poles slide through the canvas. The legs click into place. That is the whole bed.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="bg" style="background-image:url('utopia-media/04-build.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <p class="body reveal">In Utopia, on Country, a young fella threaded the poles, clicked the legs, and built the bed he would sleep on that night.</p>
+        <p class="body reveal d1">Then he built another. Then another. Seven in total.</p>
+      </div>
+    </section>
+
+    <section class="dark">
+      <div class="inner">
+        <p class="ask reveal">We asked him the one question that matters when you are the one who has to lie down on it. Is it comfortable?</p>
+        <p class="quote reveal d1">Comfortable as. Smooth, tight, hard, fancy. It's not trampoline.<span class="who">Mykel</span></p>
+      </div>
+    </section>
+
+    <section class="dark">
+      <div class="inner">
+        <p class="body reveal">An Elder was watching him work. He called him grandson. He called him brother.</p>
+        <p class="quote reveal d1" style="margin-top:2rem">Well done, grandson. Well done, brother.<span class="who">An Elder, watching</span></p>
+      </div>
+    </section>
+
+    <section class="dark">
+      <div class="inner">
+        <p class="ask reveal">And then, after a pause:</p>
+        <p class="quote reveal d1">That could be a good employment for yourself too, grandson. Later on.<span class="who">An Elder, watching</span></p>
+      </div>
+    </section>
+
+    <section class="dark">
+      <div class="inner">
+        <p class="ask reveal">So we asked Mykel the question that is really a door. If we built a place here to make these all the time, would you come?</p>
+        <p class="quote reveal d1">Yeah, I'll be rocking up every day to make them.<span class="who">Mykel</span></p>
+      </div>
+    </section>
+
+    <!-- INTERLUDE -->
+    <section class="interlude">
+      <div class="bg" style="background-image:url('utopia-media/05-waste.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <p class="reveal">Waste into rest.</p>
+        <p class="reveal d1" style="margin-top:.4rem">A pile of lids into a bed.</p>
+        <p class="reveal d2" style="margin-top:.4rem">A morning into a trade.</p>
+      </div>
+    </section>
+
+    <!-- SCENE 3: bigger delivery -->
+    <section>
+      <div class="bg" style="background-image:url('utopia-media/06-delivery.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <div class="eyebrow reveal">The close community</div>
+        <p class="body reveal d1">Then they told us where to go next. A community close by wanted beds too, more of them.</p>
+        <p class="body reveal d2">We did not plan that leg. They did. We drove where we were pointed, and we unloaded.</p>
+        <span class="media-note reveal d3"><span class="dot"></span>Drone shot drops in here · <b>video ready</b></span>
+      </div>
+    </section>
+
+    <!-- SCENE 4: Ampilatwatja -->
+    <section>
+      <div class="bg" style="background-image:url('utopia-media/07-elders.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <div class="eyebrow reveal">Ampilatwatja</div>
+        <p class="body reveal d1">We went to Ampilatwatja to sit with the old fellas. Two of them carry the Order of Australia, given to them this year.</p>
+        <p class="body reveal d2">We brought four beds. They had something to say about them, so we let the camera run, and then we got out of the way.</p>
+        <span class="media-note reveal d3"><span class="dot"></span>Their bed video plays here · <b>their words, not ours</b></span>
+      </div>
+    </section>
+
+    <!-- SCENE 5: door to bed -->
+    <section>
+      <div class="bg" style="background-image:url('utopia-media/08-beforeafter.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <div class="eyebrow reveal">Before, and after</div>
+        <p class="body reveal d1">Before, some people slept on a door laid flat on the ground. A door, off its hinges, for a bed.</p>
+        <p class="body reveal d2">Now the door is a door again, and the bed is a bed. Off the ground. Washable. Built to last ten years.</p>
+        <span class="media-note reveal d3"><span class="dot"></span>Before / after cross-fade drops in here</span>
+      </div>
+    </section>
+
+    <!-- INTERLUDE -->
+    <section class="interlude">
+      <div class="bg" style="background-image:url('utopia-media/09-offground.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <p class="reveal">Off the ground.</p>
+        <p class="small reveal d1">A bed is rest. Rest is healing. The simple things are not small.</p>
+      </div>
+    </section>
+
+    <!-- SCENE 6: what next -->
+    <section>
+      <div class="bg" style="background-image:url('utopia-media/10-next.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <div class="eyebrow reveal">What comes next</div>
+        <p class="body reveal d1">Utopia is one of the strongest candidates for the next place where these beds get made, not just delivered.</p>
+        <p class="body reveal d2">Mykel said he'd turn up every day. An Elder called it employment. The next question is whether the making moves here, to the people who already want it.</p>
+      </div>
+    </section>
+
+    <!-- CLOSE -->
+    <section class="interlude close">
+      <div class="bg" style="background-image:url('utopia-media/11-close.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <p class="reveal" style="max-width:22ch">This is the first thing he built.</p>
+        <p class="reveal d1" style="margin-top:.5rem;max-width:24ch">It is not the last thing we will build together.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p><strong>Goods on Country · Utopia Homelands, 21–22 May 2026.</strong> Supported by Oonchiumpa. Beds built with young people, purchase supported by the Centrecorp Foundation.</p>
+    <p style="margin-top:.8rem">Internal preview. Photos are from the trip and every voice and face here is consent pending, for internal use only. Nothing on this page goes to a public surface until consent is captured per the Goods consent process, with family and Oonchiumpa facilitating for young people. Quotes are verbatim and never combined across speakers. Photo and frame map: <code>utopia-media/MANIFEST.txt</code>.</p>
+  </footer>
+
+<script>
+  var bar=document.getElementById('bar');
+  function onScroll(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max)*100:0)+'%';}
+  document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.18,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+  // settle the background image when a section comes into view
+  var bgio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');}});},{threshold:0.12});
+  document.querySelectorAll('section').forEach(function(s){bgio.observe(s);});
+</script>
+</body>
+</html>

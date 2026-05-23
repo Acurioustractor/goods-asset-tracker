@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>From Alice Springs to Utopia · Goods on Country</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<!--
+  GOODS · ALICE TO UTOPIA FEATURE (v2). Internal preview. Photos: 21-22 May 2026 trip.
+  Media folder: ./utopia-media/   (frame map: utopia-media/MANIFEST.txt)
+  One layered piece for funders, supporters and partners. Opens in Alice Springs.
+
+  ADD VIDEO (with sound). Drop these into ./utopia-media/ and players light up, no code change:
+    utopia-media/alice-youth.mp4         (Act 1, young people building + talking)  poster 04-build
+    utopia-media/utopia-road.mp4         (Act 2, the drive to Utopia, optional bg)  poster 01-hero
+    utopia-media/delivery-drone.mp4      (Act 3, the wider delivery, optional bg)   poster 06-delivery
+    utopia-media/ampilatwatja-elders.mp4 (Act 4, the two OAM Elders, their words)    poster 07-elders
+    utopia-media/beds-being-made.mp4     (Act 5, the making)                         poster 10-next
+  SWAP any full-bleed photo for video: replace the section's
+    <div class="bg" style="background-image:url('utopia-media/XX.jpg')"></div>
+  with
+    <video class="bg" autoplay muted loop playsinline poster="utopia-media/XX.jpg"><source src="utopia-media/clip.mp4" type="video/mp4"></video>
+-->
+<style>
+  :root{
+    --bone:#f4ede1;--bone-dim:#c9bba4;--muted:#9c8d76;--ochre:#c8702e;--ochre-soft:#e6ad6a;
+    --char:#0e0b07;--panel:#15110c;--line:rgba(244,237,225,.14);
+    --serif:Georgia,'Times New Roman',serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--char);color:var(--bone);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .grain{position:fixed;inset:-50%;z-index:60;pointer-events:none;opacity:.04;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--ochre),var(--ochre-soft));z-index:70}
+  .banner{position:fixed;top:0;right:0;z-index:69;font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim);background:rgba(14,11,7,.72);backdrop-filter:blur(6px);padding:8px 14px;border-bottom-left-radius:10px;border:1px solid var(--line);border-top:0;border-right:0}
+  .actnav{position:fixed;left:0;bottom:0;width:100%;z-index:50;display:flex;justify-content:center;gap:.4rem;padding:10px;background:linear-gradient(0deg,rgba(14,11,7,.8),transparent);pointer-events:none}
+  .actnav b{pointer-events:auto;font-family:var(--sans);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-dim);background:rgba(21,17,12,.7);border:1px solid var(--line);border-radius:999px;padding:.4rem .8rem;text-decoration:none;font-weight:400;backdrop-filter:blur(6px)}
+  .actnav b:hover{color:var(--ochre-soft)}
+
+  .immersive{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;padding:9vh 7vw}
+  .immersive.center{justify-content:center;text-align:center}
+  .bg{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;background-size:cover;background-position:center;filter:brightness(.6) saturate(.97);transform:scale(1.08);transition:transform 8s ease-out}
+  .immersive.in .bg{transform:scale(1)}
+  .scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(8,6,4,.88),rgba(8,6,4,.25) 55%,rgba(8,6,4,.5))}
+  .immersive .inner{position:relative;z-index:3;max-width:1100px;margin:0 auto;width:100%}
+  .actmark{font-family:var(--sans);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--ochre-soft);margin-bottom:1rem}
+
+  .kicker{font-family:var(--sans);font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--ochre-soft);margin-bottom:1.3rem}
+  h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.5rem,6.6vw,5.4rem);line-height:1.03;letter-spacing:-.015em;max-width:18ch;text-shadow:0 2px 40px rgba(0,0,0,.5)}
+  .standfirst{font-family:var(--serif);font-size:clamp(1.2rem,2.3vw,1.7rem);color:var(--bone);max-width:42ch;margin-top:1.8rem;line-height:1.4}
+  .dateline{font-family:var(--sans);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-dim);margin-top:2rem}
+  .hint{margin-top:3rem;font-family:var(--sans);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--bone-dim);opacity:.8}
+  .hint span{display:inline-block;animation:nudge 2.2s ease-in-out infinite}
+  @keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+  .epigraph{max-width:760px;margin:0 auto;padding:11vh 7vw;text-align:center}
+  .epigraph .lang{font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,3.6vw,2.4rem);color:var(--bone);line-height:1.3}
+  .epigraph .trans{font-family:var(--sans);font-size:1rem;color:var(--bone-dim);margin-top:1.1rem}
+  .epigraph .flag{font-family:var(--sans);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:1.4rem}
+
+  .read{max-width:720px;margin:0 auto;padding:8vh 7vw}
+  .read.tight{padding:5vh 7vw}
+  .section-tag{font-family:var(--sans);font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ochre-soft);margin-bottom:1.2rem}
+  .read h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.12;margin-bottom:1.4rem;letter-spacing:-.01em}
+  .read p{font-size:1.15rem;line-height:1.75;color:#e7dcc9;margin-bottom:1.25rem;max-width:65ch}
+  .read p .lead-in{font-variant:small-caps;letter-spacing:.04em;color:var(--bone)}
+  .read a{color:var(--ochre-soft);text-decoration:none;border-bottom:1px solid rgba(230,173,106,.4)}
+  .pullquote{font-family:var(--serif);font-size:clamp(1.5rem,3.2vw,2.2rem);line-height:1.28;color:var(--bone);border-left:2px solid var(--ochre);padding-left:1.4rem;margin:2.4rem 0;font-style:italic}
+  .pullquote .src{display:block;font-style:normal;font-family:var(--sans);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim);margin-top:1rem}
+
+  .bleedquote{position:relative;min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:10vh 7vw}
+  .bleedquote .inner{position:relative;z-index:3;max-width:22ch}
+  .bleedquote p{font-family:var(--serif);font-size:clamp(2rem,5.6vw,4rem);line-height:1.14;color:var(--bone);text-shadow:0 2px 40px rgba(0,0,0,.7)}
+
+  /* full-width feature video (sound) */
+  .featurevid{max-width:1100px;margin:0 auto;padding:6vh 6vw}
+  .featurevid figure{margin:0;background:#000;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .featurevid video{display:block;width:100%;max-height:74vh;object-fit:cover;background:#000}
+  .featurevid figcaption{padding:1.1rem 1.4rem;font-family:var(--sans);font-size:13.5px;color:var(--bone-dim);background:var(--panel)}
+  .featurevid figcaption b{font-family:var(--serif);color:var(--bone);font-size:15px;margin-right:.5rem}
+  .addvid{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+  .stats{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:7vh 6vw}
+  .stats .wrap{max-width:1100px;margin:0 auto}
+  .stats .lead{font-family:var(--sans);font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ochre-soft);margin-bottom:2.4rem;text-align:center}
+  .grid-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2.2rem 1.4rem}
+  .stat{text-align:center}
+  .stat .v{font-family:var(--serif);font-size:clamp(2rem,4.4vw,3rem);color:var(--ochre-soft);line-height:1}
+  .stat .l{font-family:var(--sans);font-size:12.5px;line-height:1.4;color:var(--bone-dim);margin-top:.7rem}
+
+  .voices{max-width:1100px;margin:0 auto;padding:9vh 6vw}
+  .voices h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:.6rem;text-align:center}
+  .voices .sub{text-align:center;color:var(--bone-dim);font-size:.98rem;max-width:54ch;margin:0 auto 3rem}
+  .qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem}
+  .qcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:2rem 1.8rem;display:flex;flex-direction:column}
+  .qcard .q{font-family:var(--serif);font-size:1.4rem;line-height:1.32;color:var(--bone)}
+  .qcard .a{font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim);margin-top:1.4rem}
+  .qcard .a b{color:var(--ochre-soft);font-weight:600}
+  .tag{display:inline-block;font-family:var(--sans);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;margin-top:.9rem;padding:.25rem .6rem;border-radius:999px;border:1px solid var(--line);color:var(--muted);align-self:flex-start}
+  .tag.cleared{color:#9cc59c;border-color:rgba(156,197,156,.35)}
+  .tag.pending{color:var(--ochre-soft);border-color:rgba(230,173,106,.35)}
+
+  .videos{max-width:1180px;margin:0 auto;padding:9vh 6vw}
+  .videos h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,4vw,2.6rem);text-align:center;margin-bottom:.6rem}
+  .videos .sub{text-align:center;color:var(--bone-dim);font-size:.98rem;max-width:54ch;margin:0 auto 3rem}
+  .vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.6rem}
+  figure.vid{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  figure.vid video{display:block;width:100%;height:240px;object-fit:cover;background:#000}
+  figure.vid figcaption{padding:1.1rem 1.3rem;font-family:var(--sans);font-size:13.5px;line-height:1.5;color:var(--bone-dim)}
+  figure.vid figcaption b{color:var(--bone);font-weight:600;display:block;font-size:14.5px;margin-bottom:.25rem;font-family:var(--serif)}
+  figure.vid .addvid{margin-top:.6rem;display:block}
+
+  .mapwrap{padding:9vh 6vw;background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .mapwrap .head{max-width:760px;margin:0 auto 2.4rem;text-align:center}
+  .mapwrap h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:1rem}
+  .mapwrap p{color:var(--bone-dim);font-size:1.02rem;max-width:60ch;margin:0 auto}
+  #map{max-width:1180px;height:64vh;min-height:440px;margin:0 auto;border-radius:18px;border:1px solid var(--line);background:#0c0a07}
+  .legend{max-width:1180px;margin:1.4rem auto 0;font-family:var(--sans);font-size:12px;color:var(--muted);text-align:center;line-height:1.7}
+  .leaflet-popup-content-wrapper{background:#1c1610;color:var(--bone);border-radius:10px}
+  .leaflet-popup-tip{background:#1c1610}.leaflet-popup-content{font-family:var(--sans);font-size:13px}
+  .leaflet-popup-content b{font-family:var(--serif);color:var(--ochre-soft)}.leaflet-container a{color:var(--ochre-soft)}
+
+  /* layered ask */
+  .pathways{max-width:1100px;margin:0 auto;padding:9vh 6vw}
+  .pathways h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,4vw,2.6rem);text-align:center;margin-bottom:.6rem}
+  .pathways .sub{text-align:center;color:var(--bone-dim);max-width:50ch;margin:0 auto 3rem;font-size:1rem}
+  .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.4rem}
+  .pcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:2rem 1.8rem}
+  .pcard .who{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ochre-soft);margin-bottom:.8rem}
+  .pcard h3{font-family:var(--serif);font-weight:400;font-size:1.5rem;margin-bottom:.7rem;color:var(--bone)}
+  .pcard p{font-size:.98rem;color:var(--bone-dim);line-height:1.6}
+
+  footer{max-width:760px;margin:0 auto;padding:9vh 7vw 16vh;font-family:var(--sans);font-size:13px;line-height:1.75;color:var(--muted);border-top:1px solid var(--line)}
+  footer strong{color:var(--bone)}footer a{color:var(--ochre-soft);text-decoration:none}
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity 1s ease,transform 1s ease}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+  @media (prefers-reduced-motion:reduce){.hint span{animation:none}.reveal{opacity:1;transform:none;transition:none}.bg{transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="progress" id="bar"></div>
+  <div class="banner">Internal preview · consent pending · not for publishing</div>
+  <nav class="actnav">
+    <a class="b" href="#act1">Alice Springs</a>
+    <a class="b" href="#act2">The road</a>
+    <a class="b" href="#act3">Utopia</a>
+    <a class="b" href="#act4">The Elders</a>
+    <a class="b" href="#act5">The model</a>
+    <a class="b" href="#act6">What's next</a>
+  </nav>
+
+  <main>
+
+    <!-- MASTHEAD (Alice-first; bg becomes the youth video when alice-youth.mp4 lands) -->
+    <section class="immersive" id="act1">
+      <video class="bg" autoplay muted loop playsinline poster="utopia-media/04-build.jpg"><source src="utopia-media/alice-youth.mp4" type="video/mp4"></video>
+      <div class="scrim"></div>
+      <div class="inner">
+        <div class="kicker reveal">Field notes · Alice Springs to Utopia</div>
+        <h1 class="reveal d1">The young people built the beds. One of them wanted to keep building.</h1>
+        <p class="standfirst reveal d2">It started in Alice Springs, with young people making beds out of recycled plastic, and ended on the homelands at Utopia. Two days, supported by Oonchiumpa. A delivery, and the start of something longer.</p>
+        <div class="dateline reveal d3">Alice Springs and Utopia Homelands, Northern Territory · 21–22 May 2026 · Goods on Country, with Oonchiumpa</div>
+        <div class="hint reveal d3"><span>Scroll &#8595;</span></div>
+      </div>
+    </section>
+
+    <!-- LEAD -->
+    <section class="read">
+      <div class="section-tag reveal">The trip</div>
+      <h2 class="reveal d1">Not a giveaway. A build.</h2>
+      <p class="reveal d1"><span class="lead-in">In Alice Springs,</span> young people were supported by the Centrecorp Foundation to build their own beds, and every young person who built one kept one. Oonchiumpa held the whole trip, the cultural connection and the call on where it went. That order matters. The opposite of charity is asking people what they need, then building it with them.</p>
+      <p class="reveal d2">The Stretch Bed is a plain object. Two galvanised steel poles thread through sleeves in heavy-duty canvas. Four legs, pressed from recycled plastic that communities collect, click onto the poles. It weighs 26kg, holds 200kg, and goes together in about five minutes with no tools. What it replaces is harder: a thin mattress on a concrete floor, or a door taken off its hinges and laid flat.</p>
+      <p class="reveal d2">Goods on Country has put more than 400 of these beds into homes across the country since 2023. This trip added a few more, and pointed at where the work goes next.</p>
+    </section>
+
+    <!-- ACT 1 video: the young people -->
+    <section class="featurevid">
+      <figure class="reveal">
+        <video controls preload="none" playsinline poster="utopia-media/04-build.jpg"><source src="utopia-media/alice-youth.mp4" type="video/mp4"></video>
+        <figcaption><b>Building in Alice Springs.</b>The young people who made the beds, in their own words. <span class="addvid">add: alice-youth.mp4</span></figcaption>
+      </figure>
+    </section>
+
+    <!-- MYKEL -->
+    <section class="read">
+      <div class="section-tag reveal">Mykel</div>
+      <h2 class="reveal d1">"Never would've thought it would've come out like that"</h2>
+      <p class="reveal d1">One of the builders was Mykel. He turned the finished bed over in his hands like he wasn't sure it was real, then explained it was made from bottle lids, the plastic shredded and pressed into something strong enough to stand on. He built the bed he slept on that night, and kept going. Seven in total.</p>
+      <blockquote class="pullquote reveal d2">"Comfortable as. Smooth, tight, hard, fancy. It's not trampoline."<span class="src">Mykel · consent pending</span></blockquote>
+      <p class="reveal d2">An Elder watched him work and called him grandson, called him brother. Then, after a pause, said the thing that turned a good morning into something larger: "That could be a good employment for yourself too, grandson. Later on." We asked Mykel whether he would come and make beds every day if the making moved closer to home.</p>
+      <blockquote class="pullquote reveal d3">"Yeah, I'll be rocking up every day to make them."<span class="src">Mykel · consent pending</span></blockquote>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+      <div class="wrap">
+        <div class="lead reveal">One bed, in numbers</div>
+        <div class="grid-stats">
+          <div class="stat reveal"><div class="v">26kg</div><div class="l">flat-packs, one person can carry it</div></div>
+          <div class="stat reveal d1"><div class="v">200kg</div><div class="l">load capacity, rated</div></div>
+          <div class="stat reveal d1"><div class="v">~5 min</div><div class="l">to assemble, no tools</div></div>
+          <div class="stat reveal d2"><div class="v">20kg</div><div class="l">of plastic kept out of landfill, per bed</div></div>
+          <div class="stat reveal d2"><div class="v">10+ yrs</div><div class="l">design life, 5-year warranty</div></div>
+          <div class="stat reveal d3"><div class="v">400+</div><div class="l">beds in homes since 2023</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT 2: the road -->
+    <section class="immersive" id="act2">
+      <div class="bg" style="background-image:url('utopia-media/01-hero.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <div class="actmark reveal">Act two · the road</div>
+        <h1 class="reveal d1" style="font-size:clamp(2rem,5.4vw,3.6rem)">From town to the homelands</h1>
+        <p class="standfirst reveal d2" style="max-width:40ch">We loaded the beds and drove out to Utopia, onto Anmatyerr and Alyawarr Country. Oonchiumpa led the way, and we followed.</p>
+      </div>
+    </section>
+
+    <!-- EPIGRAPH: Arrernte welcome on arrival -->
+    <section class="epigraph">
+      <p class="lang reveal">"Come down and make your apmere."</p>
+      <p class="trans reveal d1">Apmere, in the languages of this Country, means home, camp, your place. A welcome offered on the second morning.</p>
+      <p class="flag reveal d2">Speaker, language and consent to confirm before any external use</p>
+    </section>
+
+    <!-- ACT 3: Utopia, the homes -->
+    <section class="immersive" id="act3">
+      <div class="bg" style="background-image:url('utopia-media/06-delivery.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <div class="actmark reveal">Act three · Utopia</div>
+        <h1 class="reveal d1" style="font-size:clamp(2rem,5.4vw,3.6rem)">The beds go to the homes</h1>
+        <p class="standfirst reveal d2" style="max-width:42ch">A community close by wanted beds too, more of them. We did not plan that leg. They did. We drove where we were pointed, and we unloaded.</p>
+      </div>
+    </section>
+
+    <section class="read">
+      <div class="section-tag reveal">Off the ground</div>
+      <h2 class="reveal d1">Why a bed is health hardware</h2>
+      <p class="reveal d1">A bed is not a comfort upgrade. Sleeping on cold ground is tied to chest infections and to skin conditions like scabies, which can lead to Rheumatic Heart Disease. Getting families up off the floor, onto a surface that can be washed, is one of the simplest pieces of health hardware there is. People asked, unprompted, whether they could wash it. That is the feature that matters most, and the answer is yes.</p>
+      <blockquote class="pullquote reveal d2">"Something as simple as a good bed makes a huge difference. It improves their health, helps with mobility, and gives them dignity."<span class="src">Chloe · Support worker, Kalgoorlie · cleared voice</span></blockquote>
+    </section>
+
+    <section class="bleedquote">
+      <div class="bg" style="background-image:url('utopia-media/05-waste.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner"><p class="reveal">Waste into rest. A morning into a trade.</p></div>
+    </section>
+
+    <!-- VOICES -->
+    <section class="voices">
+      <h2 class="reveal">What people told us</h2>
+      <p class="sub reveal d1">Voices from this trip sit beside voices from the wider Goods story. Trip quotes are held as consent pending until confirmed with the speakers and Oonchiumpa.</p>
+      <div class="qgrid">
+        <div class="qcard reveal"><div class="q">"This one's better, I reckon."</div><div class="a">Johnny · <b>Utopia Homelands</b><br>comparing the new bed to the old one</div><span class="tag pending">consent pending</span></div>
+        <div class="qcard reveal d1"><div class="q">"It's more better than laying around on the floors. It was easy to make."</div><div class="a">Ivy · <b>Palm Island</b></div><span class="tag cleared">cleared voice</span></div>
+        <div class="qcard reveal d2"><div class="q">"We've never been asked what sort of house we'd like to live in."</div><div class="a">Linda Turner · <b>Tennant Creek</b></div><span class="tag cleared">cleared voice</span></div>
+      </div>
+    </section>
+
+    <!-- ACT 4: the Elders -->
+    <section class="immersive" id="act4">
+      <div class="bg" style="background-image:url('utopia-media/07-elders.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <div class="actmark reveal">Act four · Ampilatwatja</div>
+        <h1 class="reveal d1" style="font-size:clamp(2rem,5.4vw,3.6rem)">Sitting with the old fellas</h1>
+        <p class="standfirst reveal d2" style="max-width:42ch">At Ampilatwatja we sat with two senior men, both honoured with the Order of Australia this year, and left four beds. We let the camera run, and got out of the way.</p>
+      </div>
+    </section>
+
+    <!-- VIDEO SHOWCASE -->
+    <section class="videos">
+      <h2 class="reveal">Hear it from them</h2>
+      <p class="sub reveal d1">Short clips with sound, in people's own voices. Drop the files into the media folder and these come alive. Hold for consent before sharing outside the team.</p>
+      <div class="vgrid">
+        <figure class="vid reveal"><video controls preload="none" playsinline poster="utopia-media/07-elders.jpg"><source src="utopia-media/ampilatwatja-elders.mp4" type="video/mp4"></video><figcaption><b>The Elders, Ampilatwatja</b>Two Order of Australia men, on the bed, in their words.<span class="addvid">add: ampilatwatja-elders.mp4</span></figcaption></figure>
+        <figure class="vid reveal d1"><video controls preload="none" playsinline poster="utopia-media/10-next.jpg"><source src="utopia-media/beds-being-made.mp4" type="video/mp4"></video><figcaption><b>The beds being made</b>Recycled plastic shredded and pressed into legs.<span class="addvid">add: beds-being-made.mp4</span></figcaption></figure>
+        <figure class="vid reveal d2"><video controls preload="none" playsinline poster="utopia-media/06-delivery.jpg"><source src="utopia-media/delivery-drone.mp4" type="video/mp4"></video><figcaption><b>The wider delivery</b>The drone over the community, beds going out.<span class="addvid">add: delivery-drone.mp4</span></figcaption></figure>
+      </div>
+    </section>
+
+    <!-- ACT 5: the model + map -->
+    <section class="read" id="act5">
+      <div class="section-tag reveal">The model</div>
+      <h2 class="reveal d1">The point is to hand it over</h2>
+      <p class="reveal d1">Goods on Country is an enterprise, not a giveaway. Beds, and the washing machine named Pakkimjalki Kari by Elder Dianne Stokes in Warumungu, come out of years of community co-design. A containerised plant can shred and press recycled plastic into bed legs at around 30 beds a week, and that plant can move to a community and be owned there.</p>
+      <p class="reveal d2">That is the part Mykel pointed at without knowing it. Alice and Utopia are live candidates for the next place the making happens, not just the next place the beds arrive. The job is to make the making local, and then to become unnecessary.</p>
+    </section>
+
+    <section class="mapwrap">
+      <div class="head">
+        <h2 class="reveal">Where the beds have gone</h2>
+        <p class="reveal d1">More than 400 Stretch Beds are now in homes across the country. This is the March 2026 deployment snapshot. Utopia and Ampilatwatja, in amber, are the newest.</p>
+      </div>
+      <div id="map" class="reveal d1"></div>
+      <p class="legend reveal d2">Counts are the March 2026 compendium snapshot (412 beds across seven deployment rows). Utopia also carries a separate 107-bed pathway approved with the Centrecorp Foundation, not yet counted as delivered. Numbers to be reconciled against the asset register before any public use.</p>
+    </section>
+
+    <!-- ACT 6: layered ask -->
+    <section class="immersive center" id="act6">
+      <div class="bg" style="background-image:url('utopia-media/11-close.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <h1 class="reveal" style="margin:0 auto;font-size:clamp(2rem,5.4vw,3.6rem)">This is the first thing he built.<br>It is not the last we will build together.</h1>
+      </div>
+    </section>
+
+    <section class="pathways">
+      <h2 class="reveal">Three ways to be part of it</h2>
+      <p class="sub reveal d1">One piece of work, three ways in. Plain framings for now, real links and figures to be added.</p>
+      <div class="pgrid">
+        <div class="pcard reveal"><div class="who">Supporters</div><h3>Put a bed in a home</h3><p>Fund a Stretch Bed and follow where it goes. The simplest way to be part of the work, one family at a time.</p></div>
+        <div class="pcard reveal d1"><div class="who">Funders</div><h3>Move the making to Country</h3><p>Back the containerised plant and the community-ownership transfer. This is where scale and lasting jobs come from.</p></div>
+        <div class="pcard reveal d2"><div class="who">Partners</div><h3>Build it with your community</h3><p>Bring the making to your homelands. Community leads, Goods supports, and the work becomes yours to own.</p></div>
+      </div>
+      <p style="text-align:center;margin-top:2.6rem" class="reveal d2"><a href="https://www.goodsoncountry.com" target="_blank" rel="noopener" style="color:var(--ochre-soft);text-decoration:none;border-bottom:1px solid rgba(230,173,106,.4);font-family:var(--serif);font-size:1.2rem">Read the wider story at goodsoncountry.com</a></p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p><strong>Goods on Country · Alice Springs and Utopia Homelands, 21–22 May 2026.</strong> Supported by Oonchiumpa. Beds built with young people, purchase supported by the Centrecorp Foundation. A project of A Curious Tractor, since 2023.</p>
+    <p style="margin-top:.8rem">Internal preview. Photos are from the trip; every voice and face is consent pending and for internal use only. Nothing here goes to a public surface until consent is captured per the Goods consent process, with family and Oonchiumpa facilitating for young people. Quotes are verbatim and never combined across speakers. Stats are verified against products.ts and the March 2026 compendium. Photo and frame map: <code>utopia-media/MANIFEST.txt</code>.</p>
+  </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  var bar=document.getElementById('bar');
+  function onScroll(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max)*100:0)+'%';}
+  document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.15,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  var bio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.1});
+  document.querySelectorAll('.immersive,.bleedquote').forEach(function(s){bio.observe(s);});
+
+  var mapBuilt=false;
+  function buildMap(){
+    if(mapBuilt||typeof L==='undefined')return;mapBuilt=true;
+    var map=L.map('map',{scrollWheelZoom:false}).setView([-22.5,134.5],4.2);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; OpenStreetMap &copy; CARTO',subdomains:'abcd',maxZoom:12}).addTo(map);
+    var places=[
+      {n:'Palm Island / Bwgcolman',s:'QLD',b:141,ll:[-18.74,146.60]},
+      {n:'Tennant Creek / Wumpurrarni',s:'NT',b:139,ll:[-19.65,134.19]},
+      {n:'Alice Homelands',s:'NT',b:60,ll:[-23.70,133.88]},
+      {n:'Utopia Homelands',s:'NT',b:24,ll:[-22.24,134.80],trip:true},
+      {n:'Ampilatwatja',s:'NT',b:4,ll:[-21.66,135.21],trip:true,note:'four beds to two Order of Australia Elders'},
+      {n:'Maningrida',s:'NT',b:24,ll:[-12.05,134.23]},
+      {n:'Kalgoorlie / Ninga Mia',s:'WA',b:20,ll:[-30.75,121.47]},
+      {n:'Mount Isa / Kalkadoon',s:'QLD',b:4,ll:[-20.73,139.49]}
+    ];
+    places.forEach(function(p){
+      var c=p.trip?'#e6ad6a':'#c8702e';
+      var r=Math.max(7,Math.min(26,6+Math.sqrt(p.b)*1.6));
+      L.circleMarker(p.ll,{radius:r,color:c,weight:p.trip?2:1,fillColor:c,fillOpacity:p.trip?.55:.32}).addTo(map)
+        .bindPopup('<b>'+p.n+'</b><br>'+p.s+' · '+p.b+' beds'+(p.note?'<br>'+p.note:'')+(p.trip?'<br><em>this trip</em>':''));
+    });
+  }
+  var mapio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)buildMap();});},{rootMargin:'200px'});
+  var mapEl=document.getElementById('map');if(mapEl)mapio.observe(mapEl);
+</script>
+</body>
+</html>
