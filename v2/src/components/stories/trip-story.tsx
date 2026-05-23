@@ -293,6 +293,39 @@ function renderBlock(block: TripBlock, internal: boolean, currentSlug: string) {
           </div>
         </section>
       );
+    case 'el-gallery': {
+      // Items are populated by the server resolver in resolve-gallery.ts.
+      // If unresolved (no items) or empty (no matching photos), render
+      // nothing — the section disappears rather than showing a placeholder.
+      const items = block.items || [];
+      if (items.length === 0) return null;
+      // In public mode the resolver has already filtered to is_public=true.
+      // In internal mode every item shows; tag non-public ones visually.
+      return (
+        <section className="ts-gallery">
+          {block.heading && <h2 className="ts-vh ts-reveal">{block.heading}</h2>}
+          {block.sub && <p className="ts-vsub ts-reveal d1">{block.sub}</p>}
+          <div className="ts-ggrid">
+            {items.map((it) => (
+              <figure key={it.id} className="ts-gimg ts-reveal">
+                <Image
+                  src={it.src}
+                  alt={it.alt || ''}
+                  width={800}
+                  height={533}
+                  sizes="(max-width: 720px) 100vw, 33vw"
+                  className="ts-gimg-img"
+                />
+                {internal && !it.isPublic && (
+                  <span className="ts-gpending">pending consent</span>
+                )}
+                {it.caption && <figcaption>{it.caption}</figcaption>}
+              </figure>
+            ))}
+          </div>
+        </section>
+      );
+    }
     case 'map':
       return (
         <section className="ts-mapwrap">
@@ -546,6 +579,16 @@ video.ts-bg{filter:brightness(.6) saturate(.97)}
 .ts-vid video{display:block;width:100%;height:240px;object-fit:cover;background:#000}
 .ts-vid figcaption{padding:1.1rem 1.3rem;font-size:13.5px;line-height:1.5;color:var(--bone-dim)}
 .ts-vid figcaption b{color:var(--bone);display:block;font-size:14.5px;margin-bottom:.25rem;font-family:var(--serif)}
+.ts-gallery{padding:7vh 6vw;max-width:1280px;margin:0 auto}
+.ts-gallery .ts-vh{margin-bottom:.8rem}
+.ts-gallery .ts-vsub{color:var(--bone-dim);font-size:.98rem;max-width:60ch;margin-bottom:2rem}
+.ts-ggrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.9rem}
+.ts-gimg{position:relative;margin:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;aspect-ratio:3/2}
+.ts-gimg-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.ts-gimg:hover .ts-gimg-img{transform:scale(1.03)}
+.ts-gpending{position:absolute;top:.5rem;left:.5rem;background:rgba(220,140,40,.92);color:#fff;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .5rem;border-radius:4px;z-index:1}
+.ts-gimg figcaption{position:absolute;bottom:0;left:0;right:0;padding:.7rem .9rem;font-size:12px;line-height:1.4;color:#fff;background:linear-gradient(180deg,transparent,rgba(0,0,0,.7));opacity:0;transition:opacity .25s ease}
+.ts-gimg:hover figcaption{opacity:1}
 .ts-mapwrap{padding:9vh 6vw;background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .ts-map-head{max-width:760px;margin:0 auto 2.4rem;text-align:center}
 .ts-map-head h2{margin-bottom:1rem}

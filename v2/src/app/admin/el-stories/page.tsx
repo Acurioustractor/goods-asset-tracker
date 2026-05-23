@@ -26,7 +26,11 @@ interface ElStoryRow {
 
 async function fetchGoodsStories(): Promise<ElStoryRow[]> {
   if (!EL_URL || !EL_KEY) return [];
+  // Prose feed only: exclude gallery photos / raw delivery evidence so this
+  // page stays a clean editorial surface. Use /admin/photos for image triage.
+  const excludeTypes = 'gallery-photo,photo,delivery-evidence';
   const url = `${EL_URL}/rest/v1/stories?project_id=eq.${EL_PROJECT_ID}` +
+    `&story_type=not.in.(${excludeTypes})` +
     `&select=id,title,is_public,requires_elder_review,elder_reviewed,has_explicit_consent,tags,created_at,storyteller_id` +
     `&order=created_at.desc&limit=100`;
   const res = await fetch(url, {

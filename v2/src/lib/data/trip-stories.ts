@@ -135,6 +135,24 @@ export type TripBlock =
       intro?: string;
       caveat?: string;
       scope?: { community?: string };
+    })
+  | (WithLinks & {
+      /**
+       * Photo gallery sourced live from Empathy Ledger. Server resolver in
+       * /lib/field-notes/resolve-gallery.ts walks blocks before render,
+       * fetches stories matching `tagQuery`, and populates `items`. The
+       * renderer just maps items → figures. In internal/admin mode every
+       * matching photo shows; in public mode only is_public=true photos.
+       */
+      kind: 'el-gallery';
+      heading?: string;
+      sub?: string;
+      /** Tag-set query. `all` = AND, `any` = OR. Typical: { all: ['event:alice-build'] } */
+      tagQuery: { all?: string[]; any?: string[] };
+      /** Optional limit. Defaults to 24 in the resolver. */
+      limit?: number;
+      /** Populated by the server resolver — do not set in source data. */
+      items?: { id: string; src: string; alt?: string; caption?: string; isPublic: boolean }[];
     });
 
 export interface TripStory {
@@ -201,6 +219,17 @@ const utopia: TripStory = {
           src: `${VID}/alice-youth-desktop.mp4`,
         },
       ],
+    },
+    // Gallery: 120 build photos uploaded to EL as gallery-photo with
+    // tags event:alice-build + trip:may-2026. In admin preview every
+    // photo shows (so you can curate); on public field-notes only
+    // is_public=true photos render. Limit 24 keeps the grid digestible.
+    {
+      kind: 'el-gallery',
+      heading: 'The build, in pictures',
+      sub: 'Two and a half days in the Alice shed. Curate via /admin/photos — flip "Approve public" on the keepers and they appear on the public field-notes automatically.',
+      tagQuery: { all: ['event:alice-build', 'trip:may-2026'] },
+      limit: 24,
     },
     {
       kind: 'read',

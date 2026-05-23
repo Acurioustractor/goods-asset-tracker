@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getTripStory, tripStories } from '@/lib/data/trip-stories';
 import { TripStory } from '@/components/stories/trip-story';
+import { resolveGalleryBlocks } from '@/lib/field-notes/resolve-gallery';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -31,5 +32,7 @@ export default async function PublicFieldNotePage({ params }: Props) {
   // Until consent is captured and `published` is flipped to true, this 404s.
   if (!story || !story.published) notFound();
   // Public mode: consent-pending voices and video are hidden automatically.
-  return <TripStory story={story} />;
+  // Gallery blocks resolve to is_public=true photos only.
+  const resolved = await resolveGalleryBlocks(story, { internal: false });
+  return <TripStory story={resolved} />;
 }
