@@ -7,7 +7,8 @@ import { ImpactBanner } from './impact-banner';
 
 // Routes that should render WITHOUT the public site header, footer, and impact banner.
 // Funder briefs are confidential investor docs and should not display the public nav.
-const STANDALONE_PATH_PREFIXES = ['/funders', '/insiders', '/admin'];
+// Field-notes are full-bleed immersive scrollytelling — they own the whole viewport.
+const STANDALONE_PATH_PREFIXES = ['/funders', '/insiders', '/admin', '/field-notes'];
 
 // Routes where the global ImpactBanner competes with page-specific stats.
 // These pages carry their own product/place numbers, so suppress the global strip.

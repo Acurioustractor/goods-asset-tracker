@@ -73,7 +73,7 @@ export default function FieldNotesIndex() {
             >
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div className="flex-1 min-w-0">
-                  <Link href={`/admin/field-notes/${s.slug}`} className="block">
+                  <Link href={`/field-notes/${s.slug}`} className="block">
                     <h2 className="text-xl font-medium text-foreground hover:text-amber-700 transition-colors">{s.title}</h2>
                     <p className="text-sm text-muted-foreground mt-1">{s.dateline}</p>
                   </Link>
@@ -108,23 +108,25 @@ export default function FieldNotesIndex() {
                 )}
               </div>
 
-              {/* Action links */}
+              {/* Action links — single full-screen experience at /field-notes.
+                  Admins auto-see internal mode (consent-pending content visible)
+                  via auth cookie; ?public=1 forces the public-viewer mode for
+                  sanity checking before flipping published:true. */}
               <div className="mt-4 flex flex-wrap gap-2 text-xs">
                 <Link
-                  href={`/admin/field-notes/${s.slug}`}
+                  href={`/field-notes/${s.slug}`}
+                  target="_blank"
                   className="rounded border border-blue-200 bg-blue-50 px-2 py-1 font-medium text-blue-800 hover:bg-blue-100"
                 >
-                  → Internal preview
+                  → Open (full-screen)
                 </Link>
-                {s.published && (
-                  <Link
-                    href={`/field-notes/${s.slug}`}
-                    target="_blank"
-                    className="rounded border border-emerald-200 bg-emerald-50 px-2 py-1 font-medium text-emerald-800 hover:bg-emerald-100"
-                  >
-                    → Public preview
-                  </Link>
-                )}
+                <Link
+                  href={`/field-notes/${s.slug}?public=1`}
+                  target="_blank"
+                  className="rounded border border-stone-200 bg-stone-50 px-2 py-1 font-medium text-stone-700 hover:bg-stone-100"
+                >
+                  → As public sees it
+                </Link>
                 <code className="rounded border bg-stone-50 px-2 py-1 text-stone-600">
                   src/lib/data/trip-stories.ts · slug: {s.slug}
                 </code>
