@@ -184,6 +184,10 @@ const utopia: TripStory = {
         'The Stretch Bed is a plain object. Two galvanised steel poles thread through sleeves in heavy-duty canvas. Four legs, pressed from recycled plastic that communities collect, click onto the poles. It weighs 26kg, holds 200kg, and goes together in about five minutes with no tools. What it replaces is harder: a thin mattress on a concrete floor, or a door taken off its hinges and laid flat.',
         'Goods on Country has put more than 400 of these beds into homes across the country since 2023. This trip added a few more, and pointed at where the work goes next.',
       ],
+      links: [
+        { label: 'See the Stretch Bed', href: '/shop/stretch-bed-single' },
+        { label: 'How Goods began', href: '/story' },
+      ],
     },
     {
       kind: 'videos',
@@ -227,6 +231,9 @@ const utopia: TripStory = {
       standfirst:
         'We loaded the beds and drove out to Utopia, onto Anmatyerr and Alyawarr Country. Oonchiumpa led the way, and we followed.',
       media: { image: `${IMG}/01-hero.jpg` },
+      links: [
+        { label: 'Utopia Homelands', href: '/communities/utopia-homelands' },
+      ],
     },
     {
       kind: 'immersive',
@@ -235,10 +242,20 @@ const utopia: TripStory = {
       standfirst:
         'A community close by wanted beds too, more of them. We did not plan that leg. They did. We drove where we were pointed, and we unloaded.',
       media: { image: `${IMG}/06-delivery.jpg` },
+      links: [
+        { label: 'Where the beds have gone', href: '/communities' },
+      ],
     },
     // Atom: health framing. Sourced from story-atoms.ts. Swap focus to
     // 'sleep-and-skin' or 'washing-machine-cycle' for a different angle.
-    { kind: 'health-facts', focus: 'rhd-prevention' },
+    {
+      kind: 'health-facts',
+      focus: 'rhd-prevention',
+      links: [
+        { label: 'The washing machine', href: '/shop/washing-machine' },
+        { label: 'The wider model', href: '/story' },
+      ],
+    },
     { kind: 'bleedquote', text: 'Waste into rest. A morning into a trade.', media: { image: `${IMG}/05-waste.jpg` } },
     {
       kind: 'voices',
@@ -317,6 +334,11 @@ const utopia: TripStory = {
       paragraphs: [
         'Goods on Country is an enterprise, not a giveaway. Beds, and the washing machine named Pakkimjalki Kari by Elder Dianne Stokes in Warumungu, come out of years of community co-design. A containerised plant can shred and press recycled plastic into bed legs at around 30 beds a week, and that plant can move to a community and be owned there.',
         'That is the part Mykel pointed at without knowing it. Alice and Utopia are live candidates for the next place the making happens, not just the next place the beds arrive. The job is to make the making local, and then to become unnecessary.',
+      ],
+      links: [
+        { label: 'The model in full', href: '/story' },
+        { label: 'Pakkimjalki Kari (washing machine)', href: '/shop/washing-machine' },
+        { label: 'Partner with us', href: '/contact' },
       ],
     },
     // Atom: live map. Pulls from communityLocations (canonical, includes
