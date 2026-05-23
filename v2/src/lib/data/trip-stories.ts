@@ -294,6 +294,17 @@ const utopia: TripStory = {
         { quote: '"Yeah, I\'ll be rocking up every day to make them."', src: 'Mykel · consent pending' },
       ],
     },
+    // Mykel on camera, in his own voice. Auto-pulls from EL by tag — the
+    // moment a video tagged use:voice + participant:mykel lands with
+    // is_public=true, this slot fills cinematic full-bleed. Single match
+    // triggers the cinema layout automatically.
+    {
+      kind: 'el-video-gallery',
+      heading: 'Mykel, in his own voice',
+      sub: 'Captured at the Alice shed on 21 May 2026, with Oonchiumpa.',
+      tagQuery: { all: ['use:voice', 'participant:mykel'] },
+      limit: 1,
+    },
     // Atom: bed facts. Sourced from products.ts via story-atoms.ts so the
     // numbers stay correct everywhere if specs ever change.
     {
@@ -404,15 +415,16 @@ const utopia: TripStory = {
         },
       ],
     },
-    // Hear it from them — cinema video, auto-pulled from EL by tag.
-    // Upload the clip to EL with tags use:voice + participant:mykel (or
-    // whichever voice you want here), and it appears in this slot
-    // automatically. Single matching video → cinematic full-bleed.
+    // Hear it from them — reserved for the Ampilatwatja Elders' voice
+    // clip when consent + naming clears. Block hides itself until then.
+    // Mykel's video sits in his own contextual section earlier in the
+    // story (right after his read block) so it lands at the editorial
+    // moment, not as an end-of-trip aside.
     {
       kind: 'el-video-gallery',
       heading: 'Hear it from them',
-      sub: 'A short clip, with sound, in their own voice.',
-      tagQuery: { all: ['use:voice', 'participant:mykel'] },
+      sub: 'A short clip with sound, in their own voice. Held until consent and naming clear.',
+      tagQuery: { all: ['use:voice', 'community:ampilatwatja'] },
       limit: 1,
     },
     // Live video gallery — pulls anything from EL tagged `trip:may-2026`
