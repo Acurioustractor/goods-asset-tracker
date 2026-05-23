@@ -210,8 +210,8 @@ export default async function StorytellerPage({ params }: PageProps) {
 
       {/* Back link */}
       <footer className="mt-16 border-t pt-6 text-sm">
-        <Link href="/stories" className="text-amber-700 hover:underline">
-          ← Browse all storytellers
+        <Link href="/storytellers" className="text-amber-700 hover:underline">
+          ← All storytellers
         </Link>
       </footer>
     </article>
