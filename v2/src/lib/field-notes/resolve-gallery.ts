@@ -14,7 +14,7 @@
 //                      (PostgREST `ov.{...}` operator)
 //  - Both can be combined; the result is the intersection.
 
-import type { TripStory } from '@/lib/data/trip-stories';
+import type { TripStory, MediaRef } from '@/lib/data/trip-stories';
 
 const EL_URL = process.env.EMPATHY_LEDGER_SUPABASE_URL || '';
 const EL_KEY = process.env.EMPATHY_LEDGER_SUPABASE_KEY || '';
@@ -80,6 +80,34 @@ async function fetchGalleryRows(
   return res.json();
 }
 
+// Resolve a single MediaRef. If `fromTag` is set, query EL for a matching
+// placement:overlay-fullscreen video and override videoDesktop/videoMobile.
+// The poster (image) is overridden too when EL has a story_image_url so the
+// fallback still matches. Declared fields win if no EL match.
+async function resolveMediaRef(
+  media: MediaRef,
+  internal: boolean
+): Promise<MediaRef> {
+  if (!media.fromTag) return media;
+  // Hero pull always wants overlay-fullscreen videos.
+  const query = { ...media.fromTag };
+  const allWithPlacement = [...(query.all || []), 'placement:overlay-fullscreen'];
+  const rows = await fetchGalleryRows(
+    { all: allWithPlacement, any: query.any },
+    1,
+    !internal,
+    'video'
+  );
+  const hit = rows[0];
+  if (!hit || !hit.media_url) return media;
+  return {
+    ...media,
+    image: hit.story_image_url || media.image,
+    videoDesktop: hit.media_url,
+    videoMobile: hit.media_url,
+  };
+}
+
 export async function resolveGalleryBlocks(
   story: TripStory,
   opts: { internal?: boolean } = {}
@@ -87,6 +115,16 @@ export async function resolveGalleryBlocks(
   const internal = opts.internal === true;
   const blocks = await Promise.all(
     story.blocks.map(async (block) => {
+      // Hero/overlay video pull on any block that carries a media field.
+      // Masthead, immersive, bleedquote, close. The renderer doesn't care
+      // whether the videoDesktop URL came from a declared path or EL.
+      if ('media' in block && block.media && (block.media as MediaRef).fromTag) {
+        const newMedia = await resolveMediaRef(block.media as MediaRef, internal);
+        // Block kinds with media all share the same `media` field name; cast
+        // back is safe because we only swap the media object.
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        block = { ...(block as any), media: newMedia };
+      }
       if (block.kind === 'el-gallery') {
         const photos = await fetchGalleryRows(
           block.tagQuery,

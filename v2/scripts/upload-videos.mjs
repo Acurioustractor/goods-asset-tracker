@@ -81,7 +81,25 @@ const goPublic = hasFlag('public');
 function parseFilenameTags(filename) {
   const stem = basename(filename, extname(filename)).toLowerCase();
   const parts = stem.split('_');
-  const KNOWN_USES = new Set(['hero-overlay', 'overlay-bg', 'hero-video', 'testimonial', 'setup', 'setup-tutorial', 'behind', 'behind-scenes', 'per-bed', 'product-shot', 'establishing']);
+  // Canonical 5-value use axis (see wiki/articles/brand-comms/11-el-video-taxonomy.md)
+  const CANONICAL_USES = new Set(['atmosphere', 'voice', 'process', 'moment', 'establishing']);
+  // Legacy alias map: old use values → canonical equivalents. Lets pre-taxonomy
+  // filenames keep working. New filenames should use canonical names directly.
+  const USE_ALIASES = {
+    'hero-overlay': 'atmosphere',
+    'overlay-bg': 'atmosphere',
+    'hero-video': 'atmosphere',
+    'testimonial': 'voice',
+    'interview': 'voice',
+    'setup': 'process',
+    'setup-tutorial': 'process',
+    'tutorial': 'process',
+    'behind': 'moment',
+    'behind-scenes': 'moment',
+    'per-bed': 'moment',
+    'product-shot': 'establishing',
+  };
+  const CANONICAL_PLACEMENTS = new Set(['overlay-fullscreen', 'under-text', 'standalone-card']);
   const COMMUNITY_ALIASES = {
     'utopia': 'utopia-homelands',
     'utopia-homelands': 'utopia-homelands',
@@ -89,39 +107,46 @@ function parseFilenameTags(filename) {
     'alice-springs': 'alice-springs',
     'tc': 'tennant-creek',
     'tennant-creek': 'tennant-creek',
+    'ampilatwatja': 'ampilatwatja',
     'universal': null,           // explicit "no community" marker
   };
 
   let use = null;
+  let placement = null;
   let community = null;
   let subject = null;
   let durationFromName = null;
   let bedId = null;
 
-  if (parts.length > 0 && KNOWN_USES.has(parts[0])) {
-    // Normalise aliases
-    use = parts[0]
-      .replace('hero-overlay', 'overlay-bg')
-      .replace('setup-tutorial', 'setup')
-      .replace('behind-scenes', 'behind');
+  // Position 0 = use (canonical or aliased)
+  if (parts.length > 0) {
+    const p0 = parts[0];
+    if (CANONICAL_USES.has(p0)) use = p0;
+    else if (p0 in USE_ALIASES) use = USE_ALIASES[p0];
   }
-  if (parts.length > 1 && parts[1] in COMMUNITY_ALIASES) {
-    community = COMMUNITY_ALIASES[parts[1]];
+  // Position 1 = either placement (new convention) OR community (legacy)
+  let cursor = use ? 1 : 0;
+  if (parts.length > cursor && CANONICAL_PLACEMENTS.has(parts[cursor])) {
+    placement = parts[cursor];
+    cursor++;
   }
-  // Find subject (everything between community and the duration token)
+  // Next position = community
+  if (parts.length > cursor && parts[cursor] in COMMUNITY_ALIASES) {
+    community = COMMUNITY_ALIASES[parts[cursor]];
+    cursor++;
+  }
   // Duration is the last part if it matches /^\d+s$/
   const last = parts[parts.length - 1];
   const durMatch = last && last.match(/^(\d+)s$/);
   if (durMatch) durationFromName = parseInt(durMatch[1], 10);
-  const subjectStart = use ? 1 : 0;
-  const subjectEnd = (parts[1] in COMMUNITY_ALIASES) ? 2 : subjectStart;
-  const subjectParts = parts.slice(Math.max(subjectStart, subjectEnd), durMatch ? -1 : undefined);
+  // Subject = everything between cursor and (durMatch ? -1 : end)
+  const subjectParts = parts.slice(cursor, durMatch ? -1 : undefined);
   if (subjectParts.length > 0) subject = subjectParts.join('-');
   // Bed ID auto-detect from subject
   const bedMatch = subject && subject.match(/(gb\d+-\d+-\d+)/i);
   if (bedMatch) bedId = bedMatch[1].toUpperCase();
 
-  return { use, community, subject, durationFromName, bedId };
+  return { use, placement, community, subject, durationFromName, bedId };
 }
 
 const STORY_MEDIA_BUCKET = 'story-media';        // private — gated by signed URLs or RLS
@@ -177,11 +202,24 @@ async function createStory({ posterUrl, videoUrl, file, durationSecs }) {
   // Parse filename for auto-tags; CLI flags act as fallback when filename
   // doesn't carry a field. Final precedence: filename > CLI > built-in default.
   const parsed = parseFilenameTags(file);
-  const useTag = parsed.use || cliUse || 'testimonial';
+  const useTag = parsed.use || cliUse || 'voice';
   const communityTag = parsed.community || cliCommunity || 'utopia-homelands';
   const themeTags = cliThemes; // themes only via CLI for now (subject ≠ theme)
+  // Placement defaults: standalone-card always applies (it can sit in any
+  // gallery). overlay-fullscreen is added for use:atmosphere + use:establishing
+  // by default (they're the typical hero candidates). under-text is added for
+  // use:voice + use:moment by default. Filename position 1 placement overrides.
+  const placementSet = new Set();
+  placementSet.add('standalone-card');
+  if (parsed.placement) {
+    placementSet.add(parsed.placement);
+  } else {
+    if (useTag === 'atmosphere' || useTag === 'establishing') placementSet.add('overlay-fullscreen');
+    if (useTag === 'voice' || useTag === 'moment') placementSet.add('under-text');
+  }
 
   const tags = [
+    'format:video',
     'media-type:video',
     `trip:${tripTag}`,
     `community:${communityTag}`,
@@ -191,6 +229,7 @@ async function createStory({ posterUrl, videoUrl, file, durationSecs }) {
     goPublic ? 'consent:public' : 'consent:elder-pending',
     'goods-staff-capture',
     ...themeTags.map(t => `theme:${t}`),
+    ...[...placementSet].map(p => `placement:${p}`),
   ];
   // Auto-derived bed ID from filename (e.g. per-bed_utopia_gb0-156-96_22s.mp4)
   if (parsed.bedId) tags.push(parsed.bedId.toLowerCase());

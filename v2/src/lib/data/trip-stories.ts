@@ -18,6 +18,14 @@ export interface MediaRef {
   /** Optional looping background video; falls back to `image` as poster. */
   videoDesktop?: string;
   videoMobile?: string;
+  /**
+   * Optional tag query for live hero/overlay video from EL. When set, the
+   * server resolver fetches the first matching video tagged
+   * placement:overlay-fullscreen (and is_public=true in public mode) and
+   * populates videoDesktop/videoMobile/image at request time. The declared
+   * fields above act as a fallback if no EL match is found.
+   */
+  fromTag?: { all?: string[]; any?: string[] };
 }
 
 /** A single contextual link rendered in a block's gutter. */
@@ -206,7 +214,16 @@ const utopia: TripStory = {
         'It started in Alice Springs, with young people making beds out of recycled plastic, and ended on the homelands at Utopia. Two days, supported by Oonchiumpa. A delivery, and the start of something longer.',
       dateline:
         'Alice Springs and Utopia Homelands, Northern Territory · 21–22 May 2026 · Goods on Country, with Oonchiumpa',
-      media: { image: `${IMG}/04-build.jpg`, videoDesktop: `${VID}/alice-youth-desktop.mp4`, videoMobile: `${VID}/alice-youth-mobile.mp4` },
+      // Hero auto-pulls the first matching overlay-fullscreen video tagged
+      // for this trip. Falls back to the declared image + stub video paths
+      // if no EL match exists yet. Upload via /admin/videos/new with
+      // use:atmosphere or use:establishing + placement:overlay-fullscreen.
+      media: {
+        image: `${IMG}/04-build.jpg`,
+        videoDesktop: `${VID}/alice-youth-desktop.mp4`,
+        videoMobile: `${VID}/alice-youth-mobile.mp4`,
+        fromTag: { all: ['trip:may-2026'] },
+      },
     },
     // Arrernte welcome — the way the trip was opened. Verified phrase from
     // the handoff; speaker and language to be confirmed before public use.
