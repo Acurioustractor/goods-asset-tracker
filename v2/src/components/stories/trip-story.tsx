@@ -32,17 +32,33 @@ interface Props {
 }
 
 function Bg({ media }: { media: MediaRef }) {
-  if (media.videoDesktop) {
-    return (
-      <video className="ts-bg" autoPlay muted loop playsInline poster={media.image}>
-        <source src={media.videoDesktop} media="(min-width: 768px)" type="video/mp4" />
-        {media.videoMobile && <source src={media.videoMobile} type="video/mp4" />}
-      </video>
-    );
-  }
+  // Always render the still image as a base layer. Video, if present and
+  // loadable, sits above it. If the video fails to load, the still stays
+  // visible — no jarring black flash, no spinner. This is the right
+  // pattern for hero sections that prefer motion but never DEPEND on it.
   return (
     <div className="ts-bg">
-      <Image src={media.image} alt="" fill sizes="100vw" className="ts-bg-img" />
+      <Image
+        src={media.image}
+        alt=""
+        fill
+        sizes="100vw"
+        className="ts-bg-img"
+        priority
+      />
+      {media.videoDesktop && (
+        <video
+          className="ts-bg ts-bg-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={media.image}
+        >
+          <source src={media.videoDesktop} media="(min-width: 768px)" type="video/mp4" />
+          {media.videoMobile && <source src={media.videoMobile} type="video/mp4" />}
+        </video>
+      )}
     </div>
   );
 }
@@ -485,9 +501,15 @@ const CSS = `
 .ts-immersive.ts-center{justify-content:center;text-align:center}
 .ts-bg{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 8s ease-out}
 .ts-immersive.in .ts-bg,.ts-bleedquote.in .ts-bg{transform:scale(1)}
-.ts-bg-img{object-fit:cover;filter:brightness(.6) saturate(.97)}
+.ts-bg-img{object-fit:cover;filter:brightness(.85) saturate(1)}
+/* Video sits above the still image. If sources fail to load it stays invisible (no spinner / no black flash) and the image underneath shows. */
+.ts-bg-video{z-index:0;background:transparent}
+.ts-bg-video:empty{display:none}
 video.ts-bg{filter:brightness(.6) saturate(.97)}
-.ts-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(8,6,4,.88),rgba(8,6,4,.25) 55%,rgba(8,6,4,.5))}
+/* Scrim sits above the image, darkens the bottom enough for text legibility
+   while letting most of the image show through. Adjusted softer than the
+   original to stop sunset/dark hero shots reading as solid black. */
+.ts-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(8,6,4,.78) 0%,rgba(8,6,4,.1) 50%,rgba(8,6,4,.35) 100%)}
 .ts-inner{position:relative;z-index:3;max-width:1100px;margin:0 auto;width:100%}
 .ts-kicker{font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--ochre-soft);margin-bottom:1.3rem}
 .ts-actmark{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--ochre-soft);margin-bottom:1rem}
