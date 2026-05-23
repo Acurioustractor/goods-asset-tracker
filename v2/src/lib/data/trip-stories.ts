@@ -404,21 +404,16 @@ const utopia: TripStory = {
         },
       ],
     },
-    // Hear it from them — one cinematic video. Upload via /admin/videos/new
-    // with use:voice + community:Ampilatwatja + trip:may-2026 to make this
-    // live. The single-item videos block auto-switches to full-bleed cinema.
+    // Hear it from them — cinema video, auto-pulled from EL by tag.
+    // Upload the clip to EL with tags use:voice + participant:mykel (or
+    // whichever voice you want here), and it appears in this slot
+    // automatically. Single matching video → cinematic full-bleed.
     {
-      kind: 'videos',
+      kind: 'el-video-gallery',
       heading: 'Hear it from them',
-      sub: 'A short clip, with sound, in their own voices. Hold for consent before sharing outside the team.',
-      items: [
-        {
-          title: 'The Elders, Ampilatwatja',
-          caption: 'Two Order of Australia men, on the bed, in their words.',
-          poster: `${IMG}/07-elders.jpg`,
-          src: `${VID}/ampilatwatja-elders.mp4`,
-        },
-      ],
+      sub: 'A short clip, with sound, in their own voice.',
+      tagQuery: { all: ['use:voice', 'participant:mykel'] },
+      limit: 1,
     },
     // Live video gallery — pulls anything from EL tagged `trip:may-2026`
     // with media-type:video. Drop a folder of well-named MP4s into

@@ -1,6 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    serverActions: {
+      // Default 1MB ceiling on Server Action bodies is too small for
+      // video uploads via /admin/upload + /admin/videos/new. Bump to
+      // 500MB to match the form's max file size.
+      bodySizeLimit: '500mb',
+    },
+  },
   images: {
     remotePatterns: [
       {

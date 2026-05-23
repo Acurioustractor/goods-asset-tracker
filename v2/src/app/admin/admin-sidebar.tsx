@@ -48,8 +48,8 @@ const navigation: NavGroup[] = [
       { name: 'Assets',         href: '/admin/assets',        icon: Library },
       { name: 'Scans',          href: '/admin/scans',         icon: BarChart3 },
       { name: 'Photos',         href: '/admin/photos',        icon: Images },
-      { name: 'Upload media',   href: '/admin/upload',        icon: Camera },
-      { name: 'Add video (1×)', href: '/admin/videos/new',    icon: Camera },
+      // Goods upload routes archived 2026-05-23 → _archive/2026-05-23-goods-uploads/.
+      // EL admin is the canonical upload surface. Goods reads from EL by tag.
       { name: 'Storytellers (EL)', href: '/admin/el-storytellers', icon: Users },
       { name: 'Stories (EL)',   href: '/admin/el-stories',    icon: BookOpen },
       { name: 'Funders',        href: '/admin/funders',       icon: Building2 },
