@@ -68,6 +68,12 @@ export function MediaSwapZone({
 }) {
   const [open, setOpen] = useState(false);
   void EL_URL_HINT;
+  const posMap: Record<string, React.CSSProperties> = {
+    'top-right': { top: '1rem', right: '1rem' },
+    'top-left': { top: '1rem', left: '1rem' },
+    'bottom-right': { bottom: '1rem', right: '1rem' },
+    'bottom-left': { bottom: '1rem', left: '1rem' },
+  };
   return (
     <>
       <button
@@ -76,8 +82,23 @@ export function MediaSwapZone({
           e.stopPropagation();
           setOpen(true);
         }}
-        className={`ts-swap-overlay-btn ts-swap-pos-${position}`}
         title={`Swap this ${kind === 'video' ? 'video' : kind === 'photo' ? 'photo' : 'media'}`}
+        style={{
+          position: 'absolute',
+          zIndex: 60,
+          background: 'rgba(217, 119, 6, 0.95)',
+          color: 'white',
+          padding: '0.4rem 0.75rem',
+          borderRadius: 4,
+          fontSize: 11,
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
+          fontWeight: 700,
+          border: '1px solid rgba(255, 255, 255, 0.15)',
+          cursor: 'pointer',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.4)',
+          ...posMap[position],
+        }}
       >
         ⇄ {label || 'swap'}
       </button>

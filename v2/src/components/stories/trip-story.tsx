@@ -832,7 +832,7 @@ video.ts-bg{filter:brightness(.6) saturate(.97)}
 .ts-vid video{display:block;width:100%;height:240px;object-fit:cover;background:#000}
 .ts-vid figcaption{padding:1.1rem 1.3rem;font-size:13.5px;line-height:1.5;color:var(--bone-dim)}
 .ts-vid figcaption b{color:var(--bone);display:block;font-size:14.5px;margin-bottom:.25rem;font-family:var(--serif)}
-.ts-videos--cinema{padding:6vh 0 8vh;max-width:none}
+.ts-videos--cinema{padding:6vh 0 8vh;max-width:none;position:relative}
 .ts-videos--cinema .ts-vh{text-align:center;padding:0 6vw;font-size:clamp(2rem,5vw,3.4rem);margin-bottom:.6rem}
 .ts-videos--cinema .ts-vsub{text-align:center;max-width:62ch;margin:0 auto 2.6rem;padding:0 6vw;color:var(--bone-dim);font-size:1.04rem}
 .ts-vid--cinema{margin:0;border:none;border-radius:0;background:#000;overflow:hidden}
