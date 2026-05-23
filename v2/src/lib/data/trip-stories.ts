@@ -372,6 +372,15 @@ const utopia: TripStory = {
         },
       ],
     },
+    // Quiet beat before Ampilatwatja. Sets up the silence — the Elders'
+    // section is the heaviest piece of the story and benefits from a
+    // breath of stillness before you arrive there.
+    {
+      kind: 'pullquote',
+      kicker: 'On the way to Ampilatwatja',
+      quote: '"You don\'t turn up loud to country. You turn up listening."',
+      attribution: 'Goods on Country team note · 22 May 2026',
+    },
     {
       kind: 'immersive',
       actmark: 'Act four · Ampilatwatja',
@@ -447,6 +456,14 @@ const utopia: TripStory = {
         { label: 'Browse all communities', href: '/communities' },
         { label: 'Utopia Homelands', href: '/communities/utopia-homelands' },
       ],
+    },
+    // Final take-home beat before the close. Names the work back to its
+    // simplest form — a bed, a hand, a home — so the close image can land.
+    {
+      kind: 'pullquote',
+      kicker: 'The take-home',
+      quote: '"A bed is a small thing. Asking what the home needs is the larger one."',
+      attribution: 'Goods on Country · 2026',
     },
     { kind: 'close', title: 'This is the first thing he built. It is not the last we will build together.', media: { image: `${IMG}/11-close.jpg` } },
     {
