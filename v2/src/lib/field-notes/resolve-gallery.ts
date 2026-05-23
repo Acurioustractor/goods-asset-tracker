@@ -152,7 +152,11 @@ export async function resolveGalleryBlocks(
         );
         const items = rows
           .map((r) => {
-            const meta = (r.media_metadata as { duration_seconds?: number } | null) || null;
+            const meta =
+              (r.media_metadata as {
+                duration_seconds?: number;
+                orientation?: 'landscape' | 'portrait' | 'square';
+              } | null) || null;
             return {
               id: r.id,
               title: r.title || '(untitled)',
@@ -160,6 +164,7 @@ export async function resolveGalleryBlocks(
               poster: r.story_image_url || '',
               src: r.media_url || '',
               durationSeconds: meta?.duration_seconds,
+              orientation: meta?.orientation,
               isPublic: r.is_public,
             };
           })

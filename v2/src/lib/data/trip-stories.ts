@@ -75,6 +75,16 @@ export type TripBlock =
       media: MediaRef;
     })
   | (WithLinks & { kind: 'bleedquote'; text: string; media: MediaRef })
+  | (WithLinks & {
+      /**
+       * Solo pull quote in giant type, no media chrome. For quiet beats
+       * between sections — when a single sentence deserves to sit alone.
+       */
+      kind: 'pullquote';
+      kicker?: string;
+      quote: string;
+      attribution?: string;
+    })
   | (WithLinks & { kind: 'stats'; lead: string; items: { value: string; label: string }[] })
   | (WithLinks & {
       kind: 'voices';
@@ -181,6 +191,7 @@ export type TripBlock =
         poster: string;
         src: string;
         durationSeconds?: number;
+        orientation?: 'landscape' | 'portrait' | 'square';
         isPublic: boolean;
       }[];
     });
@@ -291,6 +302,15 @@ const utopia: TripStory = {
         { label: 'See the Stretch Bed', href: '/shop/stretch-bed-single' },
         { label: 'How it is made', href: '/story' },
       ],
+    },
+    // Quiet beat between Mykel and the road. One sentence on its own,
+    // giant serif, on the dark backdrop — the editorial pivot from the
+    // build to the wider question Mykel just opened.
+    {
+      kind: 'pullquote',
+      kicker: 'Mykel · Alice Springs · 21 May 2026',
+      quote: '"Yeah, I’ll be rocking up every day to make them."',
+      attribution: 'Consent pending',
     },
     {
       kind: 'immersive',

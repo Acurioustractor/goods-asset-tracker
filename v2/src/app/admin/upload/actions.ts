@@ -142,6 +142,26 @@ async function processVideo(
     .toString()
     .trim();
   const durationSeconds = parseFloat(durOut) || null;
+  // Capture dimensions for orientation routing in the renderer (portrait
+  // vs landscape changes the cinema layout — contain vs cover).
+  let width: number | null = null;
+  let height: number | null = null;
+  try {
+    const dimOut = execFileSync(
+      'ffprobe',
+      ['-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width,height', '-of', 'csv=p=0', sourcePath],
+      { stdio: ['pipe', 'pipe', 'pipe'] }
+    )
+      .toString()
+      .trim();
+    const [w, h] = dimOut.split(',').map((n) => parseInt(n, 10));
+    if (!Number.isNaN(w)) width = w;
+    if (!Number.isNaN(h)) height = h;
+  } catch {
+    // ignore — leave dims null
+  }
+  const orientation: 'landscape' | 'portrait' | 'square' | null =
+    width && height ? (width > height ? 'landscape' : width < height ? 'portrait' : 'square') : null;
   execFileSync(
     'ffmpeg',
     ['-y', '-ss', '1', '-i', sourcePath, '-frames:v', '1', '-vf', "scale='min(2400,iw)':-2", '-q:v', '3', posterPath],
@@ -210,7 +230,13 @@ async function processVideo(
     story_image_url: posterUrl,
     media_url: videoUrl,
     media_urls: [videoUrl, posterUrl],
-    media_metadata: { duration_seconds: durationSeconds, encoded_at: new Date().toISOString() },
+    media_metadata: {
+      duration_seconds: durationSeconds,
+      width,
+      height,
+      orientation,
+      encoded_at: new Date().toISOString(),
+    },
     tags,
     story_type: useTag,
   };

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -152,6 +152,130 @@ function withLinks(node: React.ReactNode, block: TripBlock): React.ReactNode {
       {node}
       <LinkGutter links={links} />
     </>
+  );
+}
+
+interface GalleryItem {
+  id: string;
+  src: string;
+  alt?: string;
+  caption?: string;
+  isPublic: boolean;
+}
+
+// Gallery grid with click-to-open lightbox carousel. Keyboard nav: ESC
+// closes, ← → step, scroll-lock while open. Lives inside trip-story.tsx
+// (which is already 'use client') to avoid an extra component file.
+function GalleryWithLightbox({
+  heading,
+  sub,
+  items,
+}: {
+  heading?: string;
+  sub?: string;
+  items: GalleryItem[];
+}) {
+  const [openAt, setOpenAt] = useState<number | null>(null);
+  const close = useCallback(() => setOpenAt(null), []);
+  const step = useCallback(
+    (dir: 1 | -1) => {
+      setOpenAt((cur) => {
+        if (cur === null) return cur;
+        const next = (cur + dir + items.length) % items.length;
+        return next;
+      });
+    },
+    [items.length]
+  );
+
+  useEffect(() => {
+    if (openAt === null) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowRight') step(1);
+      else if (e.key === 'ArrowLeft') step(-1);
+    }
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [openAt, close, step]);
+
+  const active = openAt !== null ? items[openAt] : null;
+  return (
+    <section className="ts-gallery">
+      {heading && <h2 className="ts-vh ts-reveal">{heading}</h2>}
+      {sub && <p className="ts-vsub ts-reveal d1">{sub}</p>}
+      <div className="ts-ggrid">
+        {items.map((it, i) => (
+          <button
+            type="button"
+            key={it.id}
+            onClick={() => setOpenAt(i)}
+            className="ts-gimg ts-reveal ts-gimg-btn"
+            aria-label={`Open photo ${i + 1} of ${items.length}`}
+          >
+            <Image
+              src={it.src}
+              alt={it.alt || ''}
+              width={800}
+              height={533}
+              sizes="(max-width: 720px) 100vw, 33vw"
+              className="ts-gimg-img"
+            />
+            {it.caption && <figcaption>{it.caption}</figcaption>}
+          </button>
+        ))}
+      </div>
+
+      {active && (
+        <div className="ts-lb" role="dialog" aria-modal="true" onClick={close}>
+          <button
+            type="button"
+            className="ts-lb-close"
+            onClick={(e) => { e.stopPropagation(); close(); }}
+            aria-label="Close"
+          >
+            ×
+          </button>
+          <button
+            type="button"
+            className="ts-lb-prev"
+            onClick={(e) => { e.stopPropagation(); step(-1); }}
+            aria-label="Previous"
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            className="ts-lb-next"
+            onClick={(e) => { e.stopPropagation(); step(1); }}
+            aria-label="Next"
+          >
+            ›
+          </button>
+          <figure className="ts-lb-fig" onClick={(e) => e.stopPropagation()}>
+            <Image
+              src={active.src}
+              alt={active.alt || ''}
+              width={2000}
+              height={1333}
+              sizes="100vw"
+              className="ts-lb-img"
+              priority
+            />
+            <figcaption className="ts-lb-cap">
+              {active.caption || active.alt}
+              <span className="ts-lb-count">
+                {(openAt ?? 0) + 1} / {items.length}
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+      )}
+    </section>
   );
 }
 
@@ -314,6 +438,15 @@ function renderBlock(block: TripBlock, internal: boolean, currentSlug: string) {
         </section>
       );
     }
+    case 'pullquote':
+      // Quiet beat between sections — giant serif, centred, no media chrome.
+      return (
+        <section className="ts-pullquote">
+          {block.kicker && <p className="ts-pq-kicker ts-reveal">{block.kicker}</p>}
+          <blockquote className="ts-pq-quote ts-reveal d1">{block.quote}</blockquote>
+          {block.attribution && <p className="ts-pq-attr ts-reveal d2">{block.attribution}</p>}
+        </section>
+      );
     case 'el-video-gallery': {
       // Video gallery sourced from EL by tag, populated by the server
       // resolver. Internal preview shows every match; public shows only
@@ -326,22 +459,18 @@ function renderBlock(block: TripBlock, internal: boolean, currentSlug: string) {
       }
       if (items.length === 1) {
         const v = items[0];
+        const isPortrait = v.orientation === 'portrait';
         return (
           <section className="ts-videos ts-videos--cinema">
             {block.heading && <h2 className="ts-vh ts-reveal">{block.heading}</h2>}
             {block.sub && <p className="ts-vsub ts-reveal d1">{block.sub}</p>}
-            <figure className="ts-vid ts-vid--cinema ts-reveal d2">
+            <figure className={`ts-vid ts-vid--cinema ts-reveal d2 ${isPortrait ? 'ts-vid--portrait' : ''}`}>
               <video controls preload="metadata" playsInline poster={v.poster}>
                 <source src={v.src} type="video/mp4" />
               </video>
               <figcaption>
                 <b>{v.title}</b>
                 {v.caption}
-                {internal && !v.isPublic && (
-                  <span className="ts-gpending" style={{ position: 'relative', marginLeft: '.5rem' }}>
-                    pending consent
-                  </span>
-                )}
               </figcaption>
             </figure>
           </section>
@@ -374,35 +503,14 @@ function renderBlock(block: TripBlock, internal: boolean, currentSlug: string) {
     }
     case 'el-gallery': {
       // Items are populated by the server resolver in resolve-gallery.ts.
-      // If unresolved (no items) or empty (no matching photos), render
-      // nothing — the section disappears rather than showing a placeholder.
       const items = block.items || [];
       if (items.length === 0) return null;
-      // In public mode the resolver has already filtered to is_public=true.
-      // In internal mode every item shows; tag non-public ones visually.
       return (
-        <section className="ts-gallery">
-          {block.heading && <h2 className="ts-vh ts-reveal">{block.heading}</h2>}
-          {block.sub && <p className="ts-vsub ts-reveal d1">{block.sub}</p>}
-          <div className="ts-ggrid">
-            {items.map((it) => (
-              <figure key={it.id} className="ts-gimg ts-reveal">
-                <Image
-                  src={it.src}
-                  alt={it.alt || ''}
-                  width={800}
-                  height={533}
-                  sizes="(max-width: 720px) 100vw, 33vw"
-                  className="ts-gimg-img"
-                />
-                {internal && !it.isPublic && (
-                  <span className="ts-gpending">pending consent</span>
-                )}
-                {it.caption && <figcaption>{it.caption}</figcaption>}
-              </figure>
-            ))}
-          </div>
-        </section>
+        <GalleryWithLightbox
+          heading={block.heading}
+          sub={block.sub}
+          items={items}
+        />
       );
     }
     case 'map':
@@ -663,8 +771,28 @@ video.ts-bg{filter:brightness(.6) saturate(.97)}
 .ts-videos--cinema .ts-vsub{text-align:center;max-width:62ch;margin:0 auto 2.6rem;padding:0 6vw;color:var(--bone-dim);font-size:1.04rem}
 .ts-vid--cinema{margin:0;border:none;border-radius:0;background:#000;overflow:hidden}
 .ts-vid--cinema video{display:block;width:100vw;height:min(82vh,860px);object-fit:cover;background:#000}
+.ts-vid--portrait{background:#000;padding:4vh 0}
+.ts-vid--portrait video{width:auto;max-width:min(56vh,100vw);height:min(90vh,1000px);object-fit:contain;margin:0 auto}
 .ts-vid--cinema figcaption{padding:1.4rem 6vw 0;font-size:15.5px;line-height:1.6;color:var(--bone-dim);max-width:1100px;margin:0 auto}
 .ts-vid--cinema figcaption b{font-size:18px;margin-bottom:.4rem}
+.ts-pullquote{padding:14vh 6vw;min-height:62vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;max-width:1100px;margin:0 auto}
+.ts-pq-kicker{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--ochre-soft);margin-bottom:2rem}
+.ts-pq-quote{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(1.8rem,4.5vw,3.6rem);line-height:1.25;color:var(--bone);margin:0;max-width:22ch}
+.ts-pq-attr{margin-top:2rem;font-size:13px;letter-spacing:.05em;color:var(--bone-dim)}
+.ts-gimg-btn{padding:0;border:1px solid var(--line);background:var(--panel);cursor:pointer;display:block;width:100%;text-align:left}
+.ts-gimg-btn:hover{border-color:var(--ochre-soft)}
+.ts-lb{position:fixed;inset:0;z-index:9999;background:rgba(8,7,5,.96);display:flex;align-items:center;justify-content:center;padding:4vh 6vw;animation:tsLbIn .18s ease}
+@keyframes tsLbIn{from{opacity:0}to{opacity:1}}
+.ts-lb-fig{margin:0;max-width:min(1600px,92vw);max-height:88vh;display:flex;flex-direction:column;align-items:center;gap:1rem}
+.ts-lb-img{max-width:100%;max-height:80vh;height:auto;width:auto;object-fit:contain;border-radius:6px}
+.ts-lb-cap{font-size:13px;color:var(--bone-dim);text-align:center;display:flex;gap:1.5rem;justify-content:center;align-items:baseline}
+.ts-lb-count{font-size:11px;letter-spacing:.15em;text-transform:uppercase;opacity:.7}
+.ts-lb-close,.ts-lb-prev,.ts-lb-next{position:absolute;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:var(--bone);cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .15s ease}
+.ts-lb-close:hover,.ts-lb-prev:hover,.ts-lb-next:hover{background:rgba(255,255,255,.18)}
+.ts-lb-close{top:2vh;right:2vw;width:44px;height:44px;font-size:24px;line-height:1}
+.ts-lb-prev,.ts-lb-next{top:50%;transform:translateY(-50%);width:56px;height:56px;font-size:36px;line-height:1}
+.ts-lb-prev{left:2vw}
+.ts-lb-next{right:2vw}
 .ts-gallery{padding:7vh 6vw;max-width:1280px;margin:0 auto}
 .ts-gallery .ts-vh{margin-bottom:.8rem}
 .ts-gallery .ts-vsub{color:var(--bone-dim);font-size:.98rem;max-width:60ch;margin-bottom:2rem}
