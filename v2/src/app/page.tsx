@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { brand } from '@/lib/data/content';
 import { videoUrl } from '@/lib/data/media';
 import { FeaturedStories } from '@/components/empathy-ledger/featured-stories';
+import { FieldNotesTile } from '@/components/marketing/field-notes-tile';
 
 export default async function HomePage() {
   return (
@@ -225,6 +226,10 @@ export default async function HomePage() {
 
       {/* 4. Impact Stats */}
       <ImpactStats fetchLive={true} />
+
+      {/* 4b. Field notes — most recent published scrollytelling story.
+          Self-hides until at least one story has published: true. */}
+      <FieldNotesTile />
 
       {/* 5. Community Voices: from Empathy Ledger */}
       <FeaturedStories
