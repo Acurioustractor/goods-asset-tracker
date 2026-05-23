@@ -61,13 +61,22 @@ export function CreateStorytellerForm({
       if (res.ok) {
         setResult({
           ok: true,
-          message: `Created ${res.displayName}. Use storytellerSlug: '${res.slug}' on any voice card to auto-link.`,
+          message: `Created ${res.displayName} → /storytellers/${res.slug} · Use storytellerSlug: '${res.slug}' on any voice card to auto-link.`,
           slug: res.slug,
         });
-        setTimeout(() => router.push('/admin/el-storytellers'), 2500);
+        // Stay on the form so you can keep adding. Reset the identity fields
+        // (name/bio/avatar) but keep community + consent source steady — most
+        // trip storytellers share those defaults during a bulk-add session.
+        setDisplayName('');
+        setBio('');
+        setAvatarUrl('');
+        setConsentDetails('');
+        setIsElder(false);
+        setIsFeatured(false);
       } else {
         setResult({ ok: false, message: res.error || 'Unknown error' });
       }
+      void router; // router kept available for future "Done — back to list" button
     } finally {
       setBusy(false);
     }
