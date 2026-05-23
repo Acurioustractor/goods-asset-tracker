@@ -56,19 +56,23 @@ export default async function FieldNotePage({ params, searchParams }: Props) {
   const story = getTripStory(slug);
   if (!story) notFound();
 
-  // Auth check: admins can preview unpublished stories + see pending-consent
-  // content. Everyone else gets 404 on unpublished, public-mode on published.
+  // Preview access: any signed-in user, or local dev — matches the
+  // existing /admin route pattern in src/proxy.ts. ADMIN_EMAILS role is
+  // checked separately only to flag the truly elevated bits (none here).
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
+  const isLocalDev = process.env.NODE_ENV !== 'production';
+  const canPreview = !!user || isLocalDev;
   const isAdmin = isAdminUser(user as AdminUserShape | null);
+  void isAdmin; // reserved for future elevated controls
 
   // Public viewer + story not yet published → 404. No leakage.
-  if (!story.published && !isAdmin) notFound();
+  if (!story.published && !canPreview) notFound();
 
-  // Admin viewing query param "?public=1" → render exactly as the public sees it.
-  // Useful for sanity-checking before flipping `published:true`.
+  // Preview viewer with query param "?public=1" → render exactly as the
+  // public sees it. Useful for sanity-checking before flipping published:true.
   const asPublic = sp.public === '1' || sp.public === 'true';
-  const internal = isAdmin && !asPublic;
+  const internal = canPreview && !asPublic;
 
   const resolved = await resolveGalleryBlocks(story, { internal });
   return <TripStory story={resolved} internal={internal} />;
