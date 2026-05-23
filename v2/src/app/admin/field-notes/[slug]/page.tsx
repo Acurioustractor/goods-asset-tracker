@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { getTripStory, tripStories } from '@/lib/data/trip-stories';
 import { TripStory } from '@/components/stories/trip-story';
 import { resolveGalleryBlocks } from '@/lib/field-notes/resolve-gallery';
+import { VoiceStatusPanel } from '@/components/admin/voice-status-panel';
 
 // Internal preview: never indexed.
 export const metadata: Metadata = {
@@ -27,5 +28,10 @@ export default async function FieldNotePage({ params }: Props) {
   // Admin route = internal: consent-pending photos and voices are shown so
   // editors can curate before the public view goes live.
   const resolved = await resolveGalleryBlocks(story, { internal: true });
-  return <TripStory story={resolved} internal />;
+  return (
+    <>
+      <VoiceStatusPanel story={story} />
+      <TripStory story={resolved} internal />
+    </>
+  );
 }

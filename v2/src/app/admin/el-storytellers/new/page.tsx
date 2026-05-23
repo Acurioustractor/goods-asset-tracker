@@ -16,8 +16,28 @@ async function fetchCommunities(): Promise<string[]> {
   return (data || []).map((c) => c.name as string).filter(Boolean);
 }
 
-export default async function NewStorytellerPage() {
+interface Props {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}
+
+function asString(v: string | string[] | undefined): string | undefined {
+  if (Array.isArray(v)) return v[0];
+  return v;
+}
+
+export default async function NewStorytellerPage({ searchParams }: Props) {
   const communities = await fetchCommunities();
+  // Query-param prefill so the field-notes voice-status panel can deep-link
+  // straight into "create Mykel for trip-may-2026 in Alice Springs" with
+  // the fields already populated. All optional; missing = blank.
+  const sp = await searchParams;
+  const prefill = {
+    displayName: asString(sp.name),
+    community: asString(sp.community),
+    bio: asString(sp.bio),
+    consentSource: asString(sp.consentSource),
+    location: asString(sp.location),
+  };
   return (
     <div className="max-w-3xl space-y-6 pb-16">
       <header>
@@ -42,7 +62,7 @@ export default async function NewStorytellerPage() {
         </p>
       </header>
 
-      <CreateStorytellerForm communities={communities} />
+      <CreateStorytellerForm communities={communities} prefill={prefill} />
     </div>
   );
 }

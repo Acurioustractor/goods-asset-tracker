@@ -4,19 +4,42 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createStoryteller, type CreateStorytellerInput } from './actions';
 
-export function CreateStorytellerForm({ communities }: { communities: string[] }) {
+interface Prefill {
+  displayName?: string;
+  community?: string;
+  bio?: string;
+  consentSource?: string;
+  location?: string;
+}
+
+export function CreateStorytellerForm({
+  communities,
+  prefill,
+}: {
+  communities: string[];
+  prefill?: Prefill;
+}) {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<{ ok: boolean; message: string; slug?: string } | null>(null);
 
-  const [displayName, setDisplayName] = useState('');
-  const [bio, setBio] = useState('');
+  const [displayName, setDisplayName] = useState(prefill?.displayName || '');
+  const [bio, setBio] = useState(prefill?.bio || '');
   const [avatarUrl, setAvatarUrl] = useState('');
-  const [location, setLocation] = useState('');
+  // `community` query param is the most useful prefill — match against
+  // canonical Goods communities (case-insensitive), fall back to raw value.
+  const initialLocation =
+    prefill?.location ||
+    (prefill?.community
+      ? communities.find((c) => c.toLowerCase() === prefill.community!.toLowerCase()) || prefill.community
+      : '');
+  const [location, setLocation] = useState(initialLocation);
   const [culturalBackground, setCulturalBackground] = useState('');
   const [isElder, setIsElder] = useState(false);
   const [isFeatured, setIsFeatured] = useState(false);
-  const [consentSource, setConsentSource] = useState<CreateStorytellerInput['consentSource']>('direct-recipient');
+  const initialConsent: CreateStorytellerInput['consentSource'] =
+    (prefill?.consentSource as CreateStorytellerInput['consentSource']) || 'direct-recipient';
+  const [consentSource, setConsentSource] = useState<CreateStorytellerInput['consentSource']>(initialConsent);
   const [consentDetails, setConsentDetails] = useState('');
 
   async function onSubmit(e: React.FormEvent) {
