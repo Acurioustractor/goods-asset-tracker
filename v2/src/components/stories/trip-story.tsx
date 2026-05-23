@@ -271,9 +271,29 @@ function renderBlock(block: TripBlock, internal: boolean, currentSlug: string) {
         </section>
       );
     }
-    case 'videos':
+    case 'videos': {
       // People speaking on camera: internal-only until consent is captured.
       if (!internal) return null;
+      // Single video → cinematic full-bleed (90vh, video fills, text below).
+      // Multiple videos → tiled grid (current behaviour, but larger tiles).
+      if (block.items.length === 1) {
+        const v = block.items[0];
+        return (
+          <section className="ts-videos ts-videos--cinema">
+            <h2 className="ts-vh ts-reveal">{block.heading}</h2>
+            {block.sub && <p className="ts-vsub ts-reveal d1">{block.sub}</p>}
+            <figure className="ts-vid ts-vid--cinema ts-reveal d2">
+              <video controls preload="metadata" playsInline poster={v.poster}>
+                <source src={v.src} type="video/mp4" />
+              </video>
+              <figcaption>
+                <b>{v.title}</b>
+                {v.caption}
+              </figcaption>
+            </figure>
+          </section>
+        );
+      }
       return (
         <section className="ts-videos">
           <h2 className="ts-vh ts-reveal">{block.heading}</h2>
@@ -293,15 +313,39 @@ function renderBlock(block: TripBlock, internal: boolean, currentSlug: string) {
           </div>
         </section>
       );
+    }
     case 'el-video-gallery': {
       // Video gallery sourced from EL by tag, populated by the server
       // resolver. Internal preview shows every match; public shows only
-      // is_public=true. Same pattern as el-gallery but with <video> tags.
+      // is_public=true. Single hit → cinematic; multiple → tiled grid.
       const items = block.items || [];
       if (items.length === 0) return null;
       if (!internal) {
         const anyPublic = items.some((it) => it.isPublic);
         if (!anyPublic) return null;
+      }
+      if (items.length === 1) {
+        const v = items[0];
+        return (
+          <section className="ts-videos ts-videos--cinema">
+            {block.heading && <h2 className="ts-vh ts-reveal">{block.heading}</h2>}
+            {block.sub && <p className="ts-vsub ts-reveal d1">{block.sub}</p>}
+            <figure className="ts-vid ts-vid--cinema ts-reveal d2">
+              <video controls preload="metadata" playsInline poster={v.poster}>
+                <source src={v.src} type="video/mp4" />
+              </video>
+              <figcaption>
+                <b>{v.title}</b>
+                {v.caption}
+                {internal && !v.isPublic && (
+                  <span className="ts-gpending" style={{ position: 'relative', marginLeft: '.5rem' }}>
+                    pending consent
+                  </span>
+                )}
+              </figcaption>
+            </figure>
+          </section>
+        );
       }
       return (
         <section className="ts-videos">
@@ -614,6 +658,13 @@ video.ts-bg{filter:brightness(.6) saturate(.97)}
 .ts-vid video{display:block;width:100%;height:240px;object-fit:cover;background:#000}
 .ts-vid figcaption{padding:1.1rem 1.3rem;font-size:13.5px;line-height:1.5;color:var(--bone-dim)}
 .ts-vid figcaption b{color:var(--bone);display:block;font-size:14.5px;margin-bottom:.25rem;font-family:var(--serif)}
+.ts-videos--cinema{padding:6vh 0 8vh;max-width:none}
+.ts-videos--cinema .ts-vh{text-align:center;padding:0 6vw;font-size:clamp(2rem,5vw,3.4rem);margin-bottom:.6rem}
+.ts-videos--cinema .ts-vsub{text-align:center;max-width:62ch;margin:0 auto 2.6rem;padding:0 6vw;color:var(--bone-dim);font-size:1.04rem}
+.ts-vid--cinema{margin:0;border:none;border-radius:0;background:#000;overflow:hidden}
+.ts-vid--cinema video{display:block;width:100vw;height:min(82vh,860px);object-fit:cover;background:#000}
+.ts-vid--cinema figcaption{padding:1.4rem 6vw 0;font-size:15.5px;line-height:1.6;color:var(--bone-dim);max-width:1100px;margin:0 auto}
+.ts-vid--cinema figcaption b{font-size:18px;margin-bottom:.4rem}
 .ts-gallery{padding:7vh 6vw;max-width:1280px;margin:0 auto}
 .ts-gallery .ts-vh{margin-bottom:.8rem}
 .ts-gallery .ts-vsub{color:var(--bone-dim);font-size:.98rem;max-width:60ch;margin-bottom:2rem}

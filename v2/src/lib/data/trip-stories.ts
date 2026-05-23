@@ -375,29 +375,19 @@ const utopia: TripStory = {
         },
       ],
     },
+    // Hear it from them — one cinematic video. Upload via /admin/videos/new
+    // with use:voice + community:Ampilatwatja + trip:may-2026 to make this
+    // live. The single-item videos block auto-switches to full-bleed cinema.
     {
       kind: 'videos',
       heading: 'Hear it from them',
-      sub:
-        'Short clips with sound, in people\'s own voices. Drop the files into /public/video/utopia/ and these come alive. Hold for consent before sharing outside the team.',
+      sub: 'A short clip, with sound, in their own voices. Hold for consent before sharing outside the team.',
       items: [
         {
           title: 'The Elders, Ampilatwatja',
           caption: 'Two Order of Australia men, on the bed, in their words.',
           poster: `${IMG}/07-elders.jpg`,
           src: `${VID}/ampilatwatja-elders.mp4`,
-        },
-        {
-          title: 'The beds being made',
-          caption: 'Recycled plastic shredded and pressed into legs.',
-          poster: `${IMG}/10-next.jpg`,
-          src: `${VID}/beds-being-made.mp4`,
-        },
-        {
-          title: 'The wider delivery',
-          caption: 'The drone over the community, beds going out.',
-          poster: `${IMG}/06-delivery.jpg`,
-          src: `${VID}/delivery-drone.mp4`,
         },
       ],
     },
