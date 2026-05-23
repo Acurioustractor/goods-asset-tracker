@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import { MediaSwapZone } from '@/components/admin/media-swap-picker';
 import { communityLocations } from '@/lib/data/content';
 import type { TripStory as TripStoryData, TripBlock, MediaRef, NavLink } from '@/lib/data/trip-stories';
 import { tripStories } from '@/lib/data/trip-stories';
@@ -98,7 +99,7 @@ export function TripStory({ story, internal = false }: Props) {
       )}
 
       {story.blocks.map((block, i) => (
-        <BlockView key={i} block={block} internal={internal} currentSlug={story.slug} />
+        <BlockView key={i} block={block} blockIndex={i} internal={internal} currentSlug={story.slug} />
       ))}
 
       <footer className="ts-footer">
@@ -279,18 +280,39 @@ function GalleryWithLightbox({
   );
 }
 
-function BlockView({ block, internal, currentSlug }: { block: TripBlock; internal: boolean; currentSlug: string }) {
-  const rendered = renderBlock(block, internal, currentSlug);
+function BlockView({
+  block,
+  blockIndex,
+  internal,
+  currentSlug,
+}: {
+  block: TripBlock;
+  blockIndex: number;
+  internal: boolean;
+  currentSlug: string;
+}) {
+  const rendered = renderBlock(block, blockIndex, internal, currentSlug);
   return <>{withLinks(rendered, block)}</>;
 }
 
-function renderBlock(block: TripBlock, internal: boolean, currentSlug: string) {
+function renderBlock(block: TripBlock, blockIndex: number, internal: boolean, currentSlug: string) {
   switch (block.kind) {
     case 'masthead':
       return (
         <section className="ts-immersive">
           <Bg media={block.media} />
           <div className="ts-scrim" />
+          {internal && (
+            <MediaSwapZone
+              slug={currentSlug}
+              overrideKey={`${blockIndex}.media.image`}
+              currentUrl={block.media.image}
+              tagQuery={['trip:may-2026']}
+              kind="any"
+              label="hero photo"
+              position="top-right"
+            />
+          )}
           <div className="ts-inner">
             <div className="ts-kicker ts-reveal">{block.kicker}</div>
             <h1 className="ts-h1 ts-reveal d1">{block.title}</h1>
@@ -304,6 +326,17 @@ function renderBlock(block: TripBlock, internal: boolean, currentSlug: string) {
         <section className="ts-immersive">
           <Bg media={block.media} />
           <div className="ts-scrim" />
+          {internal && (
+            <MediaSwapZone
+              slug={currentSlug}
+              overrideKey={`${blockIndex}.media.image`}
+              currentUrl={block.media.image}
+              tagQuery={['trip:may-2026']}
+              kind="photo"
+              label="photo"
+              position="top-right"
+            />
+          )}
           <div className="ts-inner">
             {block.actmark && <div className="ts-actmark ts-reveal">{block.actmark}</div>}
             <h2 className="ts-imm-title ts-reveal d1">{block.title}</h2>
@@ -334,6 +367,17 @@ function renderBlock(block: TripBlock, internal: boolean, currentSlug: string) {
         <section className="ts-bleedquote">
           <Bg media={block.media} />
           <div className="ts-scrim" />
+          {internal && (
+            <MediaSwapZone
+              slug={currentSlug}
+              overrideKey={`${blockIndex}.media.image`}
+              currentUrl={block.media.image}
+              tagQuery={['trip:may-2026']}
+              kind="photo"
+              label="photo"
+              position="top-right"
+            />
+          )}
           <div className="ts-inner">
             <p className="ts-bleed-p ts-reveal">{block.text}</p>
           </div>
@@ -403,9 +447,20 @@ function renderBlock(block: TripBlock, internal: boolean, currentSlug: string) {
       if (block.items.length === 1) {
         const v = block.items[0];
         return (
-          <section className="ts-videos ts-videos--cinema">
+          <section className="ts-videos ts-videos--cinema" style={{ position: 'relative' }}>
             <h2 className="ts-vh ts-reveal">{block.heading}</h2>
             {block.sub && <p className="ts-vsub ts-reveal d1">{block.sub}</p>}
+            {internal && (
+              <MediaSwapZone
+                slug={currentSlug}
+                overrideKey={`${blockIndex}.items.0.src`}
+                currentUrl={v.src}
+                tagQuery={['trip:may-2026']}
+                kind="video"
+                label="swap video"
+                position="top-right"
+              />
+            )}
             <figure className="ts-vid ts-vid--cinema ts-reveal d2">
               <video controls preload="metadata" playsInline poster={v.poster}>
                 <source src={v.src} type="video/mp4" />
@@ -554,6 +609,17 @@ function renderBlock(block: TripBlock, internal: boolean, currentSlug: string) {
         <section className="ts-immersive ts-center">
           <Bg media={block.media} />
           <div className="ts-scrim" />
+          {internal && (
+            <MediaSwapZone
+              slug={currentSlug}
+              overrideKey={`${blockIndex}.media.image`}
+              currentUrl={block.media.image}
+              tagQuery={['trip:may-2026']}
+              kind="photo"
+              label="close photo"
+              position="top-right"
+            />
+          )}
           <div className="ts-inner">
             <h2 className="ts-imm-title ts-reveal" style={{ margin: '0 auto', maxWidth: '24ch' }}>
               {block.title}

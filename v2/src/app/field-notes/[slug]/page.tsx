@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { getTripStory, tripStories } from '@/lib/data/trip-stories';
 import { TripStory } from '@/components/stories/trip-story';
 import { resolveGalleryBlocks } from '@/lib/field-notes/resolve-gallery';
+import { getStoryOverrides, applyOverrides } from '@/lib/field-notes/overrides';
 import { createClient } from '@/lib/supabase/server';
 
 interface Props {
@@ -74,6 +75,12 @@ export default async function FieldNotePage({ params, searchParams }: Props) {
   const asPublic = sp.public === '1' || sp.public === 'true';
   const internal = canPreview && !asPublic;
 
-  const resolved = await resolveGalleryBlocks(story, { internal });
+  // Apply media-swap overrides from v2/data/field-note-overrides.json
+  // BEFORE el-gallery / fromTag resolution so swapped hero videos still
+  // get treated as hardcoded paths (no tagQuery override). Then run the
+  // EL resolver. Order matters: overrides win over both source data AND
+  // any tagQuery match.
+  const overridden = applyOverrides(story, getStoryOverrides(slug));
+  const resolved = await resolveGalleryBlocks(overridden, { internal });
   return <TripStory story={resolved} internal={internal} />;
 }
