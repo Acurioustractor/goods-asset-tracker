@@ -747,9 +747,9 @@ video.ts-bg{filter:brightness(.6) saturate(.97)}
 .ts-bleed-p{position:relative;z-index:3;font-family:var(--serif);font-size:clamp(2rem,5.6vw,3.8rem);line-height:1.14;color:var(--bone);max-width:22ch;margin:0 auto;text-shadow:0 2px 40px rgba(0,0,0,.7)}
 .ts-stats{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:7vh 6vw}
 .ts-stats-lead{font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ochre-soft);margin-bottom:2.4rem;text-align:center}
-.ts-stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2.2rem 1.4rem;max-width:1100px;margin:0 auto}
+.ts-stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:2.6rem 2rem;max-width:1240px;margin:0 auto;align-items:start}
 .ts-stat{text-align:center}
-.ts-stat-v{font-family:var(--serif);font-size:clamp(2rem,4.4vw,3rem);color:var(--ochre-soft);line-height:1}
+.ts-stat-v{font-family:var(--serif);font-size:clamp(1.8rem,3.8vw,2.7rem);color:var(--ochre-soft);line-height:1.05;white-space:nowrap;text-wrap:balance}
 .ts-stat-l{font-size:12.5px;line-height:1.4;color:var(--bone-dim);margin-top:.7rem}
 .ts-voices,.ts-videos,.ts-pathways{max-width:1180px;margin:0 auto;padding:9vh 6vw}
 .ts-vh{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,4vw,2.6rem);text-align:center;margin-bottom:.6rem}
@@ -775,7 +775,7 @@ video.ts-bg{filter:brightness(.6) saturate(.97)}
 .ts-vid--portrait video{width:auto;max-width:min(56vh,100vw);height:min(90vh,1000px);object-fit:contain;margin:0 auto}
 .ts-vid--cinema figcaption{padding:1.4rem 6vw 0;font-size:15.5px;line-height:1.6;color:var(--bone-dim);max-width:1100px;margin:0 auto}
 .ts-vid--cinema figcaption b{font-size:18px;margin-bottom:.4rem}
-.ts-pullquote{padding:14vh 6vw;min-height:62vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;max-width:1100px;margin:0 auto}
+.ts-pullquote{padding:18vh 6vw;min-height:72vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;max-width:1100px;margin:0 auto;border-bottom:1px solid rgba(255,255,255,.04)}
 .ts-pq-kicker{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--ochre-soft);margin-bottom:2rem}
 .ts-pq-quote{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(1.8rem,4.5vw,3.6rem);line-height:1.25;color:var(--bone);margin:0;max-width:22ch}
 .ts-pq-attr{margin-top:2rem;font-size:13px;letter-spacing:.05em;color:var(--bone-dim)}
