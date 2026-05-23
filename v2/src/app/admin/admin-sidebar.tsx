@@ -48,6 +48,8 @@ const navigation: NavGroup[] = [
       { name: 'Assets',         href: '/admin/assets',        icon: Library },
       { name: 'Scans',          href: '/admin/scans',         icon: BarChart3 },
       { name: 'Photos',         href: '/admin/photos',        icon: Images },
+      { name: 'Storytellers (EL)', href: '/admin/el-storytellers', icon: Users },
+      { name: 'Stories (EL)',   href: '/admin/el-stories',    icon: BookOpen },
       { name: 'Funders',        href: '/admin/funders',       icon: Building2 },
       { name: 'Funder reports', href: '/admin/reports',       icon: Presentation },
       { name: 'Deck preview',   href: '/admin/deck',          icon: Presentation },
