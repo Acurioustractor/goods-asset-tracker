@@ -27,6 +27,7 @@ interface ElPhotoRow {
   excerpt: string | null;
   media_url: string | null;
   story_image_url: string | null;
+  media_metadata: Record<string, unknown> | null;
   is_public: boolean;
   tags: string[] | null;
   created_at: string;
@@ -43,20 +44,30 @@ function buildTagFilter(query: { all?: string[]; any?: string[] }): string {
   return parts.join('&');
 }
 
-async function fetchGalleryPhotos(
+async function fetchGalleryRows(
   query: { all?: string[]; any?: string[] },
   limit: number,
-  publicOnly: boolean
+  publicOnly: boolean,
+  mediaKind: 'photo' | 'video'
 ): Promise<ElPhotoRow[]> {
   if (!EL_URL || !EL_KEY) return [];
   const tagFilter = buildTagFilter(query);
   if (!tagFilter) return [];
+  // EL upload conventions:
+  //   photos → story_type='gallery-photo'
+  //   videos → story_type IN ('video','testimonial','hero-overlay','setup',
+  //            'behind-scenes','per-bed-video') with media-type:video tag
+  // For videos we filter by tag rather than story_type because the upload
+  // script writes the `use` value into story_type (testimonial/hero-overlay).
+  const typeFilter = mediaKind === 'photo'
+    ? `story_type=eq.gallery-photo`
+    : `tags=cs.{"media-type:video"}`;
   const params = [
     `project_id=eq.${EL_PROJECT_ID}`,
-    `story_type=eq.gallery-photo`,
+    typeFilter,
     tagFilter,
     publicOnly ? `is_public=eq.true` : null,
-    `select=id,title,excerpt,media_url,story_image_url,is_public,tags,created_at`,
+    `select=id,title,excerpt,media_url,story_image_url,media_metadata,is_public,tags,created_at`,
     `order=created_at.asc`,
     `limit=${limit}`,
   ].filter(Boolean);
@@ -76,22 +87,48 @@ export async function resolveGalleryBlocks(
   const internal = opts.internal === true;
   const blocks = await Promise.all(
     story.blocks.map(async (block) => {
-      if (block.kind !== 'el-gallery') return block;
-      const photos = await fetchGalleryPhotos(
-        block.tagQuery,
-        block.limit ?? 24,
-        !internal
-      );
-      const items = photos
-        .map((p) => ({
-          id: p.id,
-          src: p.story_image_url || p.media_url || '',
-          alt: p.title || '',
-          caption: p.excerpt || undefined,
-          isPublic: p.is_public,
-        }))
-        .filter((it) => it.src);
-      return { ...block, items };
+      if (block.kind === 'el-gallery') {
+        const photos = await fetchGalleryRows(
+          block.tagQuery,
+          block.limit ?? 24,
+          !internal,
+          'photo'
+        );
+        const items = photos
+          .map((p) => ({
+            id: p.id,
+            src: p.story_image_url || p.media_url || '',
+            alt: p.title || '',
+            caption: p.excerpt || undefined,
+            isPublic: p.is_public,
+          }))
+          .filter((it) => it.src);
+        return { ...block, items };
+      }
+      if (block.kind === 'el-video-gallery') {
+        const rows = await fetchGalleryRows(
+          block.tagQuery,
+          block.limit ?? 6,
+          !internal,
+          'video'
+        );
+        const items = rows
+          .map((r) => {
+            const meta = (r.media_metadata as { duration_seconds?: number } | null) || null;
+            return {
+              id: r.id,
+              title: r.title || '(untitled)',
+              caption: r.excerpt || undefined,
+              poster: r.story_image_url || '',
+              src: r.media_url || '',
+              durationSeconds: meta?.duration_seconds,
+              isPublic: r.is_public,
+            };
+          })
+          .filter((it) => it.src && it.poster);
+        return { ...block, items };
+      }
+      return block;
     })
   );
   return { ...story, blocks };

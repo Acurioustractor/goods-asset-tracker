@@ -153,6 +153,28 @@ export type TripBlock =
       limit?: number;
       /** Populated by the server resolver — do not set in source data. */
       items?: { id: string; src: string; alt?: string; caption?: string; isPublic: boolean }[];
+    })
+  | (WithLinks & {
+      /**
+       * Video gallery sourced live from EL. Same shape as el-gallery but
+       * filters to videos (media-type:video tag) and renders <video>
+       * elements with the EL story_image_url as poster and media_url as
+       * src. Auto-extracted by scripts/upload-videos.mjs.
+       */
+      kind: 'el-video-gallery';
+      heading?: string;
+      sub?: string;
+      tagQuery: { all?: string[]; any?: string[] };
+      limit?: number;
+      items?: {
+        id: string;
+        title: string;
+        caption?: string;
+        poster: string;
+        src: string;
+        durationSeconds?: number;
+        isPublic: boolean;
+      }[];
     });
 
 export interface TripStory {
@@ -355,6 +377,17 @@ const utopia: TripStory = {
           src: `${VID}/delivery-drone.mp4`,
         },
       ],
+    },
+    // Live video gallery — pulls anything from EL tagged `trip:may-2026`
+    // with media-type:video. Drop a folder of well-named MP4s into
+    // upload-videos.mjs and they appear here once the upload completes.
+    // Block hides itself if nothing matches yet.
+    {
+      kind: 'el-video-gallery',
+      heading: 'More clips from the trip',
+      sub: 'Videos uploaded to Empathy Ledger with trip:may-2026 appear here automatically. Use /admin/photos to filter videos + flip "Approve public" to surface them on the public page.',
+      tagQuery: { all: ['trip:may-2026'] },
+      limit: 6,
     },
     {
       kind: 'read',

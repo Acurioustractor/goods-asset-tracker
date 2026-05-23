@@ -293,6 +293,41 @@ function renderBlock(block: TripBlock, internal: boolean, currentSlug: string) {
           </div>
         </section>
       );
+    case 'el-video-gallery': {
+      // Video gallery sourced from EL by tag, populated by the server
+      // resolver. Internal preview shows every match; public shows only
+      // is_public=true. Same pattern as el-gallery but with <video> tags.
+      const items = block.items || [];
+      if (items.length === 0) return null;
+      if (!internal) {
+        const anyPublic = items.some((it) => it.isPublic);
+        if (!anyPublic) return null;
+      }
+      return (
+        <section className="ts-videos">
+          {block.heading && <h2 className="ts-vh ts-reveal">{block.heading}</h2>}
+          {block.sub && <p className="ts-vsub ts-reveal d1">{block.sub}</p>}
+          <div className="ts-vgrid">
+            {items.map((v) => (
+              <figure key={v.id} className="ts-vid ts-reveal">
+                <video controls preload="none" playsInline poster={v.poster}>
+                  <source src={v.src} type="video/mp4" />
+                </video>
+                <figcaption>
+                  <b>{v.title}</b>
+                  {v.caption}
+                  {internal && !v.isPublic && (
+                    <span className="ts-gpending" style={{ position: 'relative', marginLeft: '.5rem' }}>
+                      pending consent
+                    </span>
+                  )}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      );
+    }
     case 'el-gallery': {
       // Items are populated by the server resolver in resolve-gallery.ts.
       // If unresolved (no items) or empty (no matching photos), render

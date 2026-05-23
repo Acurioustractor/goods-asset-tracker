@@ -11,6 +11,48 @@ const COMMUNITY_LABELS: Record<string, string> = {
   'tennant-creek': 'Tennant Creek',
 };
 
+// Quick-filter chips for the most-used trip slices. Each preset applies a
+// tag predicate (matchAny / matchAll over the photo's tags array). Counts
+// render live from the photo set. Add new presets here as new events land.
+type QuickPreset = {
+  key: string;
+  label: string;
+  hint?: string;
+  match: (tags: string[]) => boolean;
+};
+const QUICK_PRESETS: QuickPreset[] = [
+  {
+    key: 'alice-build',
+    label: 'Alice build',
+    hint: 'Oonchiumpa young people building beds',
+    match: (t) => t.includes('event:alice-build') || t.includes('alice-springs'),
+  },
+  {
+    key: 'utopia-delivery',
+    label: 'Utopia delivery',
+    hint: 'Beds going to the homes',
+    match: (t) => t.includes('utopia-homelands') || t.includes('community:utopia-homelands') || t.includes('event:delivery-utopia'),
+  },
+  {
+    key: 'ampilatwatja',
+    label: 'Ampilatwatja Elders',
+    hint: 'Four beds, two Order-of-Australia Elders',
+    match: (t) => t.includes('ampilatwatja') || t.includes('community:ampilatwatja') || t.includes('event:elders-yarn'),
+  },
+  {
+    key: 'trip-may-2026',
+    label: 'Whole May trip',
+    hint: 'Every photo + video from the May 2026 trip',
+    match: (t) => t.includes('trip-may-2026') || t.includes('trip:may-2026'),
+  },
+  {
+    key: 'needs-review',
+    label: 'Needs my eyes',
+    hint: 'Approved consent but not yet flipped public',
+    match: (t) => t.includes('consent:elder-pending') || t.includes('pending-elder-review'),
+  },
+];
+
 export function PhotoPicker({ photos }: { photos: PhotoStory[] }) {
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [filterTag, setFilterTag] = useState<string>('');
@@ -21,6 +63,7 @@ export function PhotoPicker({ photos }: { photos: PhotoStory[] }) {
   const [pendingReview, setPendingReview] = useState<string | null>(null);
   const [filterMediaType, setFilterMediaType] = useState<'all' | 'photo' | 'video'>('all');
   const [filterUse, setFilterUse] = useState<string>('');
+  const [quickPreset, setQuickPreset] = useState<string | null>('alice-build');
   const [, startTransition] = useTransition();
   const [bulkPanelOpen, setBulkPanelOpen] = useState(false);
   const [bulkAddCsv, setBulkAddCsv] = useState('');
@@ -92,7 +135,9 @@ export function PhotoPicker({ photos }: { photos: PhotoStory[] }) {
   }, [photos]);
 
   const filtered = useMemo(() => {
+    const preset = quickPreset ? QUICK_PRESETS.find((p) => p.key === quickPreset) : null;
     return photos.filter((p) => {
+      if (preset && !preset.match(p.tags)) return false;
       if (filterMediaType === 'photo' && p.isVideo) return false;
       if (filterMediaType === 'video' && !p.isVideo) return false;
       if (filterUse && p.use !== filterUse) return false;
@@ -103,7 +148,17 @@ export function PhotoPicker({ photos }: { photos: PhotoStory[] }) {
       if (onlyDecoded && !p.bedId) return false;
       return true;
     });
-  }, [photos, filterMediaType, filterUse, filterTag, filterCommunity, filterDay, filterSource, onlyDecoded]);
+  }, [photos, filterMediaType, filterUse, filterTag, filterCommunity, filterDay, filterSource, onlyDecoded, quickPreset]);
+
+  // Live counts per preset, computed once. Lets the chips show "(120)" so
+  // you know which bucket is worth opening before clicking.
+  const presetCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const preset of QUICK_PRESETS) {
+      counts[preset.key] = photos.filter((p) => preset.match(p.tags)).length;
+    }
+    return counts;
+  }, [photos]);
 
   const selectedPhotos = useMemo(
     () => photos.filter((p) => selected.has(p.id)),
@@ -141,6 +196,7 @@ export function PhotoPicker({ photos }: { photos: PhotoStory[] }) {
     setOnlyDecoded(false);
     setFilterMediaType('all');
     setFilterUse('');
+    setQuickPreset(null);
   }
 
   async function copyMarkdown() {
@@ -153,6 +209,80 @@ export function PhotoPicker({ photos }: { photos: PhotoStory[] }) {
 
   return (
     <div className="space-y-4 pb-32">
+      {/* Quick-filter chips: one-click presets for the most-used trip slices. */}
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+          Jump to
+        </span>
+        <button
+          type="button"
+          onClick={() => setQuickPreset(null)}
+          className={`rounded-full px-3 py-1 text-xs font-medium transition ${
+            quickPreset === null
+              ? 'bg-gray-900 text-white'
+              : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50'
+          }`}
+        >
+          All ({photos.length})
+        </button>
+        {QUICK_PRESETS.map((preset) => {
+          const count = presetCounts[preset.key] ?? 0;
+          const active = quickPreset === preset.key;
+          const dim = count === 0;
+          return (
+            <button
+              key={preset.key}
+              type="button"
+              onClick={() => setQuickPreset(active ? null : preset.key)}
+              disabled={dim}
+              title={preset.hint}
+              className={`rounded-full px-3 py-1 text-xs font-medium transition ${
+                active
+                  ? 'bg-amber-600 text-white shadow-sm'
+                  : dim
+                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                  : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              {preset.label} ({count})
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Video drop-zone hint: filename convention for upload-videos.mjs */}
+      <details className="rounded-lg border border-dashed border-stone-300 bg-stone-50 p-3 text-xs text-stone-600">
+        <summary className="cursor-pointer font-semibold text-stone-800">
+          + How to add videos with thumbnails
+        </summary>
+        <div className="mt-2 space-y-2 leading-relaxed">
+          <p>
+            Drop a folder of MP4/MOV files and run the uploader. It auto-extracts
+            a poster frame at 1s, re-encodes to web-friendly H.264 1080p, tags
+            from the filename, and writes to EL.
+          </p>
+          <p>
+            <strong>Filename convention:</strong>{' '}
+            <code className="rounded bg-white px-1.5 py-0.5">
+              {'{use}_{community}_{subject}_{duration}s.mp4'}
+            </code>
+          </p>
+          <p>Examples:</p>
+          <ul className="list-disc pl-5 space-y-0.5 font-mono text-[11px]">
+            <li>testimonial_alice_mykel-bed-talk_28s.mov</li>
+            <li>hero-overlay_utopia_arrival-wide_12s.mp4</li>
+            <li>per-bed_utopia_gb0-156-96_22s.mp4</li>
+            <li>setup_universal_stretch-bed-assembly_85s.mp4</li>
+          </ul>
+          <p>
+            Then run from <code>v2/</code>:{' '}
+            <code className="rounded bg-white px-1.5 py-0.5">
+              node scripts/upload-videos.mjs /path/to/folder --trip trip-may-2026
+            </code>
+          </p>
+        </div>
+      </details>
+
       {/* Filter bar */}
       <div className="rounded-lg border bg-white p-3 space-y-3">
         {/* Media-type segmented control — photos vs videos vs both */}
