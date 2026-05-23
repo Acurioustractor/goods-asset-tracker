@@ -330,19 +330,25 @@ const utopia: TripStory = {
       heading: 'What people told us',
       sub:
         'Voices from this trip sit beside voices from the wider Goods story. Trip quotes are held as consent pending until confirmed with the speakers and Oonchiumpa.',
+      // Trip-only voices: this card set is the record of voices captured
+      // on the 21-22 May 2026 trip. Voices from other trips (Palm Island,
+      // Tennant Creek, etc.) live in their respective field-notes — they
+      // don't get hoisted into this story even if their quotes still
+      // resonate. The story is a moment, not a greatest-hits.
       cards: [
+        // Johnny — met us in Utopia, tested a bed. Awaiting consent +
+        // storyteller record. Create at /admin/el-storytellers/new with
+        // community=Utopia Homelands, then add storytellerSlug here.
         { quote: '"This one\'s better, I reckon."', who: 'Johnny', community: 'Utopia Homelands', consent: 'pending' },
+        // Placeholder for an Ampilatwatja Elder quote. The two senior men
+        // are honoured with the Order of Australia this year; their names
+        // and any direct quotes will be added once they have personally
+        // confirmed how they would like to be named.
         {
-          quote: '"It\'s more better than laying around on the floors. It was easy to make."',
-          who: 'Ivy',
-          community: 'Palm Island',
-          consent: 'cleared',
-        },
-        {
-          quote: '"We\'ve never been asked what sort of house we\'d like to live in."',
-          who: 'Linda Turner',
-          community: 'Tennant Creek',
-          consent: 'cleared',
+          quote: '"[Ampilatwatja Elder quote pending consent + naming]"',
+          who: 'Ampilatwatja Elder',
+          community: 'Ampilatwatja',
+          consent: 'pending',
         },
       ],
     },
