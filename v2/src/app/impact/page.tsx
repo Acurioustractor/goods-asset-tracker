@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -659,6 +660,66 @@ function PartnersSection() {
               Not licensing — transferring. Communities receive full training, manufacturing capability,
               and documentation. They keep 100% of what they make and sell.
             </p>
+          </div>
+
+          {/* Featured partner logos */}
+          <div className="mb-12 flex flex-col items-center gap-8 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-16">
+            <div className="flex flex-col items-center gap-4">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-white/40">
+                Backed by
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
+                <a
+                  href="https://www.snowfoundation.org.au"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Snow Foundation"
+                  className="transition hover:opacity-80"
+                >
+                  <Image
+                    src="/images/partners/snow-foundation-white.png"
+                    alt="Snow Foundation"
+                    width={2194}
+                    height={1056}
+                    className="h-10 w-auto object-contain sm:h-12"
+                  />
+                </a>
+                <Link
+                  href="/partners/centrecorp"
+                  aria-label="Centrecorp Foundation"
+                  className="rounded-lg bg-white px-4 py-2 transition hover:opacity-90"
+                >
+                  <Image
+                    src="/images/partners/centrecorp-foundation.jpg"
+                    alt="Centrecorp Foundation"
+                    width={400}
+                    height={240}
+                    className="h-8 w-auto object-contain sm:h-9"
+                  />
+                </Link>
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center gap-4">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-white/40">
+                Community partner
+              </p>
+              <a
+                href="https://oonchiumpa.com.au"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Oonchiumpa Consultancy"
+                className="rounded-lg bg-white px-4 py-2 transition hover:opacity-90"
+              >
+                <Image
+                  src="/images/partners/oonchiumpa.png"
+                  alt="Oonchiumpa Consultancy"
+                  width={560}
+                  height={350}
+                  className="h-9 w-auto object-contain sm:h-10"
+                />
+              </a>
+            </div>
           </div>
 
           <div className="space-y-4">

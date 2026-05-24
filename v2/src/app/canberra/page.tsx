@@ -419,24 +419,38 @@ export default async function CanberraPage() {
       >
         <div className="max-w-3xl mx-auto">
           <p
-            className="text-xs uppercase tracking-[0.25em] mb-3"
+            className="text-xs uppercase tracking-[0.25em] mb-5"
             style={{ color: `${CREAM}99` }}
           >
             With thanks to
           </p>
-          <p className="text-base sm:text-lg leading-relaxed">
-            Capital Airport Group ·{' '}
+
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-5 mb-5">
             <a
               href="https://www.snowfoundation.org.au"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline-offset-4 hover:underline"
+              aria-label="The Snow Foundation"
+              className="transition hover:opacity-80"
+            >
+              <Image
+                src="/images/partners/snow-foundation-white.png"
+                alt="The Snow Foundation"
+                width={2194}
+                height={1056}
+                className="h-9 sm:h-10 w-auto"
+              />
+            </a>
+            <span
+              className="text-base sm:text-lg leading-relaxed"
               style={{ color: CREAM }}
             >
-              The Snow Foundation
-            </a>
-            {' '}· A Curious Tractor · the families, Elders, and Ranger groups across the communities
-            we work with.
+              Capital Airport Group · A Curious Tractor
+            </span>
+          </div>
+
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: `${CREAM}cc` }}>
+            And the families, Elders, and Ranger groups across the communities we work with.
           </p>
           <div
             className="mt-8 pt-6 text-xs flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between"

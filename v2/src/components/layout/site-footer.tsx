@@ -1,9 +1,37 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FeedbackWidget } from '@/components/feedback/feedback-widget';
 import { NewsletterForm } from '@/components/layout/newsletter-form';
+
+const backedByPartners = [
+  {
+    name: 'Snow Foundation',
+    src: '/images/partners/snow-foundation-mono.png',
+    href: 'https://www.snowfoundation.org.au',
+    width: 2194,
+    height: 1056,
+  },
+  {
+    name: 'Centrecorp Foundation',
+    src: '/images/partners/centrecorp-foundation.jpg',
+    href: '/partners/centrecorp',
+    width: 400,
+    height: 240,
+  },
+];
+
+const communityPartners = [
+  {
+    name: 'Oonchiumpa Consultancy',
+    src: '/images/partners/oonchiumpa.png',
+    href: 'https://oonchiumpa.com.au',
+    width: 560,
+    height: 350,
+  },
+];
 
 const footerLinks = {
   product: [
@@ -125,8 +153,16 @@ export function SiteFooter() {
           </div>
         </div>
 
-        {/* Bottom Section */}
+        {/* Partner strip */}
         <div className="mt-12 border-t pt-8">
+          <div className="flex flex-col items-center gap-6 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-12 sm:gap-y-6">
+            <PartnerGroup label="Backed by" partners={backedByPartners} />
+            <PartnerGroup label="Community partner" partners={communityPartners} />
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="mt-10 border-t pt-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-sm text-muted-foreground">
               Goods on Country acknowledges the Traditional Owners of the lands on which we live
@@ -153,5 +189,58 @@ export function SiteFooter() {
         </div>
       </div>
     </footer>
+  );
+}
+
+type FooterPartner = {
+  name: string;
+  src: string;
+  href: string;
+  width: number;
+  height: number;
+};
+
+function PartnerGroup({ label, partners }: { label: string; partners: FooterPartner[] }) {
+  return (
+    <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
+      <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">
+        {label}
+      </p>
+      <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 opacity-60 transition-opacity hover:opacity-90">
+        {partners.map((partner) => {
+          const isExternal = partner.href.startsWith('http');
+          const logo = (
+            <Image
+              src={partner.src}
+              alt={partner.name}
+              width={partner.width}
+              height={partner.height}
+              className="h-7 w-auto object-contain grayscale transition hover:grayscale-0"
+            />
+          );
+          return isExternal ? (
+            <a
+              key={partner.name}
+              href={partner.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={partner.name}
+              title={partner.name}
+            >
+              {logo}
+            </a>
+          ) : (
+            <Link
+              key={partner.name}
+              href={partner.href}
+              aria-label={partner.name}
+              title={partner.name}
+            >
+              {logo}
+            </Link>
+          );
+        })}
+      </div>
+    </div>
   );
 }

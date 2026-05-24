@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -105,9 +106,34 @@ const impactMetrics = [
   { value: '20kg', label: 'Plastic diverted per bed' },
 ];
 
+const backedByPartners = [
+  {
+    name: 'Snow Foundation',
+    src: '/images/partners/snow-foundation.png',
+    width: 2194,
+    height: 1056,
+    href: 'https://www.snowfoundation.org.au',
+  },
+  {
+    name: 'Centrecorp Foundation',
+    src: '/images/partners/centrecorp-foundation.jpg',
+    width: 400,
+    height: 240,
+    href: '/partners/centrecorp',
+  },
+];
+
+const communityPartners = [
+  {
+    name: 'Oonchiumpa Consultancy',
+    src: '/images/partners/oonchiumpa.png',
+    width: 560,
+    height: 350,
+    href: 'https://oonchiumpa.com.au',
+  },
+];
+
 const fundingPartners = [
-  { name: 'Snow Foundation' },
-  { name: 'Centrecorp Foundation', href: '/partners/centrecorp' },
   { name: 'Vincent Fairfax Family Foundation' },
   { name: 'FRRR (Backing the Future)' },
   { name: 'AMP Spark' },
@@ -193,26 +219,72 @@ export default async function PartnerPage({
       {/* Existing Partners */}
       <section className="bg-muted/30 py-16 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl font-bold text-foreground mb-8">Our Partners</h2>
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-2xl font-bold text-foreground mb-10">Our Partners</h2>
+
+            {/* Backed by */}
+            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-5">
+              Backed by
+            </p>
+            <div className="mb-10 flex flex-wrap items-center justify-center gap-x-12 gap-y-8 sm:gap-x-16">
+              {backedByPartners.map((partner) => (
+                <a
+                  key={partner.name}
+                  href={partner.href}
+                  target={partner.href.startsWith('http') ? '_blank' : undefined}
+                  rel={partner.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  aria-label={partner.name}
+                  title={partner.name}
+                  className="transition hover:opacity-80"
+                >
+                  <Image
+                    src={partner.src}
+                    alt={partner.name}
+                    width={partner.width}
+                    height={partner.height}
+                    className="h-14 w-auto object-contain sm:h-16"
+                  />
+                </a>
+              ))}
+            </div>
+
+            {/* Community partner */}
+            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-5">
+              Community partner
+            </p>
+            <div className="mb-10 flex flex-wrap items-center justify-center gap-x-12 gap-y-8 sm:gap-x-16">
+              {communityPartners.map((partner) => (
+                <a
+                  key={partner.name}
+                  href={partner.href}
+                  target={partner.href.startsWith('http') ? '_blank' : undefined}
+                  rel={partner.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  aria-label={partner.name}
+                  title={partner.name}
+                  className="transition hover:opacity-80"
+                >
+                  <Image
+                    src={partner.src}
+                    alt={partner.name}
+                    width={partner.width}
+                    height={partner.height}
+                    className="h-14 w-auto object-contain sm:h-16"
+                  />
+                </a>
+              ))}
+            </div>
+
+            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">
+              And with thanks to
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
               {fundingPartners.map((partner) => (
-                partner.href ? (
-                  <Link
-                    key={partner.name}
-                    href={partner.href}
-                    className="inline-flex items-center rounded-full bg-background border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
-                  >
-                    {partner.name}
-                  </Link>
-                ) : (
-                  <span
-                    key={partner.name}
-                    className="inline-flex items-center rounded-full bg-background border border-border px-4 py-2 text-sm font-medium text-foreground"
-                  >
-                    {partner.name}
-                  </span>
-                )
+                <span
+                  key={partner.name}
+                  className="inline-flex items-center rounded-full bg-background border border-border px-4 py-2 text-sm font-medium text-foreground"
+                >
+                  {partner.name}
+                </span>
               ))}
             </div>
             <p className="text-muted-foreground">
