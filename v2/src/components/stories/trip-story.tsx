@@ -573,9 +573,14 @@ function renderBlock(block: TripBlock, blockIndex: number, internal: boolean, cu
           </div>
         </section>
       );
-    case 'immersive':
+    case 'immersive': {
+      // mobileLayout:'stacked' restructures the block on phone-narrow
+      // viewports — image renders at the top at its natural aspect,
+      // text drops into a clean editorial block below. Used for wide
+      // compositions where centre-crop would lose the subjects.
+      const stacked = block.mobileLayout === 'stacked';
       return (
-        <section className="ts-immersive">
+        <section className={`ts-immersive ${stacked ? 'ts-immersive--stacked' : ''}`}>
           <Bg media={block.media} />
           <div className="ts-scrim" />
           {internal && (
@@ -597,6 +602,7 @@ function renderBlock(block: TripBlock, blockIndex: number, internal: boolean, cu
           </div>
         </section>
       );
+    }
     case 'read': {
       // With an optional `media`, the read block becomes a darkened
       // overlay: video/still loops behind the prose. The text stays the
@@ -1584,5 +1590,20 @@ video.ts-bg{filter:brightness(.6) saturate(.97)}
   .ts-bg-img{transform:none;transition:none}
   .ts-vid--cinema:not(.ts-vid--portrait) video{width:100%;height:auto;max-height:none;object-fit:contain;background:#000}
   .ts-vid:not(.ts-vid--portrait) video{height:auto;max-height:60vh;object-fit:contain;background:#000}
+
+  /* Stacked immersive: image at top at its natural aspect, text in a
+     clean editorial block below. Used for wide compositions where the
+     centre-crop loses subjects on phone-narrow viewports (e.g. Frankie
+     + Casey shed). The .ts-bg block stops being a positioned background
+     and becomes a content element with auto height; the .ts-inner block
+     drops onto solid bone-dim ground below. No scrim, no overlay. */
+  .ts-immersive--stacked{min-height:auto;display:block;padding:0;background:#0d0a07}
+  .ts-immersive--stacked .ts-bg{position:relative;inset:auto;width:100%;height:auto;aspect-ratio:auto;display:block}
+  .ts-immersive--stacked .ts-bg-img{position:relative;width:100%;height:auto;object-fit:contain;display:block;filter:none}
+  .ts-immersive--stacked video.ts-bg{position:relative;width:100%;height:auto;object-fit:contain;display:block;filter:none}
+  .ts-immersive--stacked .ts-scrim{display:none}
+  .ts-immersive--stacked .ts-inner{padding:5vh 6vw 7vh;max-width:none}
+  .ts-immersive--stacked .ts-imm-title{text-shadow:none}
+  .ts-immersive--stacked .ts-standfirst{margin-top:1.2rem}
 }
 `;

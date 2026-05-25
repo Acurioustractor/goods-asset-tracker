@@ -109,6 +109,16 @@ export type TripBlock =
       title: string;
       standfirst?: string;
       media: MediaRef;
+      /**
+       * Optional mobile layout override. Default is overlay (image as
+       * full-bleed background, text overlaid). Use 'stacked' when the
+       * image is a wide composition where centre-crop on a phone-narrow
+       * viewport would lose the subjects (e.g. two figures spread across
+       * the frame). The stacked variant renders the image at its natural
+       * aspect ratio at the top and drops the text into a clean editorial
+       * block below, so the text never floats on black padding.
+       */
+      mobileLayout?: 'overlay' | 'stacked';
     })
   | (WithLinks & { kind: 'bleedquote'; text: string; media: MediaRef })
   | (WithLinks & {
@@ -863,6 +873,11 @@ const utopia: TripStory = {
       standfirst:
         "At Ampilatwatja we sat with Frankie Holmes OAM and Casey Holmes OAM, Alyawarr brothers, both Medal of the Order of Australia. Four beds went in. We made tea and let the camera run.",
       media: { image: `${IMG}/07-elders.jpg` },
+      // Both brothers sit at opposite edges of the frame. Center-crop on
+      // a phone-narrow viewport loses them both. Stack on mobile: image
+      // at top in its natural landscape aspect, title and standfirst sit
+      // cleanly below.
+      mobileLayout: 'stacked',
     },
     {
       kind: 'read',
