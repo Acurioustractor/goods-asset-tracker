@@ -1595,14 +1595,17 @@ video.ts-bg{filter:brightness(.6) saturate(.97)}
      clean editorial block below. Used for wide compositions where the
      centre-crop loses subjects on phone-narrow viewports (e.g. Frankie
      + Casey shed). The .ts-bg block stops being a positioned background
-     and becomes a content element with auto height; the .ts-inner block
-     drops onto solid bone-dim ground below. No scrim, no overlay. */
-  .ts-immersive--stacked{min-height:auto;display:block;padding:0;background:#0d0a07}
-  .ts-immersive--stacked .ts-bg{position:relative;inset:auto;width:100%;height:auto;aspect-ratio:auto;display:block}
-  .ts-immersive--stacked .ts-bg-img{position:relative;width:100%;height:auto;object-fit:contain;display:block;filter:none}
-  .ts-immersive--stacked video.ts-bg{position:relative;width:100%;height:auto;object-fit:contain;display:block;filter:none}
+     and becomes a content element with a 3:2 aspect ratio; the .ts-inner
+     block drops onto solid bone-dim ground below. No scrim, no overlay.
+     !important is needed because Next/Image with fill sets position:absolute
+     and width/height:100% as inline styles that would otherwise win. */
+  .ts-immersive--stacked{min-height:auto !important;display:block;padding:0;background:#0d0a07;overflow:visible}
+  .ts-immersive--stacked .ts-bg{position:relative !important;inset:auto !important;width:100% !important;height:auto !important;aspect-ratio:3/2;display:block;overflow:hidden}
+  .ts-immersive--stacked .ts-bg-img{position:absolute !important;inset:0 !important;width:100% !important;height:100% !important;object-fit:contain !important;display:block;filter:none !important;background:#0d0a07}
+  .ts-immersive--stacked video.ts-bg-video,.ts-immersive--stacked .ts-bg-video{position:absolute !important;inset:0 !important;width:100%;height:100%}
+  .ts-immersive--stacked video.ts-bg-video video,.ts-immersive--stacked .ts-bg-video video{width:100% !important;height:100% !important;object-fit:contain !important}
   .ts-immersive--stacked .ts-scrim{display:none}
-  .ts-immersive--stacked .ts-inner{padding:5vh 6vw 7vh;max-width:none}
+  .ts-immersive--stacked .ts-inner{position:relative !important;padding:5vh 6vw 7vh;max-width:none}
   .ts-immersive--stacked .ts-imm-title{text-shadow:none}
   .ts-immersive--stacked .ts-standfirst{margin-top:1.2rem}
 }
