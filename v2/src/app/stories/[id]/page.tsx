@@ -133,7 +133,9 @@ export default async function StoryDetailPage({ params }: Props) {
   const layout = mediaMetadata?.layout;
 
   // Admin check for in-page edit affordances. Anonymous public viewers
-  // never see edit chrome.
+  // never see edit chrome. In local dev (NODE_ENV !== 'production') the
+  // chrome shows for any visitor so editors can iterate without round-
+  // tripping through sign-in. Same convention as /field-notes/[slug].
   let isAdmin = false;
   try {
     const supabase = await createClient();
@@ -142,6 +144,8 @@ export default async function StoryDetailPage({ params }: Props) {
   } catch {
     isAdmin = false;
   }
+  const isLocalDev = process.env.NODE_ENV !== 'production';
+  const showAdminChrome = isAdmin || isLocalDev;
 
   if (Array.isArray(rawBlocks) && rawBlocks.length > 0) {
     if (layout === 'rich') {
@@ -190,8 +194,8 @@ export default async function StoryDetailPage({ params }: Props) {
           blocks: restBlocks,
           blockIndices,
         }}
-        editHref={isAdmin ? `/admin/el-stories/${story.id}/edit` : undefined}
-        elEditHref={isAdmin ? elEditUrlFor(story.id) : undefined}
+        editHref={showAdminChrome ? `/admin/el-stories/${story.id}/edit` : undefined}
+        elEditHref={showAdminChrome ? elEditUrlFor(story.id) : undefined}
       />
     );
   }
