@@ -7,6 +7,13 @@ import { resolveLiveMapCounts } from '@/lib/field-notes/resolve-live-map';
 import { getStoryOverrides, applyOverrides } from '@/lib/field-notes/overrides';
 import { createClient } from '@/lib/supabase/server';
 
+// Force dynamic rendering: the page uses cookies() via createClient() to
+// check for admin preview. With generateStaticParams declared, Next.js
+// otherwise classifies the route as SSG and throws DYNAMIC_SERVER_USAGE
+// when cookies() is called at request time. Galleries also need fresh EL
+// data per request anyway, so static caching here is the wrong default.
+export const dynamic = 'force-dynamic';
+
 interface Props {
   params: Promise<{ slug: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
