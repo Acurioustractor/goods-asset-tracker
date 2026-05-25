@@ -34,6 +34,16 @@ function isAdminUser(user: AdminUserShape | null): boolean {
 // generated. Same reasoning as /field-notes/[slug].
 export const dynamic = 'force-dynamic';
 
+// EL editor deep-link base. EL is the canonical store; Goods reads from
+// it. Surface the link to admins so they can choose either editor.
+const EL_ADMIN_URL =
+  process.env.EMPATHY_LEDGER_ADMIN_URL ||
+  process.env.EMPATHY_LEDGER_API_URL ||
+  'https://empathy-ledger.vercel.app';
+function elEditUrlFor(storyId: string): string {
+  return `${EL_ADMIN_URL.replace(/\/+$/, '')}/admin/stories/${storyId}`;
+}
+
 interface Props {
   params: Promise<{ id: string }>;
 }
@@ -170,6 +180,7 @@ export default async function StoryDetailPage({ params }: Props) {
           blocks: restBlocks,
         }}
         editHref={isAdmin ? `/admin/el-stories/${story.id}/edit` : undefined}
+        elEditHref={isAdmin ? elEditUrlFor(story.id) : undefined}
       />
     );
   }

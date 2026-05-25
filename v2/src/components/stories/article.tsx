@@ -39,6 +39,13 @@ interface Props {
    * on the user's admin status.
    */
   editHref?: string;
+  /**
+   * Optional deep-link into Empathy Ledger's native editor. EL is the
+   * canonical store; the Goods admin is a convenience. When provided,
+   * a secondary affordance points there for editors who prefer EL's
+   * native UI.
+   */
+  elEditHref?: string;
 }
 
 function renderInline(text: string): React.ReactNode {
@@ -173,20 +180,37 @@ function Bg({ image, video }: { image?: string | null; video?: string | null }) 
   );
 }
 
-export function ArticleRenderer({ story, editHref }: Props) {
+export function ArticleRenderer({ story, editHref, elEditHref }: Props) {
   return (
     <main className="bg-[#FDF8F3] text-foreground">
-      {/* Admin-only floating edit pill. Sticky bottom-right, sits above the
-          article. Hidden from public viewers. */}
-      {editHref && (
-        <Link
-          href={editHref}
-          className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-white shadow-lg hover:bg-foreground/90 transition-colors"
-          aria-label="Edit this story"
-        >
-          <span aria-hidden>✎</span>
-          <span>Edit this story</span>
-        </Link>
+      {/* Admin-only floating edit affordance. Two pills, stacked bottom-right.
+          Goods admin (✎) and EL editor (↗) — EL is canonical; Goods is the
+          convenience. Hidden from public viewers. */}
+      {(editHref || elEditHref) && (
+        <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+          {elEditHref && (
+            <a
+              href={elEditHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2 text-xs font-medium text-white shadow-lg hover:bg-emerald-700"
+              aria-label="Edit in Empathy Ledger"
+            >
+              <span aria-hidden>↗</span>
+              <span>Edit in Empathy Ledger</span>
+            </a>
+          )}
+          {editHref && (
+            <Link
+              href={editHref}
+              className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-white shadow-lg hover:bg-foreground/90"
+              aria-label="Edit in Goods admin"
+            >
+              <span aria-hidden>✎</span>
+              <span>Edit in Goods admin</span>
+            </Link>
+          )}
+        </div>
       )}
       {/* Hero — boxed, not full-bleed. Title and standfirst sit BELOW the
           image (not overlaid on padding). Works well for landscape photos
@@ -341,13 +365,26 @@ export function ArticleRenderer({ story, editHref }: Props) {
             Written by <span className="font-medium text-foreground">{story.authorName}</span>.{' '}
             This story lives in the Empathy Ledger and is shared with the storyteller&apos;s consent.
           </p>
-          {editHref && (
+          {(editHref || elEditHref) && (
             <p className="mt-4 text-xs text-stone-500">
               <span className="font-medium text-stone-700">Editor:</span>{' '}
-              <Link href={editHref} className="underline hover:text-foreground">
-                Edit this story in Goods admin
-              </Link>
-              . The Goods admin PATCHes the EL row directly. EL is the canonical store.
+              {elEditHref && (
+                <>
+                  <a href={elEditHref} target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">
+                    Open in Empathy Ledger
+                  </a>
+                  {' '}(canonical){editHref ? ' · ' : '. '}
+                </>
+              )}
+              {editHref && (
+                <>
+                  <Link href={editHref} className="underline hover:text-foreground">
+                    Edit in Goods admin
+                  </Link>
+                  {' '}(convenience).
+                </>
+              )}
+              {' '}EL is the source of truth; Goods picks up edits on next page load.
             </p>
           )}
         </footer>

@@ -22,6 +22,18 @@ export const dynamic = 'force-dynamic';
 const EL_URL = process.env.EMPATHY_LEDGER_SUPABASE_URL || '';
 const EL_KEY = process.env.EMPATHY_LEDGER_SUPABASE_KEY || '';
 
+// Deep-link base for EL's native story editor. EL is canonical; edits
+// there land on Goods on next request (getStory uses revalidate: 0).
+// Defaults to the EL Vercel frontend. Override with EMPATHY_LEDGER_ADMIN_URL
+// if EL's editor lives at a different path or host.
+const EL_ADMIN_URL =
+  process.env.EMPATHY_LEDGER_ADMIN_URL ||
+  process.env.EMPATHY_LEDGER_API_URL ||
+  'https://empathy-ledger.vercel.app';
+function elEditUrl(storyId: string): string {
+  return `${EL_ADMIN_URL.replace(/\/+$/, '')}/admin/stories/${storyId}`;
+}
+
 interface ElStoryRow {
   id: string;
   title: string | null;
@@ -126,21 +138,31 @@ export default async function EditStoryPage({ params }: Props) {
 
   return (
     <div className="space-y-6 pb-16">
-      <header className="flex items-start justify-between gap-4">
+      <header className="flex items-start justify-between gap-4 flex-wrap">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Edit story</h1>
           <p className="mt-1 text-sm text-gray-500 max-w-prose">
-            Edits PATCH the EL row directly. EL is canonical; Goods reads from it.{' '}
-            <Link href={`/stories/${id}`} target="_blank" className="underline">View live</Link>{' '}
-            after saving (page revalidates on every request).
+            EL is canonical. Edit here <em>or</em> in Empathy Ledger&apos;s native editor —
+            either way, Goods picks up the change on next page load (no cache).{' '}
+            <Link href={`/stories/${id}`} target="_blank" className="underline">View live</Link>.
           </p>
         </div>
-        <Link
-          href="/admin/el-stories"
-          className="rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        >
-          ← Back to list
-        </Link>
+        <div className="flex items-center gap-2">
+          <a
+            href={elEditUrl(id)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-md bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700"
+          >
+            ↗ Open in Empathy Ledger
+          </a>
+          <Link
+            href="/admin/el-stories"
+            className="rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          >
+            ← Back to list
+          </Link>
+        </div>
       </header>
 
       <form action={saveStory} className="space-y-6 rounded-lg border bg-white p-6">
