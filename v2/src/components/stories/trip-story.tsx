@@ -1550,7 +1550,8 @@ video.ts-bg{filter:brightness(.6) saturate(.97)}
    space, voice cards/galleries widen to viewport.
    ──────────────────────────────────────────────────────────────────── */
 @media (max-width:640px){
-  .ts-immersive{min-height:74vh;padding:7vh 6vw}
+  .ts-immersive{min-height:80vh;padding:7vh 6vw}
+  .ts-immersive.ts-center{min-height:94vh}
   .ts-read{padding:6vh 6vw}
   .ts-read--overlay{padding:10vh 6vw}
   .ts-bleedquote{min-height:60vh;padding:8vh 6vw}
@@ -1572,14 +1573,16 @@ video.ts-bg{filter:brightness(.6) saturate(.97)}
   .ts-imm-title{max-width:18ch}
   .ts-banner{font-size:9.5px;letter-spacing:.1em;padding:6px 10px}
   .ts-footer{padding:6vh 6vw}
-  /* Mobile media fit: landscape photos and videos were getting cropped to a
-     thin vertical slice by object-fit:cover on phone-narrow viewports. Switch
-     immersive backgrounds and cinema videos to contain so the full frame is
-     visible. Subjects spread across a wide photo (e.g. Frankie + Casey, the
-     boys building, the drive footage) stay intact instead of being clipped. */
-  .ts-bg-img,video.ts-bg{object-fit:contain;background:#000;transform:none}
-  .ts-immersive.in .ts-bg-img,.ts-bleedquote.in .ts-bg-img{transform:none}
-  .ts-vid--cinema video{height:auto;max-height:60vh;object-fit:contain}
-  .ts-vid video{height:auto;max-height:50vh;object-fit:contain}
+  /* Mobile media fit. Immersive backgrounds (masthead, act intros, overlay
+     videos, close) stay full-bleed cover so the hero feels elegant and the
+     text overlay sits on the photograph, not on black padding. Kill the
+     Ken Burns zoom on mobile because the scale-up looks janky at phone
+     scale and crops content further. Cinema videos render at their natural
+     aspect ratio so a landscape clip stays landscape and a portrait clip
+     fills the height. The portrait class (.ts-vid--portrait) keeps doing
+     its own thing for tall videos. */
+  .ts-bg-img{transform:none;transition:none}
+  .ts-vid--cinema:not(.ts-vid--portrait) video{width:100%;height:auto;max-height:none;object-fit:contain;background:#000}
+  .ts-vid:not(.ts-vid--portrait) video{height:auto;max-height:60vh;object-fit:contain;background:#000}
 }
 `;
