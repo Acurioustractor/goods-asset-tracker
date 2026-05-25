@@ -697,6 +697,66 @@ function PartnersSection() {
                     className="h-8 w-auto object-contain sm:h-9"
                   />
                 </Link>
+                <a
+                  href="https://www.thefundingnetwork.com.au"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="The Funding Network"
+                  className="rounded-lg bg-white px-4 py-2 transition hover:opacity-90"
+                >
+                  <Image
+                    src="/images/partners/tfn.svg"
+                    alt="The Funding Network"
+                    width={1256}
+                    height={445}
+                    className="h-9 w-auto object-contain sm:h-10"
+                  />
+                </a>
+                <a
+                  href="https://frrr.org.au"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="FRRR"
+                  className="rounded-lg bg-white px-4 py-2 transition hover:opacity-90"
+                >
+                  <Image
+                    src="/images/partners/frrr.png"
+                    alt="FRRR"
+                    width={1024}
+                    height={491}
+                    className="h-9 w-auto object-contain sm:h-10"
+                  />
+                </a>
+                <a
+                  href="https://ampfoundation.com.au"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="AMP Foundation"
+                  className="rounded-lg bg-white px-4 py-2 transition hover:opacity-90"
+                >
+                  <Image
+                    src="/images/partners/amp-foundation.png"
+                    alt="AMP Foundation"
+                    width={1024}
+                    height={272}
+                    className="h-8 w-auto object-contain sm:h-9"
+                  />
+                </a>
+                <a
+                  href="https://www.qbe.com/sustainability/qbe-foundation"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="QBE Foundation"
+                  className="rounded-lg bg-white px-4 py-2 transition hover:opacity-90"
+                >
+                  <Image
+                    src="/images/partners/qbe.png"
+                    alt="QBE Foundation"
+                    width={800}
+                    height={220}
+                    className="h-9 w-auto object-contain sm:h-10"
+                  />
+                </a>
               </div>
             </div>
 

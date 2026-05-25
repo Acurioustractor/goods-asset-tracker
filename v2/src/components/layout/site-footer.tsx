@@ -21,6 +21,34 @@ const backedByPartners = [
     width: 400,
     height: 240,
   },
+  {
+    name: 'The Funding Network',
+    src: '/images/partners/tfn.svg',
+    href: 'https://www.thefundingnetwork.com.au',
+    width: 1256,
+    height: 445,
+  },
+  {
+    name: 'FRRR',
+    src: '/images/partners/frrr.png',
+    href: 'https://frrr.org.au',
+    width: 1024,
+    height: 491,
+  },
+  {
+    name: 'AMP Foundation',
+    src: '/images/partners/amp-foundation.png',
+    href: 'https://ampfoundation.com.au',
+    width: 1024,
+    height: 272,
+  },
+  {
+    name: 'QBE Foundation',
+    src: '/images/partners/qbe.png',
+    href: 'https://www.qbe.com/sustainability/qbe-foundation',
+    width: 800,
+    height: 220,
+  },
 ];
 
 const communityPartners = [

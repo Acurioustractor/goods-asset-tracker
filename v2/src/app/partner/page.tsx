@@ -121,6 +121,34 @@ const backedByPartners = [
     height: 240,
     href: '/partners/centrecorp',
   },
+  {
+    name: 'The Funding Network',
+    src: '/images/partners/tfn.svg',
+    width: 1256,
+    height: 445,
+    href: 'https://www.thefundingnetwork.com.au',
+  },
+  {
+    name: 'FRRR',
+    src: '/images/partners/frrr.png',
+    width: 1024,
+    height: 491,
+    href: 'https://frrr.org.au',
+  },
+  {
+    name: 'AMP Foundation',
+    src: '/images/partners/amp-foundation.png',
+    width: 1024,
+    height: 272,
+    href: 'https://ampfoundation.com.au',
+  },
+  {
+    name: 'QBE Foundation',
+    src: '/images/partners/qbe.png',
+    width: 800,
+    height: 220,
+    href: 'https://www.qbe.com/sustainability/qbe-foundation',
+  },
 ];
 
 const communityPartners = [
@@ -135,9 +163,6 @@ const communityPartners = [
 
 const fundingPartners = [
   { name: 'Vincent Fairfax Family Foundation' },
-  { name: 'FRRR (Backing the Future)' },
-  { name: 'AMP Spark' },
-  { name: 'The Funding Network' },
 ];
 
 export default async function PartnerPage({
