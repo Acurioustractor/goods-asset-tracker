@@ -32,6 +32,13 @@ interface ArticleStory {
 
 interface Props {
   story: ArticleStory;
+  /**
+   * Optional admin edit deep-link. When provided, an "Edit this story"
+   * affordance shows in the article footer and a sticky pill in the
+   * bottom-right. Only the parent route should populate this — it gates
+   * on the user's admin status.
+   */
+  editHref?: string;
 }
 
 function renderInline(text: string): React.ReactNode {
@@ -166,9 +173,21 @@ function Bg({ image, video }: { image?: string | null; video?: string | null }) 
   );
 }
 
-export function ArticleRenderer({ story }: Props) {
+export function ArticleRenderer({ story, editHref }: Props) {
   return (
     <main className="bg-[#FDF8F3] text-foreground">
+      {/* Admin-only floating edit pill. Sticky bottom-right, sits above the
+          article. Hidden from public viewers. */}
+      {editHref && (
+        <Link
+          href={editHref}
+          className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-white shadow-lg hover:bg-foreground/90 transition-colors"
+          aria-label="Edit this story"
+        >
+          <span aria-hidden>✎</span>
+          <span>Edit this story</span>
+        </Link>
+      )}
       {/* Hero — boxed, not full-bleed. Title and standfirst sit BELOW the
           image (not overlaid on padding). Works well for landscape photos
           with wide-spread subjects. */}
@@ -318,8 +337,19 @@ export function ArticleRenderer({ story }: Props) {
         })}
 
         <footer className="mt-16 pt-8 border-t border-stone-200 text-sm text-stone-600">
-          Written by <span className="font-medium text-foreground">{story.authorName}</span>.{' '}
-          This story lives in the Empathy Ledger and is shared with the storyteller&apos;s consent.
+          <p>
+            Written by <span className="font-medium text-foreground">{story.authorName}</span>.{' '}
+            This story lives in the Empathy Ledger and is shared with the storyteller&apos;s consent.
+          </p>
+          {editHref && (
+            <p className="mt-4 text-xs text-stone-500">
+              <span className="font-medium text-stone-700">Editor:</span>{' '}
+              <Link href={editHref} className="underline hover:text-foreground">
+                Edit this story in Goods admin
+              </Link>
+              . The Goods admin PATCHes the EL row directly. EL is the canonical store.
+            </p>
+          )}
         </footer>
       </article>
     </main>

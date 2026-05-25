@@ -84,6 +84,7 @@ export default async function ElStoriesIndex() {
                 <th className="px-4 py-2 text-left">Consent</th>
                 <th className="px-4 py-2 text-left">Public?</th>
                 <th className="px-4 py-2 text-left">Created</th>
+                <th className="px-4 py-2 text-left">Edit</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
@@ -124,6 +125,14 @@ export default async function ElStoriesIndex() {
                   </td>
                   <td className="px-4 py-2 text-xs text-gray-500">
                     {new Date(s.created_at).toLocaleDateString('en-AU', { year: 'numeric', month: 'short', day: 'numeric' })}
+                  </td>
+                  <td className="px-4 py-2 text-xs">
+                    <Link
+                      href={`/admin/el-stories/${s.id}/edit`}
+                      className="rounded bg-amber-600 px-2 py-1 text-white text-[11px] font-medium hover:bg-amber-700"
+                    >
+                      Edit
+                    </Link>
                   </td>
                 </tr>
               ))}

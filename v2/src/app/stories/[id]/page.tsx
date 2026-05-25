@@ -11,6 +11,23 @@ import type {
   TripStory as TripStoryData,
   TripBlock,
 } from '@/lib/data/trip-stories';
+import { createClient } from '@/lib/supabase/server';
+
+interface AdminUserShape {
+  email?: string | null;
+  app_metadata?: Record<string, unknown>;
+  user_metadata?: Record<string, unknown>;
+}
+function isAdminUser(user: AdminUserShape | null): boolean {
+  if (!user) return false;
+  if ((user.app_metadata as { role?: string })?.role === 'admin') return true;
+  if ((user.user_metadata as { role?: string })?.role === 'admin') return true;
+  const allow = (process.env.ADMIN_EMAILS || '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return allow.includes(user.email || '');
+}
 
 // Force dynamic: the renderer uses cookies() through the supabase server
 // client further down the import chain, so the route can't be statically
@@ -89,58 +106,71 @@ export default async function StoryDetailPage({ params }: Props) {
   const displayName = story.storytellerName || story.authorName;
 
   // Block-driven layouts. EL story carries blocks under media_metadata.blocks
-  // and a layout choice under media_metadata.layout. Three tiers:
-  //   - 'rich'    → full field-notes TripStory scrollytelling (default when
-  //                 layout is missing but blocks include immersive/masthead
-  //                 kinds; used for trip stories and multi-section pieces)
-  //   - 'article' → magazine column layout (centered prose, inline figures,
-  //                 inline pullquotes, light cream theme; used for director
-  //                 notes, blog posts, considered reflections)
-  //   - undefined or no blocks → fall through to the HTML-prose path below
+  // and an optional layout choice under media_metadata.layout. Tiers:
+  //   - default (any blocks present) → ArticleRenderer (magazine column,
+  //     cream theme). Used for director notes, blog posts, considered
+  //     reflections — the default Goods article surface.
+  //   - 'rich' → full field-notes TripStory scrollytelling. Only used when
+  //     the author explicitly opts in for trip stories / multi-section
+  //     editorial pieces with hero video and full-bleed beats.
+  //   - no blocks → fall through to the HTML-prose path below.
   const mediaMetadata =
     (story.mediaMetadata as { blocks?: unknown[]; layout?: string } | null) ??
     null;
   const rawBlocks = mediaMetadata?.blocks;
   const layout = mediaMetadata?.layout;
+
+  // Admin check for in-page edit affordances. Anonymous public viewers
+  // never see edit chrome.
+  let isAdmin = false;
+  try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    isAdmin = isAdminUser(user as AdminUserShape | null);
+  } catch {
+    isAdmin = false;
+  }
+
   if (Array.isArray(rawBlocks) && rawBlocks.length > 0) {
-    if (layout === 'article') {
-      const heroBlock = (rawBlocks as TripBlock[]).find(
-        (b) => b.kind === 'masthead',
-      ) as Extract<TripBlock, { kind: 'masthead' }> | undefined;
-      const heroImage = heroBlock?.media.image ?? story.storyImageUrl ?? null;
-      const heroVideo = heroBlock?.media.videoDesktop ?? null;
-      const restBlocks = (rawBlocks as TripBlock[]).filter(
-        (b) => b.kind !== 'masthead',
-      );
+    if (layout === 'rich') {
+      const articleStory: TripStoryData = {
+        slug: story.id,
+        title: story.title,
+        summary: story.summary ?? '',
+        dateline: publishedDate,
+        published: true,
+        blocks: rawBlocks as TripBlock[],
+      };
       return (
-        <ArticleRenderer
-          story={{
-            id: story.id,
-            title: story.title,
-            standfirst: heroBlock?.standfirst ?? story.summary,
-            authorName: displayName,
-            publishedDate,
-            themes: themeNames,
-            heroImage,
-            heroVideo,
-            blocks: restBlocks,
-          }}
-        />
+        <main>
+          <TripStory story={articleStory} internal={false} />
+        </main>
       );
     }
-    // Default = 'rich'
-    const articleStory: TripStoryData = {
-      slug: story.id,
-      title: story.title,
-      summary: story.summary ?? '',
-      dateline: publishedDate,
-      published: true,
-      blocks: rawBlocks as TripBlock[],
-    };
+    // Default = article layout
+    const heroBlock = (rawBlocks as TripBlock[]).find(
+      (b) => b.kind === 'masthead',
+    ) as Extract<TripBlock, { kind: 'masthead' }> | undefined;
+    const heroImage = heroBlock?.media.image ?? story.storyImageUrl ?? null;
+    const heroVideo = heroBlock?.media.videoDesktop ?? null;
+    const restBlocks = (rawBlocks as TripBlock[]).filter(
+      (b) => b.kind !== 'masthead',
+    );
     return (
-      <main>
-        <TripStory story={articleStory} internal={false} />
-      </main>
+      <ArticleRenderer
+        story={{
+          id: story.id,
+          title: story.title,
+          standfirst: heroBlock?.standfirst ?? story.summary,
+          authorName: displayName,
+          publishedDate,
+          themes: themeNames,
+          heroImage,
+          heroVideo,
+          blocks: restBlocks,
+        }}
+        editHref={isAdmin ? `/admin/el-stories/${story.id}/edit` : undefined}
+      />
     );
   }
 
