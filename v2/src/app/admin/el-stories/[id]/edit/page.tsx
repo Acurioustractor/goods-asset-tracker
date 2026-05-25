@@ -10,6 +10,7 @@
 import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { MediaSwapPanel } from './media-swap-panel';
 
 export const metadata: Metadata = {
   title: 'Edit story · Goods admin',
@@ -173,6 +174,14 @@ export default async function EditStoryPage({ params }: Props) {
           defaultValue={tagsValue}
           sub="Used by the field-notes resolver and other tag-query surfaces. Same brand rules apply."
         />
+
+        {Array.isArray(mediaMetadata.blocks) && mediaMetadata.blocks.length > 0 && (
+          <MediaSwapPanel
+            storyId={story.id}
+            blocks={mediaMetadata.blocks as unknown[]}
+            defaultTag="trip:may-2026"
+          />
+        )}
 
         <div className="rounded-md border border-amber-200 bg-amber-50/50 p-4">
           <h2 className="text-sm font-semibold text-amber-900">Layout and blocks</h2>
