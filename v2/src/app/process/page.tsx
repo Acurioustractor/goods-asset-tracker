@@ -1,174 +1,389 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { processSteps } from '@/lib/data/content';
-import { processStepMedia } from '@/lib/data/media';
-import { MediaSlot, VideoSlot } from '@/components/ui/media-slot';
+import { fetchBuildPhotos } from '@/lib/process/el-build-photos';
 
 export const metadata = {
-  title: 'How It\'s Made',
+  title: "How It's Made",
   description:
-    'Follow the Stretch Bed journey from recycled HDPE plastic to flat-pack bed components, community assembly and on-country manufacturing.',
+    'From recycled plastic to a Stretch Bed in a remote home: collection, pressing, CNC cutting, leg-forming, community assembly, on-country delivery.',
   alternates: {
     canonical: 'https://www.goodsoncountry.com/process',
   },
   openGraph: {
-    title: 'How the Stretch Bed Is Made · Goods on Country',
+    title: 'How a Stretch Bed is Made · Goods on Country',
     description:
-      'Recycled plastic collection, pressing, CNC cutting and community assembly for the Goods on Country Stretch Bed.',
+      'Recycled plastic, On-Country pressing, CNC cutting, hydraulic-pressed legs, and community assembly. Every Stretch Bed is built, not bought.',
     url: 'https://www.goodsoncountry.com/process',
     images: [
       {
         url: 'https://www.goodsoncountry.com/images/process/container-factory.jpg',
         width: 1200,
         height: 900,
-        alt: 'Containerised recycled plastic production plant for Stretch Bed components',
+        alt: 'On-country containerised production plant',
       },
     ],
   },
 };
 
-function StepIcon({ icon, step }: { icon: string; step: number }) {
-  const icons: Record<string, React.ReactNode> = {
-    recycle: (
-      <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
-      </svg>
-    ),
-    flame: (
-      <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
-      </svg>
-    ),
-    scissors: (
-      <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M7.848 8.25l1.536.887M7.848 8.25a3 3 0 11-5.196-3 3 3 0 015.196 3zm1.536.887a2.165 2.165 0 011.083-.128m-1.083.128l-.003.004m1.083-.132l2.768 1.598m0 0a2.165 2.165 0 012.083-.128m-2.083.128l-.003.004m2.083-.132l2.768 1.598M12 21l-1.5-1.5m0 0l-3.25-3.25a2.121 2.121 0 010-3L12 9m-4.75 8.25L12 21m0 0l4.75-4.75a2.121 2.121 0 000-3L12 9" />
-      </svg>
-    ),
-    wrench: (
-      <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
-      </svg>
-    ),
-    weave: (
-      <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-      </svg>
-    ),
-    truck: (
-      <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
-      </svg>
-    ),
-  };
+type Step = {
+  step: number;
+  label: string;
+  title: string;
+  body: string;
+  hero: { src: string; alt: string };
+  /** Up to 3 supporting media tiles. Photos render as Image; videos as muted autoplay loops. */
+  supporting: Array<{ src: string; alt: string; kind?: 'photo' | 'video' }>;
+  /** Optional inline video that takes the place of the hero photo. */
+  video?: { src: string; poster: string };
+};
 
-  return (
-    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary relative">
-      {icons[icon] || icons.wrench}
-      <span className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">
-        {step}
-      </span>
-    </div>
+const STEPS: Step[] = [
+  {
+    step: 1,
+    label: 'Collect',
+    title: 'Plastic gathered on Country',
+    body: 'Every Stretch Bed starts as 20kg of household HDPE that would otherwise sit in a remote-community dump. Bottle caps, drums, lids, off-cuts. It comes in by the tub, gets sorted, weighed and tagged before anything else happens.',
+    hero: { src: '/images/process/shredded-plastic-tubs.jpg', alt: 'Tubs of sorted recycled HDPE plastic ready for shredding' },
+    supporting: [
+      { src: '/images/process/shredder-granulator.jpg', alt: 'Industrial granulator shredding HDPE into chip' },
+      { src: '/images/process/shredder-output-tub.jpg', alt: 'Tub of freshly shredded HDPE chip coming out of the granulator' },
+      { src: '/images/process/shredded-chips-weighed.jpg', alt: 'Shredded plastic chip on a scale ready to be weighed' },
+    ],
+  },
+  {
+    step: 2,
+    label: 'Press',
+    title: 'Shredded chip becomes solid sheet',
+    body: 'The chip goes into a heat press inside the containerised factory. Under heat and pressure the HDPE fuses into a dense, weather-resistant sheet ready to be cut. Press cycles are timed and monitored. Nothing leaves the container until the sheet passes a finger-test for warp and finish.',
+    hero: { src: '/images/process/heat-press-detail.jpg', alt: 'Close-up of the HDPE heat press inside the production container' },
+    supporting: [
+      { src: '/images/process/pressed-sheets-stacked.jpg', alt: 'Stacked pressed HDPE sheets fresh from the heat press' },
+      { src: '/images/process/heat-press-full.jpg', alt: 'Full view of the heat press during a press cycle' },
+      { src: '/images/process/sheets-edge-view.jpg', alt: 'Edge view of a pressed HDPE sheet showing thickness' },
+    ],
+    video: {
+      src: '/video/recycling-plant-desktop.mp4',
+      poster: '/video/recycling-plant-poster.jpg',
+    },
+  },
+  {
+    step: 3,
+    label: 'Cut',
+    title: 'CNC-precise leg blanks',
+    body: 'A pressed sheet goes onto a 4&times;8 CNC router bed. BlueCarve software steps each cut to nest leg blanks against the sheet so off-cuts go back into the chip stream. Same plastic. Two or three more presses out of the same batch.',
+    hero: { src: '/images/process/cnc-cutting-closeup.jpg', alt: 'Close-up of a CNC router cutting an HDPE leg blank' },
+    supporting: [
+      { src: '/images/process/cnc-router-head.jpg', alt: 'CNC router head mid-cut on a pressed HDPE sheet' },
+      { src: '/images/process/cnc-software.jpg', alt: 'BlueCarve CNC control software nesting bed-leg cuts' },
+      { src: '/images/process/cnc-sheet-loaded.jpg', alt: 'A pressed HDPE sheet loaded onto the CNC bed ready to cut' },
+    ],
+  },
+  {
+    step: 4,
+    label: 'Form',
+    title: 'Hydraulic press, finished leg',
+    body: 'CNC-cut blanks go into a hydraulic press to form the leg profile that clicks onto the steel pole. Each leg is checked against a tolerance jig. Pass goes into the parts rack. Fail goes back to the shredder. The system is designed so nothing becomes waste.',
+    hero: { src: '/images/process/hydraulic-press.jpg', alt: 'Hydraulic press forming a Stretch Bed leg from a CNC-cut HDPE blank' },
+    supporting: [
+      { src: '/images/process/cut-legs-stored.jpg', alt: 'Finished recycled-HDPE Stretch Bed legs stored on a parts rack' },
+      { src: '/images/process/steel-frame-filled.jpg', alt: 'Steel frame stacked with finished bed legs ready for dispatch' },
+      { src: '/images/process/parts-rack-sorted.jpg', alt: 'Sorted parts rack holding leg components and steel poles' },
+    ],
+  },
+  {
+    step: 5,
+    label: 'Assemble',
+    title: 'Built by the people who use it',
+    body: 'Two galvanised steel poles thread through canvas sleeves. Four recycled-plastic legs click onto the poles. No tools, no fasteners, under five minutes. The Stretch Bed is designed so the person who lives with it is the person who assembles it, and so a kid can rebuild it next time the family moves house.',
+    // hero + supporting are replaced at request time with live EL photos
+    // from the Alice Springs May 2026 build (event:alice-build). Local
+    // values stay as a fallback if EL is unreachable.
+    hero: { src: '/images/product/stretch-bed-kids-building.jpg', alt: 'Young people building a Stretch Bed in Alice Springs, May 2026' },
+    supporting: [
+      { src: '/images/product/stretch-bed-assembly.jpg', alt: 'Stretch Bed assembly in progress' },
+      { src: '/images/product/stretch-bed-community.jpg', alt: 'Stretch Bed being built with community' },
+      { src: '/images/product/stretch-bed-detail.jpg', alt: 'Detail of a finished Stretch Bed' },
+    ],
+    video: {
+      src: '/video/building-together-desktop.mp4',
+      poster: '/video/building-together-poster.jpg',
+    },
+  },
+  {
+    step: 6,
+    label: 'Land',
+    title: 'In a home, on Country',
+    body: 'Beds travel by road train and barge to remote communities across the Northern Territory, Queensland and Western Australia. Every Stretch Bed is logged under a QR code that links to a public field-note: where it landed, who unpacked it, what the family said. The work is traceable from chip to canvas.',
+    hero: { src: '/images/product/stretch-bed-in-use.jpg', alt: 'A finished Stretch Bed in use inside a remote-community home' },
+    supporting: [
+      { src: '/images/product/stretch-bed-community.jpg', alt: 'Stretch Bed in a community setting' },
+      { src: '/images/product/stretch-bed-assembled.jpg', alt: 'Stretch Bed assembled and ready for use' },
+      { src: '/images/product/stretch-bed-hero.jpg', alt: 'The Stretch Bed: recycled plastic legs, steel poles, canvas' },
+    ],
+  },
+];
+
+const PLANT_GALLERY = [
+  { src: '/images/process/containers-wide-angle.jpg', alt: 'Wide-angle view of the containerised production facility' },
+  { src: '/images/process/workstation-container.jpg', alt: 'Workstation inside one of the production containers' },
+  { src: '/images/process/factory-panorama.jpg', alt: 'Panorama of the on-country production plant' },
+];
+
+export default async function ProcessPage() {
+  // Pull live Alice Springs May 2026 build photos from Empathy Ledger.
+  // First photo becomes the step-5 hero behind the video controls; the
+  // next three populate the supporting grid. If EL is unreachable the
+  // local fallbacks defined in STEPS[4] kick in.
+  const elBuildPhotos = await fetchBuildPhotos(
+    ['trip:may-2026', 'event:alice-build', 'product:stretch-bed'],
+    4,
   );
-}
+  const steps: Step[] = STEPS.map((s) => {
+    if (s.step !== 5 || elBuildPhotos.length === 0) return s;
+    const [hero, ...rest] = elBuildPhotos;
+    const supporting = rest.length >= 3
+      ? rest.slice(0, 3).map((p) => ({ src: p.src, alt: p.alt }))
+      : s.supporting;
+    return {
+      ...s,
+      hero: hero ? { src: hero.src, alt: hero.alt } : s.hero,
+      supporting,
+    };
+  });
 
-export default function ProcessPage() {
   return (
     <main>
-      {/* Header */}
-      <section className="bg-gradient-to-b from-muted/50 to-background py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto">
-            <p className="text-sm uppercase tracking-widest text-accent mb-4">
-              The Journey
+      {/* ============================================================
+         HERO with background video
+         ============================================================ */}
+      <section className="relative isolate overflow-hidden bg-foreground text-background">
+        <video
+          className="absolute inset-0 h-full w-full object-cover opacity-50"
+          src="/video/recycling-plant-desktop.mp4"
+          poster="/video/recycling-plant-poster.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/60 to-foreground/85" />
+        <div className="relative container mx-auto px-4 py-24 md:py-36">
+          <div className="max-w-3xl">
+            <p className="text-xs uppercase tracking-[0.25em] text-background/70 mb-5">
+              How it&rsquo;s made
             </p>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              How It&apos;s Made
+            <h1 className="text-4xl md:text-6xl font-bold leading-[1.05] mb-6">
+              From recycled plastic to a bed in a remote home.
             </h1>
-            <p className="text-lg text-muted-foreground">
-              Every Stretch Bed starts as recycled plastic and ends as a health resource
-              for remote communities. Here&apos;s the journey from waste to rest.
+            <p className="text-lg md:text-xl text-background/85 mb-8 leading-relaxed max-w-2xl">
+              Plastic gathered on Country. Pressed and cut inside a shipping-container factory.
+              Built in five minutes by the family who&rsquo;ll sleep on it.
             </p>
+            <div className="flex flex-wrap gap-3">
+              <Button asChild size="lg" variant="secondary">
+                <Link href="#step-5">Watch the build &darr;</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="bg-transparent text-background border-background/40 hover:bg-background/10">
+                <Link href="/shop/stretch-bed-single">Shop the Stretch Bed</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Process Steps */}
+      {/* ============================================================
+         STATS STRIP
+         ============================================================ */}
+      <section className="bg-accent py-10">
+        <div className="container mx-auto px-4">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto text-center">
+            <div>
+              <div className="text-3xl font-bold text-accent-foreground">20kg</div>
+              <div className="text-sm text-accent-foreground/80 mt-1">Recycled HDPE per bed</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-accent-foreground">5 min</div>
+              <div className="text-sm text-accent-foreground/80 mt-1">Assembly, no tools</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-accent-foreground">200kg</div>
+              <div className="text-sm text-accent-foreground/80 mt-1">Load capacity</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-accent-foreground">10+ yrs</div>
+              <div className="text-sm text-accent-foreground/80 mt-1">Design life</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+         SIX STEPS
+         ============================================================ */}
       <section className="py-16 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto space-y-12">
-            {processSteps.map((step, index) => (
-              <div key={step.step} className="relative">
-                {/* Connector line */}
-                {index < processSteps.length - 1 && (
-                  <div className="absolute left-1/2 -translate-x-px top-full h-12 w-0.5 bg-border hidden md:block" />
-                )}
+          <div className="max-w-6xl mx-auto space-y-20 md:space-y-28">
+            {steps.map((step) => (
+              <article
+                key={step.step}
+                id={`step-${step.step}`}
+                className="scroll-mt-16 grid gap-8 md:grid-cols-12 md:gap-12 items-start"
+              >
+                {/* Step label + text (5 columns on md) */}
+                <div className="md:col-span-5 md:sticky md:top-20">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">
+                      {step.step}
+                    </span>
+                    <span className="text-xs uppercase tracking-[0.25em] text-accent font-semibold">
+                      {step.label}
+                    </span>
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight"
+                      dangerouslySetInnerHTML={{ __html: step.title }}
+                  />
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    {step.body}
+                  </p>
+                </div>
 
-                <Card className={index % 2 === 0 ? '' : 'bg-muted/30'}>
-                  <CardContent className="p-8 md:p-12">
-                    <div className="grid gap-8 md:grid-cols-[1fr_2fr] items-center">
-                      {/* Step info */}
-                      <div className="text-center md:text-left">
-                        <StepIcon icon={step.icon} step={step.step} />
-                        <h2 className="text-2xl font-bold text-foreground mb-1">
-                          {step.title}
-                        </h2>
-                        <p className="text-sm text-accent font-medium">
-                          {step.subtitle}
-                        </p>
-                      </div>
-
-                      {/* Description + media */}
-                      <div>
-                        <p className="text-muted-foreground mb-6">
-                          {step.description}
-                        </p>
-                        {/* Video or photo — /public/images/process/0X-<step>.jpg */}
-                        {(() => {
-                          const stepKey = step.icon === 'flame' ? 'process' : step.icon === 'recycle' ? 'source' : step.icon === 'scissors' ? 'cut' : step.icon === 'wrench' ? 'build' : step.icon === 'weave' ? 'weave' : 'deliver';
-                          const stepMedia = processStepMedia[stepKey];
-                          if (stepMedia?.video) {
-                            return <VideoSlot src={stepMedia.video} label={`${step.title} — ${step.subtitle}`} />;
-                          }
-                          if (stepMedia?.photo) {
-                            return <MediaSlot src={stepMedia.photo} alt={`${step.title} — ${step.subtitle}`} aspect="video" />;
-                          }
-                          return <VideoSlot label={`${step.title} video coming soon`} />;
-                        })()}
-                      </div>
+                {/* Media (7 columns on md) */}
+                <div className="md:col-span-7 space-y-3">
+                  {/* Hero slot: video if provided, otherwise the hero photo */}
+                  {step.video ? (
+                    <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted shadow-sm">
+                      <video
+                        className="absolute inset-0 h-full w-full object-cover"
+                        src={step.video.src}
+                        poster={step.video.poster}
+                        controls
+                        preload="metadata"
+                        playsInline
+                      />
                     </div>
-                  </CardContent>
-                </Card>
-              </div>
+                  ) : (
+                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-muted shadow-sm">
+                      <Image
+                        src={step.hero.src}
+                        alt={step.hero.alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 60vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
+
+                  {/* 3-photo grid */}
+                  <div className="grid grid-cols-3 gap-3">
+                    {step.supporting.map((tile) => (
+                      <div
+                        key={tile.src}
+                        className="relative aspect-square w-full overflow-hidden rounded-xl bg-muted"
+                      >
+                        <Image
+                          src={tile.src}
+                          alt={tile.alt}
+                          fill
+                          sizes="(max-width: 768px) 33vw, 20vw"
+                          className="object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Impact Summary */}
+      {/* ============================================================
+         ON-COUNTRY PRODUCTION PLANT
+         ============================================================ */}
       <section className="bg-muted/30 py-16 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-8">
-              Every Bed Tells a Story
-            </h2>
-            <div className="grid gap-6 sm:grid-cols-3 mb-10">
-              <div>
-                <div className="text-3xl font-bold text-primary">20kg</div>
-                <div className="text-sm text-muted-foreground mt-1">Plastic diverted from landfill per bed</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-primary">5 min</div>
-                <div className="text-sm text-muted-foreground mt-1">Assembly time, no tools required</div>
-              </div>
+          <div className="max-w-5xl mx-auto">
+            <div className="max-w-2xl mb-10">
+              <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">
+                Production
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">
+                A factory inside a shipping container.
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                The plant is designed to lift, move and re-deploy. Two 20-foot containers hold the
+                shredder, the heat press, the CNC router and the workstation. Power and water plug
+                in. A community can take ownership of the whole production line and run it from
+                their own yard.
+              </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild>
-                <Link href="/shop/stretch-bed-single">Shop the Stretch Bed</Link>
+
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl bg-muted shadow-sm mb-4">
+              <Image
+                src="/images/process/container-factory.jpg"
+                alt="Containerised production plant on country"
+                fill
+                sizes="(max-width: 1024px) 100vw, 1000px"
+                className="object-cover"
+                priority={false}
+              />
+            </div>
+            <div className="grid grid-cols-3 gap-3">
+              {PLANT_GALLERY.map((tile) => (
+                <div
+                  key={tile.src}
+                  className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-muted"
+                >
+                  <Image
+                    src={tile.src}
+                    alt={tile.alt}
+                    fill
+                    sizes="(max-width: 768px) 33vw, 25vw"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+         MADE BY COMMUNITY — closing band with full-bleed video
+         ============================================================ */}
+      <section className="relative isolate overflow-hidden bg-foreground text-background">
+        <video
+          className="absolute inset-0 h-full w-full object-cover opacity-50"
+          src="/video/building-together-desktop.mp4"
+          poster="/video/building-together-poster.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-foreground/50 via-foreground/65 to-foreground/85" />
+        <div className="relative container mx-auto px-4 py-20 md:py-28">
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="text-xs uppercase tracking-[0.25em] text-background/70 mb-5">
+              The model
+            </p>
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+              Made by community. Made for community.
+            </h2>
+            <p
+              className="text-2xl md:text-3xl text-background/90 italic leading-snug mb-10"
+              style={{ fontFamily: 'Georgia, serif' }}
+            >
+              &ldquo;When someone asks &lsquo;Who makes these?&rsquo; the answer is
+              &lsquo;We do.&rsquo;&rdquo;
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button asChild size="lg" variant="secondary">
+                <Link href="/sponsor">Sponsor a bed</Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/partner">Partner With Us</Link>
+              <Button asChild size="lg" variant="outline" className="bg-transparent text-background border-background/40 hover:bg-background/10">
+                <Link href="/partner">Partner with us</Link>
               </Button>
             </div>
           </div>
