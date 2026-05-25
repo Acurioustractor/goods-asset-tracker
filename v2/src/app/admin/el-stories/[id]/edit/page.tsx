@@ -24,14 +24,14 @@ const EL_KEY = process.env.EMPATHY_LEDGER_SUPABASE_KEY || '';
 
 // Deep-link base for EL's native story editor. EL is canonical; edits
 // there land on Goods on next request (getStory uses revalidate: 0).
-// Defaults to the EL Vercel frontend. Override with EMPATHY_LEDGER_ADMIN_URL
-// if EL's editor lives at a different path or host.
+// EL's per-story edit page is /stories/write/<id> (verified in the
+// empathy-ledger-v2 repo at src/app/stories/write/[id]).
 const EL_ADMIN_URL =
   process.env.EMPATHY_LEDGER_ADMIN_URL ||
   process.env.EMPATHY_LEDGER_API_URL ||
-  'https://empathy-ledger.vercel.app';
+  'https://empathy-ledger-v2.vercel.app';
 function elEditUrl(storyId: string): string {
-  return `${EL_ADMIN_URL.replace(/\/+$/, '')}/admin/stories/${storyId}`;
+  return `${EL_ADMIN_URL.replace(/\/+$/, '')}/stories/write/${storyId}`;
 }
 
 interface ElStoryRow {
