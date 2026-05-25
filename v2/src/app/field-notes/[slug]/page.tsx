@@ -91,8 +91,21 @@ export default async function FieldNotePage({ params, searchParams }: Props) {
   //      take precedence over EL tag matches.
   const overrides = getStoryOverrides(slug);
   const preResolved = applyOverrides(story, overrides);
-  const resolved = await resolveGalleryBlocks(preResolved, { internal });
-  const withLiveMap = await resolveLiveMapCounts(resolved);
+  // Diagnostic guards: wrap each resolver in try/catch so a single
+  // failing fetch returns the unresolved story instead of crashing
+  // the whole route. The original error gets logged.
+  let resolved = preResolved;
+  try {
+    resolved = await resolveGalleryBlocks(preResolved, { internal });
+  } catch (err) {
+    console.error('[field-notes] resolveGalleryBlocks failed:', err);
+  }
+  let withLiveMap = resolved;
+  try {
+    withLiveMap = await resolveLiveMapCounts(resolved);
+  } catch (err) {
+    console.error('[field-notes] resolveLiveMapCounts failed:', err);
+  }
   const final = applyOverrides(withLiveMap, overrides);
   return <TripStory story={final} internal={internal} />;
 }
