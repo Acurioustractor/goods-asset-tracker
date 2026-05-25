@@ -60,11 +60,26 @@ export function constructWebhookEvent(
     throw new Error('STRIPE_WEBHOOK_SECRET (or STRIPE_WEBHOOK_SECRET_TEST) is not set');
   }
 
+  // Telemetry without leaking secrets — just the presence + length of each.
+  const live = process.env.STRIPE_WEBHOOK_SECRET || '';
+  const test = process.env.STRIPE_WEBHOOK_SECRET_TEST || '';
+  console.log('[stripe-webhook] secrets loaded', {
+    liveSet: Boolean(live),
+    liveLen: live.length,
+    testSet: Boolean(test),
+    testLen: test.length,
+    sigPrefix: (signature || '').slice(0, 18),
+  });
+
   let lastError: unknown;
-  for (const secret of secrets) {
+  for (let i = 0; i < secrets.length; i++) {
     try {
-      return getStripe().webhooks.constructEvent(body, signature, secret);
+      const event = getStripe().webhooks.constructEvent(body, signature, secrets[i]);
+      console.log(`[stripe-webhook] verified with secret #${i + 1} (${secrets[i].length} chars)`);
+      return event;
     } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      console.log(`[stripe-webhook] secret #${i + 1} (${secrets[i].length} chars) failed: ${msg.slice(0, 200)}`);
       lastError = err;
     }
   }
