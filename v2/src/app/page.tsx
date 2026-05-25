@@ -23,8 +23,8 @@ export default async function HomePage() {
           mobile: videoUrl('hero-mobile.mp4'),
           poster: '/video/hero-poster.jpg',
         }}
-        imageSrc="/images/hero/stretch-bed-on-country.jpg"
-        imageAlt="The Stretch Bed on Country: recycled plastic legs, galvanised steel poles, heavy-duty canvas"
+        imageSrc="/images/media-pack/lying-on-stretch-bed.jpg"
+        imageAlt="A young man lying full-length on a Stretch Bed on country: recycled plastic legs, galvanised steel poles, heavy-duty canvas"
       />
 
       {/* 2. The Stretch Bed: Materials + Assembly + Price comparison */}

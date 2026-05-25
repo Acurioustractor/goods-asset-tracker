@@ -1,6 +1,6 @@
 // Goods on Country - v2 Next.js App
 import type { Metadata } from 'next';
-import { Inter, Playfair_Display } from 'next/font/google';
+import { Inter, Playfair_Display, Poppins } from 'next/font/google';
 import './globals.css';
 import {
   ConditionalSiteHeader,
@@ -20,6 +20,12 @@ const inter = Inter({
 
 const playfair = Playfair_Display({
   variable: '--font-display',
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+});
+
+const poppins = Poppins({
+  variable: '--font-poppins',
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
 });
@@ -65,10 +71,10 @@ export const metadata: Metadata = {
     siteName: 'Goods on Country',
     images: [
       {
-        url: '/images/hero/stretch-bed-on-country.jpg',
-        width: 1200,
-        height: 800,
-        alt: 'The Stretch Bed on Country by Goods on Country',
+        url: '/images/media-pack/lying-on-stretch-bed.jpg',
+        width: 2000,
+        height: 1333,
+        alt: 'A young man lying full-length on a Stretch Bed on country, the recycled-plastic legs and canvas visible',
       },
     ],
   },
@@ -77,7 +83,7 @@ export const metadata: Metadata = {
     title: 'Goods on Country',
     description:
       'Beds, washing machines, and a manufacturing model that stays with the communities it serves.',
-    images: ['/images/hero/stretch-bed-on-country.jpg'],
+    images: ['/images/media-pack/lying-on-stretch-bed.jpg'],
   },
   robots: {
     index: true,
@@ -103,7 +109,7 @@ export default function RootLayout({
         <OrganizationJsonLd />
         <WebSiteJsonLd />
       </head>
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`} suppressHydrationWarning>
+      <body className={`${inter.variable} ${playfair.variable} ${poppins.variable} font-sans antialiased`} suppressHydrationWarning>
         <CartProvider>
           <div className="flex min-h-screen flex-col">
             <ConditionalSiteHeader />

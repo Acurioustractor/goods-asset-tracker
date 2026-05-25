@@ -92,7 +92,7 @@ export function OrganizationJsonLd({
       height: 512,
     },
     image: [
-      `${baseUrl}/images/hero/stretch-bed-on-country.jpg`,
+      `${baseUrl}/images/media-pack/lying-on-stretch-bed.jpg`,
       `${baseUrl}/images/product/stretch-bed-hero.jpg`,
     ],
     description:
