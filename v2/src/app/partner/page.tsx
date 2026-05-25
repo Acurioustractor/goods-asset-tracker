@@ -2,12 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { PartnershipForm } from '@/components/partnership-form';
-import { BUYER_PIPELINE, CAPITAL_STACK, TRACTION_STATS } from '@/lib/data/funder-shared-content';
+import { BUYER_PIPELINE, TRACTION_STATS } from '@/lib/data/funder-shared-content';
 
 export const metadata = {
   title: 'Partner With Us',
   description:
-    'How foundations, corporates, institutional buyers and community organisations back Goods on Country — and how to start a conversation.',
+    'How foundations, corporates, institutional buyers and community organisations back Goods on Country, and how to start a conversation.',
   alternates: {
     canonical: 'https://www.goodsoncountry.com/partner',
   },
@@ -36,7 +36,7 @@ const backedByPartners = [
     width: 2194,
     height: 1056,
     href: 'https://www.snowfoundation.org.au',
-    role: 'Four years of strategic backing. Champion of the work upstream — RHD advocacy at Parliament House.',
+    role: 'Four years of strategic backing. Champion of the work upstream: RHD advocacy at Parliament House.',
   },
   {
     name: 'Centrecorp Foundation',
@@ -60,7 +60,7 @@ const backedByPartners = [
     width: 1024,
     height: 491,
     href: 'https://frrr.org.au',
-    role: 'Backing the Future grant — rural and remote distribution support.',
+    role: 'Backing the Future grant. Rural and remote distribution support.',
   },
   {
     name: 'AMP Foundation',
@@ -136,15 +136,12 @@ export default async function PartnerPage({
               </p>
               <p className="text-lg text-muted-foreground mb-8">
                 If you back foundations, write impact cheques, run procurement for health or
-                housing, or lead a community organisation that needs beds — there&apos;s a way in
+                housing, or lead a community organisation that needs beds, there&apos;s a way in
                 here that fits your shape.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Button asChild size="lg">
                   <Link href="#start">Start a conversation</Link>
-                </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link href="/impact">See where the money goes</Link>
                 </Button>
               </div>
             </div>
@@ -207,7 +204,7 @@ export default async function PartnerPage({
               <h3 className="text-xl font-bold text-foreground mb-3">Foundations &amp; trusts</h3>
               <p className="text-sm text-muted-foreground mb-5">
                 Six grant funders have backed Goods over four years. Together they&apos;ve put
-                $445K into the work — from the early prototypes through to the production scale-up
+                $445K into the work, from the early prototypes through to the production scale-up
                 we&apos;re inside right now.
               </p>
               <ul className="space-y-3 text-sm">
@@ -220,34 +217,34 @@ export default async function PartnerPage({
               </ul>
             </div>
 
-            {/* Lane 2 — Institutional buyers */}
+            {/* Lane 2: Institutional buyers */}
             <div className="rounded-2xl border border-border bg-card p-7">
               <p className="text-xs uppercase tracking-[0.2em] text-accent mb-3">Lane 2</p>
               <h3 className="text-xl font-bold text-foreground mb-3">Institutional buyers</h3>
               <p className="text-sm text-muted-foreground mb-5">
-                Beds are revenue. Centrecorp&apos;s repeat order, Miwatj&apos;s clinic fleet, NPY
-                Women&apos;s Council, WHSAC procurement — this pipeline is in active conversation.
-                Each LOI is a year of On-Country manufacturing capacity.
+                Beds are revenue. Centrecorp&apos;s repeat order, Miwatj&apos;s clinic fleet,
+                Homeland Schools: this pipeline is in active conversation. Each LOI is a year of
+                On-Country manufacturing capacity.
               </p>
               <ul className="space-y-3 text-sm">
-                {BUYER_PIPELINE.map((b) => (
+                {BUYER_PIPELINE.filter(
+                  (b) => b.buyer !== "NPY Women's Council" && b.buyer !== 'WHSAC / Groote Eylandt'
+                ).map((b) => (
                   <li key={b.buyer}>
                     <div className="font-semibold text-foreground">{b.buyer}</div>
-                    <div className="text-muted-foreground">
-                      {b.volume} · {b.value}
-                    </div>
+                    <div className="text-muted-foreground">{b.volume}</div>
                     <div className="text-xs text-accent">{b.status}</div>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Lane 3 — Community partners */}
+            {/* Lane 3: Community partners */}
             <div className="rounded-2xl border border-border bg-card p-7">
               <p className="text-xs uppercase tracking-[0.2em] text-accent mb-3">Lane 3</p>
               <h3 className="text-xl font-bold text-foreground mb-3">Community partners</h3>
               <p className="text-sm text-muted-foreground mb-5">
-                Goods is a product designed around the fire — not in a catalogue. Cultural leads,
+                Goods is a product designed around the fire, not in a catalogue. Cultural leads,
                 Elders, and community organisations shape what we build, who we build with, and
                 where the production sits.
               </p>
@@ -259,17 +256,17 @@ export default async function PartnerPage({
                   </span>
                 </li>
                 <li>
-                  <span className="font-semibold text-foreground">Wilya Janta.</span>{' '}
-                  <span className="text-muted-foreground">
-                    Housing advocacy partnership with Norm Frank Jupurrurla and Dr Simon Quilty in Tennant Creek.
-                  </span>
-                </li>
-                <li>
                   <span className="font-semibold text-foreground">
                     Palm Island Community Company.
                   </span>{' '}
                   <span className="text-muted-foreground">
                     Largest single deployment (141 beds) and the pathway to community-owned manufacturing.
+                  </span>
+                </li>
+                <li>
+                  <span className="font-semibold text-foreground">Homeland Schools Company.</span>{' '}
+                  <span className="text-muted-foreground">
+                    Maningrida-based partner running washing machines and beds across the homeland school network.
                   </span>
                 </li>
                 <li>
@@ -289,52 +286,32 @@ export default async function PartnerPage({
          ============================================================ */}
       <section className="bg-foreground text-background py-16 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid gap-10 md:grid-cols-[1fr_auto] md:items-start">
-              <div>
-                <p className="text-xs uppercase tracking-[0.25em] text-background/60 mb-4">
-                  Currently in flight
-                </p>
-                <h2 className="text-3xl md:text-4xl font-bold mb-5 leading-tight">
-                  QBE Catalysing Impact 2026.
-                </h2>
-                <p className="text-lg text-background/85 mb-4 leading-relaxed">
-                  Goods is inside the QBE Foundation&apos;s blended-finance accelerator,
-                  facilitated by Social Impact Hub. We were selected for climate-resilience and
-                  inclusion alignment.
-                </p>
-                <p className="text-lg text-background/85 mb-4 leading-relaxed">
-                  Stage 2 of the program includes a dollar-for-dollar match of up to{' '}
-                  <span className="text-background font-semibold">$400K</span> against capital we
-                  raise from elsewhere. The structure is a blended stack: catalytic philanthropy
-                  on top, working-capital debt from SEFA, the QBE match in the middle.
-                </p>
-                <p className="text-lg text-background/85 leading-relaxed">
-                  If you&apos;re a foundation, family office or impact investor, this is the
-                  cleanest moment to come in. Every dollar you commit is matched. The pipeline is
-                  already de-risked by buyers under contract.
-                </p>
-              </div>
-              <div className="rounded-2xl bg-background/5 border border-background/10 p-6 md:w-72">
-                <p className="text-xs uppercase tracking-[0.2em] text-background/60 mb-4">
-                  The stack we&apos;re assembling
-                </p>
-                <ul className="space-y-3 text-sm">
-                  {CAPITAL_STACK.map((layer) => (
-                    <li key={layer.layer}>
-                      <div className="font-semibold text-background">{layer.layer}</div>
-                      <div className="text-background/70 text-xs">{layer.source}</div>
-                      <div className="text-background/85 text-sm">{layer.amount}</div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className="mt-10">
-              <Button asChild size="lg" variant="secondary">
-                <Link href="#start">Match the QBE round &rarr;</Link>
-              </Button>
-            </div>
+          <div className="max-w-3xl mx-auto">
+            <p className="text-xs uppercase tracking-[0.25em] text-background/60 mb-4">
+              Currently in flight
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-5 leading-tight">
+              QBE Catalysing Impact 2026.
+            </h2>
+            <p className="text-lg text-background/85 mb-4 leading-relaxed">
+              Goods is inside the QBE Foundation&apos;s blended-finance accelerator, facilitated
+              by Social Impact Hub. We were selected for climate-resilience and inclusion
+              alignment.
+            </p>
+            <p className="text-lg text-background/85 mb-4 leading-relaxed">
+              Stage 2 of the program includes a dollar-for-dollar match of up to{' '}
+              <span className="text-background font-semibold">$400K</span> against capital we
+              raise from elsewhere. The structure is a blended stack: catalytic philanthropy on
+              top, working-capital debt from SEFA, the QBE match in the middle.
+            </p>
+            <p className="text-lg text-background/85 leading-relaxed mb-10">
+              If you&apos;re a foundation, family office or impact investor, this is the cleanest
+              moment to come in. Every dollar you commit is matched. The pipeline is already
+              de-risked by buyers under contract.
+            </p>
+            <Button asChild size="lg" variant="secondary">
+              <Link href="#start">Match the QBE round &rarr;</Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -419,7 +396,7 @@ export default async function PartnerPage({
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl font-bold text-foreground mb-10">Our partners, in logos</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-10">Our partners</h2>
 
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-5">Backed by</p>
             <div className="mb-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-8 sm:gap-x-14">
