@@ -60,7 +60,7 @@ export const communityPartners: CommunityPartner[] = [
     name: 'Oonchiumpa Consultancy',
     category: 'core',
     location: 'Alice Springs / Mbantua',
-    description: '100% Aboriginal owned and operated. Named after Central Australian corkwood tree. Two years co-designing products "around the fire". Planning production facility in Alice Springs.',
+    description: '100% Aboriginal owned and operated. Named after Central Australian corkwood tree. Two years designing products in community, "around the fire". Planning production facility in Alice Springs.',
     contacts: [
       { name: 'Kristy Bloomfield', role: 'Director', email: 'kristy.bloomfield@oonchiumpa.com.au' },
       { name: 'Tanya Turner', role: 'Manager' },
@@ -77,7 +77,7 @@ export const communityPartners: CommunityPartner[] = [
     name: 'Wilya Janta',
     category: 'core',
     location: 'Tennant Creek',
-    description: 'Housing advocacy, demonstration home partnership. Active bed testing and co-design.',
+    description: 'Housing advocacy, demonstration home partnership. Active bed testing and community-led design.',
     contacts: [
       { name: 'Norman Frank Jupurrurla', role: 'Founder' },
       { name: 'Dr. Simon Quilty', role: 'CEO, 20+ years NT health' },
@@ -419,7 +419,7 @@ export const communityVoices: CommunityVoice[] = [
 
   // Tennant Creek
   {
-    id: 'dianne', name: 'Dianne Stokes', role: 'Waramungu and Warlmanpa Elder, Co-Designer', community: 'Tennant Creek', state: 'NT',
+    id: 'dianne', name: 'Dianne Stokes', role: 'Waramungu and Warlmanpa Elder, named and designed the Pakkimjalki Kari washing machine', community: 'Tennant Creek', state: 'NT',
     quotes: [
       'Working both ways — cultural side in white society and Indigenous society.',
       'Hardly any people around the community have beds.',

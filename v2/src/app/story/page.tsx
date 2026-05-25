@@ -991,8 +991,8 @@ export default async function StoryPage() {
                 Elder Dianne Stokes
               </h2>
               <p className="text-muted-foreground text-center mb-8 max-w-lg mx-auto">
-                She named it &ldquo;Pakkimjalki Kari&rdquo; in Warumungu language. She didn&rsquo;t just
-                receive a product. She co-designed it, tested it, and named it for her community.
+                She named it &ldquo;Pakkimjalki Kari&rdquo; in Warumungu language. She designed it
+                in community, tested it, and named it for her family and her Country.
               </p>
               {STORY_VIDEOS.dianneStokes ? (
                 <VideoSlot

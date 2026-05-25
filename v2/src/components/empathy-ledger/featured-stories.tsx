@@ -21,7 +21,7 @@ const themeStyles: Record<string, { label: string; className: string }> = {
   'housing-journey': { label: 'Housing', className: 'bg-blue-100 text-blue-800' },
   health: { label: 'Health', className: 'bg-red-100 text-red-800' },
   dignity: { label: 'Dignity', className: 'bg-purple-100 text-purple-800' },
-  'co-design': { label: 'Co-Design', className: 'bg-amber-100 text-amber-800' },
+  'co-design': { label: 'Community-Led Design', className: 'bg-amber-100 text-amber-800' },
   'washing-machine': { label: 'Washing Machines', className: 'bg-green-100 text-green-800' },
 };
 

@@ -360,7 +360,7 @@ export default function StretchBedGuidePage() {
             <h2>Why the Stretch Bed Was Developed</h2>
             <p>
               The Stretch Bed evolved from community feedback on the earlier Basket Bed design.
-              Four themes emerged from co-design sessions:
+              Four themes emerged from the community design sessions:
             </p>
 
             <div className="not-prose space-y-4 mt-6">

@@ -153,7 +153,7 @@ export function StoriesClient({
                   className={`relative ${index > 0 ? 'pt-16 border-t border-border' : ''}`}
                 >
                   <Badge variant="outline" className="mb-6 text-xs">
-                    {story.theme === 'co-design' && 'Co-Design'}
+                    {story.theme === 'co-design' && 'Community-Led Design'}
                     {story.theme === 'health' && 'Health'}
                     {story.theme === 'dignity' && 'Dignity'}
                     {story.theme === 'housing-journey' && 'Housing Journey'}

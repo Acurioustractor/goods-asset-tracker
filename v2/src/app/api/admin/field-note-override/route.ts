@@ -13,6 +13,7 @@ interface Body {
   slug?: string;
   key?: string;
   value?: string | null;
+  updates?: { key: string; value: string | null }[];
 }
 
 export async function POST(req: Request) {
@@ -22,9 +23,30 @@ export async function POST(req: Request) {
   } catch {
     return NextResponse.json({ ok: false, error: 'invalid JSON body' }, { status: 400 });
   }
-  const { slug, key, value } = body;
-  if (!slug || !key) {
-    return NextResponse.json({ ok: false, error: 'slug + key required' }, { status: 400 });
+  const { slug, key, value, updates } = body;
+  if (!slug) {
+    return NextResponse.json({ ok: false, error: 'slug required' }, { status: 400 });
+  }
+  // Batch mode: write multiple keys atomically (e.g. el-video-gallery slot
+  // override needs src + poster + title in one go so the slot doesn't
+  // render half-resolved).
+  if (Array.isArray(updates) && updates.length > 0) {
+    try {
+      for (const u of updates) {
+        if (!u.key) continue;
+        setStoryOverride(slug, u.key, u.value ?? null);
+      }
+      revalidatePath(`/field-notes/${slug}`);
+      return NextResponse.json({ ok: true });
+    } catch (e) {
+      return NextResponse.json(
+        { ok: false, error: e instanceof Error ? e.message : String(e) },
+        { status: 500 }
+      );
+    }
+  }
+  if (!key) {
+    return NextResponse.json({ ok: false, error: 'key or updates required' }, { status: 400 });
   }
   try {
     setStoryOverride(slug, key, value ?? null);

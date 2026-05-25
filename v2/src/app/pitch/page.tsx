@@ -514,7 +514,7 @@ export default function PitchPage() {
               People and partners we work with
             </h2>
             <p className="text-muted-foreground mb-10 max-w-2xl">
-              The community members, organisations, and allies who have been part of the journey: co-designing, testing, delivering, and advocating.
+              The community members, organisations, and allies who have been part of the journey: designing in community, testing, delivering, and advocating.
             </p>
 
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

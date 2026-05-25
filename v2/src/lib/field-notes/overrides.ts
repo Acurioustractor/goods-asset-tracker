@@ -60,6 +60,11 @@ export function setStoryOverride(slug: string, key: string, value: string | null
 // Walks a dot path like "0.media.image" into the block tree and overwrites
 // the leaf string. Returns a NEW story (immutable). Silent no-op if the
 // path doesn't resolve — never throws at render time.
+//
+// Auto-creates intermediate objects/arrays so overrides can write into
+// slots the resolver hasn't populated yet (e.g. pinning a video into an
+// el-video-gallery with no tag match). Numeric segments create arrays;
+// named segments create objects.
 export function applyOverrides(story: TripStory, overrides: Record<string, string>): TripStory {
   if (!overrides || Object.keys(overrides).length === 0) return story;
   // Deep-clone the blocks so we don't mutate the imported source data.
@@ -73,12 +78,13 @@ export function applyOverrides(story: TripStory, overrides: Record<string, strin
     let target: any = blocks[idx];
     for (let i = 1; i < parts.length - 1; i++) {
       const p = parts[i];
-      // Support numeric indices in the path (items.0.poster)
       const numeric = /^\d+$/.test(p) ? parseInt(p, 10) : null;
-      const next = numeric !== null ? target[numeric] : target[p];
+      const nextSegmentIsNumeric = /^\d+$/.test(parts[i + 1] ?? '');
+      let next = numeric !== null ? target[numeric] : target[p];
       if (next === undefined || next === null) {
-        target = null;
-        break;
+        next = nextSegmentIsNumeric ? [] : {};
+        if (numeric !== null) target[numeric] = next;
+        else target[p] = next;
       }
       target = next;
     }

@@ -80,7 +80,7 @@ export const QBE_PROGRAM = {
 export const INVESTMENT_THESIS = {
   why: "Remote Indigenous communities buy roughly $3M a year of washing machines from one Alice Springs supplier, and most of them end up in dumps within months. Beds in remote houses are typically replaced every 18 months. The unit economics of disposable goods in remote Australia are broken, and the social cost (sleep, hygiene, dignity, household function) compounds.",
   whoWeAre:
-    "First Nations led, On-Country manufacturing model. Products designed for actual remote conditions, not for catalogues. Real telemetry data, real revenue, real Elders and communities co-designing the product line. We've shipped the beds. The proof is in the houses.",
+    "First Nations led, On-Country manufacturing model. Products designed in community for actual remote conditions, not in an office for catalogues. Real telemetry data, real revenue, real Elders and communities leading the design of the product line. We've shipped the beds. The proof is in the houses.",
   achievable:
     "At roughly $750 a bed, 1,500 beds delivered in year one is over $1.1M of revenue against a committed buyer pipeline already in active conversation. The $3M stack covers facility build, working capital, and the runway to scale into On-Country production at a defensible margin.",
 };

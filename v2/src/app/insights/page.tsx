@@ -14,7 +14,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Community Insights',
   description:
-    'Explore thematic analysis of community voices across health, dignity, co-design, and basic needs.',
+    'Thematic analysis of community voices across health, dignity, community-led design, and basic needs.',
 };
 
 export default function InsightsPage() {
@@ -56,9 +56,9 @@ export default function InsightsPage() {
     },
     {
       id: 'co-design',
-      title: 'Co-Design',
+      title: 'Community-Led Design',
       value: themeCounts['co-design'],
-      description: 'Voices about community-led solutions',
+      description: 'Voices about community-led design and the solutions that come from it',
       color: 'amber',
     },
     {

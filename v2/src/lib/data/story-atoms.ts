@@ -21,7 +21,6 @@ export const goodsBedStats: { value: string; label: string }[] = [
   { value: STRETCH_BED.specs.loadCapacity, label: 'load capacity, rated' },
   { value: STRETCH_BED.specs.assemblyTime.replace(/^~?/, '~'), label: 'to assemble, no tools' },
   { value: STRETCH_BED.specs.plasticDiverted.split(' ')[0], label: 'of plastic kept out of landfill, per bed' },
-  { value: STRETCH_BED.specs.designLifespan, label: `design life, ${STRETCH_BED.specs.warranty} warranty` },
   { value: '400+', label: 'beds in homes since 2023' },
 ];
 
@@ -79,7 +78,7 @@ export const problemStatement = {
   heading: 'The problem we work on',
   paragraphs: [
     'Across remote Indigenous Australia, families sleep on the floor because beds are scarce, expensive, or do not survive the conditions. Imported furniture is shipped 3,000 km, lasts months, ends up in a dump.',
-    'Goods on Country builds beds and washing machines that are washable, repairable, made from waste plastic the community already has, and can be assembled in five minutes by one person. The work is co-designed with Elders and on-country teams, and the production plant is built to move into community ownership.',
+    'Goods on Country builds beds and washing machines that are washable, repairable, made from waste plastic the community already has, and can be assembled in five minutes by one person. The design happens in community with Elders and On-Country teams. The production plant is built to move into community ownership.',
   ],
 };
 

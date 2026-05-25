@@ -90,9 +90,9 @@ const EMPLOYMENT_PATHWAYS = [
       "Goods manufacturing facility: planned production site in Alice Springs to manufacture Stretch Beds and washing machines on Country, with local plastic processing and assembly.",
       'Cultural authority and youth diversion: Oonchiumpa runs a youth case work program (led by Fred Campbell) connecting young people on the edge of the justice system into structured work and community projects.',
       'Cross-cultural exchange: reciprocal exchange with PICC participants in Townsville, building a multi-region apprentice and mentor network.',
-      'Cultural curriculum and consultation: Elder-led co-design at university-equivalent rates, with revenue staying in community.',
+      'Cultural curriculum and consultation: Elder-led design in community at university-equivalent rates, with revenue staying in community.',
     ],
-    why: '100% Aboriginal owned and operated. Named after the Central Australian corkwood tree. Two years co-designing products "around the fire" with Goods. Director Kristy Bloomfield, Manager Tanya Turner, Board Chair Karen Liddle, Youth Case Worker Fred Campbell. The Alice Springs facility is the second pole of a two-site strategy that creates the cross-community apprentice exchange.',
+    why: '100% Aboriginal owned and operated. Named after the Central Australian corkwood tree. Two years designing products in community, "around the fire" with Goods. Director Kristy Bloomfield, Manager Tanya Turner, Board Chair Karen Liddle, Youth Case Worker Fred Campbell. The Alice Springs facility is the second pole of a two-site strategy that creates the cross-community apprentice exchange.',
   },
 ];
 

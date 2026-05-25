@@ -82,7 +82,7 @@ export const snowConfig: FunderConfig = {
     },
     {
       id: 2,
-      name: 'Early partnership and co-design',
+      name: 'Early partnership and design in community',
       evidence:
         '- Product evolved through iterative yarning + relational feedback — Norm Frank’s maroon request became a design feature; Diane Stokes’ "20 more" validated cleanability + durability.\n- Current 15-20 bed / 8 family sample. Targeting a few hundred (this $120K round) before scaling to 5,000+.\n- Co-creating an agreement template with Snow Foundation that can be replicated for other organisations.',
     },
@@ -120,7 +120,7 @@ export const snowConfig: FunderConfig = {
       id: 8,
       name: 'Data sovereignty and Indigenous IP',
       evidence:
-        '- Products co-designed with Bloomfield family — cultural knowledge + design input owned by community.\n- Testing feedback returns to Bloomfields first; production learnings shared with partner communities before external reporting.\n- Practical production partnership where communities retain control.\n- ACT commits to Indigenous Data Sovereignty principles for any future impact measurement.',
+        '- Products designed in community with the Bloomfield family. Cultural knowledge and design decisions stay with community.\n- Testing feedback returns to Bloomfields first; production learnings shared with partner communities before external reporting.\n- Practical production partnership where communities retain control.\n- ACT commits to Indigenous Data Sovereignty principles for any future impact measurement.',
     },
   ],
   risks: [

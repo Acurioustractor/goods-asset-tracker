@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { getTripStory, tripStories } from '@/lib/data/trip-stories';
 import { TripStory } from '@/components/stories/trip-story';
 import { resolveGalleryBlocks } from '@/lib/field-notes/resolve-gallery';
+import { resolveLiveMapCounts } from '@/lib/field-notes/resolve-live-map';
 import { getStoryOverrides, applyOverrides } from '@/lib/field-notes/overrides';
 import { createClient } from '@/lib/supabase/server';
 
@@ -28,11 +29,15 @@ function isAdminUser(user: AdminUserShape | null): boolean {
   return allow.includes(user.email || '');
 }
 
-// Static params: only PUBLISHED stories get pre-rendered. Unpublished stories
-// fall back to dynamic rendering, which lets admin previewing work for any
-// in-progress story without exposing it to the public.
+// Static params: published AND unlisted stories get pre-rendered (both are
+// servable to anonymous viewers and benefit from static generation).
+// Internal-only stories fall back to dynamic rendering, which lets admin
+// previewing work for any in-progress story without exposing it to the
+// public.
 export function generateStaticParams() {
-  return tripStories.filter((s) => s.published).map((s) => ({ slug: s.slug }));
+  return tripStories
+    .filter((s) => s.published || s.unlisted)
+    .map((s) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -67,20 +72,29 @@ export default async function FieldNotePage({ params, searchParams }: Props) {
   const isAdmin = isAdminUser(user as AdminUserShape | null);
   void isAdmin; // reserved for future elevated controls
 
-  // Public viewer + story not yet published → 404. No leakage.
-  if (!story.published && !canPreview) notFound();
+  // Public viewer + story not yet published AND not soft-launched (unlisted)
+  // → 404. Unlisted stories are URL-accessible by anyone with the link, but
+  // remain hidden from every listing surface and noindex (see metadata above).
+  if (!story.published && !story.unlisted && !canPreview) notFound();
 
   // Preview viewer with query param "?public=1" → render exactly as the
   // public sees it. Useful for sanity-checking before flipping published:true.
   const asPublic = sp.public === '1' || sp.public === 'true';
   const internal = canPreview && !asPublic;
 
-  // Apply media-swap overrides from v2/data/field-note-overrides.json
-  // BEFORE el-gallery / fromTag resolution so swapped hero videos still
-  // get treated as hardcoded paths (no tagQuery override). Then run the
-  // EL resolver. Order matters: overrides win over both source data AND
-  // any tagQuery match.
-  const overridden = applyOverrides(story, getStoryOverrides(slug));
-  const resolved = await resolveGalleryBlocks(overridden, { internal });
-  return <TripStory story={resolved} internal={internal} />;
+  // Two-pass override application:
+  //   1. Apply overrides BEFORE resolution so hardcoded paths win for
+  //      masthead/immersive/bleedquote/close media — these blocks have
+  //      direct media.image fields the swap UI writes to.
+  //   2. Run the EL resolver to fill el-gallery / el-video-gallery items
+  //      and resolve fromTag media refs.
+  //   3. Apply overrides AGAIN so post-resolution slot overrides (e.g.
+  //      pinning a specific video into an el-video-gallery limit:1 slot)
+  //      take precedence over EL tag matches.
+  const overrides = getStoryOverrides(slug);
+  const preResolved = applyOverrides(story, overrides);
+  const resolved = await resolveGalleryBlocks(preResolved, { internal });
+  const withLiveMap = await resolveLiveMapCounts(resolved);
+  const final = applyOverrides(withLiveMap, overrides);
+  return <TripStory story={final} internal={internal} />;
 }

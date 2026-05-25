@@ -87,7 +87,7 @@ const communityPartners = [
     width: 560,
     height: 350,
     href: 'https://oonchiumpa.com.au',
-    role: 'Cultural lead. 100% Aboriginal-owned. Two years co-designing products around the fire.',
+    role: 'Cultural lead. 100% Aboriginal-owned. Two years designing products in community, around the fire.',
   },
 ];
 
@@ -252,7 +252,7 @@ export default async function PartnerPage({
                 <li>
                   <span className="font-semibold text-foreground">Oonchiumpa Consultancy.</span>{' '}
                   <span className="text-muted-foreground">
-                    Cultural lead, 100% Aboriginal-owned. Two years co-designing with the Bloomfield family.
+                    Cultural lead, 100% Aboriginal-owned. Two years designing in community with the Bloomfield family.
                   </span>
                 </li>
                 <li>

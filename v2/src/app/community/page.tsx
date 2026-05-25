@@ -374,7 +374,7 @@ function PartnershipsSection() {
             Community Partnerships
           </h2>
           <p className="max-w-xl mx-auto text-muted-foreground">
-            Every product is co-designed, tested, and refined with the people who use them.
+            Every product is designed, tested, and refined in community with the people who use them.
           </p>
         </div>
 

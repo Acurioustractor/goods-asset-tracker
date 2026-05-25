@@ -6,7 +6,7 @@ import { WASHING_MACHINE } from '@/lib/data/products';
 export const metadata: Metadata = {
   title: 'Pakkimjalki Kari (Washing Machine) | Goods Wiki',
   description:
-    'Complete guide to the Pakkimjalki Kari washing machine — the journey from problem to prototype, community co-design, health impact, and how to get involved.',
+    'Complete guide to the Pakkimjalki Kari washing machine: the journey from problem to prototype, community-led design, health impact, and how to get involved.',
 };
 
 export default function WashingMachinePage() {
@@ -199,23 +199,23 @@ export default function WashingMachinePage() {
                   <div className="w-0.5 flex-1 bg-green-200 mt-1" />
                 </div>
                 <div className="pb-6">
-                  <h3 className="font-semibold text-gray-900">Naming &amp; Community Co-Design</h3>
+                  <h3 className="font-semibold text-gray-900">Naming and community-led design</h3>
                   <p className="text-sm text-gray-600 mt-1 mb-4">
                     Elder Dianne Stokes named the machine <strong>Pakkimjalki
-                    Kari</strong> in Warumungu language. This isn&apos;t just branding &mdash;
-                    it reflects community ownership of the design process. We work
-                    with communities to test, refine, and validate every decision.
+                    Kari</strong> in Warumungu language. The naming reflects who leads the
+                    design. The design happens in community. We work alongside to test,
+                    refine, and build what community decides.
                   </p>
                   <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden">
                     <Image
                       src="/images/product/washing-machine-name.jpg"
-                      alt="Pakkimjalki Kari — named in Warumungu language by Elder Dianne Stokes"
+                      alt="Pakkimjalki Kari, named in Warumungu language by Elder Dianne Stokes"
                       fill
                       className="object-cover"
                     />
                   </div>
                   <p className="text-xs text-gray-500 mt-2 italic">
-                    Pakkimjalki Kari &mdash; named in Warumungu language by Elder Dianne Stokes
+                    Pakkimjalki Kari, named in Warumungu language by Elder Dianne Stokes
                   </p>
                 </div>
               </div>
@@ -311,10 +311,10 @@ export default function WashingMachinePage() {
                   &mdash; Dianne Stokes, Elder, Tennant Creek
                 </footer>
                 <p className="text-sm text-gray-600 mt-3">
-                  Elder Dianne Stokes didn&apos;t just name the machine &mdash; she helped design it.
-                  She sat around the fire with her family refining the construction. When she received the first
-                  Stretch Bed, she came back within two weeks requesting twenty more for her community.
-                  Dianne embodies the Goods philosophy: community members aren&apos;t recipients, they&apos;re co-designers.
+                  Elder Dianne Stokes named the machine and designed it. She sat around the fire with her family
+                  refining the construction. When she received the first Stretch Bed, she came back within two
+                  weeks requesting twenty more for her community. Dianne embodies how Goods works: community
+                  members lead the design, we support the build.
                 </p>
               </div>
 
@@ -418,7 +418,7 @@ export default function WashingMachinePage() {
 
               <div className="border-l-4 border-green-500 pl-4 bg-green-50 p-4 rounded-r">
                 <h3 className="font-semibold mb-2">Beyond Washing Machines</h3>
-                <p className="text-gray-700">The containerised production facility can produce components for fridges and other appliances using different moulds and cut files. The same approach &mdash; commercial-grade base, recycled plastic housing, community co-design &mdash; can apply to any essential appliance that fails prematurely in remote conditions.</p>
+                <p className="text-gray-700">The containerised production facility can produce components for fridges and other appliances using different moulds and cut files. The same approach (commercial-grade base, recycled plastic housing, designed in community) can apply to any essential appliance that fails prematurely in remote conditions.</p>
               </div>
             </div>
           </section>

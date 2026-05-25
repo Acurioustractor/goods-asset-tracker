@@ -603,8 +603,8 @@ function PartnersSection() {
     {
       name: 'Oonchiumpa / Bloomfield Family',
       location: 'Alice Springs, NT',
-      role: 'Cultural Lead & Co-Design',
-      model: '100% Aboriginal-owned consultancy. Two years co-designing products "around the fire." Paid at university-equivalent cultural consultation rates (~$3,800/day). Planning to host production facility in Alice Springs.',
+      role: 'Cultural Lead & Design in Community',
+      model: '100% Aboriginal-owned consultancy. Two years designing products in community, "around the fire." Paid at university-equivalent cultural consultation rates (~$3,800/day). Planning to host production facility in Alice Springs.',
       status: 'Active — delivering beds on country together',
       color: '#C45C3E',
     },
@@ -627,7 +627,7 @@ function PartnersSection() {
     {
       name: 'Dianne Stokes & Norman Frank',
       location: 'Tennant Creek, NT',
-      role: 'Elder Advisory & Co-Design',
+      role: 'Elder Advisory & Design in Community',
       model: 'Elder Dianne named the washing machine "Pakkimjalki Kari" in Warumungu language. Norman Frank founded Wilya Janta for housing advocacy. Both shape product design through direct community feedback.',
       status: 'Ongoing — Elder-led product refinement',
       color: '#7C6F64',

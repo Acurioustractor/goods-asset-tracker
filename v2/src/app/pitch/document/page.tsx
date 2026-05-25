@@ -322,7 +322,7 @@ export default function PitchDocumentPage() {
             ================================================================ */}
         <section className="page-break px-12 py-16">
           <p className="text-xs uppercase tracking-[0.3em] text-neutral-400 mb-6">
-            05 &mdash; Co-Design Partnerships
+            05 · Community-Led Design Partnerships
           </p>
           <h2
             className="text-3xl font-light text-black mb-4"
@@ -331,7 +331,7 @@ export default function PitchDocumentPage() {
             Built with communities, not for them
           </h2>
           <p className="text-base text-neutral-600 mb-10 max-w-2xl leading-relaxed">
-            Community members are co-designers, not recipients. Partnerships are resourced,
+            Community members lead the design. We support the build. Partnerships are resourced,
             reciprocal, and on community terms.
           </p>
 

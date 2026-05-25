@@ -98,7 +98,7 @@ export const FUNDER_PAGES: FunderPage[] = [
         'Canvas cutting and sewing station for the bed surfaces',
         'Steel pole cut-and-finish station',
         'Assembly, QA and dispatch bay',
-        'Training area for On-Country apprentices and Elder co-design sessions',
+        'Training area for On-Country apprentices and Elder-led design sessions',
         'Year one operating costs: power, materials buffer, four local FTE wages, site supervisor',
       ],
       becomes: [
@@ -157,13 +157,13 @@ export const FUNDER_PAGES: FunderPage[] = [
     ask: {
       instrument: 'Program grant',
       amount: '$300K',
-      purpose: 'Community deployment plus Elder-led co-design program in NPY lands',
+      purpose: 'Community deployment plus Elder-led design program in NPY lands',
     },
     intro:
       "Goods on Country makes the Stretch Bed (a flat-pack, washable, 10-year bed for remote Indigenous communities) and the Pakkimjalki Kari washing machine, named in Warumungu by Elder Dianne Stokes. We're approaching TFFF for community deployment funding aligned with your remote and First Nations focus, as part of our QBE Catalysing Impact 2026 capital raise.",
     whyUs: [
       "TFFF's remote and First Nations focus matches our deployment geography exactly: NPY lands, Tennant Creek, Groote Eylandt, Arnhem Land.",
-      'Elder-led co-design is built into the product. Dianne Stokes named the washing machine, and community feedback shapes every iteration.',
+      'Elder-led design is built into the product. Dianne Stokes named the Pakkimjalki Kari washing machine and shaped its construction in community.',
       "Active deployments with NPY Women's Council, Miwatj Health and Centrecorp give TFFF visible, photographable impact.",
       'Clean 30% co-funding fit alongside QBE, Snow Foundation and existing grants.',
     ],

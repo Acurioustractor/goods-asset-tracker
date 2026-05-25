@@ -362,14 +362,14 @@ export const journeyStories = [
   },
   {
     id: 'dianne-codesigner',
-    title: 'Co-Designer, Not Recipient',
+    title: 'She designed it. She named it.',
     person: 'Dianne Stokes',
     location: 'Tennant Creek, NT',
     theme: 'co-design',
     pullQuote: 'Working both ways — cultural side in white society and Indigenous society.',
-    narrative: 'Elder Dianne Stokes didn\'t just receive a bed. She helped design it. She sat around the fire with her family refining the bed\'s construction. She named the washing machine "Pakkimjalki Kari" in Warumungu language. When she received the first bed, she came back within two weeks requesting twenty more for her community. Dianne embodies the Goods philosophy: community members aren\'t recipients, they\'re co-designers.',
+    narrative: 'Elder Dianne Stokes designed the bed. She sat around the fire with her family refining the construction. She named the washing machine "Pakkimjalki Kari" in Warumungu language. When she received the first bed she came back within two weeks requesting twenty more for her community. Dianne embodies how Goods works: community members lead the design.',
     quotes: [
-      { text: 'Working both ways — cultural side in white society and Indigenous society.', context: 'On the co-design approach' },
+      { text: 'Working both ways — cultural side in white society and Indigenous society.', context: 'On working with Goods' },
     ],
   },
   {
@@ -471,7 +471,7 @@ export const videoTestimonials = [
     location: 'Tennant Creek',
     descriptUrl: undefined as string | undefined, // TODO: Add Descript URL when available
     embedUrl: undefined as string | undefined,     // TODO: Add Descript embed URL when available
-    description: 'Elder Dianne Stokes on co-designing and naming the Pakkimjalki Kari washing machine in Warumungu language.',
+    description: 'Elder Dianne Stokes on designing and naming the Pakkimjalki Kari washing machine in Warumungu language.',
     consent: 'EXTERNAL-LITE',
   },
 ];
@@ -493,10 +493,10 @@ export const communityPartnerships = [
     name: 'Alice Springs',
     region: 'Northern Territory',
     headline: 'Traditional knowledge meets modern design',
-    description: 'Through the Oonchiumpa consultancy, Alice Springs became the co-design hub for Goods products. The Stretch Bed was developed through deep consultation with the Oonchiumpa Bloomfield family, combining traditional knowledge with modern durability. Kristy Bloomfield leads this 100% Aboriginal-owned consultancy.',
+    description: 'Through the Oonchiumpa consultancy, Alice Springs is where the design happens in community for Goods products. The Stretch Bed was designed in community with the Bloomfield family, combining traditional knowledge with modern durability. Kristy Bloomfield leads this 100% Aboriginal-owned consultancy.',
     keyPeople: ['Kristy Bloomfield', 'Oonchiumpa family'],
     bedsDelivered: 60,
-    highlight: 'Oonchiumpa: 100% Aboriginal-owned consultancy leading co-design',
+    highlight: 'Oonchiumpa: 100% Aboriginal-owned consultancy leading the design in community',
   },
   {
     id: 'palm-island',
@@ -658,14 +658,14 @@ export const investmentCase = {
     {
       risk: 'Do no harm',
       detail: 'Risk of disrupting community dynamics, creating dependency, or cultural harm through imposed solutions.',
-      mitigation: 'Two years of iterative engagement with Bloomfield family. Products co-designed "around the fire," not imposed. Community members are co-designers, not recipients. Dynamic consent: communities choose what they need, when. Partnership models through existing strong community organisations.',
+      mitigation: 'Two years of iterative engagement with the Bloomfield family. Products designed in community, "around the fire," not imposed. Community members lead the design. Dynamic consent: communities choose what they need, when. Partnership models through existing strong community organisations.',
     },
   ],
 
   partnerships: [
     {
       name: 'Oonchiumpa Bloomfield Family',
-      role: 'Lead cultural consultants and co-designers',
+      role: 'Lead cultural consultants and product designers (community-led)',
       detail: 'Paid top rates for cultural consultation (comparable to university research rates ~$3,800/day). Building washing machines together. Planning to host production plant in Alice Springs.',
     },
     {
@@ -747,6 +747,20 @@ export type CommunityLocation = {
   bedsDelivered: number;
   description: string;
   highlight: string;
+  /**
+   * Optional tooltip placement on the heatpost map. Use when two
+   * communities sit close together and their default-right labels would
+   * collide (e.g. Utopia Homelands + Ampilatwatja, Palm Island + Townsville).
+   * Defaults to 'right'.
+   */
+  tooltipDirection?: 'left' | 'right' | 'top' | 'bottom';
+  /**
+   * When true, the live-map resolver does NOT override `bedsDelivered`
+   * with the count from the QR-tagged assets register. Use for hand-
+   * curated entries that aren't yet fully tracked in the register
+   * (e.g. Mount Isa, Kalgoorlie) so the map reflects ground truth.
+   */
+  staticBedCount?: boolean;
 };
 
 export const communityLocations: CommunityLocation[] = [
@@ -780,20 +794,13 @@ export const communityLocations: CommunityLocation[] = [
     lng: 133.880,
     storytellerCount: 0,
     bedsDelivered: 60,
-    description: 'Through the Oonchiumpa consultancy, Alice Springs became the co-design hub for Goods products.',
-    highlight: 'Oonchiumpa: 100% Aboriginal-owned consultancy leading co-design',
+    description: 'Through the Oonchiumpa consultancy, Alice Springs is where the design happens in community for Goods products.',
+    highlight: 'Oonchiumpa: 100% Aboriginal-owned consultancy leading the design in community',
+    tooltipDirection: 'bottom',
   },
-  {
-    id: 'townsville',
-    name: 'Townsville',
-    region: 'Queensland',
-    lat: -19.258,
-    lng: 146.816,
-    storytellerCount: 0,
-    bedsDelivered: 0,
-    description: 'Regional logistics hub connecting production to remote communities across North Queensland.',
-    highlight: 'Reducing the "freight tax" on remote communities',
-  },
+  // Townsville removed from the heatpost map: 0 beds delivered there
+  // and the dot sat on top of Palm Island, colliding labels. The freight
+  // hub story lives in /story rather than as a fake-presence pin.
   {
     id: 'utopia-homelands',
     name: 'Utopia Homelands',
@@ -802,19 +809,39 @@ export const communityLocations: CommunityLocation[] = [
     lng: 134.8,
     storytellerCount: 0,
     bedsDelivered: 96,
-    description: 'Anmatyerr and Alyawarr country. Multiple outstations across the homelands. In May 2026 young people in Alice Springs built and delivered beds to outstation families the next day.',
-    highlight: 'Co-designed and built with young people in Alice Springs, delivered on country to outstation families',
+    description: 'Anmatyerr and Alyawarr country, including the Ampilatwatja outstation where Frankie and Casey Holmes OAM each received beds in May 2026. Multiple outstations across the homelands. Young people in Alice Springs built and delivered beds to outstation families the next day.',
+    highlight: 'Co-designed and built with young people in Alice Springs, delivered on country to outstation families. Includes Ampilatwatja, where two senior Alyawarr Elders received beds in May 2026.',
+    tooltipDirection: 'left',
+  },
+  // Ampilatwatja folded into Utopia Homelands on the heatpost map (same
+  // homelands region; the QR/assets register records those beds under
+  // Utopia Homelands). The narrative on field-notes still names
+  // Ampilatwatja explicitly because that is where Frankie and Casey live.
+  {
+    id: 'mount-isa',
+    name: 'Mount Isa',
+    region: 'Queensland',
+    lat: -20.7256,
+    lng: 139.4927,
+    storytellerCount: 0,
+    bedsDelivered: 5,
+    description: 'Northwest Queensland mining town and service centre for surrounding communities. Goods has begun seeding beds here as a stepping stone to further Queensland deployments.',
+    highlight: 'Stepping stone for Queensland deployments beyond Palm Island',
+    tooltipDirection: 'right',
+    staticBedCount: true,
   },
   {
-    id: 'ampilatwatja',
-    name: 'Ampilatwatja',
-    region: 'Northern Territory',
-    lat: -21.7222,
-    lng: 135.2069,
+    id: 'kalgoorlie',
+    name: 'Kalgoorlie',
+    region: 'Western Australia',
+    lat: -30.7494,
+    lng: 121.4655,
     storytellerCount: 0,
-    bedsDelivered: 4,
-    description: 'Outstation in the Utopia homelands region on Alyawarr country. Four beds went to two senior Elders, both Order of Australia recipients this year.',
-    highlight: 'Two Elders, both OAM recipients this year, received four beds — May 2026',
+    bedsDelivered: 10,
+    description: "Goldfields region of Western Australia. Goods' first Western Australia deployment, seeding beds with community partners in and around Kalgoorlie.",
+    highlight: "First Western Australia deployment for Goods on Country",
+    tooltipDirection: 'right',
+    staticBedCount: true,
   },
   {
     id: 'maningrida',
@@ -835,7 +862,7 @@ export const storytellerProfiles = [
   {
     id: 'dianne-stokes',
     name: 'Dianne Stokes',
-    role: 'Elder & Co-Designer',
+    role: 'Elder. Named and designed the Pakkimjalki Kari washing machine.',
     location: 'Tennant Creek, NT',
     community: 'tennant-creek',
     photo: '/images/people/dianne-stokes.jpg',
@@ -935,7 +962,7 @@ export const storytellerEnrichment: Record<string, {
   localPhoto?: string;
   role?: string;
 }> = {
-  'Dianne Stokes': { community: 'tennant-creek', localPhoto: '/images/people/dianne-stokes.jpg', role: 'Elder & Co-Designer' },
+  'Dianne Stokes': { community: 'tennant-creek', localPhoto: '/images/people/dianne-stokes.jpg', role: 'Elder. Named and designed the Pakkimjalki Kari.' },
   'Norman Frank': { community: 'tennant-creek', localPhoto: '/images/people/norman-frank.jpg', role: 'Warumungu Elder' },
   'Linda Turner': { community: 'tennant-creek', localPhoto: '/images/people/linda-turner.jpg' },
   'Ivy': { community: 'palm-island', localPhoto: '/images/people/ivy.jpg' },
@@ -1280,7 +1307,7 @@ export const mediaPack = {
 export const oonchiumpaPartnership = {
   headline: 'Oonchiumpa / Bloomfield Family',
   subheadline: '100% Aboriginal-owned consultancy, deep roots in Central Australia',
-  description: 'Two years co-designing products "around the fire", building washing machines together, and planning a production facility in Alice Springs. Kristy Bloomfield leads cultural consultation at university-equivalent rates (~$3,800/day).',
+  description: 'Two years designing products in community, "around the fire", building washing machines together, and planning a production facility in Alice Springs. Kristy Bloomfield leads cultural consultation at university-equivalent rates (~$3,800/day).',
   // TODO: Replace with verified Kristy Bloomfield quote when available
   kristyQuote: {
     text: 'We see this as bigger than beds. It\'s about families owning the whole thing: the making, the business, the future.',
@@ -1304,7 +1331,7 @@ export const partnershipJourney = [
   {
     step: 2,
     title: 'Dianne Stokes and washing machines',
-    description: 'Elder Dianne Stokes co-designed the Pakkimjalki Kari washing machine, named it in Warumungu language, and opened doors across the NT.',
+    description: 'Elder Dianne Stokes designed the Pakkimjalki Kari washing machine in community with her family, named it in Warumungu language, and opened doors across the NT.',
   },
   {
     step: 3,
@@ -1342,7 +1369,7 @@ export const partnershipJourney = [
 export const advisoryGroup = [
   {
     name: 'Kristy Bloomfield',
-    title: 'Cultural Lead & Co-Design Director',
+    title: 'Cultural Lead. Director of design in community.',
     org: 'Oonchiumpa Consultancy',
   },
   {
@@ -1401,7 +1428,7 @@ export const advisoryGroup = [
 export const goodsOrbit = [
   {
     name: 'Dianne Stokes',
-    title: 'Elder & Co-Designer',
+    title: 'Elder. Named and designed the Pakkimjalki Kari.',
     org: 'Tennant Creek',
     role: 'Named the Pakkimjalki Kari washing machine in Warumungu language. Refines product designs "around the fire" with family.',
   },

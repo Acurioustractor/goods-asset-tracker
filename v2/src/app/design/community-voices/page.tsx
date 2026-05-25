@@ -247,7 +247,7 @@ export default function CommunityVoicesPage() {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
-              { title: 'Listen', desc: 'Community co-design shapes every product' },
+              { title: 'Listen', desc: 'Community leads the design of every product' },
               { title: 'Create', desc: 'Built for remote conditions, locally repairable' },
               { title: 'Transfer', desc: 'Manufacturing moves to community ownership' },
             ].map((item, i) => (

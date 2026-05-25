@@ -1,1 +1,22 @@
-{}
+{
+  "utopia-may-2026": {
+    "0.media.image": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/story-images/trip-may-2026/alice-build/20260520-1e5a5425.jpg",
+    "1.media.image": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/story-images/trip-may-2026/alice-build/20260520-1e5a5348.jpg",
+    "21.media.image": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/story-images/trip-may-2026/canon/20260521-1e5a5494.jpg",
+    "26.before.image": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/story-images/trip-may-2026/canon/20260521-1e5a5638.jpg",
+    "26.after.image": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/story-images/trip-may-2026/canon/20260521-1e5a5663.jpg",
+    "31.items.0.src": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/media/bf17d0a9-2b12-4e4a-982e-09a8b1952ec6/d0a162d2-282e-4653-9d12-aa934c9dfa4e/1779529779980-Clancy_on_the_bed.mp4",
+    "31.items.0.title": "Clancy on the bed",
+    "15.media.image": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/story-images/trip-may-2026/canon/20260521-1e5a5494.jpg",
+    "16.items.0.src": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/media/bf17d0a9-2b12-4e4a-982e-09a8b1952ec6/d0a162d2-282e-4653-9d12-aa934c9dfa4e/1779529894180-Fulla_s_putting_toagther_bed_full.mp4",
+    "16.items.0.title": "Fulla's putting toagther bed full",
+    "11.media.image": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/story-images/trip-may-2026/alice-build/20260520-1e5a5368.jpg",
+    "7._hiddenIds": "b90120cf-5123-4880-b447-0e3b83f005d7",
+    "7._photoIds": "fe8d15b3-156b-4b49-83f8-d9ba6cd9c334,5e53a585-b9f7-421e-b6e6-0cf84702ae57,9c0e7e47-d86b-4981-824b-ef599bb7a9c1,331822ce-ae0c-48f1-acee-142488e06574,d14556de-d617-4654-8bc2-de60b56c16ac,fdd6afd2-6d37-461a-a51f-11589bc9c58b,f03bfe4e-99d3-4a1d-952b-7bbb4e2ccbc7,86a2cfda-3d66-4376-9866-5525536cd50f,cfdd0cb2-1ffb-4e25-9cbc-b3e98416e53b,ccbd3b55-9d25-4dd8-a6cb-76050f2b83d4",
+    "19._photoIds": "cb234e63-9720-44e2-8e30-385df99c328f,9829e5c0-107a-4362-b49a-619c6f9f3743,dc132053-0095-45cc-af3b-c22276c58321,869c1f36-cf51-44af-8cf6-851d11edd381,6bdb5801-d205-4afb-adc9-d584d7da0dd9,4e6bfca3-1d58-4f11-93fc-d76559cb055c,08a5d7e9-1438-4788-af3a-3d252933a5b4,2e76f77b-0b99-4510-8e70-cb7d46372907,fb4e8269-b77f-45d1-b0cf-b8826ad5a5bd,431fd138-7c41-4f9c-b2c9-db14391a4a1a",
+    "24._photoIds": "6d1e322c-8e19-4c9a-8e8a-dfbe05bff962,612bfc57-72d8-4bad-a9f0-c1f80e8e6e9d,1215f857-1593-4284-b5ce-0b72e48bfd5e,752bbf65-17e6-4d8a-94a0-0f7b5c9e5cd0,27015b1d-1256-47f1-9c99-ee079be6210a,079e2111-52fc-4bf5-a65e-4224fa9cd2b6,b8c5c497-021b-4cc4-b6a1-be49c04ed1e6,aab4d639-c789-4594-9a2f-68483a58c878,6230da95-00a6-41c4-a396-ac001ea535c6,8213de4d-692a-4331-bbfc-b0d3337de531,bb7cff5b-149d-4cda-84a4-04a9e62fd9c5,83efa7ca-c93b-4c7a-ae24-9cd2a9790b92"
+  },
+  "process": {
+    "steps.3.supporting.1": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/story-images/trip-may-2026/alice-build/20260520-1e5a5425.jpg"
+  }
+}

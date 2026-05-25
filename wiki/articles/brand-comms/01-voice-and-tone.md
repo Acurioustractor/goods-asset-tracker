@@ -10,6 +10,29 @@ The Goods voice is warm, grounded, and specific. Plain words about real things. 
 4. **Plain, not polished.** Write the way Nic talks at the kitchen table. Short sentences. Concrete nouns. Active verbs. No corporate gloss.
 5. **Show the model.** We are an enterprise designed to transfer manufacturing to community ownership. We say so, often. Our job is to become unnecessary.
 
+## How we talk about design
+
+This is non-negotiable: **we design in community, with community, for community.** The design happens on Country, with the people who will use the thing. We test it there. We go away to do the building and the realising of what community asked for.
+
+This means we do **not** say:
+
+- "co-design" or "co-designed" (implies two equal parties, one of whom flies in)
+- "We bring our design to community"
+- "Community input shaped the design" (positions community as commentators on our work)
+- "Goods designs and the community builds" (or any inverse of who does what)
+- "Design then deploy" / "Design then deliver" framing
+
+We say:
+
+- "Designed in community with [name]" / "Designed on Country with [community/family]"
+- "The design happens in community"
+- "Community-led design"
+- "[Person] named it. [Person] tested it. We built what they asked for."
+- "Goods supports communities to realise what they design"
+- "We are excited to be in the design room in community, not back in our office"
+
+The model: community leads the design, Goods supports the building and the realising. The plant is community-owned. The work is community-led from the first conversation to the last bed.
+
 ## Banned
 
 These never appear in Goods copy. No exceptions.
@@ -17,7 +40,9 @@ These never appear in Goods copy. No exceptions.
 ### Words and phrases
 
 - "Donations", "donating", "charity" (we are an enterprise, not a charity)
-- "Beneficiaries" (community members are co-designers, customers, partners)
+- "Beneficiaries" (community members are customers, partners, the people who lead the design)
+- "Co-design", "co-designed", "co-designer" (see _How we talk about design_ above. Design happens in community, with community, for community. "Co-" implies we are a co-equal designer who showed up with our own design)
+- "Bring [our] design to community" / "Community input" / "Community feedback shaped the design" (positions community as commentator, not lead)
 - "Empower", "empowering" (paternalistic)
 - "Unlock", "leverage", "synergy", "ecosystem play", "go-to-market", "GTM"
 - "Disrupting", "revolutionary", "innovative" (let the work speak)

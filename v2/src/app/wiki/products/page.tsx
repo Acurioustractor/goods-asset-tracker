@@ -162,9 +162,9 @@ export default function ProductsPage() {
             <h2 className="text-xl font-semibold mb-3">Design Philosophy</h2>
             <div className="prose prose-neutral prose-sm max-w-none">
               <p className="text-neutral-700 mb-3">
-                All Goods products are co-designed with remote Indigenous
-                communities to ensure they meet real needs and work in harsh
-                conditions.
+                Goods products are designed in community with the people who
+                will use them, to make sure they meet real needs and work in
+                harsh conditions.
               </p>
               <ul className="space-y-2 text-neutral-600">
                 <li>• Built to last 10+ years</li>

@@ -316,7 +316,7 @@ export const communityAndManufacturingPartners: OutreachTarget[] = [
     id: 'oonchiumpa', name: 'Oonchiumpa Consultancy & Services', category: 'community_partner', status: 'active', priority: 'critical',
     states: ['NT'], contactName: 'Kristy Bloomfield', contactEmail: 'kristy.bloomfield@oonchiumpa.com.au',
     nextAction: 'Keep at centre of every facility and jobs pitch. REAL Innovation Fund co-applicant.',
-    grantRelevance: '100% Aboriginal owned. Core co-design partner. Lead applicant on federal grants.',
+    grantRelevance: '100% Aboriginal owned. Community-led design partner. Lead applicant on federal grants.',
   },
   {
     id: 'wilya-janta', name: 'Wilya Janta', category: 'community_partner', status: 'active', priority: 'critical',
