@@ -285,8 +285,50 @@ function renderArticleBlock(block: TripBlock, i: number): React.ReactNode {
           </div>
         </div>
       );
+    case 'immersive': {
+      // Article layout treats an immersive block as a full-bleed cinema
+      // card: image (and looping video if present) fills a 16:9 frame,
+      // act-mark + title + standfirst overlay on a bottom-up scrim. The
+      // text never floats on black padding because the scrim handles
+      // contrast on whatever frame the image/video has. mobileLayout:
+      // 'stacked' (used for wide-subject shots like Frankie + Casey)
+      // drops the scrim and stacks text below the image.
+      const media = (block.media as MediaRef) || {};
+      const stacked = (block as { mobileLayout?: string }).mobileLayout === 'stacked';
+      if (stacked) {
+        return (
+          <div key={i} className="mt-16 -mx-4 md:mx-0">
+            {media.image && (
+              <div className="relative w-full aspect-[3/2] bg-stone-100 overflow-hidden md:rounded-lg">
+                <Image src={media.image} alt={block.title || ''} fill className="object-cover" sizes="(min-width: 1024px) 920px, 100vw" />
+              </div>
+            )}
+            <div className="px-4 md:px-6 pt-6 md:pt-8">
+              {block.actmark && <p className="text-xs uppercase tracking-widest text-primary mb-3">{block.actmark}</p>}
+              <h2 className="font-serif text-3xl md:text-4xl font-light leading-tight text-foreground mb-4">{block.title}</h2>
+              {block.standfirst && (
+                <p className="font-serif text-lg md:text-xl leading-relaxed text-stone-700">{block.standfirst}</p>
+              )}
+            </div>
+          </div>
+        );
+      }
+      return (
+        <div key={i} className="mt-16 -mx-4 md:mx-0">
+          <div className="relative w-full aspect-[16/9] bg-stone-900 overflow-hidden md:rounded-lg">
+            <Bg image={media.image} video={media.videoDesktop} />
+            <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/30 to-transparent px-6 pb-7 md:px-10 md:pb-10">
+              {block.actmark && <p className="text-xs uppercase tracking-widest text-white/70 mb-3">{block.actmark}</p>}
+              <h2 className="font-serif text-2xl md:text-4xl font-light leading-tight text-white max-w-2xl">{block.title}</h2>
+              {block.standfirst && (
+                <p className="mt-3 font-serif text-base md:text-lg leading-relaxed text-white/85 max-w-2xl">{block.standfirst}</p>
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    }
     case 'masthead':
-    case 'immersive':
     case 'bleedquote':
     case 'live-map':
     case 'stats':
