@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import type { Metadata } from 'next';
 import { TripStory } from '@/components/stories/trip-story';
+import { ArticleRenderer } from '@/components/stories/article';
 import type {
   TripStory as TripStoryData,
   TripBlock,
@@ -87,20 +88,52 @@ export default async function StoryDetailPage({ params }: Props) {
 
   const displayName = story.storytellerName || story.authorName;
 
-  // Rich-layout path. When the EL story carries a block array under
-  // media_metadata.blocks, render via the field-notes TripStory component
-  // so the article gets hero with background image or video, full-bleed
-  // beats, pullquotes, galleries and the same editorial styling as a
-  // trip story. Falls back to the HTML-prose path below when no blocks.
-  const rawBlocks =
-    (story.mediaMetadata as { blocks?: unknown[] } | null)?.blocks;
+  // Block-driven layouts. EL story carries blocks under media_metadata.blocks
+  // and a layout choice under media_metadata.layout. Three tiers:
+  //   - 'rich'    → full field-notes TripStory scrollytelling (default when
+  //                 layout is missing but blocks include immersive/masthead
+  //                 kinds; used for trip stories and multi-section pieces)
+  //   - 'article' → magazine column layout (centered prose, inline figures,
+  //                 inline pullquotes, light cream theme; used for director
+  //                 notes, blog posts, considered reflections)
+  //   - undefined or no blocks → fall through to the HTML-prose path below
+  const mediaMetadata =
+    (story.mediaMetadata as { blocks?: unknown[]; layout?: string } | null) ??
+    null;
+  const rawBlocks = mediaMetadata?.blocks;
+  const layout = mediaMetadata?.layout;
   if (Array.isArray(rawBlocks) && rawBlocks.length > 0) {
+    if (layout === 'article') {
+      const heroBlock = (rawBlocks as TripBlock[]).find(
+        (b) => b.kind === 'masthead',
+      ) as Extract<TripBlock, { kind: 'masthead' }> | undefined;
+      const heroImage = heroBlock?.media.image ?? story.storyImageUrl ?? null;
+      const heroVideo = heroBlock?.media.videoDesktop ?? null;
+      const restBlocks = (rawBlocks as TripBlock[]).filter(
+        (b) => b.kind !== 'masthead',
+      );
+      return (
+        <ArticleRenderer
+          story={{
+            id: story.id,
+            title: story.title,
+            standfirst: heroBlock?.standfirst ?? story.summary,
+            authorName: displayName,
+            publishedDate,
+            themes: themeNames,
+            heroImage,
+            heroVideo,
+            blocks: restBlocks,
+          }}
+        />
+      );
+    }
+    // Default = 'rich'
     const articleStory: TripStoryData = {
       slug: story.id,
       title: story.title,
       summary: story.summary ?? '',
       dateline: publishedDate,
-      // Consent gate already passed above, so this article is public.
       published: true,
       blocks: rawBlocks as TripBlock[],
     };
