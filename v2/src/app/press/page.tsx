@@ -45,7 +45,7 @@ const keyFacts = [
   { value: '20kg', label: 'HDPE diverted per bed', verified: true },
   { value: '200kg', label: 'Load capacity', verified: true },
   { value: '5 min', label: 'Assembly time, no tools', verified: true },
-  { value: '5 yr', label: 'Warranty, 10+ yr design life', verified: true },
+  { value: '5 yr', label: 'Warranty (10+ yr design intent, not yet field-proven)', verified: false },
 ];
 
 const colourSwatches = [
