@@ -108,9 +108,14 @@ export function SiteFooter() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand Column */}
           <div>
-            <Link href="/" className="inline-block">
-              <span className="text-2xl font-bold text-primary">Goods</span>
-              <span className="block text-sm text-muted-foreground">on Country</span>
+            <Link href="/" className="inline-block" aria-label="Goods on Country — home">
+              <Image
+                src="/brand/logos/goods-stacked-black.svg"
+                alt="Goods on Country"
+                width={180}
+                height={120}
+                className="h-20 w-auto"
+              />
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">
               Community-designed health hardware. Manufactured On-Country. Made by community, made for community.

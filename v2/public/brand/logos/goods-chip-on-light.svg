@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" role="img" aria-labelledby="title desc">
+  <title id="title">Goods on Country — compact chip on light</title>
+  <desc id="desc">Goods on Country wordmark, compact stacked, charcoal on cream.</desc>
+  <rect width="240" height="120" fill="#FDF8F3"/>
+  <text x="120" y="65" text-anchor="middle" font-family="Poppins, 'Helvetica Neue', Arial, sans-serif" font-weight="500" font-size="46" fill="#0A0A0A" letter-spacing="-1.5">Goods</text>
+  <text x="120" y="92" text-anchor="middle" font-family="Poppins, 'Helvetica Neue', Arial, sans-serif" font-weight="500" font-size="12" fill="#0A0A0A" letter-spacing="4">ON COUNTRY</text>
+</svg>

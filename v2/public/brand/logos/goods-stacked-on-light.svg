@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-labelledby="title desc">
+  <title id="title">Goods on Country — stacked on light</title>
+  <desc id="desc">Goods on Country wordmark, stacked layout, charcoal on cream background.</desc>
+  <rect width="600" height="400" fill="#FDF8F3"/>
+  <text x="300" y="220" text-anchor="middle" font-family="Poppins, 'Helvetica Neue', Arial, sans-serif" font-weight="500" font-size="150" fill="#0A0A0A" letter-spacing="-3">Goods</text>
+  <text x="300" y="280" text-anchor="middle" font-family="Poppins, 'Helvetica Neue', Arial, sans-serif" font-weight="500" font-size="32" fill="#0A0A0A" letter-spacing="8">ON COUNTRY</text>
+</svg>

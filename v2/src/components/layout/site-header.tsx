@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
@@ -33,9 +34,15 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
-          <span className="text-2xl font-bold text-primary">Goods</span>
-          <span className="hidden text-sm text-muted-foreground sm:inline">on Country</span>
+        <Link href="/" className="flex items-center" aria-label="Goods on Country — home">
+          <Image
+            src="/brand/logos/goods-stacked-black.svg"
+            alt="Goods on Country"
+            width={150}
+            height={100}
+            priority
+            className="h-12 w-auto"
+          />
         </Link>
 
         {/* Desktop Navigation */}

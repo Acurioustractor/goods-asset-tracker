@@ -10,6 +10,10 @@ const nextConfig: NextConfig = {
     },
   },
   images: {
+    // Next 16 enforces a fixed quality allowlist; default is just [75].
+    // The field-notes before-after split uses quality:90 for sharper
+    // landscape framing — keep both available.
+    qualities: [75, 90],
     remotePatterns: [
       {
         protocol: 'https',
@@ -47,6 +51,12 @@ const nextConfig: NextConfig = {
         pathname: '/public.notion-static.com/**',
       },
     ],
+  },
+  async redirects() {
+    return [
+      { source: '/media', destination: '/press', permanent: true },
+      { source: '/brand', destination: '/press#brand-system', permanent: true },
+    ];
   },
 };
 

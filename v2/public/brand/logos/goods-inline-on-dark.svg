@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 200" role="img" aria-labelledby="title desc">
+  <title id="title">Goods on Country — inline on dark</title>
+  <desc id="desc">Goods on Country wordmark, inline horizontal layout, white on charcoal background.</desc>
+  <rect width="900" height="200" fill="#0A0A0A"/>
+  <text x="40" y="135" font-family="Poppins, 'Helvetica Neue', Arial, sans-serif" font-weight="500" font-size="130" fill="#FFFFFF" letter-spacing="-3">Goods</text>
+  <circle cx="438" cy="125" r="14" fill="#FFFFFF"/>
+  <text x="478" y="120" font-family="Poppins, 'Helvetica Neue', Arial, sans-serif" font-weight="500" font-size="36" fill="#FFFFFF" letter-spacing="8">ON COUNTRY</text>
+</svg>

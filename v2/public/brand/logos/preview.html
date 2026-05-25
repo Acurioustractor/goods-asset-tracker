@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Goods on Country — Logo Pack</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<style>
+  :root { --ink: #0A0A0A; --cream: #FDF8F3; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Inter, system-ui, sans-serif; background: var(--cream); color: var(--ink); }
+  header { padding: 48px 32px 16px; }
+  h1 { font-size: 28px; font-weight: 500; letter-spacing: -0.5px; margin: 0 0 8px; }
+  p.lead { margin: 0; opacity: 0.6; max-width: 60ch; }
+  h2 { font-size: 13px; font-weight: 500; letter-spacing: 6px; text-transform: uppercase; margin: 48px 32px 16px; opacity: 0.5; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 0 32px; }
+  .tile { border-radius: 12px; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); }
+  .tile.dark { background: var(--ink); }
+  .tile.light { background: var(--cream); }
+  .tile.checker {
+    background-image:
+      linear-gradient(45deg, #eee 25%, transparent 25%),
+      linear-gradient(-45deg, #eee 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #eee 75%),
+      linear-gradient(-45deg, transparent 75%, #eee 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, 10px 0px;
+  }
+  .tile img { display: block; width: 100%; height: auto; }
+  .caption { padding: 12px 16px; font-size: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: #fff; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; gap: 12px; }
+  .caption a { color: var(--ink); text-decoration: none; opacity: 0.6; }
+  .caption a:hover { opacity: 1; }
+  footer { padding: 64px 32px; opacity: 0.5; font-size: 13px; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Goods on Country — Logo Pack</h1>
+    <p class="lead">Canonical wordmark in stacked, inline, and chip layouts. White / black / on-dark / on-light. Pure SVG. See <code>README.md</code> for rules.</p>
+  </header>
+
+  <h2>Stacked</h2>
+  <div class="grid">
+    <div class="tile dark"><img src="goods-stacked-white.svg" alt="white on transparent over dark"><div class="caption"><span>goods-stacked-white.svg</span><a href="goods-stacked-white.svg" download>download</a></div></div>
+    <div class="tile light"><img src="goods-stacked-black.svg" alt="black on transparent over light"><div class="caption"><span>goods-stacked-black.svg</span><a href="goods-stacked-black.svg" download>download</a></div></div>
+    <div class="tile"><img src="goods-stacked-on-dark.svg" alt="white on charcoal"><div class="caption"><span>goods-stacked-on-dark.svg</span><a href="goods-stacked-on-dark.svg" download>download</a></div></div>
+    <div class="tile"><img src="goods-stacked-on-light.svg" alt="charcoal on cream"><div class="caption"><span>goods-stacked-on-light.svg</span><a href="goods-stacked-on-light.svg" download>download</a></div></div>
+  </div>
+
+  <h2>Inline</h2>
+  <div class="grid">
+    <div class="tile dark"><img src="goods-inline-white.svg" alt="inline white"><div class="caption"><span>goods-inline-white.svg</span><a href="goods-inline-white.svg" download>download</a></div></div>
+    <div class="tile light"><img src="goods-inline-black.svg" alt="inline black"><div class="caption"><span>goods-inline-black.svg</span><a href="goods-inline-black.svg" download>download</a></div></div>
+    <div class="tile"><img src="goods-inline-on-dark.svg" alt="inline on dark"><div class="caption"><span>goods-inline-on-dark.svg</span><a href="goods-inline-on-dark.svg" download>download</a></div></div>
+    <div class="tile"><img src="goods-inline-on-light.svg" alt="inline on light"><div class="caption"><span>goods-inline-on-light.svg</span><a href="goods-inline-on-light.svg" download>download</a></div></div>
+  </div>
+
+  <h2>Chip</h2>
+  <div class="grid">
+    <div class="tile"><img src="goods-chip-on-dark.svg" alt="chip on dark"><div class="caption"><span>goods-chip-on-dark.svg</span><a href="goods-chip-on-dark.svg" download>download</a></div></div>
+    <div class="tile"><img src="goods-chip-on-light.svg" alt="chip on light"><div class="caption"><span>goods-chip-on-light.svg</span><a href="goods-chip-on-light.svg" download>download</a></div></div>
+  </div>
+
+  <footer>v2/public/brand/logos · open this page at <code>/brand/logos/preview.html</code> when the dev server is running</footer>
+</body>
+</html>
