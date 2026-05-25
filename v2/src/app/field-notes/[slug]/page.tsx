@@ -29,15 +29,13 @@ function isAdminUser(user: AdminUserShape | null): boolean {
   return allow.includes(user.email || '');
 }
 
-// Static params: published AND unlisted stories get pre-rendered (both are
-// servable to anonymous viewers and benefit from static generation).
-// Internal-only stories fall back to dynamic rendering, which lets admin
-// previewing work for any in-progress story without exposing it to the
-// public.
+// Static params: only PUBLISHED stories get pre-rendered. Unlisted stories
+// (soft-launch / under review) render dynamically per request so the EL
+// resolver always returns the latest gallery photos and videos. Internal-only
+// stories also fall back to dynamic rendering, which lets admin previewing
+// work for any in-progress story without exposing it to the public.
 export function generateStaticParams() {
-  return tripStories
-    .filter((s) => s.published || s.unlisted)
-    .map((s) => ({ slug: s.slug }));
+  return tripStories.filter((s) => s.published).map((s) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
