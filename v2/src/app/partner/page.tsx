@@ -161,10 +161,6 @@ const communityPartners = [
   },
 ];
 
-const fundingPartners = [
-  { name: 'Vincent Fairfax Family Foundation' },
-];
-
 export default async function PartnerPage({
   searchParams,
 }: {
@@ -251,7 +247,7 @@ export default async function PartnerPage({
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-5">
               Backed by
             </p>
-            <div className="mb-10 flex flex-wrap items-center justify-center gap-x-12 gap-y-8 sm:gap-x-16">
+            <div className="mb-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-8 sm:gap-x-14">
               {backedByPartners.map((partner) => (
                 <a
                   key={partner.name}
@@ -260,14 +256,14 @@ export default async function PartnerPage({
                   rel={partner.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   aria-label={partner.name}
                   title={partner.name}
-                  className="transition hover:opacity-80"
+                  className="flex h-16 w-48 items-center justify-center transition hover:opacity-80 sm:h-20 sm:w-56"
                 >
                   <Image
                     src={partner.src}
                     alt={partner.name}
                     width={partner.width}
                     height={partner.height}
-                    className="h-14 w-auto object-contain sm:h-16"
+                    className="max-h-full max-w-full object-contain"
                   />
                 </a>
               ))}
@@ -277,7 +273,7 @@ export default async function PartnerPage({
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-5">
               Community partner
             </p>
-            <div className="mb-10 flex flex-wrap items-center justify-center gap-x-12 gap-y-8 sm:gap-x-16">
+            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 sm:gap-x-14">
               {communityPartners.map((partner) => (
                 <a
                   key={partner.name}
@@ -286,36 +282,18 @@ export default async function PartnerPage({
                   rel={partner.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   aria-label={partner.name}
                   title={partner.name}
-                  className="transition hover:opacity-80"
+                  className="flex h-16 w-48 items-center justify-center transition hover:opacity-80 sm:h-20 sm:w-56"
                 >
                   <Image
                     src={partner.src}
                     alt={partner.name}
                     width={partner.width}
                     height={partner.height}
-                    className="h-14 w-auto object-contain sm:h-16"
+                    className="max-h-full max-w-full object-contain"
                   />
                 </a>
               ))}
             </div>
-
-            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">
-              And with thanks to
-            </p>
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-              {fundingPartners.map((partner) => (
-                <span
-                  key={partner.name}
-                  className="inline-flex items-center rounded-full bg-background border border-border px-4 py-2 text-sm font-medium text-foreground"
-                >
-                  {partner.name}
-                </span>
-              ))}
-            </div>
-            <p className="text-muted-foreground">
-              We work alongside health organisations including Anyinginyi Health, Miwatj Health,
-              Purple House, and Red Dust across remote Australia.
-            </p>
           </div>
         </div>
       </section>
