@@ -1550,7 +1550,7 @@ video.ts-bg{filter:brightness(.6) saturate(.97)}
    space, voice cards/galleries widen to viewport.
    ──────────────────────────────────────────────────────────────────── */
 @media (max-width:640px){
-  .ts-immersive{min-height:88vh;padding:7vh 6vw}
+  .ts-immersive{min-height:74vh;padding:7vh 6vw}
   .ts-read{padding:6vh 6vw}
   .ts-read--overlay{padding:10vh 6vw}
   .ts-bleedquote{min-height:60vh;padding:8vh 6vw}
@@ -1572,5 +1572,14 @@ video.ts-bg{filter:brightness(.6) saturate(.97)}
   .ts-imm-title{max-width:18ch}
   .ts-banner{font-size:9.5px;letter-spacing:.1em;padding:6px 10px}
   .ts-footer{padding:6vh 6vw}
+  /* Mobile media fit: landscape photos and videos were getting cropped to a
+     thin vertical slice by object-fit:cover on phone-narrow viewports. Switch
+     immersive backgrounds and cinema videos to contain so the full frame is
+     visible. Subjects spread across a wide photo (e.g. Frankie + Casey, the
+     boys building, the drive footage) stay intact instead of being clipped. */
+  .ts-bg-img,video.ts-bg{object-fit:contain;background:#000;transform:none}
+  .ts-immersive.in .ts-bg-img,.ts-bleedquote.in .ts-bg-img{transform:none}
+  .ts-vid--cinema video{height:auto;max-height:60vh;object-fit:contain}
+  .ts-vid video{height:auto;max-height:50vh;object-fit:contain}
 }
 `;

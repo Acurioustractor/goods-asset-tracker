@@ -378,7 +378,12 @@ export async function resolveGalleryBlocks(
       if (block.kind === 'manual-gallery') {
         const raw = (block as unknown as { _photoIds?: string })._photoIds || '';
         const ids = raw.split(',').map((s) => s.trim()).filter(Boolean);
-        const items = await fetchPhotosByIds(ids, !internal);
+        // Manual-gallery is hand-curated: the author explicitly picks each
+        // photo ID via the in-page admin tool. Treat that as implicit consent
+        // and skip the is_public filter so the curator's selections appear
+        // even before EL flips the photo to public. Tag-query galleries
+        // (el-gallery) still respect is_public.
+        const items = await fetchPhotosByIds(ids, false);
         return { ...block, items };
       }
       if (block.kind === 'el-video-gallery') {
