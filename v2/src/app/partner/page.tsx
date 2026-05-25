@@ -328,17 +328,17 @@ export default async function PartnerPage({
                   Case study
                 </p>
                 <h2 className="text-3xl font-bold text-foreground mb-4">
-                  Centrecorp Foundation: from grant to procurement.
+                  Centrecorp Foundation: from a Basket Bed trial to homes On-Country.
                 </h2>
                 <p className="text-muted-foreground mb-3">
-                  Centrecorp Foundation is the Goods relationship that turned from philanthropy
-                  into procurement. $420K committed across multiple rounds. 109 Stretch Beds locked
-                  for Utopia Homelands. A repeat institutional buyer relationship that
-                  demonstrates the model works at scale.
+                  Centrecorp backed the Basket Bed V1 trial early on, the first run of beds we
+                  put into community. Off the back of that trial they committed to over 100
+                  Stretch Beds going into Utopia Homelands.
                 </p>
                 <p className="text-muted-foreground mb-6">
-                  It&apos;s the case we point new funders to when they ask &quot;does this become
-                  self-sustaining?&quot; The answer is: it already is, with the right partner.
+                  It&apos;s the relationship we point new funders to when they ask whether the
+                  work actually lands in homes. The answer is yes, and Centrecorp is how that
+                  started.
                 </p>
                 <Link
                   href="/partners/centrecorp"
