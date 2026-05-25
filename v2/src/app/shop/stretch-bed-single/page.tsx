@@ -143,9 +143,13 @@ export default function StretchBedPage() {
             {/* Actions */}
             <div className="space-y-3">
               <BuyNowForm
+                productId="915cf791-d288-4d19-b558-76d001fc1aaa"
+                productSlug="stretch-bed-single"
+                productType="stretch_bed"
                 productName={product.name}
                 pricePerUnit={product.price}
                 currency={product.currency}
+                image={product.images[0]?.src}
                 size="lg"
                 className="w-full"
               />

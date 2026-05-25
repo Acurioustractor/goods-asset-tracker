@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { PartnershipForm } from '@/components/partnership-form';
+import { WasherInterestForm } from '@/components/washer-interest-form';
 import { BUYER_PIPELINE, TRACTION_STATS } from '@/lib/data/funder-shared-content';
 
 export const metadata = {
@@ -113,6 +114,36 @@ export default async function PartnerPage({
 }) {
   const params = await searchParams;
   const requestedType = params.type && ALLOWED_TYPES.includes(params.type) ? params.type : undefined;
+
+  // Washer-interest = a community/clinic wanting a washing machine. The funder-pitch
+  // page above (lanes, QBE band, Centrecorp case study, partner logos) is the wrong
+  // frame for them, so render a clean dedicated layout instead.
+  if (requestedType === 'washer-interest') {
+    return (
+      <main>
+        <section className="relative bg-gradient-to-b from-muted/40 to-background py-16 md:py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <p className="text-sm uppercase tracking-[0.25em] text-accent mb-5">
+                Pakkimjalki Kari · Washing Machine
+              </p>
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground leading-tight mb-6">
+                Register your interest.
+              </h1>
+              <p className="text-lg text-muted-foreground">
+                Pakkimjalki Kari is still a prototype. Tell us a bit about your community and
+                we&apos;ll come back to you when we have testing results to share, or a machine
+                ready to send.
+              </p>
+            </div>
+            <div className="max-w-2xl mx-auto">
+              <WasherInterestForm />
+            </div>
+          </div>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <main>
@@ -458,19 +489,39 @@ export default async function PartnerPage({
       >
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
-            <div className="text-center mb-10">
-              <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">
-                Start the conversation
-              </p>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Tell us who you are and where you&apos;re thinking.
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Three quick questions so we can route you to the right person, then a few details
-                so we can write back well.
-              </p>
-            </div>
-            <PartnershipForm defaultType={requestedType} />
+            {requestedType === 'washer-interest' ? (
+              <>
+                <div className="text-center mb-10">
+                  <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">
+                    Pakkimjalki Kari
+                  </p>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                    Register your interest.
+                  </h2>
+                  <p className="text-lg text-muted-foreground">
+                    A few details about you and your community so we can come back to you with the
+                    right information when the next batch is ready.
+                  </p>
+                </div>
+                <WasherInterestForm />
+              </>
+            ) : (
+              <>
+                <div className="text-center mb-10">
+                  <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">
+                    Start the conversation
+                  </p>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                    Tell us who you are and where you&apos;re thinking.
+                  </h2>
+                  <p className="text-lg text-muted-foreground">
+                    Three quick questions so we can route you to the right person, then a few
+                    details so we can write back well.
+                  </p>
+                </div>
+                <PartnershipForm defaultType={requestedType} />
+              </>
+            )}
           </div>
         </div>
       </section>

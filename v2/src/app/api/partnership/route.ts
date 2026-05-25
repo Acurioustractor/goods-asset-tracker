@@ -48,6 +48,23 @@ export async function POST(request: NextRequest) {
     ].filter(Boolean).join(' · ');
     const enrichedMessage = [segmentPrefix, body.message].filter(Boolean).join('\n\n');
 
+    // Must match the CHECK constraint set by migration
+    // 20260525000001_widen_partnership_type_check.sql. Anything outside the
+    // set (e.g. a typo or a new form value rolled out before the migration is
+    // mirrored to a fresh environment) falls back to 'other' so the insert
+    // still lands. The original form value is always preserved on the GHL
+    // contact via the goods-* tag + note, so no signal is lost.
+    const ALLOWED_DB_TYPES = new Set([
+      'corporate_sponsor', 'retail_partner', 'community_partner',
+      'media_partner', 'government', 'ngo', 'other',
+      'partnership-inquiry', 'washer-interest', 'sponsor', 'license',
+      'distribution', 'grant', 'media-pack-request',
+    ]);
+    const dbPartnershipType =
+      body.partnershipType && ALLOWED_DB_TYPES.has(body.partnershipType)
+        ? body.partnershipType
+        : 'other';
+
     // Store in Supabase partnership_inquiries table
     const { data: inquiry, error: dbError } = await supabase
       .from('partnership_inquiries')
@@ -57,7 +74,7 @@ export async function POST(request: NextRequest) {
         contact_email: body.contactEmail,
         contact_phone: body.contactPhone || null,
         website: body.website || null,
-        partnership_type: body.partnershipType || null,
+        partnership_type: dbPartnershipType,
         message: enrichedMessage || null,
         how_heard: body.howHeard || null,
         status: 'new',
