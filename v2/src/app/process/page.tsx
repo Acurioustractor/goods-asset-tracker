@@ -81,14 +81,14 @@ const STEPS: Step[] = [
   },
   {
     step: 4,
-    label: 'Form',
-    title: 'Hydraulic press, finished leg',
-    body: 'CNC-cut blanks go into a hydraulic press to form the leg profile that clicks onto the steel pole. Each leg is checked against a tolerance jig. Pass goes into the parts rack. Fail goes back to the shredder. The system is designed so nothing becomes waste.',
-    hero: { src: '/images/process/hydraulic-press.jpg', alt: 'Hydraulic press forming a Stretch Bed leg from a CNC-cut HDPE blank' },
+    label: 'Finish',
+    title: 'Edges smoothed, drilled by hand',
+    body: 'Once the legs are cut, the edges get smoothed with a bull-nose router. Then the young people from Oonchiumpa drill the holes and fit the screws and bolts that hold each leg together. By the time the parts ship, they’re ready to click together in a remote community in five minutes flat.',
+    hero: { src: '/images/process/bull-nose-router.jpg', alt: 'A bull-nose router smoothing the edges of a CNC-cut Stretch Bed leg' },
     supporting: [
-      { src: '/images/process/cut-legs-stored.jpg', alt: 'Finished recycled-HDPE Stretch Bed legs stored on a parts rack' },
-      { src: '/images/process/steel-frame-filled.jpg', alt: 'Steel frame stacked with finished bed legs ready for dispatch' },
-      { src: '/images/process/parts-rack-sorted.jpg', alt: 'Sorted parts rack holding leg components and steel poles' },
+      { src: '/images/process/cnc-tools-drill.jpg', alt: 'Drilling tools laid out at the workstation' },
+      { src: '/images/process/joey-portrait.jpg', alt: 'A young person from the Oonchiumpa team in the production workstation' },
+      { src: '/images/process/parts-rack-workarea.jpg', alt: 'Workstation parts rack with sorted leg components ready for assembly' },
     ],
   },
   {
