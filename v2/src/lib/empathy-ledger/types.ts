@@ -69,6 +69,12 @@ export interface EmpathyLedgerStory {
   videoLink: string | null;
   videoEmbedCode: string | null;
   storyType: string | null;
+
+  // Optional rich layout payload. When present, the article renders via
+  // the field-notes block system (hero with background image or video,
+  // full-bleed beats, galleries, pullquotes, callouts). Shape matches
+  // TripStory['blocks'] in @/lib/data/trip-stories.
+  mediaMetadata: Record<string, unknown> | null;
 }
 
 // Storyteller/artisan profile (basic — from content-hub)

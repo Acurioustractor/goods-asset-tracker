@@ -5,6 +5,16 @@ import { empathyLedger } from '@/lib/empathy-ledger';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import type { Metadata } from 'next';
+import { TripStory } from '@/components/stories/trip-story';
+import type {
+  TripStory as TripStoryData,
+  TripBlock,
+} from '@/lib/data/trip-stories';
+
+// Force dynamic: the renderer uses cookies() through the supabase server
+// client further down the import chain, so the route can't be statically
+// generated. Same reasoning as /field-notes/[slug].
+export const dynamic = 'force-dynamic';
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -76,6 +86,30 @@ export default async function StoryDetailPage({ params }: Props) {
   );
 
   const displayName = story.storytellerName || story.authorName;
+
+  // Rich-layout path. When the EL story carries a block array under
+  // media_metadata.blocks, render via the field-notes TripStory component
+  // so the article gets hero with background image or video, full-bleed
+  // beats, pullquotes, galleries and the same editorial styling as a
+  // trip story. Falls back to the HTML-prose path below when no blocks.
+  const rawBlocks =
+    (story.mediaMetadata as { blocks?: unknown[] } | null)?.blocks;
+  if (Array.isArray(rawBlocks) && rawBlocks.length > 0) {
+    const articleStory: TripStoryData = {
+      slug: story.id,
+      title: story.title,
+      summary: story.summary ?? '',
+      dateline: publishedDate,
+      // Consent gate already passed above, so this article is public.
+      published: true,
+      blocks: rawBlocks as TripBlock[],
+    };
+    return (
+      <main>
+        <TripStory story={articleStory} internal={false} />
+      </main>
+    );
+  }
 
   return (
     <main>

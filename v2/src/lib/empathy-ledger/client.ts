@@ -147,6 +147,7 @@ function mapStoryFromAPI(raw: Record<string, unknown>): EmpathyLedgerStory {
     videoLink: (raw.video_link as string) ?? null,
     videoEmbedCode: (raw.video_embed_code as string) ?? null,
     storyType: (raw.story_type as string) ?? null,
+    mediaMetadata: (raw.media_metadata as Record<string, unknown>) ?? null,
   };
 }
 
@@ -276,11 +277,15 @@ export const empathyLedger = {
     if (!ENABLE_EMPATHY_LEDGER) return null;
 
     try {
-      // Try direct Supabase first (works for Goods project stories)
+      // Try direct Supabase first (works for Goods project stories).
+      // revalidate: 0 = fetch fresh every request. Single-story detail
+      // pages should always reflect the latest EL state (curators iterate
+      // on body, media, themes, blocks).
       if (EL_SUPABASE_URL && EL_SUPABASE_KEY) {
         const rows = await fetchFromELSupabase<Record<string, unknown>[]>(
           'stories',
-          `id=eq.${id}&select=*,storyteller:storytellers(id,display_name,location,is_elder)&limit=1`
+          `id=eq.${id}&select=*,storyteller:storytellers(id,display_name,location,is_elder)&limit=1`,
+          { revalidate: 0 },
         );
         if (rows.length > 0) {
           return {

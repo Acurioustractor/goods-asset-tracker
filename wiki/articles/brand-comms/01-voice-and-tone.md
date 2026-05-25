@@ -33,6 +33,15 @@ We say:
 
 The model: community leads the design, Goods supports the building and the realising. The plant is community-owned. The work is community-led from the first conversation to the last bed.
 
+### This rule applies to data labels and tags too
+
+The banned-words rule is not just for body copy. It covers anywhere a string surfaces in front of a reader:
+
+- **Empathy Ledger story themes and tags.** When publishing or updating an EL story for a Goods surface, never use `"co-design"` as a theme or tag value (it renders as a badge on `/stories/[id]` and in the storyteller index). Use `"Designed in community"`, `"On-Country"`, `"Director reflection"`, `"Community-led design"` instead.
+- **Theme map keys / data-schema IDs.** The existing `'co-design'` theme ID in `v2/src/lib/data/content.ts` and `featured-stories.tsx` is staged for migration. New stories must not extend that ID. When the migration lands, the ID becomes `community-led-design` (or similar) and the public label stays `"Community-Led Design"`.
+- **Badge labels rendered through map lookups.** When you add a new badge label, audit it against this list before shipping.
+- **EL tag taxonomy.** When seeding tags for the field-notes resolver or any EL query (e.g. `theme:co-design`), use brand-aligned values. Prefer `design-in-community` as the tag key if a category tag is needed.
+
 ## Banned
 
 These never appear in Goods copy. No exceptions.
