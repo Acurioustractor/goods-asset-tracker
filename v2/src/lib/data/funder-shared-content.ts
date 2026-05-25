@@ -53,7 +53,7 @@ export const BUYER_PIPELINE = [
   { buyer: 'Miwatj Health', volume: '8-clinic fleet', value: 'TBD', status: 'EOI being requested' },
   { buyer: "NPY Women's Council", volume: '200 to 350 beds', value: '$150K to $262K', status: 'LOI being requested' },
   { buyer: 'WHSAC / Groote Eylandt', volume: '500 Stretch Beds, 300 washers', value: '$1.5M+', status: 'Procurement pathway open' },
-  { buyer: 'Homeland Schools', volume: 'Interested', value: '$34,086', status: 'In conversation' },
+  { buyer: 'Homeland Schools', volume: 'Locked', value: '$34,086', status: 'Approved. Delivery scheduled' },
 ];
 
 export const CAPITAL_STACK = [

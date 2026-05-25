@@ -203,9 +203,9 @@ export default async function PartnerPage({
               <p className="text-xs uppercase tracking-[0.2em] text-accent mb-3">Lane 1</p>
               <h3 className="text-xl font-bold text-foreground mb-3">Foundations &amp; trusts</h3>
               <p className="text-sm text-muted-foreground mb-5">
-                Six grant funders have backed Goods over four years. Together they&apos;ve put
-                $445K into the work, from the early prototypes through to the production scale-up
-                we&apos;re inside right now.
+                Six grant funders have backed Goods over four years. Together they&apos;ve carried
+                the work from the early prototypes through to the production scale-up we&apos;re
+                inside right now.
               </p>
               <ul className="space-y-3 text-sm">
                 {backedByPartners.map((p) => (
