@@ -1,20 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { PartnershipForm } from '@/components/partnership-form';
+import { BUYER_PIPELINE, CAPITAL_STACK, TRACTION_STATS } from '@/lib/data/funder-shared-content';
 
 export const metadata = {
   title: 'Partner With Us',
   description:
-    'Sponsor beds, support Stretch Bed delivery, license the model, or partner on remote community distribution and on-country manufacturing.',
+    'How foundations, corporates, institutional buyers and community organisations back Goods on Country — and how to start a conversation.',
   alternates: {
     canonical: 'https://www.goodsoncountry.com/partner',
   },
   openGraph: {
     title: 'Partner With Goods on Country',
     description:
-      'Partnership pathways for funders, community organisations, health services, councils and manufacturers supporting practical bed infrastructure.',
+      'Foundations, corporates, institutional buyers, investors and community partners backing First Nations-led on-country manufacturing.',
     url: 'https://www.goodsoncountry.com/partner',
     images: [
       {
@@ -29,83 +29,6 @@ export const metadata = {
 
 const ALLOWED_TYPES = ['sponsor', 'washer-interest', 'license', 'distribution', 'grant', 'other'];
 
-const partnerOptions = [
-  {
-    title: 'Sponsor Beds',
-    description: 'Fund beds for remote communities. Bulk orders at wholesale pricing with full impact reporting.',
-    pricing: 'From $600 per bed (wholesale)',
-    features: [
-      'Bulk delivery to nominated communities',
-      'Impact report with photos and stories',
-      'Tax-deductible through DGR partner',
-      'Co-branded delivery acknowledgement',
-    ],
-    cta: 'Sponsor Beds',
-    icon: (
-      <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-      </svg>
-    ),
-  },
-  {
-    title: 'License the Model',
-    description: 'Manufacture locally in your community. Full training, supply chain, and quality assurance included.',
-    pricing: 'Custom — based on community needs',
-    features: [
-      'Full manufacturing training program',
-      'Supply chain and material connections',
-      'Quality assurance framework',
-      'Ongoing technical support',
-    ],
-    cta: 'Enquire About Licensing',
-    icon: (
-      <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Distribution Partner',
-    description: 'Help us reach more communities. Partner on freight, logistics, and last-mile delivery.',
-    pricing: 'Revenue share model',
-    features: [
-      'Regional distribution rights',
-      'Freight and logistics coordination',
-      'Community relationship management',
-      'Joint marketing and reporting',
-    ],
-    cta: 'Discuss Distribution',
-    icon: (
-      <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Grant or Investment',
-    description: 'Support through grants, impact investment, or philanthropic funding. Full transparency and reporting.',
-    pricing: 'Flexible — aligned to your program',
-    features: [
-      'Detailed impact measurement using the Australian Living Map of Alternatives',
-      'Quarterly reporting and community updates',
-      'Site visits and community introductions',
-      'Co-design of impact outcomes',
-    ],
-    cta: 'Discuss Funding',
-    icon: (
-      <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
-      </svg>
-    ),
-  },
-];
-
-const impactMetrics = [
-  { value: '369+', label: 'Beds delivered' },
-  { value: '8+', label: 'Communities' },
-  { value: '20kg', label: 'Plastic diverted per bed' },
-];
-
 const backedByPartners = [
   {
     name: 'Snow Foundation',
@@ -113,6 +36,7 @@ const backedByPartners = [
     width: 2194,
     height: 1056,
     href: 'https://www.snowfoundation.org.au',
+    role: 'Four years of strategic backing. Champion of the work upstream — RHD advocacy at Parliament House.',
   },
   {
     name: 'Centrecorp Foundation',
@@ -120,6 +44,7 @@ const backedByPartners = [
     width: 400,
     height: 240,
     href: '/partners/centrecorp',
+    role: '$420K committed across multiple rounds. 109 Stretch Beds locked for Utopia Homelands.',
   },
   {
     name: 'The Funding Network',
@@ -127,6 +52,7 @@ const backedByPartners = [
     width: 1256,
     height: 445,
     href: 'https://www.thefundingnetwork.com.au',
+    role: 'Crowdfunded $130K at a 2025 live-pitch night. Validated the model with a room of philanthropic investors.',
   },
   {
     name: 'FRRR',
@@ -134,6 +60,7 @@ const backedByPartners = [
     width: 1024,
     height: 491,
     href: 'https://frrr.org.au',
+    role: 'Backing the Future grant — rural and remote distribution support.',
   },
   {
     name: 'AMP Foundation',
@@ -141,6 +68,7 @@ const backedByPartners = [
     width: 1024,
     height: 272,
     href: 'https://ampfoundation.com.au',
+    role: 'Program funding through the Spark grant. Social-enterprise infrastructure support.',
   },
   {
     name: 'QBE Foundation',
@@ -148,6 +76,7 @@ const backedByPartners = [
     width: 800,
     height: 220,
     href: 'https://www.qbe.com/sustainability/qbe-foundation',
+    role: 'Catalysing Impact 2026 cohort. Climate-resilience + inclusion alignment. Stage 2 match available.',
   },
 ];
 
@@ -158,6 +87,22 @@ const communityPartners = [
     width: 560,
     height: 350,
     href: 'https://oonchiumpa.com.au',
+    role: 'Cultural lead. 100% Aboriginal-owned. Two years co-designing products around the fire.',
+  },
+];
+
+const partnerQuotes = [
+  {
+    quote:
+      'When she received her first bed, she came back within two weeks requesting twenty more for her community.',
+    name: 'Dianne Stokes',
+    role: 'Warumungu Elder, Tennant Creek',
+  },
+  {
+    quote:
+      'Scabies often leads to Rheumatic Heart Disease, so washing machines are essential to be able to clean infected clothing, bedding and towels.',
+    name: 'Jessica Allardyce',
+    role: 'Miwatj Health',
   },
 ];
 
@@ -168,85 +113,315 @@ export default async function PartnerPage({
 }) {
   const params = await searchParams;
   const requestedType = params.type && ALLOWED_TYPES.includes(params.type) ? params.type : undefined;
+
   return (
     <main>
-      {/* Header */}
-      <section className="bg-gradient-to-b from-muted/50 to-background py-16 md:py-24">
+      {/* ============================================================
+         HERO — story-led, single image
+         ============================================================ */}
+      <section className="relative bg-gradient-to-b from-muted/40 to-background py-20 md:py-28">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto">
-            <p className="text-sm uppercase tracking-widest text-accent mb-4">
-              For Organisations
-            </p>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Partner With Us
-            </h1>
-            <p className="text-lg text-muted-foreground">
-              Whether you want to sponsor beds, license the manufacturing model, or support
-              through grants — there&apos;s a way to be part of this movement.
-            </p>
+          <div className="grid gap-12 md:grid-cols-2 md:items-center max-w-6xl mx-auto">
+            <div>
+              <p className="text-sm uppercase tracking-[0.25em] text-accent mb-5">
+                Partner with Goods on Country
+              </p>
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground leading-tight mb-6">
+                Back a model that&apos;s working.
+              </h1>
+              <p className="text-lg text-muted-foreground mb-4">
+                Goods on Country is a First Nations-led manufacturer putting health hardware into
+                remote homes. Six grant funders behind us. Six hundred-plus beds already in eight
+                communities. A buyer pipeline in active conversation. A path to scale.
+              </p>
+              <p className="text-lg text-muted-foreground mb-8">
+                If you back foundations, write impact cheques, run procurement for health or
+                housing, or lead a community organisation that needs beds — there&apos;s a way in
+                here that fits your shape.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Button asChild size="lg">
+                  <Link href="#start">Start a conversation</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link href="/impact">See where the money goes</Link>
+                </Button>
+              </div>
+            </div>
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl shadow-sm">
+              <Image
+                src="/images/media-pack/community-bed-assembly.jpg"
+                alt="Community members assembling a Stretch Bed on country"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 500px"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Impact Metrics */}
+      {/* ============================================================
+         TRACTION BAND
+         ============================================================ */}
       <section className="bg-accent py-12">
         <div className="container mx-auto px-4">
-          <div className="grid gap-8 sm:grid-cols-4 max-w-3xl mx-auto text-center">
-            {impactMetrics.map((metric) => (
-              <div key={metric.label}>
-                <div className="text-3xl font-bold text-accent-foreground">{metric.value}</div>
-                <div className="text-sm text-accent-foreground/80 mt-1">{metric.label}</div>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto text-center">
+            {TRACTION_STATS.map((stat) => (
+              <div key={stat.label}>
+                <div className="text-3xl md:text-4xl font-bold text-accent-foreground">
+                  {stat.value}
+                </div>
+                <div className="text-sm font-medium text-accent-foreground mt-1">{stat.label}</div>
+                <div className="text-xs text-accent-foreground/70 mt-1">{stat.sub}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Partner Options */}
-      <section className="py-16 md:py-20">
+      {/* ============================================================
+         HOW WE PARTNER — three lanes
+         ============================================================ */}
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
-            {partnerOptions.map((option) => (
-              <Card key={option.title} className="flex flex-col">
-                <CardContent className="p-8 flex flex-col flex-1">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-                    {option.icon}
-                  </div>
-                  <h2 className="text-xl font-bold text-foreground mb-2">{option.title}</h2>
-                  <p className="text-muted-foreground mb-4">{option.description}</p>
-                  <p className="text-sm font-medium text-primary mb-4">{option.pricing}</p>
-                  <ul className="space-y-2 mb-6 flex-1">
-                    {option.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <svg className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                        </svg>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button asChild className="w-full">
-                    <Link href={`mailto:hi@act.place?subject=${encodeURIComponent(option.cta)}`}>
-                      {option.cta}
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="max-w-3xl mb-12">
+            <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-3">
+              How we partner
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Three lanes into the work.
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Goods has three kinds of partner. Foundations and trusts back the model and de-risk
+              the early years. Institutional buyers turn beds into procurement. Community partners
+              design the products and host the work on country.
+            </p>
+          </div>
+
+          <div className="grid gap-8 lg:grid-cols-3">
+            {/* Lane 1 — Foundations & Trusts */}
+            <div className="rounded-2xl border border-border bg-card p-7">
+              <p className="text-xs uppercase tracking-[0.2em] text-accent mb-3">Lane 1</p>
+              <h3 className="text-xl font-bold text-foreground mb-3">Foundations &amp; trusts</h3>
+              <p className="text-sm text-muted-foreground mb-5">
+                Six grant funders have backed Goods over four years. Together they&apos;ve put
+                $445K into the work — from the early prototypes through to the production scale-up
+                we&apos;re inside right now.
+              </p>
+              <ul className="space-y-3 text-sm">
+                {backedByPartners.map((p) => (
+                  <li key={p.name}>
+                    <span className="font-semibold text-foreground">{p.name}.</span>{' '}
+                    <span className="text-muted-foreground">{p.role}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Lane 2 — Institutional buyers */}
+            <div className="rounded-2xl border border-border bg-card p-7">
+              <p className="text-xs uppercase tracking-[0.2em] text-accent mb-3">Lane 2</p>
+              <h3 className="text-xl font-bold text-foreground mb-3">Institutional buyers</h3>
+              <p className="text-sm text-muted-foreground mb-5">
+                Beds are revenue. Centrecorp&apos;s repeat order, Miwatj&apos;s clinic fleet, NPY
+                Women&apos;s Council, WHSAC procurement — this pipeline is in active conversation.
+                Each LOI is a year of On-Country manufacturing capacity.
+              </p>
+              <ul className="space-y-3 text-sm">
+                {BUYER_PIPELINE.map((b) => (
+                  <li key={b.buyer}>
+                    <div className="font-semibold text-foreground">{b.buyer}</div>
+                    <div className="text-muted-foreground">
+                      {b.volume} · {b.value}
+                    </div>
+                    <div className="text-xs text-accent">{b.status}</div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Lane 3 — Community partners */}
+            <div className="rounded-2xl border border-border bg-card p-7">
+              <p className="text-xs uppercase tracking-[0.2em] text-accent mb-3">Lane 3</p>
+              <h3 className="text-xl font-bold text-foreground mb-3">Community partners</h3>
+              <p className="text-sm text-muted-foreground mb-5">
+                Goods is a product designed around the fire — not in a catalogue. Cultural leads,
+                Elders, and community organisations shape what we build, who we build with, and
+                where the production sits.
+              </p>
+              <ul className="space-y-3 text-sm">
+                <li>
+                  <span className="font-semibold text-foreground">Oonchiumpa Consultancy.</span>{' '}
+                  <span className="text-muted-foreground">
+                    Cultural lead, 100% Aboriginal-owned. Two years co-designing with the Bloomfield family.
+                  </span>
+                </li>
+                <li>
+                  <span className="font-semibold text-foreground">Wilya Janta.</span>{' '}
+                  <span className="text-muted-foreground">
+                    Housing advocacy partnership with Norm Frank Jupurrurla and Dr Simon Quilty in Tennant Creek.
+                  </span>
+                </li>
+                <li>
+                  <span className="font-semibold text-foreground">
+                    Palm Island Community Company.
+                  </span>{' '}
+                  <span className="text-muted-foreground">
+                    Largest single deployment (141 beds) and the pathway to community-owned manufacturing.
+                  </span>
+                </li>
+                <li>
+                  <span className="font-semibold text-foreground">NPY Women&apos;s Council.</span>{' '}
+                  <span className="text-muted-foreground">
+                    Established distribution network across Ngaanyatjarra, Pitjantjatjara, Yankunytjatjara lands.
+                  </span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Existing Partners */}
+      {/* ============================================================
+         QBE CATALYSING IMPACT FEATURE BAND
+         ============================================================ */}
+      <section className="bg-foreground text-background py-16 md:py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid gap-10 md:grid-cols-[1fr_auto] md:items-start">
+              <div>
+                <p className="text-xs uppercase tracking-[0.25em] text-background/60 mb-4">
+                  Currently in flight
+                </p>
+                <h2 className="text-3xl md:text-4xl font-bold mb-5 leading-tight">
+                  QBE Catalysing Impact 2026.
+                </h2>
+                <p className="text-lg text-background/85 mb-4 leading-relaxed">
+                  Goods is inside the QBE Foundation&apos;s blended-finance accelerator,
+                  facilitated by Social Impact Hub. We were selected for climate-resilience and
+                  inclusion alignment.
+                </p>
+                <p className="text-lg text-background/85 mb-4 leading-relaxed">
+                  Stage 2 of the program includes a dollar-for-dollar match of up to{' '}
+                  <span className="text-background font-semibold">$400K</span> against capital we
+                  raise from elsewhere. The structure is a blended stack: catalytic philanthropy
+                  on top, working-capital debt from SEFA, the QBE match in the middle.
+                </p>
+                <p className="text-lg text-background/85 leading-relaxed">
+                  If you&apos;re a foundation, family office or impact investor, this is the
+                  cleanest moment to come in. Every dollar you commit is matched. The pipeline is
+                  already de-risked by buyers under contract.
+                </p>
+              </div>
+              <div className="rounded-2xl bg-background/5 border border-background/10 p-6 md:w-72">
+                <p className="text-xs uppercase tracking-[0.2em] text-background/60 mb-4">
+                  The stack we&apos;re assembling
+                </p>
+                <ul className="space-y-3 text-sm">
+                  {CAPITAL_STACK.map((layer) => (
+                    <li key={layer.layer}>
+                      <div className="font-semibold text-background">{layer.layer}</div>
+                      <div className="text-background/70 text-xs">{layer.source}</div>
+                      <div className="text-background/85 text-sm">{layer.amount}</div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="mt-10">
+              <Button asChild size="lg" variant="secondary">
+                <Link href="#start">Match the QBE round &rarr;</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+         CENTRECORP CASE STUDY
+         ============================================================ */}
+      <section className="py-16 md:py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid gap-10 md:grid-cols-2 md:items-center">
+              <div>
+                <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-3">
+                  Case study
+                </p>
+                <h2 className="text-3xl font-bold text-foreground mb-4">
+                  Centrecorp Foundation: from grant to procurement.
+                </h2>
+                <p className="text-muted-foreground mb-3">
+                  Centrecorp Foundation is the Goods relationship that turned from philanthropy
+                  into procurement. $420K committed across multiple rounds. 109 Stretch Beds locked
+                  for Utopia Homelands. A repeat institutional buyer relationship that
+                  demonstrates the model works at scale.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  It&apos;s the case we point new funders to when they ask &quot;does this become
+                  self-sustaining?&quot; The answer is: it already is, with the right partner.
+                </p>
+                <Link
+                  href="/partners/centrecorp"
+                  className="inline-flex items-center gap-1.5 text-base font-semibold text-primary underline-offset-4 hover:underline"
+                >
+                  Read the full Centrecorp partnership &rarr;
+                </Link>
+              </div>
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl shadow-sm">
+                <Image
+                  src="/images/partners/centrecorp/utopia/final-assembly.jpg"
+                  alt="Stretch Beds being assembled at Utopia Homelands as part of the Centrecorp partnership"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 500px"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+         PARTNER QUOTES
+         ============================================================ */}
       <section className="bg-muted/30 py-16 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl font-bold text-foreground mb-10">Our Partners</h2>
+          <div className="max-w-4xl mx-auto">
+            <div className="grid gap-8 md:grid-cols-2">
+              {partnerQuotes.map((q) => (
+                <figure
+                  key={q.name}
+                  className="rounded-2xl border border-border bg-card p-7"
+                >
+                  <blockquote
+                    className="text-lg text-foreground leading-relaxed mb-5"
+                    style={{ fontFamily: 'Georgia, serif' }}
+                  >
+                    &ldquo;{q.quote}&rdquo;
+                  </blockquote>
+                  <figcaption className="text-sm">
+                    <div className="font-semibold text-foreground">{q.name}</div>
+                    <div className="text-muted-foreground">{q.role}</div>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Backed by */}
-            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-5">
-              Backed by
-            </p>
+      {/* ============================================================
+         LOGO STRIP — Backed by / Community partner
+         ============================================================ */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-2xl font-bold text-foreground mb-10">Our partners, in logos</h2>
+
+            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-5">Backed by</p>
             <div className="mb-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-8 sm:gap-x-14">
               {backedByPartners.map((partner) => (
                 <a
@@ -269,7 +444,6 @@ export default async function PartnerPage({
               ))}
             </div>
 
-            {/* Community partner */}
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-5">
               Community partner
             </p>
@@ -298,14 +472,25 @@ export default async function PartnerPage({
         </div>
       </section>
 
-      {/* Expression of Interest Form */}
-      <section className="py-16 md:py-20">
+      {/* ============================================================
+         START THE CONVERSATION — segmented form
+         ============================================================ */}
+      <section
+        id="start"
+        className="bg-gradient-to-b from-muted/30 to-background py-16 md:py-24 scroll-mt-16"
+      >
         <div className="container mx-auto px-4">
-          <div className="max-w-xl mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-foreground mb-2">Express Interest</h2>
-              <p className="text-muted-foreground">
-                Tell us how you&apos;d like to be involved and we&apos;ll be in touch.
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-10">
+              <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">
+                Start the conversation
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Tell us who you are and where you&apos;re thinking.
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Three quick questions so we can route you to the right person, then a few details
+                so we can write back well.
               </p>
             </div>
             <PartnershipForm defaultType={requestedType} />

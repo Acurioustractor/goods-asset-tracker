@@ -11,6 +11,9 @@ interface PartnershipFormData {
   partnershipType: string;
   message?: string;
   howHeard?: string;
+  partnerSegment?: string;
+  fundingTier?: string;
+  timeline?: string;
 }
 
 export async function POST(request: NextRequest) {
@@ -36,6 +39,15 @@ export async function POST(request: NextRequest) {
 
     const supabase = createServiceClient();
 
+    // Roll segmentation answers into the stored message so they survive
+    // even if the partnership_inquiries table doesn't have dedicated columns.
+    const segmentPrefix = [
+      body.partnerSegment ? `Segment: ${body.partnerSegment}` : null,
+      body.fundingTier ? `Ticket size: ${body.fundingTier}` : null,
+      body.timeline ? `Timeline: ${body.timeline}` : null,
+    ].filter(Boolean).join(' · ');
+    const enrichedMessage = [segmentPrefix, body.message].filter(Boolean).join('\n\n');
+
     // Store in Supabase partnership_inquiries table
     const { data: inquiry, error: dbError } = await supabase
       .from('partnership_inquiries')
@@ -46,7 +58,7 @@ export async function POST(request: NextRequest) {
         contact_phone: body.contactPhone || null,
         website: body.website || null,
         partnership_type: body.partnershipType || null,
-        message: body.message || null,
+        message: enrichedMessage || null,
         how_heard: body.howHeard || null,
         status: 'new',
       })
@@ -89,6 +101,9 @@ export async function POST(request: NextRequest) {
         contactPhone: body.contactPhone,
         partnershipType: body.partnershipType,
         message: body.message,
+        partnerSegment: body.partnerSegment,
+        fundingTier: body.fundingTier,
+        timeline: body.timeline,
       });
     }
 

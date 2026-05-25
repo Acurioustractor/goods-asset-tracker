@@ -260,6 +260,12 @@ interface PartnershipInquiryData {
   contactPhone?: string;
   partnershipType: string;
   message?: string;
+  /** foundation | corporate | buyer | investor | community | other */
+  partnerSegment?: string;
+  /** under-25k | 25-100k | 100-500k | 500k-plus | loan | exploring */
+  fundingTier?: string;
+  /** now | this-year | future */
+  timeline?: string;
 }
 
 interface RecipientClaimData {
@@ -1057,29 +1063,50 @@ Submitted: ${new Date().toLocaleString('en-AU')}
     }
     withGoodsProject(customFields);
 
+    // Build segment/tier/timeline tags so Smart Router can route by
+    // partner type (foundation, corporate, buyer, investor, community)
+    // and by ticket size (under-25k, 25-100k, 100-500k, 500k+, loan).
+    const segmentTags: string[] = [];
+    if (data.partnerSegment) {
+      segmentTags.push(`goods-segment-${data.partnerSegment}`);
+    }
+    if (data.fundingTier) {
+      segmentTags.push(`goods-tier-${data.fundingTier}`);
+    }
+    if (data.timeline) {
+      segmentTags.push(`goods-timeline-${data.timeline}`);
+    }
+
     const result = await createOrUpdateContact({
       email: data.contactEmail,
       phone: data.contactPhone,
       name: data.contactName,
       companyName: data.organizationName,
-      tags: isMedia ? [TAGS.mediaRequest] : [TAGS.partnerLead],
+      tags: isMedia
+        ? [TAGS.mediaRequest]
+        : [TAGS.partnerLead, ...segmentTags],
       customFields,
       source: isMedia ? 'Media Pack Request' : 'Partnership Inquiry',
     });
 
     // Add inquiry details as a note
     if (result.success && result.contact?.id) {
-      const noteText = `
-🤝 Partnership Inquiry
-Organization: ${data.organizationName}
-Type: ${data.partnershipType}
-Message: ${data.message || 'No message provided'}
-Submitted: ${new Date().toLocaleString('en-AU')}
-      `.trim();
+      const noteLines = [
+        '🤝 Partnership Inquiry',
+        `Organization: ${data.organizationName}`,
+        `Type: ${data.partnershipType}`,
+        data.partnerSegment ? `Segment: ${data.partnerSegment}` : null,
+        data.fundingTier ? `Ticket size: ${data.fundingTier}` : null,
+        data.timeline ? `Timeline: ${data.timeline}` : null,
+        `Message: ${data.message || 'No message provided'}`,
+        `Submitted: ${new Date().toLocaleString('en-AU')}`,
+      ].filter(Boolean);
+      const noteText = noteLines.join('\n');
 
       await addContactNote(result.contact.id, noteText);
 
-      // Smart Router branches on goods-partner-lead OR goods-media.
+      // Smart Router branches on goods-partner-lead OR goods-media,
+      // and can now sub-branch on goods-segment-*, goods-tier-*, goods-timeline-*.
       await fireSmartRouter(result.contact.id);
     }
 
