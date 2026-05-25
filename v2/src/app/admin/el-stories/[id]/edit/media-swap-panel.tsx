@@ -332,10 +332,20 @@ function PickerModal({
   async function load(t: string) {
     setLoading(true);
     try {
-      const res = await fetch(`/api/admin/field-note-override/list?tags=${encodeURIComponent(t)}&kind=${slotKind === 'video' ? 'video' : 'photo'}&limit=200`);
+      // EL picker endpoint expects repeated `tag` params and returns a
+      // bare array. Comma-separated values get split into multiple `tag=`.
+      const tagList = t.split(',').map((s) => s.trim()).filter(Boolean);
+      const params = new URLSearchParams();
+      for (const tg of tagList) params.append('tag', tg);
+      params.set('kind', slotKind === 'video' ? 'video' : 'photo');
+      params.set('limit', '200');
+      const res = await fetch(`/api/admin/field-note-override/list?${params}`);
       if (res.ok) {
-        const data = (await res.json()) as { items?: PickerItem[] };
-        setItems(data.items || []);
+        const data = (await res.json()) as unknown;
+        const arr = Array.isArray(data)
+          ? (data as PickerItem[])
+          : ((data as { items?: PickerItem[] }).items || []);
+        setItems(arr);
       } else {
         setItems([]);
       }

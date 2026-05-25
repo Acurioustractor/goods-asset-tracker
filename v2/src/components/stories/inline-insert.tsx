@@ -85,12 +85,21 @@ function PickerModal({
   async function load(t: string) {
     setLoading(true);
     try {
-      const res = await fetch(
-        `/api/admin/field-note-override/list?tags=${encodeURIComponent(t)}&kind=${mediaKind}&limit=200`,
-      );
+      // EL picker endpoint expects repeated `tag` params, returns a bare
+      // array (not `{items}`). Split a comma-separated value into many
+      // `tag=…` params so authors can search by single or compound tags.
+      const tagList = t.split(',').map((s) => s.trim()).filter(Boolean);
+      const params = new URLSearchParams();
+      for (const tg of tagList) params.append('tag', tg);
+      params.set('kind', mediaKind);
+      params.set('limit', '200');
+      const res = await fetch(`/api/admin/field-note-override/list?${params}`);
       if (res.ok) {
-        const data = (await res.json()) as { items?: PickerItem[] };
-        setItems(data.items || []);
+        const data = (await res.json()) as unknown;
+        const arr = Array.isArray(data)
+          ? (data as PickerItem[])
+          : ((data as { items?: PickerItem[] }).items || []);
+        setItems(arr);
       } else {
         setItems([]);
       }
