@@ -11,6 +11,8 @@ import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { MediaSwapPanel } from './media-swap-panel';
+import { blocksToHtml } from '@/lib/stories/blocks-to-html';
+import type { TripBlock } from '@/lib/data/trip-stories';
 
 export const metadata: Metadata = {
   title: 'Edit story · Goods admin',
@@ -101,6 +103,10 @@ async function saveStory(formData: FormData) {
   // layout choice). Empty blocks_json + missing layout = leave alone.
   if (blocks !== undefined) {
     payload.media_metadata = { layout, blocks };
+    // Mirror blocks to the `content` field so EL's native editor stays
+    // a readable reflection of what Goods is rendering. Blocks are
+    // canonical; content is auto-generated.
+    payload.content = blocksToHtml(blocks as TripBlock[]);
   }
 
   const res = await fetch(`${EL_URL}/rest/v1/stories?id=eq.${id}`, {

@@ -6,6 +6,8 @@
 // Goods admin only. Service-role key never reaches the browser.
 
 import { NextResponse } from 'next/server';
+import { blocksToHtml } from '@/lib/stories/blocks-to-html';
+import type { TripBlock } from '@/lib/data/trip-stories';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -91,7 +93,9 @@ export async function POST(
     );
   }
 
-  // PATCH back
+  // PATCH back. Also mirror blocks → content so EL's native editor shows
+  // the same body that Goods is rendering. Blocks remain canonical.
+  const content = blocksToHtml(blocks as TripBlock[]);
   const patchRes = await fetch(`${EL_URL}/rest/v1/stories?id=eq.${id}`, {
     method: 'PATCH',
     headers: {
@@ -100,7 +104,7 @@ export async function POST(
       'Content-Type': 'application/json',
       Prefer: 'return=minimal',
     },
-    body: JSON.stringify({ media_metadata: { ...mm, blocks } }),
+    body: JSON.stringify({ media_metadata: { ...mm, blocks }, content }),
   });
   if (!patchRes.ok) {
     const text = await patchRes.text();
