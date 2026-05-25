@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { constructWebhookEvent, getStripe } from '@/lib/stripe';
+import { constructWebhookEvent, getStripe, type StripeMode } from '@/lib/stripe';
 import { createServiceClient } from '@/lib/supabase/server';
 import { ghl } from '@/lib/ghl';
+
+function modeFor(obj: { livemode?: boolean }): StripeMode {
+  return obj.livemode ? 'live' : 'test';
+}
 
 export const runtime = 'nodejs';
 
@@ -94,8 +98,9 @@ async function handleCheckoutSessionCompleted(
     return;
   }
 
-  // Retrieve full session with line items
-  const stripe = getStripe();
+  // Retrieve full session with line items. Use the same mode the event came
+  // in on — a live key can't fetch a test session and vice versa.
+  const stripe = getStripe(modeFor(session));
   const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
     expand: ['line_items.data.price.product'],
   });
@@ -109,10 +114,14 @@ async function handleCheckoutSessionCompleted(
   const isSponsorship = itemsMetadata.some(
     (item: { is_sponsorship?: boolean }) => item.is_sponsorship
   );
-  const sponsoredCommunity =
-    itemsMetadata.find(
-      (item: { is_sponsorship?: boolean }) => item.is_sponsorship
-    )?.sponsored_community || null;
+  const sponsorItem = itemsMetadata.find(
+    (item: { is_sponsorship?: boolean }) => item.is_sponsorship
+  );
+  const sponsoredCommunity = sponsorItem?.sponsored_community || null;
+  // Dedication message captured on /sponsor — stored on the line-item metadata
+  // by the checkout API, then surfaced on the order so the field team can
+  // honour it when the bed is delivered.
+  const sponsorMessage = sponsorItem?.dedication_message || null;
 
   // Extract shipping address. Stripe API 2025-12-15.clover moved this from
   // session.shipping_details to session.collected_information.shipping_details.
@@ -184,6 +193,7 @@ async function handleCheckoutSessionCompleted(
       paid_at: new Date().toISOString(),
       is_sponsorship: isSponsorship,
       sponsored_community: sponsoredCommunity,
+      sponsor_message: sponsorMessage,
     })
     .select()
     .single();
@@ -237,6 +247,7 @@ async function handleCheckoutSessionCompleted(
     totalCents: totalCents,
     isSponsorship: isSponsorship,
     sponsoredCommunity: sponsoredCommunity || undefined,
+    sponsorMessage: sponsorMessage || undefined,
     productTypes: productTypes,
   };
 

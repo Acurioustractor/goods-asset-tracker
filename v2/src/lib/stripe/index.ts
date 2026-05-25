@@ -1,32 +1,63 @@
 import Stripe from 'stripe';
 
-// Lazy initialization - only creates Stripe instance when first accessed
-let _stripe: Stripe | null = null;
+// Lazy-cached Stripe clients, one per mode. Production traffic hits both:
+//   - /api/checkout creates LIVE sessions for real customer purchases.
+//   - /api/webhooks/stripe receives BOTH live and test events at the same
+//     endpoint, and must use the matching mode's API key for follow-up
+//     reads like checkout.sessions.retrieve(). A LIVE key cannot retrieve
+//     a TEST session (Stripe returns "No such checkout.session") and vice
+//     versa.
+const _stripeByMode: { live: Stripe | null; test: Stripe | null } = {
+  live: null,
+  test: null,
+};
 
-export function getStripe(): Stripe {
-  if (!_stripe) {
-    const key = process.env.STRIPE_SECRET_KEY;
-    if (!key) {
-      throw new Error('STRIPE_SECRET_KEY is not set');
-    }
-    _stripe = new Stripe(key, {
-      apiVersion: '2025-12-15.clover',
-      typescript: true,
-    });
-  }
-  return _stripe;
+function makeStripe(key: string): Stripe {
+  return new Stripe(key, {
+    apiVersion: '2025-12-15.clover',
+    typescript: true,
+  });
 }
 
-// Convenience alias
-export const stripe = { get: getStripe };
+export type StripeMode = 'live' | 'test';
+
+/**
+ * Get a Stripe client for a specific mode.
+ *
+ * - 'live' → uses `STRIPE_SECRET_KEY` (the default)
+ * - 'test' → uses `STRIPE_SECRET_KEY_TEST`
+ *
+ * Throws if the required env var for that mode is not set.
+ */
+export function getStripe(mode: StripeMode = 'live'): Stripe {
+  if (_stripeByMode[mode]) return _stripeByMode[mode] as Stripe;
+  const envName = mode === 'live' ? 'STRIPE_SECRET_KEY' : 'STRIPE_SECRET_KEY_TEST';
+  const key = process.env[envName];
+  if (!key) {
+    throw new Error(`${envName} is not set`);
+  }
+  const client = makeStripe(key);
+  _stripeByMode[mode] = client;
+  return client;
+}
+
+/**
+ * Pick the right Stripe client for a webhook event.
+ * Stripe events carry `livemode: true | false` — use that to route
+ * follow-up API reads to the correct mode's key.
+ */
+export function getStripeForEvent(event: Stripe.Event): Stripe {
+  return getStripe(event.livemode ? 'live' : 'test');
+}
+
+// Convenience alias for callers that explicitly want the live client.
+export const stripe = { get: () => getStripe('live') };
 
 export function formatAmountForStripe(amount: number): number {
-  // Stripe expects amounts in the smallest currency unit (cents)
   return Math.round(amount);
 }
 
 export function formatAmountFromStripe(amount: number): number {
-  // Convert from cents to dollars
   return amount / 100;
 }
 
@@ -39,9 +70,9 @@ export function formatAmountFromStripe(amount: number): number {
  * secret — they will never match each other. Both Stripe Dashboard endpoints
  * can point at /api/webhooks/stripe; the right secret wins per request.
  *
- * Set `STRIPE_WEBHOOK_SECRET` to one (typically live) and
- * `STRIPE_WEBHOOK_SECRET_TEST` to the other. Either order works — the first
- * secret that verifies the signature is the right one for this event.
+ * Set `STRIPE_WEBHOOK_SECRET` to the live secret and
+ * `STRIPE_WEBHOOK_SECRET_TEST` to the test secret. The first secret that
+ * verifies the signature is the right one for this event.
  *
  * @param body - Raw request body as string
  * @param signature - Stripe-Signature header value
@@ -60,26 +91,16 @@ export function constructWebhookEvent(
     throw new Error('STRIPE_WEBHOOK_SECRET (or STRIPE_WEBHOOK_SECRET_TEST) is not set');
   }
 
-  // Telemetry without leaking secrets — just the presence + length of each.
-  const live = process.env.STRIPE_WEBHOOK_SECRET || '';
-  const test = process.env.STRIPE_WEBHOOK_SECRET_TEST || '';
-  console.log('[stripe-webhook] secrets loaded', {
-    liveSet: Boolean(live),
-    liveLen: live.length,
-    testSet: Boolean(test),
-    testLen: test.length,
-    sigPrefix: (signature || '').slice(0, 18),
-  });
+  // Stripe's webhooks.constructEvent only needs a Stripe instance for its
+  // crypto helpers, not a mode-specific key — using the live client is fine
+  // for verification of either mode's signature.
+  const client = getStripe('live');
 
   let lastError: unknown;
-  for (let i = 0; i < secrets.length; i++) {
+  for (const secret of secrets) {
     try {
-      const event = getStripe().webhooks.constructEvent(body, signature, secrets[i]);
-      console.log(`[stripe-webhook] verified with secret #${i + 1} (${secrets[i].length} chars)`);
-      return event;
+      return client.webhooks.constructEvent(body, signature, secret);
     } catch (err) {
-      const msg = err instanceof Error ? err.message : String(err);
-      console.log(`[stripe-webhook] secret #${i + 1} (${secrets[i].length} chars) failed: ${msg.slice(0, 200)}`);
       lastError = err;
     }
   }
