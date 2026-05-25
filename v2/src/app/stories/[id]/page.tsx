@@ -165,9 +165,17 @@ export default async function StoryDetailPage({ params }: Props) {
     ) as Extract<TripBlock, { kind: 'masthead' }> | undefined;
     const heroImage = heroBlock?.media.image ?? story.storyImageUrl ?? null;
     const heroVideo = heroBlock?.media.videoDesktop ?? null;
-    const restBlocks = (rawBlocks as TripBlock[]).filter(
-      (b) => b.kind !== 'masthead',
-    );
+    // Keep parallel arrays: blocks to render + their original positions in
+    // EL's media_metadata.blocks. The insert endpoint needs the original
+    // index to drop new blocks in the right place even after filtering.
+    const restBlocks: TripBlock[] = [];
+    const blockIndices: number[] = [];
+    (rawBlocks as TripBlock[]).forEach((b, idx) => {
+      if (b.kind !== 'masthead') {
+        restBlocks.push(b);
+        blockIndices.push(idx);
+      }
+    });
     return (
       <ArticleRenderer
         story={{
@@ -180,6 +188,7 @@ export default async function StoryDetailPage({ params }: Props) {
           heroImage,
           heroVideo,
           blocks: restBlocks,
+          blockIndices,
         }}
         editHref={isAdmin ? `/admin/el-stories/${story.id}/edit` : undefined}
         elEditHref={isAdmin ? elEditUrlFor(story.id) : undefined}

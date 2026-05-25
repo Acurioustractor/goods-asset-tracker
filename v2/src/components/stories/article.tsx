@@ -15,6 +15,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { TripBlock, MediaRef } from '@/lib/data/trip-stories';
+import { InsertBetweenBlocks } from './inline-insert';
 
 interface ArticleStory {
   id: string;
@@ -28,6 +29,13 @@ interface ArticleStory {
   /** Optional hero looping background video, mute+loop, plays under scrim. */
   heroVideo?: string | null;
   blocks: TripBlock[];
+  /**
+   * Optional parallel array of original block indices in the EL story's
+   * media_metadata.blocks. When present, the inline insert buttons use
+   * these indices so a new block lands at the right place in EL even
+   * after blocks have been filtered (e.g. masthead pulled out for hero).
+   */
+  blockIndices?: number[];
 }
 
 interface Props {
@@ -180,6 +188,124 @@ function Bg({ image, video }: { image?: string | null; video?: string | null }) 
   );
 }
 
+function renderArticleBlock(block: TripBlock, i: number): React.ReactNode {
+  switch (block.kind) {
+    case 'read':
+      return (
+        <div key={i} className="mt-10">
+          {block.tag && <p className="text-xs uppercase tracking-widest text-primary mb-3">{block.tag}</p>}
+          {block.heading && (
+            <h2 className="font-serif text-3xl md:text-4xl font-light leading-tight text-foreground mb-6 mt-4">
+              {block.heading}
+            </h2>
+          )}
+          {block.paragraphs.map((p, pi) => (
+            <p key={pi} className="font-serif text-lg md:text-xl leading-relaxed text-stone-800 mb-5">
+              {renderInline(p)}
+            </p>
+          ))}
+        </div>
+      );
+    case 'pullquote':
+      return <PullQuote key={i} kicker={block.kicker} quote={block.quote} attribution={block.attribution} />;
+    case 'figure':
+      return <Figure key={i} src={block.image} alt={block.alt} caption={block.caption} credit={block.credit} />;
+    case 'hero-photo': {
+      const img = (block.media as MediaRef)?.image;
+      if (!img) return null;
+      return <HeroPhoto key={i} image={img} alt={block.title} quote={block.quote} attribution={block.attribution} />;
+    }
+    case 'manual-gallery':
+    case 'el-gallery': {
+      const items = (block.items || []) as { src: string; alt?: string; caption?: string }[];
+      return (
+        <div key={i} className="mt-10">
+          {block.heading && <h2 className="font-serif text-2xl md:text-3xl font-light text-foreground mb-2">{block.heading}</h2>}
+          {block.sub && <p className="text-sm text-stone-600 mb-5">{block.sub}</p>}
+          <Gallery items={items} />
+        </div>
+      );
+    }
+    case 'el-video-gallery': {
+      const items = block.items || [];
+      if (items.length === 0) return null;
+      const v = items[0];
+      // Overlay mode: full-bleed background video with title overlay.
+      if ((block as { as?: string }).as === 'overlay') {
+        return (
+          <div key={i} className="mt-12 -mx-4 md:mx-0">
+            <div className="relative w-full aspect-[16/9] bg-stone-900 rounded-lg overflow-hidden">
+              <Bg image={v.poster} video={v.src} />
+              <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                <div className="px-6 pb-7 md:px-10 md:pb-10">
+                  {block.heading && <h2 className="font-serif italic text-white text-2xl md:text-3xl">{block.heading}</h2>}
+                  {block.sub && <p className="mt-1 text-white/80 text-sm">{block.sub}</p>}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+      return (
+        <div key={i} className="mt-10">
+          {block.heading && <h2 className="font-serif text-2xl md:text-3xl font-light text-foreground mb-2">{block.heading}</h2>}
+          {block.sub && <p className="text-sm text-stone-600 mb-5">{block.sub}</p>}
+          <VideoBlock src={v.src} poster={v.poster} caption={v.caption} title={v.title} />
+        </div>
+      );
+    }
+    case 'before-after-split':
+      return (
+        <div key={i} className="mt-10 -mx-4 md:mx-0">
+          {block.heading && <h2 className="font-serif text-2xl md:text-3xl font-light text-foreground mb-2 px-4 md:px-0">{block.heading}</h2>}
+          {block.intro && <p className="text-stone-700 mb-5 px-4 md:px-0">{block.intro}</p>}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {[block.before, block.after].map((side, si) => (
+              <figure key={si} className="relative">
+                <div className="relative aspect-[4/3] bg-stone-100 rounded-md overflow-hidden">
+                  <Image src={side.image} alt={side.alt} fill className="object-cover" sizes="(min-width: 1024px) 460px, 100vw" />
+                  <span className="absolute top-3 left-3 text-xs uppercase tracking-wider bg-black/70 text-white px-2 py-1 rounded-full">
+                    {side.label}
+                  </span>
+                </div>
+              </figure>
+            ))}
+          </div>
+          {block.credit && <p className="text-center text-xs uppercase tracking-wider text-stone-500 mt-4">{block.credit}</p>}
+        </div>
+      );
+    case 'close':
+      return (
+        <div key={i} className="mt-16 -mx-4 md:mx-0">
+          <div className="relative w-full aspect-[16/9] bg-stone-900 rounded-lg overflow-hidden">
+            <Bg image={(block.media as MediaRef).image} video={(block.media as MediaRef).videoDesktop} />
+            <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 via-transparent to-transparent">
+              <h2 className="px-6 pb-7 md:px-10 md:pb-10 font-serif italic text-white text-2xl md:text-3xl">{block.title}</h2>
+            </div>
+          </div>
+        </div>
+      );
+    case 'masthead':
+    case 'immersive':
+    case 'bleedquote':
+    case 'live-map':
+    case 'stats':
+    case 'voices':
+    case 'videos':
+    case 'map':
+    case 'pathways':
+    case 'portal':
+    case 'partner-credit':
+    case 'goods-facts':
+    case 'health-facts':
+    case 'problem-statement':
+    case 'production-plant-facts':
+      return null;
+    default:
+      return null;
+  }
+}
+
 export function ArticleRenderer({ story, editHref, elEditHref }: Props) {
   return (
     <main className="bg-[#FDF8F3] text-foreground">
@@ -245,119 +371,31 @@ export function ArticleRenderer({ story, editHref, elEditHref }: Props) {
         </div>
       </section>
 
-      {/* Body — centered column, magazine prose. Each block renders inline. */}
+      {/* Body — centered column, magazine prose. Each block renders inline.
+          When the parent provided editHref (admin signed in), thin inline
+          "+ Add media here" buttons appear between blocks so the editor
+          can drop a photo or video at the cursor without leaving the page. */}
       <article className="max-w-3xl mx-auto px-4 md:px-6 pb-20">
+        {editHref && story.blockIndices && story.blockIndices.length > 0 && (
+          <InsertBetweenBlocks
+            storyId={story.id}
+            afterIndex={Math.max(0, story.blockIndices[0] - 1)}
+          />
+        )}
         {story.blocks.map((block, i) => {
-          switch (block.kind) {
-            case 'read':
-              return (
-                <div key={i} className="mt-10">
-                  {block.tag && (
-                    <p className="text-xs uppercase tracking-widest text-primary mb-3">{block.tag}</p>
-                  )}
-                  {block.heading && (
-                    <h2 className="font-serif text-3xl md:text-4xl font-light leading-tight text-foreground mb-6 mt-4">
-                      {block.heading}
-                    </h2>
-                  )}
-                  {block.paragraphs.map((p, pi) => (
-                    <p key={pi} className="font-serif text-lg md:text-xl leading-relaxed text-stone-800 mb-5">
-                      {renderInline(p)}
-                    </p>
-                  ))}
-                </div>
-              );
-            case 'pullquote':
-              return <PullQuote key={i} kicker={block.kicker} quote={block.quote} attribution={block.attribution} />;
-            case 'figure':
-              return <Figure key={i} src={block.image} alt={block.alt} caption={block.caption} credit={block.credit} />;
-            case 'hero-photo': {
-              const img = (block.media as MediaRef)?.image;
-              if (!img) return null;
-              return <HeroPhoto key={i} image={img} alt={block.title} quote={block.quote} attribution={block.attribution} />;
-            }
-            case 'manual-gallery':
-            case 'el-gallery': {
-              const items = (block.items || []) as { src: string; alt?: string; caption?: string }[];
-              return (
-                <div key={i} className="mt-10">
-                  {block.heading && (
-                    <h2 className="font-serif text-2xl md:text-3xl font-light text-foreground mb-2">{block.heading}</h2>
-                  )}
-                  {block.sub && <p className="text-sm text-stone-600 mb-5">{block.sub}</p>}
-                  <Gallery items={items} />
-                </div>
-              );
-            }
-            case 'el-video-gallery': {
-              const items = block.items || [];
-              if (items.length === 0) return null;
-              const v = items[0];
-              return (
-                <div key={i} className="mt-10">
-                  {block.heading && (
-                    <h2 className="font-serif text-2xl md:text-3xl font-light text-foreground mb-2">{block.heading}</h2>
-                  )}
-                  {block.sub && <p className="text-sm text-stone-600 mb-5">{block.sub}</p>}
-                  <VideoBlock src={v.src} poster={v.poster} caption={v.caption} title={v.title} />
-                </div>
-              );
-            }
-            case 'before-after-split':
-              return (
-                <div key={i} className="mt-10 -mx-4 md:mx-0">
-                  {block.heading && (
-                    <h2 className="font-serif text-2xl md:text-3xl font-light text-foreground mb-2 px-4 md:px-0">{block.heading}</h2>
-                  )}
-                  {block.intro && <p className="text-stone-700 mb-5 px-4 md:px-0">{block.intro}</p>}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {[block.before, block.after].map((side, si) => (
-                      <figure key={si} className="relative">
-                        <div className="relative aspect-[4/3] bg-stone-100 rounded-md overflow-hidden">
-                          <Image src={side.image} alt={side.alt} fill className="object-cover" sizes="(min-width: 1024px) 460px, 100vw" />
-                          <span className="absolute top-3 left-3 text-xs uppercase tracking-wider bg-black/70 text-white px-2 py-1 rounded-full">
-                            {side.label}
-                          </span>
-                        </div>
-                      </figure>
-                    ))}
-                  </div>
-                  {block.credit && <p className="text-center text-xs uppercase tracking-wider text-stone-500 mt-4">{block.credit}</p>}
-                </div>
-              );
-            case 'close':
-              return (
-                <div key={i} className="mt-16 -mx-4 md:mx-0">
-                  <div className="relative w-full aspect-[16/9] bg-stone-900 rounded-lg overflow-hidden">
-                    <Bg image={(block.media as MediaRef).image} video={(block.media as MediaRef).videoDesktop} />
-                    <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 via-transparent to-transparent">
-                      <h2 className="px-6 pb-7 md:px-10 md:pb-10 font-serif italic text-white text-2xl md:text-3xl">{block.title}</h2>
-                    </div>
-                  </div>
-                </div>
-              );
-            // Block kinds that only make sense in the rich layout — render
-            // a graceful nothing so an author can switch layouts without
-            // restructuring blocks first.
-            case 'masthead':
-            case 'immersive':
-            case 'bleedquote':
-            case 'live-map':
-            case 'stats':
-            case 'voices':
-            case 'videos':
-            case 'map':
-            case 'pathways':
-            case 'portal':
-            case 'partner-credit':
-            case 'goods-facts':
-            case 'health-facts':
-            case 'problem-statement':
-            case 'production-plant-facts':
-              return null;
-            default:
-              return null;
-          }
+          const originalIndex = story.blockIndices?.[i] ?? i;
+          const node = renderArticleBlock(block, i);
+          return (
+            <div key={`b-${i}`}>
+              {node}
+              {editHref && (
+                <InsertBetweenBlocks
+                  storyId={story.id}
+                  afterIndex={originalIndex}
+                />
+              )}
+            </div>
+          );
         })}
 
         <footer className="mt-16 pt-8 border-t border-stone-200 text-sm text-stone-600">
