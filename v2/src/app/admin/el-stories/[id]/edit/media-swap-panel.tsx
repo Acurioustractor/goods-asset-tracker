@@ -22,6 +22,14 @@ interface MediaSlot {
   url: string;             // current url
   kind: 'photo' | 'video';
   label: string;           // human-readable description
+  blockIndex: number;      // which block this slot is in (for insert-after)
+}
+
+type InsertKind = 'figure' | 'video-cinema' | 'video-overlay';
+interface InsertTarget {
+  afterIndex: number;     // block index to insert after
+  blockLabel: string;     // for the modal title
+  insertKind: InsertKind; // photo | inline video | overlay video
 }
 
 interface Props {
@@ -40,38 +48,34 @@ function extractSlots(blocks: unknown[]): MediaSlot[] {
     const tag = (block.tag as string) || '';
     const label = heading || tag || `${kind}`;
 
-    // media.image + media.videoDesktop / videoMobile
     if (block.media && typeof block.media === 'object') {
       const media = block.media as Record<string, unknown>;
       if (typeof media.image === 'string' && media.image) {
-        slots.push({ path: `${i}.media.image`, url: media.image, kind: 'photo', label: `${label} · image` });
+        slots.push({ path: `${i}.media.image`, url: media.image, kind: 'photo', label: `${label} · image`, blockIndex: i });
       }
       if (typeof media.videoDesktop === 'string' && media.videoDesktop) {
-        slots.push({ path: `${i}.media.videoDesktop`, url: media.videoDesktop, kind: 'video', label: `${label} · video (desktop)` });
+        slots.push({ path: `${i}.media.videoDesktop`, url: media.videoDesktop, kind: 'video', label: `${label} · video (desktop)`, blockIndex: i });
       }
       if (typeof media.videoMobile === 'string' && media.videoMobile && media.videoMobile !== media.videoDesktop) {
-        slots.push({ path: `${i}.media.videoMobile`, url: media.videoMobile, kind: 'video', label: `${label} · video (mobile)` });
+        slots.push({ path: `${i}.media.videoMobile`, url: media.videoMobile, kind: 'video', label: `${label} · video (mobile)`, blockIndex: i });
       }
     }
 
-    // figure: image
     if (kind === 'figure' && typeof block.image === 'string') {
-      slots.push({ path: `${i}.image`, url: block.image, kind: 'photo', label: `${label} · figure` });
+      slots.push({ path: `${i}.image`, url: block.image, kind: 'photo', label: `${label} · figure`, blockIndex: i });
     }
 
-    // before-after-split: before.image + after.image
     if (kind === 'before-after-split') {
       const before = block.before as Record<string, unknown> | undefined;
       const after = block.after as Record<string, unknown> | undefined;
       if (before && typeof before.image === 'string') {
-        slots.push({ path: `${i}.before.image`, url: before.image, kind: 'photo', label: `${label} · before` });
+        slots.push({ path: `${i}.before.image`, url: before.image, kind: 'photo', label: `${label} · before`, blockIndex: i });
       }
       if (after && typeof after.image === 'string') {
-        slots.push({ path: `${i}.after.image`, url: after.image, kind: 'photo', label: `${label} · after` });
+        slots.push({ path: `${i}.after.image`, url: after.image, kind: 'photo', label: `${label} · after`, blockIndex: i });
       }
     }
 
-    // gallery / video-gallery: items[].src
     const items = block.items as Array<Record<string, unknown>> | undefined;
     if (Array.isArray(items)) {
       items.forEach((it, j) => {
@@ -83,6 +87,7 @@ function extractSlots(blocks: unknown[]): MediaSlot[] {
           url: src,
           kind: itemKind,
           label: `${label} · item ${j + 1}`,
+          blockIndex: i,
         });
       });
     }
@@ -90,26 +95,99 @@ function extractSlots(blocks: unknown[]): MediaSlot[] {
   return slots;
 }
 
+// Tag the block-index headings so the insert UI knows where blocks
+// START (not just where existing media slots sit). Even prose-only
+// read blocks should get an "Insert after" affordance so the editor
+// can drop a figure/video into a section without one.
+function extractBlockHeadings(blocks: unknown[]): { index: number; label: string }[] {
+  return blocks.map((b, i) => {
+    if (!b || typeof b !== 'object') return { index: i, label: `block ${i}` };
+    const block = b as Record<string, unknown>;
+    const kind = (block.kind as string) || 'block';
+    const heading = (block.heading as string) || (block.title as string) || (block.tag as string) || '';
+    return { index: i, label: heading ? `${kind} · ${heading}` : kind };
+  });
+}
+
 export function MediaSwapPanel({ storyId, blocks, defaultTag = 'trip:may-2026' }: Props) {
   const slots = useMemo(() => extractSlots(blocks), [blocks]);
+  const blockHeadings = useMemo(() => extractBlockHeadings(blocks), [blocks]);
   const [openSlot, setOpenSlot] = useState<MediaSlot | null>(null);
+  const [openInsert, setOpenInsert] = useState<InsertTarget | null>(null);
   const [busy, setBusy] = useState(false);
 
   return (
     <div className="rounded-md border border-stone-200 bg-white p-5">
       <h2 className="text-sm font-semibold text-gray-900">Media in this story ({slots.length})</h2>
       <p className="mt-1 text-xs text-gray-500">
-        Click <strong>Swap</strong> on any tile to pick a replacement from EL. Changes write to EL
-        and show on <code>/stories/{storyId}</code> on next request (no cache).
+        <strong>Swap</strong> replaces media in an existing slot. <strong>Insert after</strong> adds a
+        new figure or video block after this point in the article. Both write straight to EL and show
+        on <code>/stories/{storyId}</code> on next request (no cache).
       </p>
       <div className="mt-4 grid grid-cols-2 md:grid-cols-3 gap-3">
         {slots.map((slot) => (
-          <SlotCard key={slot.path} slot={slot} onSwap={() => setOpenSlot(slot)} />
+          <SlotCard
+            key={slot.path}
+            slot={slot}
+            onSwap={() => setOpenSlot(slot)}
+            onInsert={(insertKind) =>
+              setOpenInsert({
+                afterIndex: slot.blockIndex,
+                blockLabel: slot.label,
+                insertKind,
+              })
+            }
+          />
         ))}
       </div>
+
+      <div className="mt-6 rounded-md border border-dashed border-stone-300 bg-stone-50 p-4">
+        <h3 className="text-xs font-semibold text-gray-800 uppercase tracking-wider">
+          Insert a block at any position
+        </h3>
+        <p className="mt-1 text-xs text-gray-500">
+          Drop a new photo, inline video, or full-bleed overlay video <strong>after</strong> any block in the
+          article. Useful for sections currently without media.
+        </p>
+        <div className="mt-3 max-h-48 overflow-auto rounded border border-stone-200 bg-white">
+          <table className="w-full text-xs">
+            <tbody>
+              {blockHeadings.map((b) => (
+                <tr key={b.index} className="border-b border-stone-100 last:border-0">
+                  <td className="px-2 py-1.5 font-mono text-[10px] text-stone-400 w-10">{b.index}</td>
+                  <td className="px-2 py-1.5 text-stone-700 truncate" title={b.label}>{b.label}</td>
+                  <td className="px-2 py-1.5 text-right w-44">
+                    <div className="inline-flex gap-1">
+                      <button
+                        type="button"
+                        onClick={() => setOpenInsert({ afterIndex: b.index, blockLabel: b.label, insertKind: 'figure' })}
+                        className="rounded bg-stone-700 text-white px-1.5 py-0.5 text-[10px] hover:bg-stone-900"
+                      >+ Photo</button>
+                      <button
+                        type="button"
+                        onClick={() => setOpenInsert({ afterIndex: b.index, blockLabel: b.label, insertKind: 'video-cinema' })}
+                        className="rounded bg-stone-700 text-white px-1.5 py-0.5 text-[10px] hover:bg-stone-900"
+                      >+ Video</button>
+                      <button
+                        type="button"
+                        onClick={() => setOpenInsert({ afterIndex: b.index, blockLabel: b.label, insertKind: 'video-overlay' })}
+                        className="rounded bg-amber-600 text-white px-1.5 py-0.5 text-[10px] hover:bg-amber-700"
+                      >+ Overlay</button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       {openSlot && (
         <PickerModal
-          slot={openSlot}
+          mode="swap"
+          slotLabel={openSlot.label}
+          slotPath={openSlot.path}
+          slotKind={openSlot.kind}
           defaultTag={defaultTag}
           busy={busy}
           onClose={() => setOpenSlot(null)}
@@ -121,12 +199,39 @@ export function MediaSwapPanel({ storyId, blocks, defaultTag = 'trip:may-2026' }
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ path: openSlot.path, value: item.url }),
               });
-              if (!res.ok) {
-                const t = await res.text();
-                alert('Swap failed: ' + t);
-              } else {
-                window.location.reload();
-              }
+              if (!res.ok) alert('Swap failed: ' + (await res.text()));
+              else window.location.reload();
+            } finally {
+              setBusy(false);
+            }
+          }}
+        />
+      )}
+      {openInsert && (
+        <PickerModal
+          mode="insert"
+          slotLabel={`Insert ${insertKindLabel(openInsert.insertKind)} after: ${openInsert.blockLabel}`}
+          slotPath={String(openInsert.afterIndex)}
+          slotKind={openInsert.insertKind === 'figure' ? 'photo' : 'video'}
+          defaultTag={defaultTag}
+          busy={busy}
+          onClose={() => setOpenInsert(null)}
+          onPick={async (item) => {
+            setBusy(true);
+            try {
+              const res = await fetch(`/api/admin/el-story-block-insert/${storyId}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  afterIndex: openInsert.afterIndex,
+                  kind: openInsert.insertKind,
+                  url: item.url,
+                  poster: item.thumb,
+                  title: item.title,
+                }),
+              });
+              if (!res.ok) alert('Insert failed: ' + (await res.text()));
+              else window.location.reload();
             } finally {
               setBusy(false);
             }
@@ -137,7 +242,21 @@ export function MediaSwapPanel({ storyId, blocks, defaultTag = 'trip:may-2026' }
   );
 }
 
-function SlotCard({ slot, onSwap }: { slot: MediaSlot; onSwap: () => void }) {
+function insertKindLabel(k: InsertKind): string {
+  if (k === 'figure') return 'a photo';
+  if (k === 'video-overlay') return 'a full-bleed overlay video';
+  return 'an inline video';
+}
+
+function SlotCard({
+  slot,
+  onSwap,
+  onInsert,
+}: {
+  slot: MediaSlot;
+  onSwap: () => void;
+  onInsert: (kind: InsertKind) => void;
+}) {
   return (
     <div className="rounded-md border border-stone-200 overflow-hidden bg-stone-50">
       <div className="relative aspect-[4/3] bg-stone-100">
@@ -161,19 +280,45 @@ function SlotCard({ slot, onSwap }: { slot: MediaSlot; onSwap: () => void }) {
         >
           Swap
         </button>
+        <div className="mt-1 grid grid-cols-3 gap-1">
+          <button
+            type="button"
+            title="Insert a photo after this block"
+            onClick={() => onInsert('figure')}
+            className="rounded bg-stone-700 text-white px-1 py-0.5 text-[9px] font-medium hover:bg-stone-900"
+          >+ Photo</button>
+          <button
+            type="button"
+            title="Insert an inline video after this block"
+            onClick={() => onInsert('video-cinema')}
+            className="rounded bg-stone-700 text-white px-1 py-0.5 text-[9px] font-medium hover:bg-stone-900"
+          >+ Video</button>
+          <button
+            type="button"
+            title="Insert a full-bleed background overlay video after this block"
+            onClick={() => onInsert('video-overlay')}
+            className="rounded bg-amber-700 text-white px-1 py-0.5 text-[9px] font-medium hover:bg-amber-800"
+          >+ Overlay</button>
+        </div>
       </div>
     </div>
   );
 }
 
 function PickerModal({
-  slot,
+  mode,
+  slotLabel,
+  slotPath,
+  slotKind,
   defaultTag,
   busy,
   onClose,
   onPick,
 }: {
-  slot: MediaSlot;
+  mode: 'swap' | 'insert';
+  slotLabel: string;
+  slotPath: string;
+  slotKind: 'photo' | 'video';
   defaultTag: string;
   busy: boolean;
   onClose: () => void;
@@ -187,7 +332,7 @@ function PickerModal({
   async function load(t: string) {
     setLoading(true);
     try {
-      const res = await fetch(`/api/admin/field-note-override/list?tags=${encodeURIComponent(t)}&kind=${slot.kind === 'video' ? 'video' : 'photo'}&limit=200`);
+      const res = await fetch(`/api/admin/field-note-override/list?tags=${encodeURIComponent(t)}&kind=${slotKind === 'video' ? 'video' : 'photo'}&limit=200`);
       if (res.ok) {
         const data = (await res.json()) as { items?: PickerItem[] };
         setItems(data.items || []);
@@ -209,8 +354,10 @@ function PickerModal({
       >
         <header className="flex items-center justify-between gap-4 p-4 border-b">
           <div>
-            <h3 className="text-sm font-semibold">Pick a replacement {slot.kind}</h3>
-            <p className="text-xs text-gray-500 mt-1">Slot: <code className="font-mono">{slot.path}</code> · {slot.label}</p>
+            <h3 className="text-sm font-semibold">
+              {mode === 'insert' ? 'Pick a ' + slotKind + ' to insert' : 'Pick a replacement ' + slotKind}
+            </h3>
+            <p className="text-xs text-gray-500 mt-1">{mode === 'insert' ? slotLabel : <>Slot: <code className="font-mono">{slotPath}</code> · {slotLabel}</>}</p>
           </div>
           <button type="button" onClick={onClose} className="text-gray-500 hover:text-black text-xl leading-none">×</button>
         </header>
