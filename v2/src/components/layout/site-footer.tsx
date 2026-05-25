@@ -239,16 +239,22 @@ function PartnerGroup({ label, partners }: { label: string; partners: FooterPart
       <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">
         {label}
       </p>
-      <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 opacity-60 transition-opacity hover:opacity-90">
+      <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 opacity-60 transition-opacity hover:opacity-90">
         {partners.map((partner) => {
           const isExternal = partner.href.startsWith('http');
+          // Fixed bounding box per logo so every brand renders at the same
+          // visual weight regardless of aspect ratio. h-8 × w-28 sits the
+          // longest logo (QBE wordmark) without overflow, and lets the
+          // narrowest (FRRR mark + text) breathe.
+          const wrapClass =
+            'flex h-8 w-28 items-center justify-center transition hover:opacity-90';
           const logo = (
             <Image
               src={partner.src}
               alt={partner.name}
               width={partner.width}
               height={partner.height}
-              className="h-7 w-auto object-contain grayscale transition hover:grayscale-0"
+              className="max-h-full max-w-full object-contain grayscale transition hover:grayscale-0"
             />
           );
           return isExternal ? (
@@ -259,6 +265,7 @@ function PartnerGroup({ label, partners }: { label: string; partners: FooterPart
               rel="noopener noreferrer"
               aria-label={partner.name}
               title={partner.name}
+              className={wrapClass}
             >
               {logo}
             </a>
@@ -268,6 +275,7 @@ function PartnerGroup({ label, partners }: { label: string; partners: FooterPart
               href={partner.href}
               aria-label={partner.name}
               title={partner.name}
+              className={wrapClass}
             >
               {logo}
             </Link>
