@@ -1276,12 +1276,26 @@ Synced: ${new Date().toLocaleString('en-AU')}
   /**
    * Create/update contact from a general inquiry (not a newsletter signup)
    */
-  async createInquiryContact(email: string, name?: string, tags?: string[]): Promise<GHLResponse> {
+  async createInquiryContact(
+    email: string,
+    name?: string,
+    tags?: string[],
+    opts?: { phone?: string; companyName?: string; message?: string },
+  ): Promise<GHLResponse> {
+    const customFields = withGoodsProject({});
+    // Stash the inquiry text in the shared `message` field so it is mergeable
+    // into the internal-notification email body. GHL Notes are NOT mergeable;
+    // standard fields (phone, companyName) and custom fields are.
+    if (CUSTOM_FIELDS.message && opts?.message) {
+      customFields[CUSTOM_FIELDS.message] = opts.message;
+    }
     return createOrUpdateContact({
       email,
       name,
+      phone: opts?.phone,
+      companyName: opts?.companyName,
       tags: ['goods-inquiry', ...(tags || [])],
-      customFields: withGoodsProject({}),
+      customFields,
       source: 'Website Inquiry',
     });
   },

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ghl } from '@/lib/ghl';
-import { sendEmail } from '@/lib/email/send';
 
 interface ContactFormData {
   name: string;
@@ -54,7 +53,20 @@ export async function POST(request: NextRequest) {
         ? `goods-${body.subject.toLowerCase().replace(/\s+/g, '-')}`
         : 'goods-inquiry';
 
-      ghlResult = await ghl.createInquiryContact(body.email, body.name, [subjectTag]);
+      // Full inquiry text for the mergeable `message` field — this is what the
+      // GHL internal-notification email merges so the team can action it from
+      // their inbox without opening GHL. Subject prefixed so it's visible.
+      const inquiryDetails = [
+        `Subject: ${body.subject || 'General Inquiry'}`,
+        '',
+        body.message,
+      ].join('\n');
+
+      ghlResult = await ghl.createInquiryContact(body.email, body.name, [subjectTag], {
+        phone: body.phone,
+        companyName: body.organisation,
+        message: inquiryDetails,
+      });
 
       if (body.subscribe) {
         await ghl.addToNewsletter(body.email, body.name, 'contact-form');
@@ -85,31 +97,11 @@ export async function POST(request: NextRequest) {
       await ghl.addNote(ghlResult.contact.id, note);
     }
 
-    // Email the submission to the team. Best-effort: never block the form on it.
-    // Actually sends only when RESEND_API_KEY is set; otherwise lib/email/send
-    // logs it (see EMAIL_ENABLED). Recipient is configurable via env.
-    try {
-      const notifyTo = process.env.CONTACT_NOTIFY_EMAIL || 'hi@act.place';
-
-      const details = [
-        `Name: ${body.name}`,
-        `Email: ${body.email}`,
-        body.phone ? `Phone: ${body.phone}` : null,
-        body.organisation ? `Organisation: ${body.organisation}` : null,
-        `Subject: ${body.subject || 'General Inquiry'}`,
-      ]
-        .filter(Boolean)
-        .join('\n');
-
-      await sendEmail({
-        to: notifyTo,
-        replyTo: body.email,
-        subject: `New contact: ${body.subject || 'Inquiry'} from ${body.name}`,
-        body: `New contact form submission from goodsoncountry.com.\n\n${details}\n\nMessage:\n${body.message}\n\nReply directly to this email to respond to ${body.name}.`,
-      });
-    } catch (emailErr) {
-      console.error('[Contact Form] notification email failed:', emailErr);
-    }
+    // Email notifications (team notify + sender acknowledgement) are owned by
+    // the GHL "Contact → Universal Inquiry" workflow, which triggers on the
+    // `act-inquiry` tag applied above. This route stays identify-and-tag + note
+    // only; it does NOT send email. (Don't reintroduce a sendEmail() call here —
+    // it would double-send the team notification once GHL sending is live.)
 
     // Log the inquiry with full GHL result for debugging
     console.log('[Contact Form]', {
