@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ghl } from '@/lib/ghl';
+import { sendEmail } from '@/lib/email/send';
 
 interface ContactFormData {
   name: string;
@@ -59,6 +60,32 @@ export async function POST(request: NextRequest) {
       if (body.subscribe) {
         await ghl.addToNewsletter(body.email, body.name, 'contact-form');
       }
+    }
+
+    // Email the submission to the team. Best-effort: never block the form on it.
+    // Actually sends only when RESEND_API_KEY is set; otherwise lib/email/send
+    // logs it (see EMAIL_ENABLED). Recipient is configurable via env.
+    try {
+      const notifyTo = process.env.CONTACT_NOTIFY_EMAIL || 'hi@act.place';
+
+      const details = [
+        `Name: ${body.name}`,
+        `Email: ${body.email}`,
+        body.phone ? `Phone: ${body.phone}` : null,
+        body.organisation ? `Organisation: ${body.organisation}` : null,
+        `Subject: ${body.subject || 'General Inquiry'}`,
+      ]
+        .filter(Boolean)
+        .join('\n');
+
+      await sendEmail({
+        to: notifyTo,
+        replyTo: body.email,
+        subject: `New contact: ${body.subject || 'Inquiry'} from ${body.name}`,
+        body: `New contact form submission from goodsoncountry.com.\n\n${details}\n\nMessage:\n${body.message}\n\nReply directly to this email to respond to ${body.name}.`,
+      });
+    } catch (emailErr) {
+      console.error('[Contact Form] notification email failed:', emailErr);
     }
 
     // Log the inquiry with full GHL result for debugging

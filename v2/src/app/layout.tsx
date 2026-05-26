@@ -11,6 +11,7 @@ import { CartProvider } from '@/lib/cart';
 import { CartDrawer } from '@/components/cart';
 
 import { Analytics } from '@vercel/analytics/react';
+import Script from 'next/script';
 import { OrganizationJsonLd, WebSiteJsonLd } from '@/components/seo';
 
 const inter = Inter({
@@ -56,6 +57,11 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: '/',
+  },
+  // Google Search Console domain verification. Set NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+  // to the token Search Console gives you (or verify via DNS / GA instead).
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
   authors: [{ name: 'Goods on Country' }],
   creator: 'Goods on Country',
@@ -120,6 +126,22 @@ export default function RootLayout({
           <CartDrawer />
         </CartProvider>
         <Analytics />
+        {/* Google Analytics 4. Inert until NEXT_PUBLIC_GA_ID (G-XXXXXXX) is set.
+            Vercel Analytics above stays on in parallel. */}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );
