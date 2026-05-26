@@ -49,43 +49,40 @@ export async function POST(request: NextRequest) {
         message: body.message,
       });
     } else {
-      // General inquiries — create contact with inquiry tags.
-      // `act-inquiry` is the ACT-wide marker (every ACT project's contact form
-      // should apply it) so all inquiries land in one GHL Inquiries pipeline;
-      // `project-goods` lets that pipeline be filtered/triaged by project.
+      // General inquiries — base goods-inquiry + the subject-specific tag.
       const subjectTag = body.subject
         ? `goods-${body.subject.toLowerCase().replace(/\s+/g, '-')}`
         : 'goods-inquiry';
 
-      ghlResult = await ghl.createInquiryContact(body.email, body.name, [
-        'act-inquiry',
-        'project-goods',
-        subjectTag,
-      ]);
+      ghlResult = await ghl.createInquiryContact(body.email, body.name, [subjectTag]);
 
-      // Attach the message as a note so the team can READ and triage it in GHL
-      // (the message is otherwise not stored anywhere visible).
-      if (ghlResult.success && ghlResult.contact?.id) {
-        const note = [
-          '📥 Website contact form',
-          `Subject: ${body.subject || 'General Inquiry'}`,
-          body.organisation ? `Organisation: ${body.organisation}` : null,
-          body.phone ? `Phone: ${body.phone}` : null,
-          '',
-          'Message:',
-          body.message,
-          '',
-          `Submitted: ${new Date().toLocaleString('en-AU')}`,
-        ]
-          .filter((l) => l !== null)
-          .join('\n');
-        await ghl.addNote(ghlResult.contact.id, note);
-      }
-
-      // If they opted into newsletter, also add to newsletter
       if (body.subscribe) {
         await ghl.addToNewsletter(body.email, body.name, 'contact-form');
       }
+    }
+
+    // EVERY contact submission (general + media pack): apply the ACT-wide
+    // inquiry tags and save the message as a note. `act-inquiry` is the single
+    // clean marker the Universal Inquiry pipeline triggers on — it is NOT
+    // shared with feedback/imports the way the base `goods-inquiry` tag is.
+    // `project-goods` lets that pipeline be filtered/triaged by project.
+    if (ghlResult.success && ghlResult.contact?.id) {
+      await ghl.addTags(ghlResult.contact.id, ['act-inquiry', 'project-goods']);
+
+      const note = [
+        '📥 Website contact form',
+        `Subject: ${body.subject || 'General Inquiry'}`,
+        body.organisation ? `Organisation: ${body.organisation}` : null,
+        body.phone ? `Phone: ${body.phone}` : null,
+        '',
+        'Message:',
+        body.message,
+        '',
+        `Submitted: ${new Date().toLocaleString('en-AU')}`,
+      ]
+        .filter((l) => l !== null)
+        .join('\n');
+      await ghl.addNote(ghlResult.contact.id, note);
     }
 
     // Email the submission to the team. Best-effort: never block the form on it.

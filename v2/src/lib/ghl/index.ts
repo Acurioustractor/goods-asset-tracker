@@ -509,6 +509,21 @@ async function addContactNote(contactId: string, note: string): Promise<boolean>
   }
 }
 
+async function addContactTags(contactId: string, tags: string[]): Promise<boolean> {
+  if (!GHL_ENABLED) {
+    return true;
+  }
+  if (!tags.length) return true;
+
+  try {
+    await ghlRequest(`/contacts/${contactId}/tags`, 'POST', { tags });
+    return true;
+  } catch (error) {
+    console.error('[GHL] Error adding tags:', error);
+    return false;
+  }
+}
+
 let strategicPipelinesCache: GhlPipeline[] | null = null;
 
 function normalizeGhlName(value?: string | null) {
@@ -1198,6 +1213,11 @@ Synced: ${new Date().toLocaleString('en-AU')}
    */
   async addNote(contactId: string, note: string): Promise<boolean> {
     return addContactNote(contactId, note);
+  },
+
+  /** Add one or more tags to an existing contact (idempotent in GHL). */
+  async addTags(contactId: string, tags: string[]): Promise<boolean> {
+    return addContactTags(contactId, tags);
   },
 
   /**
