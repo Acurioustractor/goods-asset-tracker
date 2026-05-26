@@ -157,7 +157,8 @@ export const supplierSummary = {
   totalSuppliers: 4, // Defy, DNA Steel, Centre Canvas, Hardware
   localSuppliers: 2, // DNA Steel + Centre Canvas (Alice Springs)
   cogsPerBed: stretchBedCOGS,
-  marginAtInstitutional: 560 - stretchBedCOGS, // ~$411
-  marginAtRetail: 600 - stretchBedCOGS, // ~$451
-  marginPct: Math.round(((560 - stretchBedCOGS) / 560) * 100), // ~73%
+  // Unified website price $750 (2026-05-26). Institutional/retail collapsed to one price.
+  marginAtInstitutional: 750 - stretchBedCOGS,
+  marginAtRetail: 750 - stretchBedCOGS,
+  marginPct: Math.round(((750 - stretchBedCOGS) / 750) * 100),
 };

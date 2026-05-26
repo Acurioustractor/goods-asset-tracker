@@ -180,7 +180,7 @@ async function getProductionData() {
       batch,
       bedCount,
       cogs: bedCount * stretchBedCOGS,
-      marginAtInstitutional: bedCount * (560 - stretchBedCOGS),
+      marginAtInstitutional: bedCount * (750 - stretchBedCOGS),
     }))
     .sort((a, b) => {
       // Sort numerically when batch is a number (e.g. "156"), else alphabetically

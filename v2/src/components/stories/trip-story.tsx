@@ -546,6 +546,84 @@ function BlockView({
   return <>{withLinks(rendered, block)}</>;
 }
 
+// Email/phone capture for the 'capture' block. Posts to /api/newsletter
+// with the block's source tag, which fires the GHL Smart Router (branches
+// in-GHL on the tag, no code per event). Mirrors canberra/follow-form.tsx
+// but styled to the story's dark theme.
+function CaptureForm({ tag, cta, done }: { tag: string; cta?: string; done?: string }) {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [err, setErr] = useState('');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setErr('');
+    if (!email && !phone) {
+      setErr('Add an email or phone so we can stay in touch.');
+      return;
+    }
+    setStatus('submitting');
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email || undefined,
+          phone: phone || undefined,
+          name: name || undefined,
+          tag,
+        }),
+      });
+      if (!res.ok) throw new Error('Submit failed');
+      setStatus('success');
+    } catch {
+      setStatus('error');
+    }
+  };
+
+  if (status === 'success') {
+    return <p className="ts-capture-done">{done || 'You are on the list. We will be in touch.'}</p>;
+  }
+
+  return (
+    <form className="ts-capture-form" onSubmit={submit}>
+      <div className="ts-capture-row">
+        <input
+          type="text"
+          placeholder="Your name (optional)"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="tel"
+          inputMode="tel"
+          placeholder="Phone (optional)"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
+      </div>
+      <div className="ts-capture-row">
+        <input
+          type="email"
+          inputMode="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <button type="submit" disabled={status === 'submitting'}>
+          {status === 'submitting' ? 'Sending…' : cta || 'Keep me posted'}
+        </button>
+      </div>
+      {err && <p className="ts-capture-err">{err}</p>}
+      {status === 'error' && (
+        <p className="ts-capture-err">Something went wrong. Try again or email ben@goodsoncountry.com.</p>
+      )}
+    </form>
+  );
+}
+
 function renderBlock(block: TripBlock, blockIndex: number, internal: boolean, currentSlug: string) {
   switch (block.kind) {
     case 'masthead':
@@ -933,10 +1011,11 @@ function renderBlock(block: TripBlock, blockIndex: number, internal: boolean, cu
           <div className="ts-baf-grid ts-reveal d2">
             {[block.before, block.after].map((side, i) => {
               const sideKey = i === 0 ? 'before' : 'after';
+              const aspectClass = side.aspect ? ` ts-baf-imgwrap--${side.aspect}` : '';
               return (
                 <figure key={i} className={`ts-baf-frame ts-baf-frame--${sideKey}`}>
                   <span className="ts-baf-label">{side.label}</span>
-                  <div className="ts-baf-imgwrap" style={{ position: 'relative' }}>
+                  <div className={`ts-baf-imgwrap${aspectClass}`} style={{ position: 'relative' }}>
                     {/* `fill` lets the container dictate dimensions and lets
                         Next/Image generate properly-sized variants for the
                         viewport. Fixed width/height was downscaling landscape
@@ -1149,14 +1228,28 @@ function renderBlock(block: TripBlock, blockIndex: number, internal: boolean, cu
                 <div className="ts-pwho">{c.who}</div>
                 <h3>{c.title}</h3>
                 <p>{c.body}</p>
+                {c.cta &&
+                  (/^https?:/.test(c.cta.href) ? (
+                    <a className="ts-pcta" href={c.cta.href} target="_blank" rel="noopener noreferrer">
+                      {c.cta.label} <span aria-hidden>↗</span>
+                    </a>
+                  ) : (
+                    <Link className="ts-pcta" href={c.cta.href}>
+                      {c.cta.label} <span aria-hidden>→</span>
+                    </Link>
+                  ))}
               </div>
             ))}
           </div>
           {block.link && (
             <p className="ts-plink ts-reveal d2">
-              <a href={block.link.href} target="_blank" rel="noopener noreferrer">
-                {block.link.label}
-              </a>
+              {/^https?:/.test(block.link.href) ? (
+                <a href={block.link.href} target="_blank" rel="noopener noreferrer">
+                  {block.link.label}
+                </a>
+              ) : (
+                <Link href={block.link.href}>{block.link.label}</Link>
+              )}
             </p>
           )}
         </section>
@@ -1282,6 +1375,16 @@ function renderBlock(block: TripBlock, blockIndex: number, internal: boolean, cu
         </section>
       );
     }
+    case 'capture':
+      return (
+        <section className="ts-capture">
+          <div className="ts-capture-inner ts-reveal">
+            <h2 className="ts-vh">{block.heading}</h2>
+            {block.sub && <p className="ts-vsub">{block.sub}</p>}
+            <CaptureForm tag={block.tag} cta={block.cta} done={block.done} />
+          </div>
+        </section>
+      );
     case 'portal': {
       // "This is Goods" — self-aware portal at the foot of every field-notes
       // story. Lists other field notes (excludes the current story) plus
@@ -1449,12 +1552,16 @@ video.ts-bg{filter:brightness(.6) saturate(.97)}
 .ts-baf{max-width:1240px;margin:0 auto;padding:9vh 5vw}
 .ts-baf-h{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,4vw,2.6rem);text-align:center;line-height:1.12;margin-bottom:.8rem}
 .ts-baf-intro{text-align:center;color:var(--bone-dim);max-width:54ch;margin:0 auto 2.8rem;font-size:1.04rem;line-height:1.6}
-.ts-baf-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;align-items:stretch}
+.ts-baf-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;align-items:start}
 @media (max-width:740px){.ts-baf-grid{grid-template-columns:1fr;gap:1.6rem}}
 .ts-baf-frame{position:relative;margin:0;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
 .ts-baf-label{position:absolute;top:14px;left:14px;z-index:2;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--bone);background:rgba(8,6,4,.74);padding:.35rem .75rem;border-radius:999px;border:1px solid var(--line);backdrop-filter:blur(4px)}
 .ts-baf-frame--after .ts-baf-label{color:var(--ochre-soft);border-color:rgba(230,173,106,.4)}
 .ts-baf-imgwrap{position:relative;width:100%;aspect-ratio:4/3;background:#000;overflow:hidden}
+/* Per-side aspect override: a portrait 'before' keeps the floor mattress in
+   frame instead of cropping it to landscape. */
+.ts-baf-imgwrap--portrait{aspect-ratio:3/4}
+.ts-baf-imgwrap--square{aspect-ratio:1/1}
 .ts-baf-img{display:block;width:100%;height:100%;object-fit:cover}
 .ts-baf-frame figcaption{padding:1rem 1.2rem;font-size:13px;line-height:1.55;color:var(--bone-dim);border-top:1px solid var(--line)}
 .ts-baf-credit{text-align:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:1.6rem}
@@ -1517,6 +1624,33 @@ video.ts-bg{filter:brightness(.6) saturate(.97)}
 .ts-qcard-link:hover .ts-qcard-arrow{opacity:1;transform:translateX(2px)}
 .ts-plink{text-align:center;margin-top:2.6rem}
 .ts-plink a{color:var(--ochre-soft);text-decoration:none;border-bottom:1px solid rgba(230,173,106,.4);font-family:var(--serif);font-size:1.2rem}
+/* Per-card CTA — pinned to the bottom of each pathways card so the three
+   buttons line up regardless of body length. The card is flex-column, so
+   margin-top:auto eats the free space above. */
+.ts-pcta{align-self:flex-start;display:inline-flex;align-items:center;gap:.45rem;margin-top:1.6rem;font-family:var(--sans);font-size:.8rem;letter-spacing:.07em;text-transform:uppercase;font-weight:600;color:var(--char);background:var(--ochre-soft);padding:.72rem 1.15rem;border-radius:10px;text-decoration:none;transition:background .2s ease,transform .2s ease}
+.ts-pcard{justify-content:flex-start}
+.ts-pcard .ts-pcta{margin-top:auto}
+.ts-pcta:hover{background:var(--bone);transform:translateY(-1px)}
+.ts-pcta span{transition:transform .2s ease}
+.ts-pcta:hover span{transform:translateX(3px)}
+
+/* Capture block — low-friction email/phone catch before the pathways cards.
+   Dark panel matching the qcard/pcard surface. */
+.ts-capture{max-width:760px;margin:0 auto;padding:10vh 7vw 3vh;text-align:center}
+.ts-capture-inner{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:3rem 2.4rem}
+.ts-capture .ts-vh{margin-bottom:.8rem}
+.ts-capture .ts-vsub{max-width:48ch;margin:0 auto 2rem}
+.ts-capture-form{max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:.8rem;text-align:left}
+.ts-capture-row{display:flex;gap:.8rem;flex-wrap:wrap}
+.ts-capture-row>input{flex:1 1 160px;min-width:0}
+.ts-capture-form input{background:rgba(244,237,225,.06);border:1px solid var(--line);border-radius:10px;padding:.85rem 1rem;color:var(--bone);font-family:var(--sans);font-size:1rem;width:100%}
+.ts-capture-form input::placeholder{color:var(--muted)}
+.ts-capture-form input:focus{outline:none;border-color:var(--ochre-soft)}
+.ts-capture-form button{flex:0 0 auto;background:var(--ochre);color:var(--bone);border:none;border-radius:10px;padding:.85rem 1.6rem;font-family:var(--sans);font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:background .2s ease,color .2s ease}
+.ts-capture-form button:hover{background:var(--ochre-soft);color:var(--char)}
+.ts-capture-form button:disabled{opacity:.5;cursor:default}
+.ts-capture-err{color:var(--ochre-soft);font-size:.85rem;margin:.2rem 0 0}
+.ts-capture-done{font-family:var(--serif);font-size:1.3rem;color:var(--bone);max-width:42ch;margin:0 auto}
 
 /* Contextual gutter links - appear under any block that sets links. Small,
    not greedy; readers branch out if they want, otherwise keep reading. */

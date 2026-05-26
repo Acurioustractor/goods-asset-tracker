@@ -319,8 +319,8 @@ export default async function LibraryPage() {
           </table>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
-          <PriceCard label="Institutional" value="$560" sub={`${supplierSummary.marginPct}% margin · $${supplierSummary.marginAtInstitutional}`} />
-          <PriceCard label="Retail" value="$600" sub={`$${supplierSummary.marginAtRetail} margin`} />
+          <PriceCard label="Website price" value="$750" sub={`${supplierSummary.marginPct}% margin · $${supplierSummary.marginAtInstitutional}`} />
+          <PriceCard label="Margin / bed" value={`$${supplierSummary.marginAtInstitutional}`} sub={`COGS $${supplierSummary.cogsPerBed}`} />
           <PriceCard label="PICC channel" value="$750" sub="confirm GST" />
           <PriceCard label="Workshop (full kit)" value="$6,000" sub="per workshop" />
         </div>

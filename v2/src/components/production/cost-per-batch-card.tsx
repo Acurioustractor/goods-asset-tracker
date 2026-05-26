@@ -3,8 +3,8 @@ import { Badge } from '@/components/ui/badge';
 import { stretchBedBOM, stretchBedCOGS, supplierQuotes } from '@/lib/data/supplier-quotes';
 import type { SupplierActuals } from '@/lib/data/supplier-cost-actuals';
 
-const INSTITUTIONAL_PRICE = 560;
-const RETAIL_PRICE = 600;
+const INSTITUTIONAL_PRICE = 750;
+const RETAIL_PRICE = 750;
 
 type BatchSummary = {
   batch: string;

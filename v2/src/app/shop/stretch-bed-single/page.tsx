@@ -47,7 +47,7 @@ export const metadata = {
 const product = {
   name: STRETCH_BED.name,
   slug: 'stretch-bed-single',
-  price: 600,
+  price: 750,
   currency: 'AUD',
   shortDescription: STRETCH_BED.shortDescription,
   description: `The Stretch Bed is the flagship product from Goods on Country. A bed designed in partnership with remote First Nations communities across Australia.

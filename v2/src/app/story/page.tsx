@@ -397,7 +397,7 @@ export default async function StoryPage() {
                   </div>
                   <div className="grid grid-cols-2 gap-3 mb-6">
                     <div className="text-center p-4 rounded-xl border border-border bg-background">
-                      <div className="text-2xl font-bold text-primary">$600</div>
+                      <div className="text-2xl font-bold text-primary">$750</div>
                       <div className="text-xs text-muted-foreground mt-1">Stretch Bed</div>
                     </div>
                     <div className="text-center p-4 rounded-xl border border-border bg-background">
@@ -1180,7 +1180,7 @@ export default async function StoryPage() {
                 <Link href="/shop/stretch-bed-single" className="group rounded-2xl border border-white/20 p-6 text-center hover:bg-white/5 transition-colors">
                   <div className="text-3xl mb-2">🛏️</div>
                   <h3 className="font-semibold text-white mb-1">Buy a Stretch Bed</h3>
-                  <p className="text-xs text-white/40">From $600</p>
+                  <p className="text-xs text-white/40">From $750</p>
                 </Link>
                 <Link href="/sponsor" className="group rounded-2xl border border-primary/40 bg-primary/5 p-6 text-center hover:bg-primary/10 transition-colors">
                   <div className="text-3xl mb-2">💛</div>

@@ -108,7 +108,7 @@ export function SiteFooter() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand Column */}
           <div>
-            <Link href="/" className="inline-block" aria-label="Goods on Country — home">
+            <Link href="/" className="inline-block" aria-label="Goods on Country home">
               <Image
                 src="/brand/logos/goods-stacked-black.svg"
                 alt="Goods on Country"

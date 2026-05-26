@@ -371,7 +371,7 @@ export default async function CanberraPage() {
             Put a bed in a home.
           </h2>
           <p className="text-base sm:text-lg leading-relaxed mb-7" style={{ color: `${CHARCOAL}cc` }}>
-            $560 puts one Stretch Bed into a remote home that needs it. Pick the community.
+            $750 puts one Stretch Bed into a remote home that needs it. Pick the community.
             We deliver and log it under a QR code you can follow.
           </p>
           <Link

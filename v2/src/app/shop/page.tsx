@@ -34,7 +34,7 @@ const products = [
     slug: STRETCH_BED.slug,
     name: STRETCH_BED.name,
     description: `Recycled HDPE plastic legs, galvanised steel poles, heavy-duty canvas. ${STRETCH_BED.specs.weight}, flat-packs, no tools needed.`,
-    price: 600,
+    price: 750,
     image: media.product.stretchBedHero,
     badge: 'Available',
     badgeColor: 'bg-primary text-primary-foreground',

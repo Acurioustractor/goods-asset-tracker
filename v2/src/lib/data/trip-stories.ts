@@ -170,15 +170,22 @@ export type TripBlock =
       kind: 'before-after-split';
       heading?: string;
       intro?: string;
-      before: { image: string; alt: string; label: string; caption?: string };
-      after: { image: string; alt: string; label: string; caption?: string };
+      before: { image: string; alt: string; label: string; caption?: string; aspect?: 'portrait' | 'landscape' | 'square' };
+      after: { image: string; alt: string; label: string; caption?: string; aspect?: 'portrait' | 'landscape' | 'square' };
       credit?: string;
     })
   | (WithLinks & {
       kind: 'pathways';
       heading: string;
       sub?: string;
-      cards: { who: string; title: string; body: string }[];
+      /**
+       * Each card segments by reader intent (Supporters / Funders /
+       * Partners). `cta` is the per-card handoff — without it the card is
+       * a dead end. Internal hrefs open in the same tab; external (http)
+       * hrefs open in a new tab. The block-level `link` below is a shared
+       * fallback ("read the wider story"), NOT a substitute for per-card CTAs.
+       */
+      cards: { who: string; title: string; body: string; cta?: { label: string; href: string } }[];
       link?: { label: string; href: string };
     })
   | (WithLinks & { kind: 'close'; title: string; media: MediaRef })
@@ -232,6 +239,28 @@ export type TripBlock =
       heading?: string;
       sub?: string;
       anchors: NavLink[];
+    }
+  | {
+      /**
+       * Email/phone capture for the reader who is moved but not ready to
+       * buy or fund yet — the most likely action on a soft-launch story.
+       * Posts to /api/newsletter with `tag`, which fires the GHL Smart
+       * Router (branches in-GHL on the source tag, zero code per event;
+       * see gh_smart_router_pattern). Rendered in the story's dark theme.
+       * Place it BEFORE the pathways block so the low-friction action
+       * comes first, then the three intent-segmented cards.
+       */
+      kind: 'capture';
+      heading: string;
+      sub?: string;
+      /** GHL source tag, e.g. 'fieldnote-utopia'. addToNewsletter stores it as
+       * `goods-src-{tag}`, so pass it WITHOUT a leading `goods-` to avoid a
+       * doubled prefix. Drives in-GHL routing. */
+      tag: string;
+      /** Submit button label. Defaults to 'Keep me posted'. */
+      cta?: string;
+      /** Success message after submit. */
+      done?: string;
     }
   // ─── Atom blocks ────────────────────────────────────────────────────
   // Repeatable building blocks. Each pulls from a canonical source in
@@ -742,8 +771,11 @@ const utopia: TripStory = {
         'A floor mattress and a Stretch Bed, in the same room, on the same morning.',
       before: {
         image: `${IMG}/09-offground.jpg`,
-        alt: 'A household member sleeping on the ground.',
+        alt: 'A household member sitting on a thin mattress on the ground.',
         label: 'Before',
+        // Portrait so the floor mattress she is sitting on stays in frame;
+        // the landscape crop was cutting it off.
+        aspect: 'portrait',
       },
       after: {
         image: `${IMG}/08-beforeafter.jpg`,
@@ -975,6 +1007,17 @@ const utopia: TripStory = {
         fromTag: { all: ['trip:may-2026', 'use:closing', 'placement:overlay-fullscreen'] },
       },
     },
+    // Capture first: the reader who is moved but not ready to buy or fund.
+    // Tags goods-src-fieldnote-utopia in GHL so leads from this story are
+    // attributable and a GHL workflow can branch on them.
+    {
+      kind: 'capture',
+      heading: 'Stay close to the build',
+      sub: 'We will send you where the next beds land, and what the young people make next. No noise.',
+      tag: 'fieldnote-utopia',
+      cta: 'Keep me posted',
+      done: 'You are on the list. We will be in touch as the build continues.',
+    },
     {
       kind: 'pathways',
       heading: 'Three ways to be part of it',
@@ -983,17 +1026,20 @@ const utopia: TripStory = {
         {
           who: 'Supporters',
           title: 'Put a bed in a home',
-          body: 'Buy a Stretch Bed at $560 institutional or $600 retail. We send a photo of where it landed.',
+          body: 'Sponsor a Stretch Bed from $750. Choose how many and which community. We send a photo of where it landed.',
+          cta: { label: 'Sponsor a bed', href: '/sponsor' },
         },
         {
           who: 'Funders',
           title: 'Move the making to Country',
           body: 'Back the containerised plant and the move to community ownership. Production is around 85% complete. The next round closes the gap and starts local jobs.',
+          cta: { label: 'Back the plant', href: '/partner' },
         },
         {
           who: 'Partners',
-          title: 'Design and build it in your community',
+          title: 'Build it in your community',
           body: 'Bring the work to your homelands. The design happens in community with the people who will use it. Goods supports the build and the realising. The community runs and owns the plant.',
+          cta: { label: 'Start a conversation', href: '/partner' },
         },
       ],
       link: { label: 'Read the wider story', href: '/story' },

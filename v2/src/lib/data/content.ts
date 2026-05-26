@@ -485,7 +485,7 @@ export const communityPartnerships = [
     headline: 'Where it all began',
     description: 'Tennant Creek is the birthplace of Goods on Country. Elder Diane Stokes received the first bed and came back within two weeks requesting twenty more. Norm Frank called asking for three beds in maroon after his daughter tried one. The Pakkimjalki Kari washing machine was named here in Warumungu language by Diane herself.',
     keyPeople: ['Diane Stokes', 'Norm Frank', 'Kristy Bloomfield'],
-    bedsDelivered: 139,
+    bedsDelivered: 159,
     highlight: 'Diane named the washing machine "Pakkimjalki Kari" in Warumungu language',
   },
   {
@@ -495,7 +495,7 @@ export const communityPartnerships = [
     headline: 'Traditional knowledge meets modern design',
     description: 'Through the Oonchiumpa consultancy, Alice Springs is where the design happens in community for Goods products. The Stretch Bed was designed in community with the Bloomfield family, combining traditional knowledge with modern durability. Kristy Bloomfield leads this 100% Aboriginal-owned consultancy.',
     keyPeople: ['Kristy Bloomfield', 'Oonchiumpa family'],
-    bedsDelivered: 60,
+    bedsDelivered: 16,
     highlight: 'Oonchiumpa: 100% Aboriginal-owned consultancy leading the design in community',
   },
   {
@@ -505,7 +505,7 @@ export const communityPartnerships = [
     headline: 'Community voices shaping the future',
     description: 'Palm Island has been central to understanding the real impact of Goods. Ivy and Alfred Johnson gave the first community feedback that shaped the bed design. The Palm Island Community Company (PICC) partnership ensures beds reach families who need them, guided by Elder advisory.',
     keyPeople: ['Ivy', 'Alfred Johnson', 'PICC team', 'Elder advisory group'],
-    bedsDelivered: 141,
+    bedsDelivered: 131,
     highlight: '"Hardly anyone around the community has beds" — Ivy, Palm Island',
   },
   {
@@ -525,7 +525,7 @@ export const communityPartnerships = [
     headline: 'Art and culture meets practical solutions',
     description: 'Utopia Homelands, famous for its art movement and the legacy of Emily Kame Kngwarreye, is home to multiple outstations across Anmatyerr and Alyawarr country. Beds are delivered to families living on homelands where access to essential goods has long been a challenge.',
     keyPeople: ['Community elders', 'Homeland coordinators'],
-    bedsDelivered: 24,
+    bedsDelivered: 147,
     highlight: 'Supporting families on remote outstations',
   },
   {

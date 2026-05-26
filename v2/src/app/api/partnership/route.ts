@@ -146,3 +146,67 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+// Stage-2 enrichment for the two-stage partnership form. The initial POST
+// captures the lead (so we never lose them to the qualifying questions);
+// this PATCH appends the optional ticket-size + timeline answers to the SAME
+// inquiry row by id (no duplicate inquiry). Best-effort: the form treats a
+// failure here as a non-event because the lead is already captured.
+export async function PATCH(request: NextRequest) {
+  try {
+    const body = (await request.json()) as {
+      inquiryId?: string;
+      fundingTier?: string;
+      timeline?: string;
+    };
+
+    if (!body.inquiryId) {
+      return NextResponse.json({ error: 'inquiryId is required' }, { status: 400 });
+    }
+    if (!body.fundingTier && !body.timeline) {
+      return NextResponse.json({ success: true }); // nothing to enrich
+    }
+
+    const supabase = createServiceClient();
+
+    const { data: existing, error: fetchError } = await supabase
+      .from('partnership_inquiries')
+      .select('message')
+      .eq('id', body.inquiryId)
+      .single();
+
+    if (fetchError || !existing) {
+      console.error('Partnership enrichment: inquiry not found', body.inquiryId, fetchError);
+      return NextResponse.json({ error: 'Inquiry not found' }, { status: 404 });
+    }
+
+    const enrichment = [
+      body.fundingTier ? `Ticket size: ${body.fundingTier}` : null,
+      body.timeline ? `Timeline: ${body.timeline}` : null,
+    ]
+      .filter(Boolean)
+      .join(' · ');
+    const newMessage = [existing.message, enrichment].filter(Boolean).join('\n\n');
+
+    const { error: updateError } = await supabase
+      .from('partnership_inquiries')
+      .update({ message: newMessage })
+      .eq('id', body.inquiryId);
+
+    if (updateError) {
+      console.error('Partnership enrichment update failed', updateError);
+      return NextResponse.json({ error: 'Failed to update' }, { status: 500 });
+    }
+
+    console.log('[Partnership Enrichment]', {
+      inquiryId: body.inquiryId,
+      fundingTier: body.fundingTier,
+      timeline: body.timeline,
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Partnership enrichment error:', error);
+    return NextResponse.json({ error: 'Failed to process enrichment.' }, { status: 500 });
+  }
+}
