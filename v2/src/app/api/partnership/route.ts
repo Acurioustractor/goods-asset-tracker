@@ -96,6 +96,7 @@ export async function POST(request: NextRequest) {
         body.contactEmail,
         body.contactName,
         ['goods-washer-interest'],
+        { source: 'Washing Machine Interest' },
       );
       if (ghlResult.success && ghlResult.contact?.id) {
         const note = [

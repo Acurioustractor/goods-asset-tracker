@@ -10,7 +10,9 @@ interface FeedbackPayload {
 async function syncFeedbackToGhl(page: string, email: string, message: string) {
   if (!email || email === 'Anonymous' || !email.includes('@')) return;
   try {
-    const result = await ghl.createInquiryContact(email, undefined, ['goods-feedback']);
+    const result = await ghl.createInquiryContact(email, undefined, ['goods-feedback'], {
+      source: 'Website Feedback',
+    });
     if (result.success && result.contact?.id) {
       const note = [
         '📬 Site feedback',
