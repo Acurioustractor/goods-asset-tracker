@@ -10,7 +10,7 @@ import {
 import { CartProvider } from '@/lib/cart';
 import { CartDrawer } from '@/components/cart';
 
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from '@vercel/analytics/next';
 import { OrganizationJsonLd, WebSiteJsonLd } from '@/components/seo';
 
 const inter = Inter({
