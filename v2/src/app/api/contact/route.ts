@@ -66,6 +66,7 @@ export async function POST(request: NextRequest) {
         phone: body.phone,
         companyName: body.organisation,
         message: inquiryDetails,
+        source: `Website Contact: ${body.subject || 'General Inquiry'}`,
       });
 
       if (body.subscribe) {

@@ -1101,7 +1101,7 @@ Submitted: ${new Date().toLocaleString('en-AU')}
         ? [TAGS.mediaRequest]
         : [TAGS.partnerLead, ...segmentTags],
       customFields,
-      source: isMedia ? 'Media Pack Request' : 'Partnership Inquiry',
+      source: isMedia ? 'Website Contact: Media Pack Request' : 'Partnership Inquiry',
     });
 
     // Add inquiry details as a note
@@ -1280,7 +1280,7 @@ Synced: ${new Date().toLocaleString('en-AU')}
     email: string,
     name?: string,
     tags?: string[],
-    opts?: { phone?: string; companyName?: string; message?: string },
+    opts?: { phone?: string; companyName?: string; message?: string; source?: string },
   ): Promise<GHLResponse> {
     const customFields = withGoodsProject({});
     // Stash the inquiry text in the shared `message` field so it is mergeable
@@ -1296,7 +1296,10 @@ Synced: ${new Date().toLocaleString('en-AU')}
       companyName: opts?.companyName,
       tags: ['goods-inquiry', ...(tags || [])],
       customFields,
-      source: 'Website Inquiry',
+      // Source encodes the specific form (e.g. "Website Contact: General
+      // Inquiry") so {{contact.source}} on the opportunity shows which form it
+      // came from. Falls back to the generic value for non-form callers.
+      source: opts?.source || 'Website Inquiry',
     });
   },
 
