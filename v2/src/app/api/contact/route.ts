@@ -49,12 +49,38 @@ export async function POST(request: NextRequest) {
         message: body.message,
       });
     } else {
-      // General inquiries — create contact with inquiry tag
+      // General inquiries — create contact with inquiry tags.
+      // `act-inquiry` is the ACT-wide marker (every ACT project's contact form
+      // should apply it) so all inquiries land in one GHL Inquiries pipeline;
+      // `project-goods` lets that pipeline be filtered/triaged by project.
       const subjectTag = body.subject
         ? `goods-${body.subject.toLowerCase().replace(/\s+/g, '-')}`
         : 'goods-inquiry';
 
-      ghlResult = await ghl.createInquiryContact(body.email, body.name, [subjectTag]);
+      ghlResult = await ghl.createInquiryContact(body.email, body.name, [
+        'act-inquiry',
+        'project-goods',
+        subjectTag,
+      ]);
+
+      // Attach the message as a note so the team can READ and triage it in GHL
+      // (the message is otherwise not stored anywhere visible).
+      if (ghlResult.success && ghlResult.contact?.id) {
+        const note = [
+          '📥 Website contact form',
+          `Subject: ${body.subject || 'General Inquiry'}`,
+          body.organisation ? `Organisation: ${body.organisation}` : null,
+          body.phone ? `Phone: ${body.phone}` : null,
+          '',
+          'Message:',
+          body.message,
+          '',
+          `Submitted: ${new Date().toLocaleString('en-AU')}`,
+        ]
+          .filter((l) => l !== null)
+          .join('\n');
+        await ghl.addNote(ghlResult.contact.id, note);
+      }
 
       // If they opted into newsletter, also add to newsletter
       if (body.subscribe) {
