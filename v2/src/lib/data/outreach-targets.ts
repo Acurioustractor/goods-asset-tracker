@@ -44,31 +44,31 @@ export const philanthropyActive: OutreachTarget[] = [
   {
     id: 'snow', name: 'Snow Foundation', category: 'philanthropy_active', status: 'active', priority: 'critical',
     contactName: 'Sally Grimsley-Ballard', contactEmail: 's.grimsley-ballard@snowfoundation.org.au',
-    amountSignal: '$193K received + $130K Round 4 pending', instrument: 'grant',
+    amountSignal: '$402,930 received (Xero-verified, incl. FY26 Scale-Up)', instrument: 'grant',
     nextAction: 'Convert from anchor grantmaker into co-investment validator for production-scale capital.',
     grantRelevance: 'Anchor funder — reference in every application. Sally travelled to Tennant Creek.',
   },
   {
     id: 'frrr', name: 'FRRR', category: 'philanthropy_active', status: 'active', priority: 'high',
-    amountSignal: '$50K received via Backing the Future', instrument: 'grant',
+    amountSignal: '$50K received via Backing the Future (locating Xero record)', instrument: 'grant',
     nextAction: 'Position next ask around remote-community proof. Explore other FRRR programs.',
     grantRelevance: 'Validates remote community focus. Strong reference for other rural/regional funders.',
   },
   {
     id: 'vfff', name: 'Vincent Fairfax Family Foundation', category: 'philanthropy_active', status: 'active', priority: 'high',
-    amountSignal: '$50K received', instrument: 'grant',
+    amountSignal: '$50K received (Xero-verified)', instrument: 'grant',
     nextAction: 'Reconnect around youth jobs, community ownership, and governance maturity.',
     grantRelevance: 'Youth + governance focus aligns with community-owned production narrative.',
   },
   {
     id: 'tfn', name: 'The Funding Network', category: 'philanthropy_active', status: 'active', priority: 'medium',
-    amountSignal: '$130K raised (Sept 2025 pitch)', instrument: 'grant',
+    amountSignal: '$130K received (Sept 2025 pitch; sits in ACT-CE, reconcile)', instrument: 'grant',
     nextAction: 'Maintain relationship. Network connections are valuable.',
     grantRelevance: 'Largest single raise. Demonstrates pitch capability and donor confidence.',
   },
   {
     id: 'amp', name: 'AMP Spark', category: 'philanthropy_active', status: 'active', priority: 'medium',
-    amountSignal: '$21.9K received', instrument: 'program',
+    amountSignal: '$21.9K received (locating Xero record)', instrument: 'program',
     nextAction: 'Check for renewal or alumni network opportunities.',
     grantRelevance: 'Social enterprise accelerator credential.',
   },
@@ -79,7 +79,7 @@ export const philanthropyActive: OutreachTarget[] = [
 export const philanthropyPipeline: OutreachTarget[] = [
   {
     id: 'snow-4', name: 'Snow Foundation Round 4', category: 'philanthropy_pipeline', status: 'applied', priority: 'critical',
-    contactName: 'Sally Grimsley-Ballard', amountSignal: '$130K Round 4 pending', instrument: 'grant',
+    contactName: 'Sally Grimsley-Ballard', amountSignal: 'FY26 Scale-Up $132K paid (INV-0321, May 2026)', instrument: 'grant',
     nextAction: 'Follow up on Q1 2026 proposal status.',
     grantRelevance: 'If approved, validates production-scale thesis for other funders.',
   },
@@ -150,7 +150,7 @@ export const impactFinance: OutreachTarget[] = [
 export const aboriginalTrusts: OutreachTarget[] = [
   {
     id: 'centrecorp-foundation', name: 'Centrecorp Foundation', category: 'aboriginal_trust', status: 'warm', priority: 'critical',
-    states: ['NT'], amountSignal: '$420K receivable (107 beds Utopia)', instrument: 'blended',
+    states: ['NT'], amountSignal: '$123,332 paid; $420K commitment (May invoices voided, reconfirming); 107 beds Utopia', instrument: 'blended',
     nextAction: 'Turn buyer proof into blended capital conversation for Central Australian community production.',
     grantRelevance: 'Aboriginal investment arm. Already connected to Utopia/Centrebuild pathway.',
   },

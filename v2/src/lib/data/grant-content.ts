@@ -110,20 +110,26 @@ export const impactNumbers = {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const fundingHistory = {
-  totalReceived: 445_685,
+  // Grant funding received. Xero-verified (ACT-GD) where noted; TFN/FRRR/AMP are founder-confirmed
+  // (Ben/Nic, 2026-05-27) and being reconciled to a Xero record. Live pull 2026-05-27, ACT-ST entity.
+  totalReceived: 778_162,
   received: [
-    { source: 'Snow Foundation', amount: 193_785, when: '2024–2026' },
-    { source: 'The Funding Network', amount: 130_000, when: 'Sept 2025' },
-    { source: 'FRRR', amount: 50_000, when: '2025' },
-    { source: 'Vincent Fairfax Family Foundation', amount: 50_000, when: '2025' },
-    { source: 'AMP Spark', amount: 21_900, when: '2025' },
+    { source: 'Snow Foundation', amount: 402_930, when: '2024–2026' }, // Xero-verified (ACT-GD): 7 invoices, all paid
+    { source: 'The Funding Network', amount: 130_000, when: 'Sept 2025' }, // founder-confirmed received; Xero mirror shows only ACT-CE $6.5K paid + $144.6K authorised (mirror likely incomplete, reconcile)
+    { source: 'Centrecorp Foundation', amount: 123_332, when: '2025–2026' }, // Xero-verified (ACT-GD) paid; $420K commitment but 10 invoices voided (reinvoicing)
+    { source: 'FRRR', amount: 50_000, when: '2025' }, // founder-confirmed received; not yet located in ACT-ST Xero mirror (reconcile)
+    { source: 'Vincent Fairfax Family Foundation', amount: 50_000, when: '2025' }, // Xero-verified (ACT-GD)
+    { source: 'AMP Spark', amount: 21_900, when: '2025' }, // founder-confirmed received; not yet located in ACT-ST Xero mirror (reconcile)
   ],
+  // $201,900 above (TFN + FRRR + AMP) is founder-confirmed but unmatched in the ACT-ST Xero mirror.
+  // The mirror may be incomplete/stale (only ACT-ST entity synced) — verify against live Xero before external use.
   receivables: [
-    { source: 'Centrecorp Foundation', amount: 420_000, notes: '107 beds for Utopia Homelands' },
-    { source: 'PICC (Palm Island)', amount: 36_000, notes: '40-bed order' },
-    { source: 'Homeland School Company', amount: 34_086, notes: 'INV-0303' },
+    { source: 'Rotary eClub Outback Australia', amount: 82_500, notes: 'AUTHORISED grant, not yet paid (only live open receivable in ACT-GD)' },
+    { source: 'Homeland School Company', amount: 44_000, notes: 'INV-0303 AUTHORISED, due 30 Jun 2026, 65 beds Maningrida. Already ACT-GD in Xero (all line items tagged Goods); the mirror mis-derived project_code to ACT-JH via keyword_match (sync bug, no Xero change needed)' },
   ],
-  totalReceivables: 490_086,
+  // Removed Centrecorp $420K: relationship commitment, but its invoices were voided ($0 currently invoiced).
+  // Removed PICC/Palm Island: that revenue belongs to the PICC (ACT-PI) project, not Goods.
+  totalReceivables: 126_500, // Rotary 82,500 + Homeland 44,000
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -177,7 +183,7 @@ export const grantAnswers = {
   },
   whoDoYouWorkWith: 'We work with 8+ remote Indigenous communities across QLD, NT, WA, and SA. Core community partners include Oonchiumpa Consultancy, Wilya Janta, and Palm Island Community Company. Health partners include Anyinginyi Health, Miwatj Health, Purple House, and Red Dust.',
   howDoYouMeasureImpact: 'We track impact through: (1) Asset Register — 389 assets with QR-coded lifecycle monitoring. (2) Telemetry — washing machines report cycle counts, energy usage. (3) Community feedback — 500+ minutes recorded, 15+ verified storytellers via Empathy Ledger. (4) Environmental metrics — 9,225kg+ plastic diverted. (5) Health outcomes — tracking with health partners.',
-  whatAreYourFinancials: `$445,685 in grant funding received. ~$50K in trade revenue. $490K in outstanding receivables. $100K invested in production facility. Demand exceeds production 3–5x.`,
+  whatAreYourFinancials: `$778,162 in grant funding received. ~$61K in trade revenue. ~$127K in outstanding receivables. $100K invested in production facility. Demand exceeds production 3–5x.`,
   howWillYouUseThisFunding: {
     beds: 'Each $600–850 funds one Stretch Bed deployed to a remote community, diverting 20kg of plastic and providing a 10+ year sleeping surface.',
     production: '$100K funds a containerised production facility deployment to a community for ~2 months, producing ~30 beds/week.',
@@ -315,7 +321,7 @@ export function composeGrantApplication(
           (f) => `- ${f.source}: $${f.amount.toLocaleString()} (${f.when})`,
         ),
         '',
-        '**Outstanding receivables:** $490,086',
+        `**Outstanding receivables:** $${fundingHistory.totalReceivables.toLocaleString()}`,
         ...fundingHistory.receivables.map(
           (r) => `- ${r.source}: $${r.amount.toLocaleString()} — ${r.notes}`,
         ),

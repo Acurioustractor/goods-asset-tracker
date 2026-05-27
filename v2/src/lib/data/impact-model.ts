@@ -335,7 +335,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         id: 'revenue',
         name: 'Annual Revenue',
         unit: '$',
-        current: 239273, // Xero-verified trade revenue (March 2026)
+        current: 61_449, // Xero-verified FY26 commercial/trade revenue (ACT-GD only, 2026-05-27); Palm Island excluded (PICC project, not Goods, per Ben). NOTE: if this metric should be TOTAL revenue to match the $1.1M+ targets, use FY26 YTD ~$435K instead. CONFIRM BASIS.
         targets: { year1: 1_100_000, year3: 4_000_000, vision2030: 15_000_000 },
         source: 'xero',
         sourceDetail: 'Xero: goods project tagged transactions',
