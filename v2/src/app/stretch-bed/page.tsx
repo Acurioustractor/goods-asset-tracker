@@ -62,7 +62,7 @@ const components = [
   },
   {
     key: 'legs',
-    n: '4',
+    n: '2',
     title: 'Recycled-plastic legs',
     body: 'Pressed from community-collected plastic waste, the HDPE planks cross into two X-frame trestles, each with a hole at the top for a pole to thread through. Virtually indestructible, no screws.',
     img: '/images/product/stretch-bed-legs.jpg',
