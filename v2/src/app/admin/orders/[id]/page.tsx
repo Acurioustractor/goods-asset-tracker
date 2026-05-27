@@ -189,6 +189,7 @@ export default async function OrderDetailPage({
           fullOrder.customer_email,
           fullOrder.customer_name || undefined,
           ['goods-customer', 'goods-bed-owner', tagForAsset(assetId)],
+          { source: 'Admin Manual Entry' },
         );
         if (result.success && result.contact?.id) {
           const note = [
@@ -242,6 +243,73 @@ export default async function OrderDetailPage({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Order Details - Main Column */}
         <div className="lg:col-span-2 space-y-6">
+          {/* Sponsorship fulfilment briefing — first thing the field team sees when
+              opening a sponsored order. Surfaces the destination community and the
+              dedication message that needs to travel with the bed. */}
+          {order.is_sponsorship && (
+            <Card className="border-2 border-[#C45C3E]/40 bg-[#FDF8F3]">
+              <CardHeader className="pb-3">
+                <div className="flex items-center justify-between flex-wrap gap-2">
+                  <CardTitle className="flex items-center gap-2 text-xl">
+                    <span>Sponsorship · Fulfilment briefing</span>
+                  </CardTitle>
+                  <Badge className="bg-[#C45C3E] text-white hover:bg-[#C45C3E]">
+                    Buy for community
+                  </Badge>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-1">
+                      Destination
+                    </p>
+                    <p className="font-semibold text-base text-[#2E2E2E]">
+                      {order.sponsored_community || 'Wherever the need is greatest'}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-1">
+                      Sponsored by
+                    </p>
+                    <p className="font-semibold text-base text-[#2E2E2E]">
+                      {order.customer_name || order.customer_email || '—'}
+                    </p>
+                    {order.customer_name && order.customer_email && (
+                      <p className="text-xs text-gray-500 truncate">
+                        {order.customer_email}
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-1">
+                      Beds
+                    </p>
+                    <p className="font-semibold text-base text-[#2E2E2E]">
+                      {orderItems.reduce((sum, item) => sum + item.quantity, 0)}{' '}
+                      &times; Stretch Bed
+                    </p>
+                  </div>
+                </div>
+
+                {order.sponsor_message ? (
+                  <div className="rounded-xl bg-white border border-[#C45C3E]/30 p-4">
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-[#C45C3E] mb-2 font-medium">
+                      Message to pass on with the bed
+                    </p>
+                    <p className="text-lg italic text-[#2E2E2E] leading-snug">
+                      &ldquo;{order.sponsor_message}&rdquo;
+                    </p>
+                  </div>
+                ) : (
+                  <p className="text-sm text-gray-500 italic">
+                    No dedication message from the sponsor.
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          )}
+
           {/* Order Items */}
           <Card>
             <CardHeader>
@@ -428,34 +496,6 @@ export default async function OrderDetailPage({
             </Card>
           )}
 
-          {/* Sponsorship Details */}
-          {order.is_sponsorship && (
-            <Card className="border-purple-200 bg-purple-50">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <span>Sponsorship Order</span>
-                  <Badge className="bg-purple-100 text-purple-800">
-                    Buy for Community
-                  </Badge>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                {order.sponsored_community && (
-                  <p>
-                    <strong>Community:</strong> {order.sponsored_community}
-                  </p>
-                )}
-                {order.sponsor_message && (
-                  <div className="mt-2">
-                    <strong>Sponsor Message:</strong>
-                    <p className="mt-1 text-gray-600 italic">
-                      &ldquo;{order.sponsor_message}&rdquo;
-                    </p>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          )}
         </div>
 
         {/* Sidebar */}
