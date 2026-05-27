@@ -75,27 +75,13 @@ export async function POST(request: NextRequest) {
     }
 
     // EVERY contact submission (general + media pack): apply the ACT-wide
-    // inquiry tags and save the message as a note. `act-inquiry` is the single
-    // clean marker the Universal Inquiry pipeline triggers on — it is NOT
-    // shared with feedback/imports the way the base `goods-inquiry` tag is.
-    // `project-goods` lets that pipeline be filtered/triaged by project.
+    // inquiry tags, then thread the message into the contact's Conversations
+    // inbox (below) as the primary record. `act-inquiry` is the single clean
+    // marker the Universal Inquiry pipeline triggers on (NOT shared with
+    // feedback/imports the way base `goods-inquiry` is). `project-goods` lets
+    // that pipeline be filtered/triaged by project.
     if (ghlResult.success && ghlResult.contact?.id) {
       await ghl.addTags(ghlResult.contact.id, ['act-inquiry', 'project-goods']);
-
-      const note = [
-        '📥 Website contact form',
-        `Subject: ${body.subject || 'General Inquiry'}`,
-        body.organisation ? `Organisation: ${body.organisation}` : null,
-        body.phone ? `Phone: ${body.phone}` : null,
-        '',
-        'Message:',
-        body.message,
-        '',
-        `Submitted: ${new Date().toLocaleString('en-AU')}`,
-      ]
-        .filter((l) => l !== null)
-        .join('\n');
-      await ghl.addNote(ghlResult.contact.id, note);
 
       // Thread the inquiry into the contact's GHL Conversations inbox as an
       // inbound email, so the team can read + reply in-thread (replies send via
