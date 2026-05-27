@@ -96,6 +96,25 @@ export async function POST(request: NextRequest) {
         .filter((l) => l !== null)
         .join('\n');
       await ghl.addNote(ghlResult.contact.id, note);
+
+      // Thread the inquiry into the contact's GHL Conversations inbox as an
+      // inbound email, so the team can read + reply in-thread (replies send via
+      // the native GHL email channel — no Custom conversation provider needed).
+      // This is the primary tracking surface for inquiries.
+      const esc = (s: string) =>
+        s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const inquiryHtml = [
+        body.organisation ? `<p><strong>Organisation:</strong> ${esc(body.organisation)}</p>` : '',
+        body.phone ? `<p><strong>Phone:</strong> ${esc(body.phone)}</p>` : '',
+        `<p>${esc(body.message).replace(/\n/g, '<br/>')}</p>`,
+      ].join('');
+      await ghl.addInboundEmail({
+        contactId: ghlResult.contact.id,
+        fromEmail: body.email,
+        subject: `Website Contact: ${body.subject || 'General Inquiry'}`,
+        html: inquiryHtml,
+        text: body.message,
+      });
     }
 
     // Email notifications (team notify + sender acknowledgement) are owned by

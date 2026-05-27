@@ -953,6 +953,49 @@ export const ghl = {
   },
 
   /**
+   * Log an inbound Email into the contact's GHL Conversations thread so website
+   * form inquiries appear in the Conversations inbox and the team can reply
+   * in-thread (replies go out via the native GHL email channel). type=Email
+   * requires emailFrom + emailTo but NOT a conversationProviderId (unlike the
+   * Custom type). Returns the conversationId GHL created/found.
+   */
+  async addInboundEmail(opts: {
+    contactId: string;
+    fromEmail: string;
+    subject: string;
+    html: string;
+    text?: string;
+    toEmail?: string;
+  }): Promise<{ success: boolean; conversationId?: string }> {
+    if (!GHL_ENABLED) {
+      console.log('[GHL] Disabled — would log inbound email:', opts.subject);
+      return { success: true };
+    }
+    if (!opts.contactId || !cleanString(opts.fromEmail)) {
+      return { success: false };
+    }
+    try {
+      const res = await ghlRequest<{ conversationId?: string }>(
+        '/conversations/messages/inbound',
+        'POST',
+        {
+          type: 'Email',
+          contactId: opts.contactId,
+          emailFrom: opts.fromEmail,
+          emailTo: opts.toEmail || 'hi@act.place',
+          subject: opts.subject,
+          html: opts.html,
+          message: opts.text || opts.subject,
+        },
+      );
+      return { success: true, conversationId: res.conversationId };
+    } catch (error) {
+      console.error('[GHL] addInboundEmail error:', error instanceof Error ? error.message : error);
+      return { success: false };
+    }
+  },
+
+  /**
    * Create/update contact from an order
    */
   async createOrderContact(data: OrderContactData): Promise<GHLResponse> {
