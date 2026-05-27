@@ -7,16 +7,19 @@
   <style>
     @page {
       size: A4 landscape;
-      margin: 12mm;
+      margin: 11mm;
     }
 
     :root {
-      --cream: #fdf8f3;
-      --rust: #c45c3e;
-      --charcoal: #2e2e2e;
-      --sage: #8b9d77;
-      --line: #e8ded4;
-      --muted: #66615d;
+      --paper: #fbf7f1;
+      --white: #fffdf9;
+      --charcoal: #282828;
+      --muted: #68635d;
+      --rust: #bf5738;
+      --green: #667b4d;
+      --blue: #496f84;
+      --ochre: #d8a25f;
+      --line: #e5d9cd;
     }
 
     * {
@@ -25,38 +28,41 @@
 
     body {
       margin: 0;
-      background: var(--cream);
+      background: var(--paper);
       color: var(--charcoal);
       font-family: Inter, Arial, sans-serif;
-      line-height: 1.42;
+      line-height: 1.38;
     }
 
     .page {
-      padding: 12px;
+      padding: 10px;
       background:
-        linear-gradient(90deg, rgba(196, 92, 62, 0.12), transparent 40%),
-        var(--cream);
+        linear-gradient(120deg, rgba(191, 87, 56, 0.11), transparent 34%),
+        linear-gradient(300deg, rgba(73, 111, 132, 0.12), transparent 40%),
+        var(--paper);
     }
 
     .shell {
       max-width: 1060px;
       margin: 0 auto;
+      overflow: hidden;
       border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.72);
+      background: rgba(255, 253, 249, 0.9);
     }
 
     .topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
-      padding: 12px 20px 10px;
+      gap: 22px;
+      padding: 11px 20px;
       border-bottom: 1px solid var(--line);
+      background: var(--white);
     }
 
     .brand {
       font-family: Georgia, serif;
-      font-size: 24px;
+      font-size: 23px;
       line-height: 0.92;
       letter-spacing: 0;
     }
@@ -67,60 +73,68 @@
       color: var(--muted);
       font-family: Inter, Arial, sans-serif;
       font-size: 8px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     .partner-logo {
-      max-width: 132px;
+      max-width: 136px;
       max-height: 48px;
       object-fit: contain;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
+      grid-template-columns: 1.02fr 0.98fr;
       border-bottom: 1px solid var(--line);
+      background: var(--white);
     }
 
     .hero-copy {
-      padding: 14px 20px 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 160px;
+      padding: 16px 20px 14px;
     }
 
     .eyebrow {
       margin: 0 0 8px;
       color: var(--rust);
       font-size: 9px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 1.8px;
       text-transform: uppercase;
     }
 
     h1 {
+      max-width: 420px;
       margin: 0 0 10px;
       font-family: Georgia, serif;
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 400;
-      line-height: 1.02;
+      line-height: 1.03;
     }
 
     .summary {
-      margin: 0 0 9px;
+      max-width: 450px;
+      margin: 0 0 10px;
       color: var(--muted);
-      font-size: 11px;
+      font-size: 10.6px;
     }
 
     .prepared {
       margin: 0;
       color: var(--charcoal);
-      font-size: 9px;
+      font-size: 8.5px;
+      font-weight: 700;
     }
 
     .hero-image {
-      min-height: 140px;
+      min-height: 160px;
       background-image:
-        linear-gradient(180deg, rgba(46, 46, 46, 0), rgba(46, 46, 46, 0.18)),
+        linear-gradient(180deg, rgba(40, 40, 40, 0), rgba(40, 40, 40, 0.16)),
         url("../../../images/partners/centrecorp/utopia/hero-elder-bed.jpg");
       background-position: center;
       background-size: cover;
@@ -131,11 +145,12 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       border-bottom: 1px solid var(--line);
+      background: #f6efe7;
     }
 
     .metric {
-      min-height: 72px;
-      padding: 10px 12px;
+      min-height: 83px;
+      padding: 11px 12px 10px;
       border-right: 1px solid var(--line);
     }
 
@@ -145,17 +160,22 @@
 
     .metric strong {
       display: block;
-      margin-bottom: 4px;
-      color: var(--rust);
+      margin-bottom: 5px;
       font-family: Georgia, serif;
-      font-size: 22px;
+      font-size: 25px;
       font-weight: 400;
       line-height: 1;
     }
 
+    .metric:nth-child(1) strong { color: var(--rust); }
+    .metric:nth-child(2) strong { color: var(--green); }
+    .metric:nth-child(3) strong { color: var(--blue); }
+    .metric:nth-child(4) strong { color: #8d6735; }
+
     .metric span {
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 5px;
+      color: var(--charcoal);
       font-size: 8px;
       font-weight: 800;
       letter-spacing: 1px;
@@ -165,17 +185,17 @@
     .metric p {
       margin: 0;
       color: var(--muted);
-      font-size: 8.5px;
+      font-size: 8.2px;
     }
 
     .content {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 0;
+      grid-template-columns: 1fr 1fr;
+      background: var(--white);
     }
 
     .panel {
-      padding: 12px 18px;
+      padding: 12px 17px;
       border-right: 1px solid var(--line);
     }
 
@@ -185,14 +205,62 @@
 
     h2 {
       margin: 0 0 8px;
-      font-size: 9px;
+      font-size: 8.5px;
       font-weight: 800;
-      letter-spacing: 1.4px;
+      letter-spacing: 1.3px;
       text-transform: uppercase;
     }
 
-    .check-list,
-    .evidence-list {
+    .voice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .voice-card {
+      min-height: 58px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .voice-card b {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--charcoal);
+      font-size: 8px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .voice-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 8.2px;
+    }
+
+    .quote {
+      margin: 0;
+      padding: 9px 10px;
+      border-left: 4px solid var(--rust);
+      background: #fff8f0;
+    }
+
+    .quote p {
+      margin: 0 0 6px;
+      font-family: Georgia, serif;
+      font-size: 12.5px;
+      line-height: 1.2;
+    }
+
+    .quote cite {
+      color: var(--muted);
+      font-size: 8.2px;
+      font-style: normal;
+    }
+
+    .measurement {
       display: grid;
       gap: 5px;
       margin: 0;
@@ -200,53 +268,39 @@
       list-style: none;
     }
 
-    .check-list li,
-    .evidence-list li {
-      position: relative;
-      padding-left: 14px;
-      color: var(--muted);
-      font-size: 8.8px;
-    }
-
-    .check-list li::before,
-    .evidence-list li::before {
-      position: absolute;
-      top: 0;
-      left: 0;
-      color: var(--sage);
-      content: "•";
-      font-weight: 800;
-    }
-
-    .quote {
-      margin: 8px 0 0;
-      padding: 10px;
-      border-left: 4px solid var(--rust);
-      background: var(--cream);
-    }
-
-    .quote p {
-      margin: 0 0 6px;
-      font-family: Georgia, serif;
-      font-size: 13px;
-      line-height: 1.2;
-    }
-
-    .quote cite {
-      color: var(--muted);
-      font-size: 8.5px;
-      font-style: normal;
-    }
-
-    .evidence-grid {
+    .measurement li {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 88px 1fr;
       gap: 8px;
-      margin-top: 8px;
+      padding: 6px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 8.1px;
+    }
+
+    .measurement li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .measurement b {
+      color: var(--charcoal);
+      font-size: 7.7px;
+      letter-spacing: 0.75px;
+      text-transform: uppercase;
+    }
+
+    .photo-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 7px;
+      padding: 10px 17px 11px;
+      border-top: 1px solid var(--line);
+      background: #f9f3ed;
     }
 
     .thumb {
-      min-height: 44px;
+      min-height: 54px;
       background-position: center;
       background-size: cover;
       border: 1px solid var(--line);
@@ -271,12 +325,13 @@
       padding: 8px 18px 9px;
       border-top: 1px solid var(--line);
       color: var(--muted);
-      font-size: 8px;
+      font-size: 7.8px;
+      background: var(--white);
     }
 
     .footer a {
       color: var(--charcoal);
-      font-weight: 700;
+      font-weight: 800;
       text-decoration: none;
     }
 
@@ -290,7 +345,6 @@
         border: 0;
       }
     }
-
   </style>
 </head>
 <body>
@@ -303,13 +357,17 @@
 
       <section class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">Outcomes snapshot / May 2026</p>
-          <h1>Utopia Homelands Bed Delivery</h1>
-          <p class="summary">
-            Centrecorp Foundation support helped Goods on Country and A Curious Tractor deliver
-            practical bed infrastructure into the Utopia Homelands with community partners, creating
-            a clear evidence base for future Stretch Bed delivery, community feedback and follow-up reporting.
-          </p>
+          <div>
+            <p class="eyebrow">Outcomes snapshot / May 2026 round</p>
+            <h1>Utopia Homelands Bed Delivery</h1>
+            <p class="summary">
+              Centrecorp Foundation is the Central Australia anchor partner for Goods on Country. Centrecorp
+              funded the first Utopia Homelands bed batch in 2025, partnered on the May 2026 Central Australia
+              deployment with Oonchiumpa and the Snow Foundation, and backs the six-month production plant trial
+              that moves the making On Country. Young people build the Stretch Beds in Alice Springs, and local
+              teams deliver them out to the homelands.
+            </p>
+          </div>
           <p class="prepared">
             Prepared for Centrecorp Foundation by Goods on Country / A Curious Tractor with Oonchiumpa.
           </p>
@@ -319,36 +377,48 @@
 
       <section class="metrics" aria-label="Key outcomes">
         <div class="metric">
-          <strong>60</strong>
-          <span>First Utopia beds</span>
-          <p>Delivered successfully on 7, 8 and 9 October 2025 with community partners.</p>
-        </div>
-        <div class="metric">
           <strong>107</strong>
-          <span>Next round</span>
-          <p>Upcoming Stretch Bed delivery round, with new photos and stories to add after the trip.</p>
+          <span>Beds delivered</span>
+          <p>May 2026 Central Australia deployment, to households across Mparntwe and the Utopia Homelands with Oonchiumpa.</p>
         </div>
         <div class="metric">
-          <strong>~5 min</strong>
-          <span>Stretch Bed setup</span>
-          <p>The next round uses the current no-tools Stretch Bed model.</p>
+          <strong>2 rounds</strong>
+          <span>To Utopia Homelands</span>
+          <p>First batch in 2025, second through the May 2026 deployment. A growing two-year partnership.</p>
         </div>
         <div class="metric">
-          <strong>1</strong>
-          <span>Public record</span>
-          <p>Recognition page now live with Centrecorp logo, photos, video and community story.</p>
+          <strong>6-month</strong>
+          <span>Production plant trial</span>
+          <p>Centrecorp backs the mobile plant trial: shred recycled plastic and press bed parts On Country.</p>
+        </div>
+        <div class="metric">
+          <strong>20kg</strong>
+          <span>Recycled HDPE per bed</span>
+          <p>Plastic diverted into a durable product communities can use, repair and eventually make On Country.</p>
         </div>
       </section>
 
       <section class="content">
         <div class="panel">
-          <h2>Outcome Evidence Available Now</h2>
-          <ul class="evidence-list">
-            <li>Delivery photos show beds arriving, parts being unpacked, community setup and beds placed for use.</li>
-            <li>Oonchiumpa Good News Story records the partnership and reported effect for Elders Frank and Casey Holmes.</li>
-            <li>Community voices include practical need and product feedback connected to the Central Australia pathway.</li>
-            <li>Public acknowledgement page gives Centrecorp Foundation visible recognition and a single shareable link.</li>
-          </ul>
+          <h2>Voice Themes Already Emerging</h2>
+          <div class="voice-grid">
+            <div class="voice-card">
+              <b>Practical need</b>
+              <p>Beds off the ground, safer rest and household infrastructure families can actually use.</p>
+            </div>
+            <div class="voice-card">
+              <b>Circular value</b>
+              <p>Community feedback connects recycled plastic with a product that is useful and durable.</p>
+            </div>
+            <div class="voice-card">
+              <b>Youth pathway</b>
+              <p>Building beds can become structured skills, pride, training hours and production roles.</p>
+            </div>
+            <div class="voice-card">
+              <b>Local production</b>
+              <p>The next evidence step is linking delivery demand to Oonchiumpa and Central Australia capability.</p>
+            </div>
+          </div>
 
           <figure class="quote">
             <p>"Since receiving their new beds, they are no longer experiencing back pains."</p>
@@ -357,21 +427,21 @@
         </div>
 
         <div class="panel">
-          <h2>What To Add After The 107-Bed Round</h2>
-          <ul class="check-list">
-            <li>Final delivery count, dates and communities/homelands reached.</li>
-            <li>Approved photo set: delivery, assembly, beds in use and local partner involvement.</li>
-            <li>Three to five short consent-checked voices from families, Elders and delivery partners.</li>
-            <li>Product feedback: comfort, setup time, cleaning, repairs, missing parts and suggested changes.</li>
-            <li>Asset register reconciliation: bed IDs, QR records, follow-up requests and maintenance notes.</li>
+          <h2>What We Measure Next</h2>
+          <ul class="measurement">
+            <li><b>Household benefit</b><span>Final bed count, household reach, direct people supported and follow-up needs.</span></li>
+            <li><b>Health & comfort</b><span>Comfort, back pain, sleep, off-ground safety and whether the bed is still in use.</span></li>
+            <li><b>Circular economy</b><span>Recycled HDPE per bed, local feedstock potential, repairability and product lifespan.</span></li>
+            <li><b>Voice & consent</b><span>Three to five approved family, Elder, Oonchiumpa and delivery-partner voices.</span></li>
+            <li><b>Production pathway</b><span>Youth training hours, assembly time, local roles, facility readiness and maintenance issues.</span></li>
           </ul>
-
-          <div class="evidence-grid" aria-label="Evidence photos">
-            <div class="thumb one" role="img" aria-label="Delivery and setup area"></div>
-            <div class="thumb two" role="img" aria-label="Community bed assembly"></div>
-            <div class="thumb three" role="img" aria-label="Stretch Bed model"></div>
-          </div>
         </div>
+      </section>
+
+      <section class="photo-strip" aria-label="Evidence photos">
+        <div class="thumb one" role="img" aria-label="Delivery and setup area"></div>
+        <div class="thumb two" role="img" aria-label="Community bed assembly"></div>
+        <div class="thumb three" role="img" aria-label="Stretch Bed model"></div>
       </section>
 
       <footer class="footer">

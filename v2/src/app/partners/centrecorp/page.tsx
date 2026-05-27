@@ -12,6 +12,8 @@ const PAGE_DESCRIPTION =
   'Goods on Country recognises Centrecorp Foundation support for A Curious Tractor, Oonchiumpa and Utopia Homelands bed delivery work in Central Australia.';
 const PAGE_URL = 'https://www.goodsoncountry.com/partners/centrecorp';
 const PAGE_IMAGE = 'https://www.goodsoncountry.com/images/partners/centrecorp/utopia/hero-elder-bed.jpg';
+const OUTCOMES_PDF_URL = '/docs/partners/centrecorp/utopia-outcomes-one-pager.pdf';
+const OUTCOMES_LIVE_URL = '/partners/centrecorp/outcomes';
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -60,14 +62,14 @@ const stats = [
     detail: 'Delivered successfully on 7, 8 and 9 October 2025 with community partners.',
   },
   {
+    value: '60+',
+    label: 'Direct people supported',
+    detail: 'Conservative floor: one person supported per delivered bed, with household reach to reconcile.',
+  },
+  {
     value: '107',
     label: 'Next round',
     detail: 'Upcoming Stretch Bed delivery round, with photos and stories to come after the trip.',
-  },
-  {
-    value: 'Oonchiumpa',
-    label: 'Community partner',
-    detail: 'Local partner pathway for cultural guidance, delivery support and community feedback.',
   },
   {
     value: STRETCH_BED.specs.assemblyTime,
@@ -433,6 +435,20 @@ export default function CentrecorpPartnershipPage() {
               >
                 Contact Goods
               </Link>
+              <Link
+                href={OUTCOMES_LIVE_URL}
+                className="inline-flex rounded-lg px-5 py-3 text-sm font-semibold transition hover:opacity-90"
+                style={{ backgroundColor: RUST, color: '#FFFFFF' }}
+              >
+                Live outcomes snapshot
+              </Link>
+              <a
+                href={OUTCOMES_PDF_URL}
+                className="inline-flex rounded-lg px-5 py-3 text-sm font-semibold transition hover:opacity-90"
+                style={{ color: CHARCOAL, border: `1px solid ${CHARCOAL}33` }}
+              >
+                Download PDF
+              </a>
             </div>
           </div>
 
