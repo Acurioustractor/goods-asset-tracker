@@ -7,7 +7,7 @@ import { ProductionTrendChart } from '@/components/production/production-trend-c
 import { SupplyDemandCard, type CommittedOrder, type SupplierQuote } from '@/components/production/supply-demand-card';
 import { BedReconciliation, type AssetSummary, type DemandSummary } from '@/components/production/bed-reconciliation';
 import { CostPerBatchCard, type BatchSummary } from '@/components/production/cost-per-batch-card';
-import { stretchBedCOGS } from '@/lib/data/supplier-quotes';
+import { fullyLoadedCostPerBed } from '@/lib/data/supplier-quotes';
 import { getSupplierActuals } from '@/lib/data/supplier-cost-actuals';
 import type { ProductionInventory, ProductionShift, ProductionJournal } from '@/lib/types/database';
 
@@ -179,8 +179,8 @@ async function getProductionData() {
     .map(([batch, bedCount]) => ({
       batch,
       bedCount,
-      cogs: bedCount * stretchBedCOGS,
-      marginAtInstitutional: bedCount * (750 - stretchBedCOGS),
+      cogs: bedCount * fullyLoadedCostPerBed,
+      marginAtInstitutional: bedCount * (750 - fullyLoadedCostPerBed),
     }))
     .sort((a, b) => {
       // Sort numerically when batch is a number (e.g. "156"), else alphabetically

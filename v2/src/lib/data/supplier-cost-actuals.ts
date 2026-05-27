@@ -3,10 +3,16 @@
  * ACT infra Supabase). Used to compute *real* cost-per-bed alongside the
  * canonical $149.20 BOM in supplier-quotes.ts.
  *
- * NB: ACCPAY totals include freight, training, setup, and prototype work
- * alongside per-bed BOM. Treat the resulting $/bed as a *directional*
- * signal, not a per-unit truth. To get true per-unit COGS we'd need
- * Xero line-items tagged with a batch code (future enhancement).
+ * NB: Goods supplier invoices are coded as lump-sum account lines
+ * ("Defy Manufacturing — Materials & Supplies — ACT-GD"), NOT itemised per
+ * component — so a true per-unit BOM is NOT recoverable from Xero. The
+ * canonical $149.20 BOM in supplier-quotes.ts stays the per-unit anchor.
+ * These ACCPAY totals also fold in freight, training, prototype iterations and
+ * setup, and the cost-per-batch denominator counts Basket beds too, so treat
+ * the resulting $/bed as a *directional* signal only.
+ *
+ * Reconciled against the ACT-infra Xero mirror 2026-05-28:
+ * see wiki/outputs/2026-05-28-bed-cogs-xero-reconciliation.md.
  */
 
 type XeroInvoiceRow = {
@@ -16,14 +22,25 @@ type XeroInvoiceRow = {
   type: string;
 };
 
+// Bed-component suppliers as they appear in Goods (ACT-GD) Xero — i.e. only the
+// portion of the supply chain that is actually capturable from this mirror.
+// Verified against the ACT-infra mirror + Notion BOM 2026-05-28:
+//   Defy / Defy Manufacturing            → HDPE legs + facility production (lump-sum coded)
+//   Brisbane Steel Supplies / Steelmart  → steel (Goods-tagged)
+// NOT capturable here (real, but off this mirror — confirmed by Ben 2026-05-28):
+//   DNA Steel Direct (Alice Springs, $27/bed) — invoices live in Notion, not the Xero mirror.
+//   Centre Canvas (Alice Springs, $93.50/bed) — its one genuine "Canvas stretcher covers"
+//     invoice is mis-tagged ACT-IN (so excluded by the project filter below), and the same
+//     Xero contact is polluted with Canva software-subscription lines (name collision).
+// Net effect: this figure is Defy + Goods-tagged steel only — a LOWER BOUND on real
+// supplier spend. The Alice Springs canvas/steel chain is in Notion.
+// See wiki/outputs/2026-05-28-bed-cogs-xero-reconciliation.md.
 export const BOM_SUPPLIERS = [
   'Defy',
   'Defy Design',
   'Defy Manufacturing',
-  'DNA Steel Direct',
-  'DNA Steel',
-  'Centre Canvas',
-  'Centre Canvas And Upholstery',
+  'Brisbane Steel Supplies',
+  'Steelmart',
 ] as const;
 
 export type SupplierActuals = {
@@ -54,7 +71,11 @@ export async function getSupplierActuals(): Promise<SupplierActuals> {
 
   // PostgREST IN list: quote each value to be safe with spaces
   const supplierList = BOM_SUPPLIERS.map((s) => `"${s.replace(/"/g, '\\"')}"`).join(',');
-  const url = `${baseUrl}/rest/v1/xero_invoices?type=eq.ACCPAY&contact_name=in.(${encodeURIComponent(supplierList)})&select=date,contact_name,total,type&order=date.desc`;
+  // Restrict to Goods-tagged spend (project_code=ACT-GD). Without this, ACT-IN
+  // invoices mis-filed against a bed-supplier contact leak in (e.g. a Canva
+  // subscription booked under "Centre Canvas And Upholstery" inflated the figure
+  // by ~$25k before this filter).
+  const url = `${baseUrl}/rest/v1/xero_invoices?type=eq.ACCPAY&project_code=eq.ACT-GD&contact_name=in.(${encodeURIComponent(supplierList)})&select=date,contact_name,total,type&order=date.desc`;
 
   try {
     const res = await fetch(url, {
