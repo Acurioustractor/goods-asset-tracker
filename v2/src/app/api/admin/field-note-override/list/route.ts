@@ -6,6 +6,8 @@
 // [[el-two-video-tables]] for the trap.
 
 import { NextResponse } from 'next/server';
+import { readdirSync } from 'node:fs';
+import { join, relative } from 'node:path';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -50,16 +52,22 @@ function quoteTags(tags: string[]): string {
   return tags.map((t) => `"${t}"`).join(',');
 }
 
-async function fetchFromStories(tags: string[]): Promise<ElStoryRow[]> {
+async function fetchFromStories(tags: string[], crossProject = false): Promise<ElStoryRow[]> {
   // Empty tags = "no tag filter" = ALL stories for this project, recent first.
   // Used by the picker's "recent uploads" scope so just-uploaded items show
   // up even before someone has tagged them.
+  //
+  // crossProject=true drops the project_id filter — used by the photo
+  // browser so a tag query like `goods` finds photos uploaded under any
+  // project_id in EL, not just the canonical Goods project. Needed because
+  // EL's project assignment at upload time is unreliable and many "goods"
+  // photos land with no project_id at all.
   const params = [
-    `project_id=eq.${EL_PROJECT_ID}`,
+    crossProject ? null : `project_id=eq.${EL_PROJECT_ID}`,
     tags.length > 0 ? `tags=cs.{${quoteTags(tags)}}` : null,
     `select=id,title,media_url,story_image_url,tags,story_type,created_at`,
     `order=created_at.desc`,
-    `limit=300`,
+    `limit=1000`,
   ].filter(Boolean);
   const res = await fetch(`${EL_URL}/rest/v1/stories?${params.join('&')}`, {
     headers: { apikey: EL_KEY, Authorization: `Bearer ${EL_KEY}` },
@@ -69,14 +77,15 @@ async function fetchFromStories(tags: string[]): Promise<ElStoryRow[]> {
   return res.json();
 }
 
-async function fetchFromMediaAssets(tags: string[]): Promise<ElMediaAssetRow[]> {
+async function fetchFromMediaAssets(tags: string[], crossProject = false): Promise<ElMediaAssetRow[]> {
   // Same "empty tags = all" rule as above.
+  // crossProject=true drops the project_id filter for the photo browser.
   const params = [
-    `project_id=eq.${EL_PROJECT_ID}`,
+    crossProject ? null : `project_id=eq.${EL_PROJECT_ID}`,
     tags.length > 0 ? `cultural_tags=cs.{${quoteTags(tags)}}` : null,
     `select=id,original_filename,filename,cdn_url,thumbnail_url,cultural_tags,media_type,visibility,uploaded_at,created_at`,
     `order=uploaded_at.desc`,
-    `limit=300`,
+    `limit=1000`,
   ].filter(Boolean);
   const res = await fetch(`${EL_URL}/rest/v1/media_assets?${params.join('&')}`, {
     headers: { apikey: EL_KEY, Authorization: `Bearer ${EL_KEY}` },
@@ -86,21 +95,60 @@ async function fetchFromMediaAssets(tags: string[]): Promise<ElMediaAssetRow[]> 
   return res.json();
 }
 
+// Local website images: every file under /public/images, returned as picker
+// items so the existing site photography is selectable alongside EL media.
+// Triggered by the sentinel tag `__website__` (the "Website images" folder).
+// fs scan works in local dev (where admins do the picking); on Vercel /public
+// is not in the function filesystem, so it returns [] there (EL still works).
+function localWebsiteImages(kind: string): PickerItem[] {
+  if (kind === 'video') return [];
+  try {
+    const publicDir = join(process.cwd(), 'public');
+    const root = join(publicDir, 'images');
+    const out: PickerItem[] = [];
+    const walk = (dir: string) => {
+      for (const ent of readdirSync(dir, { withFileTypes: true })) {
+        const full = join(dir, ent.name);
+        if (ent.isDirectory()) { walk(full); continue; }
+        if (!/\.(jpe?g|png|webp)$/i.test(ent.name)) continue;
+        const rel = relative(publicDir, full).split(/[\\/]/).join('/');
+        const url = '/' + rel; // e.g. /images/product/stretch-bed-hero.jpg
+        out.push({ id: url, thumb: url, url, title: rel.replace(/^images\//, ''), kind: 'photo' });
+      }
+    };
+    walk(root);
+    return out.sort((a, b) => a.title.localeCompare(b.title));
+  } catch (err) {
+    console.error('[picker] local website images scan failed:', err);
+    return [];
+  }
+}
+
 export async function GET(req: Request) {
   if (!EL_URL || !EL_KEY) return NextResponse.json([]);
   const url = new URL(req.url);
   const tags = url.searchParams.getAll('tag');
   const kind = url.searchParams.get('kind') || 'any';
   const scope = url.searchParams.get('scope');
+  // crossProject=1 drops the project_id filter. Used by the photo browser
+  // to surface anything tagged Goods across all EL projects, since many
+  // photos uploaded to EL don't get the Goods project_id assigned at
+  // upload time.
+  const crossProject = url.searchParams.get('crossProject') === '1';
   // Recent-uploads scope: bypass the tags-required check so just-uploaded
   // files (even untagged ones) appear in the picker. Caller passes
   // `?scope=recent` instead of tags.
+  // "Website images" folder → serve local /public/images, not EL.
+  if (tags.includes('__website__')) {
+    return NextResponse.json(localWebsiteImages(kind));
+  }
+
   if (tags.length === 0 && scope !== 'recent') return NextResponse.json([]);
 
   // Query both tables in parallel.
   const [storyRows, assetRows] = await Promise.all([
-    fetchFromStories(tags),
-    fetchFromMediaAssets(tags),
+    fetchFromStories(tags, crossProject),
+    fetchFromMediaAssets(tags, crossProject),
   ]);
 
   // Stories rows. Photo = gallery-photo OR delivery-evidence OR
