@@ -2,6 +2,39 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { fetchBuildPhotos } from '@/lib/process/el-build-photos';
+import { getStoryOverrides } from '@/lib/field-notes/overrides';
+import { createClient } from '@/lib/supabase/server';
+import { MediaSwapZone, type SwapFolder } from '@/components/admin/media-swap-picker';
+
+const OVERRIDE_SLUG = 'process';
+
+// Default tag query the modal opens on (per step). Used as the active
+// folder if it matches a folder; otherwise just for parity with
+// non-folders mode.
+const STEP_TAG_QUERIES: Record<number, string[]> = {
+  1: ['product:stretch-bed'],
+  2: ['product:stretch-bed'],
+  3: ['product:stretch-bed'],
+  4: ['product:stretch-bed'],
+  5: ['trip:may-2026', 'event:alice-build'],
+  6: ['community:utopia-homelands', 'event:bed-delivery'],
+};
+
+// Photo folders shown as chips at the top of the swap modal. Driven by
+// what's actually tagged in Empathy Ledger — see the tag-count audit in
+// scripts (community:utopia-homelands × 221, event:alice-build × 121,
+// participant:oonchiumpa-young-people × 121, etc.). Add more entries
+// here when new tag groups appear in EL; the chip row scrolls so a
+// long folder list is fine.
+const GOODS_PHOTO_FOLDERS: SwapFolder[] = [
+  { label: 'Recent uploads', emoji: '🕘', tags: [] },
+  { label: 'All Stretch Bed', emoji: '🛏', tags: ['product:stretch-bed'] },
+  { label: 'Utopia delivery', emoji: '🏠', tags: ['community:utopia-homelands', 'event:bed-delivery'] },
+  { label: 'Alice build', emoji: '🛠', tags: ['event:alice-build'] },
+  { label: 'Oonchiumpa young people', emoji: '👥', tags: ['participant:oonchiumpa-young-people'] },
+  { label: 'May 2026 trip', emoji: '📅', tags: ['trip:may-2026'] },
+  { label: 'Batch 156', emoji: '📦', tags: ['batch:156'] },
+];
 
 export const metadata = {
   title: "How It's Made",
@@ -42,8 +75,8 @@ const STEPS: Step[] = [
   {
     step: 1,
     label: 'Collect',
-    title: 'Plastic gathered on Country',
-    body: 'Every Stretch Bed starts as 20kg of household HDPE that would otherwise sit in a remote-community dump. Bottle caps, drums, lids, off-cuts. It comes in by the tub, gets sorted, weighed and tagged before anything else happens.',
+    title: 'Plastic in. Chip out.',
+    body: 'We collect plastic from communities and sites where it would otherwise become waste. It goes into the shredder, comes out as chip, and that chip is what gets pressed into the sheet the leg is cut from.',
     hero: { src: '/images/process/shredded-plastic-tubs.jpg', alt: 'Tubs of sorted recycled HDPE plastic ready for shredding' },
     supporting: [
       { src: '/images/process/shredder-granulator.jpg', alt: 'Industrial granulator shredding HDPE into chip' },
@@ -139,17 +172,46 @@ export default async function ProcessPage() {
     ['trip:may-2026', 'event:alice-build', 'product:stretch-bed'],
     4,
   );
-  const steps: Step[] = STEPS.map((s) => {
-    if (s.step !== 5 || elBuildPhotos.length === 0) return s;
-    const [hero, ...rest] = elBuildPhotos;
-    const supporting = rest.length >= 3
-      ? rest.slice(0, 3).map((p) => ({ src: p.src, alt: p.alt }))
-      : s.supporting;
-    return {
-      ...s,
-      hero: hero ? { src: hero.src, alt: hero.alt } : s.hero,
-      supporting,
-    };
+
+  // Admin detection — same pattern as /field-notes/[slug]: any signed-in
+  // user (or anyone on local dev) gets the in-place swap widget overlaid
+  // on every media slot. Public visitors see the same photos but no chrome.
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const isLocalDev = process.env.NODE_ENV !== 'production';
+  const canSwap = !!user || isLocalDev;
+
+  // Apply manual overrides from data/field-note-overrides.json (slug='process').
+  // Keys are dot paths into the resolved steps array, e.g.:
+  //   steps.4.hero  -> step 5 (index 4) hero photo URL
+  //   steps.4.supporting.0 -> first supporting photo for step 5
+  const overrides = getStoryOverrides(OVERRIDE_SLUG);
+  const steps: Step[] = STEPS.map((s, idx) => {
+    let next = s;
+    // 1. EL auto-fill for step 5 (Alice build) — happens first so manual
+    //    swaps still win over the dynamic fetch below.
+    if (s.step === 5 && elBuildPhotos.length > 0) {
+      const [hero, ...rest] = elBuildPhotos;
+      const supporting = rest.length >= 3
+        ? rest.slice(0, 3).map((p) => ({ src: p.src, alt: p.alt }))
+        : s.supporting;
+      next = {
+        ...s,
+        hero: hero ? { src: hero.src, alt: hero.alt } : s.hero,
+        supporting,
+      };
+    }
+    // 2. Layer manual overrides on top.
+    const heroOverride = overrides[`steps.${idx}.hero`];
+    if (heroOverride) {
+      next = { ...next, hero: { ...next.hero, src: heroOverride } };
+    }
+    const supporting = next.supporting.map((tile, j) => {
+      const o = overrides[`steps.${idx}.supporting.${j}`];
+      return o ? { ...tile, src: o } : tile;
+    });
+    next = { ...next, supporting };
+    return next;
   });
 
   return (
@@ -224,7 +286,9 @@ export default async function ProcessPage() {
       <section className="py-16 md:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto space-y-20 md:space-y-28">
-            {steps.map((step) => (
+            {steps.map((step, idx) => {
+              const stepTagQuery = STEP_TAG_QUERIES[step.step] || ['product:stretch-bed'];
+              return (
               <article
                 key={step.step}
                 id={`step-${step.step}`}
@@ -271,14 +335,26 @@ export default async function ProcessPage() {
                         sizes="(max-width: 768px) 100vw, 60vw"
                         className="object-cover"
                       />
+                      {canSwap && (
+                        <MediaSwapZone
+                          slug={OVERRIDE_SLUG}
+                          overrideKey={`steps.${idx}.hero`}
+                          currentUrl={step.hero.src}
+                          tagQuery={stepTagQuery}
+                          kind="photo"
+                          label={`swap step ${step.step} hero`}
+                          broadTag="product:stretch-bed"
+                          folders={GOODS_PHOTO_FOLDERS}
+                        />
+                      )}
                     </div>
                   )}
 
                   {/* 3-photo grid */}
                   <div className="grid grid-cols-3 gap-3">
-                    {step.supporting.map((tile) => (
+                    {step.supporting.map((tile, j) => (
                       <div
-                        key={tile.src}
+                        key={`${idx}-${j}-${tile.src}`}
                         className="relative aspect-square w-full overflow-hidden rounded-xl bg-muted"
                       >
                         <Image
@@ -288,12 +364,25 @@ export default async function ProcessPage() {
                           sizes="(max-width: 768px) 33vw, 20vw"
                           className="object-cover"
                         />
+                        {canSwap && (
+                          <MediaSwapZone
+                            slug={OVERRIDE_SLUG}
+                            overrideKey={`steps.${idx}.supporting.${j}`}
+                            currentUrl={tile.src}
+                            tagQuery={stepTagQuery}
+                            kind="photo"
+                            label="swap"
+                            broadTag="product:stretch-bed"
+                            folders={GOODS_PHOTO_FOLDERS}
+                          />
+                        )}
                       </div>
                     ))}
                   </div>
                 </div>
               </article>
-            ))}
+            );
+            })}
           </div>
         </div>
       </section>
