@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Utopia Homelands Outcomes Snapshot - HTML Fallback</title>
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 10mm;
+    }
+
+    :root {
+      --paper: #fbf6ef;
+      --ink: #252525;
+      --soft-ink: #655f58;
+      --rust: #bb5537;
+      --sage: #63774e;
+      --sky: #496d80;
+      --sand: #eadbc9;
+      --line: #e2d3c4;
+      --white: #fffdf9;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, Arial, sans-serif;
+      line-height: 1.36;
+    }
+
+    .sheet {
+      width: 100%;
+      max-width: 1065px;
+      margin: 0 auto;
+      padding: 12px;
+      background:
+        linear-gradient(125deg, rgba(187, 85, 55, 0.1), transparent 34%),
+        linear-gradient(305deg, rgba(73, 109, 128, 0.11), transparent 35%),
+        var(--paper);
+    }
+
+    .report {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .masthead {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 18px;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      font-family: Georgia, serif;
+      font-size: 24px;
+      line-height: 0.9;
+    }
+
+    .brand small {
+      display: block;
+      margin-top: 4px;
+      color: var(--soft-ink);
+      font-family: Inter, Arial, sans-serif;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 2.1px;
+      text-transform: uppercase;
+    }
+
+    .logo {
+      max-width: 132px;
+      max-height: 46px;
+      object-fit: contain;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      min-height: 198px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-copy {
+      padding: 18px 20px 16px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--rust);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 470px;
+      margin: 0 0 10px;
+      font-family: Georgia, serif;
+      font-size: 34px;
+      font-weight: 400;
+      line-height: 0.98;
+    }
+
+    .summary {
+      max-width: 510px;
+      margin: 0 0 11px;
+      color: var(--soft-ink);
+      font-size: 10.4px;
+    }
+
+    .prepared {
+      margin: 0;
+      font-size: 8.3px;
+      font-weight: 800;
+    }
+
+    .hero-art {
+      display: grid;
+      grid-template-columns: 0.62fr 0.38fr;
+      gap: 10px;
+      padding: 12px;
+      border-left: 1px solid var(--line);
+      background: #f7efe7;
+    }
+
+    .portrait {
+      min-height: 174px;
+      border: 1px solid var(--line);
+      background-image: url("../../../images/partners/centrecorp/utopia/hero-elder-bed.jpg");
+      background-position: center 70%;
+      background-size: cover;
+    }
+
+    .artifact-stack {
+      display: grid;
+      gap: 8px;
+    }
+
+    .mini-photo {
+      min-height: 83px;
+      border: 1px solid var(--line);
+      background-position: center;
+      background-size: cover;
+    }
+
+    .mini-photo.delivery {
+      background-image: url("../../../images/partners/centrecorp/utopia/delivery-court.jpg");
+    }
+
+    .mini-photo.bed {
+      background-image: url("../../../images/partners/centrecorp/stretch-bed-stat.jpg");
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: #f4eadf;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .metric {
+      min-height: 74px;
+      padding: 10px 12px;
+      border-right: 1px solid var(--line);
+    }
+
+    .metric:last-child {
+      border-right: 0;
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 4px;
+      font-family: Georgia, serif;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .metric:nth-child(1) strong { color: var(--rust); }
+    .metric:nth-child(2) strong { color: var(--sage); }
+    .metric:nth-child(3) strong { color: var(--sky); }
+    .metric:nth-child(4) strong { color: #8b6638; }
+
+    .metric span {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 7.8px;
+      font-weight: 800;
+      letter-spacing: 0.95px;
+      text-transform: uppercase;
+    }
+
+    .metric p {
+      margin: 0;
+      color: var(--soft-ink);
+      font-size: 8px;
+    }
+
+    .body-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .panel {
+      padding: 12px 16px;
+      border-right: 1px solid var(--line);
+    }
+
+    .panel:last-child {
+      border-right: 0;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 8.5px;
+      font-weight: 800;
+      letter-spacing: 1.35px;
+      text-transform: uppercase;
+    }
+
+    .themes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 9px;
+    }
+
+    .theme {
+      min-height: 52px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .theme b {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 7.7px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .theme p {
+      margin: 0;
+      color: var(--soft-ink);
+      font-size: 8px;
+    }
+
+    .quote {
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 8px 18px 9px;
+      border-left: 4px solid var(--rust);
+      border-top: 1px solid var(--line);
+      background: #fff6ee;
+    }
+
+    .quote p {
+      margin: 0 0 5px;
+      font-family: Georgia, serif;
+      font-size: 12px;
+      line-height: 1.18;
+    }
+
+    .quote cite {
+      color: var(--soft-ink);
+      font-size: 8px;
+      font-style: normal;
+    }
+
+    .measure-list {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .measure-list li {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 9px;
+      min-height: 36px;
+      padding: 7px 0 8px;
+      border-top: 1px solid var(--line);
+      color: var(--soft-ink);
+      font-size: 7.4px;
+      line-height: 1.22;
+    }
+
+    .measure-list li:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .measure-list b {
+      color: var(--ink);
+      font-size: 7.5px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .footer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      padding: 8px 18px 9px;
+      color: var(--soft-ink);
+      font-size: 7.6px;
+    }
+
+    .footer a {
+      color: var(--ink);
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    @media print {
+      .sheet {
+        padding: 0;
+      }
+
+      .report {
+        border: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="sheet">
+    <article class="report" aria-label="Utopia Homelands Bed Delivery Outcomes Snapshot">
+      <header class="masthead">
+        <div class="brand">Goods<small>On Country</small></div>
+        <img class="logo" src="../../../images/partners/centrecorp-foundation.jpg" alt="Centrecorp Foundation">
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Outcomes snapshot / May 2026</p>
+          <h1>Utopia Homelands Bed Delivery</h1>
+          <p class="summary">
+            Centrecorp Foundation support helped Goods on Country and A Curious Tractor move practical
+            bed infrastructure into the Utopia Homelands with Oonchiumpa. The first delivery gives a
+            clear base for the next Stretch Bed round: household follow-up, direct people supported,
+            consent-checked community voices and local production learning.
+          </p>
+          <p class="prepared">
+            Prepared for Centrecorp Foundation by Goods on Country / A Curious Tractor with Oonchiumpa.
+          </p>
+        </div>
+        <div class="hero-art" aria-label="Utopia delivery photo set">
+          <div class="portrait" role="img" aria-label="Two people sitting on a bed during the Utopia Homelands delivery"></div>
+          <div class="artifact-stack">
+            <div class="mini-photo delivery" role="img" aria-label="Delivery materials staged at Utopia Homelands"></div>
+            <div class="mini-photo bed" role="img" aria-label="Finished Stretch Bed model"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Key outcomes">
+        <div class="metric">
+          <strong>60</strong>
+          <span>Beds delivered</span>
+          <p>First Utopia Homelands delivery completed successfully on 7, 8 and 9 October 2025.</p>
+        </div>
+        <div class="metric">
+          <strong>60+</strong>
+          <span>Direct people supported</span>
+          <p>Conservative floor: one person supported per bed. Household reach to reconcile by bed ID.</p>
+        </div>
+        <div class="metric">
+          <strong>107</strong>
+          <span>Next Stretch Beds</span>
+          <p>Next round should measure household reach, product use, local roles and follow-up needs.</p>
+        </div>
+        <div class="metric">
+          <strong>~5 min</strong>
+          <span>No-tools setup</span>
+          <p>Stretch Bed setup can be tracked through assembly feedback, missing parts and repair notes.</p>
+        </div>
+      </section>
+
+      <section class="body-grid">
+        <div class="panel">
+          <h2>Voice Themes Already Emerging</h2>
+          <div class="themes">
+            <div class="theme">
+              <b>Practical need</b>
+              <p>Beds off the ground, safer rest and household infrastructure families can actually use.</p>
+            </div>
+            <div class="theme">
+              <b>Circular value</b>
+              <p>Community feedback links recycled plastic with a product that is useful and durable.</p>
+            </div>
+            <div class="theme">
+              <b>Youth pathway</b>
+              <p>Building beds can become structured skills, pride, training hours and production roles.</p>
+            </div>
+            <div class="theme">
+              <b>Local production</b>
+              <p>The next evidence step is linking delivery demand to Oonchiumpa and Central Australia capability.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>What We Measure Next</h2>
+          <ul class="measure-list">
+            <li><b>Household benefit</b><span>Final bed count, household reach, direct people supported and follow-up needs.</span></li>
+            <li><b>Health & comfort</b><span>Comfort, back pain, sleep, off-ground safety and whether the bed is still in use.</span></li>
+            <li><b>Circular economy</b><span>Recycled HDPE per bed, local feedstock potential, repairability and product lifespan.</span></li>
+            <li><b>Voice & consent</b><span>Three to five approved family, Elder, Oonchiumpa and delivery-partner voices.</span></li>
+            <li><b>Production pathway</b><span>Youth training hours, assembly time, local roles, facility readiness and maintenance issues.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="quote">
+        <p>"Since receiving their new beds, they are no longer experiencing back pains."</p>
+        <cite>Oonchiumpa Good News Story, sharing feedback from respected Elders Frank and Casey Holmes from Antarrengeny.</cite>
+      </div>
+
+      <footer class="footer">
+        <div>
+          Public page:
+          <a href="https://www.goodsoncountry.com/partners/centrecorp">goodsoncountry.com/partners/centrecorp</a>
+          &nbsp;|&nbsp; Contact:
+          <a href="https://www.goodsoncountry.com/contact">goodsoncountry.com/contact</a>
+        </div>
+        <div>Goods on Country / A Curious Tractor</div>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
