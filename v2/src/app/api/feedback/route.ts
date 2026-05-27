@@ -14,14 +14,22 @@ async function syncFeedbackToGhl(page: string, email: string, message: string) {
       source: 'Website Feedback',
     });
     if (result.success && result.contact?.id) {
-      const note = [
-        '📬 Site feedback',
-        `Page: https://goodsoncountry.com${page}`,
-        `Submitted: ${new Date().toLocaleString('en-AU')}`,
-        '',
-        message,
-      ].join('\n');
-      await ghl.addNote(result.contact.id, note);
+      // Full pipeline: act-inquiry -> opportunity in Universal Inquiry,
+      // project-goods -> branded ack, inbound email -> threads the comment into
+      // Conversations so it's seen and followed up (not buried in a note).
+      await ghl.addTags(result.contact.id, ['act-inquiry', 'project-goods']);
+      const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const html = [
+        `<p><strong>Site feedback</strong> via ${esc(page)}</p>`,
+        `<p>${esc(message).replace(/\n/g, '<br/>')}</p>`,
+      ].join('');
+      await ghl.addInboundEmail({
+        contactId: result.contact.id,
+        fromEmail: email,
+        subject: 'Website Feedback',
+        html,
+        text: message,
+      });
     }
   } catch (err) {
     console.error('[Feedback] GHL sync failed:', err);

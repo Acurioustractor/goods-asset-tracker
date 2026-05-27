@@ -99,17 +99,22 @@ export async function POST(request: NextRequest) {
         { source: 'Washing Machine Interest' },
       );
       if (ghlResult.success && ghlResult.contact?.id) {
-        const note = [
-          '🌀 Washing Machine — Register Interest',
-          `Organisation: ${body.organizationName}`,
-          body.contactPhone ? `Phone: ${body.contactPhone}` : null,
-          body.howHeard ? `How heard: ${body.howHeard}` : null,
-          body.message ? `\nMessage:\n${body.message}` : null,
-          `Submitted: ${new Date().toLocaleString('en-AU')}`,
-        ]
-          .filter(Boolean)
-          .join('\n');
-        await ghl.addNote(ghlResult.contact.id, note);
+        await ghl.addTags(ghlResult.contact.id, ['act-inquiry', 'project-goods']);
+        const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const html = [
+          `<p><strong>Washing Machine &mdash; Register Interest</strong></p>`,
+          body.organizationName ? `<p>Organisation: ${esc(body.organizationName)}</p>` : '',
+          body.contactPhone ? `<p>Phone: ${esc(body.contactPhone)}</p>` : '',
+          body.howHeard ? `<p>How heard: ${esc(body.howHeard)}</p>` : '',
+          body.message ? `<p>${esc(body.message).replace(/\n/g, '<br/>')}</p>` : '',
+        ].join('');
+        await ghl.addInboundEmail({
+          contactId: ghlResult.contact.id,
+          fromEmail: body.contactEmail,
+          subject: 'Washing Machine Interest',
+          html,
+          text: body.message || 'Registered interest in the washing machine.',
+        });
       }
     } else {
       ghlResult = await ghl.createPartnershipContact({
@@ -123,6 +128,23 @@ export async function POST(request: NextRequest) {
         fundingTier: body.fundingTier,
         timeline: body.timeline,
       });
+      if (ghlResult.success && ghlResult.contact?.id) {
+        await ghl.addTags(ghlResult.contact.id, ['act-inquiry', 'project-goods']);
+        const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const html = [
+          `<p><strong>Partnership inquiry</strong>${body.partnershipType ? ` &mdash; ${esc(body.partnershipType)}` : ''}</p>`,
+          body.organizationName ? `<p>Organisation: ${esc(body.organizationName)}</p>` : '',
+          body.contactPhone ? `<p>Phone: ${esc(body.contactPhone)}</p>` : '',
+          body.message ? `<p>${esc(body.message).replace(/\n/g, '<br/>')}</p>` : '',
+        ].join('');
+        await ghl.addInboundEmail({
+          contactId: ghlResult.contact.id,
+          fromEmail: body.contactEmail,
+          subject: body.partnershipType ? `Partnership: ${body.partnershipType}` : 'Partnership Inquiry',
+          html,
+          text: body.message || 'Partnership inquiry submitted.',
+        });
+      }
     }
 
     console.log('[Partnership Inquiry]', {
