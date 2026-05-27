@@ -45,7 +45,7 @@ When you graduate it: change the pipeline + set stage to `Outreach Queued`, and 
 
 ## Tag convention
 
-**Buyers** (exemplar: `Northern Land Council — GAPUWIYAK`):
+**Buyers** (exemplar: `Northern Land Council — GAPUWIYAK`, named contact **Matthew Ryan / NLC Chair**):
 - `goods-role-{council|store|health|housing|landcouncil|corp}`
 - `goods-state-{nt|qld|wa|sa|nsw|act|tas}`
 - `goods-communitycontrolled` (if community-controlled)
@@ -56,11 +56,15 @@ When you graduate it: change the pipeline + set stage to `Outreach Queued`, and 
 - `goods-{hot|warm|steady|cooling|cold}` — warmth band from the Notion grade
 - `goods-funder` / `goods-supporter`
 
-## What "clean" looks like (state at 2026-05-27)
+## What "clean" looks like (verified live in GHL 2026-05-27)
 
-- **Supporter Journey:** 13 funders, each at warmth-mapped stage with `goods-<band>` tag.
-- **Buyer Pipeline:** commercial prospects only (started with NLC Gapuwiyak after cleanup).
-- **Demand Register:** sized community demand signals + scored entities from GrantScope.
+Counts pulled from GHL location `agzsSZWgovjwgpcoASWG` (opportunity search + contact lookup), not just asserted:
+
+- **Supporter Journey — 13 funders, ~$978K open.** Each at a warmth-mapped stage with a `goods-<band>` tag (hot ×2 Centrecorp/Snow · steady ×3 · cooling ×7 · cold ×1 Rotary; no `goods-warm`). Centrecorp sits at exactly **$123,332** — the corrected grant figure — confirmed live.
+- **Buyer Pipeline — 1 record (clean).** Only `Northern Land Council — GAPUWIYAK` (Outreach Queued, $70,771). Named human: **Matthew Ryan (NLC Chair)**, set 2026-05-27 so the exemplar obeys the graduation rule (was an `@goods.civicgraph.io` placeholder). Email + phone still to be filled before outreach.
+- **Demand Register — 86 records, all placeholders.** Signal 61 · Buyer Matched 25 · Converted/Dormant 0. Every record is a `@goods.civicgraph.io` placeholder, so none is graduation-eligible yet — this is the activation backlog.
+
+Whole-location census (context): A Curious Tractor 14 · Empathy Ledger 1 (test) · Goods Supporter Journey 13 · Goods Buyer 1 · Goods Demand Register 86 · Grants 413 · Harvest Inbox 10 · Supporters & Donors 0 (legacy, superseded by Supporter Journey) · The Shop 0 · Universal Inquiry 4 (`act-inquiry` form routing confirmed live).
 
 ## Tooling
 
