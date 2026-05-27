@@ -49,6 +49,16 @@ export async function POST(
   const photo = form.get('photo') as File | null;
   const audio = form.get('audio') as File | null;
 
+  const VALID_THEMES = new Set([
+    'practical-need',
+    'circular-value',
+    'youth-pathway',
+    'local-production',
+    'health-comfort',
+  ]);
+  const rawTheme = (form.get('theme') as string | null)?.trim() || '';
+  const theme = VALID_THEMES.has(rawTheme) ? rawTheme : null;
+
   const hasPhoto = !!(photo && (photo as File).size > 0);
   const hasAudio = !!(audio && (audio as File).size > 0);
   if (!story && !hasPhoto && !hasAudio) {
@@ -68,6 +78,21 @@ export async function POST(
 
   if (!asset) {
     return NextResponse.json({ error: 'Asset not found' }, { status: 404 });
+  }
+
+  // 0. Record consent timestamp + theme tag on the asset (best-effort; the
+  //    columns are nullable so a schema not-yet-migrated env stays soft).
+  if (consentToShare || theme) {
+    const assetPatch: Record<string, unknown> = {};
+    if (consentToShare) assetPatch.recipient_consent_at = new Date().toISOString();
+    if (theme) assetPatch.theme_tag = theme;
+    const { error: tagError } = await supabase
+      .from('assets')
+      .update(assetPatch)
+      .eq('unique_id', asset.unique_id);
+    if (tagError) {
+      console.warn('[bed/story] asset consent/theme tag update failed:', tagError.message);
+    }
   }
 
   // 1. Optional photo upload
@@ -214,6 +239,7 @@ export async function POST(
           // Per-asset tag = bidirectional bed↔contact link in GHL
           tagForAsset(asset.unique_id),
         ],
+        { source: 'Bed Story Submission' },
       );
       if (result.success && result.contact?.id) {
         const note = [
@@ -272,9 +298,14 @@ export async function POST(
         },
         media_url: photoUrl,
         story_image_url: photoUrl,
-        tags: ['bed-scan-submission', asset.product || 'goods', asset.community || 'unknown']
+        tags: [
+          'bed-scan-submission',
+          asset.product || 'goods',
+          asset.community || 'unknown',
+          theme || null,
+        ]
           .filter(Boolean)
-          .map((t) => t.toString().toLowerCase().replace(/\s+/g, '-')),
+          .map((t) => t!.toString().toLowerCase().replace(/\s+/g, '-')),
         story_type: 'community-voice',
         privacy_level: 'private',
       };

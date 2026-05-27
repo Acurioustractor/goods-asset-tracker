@@ -12,6 +12,19 @@ const EDITABLE_FIELDS = new Set([
   'notes',
   'partner_name',
   'gps',
+  'household_size',
+  'theme_tag',
+  'recipient_consent_at',
+  'recipient_name',
+  'install_photo_url',
+]);
+
+const VALID_THEME_TAGS = new Set([
+  'practical-need',
+  'circular-value',
+  'youth-pathway',
+  'local-production',
+  'health-comfort',
 ]);
 
 export async function PATCH(
@@ -38,6 +51,19 @@ export async function PATCH(
       patch[k] = null;
     } else {
       patch[k] = v;
+    }
+  }
+
+  if ('household_size' in patch && patch.household_size !== null) {
+    const n = Number(patch.household_size);
+    if (!Number.isFinite(n) || n <= 0 || n > 49) {
+      return NextResponse.json({ error: 'household_size must be 1-49' }, { status: 400 });
+    }
+    patch.household_size = Math.round(n);
+  }
+  if ('theme_tag' in patch && patch.theme_tag !== null) {
+    if (typeof patch.theme_tag !== 'string' || !VALID_THEME_TAGS.has(patch.theme_tag)) {
+      return NextResponse.json({ error: 'invalid theme_tag' }, { status: 400 });
     }
   }
 

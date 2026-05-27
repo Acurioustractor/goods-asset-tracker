@@ -27,6 +27,7 @@ export function StoryModal({
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
   const [story, setStory] = useState('');
+  const [theme, setTheme] = useState('');
   const [consentToShare, setConsentToShare] = useState(false);
   const [consentToContact, setConsentToContact] = useState(true);
   const [includeLocation, setIncludeLocation] = useState(true);
@@ -168,6 +169,7 @@ export function StoryModal({
       form.append('consent_to_share', consentToShare ? '1' : '0');
       form.append('consent_to_contact', consentToContact ? '1' : '0');
       form.append('include_location', includeLocation ? '1' : '0');
+      if (theme) form.append('theme', theme);
       if (photo) form.append('photo', photo);
       if (audio) form.append('audio', audio);
 
@@ -331,6 +333,27 @@ export function StoryModal({
               )}
               <p className="text-xs text-muted-foreground mt-1">
                 Up to a couple of minutes. We&apos;ll listen and transcribe what you said.
+              </p>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                What is this story mostly about? (optional)
+              </label>
+              <select
+                value={theme}
+                onChange={(e) => setTheme(e.target.value)}
+                className="w-full rounded-lg border px-3 py-2.5 text-base bg-background"
+              >
+                <option value="">— Skip / not sure —</option>
+                <option value="practical-need">Practical need (safer rest, household infrastructure)</option>
+                <option value="health-comfort">Health and comfort (sleep, back pain, off-ground safety)</option>
+                <option value="circular-value">Circular value (recycled plastic, durability)</option>
+                <option value="youth-pathway">Youth pathway (skills, pride, training)</option>
+                <option value="local-production">Local production (community-led making, ownership)</option>
+              </select>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Helps us group stories by theme on funder reports. We can always retag later.
               </p>
             </div>
 
