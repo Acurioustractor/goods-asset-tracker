@@ -81,6 +81,7 @@ export async function POST(request: NextRequest) {
           product_type: item.product_type,
           is_sponsorship: item.is_sponsorship,
           sponsored_community: item.sponsored_community,
+          dedication_message: item.dedication_message,
         }))
       ),
     };

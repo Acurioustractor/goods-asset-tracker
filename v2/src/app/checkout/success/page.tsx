@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getStripe } from '@/lib/stripe';
+import { createServiceClient } from '@/lib/supabase/server';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ClearCartOnSuccess } from './clear-cart';
@@ -36,6 +37,20 @@ export default async function CheckoutSuccessPage({ searchParams }: Props) {
     redirect('/shop');
   }
 
+  // Fetch the matching order so we can branch the messaging for sponsorships.
+  // The order is written by the Stripe webhook, which usually lands before the
+  // browser redirects here — but if not, we degrade to the generic copy.
+  const supabase = createServiceClient();
+  const { data: order } = await supabase
+    .from('orders')
+    .select('is_sponsorship, sponsored_community, sponsor_message, order_number')
+    .eq('stripe_checkout_session_id', session_id)
+    .maybeSingle();
+
+  const isSponsorship = order?.is_sponsorship === true;
+  const sponsoredCommunity = order?.sponsored_community || null;
+  const sponsorMessage = order?.sponsor_message || null;
+
   const customerEmail =
     typeof session.customer === 'object' &&
     session.customer &&
@@ -67,9 +82,15 @@ export default async function CheckoutSuccessPage({ searchParams }: Props) {
               />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold text-foreground">Thank you for your order!</h1>
+          <h1 className="text-3xl font-bold text-foreground">
+            {isSponsorship ? 'Thank you for sponsoring a bed.' : 'Thank you for your order!'}
+          </h1>
           <p className="mt-2 text-lg text-muted-foreground">
-            Your purchase makes a real difference in remote communities.
+            {isSponsorship
+              ? sponsoredCommunity
+                ? `A Stretch Bed is on its way to ${sponsoredCommunity}.`
+                : 'A Stretch Bed is on its way to a community that needs it.'
+              : 'Your purchase makes a real difference in remote communities.'}
           </p>
         </div>
 
@@ -128,6 +149,21 @@ export default async function CheckoutSuccessPage({ searchParams }: Props) {
           </CardContent>
         </Card>
 
+        {/* Dedication echo (sponsorship only) */}
+        {isSponsorship && sponsorMessage && (
+          <Card className="mb-8 border-accent/20">
+            <CardContent className="p-6">
+              <h3 className="font-semibold text-foreground mb-2">Your message</h3>
+              <p className="text-base italic text-muted-foreground">
+                &ldquo;{sponsorMessage}&rdquo;
+              </p>
+              <p className="mt-3 text-xs text-muted-foreground">
+                We&apos;ll pass this on with the bed when it&apos;s delivered.
+              </p>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Impact Message */}
         <Card className="mb-8 bg-accent/10 border-accent/20">
           <CardContent className="p-6">
@@ -148,9 +184,11 @@ export default async function CheckoutSuccessPage({ searchParams }: Props) {
               <div>
                 <h3 className="font-semibold text-foreground">Your Impact</h3>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Your purchase supports artisan employment and delivers comfort to families
-                  in remote Indigenous communities across Australia. Thank you for being part
-                  of this journey.
+                  {isSponsorship
+                    ? `Your sponsorship funds a Stretch Bed and the work to get it on Country${
+                        sponsoredCommunity ? ` in ${sponsoredCommunity}` : ''
+                      } — 20kg of recycled plastic diverted, one more home with a bed, one less step in the Rheumatic Heart Disease cascade.`
+                    : 'Your purchase supports artisan employment and delivers comfort to families in remote Indigenous communities across Australia. Thank you for being part of this journey.'}
                 </p>
               </div>
             </div>
@@ -173,28 +211,60 @@ export default async function CheckoutSuccessPage({ searchParams }: Props) {
                   </p>
                 </div>
               </li>
-              <li className="flex gap-3">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
-                  2
-                </span>
-                <div>
-                  <p className="font-medium text-foreground">Preparation</p>
-                  <p className="text-sm text-muted-foreground">
-                    Our artisans will prepare your order with care.
-                  </p>
-                </div>
-              </li>
-              <li className="flex gap-3">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
-                  3
-                </span>
-                <div>
-                  <p className="font-medium text-foreground">Shipping</p>
-                  <p className="text-sm text-muted-foreground">
-                    We&apos;ll ship your order and send tracking information.
-                  </p>
-                </div>
-              </li>
+              {isSponsorship ? (
+                <>
+                  <li className="flex gap-3">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+                      2
+                    </span>
+                    <div>
+                      <p className="font-medium text-foreground">Allocation</p>
+                      <p className="text-sm text-muted-foreground">
+                        We allocate one bed from the next production run to{' '}
+                        {sponsoredCommunity || 'the community with the greatest need'} and tag it
+                        under your sponsorship.
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+                      3
+                    </span>
+                    <div>
+                      <p className="font-medium text-foreground">On Country</p>
+                      <p className="text-sm text-muted-foreground">
+                        Once the bed reaches its home, we&apos;ll email you the QR-code link so you
+                        can follow exactly where it landed.
+                      </p>
+                    </div>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="flex gap-3">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+                      2
+                    </span>
+                    <div>
+                      <p className="font-medium text-foreground">Preparation</p>
+                      <p className="text-sm text-muted-foreground">
+                        Our artisans will prepare your order with care.
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+                      3
+                    </span>
+                    <div>
+                      <p className="font-medium text-foreground">Shipping</p>
+                      <p className="text-sm text-muted-foreground">
+                        We&apos;ll ship your order and send tracking information.
+                      </p>
+                    </div>
+                  </li>
+                </>
+              )}
             </ol>
           </CardContent>
         </Card>
