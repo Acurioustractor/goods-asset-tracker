@@ -188,7 +188,7 @@ export default function CommunityVoicesPage() {
                   'Made from 20kg recycled plastic',
                   '5-minute assembly, no tools required',
                   'Washable mattress components',
-                  'Built to last 10+ years',
+                  'Designed to last 10+ years',
                 ].map((feature) => (
                   <div key={feature} className="flex items-center gap-3">
                     <div

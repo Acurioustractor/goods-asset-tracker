@@ -228,7 +228,7 @@ export default function ShopPage() {
                   'Made from 20kg recycled plastic',
                   '5-minute assembly, no tools required',
                   'Washable mattress components',
-                  'Built to last 10+ years',
+                  'Designed to last 10+ years',
                   'Stackable for easy transport',
                 ].map((feature) => (
                   <div key={feature} className="flex items-center gap-3">

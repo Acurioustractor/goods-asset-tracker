@@ -117,7 +117,7 @@ export default function BasketBedPlansPage() {
                         Everything we learned from the Basket Bed went into designing
                         the Stretch Bed. Recycled HDPE plastic legs, galvanised steel
                         poles, and heavy-duty washable canvas. 26kg, 200kg capacity,
-                        10+ year lifespan. Each bed diverts 20kg of plastic from landfill.
+                        designed to last 10+ years. Each bed diverts 20kg of plastic from landfill.
                       </p>
                       <div className="space-y-3">
                         <h4 className="font-semibold text-foreground">How It Improved</h4>

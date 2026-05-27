@@ -216,7 +216,7 @@ export default function MissionForwardPage() {
                 {[
                   { label: '5 minutes', desc: 'Assembly time, no tools' },
                   { label: 'Washable', desc: 'Fully cleanable mattress' },
-                  { label: '10+ years', desc: 'Built to last' },
+                  { label: '10+ years', desc: 'Designed to last' },
                   { label: 'Community', desc: 'Co-designed with Elders' },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-4">

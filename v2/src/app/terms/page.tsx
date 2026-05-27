@@ -48,11 +48,10 @@ export default function TermsPage() {
             </p>
           </Section>
 
-          <Section title="Refunds and warranty">
+          <Section title="Refunds and faults">
             <p>
-              Every Stretch Bed carries a five-year warranty against manufacturing defects.
-              If something fails in normal use, write to us and we&apos;ll repair or replace
-              it.
+              If a Stretch Bed has a manufacturing defect, write to us and we&apos;ll work with
+              you to put it right.
             </p>
             <p>
               We accept returns for change of mind within fourteen days, provided the bed is

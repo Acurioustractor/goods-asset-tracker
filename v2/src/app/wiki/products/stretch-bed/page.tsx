@@ -55,10 +55,6 @@ export default function StretchBedGuidePage() {
               <div className="font-medium text-gray-700">Dimensions</div>
               <div className="text-gray-900">188 x 92 x 25cm</div>
             </div>
-            <div>
-              <div className="font-medium text-gray-700">Warranty</div>
-              <div className="text-gray-900">5 years</div>
-            </div>
           </div>
         </div>
 
@@ -101,10 +97,6 @@ export default function StretchBedGuidePage() {
                   <tr>
                     <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Assembly Time</td>
                     <td className="px-4 py-3">~5 minutes</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Warranty</td>
-                    <td className="px-4 py-3">5 years</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Tools Required</td>

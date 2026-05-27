@@ -26,7 +26,7 @@ const faqs = [
       },
       {
         q: 'How long does a Stretch Bed last?',
-        a: 'The Stretch Bed is designed for 10+ years of use and comes with a 5-year warranty. The recycled plastic legs are virtually indestructible, the galvanised steel poles resist rust, and the canvas sleeping surface can be removed and washed.',
+        a: 'The Stretch Bed is designed to last 10+ years of use. The recycled plastic legs are virtually indestructible, the galvanised steel poles resist rust, and the canvas sleeping surface can be removed and washed.',
       },
       {
         q: 'Can I wash the bed?',

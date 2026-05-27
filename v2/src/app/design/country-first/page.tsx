@@ -147,7 +147,7 @@ export default function CountryFirstPage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span style={{ color: '#2D5A47' }}>&#10003;</span>
-                  Built to last 10+ years
+                  Designed to last 10+ years
                 </li>
               </ul>
               <p className="text-2xl font-light text-stone-900 mb-6">

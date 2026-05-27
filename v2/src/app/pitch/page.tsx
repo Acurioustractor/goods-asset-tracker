@@ -62,7 +62,7 @@ export default function PitchPage() {
               Three materials. No tools. Five minutes.
             </h2>
             <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
-              26kg, supports 200kg, 10+ year lifespan. Each bed diverts 20kg of plastic from landfill.
+              26kg, supports 200kg, designed to last 10+ years. Each bed diverts 20kg of plastic from landfill.
             </p>
 
             <div className="grid gap-12 lg:grid-cols-2 items-start">

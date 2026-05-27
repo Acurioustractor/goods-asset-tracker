@@ -18,7 +18,6 @@ export const STRETCH_BED = {
     assemblyTime: '~5 minutes',
     toolsRequired: 'None',
     designLifespan: '10+ years',
-    warranty: '5 years',
     plasticDiverted: '20kg HDPE per bed',
   },
   materials: {

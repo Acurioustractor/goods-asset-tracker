@@ -30,7 +30,7 @@ export const PRODUCT_CARDS: ProductCard[] = [
   {
     title: 'Built for remote conditions',
     body:
-      '20kg of recycled HDPE per bed. 200kg load capacity, 5-year warranty, 10+ year design life. Recycled HDPE legs, galvanised steel poles, heavy-duty Australian canvas. Assembles in five minutes. No tools.',
+      '20kg of recycled HDPE per bed. 200kg load capacity, designed to last 10+ years. Recycled HDPE legs, galvanised steel poles, heavy-duty Australian canvas. Assembles in five minutes. No tools.',
     image: '/images/product/stretch-bed-assembled.jpg',
     imageAlt: 'A fully assembled Stretch Bed showing the canvas, steel poles and HDPE legs',
     link: { href: '/process', label: 'How it is made' },

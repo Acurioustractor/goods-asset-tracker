@@ -249,7 +249,7 @@ export default function StretchBedPage() {
                   </svg>
                 </div>
                 <h3 className="font-semibold text-foreground mb-1">Galvanised Steel Poles</h3>
-                <p className="text-sm text-muted-foreground">26.9mm outer diameter, rated for 200kg capacity. Built to last 10+ years.</p>
+                <p className="text-sm text-muted-foreground">26.9mm outer diameter, rated for 200kg capacity. Designed to last 10+ years.</p>
               </CardContent>
             </Card>
             <Card>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Stretch Bed — Spec Sheet | Goods on Country</title>
+<style>
+  :root {
+    --ink: #1e293b;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --accent: #f97316;
+    --bg: #ffffff;
+    --panel: #f8fafc;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: #eef2f6;
+    line-height: 1.55;
+  }
+  .sheet {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 16px auto;
+    background: var(--bg);
+    box-shadow: 0 2px 18px rgba(0,0,0,.12);
+    padding: 22mm 20mm;
+  }
+  h1, h2, h3, .brand { font-family: Georgia, "Times New Roman", serif; }
+  .topbar { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--ink); padding-bottom: 12px; }
+  .brand { font-size: 22px; font-weight: bold; }
+  .brand .o { color: var(--accent); }
+  .doctype { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  h1 { font-size: 34px; margin: 22px 0 4px; }
+  .tagline { font-size: 15px; color: var(--muted); margin: 0 0 18px; max-width: 56ch; }
+  .hero { width: 100%; height: 235px; object-fit: cover; border-radius: 8px; background: var(--panel); }
+  .imgrow { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .imgrow img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; background: var(--panel); }
+  h2 { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 26px 0 10px; }
+  .specs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .specs .cell { background: #fff; padding: 12px 14px; }
+  .specs .k { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .specs .v { font-size: 18px; font-weight: 700; }
+  table.mat { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  table.mat td { padding: 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.mat td:first-child { width: 34%; font-weight: 600; }
+  table.mat td .sub { color: var(--muted); font-size: 12px; }
+  .cols { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; }
+  ul.feat { margin: 0; padding-left: 18px; font-size: 13.5px; }
+  ul.feat li { margin-bottom: 6px; }
+  .how { font-size: 13.5px; }
+  .how b { color: var(--accent); }
+  .impact { background: var(--panel); border-left: 3px solid var(--accent); border-radius: 6px; padding: 14px 16px; font-size: 13px; margin-top: 8px; }
+  .footer { margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+  .footer a { color: var(--accent); text-decoration: none; }
+  @media print {
+    body { background: #fff; }
+    .sheet { box-shadow: none; margin: 0; width: auto; min-height: auto; padding: 14mm 14mm; }
+    @page { size: A4; margin: 0; }
+  }
+</style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="topbar">
+      <div class="brand"><span class="o">Goods</span> on Country</div>
+      <div class="doctype">Product Spec Sheet</div>
+    </div>
+
+    <h1>The Stretch Bed</h1>
+    <p class="tagline">A flat-packable, washable bed designed for remote Australia. Made from recycled plastic, galvanised steel, and heavy-duty canvas. Assembles in minutes, no tools.</p>
+
+    <img class="hero" src="https://www.goodsoncountry.com/images/product/stretch-bed-hero.jpg" alt="The Stretch Bed">
+    <div class="imgrow">
+      <img src="https://www.goodsoncountry.com/images/product/stretch-bed-assembly.jpg" alt="Stretch Bed assembly">
+      <img src="https://www.goodsoncountry.com/images/product/stretch-bed-detail.jpg" alt="Stretch Bed detail">
+    </div>
+
+    <h2>At a glance</h2>
+    <div class="specs">
+      <div class="cell"><div class="k">Dimensions (L × W × H)</div><div class="v">188 × 92 × 25 cm</div></div>
+      <div class="cell"><div class="k">Weight</div><div class="v">26 kg</div></div>
+      <div class="cell"><div class="k">Load capacity</div><div class="v">200 kg</div></div>
+      <div class="cell"><div class="k">Assembly</div><div class="v">~5 min</div></div>
+      <div class="cell"><div class="k">Tools required</div><div class="v">None</div></div>
+      <div class="cell"><div class="k">Plastic diverted</div><div class="v">20 kg HDPE</div></div>
+    </div>
+
+    <div class="cols">
+      <div>
+        <h2>Materials</h2>
+        <table class="mat">
+          <tr><td>Frame</td><td>Galvanised steel pipe<div class="sub">26.9 mm OD × 2.6 mm wall, 1950 mm length. Rated for 200 kg.</div></td></tr>
+          <tr><td>Sleeping surface</td><td>Heavy-duty Australian canvas<div class="sub">Fully washable, quick-drying.</div></td></tr>
+          <tr><td>Legs</td><td>Recycled HDPE plastic panels<div class="sub">Pressed from community-collected plastic waste. Virtually indestructible.</div></td></tr>
+          <tr><td>Joinery</td><td>Slot-together "T" section<div class="sub">No screws or hardware needed.</div></td></tr>
+        </table>
+
+        <h2>How it works</h2>
+        <p class="how">Two galvanised steel poles thread through the canvas sleeves. The recycled-plastic legs <b>click onto the poles</b>. That is the whole bed. The canvas is the bracing, so it sets up in about five minutes with no tools and packs flat for transport.</p>
+      </div>
+
+      <div>
+        <h2>Built for the field</h2>
+        <ul class="feat">
+          <li>Flat-packs for easy transport</li>
+          <li>Washable canvas sleeping surface</li>
+          <li>No tools required for assembly</li>
+          <li>Recycled-plastic legs, virtually indestructible</li>
+          <li>Galvanised steel poles rated for 200 kg</li>
+          <li>Refined with 500+ minutes of community feedback</li>
+        </ul>
+
+        <h2>The impact</h2>
+        <div class="impact">
+          Every Stretch Bed diverts <b>20 kg of HDPE plastic</b> from landfill. The on-country production model lets communities collect, shred, and press their own plastic into bed components, with the plant designed to move to community ownership over time.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>Goods on Country &middot; Quality goods for remote communities<br>Bulk, institutional, and tradeshow pricing available on request.</div>
+      <div style="text-align:right;"><a href="https://www.goodsoncountry.com">www.goodsoncountry.com</a><br>hi@act.place</div>
+    </div>
+  </div>
+</body>
+</html>

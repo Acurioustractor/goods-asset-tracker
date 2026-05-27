@@ -18,5 +18,14 @@
   },
   "process": {
     "steps.3.supporting.1": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/story-images/trip-may-2026/alice-build/20260520-1e5a5425.jpg"
+  },
+  "stretch-bed": {
+    "component.poles": "/images/pitch/bed-poles.jpg",
+    "component.canvas": "/images/pitch/bed-canvas.jpg",
+    "component.legs": "/images/pitch/bed-frame-legs.jpg",
+    "step.1": "/images/community/tennant-creek.jpg",
+    "step.3": "/images/media-pack/community-bed-assembly.jpg",
+    "step.2": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/story-images/trip-may-2026/alice-build/20260520-1e5a5342.jpg",
+    "step.4": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/story-images/trip-may-2026/alice-build/20260520-1e5a5366.jpg"
   }
 }

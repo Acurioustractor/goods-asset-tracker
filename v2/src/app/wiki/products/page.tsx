@@ -15,7 +15,7 @@ const products = [
     statusColor: 'bg-green-100 text-green-800',
     description:
       'Flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty canvas.',
-    specs: ['26kg weight', '200kg capacity', '188×92×25cm', '5-year warranty'],
+    specs: ['26kg weight', '200kg capacity', '188×92×25cm', '~5 min assembly'],
     icon: (
       <svg
         className="w-8 h-8"
@@ -167,7 +167,7 @@ export default function ProductsPage() {
                 harsh conditions.
               </p>
               <ul className="space-y-2 text-neutral-600">
-                <li>• Built to last 10+ years</li>
+                <li>• Designed to last 10+ years</li>
                 <li>• Repairable with common tools</li>
                 <li>• Made from recycled or durable materials</li>
                 <li>• Designed for remote logistics</li>

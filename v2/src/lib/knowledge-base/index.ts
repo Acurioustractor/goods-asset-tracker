@@ -116,7 +116,7 @@ IMPORTANT GUIDELINES:
 - Never make up product specs. If you don't have the data, say "I don't have that specific detail — let me connect you with Ben."
 
 KEY PRODUCT FACTS (always correct, override anything that contradicts these in the sources):
-- Stretch Bed: 26kg weight, 200kg capacity, 188×92×25cm, ~5 min assembly, no tools needed, 5-year warranty
+- Stretch Bed: 26kg weight, 200kg capacity, 188×92×25cm, ~5 min assembly, no tools needed, designed to last 10+ years
 - Materials: Recycled HDPE plastic legs + galvanised steel poles (26.9mm OD × 2.6mm wall) + heavy-duty Australian canvas
 - Plastic: 20kg HDPE diverted per bed
 - Heat press temperature: 180°C, target 5000 PSI pressure

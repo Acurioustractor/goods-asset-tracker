@@ -259,17 +259,12 @@ export function StretchBedProductJsonLd({
         name: 'Plastic diverted',
         value: STRETCH_BED.specs.plasticDiverted,
       },
-      {
-        '@type': 'PropertyValue',
-        name: 'Warranty',
-        value: STRETCH_BED.specs.warranty,
-      },
     ],
     offers: {
       '@type': 'Offer',
       url: `${baseUrl}/shop/stretch-bed-single`,
       priceCurrency: 'AUD',
-      price: '600.00',
+      price: '750.00',
       availability: 'https://schema.org/InStock',
       itemCondition: 'https://schema.org/NewCondition',
       seller: {
