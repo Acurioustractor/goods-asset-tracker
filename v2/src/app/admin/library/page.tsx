@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { createServiceClient } from '@/lib/supabase/server';
-import { stretchBedBOM, stretchBedCOGS, supplierSummary, supplierQuotes } from '@/lib/data/supplier-quotes';
+import { stretchBedBOM, stretchBedDirectMaterials, supplierSummary, supplierQuotes } from '@/lib/data/supplier-quotes';
 import { FUNDER_PAGES } from '@/lib/data/funder-pages';
 
 export const dynamic = 'force-dynamic';
@@ -312,8 +312,12 @@ export default async function LibraryPage() {
                 </tr>
               ))}
               <tr className="border-t bg-muted/30 font-semibold">
-                <td className="px-4 py-2" colSpan={4}>COGS per bed</td>
-                <td className="px-4 py-2 text-right font-mono">${stretchBedCOGS.toFixed(2)}</td>
+                <td className="px-4 py-2" colSpan={4}>Direct materials per bed</td>
+                <td className="px-4 py-2 text-right font-mono">${stretchBedDirectMaterials.toFixed(2)}</td>
+              </tr>
+              <tr className="border-t text-xs text-muted-foreground">
+                <td className="px-4 py-2" colSpan={4}>+ facility, labour, freight &amp; overhead → fully-loaded cost</td>
+                <td className="px-4 py-2 text-right font-mono">${supplierSummary.fullyLoadedCostPerBed}</td>
               </tr>
             </tbody>
           </table>

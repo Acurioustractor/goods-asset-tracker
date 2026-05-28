@@ -1,0 +1,60 @@
+---
+session: general
+date: 2026-05-18
+status: partial
+outcome: PARTIAL_PLUS
+---
+
+goal: Redesign the Centrecorp Utopia outcomes one-pager and prepare a Claude/Pencil handoff for the final visual pass.
+now: Open Pencil if its write tools are available, design the A4 landscape outcomes snapshot, improve the hero image treatment, then carry the accepted design back into the HTML/PDF.
+test: cd v2 && npm run build; pdfinfo public/docs/partners/centrecorp/utopia-outcomes-one-pager.pdf; pdftotext public/docs/partners/centrecorp/utopia-outcomes-one-pager.pdf -
+
+done_this_session:
+  - task: Replaced weak "1 / PUBLIC RECORD" KPI with conservative impact counting.
+    files: [v2/public/docs/partners/centrecorp/utopia-outcomes-one-pager.html, wiki/outputs/2026-05-18-centrecorp-utopia-outcomes-one-pager.md, v2/src/app/partners/centrecorp/page.tsx]
+  - task: Redesigned report source around four clearer metrics, voice themes and a measurement pathway.
+    files: [v2/public/docs/partners/centrecorp/utopia-outcomes-one-pager.html, v2/public/docs/partners/centrecorp/utopia-outcomes-one-pager.pdf]
+  - task: Added a public-page CTA to download the outcomes snapshot.
+    files: [v2/src/app/partners/centrecorp/page.tsx]
+  - task: Created a standalone HTML fallback report if the Pencil version is not good enough.
+    files: [v2/public/docs/partners/centrecorp/utopia-outcomes-one-pager-fallback.html]
+
+blockers:
+  - Pencil write tools were not exposed to Codex in this session; only open/read/export style tools appeared, so the design was implemented directly in HTML/CSS.
+  - Final image composition is not approved. User specifically asked whether Pencil, or at least a better image treatment, can make the report look better.
+
+questions:
+  - Should the report use the portrait elder/bed photo as a large right-side feature, or should it switch to a wider delivery/building image so faces and beds are not awkwardly cropped?
+  - Should the conservative direct count remain "60+ people supported", or should the next version add a separate "households reached" field once asset-register reconciliation confirms one bed per household?
+
+decisions:
+  - conservative_people_supported: Use "60+ direct people supported" as a floor, counted as one direct person per delivered bed, with household reach left for bed-ID reconciliation and consent-checked follow-up.
+  - measurement_lens: Align the report with Goods impact framework themes already in the repo: household benefit, health/comfort, circular economy, voice/consent and production/youth pathway.
+  - public_page_alignment: Mirror the 60+ KPI on the public Centrecorp page and add a download link to the PDF so the one-pager is easy to find.
+
+findings:
+  - current_report_preview: PDF is one A4 landscape page and text extracts correctly; preview image generated at /private/tmp/centrecorp-outcomes-redesign.png.
+  - fallback_html_preview: Fallback HTML rendered to /private/tmp/centrecorp-outcomes-fallback.pdf as one A4 landscape page; preview image generated at /private/tmp/centrecorp-outcomes-fallback.png.
+  - current_hero_source: Report uses v2/public/images/partners/centrecorp/utopia/hero-elder-bed.jpg, originally from /Users/benknight/Pictures/Utopia/IMG_2942.jpg. Source is portrait 3024x4032, so wide hero crops can lose the best composition.
+  - impact_sources: Useful local references are v2/src/lib/data/impact-model.ts, wiki/articles/impact/metrics-tracked.md and wiki/articles/impact/theory-of-change.md.
+  - user_preference: User wants the report to feel less dumb and more about people/households, stories, themes, young people and future production facility impact.
+
+worked:
+  - Regenerate PDF with weasyprint from the static HTML source.
+  - Validate with pdfinfo, pdftotext and pdftoppm preview.
+  - Use the existing public partner page rather than introducing a new route.
+
+failed:
+  - Pencil design could not be completed by Codex because batch_design/write tools were unavailable after tool discovery.
+  - A CSS background-only hero image is too fragile for the portrait elder photo; it needs a deliberate crop or a real image frame.
+
+next:
+  - In Pencil, build one A4 landscape artboard using the current content: top logos, hero title, four KPI cards, voice themes, measurement pathway, quote, photo strip and footer.
+  - If Pencil is poor, use v2/public/docs/partners/centrecorp/utopia-outcomes-one-pager-fallback.html as the HTML baseline.
+  - Improve the hero image by either using the portrait photo as a full-height feature frame with visible faces/bed or generating a better cropped derivative asset for the wide report slot.
+  - Implement the approved Pencil design in v2/public/docs/partners/centrecorp/utopia-outcomes-one-pager.html, regenerate the PDF, and rerun the build/checks.
+  - If accepted, stage only the Centrecorp report/page files and deploy to Vercel production.
+
+files:
+  created: [thoughts/shared/handoffs/general/2026-05-18_21-15-centrecorp-pencil-report.yaml, v2/public/docs/partners/centrecorp/utopia-outcomes-one-pager-fallback.html]
+  modified: [v2/src/app/partners/centrecorp/page.tsx, v2/public/docs/partners/centrecorp/utopia-outcomes-one-pager.html, v2/public/docs/partners/centrecorp/utopia-outcomes-one-pager.pdf, wiki/outputs/2026-05-18-centrecorp-utopia-outcomes-one-pager.md]

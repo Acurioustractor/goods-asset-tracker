@@ -125,6 +125,22 @@ export default async function AdminOrdersPage({
                             Sponsorship
                           </Badge>
                         )}
+                        {order.is_sponsorship && order.sponsor_message && (
+                          <span
+                            className="ml-1 inline-flex items-center gap-1 align-middle text-xs text-amber-700"
+                            title={`Dedication: "${order.sponsor_message}"`}
+                          >
+                            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            </svg>
+                            Has dedication
+                          </span>
+                        )}
+                        {order.is_sponsorship && order.sponsored_community && (
+                          <span className="ml-1 align-middle text-xs text-gray-500">
+                            → {order.sponsored_community}
+                          </span>
+                        )}
                       </td>
                       <td className="py-4">
                         <div>{order.customer_name || 'N/A'}</div>

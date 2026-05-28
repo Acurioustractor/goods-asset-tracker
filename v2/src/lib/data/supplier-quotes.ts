@@ -25,15 +25,15 @@ export const supplierQuotes: SupplierQuote[] = [
     supplier: 'Defy Design',
     contact: 'Sam Davies',
     email: 'sam@defydesign.org',
-    component: 'HDPE Bed Legs (pair)',
-    description: 'Recycled HDPE plastic panels, pressed and CNC routed. Leg pairs for Stretch Bed.',
-    unitPrice: 45,
+    component: 'HDPE Plastic Kit (legs, cut & finished)',
+    description: 'Recycled 19mm Jungle-mix HDPE plastic kit, cut and finished. Excludes assembly and hardware.',
+    unitPrice: 344.05,
     currency: 'AUD',
     moq: 50,
     leadTimeDays: 21,
     validUntil: '2026-06-30',
     status: 'active',
-    notes: 'Current primary supplier. Sydney-based. Training Ebony + Jahvan for on-country production.',
+    notes: 'Current primary supplier. Sydney-based. $344.05/bed VERIFIED ex invoice INV-1602 ("107 Beds", 92 @ $344.05) + INV-1732 ("50 Beds"). Assembly billed separately ~$55.95/bed; freight Sydney→Alice ~$874/shipment. Beds from pre-paid sheets cost only $121/bed (cut+finish labour). Training Ebony + Jahvan for on-country production (target cost well below this).',
     xeroInvoice: 'INV-1602',
   },
   {
@@ -69,21 +69,21 @@ export const supplierQuotes: SupplierQuote[] = [
     xeroInvoice: null,
   },
 
-  // DNA Steel Direct — galvanised steel poles
+  // DNA Steel Direct — galvanised steel poles (gal pipe)
   {
     id: 'dna-steel-poles-2026',
     supplier: 'DNA Steel Direct',
-    contact: 'DNA Steel',
-    email: '',
-    component: 'Galvanised Steel Pole',
-    description: '26.9mm OD × 2.6mm wall, 1950mm length. Galvanised finish.',
-    unitPrice: 18,
+    contact: 'DNA Steel Direct',
+    email: 'sales@dnasteeldirect.com.au',
+    component: 'Galvanised Steel (gal pipe, per bed)',
+    description: '26.9mm OD × 2.6mm wall galvanised pipe, cut to 2 poles per bed.',
+    unitPrice: 27,
     currency: 'AUD',
     moq: 100,
     leadTimeDays: 7,
     validUntil: '2026-12-31',
     status: 'active',
-    notes: 'Alice Springs based. 2 poles per bed. Local supplier — key for NT procurement preference.',
+    notes: 'Alice Springs based (08 8953 7355). Local supplier — key for NT procurement preference. $27/bed for the gal pipe per the canonical Notion BOM "BOM - StretchBed v2". Real supplier (confirmed by Ben 2026-05-28); invoices live in Notion + grant records, NOT the ACT-GD Xero mirror.',
     xeroInvoice: null,
   },
 
@@ -91,18 +91,18 @@ export const supplierQuotes: SupplierQuote[] = [
   {
     id: 'centre-canvas-2026',
     supplier: 'Centre Canvas',
-    contact: 'Centre Canvas',
+    contact: 'Wayne',
     email: '',
     component: 'Canvas Sleeping Surface',
-    description: 'Heavy-duty Australian canvas with pole sleeves. Fully washable, quick-drying.',
-    unitPrice: 65,
+    description: 'Heavy-duty Australian canvas stretcher covers with pole sleeves. Fully washable, quick-drying.',
+    unitPrice: 93.5,
     currency: 'AUD',
     moq: 50,
     leadTimeDays: 14,
     validUntil: '2026-12-31',
     status: 'active',
-    notes: 'Alice Springs based. Custom sewn to spec. Key local supplier.',
-    xeroInvoice: null,
+    notes: 'Alice Springs based (Wayne, 4 Smith St, 08 8952 2453). Custom sewn to spec. $93.50/bed per the canonical Notion BOM "BOM - StretchBed v2". Real supplier (confirmed by Ben 2026-05-28). One Xero invoice exists ("Canvas stretcher covers" $10,285, INV ADG 6524337) but is mis-tagged ACT-IN; the same Xero contact is also polluted with Canva software-subscription lines (contact-name collision). Most canvas invoicing lives in Notion.',
+    xeroInvoice: 'ADG 6524337',
   },
 
   // End caps
@@ -142,23 +142,53 @@ export const supplierQuotes: SupplierQuote[] = [
   },
 ];
 
-// BOM (Bill of Materials) for one Stretch Bed
+export const WEBSITE_PRICE = 750; // Unified website price (2026-05-26). Institutional/retail collapsed to one.
+
+// Direct materials per bed (bought-in BOM), reconciled to ACTUAL invoices 2026-05-28:
+//   HDPE plastic kit $344.05/bed — verified ex Defy invoices INV-1602 ("107 Beds")
+//     + INV-1732 ("50 Beds"): "kits in 19mm Jungle recycled plastic, cut & finished,
+//     excl. assembly & hardware." The old $45 was an aspirational on-country-from-waste
+//     figure, NOT what we pay. On-country production targets bring this down with volume.
+//   Steel (gal pipe) $27/bed — DNA Steel Direct, Alice Springs (Notion BOM).
+//   Canvas $93.50/bed — Centre Canvas, Alice Springs (Notion BOM).
+// THIS IS NOT THE FULLY-LOADED COST — see fullyLoadedCostPerBed below (adds assembly
+// ~$55.95/bed ex Defy, hardware, freight Sydney→Alice ~$874/shipment, and overhead).
 export const stretchBedBOM = [
-  { component: 'HDPE Bed Legs (pair)', qty: 1, unitCost: 45, supplier: 'Defy Design' },
-  { component: 'Galvanised Steel Pole', qty: 2, unitCost: 18, supplier: 'DNA Steel Direct' },
-  { component: 'Canvas Sleeping Surface', qty: 1, unitCost: 65, supplier: 'Centre Canvas' },
+  { component: 'HDPE Plastic Kit (legs, cut & finished)', qty: 1, unitCost: 344.05, supplier: 'Defy Manufacturing' },
+  { component: 'Galvanised Steel (gal pipe)', qty: 1, unitCost: 27, supplier: 'DNA Steel Direct' },
+  { component: 'Canvas Sleeping Surface', qty: 1, unitCost: 93.5, supplier: 'Centre Canvas' },
   { component: 'Round Ribbed End Caps (27mm)', qty: 4, unitCost: 0.80, supplier: 'Hardware Supplier' },
 ] as const;
 
-export const stretchBedCOGS = stretchBedBOM.reduce((sum, item) => sum + item.qty * item.unitCost, 0);
-// = $45 + $36 + $65 + $3.20 = $149.20
+// Direct materials only: $344.05 + $27 + $93.50 + $3.20 = $467.75
+export const stretchBedDirectMaterials = stretchBedBOM.reduce((sum, item) => sum + item.qty * item.unitCost, 0);
+
+/**
+ * Fully-loaded production cost per bed at current low volume (~100 units).
+ * The direct-materials BOM above is a SUBSET. The remainder is the HDPE leg
+ * production at the Sunshine Coast facility (plastic shredding / pressing / CNC),
+ * facility labour (Joseph Kirmos ~$4,500/mo), freight, fuel and overhead.
+ *
+ * Source: FRRR Community Led Climate Solutions application ("Total production
+ * cost: $550–650 at 100 units") + financial-model Day 4 unit economics
+ * (2026-05-12: $550/bed at ~15/mo today → $479 at 1,500/yr → $351 at 5,000/yr
+ * → $270 at Vision 2030). Aligns with the public "/pitch" $600 figure.
+ *
+ * USE THIS, not direct materials, for any margin claim.
+ */
+export const fullyLoadedCostPerBed = 600;
+
+/** @deprecated materials-only alias — kept for back-compat. Do NOT use for margin. */
+export const stretchBedCOGS = stretchBedDirectMaterials;
 
 export const supplierSummary = {
   totalSuppliers: 4, // Defy, DNA Steel, Centre Canvas, Hardware
   localSuppliers: 2, // DNA Steel + Centre Canvas (Alice Springs)
-  cogsPerBed: stretchBedCOGS,
-  // Unified website price $750 (2026-05-26). Institutional/retail collapsed to one price.
-  marginAtInstitutional: 750 - stretchBedCOGS,
-  marginAtRetail: 750 - stretchBedCOGS,
-  marginPct: Math.round(((750 - stretchBedCOGS) / 750) * 100),
+  directMaterialsPerBed: stretchBedDirectMaterials, // $168.70 (bought-in BOM)
+  fullyLoadedCostPerBed,                            // $600 (true production cost @ ~100 units)
+  cogsPerBed: fullyLoadedCostPerBed,                // margin maths run off fully-loaded cost
+  // Honest margin at the $750 website price uses fully-loaded cost, NOT materials.
+  marginAtInstitutional: WEBSITE_PRICE - fullyLoadedCostPerBed, // $150
+  marginAtRetail: WEBSITE_PRICE - fullyLoadedCostPerBed,
+  marginPct: Math.round(((WEBSITE_PRICE - fullyLoadedCostPerBed) / WEBSITE_PRICE) * 100), // 20%
 };

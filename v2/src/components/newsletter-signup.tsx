@@ -7,14 +7,17 @@ interface NewsletterSignupProps {
   tag?: string;
   buttonText?: string;
   successMessage?: string;
+  /** Pre-fill the email field (e.g. the address already captured at checkout). */
+  defaultEmail?: string;
 }
 
 export function NewsletterSignup({
   tag,
   buttonText = 'Subscribe',
   successMessage = "You're subscribed! We'll keep you in the loop.",
+  defaultEmail = '',
 }: NewsletterSignupProps) {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(defaultEmail);
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
 

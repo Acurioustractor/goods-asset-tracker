@@ -1,10 +1,9 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { stretchBedBOM, stretchBedCOGS, supplierQuotes } from '@/lib/data/supplier-quotes';
+import { stretchBedBOM, stretchBedDirectMaterials, fullyLoadedCostPerBed, supplierQuotes } from '@/lib/data/supplier-quotes';
 import type { SupplierActuals } from '@/lib/data/supplier-cost-actuals';
 
-const INSTITUTIONAL_PRICE = 750;
-const RETAIL_PRICE = 750;
+const WEBSITE_PRICE = 750;
 
 type BatchSummary = {
   batch: string;
@@ -44,7 +43,7 @@ export function CostPerBatchCard({
   const actualSpend = actuals?.source === 'live' ? actuals.totalSpend : 0;
   const denom = bedsLifetime && bedsLifetime > 0 ? bedsLifetime : 0;
   const actualPerBed = denom > 0 ? actualSpend / denom : 0;
-  const variancePct = stretchBedCOGS > 0 ? ((actualPerBed - stretchBedCOGS) / stretchBedCOGS) * 100 : 0;
+  const variancePct = fullyLoadedCostPerBed > 0 ? ((actualPerBed - fullyLoadedCostPerBed) / fullyLoadedCostPerBed) * 100 : 0;
 
   // Supplier quote signal: anything expiring within 60 days OR pending
   const quoteAlerts: SupplierQuoteAlert[] = supplierQuotes
@@ -65,27 +64,26 @@ export function CostPerBatchCard({
           <div>
             <h3 className="text-lg font-semibold">Cost Per Bed</h3>
             <p className="text-xs text-gray-500">
-              Live BOM from <code>supplier-quotes.ts</code>. Anchors all margin maths and capital-stack assumptions.
+              Fully-loaded cost (materials + facility + labour + freight) from <code>supplier-quotes.ts</code>.
+              Margin runs off the fully-loaded cost, not materials.
             </p>
           </div>
           <div className="flex gap-4 text-right">
             <div>
-              <div className="text-xs uppercase tracking-wide text-gray-500">COGS</div>
-              <div className="text-2xl font-bold text-gray-900">${stretchBedCOGS.toFixed(2)}</div>
+              <div className="text-xs uppercase tracking-wide text-gray-500">Direct materials</div>
+              <div className="text-xl font-bold text-gray-700">${stretchBedDirectMaterials.toFixed(2)}</div>
             </div>
             <div>
-              <div className="text-xs uppercase tracking-wide text-gray-500">Margin @ ${INSTITUTIONAL_PRICE}</div>
+              <div className="text-xs uppercase tracking-wide text-gray-500">Fully-loaded cost</div>
+              <div className="text-2xl font-bold text-gray-900">${fullyLoadedCostPerBed.toFixed(0)}</div>
+              <div className="text-xs text-gray-500">@ ~100 units/yr</div>
+            </div>
+            <div>
+              <div className="text-xs uppercase tracking-wide text-gray-500">Margin @ ${WEBSITE_PRICE}</div>
               <div className="text-2xl font-bold text-emerald-700">
-                {Math.round(((INSTITUTIONAL_PRICE - stretchBedCOGS) / INSTITUTIONAL_PRICE) * 100)}%
+                {Math.round(((WEBSITE_PRICE - fullyLoadedCostPerBed) / WEBSITE_PRICE) * 100)}%
               </div>
-              <div className="text-xs text-gray-500">${(INSTITUTIONAL_PRICE - stretchBedCOGS).toFixed(2)} per bed</div>
-            </div>
-            <div>
-              <div className="text-xs uppercase tracking-wide text-gray-500">Margin @ ${RETAIL_PRICE}</div>
-              <div className="text-xl font-bold text-emerald-700">
-                {Math.round(((RETAIL_PRICE - stretchBedCOGS) / RETAIL_PRICE) * 100)}%
-              </div>
-              <div className="text-xs text-gray-500">${(RETAIL_PRICE - stretchBedCOGS).toFixed(2)} per bed</div>
+              <div className="text-xs text-gray-500">${(WEBSITE_PRICE - fullyLoadedCostPerBed).toFixed(0)} per bed</div>
             </div>
           </div>
         </div>
@@ -100,13 +98,13 @@ export function CostPerBatchCard({
                 <th className="py-2 px-3 font-medium text-right">Qty</th>
                 <th className="py-2 px-3 font-medium text-right">Unit Cost</th>
                 <th className="py-2 px-3 font-medium text-right">Per Bed</th>
-                <th className="py-2 px-3 font-medium text-right">% of COGS</th>
+                <th className="py-2 px-3 font-medium text-right">% of materials</th>
               </tr>
             </thead>
             <tbody>
               {stretchBedBOM.map((item) => {
                 const lineCost = item.qty * item.unitCost;
-                const pct = (lineCost / stretchBedCOGS) * 100;
+                const pct = (lineCost / stretchBedDirectMaterials) * 100;
                 return (
                   <tr key={item.component} className="border-b last:border-0">
                     <td className="py-2 px-3 font-medium">{item.component}</td>
@@ -119,9 +117,16 @@ export function CostPerBatchCard({
                 );
               })}
               <tr className="bg-gray-50 font-semibold">
-                <td className="py-2 px-3" colSpan={4}>Total COGS per bed</td>
-                <td className="py-2 px-3 text-right font-mono">${stretchBedCOGS.toFixed(2)}</td>
+                <td className="py-2 px-3" colSpan={4}>Direct materials per bed</td>
+                <td className="py-2 px-3 text-right font-mono">${stretchBedDirectMaterials.toFixed(2)}</td>
                 <td className="py-2 px-3 text-right font-mono">100%</td>
+              </tr>
+              <tr className="border-t text-xs text-gray-500">
+                <td className="py-2 px-3" colSpan={4}>
+                  + facility, labour, HDPE leg production, freight &amp; overhead → fully-loaded
+                </td>
+                <td className="py-2 px-3 text-right font-mono">${fullyLoadedCostPerBed.toFixed(2)}</td>
+                <td className="py-2 px-3 text-right" />
               </tr>
             </tbody>
           </table>
@@ -146,7 +151,7 @@ export function CostPerBatchCard({
                 <div className="text-xs uppercase tracking-wide text-gray-500">Actual $/bed</div>
                 <div className="text-2xl font-bold text-gray-900">${actualPerBed.toFixed(2)}</div>
                 <div className={`text-xs font-medium ${Math.abs(variancePct) < 20 ? 'text-gray-500' : variancePct > 0 ? 'text-red-700' : 'text-emerald-700'}`}>
-                  {variancePct > 0 ? '+' : ''}{variancePct.toFixed(0)}% vs canonical ${stretchBedCOGS.toFixed(2)}
+                  {variancePct > 0 ? '+' : ''}{variancePct.toFixed(0)}% vs fully-loaded ${fullyLoadedCostPerBed.toFixed(0)}
                 </div>
               </div>
             </div>
@@ -159,9 +164,10 @@ export function CostPerBatchCard({
               ))}
             </div>
             <p className="mt-3 text-[11px] leading-relaxed text-gray-500">
-              Actual includes BOM, freight, training, prototype iterations, and setup costs across the supplier accounts.
-              Treat as a <strong>directional</strong> signal vs. the canonical $149.20 per-unit BOM. True per-batch COGS
-              requires Xero line-items to carry a batch code.
+              <strong>Directional only.</strong> Xero ACCPAY here is Defy + steel (Goods-tagged) and folds in freight,
+              training, prototype and setup. It MISSES the Alice Springs canvas &amp; steel supply chain (invoiced in
+              Notion, not the Xero mirror), and the denominator counts Basket beds. Reconciled 2026-05-28 — see
+              <code> wiki/outputs/2026-05-28-bed-cogs-xero-reconciliation.md</code>.
             </p>
           </div>
         )}
@@ -218,8 +224,8 @@ export function CostPerBatchCard({
                   <tr className="border-b text-left text-xs uppercase tracking-wider text-gray-500">
                     <th className="py-2 px-3 font-medium">Batch</th>
                     <th className="py-2 px-3 font-medium text-right">Beds</th>
-                    <th className="py-2 px-3 font-medium text-right">COGS @ ${stretchBedCOGS.toFixed(2)}/bed</th>
-                    <th className="py-2 px-3 font-medium text-right">Margin @ ${INSTITUTIONAL_PRICE} sale</th>
+                    <th className="py-2 px-3 font-medium text-right">Cost @ ${fullyLoadedCostPerBed.toFixed(0)}/bed</th>
+                    <th className="py-2 px-3 font-medium text-right">Margin @ ${WEBSITE_PRICE} sale</th>
                   </tr>
                 </thead>
                 <tbody>

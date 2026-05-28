@@ -126,3 +126,15 @@ wiki/raw/grants-archive/**/*.xls
 /.agents/
 /.codex/
 /.playwright-mcp/
+
+# Scratch screenshots + source-media dumps at repo root (not repo content;
+# real site assets live in v2/public/, source photos go to Empathy Ledger).
+/*.png
+/*.jpg
+/*.jpeg
+/*.JPG
+/*.zip
+/Utpoia Photos Export/
+/Goods Beds */
+/Story images/
+/01.06.2026/
