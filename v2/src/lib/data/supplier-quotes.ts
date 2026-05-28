@@ -94,14 +94,14 @@ export const supplierQuotes: SupplierQuote[] = [
     contact: 'Wayne',
     email: '',
     component: 'Canvas Sleeping Surface',
-    description: 'Heavy-duty Australian canvas stretcher covers with pole sleeves. Fully washable, quick-drying.',
-    unitPrice: 93.5,
+    description: 'Heavy-duty Australian canvas stretcher covers with pole sleeves. Fully washable, quick-drying. 2.1m × $4.80/m.',
+    unitPrice: 95.00,
     currency: 'AUD',
     moq: 50,
     leadTimeDays: 14,
     validUntil: '2026-12-31',
     status: 'active',
-    notes: 'Alice Springs based (Wayne, 4 Smith St, 08 8952 2453). Custom sewn to spec. $93.50/bed per the canonical Notion BOM "BOM - StretchBed v2". Real supplier (confirmed by Ben 2026-05-28). One Xero invoice exists ("Canvas stretcher covers" $10,285, INV ADG 6524337) but is mis-tagged ACT-IN; the same Xero contact is also polluted with Canva software-subscription lines (contact-name collision). Most canvas invoicing lives in Notion.',
+    notes: 'Alice Springs based (Wayne, 4 Smith St, 08 8952 2453). Custom sewn to spec. $95/bed (2.1m × $4.80/m) verified in Notion BK review 2026-05-28 (supersedes earlier $93.50 figure). Real supplier (confirmed by Ben 2026-05-28). One Xero invoice exists ("Canvas stretcher covers" $10,285, INV ADG 6524337) but is mis-tagged ACT-IN; the same Xero contact is also polluted with Canva software-subscription lines (contact-name collision). Most canvas invoicing lives in Notion.',
     xeroInvoice: 'ADG 6524337',
   },
 
@@ -120,6 +120,24 @@ export const supplierQuotes: SupplierQuote[] = [
     validUntil: null,
     status: 'active',
     notes: 'Generic hardware item. Multiple suppliers available.',
+    xeroInvoice: null,
+  },
+
+  // Screws — frame fasteners
+  {
+    id: 'screws-frame-2026',
+    supplier: 'Hardware Supplier',
+    contact: '',
+    email: '',
+    component: 'Frame Screws',
+    description: 'Frame fasteners for HDPE legs to steel poles. ~$3.50/bed.',
+    unitPrice: 3.50,
+    currency: 'AUD',
+    moq: 1000,
+    leadTimeDays: 5,
+    validUntil: null,
+    status: 'active',
+    notes: 'Identified in Notion BK 2026-05-28. Generic hardware item. Distinct from end caps — both required per bed.',
     xeroInvoice: null,
   },
 
@@ -144,24 +162,50 @@ export const supplierQuotes: SupplierQuote[] = [
 
 export const WEBSITE_PRICE = 750; // Unified website price (2026-05-26). Institutional/retail collapsed to one.
 
-// Direct materials per bed (bought-in BOM), reconciled to ACTUAL invoices 2026-05-28:
+// Direct materials per bed (bought-in BOM, Defy-kit path), reconciled to ACTUAL
+// invoices 2026-05-28 + Notion BK review:
 //   HDPE plastic kit $344.05/bed — verified ex Defy invoices INV-1602 ("107 Beds")
 //     + INV-1732 ("50 Beds"): "kits in 19mm Jungle recycled plastic, cut & finished,
 //     excl. assembly & hardware." The old $45 was an aspirational on-country-from-waste
-//     figure, NOT what we pay. On-country production targets bring this down with volume.
-//   Steel (gal pipe) $27/bed — DNA Steel Direct, Alice Springs (Notion BOM).
-//   Canvas $93.50/bed — Centre Canvas, Alice Springs (Notion BOM).
-// THIS IS NOT THE FULLY-LOADED COST — see fullyLoadedCostPerBed below (adds assembly
-// ~$55.95/bed ex Defy, hardware, freight Sydney→Alice ~$874/shipment, and overhead).
+//     figure, NOT what we pay. On-country production targets bring this down with volume —
+//     the FACTORY-PATH equivalent is ~$55 raw HDPE (20kg × $2.75/kg incl. delivery), with
+//     the rest of the in-house cost captured in `factoryDirectMaterials` below.
+//   Steel (gal pipe) $27/bed — DNA Steel Direct, Alice Springs (Notion BOM, canonical).
+//   Canvas $95/bed — Centre Canvas, Alice Springs (2.1m × $4.80/m per Notion BK 2026-05-28;
+//     supersedes earlier $93.50).
+//   End caps $3.20/bed — 4 × $0.80 round ribbed caps.
+//   Screws $3.50/bed — frame fasteners (added 2026-05-28 from Notion BK).
+// THIS IS NOT THE FULLY-LOADED COST — see fullyLoadedCostPerBed below (adds Defy assembly
+// ~$55.95/bed, freight Sydney→Alice ~$874/shipment, facility labour + overhead, founder time).
 export const stretchBedBOM = [
   { component: 'HDPE Plastic Kit (legs, cut & finished)', qty: 1, unitCost: 344.05, supplier: 'Defy Manufacturing' },
   { component: 'Galvanised Steel (gal pipe)', qty: 1, unitCost: 27, supplier: 'DNA Steel Direct' },
-  { component: 'Canvas Sleeping Surface', qty: 1, unitCost: 93.5, supplier: 'Centre Canvas' },
+  { component: 'Canvas Sleeping Surface', qty: 1, unitCost: 95, supplier: 'Centre Canvas' },
   { component: 'Round Ribbed End Caps (27mm)', qty: 4, unitCost: 0.80, supplier: 'Hardware Supplier' },
+  { component: 'Frame Screws', qty: 1, unitCost: 3.50, supplier: 'Hardware Supplier' },
 ] as const;
 
-// Direct materials only: $344.05 + $27 + $93.50 + $3.20 = $467.75
+// Direct materials only (Defy-kit path): $344.05 + $27 + $95 + $3.20 + $3.50 = $472.75
 export const stretchBedDirectMaterials = stretchBedBOM.reduce((sum, item) => sum + item.qty * item.unitCost, 0);
+
+/**
+ * Factory-path direct cost per bed (raw shred → press → CNC → assemble in-house).
+ * From Notion BK review 2026-05-28 (Ben + BK):
+ *   Plastic raw + delivery: 20kg × $2.75/kg = $55 (HDPE shred + transport)
+ *   Diesel: $15/bed (25L/day ÷ 5 beds for press + CNC)
+ *   Labour: $80/bed ($400/day ÷ 5 beds at the factory)
+ *   Steel poles: $27 (DNA Steel)
+ *   Canvas: $95 (Centre Canvas)
+ *   End caps: $3.20 + Screws: $3.50 = $6.70 hardware
+ *   = $55 + $15 + $80 + $27 + $95 + $6.70 = $278.70
+ *
+ * This is the in-house production target. At 4 beds/day × ~250 working days = 1,000
+ * beds/yr from one facility. Margin at $750 retail = $471.30 (63%).
+ *
+ * Use this as the trajectory number for funder asks: the capital ask brings us from
+ * the Defy-kit path ($472.75 direct materials) down to factory path ($278.70 direct).
+ */
+export const factoryDirectMaterials = 278.70;
 
 /**
  * Fully-loaded production cost per bed at current low volume (~100 units).
