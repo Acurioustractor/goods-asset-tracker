@@ -1,66 +1,61 @@
 ---
-date: 2026-05-27T17:30:00+10:00
-session_name: uncommitted-work-landing-and-cleanup
-branch: fix/funder-figures-reconciliation
-status: in-progress
+date: 2026-05-28T11:45:00+10:00
+session_name: sponsor-system-improvements-and-production-deploy
+branch: main
+status: shipped
 ---
 
 # Goods on Country — Handoff Ledger
 
 ## Ledger
-**Updated:** 2026-05-27T17:30:00+10:00
-**Goal:** Land the accumulated uncommitted work (9 days, 18 tracked files + several untracked features) into clean, atomic commits; apply the one outstanding DB migration; clean the working tree.
-**Branch:** `fix/funder-figures-reconciliation` (now holds the feature commits below — name no longer matches contents; rename or cherry-pick before merging to main)
-**Test:** `cd v2 && npm run dev`; `cd v2 && npm run build` is clean (exit 0, 232/232 pages)
+**Updated:** 2026-05-28T11:45:00+10:00
+**Goal:** Improve the Sponsor-a-Bed system — confirm Stripe tracking, build the sponsor journey, fix the broken/confusing product image, add a newsletter + comms funnel — then ship to production.
+**Branch:** `main` (all work merged + deployed; feature branches deleted)
+**Test:** `cd v2 && npm run build` clean (exit 0, 231/231 pages). Production verified live.
 
 ### Now
-[->] Decide branch disposition (rename `fix/funder-figures-reconciliation` → something like `feat/site-media-tooling-and-sponsor` OR split), then push. Nothing has been pushed yet.
+[->] Nothing blocking. Sponsor system shipped to prod. Optional: see Next.
 
-### This Session (2026-05-27)
+### This Session (2026-05-28)
 
-Worked through the uncommitted pile one thread at a time, verifying each (typecheck + render + dependency tracing) before committing.
+Picked up from the screenshot of the live `/sponsor` page (old two-card layout, product image looked like a washing machine). Found the redesigned flow already existed in code but was undeployed; improved it, fixed the image, added the comms funnel, and shipped everything to production.
 
-**Commits landed (all local, none pushed):**
-- `b627323` home: self-serve media swap + Oonchiumpa "designed in community" section + picker LIST API website-images/cross-project support
-- `6e9e93d` sponsor: redesigned flow + dedication messages (success page shows sponsorship timeline)
-- `9860b50` assets: outcome capture (household_size, theme_tag, recipient_consent_at) + 2 migrations
-- `ced0235` admin-orders: surface sponsorship dedications for fulfilment
-- `65d781e` partners: live funder outcomes snapshot (`/partners/[slug]/outcomes`) + Centrecorp reconciliation (no dollar headline, provenance sidecar)
-- `1f099f0` process: media swap on production-flow steps
-- `3e30fe4` admin: photo browser for cross-project EL media
-- `e49df98` partners: Oonchiumpa partnership page
-- `80787a5` admin: bulk install logger (EXIF/QR/HEIC) + 4 image libs
-- `2034d43` scripts: EL tag-bridging + GHL LinkedIn-tag migration
-- (plus this cleanup: partner public assets, wiki docs, batch PDFs, .gitignore)
+**Shipped to production (`www.goodsoncountry.com`), all verified live:**
+- **PR #27** merged → prod (`d67cbd8`): the whole accumulated feature branch — sponsor redesign, funder-outcomes pages, Oonchiumpa partner page, admin bulk install logger + photo browser, asset outcome-capture, media-swap tooling.
+- **PR #28** merged → prod (`b00b11b`): checkout route now builds an absolute Stripe product-image URL from the relative path.
+- **Newsletter / comms funnel** (`7f8fad7`): `/checkout/success` opt-in card (sponsor/buyer-aware, email prefilled from checkout) + `/sponsor` "not ready today?" capture for non-converters. Tags `goods-newsletter` + `goods-src-sponsor`/`-customer`/`-sponsor-interest`, fires GHL Smart Router. Explicit marketing consent, separate from the transactional contact the Stripe webhook already creates.
+- **Sponsor page enrichment** (`a85292c`): hero band (Elder beside her bed) + 3-up "this is where your bed lands" gallery (built → assembled → in use). Five distinct real photos now carry the page.
 
-**DB migration APPLIED to live v2 DB (`cwsyhpiuepvdjtxaozwf`):**
-- `20260519000001_assets_outcome_fields.sql` — added household_size, theme_tag, recipient_consent_at; rebuilt `community_rollup` with household_reach + households_with_consent. Was untracked AND unapplied; its `CREATE OR REPLACE VIEW` would have failed (mid-list column insert) — fixed to DROP+CREATE. Applied via Supabase Management API query endpoint (psql had no cached password). Verified: columns live, view rebuilt, PostgREST sees them.
-- `20260520000001_assets_recipient_and_install_photo.sql` — was already applied to DB, just never committed. Now in git.
+**Product image fix (DB, live immediately — no deploy needed):**
+- `products.featured_image` for `stretch-bed-single` was `…IMG_6976.jpg` — a recycled-plastic block at sunset that read as a washing machine. Changed to `/images/product/stretch-bed-hero.jpg` (a clean bed shot). Fixes sponsor page, shop, and the old prod page at once.
+- First tried an absolute `https://www.goodsoncountry.com/...` URL → `next/image` blocked it (domain not in `remotePatterns`) → broken image on the preview. Switched to a **relative path** (local `/public` asset, served same-origin, no whitelist needed).
 
-**Bugs fixed in passing:**
-- `/partners/[slug]/outcomes` 500 → Server Component passed `onClick`; extracted `print-button.tsx` client island.
-- Latent untracked-import/asset traps: `partners.ts`, outcomes page, photos-browser, oonchiumpa page, and 3 `v2/public` assets (final-assembly.jpg, elder-feedback.jpg, oochiumpa-good-news-story.pdf) were untracked but linked-to by committed code. All committed with their dependents.
+**Stripe tracking — verified already complete (no change needed):**
+- Webhook writes `is_sponsorship` / `sponsored_community` / `sponsor_message` to `orders` and creates a GHL `goods-sponsor` contact. `/checkout/success` branches messaging on the order.
 
-**Working tree cleanup:**
-- Deleted dead `v2/src/app/brand/page.tsx` (shadowed by committed `/brand → /press#brand-system` redirect; wordmark pack lives in /press).
-- Extended `.gitignore` for ~285 root-level scratch screenshots + source-media dumps (Utpoia Photos Export/, QR folders, Story images/, *.zip). Real assets live in v2/public; source photos go to EL.
+**Cleanup:** deleted merged branches `feat/site-media-tooling-and-funder-outcomes` + `fix/stripe-checkout-product-image` (local + remote). Now on `main`.
 
 ### Next
-- [ ] Branch rename/split + push.
-- [ ] `v2/src/app/brand/page.tsx` is gone — if a standalone /brand page is ever wanted again, drop the redirect at `next.config.ts:58` first.
-- [ ] Sponsor page is a 661-line visual redesign — eyeball `/sponsor` to confirm the look.
-- [ ] Provenance doc for the Centrecorp one-pager still cites the now-stale "$388,432 invoiced / $265,100 outstanding" internally (page itself is dollar-free by design). Reconcile against live Notion/Xero if that internal table matters.
+- [ ] Eyeball production `/sponsor` end-to-end (hero, gallery, newsletter capture). A real Stripe checkout is needed to see the success-page newsletter card + Stripe thumbnail.
+- [ ] Field-notes `/field-notes/utopia-may-2026` still `published: false` (Gate C unmet — carried).
+- [ ] Centrecorp one-pager provenance doc still cites stale "$388,432 invoiced / $265,100 outstanding" internally (page itself is dollar-free — carried).
 
 ### Decisions (this session)
-- One-by-one verify-then-commit beats bulk-commit: caught a 500, a broken migration, and 5+ latent untracked deps that bulk `git add` would have buried.
-- DDL on v2 production goes through psql/Management API, never the Supabase MCP (wrong project) or exec_sql RPC (no DDL).
-- Root-level images in this repo are always scratch → gitignored broadly (`/*.png` etc.); no tracked root images exist.
+- **`next/image` blocks remote domains not in `remotePatterns`.** For local `/public` assets, use **relative paths** (served same-origin, no whitelist). When an absolute URL is needed downstream (Stripe needs one), build it at that boundary from the request origin — don't churn the DB or whitelist a same-origin domain.
+- Image fix went straight to the DB (Tier-2 write, user-authorised via the image-choice question) — DB-driven, so live without a deploy.
+- Shipped the full accumulated PR #27 as one merge (clean fast-forward, 0 behind main); DB migrations it relies on were already applied, so it was a code-only deploy.
 
 ### Carried over (still load-bearing)
 - COGS per Stretch Bed = $149.20; price unified to $750.
-- Communities are first-class DB entities; `community_rollup` view is canonical (now extended with household reach + consent).
-- Field-notes `/field-notes/utopia-may-2026` still `published: false` — prior session's publish gate (Gate C: Oonchiumpa end-to-end review) not yet met. Self-serve picker work from that session is unaffected.
+- Communities are first-class DB entities; `community_rollup` view is canonical (extended with household reach + consent).
+- Production deploys from `main` → Vercel project `goods-on-country` (`prj_XGQL3gT1C6N7BolooQevgMJuIf1G`, team `team_3aAWFPdRQ92RkkJ2LehJ209u`). Preview URLs are behind Vercel SSO (curl gets 401; open in a logged-in browser).
 
 ### Open Questions (carried)
 - UNCONFIRMED: 3 paraphrased field-notes voice quotes need real Oonchiumpa attribution before publish.
 - UNCONFIRMED: Centrecorp tranche re-attribution (Snow vs Centrecorp for May deployment) — confirm with Nic.
+
+---
+
+## Prior Session (2026-05-27) — uncommitted-work-landing-and-cleanup
+
+Landed 9 days of accumulated uncommitted work into clean atomic commits (later merged via PR #27 above), applied the outstanding `20260519000001_assets_outcome_fields.sql` migration to the live v2 DB (fixed its `CREATE OR REPLACE VIEW` → DROP+CREATE), and cleaned the working tree. Key commits: sponsor redesign (`6e9e93d`), asset outcome capture (`9860b50`), funder outcomes snapshot (`65d781e`), Oonchiumpa partner page (`e49df98`), admin bulk install logger (`80787a5`). Deleted dead `v2/src/app/brand/page.tsx` (redirect lives at `next.config.ts`). Extended `.gitignore` for root scratch screenshots.
