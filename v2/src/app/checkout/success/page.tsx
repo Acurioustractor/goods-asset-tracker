@@ -4,6 +4,7 @@ import { getStripe } from '@/lib/stripe';
 import { createServiceClient } from '@/lib/supabase/server';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { NewsletterSignup } from '@/components/newsletter-signup';
 import { ClearCartOnSuccess } from './clear-cart';
 
 // Force dynamic rendering - this page needs runtime access to Stripe
@@ -266,6 +267,27 @@ export default async function CheckoutSuccessPage({ searchParams }: Props) {
                 </>
               )}
             </ol>
+          </CardContent>
+        </Card>
+
+        {/* Stay in the loop — explicit newsletter opt-in (separate consent from
+            the transactional GHL contact the webhook already created). */}
+        <Card className="mb-8 border-primary/20">
+          <CardContent className="p-6">
+            <h2 className="font-semibold text-foreground mb-1">
+              {isSponsorship ? 'Follow your bed onto Country' : 'Stay in the loop'}
+            </h2>
+            <p className="text-sm text-muted-foreground mb-4">
+              {isSponsorship
+                ? 'Get the stories, photos and updates as beds reach the families who need them — including, where we can, the one you sponsored.'
+                : 'Stories, photos and updates from the communities we work alongside. No spam, easy to unsubscribe.'}
+            </p>
+            <NewsletterSignup
+              tag={isSponsorship ? 'sponsor' : 'customer'}
+              defaultEmail={customerEmail || ''}
+              buttonText="Keep me updated"
+              successMessage="You're in. We'll keep you posted as beds land on Country."
+            />
           </CardContent>
         </Card>
 
