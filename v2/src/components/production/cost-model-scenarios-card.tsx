@@ -118,7 +118,6 @@ export function CostModelScenariosCard() {
               <thead className="text-left text-gray-500 border-b">
                 <tr>
                   <th className="pb-2 font-medium">Volume</th>
-                  <th className="pb-2 font-medium text-right">Defy fully-fab</th>
                   <th className="pb-2 font-medium text-right">Defy Kits</th>
                   <th className="pb-2 font-medium text-right">Defy Panels</th>
                   <th className="pb-2 font-medium text-right">Factory</th>
@@ -129,7 +128,6 @@ export function CostModelScenariosCard() {
                 {fullyLoaded.map((row, i) => (
                   <tr key={row.volume_label} className={`border-b last:border-0 ${i === 2 ? 'bg-emerald-50/30' : ''}`}>
                     <td className="py-2 font-medium">{row.volume_label}</td>
-                    <td className="py-2 text-right tabular-nums">{fmtMoney(row.state_1_defy_fab)}</td>
                     <td className="py-2 text-right tabular-nums">{fmtMoney(row.state_2_defy_kits)}</td>
                     <td className="py-2 text-right tabular-nums">{fmtMoney(row.state_3_defy_panels)}</td>
                     <td className="py-2 text-right tabular-nums font-medium text-emerald-700">
