@@ -1,30 +1,24 @@
 /**
- * Bed cost model — v3 scenarios + Idiot Index + founder-time split.
+ * Bed cost model v4 — 4-path supply model (Factory / Defy Kits / Defy Panels /
+ * Community) + Defy fully-fabricated reference state. Numbers locked 2026-05-28
+ * via Notion BK review + Defy invoice OCR + Ben confirmations.
  *
- * Builds on the canonical BOM in `supplier-quotes.ts` (the single source of
- * truth for per-component prices) and adds:
- *  - 5 build-state scenarios (Defy-everything → community-plastic in-house)
- *  - Idiot Index per element (markup ratio = lever for in-house cost reduction)
- *  - Founder time allocated by purpose (production / fundraising / commercial / ACT-wide)
- *  - Fundraising offset (how dollars raised subsidise bed cost)
- *  - Volume scenarios at 100 / 500 / 1,000 beds per year
+ * All data lives in `cost-model-scenarios.json`. Canonical BOM mirrors
+ * `supplier-quotes.ts`; this file adds the trajectory math + Idiot Index.
  *
- * Source data verified from `scripts/ocr-defy-bills.mjs` OCR of every Defy
- * invoice attachment (lives in act-infra repo). The numbers here align
- * directly with `supplier-quotes.ts` — when the canonical BOM changes there,
- * update this file in lockstep.
+ * Source: act-infra/scripts/ocr-defy-bills.mjs + ocr-bed-supplier-bills.mjs.
  */
 import scenarios from './cost-model-scenarios.json';
-import { fullyLoadedCostPerBed, stretchBedBOM } from './supplier-quotes';
+import { fullyLoadedCostPerBed, stretchBedBOM, factoryDirectMaterials } from './supplier-quotes';
 
 export type CostModelScenarios = typeof scenarios;
 
 export type BuildStateKey =
-  | 'state_1_defy_everything'
-  | 'state_2_buy_kit_assemble'
-  | 'state_3_buy_sheets_cut_assemble'
-  | 'state_4_all_in_house'
-  | 'state_5_community_plastic';
+  | 'state_1_defy_fully_fabricated'
+  | 'state_2_defy_kits'
+  | 'state_3_defy_panels'
+  | 'state_4_factory'
+  | 'state_5_community';
 
 export interface BuildState {
   key: BuildStateKey;
@@ -33,6 +27,7 @@ export interface BuildState {
   direct_total: number;
   capital_added: number;
   capital_cumulative: number;
+  throughput_beds_per_day?: number;
 }
 
 export interface IdiotIndexRow {
@@ -45,16 +40,31 @@ export interface IdiotIndexRow {
   markup_pays_for: string;
 }
 
-export interface VolumeScenario {
+export interface OverheadRow {
   label: string;
   beds_per_year: number;
-  production_founder_per_bed: number;
+  kirmos_per_bed: number;
+  founder_production_per_bed: number;
   admin_per_bed: number;
   field_travel_per_bed: number;
-  freight_per_bed: number;
-  fully_loaded_state_1: number;
-  fully_loaded_state_4: number;
-  fully_loaded_state_5: number;
+  long_haul_freight_per_bed: number;
+  overhead_total: number;
+}
+
+export interface FullyLoadedRow {
+  volume_label: string;
+  state_1_defy_fab: number;
+  state_2_defy_kits: number;
+  state_3_defy_panels: number;
+  state_4_factory: number;
+  state_5_community: number;
+}
+
+export interface MarginRow {
+  path: string;
+  direct: number;
+  margin: number;
+  margin_pct: number;
 }
 
 export function getModel(): CostModelScenarios {
@@ -64,11 +74,11 @@ export function getModel(): CostModelScenarios {
 export function listBuildStates(): BuildState[] {
   const states = scenarios.build_states;
   const keys: BuildStateKey[] = [
-    'state_1_defy_everything',
-    'state_2_buy_kit_assemble',
-    'state_3_buy_sheets_cut_assemble',
-    'state_4_all_in_house',
-    'state_5_community_plastic',
+    'state_1_defy_fully_fabricated',
+    'state_2_defy_kits',
+    'state_3_defy_panels',
+    'state_4_factory',
+    'state_5_community',
   ];
   return keys.map((key) => ({ key, ...states[key] }));
 }
@@ -77,8 +87,16 @@ export function getIdiotIndex(): IdiotIndexRow[] {
   return scenarios.idiot_index as IdiotIndexRow[];
 }
 
-export function getVolumeScenarios(): VolumeScenario[] {
-  return scenarios.volume_scenarios as VolumeScenario[];
+export function getOverheadPerVolume(): OverheadRow[] {
+  return scenarios.overhead_per_volume as OverheadRow[];
+}
+
+export function getFullyLoadedGrid(): FullyLoadedRow[] {
+  return scenarios.fully_loaded_grid as FullyLoadedRow[];
+}
+
+export function getMarginGridAt750(): MarginRow[] {
+  return scenarios.margin_grid_at_750_retail as MarginRow[];
 }
 
 export function getFounderAllocation() {
@@ -93,26 +111,37 @@ export function getDefyVerifiedRates() {
   return scenarios.defy_verified_rates;
 }
 
+export function getCanonicalBOM() {
+  return scenarios.canonical_bom;
+}
+
 export function getOpenQuestionsForDefy() {
   return scenarios.open_questions_for_defy;
 }
 
 /**
- * Reconcile the v3 State-1 cost ($600) against `supplier-quotes.ts`
- * `fullyLoadedCostPerBed` to make sure both files agree. If they ever drift,
- * the cost-model card surfaces a warning.
+ * Reconcile the v4 Factory-state direct total against `factoryDirectMaterials`
+ * in supplier-quotes.ts. If they drift, the card surfaces a warning so the two
+ * files can't silently disagree about the factory-path cost.
  */
 export function reconcileAgainstCanonicalBOM(): {
+  factoryTotal: number;
+  canonicalFactoryMaterials: number;
   state1Total: number;
   canonicalFullyLoaded: number;
   matches: boolean;
   bom: typeof stretchBedBOM;
 } {
-  const state1 = scenarios.build_states.state_1_defy_everything;
+  const state1 = scenarios.build_states.state_1_defy_fully_fabricated;
+  const state4 = scenarios.build_states.state_4_factory;
   return {
+    factoryTotal: state4.direct_total,
+    canonicalFactoryMaterials: factoryDirectMaterials,
     state1Total: state1.direct_total,
     canonicalFullyLoaded: fullyLoadedCostPerBed,
-    matches: state1.direct_total === fullyLoadedCostPerBed,
+    matches:
+      state4.direct_total === factoryDirectMaterials &&
+      state1.direct_total === fullyLoadedCostPerBed,
     bom: stretchBedBOM,
   };
 }
