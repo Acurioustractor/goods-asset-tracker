@@ -7,6 +7,7 @@ import { ProductionTrendChart } from '@/components/production/production-trend-c
 import { SupplyDemandCard, type CommittedOrder, type SupplierQuote } from '@/components/production/supply-demand-card';
 import { BedReconciliation, type AssetSummary, type DemandSummary } from '@/components/production/bed-reconciliation';
 import { CostPerBatchCard, type BatchSummary } from '@/components/production/cost-per-batch-card';
+import { CostModelScenariosCard } from '@/components/production/cost-model-scenarios-card';
 import { fullyLoadedCostPerBed } from '@/lib/data/supplier-quotes';
 import { getSupplierActuals } from '@/lib/data/supplier-cost-actuals';
 import type { ProductionInventory, ProductionShift, ProductionJournal } from '@/lib/types/database';
@@ -337,6 +338,9 @@ export default async function AdminProductionPage() {
 
       {/* Cost per bed + per batch (BOM-driven from supplier-quotes.ts + Xero ACCPAY actuals) */}
       <CostPerBatchCard batches={batchSummary} actuals={supplierActuals} bedsLifetime={bedsLifetime} />
+
+      {/* v3 cost model — scenarios + Idiot Index + founder allocation + fundraising offset */}
+      <CostModelScenariosCard />
 
       {/* Bed Reconciliation */}
       <BedReconciliation data={{
