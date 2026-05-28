@@ -14,7 +14,6 @@ import { fullyLoadedCostPerBed, stretchBedBOM, factoryDirectMaterials } from './
 export type CostModelScenarios = typeof scenarios;
 
 export type BuildStateKey =
-  | 'state_1_defy_fully_fabricated'
   | 'state_2_defy_kits'
   | 'state_3_defy_panels'
   | 'state_4_factory'
@@ -53,7 +52,6 @@ export interface OverheadRow {
 
 export interface FullyLoadedRow {
   volume_label: string;
-  state_1_defy_fab: number;
   state_2_defy_kits: number;
   state_3_defy_panels: number;
   state_4_factory: number;
@@ -74,7 +72,6 @@ export function getModel(): CostModelScenarios {
 export function listBuildStates(): BuildState[] {
   const states = scenarios.build_states;
   const keys: BuildStateKey[] = [
-    'state_1_defy_fully_fabricated',
     'state_2_defy_kits',
     'state_3_defy_panels',
     'state_4_factory',
@@ -120,28 +117,28 @@ export function getOpenQuestionsForDefy() {
 }
 
 /**
- * Reconcile the v4 Factory-state direct total against `factoryDirectMaterials`
+ * Reconcile the v5 Factory-state direct total against `factoryDirectMaterials`
  * in supplier-quotes.ts. If they drift, the card surfaces a warning so the two
  * files can't silently disagree about the factory-path cost.
+ *
+ * Note: v5 dropped state_1_defy_fully_fabricated (was Weave Bed @ $600, discontinued).
+ * `fullyLoadedCostPerBed` from supplier-quotes.ts ($600) is kept as a legacy reference
+ * but no longer mapped to a build state — the canonical path is now Defy Kits ($534.79)
+ * or Factory ($275.74).
  */
 export function reconcileAgainstCanonicalBOM(): {
   factoryTotal: number;
   canonicalFactoryMaterials: number;
-  state1Total: number;
-  canonicalFullyLoaded: number;
+  legacyFullyLoaded: number;
   matches: boolean;
   bom: typeof stretchBedBOM;
 } {
-  const state1 = scenarios.build_states.state_1_defy_fully_fabricated;
   const state4 = scenarios.build_states.state_4_factory;
   return {
     factoryTotal: state4.direct_total,
     canonicalFactoryMaterials: factoryDirectMaterials,
-    state1Total: state1.direct_total,
-    canonicalFullyLoaded: fullyLoadedCostPerBed,
-    matches:
-      state4.direct_total === factoryDirectMaterials &&
-      state1.direct_total === fullyLoadedCostPerBed,
+    legacyFullyLoaded: fullyLoadedCostPerBed,
+    matches: state4.direct_total === factoryDirectMaterials,
     bom: stretchBedBOM,
   };
 }

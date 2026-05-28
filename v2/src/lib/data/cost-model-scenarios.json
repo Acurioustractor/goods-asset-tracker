@@ -1,45 +1,38 @@
 {
   "meta": {
-    "title": "Goods bed cost model v4 — 4-path supply model with Idiot Index (Notion BK locked)",
-    "version": "v4",
+    "title": "Goods bed cost model v5 — verified-from-invoices, Musk first-principles",
+    "version": "v5",
     "created": "2026-05-28",
-    "supersedes": "v3 (2026-05-28 morning)",
-    "source_doc": "Notion: 🧮 Goods // Plastic Sheet Calc's (BK review) + supplier-quotes.ts canonical BOM",
-    "verified_from": "act-infra/scripts/ocr-defy-bills.mjs (Defy) + ocr-bed-supplier-bills.mjs (all bed-relevant suppliers)",
-    "locked_inputs_2026_05_28": [
-      "20kg HDPE per bed (one sheet's worth, with offcuts)",
-      "$2.00/kg raw shred + $0.75/kg delivery = $2.75/kg landed",
-      "$27/bed steel (DNA Steel canonical) — NOT the $10.34 in some Notion calcs",
-      "$95/bed canvas (2.1m × $4.80/m, Notion BK supersedes earlier $93.50)",
-      "$3.20 caps + $3.50 screws = $6.70/bed hardware",
-      "Defy kit $344.05/bed (INV-1602 + INV-1732 verified)",
-      "Defy assembly labour $55.95/bed (verified line)",
-      "Single Bed fully-fab'd $600 (INV-1507, 25 beds Nov 2025)",
-      "$750 unified retail price",
-      "Founder time: 30 prod / 50 fundraising / 25 commercial / 45 ACT-wide @ $1K/day = $150K/yr",
-      "Kirmos facility labour 50% on beds = $2,250/month = $27K/yr",
-      "Throughput: Factory 4 beds/day, Defy Kits 10 beds/day, Community 5 beds/day"
+    "supersedes": "v4 (state_1 was Weave Bed, canvas was $95 not $93.50)",
+    "source_doc": "Deep OCR of canvas + Bunnings + INV-1507 invoices + Coastal Fasteners + Notion BK",
+    "verified_from": "act-infra/scripts/ocr-defy-bills.mjs + ocr-bed-supplier-bills.mjs + ocr-bed-elements-deep.mjs",
+    "key_corrections_2026_05_28": [
+      "INV-1507 $600/bed was WEAVE BED (discontinued) — state_1 removed entirely",
+      "Canvas: $93.50/cover verified actual (Centre Canvas 50+110×2 covers in 2026), not $95",
+      "Screws: 16/bed × $0.065 (Coastal Fasteners verified) = $1.04/bed",
+      "Bolts: 2/bed × $0.50 (est) = $1.00/bed",
+      "Hardware total: $5.24/bed (caps $3.20 + screws $1.04 + bolts $1.00) — was $6.70 estimated",
+      "Centre Canvas $14,915 mistag retag pending (ACT-IN → ACT-GD)"
     ]
   },
   "physics": {
     "hdpe_density_g_per_cm3": 0.96,
     "hdpe_kg_per_bed": 20,
-    "_hdpe_per_bed_source": "Ben confirmed 2026-05-28 — one sheet's worth (the other ~5kg is offcuts/press loss not in the bed).",
     "raw_hdpe_cost_per_bed_no_delivery": 40.00,
     "raw_hdpe_cost_per_bed_with_delivery": 55.00,
     "_delivery_rate": "$0.75/kg ($900 / 1200kg per Defy delivery quote)"
   },
   "canonical_bom": {
-    "_note": "Mirrors supplier-quotes.ts. Defy-kit path direct materials = $472.75/bed.",
+    "_note": "Mirrors supplier-quotes.ts. Defy-kit path direct materials = $469.79/bed.",
     "hdpe_kit_defy": { "amount": 344.05, "source": "Defy INV-1602 + INV-1732", "confidence": "verified" },
     "steel_poles": { "amount": 27.00, "source": "DNA Steel Direct (Alice Springs, in Notion)", "confidence": "verified" },
-    "canvas": { "amount": 95.00, "basis": "2.1m × $4.80/m", "source": "Centre Canvas (Alice Springs, in Notion)", "confidence": "verified" },
+    "canvas": { "amount": 93.50, "source": "Centre Canvas (3 invoices 2026, 270 covers @ $93.50)", "confidence": "verified" },
     "end_caps": { "amount": 3.20, "basis": "4 × $0.80", "source": "Hardware supplier", "confidence": "verified" },
-    "screws": { "amount": 3.50, "source": "Hardware supplier (Notion BK 2026-05-28)", "confidence": "verified" },
-    "defy_kit_direct_total": 472.75
+    "screws": { "amount": 1.04, "basis": "16 × $0.065", "source": "Coastal Fasteners RB20247673190", "confidence": "verified" },
+    "bolts": { "amount": 1.00, "basis": "2 × $0.50 est", "source": "Coastal Fasteners (rate estimated)", "confidence": "inferred" },
+    "defy_kit_direct_total": 469.79
   },
   "defy_verified_rates": {
-    "single_bed_fully_fabricated": { "amount": 600.00, "source": "INV-1507 Nov 2025, 25 beds", "confidence": "verified" },
     "bed_kit_cut_finished": { "amount": 344.05, "source": "INV-1602 (92 kits) + INV-1732 (50 kits)", "confidence": "verified" },
     "pre_pressed_panel_each": { "amount": 200.00, "source": "INV-1731 (20 panels bulk, 1200×1200×19mm)", "confidence": "verified" },
     "cut_and_finish_only": { "amount": 121.00, "source": "INV-1602 (16 beds, pre-purchased sheets)", "confidence": "verified" },
@@ -51,31 +44,20 @@
     "production_operator_per_day": 400,
     "production_operator_per_hour": 50,
     "kirmos_facility_per_hour": 45,
-    "kirmos_monthly_50pct_to_beds": 2250,
-    "_basis": "Notion BK + Kirmos invoice analysis 2026-05-28"
+    "kirmos_monthly_50pct_to_beds": 2250
   },
   "build_states": {
-    "state_1_defy_fully_fabricated": {
-      "label": "Defy fully-fabricated (Single Bed @ $600)",
-      "components": [
-        { "label": "Single Bed fully fab'd (HDPE + steel + canvas + assembly)", "amount": 600.00 }
-      ],
-      "direct_total": 600.00,
-      "capital_added": 0,
-      "capital_cumulative": 0,
-      "_note": "INV-1507 verified rate. We rarely buy this way — usually kits or panels then assemble."
-    },
     "state_2_defy_kits": {
       "label": "Defy Kits (buy cut+finished kits, assemble in-house)",
       "components": [
         { "label": "Defy bed kit (cut+finished, no hardware)", "amount": 344.05 },
         { "label": "Steel poles (DNA Steel)", "amount": 27.00 },
-        { "label": "Canvas (Centre Canvas)", "amount": 95.00 },
-        { "label": "End caps + screws", "amount": 6.70 },
+        { "label": "Canvas (Centre Canvas)", "amount": 93.50 },
+        { "label": "End caps + screws + bolts", "amount": 5.24 },
         { "label": "In-house assembly labour ($400/day ÷ 10 beds)", "amount": 40.00 },
         { "label": "Freight on Defy material (est)", "amount": 25.00 }
       ],
-      "direct_total": 537.75,
+      "direct_total": 534.79,
       "capital_added": 2000,
       "capital_cumulative": 2000,
       "throughput_beds_per_day": 10,
@@ -86,12 +68,12 @@
       "components": [
         { "label": "Defy pre-pressed panels (2 × $200)", "amount": 400.00 },
         { "label": "Steel poles", "amount": 27.00 },
-        { "label": "Canvas", "amount": 95.00 },
-        { "label": "End caps + screws", "amount": 6.70 },
+        { "label": "Canvas", "amount": 93.50 },
+        { "label": "End caps + screws + bolts", "amount": 5.24 },
         { "label": "Diesel (CNC only, no pressing)", "amount": 5.00 },
         { "label": "Labour ($400/day ÷ 7.5 beds)", "amount": 53.33 }
       ],
-      "direct_total": 587.03,
+      "direct_total": 584.07,
       "capital_added": 38000,
       "capital_cumulative": 40000,
       "throughput_beds_per_day": 4,
@@ -104,14 +86,14 @@
         { "label": "Diesel (25L/day ÷ 5 beds press + CNC)", "amount": 15.00 },
         { "label": "Labour ($400/day ÷ 5 beds)", "amount": 80.00 },
         { "label": "Steel poles", "amount": 27.00 },
-        { "label": "Canvas", "amount": 95.00 },
-        { "label": "End caps + screws", "amount": 6.70 }
+        { "label": "Canvas", "amount": 93.50 },
+        { "label": "End caps + screws + bolts", "amount": 5.24 }
       ],
-      "direct_total": 278.70,
+      "direct_total": 275.74,
       "capital_added": 160000,
       "capital_cumulative": 200000,
       "throughput_beds_per_day": 4,
-      "_note": "TARGET state. $471.30 margin at $750 retail (63%). 4 beds/day × 250 working days = 1,000/yr from one facility."
+      "_note": "TARGET state. $474.26 margin at $750 retail (63%). 4 beds/day × 250 working days = 1,000/yr from one facility."
     },
     "state_5_community": {
       "label": "Community (waste plastic collected, volunteer-run)",
@@ -119,82 +101,67 @@
         { "label": "Community-collected plastic (CDP or volunteer)", "amount": 0.00 },
         { "label": "Diesel (generator)", "amount": 15.00 },
         { "label": "Steel poles", "amount": 27.00 },
-        { "label": "Canvas", "amount": 95.00 },
-        { "label": "End caps + screws", "amount": 6.70 },
+        { "label": "Canvas", "amount": 93.50 },
+        { "label": "End caps + screws + bolts", "amount": 5.24 },
         { "label": "Labour (volunteer / CDP / community)", "amount": 0.00 }
       ],
-      "direct_total": 143.70,
+      "direct_total": 140.74,
       "capital_added": 30000,
       "capital_cumulative": 230000,
       "throughput_beds_per_day": 5,
       "community_jobs_created": true,
-      "_note": "Vision state — $606.30 margin at $750 retail (81%). Almost the entire sale price recirculates into the community enterprise."
+      "_note": "Vision state — $609.26 margin at $750 retail (81%). Almost the entire sale price recirculates into the community enterprise."
     }
   },
+  "first_principles_floor": {
+    "_principle": "Musk Idiot Index: what's the absolute minimum a bed could cost if every input was bought at raw-market rate and assembled at industry-low labour rates?",
+    "components": [
+      { "element": "HDPE plastic raw shred", "qty": "20 kg", "raw_rate": "$2/kg", "cost": 40.00, "source": "Defy INV-1731 shred bulk rate" },
+      { "element": "Galvanised steel pipe raw", "qty": "1.88 m", "raw_rate": "$5.50/m", "cost": 10.34, "source": "Brisbane Steel Xero invoice rate" },
+      { "element": "Cotton 12oz canvas raw", "qty": "2.1 m", "raw_rate": "$15-20/m raw", "cost": 35.00, "source": "12oz cotton duck wholesale benchmark" },
+      { "element": "End caps bulk", "qty": "4", "raw_rate": "$0.50 ea bulk", "cost": 2.00, "source": "Bulk hardware estimate" },
+      { "element": "Screws + bolts", "qty": "16 + 2", "raw_rate": "$0.065 + $0.30 ea bulk", "cost": 1.65, "source": "Coastal Fasteners verified + bulk bolt estimate" },
+      { "element": "Operator labour @ 10 beds/day", "qty": "0.1 day", "raw_rate": "$400/day", "cost": 40.00, "source": "Industry-low fabrication rate" }
+    ],
+    "floor_total_per_bed": 128.99,
+    "current_defy_kit_direct": 469.79,
+    "gap_supply_chain_markup": 340.80,
+    "_implication": "$340.80/bed of supply-chain markup we could capture in-house at scale. That's the capital-investment case."
+  },
   "idiot_index": [
-    { "element": "Defy kit vs in-house factory plastic", "raw_low": 55.00, "raw_high": 55.00, "current": 344.05, "index_low": 6.3, "index_high": 6.3, "markup_pays_for": "Shredding, pressing, CNC, finishing, Defy margin. Biggest leverage — moves cost from $344 to $55 if we shred + press + CNC in-house." },
-    { "element": "Defy panels vs in-house pressed sheets", "raw_low": 55.00, "raw_high": 55.00, "current": 400.00, "index_low": 7.3, "index_high": 7.3, "markup_pays_for": "Hot-press + Defy margin. Panel-path is the WORST value — buy raw shred or buy finished kits, not panels." },
-    { "element": "Defy assembly vs in-house assembly", "raw_low": 40.00, "raw_high": 80.00, "current": 55.95, "index_low": 0.7, "index_high": 1.4, "markup_pays_for": "Defy assembly is already competitive ($55.95 vs in-house $40-$80 depending on facility throughput)." },
-    { "element": "Steel (DNA Steel direct vs raw market)", "raw_low": 12.00, "raw_high": 18.00, "current": 27.00, "index_low": 1.5, "index_high": 2.3, "markup_pays_for": "Cut to length, drill, deliver to Alice Springs." },
-    { "element": "Canvas (Centre Canvas custom)", "raw_low": 35.00, "raw_high": 50.00, "current": 95.00, "index_low": 1.9, "index_high": 2.7, "markup_pays_for": "Cut, hem, sew, grommets, Centre Canvas margin. 2.1m of canvas at $4.80/m." },
-    { "element": "End caps (4 per bed)", "raw_low": 0.50, "raw_high": 1.00, "current": 3.20, "index_low": 3.2, "index_high": 6.4, "markup_pays_for": "Bulk-buy supplier margin on round ribbed plastic caps." },
-    { "element": "Screws (frame fasteners)", "raw_low": 1.00, "raw_high": 2.00, "current": 3.50, "index_low": 1.8, "index_high": 3.5, "markup_pays_for": "Hardware retail markup." }
+    { "element": "HDPE plastic kit (Defy)", "raw_low": 40.00, "raw_high": 40.00, "current": 344.05, "index_low": 8.6, "index_high": 8.6, "markup_pays_for": "Shredding + pressing + CNC + finishing + Defy margin. BIGGEST LEVERAGE — moves $304/bed if we shred + press + CNC in-house." },
+    { "element": "Defy panels (alternative path)", "raw_low": 40.00, "raw_high": 40.00, "current": 400.00, "index_low": 10.0, "index_high": 10.0, "markup_pays_for": "Hot-press + Defy margin. Panel-path is the WORST value — buy raw shred or buy finished kits, not panels." },
+    { "element": "Steel poles (DNA Steel finished)", "raw_low": 10.34, "raw_high": 15.00, "current": 27.00, "index_low": 1.8, "index_high": 2.6, "markup_pays_for": "Cut to length + drill + Alice Springs delivery. Already reasonable." },
+    { "element": "Canvas (Centre Canvas finished)", "raw_low": 32.00, "raw_high": 45.00, "current": 93.50, "index_low": 2.1, "index_high": 2.9, "markup_pays_for": "Cut + hem + grommet + sew + sewist labour. Centre Canvas is competitive against raw 12oz cotton at $62/m self-cut ($130/bed)." },
+    { "element": "End caps", "raw_low": 0.50, "raw_high": 0.80, "current": 0.80, "index_low": 1.0, "index_high": 1.6, "markup_pays_for": "Almost no markup — bulk-supplier direct." },
+    { "element": "Screws", "raw_low": 0.05, "raw_high": 0.07, "current": 0.065, "index_low": 0.9, "index_high": 1.4, "markup_pays_for": "At-cost from Coastal Fasteners — already raw rate." },
+    { "element": "Defy assembly labour", "raw_low": 40.00, "raw_high": 80.00, "current": 55.95, "index_low": 0.7, "index_high": 1.4, "markup_pays_for": "Already competitive — Defy assembly is reasonable vs in-house $40-$80." }
   ],
   "founder_time_allocation": {
     "rate_per_day": 1000,
     "total_days_per_year_on_goods": 150,
     "split": [
-      { "label": "Production-related (oversight, QA, design iteration, supplier rel.)", "days": 30, "annual_cost": 30000, "allocate_to": "bed-overhead" },
-      { "label": "Fundraising / philanthropy (briefs, asks, reporting, donor rel.)", "days": 50, "annual_cost": 50000, "allocate_to": "funding-side-offset" },
-      { "label": "Commercialisation / buyer dev (Centrecorp, councils, sales)", "days": 25, "annual_cost": 25000, "allocate_to": "funding-side-offset" },
+      { "label": "Production-related", "days": 30, "annual_cost": 30000, "allocate_to": "bed-overhead" },
+      { "label": "Fundraising / philanthropy", "days": 50, "annual_cost": 50000, "allocate_to": "funding-side-offset" },
+      { "label": "Commercialisation / buyer dev", "days": 25, "annual_cost": 25000, "allocate_to": "funding-side-offset" },
       { "label": "Governance, strategy, comms, brand", "days": 45, "annual_cost": 45000, "allocate_to": "act-wide-overhead" }
-    ],
-    "_principle": "Only production-related founder time goes onto beds. The fundraising/commercial portion OFFSETS bed cost via dollars raised; the governance portion is ACT-wide, not Goods-specific."
+    ]
   },
   "overhead_per_volume": [
-    {
-      "label": "Today (100 beds/yr)",
-      "beds_per_year": 100,
-      "kirmos_per_bed": 270,
-      "founder_production_per_bed": 300,
-      "admin_per_bed": 147,
-      "field_travel_per_bed": 510,
-      "long_haul_freight_per_bed": 150,
-      "overhead_total": 1377,
-      "_overhead_math": "270 + 300 + 147 + 510 + 150 = 1377"
-    },
-    {
-      "label": "Target (500 beds/yr)",
-      "beds_per_year": 500,
-      "kirmos_per_bed": 54,
-      "founder_production_per_bed": 60,
-      "admin_per_bed": 29,
-      "field_travel_per_bed": 100,
-      "long_haul_freight_per_bed": 100,
-      "overhead_total": 343
-    },
-    {
-      "label": "Vision (1,000 beds/yr at full Factory throughput)",
-      "beds_per_year": 1000,
-      "kirmos_per_bed": 27,
-      "founder_production_per_bed": 30,
-      "admin_per_bed": 15,
-      "field_travel_per_bed": 50,
-      "long_haul_freight_per_bed": 80,
-      "overhead_total": 202
-    }
+    { "label": "Today (100 beds/yr)", "beds_per_year": 100, "kirmos_per_bed": 270, "founder_production_per_bed": 300, "admin_per_bed": 147, "field_travel_per_bed": 510, "long_haul_freight_per_bed": 150, "overhead_total": 1377 },
+    { "label": "Target (500 beds/yr)", "beds_per_year": 500, "kirmos_per_bed": 54, "founder_production_per_bed": 60, "admin_per_bed": 29, "field_travel_per_bed": 100, "long_haul_freight_per_bed": 100, "overhead_total": 343 },
+    { "label": "Vision (1,000 beds/yr)", "beds_per_year": 1000, "kirmos_per_bed": 27, "founder_production_per_bed": 30, "admin_per_bed": 15, "field_travel_per_bed": 50, "long_haul_freight_per_bed": 80, "overhead_total": 202 }
   ],
   "fully_loaded_grid": [
-    { "volume_label": "100/yr today", "state_1_defy_fab": 1977, "state_2_defy_kits": 1915, "state_3_defy_panels": 1964, "state_4_factory": 1656, "state_5_community": 1521 },
-    { "volume_label": "500/yr target", "state_1_defy_fab": 943, "state_2_defy_kits": 881, "state_3_defy_panels": 930, "state_4_factory": 622, "state_5_community": 487 },
-    { "volume_label": "1,000/yr vision", "state_1_defy_fab": 802, "state_2_defy_kits": 740, "state_3_defy_panels": 789, "state_4_factory": 481, "state_5_community": 346 }
+    { "volume_label": "100/yr today", "state_2_defy_kits": 1912, "state_3_defy_panels": 1961, "state_4_factory": 1653, "state_5_community": 1518 },
+    { "volume_label": "500/yr target", "state_2_defy_kits": 878, "state_3_defy_panels": 927, "state_4_factory": 619, "state_5_community": 484 },
+    { "volume_label": "1,000/yr vision", "state_2_defy_kits": 737, "state_3_defy_panels": 786, "state_4_factory": 478, "state_5_community": 343 }
   ],
   "margin_grid_at_750_retail": [
-    { "path": "Defy fully-fabricated", "direct": 600.00, "margin": 150, "margin_pct": 20 },
-    { "path": "Defy Kits", "direct": 537.75, "margin": 212.25, "margin_pct": 28 },
-    { "path": "Defy Panels", "direct": 587.03, "margin": 162.97, "margin_pct": 22 },
-    { "path": "Factory (in-house)", "direct": 278.70, "margin": 471.30, "margin_pct": 63 },
-    { "path": "Community (volunteer + free plastic)", "direct": 143.70, "margin": 606.30, "margin_pct": 81 }
+    { "path": "Defy Kits", "direct": 534.79, "margin": 215.21, "margin_pct": 29 },
+    { "path": "Defy Panels", "direct": 584.07, "margin": 165.93, "margin_pct": 22 },
+    { "path": "Factory (in-house)", "direct": 275.74, "margin": 474.26, "margin_pct": 63 },
+    { "path": "Community (volunteer + free plastic)", "direct": 140.74, "margin": 609.26, "margin_pct": 81 }
   ],
   "fundraising_offset": {
     "philanthropy_days_per_year": 50,
@@ -204,8 +171,7 @@
     "commercial_buyer_benchmark_per_bed": 801,
     "commercial_buyer_source": "Centrecorp INV-0291 (107 beds @ $85,712)",
     "_per_bed_subsidy_at_100_per_year": 2500,
-    "_per_bed_subsidy_at_500_per_year": 500,
-    "_principle": "Fundraising days are an INVESTMENT that generates revenue offsetting bed cost."
+    "_per_bed_subsidy_at_500_per_year": 500
   },
   "counterfactual": {
     "commercial_steel_frame_bed_au_2026_low": 1500,
@@ -225,20 +191,36 @@
     "_capital_ask_low": 90000,
     "_capital_ask_high": 200000
   },
+  "qbe_pitch_inputs": {
+    "_principle": "QBE standard funder pitch: Capital ask + unit economics + scaling plan. Sliders should expose these levers.",
+    "capital_ask_low": 90000,
+    "capital_ask_high": 200000,
+    "beds_per_year_today": 100,
+    "beds_per_year_target": 500,
+    "beds_per_year_vision": 1000,
+    "fully_loaded_today_per_bed": 1912,
+    "fully_loaded_target_per_bed": 619,
+    "fully_loaded_vision_per_bed": 478,
+    "commercial_low": 1500,
+    "commercial_high": 2000,
+    "headline_value_per_dollar_at_target": "Each $1,000 of capital invested unlocks ~$X/bed cost reduction, ~Y beds/yr capacity"
+  },
   "mistags_to_fix": [
-    { "supplier": "Defy Washing Machine Cladding (multiple bills)", "amount": 25000, "current_tag": "ACT-GD", "correct_tag": "ACT-FM" },
-    { "supplier": "Defy Coasters (INV-1174 + INV-1637)", "amount": 10000, "current_tag": "ACT-GD", "correct_tag": "ACT-EL (marketing/merch)" },
-    { "supplier": "Defy Design/R&D (INV-1258 + INV-1259)", "amount": 7000, "current_tag": "ACT-GD bed-COGS", "correct_tag": "ACT-GD capital/R&D" },
-    { "supplier": "Utopia trip flights/accommodation", "amount": 24507, "current_tag": "ACT-IN", "correct_tag": "ACT-GD" },
+    { "supplier": "Centre Canvas (3 bills)", "amount": 14915, "current_tag": "ACT-IN", "correct_tag": "ACT-GD", "_note": "Verified ex deep OCR 2026-05-28 — 50 + 110 covers @ $93.50, plus duplicate $10,285 to reconcile" },
+    { "supplier": "Coastal Fasteners screws", "amount": 131, "current_tag": "ACT-FM", "correct_tag": "ACT-GD or split", "_note": "2000 screws @ $0.065 — shared with Goods facility" },
+    { "supplier": "Defy Washing Machine Cladding", "amount": 25000, "current_tag": "ACT-GD", "correct_tag": "ACT-FM" },
+    { "supplier": "Defy Coasters", "amount": 10000, "current_tag": "ACT-GD", "correct_tag": "ACT-EL" },
+    { "supplier": "Defy Design/R&D", "amount": 7000, "current_tag": "ACT-GD bed-COGS", "correct_tag": "ACT-GD capital/R&D" },
+    { "supplier": "Utopia trip flights/accom", "amount": 24507, "current_tag": "ACT-IN", "correct_tag": "ACT-GD" },
     { "supplier": "1300 Washer", "amount": 13980, "current_tag": "ACT-GD", "correct_tag": "ACT-FM" },
     { "supplier": "Carla Furnishers duplicate", "amount": 11180, "current_tag": "ACT-GD", "correct_tag": "VOID DUPLICATE" },
-    { "supplier": "R M Tanner Triple Axle", "amount": 19950, "current_tag": "ACT-GD", "correct_tag": "Different project entirely — remove from ACT-GD" },
+    { "supplier": "R M Tanner Triple Axle (Weave Bed era, different project)", "amount": 19950, "current_tag": "ACT-GD", "correct_tag": "Different project — remove from ACT-GD" },
     { "supplier": "Zinus Australia (Basket Bed v1 mattress toppers)", "amount": 28690, "current_tag": "ACT-GD", "correct_tag": "ACT-GD-archive (Basket Bed v1, discontinued)" }
   ],
   "open_questions_for_defy": [
-    "Volume quote at 100 / 500 / 1,000 / 5,000 beds/yr — what does the $344.05/bed kit rate become?",
+    "Volume quote at 100 / 500 / 1,000 / 5,000 beds/yr — what does $344.05/bed kit become?",
     "Build-to-supply: cheaper if ACT sources steel (DNA Steel) + canvas (Centre Canvas) direct and supplies to Defy for kit-assembly only?",
     "In-house assembly payback: at what volume does taking the $55.95/bed assembly in-house pay back the $90K-$200K capex?",
-    "Confirm INV-1731 freight cost ($874 for 1,200kg + 20 panels Sydney → Sunshine Coast)?"
+    "Confirm INV-1731 freight (3 × $450 = $1,350) Sydney → Sunshine Coast for 1200kg shred + 20 panels?"
   ]
 }
