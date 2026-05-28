@@ -30,6 +30,10 @@ import {
   Receipt,
   Presentation,
   Building2,
+  ClipboardCheck,
+  NotebookPen,
+  Calculator,
+  PackagePlus,
 } from 'lucide-react';
 
 type NavItem = { name: string; href: string; icon: React.ComponentType<{ className?: string }> };
@@ -45,6 +49,7 @@ const navigation: NavGroup[] = [
       { name: 'Bed signals',    href: '/admin/bed-signals',   icon: Radar },
       { name: 'Trip preflight', href: '/admin/bed-preflight', icon: FileCheck },
       { name: 'Install (photos)', href: '/admin/install-bulk', icon: Camera },
+      { name: 'Install checklist', href: '/admin/install-checklist', icon: ClipboardCheck },
       { name: 'Assets',         href: '/admin/assets',        icon: Library },
       { name: 'Scans',          href: '/admin/scans',         icon: BarChart3 },
       { name: 'Photos',         href: '/admin/photos',        icon: Images },
@@ -61,6 +66,7 @@ const navigation: NavGroup[] = [
       { name: 'Messages',       href: '/admin/messages',      icon: MessageSquare },
       { name: 'Reach out',      href: '/admin/reach-out',     icon: Send },
       { name: 'Compassion',     href: '/admin/compassion',    icon: Heart },
+      { name: 'Field notes',    href: '/admin/field-notes',   icon: NotebookPen },
     ],
   },
   {
@@ -68,6 +74,7 @@ const navigation: NavGroup[] = [
     items: [
       { name: 'Fleet',          href: '/admin/fleet',         icon: Truck },
       { name: 'Production',     href: '/admin/production',    icon: Wrench },
+      { name: 'Cost model',     href: '/admin/cost-model',    icon: Calculator },
     ],
   },
   {
@@ -76,6 +83,7 @@ const navigation: NavGroup[] = [
       { name: 'Deals',          href: '/admin/deals',         icon: Crosshair },
       { name: 'Xero recon',     href: '/admin/xero-reconciliation', icon: FileCheck },
       { name: 'Orders',         href: '/admin/orders',        icon: ShoppingCart },
+      { name: 'Requests',       href: '/admin/requests',      icon: PackagePlus },
       { name: 'Products',       href: '/admin/products',      icon: Package },
     ],
   },
