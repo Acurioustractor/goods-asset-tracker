@@ -348,7 +348,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         current: null,
         targets: { year1: 2_000_000, year3: 10_000_000, vision2030: 50_000_000 },
         source: 'computed',
-        sourceDetail: 'RHD surgery cost ($250K) × estimated cases prevented by clean bedding infrastructure',
+        sourceDetail: 'MODELLED, not measured: ~$70K per surgical RHD admission (END RHD 2018; NOT $250K) × estimated cases prevented. Needs a health-evidence partner before external use.',
         proxyFor: 'Healthcare system cost reduction from preventive health hardware',
         optimizationLevers: ['Bed and washer deployment', 'Evidence gathering for health impact'],
         computeFn: 'computeGovtSavings',
