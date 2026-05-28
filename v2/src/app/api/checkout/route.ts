@@ -38,6 +38,21 @@ export async function POST(request: NextRequest) {
     // Create a map for quick lookup
     const productMap = new Map(products.map((p) => [p.id, p]));
 
+    // Stripe needs an absolute, publicly-reachable image URL. Our product
+    // images are stored as relative paths (/images/...) so next/image can serve
+    // them same-origin; prepend the request origin to make them absolute for
+    // Stripe. Fall back to the production domain when the origin is localhost
+    // (Stripe can't fetch a dev image, but prod stays correct).
+    const origin = request.headers.get('origin') || 'http://localhost:3000';
+    const assetBase = origin.startsWith('http://localhost')
+      ? 'https://www.goodsoncountry.com'
+      : origin;
+    const toAbsoluteImage = (image?: string): string | undefined => {
+      if (!image) return undefined;
+      if (image.startsWith('http')) return image;
+      return `${assetBase}${image.startsWith('/') ? '' : '/'}${image}`;
+    };
+
     // Build line items for Stripe
     const lineItems = items.map((item) => {
       const productId = item.id.split('-sponsor-')[0];
@@ -45,6 +60,7 @@ export async function POST(request: NextRequest) {
 
       // Use database price for security (don't trust client-sent price)
       const unitAmount = dbProduct?.price_cents || item.price_cents;
+      const imageUrl = toAbsoluteImage(item.image);
 
       let productName = item.name;
       if (item.is_sponsorship) {
@@ -56,7 +72,7 @@ export async function POST(request: NextRequest) {
           currency: item.currency.toLowerCase(),
           product_data: {
             name: productName,
-            ...(item.image && item.image.startsWith('http') && { images: [item.image] }),
+            ...(imageUrl && { images: [imageUrl] }),
             metadata: {
               product_id: productId,
               product_type: item.product_type || '',
@@ -87,8 +103,6 @@ export async function POST(request: NextRequest) {
     };
 
     // Create Stripe checkout session
-    const origin = request.headers.get('origin') || 'http://localhost:3000';
-
     const session = await getStripe().checkout.sessions.create({
       mode: 'payment',
       payment_method_types: ['card'],
