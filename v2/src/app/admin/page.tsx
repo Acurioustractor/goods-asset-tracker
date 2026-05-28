@@ -37,6 +37,7 @@ export default async function AdminDashboard() {
   const supabase = createServiceClient();
   const oneDayAgo = new Date(Date.now() - TWENTY_FOUR_H).toISOString();
 
+  const thirtyDaysAgo = new Date(Date.now() - 30 * TWENTY_FOUR_H).toISOString();
   const [
     bedsByCommunityRes,
     recentSignalsRes,
@@ -44,6 +45,9 @@ export default async function AdminDashboard() {
     pendingRemindersRes,
     overdueDealsRes,
     recentCompassionRes,
+    bedFlowRes,
+    pipelineDealsRes,
+    productionInventoryRes,
   ] = await Promise.all([
     supabase
       .from('assets')
@@ -81,6 +85,22 @@ export default async function AdminDashboard() {
       .gte('created_at', oneDayAgo)
       .order('created_at', { ascending: false })
       .limit(8),
+    // Bed-flow rollup — production/ready/allocated/deployed/retired across products
+    supabase
+      .from('assets')
+      .select('status, product, quantity, created_at, notes'),
+    // Pipeline value across deals (not just overdue)
+    supabase
+      .from('crm_deals')
+      .select('pipeline_stage, amount_cents, units, deal_type')
+      .in('deal_type', ['sale', 'procurement'])
+      .neq('pipeline_stage', 'lost'),
+    // Production inventory (most recent snapshot — raw plastic stock, beds possible)
+    supabase
+      .from('production_inventory')
+      .select('snapshot_date, raw_plastic_kg, sheets_count, beds_possible')
+      .order('snapshot_date', { ascending: false })
+      .limit(1),
   ]);
 
   const readyAssets = bedsByCommunityRes.data || [];
@@ -126,14 +146,161 @@ export default async function AdminDashboard() {
 
   const overdueTotal = overdueDeals.reduce((s, d) => s + (d.amount_cents || 0), 0);
 
+  // Bed-flow rollup — production-style kanban across all bed assets
+  const allBedAssets = (bedFlowRes.data || []) as Array<{ status: string; product: string; quantity: number | null; created_at: string; notes: string | null }>;
+  const bedFlow = { inProduction: 0, ready: 0, allocated: 0, deployed: 0, deployed30d: 0, retired: 0 };
+  for (const a of allBedAssets) {
+    if (!/bed/i.test(a.product || '')) continue;
+    const q = a.quantity || 1;
+    const isInTransit = (a.notes || '').toLowerCase().includes('transit');
+    if (isInTransit) {
+      bedFlow.allocated += q;
+      continue;
+    }
+    switch (a.status) {
+      case 'requested': bedFlow.inProduction += q; break;
+      case 'ready': bedFlow.ready += q; break;
+      case 'allocated': bedFlow.allocated += q; break;
+      case 'deployed':
+        bedFlow.deployed += q;
+        if (a.created_at && a.created_at >= thirtyDaysAgo) bedFlow.deployed30d += q;
+        break;
+      case 'retired': bedFlow.retired += q; break;
+    }
+  }
+
+  // Pipeline value across deals
+  const allDeals = (pipelineDealsRes.data || []) as Array<{ pipeline_stage: string; amount_cents: number | null; units: number | null; deal_type: string }>;
+  const pipelineValue = allDeals.reduce((s, d) => s + (d.amount_cents || 0), 0);
+  const pipelineWon = allDeals.filter((d) => d.pipeline_stage === 'won').reduce((s, d) => s + (d.amount_cents || 0), 0);
+  const pipelineActive = pipelineValue - pipelineWon;
+
+  // Production inventory (raw plastic + beds possible)
+  const inventory = (productionInventoryRes.data || [])[0] as { raw_plastic_kg: number; sheets_count: number; beds_possible: number; snapshot_date: string } | undefined;
+
+  // Compute today's #1 action (highest-priority thing to do)
+  type TodayCall = { headline: string; detail: string; href: string; tone: 'red' | 'amber' | 'emerald' | 'blue' };
+  const todayCall: TodayCall = (() => {
+    if (overdueTotal > 100_000_00) {
+      const top = overdueDeals.sort((a, b) => (b.amount_cents || 0) - (a.amount_cents || 0))[0];
+      return {
+        headline: `Chase ${formatMoney(overdueTotal)} overdue`,
+        detail: top ? `${top.title}` : `${overdueDeals.length} invoices`,
+        href: '/admin/xero-reconciliation',
+        tone: 'red',
+      };
+    }
+    const silentMachines = alerts.filter((a) => a.type === 'machine_silent').length;
+    if (silentMachines >= 3) {
+      return {
+        headline: `${silentMachines} machines silent`,
+        detail: 'Field signal needed — check in with communities',
+        href: '/admin/bed-signals',
+        tone: 'amber',
+      };
+    }
+    const bigCommunity = tripTargets[0];
+    if (bigCommunity && bigCommunity.ready >= 5) {
+      return {
+        headline: `${bigCommunity.ready} ready for ${bigCommunity.community}`,
+        detail: 'Schedule the next trip to clear inventory',
+        href: '/admin/bed-preflight',
+        tone: 'emerald',
+      };
+    }
+    return {
+      headline: 'All systems clean',
+      detail: 'Pick a funder to brief or open the cost model',
+      href: '/admin/funders',
+      tone: 'blue',
+    };
+  })();
+
+  const toneClass: Record<TodayCall['tone'], string> = {
+    red: 'bg-red-50 border-red-200 text-red-900',
+    amber: 'bg-amber-50 border-amber-200 text-amber-900',
+    emerald: 'bg-emerald-50 border-emerald-200 text-emerald-900',
+    blue: 'bg-blue-50 border-blue-200 text-blue-900',
+  };
+
   return (
-    <div className="px-4 md:px-8 py-6 space-y-6 max-w-6xl mx-auto">
-      <header>
-        <h1 className="font-display text-2xl font-bold">Today</h1>
-        <p className="text-sm text-muted-foreground">
-          Live field state. {totalReady} beds ready · {totalAllocated} allocated · {signals.length} signals in last 24h.
+    <div className="px-4 md:px-8 py-6 space-y-6 max-w-7xl mx-auto">
+      <header className="flex items-baseline justify-between gap-4 flex-wrap">
+        <h1 className="font-display text-3xl font-bold">Today</h1>
+        <p className="text-xs text-muted-foreground">
+          {new Date().toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long' })} · {bedFlow.deployed30d} beds delivered in 30d
         </p>
       </header>
+
+      {/* HERO STRIP — the 4 things to know in 5 seconds */}
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        {/* 1. Bed flow */}
+        <Link href="/admin/production" className="rounded-2xl border bg-card shadow-sm p-4 hover:shadow-md transition-shadow">
+          <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Beds in motion</p>
+          <div className="mt-2 grid grid-cols-4 gap-1 text-center text-xs">
+            <div>
+              <div className="text-xl font-bold tabular-nums">{bedFlow.inProduction}</div>
+              <div className="text-[10px] text-muted-foreground">making</div>
+            </div>
+            <div>
+              <div className="text-xl font-bold tabular-nums text-emerald-700">{bedFlow.ready}</div>
+              <div className="text-[10px] text-muted-foreground">ready</div>
+            </div>
+            <div>
+              <div className="text-xl font-bold tabular-nums text-amber-700">{bedFlow.allocated}</div>
+              <div className="text-[10px] text-muted-foreground">allocated</div>
+            </div>
+            <div>
+              <div className="text-xl font-bold tabular-nums text-blue-700">{bedFlow.deployed}</div>
+              <div className="text-[10px] text-muted-foreground">on Country</div>
+            </div>
+          </div>
+          {inventory && inventory.beds_possible > 0 && (
+            <p className="mt-3 text-[11px] text-muted-foreground border-t pt-2">
+              + {inventory.beds_possible} beds possible from {inventory.raw_plastic_kg}kg raw plastic in stock
+            </p>
+          )}
+        </Link>
+
+        {/* 2. Money */}
+        <Link href="/admin/xero-reconciliation" className="rounded-2xl border bg-card shadow-sm p-4 hover:shadow-md transition-shadow">
+          <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Money</p>
+          <div className="mt-2">
+            {overdueTotal > 0 ? (
+              <div className="text-2xl font-bold tabular-nums text-red-700">{formatMoney(overdueTotal)}</div>
+            ) : (
+              <div className="text-2xl font-bold tabular-nums text-emerald-700">$0</div>
+            )}
+            <p className="text-[11px] text-muted-foreground">overdue · {overdueDeals.length} invoice{overdueDeals.length === 1 ? '' : 's'}</p>
+          </div>
+          <div className="mt-3 pt-2 border-t flex justify-between text-[11px] text-muted-foreground">
+            <span>Pipeline {formatMoney(pipelineActive)}</span>
+            <span>Won {formatMoney(pipelineWon)}</span>
+          </div>
+        </Link>
+
+        {/* 3. Today's call */}
+        <Link href={todayCall.href} className={`rounded-2xl border shadow-sm p-4 hover:shadow-md transition-shadow ${toneClass[todayCall.tone]}`}>
+          <p className="text-[10px] uppercase tracking-wider font-semibold opacity-80">Today's call</p>
+          <p className="mt-2 text-lg font-bold leading-tight">{todayCall.headline}</p>
+          <p className="mt-1 text-xs opacity-80">{todayCall.detail}</p>
+          <p className="mt-3 text-[10px] uppercase tracking-wider font-semibold opacity-70">Open →</p>
+        </Link>
+
+        {/* 4. Cost-model trajectory */}
+        <Link href="/admin/cost-model" className="rounded-2xl border bg-card shadow-sm p-4 hover:shadow-md transition-shadow">
+          <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Cost trajectory</p>
+          <div className="mt-2 flex items-baseline gap-2">
+            <span className="text-2xl font-bold tabular-nums">$535</span>
+            <span className="text-xs text-muted-foreground">→ $276</span>
+          </div>
+          <p className="text-[11px] text-muted-foreground">Defy Kits → Factory in-house</p>
+          <div className="mt-3 pt-2 border-t flex justify-between text-[11px] text-muted-foreground">
+            <span>Idiot Index 8.6×</span>
+            <span>$90-200K capex</span>
+          </div>
+        </Link>
+      </section>
 
       {/* Trip targets */}
       <section className="rounded-2xl border bg-card shadow-sm">
