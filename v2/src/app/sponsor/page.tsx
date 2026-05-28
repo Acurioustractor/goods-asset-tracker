@@ -25,6 +25,31 @@ const COMMUNITIES = [
   { id: 'kalgoorlie', name: 'Kalgoorlie', state: 'WA' },
 ];
 
+// Real photos from Country (local assets — relative paths so next/image serves
+// them from the same origin without a remotePatterns entry). Hero anchors the
+// page with a real person; the gallery walks the journey: made -> delivered -> used.
+const HERO_IMAGE = {
+  src: '/images/product/stretch-bed-community.jpg',
+  alt: 'An Elder standing beside her Stretch Bed on Country',
+};
+const GALLERY = [
+  {
+    src: '/images/product/stretch-bed-kids-building.jpg',
+    alt: 'Kids assembling a Stretch Bed from recycled-plastic legs',
+    caption: 'Built on Country, from recycled plastic.',
+  },
+  {
+    src: '/images/product/stretch-bed-assembly.jpg',
+    alt: 'Stretching the canvas over the steel-and-plastic frame',
+    caption: 'Up in about five minutes. No tools.',
+  },
+  {
+    src: '/images/product/stretch-bed-in-use.jpg',
+    alt: 'Resting on a Stretch Bed, up off the ground',
+    caption: 'A washable bed, up off the ground.',
+  },
+];
+
 interface Product {
   id: string;
   slug: string;
@@ -162,6 +187,20 @@ function SponsorContent() {
           One Stretch Bed, into one home that needs it, in a community you can choose.
           We deliver. We log the bed under a QR code. You can follow exactly where it lands.
         </p>
+      </section>
+
+      {/* Hero image — anchors the page in a real bed, in a real community */}
+      <section className="px-5 sm:px-8 max-w-4xl mx-auto pb-10">
+        <figure className="relative aspect-[3/2] sm:aspect-[16/9] rounded-3xl overflow-hidden" style={{ backgroundColor: `${CHARCOAL}10` }}>
+          <Image
+            src={HERO_IMAGE.src}
+            alt={HERO_IMAGE.alt}
+            fill
+            priority
+            className="object-cover"
+            sizes="(max-width: 896px) 100vw, 896px"
+          />
+        </figure>
       </section>
 
       {/* What you're sponsoring */}
@@ -399,6 +438,36 @@ function SponsorContent() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Where beds land — real photos from Country */}
+      <section className="px-5 sm:px-8 py-14 sm:py-16 max-w-5xl mx-auto">
+        <div className="text-center mb-10">
+          <p className="text-xs uppercase tracking-[0.25em] mb-3" style={{ color: RUST }}>
+            On Country
+          </p>
+          <h2 className="font-display text-3xl sm:text-4xl leading-tight" style={{ color: CHARCOAL }}>
+            This is where your bed lands.
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
+          {GALLERY.map((img) => (
+            <figure key={img.src} className="space-y-3">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden" style={{ backgroundColor: `${CHARCOAL}10` }}>
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, 33vw"
+                />
+              </div>
+              <figcaption className="text-sm text-center sm:text-left" style={{ color: `${CHARCOAL}99` }}>
+                {img.caption}
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </section>
 
