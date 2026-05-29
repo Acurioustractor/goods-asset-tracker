@@ -138,13 +138,13 @@
     { "element": "Defy assembly labour", "raw_low": 40.00, "raw_high": 80.00, "current": 55.95, "index_low": 0.7, "index_high": 1.4, "markup_pays_for": "Already competitive — Defy assembly is reasonable vs in-house $40-$80." }
   ],
   "founder_time_allocation": {
-    "rate_per_day": 1000,
+    "rate_per_day": 560,
     "total_days_per_year_on_goods": 150,
     "split": [
-      { "label": "Production-related", "days": 30, "annual_cost": 30000, "allocate_to": "bed-overhead" },
-      { "label": "Fundraising / philanthropy", "days": 50, "annual_cost": 50000, "allocate_to": "funding-side-offset" },
-      { "label": "Commercialisation / buyer dev", "days": 25, "annual_cost": 25000, "allocate_to": "funding-side-offset" },
-      { "label": "Governance, strategy, comms, brand", "days": 45, "annual_cost": 45000, "allocate_to": "act-wide-overhead" }
+      { "label": "Production-related", "days": 30, "annual_cost": 16800, "allocate_to": "bed-overhead" },
+      { "label": "Fundraising / philanthropy", "days": 50, "annual_cost": 28000, "allocate_to": "funding-side-offset" },
+      { "label": "Commercialisation / buyer dev", "days": 25, "annual_cost": 14000, "allocate_to": "funding-side-offset" },
+      { "label": "Governance, strategy, comms, brand", "days": 45, "annual_cost": 25200, "allocate_to": "act-wide-overhead" }
     ]
   },
   "overhead_per_volume": [
