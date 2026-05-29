@@ -7,12 +7,12 @@ struck through in red. Right: the SAME total split honestly into marginal (the
 next bed) + fixed (spread over volume).
 
 EXACT figures (do not change):
-  - Headline:  AU$1,912 (struck through)  caption "looks like the cost (at 100/yr)"
-  - Split:     685 marginal (the next bed) + 1,227 fixed (spread over volume)
+  - Headline:  AU$1,780 (struck through)  caption "looks like the cost (at 100/yr)"
+  - Split:     685 marginal (the next bed) + 1,095 fixed (spread over volume)
                caption "same total, split honestly"
-               (685 + 1,227 = 1,912)
+               (685 + 1,095 = 1,780; fixed = AU$109,500 annual block / 100 beds)
   - Footer:    "Marginal drops 685 to 426 once in-sourced.
-                Breakeven: Factory ~378/yr vs Buy-Kit ~1,882/yr."
+                Breakeven: Factory ~338/yr vs Buy-Kit ~1,679/yr."
 
 Style mirrors scripts/generate_goods_cost_model_diagram.py (same palette, fonts,
 helpers, SVG -> PNG/PDF via rsvg-convert).
@@ -85,8 +85,8 @@ LX, RXn = 60, 1620
 base_y = 720                 # common baseline for both bars
 top_pad_y = 200              # top of plotting area
 plot_h = base_y - top_pad_y  # vertical px available
-total = 1912.0
-scale = plot_h / total       # px per dollar (so 1912 fills the column)
+total = 1780.0
+scale = plot_h / total       # px per dollar (so the total fills the column)
 
 bar_w = 230
 left_cx = 470                # left bar centre
@@ -102,7 +102,7 @@ S.append(rrect(left_cx-bar_w/2, ly, bar_w, lh_px, 12, tint(RUST, 0.5), stroke=RU
 # red strike-through across the value
 S.append(f'<line x1="{left_cx-bar_w/2-26}" y1="{ly+lh_px*0.34}" x2="{left_cx+bar_w/2+26}" y2="{ly+lh_px*0.30}" '
          f'stroke="{RUST}" stroke-width="5" stroke-linecap="round"/>')
-S.append(text(left_cx, ly-20, "AU$1,912", 40, RUST, family=SERIF, weight="700"))
+S.append(text(left_cx, ly-20, "AU$1,780", 40, RUST, family=SERIF, weight="700"))
 S.append(text(left_cx, base_y+34, "looks like the cost (at 100/yr)", 16, INK_MUTE, italic=True))
 S.append(text(left_cx, base_y+58, "fixed block divided over only 100 beds", 13, INK_MUTE))
 
@@ -113,7 +113,7 @@ S.append(text((left_cx+right_cx)/2, (top_pad_y+base_y)/2 - 2, "honestly", 14, IN
 
 # ---- RIGHT bar: the honest split (stacked: marginal bottom + fixed top)
 marginal = 685.0
-fixed = 1227.0
+fixed = 1095.0
 mh = marginal * scale
 fh = fixed * scale
 # marginal (bottom, darker teal = the real next-bed cost)
@@ -128,10 +128,10 @@ S.append(rrect(right_cx-bar_w/2, my-14, bar_w, 14, 0, tint(CLAY, 0.55)))  # join
 # segment labels
 S.append(text(right_cx, my + mh/2 - 6, "AU$685", 26, "#FFFFFF", family=SERIF, weight="700"))
 S.append(text(right_cx, my + mh/2 + 16, "marginal (the next bed)", 13.5, "#FFFFFF", weight="600"))
-S.append(text(right_cx, fy_ + fh/2 - 6, "AU$1,227", 26, darken(CLAY), family=SERIF, weight="700"))
+S.append(text(right_cx, fy_ + fh/2 - 6, "AU$1,095", 26, darken(CLAY), family=SERIF, weight="700"))
 S.append(text(right_cx, fy_ + fh/2 + 16, "fixed (spread over volume)", 13.5, darken(CLAY), weight="600"))
 
-S.append(text(right_cx, fy_-20, "AU$1,912 total", 22, INK, family=SERIF, weight="700"))
+S.append(text(right_cx, fy_-20, "AU$1,780 total", 22, INK, family=SERIF, weight="700"))
 S.append(text(right_cx, base_y+34, "same total, split honestly", 16, darken(SAGE), weight="700", italic=True))
 S.append(text(right_cx, base_y+58, "marginal scales per bed; fixed is annual", 13, INK_MUTE))
 
@@ -147,13 +147,13 @@ fb_y = base_y + 92
 S.append(rrect(LX, fb_y, RXn-LX, 86, 16, tint(SAGE), stroke=SAGE, sw=1.8, shadow=True))
 S.append(text(LX+28, fb_y+34, "THE TWO LEVERS", 14, darken(SAGE), weight="700", anchor="start", spacing="1.4"))
 S.append(text(LX+28, fb_y+62,
-   "Marginal drops AU$685 to AU$426 once in-sourced.  Breakeven: Factory ~378/yr vs Buy-Kit ~1,882/yr.",
+   "Marginal drops AU$685 to AU$426 once in-sourced.  Breakeven: Factory ~338/yr vs Buy-Kit ~1,679/yr.",
    21, INK, family=SERIF, weight="700", anchor="start"))
 
 # ------------------------------------------------------------------- footer source
 fy = fb_y + 86 + 34
 S.append(text(LX, fy,
-   "Source: Goods cost model (2026-05). AU$1,912 = marginal + fixed block absorbed over a 100-bed denominator; split and breakevens modelled on verified BOM inputs (AU$750 price).",
+   "Source: Goods cost model (2026-05). AU$1,780 = marginal + AU$109,500 annual fixed block absorbed over a 100-bed denominator; split and breakevens modelled on verified BOM inputs (AU$750 price).",
    11.5, INK_MUTE, italic=True, family=SERIF, anchor="start"))
 
 S.append("</svg>")

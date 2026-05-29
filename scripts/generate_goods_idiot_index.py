@@ -7,7 +7,8 @@ component. The HDPE legs bar is highlighted as the capital lever; Defy panels
 are muted and labelled "avoid".
 
 EXACT figures (do not change):
-  - HDPE legs   8.6x  (raw 40,    paid 344)   [HIGHLIGHT — the lever]
+  - HDPE legs   8.6x vs Defy shred floor (raw 40, paid 344) [HIGHLIGHT — the lever]
+                ~21.5x vs raw-polymer floor (16 = 20kg x AU$0.80/kg recycled HDPE)
   - Defy panels 10x   (raw 40,    paid 400)   [muted — "avoid"]
   - Canvas      2.4x  (raw 38.50, paid 93.50)
   - Steel       2.1x  (raw 12.67, paid 27)
@@ -133,6 +134,12 @@ for i, (lab, idx, raw, paid, color, hi, tag) in enumerate(rows):
     # index value at bar end
     S.append(text(bar_x+bw+14, by + bar_h/2 + 7, f"{idx:g}x", 22, darken(use_color),
                   family=SERIF, weight="700", anchor="start"))
+    # HDPE legs: show BOTH floors — shred price (this bar) and the raw-polymer floor
+    if hi:
+        S.append(text(bar_x+bw+14, by + bar_h/2 - 14, "vs shred price", 12, INK_MUTE,
+                      weight="600", anchor="start"))
+        S.append(text(bar_x+bw+14, by + bar_h/2 + 26, "~21.5x vs raw polymer (AU$16 floor)",
+                      12.5, darken(TERRA), weight="700", anchor="start"))
     # raw -> paid annotation
     if raw is not None:
         ann = f"raw AU${raw:,.2f} to paid AU${paid:,.2f}".replace(".00", "")
@@ -157,7 +164,7 @@ S.append(rrect(LX, co_y, RXn-LX, co_h, 16, tint(TERRA), stroke=TERRA, sw=1.8, sh
 S.append(text(LX+28, co_y+34, "THE CAPITAL CASE", 14, darken(TERRA), weight="700",
               anchor="start", spacing="1.4"))
 S.append(text(LX+28, co_y+64,
-   "HDPE legs = the capital case: in-sourcing the legs captures ~AU$289/bed of supplier margin",
+   "HDPE legs = the capital case: 8.6x vs the shred price, ~21.5x vs raw polymer — ~AU$289/bed of supplier margin to capture",
    20, INK, family=SERIF, weight="700", anchor="start"))
 S.append(text(LX+28, co_y+86,
    "(in-house legs ~AU$150/bed). Defy panels at 10x are the trap: you pay the press margin and still CNC and assemble.",
@@ -167,7 +174,7 @@ S.append(text(LX+28, co_y+86,
 fy = co_y + co_h + 46
 S.append(f'<line x1="{LX}" y1="{fy-22}" x2="{RXn}" y2="{fy-22}" stroke="{HAIR}" stroke-width="1"/>')
 S.append(text(LX, fy,
-   "Source: Goods cost model (2026-05). Index = paid / raw-material floor per component; HDPE-legs margin is modelled on verified BOM inputs.",
+   "Source: Goods cost model (2026-05). Index = paid / floor per component; HDPE legs shown vs two floors — Defy shred price (AU$40) and raw recycled-HDPE polymer (20kg x AU$0.80/kg = AU$16, Envirobank). Modelled on verified BOM inputs.",
    11.5, INK_MUTE, italic=True, family=SERIF, anchor="start"))
 
 S.append("</svg>")
