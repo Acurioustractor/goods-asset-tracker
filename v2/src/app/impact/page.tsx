@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { TheoryOfChange } from '@/components/marketing';
 import { fetchImpactData } from '@/lib/data/impact-fetcher';
 import {
   TOTAL_LABOUR_HOURS_PER_BED,
@@ -889,6 +890,28 @@ export default function ImpactPage() {
               Every number is live. Every target is accountable.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Theory of Change */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <p className="text-sm uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
+              How it works
+            </p>
+            <h2
+              className="text-3xl md:text-4xl font-light mb-4"
+              style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}
+            >
+              Theory of Change
+            </h2>
+            <p className="text-base max-w-2xl mx-auto" style={{ color: '#5E5E5E' }}>
+              From community-led design to community-owned production: how our activities create
+              measured outcomes on Country.
+            </p>
+          </div>
+          <TheoryOfChange className="max-w-6xl mx-auto" caption />
         </div>
       </section>
 
