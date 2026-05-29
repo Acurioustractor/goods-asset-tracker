@@ -693,7 +693,7 @@ export const corrections = {
   placeholders: [
     '"40% community share": placeholder concept, not committed. Say "community benefit model" instead.',
     'Kristy Bloomfield quote in content.ts: marked PLACEHOLDER, not verified.',
-    'Bed count: 369 (Catalysing Impact) vs 389 (Asset Register): 389 includes all asset types.',
-    'Washing machine count: 5 deployed (Tennant Creek) vs "20+" (may include field testing).',
+    'Bed count: use 496 deployed bed units. Assets tracked in register (all types): 558.',
+    'Washing machines: say "prototype machines in several communities", do not claim a precise high number.',
   ],
 };

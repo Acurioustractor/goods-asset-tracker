@@ -4,18 +4,20 @@
 
 ## Current legal and entity position
 
-- **A Curious Tractor Pty Ltd** is the primary trading entity being stood up for ACT work from 1 July 2026.
-- **Nicholas Marchesi OAM's sole-trader structure** is still part of the transition history and continues until the Pty cutover is complete.
-- **A Kind Tractor Ltd** is the charity in the ACT ecosystem. It is currently dormant and is not the main Goods operating vehicle.
+- **Nicholas Marchesi sole trader** (ABN 21 591 780 066) is the current operating entity today. All activity is migrating into the Pty this financial year.
+- **A Curious Tractor Pty Ltd** (ACN 697 347 676), trading as Goods on Country, is the go-forward trading and operating company. All Goods activity migrates into it this FY (FY2026-27).
+- **The Butterfly Movement Ltd** is the charity and DGR home from FY2026-27, gifted from TABOO Foundation. It is the only Goods DGR pathway.
+- **A Kind Tractor Ltd** (ABN 73 669 029 341) is dormant and not used. It is not the trading entity, the charity home or a DGR pathway.
 - **ACT Foundation** and **ACT Ventures** should not be used as legal entity names. They are older conceptual labels, not current entities.
-- Goods still needs a settled structure for product sales, grants, philanthropy, working capital, liability, shared services, IP, machinery, local production and community ownership.
+- Goods still needs a settled structure beneath this for product sales, grants, philanthropy, working capital, liability, shared services, IP, machinery, local production and community ownership.
 
 | Entity / structure | Current status | Goods relevance | What is not settled |
 | --- | --- | --- | --- |
-| **A Curious Tractor Pty Ltd** | Registered Pty Ltd. Directors recorded in ACT core facts as Benjamin Knight and Nicholas Marchesi OAM. Primary ACT trading entity from 1 July 2026. | Expected trading home for Goods while the Goods-specific structure is worked through. | Delegations, Goods-specific reporting, product liability, capital readiness, IP and community-production agreements. |
-| **Nicholas Marchesi OAM sole trader** | Historic and transition operating structure. ACT core facts record hard cutover intent to the Pty from 30 June 2026. | Some older Goods invoices, grants, contracts or financial records may still sit here. | Contract novation, invoice cutover, finance history and clean handover into the Pty. |
-| **A Kind Tractor Ltd** | Company limited by guarantee and ACNC-registered charity in the ACT ecosystem. Current ACT core facts say it is dormant and not DGR. | Possible backstop for charitable mission or DGR-only funders if activated later. | Whether it should be used for any Goods purpose at all. Do not present it as active Goods governance. |
-| **Future Goods or community operating entities** | Desired direction, not final legal design. | Possible vehicles for local collection, recycling, production, repair, sales or plant ownership. | Legal form, ownership, decision rights, machinery, brand, warranty, quality control and community governance. |
+| **Nicholas Marchesi sole trader** | Current operating entity today. ABN 21 591 780 066. ACT core facts record cutover intent to the Pty this FY. | Current home for Goods trading, invoices, grants and records. All migrating into the Pty this FY. | Contract novation, invoice cutover, finance history and clean handover into the Pty. |
+| **A Curious Tractor Pty Ltd** | Registered Pty Ltd. ACN 697 347 676. Directors recorded in ACT core facts as Benjamin Knight and Nicholas Marchesi OAM. Trading as Goods on Country. | Go-forward trading and operating home for Goods. All activity migrates into it this FY. | Delegations, Goods-specific reporting, product liability, capital readiness, IP and community-production agreements. |
+| **The Butterfly Movement Ltd** | Company limited by guarantee, ACNC-registered charity, Item 1 DGR. Operational as the Goods charity/DGR home from FY2026-27 (around 1 July 2026). Gifted/transitioned from TABOO Foundation (same legal entity continues). | The only Goods DGR pathway. Philanthropy, gifts and DGR-eligible funding flow through it, never through Goods, A Curious Tractor or A Kind Tractor directly. | Board composition, founding directors, the trading/charity contracting boundary and shared-cost recovery. |
+| **A Kind Tractor Ltd** | Company limited by guarantee. ABN 73 669 029 341. Dormant and not used. ACNC disease-prevention subtype application drew an RFI on 10 April 2024. Not DGR. | Not the trading entity, the charity home or a DGR pathway. Do not present it as active Goods governance. | Nothing for Goods. It is dormant and not used. |
+| **Future community operating entities** | Desired direction, not final legal design. | Possible vehicles for local collection, recycling, production, repair, sales or plant ownership. | Legal form, ownership, decision rights, machinery, brand, warranty, quality control and community governance. |
 
 ## Goods advisory board
 

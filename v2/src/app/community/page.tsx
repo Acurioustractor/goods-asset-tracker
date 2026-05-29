@@ -442,16 +442,15 @@ function ImpactSection() {
         </h2>
         <div className="grid gap-8 sm:grid-cols-4 max-w-3xl mx-auto mb-10">
           <div>
-            <div className="text-4xl font-bold text-accent-foreground">369+</div>
-            <div className="text-sm text-accent-foreground/80 mt-1">Beds delivered</div>
+            <div className="text-4xl font-bold text-accent-foreground">496</div>
+            <div className="text-sm text-accent-foreground/80 mt-1">Bed units deployed</div>
           </div>
           <div>
-            <div className="text-4xl font-bold text-accent-foreground">8+</div>
+            <div className="text-4xl font-bold text-accent-foreground">10</div>
             <div className="text-sm text-accent-foreground/80 mt-1">Communities served</div>
           </div>
           <div>
-            <div className="text-4xl font-bold text-accent-foreground">20+</div>
-            <div className="text-sm text-accent-foreground/80 mt-1">Washing machines</div>
+            <div className="text-sm font-medium text-accent-foreground leading-tight pt-2">Prototype washing machines in several communities</div>
           </div>
         </div>
         <Button size="lg" variant="secondary" asChild>

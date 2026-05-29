@@ -1,6 +1,6 @@
 # 7. Governance, Data and Reporting
 
-> Governance is real but early. We have founder accountability, A Curious Tractor Pty Ltd as the current company home, A Kind Tractor Ltd as dormant charitable infrastructure, a named Goods advisory board, community partner accountability, funder reporting, and emerging story/data infrastructure. We do not yet have a finished investor-ready governance system that shows who decides what, how conflicts are handled, how risk is reviewed, and how consent travels with stories and product data.
+> Governance is real but early. We have founder accountability, the Nicholas Marchesi sole trader as the current operating entity, A Curious Tractor Pty Ltd as the go-forward trading company (t/a Goods on Country, migrating this FY), The Butterfly Movement Ltd as the charity and DGR home from FY2026-27, A Kind Tractor Ltd dormant and not used, a named Goods advisory board, community partner accountability, funder reporting, and emerging story/data infrastructure. We do not yet have a finished investor-ready governance system that shows who decides what, how conflicts are handled, how risk is reviewed, and how consent travels with stories and product data.
 
 ## The human version
 
@@ -20,8 +20,8 @@ The governance job is to put enough structure around that trust so it can scale 
 
 | Area | What exists now | What it proves | What is not settled |
 | --- | --- | --- | --- |
-| Legal vehicle | **A Curious Tractor Pty Ltd** is the expected trading home for Goods. | The work is moving out of sole-trader history and into a company vehicle. | Whether Goods stays inside ACT, becomes a subsidiary, or uses a hybrid/community-controlled structure. |
-| Wider ACT entity context | **A Kind Tractor Ltd** exists as charitable infrastructure in the wider ACT world. Current ACT core facts say it is dormant and not DGR. | There is charitable infrastructure to consider for grants and philanthropy if activated later. | It is not the main Goods operating vehicle today and should not be presented as active Goods governance. |
+| Legal vehicle | Goods operates today through the **Nicholas Marchesi sole trader** (ABN 21 591 780 066) and is migrating this FY into **A Curious Tractor Pty Ltd** (ACN 697 347 676, t/a Goods on Country). | The work is moving out of sole-trader history into the go-forward company. | Whether Goods sits as a sub-entity beneath A Curious Tractor, becomes a subsidiary, or uses a hybrid/community-controlled structure. |
+| Charity and DGR home | **The Butterfly Movement Ltd** is the charity and DGR home from FY2026-27, gifted from TABOO Foundation. **A Kind Tractor Ltd** is dormant and not used. | There is a confirmed charitable/DGR vehicle (Butterfly) for grants, gifts and philanthropy from FY2026-27. It is the only Goods DGR pathway. | Butterfly board composition, founding directors and the trading/charity contracting boundary. A Kind Tractor has no Goods role. |
 | Founder leadership | We currently carry the work day to day. | The work has clear accountable humans, not a faceless project. | Founder authority needs to be translated into roles, delegations and reporting lines. |
 | Advisory board | A Goods advisory board includes Kristy Bloomfield, Nicholas Marchesi OAM, Sally Grimsley-Ballard, Sam Davies, Judith Meiklejohn, Corey Tutt, April Long, Susan Clear, Nina Fitzgerald, Daniel Pittman and Shaun Fisher. | Goods has named external advice across community, manufacturing, design, philanthropy, health and social enterprise. | It is advisory, not a formal board with fiduciary authority. Adeem and Dr Simon Quilty sit in the wider support/partner network, not on the advisory board. |
 | Community accountability | Return visits, partner check-ins, story consent practice, photos/videos shared back, and ongoing conversations with people such as Dianne Stokes, Oonchiumpa, PICC and Tennant Creek partners. | Accountability is relational and place-based, not only upward to funders. | The practice needs a written consent, data and story-use standard before it scales. |
@@ -34,8 +34,9 @@ This is the real governance-adjacent network. It should be shown plainly, with r
 
 | Name / organisation | Current role | Governance relevance |
 | --- | --- | --- |
-| **A Curious Tractor Pty Ltd** | Current Goods trading home. | Company accountability, contracts, sales, finance, product liability and employment. |
-| **A Kind Tractor Ltd** | Wider ACT charity. Current ACT core facts say it is dormant and not DGR. | Possible philanthropy or charitable-purpose pathway if activated later, but not the current Goods operating vehicle. |
+| **A Curious Tractor Pty Ltd** | Go-forward Goods trading company (t/a Goods on Country), migrating this FY. | Company accountability, contracts, sales, finance, product liability and employment. |
+| **The Butterfly Movement Ltd** | Charity and DGR home from FY2026-27, gifted from TABOO Foundation. | The only Goods DGR pathway: philanthropy, gifts and DGR-eligible funding. Charitable-purpose accountability. |
+| **A Kind Tractor Ltd** | Dormant and not used (ABN 73 669 029 341). Not DGR. | No Goods role. Not the trading entity, charity home or DGR pathway. |
 | **Kristy Bloomfield / Oonchiumpa Consultancy** | Cultural lead, Alice Springs partner and potential production pathway. | First Nations leadership, Central Australian governance context and possible Supply Nation/IPP pathway. |
 | **Karen Liddle / Tanya Turner / Fred Campbell / Oonchiumpa** | Oonchiumpa leadership/operating context recorded in the compendium. | Local governance, management, youth pathway and community-led operating design. |
 | **Dianne Stokes** | Waramungu and Warlmanpa Elder, Tennant Creek co-designer and naming partner for Pakkimjalki Kari. | Story consent, product feedback, cultural authority and relationship accountability. |
@@ -87,7 +88,7 @@ This should be practical. It should help us run the work, not just impress funde
 | Board-ready risk register | Turns the working risk picture into owner, trigger, action and review cadence. | Draft base exists |
 | Story/data consent policy | Makes consent, withdrawal, image use, transcript use and dashboard access practical. | Draft practice exists |
 | Monthly Goods reporting pack | Brings finance, product, delivery, community feedback, risk and decisions into one rhythm. | Needed |
-| Legal-structure options note | Tests A Curious Tractor Pty Ltd, A Kind Tractor Ltd, Goods subsidiary, Aboriginal-controlled/local operators and IP/equipment/shared-services model. | Needed with legal input |
+| Legal-structure options note | Tests A Curious Tractor Pty Ltd, The Butterfly Movement Ltd (charity/DGR home), Goods subsidiary, Aboriginal-controlled/local operators and IP/equipment/shared-services model. A Kind Tractor Ltd is dormant and not used. | Needed with legal input |
 
 ## Data and story governance
 
