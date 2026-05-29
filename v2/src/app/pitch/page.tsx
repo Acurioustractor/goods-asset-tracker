@@ -181,7 +181,7 @@ export default function PitchPage() {
               From rubbish to bed
             </h2>
             <p className="text-background/60 mb-12 max-w-2xl">
-              A containerised production plant that turns community plastic waste into bed components. Local people do the making.
+              A containerised production plant designed to turn community plastic waste into bed components, moving toward On-Country production. Local people do the making.
             </p>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
@@ -295,12 +295,12 @@ export default function PitchPage() {
               className="text-3xl md:text-5xl font-light text-foreground mb-6 leading-snug"
               style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
             >
-              Start to finish, owned and run by community
+              A model built to transfer to community over time
             </h2>
             <p className="text-lg text-muted-foreground mb-4 max-w-3xl">
               Through our partnership with {oonchiumpaPartnership.headline} ({oonchiumpaPartnership.subheadline}),
-              we&rsquo;re building a model where the entire process is community-led.
-              From collecting waste to delivering beds. Support enterprise, health outcomes, pride, and sovereignty.
+              we&rsquo;re building a model designed to transfer capability to communities over time.
+              From collecting waste to delivering beds. The pathway supports enterprise, health outcomes, pride, and sovereignty.
             </p>
 
             <div className="grid gap-12 lg:grid-cols-2 items-start mt-12">
@@ -405,8 +405,8 @@ export default function PitchPage() {
 
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-12">
               {[
-                { value: '369+', label: 'beds delivered' },
-                { value: '8+', label: 'communities' },
+                { value: '496', label: 'bed units deployed' },
+                { value: '10', label: 'communities' },
                 { value: '2+', label: 'years with Bloomfield family' },
                 { value: '20kg', label: 'plastic per bed' },
               ].map((stat) => (

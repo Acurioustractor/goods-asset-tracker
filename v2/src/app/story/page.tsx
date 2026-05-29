@@ -387,7 +387,7 @@ export default async function StoryPage() {
                   <div className="space-y-4 text-muted-foreground leading-relaxed mb-8">
                     <p>
                       Two galvanised steel poles thread through heavy-duty Australian canvas.
-                      Four legs made from recycled HDPE plastic, collected, shredded, and pressed on country.
+                      Four legs made from recycled HDPE plastic, with production designed to move toward On-Country.
                       Each bed diverts 20kg of plastic from landfill.
                     </p>
                     <p>
@@ -746,7 +746,7 @@ export default async function StoryPage() {
             </h2>
             <p className="text-xl text-white/60 max-w-2xl mx-auto">
               A containerised factory that travels to communities. Shred, press, cut.
-              Turning plastic waste into bed components on-country.
+              Designed to turn plastic waste into bed components, moving toward On-Country production.
             </p>
           </div>
         </section>
@@ -769,12 +769,12 @@ export default async function StoryPage() {
                   <div className="space-y-4 text-muted-foreground leading-relaxed mb-8">
                     <p>
                       A fully containerised production plant. Fits in a shipping container, sets up in a day.
-                      Shredder, hydraulic press, and CNC cutter turn community plastic waste into precision-cut
-                      bed components.
+                      Designed so a shredder, hydraulic press, and CNC cutter can turn community plastic waste
+                      into precision-cut bed components, moving toward On-Country production.
                     </p>
                     <p>
                       Capacity: ~30 beds per week. Each bed diverts 20kg of HDPE plastic from landfill.
-                      Local people operate the machinery. Real jobs, real skills, real ownership.
+                      Built so local people can operate the machinery: real jobs, real skills, a pathway to local ownership.
                     </p>
                   </div>
                   <div className="grid grid-cols-3 gap-3 mb-6">
@@ -855,8 +855,8 @@ export default async function StoryPage() {
               </h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-12">
                 {[
-                  { value: '369+', label: 'beds delivered' },
-                  { value: '8+', label: 'communities served' },
+                  { value: '496', label: 'bed units deployed' },
+                  { value: '10', label: 'communities served' },
                   { value: '20kg', label: 'plastic per bed diverted' },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center p-6 rounded-xl bg-white/5 border border-white/10">
@@ -910,7 +910,7 @@ export default async function StoryPage() {
                 </div>
                 <div className="bg-accent-foreground/10 rounded-2xl p-8">
                   <div className="text-5xl font-bold text-accent-foreground mb-2">$0</div>
-                  <div className="text-accent-foreground/70">licensing fees. They keep everything they make</div>
+                  <div className="text-accent-foreground/70">licensing fees: the model is built to transfer capability to communities over time</div>
                 </div>
               </div>
             </div>

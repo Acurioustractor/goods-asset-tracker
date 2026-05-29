@@ -199,8 +199,8 @@ export async function POST(request: NextRequest) {
               `goods-priority-${target.priority}`,
               ...(target.instrument ? [`goods-instrument-${target.instrument}`] : []),
             ],
-            sourceOrgName: 'A Kind Tractor Ltd',
-            sourceOrgAbn: '50 001 350 152',
+            sourceOrgName: 'A Curious Tractor Pty Ltd',
+            sourceOrgAbn: 'ACN 697 347 676',
             sourceIdentityName: 'Goods on Country',
           });
 

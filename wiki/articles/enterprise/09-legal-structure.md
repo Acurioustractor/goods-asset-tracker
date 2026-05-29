@@ -1,6 +1,6 @@
 # 9. Legal Structure
 
-> The legal structure is not finished, and the pack should say that plainly. Goods has moved from Nicholas Marchesi OAM's sole-trader history toward A Curious Tractor Pty Ltd as the current trading home. A Kind Tractor Ltd exists in the wider ACT world, but it is not the active Goods vehicle. The legal work now is to design a structure that can sell products, receive the right capital, protect purpose, carry risk, and make community-owned production real.
+> The legal structure is in transition, and the pack should say that plainly. Goods operates today through the Nicholas Marchesi sole trader (ABN 21 591 780 066) and is migrating everything this financial year (FY2026-27) into A Curious Tractor Pty Ltd (ACN 697 347 676), trading as Goods on Country. The charity and DGR home from FY2026-27 is The Butterfly Movement Ltd, gifted from TABOO Foundation. A Kind Tractor Ltd exists in the wider ACT world but is dormant and not used. The legal work now is to design the structure underneath that so it can sell products, receive the right capital, protect purpose, carry risk, and make community-owned production real.
 
 ## The human version
 
@@ -12,10 +12,11 @@ Goods needs enough structure for funders, lenders, customers and product liabili
 
 | Fact | Current position | Why it matters |
 | --- | --- | --- |
-| Historic operating position | Goods operated for a long period through Nicholas Marchesi OAM's sole-trader structure. | Some old records, contracts or financial traces may sit outside the new company shape. |
-| Current company vehicle | A Curious Tractor Pty Ltd has recently been registered. | This is the practical current home for Goods trading activity unless legal advice changes it. |
-| Charity entity | A Kind Tractor Ltd exists in the broader ACT world. Current ACT core facts say it is dormant and not DGR. | It may help with philanthropy if activated later, but it is not the main Goods vehicle today. |
-| Goods-specific entity | Not yet settled. | The QBE pack should not imply a mature Goods subsidiary, CLG or hybrid structure exists. |
+| Current operating entity (today) | Goods operates today through the Nicholas Marchesi sole trader, ABN 21 591 780 066. | This is where trading sits right now. Records, contracts and financial traces need clean migration into the go-forward company this FY. |
+| Go-forward trading company | A Curious Tractor Pty Ltd, ACN 697 347 676, trading as Goods on Country. All Goods activity migrates into it this financial year (FY2026-27). | This becomes the practical home for Goods trading activity once migration completes. |
+| Charity and DGR home | The Butterfly Movement Ltd (ACNC-registered, Item 1 DGR), operational from FY2026-27 (around 1 July 2026). Gifted/transitioned from TABOO Foundation, which continues as the same legal entity. | This is the only DGR pathway for Goods. Philanthropy, gifts and DGR-eligible funding flow through Butterfly, never through Goods, A Curious Tractor or A Kind Tractor directly. |
+| A Kind Tractor Ltd | Dormant and not used. ABN 73 669 029 341. Its ACNC disease-prevention subtype application drew an RFI on 10 April 2024. Not DGR. | Not the trading entity, not the charity home and not a DGR pathway. The QBE pack should not present it as the Goods vehicle. |
+| Goods-specific sub-entity | Not yet settled. | The QBE pack should not imply a mature Goods subsidiary, CLG or hybrid structure exists beneath A Curious Tractor Pty Ltd. |
 | Community production entities | Desired direction, not final legal design. | This is where ownership, local enterprise, machinery, IP, liability and shared services all meet. |
 | Mission lock | No formal Goods-specific lock is confirmed. | Purpose protection needs legal form before larger capital or scale decisions. |
 
@@ -36,9 +37,9 @@ Goods needs enough structure for funders, lenders, customers and product liabili
 
 | Possible structure | Useful for | Main risk | Current status |
 | --- | --- | --- | --- |
-| Goods stays inside A Curious Tractor Pty Ltd | Fastest path for trading, contracts, shared services and operational continuity. | Goods purpose and finances can blur into broader ACT activity. | Current practical direction. Needs clean internal reporting. |
-| Goods becomes a separate subsidiary | Cleaner accounts, board, investment readiness and liability separation. | Adds administration before operations may be ready. | Possible future step. Not confirmed. |
-| A Kind Tractor Ltd supports specific charitable work | Philanthropy, donations, community benefit activities and some grant eligibility if activated and legally appropriate. | Can pull Goods toward charity delivery rather than product ownership and commercial discipline. | Entity exists, but not the active Goods vehicle. DGR status should not be claimed as settled. |
+| Goods trades through A Curious Tractor Pty Ltd | Fastest path for trading, contracts, shared services and operational continuity. | Goods purpose and finances can blur into broader ACT activity. | Confirmed go-forward direction. Migration from the sole trader completes this FY. Needs clean internal reporting. |
+| Goods becomes a separate subsidiary | Cleaner accounts, board, investment readiness and liability separation. | Adds administration before operations may be ready. | Possible future step beneath A Curious Tractor Pty Ltd. Not confirmed. |
+| The Butterfly Movement Ltd carries charitable and DGR work | Philanthropy, donations, gifts, community benefit activities and DGR-eligible funding from FY2026-27. | Can pull Goods toward charity delivery rather than product ownership and commercial discipline if the boundary is not intentional. | Confirmed charity and DGR home from FY2026-27, gifted from TABOO Foundation. This is the only Goods DGR pathway. A Kind Tractor Ltd is dormant and not used for this. |
 | Aboriginal-controlled or locally owned production entity | Local ownership of collection, production, repair, delivery and jobs. | Needs governance, capability, quality control, capital and clear service agreements. | Strategic direction. Legal form unresolved. |
 | Central holding/shared-services entity | Holds IP, machinery, brand, training, funding relationships and R&D. | Can become too centralised if community entities have limited real control. | Concept under review. |
 | Franchise, licence, equipment rental or fee-for-service model | Gives local operators a way to use designs/equipment and receive support. | Could feel extractive if fees, IP and decision rights are not designed carefully. | Needs legal and community review. |
@@ -62,11 +63,11 @@ The legal model therefore needs to answer:
 
 ## Charity trade-off
 
-A charity structure could help with philanthropic funding, gifts and specific community benefit work.
+The charity structure is The Butterfly Movement Ltd, operational as the Goods charity and DGR home from FY2026-27. It can help with philanthropic funding, gifts, DGR-eligible giving and specific community benefit work.
 
 The risk is strategic drift. If Goods becomes mainly a charity distributor, the product may be judged by whether funders like it rather than whether residents, local producers and communities choose it. The current purpose is sharper than that: desirable, repairable, washable products that people actually want and that can move production and value On-Country.
 
-The structure may need both charitable and commercial functions, but the distinction must be intentional.
+The structure deliberately splits the two functions: A Curious Tractor Pty Ltd trades and sells products, The Butterfly Movement Ltd holds the charitable and DGR function. The distinction must stay intentional. A Kind Tractor Ltd is dormant and not used for either function.
 
 ## Mission protection
 
@@ -90,7 +91,7 @@ That is strong enough to guide early work. It is not enough to carry larger capi
 - Whether debt should sit with ACT, Goods, a subsidiary, a project vehicle or local production entity.
 - How to separate product liability from community production participation.
 - How IP, machinery, brand and training should be licensed or shared.
-- Whether A Kind Tractor Ltd should be used, kept separate or ignored for Goods.
+- How the trading function (A Curious Tractor Pty Ltd) and the charitable/DGR function (The Butterfly Movement Ltd) interact, contract and share costs.
 - What mission lock is credible and practical.
 - What structure best supports Aboriginal-controlled or locally owned production.
 - What data and story ownership clauses need to sit in contracts, consent forms and partner agreements.

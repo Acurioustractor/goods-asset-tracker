@@ -42,7 +42,7 @@ The answer became Goods: durable, repairable, community-designed "health hardwar
     { year: '2016-2020', event: 'Orange Sky expands to remote communities (now 1/3 of services)' },
     { year: 'Nov 2022', event: 'Goods project kicks off with advisory session' },
     { year: 'Sept 2023', event: 'A Curious Tractor formally founded' },
-    { year: '2024+', event: 'Active bed pilots deliver 400+ beds across communities' },
+    { year: '2024+', event: 'Active bed pilots deliver 496 bed units across communities' },
   ],
 
   problem: {
@@ -82,9 +82,9 @@ The answer became Goods: durable, repairable, community-designed "health hardwar
 export const impact = {
   headline: 'Real Impact',
   stats: [
-    { value: '400+', label: 'Assets tracked in register', icon: 'bed' },
+    { value: '558', label: 'Assets tracked in register', icon: 'bed' },
     { value: '107', label: 'Stretch Beds on order', icon: 'demand' },
-    { value: '8+', label: 'Communities served', icon: 'community' },
+    { value: '10', label: 'Communities served', icon: 'community' },
     { value: '$3M/yr', label: 'Washing machines sold → dumps', icon: 'problem', source: 'Alice Springs provider' },
   ],
 };
@@ -260,7 +260,7 @@ export const quotes = [
 
 export const enterpriseOpportunity = {
   headline: 'Community production partnerships',
-  description: 'We don\'t license. We transfer. Communities receive full training, manufacturing capability, and documentation. They keep 100% of what they make and sell.',
+  description: 'The model is built to transfer capability to communities over time: full training, manufacturing capability, and documentation, with the goal that communities keep what they make and sell.',
   benefits: [
     'Full training and ongoing support',
     'Manufacturing capability transfer',
@@ -810,7 +810,7 @@ export const communityLocations: CommunityLocation[] = [
     storytellerCount: 0,
     bedsDelivered: 96,
     description: 'Anmatyerr and Alyawarr country, including the Ampilatwatja outstation where Frankie and Casey Holmes OAM each received beds in May 2026. Multiple outstations across the homelands. Young people in Alice Springs built and delivered beds to outstation families the next day.',
-    highlight: 'Co-designed and built with young people in Alice Springs, delivered on country to outstation families. Includes Ampilatwatja, where two senior Alyawarr Elders received beds in May 2026.',
+    highlight: 'Built with and led by young people in Alice Springs, delivered on country to outstation families. Includes Ampilatwatja, where two senior Alyawarr Elders received beds in May 2026.',
     tooltipDirection: 'left',
   },
   // Ampilatwatja folded into Utopia Homelands on the heatpost map (same
@@ -1168,10 +1168,10 @@ export function getQuotesByThemes(themeIds: ThemeId[]) {
 
 export const mediaPack = {
   // About A Curious Tractor: the parent organisation
-  aboutACT: `A Curious Tractor is the organisation behind Goods on Country. Founded in September 2023 by Nicholas Marchesi and Benjamin Knight, ACT exists to design, manufacture, and transfer ownership of essential goods to remote First Nations communities across Australia. The name reflects the approach: curiosity-driven problem solving applied to entrenched disadvantage. ACT is a registered charity and social enterprise.`, // TODO: Ben to review and refine
+  aboutACT: `A Curious Tractor Pty Ltd (ACN 697 347 676), trading as Goods on Country, is the organisation behind the work. ACT exists to design, manufacture, and transfer ownership of essential goods to remote First Nations communities across Australia. The name reflects the approach: curiosity-driven problem solving applied to entrenched disadvantage. ACT is a social enterprise; its DGR pathway runs via The Butterfly Movement Ltd (from FY2026-27).`, // TODO: Ben to review and refine
 
   // Copy-paste-ready press boilerplate
-  pressBoilerplate: `Goods on Country is a social enterprise delivering durable, community-designed essential goods to remote First Nations communities across Australia. The flagship product, the Stretch Bed, is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty Australian canvas. Each bed diverts 20kg of plastic from landfill, assembles in under five minutes with no tools, and supports up to 200kg. With 400+ beds delivered across 8+ communities, Goods on Country addresses the environmental health conditions that drive preventable disease, including Rheumatic Heart Disease, by putting health hardware directly into the hands of families who need it. The organisation's long-term goal is to transfer manufacturing capability to community-owned enterprises. Founded in 2023, Goods on Country is a project of A Curious Tractor.`,
+  pressBoilerplate: `Goods on Country is a social enterprise delivering durable, community-designed essential goods to remote First Nations communities across Australia. The flagship product, the Stretch Bed, is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty Australian canvas. Each bed diverts 20kg of plastic from landfill, assembles in under five minutes with no tools, and supports up to 200kg. With 496 bed units deployed across 10 communities, Goods on Country addresses the environmental health conditions that drive preventable disease, including Rheumatic Heart Disease, by putting health hardware directly into the hands of families who need it. The model is built to transfer manufacturing capability to communities over time. Goods on Country is delivered by A Curious Tractor Pty Ltd (trading as Goods on Country).`,
 
   // Brand color palette
   brandColors: [

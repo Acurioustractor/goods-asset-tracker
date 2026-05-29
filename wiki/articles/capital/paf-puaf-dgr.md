@@ -18,13 +18,13 @@ Australian Private Ancillary Funds (PAFs) and Public Ancillary Funds (PuAFs) are
 
 ## Why it might matter to Goods
 
-This is a possible capital pathway only if the legal and DGR position is confirmed. Current ACT core facts say **A Kind Tractor Ltd** is ACNC-registered, dormant and **not DGR**, with the DGR application parked. Do not describe any **ACT Foundation** as a legal entity or assume DGR eligibility.
+This pathway needs a DGR-eligible charity to receive the loan. For Goods, that DGR is **The Butterfly Movement Ltd** (ACNC-registered, Item 1 DGR), the charity and DGR home from FY2026-27, gifted from TABOO Foundation. DGR is available only through Butterfly, never through Goods, A Curious Tractor Pty Ltd or A Kind Tractor Ltd directly. **A Kind Tractor Ltd** is dormant and not used and is not a DGR. Do not describe any **ACT Foundation** as a legal entity or assume DGR eligibility outside Butterfly.
 
-If A Kind Tractor Ltd later becomes an appropriate and eligible charitable vehicle, below-market loans from PAFs and PuAFs may be worth legal/accounting review. Until then, this page is a mechanism note, not a current Goods financing route.
+Once The Butterfly Movement Ltd is operational as the Goods charity/DGR home (FY2026-27), below-market loans from PAFs and PuAFs into Butterfly may be worth legal/accounting review. Until then, this page is a mechanism note, not a current Goods financing route.
 
 Practical opening moves:
-- Ask Standard Ledger and legal counsel whether A Kind Tractor Ltd can or should be used for any Goods funding pathway.
-- Check whether Mindaroo Foundation or Snow Foundation would even consider recoverable grant or below-market loan structures once the entity position is clear.
+- Confirm with Standard Ledger and legal counsel the timing and mechanics of routing PAF/PuAF below-market loans through The Butterfly Movement Ltd from FY2026-27.
+- Check whether Mindaroo Foundation or Snow Foundation would even consider recoverable grant or below-market loan structures once Butterfly is live.
 - PFI's repayable grant is already structured compatibly.
 
 ## Regulatory references
@@ -32,14 +32,14 @@ Practical opening moves:
 - **PuAFs:** Section 15 of the Public Ancillary Fund Guidelines 2022.
 - **PAFs:** Section 15 of the Private Ancillary Fund Guidelines 2019.
 
-## A Kind Tractor Ltd status
+## Entity and DGR status
 
 The current Goods pack should say:
 
-- A Curious Tractor Pty Ltd is the expected Goods trading home.
-- A Kind Tractor Ltd exists as the ACT charity.
-- Current ACT core facts say A Kind Tractor Ltd is dormant and not DGR.
-- DGR status and ancillary-fund eligibility must be verified before any funder-facing claim.
+- The Nicholas Marchesi sole trader (ABN 21 591 780 066) is the current operating entity today; trading migrates into A Curious Tractor Pty Ltd (ACN 697 347 676, t/a Goods on Country) this FY.
+- The Butterfly Movement Ltd is the charity and DGR home from FY2026-27 and the only Goods DGR pathway.
+- A Kind Tractor Ltd (ABN 73 669 029 341) is dormant and not used, and is not DGR.
+- DGR eligibility for any PAF/PuAF below-market loan runs through Butterfly only, and only from FY2026-27. Verify timing before any funder-facing claim.
 - ACT Foundation and ACT Ventures are not current legal entity names.
 
 See [[../governance/legal-structure]] and [[../sources/act-core-facts]].
