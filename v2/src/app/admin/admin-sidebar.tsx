@@ -33,6 +33,7 @@ import {
   MoreHorizontal,
   ChevronDown,
   ChevronRight,
+  Network,
 } from 'lucide-react';
 
 type NavItem = { name: string; href: string; icon: React.ComponentType<{ className?: string }> };
@@ -46,6 +47,7 @@ const navigation: NavGroup[] = [
     group: 'Today',
     items: [
       { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
+      { name: 'Operating systems', href: '/admin/operating-systems', icon: Network },
     ],
   },
   {
