@@ -86,7 +86,8 @@ export default async function TripReceiptsPage() {
             <p className="mt-1 text-sm text-gray-500">
               Each trip (≥3 beds delivered to one community on one date) cross-referenced
               with Xero ACCPAY in a ±3-day to +14-day window. Missing receipts mean
-              trip overhead isn&apos;t entering Xero (often: paid through personal accounts).
+              trip overhead isn&apos;t matched to ACCPAY bills yet — a Xero payment-matching
+              gap (not debt), to be reconciled.
             </p>
           </div>
           <Link href="/admin/scans" className="text-xs text-blue-700 hover:underline">/admin/scans →</Link>
@@ -176,8 +177,9 @@ export default async function TripReceiptsPage() {
                     <li>☐ Staff time (FTE allocation)</li>
                   </ul>
                   <p className="mt-2 text-gray-500">
-                    Per the Day 3 financial review,{' '}
-                    $86k of bank-spend historically hasn&apos;t made it into ACCPAY.
+                    Some Goods bank-spend has historically not been matched to ACCPAY bills
+                    in Xero — a payment-matching gap, not debt (the 2026-05-29 cross-check
+                    found $0 paid from personal accounts and no director loan).
                     To close the gap on this trip, enter receipts in Xero
                     against <code>project_code = ACT-GD</code>.
                   </p>

@@ -98,7 +98,7 @@ export const REVENUE_SEGMENTS: RevenueSegment[] = [
     id: 'b2b',
     name: 'B2B Sales',
     description: 'Direct sales to organisations distributing to communities',
-    currentEvidence: '109 beds sold to Centrecorp (first substantial commercial transaction)',
+    currentEvidence: '109 beds to Centrecorp — institutional buyer at scale (income_type=grant, not commercial sale)',
     projectedShare: 45,
   },
   {
@@ -503,7 +503,7 @@ export const DEFAULT_OPPORTUNITIES: OptimizationOpportunity[] = [
   },
   {
     id: 'wise-employment',
-    title: 'Each bed sale creates ${TOTAL_LABOUR_HOURS_PER_BED.toFixed(1)} hours of employment',
+    title: `Each bed sale creates ${TOTAL_LABOUR_HOURS_PER_BED.toFixed(1)} hours of employment`,
     description: `At 1,500 beds/year, that's ${(1500 * TOTAL_LABOUR_HOURS_PER_BED).toLocaleString()} hours of employment for at-risk youth. The WISE model is the strongest impact narrative for QLD government funding.`,
     dimension: 'economic',
     potential: 'high',
@@ -511,8 +511,8 @@ export const DEFAULT_OPPORTUNITIES: OptimizationOpportunity[] = [
   },
   {
     id: 'b2b-pipeline',
-    title: 'B2B channel has strongest commercial evidence',
-    description: '109 beds sold to Centrecorp demonstrates demand. Emergency services are a natural fit: NT already calls them "cyclone beds." Secure letters of intent from potential B2B clients.',
+    title: 'B2B / institutional channel has strongest commercial evidence',
+    description: '109 beds granted to Centrecorp (an institutional buyer, income_type=grant) demonstrates demand at scale. Emergency services are a natural fit: NT already calls them "cyclone beds." Secure letters of intent from potential B2B/institutional clients.',
     dimension: 'economic',
     potential: 'high',
     dataSource: 'Revenue segments + meeting notes',

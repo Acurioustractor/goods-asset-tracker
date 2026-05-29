@@ -2,6 +2,16 @@
 // Every page should import from here instead of hardcoding values.
 // NO PRICES — pricing is handled separately via Stripe/Supabase.
 
+/**
+ * HDPE diverted per Stretch Bed, in kilograms. Single source of truth for the
+ * plastic-diverted-per-bed factor used in impact/funder calculations — import
+ * this instead of hardcoding `* 20`.
+ * Source: STRETCH_BED.specs.plasticDiverted ("20kg HDPE per bed") + CLAUDE.md
+ * canonical product data (20kg of HDPE diverted per bed).
+ * KEY DATA FLAG: this 20kg figure is the design/spec value, not yet weighbridge-verified.
+ */
+export const PLASTIC_KG_PER_BED = 20;
+
 export const STRETCH_BED = {
   name: 'The Stretch Bed',
   slug: 'stretch-bed',

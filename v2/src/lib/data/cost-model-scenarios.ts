@@ -138,7 +138,7 @@ export function reconcileAgainstCanonicalBOM(): {
     factoryTotal: state4.direct_total,
     canonicalFactoryMaterials: factoryDirectMaterials,
     legacyFullyLoaded: fullyLoadedCostPerBed,
-    matches: state4.direct_total === factoryDirectMaterials,
+    matches: Math.abs(state4.direct_total - factoryDirectMaterials) < 0.01,
     bom: stretchBedBOM,
   };
 }
