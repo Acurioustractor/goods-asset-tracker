@@ -75,7 +75,7 @@ const DEFAULTS: Inputs = {
   beds_per_year: 500,
   kirmos_monthly_50pct: 2250,
   founder_days_production: 30,
-  founder_rate_per_day: 1000,
+  founder_rate_per_day: 560, // v6 default: Day-3 fair-market ($140K/yr). v5 used $1,000. FOUNDER-CONFIRM (band $560-$1,000)
   admin_per_year: 14700,
   field_travel_per_year: 51000,
   freight_per_bed: 100,
@@ -98,6 +98,7 @@ const VERIFIED_HINTS: Partial<Record<keyof Inputs, string>> = {
   retail_price: 'supplier-quotes.ts canonical',
   commercial_low: 'AU retail/contract scan',
   commercial_high: 'AU retail/contract scan',
+  founder_rate_per_day: 'Day-3 fair-market ~$560/day; v5 used $1,000. FOUNDER-CONFIRM (band $560-$1,000)',
 };
 
 interface Slider {
@@ -188,10 +189,26 @@ function computeModel(i: Inputs) {
   const paybackYearsLow = paybackBedsLow / i.beds_per_year;
   const paybackYearsHigh = paybackBedsHigh / i.beds_per_year;
 
+  // v6 honest reframe: marginal (variable) cost vs the annual fixed block.
+  // Long-haul freight is reclassified out of overhead into marginal (it is per-bed variable).
+  const marginalKits = stateKits + i.freight_per_bed;
+  const marginalFactory = stateFactory + i.freight_per_bed;
+  const annualFixedBlock =
+    i.kirmos_monthly_50pct * 12 +
+    i.founder_days_production * i.founder_rate_per_day +
+    i.admin_per_year +
+    i.field_travel_per_year;
+  const fixedPerBedAtVolume = annualFixedBlock / i.beds_per_year;
+  const contributionKits = i.retail_price - marginalKits;
+  const contributionFactory = i.retail_price - marginalFactory;
+  const breakevenKits = contributionKits > 0 ? annualFixedBlock / contributionKits : Infinity;
+  const breakevenFactory = contributionFactory > 0 ? annualFixedBlock / contributionFactory : Infinity;
+
   return {
     hdpeRawCost,
     stateKits, statePanels, stateFactory, stateCommunity,
     overheadPerBed, kirmosPerBed, founderProductionPerBed, adminPerBed, fieldPerBed,
+    marginalKits, marginalFactory, annualFixedBlock, fixedPerBedAtVolume, breakevenKits, breakevenFactory,
     fullKits, fullPanels, fullFactory, fullCommunity,
     marginKits, marginFactory, marginCommunity,
     firstPrinciplesFloor, supplyChainMarkup,
@@ -226,7 +243,7 @@ export function CostModelExplorer() {
           <CardContent className="pt-6">
             <p className="text-xs text-gray-500 uppercase tracking-wide">Fully-loaded today</p>
             <p className="text-3xl font-bold tabular-nums">{fmt(model.fullKits)}</p>
-            <p className="text-xs text-gray-600 mt-1">Defy Kits @ {inputs.beds_per_year}/yr</p>
+            <p className="text-xs text-gray-600 mt-1">Defy Kits @ {inputs.beds_per_year}/yr (marginal + fixed absorbed; see honest read)</p>
           </CardContent>
         </Card>
         <Card>
@@ -253,6 +270,61 @@ export function CostModelExplorer() {
           </CardContent>
         </Card>
       </div>
+
+      {/* v6 honest read — marginal cost vs annual fixed block (the reframe) */}
+      <Card className="border-amber-200 bg-amber-50/40">
+        <CardContent className="pt-6">
+          <h3 className="text-lg font-semibold mb-1">
+            Honest read: marginal cost vs annual fixed block{' '}
+            <span className="text-xs font-normal text-amber-700">(v6 reframe)</span>
+          </h3>
+          <p className="text-xs text-gray-600 mb-4">
+            The &ldquo;fully-loaded $/bed&rdquo; cards above are the marginal cost <em>plus</em> a whole year of fixed
+            costs absorbed over {inputs.beds_per_year} beds. At low volume that inflates the per-bed number: it is
+            fixed-cost absorption, not the cost of the next bed. Split the two:
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+            <div className="border rounded p-4 bg-white">
+              <p className="text-xs text-gray-500 uppercase tracking-wide">Marginal cost / bed</p>
+              <p className="text-2xl font-bold tabular-nums mt-1">
+                {fmt(model.marginalKits)} <span className="text-sm font-normal text-gray-500">kits</span>
+              </p>
+              <p className="text-lg font-semibold tabular-nums text-emerald-700">
+                {fmt(model.marginalFactory)} <span className="text-xs font-normal text-gray-500">factory</span>
+              </p>
+              <p className="text-xs text-gray-600 mt-2">What the next bed actually costs: materials, assembly and freight.</p>
+            </div>
+            <div className="border rounded p-4 bg-white">
+              <p className="text-xs text-gray-500 uppercase tracking-wide">Annual fixed block</p>
+              <p className="text-2xl font-bold tabular-nums mt-1">
+                {fmt(model.annualFixedBlock)}<span className="text-sm font-normal text-gray-500">/yr</span>
+              </p>
+              <p className="text-xs text-gray-600 mt-2">
+                Founder production time, facility, admin and field travel. Funded by philanthropy plus margin, not stamped
+                on each bed ({fmt(model.fixedPerBedAtVolume)}/bed at {inputs.beds_per_year}/yr, reference only).
+              </p>
+            </div>
+            <div className="border rounded p-4 bg-white">
+              <p className="text-xs text-gray-500 uppercase tracking-wide">Breakeven volume</p>
+              <p className="text-2xl font-bold tabular-nums mt-1">
+                {isFinite(model.breakevenFactory) ? Math.round(model.breakevenFactory) : '∞'}{' '}
+                <span className="text-sm font-normal text-gray-500">beds/yr factory</span>
+              </p>
+              <p className="text-sm tabular-nums text-gray-600">
+                {isFinite(model.breakevenKits) ? Math.round(model.breakevenKits) : '∞'} beds/yr on Defy kits
+              </p>
+              <p className="text-xs text-gray-600 mt-2">To cover the fixed block at {fmt(inputs.retail_price)}. In-sourcing closes the gap.</p>
+            </div>
+          </div>
+          <p className="text-[11px] text-gray-500 mt-4 leading-relaxed">
+            <strong>Guardrails before any external / QBE use:</strong> (1) this re-partitions the same total, it does not
+            make the bed cheaper; (2) quote the capital ask as gross ({fmt(inputs.capital_to_factory_low)}-{fmt(inputs.capital_to_factory_high)})
+            or net of the ~$110K already invested, not both; (3) the founder rate is a band ($560-$1,000/day) until
+            confirmed, and it drives the fixed block and breakeven; (4) the $600 planning figure excludes long-haul
+            freight and fixed absorption, so it is not the marginal cost.
+          </p>
+        </CardContent>
+      </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-6">
         {/* Sliders panel */}
