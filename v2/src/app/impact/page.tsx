@@ -223,7 +223,7 @@ function FiveDimensionsSection({ dimensions }: { dimensions: ImpactDimension[] }
             How We Measure Impact
           </h2>
           <p className="text-sm max-w-xl mx-auto" style={{ color: '#5E5E5E' }}>
-            Each dimension tracks live metrics from our asset register, fleet telemetry, and community
+            Each dimension tracks current metrics from our asset register, fleet telemetry, and community
             engagement — with clear targets for Year 1, Year 3, and 2030.
           </p>
         </div>
@@ -558,7 +558,7 @@ function HowWeTrackSection() {
               },
               {
                 title: 'Fleet Telemetry',
-                description: 'IoT-connected washing machines report wash cycles, energy use, and status in real-time.',
+                description: 'IoT-connected washing machines report wash cycles, energy use, and status where connectivity allows.',
                 icon: 'M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z',
               },
               {
@@ -617,9 +617,9 @@ function PartnersSection() {
     {
       name: 'Centrecorp',
       location: 'Distribution Partner',
-      role: 'B2B Sales & Distribution',
-      model: 'First substantial commercial transaction — 109 beds purchased for distribution to communities. Demonstrates trade at scale and provides evidence of commercial viability for funding applications.',
-      status: '109 beds sold — first B2B evidence',
+      role: 'Grant-Funded Distribution Partner',
+      model: 'Donor and institutional buyer at scale — 109 beds grant-funded for distribution to Utopia Homelands communities. Demonstrates delivery at scale and provides evidence of institutional demand for funding applications.',
+      status: '109 beds delivered — institutional partnership evidence',
       color: '#D4A574',
     },
     {
@@ -871,7 +871,7 @@ export default function ImpactPage() {
         <div className="container mx-auto px-4">
           <div className="text-center">
             <p className="text-sm uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
-              Live Data
+              Impact Data
             </p>
             <h1
               className="text-4xl md:text-5xl font-light mb-4"
@@ -880,11 +880,11 @@ export default function ImpactPage() {
               Impact Model
             </h1>
             <p className="text-lg max-w-2xl mx-auto mb-2" style={{ color: '#5E5E5E' }}>
-              Five dimensions of impact, measured in real time from our asset register, fleet
+              Five dimensions of impact, tracked from our asset register, fleet
               telemetry, and community voices.
             </p>
             <p className="text-sm max-w-xl mx-auto" style={{ color: '#8B9D77' }}>
-              Every number is live. Every target is accountable.
+              Numbers drawn from our asset register and fleet data. Every target is accountable.
             </p>
           </div>
         </div>
@@ -905,7 +905,7 @@ export default function ImpactPage() {
             </h2>
             <p className="text-base max-w-2xl mx-auto" style={{ color: '#5E5E5E' }}>
               From community-led design to community-owned production: how our activities create
-              measured outcomes on Country.
+              practical change on Country.
             </p>
           </div>
           <TheoryOfChange className="max-w-6xl mx-auto" caption />

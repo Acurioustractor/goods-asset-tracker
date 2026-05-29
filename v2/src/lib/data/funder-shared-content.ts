@@ -5,7 +5,7 @@
 
 export const TRACTION_STATS = [
   { label: 'Bed units deployed', value: '496', sub: 'Tracked across 10 communities (Stretch + legacy Basket)' },
-  { label: 'HDPE diverted per bed', value: '20kg', sub: 'Recycled into leg components On-Country' },
+  { label: 'HDPE diverted per bed', value: '20kg', sub: 'Recycled HDPE in each bed; On-Country processing is the target pathway' },
   { label: 'Grant funding to date', value: '$450K+', sub: 'Verified paid: Snow, Centrecorp, VFFF, QIC and others (Xero)' },
   { label: 'Capital stack target', value: '~$3M', sub: 'Blended-finance target via QBE Catalysing Impact 2026 (raising, not committed)' },
 ];
@@ -49,7 +49,7 @@ export const PRODUCT_CARDS: ProductCard[] = [
 export const PRODUCT_BLURB = PRODUCT_CARDS.map((c) => c.body);
 
 export const BUYER_PIPELINE = [
-  { buyer: 'Centrecorp', volume: '107 beds (repeat)', value: '$80,250', status: 'Locked. Delivery in 1 month' },
+  { buyer: 'Centrecorp', volume: '107 beds (repeat)', value: '$80,250', status: 'Repeat buyer confirmed ($123K paid); next order in discussion' },
   { buyer: 'Miwatj Health', volume: '8-clinic fleet', value: 'TBD', status: 'EOI being requested' },
   { buyer: "NPY Women's Council", volume: '200 to 350 beds', value: '$150K to $262K', status: 'LOI being requested' },
   { buyer: 'WHSAC / Groote Eylandt', volume: '500 Stretch Beds, 300 washers', value: '$1.5M+', status: 'Procurement pathway open' },
@@ -59,7 +59,7 @@ export const BUYER_PIPELINE = [
 export const CAPITAL_STACK = [
   { layer: 'Catalytic blended', source: 'Minderoo (this ask)', amount: '$1.5M', status: 'In conversation', highlight: true },
   { layer: 'Subordinated debt', source: 'SEFA working capital (BOLD agreement)', amount: '$300K', status: 'Outreach this week' },
-  { layer: 'Match grant', source: 'QBE Foundation Stage 2', amount: '$400K', status: 'Conditional on raise' },
+  { layer: 'Match grant', source: 'QBE Foundation Stage 2', amount: '$200K–$400K (cap TBC)', status: 'Conditional on raise' },
   { layer: 'To be raised', source: 'Additional philanthropic and community partners', amount: '$1M', status: 'Pipeline' },
   { layer: 'Guarantee', source: 'Snow Foundation letter of support', amount: '·', status: 'In conversation' },
 ];
@@ -67,7 +67,7 @@ export const CAPITAL_STACK = [
 export const QBE_PROGRAM = {
   title: 'QBE Catalysing Impact 2026',
   description:
-    "Goods is in the QBE Foundation's blended finance accelerator, run by Social Impact Hub. We were selected on alignment with climate resilience and inclusion. Stage 2 includes a dollar-for-dollar match up to $400K against capital we raise from elsewhere.",
+    "Goods is in the QBE Foundation's blended finance accelerator, run by Social Impact Hub. We were selected on alignment with climate resilience and inclusion. Stage 2 includes a dollar-for-dollar match (cap to be confirmed, indicatively $200K–$400K) against capital we raise from elsewhere.",
   contacts: [
     'Lauren at QBE Foundation (climate and inclusion)',
     'Alex at QBE Ventures ($5 to $15M check sizes)',
@@ -80,7 +80,7 @@ export const QBE_PROGRAM = {
 export const INVESTMENT_THESIS = {
   why: "Remote Indigenous communities buy roughly $3M a year of washing machines from one Alice Springs supplier, and most of them end up in dumps within months. Beds in remote houses are typically replaced every 18 months. The unit economics of disposable goods in remote Australia are broken, and the social cost (sleep, hygiene, dignity, household function) compounds.",
   whoWeAre:
-    "First Nations led, On-Country manufacturing model. Products designed in community for actual remote conditions, not in an office for catalogues. Real telemetry data, real revenue, real Elders and communities leading the design of the product line. We've shipped the beds. The proof is in the houses.",
+    "First Nations led, with On-Country manufacturing as the core model we are building toward. Products designed in community for actual remote conditions, not in an office for catalogues. Telemetry piloting on prototype washing machine fleet, real revenue, real Elders and communities leading the design of the product line. We've shipped the beds. The proof is in the houses.",
   achievable:
     "At roughly $750 a bed, a Year 1 target of 1,500 beds is over $1.1M of revenue, against an institutional buyer pipeline in active conversation (not yet committed). The ~$3M target stack covers facility build, working capital, and the runway to scale toward On-Country production at a defensible margin.",
 };
