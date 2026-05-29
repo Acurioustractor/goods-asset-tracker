@@ -99,6 +99,8 @@ export interface CostModelInputs {
   defy_panels_beds_per_day: number;
   community_beds_per_day: number;
   defy_assembly_per_bed: number;
+  /** Community fair-wage labour $/bed (v6). Default $130, band $100-$160. Plastic stays $0 (free, community-collected). */
+  community_labour_per_bed: number;
   // Energy
   diesel_per_bed_factory: number;
   diesel_per_bed_panels: number;
@@ -177,6 +179,7 @@ export const CostModelDefaults: CostModelInputs = {
   defy_panels_beds_per_day: 7.5,
   community_beds_per_day: 5,
   defy_assembly_per_bed: _defyRates.assembly_labour.amount, // 55.95
+  community_labour_per_bed: scenarios.build_states.state_5_community.community_labour_per_bed, // 130 (v6 fair wage, band 100-160)
   diesel_per_bed_factory: 15,
   diesel_per_bed_panels: 5,
   beds_per_year: 120, // honest today run-rate (NOT 500)

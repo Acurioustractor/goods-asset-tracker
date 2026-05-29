@@ -1,30 +1,32 @@
 /**
- * Interactive cost-model explorer — sliders + matrix + Musk Idiot Index.
- * Designed for QBE-style funder pitches: capital ask + unit economics + scaling plan.
+ * Cost-model showcase — ONE verified engine, THREE aesthetic skins.
  *
- * All defaults come from `cost-model-scenarios.json`. Sliders let you override
- * any input and watch the matrix recompute live. Source of truth stays the JSON;
- * this page is the playground.
+ * Engine + state live in `@/lib/cost-model` (engine.ts + use-cost-model.ts).
+ * The client workspace owns a single useCostModel() instance and switches
+ * between Mission Control / Tesla / Terminal skins, persisting the choice in
+ * the URL (?skin=mc|tesla|terminal). All defaults + math are LOCKED in
+ * cost-model-scenarios.json (v5) + 01-cost-model-idiot-index.json (v6).
+ * Route stays admin-gated by the admin layout.
  */
-import { CostModelExplorer } from './cost-model-explorer';
+import { Suspense } from 'react';
+import { CostModelWorkspace } from './cost-model-workspace';
 
 export const metadata = {
-  title: 'Cost Model Explorer — Goods on Country',
-  description: 'Interactive bed cost model: sliders, scenarios, Idiot Index, QBE-ready capital ask.',
+  title: 'Cost Model — Goods on Country',
+  description: 'Verified bed cost model: marginal-cost-first, three aesthetic skins, QBE-ready capital ask.',
 };
 
 export default function CostModelPage() {
   return (
-    <div className="container mx-auto py-8 max-w-7xl">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold">Bed Cost Model Explorer</h1>
-        <p className="text-sm text-gray-600 mt-2">
-          Musk-style first-principles cost model. Sliders drive the matrix below — adjust assumptions and
-          see how the unit economics, capital ask, and scaling plan respond live. All defaults verified from
-          Defy/Centre Canvas/Coastal Fasteners invoices + Notion BK review 2026-05-28.
-        </p>
-      </div>
-      <CostModelExplorer />
+    // FULL-SCREEN COCKPIT: break out of the <main> px/py padding so the cost
+    // model owns the entire admin content region — full width AND full height.
+    // The admin <main> uses `py-8 md:py-10`; we cancel the top/bottom padding
+    // (-my-8 / md:-my-10) and the horizontal padding (-mx-4 / sm:-mx-6) so a
+    // skin can size itself to ~100vh and present one no-scroll viewport.
+    <div className="w-full -my-8 md:-my-10 -mx-4 px-4 sm:-mx-6 sm:px-6">
+      <Suspense fallback={<div className="py-20 text-center text-sm text-gray-400">Loading cost model…</div>}>
+        <CostModelWorkspace />
+      </Suspense>
     </div>
   );
 }
