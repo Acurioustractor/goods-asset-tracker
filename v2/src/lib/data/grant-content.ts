@@ -20,10 +20,10 @@ export const orgIdentity = {
   // CHARITY / DGR home (operational from FY2026-27): The Butterfly Movement Ltd (ACNC, Item 1 DGR).
   // A Kind Tractor Ltd (ABN 73 669 029 341) is DORMANT and NOT used — do not cite it.
   // ⚠️ Per grant, confirm with the accountant which entity is the applicant/contracting party
-  //    (current sole trader vs the Pty Ltd once migrated) and capture the Pty Ltd ABN.
+  //    (current sole trader vs the Pty Ltd once migrated).
   legalName: 'A Curious Tractor Pty Ltd',
   acn: '697 347 676',
-  abn: '21 591 780 066', // CURRENT operating entity (Nic Marchesi sole trader) during migration; Pty Ltd ABN to be confirmed
+  abn: '36 697 347 676', // A Curious Tractor Pty Ltd (go-forward trading entity; ABN confirmed 2026-05-29, registered 21 Apr 2026)
   currentOperatingEntity: 'Nicholas Marchesi (sole trader), ABN 21 591 780 066',
   charityDgrHome: 'The Butterfly Movement Ltd (ACNC, Item 1 DGR; operational from FY2026-27)',
   acnc: false, // trading company is not itself a charity; charitable/DGR home is The Butterfly Movement Ltd
