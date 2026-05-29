@@ -13,13 +13,21 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const orgIdentity = {
-  // ⚠️ LEGAL REVIEW REQUIRED (QBE Area 09): the entity that trades as Goods on Country, and its ABN,
-  // are unresolved. ABN Lookup shows A Kind Tractor Ltd as ABN 73 669 029 341 (active ACNC, NOT DGR),
-  // which conflicts with the abn below. Confirm the correct entity + ABN with legal before any external use.
-  legalName: 'A Kind Tractor Ltd',
-  abn: '50 001 350 152',
-  acnc: true,
-  dgr: false, // A Kind Tractor Ltd is ACNC but NOT DGR (verified ABN Lookup). DGR pathway is via The Butterfly Movement Ltd (Item 1 DGR).
+  // ── Entity structure confirmed by Ben 2026-05-29 (canonical: memory goods-entity-structure) ──
+  // CURRENT operating entity: Nicholas Marchesi (sole trader), ABN 21 591 780 066.
+  // GO-FORWARD trading/operating company (migrating ALL to it this FY, FY2026-27):
+  //   A Curious Tractor Pty Ltd, ACN 697 347 676, trading as Goods on Country.
+  // CHARITY / DGR home (operational from FY2026-27): The Butterfly Movement Ltd (ACNC, Item 1 DGR).
+  // A Kind Tractor Ltd (ABN 73 669 029 341) is DORMANT and NOT used — do not cite it.
+  // ⚠️ Per grant, confirm with the accountant which entity is the applicant/contracting party
+  //    (current sole trader vs the Pty Ltd once migrated) and capture the Pty Ltd ABN.
+  legalName: 'A Curious Tractor Pty Ltd',
+  acn: '697 347 676',
+  abn: '21 591 780 066', // CURRENT operating entity (Nic Marchesi sole trader) during migration; Pty Ltd ABN to be confirmed
+  currentOperatingEntity: 'Nicholas Marchesi (sole trader), ABN 21 591 780 066',
+  charityDgrHome: 'The Butterfly Movement Ltd (ACNC, Item 1 DGR; operational from FY2026-27)',
+  acnc: false, // trading company is not itself a charity; charitable/DGR home is The Butterfly Movement Ltd
+  dgr: false,  // DGR via The Butterfly Movement Ltd, not this entity
   tradingAs: 'Goods on Country',
   website: 'www.goodsoncountry.com',
   tagline: 'Goods that heal.',
@@ -204,10 +212,10 @@ export const grantAnswers = {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const eligibility = [
-  'ACNC registered charity',
-  'DGR pathway via The Butterfly Movement Ltd (Item 1 DGR)', // Goods/A Kind Tractor is NOT itself DGR — see orgIdentity legal-review note
-  'Company Limited by Guarantee',
-  `ABN ${orgIdentity.abn}`, // ⚠️ ABN under legal review (see orgIdentity) — confirm before external use
+  'Trading entity: A Curious Tractor Pty Ltd, ACN 697 347 676 (trading as Goods on Country)',
+  'Charitable / DGR home: The Butterfly Movement Ltd (ACNC, Item 1 DGR) — operational from FY2026-27',
+  'Current operating entity during migration: Nicholas Marchesi (sole trader), ABN 21 591 780 066',
+  '⚠️ Confirm the applicant/contracting entity with the accountant before submitting any application',
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -256,14 +264,15 @@ export function composeGrantApplication(
     org_identity: () => ({
       title: 'About Us',
       content: [
-        `**${orgIdentity.tradingAs}** (${orgIdentity.legalName}, ABN ${orgIdentity.abn})`,
+        `**${orgIdentity.tradingAs}** — trading entity ${orgIdentity.legalName} (ACN ${orgIdentity.acn})`,
         '',
         orgIdentity.mission,
         '',
         `*"${orgIdentity.philosophy}"*`,
         '',
         `Website: ${orgIdentity.website}`,
-        `Status: ACNC registered charity (DGR pathway via The Butterfly Movement Ltd)`,
+        `Current operating entity (migration in progress): ${orgIdentity.currentOperatingEntity}`,
+        `Charitable / DGR home: ${orgIdentity.charityDgrHome}`,
       ].join('\n'),
     }),
 
