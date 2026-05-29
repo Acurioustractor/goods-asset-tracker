@@ -9,12 +9,36 @@ import {
   IMPACT_DIMENSIONS,
   DEFAULT_OPPORTUNITIES,
   FINANCIAL_SUMMARY,
-  TOTAL_LABOUR_HOURS_PER_BED,
+  MODELLED_LABOUR_HOURS_PER_BED,
   type ImpactSnapshot,
   type ImpactDimension,
   type HealthCascadeData,
   type OptimizationOpportunity,
 } from './impact-model';
+import { PLASTIC_KG_PER_BED } from './products';
+
+// ---------------------------------------------------------------------------
+// Named, sourced constants for derived impact metrics
+// ---------------------------------------------------------------------------
+
+/** Average household size used to convert beds → people reached. MODELLED. */
+const AVG_HOUSEHOLD_SIZE = 2.5;
+
+/** Nights per year, for sleep-nights provided. */
+const NIGHTS_PER_YEAR = 365;
+
+/**
+ * Cost to the health system per surgical RHD admission, used for the MODELLED
+ * government-savings estimate. Source: END RHD 2018 (~$70K per surgical
+ * admission). NOTE: this is NOT the older $250K figure (the impact-model
+ * sourceDetail explicitly flags $250K as wrong). Reconciled to
+ * impact-model.ts `govt-savings` metric sourceDetail. MODELLED, not measured.
+ */
+const RHD_SURGICAL_ADMISSION_COST_AUD = 70_000;
+
+/** MODELLED incidence assumptions for the conservative govt-savings estimate. */
+const BEDS_PER_RHD_CASE_PREVENTED = 500; // 1 RHD case prevented per ~500 beds (× household)
+const WASH_CYCLES_PER_RHD_CASE_PREVENTED = 5_000;
 
 // ---------------------------------------------------------------------------
 // Individual data fetchers
@@ -137,31 +161,30 @@ async function getStorytellerStats(): Promise<StorytellerStats> {
 // ---------------------------------------------------------------------------
 
 function computeSleepNights(beds: number): number {
-  // beds × 2.5 avg household members × 365 nights/year
-  return Math.round(beds * 2.5 * 365);
+  return Math.round(beds * AVG_HOUSEHOLD_SIZE * NIGHTS_PER_YEAR);
 }
 
 function computePlasticDiverted(beds: number): number {
-  return beds * 20; // 20kg HDPE per bed
+  return beds * PLASTIC_KG_PER_BED;
 }
 
 function computeEmploymentHours(beds: number): number {
-  return Math.round(beds * TOTAL_LABOUR_HOURS_PER_BED);
+  return Math.round(beds * MODELLED_LABOUR_HOURS_PER_BED);
 }
 
 function computeGovtSavings(beds: number, washCycles: number): number {
-  // Conservative estimate:
-  // - Each bed serves ~2.5 people
+  // MODELLED, conservative — not measured. Needs a health-evidence partner
+  // before external use. Uses ~$70K per surgical RHD admission (END RHD 2018),
+  // NOT the discredited $250K figure.
+  // - Each bed serves ~AVG_HOUSEHOLD_SIZE people
   // - Clean bedding reduces scabies risk → reduces RHD
-  // - RHD surgery cost ~$250K, lifetime cost ~$1M
-  // - Estimate: 1 in 500 beds prevents a case of RHD
-  const rhdCasesPrevented = (beds * 2.5) / 500;
-  const savingsFromBeds = rhdCasesPrevented * 250_000;
+  // - Estimate: 1 RHD case prevented per ~500 beds (× household)
+  const rhdCasesPrevented = (beds * AVG_HOUSEHOLD_SIZE) / BEDS_PER_RHD_CASE_PREVENTED;
+  const savingsFromBeds = rhdCasesPrevented * RHD_SURGICAL_ADMISSION_COST_AUD;
 
-  // Wash cycles prevent skin infections
-  // Estimate: every 5000 cycles prevents one RHD case
-  const rhdFromWashing = washCycles / 5000;
-  const savingsFromWashing = rhdFromWashing * 250_000;
+  // Wash cycles prevent skin infections; ~1 RHD case prevented per 5000 cycles
+  const rhdFromWashing = washCycles / WASH_CYCLES_PER_RHD_CASE_PREVENTED;
+  const savingsFromWashing = rhdFromWashing * RHD_SURGICAL_ADMISSION_COST_AUD;
 
   return Math.round(savingsFromBeds + savingsFromWashing);
 }
@@ -307,7 +330,7 @@ export async function fetchImpactData(): Promise<ImpactSnapshot> {
   );
 
   const plasticDiverted = computePlasticDiverted(assetStats.totalBeds);
-  const livesImpacted = Math.round(assetStats.totalAssets * 2.5);
+  const livesImpacted = Math.round(assetStats.totalAssets * AVG_HOUSEHOLD_SIZE);
   const employmentHours = computeEmploymentHours(assetStats.totalBeds);
 
   // Composite impact score: simple weighted sum

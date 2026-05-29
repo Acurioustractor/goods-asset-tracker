@@ -8,7 +8,7 @@ import { SupplyDemandCard, type CommittedOrder, type SupplierQuote } from '@/com
 import { BedReconciliation, type AssetSummary, type DemandSummary } from '@/components/production/bed-reconciliation';
 import { CostPerBatchCard, type BatchSummary } from '@/components/production/cost-per-batch-card';
 import { CostModelScenariosCard } from '@/components/production/cost-model-scenarios-card';
-import { fullyLoadedCostPerBed } from '@/lib/data/supplier-quotes';
+import { batchEconomics } from '@/lib/data/cost-model-scenarios';
 import { getSupplierActuals } from '@/lib/data/supplier-cost-actuals';
 import type { ProductionInventory, ProductionShift, ProductionJournal } from '@/lib/types/database';
 
@@ -54,8 +54,8 @@ async function getProductionData() {
     title: d.title as string,
     deal_type: d.deal_type as string,
     pipeline_stage: d.pipeline_stage as string,
-    amount_cents: d.amount_cents as number,
-    units: (d.units as number) || 0,
+    amount_cents: Number(d.amount_cents) || 0,
+    units: Number(d.units) || 0,
     maker: (d.maker as string) || null,
     delivery_status: (d.delivery_status as string) || null,
     notes: (d.notes as string) || null,
@@ -72,7 +72,7 @@ async function getProductionData() {
   let deployed = 0, demo = 0, allocated = 0, requested = 0, retired = 0, inTransitCount = 0;
 
   for (const a of rawAssets) {
-    const qty = a.quantity || 1;
+    const qty = Number(a.quantity) || 1;
     const product = a.product || 'Unknown';
     const isInTransit = (a.notes || '').toLowerCase().includes('transit');
 
@@ -96,8 +96,10 @@ async function getProductionData() {
     if (a.community && a.status === 'deployed') {
       communityMap.set(a.community, (communityMap.get(a.community) || 0) + qty);
     }
-    // Per-batch counts for COGS rollup (only Stretch Beds)
-    if (/bed/i.test(product) && a.status !== 'retired') {
+    // Per-batch counts for the Stretch-Bed COGS rollup. Match the canonical
+    // Stretch Bed ONLY — the old /bed/i caught Basket beds too, costing them at
+    // the Stretch unit cost. Washers and Basket beds are excluded.
+    if (/stretch/i.test(product) && a.status !== 'retired') {
       const m = a.unique_id?.match(/^GB0-([A-Za-z0-9]+)/);
       if (m) {
         batchMap.set(m[1], (batchMap.get(m[1]) || 0) + qty);
@@ -175,14 +177,19 @@ async function getProductionData() {
     totalDeals: totalDemandDeals,
   };
 
-  // Build batch summary (cost-per-batch view)
+  // Build batch summary (cost-per-batch view). COGS + margin come from the pure
+  // batchEconomics() helper (canonical fully-loaded cost + WEBSITE_PRICE) — no
+  // inline price/cost literals.
   const batchSummary: BatchSummary[] = [...batchMap.entries()]
-    .map(([batch, bedCount]) => ({
-      batch,
-      bedCount,
-      cogs: bedCount * fullyLoadedCostPerBed,
-      marginAtInstitutional: bedCount * (750 - fullyLoadedCostPerBed),
-    }))
+    .map(([batch, bedCount]) => {
+      const econ = batchEconomics(bedCount);
+      return {
+        batch,
+        bedCount,
+        cogs: econ.cogs,
+        marginAtInstitutional: econ.marginAtInstitutional,
+      };
+    })
     .sort((a, b) => {
       // Sort numerically when batch is a number (e.g. "156"), else alphabetically
       const na = Number(a.batch);
@@ -221,8 +228,9 @@ export default async function AdminProductionPage() {
     getSupplierActuals(),
   ]);
 
-  // Lifetime bed count for the actual $/bed denominator: count every Stretch Bed
-  // that exists in the register (deployed + ready + allocated + demo + retired etc).
+  // Lifetime Stretch-Bed count for the actual $/bed denominator: every Stretch Bed
+  // in the register (deployed + ready + allocated + demo etc), Basket beds excluded
+  // by the /stretch/i filter above.
   const bedsLifetime = batchSummary.reduce((s, b) => s + b.bedCount, 0);
 
   const latestInventory = inventorySnapshots[0] || null;

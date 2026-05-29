@@ -6,10 +6,10 @@ import { Card, CardContent } from '@/components/ui/card';
 import { TheoryOfChange } from '@/components/marketing';
 import { fetchImpactData } from '@/lib/data/impact-fetcher';
 import {
-  TOTAL_LABOUR_HOURS_PER_BED,
-  TOTAL_COST_PER_BED,
+  MODELLED_LABOUR_HOURS_PER_BED,
   REVENUE_SEGMENTS,
-  PRODUCTION_COST_BREAKDOWN,
+  CANONICAL_BUILD_PATHS,
+  CANONICAL_WEBSITE_PRICE,
 } from '@/lib/data/impact-model';
 import type { ImpactSnapshot, ImpactDimension, ImpactMetric } from '@/lib/data/impact-model';
 import type { Metadata } from 'next';
@@ -132,7 +132,7 @@ function LossFunctionSection({ snapshot }: { snapshot: ImpactSnapshot }) {
             { value: `${(summary.livesImpacted).toLocaleString()}+`, label: 'Lives Impacted', sub: 'avg 2.5 per bed' },
             { value: `${(summary.plasticDivertedKg / 1000).toFixed(1)}t`, label: 'Plastic Diverted', sub: `${summary.plasticDivertedKg.toLocaleString()}kg` },
             { value: summary.communitiesServed, label: 'Communities', sub: 'across Australia' },
-            { value: summary.employmentHoursCreated.toLocaleString(), label: 'Employment Hrs', sub: `${TOTAL_LABOUR_HOURS_PER_BED.toFixed(1)}hrs/bed` },
+            { value: summary.employmentHoursCreated.toLocaleString(), label: 'Employment Hrs', sub: `${MODELLED_LABOUR_HOURS_PER_BED.toFixed(1)}hrs/bed` },
             { value: `$${(summary.totalInvestment / 1000).toFixed(0)}K`, label: 'Invested', sub: `$${(summary.totalInvestment / summary.totalAssets).toFixed(0)}/asset` },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
@@ -428,68 +428,65 @@ function ProductionCostSection() {
               Cost Per Bed &amp; Employment Impact
             </h2>
             <p className="text-sm" style={{ color: '#5E5E5E' }}>
-              Every bed creates {TOTAL_LABOUR_HOURS_PER_BED.toFixed(1)} hours of employment for
-              at-risk youth and community members. At 1,500 beds/year, that&apos;s{' '}
-              {(1500 * TOTAL_LABOUR_HOURS_PER_BED).toLocaleString()} hours of employment.
+              Every bed creates roughly {MODELLED_LABOUR_HOURS_PER_BED.toFixed(1)} modelled hours of
+              employment for at-risk youth and community members. At 1,500 beds/year, that&apos;s
+              about {(1500 * MODELLED_LABOUR_HOURS_PER_BED).toLocaleString()} hours of employment.
             </p>
           </div>
 
-          {/* Production breakdown table */}
+          {/* Canonical build-path cost table (direct cost + margin at the $750 price) */}
+          <p className="text-xs mb-3 text-center" style={{ color: '#8B9D77' }}>
+            Direct cost per bed by build path, and the margin at our ${CANONICAL_WEBSITE_PRICE} price.
+            Modelled from verified supplier invoices. These are direct production costs, not
+            fully-loaded costs at today&apos;s pilot volume.
+          </p>
           <div className="rounded-lg overflow-x-auto border" style={{ borderColor: '#E8DED4' }}>
             <table className="w-full text-sm min-w-[480px]">
               <thead>
                 <tr style={{ backgroundColor: '#E8DED4' }}>
                   <th className="text-left px-4 py-3 font-medium" style={{ color: '#2E2E2E' }}>
-                    Stage
+                    Build path
                   </th>
                   <th className="text-right px-4 py-3 font-medium" style={{ color: '#2E2E2E' }}>
-                    Hours
+                    Direct cost
                   </th>
                   <th className="text-right px-4 py-3 font-medium" style={{ color: '#2E2E2E' }}>
-                    People
+                    Price
                   </th>
                   <th className="text-right px-4 py-3 font-medium" style={{ color: '#2E2E2E' }}>
-                    Cost
+                    Margin
+                  </th>
+                  <th className="text-right px-4 py-3 font-medium" style={{ color: '#2E2E2E' }}>
+                    Margin %
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {PRODUCTION_COST_BREAKDOWN.map((item, i) => (
+                {CANONICAL_BUILD_PATHS.map((row, i) => (
                   <tr
-                    key={item.stage}
+                    key={row.path}
                     style={{
                       backgroundColor: i % 2 === 0 ? 'white' : '#FDF8F3',
                     }}
                   >
                     <td className="px-4 py-2.5" style={{ color: '#2E2E2E' }}>
-                      {item.stage}
-                    </td>
-                    <td className="text-right px-4 py-2.5" style={{ color: '#5E5E5E' }}>
-                      {item.hoursPerUnit > 0 ? `${item.hoursPerUnit}h` : '—'}
-                    </td>
-                    <td className="text-right px-4 py-2.5" style={{ color: '#5E5E5E' }}>
-                      {item.personnelRequired > 0 ? item.personnelRequired : '—'}
+                      {row.path}
                     </td>
                     <td className="text-right px-4 py-2.5 font-medium" style={{ color: '#C45C3E' }}>
-                      ${item.costPerUnit}
+                      ${row.direct.toFixed(2)}
+                    </td>
+                    <td className="text-right px-4 py-2.5" style={{ color: '#5E5E5E' }}>
+                      ${CANONICAL_WEBSITE_PRICE}
+                    </td>
+                    <td className="text-right px-4 py-2.5" style={{ color: '#5E5E5E' }}>
+                      ${row.margin.toFixed(2)}
+                    </td>
+                    <td className="text-right px-4 py-2.5 font-medium" style={{ color: '#8B9D77' }}>
+                      {row.margin_pct}%
                     </td>
                   </tr>
                 ))}
               </tbody>
-              <tfoot>
-                <tr style={{ backgroundColor: '#E8DED4' }}>
-                  <td className="px-4 py-3 font-medium" style={{ color: '#2E2E2E' }}>
-                    Total per bed
-                  </td>
-                  <td className="text-right px-4 py-3 font-medium" style={{ color: '#2E2E2E' }}>
-                    {TOTAL_LABOUR_HOURS_PER_BED.toFixed(1)}h
-                  </td>
-                  <td className="text-right px-4 py-3" />
-                  <td className="text-right px-4 py-3 font-medium" style={{ color: '#C45C3E' }}>
-                    ${TOTAL_COST_PER_BED}
-                  </td>
-                </tr>
-              </tfoot>
             </table>
           </div>
 

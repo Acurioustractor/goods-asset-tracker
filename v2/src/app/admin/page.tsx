@@ -1,10 +1,42 @@
 import Link from 'next/link';
 import { createServiceClient } from '@/lib/supabase/server';
+import { reconcile, type XeroInvoice, type CrmDealRow } from '@/lib/finance/xero-reconciliation';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 const TWENTY_FOUR_H = 24 * 60 * 60 * 1000;
+
+const ACT_URL = process.env.ACT_INFRA_SUPABASE_URL || '';
+const ACT_KEY = process.env.ACT_INFRA_SUPABASE_KEY || '';
+
+/**
+ * Fetch live Goods Xero invoices (VOIDED/DELETED excluded at the query) so the
+ * dashboard's "overdue" derives from Xero status + due_date via the shared
+ * `reconcile()` helper — NOT from CRM notes text. Same pattern as
+ * /admin/xero-reconciliation. Returns [] on any failure so the tile reads $0
+ * (honest "nothing confirmed overdue") rather than crashing the dashboard.
+ */
+async function fetchXeroInvoices(): Promise<XeroInvoice[]> {
+  if (!ACT_URL || !ACT_KEY) return [];
+  const url =
+    `${ACT_URL}/rest/v1/xero_invoices` +
+    `?select=date,contact_name,total,amount_paid,amount_due,status,invoice_number,income_type,type,due_date` +
+    `&project_code=eq.ACT-GD` +
+    `&type=in.(ACCREC,ACCPAY)` +
+    `&status=not.in.(VOIDED,DELETED)` +
+    `&order=date.desc`;
+  try {
+    const res = await fetch(url, {
+      headers: { apikey: ACT_KEY, Authorization: `Bearer ${ACT_KEY}` },
+      cache: 'no-store',
+    });
+    if (!res.ok) return [];
+    return (await res.json()) as XeroInvoice[];
+  } catch {
+    return [];
+  }
+}
 
 const SIGNAL_BADGE: Record<string, { label: string; emoji: string; tone: string }> = {
   pulse: { label: 'Pulse', emoji: '🫀', tone: 'bg-emerald-100 text-emerald-900' },
@@ -43,11 +75,12 @@ export default async function AdminDashboard() {
     recentSignalsRes,
     unresolvedAlertsRes,
     pendingRemindersRes,
-    overdueDealsRes,
+    crmDealsRes,
     recentCompassionRes,
     bedFlowRes,
     pipelineDealsRes,
     productionInventoryRes,
+    xeroInvoices,
   ] = await Promise.all([
     supabase
       .from('assets')
@@ -74,10 +107,11 @@ export default async function AdminDashboard() {
       .is('sent_at', null)
       .order('scheduled_for', { ascending: true })
       .limit(20),
+    // All deals (with the columns reconcile() needs) so overdue is derived from
+    // Xero via the shared lib — NOT from a notes-ILIKE '%OVERDUE%' text match.
     supabase
       .from('crm_deals')
-      .select('id, title, amount_cents, notes, pipeline_stage')
-      .ilike('notes', '%OVERDUE%')
+      .select('id, title, deal_type, pipeline_stage, amount_cents, notes, source, updated_at')
       .neq('pipeline_stage', 'lost'),
     supabase
       .from('compassion_content')
@@ -101,14 +135,35 @@ export default async function AdminDashboard() {
       .select('snapshot_date, raw_plastic_kg, sheets_count, beds_possible')
       .order('snapshot_date', { ascending: false })
       .limit(1),
+    // Live Xero invoices — the SOURCE of overdue (status + due_date), not notes.
+    fetchXeroInvoices(),
   ]);
 
   const readyAssets = bedsByCommunityRes.data || [];
   const signals = recentSignalsRes.data || [];
   const alerts = unresolvedAlertsRes.data || [];
   const dueReminders = pendingRemindersRes.data || [];
-  const overdueDeals = overdueDealsRes.data || [];
   const recentCompassion = recentCompassionRes.data || [];
+
+  // Overdue = genuinely-collectable receivables past due, derived from Xero via
+  // the shared reconcile() helper (isOverdue on Xero status + due_date). This
+  // replaces the old `.ilike('notes','%OVERDUE%')` CRM text-match, which the
+  // honesty guardrails forbid (notes text is not collectable debt).
+  const crmDealsForRecon: CrmDealRow[] = ((crmDealsRes.data as Array<Record<string, unknown>> | null) || []).map((d) => ({
+    id: d.id as string,
+    title: (d.title as string) ?? null,
+    deal_type: (d.deal_type as string) ?? null,
+    pipeline_stage: (d.pipeline_stage as string) ?? null,
+    amount_cents: (d.amount_cents as number) ?? null,
+    notes: (d.notes as string) ?? null,
+    source: (d.source as string) ?? null,
+    updated_at: (d.updated_at as string) ?? null,
+  }));
+  const reconciliation = reconcile(crmDealsForRecon, xeroInvoices);
+  // Dollars. `arOverdue` is the only genuine "overdue" (past-due ACCREC).
+  const overdueTotalDollars = reconciliation.totals.arOverdue;
+  const overdueCount = reconciliation.arOverdue.length;
+  const overdueInvoices = reconciliation.arOverdue;
 
   type CommunityBucket = {
     community: string;
@@ -144,7 +199,8 @@ export default async function AdminDashboard() {
   const mehPulses = pulses24h.filter((s) => s.signal_value === 'meh').length;
   const badPulses = pulses24h.filter((s) => s.signal_value === 'bad').length;
 
-  const overdueTotal = overdueDeals.reduce((s, d) => s + (d.amount_cents || 0), 0);
+  // formatMoney() takes cents; overdue is sourced in dollars from Xero.
+  const overdueTotalCents = Math.round(overdueTotalDollars * 100);
 
   // Bed-flow rollup — production-style kanban across all bed assets
   const allBedAssets = (bedFlowRes.data || []) as Array<{ status: string; product: string; quantity: number | null; created_at: string; notes: string | null }>;
@@ -181,11 +237,11 @@ export default async function AdminDashboard() {
   // Compute today's #1 action (highest-priority thing to do)
   type TodayCall = { headline: string; detail: string; href: string; tone: 'red' | 'amber' | 'emerald' | 'blue' };
   const todayCall: TodayCall = (() => {
-    if (overdueTotal > 100_000_00) {
-      const top = overdueDeals.sort((a, b) => (b.amount_cents || 0) - (a.amount_cents || 0))[0];
+    if (overdueTotalCents > 100_000_00) {
+      const top = [...overdueInvoices].sort((a, b) => (b.amount_due ?? 0) - (a.amount_due ?? 0))[0];
       return {
-        headline: `Chase ${formatMoney(overdueTotal)} overdue`,
-        detail: top ? `${top.title}` : `${overdueDeals.length} invoices`,
+        headline: `Chase ${formatMoney(overdueTotalCents)} overdue (AR)`,
+        detail: top ? `${top.contact_name ?? top.invoice_number ?? 'invoice'}` : `${overdueCount} invoices`,
         href: '/admin/xero-reconciliation',
         tone: 'red',
       };
@@ -266,12 +322,12 @@ export default async function AdminDashboard() {
         <Link href="/admin/xero-reconciliation" className="rounded-2xl border bg-card shadow-sm p-4 hover:shadow-md transition-shadow">
           <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Money</p>
           <div className="mt-2">
-            {overdueTotal > 0 ? (
-              <div className="text-2xl font-bold tabular-nums text-red-700">{formatMoney(overdueTotal)}</div>
+            {overdueTotalCents > 0 ? (
+              <div className="text-2xl font-bold tabular-nums text-red-700">{formatMoney(overdueTotalCents)}</div>
             ) : (
               <div className="text-2xl font-bold tabular-nums text-emerald-700">$0</div>
             )}
-            <p className="text-[11px] text-muted-foreground">overdue · {overdueDeals.length} invoice{overdueDeals.length === 1 ? '' : 's'}</p>
+            <p className="text-[11px] text-muted-foreground">AR overdue (Xero) · {overdueCount} invoice{overdueCount === 1 ? '' : 's'}</p>
           </div>
           <div className="mt-3 pt-2 border-t flex justify-between text-[11px] text-muted-foreground">
             <span>Pipeline {formatMoney(pipelineActive)}</span>
@@ -410,7 +466,7 @@ export default async function AdminDashboard() {
             <h2 className="font-display text-lg font-bold">Needs attention</h2>
             <p className="text-xs text-muted-foreground">
               {alerts.length} alert{alerts.length === 1 ? '' : 's'} · {dueReminders.length} reminder{dueReminders.length === 1 ? '' : 's'} due ·{' '}
-              {overdueDeals.length} overdue
+              {overdueCount} overdue
             </p>
           </div>
           <ul className="divide-y">
@@ -448,23 +504,23 @@ export default async function AdminDashboard() {
                 </p>
               </li>
             )}
-            {overdueDeals.length > 0 && (
+            {overdueCount > 0 && (
               <li className="px-4 py-3 text-sm">
                 <p className="font-medium">
                   <span className="inline-block rounded-full bg-red-100 text-red-900 px-2 py-0.5 text-[10px] font-medium mr-2">
                     Money
                   </span>
-                  {formatMoney(overdueTotal)} overdue across {overdueDeals.length} invoice{overdueDeals.length === 1 ? '' : 's'}
+                  {formatMoney(overdueTotalCents)} AR overdue across {overdueCount} invoice{overdueCount === 1 ? '' : 's'}
                 </p>
                 <p className="text-xs text-muted-foreground mt-1 truncate">
-                  {overdueDeals.slice(0, 3).map((d) => d.title).join(' · ')}
+                  {overdueInvoices.slice(0, 3).map((inv) => inv.contact_name ?? inv.invoice_number ?? '—').join(' · ')}
                 </p>
                 <Link href="/admin/xero-reconciliation" className="text-xs underline hover:text-foreground mt-1 inline-block">
                   Xero recon →
                 </Link>
               </li>
             )}
-            {alerts.length === 0 && dueReminders.length === 0 && overdueDeals.length === 0 && (
+            {alerts.length === 0 && dueReminders.length === 0 && overdueCount === 0 && (
               <li className="px-4 py-6 text-sm text-muted-foreground text-center">
                 Nothing flagged. Have a good day.
               </li>
