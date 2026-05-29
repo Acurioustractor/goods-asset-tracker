@@ -6,6 +6,7 @@
  */
 
 import type { MetricResolver, ReportContext } from './types';
+import { PLASTIC_KG_PER_BED } from '@/lib/data/products';
 
 async function fetchXero<T = unknown>(
   ctx: ReportContext,
@@ -55,8 +56,8 @@ const bedsThisPeriodAllStatuses: MetricResolver = async (ctx) => {
 const plasticKgTransferred: MetricResolver = async (ctx) => {
   const res = await scopedAssetsQuery(ctx).in('status', ['deployed', 'allocated']);
   const beds = res.count ?? 0;
-  const kg = beds * 20;
-  return `**${kg.toLocaleString()} kg** (${(kg / 1000).toFixed(2)} tonnes) — ${beds} beds × 20 kg HDPE`;
+  const kg = beds * PLASTIC_KG_PER_BED;
+  return `**${kg.toLocaleString()} kg** (${(kg / 1000).toFixed(2)} tonnes) — ${beds} beds × ${PLASTIC_KG_PER_BED} kg HDPE`;
 };
 
 const communitiesServed: MetricResolver = async (ctx) => {
@@ -81,47 +82,72 @@ const commitmentProgressBar: MetricResolver = async (ctx) => {
     // Money-only commitments — render an AUD bar instead
     const total = c.totalAud;
     const paid = c.paidToDateAud ?? 0;
-    const pct = total > 0 ? Math.round((paid / total) * 100) : 0;
-    const filled = Math.round(pct / 5);
+    const rawPct = total > 0 ? Math.round((paid / total) * 100) : 0;
+    const pct = Math.max(0, Math.min(100, rawPct));
+    const filled = Math.max(0, Math.min(20, Math.round(rawPct / 5)));
     const bar = '▓'.repeat(filled) + '░'.repeat(20 - filled);
     return `\`\`\`\nCommitment:  $${total.toLocaleString('en-AU')}\nPaid:        ${bar} ${pct}%  ($${paid.toLocaleString('en-AU')})\n\`\`\``;
   }
   // Unit-based commitments — count delivered units in period, respecting
-  // optional community scope.
+  // optional community scope. Delivery can exceed the original commitment
+  // (e.g. 496 beds against a 109-unit commitment), so clamp the bar to 0-20
+  // segments and the displayed pct to 0-100 — an unclamped `'░'.repeat(20-filled)`
+  // throws RangeError on overshoot and surfaces as a [METRIC ERROR] in the deck.
   const periodRes = await scopedAssetsQuery(ctx).in('status', ['deployed', 'allocated']);
   const periodCount = periodRes.count ?? 0;
   const total = c.totalUnits;
-  const pct = total > 0 ? Math.round((periodCount / total) * 100) : 0;
-  const filled = Math.round(pct / 5);
+  const rawPct = total > 0 ? Math.round((periodCount / total) * 100) : 0;
+  const pct = Math.max(0, Math.min(100, rawPct));
+  const filled = Math.max(0, Math.min(20, Math.round(rawPct / 5)));
   const bar = '▓'.repeat(filled) + '░'.repeat(20 - filled);
   return `\`\`\`\n${c.unitLabel ?? 'units'} commitment:  ${total} ${c.unitLabel ?? ''}\nDelivered this period: ${bar} ${pct}%  (${periodCount} ${c.unitLabel ?? ''})\n\`\`\``;
 };
 
 const xeroDrawnAud: MetricResolver = async (ctx) => {
   const c = ctx.funder.commitment;
+  // CRITICAL: filter out VOIDED/DELETED invoices at the query. Without this the
+  // reduce sums voided invoices into the funder doc — live-confirmed $832,832
+  // (sum of all incl. voided) vs the correct $123,332 paid for Centrecorp.
   const qs = [
     'select=total,amount_paid,invoice_number,date,status',
     `type=eq.ACCREC`,
+    `status=not.in.(VOIDED,DELETED)`,
     `project_code=eq.${ctx.funder.xeroProjectCode}`,
     `contact_name=eq.${encodeURIComponent(ctx.funder.contactName)}`,
   ].join('&');
   const rows = await fetchXero<{ total: number; amount_paid: number; invoice_number: string; date: string; status: string }>(ctx, qs);
-  const totalRaised = rows.reduce((s, r) => s + (r.total || 0), 0);
-  const totalPaid = rows.reduce((s, r) => s + (r.amount_paid || 0), 0);
+  // Defence-in-depth: also strip any VOIDED/DELETED that slip through the query.
+  const live = rows.filter((r) => r.status !== 'VOIDED' && r.status !== 'DELETED');
+  // A zero result is almost always a contact_name drift (the Xero contact_name
+  // not matching funder.contactName), not a genuine $0. Surface it explicitly
+  // so a naming mismatch can't masquerade as "raised $0 / paid $0".
+  if (live.length === 0) {
+    const commitmentLine = c.totalAud
+      ? `Commitment: **$${c.totalAud.toLocaleString('en-AU')}** ex-GST`
+      : '';
+    return [
+      commitmentLine,
+      `_[METRIC NOTE: no non-voided Xero ACCREC invoices matched contact_name="${ctx.funder.contactName}" (project_code=${ctx.funder.xeroProjectCode}). Check the Xero contact name matches funder.contactName before trusting a $0.]_`,
+    ].filter(Boolean).join('  \n');
+  }
+  const totalRaised = live.reduce((s, r) => s + (r.total || 0), 0);
+  const totalPaid = live.reduce((s, r) => s + (r.amount_paid || 0), 0);
   const commitmentLine = c.totalAud
     ? `Commitment: **$${c.totalAud.toLocaleString('en-AU')}** ex-GST`
     : '';
   return [
     commitmentLine,
-    `Xero ACCREC invoices raised (${rows.length}): **$${totalRaised.toLocaleString('en-AU', { maximumFractionDigits: 0 })}**`,
-    `Amount paid against those invoices: **$${totalPaid.toLocaleString('en-AU', { maximumFractionDigits: 0 })}**`,
+    `Xero ACCREC invoices raised, non-voided (${live.length}): **$${totalRaised.toLocaleString('en-AU', { maximumFractionDigits: 0 })}** inc-GST`,
+    `Amount paid against those invoices: **$${totalPaid.toLocaleString('en-AU', { maximumFractionDigits: 0 })}** inc-GST`,
   ].filter(Boolean).join('  \n');
 };
 
 const xeroTripOverhead: MetricResolver = async (ctx) => {
-  // ACCPAY in the period window — closest proxy for trip-overhead cost
-  // (caveat: trip overhead often paid through personal accounts and not in
-  // ACCPAY; see wiki/outputs/2026-05-22-utopia-trip-report.md for detail).
+  // ACCPAY in the period window — closest proxy for trip-overhead cost.
+  // Caveat: a trip's spend may not all be matched to ACCPAY bills yet (a Xero
+  // payment-matching gap, not debt — the 2026-05-29 cross-check found $0 from
+  // personal accounts and no director loan). See
+  // wiki/outputs/2026-05-22-utopia-trip-report.md for detail.
   const qs = [
     'select=total,contact_name,date',
     `type=eq.ACCPAY`,
@@ -132,7 +158,7 @@ const xeroTripOverhead: MetricResolver = async (ctx) => {
   const rows = await fetchXero<{ total: number; contact_name: string; date: string }>(ctx, qs);
   const total = rows.reduce((s, r) => s + (r.total || 0), 0);
   if (rows.length === 0) {
-    return `**$0** — no ACCPAY invoices entered in Xero for this period yet (receipts often paid through personal accounts; reconciliation pending).`;
+    return `— not yet reconciled in Xero (no ACCPAY bills matched to this period; a payment-matching gap, not debt).`;
   }
   return `**$${total.toLocaleString('en-AU', { maximumFractionDigits: 0 })}** across ${rows.length} ACCPAY invoice${rows.length === 1 ? '' : 's'}.`;
 };
@@ -186,9 +212,13 @@ const financialsAtAGlance: MetricResolver = async (ctx) => {
   const rows: string[] = [];
   rows.push('| Item | Value |');
   rows.push('|---|---|');
+  // Basis labels are deliberate: the commitment is a grant-commitment ex-GST
+  // figure; paid/to-be-paid are cash (inc-GST) and Xero invoices are inc-GST.
+  // Do NOT relabel cash figures as ex-GST to match the commitment line — they
+  // are different bases and were drifting into a false ex-GST label.
   rows.push(`| **Total commitment** | $${c.totalAud.toLocaleString('en-AU')} ex-GST |`);
-  if (c.paidToDateAud !== undefined) rows.push(`| **Paid to date** | $${c.paidToDateAud.toLocaleString('en-AU')} |`);
-  if (c.toBePaidAud !== undefined) rows.push(`| **To be paid** | $${c.toBePaidAud.toLocaleString('en-AU')} |`);
+  if (c.paidToDateAud !== undefined) rows.push(`| **Paid to date** | $${c.paidToDateAud.toLocaleString('en-AU')} inc-GST (cash) |`);
+  if (c.toBePaidAud !== undefined) rows.push(`| **To be paid** | $${c.toBePaidAud.toLocaleString('en-AU')} inc-GST (cash) |`);
   if (c.invoicesRaisedAud !== undefined) rows.push(`| **Xero invoices raised** | $${c.invoicesRaisedAud.toLocaleString('en-AU')} inc-GST |`);
   if (c.reportsSubmitted) rows.push(`| **Reports submitted** | ${c.reportsSubmitted} |`);
   if (c.nextReportDue) rows.push(`| **Next report due** | ${c.nextReportDue} |`);
