@@ -19,7 +19,7 @@ Confirmed by Ben on 29 May 2026. The current operating entity today is the Nicho
 | Entity | Type | Status | Goods relevance |
 | --- | --- | --- | --- |
 | **Nicholas Marchesi sole trader** | Individual trading structure. ABN 21 591 780 066. | The current operating entity today. ACT core facts record the cutover to the Pty intended this financial year. | Current home for Goods trading, consulting and grant revenue. All activity is migrating into A Curious Tractor Pty Ltd this FY. |
-| **A Curious Tractor Pty Ltd** | Pty Ltd. ACN 697 347 676. | Registered with ASIC. Directors recorded as Benjamin Knight and Nicholas Marchesi OAM. | Go-forward trading and operating company, trading as Goods on Country. All operations migrate to it this financial year (FY2026-27). |
+| **A Curious Tractor Pty Ltd** | Pty Ltd. ABN 36 697 347 676, ACN 697 347 676. | Registered with ASIC. Directors recorded as Benjamin Knight and Nicholas Marchesi OAM. | Go-forward trading and operating company, trading as Goods on Country. All operations migrate to it this financial year (FY2026-27). |
 | **The Butterfly Movement Ltd** | Company limited by guarantee, ACNC-registered charity, Item 1 DGR. | Operational as the Goods charity and DGR home from FY2026-27 (around 1 July 2026). Gifted/transitioned from TABOO Foundation, which continues as the same legal entity. | The only DGR pathway for Goods. Philanthropy, gifts and DGR-eligible funding flow through Butterfly, never through Goods, A Curious Tractor or A Kind Tractor directly. |
 | **A Kind Tractor Ltd** | Company limited by guarantee. ABN 73 669 029 341. | Dormant and not used. Its ACNC disease-prevention subtype application drew an RFI on 10 April 2024. Not DGR. | Not the trading entity, not the charity home and not a DGR pathway. Treat as dormant, not used. The Goods charity/DGR home is The Butterfly Movement Ltd. |
 | **Future community operating entities** | Not settled | Still being designed. | Possible local vehicles for recycling, production, repair, sales, maintenance, plant ownership and community governance. |
@@ -27,7 +27,7 @@ Confirmed by Ben on 29 May 2026. The current operating entity today is the Nicho
 ## Naming rule
 
 - The current operating entity today is the **Nicholas Marchesi sole trader** (ABN 21 591 780 066).
-- Use **A Curious Tractor Pty Ltd** (ACN 697 347 676), trading as Goods on Country, on first reference for the go-forward trading company, then **the Pty** if needed.
+- Use **A Curious Tractor Pty Ltd** (ABN 36 697 347 676, ACN 697 347 676), trading as Goods on Country, on first reference for the go-forward trading company, then **the Pty** if needed.
 - Use **The Butterfly Movement Ltd** on first reference for the charity and DGR home, then **the charity** if needed.
 - **A Kind Tractor Ltd** (ABN 73 669 029 341) is dormant and not used. It is not the Goods trading entity, charity home or DGR pathway. If named, mark it dormant and not used.
 - Do not use **ACT Foundation** or **ACT Ventures** as legal entity names. They are older conceptual labels in older material, not real current entities.
