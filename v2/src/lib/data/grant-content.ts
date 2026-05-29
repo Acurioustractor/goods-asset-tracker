@@ -13,10 +13,13 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const orgIdentity = {
+  // ⚠️ LEGAL REVIEW REQUIRED (QBE Area 09): the entity that trades as Goods on Country, and its ABN,
+  // are unresolved. ABN Lookup shows A Kind Tractor Ltd as ABN 73 669 029 341 (active ACNC, NOT DGR),
+  // which conflicts with the abn below. Confirm the correct entity + ABN with legal before any external use.
   legalName: 'A Kind Tractor Ltd',
   abn: '50 001 350 152',
   acnc: true,
-  dgr: true,
+  dgr: false, // A Kind Tractor Ltd is ACNC but NOT DGR (verified ABN Lookup). DGR pathway is via The Butterfly Movement Ltd (Item 1 DGR).
   tradingAs: 'Goods on Country',
   website: 'www.goodsoncountry.com',
   tagline: 'Goods that heal.',
@@ -48,7 +51,7 @@ export const founders = {
     bio: '20+ years in community-led innovation: youth refuges, QLD Corrective Services Gulf communities, QFCC Youth Advocate, Orange Sky, AIME.',
     credentials: [
       'Built Empathy Ledger ethical storytelling infrastructure',
-      'Built Goods Asset Register (389 tracked assets)',
+      'Built the Goods Asset Register (QR-coded asset tracking)',
       'JusticeHub Digital Platform (launching 2026)',
     ],
   },
@@ -84,25 +87,29 @@ export const problemStatement = {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const impactNumbers = {
-  asOf: '2026-03-15',
-  totalAssetsTracked: 389,
-  bedsDeployed: 412,
-  washersDeployed: 5,
-  communitiesEngaged: 8,
+  // Refreshed to canonical register figures 2026-05-29 (QBE sweep). Verified internal, not audited.
+  asOf: '2026-05-29',
+  totalAssetsTracked: 558, // asset rows carrying QR URLs (register: 561 rows / 674 total product units)
+  bedsDeployed: 496, // deployed bed units tracked (Stretch + legacy Basket)
+  washersDeployed: 14, // honest working machines (28 deployed; telemetry/working reconciliation pending)
+  communitiesEngaged: 10, // communities represented in asset records
   livesImpacted: '1,000+',
-  plasticDivertedKg: 9225,
-  plasticPerBed: '20–25kg HDPE',
+  plasticDivertedKg: 9920, // modelled: 496 beds x 20kg HDPE
+  plasticPerBed: '20kg HDPE',
   verifiedStorytellers: '15+',
-  advisoryBoardMembers: 13,
+  advisoryBoardMembers: 13, // advisory/support network — NOT a fiduciary board
+  // Deployed beds by community (verified register pull 2026-05-26). Washer counts omitted here
+  // pending the deployed(28)-vs-working(14) reconciliation; see washersDeployed above.
   deployments: [
-    { community: 'Palm Island', state: 'QLD', beds: 141 },
-    { community: 'Tennant Creek', state: 'NT', beds: 139, washers: 5 },
-    { community: 'Alice Homelands', state: 'NT', beds: 60 },
-    { community: 'Maningrida', state: 'NT', beds: 24 },
-    { community: 'Utopia Homelands', state: 'NT', beds: 24 },
+    { community: 'Tennant Creek', state: 'NT', beds: 159 },
+    { community: 'Utopia Homelands', state: 'NT', beds: 147 },
+    { community: 'Palm Island', state: 'QLD', beds: 131 },
     { community: 'Kalgoorlie', state: 'WA', beds: 20 },
-    { community: 'Mt Isa', state: 'QLD', beds: 4 },
-  ],
+    { community: 'Maningrida', state: 'NT', beds: 18 },
+    { community: 'Alice Springs', state: 'NT', beds: 16 },
+    { community: 'Mt Isa', state: 'QLD', beds: 2 },
+    { community: 'Darwin', state: 'NT', beds: 1 },
+  ] as Array<{ community: string; state: string; beds: number; washers?: number }>,
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -171,7 +178,7 @@ export const communityQuotes = {
 export const grantAnswers = {
   whatDoYouDo: {
     short: 'We design and manufacture essential household goods — beds, washing machines, and refrigerators — with remote Indigenous communities in Australia, using recycled plastic and local production to create health outcomes, jobs, and community ownership.',
-    medium: `Goods on Country transforms essential household goods into community-owned assets that improve lives in remote Australia. Our flagship product, the Stretch Bed, is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty canvas. Each bed diverts 20kg of plastic from landfill and is designed to last 10+ years. We've deployed 412 beds across 7 communities in 4 states and territories, with 5 prototype washing machines in Tennant Creek. Our containerised mobile production facility enables communities to manufacture their own goods from local waste plastic.`,
+    medium: `Goods on Country transforms essential household goods into community-owned assets that improve lives in remote Australia. Our flagship product, the Stretch Bed, is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty canvas. Each bed diverts 20kg of plastic from landfill and is designed to last 10+ years. We've deployed 496 bed units across 10 communities in multiple states and territories, with washing-machine prototypes in several communities. Our containerised production facility is being set up so communities can manufacture goods from local waste plastic On-Country.`,
   },
   whatProblemDoYouSolve: {
     short: 'In remote Australia, 59% of homes lack washing machines, mattresses cost $1,200+ delivered, and $3M worth of washing machines end up in dumps every year in Alice Springs alone. This drives preventable diseases including Rheumatic Heart Disease in children.',
@@ -179,14 +186,14 @@ export const grantAnswers = {
   },
   whatMakesYouDifferent: {
     short: "We don't deliver products to communities. Communities lead the design in community, we support the build, and our goal is to transfer full manufacturing capability so communities own the means of production.",
-    medium: `Three things differentiate Goods: (1) Community-led design. Every product decision is shaped in community with the people who use the thing. 500+ minutes of recorded community input drove the evolution from V1 Basket Beds to the V4 Stretch Bed. (2) Local production. Our containerised mobile factory ($100K invested) turns community waste plastic into bed components On-Country, creating jobs and circular economy. (3) Ownership transfer. We don't license, we transfer. Communities receive full training, capability, and documentation.`,
+    medium: `Three things differentiate Goods: (1) Community-led design. Every product decision is shaped in community with the people who use the thing. 500+ minutes of recorded community input drove the evolution from V1 Basket Beds to the V4 Stretch Bed. (2) Local production. Our containerised production facility ($100K invested) is being set up to turn waste plastic into bed components On-Country, creating jobs and a circular economy as it comes online. (3) Ownership pathway. The model is built to transfer capability to communities over time, with full training, capability and documentation, rather than a license.`,
   },
   whoDoYouWorkWith: 'We work with 8+ remote Indigenous communities across QLD, NT, WA, and SA. Core community partners include Oonchiumpa Consultancy, Wilya Janta, and Palm Island Community Company. Health partners include Anyinginyi Health, Miwatj Health, Purple House, and Red Dust.',
-  howDoYouMeasureImpact: 'We track impact through: (1) Asset Register — 389 assets with QR-coded lifecycle monitoring. (2) Telemetry — washing machines report cycle counts, energy usage. (3) Community feedback — 500+ minutes recorded, 15+ verified storytellers via Empathy Ledger. (4) Environmental metrics — 9,225kg+ plastic diverted. (5) Health outcomes — tracking with health partners.',
-  whatAreYourFinancials: `$778,162 in grant funding received. ~$61K in trade revenue. ~$127K in outstanding receivables. $100K invested in production facility. Demand exceeds production 3–5x.`,
+  howDoYouMeasureImpact: 'We track impact through: (1) Asset Register — 558 QR-coded assets with lifecycle monitoring. (2) Telemetry — washing machines report cycle counts, energy usage (coming online). (3) Community feedback — 500+ minutes recorded, 15+ verified storytellers via Empathy Ledger. (4) Environmental metrics — 9,900kg+ plastic diverted (modelled at 20kg HDPE per bed). (5) Health outcomes — tracking with health partners.',
+  whatAreYourFinancials: `~$576K in grant funding verified received (Xero: Snow, Centrecorp, VFFF), with a further ~$202K founder-confirmed and being reconciled (TFN, FRRR, AMP). ~$61K in trade revenue. ~$82,500 in outstanding receivables (Rotary, authorised). $100K invested in the production facility. Demand materially exceeds current production capacity. Figures are Xero management data, not audited.`,
   howWillYouUseThisFunding: {
     beds: 'Each $600–850 funds one Stretch Bed deployed to a remote community, diverting 20kg of plastic and providing a 10+ year sleeping surface.',
-    production: '$100K funds a containerised production facility deployment to a community for ~2 months, producing ~30 beds/week.',
+    production: '$100K funds a containerised production facility deployment to a community for ~2 months, producing roughly 20 beds/week at current throughput.',
     washers: '$4,000 funds one Pakkimjalji Kari washing machine deployed with telemetry and 10+ year design life.',
     scale: '$500K funds working capital for 500+ bed production run, supply chain establishment, and community training across 3+ communities.',
   },
@@ -198,9 +205,9 @@ export const grantAnswers = {
 
 export const eligibility = [
   'ACNC registered charity',
-  'DGR status (Deductible Gift Recipient)',
+  'DGR pathway via The Butterfly Movement Ltd (Item 1 DGR)', // Goods/A Kind Tractor is NOT itself DGR — see orgIdentity legal-review note
   'Company Limited by Guarantee',
-  `ABN ${orgIdentity.abn}`,
+  `ABN ${orgIdentity.abn}`, // ⚠️ ABN under legal review (see orgIdentity) — confirm before external use
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -256,7 +263,7 @@ export function composeGrantApplication(
         `*"${orgIdentity.philosophy}"*`,
         '',
         `Website: ${orgIdentity.website}`,
-        `Status: ACNC registered, DGR`,
+        `Status: ACNC registered charity (DGR pathway via The Butterfly Movement Ltd)`,
       ].join('\n'),
     }),
 
