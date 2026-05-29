@@ -13,17 +13,19 @@ import { useCostModel } from '@/lib/cost-model/use-cost-model';
 import { MissionControlSkin } from './skins/mission-control-skin';
 import { TeslaSkin } from './skins/tesla-skin';
 import { TerminalSkin } from './skins/terminal-skin';
+import { InvestmentSkin } from './skins/investment-skin';
 
-type SkinKey = 'mc' | 'tesla' | 'terminal';
+type SkinKey = 'mc' | 'tesla' | 'terminal' | 'investment';
 
 const SKINS: { key: SkinKey; label: string; tagline: string }[] = [
   { key: 'mc', label: 'Mission Control', tagline: 'SpaceX launch console' },
   { key: 'tesla', label: 'Tesla', tagline: 'Dark · elegant · spacious' },
   { key: 'terminal', label: 'Terminal', tagline: 'Bloomberg flight console' },
+  { key: 'investment', label: 'Investment', tagline: 'Margin waterfall · brokerage · debt' },
 ];
 
 function parseSkin(raw: string | null): SkinKey {
-  return raw === 'tesla' || raw === 'terminal' || raw === 'mc' ? raw : 'mc';
+  return raw === 'tesla' || raw === 'terminal' || raw === 'investment' || raw === 'mc' ? raw : 'mc';
 }
 
 export function CostModelWorkspace() {
@@ -82,6 +84,7 @@ export function CostModelWorkspace() {
         {skin === 'mc' && <MissionControlSkin cm={cm} />}
         {skin === 'tesla' && <TeslaSkin cm={cm} />}
         {skin === 'terminal' && <TerminalSkin cm={cm} />}
+        {skin === 'investment' && <InvestmentSkin />}
       </div>
     </div>
   );
