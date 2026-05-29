@@ -9,7 +9,7 @@ EXACT figures (do not change):
   - Actuals (grant-funded)   +340,585  [green]  (before founder time)
   - Buy-Kit @ 500/yr          -60,095  [red, below zero]  breakeven 1,679/yr
   - Factory @ 500/yr          +69,430  [green]            breakeven 338/yr
-  - Community @ 1,000/yr     +236,560  [green]            breakeven 282/yr  (v6 fair wage)
+  - Community @ 1,000/yr     +236,560  [green]            breakeven 333/yr  (v6 fair wage; ROUND(109,500/329.26), full-block basis like Factory 338)
   All bars on a consistent BEFORE-founder-time basis.
   Caption: "The capital case = moving from Buy-Kit to in-house production."
 
@@ -96,7 +96,7 @@ bars = [
     ("Actuals (grant-funded)", "before founder time",       340585,  None,   SAGE),
     ("Buy-Kit @ 500/yr",       "buy finished kits",         -60095,  "1,679/yr", RUST),
     ("Factory @ 500/yr",       "press + CNC On-Country",     69430,  "338/yr",   SAGE),
-    ("Community @ 1,000/yr",   "fair wage + community-owned", 236560, "282/yr",   SAGE),
+    ("Community @ 1,000/yr",   "fair wage + community-owned", 236560, "333/yr",   SAGE),
 ]
 
 bar_h = 56
