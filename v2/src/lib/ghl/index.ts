@@ -377,6 +377,62 @@ async function ghlRequest<T>(
 }
 
 /**
+ * Read Goods opportunities across the given GHL pipelines (LeadConnector).
+ * Resilient: returns [] if GHL is disabled or a pipeline errors, so callers
+ * (e.g. /admin/loi-tracker) degrade gracefully rather than crashing.
+ */
+interface GhlOpportunityRaw {
+  id?: string;
+  name?: string;
+  pipelineId?: string;
+  pipelineStageId?: string;
+  monetaryValue?: number;
+  status?: string;
+  contact?: { name?: string };
+  contactName?: string;
+}
+
+export interface GoodsOpportunity {
+  id: string;
+  name: string;
+  pipelineId: string;
+  stageId: string;
+  monetaryValue: number;
+  status: string; // open | won | lost | abandoned
+  contactName?: string;
+}
+
+export async function fetchOpportunitiesForPipelines(
+  pipelineIds: string[],
+): Promise<{ ok: boolean; opportunities: GoodsOpportunity[] }> {
+  if (!GHL_ENABLED) return { ok: false, opportunities: [] };
+  const all: GoodsOpportunity[] = [];
+  let anyOk = false;
+  for (const pid of pipelineIds) {
+    try {
+      const res = await ghlRequest<{ opportunities?: GhlOpportunityRaw[] }>(
+        `/opportunities/search?location_id=${GHL_LOCATION_ID}&pipeline_id=${pid}&limit=100`,
+      );
+      anyOk = true;
+      for (const o of res.opportunities || []) {
+        all.push({
+          id: String(o.id ?? ''),
+          name: String(o.name ?? 'Untitled'),
+          pipelineId: String(o.pipelineId ?? pid),
+          stageId: String(o.pipelineStageId ?? ''),
+          monetaryValue: Number(o.monetaryValue ?? 0),
+          status: String(o.status ?? 'open'),
+          contactName: o.contact?.name ?? o.contactName ?? undefined,
+        });
+      }
+    } catch {
+      // skip this pipeline; the page renders what it could fetch
+    }
+  }
+  return { ok: anyOk, opportunities: all };
+}
+
+/**
  * Find contact by email or phone
  */
 async function findContact(emailOrPhone: string): Promise<{ id: string } | null> {
