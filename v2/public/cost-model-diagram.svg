@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 1500" width="1680" height="1500" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
+<defs><filter id="sh" x="-8%" y="-8%" width="116%" height="124%">
+<feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#5A4A38" flood-opacity="0.10"/></filter></defs>
+<rect width="1680" height="1500" fill="#FBFAF5"/>
+<text x="840.0" y="70" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="50" font-weight="700" fill="#2A241E">Goods on Country: the cost story (v6)</text>
+<text x="840.0" y="106" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="400" fill="#6F6155" font-style="italic">Where the cost lives, how the headline number misleads, and how the bed gets cheaper as volume and in-sourcing grow.</text>
+
+<text x="60" y="152" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#8B4E2C" letter-spacing="1.2">1 · IDIOT INDEX</text><text x="60" y="176" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#2A241E">Where the cost lives, per component</text>
+<text x="60" y="198" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#6F6155">Index = what we pay now ÷ raw-material floor. A high bar is not waste; it is the value-add (and supplier margin) we could capture by in-sourcing.</text>
+<text x="60" y="250.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#2A241E">HDPE kit (Defy cut + finished)</text>
+<rect x="340" y="238" width="980" height="24" rx="6" fill="#EFE8DA8C"/>
+<rect x="340" y="238" width="842.8" height="24" rx="6" fill="#BD6A3C" stroke="#8B4E2C" stroke-width="1.0" filter="url(#sh)"/>
+<text x="1192.8" y="250.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#8B4E2C">8.6x</text>
+<text x="1246.8" y="245.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#6F6155">AU$344 paid · AU$40 floor</text>
+<text x="1246.8" y="261.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#6F6155" font-style="italic">Headline lever: ~AU$289/bed of Defy margin = the in-sourcing prize</text>
+<rect x="338" y="235" width="846.8" height="30" rx="8" fill="none" stroke="#8B4E2C" stroke-width="1.6"/>
+<text x="60" y="292.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#2A241E">Defy pre-pressed panels (alt)</text>
+<rect x="340" y="280" width="980" height="24" rx="6" fill="#EFE8DA8C"/>
+<rect x="340" y="280" width="980.0" height="24" rx="6" fill="#A8442E" stroke="#7C3222" stroke-width="1.0"/>
+<text x="1330.0" y="292.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#7C3222">10x</text>
+<text x="1300" y="287.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#6F6155">AU$400 paid · AU$40 floor</text>
+<text x="1300" y="303.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#6F6155" font-style="italic">Avoid: pay the press margin and still CNC + assemble</text>
+<text x="60" y="334.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#2A241E">Canvas (Centre Canvas)</text>
+<rect x="340" y="322" width="980" height="24" rx="6" fill="#EFE8DA8C"/>
+<rect x="340" y="322" width="235.2" height="24" rx="6" fill="#4C9B97" stroke="#38726F" stroke-width="1.0"/>
+<text x="585.2" y="334.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#38726F">2.4x</text>
+<text x="639.2" y="329.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#6F6155">AU$94 paid · AU$38 floor</text>
+<text x="639.2" y="345.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#6F6155" font-style="italic">In-house sewing only at volume; competitive vs AU$130 self-sew</text>
+<text x="60" y="376.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#2A241E">Steel poles (DNA Steel)</text>
+<rect x="340" y="364" width="980" height="24" rx="6" fill="#EFE8DA8C"/>
+<rect x="340" y="364" width="205.8" height="24" rx="6" fill="#C2A55E" stroke="#8F7A45" stroke-width="1.0"/>
+<text x="555.8" y="376.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#8F7A45">2.1x</text>
+<text x="609.8" y="371.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#6F6155">AU$27 paid · AU$13 floor</text>
+<text x="609.8" y="387.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#6F6155" font-style="italic">Already reasonable; local NT procurement premium worth keeping</text>
+<text x="60" y="418.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#2A241E">Bolts</text>
+<rect x="340" y="406" width="980" height="24" rx="6" fill="#EFE8DA8C"/>
+<rect x="340" y="406" width="166.6" height="24" rx="6" fill="#6F9C68" stroke="#52734C" stroke-width="1.0"/>
+<text x="516.6" y="418.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#52734C">1.7x</text>
+<text x="570.6" y="413.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#6F6155">AU$1 paid · AU$1 floor</text>
+<text x="570.6" y="429.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#6F6155" font-style="italic">Trivial dollar impact</text>
+<text x="60" y="460.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#2A241E">End caps</text>
+<rect x="340" y="448" width="980" height="24" rx="6" fill="#EFE8DA8C"/>
+<rect x="340" y="448" width="117.6" height="24" rx="6" fill="#6F9C68" stroke="#52734C" stroke-width="1.0"/>
+<text x="467.6" y="460.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#52734C">1.2x</text>
+<text x="521.6" y="455.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#6F6155">AU$3 paid · AU$3 floor</text>
+<text x="521.6" y="471.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#6F6155" font-style="italic">Near cost; buy bulk direct</text>
+<text x="60" y="502.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#2A241E">Hardware: screws</text>
+<rect x="340" y="490" width="980" height="24" rx="6" fill="#EFE8DA8C"/>
+<rect x="340" y="490" width="98.0" height="24" rx="6" fill="#6F9C68" stroke="#52734C" stroke-width="1.0"/>
+<text x="448.0" y="502.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#52734C">1x</text>
+<text x="502.0" y="497.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#6F6155">AU$1 paid · AU$1 floor</text>
+<text x="502.0" y="513.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#6F6155" font-style="italic">Already at raw rate</text>
+<text x="60" y="544.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#2A241E">Defy assembly labour</text>
+<rect x="340" y="532" width="980" height="24" rx="6" fill="#EFE8DA8C"/>
+<rect x="340" y="532" width="88.2" height="24" rx="6" fill="#6F9C68" stroke="#52734C" stroke-width="1.0"/>
+<text x="438.2" y="544.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#52734C">0.9x</text>
+<text x="492.2" y="539.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#6F6155">AU$56 paid · AU$60 floor</text>
+<text x="492.2" y="555.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#6F6155" font-style="italic">Competitive; in-sourcing here is a jobs / mission move, not a cost move</text>
+<rect x="60" y="574" width="1560" height="46" rx="12" fill="#BD6A3C1E" stroke="#BD6A3C" stroke-width="1.5"/>
+<text x="82" y="602" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#8B4E2C">The capital case is a plastic-processing ask, full stop: in-source HDPE shred + press + CNC and capture ~AU$289/bed of Defy margin (~AU$144K/yr at 500 beds).</text>
+<text x="60" y="662" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#664233" letter-spacing="1.2">2 · MARGINAL vs FIXED</text><text x="60" y="686" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#2A241E">Why "AU$1,912/bed" is the wrong number</text>
+<rect x="60" y="690" width="760.0" height="232" rx="16" fill="#FFFFFF" stroke="#4C9B97" stroke-width="1.8" filter="url(#sh)"/>
+<rect x="60" y="690" width="760.0" height="8" rx="16" fill="#4C9B97"/>
+<rect x="60" y="694" width="760.0" height="6" rx="0" fill="#4C9B97"/>
+<text x="84" y="728" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="18" font-weight="700" fill="#2A241E">The honest split</text>
+<text x="84" y="760" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#38726F" letter-spacing="0.6">MARGINAL  (per bed, scales with each bed)</text>
+<rect x="84" y="772" width="650.0939733333333" height="24" rx="7" fill="#4C9B97" stroke="#38726F" stroke-width="1.0"/>
+<text x="94" y="789" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">Defy-kit today  AU$685</text>
+<rect x="84" y="802" width="404.16917333333333" height="24" rx="7" fill="#6F9C68" stroke="#52734C" stroke-width="1.0"/>
+<text x="94" y="819" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">Factory (in-sourced)  AU$426</text>
+<text x="84" y="854" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#664233" letter-spacing="0.4">PLUS ANNUAL FIXED BLOCK  (does not scale per bed)</text>
+<text x="84" y="876" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#2A241E">~AU$110-123K / yr</text>
+<text x="316" y="876" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#6F6155" font-style="italic">facility + production time + admin + field travel</text>
+<text x="84" y="902" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#6F6155">Funded by philanthropy today; absorbed by bed margin at scale.</text>
+<rect x="860.0" y="690" width="760.0" height="232" rx="16" fill="#FFFFFF" stroke="#A8442E" stroke-width="1.8" filter="url(#sh)"/>
+<rect x="860.0" y="690" width="760.0" height="8" rx="16" fill="#A8442E"/>
+<rect x="860.0" y="694" width="760.0" height="6" rx="0" fill="#A8442E"/>
+<text x="884.0" y="728" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="18" font-weight="700" fill="#2A241E">The distortion to retire</text>
+<text x="884.0" y="762" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#7C3222">AU$1,912 / bed  (the "fully-loaded at 100/yr" figure)</text>
+<rect x="884.0" y="776" width="199.14774058577405" height="30" rx="6" fill="#4C9B97" stroke="#38726F" stroke-width="1.0"/>
+<rect x="1083.147740585774" y="776" width="512.7740585774059" height="30" rx="6" fill="#A8442E" stroke="#7C3222" stroke-width="1.0"/>
+<text x="884.0" y="834" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#2A241E">It divides a fixed annual block over an artificially small</text>
+<text x="884.0" y="852" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#2A241E">100-bed denominator, and miscounts long-haul freight as</text>
+<text x="884.0" y="870" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#2A241E">overhead. It is arithmetic, not a real unit cost.</text>
+<rect x="884.0" y="884" width="712.0" height="38" rx="10" fill="#6F9C681E" stroke="#6F9C68" stroke-width="1.4"/>
+<text x="898.0" y="908" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#52734C">Breakeven on the factory path: ~378 beds / yr  (AU$750 price, AU$426 marginal).</text>
+<text x="60" y="994" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#52734C" letter-spacing="1.2">3 · COST-DOWN TRAJECTORY</text><text x="60" y="1018" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#2A241E">The bed gets cheaper as volume and in-sourcing grow</text>
+<text x="60" y="1040" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#6F6155">Direct cost per bed at each stage, against the held AU$750 shop price. Each step is gated by committed volume and a make-vs-buy decision.</text>
+<line x1="60" y1="1364" x2="1620" y2="1364" stroke="#C9BCA8" stroke-width="1.4"/>
+<line x1="60" y1="1082.8" x2="1620" y2="1082.8" stroke="#BD6A3C" stroke-width="1.8" stroke-dasharray="6 5"/>
+<text x="1620" y="1074.75" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#8B4E2C">PRICE  AU$750 (held flat)</text>
+<rect x="189.0" y="1187.82875" width="132" height="176.1712500000001" rx="10" fill="#4C9B97" stroke="#38726F" stroke-width="1.2" filter="url(#sh)"/>
+<text x="255.0" y="1175.82875" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-weight="700" fill="#38726F">AU$469.79</text>
+<text x="255.0" y="1213.82875" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#FFFFFF">AU$280</text>
+<text x="255.0" y="1229.82875" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#FFFFFF">margin</text>
+<text x="255.0" y="1388" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#2A241E">Defy kits</text>
+<text x="255.0" y="1406" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#6F6155" font-style="italic">today, ~100/yr, no plant</text>
+<circle cx="205.0" cy="1205.82875" r="13" fill="#38726F"/>
+<text x="205.0" y="1209.82875" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">0</text>
+<path d="M 327.0 1187.82875 L 566.0 1187.82875 M 561.0 1182.82875 L 568.0 1187.82875 L 561.0 1192.82875" fill="none" stroke="#C9BCA8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="579.0" y="1187.82875" width="132" height="176.1712500000001" rx="10" fill="#C2A55E" stroke="#8F7A45" stroke-width="1.2" filter="url(#sh)"/>
+<text x="645.0" y="1175.82875" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-weight="700" fill="#8F7A45">AU$469.79</text>
+<text x="645.0" y="1213.82875" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#FFFFFF">AU$280</text>
+<text x="645.0" y="1229.82875" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#FFFFFF">margin</text>
+<text x="645.0" y="1388" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#2A241E">In-source assembly</text>
+<text x="645.0" y="1406" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#6F6155" font-style="italic">~150-300/yr, trained</text><text x="645.0" y="1419" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#6F6155" font-style="italic">operators</text>
+<circle cx="595.0" cy="1205.82875" r="13" fill="#8F7A45"/>
+<text x="595.0" y="1209.82875" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">1</text>
+<path d="M 717.0 1224.213125 L 956.0 1224.213125 M 951.0 1219.213125 L 958.0 1224.213125 L 951.0 1229.213125" fill="none" stroke="#C9BCA8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="969.0" y="1260.5975" width="132" height="103.40249999999992" rx="10" fill="#6F9C68" stroke="#52734C" stroke-width="1.2" filter="url(#sh)"/>
+<text x="1035.0" y="1248.5975" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-weight="700" fill="#52734C">AU$275.74</text>
+<text x="1035.0" y="1286.5975" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#FFFFFF">AU$474</text>
+<text x="1035.0" y="1302.5975" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#FFFFFF">margin</text>
+<text x="1035.0" y="1388" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#2A241E">Factory (press +</text><text x="1035.0" y="1404" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#2A241E">CNC)</text>
+<text x="1035.0" y="1422" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#6F6155" font-style="italic">~300-500/yr committed,</text><text x="1035.0" y="1435" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#6F6155" font-style="italic">AU$90-200K capex</text>
+<circle cx="985.0" cy="1278.5975" r="13" fill="#52734C"/>
+<text x="985.0" y="1282.5975" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">2</text>
+<path d="M 1107.0 1285.91 L 1346.0 1285.91 M 1341.0 1280.91 L 1348.0 1285.91 L 1341.0 1290.91" fill="none" stroke="#C9BCA8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1359.0" y="1311.2225" width="132" height="52.77749999999992" rx="10" fill="#8A5A45" stroke="#664233" stroke-width="1.2" filter="url(#sh)"/>
+<text x="1425.0" y="1299.2225" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-weight="700" fill="#664233">AU$140.74</text>
+<text x="1425.0" y="1337.2225" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#FFFFFF">AU$609</text>
+<text x="1425.0" y="1353.2225" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#FFFFFF">margin</text>
+<text x="1425.0" y="1388" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#2A241E">Community + free</text><text x="1425.0" y="1404" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#2A241E">waste plastic</text>
+<text x="1425.0" y="1422" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#6F6155" font-style="italic">~1,000/yr, council</text><text x="1425.0" y="1435" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#6F6155" font-style="italic">feedstock + CDP labour</text>
+<circle cx="1375.0" cy="1329.2225" r="13" fill="#664233"/>
+<text x="1375.0" y="1333.2225" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">3</text>
+<path d="M 255.0 1187.8 L 645.0 1187.8 L 1035.0 1260.6 L 1425.0 1311.2" fill="none" stroke="#6F6155" stroke-width="1.4" stroke-dasharray="2 6" opacity="0.6"/>
+<line x1="60" y1="1462" x2="1620" y2="1462" stroke="#C9BCA8" stroke-width="1"/>
+<text x="60" y="1482" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="14" font-weight="400" fill="#2A241E">The honest sequence: buy Defy kits now; in-source when committed volume crosses ~300 beds/yr. Below that, the plant capex does not pay back.</text>
+<text x="60" y="1506" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="11.5" font-weight="400" fill="#6F6155" font-style="italic">Source: cost model v6 (01-cost-model-idiot-index.json, 2026-05-29). Marginal, fixed-block, factory and community figures are modelled on verified BOM inputs; price AU$750 verified. Founder-rate and FTE inputs are pending confirmation.</text>
+</svg>
