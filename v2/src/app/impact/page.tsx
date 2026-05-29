@@ -41,6 +41,59 @@ export const metadata: Metadata = {
 // Helper components
 // ---------------------------------------------------------------------------
 
+// Provenance tiers — each /impact metric carries a confidence tier so no number
+// reads as a uniformly "live / measured" figure. Shared by the badge + the legend.
+const CONFIDENCE_META: Record<
+  ImpactMetric['confidence'],
+  { label: string; bg: string; fg: string; desc: string }
+> = {
+  verified: { label: 'Verified', bg: '#E6EDDD', fg: '#4F6138', desc: 'System or measured fact' },
+  modelled: { label: 'Modelled', bg: '#E2E9F0', fg: '#3C566B', desc: 'Derived from stated assumptions' },
+  estimate: { label: 'Estimate', bg: '#F3E6D2', fg: '#8A6433', desc: 'Partial-data approximation' },
+  target: { label: 'Target', bg: '#E9E5E1', fg: '#6A5E54', desc: 'Design goal, not yet achieved' },
+};
+
+function ProvenanceBadge({ metric }: { metric: ImpactMetric }) {
+  const s = CONFIDENCE_META[metric.confidence];
+  return (
+    <span
+      className="ml-1.5 inline-flex items-center rounded px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide align-middle"
+      style={{ backgroundColor: s.bg, color: s.fg }}
+      title={`${s.label} — ${s.desc}. Source (${metric.source}): ${metric.sourceDetail}`}
+    >
+      {s.label}
+    </span>
+  );
+}
+
+function ProvenanceLegend() {
+  return (
+    <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-10">
+      <span className="text-xs uppercase tracking-widest" style={{ color: '#8B9D77' }}>
+        How to read these numbers:
+      </span>
+      {(Object.keys(CONFIDENCE_META) as ImpactMetric['confidence'][]).map((key) => {
+        const i = CONFIDENCE_META[key];
+        return (
+          <span
+            key={key}
+            className="inline-flex items-center gap-1.5 text-xs"
+            style={{ color: '#5E5E5E' }}
+          >
+            <span
+              className="rounded px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide"
+              style={{ backgroundColor: i.bg, color: i.fg }}
+            >
+              {i.label}
+            </span>
+            {i.desc}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
 function MetricProgress({
   metric,
   size = 'default',
@@ -68,6 +121,7 @@ function MetricProgress({
           style={{ color: '#5E5E5E' }}
         >
           {metric.name}
+          <ProvenanceBadge metric={metric} />
         </span>
         <span className={size === 'large' ? 'text-sm' : 'text-xs'} style={{ color: '#8B9D77' }}>
           {formatValue(current, metric.unit)} / {formatValue(target, metric.unit)} yr 1
@@ -227,6 +281,8 @@ function FiveDimensionsSection({ dimensions }: { dimensions: ImpactDimension[] }
             engagement — with clear targets for Year 1, Year 3, and 2030.
           </p>
         </div>
+
+        <ProvenanceLegend />
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
           {dimensions.map((dim) => (

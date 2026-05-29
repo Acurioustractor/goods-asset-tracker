@@ -25,6 +25,13 @@ export interface ImpactMetric {
   targets: { year1: number; year3: number; vision2030: number };
   source: 'supabase' | 'empathy-ledger' | 'xero' | 'manual' | 'computed';
   sourceDetail: string;
+  /**
+   * Confidence tier, rendered as a provenance badge on /impact so no metric reads
+   * as a uniformly "live/measured" number. verified = system or measured fact;
+   * modelled = derived via stated assumptions; estimate = partial-data approximation;
+   * target = design goal not yet achieved.
+   */
+  confidence: 'verified' | 'modelled' | 'estimate' | 'target';
   proxyFor?: string;
   optimizationLevers: string[];
   computeFn?: string; // name of function in impact-fetcher.ts that computes this
@@ -237,6 +244,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
     metrics: [
       {
         id: 'beds-delivered',
+        confidence: 'verified',
         name: 'Beds Delivered',
         unit: 'beds',
         current: null, // fetched live from Supabase
@@ -249,6 +257,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'sleep-nights',
+        confidence: 'modelled',
         name: 'Sleep Nights Provided',
         unit: 'nights',
         current: null,
@@ -261,6 +270,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'wash-cycles',
+        confidence: 'verified',
         name: 'Wash Cycles Completed',
         unit: 'cycles',
         current: null,
@@ -273,6 +283,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'product-survival-rate',
+        confidence: 'estimate',
         name: 'Product Survival Rate',
         unit: '%',
         current: 95, // estimate: only 15-20 beds with 6+ months data
@@ -303,6 +314,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
     metrics: [
       {
         id: 'plastic-diverted',
+        confidence: 'modelled',
         name: 'Plastic Diverted from Landfill',
         unit: 'kg',
         current: null,
@@ -315,6 +327,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'product-lifespan',
+        confidence: 'target',
         name: 'Average Product Lifespan',
         unit: 'years',
         current: 10, // design target, not yet measured at scale
@@ -326,6 +339,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'local-feedstock-pct',
+        confidence: 'estimate',
         name: 'Local Feedstock %',
         unit: '%',
         current: 60, // estimate: some plastic still sourced from metro
@@ -356,6 +370,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
     metrics: [
       {
         id: 'employment-hours',
+        confidence: 'modelled',
         name: 'Employment Hours Created',
         unit: 'hours',
         current: null,
@@ -368,6 +383,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'fte-jobs',
+        confidence: 'verified',
         name: 'FTE Jobs',
         unit: 'FTE',
         current: 2,
@@ -379,6 +395,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'cost-per-unit',
+        confidence: 'modelled',
         name: 'Production Cost per Unit (direct, current build path)',
         unit: '$/bed',
         current: CANONICAL_BUYKIT_DIRECT_COST, // 534.79 — what we make a bed for TODAY (Defy Buy-Kit path)
@@ -390,6 +407,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'revenue',
+        confidence: 'verified',
         name: 'Total Revenue Received (cumulative since inception, ~89% grant-funded)',
         unit: '$',
         current: verifiedFinancials.revenueReceived, // 649,710.79 — total revenue received since inception (grant + commercial), Xero workpaper (verified, not audited)
@@ -401,6 +419,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'govt-savings',
+        confidence: 'modelled',
         name: 'Government Health Savings (est.)',
         unit: '$',
         current: null,
@@ -432,6 +451,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
     metrics: [
       {
         id: 'storytellers-active',
+        confidence: 'verified',
         name: 'Active Storytellers',
         unit: 'people',
         current: null,
@@ -444,6 +464,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'community-production-days',
+        confidence: 'verified',
         name: 'Community Production Days/Week',
         unit: 'days/week',
         current: 0,
@@ -455,6 +476,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'community-employment-pct',
+        confidence: 'estimate',
         name: 'Community Member Employment %',
         unit: '%',
         current: 30,
@@ -466,6 +488,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'communities-served',
+        confidence: 'verified',
         name: 'Communities Served',
         unit: 'communities',
         current: null,
@@ -491,6 +514,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
     metrics: [
       {
         id: 'units-per-month',
+        confidence: 'estimate',
         name: 'Units Produced per Month',
         unit: 'beds/month',
         current: 15, // estimate during active production runs
@@ -501,6 +525,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'cnc-time',
+        confidence: 'verified',
         name: 'CNC Cutting Time per Bed',
         unit: 'hours',
         current: 3.5,
@@ -512,6 +537,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'facility-count',
+        confidence: 'verified',
         name: 'Production Facilities',
         unit: 'facilities',
         current: 1,
@@ -522,6 +548,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'facility-utilisation',
+        confidence: 'estimate',
         name: 'Facility Utilisation',
         unit: '%',
         current: 30, // intermittent production runs
