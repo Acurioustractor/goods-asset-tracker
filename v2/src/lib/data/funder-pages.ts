@@ -60,7 +60,7 @@ export const FUNDER_PAGES: FunderPage[] = [
       instrument: 'Non-repayable grant',
       amount: '$840K',
       purpose:
-        'Funds the On-Country manufacturing facility fit-out outright. The site (Townsville, Tennant Creek, Alice Springs, or another location chosen with the community partner depending on need and opportunity) becomes a permanent community-owned asset. Simplest instrument, fastest path to operational, no repayment schedule to negotiate.',
+        'Funds the On-Country manufacturing facility fit-out outright. The site (Townsville, Tennant Creek, Alice Springs, or another location chosen with the community partner depending on need and opportunity) is designed to transition into a community-owned asset over time. Simplest instrument, fastest path to operational, no repayment schedule to negotiate.',
     },
     alternativeAsks: [
       {
@@ -75,7 +75,7 @@ export const FUNDER_PAGES: FunderPage[] = [
         instrument: 'Grant plus loan',
         amount: '$1.5M',
         purpose:
-          '$840K non-repayable for the facility fit-out, plus $660K recoverable working capital to ramp production once the plant is built. Funds the bricks and mortar AND the cashflow runway in a single commitment. The most catalytic version: fully unlocks the QBE match and de-risks SEFA in one move.',
+          '$840K non-repayable for the facility fit-out, plus $660K recoverable working capital to ramp production once the plant is built. Funds the bricks and mortar AND the cashflow runway in a single commitment. The most catalytic version: it anchors the raise that the QBE match is contingent on, and strengthens the case for SEFA working capital.',
       },
     ],
     facility: {
@@ -102,7 +102,7 @@ export const FUNDER_PAGES: FunderPage[] = [
         'Year one operating costs: power, materials buffer, four local FTE wages, site supervisor',
       ],
       becomes: [
-        'A community-owned manufacturing asset producing 1,500+ beds a year, with the revenue staying On Country',
+        'A community-owned manufacturing asset producing 1,500+ beds a year, with the revenue staying On-Country',
         'A training pipeline for young people moving from CDP and Work-for-the-Dole into real wages and trade skills',
         'A circular-economy hub where household plastic waste gets collected and processed locally, ending the rubbish-to-landfill pattern in remote communities',
         'A platform that other On-Country product lines can plug into (washing machine assembly and repair, modular furniture, water tank components)',
@@ -111,11 +111,11 @@ export const FUNDER_PAGES: FunderPage[] = [
       ],
     },
     intro:
-      "Goods on Country is a First Nations led social enterprise making the Stretch Bed: a flat-pack, washable, 10-year bed built from recycled HDPE, galvanised steel and Australian canvas, designed for remote Indigenous communities. We're in the QBE Catalysing Impact 2026 cohort, putting together a $3M blended capital stack to build the On-Country manufacturing facility and meet the institutional buyer demand we already have on the table.",
+      "Goods on Country is a First Nations led social enterprise making the Stretch Bed: a flat-pack, washable, 10-year bed built from recycled HDPE, galvanised steel and Australian canvas, designed for remote Indigenous communities. We're in the QBE Catalysing Impact 2026 cohort, putting together a ~$3M blended capital raise (target) to build the On-Country manufacturing facility and meet the institutional buyer demand we have in active conversation.",
     whyUs: [
-      "DGR1 status. Minderoo can count sub-market returns toward grant targets without the concessional treatment penalty.",
-      'Self-servicing economics. At roughly $750 a bed with cost-to-make well below sale price, the recoverable portion pays itself back across the existing buyer pipeline within two to three years.',
-      "Catalytic position. Your commitment is what unlocks SEFA's senior debt and triggers QBE's $400K dollar-for-dollar match.",
+      "DGR pathway via The Butterfly Movement Ltd (active ACNC charity, Item 1 DGR). Philanthropic support can be routed through the charity for DGR treatment; Goods on Country is the trading entity, not itself a DGR.",
+      'Self-servicing economics. At roughly $750 a bed with marginal cost well below sale price, the recoverable portion pays itself back across the buyer pipeline within two to three years.',
+      "Catalytic position. Your commitment anchors the raise that SEFA's working capital and QBE's $400K dollar-for-dollar match are contingent on.",
       "Aligned to Minderoo's existing playbook. You've done recoverable grants like this before, and Goods is a clean fit.",
       "First Nations led, On-Country manufacturing. Direct alignment with Minderoo's Generation One and Thrive by Five priorities.",
     ],
@@ -139,7 +139,7 @@ export const FUNDER_PAGES: FunderPage[] = [
       purpose: 'Working capital for community deployments plus outcome measurement',
     },
     intro:
-      "Goods on Country is a First Nations led social enterprise making the Stretch Bed: a 10-year, washable, flat-pack bed designed for remote Indigenous housing. We're approaching PRF as part of a $3M blended capital raise through the QBE Catalysing Impact 2026 program, with a focus on the disadvantage and housing outcomes alignment that's central to PRF's mission.",
+      "Goods on Country is a First Nations led social enterprise making the Stretch Bed: a 10-year, washable, flat-pack bed designed for remote Indigenous housing. We're approaching PRF as part of a ~$3M blended capital raise (target) through the QBE Catalysing Impact 2026 program, with a focus on the disadvantage and housing outcomes alignment that's central to PRF's mission.",
     whyUs: [
       "Direct alignment with the PRF disadvantage pillar. Quality, durable furniture is a measurable lever for housing outcomes in remote Australia.",
       "Outcomes data is already flowing. Telemetry from the washing machines and the bed deployment tracking system gives PRF measurable impact reporting from day one.",

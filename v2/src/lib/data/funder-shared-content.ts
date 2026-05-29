@@ -4,10 +4,10 @@
  */
 
 export const TRACTION_STATS = [
-  { label: 'Beds shipped to date', value: '600+', sub: 'Centrecorp, Homeland Schools, community deployments' },
-  { label: 'HDPE diverted per bed', value: '20kg', sub: 'Recycled into leg components On Country' },
-  { label: 'Grant funding to date', value: '$445K', sub: 'Past support from Snow, FRRR, VFFF, TFN, AMP' },
-  { label: 'Capital stack target', value: '~$3M', sub: 'QBE blended finance, close mid-2026' },
+  { label: 'Bed units deployed', value: '496', sub: 'Tracked across 10 communities (Stretch + legacy Basket)' },
+  { label: 'HDPE diverted per bed', value: '20kg', sub: 'Recycled into leg components On-Country' },
+  { label: 'Grant funding to date', value: '$450K+', sub: 'Verified paid: Snow, Centrecorp, VFFF, QIC and others (Xero)' },
+  { label: 'Capital stack target', value: '~$3M', sub: 'Blended-finance target via QBE Catalysing Impact 2026 (raising, not committed)' },
 ];
 
 export interface ProductCard {
@@ -22,7 +22,7 @@ export const PRODUCT_CARDS: ProductCard[] = [
   {
     title: 'The Stretch Bed',
     body:
-      'Stretch Bed v2.3 is in production. Sale price sits around $750 a bed with cost-to-make well below that thanks to On-Country HDPE processing and the simplified flat-pack design. Strong gross margin that improves further as production volume scales.',
+      'Stretch Bed v2.3 is in production. Sale price sits around $750 a bed, with marginal cost well below that and a clear path to lower it further as we move HDPE processing On-Country and volume scales. Margin improves as we in-source production.',
     image: '/images/product/stretch-bed-hero.jpg',
     imageAlt: 'The Stretch Bed: flat-pack, washable, 10-year design',
     link: { href: '/shop/stretch-bed-single', label: 'See the product' },
@@ -38,7 +38,7 @@ export const PRODUCT_CARDS: ProductCard[] = [
   {
     title: 'Pakkimjalki Kari, the washing machine',
     body:
-      'Companion product. Named in Warumungu by Elder Dianne Stokes. 11 machines deployed in Tennant Creek with real cycle telemetry flowing via Particle.io. Designed in conversation with the Elders who use it.',
+      'Companion product. Named in Warumungu by Elder Dianne Stokes. Prototype machines deployed in Tennant Creek and other communities, with cycle telemetry coming online via Particle.io. Designed in conversation with the Elders who use it.',
     image: '/images/product/washing-machine-hero.jpg',
     imageAlt: 'The Pakkimjalki Kari washing machine in a remote community',
     link: { href: '/story', label: 'Read the full story' },
@@ -82,5 +82,5 @@ export const INVESTMENT_THESIS = {
   whoWeAre:
     "First Nations led, On-Country manufacturing model. Products designed in community for actual remote conditions, not in an office for catalogues. Real telemetry data, real revenue, real Elders and communities leading the design of the product line. We've shipped the beds. The proof is in the houses.",
   achievable:
-    "At roughly $750 a bed, 1,500 beds delivered in year one is over $1.1M of revenue against a committed buyer pipeline already in active conversation. The $3M stack covers facility build, working capital, and the runway to scale into On-Country production at a defensible margin.",
+    "At roughly $750 a bed, a Year 1 target of 1,500 beds is over $1.1M of revenue, against an institutional buyer pipeline in active conversation (not yet committed). The ~$3M target stack covers facility build, working capital, and the runway to scale toward On-Country production at a defensible margin.",
 };
