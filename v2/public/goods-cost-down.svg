@@ -3,12 +3,12 @@
 <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#5A4A38" flood-opacity="0.10"/></filter></defs>
 <rect width="1680" height="980" fill="#FBFAF5"/>
 <text x="840.0" y="74" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="50" font-weight="700" fill="#2A241E">Cost-down: in-sourcing captures the value</text>
-<text x="840.0" y="110" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="400" fill="#6F6155" font-style="italic">Direct cost per bed falls at each in-sourcing step, against the held AU$750 price. The widening band is captured margin.</text>
+<text x="840.0" y="110" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="400" fill="#6F6155" font-style="italic">Direct cost per bed falls at each in-sourcing step against the held AU$750 price; at community scale the margin stays community-owned.</text>
 <line x1="60" y1="756" x2="1620" y2="756" stroke="#C9BCA8" stroke-width="1.6"/>
 <rect x="155.0" y="243.80487804878044" width="200" height="146.82926829268297" rx="6" fill="#4C9B9728"/>
 <rect x="545.0" y="243.80487804878044" width="200" height="163.90243902439028" rx="6" fill="#C2A55E28"/>
 <rect x="935.0" y="243.80487804878044" width="200" height="323.70731707317077" rx="6" fill="#6F9C6828"/>
-<rect x="1325.0" y="243.80487804878044" width="200" height="415.90243902439033" rx="6" fill="#7A5C8E28"/>
+<rect x="1325.0" y="243.80487804878044" width="200" height="327.1219512195122" rx="6" fill="#7A5C8E28"/>
 <line x1="60" y1="243.8" x2="1620" y2="243.8" stroke="#BD6A3C" stroke-width="2.0" stroke-dasharray="7 5"/>
 <text x="66" y="231.80487804878044" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#8B4E2C">Price AU$750 (held flat)</text>
 <rect x="155.0" y="390.6341463414634" width="200" height="365.3658536585366" rx="12" fill="#4C9B97" stroke="#38726F" stroke-width="1.4" filter="url(#sh)"/>
@@ -40,18 +40,18 @@
 <text x="953.0" y="592.5121951219512" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">3</text>
 <text x="1035.0" y="786" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="19" font-weight="700" fill="#2A241E">Factory</text>
 <text x="1035.0" y="808" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#6F6155" font-style="italic">press + CNC On-Country</text>
-<path d="M 1143.0 583.609756097561 L 1310.0 583.609756097561 M 1305.0 578.609756097561 L 1312.0 583.609756097561 L 1305.0 588.609756097561" fill="none" stroke="#52734C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="1230.0" y="557.609756097561" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#52734C">free waste plastic +</text><text x="1230.0" y="571.609756097561" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#52734C">community labour</text>
-<rect x="1325.0" y="659.7073170731708" width="200" height="96.29268292682923" rx="12" fill="#7A5C8E" stroke="#5A4469" stroke-width="1.4" filter="url(#sh)"/>
-<rect x="1322.0" y="656.7073170731708" width="206" height="102.29268292682923" rx="14" fill="none" stroke="#5A4469" stroke-width="2.4"/>
-<text x="1425.0" y="447.7560975609756" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#5A4469">margin AU$609  (81%)</text>
-<text x="1425.0" y="467.7560975609756" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#6F6155" font-style="italic">captured value</text>
-<text x="1425.0" y="689.7073170731708" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">direct AU$141</text>
-<circle cx="1343.0" cy="679.7073170731708" r="14" fill="#5A4469"/>
-<text x="1343.0" y="684.7073170731708" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">4</text>
+<path d="M 1143.0 539.219512195122 L 1310.0 539.219512195122 M 1305.0 534.219512195122 L 1312.0 539.219512195122 L 1305.0 544.219512195122" fill="none" stroke="#52734C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1230.0" y="513.219512195122" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#52734C">free plastic +</text><text x="1230.0" y="527.219512195122" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#52734C">fair-wage labour</text>
+<rect x="1325.0" y="570.9268292682926" width="200" height="185.07317073170736" rx="12" fill="#7A5C8E" stroke="#5A4469" stroke-width="1.4" filter="url(#sh)"/>
+<rect x="1322.0" y="567.9268292682926" width="206" height="191.07317073170736" rx="14" fill="none" stroke="#5A4469" stroke-width="2.4"/>
+<text x="1425.0" y="403.36585365853654" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#5A4469">margin AU$479  (64%)</text>
+<text x="1425.0" y="423.36585365853654" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#6F6155" font-style="italic">captured value</text>
+<text x="1425.0" y="600.9268292682926" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">direct AU$271</text>
+<circle cx="1343.0" cy="590.9268292682926" r="14" fill="#5A4469"/>
+<text x="1343.0" y="595.9268292682926" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">4</text>
 <text x="1425.0" y="786" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="19" font-weight="700" fill="#2A241E">Community</text>
-<text x="1425.0" y="808" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#6F6155" font-style="italic">community-owned</text><text x="1425.0" y="823" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#6F6155" font-style="italic">production</text>
+<text x="1425.0" y="808" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#6F6155" font-style="italic">fair wage +</text><text x="1425.0" y="823" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#6F6155" font-style="italic">community-owned</text>
 <line x1="60" y1="830" x2="1620" y2="830" stroke="#C9BCA8" stroke-width="1"/>
-<text x="60" y="852" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="14" font-weight="400" fill="#2A241E">Each step is gated by committed volume and a make-vs-buy decision. Margin = AU$750 price minus direct cost per bed.</text>
+<text x="60" y="852" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="14" font-weight="400" fill="#2A241E">Each step is gated by committed volume and a make-vs-buy decision. Margin = AU$750 minus direct cost. Community lands at ~parity with the factory — but the fair wage and the margin both stay in community.</text>
 <text x="60" y="876" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="11.5" font-weight="400" fill="#6F6155" font-style="italic">Source: Goods cost model (2026-05). Direct-cost figures are modelled on verified BOM inputs; AU$750 price verified. Capex and community-labour inputs are forward estimates.</text>
 </svg>

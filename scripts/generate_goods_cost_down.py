@@ -11,11 +11,11 @@ EXACT figures (do not change):
   - Buy-Kit:           direct 535, margin 215 (29%)
   - In-source assembly: direct ~510 (intermediate step)
   - Factory:           direct 276, margin 474 (63%)  [highlight green]
-  - Community:         direct 141, margin 609 (81%)  [highlight purple]
+  - Community:         direct 271, margin 479 (64%)  [highlight purple]  (v6 fair wage; ~parity with Factory)
   Arrow labels between steps:
     "in-source assembly"
     "add 90-200K capex: press + CNC"
-    "free waste plastic + community labour"
+    "free plastic + fair-wage labour"
 
 Style mirrors scripts/generate_goods_cost_model_diagram.py (same palette, fonts,
 helpers, SVG -> PNG/PDF via rsvg-convert).
@@ -97,7 +97,7 @@ S.append(f'<rect width="{W}" height="{H}" fill="{BG}"/>')
 
 # ------------------------------------------------------------------- header
 S.append(text(W/2, 74, "Cost-down: in-sourcing captures the value", 50, INK, family=SERIF, weight="700"))
-S.append(text(W/2, 110, "Direct cost per bed falls at each in-sourcing step, against the held AU$750 price. The widening band is captured margin.",
+S.append(text(W/2, 110, "Direct cost per bed falls at each in-sourcing step against the held AU$750 price; at community scale the margin stays community-owned.",
               20, INK_MUTE, family=SERIF, italic=True))
 
 # ------------------------------------------------------------------- chart frame
@@ -118,12 +118,12 @@ steps = [
     ("Buy-Kit",            "buy finished kits from supplier", 535, 215, 29,  TEAL,   False),
     ("In-source assembly", "train operators, assemble in-house", 510, 240, None, GOLD, False),
     ("Factory",            "press + CNC On-Country",          276, 474, 63,  SAGE,   True),
-    ("Community",          "community-owned production",      141, 609, 81,  PURPLE, True),
+    ("Community",          "fair wage + community-owned",     271, 479, 64,  PURPLE, True),
 ]
 arrow_labels = [
     "in-source assembly",
     "add 90-200K capex: press + CNC",
-    "free waste plastic + community labour",
+    "free plastic + fair-wage labour",
 ]
 
 n = len(steps)
@@ -180,7 +180,7 @@ for i, (lab, sub, direct, margin, pct, color, hi) in enumerate(steps):
 fy = ch_y + ch_h + 96
 S.append(f'<line x1="{LX}" y1="{fy-22}" x2="{RXn}" y2="{fy-22}" stroke="{HAIR}" stroke-width="1"/>')
 S.append(text(LX, fy,
-   "Each step is gated by committed volume and a make-vs-buy decision. Margin = AU$750 price minus direct cost per bed.",
+   "Each step is gated by committed volume and a make-vs-buy decision. Margin = AU$750 minus direct cost. Community lands at ~parity with the factory — but the fair wage and the margin both stay in community.",
    14, INK, family=SERIF, anchor="start"))
 S.append(text(LX, fy+24,
    "Source: Goods cost model (2026-05). Direct-cost figures are modelled on verified BOM inputs; AU$750 price verified. Capex and community-labour inputs are forward estimates.",
