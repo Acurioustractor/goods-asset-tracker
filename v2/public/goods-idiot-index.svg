@@ -11,6 +11,8 @@
 
 <rect x="287" y="187.0" width="866.0" height="56" rx="11" fill="none" stroke="#8B4E2C" stroke-width="2.6"/>
 <text x="1164.0" y="222.0" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#8B4E2C">8.6x</text>
+<text x="1164.0" y="201.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#6F6155">vs shred price</text>
+<text x="1164.0" y="241.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#8B4E2C">~21.5x vs raw polymer (AU$16 floor)</text>
 <text x="302" y="221.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#FFFFFF">raw AU$40 to paid AU$344</text>
 <rect x="1220.0" y="202.0" width="96" height="26" rx="13" fill="#BD6A3C2D" stroke="#BD6A3C" stroke-width="1.3"/>
 <text x="1268.0" y="220.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#8B4E2C" letter-spacing="0.8">THE LEVER</text>
@@ -46,8 +48,8 @@
 <text x="302" y="565.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#6F6155">near raw rate</text>
 <rect x="60" y="624" width="1560" height="96" rx="16" fill="#BD6A3C1E" stroke="#BD6A3C" stroke-width="1.8" filter="url(#sh)"/>
 <text x="88" y="658" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#8B4E2C" letter-spacing="1.4">THE CAPITAL CASE</text>
-<text x="88" y="688" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#2A241E">HDPE legs = the capital case: in-sourcing the legs captures ~AU$289/bed of supplier margin</text>
+<text x="88" y="688" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#2A241E">HDPE legs = the capital case: 8.6x vs the shred price, ~21.5x vs raw polymer — ~AU$289/bed of supplier margin to capture</text>
 <text x="88" y="710" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="400" fill="#6F6155">(in-house legs ~AU$150/bed). Defy panels at 10x are the trap: you pay the press margin and still CNC and assemble.</text>
 <line x1="60" y1="744" x2="1620" y2="744" stroke="#C9BCA8" stroke-width="1"/>
-<text x="60" y="766" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="11.5" font-weight="400" fill="#6F6155" font-style="italic">Source: Goods cost model (2026-05). Index = paid / raw-material floor per component; HDPE-legs margin is modelled on verified BOM inputs.</text>
+<text x="60" y="766" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="11.5" font-weight="400" fill="#6F6155" font-style="italic">Source: Goods cost model (2026-05). Index = paid / floor per component; HDPE legs shown vs two floors — Defy shred price (AU$40) and raw recycled-HDPE polymer (20kg x AU$0.80/kg = AU$16, Envirobank). Modelled on verified BOM inputs.</text>
 </svg>

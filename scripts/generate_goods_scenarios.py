@@ -6,10 +6,11 @@ Horizontal bar chart, zero line in the middle. Four operating-result bars; the
 only negative one is Buy-Kit. Each bar carries its figure + its breakeven.
 
 EXACT figures (do not change):
-  - Actuals (grant-funded)   +151,585  [green]  (after founder time)
+  - Actuals (grant-funded)   +340,585  [green]  (before founder time)
   - Buy-Kit @ 500/yr          -60,095  [red, below zero]  breakeven 1,679/yr
   - Factory @ 500/yr          +69,430  [green]            breakeven 338/yr
-  - Community @ 1,000/yr     +282,560  [green]            breakeven 238/yr
+  - Community @ 1,000/yr     +366,560  [green]            breakeven 238/yr
+  All bars on a consistent BEFORE-founder-time basis.
   Caption: "The capital case = moving from Buy-Kit to in-house production."
 
 Style mirrors scripts/generate_goods_cost_model_diagram.py (same palette, fonts,
@@ -71,7 +72,7 @@ S.append(f'<rect width="{W}" height="{H}" fill="{BG}"/>')
 
 # ------------------------------------------------------------------- header
 S.append(text(W/2, 74, "Grant-funded today; in-sourcing makes it viable", 46, INK, family=SERIF, weight="700"))
-S.append(text(W/2, 110, "Annual operating result by scenario, after founder time. Buy-Kit at scale loses money; in-house production turns it positive.",
+S.append(text(W/2, 110, "Annual operating result by scenario, before founder time. Buy-Kit at scale loses money; in-house production turns it positive.",
               20, INK_MUTE, family=SERIF, italic=True))
 
 # ------------------------------------------------------------------- chart geometry
@@ -84,18 +85,18 @@ top_y = 200
 row_h = 132
 n = 4
 
-# value scale: spans from min(-60,095) to max(+282,560)
-vmin, vmax = -60095.0, 282560.0
+# value scale: spans from min(-60,095) to max(+366,560)
+vmin, vmax = -60095.0, 366560.0
 span = vmax - vmin
 # zero-line x position within the plotting area
 zero_x = chart_x + chart_w * ((0 - vmin) / span)
 px_per = chart_w / span
 
 bars = [
-    ("Actuals (grant-funded)", "after founder time",        151585,  None,   SAGE),
+    ("Actuals (grant-funded)", "before founder time",       340585,  None,   SAGE),
     ("Buy-Kit @ 500/yr",       "buy finished kits",         -60095,  "1,679/yr", RUST),
     ("Factory @ 500/yr",       "press + CNC On-Country",     69430,  "338/yr",   SAGE),
-    ("Community @ 1,000/yr",   "community-owned production", 282560, "238/yr",   SAGE),
+    ("Community @ 1,000/yr",   "community-owned production", 366560, "238/yr",   SAGE),
 ]
 
 bar_h = 56
@@ -152,9 +153,12 @@ S.append(text(LX+28, cb_y+60,
    23, INK, family=SERIF, weight="700", anchor="start"))
 
 # ------------------------------------------------------------------- footer
-fy = cb_y + 78 + 36
+fy = cb_y + 78 + 34
 S.append(text(LX, fy,
-   "Source: Goods financial model (2026-05), after founder time. Operating results and breakevens are modelled on verified BOM inputs (AU$750 price); founder-rate and FTE inputs pending confirmation.",
+   "Founder time AU$84K/yr (or AU$21–84K at 25–100% FTE) applies on top. After full founder time: Factory @500 → −AU$14,570; Community @1,000 → +AU$282,560.",
+   12.5, INK, weight="700", family=SERIF, anchor="start"))
+S.append(text(LX, fy + 24,
+   "Source: Goods financial model (2026-05), before founder time. Operating results and breakevens are modelled on verified BOM inputs (AU$750 price); founder-rate and FTE inputs pending confirmation.",
    11.5, INK_MUTE, italic=True, family=SERIF, anchor="start"))
 
 S.append("</svg>")
