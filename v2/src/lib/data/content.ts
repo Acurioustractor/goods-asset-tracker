@@ -1,4 +1,5 @@
 import { videoUrl } from '@/lib/data/media';
+import { deployments, EXPECTED_DEPLOYED_BEDS } from '@/lib/data/compendium';
 
 // Core content and messaging for Goods on Country
 // Source: COMPENDIUM_JANUARY_2026.md
@@ -42,7 +43,7 @@ The answer became Goods: durable, repairable, community-designed "health hardwar
     { year: '2016-2020', event: 'Orange Sky expands to remote communities (now 1/3 of services)' },
     { year: 'Nov 2022', event: 'Goods project kicks off with advisory session' },
     { year: 'Sept 2023', event: 'A Curious Tractor formally founded' },
-    { year: '2024+', event: 'Active bed pilots deliver 496 bed units across communities' },
+    { year: '2024+', event: 'Active bed pilots deliver 400+ beds across communities' },
   ],
 
   problem: {
@@ -82,9 +83,9 @@ The answer became Goods: durable, repairable, community-designed "health hardwar
 export const impact = {
   headline: 'Real Impact',
   stats: [
-    { value: '558', label: 'Assets tracked in register', icon: 'bed' },
+    { value: '400+', label: 'Assets tracked in register', icon: 'bed' },
     { value: '107', label: 'Stretch Beds on order', icon: 'demand' },
-    { value: '10', label: 'Communities served', icon: 'community' },
+    { value: '8+', label: 'Communities served', icon: 'community' },
     { value: '$3M/yr', label: 'Washing machines sold → dumps', icon: 'problem', source: 'Alice Springs provider' },
   ],
 };
@@ -260,7 +261,7 @@ export const quotes = [
 
 export const enterpriseOpportunity = {
   headline: 'Community production partnerships',
-  description: 'The model is built to transfer capability to communities over time: full training, manufacturing capability, and documentation, with the goal that communities keep what they make and sell.',
+  description: 'We don\'t license. We transfer. Communities receive full training, manufacturing capability, and documentation. They keep 100% of what they make and sell.',
   benefits: [
     'Full training and ongoing support',
     'Manufacturing capability transfer',
@@ -771,7 +772,7 @@ export const communityLocations: CommunityLocation[] = [
     lat: -19.648,
     lng: 134.192,
     storytellerCount: 6,
-    bedsDelivered: 139,
+    bedsDelivered: 159,
     description: 'The birthplace of Goods on Country. Elder Dianne Stokes received the first bed and came back requesting twenty more.',
     highlight: 'Dianne named the washing machine "Pakkimjalji Kari" in Warumungu language',
   },
@@ -782,7 +783,7 @@ export const communityLocations: CommunityLocation[] = [
     lat: -18.735,
     lng: 146.581,
     storytellerCount: 2,
-    bedsDelivered: 141,
+    bedsDelivered: 131,
     description: 'Community voices shaping the future. Ivy and Alfred Johnson gave the first community feedback that shaped the bed design.',
     highlight: '"Hardly anyone around the community has beds" — Ivy',
   },
@@ -793,7 +794,7 @@ export const communityLocations: CommunityLocation[] = [
     lat: -23.698,
     lng: 133.880,
     storytellerCount: 0,
-    bedsDelivered: 60,
+    bedsDelivered: 16,
     description: 'Through the Oonchiumpa consultancy, Alice Springs is where the design happens in community for Goods products.',
     highlight: 'Oonchiumpa: 100% Aboriginal-owned consultancy leading the design in community',
     tooltipDirection: 'bottom',
@@ -808,9 +809,9 @@ export const communityLocations: CommunityLocation[] = [
     lat: -22.0,
     lng: 134.8,
     storytellerCount: 0,
-    bedsDelivered: 96,
+    bedsDelivered: 147,
     description: 'Anmatyerr and Alyawarr country, including the Ampilatwatja outstation where Frankie and Casey Holmes OAM each received beds in May 2026. Multiple outstations across the homelands. Young people in Alice Springs built and delivered beds to outstation families the next day.',
-    highlight: 'Built with and led by young people in Alice Springs, delivered on country to outstation families. Includes Ampilatwatja, where two senior Alyawarr Elders received beds in May 2026.',
+    highlight: 'Co-designed and built with young people in Alice Springs, delivered on country to outstation families. Includes Ampilatwatja, where two senior Alyawarr Elders received beds in May 2026.',
     tooltipDirection: 'left',
   },
   // Ampilatwatja folded into Utopia Homelands on the heatpost map (same
@@ -824,7 +825,7 @@ export const communityLocations: CommunityLocation[] = [
     lat: -20.7256,
     lng: 139.4927,
     storytellerCount: 0,
-    bedsDelivered: 5,
+    bedsDelivered: 2,
     description: 'Northwest Queensland mining town and service centre for surrounding communities. Goods has begun seeding beds here as a stepping stone to further Queensland deployments.',
     highlight: 'Stepping stone for Queensland deployments beyond Palm Island',
     tooltipDirection: 'right',
@@ -837,7 +838,7 @@ export const communityLocations: CommunityLocation[] = [
     lat: -30.7494,
     lng: 121.4655,
     storytellerCount: 0,
-    bedsDelivered: 10,
+    bedsDelivered: 20,
     description: "Goldfields region of Western Australia. Goods' first Western Australia deployment, seeding beds with community partners in and around Kalgoorlie.",
     highlight: "First Western Australia deployment for Goods on Country",
     tooltipDirection: 'right',
@@ -855,6 +856,63 @@ export const communityLocations: CommunityLocation[] = [
     highlight: 'Serving multiple language groups across Arnhem Land',
   },
 ];
+
+// ---------------------------------------------------------------------------
+// Bed-count reconciliation (build-time assertion)
+// ---------------------------------------------------------------------------
+//
+// The canonical deployed-bed register lives in compendium.ts `deployments`
+// (sums to EXPECTED_DEPLOYED_BEDS = 495; the live Supabase register is
+// authoritative, this is the labelled static fallback).
+//
+// `communityPartnerships` (narrative subset) and `communityLocations` (heatpost-
+// map baselines, live-overridden except where staticBedCount=true) are
+// INTENTIONALLY NARROWER scopes than the full register — they omit communities
+// that have no map pin / no narrative partner (e.g. Darwin 1, Canberra 1 in the
+// canonical list have neither). So we do NOT force their sums to equal 495;
+// inventing pins/partners for them would be fabrication. Instead we assert that
+// (a) no single community's static count EXCEEDS the canonical register value,
+// and (b) neither array's total exceeds EXPECTED_DEPLOYED_BEDS. This catches the
+// previous divergence (139/141/60/96 baselines that overstated some communities)
+// without inventing data.
+{
+  const canonicalByCommunity: Record<string, number> = {};
+  for (const d of deployments) {
+    // normalise "Alice Homelands"/"Alice Springs" and "Utopia Homelands"/"Utopia"
+    const key = d.community.toLowerCase().replace(/\s+(homelands|springs)$/, '').trim();
+    canonicalByCommunity[key] = (canonicalByCommunity[key] || 0) + d.beds;
+  }
+  const norm = (s: string) => s.toLowerCase().replace(/\s+(homelands|springs)$/, '').trim();
+
+  const overstated: string[] = [];
+  for (const loc of communityLocations) {
+    const cap = canonicalByCommunity[norm(loc.name)];
+    if (cap !== undefined && loc.bedsDelivered > cap) {
+      overstated.push(`communityLocations "${loc.name}" (${loc.bedsDelivered} > canonical ${cap})`);
+    }
+  }
+  for (const p of communityPartnerships) {
+    const cap = canonicalByCommunity[norm(p.name)];
+    if (cap !== undefined && p.bedsDelivered > cap) {
+      overstated.push(`communityPartnerships "${p.name}" (${p.bedsDelivered} > canonical ${cap})`);
+    }
+  }
+  if (overstated.length > 0) {
+    throw new Error(
+      `[content] static bed counts overstate the canonical register: ${overstated.join('; ')}. ` +
+        `Reconcile to compendium.ts deployments.`,
+    );
+  }
+
+  const partnershipsTotal = communityPartnerships.reduce((s, p) => s + p.bedsDelivered, 0);
+  const locationsTotal = communityLocations.reduce((s, l) => s + l.bedsDelivered, 0);
+  if (partnershipsTotal > EXPECTED_DEPLOYED_BEDS || locationsTotal > EXPECTED_DEPLOYED_BEDS) {
+    throw new Error(
+      `[content] static bed-count total exceeds canonical ${EXPECTED_DEPLOYED_BEDS} ` +
+        `(partnerships=${partnershipsTotal}, locations=${locationsTotal}).`,
+    );
+  }
+}
 
 // Storyteller profiles: for the stories grid
 // Only includes people with verified quotes + photos
@@ -1168,10 +1226,10 @@ export function getQuotesByThemes(themeIds: ThemeId[]) {
 
 export const mediaPack = {
   // About A Curious Tractor: the parent organisation
-  aboutACT: `A Curious Tractor Pty Ltd (ABN 36 697 347 676, ACN 697 347 676), trading as Goods on Country, is the organisation behind the work. ACT exists to design, manufacture, and transfer ownership of essential goods to remote First Nations communities across Australia. The name reflects the approach: curiosity-driven problem solving applied to entrenched disadvantage. ACT is a social enterprise; its DGR pathway runs via The Butterfly Movement Ltd (from FY2026-27).`, // TODO: Ben to review and refine
+  aboutACT: `A Curious Tractor is the organisation behind Goods on Country. Founded in September 2023 by Nicholas Marchesi and Benjamin Knight, ACT exists to design, manufacture, and transfer ownership of essential goods to remote First Nations communities across Australia. The name reflects the approach: curiosity-driven problem solving applied to entrenched disadvantage. ACT is a registered charity and social enterprise.`, // TODO: Ben to review and refine
 
   // Copy-paste-ready press boilerplate
-  pressBoilerplate: `Goods on Country is a social enterprise delivering durable, community-designed essential goods to remote First Nations communities across Australia. The flagship product, the Stretch Bed, is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty Australian canvas. Each bed diverts 20kg of plastic from landfill, assembles in under five minutes with no tools, and supports up to 200kg. With 496 bed units deployed across 10 communities, Goods on Country addresses the environmental health conditions that drive preventable disease, including Rheumatic Heart Disease, by putting health hardware directly into the hands of families who need it. The model is built to transfer manufacturing capability to communities over time. Goods on Country is delivered by A Curious Tractor Pty Ltd (trading as Goods on Country).`,
+  pressBoilerplate: `Goods on Country is a social enterprise delivering durable, community-designed essential goods to remote First Nations communities across Australia. The flagship product, the Stretch Bed, is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty Australian canvas. Each bed diverts 20kg of plastic from landfill, assembles in under five minutes with no tools, and supports up to 200kg. With 400+ beds delivered across 8+ communities, Goods on Country addresses the environmental health conditions that drive preventable disease, including Rheumatic Heart Disease, by putting health hardware directly into the hands of families who need it. The organisation's long-term goal is to transfer manufacturing capability to community-owned enterprises. Founded in 2023, Goods on Country is a project of A Curious Tractor.`,
 
   // Brand color palette
   brandColors: [

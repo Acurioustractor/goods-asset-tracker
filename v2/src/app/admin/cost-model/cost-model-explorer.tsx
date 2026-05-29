@@ -22,114 +22,46 @@
 import { useState, useMemo } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import {
+  CostModelDefaults,
+  LOCATIONS,
+  LEGS_SAVING_PER_BED,
+  ALREADY_INVESTED,
+  SHRED_FLOOR_PER_BED,
+  POLYMER_FLOOR_PER_BED,
+  STEEL_RAW_FLOOR_PER_BED,
+  CANVAS_RAW_FLOOR_PER_BED,
+  type CostModelInputs,
+  type BuildMethod,
+  type CostModelLocation as Location,
+} from '@/lib/data/cost-model-scenarios';
 
 function fmt(n: number): string {
+  if (!Number.isFinite(n)) return '—';
   return new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', maximumFractionDigits: Math.abs(n) < 10 ? 2 : 0 }).format(n);
 }
 function fmtPct(n: number): string {
+  if (!Number.isFinite(n)) return '—';
   return `${Math.round(n * 100)}%`;
 }
-
-type BuildMethod = 'kits' | 'panels' | 'factory' | 'community';
-type Location = 'sydney' | 'sunshine_coast' | 'on_country';
-
-interface Inputs {
-  // Material per bed
-  hdpe_kg_per_bed: number;
-  hdpe_per_kg_landed: number; // raw + delivery
-  defy_kit_per_bed: number; // Defy kit rate
-  defy_panel_each: number; // Defy pre-pressed panel
-  steel_per_bed: number;
-  canvas_per_bed: number;
-  hardware_per_bed: number; // end caps + screws + bolts
-  // Labour
-  labour_per_day: number;
-  factory_beds_per_day: number;
-  defy_kits_beds_per_day: number;
-  defy_panels_beds_per_day: number;
-  community_beds_per_day: number;
-  defy_assembly_per_bed: number; // when Defy assembles
-  // Energy
-  diesel_per_bed_factory: number;
-  diesel_per_bed_panels: number;
-  // Volume + overhead (fixed block lines)
-  beds_per_year: number;
-  kirmos_monthly_50pct: number;
-  founder_days_production: number;
-  founder_rate_per_day: number;
-  founder_fte_pct: number; // 25 / 50 / 75 / 100 — combined founder allocation
-  founder_total_days_per_year: number; // full-time-equiv Goods days at 100%
-  admin_per_year: number;
-  field_travel_per_year: number;
-  local_freight_per_bed: number; // assembly-site local freight (in stateKits)
-  long_haul_freight_per_bed: number; // marginal long-haul freight to community
-  // Levers
-  build_method: BuildMethod;
-  location: Location;
-  containerise: boolean;
-  // Retail
-  retail_price: number;
-  commercial_low: number;
-  commercial_high: number;
-  // Capital
-  capital_to_factory_low: number;
-  capital_to_factory_high: number;
+/** Divide-by-zero guard for per-bed / per-day / contribution division. */
+function safeDiv(num: number, den: number, fallback = 0): number {
+  return den !== 0 && Number.isFinite(num / den) ? num / den : fallback;
 }
 
-// ── LOCKED canonical defaults (mirror cost-model-scenarios.json v5 + idiot-index v6) ──
-const DEFAULTS: Inputs = {
-  hdpe_kg_per_bed: 20,
-  hdpe_per_kg_landed: 2.75,
-  defy_kit_per_bed: 344.05,
-  defy_panel_each: 200,
-  steel_per_bed: 27,
-  canvas_per_bed: 93.50,
-  hardware_per_bed: 5.24, // 3.20 caps + 1.04 screws + 1.00 bolts
-  labour_per_day: 400,
-  factory_beds_per_day: 5, // Notion BK
-  defy_kits_beds_per_day: 10,
-  defy_panels_beds_per_day: 7.5,
-  community_beds_per_day: 5,
-  defy_assembly_per_bed: 55.95,
-  diesel_per_bed_factory: 15,
-  diesel_per_bed_panels: 5,
-  beds_per_year: 120, // honest today run-rate (NOT 500)
-  kirmos_monthly_50pct: 2250,
-  founder_days_production: 30,
-  founder_rate_per_day: 560, // LOCKED ($84K/yr full-time, $16,800 production share)
-  founder_fte_pct: 100,
-  founder_total_days_per_year: 150, // 30 prod + 50 fundraising + 25 commercial + 45 governance
-  admin_per_year: 14700,
-  field_travel_per_year: 51000,
-  local_freight_per_bed: 25, // local freight on Defy material (sits in stateKits)
-  long_haul_freight_per_bed: 150, // marginal long-haul freight to remote community
-  build_method: 'kits',
-  location: 'sydney',
-  containerise: false,
-  retail_price: 750,
-  commercial_low: 1500,
-  commercial_high: 2000,
-  capital_to_factory_low: 112000, // GROSS (was forbidden 90000)
-  capital_to_factory_high: 222000, // GROSS (was forbidden 200000)
-};
+type Inputs = CostModelInputs;
 
-// ── Locked constants for the honest-story cards ──
-const LEGS_SAVING_PER_BED = 194.05; // v6 in-house legs saving (NOT the full ~$259 state delta)
-const ALREADY_INVESTED = 110046; // facility $100K + Carbatec $10,046
+// ── Locked canonical defaults + constants now live in the data layer (SSOT):
+//    cost-model-scenarios.ts maps cost-model-scenarios.json + supplier-quotes.ts
+//    into the exact Inputs shape and exports the named constants below.
+const DEFAULTS: Inputs = CostModelDefaults;
+
 const NET_CAPITAL_LOW = DEFAULTS.capital_to_factory_low - ALREADY_INVESTED; // ~1,954
 const NET_CAPITAL_HIGH = DEFAULTS.capital_to_factory_high - ALREADY_INVESTED; // ~111,954
 const VOLUME_GATE = 300; // capex only sensible above ~300/yr committed
 const CONTAINERISE_FREIGHT_DELTA = 70; // -$70/bed long-haul if containerised (ship plant once, not N beds)
-const SHRED_FLOOR_PER_BED = 40; // 20kg × $2/kg (Defy INV-1731 shred SELL price)
-const POLYMER_FLOOR_PER_BED = 16; // 20kg × $0.80/kg (Envirobank recycled HDPE — true physics floor)
 
 const SHEET_URL = '#'; // TODO: replace with live Google Sheet link once Matt's playable model is uploaded
-
-const LOCATIONS: Record<Location, { label: string; rentPerYear: number; inboundFreightPerBed: number }> = {
-  sydney: { label: 'Sydney / Defy', rentPerYear: 0, inboundFreightPerBed: 0 },
-  sunshine_coast: { label: 'Sunshine Coast (Kirmos)', rentPerYear: 54000, inboundFreightPerBed: 30 },
-  on_country: { label: 'On-Country', rentPerYear: 24000, inboundFreightPerBed: 60 },
-};
 
 const VERIFIED_HINTS: Partial<Record<keyof Inputs, string>> = {
   hdpe_kg_per_bed: 'Ben confirmed (one sheet)',
@@ -218,7 +150,17 @@ const METHOD_LABELS: Record<BuildMethod, string> = {
 };
 
 // Derive everything from inputs — this is the model.
-function computeModel(i: Inputs) {
+function computeModel(raw: Inputs) {
+  // Clamp volume + throughput dials to a positive minimum so per-bed / per-day
+  // division can never blow up (presets arrive as Partial, sliders can hit min).
+  const i: Inputs = {
+    ...raw,
+    beds_per_year: Math.max(1, raw.beds_per_year),
+    factory_beds_per_day: Math.max(0.5, raw.factory_beds_per_day),
+    defy_kits_beds_per_day: Math.max(0.5, raw.defy_kits_beds_per_day),
+    defy_panels_beds_per_day: Math.max(0.5, raw.defy_panels_beds_per_day),
+    community_beds_per_day: Math.max(0.5, raw.community_beds_per_day),
+  };
   const loc = LOCATIONS[i.location];
   const hdpeRawCost = i.hdpe_kg_per_bed * i.hdpe_per_kg_landed;
 
@@ -226,9 +168,9 @@ function computeModel(i: Inputs) {
   const longHaulFreight = Math.max(0, i.long_haul_freight_per_bed - (i.containerise ? CONTAINERISE_FREIGHT_DELTA : 0));
 
   // ── Direct cost per state (stateKits already bakes in local freight + assembly) ──
-  const stateKits = i.defy_kit_per_bed + i.steel_per_bed + i.canvas_per_bed + i.hardware_per_bed + (i.labour_per_day / i.defy_kits_beds_per_day) + i.local_freight_per_bed;
-  const statePanels = i.defy_panel_each * 2 + i.steel_per_bed + i.canvas_per_bed + i.hardware_per_bed + i.diesel_per_bed_panels + (i.labour_per_day / i.defy_panels_beds_per_day);
-  const stateFactory = hdpeRawCost + i.diesel_per_bed_factory + (i.labour_per_day / i.factory_beds_per_day) + i.steel_per_bed + i.canvas_per_bed + i.hardware_per_bed + loc.inboundFreightPerBed;
+  const stateKits = i.defy_kit_per_bed + i.steel_per_bed + i.canvas_per_bed + i.hardware_per_bed + safeDiv(i.labour_per_day, i.defy_kits_beds_per_day) + i.local_freight_per_bed;
+  const statePanels = i.defy_panel_each * 2 + i.steel_per_bed + i.canvas_per_bed + i.hardware_per_bed + i.diesel_per_bed_panels + safeDiv(i.labour_per_day, i.defy_panels_beds_per_day);
+  const stateFactory = hdpeRawCost + i.diesel_per_bed_factory + safeDiv(i.labour_per_day, i.factory_beds_per_day) + i.steel_per_bed + i.canvas_per_bed + i.hardware_per_bed + loc.inboundFreightPerBed;
   const stateCommunity = 0 + i.diesel_per_bed_factory + i.steel_per_bed + i.canvas_per_bed + i.hardware_per_bed + loc.inboundFreightPerBed; // free plastic, volunteer labour
 
   // ── MARGINAL cost/bed = state direct + long-haul freight (the cash cost of one more bed) ──
@@ -260,15 +202,24 @@ function computeModel(i: Inputs) {
   const fixedBlock = founderProductionCost + kirmosAnnual + i.admin_per_year + i.field_travel_per_year + loc.rentPerYear;
 
   // ── BREAKEVEN beds/yr = fixed block ÷ contribution/bed (price − marginal) ──
+  // Each path divides by its OWN contribution; non-finite (price ≤ marginal) → Infinity,
+  // rendered as '—'. (Previously the panel/community cells guarded on the selected
+  // path's contribution but divided by a different path → negative breakeven at extremes.)
   const contributionKit = i.retail_price - marginalKit;
+  const contributionPanel = i.retail_price - marginalPanel;
   const contributionFactory = i.retail_price - marginalFactory;
+  const contributionCommunity = i.retail_price - marginalCommunity;
   const contributionSelected = i.retail_price - selectedMarginal;
-  const breakevenKit = contributionKit > 0 ? Math.round(fixedBlock / contributionKit) : Infinity;
-  const breakevenFactory = contributionFactory > 0 ? Math.round(fixedBlock / contributionFactory) : Infinity;
-  const breakevenSelected = contributionSelected > 0 ? Math.round(fixedBlock / contributionSelected) : Infinity;
+  const breakevenFor = (contribution: number) =>
+    contribution > 0 ? Math.round(fixedBlock / contribution) : Infinity;
+  const breakevenKit = breakevenFor(contributionKit);
+  const breakevenPanel = breakevenFor(contributionPanel);
+  const breakevenFactory = breakevenFor(contributionFactory);
+  const breakevenCommunity = breakevenFor(contributionCommunity);
+  const breakevenSelected = breakevenFor(contributionSelected);
 
   // ── Fully-loaded (DEMOTED reference only — fixed-cost absorption at pilot volume, NOT marginal) ──
-  const fixedPerBed = fixedBlock / i.beds_per_year;
+  const fixedPerBed = safeDiv(fixedBlock, i.beds_per_year);
   const fullKits = marginalKit + fixedPerBed;
   const fullPanels = marginalPanel + fixedPerBed;
   const fullFactory = marginalFactory + fixedPerBed;
@@ -281,24 +232,24 @@ function computeModel(i: Inputs) {
   const marginCommunity = i.retail_price - marginalCommunity;
 
   // ── Idiot index: BOTH floors ──
-  const idiotKitShred = i.defy_kit_per_bed / SHRED_FLOOR_PER_BED; // ~8.6×
-  const idiotKitPolymer = i.defy_kit_per_bed / POLYMER_FLOOR_PER_BED; // ~21.5×
-  const idiotPanelShred = (i.defy_panel_each * 2) / SHRED_FLOOR_PER_BED;
-  const idiotSteel = i.steel_per_bed / 10.34;
-  const idiotCanvas = i.canvas_per_bed / 35;
+  const idiotKitShred = safeDiv(i.defy_kit_per_bed, SHRED_FLOOR_PER_BED); // ~8.6×
+  const idiotKitPolymer = safeDiv(i.defy_kit_per_bed, POLYMER_FLOOR_PER_BED); // ~21.5×
+  const idiotPanelShred = safeDiv(i.defy_panel_each * 2, SHRED_FLOOR_PER_BED);
+  const idiotSteel = safeDiv(i.steel_per_bed, STEEL_RAW_FLOOR_PER_BED);
+  const idiotCanvas = safeDiv(i.canvas_per_bed, CANVAS_RAW_FLOOR_PER_BED);
 
   // Counterfactual — computed against MARGINAL (honest), labelled inferred.
   const counterfactualMid = (i.commercial_low + i.commercial_high) / 2;
-  const valueVsCommercial = counterfactualMid / marginalFactory;
+  const valueVsCommercial = safeDiv(counterfactualMid, marginalFactory);
 
   // ── Capital payback on the v6 in-house legs saving ($194.05/bed), NOT the full state delta ──
   const capitalLow = i.capital_to_factory_low;
   const capitalHigh = i.capital_to_factory_high;
   const savingsPerBed = LEGS_SAVING_PER_BED;
-  const paybackBedsLow = capitalLow / savingsPerBed;
-  const paybackBedsHigh = capitalHigh / savingsPerBed;
-  const paybackYearsLow = paybackBedsLow / i.beds_per_year;
-  const paybackYearsHigh = paybackBedsHigh / i.beds_per_year;
+  const paybackBedsLow = safeDiv(capitalLow, savingsPerBed);
+  const paybackBedsHigh = safeDiv(capitalHigh, savingsPerBed);
+  const paybackYearsLow = safeDiv(paybackBedsLow, i.beds_per_year);
+  const paybackYearsHigh = safeDiv(paybackBedsHigh, i.beds_per_year);
   const belowVolumeGate = i.beds_per_year < VOLUME_GATE;
 
   return {
@@ -307,8 +258,8 @@ function computeModel(i: Inputs) {
     marginalKit, marginalPanel, marginalFactory, marginalCommunity,
     selectedDirect, selectedMarginal,
     founderTotalCost, founderProductionCost, fixedBlock, fixedPerBed,
-    contributionKit, contributionFactory, contributionSelected,
-    breakevenKit, breakevenFactory, breakevenSelected,
+    contributionKit, contributionPanel, contributionFactory, contributionCommunity, contributionSelected,
+    breakevenKit, breakevenPanel, breakevenFactory, breakevenCommunity, breakevenSelected,
     fullKits, fullPanels, fullFactory, fullCommunity,
     marginKits, marginPanels, marginFactory, marginCommunity,
     idiotKitShred, idiotKitPolymer, idiotPanelShred, idiotSteel, idiotCanvas,
@@ -537,7 +488,7 @@ export function CostModelExplorer() {
                             <div className="flex justify-between items-baseline mb-1">
                               <label className="text-gray-700">{s.label}</label>
                               <span className="tabular-nums font-medium">
-                                {s.prefix || ''}{val}{s.suffix || ''}
+                                {s.prefix === '$' ? fmt(val) : `${s.prefix || ''}${val}${s.suffix || ''}`}
                               </span>
                             </div>
                             <input
@@ -551,7 +502,7 @@ export function CostModelExplorer() {
                             />
                             {hint && (
                               <p className="text-[10px] text-gray-500 mt-0.5">
-                                {isDefault ? `✓ ${hint}` : `(default: ${s.prefix || ''}${DEFAULTS[s.key]}${s.suffix || ''} — ${hint})`}
+                                {isDefault ? `✓ ${hint}` : `(default: ${s.prefix === '$' ? fmt(DEFAULTS[s.key] as number) : `${s.prefix || ''}${DEFAULTS[s.key]}${s.suffix || ''}`} — ${hint})`}
                               </p>
                             )}
                           </div>
@@ -596,7 +547,7 @@ export function CostModelExplorer() {
                       <td className="py-2 font-medium">Defy Panels</td>
                       <td className="py-2 text-right tabular-nums">{fmt(model.marginalPanel)}</td>
                       <td className="py-2 text-right tabular-nums">{fmt(model.marginPanels)}</td>
-                      <td className="py-2 text-right tabular-nums">{breakevenLabel(model.contributionSelected > 0 ? Math.round(model.fixedBlock / (inputs.retail_price - model.marginalPanel)) : Infinity)}</td>
+                      <td className="py-2 text-right tabular-nums">{breakevenLabel(model.breakevenPanel)}</td>
                     </tr>
                     <tr className="border-b bg-emerald-50/50">
                       <td className="py-2 font-medium">Factory (in-house target)</td>
@@ -608,7 +559,7 @@ export function CostModelExplorer() {
                       <td className="py-2 font-medium">Community (vision)</td>
                       <td className="py-2 text-right tabular-nums">{fmt(model.marginalCommunity)}</td>
                       <td className="py-2 text-right tabular-nums font-medium text-purple-700">{fmt(model.marginCommunity)}</td>
-                      <td className="py-2 text-right tabular-nums">{breakevenLabel(inputs.retail_price - model.marginalCommunity > 0 ? Math.round(model.fixedBlock / (inputs.retail_price - model.marginalCommunity)) : Infinity)}</td>
+                      <td className="py-2 text-right tabular-nums">{breakevenLabel(model.breakevenCommunity)}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -669,8 +620,8 @@ export function CostModelExplorer() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 <IdiotCard label="HDPE kit vs shred $40" ratio={model.idiotKitShred} raw={SHRED_FLOOR_PER_BED} current={inputs.defy_kit_per_bed} />
                 <IdiotCard label="HDPE kit vs polymer $16" ratio={model.idiotKitPolymer} raw={POLYMER_FLOOR_PER_BED} current={inputs.defy_kit_per_bed} />
-                <IdiotCard label="Steel poles" ratio={model.idiotSteel} raw={10.34} current={inputs.steel_per_bed} />
-                <IdiotCard label="Canvas" ratio={model.idiotCanvas} raw={35} current={inputs.canvas_per_bed} />
+                <IdiotCard label="Steel poles" ratio={model.idiotSteel} raw={STEEL_RAW_FLOOR_PER_BED} current={inputs.steel_per_bed} />
+                <IdiotCard label="Canvas" ratio={model.idiotCanvas} raw={CANVAS_RAW_FLOOR_PER_BED} current={inputs.canvas_per_bed} />
               </div>
               <p className="text-[10px] text-gray-500 mt-3">
                 Floor stated as mass × raw $/kg, not a vendor price. 20kg of plastic that costs ~{fmt(POLYMER_FLOOR_PER_BED)}-{fmt(SHRED_FLOOR_PER_BED)}{' '}

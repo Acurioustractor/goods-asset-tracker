@@ -649,6 +649,26 @@ export interface CrmNote {
   created_at: string;
 }
 
+// CRM deals. Enum values verified against the live Goods Supabase
+// (cwsyhpiuepvdjtxaozwf) 2026-05-29. 'lost' is included in the stage union
+// because the admin queries filter on it even though no live row uses it yet.
+export type DealType = 'sale' | 'funding' | 'procurement' | 'partnership';
+export type PipelineStage = 'lead' | 'qualified' | 'proposal' | 'negotiation' | 'won' | 'lost';
+
+export interface CrmDeal {
+  id: string;
+  title: string | null;
+  deal_type: DealType;
+  pipeline_stage: PipelineStage;
+  amount_cents: number | null;
+  units: number | null;
+  notes: string | null;
+  source: string | null;
+  contact_id: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
 // Utility types
 export type Tables = {
   // E-commerce
@@ -685,4 +705,5 @@ export type Tables = {
   // CRM
   crm_contacts: CrmContact;
   crm_notes: CrmNote;
+  crm_deals: CrmDeal;
 };

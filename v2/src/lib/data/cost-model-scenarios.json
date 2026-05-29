@@ -188,13 +188,15 @@
     "total_high": 222000,
     "already_invested_facility": 100000,
     "already_invested_carbatec_tooling": 10046,
-    "_capital_ask_low": 90000,
-    "_capital_ask_high": 200000
+    "_capital_ask_basis": "GROSS capex to reach Factory state. Net ask ~1,954 (low) / ~111,954 (high) after the 110,046 already invested (facility 100,000 + Carbatec tooling 10,046).",
+    "_capital_ask_low": 112000,
+    "_capital_ask_high": 222000
   },
   "qbe_pitch_inputs": {
     "_principle": "QBE standard funder pitch: Capital ask + unit economics + scaling plan. Sliders should expose these levers.",
-    "capital_ask_low": 90000,
-    "capital_ask_high": 200000,
+    "_capital_ask_basis": "GROSS capex; net ~1,954 / ~111,954 after the 110,046 already invested.",
+    "capital_ask_low": 112000,
+    "capital_ask_high": 222000,
     "beds_per_year_today": 100,
     "beds_per_year_target": 500,
     "beds_per_year_vision": 1000,

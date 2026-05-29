@@ -14,6 +14,7 @@ import {
   getMarginGridAt750,
   getFounderAllocation,
   getFundraisingOffset,
+  getCanonicalBOM,
   reconcileAgainstCanonicalBOM,
   fmtMoney,
 } from '@/lib/data/cost-model-scenarios';
@@ -47,6 +48,7 @@ export function CostModelScenariosCard() {
   const margin = getMarginGridAt750();
   const founderAllocation = getFounderAllocation();
   const fundraisingOffset = getFundraisingOffset();
+  const canonicalBOM = getCanonicalBOM();
   const reconciliation = reconcileAgainstCanonicalBOM();
 
   const totalFounderDays = founderAllocation.split.reduce((sum, s) => sum + s.days, 0);
@@ -56,11 +58,13 @@ export function CostModelScenariosCard() {
     <Card>
       <CardContent className="pt-6 space-y-8">
         <div>
-          <h3 className="text-lg font-semibold">Cost model v4 — 4-path supply model (Notion BK locked)</h3>
+          <h3 className="text-lg font-semibold">Cost model v5 — 4-path supply model (Notion BK locked)</h3>
           <p className="text-xs text-gray-500 mt-1">
             Verified from Defy invoice OCR + Notion BK review (Ben + BK, 2026-05-28). Reconciled against{' '}
-            <code>supplier-quotes.ts</code>. Numbers locked: 20kg HDPE/bed, $27 steel, $95 canvas, $3.20 caps + $3.50
-            screws, $344.05 Defy kit, $278.70 factory-path direct.
+            <code>supplier-quotes.ts</code>. Numbers read live from the canonical data:{' '}
+            {fmtMoney(canonicalBOM.canvas.amount)} canvas, {fmtMoney(canonicalBOM.steel_poles.amount)} steel,{' '}
+            {fmtMoney(canonicalBOM.hdpe_kit_defy.amount)} Defy kit ({fmtMoney(canonicalBOM.defy_kit_direct_total)} direct
+            materials), {fmtMoney(reconciliation.canonicalFactoryMaterials)} factory-path direct.
           </p>
           {!reconciliation.matches && (
             <div className="mt-2 inline-flex items-center gap-2 rounded border border-amber-300 bg-amber-50 px-2 py-1 text-xs text-amber-800">

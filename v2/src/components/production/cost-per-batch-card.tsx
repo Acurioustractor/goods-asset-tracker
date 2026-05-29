@@ -1,9 +1,19 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { stretchBedBOM, stretchBedDirectMaterials, fullyLoadedCostPerBed, supplierQuotes } from '@/lib/data/supplier-quotes';
+import { stretchBedBOM, stretchBedDirectMaterials, supplierQuotes, WEBSITE_PRICE } from '@/lib/data/supplier-quotes';
+import { getFullyLoadedToday, getMarginalToday } from '@/lib/data/cost-model-scenarios';
 import type { SupplierActuals } from '@/lib/data/supplier-cost-actuals';
 
-const WEBSITE_PRICE = 750;
+// HONEST lead = the MARGINAL (cash) cost of one more bed today, Buy-Kit path —
+// the same figure the cost-model explorer headlines ($684.79 = $534.79 direct
+// + $150 long-haul freight). Contribution at the institutional price is positive
+// against this. SSOT: cost-model-scenarios.ts.
+const MARGINAL_PER_BED = getMarginalToday('state_2_defy_kits');
+// Fully-loaded cost/bed at today's (~100/yr) volume, Buy-Kit path — DEMOTED to a
+// labelled reference: it is fixed-cost absorption at pilot volume, NOT a marginal
+// cost. It must not headline the card (matches the explorer's framing).
+const FULLY_LOADED_PER_BED = getFullyLoadedToday('state_2_defy_kits');
+const CONTRIBUTION_PER_BED = WEBSITE_PRICE - MARGINAL_PER_BED;
 
 type BatchSummary = {
   batch: string;
@@ -39,11 +49,14 @@ export function CostPerBatchCard({
   const totalMargin = batches.reduce((s, b) => s + b.marginAtInstitutional, 0);
   const totalBeds = batches.reduce((s, b) => s + b.bedCount, 0);
 
-  // Actual $/bed: total BOM-supplier spend / lifetime beds in register
+  // Actual $/bed: total BOM-supplier spend / lifetime Stretch beds in register.
+  // This is a LOWER-BOUND directional signal (Defy + Goods-tagged steel only;
+  // misses the Alice Springs canvas/steel chain invoiced in Notion), so we do
+  // NOT compute a variance % against the fully-loaded cost — the bases aren't
+  // comparable. We show it as a standalone directional figure only.
   const actualSpend = actuals?.source === 'live' ? actuals.totalSpend : 0;
   const denom = bedsLifetime && bedsLifetime > 0 ? bedsLifetime : 0;
   const actualPerBed = denom > 0 ? actualSpend / denom : 0;
-  const variancePct = fullyLoadedCostPerBed > 0 ? ((actualPerBed - fullyLoadedCostPerBed) / fullyLoadedCostPerBed) * 100 : 0;
 
   // Supplier quote signal: anything expiring within 60 days OR pending
   const quoteAlerts: SupplierQuoteAlert[] = supplierQuotes
@@ -62,10 +75,13 @@ export function CostPerBatchCard({
       <CardContent className="pt-6 space-y-6">
         <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h3 className="text-lg font-semibold">Cost Per Bed</h3>
+            <h3 className="text-lg font-semibold">Stretch-Bed COGS</h3>
             <p className="text-xs text-gray-500">
-              Fully-loaded cost (materials + facility + labour + freight) from <code>supplier-quotes.ts</code>.
-              Margin runs off the fully-loaded cost, not materials.
+              Leads with the <strong>marginal (cash) cost of one more bed</strong> — direct materials from{' '}
+              <code>supplier-quotes.ts</code> + per-bed long-haul freight, Buy-Kit path, from the canonical
+              cost model (<code>cost-model-scenarios.json</code>). This matches the cost-model explorer.
+              The fully-loaded figure below is fixed-cost absorption at pilot volume (~100/yr), <strong>not</strong>{' '}
+              the marginal cost — see the explorer for the breakeven story.
             </p>
           </div>
           <div className="flex gap-4 text-right">
@@ -74,16 +90,16 @@ export function CostPerBatchCard({
               <div className="text-xl font-bold text-gray-700">${stretchBedDirectMaterials.toFixed(2)}</div>
             </div>
             <div>
-              <div className="text-xs uppercase tracking-wide text-gray-500">Fully-loaded cost</div>
-              <div className="text-2xl font-bold text-gray-900">${fullyLoadedCostPerBed.toFixed(0)}</div>
-              <div className="text-xs text-gray-500">@ ~100 units/yr</div>
+              <div className="text-xs uppercase tracking-wide text-gray-500">Marginal cost / bed</div>
+              <div className="text-2xl font-bold text-gray-900">${MARGINAL_PER_BED.toLocaleString('en-AU')}</div>
+              <div className="text-xs text-gray-500">Buy-Kit, cash cost of +1 bed</div>
             </div>
             <div>
-              <div className="text-xs uppercase tracking-wide text-gray-500">Margin @ ${WEBSITE_PRICE}</div>
-              <div className="text-2xl font-bold text-emerald-700">
-                {Math.round(((WEBSITE_PRICE - fullyLoadedCostPerBed) / WEBSITE_PRICE) * 100)}%
+              <div className="text-xs uppercase tracking-wide text-gray-500">Contribution @ ${WEBSITE_PRICE}</div>
+              <div className={`text-2xl font-bold ${CONTRIBUTION_PER_BED >= 0 ? 'text-emerald-700' : 'text-red-700'}`}>
+                {Math.round((CONTRIBUTION_PER_BED / WEBSITE_PRICE) * 100)}%
               </div>
-              <div className="text-xs text-gray-500">${(WEBSITE_PRICE - fullyLoadedCostPerBed).toFixed(0)} per bed</div>
+              <div className="text-xs text-gray-500">${CONTRIBUTION_PER_BED.toLocaleString('en-AU')} per bed (price − marginal)</div>
             </div>
           </div>
         </div>
@@ -121,11 +137,17 @@ export function CostPerBatchCard({
                 <td className="py-2 px-3 text-right font-mono">${stretchBedDirectMaterials.toFixed(2)}</td>
                 <td className="py-2 px-3 text-right font-mono">100%</td>
               </tr>
-              <tr className="border-t text-xs text-gray-500">
+              <tr className="bg-emerald-50 font-semibold">
+                <td className="py-2 px-3" colSpan={4}>+ per-bed long-haul freight → <span className="text-emerald-800">marginal (cash) cost / bed</span></td>
+                <td className="py-2 px-3 text-right font-mono text-emerald-800">${MARGINAL_PER_BED.toLocaleString('en-AU')}</td>
+                <td className="py-2 px-3 text-right" />
+              </tr>
+              <tr className="border-t text-xs text-gray-400">
                 <td className="py-2 px-3" colSpan={4}>
-                  + facility, labour, HDPE leg production, freight &amp; overhead → fully-loaded
+                  Reference only — + facility, founder &amp; admin overhead absorbed at pilot volume → fully-loaded @ ~100/yr
+                  (<span className="italic">fixed-cost absorption, NOT the marginal cost</span>)
                 </td>
-                <td className="py-2 px-3 text-right font-mono">${fullyLoadedCostPerBed.toFixed(2)}</td>
+                <td className="py-2 px-3 text-right font-mono">${FULLY_LOADED_PER_BED.toLocaleString('en-AU')}</td>
                 <td className="py-2 px-3 text-right" />
               </tr>
             </tbody>
@@ -141,7 +163,7 @@ export function CostPerBatchCard({
                   Actual supplier spend (Xero ACCPAY, all-time)
                 </div>
                 <div className="mt-1 text-sm text-gray-700">
-                  ${actualSpend.toLocaleString('en-AU', { maximumFractionDigits: 0 })} across {actuals.invoiceCount} invoices · {denom.toLocaleString('en-AU')} beds in register
+                  ${actualSpend.toLocaleString('en-AU', { maximumFractionDigits: 0 })} across {actuals.invoiceCount} invoices · {denom.toLocaleString('en-AU')} Stretch beds in register
                   {actuals.earliestDate && actuals.latestDate && (
                     <> · {actuals.earliestDate} → {actuals.latestDate}</>
                   )}
@@ -150,9 +172,7 @@ export function CostPerBatchCard({
               <div className="text-right">
                 <div className="text-xs uppercase tracking-wide text-gray-500">Actual $/bed</div>
                 <div className="text-2xl font-bold text-gray-900">${actualPerBed.toFixed(2)}</div>
-                <div className={`text-xs font-medium ${Math.abs(variancePct) < 20 ? 'text-gray-500' : variancePct > 0 ? 'text-red-700' : 'text-emerald-700'}`}>
-                  {variancePct > 0 ? '+' : ''}{variancePct.toFixed(0)}% vs fully-loaded ${fullyLoadedCostPerBed.toFixed(0)}
-                </div>
+                <div className="text-xs font-medium text-gray-500">lower-bound · not comparable to fully-loaded</div>
               </div>
             </div>
             <div className="mt-3 grid gap-1.5 sm:grid-cols-3">
@@ -166,7 +186,7 @@ export function CostPerBatchCard({
             <p className="mt-3 text-[11px] leading-relaxed text-gray-500">
               <strong>Directional only.</strong> Xero ACCPAY here is Defy + steel (Goods-tagged) and folds in freight,
               training, prototype and setup. It MISSES the Alice Springs canvas &amp; steel supply chain (invoiced in
-              Notion, not the Xero mirror), and the denominator counts Basket beds. Reconciled 2026-05-28 — see
+              Notion, not the Xero mirror), so it is a LOWER BOUND on real per-bed supplier spend. Reconciled 2026-05-28 — see
               <code> wiki/outputs/2026-05-28-bed-cogs-xero-reconciliation.md</code>.
             </p>
           </div>
@@ -224,8 +244,8 @@ export function CostPerBatchCard({
                   <tr className="border-b text-left text-xs uppercase tracking-wider text-gray-500">
                     <th className="py-2 px-3 font-medium">Batch</th>
                     <th className="py-2 px-3 font-medium text-right">Beds</th>
-                    <th className="py-2 px-3 font-medium text-right">Cost @ ${fullyLoadedCostPerBed.toFixed(0)}/bed</th>
-                    <th className="py-2 px-3 font-medium text-right">Margin @ ${WEBSITE_PRICE} sale</th>
+                    <th className="py-2 px-3 font-medium text-right">Marginal COGS @ ${MARGINAL_PER_BED.toLocaleString('en-AU')}/bed</th>
+                    <th className="py-2 px-3 font-medium text-right">Contribution @ ${WEBSITE_PRICE} sale</th>
                   </tr>
                 </thead>
                 <tbody>

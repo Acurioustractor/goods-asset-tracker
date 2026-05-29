@@ -9,7 +9,9 @@
  * The "loss function" is impact per dollar. Everything else is a hyperparameter.
  */
 
-import { getFundingSummary, financialSnapshot } from './compendium';
+import { verifiedFinancials } from './compendium';
+import { getMarginGridAt750, getFullyLoadedGrid } from './cost-model-scenarios';
+import { WEBSITE_PRICE } from './supplier-quotes';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -93,68 +95,124 @@ export interface RevenueSegment {
   projectedShare: number; // percentage of total revenue
 }
 
+// Canonical 7-segment revenue model (financial-model Day 5, 2026-05-12).
+// Year-1 midpoint target ~$1.13M. Shares are MODELLED projections, not actuals.
+// Supersedes the earlier 4-segment list (B2B 45 / Gov 25 / B2C 20 / Corporate 10).
 export const REVENUE_SEGMENTS: RevenueSegment[] = [
   {
-    id: 'b2b',
-    name: 'B2B Sales',
-    description: 'Direct sales to organisations distributing to communities',
+    id: 'donor-institutional',
+    name: 'Donor-Funded Institutional',
+    description: 'Foundations / philanthropic buyers funding beds for community distribution at scale',
     currentEvidence: '109 beds to Centrecorp — institutional buyer at scale (income_type=grant, not commercial sale)',
-    projectedShare: 45,
+    projectedShare: 44,
+  },
+  {
+    id: 'direct-institutional',
+    name: 'Direct Institutional (Commercial)',
+    description: 'Direct commercial sales to organisations distributing to communities',
+    currentEvidence: 'PICC 40-bed order discussed; health orgs and NPY "always looking for beds"',
+    projectedShare: 27,
+  },
+  {
+    id: 'corporate-rap',
+    name: 'Corporate & RAP',
+    description: 'Corporate engagement: team builds, NAIDOC week, Reconciliation Action Plan sponsorship',
+    currentEvidence: 'QIC interested in building 50 beds with staff for NAIDOC week',
+    projectedShare: 9,
+  },
+  {
+    id: 'direct-retail',
+    name: 'Direct to Consumer (Retail)',
+    description: 'E-commerce sales: camping, emergency, beach use cases',
+    currentEvidence: 'Community consultations suggest camping/emergency bed market; "cyclone beds" in NT',
+    projectedShare: 9,
+  },
+  {
+    id: 'community-maker',
+    name: 'Community / Maker',
+    description: 'Community-led production and maker-channel sales as facilities transfer to community ownership',
+    currentEvidence: 'Ebony + Jahvan Oui training for on-country production at Palm Island',
+    projectedShare: 5,
   },
   {
     id: 'government',
     name: 'Government Procurement',
-    description: 'NT and QLD government procurement for remote communities',
-    currentEvidence: 'Conversations with NT government, health organisations requesting beds',
-    projectedShare: 25,
+    description: 'NT and QLD government procurement for remote communities (Supply Nation pathway)',
+    currentEvidence: 'Conversations with NT government; QLD social procurement preference under $500K',
+    projectedShare: 4,
   },
   {
-    id: 'b2c',
-    name: 'Direct to Consumer',
-    description: 'E-commerce sales: camping, emergency, beach use cases',
-    currentEvidence: 'Community consultations suggest camping/emergency bed market; "cyclone beds" in NT',
-    projectedShare: 20,
-  },
-  {
-    id: 'corporate',
-    name: 'Corporate & Events',
-    description: 'Corporate engagement: team builds, NAIDOC week, sponsorship',
-    currentEvidence: 'QIC interested in building 50 beds with staff for NAIDOC week',
-    projectedShare: 10,
+    id: 'adjacent',
+    name: 'Adjacent Products',
+    description: 'Washing machines and future HDPE products from the same production line',
+    currentEvidence: 'Pakkimjalki Kari washing machine prototype deployed; HDPE product catalogue in design',
+    projectedShare: 2,
   },
 ];
 
 // ---------------------------------------------------------------------------
-// Production cost model (from meeting: cost per unit breakdown)
+// Production labour model (employment-hours driver)
 // ---------------------------------------------------------------------------
+//
+// NOTE (2026-05-29): the old PRODUCTION_COST_BREAKDOWN carried fabricated
+// per-stage DOLLAR costs that summed to a non-canonical $550/bed and were
+// rendered publicly as the cost-per-bed. That dollar fabrication is DELETED.
+// The cost-per-bed now comes from the canonical cost model (see CANONICAL_COST_*
+// below) sourced from `cost-model-scenarios.ts` + `supplier-quotes.ts`.
+//
+// The per-stage LABOUR HOURS are retained (they drive the MODELLED employment-
+// hours impact metric, a legitimately modelled figure) but no longer claim to
+// carry a verified dollar cost.
 
-export interface ProductionCostItem {
+export interface ProductionLabourStage {
   stage: string;
   hoursPerUnit: number;
   personnelRequired: number;
-  costPerUnit: number;
 }
 
-export const PRODUCTION_COST_BREAKDOWN: ProductionCostItem[] = [
-  { stage: 'Plastic collection & sorting', hoursPerUnit: 0.5, personnelRequired: 1, costPerUnit: 15 },
-  { stage: 'Shredding & pelletising', hoursPerUnit: 0.3, personnelRequired: 1, costPerUnit: 10 },
-  { stage: 'Sheet pressing (190°C, 5000 PSI)', hoursPerUnit: 1.0, personnelRequired: 1, costPerUnit: 30 },
-  { stage: 'CNC cutting', hoursPerUnit: 3.5, personnelRequired: 1, costPerUnit: 120 },
-  { stage: 'Canvas & steel prep', hoursPerUnit: 0.5, personnelRequired: 1, costPerUnit: 80 },
-  { stage: 'Assembly & QC', hoursPerUnit: 0.5, personnelRequired: 2, costPerUnit: 40 },
-  { stage: 'Materials (steel, canvas, caps)', hoursPerUnit: 0, personnelRequired: 0, costPerUnit: 180 },
-  { stage: 'Freight & logistics', hoursPerUnit: 0.2, personnelRequired: 1, costPerUnit: 75 },
+export const PRODUCTION_LABOUR_STAGES: ProductionLabourStage[] = [
+  { stage: 'Plastic collection & sorting', hoursPerUnit: 0.5, personnelRequired: 1 },
+  { stage: 'Shredding & pelletising', hoursPerUnit: 0.3, personnelRequired: 1 },
+  { stage: 'Sheet pressing (190°C, 5000 PSI)', hoursPerUnit: 1.0, personnelRequired: 1 },
+  { stage: 'CNC cutting', hoursPerUnit: 3.5, personnelRequired: 1 },
+  { stage: 'Canvas & steel prep', hoursPerUnit: 0.5, personnelRequired: 1 },
+  { stage: 'Assembly & QC', hoursPerUnit: 0.5, personnelRequired: 2 },
+  { stage: 'Freight & logistics', hoursPerUnit: 0.2, personnelRequired: 1 },
 ];
 
-export const TOTAL_LABOUR_HOURS_PER_BED = PRODUCTION_COST_BREAKDOWN.reduce(
+/** MODELLED labour hours per bed (employment-impact driver, not yet time-studied). */
+export const MODELLED_LABOUR_HOURS_PER_BED = PRODUCTION_LABOUR_STAGES.reduce(
   (sum, item) => sum + item.hoursPerUnit,
-  0
+  0,
 );
 
-export const TOTAL_COST_PER_BED = PRODUCTION_COST_BREAKDOWN.reduce(
-  (sum, item) => sum + item.costPerUnit,
-  0
-);
+// ---------------------------------------------------------------------------
+// Canonical cost-per-bed (single source of truth, MODELLED)
+// ---------------------------------------------------------------------------
+//
+// Build-path direct costs (at $750 retail) from cost-model-scenarios.ts. These
+// reconcile to the locked canonical numbers (Factory 275.74 / Defy Kits 534.79 /
+// Defy Panels 584.07 / Community 140.74). The headline current cost-per-bed uses
+// the FACTORY build path direct cost (the on-country target the capital ask funds).
+
+const _marginGrid = getMarginGridAt750();
+const _factoryRow = _marginGrid.find((r) => r.path.startsWith('Factory'));
+const _defyKitsRow = _marginGrid.find((r) => r.path.startsWith('Defy Kits'));
+
+/** Canonical website / institutional price (single source: supplier-quotes.ts). */
+export const CANONICAL_WEBSITE_PRICE = WEBSITE_PRICE; // 750
+
+/** Factory build-path direct cost per bed (on-country target). MODELLED. */
+export const CANONICAL_FACTORY_DIRECT_COST = _factoryRow?.direct ?? 275.74;
+
+/** Current (Defy-kit) build-path direct cost per bed. MODELLED. */
+export const CANONICAL_BUYKIT_DIRECT_COST = _defyKitsRow?.direct ?? 534.79;
+
+/** The four canonical build-path rows (path / direct / margin / margin%) at $750. */
+export const CANONICAL_BUILD_PATHS = _marginGrid;
+
+/** Fully-loaded cost grid (per-volume) — for context, NOT a public cost-per-bed. */
+export const CANONICAL_FULLY_LOADED_GRID = getFullyLoadedGrid();
 
 // ---------------------------------------------------------------------------
 // 5 Impact Dimensions
@@ -303,7 +361,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         current: null,
         targets: { year1: 9750, year3: 32500, vision2030: 162500 },
         source: 'computed',
-        sourceDetail: `${TOTAL_LABOUR_HOURS_PER_BED.toFixed(1)} labour hours per bed × beds produced`,
+        sourceDetail: `MODELLED: ${MODELLED_LABOUR_HOURS_PER_BED.toFixed(1)} labour hours per bed × beds produced`,
         proxyFor: 'Economic inclusion for at-risk youth and community members',
         optimizationLevers: ['Production volume', 'Training programs', 'Community facility hosting'],
         computeFn: 'computeEmploymentHours',
@@ -321,24 +379,24 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'cost-per-unit',
-        name: 'Production Cost per Unit',
+        name: 'Production Cost per Unit (direct, current build path)',
         unit: '$/bed',
-        current: TOTAL_COST_PER_BED,
-        targets: { year1: 520, year3: 350, vision2030: 280 },
+        current: CANONICAL_BUYKIT_DIRECT_COST, // 534.79 — what we make a bed for TODAY (Defy Buy-Kit path)
+        targets: { year1: 275, year3: 200, vision2030: 141 }, // on-country Factory path: 275.74 → ~200 → 140.74
         source: 'computed',
-        sourceDetail: 'Sum of all production stage costs',
+        sourceDetail: 'MODELLED: current is the Defy Buy-Kit direct cost ($534.79 — what we make a bed for today) from cost-model-scenarios.ts. The trajectory is cost-DOWN as production in-sources to the on-country Factory path (direct $275.74), then scales toward the Community path ($140.74). Direct cost only — excludes fixed-cost absorption at pilot volume.',
         proxyFor: 'Operational efficiency and affordability',
-        optimizationLevers: ['CNC time reduction (3.5hrs→2hrs)', 'Bulk materials purchasing', 'Local sourcing'],
-        computeFn: 'getCostPerUnit',
+        optimizationLevers: ['Move from Defy-kit to on-country factory path', 'CNC time reduction', 'Local feedstock + bulk materials'],
       },
       {
         id: 'revenue',
-        name: 'Annual Revenue',
+        name: 'Total Revenue Received (cumulative since inception, ~89% grant-funded)',
         unit: '$',
-        current: 61_449, // Xero-verified FY26 commercial/trade revenue (ACT-GD only, 2026-05-27); Palm Island excluded (PICC project, not Goods, per Ben). NOTE: if this metric should be TOTAL revenue to match the $1.1M+ targets, use FY26 YTD ~$435K instead. CONFIRM BASIS.
-        targets: { year1: 1_100_000, year3: 4_000_000, vision2030: 15_000_000 },
+        current: verifiedFinancials.revenueReceived, // 649,710.79 — total revenue received since inception (grant + commercial), Xero workpaper (verified, not audited)
+        targets: { year1: 1_100_000, year3: 4_000_000, vision2030: 15_000_000 }, // Year-1 TOTAL-revenue target across all 7 segments (not commercial-only)
         source: 'xero',
-        sourceDetail: 'Xero: goods project tagged transactions',
+        sourceDetail:
+          'Xero workpaper (verified, not audited): TOTAL revenue received since inception (2023-07-01 → 2026-04-30), ~89% grant-funded (Snow + Centrecorp + VFFF + QIC) and ~11% commercial. This is NOT annual commercial traction — FY26 YTD commercial-only is ~$61K. The target is the Year-1 TOTAL-revenue target across all 7 segments (donor-institutional through adjacent), not a commercial-only target. Do not read cumulative grant-heavy revenue as recurring commercial run-rate.',
         optimizationLevers: ['B2B pipeline', 'Government procurement', 'E-commerce launch'],
       },
       {
@@ -481,11 +539,14 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
 // ---------------------------------------------------------------------------
 
 export const FINANCIAL_SUMMARY = {
-  totalInvestment: getFundingSummary().received, // derived from compendium funding data
-  tradeRevenue: financialSnapshot.tradeRevenue,
-  productionPlantInvestment: financialSnapshot.productionPlantInvestment,
-  currentCostPerUnit: TOTAL_COST_PER_BED,
-  targetCostPerUnit: { year1: 520, year3: 350, vision2030: 280 },
+  // Single source of truth: verifiedFinancials (Xero workpaper, verified not audited).
+  totalInvestment: verifiedFinancials.revenueReceived, // 649,710.79 — denominator for public impact-per-dollar
+  tradeRevenue: verifiedFinancials.revenueReceived,
+  productionPlantInvestment: verifiedFinancials.capexInvested, // 110,046
+  currentCostPerUnit: CANONICAL_BUYKIT_DIRECT_COST, // 534.79 — current Buy-Kit direct cost (what we make a bed for today, MODELLED)
+  targetCostPerUnit: { year1: 275, year3: 200, vision2030: 141 }, // on-country Factory path (275.74 → ~200 → 140.74)
+  financialsStatus: verifiedFinancials.status,
+  financialsLastUpdated: verifiedFinancials.lastUpdated,
 };
 
 // ---------------------------------------------------------------------------
@@ -495,19 +556,19 @@ export const FINANCIAL_SUMMARY = {
 export const DEFAULT_OPPORTUNITIES: OptimizationOpportunity[] = [
   {
     id: 'cnc-optimisation',
-    title: 'CNC cutting time is the largest cost driver',
-    description: `CNC cutting currently takes 3.5 hours/bed at ~$34/hr. Reducing to 2 hours saves $51/unit, $76.5K/year at 1,500 units. Investigate toolpath optimisation and multi-head routing.`,
+    title: 'CNC cutting time is the largest labour-time driver',
+    description: `CNC cutting currently takes ~3.5 hours/bed. Reducing it materially cuts both labour cost and the gap between the Defy-kit path ($534.79 direct) and the on-country factory path ($275.74 direct). Investigate toolpath optimisation and multi-head routing.`,
     dimension: 'production',
     potential: 'high',
-    dataSource: 'Production cost breakdown',
+    dataSource: 'Canonical cost model (cost-model-scenarios.ts)',
   },
   {
     id: 'wise-employment',
-    title: `Each bed sale creates ${TOTAL_LABOUR_HOURS_PER_BED.toFixed(1)} hours of employment`,
-    description: `At 1,500 beds/year, that's ${(1500 * TOTAL_LABOUR_HOURS_PER_BED).toLocaleString()} hours of employment for at-risk youth. The WISE model is the strongest impact narrative for QLD government funding.`,
+    title: `Each bed sale creates ~${MODELLED_LABOUR_HOURS_PER_BED.toFixed(1)} modelled hours of employment`,
+    description: `At 1,500 beds/year, that's about ${(1500 * MODELLED_LABOUR_HOURS_PER_BED).toLocaleString()} hours of employment for at-risk youth (modelled, not yet time-studied). The WISE model is the strongest impact narrative for QLD government funding.`,
     dimension: 'economic',
     potential: 'high',
-    dataSource: 'Production cost model + Eloise meeting',
+    dataSource: 'Production labour model + Eloise meeting',
   },
   {
     id: 'b2b-pipeline',

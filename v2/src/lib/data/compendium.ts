@@ -8,6 +8,8 @@
  * for use across admin dashboards, reports, and grant applications.
  */
 
+import { PLASTIC_KG_PER_BED } from './products';
+
 // ---------------------------------------------------------------------------
 // Advisory Board
 // ---------------------------------------------------------------------------
@@ -294,23 +296,47 @@ export function getFundingSummary() {
 }
 
 // ---------------------------------------------------------------------------
-// Financial Snapshot (from Xero, manually synced until API integration)
-// Last updated: March 27, 2026
+// Verified Financials — single source of truth for the public financial figures
+// Source: Xero workpaper cross-check (2026-05-29). VERIFIED, NOT AUDITED.
+// All figures cumulative since inception (2023-07-01) through 2026-04-30 unless noted.
+// Supersedes the old `financialSnapshot` (stale 2026-03-27 figures: tradeRevenue
+// 239,273 / outstandingReceivables 513,148, which double-counted draft quotes and
+// pre-dated the Centrecorp invoice voids). See MEMORY.md "Goods financial baseline".
 // ---------------------------------------------------------------------------
 
+export const verifiedFinancials = {
+  status: 'verified - not audited' as const,
+  lastUpdated: '2026-05-29',
+  // Revenue billed (all ACCREC raised, voided excluded) vs cash actually received.
+  revenueBilled: 732_210.79,
+  revenueReceived: 649_710.79,
+  // Accounts receivable: Rotary INV-0222 ($82,500) is the only open receivable.
+  accountsReceivable: 82_500,
+  // Accounts payable: ~$0 owed. Authorised-but-unpaid bills are a Xero payment-
+  // matching gap (paid from ACT business accounts, payment never applied to the
+  // bill), NOT debt. No director loan.
+  accountsPayable: 0,
+  // Goods operating expenses (single cash basis — NOT the earlier $436,612 figure
+  // that double-counted bills + bank spend).
+  operatingExpenses: 309_126,
+  // Capital invested in the containerised production plant (capex).
+  capexInvested: 110_046,
+  // Operating surplus before any founder time is costed (modelled, conservative).
+  operatingSurplusBeforeFounderTime: 340_585,
+};
+
+/**
+ * @deprecated Use `verifiedFinancials`. Kept as a thin compatibility shim mapping
+ * the old field names onto the verified figures so any un-migrated consumer reads
+ * correct numbers. `tradeRevenue` now points at cash received; `productionPlant-
+ * Investment` at verified capex; `outstandingReceivables` at the single open AR.
+ */
 export const financialSnapshot = {
-  lastUpdated: '2026-03-27',
-  // Xero-verified trade revenue (all PAID invoices):
-  // INV-0291 Centrecorp $85,712 + INV-0232 QIC $12,000 + INV-0283 Mala'la $5,434
-  // + INV-0260 Our Community Shed $13,500 + INV-0259 Centrecorp $37,620
-  // + INV-0258 Snow $5,545 + INV-0255 Red Dust $15,950
-  // + INV-0308 Our Community Shed $6,765 + INV-0282 Julalikari $19,800
-  // + INV-1602 Defy $36,947
-  tradeRevenue: 239_273,
-  productionPlantInvestment: 100_000, // TFN $80K + ACT $20K in containerised facility
-  // Outstanding: Shed Part 1 $163.9K + Snow $132K + Shed Part 2 $93.5K + Rotary $82.5K + PICC $36.3K + Homeland $4.95K
-  outstandingReceivables: 513_148,
-  xeroIntegrated: false, // TODO: OAuth2 Xero API integration for live data
+  lastUpdated: verifiedFinancials.lastUpdated,
+  tradeRevenue: verifiedFinancials.revenueReceived,
+  productionPlantInvestment: verifiedFinancials.capexInvested,
+  outstandingReceivables: verifiedFinancials.accountsReceivable,
+  xeroIntegrated: false,
 };
 
 // ---------------------------------------------------------------------------
@@ -330,6 +356,13 @@ export interface CommunityDeployment {
   keyFacts?: string[];
 }
 
+// CANONICAL deployed-bed register (static fallback). The LIVE /impact register
+// (Supabase `assets`) is authoritative; these per-community numbers are the
+// labelled static fallback, reconciled 2026-05-29 to the locked canonical split:
+//   Tennant Creek 159, Utopia 147, Palm Island 131, Kalgoorlie 20, Maningrida 18,
+//   Alice Springs 16, Mt Isa 2, Darwin 1, Canberra 1 = 495 deployed beds.
+// This array is the SINGLE source for the static deployed-bed count via
+// getDeploymentTotals(); content.ts derives its counts from EXPECTED_DEPLOYED_BEDS.
 export const deployments: CommunityDeployment[] = [
   { id: 'palm-island', community: 'Palm Island', traditionalName: 'Bwgcolman', state: 'QLD', beds: 131, washers: 4, status: 'active', partner: 'PICC', contacts: ['Eb & Jahvan Oui'] },
   { id: 'tennant-creek', community: 'Tennant Creek', traditionalName: 'Wumpurrarni', state: 'NT', beds: 159, washers: 5, status: 'active', partner: 'Wilya Janta', contacts: ['Norman Frank', 'Dr Simon Quilty'] },
@@ -338,13 +371,36 @@ export const deployments: CommunityDeployment[] = [
   { id: 'kalgoorlie', community: 'Kalgoorlie', traditionalName: 'Ninga Mia', state: 'WA', beds: 20, washers: 0, status: 'active', partner: 'The Community Shed' },
   { id: 'utopia', community: 'Utopia Homelands', state: 'NT', beds: 147, washers: 0, status: 'active', partner: 'Oonchiumpa' },
   { id: 'mt-isa', community: 'Mt Isa', traditionalName: 'Kalkadoon', state: 'QLD', beds: 2, washers: 0, status: 'testing', partner: 'BG Fit & Men\'s Shed' },
+  { id: 'darwin', community: 'Darwin', state: 'NT', beds: 1, washers: 1, status: 'testing', partner: 'Red Dust' },
+  { id: 'canberra', community: 'Canberra', state: 'NT', beds: 1, washers: 0, status: 'testing' },
 ];
+
+/**
+ * Canonical deployed-bed total. Single source of truth for the static fallback
+ * count used across content.ts, funder pages, and the impact summary. The live
+ * Supabase register stays authoritative; this is the labelled static fallback.
+ */
+export const EXPECTED_DEPLOYED_BEDS = 495;
 
 export function getDeploymentTotals() {
   const beds = deployments.reduce((s, d) => s + d.beds, 0);
   const washers = deployments.reduce((s, d) => s + d.washers, 0);
   const activeCount = deployments.filter(d => d.status === 'active').length;
   return { beds, washers, communities: deployments.length, activeCount };
+}
+
+// Build-time assertion: the canonical deployments array MUST sum to the locked
+// total. If a future edit changes a per-community number without updating
+// EXPECTED_DEPLOYED_BEDS (or vice versa), this throws at module load / build so
+// the divergence can never ship silently.
+{
+  const sum = deployments.reduce((s, d) => s + d.beds, 0);
+  if (sum !== EXPECTED_DEPLOYED_BEDS) {
+    throw new Error(
+      `[compendium] deployments bed sum (${sum}) != EXPECTED_DEPLOYED_BEDS (${EXPECTED_DEPLOYED_BEDS}). ` +
+        `Reconcile the deployments array to the locked canonical split or update EXPECTED_DEPLOYED_BEDS.`,
+    );
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -528,7 +584,7 @@ export const communityVoices: CommunityVoice[] = [
 // ---------------------------------------------------------------------------
 
 export const productionFacility = {
-  investment: 100000,
+  investment: verifiedFinancials.capexInvested, // 110,046 (verified capex, single source)
   containers: [
     {
       name: 'Container #1: Shredding & Collection',
@@ -564,8 +620,10 @@ export const productionFacility = {
 // ---------------------------------------------------------------------------
 
 export const environmentalImpact = {
-  plasticPerBed: { min: 20, max: 25, unit: 'kg HDPE' },
-  totalDivertedToDate: 9225,
+  plasticPerBed: { min: PLASTIC_KG_PER_BED, max: 25, unit: 'kg HDPE' },
+  // Derived from the canonical deployed-bed count × PLASTIC_KG_PER_BED (single
+  // source). 495 × 20 = 9,900 kg. (Was a stale 9,225 literal.)
+  totalDivertedToDate: EXPECTED_DEPLOYED_BEDS * PLASTIC_KG_PER_BED,
   atScale: { units: 5000, tonnes: 125, period: 'annually' },
   productLifespan: '10+ years (vs weeks for conventional)',
   circularLoop: 'Community waste → beds → community ownership',
@@ -693,7 +751,7 @@ export const corrections = {
   placeholders: [
     '"40% community share": placeholder concept, not committed. Say "community benefit model" instead.',
     'Kristy Bloomfield quote in content.ts: marked PLACEHOLDER, not verified.',
-    'Bed count: use 496 deployed bed units. Assets tracked in register (all types): 558.',
-    'Washing machines: say "prototype machines in several communities", do not claim a precise high number.',
+    'Bed count: 369 (Catalysing Impact) vs 389 (Asset Register): 389 includes all asset types.',
+    'Washing machine count: 5 deployed (Tennant Creek) vs "20+" (may include field testing).',
   ],
 };
