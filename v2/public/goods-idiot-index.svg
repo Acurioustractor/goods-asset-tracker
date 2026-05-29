@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 980" width="1680" height="980" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
+<defs><filter id="sh" x="-8%" y="-8%" width="116%" height="124%">
+<feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#5A4A38" flood-opacity="0.10"/></filter></defs>
+<rect width="1680" height="980" fill="#FBFAF5"/>
+<text x="840.0" y="74" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="50" font-weight="700" fill="#2A241E">Idiot index: where the cost-down is</text>
+<text x="840.0" y="110" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="400" fill="#6F6155" font-style="italic">Index = what we pay now / raw-material floor. A high bar is not waste; it is supplier margin we could capture by in-sourcing.</text>
+<text x="60" y="221.0" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="19" font-weight="700" fill="#2A241E">HDPE legs</text>
+<rect x="290" y="190.0" width="1000" height="50" rx="9" fill="#EFE8DA99"/>
+
+<rect x="290" y="190.0" width="860.0" height="50" rx="9" fill="#BD6A3C" stroke="#8B4E2C" stroke-width="1.2" filter="url(#sh)"/>
+
+<rect x="287" y="187.0" width="866.0" height="56" rx="11" fill="none" stroke="#8B4E2C" stroke-width="2.6"/>
+<text x="1164.0" y="222.0" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#8B4E2C">8.6x</text>
+<text x="302" y="221.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#FFFFFF">raw AU$40 to paid AU$344</text>
+<rect x="1220.0" y="202.0" width="96" height="26" rx="13" fill="#BD6A3C2D" stroke="#BD6A3C" stroke-width="1.3"/>
+<text x="1268.0" y="220.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#8B4E2C" letter-spacing="0.8">THE LEVER</text>
+<text x="60" y="307.0" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="19" font-weight="600" fill="#2A241E">Defy panels</text>
+<rect x="290" y="276.0" width="1000" height="50" rx="9" fill="#EFE8DA99"/>
+<g opacity="0.55">
+<rect x="290" y="276.0" width="1000.0" height="50" rx="9" fill="#A8442E" stroke="#7C3222" stroke-width="1.2"/>
+</g>
+<text x="1304.0" y="308.0" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#7C3222">10x</text>
+<text x="302" y="307.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#FFFFFF">raw AU$40 to paid AU$400</text>
+<rect x="1360.0" y="288.0" width="70" height="26" rx="13" fill="#A8442E2D" stroke="#A8442E" stroke-width="1.3"/>
+<text x="1395.0" y="306.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#7C3222" letter-spacing="0.8">avoid</text>
+<text x="60" y="393.0" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="19" font-weight="600" fill="#2A241E">Canvas</text>
+<rect x="290" y="362.0" width="1000" height="50" rx="9" fill="#EFE8DA99"/>
+
+<rect x="290" y="362.0" width="240.0" height="50" rx="9" fill="#4C9B97" stroke="#38726F" stroke-width="1.2"/>
+
+<text x="544.0" y="394.0" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#38726F">2.4x</text>
+<text x="302" y="393.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#FFFFFF">raw AU$38.50 to paid AU$93.50</text>
+<text x="60" y="479.0" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="19" font-weight="600" fill="#2A241E">Steel</text>
+<rect x="290" y="448.0" width="1000" height="50" rx="9" fill="#EFE8DA99"/>
+
+<rect x="290" y="448.0" width="210.00000000000003" height="50" rx="9" fill="#C2A55E" stroke="#8F7A45" stroke-width="1.2"/>
+
+<text x="514.0" y="480.0" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#8F7A45">2.1x</text>
+<text x="302" y="479.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#FFFFFF">raw AU$12.67 to paid AU$27</text>
+<text x="60" y="565.0" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="19" font-weight="600" fill="#2A241E">Hardware</text>
+<rect x="290" y="534.0" width="1000" height="50" rx="9" fill="#EFE8DA99"/>
+
+<rect x="290" y="534.0" width="100.0" height="50" rx="9" fill="#6F9C68" stroke="#52734C" stroke-width="1.2"/>
+
+<text x="404.0" y="566.0" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#52734C">1x</text>
+<text x="302" y="565.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#6F6155">near raw rate</text>
+<rect x="60" y="624" width="1560" height="96" rx="16" fill="#BD6A3C1E" stroke="#BD6A3C" stroke-width="1.8" filter="url(#sh)"/>
+<text x="88" y="658" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#8B4E2C" letter-spacing="1.4">THE CAPITAL CASE</text>
+<text x="88" y="688" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#2A241E">HDPE legs = the capital case: in-sourcing the legs captures ~AU$289/bed of supplier margin</text>
+<text x="88" y="710" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="400" fill="#6F6155">(in-house legs ~AU$150/bed). Defy panels at 10x are the trap: you pay the press margin and still CNC and assemble.</text>
+<line x1="60" y1="744" x2="1620" y2="744" stroke="#C9BCA8" stroke-width="1"/>
+<text x="60" y="766" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="11.5" font-weight="400" fill="#6F6155" font-style="italic">Source: Goods cost model (2026-05). Index = paid / raw-material floor per component; HDPE-legs margin is modelled on verified BOM inputs.</text>
+</svg>

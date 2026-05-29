@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 960" width="1680" height="960" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
+<defs><filter id="sh" x="-8%" y="-8%" width="116%" height="124%">
+<feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#5A4A38" flood-opacity="0.10"/></filter></defs>
+<rect width="1680" height="960" fill="#FBFAF5"/>
+<text x="840.0" y="74" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="46" font-weight="700" fill="#2A241E">Grant-funded today; in-sourcing makes it viable</text>
+<text x="840.0" y="110" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="400" fill="#6F6155" font-style="italic">Annual operating result by scenario, after founder time. Buy-Kit at scale loses money; in-house production turns it positive.</text>
+<line x1="577.1" y1="190" x2="577.1" y2="698" stroke="#2A241E" stroke-width="2"/>
+<text x="577.1342895915717" y="182" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#6F6155">break even (AU$0)</text>
+<text x="60" y="262.0" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#2A241E">Actuals (grant-funded)</text>
+<text x="60" y="286.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#6F6155" font-style="italic">after founder time</text>
+<rect x="577.1342895915717" y="238.0" width="446.8075761334287" height="56" rx="10" fill="#6F9C68" stroke="#52734C" stroke-width="1.4" filter="url(#sh)"/>
+<text x="1037.9418657250003" y="273.0" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#52734C">+AU$151,585</text>
+<text x="60" y="394.0" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#2A241E">Buy-Kit @ 500/yr</text>
+<text x="60" y="418.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#6F6155" font-style="italic">buy finished kits</text>
+<rect x="400.0" y="370.0" width="177.1342895915717" height="56" rx="10" fill="#A8442E" stroke="#7C3222" stroke-width="1.4" filter="url(#sh)"/>
+<text x="386.0" y="405.0" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#7C3222">-AU$60,095</text>
+<text x="386.0" y="426.0" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#7C3222">breakeven 1,679/yr</text>
+<text x="60" y="526.0" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#2A241E">Factory @ 500/yr</text>
+<text x="60" y="550.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#6F6155" font-style="italic">press + CNC On-Country</text>
+<rect x="577.1342895915717" y="502.0" width="204.649866483781" height="56" rx="10" fill="#6F9C68" stroke="#52734C" stroke-width="1.4" filter="url(#sh)"/>
+<text x="795.7841560753527" y="537.0" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#52734C">+AU$69,430</text>
+<rect x="589.1342895915717" y="516.0" width="142.4" height="27" rx="13" fill="#FFFFFF" stroke="#52734C" stroke-width="1.2"/>
+<text x="660.3342895915717" y="535.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#52734C">breakeven 338/yr</text>
+<text x="60" y="658.0" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#2A241E">Community @ 1,000/yr</text>
+<text x="60" y="682.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#6F6155" font-style="italic">community-owned production</text>
+<rect x="577.1342895915717" y="634.0" width="832.8657104084283" height="56" rx="10" fill="#6F9C68" stroke="#52734C" stroke-width="1.4" filter="url(#sh)"/>
+<text x="1424.0" y="669.0" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#52734C">+AU$282,560</text>
+<rect x="589.1342895915717" y="648.0" width="142.4" height="27" rx="13" fill="#FFFFFF" stroke="#52734C" stroke-width="1.2"/>
+<text x="660.3342895915717" y="667.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#52734C">breakeven 238/yr</text>
+<rect x="60" y="734" width="1560" height="78" rx="16" fill="#BD6A3C1E" stroke="#BD6A3C" stroke-width="1.8" filter="url(#sh)"/>
+<text x="88" y="766" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#8B4E2C" letter-spacing="1.4">THE CAPITAL CASE</text>
+<text x="88" y="794" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="700" fill="#2A241E">The capital case = moving from Buy-Kit to in-house production.</text>
+<text x="60" y="848" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="11.5" font-weight="400" fill="#6F6155" font-style="italic">Source: Goods financial model (2026-05), after founder time. Operating results and breakevens are modelled on verified BOM inputs (AU$750 price); founder-rate and FTE inputs pending confirmation.</text>
+</svg>
