@@ -9,6 +9,7 @@ import {
   GRANTS_ROUTING,
   type LoiRung,
 } from '@/lib/data/loi-pipeline';
+import { supplierQuotes } from '@/lib/data/supplier-quotes';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -33,9 +34,16 @@ export default async function LoiTrackerPage() {
 
   // Bucket live opportunities onto the LOI ladder. Drop lost/abandoned and any
   // stage that isn't mapped to a rung (Lapsed, Declined/Parked, Dormant).
-  const active = opportunities.filter(
+  const ladderable = opportunities.filter(
     (o) => o.status !== 'lost' && o.status !== 'abandoned' && STAGE_TO_RUNG[o.stageId],
   );
+  // Suppliers belong in the cost-model supplier list, NOT a funding pipeline.
+  // Defensively exclude any opp whose name matches a known supplier so a misfiled
+  // one (e.g. "Centre Canvas" sitting in Buyer) never pollutes the LOI ladder.
+  const SUPPLIER_NAMES = new Set(supplierQuotes.map((q) => q.supplier.trim().toLowerCase()));
+  const isSupplier = (o: GoodsOpportunity) => SUPPLIER_NAMES.has(o.name.trim().toLowerCase());
+  const active = ladderable.filter((o) => !isSupplier(o));
+  const misfiledSuppliers = ladderable.filter(isSupplier);
   const byRung: Record<LoiRung, GoodsOpportunity[]> = {
     target: [],
     signed: [],
@@ -172,6 +180,22 @@ export default async function LoiTrackerPage() {
         <p className="text-sm font-semibold text-violet-900">Where grants land</p>
         <p className="mt-1 text-sm text-violet-800">{GRANTS_ROUTING}</p>
       </div>
+
+      {/* Misfiled suppliers (hidden from the ladder) */}
+      {misfiledSuppliers.length > 0 && (
+        <div className="rounded-lg border border-rose-200 bg-rose-50 p-4">
+          <p className="text-sm font-semibold text-rose-900">
+            {misfiledSuppliers.length} supplier{misfiledSuppliers.length > 1 ? 's' : ''} misfiled in a
+            funding pipeline — hidden from the ladder
+          </p>
+          <p className="mt-1 text-sm text-rose-800">
+            {misfiledSuppliers.map((o) => o.name).join(', ')}. Suppliers belong in the cost-model
+            supplier list (<code className="rounded bg-rose-100 px-1">supplier-quotes.ts</code>), not
+            the Buyer / Supporter pipelines — move them out in GHL so the pipeline reflects only buyers
+            and funders.
+          </p>
+        </div>
+      )}
 
       <p className="text-xs text-gray-400">
         Pipelines read: {GOODS_PIPELINES.map((p) => p.name).join(' · ')}. Stage→rung mapping verified
