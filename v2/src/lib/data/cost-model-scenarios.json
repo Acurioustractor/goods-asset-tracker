@@ -1,11 +1,18 @@
 {
   "meta": {
-    "title": "Goods bed cost model v5 — verified-from-invoices, Musk first-principles",
-    "version": "v5",
+    "title": "Goods bed cost model v6 — worked numbers, fair-wage community state + investment layer",
+    "version": "v6",
     "created": "2026-05-28",
-    "supersedes": "v4 (state_1 was Weave Bed, canvas was $95 not $93.50)",
-    "source_doc": "Deep OCR of canvas + Bunnings + INV-1507 invoices + Coastal Fasteners + Notion BK",
+    "supersedes": "v5",
+    "source_doc": "Deep OCR of canvas + Bunnings + INV-1507 invoices + Coastal Fasteners + Notion BK + v6 worked-numbers brief",
     "verified_from": "act-infra/scripts/ocr-defy-bills.mjs + ocr-bed-supplier-bills.mjs + ocr-bed-elements-deep.mjs",
+    "v6_changes_2026_05_29": [
+      "Community state now pays a FAIR WAGE: community labour $130/bed (band $100-$160) instead of $0 volunteer. Plastic stays $0 (community-collected, free).",
+      "Community DIRECT 140.74 -> 270.74 (band 240.74-300.74). Reframed from 'cheapest/vision' to 'economic PARITY with the factory ($275.74), margin stays community-owned'.",
+      "Community margin at $750 = $479.26 (64%); at institutional $801 = $530.26 (66%). Community state-5 ($270.74) is ~$5 BELOW the factory ($275.74); only at the top of the labour band (+$160) is it ~$25 more (the dignified-work premium).",
+      "Investment layer slotted in (UNVERIFIED/INFERRED): standalone_site_capex (3-site), volume_ramp_v6, demand_mix, margin_waterfall (brokerage/co-op split), debt_service, sensitivity_v6 (incl. 3-way joint downside + brokerage flex floor).",
+      "Confidence: community direct + v6 figures INFERRED (from a verified BOM); per-site capex UNVERIFIED (needs vendor quotes); Centrecorp $801 + BOM VERIFIED."
+    ],
     "key_corrections_2026_05_28": [
       "INV-1507 $600/bed was WEAVE BED (discontinued) — state_1 removed entirely",
       "Canvas: $93.50/cover verified actual (Centre Canvas 50+110×2 covers in 2026), not $95",
@@ -93,24 +100,30 @@
       "capital_added": 160000,
       "capital_cumulative": 200000,
       "throughput_beds_per_day": 4,
-      "_note": "TARGET state. $474.26 margin at $750 retail (63%). 4 beds/day × 250 working days = 1,000/yr from one facility."
+      "_note": "TARGET state + PARITY COMPARATOR for the community state. $474.26 margin at $750 retail (63%). 4 beds/day × 250 working days = 1,000/yr from one facility. The community state ($270.74) sits ~$5 below this — fair-wage community production is economically on par with the centralised factory."
     },
     "state_5_community": {
-      "label": "Community (waste plastic collected, volunteer-run)",
+      "label": "Community (waste plastic free, fair-wage paid work)",
       "components": [
-        { "label": "Community-collected plastic (CDP or volunteer)", "amount": 0.00 },
+        { "label": "Community-collected plastic (free feedstock)", "amount": 0.00 },
         { "label": "Diesel (generator)", "amount": 15.00 },
         { "label": "Steel poles", "amount": 27.00 },
         { "label": "Canvas", "amount": 93.50 },
         { "label": "End caps + screws + bolts", "amount": 5.24 },
-        { "label": "Labour (volunteer / CDP / community)", "amount": 0.00 }
+        { "label": "Community labour (fair wage)", "amount": 130.00 }
       ],
-      "direct_total": 140.74,
+      "direct_total": 270.74,
+      "community_labour_per_bed": 130.00,
+      "community_labour_band_low": 100.00,
+      "community_labour_band_high": 160.00,
+      "direct_total_band_low": 240.74,
+      "direct_total_band_high": 300.74,
       "capital_added": 30000,
       "capital_cumulative": 230000,
       "throughput_beds_per_day": 5,
       "community_jobs_created": true,
-      "_note": "Vision state — $609.26 margin at $750 retail (81%). Almost the entire sale price recirculates into the community enterprise."
+      "confidence": "inferred",
+      "_note": "ECONOMIC PARITY with the factory ($275.74) — not the cheap state. At $270.74 it is ~$5 BELOW the factory; only at the top of the labour band (+$160) is it ~$25 more (the dignified-work premium). $479.26 margin at $750 (64%) / $530.26 at $801 (66%). The margin stays community-owned AND the build is dignified paid work, not free volunteer labour."
     }
   },
   "first_principles_floor": {
@@ -153,15 +166,15 @@
     { "label": "Vision (1,000 beds/yr)", "beds_per_year": 1000, "kirmos_per_bed": 27, "founder_production_per_bed": 30, "admin_per_bed": 15, "field_travel_per_bed": 50, "long_haul_freight_per_bed": 80, "overhead_total": 202 }
   ],
   "fully_loaded_grid": [
-    { "volume_label": "100/yr today", "state_2_defy_kits": 1912, "state_3_defy_panels": 1961, "state_4_factory": 1653, "state_5_community": 1518 },
-    { "volume_label": "500/yr target", "state_2_defy_kits": 878, "state_3_defy_panels": 927, "state_4_factory": 619, "state_5_community": 484 },
-    { "volume_label": "1,000/yr vision", "state_2_defy_kits": 737, "state_3_defy_panels": 786, "state_4_factory": 478, "state_5_community": 343 }
+    { "volume_label": "100/yr today", "state_2_defy_kits": 1912, "state_3_defy_panels": 1961, "state_4_factory": 1653, "state_5_community": 1648 },
+    { "volume_label": "500/yr target", "state_2_defy_kits": 878, "state_3_defy_panels": 927, "state_4_factory": 619, "state_5_community": 614 },
+    { "volume_label": "1,000/yr vision", "state_2_defy_kits": 737, "state_3_defy_panels": 786, "state_4_factory": 478, "state_5_community": 473 }
   ],
   "margin_grid_at_750_retail": [
     { "path": "Defy Kits", "direct": 534.79, "margin": 215.21, "margin_pct": 29 },
     { "path": "Defy Panels", "direct": 584.07, "margin": 165.93, "margin_pct": 22 },
     { "path": "Factory (in-house)", "direct": 275.74, "margin": 474.26, "margin_pct": 63 },
-    { "path": "Community (volunteer + free plastic)", "direct": 140.74, "margin": 609.26, "margin_pct": 81 }
+    { "path": "Community (free plastic + fair-wage labour)", "direct": 270.74, "margin": 479.26, "margin_pct": 64 }
   ],
   "fundraising_offset": {
     "philanthropy_days_per_year": 50,
@@ -206,6 +219,90 @@
     "commercial_low": 1500,
     "commercial_high": 2000,
     "headline_value_per_dollar_at_target": "Each $1,000 of capital invested unlocks ~$X/bed cost reduction, ~Y beds/yr capacity"
+  },
+  "standalone_site_capex": {
+    "_note": "v6: a community/standalone site is a smaller plant than the central factory. Three sites modelled. UNVERIFIED — needs vendor quotes. vs v5 single factory $112-222K → ~1.5-2x for 3 distributed sites.",
+    "confidence": "unverified",
+    "per_site_low": 100000,
+    "per_site_med": 125000,
+    "per_site_high": 150000,
+    "three_sites_low": 300000,
+    "three_sites_med": 375000,
+    "three_sites_high": 450000,
+    "sites_modelled": 3
+  },
+  "volume_ramp_v6": {
+    "_note": "v6 3-site ramp. Per-site capacity 250/yr is a MODELLING ASSUMPTION (flag — not a verified throughput).",
+    "confidence": "inferred",
+    "per_site_capacity_per_year": 250,
+    "_per_site_capacity_is_assumption": true,
+    "year_1": { "beds": 150, "per_site": 50, "utilisation_pct": 20 },
+    "year_2": { "beds": 400, "per_site": 133, "utilisation_pct": 53 },
+    "year_3": { "beds": 600, "per_site": 200, "utilisation_pct": 80 }
+  },
+  "demand_mix": {
+    "_note": "v6 demand segmentation. Institutional anchor VERIFIED (Centrecorp INV-0291, 107 beds @ $85,712 = $801/bed). Retail/corp-RAP gift price is the BIGGEST UNKNOWN. Community/humanitarian subsidised.",
+    "segments": [
+      { "label": "Institutional", "share_pct": 40, "price_per_bed": 801, "confidence": "verified", "source": "Centrecorp INV-0291" },
+      { "label": "Retail / corporate-RAP gift", "share_pct": 40, "price_per_bed": 800, "confidence": "unverified", "_flag": "biggest unknown — no firm retail/RAP price anchor yet" },
+      { "label": "Community / humanitarian", "share_pct": 20, "price_per_bed": 400, "confidence": "inferred" }
+    ],
+    "three_year_beds": [460, 460, 230],
+    "three_year_revenue": 828460,
+    "three_year_revenue_band_low": 759000,
+    "three_year_revenue_band_high": 1035000,
+    "confidence": "inferred"
+  },
+  "margin_waterfall": {
+    "_note": "v6 per-bed waterfall at institutional $801, COMMUNITY production ($270.74 COGS). Splits the landed margin into ACT brokerage (debt service), a cashflow buffer, and the community co-op margin. The act_brokerage slider MUST FLEX (see sensitivity_v6 joint downside).",
+    "confidence": "inferred",
+    "sale_price": 801,
+    "cogs_community": 270.74,
+    "freight": 100,
+    "_freight_basis": "estimate",
+    "landed_margin": 430.26,
+    "act_brokerage_default": 200,
+    "act_brokerage_min": 60,
+    "act_brokerage_max": 500,
+    "cashflow_buffer": 30,
+    "community_coop_margin": 200.26,
+    "community_total_benefit_per_bed": 330.26,
+    "_community_total_benefit_basis": "130 fair-wage labour + 200.26 co-op margin",
+    "act_per_bed": 200,
+    "downside_flex": true
+  },
+  "debt_service": {
+    "_note": "v6 debt-service coverage off the ACT brokerage slice. Base 200/bed brokerage on ~480 revenue beds/yr ≈ $96,000/yr. A thin 60/bed UNDER-covers the $500K matching tranche; the brokerage FLOOR if carrying the full $500K is ~$91/bed (>=$35,000/384).",
+    "confidence": "inferred",
+    "base_brokerage_per_bed": 200,
+    "revenue_beds_per_year": 480,
+    "base_brokerage_annual": 96000,
+    "coverage_low_x": 2.7,
+    "coverage_high_x": 7.7,
+    "debt_low": 250000,
+    "debt_high": 500000,
+    "interest_rate_low_pct": 5,
+    "interest_rate_high_pct": 7,
+    "thin_brokerage_per_bed": 60,
+    "thin_under_covers_500k": true,
+    "brokerage_floor_per_bed": 100,
+    "brokerage_floor_basis": ">=35000/384 ≈ 91/bed if carrying the full 500K matching tranche"
+  },
+  "sensitivity_v6": {
+    "_note": "v6 ±20% sensitivity dials + two load-bearing insights. (1) The Defy HDPE kit dial has ZERO effect on the community state (free collected plastic decouples it from Defy pricing). (2) The 3-way JOINT DOWNSIDE is the load-bearing CDFI/equity design point.",
+    "confidence": "inferred",
+    "dials_plus_minus_20pct": ["volume", "community_labour", "institutional_price", "per_site_capex", "defy_hdpe_kit"],
+    "defy_kit_dial_effect_on_community": "zero",
+    "_defy_kit_decoupled_reason": "community state uses free community-collected plastic, so its COGS is independent of the Defy HDPE kit price.",
+    "joint_downside": {
+      "_label": "LOAD-BEARING — 3-way joint downside",
+      "drivers": { "volume_pct": -20, "institutional_price_pct": -20, "community_labour_pct": 20 },
+      "community_coop_margin_per_bed": 14,
+      "act_debt_still_serviced": true,
+      "implication": "Under the joint downside the community co-op margin collapses to ~$14/bed while ACT debt is still serviced. Therefore the act_brokerage slider MUST FLEX DOWN in a downside (step to ~100/bed when margin/bed falls below a floor) or it crushes the community. This flex is the key CDFI/equity design point.",
+      "brokerage_flex_floor_per_bed": 100,
+      "load_bearing": true
+    }
   },
   "mistags_to_fix": [
     { "supplier": "Centre Canvas (3 bills)", "amount": 14915, "current_tag": "ACT-IN", "correct_tag": "ACT-GD", "_note": "Verified ex deep OCR 2026-05-28 — 50 + 110 covers @ $93.50, plus duplicate $10,285 to reconcile" },

@@ -137,6 +137,130 @@
   animation: shake 0.4s ease-in-out;
 }
 
+/* ── Cost-model skins: dark range sliders (Mission Control / Tesla / Terminal) ──
+   Native <input type=range> renders a light track by default which clashes with the
+   dark consoles. These classes give a slim dark track + accent thumb. accent-color
+   is set inline per skin (cyan); here we style track + thumb geometry only. */
+.mc-range,
+.term-range,
+.tesla-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  outline: none;
+}
+.mc-range::-webkit-slider-thumb,
+.term-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background: #22d3ee;
+  border: 0;
+}
+.mc-range::-moz-range-thumb,
+.term-range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background: #22d3ee;
+  border: 0;
+}
+.tesla-range {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.14);
+}
+.tesla-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  transition: transform 0.15s ease;
+}
+.tesla-range::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+.tesla-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 0;
+}
+
+/* ── Compact slider row for the always-visible "all assumptions" grids ──
+   Thinner track + smaller thumb so 28+ sliders fit in a multi-column grid at
+   ~20px row height without losing grabbability. Used by Mission Control +
+   Terminal dense grids (cyan accent set inline). */
+.cm-srow {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.13);
+  cursor: pointer;
+  outline: none;
+}
+.cm-srow::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: #22d3ee;
+  border: 0;
+}
+.cm-srow::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: #22d3ee;
+  border: 0;
+}
+
+/* ── Key-lever hero slider (Mission Control): the ~6 dials that move the headline ──
+   Thicker track + a big, ringed, grabbable thumb so the primary levers are easy to
+   drag. accent-color set inline (cyan). Advanced-drawer dials keep the slim .cm-srow. */
+.cm-key {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.14);
+  cursor: pointer;
+  outline: none;
+}
+.cm-key::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #22d3ee;
+  border: 2px solid #0a0a0b;
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.5), 0 1px 4px rgba(0, 0, 0, 0.5);
+  transition: transform 0.12s ease;
+}
+.cm-key::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+}
+.cm-key::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #22d3ee;
+  border: 2px solid #0a0a0b;
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.5);
+}
+
 /* Hide scrollbar inside the admin sidebar while keeping scroll behavior */
 .admin-sidebar-scroll {
   scrollbar-width: none;
