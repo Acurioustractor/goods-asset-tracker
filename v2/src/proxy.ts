@@ -12,6 +12,9 @@ const PASSWORD_COOKIE = 'impact_auth'
 // Insiders wiki password gate (shared password, cookie-based)
 const INSIDERS_COOKIE = 'insiders_auth'
 
+// Investor cockpit password gate (shared password, cookie-based) — QBE / investment partners
+const INVESTORS_COOKIE = 'investors_auth'
+
 export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
@@ -39,6 +42,23 @@ export async function proxy(request: NextRequest) {
     const expectedPassword = process.env.INSIDERS_PASSWORD || 'goods2026'
     if (authCookie !== expectedPassword) {
       const loginUrl = new URL('/insiders/login', request.url)
+      loginUrl.searchParams.set('from', pathname)
+      return NextResponse.redirect(loginUrl)
+    }
+  }
+
+  // Investor cockpit — shared password gate (QBE / investment partners).
+  // Same lightweight cookie pattern as /insiders: one shared password, then the
+  // live cost-model + investment cockpit. The login page and auth route stay public.
+  if (
+    (pathname === '/investors' || pathname.startsWith('/investors/')) &&
+    pathname !== '/investors/login' &&
+    pathname !== '/api/investors/auth'
+  ) {
+    const authCookie = request.cookies.get(INVESTORS_COOKIE)?.value
+    const expectedPassword = process.env.INVESTORS_PASSWORD || 'goods2026'
+    if (authCookie !== expectedPassword) {
+      const loginUrl = new URL('/investors/login', request.url)
       loginUrl.searchParams.set('from', pathname)
       return NextResponse.redirect(loginUrl)
     }

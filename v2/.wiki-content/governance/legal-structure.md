@@ -1,14 +1,16 @@
 # Legal Structure
 
-> Goods is currently moving under A Curious Tractor Pty Ltd. The wider ACT structure includes A Kind Tractor Ltd, but Goods' legal model is still being worked out. Do not present the dual-entity model, mission lock or community-ownership vehicle as finished.
+> Goods operates today through the Nicholas Marchesi sole trader and is migrating this FY into A Curious Tractor Pty Ltd (t/a Goods on Country). The charity and DGR home from FY2026-27 is The Butterfly Movement Ltd. A Kind Tractor Ltd is dormant and not used. The Goods legal model underneath this is still being worked out. Do not present the sub-entity model, mission lock or community-ownership vehicle as finished.
 
 ## Current state
 
-Goods is expected to trade through A Curious Tractor Pty Ltd.
+Goods operates today through the Nicholas Marchesi sole trader (ABN 21 591 780 066).
 
-Before that, much of the work sat under Nicholas Marchesi OAM's sole-trader setup. The company structure is new enough that legal and capital decisions should be treated as live.
+It is migrating everything this financial year (FY2026-27) into A Curious Tractor Pty Ltd (ACN 697 347 676), trading as Goods on Country. This is the go-forward trading and operating company. The migration is in progress, so legal and capital decisions should be treated as live.
 
-A Kind Tractor Ltd exists as the ACT charity. Current ACT core facts say it is dormant and not DGR. Goods is not currently operating as a charity-led program.
+The charity and DGR home is The Butterfly Movement Ltd, operational from FY2026-27 (around 1 July 2026), gifted/transitioned from TABOO Foundation (the same legal entity continues). DGR is available only through Butterfly, never through Goods, A Curious Tractor or A Kind Tractor directly.
+
+A Kind Tractor Ltd (ABN 73 669 029 341) is dormant and not used. It is not the trading entity, the charity home or a DGR pathway. Its ACNC disease-prevention subtype application drew an RFI on 10 April 2024.
 
 Do not use ACT Foundation or ACT Ventures as legal entity names. They are older conceptual labels, not current legal entities.
 
@@ -28,18 +30,18 @@ Do not use ACT Foundation or ACT Ventures as legal entity names. They are older 
 
 Several possibilities are being considered:
 
-- keep Goods inside A Curious Tractor Pty Ltd for now
-- create a Goods-specific subsidiary or sub-entity
-- use A Kind Tractor Ltd only where a charitable function genuinely fits
+- trade Goods through A Curious Tractor Pty Ltd (the confirmed go-forward home)
+- create a Goods-specific subsidiary or sub-entity beneath it
+- run charitable and DGR-eligible activity through The Butterfly Movement Ltd (A Kind Tractor Ltd stays dormant and is not used)
 - create Aboriginal-controlled or locally owned operating entities for recycling, production, sales and maintenance
 - use a head entity for IP, equipment, R&D, funding and shared services
 - structure local relationships through licence, fee-for-service, franchise-like models or another community-led form
 
 ## Charity question
 
-A charitable pathway can unlock philanthropy. It can also make the work feel like distribution rather than product ownership.
+The charitable pathway runs through The Butterfly Movement Ltd from FY2026-27. It can unlock philanthropy and DGR-eligible giving. It can also make the work feel like distribution rather than product ownership.
 
-That is the trade-off to hold: philanthropy may be needed, but Goods is trying to prove products people want and can own.
+That is the trade-off to hold: philanthropy may be needed, but Goods is trying to prove products people want and can own. The split is deliberate: A Curious Tractor Pty Ltd trades, The Butterfly Movement Ltd carries the charitable and DGR function.
 
 ## Mission protection
 

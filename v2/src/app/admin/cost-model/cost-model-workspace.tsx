@@ -24,14 +24,14 @@ const SKINS: { key: SkinKey; label: string; tagline: string }[] = [
   { key: 'investment', label: 'Investment', tagline: 'Margin waterfall · brokerage · debt' },
 ];
 
-function parseSkin(raw: string | null): SkinKey {
-  return raw === 'tesla' || raw === 'terminal' || raw === 'investment' || raw === 'mc' ? raw : 'mc';
+function parseSkin(raw: string | null, fallback: SkinKey = 'mc'): SkinKey {
+  return raw === 'tesla' || raw === 'terminal' || raw === 'investment' || raw === 'mc' ? raw : fallback;
 }
 
-export function CostModelWorkspace() {
+export function CostModelWorkspace({ defaultSkin = 'mc' }: { defaultSkin?: SkinKey }) {
   const router = useRouter();
   const params = useSearchParams();
-  const skin = parseSkin(params.get('skin'));
+  const skin = parseSkin(params.get('skin'), defaultSkin);
 
   // ONE shared engine instance — every skin renders the same locked numbers.
   const cm = useCostModel();
