@@ -10,6 +10,7 @@
  */
 
 export type LoiRung = 'target' | 'signed' | 'contract' | 'cash';
+export type GoodsPipelineStream = 'commercial' | 'philanthropy' | 'demand' | 'production';
 
 export const LOI_RUNGS: { key: LoiRung; label: string; desc: string }[] = [
   { key: 'target', label: 'Target', desc: 'In cultivation / proposal — no commitment yet' },
@@ -26,10 +27,16 @@ export interface GoodsPipelineMeta {
   id: string;
   name: string;
   role: string;
-  stream: 'commercial' | 'philanthropy' | 'demand';
+  stream: GoodsPipelineStream;
 }
 
-/** The three Goods pipelines the tracker reads live. */
+/**
+ * The three Goods pipelines the LOI tracker reads live.
+ *
+ * The On-Country Production scaffold is exported below, but intentionally not
+ * included here until Ben creates the GHL shell and provides real UUIDs. That
+ * pipeline is a capability/ownership journey, not a QBE match money ladder.
+ */
 export const GOODS_PIPELINES: GoodsPipelineMeta[] = [
   {
     id: 'UQsrmuqzxMSdCTklxEcG',
@@ -50,6 +57,121 @@ export const GOODS_PIPELINES: GoodsPipelineMeta[] = [
     stream: 'philanthropy',
   },
 ];
+
+export type ProductionStageKey =
+  | 'community-interest'
+  | 'local-champions'
+  | 'feasibility-fit'
+  | 'capability-building'
+  | 'facility-stand-up'
+  | 'operating-goods-supported'
+  | 'community-owned'
+  | 'paused'
+  | 'stood-down';
+
+export interface ProductionStageMeta {
+  key: ProductionStageKey;
+  name: string;
+  order: number;
+  stageId: string;
+  opportunityStatus: 'open' | 'won' | 'abandoned';
+  role: string;
+}
+
+export const ON_COUNTRY_PRODUCTION_PIPELINE: GoodsPipelineMeta = {
+  id: 'TODO_GHL_PIPELINE_ID_ON_COUNTRY_PRODUCTION',
+  name: 'Goods — On-Country Production',
+  role: 'Community-facility journey from interest to community-owned plant; capability pipeline, not LOI revenue',
+  stream: 'production',
+};
+
+export const ON_COUNTRY_PRODUCTION_STAGES: ProductionStageMeta[] = [
+  {
+    key: 'community-interest',
+    name: 'Community Interest',
+    order: 1,
+    stageId: 'TODO_GHL_STAGE_ID_COMMUNITY_INTEREST',
+    opportunityStatus: 'open',
+    role: 'A community has signalled it wants to explore making beds on country.',
+  },
+  {
+    key: 'local-champions',
+    name: 'Local Champions',
+    order: 2,
+    stageId: 'TODO_GHL_STAGE_ID_LOCAL_CHAMPIONS',
+    opportunityStatus: 'open',
+    role: 'Named local people are carrying the work on the ground.',
+  },
+  {
+    key: 'feasibility-fit',
+    name: 'Feasibility & Fit',
+    order: 3,
+    stageId: 'TODO_GHL_STAGE_ID_FEASIBILITY_FIT',
+    opportunityStatus: 'open',
+    role: 'Community and Goods are checking site, demand, governance, timing and feedstock fit.',
+  },
+  {
+    key: 'capability-building',
+    name: 'Capability Building',
+    order: 4,
+    stageId: 'TODO_GHL_STAGE_ID_CAPABILITY_BUILDING',
+    opportunityStatus: 'open',
+    role: 'Local crew are learning collect, shred, melt, press and assemble steps.',
+  },
+  {
+    key: 'facility-stand-up',
+    name: 'Facility Stand-Up',
+    order: 5,
+    stageId: 'TODO_GHL_STAGE_ID_FACILITY_STAND_UP',
+    opportunityStatus: 'open',
+    role: 'The plant is being installed or commissioned on country.',
+  },
+  {
+    key: 'operating-goods-supported',
+    name: 'Operating (Goods-supported)',
+    order: 6,
+    stageId: 'TODO_GHL_STAGE_ID_OPERATING_GOODS_SUPPORTED',
+    opportunityStatus: 'open',
+    role: 'The community is making beds on country with Goods support still available.',
+  },
+  {
+    key: 'community-owned',
+    name: 'Community-Owned',
+    order: 7,
+    stageId: 'TODO_GHL_STAGE_ID_COMMUNITY_OWNED',
+    opportunityStatus: 'won',
+    role: 'The community owns and runs the plant; Goods is support-on-request.',
+  },
+  {
+    key: 'paused',
+    name: 'Paused',
+    order: 8,
+    stageId: 'TODO_GHL_STAGE_ID_PAUSED',
+    opportunityStatus: 'open',
+    role: 'The relationship is active but on hold for a named reason.',
+  },
+  {
+    key: 'stood-down',
+    name: 'Stood Down',
+    order: 9,
+    stageId: 'TODO_GHL_STAGE_ID_STOOD_DOWN',
+    opportunityStatus: 'abandoned',
+    role: 'A respectful decision not to proceed; re-engagement starts a fresh opportunity.',
+  },
+];
+
+export const ON_COUNTRY_PRODUCTION_STAGE_BY_KEY = Object.fromEntries(
+  ON_COUNTRY_PRODUCTION_STAGES.map((stage) => [stage.key, stage]),
+) as Record<ProductionStageKey, ProductionStageMeta>;
+
+export const ON_COUNTRY_PRODUCTION_TAGS = {
+  production: 'goods-production',
+  champion: 'goods-prod-champion',
+  trainee: 'goods-prod-trainee',
+  skilled: 'goods-prod-skilled',
+  owned: 'goods-prod-owned',
+  communityControlled: 'goods-communitycontrolled',
+} as const;
 
 export const PIPELINE_BY_ID: Record<string, GoodsPipelineMeta> = Object.fromEntries(
   GOODS_PIPELINES.map((p) => [p.id, p]),
