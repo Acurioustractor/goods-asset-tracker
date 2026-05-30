@@ -4,7 +4,7 @@
  */
 
 export const TRACTION_STATS = [
-  { label: 'Bed units deployed', value: '496', sub: 'Tracked across 10 communities (Stretch + legacy Basket)' },
+  { label: 'Bed units deployed', value: '496', sub: 'Tracked across 9 communities (Stretch + legacy Basket)' },
   { label: 'HDPE diverted per bed', value: '20kg', sub: 'Recycled HDPE in each bed; On-Country processing is the target pathway' },
   { label: 'Grant funding to date', value: '$450K+', sub: 'Verified paid: Snow, Centrecorp, VFFF, QIC and others (Xero)' },
   { label: 'Capital stack target', value: '~$3M', sub: 'Blended-finance target via QBE Catalysing Impact 2026 (raising, not committed)' },
