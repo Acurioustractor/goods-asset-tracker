@@ -8,8 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "check:community-count-drift": "node scripts/check-community-count-drift.mjs",
     "wiki:sync": "if [ -d ../wiki/articles ]; then rm -rf .wiki-content && mkdir -p .wiki-content && cp -R ../wiki/articles/. .wiki-content/; else echo 'wiki:sync skipped (../wiki/articles absent; using tracked .wiki-content/)'; fi",
-    "prebuild": "npm run wiki:sync"
+    "prebuild": "npm run wiki:sync && npm run check:community-count-drift"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.74.0",
