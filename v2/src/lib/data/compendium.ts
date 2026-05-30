@@ -9,6 +9,7 @@
  */
 
 import { PLASTIC_KG_PER_BED } from './products';
+import { CANONICAL_ASSETS } from './asset-canonical';
 
 // ---------------------------------------------------------------------------
 // Advisory Board
@@ -360,7 +361,7 @@ export interface CommunityDeployment {
 // (Supabase `assets`) is authoritative; these per-community numbers are the
 // labelled static fallback, reconciled 2026-05-29 to the locked canonical split:
 //   Tennant Creek 159, Utopia 147, Palm Island 131, Kalgoorlie 20, Maningrida 18,
-//   Alice Springs 16, Mt Isa 2, Darwin 1, Canberra 1 = 495 deployed beds.
+//   Alice Springs 16, Mt Isa 2, Darwin 1, Canberra 2 = 496 deployed beds.
 // This array is the SINGLE source for the static deployed-bed count via
 // getDeploymentTotals(); content.ts derives its counts from EXPECTED_DEPLOYED_BEDS.
 export const deployments: CommunityDeployment[] = [
@@ -372,7 +373,7 @@ export const deployments: CommunityDeployment[] = [
   { id: 'utopia', community: 'Utopia Homelands', state: 'NT', beds: 147, washers: 0, status: 'active', partner: 'Oonchiumpa' },
   { id: 'mt-isa', community: 'Mt Isa', traditionalName: 'Kalkadoon', state: 'QLD', beds: 2, washers: 0, status: 'testing', partner: 'BG Fit & Men\'s Shed' },
   { id: 'darwin', community: 'Darwin', state: 'NT', beds: 1, washers: 1, status: 'testing', partner: 'Red Dust' },
-  { id: 'canberra', community: 'Canberra', state: 'NT', beds: 1, washers: 0, status: 'testing' },
+  { id: 'canberra', community: 'Canberra', state: 'NT', beds: 2, washers: 0, status: 'testing' },
 ];
 
 /**
@@ -380,7 +381,7 @@ export const deployments: CommunityDeployment[] = [
  * count used across content.ts, funder pages, and the impact summary. The live
  * Supabase register stays authoritative; this is the labelled static fallback.
  */
-export const EXPECTED_DEPLOYED_BEDS = 495;
+export const EXPECTED_DEPLOYED_BEDS = 496; // canonical: see asset-canonical.ts (bedsDeployed)
 
 export function getDeploymentTotals() {
   const beds = deployments.reduce((s, d) => s + d.beds, 0);
@@ -621,9 +622,10 @@ export const productionFacility = {
 
 export const environmentalImpact = {
   plasticPerBed: { min: PLASTIC_KG_PER_BED, max: 25, unit: 'kg HDPE' },
-  // Derived from the canonical deployed-bed count × PLASTIC_KG_PER_BED (single
-  // source). 495 × 20 = 9,900 kg. (Was a stale 9,225 literal.)
-  totalDivertedToDate: EXPECTED_DEPLOYED_BEDS * PLASTIC_KG_PER_BED,
+  // Plastic = STRETCH beds only (133 × 20kg = 2,660 kg). Basket Beds are NOT a
+  // plastic product, so this is NOT an all-beds × 20 figure. Canonical: see
+  // asset-canonical.ts (plasticKg); live source = getCanonicalAssetRollup().
+  totalDivertedToDate: CANONICAL_ASSETS.plasticKg,
   atScale: { units: 5000, tonnes: 125, period: 'annually' },
   productLifespan: '10+ years (vs weeks for conventional)',
   circularLoop: 'Community waste → beds → community ownership',

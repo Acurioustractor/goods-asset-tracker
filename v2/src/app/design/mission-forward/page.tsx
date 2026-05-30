@@ -171,12 +171,12 @@ export default function MissionForwardPage() {
           <div className="max-w-2xl mx-auto mt-16">
             <div className="flex justify-between text-sm text-white/60 mb-2">
               <span>Progress to 1,000 beds</span>
-              <span>389 / 1,000</span>
+              <span>496 / 1,000</span>{/* canonical: see asset-canonical.ts */}
             </div>
             <div className="h-4 bg-white/20 rounded-full overflow-hidden">
               <div
                 className="h-full rounded-full"
-                style={{ width: '38.9%', backgroundColor: '#E07A3E' }}
+                style={{ width: '49.6%', backgroundColor: '#E07A3E' }}
               />
             </div>
           </div>
@@ -274,7 +274,8 @@ export default function MissionForwardPage() {
 
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { percentage: '400+', label: 'Beds Delivered', desc: 'Across 8+ communities' },
+                // canonical: see asset-canonical.ts
+                { percentage: '496', label: 'Beds Delivered', desc: 'Across 9 communities' },
                 { percentage: '60%', label: 'Scabies Reduction', desc: 'From community laundries' },
                 { percentage: '$6', label: 'Healthcare Saved', desc: 'Per $1 invested' },
               ].map((item) => (

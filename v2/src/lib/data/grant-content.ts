@@ -102,7 +102,7 @@ export const impactNumbers = {
   washersDeployed: 14, // honest working machines (28 deployed; telemetry/working reconciliation pending)
   communitiesEngaged: 10, // communities represented in asset records
   livesImpacted: '1,000+',
-  plasticDivertedKg: 9920, // modelled: 496 beds x 20kg HDPE
+  plasticDivertedKg: 2660, // canonical: see asset-canonical.ts — Stretch beds only (133 × 20kg HDPE); Basket Beds are not a plastic product
   plasticPerBed: '20kg HDPE',
   verifiedStorytellers: '15+',
   advisoryBoardMembers: 13, // advisory/support network — NOT a fiduciary board
@@ -196,8 +196,8 @@ export const grantAnswers = {
     short: "We don't deliver products to communities. Communities lead the design in community, we support the build, and our goal is to transfer full manufacturing capability so communities own the means of production.",
     medium: `Three things differentiate Goods: (1) Community-led design. Every product decision is shaped in community with the people who use the thing. 500+ minutes of recorded community input drove the evolution from V1 Basket Beds to the V4 Stretch Bed. (2) Local production. Our containerised production facility ($100K invested) is being set up to turn waste plastic into bed components On-Country, creating jobs and a circular economy as it comes online. (3) Ownership pathway. The model is built to transfer capability to communities over time, with full training, capability and documentation, rather than a license.`,
   },
-  whoDoYouWorkWith: 'We work with 10 remote Indigenous communities across QLD, NT, WA, and SA. Core community partners include Oonchiumpa Consultancy, Wilya Janta, and Palm Island Community Company. Health partners include Anyinginyi Health, Miwatj Health, Purple House, and Red Dust.',
-  howDoYouMeasureImpact: 'We track impact through: (1) Asset Register — 558 QR-coded assets with lifecycle monitoring. (2) Telemetry — washing machines report cycle counts, energy usage (coming online). (3) Community feedback — 500+ minutes recorded, 15+ verified storytellers via Empathy Ledger. (4) Environmental metrics — 9,900kg+ plastic diverted (modelled at 20kg HDPE per bed). (5) Health outcomes — tracking with health partners.',
+  whoDoYouWorkWith: 'We work with 9 remote Indigenous communities across QLD, NT, WA, and SA. Core community partners include Oonchiumpa Consultancy, Wilya Janta, and Palm Island Community Company. Health partners include Anyinginyi Health, Miwatj Health, Purple House, and Red Dust.',
+  howDoYouMeasureImpact: 'We track impact through: (1) Asset Register — 558 QR-coded assets with lifecycle monitoring. (2) Telemetry — washing machines report cycle counts, energy usage (coming online). (3) Community feedback — 500+ minutes recorded, 15+ verified storytellers via Empathy Ledger. (4) Environmental metrics — 2,660kg+ plastic diverted (133 Stretch beds × 20kg HDPE; Basket Beds are not a plastic product). (5) Health outcomes — tracking with health partners.',
   whatAreYourFinancials: `~$576K in grant funding verified received (Xero: Snow, Centrecorp, VFFF), with a further ~$202K founder-confirmed and being reconciled (TFN, FRRR, AMP). ~$61K in trade revenue. ~$82,500 in outstanding receivables (Rotary, authorised). $100K invested in the production facility. Demand materially exceeds current production capacity. Figures are Xero management data, not audited.`,
   howWillYouUseThisFunding: {
     beds: 'Each $600–850 funds one Stretch Bed deployed to a remote community, diverting 20kg of plastic and providing a 10+ year sleeping surface.',

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -31,9 +32,9 @@ const CHARCOAL = '#2E2E2E';
 const SAGE = '#8B9D77';
 
 const FACTS = [
-  { value: '520+', label: 'beds across Australia' },
-  { value: '14', label: 'washing machines confirmed on Country' },
-  { value: '8', label: 'communities partnered' },
+  { value: String(CANONICAL_ASSETS.bedsDeployed), label: 'beds across Australia' },
+  { value: String(CANONICAL_ASSETS.washersWorking), label: 'washing machines confirmed on Country' },
+  { value: String(CANONICAL_ASSETS.communitiesServed), label: 'communities partnered' },
   { value: '20kg', label: 'plastic diverted per bed' },
 ];
 
@@ -80,7 +81,7 @@ export default function AboutPage() {
         </p>
         <p className="text-lg leading-relaxed mb-10" style={{ color: `${CHARCOAL}cc` }}>
           We started in 2023 with a question about preventable disease. We&apos;ve since
-          delivered over five hundred beds across eight communities, and the model is now
+          delivered 496 beds across 9 communities, and the model is now
           headed toward community ownership.
         </p>
 

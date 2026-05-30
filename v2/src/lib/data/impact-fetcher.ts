@@ -40,14 +40,27 @@ const RHD_SURGICAL_ADMISSION_COST_AUD = 70_000;
 const BEDS_PER_RHD_CASE_PREVENTED = 500; // 1 RHD case prevented per ~500 beds (× household)
 const WASH_CYCLES_PER_RHD_CASE_PREVENTED = 5_000;
 
+/**
+ * Washing machines: the register tracks 28 physically DEPLOYED, but fleet
+ * telemetry confirms ~14 actually reporting/working. Public/funder surfaces
+ * use the honest WORKING number (Ben, 2026-05-30). Not yet auto-derivable
+ * (fleet telemetry unreliable) — wire to fleet KPIs when stable. Never publish
+ * 28 (deployed) or 41 (all rows incl. retired) as the working count.
+ */
+const WASHERS_WORKING = 14;
+
 // ---------------------------------------------------------------------------
 // Individual data fetchers
 // ---------------------------------------------------------------------------
 
 interface AssetStats {
-  totalAssets: number;
-  totalBeds: number;
-  totalWashingMachines: number;
+  totalAssets: number; // deployed units (beds + washers), quantity-summed
+  totalBeds: number; // deployed beds (Stretch + Basket)
+  stretchBedsDeployed: number; // recycled-HDPE beds — the plastic-diversion product
+  basketBedsDeployed: number; // archived prototype — NOT a plastic product
+  totalWashingMachines: number; // public figure = telemetry-working washers (14)
+  washersDeployed: number; // physically deployed washers (28)
+  washersWorking: number; // telemetry-confirmed working (14)
   communitiesServed: number;
   communityBreakdown: { community: string; count: number }[];
 }
@@ -55,21 +68,40 @@ interface AssetStats {
 async function getAssetStats(): Promise<AssetStats> {
   const supabase = await createClient();
 
-  const [
-    { count: totalAssets },
-    { count: totalBeds },
-    { count: totalWashingMachines },
-    { data: communityData },
-  ] = await Promise.all([
-    supabase.from('assets').select('*', { count: 'exact', head: true }),
-    supabase.from('assets').select('*', { count: 'exact', head: true }).ilike('product', '%bed%'),
-    supabase.from('assets').select('*', { count: 'exact', head: true }).ilike('product', '%washing%'),
-    supabase.from('assets').select('community'),
-  ]);
+  // Pull rows and reduce in JS so we can (1) filter to status='deployed',
+  // (2) sum `quantity` (bulk rows exist, e.g. the 108-qty Centrecorp order),
+  // and (3) split beds into Stretch (recycled HDPE — the plastic-diversion
+  // product) vs Basket (archived prototype, NOT plastic). Head-only row counts
+  // with no status filter are what produced the 520 / 41 / 10,400 overclaim.
+  type AssetRow = {
+    product: string | null;
+    status: string | null;
+    quantity: number | null;
+    community: string | null;
+  };
+  const { data: rows } = await supabase
+    .from('assets')
+    .select('product, status, quantity, community');
+  const all = (rows ?? []) as unknown as AssetRow[];
 
-  const communityCounts = (communityData || []).reduce((acc, asset) => {
+  const qty = (r: AssetRow) => r.quantity ?? 1;
+  const sum = (arr: AssetRow[]) => arr.reduce((s, r) => s + qty(r), 0);
+  const isBed = (p: string | null) => /bed/i.test(p ?? '');
+  const isStretch = (p: string | null) => /stretch/i.test(p ?? '');
+  const isWasher = (p: string | null) => /washing|washer/i.test(p ?? '');
+
+  const deployed = all.filter((r) => r.status === 'deployed');
+  const deployedBeds = deployed.filter((r) => isBed(r.product));
+  const totalBeds = sum(deployedBeds);
+  const stretchBedsDeployed = sum(deployedBeds.filter((r) => isStretch(r.product)));
+  const basketBedsDeployed = totalBeds - stretchBedsDeployed;
+  const washersDeployed = sum(deployed.filter((r) => isWasher(r.product)));
+
+  // Community breakdown over DEPLOYED units only (excludes the Centrecorp
+  // `requested` placeholder + allocated-only communities like Mutitjulu).
+  const communityCounts = deployed.reduce((acc, asset) => {
     const community = asset.community || 'Unknown';
-    acc[community] = (acc[community] || 0) + 1;
+    acc[community] = (acc[community] || 0) + qty(asset);
     return acc;
   }, {} as Record<string, number>);
 
@@ -77,11 +109,19 @@ async function getAssetStats(): Promise<AssetStats> {
     .map(([community, count]) => ({ community, count }))
     .sort((a, b) => b.count - a.count);
 
+  const communitiesServed = Object.keys(communityCounts).filter(
+    (c) => c !== 'Unknown' && c !== 'Pending Delivery',
+  ).length;
+
   return {
-    totalAssets: totalAssets || 0,
-    totalBeds: totalBeds || 0,
-    totalWashingMachines: totalWashingMachines || 0,
-    communitiesServed: Object.keys(communityCounts).filter(c => c !== 'Unknown').length,
+    totalAssets: sum(deployed),
+    totalBeds,
+    stretchBedsDeployed,
+    basketBedsDeployed,
+    totalWashingMachines: WASHERS_WORKING,
+    washersDeployed,
+    washersWorking: WASHERS_WORKING,
+    communitiesServed,
     communityBreakdown,
   };
 }
@@ -164,8 +204,9 @@ function computeSleepNights(beds: number): number {
   return Math.round(beds * AVG_HOUSEHOLD_SIZE * NIGHTS_PER_YEAR);
 }
 
-function computePlasticDiverted(beds: number): number {
-  return beds * PLASTIC_KG_PER_BED;
+/** Plastic diverted (kg). STRETCH beds only — recycled HDPE. Basket Beds are not a plastic product. */
+function computePlasticDiverted(stretchBeds: number): number {
+  return stretchBeds * PLASTIC_KG_PER_BED;
 }
 
 function computeEmploymentHours(beds: number): number {
@@ -295,7 +336,7 @@ function populateDimensions(
     'beds-delivered': assetStats.totalBeds,
     'sleep-nights': computeSleepNights(assetStats.totalBeds),
     'wash-cycles': fleetStats.totalWashCycles,
-    'plastic-diverted': computePlasticDiverted(assetStats.totalBeds),
+    'plastic-diverted': computePlasticDiverted(assetStats.stretchBedsDeployed),
     'employment-hours': computeEmploymentHours(assetStats.totalBeds),
     'storytellers-active': storytellerStats.storytellerCount,
     'communities-served': assetStats.communitiesServed,
@@ -329,8 +370,8 @@ export async function fetchImpactData(): Promise<ImpactSnapshot> {
     storytellerStats,
   );
 
-  const plasticDiverted = computePlasticDiverted(assetStats.totalBeds);
-  const livesImpacted = Math.round(assetStats.totalAssets * AVG_HOUSEHOLD_SIZE);
+  const plasticDiverted = computePlasticDiverted(assetStats.stretchBedsDeployed);
+  const livesImpacted = Math.round(assetStats.totalBeds * AVG_HOUSEHOLD_SIZE);
   const employmentHours = computeEmploymentHours(assetStats.totalBeds);
 
   // Composite impact score: simple weighted sum
@@ -361,6 +402,26 @@ export async function fetchImpactData(): Promise<ImpactSnapshot> {
       fleetStats.totalWashCycles,
       fleetStats.machinesOnline,
     ),
+  };
+}
+
+/**
+ * Canonical asset rollup — the single source every surface should read for
+ * deployment counts. Deployed-only, quantity-summed, Basket/Stretch split,
+ * washers = telemetry-working (14). Replaces the per-surface hand-counts that
+ * drift (the 520 / 41 / 10,400 problem). Plastic = Stretch beds only.
+ */
+export async function getCanonicalAssetRollup() {
+  const a = await getAssetStats();
+  return {
+    bedsDeployed: a.totalBeds,
+    stretchBedsDeployed: a.stretchBedsDeployed,
+    basketBedsDeployed: a.basketBedsDeployed,
+    washersDeployed: a.washersDeployed,
+    washersWorking: a.washersWorking,
+    communitiesServed: a.communitiesServed,
+    plasticKg: computePlasticDiverted(a.stretchBedsDeployed),
+    deployedUnits: a.totalAssets,
   };
 }
 

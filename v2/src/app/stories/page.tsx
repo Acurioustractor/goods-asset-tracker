@@ -8,6 +8,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { storytellerProfiles, storytellerEnrichment, videoGallery } from '@/lib/data/content';
 import { curatedQuotes } from '@/lib/data/curated-quotes';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import type { SyndicationStoryteller } from '@/lib/empathy-ledger/types';
 import type { Metadata } from 'next';
 
@@ -274,7 +275,7 @@ export default async function StoriesPage() {
               { value: String(storytellerCount), label: 'Storytellers', sub: `across ${communityCount} places` },
               { value: '500+', label: 'Minutes', sub: 'of community feedback' },
               { value: String(communityCount), label: 'Communities', sub: 'across remote Australia' },
-              { value: '520+', label: 'Beds Delivered', sub: 'and counting' },
+              { value: String(CANONICAL_ASSETS.bedsDeployed), label: 'Beds Delivered', sub: 'and counting' },
             ].map((stat) => (
               <div key={stat.label}>
                 <p className="text-2xl md:text-3xl font-bold">{stat.value}</p>
