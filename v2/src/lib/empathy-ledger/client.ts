@@ -604,6 +604,30 @@ export const empathyLedger = {
       return [];
     }
   },
+
+  /**
+   * Stories for an impact report. Canonical Goods project ONLY (project_id-scoped,
+   * NOT the `goods-on-country` aggregate that also pulls adjacent projects like
+   * BG-Fit / youth-justice), consent-filtered, then theme-RANKED: stories whose
+   * themes/tags match `theme` come first, topped up with the rest so a report is
+   * never empty when Goods stories exist. Use this for funder/buyer/supporter
+   * collateral; use getStories() when you actually want the aggregated set.
+   */
+  async getReportStories(params: { theme?: string; limit?: number } = {}): Promise<EmpathyLedgerStory[]> {
+    if (!ENABLE_EMPATHY_LEDGER) return [];
+    const limit = params.limit ?? 4;
+    const pool = filterByConsent(await this.getProjectStories({ limit: 40, syndicatedOnly: true }));
+    if (!params.theme) return pool.slice(0, limit);
+
+    const needle = params.theme.toLowerCase();
+    const onTheme = (s: EmpathyLedgerStory): boolean => {
+      const themes = (s.themes || []).map((x) => (typeof x === 'string' ? x : x?.name ?? '').toLowerCase());
+      const tags = (s.tags || []).map((x) => x.toLowerCase());
+      return [...themes, ...tags].some((x) => x.includes(needle));
+    };
+    return [...pool.filter(onTheme), ...pool.filter((s) => !onTheme(s))].slice(0, limit);
+  },
+
   /**
    * Fetch galleries for the Goods project from EL Supabase.
    * Uses project_galleries → galleries → gallery_media_associations → media_assets.
