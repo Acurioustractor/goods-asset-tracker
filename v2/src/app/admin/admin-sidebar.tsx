@@ -25,6 +25,7 @@ import {
   Images,
   Receipt,
   Presentation,
+  FileText,
   Building2,
   FileSignature,
   ClipboardCheck,
@@ -104,6 +105,7 @@ const moreNavigation: NavItem[] = [
   { name: 'Reach out',       href: '/admin/reach-out',     icon: Send },
   // Funder collateral (Funders is the hub; these are sub-pages)
   { name: 'Funder reports',  href: '/admin/reports',       icon: Presentation },
+  { name: 'Impact reports',  href: '/admin/reports/impact', icon: FileText },
   { name: 'Deck preview',    href: '/admin/deck',          icon: Presentation },
   // Money detail
   { name: 'Orders',          href: '/admin/orders',        icon: ShoppingCart },
