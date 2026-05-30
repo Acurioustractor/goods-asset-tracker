@@ -199,7 +199,7 @@ export const philanthropyProspects: OutreachTarget[] = [
     id: 'circular-future', name: 'Circular Future Fund / Planet Ark', category: 'philanthropy_prospect', status: 'research', priority: 'medium',
     instrument: 'grant',
     nextAction: 'Research eligibility. Strong circular economy fit.',
-    grantRelevance: 'Environmental angle. 9,225kg+ plastic diverted.',
+    grantRelevance: 'Environmental angle. ~9,920kg plastic diverted (modelled: 496 beds x 20kg/bed; not audited).',
   },
   {
     id: 'self-loan', name: 'SELF (Social Enterprise Loan Fund)', category: 'impact_finance', status: 'research', priority: 'medium',

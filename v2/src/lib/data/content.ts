@@ -43,7 +43,7 @@ The answer became Goods: durable, repairable, community-designed "health hardwar
     { year: '2016-2020', event: 'Orange Sky expands to remote communities (now 1/3 of services)' },
     { year: 'Nov 2022', event: 'Goods project kicks off with advisory session' },
     { year: 'Sept 2023', event: 'A Curious Tractor formally founded' },
-    { year: '2024+', event: 'Active bed pilots deliver 400+ beds across communities' },
+    { year: '2024–2025', event: 'Bed deployments reach 400+ across communities; now approaching 500' },
   ],
 
   problem: {
@@ -83,9 +83,9 @@ The answer became Goods: durable, repairable, community-designed "health hardwar
 export const impact = {
   headline: 'Real Impact',
   stats: [
-    { value: '400+', label: 'Assets tracked in register', icon: 'bed' },
+    { value: '520+', label: 'Assets tracked in register', icon: 'bed' },
     { value: '107', label: 'Stretch Beds on order', icon: 'demand' },
-    { value: '8+', label: 'Communities served', icon: 'community' },
+    { value: '10', label: 'Communities served', icon: 'community' },
     { value: '$3M/yr', label: 'Washing machines sold → dumps', icon: 'problem', source: 'Alice Springs provider' },
   ],
 };
@@ -1226,10 +1226,10 @@ export function getQuotesByThemes(themeIds: ThemeId[]) {
 
 export const mediaPack = {
   // About A Curious Tractor: the parent organisation
-  aboutACT: `A Curious Tractor is the organisation behind Goods on Country. Founded in September 2023 by Nicholas Marchesi and Benjamin Knight, ACT exists to design, manufacture, and transfer ownership of essential goods to remote First Nations communities across Australia. The name reflects the approach: curiosity-driven problem solving applied to entrenched disadvantage. ACT is a registered charity and social enterprise.`, // TODO: Ben to review and refine
+  aboutACT: `A Curious Tractor is the organisation behind Goods on Country. Founded in September 2023 by Nicholas Marchesi and Benjamin Knight, ACT exists to design, manufacture, and transfer ownership of essential goods to remote First Nations communities across Australia. The name reflects the approach: curiosity-driven problem solving applied to entrenched disadvantage. ACT is a social enterprise working toward community ownership of manufacturing.`, // NOTE: ACT (A Curious Tractor Pty Ltd) is NOT a registered charity or DGR entity — do not add that claim here.
 
   // Copy-paste-ready press boilerplate
-  pressBoilerplate: `Goods on Country is a social enterprise delivering durable, community-designed essential goods to remote First Nations communities across Australia. The flagship product, the Stretch Bed, is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty Australian canvas. Each bed diverts 20kg of plastic from landfill, assembles in under five minutes with no tools, and supports up to 200kg. With 400+ beds delivered across 8+ communities, Goods on Country addresses the environmental health conditions that drive preventable disease, including Rheumatic Heart Disease, by putting health hardware directly into the hands of families who need it. The organisation's long-term goal is to transfer manufacturing capability to community-owned enterprises. Founded in 2023, Goods on Country is a project of A Curious Tractor.`,
+  pressBoilerplate: `Goods on Country is a social enterprise delivering durable, community-designed essential goods to remote First Nations communities across Australia. The flagship product, the Stretch Bed, is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty Australian canvas. Each bed diverts 20kg of plastic from landfill, assembles in under five minutes with no tools, and supports up to 200kg. With 490+ beds deployed across 10 communities, Goods on Country addresses the environmental health conditions that drive preventable disease, including Rheumatic Heart Disease, by putting health hardware directly into the hands of families who need it. The organisation's long-term goal is to transfer manufacturing capability to community-owned enterprises. Founded in 2023, Goods on Country is a project of A Curious Tractor.`,
 
   // Brand color palette
   brandColors: [

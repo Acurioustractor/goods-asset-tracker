@@ -25,6 +25,13 @@ export interface ImpactMetric {
   targets: { year1: number; year3: number; vision2030: number };
   source: 'supabase' | 'empathy-ledger' | 'xero' | 'manual' | 'computed';
   sourceDetail: string;
+  /**
+   * Confidence tier, rendered as a provenance badge on /impact so no metric reads
+   * as a uniformly "live/measured" number. verified = system or measured fact;
+   * modelled = derived via stated assumptions; estimate = partial-data approximation;
+   * target = design goal not yet achieved.
+   */
+  confidence: 'verified' | 'modelled' | 'estimate' | 'target';
   proxyFor?: string;
   optimizationLevers: string[];
   computeFn?: string; // name of function in impact-fetcher.ts that computes this
@@ -192,7 +199,7 @@ export const MODELLED_LABOUR_HOURS_PER_BED = PRODUCTION_LABOUR_STAGES.reduce(
 //
 // Build-path direct costs (at $750 retail) from cost-model-scenarios.ts. These
 // reconcile to the locked canonical numbers (Factory 275.74 / Defy Kits 534.79 /
-// Defy Panels 584.07 / Community 140.74). The headline current cost-per-bed uses
+// Defy Panels 584.07 / Community 270.74). The headline current cost-per-bed uses
 // the FACTORY build path direct cost (the on-country target the capital ask funds).
 
 const _marginGrid = getMarginGridAt750();
@@ -237,6 +244,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
     metrics: [
       {
         id: 'beds-delivered',
+        confidence: 'verified',
         name: 'Beds Delivered',
         unit: 'beds',
         current: null, // fetched live from Supabase
@@ -249,6 +257,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'sleep-nights',
+        confidence: 'modelled',
         name: 'Sleep Nights Provided',
         unit: 'nights',
         current: null,
@@ -261,6 +270,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'wash-cycles',
+        confidence: 'verified',
         name: 'Wash Cycles Completed',
         unit: 'cycles',
         current: null,
@@ -273,6 +283,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'product-survival-rate',
+        confidence: 'estimate',
         name: 'Product Survival Rate',
         unit: '%',
         current: 95, // estimate: only 15-20 beds with 6+ months data
@@ -303,6 +314,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
     metrics: [
       {
         id: 'plastic-diverted',
+        confidence: 'modelled',
         name: 'Plastic Diverted from Landfill',
         unit: 'kg',
         current: null,
@@ -315,6 +327,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'product-lifespan',
+        confidence: 'target',
         name: 'Average Product Lifespan',
         unit: 'years',
         current: 10, // design target, not yet measured at scale
@@ -326,6 +339,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'local-feedstock-pct',
+        confidence: 'estimate',
         name: 'Local Feedstock %',
         unit: '%',
         current: 60, // estimate: some plastic still sourced from metro
@@ -356,6 +370,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
     metrics: [
       {
         id: 'employment-hours',
+        confidence: 'modelled',
         name: 'Employment Hours Created',
         unit: 'hours',
         current: null,
@@ -368,6 +383,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'fte-jobs',
+        confidence: 'verified',
         name: 'FTE Jobs',
         unit: 'FTE',
         current: 2,
@@ -379,17 +395,19 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'cost-per-unit',
+        confidence: 'modelled',
         name: 'Production Cost per Unit (direct, current build path)',
         unit: '$/bed',
         current: CANONICAL_BUYKIT_DIRECT_COST, // 534.79 — what we make a bed for TODAY (Defy Buy-Kit path)
-        targets: { year1: 275, year3: 200, vision2030: 141 }, // on-country Factory path: 275.74 → ~200 → 140.74
+        targets: { year1: 275, year3: 200, vision2030: 271 }, // Factory path: 275.74 → ~200 → Community v6 path: 270.74 (fair-wage paid labour)
         source: 'computed',
-        sourceDetail: 'MODELLED: current is the Defy Buy-Kit direct cost ($534.79 — what we make a bed for today) from cost-model-scenarios.ts. The trajectory is cost-DOWN as production in-sources to the on-country Factory path (direct $275.74), then scales toward the Community path ($140.74). Direct cost only — excludes fixed-cost absorption at pilot volume.',
+        sourceDetail: 'MODELLED: current is the Defy Buy-Kit direct cost ($534.79 — what we make a bed for today) from cost-model-scenarios.ts. The trajectory is cost-DOWN as production in-sources to the on-country Factory path (direct $275.74), then scales toward the Community path ($270.74, v6 — fair-wage paid labour at $130/bed, free community-collected plastic). Direct cost only — excludes fixed-cost absorption at pilot volume.',
         proxyFor: 'Operational efficiency and affordability',
         optimizationLevers: ['Move from Defy-kit to on-country factory path', 'CNC time reduction', 'Local feedstock + bulk materials'],
       },
       {
         id: 'revenue',
+        confidence: 'verified',
         name: 'Total Revenue Received (cumulative since inception, ~89% grant-funded)',
         unit: '$',
         current: verifiedFinancials.revenueReceived, // 649,710.79 — total revenue received since inception (grant + commercial), Xero workpaper (verified, not audited)
@@ -401,6 +419,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'govt-savings',
+        confidence: 'modelled',
         name: 'Government Health Savings (est.)',
         unit: '$',
         current: null,
@@ -432,6 +451,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
     metrics: [
       {
         id: 'storytellers-active',
+        confidence: 'verified',
         name: 'Active Storytellers',
         unit: 'people',
         current: null,
@@ -444,6 +464,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'community-production-days',
+        confidence: 'verified',
         name: 'Community Production Days/Week',
         unit: 'days/week',
         current: 0,
@@ -455,6 +476,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'community-employment-pct',
+        confidence: 'estimate',
         name: 'Community Member Employment %',
         unit: '%',
         current: 30,
@@ -466,12 +488,13 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'communities-served',
+        confidence: 'verified',
         name: 'Communities Served',
         unit: 'communities',
         current: null,
         targets: { year1: 12, year3: 25, vision2030: 60 },
         source: 'supabase',
-        sourceDetail: 'assets table: distinct community values',
+        sourceDetail: 'assets table: distinct community values where status in (deployed, allocated). Canonical verified active footprint: ~10 communities (2026-05-29). Raw distinct values may include inactive or placeholder records.',
         optimizationLevers: ['Distribution partnerships', 'Freight networks', 'Health org partnerships'],
         computeFn: 'getCommunitiesServed',
       },
@@ -491,6 +514,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
     metrics: [
       {
         id: 'units-per-month',
+        confidence: 'estimate',
         name: 'Units Produced per Month',
         unit: 'beds/month',
         current: 15, // estimate during active production runs
@@ -501,6 +525,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'cnc-time',
+        confidence: 'verified',
         name: 'CNC Cutting Time per Bed',
         unit: 'hours',
         current: 3.5,
@@ -512,6 +537,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'facility-count',
+        confidence: 'verified',
         name: 'Production Facilities',
         unit: 'facilities',
         current: 1,
@@ -522,6 +548,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       },
       {
         id: 'facility-utilisation',
+        confidence: 'estimate',
         name: 'Facility Utilisation',
         unit: '%',
         current: 30, // intermittent production runs
@@ -544,7 +571,7 @@ export const FINANCIAL_SUMMARY = {
   tradeRevenue: verifiedFinancials.revenueReceived,
   productionPlantInvestment: verifiedFinancials.capexInvested, // 110,046
   currentCostPerUnit: CANONICAL_BUYKIT_DIRECT_COST, // 534.79 — current Buy-Kit direct cost (what we make a bed for today, MODELLED)
-  targetCostPerUnit: { year1: 275, year3: 200, vision2030: 141 }, // on-country Factory path (275.74 → ~200 → 140.74)
+  targetCostPerUnit: { year1: 275, year3: 200, vision2030: 271 }, // Factory path (275.74 → ~200) → Community v6 path (270.74, fair-wage paid labour)
   financialsStatus: verifiedFinancials.status,
   financialsLastUpdated: verifiedFinancials.lastUpdated,
 };

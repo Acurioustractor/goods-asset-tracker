@@ -90,12 +90,12 @@ export const problemStatement = {
 export const productionPlantFacts = {
   heading: 'The production plant',
   paragraphs: [
-    'Containerised, modular, designed to move. Plastic shredder, pellet and sheet press, computer-controlled router. Full deployment capacity: 30 beds per week. Each bed uses 25 kg of locally-collected waste plastic that fits in a 25 L tub.',
+    'Containerised, modular, designed to move. Plastic shredder, pellet and sheet press, computer-controlled router. Full deployment capacity: 30 beds per week. Each bed uses 20 kg of locally-collected waste plastic that fits in a 25 L tub.',
     'The plant is roughly 85% complete. Final assembly and community siting decisions are in progress. The same infrastructure produces washing machine components and is expected to expand to fridges in the next year.',
   ],
   highlights: [
     { value: '30 beds/wk', label: 'capacity at full deployment' },
-    { value: '25 kg', label: 'plastic per bed, locally sourced' },
+    { value: '20 kg', label: 'plastic per bed, locally sourced' },
     { value: '~85%', label: 'complete; siting and final assembly in progress' },
     { value: 'multi-product', label: 'beds, washing machines, fridges to come' },
   ],
