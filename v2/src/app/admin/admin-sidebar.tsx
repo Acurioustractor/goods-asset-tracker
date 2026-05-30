@@ -26,6 +26,7 @@ import {
   Receipt,
   Presentation,
   Building2,
+  FileSignature,
   ClipboardCheck,
   NotebookPen,
   Calculator,
@@ -79,6 +80,7 @@ const navigation: NavGroup[] = [
     items: [
       { name: 'Funders',   href: '/admin/funders',             icon: Building2 },
       { name: 'Deals',     href: '/admin/deals',               icon: Crosshair },
+      { name: 'LOI tracker', href: '/admin/loi-tracker',        icon: FileSignature },
       { name: 'Xero recon', href: '/admin/xero-reconciliation', icon: FileCheck },
     ],
   },
