@@ -19,9 +19,9 @@ export const metadata: Metadata = {
 
 // Real numbers, pulled from the canonical data files (no invented stats).
 const totals = getDeploymentTotals();
-// "400+ beds in homes since 2023" lives in goodsBedStats as the last atom.
+// "496 beds in homes since 2023" lives in goodsBedStats as the last atom.
 const bedsInHomes =
-  goodsBedStats.find((s) => s.label.includes('beds in homes'))?.value ?? '400+';
+  goodsBedStats.find((s) => s.label.includes('beds in homes'))?.value ?? '496'; // canonical: see asset-canonical.ts
 
 const WAYS = [
   {

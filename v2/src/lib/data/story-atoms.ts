@@ -11,6 +11,7 @@
 // All copy below has been written to obey those rules.
 
 import { STRETCH_BED } from './products';
+import { CANONICAL_ASSETS } from './asset-canonical';
 
 // ─── Atom 1: Goods bed facts (aliased from products.ts) ─────────────────
 // Used by `kind: 'goods-facts'` blocks. Re-using the canonical product
@@ -21,7 +22,7 @@ export const goodsBedStats: { value: string; label: string }[] = [
   { value: STRETCH_BED.specs.loadCapacity, label: 'load capacity, rated' },
   { value: STRETCH_BED.specs.assemblyTime.replace(/^~?/, '~'), label: 'to assemble, no tools' },
   { value: STRETCH_BED.specs.plasticDiverted.split(' ')[0], label: 'of plastic kept out of landfill, per bed' },
-  { value: '400+', label: 'beds in homes since 2023' },
+  { value: String(CANONICAL_ASSETS.bedsDeployed), label: 'beds in homes since 2023' }, // canonical: see asset-canonical.ts
 ];
 
 export const goodsBedStatsLead = 'One bed, in numbers';

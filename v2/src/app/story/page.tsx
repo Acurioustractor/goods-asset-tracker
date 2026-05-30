@@ -85,8 +85,8 @@ const TIMELINE = [
   { year: '2020', title: 'The Pattern', description: 'Orange Sky expands to remote communities. Nic sees people without beds, without washing machines, children with skin infections cascading into heart disease.' },
   { year: '2022', title: 'The Question', description: '"What can we actually build that makes a difference?" Goods project kicks off with an advisory session in November.' },
   { year: '2023', title: 'A Curious Tractor', description: 'Organisation formally founded. First bed prototypes developed with the Bloomfield family "around the fire."' },
-  { year: '2024', title: '400+ Beds', description: 'Active pilots deliver beds across Palm Island, Tennant Creek, Mt Isa, Kalgoorlie, and more. Community feedback shapes every iteration.' },
-  { year: '2025', title: 'Washing Machines', description: 'Pakkimjalki Kari, named in Warumungu language by Elder Dianne Stokes. Commercial-grade, one-button operation. 8+ communities served.' },
+  { year: '2024', title: '496 Beds', description: 'Active pilots deliver beds across Palm Island, Tennant Creek, Mt Isa, Kalgoorlie, and more. Community feedback shapes every iteration.' },
+  { year: '2025', title: 'Washing Machines', description: 'Pakkimjalki Kari, named in Warumungu language by Elder Dianne Stokes. Commercial-grade, one-button operation. 9 communities served.' },
 ];
 
 function PhotoGallery({ photos }: { photos: { src: string | undefined; alt: string; label: string }[] }) {

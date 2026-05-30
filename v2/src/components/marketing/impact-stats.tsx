@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 
 interface ImpactStat {
   value: number | string;
@@ -18,8 +19,8 @@ interface ImpactStatsProps {
 }
 
 const defaultStats: ImpactStat[] = [
-  { value: 389, label: 'Beds Delivered' },
-  { value: 8, label: 'Communities Served' },
+  { value: CANONICAL_ASSETS.bedsDeployed, label: 'Beds Delivered' },
+  { value: CANONICAL_ASSETS.communitiesServed, label: 'Communities Served' },
   { value: 1500, label: 'Lives Impacted', prefix: '~' },
   { value: 100, label: 'Community Designed & Led', suffix: '%' },
 ];

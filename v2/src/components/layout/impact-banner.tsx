@@ -1,10 +1,11 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 
 const stats = [
-  { value: '520+', label: 'beds across Australia' },
-  { value: '8', label: 'communities' },
+  { value: String(CANONICAL_ASSETS.bedsDeployed), label: 'beds across Australia' },
+  { value: String(CANONICAL_ASSETS.communitiesServed), label: 'communities' },
   { value: '20kg', label: 'plastic diverted per bed' },
 ];
 
