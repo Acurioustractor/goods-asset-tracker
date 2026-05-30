@@ -142,7 +142,7 @@ export const FUNDER_PAGES: FunderPage[] = [
       "Goods on Country is a First Nations led social enterprise making the Stretch Bed: a 10-year, washable, flat-pack bed designed for remote Indigenous housing. We're approaching PRF as part of a ~$3M blended capital raise (target) through the QBE Catalysing Impact 2026 program, with a focus on the disadvantage and housing outcomes alignment that's central to PRF's mission.",
     whyUs: [
       "Direct alignment with the PRF disadvantage pillar. Quality, durable furniture is a measurable lever for housing outcomes in remote Australia.",
-      "Outcomes tracking is in place. Bed deployment uses a QR scan-and-record system across all 10 communities; washing machine telemetry is live on pilot units. PRF gets deployment data from day one; fleet-wide machine telemetry is the next instrumentation milestone.",
+      "Outcomes tracking is in place. Bed deployment uses a QR scan-and-record system across all 9 communities; washing machine telemetry is live on pilot units. PRF gets deployment data from day one; fleet-wide machine telemetry is the next instrumentation milestone.",
       "Catalytic position. Joins SEFA, QBE and Minderoo in a coordinated stack that PRF doesn't have to assemble alone.",
       "First Nations leadership and On-Country manufacturing creates jobs in the communities being served.",
     ],

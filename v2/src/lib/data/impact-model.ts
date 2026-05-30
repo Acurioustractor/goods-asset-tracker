@@ -494,7 +494,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         current: null,
         targets: { year1: 12, year3: 25, vision2030: 60 },
         source: 'supabase',
-        sourceDetail: 'assets table: distinct community values where status in (deployed, allocated). Canonical verified active footprint: ~10 communities (2026-05-29). Raw distinct values may include inactive or placeholder records.',
+        sourceDetail: 'assets table: distinct community values where status in (deployed, allocated). Canonical: 9 communities served (deployed); ~10 distinct incl. allocated/placeholder (2026-05-30).',
         optimizationLevers: ['Distribution partnerships', 'Freight networks', 'Health org partnerships'],
         computeFn: 'getCommunitiesServed',
       },
