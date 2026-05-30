@@ -58,7 +58,9 @@ export default async function ImpactReportPage({
       communityQuote: d.communityQuote,
     }));
 
-  const stories = await empathyLedger.getStories({
+  // Canonical Goods project only (not the goods-on-country aggregate), theme-ranked
+  // — keeps funder/buyer/supporter collateral on-message.
+  const stories = await empathyLedger.getReportStories({
     theme: template.storyTheme,
     limit: template.storyLimit,
   });
