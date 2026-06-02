@@ -42,8 +42,8 @@ export const STRETCH_BED = {
       supplier: 'Centre Canvas, Alice Springs',
     },
     legs: {
-      name: 'Recycled HDPE plastic panels',
-      detail: 'Pressed from community-collected plastic waste',
+      name: 'Recycled HDPE plastic X-trestle legs',
+      detail: 'Two crossed-plank "X" trestles, pressed from community-collected plastic waste',
       supplier: 'Defy Design, Sydney (current) / On-country (future)',
     },
     endCaps: {
@@ -51,16 +51,16 @@ export const STRETCH_BED = {
       supplier: 'Hardware supplier',
     },
     joinery: {
-      name: 'Slot-together "T" section',
-      detail: 'No screws or hardware needed',
-      supplier: 'Custom manufactured',
+      name: 'X-trestle tension assembly',
+      detail: 'Poles thread through the canvas long-edge sleeves and the top holes of the X-legs; tension holds it together — no screws or tools',
+      supplier: 'Tension design (no fasteners)',
     },
   },
   features: [
     'Flat-packs for easy transport',
     'Washable canvas sleeping surface',
     'No tools required for assembly',
-    'Recycled plastic legs, virtually indestructible',
+    'Recycled-plastic X-trestle legs, virtually indestructible',
     'Galvanised steel poles rated for 200kg',
     'Designed with 500+ minutes of community feedback',
   ],

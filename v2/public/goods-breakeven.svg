@@ -3,6 +3,7 @@
 <rect width="1680" height="980" fill="#FBFAF5"/>
 <text x="840.0" y="74" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="50" font-weight="700" fill="#2A241E">How many beds to break even</text>
 <text x="840.0" y="110" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="400" fill="#6F6155" font-style="italic">Each bed’s contribution stacks up toward the $109,500/yr fixed block. In-house production crosses it at ~335 beds; buying kits needs ~1,679.</text>
+<rect x="60.0" y="128.0" width="100.0" height="27.0" rx="6" fill="#2B2D2A"/><text x="110.0" y="146.5" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="1.5">BREAK-EVEN</text>
 <line x1="130.0" y1="760.0" x2="1620.0" y2="760.0" stroke="#C9BCA8" stroke-width="1"/>
 <text x="118" y="765.0" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#6F6155">$0k</text>
 <line x1="130.0" y1="648.0" x2="1620.0" y2="648.0" stroke="#C9BCA8" stroke-width="1" stroke-dasharray="3 6"/>
