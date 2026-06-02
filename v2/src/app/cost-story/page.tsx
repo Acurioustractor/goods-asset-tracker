@@ -2,6 +2,16 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Button } from '@/components/ui/button';
 import { CostPlayground } from './play';
+import { CostModelProvider } from './cost-model-context';
+import {
+  BreakevenChart,
+  CostCurveChart,
+  CostDock,
+  FullyLoadedChart,
+  IdiotIndexChart,
+  MoneySankey,
+  Where750Chart,
+} from './cost-charts';
 
 export const metadata: Metadata = {
   title: 'What a Bed Really Costs',
@@ -12,9 +22,11 @@ export const metadata: Metadata = {
 const displayFont = { fontFamily: 'var(--font-display, Georgia, serif)' } as const;
 
 // ─── Reusable diagram frame ─────────────────────────────────────────────────
-// PNGs live in v2/public and are served at the site root (e.g. /goods-idiot-index.png).
-// Plain <img> by design: these are wide infographic exports, not photographs, and
-// we don't want next/image to constrain or re-encode them.
+// Used only for the ILLUSTRATIVE figures (bed anatomy, assembly, plastic journey,
+// community-ownership) served from v2/public as wide exports. Plain <img> by design:
+// these are infographics, not photographs, and we don't want next/image to constrain
+// or re-encode them. The QUANTITATIVE charts are now live Recharts components
+// (see cost-charts.tsx), driven by the cost-model engine — not static images.
 function Diagram({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
   return (
     <figure className="my-10">
@@ -65,7 +77,8 @@ function Beat({
 
 export default function CostStoryPage() {
   return (
-    <>
+    <CostModelProvider>
+      <CostDock />
       {/* ── HERO ── */}
       <section className="relative overflow-hidden bg-foreground py-28 text-background md:py-40">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -150,23 +163,12 @@ export default function CostStoryPage() {
           <strong className="text-background">21.5&times;</strong> against raw polymer).
         </p>
         <p className="mt-4 text-lg leading-relaxed text-background/70 md:text-xl">
-          Steel sits at 2.1&times;, canvas 2.4&times;, hardware roughly 1.0&times;. Everything else is
-          basically fair. The opportunity is the plastic, and we&rsquo;re already diverting{' '}
+          Steel and canvas each sit under 3&times;, and hardware is about 1.0&times;. Everything else
+          is basically fair. The opportunity is the plastic, and we&rsquo;re already diverting{' '}
           <strong className="text-background">20kg of recycled HDPE</strong> from landfill per bed to
           feed it.
         </p>
-        <div className="overflow-hidden rounded-3xl border border-background/15 bg-background/5 p-3 shadow-sm md:p-6">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/goods-idiot-index.png"
-            alt="Idiot index chart: paid price versus raw-material floor for each bed component, with the plastic kit at 8.6 times"
-            className="mx-auto h-auto w-full"
-            loading="lazy"
-          />
-        </div>
-        <p className="mx-auto mt-3 max-w-2xl text-center text-sm text-background/50">
-          Plastic kit 8.6&times; the shred floor. Press it ourselves and the index collapses.
-        </p>
+        <IdiotIndexChart />
         <Diagram
           src="/goods-plastic-journey.jpg"
           alt="The circular life of the plastic: collected waste, shredded, pressed into sheets, cut into X-trestle legs, assembled into a bed, into community, and back"
@@ -198,11 +200,7 @@ export default function CostStoryPage() {
           over more beds and the &ldquo;fully-loaded&rdquo; number falls fast toward the marginal
           floor.
         </p>
-        <Diagram
-          src="/goods-fully-loaded-volume.png"
-          alt="Curve showing fully-loaded cost per bed falling toward the marginal cost as annual volume rises, debunking the $1,780 figure"
-          caption="Fully-loaded cost per bed = marginal cost + fixed block ÷ beds made. Volume is the lever."
-        />
+        <FullyLoadedChart />
       </Beat>
 
       {/* ── BEAT 4: Where each $750 goes ── */}
@@ -221,24 +219,8 @@ export default function CostStoryPage() {
           <strong className="text-background">$420.74</strong> marginal /{' '}
           <strong className="text-background">$329.26</strong> contribution.
         </p>
-        <div className="overflow-hidden rounded-3xl border border-background/15 bg-background/5 p-3 shadow-sm md:p-6">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/goods-where-750-goes.png"
-            alt="Breakdown of the $750 sell price into materials, freight and contribution across the buy-kit and in-house paths"
-            className="mx-auto h-auto w-full"
-            loading="lazy"
-          />
-        </div>
-        <p className="mx-auto mt-3 max-w-2xl text-center text-sm text-background/50">
-          $750 in. Materials, freight, then contribution &mdash; the slice that keeps the lights on
-          grows when we make instead of buy.
-        </p>
-        <Diagram
-          src="/goods-sankey-money.png"
-          alt="Sankey flow of the $750 sell price splitting into materials, freight and contribution toward fixed costs"
-          caption="The same $750, followed dollar by dollar from sale to surplus."
-        />
+        <Where750Chart />
+        <MoneySankey />
       </Beat>
 
       {/* ── BEAT 5: The cost-down path + breakeven ── */}
@@ -257,16 +239,8 @@ export default function CostStoryPage() {
           <strong className="text-foreground">333</strong> on the community path. Same fixed costs;
           five times fewer beds to clear them.
         </p>
-        <Diagram
-          src="/goods-cost-curve.png"
-          alt="Cost-down curve showing marginal cost per bed falling from the buy-kit path to the in-house and community paths"
-          caption="The cost-down: buy-kit $684.79 → in-house $425.74 → community $420.74 marginal cost per bed."
-        />
-        <Diagram
-          src="/goods-breakeven.png"
-          alt="Break-even chart comparing 1,679 beds for the buy-kit path against 338 in-house and 333 community beds per year at $750"
-          caption="Break-even beds per year at $750: buy-kit 1,679, in-house 338, community 333."
-        />
+        <CostCurveChart />
+        <BreakevenChart />
       </Beat>
 
       {/* ── BEAT 6: The path to community ownership ── */}
@@ -280,8 +254,8 @@ export default function CostStoryPage() {
           Our goal is to become unnecessary.
         </p>
         <Diagram
-          src="/goods-community-ownership.jpg"
-          alt="Three-stage path to community ownership: buy-kit today, an on-Country container plant, then community-owned production"
+          src="/goods-community-ownership-v2.png"
+          alt="Three-stage path to community ownership: buy-kit today, an on-Country green shipping-container plant with a plastic shredder and press, then community-owned production"
           caption="Buy-kit → On-Country plant → community-owned. The capital buys the path, not just the press."
         />
       </Beat>
@@ -338,6 +312,6 @@ export default function CostStoryPage() {
           </div>
         </div>
       </section>
-    </>
+    </CostModelProvider>
   );
 }

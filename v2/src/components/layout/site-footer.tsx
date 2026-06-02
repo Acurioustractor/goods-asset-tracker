@@ -69,6 +69,7 @@ const footerLinks = {
   ],
   about: [
     { name: 'Our Story', href: '/story' },
+    { name: 'Community Stories', href: '/stories' },
     { name: 'Communities', href: '/community' },
     { name: 'Impact', href: '/impact' },
     { name: 'Centrecorp Partnership', href: '/partners/centrecorp' },

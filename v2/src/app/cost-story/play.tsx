@@ -1,45 +1,39 @@
 'use client';
 
 import { useState } from 'react';
+import { fmt, fmtCents } from '@/lib/cost-model/engine';
+import {
+  BEDS_MAX,
+  BEDS_MIN,
+  PRICE_MAX,
+  PRICE_MIN,
+  useCostModel,
+} from './cost-model-context';
 
-// ─── Self-contained cost-model maths (v6, 2026-06) ──────────────────────────
-// Deliberately NOT importing the engine — this widget owns its own arithmetic so
-// the marketing page stays decoupled from the admin cost-model code. The numbers
-// below are the LOCKED v6 figures (all AUD).
+// The playground now reads the SAME shared cost-model context as the floating
+// dock and the six live charts — one verified engine, no duplicate arithmetic.
+// Its sliders write back to that state, so dragging here also moves every chart
+// above. Only the BUY/MAKE path toggle is local to this widget.
 
 type Path = 'BUY' | 'MAKE';
 
-const FIXED = 109_500; // annual fixed block: founder $16,800 + rent $27,000 + travel $51,000 + admin $14,700
-const FREIGHT = 150; // long-haul freight per bed
-const DIRECT_BUY = 534.79; // buy-kit path direct cost
-const DIRECT_MAKE = 275.74; // in-house factory path direct cost
-
-const fmt = (n: number) =>
-  n.toLocaleString('en-AU', { style: 'currency', currency: 'AUD', maximumFractionDigits: 0 });
-
-const fmt2 = (n: number) =>
-  n.toLocaleString('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
 export function CostPlayground() {
-  const [beds, setBeds] = useState(333);
-  const [price, setPrice] = useState(750);
+  const { price, beds, setPrice, setBeds, model: m } = useCostModel();
   const [path, setPath] = useState<Path>('MAKE');
 
-  // ── exact maths required by the brief ──
-  const direct = path === 'BUY' ? DIRECT_BUY : DIRECT_MAKE;
-  const marginal = direct + FREIGHT;
-  const fixed = FIXED;
-  const contribution = price - marginal;
-  const breakeven = contribution > 0 ? Math.round(fixed / contribution) : null;
-  const fullyLoaded = marginal + fixed / beds;
-  const surplus = contribution * beds - fixed;
-
+  const marginal = path === 'BUY' ? m.marginalKit : m.marginalFactory;
+  const direct = marginal - m.longHaulFreight;
+  const contribution = path === 'BUY' ? m.contributionKit : m.contributionFactory;
+  const beRaw = path === 'BUY' ? m.breakevenKit : m.breakevenFactory;
+  const breakeven = Number.isFinite(beRaw) ? beRaw : null;
+  const fullyLoaded = path === 'BUY' ? m.fullKits : m.fullFactory;
+  const surplus = contribution * beds - m.fixedBlock;
   const inSurplus = surplus >= 0;
 
   const sentence =
     contribution <= 0
-      ? `At ${fmt(price)} a bed, the ${path === 'BUY' ? 'buy-kit' : 'in-house'} path doesn't cover its own marginal cost of ${fmt2(marginal)} — every bed loses money before fixed costs.`
-      : `${path === 'BUY' ? 'Buying kits' : 'Pressing our own legs'}, each ${fmt(price)} bed throws off ${fmt2(contribution)} toward the ${fmt(fixed)} fixed block. Break even at ${breakeven?.toLocaleString('en-AU')} beds a year; at ${beds.toLocaleString('en-AU')} beds you run a ${inSurplus ? 'surplus' : 'deficit'} of ${fmt(Math.abs(surplus))}.`;
+      ? `At ${fmt(price)} a bed, the ${path === 'BUY' ? 'buy-kit' : 'in-house'} path doesn't cover its own marginal cost of ${fmtCents(marginal)} — every bed loses money before fixed costs.`
+      : `${path === 'BUY' ? 'Buying kits' : 'Pressing our own legs'}, each ${fmt(price)} bed throws off ${fmtCents(contribution)} toward the ${fmt(m.fixedBlock)} fixed block. Break even at ${breakeven?.toLocaleString('en-AU')} beds a year; at ${beds.toLocaleString('en-AU')} beds you run a ${inSurplus ? 'surplus' : 'deficit'} of ${fmt(Math.abs(surplus))}.`;
 
   return (
     <div className="rounded-3xl border border-border bg-card p-6 shadow-sm md:p-10">
@@ -85,8 +79,8 @@ export function CostPlayground() {
             </div>
             <p className="mt-2 text-xs text-muted-foreground">
               {path === 'BUY'
-                ? 'Today: buy a finished plastic-leg kit. Direct cost ' + fmt2(DIRECT_BUY) + '.'
-                : 'Target: shred and press community plastic in-house. Direct cost ' + fmt2(DIRECT_MAKE) + '.'}
+                ? 'Today: buy a finished plastic-leg kit. Direct cost ' + fmtCents(direct) + '.'
+                : 'Target: shred and press community plastic in-house. Direct cost ' + fmtCents(direct) + '.'}
             </p>
           </div>
 
@@ -101,16 +95,16 @@ export function CostPlayground() {
             <input
               id="beds"
               type="range"
-              min={50}
-              max={1500}
+              min={BEDS_MIN}
+              max={BEDS_MAX}
               step={1}
               value={beds}
               onChange={(e) => setBeds(Number(e.target.value))}
               className="w-full accent-[oklch(0.55_0.15_45)]"
             />
             <div className="mt-1 flex justify-between text-[11px] text-muted-foreground">
-              <span>50</span>
-              <span>1,500</span>
+              <span>{BEDS_MIN}</span>
+              <span>{BEDS_MAX.toLocaleString('en-AU')}</span>
             </div>
           </div>
 
@@ -125,16 +119,16 @@ export function CostPlayground() {
             <input
               id="price"
               type="range"
-              min={500}
-              max={900}
+              min={PRICE_MIN}
+              max={PRICE_MAX}
               step={5}
               value={price}
               onChange={(e) => setPrice(Number(e.target.value))}
               className="w-full accent-[oklch(0.55_0.15_45)]"
             />
             <div className="mt-1 flex justify-between text-[11px] text-muted-foreground">
-              <span>$500</span>
-              <span>$900</span>
+              <span>{fmt(PRICE_MIN)}</span>
+              <span>{fmt(PRICE_MAX)}</span>
             </div>
           </div>
         </div>
@@ -142,10 +136,10 @@ export function CostPlayground() {
         {/* ── Live readouts ── */}
         <div className="space-y-5">
           <div className="grid grid-cols-2 gap-4">
-            <Readout label="Marginal cost / bed" value={fmt2(marginal)} sub="direct + freight" />
+            <Readout label="Marginal cost / bed" value={fmtCents(marginal)} sub="direct + freight" />
             <Readout
               label="Contribution / bed"
-              value={fmt2(contribution)}
+              value={fmtCents(contribution)}
               sub={contribution > 0 ? 'toward fixed costs' : 'below water'}
               tone={contribution > 0 ? 'good' : 'bad'}
             />
@@ -165,9 +159,9 @@ export function CostPlayground() {
 
           <div className="rounded-2xl bg-muted/40 p-4">
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Fully-loaded cost / bed</p>
-            <p className="mt-1 font-mono text-2xl text-foreground">{fmt2(fullyLoaded)}</p>
+            <p className="mt-1 font-mono text-2xl text-foreground">{fmtCents(fullyLoaded)}</p>
             <p className="mt-1 text-xs text-muted-foreground">
-              marginal {fmt2(marginal)} + {fmt(fixed)} fixed ÷ {beds.toLocaleString('en-AU')} beds. Fewer beds,
+              marginal {fmtCents(marginal)} + {fmt(m.fixedBlock)} fixed ÷ {beds.toLocaleString('en-AU')} beds. Fewer beds,
               scarier number — that&rsquo;s the $1,780 myth in action.
             </p>
           </div>
