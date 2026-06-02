@@ -343,6 +343,12 @@ export default function CostStoryPage() {
           alt="Three-stage path to community ownership: buy-kit today, an on-Country green shipping-container plant with a plastic shredder and press, then community-owned production"
           caption="Buy-kit → On-Country plant → community-owned. The capital buys the path, not just the press."
         />
+        <PullQuote
+          quote="I'll be rocking up every day to make them."
+          name="Mykel"
+          place="who helped build the beds in Alice Springs"
+          tone="dark"
+        />
       </Beat>
 
       {/* ── INTERACTIVE WIDGET ── */}
