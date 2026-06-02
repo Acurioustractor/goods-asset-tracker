@@ -112,7 +112,7 @@ const specs = [
 ];
 
 export default async function StretchBedPage() {
-  // Admin detection — same pattern as /process and /field-notes: any
+  // Admin detection, same pattern as /process and /field-notes: any
   // signed-in user (or local dev) gets the in-place swap widget on every
   // photo slot. Public visitors see the photos with no chrome.
   const supabase = await createClient();
@@ -123,7 +123,7 @@ export default async function StretchBedPage() {
   const heroSrc = overrides['hero'] ?? '/images/product/stretch-bed-hero.jpg';
 
   return (
-    <main className="bg-white text-slate-900">
+    <main className="bg-[#FCFBF7] text-[#2A2620]" data-skin="goods">
       {/* Hero */}
       <section className="relative">
         <div className="relative h-[52vh] min-h-[360px] w-full">
@@ -142,7 +142,7 @@ export default async function StretchBedPage() {
           )}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/30 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 mx-auto max-w-5xl px-6 pb-10">
-            <p className="mb-2 text-sm uppercase tracking-[0.18em] text-orange-400">How it works</p>
+            <p className="mb-2 text-sm uppercase tracking-[0.18em] text-[#D99A6A]">How it works</p>
             <h1 style={serif} className="text-4xl font-bold text-white sm:text-5xl">
               The Stretch Bed
             </h1>
@@ -152,7 +152,7 @@ export default async function StretchBedPage() {
             <div className="mt-5 flex flex-wrap gap-3">
               <a
                 href="#build"
-                className="rounded-md bg-orange-500 px-5 py-2.5 font-medium text-white transition hover:bg-orange-600"
+                className="rounded-md bg-[#B0673B] px-5 py-2.5 font-medium text-white transition hover:bg-[#974F2C]"
               >
                 Watch it built
               </a>
@@ -169,15 +169,15 @@ export default async function StretchBedPage() {
 
       {/* Overview diagram (fixed infographic, not swappable) */}
       <section className="mx-auto max-w-6xl px-6 pt-14">
-        <p className="mb-4 text-center text-sm uppercase tracking-[0.18em] text-orange-500">
+        <p className="mb-4 text-center text-sm uppercase tracking-[0.18em] text-[#B0673B]">
           The whole bed, one diagram
         </p>
         <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
           <Image
-            src="/images/product/stretch-bed-overview.png"
-            alt="Stretch Bed X-trestle tension design: the three components, the five-step assembly, and how the tension holds it together"
-            width={1448}
-            height={1086}
+            src="/goods-bed-anatomy.jpg"
+            alt="Anatomy of the Stretch Bed: galvanised steel poles, heavy-duty canvas, and recycled-plastic X-trestle legs, with the cost of each part"
+            width={1264}
+            height={848}
             className="h-auto w-full"
             priority
           />
@@ -214,7 +214,7 @@ export default async function StretchBedPage() {
                   )}
                 </div>
                 <div className="p-5">
-                  <div className="text-xs font-semibold uppercase tracking-wider text-orange-500">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-[#B0673B]">
                     {c.n}× per bed
                   </div>
                   <h3 style={serif} className="mt-1 text-lg font-bold">
@@ -229,7 +229,7 @@ export default async function StretchBedPage() {
       </section>
 
       {/* Video */}
-      <section id="build" className="bg-slate-50 py-16">
+      <section id="build" className="bg-[#F2ECE0] py-16">
         <div className="mx-auto max-w-5xl px-6">
           <h2 style={serif} className="text-3xl font-bold">
             Watch a bed go together
@@ -256,7 +256,19 @@ export default async function StretchBedPage() {
         <h2 style={serif} className="text-3xl font-bold">
           How to build it, step by step
         </h2>
-        <div className="mt-10 space-y-12">
+        <p className="mt-3 max-w-2xl text-slate-600">
+          Lay out the parts, stand the X-legs, thread the poles, pull it tight. About five minutes, no tools.
+        </p>
+        <div className="mt-8 overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+          <Image
+            src="/goods-bed-assembly.jpg"
+            alt="How the Stretch Bed goes together: lay out the parts, stand the X-legs, thread the poles, tension it, done"
+            width={1264}
+            height={848}
+            className="h-auto w-full"
+          />
+        </div>
+        <div className="mt-12 space-y-12">
           {steps.map((s, i) => {
             const src = overrides[`step.${s.n}`] ?? s.img;
             return (
@@ -280,7 +292,7 @@ export default async function StretchBedPage() {
                   )}
                 </div>
                 <div>
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-500 text-lg font-bold text-white">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#B0673B] text-lg font-bold text-white">
                     {s.n}
                   </div>
                   <h3 style={serif} className="mt-4 text-2xl font-bold">
@@ -295,16 +307,16 @@ export default async function StretchBedPage() {
       </section>
 
       {/* The clever bit */}
-      <section className="bg-slate-900 py-16 text-white">
+      <section className="bg-[#221E18] py-16 text-white">
         <div className="mx-auto max-w-3xl px-6">
-          <p className="text-sm uppercase tracking-[0.18em] text-orange-400">Why it works</p>
+          <p className="text-sm uppercase tracking-[0.18em] text-[#D99A6A]">Why it works</p>
           <h2 style={serif} className="mt-2 text-3xl font-bold">
             The weight is what holds it together
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-slate-200">
             It is a tension design. Each pole threads through the hole at the top of each X-leg, so
             the poles cannot slip, and the canvas stretched tight between them braces the whole
-            frame. The frame <span className="text-orange-400">will not stand without the canvas</span>:
+            frame. The frame <span className="text-[#D99A6A]">will not stand without the canvas</span>:
             it is the tension that holds everything together. No screws, no tools, just thread the
             poles through and pull it tight.
           </p>
@@ -344,20 +356,20 @@ export default async function StretchBedPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-orange-500 py-14 text-white">
+      <section className="bg-[#B0673B] py-14 text-white">
         <div className="mx-auto flex max-w-5xl flex-col items-start gap-5 px-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 style={serif} className="text-3xl font-bold">
               Put one in a home
             </h2>
-            <p className="mt-1 text-orange-50">
+            <p className="mt-1 text-[#F4E9E1]">
               Every bed diverts {STRETCH_BED.specs.plasticDiverted.replace(' per bed', '')} from
               landfill and is built toward community ownership.
             </p>
           </div>
           <Link
             href="/shop/stretch-bed-single"
-            className="whitespace-nowrap rounded-md bg-white px-6 py-3 font-semibold text-orange-600 transition hover:bg-orange-50"
+            className="whitespace-nowrap rounded-md bg-white px-6 py-3 font-semibold text-[#B0673B] transition hover:bg-[#F4E9E1]"
           >
             Buy or sponsor a bed
           </Link>
