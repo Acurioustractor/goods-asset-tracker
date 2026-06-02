@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 980" width="1680" height="980" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
+<defs><filter id="sh" x="-8%" y="-8%" width="116%" height="124%"><feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#5A4A38" flood-opacity="0.10"/></filter></defs>
+<rect width="1680" height="980" fill="#FBFAF5"/>
+<text x="840.0" y="74" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="50" font-weight="700" fill="#2A241E">Why “$1,780 a bed” is misleading</text>
+<text x="840.0" y="110" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="400" fill="#6F6155" font-style="italic">Fully-loaded cost is fixed running costs divided by how many beds we make. Make more beds and it collapses toward the real marginal cost.</text>
+<line x1="130.0" y1="740.0" x2="1620.0" y2="740.0" stroke="#C9BCA8" stroke-width="1"/>
+<text x="118" y="745.0" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#6F6155">$0</text>
+<line x1="130.0" y1="597.9" x2="1620.0" y2="597.9" stroke="#C9BCA8" stroke-width="1" stroke-dasharray="3 6"/>
+<text x="118" y="602.8947368421052" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#6F6155">$500</text>
+<line x1="130.0" y1="455.8" x2="1620.0" y2="455.8" stroke="#C9BCA8" stroke-width="1" stroke-dasharray="3 6"/>
+<text x="118" y="460.7894736842105" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#6F6155">$1,000</text>
+<line x1="130.0" y1="313.7" x2="1620.0" y2="313.7" stroke="#C9BCA8" stroke-width="1" stroke-dasharray="3 6"/>
+<text x="118" y="318.6842105263158" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#6F6155">$1,500</text>
+<line x1="130.0" y1="740.0" x2="1620.0" y2="740.0" stroke="#C9BCA8" stroke-width="1.6"/>
+<rect x="215.3" y="234.1" width="150.0" height="505.9" rx="8" fill="#4C9B97" stroke="#38726F" stroke-width="1.4" filter="url(#sh)"/>
+<text x="290.33333333333337" y="222.10526315789474" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#38726F">$1,780</text>
+<text x="290.33333333333337" y="766" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#2A241E">Buy-Kit</text>
+<rect x="391.3" y="307.7" width="150.0" height="432.3" rx="8" fill="#6F9C68" stroke="#52734C" stroke-width="1.4" filter="url(#sh)"/>
+<text x="466.33333333333337" y="295.71578947368425" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#52734C">$1,521</text>
+<text x="466.33333333333337" y="766" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#2A241E">Factory</text>
+<text x="378.33333333333337" y="794" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="18" font-weight="700" fill="#2A241E">100 / yr</text>
+<rect x="712.0" y="497.3" width="150.0" height="242.7" rx="8" fill="#4C9B97" stroke="#38726F" stroke-width="1.4" filter="url(#sh)"/>
+<text x="787.0000000000001" y="485.2842105263158" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#38726F">$854</text>
+<text x="787.0000000000001" y="766" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#2A241E">Buy-Kit</text>
+<rect x="888.0" y="570.9" width="150.0" height="169.1" rx="8" fill="#6F9C68" stroke="#52734C" stroke-width="1.4" filter="url(#sh)"/>
+<text x="963.0000000000001" y="558.8947368421053" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#52734C">$595</text>
+<text x="963.0000000000001" y="766" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#2A241E">Factory</text>
+<text x="875.0000000000001" y="794" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="18" font-weight="700" fill="#2A241E">500 / yr</text>
+<rect x="1208.7" y="534.2" width="150.0" height="205.8" rx="8" fill="#4C9B97" stroke="#38726F" stroke-width="1.4" filter="url(#sh)"/>
+<text x="1283.6666666666667" y="522.2315789473685" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#38726F">$724</text>
+<text x="1283.6666666666667" y="766" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#2A241E">Buy-Kit</text>
+<rect x="1384.7" y="607.8" width="150.0" height="132.2" rx="8" fill="#6F9C68" stroke="#52734C" stroke-width="1.4" filter="url(#sh)"/>
+<text x="1459.6666666666667" y="595.8421052631579" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#52734C">$465</text>
+<text x="1459.6666666666667" y="766" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#2A241E">Factory</text>
+<text x="1371.6666666666667" y="794" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="18" font-weight="700" fill="#2A241E">1,000 / yr</text>
+<line x1="130.0" y1="545.4" x2="1620.0" y2="545.4" stroke="#38726F" stroke-width="2.0" stroke-dasharray="8 5"/>
+<text x="1614" y="536.3754736842105" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#38726F">Buy-Kit marginal floor $685</text>
+<line x1="130.0" y1="619.0" x2="1620.0" y2="619.0" stroke="#52734C" stroke-width="2.0" stroke-dasharray="8 5"/>
+<text x="1614" y="637.0002105263158" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#52734C">Factory marginal floor $426</text>
+<text x="219.39999999999998" y="190.10526315789474" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#8B4E2C" font-style="italic">the scary number</text>
+<text x="219.39999999999998" y="208.10526315789474" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#8B4E2C">= fixed costs ÷ only 100 beds</text>
+<line x1="60.0" y1="816.0" x2="1620.0" y2="816.0" stroke="#C9BCA8" stroke-width="1"/>
+<text x="60" y="836" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="14" font-weight="400" fill="#2A241E">Fully-loaded = marginal cost + ($109,500 fixed block ÷ beds per year). The bed doesn’t get cheaper to make — we just stop dividing a year of fixed costs by a tiny number.</text>
+<text x="60" y="860" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="11.5" font-weight="400" fill="#6F6155" font-style="italic">Source: Goods cost model v6 (2026-06), fully-loaded grid. Freight falls with volume ($150→$80/bed) as pallets fill. Modelled; volumes are targets, not commitments.</text>
+</svg>

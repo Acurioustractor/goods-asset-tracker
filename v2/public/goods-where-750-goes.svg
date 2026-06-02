@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 980" width="1680" height="980" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
+<defs><filter id="sh" x="-8%" y="-8%" width="116%" height="124%"><feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#5A4A38" flood-opacity="0.10"/></filter></defs>
+<rect width="1680" height="980" fill="#FBFAF5"/>
+<text x="840.0" y="74" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="50" font-weight="700" fill="#2A241E">Where each AU$750 goes</text>
+<text x="840.0" y="110" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="400" fill="#6F6155" font-style="italic">The same bed, two ways to make it. Owning the plastic processing turns a $65 sliver into a $324 contribution.</text>
+<line x1="314.0" y1="247.8" x2="626.0" y2="247.8" stroke="#BD6A3C" stroke-width="2.0" stroke-dasharray="7 5"/>
+<rect x="330.0" y="525.0" width="280.0" height="235.0" rx="8" fill="#BD6A3C" stroke="#8B4E2C" stroke-width="1.4"/>
+<text x="344.0" y="640.5195121951219" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#FFFFFF">Recycled-plastic legs</text>
+<text x="596.0" y="640.5195121951219" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#FFFFFF">$344</text>
+<rect x="330.0" y="480.6" width="280.0" height="44.4" rx="8" fill="#C2A55E" stroke="#8F7A45" stroke-width="1.4"/>
+<text x="344.0" y="500.84390243902436" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#FFFFFF">Assembly labour</text>
+<text x="596.0" y="500.84390243902436" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#FFFFFF">$65</text>
+<rect x="330.0" y="394.8" width="280.0" height="85.9" rx="8" fill="#8A5A45" stroke="#664233" stroke-width="1.4"/>
+<text x="344.0" y="435.71317073170735" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#FFFFFF">Steel + canvas + hardware</text>
+<text x="596.0" y="435.71317073170735" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#FFFFFF">$126</text>
+<rect x="330.0" y="292.3" width="280.0" height="102.4" rx="8" fill="#4C9B97" stroke="#38726F" stroke-width="1.4"/>
+<text x="344.0" y="341.55804878048787" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#FFFFFF">Freight to community</text>
+<text x="596.0" y="341.55804878048787" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#FFFFFF">$150</text>
+<rect x="330.0" y="247.8" width="280.0" height="44.5" rx="8" fill="#6F9C68" stroke="#52734C" stroke-width="1.4" filter="url(#sh)"/>
+<rect x="327.0" y="244.8" width="286.0" height="50.5" rx="10" fill="none" stroke="#52734C" stroke-width="2.6"/>
+<text x="344.0" y="268.07170731707316" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#52734C">Contribution (left over)</text>
+<text x="596.0" y="268.07170731707316" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#52734C">$65</text>
+<text x="470.0" y="233.80487804878044" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#8B4E2C">Sells for AU$750</text>
+<text x="470.0" y="794" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#2A241E">Buy-Kit (today)</text>
+<text x="470.0" y="818" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#6F6155" font-style="italic">buy finished plastic legs from Defy</text>
+<text x="470.0" y="842" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#52734C">marginal cost $685  ·  keeps $65</text>
+<line x1="1054.0" y1="247.8" x2="1366.0" y2="247.8" stroke="#BD6A3C" stroke-width="2.0" stroke-dasharray="7 5"/>
+<rect x="1070.0" y="712.2" width="280.0" height="47.8" rx="8" fill="#BD6A3C" stroke="#8B4E2C" stroke-width="1.4"/>
+<text x="1084.0" y="734.0975609756098" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#FFFFFF">Plastic (raw shred + diesel)</text>
+<text x="1336.0" y="734.0975609756098" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#FFFFFF">$70</text>
+<rect x="1070.0" y="657.6" width="280.0" height="54.6" rx="8" fill="#C2A55E" stroke="#8F7A45" stroke-width="1.4"/>
+<text x="1084.0" y="682.8780487804878" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#FFFFFF">Process labour</text>
+<text x="1336.0" y="682.8780487804878" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#FFFFFF">$80</text>
+<rect x="1070.0" y="571.7" width="280.0" height="85.9" rx="8" fill="#8A5A45" stroke="#664233" stroke-width="1.4"/>
+<text x="1084.0" y="612.6253658536585" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#FFFFFF">Steel + canvas + hardware</text>
+<text x="1336.0" y="612.6253658536585" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#FFFFFF">$126</text>
+<rect x="1070.0" y="469.3" width="280.0" height="102.4" rx="8" fill="#4C9B97" stroke="#38726F" stroke-width="1.4"/>
+<text x="1084.0" y="518.470243902439" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#FFFFFF">Freight to community</text>
+<text x="1336.0" y="518.470243902439" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#FFFFFF">$150</text>
+<rect x="1070.0" y="247.8" width="280.0" height="221.4" rx="8" fill="#6F9C68" stroke="#52734C" stroke-width="1.4" filter="url(#sh)"/>
+<rect x="1067.0" y="244.8" width="286.0" height="227.4" rx="10" fill="none" stroke="#52734C" stroke-width="2.6"/>
+<text x="1084.0" y="356.52780487804876" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#52734C">Contribution (left over)</text>
+<text x="1336.0" y="356.52780487804876" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#52734C">$324</text>
+<text x="1210.0" y="233.80487804878044" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#8B4E2C">Sells for AU$750</text>
+<text x="1210.0" y="794" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#2A241E">Factory (in-house)</text>
+<text x="1210.0" y="818" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#6F6155" font-style="italic">press our own plastic legs</text>
+<text x="1210.0" y="842" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#52734C">marginal cost $426  ·  keeps $324</text>
+<line x1="60.0" y1="862.0" x2="1620.0" y2="862.0" stroke="#C9BCA8" stroke-width="1"/>
+<text x="60" y="882" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="14" font-weight="400" fill="#2A241E">Contribution is what each bed leaves toward the ~$109,500/yr of fixed running costs. Buy-Kit leaves almost nothing; in-house production leaves five times more.</text>
+<text x="60" y="906" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="11.5" font-weight="400" fill="#6F6155" font-style="italic">Source: Goods cost model v6 (2026-06). BOM + $750 price verified; in-house legs, labour and freight modelled. Freight shown at the ~100/yr rate ($150/bed).</text>
+</svg>
