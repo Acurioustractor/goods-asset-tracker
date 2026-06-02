@@ -32,7 +32,7 @@ export function CostPlayground() {
 
   const sentence =
     contribution <= 0
-      ? `At ${fmt(price)} a bed, the ${path === 'BUY' ? 'buy-kit' : 'in-house'} path doesn't cover its own marginal cost of ${fmtCents(marginal)} — every bed loses money before fixed costs.`
+      ? `At ${fmt(price)} a bed, the ${path === 'BUY' ? 'buy-kit' : 'in-house'} path doesn't cover its own marginal cost of ${fmtCents(marginal)}. Every bed loses money before we even get to fixed costs.`
       : `${path === 'BUY' ? 'Buying kits' : 'Pressing our own legs'}, each ${fmt(price)} bed throws off ${fmtCents(contribution)} toward the ${fmt(m.fixedBlock)} fixed block. Break even at ${breakeven?.toLocaleString('en-AU')} beds a year; at ${beds.toLocaleString('en-AU')} beds you run a ${inSurplus ? 'surplus' : 'deficit'} of ${fmt(Math.abs(surplus))}.`;
 
   return (
@@ -145,7 +145,7 @@ export function CostPlayground() {
             />
             <Readout
               label="Break-even beds / yr"
-              value={breakeven ? breakeven.toLocaleString('en-AU') : '—'}
+              value={breakeven ? breakeven.toLocaleString('en-AU') : 'n/a'}
               sub={breakeven ? `at ${fmt(price)}` : 'never at this price'}
               tone={breakeven ? 'neutral' : 'bad'}
             />
@@ -162,7 +162,7 @@ export function CostPlayground() {
             <p className="mt-1 font-mono text-2xl text-foreground">{fmtCents(fullyLoaded)}</p>
             <p className="mt-1 text-xs text-muted-foreground">
               marginal {fmtCents(marginal)} + {fmt(m.fixedBlock)} fixed ÷ {beds.toLocaleString('en-AU')} beds. Fewer beds,
-              scarier number — that&rsquo;s the $1,780 myth in action.
+              bigger number. That&rsquo;s the $1,780 myth.
             </p>
           </div>
 

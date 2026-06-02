@@ -10,7 +10,7 @@
  * card frame mirrors the original infographic exports.
  */
 
-import { useState } from 'react';
+import { useState, useSyncExternalStore } from 'react';
 import {
   Bar,
   BarChart,
@@ -28,7 +28,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { fmt, fmtInt } from '@/lib/cost-model/engine';
+import { fmt, fmtInt, LEGS_SAVING_PER_BED, SHRED_FLOOR_PER_BED } from '@/lib/cost-model/engine';
 import {
   BEDS_MAX,
   BEDS_MIN,
@@ -150,8 +150,8 @@ export function IdiotIndexChart() {
   return (
     <ChartFrame
       title="Idiot index: where the cost-down is"
-      subtitle="Index = what we pay now ÷ the raw-material floor. A high bar isn't waste — it's supplier margin we could capture by in-sourcing."
-      source={`Goods cost model v6. Index = paid ÷ raw floor per component. HDPE legs run ${m.idiotKitShred.toFixed(1)}× the shred floor and ${m.idiotKitPolymer.toFixed(1)}× raw recycled polymer — the capital case. Material markup; independent of sell price and volume.`}
+      subtitle="Index = what we pay now ÷ the raw-material floor. A high bar shows supplier margin we could capture by making the part ourselves."
+      source={`Goods cost model v6. Index = paid ÷ raw floor per component. HDPE legs run ${m.idiotKitShred.toFixed(1)}× the shred floor and ${m.idiotKitPolymer.toFixed(1)}× raw recycled polymer. That gap is the capital case. Material markup, independent of sell price and volume.`}
       height={300}
     >
       <ResponsiveContainer width="100%" height="100%">
@@ -204,7 +204,7 @@ export function FullyLoadedChart() {
     <ChartFrame
       title={'Why "$1,780 a bed" is misleading'}
       subtitle="Fully-loaded cost = marginal cost + the fixed block ÷ how many beds we make. Make more beds and it collapses toward the real marginal floor."
-      source={`Goods cost model v6. Fully-loaded = marginal + (${fmt(m.fixedBlock)} fixed block ÷ beds/yr). The bed doesn't get cheaper to make — we just stop dividing a year of fixed cost by a tiny number. Marker = your current ${fmtInt(beds)} beds/yr.`}
+      source={`Goods cost model v6. Fully-loaded = marginal + (${fmt(m.fixedBlock)} fixed block ÷ beds/yr). The bed doesn't get cheaper to make. We just stop dividing a year of fixed cost by a tiny number. Marker = your current ${fmtInt(beds)} beds/yr.`}
     >
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ left: 8, right: 24, top: 16, bottom: 8 }}>
@@ -306,16 +306,16 @@ export function MoneySankey() {
   const fixed = coversFixed ? m.fixedBlock : contribution; // all contribution if below break-even
   const surplus = contribution - fixed; // 0 when the fixed block isn't yet covered
 
-  const nodes: { name: string }[] = [
-    { name: `Revenue · ${fmt(beds * price)}` }, // 0
-    { name: `Cost of goods · ${fmt(cogs)}` }, // 1
-    { name: `Freight · ${fmt(freight)}` }, // 2
-    { name: `Contribution · ${fmt(contribution)}` }, // 3
-    { name: `Plastic shred · ${fmt(plastic)}` }, // 4
-    { name: `Diesel · ${fmt(diesel)}` }, // 5
-    { name: `Process labour · ${fmt(process)}` }, // 6
-    { name: `Steel + canvas + hw · ${fmt(materials)}` }, // 7
-    { name: coversFixed ? `Fixed block · ${fmt(m.fixedBlock)}` : `Toward fixed block · ${fmt(fixed)} of ${fmt(m.fixedBlock)}` }, // 8
+  const nodes: { name: string; amount: string }[] = [
+    { name: 'Revenue', amount: fmt(beds * price) }, // 0
+    { name: 'Cost of goods', amount: fmt(cogs) }, // 1
+    { name: 'Freight', amount: fmt(freight) }, // 2
+    { name: 'Contribution', amount: fmt(contribution) }, // 3
+    { name: 'Plastic', amount: fmt(plastic) }, // 4
+    { name: 'Diesel', amount: fmt(diesel) }, // 5
+    { name: 'Labour', amount: fmt(process) }, // 6
+    { name: 'Steel + canvas', amount: fmt(materials) }, // 7
+    { name: coversFixed ? 'Fixed block' : 'Toward fixed', amount: coversFixed ? fmt(m.fixedBlock) : `${fmt(fixed)} of ${fmt(m.fixedBlock)}` }, // 8
   ];
   const links = [
     { source: 0, target: 1, value: cogs },
@@ -328,7 +328,7 @@ export function MoneySankey() {
     { source: 3, target: 8, value: fixed },
   ];
   if (surplus > 0) {
-    nodes.push({ name: `Operating surplus · ${fmt(surplus)}` }); // 9
+    nodes.push({ name: 'Surplus', amount: fmt(surplus) }); // 9
     links.push({ source: 3, target: 9, value: surplus });
   }
 
@@ -336,7 +336,7 @@ export function MoneySankey() {
     <ChartFrame
       title="Where the money goes"
       subtitle="A year of in-house (factory) production, read as a flow. Band thickness = dollars. Every dollar of revenue is a cost or contribution; contribution first pays the fixed block, the rest is operating surplus."
-      source={`Goods cost model v6. In-house path at ${fmtInt(beds)} beds × ${fmt(price)}. Contribution pays the ${fmt(m.fixedBlock)}/yr fixed block first; what's left is surplus. ${(price - m.marginalFactory) * beds < m.fixedBlock ? 'At these settings contribution does not yet cover the fixed block — no operating surplus at this volume.' : 'Band thickness proportional to dollars.'}`}
+      source={`Goods cost model v6. In-house path at ${fmtInt(beds)} beds × ${fmt(price)}. Contribution pays the ${fmt(m.fixedBlock)}/yr fixed block first; what's left is surplus. ${(price - m.marginalFactory) * beds < m.fixedBlock ? 'At these settings contribution does not yet cover the fixed block, so there is no operating surplus at this volume.' : 'Band thickness proportional to dollars.'}`}
       height={420}
     >
       <ResponsiveContainer width="100%" height="100%">
@@ -344,9 +344,9 @@ export function MoneySankey() {
           data={{ nodes, links }}
           node={<SankeyNode />}
           link={{ stroke: C.olive, strokeOpacity: 0.28 }}
-          nodePadding={26}
+          nodePadding={24}
           nodeWidth={12}
-          margin={{ left: 8, right: 160, top: 12, bottom: 12 }}
+          margin={{ left: 8, right: 92, top: 12, bottom: 12 }}
         >
           <Tooltip content={<MoneyTip />} />
         </Sankey>
@@ -361,25 +361,21 @@ interface SankeyNodeProps {
   width?: number;
   height?: number;
   index?: number;
-  payload?: { name?: string };
+  payload?: { name?: string; amount?: string };
   containerWidth?: number;
 }
 function SankeyNode({ x = 0, y = 0, width = 0, height = 0, index = 0, payload, containerWidth = 0 }: SankeyNodeProps) {
   const isLeft = x < containerWidth / 2;
   const palette = [C.ink, C.clay, C.rose, C.olive, C.clay, C.gold, C.clay, C.teal, C.green, C.green];
   const fill = palette[index] ?? C.ink;
+  const tx = isLeft ? x + width + 6 : x - 6;
+  const anchor = isLeft ? 'start' : 'end';
   return (
     <Layer>
       <Rectangle x={x} y={y} width={width} height={height} fill={fill} fillOpacity={0.9} radius={2} />
-      <text
-        x={isLeft ? x + width + 8 : x - 8}
-        y={y + height / 2}
-        textAnchor={isLeft ? 'start' : 'end'}
-        dominantBaseline="middle"
-        fontSize={11}
-        fill={C.ink}
-      >
-        {payload?.name}
+      <text x={tx} y={y + height / 2} textAnchor={anchor} dominantBaseline="middle">
+        <tspan x={tx} dy="-0.35em" fontSize={11} fontWeight={600} fill={C.ink}>{payload?.name}</tspan>
+        <tspan x={tx} dy="1.15em" fontSize={9.5} fill={C.sub}>{payload?.amount}</tspan>
       </text>
     </Layer>
   );
@@ -402,8 +398,8 @@ export function CostCurveChart() {
   return (
     <ChartFrame
       title="Goods' cost-down path (an experience curve)"
-      subtitle="Marginal cost per bed falls as we mature in production — the same shape as solar panels and EV batteries."
-      source={`Goods cost model v6. Marginal cost = what one more bed costs to make + freight, before the ${fmt(m.fixedBlock)}/yr fixed block. Solid points are real/target paths (Buy-Kit → Factory → Community); the dashed tail is illustrative — actual learning rate pending Defy volume quotes.`}
+      subtitle="Marginal cost per bed falls as we mature in production, the same shape as solar panels and EV batteries."
+      source={`Goods cost model v6. Marginal cost = what one more bed costs to make + freight, before the ${fmt(m.fixedBlock)}/yr fixed block. Solid points are real/target paths (Buy-Kit → Factory → Community); the dashed tail is illustrative, with the actual learning rate pending Defy volume quotes.`}
     >
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ left: 8, right: 24, top: 24, bottom: 16 }}>
@@ -412,7 +408,7 @@ export function CostCurveChart() {
             label={{ value: 'cumulative beds produced → production maturity', position: 'insideBottom', offset: -6, fill: C.sub, fontSize: 11 }} />
           <YAxis stroke={C.sub} fontSize={12} tickFormatter={(v: number) => fmt(v)} width={64} domain={[300, yMax]} />
           <Tooltip content={<MoneyTip />} />
-          <ReferenceLine y={price} stroke={C.clay} strokeDasharray="4 4" label={refLabel(`Sells for ${fmt(price)} — marginal sits below price`, C.clay, 'insideTopRight')} />
+          <ReferenceLine y={price} stroke={C.clay} strokeDasharray="4 4" label={refLabel(`Sells for ${fmt(price)}, marginal sits below`, C.clay, 'insideTopRight')} />
           <Line type="monotone" dataKey="real" name="Marginal cost (real/target)" stroke={C.green} strokeWidth={3} connectNulls={false}
             dot={{ r: 6, fill: C.green }} isAnimationActive={false}>
             <LabelList dataKey="real" position="top" formatter={(v: React.ReactNode) => (v ? fmt(Number(v)) : '')} fill={C.ink} fontSize={12} />
@@ -439,7 +435,7 @@ export function BreakevenChart() {
     <ChartFrame
       title="How many beds to break even"
       subtitle="Each bed's contribution stacks up toward the fixed block. In-house production crosses it fast; buying finished kits barely clears it."
-      source={`Goods cost model v6. Break-even = ${fmt(m.fixedBlock)} ÷ contribution per bed, at the ${fmt(price)} price. The flatter the line, the more beds needed — which is why in-sourcing the plastic (the steeper line) is the whole capital case.`}
+      source={`Goods cost model v6. Break-even = ${fmt(m.fixedBlock)} ÷ contribution per bed, at the ${fmt(price)} price. The flatter the line, the more beds you need. In-sourcing the plastic gives the steeper line, and that is the capital case.`}
       height={380}
     >
       <ResponsiveContainer width="100%" height="100%">
@@ -465,11 +461,99 @@ export function BreakevenChart() {
 }
 
 // =============================================================================
+// WHAT EACH PART REALLY COSTS — plain-language BOM, engine-sourced
+// =============================================================================
+export function CostBreakdown() {
+  const { inputs: i } = useCostModel();
+  const assembly = i.labour_per_day / Math.max(0.5, i.defy_kits_beds_per_day) + i.local_freight_per_bed;
+  const inHouseLegs = i.defy_kit_per_bed - LEGS_SAVING_PER_BED;
+
+  const items = [
+    {
+      name: 'The plastic legs',
+      cost: i.defy_kit_per_bed,
+      tag: 'the one to fix',
+      accent: true,
+      plain: `Bought finished from a city factory. The recycled plastic inside is worth about ${fmt(SHRED_FLOOR_PER_BED)}. The rest is what we pay someone else to shred and press it.`,
+      move: `Press our own legs on Country and they cost about ${fmt(inHouseLegs)}, a saving of ${fmt(LEGS_SAVING_PER_BED)} a bed. This one change is the capital case.`,
+    },
+    { name: 'Australian canvas', cost: i.canvas_per_bed, tag: 'built to last', plain: 'The sleeping surface. Heavy-duty, washable, made for remote conditions. A fair price for something that lasts ten years.' },
+    { name: 'Two steel poles', cost: i.steel_per_bed, tag: 'fair', plain: 'Galvanised, they thread through the canvas sleeves. Close to the raw steel price, so nothing to win here.' },
+    { name: 'Hardware', cost: i.hardware_per_bed, tag: 'fair', plain: 'Caps, screws and bolts. Basically raw cost. Fair.' },
+    { name: 'Putting it together', cost: assembly, tag: 'the work', plain: 'Assembly labour and getting the materials in. On Country, this becomes local, paid work, the kind of job worth keeping.' },
+    { name: 'Freight to community', cost: i.long_haul_freight_per_bed, tag: 'falls with scale', plain: 'Getting a 26kg bed out bush. Ship the plant and the plastic once, instead of finished beds every time, and this drops.' },
+  ];
+
+  return (
+    <figure className="my-10">
+      <div className="rounded-3xl border border-border bg-[#FBF8F1] p-5 shadow-sm md:p-8">
+        <h3 className="text-center text-2xl font-semibold leading-tight md:text-3xl" style={{ ...serif, color: C.ink }}>
+          What each part really costs
+        </h3>
+        <p className="mx-auto mt-2 max-w-2xl text-center text-sm italic md:text-base" style={{ color: C.sub }}>
+          Six lines on a {fmt(750)} bed. Five are fair. One is the opportunity.
+        </p>
+        <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((it) => (
+            <div
+              key={it.name}
+              className="rounded-2xl border p-4"
+              style={{
+                borderColor: it.accent ? C.clay : C.grid,
+                background: it.accent ? 'rgba(168,100,63,0.06)' : '#fff',
+              }}
+            >
+              <div className="flex items-baseline justify-between gap-2">
+                <span className="text-sm font-medium" style={{ color: C.ink }}>{it.name}</span>
+                <span className="font-mono text-lg font-semibold" style={{ color: it.accent ? C.clay : C.ink }}>{fmt(it.cost)}</span>
+              </div>
+              <span
+                className="mt-1 inline-block rounded-full px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide"
+                style={{ background: it.accent ? C.clay : C.grid, color: it.accent ? '#fff' : C.sub }}
+              >
+                {it.tag}
+              </span>
+              <p className="mt-2 text-xs leading-relaxed" style={{ color: C.sub }}>{it.plain}</p>
+              {it.move ? (
+                <p className="mt-2 border-t pt-2 text-xs font-medium leading-relaxed" style={{ borderColor: C.grid, color: C.green }}>
+                  {it.move}
+                </p>
+              ) : null}
+            </div>
+          ))}
+        </div>
+        <p className="mt-5 border-t pt-3 text-[11px] leading-relaxed" style={{ color: C.sub, borderColor: C.grid }}>
+          Goods cost model v6. Bill of materials verified (Defy, DNA Steel, Centre Canvas, Coastal Fasteners invoices); in-house legs, labour and freight modelled. Five of six lines are at or near a fair price. The plastic legs are the exception, and the reason to bring the press home.
+        </p>
+      </div>
+    </figure>
+  );
+}
+
+// SSR-safe media-query read (no effect-setState; lint-clean). Server snapshot = false.
+function useIsMobile(): boolean {
+  return useSyncExternalStore(
+    (onChange) => {
+      const mq = window.matchMedia('(max-width: 767px)');
+      mq.addEventListener('change', onChange);
+      return () => mq.removeEventListener('change', onChange);
+    },
+    () => window.matchMedia('(max-width: 767px)').matches,
+    () => false,
+  );
+}
+
+// =============================================================================
 // FLOATING CONTROL DOCK — drives every chart on the page
 // =============================================================================
 export function CostDock() {
   const { price, beds, wage, setPrice, setBeds, setWage, model: m } = useCostModel();
-  const [open, setOpen] = useState(true);
+  // Default: open on desktop, collapsed on phones so it doesn't cover the charts
+  // while scrolling. A user toggle overrides the default.
+  const isMobile = useIsMobile();
+  const [override, setOverride] = useState<boolean | null>(null);
+  const open = override ?? !isMobile;
+  const setOpen = setOverride;
   const contribution = price - m.marginalFactory;
   const surplus = contribution * beds - m.fixedBlock;
 
@@ -491,7 +575,7 @@ export function CostDock() {
       <div className="flex items-center justify-between gap-3 pb-2">
         <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.22em]" style={{ color: C.sub }}>
           <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full" style={{ background: C.olive }} />
-          Drag — every chart updates live
+          Drag to update every chart live
         </div>
         <button type="button" onClick={() => setOpen(false)} className="text-xs underline" style={{ color: C.sub }}>
           hide
