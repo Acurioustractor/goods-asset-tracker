@@ -3,6 +3,7 @@
 <rect width="1680" height="980" fill="#FBFAF5"/>
 <text x="840.0" y="74" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="50" font-weight="700" fill="#2A241E">Where each AU$750 goes</text>
 <text x="840.0" y="110" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="400" fill="#6F6155" font-style="italic">The same bed, two ways to make it. Owning the plastic processing turns a $65 sliver into a $324 contribution.</text>
+<rect x="60.0" y="128.0" width="186.0" height="27.0" rx="6" fill="#2B2D2A"/><text x="153.0" y="146.5" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="1.5">WHERE EACH $750 GOES</text>
 <line x1="314.0" y1="247.8" x2="626.0" y2="247.8" stroke="#BD6A3C" stroke-width="2.0" stroke-dasharray="7 5"/>
 <rect x="330.0" y="525.0" width="280.0" height="235.0" rx="8" fill="#BD6A3C" stroke="#8B4E2C" stroke-width="1.4"/>
 <text x="344.0" y="640.5195121951219" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#FFFFFF">Recycled-plastic legs</text>

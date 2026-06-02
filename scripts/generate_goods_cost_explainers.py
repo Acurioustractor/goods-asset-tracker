@@ -44,6 +44,14 @@ CLAY   = "#8A5A45"
 TEAL   = "#4C9B97"
 PURPLE = "#7A5C8E"
 
+SLATE  = "#2B2D2A"
+
+def tab(x, y, label, fill=SLATE):
+    w = 14 + len(label) * 8.6
+    out = rrect(x, y, w, 27, 6, fill)
+    out += text(x + w/2, y + 18.5, label, 13, "#FFFFFF", weight="700", spacing="1.5")
+    return out, w
+
 def darken(hex_color, f=0.74):
     h = hex_color.lstrip("#")
     r, g, b = (int(h[i:i+2], 16) for i in (0, 2, 4))
@@ -121,6 +129,7 @@ def chart_where_750():
     S.append(text(W/2, 74, "Where each AU$750 goes", 50, INK, family=SERIF, weight="700"))
     S.append(text(W/2, 110, "The same bed, two ways to make it. Owning the plastic processing turns a $65 sliver into a $324 contribution.",
                   20, INK_MUTE, family=SERIF, italic=True))
+    S.append(tab(60, 128, "WHERE EACH $750 GOES")[0])
 
     ch_y, ch_h = 200, 560
     baseline = ch_y + ch_h
@@ -195,6 +204,7 @@ def chart_fully_loaded():
     S.append(text(W/2, 74, "Why “$1,780 a bed” is misleading", 50, INK, family=SERIF, weight="700"))
     S.append(text(W/2, 110, "Fully-loaded cost is fixed running costs divided by how many beds we make. Make more beds and it collapses toward the real marginal cost.",
                   20, INK_MUTE, family=SERIF, italic=True))
+    S.append(tab(60, 128, "THE VOLUME TRAP")[0])
 
     ch_x, ch_y = 130, 200
     ch_w, ch_h = W-130-60, 540
@@ -254,6 +264,7 @@ def chart_breakeven():
     S.append(text(W/2, 74, "How many beds to break even", 50, INK, family=SERIF, weight="700"))
     S.append(text(W/2, 110, "Each bed’s contribution stacks up toward the $109,500/yr fixed block. In-house production crosses it at ~335 beds; buying kits needs ~1,679.",
                   20, INK_MUTE, family=SERIF, italic=True))
+    S.append(tab(60, 128, "BREAK-EVEN")[0])
 
     ch_x, ch_y = 130, 200
     ch_w, ch_h = W-130-60, 560
