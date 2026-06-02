@@ -21,7 +21,7 @@ const STEP_TAG_QUERIES: Record<number, string[]> = {
 };
 
 // Photo folders shown as chips at the top of the swap modal. Driven by
-// what's actually tagged in Empathy Ledger — see the tag-count audit in
+// what's actually tagged in Empathy Ledger. See the tag-count audit in
 // scripts (community:utopia-homelands × 221, event:alice-build × 121,
 // participant:oonchiumpa-young-people × 121, etc.). Add more entries
 // here when new tag groups appear in EL; the chip row scrolls so a
@@ -163,6 +163,39 @@ const PLANT_GALLERY = [
   { src: '/images/process/factory-panorama.jpg', alt: 'Panorama of the on-country production plant' },
 ];
 
+// Site display face (matches the rest of the marketing pages).
+const displayFont = { fontFamily: 'Georgia, serif' } as const;
+
+// A real, consent-cleared community voice to break up the process.
+// Quotes come from the public display-cleared set in curated-quotes.ts;
+// Mykel's "rocking up every day" is cleared and already live on /cost-story.
+function Voice({
+  quote,
+  name,
+  place,
+  tone = 'light',
+}: {
+  quote: string;
+  name: string;
+  place: string;
+  tone?: 'light' | 'dark';
+}) {
+  const sub = tone === 'dark' ? 'text-background/60' : 'text-muted-foreground';
+  return (
+    <figure className="mx-auto max-w-3xl text-center">
+      <blockquote
+        className="text-2xl font-light italic leading-snug md:text-3xl"
+        style={displayFont}
+      >
+        &ldquo;{quote}&rdquo;
+      </blockquote>
+      <figcaption className={`mt-4 text-sm ${sub}`}>
+        <span className="font-medium">{name}</span> &middot; {place}
+      </figcaption>
+    </figure>
+  );
+}
+
 export default async function ProcessPage() {
   // Pull live Alice Springs May 2026 build photos from Empathy Ledger.
   // First photo becomes the step-5 hero behind the video controls; the
@@ -173,7 +206,7 @@ export default async function ProcessPage() {
     4,
   );
 
-  // Admin detection — same pattern as /field-notes/[slug]: any signed-in
+  // Admin detection, same pattern as /field-notes/[slug]: any signed-in
   // user (or anyone on local dev) gets the in-place swap widget overlaid
   // on every media slot. Public visitors see the same photos but no chrome.
   const supabase = await createClient();
@@ -188,7 +221,7 @@ export default async function ProcessPage() {
   const overrides = getStoryOverrides(OVERRIDE_SLUG);
   const steps: Step[] = STEPS.map((s, idx) => {
     let next = s;
-    // 1. EL auto-fill for step 5 (Alice build) — happens first so manual
+    // 1. EL auto-fill for step 5 (Alice build) happens first, so manual
     //    swaps still win over the dynamic fetch below.
     if (s.step === 5 && elBuildPhotos.length > 0) {
       const [hero, ...rest] = elBuildPhotos;
@@ -275,6 +308,41 @@ export default async function ProcessPage() {
             <div>
               <div className="text-3xl font-bold text-accent-foreground">10+ yrs</div>
               <div className="text-sm text-accent-foreground/80 mt-1">Design life</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+         THE LOOP: plastic-journey brand graphic
+         ============================================================ */}
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-5xl">
+            <div className="mx-auto max-w-2xl text-center mb-10">
+              <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">
+                The loop
+              </p>
+              <h2
+                className="text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight"
+                style={displayFont}
+              >
+                Plastic doesn&rsquo;t leave. It changes shape.
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Twenty kilos of plastic that would have gone to landfill becomes the legs
+                of a bed that lasts ten years. Off-cuts go back in the shredder and come out
+                as the next sheet. Same plastic, two or three more presses out of the same batch.
+              </p>
+            </div>
+            <div className="relative aspect-[3/2] w-full overflow-hidden rounded-3xl bg-[#FBFAF5] shadow-sm">
+              <Image
+                src="/goods-plastic-journey.jpg"
+                alt="The recycled-plastic loop: collected waste plastic is shredded into chip, heat-pressed into sheet, cut into Stretch Bed legs, and off-cuts return to the shredder"
+                fill
+                sizes="(max-width: 1024px) 100vw, 1000px"
+                className="object-contain"
+              />
             </div>
           </div>
         </div>
@@ -388,6 +456,19 @@ export default async function ProcessPage() {
       </section>
 
       {/* ============================================================
+         VOICE: the work is the point (Mykel, Alice Springs build)
+         ============================================================ */}
+      <section className="bg-accent py-16 md:py-20">
+        <div className="container mx-auto px-4">
+          <Voice
+            quote="I'll be rocking up every day to make them."
+            name="Mykel"
+            place="who helped build the beds in Alice Springs"
+          />
+        </div>
+      </section>
+
+      {/* ============================================================
          ON-COUNTRY PRODUCTION PLANT
          ============================================================ */}
       <section className="bg-muted/30 py-16 md:py-20">
@@ -407,6 +488,20 @@ export default async function ProcessPage() {
                 their own yard.
               </p>
             </div>
+
+            {/* The ownership path: buy-kit, on-country plant, community-owned. */}
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl bg-[#FBFAF5] shadow-sm mb-3">
+              <Image
+                src="/goods-community-ownership-v2.png"
+                alt="The path to community ownership: a buy-the-kit start, an on-country containerised plant, then a community-owned production line"
+                fill
+                sizes="(max-width: 1024px) 100vw, 1000px"
+                className="object-contain"
+              />
+            </div>
+            <p className="text-sm text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
+              The capital buys the path, not just the press. The plant can transfer to community ownership and run from their own yard.
+            </p>
 
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl bg-muted shadow-sm mb-4">
               <Image
@@ -439,7 +534,7 @@ export default async function ProcessPage() {
       </section>
 
       {/* ============================================================
-         MADE BY COMMUNITY — closing band with full-bleed video
+         MADE BY COMMUNITY closing band with full-bleed video
          ============================================================ */}
       <section className="relative isolate overflow-hidden bg-foreground text-background">
         <video
