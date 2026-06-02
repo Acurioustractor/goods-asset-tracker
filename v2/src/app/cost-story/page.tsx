@@ -68,7 +68,14 @@ export default function CostStoryPage() {
     <>
       {/* ── HERO ── */}
       <section className="relative overflow-hidden bg-foreground py-28 text-background md:py-40">
-        <div className="container mx-auto px-4">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/goods-hero.jpg"
+          alt="A Stretch Bed on red desert earth at golden hour"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/70 to-foreground/40" />
+        <div className="container relative mx-auto px-4">
           <div className="mx-auto max-w-4xl">
             <p className="mb-5 text-sm uppercase tracking-[0.3em] text-background/50">
               Cost model v6 &middot; 2026
@@ -116,9 +123,19 @@ export default function CostStoryPage() {
           plastic. That&rsquo;s not a detail; it&rsquo;s the whole story.
         </p>
         <Diagram
-          src="/goods-anatomy-bed.png"
-          alt="Exploded diagram of a Stretch Bed showing recycled plastic legs, galvanised steel poles, canvas and hardware with the cost of each part"
-          caption="Recycled plastic legs, steel poles, canvas, hardware — direct cost $534.79 on the buy-kit path."
+          src="/goods-bed-anatomy.jpg"
+          alt="Anatomy of a $750 bed: recycled-HDPE X-trestle legs, galvanised steel poles, olive canvas and hardware, with the cost of each part"
+          caption="Recycled-plastic X-trestle legs, steel poles, canvas, hardware — direct cost $534.79 on the buy-kit path."
+        />
+        <p className="mt-4 text-lg leading-relaxed text-muted-foreground md:text-xl">
+          And it&rsquo;s an X-trestle <em>tension</em> design: the poles thread through the canvas
+          sleeves and the top holes of the X-legs, so the canvas itself braces the frame. No tools,
+          about five minutes.
+        </p>
+        <Diagram
+          src="/goods-bed-assembly.jpg"
+          alt="Five-step assembly: lay out the parts, stand the X-legs, thread the poles, tension it, done"
+          caption="Three parts, five steps, no tools — tension turns the canvas into the structure."
         />
       </Beat>
 
@@ -151,9 +168,9 @@ export default function CostStoryPage() {
           Plastic kit 8.6&times; the shred floor. Press it ourselves and the index collapses.
         </p>
         <Diagram
-          src="/goods-sankey-plastic.png"
-          alt="Sankey flow of plastic from collected community waste through shred and press into bed legs"
-          caption="From community waste to bed leg: every kilogram pressed on-Country is a kilogram we stop buying."
+          src="/goods-plastic-journey.jpg"
+          alt="The circular life of the plastic: collected waste, shredded, pressed into sheets, cut into X-trestle legs, assembled into a bed, into community, and back"
+          caption="The circular life of the plastic — 20kg diverted from landfill per bed, and the loop closes on-Country."
         />
       </Beat>
 
@@ -249,6 +266,23 @@ export default function CostStoryPage() {
           src="/goods-breakeven.png"
           alt="Break-even chart comparing 1,679 beds for the buy-kit path against 338 in-house and 333 community beds per year at $750"
           caption="Break-even beds per year at $750: buy-kit 1,679, in-house 338, community 333."
+        />
+      </Beat>
+
+      {/* ── BEAT 6: The path to community ownership ── */}
+      <Beat kicker="The mission" heading="The path to community ownership" tone="dark">
+        <p className="text-lg leading-relaxed text-background/70 md:text-xl">
+          The cost-down isn&rsquo;t the point &mdash; it&rsquo;s the means. Today we buy finished legs
+          from a city supplier. Next, an On-Country plant presses them locally. Then the plant, the
+          jobs and the margin move into community ownership.
+        </p>
+        <p className="mt-4 text-xl leading-relaxed text-background md:text-2xl" style={displayFont}>
+          Our goal is to become unnecessary.
+        </p>
+        <Diagram
+          src="/goods-community-ownership.jpg"
+          alt="Three-stage path to community ownership: buy-kit today, an on-Country container plant, then community-owned production"
+          caption="Buy-kit → On-Country plant → community-owned. The capital buys the path, not just the press."
         />
       </Beat>
 
