@@ -32,16 +32,17 @@ export default async function LoiTrackerPage() {
     GOODS_PIPELINES.map((p) => p.id),
   );
 
+  // Suppliers belong in the cost-model supplier list, NOT a funding pipeline.
+  // Defensively exclude any opp whose name matches a known supplier so a misfiled
+  // one (e.g. "Centre Canvas" sitting in Buyer) never pollutes the ladder/rollup.
+  const SUPPLIER_NAMES = new Set(supplierQuotes.map((q) => q.supplier.trim().toLowerCase()));
+  const isSupplier = (o: GoodsOpportunity) => SUPPLIER_NAMES.has(o.name.trim().toLowerCase());
+
   // Bucket live opportunities onto the LOI ladder. Drop lost/abandoned and any
   // stage that isn't mapped to a rung (Lapsed, Declined/Parked, Dormant).
   const ladderable = opportunities.filter(
     (o) => o.status !== 'lost' && o.status !== 'abandoned' && STAGE_TO_RUNG[o.stageId],
   );
-  // Suppliers belong in the cost-model supplier list, NOT a funding pipeline.
-  // Defensively exclude any opp whose name matches a known supplier so a misfiled
-  // one (e.g. "Centre Canvas" sitting in Buyer) never pollutes the LOI ladder.
-  const SUPPLIER_NAMES = new Set(supplierQuotes.map((q) => q.supplier.trim().toLowerCase()));
-  const isSupplier = (o: GoodsOpportunity) => SUPPLIER_NAMES.has(o.name.trim().toLowerCase());
   const active = ladderable.filter((o) => !isSupplier(o));
   const misfiledSuppliers = ladderable.filter(isSupplier);
   const byRung: Record<LoiRung, GoodsOpportunity[]> = {
@@ -53,21 +54,50 @@ export default async function LoiTrackerPage() {
   for (const o of active) byRung[STAGE_TO_RUNG[o.stageId]].push(o);
 
   const rungTotal = (rung: LoiRung) => byRung[rung].reduce((s, o) => s + o.monetaryValue, 0);
-  // "Committed+" = signed + contract + cash. This is GHL pipeline value, NOT
-  // confirmed/eligible capital — the match figure must be verified in Xero.
-  const committedPlus = (['signed', 'contract', 'cash'] as LoiRung[]).reduce(
-    (s, r) => s + rungTotal(r),
-    0,
+
+  // ── Reconciled match view (the money-alignment custom fields, backfilled
+  // 2026-06-01) ──────────────────────────────────────────────────────────────
+  // This is the ACCURATE rollup: it reads Funding type / Match-eligible /
+  // Capital status straight off each opportunity rather than inferring intent
+  // from the pipeline stage. Secured prefers the Xero-verified Actual-paid
+  // figure and falls back to the ask (monetaryValue) until Layer B syncs it.
+  const classifiable = opportunities.filter(
+    (o) => o.status !== 'lost' && o.status !== 'abandoned' && !isSupplier(o),
   );
-  const philanthropyCommitted = (['signed', 'contract', 'cash'] as LoiRung[]).reduce(
-    (s, r) =>
-      s +
-      byRung[r]
-        .filter((o) => PIPELINE_BY_ID[o.pipelineId]?.stream === 'philanthropy')
-        .reduce((a, o) => a + o.monetaryValue, 0),
-    0,
+  const isPhilOrGrant = (o: GoodsOpportunity) =>
+    o.fundingType === 'Grant' || o.fundingType === 'Philanthropic';
+  const securedAmt = (o: GoodsOpportunity) => o.actualPaid ?? o.monetaryValue;
+
+  // Secured = paid + match-eligible + philanthropic/grant. The headline match number.
+  const securedOpps = classifiable.filter(
+    (o) => o.matchEligible === 'Yes' && o.capitalStatus === 'Paid' && isPhilOrGrant(o),
   );
-  const signedCount = byRung.signed.length;
+  const secured = securedOpps.reduce((s, o) => s + securedAmt(o), 0);
+  // The QBE gate: a firm, document-backed commitment. Expected $0 until a real LOI lands.
+  const committedOpps = classifiable.filter(
+    (o) => o.capitalStatus === 'Signed LOI' || o.capitalStatus === 'Contracted',
+  );
+  const committed = committedOpps.reduce((s, o) => s + securedAmt(o), 0);
+  // Invoiced receivables that would count once paid (e.g. Rotary INV-0222).
+  const invoicedOpps = classifiable.filter(
+    (o) => o.capitalStatus === 'Invoiced' && o.matchEligible === 'Yes',
+  );
+  const invoiced = invoicedOpps.reduce((s, o) => s + o.monetaryValue, 0);
+  // Match-eligible asks in flight (e.g. Minderoo, REAL, the Tier-1 foundations).
+  const askedOpps = classifiable.filter(
+    (o) => o.capitalStatus === 'Ask made' && o.matchEligible === 'Yes',
+  );
+  const asked = askedOpps.reduce((s, o) => s + o.monetaryValue, 0);
+
+  // Secured broken down by funding type, for the funder-mix line.
+  const securedByType = securedOpps.reduce<Record<string, number>>((acc, o) => {
+    const key = o.fundingType ?? 'Other';
+    acc[key] = (acc[key] ?? 0) + securedAmt(o);
+    return acc;
+  }, {});
+  const classifiedCount = classifiable.filter((o) => o.capitalStatus).length;
+  const securedSyncedCount = securedOpps.filter((o) => o.actualPaid != null).length;
+  const committedCount = committedOpps.length;
 
   return (
     <div className="max-w-6xl space-y-8">
@@ -84,36 +114,69 @@ export default async function LoiTrackerPage() {
         </p>
       </header>
 
-      {/* Match banner — contingent + cap TBC */}
-      <div className="rounded-lg border border-amber-200 bg-amber-50 p-4">
-        <p className="text-sm font-semibold text-amber-900">QBE match — contingent, cap unconfirmed</p>
-        <p className="mt-1 text-sm text-amber-800">{MATCH_TARGET.note}</p>
-        <div className="mt-3 flex flex-wrap gap-6 text-sm">
+      {/* Reconciled match view — reads the GHL money-alignment fields (backfilled 2026-06-01) */}
+      <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-4">
+        <div className="flex items-baseline justify-between">
+          <p className="text-sm font-semibold text-emerald-900">
+            QBE match — reconciled from GHL classification
+          </p>
+          <span className="text-xs text-emerald-700">{classifiedCount} opps classified · live</span>
+        </div>
+        <p className="mt-1 text-sm text-emerald-800">{MATCH_TARGET.note}</p>
+        <div className="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-4">
           <div>
-            <span className="block text-xs uppercase tracking-wide text-amber-700">
-              Committed+ in GHL (all streams)
+            <span className="block text-xs uppercase tracking-wide text-emerald-700">
+              Secured (paid · match-eligible)
             </span>
-            <span className="text-lg font-semibold text-amber-900">{fmtMoney(committedPlus)}</span>
+            <span className="text-lg font-semibold text-emerald-900">{fmtMoney(secured)}</span>
+            <span className="block text-[11px] text-emerald-600">
+              {securedOpps.length} grants/gifts · {securedSyncedCount} Xero-synced
+            </span>
           </div>
           <div>
-            <span className="block text-xs uppercase tracking-wide text-amber-700">
-              Of which philanthropy
+            <span className="block text-xs uppercase tracking-wide text-emerald-700">
+              Committed (signed LOI / contracted)
             </span>
-            <span className="text-lg font-semibold text-amber-900">
-              {fmtMoney(philanthropyCommitted)}
+            <span className="text-lg font-semibold text-emerald-900">{fmtMoney(committed)}</span>
+            <span className="block text-[11px] text-emerald-600">
+              {committedCount === 0 ? 'the open QBE gate' : `${committedCount} deal(s)`}
             </span>
           </div>
           <div>
-            <span className="block text-xs uppercase tracking-wide text-amber-700">
-              Signed / committed deals
+            <span className="block text-xs uppercase tracking-wide text-emerald-700">
+              Invoiced (match-eligible)
             </span>
-            <span className="text-lg font-semibold text-amber-900">{signedCount}</span>
+            <span className="text-lg font-semibold text-emerald-900">{fmtMoney(invoiced)}</span>
+            <span className="block text-[11px] text-emerald-600">
+              {invoicedOpps.length} receivable{invoicedOpps.length === 1 ? '' : 's'}
+            </span>
+          </div>
+          <div>
+            <span className="block text-xs uppercase tracking-wide text-emerald-700">
+              Match-eligible asks in flight
+            </span>
+            <span className="text-lg font-semibold text-emerald-900">{fmtMoney(asked)}</span>
+            <span className="block text-[11px] text-emerald-600">
+              {askedOpps.length} ask{askedOpps.length === 1 ? '' : 's'}
+            </span>
           </div>
         </div>
-        <p className="mt-2 text-xs text-amber-700">
-          GHL pipeline value — <strong>not</strong> committed capital or eligible match evidence.
-          Confirm any cash figure in Xero (the money source of truth) and a signed LOI document before
-          counting it toward the match.
+        {Object.keys(securedByType).length > 0 && (
+          <p className="mt-3 text-xs text-emerald-700">
+            Secured mix:{' '}
+            {Object.entries(securedByType)
+              .sort((a, b) => b[1] - a[1])
+              .map(([type, amt]) => `${type} ${fmtMoney(amt)}`)
+              .join(' · ')}
+          </p>
+        )}
+        <p className="mt-2 text-xs text-emerald-700">
+          Reads Funding type / Match-eligible / Capital status straight off each opportunity.{' '}
+          <strong>Secured</strong> prefers the Xero-verified Actual-paid figure and falls back to the
+          ask until the Layer-B Xero sync runs ({securedSyncedCount}/{securedOpps.length} synced), so a
+          few rows (e.g. TFN, Dusseldorp) still show the ask, not the cash.{' '}
+          <strong>Committed = the QBE gate</strong>: it stays at {fmtMoney(committed)} until a
+          document-backed LOI lands.
         </p>
       </div>
 

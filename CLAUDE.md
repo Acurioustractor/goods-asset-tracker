@@ -50,8 +50,8 @@ For deep ACT ecosystem knowledge, cross-reference the ACT Tractorpedia at
 
 ### 1. The Stretch Bed (FLAGSHIP — for sale)
 - **What it is:** A flat-packable, washable bed
-- **Materials:** Recycled HDPE plastic panels (legs), 2x galvanised steel poles (26.9mm OD × 2.6mm wall), heavy-duty Australian canvas (sleeping surface)
-- **How it works:** Two steel poles thread through canvas sleeves. Recycled plastic legs click onto the poles. Done.
+- **Materials:** Recycled HDPE plastic X-trestle legs (two crossed-plank "X" assemblies), 2x galvanised steel poles (26.9mm OD × 2.6mm wall), heavy-duty Australian canvas (sleeping surface)
+- **How it works:** **X-trestle tension design.** The two steel poles thread through the canvas long-edge sleeves AND the top holes of the two recycled-HDPE X-legs. Tensioning the assembly pulls the poles deep into the leg holes; the canvas is *structural* and braces the frame (it won't stand without it). No tools, ~5 mins. (NOT clip-on legs — that was an earlier description.)
 - **Specs:** 26kg, 200kg capacity, 188×92×25cm, assembles in ~5 mins, no tools, 10+ year design lifespan, 5-year warranty
 - **Plastic:** 20kg of HDPE diverted per bed
 - **Manufacturing:** On-country plant — collect plastic, shred, melt, press into bed components. This plant can move to community ownership.
@@ -147,6 +147,7 @@ cd v2 && npm run lint     # ESLint
 - Do NOT use `weave-bed` slugs or `weave_bed` product types — the Weave Bed is discontinued. The canonical Stretch Bed slug is `stretch-bed`.
 - Do NOT hardcode product specs — import from `v2/src/lib/data/products.ts` (the single source of truth)
 - Do NOT describe Stretch Bed as "woven cord" or "hardwood frame" — it's recycled HDPE plastic + galvanised steel poles + canvas
+- Do NOT describe the legs as "clip-on" or "click onto the poles" — the legs are two crossed-plank **X-trestles** and the bed is an **X-trestle tension design** (poles thread through the leg holes; the canvas is structural). See Products §1.
 - Do NOT hardcode Supabase URLs — use env vars via `createClient()`
 - Do NOT add `use client` to pages unless necessary — prefer Server Components
 - Do NOT put washing machines or basket beds as "for sale" — only the Stretch Bed is purchasable

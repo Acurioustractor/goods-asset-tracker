@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 980" width="1680" height="980" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
+<defs><filter id="sh" x="-8%" y="-8%" width="116%" height="124%"><feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#5A4A38" flood-opacity="0.10"/></filter><marker id="arrSAGE" markerWidth="9" markerHeight="9" refX="6.2" refY="3.2" orient="auto"><path d="M0,0 L7,3.2 L0,6.4 Z" fill="#52734C"/></marker><marker id="arrTEAL" markerWidth="13" markerHeight="13" refX="7.5" refY="4.4" orient="auto"><path d="M0,0 L9.5,4.4 L0,8.8 Z" fill="#38726F"/></marker></defs>
+<rect width="1680" height="980" fill="#FBFAF5"/>
+<text x="840.0" y="74" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="50" font-weight="700" fill="#2A241E">The circular life of 20 kg of plastic</text>
+<text x="840.0" y="110" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="400" fill="#6F6155" font-style="italic">Community waste becomes a bed, the bed stays in community, and more waste re-enters the loop — at 500 beds a year that is 10 tonnes of HDPE kept out of landfill.</text>
+<rect x="60.0" y="128.0" width="151.6" height="27.0" rx="6" fill="#2B2D2A"/><text x="135.8" y="146.5" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="1.5">THE PLASTIC LOOP</text>
+<rect x="70.0" y="246.0" width="263.2" height="168.0" rx="16" fill="#6F9C6823" stroke="#52734C" stroke-width="1.8" filter="url(#sh)"/>
+<circle cx="96.0" cy="272.0" r="15" fill="#52734C" stroke="#FBFAF5" stroke-width="2"/>
+<text x="96.0" y="277.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">1</text>
+<text x="201.6" y="310.0" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#2A241E">Community</text><text x="201.6" y="337.0" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#2A241E">waste plastic</text>
+<text x="201.6" y="342.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#6F6155" font-style="italic">soft-drink crates, drums,</text><text x="201.6" y="359.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#6F6155" font-style="italic">offcuts</text>
+<rect x="115.6" y="372.0" width="172.0" height="30.0" rx="15" fill="#52734C"/>
+<text x="201.6" y="393.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#FFFFFF">10,000 kg / yr</text>
+<rect x="389.2" y="246.0" width="263.2" height="168.0" rx="16" fill="#4C9B9723" stroke="#38726F" stroke-width="1.8" filter="url(#sh)"/>
+<circle cx="415.2" cy="272.0" r="15" fill="#38726F" stroke="#FBFAF5" stroke-width="2"/>
+<text x="415.2" y="277.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">2</text>
+<text x="520.8" y="320.0" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#2A241E">Shred</text>
+<text x="520.8" y="350.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#6F6155" font-style="italic">washed + granulated on</text><text x="520.8" y="367.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#6F6155" font-style="italic">country</text>
+<rect x="434.8" y="372.0" width="172.0" height="30.0" rx="15" fill="#38726F"/>
+<text x="520.8" y="393.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#FFFFFF">10 tonnes feedstock</text>
+<rect x="708.4" y="246.0" width="263.2" height="168.0" rx="16" fill="#4C9B9723" stroke="#38726F" stroke-width="1.8" filter="url(#sh)"/>
+<circle cx="734.4" cy="272.0" r="15" fill="#38726F" stroke="#FBFAF5" stroke-width="2"/>
+<text x="734.4" y="277.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">3</text>
+<text x="840.0" y="320.0" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#2A241E">Hot-press + CNC</text>
+<text x="840.0" y="350.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#6F6155" font-style="italic">pressed into</text><text x="840.0" y="367.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#6F6155" font-style="italic">recycled-plastic legs</text>
+<rect x="754.0" y="372.0" width="172.0" height="30.0" rx="15" fill="#38726F"/>
+<text x="840.0" y="393.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#FFFFFF">in-house press</text>
+<rect x="1027.6" y="246.0" width="263.2" height="168.0" rx="16" fill="#C2A55E23" stroke="#8F7A45" stroke-width="1.8" filter="url(#sh)"/>
+<circle cx="1053.6" cy="272.0" r="15" fill="#8F7A45" stroke="#FBFAF5" stroke-width="2"/>
+<text x="1053.6" y="277.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">4</text>
+<text x="1159.1999999999998" y="320.0" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#2A241E">Assemble</text>
+<text x="1159.1999999999998" y="350.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#6F6155" font-style="italic">legs + steel poles +</text><text x="1159.1999999999998" y="367.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#6F6155" font-style="italic">canvas</text>
+<rect x="1073.2" y="372.0" width="172.0" height="30.0" rx="15" fill="#8F7A45"/>
+<text x="1159.1999999999998" y="393.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#FFFFFF">500 Stretch Beds</text>
+<rect x="1346.8" y="246.0" width="263.2" height="168.0" rx="16" fill="#BD6A3C23" stroke="#8B4E2C" stroke-width="1.8" filter="url(#sh)"/>
+<circle cx="1372.8" cy="272.0" r="15" fill="#8B4E2C" stroke="#FBFAF5" stroke-width="2"/>
+<text x="1372.8" y="277.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">5</text>
+<text x="1478.3999999999999" y="310.0" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#2A241E">Delivered into</text><text x="1478.3999999999999" y="337.0" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#2A241E">community</text>
+<text x="1478.3999999999999" y="342.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#6F6155" font-style="italic">washable, flat-pack, 200</text><text x="1478.3999999999999" y="359.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#6F6155" font-style="italic">kg rated</text>
+<rect x="1392.4" y="372.0" width="172.0" height="30.0" rx="15" fill="#8B4E2C"/>
+<text x="1478.3999999999999" y="393.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#FFFFFF">20 kg HDPE / bed</text>
+<path d="M333.2,315.0 L371.2,315.0 L371.2,345.0 L333.2,345.0 Z" fill="#6F9C684C" />
+<line x1="333.2" y1="330.0" x2="385.2" y2="330.0" stroke="#52734C" stroke-width="3.4" marker-end="url(#arrSAGE)"/>
+<path d="M652.4,315.0 L690.4,315.0 L690.4,345.0 L652.4,345.0 Z" fill="#6F9C684C" />
+<line x1="652.4" y1="330.0" x2="704.4" y2="330.0" stroke="#52734C" stroke-width="3.4" marker-end="url(#arrSAGE)"/>
+<path d="M971.6,315.0 L1009.6,315.0 L1009.6,345.0 L971.6,345.0 Z" fill="#6F9C684C" />
+<line x1="971.6" y1="330.0" x2="1023.6" y2="330.0" stroke="#52734C" stroke-width="3.4" marker-end="url(#arrSAGE)"/>
+<path d="M1290.8,315.0 L1328.8,315.0 L1328.8,345.0 L1290.8,345.0 Z" fill="#C2A55E4C" />
+<line x1="1290.8" y1="330.0" x2="1342.8" y2="330.0" stroke="#8F7A45" stroke-width="3.4" marker-end="url(#arrSAGE)"/>
+<path d="M1478.4,414.0 C1478.4,730.0 201.6,730.0 201.6,422.0" fill="none" stroke="#38726F" stroke-width="4.6" stroke-linecap="round" marker-end="url(#arrTEAL)"/>
+<path d="M1478.4,414.0 C1478.4,730.0 201.6,730.0 201.6,422.0" fill="none" stroke="#4C9B9738" stroke-width="16" stroke-linecap="round"/>
+<path d="M1478.4,414.0 C1478.4,730.0 201.6,730.0 201.6,422.0" fill="none" stroke="#38726F" stroke-width="4.6" stroke-linecap="round" marker-end="url(#arrTEAL)"/>
+<rect x="590.0" y="684.0" width="500.0" height="58.0" rx="16" fill="#FBFAF5" stroke="#38726F" stroke-width="1.8" filter="url(#sh)"/>
+<text x="839.9999999999999" y="708" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="18" font-weight="700" fill="#38726F">The loop closes</text>
+<text x="839.9999999999999" y="730" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#6F6155" font-style="italic">beds stay in community · the plant can move to community ownership</text>
+<rect x="50.0" y="770.0" width="500.0" height="116.0" rx="16" fill="#FFFFFF" stroke="#C9BCA8" stroke-width="1.2" filter="url(#sh)"/>
+<rect x="50.0" y="770.0" width="8.0" height="116.0" rx="4" fill="#6F9C68"/>
+<text x="80.0" y="826" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="700" fill="#52734C">20 kg</text>
+<text x="218.0" y="820" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="400" fill="#2A241E">of HDPE diverted from</text><text x="218.0" y="839" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="400" fill="#2A241E">landfill, every bed</text>
+<rect x="590.0" y="770.0" width="500.0" height="116.0" rx="16" fill="#FFFFFF" stroke="#C9BCA8" stroke-width="1.2" filter="url(#sh)"/>
+<rect x="590.0" y="770.0" width="8.0" height="116.0" rx="4" fill="#4C9B97"/>
+<text x="620.0" y="826" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="700" fill="#38726F">10 tonnes</text>
+<text x="758.0" y="820" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="400" fill="#2A241E">kept out of landfill each year</text><text x="758.0" y="839" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="400" fill="#2A241E">at 500 beds</text>
+<rect x="1130.0" y="770.0" width="500.0" height="116.0" rx="16" fill="#FFFFFF" stroke="#C9BCA8" stroke-width="1.2" filter="url(#sh)"/>
+<rect x="1130.0" y="770.0" width="8.0" height="116.0" rx="4" fill="#BD6A3C"/>
+<text x="1160.0" y="826" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="700" fill="#8B4E2C">8.6×</text>
+<text x="1298.0" y="810" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="400" fill="#2A241E">idiot index — $344 finished</text><text x="1298.0" y="829" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="400" fill="#2A241E">leg kit vs ~$40 raw shred: the</text><text x="1298.0" y="848" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="400" fill="#2A241E">legs are the whole capital</text><text x="1298.0" y="867" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="400" fill="#2A241E">case</text>
+<line x1="60.0" y1="924.0" x2="1620.0" y2="924.0" stroke="#C9BCA8" stroke-width="1"/>
+<text x="60" y="944" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="11.5" font-weight="400" fill="#6F6155" font-style="italic">Source: Goods cost model v6 (2026-06). 20 kg recycled HDPE per bed and $750 price verified; per-bed leg economics, in-house press throughput and 500-bed annual volume are modelled targets, not commitments.</text>
+</svg>

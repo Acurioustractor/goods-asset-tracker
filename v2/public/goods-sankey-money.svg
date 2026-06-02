@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 980" width="1680" height="980" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
+<defs><filter id="sh" x="-8%" y="-8%" width="116%" height="124%"><feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#5A4A38" flood-opacity="0.10"/></filter></defs>
+<rect width="1680" height="980" fill="#FBFAF5"/>
+<text x="840.0" y="70" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="50" font-weight="700" fill="#2A241E">Where the money goes</text>
+<text x="840.0" y="106" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="400" fill="#6F6155" font-style="italic">500 beds a year, in-house (factory) production — an income statement read as a flow. Band thickness = dollars.</text>
+<rect x="60.0" y="128.0" width="151.6" height="27.0" rx="6" fill="#2B2D2A"/><text x="135.8" y="146.5" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="1.5">FOLLOW THE MONEY</text>
+<rect x="220.0" y="168.0" width="30.0" height="644.0" rx="5" fill="#2A241E" stroke="#191512" stroke-width="1" filter="url(#sh)"/>
+<text x="204.0" y="478.0" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="700" fill="#2A241E">Revenue</text>
+<text x="204.0" y="506.0" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" font-weight="400" fill="#6F6155" font-style="italic">500 beds x $750</text>
+<text x="204.0" y="532.0" text-anchor="end" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#191512">$375,000</text>
+<path d="M 250.00 168.00 C 505.00 168.00 505.00 168.00 760.00 168.00 L 760.00 404.77 C 505.00 404.77 505.00 404.77 250.00 404.77 Z" fill="#8A5A45" fill-opacity="0.82" stroke="#664233" stroke-width="1" stroke-opacity="0.55"/>
+<path d="M 250.00 404.77 C 505.00 404.77 505.00 430.77 760.00 430.77 L 760.00 559.57 C 505.00 559.57 505.00 533.57 250.00 533.57 Z" fill="#4C9B97" fill-opacity="0.82" stroke="#38726F" stroke-width="1" stroke-opacity="0.55"/>
+<path d="M 250.00 533.57 C 505.00 533.57 505.00 585.57 760.00 585.57 L 760.00 864.00 C 505.00 864.00 505.00 812.00 250.00 812.00 Z" fill="#6F9C68" fill-opacity="0.82" stroke="#52734C" stroke-width="1" stroke-opacity="0.55"/>
+<rect x="760.0" y="168.0" width="30.0" height="236.8" rx="5" fill="#8A5A45" stroke="#664233" stroke-width="1" filter="url(#sh)"/>
+<text x="804.0" y="280.3843733333333" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="21" font-weight="700" fill="#664233">Cost of goods sold</text>
+<text x="804.0" y="304.3843733333333" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#2A241E">$137,870</text>
+<rect x="760.0" y="430.8" width="30.0" height="128.8" rx="5" fill="#4C9B97" stroke="#38726F" stroke-width="1" filter="url(#sh)"/>
+<text x="804.0" y="489.1687466666666" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="21" font-weight="700" fill="#38726F">Freight to community</text>
+<text x="804.0" y="513.1687466666666" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#2A241E">$75,000</text>
+<rect x="760.0" y="585.6" width="30.0" height="278.4" rx="5" fill="#6F9C68" stroke="#52734C" stroke-width="1" filter="url(#sh)"/>
+<text x="804.0" y="718.7843733333332" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="21" font-weight="700" fill="#52734C">Contribution</text>
+<text x="804.0" y="742.7843733333332" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#2A241E">$162,130</text>
+<path d="M 790.00 168.00 C 1045.00 168.00 1045.00 168.00 1300.00 168.00 L 1300.00 215.23 C 1045.00 215.23 1045.00 215.23 790.00 215.23 Z" fill="#BD6A3C" fill-opacity="0.82" stroke="#8B4E2C" stroke-width="1" stroke-opacity="0.55"/>
+<path d="M 790.00 215.23 C 1045.00 215.23 1045.00 241.23 1300.00 241.23 L 1300.00 254.11 C 1045.00 254.11 1045.00 228.11 790.00 228.11 Z" fill="#C2A55E" fill-opacity="0.82" stroke="#8F7A45" stroke-width="1" stroke-opacity="0.55"/>
+<path d="M 790.00 228.11 C 1045.00 228.11 1045.00 280.11 1300.00 280.11 L 1300.00 348.80 C 1045.00 348.80 1045.00 296.80 790.00 296.80 Z" fill="#8A5A45" fill-opacity="0.82" stroke="#664233" stroke-width="1" stroke-opacity="0.55"/>
+<path d="M 790.00 296.80 C 1045.00 296.80 1045.00 374.80 1300.00 374.80 L 1300.00 482.77 C 1045.00 482.77 1045.00 404.77 790.00 404.77 Z" fill="#4C9B97" fill-opacity="0.82" stroke="#38726F" stroke-width="1" stroke-opacity="0.55"/>
+<path d="M 790.00 585.57 C 1045.00 585.57 1045.00 585.57 1300.00 585.57 L 1300.00 773.62 C 1045.00 773.62 1045.00 773.62 790.00 773.62 Z" fill="#5B7F55" fill-opacity="0.82" stroke="#435D3E" stroke-width="1" stroke-opacity="0.55"/>
+<path d="M 790.00 773.62 C 1045.00 773.62 1045.00 799.62 1300.00 799.62 L 1300.00 890.00 C 1045.00 890.00 1045.00 864.00 790.00 864.00 Z" fill="#6F9C68" fill-opacity="0.82" stroke="#52734C" stroke-width="1" stroke-opacity="0.55"/>
+<rect x="1300.0" y="168.0" width="30.0" height="47.2" rx="5" fill="#BD6A3C" stroke="#8B4E2C" stroke-width="1" filter="url(#sh)"/>
+<text x="1344.0" y="186.61333333333334" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#8B4E2C">Plastic (raw shred)</text>
+<text x="1344.0" y="209.61333333333334" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#2A241E">$27,500</text>
+<rect x="1300.0" y="241.2" width="30.0" height="12.9" rx="5" fill="#C2A55E" stroke="#8F7A45" stroke-width="1" filter="url(#sh)"/>
+<text x="1344.0" y="252.66666666666666" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#8F7A45">Diesel — $7,500</text>
+<rect x="1300.0" y="280.1" width="30.0" height="68.7" rx="5" fill="#8A5A45" stroke="#664233" stroke-width="1" filter="url(#sh)"/>
+<text x="1344.0" y="309.4533333333334" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#664233">Process labour</text>
+<text x="1344.0" y="332.4533333333334" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#2A241E">$40,000</text>
+<rect x="1300.0" y="374.8" width="30.0" height="108.0" rx="5" fill="#4C9B97" stroke="#38726F" stroke-width="1" filter="url(#sh)"/>
+<text x="1344.0" y="423.78437333333335" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#38726F">Steel + canvas + hardware</text>
+<text x="1344.0" y="446.78437333333335" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#2A241E">$62,870</text>
+<rect x="1300.0" y="585.6" width="30.0" height="188.0" rx="5" fill="#5B7F55" stroke="#435D3E" stroke-width="1" filter="url(#sh)"/>
+<text x="1344.0" y="674.5927466666666" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#435D3E">Fixed block (running costs / yr)</text>
+<text x="1344.0" y="697.5927466666666" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#2A241E">$109,500</text>
+<rect x="1300.0" y="799.6" width="30.0" height="90.4" rx="5" fill="#6F9C68" stroke="#52734C" stroke-width="1" filter="url(#sh)"/>
+<text x="1344.0" y="839.8083733333333" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#52734C">Operating surplus</text>
+<text x="1344.0" y="862.8083733333333" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#2A241E">$52,630</text>
+<text x="235.0" y="142.0" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#6F6155" letter-spacing="2">INCOME</text>
+<text x="775.0" y="142.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#6F6155" letter-spacing="2">WHERE IT SPLITS</text>
+<text x="1315.0" y="142.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#6F6155" letter-spacing="2">LINE ITEMS</text>
+<line x1="60.0" y1="862.0" x2="1620.0" y2="862.0" stroke="#C9BCA8" stroke-width="1"/>
+<text x="60" y="884" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="14" font-weight="400" fill="#2A241E">Read left to right: every dollar of revenue is either a cost (cost of goods + freight) or contribution. Contribution first pays the $109,500/yr fixed block; what is left is operating surplus.</text>
+<text x="60" y="908" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="11.5" font-weight="400" fill="#6F6155" font-style="italic">Source: Goods cost model v6 (2026-06), in-house (factory) path at 500 beds/yr. BOM + $750 price verified; in-house plastic, labour, freight and volume modelled. Band thickness is proportional to dollars.</text>
+</svg>

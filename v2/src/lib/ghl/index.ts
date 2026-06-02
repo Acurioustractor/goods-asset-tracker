@@ -381,6 +381,13 @@ async function ghlRequest<T>(
  * Resilient: returns [] if GHL is disabled or a pipeline errors, so callers
  * (e.g. /admin/loi-tracker) degrade gracefully rather than crashing.
  */
+interface GhlOpportunityRawCustomField {
+  id?: string;
+  fieldValue?: unknown;
+  fieldValueString?: string;
+  fieldValueNumber?: number;
+}
+
 interface GhlOpportunityRaw {
   id?: string;
   name?: string;
@@ -390,7 +397,51 @@ interface GhlOpportunityRaw {
   status?: string;
   contact?: { name?: string };
   contactName?: string;
+  customFields?: GhlOpportunityRawCustomField[];
 }
+
+/**
+ * Goods opportunity money-alignment custom fields (opportunity model, location
+ * agzsSZWg…). Created 2026-06-01 as "Layer A"; backfilled 2026-06-01. These let
+ * GHL carry the grant/commercial split + the QBE-match flags + the Xero
+ * reconciliation key, while Xero stays the money source of truth. See memory
+ * [[ghl-money-alignment]] + wiki/outputs/2026-06-01-ghl-money-alignment-fields-and-rules.md.
+ */
+export const GOODS_OPP_FIELD_IDS = {
+  fundingType: 'UCFe9cyjk3sVKwtInfSG', // Grant | Philanthropic | Commercial sale | Community contribution | Demand signal | Other
+  matchEligible: '6tSoVICqtrTGQAzpPHn1', // Yes | No | TBC
+  capitalStatus: 'QbfHdeNpz2JiMe5iRESS', // Signal | Ask made | Verbal yes | Signed LOI | Contracted | Invoiced | Paid
+  amountBasis: 'LM1U3fVHJNB4KwvuK9ZF', // Estimate | Quote | Invoiced | Xero-actual
+  xeroContactId: 'e1GTAmBc3HLwxNiRVZjS',
+  xeroInvoiceNo: 'YFy6JM5tGjl4J4B5cHSV',
+  actualPaidAud: 'R4QAmlXhi6gRRPrfuuz5',
+  impactReportType: 'cdUjGPCdGPgZyCW9WAO9', // Board pack | Stewardship | Acquittal | Buyer proof pack | Supporter update | Supplier brief
+  impactReportDue: '9iODTRxhs6DKH96grYDj',
+  impactReportStatus: 'eiOuDxJ6mWqy8YZdbbVn', // Needed | Drafting | Evidence review | Consent review | Approved | Sent | Accepted
+  impactReportUrl: 'Zv78LLA646iLsD3N1aM9',
+  notionReportPageUrl: 'nPFdTTIjb72O7MnTStii',
+  storyConsentStatus: 'q7FXLNPdnIdIaTwUHPHf', // Not needed | Needed | Pending | Approved | Cannot use
+  evidencePackStatus: 'P9g0CpLcu8SzHpeSTfGV', // Missing | Partial | Complete | Source conflict
+  lastImpactReportSent: '4BRnVjD9GVIlLoIdAVMb',
+  nextReportingAction: 'YaSYTXhXiqTXo18WfPDI',
+} as const;
+
+export type GoodsFundingType =
+  | 'Grant'
+  | 'Philanthropic'
+  | 'Commercial sale'
+  | 'Community contribution'
+  | 'Demand signal'
+  | 'Other';
+export type GoodsMatchEligible = 'Yes' | 'No' | 'TBC';
+export type GoodsCapitalStatus =
+  | 'Signal'
+  | 'Ask made'
+  | 'Verbal yes'
+  | 'Signed LOI'
+  | 'Contracted'
+  | 'Invoiced'
+  | 'Paid';
 
 export interface GoodsOpportunity {
   id: string;
@@ -400,6 +451,29 @@ export interface GoodsOpportunity {
   monetaryValue: number;
   status: string; // open | won | lost | abandoned
   contactName?: string;
+  // Money-alignment custom fields (undefined when not yet classified).
+  fundingType?: GoodsFundingType;
+  matchEligible?: GoodsMatchEligible;
+  capitalStatus?: GoodsCapitalStatus;
+  amountBasis?: string;
+  /** Xero-verified cash actually received, AUD. null when not yet synced (Layer B). */
+  actualPaid: number | null;
+  xeroInvoiceNo?: string;
+}
+
+/** Pull a single opportunity custom-field value, tolerant of GHL's string/number shapes. */
+function readOppCustomField(
+  customFields: GhlOpportunityRawCustomField[] | undefined,
+  fieldId: string,
+): string | undefined {
+  const match = customFields?.find((cf) => cf.id === fieldId);
+  if (!match) return undefined;
+  const raw =
+    match.fieldValueString ??
+    (typeof match.fieldValueNumber === 'number' ? String(match.fieldValueNumber) : undefined) ??
+    (match.fieldValue != null ? String(match.fieldValue) : undefined);
+  const trimmed = raw?.trim();
+  return trimmed ? trimmed : undefined;
 }
 
 export async function fetchOpportunitiesForPipelines(
@@ -415,6 +489,9 @@ export async function fetchOpportunitiesForPipelines(
       );
       anyOk = true;
       for (const o of res.opportunities || []) {
+        const cf = o.customFields;
+        const actualPaidRaw = readOppCustomField(cf, GOODS_OPP_FIELD_IDS.actualPaidAud);
+        const actualPaidNum = actualPaidRaw != null ? Number(actualPaidRaw) : NaN;
         all.push({
           id: String(o.id ?? ''),
           name: String(o.name ?? 'Untitled'),
@@ -423,6 +500,18 @@ export async function fetchOpportunitiesForPipelines(
           monetaryValue: Number(o.monetaryValue ?? 0),
           status: String(o.status ?? 'open'),
           contactName: o.contact?.name ?? o.contactName ?? undefined,
+          fundingType: readOppCustomField(cf, GOODS_OPP_FIELD_IDS.fundingType) as
+            | GoodsFundingType
+            | undefined,
+          matchEligible: readOppCustomField(cf, GOODS_OPP_FIELD_IDS.matchEligible) as
+            | GoodsMatchEligible
+            | undefined,
+          capitalStatus: readOppCustomField(cf, GOODS_OPP_FIELD_IDS.capitalStatus) as
+            | GoodsCapitalStatus
+            | undefined,
+          amountBasis: readOppCustomField(cf, GOODS_OPP_FIELD_IDS.amountBasis),
+          actualPaid: Number.isFinite(actualPaidNum) ? actualPaidNum : null,
+          xeroInvoiceNo: readOppCustomField(cf, GOODS_OPP_FIELD_IDS.xeroInvoiceNo),
         });
       }
     } catch {
