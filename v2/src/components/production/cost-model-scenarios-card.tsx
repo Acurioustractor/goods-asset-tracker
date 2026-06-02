@@ -58,7 +58,7 @@ export function CostModelScenariosCard() {
     <Card>
       <CardContent className="pt-6 space-y-8">
         <div>
-          <h3 className="text-lg font-semibold">Cost model v5 — 4-path supply model (Notion BK locked)</h3>
+          <h3 className="text-lg font-semibold">Cost model v6 — 4-path supply model (Notion BK locked)</h3>
           <p className="text-xs text-gray-500 mt-1">
             Verified from Defy invoice OCR + Notion BK review (Ben + BK, 2026-05-28). Reconciled against{' '}
             <code>supplier-quotes.ts</code>. Numbers read live from the canonical data:{' '}
@@ -146,7 +146,7 @@ export function CostModelScenariosCard() {
             </table>
           </div>
           <p className="text-xs text-gray-500 mt-2">
-            Commercial counterfactual: $1,500–$2,000. Factory @ 1,000/yr ($481/bed) is{' '}
+            Commercial counterfactual: $1,500–$2,000. Factory @ 1,000/yr ($465/bed) is{' '}
             <strong>2.5–4× better cost than commercial</strong>. Today (100/yr) is competitive at the high end of the
             commercial band.
           </p>

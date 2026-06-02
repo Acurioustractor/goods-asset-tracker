@@ -61,7 +61,9 @@ export const NET_CAPITAL_HIGH = DEFAULTS.capital_to_factory_high - ALREADY_INVES
 export const VOLUME_GATE = 300; // capex only sensible above ~300/yr committed
 export const CONTAINERISE_FREIGHT_DELTA = 70; // -$70/bed long-haul if containerised (ship plant once, not N beds)
 
-export const SHEET_URL = '#'; // TODO: replace with live Google Sheet link once Matt's playable model is uploaded
+// Playable cost-per-bed workbook (5-scenario, live formulas). Served from /public.
+// Swap to a live Google Sheet link if/when the workbook is hosted there.
+export const SHEET_URL = '/Goods-Cost-Per-Bed-SIMPLE-v1.xlsx';
 
 // ── Formatters (shared) ─────────────────────────────────────────────────────
 export function fmt(n: number): string {
