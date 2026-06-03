@@ -6,7 +6,9 @@ import Link from 'next/link';
 import {
   ArrowRight,
   Banknote,
+  BookOpen,
   Calculator,
+  Camera,
   CheckCircle2,
   ClipboardList,
   ExternalLink,
@@ -15,11 +17,13 @@ import {
   Layers3,
   LineChart,
   LockKeyhole,
+  MapPin,
   PackageCheck,
   Scale,
   ShieldAlert,
   Sparkles,
   TrendingDown,
+  Users,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -226,6 +230,104 @@ const routeLinks = [
   { label: 'Pitch document', href: '/pitch/document', icon: ClipboardList },
   { label: 'LOI tracker', href: '/admin/loi-tracker', icon: Scale },
   { label: 'Cost model admin', href: '/admin/cost-model', icon: Calculator },
+];
+
+const storySurfaceLinks = [
+  {
+    label: 'Utopia field note',
+    href: '/field-notes/utopia-may-2026',
+    status: 'Unlisted review draft',
+    icon: BookOpen,
+    image: '/images/stories/utopia/04-build.jpg',
+    summary: 'Young people building Stretch Beds in Alice Springs, then the road out to Utopia Homelands.',
+  },
+  {
+    label: 'Oonchiumpa partnership',
+    href: '/partners/oonchiumpa',
+    status: 'Public partner story',
+    icon: Users,
+    image: '/images/partners/centrecorp/utopia/community-build.jpg',
+    summary: 'The Aboriginal-led program behind the build, the design work and the youth pathway.',
+  },
+  {
+    label: 'Communities map',
+    href: '/communities',
+    status: 'Public proof surface',
+    icon: MapPin,
+    image: '/images/stories/utopia/region-map.png',
+    summary: 'Where beds have gone, with community pages for Utopia, Palm Island, Tennant Creek and more.',
+  },
+  {
+    label: 'Impact and origin',
+    href: '/impact',
+    status: 'Public impact layer',
+    icon: CheckCircle2,
+    image: '/images/media-pack/community-bed-assembly.jpg',
+    summary: 'The health hardware story: sleep, hygiene, repair, waste and money staying closer to community.',
+  },
+];
+
+const narrativeBeats = [
+  {
+    kicker: '1 · The room',
+    title: 'Oonchiumpa holds the build',
+    body: 'Young people are not a side note. The first production-studio story starts with Oonchiumpa setting the room, collecting people each morning and holding the relationships.',
+  },
+  {
+    kicker: '2 · The making',
+    title: 'Kids build the beds they sleep on',
+    body: 'The product proof is also an employment proof: flat-pack parts, assembly skill, pride in the finished bed and a real pathway if production moves closer to home.',
+  },
+  {
+    kicker: '3 · The road',
+    title: 'Fred and Decon lead into Utopia',
+    body: 'The homelands story needs the connectors in front. The route only works because Oonchiumpa workers and local teams already know which doors to knock on.',
+  },
+  {
+    kicker: '4 · The claim',
+    title: 'Capital moves making to Country',
+    body: 'The QBE ask is not abstract capex. It is the next step from household demand, youth capability and a containerised plant that communities can eventually own.',
+  },
+];
+
+const photoProof = [
+  {
+    src: '/images/stories/utopia/04-build.jpg',
+    alt: 'Young people assembling Stretch Beds in Alice Springs',
+    label: 'Alice Springs build',
+  },
+  {
+    src: '/images/product/stretch-bed-kids-building.jpg',
+    alt: 'Young people building a Stretch Bed',
+    label: 'Young builders',
+  },
+  {
+    src: '/images/stories/utopia/06-delivery.jpg',
+    alt: 'Stretch Beds being delivered in Utopia Homelands',
+    label: 'Utopia delivery',
+  },
+  {
+    src: '/images/partners/centrecorp/utopia/home-setup.jpg',
+    alt: 'A Stretch Bed set up inside a remote-community home',
+    label: 'Inside the home',
+  },
+  {
+    src: '/images/partners/centrecorp/utopia/elder-feedback.jpg',
+    alt: 'Elder feedback on a Stretch Bed',
+    label: 'Elder feedback',
+  },
+  {
+    src: '/images/stories/utopia/region-map.png',
+    alt: 'Map of Urapuntja and Ampilatwatja homelands',
+    label: 'Homelands map',
+  },
+];
+
+const communityStoryLinks = [
+  { label: 'Utopia Homelands', href: '/communities/utopia-homelands', detail: 'Homelands delivery path and community demand.' },
+  { label: 'Alice Springs', href: '/communities/alice-springs', detail: 'Oonchiumpa, production studio and youth-build pathway.' },
+  { label: 'Tennant Creek', href: '/communities/tennant-creek', detail: 'Design origins, Warumungu naming and early pull.' },
+  { label: 'Palm Island', href: '/communities/palm-island', detail: 'Cleared voices on freight, safety and floor-to-bed impact.' },
 ];
 
 function statusClass(status: EvidenceStatus | ReadinessStatus) {
@@ -724,6 +826,147 @@ export function QbeSiteWorkspace() {
                   <p className="mt-1 text-xs leading-5 text-stone-600">{item.detail}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-stone-200 bg-[#F6EFE6]">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <div className="grid gap-4 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1fr)] lg:items-end">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5C8A86]">Story layer</p>
+              <h2 className="mt-2 max-w-3xl text-3xl font-semibold tracking-tight text-[#2B2A26] md:text-4xl" style={{ fontFamily: 'Georgia, serif' }}>
+                The QBE page should offer the proof in story, not only in numbers
+              </h2>
+            </div>
+            <p className="text-sm leading-6 text-stone-700">
+              The calculator makes the capital case. The wider site has to carry the human case: the Utopia trip, Oonchiumpa role, the first production-studio pathway, community demand, photos from the road and cleared voices as they become available.
+            </p>
+          </div>
+
+          <div className="mt-7 grid gap-5 lg:grid-cols-[minmax(0,1.12fr)_minmax(340px,0.88fr)]">
+            <Link
+              href={storySurfaceLinks[0].href}
+              className="group relative min-h-[420px] overflow-hidden rounded-lg border border-stone-300 bg-stone-900 text-white shadow-sm"
+            >
+              <Image
+                src={storySurfaceLinks[0].image}
+                alt="Young people building Stretch Beds through the Oonchiumpa program"
+                fill
+                sizes="(min-width: 1024px) 720px, 100vw"
+                className="object-cover transition duration-500 group-hover:scale-[1.03]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1F1B17] via-[#1F1B17]/62 to-transparent" />
+              <div className="relative flex min-h-[420px] flex-col justify-end p-5 sm:p-7">
+                <Badge className="w-fit border-[#BBA255]/35 bg-[#BBA255]/20 text-white">
+                  {storySurfaceLinks[0].status}
+                </Badge>
+                <h3 className="mt-4 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl" style={{ fontFamily: 'Georgia, serif' }}>
+                  Alice Springs to Utopia Homelands
+                </h3>
+                <p className="mt-3 max-w-xl text-sm leading-6 text-[#F3E8D9]">
+                  {storySurfaceLinks[0].summary} This is the review link for the deeper narrative: young builders, Oonchiumpa, Fred and Decon, the road, the households and the community-ownership path.
+                </p>
+                <span className="mt-5 inline-flex w-fit items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-semibold text-[#2B2A26] transition group-hover:bg-[#F2E2C5]">
+                  Open Utopia story
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </div>
+            </Link>
+
+            <div className="grid gap-3">
+              {storySurfaceLinks.slice(1).map(({ label, href, status, icon: Icon, image, summary }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="group grid grid-cols-[112px_minmax(0,1fr)] overflow-hidden rounded-lg border border-stone-300 bg-white shadow-sm transition hover:border-[#A8643F]"
+                >
+                  <div className="relative min-h-36 bg-stone-200">
+                    <Image
+                      src={image}
+                      alt=""
+                      fill
+                      sizes="112px"
+                      className="object-cover transition duration-500 group-hover:scale-[1.04]"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <div className="flex items-start justify-between gap-3">
+                      <span className="rounded-md bg-[#F2E9DF] p-2 text-[#A8643F]">
+                        <Icon className="h-4 w-4" />
+                      </span>
+                      <Badge variant="outline" className="border-stone-200 text-[11px] text-stone-600">
+                        {status}
+                      </Badge>
+                    </div>
+                    <h3 className="mt-3 text-base font-semibold text-[#2B2A26]">{label}</h3>
+                    <p className="mt-1 text-xs leading-5 text-stone-600">{summary}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {narrativeBeats.map((beat) => (
+              <div key={beat.title} className="rounded-lg border border-stone-300 bg-white p-5 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#A8643F]">{beat.kicker}</p>
+                <h3 className="mt-3 text-lg font-semibold text-[#2B2A26]">{beat.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-stone-600">{beat.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1fr)_380px]">
+            <div>
+              <div className="flex items-center gap-2">
+                <Camera className="h-5 w-5 text-[#5C8A86]" />
+                <h3 className="text-lg font-semibold">Photo proof to bring forward</h3>
+              </div>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {photoProof.map((photo) => (
+                  <figure key={photo.src} className="overflow-hidden rounded-lg border border-stone-300 bg-white shadow-sm">
+                    <div className="relative aspect-[4/3] bg-stone-200">
+                      <Image
+                        src={photo.src}
+                        alt={photo.alt}
+                        fill
+                        sizes="(min-width: 1024px) 280px, 50vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    <figcaption className="p-3 text-xs font-semibold uppercase tracking-[0.14em] text-stone-600">
+                      {photo.label}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-lg border border-stone-300 bg-white p-5 shadow-sm">
+              <div className="flex items-center gap-2">
+                <MapPin className="h-5 w-5 text-[#A8643F]" />
+                <h3 className="text-lg font-semibold">Community entry points</h3>
+              </div>
+              <p className="mt-3 text-sm leading-6 text-stone-600">
+                The next pass should make the community map feel like a story index: each place opens into demand, delivery photos, voices, product lessons and what the next production move could unlock.
+              </p>
+              <div className="mt-4 space-y-3">
+                {communityStoryLinks.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block rounded-lg border border-stone-200 bg-[#FBF8F1] p-3 transition hover:border-[#5C8A86]"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="text-sm font-semibold">{item.label}</p>
+                      <ArrowRight className="h-4 w-4 text-stone-400" />
+                    </div>
+                    <p className="mt-1 text-xs leading-5 text-stone-600">{item.detail}</p>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>
