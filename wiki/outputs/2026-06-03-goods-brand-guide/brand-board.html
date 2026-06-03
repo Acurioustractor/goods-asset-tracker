@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Goods Brand Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF8F1; --cream2:#FDF8F3; --clay:#A8643F; --terra:#C45C3E;
+    --rose:#C18A7B; --teal:#5C8A86; --gold:#BBA255; --olive:#7E9A68; --green:#5E7A4C;
+    --sage:#8B9D77; --ink:#2B2A26; --sub:#7A7363; --grid:#E6DFD1; --card:#fff;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;}
+  h1,h2,h3,.serif{font-family:Georgia,"Times New Roman",serif;}
+  a{color:var(--clay)}
+  header.top{position:sticky;top:0;z-index:40;background:rgba(251,248,241,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--grid);}
+  .topbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px 20px;}
+  .topbar img.logo{height:40px}
+  .topbar .ttl{font-family:Georgia,serif;font-size:20px;font-weight:600}
+  nav.secnav{display:flex;gap:4px;flex-wrap:wrap;padding:0 16px 10px;}
+  nav.secnav a{font-size:12.5px;text-decoration:none;color:var(--sub);padding:4px 9px;border-radius:999px;border:1px solid transparent}
+  nav.secnav a:hover{background:#fff;border-color:var(--grid);color:var(--ink)}
+  .btn{font:13px/1 system-ui;border:1px solid var(--clay);background:var(--clay);color:#fff;padding:8px 12px;border-radius:8px;cursor:pointer}
+  .btn.ghost{background:#fff;color:var(--clay)}
+  .btn.sm{padding:5px 9px;font-size:12px}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px 80px}
+  section{padding:34px 0 10px;border-bottom:1px solid var(--grid)}
+  section>h2{font-size:27px;margin:0 0 4px}
+  .lede{color:var(--sub);margin:0 0 18px;max-width:70ch}
+  .kicker{display:inline-block;font:600 11px/1 system-ui;letter-spacing:.12em;text-transform:uppercase;color:var(--clay);background:#fff;border:1px solid var(--grid);padding:5px 9px;border-radius:999px;margin-bottom:10px}
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .g4{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  .card{background:var(--card);border:1px solid var(--grid);border-radius:16px;overflow:hidden}
+  .card .pad{padding:14px 16px}
+  .card h3{margin:0 0 6px;font-size:17px}
+  .card p{margin:0;color:var(--sub);font-size:13.5px}
+  figure{margin:0;background:var(--card);border:1px solid var(--grid);border-radius:14px;overflow:hidden}
+  figure img,figure video{display:block;width:100%;height:200px;object-fit:cover;background:var(--grid)}
+  figure.tall img{height:300px}
+  figcaption{padding:9px 12px;font-size:12.5px;color:var(--sub)}
+  figcaption b{color:var(--ink);font-weight:600}
+  .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .sw{border:1px solid var(--grid);border-radius:12px;overflow:hidden;cursor:pointer;background:#fff}
+  .sw .chip{height:64px}
+  .sw .meta{padding:8px 10px;font-size:12px}
+  .sw .meta code{font-size:12px;color:var(--ink)}
+  .sw .meta .role{color:var(--sub);display:block;margin-top:2px;font-size:11.5px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border:1px solid var(--grid);border-radius:12px;overflow:hidden}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--grid);vertical-align:top}
+  th{background:#faf6ee;font-size:12px;letter-spacing:.03em;text-transform:uppercase;color:var(--sub)}
+  td input,td select{font:13px system-ui;border:1px solid var(--grid);border-radius:6px;padding:5px 6px;width:100%;background:#fff}
+  td.thumb{width:84px}
+  td.thumb img{width:72px;height:48px;object-fit:cover;border-radius:6px;border:1px solid var(--grid)}
+  .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--grid);background:#fff;color:var(--sub);margin:0 4px 4px 0}
+  .pill.use{border-color:var(--olive);color:var(--green)}
+  .pill.avoid{border-color:var(--rose);color:#9a4a3a}
+  .note{margin-top:12px;border:1px dashed var(--clay);border-radius:12px;background:#fffdf8}
+  .note summary{cursor:pointer;padding:9px 12px;font-size:13px;color:var(--clay);font-weight:600;list-style:none}
+  .note summary::-webkit-details-marker{display:none}
+  .note textarea{width:100%;border:none;border-top:1px solid var(--grid);padding:11px 12px;font:13.5px/1.5 system-ui;background:transparent;resize:vertical;min-height:70px;color:var(--ink)}
+  .note textarea:focus{outline:none}
+  .callout{background:#fff;border:1px solid var(--grid);border-left:4px solid var(--clay);border-radius:10px;padding:13px 16px;margin:0 0 16px;font-size:14px}
+  .callout b{color:var(--clay)}
+  .area{border:1px solid var(--grid);border-radius:16px;background:#fff;overflow:hidden;margin-bottom:16px}
+  .area .hd{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:13px 16px;border-bottom:1px solid var(--grid);background:#faf6ee}
+  .area .hd h3{margin:0;font-size:18px;flex:1}
+  .area .body{padding:14px 16px}
+  .decide{display:flex;gap:6px;flex-wrap:wrap}
+  .decide label{font-size:12px;border:1px solid var(--grid);border-radius:999px;padding:4px 10px;cursor:pointer;background:#fff;color:var(--sub)}
+  .decide input{display:none}
+  .decide label.on{background:var(--clay);border-color:var(--clay);color:#fff}
+  .promptbox{margin-top:10px;background:#faf6ee;border:1px solid var(--grid);border-radius:10px;padding:10px 12px;font:12.5px/1.5 ui-monospace,Menlo,monospace;color:var(--ink);white-space:pre-wrap}
+  .toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:100}
+  .toast.show{opacity:1}
+  .typo h1{font-size:44px;margin:0} .typo h2{font-size:30px;margin:6px 0} .typo h3{font-size:21px;margin:6px 0}
+  .typo .body{font:16px/1.6 system-ui;max-width:60ch;color:var(--ink)}
+  .small{font-size:12px;color:var(--sub)}
+  .ic{background:#fff;border:1px solid var(--grid);border-radius:12px;padding:16px 8px 11px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
+  .ic svg{width:42px;height:42px;fill:none;stroke:var(--clay);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .ic span{font-size:11px;color:var(--sub);line-height:1.2}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .tagbadge{font-size:11px;background:#faf6ee;border:1px solid var(--grid);border-radius:6px;padding:2px 6px;color:var(--sub)}
+  details.config summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:600;margin-top:10px}
+  pre.cfg{background:var(--ink);color:#e9e3d6;border-radius:10px;padding:12px 14px;overflow:auto;font-size:12px;margin-top:8px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="topbar">
+    <span style="display:inline-flex;align-items:center;gap:9px"><span style="font:500 23px/1 Poppins,'Helvetica Neue',Arial,sans-serif;letter-spacing:-1px;color:#0A0A0A">Goods.</span><span style="font:500 9px/1 Poppins,'Helvetica Neue',Arial,sans-serif;letter-spacing:3px;color:#0A0A0A">ON COUNTRY</span></span>
+    <span class="ttl">Brand Board</span>
+    <span class="small">Working canvas · updated 2026-06-03 · <a href="https://www.notion.so/373ebcf981cf81d58ee8fd91280f895f" target="_blank">Notion guide</a></span>
+    <span style="flex:1"></span>
+    <button class="btn ghost sm" onclick="exportNotes()">⬇ Export notes</button>
+    <button class="btn ghost sm" onclick="exportSlots()">⬇ Export EL slot config</button>
+  </div>
+  <nav class="secnav">
+    <a href="#glance">Glance</a><a href="#colour">Colour</a><a href="#type">Type</a>
+    <a href="#logo">Logo</a><a href="#assets">Brand assets</a><a href="#photos">Photography</a>
+    <a href="#el">Empathy Ledger</a><a href="#video">Video</a><a href="#icons">Icons</a>
+    <a href="#voice">Voice</a><a href="#devices">Brand devices</a>
+  </nav>
+</header>
+
+<div class="wrap">
+
+  <div class="callout" style="margin-top:18px">
+    <b>How to use this board.</b> Scroll to see every element at real size. Each section has a <b>📝 Notes</b> box (autosaves to your browser; click <b>Export notes</b> to pull them all out as markdown). The <b>Empathy Ledger</b> section is a slot planner: assign a photo or video to each brand slot, tag it, and <b>Export EL slot config</b> for the curator to set. The <b>Brand devices</b> section is where we decide, per area, whether to use a specific photo or develop a new artistic set.
+  </div>
+
+  <!-- GLANCE -->
+  <section id="glance">
+    <span class="kicker">01 · Brand at a glance</span>
+    <h2 class="serif">The making belongs on Country</h2>
+    <p class="lede">Goods presses recycled-plastic beds on Country and builds the production so community owns it. Health hardware, local jobs, and assets that stay home.</p>
+    <div class="grid g4" id="glanceCards"></div>
+    <div class="note" data-note="glance"><details><summary>📝 Notes for this section</summary><textarea placeholder="Add specific things here..."></textarea></details></div>
+  </section>
+
+  <!-- COLOUR -->
+  <section id="colour">
+    <span class="kicker">02 · Colour</span>
+    <h2 class="serif">Palette</h2>
+    <p class="lede">Click any swatch to copy the hex. The public cost-story palette (hex) is the brand face; the app tokens (OKLCH) drive the UI. They drift today, so a single canonical cream + terracotta is a decision to land.</p>
+    <h3 class="serif" style="margin:6px 0">Public palette (the brand face)</h3>
+    <div class="swatches" id="swPublic"></div>
+    <h3 class="serif" style="margin:18px 0 6px">App tokens (globals.css, OKLCH)</h3>
+    <div class="swatches" id="swTokens"></div>
+    <div class="note" data-note="colour"><details><summary>📝 Notes for this section</summary><textarea placeholder="e.g. pick the one canonical terracotta hex..."></textarea></details></div>
+  </section>
+
+  <!-- TYPE -->
+  <section id="type">
+    <span class="kicker">03 · Typography</span>
+    <h2 class="serif">Type</h2>
+    <p class="lede">Three real type roles: <b>Poppins Medium</b> is the wordmark/logo font; <b>Georgia</b> is the editorial display on the cost-story pages; <b>system sans-serif</b> is body. (layout.tsx also loads Inter + Playfair: decide which display is canonical and drop the rest. Poppins is NOT unused, it renders the logo.)</p>
+    <div class="card typo"><div class="pad">
+      <h1 class="serif">The making belongs on Country</h1>
+      <h2 class="serif">A good bed can prevent heart disease</h2>
+      <h3 class="serif">Built with communities, not for them</h3>
+      <p class="body">Body copy is plain, short, declarative system sans-serif. Lead with the person or the impact, then the spec. Real community language: deadly, around the fire, rocking up every day. Cite the source inline for any number.</p>
+    </div></div>
+    <div class="note" data-note="type"><details><summary>📝 Notes for this section</summary><textarea></textarea></details></div>
+  </section>
+
+  <!-- LOGO -->
+  <section id="logo">
+    <span class="kicker">04 · Logo</span>
+    <h2 class="serif">Logo</h2>
+    <p class="lede">The canonical mark is the <b>Goods.</b> wordmark set in <b>Poppins Medium</b>, with <b>ON COUNTRY</b> tracked beside or below. Charcoal on light, white on dark. Full SVG system at <code>v2/public/brand/logos/</code> (live), so it scales to anything from a favicon to a billboard.</p>
+    <div class="callout"><b>Correction.</b> The cream square (now removed from this header) is the legacy favicon <code>/logo.svg</code>, not the wordmark. The real mark is this Poppins <b>Goods.</b> wordmark, and Poppins is loaded by the app to render it (so it is not an unused font). The brand guide's logo + type sections were built from the favicon and need this same fix.</div>
+
+    <h3 class="serif" style="margin:16px 0 8px">Stacked — Goods over ON COUNTRY</h3>
+    <div class="grid g2">
+      <figure><svg viewBox="0 0 600 400" style="display:block;width:100%;height:auto"><rect width="600" height="400" fill="#FDF8F3"/><text x="300" y="220" text-anchor="middle" font-family="Poppins,'Helvetica Neue',Arial,sans-serif" font-weight="500" font-size="150" fill="#0A0A0A" letter-spacing="-3">Goods</text><text x="300" y="280" text-anchor="middle" font-family="Poppins,'Helvetica Neue',Arial,sans-serif" font-weight="500" font-size="32" fill="#0A0A0A" letter-spacing="8">ON COUNTRY</text></svg><figcaption><b>On light</b> · goods-stacked-on-light.svg · letterheads, decks</figcaption></figure>
+      <figure><svg viewBox="0 0 600 400" style="display:block;width:100%;height:auto"><rect width="600" height="400" fill="#0A0A0A"/><text x="300" y="220" text-anchor="middle" font-family="Poppins,'Helvetica Neue',Arial,sans-serif" font-weight="500" font-size="150" fill="#FFFFFF" letter-spacing="-3">Goods</text><text x="300" y="280" text-anchor="middle" font-family="Poppins,'Helvetica Neue',Arial,sans-serif" font-weight="500" font-size="32" fill="#FFFFFF" letter-spacing="8">ON COUNTRY</text></svg><figcaption><b>On dark</b> · goods-stacked-on-dark.svg · PDF covers, social cards</figcaption></figure>
+    </div>
+
+    <h3 class="serif" style="margin:18px 0 8px">Inline — Goods. then ON COUNTRY</h3>
+    <div class="grid g2">
+      <figure><div style="background:#FDF8F3;display:flex;align-items:center;justify-content:center;gap:22px;padding:48px 22px"><span style="font:500 62px/1 Poppins,'Helvetica Neue',Arial,sans-serif;letter-spacing:-2px;color:#0A0A0A">Goods.</span><span style="font:500 17px/1 Poppins,'Helvetica Neue',Arial,sans-serif;letter-spacing:6px;color:#0A0A0A">ON COUNTRY</span></div><figcaption><b>On light</b> · goods-inline-on-light.svg · web header/footer</figcaption></figure>
+      <figure><div style="background:#0A0A0A;display:flex;align-items:center;justify-content:center;gap:22px;padding:48px 22px"><span style="font:500 62px/1 Poppins,'Helvetica Neue',Arial,sans-serif;letter-spacing:-2px;color:#FFFFFF">Goods.</span><span style="font:500 17px/1 Poppins,'Helvetica Neue',Arial,sans-serif;letter-spacing:6px;color:#FFFFFF">ON COUNTRY</span></div><figcaption><b>On dark</b> · goods-inline-on-dark.svg</figcaption></figure>
+    </div>
+    <p class="small" style="margin:8px 0 0">Shown in true Poppins. Heads-up: the source <code>goods-inline-*.svg</code> hard-place the round dot for the Helvetica fallback width, so rendered in Poppins it overlaps the "s". Source fix: nudge the circle right, or set the period as a Poppins glyph (these render fine as flat <code>&lt;img&gt;</code> on the site, where the fallback font is used).</p>
+
+    <h3 class="serif" style="margin:18px 0 8px">Chip — compact (icons, watermarks)</h3>
+    <div class="grid g3">
+      <figure><svg viewBox="0 0 240 120" style="display:block;width:100%;height:auto"><rect width="240" height="120" fill="#FDF8F3"/><text x="120" y="65" text-anchor="middle" font-family="Poppins,'Helvetica Neue',Arial,sans-serif" font-weight="500" font-size="46" fill="#0A0A0A" letter-spacing="-1.5">Goods</text><text x="120" y="92" text-anchor="middle" font-family="Poppins,'Helvetica Neue',Arial,sans-serif" font-weight="500" font-size="12" fill="#0A0A0A" letter-spacing="4">ON COUNTRY</text></svg><figcaption><b>On light</b> · goods-chip-on-light.svg</figcaption></figure>
+      <figure><svg viewBox="0 0 240 120" style="display:block;width:100%;height:auto"><rect width="240" height="120" fill="#0A0A0A"/><text x="120" y="65" text-anchor="middle" font-family="Poppins,'Helvetica Neue',Arial,sans-serif" font-weight="500" font-size="46" fill="#FFFFFF" letter-spacing="-1.5">Goods</text><text x="120" y="92" text-anchor="middle" font-family="Poppins,'Helvetica Neue',Arial,sans-serif" font-weight="500" font-size="12" fill="#FFFFFF" letter-spacing="4">ON COUNTRY</text></svg><figcaption><b>On dark</b> · goods-chip-on-dark.svg · app icon, OG card</figcaption></figure>
+      <div class="card"><div class="pad"><h3 class="serif" style="font-size:15px;margin:0 0 6px">Also in the pack</h3><p class="small">Transparent wordmarks to drop on photos: <code>goods-stacked-black/white.svg</code>, <code>goods-inline-black/white.svg</code>. See the live <a href="https://www.goodsoncountry.com/brand/logos/preview.html" target="_blank">preview.html</a> and <a href="https://www.goodsoncountry.com/brand/logos/README.md" target="_blank">README</a>.</p></div></div>
+    </div>
+
+    <h3 class="serif" style="margin:18px 0 8px">Specs (do not improvise)</h3>
+    <div class="grid g2">
+      <div class="card"><div class="pad">
+        <p class="small" style="margin:0 0 8px"><b>Colour</b></p>
+        <div class="row" style="gap:14px">
+          <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px"><span style="width:22px;height:22px;border-radius:5px;background:#0A0A0A;display:inline-block;border:1px solid #ccc"></span><code>#0A0A0A</code> Charcoal</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px"><span style="width:22px;height:22px;border-radius:5px;background:#FDF8F3;display:inline-block;border:1px solid #ccc"></span><code>#FDF8F3</code> Cream</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px"><span style="width:22px;height:22px;border-radius:5px;background:#FFFFFF;display:inline-block;border:1px solid #ccc"></span><code>#FFFFFF</code> White</span>
+        </div>
+        <p class="small" style="margin:12px 0 0"><b>Type</b> · Poppins Medium 500. <code>Goods</code> letter-spacing -3 at display; <code>ON COUNTRY</code> letter-spacing +8, all caps. Fallback Helvetica Neue → Arial.</p>
+        <p class="small" style="margin:8px 0 0"><b>Clear space</b> · minimum padding around the mark = the cap-height of the word Goods.</p>
+      </div></div>
+      <div class="card"><div class="pad">
+        <p class="small" style="margin:0 0 8px"><b>Don'ts</b></p>
+        <ul class="small" style="margin:0;padding-left:16px;line-height:1.7">
+          <li>Don't stretch, skew, recolour, drop-shadow or outline the wordmark.</li>
+          <li>Don't put it on busy photography without a tint layer.</li>
+          <li>Don't rebuild it in Canva, use the SVGs.</li>
+          <li>Don't add the legacy cream-square rule line to the wordmark.</li>
+          <li>Don't imitate Aboriginal-style design inside the mark.</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <h3 class="serif" style="margin:18px 0 8px">History</h3>
+    <p class="lede" style="margin-bottom:12px">The wordmark held; the colour evolved. The earlier brand ran a <b>pink</b> Goods. mark before the current charcoal / cream / white system. Provenance: <code>scripts/generate_logo_variations.py</code> + <code>create_logo_image.py</code>; git <code>f95c2e0</code> (placeholder brand pack) then <code>bab9272</code> (wordmark pack).</p>
+    <div class="grid g3">
+      <figure><img src="../../../data/new_beds/logos/Goods_Logo_Pink_20cm.png" style="height:130px;object-fit:contain;background:#fff;padding:18px" onerror="this.closest('figure').style.opacity=.35"><figcaption><b>Legacy · pink wordmark</b> · data/new_beds/logos/Goods_Logo_Pink_20cm.png</figcaption></figure>
+      <figure><img src="../../../data/new_beds/logos/Goods_Logo_Black_20cm.png" style="height:130px;object-fit:contain;background:#fff;padding:18px" onerror="this.closest('figure').style.opacity=.35"><figcaption><b>Legacy · black PNG</b> · same wordmark, raster</figcaption></figure>
+      <figure><img src="https://www.goodsoncountry.com/logo.svg" style="height:130px;object-fit:contain;background:#FDF8F3;padding:18px" onerror="this.closest('figure').style.opacity=.35"><figcaption><b>Legacy favicon</b> · /logo.svg · kept for backwards-compat only</figcaption></figure>
+    </div>
+
+    <div class="note" data-note="logo"><details><summary>📝 Notes for this section</summary><textarea></textarea></details></div>
+  </section>
+
+  <!-- BRAND ASSETS -->
+  <section id="assets">
+    <span class="kicker">05 · Brand elements (real photo first)</span>
+    <h2 class="serif">Build the set, element by element</h2>
+    <p class="lede">Real photos are the canonical brand assets. We develop an AI device only where there is a genuine gap, one element at a time, until the set is one we are happy with. Mark a call on each.</p>
+    <div class="callout"><b>Style chosen: line illustration.</b> Real product photos for the product itself (top grid). A cohesive single-weight terracotta line system with sage accents for brand illustration, matching the icon set, used across applications. Line element set below.</div>
+    <div class="grid g3" id="elemGrid"></div>
+    <h3 class="serif" style="margin:22px 0 8px">Line-illustration element set (matches the icons)</h3>
+    <div class="grid g3" id="illoGrid"></div>
+    <div class="note" data-note="assets"><details><summary>📝 Notes for this section</summary><textarea></textarea></details></div>
+  </section>
+
+  <!-- PHOTOGRAPHY -->
+  <section id="photos">
+    <span class="kicker">06 · Photography</span>
+    <h2 class="serif">Photo library</h2>
+    <p class="lede">Real, on-Country, consent-context photography (live on the site), grouped by zone. This is the spine: real named people over stock, voice plus face plus number on every beat.</p>
+    <div id="photoZones"></div>
+    <div class="note" data-note="photos"><details><summary>📝 Notes for this section</summary><textarea></textarea></details></div>
+  </section>
+
+  <!-- EMPATHY LEDGER -->
+  <section id="el">
+    <span class="kicker">07 · Empathy Ledger · photos + video + tagging</span>
+    <h2 class="serif">Bring in EL media and tag it right</h2>
+    <p class="lede">Empathy Ledger is the source of truth for community photos, video and voices. The site pulls it server-side and falls back to local content. The mechanism for "use this asset here" is a <b>content placement</b>: a named <code>slotKey</code> mapped to an EL media asset, with a <code>placementType</code>, <code>tags</code>, and consent fields.</p>
+    <div class="callout">
+      <b>The tagging model (from the live EL client).</b> Every media asset carries: <span class="tagbadge">mediaType: image | video | audio</span> <span class="tagbadge">elderApproved</span> <span class="tagbadge">consentObtained</span> <span class="tagbadge">culturalTags[]</span> <span class="tagbadge">culturalSensitivity: low|med|high</span> <span class="tagbadge">attributionText</span>. A placement adds: <span class="tagbadge">slotKey</span> <span class="tagbadge">placementType: hero|gallery|avatar|background|thumbnail|video|process</span> <span class="tagbadge">tags[]</span> <span class="tagbadge">priority</span>. The site resolves a slot with <code>getSlotUrl('slot-key')</code>; consent gates (<code>syndication_enabled</code>, not archived, not withdrawn) decide what is allowed to show.
+    </div>
+    <p class="lede"><b>Slot planner.</b> Draft the brand slots below: pick the asset, the placement type, the tags and consent. Then <b>Export EL slot config</b> (top right) to hand the curator the exact set to wire up in Empathy Ledger.</p>
+    <table id="slotTable">
+      <thead><tr><th>Asset</th><th>Slot key</th><th>Area</th><th>Type</th><th>Tags (comma)</th><th>Elder ✓</th><th>Sensitivity</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <details class="config"><summary>▾ Preview EL slot config (JSON)</summary><pre class="cfg" id="slotPreview"></pre></details>
+    <div class="note" data-note="el"><details><summary>📝 Notes for this section</summary><textarea placeholder="e.g. which slots need NEW photography vs existing EL media..."></textarea></details></div>
+  </section>
+
+  <!-- VIDEO -->
+  <section id="video">
+    <span class="kicker">08 · Video brand assets</span>
+    <h2 class="serif">Video</h2>
+    <p class="lede">Goods' video set (backgrounds + testimony + assembly). Posters are live; the full MP4s play from your local <code>public/video/</code> when this board is opened from the repo. In EL these are <code>mediaType: video</code> with <code>videoLink</code> / <code>videoEmbedCode</code> and the same consent fields.</p>
+    <div class="grid g3" id="videoGrid"></div>
+    <div class="note" data-note="video"><details><summary>📝 Notes for this section</summary><textarea></textarea></details></div>
+  </section>
+
+  <!-- ICONS -->
+  <section id="icons">
+    <span class="kicker">09 · Iconography</span>
+    <h2 class="serif">Icon system (hand-built SVG)</h2>
+    <p class="lede">Rebuilt as real SVG, not AI raster: one consistent stroke weight on a 24px grid, terracotta line with sage accents, rounded caps. Scalable, recolourable, perfectly aligned. Concrete on-Country subjects only, no dot-painting or Aboriginal-style motifs. A first pass to react to, not a final set.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:12px" id="iconGrid">
+      <div class="ic"><svg viewBox="0 0 24 24"><line x1="3" y1="9" x2="21" y2="9"/><path d="M5 9L8.5 19M8.5 9L5 19M15.5 9L19 19M19 9L15.5 19"/></svg><span>Stretch Bed</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M8.5 7.2a5.6 5.6 0 1 1-3.4 7.6"/><polyline points="4.2 11 5.1 14.6 8.7 13.5"/><circle cx="13" cy="12" r="2.3" fill="#8B9D77" stroke="none"/></svg><span>Plastic loop</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M8 11l4-3 4 3"/><path d="M9.4 10.7V15h5.2v-4.3"/><path d="M4.6 15.5c2.6 2.7 12.2 2.7 14.8 0"/></svg><span>Ownership</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 15a7 7 0 0 1 14 0"/><line x1="3.5" y1="15" x2="20.5" y2="15"/><line x1="11.4" y1="8.2" x2="12.6" y2="8.2"/></svg><span>Local jobs</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><line x1="3.5" y1="18.5" x2="20.5" y2="18.5"/><rect x="5.5" y="11" width="13" height="2.6" rx="1.3"/><line x1="8" y1="13.6" x2="8" y2="16.8"/><line x1="16" y1="13.6" x2="16" y2="16.8"/><path d="M12 9.4V5.6M10.3 7.3L12 5.4L13.7 7.3"/></svg><span>Off the ground</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M7 5l10 14M17 5L7 19"/><circle cx="10" cy="9" r="0.7" fill="#8B9D77" stroke="none"/><circle cx="14" cy="14" r="0.7" fill="#8B9D77" stroke="none"/><circle cx="11.6" cy="13.4" r="0.6" fill="#A8643F" stroke="none"/><circle cx="12.8" cy="10" r="0.55" fill="#8B9D77" stroke="none"/></svg><span>HDPE legs</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="8.4" width="18" height="2.4" rx="1.2"/><rect x="3" y="13.2" width="18" height="2.4" rx="1.2"/></svg><span>Steel poles</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="4.5" y="5.5" width="15" height="13" rx="1.6"/><path d="M4.5 10q3.75 1.8 7.5 0t7.5 0"/><path d="M4.5 13.5q3.75 1.8 7.5 0t7.5 0"/></svg><span>Canvas</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="7.5" width="18" height="9" rx="1"/><line x1="7" y1="7.5" x2="7" y2="16.5"/><line x1="11" y1="7.5" x2="11" y2="16.5"/><line x1="15" y1="7.5" x2="15" y2="16.5"/></svg><span>Container</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="4.6" width="12" height="2.3" rx="1"/><rect x="6" y="15.1" width="12" height="2.3" rx="1"/><line x1="12" y1="7.2" x2="12" y2="11.6"/><polyline points="9.6 9.6 12 12 14.4 9.6"/></svg><span>The press</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="5.5" y="4" width="13" height="16" rx="2"/><circle cx="12" cy="13" r="3.7"/><circle cx="12" cy="13" r="1.1" fill="#8B9D77" stroke="none"/><circle cx="8" cy="7" r="0.7" fill="#A8643F" stroke="none"/><line x1="13.6" y1="7" x2="16" y2="7"/></svg><span>Washing machine</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="9.6" r="3"/><path d="M3.5 18q4.2-3.5 8.5 0t8.5 0"/></svg><span>Country / place</span></div>
+    </div>
+    <p class="small" style="margin:8px 0 0">Tell me which read wrong and how (weight, metaphor, what to add/drop) and I will re-cut them. When the set is right I export them as individual SVG files for the repo.</p>
+    <div class="note" data-note="icons"><details><summary>📝 Notes for this section</summary><textarea></textarea></details></div>
+  </section>
+
+  <!-- VOICE -->
+  <section id="voice">
+    <span class="kicker">10 · Voice + copy</span>
+    <h2 class="serif">Voice</h2>
+    <div class="grid g2">
+      <div class="card"><div class="pad"><h3 class="serif">Pillars</h3><div id="pillars"></div></div></div>
+      <div class="card"><div class="pad"><h3 class="serif">Lexicon</h3>
+        <p class="small" style="margin:0 0 6px">Use</p><div id="lexUse"></div>
+        <p class="small" style="margin:12px 0 6px">Avoid</p><div id="lexAvoid"></div>
+      </div></div>
+    </div>
+    <div class="note" data-note="voice"><details><summary>📝 Notes for this section</summary><textarea></textarea></details></div>
+  </section>
+
+  <!-- BRAND DEVICES -->
+  <section id="devices">
+    <span class="kicker">11 · Brand devices by area</span>
+    <h2 class="serif">Specific photo, or a new artistic set?</h2>
+    <p class="lede">For each area, decide the brand device: lean on a specific real photo, or develop a cohesive artistic set (a unified illustrated treatment) to use across all areas. Pick a direction per area, and copy the generation prompt to spin up an artistic option.</p>
+    <div id="areaList"></div>
+    <div class="note" data-note="devices"><details><summary>📝 Notes for this section</summary><textarea placeholder="e.g. go artistic for the loop + icons, keep photo for people..."></textarea></details></div>
+  </section>
+
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const BASE='https://www.goodsoncountry.com';
+const VID_LOCAL='../../../v2/public/video';
+const img=p=>BASE+p;
+
+/* ---------- DATA ---------- */
+const GLANCE=[
+  {h:'Essence',p:'The making belongs on Country.'},
+  {h:'Mission',p:'Our goal is to become unnecessary.'},
+  {h:'The ask',p:'$400,000 signed, match-eligible catalytic capital, as a recoverable grant that converts into community ownership.'},
+  {h:'Promise',p:'Built with communities, not for them. We don’t license. We transfer.'},
+];
+const PAL_PUBLIC=[
+  ['#FBF8F1','Cream card frame'],['#FDF8F3','Logo cream'],['#A8643F','Clay / plastic (anchor)'],
+  ['#C45C3E','Logo terracotta'],['#C18A7B','Rose'],['#5C8A86','Teal (canvas/freight)'],
+  ['#BBA255','Gold (steel/labour)'],['#7E9A68','Olive (hardware)'],['#5E7A4C','Green (community)'],
+  ['#8B9D77','Logo sage'],['#2B2A26','Ink (text)'],['#7A7363','Sub-text'],['#E6DFD1','Gridlines'],
+];
+const PAL_TOKENS=[
+  ['oklch(0.99 0.005 80)','--background'],['oklch(0.2 0.02 50)','--foreground'],
+  ['oklch(0.55 0.15 45)','--primary / --ring'],['oklch(0.85 0.04 85)','--secondary'],
+  ['oklch(0.95 0.02 80)','--muted'],['oklch(0.65 0.12 140)','--accent (sage)'],
+  ['oklch(0.88 0.03 80)','--border'],['oklch(1 0 0)','--card'],
+];
+const ELEMENTS=[
+ ['Assembled bed','/images/product/stretch-bed-hero.jpg','Real golden-hour hero. Use this, not the AI one.'],
+ ['The legs (recycled HDPE)','/images/product/stretch-bed-legs.jpg','Vivid GREEN / multicolour terrazzo. The AI made these brown, which is wrong.'],
+ ['Steel poles + assembly','/images/product/stretch-bed-poles.jpg','Real assembly on Country: galvanised pole threading the green leg.'],
+ ['Canvas + Goods. brand','/images/product/stretch-bed-detail.jpg','Golden-hour edge detail with the Goods. wordmark on the canvas. Strong asset.'],
+ ['Bed in community','/images/product/stretch-bed-community.jpg','Community member with her bed on Country.'],
+ ['The plastic (flakes)','/images/process/shredded-plastic-tubs.jpg','Shredded recycled-HDPE feedstock.'],
+ ['Pressed sheets','/images/process/pressed-sheets.jpg','Pressed recycled-plastic sheet stock.'],
+ ['The press','/images/process/heat-press-full.jpg','The heat press in the container.'],
+ ['The container / plant','/images/process/heat-press-container.jpg','The on-Country plant: press, poles, plastic tubs.'],
+ ['Washing machine','/images/product/washing-machine-hero.jpg','Pakkimjalki Kari, the prototype.'],
+];
+const ELEM_OPTS=['Real ✓','Needs better shot','Develop AI device'];
+const ZONES=[
+  ['The Stretch Bed',[['/images/product/stretch-bed-hero.jpg','Canonical product, golden hour'],['/images/brand/goods-leg-studio-v1.png','Recycled-HDPE leg, green terrazzo (studio)'],['/images/product/stretch-bed-in-use.jpg','In use']]],
+  ['Bed in community',[['/images/product/stretch-bed-community.jpg','Community member with her bed'],['/images/media-pack/woman-on-red-stretch-bed.jpg','On a red stretch bed'],['/images/people/xavier-stretch-bed-alice-springs.jpg','Xavier, Alice Springs']]],
+  ['People / voices',[['/images/people/linda-turner.jpg','Linda Turner'],['/images/people/norman-frank.jpg','Norman Frank (Elder)'],['/images/people/dianne-stokes.jpg','Dianne Stokes (Elder)'],['/images/people/alfred-johnson.jpg','Alfred Johnson'],['/images/people/ivy.jpg','Ivy'],['/images/process/joey-portrait.jpg','Joey (maker)']]],
+  ['The making / plastic loop',[['/images/process/heat-press-full.jpg','The press in a container'],['/images/process/pressed-sheets.jpg','Pressed recycled sheets'],['/images/process/shredded-plastic-tubs.jpg','Shredded HDPE'],['/images/process/shredder-granulator.jpg','Shredder'],['/images/process/cnc-cutter.jpg','CNC cutting legs']]],
+  ['Washing machine',[['/images/product/washing-machine-hero.jpg','Pakkimjalki Kari'],['/images/product/washing-machine-installed.jpg','Installed'],['/images/product/washing-machine-community.jpg','In community']]],
+  ['Place / partners',[['/images/community/tennant-creek.jpg','Tennant Creek'],['/images/partners/oonchiumpa.png','Oonchiumpa (lead partner)'],['/images/media-pack/goods-branding-golden-hour.jpg','Branding, golden hour']]],
+];
+const VIDEOS=[
+  ['hero','Hero background','/video/hero-poster.jpg','/hero-desktop.mp4'],
+  ['stretch-bed','Stretch Bed','/video/stretch-bed-poster.jpg','/stretch-bed-desktop.mp4'],
+  ['community','Community','/video/community-poster.jpg','/community-desktop.mp4'],
+  ['recycling','Recycling plant','/video/recycling-plant-poster.jpg','/recycling-plant-desktop.mp4'],
+  ['assembly','5-min assembly (live)','/video/stretch-bed/assembly-poster.jpg','/stretch-bed/assembly.mp4'],
+  ['jaquilane','Jaquilane testimony','/video/jaquilane-poster.jpg','/jaquilane-testimony.mp4'],
+];
+const ICONS=[['Bed','The Stretch Bed, off the ground'],['Plastic loop','Recycled HDPE, circular'],['Hands + house','Community ownership'],['Hand + tool','Local jobs'],['Raised bed + chevron','Off-the-ground health']];
+const PILLARS=[
+  'Agency, not charity. Community is the actor and owner.',
+  'One human thread, recurring. Mykel is the spine.',
+  'Voice plus face plus number on the same beat.',
+  'Health hardware, not furniture. A bed prevents heart disease.',
+  'The making belongs on Country. Build it so community owns it.',
+];
+const LEX_USE=['on Country','health hardware','community-owned','around the fire','co-design','designed with, not for','become unnecessary','recoverable capital','the freight tax','deadly','X-trestle tension','recycled HDPE','galvanised steel poles','heavy-duty canvas','assets that stay home'];
+const LEX_AVOID=['clip-on / click onto poles','woven cord / tension-weave','hardwood frame','charity / those in need','handout / beneficiary','showcases / underscores','not just X but Y','em dashes (—)'];
+
+const SLOTS=[
+  ['hero-home','Home','hero','/images/product/stretch-bed-hero.jpg','stretch-bed,on-country,golden-hour'],
+  ['product-stretch-bed','Product','hero','/images/product/stretch-bed-hero.jpg','stretch-bed,product'],
+  ['product-studio','Product','thumbnail','/images/brand/goods-ill-bed.png','stretch-bed,line-illustration,ecommerce'],
+  ['process-press','Process','process','/images/process/heat-press-full.jpg','press,making,jobs'],
+  ['process-plastic','Process','gallery','/images/process/shredded-plastic-tubs.jpg','plastic,recycled-hdpe,loop'],
+  ['community-bed','Community','gallery','/images/product/stretch-bed-community.jpg','community,ownership,bed-in-use'],
+  ['voice-mykel','People','avatar','','participant:mykel,maker,oonchiumpa'],
+  ['washing-machine','Product','hero','/images/product/washing-machine-hero.jpg','pakkimjalki-kari,prototype'],
+  ['video-hero','Home','video','/video/hero-poster.jpg','background,hero'],
+  ['video-assembly','Product','video','/video/stretch-bed/assembly-poster.jpg','assembly,how-it-works'],
+];
+const AREAS=[
+  ['The Stretch Bed','/images/product/stretch-bed-hero.jpg',
+   'Editorial product photo, single assembled Stretch Bed, two speckled recycled-HDPE X-trestle legs (one each end), two galvanised steel poles, taut sage-green canvas, cream + terracotta palette, warm natural light. OR flat line-icon device of the same silhouette for repeatable use.'],
+  ['The Washing Machine','/images/product/washing-machine-hero.jpg',
+   'Documentary photo of Pakkimjalki Kari (Speed Queen in a weather-hardened enclosure) in genuine community use, warm cream + terracotta tones. OR a line-icon device of the machine + a water-loop motif for the prototype/register-interest pages.'],
+  ['In Community','/images/product/stretch-bed-community.jpg',
+   'Real, consent-cleared photo of a community member with their bed on Country, golden hour, dignified, agency-forward. Prefer real photography here; an artistic device only as a neutral fallback (a warm horizon-and-place line motif, no cultural symbols).'],
+  ['The Making / Experimenter','/images/process/heat-press-full.jpg',
+   'Hands-and-craft documentary photo: a maker pulling a terrazzo recycled-plastic part off the press in a container, dusty warm light. OR a cohesive line-icon set: shredder, press, CNC, pressed sheet, as a "how it is made" device family.'],
+  ['The Plastic Loop','/images/process/shredded-plastic-tubs.jpg',
+   'A circular brand device: shredded HDPE flakes to pressed sheet to finished leg, rendered as a flat cream + terracotta loop diagram, reusable across cost-story, process and impact. Pairs with the 20kg = one bed proof photo.'],
+  ['Community Ownership','/brand/icons/goods-icon-ownership.svg',
+   'Device for the recoverable-grant-into-ownership idea: hands cradling a house/plant motif (already in the icon set), expandable to a small narrative sequence (waste, to product, to job, to ownership). Real handover photography to be commissioned with consent.'],
+];
+
+/* ---------- RENDER ---------- */
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
+function fig(p,cap,cls){
+  const f=el('figure',cls||'');
+  const isVid=/\.(mp4)$/i.test(p);
+  f.innerHTML=`<img src="${img(p)}" loading="lazy" alt="" onerror="this.closest('figure').style.opacity=.4;this.replaceWith(Object.assign(document.createElement('div'),{className:'figcaption',innerHTML:'(not deployed)',style:'height:200px;display:flex;align-items:center;justify-content:center;color:#999;background:#f3eee3'}))"><figcaption>${cap}</figcaption>`;
+  return f;
+}
+// glance
+GLANCE.forEach(c=>{const d=el('div','card');d.innerHTML=`<div class="pad"><h3 class="serif">${c.h}</h3><p>${c.p}</p></div>`;glanceCards.append(d)});
+// swatches
+function swatch(val,role,copyVal){const d=el('div','sw');d.innerHTML=`<div class="chip" style="background:${val}"></div><div class="meta"><code>${copyVal}</code><span class="role">${role}</span></div>`;d.onclick=()=>copy(copyVal,role);return d}
+PAL_PUBLIC.forEach(([h,r])=>swPublic.append(swatch(h,r,h)));
+PAL_TOKENS.forEach(([v,r])=>swTokens.append(swatch(v.startsWith('oklch')?v.replace(/oklch\(([^)]+)\)/,'oklch($1)'):v,r,v)));
+// elements — real photo first, decision per element
+const elemState=JSON.parse(localStorage.getItem('gbb-elem')||'{}');
+ELEMENTS.forEach(([name,photo,note],i)=>{
+  const cur=elemState[name]||'Real ✓';
+  const c=el('div','card');
+  c.innerHTML=`<img src="${img(photo)}" loading="lazy" style="width:100%;height:168px;object-fit:cover;background:var(--grid)" onerror="this.style.opacity=.25">
+    <div class="pad"><h3 class="serif" style="font-size:15px;margin:0 0 4px">${name}</h3>
+    <p class="small" style="margin:0 0 9px">${note}</p>
+    <div class="decide" data-elem="${name}">${ELEM_OPTS.map(o=>`<label class="${cur===o?'on':''}"><input type="radio" name="el${i}" value="${o}" ${cur===o?'checked':''}>${o}</label>`).join('')}</div></div>`;
+  elemGrid.append(c);
+});
+elemGrid.querySelectorAll('.decide input').forEach(inp=>inp.addEventListener('change',e=>{
+  const k=e.target.closest('.decide').dataset.elem;elemState[k]=e.target.value;
+  localStorage.setItem('gbb-elem',JSON.stringify(elemState));
+  e.target.closest('.decide').querySelectorAll('label').forEach(l=>l.classList.toggle('on',l.querySelector('input').checked));
+}));
+// line-illustration element set (matches the icons)
+const ILLOS=[
+ ['Stretch Bed','/images/brand/goods-ill-bed.png'],
+ ['Assembly (how it combines)','/images/brand/goods-ill-assembly.png'],
+ ['The legs','/images/brand/goods-ill-leg.png'],
+ ['Steel poles','/images/brand/goods-ill-poles.png?v=2'],
+ ['Canvas','/images/brand/goods-ill-canvas.png'],
+ ['Washing machine','/images/brand/goods-ill-washing-machine.png?v=2'],
+ ['The plant','/images/brand/goods-ill-plant.png?v=2'],
+ ['Plastic loop','/images/brand/goods-ill-plastic-loop.png'],
+];
+ILLOS.forEach(([name,photo])=>{
+  const c=el('div','card');
+  c.innerHTML=`<img src="${img(photo)}" loading="lazy" style="width:100%;height:150px;object-fit:contain;background:var(--cream2);padding:6px" onerror="this.style.opacity=.25"><div class="pad" style="padding-top:8px"><h3 class="serif" style="font-size:14px;margin:0">${name}</h3></div>`;
+  illoGrid.append(c);
+});
+// photo zones
+ZONES.forEach(([z,arr])=>{const wrap=el('div');wrap.style.margin='0 0 22px';wrap.innerHTML=`<h3 class="serif" style="margin:0 0 10px">${z}</h3>`;const g=el('div','grid g3');arr.forEach(([p,c])=>g.append(fig(p,c)));wrap.append(g);photoZones.append(wrap)});
+// videos
+VIDEOS.forEach(([id,t,poster,src])=>{
+  const f=el('figure');
+  f.innerHTML=`<video controls preload="none" poster="${img(poster)}" onerror="this.muted=true">
+    <source src="${VID_LOCAL}${src}" type="video/mp4">
+    <source src="${BASE}/video${src}" type="video/mp4">
+  </video><figcaption><b>${t}</b> · mediaType: video</figcaption>`;
+  videoGrid.append(f);
+});
+// icons are hand-built inline SVG in the markup (section 09)
+// voice
+pillars.innerHTML='<ol style="margin:0;padding-left:18px">'+PILLARS.map(p=>`<li>${p}</li>`).join('')+'</ol>';
+lexUse.innerHTML=LEX_USE.map(w=>`<span class="pill use">${w}</span>`).join('');
+lexAvoid.innerHTML=LEX_AVOID.map(w=>`<span class="pill avoid">${w}</span>`).join('');
+
+/* ---------- SLOT PLANNER ---------- */
+const PTYPES=['hero','gallery','avatar','background','thumbnail','video','process'];
+const SENS=['low','medium','high'];
+const slotState=JSON.parse(localStorage.getItem('gbb-slots')||'null')||SLOTS.map(([key,area,type,asset,tags])=>({key,area,type,asset,tags,elder:true,sens:'low'}));
+function renderSlots(){
+  const tb=slotTable.querySelector('tbody');tb.innerHTML='';
+  slotState.forEach((s,i)=>{
+    const tr=el('tr');
+    tr.innerHTML=`<td class="thumb">${s.asset?`<img src="${img(s.asset)}" onerror="this.style.opacity=.2">`:'<span class="small">none</span>'}</td>
+      <td><input value="${s.key}" data-i="${i}" data-k="key"></td>
+      <td><input value="${s.area}" data-i="${i}" data-k="area" style="width:90px"></td>
+      <td><select data-i="${i}" data-k="type">${PTYPES.map(t=>`<option ${t===s.type?'selected':''}>${t}</option>`).join('')}</select></td>
+      <td><input value="${s.tags}" data-i="${i}" data-k="tags"></td>
+      <td style="text-align:center"><input type="checkbox" ${s.elder?'checked':''} data-i="${i}" data-k="elder"></td>
+      <td><select data-i="${i}" data-k="sens">${SENS.map(t=>`<option ${t===s.sens?'selected':''}>${t}</option>`).join('')}</select></td>`;
+    tb.append(tr);
+  });
+  slotTable.querySelectorAll('input,select').forEach(inp=>inp.addEventListener('input',e=>{
+    const{i,k}=e.target.dataset;slotState[i][k]=e.target.type==='checkbox'?e.target.checked:e.target.value;
+    localStorage.setItem('gbb-slots',JSON.stringify(slotState));previewSlots();
+  }));
+  previewSlots();
+}
+function slotConfig(){return slotState.map(s=>({slotKey:s.key,placementType:s.type,area:s.area,tags:s.tags.split(',').map(t=>t.trim()).filter(Boolean),assetHint:s.asset,elderApproved:s.elder,consentObtained:true,culturalSensitivity:s.sens}))}
+function previewSlots(){slotPreview.textContent=JSON.stringify(slotConfig(),null,2)}
+function exportSlots(){copyText(JSON.stringify(slotConfig(),null,2),'EL slot config copied');download('goods-el-slots.json',JSON.stringify(slotConfig(),null,2))}
+renderSlots();
+
+/* ---------- AREAS (decide + prompt) ---------- */
+const decState=JSON.parse(localStorage.getItem('gbb-decide')||'{}');
+AREAS.forEach(([name,photo,prompt],i)=>{
+  const cur=decState[name]||'undecided';
+  const a=el('div','area');
+  a.innerHTML=`<div class="hd"><h3 class="serif">${name}</h3>
+    <div class="decide" data-area="${name}">
+      ${['Specific photo','New artistic set','Undecided'].map(o=>`<label class="${cur===o?'on':''}"><input type="radio" name="d${i}" value="${o}" ${cur===o?'checked':''}>${o}</label>`).join('')}
+    </div></div>
+    <div class="body">
+      <div class="grid g3">
+        ${fig(photo,'Current lead asset').outerHTML}
+        <div style="grid-column:span 2">
+          <p class="small" style="margin:0 0 6px"><b>Artistic-set direction</b> (copy to generate an option)</p>
+          <div class="promptbox">${prompt}</div>
+          <button class="btn ghost sm" style="margin-top:8px" onclick="copyText(this.previousElementSibling.textContent,'Prompt copied')">Copy prompt</button>
+        </div>
+      </div>
+    </div>`;
+  areaList.append(a);
+});
+areaList.querySelectorAll('.decide input').forEach(inp=>inp.addEventListener('change',e=>{
+  const area=e.target.closest('.decide').dataset.area;decState[area]=e.target.value;
+  localStorage.setItem('gbb-decide',JSON.stringify(decState));
+  e.target.closest('.decide').querySelectorAll('label').forEach(l=>l.classList.toggle('on',l.querySelector('input').checked));
+}));
+
+/* ---------- NOTES ---------- */
+const noteKey='gbb-notes';const notes=JSON.parse(localStorage.getItem(noteKey)||'{}');
+document.querySelectorAll('[data-note]').forEach(n=>{
+  const id=n.dataset.note;const ta=n.querySelector('textarea');
+  if(notes[id]){ta.value=notes[id];n.querySelector('details').open=true}
+  ta.addEventListener('input',()=>{notes[id]=ta.value;localStorage.setItem(noteKey,JSON.stringify(notes))});
+});
+function exportNotes(){
+  let md='# Goods Brand Board notes\n\n';let any=false;
+  document.querySelectorAll('[data-note]').forEach(n=>{const id=n.dataset.note;if(notes[id]&&notes[id].trim()){any=true;md+=`## ${id}\n${notes[id].trim()}\n\n`}});
+  // decisions
+  if(Object.keys(decState).length){md+='## Brand-device decisions\n';for(const[k,v]of Object.entries(decState))md+=`- ${k}: ${v}\n`;md+='\n';any=true}
+  if(!any)md+='_No notes yet._\n';
+  copyText(md,'Notes copied');download('goods-brand-board-notes.md',md);
+}
+
+/* ---------- UTIL ---------- */
+function copy(v,label){copyText(v,(label?label+' ':'')+v+' copied')}
+function copyText(t,msg){navigator.clipboard&&navigator.clipboard.writeText(t);toastMsg(msg||'Copied')}
+function download(name,text){const b=new Blob([text],{type:'text/plain'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=name;a.click();URL.revokeObjectURL(u)}
+let tT;function toastMsg(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('show'),1600)}
+</script>
+</body>
+</html>
