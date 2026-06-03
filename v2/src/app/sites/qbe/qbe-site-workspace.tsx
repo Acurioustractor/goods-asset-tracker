@@ -259,8 +259,8 @@ const storySurfaceLinks = [
   },
   {
     label: 'Impact and origin',
-    href: '/impact',
-    status: 'Public impact layer',
+    href: '/story',
+    status: 'Public origin layer',
     icon: CheckCircle2,
     image: '/images/media-pack/community-bed-assembly.jpg',
     summary: 'The health hardware story: sleep, hygiene, repair, waste and money staying closer to community.',
