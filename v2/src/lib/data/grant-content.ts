@@ -131,9 +131,14 @@ export const impactNumbers = {
 export const fundingHistory = {
   // Xero ACT-GD ACCREC paid as of 2026-05-30. Workpaper-level management data, not audited.
   // Includes grant/philanthropic receipts plus commercial buyer receipts.
-  totalReceived: 650_911,
+  // 2026-06-03 (Ben decisions): Snow restated to the full 3-year Xero total ($493,130, now
+  // includes the 2024 receipts the earlier window excluded). PICC $436,700 confirmed EXCLUDED
+  // (ACT / Palm Island project, not Goods). totalReceived below is PROVISIONAL pending Ben's
+  // Xero-UI confirm of VFFF / QIC / Villiers / commercial line-items (sub-top-5, not auto-verifiable).
+  // See wiki/outputs/2026-06-03-cluster2-xero-reconciliation.md.
+  totalReceived: 741_111,
   received: [
-    { source: 'Snow Foundation', amount: 402_930, when: '2024-2026' },
+    { source: 'Snow Foundation', amount: 493_130, when: '2023-2026' },
     { source: 'Centrecorp Foundation', amount: 123_332, when: '2025-2026' },
     { source: 'Vincent Fairfax Family Foundation', amount: 50_000, when: '2025' },
     { source: 'QIC', amount: 12_000, when: '2026' },
@@ -143,11 +148,14 @@ export const fundingHistory = {
   // TFN, FRRR and AMP have been founder-confirmed in prior work, but were not in the
   // live ACT-GD open/paid ACCREC set used for this QBE-alignment pass.
   receivables: [
-    { source: 'Rotary eClub Outback Australia', amount: 82_500, notes: 'AUTHORISED grant, not yet paid (only live open receivable in ACT-GD)' },
+    { source: 'Rotary eClub Outback Australia', amount: 82_500, notes: 'INV-0222 AUTHORISED, 405 days overdue. 200 Basket Beds v1 + $5K project.' },
+    { source: 'Homeland School Company', amount: 44_000, notes: 'INV-0303 AUTHORISED, due 30 Jun 2026. Live ACT-GD ACCREC, Goods-tagged in Xero.' },
   ],
   // Removed Centrecorp $420K: relationship commitment, but its invoices were voided ($0 currently invoiced).
   // Removed PICC/Palm Island: that revenue belongs to the PICC (ACT-PI) project, not Goods.
-  totalReceivables: 82_500,
+  // 2026-06-03 (Ben): receivables restated to Rotary $82.5K + Homeland $44K (both live authorised in Xero).
+  // Homeland was wrongly dropped earlier; live Xero confirms it as an open authorised invoice.
+  totalReceivables: 126_500,
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -201,7 +209,7 @@ export const grantAnswers = {
   },
   whoDoYouWorkWith: 'We work with 9 remote Indigenous communities across QLD, NT, WA, and SA. Core community partners include Oonchiumpa Consultancy, Wilya Janta, and Palm Island Community Company. Health partners include Anyinginyi Health, Miwatj Health, Purple House, and Red Dust.',
   howDoYouMeasureImpact: 'We track impact through: (1) Asset Register — 561 asset rows with QR-coded lifecycle monitoring. (2) Telemetry — 28 washing machines deployed, 14 confirmed working, with telemetry not yet fleet-wide. (3) Community feedback — 500+ minutes recorded, 15+ verified storytellers via Empathy Ledger. (4) Environmental metrics — 2,660kg+ plastic diverted (133 Stretch beds x 20kg HDPE; Basket Beds are not a plastic product). (5) Health outcomes — tracking with health partners.',
-  whatAreYourFinancials: `~$650.9K ACT-GD ACCREC paid to date, comprising ~$589.5K grant/philanthropic receipts and ~$61.4K commercial/buyer receipts. ~$82.5K remains outstanding as an authorised Rotary receivable. $100K invested in the production facility. Demand materially exceeds current production capacity. Figures are Xero management data, not audited.`,
+  whatAreYourFinancials: `~$741.1K ACT-GD ACCREC paid to date, comprising ~$679.7K grant/philanthropic receipts and ~$61.4K commercial/buyer receipts. ~$126.5K remains outstanding in authorised receivables (Rotary $82.5K and Homeland School $44K). $100K invested in the production facility. Demand materially exceeds current production capacity. Figures are Xero management data, not audited.`,
   howWillYouUseThisFunding: {
     beds: 'Each $600–850 funds one Stretch Bed deployed to a remote community, diverting 20kg of plastic and providing a 10+ year sleeping surface.',
     production: '$100K funds a containerised production facility deployment to a community for ~2 months, producing roughly 20 beds/week at current throughput.',

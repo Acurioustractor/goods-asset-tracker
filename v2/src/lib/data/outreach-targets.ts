@@ -44,7 +44,7 @@ export const philanthropyActive: OutreachTarget[] = [
   {
     id: 'snow', name: 'Snow Foundation', category: 'philanthropy_active', status: 'active', priority: 'critical',
     contactName: 'Sally Grimsley-Ballard', contactEmail: 's.grimsley-ballard@snowfoundation.org.au',
-    amountSignal: '$402,930 received (Xero-verified, incl. FY26 Scale-Up)', instrument: 'grant',
+    amountSignal: '$493,130 received (Xero-verified, full 2023-2026)', instrument: 'grant',
     nextAction: 'Convert from anchor grantmaker into co-investment validator for production-scale capital.',
     grantRelevance: 'Anchor funder — reference in every application. Sally travelled to Tennant Creek.',
   },
