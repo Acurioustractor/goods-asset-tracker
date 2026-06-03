@@ -1,5 +1,5 @@
 import { empathyLedger } from '@/lib/empathy-ledger/client';
-import { curatedQuotes } from '@/lib/data/curated-quotes';
+import { getCuratedQuotes } from '@/lib/data/curated-quotes';
 import { StoriesDashboard } from './stories-dashboard';
 import type { SyndicationStoryteller } from '@/lib/empathy-ledger/types';
 
@@ -38,7 +38,7 @@ export default async function StoriesPage() {
   const storytellers = enriched
     .filter(isRealStoryteller)
     .map((st) => {
-      const curated = curatedQuotes[st.name];
+      const curated = getCuratedQuotes(st.name);
       if (!curated || curated.length === 0) return st;
       return {
         ...st,

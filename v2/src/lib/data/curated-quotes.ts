@@ -317,3 +317,18 @@ export const curatedQuotes: Record<string, CuratedQuote[]> = {
     },
   ],
 };
+
+// EL display_names sometimes carry double-spaces ("Alfred  Johnson") and other
+// whitespace variants, so a raw curatedQuotes[name] index can miss. Look quotes
+// up through getCuratedQuotes() instead, which falls back to a whitespace-
+// normalised key. Keeps admin and public story paths resolving identically.
+const normaliseName = (name: string) => name.replace(/\s+/g, ' ').trim();
+
+const curatedQuotesByNormalisedName: Record<string, CuratedQuote[]> = {};
+for (const [key, value] of Object.entries(curatedQuotes)) {
+  curatedQuotesByNormalisedName[normaliseName(key)] = value;
+}
+
+export function getCuratedQuotes(name: string): CuratedQuote[] | undefined {
+  return curatedQuotes[name] ?? curatedQuotesByNormalisedName[normaliseName(name)];
+}
