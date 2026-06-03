@@ -338,6 +338,30 @@ function RangeControl({
   );
 }
 
+function ScenarioStat({
+  label,
+  value,
+  sub,
+  className,
+  labelClassName = 'text-white/70',
+}: {
+  label: string;
+  value: string;
+  sub: string;
+  className: string;
+  labelClassName?: string;
+}) {
+  return (
+    <div className={`flex min-h-40 flex-col justify-between rounded-lg p-5 shadow-sm ${className}`}>
+      <div>
+        <p className={`text-xs font-semibold uppercase tracking-[0.2em] ${labelClassName}`}>{label}</p>
+        <p className="mt-3 text-3xl font-semibold leading-none md:text-4xl">{value}</p>
+      </div>
+      <p className="mt-5 text-xs leading-5 opacity-80">{sub}</p>
+    </div>
+  );
+}
+
 function scenarioInputs(
   scenario: (typeof scenarioOptions)[number],
   bedsPerYear: number,
@@ -504,20 +528,23 @@ export function QbeSiteWorkspace() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-6 px-4 pb-6 sm:px-6 lg:grid-cols-[minmax(0,1.1fr)_380px] lg:px-8">
-        <div className="rounded-lg border border-stone-200 bg-white shadow-sm">
-          <div className="border-b border-stone-200 p-4 sm:p-5">
-            <div className="flex flex-wrap items-center justify-between gap-3">
+      <section className="mx-auto grid max-w-7xl gap-6 px-4 pb-6 sm:px-6 lg:px-8">
+        <div className="overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm">
+          <div className="border-b border-stone-200 bg-white p-5 sm:p-6">
+            <div className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#5C8A86]">Scenario planner</p>
-                <h2 className="mt-1 text-xl font-semibold">What changes when the press comes home</h2>
+                <h2 className="mt-1 text-2xl font-semibold tracking-tight md:text-3xl">What changes when the press comes home</h2>
+                <p className="mt-2 max-w-2xl text-sm leading-6 text-stone-600">
+                  Move the three levers and watch the case change: marginal cost, contribution, break-even and payback.
+                </p>
               </div>
-              <div className="inline-flex rounded-lg border border-stone-200 bg-stone-50 p-1">
+              <div className="inline-flex w-full rounded-lg border border-stone-200 bg-stone-50 p-1 sm:w-auto">
                 {scenarioOptions.map((scenario) => (
                   <button
                     key={scenario.key}
                     onClick={() => changeScenario(scenario.key)}
-                    className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
+                    className={`flex-1 rounded-md px-4 py-2 text-sm font-medium transition sm:flex-none ${
                       scenario.key === scenarioKey
                         ? 'bg-[#2B2A26] text-white shadow-sm'
                         : 'text-stone-600 hover:bg-white hover:text-stone-950'
@@ -530,8 +557,8 @@ export function QbeSiteWorkspace() {
             </div>
           </div>
 
-          <div className="grid gap-5 p-4 sm:p-5 xl:grid-cols-[280px_1fr]">
-            <div className="space-y-3">
+          <div className="grid gap-6 bg-[#FBF8F1] p-5 sm:p-6 lg:grid-cols-[340px_minmax(0,1fr)] lg:p-8">
+            <div className="space-y-4">
               <RangeControl
                 label="Beds per year"
                 value={bedsPerYear}
@@ -557,36 +584,59 @@ export function QbeSiteWorkspace() {
                 step={10}
                 onChange={setFreight}
               />
-              <div className="rounded-lg border border-stone-200 bg-[#FBF8F1] p-3 text-sm leading-6 text-stone-700">
-                <p className="font-semibold text-stone-950">{activeScenario.description}</p>
-                <p className="mt-2 text-xs text-stone-600">Build method: {activeScenario.method}. Location: {activeScenario.location.replace('_', ' ')}.</p>
+              <div className="rounded-lg border border-[#D8CDBD] bg-white p-4 text-sm leading-6 text-stone-700 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#A8643F]">Active path</p>
+                <p className="mt-2 font-semibold text-stone-950">{activeScenario.description}</p>
+                <div className="mt-4 grid gap-2 border-t border-stone-100 pt-3 text-xs text-stone-600">
+                  <div className="flex items-center justify-between gap-3">
+                    <span>Build method</span>
+                    <span className="font-mono uppercase text-stone-900">{activeScenario.method}</span>
+                  </div>
+                  <div className="flex items-center justify-between gap-3">
+                    <span>Location</span>
+                    <span className="font-mono uppercase text-stone-900">{activeScenario.location.replace('_', ' ')}</span>
+                  </div>
+                  <div className="flex items-center justify-between gap-3">
+                    <span>Contribution</span>
+                    <span className="font-mono text-stone-900">{fmt(selectedMargin)}</span>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div className="grid gap-4">
-              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-                <div className="rounded-lg bg-[#2B2A26] p-4 text-white">
-                  <p className="text-xs uppercase tracking-[0.16em] text-[#BBA255]">Marginal cost</p>
-                  <p className="mt-2 text-2xl font-semibold">{fmt(model.selectedMarginal)}</p>
-                </div>
-                <div className="rounded-lg bg-[#5C8A86] p-4 text-white">
-                  <p className="text-xs uppercase tracking-[0.16em] text-white/70">Contribution</p>
-                  <p className="mt-2 text-2xl font-semibold">{fmt(selectedMargin)}</p>
-                </div>
-                <div className="rounded-lg bg-[#A8643F] p-4 text-white">
-                  <p className="text-xs uppercase tracking-[0.16em] text-white/70">Break-even</p>
-                  <p className="mt-2 text-2xl font-semibold">{fmtInt(model.breakevenSelected)} beds</p>
-                </div>
-                <div className="rounded-lg bg-[#5E7A4C] p-4 text-white">
-                  <p className="text-xs uppercase tracking-[0.16em] text-white/70">Payback beds</p>
-                  <p className="mt-2 text-2xl font-semibold">{fmtInt(capitalPaybackBeds)}</p>
-                </div>
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                <ScenarioStat
+                  label="Marginal cost"
+                  value={fmt(model.selectedMarginal)}
+                  sub="Cash cost of one more bed."
+                  className="bg-[#24211D] text-white"
+                  labelClassName="text-[#BBA255]"
+                />
+                <ScenarioStat
+                  label="Contribution"
+                  value={fmt(selectedMargin)}
+                  sub="Sale price less marginal cost."
+                  className="bg-[#5C8A86] text-white"
+                />
+                <ScenarioStat
+                  label="Break-even"
+                  value={`${fmtInt(model.breakevenSelected)} beds`}
+                  sub="Annual volume to clear the fixed block."
+                  className="bg-[#A8643F] text-white"
+                />
+                <ScenarioStat
+                  label="Payback"
+                  value={`${fmtInt(capitalPaybackBeds)} beds`}
+                  sub="Beds required to pay back high gross capex."
+                  className="bg-[#5E7A4C] text-white"
+                />
               </div>
 
               <div className="grid gap-4 lg:grid-cols-2">
-                <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
-                  <h3 className="text-sm font-semibold">Cost path comparison</h3>
-                  <div className="mt-4 space-y-4">
+                <div className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
+                  <h3 className="text-base font-semibold">Cost path comparison</h3>
+                  <div className="mt-5 space-y-5">
                     {comparison.map(({ scenario, model: rowModel }) => (
                       <Bar
                         key={scenario.key}
@@ -598,9 +648,9 @@ export function QbeSiteWorkspace() {
                     ))}
                   </div>
                 </div>
-                <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
-                  <h3 className="text-sm font-semibold">Break-even comparison</h3>
-                  <div className="mt-4 space-y-4">
+                <div className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
+                  <h3 className="text-base font-semibold">Break-even comparison</h3>
+                  <div className="mt-5 space-y-5">
                     {comparison.map(({ scenario, model: rowModel }) => (
                       <Bar
                         key={scenario.key}
@@ -614,14 +664,26 @@ export function QbeSiteWorkspace() {
                 </div>
               </div>
 
-              <div className="rounded-lg border border-[#BBA255]/40 bg-[#FFF9EA] p-4 text-sm leading-6 text-stone-700">
-                The $1,780 figure is fixed-cost absorption at low pilot volume. The investor surface should lead with marginal cost, contribution, fixed block and break-even.
+              <div className="grid gap-4 lg:grid-cols-[1fr_280px]">
+                <div className="rounded-lg border border-[#BBA255]/40 bg-[#FFF9EA] p-5 text-sm leading-6 text-stone-700">
+                  <p className="font-semibold text-stone-950">What this proves</p>
+                  <p className="mt-2">
+                    The $1,780 figure is fixed-cost absorption at low pilot volume. The investor surface should lead with marginal cost, contribution, fixed block and break-even.
+                  </p>
+                </div>
+                <div className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#5C8A86]">Capex prize</p>
+                  <p className="mt-2 text-2xl font-semibold text-[#2B2A26]">$194.05 / bed</p>
+                  <p className="mt-2 text-xs leading-5 text-stone-600">
+                    The in-house leg saving that turns the press into the capital case.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <aside className="space-y-4">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
           <div className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
             <div className="flex items-center gap-2">
               <Layers3 className="h-5 w-5 text-[#A8643F]" />
@@ -664,7 +726,7 @@ export function QbeSiteWorkspace() {
               ))}
             </div>
           </div>
-        </aside>
+        </div>
       </section>
 
       <section className="mx-auto grid max-w-7xl gap-6 px-4 pb-6 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:px-8">
