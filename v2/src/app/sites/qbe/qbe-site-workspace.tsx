@@ -147,7 +147,7 @@ const evidenceRows: Array<{
   },
   {
     claim: 'QBE Stage 2 match cap',
-    value: '$200k-$400k indicative',
+    value: '$400K cap',
     status: 'Guardrail',
     source: MATCH_TARGET.note,
   },
@@ -241,7 +241,7 @@ const storySurfaceLinks = [
     href: '/partners/oonchiumpa',
     status: 'Public partner story',
     icon: Users,
-    image: '/images/partners/centrecorp/utopia/community-build.jpg',
+    image: '/images/build/build-089.jpg',
     summary: 'The Aboriginal-led program behind the build, the design work and the youth pathway.',
   },
   {
@@ -708,7 +708,7 @@ export function QbeSiteWorkspace() {
               <div className="rounded-lg border border-white/10 bg-white/5 p-4">
                 <p className="text-xs uppercase tracking-[0.2em] text-[#BBA255]">Catalytic ask</p>
                 <p className="mt-2 text-2xl font-semibold">$400k</p>
-                <p className="mt-1 text-xs text-[#E6DFD1]">Signed match-eligible capital, cap/rules to confirm.</p>
+                <p className="mt-1 text-xs text-[#E6DFD1]">QBE match cap, conditional on eligible capital raised first.</p>
               </div>
               <div className="rounded-lg border border-white/10 bg-white/5 p-4">
                 <p className="text-xs uppercase tracking-[0.2em] text-[#BBA255]">Cost unlock</p>
@@ -755,7 +755,7 @@ export function QbeSiteWorkspace() {
               </div>
             </div>
             <div className="rounded-lg border border-white/10 bg-white/5 p-4 text-sm leading-6 text-[#E6DFD1]">
-              <span className="font-semibold text-[#FDF8F3]">Verified frame:</span> $750 price, $684.79 current marginal cost, $425.74 factory marginal cost. QBE match cap remains a guardrail until SIH/QBE confirm the exact rules.
+              <span className="font-semibold text-[#FDF8F3]">Verified frame:</span> $750 price, $684.79 current marginal cost, $425.74 factory marginal cost. QBE Stage 2 is a dollar-for-dollar match up to a $400K cap, contingent on eligible capital raised first.
             </div>
           </div>
         </div>
@@ -783,8 +783,8 @@ export function QbeSiteWorkspace() {
           />
           <Metric
             label="Match target"
-            value="$200k-$400k"
-            sub="Indicative QBE Stage 2 range. External match must be raised first."
+            value="$400K cap"
+            sub="QBE Stage 2 match cap. Eligible external capital must be raised first."
             icon={ShieldAlert}
           />
         </div>

@@ -90,14 +90,12 @@ export const STAGE_TO_RUNG: Record<string, LoiRung> = {
 };
 
 /**
- * QBE Stage-2 match. CONTINGENT on raising eligible non-QBE capital FIRST, and
- * the cap + what counts as "eligible" are UNCONFIRMED (gated on founder decision).
- * Do not present the match as secured or quote a single cap externally.
+ * QBE Stage-2 match. CONTINGENT on raising eligible non-QBE capital FIRST.
+ * Do not present the match as secured until eligible commitments are signed.
  */
 export const MATCH_TARGET = {
-  indicativeLow: 200_000,
-  indicativeHigh: 400_000,
-  note: 'QBE Stage-2 match cap is UNCONFIRMED ($200K–$400K indicative) and contingent on eligible non-QBE capital raised first. Name the lanes + lock the figure once confirmed.',
+  cap: 400_000,
+  note: 'QBE Stage-2 match is capped at $400K and remains contingent on eligible non-QBE capital being raised first. Keep the raise lanes explicit and do not present match funding as secured until commitments are signed.',
 };
 
 /**
