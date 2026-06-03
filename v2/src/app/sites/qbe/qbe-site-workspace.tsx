@@ -330,6 +330,76 @@ const communityStoryLinks = [
   { label: 'Palm Island', href: '/communities/palm-island', detail: 'Cleared voices on freight, safety and floor-to-bed impact.' },
 ];
 
+const siteArchitecture = [
+  {
+    area: 'Capital room',
+    href: '/sites/qbe',
+    status: 'Live',
+    icon: Layers3,
+    purpose: 'Decision surface for QBE, SIH, founders and match-capital conversations.',
+    offers: ['Scenario planner', 'QBE capital stack', 'Evidence register'],
+  },
+  {
+    area: 'Story room',
+    href: '/field-notes/utopia-may-2026',
+    status: 'Review draft',
+    icon: BookOpen,
+    purpose: 'Long-form Utopia and Alice Springs narrative: young builders, Oonchiumpa, Fred and Decon, households and homelands.',
+    offers: ['Utopia field note', 'Consent-aware voices', 'Road and build media'],
+  },
+  {
+    area: 'Community room',
+    href: '/communities',
+    status: 'Live base',
+    icon: MapPin,
+    purpose: 'Place-by-place proof: where beds landed, what each community asked for, what the next production move means.',
+    offers: ['Community map', 'Place pages', 'Demand and delivery context'],
+  },
+  {
+    area: 'Production room',
+    href: '/process',
+    status: 'Needs story pass',
+    icon: PackageCheck,
+    purpose: 'Show the first on-Country production studio pathway from plastic, press and canvas through to local ownership.',
+    offers: ['Container plant', 'Build photos', 'Youth employment pathway'],
+  },
+  {
+    area: 'Partner room',
+    href: '/partners/oonchiumpa',
+    status: 'Live',
+    icon: Users,
+    purpose: 'Make the relationship visible: Oonchiumpa, Centrecorp, community workers and the people who hold the doors open.',
+    offers: ['Oonchiumpa story', 'Centrecorp story', 'Partnership method'],
+  },
+  {
+    area: 'Evidence room',
+    href: '/cost-story',
+    status: 'Live base',
+    icon: LineChart,
+    purpose: 'Back the story with numbers that are clean enough for investor, funder and buyer review.',
+    offers: ['Cost model', 'Pricing guardrails', 'Route to investor cockpit'],
+  },
+];
+
+const nextBuildQueue = [
+  {
+    title: 'Publish Utopia when consent clears',
+    detail: 'Keep the unlisted review link, then flip the field note into the public index once voices and faces are cleared.',
+  },
+  {
+    title: 'Turn communities into story hubs',
+    detail: 'Each community page should carry delivery photos, demand, named voices where cleared, product lessons and next asks.',
+  },
+  {
+    title: 'Build the production studio page',
+    detail: 'Make the first on-Country production studio concrete: press, plastic loop, young builders, training and ownership transfer.',
+  },
+  {
+    title: 'Add consent-aware photo captions',
+    detail: 'Photos need source, place, status and whether they are public, review-only or internal until community sign-off.',
+  },
+];
+
 function statusClass(status: EvidenceStatus | ReadinessStatus) {
   switch (status) {
     case 'Verified':
@@ -969,6 +1039,81 @@ export function QbeSiteWorkspace() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
+          <div className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm sm:p-6">
+            <div className="grid gap-3 md:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] md:items-end">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5C8A86]">Site map</p>
+                <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">What this Codex site should offer</h2>
+              </div>
+              <p className="text-sm leading-6 text-stone-600">
+                This is the next build shape: one live workspace that branches into capital, story, communities, production, partners and evidence. Each page has a job, not just a link.
+              </p>
+            </div>
+
+            <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+              {siteArchitecture.map(({ area, href, status, icon: Icon, purpose, offers }) => (
+                <Link
+                  key={area}
+                  href={href}
+                  className="group flex min-h-[250px] flex-col rounded-lg border border-stone-200 bg-[#FBF8F1] p-4 transition hover:border-[#A8643F] hover:bg-white"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="rounded-md bg-white p-2 text-[#A8643F] shadow-sm">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    <Badge variant="outline" className="border-stone-300 bg-white text-[11px] text-stone-600">
+                      {status}
+                    </Badge>
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold text-[#2B2A26]">{area}</h3>
+                  <p className="mt-2 text-sm leading-6 text-stone-600">{purpose}</p>
+                  <div className="mt-auto pt-4">
+                    <div className="flex flex-wrap gap-2">
+                      {offers.map((offer) => (
+                        <span key={offer} className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-medium text-stone-600">
+                          {offer}
+                        </span>
+                      ))}
+                    </div>
+                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#A8643F]">
+                      Open page
+                      <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <aside className="rounded-lg border border-stone-200 bg-[#2B2A26] p-5 text-white shadow-sm sm:p-6">
+            <div className="flex items-center gap-2">
+              <ClipboardList className="h-5 w-5 text-[#BBA255]" />
+              <h2 className="text-lg font-semibold">Next build queue</h2>
+            </div>
+            <p className="mt-3 text-sm leading-6 text-[#E6DFD1]">
+              The highest leverage work is not more dashboard polish. It is turning the real work into public, consent-clean story surfaces.
+            </p>
+            <div className="mt-5 space-y-3">
+              {nextBuildQueue.map((item, index) => (
+                <div key={item.title} className="rounded-lg border border-white/10 bg-white/5 p-4">
+                  <div className="flex items-start gap-3">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#BBA255] text-xs font-bold text-[#24211D]">
+                      {index + 1}
+                    </span>
+                    <div>
+                      <h3 className="text-sm font-semibold">{item.title}</h3>
+                      <p className="mt-1 text-xs leading-5 text-[#E6DFD1]">{item.detail}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </aside>
         </div>
       </section>
 
