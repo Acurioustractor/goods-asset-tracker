@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
       bodySizeLimit: '500mb',
     },
   },
+  // The gated /admin/photo-review/raw route reads a co-located .html at runtime
+  // (storyteller consent + GPS tool, kept out of public/). Force-include it in
+  // the serverless bundle so the read never 500s on Vercel.
+  outputFileTracingIncludes: {
+    '/admin/photo-review/raw': ['src/app/admin/photo-review/raw/photo-review.html'],
+  },
   images: {
     // Next 16 enforces a fixed quality allowlist; default is just [75].
     // The field-notes before-after split uses quality:90 for sharper
