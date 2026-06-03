@@ -231,7 +231,7 @@ const storySurfaceLinks = [
   {
     label: 'Utopia field note',
     href: '/field-notes/utopia-may-2026',
-    status: 'Consent-gated story',
+    status: 'Published field story',
     icon: BookOpen,
     image: '/images/stories/utopia/04-build.jpg',
     summary: 'Young people building Stretch Beds in Alice Springs, then the road out to Utopia Homelands.',
@@ -322,7 +322,7 @@ const communityStoryLinks = [
   { label: 'Utopia Homelands', href: '/communities/utopia-homelands', detail: 'Homelands delivery path and community demand.' },
   { label: 'Alice Springs', href: '/communities/alice-springs', detail: 'Oonchiumpa, production studio and youth-build pathway.' },
   { label: 'Tennant Creek', href: '/communities/tennant-creek', detail: 'Design origins, Warumungu naming and early pull.' },
-  { label: 'Palm Island', href: '/communities/palm-island', detail: 'Cleared voices on freight, safety and floor-to-bed impact.' },
+  { label: 'Palm Island', href: '/communities/palm-island', detail: 'Community voices on freight, safety and floor-to-bed impact.' },
 ];
 
 const siteArchitecture = [
@@ -337,10 +337,10 @@ const siteArchitecture = [
   {
     area: 'Field story',
     href: '/field-notes/utopia-may-2026',
-    status: 'Consent-gated',
+    status: 'Published story',
     icon: BookOpen,
     purpose: 'The Utopia and Alice Springs story: young builders, Oonchiumpa, Fred and Decon, households, homelands and the path from build to use.',
-    offers: ['Utopia field note', 'Cleared voices', 'Road and build media'],
+    offers: ['Utopia field note', 'Community voices', 'Road and build media'],
   },
   {
     area: 'Community proof',
@@ -378,20 +378,20 @@ const siteArchitecture = [
 
 const nextBuildQueue = [
   {
-    title: 'Release the Utopia story when consent is complete',
-    detail: 'Keep the field story gated until voices, faces and quotes are cleared, then publish it as evidence of build, delivery and household use.',
+    title: 'Use the Utopia story as evidence',
+    detail: 'The field story is now public evidence of build, delivery, household use and the production pathway from Alice Springs to the homelands.',
   },
   {
     title: 'Make each community page an evidence page',
-    detail: 'Each place should carry delivery photos, demand signals, cleared voices, product lessons and the next practical ask.',
+    detail: 'Each place should carry delivery photos, demand signals, community voices, product lessons and the next practical ask.',
   },
   {
     title: 'Show production as an ownership pathway',
     detail: 'Make the first production pathway concrete: press, plastic loop, young builders, training, quality systems and ownership transfer.',
   },
   {
-    title: 'Caption media with provenance and consent',
-    detail: 'Photos should carry place, source, consent status and whether they are public or gated until community sign-off.',
+    title: 'Caption media with provenance',
+    detail: 'Photos should carry place, source, date, partner context and the claim they support.',
   },
 ];
 
@@ -420,7 +420,7 @@ const investorEngagementPillars = [
   {
     eyebrow: 'Impact model',
     title: 'Measure the product lifecycle, not just the first delivery.',
-    body: 'The strongest model follows a bed or washer after deployment: use, feedback, repair, movement, survival, story consent, waste diverted and repeat demand.',
+    body: 'The strongest model follows a bed or washer after deployment: use, feedback, repair, movement, survival, story evidence, waste diverted and repeat demand.',
     evidence: 'QR asset register, Empathy Ledger direction, telemetry where live and five impact dimensions.',
     icon: LineChart,
   },
@@ -444,7 +444,7 @@ const connectedInnovation = [
   },
   {
     move: 'Story governance',
-    why: 'Photos, quotes and field notes are treated as consented evidence, not marketing stock.',
+    why: 'Photos, quotes and field notes are treated as field evidence, not marketing stock.',
     investorRead: 'Data sovereignty is a governance signal. It protects community trust and reduces external-share risk.',
   },
   {
@@ -472,7 +472,7 @@ const impactModelRows = [
   },
   {
     dimension: 'Community ownership',
-    proof: 'Oonchiumpa, PICC, community pages, consented stories and the stated aim to become unnecessary.',
+    proof: 'Oonchiumpa, PICC, community pages, published field stories and the stated aim to become unnecessary.',
     caution: 'Ownership pathway is proposed/co-designed, not complete.',
   },
   {
@@ -486,7 +486,7 @@ const investorGuardrails = [
   'QBE match is only described as unlocked once eligible signed commitments exist.',
   'Pipeline, letters of support and conversations stay separate from committed capital.',
   'Community ownership is presented as the pathway while entity structure remains open.',
-  'Story, photo and quote material is used only with the right consent status.',
+  'Story, photo and quote material is used through the agreed field-governance process.',
   'Health outcomes, employment hours and site capex are labelled as modelled where they are not yet verified.',
 ];
 
@@ -1001,7 +1001,7 @@ export function QbeSiteWorkspace() {
               </h2>
             </div>
             <p className="text-sm leading-6 text-stone-700">
-              The calculator makes the capital case. The wider site has to carry the human case: the Utopia trip, Oonchiumpa role, the first production-studio pathway, community demand, photos from the road and cleared voices as they become available.
+              The calculator makes the capital case. The wider site has to carry the human case: the Utopia trip, Oonchiumpa role, the first production-studio pathway, community demand, photos from the road and community voices.
             </p>
           </div>
 
@@ -1026,7 +1026,7 @@ export function QbeSiteWorkspace() {
                   Alice Springs to Utopia Homelands
                 </h3>
                 <p className="mt-3 max-w-xl text-sm leading-6 text-[#F3E8D9]">
-                  {storySurfaceLinks[0].summary} This is the gated field story for the deeper narrative: young builders, Oonchiumpa, Fred and Decon, the road, the households and the community-ownership path.
+                  {storySurfaceLinks[0].summary} This is the published field story for the deeper narrative: young builders, Oonchiumpa, Fred and Decon, the road, the households and the community-ownership path.
                 </p>
                 <span className="mt-5 inline-flex w-fit items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-semibold text-[#2B2A26] transition group-hover:bg-[#F2E2C5]">
                   Open Utopia story
@@ -1186,7 +1186,7 @@ export function QbeSiteWorkspace() {
               <h2 className="text-lg font-semibold">Evidence still to publish</h2>
             </div>
             <p className="mt-3 text-sm leading-6 text-[#E6DFD1]">
-              The next public evidence work is to publish more of what is already real, with consent, provenance and claim labels attached.
+              The next public evidence work is to publish more of what is already real, with provenance and claim labels attached.
             </p>
             <div className="mt-5 space-y-3">
               {nextBuildQueue.map((item, index) => (

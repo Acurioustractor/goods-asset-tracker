@@ -83,9 +83,12 @@ export default async function FieldNotePage({ params, searchParams }: Props) {
   if (!story.published && !story.unlisted && !canPreview) notFound();
 
   // Preview viewer with query param "?public=1" → render exactly as the
-  // public sees it. Useful for sanity-checking before flipping published:true.
+  // public sees it. Published stories default to public-clean mode, even in
+  // local dev, so release pages do not show internal consent/admin markers.
+  // Admin/dev users can force the editing view with "?internal=1".
   const asPublic = sp.public === '1' || sp.public === 'true';
-  const internal = canPreview && !asPublic;
+  const asInternal = sp.internal === '1' || sp.internal === 'true';
+  const internal = canPreview && !asPublic && (!story.published || asInternal);
 
   // Two-pass override application:
   //   1. Apply overrides BEFORE resolution so hardcoded paths win for

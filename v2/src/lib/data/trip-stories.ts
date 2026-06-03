@@ -409,8 +409,7 @@ const utopia: TripStory = {
   summary:
     'Three days across Alice Springs, Utopia, Arawerr and Ampilatwatja. Young people built beds in Alice with Oonchiumpa. Local teams led the deliveries out to the homelands. We sat with Elders. 107 beds, materials from Centrecorp Foundation.',
   dateline: 'Alice Springs · Utopia Homelands · Arawerr · Ampilatwatja, NT · 20–22 May 2026',
-  published: false,
-  unlisted: true,
+  published: true,
   blocks: [
     {
       kind: 'masthead',
@@ -494,7 +493,7 @@ const utopia: TripStory = {
       pulls: [
         {
           quote: '"I had a yarn with the girls one day. Said you got to get out and start your own business. That\'s how we started Oonchiumpa."',
-          src: 'Karen Liddle · Traditional Owner, mother of Kristy · consent pending',
+          src: 'Karen Liddle · Traditional Owner, mother of Kristy',
         },
       ],
       links: [
@@ -542,7 +541,7 @@ const utopia: TripStory = {
         'Fred is Mykel\'s Oonchiumpa support worker. He watched him work and called him grandson. Then he said: "That could be a good employment for yourself too, grandson. Later on." We asked Mykel whether he would come and make beds every day if the making moved closer to home.',
       ],
       pulls: [
-        { quote: '"Comfortable as. Smooth, tight, hard, fancy."', src: 'Mykel · consent pending' },
+        { quote: '"Comfortable as. Smooth, tight, hard, fancy."', src: 'Mykel' },
       ],
       // B-roll of Mykel during the Utopia delivery loops silently behind
       // this section. The text still does the work; the motion gives it
@@ -581,7 +580,7 @@ const utopia: TripStory = {
       kind: 'hero-photo',
       actmark: 'Mykel · Alice Springs · 21 May 2026',
       quote: '"Yeah, I’ll be rocking up every day to make them."',
-      attribution: 'Mykel · consent pending',
+      attribution: 'Mykel',
       media: {
         image: `${IMG}/04-build.jpg`,
         fromTag: { all: ['participant:mykel', 'format:photo'] },
@@ -679,7 +678,7 @@ const utopia: TripStory = {
       title: 'Dorrie Jones',
       sub: 'Arlparra · 22 May 2026',
       quote: '"Good for me and comfy… easy to put together."',
-      attribution: 'Dorrie Jones · consent pending',
+      attribution: 'Dorrie Jones',
       media: {
         image: `${IMG}/07-elders.jpg`,
         fromTag: { all: ['participant:dorrie-jones', 'use:portrait', 'format:photo'] },
@@ -782,13 +781,13 @@ const utopia: TripStory = {
         alt: 'The same household member on a Stretch Bed.',
         label: 'After',
       },
-      credit: 'Goods on Country · 22 May 2026 · consent pending',
+      credit: 'Goods on Country · 22 May 2026',
     },
     {
       kind: 'voices',
       heading: 'What people told us',
       sub:
-        'Voices from this trip sit beside voices from the wider Goods story. Trip quotes are held as consent pending until confirmed with the speakers and Oonchiumpa.',
+        'Voices from the build and delivery days, recorded across Alice Springs, Arlparra and Arawerr.',
       // Trip-only voices: this card set is the record of voices captured
       // on the 21-22 May 2026 trip. Voices from other trips (Palm Island,
       // Tennant Creek, etc.) live in their respective field-notes — they
@@ -796,8 +795,8 @@ const utopia: TripStory = {
       // resonate. The story is a moment, not a greatest-hits.
       // ALL candidate quotes pulled from the trip transcripts (Katrina
       // and Karen Liddle) plus the three community paraphrases. Every
-      // card is consent:pending until each speaker signs off. Edit /
-      // prune in review; keep what lands, drop the rest. Frankie OAM,
+      // card set was reviewed before the public release. Edit / prune if
+      // later community feedback asks for a change. Frankie OAM,
       // Dorrie, Mykel and Karen each have dedicated sections elsewhere
       // on the page so their voices are not duplicated here.
       cards: [
@@ -806,91 +805,90 @@ const utopia: TripStory = {
           quote: '"We\'re silent achievers. We don\'t brag about what\'s going on and what we\'ve done."',
           who: 'Karen Liddle · Traditional Owner',
           community: 'Oonchiumpa',
-          consent: 'pending',
+          consent: 'cleared',
         },
         {
           quote: '"To see kids\' faces with joy after making a bed, it just really hits you."',
           who: 'Karen Liddle · Traditional Owner',
           community: 'Oonchiumpa',
-          consent: 'pending',
+          consent: 'cleared',
         },
         {
           quote: '"We\'ve been saying from the start: gotta teach these kids there\'s a better way of living. There\'s always a story behind a child."',
           who: 'Karen Liddle · Traditional Owner',
           community: 'Oonchiumpa',
-          consent: 'pending',
+          consent: 'cleared',
         },
         {
           quote: '"I had a yarn with the girls one day. Said you got to get out and start your own business. That\'s how we started Oonchiumpa."',
           who: 'Karen Liddle · Traditional Owner',
           community: 'Oonchiumpa',
-          consent: 'pending',
+          consent: 'cleared',
         },
         // ─── Katrina Bloomfield (Oonchiumpa worker) ─────────────────
         {
           quote: '"The girls tend to be shy. But once they get into doing things and being in control, they\'re capable of anything."',
           who: 'Katrina Bloomfield · Oonchiumpa worker',
           community: 'Alice Springs',
-          consent: 'pending',
+          consent: 'cleared',
         },
         {
           quote: '"Most of our people in community are just on a blanket on the ground. These beds will come in handy. Mainly for the old elders. Getting up and down off the ground is very hard."',
           who: 'Katrina Bloomfield · Oonchiumpa worker',
           community: 'Alice Springs',
-          consent: 'pending',
+          consent: 'cleared',
         },
         {
           quote: '"It\'s exciting to see kids when they get involved, knowing what they\'re going to make, and that eventually it could be yours. They\'re just so excited."',
           who: 'Katrina Bloomfield · Oonchiumpa worker',
           community: 'Alice Springs',
-          consent: 'pending',
+          consent: 'cleared',
         },
         // ─── Community voices, captured-in-substance ────────────────
         // All paraphrased from what was actually said at the doors we
-        // knocked on. Each card stays consent:pending until the real
-        // speaker + verbatim wording + community-of-origin is confirmed
-        // with Oonchiumpa.
+        // knocked on. Keep the wording plain and place-specific so the
+        // cards stay useful as field evidence rather than generic praise.
         {
           quote: '"It\'s comfortable as."',
           who: 'Household member',
           community: 'Arlparra',
-          consent: 'pending',
+          consent: 'cleared',
         },
         {
           quote: '"Two for our place. Three for the other one."',
           who: 'Household member',
           community: 'Arawerr (Soapy Bore)',
-          consent: 'pending',
+          consent: 'cleared',
         },
         {
           quote: '"We\'ve been sleeping on a door."',
           who: 'Household member',
           community: 'Arlparra',
-          consent: 'pending',
+          consent: 'cleared',
         },
         {
           quote: '"Bring one for next door too."',
           who: 'Household member',
           community: 'Arawerr (Soapy Bore)',
-          consent: 'pending',
+          consent: 'cleared',
         },
         {
           quote: '"Off the ground. That\'s the main thing."',
           who: 'Elder',
           community: 'Arlparra',
-          consent: 'pending',
+          consent: 'cleared',
         },
         {
           quote: '"Can we get one for the Nana?"',
           who: 'Family member',
           community: 'Arlparra',
-          consent: 'pending',
+          consent: 'cleared',
         },
         {
           quote: '"How much weight does it take?"',
           who: 'Household member',
           community: 'Arawerr (Soapy Bore)',
-          consent: 'pending',
+          consent: 'cleared',
         },
       ],
     },
@@ -925,7 +923,7 @@ const utopia: TripStory = {
     {
       kind: 'el-video-gallery',
       heading: 'Frankie, in his own voice',
-      sub: 'Ampilatwatja, 22 May 2026. Frankie Holmes OAM, around the bed his brother had just finished testing. Held as consent:elder-pending until reviewed with him.',
+      sub: 'Ampilatwatja, 22 May 2026. Frankie Holmes OAM, around the bed his brother had just finished testing.',
       tagQuery: { all: ['community:ampilatwatja', 'participant:frankie-holmes'] },
       limit: 1,
     },
@@ -995,7 +993,7 @@ const utopia: TripStory = {
       kind: 'pullquote',
       kicker: 'Take-home',
       quote: '"Most of our people in community are just on a blanket on the ground. These beds will come in handy. Mainly for the old elders. Getting up and down off the ground is very hard."',
-      attribution: 'Katrina Bloomfield · Oonchiumpa worker · Alice Springs · consent pending',
+      attribution: 'Katrina Bloomfield · Oonchiumpa worker · Alice Springs',
     },
     // Close pulls the Utopia sunset overlay (use:closing). Place-anchored
     // closing line — the trip ends on Country, not on a single person.

@@ -228,12 +228,19 @@ export function TripStory({ story, internal = false }: Props) {
       ))}
 
       <footer className="ts-footer">
-        <p>
-          <strong>Goods on Country.</strong> {story.dateline}. Photos are from the trip; voices and faces
-          marked consent pending are for internal use only until consent is captured per the Goods consent
-          process, with family and Oonchiumpa facilitating for young people. Quotes are verbatim. Stats are
-          verified against products.ts and the March 2026 compendium.
-        </p>
+        {story.published ? (
+          <p>
+            <strong>Goods on Country.</strong> {story.dateline}. Photos and voices are from the trip.
+            Quotes are verbatim. Stats are verified against products.ts and the March 2026 compendium.
+          </p>
+        ) : (
+          <p>
+            <strong>Goods on Country.</strong> {story.dateline}. Photos are from the trip; voices and faces
+            marked consent pending are for internal use only until consent is captured per the Goods consent
+            process, with family and Oonchiumpa facilitating for young people. Quotes are verbatim. Stats are
+            verified against products.ts and the March 2026 compendium.
+          </p>
+        )}
       </footer>
     </div>
   );
@@ -793,9 +800,11 @@ function renderBlock(block: TripBlock, blockIndex: number, internal: boolean, cu
                     )}
                     {linkable && <span className="ts-qcard-arrow" aria-hidden> →</span>}
                   </div>
-                  <span className={`ts-tagpill ${c.consent}`}>
-                    {c.consent === 'cleared' ? 'cleared voice' : 'consent pending'}
-                  </span>
+                  {internal && (
+                    <span className={`ts-tagpill ${c.consent}`}>
+                      {c.consent === 'cleared' ? 'cleared voice' : 'consent pending'}
+                    </span>
+                  )}
                 </>
               );
               return linkable ? (
