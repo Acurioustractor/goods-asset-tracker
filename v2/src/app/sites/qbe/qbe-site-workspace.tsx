@@ -107,11 +107,6 @@ const sourceDocs = [
     href: 'https://app.notion.com/p/354ebcf981cf8156bebbf2851ecba5e6',
     note: 'Xero actuals, estimates, pricing references and source trail.',
   },
-  {
-    title: 'OpenAI Sites Pattern',
-    href: 'https://openai.com/index/codex-for-every-role-tool-workflow/',
-    note: 'Dashboard, scenario planner and living launch hub pattern.',
-  },
 ];
 
 const evidenceRows: Array<{
@@ -702,10 +697,10 @@ export function QbeSiteWorkspace() {
                 Goods on Country
               </p>
               <h1 className="mt-4 max-w-4xl text-4xl font-light leading-tight sm:text-5xl lg:text-6xl" style={{ fontFamily: 'Georgia, serif' }}>
-                QBE capital, costings and brand evidence in one live workspace
+                QBE capital, costings and impact evidence in one investor site
               </h1>
               <p className="mt-5 max-w-3xl text-base leading-7 text-[#E6DFD1] sm:text-lg">
-                The making belongs on Country. This site pulls the Notion QBE work, the verified cost engine, the brand guide and the investor-readiness gaps into one decision surface.
+                The making belongs on Country. This page brings the QBE capital case, verified cost engine, brand proof and investor-readiness gates into one decision surface.
               </p>
             </div>
 
