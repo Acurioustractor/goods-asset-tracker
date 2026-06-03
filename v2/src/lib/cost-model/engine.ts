@@ -12,7 +12,7 @@
  *   3. Breakeven beds/yr   (~338 Factory)                          — fixed block ÷ contribution/bed
  *   4. Capital payback                                             — on the $194.05/bed in-house legs saving
  *
- * The old "fully-loaded at pilot volume" (~$1,912-equivalent, `fullKits`) is DEMOTED to a small,
+ * The "fully-loaded at pilot volume" reference (about $1,780 at the 100/yr locked baseline, `fullKits`) is DEMOTED to a small,
  * clearly-labelled reference figure — it is a fixed-cost-absorption artefact at low volume, NOT a
  * marginal cost, and it must never headline an investor view again.
  *

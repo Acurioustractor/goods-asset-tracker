@@ -193,7 +193,7 @@ export const WEBSITE_PRICE = 750; // Unified website price (2026-05-26). Institu
 //   End caps $3.20/bed — 4 × $0.80 round ribbed caps.
 //   Screws $1.04/bed — 16 screws × $0.065 (Coastal Fasteners verified, 2026-04-16).
 //   Bolts $1.00/bed — 2 × ~$0.50 (estimate pending invoice line-item OCR).
-// THIS IS NOT THE FULLY-LOADED COST — see fullyLoadedCostPerBed below.
+// THIS IS NOT THE MARGINAL COST — add in-house assembly, local freight, and long-haul freight below.
 //
 // NOTE: There is NO current "Defy fully-fabricated Single Bed" rate for the Stretch Bed.
 // INV-1507 $600/bed was for the DISCONTINUED Weave Bed (verified ex OCR 2026-05-28).
@@ -232,19 +232,30 @@ export const stretchBedDirectMaterials = stretchBedBOM.reduce((sum, item) => sum
 export const factoryDirectMaterials = 275.74;
 
 /**
- * Fully-loaded production cost per bed at current low volume (~100 units).
- * The direct-materials BOM above is a SUBSET. The remainder is the HDPE leg
- * production at the Sunshine Coast facility (plastic shredding / pressing / CNC),
- * facility labour (Joseph Kirmos ~$4,500/mo), freight, fuel and overhead.
+ * Legacy planning/direct-cost anchor from early Snow/FRRR copy.
+ * This is NOT current marginal COGS and NOT fixed-block absorption.
+ * It excludes the $150/bed long-haul freight bridge and must not be used for
+ * investor margin claims without that bridge.
  *
  * Source: FRRR Community Led Climate Solutions application ("Total production
  * cost: $550–650 at 100 units") + financial-model Day 4 unit economics
  * (2026-05-12: $550/bed at ~15/mo today → $479 at 1,500/yr → $351 at 5,000/yr
  * → $270 at Vision 2030). Aligns with the public "/pitch" $600 figure.
  *
- * USE THIS, not direct materials, for any margin claim.
+ * Use `stretchBedMarginalCostPerBed` for current Buy-Kit margin claims.
  */
-export const fullyLoadedCostPerBed = 600;
+export const legacyPlanningAnchorCostPerBed = 600;
+
+export const inHouseAssemblyPerBed = 40;
+export const localFreightPerBed = 25;
+export const longHaulFreightPerBed = 150;
+export const stretchBedDirectCostBeforeLongHaul =
+  stretchBedDirectMaterials + inHouseAssemblyPerBed + localFreightPerBed; // $534.79
+export const stretchBedMarginalCostPerBed =
+  stretchBedDirectCostBeforeLongHaul + longHaulFreightPerBed; // $684.79
+
+/** @deprecated legacy planning anchor only; use stretchBedMarginalCostPerBed for current COGS. */
+export const fullyLoadedCostPerBed = legacyPlanningAnchorCostPerBed;
 
 /** @deprecated materials-only alias — kept for back-compat. Do NOT use for margin. */
 export const stretchBedCOGS = stretchBedDirectMaterials;
@@ -252,11 +263,14 @@ export const stretchBedCOGS = stretchBedDirectMaterials;
 export const supplierSummary = {
   totalSuppliers: 4, // Defy, DNA Steel, Centre Canvas, Hardware
   localSuppliers: 2, // DNA Steel + Centre Canvas (Alice Springs)
-  directMaterialsPerBed: stretchBedDirectMaterials, // $168.70 (bought-in BOM)
-  fullyLoadedCostPerBed,                            // $600 (true production cost @ ~100 units)
-  cogsPerBed: fullyLoadedCostPerBed,                // margin maths run off fully-loaded cost
-  // Honest margin at the $750 website price uses fully-loaded cost, NOT materials.
-  marginAtInstitutional: WEBSITE_PRICE - fullyLoadedCostPerBed, // $150
-  marginAtRetail: WEBSITE_PRICE - fullyLoadedCostPerBed,
-  marginPct: Math.round(((WEBSITE_PRICE - fullyLoadedCostPerBed) / WEBSITE_PRICE) * 100), // 20%
+  directMaterialsPerBed: stretchBedDirectMaterials, // $469.79 bought-in BOM
+  directCostBeforeLongHaul: stretchBedDirectCostBeforeLongHaul, // $534.79 direct + local handling
+  marginalCostPerBed: stretchBedMarginalCostPerBed, // $684.79 current Buy-Kit marginal
+  planningAnchorCostPerBed: legacyPlanningAnchorCostPerBed, // $600 legacy proposal anchor, not COGS
+  fullyLoadedCostPerBed, // legacy alias retained for back-compat only
+  cogsPerBed: stretchBedMarginalCostPerBed,
+  // Honest margin at the $750 website price uses marginal COGS, NOT the $600 planning anchor.
+  marginAtInstitutional: WEBSITE_PRICE - stretchBedMarginalCostPerBed, // $65.21
+  marginAtRetail: WEBSITE_PRICE - stretchBedMarginalCostPerBed,
+  marginPct: Math.round(((WEBSITE_PRICE - stretchBedMarginalCostPerBed) / WEBSITE_PRICE) * 100), // 9%
 };

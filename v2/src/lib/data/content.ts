@@ -94,7 +94,7 @@ export const productCategories = [
   {
     id: 'stretch-bed',
     name: 'The Stretch Bed',
-    description: 'Recycled HDPE plastic, galvanised steel poles, heavy-duty canvas. 26kg, flat-packs, no tools. Made on country from collected community plastic.',
+    description: 'Recycled HDPE plastic, galvanised steel poles, heavy-duty canvas. 26kg, flat-packs, no tools. Designed for on-country production from collected community plastic.',
     products: ['stretch-bed'],
     status: 'available',
     icon: 'bed',
@@ -598,7 +598,7 @@ export const investmentCase = {
       id: 'beds',
       title: '100 Beds for Communities',
       amount: '$60,000',
-      description: '100 stretch beds at $600 per bed, deployed to requesting communities and health organisations. Expands field testing from 15-20 beds to enable confident scaling decisions.',
+      description: '100 stretch beds for requesting communities and health organisations. The old $600/bed planning anchor excludes long-haul freight and fixed-block absorption; current Buy-Kit marginal cost is $684.79/bed, with fixed costs treated separately.',
     },
     {
       id: 'plant',
@@ -862,14 +862,14 @@ export const communityLocations: CommunityLocation[] = [
 // ---------------------------------------------------------------------------
 //
 // The canonical deployed-bed register lives in compendium.ts `deployments`
-// (sums to EXPECTED_DEPLOYED_BEDS = 495; the live Supabase register is
+// (sums to EXPECTED_DEPLOYED_BEDS = 496; the live Supabase register is
 // authoritative, this is the labelled static fallback).
 //
 // `communityPartnerships` (narrative subset) and `communityLocations` (heatpost-
 // map baselines, live-overridden except where staticBedCount=true) are
 // INTENTIONALLY NARROWER scopes than the full register — they omit communities
-// that have no map pin / no narrative partner (e.g. Darwin 1, Canberra 1 in the
-// canonical list have neither). So we do NOT force their sums to equal 495;
+// that have no map pin / no narrative partner (e.g. Darwin 1, Canberra 2 in the
+// canonical list have neither). So we do NOT force their sums to equal 496;
 // inventing pins/partners for them would be fabrication. Instead we assert that
 // (a) no single community's static count EXCEEDS the canonical register value,
 // and (b) neither array's total exceeds EXPECTED_DEPLOYED_BEDS. This catches the

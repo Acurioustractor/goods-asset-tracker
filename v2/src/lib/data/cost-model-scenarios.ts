@@ -203,9 +203,9 @@ export const CostModelDefaults: CostModelInputs = {
 };
 
 /**
- * Canonical fully-loaded cost per bed for the *current* (today, ~100/yr) tier.
+ * Canonical fully-loaded reference per bed for the *current* (today, ~100/yr) tier.
  * Reads the fully_loaded_grid rather than the orphan $600 in supplier-quotes.ts.
- * Buy-Kit @ today = $1,912; Factory @ today = $1,653.
+ * Buy-Kit @ today = $1,780; Factory @ today = $1,521.
  */
 export function getFullyLoadedToday(method: 'state_2_defy_kits' | 'state_4_factory' = 'state_2_defy_kits'): number {
   const today = scenarios.fully_loaded_grid[0];
@@ -218,7 +218,7 @@ export function getFullyLoadedToday(method: 'state_2_defy_kits' | 'state_4_facto
  * tells the SAME story. Marginal = build-path direct + per-bed long-haul freight
  * (the only per-bed variable beyond materials). Reconciles to the locked numbers:
  * Buy-Kit $684.79 (534.79 + 150) / Factory $425.74 (275.74 + 150). Fixed-cost
- * absorption at pilot volume (~$1,912 Buy-Kit) is explicitly NOT this number.
+ * absorption at pilot volume (~$1,780 Buy-Kit) is explicitly NOT this number.
  */
 export function getMarginalToday(method: 'state_2_defy_kits' | 'state_4_factory' = 'state_2_defy_kits'): number {
   const grid = getMarginGridAt750();
@@ -235,7 +235,7 @@ export function getMarginalToday(method: 'state_2_defy_kits' | 'state_4_factory'
  * The HONEST lead is the marginal / contribution story (the same one the
  * cost-model explorer headlines): COGS + margin are driven from the MARGINAL
  * cost per bed (Buy-Kit $684.79 today), not the fixed-cost-absorption number.
- * The fully-loaded figure ($1,912 at pilot volume) is exposed separately as a
+ * The fully-loaded figure ($1,780 at pilot volume) is exposed separately as a
  * clearly-labelled reference only — it is NOT a marginal cost and must not
  * headline the card.
  */
@@ -341,7 +341,7 @@ export function reconcileAgainstCanonicalBOM(): {
   // fullyLoadedCostPerBed ($600) is a legacy orphan that maps to no build state;
   // surface it so a desync between supplier-quotes.ts and the canonical
   // fully-loaded grid fires the drift banner. The today-tier Buy-Kit fully-loaded
-  // figure ($1,912) is the canonical costing anchor.
+  // figure ($1,780) is a reference-only fixed absorption view.
   const fullyLoadedKitToday = getFullyLoadedToday('state_2_defy_kits');
   return {
     factoryTotal: state4.direct_total,

@@ -315,16 +315,20 @@ export default async function LibraryPage() {
                 <td className="px-4 py-2" colSpan={4}>Direct materials per bed</td>
                 <td className="px-4 py-2 text-right font-mono">${stretchBedDirectMaterials.toFixed(2)}</td>
               </tr>
+              <tr className="border-t bg-emerald-50 text-xs text-emerald-900">
+                <td className="px-4 py-2" colSpan={4}>+ assembly, local freight, long-haul freight → marginal cash cost</td>
+                <td className="px-4 py-2 text-right font-mono">${supplierSummary.marginalCostPerBed.toFixed(2)}</td>
+              </tr>
               <tr className="border-t text-xs text-muted-foreground">
-                <td className="px-4 py-2" colSpan={4}>+ facility, labour, freight &amp; overhead → fully-loaded cost</td>
-                <td className="px-4 py-2 text-right font-mono">${supplierSummary.fullyLoadedCostPerBed}</td>
+                <td className="px-4 py-2" colSpan={4}>Legacy $600 planning anchor — excludes long-haul freight and fixed-block absorption</td>
+                <td className="px-4 py-2 text-right font-mono">${supplierSummary.planningAnchorCostPerBed}</td>
               </tr>
             </tbody>
           </table>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
-          <PriceCard label="Website price" value="$750" sub={`${supplierSummary.marginPct}% margin · $${supplierSummary.marginAtInstitutional}`} />
-          <PriceCard label="Margin / bed" value={`$${supplierSummary.marginAtInstitutional}`} sub={`COGS $${supplierSummary.cogsPerBed}`} />
+          <PriceCard label="Website price" value="$750" sub={`${supplierSummary.marginPct}% margin · $${supplierSummary.marginAtInstitutional.toFixed(2)}`} />
+          <PriceCard label="Margin / bed" value={`$${supplierSummary.marginAtInstitutional.toFixed(2)}`} sub={`marginal COGS $${supplierSummary.cogsPerBed.toFixed(2)}`} />
           <PriceCard label="PICC channel" value="$750" sub="confirm GST" />
           <PriceCard label="Workshop (full kit)" value="$6,000" sub="per workshop" />
         </div>

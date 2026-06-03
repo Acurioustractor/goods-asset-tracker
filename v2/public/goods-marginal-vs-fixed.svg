@@ -1,35 +1,65 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 980" width="1680" height="980" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
-<defs><filter id="sh" x="-8%" y="-8%" width="116%" height="124%">
-<feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#5A4A38" flood-opacity="0.10"/></filter></defs>
-<rect width="1680" height="980" fill="#FBFAF5"/>
-<text x="840.0" y="74" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="50" font-weight="700" fill="#2A241E">What a bed actually costs</text>
-<text x="840.0" y="110" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="400" fill="#6F6155" font-style="italic">The same total, two ways. The headline divides a fixed annual block over a tiny denominator. Split honestly, the next bed costs far less.</text>
-<line x1="100" y1="720" x2="1580" y2="720" stroke="#C9BCA8" stroke-width="1.6"/>
-<rect x="355.0" y="200.0" width="230" height="520.0" rx="12" fill="#A8442E7F" stroke="#A8442E" stroke-width="1.8" filter="url(#sh)"/>
-<line x1="329.0" y1="376.8" x2="611.0" y2="356.0" stroke="#A8442E" stroke-width="5" stroke-linecap="round"/>
-<text x="470" y="180.0" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-weight="700" fill="#A8442E">AU$1,780</text>
-<text x="470" y="754" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="16" font-weight="400" fill="#6F6155" font-style="italic">looks like the cost (at 100/yr)</text>
-<text x="470" y="778" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#6F6155">fixed block divided over only 100 beds</text>
-<path d="M 625.0 460.0 L 966.0 460.0 M 959.0 453.0 L 969.0 460.0 L 959.0 467.0" fill="none" stroke="#6F6155" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="800.0" y="442.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#6F6155">split</text>
-<text x="800.0" y="458.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#6F6155">honestly</text>
-<rect x="1015.0" y="519.8876404494382" width="230" height="200.1123595505618" rx="12" fill="#4C9B97" stroke="#38726F" stroke-width="1.6" filter="url(#sh)"/>
-<rect x="1015.0" y="519.8876404494382" width="230" height="14" rx="12" fill="#4C9B97"/>
-<rect x="1015.0" y="200.0" width="230" height="319.8876404494382" rx="12" fill="#8A5A458C" stroke="#8A5A45" stroke-width="1.6" filter="url(#sh)"/>
-<rect x="1015.0" y="505.8876404494382" width="230" height="14" rx="0" fill="#8A5A458C"/>
-<text x="1130" y="613.943820224719" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="700" fill="#FFFFFF">AU$685</text>
-<text x="1130" y="635.943820224719" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#FFFFFF">marginal (the next bed)</text>
-<text x="1130" y="353.9438202247191" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="700" fill="#664233">AU$1,095</text>
-<text x="1130" y="375.9438202247191" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#664233">fixed (spread over volume)</text>
-<text x="1130" y="180.0" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#2A241E">AU$1,780 total</text>
-<text x="1130" y="754" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#52734C" font-style="italic">same total, split honestly</text>
-<text x="1130" y="778" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#6F6155">marginal scales per bed; fixed is annual</text>
-<path d="M 1271.0 519.8876404494382 L 1283.0 519.8876404494382 L 1283.0 720 L 1271.0 720" fill="none" stroke="#38726F" stroke-width="1.6"/>
-<text x="1293.0" y="624.943820224719" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#38726F">scales with each bed</text>
-<path d="M 1271.0 200.0 L 1283.0 200.0 L 1283.0 519.8876404494382 L 1271.0 519.8876404494382" fill="none" stroke="#664233" stroke-width="1.6"/>
-<text x="1293.0" y="364.9438202247191" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#664233">does not scale per bed</text>
-<rect x="60" y="812" width="1560" height="86" rx="16" fill="#6F9C681E" stroke="#6F9C68" stroke-width="1.8" filter="url(#sh)"/>
-<text x="88" y="846" text-anchor="start" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#52734C" letter-spacing="1.4">THE TWO LEVERS</text>
-<text x="88" y="874" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="21" font-weight="700" fill="#2A241E">Marginal drops AU$685 to AU$426 once in-sourced.  Breakeven: Factory ~338/yr vs Buy-Kit ~1,679/yr.</text>
-<text x="60" y="932" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="11.5" font-weight="400" fill="#6F6155" font-style="italic">Source: Goods cost model (2026-05). AU$1,780 = marginal + AU$109,500 annual fixed block absorbed over a 100-bed denominator; split and breakevens modelled on verified BOM inputs (AU$750 price).</text>
+  <defs>
+    <filter id="sh" x="-8%" y="-8%" width="116%" height="124%">
+      <feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#5A4A38" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect width="1680" height="980" fill="#FBFAF5"/>
+
+  <text x="840" y="70" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="48" font-weight="700" fill="#2A241E">How break-even works at a AU$750 price</text>
+  <text x="840" y="110" text-anchor="middle" font-size="21" fill="#6F6155">You do not break even at today's bought-in cost. Break-even becomes possible only after in-sourcing lowers the marginal cost.</text>
+
+  <rect x="70" y="145" width="735" height="615" rx="18" fill="#FFF7F2" stroke="#C8846E" stroke-width="2.2" filter="url(#sh)"/>
+  <text x="105" y="195" font-size="15" font-weight="700" fill="#A8442E" letter-spacing="1.6">TODAY: BUY-KIT PATH</text>
+  <text x="105" y="235" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="700" fill="#2A241E">This does not break even at AU$750</text>
+
+  <line x1="105" y1="278" x2="770" y2="278" stroke="#E3B8A8" stroke-width="1.5"/>
+  <text x="115" y="330" font-size="20" font-weight="700" fill="#2A241E">Sell price</text>
+  <text x="750" y="330" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700" fill="#2A241E">AU$750</text>
+  <text x="115" y="388" font-size="20" font-weight="700" fill="#2A241E">Marginal cash cost</text>
+  <text x="750" y="388" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700" fill="#A8442E">- AU$685</text>
+  <line x1="460" y1="410" x2="750" y2="410" stroke="#C8846E" stroke-width="1.4"/>
+  <text x="115" y="462" font-size="20" font-weight="700" fill="#2A241E">Left to cover fixed costs</text>
+  <text x="750" y="462" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="36" font-weight="700" fill="#A8442E">AU$65 / bed</text>
+
+  <rect x="105" y="505" width="665" height="86" rx="12" fill="#FFFFFF" stroke="#E3B8A8" stroke-width="1.4"/>
+  <text x="130" y="540" font-size="18" fill="#6F6155">Annual fixed block to fund</text>
+  <text x="745" y="540" text-anchor="end" font-size="25" font-weight="700" fill="#2A241E">AU$109,500</text>
+  <text x="130" y="572" font-size="18" fill="#6F6155">Break-even volume</text>
+  <text x="745" y="572" text-anchor="end" font-size="25" font-weight="700" fill="#A8442E">1,679 beds / yr</text>
+
+  <rect x="105" y="620" width="665" height="90" rx="12" fill="#A8442E" opacity="0.95"/>
+  <text x="130" y="656" font-size="22" font-weight="700" fill="#FFFFFF">At 100 beds/year:</text>
+  <text x="130" y="690" font-size="19" fill="#FFFFFF">100 x AU$65 = about AU$6,500, leaving a ~AU$103K gap.</text>
+
+  <rect x="875" y="145" width="735" height="615" rx="18" fill="#F4FAF2" stroke="#6F9C68" stroke-width="2.2" filter="url(#sh)"/>
+  <text x="910" y="195" font-size="15" font-weight="700" fill="#52734C" letter-spacing="1.6">TARGET: FACTORY / IN-SOURCED PATH</text>
+  <text x="910" y="235" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="700" fill="#2A241E">This is where break-even appears</text>
+
+  <line x1="910" y1="278" x2="1575" y2="278" stroke="#B9D5AF" stroke-width="1.5"/>
+  <text x="920" y="330" font-size="20" font-weight="700" fill="#2A241E">Sell price</text>
+  <text x="1555" y="330" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700" fill="#2A241E">AU$750</text>
+  <text x="920" y="388" font-size="20" font-weight="700" fill="#2A241E">Marginal cash cost after in-sourcing</text>
+  <text x="1555" y="388" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700" fill="#52734C">- AU$426</text>
+  <line x1="1265" y1="410" x2="1555" y2="410" stroke="#88B27F" stroke-width="1.4"/>
+  <text x="920" y="462" font-size="20" font-weight="700" fill="#2A241E">Left to cover fixed costs</text>
+  <text x="1555" y="462" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="36" font-weight="700" fill="#52734C">AU$324 / bed</text>
+
+  <rect x="910" y="505" width="665" height="86" rx="12" fill="#FFFFFF" stroke="#B9D5AF" stroke-width="1.4"/>
+  <text x="935" y="540" font-size="18" fill="#6F6155">Annual fixed block to fund</text>
+  <text x="1550" y="540" text-anchor="end" font-size="25" font-weight="700" fill="#2A241E">AU$109,500</text>
+  <text x="935" y="572" font-size="18" fill="#6F6155">Break-even volume</text>
+  <text x="1550" y="572" text-anchor="end" font-size="25" font-weight="700" fill="#52734C">338 beds / yr</text>
+
+  <rect x="910" y="620" width="665" height="90" rx="12" fill="#52734C" opacity="0.96"/>
+  <text x="935" y="656" font-size="22" font-weight="700" fill="#FFFFFF">At 338 beds/year:</text>
+  <text x="935" y="690" font-size="19" fill="#FFFFFF">338 x AU$324 = about AU$109,500, covering the fixed block.</text>
+
+  <rect x="105" y="800" width="1470" height="104" rx="18" fill="#EEF3EA" stroke="#8EB985" stroke-width="1.8" filter="url(#sh)"/>
+  <text x="135" y="836" font-size="15" font-weight="700" fill="#52734C" letter-spacing="1.5">WHAT THE AU$1,780 NUMBER MEANS</text>
+  <text x="135" y="864" font-size="21" font-weight="700" fill="#2A241E">AU$1,780 at 100/year = AU$685 marginal + AU$1,095 fixed allocation.</text>
+  <text x="135" y="891" font-size="17" fill="#6F6155">It is a warning about low volume, not the sell price or the physical cost of one more bed. The capital case is to lower marginal cost first.</text>
+
+  <text x="70" y="945" font-size="12.5" fill="#6F6155" font-style="italic">Source: Goods cost model (2026-05). Figures are verified/modelled workpaper values, not audited accounts or final vendor quotes.</text>
 </svg>
