@@ -1,8 +1,9 @@
 import Link from 'next/link';
-import { communityPartnerships, investmentCase, quotes, oonchiumpaPartnership, partnershipJourney, advisoryGroup, goodsOrbit, storytellerProfiles, enterpriseVision } from '@/lib/data/content';
+import { communityPartnerships, investmentCase, quotes, oonchiumpaPartnership, partnershipJourney, advisoryGroup, goodsOrbit, storytellerProfiles } from '@/lib/data/content';
 import { MediaSlot } from '@/components/ui/media-slot';
 import { AssemblySequence } from '@/components/pitch/assembly-sequence';
 import { CyclingImage } from '@/components/pitch/cycling-image';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 
 export const metadata = {
   title: 'Pitch | Goods on Country',
@@ -406,7 +407,7 @@ export default function PitchPage() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-12">
               {[
                 { value: '496', label: 'bed units deployed' },
-                { value: '10', label: 'communities' },
+                { value: String(CANONICAL_ASSETS.communitiesServed), label: 'communities' },
                 { value: '2+', label: 'years with Bloomfield family' },
                 { value: '20kg', label: 'plastic per bed' },
               ].map((stat) => (

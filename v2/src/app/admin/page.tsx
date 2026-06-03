@@ -353,7 +353,7 @@ export default async function AdminDashboard() {
           <p className="text-[11px] text-muted-foreground">Defy Kits → Factory in-house</p>
           <div className="mt-3 pt-2 border-t flex justify-between text-[11px] text-muted-foreground">
             <span>Idiot Index 8.6×</span>
-            <span>$90-200K capex</span>
+            <span>$112-222K gross</span>
           </div>
         </Link>
       </section>

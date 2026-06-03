@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { empathyLedger } from '@/lib/empathy-ledger';
 import { communityPartnerships } from '@/lib/data/content';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import type { SyndicationStoryteller, ProjectInsights } from '@/lib/empathy-ledger/types';
 
 export const metadata = {
@@ -442,11 +443,11 @@ function ImpactSection() {
         </h2>
         <div className="grid gap-8 sm:grid-cols-4 max-w-3xl mx-auto mb-10">
           <div>
-            <div className="text-4xl font-bold text-accent-foreground">496</div>
+            <div className="text-4xl font-bold text-accent-foreground">{CANONICAL_ASSETS.bedsDeployed}</div>
             <div className="text-sm text-accent-foreground/80 mt-1">Bed units deployed</div>
           </div>
           <div>
-            <div className="text-4xl font-bold text-accent-foreground">10</div>
+            <div className="text-4xl font-bold text-accent-foreground">{CANONICAL_ASSETS.communitiesServed}</div>
             <div className="text-sm text-accent-foreground/80 mt-1">Communities served</div>
           </div>
           <div>

@@ -8,6 +8,8 @@
  * Synced: March 16, 2026
  */
 
+import { CANONICAL_ASSETS } from './asset-canonical';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Organisation Identity
 // ─────────────────────────────────────────────────────────────────────────────
@@ -91,23 +93,24 @@ export const problemStatement = {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Impact Numbers (as of March 2026)
+// Impact Numbers
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const impactNumbers = {
-  // Refreshed to canonical register figures 2026-05-29 (QBE sweep). Verified internal, not audited.
-  asOf: '2026-05-29',
-  totalAssetsTracked: 558, // asset rows carrying QR URLs (register: 561 rows / 674 total product units)
-  bedsDeployed: 496, // deployed bed units tracked (Stretch + legacy Basket)
-  washersDeployed: 14, // honest working machines (28 deployed; telemetry/working reconciliation pending)
-  communitiesEngaged: 10, // communities represented in asset records
+  // Refreshed to canonical register figures 2026-05-30 (QBE sweep). Verified internal, not audited.
+  asOf: '2026-05-30',
+  totalAssetsTracked: 561, // asset table rows: 520 bed rows + 41 washer rows
+  bedsDeployed: CANONICAL_ASSETS.bedsDeployed, // deployed bed units tracked (Stretch + legacy Basket)
+  washersDeployed: CANONICAL_ASSETS.washersDeployed, // physically deployed washers
+  washersWorking: CANONICAL_ASSETS.washersWorking, // confirmed working; telemetry is not fleet-wide yet
+  communitiesEngaged: CANONICAL_ASSETS.communitiesServed, // served communities; distinct register names = 10 incl. placeholder/allocated
   livesImpacted: '1,000+',
-  plasticDivertedKg: 2660, // canonical: see asset-canonical.ts — Stretch beds only (133 × 20kg HDPE); Basket Beds are not a plastic product
+  plasticDivertedKg: CANONICAL_ASSETS.plasticKg, // Stretch beds only (133 x 20kg HDPE); Basket Beds are not a plastic product
   plasticPerBed: '20kg HDPE',
   verifiedStorytellers: '15+',
   advisoryBoardMembers: 13, // advisory/support network — NOT a fiduciary board
-  // Deployed beds by community (verified register pull 2026-05-26). Washer counts omitted here
-  // pending the deployed(28)-vs-working(14) reconciliation; see washersDeployed above.
+  // Deployed beds by community. Washer counts omitted here because deployed vs working
+  // status is still being reconciled; see washersDeployed/washersWorking above.
   deployments: [
     { community: 'Tennant Creek', state: 'NT', beds: 159 },
     { community: 'Utopia Homelands', state: 'NT', beds: 147 },
@@ -116,6 +119,7 @@ export const impactNumbers = {
     { community: 'Maningrida', state: 'NT', beds: 18 },
     { community: 'Alice Springs', state: 'NT', beds: 16 },
     { community: 'Mt Isa', state: 'QLD', beds: 2 },
+    { community: 'Canberra', state: 'ACT', beds: 2 },
     { community: 'Darwin', state: 'NT', beds: 1 },
   ] as Array<{ community: string; state: string; beds: number; washers?: number }>,
 };
@@ -125,26 +129,25 @@ export const impactNumbers = {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const fundingHistory = {
-  // Grant funding received. Xero-verified (ACT-GD) where noted; TFN/FRRR/AMP are founder-confirmed
-  // (Ben/Nic, 2026-05-27) and being reconciled to a Xero record. Live pull 2026-05-27, ACT-ST entity.
-  totalReceived: 778_162,
+  // Xero ACT-GD ACCREC paid as of 2026-05-30. Workpaper-level management data, not audited.
+  // Includes grant/philanthropic receipts plus commercial buyer receipts.
+  totalReceived: 650_911,
   received: [
-    { source: 'Snow Foundation', amount: 402_930, when: '2024–2026' }, // Xero-verified (ACT-GD): 7 invoices, all paid
-    { source: 'The Funding Network', amount: 130_000, when: 'Sept 2025' }, // founder-confirmed received; Xero mirror shows only ACT-CE $6.5K paid + $144.6K authorised (mirror likely incomplete, reconcile)
-    { source: 'Centrecorp Foundation', amount: 123_332, when: '2025–2026' }, // Xero-verified (ACT-GD) paid; $420K commitment but 10 invoices voided (reinvoicing)
-    { source: 'FRRR', amount: 50_000, when: '2025' }, // founder-confirmed received; not yet located in ACT-ST Xero mirror (reconcile)
-    { source: 'Vincent Fairfax Family Foundation', amount: 50_000, when: '2025' }, // Xero-verified (ACT-GD)
-    { source: 'AMP Spark', amount: 21_900, when: '2025' }, // founder-confirmed received; not yet located in ACT-ST Xero mirror (reconcile)
+    { source: 'Snow Foundation', amount: 402_930, when: '2024-2026' },
+    { source: 'Centrecorp Foundation', amount: 123_332, when: '2025-2026' },
+    { source: 'Vincent Fairfax Family Foundation', amount: 50_000, when: '2025' },
+    { source: 'QIC', amount: 12_000, when: '2026' },
+    { source: 'The John Villiers Trust', amount: 1_200, when: '2026' },
+    { source: 'Commercial and buyer receipts', amount: 61_449, when: '2024-2026' },
   ],
-  // $201,900 above (TFN + FRRR + AMP) is founder-confirmed but unmatched in the ACT-ST Xero mirror.
-  // The mirror may be incomplete/stale (only ACT-ST entity synced) — verify against live Xero before external use.
+  // TFN, FRRR and AMP have been founder-confirmed in prior work, but were not in the
+  // live ACT-GD open/paid ACCREC set used for this QBE-alignment pass.
   receivables: [
     { source: 'Rotary eClub Outback Australia', amount: 82_500, notes: 'AUTHORISED grant, not yet paid (only live open receivable in ACT-GD)' },
-    { source: 'Homeland School Company', amount: 44_000, notes: 'INV-0303 AUTHORISED, due 30 Jun 2026, 65 beds Maningrida. Already ACT-GD in Xero (all line items tagged Goods); the mirror mis-derived project_code to ACT-JH via keyword_match (sync bug, no Xero change needed)' },
   ],
   // Removed Centrecorp $420K: relationship commitment, but its invoices were voided ($0 currently invoiced).
   // Removed PICC/Palm Island: that revenue belongs to the PICC (ACT-PI) project, not Goods.
-  totalReceivables: 126_500, // Rotary 82,500 + Homeland 44,000
+  totalReceivables: 82_500,
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -197,8 +200,8 @@ export const grantAnswers = {
     medium: `Three things differentiate Goods: (1) Community-led design. Every product decision is shaped in community with the people who use the thing. 500+ minutes of recorded community input drove the evolution from V1 Basket Beds to the V4 Stretch Bed. (2) Local production. Our containerised production facility ($100K invested) is being set up to turn waste plastic into bed components On-Country, creating jobs and a circular economy as it comes online. (3) Ownership pathway. The model is built to transfer capability to communities over time, with full training, capability and documentation, rather than a license.`,
   },
   whoDoYouWorkWith: 'We work with 9 remote Indigenous communities across QLD, NT, WA, and SA. Core community partners include Oonchiumpa Consultancy, Wilya Janta, and Palm Island Community Company. Health partners include Anyinginyi Health, Miwatj Health, Purple House, and Red Dust.',
-  howDoYouMeasureImpact: 'We track impact through: (1) Asset Register — 558 QR-coded assets with lifecycle monitoring. (2) Telemetry — washing machines report cycle counts, energy usage (coming online). (3) Community feedback — 500+ minutes recorded, 15+ verified storytellers via Empathy Ledger. (4) Environmental metrics — 2,660kg+ plastic diverted (133 Stretch beds × 20kg HDPE; Basket Beds are not a plastic product). (5) Health outcomes — tracking with health partners.',
-  whatAreYourFinancials: `~$576K in grant funding verified received (Xero: Snow, Centrecorp, VFFF), with a further ~$202K founder-confirmed and being reconciled (TFN, FRRR, AMP). ~$61K in trade revenue. ~$82,500 in outstanding receivables (Rotary, authorised). $100K invested in the production facility. Demand materially exceeds current production capacity. Figures are Xero management data, not audited.`,
+  howDoYouMeasureImpact: 'We track impact through: (1) Asset Register — 561 asset rows with QR-coded lifecycle monitoring. (2) Telemetry — 28 washing machines deployed, 14 confirmed working, with telemetry not yet fleet-wide. (3) Community feedback — 500+ minutes recorded, 15+ verified storytellers via Empathy Ledger. (4) Environmental metrics — 2,660kg+ plastic diverted (133 Stretch beds x 20kg HDPE; Basket Beds are not a plastic product). (5) Health outcomes — tracking with health partners.',
+  whatAreYourFinancials: `~$650.9K ACT-GD ACCREC paid to date, comprising ~$589.5K grant/philanthropic receipts and ~$61.4K commercial/buyer receipts. ~$82.5K remains outstanding as an authorised Rotary receivable. $100K invested in the production facility. Demand materially exceeds current production capacity. Figures are Xero management data, not audited.`,
   howWillYouUseThisFunding: {
     beds: 'Each $600–850 funds one Stretch Bed deployed to a remote community, diverting 20kg of plastic and providing a 10+ year sleeping surface.',
     production: '$100K funds a containerised production facility deployment to a community for ~2 months, producing roughly 20 beds/week at current throughput.',
@@ -313,7 +316,7 @@ export function composeGrantApplication(
         `As of ${impactNumbers.asOf}:`,
         '',
         `- **${impactNumbers.bedsDeployed}** beds deployed across **${impactNumbers.communitiesEngaged}** communities`,
-        `- **${impactNumbers.washersDeployed}** washing machines in pilot`,
+        `- **${impactNumbers.washersDeployed}** washing machines deployed (**${impactNumbers.washersWorking}** confirmed working)`,
         `- **${impactNumbers.plasticDivertedKg.toLocaleString()}kg** plastic diverted from landfill`,
         `- **${impactNumbers.livesImpacted}** lives directly impacted`,
         `- **${impactNumbers.totalAssetsTracked}** assets tracked via QR-coded lifecycle monitoring`,

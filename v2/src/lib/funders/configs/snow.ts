@@ -51,7 +51,7 @@ export const snowConfig: FunderConfig = {
       name: 'Stretch bed production and deployment',
       budgetAud: 140000,
       description:
-        'FY25 payments funded V1 → V3 iteration, materials testing, deployment to 8 families, feedback gathering. FY26 Scale-Up $60K (incoming) → 100 beds @ $600/bed for immediate deployment (May 17-27 Central Australia, July Maningrida).',
+        'FY25 payments funded V1 → V3 iteration, materials testing, deployment to 8 families, feedback gathering. FY26 Scale-Up $60K (incoming) supports the 100-bed deployment allocation; the old $600/bed planning anchor excludes long-haul freight and fixed-block absorption. Current Buy-Kit marginal is $684.79/bed.',
       outcomes:
         '15-20 beds deployed during funded period; 100-bed batch in production for delivery within FY26 Q4.',
     },

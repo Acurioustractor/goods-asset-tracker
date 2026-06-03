@@ -5,6 +5,7 @@ import { media, videoUrl } from '@/lib/data/media';
 import { empathyLedger } from '@/lib/empathy-ledger';
 import { MediaSlot, VideoSlot } from '@/components/ui/media-slot';
 import { Button } from '@/components/ui/button';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -856,7 +857,7 @@ export default async function StoryPage() {
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-12">
                 {[
                   { value: '496', label: 'bed units deployed' },
-                  { value: '10', label: 'communities served' },
+                  { value: String(CANONICAL_ASSETS.communitiesServed), label: 'communities served' },
                   { value: '20kg', label: 'plastic per bed diverted' },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center p-6 rounded-xl bg-white/5 border border-white/10">

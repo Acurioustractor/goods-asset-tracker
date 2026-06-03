@@ -161,14 +161,14 @@
     ]
   },
   "overhead_per_volume": [
-    { "label": "Today (100 beds/yr)", "beds_per_year": 100, "kirmos_per_bed": 270, "founder_production_per_bed": 300, "admin_per_bed": 147, "field_travel_per_bed": 510, "long_haul_freight_per_bed": 150, "overhead_total": 1377 },
-    { "label": "Target (500 beds/yr)", "beds_per_year": 500, "kirmos_per_bed": 54, "founder_production_per_bed": 60, "admin_per_bed": 29, "field_travel_per_bed": 100, "long_haul_freight_per_bed": 100, "overhead_total": 343 },
-    { "label": "Vision (1,000 beds/yr)", "beds_per_year": 1000, "kirmos_per_bed": 27, "founder_production_per_bed": 30, "admin_per_bed": 15, "field_travel_per_bed": 50, "long_haul_freight_per_bed": 80, "overhead_total": 202 }
+    { "label": "Today (100 beds/yr)", "beds_per_year": 100, "kirmos_per_bed": 270, "founder_production_per_bed": 168, "admin_per_bed": 147, "field_travel_per_bed": 510, "long_haul_freight_per_bed": 150, "overhead_total": 1095 },
+    { "label": "Target (500 beds/yr)", "beds_per_year": 500, "kirmos_per_bed": 54, "founder_production_per_bed": 33.6, "admin_per_bed": 29.4, "field_travel_per_bed": 102, "long_haul_freight_per_bed": 100, "overhead_total": 219 },
+    { "label": "Vision (1,000 beds/yr)", "beds_per_year": 1000, "kirmos_per_bed": 27, "founder_production_per_bed": 16.8, "admin_per_bed": 14.7, "field_travel_per_bed": 51, "long_haul_freight_per_bed": 80, "overhead_total": 109.5 }
   ],
   "fully_loaded_grid": [
-    { "volume_label": "100/yr today", "state_2_defy_kits": 1912, "state_3_defy_panels": 1961, "state_4_factory": 1653, "state_5_community": 1648 },
-    { "volume_label": "500/yr target", "state_2_defy_kits": 878, "state_3_defy_panels": 927, "state_4_factory": 619, "state_5_community": 614 },
-    { "volume_label": "1,000/yr vision", "state_2_defy_kits": 737, "state_3_defy_panels": 786, "state_4_factory": 478, "state_5_community": 473 }
+    { "volume_label": "100/yr today", "state_2_defy_kits": 1780, "state_3_defy_panels": 1829, "state_4_factory": 1521, "state_5_community": 1516 },
+    { "volume_label": "500/yr target", "state_2_defy_kits": 854, "state_3_defy_panels": 903, "state_4_factory": 595, "state_5_community": 590 },
+    { "volume_label": "1,000/yr vision", "state_2_defy_kits": 724, "state_3_defy_panels": 774, "state_4_factory": 465, "state_5_community": 460 }
   ],
   "margin_grid_at_750_retail": [
     { "path": "Defy Kits", "direct": 534.79, "margin": 215.21, "margin_pct": 29 },
@@ -213,9 +213,9 @@
     "beds_per_year_today": 100,
     "beds_per_year_target": 500,
     "beds_per_year_vision": 1000,
-    "fully_loaded_today_per_bed": 1912,
-    "fully_loaded_target_per_bed": 619,
-    "fully_loaded_vision_per_bed": 478,
+    "fully_loaded_today_per_bed": 1780,
+    "fully_loaded_target_per_bed": 595,
+    "fully_loaded_vision_per_bed": 465,
     "commercial_low": 1500,
     "commercial_high": 2000,
     "headline_value_per_dollar_at_target": "Each $1,000 of capital invested unlocks ~$X/bed cost reduction, ~Y beds/yr capacity"
