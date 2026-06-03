@@ -45,7 +45,7 @@ function LoginForm() {
           Enter the password
         </h1>
         <p className="mt-3 text-sm text-stone-600 leading-relaxed">
-          The live, verified bed cost model and investment view — shared with QBE and
+          The interactive, verified bed cost model and investment view — shared with QBE and
           investment partners of Goods on Country. If you don&apos;t have the password,
           contact Ben at ben@benjamink.com.au.
         </p>

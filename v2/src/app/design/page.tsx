@@ -204,9 +204,6 @@ export default function DesignPage() {
               <Button asChild>
                 <Link href="/design/community-voices">Start with Community Voices</Link>
               </Button>
-              <Button variant="outline" asChild>
-                <Link href="/docs/HOMEPAGE_DESIGN_EXPLORATION.md">View Full Document</Link>
-              </Button>
             </div>
           </CardContent>
         </Card>

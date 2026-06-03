@@ -260,9 +260,9 @@ interface PartnershipInquiryData {
   contactPhone?: string;
   partnershipType: string;
   message?: string;
-  /** foundation | corporate | buyer | investor | community | other */
+  /** foundation | paf-puaf | family-office | corporate | recoverable-grant | patient-debt | institutional-buyer | community | other */
   partnerSegment?: string;
-  /** under-25k | 25-100k | 100-500k | 500k-plus | loan | exploring */
+  /** under-25k | 25-100k | 100-500k | 500k-plus | recoverable | patient-debt | exploring */
   fundingTier?: string;
   /** now | this-year | future */
   timeline?: string;
@@ -1279,6 +1279,9 @@ Submitted: ${new Date().toLocaleString('en-AU')}
     if (data.timeline) {
       segmentTags.push(`goods-timeline-${data.timeline}`);
     }
+    if (data.partnershipType === 'capital-interest') {
+      segmentTags.push('goods-capital-interest');
+    }
 
     const result = await createOrUpdateContact({
       email: data.contactEmail,
@@ -1298,6 +1301,7 @@ Submitted: ${new Date().toLocaleString('en-AU')}
         '🤝 Partnership Inquiry',
         `Organization: ${data.organizationName}`,
         `Type: ${data.partnershipType}`,
+        data.partnershipType === 'capital-interest' ? 'Interest: capital stack' : null,
         data.partnerSegment ? `Segment: ${data.partnerSegment}` : null,
         data.fundingTier ? `Ticket size: ${data.fundingTier}` : null,
         data.timeline ? `Timeline: ${data.timeline}` : null,

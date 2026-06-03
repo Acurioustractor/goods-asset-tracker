@@ -89,8 +89,8 @@ async function runChecks(): Promise<CheckRow[]> {
     action: { label: 'Open Stripe webhooks', href: 'https://dashboard.stripe.com/webhooks' },
   });
 
-  // 5. Active products are intentional. The hidden 'smoke-test' SKU is ignored —
-  // it's expected to be active so the admin can buy it through real checkout.
+  // 5. Active products are intentional. The hidden smoke-test SKU is ignored
+  // here because checkout only accepts the canonical Stretch Bed product type.
   const supabase = createServiceClient();
   const { data: activeProducts } = await supabase
     .from('products')
@@ -117,12 +117,12 @@ async function runChecks(): Promise<CheckRow[]> {
   // 5b. Smoke-test SKU presence
   checks.push({
     id: 'smoke-test-sku',
-    title: 'Smoke-test SKU available',
-    status: hasSmokeTest ? 'pass' : 'warn',
+    title: 'Smoke-test SKU quarantined',
+    status: hasSmokeTest ? 'manual' : 'pass',
     detail: hasSmokeTest
-      ? 'Hidden $1 product exists at /shop/smoke-test. Use this for the end-to-end card test after flipping to live keys.'
-      : 'No /shop/smoke-test product. The end-to-end test will need a different hidden SKU.',
-    action: hasSmokeTest ? { label: 'Open /shop/smoke-test', href: '/shop/smoke-test' } : undefined,
+      ? 'Hidden $1 product exists, but checkout now accepts only Stretch Bed products. Confirm it stays out of public navigation and use an admin-only Stripe workflow for live card tests.'
+      : 'No smoke-test product found. Direct checkout is limited to the Stretch Bed.',
+    action: hasSmokeTest ? { label: 'Open /admin/products', href: '/admin/products' } : undefined,
   });
 
   // 6. Stretch Bed row has the canonical product_type

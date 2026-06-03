@@ -10,9 +10,12 @@ interface PartnershipFormProps {
 
 const SEGMENT_OPTIONS = [
   { value: 'foundation', label: 'Foundation or trust' },
+  { value: 'paf-puaf', label: 'PAF / PuAF' },
+  { value: 'family-office', label: 'Family office' },
   { value: 'corporate', label: 'Corporate / CSR' },
-  { value: 'buyer', label: 'Institutional buyer (health, housing, government)' },
-  { value: 'investor', label: 'Investor or lender' },
+  { value: 'recoverable-grant', label: 'Recoverable grant' },
+  { value: 'patient-debt', label: 'Patient debt' },
+  { value: 'institutional-buyer', label: 'Institutional buyer' },
   { value: 'community', label: 'Community organisation' },
   { value: 'other', label: 'Other' },
 ];
@@ -23,7 +26,8 @@ const TIER_OPTIONS = [
   { value: '25-100k', label: '$25K to $100K' },
   { value: '100-500k', label: '$100K to $500K' },
   { value: '500k-plus', label: '$500K+' },
-  { value: 'loan', label: 'A loan or recoverable grant' },
+  { value: 'recoverable', label: 'Recoverable funding' },
+  { value: 'patient-debt', label: 'Patient debt' },
 ];
 
 const TIMELINE_OPTIONS = [
@@ -144,14 +148,14 @@ export function PartnershipForm({ defaultType }: PartnershipFormProps = {}) {
         <div className="rounded-lg bg-primary/5 border border-primary/20 p-4">
           <p className="text-sm font-semibold text-foreground">You&apos;re in. We&apos;ve got your details.</p>
           <p className="text-sm text-muted-foreground mt-1">
-            Two optional questions to help us come back to you with the right answer. Skip them if
-            you&apos;d rather just talk.
+            Two optional questions to help us come back with the right capital pathway. Skip them
+            if you&apos;d rather just talk.
           </p>
         </div>
 
         <fieldset>
           <legend className="block text-sm font-semibold text-foreground mb-3">
-            Roughly what size are you thinking?
+            Roughly what size or structure are you thinking?
           </legend>
           <div className="grid gap-2 sm:grid-cols-2">
             {TIER_OPTIONS.map((option) => (
@@ -285,7 +289,7 @@ export function PartnershipForm({ defaultType }: PartnershipFormProps = {}) {
       {/* Segment: optional, a quick single choice that routes the lead */}
       <fieldset>
         <legend className="block text-sm font-semibold text-foreground mb-3">
-          What kind of partner are you? <span className="text-muted-foreground/70 font-normal">(optional)</span>
+          What kind of capital path fits you? <span className="text-muted-foreground/70 font-normal">(optional)</span>
         </legend>
         <div className="grid gap-2 sm:grid-cols-2">
           {SEGMENT_OPTIONS.map((option) => (
@@ -315,7 +319,7 @@ export function PartnershipForm({ defaultType }: PartnershipFormProps = {}) {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           className={inputClass}
-          placeholder="Anything you'd like us to know: a community you want to back, a question, a deadline you're working to."
+          placeholder="Anything you'd like us to know: your mandate, timing, a community you want to back, or a question we should answer first."
         />
       </div>
 

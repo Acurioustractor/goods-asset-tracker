@@ -128,10 +128,10 @@ function mapStoryFromAPI(raw: Record<string, unknown>): EmpathyLedgerStory {
     content: (raw.content as string) ?? null,
     authorName: (raw.authorName as string) ?? (raw.author_name as string) ?? (raw.storyteller_name as string) ?? ((raw.storyteller as Record<string, unknown>)?.display_name as string) ?? 'Unknown',
     authorId: (raw.author_id as string) ?? (raw.storyteller_id as string) ?? null,
-    publishedAt: String(raw.published_at ?? raw.created_at ?? ''),
+    publishedAt: String(raw.published_at ?? raw.publishedAt ?? raw.created_at ?? ''),
     themes: (raw.themes as (string | { name: string })[]) ?? [],
     visibility: (raw.visibility as string) ?? 'public',
-    isPublic: raw.is_public !== false,
+    isPublic: raw.is_public !== false && raw.isPublic !== false,
     featuredImageUrl: (raw.featured_image_url as string) ?? (raw.featuredImageUrl as string) ?? (raw.story_image_url as string) ?? null,
     culturalSensitivity: (raw.cultural_sensitivity as string) ?? null,
     elderApproved: Boolean(raw.elder_approved ?? raw.elderApproved ?? false),
@@ -161,6 +161,55 @@ function filterByConsent(stories: EmpathyLedgerStory[]): EmpathyLedgerStory[] {
     if (!story.syndicationEnabled) return false;
     return true;
   });
+}
+
+/**
+ * The Goods EL project (`goods-on-country`) is cross-tagged in Empathy Ledger
+ * with two other A Curious Tractor projects whose stories must NOT surface on
+ * Goods pages. Verified against the live content-hub feed 2026-06-02:
+ *   - SMART Recovery → titles end "— Facilitator Interview" / "… Staff Perspective"
+ *   - Confit (youth justice) → themes carry both "Youth Justice" and "Mentoring"
+ * Plus EL test/placeholder rows ("A community story (org members can see)").
+ * This is a consumer-side guard; the durable fix is EL-side project hygiene.
+ */
+function isGoodsCommunityVoice(story: EmpathyLedgerStory): boolean {
+  const title = story.title.toLowerCase();
+  const themes = (story.themes ?? []).map((t) =>
+    (typeof t === 'string' ? t : t?.name ?? '').toLowerCase(),
+  );
+
+  // SMART Recovery facilitator/staff interviews
+  if (
+    title.includes('facilitator interview') ||
+    title.includes('smart recovery') ||
+    title.includes('staff perspective')
+  ) {
+    return false;
+  }
+
+  // Confit youth-justice mentoring stories
+  if (title.includes('confit')) return false;
+  if (themes.includes('youth justice') && themes.includes('mentoring')) return false;
+
+  // EL test/placeholder rows
+  if (title.includes('org members can see')) return false;
+
+  // No "Unknown" / unattributed cards
+  if (!story.authorName || story.authorName === 'Unknown') return false;
+
+  return true;
+}
+
+/**
+ * Rank Goods stories so the richest read to the top: summary AND themes first,
+ * then a summary, then most-recently published.
+ */
+function rankGoodsStories(a: EmpathyLedgerStory, b: EmpathyLedgerStory): number {
+  const score = (s: EmpathyLedgerStory) =>
+    (s.summary?.trim() ? 2 : 0) + ((s.themes?.length ?? 0) > 0 ? 1 : 0);
+  const diff = score(b) - score(a);
+  if (diff !== 0) return diff;
+  return (b.publishedAt || '').localeCompare(a.publishedAt || '');
 }
 
 /**
@@ -322,6 +371,36 @@ export const empathyLedger = {
       return params.limit ? safe.slice(0, params.limit) : safe;
     } catch (error) {
       console.error('[EmpathyLedger] Failed to fetch stories:', error);
+      return [];
+    }
+  },
+
+  /**
+   * Fetch Goods community voices for public pages.
+   *
+   * Uses the project-scoped content-hub endpoint (real author names) instead
+   * of the unfiltered plain /api/stories feed, strips cross-project
+   * contamination (SMART Recovery, Confit — see isGoodsCommunityVoice) and
+   * "Unknown"/test rows, then ranks the richest stories first. Being returned
+   * by the public content hub is itself the consent gate, so we filter on
+   * isPublic/withdrawn/archived rather than the syndication flag.
+   */
+  async getGoodsStories(params: { limit?: number } = {}): Promise<EmpathyLedgerStory[]> {
+    if (!ENABLE_EMPATHY_LEDGER) return [];
+
+    try {
+      const response = await fetchFromEmpathyLedger<{ stories: Record<string, unknown>[] }>('/stories', {
+        projectCode: GOODS_PROJECT_CODE,
+        limit: 100,
+      });
+      const stories = (response.stories || [])
+        .map(mapStoryFromAPI)
+        .filter((s) => !s.consentWithdrawnAt && !s.isArchived && s.isPublic)
+        .filter(isGoodsCommunityVoice)
+        .sort(rankGoodsStories);
+      return params.limit ? stories.slice(0, params.limit) : stories;
+    } catch (error) {
+      console.error('[EmpathyLedger] Failed to fetch Goods stories:', error);
       return [];
     }
   },

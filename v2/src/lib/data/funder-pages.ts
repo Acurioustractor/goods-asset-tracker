@@ -117,7 +117,7 @@ export const FUNDER_PAGES: FunderPage[] = [
       'Self-servicing economics. At roughly $750 a bed with marginal cost well below sale price, the recoverable portion pays itself back across the buyer pipeline within two to three years.',
       "Catalytic position. Your commitment anchors the raise that SEFA's working capital and the QBE Catalysing Impact match (contingent on eligible co-capital raised) are both contingent on.",
       "Aligned to Minderoo's existing playbook. You've done recoverable grants like this before, and Goods is a clean fit.",
-      "First Nations led, On-Country manufacturing. Direct alignment with Minderoo's Generation One and Thrive by Five priorities.",
+      "First Nations led, with a pathway to On-Country manufacturing. Direct alignment with Minderoo's Generation One and Thrive by Five priorities.",
     ],
     closeBy: 'End of June 2026, to align with the QBE Stage 2 match',
     meetingAsk:
@@ -142,9 +142,9 @@ export const FUNDER_PAGES: FunderPage[] = [
       "Goods on Country is a First Nations led social enterprise making the Stretch Bed: a 10-year, washable, flat-pack bed designed for remote Indigenous housing. We're approaching PRF as part of a ~$3M blended capital raise (target) through the QBE Catalysing Impact 2026 program, with a focus on the disadvantage and housing outcomes alignment that's central to PRF's mission.",
     whyUs: [
       "Direct alignment with the PRF disadvantage pillar. Quality, durable furniture is a measurable lever for housing outcomes in remote Australia.",
-      "Outcomes tracking is in place. Bed deployment uses a QR scan-and-record system across all 9 communities; washing machine telemetry is live on pilot units. PRF gets deployment data from day one; fleet-wide machine telemetry is the next instrumentation milestone.",
+      "Outcomes tracking is in place. Bed deployment uses a QR scan-and-record system across all 9 communities; washing machine telemetry is piloting on selected units. PRF gets deployment data from day one; fleet-wide machine telemetry is the next instrumentation milestone.",
       "Catalytic position. Joins SEFA, QBE and Minderoo in a coordinated stack that PRF doesn't have to assemble alone.",
-      "First Nations leadership and On-Country manufacturing creates jobs in the communities being served.",
+      "First Nations leadership and the pathway to On-Country manufacturing creates jobs in the communities being served.",
     ],
     closeBy: 'End of July 2026',
     meetingAsk:

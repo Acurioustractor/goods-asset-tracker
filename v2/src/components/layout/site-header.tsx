@@ -7,7 +7,6 @@ import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { CartButton } from '@/components/cart';
-import { AuthNavItem } from '@/components/layout/auth-nav-item';
 
 type NavItem = { name: string; href: string; subtitle?: string };
 
@@ -15,6 +14,7 @@ const navigation: NavItem[] = [
   { name: 'Stretch Bed', href: '/shop/stretch-bed-single' },
   { name: 'Pakkimjalki Kari', subtitle: 'Washing Machine', href: '/shop/washing-machine' },
   { name: 'How It\'s Made', href: '/process' },
+  { name: 'Back the work', href: '/partner' },
   // 'Field notes' nav entry pulled until Utopia is consent-cleared +
   // published. Re-add this line when ready:
   // { name: 'Field notes', href: '/field-notes' },
@@ -65,6 +65,9 @@ export function SiteHeader() {
 
         {/* CTA Buttons & Cart */}
         <div className="hidden md:flex md:items-center md:gap-3">
+          <Button size="sm" variant="outline" asChild>
+            <Link href="/partner">Back the work</Link>
+          </Button>
           <Button size="sm" asChild>
             <Link href="/shop/stretch-bed-single">Buy Now</Link>
           </Button>
@@ -108,6 +111,11 @@ export function SiteHeader() {
                 </Link>
               ))}
               <div className="mt-4 flex flex-col gap-3">
+                <Button variant="outline" asChild>
+                  <Link href="/partner" onClick={() => setMobileMenuOpen(false)}>
+                    Back the work
+                  </Link>
+                </Button>
                 <Button asChild>
                   <Link href="/shop/stretch-bed-single" onClick={() => setMobileMenuOpen(false)}>
                     Buy Now

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useCart } from '@/lib/cart';
+import { isPurchasableProductType } from '@/lib/data/products';
 
 // Palette — matches the Canberra hero so the cross-page flow feels like one site.
 const CREAM = '#FDF8F3';
@@ -113,9 +114,9 @@ function SponsorContent() {
         const res = await fetch('/api/products');
         if (res.ok) {
           const data: Product[] = await res.json();
-          // Pick the Stretch Bed by default, or whatever the URL param asked for
-          // if it matches an existing bed product.
-          const bedProducts = data.filter((p) => p.product_type.includes('bed'));
+          // Pick the Stretch Bed by default. Non-commerce products never enter
+          // the sponsor cart, even if a product query param points at one.
+          const bedProducts = data.filter((p) => isPurchasableProductType(p.product_type));
           const preferred =
             (productSlug && bedProducts.find((p) => p.slug === productSlug)) ||
             bedProducts.find((p) => p.slug.includes('stretch')) ||

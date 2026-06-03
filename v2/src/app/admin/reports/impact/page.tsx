@@ -20,7 +20,7 @@ export default function ImpactReportTemplatesPage() {
       <header>
         <h1 className="text-2xl font-bold tracking-tight">Impact report templates</h1>
         <p className="mt-1 max-w-3xl text-sm text-gray-600">
-          Reusable, audience-framed impact reports — each showcases live impact metrics + consented
+          Reusable, audience-framed impact reports — each showcases current impact metrics + consented
           Empathy Ledger stories. They’re the content behind the{' '}
           <Link href="/admin/reach-out" className="text-violet-700 underline">
             audience segments

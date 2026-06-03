@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useReducer, useEffect, useCallback, ReactNode } from 'react';
+import { isPurchasableProductType } from '@/lib/data/products';
 
 // Types
 export interface CartItem {
@@ -52,6 +53,10 @@ const CART_STORAGE_KEY = 'goods-cart';
 function cartReducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
     case 'ADD_ITEM': {
+      if (!isPurchasableProductType(action.payload.product_type)) {
+        return state;
+      }
+
       const existingIndex = state.items.findIndex(
         (item) =>
           item.id === action.payload.id &&
@@ -131,7 +136,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     try {
       const stored = localStorage.getItem(CART_STORAGE_KEY);
       if (stored) {
-        const items = JSON.parse(stored) as CartItem[];
+        const items = (JSON.parse(stored) as CartItem[]).filter((item) =>
+          isPurchasableProductType(item.product_type)
+        );
         dispatch({ type: 'LOAD_CART', payload: items });
       }
     } catch (error) {

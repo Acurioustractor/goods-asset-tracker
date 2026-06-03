@@ -272,8 +272,8 @@ export default async function FunderPage({ params }: PageProps) {
           </h2>
           <p className="text-base leading-relaxed mb-6" style={{ color: '#5E5E5E' }}>
             Goods has been working across remote Australia for years. Below is a summary of the
-            relationships, deployments, and procurement pathways already documented in our internal
-            CRM. The full breakdown lives one click away on the next page.
+            relationships, deployments, and procurement pathways already documented in the Goods
+            relationship register. The full breakdown lives one click away on the next page.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">

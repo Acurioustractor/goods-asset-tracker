@@ -24,7 +24,7 @@ export default async function ImpactReportPage({
   const template = findReportTemplate(templateId);
   if (!template) notFound();
 
-  // Live impact snapshot (falls back to the static model if the live pull fails).
+  // Current impact snapshot (falls back to the static model if the pull fails).
   let dimensions: ImpactDimension[] = IMPACT_DIMENSIONS;
   try {
     const snapshot = await fetchImpactData();
@@ -33,7 +33,7 @@ export default async function ImpactReportPage({
     // keep the static model
   }
 
-  // Resolve featured metrics: live `current` if present, else the Year-1 target.
+  // Resolve featured metrics: current values if present, else the Year-1 target.
   const metricById = new Map<string, ImpactDimension['metrics'][number]>();
   for (const d of dimensions) for (const m of d.metrics) metricById.set(m.id, m);
   const metrics: ResolvedReportMetric[] = template.featuredMetricIds
@@ -96,7 +96,7 @@ export default async function ImpactReportPage({
 
       <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs text-amber-800">
         Template preview. To use it: build the matching audience segment’s smart list in GHL and attach
-        this as an email campaign. Metrics are live; stories are consent-filtered from Empathy Ledger.
+        this as an email campaign. Metrics are current snapshots; stories are consent-filtered from Empathy Ledger.
       </div>
 
       <div className="rounded-xl border border-gray-200 bg-white p-6 sm:p-10">

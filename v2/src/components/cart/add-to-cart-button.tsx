@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useCart, type CartItem } from '@/lib/cart';
+import { isPurchasableProductType } from '@/lib/data/products';
 import { Button } from '@/components/ui/button';
 
 interface AddToCartButtonProps {
@@ -35,8 +36,10 @@ export function AddToCartButton({
 }: AddToCartButtonProps) {
   const { addItem, openCart } = useCart();
   const [isAdding, setIsAdding] = useState(false);
+  const canCheckout = isPurchasableProductType(product.product_type);
 
   const handleAddToCart = () => {
+    if (!canCheckout) return;
     setIsAdding(true);
 
     const cartItem: Omit<CartItem, 'quantity'> = {
@@ -64,7 +67,7 @@ export function AddToCartButton({
   return (
     <Button
       onClick={handleAddToCart}
-      disabled={isAdding}
+      disabled={isAdding || !canCheckout}
       className={className}
       size={size}
     >
@@ -103,7 +106,7 @@ export function AddToCartButton({
               />
             </svg>
           )}
-          {isSponsorship ? 'Sponsor This Bed' : 'Add to Cart'}
+          {!canCheckout ? 'Not available for checkout' : isSponsorship ? 'Sponsor This Bed' : 'Add to Cart'}
         </>
       )}
     </Button>

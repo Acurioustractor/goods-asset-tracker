@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { isPurchasableProductType } from '@/lib/data/products';
 
 interface BuyNowFormProps {
   productId: string;
@@ -31,6 +32,7 @@ export function BuyNowForm({
   const [error, setError] = useState<string | null>(null);
 
   const total = quantity * pricePerUnit;
+  const canCheckout = isPurchasableProductType(productType);
 
   const formatPrice = (amount: number) =>
     new Intl.NumberFormat('en-AU', {
@@ -40,6 +42,11 @@ export function BuyNowForm({
     }).format(amount);
 
   const handleBuyNow = async () => {
+    if (!canCheckout) {
+      setError('Only the Stretch Bed is available for checkout.');
+      return;
+    }
+
     setIsSubmitting(true);
     setError(null);
 
@@ -104,7 +111,7 @@ export function BuyNowForm({
 
       <Button
         onClick={handleBuyNow}
-        disabled={isSubmitting}
+        disabled={isSubmitting || !canCheckout}
         size={size}
         className="w-full"
       >
@@ -126,7 +133,7 @@ export function BuyNowForm({
                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
               />
             </svg>
-            Buy Now · {formatPrice(total)}
+            {canCheckout ? `Buy Now · ${formatPrice(total)}` : 'Not available for checkout'}
           </>
         )}
       </Button>
@@ -136,7 +143,9 @@ export function BuyNowForm({
       )}
 
       <p className="mt-2 text-center text-xs text-muted-foreground">
-        Secure checkout via Stripe. We deliver Australia-wide.
+        {canCheckout
+          ? 'Secure checkout via Stripe. We deliver Australia-wide.'
+          : 'Only the Stretch Bed is available for direct checkout.'}
       </p>
     </div>
   );
