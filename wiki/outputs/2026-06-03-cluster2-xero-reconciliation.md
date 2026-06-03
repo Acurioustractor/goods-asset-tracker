@@ -6,31 +6,39 @@
 
 ---
 
-## RESOLUTION — 2026-06-03 PM (Ben's decisions)
+## RESOLUTION — 2026-06-03 PM (Ben's decisions) — ALL FOUR CLOSED
 
-Ben adjudicated the four blockers. Three are now applied to `wip/qbe-financial-restatement-HOLD`; one (sub-threshold line-items) remains gated on a Ben Xero-UI confirm before the branch ships as PR #2.
+Ben adjudicated all four blockers. Final state below is applied to `wip/qbe-financial-restatement-HOLD`. **No blocker remains — the branch is ready to ship as PR #2.**
 
 | # | Blocker | Ben's call | Applied to branch | Net effect |
 |---|---|---|---|---|
 | 1 | **PICC $436,700** | **Exclude** — ACT / Palm Island, not Goods | No code change (branch already excluded) | totalReceived unaffected |
 | 2 | **Snow cutoff** | **Full 3-year $493,130** (incl. the ~$90,200 of 2023H2–2024 receipts) | Snow line `402_930 → 493_130`, `when` `2023-2026`; `outreach-targets` Snow signal updated | +$90,200 to received |
-| 3 | **Receivables** | **$126,500** = Rotary $82,500 + Homeland $44,000 | Re-added the Homeland INV-0303 receivable; `totalReceivables 82_500 → 126_500` | +$44,000 receivable |
-| 4 | **VFFF / QIC / Villiers / commercial** | **Ben confirms from Xero UI** | NOT yet applied — values held as-is, `totalReceived` flagged PROVISIONAL | gates final headline |
+| 3 | **Receivables** | **$143,000** = Rotary $82,500 + Homeland $44,000 + Regional Arts $16,500 | Re-added Homeland INV-0303 + Regional Arts INV-0302; `totalReceivables → 143_000` | +$60,500 receivable vs original branch |
+| 4 | **Mixed-ledger classification** | **All non-Goods — exclude** (see below) | No code change — commercial line $61,449 confirmed NOT understated | totalReceived unaffected |
 
-### Figures now on the branch (PROVISIONAL pending #4)
-- `totalReceived: 741_111` = Snow 493,130 + Centrecorp 123,332 + VFFF 50,000 + QIC 12,000 + Villiers 1,200 + commercial 61,449.
-- `totalReceivables: 126_500` = Rotary 82,500 + Homeland 44,000.
-- `whatAreYourFinancials`: ~$741.1K paid (~$679.7K grant/philanthropic + ~$61.4K commercial); ~$126.5K outstanding.
-- `funder-shared-content` TRACTION_STATS "Verified receipts to date": **$741.1K** / $126.5K still due.
+### #4 — mixed-ledger contact classification (Ben, 2026-06-03, live-Xero confirmed)
+Re-pulled `get_top_customers_by_revenue` 2023-07-01 → 2026-06-03 live. The org `786af1ed` mixes multiple Marchesi contract projects under one ledger; the large non-grant contacts are **all other projects, not Goods**:
 
-### Ben's remaining Xero-UI checklist (unblocks PR #2)
-Confirm these four against the full Xero customer list (they sit below the MCP top-5 cutoff, so cannot be auto-verified):
-1. **VFFF $50,000** — paid? (expected: yes, 2025)
-2. **QIC $12,000** — paid? (expected: yes, 2026)
-3. **John Villiers Trust $1,200** — paid? (= INV-0327, 2026)
-4. **Commercial/buyer $61,449** — does this capture all Goods buyer receipts? In particular, are any of **Sonas Properties $118,580**, **Richard Cassidy $104,500**, or **Just Reinvest $27,500** actually Goods buyer revenue (vs other-project / non-Goods)? If yes, the $61,449 commercial line is understated.
+| Contact | Xero (3yr) | Project | Goods? |
+|---|---|---|---|
+| SMART Recovery Australia | $197,200 | other contract project | ❌ exclude |
+| Sonas Properties Pty Ltd | $118,580 | **Harvest** project | ❌ exclude |
+| Richard Cassidy | $104,500 | tiny-home / farm sale | ❌ exclude |
+| HipCamp | $121,530 | commercial (other) | ❌ exclude |
+| Just Reinvest | $27,500 | **JusticeHub / Contained** | ❌ exclude |
+| Regional Arts Australia | $16,500 (open) | **Goods** receivable | ✅ include (receivables) |
 
-If all four confirm as-is, `totalReceived` $741,111 is final and the branch ships as PR #2 with this doc as the `.provenance.md`. If any change, it is a one-line edit to the relevant `received[]` entry + the derived totals.
+**Consequence:** the Goods commercial/buyer line **$61,449 is confirmed NOT understated** — none of the big commercial-looking receipts were ever Goods. VFFF $50,000 / QIC $12,000 / Villiers $1,200 ($1.2K = INV-0327) sit below the MCP top-5 cutoff and were not re-surfaced this pass; they are carried on **prior verification** (QIC previously verified-paid; Villiers documented) and were not contested in Ben's classification. `totalReceived` is therefore unchanged at $741,111.
+
+### Figures now on the branch — FINAL
+- `totalReceived: 741_111` = Snow 493,130 + Centrecorp 123,332 + VFFF 50,000 + QIC 12,000 + Villiers 1,200 + commercial 61,449. **Confirmed (no longer provisional).**
+- `totalReceivables: 143_000` = Rotary 82,500 + Homeland 44,000 + Regional Arts 16,500.
+- `whatAreYourFinancials`: ~$741.1K paid (~$679.7K grant/philanthropic + ~$61.4K commercial); ~$143K outstanding.
+- `funder-shared-content` TRACTION_STATS "Verified receipts to date": **$741.1K** / $143K still due.
+
+### Residual (not a blocker)
+Live awaiting total is $170,367.88; the Goods receivable figure of $143,000 deliberately excludes ~$27,368 across 16 small invoices that are unclassified (likely other-project, below the threshold Ben reviewed). The structural cause of the recurring reconciliation pain: **this Xero org has no project dimension the MCP can filter on** — every pass re-litigates "is contact X Goods?". Durable fix = a Xero tracking category / contact group "Goods". Flagged for the finance chat.
 
 ### Known follow-up (NOT a PR #2 blocker)
 `compendium.ts → verifiedFinancials.revenueReceived` ($649,710.79) is a **separate impact-denominator model** (feeds `impact-model.ts` beds-per-dollar) on a 2026-05-29 basis. It now uses a *different* Snow cutoff than the funder "received" figure ($493,130 vs the inception-basis number) and still lists the stale "Rotary is the only open receivable" note + a conflicting Homeland INV-0303 ($4,950 washing machine vs live $44,000). This needs its own reconcile in the finance chat; left untouched here to avoid silently moving the public impact ratio.

@@ -9,7 +9,7 @@ import { PLASTIC_KG_PER_BED } from './products';
 export const TRACTION_STATS = [
   { label: 'Bed units deployed', value: String(CANONICAL_ASSETS.bedsDeployed), sub: `Tracked across ${CANONICAL_ASSETS.communitiesServed} communities (Stretch + legacy Basket)` },
   { label: 'HDPE diverted to date', value: `${CANONICAL_ASSETS.plasticKg.toLocaleString('en-AU')}kg`, sub: `Stretch beds only: ${CANONICAL_ASSETS.stretchBedsDeployed} x ${PLASTIC_KG_PER_BED}kg HDPE` },
-  { label: 'Verified receipts to date', value: '$741.1K', sub: 'ACT-GD Xero ACCREC paid, management data; $126.5K still due' },
+  { label: 'Verified receipts to date', value: '$741.1K', sub: 'ACT-GD Xero ACCREC paid, management data; $143K still due' },
   { label: 'Capital stack target', value: '~$3M', sub: 'Blended-finance target via QBE Catalysing Impact 2026 (raising, not committed)' },
 ];
 
