@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { PURCHASABLE_PRODUCT_TYPES } from '@/lib/data/products';
 
 export async function GET() {
   try {
@@ -9,6 +10,7 @@ export async function GET() {
       .from('products')
       .select('id, slug, name, price_cents, currency, featured_image, product_type, short_description')
       .eq('is_active', true)
+      .in('product_type', [...PURCHASABLE_PRODUCT_TYPES])
       .order('name');
 
     if (error) {

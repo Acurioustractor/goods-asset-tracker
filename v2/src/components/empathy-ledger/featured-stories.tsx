@@ -32,7 +32,7 @@ export async function FeaturedStories({
   viewAllLink = '/stories',
   maxStories = 3,
 }: FeaturedStoriesProps) {
-  const stories = await empathyLedger.getStories({ limit: maxStories });
+  const stories = await empathyLedger.getGoodsStories({ limit: maxStories });
 
   // If EL has stories, use them
   if (stories.length > 0) {

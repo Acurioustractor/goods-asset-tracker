@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getStripe } from '@/lib/stripe';
 import { createClient } from '@/lib/supabase/server';
+import { isPurchasableProductType } from '@/lib/data/products';
 import type { CartItem } from '@/lib/cart';
 
 export async function POST(request: NextRequest) {
@@ -24,7 +25,7 @@ export async function POST(request: NextRequest) {
 
     const { data: products, error: productsError } = await supabase
       .from('products')
-      .select('id, name, price_cents, currency')
+      .select('id, name, price_cents, currency, product_type, is_active')
       .in('id', productIds);
 
     if (productsError || !products) {
@@ -37,6 +38,22 @@ export async function POST(request: NextRequest) {
 
     // Create a map for quick lookup
     const productMap = new Map(products.map((p) => [p.id, p]));
+    const invalidItems = items.filter((item) => {
+      const productId = item.id.split('-sponsor-')[0];
+      const dbProduct = productMap.get(productId);
+      return (
+        !dbProduct ||
+        !dbProduct.is_active ||
+        !isPurchasableProductType(dbProduct.product_type)
+      );
+    });
+
+    if (invalidItems.length > 0) {
+      return NextResponse.json(
+        { error: 'Only the Stretch Bed is available for checkout.' },
+        { status: 400 }
+      );
+    }
 
     // Stripe needs an absolute, publicly-reachable image URL. Our product
     // images are stored as relative paths (/images/...) so next/image can serve
@@ -56,26 +73,26 @@ export async function POST(request: NextRequest) {
     // Build line items for Stripe
     const lineItems = items.map((item) => {
       const productId = item.id.split('-sponsor-')[0];
-      const dbProduct = productMap.get(productId);
+      const dbProduct = productMap.get(productId)!;
 
       // Use database price for security (don't trust client-sent price)
-      const unitAmount = dbProduct?.price_cents || item.price_cents;
+      const unitAmount = dbProduct.price_cents;
       const imageUrl = toAbsoluteImage(item.image);
 
-      let productName = item.name;
+      let productName = dbProduct.name;
       if (item.is_sponsorship) {
-        productName = `${item.name} (Sponsorship${item.sponsored_community ? ` for ${item.sponsored_community}` : ''})`;
+        productName = `${dbProduct.name} (Sponsorship${item.sponsored_community ? ` for ${item.sponsored_community}` : ''})`;
       }
 
       return {
         price_data: {
-          currency: item.currency.toLowerCase(),
+          currency: dbProduct.currency.toLowerCase(),
           product_data: {
             name: productName,
             ...(imageUrl && { images: [imageUrl] }),
             metadata: {
               product_id: productId,
-              product_type: item.product_type || '',
+              product_type: dbProduct.product_type || '',
               is_sponsorship: String(item.is_sponsorship || false),
               sponsored_community: item.sponsored_community || '',
               dedication_message: item.dedication_message || '',

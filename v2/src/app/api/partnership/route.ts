@@ -42,6 +42,7 @@ export async function POST(request: NextRequest) {
     // Roll segmentation answers into the stored message so they survive
     // even if the partnership_inquiries table doesn't have dedicated columns.
     const segmentPrefix = [
+      body.partnershipType ? `Interest: ${body.partnershipType}` : null,
       body.partnerSegment ? `Segment: ${body.partnerSegment}` : null,
       body.fundingTier ? `Ticket size: ${body.fundingTier}` : null,
       body.timeline ? `Timeline: ${body.timeline}` : null,
@@ -61,9 +62,11 @@ export async function POST(request: NextRequest) {
       'distribution', 'grant', 'media-pack-request',
     ]);
     const dbPartnershipType =
-      body.partnershipType && ALLOWED_DB_TYPES.has(body.partnershipType)
-        ? body.partnershipType
-        : 'other';
+      body.partnershipType === 'capital-interest'
+        ? 'partnership-inquiry'
+        : body.partnershipType && ALLOWED_DB_TYPES.has(body.partnershipType)
+          ? body.partnershipType
+          : 'other';
 
     // Store in Supabase partnership_inquiries table
     const { data: inquiry, error: dbError } = await supabase
@@ -135,6 +138,9 @@ export async function POST(request: NextRequest) {
           `<p><strong>Partnership inquiry</strong>${body.partnershipType ? ` &mdash; ${esc(body.partnershipType)}` : ''}</p>`,
           body.organizationName ? `<p>Organisation: ${esc(body.organizationName)}</p>` : '',
           body.contactPhone ? `<p>Phone: ${esc(body.contactPhone)}</p>` : '',
+          body.partnerSegment ? `<p>Capital path: ${esc(body.partnerSegment)}</p>` : '',
+          body.fundingTier ? `<p>Ticket size / structure: ${esc(body.fundingTier)}</p>` : '',
+          body.timeline ? `<p>Timeline: ${esc(body.timeline)}</p>` : '',
           body.message ? `<p>${esc(body.message).replace(/\n/g, '<br/>')}</p>` : '',
         ].join('');
         await ghl.addInboundEmail({

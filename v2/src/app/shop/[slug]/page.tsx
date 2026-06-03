@@ -17,6 +17,7 @@ import {
   EnterpriseOpportunity,
 } from '@/components/shop';
 import { ProductJsonLd } from '@/components/seo';
+import { isPurchasableProductType } from '@/lib/data/products';
 import type { Product, ProductMetadata } from '@/lib/types/database';
 
 interface Props {
@@ -123,6 +124,21 @@ export default async function ProductPage({ params }: Props) {
   }
 
   const relatedProducts = await getRelatedProducts(product.product_type, slug);
+  const canCheckout = isPurchasableProductType(product.product_type);
+  const nonCheckoutAction =
+    product.product_type === 'washing_machine'
+      ? {
+          href: '/partner?type=washer-interest',
+          label: 'Register Interest',
+          note: 'Pakkimjalki Kari is still in prototype. Register interest instead of checking out.',
+        }
+      : product.product_type === 'basket_bed'
+        ? {
+            href: '/basket-bed-plans',
+            label: 'Download Plans',
+            note: 'The Basket Bed is archived and open source. It is not sold through checkout.',
+          }
+        : null;
   const hasDiscount =
     product.compare_at_price_cents &&
     product.compare_at_price_cents > product.price_cents;
@@ -219,28 +235,44 @@ export default async function ProductPage({ params }: Props) {
 
             {/* Actions */}
             <div className="space-y-3">
-              <AddToCartButton
-                product={{
-                  id: product.id,
-                  slug: product.slug,
-                  name: product.name,
-                  price_cents: product.price_cents,
-                  currency: product.currency,
-                  featured_image: product.featured_image,
-                  product_type: product.product_type,
-                }}
-                size="lg"
-                className="w-full"
-              />
+              {canCheckout ? (
+                <>
+                  <AddToCartButton
+                    product={{
+                      id: product.id,
+                      slug: product.slug,
+                      name: product.name,
+                      price_cents: product.price_cents,
+                      currency: product.currency,
+                      featured_image: product.featured_image,
+                      product_type: product.product_type,
+                    }}
+                    size="lg"
+                    className="w-full"
+                  />
 
-              <Button size="lg" variant="outline" className="w-full" asChild>
-                <Link href={`/sponsor?product=${product.slug}`}>
-                  <svg className="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
-                  Sponsor for a Community
-                </Link>
-              </Button>
+                  <Button size="lg" variant="outline" className="w-full" asChild>
+                    <Link href={`/sponsor?product=${product.slug}`}>
+                      <svg className="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                      </svg>
+                      Sponsor for a Community
+                    </Link>
+                  </Button>
+                </>
+              ) : (
+                <div className="rounded-lg border border-border bg-muted/30 p-4">
+                  <p className="font-medium text-foreground">Not available for direct checkout</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {nonCheckoutAction?.note || 'Only the Stretch Bed is available for direct checkout.'}
+                  </p>
+                  {nonCheckoutAction && (
+                    <Button size="lg" className="mt-4 w-full" asChild>
+                      <Link href={nonCheckoutAction.href}>{nonCheckoutAction.label}</Link>
+                    </Button>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Impact Note */}

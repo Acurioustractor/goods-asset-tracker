@@ -4,7 +4,7 @@
  * (INVESTORS_PASSWORD) instead of the admin email/allowlist auth.
  *
  * This is the door QBE / investment partners click from the Notion QBE Diagnostic
- * pages: one shared password, then the live Investment + Mission Control cockpit.
+ * pages: one shared password, then the interactive Investment + Mission Control cockpit.
  * All math is locked client-side (no admin data), so nothing auth-gated leaves the
  * engine. Renders standalone (conditional-chrome hides the public site nav on
  * /investors) so the cockpit owns the full viewport, exactly like the admin route.
@@ -19,7 +19,7 @@ import { CostModelWorkspace } from '@/app/admin/cost-model/cost-model-workspace'
 export const metadata = {
   title: 'Investor Cockpit — Goods on Country',
   description:
-    'Live verified bed cost model + investment view. Marginal-cost-first, QBE-ready capital case.',
+    'Interactive verified bed cost model + investment view. Marginal-cost-first, QBE-ready capital case.',
 };
 
 export default function InvestorsCockpitPage() {

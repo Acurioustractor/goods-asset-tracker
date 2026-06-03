@@ -231,9 +231,9 @@ export function CostModelScenariosCard() {
           </div>
         </div>
 
-        {/* Overhead breakdown by volume */}
+        {/* Fixed block by volume. Freight is shown as the bridge into marginal cost, not as fixed absorption. */}
         <div>
-          <h4 className="text-sm font-semibold mb-3">Overhead per bed by annual volume</h4>
+          <h4 className="text-sm font-semibold mb-3">Fixed block per bed by annual volume</h4>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="text-left text-gray-500 border-b">
@@ -243,8 +243,8 @@ export function CostModelScenariosCard() {
                   <th className="pb-2 font-medium text-right">Founder (30d prod)</th>
                   <th className="pb-2 font-medium text-right">Admin</th>
                   <th className="pb-2 font-medium text-right">Field travel</th>
-                  <th className="pb-2 font-medium text-right">Freight</th>
-                  <th className="pb-2 font-medium text-right">Total</th>
+                  <th className="pb-2 font-medium text-right">Freight (marginal)</th>
+                  <th className="pb-2 font-medium text-right">Fixed total</th>
                 </tr>
               </thead>
               <tbody>

@@ -63,7 +63,7 @@ export function TerminalSkin({ cm }: { cm: UseCostModel }) {
         <Stat k="CTNR" v={inputs.containerise ? 'ON' : 'OFF'} />
         <Stat k="PRICE" v={fmt(inputs.retail_price)} />
         <span className="ml-auto flex items-center gap-1.5 text-emerald-400">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" /> LIVE
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> MODEL
         </span>
       </div>
 

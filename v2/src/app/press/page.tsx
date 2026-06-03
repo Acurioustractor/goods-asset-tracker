@@ -55,7 +55,6 @@ const colourSwatches = [
   { name: 'Rust', hex: '#C45C3E', text: '#FFFFFF', role: 'Highlight accent, used sparingly' },
 ];
 
-// Voice rules from wiki/articles/brand-comms/01-voice-and-tone.md
 const voiceRules = [
   'Lead with impact, not charity. A washing machine is cardiac prevention. A bed is medical recovery.',
   'Centre community voices. Quote people by name, with location, with consent.',
@@ -305,7 +304,7 @@ export default async function PressPage() {
               <p className="mt-5 text-xs font-medium uppercase tracking-wide text-muted-foreground">Never write</p>
               <p className="mt-2 text-xs text-muted-foreground">{bannedWords.join(' · ')}</p>
               <p className="mt-3 text-xs text-muted-foreground">
-                Full rules: <a href="https://github.com/Acurioustractor/Goods-Asset-Register/blob/main/wiki/articles/brand-comms/01-voice-and-tone.md" className="underline" target="_blank" rel="noopener">wiki/brand-comms/01-voice-and-tone</a>
+                Public rule: keep it specific, practical, respectful, and grounded in real work.
               </p>
             </div>
           </div>

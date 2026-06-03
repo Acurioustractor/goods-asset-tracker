@@ -79,11 +79,8 @@ export function InvestmentSkin() {
       {/* ── Header ── */}
       <div className="flex shrink-0 items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-          </span>
-          <span className="text-[10px] uppercase tracking-[0.22em] text-emerald-400">LIVE</span>
+          <span className="h-2 w-2 rounded-full bg-emerald-400" />
+          <span className="text-[10px] uppercase tracking-[0.22em] text-emerald-400">MODEL</span>
           <span className="text-[10px] uppercase tracking-[0.22em] text-zinc-500">INVESTMENT LAYER · ${SALE} INSTITUTIONAL SALE → COMMUNITY CO-OP</span>
         </div>
         <button onClick={() => setBrokerage(Number(W.act_brokerage_default))} className="text-[10px] uppercase tracking-[0.16em] text-zinc-500 transition-colors hover:text-cyan-300">

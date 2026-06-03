@@ -4,11 +4,11 @@
  *
  * Near-black, high-contrast, monospace tabular numerics as the hero. Thin rules,
  * uppercase micro-labels with tracking, signal green (positive contribution) /
- * red (negative), one electric-cyan accent on the primary readout, a LIVE dot.
+ * red (negative), one electric-cyan accent on the primary readout, a model status dot.
  * INPUTS are a "key levers + advanced" layout (2026-05-29): the dials that move the
  * headline (volume, price, fair wage, Defy kit + the method/founder/location chips)
  * get big, grabbable full-width tracks; the remaining ~26 assumptions collapse into a
- * grouped, scrollable ADVANCED drawer. Big live OUTPUT telemetry on the right. Reads
+ * grouped, scrollable ADVANCED drawer. Big model OUTPUT telemetry on the right. Reads
  * the shared useCostModel() instance — numbers are LOCKED.
  */
 import { useState } from 'react';
@@ -52,11 +52,8 @@ export function MissionControlSkin({ cm }: { cm: UseCostModel }) {
       {/* ── Console header (compact) ── */}
       <div className="flex shrink-0 items-center justify-between border-b border-zinc-800 px-4 py-1.5">
         <div className="flex items-center gap-2.5">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-          </span>
-          <span className="text-[10px] uppercase tracking-[0.22em] text-emerald-400">LIVE</span>
+          <span className="h-2 w-2 rounded-full bg-emerald-400" />
+          <span className="text-[10px] uppercase tracking-[0.22em] text-emerald-400">MODEL</span>
           <span className="text-[10px] uppercase tracking-[0.22em] text-zinc-500">GOODS · BED COST MODEL · MISSION CONTROL</span>
         </div>
         <button onClick={resetAll} className="text-[10px] uppercase tracking-[0.18em] text-zinc-500 hover:text-cyan-300 transition-colors">
@@ -86,7 +83,7 @@ export function MissionControlSkin({ cm }: { cm: UseCostModel }) {
           <div className="shrink-0 space-y-2.5 border-b border-zinc-800 p-3">
             <div className="flex items-center justify-between">
               <Label>KEY LEVERS</Label>
-              <span className="text-[9px] text-zinc-600">DRAG — HEADLINE RECOMPUTES LIVE</span>
+              <span className="text-[9px] text-zinc-600">DRAG — HEADLINE RECOMPUTES</span>
             </div>
 
             <KeyLever
@@ -241,7 +238,7 @@ export function MissionControlSkin({ cm }: { cm: UseCostModel }) {
                   })}
                 </div>
                 <p className="text-[9px] leading-relaxed text-zinc-600">
-                  The {KEY_LEVER_KEYS.length} key levers above move the headline. These {ADVANCED_SLIDERS.length} set the locked baseline — expand to fine-tune any; telemetry stays live.
+                  The {KEY_LEVER_KEYS.length} key levers above move the headline. These {ADVANCED_SLIDERS.length} set the locked baseline — expand to fine-tune any; telemetry updates instantly.
                 </p>
               </div>
             )}
@@ -314,15 +311,15 @@ export function MissionControlSkin({ cm }: { cm: UseCostModel }) {
             </div>
           </div>
 
-          {/* Marginal cost by build path — the hero bar chart, grows to fill the height */}
-          <div className="flex min-h-0 flex-1 flex-col border border-zinc-800">
+          {/* Marginal cost by build path — keep a stable height so rows never collapse into each other. */}
+          <div className="flex min-h-[250px] shrink-0 flex-col border border-zinc-800">
             <div className="flex shrink-0 items-center justify-between border-b border-zinc-800 px-3 py-2">
               <Label>MARGINAL COST / BED · BY BUILD PATH</Label>
               <span className="text-[10px] tracking-wide text-zinc-600">
                 GREY = MARGINAL · <span style={{ color: POS }}>GREEN</span> = CONTRIBUTION TO {fmt(inputs.retail_price)} PRICE
               </span>
             </div>
-            <div className="flex min-h-0 flex-1 flex-col justify-center gap-4 p-4">
+            <div className="flex flex-1 flex-col justify-center gap-3 p-3">
               <SupplyPathBar label="KITS (TODAY)" marginal={model.marginalKit} contrib={model.marginKits} be={model.breakevenKit} price={inputs.retail_price} active={inputs.build_method === 'kits'} />
               <SupplyPathBar label="PANELS" marginal={model.marginalPanel} contrib={model.marginPanels} be={model.breakevenPanel} price={inputs.retail_price} active={inputs.build_method === 'panels'} />
               <SupplyPathBar label="FACTORY (IN-HOUSE)" marginal={model.marginalFactory} contrib={model.marginFactory} be={model.breakevenFactory} price={inputs.retail_price} active={inputs.build_method === 'factory'} highlight />
@@ -391,7 +388,7 @@ export function MissionControlSkin({ cm }: { cm: UseCostModel }) {
   );
 }
 
-/** KEY-LEVER hero slider: label + live value on one row, a fat grabbable track below. */
+/** KEY-LEVER hero slider: label + current value on one row, a fat grabbable track below. */
 function KeyLever({ label, display, value, min, max, step, onChange, hint }: {
   label: string; display: string; value: number; min: number; max: number; step: number;
   onChange: (v: number) => void; hint?: string;
@@ -440,7 +437,7 @@ function SupplyPathBar({ label, marginal, contrib, be, price, active, highlight 
   const marginalPct = Math.max(0, Math.min(100, (marginal / price) * 100));
   const contribPct = Math.max(0, Math.min(100 - marginalPct, (contrib / price) * 100));
   return (
-    <div className={`flex flex-col justify-center gap-1.5 rounded px-2 py-1.5 transition-colors ${active ? 'bg-cyan-500/[0.07] ring-1 ring-cyan-500/30' : ''}`}>
+    <div className={`flex min-h-[42px] flex-col justify-center gap-1.5 rounded px-2 py-1.5 transition-colors ${active ? 'bg-cyan-500/[0.07] ring-1 ring-cyan-500/30' : ''}`}>
       <div className="flex items-baseline justify-between gap-2">
         <span className={`text-[11px] uppercase tracking-[0.08em] ${highlight ? 'text-emerald-300' : active ? 'text-cyan-300' : 'text-zinc-300'}`}>
           {active && <span style={{ color: ACCENT }}>▸ </span>}{label}

@@ -76,6 +76,7 @@ const footerLinks = {
     { name: 'Gallery', href: '/gallery' },
   ],
   connect: [
+    { name: 'Back the work', href: '/partner' },
     { name: 'Partner With Us', href: '/partner' },
     { name: 'Sponsor a Bed', href: '/sponsor' },
     { name: 'Support / FAQ', href: '/support' },
@@ -193,6 +194,19 @@ export function SiteFooter() {
             <PartnerGroup label="Backed by" partners={backedByPartners} />
             <PartnerGroup label="Community partner" partners={communityPartners} />
           </div>
+        </div>
+
+        <div className="mt-8 rounded-xl border border-border bg-background p-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+            DGR pathway
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            DGR-deductible giving is available only through The Butterfly Movement Ltd, an
+            ACNC-registered charity and Item 1 DGR. The Goods on Country giving pathway through
+            Butterfly is being formalised for FY2026-27. Confirm current routing with us before
+            structuring a tax-deductible gift. Goods on Country and A Curious Tractor Pty Ltd are
+            not themselves DGR-endorsed.
+          </p>
         </div>
 
         {/* Bottom Section */}

@@ -66,6 +66,15 @@ export const STRETCH_BED = {
   ],
 } as const;
 
+export const PURCHASABLE_PRODUCT_TYPES = [STRETCH_BED.productType] as const;
+export type PurchasableProductType = (typeof PURCHASABLE_PRODUCT_TYPES)[number];
+
+export function isPurchasableProductType(
+  productType: string | null | undefined,
+): productType is PurchasableProductType {
+  return productType === STRETCH_BED.productType;
+}
+
 export const WASHING_MACHINE = {
   name: 'Pakkimjalki Kari',
   slug: 'pakkimjalki-kari',
@@ -109,7 +118,7 @@ export const PRODUCTION_FACILITY = {
 } as const;
 
 export const ENTERPRISE = {
-  model: 'Community ownership transfer (not licensing)',
+  model: 'Community ownership pathway',
   philosophy: 'Our goal is to become unnecessary',
   pathways: [
     'Sponsor beds',

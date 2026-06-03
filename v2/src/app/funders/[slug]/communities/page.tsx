@@ -151,8 +151,8 @@ export default async function FunderCommunitiesPage({ params }: PageProps) {
           </h1>
           <p className="text-lg leading-relaxed" style={{ color: '#5E5E5E' }}>
             Below is the complete picture of the communities, partners, demand, and procurement pathways
-            that Goods has been working across. Every entry is documented in our internal CRM and pulled
-            live from the same source of truth that runs the Goods Command Center. This is the depth of
+            that Goods has been working across. Every entry is documented in the Goods relationship register
+            and checked against the same operating records used by the team. This is the depth of
             relationship and research behind the funding ask.
           </p>
         </header>
@@ -167,7 +167,7 @@ export default async function FunderCommunitiesPage({ params }: PageProps) {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <Stat value={`${totals.communities}`} label="Active deployments" sub="Goods is on the ground today" />
-            <Stat value={`${totals.beds}`} label="Beds delivered" sub="Verified from internal asset register" />
+            <Stat value={`${totals.beds}`} label="Beds delivered" sub="Verified from the asset register" />
             <Stat value={`${communityPartners.length}`} label="Partner organisations" sub={`${partnersByCategory.length} categories tracked`} />
             <Stat value={`$${(demandTotal / 1_000_000).toFixed(2)}M`} label="Documented demand" sub="From community requests" />
           </div>
