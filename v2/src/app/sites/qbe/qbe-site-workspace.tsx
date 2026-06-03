@@ -105,7 +105,7 @@ const sourceDocs = [
   {
     title: 'Goods Cost Register',
     href: 'https://app.notion.com/p/354ebcf981cf8156bebbf2851ecba5e6',
-    note: 'Xero actuals, estimates, pricing references and review queue.',
+    note: 'Xero actuals, estimates, pricing references and source trail.',
   },
   {
     title: 'OpenAI Sites Pattern',
@@ -160,7 +160,7 @@ const evidenceRows: Array<{
     claim: 'Catalytic ask to close',
     value: '$400,000 signed match-eligible capital',
     status: 'Open',
-    source: 'pitch page and brand guide, founder confirmation needed before external send',
+    source: 'signed commitments required before this can be described as closed',
   },
   {
     claim: 'Legacy $600 per bed',
@@ -188,12 +188,12 @@ const readinessRows: Array<{
   {
     area: 'Founder-authored narrative',
     status: 'Gap',
-    next: 'Ben and Nic rewrite the investor story so it is defensible in live Q&A.',
+    next: 'Final leadership sign-off so the investor story can be defended in live Q&A.',
   },
   {
     area: 'GOC-only financial model',
     status: 'Partial',
-    next: 'Finish the three-statement model, ACT carve-out and founder FTE treatment.',
+    next: 'Finish the three-statement model, ACT carve-out and leadership capacity treatment.',
   },
   {
     area: 'Signed match evidence',
@@ -225,18 +225,18 @@ const useOfFunds = [
 
 const routeLinks = [
   { label: 'Cost story', href: '/cost-story', icon: LineChart },
-  { label: 'Investor cockpit', href: '/investors?skin=investment', icon: LockKeyhole },
+  { label: 'Investor evidence hub', href: '/investors?skin=investment', icon: LockKeyhole },
   { label: 'Pitch page', href: '/pitch', icon: FileText },
   { label: 'Pitch document', href: '/pitch/document', icon: ClipboardList },
-  { label: 'LOI tracker', href: '/admin/loi-tracker', icon: Scale },
-  { label: 'Cost model admin', href: '/admin/cost-model', icon: Calculator },
+  { label: 'Community proof', href: '/communities', icon: MapPin },
+  { label: 'Production pathway', href: '/process', icon: PackageCheck },
 ];
 
 const storySurfaceLinks = [
   {
     label: 'Utopia field note',
     href: '/field-notes/utopia-may-2026',
-    status: 'Unlisted review draft',
+    status: 'Consent-gated story',
     icon: BookOpen,
     image: '/images/stories/utopia/04-build.jpg',
     summary: 'Young people building Stretch Beds in Alice Springs, then the road out to Utopia Homelands.',
@@ -269,9 +269,9 @@ const storySurfaceLinks = [
 
 const narrativeBeats = [
   {
-    kicker: '1 · The room',
+    kicker: '1 · The relationship',
     title: 'Oonchiumpa holds the build',
-    body: 'Young people are not a side note. The first production-studio story starts with Oonchiumpa setting the room, collecting people each morning and holding the relationships.',
+    body: 'Young people are not a side note. The first production-studio story starts with Oonchiumpa holding the relationships, bringing people in and making the build possible.',
   },
   {
     kicker: '2 · The making',
@@ -332,72 +332,167 @@ const communityStoryLinks = [
 
 const siteArchitecture = [
   {
-    area: 'Capital room',
+    area: 'Capital pathway',
     href: '/sites/qbe',
-    status: 'Live',
+    status: 'Live evidence',
     icon: Layers3,
-    purpose: 'Decision surface for QBE, SIH, founders and match-capital conversations.',
-    offers: ['Scenario planner', 'QBE capital stack', 'Evidence register'],
+    purpose: 'A clear investor surface for the QBE pathway, match-capital conversations and the economics of moving production closer to Country.',
+    offers: ['Scenario planner', 'Capital stack', 'Claim register'],
   },
   {
-    area: 'Story room',
+    area: 'Field story',
     href: '/field-notes/utopia-may-2026',
-    status: 'Review draft',
+    status: 'Consent-gated',
     icon: BookOpen,
-    purpose: 'Long-form Utopia and Alice Springs narrative: young builders, Oonchiumpa, Fred and Decon, households and homelands.',
-    offers: ['Utopia field note', 'Consent-aware voices', 'Road and build media'],
+    purpose: 'The Utopia and Alice Springs story: young builders, Oonchiumpa, Fred and Decon, households, homelands and the path from build to use.',
+    offers: ['Utopia field note', 'Cleared voices', 'Road and build media'],
   },
   {
-    area: 'Community room',
+    area: 'Community proof',
     href: '/communities',
-    status: 'Live base',
+    status: 'Live proof',
     icon: MapPin,
-    purpose: 'Place-by-place proof: where beds landed, what each community asked for, what the next production move means.',
+    purpose: 'Place-by-place evidence of where beds have landed, what communities have asked for and what the next production move could unlock.',
     offers: ['Community map', 'Place pages', 'Demand and delivery context'],
   },
   {
-    area: 'Production room',
+    area: 'Production pathway',
     href: '/process',
-    status: 'Needs story pass',
+    status: 'Public proof',
     icon: PackageCheck,
-    purpose: 'Show the first on-Country production studio pathway from plastic, press and canvas through to local ownership.',
-    offers: ['Container plant', 'Build photos', 'Youth employment pathway'],
+    purpose: 'The pathway from community plastic, press and canvas through to local skills, jobs, quality control and eventual ownership.',
+    offers: ['Container plant', 'Build photos', 'Employment pathway'],
   },
   {
-    area: 'Partner room',
+    area: 'Partner evidence',
     href: '/partners/oonchiumpa',
-    status: 'Live',
+    status: 'Live partner story',
     icon: Users,
-    purpose: 'Make the relationship visible: Oonchiumpa, Centrecorp, community workers and the people who hold the doors open.',
+    purpose: 'The relationships behind delivery: Oonchiumpa, Centrecorp, community workers and the people who make access and trust possible.',
     offers: ['Oonchiumpa story', 'Centrecorp story', 'Partnership method'],
   },
   {
-    area: 'Evidence room',
+    area: 'Evidence base',
     href: '/cost-story',
-    status: 'Live base',
+    status: 'Live evidence',
     icon: LineChart,
-    purpose: 'Back the story with numbers that are clean enough for investor, funder and buyer review.',
-    offers: ['Cost model', 'Pricing guardrails', 'Route to investor cockpit'],
+    purpose: 'The numbers behind the story: pricing, cost-down logic, claim labels and the source trail investors can test.',
+    offers: ['Cost model', 'Pricing guardrails', 'Investor evidence hub'],
   },
 ];
 
 const nextBuildQueue = [
   {
-    title: 'Publish Utopia when consent clears',
-    detail: 'Keep the unlisted review link, then flip the field note into the public index once voices and faces are cleared.',
+    title: 'Release the Utopia story when consent is complete',
+    detail: 'Keep the field story gated until voices, faces and quotes are cleared, then publish it as evidence of build, delivery and household use.',
   },
   {
-    title: 'Turn communities into story hubs',
-    detail: 'Each community page should carry delivery photos, demand, named voices where cleared, product lessons and next asks.',
+    title: 'Make each community page an evidence page',
+    detail: 'Each place should carry delivery photos, demand signals, cleared voices, product lessons and the next practical ask.',
   },
   {
-    title: 'Build the production studio page',
-    detail: 'Make the first on-Country production studio concrete: press, plastic loop, young builders, training and ownership transfer.',
+    title: 'Show production as an ownership pathway',
+    detail: 'Make the first production pathway concrete: press, plastic loop, young builders, training, quality systems and ownership transfer.',
   },
   {
-    title: 'Add consent-aware photo captions',
-    detail: 'Photos need source, place, status and whether they are public, review-only or internal until community sign-off.',
+    title: 'Caption media with provenance and consent',
+    detail: 'Photos should carry place, source, consent status and whether they are public or gated until community sign-off.',
   },
+];
+
+const investorEngagementPillars = [
+  {
+    eyebrow: 'Problem statement',
+    title: 'Remote household infrastructure is failing before families get a fair choice.',
+    body: 'Beds, washers, freight, repair and waste are one system. The investor story should name that system failure instead of reducing the work to donated furniture.',
+    evidence: 'Community voice, deployed assets, freight proof, washer prototype and product-support logic.',
+    icon: ShieldAlert,
+  },
+  {
+    eyebrow: 'What is different',
+    title: 'The invention is the loop: health hardware, circular plastic and local production.',
+    body: 'The Stretch Bed is simple on purpose. The non-obvious capital insight is that owning the press changes cost, margin, jobs and ownership at the same time.',
+    evidence: '$344 finished leg-set vs roughly $40 raw plastic; $194.05 saved per bed by pressing in-house.',
+    icon: PackageCheck,
+  },
+  {
+    eyebrow: 'What is connected',
+    title: 'Demand, story, procurement and capital can reinforce each other.',
+    body: 'A signed buyer or offtake commitment is not just sales evidence. It can become match evidence, working-capital support and a reason to place production closer to community.',
+    evidence: 'Community partners, health buyers, schools, councils, Aboriginal trusts and impact finance each need a different proof pack.',
+    icon: Scale,
+  },
+  {
+    eyebrow: 'Impact model',
+    title: 'Measure the product lifecycle, not just the first delivery.',
+    body: 'The strongest model follows a bed or washer after deployment: use, feedback, repair, movement, survival, story consent, waste diverted and repeat demand.',
+    evidence: 'QR asset register, Empathy Ledger direction, telemetry where live and five impact dimensions.',
+    icon: LineChart,
+  },
+];
+
+const connectedInnovation = [
+  {
+    move: 'Health hardware',
+    why: 'A washable bed off the ground and a working washer support the environmental-health conditions needed to interrupt scabies, Strep A, ARF and RHD pathways.',
+    investorRead: 'Strong as a recognised pathway; clinical outcome reduction should stay modelled until evaluated.',
+  },
+  {
+    move: 'Cost-down as impact',
+    why: 'The press moves the leg margin out of bought components and into production capacity that can shift toward community control.',
+    investorRead: 'Turns capex into a measurable unit-economics milestone: marginal cost, contribution and break-even.',
+  },
+  {
+    move: 'Demand as capital',
+    why: 'Community pull, buyer commitments and forward-purchase LOIs can de-risk the raise while proving the product has a real route to homes.',
+    investorRead: 'The match gate is a conversion job, not a discovery job. Keep 0 signed LOIs visible until changed.',
+  },
+  {
+    move: 'Story governance',
+    why: 'Photos, quotes and field notes are treated as consented evidence, not marketing stock.',
+    investorRead: 'Data sovereignty is a governance signal. It protects community trust and reduces external-share risk.',
+  },
+  {
+    move: 'Ownership transfer',
+    why: 'The long-term goal is for the plant, jobs and margin to sit closer to the communities using the products.',
+    investorRead: 'This is the catalytic exit, but entity and governance structure must be resolved before investors can underwrite it.',
+  },
+];
+
+const impactModelRows = [
+  {
+    dimension: 'Health and wellbeing',
+    proof: 'Beds deployed, washer prototypes and health-partner logic.',
+    caution: 'Do not claim direct RHD reduction yet.',
+  },
+  {
+    dimension: 'Environmental',
+    proof: '20kg HDPE per Stretch Bed and the plant path from waste plastic to bed legs.',
+    caution: 'Local feedstock and long-term diversion need place-by-place proof.',
+  },
+  {
+    dimension: 'Economic',
+    proof: 'Press ownership, labour hours, youth-build pathway and production training.',
+    caution: 'Employment hours are modelled until time-studied in production.',
+  },
+  {
+    dimension: 'Community ownership',
+    proof: 'Oonchiumpa, PICC, community pages, consented stories and the stated aim to become unnecessary.',
+    caution: 'Ownership pathway is proposed/co-designed, not complete.',
+  },
+  {
+    dimension: 'Production efficiency',
+    proof: 'Cost model, CNC time, facility utilisation and scenario planner.',
+    caution: 'Site capex and volume assumptions still need vendor quotes and buyer commitments.',
+  },
+];
+
+const investorGuardrails = [
+  'QBE match is only described as unlocked once eligible signed commitments exist.',
+  'Pipeline, letters of support and conversations stay separate from committed capital.',
+  'Community ownership is presented as the pathway while entity structure remains open.',
+  'Story, photo and quote material is used only with the right consent status.',
+  'Health outcomes, employment hours and site capex are labelled as modelled where they are not yet verified.',
 ];
 
 function statusClass(status: EvidenceStatus | ReadinessStatus) {
@@ -592,10 +687,10 @@ export function QbeSiteWorkspace() {
             <div className="flex flex-wrap items-center gap-2">
               <Badge className="border-[#BBA255]/30 bg-[#BBA255]/15 text-[#FDF8F3]">
                 <Sparkles className="h-3 w-3" />
-                Codex Sites pattern
+                Investor evidence site
               </Badge>
               <Badge className="border-[#5C8A86]/30 bg-[#5C8A86]/20 text-[#FDF8F3]">
-                QBE review workspace
+                QBE capital pathway
               </Badge>
               <Badge className="border-white/15 bg-white/10 text-[#FDF8F3]">
                 3 June 2026
@@ -936,7 +1031,7 @@ export function QbeSiteWorkspace() {
                   Alice Springs to Utopia Homelands
                 </h3>
                 <p className="mt-3 max-w-xl text-sm leading-6 text-[#F3E8D9]">
-                  {storySurfaceLinks[0].summary} This is the review link for the deeper narrative: young builders, Oonchiumpa, Fred and Decon, the road, the households and the community-ownership path.
+                  {storySurfaceLinks[0].summary} This is the gated field story for the deeper narrative: young builders, Oonchiumpa, Fred and Decon, the road, the households and the community-ownership path.
                 </p>
                 <span className="mt-5 inline-flex w-fit items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-semibold text-[#2B2A26] transition group-hover:bg-[#F2E2C5]">
                   Open Utopia story
@@ -1020,7 +1115,7 @@ export function QbeSiteWorkspace() {
                 <h3 className="text-lg font-semibold">Community entry points</h3>
               </div>
               <p className="mt-3 text-sm leading-6 text-stone-600">
-                The next pass should make the community map feel like a story index: each place opens into demand, delivery photos, voices, product lessons and what the next production move could unlock.
+                The public evidence base should make the community map feel like a place-by-place proof index: demand, delivery photos, voices, product lessons and what the next production move could unlock.
               </p>
               <div className="mt-4 space-y-3">
                 {communityStoryLinks.map((item) => (
@@ -1047,11 +1142,11 @@ export function QbeSiteWorkspace() {
           <div className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm sm:p-6">
             <div className="grid gap-3 md:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] md:items-end">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5C8A86]">Site map</p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">What this Codex site should offer</h2>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5C8A86]">Investor evidence pathway</p>
+                <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">What this site gives an investor</h2>
               </div>
               <p className="text-sm leading-6 text-stone-600">
-                This is the next build shape: one live workspace that branches into capital, story, communities, production, partners and evidence. Each page has a job, not just a link.
+                This is the public shape of the capital story: one live surface that branches into capital, field story, communities, production, partners and evidence. Each page answers a real diligence question.
               </p>
             </div>
 
@@ -1081,7 +1176,7 @@ export function QbeSiteWorkspace() {
                       ))}
                     </div>
                     <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#A8643F]">
-                      Open page
+                      View evidence
                       <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                     </span>
                   </div>
@@ -1093,10 +1188,10 @@ export function QbeSiteWorkspace() {
           <aside className="rounded-lg border border-stone-200 bg-[#2B2A26] p-5 text-white shadow-sm sm:p-6">
             <div className="flex items-center gap-2">
               <ClipboardList className="h-5 w-5 text-[#BBA255]" />
-              <h2 className="text-lg font-semibold">Next build queue</h2>
+              <h2 className="text-lg font-semibold">Evidence still to publish</h2>
             </div>
             <p className="mt-3 text-sm leading-6 text-[#E6DFD1]">
-              The highest leverage work is not more dashboard polish. It is turning the real work into public, consent-clean story surfaces.
+              The next public evidence work is to publish more of what is already real, with consent, provenance and claim labels attached.
             </p>
             <div className="mt-5 space-y-3">
               {nextBuildQueue.map((item, index) => (
@@ -1117,10 +1212,119 @@ export function QbeSiteWorkspace() {
         </div>
       </section>
 
+      <section className="border-y border-stone-200 bg-[#EEF1EC]">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:items-stretch">
+            <div className="rounded-lg border border-stone-300 bg-white p-5 shadow-sm sm:p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5C8A86]">Investor engagement alignment</p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[#2B2A26] md:text-4xl" style={{ fontFamily: 'Georgia, serif' }}>
+                Make the raise about conversion, not discovery
+              </h2>
+              <p className="mt-4 text-sm leading-6 text-stone-700">
+                The most investable version of Goods is not a charity story and not a generic product story. It is a connected impact model: communities have named the need, the product exists, the cost-down path is visible, the asset register can track use, and catalytic capital converts that proof into owned production.
+              </p>
+              <div className="mt-5 rounded-lg border border-[#BBA255]/40 bg-[#FFF9EA] p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#A8643F]">Plain investor thesis</p>
+                <p className="mt-2 text-xl font-light leading-8 text-[#2B2A26]" style={{ fontFamily: 'Georgia, serif' }}>
+                  Goods turns household health problems, freight failure and plastic waste into a product system that communities can use, repair, track and eventually own.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid gap-3 md:grid-cols-2">
+              {investorEngagementPillars.map(({ eyebrow, title, body, evidence, icon: Icon }) => (
+                <div key={title} className="rounded-lg border border-stone-300 bg-white p-5 shadow-sm">
+                  <div className="flex items-start justify-between gap-3">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#A8643F]">{eyebrow}</p>
+                    <span className="rounded-md bg-[#F2E9DF] p-2 text-[#A8643F]">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                  </div>
+                  <h3 className="mt-3 text-lg font-semibold leading-snug text-[#2B2A26]">{title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-stone-600">{body}</p>
+                  <p className="mt-4 rounded-md border border-stone-200 bg-[#FBF8F1] px-3 py-2 text-xs leading-5 text-stone-600">
+                    <span className="font-semibold text-stone-800">Evidence to show: </span>
+                    {evidence}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1.04fr)_minmax(360px,0.96fr)]">
+            <div className="rounded-lg border border-stone-300 bg-[#2B2A26] p-5 text-white shadow-sm sm:p-6">
+              <div className="grid gap-3 md:grid-cols-[minmax(0,0.78fr)_minmax(0,1fr)] md:items-end">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#BBA255]">What is innovative and connected</p>
+                  <h3 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl" style={{ fontFamily: 'Georgia, serif' }}>
+                    The product is the entry point. The system is the moat.
+                  </h3>
+                </div>
+                <p className="text-sm leading-6 text-[#E6DFD1]">
+                  Investors should see each piece reinforcing the next: health hardware creates demand, the press improves economics, buyer commitments de-risk capital, and story governance protects trust.
+                </p>
+              </div>
+
+              <div className="mt-6 grid gap-3">
+                {connectedInnovation.map((item) => (
+                  <div key={item.move} className="grid gap-3 rounded-lg border border-white/10 bg-white/5 p-4 md:grid-cols-[170px_minmax(0,1fr)_minmax(0,0.9fr)]">
+                    <p className="text-sm font-semibold text-white">{item.move}</p>
+                    <p className="text-sm leading-6 text-[#E6DFD1]">{item.why}</p>
+                    <p className="rounded-md border border-white/10 bg-black/15 p-3 text-xs leading-5 text-[#F3E8D9]">{item.investorRead}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid gap-4">
+              <div className="rounded-lg border border-stone-300 bg-white p-5 shadow-sm">
+                <div className="flex items-center gap-2">
+                  <LineChart className="h-5 w-5 text-[#5C8A86]" />
+                  <h3 className="text-lg font-semibold">Impact model to put forward</h3>
+                </div>
+                <p className="mt-3 text-sm leading-6 text-stone-600">
+                  Show five dimensions and label the claim tier. The strongest investor posture is disciplined: verified deployment and cost proof beside modelled health, employment and ownership pathways.
+                </p>
+                <div className="mt-4 space-y-3">
+                  {impactModelRows.map((row) => (
+                    <div key={row.dimension} className="rounded-lg border border-stone-200 bg-[#FBF8F1] p-3">
+                      <p className="text-sm font-semibold text-[#2B2A26]">{row.dimension}</p>
+                      <p className="mt-1 text-xs leading-5 text-stone-600">
+                        <span className="font-semibold text-stone-800">Proof: </span>
+                        {row.proof}
+                      </p>
+                      <p className="mt-1 text-xs leading-5 text-stone-500">
+                        <span className="font-semibold text-stone-700">Caution: </span>
+                        {row.caution}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-lg border border-amber-200 bg-[#FFF9EA] p-5 shadow-sm">
+                <div className="flex items-center gap-2">
+                  <ShieldAlert className="h-5 w-5 text-[#A8643F]" />
+                  <h3 className="text-lg font-semibold">Investor guardrails</h3>
+                </div>
+                <div className="mt-4 space-y-2">
+                  {investorGuardrails.map((guardrail) => (
+                    <div key={guardrail} className="flex gap-3 rounded-md border border-amber-100 bg-white/55 p-3">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#5E7A4C]" />
+                      <p className="text-xs leading-5 text-stone-700">{guardrail}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto grid max-w-7xl gap-6 px-4 pb-6 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:px-8">
         <div className="rounded-lg border border-stone-200 bg-white shadow-sm">
           <div className="border-b border-stone-200 p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#5C8A86]">Evidence register</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#5C8A86]">Investor evidence register</p>
             <h2 className="mt-1 text-xl font-semibold">Numbers that can move into the site</h2>
           </div>
           <div className="divide-y divide-stone-100">
@@ -1141,8 +1345,8 @@ export function QbeSiteWorkspace() {
 
         <div className="rounded-lg border border-stone-200 bg-white shadow-sm">
           <div className="border-b border-stone-200 p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#5C8A86]">Stage 2 readiness</p>
-            <h2 className="mt-1 text-xl font-semibold">What still needs founder review</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#5C8A86]">Investor readiness gates</p>
+            <h2 className="mt-1 text-xl font-semibold">What must be confirmed before external share</h2>
           </div>
           <div className="divide-y divide-stone-100">
             {readinessRows.map((row) => (
@@ -1174,7 +1378,7 @@ export function QbeSiteWorkspace() {
             <Button asChild className="bg-[#BBA255] text-[#24211D] hover:bg-[#CBB56E]">
               <Link href="/investors?skin=investment">
                 <Calculator className="h-4 w-4" />
-                Open cockpit
+                Investor evidence
               </Link>
             </Button>
             <Button asChild variant="outline" className="border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white">
@@ -1187,7 +1391,7 @@ export function QbeSiteWorkspace() {
         </div>
 
         <div className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#5C8A86]">Routes and sources</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#5C8A86]">Evidence links</p>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             {routeLinks.map(({ label, href, icon: Icon }) => (
               <Button key={href} asChild variant="outline" className="justify-between">
