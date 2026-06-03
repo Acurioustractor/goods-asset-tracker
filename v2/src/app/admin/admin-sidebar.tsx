@@ -72,6 +72,7 @@ const navigation: NavGroup[] = [
     group: 'Story',
     items: [
       { name: 'Photos',       href: '/admin/photos',          icon: Images },
+      { name: 'Photo review', href: '/admin/photo-review',     icon: Images },
       { name: 'Stories (EL)', href: '/admin/el-stories',      icon: BookOpen },
       { name: 'Storytellers', href: '/admin/el-storytellers', icon: Users },
     ],
