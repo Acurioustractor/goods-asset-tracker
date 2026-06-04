@@ -50,8 +50,12 @@ export async function proxy(request: NextRequest) {
   // Investor cockpit — shared password gate (QBE / investment partners).
   // Same lightweight cookie pattern as /insiders: one shared password, then the
   // live cost-model + investment cockpit. The login page and auth route stay public.
+  // Also covers /sites/qbe (investor-facing capital workspace with unit economics).
   if (
-    (pathname === '/investors' || pathname.startsWith('/investors/')) &&
+    (pathname === '/investors' ||
+      pathname.startsWith('/investors/') ||
+      pathname === '/sites/qbe' ||
+      pathname.startsWith('/sites/qbe/')) &&
     pathname !== '/investors/login' &&
     pathname !== '/api/investors/auth'
   ) {

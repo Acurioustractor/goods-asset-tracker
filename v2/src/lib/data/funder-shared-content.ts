@@ -60,14 +60,17 @@ export const BUYER_PIPELINE = [
 ];
 
 export const CAPITAL_STACK = [
-  { layer: 'Match grant', source: 'QBE Foundation Stage 2', amount: '$400K cap', status: 'Conditional on eligible raise', highlight: true },
+  { layer: 'Catalytic blended', source: 'Minderoo (this ask)', amount: '$1.5M', status: 'In conversation', highlight: true },
+  { layer: 'Subordinated debt', source: 'SEFA working capital (BOLD agreement)', amount: '$300K', status: 'In outreach' },
+  { layer: 'Match grant', source: 'QBE Foundation Stage 2', amount: 'Up to $400K', status: 'Conditional on matched raise' },
   { layer: 'To be raised', source: 'Additional philanthropic and community partners', amount: '$1M', status: 'Pipeline' },
+  { layer: 'Guarantee', source: 'Snow Foundation letter of support', amount: '·', status: 'In conversation' },
 ];
 
 export const QBE_PROGRAM = {
   title: 'QBE Catalysing Impact 2026',
   description:
-    "Goods is in the QBE Foundation's blended finance accelerator, run by Social Impact Hub. We were selected on alignment with climate resilience and inclusion. Stage 2 includes a dollar-for-dollar match up to a $400K cap against eligible capital we raise from elsewhere.",
+    "Goods is in the QBE Foundation's blended finance accelerator, run by Social Impact Hub. We were selected on alignment with climate resilience and inclusion. Stage 2 includes funding of up to $400,000 from a $1M pool, which must be at least matched by external capital we raise from elsewhere. Repayable finance is prioritised over grants.",
   contacts: [
     'Lauren at QBE Foundation (climate and inclusion)',
     'Alex at QBE Ventures ($5 to $15M check sizes)',

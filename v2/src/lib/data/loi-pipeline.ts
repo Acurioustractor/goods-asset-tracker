@@ -90,12 +90,16 @@ export const STAGE_TO_RUNG: Record<string, LoiRung> = {
 };
 
 /**
- * QBE Stage-2 match. CONTINGENT on raising eligible non-QBE capital FIRST.
- * Do not present the match as secured until eligible commitments are signed.
+ * QBE Stage-2 funding. Program cap CONFIRMED at $400K by the Catalysing Impact
+ * 2026 induction deck (31 Mar 2026): up to $400,000 from a $1M shared pool,
+ * must be AT LEAST matched by external capital secured (legally binding
+ * commitments), repayable finance prioritised over grants. Awarded at Steering
+ * Committee discretion — application Sept 2026, outcomes Nov 2026.
+ * Do not present the funding as secured until awarded.
  */
 export const MATCH_TARGET = {
   cap: 400_000,
-  note: 'QBE Stage-2 match is capped at $400K and remains contingent on eligible non-QBE capital being raised first. Keep the raise lanes explicit and do not present match funding as secured until commitments are signed.',
+  note: 'QBE Stage-2 funding is up to $400K (program cap, $1M shared pool) and must be at least matched by signed external commitments raised first. Application Sept 2026, outcomes Nov 2026, Steering Committee discretion. Do not present as secured until awarded.',
 };
 
 /**

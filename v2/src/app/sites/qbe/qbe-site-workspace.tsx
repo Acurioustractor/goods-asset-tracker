@@ -147,13 +147,13 @@ const evidenceRows: Array<{
   },
   {
     claim: 'QBE Stage 2 match cap',
-    value: '$400K cap',
+    value: 'Up to $400K (program cap)',
     status: 'Guardrail',
     source: MATCH_TARGET.note,
   },
   {
     claim: 'Catalytic ask to close',
-    value: '$400,000 signed match-eligible capital',
+    value: '~$400K signed match-eligible capital',
     status: 'Open',
     source: 'signed commitments required before this can be described as closed',
   },
@@ -707,8 +707,8 @@ export function QbeSiteWorkspace() {
             <div className="grid gap-3 sm:grid-cols-3">
               <div className="rounded-lg border border-white/10 bg-white/5 p-4">
                 <p className="text-xs uppercase tracking-[0.2em] text-[#BBA255]">Catalytic ask</p>
-                <p className="mt-2 text-2xl font-semibold">$400k</p>
-                <p className="mt-1 text-xs text-[#E6DFD1]">QBE match cap, conditional on eligible capital raised first.</p>
+                <p className="mt-2 text-2xl font-semibold">~$400k</p>
+                <p className="mt-1 text-xs text-[#E6DFD1]">Signed match-eligible capital to close. QBE Stage 2 funds up to $400K, at least matched, not secured until awarded.</p>
               </div>
               <div className="rounded-lg border border-white/10 bg-white/5 p-4">
                 <p className="text-xs uppercase tracking-[0.2em] text-[#BBA255]">Cost unlock</p>
@@ -755,7 +755,7 @@ export function QbeSiteWorkspace() {
               </div>
             </div>
             <div className="rounded-lg border border-white/10 bg-white/5 p-4 text-sm leading-6 text-[#E6DFD1]">
-              <span className="font-semibold text-[#FDF8F3]">Verified frame:</span> $750 price, $684.79 current marginal cost, $425.74 factory marginal cost. QBE Stage 2 is a dollar-for-dollar match up to a $400K cap, contingent on eligible capital raised first.
+              <span className="font-semibold text-[#FDF8F3]">Verified frame:</span> $750 price, $684.79 current marginal cost, $425.74 factory marginal cost. QBE Stage 2 funding is up to $400,000, at least matched by external capital raised first, awarded at Steering Committee discretion.
             </div>
           </div>
         </div>
@@ -783,8 +783,8 @@ export function QbeSiteWorkspace() {
           />
           <Metric
             label="Match target"
-            value="$400K cap"
-            sub="QBE Stage 2 match cap. Eligible external capital must be raised first."
+            value="Up to $400K"
+            sub="QBE Stage 2 program cap. Must be at least matched by signed external capital raised first."
             icon={ShieldAlert}
           />
         </div>

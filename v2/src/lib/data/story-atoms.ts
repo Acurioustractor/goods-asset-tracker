@@ -49,7 +49,7 @@ export const healthFramings: Record<string, HealthFraming> = {
     ],
     pull: {
       quote: '"Something as simple as a good bed makes a huge difference. It improves their health, helps with mobility, and gives them dignity."',
-      src: 'Chloe · Support worker, Kalgoorlie · cleared voice',
+      src: 'Chloe · Support worker, Kalgoorlie',
     },
   },
   'sleep-and-skin': {

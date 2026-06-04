@@ -88,7 +88,7 @@ const backedByPartners = [
     width: 800,
     height: 220,
     href: 'https://www.qbe.com/sustainability/qbe-foundation',
-    role: 'Catalysing Impact 2026 cohort, with Stage 2 match up to a $400K cap subject to eligible capital raised first.',
+    role: 'Catalysing Impact 2026 cohort, with Stage 2 funding of up to $400,000, at least matched by external capital raised.',
   },
 ];
 
@@ -306,8 +306,8 @@ export default async function PartnerPage({
                 The right capital is blended, patient and honest about what is proven.
               </h2>
               <p className="text-lg leading-relaxed text-background/75">
-                QBE Catalysing Impact 2026 creates a timely match opportunity up to a $400K cap,
-                conditional on eligible non-QBE capital being raised first. The practical ask is to
+                QBE Catalysing Impact 2026 creates a timely match opportunity of up to $400,000,
+                at least matched by external capital we raise first. The practical ask is to
                 explore which layer fits your mandate.
               </p>
             </div>
@@ -335,8 +335,9 @@ export default async function PartnerPage({
                 </div>
                 <ul className="space-y-3 text-sm text-background/75">
                   <li>
-                    <span className="font-semibold text-background">QBE match:</span> up to a $400K
-                    cap, conditional on eligible non-QBE capital being raised first.
+                    <span className="font-semibold text-background">QBE match:</span> up to
+                    $400,000, at least matched by external capital raised, awarded at the
+                    program&apos;s discretion.
                   </li>
                   <li>
                     <span className="font-semibold text-background">Debt:</span> only where orders,
