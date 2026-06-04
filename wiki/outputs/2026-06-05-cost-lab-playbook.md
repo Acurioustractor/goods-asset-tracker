@@ -1,0 +1,101 @@
+<!-- Generated 2026-06-05 by the cost-lab-playbook workflow (6 lens generators + 2 adversarial verifiers + 1 synthesis). Framings: 28 generated, 28 survived verification. Companion to https://www.goodsoncountry.com/sites/cost-lab -->
+
+# The Cost Lab Playbook
+
+## 1. Start here
+
+This is the playbook for the interactive Cost Lab. Keep it open while you both work the model from first principles. One mental model organises everything: price minus marginal cost equals contribution per bed. That contribution times the number of beds you build has to beat the annual fixed block of about $109,500/yr before a single dollar is surplus. Capex (a shredder, a hot press) does not make money on its own, it buys you a lower marginal cost on every bed after it. And once a container is covering its share, its surplus compounds into paying for the next one.
+
+## 2. The five best analogies (for Ben and Nic, talking to each other)
+
+These are the strongest one each across the lenses. Use them with each other to keep the maths honest.
+
+### How much of the price is just plastic? (the markup gap)
+- **One-liner:** Divide the price of a finished part by the cost of the raw material inside it, and the bigger that number, the more money is hiding in the steps between the two.
+- **Maps to:** The finished HDPE leg kit costs $344.05, but the shredded plastic inside it is worth about $40, a gap of 8.6x. Go back to virgin polymer at $16 and the gap is 21.5x. Steel sits at $27 over a $10.34 floor, canvas $93.50 over $35, hardware about $5 already near its floor. The legs are where the gap lives.
+- **Cost Lab play:** Set build method to Buy-Kit and read marginal cost: $684.79. Switch to Factory in-house and watch it drop to $425.74. That $259 swing is the markup gap closing on the legs. Then flip to the Community path and slide HDPE $/kg up and down: because community plastic is collected free, the leg floor barely moves, which tells you the gap was never about the raw material price, it was about who owns the pressing step.
+- **Caution:** The 21.5x figure compares a finished kit to virgin polymer, not to recycled feedstock, so do not promise you can capture all of it. Moulds, energy, labour, scrap and a real machine all sit in between. The honest target is the 8.6x gap (finished kit versus the shredded plastic you already hold), not the 21.5x headline.
+
+### The food truck and the rent (marginal versus fixed)
+- **One-liner:** Each burger only needs to beat the cost of the patty and the bun to be worth selling, but the truck rego and the pitch fee are a separate bill you cover out of all the burgers together.
+- **Maps to:** The $750 price only has to beat the marginal cash cost of one more bed ($684.79 kit, $425.74 factory, $420.74 community), which it does on every path. The "patty and bun" is that marginal cost. The "rego and pitch fee" is the about $109,500/yr fixed block (production lead share, facility, admin, field travel, rent). The about $65 kit contribution is real and positive, it is just the bit left over to chip at the block, not profit.
+- **Cost Lab play:** Set price $750, path Buy-Kit. Show the per-bed bar: $750 in, $684.79 out, about $65 left over, green not red. Bring in the about $109,500/yr block as a separate tank to fill. Watch how many $65 contributions fill it (about 1,679 beds), then flip to factory and watch about $324/bed fill the same tank in about 338 beds.
+- **Caution:** The food-truck line can make $65/bed sound like spare cash. It is not. At kit volumes below about 1,679 beds/yr the block is not covered and the operation runs at a loss overall. "Each bed beats its marginal cost" and "the business is in the black" are two different things, and only the first is true at low volume.
+
+### The solar panels on the shed roof (capex buys a lower marginal cost)
+- **One-liner:** Pressing the legs in our own factory is like putting solar on the shed: you pay once to own the gear, and from then on every bed cuts your cost instead of someone else taking the margin.
+- **Maps to:** Marginal cost drops from Buy-Kit $684.79/bed to Factory in-house $425.74/bed (a $258.05/bed cash saving, of which $194.05/bed is the materials-level leg-pressing saving). The panels are the factory capex: $112K-222K gross (modelled, pending vendor quotes), with $110,046 already invested so the net ask is only $2K-112K. Contribution rises from about $65 on kits to about $324 in-house. Break-even falls from about 1,679 beds/yr to about 338 beds/yr.
+- **Cost Lab play:** Start on Buy-Kit, read marginal ($684.79) and contribution (about $65). Flip the production dial to Factory in-house, watch marginal drop to $425.74 and contribution jump to about $324. Move the annual volume slider and watch break-even slide from about 1,679 down to about 338 beds.
+- **Caution:** Solar payback is close to guaranteed once installed. A factory is not. The $112K-222K capex is modelled and pending real vendor quotes (shredder $15-30K, hot press $80-150K, CNC $15-40K), and the saving only shows up if you run enough beds through it. Below about 338 beds/yr the in-house path can cost more than buying kits, because the about $109,500/yr block has to be paid whether the press runs or not.
+
+### The sourdough starter you hand on (surplus compounds, then transfers)
+- **One-liner:** Each container's margin feeds the next one, like keeping a bit of starter back from every loaf so you never have to buy yeast again, and one day you hand the whole starter to the family who will keep it going.
+- **Maps to:** This is the compounding sim and the ownership transfer together. At about 500 beds/yr per container and about $329 contribution on the community path, each container's margin banks toward the next, and the first self-funded container appears within a few years (modelled defaults, container about $125K mid-range). The about $109,500/yr block plus about $24K/yr container site overhead draw down the same margin pool, so this only holds once the block is covered across the operation. The transfer is the plant moving to community ownership via the CATSI corp pathway.
+- **Cost Lab play:** Run the compounding view with defaults: 500 beds/yr, about $329 contribution, container about $125K. Watch banked margin from container one fund container two within a few years (modelled, not booked). Then say the part the numbers do not show: when the plant transfers to community ownership, that whole self-feeding loop belongs to the community, so the margin stops flowing back to us and starts compounding for them.
+- **Caution:** Compound interest is automatic, this is not. Every dollar of that about $329 is contribution, not profit, and the block has to be funded before anything banks. The 500 beds/yr, about $125K container and about $329 figures are modelled defaults, and a slow year stalls the doubling. The CATSI pathway is a real legal and governance process, not just handing over a key.
+
+### Buying the ute outright instead of leasing forever (the QBE match)
+- **One-liner:** QBE money would be like a mate offering to chip in on the ute, but only if we put in at least as much ourselves, and it is not a yes yet.
+- **Maps to:** QBE Catalysing Impact Stage 2 is up to $400,000 from a $1M shared pool, must be at least matched by signed external capital, repayable finance prioritised, applied Sept 2026, outcomes Nov 2026, not secured until awarded. The ute being bought is the factory: $112K-222K gross modelled, $110,046 already invested, net ask $2K-112K. Verified receipts to date are $741,111 across 496 beds in 9 communities.
+- **Cost Lab play:** Set the capex dial to the factory range and watch the net ask drop once you subtract the $110,046 already invested, leaving $2K-112K. Then talk through the match rule out loud: every QBE dollar needs at least one signed dollar of our own beside it. The model can show the ute fully paid, it cannot sign the cheque.
+- **Caution:** Do not say QBE is locked in. It is up to $400,000, possibly repayable, and not secured until awarded in Nov 2026. The match has to be signed external capital, so dreaming up a number does not count. Buying the ute outright still leaves the running costs: the about $109,500/yr block does not disappear because the asset is paid off.
+
+## 3. Say it to the right audience
+
+| Audience | The one-liner that lands | The trap to avoid |
+| --- | --- | --- |
+| Philanthropic funder | Your grant funds the about $109,500/yr fixed block that keeps a remote production base running, so every bed sold after that stands on its own contribution. | Never call contribution profit, never present break-even as already reached. It is the runway the grant buys time to reach. |
+| Catalytic / QBE | Pressing legs in-house turns $40 of plastic inside a $344 kit into a margin you can bank, and catalytic capital de-risks that step from about $65 to about $324 contribution per bed. | Never describe QBE as secured or awarded. Label all capex modelled. The fivefold jump is a modelled outcome, not banked. |
+| Patient debt / SEFA | Each community-path bed throws off about $329 of contribution against a unified $750 price, a known repeatable unit margin that working capital can be sized against. | Show the about $109,500/yr block first: $329/bed is not free cash for repayment until the block is funded. Label container economics modelled. |
+| Supplier | Quote us at volume and you push us toward the factory path that breaks even at about 338 beds, not the kit path that needs about 1,679. The path that breaks even is the path that keeps ordering from you. | Capex is modelled pending quotes, so do not promise we move to factory next quarter. Their price alone does not flip the switch. |
+| Crew | The first beds each year pay the rent and wages and travel, and only after we clear the block does each bed start putting money back in the till. | Do not let it read as a piece-rate or quota. The crew are paid a fair wage either way (the $130/bed labour is already in the community cost). A slow month does not mean anyone owes beds. |
+| Community partner | On the community path each bed leaves about $329 behind, and once the year's block is funded that leftover stacks toward paying for the next container. | Contribution is not cash in a community's pocket, and the "free" plastic is free in dollars but real in collection labour. The compounding sim is a model, not a forecast. |
+
+## 4. The five set plays
+
+### The Vendor Quote Truth Test
+- **Dials:** Path Factory, beds/yr a realistic near-term number. Run gross capex high ($222K) and net-of-$110,046 high ($112K), read payback and break-even. Then drop capex to the low modelled figures (shredder $15K, hot press $80K, CNC $15K, benches $2K) and read payback again.
+- **Watch:** The gap between the two paybacks. That gap is the size of the bet you are taking on un-quoted equipment.
+- **Landing sentence:** This shows how much the answer moves when a real quote lands, it does not prove the factory is affordable yet.
+
+### The Seven-Fifty Floor
+- **Dials:** Buy-Kit, price $750, read contribution (about $65). Nudge price down in small steps toward $684.79 and watch contribution shrink to zero. Flip to Factory at the same prices and watch contribution sit around $324 the whole way down.
+- **Watch:** How far you can drop price on each path before the block stops getting funded at all.
+- **Landing sentence:** A fat contribution number is not money in the bank, and $750 is one unified price to remote communities, a fairness commitment, not a free dial to crank.
+
+### The Supplier Squeeze
+- **Dials:** Buy-Kit, price $750. Raise the kit $/bed step by step and watch kit contribution fall from about $65 toward zero, then negative. Note the kit price where contribution hits zero. Flip to Factory and raise nothing.
+- **Watch:** The factory path holds around $324 through a price shock that wipes out the kit path.
+- **Landing sentence:** This de-risks one supplier, it does not make you immune to all of them (HDPE, steel and canvas can all move at once on the in-house path).
+
+### The Container Relay
+- **Dials:** Path Community, contribution about $329/bed, beds/yr per container 500, container about $125K mid-range, site overhead about $24K/yr, push horizon years out far enough to see several container years.
+- **Watch:** Read the year-by-year table, find the first row flagged as a self-funded container, and whether the gap between self-funded containers shrinks as the fleet grows.
+- **Landing sentence:** This is the community path's best case, slower uptake or softer contribution pushes container two out by years, it is a model of a smooth run, not a forecast of a real one.
+
+### The Underwater Bed
+- **Dials:** Buy-Kit, drop price below $684.79, say to $650. Watch contribution go negative and break-even fail to resolve. Raise beds/yr and watch the loss grow with volume. Flip to Factory at the same $650 and watch it climb back above water (marginal $425.74).
+- **Watch:** Selling more makes the hole bigger, not smaller, when each bed loses money.
+- **Landing sentence:** If the model breaks, fix the cost floor or the price, do not assume capital (least of all unsecured QBE money) fills the hole.
+
+## 5. First working session agenda (Ben + Nic, 45 min)
+
+1. **Frame it (5 min).** Say the mental model out loud together: price minus marginal equals contribution, contribution times volume must beat the about $109,500/yr block, capex buys a lower marginal cost, surplus compounds into the next container.
+2. **Pin the capex with real guesses (15 min).** Open the container coster and fill the missing rows with your best vendor-quote guesses, labelling each as modelled: container shell and fit-out, electrical and safety, freight to site, installation, training. These are the rows that are blank today and they move the net ask. Write the source of each guess beside it.
+3. **Run the Vendor Quote Truth Test (5 min).** With those guesses in, run capex high then low and read the two paybacks. The gap between them is your live un-quoted risk. Decide which one or two rows are worth a real phone-call quote this week.
+4. **Walk the three paths (5 min).** Toggle Buy-Kit, Factory, Community and read marginal, contribution and break-even on each. Confirm the story out loud: about $65 / about $324 / about $329 contribution, about 1,679 / about 338 break-even.
+5. **Run the compounding race (10 min).** Open the Container Relay at the community defaults (500 beds/yr, about $329, container about $125K, overhead about $24K/yr). Find the year container two self-funds. Then race the dials: drop beds/yr to a conservative number and watch the doubling stretch, hold contribution and watch it shorten. Decide which dial, throughput or contribution, you most want to move first.
+6. **Close (5 min).** Write down the two real quotes to chase this week and the one dial you are betting on. Keep the honesty rails in view: nothing here is banked.
+
+## 6. Honesty rails
+
+- **Modelled versus verified.** The only hard numbers are $110,046 already invested and verified receipts of $741,111 across 496 beds in 9 communities. All factory capex ($112K-222K gross, $2K-112K net ask), the compounding timeline, and per-container economics are modelled pending vendor quotes. Say "modelled" out loud when you lean on them.
+- **Contribution is not profit.** Every contribution figure (about $65 kit, about $324 factory, about $329 community) still has to fund the about $109,500/yr fixed block before a dollar is surplus. That is exactly why break-even is about 338 beds, not zero.
+- **QBE is not secured.** Up to $400,000, at least matched by signed external capital, repayable finance prioritised, decided Nov 2026 at the earliest. Never model it as cash in hand, and never let the $400K headline imply the press is funded.
+- **The analogies share three failure modes.** They can make contribution sound like spare cash (it is not), they can make modelled capex sound like a settled price tag (it is not), and they can make the free community plastic sound like zero effort (it is real collection and sorting labour, which is why the $130/bed fair wage sits inside the community cost).
+
+## 7. The best case, ready to run
+
+The "Seed fleet of 3" scenario button in the Cost Lab sets every dial to the modelled best case: $400K signed + $400K QBE match = $800K seeds 3 containers, and from there surplus compounds at roughly 2.5 new containers a year, reaching 10 to 12 containers, 5,000+ beds/yr, 100+ tonnes of plastic/yr and $650K+/yr of community wages by year 5. Each container at capacity carries about $65,000/yr of fair wages inside its unit cost and about $140,000/yr of surplus that becomes community income on CATSI transfer.
+
+The two sentences that hold it honest: the constraint is signed demand, not cost (the same signatures that unlock the QBE match make the compounding real), and every number in the run is modelled until the three vendor quotes land. Full walk-through: wiki/outputs/2026-06-05-goods-best-case-scenario.md.
