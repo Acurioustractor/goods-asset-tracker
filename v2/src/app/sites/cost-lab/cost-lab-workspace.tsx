@@ -327,6 +327,12 @@ export function CostLabWorkspace() {
               <RotateCcw className="h-3.5 w-3.5" aria-hidden /> Reset to canon
             </button>
             <Link
+              href="/sites/cost-lab/playbook"
+              className="inline-flex items-center rounded-md bg-[#BBA255] px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-[#2B2A26] transition hover:bg-[#d4bb6e]"
+            >
+              Open the playbook
+            </Link>
+            <Link
               href="/sites/qbe"
               className="text-xs text-[#E6DFD1] underline underline-offset-4 hover:text-white"
             >
