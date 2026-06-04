@@ -67,6 +67,7 @@ interface SimInputs {
   siteOverheadPerYear: number; // per container site
   signedExternal: number; // signed match-eligible capital for the QBE calc
   horizonYears: number;
+  startingContainers: number; // containers funded up-front by the raise
 }
 
 const CANON_CAPEX: CapexRow[] = [
@@ -83,9 +84,42 @@ const CANON_SIM: SimInputs = {
   siteOverheadPerYear: 24_000,
   signedExternal: 400_000,
   horizonYears: 8,
+  startingContainers: 1,
 };
 
+// One-click scenarios: set the model and the simulator together.
+const SCENARIOS: Array<{
+  key: string;
+  label: string;
+  hint: string;
+  inputs: Partial<Inputs>;
+  sim: Partial<SimInputs>;
+}> = [
+  {
+    key: 'today',
+    label: 'Today',
+    hint: 'Buy-Kit at the honest current run-rate (120 beds/yr).',
+    inputs: { build_method: 'kits', beds_per_year: 120, location: 'sydney', containerise: false },
+    sim: { startingContainers: 1, path: 'community' },
+  },
+  {
+    key: 'first-container',
+    label: 'First container',
+    hint: 'One On-Country container at 500 beds/yr, community path.',
+    inputs: { build_method: 'community', beds_per_year: 500, location: 'on_country', containerise: true },
+    sim: { startingContainers: 1, path: 'community', bedsPerContainerYear: 500, containerCost: 125_000, siteOverheadPerYear: 24_000, horizonYears: 8 },
+  },
+  {
+    key: 'seed-fleet',
+    label: 'Seed fleet of 3 (best case)',
+    hint: 'The QBE stack ($400K signed + $400K match) funds 3 containers up-front, then surplus compounds. Modelled.',
+    inputs: { build_method: 'community', beds_per_year: 1500, location: 'on_country', containerise: true },
+    sim: { startingContainers: 3, path: 'community', bedsPerContainerYear: 500, containerCost: 125_000, siteOverheadPerYear: 24_000, signedExternal: 400_000, horizonYears: 8 },
+  },
+];
+
 const STORAGE_KEY = 'goods-cost-lab-v1';
+const NOTES_KEY = 'goods-cost-lab-notes-v1'; // kept separate so Reset to canon never wipes notes
 
 // ── Small controls ───────────────────────────────────────────────────────────
 
@@ -165,6 +199,9 @@ export function CostLabWorkspace() {
   const [sim, setSim] = useState<SimInputs>(CANON_SIM);
   const [nextRowId, setNextRowId] = useState(100);
   const [hydrated, setHydrated] = useState(false);
+  const [notes, setNotes] = useState('');
+  const [activeScenario, setActiveScenario] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   // Hydrate from localStorage once on mount (SSR renders canon, client restores
   // saved edits; same one-shot pattern as portal/our-story).
@@ -182,6 +219,8 @@ export function CostLabWorkspace() {
         if (saved.capexRows?.length) setCapexRows(saved.capexRows);
         if (saved.sim) setSim({ ...CANON_SIM, ...saved.sim });
       }
+      const savedNotes = window.localStorage.getItem(NOTES_KEY);
+      if (savedNotes) setNotes(savedNotes);
     } catch {
       // Bad saved state: fall through to canon.
     }
@@ -194,10 +233,11 @@ export function CostLabWorkspace() {
     if (!hydrated) return;
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ inputs, capexRows, sim }));
+      window.localStorage.setItem(NOTES_KEY, notes);
     } catch {
       // Storage full or blocked: live state still works.
     }
-  }, [inputs, capexRows, sim, hydrated]);
+  }, [inputs, capexRows, sim, notes, hydrated]);
 
   const model = useMemo(() => computeModel(inputs), [inputs]);
 
@@ -208,11 +248,21 @@ export function CostLabWorkspace() {
     setInputs(DEFAULTS);
     setCapexRows(CANON_CAPEX);
     setSim(CANON_SIM);
+    setActiveScenario(null);
+    // Notes are deliberately NOT cleared: workshop decisions outlive a model reset.
     try {
       window.localStorage.removeItem(STORAGE_KEY);
     } catch {
       // Nothing to clear.
     }
+  };
+
+  const applyScenario = (key: string) => {
+    const s = SCENARIOS.find((x) => x.key === key);
+    if (!s) return;
+    setInputs((prev) => ({ ...prev, ...s.inputs }));
+    setSim((prev) => ({ ...prev, ...s.sim }));
+    setActiveScenario(key);
   };
 
   // ── Container coster derived values ──
@@ -238,7 +288,7 @@ export function CostLabWorkspace() {
       bank: number;
       built: number;
     }> = [];
-    let containers = 1;
+    let containers = Math.max(1, sim.startingContainers);
     let bank = 0;
     for (let year = 1; year <= sim.horizonYears; year++) {
       const beds = containers * sim.bedsPerContainerYear;
@@ -267,6 +317,38 @@ export function CostLabWorkspace() {
   // ── QBE match math ──
   const qbeMatch = Math.min(sim.signedExternal, MATCH_TARGET.cap);
   const stackTotal = sim.signedExternal + qbeMatch;
+
+  // ── Per-container impact (the support-people numbers, modelled) ──
+  const wagesPerContainer = sim.bedsPerContainerYear * inputs.community_labour_per_bed;
+  const plasticPerContainer = sim.bedsPerContainerYear * inputs.hdpe_kg_per_bed;
+  const surplusPerContainer = sim.bedsPerContainerYear * simContribution - sim.siteOverheadPerYear;
+
+  // ── Workshop: copy a session summary for pasting into Notion ──
+  const copySummary = async () => {
+    const scenarioLabel = SCENARIOS.find((s) => s.key === activeScenario)?.label || 'Custom dials';
+    const lines = [
+      `Cost Lab session summary (${new Date().toLocaleDateString('en-AU')})`,
+      `Scenario: ${scenarioLabel}`,
+      '',
+      `Price ${fmt(inputs.retail_price)} | Marginal: kit ${fmt(model.marginalKit)} / factory ${fmt(model.marginalFactory)} / community ${fmt(model.marginalCommunity)}`,
+      `Contribution: kit ${fmt(model.contributionKit)} / factory ${fmt(model.contributionFactory)} / community ${fmt(model.contributionCommunity)}`,
+      `Fixed block ${fmt(model.fixedBlock)}/yr | Break-even (selected path) ${fmtInt(model.breakevenSelected)} beds/yr`,
+      `Container capex: gross ${fmt(capexLow)} to ${fmt(capexHigh)} | net of invested ${fmt(netLow)} to ${fmt(netHigh)} (modelled)`,
+      `Compounding (${sim.path}, ${fmtInt(sim.bedsPerContainerYear)} beds/yr/container, container ${fmt(sim.containerCost)}): start ${sim.startingContainers}, ${firstSelfFunded ? `first self-funded container year ${firstSelfFunded.year}` : 'no self-funded container in horizon'}, ${fmtInt(finalContainers)} containers by year ${sim.horizonYears}, ${fmtInt(totalBeds)} cumulative beds`,
+      `Per container per year (modelled): wages ${fmt(wagesPerContainer)}, plastic ${fmtInt(Math.round(plasticPerContainer))}kg, surplus ${fmt(surplusPerContainer)}`,
+      `QBE stack: signed ${fmt(sim.signedExternal)} + match ${fmt(qbeMatch)} = ${fmt(stackTotal)} (match not secured until awarded)`,
+      '',
+      'Notes and decisions:',
+      notes.trim() || '(none captured)',
+    ];
+    try {
+      await navigator.clipboard.writeText(lines.join('\n'));
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard blocked: user can select the notes manually.
+    }
+  };
 
   // ── First-principles component rows ──
   const componentRows = [
@@ -344,6 +426,26 @@ export function CostLabWorkspace() {
             >
               Cost cockpit
             </Link>
+          </div>
+          <div className="mt-6 flex flex-wrap gap-2">
+            {SCENARIOS.map((s) => (
+              <button
+                key={s.key}
+                type="button"
+                onClick={() => applyScenario(s.key)}
+                title={s.hint}
+                className={`rounded-md border px-3 py-1.5 text-xs font-semibold transition ${
+                  activeScenario === s.key
+                    ? 'border-[#BBA255] bg-[#BBA255] text-[#2B2A26]'
+                    : 'border-white/20 bg-white/5 text-[#E6DFD1] hover:border-[#BBA255]/60'
+                }`}
+              >
+                {s.label}
+              </button>
+            ))}
+            <span className="self-center text-[11px] text-[#E6DFD1]/60">
+              One click sets every dial. All scenarios are modelled, not forecasts.
+            </span>
           </div>
         </div>
       </header>
@@ -666,6 +768,7 @@ export function CostLabWorkspace() {
             <NumberField label="Beds/yr per container" value={sim.bedsPerContainerYear} step={50} onChange={(n) => setSimField({ bedsPerContainerYear: Math.max(1, n) })} />
             <NumberField label="Cost per new container" prefix="$" value={sim.containerCost} step={5_000} onChange={(n) => setSimField({ containerCost: Math.max(0, n) })} hint={`Mid-range from the coster above: ${fmt(capexMid)}`} />
             <NumberField label="Site overhead per container/yr" prefix="$" value={sim.siteOverheadPerYear} step={1_000} onChange={(n) => setSimField({ siteOverheadPerYear: Math.max(0, n) })} />
+            <NumberField label="Containers funded up-front" value={sim.startingContainers} onChange={(n) => setSimField({ startingContainers: Math.min(12, Math.max(1, Math.round(n))) })} hint="What the raise buys on day one. Seed fleet of 3 = the $800K best case" />
             <label className="block">
               <span className="text-xs font-medium uppercase tracking-wide text-stone-500">Production path</span>
               <select
@@ -694,8 +797,14 @@ export function CostLabWorkspace() {
                 value={firstSelfFunded ? `Year ${firstSelfFunded.year}` : 'Not in horizon'}
                 sub={firstSelfFunded ? 'Built from accumulated contribution, no new capital' : 'Raise contribution or lower the build cost'}
               />
-              <StatChip label={`Containers by year ${sim.horizonYears}`} value={fmtInt(finalContainers)} sub="Starting from one funded container" />
+              <StatChip label={`Containers by year ${sim.horizonYears}`} value={fmtInt(finalContainers)} sub={`Starting from ${sim.startingContainers} funded up-front`} />
               <StatChip label="Cumulative beds" value={fmtInt(totalBeds)} sub={`${fmtInt(Math.round(totalPlasticKg))}kg HDPE diverted (modelled)`} />
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-3">
+              <StatChip label="Fair wages per container/yr" value={fmt(wagesPerContainer)} sub={`${fmtInt(sim.bedsPerContainerYear)} beds at ${fmt(inputs.community_labour_per_bed)}/bed, inside the unit cost, not charity (modelled)`} />
+              <StatChip label="Plastic per container/yr" value={`${fmtInt(Math.round(plasticPerContainer))}kg`} sub={`${inputs.hdpe_kg_per_bed}kg HDPE in every bed, collected on Country`} />
+              <StatChip label="Surplus per container/yr" value={fmt(surplusPerContainer)} sub="After site overhead. On CATSI transfer this becomes community income (modelled)" />
             </div>
 
             <div className="overflow-x-auto rounded-lg border border-stone-200 bg-white">
@@ -803,6 +912,46 @@ export function CostLabWorkspace() {
           only. Treat outputs as workpaper numbers, not audited accounts. For the investor-facing version of this story,
           use the investor workspace and the one-page Notion summary.
         </p>
+      </section>
+
+      {/* ── 7. Workshop mode ── */}
+      <section className="mx-auto max-w-7xl px-4 pt-16 sm:px-6 lg:px-8">
+        <SectionHeading
+          icon={Boxes}
+          kicker="Section 7"
+          title="Workshop mode: capture what you decide"
+          blurb="Run a scenario, argue about it, then write the decision down here before you touch the next dial. Notes stay in this browser and survive Reset to canon. Copy the session summary takes the live numbers plus your notes to the clipboard, ready to paste into Notion."
+        />
+
+        <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_300px]">
+          <textarea
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
+            rows={10}
+            placeholder={'Decisions, quotes to chase, dials we are betting on...\n\ne.g.\n- Get the hot press quote first (biggest range)\n- Bet on throughput before contribution\n- Ask SEFA about a 3-year container loan'}
+            className="w-full rounded-lg border border-stone-300 bg-white p-4 text-sm leading-6 text-stone-900 outline-none focus:border-[#A0532B]"
+          />
+          <div className="space-y-3">
+            <button
+              type="button"
+              onClick={copySummary}
+              className="w-full rounded-md bg-[#2B2A26] px-4 py-2.5 text-sm font-semibold text-[#FDF8F3] transition hover:bg-[#3d3b35]"
+            >
+              {copied ? 'Copied to clipboard' : 'Copy session summary'}
+            </button>
+            <p className="text-[11px] leading-4 text-stone-500">
+              The summary includes the active scenario, all three path economics, capex, the compounding result, the
+              per-container impact numbers and your notes. Paste it into the Notion cost-model page or a message to
+              each other.
+            </p>
+            <Link
+              href="/sites/cost-lab/playbook"
+              className="block text-center text-xs font-semibold uppercase tracking-wide text-[#A0532B] hover:underline"
+            >
+              Run a set play from the playbook
+            </Link>
+          </div>
+        </div>
       </section>
     </main>
   );

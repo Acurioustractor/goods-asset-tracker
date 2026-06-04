@@ -93,3 +93,9 @@ These are the strongest one each across the lenses. Use them with each other to 
 - **Contribution is not profit.** Every contribution figure (about $65 kit, about $324 factory, about $329 community) still has to fund the about $109,500/yr fixed block before a dollar is surplus. That is exactly why break-even is about 338 beds, not zero.
 - **QBE is not secured.** Up to $400,000, at least matched by signed external capital, repayable finance prioritised, decided Nov 2026 at the earliest. Never model it as cash in hand, and never let the $400K headline imply the press is funded.
 - **The analogies share three failure modes.** They can make contribution sound like spare cash (it is not), they can make modelled capex sound like a settled price tag (it is not), and they can make the free community plastic sound like zero effort (it is real collection and sorting labour, which is why the $130/bed fair wage sits inside the community cost).
+
+## 7. The best case, ready to run
+
+The "Seed fleet of 3" scenario button in the Cost Lab sets every dial to the modelled best case: $400K signed + $400K QBE match = $800K seeds 3 containers, and from there surplus compounds at roughly 2.5 new containers a year, reaching 10 to 12 containers, 5,000+ beds/yr, 100+ tonnes of plastic/yr and $650K+/yr of community wages by year 5. Each container at capacity carries about $65,000/yr of fair wages inside its unit cost and about $140,000/yr of surplus that becomes community income on CATSI transfer.
+
+The two sentences that hold it honest: the constraint is signed demand, not cost (the same signatures that unlock the QBE match make the compounding real), and every number in the run is modelled until the three vendor quotes land. Full walk-through: wiki/outputs/2026-06-05-goods-best-case-scenario.md.
