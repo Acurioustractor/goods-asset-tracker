@@ -307,12 +307,21 @@ export function getFundingSummary() {
 
 export const verifiedFinancials = {
   status: 'verified - not audited' as const,
-  lastUpdated: '2026-05-29',
-  // Revenue billed (all ACCREC raised, voided excluded) vs cash actually received.
+  lastUpdated: '2026-06-03',
+  // Revenue billed: 2026-05-29 ACCREC-raised figure (voided excluded). NOT restated by the
+  // 2026-06-03 reconcile (which restated cash received, not billings); kept for reference,
+  // no consumers. Different scope to revenueReceived below, so do not compare the two.
   revenueBilled: 732_210.79,
-  revenueReceived: 649_710.79,
-  // Accounts receivable: Rotary INV-0222 ($82,500) is the only open receivable.
-  accountsReceivable: 82_500,
+  // Cash received since inception, restated 2026-06-03 live-Xero reconcile: Snow $493,130
+  // (incl. 2024 receipts) + Centrecorp $123,332 + VFFF $50,000 + QIC $12,000 + Villiers
+  // $1,200 + commercial $61,449. PICC and other Marchesi-project contacts excluded.
+  // Must match FUNDING_CANON.totalReceived in grant-content.ts.
+  // See wiki/outputs/2026-06-03-cluster2-xero-reconciliation.md.
+  revenueReceived: 741_111,
+  // Accounts receivable, restated 2026-06-03: Rotary INV-0222 $82,500 + Homeland INV-0303
+  // $44,000 + Regional Arts INV-0302 $16,500 (all live authorised in Xero).
+  // Must match FUNDING_CANON.totalReceivables in grant-content.ts.
+  accountsReceivable: 143_000,
   // Accounts payable: ~$0 owed. Authorised-but-unpaid bills are a Xero payment-
   // matching gap (paid from ACT business accounts, payment never applied to the
   // bill), NOT debt. No director loan.
@@ -330,7 +339,8 @@ export const verifiedFinancials = {
  * @deprecated Use `verifiedFinancials`. Kept as a thin compatibility shim mapping
  * the old field names onto the verified figures so any un-migrated consumer reads
  * correct numbers. `tradeRevenue` now points at cash received; `productionPlant-
- * Investment` at verified capex; `outstandingReceivables` at the single open AR.
+ * Investment` at verified capex; `outstandingReceivables` at the restated AR total
+ * (Rotary + Homeland + Regional Arts).
  */
 export const financialSnapshot = {
   lastUpdated: verifiedFinancials.lastUpdated,
@@ -348,7 +358,7 @@ export interface CommunityDeployment {
   id: string;
   community: string;
   traditionalName?: string;
-  state: 'NT' | 'QLD' | 'WA' | 'SA';
+  state: 'NT' | 'QLD' | 'WA' | 'SA' | 'ACT';
   beds: number;
   washers: number;
   status: 'active' | 'testing' | 'exploring';
@@ -373,7 +383,7 @@ export const deployments: CommunityDeployment[] = [
   { id: 'utopia', community: 'Utopia Homelands', state: 'NT', beds: 147, washers: 0, status: 'active', partner: 'Oonchiumpa' },
   { id: 'mt-isa', community: 'Mt Isa', traditionalName: 'Kalkadoon', state: 'QLD', beds: 2, washers: 0, status: 'testing', partner: 'BG Fit & Men\'s Shed' },
   { id: 'darwin', community: 'Darwin', state: 'NT', beds: 1, washers: 1, status: 'testing', partner: 'Red Dust' },
-  { id: 'canberra', community: 'Canberra', state: 'NT', beds: 2, washers: 0, status: 'testing' },
+  { id: 'canberra', community: 'Canberra', state: 'ACT', beds: 2, washers: 0, status: 'testing' },
 ];
 
 /**

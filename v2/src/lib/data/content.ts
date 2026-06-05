@@ -654,7 +654,7 @@ export const investmentCase = {
     {
       risk: 'Key learnings from iteration',
       detail: 'Each production run reveals improvements needed. V4 iterations still evolving.',
-      mitigation: 'Measured approach: deploy, gather feedback, iterate. Field testing from expanded deployment informs next version. Production cost targeting reduction from $550-650 range.',
+      mitigation: 'Measured approach: deploy, gather feedback, iterate. Field testing from expanded deployment informs next version. Marginal cost per bed is $684.79 today (Buy-Kit), modelled at $425.74 with on-country factory production.',
     },
     {
       risk: 'Do no harm',

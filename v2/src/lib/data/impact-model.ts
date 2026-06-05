@@ -410,7 +410,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         confidence: 'verified',
         name: 'Total Revenue Received (cumulative since inception, ~89% grant-funded)',
         unit: '$',
-        current: verifiedFinancials.revenueReceived, // 649,710.79 — total revenue received since inception (grant + commercial), Xero workpaper (verified, not audited)
+        current: verifiedFinancials.revenueReceived, // 741,111 — total received since inception (grant + commercial), restated 2026-06-03 live-Xero reconcile
         targets: { year1: 1_100_000, year3: 4_000_000, vision2030: 15_000_000 }, // Year-1 TOTAL-revenue target across all 7 segments (not commercial-only)
         source: 'xero',
         sourceDetail:
@@ -567,7 +567,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
 
 export const FINANCIAL_SUMMARY = {
   // Single source of truth: verifiedFinancials (Xero workpaper, verified not audited).
-  totalInvestment: verifiedFinancials.revenueReceived, // 649,710.79 — denominator for public impact-per-dollar
+  totalInvestment: verifiedFinancials.revenueReceived, // 741,111 — denominator for public impact-per-dollar (restated 2026-06-03)
   tradeRevenue: verifiedFinancials.revenueReceived,
   productionPlantInvestment: verifiedFinancials.capexInvested, // 110,046
   currentCostPerUnit: CANONICAL_BUYKIT_DIRECT_COST, // 534.79 — current Buy-Kit direct cost (what we make a bed for today, MODELLED)
