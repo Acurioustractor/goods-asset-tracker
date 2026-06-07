@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: story.title,
     description: story.summary,
     robots: indexable ? undefined : { index: false, follow: false },
-    openGraph: { title: story.title, description: story.summary, type: 'article' },
+    openGraph: { title: story.title, description: story.summary, type: 'article', images: [story.image] },
   };
 }
 
