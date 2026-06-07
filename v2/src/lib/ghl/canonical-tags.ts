@@ -21,8 +21,10 @@
  *   interest:<x>    — beds | washer | general | bulk-order | ...
  *   place:<x>       — state (qld/nt/act) OR community:<slug>
  *   source:<x>      — website | event:<slug> | inbound
- *   lane:community  — OCAP guard. The Smart Router MUST exclude this from all
- *                     drips (GHL-side, pending).
+ *   lane:community  — OCAP guard (agency model). Never AUTO-enrolled into
+ *                     comms:* and never an automation segment; an explicit
+ *                     consent-evidenced opt-in is honored. GHL-side: don't
+ *                     auto-add comms: to a lane:community contact.
  */
 
 export const GOODS_PROJECT_TAG = 'project:act-gd';
@@ -210,8 +212,8 @@ export function orderCanonicalTags(opts: { productTypes: string[]; isSponsorship
 // ---------------------------------------------------------------------------
 export function supportCanonicalTags(opts: { community?: string | null }): string[] {
   // OCAP: the submitter is a community recipient. lane:community is the
-  // protective marker — the GHL Smart Router MUST exclude lane:community from
-  // all drips (GHL-side, pending). NEVER any comms: here.
+  // protective marker — this path grants NO comms:. GHL-side: never AUTO-enrol
+  // lane:community into comms:* drips (an explicit opt-in is honored separately).
   const tags: string[] = ['role:community', LANE_COMMUNITY_TAG, 'source:website'];
   const place = communityPlaceTag(opts.community);
   if (place) tags.push(place);

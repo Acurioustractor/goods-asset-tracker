@@ -1251,8 +1251,8 @@ export const ghl = {
 
     // P3c R9 (OCAP): the submitter is a community recipient reporting an issue.
     // Add role:community + lane:community (+ place:community:<slug> when known)
-    // and NEVER any comms:. GHL Smart Router MUST exclude lane:community from
-    // all drips (GHL-side, pending).
+    // and NEVER any comms: from this path. GHL-side: never AUTO-enrol
+    // lane:community into comms:* drips (an explicit opt-in is honored separately).
     tags.push(...supportCanonicalTags({ community: data.community }));
 
     const result = await createOrUpdateContact({
@@ -1577,8 +1577,8 @@ Synced: ${new Date().toLocaleString('en-AU')}
 
     // P3c R9 (OCAP — highest priority): a goods recipient is a community-line
     // person. role:community + lane:community (+ place:community:<slug> when
-    // known) + interest:beds|washer. NO comms: EVER. GHL Smart Router MUST
-    // exclude lane:community from all drips (GHL-side, pending).
+    // known) + interest:beds|washer. This path grants NO comms:. GHL-side:
+    // never AUTO-enrol lane:community into comms:* drips (opt-in honored separately).
     tags.push(...claimCanonicalTags({ productType: data.productType, community: data.community }));
 
     const customFields: Record<string, string> = {};
@@ -1639,8 +1639,8 @@ Claimed: ${new Date().toLocaleString('en-AU')}
     if (isWasher) tags.push(TAGS.claimedWasher);
 
     // P3c R9 (OCAP): an additional claim is still a community recipient.
-    // role:community + lane:community + interest:beds|washer. NO comms: EVER.
-    // GHL Smart Router MUST exclude lane:community from all drips (GHL-side, pending).
+    // role:community + lane:community + interest:beds|washer. Grants NO comms:.
+    // GHL-side: never AUTO-enrol lane:community into comms:* drips (opt-in honored).
     tags.push(...claimCanonicalTags({ productType, community }));
 
     const result = await createOrUpdateContact({
