@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ghl } from '@/lib/ghl';
+import { contactCanonicalTags } from '@/lib/ghl/canonical-tags';
 
 interface ContactFormData {
   name: string;
@@ -62,13 +63,22 @@ export async function POST(request: NextRequest) {
         body.message,
       ].join('\n');
 
-      ghlResult = await ghl.createInquiryContact(body.email, body.name, [subjectTag], {
+      // P3c additive canonical tags: role:supporter + source:website +
+      // interest:<subject>. R8 — comms is granted ONLY when subscribe is an
+      // explicit opt-in (handled below via addToNewsletter, which also stamps
+      // newsletter_consent=Yes). Without subscribe, no comms: tag is added here.
+      const canonicalTags = contactCanonicalTags({ subject: body.subject, subscribe: false });
+
+      ghlResult = await ghl.createInquiryContact(body.email, body.name, [subjectTag, ...canonicalTags], {
         phone: body.phone,
         companyName: body.organisation,
         message: inquiryDetails,
         source: `Website Contact: ${body.subject || 'General Inquiry'}`,
       });
 
+      // R8: the /contact form does not currently render a subscribe control, so
+      // this branch is dormant in practice. If a subscribe opt-in IS sent, the
+      // newsletter path grants comms:goods-newsletter + newsletter_consent=Yes.
       if (body.subscribe) {
         await ghl.addToNewsletter(body.email, body.name, 'contact-form');
       }

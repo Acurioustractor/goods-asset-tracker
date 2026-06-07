@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/server';
 import { ghl, tagForAsset } from '@/lib/ghl';
+import { bedStoryCanonicalTags } from '@/lib/ghl/canonical-tags';
 
 const EL_SUPABASE_URL = process.env.EMPATHY_LEDGER_SUPABASE_URL || '';
 const EL_SUPABASE_KEY = process.env.EMPATHY_LEDGER_SUPABASE_KEY || '';
@@ -230,6 +231,15 @@ export async function POST(
   if (contact) {
     try {
       const isEmail = contact.includes('@');
+      // P3c R9 (OCAP) + R11: a storyteller is a community-line person.
+      // role:storyteller + lane:community (+ place:community:<slug> when known).
+      // NO comms: EVER. R11: `consent_to_contact` means "ok to reply about THIS
+      // story", NOT marketing — it is deliberately NOT promoted to any comms:
+      // tag; it stays as the existing goods-consent-to-contact note marker only.
+      const canonicalTags = bedStoryCanonicalTags({
+        community: asset.community,
+        consentToContact,
+      });
       const result = await ghl.createInquiryContact(
         isEmail ? contact : '',
         name || undefined,
@@ -238,6 +248,7 @@ export async function POST(
           consentToContact ? 'goods-consent-to-contact' : 'goods-no-contact',
           // Per-asset tag = bidirectional bed↔contact link in GHL
           tagForAsset(asset.unique_id),
+          ...canonicalTags,
         ],
         { source: 'Bed Story Submission' },
       );

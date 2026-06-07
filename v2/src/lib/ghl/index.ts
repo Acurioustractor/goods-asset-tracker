@@ -8,6 +8,20 @@
  * - Workflow triggers
  */
 
+import {
+  injectProjectTag,
+  contactCanonicalTags,
+  partnershipCanonicalTags,
+  partnershipCanonicalFields,
+  newsletterCanonicalTags,
+  newsletterCanonicalFields,
+  orderCanonicalTags,
+  supportCanonicalTags,
+  claimCanonicalTags,
+  bedStoryCanonicalTags,
+  feedbackCanonicalTags,
+} from './canonical-tags';
+
 // Configuration from environment
 const GHL_API_KEY = process.env.GHL_API_KEY || '';
 const GHL_LOCATION_ID = process.env.GHL_LOCATION_ID || '';
@@ -31,6 +45,15 @@ const CUSTOM_FIELDS = {
   // cross-project reports. Other projects (Empathy Ledger, JusticeHub) set
   // their own value via their own entry points.
   projectDesignation: process.env.GHL_FIELD_PROJECT_DESIGNATION || '',
+  // P3c canonical custom fields. Both must be CREATED in GHL before automation
+  // switch-on (see GHL-UI dependency list). If a key is unset the field is
+  // simply not written — code never blocks on it.
+  // newsletter_consent (Yes/No) — set to "Yes" whenever comms:goods-newsletter
+  // is granted (R8 explicit-consent capture).
+  newsletterConsent: process.env.GHL_FIELD_NEWSLETTER_CONSENT || '',
+  // capital_tier (text/dropdown) — partnership ticket-size, written here as a
+  // field instead of a belonging-ladder tier: tag (R10).
+  capitalTier: process.env.GHL_FIELD_CAPITAL_TIER || '',
 };
 
 // Helper: inject the Goods project designation into a customFields map.
@@ -576,7 +599,11 @@ async function createOrUpdateContact(data: ContactData): Promise<GHLResponse> {
       ...(name ? { name } : {}),
       ...(phone ? { phone } : {}),
       ...(companyName ? { companyName } : {}),
-      tags: data.tags || [],
+      // P3c chokepoint invariant: EVERY Goods write carries the canonical Goods
+      // router tag (project:act-gd), and the final tag array is deduped. No
+      // per-feature path can omit the router tag or double a tag. The flat
+      // goods-* tags pass through untouched (additive contract).
+      tags: injectProjectTag(data.tags || []),
       source: data.source || 'Goods on Country Website',
     };
 
@@ -1161,6 +1188,13 @@ export const ghl = {
       tags.push(TAGS.sponsor);
     }
 
+    // P3c additive canonical tags: role:buyer (retail) / role:supporter
+    // (sponsor) + interest:beds|washer + source:website. NO comms: — a
+    // transactional order receipt is not marketing consent.
+    tags.push(
+      ...orderCanonicalTags({ productTypes: data.productTypes, isSponsorship: data.isSponsorship }),
+    );
+
     const customFields: Record<string, string> = {};
     if (CUSTOM_FIELDS.orderNumber) {
       customFields[CUSTOM_FIELDS.orderNumber] = data.orderNumber;
@@ -1215,6 +1249,12 @@ export const ghl = {
     const tags = [TAGS.supportRequest, tagForAsset(data.assetId)];
     if (isUrgent) tags.push('goods-urgent');
 
+    // P3c R9 (OCAP): the submitter is a community recipient reporting an issue.
+    // Add role:community + lane:community (+ place:community:<slug> when known)
+    // and NEVER any comms: from this path. GHL-side: never AUTO-enrol
+    // lane:community into comms:* drips (an explicit opt-in is honored separately).
+    tags.push(...supportCanonicalTags({ community: data.community }));
+
     const result = await createOrUpdateContact({
       email: isEmail ? data.userContact : '',
       phone: isEmail ? undefined : data.userContact,
@@ -1265,6 +1305,11 @@ Submitted: ${new Date().toLocaleString('en-AU')}
       customFields[CUSTOM_FIELDS.message] = data.message;
     }
     withGoodsProject(customFields);
+    // P3c R10: ticket size becomes a `capital_tier` custom field, NOT a
+    // belonging-ladder tier: tag. The flat goods-tier-* tag is kept below
+    // (additive). Written only when both a value and a configured field id
+    // exist — never blocks on the field being absent.
+    Object.assign(customFields, partnershipCanonicalFields(data.fundingTier, CUSTOM_FIELDS.capitalTier));
 
     // Build segment/tier/timeline tags so Smart Router can route by
     // partner type (foundation, corporate, buyer, investor, community)
@@ -1283,14 +1328,24 @@ Submitted: ${new Date().toLocaleString('en-AU')}
       segmentTags.push('goods-capital-interest');
     }
 
+    // P3c additive canonical tags. Media pack request → role:media; otherwise
+    // role:funder|partner|buyer mapped from segment/type + source:website. NO
+    // comms: (a partnership inquiry is not marketing consent) and NO tier: tag.
+    const canonicalTags = isMedia
+      ? ['role:media', 'source:website']
+      : partnershipCanonicalTags({
+          partnershipType: data.partnershipType,
+          partnerSegment: data.partnerSegment,
+        });
+
     const result = await createOrUpdateContact({
       email: data.contactEmail,
       phone: data.contactPhone,
       name: data.contactName,
       companyName: data.organizationName,
       tags: isMedia
-        ? [TAGS.mediaRequest]
-        : [TAGS.partnerLead, ...segmentTags],
+        ? [TAGS.mediaRequest, ...canonicalTags]
+        : [TAGS.partnerLead, ...segmentTags, ...canonicalTags],
       customFields,
       source: isMedia ? 'Website Contact: Media Pack Request' : 'Partnership Inquiry',
     });
@@ -1449,12 +1504,21 @@ Synced: ${new Date().toLocaleString('en-AU')}
     const tags = [TAGS.newsletter];
     if (sourceTag) tags.push(`goods-src-${sourceTag}`);
 
+    // P3c R8: every caller of this method is an explicit subscribe/follow form
+    // (generic signup, sponsor "Stay in the loop", canberra "Stay close to the
+    // story"), so granting comms:goods-newsletter is a genuine opt-in. Add the
+    // canonical send-trigger + source/interest/place extras keyed off the
+    // source tag, AND stamp newsletter_consent=Yes to capture the consent.
+    tags.push(...newsletterCanonicalTags(sourceTag));
+    const customFields = newsletterCanonicalFields(CUSTOM_FIELDS.newsletterConsent);
+    withGoodsProject(customFields);
+
     const result = await createOrUpdateContact({
       email,
       phone,
       name: opts.name,
       tags,
-      customFields: withGoodsProject({}),
+      customFields,
       source: sourceTag ? `Newsletter Signup (${sourceTag})` : 'Newsletter Signup',
     });
 
@@ -1510,6 +1574,12 @@ Synced: ${new Date().toLocaleString('en-AU')}
     const tags = [TAGS.recipient, tagForAsset(data.assetId)];
     if (isBed) tags.push(TAGS.claimedBed);
     if (isWasher) tags.push(TAGS.claimedWasher);
+
+    // P3c R9 (OCAP — highest priority): a goods recipient is a community-line
+    // person. role:community + lane:community (+ place:community:<slug> when
+    // known) + interest:beds|washer. This path grants NO comms:. GHL-side:
+    // never AUTO-enrol lane:community into comms:* drips (opt-in honored separately).
+    tags.push(...claimCanonicalTags({ productType: data.productType, community: data.community }));
 
     const customFields: Record<string, string> = {};
     if (CUSTOM_FIELDS.assetId) {
@@ -1567,6 +1637,11 @@ Claimed: ${new Date().toLocaleString('en-AU')}
     const tags: string[] = [tagForAsset(assetId)];
     if (isBed) tags.push(TAGS.claimedBed);
     if (isWasher) tags.push(TAGS.claimedWasher);
+
+    // P3c R9 (OCAP): an additional claim is still a community recipient.
+    // role:community + lane:community + interest:beds|washer. Grants NO comms:.
+    // GHL-side: never AUTO-enrol lane:community into comms:* drips (opt-in honored).
+    tags.push(...claimCanonicalTags({ productType, community }));
 
     const result = await createOrUpdateContact({
       email: '',
