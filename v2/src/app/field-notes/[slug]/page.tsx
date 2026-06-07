@@ -53,11 +53,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
   // Unpublished stories never get indexed even when admins preview them.
   const indexable = story.published;
+  // TripStory has no top-level image; the hero lives in the masthead block's
+  // declared media.image. (The EL-resolved hero is request-time only, so the
+  // OG card uses the static fallback.)
+  const masthead = story.blocks.find((b) => b.kind === 'masthead');
+  const heroImage = masthead && masthead.kind === 'masthead' ? masthead.media.image : undefined;
   return {
     title: story.title,
     description: story.summary,
     robots: indexable ? undefined : { index: false, follow: false },
-    openGraph: { title: story.title, description: story.summary, type: 'article', images: [story.image] },
+    openGraph: {
+      title: story.title,
+      description: story.summary,
+      type: 'article',
+      ...(heroImage ? { images: [heroImage] } : {}),
+    },
   };
 }
 
