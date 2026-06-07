@@ -2,8 +2,8 @@
 
 ## CRITICAL — Read First
 
-### Supabase MCP is the WRONG project
-The Supabase MCP server is connected to project `bhwyqqbovcjoefezgfnq` (a DIFFERENT project). The v2 app uses `cwsyhpiuepvdjtxaozwf`. **NEVER use MCP for v2 database operations.** Use `curl` with the service role key from `.env.local`, or `psql` with the connection string. If you catch yourself running `mcp__supabase__execute_sql` for v2 data, STOP — you're querying the wrong database.
+### Supabase MCP can reach EVERY project — always target Goods
+The org has 9 Supabase projects and the Supabase MCP can reach all of them; it takes an explicit `project_id`, so a stray or wrong id silently queries someone else's database. The v2 app DB is the **Goods** project, `cwsyhpiuepvdjtxaozwf`. The one easiest to hit by mistake is `bhwyqqbovcjoefezgfnq` ("ACT Farmhand"), a different project. **NEVER use the Supabase MCP for v2 database operations.** Use `curl` with the service role key from `.env.local`, or `psql` with the connection string. If you catch yourself running `mcp__supabase__execute_sql` for v2 data, STOP — you are likely on the wrong database. Full project map: `wiki/canon/SOURCES.md`.
 
 ### Build, Don't Plan
 Do NOT enter extended planning modes unless explicitly asked. When given a task, start implementing immediately. If clarification is needed, ask a focused question — do not write multi-phase plan documents. If a plan IS requested, keep it to bullet points and ask for approval before continuing.
@@ -152,5 +152,5 @@ cd v2 && npm run lint     # ESLint
 - Do NOT add `use client` to pages unless necessary — prefer Server Components
 - Do NOT put washing machines or basket beds as "for sale" — only the Stretch Bed is purchasable
 - Large videos go in `public/video/`, not Supabase Storage (too big for API)
-- Do NOT use Supabase MCP for v2 data — it's connected to the wrong project (see "CRITICAL" section above)
+- Do NOT use Supabase MCP for v2 data — it can reach all 9 org projects and needs an explicit project_id; target Goods `cwsyhpiuepvdjtxaozwf` only (see "CRITICAL" section above + `wiki/canon/SOURCES.md`)
 - When user says "open" or "show me", they want to see the running app — open browser URLs or launch dev servers, don't continue code walkthroughs
