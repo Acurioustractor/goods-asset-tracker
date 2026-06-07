@@ -1751,5 +1751,22 @@ video.ts-bg{filter:brightness(.6) saturate(.97)}
   .ts-immersive--stacked .ts-inner{position:relative !important;padding:5vh 6vw 7vh;max-width:none}
   .ts-immersive--stacked .ts-imm-title{text-shadow:none}
   .ts-immersive--stacked .ts-standfirst{margin-top:1.2rem}
+
+  /* Stacked read-overlay on mobile. The overlay read block puts a wide photo
+     behind the prose, cover-cropped and dimmed to brightness(.4). At phone
+     width that 1700px image is crushed into ~390px and you can't tell what
+     it is, while the text sits on a muddy smear. Lift the photo out as a
+     real banner at the top at its natural aspect, undimmed, and drop the
+     prose below on solid ground. Same treatment as immersive--stacked,
+     scoped to read blocks. !important beats Next/Image fill inline styles. */
+  .ts-read--overlay{display:block;padding:0;overflow:visible;background:#0d0a07}
+  .ts-read--overlay .ts-bg{position:relative !important;inset:auto !important;width:100% !important;height:auto !important;aspect-ratio:3/2;display:block;overflow:hidden}
+  .ts-read--overlay .ts-bg-img{position:absolute !important;inset:0 !important;width:100% !important;height:100% !important;object-fit:contain !important;filter:none !important;background:#0d0a07}
+  .ts-read--overlay video.ts-bg-video,.ts-read--overlay .ts-bg-video{position:absolute !important;inset:0 !important;width:100%;height:100%}
+  .ts-read--overlay video.ts-bg-video video,.ts-read--overlay .ts-bg-video video{width:100% !important;height:100% !important;object-fit:contain !important}
+  .ts-read--overlay .ts-scrim--read{display:none}
+  .ts-read--overlay .ts-read-inner{position:relative !important;z-index:auto;max-width:none;margin:0;padding:6vh 6vw 7vh}
+  .ts-read--overlay .ts-p{text-shadow:none}
+  .ts-read--overlay .ts-pull{text-shadow:none}
 }
 `;
