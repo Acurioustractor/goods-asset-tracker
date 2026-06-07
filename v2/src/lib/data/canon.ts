@@ -1,0 +1,183 @@
+/**
+ * THE CANON REGISTRY — the apex source of truth for every Goods number.
+ *
+ * This is Layer 1 of the Goods Alignment Engine. Every public surface, every
+ * artifact, and every loop reads its facts from here. The rule (also printed on
+ * the Notion Artifact Hub): if a number changes, change it HERE first, then let
+ * the drift loop reconcile the rest.
+ *
+ * Each fact carries provenance: where the truth lives (`source`), how a loop
+ * re-derives it (`check`), when it was last confirmed (`asAt`), who owns it,
+ * and what claim it can carry (`claimLabel`). Money facts are `check: 'manual'`
+ * and are NEVER auto-written by a loop — they go to the human sign-off queue.
+ *
+ * Lockstep (enforced by scripts/check-canon-drift.mjs + check-asset-drift.mjs):
+ *   - asset facts  ↔ CANONICAL_ASSETS (asset-canonical.ts) ↔ live register
+ *   - money facts  ↔ verifiedFinancials (compendium.ts) ↔ fundingHistory (grant-content.ts)
+ *
+ * Claim labels mirror the QBE Diagnostic Artifact Database and the hub legend.
+ */
+import { CANONICAL_ASSETS } from './asset-canonical';
+
+export type ClaimLabel = 'verified' | 'modelled' | 'target' | 'future' | 'internal-only';
+export type CanonDomain = 'assets' | 'money' | 'story' | 'product' | 'cost' | 'pipeline';
+/** GREEN = public-safe. AMBER = internal/management. RED = recipient/storyteller data, never to external models, never auto-published. */
+export type DataClass = 'green' | 'amber' | 'red';
+/** 'auto' = a drift script can re-derive from a live source. 'manual' = a human must re-pull and reconcile (all money). */
+export type CheckMode = 'auto' | 'manual';
+
+export interface CanonFact {
+  /** Stable slug. Artifacts cite these ids to make drift computable. */
+  id: string;
+  label: string;
+  value: number | string;
+  unit?: string;
+  domain: CanonDomain;
+  claimLabel: ClaimLabel;
+  dataClass: DataClass;
+  /** Where the truth actually lives (table, file, or system). */
+  source: string;
+  check: CheckMode;
+  /** ISO date this value was last confirmed against its source. Loops re-stamp on confirm. */
+  asAt: string;
+  owner: string;
+  definition: string;
+  /** Sibling fact ids this should reconcile against (different cuts of the same thing). */
+  reconcilesWith?: string[];
+}
+
+export const CANON: CanonFact[] = [
+  // ── Assets (auto-checked against the live register by check-asset-drift.mjs) ──
+  {
+    id: 'beds-deployed', label: 'Beds deployed', value: CANONICAL_ASSETS.bedsDeployed, unit: 'units',
+    domain: 'assets', claimLabel: 'verified', dataClass: 'green',
+    source: 'v2 Supabase `assets` (status=deployed) via asset-canonical.ts', check: 'auto', asAt: '2026-05-30', owner: 'Ben',
+    definition: 'Deployed bed units in the register: 363 Basket (legacy) + 133 Stretch (flagship).',
+  },
+  {
+    id: 'stretch-beds-deployed', label: 'Stretch Beds deployed', value: CANONICAL_ASSETS.stretchBedsDeployed, unit: 'units',
+    domain: 'assets', claimLabel: 'verified', dataClass: 'green',
+    source: 'v2 Supabase `assets` via asset-canonical.ts', check: 'auto', asAt: '2026-05-30', owner: 'Ben',
+    definition: 'Current flagship beds deployed. Drives plastic-kg.',
+  },
+  {
+    id: 'washers-deployed', label: 'Washing machines deployed', value: CANONICAL_ASSETS.washersDeployed, unit: 'units',
+    domain: 'assets', claimLabel: 'verified', dataClass: 'green',
+    source: 'v2 Supabase `assets` via asset-canonical.ts', check: 'auto', asAt: '2026-05-30', owner: 'Ben',
+    definition: 'Physically-deployed Pakkimjalki Kari units.',
+  },
+  {
+    id: 'washers-working', label: 'Washing machines working', value: CANONICAL_ASSETS.washersWorking, unit: 'units',
+    domain: 'assets', claimLabel: 'verified', dataClass: 'green',
+    source: 'Washer telemetry (constant, not yet auto-derived from the register)', check: 'manual', asAt: '2026-06-06', owner: 'Ben',
+    definition: '14 working is a telemetry call, not derivable from the register. Re-confirm from pings.',
+  },
+  {
+    id: 'communities-served', label: 'Communities served', value: CANONICAL_ASSETS.communitiesServed, unit: 'communities',
+    domain: 'assets', claimLabel: 'verified', dataClass: 'green',
+    source: 'v2 Supabase `assets` via asset-canonical.ts', check: 'auto', asAt: '2026-05-30', owner: 'Ben',
+    definition: '9 served; 10 distinct communities touched.',
+  },
+  {
+    id: 'plastic-kg', label: 'Recycled HDPE diverted', value: CANONICAL_ASSETS.plasticKg, unit: 'kg',
+    domain: 'assets', claimLabel: 'verified', dataClass: 'green',
+    source: 'Derived: stretchBedsDeployed × 20kg', check: 'auto', asAt: '2026-05-30', owner: 'Ben',
+    definition: 'Stretch-only (Basket beds are not a plastic product).',
+  },
+
+  // ── Money (MANUAL: never auto-written by a loop; reconciliation is a P0 human gate) ──
+  {
+    id: 'revenue-received', label: 'Funding received (site figure)', value: 741_111, unit: 'AUD',
+    domain: 'money', claimLabel: 'verified', dataClass: 'amber',
+    source: 'verifiedFinancials.revenueReceived (compendium.ts) === fundingHistory.totalReceived (grant-content.ts); restated 2026-06-03 live-Xero reconcile',
+    check: 'manual', asAt: '2026-06-03', owner: 'Ben/accountant',
+    definition: 'Cash received since inception, Goods-scoped. Snow $493,130 + Centrecorp $123,332 + VFFF $50,000 + QIC $12,000 + Villiers $1,200 + commercial $61,449. PICC and other Marchesi-project contacts excluded.',
+    reconcilesWith: ['revenue-xero-paid', 'revenue-carveout'],
+  },
+  {
+    id: 'accounts-receivable', label: 'Accounts receivable', value: 143_000, unit: 'AUD',
+    domain: 'money', claimLabel: 'verified', dataClass: 'amber',
+    source: 'verifiedFinancials.accountsReceivable (compendium.ts) === fundingHistory.totalReceivables (grant-content.ts)',
+    check: 'manual', asAt: '2026-06-03', owner: 'Ben/accountant',
+    definition: 'Rotary INV-0222 $82,500 + Homeland INV-0303 $44,000 + Regional Arts INV-0302 $16,500 (all live authorised in Xero).',
+  },
+  {
+    id: 'revenue-xero-paid', label: 'ACT-GD receivables paid (Xero cut)', value: 650_910.79, unit: 'AUD',
+    domain: 'money', claimLabel: 'verified', dataClass: 'amber',
+    source: 'Live Xero ACT-GD scoped receivables', check: 'manual', asAt: '2026-06-01', owner: 'Ben/accountant',
+    definition: 'ACT-GD scoped paid receivables. Raised $733,410.79, $82,500 due. Includes PICC $436,700. A narrower/different cut to revenue-received.',
+    reconcilesWith: ['revenue-received'],
+  },
+  {
+    id: 'revenue-carveout', label: 'Goods revenue carve-out', value: 713_827, unit: 'AUD',
+    domain: 'money', claimLabel: 'verified', dataClass: 'amber',
+    source: 'Goods carve-out, pitch blueprint A3', check: 'manual', asAt: '2026-06-02', owner: 'Ben/accountant',
+    definition: 'Citable carve-out. No surplus claimed: connected entity runs an FY26 net loss. A third cut pending one accountant-reviewed Goods-only figure (P0, Area 04).',
+    reconcilesWith: ['revenue-received'],
+  },
+
+  // ── Product / cost ──
+  {
+    id: 'stretch-price', label: 'Stretch Bed price', value: 750, unit: 'AUD',
+    domain: 'product', claimLabel: 'verified', dataClass: 'green',
+    source: 'v2 Supabase `products` (stretch-bed-single, price_cents=75000)', check: 'manual', asAt: '2026-05-29', owner: 'Nic',
+    definition: 'Current shop price for the only direct-sale product.',
+  },
+  {
+    id: 'marginal-buykit', label: 'Marginal cost / bed (Buy-Kit)', value: 685, unit: 'AUD',
+    domain: 'cost', claimLabel: 'verified', dataClass: 'green',
+    source: 'cost-model/engine.ts (engine-locked BOM)', check: 'auto', asAt: '2026-05-29', owner: 'Ben',
+    definition: 'Marginal cost buying finished leg kits. Engine-locked.',
+  },
+  {
+    id: 'marginal-factory', label: 'Marginal cost / bed (Factory)', value: 426, unit: 'AUD',
+    domain: 'cost', claimLabel: 'verified', dataClass: 'green',
+    source: 'cost-model/engine.ts (engine-locked BOM)', check: 'auto', asAt: '2026-05-29', owner: 'Ben',
+    definition: 'Marginal cost pressing our own legs. Engine-locked.',
+  },
+  {
+    id: 'marginal-community', label: 'Marginal cost / bed (Community)', value: 421, unit: 'AUD',
+    domain: 'cost', claimLabel: 'modelled', dataClass: 'green',
+    source: 'cost-model/engine.ts (free-feedstock + fair-wage assumption)', check: 'manual', asAt: '2026-05-29', owner: 'Ben',
+    definition: 'MODELLED on a fair-wage band ($100-160) and $0 free feedstock. Never group under engine-locked.',
+  },
+  {
+    id: 'save-per-bed', label: 'Saving from pressing in-house', value: 194, unit: 'AUD',
+    domain: 'cost', claimLabel: 'verified', dataClass: 'green',
+    source: 'cost-model/engine.ts (BOM: $344 finished leg vs ~$40 raw plastic)', check: 'auto', asAt: '2026-05-29', owner: 'Ben',
+    definition: '8.6x markup on the recycled-plastic leg. The whole capital case.',
+  },
+
+  // ── Story / consent (RED data class — recipient/storyteller; never auto-published) ──
+  {
+    id: 'cleared-voices', label: 'Consent-cleared voices', value: 6, unit: 'voices',
+    domain: 'story', claimLabel: 'verified', dataClass: 'red',
+    source: 'Storyteller triage + Ben consent pass (wiki/outputs/2026-06-03-storyteller-triage.md)', check: 'manual', asAt: '2026-06-03', owner: 'Ben',
+    definition: 'Cleared to publish/weave: Linda Turner, Alfred Johnson, Norman Frank, Mykel, Fred, + Utopia voices cleared 2026-06-02. RED: never to external models, never auto-published.',
+  },
+  {
+    id: 'el-published-stories', label: 'Empathy Ledger published stories', value: 0, unit: 'stories',
+    domain: 'story', claimLabel: 'verified', dataClass: 'amber',
+    source: 'Empathy Ledger API (goods-on-country project)', check: 'manual', asAt: '2026-06-03', owner: 'Ben',
+    definition: '240 storytellers, 0 published. Site falls back to local journeyStories until EL publish-flips land.',
+  },
+];
+
+const BY_ID = new Map(CANON.map((f) => [f.id, f]));
+
+/** Look up a canon fact by id. Throws if missing, so a typo fails loudly. */
+export function canonFact(id: string): CanonFact {
+  const f = BY_ID.get(id);
+  if (!f) throw new Error(`Unknown canon fact id: ${id}`);
+  return f;
+}
+
+/** The value of a canon fact by id. */
+export function canonValue(id: string): number | string {
+  return canonFact(id).value;
+}
+
+/** All facts in a domain. */
+export function canonByDomain(domain: CanonDomain): CanonFact[] {
+  return CANON.filter((f) => f.domain === domain);
+}
