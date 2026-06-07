@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ghl } from '@/lib/ghl';
+import { feedbackCanonicalTags } from '@/lib/ghl/canonical-tags';
 
 interface FeedbackPayload {
   page: string;
@@ -10,7 +11,8 @@ interface FeedbackPayload {
 async function syncFeedbackToGhl(page: string, email: string, message: string) {
   if (!email || email === 'Anonymous' || !email.includes('@')) return;
   try {
-    const result = await ghl.createInquiryContact(email, undefined, ['goods-feedback'], {
+    // P3c additive canonical tags: source:website. NO comms: (feedback is not a subscribe).
+    const result = await ghl.createInquiryContact(email, undefined, ['goods-feedback', ...feedbackCanonicalTags()], {
       source: 'Website Feedback',
     });
     if (result.success && result.contact?.id) {

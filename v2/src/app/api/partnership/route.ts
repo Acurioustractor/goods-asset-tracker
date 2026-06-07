@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/server';
 import { ghl } from '@/lib/ghl';
+import { partnershipCanonicalTags } from '@/lib/ghl/canonical-tags';
 
 interface PartnershipFormData {
   organizationName: string;
@@ -95,10 +96,13 @@ export async function POST(request: NextRequest) {
     const isWasherInterest = body.partnershipType === 'washer-interest';
     let ghlResult;
     if (isWasherInterest) {
+      // P3c additive canonical tags: role:buyer + interest:washer +
+      // source:website. NO comms: (registering interest is not consent).
+      const canonicalTags = partnershipCanonicalTags({ partnershipType: 'washer-interest' });
       ghlResult = await ghl.createInquiryContact(
         body.contactEmail,
         body.contactName,
-        ['goods-washer-interest'],
+        ['goods-washer-interest', ...canonicalTags],
         { source: 'Washing Machine Interest' },
       );
       if (ghlResult.success && ghlResult.contact?.id) {
