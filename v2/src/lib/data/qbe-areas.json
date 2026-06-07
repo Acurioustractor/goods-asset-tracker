@@ -1,0 +1,155 @@
+{
+  "_note": "QBE diagnostic areas registry — the readiness spine of the Goods Alignment Engine (Layer 1, QBE domain). Source of truth for the 12 Catalysing Impact diagnostic areas: their SIH/QBE maturity scores (now -> target), priority, the keystone gap, and the catalytic-raise blockers. check-qbe-readiness.mjs (Loop D) reads this + artifact-register.json to score per-area evidence coverage, flag gaps, and re-rank the build queue. The Notion QBE Diagnostic Artifact DB (cb3794d427914d72bf1036106d8116f5) is the human-facing mirror; edit here, not in Notion. Scores are from the SIH/QBE Impact Investment Readiness Diagnostic V4 (1 May 2026 workshop) as mapped in wiki/outputs/2026-06-02-qbe-catalytic-pitch/02-qbe-diagnostic-alignment.md section 3. Areas 11 + 12 were added in Notion on top of the diagnostic's 10 and carry no V4 score (scoreNow/scoreTarget null).",
+  "asOf": "2026-06-02",
+  "sourceFrame": "SIH/QBE Impact Investment Readiness Diagnostic V4 + Notion QBE Diagnostic Artifact DB cb3794d427914d72bf1036106d8116f5",
+  "areas": [
+    {
+      "id": "01",
+      "name": "Vision & Ambition",
+      "scoreNow": 8,
+      "scoreTarget": 9,
+      "priority": "P1",
+      "band": "strength",
+      "sihPriorityGap": false,
+      "gap": "Founder/legal must confirm the entity + community-ownership language; do not claim the ownership transfer is already complete."
+    },
+    {
+      "id": "02",
+      "name": "Social Objective & Impact / MEL",
+      "scoreNow": 5,
+      "scoreTarget": 8,
+      "priority": "P0",
+      "band": "priority-gap",
+      "sihPriorityGap": true,
+      "gap": "No named MEL framework / Theory-of-Change logic chain documented; consent-cleared story list is a primary gap; verified asset counts must stay separated from modelled/future health outcomes (AI-overclaim discipline)."
+    },
+    {
+      "id": "03",
+      "name": "Business Model Clarity",
+      "scoreNow": 4,
+      "scoreTarget": 7,
+      "priority": "P0",
+      "band": "priority-gap",
+      "sihPriorityGap": true,
+      "gap": "Buyer/demand pipeline unverified (GHL reauth); demand cannot be quoted as committed until reconciled to Xero. Joint-lowest V4 score."
+    },
+    {
+      "id": "04",
+      "name": "Financial Management",
+      "scoreNow": 4,
+      "scoreTarget": 7,
+      "priority": "P0",
+      "band": "priority-gap",
+      "sihPriorityGap": true,
+      "gap": "Three revenue cuts still unreconciled (standing P0 — needs one accountant-reviewed Goods-only figure); founder time uncosted at fair-market replacement rate; no cashflow-buffer policy; bookkeeper AP-matching pending. Joint-lowest V4 score."
+    },
+    {
+      "id": "05",
+      "name": "Strategic Planning & Risk",
+      "scoreNow": 5,
+      "scoreTarget": 7,
+      "priority": "P0",
+      "band": "priority-gap",
+      "sihPriorityGap": true,
+      "gap": "No scored risk register; environmental risk not explicitly profiled (waste streams, contamination, plastic stockpiling); shareability decision pending."
+    },
+    {
+      "id": "06",
+      "name": "Process & Technology",
+      "scoreNow": 7,
+      "scoreTarget": 8,
+      "priority": "P1",
+      "band": "strength",
+      "sihPriorityGap": false,
+      "gap": "GHL reauth; the Drive evidence pack has never been access-tested from an external account."
+    },
+    {
+      "id": "07",
+      "name": "Governance, Data & Reporting",
+      "scoreNow": 5,
+      "scoreTarget": 8,
+      "priority": "P0",
+      "band": "priority-gap",
+      "sihPriorityGap": true,
+      "gap": "New entity has no formal governance/board structure (advisory != board); named approval/sign-off path for the reviewer pack not set; reports not audited / no consolidated annual cycle; named commercial/scale-up skills gap."
+    },
+    {
+      "id": "08",
+      "name": "People & Enterprise",
+      "scoreNow": 6,
+      "scoreTarget": 7,
+      "priority": "P1",
+      "band": "partial",
+      "sihPriorityGap": false,
+      "gap": "Two founders are the only workers — the biggest capacity constraint; priority hires (GM + Business Development) and a 12-month role map are pending."
+    },
+    {
+      "id": "09",
+      "name": "Legal Structure",
+      "scoreNow": 5,
+      "scoreTarget": 7,
+      "priority": "P0",
+      "band": "partial",
+      "sihPriorityGap": false,
+      "keystone": true,
+      "gap": "Entity/ownership decision is OPEN — the keystone. It is simultaneously the CASE knockout blocker, V4 Area 9, the Supply Nation 51% cert (1-July deadline), and the precondition for FAC/IBA capital. One approved entity-wording block + a decided transition path needed."
+    },
+    {
+      "id": "10",
+      "name": "Investors & Capital Raising",
+      "scoreNow": 6,
+      "scoreTarget": 8,
+      "priority": "P0",
+      "band": "partial",
+      "sihPriorityGap": false,
+      "gap": "0 signed LOIs -> match gate open; no signed/eligible commitment register; QBE rules (200K vs 400K cap; what counts as match) unconfirmed (the open Jay email). A binding offtake/forward-purchase LOI fixes the match AND the weak-commercial-paperwork gap at once."
+    },
+    {
+      "id": "11",
+      "name": "Cost Model v6",
+      "scoreNow": null,
+      "scoreTarget": null,
+      "priority": "P0",
+      "band": "priority-gap",
+      "sihPriorityGap": false,
+      "gap": "Verified BOM + $110,046 press capex are solid, but facility/site capex is modelled, not vendor-quoted (112K-222K factory gross; 100K-150K/site on-Country). Needs 3 vendor quotes — the SIH-Advisory deliverable. Notion-added area, no V4 score."
+    },
+    {
+      "id": "12",
+      "name": "Investor Alignment Tool",
+      "scoreNow": null,
+      "scoreTarget": null,
+      "priority": "P0",
+      "band": "priority-gap",
+      "sihPriorityGap": false,
+      "gap": "CASE Tab-1 self-documentation started, but GHL reauth + QBE rules + written commitments block a populated alignment register; CASE knockout #2 (Legal Structure) is the failing criterion. Notion-added area, no V4 score."
+    }
+  ],
+  "catalyticBlockers": [
+    {
+      "rank": 1,
+      "areaIds": ["09"],
+      "summary": "Entity / Indigenous-ownership structure is undecided — the keystone. Blocks CASE knockout #2, V4 Area 9, Supply Nation 51% cert (1-July), and FAC/IBA eligibility. Until there is one approved entity-wording block and a decided transition path, the 'become unnecessary' thesis stays narrative, not structural."
+    },
+    {
+      "rank": 2,
+      "areaIds": ["10", "03"],
+      "summary": "0 signed LOIs — the match gate is open. This is a conversion problem, not a discovery problem. Demand-as-capital (NT housing / NEMA / PICC offtake) is the double-play: one signed procurement LOI fixes the match AND the weak-commercial-paperwork gap. Confirm QBE rules in writing (the open Jay email)."
+    },
+    {
+      "rank": 3,
+      "areaIds": ["04"],
+      "summary": "Financial reconciliation + founder-time costing. Reconcile the three coexisting revenue cuts into one accountant-reviewed Goods-only figure; cost founder time at fair-market replacement rate even if not drawn; hold the no-surplus line (FY26 net loss is the correct, fundable scale-up story)."
+    },
+    {
+      "rank": 4,
+      "areaIds": ["07"],
+      "summary": "Governance for the new entity + the commercial/scale-up skills gap. Recruit 1-2 advisors/directors with commercial/scale-up experience; set the named approval/sign-off path so evidence/story/finance/entity language has a defined gate. Catalytic funders weight governance more heavily than VCs do."
+    },
+    {
+      "rank": 5,
+      "areaIds": ["02"],
+      "summary": "Public-copy accuracy + AI-overclaim discipline + Notion password hygiene. Nothing ships unless a core team member has audited it and can defend it in live Q&A; separate verified from modelled/target/future on every metric; rotate any plaintext password out of Notion."
+    }
+  ]
+}
