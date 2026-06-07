@@ -1,0 +1,50 @@
+---
+session: general
+date: 2026-05-29
+status: complete
+outcome: SUCCEEDED
+---
+
+goal: Complete final QBE diagnostic sweep and provide a handoff prompt for continuing the Goods investor-readiness work.
+now: Build the LOI tracker and QBE matched-funding evidence checklist before writing more narrative or sharing funder pages.
+test: rg -n "Handoff prompt|496 deployed bed units|LOI tracker|unsafe claims" wiki/outputs/2026-05-29-qbe-final-sweep-and-handoff-prompt.md && rg -n "QBE Canonical Numbers Sheet|Direct v2 Supabase" wiki/outputs/2026-05-29-qbe-canonical-numbers-sheet.md
+
+done_this_session:
+  - task: Built Area 10 Investors & Capital Raising full review and updated Notion Area 10.
+    files: [wiki/outputs/2026-05-29-qbe-area-10-investors-capital-raising-full-review.md]
+  - task: Updated cross-area review to show all 10 diagnostic areas complete as internal review set.
+    files: [wiki/outputs/2026-05-29-qbe-cross-area-alignment-review.md]
+  - task: Built canonical numbers sheet and Notion child page to resolve 369/496/520/600 and finance/pipeline number conflicts.
+    files: [wiki/outputs/2026-05-29-qbe-canonical-numbers-sheet.md]
+  - task: Completed final high-level sweep and created paste-ready handoff prompt.
+    files: [wiki/outputs/2026-05-29-qbe-final-sweep-and-handoff-prompt.md, thoughts/shared/handoffs/general/2026-05-29_10-12_qbe-diagnostic-handoff.yaml]
+
+blockers: [QBE Stage 2 cap/rules not directly confirmed with QBE/SIH, signed LOIs not yet verified, website/funder copy not yet cleaned]
+
+questions: [Which three targets should be pushed first for signed LOIs before 31 Aug 2026?, Which QBE match instruments are eligible under current program rules?, Which founder-approved public count should replace stale 369/400/520/600 copy?]
+
+decisions:
+  - canonical_numbers: Use 496 deployed bed units, 520 bed asset rows, 633 bed units across all statuses, 674 total product units, with definitions.
+  - capital_claims: Treat AU$3.42M active CRM pipeline as internal pipeline only, not committed capital or QBE match evidence.
+  - finance_claims: Treat AU$732,210.79 ACT-GD active Xero mirror invoices as workpaper data, not audited Goods revenue.
+  - next_priority: Build LOI tracker and QBE evidence checklist before founder investor-pack polish.
+
+findings:
+  - complete_internal_set: All 10 QBE area artifacts now exist locally; Area 10 and canonical numbers are in Notion.
+  - unsafe_public_copy: funder-shared-content.ts, funder-pages.ts and grant-content.ts contain overclaims on DGR, QBE unlock, SEFA de-risking, 600+ beds, $445K, $778K and community ownership.
+  - stale_operational_data: production latest shift is 2026-03-12 and latest inventory snapshot is 2026-03-27, so refresh before demo.
+  - evidence_gap: no signed Stage 2 match LOIs were verified; current pipeline is warm/internal until evidence attached.
+
+worked: [Direct supabase-js queries using v2 .env.local, Notion fetch/update/create page tools, local wiki outputs as source-of-truth artifacts, rg sweeps for risky public claims]
+failed: [Supabase MCP is forbidden/wrong project for v2; Notion markdown tables rendered a separator row, so use bullets or simpler tables in Notion pages]
+
+next:
+  - Create LOI tracker in Notion/admin with columns target organisation, type, evidence source, ask amount, units/order basis, QBE match eligibility, status, contracting entity, blocker, next action, owner, due date, external wording.
+  - Create QBE matched-funding evidence checklist and confirm QBE cap/rules with SIH/QBE.
+  - Clean v2/src/lib/data/funder-shared-content.ts, v2/src/lib/data/funder-pages.ts and v2/src/lib/data/grant-content.ts against canonical numbers and claim labels.
+  - Refresh production and inventory data before any live admin demo.
+  - Build founder-authored investor pack from Area 10 skeleton after LOI/evidence structure exists.
+
+files:
+  created: [wiki/outputs/2026-05-29-qbe-area-10-investors-capital-raising-full-review.md, wiki/outputs/2026-05-29-qbe-canonical-numbers-sheet.md, wiki/outputs/2026-05-29-qbe-final-sweep-and-handoff-prompt.md, thoughts/shared/handoffs/general/2026-05-29_10-12_qbe-diagnostic-handoff.yaml]
+  modified: [wiki/outputs/2026-05-29-qbe-cross-area-alignment-review.md]
