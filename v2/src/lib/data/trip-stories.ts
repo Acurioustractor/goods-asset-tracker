@@ -422,7 +422,7 @@ const utopia: TripStory = {
       // place inside the Ampilatwatja act.
       title: 'Three days: Alice Springs to Utopia Homelands',
       standfirst:
-        'Young people in Alice Springs spent two days building Stretch Beds with Oonchiumpa. The next morning we drove out to the Utopia homelands. Households we had not met asked for two or three beds each. Centrecorp Foundation paid for the materials.',
+        'The young people built their own beds in Alice Springs, two days with Oonchiumpa. We drove out to the homelands the next morning. House after house asked for two or three. Centrecorp Foundation paid for the materials.',
       dateline:
         'Alice Springs and Utopia Homelands, Northern Territory · 21–22 May 2026',
       // Hero is the bed-drop at the homes (use:hero) — the central act
