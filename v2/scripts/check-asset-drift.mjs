@@ -41,6 +41,16 @@ if (!url || !key) {
   console.error('Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY (run with --env-file=.env.local).');
   process.exit(2);
 }
+// Wrong-project guard. The Supabase MCP/credentials can reach 9 projects in the
+// org; canon must only ever be validated against the "Goods" project. If the env
+// points anywhere else (e.g. bhwyqqbovcjoefezgfnq = ACT Farmhand), refuse to run.
+// See wiki/canon/SOURCES.md.
+const GOODS_PROJECT_REF = 'cwsyhpiuepvdjtxaozwf';
+if (!url.includes(GOODS_PROJECT_REF)) {
+  console.error(`Wrong-project guard: SUPABASE_URL is ${url}, not the Goods project (${GOODS_PROJECT_REF}).`);
+  console.error('Canon is only valid against the Goods register. Refusing to run. See wiki/canon/SOURCES.md.');
+  process.exit(2);
+}
 const supabase = createClient(url, key);
 
 // Pull all rows (paginate), then reduce in JS exactly like impact-fetcher.ts.
