@@ -45,3 +45,21 @@ export async function listStorytellerSlugs(): Promise<{ slug: string; name: stri
   const all = await getGoodsStorytellers();
   return all.map((s) => ({ slug: slugify(s.displayName), name: s.displayName }));
 }
+
+export type StorytellerClearance = { cleared: number; candidate: number };
+export type GoodsStorytellerRow = EmpathyLedgerStoryteller & { clearance: StorytellerClearance };
+
+/**
+ * Storytellers + their "cleared for the Goods public surface" verdict, derived
+ * from EL's canonical syndication gate. For the admin cockpit only.
+ */
+export async function getGoodsStorytellersWithClearance(): Promise<GoodsStorytellerRow[]> {
+  const [tellers, clearance] = await Promise.all([
+    getGoodsStorytellers(),
+    empathyLedger.getGoodsSiteClearance(),
+  ]);
+  return tellers.map((s) => ({
+    ...s,
+    clearance: clearance[s.id] ?? { cleared: 0, candidate: 0 },
+  }));
+}

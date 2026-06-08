@@ -89,6 +89,11 @@ export interface EmpathyLedgerStoryteller {
   storyCount: number;
   featured: boolean;
   community: string | null;
+  // EL profile lifecycle state. NOT a consent grant — it tracks whether the
+  // profile is live (active), still being built (needs_content), awaiting a
+  // reviewer (pending_review), or disabled (inactive). Enriched via direct
+  // EL-Supabase read; the content-hub API does not return it.
+  contentStatus?: 'active' | 'needs_content' | 'pending_review' | 'inactive' | null;
 }
 
 // --- Syndication API types (rich analysis data) ---
