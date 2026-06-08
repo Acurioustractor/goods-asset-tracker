@@ -417,7 +417,29 @@ export const empathyLedger = {
         limit: params.limit,
         page: params.page,
       });
-      return response.storytellers;
+      const storytellers = response.storytellers;
+
+      // Enrich with EL profile lifecycle status (content_status). The content-hub
+      // API doesn't return it, so read it directly. Best-effort: on any failure
+      // the list still returns, just without status.
+      if (storytellers.length > 0 && EL_SUPABASE_URL && EL_SUPABASE_KEY) {
+        try {
+          const ids = storytellers.map((s) => s.id).join(',');
+          const rows = await fetchFromELSupabase<{ id: string; content_status: string | null }[]>(
+            'storytellers',
+            `id=in.(${ids})&select=id,content_status`,
+          );
+          const statusById = new Map(rows.map((r) => [r.id, r.content_status]));
+          return storytellers.map((s) => ({
+            ...s,
+            contentStatus: (statusById.get(s.id) ?? null) as EmpathyLedgerStoryteller['contentStatus'],
+          }));
+        } catch (enrichError) {
+          console.error('[EmpathyLedger] Failed to enrich storyteller status:', enrichError);
+        }
+      }
+
+      return storytellers;
     } catch (error) {
       console.error('[EmpathyLedger] Failed to fetch storytellers:', error);
       return [];
