@@ -69,8 +69,21 @@ export async function POST(request: NextRequest) {
         source: `Website Contact: ${body.subject || 'General Inquiry'}`,
       });
 
-      if (body.subscribe) {
-        await ghl.addToNewsletter(body.email, body.name, 'contact-form');
+      // R8 (Spam Act 2003): `subscribe === true` is the explicit opt-in signal —
+      // it means the user ticked the newsletter checkbox on the contact form, so
+      // it carries consent for the goods-newsletter send-trigger. Pass it through
+      // as newsletterConsent='Yes'. Without it, no enrolment happens.
+      // TODO(tag-align): the /contact UI does NOT yet render a `subscribe`
+      // opt-in checkbox (the form never sends this field) — this branch is dormant
+      // until a default-OFF checkbox is added that sets subscribe=true. Adding the
+      // checkbox is the last step to make the consent path live.
+      if (body.subscribe === true) {
+        await ghl.addToNewsletter({
+          email: body.email,
+          name: body.name,
+          tag: 'contact-form',
+          newsletterConsent: 'Yes',
+        });
       }
     }
 
