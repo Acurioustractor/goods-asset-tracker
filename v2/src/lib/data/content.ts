@@ -216,7 +216,7 @@ export const quotes = [
   {
     text: 'I like to do more, you know, but helping all the people.',
     author: 'Annie Morrison',
-    context: 'Elder, Tennant Creek',
+    context: 'Community member, Tennant Creek',
     theme: 'community-need',
     verified: true,
   },
@@ -231,7 +231,7 @@ export const quotes = [
   {
     text: 'The new mattress design is not just about comfort — it\'s about dignity and health.',
     author: 'Tracy McCartney',
-    context: 'Support Worker, Mt Isa',
+    context: 'Support Worker, Kalgoorlie',
     theme: 'health',
     verified: true,
   },
@@ -422,7 +422,7 @@ export const impactStories = [
   {
     id: 'gloria-health',
     title: 'Rest for Recovery',
-    person: 'Gloria',
+    person: 'Gloria Turner',
     location: 'Kalgoorlie, WA',
     quote: 'The impact of a mattress on overall health.',
     summary: 'Gloria is a great-grandmother on dialysis. For her, a mattress isn\'t about comfort. It\'s about managing chronic illness.',
