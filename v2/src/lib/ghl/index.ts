@@ -1359,8 +1359,9 @@ Submitted: ${new Date().toLocaleString('en-AU')}
 
       await addContactNote(result.contact.id, noteText);
 
-      // Smart Router branches on goods-partner-lead OR goods-media,
-      // and can now sub-branch on goods-segment-*, goods-tier-*, goods-timeline-*.
+      // Smart Router branches on goods-partner-lead OR goods-media, and can
+      // sub-branch on goods-segment-* / goods-timeline-*. (Ticket size moved
+      // off goods-tier-* to the capital_tier custom field — R10.)
       await fireSmartRouter(result.contact.id);
     }
 
