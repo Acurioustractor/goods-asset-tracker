@@ -11,8 +11,10 @@ export const meta = {
 // ── Inputs ───────────────────────────────────────────────────────────────────
 // args = { repo?: string, files: string[] }   (files = repo-relative paths to scan)
 // Incremental mode: caller passes only changed files (e.g. `git diff --name-only <lastrun>`).
-const REPO = (args && args.repo) || '/Users/benknight/Code/Goods Asset Register'
-const FILES = (args && args.files) || []
+// NOTE: the Workflow tool delivers `args` as a JSON STRING, so parse it.
+const ARGS = typeof args === 'string' ? (args.trim() ? JSON.parse(args) : {}) : (args || {})
+const REPO = ARGS.repo || '/Users/benknight/Code/Goods Asset Register'
+const FILES = ARGS.files || []
 if (!FILES.length) throw new Error('loop-c-ingestion: pass args.files (repo-relative doc paths). For a full run, generate with find; for incremental, pass git-changed files.')
 
 // ── Reference: canon + ALL canon-adjacent code sources (so we do not re-propose existing facts) ──
