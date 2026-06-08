@@ -106,4 +106,21 @@ Rebuilt the loop as `scripts/loop-c-ingestion.workflow.js` (tracked; `.claude/` 
 
 **Cost of precision:** the verify stage reads source/code files, so per-doc cost ~2.2× (~93k vs ~41k tokens). A full 202-doc hardened run ≈ ~18–19M tokens — which is why **incremental mode** (scan only git-changed docs) is required before scheduling.
 
-**Remaining productionization gaps (not yet done):** (1) the script's `args.files` input isn't received via the Workflow tool's top-level `args` (worked around with an inlined test runner) — needs fixing so it's parameterizable; (2) incremental file-list wrapper (`git diff --name-only <lastrun>`); (3) scheduling (cron / M3 / `/schedule`). Run it via `Workflow({scriptPath: 'scripts/loop-c-ingestion.workflow.js'})` with a file list.
+**Productionization — DONE (2026-06-08):**
+- **args fix:** the Workflow tool delivers `args` as a JSON *string*; the script now parses it, so it's parameterizable by file list. Verified end-to-end on a 1-doc run.
+- **incremental helper:** `scripts/loop-c-changed-docs.mjs` prints `{repo, files}` of backlog docs changed since a mtime marker (`wiki/canon/.loop-c-lastrun`). Keys off mtime, not git, because most backlog docs are untracked.
+
+## 8. How to run / schedule
+
+**Run (incremental):**
+```
+node scripts/loop-c-changed-docs.mjs            # prints {repo, files} changed since last run (or --all for full)
+# then, in a Claude session, feed that JSON to the loop:
+Workflow({ scriptPath: 'scripts/loop-c-ingestion.workflow.js', args: <the JSON> })
+node scripts/loop-c-changed-docs.mjs --stamp    # after a clean run, advance the marker
+```
+
+**Scheduling — honest constraint (NOT auto-scheduled):** Loop C needs the local repo + the Workflow tool, which limits the options:
+- `CronCreate` (in-session cron) is session-only and recurring jobs auto-expire after 7 days → **cannot do monthly.**
+- `/schedule` remote-agent routines are persistent, but a remote runner may not have the repo checkout or the Workflow tool → **viability untested.**
+- **Recommendation:** run it **manually ~monthly** (the 3 commands above) — it's a 2-minute trigger. Loop C is dry-run / Tier 1, so an unattended run is within the AFK boundary, but it spends tokens (incremental keeps it bounded). Only wire a `/schedule` routine after one remote run proves the runner has repo + Workflow access.
