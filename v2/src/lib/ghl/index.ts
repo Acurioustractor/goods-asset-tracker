@@ -6,7 +6,21 @@
  * - Support ticket triage
  * - Partnership inquiry management
  * - Workflow triggers
+ *
+ * TAG CONTRACT: every write funnels through createOrUpdateContact(), which maps
+ * the flat `goods-*` tags onto ACT's canonical namespaced contract (project:act-gd,
+ * role:/interest:/source:/lane:community) via ./canonical-tags. See that module
+ * for the 5-layer model, the R8 consent gate, and the R9 OCAP lane:community
+ * strip-guard. wiki/concepts/ghl-crm-taxonomy.md is the source of truth.
  */
+
+import {
+  toCanonicalTags,
+  grantNewsletterComms,
+  CAPITAL_TIER_FIELD_ID,
+  NEWSLETTER_CONSENT_FIELD_ID,
+  LANE_COMMUNITY,
+} from './canonical-tags';
 
 // Configuration from environment
 const GHL_API_KEY = process.env.GHL_API_KEY || '';
@@ -212,6 +226,12 @@ interface ContactData {
   tags?: string[];
   customFields?: Record<string, string>;
   source?: string;
+  /**
+   * Tag-contract origin. 'website' (default) = a public form → adds source:website.
+   * 'none' = a non-form caller (strategic-target cron, bed-scan SMS) → no source:website.
+   * Passed through to toCanonicalTags() at the chokepoint.
+   */
+  tagSource?: 'website' | 'none';
 }
 
 interface OrderContactData {
@@ -570,13 +590,21 @@ async function createOrUpdateContact(data: ContactData): Promise<GHLResponse> {
     const existingContact = duplicateKey ? await findContact(duplicateKey) : null;
     console.log('[GHL] Existing contact search result:', existingContact ? `Found: ${existingContact.id}` : 'Not found');
 
+    // CANONICAL TAG CONTRACT — the one place every Goods write gets stamped with
+    // project:act-gd + source:website and its flat goods-* tags expanded to the
+    // namespaced canonical contract. The OCAP lane:community strip-guard runs
+    // here too (drops any comms:* that arrives on a community-line contact).
+    const canonicalTags = toCanonicalTags(data.tags || [], {
+      source: data.tagSource ?? 'website',
+    });
+
     const contactData: Record<string, unknown> = {
       locationId: GHL_LOCATION_ID,
       ...(email ? { email } : {}),
       ...(name ? { name } : {}),
       ...(phone ? { phone } : {}),
       ...(companyName ? { companyName } : {}),
-      tags: data.tags || [],
+      tags: canonicalTags,
       source: data.source || 'Goods on Country Website',
     };
 
@@ -1063,17 +1091,22 @@ export const ghl = {
     }
 
     try {
-      // Ensure contact exists (creates if not, returns id either way)
+      // Ensure contact exists (creates if not, returns id either way).
+      // R9 (OCAP): bed-scan targets a community recipient → lane:community. This
+      // is a server/cron caller (not a public web form) → tagSource:'none' so we
+      // don't stamp source:website on it.
       const upsert = await createOrUpdateContact({
         phone,
         name: opts.contactName || undefined,
         tags: [
           'goods-bed-scan',
+          LANE_COMMUNITY,
           ...(opts.assetId ? [tagForAsset(opts.assetId)] : []),
           ...(opts.tags || []),
         ],
         customFields: withGoodsProject({}),
         source: opts.assetId ? `Bed scan ${opts.assetId}` : 'Bed scan reminder',
+        tagSource: 'none',
       });
       const contactId = upsert.contact?.id;
       if (!contactId) {
@@ -1264,17 +1297,29 @@ Submitted: ${new Date().toLocaleString('en-AU')}
     if (CUSTOM_FIELDS.message && data.message) {
       customFields[CUSTOM_FIELDS.message] = data.message;
     }
-    withGoodsProject(customFields);
 
-    // Build segment/tier/timeline tags so Smart Router can route by
-    // partner type (foundation, corporate, buyer, investor, community)
-    // and by ticket size (under-25k, 25-100k, 100-500k, 500k+, loan).
+    // R10: fundingTier encodes CAPITAL TICKET SIZE (under-25k, 25-100k, …, 500k+,
+    // recoverable, patient-debt). It must NOT become the belonging-ladder `tier:`
+    // namespace (curious→steward). Move it to the dedicated `capital_tier` custom
+    // field and DROP the `goods-tier-*` tag entirely.
+    if (data.fundingTier) {
+      if (CAPITAL_TIER_FIELD_ID) {
+        customFields[CAPITAL_TIER_FIELD_ID] = data.fundingTier;
+      }
+      // FALLBACK (OCAP-safe): if the capital_tier custom-field id isn't configured
+      // in env yet, we DROP the tier value rather than half-wire it or let it
+      // pollute `tier:`. The ticket size is also preserved in the note + the
+      // partnership_inquiries DB row, so no signal is lost.
+      // TODO(tag-align): set GHL_FIELD_CAPITAL_TIER in the deployed env (create the
+      // "Capital Tier" custom field in GHL) so ticket size lands on the contact.
+    }
+
+    // Build segment/timeline tags so Smart Router can route by partner type
+    // (foundation, corporate, buyer, investor, community) and by timeline.
+    // NOTE: goods-tier-* is intentionally NOT built here (see R10 above).
     const segmentTags: string[] = [];
     if (data.partnerSegment) {
       segmentTags.push(`goods-segment-${data.partnerSegment}`);
-    }
-    if (data.fundingTier) {
-      segmentTags.push(`goods-tier-${data.fundingTier}`);
     }
     if (data.timeline) {
       segmentTags.push(`goods-timeline-${data.timeline}`);
@@ -1282,6 +1327,8 @@ Submitted: ${new Date().toLocaleString('en-AU')}
     if (data.partnershipType === 'capital-interest') {
       segmentTags.push('goods-capital-interest');
     }
+
+    withGoodsProject(customFields);
 
     const result = await createOrUpdateContact({
       email: data.contactEmail,
@@ -1312,8 +1359,9 @@ Submitted: ${new Date().toLocaleString('en-AU')}
 
       await addContactNote(result.contact.id, noteText);
 
-      // Smart Router branches on goods-partner-lead OR goods-media,
-      // and can now sub-branch on goods-segment-*, goods-tier-*, goods-timeline-*.
+      // Smart Router branches on goods-partner-lead OR goods-media, and can
+      // sub-branch on goods-segment-* / goods-timeline-*. (Ticket size moved
+      // off goods-tier-* to the capital_tier custom field — R10.)
       await fireSmartRouter(result.contact.id);
     }
 
@@ -1332,6 +1380,9 @@ Submitted: ${new Date().toLocaleString('en-AU')}
       ...(data.tags || []),
     ];
 
+    // Internal cold-prospecting sync (CivicGraph/GrantScope), NOT a public form.
+    // tagSource:'none' = no source:website. These contacts must NEVER get comms:*
+    // (the canonical map never mints comms: from these role tags).
     const result = await createOrUpdateContact({
       email: data.contactEmail,
       phone: data.contactPhone,
@@ -1340,6 +1391,7 @@ Submitted: ${new Date().toLocaleString('en-AU')}
       tags,
       customFields: withGoodsProject({}),
       source: 'GrantScope Goods Workspace',
+      tagSource: 'none',
     });
 
     if (result.success && result.contact?.id) {
@@ -1428,37 +1480,65 @@ Synced: ${new Date().toLocaleString('en-AU')}
    *
    * Backward-compatible: the legacy positional signature
    * `addToNewsletter(email, name?, tag?)` still works.
+   *
+   * R8 (Spam Act 2003 consent gate): the newsletter send-trigger (goods-newsletter
+   * + comms:goods-newsletter) is granted ONLY when explicit consent is captured
+   * (`newsletterConsent: 'Yes'`). Without it, the contact is still created as a
+   * lead (project:act-gd + source) but gets NO send-trigger tag — neither the flat
+   * `goods-newsletter` the live Smart Router enrols on, nor the canonical
+   * `comms:goods-newsletter`. Submitting a form is NOT consent. The opt-in
+   * checkbox (default OFF) must set newsletterConsent='Yes' at the form.
    */
   async addToNewsletter(
-    optsOrEmail: { email?: string; phone?: string; name?: string; tag?: string } | string,
+    optsOrEmail:
+      | { email?: string; phone?: string; name?: string; tag?: string; newsletterConsent?: 'Yes' | string }
+      | string,
     name?: string,
     tag?: string,
   ): Promise<GHLResponse> {
     const opts = typeof optsOrEmail === 'string'
-      ? { email: optsOrEmail, name, tag }
+      ? { email: optsOrEmail, name, tag, newsletterConsent: undefined as string | undefined }
       : optsOrEmail;
 
     const email = cleanString(opts.email);
     const phone = cleanString(opts.phone);
     const sourceTag = opts.tag;
+    const hasConsent = opts.newsletterConsent === 'Yes';
 
     if (!email && !phone) {
       return { success: false, error: 'Email or phone is required' };
     }
 
-    const tags = [TAGS.newsletter];
+    // Source tag is an identity marker (where they came from) — safe without consent.
+    const tags: string[] = [];
     if (sourceTag) tags.push(`goods-src-${sourceTag}`);
+
+    // R8: ONLY grant the send-trigger tags with explicit consent. The flat
+    // goods-newsletter is the live Smart-Router enrolment key — granting it
+    // without consent is the Spam Act violation, so it is gated too.
+    if (hasConsent) {
+      tags.push(TAGS.newsletter); // flat send-trigger (live router) — transition
+      tags.push(...grantNewsletterComms(opts.newsletterConsent)); // canonical comms:goods-newsletter
+    }
+
+    // Stamp the consent flag as a custom field when configured + consented.
+    const customFields = withGoodsProject({});
+    if (hasConsent && NEWSLETTER_CONSENT_FIELD_ID) {
+      customFields[NEWSLETTER_CONSENT_FIELD_ID] = 'Yes';
+    }
 
     const result = await createOrUpdateContact({
       email,
       phone,
       name: opts.name,
       tags,
-      customFields: withGoodsProject({}),
+      customFields,
       source: sourceTag ? `Newsletter Signup (${sourceTag})` : 'Newsletter Signup',
     });
 
-    if (result.success && result.contact?.id) {
+    // Only fire the router (which can enrol into the newsletter drip) when the
+    // person actually consented. No consent = no send path.
+    if (hasConsent && result.success && result.contact?.id) {
       await fireSmartRouter(result.contact.id);
     }
 
@@ -1564,7 +1644,11 @@ Claimed: ${new Date().toLocaleString('en-AU')}
     const isWasher = productType.toLowerCase().includes('wash') ||
                      productType.toLowerCase().includes('machine');
 
-    const tags: string[] = [tagForAsset(assetId)];
+    // R9 (OCAP): an additional-claim is still a community recipient. The flat
+    // tags here (asset + claimed-*) don't carry goods-recipient, so add the
+    // protective lane:community marker explicitly. role:community follows from
+    // the recipient already carrying goods-recipient from their first claim.
+    const tags: string[] = [tagForAsset(assetId), LANE_COMMUNITY];
     if (isBed) tags.push(TAGS.claimedBed);
     if (isWasher) tags.push(TAGS.claimedWasher);
 
@@ -1596,7 +1680,8 @@ Claimed: ${new Date().toLocaleString('en-AU')}
    * Log an inbound message from a user
    */
   async logInboundMessage(data: UserMessageData): Promise<GHLResponse> {
-    const tags = [TAGS.userMessage];
+    // R9 (OCAP): inbound message from a claimed recipient = community line.
+    const tags = [TAGS.userMessage, LANE_COMMUNITY];
     if (data.assetId) tags.push(tagForAsset(data.assetId));
 
     const result = await createOrUpdateContact({
@@ -1606,6 +1691,7 @@ Claimed: ${new Date().toLocaleString('en-AU')}
       tags,
       customFields: withGoodsProject({}),
       source: 'User Message',
+      tagSource: 'none',
     });
 
     if (result.success && result.contact?.id) {
@@ -1630,7 +1716,8 @@ Sent: ${new Date().toLocaleString('en-AU')}
    * Log a user request (blanket, pillow, parts, etc.)
    */
   async logUserRequest(data: UserRequestData): Promise<GHLResponse> {
-    const tags = [TAGS.userRequest];
+    // R9 (OCAP): a request (blanket/pillow/parts) from a recipient = community line.
+    const tags = [TAGS.userRequest, LANE_COMMUNITY];
     if (data.assetId) tags.push(tagForAsset(data.assetId));
     // Request-type tag lets the Smart Router branch on what's being asked for
     // (blanket, pillow, parts, etc.) without code changes.
@@ -1645,6 +1732,7 @@ Sent: ${new Date().toLocaleString('en-AU')}
       tags,
       customFields: withGoodsProject({}),
       source: 'User Request',
+      tagSource: 'none',
     });
 
     if (result.success && result.contact?.id) {
