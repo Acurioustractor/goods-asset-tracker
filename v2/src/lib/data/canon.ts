@@ -20,7 +20,7 @@
 import { CANONICAL_ASSETS } from './asset-canonical';
 
 export type ClaimLabel = 'verified' | 'modelled' | 'target' | 'future' | 'internal-only';
-export type CanonDomain = 'assets' | 'money' | 'story' | 'product' | 'cost' | 'pipeline';
+export type CanonDomain = 'assets' | 'money' | 'story' | 'product' | 'cost' | 'pipeline' | 'governance';
 /** GREEN = public-safe. AMBER = internal/management. RED = recipient/storyteller data, never to external models, never auto-published. */
 export type DataClass = 'green' | 'amber' | 'red';
 /** 'auto' = a drift script can re-derive from a live source. 'manual' = a human must re-pull and reconcile (all money). */
@@ -160,6 +160,42 @@ export const CANON: CanonFact[] = [
     domain: 'story', claimLabel: 'verified', dataClass: 'amber',
     source: 'Empathy Ledger API (goods-on-country project)', check: 'manual', asAt: '2026-06-03', owner: 'Ben',
     definition: '240 storytellers, 0 published. Site falls back to local journeyStories until EL publish-flips land.',
+  },
+
+  // ── Governance / legal (entity structure — QBE Area 09 keystone. ABNs are public ABR records.) ──
+  // Added 2026-06-08 by Loop C; each fact hand-verified against the area-09 legal review + grant-content.ts orgIdentity.
+  {
+    id: 'entity-operating-now', label: 'Current operating entity', value: 'Nicholas Marchesi (sole trader), ABN 21 591 780 066',
+    domain: 'governance', claimLabel: 'verified', dataClass: 'green',
+    source: 'wiki/outputs/2026-05-29-qbe-area-09-legal-structure-full-review.md + grant-content.ts orgIdentity', check: 'manual', asAt: '2026-05-29', owner: 'Ben/Nic',
+    definition: 'Goods trades, invoices and contracts through this sole trader today, during migration to the company. The migration starting point, not the destination.',
+    reconcilesWith: ['entity-trading-goforward'],
+  },
+  {
+    id: 'entity-trading-goforward', label: 'Go-forward trading entity', value: 'A Curious Tractor Pty Ltd, ACN 697 347 676 / ABN 36 697 347 676, t/a Goods on Country',
+    domain: 'governance', claimLabel: 'verified', dataClass: 'green',
+    source: 'grant-content.ts orgIdentity (ABN confirmed 2026-05-29, registered 21 Apr 2026); area-09 review', check: 'manual', asAt: '2026-05-29', owner: 'Ben/Nic',
+    definition: 'Confirmed go-forward trading company; all operations migrate to it in FY2026-27. Goods on Country is its trading name, not a separate company. Do not present the migration as finished externally.',
+  },
+  {
+    id: 'entity-dgr-home', label: 'Charity / DGR home', value: 'The Butterfly Movement Ltd, ABN 22 155 132 684',
+    domain: 'governance', claimLabel: 'verified', dataClass: 'green',
+    source: 'area-09 review citing ABN Lookup (extracted 2026-05-06): active company, ACNC charity, PBI, GST, DGR Item 1', check: 'manual', asAt: '2026-05-06', owner: 'Ben/Nic',
+    definition: 'The ONLY DGR / public-benevolent vehicle for Goods, operational from FY2026-27 (~1 July 2026), gifted from TABOO Foundation. DGR is never via Goods / A Curious Tractor / A Kind Tractor directly, and not before the FY2026-27 handover.',
+  },
+  {
+    id: 'entity-dormant', label: 'Dormant entity (do not cite)', value: 'A Kind Tractor Ltd, ABN 73 669 029 341',
+    domain: 'governance', claimLabel: 'verified', dataClass: 'green',
+    source: 'area-09 review citing ABN Lookup (extracted 2026-05-18): active company / ACNC charity but NOT DGR-entitled', check: 'manual', asAt: '2026-05-18', owner: 'Ben/Nic',
+    definition: 'DORMANT and NOT used — not the trading entity, not the charity, not DGR. Do not use it as the Goods vehicle or claim DGR for it. (grant-content.ts previously mis-listed it with ABN 50 001 350 152 + DGR true; corrected 2026-05-29.)',
+  },
+
+  // ── Pipeline / capital (match-gate tracking — AMBER, manual; the headline conversion metric) ──
+  {
+    id: 'signed-lois', label: 'Signed LOIs', value: 0, unit: 'LOIs',
+    domain: 'pipeline', claimLabel: 'verified', dataClass: 'amber',
+    source: 'GHL Supporter-Journey pipeline (Committed / Signed-LOI stage)', check: 'manual', asAt: '2026-05-30', owner: 'Ben',
+    definition: 'Signed letters of intent across all 3 Goods pipelines. The QBE match gate needs >=3 signed LOIs by 31 Aug 2026; this is the headline conversion metric. A moving number — re-confirm from GHL before citing.',
   },
 ];
 
