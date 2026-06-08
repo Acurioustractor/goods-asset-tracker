@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { getGoodsStorytellers, slugify } from '@/lib/storytellers';
+import { getGoodsStorytellersWithClearance, slugify, type StorytellerClearance } from '@/lib/storytellers';
 
 export const metadata: Metadata = {
   title: 'Storytellers (EL) · Goods admin',
@@ -46,14 +46,27 @@ function statusMeta(status?: string | null) {
   return (status && STATUS_META[status]) || { label: status || 'Unknown', cls: 'bg-gray-100 text-gray-500', attention: false };
 }
 
+// "Cleared for the Goods public surface" verdict, derived from EL's canonical
+// syndication gate (stories_for_site). cleared = passes the gate; candidate =
+// published in a Goods-carried project. cleared=0 & candidate>0 = a real
+// consent gap holding content back ("Blocked").
+function clearanceVerdict(c: StorytellerClearance) {
+  if (c.cleared > 0)
+    return { label: 'On Goods', cls: 'bg-emerald-100 text-emerald-800', attention: false, detail: `${c.cleared} cleared by gate` };
+  if (c.candidate > 0)
+    return { label: 'Blocked', cls: 'bg-rose-100 text-rose-800', attention: true, detail: `${c.candidate} published, held by gate` };
+  return { label: 'No public stories', cls: 'bg-gray-100 text-gray-500', attention: false, detail: 'nothing published for Goods' };
+}
+
 export default async function ElStorytellersIndex() {
-  const tellers = await getGoodsStorytellers();
+  const tellers = await getGoodsStorytellersWithClearance();
 
   const firstNameOnly = tellers.filter((s) => isFirstNameOnly(s.displayName));
   // avatarUrl is mapped from public_avatar_url, so a missing one means the
   // portrait isn't cleared for public surfaces — a real consent signal.
   const noPublicPortrait = tellers.filter((s) => !s.avatarUrl);
   const needsReview = tellers.filter((s) => statusMeta(s.contentStatus).attention);
+  const blocked = tellers.filter((s) => clearanceVerdict(s.clearance).attention);
 
   return (
     <div className="space-y-6 pb-16">
@@ -77,9 +90,14 @@ export default async function ElStorytellersIndex() {
 
       {/* Needs-attention banner — counts identity gaps the reviewer should action in EL */}
       {tellers.length > 0 &&
-        (firstNameOnly.length > 0 || noPublicPortrait.length > 0 || needsReview.length > 0) && (
+        (blocked.length > 0 || firstNameOnly.length > 0 || noPublicPortrait.length > 0 || needsReview.length > 0) && (
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm">
             <span className="font-semibold text-amber-900">Needs attention</span>
+            {blocked.length > 0 && (
+              <span className="font-medium text-rose-700">
+                <span className="font-semibold">{blocked.length}</span> blocked from Goods (consent gap)
+              </span>
+            )}
             {needsReview.length > 0 && (
               <span className="text-amber-800">
                 <span className="font-semibold">{needsReview.length}</span> not active (review / draft / disabled)
@@ -111,6 +129,7 @@ export default async function ElStorytellersIndex() {
                 <th className="px-4 py-2 text-left">Storyteller</th>
                 <th className="px-4 py-2 text-left">Community</th>
                 <th className="px-4 py-2 text-left" title="EL profile lifecycle — not a consent grant">Status</th>
+                <th className="px-4 py-2 text-left" title="Cleared by EL's syndication gate (stories_for_site)">On Goods?</th>
                 <th className="px-4 py-2 text-left">Elder</th>
                 <th className="px-4 py-2 text-left">Slug (use this on voice cards)</th>
                 <th className="px-4 py-2 text-left">Public page</th>
@@ -122,6 +141,7 @@ export default async function ElStorytellersIndex() {
                 const slug = slugify(s.displayName);
                 const firstNameGap = isFirstNameOnly(s.displayName);
                 const st = statusMeta(s.contentStatus);
+                const cv = clearanceVerdict(s.clearance);
                 return (
                   <tr key={s.id} className="hover:bg-amber-50/30">
                     <td className="px-4 py-2">
@@ -156,6 +176,14 @@ export default async function ElStorytellersIndex() {
                     <td className="px-4 py-2">
                       <span className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${st.cls}`}>
                         {st.label}
+                      </span>
+                    </td>
+                    <td className="px-4 py-2">
+                      <span
+                        className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${cv.cls}`}
+                        title={cv.detail}
+                      >
+                        {cv.label}
                       </span>
                     </td>
                     <td className="px-4 py-2">{s.elderStatus ? '✓' : ''}</td>

@@ -288,6 +288,31 @@ async function fetchFromELSupabase<T>(
   return response.json();
 }
 
+// Call an EL Postgres function via PostgREST. Used for the canonical
+// syndication gate (stories_for_site) so we never reimplement gate logic.
+async function fetchFromELSupabaseRpc<T>(
+  fn: string,
+  body: Record<string, unknown>,
+  select = '',
+  options: { revalidate?: number } = {},
+): Promise<T> {
+  const url = `${EL_SUPABASE_URL}/rest/v1/rpc/${fn}${select ? `?${select}` : ''}`;
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'apikey': EL_SUPABASE_KEY,
+      'Authorization': `Bearer ${EL_SUPABASE_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+    next: { revalidate: options.revalidate ?? 60 },
+  });
+  if (!response.ok) {
+    throw new Error(`EL Supabase RPC error: ${response.status}`);
+  }
+  return response.json();
+}
+
 export const empathyLedger = {
   /**
    * Check if Empathy Ledger integration is enabled
@@ -443,6 +468,59 @@ export const empathyLedger = {
     } catch (error) {
       console.error('[EmpathyLedger] Failed to fetch storytellers:', error);
       return [];
+    }
+  },
+
+  /**
+   * Per-storyteller "cleared for the Goods public surface" verdict.
+   *
+   * `cleared` = stories that pass EL's canonical syndication gate
+   * (stories_for_site RPC — published + public + explicit consent + not
+   * withdrawn + elder-review satisfied + syndication enabled + site carries
+   * the project). We call the RPC, never reimplement the gate.
+   *
+   * `candidate` = published stories in the site's mapped project(s) — the
+   * gate's universe. cleared=0 while candidate>0 means a real consent gap
+   * (content exists for Goods but the gate is holding it back = "Blocked").
+   *
+   * Returns {} on any failure (cockpit degrades to no verdict, never throws).
+   */
+  async getGoodsSiteClearance(): Promise<Record<string, { cleared: number; candidate: number }>> {
+    if (!ENABLE_EMPATHY_LEDGER || !EL_SUPABASE_URL || !EL_SUPABASE_KEY) return {};
+    try {
+      // Site + its mapped project ids (slug-based, no hardcoded ids).
+      const siteRows = await fetchFromELSupabase<
+        { id: string; syndication_site_projects: { project_id: string }[] }[]
+      >('syndication_sites', `slug=eq.${GOODS_SITE_SLUG}&select=id,syndication_site_projects(project_id)`);
+      const projectIds = (siteRows[0]?.syndication_site_projects ?? [])
+        .map((p) => p.project_id)
+        .filter(Boolean);
+
+      const [clearedRows, candidateRows] = await Promise.all([
+        fetchFromELSupabaseRpc<{ storyteller_id: string | null }[]>(
+          'stories_for_site',
+          { p_site_slug: GOODS_SITE_SLUG },
+          'select=storyteller_id',
+        ),
+        projectIds.length
+          ? fetchFromELSupabase<{ storyteller_id: string | null }[]>(
+              'stories',
+              `status=eq.published&project_id=in.(${projectIds.join(',')})&select=storyteller_id`,
+            )
+          : Promise.resolve([]),
+      ]);
+
+      const out: Record<string, { cleared: number; candidate: number }> = {};
+      const bump = (id: string | null, key: 'cleared' | 'candidate') => {
+        if (!id) return;
+        (out[id] ??= { cleared: 0, candidate: 0 })[key]++;
+      };
+      clearedRows.forEach((r) => bump(r.storyteller_id, 'cleared'));
+      candidateRows.forEach((r) => bump(r.storyteller_id, 'candidate'));
+      return out;
+    } catch (error) {
+      console.error('[EmpathyLedger] Failed to compute Goods site clearance:', error);
+      return {};
     }
   },
 
