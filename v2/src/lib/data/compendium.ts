@@ -541,7 +541,7 @@ export const communityVoices: CommunityVoice[] = [
     context: 'Feedback shaped lower bed design.',
   },
   {
-    id: 'annie', name: 'Annie Morrison', role: 'Elder', community: 'Tennant Creek', state: 'NT',
+    id: 'annie', name: 'Annie Morrison', role: 'Community member', community: 'Tennant Creek', state: 'NT',
     quotes: ['I like to do more, you know, but helping all the people.'],
   },
 
@@ -569,10 +569,8 @@ export const communityVoices: CommunityVoice[] = [
     id: 'chloe', name: 'Chloe', role: 'Aboriginal Homeless Fringe Support Worker, Bega', community: 'Kalgoorlie', state: 'WA',
     quotes: ['As a support worker here, I see how much proper bedding is needed in the community. So many people are sleeping on the floor or on old, unsuitable mattresses. Something as simple as a good bed makes a huge difference — it improves their health, helps with mobility, and gives them dignity.'],
   },
-
-  // Mt Isa
   {
-    id: 'tracy', name: 'Tracy McCartney', role: 'Support Worker', community: 'Mt Isa', state: 'QLD',
+    id: 'tracy', name: 'Tracy McCartney', role: 'Support Worker', community: 'Kalgoorlie', state: 'WA',
     quotes: ["The new mattress design is not just about comfort — it's about dignity and health. Lightweight, washable, and off the ground, it addresses real challenges people face living rough or moving between camps."],
   },
 

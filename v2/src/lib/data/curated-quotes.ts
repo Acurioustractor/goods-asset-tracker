@@ -149,7 +149,7 @@ export const curatedQuotes: Record<string, CuratedQuote[]> = {
     },
   ],
 
-  'Gloria': [
+  'Gloria Turner': [
     {
       text: 'Sleep on a good mattress. For the back, the legs, the muscles.',
       context: 'On sleep quality',
