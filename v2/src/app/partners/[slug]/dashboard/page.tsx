@@ -149,8 +149,11 @@ export default async function PartnerDashboardPage({ params }: Props) {
   const secured = verifiedFinancials.revenueReceived;
   const asAt = verifiedFinancials.lastUpdated;
 
-  // Consent-gated gallery: only documented items reach the page.
+  // Consent-gated galleries: only documented items reach the page.
   const gallery = partner.gallery.filter((g) => g.consent === 'documented');
+  const facilityGallery = (partner.facilityGallery ?? []).filter((g) => g.consent === 'documented');
+  const partnership = partner.communityPartnership;
+  const partnershipPhotos = (partnership?.photos ?? []).filter((g) => g.consent === 'documented');
 
   // The ownership journey: one rung per stage, with facilities parked where they are.
   const milestones = partner.ownershipMilestones ?? [];
@@ -173,6 +176,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
     { id: 'in-service', label: 'In service now', grade: 'counted' },
     { id: 'washer', label: 'The washing machine', grade: 'not-yet' },
     ...(partner.funderImpact ? [{ id: 'your-part', label: 'Your part in this', grade: 'counted' } as NavItem] : []),
+    ...(partnership ? [{ id: 'partnership', label: `${partnership.name.split(' ')[0]} partnership` } as NavItem] : []),
     ...(hasVoice ? [{ id: 'voice', label: 'Community voice' } as NavItem] : []),
     { id: 'whats-next', label: "What's next", grade: 'not-yet' },
     { id: 'back-it', label: 'Back the next stage' },
@@ -297,6 +301,22 @@ export default async function PartnerDashboardPage({ params }: Props) {
             We are building a recycled-plastic plant on country, collect, shred, melt, press, that is designed to leave our hands.
             The community becomes the operator, then the owner, of the means of making the next bed.
           </p>
+          {facilityGallery.length > 0 ? (
+            <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3">
+              {facilityGallery.map((g, i) => (
+                <figure
+                  key={g.src}
+                  className={`overflow-hidden rounded-lg bg-white ${i === 0 ? 'col-span-2 md:col-span-1' : ''}`}
+                  style={{ border: '1px solid #E8DED4' }}
+                >
+                  <div className="relative aspect-[4/3]">
+                    <Image src={g.src} alt={g.alt} fill className="object-cover" sizes="(max-width: 768px) 50vw, 300px" />
+                  </div>
+                  <figcaption className="px-3 py-2 text-[11px] leading-snug" style={{ color: `${CHARCOAL}99` }}>{g.alt}</figcaption>
+                </figure>
+              ))}
+            </div>
+          ) : null}
           <div className="mt-8">
             <OwnershipJourney stages={ownershipStages} />
           </div>
@@ -445,6 +465,69 @@ export default async function PartnerDashboardPage({ params }: Props) {
                     <blockquote className="font-display text-lg leading-snug" style={{ color: CHARCOAL }}>&ldquo;{q.text}&rdquo;</blockquote>
                     <figcaption className="mt-3 text-xs uppercase tracking-wide" style={{ color: SAGE }}>{q.attribution}</figcaption>
                   </figure>
+                ))}
+              </div>
+            ) : null}
+          </Section>
+        ) : null}
+
+        {/* Community partnership (rendered only when configured) */}
+        {partnership ? (
+          <Section
+            id="partnership"
+            eyebrow="Community partnership"
+            title={`${partnership.name.split(' ')[0]}: who we build with`}
+            posture="Relationship, told plainly"
+          >
+            <p className="max-w-2xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{partnership.intro}</p>
+
+            {/* The story so far, in beats */}
+            <div className="mt-7 grid gap-3 md:grid-cols-3">
+              {partnership.beats.map((b, i) => (
+                <div key={b.title} className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+                  <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: SAGE }}>{String(i + 1).padStart(2, '0')}</p>
+                  <p className="mt-2 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>{b.title}</p>
+                  <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>{b.body}</p>
+                </div>
+              ))}
+            </div>
+
+            {partnershipPhotos.length > 0 ? (
+              <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3">
+                {partnershipPhotos.map((g, i) => (
+                  <figure
+                    key={g.src}
+                    className={`overflow-hidden rounded-lg bg-white ${i === 0 ? 'col-span-2 md:col-span-1' : ''}`}
+                    style={{ border: '1px solid #E8DED4' }}
+                  >
+                    <div className="relative aspect-[4/3]">
+                      <Image src={g.src} alt={g.alt} fill className="object-cover" sizes="(max-width: 768px) 50vw, 300px" />
+                    </div>
+                  </figure>
+                ))}
+              </div>
+            ) : null}
+
+            {partnership.quote ? (
+              <figure className="mt-6 max-w-2xl rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+                <blockquote className="font-display text-lg leading-snug" style={{ color: CHARCOAL }}>&ldquo;{partnership.quote.text}&rdquo;</blockquote>
+                <figcaption className="mt-3 text-xs uppercase tracking-wide" style={{ color: SAGE }}>{partnership.quote.attribution}</figcaption>
+              </figure>
+            ) : null}
+
+            {/* Where it goes next */}
+            <div className="mt-6 max-w-2xl rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderLeft: `3px solid ${RUST}` }}>
+              <p className="text-sm font-semibold" style={{ color: CHARCOAL }}>{partnership.forward.title}</p>
+              <p className="mt-2 text-sm leading-relaxed" style={{ color: `${CHARCOAL}b3` }}>{partnership.forward.body}</p>
+            </div>
+
+            {partnership.links.length > 0 ? (
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                {partnership.links.map((l) => (
+                  <Link key={l.href} href={l.href} className="block rounded-lg p-5 transition hover:opacity-90" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+                    <p className="text-base font-medium" style={{ color: CHARCOAL }}>{l.label} →</p>
+                    {l.note ? <p className="mt-1 text-sm" style={{ color: `${CHARCOAL}99` }}>{l.note}</p> : null}
+                  </Link>
                 ))}
               </div>
             ) : null}

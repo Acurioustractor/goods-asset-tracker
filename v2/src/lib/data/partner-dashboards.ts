@@ -83,6 +83,25 @@ export interface FunderImpact {
   quotes: { text: string; attribution: string }[];
 }
 
+/**
+ * A community-partnership feature (e.g. Oonchiumpa). One named partnership,
+ * what has actually happened so far, and where it goes next. Facts must trace
+ * to the public partner page or the trip stories, never invented.
+ */
+export interface CommunityPartnership {
+  name: string;
+  /** Who they are, in one or two sentences. */
+  intro: string;
+  /** The story so far: short titled beats, in order. */
+  beats: { title: string; body: string }[];
+  /** Consent-gated photos; only `documented` items render. */
+  photos: GalleryItem[];
+  quote?: { text: string; attribution: string };
+  /** Where this goes next (e.g. the pending facility submission). */
+  forward: { title: string; body: string };
+  links: DashboardLink[];
+}
+
 export interface PartnerDashboard {
   slug: string;
   password: string;
@@ -103,6 +122,10 @@ export interface PartnerDashboard {
   healthStrategyLine?: string;
   /** "Your part in this" section. Rendered only when set. */
   funderImpact?: FunderImpact;
+  /** Production-facility photos shown inside the community-owned-assets section. */
+  facilityGallery?: GalleryItem[];
+  /** Community-partnership feature section. Rendered only when set. */
+  communityPartnership?: CommunityPartnership;
   /** One-line "where we are right now". Falls back to the In-progress kanban column if unset. */
   statusLine?: string;
   /** Curated count — production facilities are not (yet) in the asset register. */
@@ -259,6 +282,60 @@ const snow: PartnerDashboard = {
     ],
     reactions: [
       // Add links to positive reactions found online (posts, mentions) here.
+    ],
+  },
+  // Equipment-only shots, no identifiable people.
+  facilityGallery: [
+    {
+      src: '/images/process/containers-wide-angle.jpg',
+      alt: 'The containerised production plant with doors open, presses inside',
+      consent: 'documented',
+    },
+    {
+      src: '/images/process/heat-press-container.jpg',
+      alt: 'Heat press and tubs of shredded recycled plastic inside a container',
+      consent: 'documented',
+    },
+    {
+      src: '/images/process/shredded-plastic-tubs.jpg',
+      alt: 'Tubs of shredded HDPE plastic ready for pressing',
+      consent: 'documented',
+    },
+  ],
+  communityPartnership: {
+    name: 'Oonchiumpa Consultancy and Services',
+    intro:
+      'Oonchiumpa is a 100 percent Aboriginal-owned consultancy in Alice Springs, owned and run by the Bloomfield family. Two years working together: cultural advice (paid at university research rates), youth programs, and the delivery network into the homelands.',
+    beats: [
+      {
+        title: 'Young people built the beds',
+        body: 'Two days out the back of the Oonchiumpa office in Alice Springs, May 2026. Young men and young women from the Oonchiumpa network built Stretch Beds from flat-pack, supported by Oonchiumpa workers.',
+      },
+      {
+        title: 'Every builder kept one',
+        body: 'Every young person who built a bed kept one for themselves. The first thing the work made was theirs.',
+      },
+      {
+        title: 'The rest went out to the homelands',
+        body: '107 beds went out by truck to Utopia Homelands, Arawerr and Ampilatwatja. Oonchiumpa chose which households; local teams led the deliveries; Centrecorp Foundation paid for the materials.',
+      },
+    ],
+    photos: [
+      { src: '/images/product/stretch-bed-kids-building.jpg', alt: 'Young people building a Stretch Bed in Alice Springs', consent: 'documented' },
+      { src: '/images/build/build-049.jpg', alt: 'Young people working together on a Stretch Bed frame', consent: 'documented' },
+      { src: '/images/partners/centrecorp/utopia/community-build.jpg', alt: 'Community members assembling Stretch Beds at Utopia Homelands', consent: 'documented' },
+    ],
+    quote: {
+      text: 'We want to create a safe space for our young people. There’s a lack of housing, which leads to a lack of sleep, which leads to low school attendance.',
+      attribution: 'Kristy Bloomfield, Director, Oonchiumpa Consultancy',
+    },
+    forward: {
+      title: 'The next step is on the table now',
+      body: 'Oonchiumpa has led a federal REAL Innovation Fund submission for a community-controlled production facility in Alice Springs, with a jobs pathway for young First Nations people. The decision is expected in the coming weeks. If it lands, the build session becomes a workforce.',
+    },
+    links: [
+      { label: 'The Utopia trip, in full', href: '/field-notes/utopia-may-2026', note: 'The field note from the May run: the build, the drive out, the Elders' },
+      { label: 'The Oonchiumpa partnership page', href: '/partners/oonchiumpa', note: 'The public story of how the partnership works' },
     ],
   },
   // consent: only 'documented' items render on the shared page (see GalleryItem).
