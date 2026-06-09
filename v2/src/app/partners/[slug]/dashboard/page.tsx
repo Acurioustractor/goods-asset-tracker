@@ -139,11 +139,14 @@ export default async function PartnerDashboardPage({ params }: Props) {
   const roadmap = await getRoadmap();
   const kanban = roadmap?.kanban ?? partner.kanban;
 
-  // Community voice (Empathy Ledger, consent-gated).
+  // Community voice (Empathy Ledger, consent-gated). Featured voices are the
+  // named, attribution-confirmed storytellers from the partner config; the
+  // anonymous EL quote grid only renders when no featured voices are set.
   const insights = await empathyLedger.getProjectInsights().catch(() => null);
   const themes = (insights?.themes ?? []).slice(0, 6);
   const quotes = (insights?.topQuotes ?? []).slice(0, 3);
-  const hasVoice = themes.length > 0 || quotes.length > 0;
+  const featuredVoices = partner.featuredVoices ?? [];
+  const hasVoice = featuredVoices.length > 0 || themes.length > 0 || quotes.length > 0;
 
   // The one secured figure (Xero-reconciled). Never a fresh client-side sum.
   const secured = verifiedFinancials.revenueReceived;
@@ -540,6 +543,31 @@ export default async function PartnerDashboardPage({ params }: Props) {
             <p className="mb-6 max-w-2xl text-sm leading-relaxed" style={{ color: `${CHARCOAL}bf` }}>
               Drawn from consented stories on Empathy Ledger. The quality signal is the themes and the voices that come up across the work, not a single satisfaction score. Where a voice is absent, consent is not yet given, not that there is no story.
             </p>
+
+            {featuredVoices.length > 0 ? (
+              <div className="mb-8 grid gap-4 md:grid-cols-3">
+                {featuredVoices.map((v) => (
+                  <figure key={v.name} className="flex flex-col overflow-hidden rounded-lg bg-white" style={{ border: '1px solid #E8DED4' }}>
+                    {v.image ? (
+                      <div className="relative aspect-[4/3]">
+                        <Image src={v.image.src} alt={v.image.alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 320px" />
+                      </div>
+                    ) : null}
+                    <div className="flex flex-1 flex-col p-6">
+                      {v.context ? (
+                        <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide" style={{ color: SAGE }}>{v.context}</p>
+                      ) : null}
+                      <blockquote className="font-display text-lg leading-snug" style={{ color: CHARCOAL }}>&ldquo;{v.quote}&rdquo;</blockquote>
+                      <figcaption className="mt-auto pt-4">
+                        <p className="text-sm font-semibold" style={{ color: CHARCOAL }}>{v.name}</p>
+                        <p className="mt-0.5 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>{v.role}</p>
+                      </figcaption>
+                    </div>
+                  </figure>
+                ))}
+              </div>
+            ) : null}
+
             {themes.length > 0 ? (
               <div className="mb-8 flex flex-wrap gap-2">
                 {themes.map((t) => (
@@ -550,7 +578,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
                 ))}
               </div>
             ) : null}
-            {quotes.length > 0 ? (
+            {featuredVoices.length === 0 && quotes.length > 0 ? (
               <div className="grid gap-4 md:grid-cols-3">
                 {quotes.map((q, i) => (
                   <figure key={i} className="rounded-lg bg-white p-6" style={{ border: '1px solid #E8DED4' }}>

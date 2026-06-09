@@ -102,6 +102,24 @@ export interface CommunityPartnership {
   links: DashboardLink[];
 }
 
+/**
+ * A named community voice featured in the "In their words" section. Only
+ * voices with confirmed public attribution belong here: either consented on
+ * Empathy Ledger (note the slug for provenance) or already published with
+ * their name on a public Goods page.
+ */
+export interface FeaturedVoice {
+  name: string;
+  /** One line of who they are to this work. */
+  role: string;
+  quote: string;
+  /** Short label for the quote's subject, e.g. "On the bed he built". */
+  context?: string;
+  image?: { src: string; alt: string };
+  /** Empathy Ledger storyteller slug, for provenance + future live sync. */
+  elSlug?: string;
+}
+
 export interface PartnerDashboard {
   slug: string;
   password: string;
@@ -126,6 +144,8 @@ export interface PartnerDashboard {
   facilityGallery?: GalleryItem[];
   /** Community-partnership feature section. Rendered only when set. */
   communityPartnership?: CommunityPartnership;
+  /** Named, attribution-confirmed voices for the "In their words" section. */
+  featuredVoices?: FeaturedVoice[];
   /** One-line "where we are right now". Falls back to the In-progress kanban column if unset. */
   statusLine?: string;
   /** Curated count — production facilities are not (yet) in the asset register. */
@@ -338,6 +358,37 @@ const snow: PartnerDashboard = {
       { label: 'The Oonchiumpa partnership page', href: '/partners/oonchiumpa', note: 'The public story of how the partnership works' },
     ],
   },
+  // All three are attribution-confirmed: Dianne and Kristy are consented EL
+  // storytellers; Mykel's public attribution is confirmed by Oonchiumpa, who
+  // hold guardianship for him (per his EL storyteller record).
+  featuredVoices: [
+    {
+      name: 'Dianne Stokes',
+      role: 'Warumungu and Warlmanpa Elder, Tennant Creek. She named the washing machine Pakkimjalki Kari.',
+      quote:
+        "I'm a traditional owner and where I live is in the boundary of my totem. I've been here almost 24 years without shelter. The only thing I had was my car.",
+      context: 'On what housing means here',
+      image: { src: '/images/people/dianne-stokes.jpg', alt: 'Dianne Stokes' },
+      elSlug: 'dianne-stokes',
+    },
+    {
+      name: 'Kristy Bloomfield',
+      role: 'Traditional Owner, Mparntwe. Leads Oonchiumpa, the partnership behind the Alice Springs build.',
+      quote:
+        "Back then we didn't have the opportunity to challenge government. Now we're in a position to say: this is a sacred site for us as Aboriginal women and traditional owners.",
+      context: 'On sovereignty',
+      image: { src: '/images/people/kristy-bloomfield.jpg', alt: 'Kristy Bloomfield' },
+      elSlug: 'kristy-bloomfield',
+    },
+    {
+      name: 'Mykel',
+      role: 'Young builder, Alice Springs. Built his own Stretch Bed and six more at the May 2026 build.',
+      quote: 'Comfortable as. Smooth, tight, hard, fancy.',
+      context: 'On the bed he built and slept on that night',
+      image: { src: '/images/people/mykel.jpg', alt: 'Mykel at the Alice Springs build' },
+      elSlug: 'mykel',
+    },
+  ],
   // consent: only 'documented' items render on the shared page (see GalleryItem).
   gallery: [
     { src: '/images/community/tennant-creek.jpg', alt: 'Tennant Creek community', consent: 'documented' },
