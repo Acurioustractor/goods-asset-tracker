@@ -13,6 +13,7 @@ import { ConfidenceChip, ConfidenceLegend } from '@/components/dashboard/confide
 import { CapitalStack } from '@/components/dashboard/capital-stack';
 import { OwnershipJourney, type JourneyStage } from '@/components/dashboard/ownership-journey';
 import { HealthPathway } from '@/components/dashboard/health-pathway';
+import { WasherJourney } from '@/components/dashboard/washer-journey';
 
 // Always live: read the asset register fresh each request.
 export const dynamic = 'force-dynamic';
@@ -170,6 +171,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
     { id: 'path', label: 'The path', grade: 'not-yet' },
     { id: 'assets', label: 'Community-owned assets', grade: 'not-yet' },
     { id: 'in-service', label: 'In service now', grade: 'counted' },
+    { id: 'washer', label: 'The washing machine', grade: 'not-yet' },
     ...(partner.funderImpact ? [{ id: 'your-part', label: 'Your part in this', grade: 'counted' } as NavItem] : []),
     ...(hasVoice ? [{ id: 'voice', label: 'Community voice' } as NavItem] : []),
     { id: 'whats-next', label: "What's next", grade: 'not-yet' },
@@ -369,6 +371,29 @@ export default async function PartnerDashboardPage({ params }: Props) {
               </div>
             </div>
           ) : null}
+        </Section>
+
+        {/* The washing machine path: ideation, V1, cost-down R&D, home ownership */}
+        <Section
+          id="washer"
+          eyebrow="Pakkimjalki Kari"
+          title="The washing machine, from idea to a home purchase"
+          confidence={{ grade: 'not-yet', note: 'Deployment counts are live from the register. Unit costs and the price target are founder estimates, labelled modelled. The destination is a design goal we have not reached.' }}
+        >
+          <p className="max-w-2xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
+            The bed has a sibling. Pakkimjalki Kari, named in Warumungu by Elder Dianne Stokes, is the washing
+            machine built for the conditions that kill ordinary machines. It exists because clean bedding is the
+            other half of the health chain above. Here is where it has come from, and where the R&D is taking it.
+          </p>
+          <div className="mt-8">
+            <WasherJourney
+              washersLine={
+                stats
+                  ? `${stats.washersDeployed} machines are in community today (${stats.washersWorking} reporting live), placed through councils and organisations.`
+                  : 'The current fleet is placed through councils and organisations.'
+              }
+            />
+          </div>
         </Section>
 
         {/* Your part in this (rendered only for partners with a funderImpact config) */}

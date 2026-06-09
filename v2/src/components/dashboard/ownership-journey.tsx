@@ -76,7 +76,7 @@ export function OwnershipJourney({ stages }: { stages: JourneyStage[] }) {
               ref={(el) => {
                 panelRefs.current[i] = el;
               }}
-              className="flex min-h-[46vh] flex-col justify-center border-t py-8 first:border-t-0 print:min-h-0 print:break-inside-avoid print:py-4"
+              className="flex min-h-[30vh] flex-col justify-center border-t py-6 first:border-t-0 print:min-h-0 print:break-inside-avoid print:py-4"
               style={{ borderColor: '#E8DED4' }}
             >
               {/* Step header (does the ladder's job on mobile and on paper). */}
