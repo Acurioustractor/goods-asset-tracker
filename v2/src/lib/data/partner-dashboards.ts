@@ -107,7 +107,8 @@ const snow: PartnerDashboard = {
   history: [
     { date: '2023', title: 'Snow becomes an anchor backer', detail: 'Support before the proof was in the houses.' },
     { date: '2024', title: 'Grant 2024/OC0014', detail: 'Multi-year support across beds, the production facility, and the team.' },
-    { date: '[confirm date]', title: 'Snow visits Tennant Creek with us', detail: 'Sally Grimsley-Ballard on country, seeing the work first-hand.' },
+    { date: 'Apr 2025', title: 'Snow visits Tennant Creek with us', detail: 'Sally Grimsley-Ballard on country on 2 April 2025, seeing the work first-hand.' },
+    { date: 'Aug 2025', title: 'Deadly Heart Trek, Katherine', detail: 'Out on the Katherine visit, 8 August 2025.' },
     { date: 'Jan 2026', title: 'First washing machine given to Dianne Stokes', detail: 'In Tennant Creek. She named it Pakkimjalki Kari in Warumungu.' },
     { date: 'Early 2026', title: 'Selected into QBE Catalysing Impact 2026', detail: 'Blended-finance accelerator run by the Social Impact Hub. Stage 2 in September could bring matched catalytic capital.' },
     { date: 'May 2026', title: 'Central Australia deployment', detail: 'Utopia + Alice Springs; 87 beds that trip, with Centrecorp as delivery partner.' },
@@ -115,9 +116,11 @@ const snow: PartnerDashboard = {
     { date: 'To date', title: '~$493K invested by Snow over three years', detail: 'Fully received. The anchor that makes the blended raise credible.' },
   ],
   links: [
+    { label: 'The Snow Foundation on Empathy Ledger', href: 'https://www.empathyledger.com/organisations/snow-foundation', note: 'Your stories, quotes and photos, gathered with consent, yours to revisit anytime', external: true },
+    { label: 'Snow + Goods at Tennant Creek', href: 'https://photos.google.com/share/AF1QipMM88kHBqqUV-udXeHpTB0FjhY8my5_dNWw7CeSphrsq20wt4BlLTmy9O-QoRfBwQ?key=TkY0VHA3cVVKR3V1T0NqOHFBSUpXZ0pGX01WSkNR', note: 'Photo album, 2 April 2025', external: true },
+    { label: 'Deadly Heart Trek, Katherine', href: 'https://photos.google.com/share/AF1QipNbosyzxtrQ0jy240fbDj6Bc58GrvH3dcxBsIfPfX9XMOk8v58MWIRKbA5xxV1KRw?key=dnlaTFhkb2llNHFqSXlWRnBUUy15X1VhSTVZZ1JR', note: 'Photo album, 8 August 2025', external: true },
     { label: 'The Utopia trip, in full', href: '/field-notes/utopia-may-2026', note: 'Photos + story from the May run' },
     { label: 'How the Stretch Bed works', href: '/stretch-bed' },
-    { label: 'How it is made', href: '/process' },
     { label: 'Live impact dashboard', href: '/impact', note: 'The full public impact view' },
   ],
   traffic: {
