@@ -67,6 +67,22 @@ export interface GalleryItem {
   consent: 'documented' | 'pending' | 'none';
 }
 
+/**
+ * The funder's own footprint in the work. Forward-facing, not a gratitude
+ * wall: what the backing built, and what that base now makes possible.
+ * Every dollar figure must have a provenance source noted in `total.note`.
+ */
+export interface FunderImpact {
+  /** Cumulative verified backing, e.g. from a Xero reconciliation. */
+  total: { value: string; note: string };
+  /** How a recent grant was actually put to work (e.g. the FY25 split). */
+  breakdown: { heading: string; items: { label: string; value: string }[] };
+  /** Shared moments on country: visits, treks, handovers. Kept short. */
+  moments: TimelineItem[];
+  /** The funder's own words back to them (board-forwardable social proof). */
+  quotes: { text: string; attribution: string }[];
+}
+
 export interface PartnerDashboard {
   slug: string;
   password: string;
@@ -81,6 +97,12 @@ export interface PartnerDashboard {
   goalStatement: string;
   /** One-line data-sovereignty statement shown near the hero. */
   dataSovereigntyLine?: string;
+  /** Consented hero image shown beside the headline (must be consent: documented). */
+  heroImage?: { src: string; alt: string; caption?: string };
+  /** One line tying the health chain to this funder's own published strategy. */
+  healthStrategyLine?: string;
+  /** "Your part in this" section. Rendered only when set. */
+  funderImpact?: FunderImpact;
   /** One-line "where we are right now". Falls back to the In-progress kanban column if unset. */
   statusLine?: string;
   /** Curated count — production facilities are not (yet) in the asset register. */
@@ -118,6 +140,38 @@ const snow: PartnerDashboard = {
     'The goal is not more beds shipped in from somewhere else. It is a production economy that runs on country, employs local people, and becomes community owned. A bed delivered is the output. Who owns the means of making the next one is the outcome.',
   dataSovereigntyLine:
     'Community holds the authority over these stories. We hold the count, and show our working.',
+  heroImage: {
+    src: '/images/media-pack/community-testing-bed-golden-hour.jpg',
+    alt: 'A family testing a Stretch Bed at golden hour',
+    caption: 'A Stretch Bed going into use on country. Shared with consent.',
+  },
+  healthStrategyLine:
+    'This is the same logic as your own RHD strategy: tackling the root social and environmental causes, with First Nations leadership. Goods sits in that portfolio alongside the Deadly Heart Trek and Orange Sky, as the health-hardware link in the chain.',
+  funderImpact: {
+    total: {
+      value: '$493,130',
+      note: 'Cumulative since 2023, Xero-reconciled on 9 June 2026, nothing outstanding.',
+    },
+    breakdown: {
+      heading: 'How the FY25 grant went to work',
+      items: [
+        { label: 'Community engagement, four Tennant Creek visits', value: '$48K' },
+        { label: 'Mattress V2 research and development', value: '$20K' },
+        { label: 'Washing machine V1', value: '$20K' },
+        { label: 'Training and employment', value: '$12K' },
+      ],
+    },
+    moments: [
+      { date: '2023', title: 'Snow backs Goods before the proof is in the houses', detail: 'Anchor support when this was still a bold idea.' },
+      { date: 'Apr 2025', title: 'Sally on country at Tennant Creek', detail: 'Seeing the beds in homes first-hand, 2 April 2025.' },
+      { date: 'Aug 2025', title: 'Beds alongside the Deadly Heart Trek, Katherine', detail: 'Deliveries ran beside the Trek’s heart-screening visit, 8 August 2025.' },
+      { date: 'Jan 2026', title: 'First washing machine given to Dianne Stokes', detail: 'In Tennant Creek. She named it Pakkimjalki Kari in Warumungu.' },
+    ],
+    quotes: [
+      { text: 'Resoundingly, Goods is a standout project.', attribution: 'Sally Grimsley-Ballard, Head of Partnerships, November 2025' },
+      { text: 'We loved seeing first-hand how impressed and grateful individuals and families were to receive the beds.', attribution: 'Georgina Byron AM, CEO' },
+    ],
+  },
   statusLine:
     'Commissioning the first containerised plant (about 85 percent); the Alice Springs facility submission with Oonchiumpa is in review.',
   facilities: {
@@ -190,7 +244,7 @@ const snow: PartnerDashboard = {
     headline: 'Back the next handover',
     action: 'Help close the match',
     supporting:
-      'QBE will match up to $400K, but only against capital we raise alongside it. Closing that gap is what unlocks the next community-owned facility.',
+      'Three years of trusting, long-term partnership put the proof in the houses. The next stage is the kind of bold idea that rewards considered risk: QBE will match up to $400K, but only against capital we raise alongside it. Closing that gap unlocks the next community-owned facility.',
     href: '/partner',
   },
   traffic: {

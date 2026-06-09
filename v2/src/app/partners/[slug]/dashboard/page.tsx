@@ -12,6 +12,7 @@ import { Section } from '@/components/dashboard/section';
 import { ConfidenceChip, ConfidenceLegend } from '@/components/dashboard/confidence-chip';
 import { CapitalStack } from '@/components/dashboard/capital-stack';
 import { OwnershipJourney, type JourneyStage } from '@/components/dashboard/ownership-journey';
+import { HealthPathway } from '@/components/dashboard/health-pathway';
 
 // Always live: read the asset register fresh each request.
 export const dynamic = 'force-dynamic';
@@ -165,9 +166,11 @@ export default async function PartnerDashboardPage({ params }: Props) {
   const nav: NavItem[] = [
     { id: 'heading', label: "Where we're heading", grade: 'counted' },
     { id: 'goal', label: 'The goal' },
+    { id: 'health', label: 'Health hardware', grade: 'modelled' },
     { id: 'path', label: 'The path', grade: 'not-yet' },
     { id: 'assets', label: 'Community-owned assets', grade: 'not-yet' },
     { id: 'in-service', label: 'In service now', grade: 'counted' },
+    ...(partner.funderImpact ? [{ id: 'your-part', label: 'Your part in this', grade: 'counted' } as NavItem] : []),
     ...(hasVoice ? [{ id: 'voice', label: 'Community voice' } as NavItem] : []),
     { id: 'whats-next', label: "What's next", grade: 'not-yet' },
     { id: 'back-it', label: 'Back the next stage' },
@@ -200,10 +203,24 @@ export default async function PartnerDashboardPage({ params }: Props) {
             </div>
           </div>
 
-          <p className="mb-4 text-xs uppercase tracking-wide" style={{ color: RUST }}>{partner.partnerName}</p>
-          <h1 className="mb-4 font-display text-4xl leading-[1.05] sm:text-5xl" style={{ color: CHARCOAL }}>{partner.heroLine}</h1>
-          <p className="max-w-3xl font-display text-xl leading-snug sm:text-2xl" style={{ color: RUST }}>{partner.thesisLine}</p>
-          <p className="mt-4 max-w-3xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{partner.intro}</p>
+          <div className={partner.heroImage ? 'grid items-center gap-8 lg:grid-cols-[3fr_2fr]' : undefined}>
+            <div>
+              <p className="mb-4 text-xs uppercase tracking-wide" style={{ color: RUST }}>{partner.partnerName}</p>
+              <h1 className="mb-4 font-display text-4xl leading-[1.05] sm:text-5xl" style={{ color: CHARCOAL }}>{partner.heroLine}</h1>
+              <p className="max-w-3xl font-display text-xl leading-snug sm:text-2xl" style={{ color: RUST }}>{partner.thesisLine}</p>
+              <p className="mt-4 max-w-3xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{partner.intro}</p>
+            </div>
+            {partner.heroImage ? (
+              <figure className="overflow-hidden rounded-xl bg-white" style={{ border: '1px solid #E8DED4' }}>
+                <div className="relative aspect-[4/3]">
+                  <Image src={partner.heroImage.src} alt={partner.heroImage.alt} fill priority className="object-cover" sizes="(max-width: 1024px) 100vw, 420px" />
+                </div>
+                {partner.heroImage.caption ? (
+                  <figcaption className="px-4 py-2.5 text-[11px]" style={{ color: `${CHARCOAL}99` }}>{partner.heroImage.caption}</figcaption>
+                ) : null}
+              </figure>
+            ) : null}
+          </div>
 
           {/* Counted answers only. Modelled figures live in "In service now". */}
           <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -238,6 +255,23 @@ export default async function PartnerDashboardPage({ params }: Props) {
           <p className="mt-4 max-w-2xl text-sm leading-relaxed" style={{ color: `${CHARCOAL}99` }}>
             Across this page, a good moved is the output. What changes for people, and who owns the means of making the next one, is the outcome.
           </p>
+        </Section>
+
+        {/* Why this is health hardware (the chain a funder can stand behind) */}
+        <Section
+          id="health"
+          eyebrow="Why it matters"
+          title="A good bed is health hardware"
+          confidence={{ grade: 'modelled', note: 'Each link is graded. The deployments are counted; the prevention pathway is published, modelled evidence we contribute to, not a Goods clinical result.' }}
+        >
+          <p className="max-w-2xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
+            A washing machine is not convenience and a bed is not furniture. Clean bedding and a bed off the
+            floor sit inside the documented prevention chain for rheumatic heart disease, the condition that
+            started Goods in the first place.
+          </p>
+          <div className="mt-8">
+            <HealthPathway strategyLine={partner.healthStrategyLine} />
+          </div>
         </Section>
 
         {/* The path (forward reframe) */}
@@ -336,6 +370,61 @@ export default async function PartnerDashboardPage({ params }: Props) {
             </div>
           ) : null}
         </Section>
+
+        {/* Your part in this (rendered only for partners with a funderImpact config) */}
+        {partner.funderImpact ? (
+          <Section
+            id="your-part"
+            eyebrow="Your part in this"
+            title="What your backing has built"
+            confidence={{ grade: 'counted', note: 'The cumulative figure is Xero-reconciled. The split is how the FY25 grant was acquitted.' }}
+          >
+            <div className="grid gap-4 lg:grid-cols-[2fr_3fr]">
+              <div className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+                <p className="font-display text-4xl leading-none sm:text-5xl" style={{ color: RUST }}>{partner.funderImpact.total.value}</p>
+                <p className="mt-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}b3` }}>{partner.funderImpact.total.note}</p>
+                <div className="mt-4"><ConfidenceChip grade="counted" /></div>
+              </div>
+              <div className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+                <p className="mb-4 text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>{partner.funderImpact.breakdown.heading}</p>
+                <ul className="space-y-3">
+                  {partner.funderImpact.breakdown.items.map((it) => (
+                    <li key={it.label} className="flex items-baseline justify-between gap-4">
+                      <span className="text-sm leading-snug" style={{ color: `${CHARCOAL}cc` }}>{it.label}</span>
+                      <span className="shrink-0 font-display text-lg" style={{ color: CHARCOAL }}>{it.value}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {partner.funderImpact.moments.length > 0 ? (
+              <div className="mt-6">
+                <p className="mb-3 text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>On country together</p>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  {partner.funderImpact.moments.map((m) => (
+                    <div key={m.title} className="rounded-lg p-4" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+                      <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: SAGE }}>{m.date}</p>
+                      <p className="mt-1.5 text-sm font-medium leading-snug" style={{ color: CHARCOAL }}>{m.title}</p>
+                      {m.detail ? <p className="mt-1 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>{m.detail}</p> : null}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
+            {partner.funderImpact.quotes.length > 0 ? (
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                {partner.funderImpact.quotes.map((q) => (
+                  <figure key={q.attribution} className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+                    <blockquote className="font-display text-lg leading-snug" style={{ color: CHARCOAL }}>&ldquo;{q.text}&rdquo;</blockquote>
+                    <figcaption className="mt-3 text-xs uppercase tracking-wide" style={{ color: SAGE }}>{q.attribution}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            ) : null}
+          </Section>
+        ) : null}
 
         {/* Community voice */}
         {hasVoice ? (
