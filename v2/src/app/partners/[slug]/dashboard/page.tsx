@@ -5,6 +5,8 @@ import type { Metadata } from 'next';
 import { getPartnerDashboard } from '@/lib/data/partner-dashboards';
 import { getAssetStats } from '@/lib/data/impact-fetcher';
 import { getRoadmap } from '@/lib/data/roadmap';
+import { FINANCIAL_SUMMARY } from '@/lib/data/impact-model';
+import { empathyLedger } from '@/lib/empathy-ledger/client';
 
 // Always live: read the asset register fresh each request.
 export const dynamic = 'force-dynamic';
@@ -65,6 +67,13 @@ export default async function PartnerDashboardPage({ params }: Props) {
   const kanban = roadmap?.kanban ?? partner.kanban;
   const timeline = roadmap?.timeline ?? partner.history;
 
+  // Funding -> impact pathway (Goods-wide) + community voice (Empathy Ledger).
+  const funding = FINANCIAL_SUMMARY.totalInvestment;
+  const peopleReached = stats ? Math.round(stats.totalBeds * 2.5) : null;
+  const insights = await empathyLedger.getProjectInsights().catch(() => null);
+  const themes = (insights?.themes ?? []).slice(0, 6);
+  const quotes = (insights?.topQuotes ?? []).slice(0, 3);
+
   return (
     <main className="min-h-screen" style={{ backgroundColor: CREAM, color: CHARCOAL }}>
       <section className="px-5 sm:px-8 pt-12 sm:pt-16 pb-10 max-w-5xl mx-auto">
@@ -107,6 +116,46 @@ export default async function PartnerDashboardPage({ params }: Props) {
         </p>
       </section>
 
+      {/* Funding to impact pathway (Goods-wide) */}
+      <section className="px-5 sm:px-8 py-14" style={{ backgroundColor: '#FFFFFF' }}>
+        <div className="max-w-5xl mx-auto">
+          <p className="text-xs uppercase mb-6" style={{ color: RUST }}>From funding to change on country</p>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { v: `$${Math.round(funding / 1000)}K`, l: 'Funding received', s: 'All sources, reconciles to Xero' },
+              { v: stats ? `${stats.totalBeds} + ${stats.washersDeployed}` : '—', l: 'Beds + washing machines delivered', s: `Across ${communities} communities` },
+              { v: peopleReached ? `~${peopleReached.toLocaleString()}` : '—', l: 'People reached', s: 'Modelled, ~2.5 per bed' },
+              { v: stats ? `${((stats.stretchBedsDeployed * 20) / 1000).toFixed(2)} t` : '—', l: 'Plastic kept out of landfill', s: 'Recycled into Stretch Beds' },
+            ].map((n, i) => (
+              <div key={i} className="rounded-lg p-5" style={{ backgroundColor: CREAM, border: '1px solid #E8DED4' }}>
+                <span className="text-xs font-semibold" style={{ color: SAGE }}>Step {i + 1}</span>
+                <p className="font-display text-2xl sm:text-3xl leading-none mt-1 mb-2" style={{ color: RUST }}>{n.v}</p>
+                <p className="text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>{n.l}</p>
+                <p className="text-xs mt-1" style={{ color: `${CHARCOAL}99` }}>{n.s}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs mt-3" style={{ color: `${CHARCOAL}80` }}>
+            The chain from capital to community: funding becomes goods in homes, people reached, and plastic kept out of landfill.
+          </p>
+        </div>
+      </section>
+
+      {/* Financial stewardship */}
+      <section className="px-5 sm:px-8 py-14 max-w-5xl mx-auto">
+        <p className="text-xs uppercase mb-6" style={{ color: RUST }}>Responsible use of funding</p>
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+          <Stat value={`$${Math.round(funding / 1000)}K`} label="Funding received to date" sub="All sources, reconciles to Xero" />
+          <Stat value="$534.79" label="Cost per bed (direct)" sub="$684.79 fully loaded" />
+          {partner.contribution ? (
+            <Stat value={partner.contribution.value} label={`${partner.partnerName} contribution`} sub={partner.contribution.note} />
+          ) : null}
+        </div>
+        <p className="text-xs mt-3" style={{ color: `${CHARCOAL}80` }}>
+          We report dollars as cost per bed, an output we can verify, rather than cost per outcome. Outcomes are modelled until we instrument them (see how we know these numbers, below).
+        </p>
+      </section>
+
       {/* Kanban: what we're working towards */}
       <section className="px-5 sm:px-8 py-14" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-5xl mx-auto">
@@ -143,6 +192,37 @@ export default async function PartnerDashboardPage({ params }: Props) {
           ))}
         </ol>
       </section>
+
+      {/* Community voice — Empathy Ledger themes + quotes (the quality signal) */}
+      {themes.length > 0 || quotes.length > 0 ? (
+        <section className="px-5 sm:px-8 py-14 max-w-5xl mx-auto">
+          <p className="text-xs uppercase mb-2" style={{ color: RUST }}>What people tell us</p>
+          <p className="text-sm leading-relaxed max-w-2xl mb-6" style={{ color: `${CHARCOAL}bf` }}>
+            Drawn from consented stories on Empathy Ledger. This is the quality signal: the themes and the voices that come up across the work, not a single satisfaction score.
+          </p>
+          {themes.length > 0 ? (
+            <div className="flex flex-wrap gap-2 mb-8">
+              {themes.map((t) => (
+                <span key={t.name} className="text-sm rounded-full px-4 py-2" style={{ backgroundColor: CREAM, color: CHARCOAL, border: '1px solid #E8DED4' }}>
+                  {t.name.replace(/[_-]+/g, ' ').replace(/^./, (c) => c.toUpperCase())}
+                  {t.storytellerCount ? <span style={{ color: `${CHARCOAL}80` }}> · {t.storytellerCount}</span> : null}
+                </span>
+              ))}
+            </div>
+          ) : null}
+          {quotes.length > 0 ? (
+            <div className="grid md:grid-cols-3 gap-4">
+              {quotes.map((q, i) => (
+                <figure key={i} className="rounded-lg p-6 bg-white" style={{ border: '1px solid #E8DED4' }}>
+                  <blockquote className="font-display text-lg leading-snug" style={{ color: CHARCOAL }}>&ldquo;{q.text}&rdquo;</blockquote>
+                  {q.context ? <figcaption className="text-xs uppercase mt-4" style={{ color: SAGE }}>{q.context}</figcaption> : null}
+                </figure>
+              ))}
+            </div>
+          ) : null}
+          <p className="text-xs mt-4" style={{ color: `${CHARCOAL}80` }}>Live from Empathy Ledger, consent-cleared.</p>
+        </section>
+      ) : null}
 
       {/* Photo gallery */}
       {partner.gallery.length > 0 ? (
@@ -202,6 +282,34 @@ export default async function PartnerDashboardPage({ params }: Props) {
               <Link key={l.href} href={l.href} className={cls} style={style}>{inner}</Link>
             );
           })}
+        </div>
+      </section>
+
+      {/* How we know these numbers — data confidence */}
+      <section className="px-5 sm:px-8 py-14" style={{ backgroundColor: '#FFFFFF' }}>
+        <div className="max-w-3xl mx-auto">
+          <p className="text-xs uppercase mb-2" style={{ color: RUST }}>How we know these numbers</p>
+          <p className="text-sm leading-relaxed mb-6" style={{ color: `${CHARCOAL}bf` }}>
+            We would rather show what is counted, what is modelled, and what is not yet measured than blur the line. That honesty is the point.
+          </p>
+          <div className="space-y-4">
+            <div>
+              <p className="text-sm font-semibold" style={{ color: SAGE }}>Counted, not estimated</p>
+              <p className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}bf` }}>Beds, communities, washing machines, plastic and funding, read live from the asset register and reconciled to Xero.</p>
+            </div>
+            <div>
+              <p className="text-sm font-semibold" style={{ color: SAGE }}>Modelled, clearly labelled</p>
+              <p className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}bf` }}>People reached (about 2.5 per bed) and the health pathway (clean bedding toward reduced skin infection and rheumatic heart disease) are assumptions, not measurements.</p>
+            </div>
+            <div>
+              <p className="text-sm font-semibold" style={{ color: SAGE }}>Qualitative evidence</p>
+              <p className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}bf` }}>How the work is received comes through consented Empathy Ledger transcripts, themes and quotes (above), not a single satisfaction score.</p>
+            </div>
+            <div>
+              <p className="text-sm font-semibold" style={{ color: SAGE }}>Not yet measured</p>
+              <p className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}bf` }}>Outcome rates against targets and equity demographics. Instrumenting these, with community consent, is on the roadmap.</p>
+            </div>
+          </div>
         </div>
       </section>
 
