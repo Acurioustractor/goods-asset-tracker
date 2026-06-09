@@ -2,11 +2,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { getPartnerDashboard } from '@/lib/data/partner-dashboards';
+import { getPartnerDashboard, type OwnershipStage } from '@/lib/data/partner-dashboards';
 import { getAssetStats } from '@/lib/data/impact-fetcher';
 import { getRoadmap } from '@/lib/data/roadmap';
-import { FINANCIAL_SUMMARY } from '@/lib/data/impact-model';
+import { verifiedFinancials } from '@/lib/data/compendium';
 import { empathyLedger } from '@/lib/empathy-ledger/client';
+import { DashboardScroll, type NavItem } from '@/components/dashboard/dashboard-scroll';
+import { Section } from '@/components/dashboard/section';
+import { ConfidenceChip, ConfidenceLegend } from '@/components/dashboard/confidence-chip';
+import { CapitalStack } from '@/components/dashboard/capital-stack';
 
 // Always live: read the asset register fresh each request.
 export const dynamic = 'force-dynamic';
@@ -23,19 +27,71 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const p = getPartnerDashboard(slug);
   return {
     title: p ? `${p.partnerName} — Goods on Country partner dashboard` : 'Partner dashboard',
+    description: p?.thesisLine,
     robots: { index: false, follow: false },
   };
 }
 
-function Stat({ value, label, sub }: { value: string; label: string; sub?: string }) {
+const fmtAUD = (n: number) =>
+  new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', maximumFractionDigits: 0 }).format(n);
+
+// A counted hero answer.
+function HeroStat({ value, label }: { value: string; label: string }) {
   return (
-    <div className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-      <p className="font-display text-3xl sm:text-4xl leading-none mb-2" style={{ color: RUST }}>{value}</p>
-      <p className="text-sm font-semibold" style={{ color: CHARCOAL }}>{label}</p>
-      {sub ? <p className="text-xs mt-1" style={{ color: `${CHARCOAL}99` }}>{sub}</p> : null}
+    <div className="rounded-lg px-4 py-3" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+      <p className="font-display text-2xl leading-none sm:text-3xl" style={{ color: RUST }}>{value}</p>
+      <p className="mt-1.5 text-xs leading-snug" style={{ color: `${CHARCOAL}b3` }}>{label}</p>
     </div>
   );
 }
+
+// A graded metric card for the "in service" section.
+function MetricCard({
+  value,
+  label,
+  comparison,
+  pill,
+  grade,
+  note,
+}: {
+  value: string;
+  label: string;
+  comparison: string;
+  pill?: { text: string; live?: boolean };
+  grade: 'counted' | 'modelled';
+  note?: string;
+}) {
+  return (
+    <div className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+      <div className="flex items-start justify-between gap-3">
+        <p className="font-display text-3xl leading-none sm:text-4xl" style={{ color: RUST }}>{value}</p>
+        {pill ? (
+          <span
+            className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold"
+            style={{ backgroundColor: pill.live ? '#E6EDDD' : '#EEE9E3', color: pill.live ? '#4F6138' : '#6A5E54' }}
+          >
+            {pill.live ? <span className="inline-block h-1.5 w-1.5 rounded-full" style={{ backgroundColor: SAGE }} /> : null}
+            {pill.text}
+          </span>
+        ) : null}
+      </div>
+      <p className="mt-2 text-sm font-semibold" style={{ color: CHARCOAL }}>{label}</p>
+      <p className="mt-1 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>{comparison}</p>
+      <div className="mt-3">
+        <ConfidenceChip grade={grade} note={note} />
+      </div>
+    </div>
+  );
+}
+
+const STAGE_ORDER: OwnershipStage[] = ['planned', 'built', 'operating', 'community-run', 'community-owned'];
+const STAGE_LABEL: Record<OwnershipStage, string> = {
+  planned: 'Planned',
+  built: 'Built',
+  operating: 'Operating',
+  'community-run': 'Community run',
+  'community-owned': 'Community owned',
+};
 
 export default async function PartnerDashboardPage({ params }: Props) {
   const { slug } = await params;
@@ -52,268 +108,338 @@ export default async function PartnerDashboardPage({ params }: Props) {
 
   const beds = stats ? stats.totalBeds.toLocaleString() : '—';
   const communities = stats ? String(stats.communitiesServed) : '—';
-  // Plastic = STRETCH beds only (recycled HDPE), ~20 kg each.
+  const stretch = stats ? stats.stretchBedsDeployed.toLocaleString() : '—';
   const plasticT = stats ? `${((stats.stretchBedsDeployed * 20) / 1000).toFixed(2)} t` : '—';
   const washers = stats ? `${stats.washersWorking} / ${stats.washersDeployed}` : '—';
+  const washersUnconfirmed = stats ? stats.washersDeployed - stats.washersWorking : 0;
+  const peopleReached = stats ? Math.round(stats.totalBeds * 2.5) : null;
   const communityList = stats
     ? stats.communityBreakdown
         .map((c) => c.community)
         .filter((c) => c && c !== 'Unknown' && c !== 'Pending Delivery')
     : [];
 
-  // Kanban + timeline live from roadmap_items; fall back to config if the table
-  // is unavailable/empty during the switch-over.
+  // Roadmap (live), with config fallback.
   const roadmap = await getRoadmap();
   const kanban = roadmap?.kanban ?? partner.kanban;
   const timeline = roadmap?.timeline ?? partner.history;
 
-  // Funding -> impact pathway (Goods-wide) + community voice (Empathy Ledger).
-  const funding = FINANCIAL_SUMMARY.totalInvestment;
-  const peopleReached = stats ? Math.round(stats.totalBeds * 2.5) : null;
+  // Community voice (Empathy Ledger, consent-gated).
   const insights = await empathyLedger.getProjectInsights().catch(() => null);
   const themes = (insights?.themes ?? []).slice(0, 6);
   const quotes = (insights?.topQuotes ?? []).slice(0, 3);
+  const hasVoice = themes.length > 0 || quotes.length > 0;
+
+  // The one secured figure (Xero-reconciled). Never a fresh client-side sum.
+  const secured = verifiedFinancials.revenueReceived;
+  const asAt = verifiedFinancials.lastUpdated;
+
+  // Consent-gated gallery: only documented items reach the page.
+  const gallery = partner.gallery.filter((g) => g.consent === 'documented');
+
+  // Nav rail with a confidence dot per section (the epistemic map).
+  const nav: NavItem[] = [
+    { id: 'heading', label: "Where we're heading", grade: 'counted' },
+    { id: 'goal', label: 'The goal' },
+    { id: 'path', label: 'The path', grade: 'not-yet' },
+    { id: 'assets', label: 'Community-owned assets', grade: 'not-yet' },
+    { id: 'in-service', label: 'In service now', grade: 'counted' },
+    ...(hasVoice ? [{ id: 'voice', label: 'Community voice' } as NavItem] : []),
+    { id: 'whats-next', label: "What's next", grade: 'not-yet' },
+    { id: 'back-it', label: 'Back the next stage' },
+  ];
 
   return (
     <main className="min-h-screen" style={{ backgroundColor: CREAM, color: CHARCOAL }}>
-      <section className="px-5 sm:px-8 pt-12 sm:pt-16 pb-10 max-w-5xl mx-auto">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-10">
-          <Link href="/" className="inline-flex flex-col leading-none">
-            <span className="font-display text-3xl sm:text-4xl" style={{ color: CHARCOAL }}>Goods</span>
-            <span className="text-[10px] sm:text-xs uppercase mt-1" style={{ color: `${CHARCOAL}99` }}>On Country · Partner dashboard</span>
-          </Link>
-          <div className="rounded-lg bg-white px-4 py-3 shadow-sm" style={{ border: '1px solid #E8DED4' }}>
-            <Image src="/images/partners/snow-foundation.png" alt={partner.partnerName} width={400} height={160} priority className="h-12 w-auto" />
+      <style>{`@media print { nav[aria-label="On this page"]{display:none!important} section{break-inside:avoid} }`}</style>
+
+      {/* ---- Hero (full-width band, tracked by the rail) ---- */}
+      <section id="heading" className="scroll-mt-24 px-5 pb-10 pt-12 sm:px-8 sm:pt-16">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <Link href="/" className="inline-flex flex-col leading-none">
+              <span className="font-display text-3xl sm:text-4xl" style={{ color: CHARCOAL }}>Goods</span>
+              <span className="mt-1 text-[10px] uppercase sm:text-xs" style={{ color: `${CHARCOAL}99` }}>On Country · Partner dashboard</span>
+            </Link>
+            <div className="rounded-lg bg-white px-4 py-3 shadow-sm" style={{ border: '1px solid #E8DED4' }}>
+              <Image src="/images/partners/snow-foundation.png" alt={partner.partnerName} width={400} height={160} priority className="h-12 w-auto" />
+            </div>
           </div>
-        </div>
 
-        <p className="text-xs uppercase mb-4" style={{ color: RUST }}>{partner.partnerName}</p>
-        <h1 className="font-display text-4xl sm:text-5xl leading-[1.05] mb-5" style={{ color: CHARCOAL }}>{partner.heroLine}</h1>
-        <p className="text-base sm:text-lg leading-relaxed max-w-3xl" style={{ color: `${CHARCOAL}cc` }}>{partner.intro}</p>
-      </section>
+          <p className="mb-4 text-xs uppercase tracking-wide" style={{ color: RUST }}>{partner.partnerName}</p>
+          <h1 className="mb-4 font-display text-4xl leading-[1.05] sm:text-5xl" style={{ color: CHARCOAL }}>{partner.heroLine}</h1>
+          <p className="max-w-3xl font-display text-xl leading-snug sm:text-2xl" style={{ color: RUST }}>{partner.thesisLine}</p>
+          <p className="mt-4 max-w-3xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{partner.intro}</p>
 
-      {/* Live trajectory */}
-      <section className="px-5 sm:px-8 pb-14 max-w-5xl mx-auto">
-        <div className="flex items-center gap-2 mb-4">
-          <span className="inline-block h-2 w-2 rounded-full" style={{ backgroundColor: SAGE }} />
-          <p className="text-xs uppercase" style={{ color: RUST }}>The trajectory, live from the field</p>
-        </div>
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
-          <Stat value={beds} label="Beds in community" sub={stats ? `${stats.stretchBedsDeployed} recycled-plastic Stretch Beds` : undefined} />
-          <Stat value={communities} label="Communities" />
-          <Stat value={plasticT} label="Plastic diverted" sub="~20 kg per Stretch Bed" />
-          <Stat value={washers} label="Washing machines" sub="live / deployed" />
-          <Stat value={partner.facilities.value} label="Production facilities" sub={partner.facilities.note} />
-        </div>
-        {communityList.length > 0 ? (
-          <p className="text-sm mt-4 leading-relaxed" style={{ color: `${CHARCOAL}b3` }}>
-            <span className="font-semibold" style={{ color: CHARCOAL }}>The {communityList.length} communities: </span>
-            {communityList.join('  ·  ')}
-          </p>
-        ) : null}
-        <p className="text-xs mt-3" style={{ color: `${CHARCOAL}80` }}>
-          Beds, communities, plastic (Stretch Beds only) and washing machines read live from the Goods asset register. Production facilities are a curated count.
-        </p>
-      </section>
-
-      {/* Funding to impact pathway (Goods-wide) */}
-      <section className="px-5 sm:px-8 py-14" style={{ backgroundColor: '#FFFFFF' }}>
-        <div className="max-w-5xl mx-auto">
-          <p className="text-xs uppercase mb-6" style={{ color: RUST }}>From funding to change on country</p>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              { v: `$${Math.round(funding / 1000)}K`, l: 'Funding received', s: 'All sources, reconciles to Xero' },
-              { v: stats ? `${stats.totalBeds} + ${stats.washersDeployed}` : '—', l: 'Beds + washing machines delivered', s: `Across ${communities} communities` },
-              { v: peopleReached ? `~${peopleReached.toLocaleString()}` : '—', l: 'People reached', s: 'Modelled, ~2.5 per bed' },
-              { v: stats ? `${((stats.stretchBedsDeployed * 20) / 1000).toFixed(2)} t` : '—', l: 'Plastic kept out of landfill', s: 'Recycled into Stretch Beds' },
-            ].map((n, i) => (
-              <div key={i} className="rounded-lg p-5" style={{ backgroundColor: CREAM, border: '1px solid #E8DED4' }}>
-                <span className="text-xs font-semibold" style={{ color: SAGE }}>Step {i + 1}</span>
-                <p className="font-display text-2xl sm:text-3xl leading-none mt-1 mb-2" style={{ color: RUST }}>{n.v}</p>
-                <p className="text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>{n.l}</p>
-                <p className="text-xs mt-1" style={{ color: `${CHARCOAL}99` }}>{n.s}</p>
-              </div>
-            ))}
+          {/* Counted answers only. Modelled figures live in "In service now". */}
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <HeroStat value={beds} label="Beds in community" />
+            <HeroStat value={communities} label="Communities" />
+            <HeroStat value={washers} label="Washing machines live / deployed" />
+            <HeroStat value={fmtAUD(secured)} label="Secured to date" />
           </div>
-          <p className="text-xs mt-3" style={{ color: `${CHARCOAL}80` }}>
-            The chain from capital to community: funding becomes goods in homes, people reached, and plastic kept out of landfill.
-          </p>
-        </div>
-      </section>
+          <div className="mt-3 flex items-center gap-2">
+            <ConfidenceChip grade="counted" />
+            <p className="text-xs" style={{ color: `${CHARCOAL}80` }}>Live from the asset register and Xero-reconciled, as at {asAt}.</p>
+          </div>
 
-      {/* Financial stewardship */}
-      <section className="px-5 sm:px-8 py-14 max-w-5xl mx-auto">
-        <p className="text-xs uppercase mb-6" style={{ color: RUST }}>Responsible use of funding</p>
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-          <Stat value={`$${Math.round(funding / 1000)}K`} label="Funding received to date" sub="All sources, reconciles to Xero" />
-          <Stat value="$534.79" label="Cost per bed (direct)" sub="$684.79 fully loaded" />
-          {partner.contribution ? (
-            <Stat value={partner.contribution.value} label={`${partner.partnerName} contribution`} sub={partner.contribution.note} />
+          {partner.dataSovereigntyLine ? (
+            <p className="mt-6 max-w-2xl border-l-2 pl-4 text-sm italic leading-relaxed" style={{ borderColor: SAGE, color: `${CHARCOAL}b3` }}>
+              {partner.dataSovereigntyLine}
+            </p>
           ) : null}
+
+          <div className="mt-7 rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+            <p className="mb-3 text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>How sure are we</p>
+            <ConfidenceLegend />
+          </div>
         </div>
-        <p className="text-xs mt-3" style={{ color: `${CHARCOAL}80` }}>
-          We report dollars as cost per bed, an output we can verify, rather than cost per outcome. Outcomes are modelled until we instrument them (see how we know these numbers, below).
-        </p>
       </section>
 
-      {/* Kanban: what we're working towards */}
-      <section className="px-5 sm:px-8 py-14" style={{ backgroundColor: '#FFFFFF' }}>
-        <div className="max-w-5xl mx-auto">
-          <p className="text-xs uppercase mb-6" style={{ color: RUST }}>What we are working towards</p>
-          <div className="grid md:grid-cols-3 gap-4">
+      {/* ---- Long scroll with the sticky rail ---- */}
+      <DashboardScroll sections={nav}>
+        {/* The goal */}
+        <Section id="goal" eyebrow="The goal" title="Where we are heading" posture="Direction, not measurement">
+          <p className="max-w-2xl text-lg leading-relaxed" style={{ color: `${CHARCOAL}dd` }}>{partner.goalStatement}</p>
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed" style={{ color: `${CHARCOAL}99` }}>
+            Across this page, a good moved is the output. What changes for people, and who owns the means of making the next one, is the outcome.
+          </p>
+        </Section>
+
+        {/* The path (forward reframe) */}
+        <Section
+          id="path"
+          eyebrow="The path"
+          title="What it takes, and how the money is built"
+          confidence={{ grade: 'not-yet', note: 'Forward targets and live conversations, not money in the bank. Only the secured figure is received.' }}
+        >
+          <CapitalStack securedToDate={secured} />
+        </Section>
+
+        {/* Community-owned assets (the heart) */}
+        <Section
+          id="assets"
+          eyebrow="The assets that stay"
+          title="What the community comes to own"
+          confidence={{ grade: 'not-yet', note: 'What exists today is counted; the ownership transfer is in design. Stages are named, not claimed done.' }}
+        >
+          <p className="max-w-2xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
+            We are building a recycled-plastic plant on country, collect, shred, melt, press, that is designed to leave our hands.
+            The community becomes the operator, then the owner, of the means of making the next bed.
+          </p>
+          <div className="mt-7 space-y-5">
+            {(partner.ownershipMilestones ?? []).map((m) => {
+              const idx = STAGE_ORDER.indexOf(m.stage);
+              return (
+                <div key={m.facility} className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <p className="font-display text-xl" style={{ color: CHARCOAL }}>{m.facility}</p>
+                    <p className="text-xs uppercase tracking-wide" style={{ color: SAGE }}>{m.hostCommunity}</p>
+                  </div>
+                  {/* Named-stage progression */}
+                  <ol className="mt-4 flex items-center gap-1.5">
+                    {STAGE_ORDER.map((s, i) => {
+                      const reached = i <= idx;
+                      const current = i === idx;
+                      return (
+                        <li key={s} className="flex flex-1 flex-col items-center gap-1.5">
+                          <span
+                            className="h-1.5 w-full rounded-full"
+                            style={{ backgroundColor: reached ? RUST : '#E8DED4' }}
+                          />
+                          <span
+                            className="text-center text-[10px] leading-tight"
+                            style={{ color: current ? RUST : reached ? `${CHARCOAL}cc` : `${CHARCOAL}66`, fontWeight: current ? 700 : 400 }}
+                          >
+                            {STAGE_LABEL[s]}
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ol>
+                  {m.note ? <p className="mt-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}b3` }}>{m.note}</p> : null}
+                </div>
+              );
+            })}
+          </div>
+          <p className="mt-5 max-w-2xl text-sm leading-relaxed" style={{ color: `${CHARCOAL}99` }}>
+            Owned means the community holds the plant, the income it makes, the maintenance, and the decisions. That transfer is the point, and it is still ahead of us.
+          </p>
+        </Section>
+
+        {/* In service now (the honest proof) */}
+        <Section
+          id="in-service"
+          eyebrow="The proof, honestly graded"
+          title="What is already on country, and still working"
+          confidence={{ grade: 'counted', note: 'Delivery counts are counted. Plastic and people reached are modelled assumptions, labelled below.' }}
+        >
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <MetricCard
+              value={beds}
+              label="Beds in community"
+              comparison={`Across ${communities} communities, still in homes.`}
+              pill={{ text: 'in service' }}
+              grade="counted"
+              note="Distinct asset-register records. A bed delivered is an output; a bed still in use is closer to the outcome."
+            />
+            <MetricCard
+              value={stretch}
+              label="Recycled-plastic Stretch Beds"
+              comparison="Each one diverts about 20kg of HDPE from landfill."
+              grade="counted"
+            />
+            <MetricCard
+              value={washers}
+              label="Washing machines"
+              comparison={washersUnconfirmed > 0 ? `${washersUnconfirmed} deployed machines are not reporting live. We name them rather than round them into the win.` : 'All deployed machines reporting live.'}
+              pill={{ text: 'live / deployed', live: true }}
+              grade="counted"
+              note="Working count is hand-confirmed; telemetry coverage is partial."
+            />
+            <MetricCard
+              value={plasticT}
+              label="Plastic kept out of landfill"
+              comparison="Modelled at about 20kg per Stretch Bed."
+              grade="modelled"
+              note="Assumes ~20kg HDPE per Stretch Bed. Not weighed per unit."
+            />
+            <MetricCard
+              value={peopleReached ? `~${peopleReached.toLocaleString()}` : '—'}
+              label="People reached"
+              comparison="Modelled at about 2.5 people per bed."
+              grade="modelled"
+              note="A planning assumption (~2.5 per bed), not a headcount."
+            />
+          </div>
+          {communityList.length > 0 ? (
+            <p className="mt-5 text-sm leading-relaxed" style={{ color: `${CHARCOAL}b3` }}>
+              <span className="font-semibold" style={{ color: CHARCOAL }}>The {communityList.length} communities: </span>
+              {communityList.join('  ·  ')}
+            </p>
+          ) : null}
+
+          {gallery.length > 0 ? (
+            <div className="mt-8">
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>From the field</p>
+              <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+                {gallery.map((g) => (
+                  <figure key={g.src} className="overflow-hidden rounded-lg bg-white" style={{ border: '1px solid #E8DED4' }}>
+                    <div className="relative aspect-[4/3]">
+                      <Image src={g.src} alt={g.alt} fill className="object-cover" sizes="(max-width: 768px) 50vw, 280px" />
+                    </div>
+                  </figure>
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </Section>
+
+        {/* Community voice */}
+        {hasVoice ? (
+          <Section id="voice" eyebrow="In their words" title="What the people closest to this say" posture="Consented, qualitative">
+            <p className="mb-6 max-w-2xl text-sm leading-relaxed" style={{ color: `${CHARCOAL}bf` }}>
+              Drawn from consented stories on Empathy Ledger. The quality signal is the themes and the voices that come up across the work, not a single satisfaction score. Where a voice is absent, consent is not yet given, not that there is no story.
+            </p>
+            {themes.length > 0 ? (
+              <div className="mb-8 flex flex-wrap gap-2">
+                {themes.map((t) => (
+                  <span key={t.name} className="rounded-full px-4 py-2 text-sm" style={{ backgroundColor: '#FFFFFF', color: CHARCOAL, border: '1px solid #E8DED4' }}>
+                    {t.name.replace(/[_-]+/g, ' ').replace(/^./, (c) => c.toUpperCase())}
+                    {t.storytellerCount ? <span style={{ color: `${CHARCOAL}80` }}> · {t.storytellerCount}</span> : null}
+                  </span>
+                ))}
+              </div>
+            ) : null}
+            {quotes.length > 0 ? (
+              <div className="grid gap-4 md:grid-cols-3">
+                {quotes.map((q, i) => (
+                  <figure key={i} className="rounded-lg bg-white p-6" style={{ border: '1px solid #E8DED4' }}>
+                    <blockquote className="font-display text-lg leading-snug" style={{ color: CHARCOAL }}>&ldquo;{q.text}&rdquo;</blockquote>
+                    {q.context ? <figcaption className="mt-4 text-xs uppercase" style={{ color: SAGE }}>{q.context}</figcaption> : null}
+                  </figure>
+                ))}
+              </div>
+            ) : null}
+          </Section>
+        ) : null}
+
+        {/* What's next */}
+        <Section
+          id="whats-next"
+          eyebrow="The next handovers"
+          title="Where this goes from here"
+          confidence={{ grade: 'not-yet', note: 'Forward plan. Items are by stage; nothing planned reads as done.' }}
+        >
+          <div className="grid gap-4 md:grid-cols-3">
             {kanban.map((col) => (
-              <div key={col.heading} className="rounded-lg p-5" style={{ backgroundColor: CREAM, border: '1px solid #E8DED4' }}>
-                <p className="text-sm font-semibold uppercase mb-4" style={{ color: SAGE }}>{col.heading}</p>
+              <div key={col.heading} className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+                <p className="mb-4 text-sm font-semibold uppercase" style={{ color: SAGE }}>{col.heading}</p>
                 <ul className="space-y-3">
                   {col.items.map((it) => (
                     <li key={it.title}>
                       <p className="text-sm font-medium leading-snug" style={{ color: CHARCOAL }}>{it.title}</p>
-                      {it.note ? <p className="text-xs mt-0.5" style={{ color: `${CHARCOAL}99` }}>{it.note}</p> : null}
+                      {it.note ? <p className="mt-0.5 text-xs" style={{ color: `${CHARCOAL}99` }}>{it.note}</p> : null}
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Engagement history */}
-      <section className="px-5 sm:px-8 py-14 max-w-3xl mx-auto">
-        <p className="text-xs uppercase mb-6" style={{ color: RUST }}>Where we have come from, and where we are going</p>
-        <ol className="relative border-l pl-6 space-y-7" style={{ borderColor: '#E8DED4' }}>
-          {timeline.map((h) => (
-            <li key={h.date + h.title} className="relative">
-              <span className="absolute -left-[31px] top-1 h-3 w-3 rounded-full" style={{ backgroundColor: RUST }} />
-              <p className="text-xs uppercase mb-1" style={{ color: SAGE }}>{h.date}</p>
-              <p className="text-base font-medium" style={{ color: CHARCOAL }}>{h.title}</p>
-              {h.detail ? <p className="text-sm mt-1 leading-relaxed" style={{ color: `${CHARCOAL}bf` }}>{h.detail}</p> : null}
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      {/* Community voice — Empathy Ledger themes + quotes (the quality signal) */}
-      {themes.length > 0 || quotes.length > 0 ? (
-        <section className="px-5 sm:px-8 py-14 max-w-5xl mx-auto">
-          <p className="text-xs uppercase mb-2" style={{ color: RUST }}>What people tell us</p>
-          <p className="text-sm leading-relaxed max-w-2xl mb-6" style={{ color: `${CHARCOAL}bf` }}>
-            Drawn from consented stories on Empathy Ledger. This is the quality signal: the themes and the voices that come up across the work, not a single satisfaction score.
-          </p>
-          {themes.length > 0 ? (
-            <div className="flex flex-wrap gap-2 mb-8">
-              {themes.map((t) => (
-                <span key={t.name} className="text-sm rounded-full px-4 py-2" style={{ backgroundColor: CREAM, color: CHARCOAL, border: '1px solid #E8DED4' }}>
-                  {t.name.replace(/[_-]+/g, ' ').replace(/^./, (c) => c.toUpperCase())}
-                  {t.storytellerCount ? <span style={{ color: `${CHARCOAL}80` }}> · {t.storytellerCount}</span> : null}
-                </span>
-              ))}
-            </div>
-          ) : null}
-          {quotes.length > 0 ? (
-            <div className="grid md:grid-cols-3 gap-4">
-              {quotes.map((q, i) => (
-                <figure key={i} className="rounded-lg p-6 bg-white" style={{ border: '1px solid #E8DED4' }}>
-                  <blockquote className="font-display text-lg leading-snug" style={{ color: CHARCOAL }}>&ldquo;{q.text}&rdquo;</blockquote>
-                  {q.context ? <figcaption className="text-xs uppercase mt-4" style={{ color: SAGE }}>{q.context}</figcaption> : null}
-                </figure>
-              ))}
-            </div>
-          ) : null}
-          <p className="text-xs mt-4" style={{ color: `${CHARCOAL}80` }}>Live from Empathy Ledger, consent-cleared.</p>
-        </section>
-      ) : null}
-
-      {/* Photo gallery */}
-      {partner.gallery.length > 0 ? (
-        <section className="px-5 sm:px-8 py-14" style={{ backgroundColor: '#FFFFFF' }}>
-          <div className="max-w-5xl mx-auto">
-            <p className="text-xs uppercase mb-6" style={{ color: RUST }}>From the field</p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {partner.gallery.map((g) => (
-                <figure key={g.src} className="overflow-hidden rounded-lg bg-white" style={{ border: '1px solid #E8DED4' }}>
-                  <div className="relative aspect-[4/3]">
-                    <Image src={g.src} alt={g.alt} fill className="object-cover" sizes="(max-width: 768px) 50vw, 320px" />
-                  </div>
-                </figure>
-              ))}
-            </div>
-          </div>
-        </section>
-      ) : null}
-
-      {/* Traffic / airport */}
-      <section className="px-5 sm:px-8 py-14" style={{ backgroundColor: CREAM }}>
-        <div className="max-w-5xl mx-auto">
-          <p className="text-xs uppercase mb-3" style={{ color: RUST }}>Out in the world</p>
-          <p className="text-base leading-relaxed max-w-2xl mb-6" style={{ color: `${CHARCOAL}cc` }}>{partner.traffic.intro}</p>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {partner.traffic.snapshots.map((s) => (
-              <Stat key={s.label} value={s.value} label={s.label} sub={s.note} />
+          <ol className="relative mt-10 space-y-7 border-l pl-6" style={{ borderColor: '#E8DED4' }}>
+            {timeline.map((h) => (
+              <li key={h.date + h.title} className="relative">
+                <span className="absolute -left-[31px] top-1 h-3 w-3 rounded-full" style={{ backgroundColor: RUST }} />
+                <p className="mb-1 text-xs uppercase" style={{ color: SAGE }}>{h.date}</p>
+                <p className="text-base font-medium" style={{ color: CHARCOAL }}>{h.title}</p>
+                {h.detail ? <p className="mt-1 text-sm leading-relaxed" style={{ color: `${CHARCOAL}bf` }}>{h.detail}</p> : null}
+              </li>
             ))}
+          </ol>
+        </Section>
+
+        {/* Back the next stage */}
+        <Section id="back-it" eyebrow="Back the next handover" title={partner.cta.headline}>
+          <div className="rounded-xl p-7 sm:p-9" style={{ backgroundColor: RUST }}>
+            <p className="font-display text-2xl leading-snug sm:text-3xl" style={{ color: '#FFFFFF' }}>{partner.cta.action}</p>
+            <p className="mt-3 max-w-2xl text-base leading-relaxed" style={{ color: '#FFFFFFe6' }}>{partner.cta.supporting}</p>
+            <div className="mt-6">
+              {partner.cta.external ? (
+                <a href={partner.cta.href} className="inline-block rounded-lg bg-white px-5 py-3 text-sm font-semibold" style={{ color: RUST }}>{partner.cta.action} →</a>
+              ) : (
+                <Link href={partner.cta.href} className="inline-block rounded-lg bg-white px-5 py-3 text-sm font-semibold" style={{ color: RUST }}>{partner.cta.action} →</Link>
+              )}
+            </div>
           </div>
-          <p className="text-xs mt-3" style={{ color: `${CHARCOAL}80` }}>{partner.traffic.asOf}</p>
-          {partner.traffic.reactions.length > 0 ? (
-            <div className="mt-6 flex flex-wrap gap-3">
-              {partner.traffic.reactions.map((r) => (
-                <a key={r.href} href={r.href} className="text-sm underline" style={{ color: RUST }}>{r.label}</a>
-              ))}
+
+          {partner.links.length > 0 ? (
+            <div className="mt-8">
+              <p className="mb-4 text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>Go deeper</p>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {partner.links.map((l) => {
+                  const inner = (
+                    <>
+                      <p className="text-base font-medium" style={{ color: CHARCOAL }}>{l.label} →</p>
+                      {l.note ? <p className="mt-1 text-sm" style={{ color: `${CHARCOAL}99` }}>{l.note}</p> : null}
+                    </>
+                  );
+                  const cls = 'block rounded-lg p-5 transition hover:opacity-90';
+                  const style = { backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' };
+                  return l.external ? (
+                    <a key={l.href} href={l.href} className={cls} style={style}>{inner}</a>
+                  ) : (
+                    <Link key={l.href} href={l.href} className={cls} style={style}>{inner}</Link>
+                  );
+                })}
+              </div>
             </div>
           ) : null}
-        </div>
-      </section>
+        </Section>
+      </DashboardScroll>
 
-      {/* Links */}
-      <section className="px-5 sm:px-8 py-14 max-w-5xl mx-auto">
-        <p className="text-xs uppercase mb-6" style={{ color: RUST }}>Go deeper</p>
-        <div className="grid sm:grid-cols-2 gap-4">
-          {partner.links.map((l) => {
-            const inner = (
-              <>
-                <p className="text-base font-medium" style={{ color: CHARCOAL }}>{l.label} →</p>
-                {l.note ? <p className="text-sm mt-1" style={{ color: `${CHARCOAL}99` }}>{l.note}</p> : null}
-              </>
-            );
-            const cls = 'block rounded-lg p-5 transition hover:opacity-90';
-            const style = { backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' };
-            return l.external ? (
-              <a key={l.href} href={l.href} className={cls} style={style}>{inner}</a>
-            ) : (
-              <Link key={l.href} href={l.href} className={cls} style={style}>{inner}</Link>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* How we know these numbers — data confidence */}
-      <section className="px-5 sm:px-8 py-14" style={{ backgroundColor: '#FFFFFF' }}>
-        <div className="max-w-3xl mx-auto">
-          <p className="text-xs uppercase mb-2" style={{ color: RUST }}>How we know these numbers</p>
-          <p className="text-sm leading-relaxed mb-6" style={{ color: `${CHARCOAL}bf` }}>
-            We would rather show what is counted, what is modelled, and what is not yet measured than blur the line. That honesty is the point.
-          </p>
-          <div className="space-y-4">
-            <div>
-              <p className="text-sm font-semibold" style={{ color: SAGE }}>Counted, not estimated</p>
-              <p className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}bf` }}>Beds, communities, washing machines, plastic and funding, read live from the asset register and reconciled to Xero.</p>
-            </div>
-            <div>
-              <p className="text-sm font-semibold" style={{ color: SAGE }}>Modelled, clearly labelled</p>
-              <p className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}bf` }}>People reached (about 2.5 per bed) and the health pathway (clean bedding toward reduced skin infection and rheumatic heart disease) are assumptions, not measurements.</p>
-            </div>
-            <div>
-              <p className="text-sm font-semibold" style={{ color: SAGE }}>Qualitative evidence</p>
-              <p className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}bf` }}>How the work is received comes through consented Empathy Ledger transcripts, themes and quotes (above), not a single satisfaction score.</p>
-            </div>
-            <div>
-              <p className="text-sm font-semibold" style={{ color: SAGE }}>Not yet measured</p>
-              <p className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}bf` }}>Outcome rates against targets and equity demographics. Instrumenting these, with community consent, is on the roadmap.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 sm:px-8 py-12 text-center max-w-3xl mx-auto">
+      {/* Acknowledgement of Country */}
+      <section className="mx-auto max-w-3xl px-5 py-14 text-center sm:px-8">
         <p className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}bf` }}>
           Goods on Country acknowledges the Traditional Owners of the lands on which we work, and pays respect to
           Elders past, present and emerging. This work is done on country, with country, for country.

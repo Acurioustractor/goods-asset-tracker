@@ -42,25 +42,64 @@ export interface TrafficSnapshot {
   note?: string;
 }
 
+/** Named stages only. No invented "percent to ownership" until it is real. */
+export type OwnershipStage = 'planned' | 'built' | 'operating' | 'community-run' | 'community-owned';
+export interface OwnershipMilestone {
+  facility: string;
+  hostCommunity: string;
+  stage: OwnershipStage;
+  note?: string;
+}
+export interface AudienceCta {
+  headline: string;
+  action: string;
+  supporting: string;
+  href: string;
+  external?: boolean;
+}
+/**
+ * Gallery item. `consent` is required so an identifiable photo can never reach
+ * a shared page by accident; the page renders only `documented` items.
+ */
+export interface GalleryItem {
+  src: string;
+  alt: string;
+  consent: 'documented' | 'pending' | 'none';
+}
+
 export interface PartnerDashboard {
   slug: string;
   password: string;
   partnerName: string;
+  /** Who this skin is for. Drives framing on the hero, the path, and the CTA. */
+  audience: 'partner' | 'supporter' | 'funder';
   heroLine: string;
   intro: string;
+  /** Forward-looking hero thesis line (audience-specific). */
+  thesisLine: string;
+  /** Section 1 "the goal" framing, audience-specific. */
+  goalStatement: string;
+  /** One-line data-sovereignty statement shown near the hero. */
+  dataSovereigntyLine?: string;
+  /** One-line "where we are right now". Falls back to the In-progress kanban column if unset. */
+  statusLine?: string;
   /** Curated count — production facilities are not (yet) in the asset register. */
   facilities: { value: string; note: string };
+  /** Community-owned-asset progression (Section 3). Named stages only. */
+  ownershipMilestones?: OwnershipMilestone[];
   kanban: KanbanColumn[];
   history: TimelineItem[];
   links: DashboardLink[];
+  /** Section 7 call to action, audience-specific. */
+  cta: AudienceCta;
   traffic: {
     intro: string;
     asOf: string;
     snapshots: TrafficSnapshot[];
     reactions: DashboardLink[]; // positive-reaction links Ben adds
   };
-  gallery: { src: string; alt: string }[];
-  contribution?: { value: string; note: string }; // this funder's contribution, for the stewardship strip
+  gallery: GalleryItem[];
+  contribution?: { value: string; note: string }; // retained for back-compat; not rendered in the forward design
   /** Future: when set + NOTION_TOKEN present, curated sections read from Notion. */
   notionDbId?: string;
 }
@@ -69,14 +108,36 @@ const snow: PartnerDashboard = {
   slug: 'snow',
   password: 'snow2026',
   partnerName: 'The Snow Foundation',
-  heroLine: 'What your backing is making possible on country',
+  audience: 'funder',
+  heroLine: 'Where this is heading, and what it takes to get there',
   intro:
-    'A live view of where Goods on Country is at, built for The Snow Foundation. The numbers below update on their own from the field. The rest is what we are working on, where we have come from, and what is next.',
-  contribution: { value: '~$493K', note: 'Anchor of the blended raise, fully received' },
+    'We are building a recycled-plastic production economy on country, designed to transfer into community ownership. The beds and washing machines are already in homes across nine communities. This is the plan to scale it, and the gap we are closing to get there.',
+  thesisLine:
+    'Building productive assets that communities come to own. The proof is already in the houses.',
+  goalStatement:
+    'The goal is not more beds shipped in from somewhere else. It is a production economy that runs on country, employs local people, and becomes community owned. A bed delivered is the output. Who owns the means of making the next one is the outcome.',
+  dataSovereigntyLine:
+    'Community holds the authority over these stories. We hold the count, and show our working.',
+  statusLine:
+    'Commissioning the first containerised plant (about 85 percent); the Alice Springs facility submission with Oonchiumpa is in review.',
   facilities: {
     value: '1 + 1',
     note: 'One containerised plant being commissioned; a second, community-owned facility in Alice Springs with Oonchiumpa is in a federal funding submission (decision pending).',
   },
+  ownershipMilestones: [
+    {
+      facility: 'On-country recycling and press plant',
+      hostCommunity: 'Central Australia, siting in decision',
+      stage: 'built',
+      note: 'Commissioning now, about 85 percent complete. Designed to move to community operation, then ownership.',
+    },
+    {
+      facility: 'Alice Springs production facility',
+      hostCommunity: 'Mparntwe, led with Oonchiumpa',
+      stage: 'planned',
+      note: 'REAL Innovation Fund submission lodged with a First Nations jobs pathway. Decision pending.',
+    },
+  ],
   kanban: [
     {
       heading: 'Up next',
@@ -115,7 +176,7 @@ const snow: PartnerDashboard = {
     { date: 'Early 2026', title: 'Selected into QBE Catalysing Impact 2026', detail: 'Blended-finance accelerator run by the Social Impact Hub. Stage 2 in September could bring matched catalytic capital.' },
     { date: 'May 2026', title: 'Central Australia deployment', detail: 'Utopia + Alice Springs; 87 beds that trip, with Centrecorp as delivery partner.' },
     { date: 'Jun 2026', title: 'Oonchiumpa REAL Innovation Fund submission', detail: 'A community-owned Alice Springs facility + jobs pathway, decision pending.' },
-    { date: 'To date', title: '~$493K invested by Snow over three years', detail: 'Fully received. The anchor that makes the blended raise credible.' },
+    { date: 'To date', title: 'Nine communities, beds in homes, the first plant being commissioned', detail: 'The base the next stage builds on, with a blended raise now underway to scale it.' },
   ],
   links: [
     { label: 'The Snow Foundation on Empathy Ledger', href: 'https://www.empathyledger.com/organisations/snow-foundation', note: 'Your stories, quotes and photos, gathered with consent, yours to revisit anytime', external: true },
@@ -125,6 +186,13 @@ const snow: PartnerDashboard = {
     { label: 'How the Stretch Bed works', href: '/stretch-bed' },
     { label: 'Live impact dashboard', href: '/impact', note: 'The full public impact view' },
   ],
+  cta: {
+    headline: 'Back the next handover',
+    action: 'Help close the match',
+    supporting:
+      'QBE will match up to $400K, but only against capital we raise alongside it. Closing that gap is what unlocks the next community-owned facility.',
+    href: '/partner',
+  },
   traffic: {
     intro:
       'The Goods display at Canberra Airport drives people to a dedicated page. A snapshot of the response:',
@@ -139,13 +207,14 @@ const snow: PartnerDashboard = {
       // Add links to positive reactions found online (posts, mentions) here.
     ],
   },
+  // consent: only 'documented' items render on the shared page (see GalleryItem).
   gallery: [
-    { src: '/images/community/tennant-creek.jpg', alt: 'Tennant Creek community' },
-    { src: '/images/media-pack/community-bed-assembly.jpg', alt: 'Community members assembling a bed' },
-    { src: '/images/media-pack/nic-with-elder-on-verandah.jpg', alt: 'Nic with an Elder on a verandah' },
-    { src: '/images/product/stretch-bed-community.jpg', alt: 'A Stretch Bed in a remote community home' },
-    { src: '/images/product/washing-machine-community.jpg', alt: 'A washing machine deployed in community' },
-    { src: '/images/media-pack/community-testing-bed-golden-hour.jpg', alt: 'A family testing a bed at golden hour' },
+    { src: '/images/community/tennant-creek.jpg', alt: 'Tennant Creek community', consent: 'documented' },
+    { src: '/images/media-pack/community-bed-assembly.jpg', alt: 'Community members assembling a bed', consent: 'documented' },
+    { src: '/images/media-pack/nic-with-elder-on-verandah.jpg', alt: 'Nic with an Elder on a verandah', consent: 'documented' },
+    { src: '/images/product/stretch-bed-community.jpg', alt: 'A Stretch Bed in a remote community home', consent: 'documented' },
+    { src: '/images/product/washing-machine-community.jpg', alt: 'A washing machine deployed in community', consent: 'documented' },
+    { src: '/images/media-pack/community-testing-bed-golden-hour.jpg', alt: 'A family testing a bed at golden hour', consent: 'documented' },
   ],
 };
 

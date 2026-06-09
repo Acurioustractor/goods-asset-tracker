@@ -67,6 +67,16 @@ export const CAPITAL_STACK = [
   { layer: 'Guarantee', source: 'Snow Foundation letter of support', amount: '·', status: 'In conversation' },
 ];
 
+/**
+ * The blended raise headline target. Single source for the "~$3M (target)"
+ * figure that funder pages already state in prose, so the dashboard does not
+ * re-key it. The match cap lives in loi-pipeline.ts (`MATCH_TARGET.cap`).
+ */
+export const RAISE_TARGET = {
+  label: '~$3M',
+  note: 'blended capital raise (target)',
+};
+
 export const QBE_PROGRAM = {
   title: 'QBE Catalysing Impact 2026',
   description:
