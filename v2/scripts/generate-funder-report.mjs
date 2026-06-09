@@ -121,6 +121,9 @@ process.stdout.write(JSON.stringify({
   investmentTiers: f.investmentTiers,
   headlineAchievements: f.headlineAchievements,
   additionalContext: f.additionalContext,
+  stageOfGrowth: f.stageOfGrowth,
+  focusAreas: f.focusAreas,
+  ignition: f.ignition,
 }));
 })();
 `));
@@ -240,6 +243,23 @@ const RESOLVERS = {
   },
   'headline-achievements': async () => realFunder.headlineAchievements || '_(no headline achievements configured)_',
   'additional-context': async () => realFunder.additionalContext || '',
+  'stage-of-growth': async () => {
+    const s = realFunder.stageOfGrowth;
+    if (!s?.dial?.length) return '_(stage of growth not configured)_';
+    const dial = s.dial.map((d, i) => (i === s.currentIndex ? `**${d}**` : d)).join(' · ');
+    return `**Stage: ${s.dial[s.currentIndex]}**\n\n${dial}\n\n${s.stepChange}`;
+  },
+  'focus-area': async () => {
+    const f = realFunder.focusAreas;
+    if (!f?.length) return '_(focus areas not configured)_';
+    return f.map((x, i) => `**${i + 1}. ${x.title}**\n\n${x.body}`).join('\n\n');
+  },
+  'ignition': async () => {
+    const ig = realFunder.ignition;
+    if (!ig) return '_(ignition not configured)_';
+    const chain = (ig.chain || []).map((c, i) => `${i + 1}. ${c}`).join('\n');
+    return `${ig.narrative}\n\n${chain}`;
+  },
   'financials-at-a-glance': async () => {
     const c = realFunder.commitment;
     const rows = ['| Item | Value |','|---|---|'];
@@ -280,6 +300,7 @@ const SECTION_FILES = {
   'safeguarding-risks': '13-safeguarding-risks.md','commitment-progress': '14-commitment-progress.md',
   'upcoming-commitments': '15-upcoming-commitments.md','whats-next': '16-whats-next.md',
   'country-acknowledgement': '17-country-acknowledgement.md',
+  'stage-of-growth': '18-stage-of-growth.md','focus-area': '19-focus-area.md','ignition': '20-ignition.md',
 };
 
 const sectionsDir = join(__dirname, '..', '..', 'wiki', 'templates', 'funder-report', 'sections');

@@ -40,10 +40,16 @@ export const snowConfig: FunderConfig = {
   },
   photoTags: ['snow-funded', 'trip-may-2026'],
   tone: 'evidence-and-named',
+  // Section order follows the 7-beat narrative spine (person -> numbers ->
+  // stage of growth -> focus -> ignition -> proof/governance -> invitation).
+  // The 3 new beats are inserted after the headline numbers; order is reviewable.
   sections: [
     'cover',
     'financials-at-a-glance',
     'headline-achievements',
+    'stage-of-growth',
+    'focus-area',
+    'ignition',
     'investment-priorities',
     'alignment-principles',
     'safeguarding-risks',
@@ -209,4 +215,34 @@ export const snowConfig: FunderConfig = {
     '### Product\n- **3 generations of stretch beds** developed (V1 → V3, V4 in design). 25 kg of plastic waste diverted per bed.\n- **Containerised washing machine V1** built and field-tested with Bloomfield family in Tennant Creek (Jan 2026).\n- **Production plant infrastructure** progressed from concept to near-complete containerised facility (shredder + extruder + CNC router for bed components). Investment to date ~$100,000 (TFN + ACT).\n- **15-20 beds deployed** across 8 families for field testing (Diane Stokes, Norm Frank, Utopian Homelands, Tennant Creek participants) prior to the Centrecorp scale-up. Trip-period numbers below.\n\n### Partnership\n- **Oonchiumpa Bloomfield family** partnership formalising — paid cultural consultation at university research rates (~$3,800/day), tiered payment structures, planned co-hosting of production plant.\n- **Four health organisations** initiated engagement after the 2025 Healthy Homes forum.\n- **Centrecorp Foundation** confirmed partnership for May 17-27 Central Australia deployment (Mparntwe + Utopia homelands).\n- **Homeland School Company** confirmed Q3 deployment — 1-2 washers + 65 beds across Maningrida communities.\n\n### Demand validation\n- **200-350 bed requests** logged from communities + health organisations.\n- **Diane Stokes** received 1 bed, requested 20 more within 2 weeks, offered to self-fund.\n- **Norm Frank** requested 3 beds in maroon after his daughter trialled them.\n- **Utopian Homelands** requested beds for every child (~6,000 worth).\n- **Palm Island Community Company** offered to purchase a production plant outright after watching the production video.\n- **QIC** committed to building 50 beds with staff for NAIDOC week.',
   additionalContext:
     '## RHD + Healthy Homes connection\n\n- Cleanable, durable beds and washing machines are foundational health interventions, especially relevant to **Rheumatic Heart Disease prevention** through housing quality and sleep health.\n- Four health organisations engaged after the 2025 Healthy Homes forum. **Anna Phillip** (Healthy Homes Project Coordinator) is a primary contact.\n- **Remote Laundry Collective**: washing machines built with Bloomfield family in January 2026; same production plant will scale washing machine access.\n- Multi-product capability means RHD-relevant interventions (beds + washers + fridges) flow from one infrastructure investment.',
+  // PROPOSED 2026-06-09 (Claude) — grounded in canon + the Snow catch-up email.
+  // Confirm dial labels, current stage, focus priorities, and the ignition chain
+  // with Ben before sending. These three are the narrative spine's beats 3-5.
+  stageOfGrowth: {
+    dial: ['Prototype', 'Pilot', 'Scaling', 'On-Country production'],
+    currentIndex: 2, // Scaling, building toward on-country production
+    stepChange:
+      'This period Goods began crossing from delivering beds to making them on country. The containerised production plant reached roughly 85% complete, the washing-machine line grew to a 28-unit field fleet (14 telemetry-confirmed working), and the first paid local production roles are forming in Alice Springs. The step-change is the shift from beds delivered to community toward beds made by community.',
+  },
+  focusAreas: [
+    {
+      title: 'Commission the on-country production plant',
+      body: 'Finish the containerised facility (about 85% complete) and make the community siting decision (Tennant Creek or Mparntwe), so beds are made on country rather than freighted in.',
+    },
+    {
+      title: 'Stand up paid local production roles in Alice Springs',
+      body: 'Turn delivery into local employment. The first roles forming now are the proof point for the community-owned production model, and the part of this work Snow is most excited about.',
+    },
+  ],
+  ignition: {
+    chain: [
+      "Snow's anchor capital, given before the proof was in the houses",
+      'de-risked the on-country production plant',
+      'the plant lets beds be made on country, not freighted in',
+      'which creates paid local jobs (the Alice Springs roles forming now)',
+      'and turns the next 1,000 beds into a local-employment story',
+    ],
+    narrative:
+      'Snow backed Goods before the proof was in the houses. That anchor capital de-risked the production plant, and the plant is what turns a delivered bed into a locally made one. The Alice Springs roles forming now are the first jobs out of that decision. Your support is the spark under the shift from beds delivered to community toward beds made by community, and it is what makes the next 1,000 beds a local-employment story rather than a freight invoice.',
+  },
 };
