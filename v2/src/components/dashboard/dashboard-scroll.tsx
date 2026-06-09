@@ -71,12 +71,12 @@ export function DashboardScroll({ sections, children }: { sections: NavItem[]; c
   return (
     <>
       {/* Top scroll-progress bar */}
-      <div className="fixed inset-x-0 top-0 z-40 h-[3px]" style={{ backgroundColor: '#E8DED4' }} aria-hidden>
+      <div data-print-hide className="fixed inset-x-0 top-0 z-40 h-[3px]" style={{ backgroundColor: '#E8DED4' }} aria-hidden>
         <div ref={progressRef} className="h-full origin-left" style={{ backgroundColor: RUST, transform: 'scaleX(0)' }} />
       </div>
 
       {/* Mobile: sticky "On this page" disclosure */}
-      <div className="lg:hidden sticky top-0 z-30 backdrop-blur" style={{ backgroundColor: `${CREAM}f2`, borderBottom: '1px solid #E8DED4' }}>
+      <div data-print-hide className="lg:hidden sticky top-0 z-30 backdrop-blur" style={{ backgroundColor: `${CREAM}f2`, borderBottom: '1px solid #E8DED4' }}>
         <button
           type="button"
           aria-expanded={mobileOpen}

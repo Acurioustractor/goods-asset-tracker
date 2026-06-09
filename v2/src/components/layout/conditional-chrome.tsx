@@ -10,6 +10,12 @@ import { ImpactBanner } from './impact-banner';
 // Field-notes are full-bleed immersive scrollytelling — they own the whole viewport.
 const STANDALONE_PATH_PREFIXES = ['/funders', '/insiders', '/investors', '/admin', '/field-notes', '/sites'];
 
+// Standalone routes matched by pattern rather than prefix. The gated partner
+// dashboard (/partners/<slug>/dashboard) is a confidential, full-page funder
+// experience with its own header — it must NOT carry the marketing nav, cart, or
+// "Buy Now". The PUBLIC partner pages (/partners/centrecorp etc.) keep the chrome.
+const STANDALONE_PATH_PATTERNS = [/^\/partners\/[^/]+\/dashboard(\/|$)/];
+
 // Routes where the global ImpactBanner competes with page-specific stats.
 // These pages carry their own product/place numbers, so suppress the global strip.
 const IMPACT_BANNER_HIDDEN_PREFIXES = [
@@ -20,7 +26,8 @@ const IMPACT_BANNER_HIDDEN_PREFIXES = [
 
 function isStandalone(pathname: string | null) {
   if (!pathname) return false;
-  return STANDALONE_PATH_PREFIXES.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+  if (STANDALONE_PATH_PREFIXES.some((p) => pathname === p || pathname.startsWith(`${p}/`))) return true;
+  return STANDALONE_PATH_PATTERNS.some((re) => re.test(pathname));
 }
 
 function hideImpactBanner(pathname: string | null) {

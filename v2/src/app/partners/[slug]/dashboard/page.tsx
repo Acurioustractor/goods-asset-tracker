@@ -11,6 +11,7 @@ import { DashboardScroll, type NavItem } from '@/components/dashboard/dashboard-
 import { Section } from '@/components/dashboard/section';
 import { ConfidenceChip, ConfidenceLegend } from '@/components/dashboard/confidence-chip';
 import { CapitalStack } from '@/components/dashboard/capital-stack';
+import { OwnershipJourney, type JourneyStage } from '@/components/dashboard/ownership-journey';
 
 // Always live: read the asset register fresh each request.
 export const dynamic = 'force-dynamic';
@@ -92,6 +93,19 @@ const STAGE_LABEL: Record<OwnershipStage, string> = {
   'community-run': 'Community run',
   'community-owned': 'Community owned',
 };
+// What each rung of the ownership ladder means. Editorial, stage-generic, forward.
+const STAGE_MEANING: Record<OwnershipStage, string> = {
+  planned:
+    'On the table and designed with community from the first line. Nothing gets built until the people who will run it have shaped it.',
+  built:
+    'Made and commissioned on country. The plant exists, the press works, and the first goods come off it.',
+  operating:
+    'Running day to day, making beds and parts on country. Local people on the tools, learning every part of how it works.',
+  'community-run':
+    'The community holds the operation. The roster, the maintenance, and the call on what gets made sit with local hands.',
+  'community-owned':
+    'The community owns the plant, the income it makes, and what happens next. This is the destination, and it is still ahead of us.',
+};
 
 export default async function PartnerDashboardPage({ params }: Props) {
   const { slug } = await params;
@@ -136,6 +150,17 @@ export default async function PartnerDashboardPage({ params }: Props) {
   // Consent-gated gallery: only documented items reach the page.
   const gallery = partner.gallery.filter((g) => g.consent === 'documented');
 
+  // The ownership journey: one rung per stage, with facilities parked where they are.
+  const milestones = partner.ownershipMilestones ?? [];
+  const ownershipStages: JourneyStage[] = STAGE_ORDER.map((stage) => ({
+    key: stage,
+    label: STAGE_LABEL[stage],
+    meaning: STAGE_MEANING[stage],
+    facilities: milestones
+      .filter((m) => m.stage === stage)
+      .map((m) => ({ facility: m.facility, hostCommunity: m.hostCommunity })),
+  }));
+
   // Nav rail with a confidence dot per section (the epistemic map).
   const nav: NavItem[] = [
     { id: 'heading', label: "Where we're heading", grade: 'counted' },
@@ -150,7 +175,16 @@ export default async function PartnerDashboardPage({ params }: Props) {
 
   return (
     <main className="min-h-screen" style={{ backgroundColor: CREAM, color: CHARCOAL }}>
-      <style>{`@media print { nav[aria-label="On this page"]{display:none!important} section{break-inside:avoid} }`}</style>
+      {/* Funder PDF path: drop the orientation chrome, unpin sticky headers, keep
+          cards whole across page breaks, and print the brand palette (not blanks). */}
+      <style>{`@media print {
+        nav[aria-label="On this page"], [data-print-hide] { display: none !important; }
+        .sticky { position: static !important; }
+        * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        figure, li, .rounded-lg, .rounded-xl { break-inside: avoid; }
+        section { break-inside: auto; }
+        a[href]::after { content: '' !important; }
+      }`}</style>
 
       {/* ---- Hero (full-width band, tracked by the rail) ---- */}
       <section id="heading" className="scroll-mt-24 px-5 pb-10 pt-12 sm:px-8 sm:pt-16">
@@ -226,42 +260,10 @@ export default async function PartnerDashboardPage({ params }: Props) {
             We are building a recycled-plastic plant on country, collect, shred, melt, press, that is designed to leave our hands.
             The community becomes the operator, then the owner, of the means of making the next bed.
           </p>
-          <div className="mt-7 space-y-5">
-            {(partner.ownershipMilestones ?? []).map((m) => {
-              const idx = STAGE_ORDER.indexOf(m.stage);
-              return (
-                <div key={m.facility} className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-                  <div className="flex flex-wrap items-baseline justify-between gap-2">
-                    <p className="font-display text-xl" style={{ color: CHARCOAL }}>{m.facility}</p>
-                    <p className="text-xs uppercase tracking-wide" style={{ color: SAGE }}>{m.hostCommunity}</p>
-                  </div>
-                  {/* Named-stage progression */}
-                  <ol className="mt-4 flex items-center gap-1.5">
-                    {STAGE_ORDER.map((s, i) => {
-                      const reached = i <= idx;
-                      const current = i === idx;
-                      return (
-                        <li key={s} className="flex flex-1 flex-col items-center gap-1.5">
-                          <span
-                            className="h-1.5 w-full rounded-full"
-                            style={{ backgroundColor: reached ? RUST : '#E8DED4' }}
-                          />
-                          <span
-                            className="text-center text-[10px] leading-tight"
-                            style={{ color: current ? RUST : reached ? `${CHARCOAL}cc` : `${CHARCOAL}66`, fontWeight: current ? 700 : 400 }}
-                          >
-                            {STAGE_LABEL[s]}
-                          </span>
-                        </li>
-                      );
-                    })}
-                  </ol>
-                  {m.note ? <p className="mt-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}b3` }}>{m.note}</p> : null}
-                </div>
-              );
-            })}
+          <div className="mt-8">
+            <OwnershipJourney stages={ownershipStages} />
           </div>
-          <p className="mt-5 max-w-2xl text-sm leading-relaxed" style={{ color: `${CHARCOAL}99` }}>
+          <p className="mt-8 max-w-2xl text-sm leading-relaxed" style={{ color: `${CHARCOAL}99` }}>
             Owned means the community holds the plant, the income it makes, the maintenance, and the decisions. That transfer is the point, and it is still ahead of us.
           </p>
         </Section>
