@@ -31,6 +31,9 @@ export type SectionKey =
   | 'commitment-progress'
   | 'upcoming-commitments'
   | 'whats-next'
+  | 'stage-of-growth'        // where Goods is on the journey + this period's step-change
+  | 'focus-area'            // the 1-2 priorities this capital is unlocking now
+  | 'ignition'              // how THIS funder's support ignited the momentum (catalytic)
   | 'country-acknowledgement';
 
 export type ReportTone = 'short-and-visual' | 'evidence-and-named';
@@ -81,6 +84,25 @@ export interface FunderContact {
   phone?: string;
 }
 
+/** Stage-of-growth dial: where Goods sits on the journey + this period's step-change. */
+export interface StageOfGrowthSpec {
+  dial: string[];          // ordered stages, e.g. ['Prototype','Pilot','Scaling','On-Country production']
+  currentIndex: number;    // 0-based index into dial = where Goods is now
+  stepChange: string;      // markdown: the concrete step-change THIS period
+}
+
+/** A focus area: one priority the funder's capital is unlocking now. */
+export interface FocusAreaSpec {
+  title: string;
+  body: string;            // markdown
+}
+
+/** Catalytic attribution: how THIS funder's support ignited the momentum. */
+export interface IgnitionSpec {
+  chain: string[];         // ordered links in the catalytic chain (rendered as a numbered list, no arrows)
+  narrative: string;       // markdown paragraph
+}
+
 export interface ReportPeriod {
   slug: string;      // e.g. "2026-Q2"
   label: string;     // human readable, e.g. "Q2 2026"
@@ -111,6 +133,9 @@ export interface FunderConfig {
   investmentTiers?: InvestmentTierSpec[];
   headlineAchievements?: string;  // markdown blob — funder-specific narrative
   additionalContext?: string;     // e.g. RHD section for Snow
+  stageOfGrowth?: StageOfGrowthSpec; // beat 3: where we are on the journey
+  focusAreas?: FocusAreaSpec[];      // beat 4: what we're focused on next
+  ignition?: IgnitionSpec;           // beat 5: how your support ignites change
 }
 
 /**

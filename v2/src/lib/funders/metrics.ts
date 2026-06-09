@@ -38,26 +38,39 @@ function scopedAssetsQuery(ctx: ReportContext) {
   return q;
 }
 
+// Bed resolvers filter product ILIKE %bed% so washers/other assets are NOT
+// counted as beds (matches impact-fetcher.ts; the unfiltered query over-counted).
 const bedsDeployedThisPeriod: MetricResolver = async (ctx) => {
-  const res = await scopedAssetsQuery(ctx).eq('status', 'deployed');
+  const res = await scopedAssetsQuery(ctx).ilike('product', '%bed%').eq('status', 'deployed');
   return String(res.count ?? 0);
 };
 
 const bedsAllocatedThisPeriod: MetricResolver = async (ctx) => {
-  const res = await scopedAssetsQuery(ctx).eq('status', 'allocated');
+  const res = await scopedAssetsQuery(ctx).ilike('product', '%bed%').eq('status', 'allocated');
   return String(res.count ?? 0);
 };
 
 const bedsThisPeriodAllStatuses: MetricResolver = async (ctx) => {
-  const res = await scopedAssetsQuery(ctx).in('status', ['deployed', 'allocated']);
+  const res = await scopedAssetsQuery(ctx).ilike('product', '%bed%').in('status', ['deployed', 'allocated']);
   return String(res.count ?? 0);
 };
 
+// Washing machines delivered this period (product = "Washing Machine").
+const washersThisPeriod: MetricResolver = async (ctx) => {
+  const res = await scopedAssetsQuery(ctx).ilike('product', '%wash%').in('status', ['deployed', 'allocated']);
+  return String(res.count ?? 0);
+};
+
+// Telemetry-working washers — honest number (28 deployed all-time, 14 reporting).
+const washersWorking: MetricResolver = async () =>
+  '14 telemetry-confirmed working (of 28 deployed to date)';
+
+// Plastic = STRETCH beds only (recycled HDPE). Basket beds are not a plastic product.
 const plasticKgTransferred: MetricResolver = async (ctx) => {
-  const res = await scopedAssetsQuery(ctx).in('status', ['deployed', 'allocated']);
+  const res = await scopedAssetsQuery(ctx).ilike('product', '%stretch%').in('status', ['deployed', 'allocated']);
   const beds = res.count ?? 0;
   const kg = beds * PLASTIC_KG_PER_BED;
-  return `**${kg.toLocaleString()} kg** (${(kg / 1000).toFixed(2)} tonnes) — ${beds} beds × ${PLASTIC_KG_PER_BED} kg HDPE`;
+  return `**${kg.toLocaleString()} kg** (${(kg / 1000).toFixed(2)} tonnes) — ${beds} Stretch beds × ${PLASTIC_KG_PER_BED} kg HDPE`;
 };
 
 const communitiesServed: MetricResolver = async (ctx) => {
@@ -93,7 +106,7 @@ const commitmentProgressBar: MetricResolver = async (ctx) => {
   // (e.g. 496 beds against a 109-unit commitment), so clamp the bar to 0-20
   // segments and the displayed pct to 0-100 — an unclamped `'░'.repeat(20-filled)`
   // throws RangeError on overshoot and surfaces as a [METRIC ERROR] in the deck.
-  const periodRes = await scopedAssetsQuery(ctx).in('status', ['deployed', 'allocated']);
+  const periodRes = await scopedAssetsQuery(ctx).ilike('product', '%bed%').in('status', ['deployed', 'allocated']);
   const periodCount = periodRes.count ?? 0;
   const total = c.totalUnits;
   const rawPct = total > 0 ? Math.round((periodCount / total) * 100) : 0;
@@ -207,6 +220,29 @@ const additionalContext: MetricResolver = async (ctx) => {
   return ctx.funder.additionalContext || '';
 };
 
+// Beat 3: where we are on the journey + this period's step-change.
+const stageOfGrowth: MetricResolver = async (ctx) => {
+  const s = ctx.funder.stageOfGrowth;
+  if (!s?.dial?.length) return '_(stage of growth not configured)_';
+  const dial = s.dial.map((d, i) => (i === s.currentIndex ? `**${d}**` : d)).join(' · ');
+  return `**Stage: ${s.dial[s.currentIndex]}**\n\n${dial}\n\n${s.stepChange}`;
+};
+
+// Beat 4: the 1-2 priorities this capital is unlocking now.
+const focusArea: MetricResolver = async (ctx) => {
+  const f = ctx.funder.focusAreas;
+  if (!f?.length) return '_(focus areas not configured)_';
+  return f.map((x, i) => `**${i + 1}. ${x.title}**\n\n${x.body}`).join('\n\n');
+};
+
+// Beat 5: how THIS funder's support ignited the momentum (catalytic chain).
+const ignition: MetricResolver = async (ctx) => {
+  const ig = ctx.funder.ignition;
+  if (!ig) return '_(ignition not configured)_';
+  const chain = (ig.chain || []).map((c, i) => `${i + 1}. ${c}`).join('\n');
+  return `${ig.narrative}\n\n${chain}`;
+};
+
 const financialsAtAGlance: MetricResolver = async (ctx) => {
   const c = ctx.funder.commitment;
   const rows: string[] = [];
@@ -242,6 +278,8 @@ export const MetricResolvers: Record<string, MetricResolver> = {
   'beds-deployed-this-period': bedsDeployedThisPeriod,
   'beds-allocated-this-period': bedsAllocatedThisPeriod,
   'beds-total-this-period': bedsThisPeriodAllStatuses,
+  'washers-total-this-period': washersThisPeriod,
+  'washers-working': washersWorking,
   'plastic-kg-transferred': plasticKgTransferred,
   'communities-served': communitiesServed,
   'commitment-progress-bar': commitmentProgressBar,
@@ -253,6 +291,9 @@ export const MetricResolvers: Record<string, MetricResolver> = {
   'investment-tiers': investmentTiersTable,
   'headline-achievements': headlineAchievements,
   'additional-context': additionalContext,
+  'stage-of-growth': stageOfGrowth,
+  'focus-area': focusArea,
+  'ignition': ignition,
   'financials-at-a-glance': financialsAtAGlance,
   'period-label': periodLabel,
   'period-start': periodStart,

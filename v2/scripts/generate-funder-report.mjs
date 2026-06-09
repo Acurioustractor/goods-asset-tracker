@@ -101,7 +101,8 @@ function tsxEval(code) {
 
 const configJson = JSON.parse(await tsxEval(`
 import { getFunder } from './src/lib/funders/registry';
-const f = getFunder(${JSON.stringify(funderSlug)});
+(async () => {
+const f = await getFunder(${JSON.stringify(funderSlug)});
 if (!f) { console.error('not found'); process.exit(1); }
 process.stdout.write(JSON.stringify({
   slug: f.slug,
@@ -120,7 +121,11 @@ process.stdout.write(JSON.stringify({
   investmentTiers: f.investmentTiers,
   headlineAchievements: f.headlineAchievements,
   additionalContext: f.additionalContext,
+  stageOfGrowth: f.stageOfGrowth,
+  focusAreas: f.focusAreas,
+  ignition: f.ignition,
 }));
+})();
 `));
 
 // Hydrate runtime methods
@@ -143,27 +148,38 @@ async function fetchXero(qs) {
 }
 
 const RESOLVERS = {
+  // NOTE: bed resolvers filter product ILIKE %bed% so washers/other assets are
+  // NOT counted as beds (matches the canonical impact-fetcher.ts logic).
   'beds-deployed-this-period': async () => {
     const res = await goods.from('assets').select('unique_id', { count: 'exact', head: true })
-      .gte('supply_date', period.start).lte('supply_date', period.end).eq('status', 'deployed');
+      .ilike('product', '%bed%').gte('supply_date', period.start).lte('supply_date', period.end).eq('status', 'deployed');
     return String(res.count ?? 0);
   },
   'beds-allocated-this-period': async () => {
     const res = await goods.from('assets').select('unique_id', { count: 'exact', head: true })
-      .gte('supply_date', period.start).lte('supply_date', period.end).eq('status', 'allocated');
+      .ilike('product', '%bed%').gte('supply_date', period.start).lte('supply_date', period.end).eq('status', 'allocated');
     return String(res.count ?? 0);
   },
   'beds-total-this-period': async () => {
     const res = await goods.from('assets').select('unique_id', { count: 'exact', head: true })
-      .gte('supply_date', period.start).lte('supply_date', period.end).in('status', ['deployed', 'allocated']);
+      .ilike('product', '%bed%').gte('supply_date', period.start).lte('supply_date', period.end).in('status', ['deployed', 'allocated']);
     return String(res.count ?? 0);
   },
+  // Washing machines delivered this period (product = "Washing Machine").
+  'washers-total-this-period': async () => {
+    const res = await goods.from('assets').select('unique_id', { count: 'exact', head: true })
+      .ilike('product', '%wash%').gte('supply_date', period.start).lte('supply_date', period.end).in('status', ['deployed', 'allocated']);
+    return String(res.count ?? 0);
+  },
+  // Telemetry-working washers — honest number (28 deployed all-time, 14 reporting).
+  'washers-working': async () => '14 telemetry-confirmed working (of 28 deployed to date)',
+  // Plastic = STRETCH beds only (recycled HDPE). Basket beds are not a plastic product.
   'plastic-kg-transferred': async () => {
     const res = await goods.from('assets').select('unique_id', { count: 'exact', head: true })
-      .gte('supply_date', period.start).lte('supply_date', period.end).in('status', ['deployed', 'allocated']);
+      .ilike('product', '%stretch%').gte('supply_date', period.start).lte('supply_date', period.end).in('status', ['deployed', 'allocated']);
     const beds = res.count ?? 0;
     const kg = beds * 20;
-    return `**${kg.toLocaleString()} kg** (${(kg/1000).toFixed(2)} tonnes) — ${beds} beds × 20 kg HDPE`;
+    return `**${kg.toLocaleString()} kg** (${(kg/1000).toFixed(2)} tonnes) — ${beds} Stretch beds × 20 kg HDPE`;
   },
   'communities-served': async () => {
     const { data } = await goods.from('assets').select('community')
@@ -181,7 +197,7 @@ const RESOLVERS = {
       return '```\nCommitment:  $' + total.toLocaleString('en-AU') + '\nPaid:        ' + bar + ' ' + pct + '%  ($' + paid.toLocaleString('en-AU') + ')\n```';
     }
     const periodRes = await goods.from('assets').select('unique_id', { count: 'exact', head: true })
-      .gte('supply_date', period.start).lte('supply_date', period.end).in('status', ['deployed', 'allocated']);
+      .ilike('product', '%bed%').gte('supply_date', period.start).lte('supply_date', period.end).in('status', ['deployed', 'allocated']);
     const periodCount = periodRes.count ?? 0;
     const total = c.totalUnits;
     const pct = total > 0 ? Math.round((periodCount/total)*100) : 0;
@@ -227,6 +243,23 @@ const RESOLVERS = {
   },
   'headline-achievements': async () => realFunder.headlineAchievements || '_(no headline achievements configured)_',
   'additional-context': async () => realFunder.additionalContext || '',
+  'stage-of-growth': async () => {
+    const s = realFunder.stageOfGrowth;
+    if (!s?.dial?.length) return '_(stage of growth not configured)_';
+    const dial = s.dial.map((d, i) => (i === s.currentIndex ? `**${d}**` : d)).join(' · ');
+    return `**Stage: ${s.dial[s.currentIndex]}**\n\n${dial}\n\n${s.stepChange}`;
+  },
+  'focus-area': async () => {
+    const f = realFunder.focusAreas;
+    if (!f?.length) return '_(focus areas not configured)_';
+    return f.map((x, i) => `**${i + 1}. ${x.title}**\n\n${x.body}`).join('\n\n');
+  },
+  'ignition': async () => {
+    const ig = realFunder.ignition;
+    if (!ig) return '_(ignition not configured)_';
+    const chain = (ig.chain || []).map((c, i) => `${i + 1}. ${c}`).join('\n');
+    return `${ig.narrative}\n\n${chain}`;
+  },
   'financials-at-a-glance': async () => {
     const c = realFunder.commitment;
     const rows = ['| Item | Value |','|---|---|'];
@@ -267,6 +300,7 @@ const SECTION_FILES = {
   'safeguarding-risks': '13-safeguarding-risks.md','commitment-progress': '14-commitment-progress.md',
   'upcoming-commitments': '15-upcoming-commitments.md','whats-next': '16-whats-next.md',
   'country-acknowledgement': '17-country-acknowledgement.md',
+  'stage-of-growth': '18-stage-of-growth.md','focus-area': '19-focus-area.md','ignition': '20-ignition.md',
 };
 
 const sectionsDir = join(__dirname, '..', '..', 'wiki', 'templates', 'funder-report', 'sections');

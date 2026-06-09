@@ -33,6 +33,9 @@ const SECTION_FILES: Record<SectionKey, string> = {
   'commitment-progress': '14-commitment-progress.md',
   'upcoming-commitments': '15-upcoming-commitments.md',
   'whats-next': '16-whats-next.md',
+  'stage-of-growth': '18-stage-of-growth.md',
+  'focus-area': '19-focus-area.md',
+  'ignition': '20-ignition.md',
   'country-acknowledgement': '17-country-acknowledgement.md',
 };
 
