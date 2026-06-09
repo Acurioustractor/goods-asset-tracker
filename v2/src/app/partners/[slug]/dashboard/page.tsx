@@ -204,7 +204,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
             <div className="flex flex-wrap gap-2 mb-8">
               {themes.map((t) => (
                 <span key={t.name} className="text-sm rounded-full px-4 py-2" style={{ backgroundColor: CREAM, color: CHARCOAL, border: '1px solid #E8DED4' }}>
-                  {t.name}
+                  {t.name.replace(/[_-]+/g, ' ').replace(/^./, (c) => c.toUpperCase())}
                   {t.storytellerCount ? <span style={{ color: `${CHARCOAL}80` }}> · {t.storytellerCount}</span> : null}
                 </span>
               ))}
