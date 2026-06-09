@@ -20,10 +20,18 @@ export const snowConfig: FunderConfig = {
     email: 's.grimsley-ballard@snowfoundation.org.au',
     phone: '0417 851 341',
   },
+  // FINANCIAL DRIFT FLAG (2026-06-09): paidToDate/toBePaid below are STALE.
+  // Live Xero (read-only, contact-level) shows Snow ~$493,129.79 received over 3yr,
+  // $0 outstanding (i.e. the 2025-26 slice is fully PAID, not $275K paid / $120K pending).
+  // totalAud $395,000 is the 2024/OC0014 grant commitment specifically (still valid).
+  // DO NOT trust paidToDate/toBePaid until the FY26-only slice is carved out + the 2
+  // residual checks clear. See wiki/outputs/funder-reports/snow/2026-06-09-snow-figure-reconciliation.md
+  // The report's financials-at-a-glance / commitment-progress also render the LIVE
+  // [METRIC: xero-drawn-aud] resolver, which is the source to prefer.
   commitment: {
     totalAud: 395000,
-    paidToDateAud: 275000,
-    toBePaidAud: 120000,
+    paidToDateAud: 275000, // STALE — see flag above; slice now fully paid
+    toBePaidAud: 120000, // STALE — see flag above
     invoicesRaisedAud: 434500, // inc-GST, across 6 invoices (2 missing)
     reportsSubmitted: '3 of 3 due so far ✓',
     nextReportDue: '31/07/2026 (FY26 Operational acquittal)',

@@ -16,7 +16,7 @@ Do not mix received funding with pipeline. Snow Foundation Round 4 is currently 
 
 | Measure | Amount | What it means | Status |
 |---|---:|---|---|
-| Received funder/program subtotal from current source trail | $405,685 | Snow, TFN, FRRR/VFFF, AMP Spark and QBE Stage 1. | Needs finance reconciliation. |
+| Received funder/program subtotal from current source trail | $405,685 | Snow, TFN, FRRR/VFFF, AMP Spark and QBE Stage 1. | Needs finance reconciliation. NOTE: uses the stale Snow $193,785; re-derive with the restated Snow ~$493,130 (2026-06-09). |
 | Warm Snow Foundation Round 4 pathway | $130,000 | Pipeline / draft pathway only. Not included in received funding. | Needs proposal and current Snow confirmation. |
 | REAL Innovation Fund / DEWR pathway | $2,400,000 | Two site pathway: $1.2M for Townsville and $1.2M for Alice Springs over three years. Not included in received funding. | EOI / application pathway; confirm current status and lead entities. |
 
@@ -26,7 +26,7 @@ This is the table mentors and funders should be able to read first. It should ev
 
 | Funder / source | Amount | Timing | Instrument | Relationship read | Evidence and review action |
 |---|---:|---|---|---|---|
-| Snow Foundation | $193,785 | 2023-2025 | Grant / philanthropic support | Anchor funder. Sally Grimsley-Ballard is a key relationship and has been close enough to the work to travel to Tennant Creek. | Confirm cash receipt dates, purpose restrictions and Round 4 status. See [[../investors/snow-foundation]] and [[../sources/funding-journey]]. |
+| Snow Foundation | ~$493,130 | 2023-2026 | Grant / philanthropic support | Anchor funder. Sally Grimsley-Ballard is a key relationship and has been close enough to the work to travel to Tennant Creek. | Restated 2026-06-09 from $193,785 (stale) via live Xero pull, contact-level, $0 outstanding. 2 Xero-UI checks pending (Goods-coding; any pre-2023-06 revenue). See `wiki/outputs/funder-reports/snow/2026-06-09-snow-figure-reconciliation.md`, [[../investors/snow-foundation]] and [[../sources/funding-journey]]. |
 | The Funding Network | $130,000 | September / December 2025 source trail | Grant / live pitch raise | Strong proof that the story can move people when told directly. Also a connector network. | Confirm exact pledge versus received timing and reporting obligations. See [[../investors/tfn]]. |
 | FRRR + VFFF Backing the Future | $50,000 | July 2025 | Joint grant | Rural, regional and youth/community credibility. FRRR administers and VFFF co-funds. | Do not count this as two separate $50K grants. See [[../investors/frrr]] and [[../investors/vfff]]. |
 | AMP Spark | $21,900 | June 2024 | Program / accelerator support | Social enterprise credential and early support. | Confirm purpose, acquittal and alumni pathway. See [[../investors/amp]]. |
