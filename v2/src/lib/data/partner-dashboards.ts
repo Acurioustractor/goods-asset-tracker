@@ -60,6 +60,7 @@ export interface PartnerDashboard {
     reactions: DashboardLink[]; // positive-reaction links Ben adds
   };
   gallery: { src: string; alt: string }[];
+  contribution?: { value: string; note: string }; // this funder's contribution, for the stewardship strip
   /** Future: when set + NOTION_TOKEN present, curated sections read from Notion. */
   notionDbId?: string;
 }
@@ -71,6 +72,7 @@ const snow: PartnerDashboard = {
   heroLine: 'What your backing is making possible on country',
   intro:
     'A live view of where Goods on Country is at, built for The Snow Foundation. The numbers below update on their own from the field. The rest is what we are working on, where we have come from, and what is next.',
+  contribution: { value: '~$493K', note: 'Anchor of the blended raise, fully received' },
   facilities: {
     value: '1 + 1',
     note: 'One containerised plant being commissioned; a second, community-owned facility in Alice Springs with Oonchiumpa is in a federal funding submission (decision pending).',
