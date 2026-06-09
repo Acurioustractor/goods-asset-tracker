@@ -183,6 +183,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
         * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
         figure, li, .rounded-lg, .rounded-xl { break-inside: avoid; }
         section { break-inside: auto; }
+        section header { break-after: avoid; break-inside: avoid; }
         a[href]::after { content: '' !important; }
       }`}</style>
 
