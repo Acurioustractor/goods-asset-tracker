@@ -1,6 +1,7 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 import { FUNDER_PAGES } from '@/lib/data/funder-pages'
+import { PARTNER_DASHBOARDS } from '@/lib/data/partner-dashboards'
 
 // Routes that require user authentication (phone-based)
 const protectedUserRoutes = ['/my-items', '/community', '/production']
@@ -85,6 +86,21 @@ export async function proxy(request: NextRequest) {
         if (authCookie !== funder.password) {
           return NextResponse.redirect(new URL(`/funders/${slug}/login`, request.url))
         }
+      }
+    }
+  }
+
+  // Partner dashboards — per-slug password gate. Only /partners/<slug>/dashboard
+  // is gated; the public partner pages (/partners/centrecorp etc.) stay open.
+  // Login at /partners/<slug>/login, auth at /api/partners/<slug>/auth.
+  const partnerDashMatch = pathname.match(/^\/partners\/([^/]+)\/dashboard/)
+  if (partnerDashMatch) {
+    const slug = partnerDashMatch[1]
+    const partner = PARTNER_DASHBOARDS.find((p) => p.slug === slug)
+    if (partner) {
+      const authCookie = request.cookies.get(`partner_${slug}`)?.value
+      if (authCookie !== partner.password) {
+        return NextResponse.redirect(new URL(`/partners/${slug}/login`, request.url))
       }
     }
   }
