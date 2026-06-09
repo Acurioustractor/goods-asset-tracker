@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getPartnerDashboard } from '@/lib/data/partner-dashboards';
 import { getAssetStats } from '@/lib/data/impact-fetcher';
+import { getRoadmap } from '@/lib/data/roadmap';
 
 // Always live: read the asset register fresh each request.
 export const dynamic = 'force-dynamic';
@@ -58,6 +59,12 @@ export default async function PartnerDashboardPage({ params }: Props) {
         .filter((c) => c && c !== 'Unknown' && c !== 'Pending Delivery')
     : [];
 
+  // Kanban + timeline live from roadmap_items; fall back to config if the table
+  // is unavailable/empty during the switch-over.
+  const roadmap = await getRoadmap();
+  const kanban = roadmap?.kanban ?? partner.kanban;
+  const timeline = roadmap?.timeline ?? partner.history;
+
   return (
     <main className="min-h-screen" style={{ backgroundColor: CREAM, color: CHARCOAL }}>
       <section className="px-5 sm:px-8 pt-12 sm:pt-16 pb-10 max-w-5xl mx-auto">
@@ -105,7 +112,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
         <div className="max-w-5xl mx-auto">
           <p className="text-xs uppercase mb-6" style={{ color: RUST }}>What we are working towards</p>
           <div className="grid md:grid-cols-3 gap-4">
-            {partner.kanban.map((col) => (
+            {kanban.map((col) => (
               <div key={col.heading} className="rounded-lg p-5" style={{ backgroundColor: CREAM, border: '1px solid #E8DED4' }}>
                 <p className="text-sm font-semibold uppercase mb-4" style={{ color: SAGE }}>{col.heading}</p>
                 <ul className="space-y-3">
@@ -126,7 +133,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
       <section className="px-5 sm:px-8 py-14 max-w-3xl mx-auto">
         <p className="text-xs uppercase mb-6" style={{ color: RUST }}>Where we have come from, and where we are going</p>
         <ol className="relative border-l pl-6 space-y-7" style={{ borderColor: '#E8DED4' }}>
-          {partner.history.map((h) => (
+          {timeline.map((h) => (
             <li key={h.date + h.title} className="relative">
               <span className="absolute -left-[31px] top-1 h-3 w-3 rounded-full" style={{ backgroundColor: RUST }} />
               <p className="text-xs uppercase mb-1" style={{ color: SAGE }}>{h.date}</p>
