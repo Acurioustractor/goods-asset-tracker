@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getPartnerDashboard } from '@/lib/data/partner-dashboards';
-import { getCanonicalAssetRollup } from '@/lib/data/impact-fetcher';
+import { getAssetStats } from '@/lib/data/impact-fetcher';
 
 // Always live: read the asset register fresh each request.
 export const dynamic = 'force-dynamic';
@@ -39,18 +39,24 @@ export default async function PartnerDashboardPage({ params }: Props) {
   const partner = getPartnerDashboard(slug);
   if (!partner) notFound();
 
-  // Live metrics from the asset register (canonical rollup).
-  let rollup: Awaited<ReturnType<typeof getCanonicalAssetRollup>> | null = null;
+  // Live metrics from the asset register.
+  let stats: Awaited<ReturnType<typeof getAssetStats>> | null = null;
   try {
-    rollup = await getCanonicalAssetRollup();
+    stats = await getAssetStats();
   } catch {
-    rollup = null;
+    stats = null;
   }
 
-  const beds = rollup ? rollup.bedsDeployed.toLocaleString() : '—';
-  const communities = rollup ? String(rollup.communitiesServed) : '—';
-  const plasticT = rollup ? `${(rollup.plasticKg / 1000).toFixed(2)} t` : '—';
-  const washers = rollup ? `${rollup.washersWorking} / ${rollup.washersDeployed}` : '—';
+  const beds = stats ? stats.totalBeds.toLocaleString() : '—';
+  const communities = stats ? String(stats.communitiesServed) : '—';
+  // Plastic = STRETCH beds only (recycled HDPE), ~20 kg each.
+  const plasticT = stats ? `${((stats.stretchBedsDeployed * 20) / 1000).toFixed(2)} t` : '—';
+  const washers = stats ? `${stats.washersWorking} / ${stats.washersDeployed}` : '—';
+  const communityList = stats
+    ? stats.communityBreakdown
+        .map((c) => c.community)
+        .filter((c) => c && c !== 'Unknown' && c !== 'Pending Delivery')
+    : [];
 
   return (
     <main className="min-h-screen" style={{ backgroundColor: CREAM, color: CHARCOAL }}>
@@ -77,14 +83,20 @@ export default async function PartnerDashboardPage({ params }: Props) {
           <p className="text-xs uppercase" style={{ color: RUST }}>The trajectory, live from the field</p>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
-          <Stat value={beds} label="Beds in community" sub={rollup ? `${rollup.stretchBedsDeployed} recycled-plastic Stretch Beds` : undefined} />
+          <Stat value={beds} label="Beds in community" sub={stats ? `${stats.stretchBedsDeployed} recycled-plastic Stretch Beds` : undefined} />
           <Stat value={communities} label="Communities" />
           <Stat value={plasticT} label="Plastic diverted" sub="~20 kg per Stretch Bed" />
           <Stat value={washers} label="Washing machines" sub="live / deployed" />
           <Stat value={partner.facilities.value} label="Production facilities" sub={partner.facilities.note} />
         </div>
+        {communityList.length > 0 ? (
+          <p className="text-sm mt-4 leading-relaxed" style={{ color: `${CHARCOAL}b3` }}>
+            <span className="font-semibold" style={{ color: CHARCOAL }}>The {communityList.length} communities: </span>
+            {communityList.join('  ·  ')}
+          </p>
+        ) : null}
         <p className="text-xs mt-3" style={{ color: `${CHARCOAL}80` }}>
-          Beds, communities, plastic and washers read live from the Goods asset register. Production facilities are a curated count.
+          Beds, communities, plastic (Stretch Beds only) and washing machines read live from the Goods asset register. Production facilities are a curated count.
         </p>
       </section>
 
@@ -124,6 +136,24 @@ export default async function PartnerDashboardPage({ params }: Props) {
           ))}
         </ol>
       </section>
+
+      {/* Photo gallery */}
+      {partner.gallery.length > 0 ? (
+        <section className="px-5 sm:px-8 py-14" style={{ backgroundColor: '#FFFFFF' }}>
+          <div className="max-w-5xl mx-auto">
+            <p className="text-xs uppercase mb-6" style={{ color: RUST }}>From the field</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {partner.gallery.map((g) => (
+                <figure key={g.src} className="overflow-hidden rounded-lg bg-white" style={{ border: '1px solid #E8DED4' }}>
+                  <div className="relative aspect-[4/3]">
+                    <Image src={g.src} alt={g.alt} fill className="object-cover" sizes="(max-width: 768px) 50vw, 320px" />
+                  </div>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {/* Traffic / airport */}
       <section className="px-5 sm:px-8 py-14" style={{ backgroundColor: CREAM }}>

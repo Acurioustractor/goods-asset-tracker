@@ -59,6 +59,7 @@ export interface PartnerDashboard {
     snapshots: TrafficSnapshot[];
     reactions: DashboardLink[]; // positive-reaction links Ben adds
   };
+  gallery: { src: string; alt: string }[];
   /** Future: when set + NOTION_TOKEN present, curated sections read from Notion. */
   notionDbId?: string;
 }
@@ -81,7 +82,7 @@ const snow: PartnerDashboard = {
         { title: 'Community siting decision for the plant', note: 'Tennant Creek or Mparntwe' },
         { title: 'Katrina: train-the-trainer at Witta', note: 'Skills travel home to run the Alice Springs build' },
         { title: 'QBE Catalysing Impact, Stage 2', note: 'September; could bring matched catalytic capital' },
-        { title: 'Impact-investment scoping with Bhanvi', note: 'Intro via Snow' },
+        { title: 'Investment + loan opportunity with Snow', note: 'Exploring recoverable / impact-investment finance; intro to Bhanvi via Snow' },
       ],
     },
     {
@@ -89,7 +90,7 @@ const snow: PartnerDashboard = {
       items: [
         { title: 'Commission the on-country production plant', note: '~85% complete' },
         { title: 'Alice Springs facility with Oonchiumpa', note: 'REAL Innovation Fund submission lodged, decision pending' },
-        { title: 'Washing machine prototype iteration', note: 'Pakkimjalki Kari line' },
+        { title: 'New washing machine prototype', note: 'Next-generation build in development now' },
         { title: 'The Butterfly Movement charity transition', note: 'Goods’ DGR home; Aboriginal-led board forming' },
       ],
     },
@@ -106,7 +107,9 @@ const snow: PartnerDashboard = {
   history: [
     { date: '2023', title: 'Snow becomes an anchor backer', detail: 'Support before the proof was in the houses.' },
     { date: '2024', title: 'Grant 2024/OC0014', detail: 'Multi-year support across beds, the production facility, and the team.' },
-    { date: 'Jan 2026', title: 'First washing machine built with the Bloomfield family', detail: 'In Tennant Creek; named Pakkimjalki Kari by Elder Dianne Stokes.' },
+    { date: '[confirm date]', title: 'Snow visits Tennant Creek with us', detail: 'Sally Grimsley-Ballard on country, seeing the work first-hand.' },
+    { date: 'Jan 2026', title: 'First washing machine given to Dianne Stokes', detail: 'In Tennant Creek. She named it Pakkimjalki Kari in Warumungu.' },
+    { date: 'Early 2026', title: 'Selected into QBE Catalysing Impact 2026', detail: 'Blended-finance accelerator run by the Social Impact Hub. Stage 2 in September could bring matched catalytic capital.' },
     { date: 'May 2026', title: 'Central Australia deployment', detail: 'Utopia + Alice Springs; 87 beds that trip, with Centrecorp as delivery partner.' },
     { date: 'Jun 2026', title: 'Oonchiumpa REAL Innovation Fund submission', detail: 'A community-owned Alice Springs facility + jobs pathway, decision pending.' },
     { date: 'To date', title: '~$493K invested by Snow over three years', detail: 'Fully received. The anchor that makes the blended raise credible.' },
@@ -131,6 +134,14 @@ const snow: PartnerDashboard = {
       // Add links to positive reactions found online (posts, mentions) here.
     ],
   },
+  gallery: [
+    { src: '/images/community/tennant-creek.jpg', alt: 'Tennant Creek community' },
+    { src: '/images/media-pack/community-bed-assembly.jpg', alt: 'Community members assembling a bed' },
+    { src: '/images/media-pack/nic-with-elder-on-verandah.jpg', alt: 'Nic with an Elder on a verandah' },
+    { src: '/images/product/stretch-bed-community.jpg', alt: 'A Stretch Bed in a remote community home' },
+    { src: '/images/product/washing-machine-community.jpg', alt: 'A washing machine deployed in community' },
+    { src: '/images/media-pack/community-testing-bed-golden-hour.jpg', alt: 'A family testing a bed at golden hour' },
+  ],
 };
 
 export const PARTNER_DASHBOARDS: PartnerDashboard[] = [snow];
