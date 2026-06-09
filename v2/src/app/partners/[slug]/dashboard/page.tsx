@@ -122,7 +122,6 @@ export default async function PartnerDashboardPage({ params }: Props) {
   // Roadmap (live), with config fallback.
   const roadmap = await getRoadmap();
   const kanban = roadmap?.kanban ?? partner.kanban;
-  const timeline = roadmap?.timeline ?? partner.history;
 
   // Community voice (Empathy Ledger, consent-gated).
   const insights = await empathyLedger.getProjectInsights().catch(() => null);
@@ -386,17 +385,6 @@ export default async function PartnerDashboardPage({ params }: Props) {
               </div>
             ))}
           </div>
-
-          <ol className="relative mt-10 space-y-7 border-l pl-6" style={{ borderColor: '#E8DED4' }}>
-            {timeline.map((h) => (
-              <li key={h.date + h.title} className="relative">
-                <span className="absolute -left-[31px] top-1 h-3 w-3 rounded-full" style={{ backgroundColor: RUST }} />
-                <p className="mb-1 text-xs uppercase" style={{ color: SAGE }}>{h.date}</p>
-                <p className="text-base font-medium" style={{ color: CHARCOAL }}>{h.title}</p>
-                {h.detail ? <p className="mt-1 text-sm leading-relaxed" style={{ color: `${CHARCOAL}bf` }}>{h.detail}</p> : null}
-              </li>
-            ))}
-          </ol>
         </Section>
 
         {/* Back the next stage */}
