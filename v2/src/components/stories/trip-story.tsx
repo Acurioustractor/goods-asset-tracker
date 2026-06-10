@@ -36,7 +36,7 @@ interface Props {
  * Shared lazy-play autoplay-muted-loop background video.
  *
  * Why this exists: the field-notes page can have 6+ autoplay videos
- * (masthead + 4 immersive bgs + boys + girls + Casey on-bed overlay).
+ * (masthead + 4 immersive bgs + boys + girls + Donald on-bed overlay).
  * Chrome's per-page media budget is small; multiple <video> elements
  * all calling play() simultaneously cause Chrome to randomly pause
  * some of them. By gating play() through an IntersectionObserver,
@@ -1737,7 +1737,7 @@ video.ts-bg{filter:brightness(.6) saturate(.97)}
   /* Stacked immersive: image at top at its natural aspect, text in a
      clean editorial block below. Used for wide compositions where the
      centre-crop loses subjects on phone-narrow viewports (e.g. Frankie
-     + Casey shed). The .ts-bg block stops being a positioned background
+     + Donald shed). The .ts-bg block stops being a positioned background
      and becomes a content element with a 3:2 aspect ratio; the .ts-inner
      block drops onto solid bone-dim ground below. No scrim, no overlay.
      !important is needed because Next/Image with fill sets position:absolute

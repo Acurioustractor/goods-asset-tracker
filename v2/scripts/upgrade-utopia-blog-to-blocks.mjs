@@ -129,7 +129,7 @@ const blocks = [
   {
     kind: 'immersive',
     actmark: 'Ampilatwatja',
-    title: 'A morning with Frankie and Casey',
+    title: 'A morning with Frankie and Donald',
     standfirst:
       'Alyawarr brothers. Both recognised with the Medal of the Order of Australia. Four beds went in, two households between them. The unloading took longer than the assembly. The yarning took longer still.',
     media: { image: PHOTO_ELDERS },

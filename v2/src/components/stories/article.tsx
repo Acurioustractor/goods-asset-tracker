@@ -291,7 +291,7 @@ function renderArticleBlock(block: TripBlock, i: number): React.ReactNode {
       // act-mark + title + standfirst overlay on a bottom-up scrim. The
       // text never floats on black padding because the scrim handles
       // contrast on whatever frame the image/video has. mobileLayout:
-      // 'stacked' (used for wide-subject shots like Frankie + Casey)
+      // 'stacked' (used for wide-subject shots like Frankie + Donald)
       // drops the scrim and stacks text below the image.
       const media = (block.media as MediaRef) || {};
       const stacked = (block as { mobileLayout?: string }).mobileLayout === 'stacked';
