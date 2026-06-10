@@ -1,6 +1,6 @@
 # Snow Foundation
 
-> Existing anchor funder. $193K received across multiple rounds. Long-term partnership model (not one-off grants). Co-invested in Jigsaw alongside the SEFA-led syndicate. Sally Grimsley-Ballard sits on Goods advisory group.
+> Existing anchor funder. ~$493K received across multiple rounds (Xero, contact-level, 2026-06-09, $0 outstanding; supersedes the earlier $193K snapshot, see `wiki/outputs/funder-reports/snow/2026-06-09-snow-figure-reconciliation.md`, 2 Xero-UI checks pending). Long-term partnership model (not one-off grants). Co-invested in Jigsaw alongside the SEFA-led syndicate. Sally Grimsley-Ballard sits on Goods advisory group.
 
 ## Mandate
 
@@ -19,7 +19,7 @@ Rebecca Parkinson (QBE induction): "Snow Foundation partners long-term, flexible
 
 ## Current state
 
-- Received: $193K cumulative.
+- Received: ~$493,129.79 cumulative (Xero 3-yr, contact-level, 2026-06-09, $0 outstanding). The earlier $193K figure is superseded. 2 Xero-UI checks pending: that all Snow invoices are Goods-coded, and whether any Snow revenue predates 2023-06-09. See `wiki/outputs/funder-reports/snow/2026-06-09-snow-figure-reconciliation.md`.
 - Pipeline: Snow R4 at $130K target.
 - Proposed 2026 role: **letter of support** acting as catalytic signal to open SEFA + Mindaroo + PFI commitments.
 
