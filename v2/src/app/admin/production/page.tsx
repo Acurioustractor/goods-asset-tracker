@@ -12,7 +12,10 @@ import { batchEconomics } from '@/lib/data/cost-model-scenarios';
 import { getSupplierActuals } from '@/lib/data/supplier-cost-actuals';
 import type { ProductionInventory, ProductionShift, ProductionJournal } from '@/lib/types/database';
 
-export const revalidate = 300; // 5 min cache
+// Gated admin dashboard: render on demand so the build never blocks on a live
+// Supabase fetch (the all-rows assets/deals queries below can time out the
+// static export when the DB is slow). Was `revalidate = 300`.
+export const dynamic = 'force-dynamic';
 
 async function getProductionData() {
   const supabase = createServiceClient();
