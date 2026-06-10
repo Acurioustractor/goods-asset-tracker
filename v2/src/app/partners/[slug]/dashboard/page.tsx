@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const p = getPartnerDashboard(slug);
   return {
-    title: p ? `${p.partnerName} — Goods on Country partner dashboard` : 'Partner dashboard',
+    title: p ? `${p.partnerName} partner dashboard` : 'Partner dashboard',
     description: p?.thesisLine,
     robots: { index: false, follow: false },
   };
@@ -132,11 +132,11 @@ export default async function PartnerDashboardPage({ params }: Props) {
     stats = null;
   }
 
-  const beds = stats ? stats.totalBeds.toLocaleString() : '—';
-  const communities = stats ? String(stats.communitiesServed) : '—';
-  const stretch = stats ? stats.stretchBedsDeployed.toLocaleString() : '—';
-  const plasticT = stats ? `${((stats.stretchBedsDeployed * 20) / 1000).toFixed(2)} t` : '—';
-  const washers = stats ? String(stats.washersWorking) : '—';
+  const beds = stats ? stats.totalBeds.toLocaleString() : '–';
+  const communities = stats ? String(stats.communitiesServed) : '–';
+  const stretch = stats ? stats.stretchBedsDeployed.toLocaleString() : '–';
+  const plasticT = stats ? `${((stats.stretchBedsDeployed * 20) / 1000).toFixed(2)} t` : '–';
+  const washers = stats ? String(stats.washersWorking) : '–';
   const washersUnconfirmed = stats ? stats.washersDeployed - stats.washersWorking : 0;
   const peopleReached = stats ? Math.round(stats.totalBeds * 2.5) : null;
   const communityList = stats
@@ -472,7 +472,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
               note="Assumes ~20kg HDPE per Stretch Bed. Not weighed per unit."
             />
             <MetricCard
-              value={peopleReached ? `~${peopleReached.toLocaleString()}` : '—'}
+              value={peopleReached ? `~${peopleReached.toLocaleString()}` : '–'}
               label="People reached"
               comparison="Modelled at about 2.5 people per bed."
               grade="modelled"
