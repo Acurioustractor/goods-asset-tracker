@@ -12,7 +12,7 @@ That choice matters for school, work, self-esteem, scabies prevention and househ
 
 The current prototype is based on a commercial-grade Speed Queen.
 
-Nicholas described the approach as taking a strong washing machine and adding the equivalent of bull bars and bash plates for remote conditions. It works as a prototype, but it is expensive. Current units cost roughly $4,500 to $5,000, while the target resident-accessible price is closer to $1,000 to $2,000.
+Nicholas described the approach as taking a strong washing machine and adding the equivalent of bull bars and bash plates for remote conditions. It works as a prototype, but it is expensive. Current units cost roughly $4,300, while the target resident-accessible price is closer to $2,000 to $2,500 depending on community needs.
 
 About 15 machines have been built to date. Most have been purchased or placed through councils or organisations, not directly bought by residents.
 
