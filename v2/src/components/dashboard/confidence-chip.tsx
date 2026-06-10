@@ -72,13 +72,16 @@ export function ConfidenceLegend() {
     { grade: 'not-yet', desc: 'We name it honestly. We do not measure this yet.' },
   ];
   return (
-    <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2">
-      {items.map((it) => (
-        <div key={it.grade} className="flex items-start gap-2">
-          <ConfidenceChip grade={it.grade} />
-          <span className="text-xs leading-snug" style={{ color: `${CHARCOAL}99`, maxWidth: '20rem' }}>{it.desc}</span>
-        </div>
-      ))}
+    <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+      {items.map((it) => {
+        const m = GRADE_META[it.grade];
+        return (
+          <div key={it.grade} className="flex flex-col gap-2.5" style={{ borderTop: `2px solid ${m.border}`, paddingTop: '0.75rem' }}>
+            <ConfidenceChip grade={it.grade} />
+            <p className="text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>{it.desc}</p>
+          </div>
+        );
+      })}
     </div>
   );
 }

@@ -26,12 +26,12 @@ const STEPS: { stage: string; title: string; body: string }[] = [
   {
     stage: 'Happening now',
     title: 'R&D to bring the price down',
-    body: 'The next-generation build is in development. V1 works, but at roughly $4,500 to $5,000 a unit it is council and organisation territory. The design problem now is keeping the durability while stripping out cost.',
+    body: 'The next-generation build is in development. V1 works, but at $4,300 a unit it is council and organisation territory. The design problem now is keeping the durability while stripping out cost.',
   },
   {
     stage: 'The destination',
     title: 'A machine a family can buy for home',
-    body: 'The target is a resident-accessible price near $1,000 to $2,000, repairable close to community, so owning a washing machine at home becomes a normal purchase rather than a program.',
+    body: 'The target is $2,000 to $2,500 depending on community needs and conversations, repairable close to community, so owning a washing machine at home becomes a normal purchase rather than a program.',
   },
 ];
 
@@ -62,25 +62,23 @@ export function WasherJourney({ washersLine }: { washersLine: string }) {
       {/* The price path: the one number this section is really about */}
       <div className="mt-6 rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
         <div className="flex flex-wrap items-start justify-between gap-4">
-          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>The price has to fall by about two-thirds</p>
+          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>The price has to fall by roughly half</p>
           <ConfidenceChip grade="modelled" note="Founder estimates from the May 2026 working conversation. Unit costs vary with spec and freight; the target is a design goal, not a promise." />
         </div>
         <div className="mt-4 grid gap-6 sm:grid-cols-2">
           <div>
-            <p className="font-display text-3xl leading-none" style={{ color: CHARCOAL }}>$4,500 to $5,000</p>
+            <p className="font-display text-3xl leading-none" style={{ color: CHARCOAL }}>$4,300</p>
             <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>What a V1 unit costs today. Bought by councils and organisations, out of reach for a household.</p>
           </div>
           <div>
-            <p className="font-display text-3xl leading-none" style={{ color: RUST }}>$1,000 to $2,000</p>
-            <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>The resident-accessible target the V2 R&D is designing toward, so families can buy one for home.</p>
+            <p className="font-display text-3xl leading-none" style={{ color: RUST }}>$2,000 to $2,500</p>
+            <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>The target depending on community needs and conversations, so families can buy one for home.</p>
           </div>
         </div>
         <div className="mt-5 h-2 w-full overflow-hidden rounded-full" style={{ backgroundColor: '#EEE9E3' }} aria-hidden>
-          <div className="h-full rounded-full" style={{ width: '33%', backgroundColor: RUST }} />
+          <div className="h-full rounded-full" style={{ width: '50%', backgroundColor: RUST }} />
         </div>
-        <p className="mt-2 text-[11px]" style={{ color: `${CHARCOAL}80` }}>
-          {washersLine} The demand signal is already bigger than the fleet: one Groote Archipelago request alone asked about 300 machines (an enquiry, not an order).
-        </p>
+        <p className="mt-2 text-[11px]" style={{ color: `${CHARCOAL}80` }}>{washersLine}</p>
       </div>
 
       {/* Still being solved: named honestly, same as everywhere else on this page */}
