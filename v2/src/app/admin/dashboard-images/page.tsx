@@ -5,6 +5,7 @@
 
 import { getPartnerDashboard, PARTNER_DASHBOARDS } from '@/lib/data/partner-dashboards';
 import { getDashboardImageOverrides, getDashboardImageSlots } from '@/lib/data/partner-dashboard-images';
+import { safeImageUrl } from '@/lib/empathy-ledger/media-tier';
 import { DashboardImagePicker, type ElPhoto } from './picker';
 
 export const dynamic = 'force-dynamic';
@@ -43,9 +44,9 @@ async function fetchElPhotos(): Promise<ElPhoto[]> {
     .map((s): ElPhoto | null => {
       const u = s.story_image_url || s.media_url;
       if (!u || /\.(mp4|mov|m4v|webm)(\?|$)/i.test(u)) return null;
-      // The `media` bucket is not publicly served (400s) — skip those so the
-      // grid never shows a blank card. Public photos live in `story-images`.
-      if (u.includes('/storage/v1/object/public/media/')) return null;
+      // Privacy bucket guard (shared model): drop private-bucket URLs that 400
+      // publicly so the grid never shows a blank card. Public photos pass.
+      if (!safeImageUrl(u)) return null;
       // Fast grid thumbnail via Supabase image transform (~6x smaller than the
       // full-res original). The full `url` is still what gets assigned to a slot.
       const thumb = u.includes('/storage/v1/object/public/story-images/')

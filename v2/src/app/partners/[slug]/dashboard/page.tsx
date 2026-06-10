@@ -156,7 +156,22 @@ export default async function PartnerDashboardPage({ params }: Props) {
   const themes = (insights?.themes ?? []).slice(0, 6);
   const quotes = (insights?.topQuotes ?? []).slice(0, 3);
   const featuredVoices = partner.featuredVoices ?? [];
-  const hasVoice = featuredVoices.length > 0 || themes.length > 0 || quotes.length > 0;
+  // More community voices, pulled live from Empathy Ledger's public syndication
+  // API (no login). Text-only by design: EL avatar URLs live on a host we do not
+  // proxy, so we showcase name + place + theme rather than risk a broken portrait.
+  // The named featured voices above are excluded so nobody appears twice.
+  const featuredNames = new Set(featuredVoices.map((v) => v.name.toLowerCase()));
+  const ledgerVoices = (await empathyLedger.getProjectStorytellers({ limit: 24 }).catch(() => []))
+    .map((s) => ({
+      name: s.name,
+      location: s.location,
+      isElder: s.isElder,
+      theme: s.themes?.[0]?.displayName || s.themes?.[0]?.name || null,
+    }))
+    .filter((s) => Boolean(s.name && !featuredNames.has(s.name.toLowerCase())))
+    .slice(0, 6);
+  const hasVoice =
+    featuredVoices.length > 0 || themes.length > 0 || quotes.length > 0 || ledgerVoices.length > 0;
 
   // The one secured figure (Xero-reconciled). Never a fresh client-side sum.
   const secured = verifiedFinancials.revenueReceived;
@@ -321,7 +336,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
           </figure>
           <figure className="mt-4 overflow-hidden rounded-xl bg-white" style={{ border: '1px solid #E8DED4' }}>
             <div className="relative aspect-[16/9]">
-              <Image src="/images/product/stretch-bed-overview.png" alt="The Stretch Bed — all parts labelled" fill className="object-contain p-4" sizes="(max-width: 1024px) 100vw, 860px" />
+              <Image src="/images/product/stretch-bed-overview.png" alt="The Stretch Bed, all parts labelled" fill className="object-contain p-4" sizes="(max-width: 1024px) 100vw, 860px" />
             </div>
           </figure>
         </Section>
@@ -665,7 +680,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
         {hasVoice ? (
           <Section id="voice" eyebrow="In their words" title="What the people closest to this say" posture="Consented, qualitative">
             <p className="mb-6 max-w-2xl text-sm leading-relaxed" style={{ color: `${CHARCOAL}bf` }}>
-              Drawn from consented stories on Empathy Ledger. The quality signal is the themes and the voices that come up across the work, not a single satisfaction score. Where a voice is absent, consent is not yet given, not that there is no story.
+              Drawn from consented stories in Empathy Ledger, the community&rsquo;s own consent-managed record. You are seeing only what people have chosen to share, pulled in live with no login needed, and the community can revisit or withdraw their story at any time. The signal is the themes and voices that recur across the work, not a satisfaction score. Where a voice is absent, consent is not yet given, not that there is no story.
             </p>
 
             {featuredVoices.length > 0 ? (
@@ -689,6 +704,23 @@ export default async function PartnerDashboardPage({ params }: Props) {
                     </div>
                   </figure>
                 ))}
+              </div>
+            ) : null}
+
+            {ledgerVoices.length > 0 ? (
+              <div className="mb-8">
+                <p className="mb-3 text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>More voices from the community ledger</p>
+                <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+                  {ledgerVoices.map((v) => (
+                    <figure key={v.name} className="flex flex-col rounded-lg bg-white p-5" style={{ border: '1px solid #E8DED4' }}>
+                      <p className="font-display text-lg leading-snug" style={{ color: CHARCOAL }}>
+                        {v.name}{v.isElder ? <span className="text-sm" style={{ color: SAGE }}> · Elder</span> : null}
+                      </p>
+                      {v.location ? <p className="mt-1 text-xs" style={{ color: `${CHARCOAL}99` }}>{v.location}</p> : null}
+                      {v.theme ? <p className="mt-3 text-xs leading-relaxed" style={{ color: `${CHARCOAL}80` }}>In their story: {v.theme}</p> : null}
+                    </figure>
+                  ))}
+                </div>
               </div>
             ) : null}
 
