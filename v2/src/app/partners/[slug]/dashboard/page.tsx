@@ -214,10 +214,9 @@ export default async function PartnerDashboardPage({ params }: Props) {
     { id: 'heading', label: "Where we're heading", grade: 'counted' },
     { id: 'goal', label: 'The goal' },
     { id: 'health', label: 'Health hardware', grade: 'modelled' },
-    ...(nextChapter ? [{ id: 'next-chapter', label: 'The next chapter', grade: 'not-yet' } as NavItem] : []),
-    { id: 'path', label: 'The path', grade: 'not-yet' },
-    { id: 'assets', label: 'Community-owned assets', grade: 'not-yet' },
     { id: 'in-service', label: 'In service now', grade: 'counted' },
+    ...(nextChapter ? [{ id: 'next-chapter', label: 'The next chapter', grade: 'not-yet' } as NavItem] : []),
+    { id: 'assets', label: 'Community-owned assets', grade: 'not-yet' },
     { id: 'washer', label: 'The washing machine', grade: 'not-yet' },
     ...(partner.funderImpact ? [{ id: 'your-part', label: 'Your part in this', grade: 'counted' } as NavItem] : []),
     ...(partnership ? [{ id: 'partnership', label: `${partnership.name.split(' ')[0]} partnership` } as NavItem] : []),
@@ -344,100 +343,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
           </figure>
         </Section>
 
-        {/* The next chapter: grants -> blended finance, and the invitation (Snow). */}
-        {nextChapter ? (
-          <Section
-            id="next-chapter"
-            eyebrow="The next chapter"
-            title="From grants to blended finance"
-            confidence={{ grade: 'not-yet', note: 'Direction and live conversations. The match is contingent, the capital is being raised, and nothing here is secured.' }}
-          >
-            <p className="max-w-2xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{nextChapter.intro}</p>
-
-            {/* The capital arc: grant funded -> blended raise -> self sustaining */}
-            <div className="mt-8 grid gap-3 md:grid-cols-3">
-              {nextChapter.arc.map((a, i) => {
-                const isNow = a.state === 'now';
-                const isAhead = a.state === 'ahead';
-                const accent = isNow ? RUST : isAhead ? '#B8AEA4' : SAGE;
-                const badge = a.state === 'done' ? 'Where we began' : isNow ? 'We are here' : 'Still ahead';
-                const pillBg = isNow ? '#F6E4DE' : isAhead ? '#EEE9E3' : '#E6EDDD';
-                const pillFg = isNow ? '#9A4023' : isAhead ? '#6A5E54' : '#4F6138';
-                return (
-                  <div key={a.stage} className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderTop: `3px solid ${accent}` }}>
-                    <div className="flex items-center justify-between gap-2">
-                      <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: accent }}>{String(i + 1).padStart(2, '0')}</p>
-                      <span className="rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide" style={{ backgroundColor: pillBg, color: pillFg }}>{badge}</span>
-                    </div>
-                    <p className="mt-2 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>{a.stage}</p>
-                    <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>{a.meaning}</p>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* What the matched-finance program is (the lever) */}
-            <div className="mt-6 rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-              <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>The matched-finance lever</p>
-              <p className="mt-1.5 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{nextChapter.qbeNote}</p>
-            </div>
-
-            {/* The invitation to this funder */}
-            <div className="mt-6 rounded-xl p-6 sm:p-7" style={{ backgroundColor: CREAM, border: `1px solid ${RUST}33`, borderLeft: `3px solid ${RUST}` }}>
-              <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>{nextChapter.invitation.eyebrow}</p>
-              <p className="mt-1.5 font-display text-xl leading-snug sm:text-2xl" style={{ color: CHARCOAL }}>{nextChapter.invitation.title}</p>
-              <p className="mt-3 max-w-2xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{nextChapter.invitation.body}</p>
-              <div className="mt-4"><ConfidenceChip grade="not-yet" note="An exploration. Not a commitment, and not secured." /></div>
-            </div>
-          </Section>
-        ) : null}
-
-        {/* The path (forward reframe) */}
-        <Section
-          id="path"
-          eyebrow="The path"
-          title="What it takes, and how the money is built"
-          confidence={{ grade: 'not-yet', note: 'Forward targets and live conversations, not money in the bank. Only the secured figure is received.' }}
-        >
-          <CapitalStack securedToDate={secured} />
-        </Section>
-
-        {/* Community-owned assets (the heart) */}
-        <Section
-          id="assets"
-          eyebrow="The assets that stay"
-          title="What the community comes to own"
-          confidence={{ grade: 'not-yet', note: 'What exists today is counted; the ownership transfer is in design. Stages are named, not claimed done.' }}
-        >
-          <p className="max-w-2xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            We are building a recycled-plastic plant on Country, collect, shred, melt, press, that is designed to leave our hands.
-            The community becomes the operator, then the owner, of the means of making the next bed.
-          </p>
-          {facilityGallery.length > 0 ? (
-            <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3">
-              {facilityGallery.map((g, i) => (
-                <figure
-                  key={g.src}
-                  className={`overflow-hidden rounded-lg bg-white ${i === 0 ? 'col-span-2 md:col-span-1' : ''}`}
-                  style={{ border: '1px solid #E8DED4' }}
-                >
-                  <div className="relative aspect-[4/3]">
-                    <Image src={g.src} alt={g.alt} fill className="object-cover" sizes="(max-width: 768px) 50vw, 33vw" />
-                  </div>
-                  <figcaption className="px-3 py-2 text-[11px] leading-snug" style={{ color: `${CHARCOAL}99` }}>{g.alt}</figcaption>
-                </figure>
-              ))}
-            </div>
-          ) : null}
-          <div className="mt-8">
-            <OwnershipJourney stages={ownershipStages} />
-          </div>
-          <p className="mt-8 max-w-2xl text-sm leading-relaxed" style={{ color: `${CHARCOAL}99` }}>
-            Owned means the community holds the plant, the income it makes, the maintenance, and the decisions. That transfer is the point, and it is still ahead of us.
-          </p>
-        </Section>
-
-        {/* In service now (the honest proof) */}
+        {/* In service now (the honest proof) — proof leads, before the money ask */}
         <Section
           id="in-service"
           eyebrow="The proof, honestly graded"
@@ -509,6 +415,94 @@ export default async function PartnerDashboardPage({ params }: Props) {
               </div>
             </div>
           ) : null}
+        </Section>
+
+        {/* The next chapter: grants -> blended finance, the capital stack, and the invitation (Snow). */}
+        {nextChapter ? (
+          <Section
+            id="next-chapter"
+            eyebrow="The next chapter"
+            title="From grants to blended finance"
+            confidence={{ grade: 'not-yet', note: 'Direction and live conversations. The match is contingent, the capital is being raised, and nothing here is secured.' }}
+          >
+            <p className="max-w-2xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{nextChapter.intro}</p>
+
+            {/* The capital arc: grant funded -> blended raise -> self sustaining */}
+            <div className="mt-8 grid gap-3 md:grid-cols-3">
+              {nextChapter.arc.map((a, i) => {
+                const isNow = a.state === 'now';
+                const isAhead = a.state === 'ahead';
+                const accent = isNow ? RUST : isAhead ? '#B8AEA4' : SAGE;
+                const badge = a.state === 'done' ? 'Where we began' : isNow ? 'We are here' : 'Still ahead';
+                const pillBg = isNow ? '#F6E4DE' : isAhead ? '#EEE9E3' : '#E6EDDD';
+                const pillFg = isNow ? '#9A4023' : isAhead ? '#6A5E54' : '#4F6138';
+                return (
+                  <div key={a.stage} className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderTop: `3px solid ${accent}` }}>
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: accent }}>{String(i + 1).padStart(2, '0')}</p>
+                      <span className="rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide" style={{ backgroundColor: pillBg, color: pillFg }}>{badge}</span>
+                    </div>
+                    <p className="mt-2 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>{a.stage}</p>
+                    <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>{a.meaning}</p>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* What the matched-finance program is (the lever) */}
+            <div className="mt-6 rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+              <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>The matched-finance lever</p>
+              <p className="mt-1.5 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{nextChapter.qbeNote}</p>
+            </div>
+
+            {/* The shape of the raise: the abstracted capital stack */}
+            <div className="mt-8">
+              <CapitalStack securedToDate={secured} />
+            </div>
+
+            {/* The invitation to this funder */}
+            <div className="mt-6 rounded-xl p-6 sm:p-7" style={{ backgroundColor: CREAM, border: `1px solid ${RUST}33`, borderLeft: `3px solid ${RUST}` }}>
+              <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>{nextChapter.invitation.eyebrow}</p>
+              <p className="mt-1.5 font-display text-xl leading-snug sm:text-2xl" style={{ color: CHARCOAL }}>{nextChapter.invitation.title}</p>
+              <p className="mt-3 max-w-2xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{nextChapter.invitation.body}</p>
+              <div className="mt-4"><ConfidenceChip grade="not-yet" note="An exploration. Not a commitment, and not secured." /></div>
+            </div>
+          </Section>
+        ) : null}
+
+        {/* Community-owned assets (the heart) */}
+        <Section
+          id="assets"
+          eyebrow="The assets that stay"
+          title="What the community comes to own"
+          confidence={{ grade: 'not-yet', note: 'What exists today is counted; the ownership transfer is in design. Stages are named, not claimed done.' }}
+        >
+          <p className="max-w-2xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
+            We are building a recycled-plastic plant on Country, collect, shred, melt, press, that is designed to leave our hands.
+            The community becomes the operator, then the owner, of the means of making the next bed.
+          </p>
+          {facilityGallery.length > 0 ? (
+            <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3">
+              {facilityGallery.map((g, i) => (
+                <figure
+                  key={g.src}
+                  className={`overflow-hidden rounded-lg bg-white ${i === 0 ? 'col-span-2 md:col-span-1' : ''}`}
+                  style={{ border: '1px solid #E8DED4' }}
+                >
+                  <div className="relative aspect-[4/3]">
+                    <Image src={g.src} alt={g.alt} fill className="object-cover" sizes="(max-width: 768px) 50vw, 33vw" />
+                  </div>
+                  <figcaption className="px-3 py-2 text-[11px] leading-snug" style={{ color: `${CHARCOAL}99` }}>{g.alt}</figcaption>
+                </figure>
+              ))}
+            </div>
+          ) : null}
+          <div className="mt-8">
+            <OwnershipJourney stages={ownershipStages} />
+          </div>
+          <p className="mt-8 max-w-2xl text-sm leading-relaxed" style={{ color: `${CHARCOAL}99` }}>
+            Owned means the community holds the plant, the income it makes, the maintenance, and the decisions. That transfer is the point, and it is still ahead of us.
+          </p>
         </Section>
 
         {/* The washing machine path: ideation, V1, cost-down R&D, home ownership */}

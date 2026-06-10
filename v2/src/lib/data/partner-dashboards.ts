@@ -340,7 +340,6 @@ const snow: PartnerDashboard = {
   links: [
     { label: 'Snow + Goods at Tennant Creek', href: 'https://photos.google.com/share/AF1QipMM88kHBqqUV-udXeHpTB0FjhY8my5_dNWw7CeSphrsq20wt4BlLTmy9O-QoRfBwQ?key=TkY0VHA3cVVKR3V1T0NqOHFBSUpXZ0pGX01WSkNR', note: 'Photo album, 2 April 2025', external: true },
     { label: 'Deadly Heart Trek, Katherine', href: 'https://photos.google.com/share/AF1QipNbosyzxtrQ0jy240fbDj6Bc58GrvH3dcxBsIfPfX9XMOk8v58MWIRKbA5xxV1KRw?key=dnlaTFhkb2llNHFqSXlWRnBUUy15X1VhSTVZZ1JR', note: 'Photo album, 8 August 2025', external: true },
-    { label: 'The Utopia trip, in full', href: '/field-notes/utopia-may-2026', note: 'Photos + story from the May run' },
     { label: 'How the Stretch Bed works', href: '/stretch-bed' },
     { label: 'Live impact dashboard', href: '/impact', note: 'The full impact view (password protected)' },
   ],
