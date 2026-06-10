@@ -105,7 +105,7 @@ export function DashboardImagePicker({
           : 'community-consent';
     save(slot.key, {
       url: photo.url,
-      alt: photo.title || slot.fallbackAlt,
+      alt: (photo.title || slot.fallbackAlt).replace(/\s*—\s*/g, ', '),
       elId: photo.id,
       consent,
     });
@@ -116,11 +116,11 @@ export function DashboardImagePicker({
   return (
     <div className="space-y-6 p-6 pb-24">
       <header>
-        <h1 className="text-2xl font-bold tracking-tight">Dashboard images — {partnerName}</h1>
+        <h1 className="text-2xl font-bold tracking-tight">Dashboard images: {partnerName}</h1>
         <p className="mt-1 max-w-3xl text-sm text-gray-500">
           Assign an Empathy Ledger photo to any image slot on{' '}
           <code>/partners/{slug}/dashboard</code>. Picks write to{' '}
-          <code>data/partner-dashboard-images.json</code> — they preview live here, and go to prod when the
+          <code>data/partner-dashboard-images.json</code>. They preview live here, and go to prod when the
           file is committed and deployed. Click a photo to see it full size, then assign. Badges show the EL
           consent flag (public / gated-ok / elder review pending / not flagged) as a guide; you hold the call
           on community consent.
