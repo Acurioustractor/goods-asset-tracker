@@ -78,8 +78,9 @@ export interface FunderImpact {
   thankYou?: { message: string; image?: { src: string; alt: string; caption?: string } };
   /** Cumulative verified backing, e.g. from a Xero reconciliation. */
   total: { value: string; note: string };
-  /** How a recent grant was actually put to work (e.g. the FY25 split). */
-  breakdown: { heading: string; items: { label: string; value: string }[] };
+  /** Indicative allocation of the funder's support across categories. `percent`
+   *  drives the bar width; `value` is the display label (e.g. "~25%"). */
+  breakdown: { heading: string; note?: string; items: { label: string; value: string; percent?: number }[] };
   /** Shared moments on Country: visits, treks, handovers. Kept short. */
   moments: TimelineItem[];
   /** The funder's own words back to them (board-forwardable social proof). */
@@ -228,12 +229,14 @@ const snow: PartnerDashboard = {
       note: 'Cumulative since 2023, Xero-reconciled on 9 June 2026, nothing outstanding.',
     },
     breakdown: {
-      heading: 'How the FY25 Snow grant was put to work',
+      heading: 'Roughly where your support has gone',
+      note: 'An indicative allocation across Snow’s support since 2023, not a per-dollar acquittal.',
       items: [
-        { label: 'Community visits: on Country presence and relationships', value: '$48K' },
-        { label: 'Founder wages and employment pathways', value: '$12K' },
-        { label: 'Bed R&D: Stretch Bed V2 development and prototyping', value: '$20K' },
-        { label: 'Washing machine V1: from idea to working prototype', value: '$20K' },
+        { label: 'Community visits and on-Country presence', value: '~25%', percent: 25 },
+        { label: 'Bed R&D and product development (V1 to V4)', value: '~25%', percent: 25 },
+        { label: 'Washing machine: build, testing and deployment', value: '~20%', percent: 20 },
+        { label: 'Bed production and deployments to communities', value: '~20%', percent: 20 },
+        { label: 'The on-Country production plant', value: '~10%', percent: 10 },
       ],
     },
     moments: [
