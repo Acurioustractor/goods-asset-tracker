@@ -27,9 +27,10 @@ const PRESETS: { key: string; label: string; match: (p: ElPhoto) => boolean }[] 
 ];
 
 function consentBadge(p: ElPhoto): { text: string; cls: string } {
-  if (!p.consent || !p.elderOk) return { text: 'no consent', cls: 'bg-red-100 text-red-700' };
   if (p.isPublic) return { text: 'public', cls: 'bg-green-100 text-green-700' };
-  return { text: 'gated-ok', cls: 'bg-amber-100 text-amber-700' };
+  if (p.consent && p.elderOk) return { text: 'gated-ok', cls: 'bg-amber-100 text-amber-700' };
+  if (p.consent && !p.elderOk) return { text: 'elder review pending', cls: 'bg-orange-100 text-orange-700' };
+  return { text: 'not flagged in EL', cls: 'bg-gray-200 text-gray-600' };
 }
 
 export function DashboardImagePicker({
@@ -51,6 +52,7 @@ export function DashboardImagePicker({
   const [query, setQuery] = useState('');
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [preview, setPreview] = useState<ElPhoto | null>(null);
 
   const groups = useMemo(() => {
     const m = new Map<string, DashboardImageSlot[]>();
@@ -85,6 +87,7 @@ export function DashboardImagePicker({
         return next;
       });
       setActiveSlot(null);
+      setPreview(null);
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
     } finally {
@@ -93,12 +96,18 @@ export function DashboardImagePicker({
   }
 
   function assign(slot: DashboardImageSlot, photo: ElPhoto) {
-    if (!photo.consent || !photo.elderOk) return;
+    const consent = photo.isPublic
+      ? 'el:public'
+      : photo.consent && photo.elderOk
+        ? 'el:gated-ok'
+        : photo.consent
+          ? 'el:consent-elder-pending'
+          : 'community-consent';
     save(slot.key, {
       url: photo.url,
       alt: photo.title || slot.fallbackAlt,
       elId: photo.id,
-      consent: photo.isPublic ? 'el:public' : 'el:gated-ok',
+      consent,
     });
   }
 
@@ -112,8 +121,9 @@ export function DashboardImagePicker({
           Assign an Empathy Ledger photo to any image slot on{' '}
           <code>/partners/{slug}/dashboard</code>. Picks write to{' '}
           <code>data/partner-dashboard-images.json</code> — they preview live here, and go to prod when the
-          file is committed and deployed. Only consent-cleared (and elder-reviewed) photos can be assigned;
-          &ldquo;gated-ok&rdquo; means consented but not yet flagged public on EL.
+          file is committed and deployed. Click a photo to see it full size, then assign. Badges show the EL
+          consent flag (public / gated-ok / elder review pending / not flagged) as a guide; you hold the call
+          on community consent.
         </p>
       </header>
 
@@ -201,17 +211,15 @@ export function DashboardImagePicker({
                   className="ml-auto w-48 rounded border border-gray-300 px-2 py-1 text-xs"
                 />
               </div>
-              <div className="grid max-h-[70vh] grid-cols-2 gap-2 overflow-y-auto pr-1 sm:grid-cols-3 xl:grid-cols-4">
+              <div className="grid max-h-[72vh] grid-cols-2 gap-2 overflow-y-auto pr-1 sm:grid-cols-3">
                 {filtered.map((p) => {
                   const badge = consentBadge(p);
-                  const usable = p.consent && p.elderOk;
                   return (
                     <button
                       key={p.id}
-                      onClick={() => assign(active, p)}
-                      disabled={!usable || busy === active.key}
-                      title={usable ? 'Assign to slot' : 'Not consent-cleared — cannot use'}
-                      className={`group relative overflow-hidden rounded-lg border text-left ${usable ? 'border-gray-200 hover:border-blue-400' : 'cursor-not-allowed border-gray-100 opacity-50'}`}
+                      onClick={() => setPreview(p)}
+                      title="Click to preview full size"
+                      className="group relative overflow-hidden rounded-lg border border-gray-200 text-left hover:border-blue-400"
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={p.thumb} alt="" className="aspect-[4/3] w-full bg-gray-100 object-cover" loading="lazy" />
@@ -226,6 +234,35 @@ export function DashboardImagePicker({
           )}
         </div>
       </div>
+
+      {/* Full-size preview + assign */}
+      {preview && active ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-6" onClick={() => setPreview(null)}>
+          <div className="flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-xl bg-white" onClick={(e) => e.stopPropagation()}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={preview.url} alt="" className="max-h-[68vh] w-full bg-gray-900 object-contain" />
+            <div className="flex flex-wrap items-center justify-between gap-3 p-4">
+              <div className="min-w-0">
+                <span className={`rounded px-2 py-0.5 text-[11px] font-semibold ${consentBadge(preview).cls}`}>{consentBadge(preview).text}</span>
+                <p className="mt-1 truncate text-sm font-medium text-gray-800">{preview.title || preview.id}</p>
+                <p className="truncate text-xs text-gray-400">{preview.tags.join('  ·  ')}</p>
+              </div>
+              <div className="flex shrink-0 gap-2">
+                <button onClick={() => setPreview(null)} className="rounded border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                  Cancel
+                </button>
+                <button
+                  onClick={() => assign(active, preview)}
+                  disabled={busy === active.key}
+                  className="rounded bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500 disabled:opacity-50"
+                >
+                  Assign to {active.label}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
