@@ -28,7 +28,7 @@ const GOLD = '#C9A04A';
 
 const PAGE_TITLE = 'Goods on Country and Oonchiumpa Consultancy Partnership';
 const PAGE_DESCRIPTION =
-  'How a two-year design partnership with Oonchiumpa, a 100% Aboriginal-owned consultancy in Alice Springs, became the basis for an on-country production facility, a youth-employment pathway, and Stretch Beds in Utopia Homelands.';
+  'How Goods works with Oonchiumpa, a 100% Aboriginal-owned consultancy in Alice Springs, on cultural advice, youth participation, production pathways and Stretch Bed delivery into Utopia Homelands.';
 const PAGE_URL = 'https://www.goodsoncountry.com/partners/oonchiumpa';
 const PAGE_IMAGE =
   'https://www.goodsoncountry.com/images/partners/centrecorp/utopia/hero-elder-bed.jpg';
@@ -58,33 +58,40 @@ export const metadata: Metadata = {
 // ---------------------------------------------------------------------------
 
 const stats: Array<{
-  value: string;
+  value?: string;
   label: string;
   detail: string;
+  swapKey: string;
+  tagQuery: string[];
   imageSrc?: string;
   imageAlt?: string;
 }> = [
   {
     value: '2 yrs',
-    label: 'Designing in community',
+    label: 'Partnership in community',
     detail:
-      'Around the fire with the Bloomfield family. The Stretch Bed and washing machine took their final shape here.',
+      'Oonchiumpa helped ground the work in community context, cultural advice and youth engagement.',
+    swapKey: 'stat.partnership',
+    tagQuery: ['participant:oonchiumpa-young-people'],
     imageSrc: '/images/partners/centrecorp/utopia/verandah-test.jpg',
     imageAlt: 'A Stretch Bed being tested on a homelands verandah',
   },
   {
-    value: '122+',
-    label: 'Photos of young people building',
+    label: 'Young people building',
     detail:
-      'May 2026 Alice Springs build session. Every Oonchiumpa young person who built a Stretch Bed kept one.',
+      'Photos from the May 2026 Alice Springs build session with young people from the Oonchiumpa network.',
+    swapKey: 'stat.aliceBuild',
+    tagQuery: ['trip:may-2026', 'event:alice-build', 'participant:oonchiumpa-young-people'],
     imageSrc: '/images/product/stretch-bed-kids-building.jpg',
     imageAlt: 'Young people building a Stretch Bed in Alice Springs',
   },
   {
-    value: '109',
+    value: '107',
     label: 'Stretch Beds delivered',
     detail:
       'To Utopia Homelands, May 2026. Funded by Centrecorp Foundation, delivered through the Oonchiumpa network.',
+    swapKey: 'stat.utopiaDelivery',
+    tagQuery: ['community:utopia-homelands', 'event:bed-delivery'],
     imageSrc: '/images/partners/centrecorp/utopia/community-build.jpg',
     imageAlt: 'Community members assembling Stretch Beds at Utopia Homelands',
   },
@@ -93,6 +100,8 @@ const stats: Array<{
     label: 'Aboriginal-owned',
     detail:
       'Oonchiumpa Consultancy is owned and run by the Bloomfield family. Cultural consultation is paid at university research rates.',
+    swapKey: 'stat.oonchiumpa',
+    tagQuery: ['participant:oonchiumpa-young-people'],
     imageSrc: '/images/partners/oonchiumpa.png',
     imageAlt: 'Oonchiumpa Consultancy logo',
   },
@@ -107,9 +116,9 @@ const voices: Array<{ quote: string; name: string; context: string }> = [
   },
   {
     quote:
-      'Back then we didn’t have the opportunity to challenge government. Now we’re in a position to say: this is a sacred site for us as Aboriginal women and traditional owners.',
-    name: 'Kristy Bloomfield',
-    context: 'On sovereignty and community-owned enterprise',
+      'We’ve been saying from the start, got to teach kids there’s a better way of living.',
+    name: 'Karen Liddle',
+    context: 'On young people, accommodation and the build',
   },
 ];
 
@@ -122,6 +131,27 @@ const photos: Array<{ src: string; alt: string }> = [
   { src: '/images/partners/centrecorp/utopia/verandah-test.jpg', alt: 'A Stretch Bed being tested on a homelands verandah' },
   { src: '/images/partners/centrecorp/utopia/finished-bed-country.jpg', alt: 'Finished Stretch Bed delivered on country' },
   { src: '/images/partners/centrecorp/utopia/elder-feedback.jpg', alt: 'Elder providing feedback on a Stretch Bed' },
+];
+
+const karenBuildVideo = {
+  src: '/video/partners/oonchiumpa/karen-liddle-on-beds.mp4',
+  poster: '/video/partners/oonchiumpa/karen-liddle-on-beds-poster.jpg',
+};
+
+const mykelBuildVideo = {
+  src: '/video/partners/oonchiumpa/mykel-building-the-bed.mp4',
+  poster: '/video/partners/oonchiumpa/mykel-building-the-bed-poster.jpg',
+};
+
+const aliceBuildFallbackPhotos: Array<{ src: string; alt: string }> = [
+  { src: '/images/build/build-001.jpg', alt: 'Young people arriving for the Alice Springs Stretch Bed build' },
+  { src: '/images/build/build-017.jpg', alt: 'Young people assembling Stretch Bed components in Alice Springs' },
+  { src: '/images/build/build-033.jpg', alt: 'Stretch Bed parts laid out during the Alice Springs build' },
+  { src: '/images/build/build-049.jpg', alt: 'Young people working together on a Stretch Bed frame' },
+  { src: '/images/build/build-065.jpg', alt: 'Stretch Bed assembly work during the Oonchiumpa build session' },
+  { src: '/images/build/build-081.jpg', alt: 'Finished Stretch Bed being checked during the Alice Springs build' },
+  { src: '/images/build/build-097.jpg', alt: 'Young people and community members at the bed build session' },
+  { src: '/images/build/build-113.jpg', alt: 'Stretch Beds ready after the Alice Springs build session' },
 ];
 
 const articleJsonLd = {
@@ -169,32 +199,61 @@ function JsonLd({ data }: { data: Record<string, unknown> }) {
   );
 }
 
-function StatCard({ value, label, detail, imageSrc, imageAlt }: (typeof stats)[number]) {
+function StatCard({
+  value,
+  label,
+  detail,
+  swapKey,
+  tagQuery,
+  imageSrc,
+  imageAlt,
+  canSwap,
+  getOverride,
+}: (typeof stats)[number] & {
+  canSwap: boolean;
+  getOverride: (key: string, fallback: string) => string;
+}) {
+  const resolvedImageSrc = imageSrc ? getOverride(swapKey, imageSrc) : undefined;
+
   return (
     <div
       className="rounded-2xl overflow-hidden shadow-sm flex flex-col"
       style={{ backgroundColor: CREAM }}
     >
-      {imageSrc ? (
+      {resolvedImageSrc ? (
         <div className="relative aspect-[3/2] bg-muted">
           <Image
-            src={imageSrc}
+            src={resolvedImageSrc}
             alt={imageAlt || ''}
             fill
             sizes="(max-width: 768px) 100vw, 350px"
             className="object-cover"
           />
+          {canSwap && (
+            <MediaSwapZone
+              slug={OVERRIDE_SLUG}
+              overrideKey={swapKey}
+              currentUrl={resolvedImageSrc}
+              tagQuery={tagQuery}
+              kind="photo"
+              label="swap"
+              broadTag="product:stretch-bed"
+              folders={FOLDERS}
+            />
+          )}
         </div>
       ) : null}
       <div className="p-6 flex-1">
+        {value ? (
+          <div
+            className="font-display text-4xl sm:text-5xl leading-none mb-2"
+            style={{ color: CHARCOAL }}
+          >
+            {value}
+          </div>
+        ) : null}
         <div
-          className="font-display text-4xl sm:text-5xl leading-none mb-2"
-          style={{ color: CHARCOAL }}
-        >
-          {value}
-        </div>
-        <div
-          className="text-sm font-semibold uppercase tracking-[0.18em] mb-3"
+          className={`text-sm font-semibold uppercase tracking-[0.18em] ${value ? 'mb-3' : 'mb-4'}`}
           style={{ color: RUST }}
         >
           {label}
@@ -229,17 +288,45 @@ function QuoteCard({ quote, name, context }: (typeof voices)[number]) {
   );
 }
 
-function PhotoCard({ src, alt }: (typeof photos)[number]) {
+function VoiceVideoCard({
+  title,
+  description,
+  src,
+  poster,
+}: {
+  title: string;
+  description: string;
+  src: string;
+  poster?: string;
+}) {
   return (
-    <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-muted">
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes="(max-width: 768px) 50vw, 25vw"
-        className="object-cover"
-      />
-    </div>
+    <article
+      className="overflow-hidden rounded-3xl shadow-sm"
+      style={{ backgroundColor: CREAM, border: `1px solid ${SAGE}33` }}
+    >
+      <div className="aspect-video bg-black">
+        <video
+          controls
+          playsInline
+          preload="metadata"
+          poster={poster || undefined}
+          className="h-full w-full"
+        >
+          <source src={src} type="video/mp4" />
+        </video>
+      </div>
+      <div className="p-5">
+        <p className="text-xs uppercase tracking-[0.2em]" style={{ color: RUST }}>
+          Voice from the build
+        </p>
+        <h3 className="mt-2 text-xl font-semibold" style={{ color: CHARCOAL }}>
+          {title}
+        </h3>
+        <p className="mt-2 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
+          {description}
+        </p>
+      </div>
+    </article>
   );
 }
 
@@ -327,18 +414,18 @@ export default async function OonchiumpaPartnerPage() {
           className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight mb-6"
           style={{ color: CHARCOAL }}
         >
-          Designed around the fire.<br />Built in Alice Springs.
+          Grounded by Oonchiumpa.<br />Built in Alice Springs.
         </h1>
         <p className="text-lg sm:text-xl leading-relaxed mb-4 max-w-2xl" style={{ color: `${CHARCOAL}cc` }}>
-          Oonchiumpa Consultancy is a 100% Aboriginal-owned business led by the Bloomfield family. For
-          two years they have been designing Goods products in community, around the fire, with Elders
-          and young people pulling apart prototypes and putting them back together. The Stretch Bed and
-          the washing machine took their final shape here.
+          Oonchiumpa Consultancy is a 100% Aboriginal-owned business led by the Bloomfield family. The
+          partnership has helped Goods work in the right way in Central Australia: with cultural advice,
+          local relationships, young people involved in the build and a practical pathway into Utopia
+          Homelands.
         </p>
         <p className="text-lg sm:text-xl leading-relaxed max-w-2xl" style={{ color: `${CHARCOAL}cc` }}>
-          What started as a design partnership is becoming an enterprise: a production facility in Alice
-          Springs, young people from Oonchiumpa learning to build beds, and a deployment pathway that
-          puts beds into Utopia Homelands and beyond.
+          Oonchiumpa is part of the enterprise pathway: young people from the network learning to build
+          beds, Goods developing production capacity in Alice Springs and deliveries moving through
+          relationships that already know the homelands.
         </p>
       </section>
 
@@ -431,7 +518,7 @@ export default async function OonchiumpaPartnerPage() {
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s) => (
-            <StatCard key={s.label} {...s} />
+            <StatCard key={s.label} {...s} canSwap={canSwap} getOverride={get} />
           ))}
         </div>
       </section>
@@ -443,26 +530,26 @@ export default async function OonchiumpaPartnerPage() {
             <p
               className="text-xs uppercase tracking-[0.25em] mb-3"
               style={{ color: RUST }}
-            >
-              Around the fire
-            </p>
-            <h2
-              className="font-display text-3xl sm:text-4xl leading-tight mb-5"
-              style={{ color: CHARCOAL }}
-            >
-              The Stretch Bed wasn’t designed in an office.
-            </h2>
-            <p className="text-base sm:text-lg leading-relaxed mb-4" style={{ color: `${CHARCOAL}cc` }}>
-              For two years, Goods sat with the Bloomfield family at their homestead and worked on
-              prototypes. The legs got thicker. The canvas got tougher. The poles got shorter, then
-              longer, then the right length. The five-minute, no-tools assembly came out of watching
-              what kids and Elders actually did when handed a flat-pack.
-            </p>
-            <p className="text-base sm:text-lg leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-              Oonchiumpa is paid for this work at university research rates. &ldquo;We asked for no
-              favours&rdquo; is how the relationship was put on paper. Cultural knowledge is treated as
-              expertise, not free input.
-            </p>
+          >
+              How the partnership works
+          </p>
+          <h2
+            className="font-display text-3xl sm:text-4xl leading-tight mb-5"
+            style={{ color: CHARCOAL }}
+          >
+              Oonchiumpa brings the relationships that make delivery possible.
+          </h2>
+          <p className="text-base sm:text-lg leading-relaxed mb-4" style={{ color: `${CHARCOAL}cc` }}>
+              Goods brings the bed, the production work and the asset-tracking system. Oonchiumpa brings
+              local knowledge, cultural advice, young people into the build and the trusted pathway into
+              Utopia Homelands. That is the work: making sure the product lands through the right people,
+              not just dropping furniture at the end of a road.
+          </p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
+              The agreement treats that role as paid expertise, benchmarked to university research rates.
+              Cultural advice, access and local leadership are part of the delivery model, not free
+              background help.
+          </p>
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl shadow-sm">
             {(() => {
@@ -471,7 +558,7 @@ export default async function OonchiumpaPartnerPage() {
                 <>
                   <Image
                     src={src}
-                    alt="Designing with the Bloomfield family"
+                    alt="Stretch Bed being tested on a homelands verandah"
                     fill
                     sizes="(max-width: 768px) 100vw, 500px"
                     className="object-cover"
@@ -509,28 +596,27 @@ export default async function OonchiumpaPartnerPage() {
               className="font-display text-3xl sm:text-4xl leading-tight mb-5"
               style={{ color: CHARCOAL }}
             >
-              A production facility in Alice Springs, co-hosted with Oonchiumpa.
+              A production facility pathway in Alice Springs.
             </h2>
             <p className="text-base sm:text-lg leading-relaxed mb-3" style={{ color: `${CHARCOAL}cc` }}>
               Two shipping containers. A shredder for the plastic that comes in by the tub. A heat
               press that turns chip into sheet. A CNC router that cuts the legs. A workstation
-              where Oonchiumpa young people do the routing, the drilling, the screw-fitting. Power
-              and water plug in.
+              for routing, drilling and assembly. Power and water plug in.
             </p>
             <p className="text-base sm:text-lg leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-              The plant is designed to be community-owned. Oonchiumpa runs the line. Revenue stays
-              with the family that designed the product. Beds ship under QR codes so every
-              delivery is traceable.
+              The aim is to train local people, build production roles and move more value closer
+              to the communities using the product. Beds ship under QR codes so every delivery is
+              traceable.
             </p>
           </div>
 
           {(() => {
-            const heroSrc = get('production.hero', '/images/process/container-factory.jpg');
+            const heroSrc = get('production.hero', '/images/process/20260329-factory-panorama.jpg');
             return (
               <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl shadow-sm mb-4 bg-muted">
                 <Image
                   src={heroSrc}
-                  alt="Containerised production plant on country"
+                  alt="Panorama of the Goods production facility setup"
                   fill
                   sizes="(max-width: 1024px) 100vw, 1000px"
                   className="object-cover"
@@ -602,35 +688,66 @@ export default async function OonchiumpaPartnerPage() {
             className="font-display text-3xl sm:text-4xl leading-tight mb-5"
             style={{ color: CHARCOAL }}
           >
-            Young people building the beds they sleep on.
+            Young people building Stretch Beds.
           </h2>
           <p className="text-base sm:text-lg leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
             In May 2026 the Oonchiumpa team ran a build session in Alice Springs. Young people from the
-            network learned to thread poles through canvas sleeves, click the recycled-plastic legs on,
-            and finish the beds that would land in Utopia Homelands the same week. Every young person
-            who built one kept one.
+            network learned to thread the steel poles through the canvas sleeves and the recycled-plastic
+            X-legs, tension the frame, and finish beds for the Utopia Homelands delivery. Some of the beds also stayed with young
+            people who took part in the build.
           </p>
         </div>
 
-        {buildPhotos.length >= 4 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {buildPhotos.slice(0, 8).map((p) => (
-              <div key={p.id} className="relative aspect-square w-full overflow-hidden rounded-xl bg-muted">
+        <div className="mb-8">
+          <VoiceVideoCard
+            title="Karen Liddle on why the build matters"
+            description="Karen speaks to the young people, the build and why this work matters for Oonchiumpa and the homelands pathway."
+            src={karenBuildVideo.src}
+            poster={karenBuildVideo.poster}
+          />
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {aliceBuildFallbackPhotos.map((fallback, index) => {
+            const livePhoto = buildPhotos[index];
+            const key = `aliceBuild.${index}`;
+            const src = get(key, livePhoto?.src ?? fallback.src);
+            const alt = livePhoto?.alt ?? fallback.alt;
+
+            return (
+              <div key={key} className="relative aspect-square w-full overflow-hidden rounded-xl bg-muted">
                 <Image
-                  src={p.src}
-                  alt={p.alt}
+                  src={src}
+                  alt={alt}
                   fill
                   sizes="(max-width: 768px) 50vw, 25vw"
                   className="object-cover"
                 />
+                {canSwap && (
+                  <MediaSwapZone
+                    slug={OVERRIDE_SLUG}
+                    overrideKey={key}
+                    currentUrl={src}
+                    tagQuery={['trip:may-2026', 'event:alice-build', 'participant:oonchiumpa-young-people']}
+                    kind="photo"
+                    label="swap"
+                    broadTag="product:stretch-bed"
+                    folders={FOLDERS}
+                  />
+                )}
               </div>
-            ))}
-          </div>
-        ) : (
-          <p className="text-sm" style={{ color: `${CHARCOAL}66` }}>
-            Photos from the Alice Springs build session land here as Elders sign off on consent.
-          </p>
-        )}
+            );
+          })}
+        </div>
+
+        <div className="mt-8">
+          <VoiceVideoCard
+            title="Mykel on building the bed he used"
+            description="Mykel talks about the bed, the build and what it felt like to use something he helped put together."
+            src={mykelBuildVideo.src}
+            poster={mykelBuildVideo.poster}
+          />
+        </div>
       </section>
 
       {/* UTOPIA DELIVERY GALLERY ---------------------------------------- */}
@@ -647,10 +764,10 @@ export default async function OonchiumpaPartnerPage() {
               className="font-display text-3xl sm:text-4xl leading-tight mb-5"
               style={{ color: CHARCOAL }}
             >
-              109 beds in homes, on country.
+              107 beds in homes, on country.
             </h2>
             <p className="text-base sm:text-lg leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-              The first big deployment of the new Stretch Bed: 109 beds delivered to Utopia Homelands,
+              The first big deployment of the new Stretch Bed: 107 beds delivered to Utopia Homelands,
               unpacked on verandahs, assembled by the families who would sleep on them. Funded by
               Centrecorp Foundation. Coordinated through the Oonchiumpa network. Logged under QR codes
               so we know where every bed is.
@@ -728,14 +845,16 @@ export default async function OonchiumpaPartnerPage() {
             An on-country production facility in Alice Springs.
           </h2>
           <p className="text-lg sm:text-xl leading-relaxed mb-4" style={{ color: `${CREAM}d9` }}>
-            The next move is a shipping-container production plant co-hosted with Oonchiumpa in Alice
-            Springs. Shredder, heat press, CNC router, workstation. Same plant, run by community,
-            shipped to community.
+            The next move is a shipping-container production plant being planned alongside the
+            Oonchiumpa pathway in Alice Springs. Shredder, heat press, CNC router, workstation. The
+            goal is a plant that can train local people, make bed parts and move more production
+            closer to community.
           </p>
           <p className="text-lg sm:text-xl leading-relaxed mb-8" style={{ color: `${CREAM}d9` }}>
             The pathway is local knowledge to local enterprise to local jobs. Young people from the
-            Oonchiumpa network running the line. Beds going out under the QR code system. Revenue
-            staying with the family that designed the product in the first place.
+            Oonchiumpa network have already helped build beds. The next step is training, production
+            roles, QR-tracked deliveries and more value staying closer to the communities using the
+            product.
           </p>
           <Link
             href="/partner#start"
