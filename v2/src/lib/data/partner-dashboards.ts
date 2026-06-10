@@ -322,7 +322,7 @@ const snow: PartnerDashboard = {
         { title: '496 beds delivered across 9 communities' },
         { title: 'Containerised production plant built (recycled-plastic line)' },
         { title: '28 washing machines deployed, 14 reporting live' },
-        { title: 'Utopia + Alice Springs trip, May 2026', note: '87 beds that trip' },
+        { title: 'Utopia + Alice Springs trip, May 2026', note: '107 beds that trip' },
       ],
     },
   ],
@@ -333,7 +333,7 @@ const snow: PartnerDashboard = {
     { date: 'Aug 2025', title: 'Deadly Heart Trek, Katherine', detail: 'Out on the Katherine visit, 8 August 2025.' },
     { date: 'Jan 2026', title: 'First washing machine given to Dianne Stokes', detail: 'In Tennant Creek. She named it Pakkimjalki Kari in Warumungu.' },
     { date: 'Early 2026', title: 'Selected into QBE Catalysing Impact 2026', detail: 'Blended-finance accelerator run by the Social Impact Hub. Stage 2 in September could bring matched catalytic capital.' },
-    { date: 'May 2026', title: 'Central Australia deployment', detail: 'Utopia + Alice Springs; 87 beds that trip, with Centrecorp as delivery partner.' },
+    { date: 'May 2026', title: 'Central Australia deployment', detail: 'Utopia + Alice Springs; 107 beds that trip, with Centrecorp as delivery partner.' },
     { date: 'Jun 2026', title: 'Oonchiumpa REAL Innovation Fund submission', detail: 'A community-owned Alice Springs facility + jobs pathway, decision pending.' },
     { date: 'To date', title: 'Nine communities, beds in homes, the first plant being commissioned', detail: 'The base the next stage builds on, with a blended raise now underway to scale it.' },
   ],
@@ -385,7 +385,7 @@ const snow: PartnerDashboard = {
   communityPartnership: {
     name: 'Oonchiumpa Consultancy and Services',
     intro:
-      'Oonchiumpa is a 100 percent Aboriginal-owned consultancy in Alice Springs, owned and run by the Bloomfield family. Two years working together: cultural advice (paid at university research rates), youth programs, and the delivery network into the homelands.',
+      'Oonchiumpa is a 100 percent Aboriginal-owned consultancy in Alice Springs, owned and run by the Bloomfield and Liddle families, chaired by Karen Liddle and led by Kristy Bloomfield. Two years working together: cultural advice (paid at university research rates), youth programs, and the delivery network into the homelands.',
     beats: [
       {
         title: 'Young people built the beds',
