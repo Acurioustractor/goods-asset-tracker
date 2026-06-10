@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getPartnerDashboard, type OwnershipStage } from '@/lib/data/partner-dashboards';
 import { getDashboardImageOverrides, resolveDashImg } from '@/lib/data/partner-dashboard-images';
+import { safeImageUrl } from '@/lib/empathy-ledger/media-tier';
 import { getAssetStats } from '@/lib/data/impact-fetcher';
 import { getRoadmap } from '@/lib/data/roadmap';
 import { verifiedFinancials } from '@/lib/data/compendium';
@@ -157,16 +158,18 @@ export default async function PartnerDashboardPage({ params }: Props) {
   const quotes = (insights?.topQuotes ?? []).slice(0, 3);
   const featuredVoices = partner.featuredVoices ?? [];
   // More community voices, pulled live from Empathy Ledger's public syndication
-  // API (no login). Text-only by design: EL avatar URLs live on a host we do not
-  // proxy, so we showcase name + place + theme rather than risk a broken portrait.
-  // The named featured voices above are excluded so nobody appears twice.
+  // API (no login): real profile image + bio per storyteller, each portrait
+  // passed through the media privacy gate. EL has no published quotes for these
+  // storytellers yet (only the named featured voices above carry quotes), so we
+  // show their bio. The featured voices are excluded so nobody appears twice.
   const featuredNames = new Set(featuredVoices.map((v) => v.name.toLowerCase()));
   const ledgerVoices = (await empathyLedger.getProjectStorytellers({ limit: 24 }).catch(() => []))
     .map((s) => ({
       name: s.name,
       location: s.location,
       isElder: s.isElder,
-      theme: s.themes?.[0]?.displayName || s.themes?.[0]?.name || null,
+      avatar: safeImageUrl(s.avatarUrl),
+      bio: s.bio?.trim() || null,
     }))
     .filter((s) => Boolean(s.name && !featuredNames.has(s.name.toLowerCase())))
     .slice(0, 6);
@@ -712,12 +715,19 @@ export default async function PartnerDashboardPage({ params }: Props) {
                 <p className="mb-3 text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>More voices from the community ledger</p>
                 <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
                   {ledgerVoices.map((v) => (
-                    <figure key={v.name} className="flex flex-col rounded-lg bg-white p-5" style={{ border: '1px solid #E8DED4' }}>
-                      <p className="font-display text-lg leading-snug" style={{ color: CHARCOAL }}>
-                        {v.name}{v.isElder ? <span className="text-sm" style={{ color: SAGE }}> · Elder</span> : null}
-                      </p>
-                      {v.location ? <p className="mt-1 text-xs" style={{ color: `${CHARCOAL}99` }}>{v.location}</p> : null}
-                      {v.theme ? <p className="mt-3 text-xs leading-relaxed" style={{ color: `${CHARCOAL}80` }}>In their story: {v.theme}</p> : null}
+                    <figure key={v.name} className="flex flex-col overflow-hidden rounded-lg bg-white" style={{ border: '1px solid #E8DED4' }}>
+                      {v.avatar ? (
+                        <div className="relative aspect-[4/3]">
+                          <Image src={v.avatar} alt={v.name} fill className="object-cover object-top" sizes="(max-width: 768px) 50vw, 33vw" />
+                        </div>
+                      ) : null}
+                      <div className="flex flex-1 flex-col p-5">
+                        <p className="font-display text-lg leading-snug" style={{ color: CHARCOAL }}>
+                          {v.name}{v.isElder ? <span className="text-sm" style={{ color: SAGE }}> · Elder</span> : null}
+                        </p>
+                        {v.location ? <p className="mt-1 text-xs" style={{ color: `${CHARCOAL}99` }}>{v.location}</p> : null}
+                        {v.bio ? <p className="mt-3 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>{v.bio.length > 150 ? v.bio.slice(0, 150).trimEnd() + '…' : v.bio}</p> : null}
+                      </div>
                     </figure>
                   ))}
                 </div>

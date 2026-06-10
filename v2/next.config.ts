@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     '/admin/photo-review/raw': ['src/app/admin/photo-review/raw/photo-review.html'],
   },
+  // Public media is served by Vercel as static assets. Do not trace it into
+  // serverless functions; large photo/video folders can push admin routes over
+  // Vercel's function bundle limit.
+  outputFileTracingExcludes: {
+    '/*': ['public/**/*'],
+  },
   images: {
     // Next 16 enforces a fixed quality allowlist; default is just [75].
     // The field-notes before-after split uses quality:90 for sharper
@@ -55,6 +61,14 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 's3-us-west-2.amazonaws.com',
         pathname: '/public.notion-static.com/**',
+      },
+      {
+        // Empathy Ledger media proxy — storyteller avatars. 302-redirects to a
+        // signed Supabase URL (next/image follows it server-side and caches the
+        // optimised result, so the signed-URL expiry never reaches the browser).
+        protocol: 'https',
+        hostname: 'www.empathyledger.com',
+        pathname: '/api/media/**',
       },
     ],
   },
