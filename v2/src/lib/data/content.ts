@@ -810,14 +810,14 @@ export const communityLocations: CommunityLocation[] = [
     lng: 134.8,
     storytellerCount: 0,
     bedsDelivered: 147,
-    description: 'Anmatyerr and Alyawarr country, including the Ampilatwatja outstation where Frankie and Casey Holmes OAM each received beds in May 2026. Multiple outstations across the homelands. Young people in Alice Springs built and delivered beds to outstation families the next day.',
-    highlight: 'Co-designed and built with young people in Alice Springs, delivered on country to outstation families. Includes Ampilatwatja, where two senior Alyawarr Elders received beds in May 2026.',
+    description: 'Anmatyerr and Alyawarr country, including the Ampilatwatja outstation where Frankie Holmes OAM and Mr Donald Thompson OAM each received beds in May 2026. Multiple outstations across the homelands. Young people in Alice Springs built and delivered beds to outstation families the next day.',
+    highlight: 'Co-designed and built with young people in Alice Springs, delivered on country to outstation families. Includes Ampilatwatja, where two senior Alyawarr brothers received beds in May 2026.',
     tooltipDirection: 'left',
   },
   // Ampilatwatja folded into Utopia Homelands on the heatpost map (same
   // homelands region; the QR/assets register records those beds under
   // Utopia Homelands). The narrative on field-notes still names
-  // Ampilatwatja explicitly because that is where Frankie and Casey live.
+  // Ampilatwatja explicitly because that is where Frankie and Donald live.
   {
     id: 'mount-isa',
     name: 'Mount Isa',

@@ -47,7 +47,7 @@ async function loadCurrentMedia() {
     hero: masthead || { image: '/images/stories/utopia/01-hero.jpg' },
     build: immersives[0]?.media || { image: '/images/stories/utopia/04-build.jpg' },
     delivery: immersives[1]?.media || { image: '/images/stories/utopia/06-delivery.jpg' },
-    elders: immersives.find((b) => /Frankie|Casey|Ampilat/.test(b.title || ''))?.media || { image: '/images/stories/utopia/07-elders.jpg' },
+    elders: immersives.find((b) => /Frankie|Donald|Ampilat/.test(b.title || ''))?.media || { image: '/images/stories/utopia/07-elders.jpg' },
     before: beforeAfter?.before || null,
     after: beforeAfter?.after || null,
     close: close || { image: '/images/stories/utopia/11-close.jpg' },

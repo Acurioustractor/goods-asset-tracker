@@ -135,7 +135,7 @@ const videoBreaks = {
 
 const goodNewsStory = [
   'A Curious Tractor, in partnership with Oonchiumpa Consultancy & Services, is proud to support our remote communities by building and delivering Goods Beds to community members in Alparra and Ampilatwatja who are less fortunate.',
-  'We are honoured to share that respected Elders Frank and Casey Holmes from Antarrengeny since contacted and have expressed they are very grateful. They told us that since receiving their new beds, they are no longer experiencing back pains. Their words remind us why this work matters.',
+  'We are honoured to share that respected Elders Frank Holmes and Mr Donald Thompson OAM from Antarrengeny since contacted and have expressed they are very grateful. They told us that since receiving their new beds, they are no longer experiencing back pains. Their words remind us why this work matters.',
   'We look forward to continuing this strong partnership and remain committed to improving comfort, dignity, and wellbeing across our remote communities.',
 ];
 

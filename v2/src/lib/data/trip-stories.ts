@@ -892,16 +892,16 @@ const utopia: TripStory = {
         },
       ],
     },
-    // Casey portrait carries the Ampilatwatja title card. Swap the
+    // Donald Thompson portrait carries the Ampilatwatja title card. Swap the
     // image in via the in-page picker once the portrait is uploaded to
-    // EL with participant:casey-holmes + trip:may-2026 + format:photo.
+    // EL with participant:donald-thompson + trip:may-2026 + format:photo.
     // Falls back to the wide two-brothers shot until then.
     {
       kind: 'immersive',
       actmark: 'Act five · Ampilatwatja',
-      title: 'Sitting with Frankie Holmes OAM and Casey Holmes OAM',
+      title: 'Sitting with Frankie Holmes OAM and Mr Donald Thompson OAM',
       standfirst:
-        "At Ampilatwatja we sat with Frankie Holmes OAM and Casey Holmes OAM, Alyawarr brothers, both Medal of the Order of Australia. Four beds went in. We made tea and let the camera run.",
+        "At Ampilatwatja we sat with Frankie Holmes OAM and Mr Donald Thompson OAM, Alyawarr brothers, both Medal of the Order of Australia. Four beds went in. We made tea and let the camera run.",
       media: { image: `${IMG}/07-elders.jpg` },
       // Both brothers sit at opposite edges of the frame. Center-crop on
       // a phone-narrow viewport loses them both. Stack on mobile: image
@@ -912,9 +912,9 @@ const utopia: TripStory = {
     {
       kind: 'read',
       tag: 'Ampilatwatja',
-      heading: 'Frankie and Casey',
+      heading: 'Frankie and Donald',
       paragraphs: [
-        'Frankie Holmes and Casey Holmes are senior Alyawarr men. Both have been recognised with the Medal of the Order of Australia for decades of work for their community and their Country. They share a shed at Ampilatwatja.',
+        'Frankie Holmes and Mr Donald Thompson are senior Alyawarr brothers. Both have been recognised with the Medal of the Order of Australia for decades of work for their community and their Country.',
         'Four beds went in, for the two households between them. The unloading took longer than the assembly. The yarning took longer still. The clip we kept is the moment Frankie sat on a finished bed, tested the canvas with his hand, looked at his brother and nodded. Then he started talking.',
       ],
     },
@@ -927,19 +927,19 @@ const utopia: TripStory = {
       tagQuery: { all: ['community:ampilatwatja', 'participant:frankie-holmes'] },
       limit: 1,
     },
-    // Casey on the bed — overlay video (full-bleed, autoplay-muted-loop).
+    // Donald Thompson on the bed — overlay video (full-bleed, autoplay-muted-loop).
     // Empty placeholder in internal mode until the on-bed clip is tagged
-    // participant:casey-holmes + use:overlay + community:ampilatwatja.
+    // participant:donald-thompson + use:overlay + community:ampilatwatja.
     // Swap a different video into the slot via the in-page picker.
     {
       kind: 'el-video-gallery',
       as: 'overlay',
-      heading: 'Casey, on the bed',
+      heading: 'Donald, on the bed',
       sub: 'Ampilatwatja · 22 May 2026.',
-      tagQuery: { all: ['participant:casey-holmes', 'use:overlay', 'community:ampilatwatja'] },
+      tagQuery: { all: ['participant:donald-thompson', 'use:overlay', 'community:ampilatwatja'] },
       limit: 1,
     },
-    // Casey's voice slot removed: no voice clip was captured and Casey's
+    // Donald Thompson's voice slot removed: no voice clip was captured and his
     // representation on this page is the silent on-bed overlay above plus
     // his portrait in the masthead. The reserved-slot placeholder was
     // rendering "Empty video slot · Tag query:..." debug text in internal
@@ -948,7 +948,7 @@ const utopia: TripStory = {
     {
       kind: 'el-gallery',
       heading: 'Ampilatwatja, in pictures',
-      sub: 'From the morning with Frankie and Casey.',
+      sub: 'From the morning with Frankie and Donald.',
       tagQuery: { all: ['community:ampilatwatja', 'trip:may-2026'] },
       limit: 300,
     },
@@ -963,7 +963,7 @@ const utopia: TripStory = {
       tag: 'What comes next',
       heading: 'What this trip points at',
       paragraphs: [
-        "Three days, end to end. Beds at the homes that asked for them. Frankie's nod. Casey on the bed beside his brother. Mykel saying he would rock up every day to make them. None of it happens without Oonchiumpa, and none of the Utopia leg happens without Fred and Decon driving ahead, making introductions, and holding the room at the council so we could be useful when we arrived.",
+        "Three days, end to end. Beds at the homes that asked for them. Frankie's nod. Donald on the bed beside his brother. Mykel saying he would rock up every day to make them. None of it happens without Oonchiumpa, and none of the Utopia leg happens without Fred and Decon driving ahead, making introductions, and holding the room at the council so we could be useful when we arrived.",
         "Goods on Country is an enterprise. The [Stretch Bed](/shop/stretch-bed-single) and the washing machine [*Pakkimjalki Kari*](/shop/washing-machine), named in Warumungu by Elder Dianne Stokes, were designed in community with the Bloomfield family who run Oonchiumpa, over years. The next piece of the model is a containerised plant that can shred and press collected plastic into bed legs at around thirty beds a week. That plant can move to a community and be owned there.",
         "That is what Mykel was pointing at on the first morning when he asked about coming back every day. Alice and Utopia are both live candidates for where the making happens next. There is plenty of plastic on the ground waiting to be collected, and a steady cohort of young people coming through Oonchiumpa who want work. The household demand is already on the table.",
         "A bed off the ground cuts scabies and rheumatic heart disease, and means kids who slept enough to make it to school. Local production on top of that is income that stays in the community. The work, eventually, is to move the making to community ownership and then become unnecessary.",

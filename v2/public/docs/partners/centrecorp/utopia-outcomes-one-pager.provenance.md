@@ -22,7 +22,7 @@ Centrecorp Reporting page, which is the single source for them.
 | Rounds to Utopia | 2 | INV-0291 (first Utopia batch, 2025) + the May 2026 deployment. Per Centrecorp Reporting page. | Verified (Notion) |
 | Production plant trial | 6-month | INV-0314 "Production Plant Part 1 (6-month rental trial)". Per Centrecorp Reporting page. | Verified (Notion) |
 | Recycled HDPE per bed | 20kg | Canonical product data (`v2/src/lib/data/products.ts`). | Verified |
-| Quote (Frank & Casey Holmes, Antarrengeny) | "Since receiving their new beds, they are no longer experiencing back pains." | Oonchiumpa Good News Story. | Attributed |
+| Quote (Frank Holmes & Mr Donald Thompson OAM, Antarrengeny) | "Since receiving their new beds, they are no longer experiencing back pains." | Oonchiumpa Good News Story. | Attributed |
 
 ## Attribution note (corrected 2026-05-26)
 The May 17–27 Central Australia deployment runs off a **Snow Foundation** signed agreement (100 beds,

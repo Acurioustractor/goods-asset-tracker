@@ -154,7 +154,7 @@ const CENTRECORP: Partner = {
   ],
   quote: {
     text: 'Since receiving their new beds, they are no longer experiencing back pains.',
-    cite: 'Oonchiumpa Good News Story. Feedback from respected Elders Frankie and Casey Holmes, Ampilatwatja.',
+    cite: 'Oonchiumpa Good News Story. Feedback from respected Elders Frankie Holmes and Mr Donald Thompson OAM, Ampilatwatja.',
   },
   evidencePhotos: [
     {

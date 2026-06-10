@@ -70,9 +70,9 @@ const content = `
 <p><img src="${PHOTO_AFTER}" alt="The same room after a Stretch Bed went in" /></p>
 
 <h2>A morning at Ampilatwatja</h2>
-<p><img src="${PHOTO_ELDERS}" alt="Frankie Holmes OAM and Casey Holmes OAM at their shed at Ampilatwatja, 22 May 2026" /></p>
+<p><img src="${PHOTO_ELDERS}" alt="Frankie Holmes OAM and Mr Donald Thompson OAM at their shed at Ampilatwatja, 22 May 2026" /></p>
 
-<p>The last morning, Frankie Holmes OAM and Casey Holmes OAM sat with us at their shed at Ampilatwatja. Alyawarr brothers. Both have been recognised with the Medal of the Order of Australia for decades of work for their community and their Country. Four beds went in, two households between them. The unloading took longer than the assembly. The yarning took longer still.</p>
+<p>The last morning, Frankie Holmes OAM and Mr Donald Thompson OAM sat with us at their shed at Ampilatwatja. Alyawarr brothers. Both have been recognised with the Medal of the Order of Australia for decades of work for their community and their Country. Four beds went in, two households between them. The unloading took longer than the assembly. The yarning took longer still.</p>
 
 <p>The clip we kept is the moment Frankie sat on a finished bed, tested the canvas with his hand, looked at his brother and nodded. Then he started talking. We made tea. We did very little. That is what the morning needed.</p>
 
