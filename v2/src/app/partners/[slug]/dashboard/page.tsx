@@ -554,7 +554,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
             id="your-part"
             eyebrow="Your part in this"
             title="What your backing has built"
-            confidence={{ grade: 'counted', note: 'The cumulative figure is Xero-reconciled. The split is how the FY25 grant was acquitted.' }}
+            confidence={{ grade: 'counted', note: 'The $493,130 is Xero-reconciled. The split is an indicative allocation across Snow’s support, not a per-dollar acquittal.' }}
           >
             <div className="grid gap-4 lg:grid-cols-[2fr_3fr]">
               <div className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
@@ -563,12 +563,27 @@ export default async function PartnerDashboardPage({ params }: Props) {
                 <div className="mt-4"><ConfidenceChip grade="counted" /></div>
               </div>
               <div className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-                <p className="mb-4 text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>{partner.funderImpact.breakdown.heading}</p>
-                <ul className="space-y-3">
+                <div className="mb-1 flex items-start justify-between gap-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>{partner.funderImpact.breakdown.heading}</p>
+                  <ConfidenceChip grade="modelled" className="shrink-0" />
+                </div>
+                {partner.funderImpact.breakdown.note ? (
+                  <p className="mb-4 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>{partner.funderImpact.breakdown.note}</p>
+                ) : (
+                  <div className="mb-4" />
+                )}
+                <ul className="space-y-3.5">
                   {partner.funderImpact.breakdown.items.map((it) => (
-                    <li key={it.label} className="flex items-baseline justify-between gap-4">
-                      <span className="text-sm leading-snug" style={{ color: `${CHARCOAL}cc` }}>{it.label}</span>
-                      <span className="shrink-0 font-display text-lg" style={{ color: CHARCOAL }}>{it.value}</span>
+                    <li key={it.label}>
+                      <div className="flex items-baseline justify-between gap-4">
+                        <span className="text-sm leading-snug" style={{ color: `${CHARCOAL}cc` }}>{it.label}</span>
+                        <span className="shrink-0 font-display text-base" style={{ color: CHARCOAL }}>{it.value}</span>
+                      </div>
+                      {typeof it.percent === 'number' ? (
+                        <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full" style={{ backgroundColor: '#EFE7DC' }}>
+                          <div className="h-full rounded-full" style={{ width: `${it.percent}%`, backgroundColor: RUST }} />
+                        </div>
+                      ) : null}
                     </li>
                   ))}
                 </ul>
