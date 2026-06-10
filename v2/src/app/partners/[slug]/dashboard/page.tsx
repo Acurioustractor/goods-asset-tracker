@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getPartnerDashboard, type OwnershipStage } from '@/lib/data/partner-dashboards';
+import { getDashboardImageOverrides, resolveDashImg } from '@/lib/data/partner-dashboard-images';
 import { getAssetStats } from '@/lib/data/impact-fetcher';
 import { getRoadmap } from '@/lib/data/roadmap';
 import { verifiedFinancials } from '@/lib/data/compendium';
@@ -39,11 +40,12 @@ const fmtAUD = (n: number) =>
   new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', maximumFractionDigits: 0 }).format(n);
 
 // A counted hero answer.
-function HeroStat({ value, label }: { value: string; label: string }) {
+function HeroStat({ value, label, note }: { value: string; label: string; note?: string }) {
   return (
     <div className="rounded-lg px-4 py-3" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
       <p className="font-display text-2xl leading-none sm:text-3xl" style={{ color: RUST }}>{value}</p>
       <p className="mt-1.5 text-xs leading-snug" style={{ color: `${CHARCOAL}b3` }}>{label}</p>
+      {note ? <p className="mt-1 text-[11px] leading-snug" style={{ color: `${CHARCOAL}66` }}>{note}</p> : null}
     </div>
   );
 }
@@ -98,11 +100,11 @@ const STAGE_LABEL: Record<OwnershipStage, string> = {
 // What each rung of the ownership ladder means. Editorial, stage-generic, forward.
 const STAGE_MEANING: Record<OwnershipStage, string> = {
   planned:
-    'On the table and designed with community from the first line. Nothing gets built until the people who will run it have shaped it.',
+    'We have been working closely with Oonchiumpa on plans for the first on Country production facility. It will be staffed by 100% Indigenous staff and built to support young people into long-term employment.',
   built:
-    'Made and commissioned on country. The plant exists, the press works, and the first goods come off it.',
+    'We have a production facility making beds at Witta Farm, with someone who lives there employed to make the beds. The next stage is an Oonchiumpa staff member doing a ten-week train-the-trainer experience at the farm, in preparation to support the Alice Springs production facility.',
   operating:
-    'Running day to day, making beds and parts on country. Local people on the tools, learning every part of how it works.',
+    'Running day to day, making beds and parts on Country. Local people on the tools, learning every part of how it works.',
   'community-run':
     'The community holds the operation. The roster, the maintenance, and the call on what gets made sit with local hands.',
   'community-owned':
@@ -113,6 +115,14 @@ export default async function PartnerDashboardPage({ params }: Props) {
   const { slug } = await params;
   const partner = getPartnerDashboard(slug);
   if (!partner) notFound();
+
+  // EL-backed image overrides. The admin picker (/admin/dashboard-images) writes
+  // data/partner-dashboard-images.json; every image slot resolves to its override
+  // or the config fallback. resolveGal pre-resolves a gallery array by index.
+  const imgOv = getDashboardImageOverrides(slug);
+  function resolveGal<T extends { src: string; alt: string }>(arr: T[], prefix: string): T[] {
+    return arr.map((g, i) => ({ ...g, ...resolveDashImg(imgOv, `${prefix}.${i}`, { src: g.src, alt: g.alt }) }) as T);
+  }
 
   // Live metrics from the asset register.
   let stats: Awaited<ReturnType<typeof getAssetStats>> | null = null;
@@ -126,7 +136,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
   const communities = stats ? String(stats.communitiesServed) : '—';
   const stretch = stats ? stats.stretchBedsDeployed.toLocaleString() : '—';
   const plasticT = stats ? `${((stats.stretchBedsDeployed * 20) / 1000).toFixed(2)} t` : '—';
-  const washers = stats ? `${stats.washersWorking} / ${stats.washersDeployed}` : '—';
+  const washers = stats ? String(stats.washersWorking) : '—';
   const washersUnconfirmed = stats ? stats.washersDeployed - stats.washersWorking : 0;
   const peopleReached = stats ? Math.round(stats.totalBeds * 2.5) : null;
   const communityList = stats
@@ -153,10 +163,22 @@ export default async function PartnerDashboardPage({ params }: Props) {
   const asAt = verifiedFinancials.lastUpdated;
 
   // Consent-gated galleries: only documented items reach the page.
-  const gallery = partner.gallery.filter((g) => g.consent === 'documented');
-  const facilityGallery = (partner.facilityGallery ?? []).filter((g) => g.consent === 'documented');
+  const gallery = resolveGal(partner.gallery, 'gallery').filter((g) => g.consent === 'documented');
+  const facilityGallery = resolveGal(partner.facilityGallery ?? [], 'facility').filter((g) => g.consent === 'documented');
   const partnership = partner.communityPartnership;
-  const partnershipPhotos = (partnership?.photos ?? []).filter((g) => g.consent === 'documented');
+  const nextChapter = partner.nextChapter;
+  const partnershipPhotos = resolveGal(partnership?.photos ?? [], 'partnership').filter((g) => g.consent === 'documented');
+
+  // Single-image + nested-image slots resolved the same way.
+  const heroImg = partner.heroImage
+    ? resolveDashImg(imgOv, 'hero', { src: partner.heroImage.src, alt: partner.heroImage.alt })
+    : null;
+  const momentsResolved = (partner.funderImpact?.moments ?? []).map((m, i) =>
+    m.image ? { ...m, image: { ...m.image, ...resolveDashImg(imgOv, `moment.${i}`, { src: m.image.src, alt: m.image.alt }) } } : m,
+  );
+  const featuredVoicesResolved = featuredVoices.map((v, i) =>
+    v.image ? { ...v, image: { ...v.image, ...resolveDashImg(imgOv, `voice.${i}`, { src: v.image.src, alt: v.image.alt }) } } : v,
+  );
 
   // The ownership journey: one rung per stage, with facilities parked where they are.
   const milestones = partner.ownershipMilestones ?? [];
@@ -174,6 +196,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
     { id: 'heading', label: "Where we're heading", grade: 'counted' },
     { id: 'goal', label: 'The goal' },
     { id: 'health', label: 'Health hardware', grade: 'modelled' },
+    ...(nextChapter ? [{ id: 'next-chapter', label: 'The next chapter', grade: 'not-yet' } as NavItem] : []),
     { id: 'path', label: 'The path', grade: 'not-yet' },
     { id: 'assets', label: 'Community-owned assets', grade: 'not-yet' },
     { id: 'in-service', label: 'In service now', grade: 'counted' },
@@ -205,7 +228,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
           <div className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <Link href="/" className="inline-flex flex-col leading-none">
               <span className="font-display text-3xl sm:text-4xl" style={{ color: CHARCOAL }}>Goods</span>
-              <span className="mt-1 text-[10px] uppercase sm:text-xs" style={{ color: `${CHARCOAL}99` }}>On Country · Partner dashboard</span>
+              <span className="mt-1 text-[10px] uppercase sm:text-xs" style={{ color: `${CHARCOAL}99` }}>On Country · Always-on partner dashboard</span>
             </Link>
             <div className="rounded-lg bg-white px-4 py-3 shadow-sm" style={{ border: '1px solid #E8DED4' }}>
               <Image src="/images/partners/snow-foundation.png" alt={partner.partnerName} width={400} height={160} priority className="h-12 w-auto" />
@@ -222,7 +245,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
             {partner.heroImage ? (
               <figure className="overflow-hidden rounded-xl bg-white" style={{ border: '1px solid #E8DED4' }}>
                 <div className="relative aspect-[4/3]">
-                  <Image src={partner.heroImage.src} alt={partner.heroImage.alt} fill priority className="object-cover" sizes="(max-width: 1024px) 100vw, 420px" />
+                  <Image src={heroImg!.src} alt={heroImg!.alt} fill priority className="object-cover" sizes="(max-width: 1024px) 100vw, 420px" />
                 </div>
                 {partner.heroImage.caption ? (
                   <figcaption className="px-4 py-2.5 text-[11px]" style={{ color: `${CHARCOAL}99` }}>{partner.heroImage.caption}</figcaption>
@@ -233,14 +256,18 @@ export default async function PartnerDashboardPage({ params }: Props) {
 
           {/* Counted answers only. Modelled figures live in "In service now". */}
           <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-            <HeroStat value={beds} label="Beds in community" />
+            <HeroStat value={beds} label="Beds in community" note={stretch ? `${stretch} are Stretch Beds` : undefined} />
             <HeroStat value={communities} label="Communities" />
-            <HeroStat value={washers} label="Washing machines live / deployed" />
-            <HeroStat value={fmtAUD(secured)} label="Secured to date" />
+            <HeroStat value={washers} label="Washing machines live" />
+            <HeroStat value={fmtAUD(secured)} label="Total grants and support, all sources" />
           </div>
-          <div className="mt-3 flex items-center gap-2">
+          <div className="mt-3 flex flex-wrap items-center gap-2">
             <ConfidenceChip grade="counted" />
-            <p className="text-xs" style={{ color: `${CHARCOAL}80` }}>Live from the asset register and Xero-reconciled, as at {asAt}.</p>
+            <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide" style={{ backgroundColor: '#E6EDDD', color: '#4F6138' }}>
+              <span className="inline-block h-1.5 w-1.5 rounded-full" style={{ backgroundColor: SAGE }} />
+              Always on
+            </span>
+            <p className="text-xs" style={{ color: `${CHARCOAL}80` }}>Live from the asset register and Xero-reconciled, as at {asAt}. This page is not a one-off report. It updates as the work does, so it is always current.</p>
           </div>
 
           {partner.dataSovereigntyLine ? (
@@ -250,7 +277,8 @@ export default async function PartnerDashboardPage({ params }: Props) {
           ) : null}
 
           <div className="mt-7 rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-            <p className="mb-3 text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>How sure are we</p>
+            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>How to read this page</p>
+            <p className="mb-4 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>Every number carries one of these labels, and they follow you down the page. It is the same honest grading we hold ourselves to in our investor-readiness work, so you always know what is counted, what is modelled, and what is still ahead.</p>
             <ConfidenceLegend />
           </div>
         </div>
@@ -261,9 +289,14 @@ export default async function PartnerDashboardPage({ params }: Props) {
         {/* The goal */}
         <Section id="goal" eyebrow="The goal" title="Where we are heading" posture="Direction, not measurement">
           <p className="max-w-2xl text-lg leading-relaxed" style={{ color: `${CHARCOAL}dd` }}>{partner.goalStatement}</p>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed" style={{ color: `${CHARCOAL}99` }}>
-            Across this page, a good moved is the output. What changes for people, and who owns the means of making the next one, is the outcome.
-          </p>
+          {facilityGallery.length > 0 ? (
+            <figure className="mt-8 overflow-hidden rounded-xl bg-white" style={{ border: '1px solid #E8DED4' }}>
+              <div className="relative aspect-[16/9]">
+                <Image src={facilityGallery[0].src} alt={facilityGallery[0].alt} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 860px" />
+              </div>
+              <figcaption className="px-4 py-2.5 text-[11px]" style={{ color: `${CHARCOAL}99` }}>{facilityGallery[0].alt}</figcaption>
+            </figure>
+          ) : null}
         </Section>
 
         {/* Why this is health hardware (the chain a funder can stand behind) */}
@@ -281,7 +314,65 @@ export default async function PartnerDashboardPage({ params }: Props) {
           <div className="mt-8">
             <HealthPathway strategyLine={partner.healthStrategyLine} />
           </div>
+          <figure className="mt-8 overflow-hidden rounded-xl bg-white" style={{ border: '1px solid #E8DED4' }}>
+            <div className="relative aspect-[16/9]">
+              <Image src="/images/media-pack/lying-on-stretch-bed.jpg" alt="Person lying on a Stretch Bed on Country" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 860px" />
+            </div>
+          </figure>
+          <figure className="mt-4 overflow-hidden rounded-xl bg-white" style={{ border: '1px solid #E8DED4' }}>
+            <div className="relative aspect-[16/9]">
+              <Image src="/images/product/stretch-bed-overview.png" alt="The Stretch Bed — all parts labelled" fill className="object-contain p-4" sizes="(max-width: 1024px) 100vw, 860px" />
+            </div>
+          </figure>
         </Section>
+
+        {/* The next chapter: grants -> blended finance, and the invitation (Snow). */}
+        {nextChapter ? (
+          <Section
+            id="next-chapter"
+            eyebrow="The next chapter"
+            title="From grants to blended finance"
+            confidence={{ grade: 'not-yet', note: 'Direction and live conversations. The match is contingent, the capital is being raised, and nothing here is secured.' }}
+          >
+            <p className="max-w-2xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{nextChapter.intro}</p>
+
+            {/* The capital arc: grant funded -> blended raise -> self sustaining */}
+            <div className="mt-8 grid gap-3 md:grid-cols-3">
+              {nextChapter.arc.map((a, i) => {
+                const isNow = a.state === 'now';
+                const isAhead = a.state === 'ahead';
+                const accent = isNow ? RUST : isAhead ? '#B8AEA4' : SAGE;
+                const badge = a.state === 'done' ? 'Where we began' : isNow ? 'We are here' : 'Still ahead';
+                const pillBg = isNow ? '#F6E4DE' : isAhead ? '#EEE9E3' : '#E6EDDD';
+                const pillFg = isNow ? '#9A4023' : isAhead ? '#6A5E54' : '#4F6138';
+                return (
+                  <div key={a.stage} className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderTop: `3px solid ${accent}` }}>
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: accent }}>{String(i + 1).padStart(2, '0')}</p>
+                      <span className="rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide" style={{ backgroundColor: pillBg, color: pillFg }}>{badge}</span>
+                    </div>
+                    <p className="mt-2 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>{a.stage}</p>
+                    <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>{a.meaning}</p>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* What the matched-finance program is (the lever) */}
+            <div className="mt-6 rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+              <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>The matched-finance lever</p>
+              <p className="mt-1.5 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{nextChapter.qbeNote}</p>
+            </div>
+
+            {/* The invitation to this funder */}
+            <div className="mt-6 rounded-xl p-6 sm:p-7" style={{ backgroundColor: CREAM, border: `1px solid ${RUST}33`, borderLeft: `3px solid ${RUST}` }}>
+              <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>{nextChapter.invitation.eyebrow}</p>
+              <p className="mt-1.5 font-display text-xl leading-snug sm:text-2xl" style={{ color: CHARCOAL }}>{nextChapter.invitation.title}</p>
+              <p className="mt-3 max-w-2xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{nextChapter.invitation.body}</p>
+              <div className="mt-4"><ConfidenceChip grade="not-yet" note="An exploration. Not a commitment, and not secured." /></div>
+            </div>
+          </Section>
+        ) : null}
 
         {/* The path (forward reframe) */}
         <Section
@@ -301,7 +392,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
           confidence={{ grade: 'not-yet', note: 'What exists today is counted; the ownership transfer is in design. Stages are named, not claimed done.' }}
         >
           <p className="max-w-2xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            We are building a recycled-plastic plant on country, collect, shred, melt, press, that is designed to leave our hands.
+            We are building a recycled-plastic plant on Country, collect, shred, melt, press, that is designed to leave our hands.
             The community becomes the operator, then the owner, of the means of making the next bed.
           </p>
           {facilityGallery.length > 0 ? (
@@ -313,7 +404,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
                   style={{ border: '1px solid #E8DED4' }}
                 >
                   <div className="relative aspect-[4/3]">
-                    <Image src={g.src} alt={g.alt} fill className="object-cover" sizes="(max-width: 768px) 50vw, 300px" />
+                    <Image src={g.src} alt={g.alt} fill className="object-cover" sizes="(max-width: 768px) 50vw, 33vw" />
                   </div>
                   <figcaption className="px-3 py-2 text-[11px] leading-snug" style={{ color: `${CHARCOAL}99` }}>{g.alt}</figcaption>
                 </figure>
@@ -332,7 +423,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
         <Section
           id="in-service"
           eyebrow="The proof, honestly graded"
-          title="What is already on country, and still working"
+          title="What is already on Country, and still working"
           confidence={{ grade: 'counted', note: 'Delivery counts are counted. Plastic and people reached are modelled assumptions, labelled below.' }}
         >
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -382,15 +473,21 @@ export default async function PartnerDashboardPage({ params }: Props) {
 
           {gallery.length > 0 ? (
             <div className="mt-8">
-              <p className="mb-3 text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>From the field</p>
+              <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>From the field</p>
+              <p className="mb-3 text-sm font-medium" style={{ color: CHARCOAL }}>Most recent trip to Utopia Homelands, May 2026</p>
               <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
                 {gallery.map((g) => (
                   <figure key={g.src} className="overflow-hidden rounded-lg bg-white" style={{ border: '1px solid #E8DED4' }}>
                     <div className="relative aspect-[4/3]">
-                      <Image src={g.src} alt={g.alt} fill className="object-cover" sizes="(max-width: 768px) 50vw, 280px" />
+                      <Image src={g.src} alt={g.alt} fill className="object-cover" sizes="(max-width: 768px) 50vw, 33vw" />
                     </div>
                   </figure>
                 ))}
+              </div>
+              <div className="mt-4">
+                <Link href="/field-notes/utopia-may-2026" className="text-sm font-medium underline underline-offset-2" style={{ color: RUST }}>
+                  Read the full Utopia trip story →
+                </Link>
               </div>
             </div>
           ) : null}
@@ -408,12 +505,32 @@ export default async function PartnerDashboardPage({ params }: Props) {
             machine built for the conditions that kill ordinary machines. It exists because clean bedding is the
             other half of the health chain above. Here is where it has come from, and where the R&D is taking it.
           </p>
+          <div className="mt-8 grid gap-6 lg:grid-cols-[3fr_2fr]">
+            <figure className="overflow-hidden rounded-xl bg-white" style={{ border: '1px solid #E8DED4' }}>
+              <div className="relative aspect-[4/3]">
+                <Image src="/images/product/washing-machine.jpg" alt="The Pakkimjalki Kari at sunset, Tennant Creek" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 560px" />
+              </div>
+              <figcaption className="px-4 py-2.5 text-[11px]" style={{ color: `${CHARCOAL}99` }}>The Pakkimjalki Kari, Tennant Creek, July 2025.</figcaption>
+            </figure>
+            <div className="flex flex-col gap-4">
+              <figure className="overflow-hidden rounded-xl" style={{ border: '1px solid #E8DED4' }}>
+                <div className="relative aspect-[4/3]">
+                  <Image src="/images/people/dianne-stokes.jpg" alt="Elder Dianne Stokes, Warumungu and Warlmanpa Elder" fill className="object-cover object-top" sizes="(max-width: 1024px) 50vw, 320px" />
+                </div>
+              </figure>
+              <div className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+                <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide" style={{ color: SAGE }}>January 2026</p>
+                <p className="text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>Elder Dianne Stokes names the machine</p>
+                <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>Warumungu and Warlmanpa Elder, living on her Country in Tennant Creek. She gave the machine its name in Warumungu language. The name travels with every unit.</p>
+              </div>
+            </div>
+          </div>
           <div className="mt-8">
             <WasherJourney
               washersLine={
                 stats
-                  ? `${stats.washersDeployed} machines are in community today (${stats.washersWorking} reporting live), placed through councils and organisations.`
-                  : 'The current fleet is placed through councils and organisations.'
+                  ? `${stats.washersWorking} machines in community today, placed through councils and organisations.`
+                  : '14 machines in community today, placed through councils and organisations.'
               }
             />
           </div>
@@ -450,11 +567,18 @@ export default async function PartnerDashboardPage({ params }: Props) {
               <div className="mt-6">
                 <p className="mb-3 text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>On country together</p>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                  {partner.funderImpact.moments.map((m) => (
-                    <div key={m.title} className="rounded-lg p-4" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-                      <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: SAGE }}>{m.date}</p>
-                      <p className="mt-1.5 text-sm font-medium leading-snug" style={{ color: CHARCOAL }}>{m.title}</p>
-                      {m.detail ? <p className="mt-1 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>{m.detail}</p> : null}
+                  {momentsResolved.map((m) => (
+                    <div key={m.title} className="overflow-hidden rounded-lg" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+                      {m.image ? (
+                        <div className="relative aspect-[16/9] w-full">
+                          <Image src={m.image.src} alt={m.image.alt} fill className="object-cover" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
+                        </div>
+                      ) : null}
+                      <div className="p-4">
+                        <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: SAGE }}>{m.date}</p>
+                        <p className="mt-1.5 text-sm font-medium leading-snug" style={{ color: CHARCOAL }}>{m.title}</p>
+                        {m.detail ? <p className="mt-1 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>{m.detail}</p> : null}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -504,7 +628,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
                     style={{ border: '1px solid #E8DED4' }}
                   >
                     <div className="relative aspect-[4/3]">
-                      <Image src={g.src} alt={g.alt} fill className="object-cover" sizes="(max-width: 768px) 50vw, 300px" />
+                      <Image src={g.src} alt={g.alt} fill className="object-cover" sizes="(max-width: 768px) 50vw, 33vw" />
                     </div>
                   </figure>
                 ))}
@@ -546,11 +670,11 @@ export default async function PartnerDashboardPage({ params }: Props) {
 
             {featuredVoices.length > 0 ? (
               <div className="mb-8 grid gap-4 md:grid-cols-3">
-                {featuredVoices.map((v) => (
+                {featuredVoicesResolved.map((v) => (
                   <figure key={v.name} className="flex flex-col overflow-hidden rounded-lg bg-white" style={{ border: '1px solid #E8DED4' }}>
                     {v.image ? (
                       <div className="relative aspect-[4/3]">
-                        <Image src={v.image.src} alt={v.image.alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 320px" />
+                        <Image src={v.image.src} alt={v.image.alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
                       </div>
                     ) : null}
                     <div className="flex flex-1 flex-col p-6">
@@ -658,7 +782,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
       <section className="mx-auto max-w-3xl px-5 py-14 text-center sm:px-8">
         <p className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}bf` }}>
           Goods on Country acknowledges the Traditional Owners of the lands on which we work, and pays respect to
-          Elders past, present and emerging. This work is done on country, with country, for country.
+          Elders past, present and emerging. This work is done on Country, with Country, for Country.
         </p>
       </section>
     </main>
