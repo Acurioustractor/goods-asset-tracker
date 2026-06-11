@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Goods on Country × The Snow Foundation — Partnership One-Pager Q2 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #FCFBF7;
+    --bg: #FBFAF5;
+    --paper: #FFFFFF;
+    --ink: #2A2620;
+    --ink-muted: #6F6155;
+    --border: #E6DFD1;
+    --terracotta: #B0673B;
+    --terracotta-ink: #9A5230;
+    --terracotta-tint: #F4E7DF;
+    --sage: #7E9A68;
+    --sage-ink: #4E7548;
+    --teal: #4E8F88;
+    --teal-ink: #357873;
+    --teal-tint: #E2EEEC;
+    --gold: #C2A85A;
+    --gold-ink: #8A7332;
+    --gold-tint: #F1E9CF;
+    --clay: #9A6B52;
+    --clay-tint: #ECE2DA;
+    --forest: #3C4A30;
+    --lora: 'Lora', Georgia, serif;
+    --inter: 'Inter', -apple-system, system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #DAD3C4; font-family: var(--inter); }
+  .page {
+    width: 820px;
+    background: var(--cream);
+    padding: 46px 50px 40px;
+    color: var(--ink);
+  }
+
+  /* Title */
+  .title { font-family: var(--lora); font-weight: 700; font-size: 32px; line-height: 1.12; letter-spacing: -0.4px; }
+  .title .x { color: var(--terracotta); font-weight: 600; padding: 0 2px; }
+  .subtitle { font-family: var(--lora); font-weight: 500; font-size: 22px; color: var(--ink-muted); margin-top: 2px; }
+
+  /* Banner */
+  .banner {
+    margin-top: 24px;
+    background: var(--terracotta);
+    border-radius: 16px;
+    padding: 22px 26px;
+    display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  }
+  .banner-text { font-family: var(--lora); font-weight: 500; font-size: 23px; line-height: 1.32; color: var(--cream); }
+  .banner-text strong { font-weight: 700; }
+  .banner-text .arrow { display: inline-flex; vertical-align: -3px; margin: 0 4px; opacity: .9; }
+  .banner svg.sprout { color: #F0D9A0; flex: none; }
+
+  /* Section label pill */
+  .pill {
+    display: inline-block;
+    background: var(--gold);
+    color: #4A3F18;
+    font-family: var(--lora); font-weight: 700; font-size: 18px;
+    padding: 7px 17px; border-radius: 9px;
+    margin: 26px 0 16px;
+  }
+
+  /* Impact stats */
+  .stats { display: flex; gap: 10px; }
+  .stat { flex: 1; text-align: center; }
+  .stat .ic { height: 46px; display: flex; align-items: flex-end; justify-content: center; }
+  .stat .num { font-family: var(--lora); font-weight: 700; font-size: 35px; line-height: 1; margin-top: 12px; }
+  .stat .lbl { font-size: 13.5px; line-height: 1.28; color: var(--ink); margin-top: 7px; padding: 0 2px; }
+
+  /* Check list */
+  .checks { display: flex; flex-direction: column; gap: 13px; }
+  .check { display: flex; align-items: center; gap: 14px; }
+  .check .box { flex: none; width: 30px; height: 30px; border-radius: 8px; background: var(--sage-ink); display: flex; align-items: center; justify-content: center; }
+  .check .box svg { color: #fff; }
+  .check .ct { font-size: 19px; color: var(--ink); }
+  .check .ct b { font-weight: 600; }
+
+  /* Journey */
+  .journey .track {
+    position: relative; height: 20px; border-radius: 10px;
+    background: linear-gradient(to right, var(--gold) 0 50%, var(--sage-ink) 50% 100%);
+    display: flex; align-items: center; justify-content: space-around;
+    margin: 4px 26px 0 0;
+  }
+  .journey .node { width: 11px; height: 11px; border-radius: 50%; background: var(--cream); }
+  .journey .node.active { width: 20px; height: 20px; border: 4px solid var(--cream); background: var(--sage-ink); }
+  .journey .head { position: absolute; right: -14px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 13px solid transparent; border-bottom: 13px solid transparent; border-left: 16px solid var(--sage-ink); }
+  .journey .labels { display: flex; margin-top: 10px; }
+  .journey .labels span { flex: 1; text-align: center; font-size: 14px; color: var(--ink-muted); }
+  .journey .labels span.strong { font-family: var(--lora); font-weight: 700; font-size: 17px; color: var(--sage-ink); letter-spacing: .3px; }
+
+  /* Motion cards */
+  .motion { display: flex; gap: 14px; }
+  .mcard { flex: 1; border-radius: 12px; padding: 15px 16px; border: 1px solid var(--border); }
+  .mcard.t1 { background: var(--terracotta-tint); }
+  .mcard.t2 { background: var(--gold-tint); }
+  .mcard.t3 { background: var(--teal-tint); }
+  .mcard .mt { font-weight: 700; font-size: 15.5px; line-height: 1.3; }
+  .mcard.t1 .mt { color: var(--terracotta-ink); }
+  .mcard.t2 .mt { color: var(--gold-ink); }
+  .mcard.t3 .mt { color: var(--teal-ink); }
+  .mcard .mb { font-size: 14.5px; line-height: 1.34; color: var(--ink); margin-top: 5px; }
+
+  /* Footer band */
+  .footer-band {
+    margin-top: 28px; background: var(--forest); color: var(--cream);
+    border-radius: 14px; padding: 19px 24px; font-size: 18px; line-height: 1.4;
+  }
+  .footer-band b { font-weight: 700; }
+  .provenance { margin-top: 14px; font-size: 11.5px; color: var(--ink-muted); line-height: 1.4; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="title">Goods on Country <span class="x">&times;</span> The Snow Foundation</div>
+  <div class="subtitle">Partnership One-Pager &middot; Q2 2026</div>
+
+  <div class="banner">
+    <div class="banner-text">
+      From beds delivered <strong>TO</strong> community
+      <span class="arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+      beds made <strong>BY</strong> community
+    </div>
+    <svg class="sprout" width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg>
+  </div>
+
+  <div class="pill">Impact so far</div>
+  <div class="stats">
+    <div class="stat">
+      <div class="ic"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="var(--terracotta)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 4v6"/><path d="M2 18h20"/></svg></div>
+      <div class="num" style="color:var(--terracotta)">496</div>
+      <div class="lbl">beds in homes</div>
+    </div>
+    <div class="stat">
+      <div class="ic"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="20" x="3" y="2" rx="2"/><path d="M3 6h3"/><path d="M17 6h.01"/><circle cx="12" cy="13" r="5"/><path d="M12 18a2.5 2.5 0 0 0 0-5 2.5 2.5 0 0 1 0-5"/></svg></div>
+      <div class="num" style="color:var(--teal-ink)">16</div>
+      <div class="lbl">washing machines in community</div>
+    </div>
+    <div class="stat">
+      <div class="ic"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="var(--gold-ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <div class="num" style="color:var(--gold-ink)">9</div>
+      <div class="lbl">communities reached</div>
+    </div>
+    <div class="stat">
+      <div class="ic"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="var(--sage-ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"/><path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"/><path d="m14 16-3 3 3 3"/><path d="M8.293 13.596 7.196 9.5 3.1 10.598"/><path d="m9.344 5.811 1.093-1.892A1.83 1.83 0 0 1 11.985 3a1.784 1.784 0 0 1 1.546.888l3.943 6.843"/><path d="m13.378 9.633 4.096 1.098 1.097-4.096"/></svg></div>
+      <div class="num" style="color:var(--sage-ink)">2,660</div>
+      <div class="lbl">kg plastic diverted from landfill</div>
+    </div>
+    <div class="stat">
+      <div class="ic"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg></div>
+      <div class="num" style="color:var(--clay)">1</div>
+      <div class="lbl">on-Country production facility</div>
+    </div>
+  </div>
+
+  <div class="pill">What your backing delivered this year</div>
+  <div class="checks">
+    <div class="check"><span class="box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ct">107 beds to Utopia, Arawerr and Ampilatwatja, with Oonchiumpa</span></div>
+    <div class="check"><span class="box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ct">R&amp;D and community visits across the Central Australia circuit</span></div>
+    <div class="check"><span class="box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ct">A containerised production facility, now being commissioned on Country</span></div>
+  </div>
+
+  <div class="pill">Journey stage</div>
+  <div class="journey">
+    <div class="track">
+      <span class="node"></span>
+      <span class="node"></span>
+      <span class="node active"></span>
+      <span class="node"></span>
+      <span class="head"></span>
+    </div>
+    <div class="labels">
+      <span>Prototype</span>
+      <span>Pilot</span>
+      <span class="strong">SCALING</span>
+      <span>On-Country Production</span>
+    </div>
+  </div>
+
+  <div class="pill">What is in motion</div>
+  <div class="motion">
+    <div class="mcard t1">
+      <div class="mt">REAL Innovation Fund</div>
+      <div class="mb">$1.995M submission with Oonchiumpa. Decision pending.</div>
+    </div>
+    <div class="mcard t2">
+      <div class="mt">QBE Catalysing Impact 2026</div>
+      <div class="mb">Selected. Stage 2 in September could match catalytic capital.</div>
+    </div>
+    <div class="mcard t3">
+      <div class="mt">Q3: Maningrida</div>
+      <div class="mb">Beds and washing machines with the Homeland School Company.</div>
+    </div>
+  </div>
+
+  <div class="footer-band">
+    <b>Next:</b> commission the on-Country plant &middot; paid local jobs in Alice Springs &middot; scope blended finance with Snow
+  </div>
+
+  <div class="provenance">Prepared for The Snow Foundation &middot; Q2 2026 &middot; Impact figures counted from the asset register; Snow backing Xero-reconciled. Live dashboard: goodsoncountry.com/partners/snow/dashboard</div>
+
+</div>
+</body>
+</html>
