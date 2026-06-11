@@ -222,7 +222,7 @@ export const snowConfig: FunderConfig = {
     dial: ['Prototype', 'Pilot', 'Scaling', 'On-Country production'],
     currentIndex: 2, // Scaling, building toward on-country production
     stepChange:
-      'This period Goods began crossing from delivering beds to making them on country. The containerised production plant reached roughly 85% complete, the washing-machine line grew to a 28-unit field fleet (14 telemetry-confirmed working), and the first paid local production roles are forming in Alice Springs. The step-change is the shift from beds delivered to community toward beds made by community.',
+      'This period Goods began crossing from delivering beds to making them on country. The containerised production plant reached roughly 85% complete, the washing-machine line grew to 16 machines in community, and the first paid local production roles are forming in Alice Springs. The step-change is the shift from beds delivered to community toward beds made by community.',
   },
   focusAreas: [
     {

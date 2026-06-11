@@ -41,13 +41,13 @@ const BEDS_PER_RHD_CASE_PREVENTED = 500; // 1 RHD case prevented per ~500 beds (
 const WASH_CYCLES_PER_RHD_CASE_PREVENTED = 5_000;
 
 /**
- * Washing machines: the register tracks 28 physically DEPLOYED, but fleet
- * telemetry confirms ~14 actually reporting/working. Public/funder surfaces
- * use the honest WORKING number (Ben, 2026-05-30). Not yet auto-derivable
- * (fleet telemetry unreliable) — wire to fleet KPIs when stable. Never publish
- * 28 (deployed) or 41 (all rows incl. retired) as the working count.
+ * Washing machines: 16 in community is the canonical, Ben-confirmed figure
+ * (2026-06-11). It is the single public count and supersedes the old deployed/
+ * working split. The register still holds more deployed washer rows pending a
+ * status cleanup, so this is a curated constant, not auto-derived from rows.
+ * Never publish the raw register row count (deployed) or 41 (all rows).
  */
-const WASHERS_WORKING = 14;
+const WASHERS_IN_COMMUNITY = 16;
 
 // ---------------------------------------------------------------------------
 // Individual data fetchers
@@ -58,9 +58,7 @@ interface AssetStats {
   totalBeds: number; // deployed beds (Stretch + Basket)
   stretchBedsDeployed: number; // recycled-HDPE beds — the plastic-diversion product
   basketBedsDeployed: number; // archived prototype — NOT a plastic product
-  totalWashingMachines: number; // public figure = telemetry-working washers (14)
-  washersDeployed: number; // physically deployed washers (28)
-  washersWorking: number; // telemetry-confirmed working (14)
+  washersInCommunity: number; // canonical in-community washing-machine count (16, curated)
   communitiesServed: number;
   communityBreakdown: { community: string; count: number }[];
 }
@@ -88,14 +86,12 @@ async function getAssetStats(): Promise<AssetStats> {
   const sum = (arr: AssetRow[]) => arr.reduce((s, r) => s + qty(r), 0);
   const isBed = (p: string | null) => /bed/i.test(p ?? '');
   const isStretch = (p: string | null) => /stretch/i.test(p ?? '');
-  const isWasher = (p: string | null) => /washing|washer/i.test(p ?? '');
 
   const deployed = all.filter((r) => r.status === 'deployed');
   const deployedBeds = deployed.filter((r) => isBed(r.product));
   const totalBeds = sum(deployedBeds);
   const stretchBedsDeployed = sum(deployedBeds.filter((r) => isStretch(r.product)));
   const basketBedsDeployed = totalBeds - stretchBedsDeployed;
-  const washersDeployed = sum(deployed.filter((r) => isWasher(r.product)));
 
   // Community breakdown over DEPLOYED units only (excludes the Centrecorp
   // `requested` placeholder + allocated-only communities like Mutitjulu).
@@ -118,9 +114,7 @@ async function getAssetStats(): Promise<AssetStats> {
     totalBeds,
     stretchBedsDeployed,
     basketBedsDeployed,
-    totalWashingMachines: WASHERS_WORKING,
-    washersDeployed,
-    washersWorking: WASHERS_WORKING,
+    washersInCommunity: WASHERS_IN_COMMUNITY,
     communitiesServed,
     communityBreakdown,
   };
@@ -408,7 +402,7 @@ export async function fetchImpactData(): Promise<ImpactSnapshot> {
 /**
  * Canonical asset rollup — the single source every surface should read for
  * deployment counts. Deployed-only, quantity-summed, Basket/Stretch split,
- * washers = telemetry-working (14). Replaces the per-surface hand-counts that
+ * washers = in-community (16, curated). Replaces the per-surface hand-counts that
  * drift (the 520 / 41 / 10,400 problem). Plastic = Stretch beds only.
  */
 export async function getCanonicalAssetRollup() {
@@ -417,8 +411,7 @@ export async function getCanonicalAssetRollup() {
     bedsDeployed: a.totalBeds,
     stretchBedsDeployed: a.stretchBedsDeployed,
     basketBedsDeployed: a.basketBedsDeployed,
-    washersDeployed: a.washersDeployed,
-    washersWorking: a.washersWorking,
+    washersInCommunity: a.washersInCommunity,
     communitiesServed: a.communitiesServed,
     plasticKg: computePlasticDiverted(a.stretchBedsDeployed),
     deployedUnits: a.totalAssets,

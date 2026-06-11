@@ -61,9 +61,9 @@ const washersThisPeriod: MetricResolver = async (ctx) => {
   return String(res.count ?? 0);
 };
 
-// Telemetry-working washers — honest number (28 deployed all-time, 14 reporting).
-const washersWorking: MetricResolver = async () =>
-  '14 telemetry-confirmed working (of 28 deployed to date)';
+// Washing machines in community — canonical curated figure (Ben, 2026-06-11).
+const washersInCommunity: MetricResolver = async () =>
+  '16 washing machines in community';
 
 // Plastic = STRETCH beds only (recycled HDPE). Basket beds are not a plastic product.
 const plasticKgTransferred: MetricResolver = async (ctx) => {
@@ -279,7 +279,7 @@ export const MetricResolvers: Record<string, MetricResolver> = {
   'beds-allocated-this-period': bedsAllocatedThisPeriod,
   'beds-total-this-period': bedsThisPeriodAllStatuses,
   'washers-total-this-period': washersThisPeriod,
-  'washers-working': washersWorking,
+  'washers-in-community': washersInCommunity,
   'plastic-kg-transferred': plasticKgTransferred,
   'communities-served': communitiesServed,
   'commitment-progress-bar': commitmentProgressBar,

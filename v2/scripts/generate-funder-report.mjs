@@ -171,8 +171,8 @@ const RESOLVERS = {
       .ilike('product', '%wash%').gte('supply_date', period.start).lte('supply_date', period.end).in('status', ['deployed', 'allocated']);
     return String(res.count ?? 0);
   },
-  // Telemetry-working washers — honest number (28 deployed all-time, 14 reporting).
-  'washers-working': async () => '14 telemetry-confirmed working (of 28 deployed to date)',
+  // Washing machines in community — canonical curated figure (Ben, 2026-06-11).
+  'washers-in-community': async () => '16 washing machines in community',
   // Plastic = STRETCH beds only (recycled HDPE). Basket beds are not a plastic product.
   'plastic-kg-transferred': async () => {
     const res = await goods.from('assets').select('unique_id', { count: 'exact', head: true })

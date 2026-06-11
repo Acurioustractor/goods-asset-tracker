@@ -166,7 +166,7 @@
       "dataClass": "green",
       "owner": "Ben",
       "qbeAreas": ["02"],
-      "citesCanon": ["beds-deployed", "communities-served", "plastic-kg", "washers-deployed", "washers-working", "revenue-received"],
+      "citesCanon": ["beds-deployed", "communities-served", "plastic-kg", "washers-in-community", "revenue-received"],
       "lastVerified": "2026-06-03"
     },
     {
