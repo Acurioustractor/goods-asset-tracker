@@ -33,7 +33,7 @@ const SAGE = '#8B9D77';
 
 const FACTS = [
   { value: String(CANONICAL_ASSETS.bedsDeployed), label: 'beds across Australia' },
-  { value: String(CANONICAL_ASSETS.washersWorking), label: 'washing machines confirmed on Country' },
+  { value: String(CANONICAL_ASSETS.washersInCommunity), label: 'washing machines in community' },
   { value: String(CANONICAL_ASSETS.communitiesServed), label: 'communities partnered' },
   { value: '20kg', label: 'plastic diverted per bed' },
 ];

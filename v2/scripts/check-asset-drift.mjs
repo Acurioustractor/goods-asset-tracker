@@ -22,14 +22,14 @@ import { createClient } from '@supabase/supabase-js';
 // Mirror of CANONICAL_ASSETS in src/lib/data/asset-canonical.ts. The .ts file
 // is the single source of truth; this is the guard's expected snapshot. Keep
 // the two in lockstep — that lockstep is exactly what this script enforces.
-// NOTE: the register can only yield PHYSICALLY-DEPLOYED washers (28); the
-// public "working" figure (14) is a telemetry call, not derivable here — so we
-// compare washers against washersDeployed.
+// NOTE: washing machines are intentionally NOT drift-checked. The public count
+// (washersInCommunity = 16) is a CURATED, Ben-confirmed figure that supersedes
+// the raw register deployed-row count pending a status cleanup, so it cannot be
+// validated against the register here. Re-confirm it manually.
 const CANONICAL_ASSETS = {
   bedsDeployed: 496,
   stretchBedsDeployed: 133,
   basketBedsDeployed: 363,
-  washersDeployed: 28,
   communitiesServed: 9,
   plasticKg: 2660,
 };

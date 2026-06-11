@@ -137,8 +137,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
   const communities = stats ? String(stats.communitiesServed) : '–';
   const stretch = stats ? stats.stretchBedsDeployed.toLocaleString() : '–';
   const plasticT = stats ? `${((stats.stretchBedsDeployed * 20) / 1000).toFixed(2)} t` : '–';
-  const washers = stats ? String(stats.washersWorking) : '–';
-  const washersUnconfirmed = stats ? stats.washersDeployed - stats.washersWorking : 0;
+  const washers = stats ? String(stats.washersInCommunity) : '–';
   const peopleReached = stats ? Math.round(stats.totalBeds * 2.5) : null;
   const communityList = stats
     ? stats.communityBreakdown
@@ -275,7 +274,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
           <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
             <HeroStat value={beds} label="Beds in community" note={stretch ? `${stretch} are Stretch Beds` : undefined} />
             <HeroStat value={communities} label="Communities" />
-            <HeroStat value={washers} label="Washing machines live" />
+            <HeroStat value={washers} label="Washing machines in community" />
             <HeroStat value={fmtAUD(secured)} label="Total grants and support, all sources" />
           </div>
           <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -367,11 +366,11 @@ export default async function PartnerDashboardPage({ params }: Props) {
             />
             <MetricCard
               value={washers}
-              label="Washing machines"
-              comparison={washersUnconfirmed > 0 ? `${washersUnconfirmed} deployed machines are not reporting live. We name them rather than round them into the win.` : 'All deployed machines reporting live.'}
-              pill={{ text: 'live / deployed', live: true }}
+              label="Washing machines in community"
+              comparison="Pakkimjalki Kari units placed through councils and community organisations."
+              pill={{ text: 'in community', live: true }}
               grade="counted"
-              note="Working count is hand-confirmed; telemetry coverage is partial."
+              note="In-community count, hand-confirmed."
             />
             <MetricCard
               value={plasticT}
@@ -541,8 +540,8 @@ export default async function PartnerDashboardPage({ params }: Props) {
             <WasherJourney
               washersLine={
                 stats
-                  ? `${stats.washersWorking} machines in community today, placed through councils and organisations.`
-                  : '14 machines in community today, placed through councils and organisations.'
+                  ? `${stats.washersInCommunity} machines in community today, placed through councils and organisations.`
+                  : '16 machines in community today, placed through councils and organisations.'
               }
             />
           </div>
