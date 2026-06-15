@@ -1,73 +1,66 @@
 /**
  * QBE readiness / investor one-pager (/sites/qbe-readiness).
  *
- * A single, self-contained Server Component mirroring the Notion "Capital Command
- * Center" hierarchy, in order: header + confidential banner → the 10-second view
- * (4 headline metric cards) → the ask (one paragraph + the funding stack + first
- * use of funds) → are we ready? the five proofs (owner · why it matters · status)
- * → the 12 diagnostic areas as cards (number · name · score · ★ priority · key
- * points · artifact) → an evidence/provenance footer. It complements the
- * interactive cost-model cockpit at /sites/qbe — that one is the live engine; this
- * one is the at-a-glance readiness map.
+ * A single, self-contained Server Component that says the simple thing first:
+ * twelve readiness areas collapse into ONE goal and FIVE proofs. Order:
+ * header + confidential banner -> 10-second proof (4 metric cards) -> the simple
+ * frame -> the one goal -> the ask + stack -> the five proofs -> the program
+ * timeline (near-term gates + three phases) -> a scannable 12-area scoreboard
+ * (one line each, not essays) -> links to the live models -> provenance footer.
+ *
+ * "The real models" are the live, same-login gated tools, linked directly:
+ * /sites/qbe (cost-model cockpit), /sites/cost-lab and /sites/cost-lab/playbook.
+ * The strategic-pack .md files are repo-only and are deliberately NOT presented
+ * as links here (a funder cannot open them).
  *
  * VISIBILITY: gated behind the shared INVESTORS_PASSWORD cookie in src/proxy.ts
- * (the same gate as /sites/qbe, /sites/cost-lab and /investors), and rendered
- * standalone (the /sites prefix hides the public marketing nav/footer via
- * conditional-chrome). Not indexed, not in any nav. A confidential banner is
- * carried on-page as defence in depth.
+ * (same gate as /sites/qbe, /sites/cost-lab and /investors), rendered standalone,
+ * noindex. A confidential banner is carried on-page as defence in depth.
  *
- * PUBLIC-COPY DISCIPLINE: all numbers trace to
- * wiki/outputs/2026-06-13-goods-strategic-pack/_hub-content.md. Evidence tiers
- * are labelled visibly. Nothing here is audited or final. The investor shortlist
- * / pipeline is deliberately NOT on this page — that is internal-only.
+ * PUBLIC-COPY DISCIPLINE: figures and dates trace to the 2026-06-13 strategic
+ * pack (03-next-stage-focus.md, 00-master-alignment-map.md). Evidence tiers are
+ * labelled. Nothing here is audited or final. NO em dashes (brand rule).
  */
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import {
+  ArrowRight,
   BadgeCheck,
-  Banknote,
-  Building2,
+  CalendarDays,
   CircleDollarSign,
-  ClipboardCheck,
-  Cpu,
-  Factory,
+  ExternalLink,
   Gauge,
-  HandCoins,
-  Leaf,
+  ListChecks,
   Lock,
-  type LucideIcon,
-  Scale,
   ShieldCheck,
   Target,
-  TrendingUp,
-  Users,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 export const metadata: Metadata = {
   title: 'QBE Readiness One-Pager · Goods on Country',
   description:
-    'Investor-facing readiness map: the 12 diagnostic areas, the catalytic ask, and the five proofs to close — for the Goods on Country QBE capital pathway.',
+    'The simple version: one goal, five proofs, and the program timeline for the Goods on Country QBE capital pathway.',
   robots: { index: false, follow: false },
 };
 
 // ── Evidence tiers ──────────────────────────────────────────────────────────
-// Labelled visibly on every number that needs it. The discipline IS the method:
-// a metric only moves left (toward Verified) as evidence catches up.
-type Tier = 'Verified' | 'Workpaper' | 'Modelled' | 'Guardrail' | 'Target' | 'Open';
+// One label on every number that needs it. A figure only moves toward Verified
+// as the evidence catches up.
+type Tier = 'Verified' | 'Workpaper' | 'Modelled' | 'Target' | 'Open';
 
 const TIER_STYLE: Record<Tier, string> = {
   Verified: 'border-emerald-300 bg-emerald-50 text-emerald-800',
   Workpaper: 'border-amber-300 bg-amber-50 text-amber-900',
   Modelled: 'border-sky-300 bg-sky-50 text-sky-800',
-  Guardrail: 'border-stone-300 bg-stone-100 text-stone-700',
   Target: 'border-violet-300 bg-violet-50 text-violet-800',
   Open: 'border-rose-300 bg-rose-50 text-rose-800',
 };
 
 const TIER_LEGEND: Array<{ tier: Tier; meaning: string }> = [
-  { tier: 'Verified', meaning: 'Independently checkable today' },
+  { tier: 'Verified', meaning: 'Checkable today' },
   { tier: 'Workpaper', meaning: 'Xero mirror, unaudited' },
-  { tier: 'Modelled', meaning: 'Planning assumption — 0 beds assembled in-house' },
+  { tier: 'Modelled', meaning: 'Planning assumption' },
   { tier: 'Target', meaning: 'Sought, not signed' },
   { tier: 'Open', meaning: 'Gap to close' },
 ];
@@ -80,15 +73,8 @@ function Pill({ tier }: { tier: Tier }) {
   );
 }
 
-// ── The 10-second view ────────────────────────────────────────────────────────
-// The prominent metric row that mirrors the Notion command center's top strip:
-// what's deployed, what's banked, what's signed vs sought, and the match ceiling.
-const TEN_SECOND_METRICS: Array<{
-  value: string;
-  label: string;
-  sub: string;
-  tier: Tier;
-}> = [
+// ── 10-second proof ────────────────────────────────────────────────────────
+const METRICS: Array<{ value: string; label: string; sub: string; tier: Tier }> = [
   {
     value: '496 beds',
     label: '9 communities',
@@ -96,233 +82,38 @@ const TEN_SECOND_METRICS: Array<{
     tier: 'Verified',
   },
   {
-    value: 'AU$649,710.79',
+    value: '~AU$650K',
     label: 'received to date',
     sub: 'Xero workpaper, unaudited. Not yet a Goods-only carve-out.',
     tier: 'Workpaper',
   },
   {
     value: 'AU$0 signed',
-    label: '~AU$400K target',
-    sub: 'First match-eligible capital sought before Sept 2026 Stage 2.',
+    label: 'of a ~AU$400K target',
+    sub: 'First match-eligible capital, due signed by 31 August 2026.',
     tier: 'Open',
   },
   {
     value: 'Up to AU$400K',
     label: 'QBE match',
-    sub: 'At least 1:1 vs secured capital. Repayable finance preferred.',
-    tier: 'Guardrail',
+    sub: 'At least 1:1 against secured capital. Repayable finance preferred.',
+    tier: 'Target',
   },
 ];
 
-// ── The ask ──────────────────────────────────────────────────────────────────
-// The stack (junior → senior). All sought except the QBE invitation.
-const ASK_STACK: Array<{ label: string; amount: string; detail: string; tier: Tier }> = [
-  {
-    label: 'Grants',
-    amount: '~AU$500K',
-    detail: 'Snow R4/R5, Centrecorp, VFFF',
-    tier: 'Target',
-  },
+// ── The ask (the stack, junior to senior) ──────────────────────────────────
+const STACK: Array<{ label: string; amount: string; detail: string; tier: Tier }> = [
+  { label: 'Grants', amount: '~AU$500K', detail: 'Snow R4/R5, Centrecorp, VFFF', tier: 'Target' },
   {
     label: 'QBE match',
     amount: 'up to AU$400K',
     detail: 'at least 1:1 vs secured capital, repayable preferred',
-    tier: 'Guardrail',
-  },
-  {
-    label: 'SEFA',
-    amount: 'AU$300K',
-    detail: 'concessional working-capital line',
     tier: 'Target',
   },
+  { label: 'SEFA', amount: 'AU$300K', detail: 'concessional working-capital line', tier: 'Target' },
 ];
 
-// ── The 12 areas ─────────────────────────────────────────────────────────────
-type Area = {
-  number: number;
-  name: string;
-  score: string;
-  priority: boolean;
-  icon: LucideIcon;
-  points: string[];
-  artifact: string;
-};
-
-const AREAS: Area[] = [
-  {
-    number: 1,
-    name: 'Vision & Ambition',
-    score: '8 → 9',
-    priority: false,
-    icon: Target,
-    points: [
-      'North star stated first, not buried: the job is to become unnecessary — communities owning the means to collect, make, repair, and sell, so the central organisation steps back.',
-      'Three shifts held together or not at all: material (durable, washable, repairable goods replace failing ones), economic (more value stays local), story (communities control how their experience is recorded).',
-      'Structure mapped honestly as hub-and-spoke: A Curious Tractor (parent) → Goods on Country (the venture, mid-migration) → future community-controlled production entities (spokes, not yet established).',
-      'Ambition in three horizons: short — prove the economics via the 50-bed run and put the first community operator on payroll; medium — scope the first Aboriginal-controlled operating entity; long — distributed, community-owned production on country.',
-    ],
-    artifact: '13-vision-and-ambition.md',
-  },
-  {
-    number: 2,
-    name: 'Social Objective & Impact',
-    score: '5 → 8',
-    priority: true,
-    icon: Leaf,
-    points: [
-      'The honesty is the method: every metric sits in one of three columns — Verified (checkable today), Modelled (computed from assumptions), Future (not yet collected). A metric only moves left as evidence catches up.',
-      'Verified today: 496 beds tracked, 9 communities served, 20 kg HDPE diverted per bed, 3 consent-cleared voices. The 2,660 kg plastic figure is honestly Modelled, retiring the old 9,225 / 9,920 kg overclaim (~3.7×).',
-      'The claim ceiling, stated plainly: washable beds and reliable washing machines support the environmental-health conditions that interrupt known infection pathways. No claimed reduction in rheumatic heart disease without partner clinical evidence.',
-      'Consent is method, not compliance (OCAP). Only Ivy Johnson, Dianne Stokes, and Ray Nelson are cleared for external use; the short list is itself a named gap to close.',
-    ],
-    artifact: '05-impact-measurement-method.md',
-  },
-  {
-    number: 3,
-    name: 'Business Model Clarity',
-    score: '4 → 7',
-    priority: true,
-    icon: Building2,
-    points: [
-      'Four customer segments, in true revenue order: (1) institutional / community-controlled buyers and councils — essentially all current income; (2) businesses buying for staff housing; (3) procurement / housing programs — future, gated on 51% First Nations ownership; (4) direct retail + NDIS — AU$90 to date.',
-      'Honest read: ~89% grant-funded by design. The AU$90 of shop revenue proves the pipe works (a stranger can buy a bed online and it ships), not the market.',
-      'Two payment innovations break affordability without cutting price: lease-to-own washing machines, and council waste-offsets paying community operators to collect the plastic. Both are intentions with clear mechanisms, not booked income.',
-      'The path off grants has two compounding moves: in-source the plastic to drop unit cost (8.6× markup verified on bought-in legs), and move institutional buyers from grant-funded to procurement-funded (needs the 51% structure + first signed offtake).',
-    ],
-    artifact: '14-business-model.md',
-  },
-  {
-    number: 4,
-    name: 'Financial Management',
-    score: '4 → 7',
-    priority: true,
-    icon: Banknote,
-    points: [
-      'Money in: AU$649,710.79 received / AU$732,210.79 billed / 88.8% collection (all Xero workpaper, mirror 29 May, unaudited). Commercial revenue AU$90 (3 orders).',
-      'The single most important caveat: there is not yet one accountant-endorsed, Goods-only revenue figure. The trading org also holds non-Goods income, so the Xero total is not a Goods carve-out. Producing one is now a hard QBE Stage-2 gate.',
-      'Unit economics today: sells AU$750 (verified), marginal cost AU$684.79 (workpaper), ~AU$65 contribution, fixed block ~AU$109,500/yr → breakeven ~1,679 beds/yr (modelled). The cost-down is the lever (factory AU$425.74 / community AU$270.74, modelled, 0 beds in-house) — breakeven drops to 333–338 beds/yr.',
-      '36-month forecast (all modelled): without injection −AU$487,722 at month 36; with the injection stack +AU$212,278, through an intra-period trough of −AU$177,292. Founder time is costed in. Opening cash is a flagged AU$50K placeholder — the highest-leverage input to lock.',
-    ],
-    artifact: '15-financial-summary.md',
-  },
-  {
-    number: 5,
-    name: 'Strategic Planning & Risk',
-    score: '5 → 7',
-    priority: true,
-    icon: Scale,
-    points: [
-      'Three earned phases: De-risk (12 months — run the 50-bed proof, close the first ~AU$400K, get the accountant carve-out, decide the legal entity); Prove the repeatable engine (institutional buyers shift grant → procurement; first community-employed operator); Scale toward community-owned production.',
-      'Scenario forks are pre-agreed so decisions aren’t made under pressure: 50-bed run PASS → scale the raise; MISS → re-base at AU$684.79; capital slow → defer the next plant build, avoid bridging debt; cash tight → compress geographic scope to the deepest relationships.',
-      'Scored risk register: 14 risks, likelihood × consequence, named owners. Two Critical (20): founder bottleneck (already happening) and story/data consent. Eleven of 14 score High or Critical — itself the message that this is a de-risking round.',
-      'Governing test: "do no harm" — including "do not centralise value in ACT while talking about community ownership." 7 of 14 risks are internal-only and must never be presented externally as settled.',
-    ],
-    artifact: '16-strategic-plan.md + 06-risk-register.md',
-  },
-  {
-    number: 6,
-    name: 'Process & Technology',
-    score: '7 → 8',
-    priority: false,
-    icon: Cpu,
-    points: [
-      'A strength: strong technical capability for a small team. The operating loop — demand/order → on-country manufacture → QR-tag & register → delivery → feedback/telemetry — is mapped so a third person can see it without a founder narrating.',
-      'Live and systematised: the Stretch Bed Stripe path, the Supabase truth layer, and the QR asset register (496 beds tracked — the single most credible piece of operating evidence). Still founder-dependent: manufacture itself (0 beds in-house), institutional orders, delivery, repair follow-up.',
-      'One source of truth per thing: six systems, each authoritative for one domain with one named owner — drift between systems is what produces a contradicted number in front of a funder.',
-      'The human-in-loop rule, held as policy: AI is a repository and drafting aid, never the author of record. The production SOP — the transferable shred/press/cut/assemble parameters — is the key document still to write.',
-    ],
-    artifact: '17-operating-model.md',
-  },
-  {
-    number: 7,
-    name: 'Governance, Data & Reporting',
-    score: '5 → 8',
-    priority: true,
-    icon: ClipboardCheck,
-    points: [
-      'Two parts work now (an 11-member Goods-specific advisory committee meeting monthly; a real OCAP data-sovereignty practice — share-back, retraction, consent-travels-with-the-data). Two parts are not yet built (a fiduciary board; a consolidated annual reporting cycle). Marked which is which.',
-      'The committee is advisory — named members, real expertise, used for challenge — and is not a fiduciary board (no legal duty, no power to stop a decision, no independent finance oversight). Calling it a board would be exactly the overclaim the public-copy rule forbids.',
-      'The move is a plan with a trigger: recruit 1–2 independent directors and stand up a minimum-viable independent-majority board. The trigger is the capital, not the calendar — SEFA’s AU$300K is gated on it. Today: 0 independent directors recruited.',
-      'Reporting shifts from per-grant to one consolidated annual cycle against one reconciled set of evidence-labelled numbers, community-first. Gated on the accountant-reviewed Goods-only figure, which doesn’t exist yet.',
-    ],
-    artifact: '18-governance-framework.md',
-  },
-  {
-    number: 8,
-    name: 'People & Organisation',
-    score: '6 → 7',
-    priority: false,
-    icon: Users,
-    points: [
-      'Load-bearing capacity is two FTE founders: Ben Knight (relationships, story/consent, governance, product-feedback) and Nicholas Marchesi (builder/operator — remote delivery, prototype-to-product, unit economics). ACT shared services and the advisory group are real support but not owned, taskable headcount.',
-      'The founder bottleneck is the #1 risk, "already happening" — six domains run through two people. It is the ceiling on how much capital and demand Goods can absorb.',
-      'Phased hires, each triggered by a real event (signed capital, order volume) not a calendar: General Manager first (unwinds the most concentration), then Business Development / sales lead (owns the pipeline, attacks the $0-signed-LOI gate). Then ops, production trainer, fractional finance/CFO, on-country coordinators.',
-      'Founder labour is currently subsidised, not properly costed — costing it at fair-market rate is a parallel P0. Interim cover (QBE skilled volunteering, PIN mentoring) tapers ~August, the same window the first tranche targets.',
-    ],
-    artifact: '07-role-map.md',
-  },
-  {
-    number: 9,
-    name: 'Legal Structure',
-    score: '5 → 7',
-    priority: false,
-    icon: ShieldCheck,
-    points: [
-      'The keystone gap (0 artifacts at diagnosis). One reusable, legally-reviewed wording block (plus tailored variants for web / investor / grant / contract) so the same accurate words are reused everywhere instead of drifting.',
-      'Three distinct roles, never blurred: trades today = sole trader; go-forward trading company = A Curious Tractor Pty Ltd t/a Goods on Country, migrating this FY; DGR/charity home = The Butterfly Movement Ltd, operational FY2026-27, not live today (donors cannot tax-receipt yet).',
-      'Six open questions for legal: the go-forward entity form, the community-production entity’s legal form, contracting party during migration, the Supply Nation 51% precondition (IPP threshold tightens 1 July 2026), the mission lock (none exists today), and DGR timing/related-party boundary.',
-      'Do-not-say discipline: never claim Goods is a charity/DGR; never describe community-ownership transfer as complete; never publish an ABN/ACN until legal confirms.',
-    ],
-    artifact: '04-entity-wording-block.md',
-  },
-  {
-    number: 10,
-    name: 'Investors & Capital Raising',
-    score: '6 → 8',
-    priority: false,
-    icon: HandCoins,
-    points: [
-      'The catalytic case opens with a link, not a logo wall: the proof is independently checkable (scan the register).',
-      'Demand follows use, not the reverse — the strongest validation: an Elder offered to self-fund 20 beds after co-designing; 107 beds approved and paid via Centrecorp; 65 beds requested for children in Maningrida; exploratory interest at Groote (a market signal, not revenue).',
-      'The honest commercial reality is the pitch, not a thing to hide: a catalytic investor is precisely the partner who funds the gap between proven delivery and a proven commercial engine. One catalytic dollar is structured to unlock several behind it.',
-      'Why now: a ~12-week window where four clocks align — the QBE match gate (Stage 2 closes Sept 2026), freshest proof (May Utopia op), free program support ending August, and warm funders waiting for the first to move. The ask: be the first signed commitment.',
-    ],
-    artifact: '01-strategy-memo.md · 02-one-pager.md',
-  },
-  {
-    number: 11,
-    name: 'Cost Model',
-    score: 'Priority (P0)',
-    priority: true,
-    icon: Factory,
-    points: [
-      'The heart of the catalytic case, one question: what does in-sourcing the plastic do to unit cost and therefore breakeven? Three build methods — Buy-Kit (today) AU$684.79 (workpaper); Factory in-source AU$425.74 (modelled); Community in-source AU$270.74 (modelled).',
-      'The one piece of hard evidence underneath the whole model: an 8.6× markup ("idiot index") on the HDPE legs bought from Defy (verified). Everything else in the cost-down is modelled.',
-      'Honest status: a credible hypothesis, not a result — 0 beds assembled in-house, against a stale inventory snapshot (2026-03-27). The 50-bed run (~AU$60–80K) is the experiment that converts it.',
-      'Capex carries two coexisting figures to reconcile: a confirmed press-capex line of AU$110,046, and a wider gross-capex range of AU$112–222K (midpoint ~AU$167K, firm quote pending). Accountant to confirm which is canonical.',
-    ],
-    artifact: 'Goods Playable Model (live) + 15-financial-summary.md',
-  },
-  {
-    number: 12,
-    name: 'Investor Alignment',
-    score: 'Working area',
-    priority: false,
-    icon: BadgeCheck,
-    points: [
-      'The CASE Smart Impact Capital tool, populated from the real pipeline: Goods’ own filter (6 knockout criteria + 10 weighted fit criteria), then every funder scored against it. Output: a defensible shortlist for the first ~AU$400K.',
-      'The discipline: "a quick ‘no’ is much more helpful than a long drawn-out process." Every rating traces to a wiki investor profile; where a profile is silent, the cell reads "Don’t Know" — an honest gap, never an invented position.',
-      'Knockouts: non-equity, concessional/social-first, remote-Australia geography, early-commercial de-risking stage.',
-      'The ranking weights proximity to a signed commitment before the September 2026 Stage 2 application, because the match is an output of money raised first — warm relationships that convert fast rank above colder perfect-fits.',
-    ],
-    artifact: '12-investor-alignment.md',
-  },
-];
-
-// ── The five proofs ──────────────────────────────────────────────────────────
-// Each proof carries an owner, why it matters, and a status. Status is the work
-// state (distinct from the evidence tiers above, which grade numbers).
+// ── The five proofs ─────────────────────────────────────────────────────────
 type ProofStatus = 'In progress' | 'Not started';
 
 const PROOF_STATUS_STYLE: Record<ProofStatus, string> = {
@@ -339,86 +130,271 @@ const PROOFS: Array<{
 }> = [
   {
     number: 1,
-    title: 'Money is real',
-    owners: 'Ben / Nic / accountant',
-    body: 'One signed commitment (LOI or offtake) unlocks the QBE match and fixes the weak commercial-paperwork gap, plus one accountant-reviewed Goods-only revenue figure.',
+    title: 'The money is real',
+    owners: 'Ben, Nic, accountant',
+    body: 'One signed commitment (an LOI or offtake) plus one accountant-reviewed, Goods-only revenue figure. The signature unlocks the QBE match.',
     status: 'In progress',
   },
   {
     number: 2,
     title: 'The legal vehicle is decided',
-    owners: 'Ben / Nic / Keith Rovers',
-    body: 'One approved entity-wording block — the keystone that gates Supply Nation 51% certification, IBA eligibility, and four of eight procurement channels.',
+    owners: 'Ben, Nic, Keith Rovers',
+    body: 'One approved entity-wording block. It is the keystone that gates Supply Nation 51% certification, IBA eligibility, and four of eight procurement channels.',
     status: 'In progress',
   },
   {
     number: 3,
     title: 'The cost-down is measured, not modelled',
-    owners: 'Nic / accountant / SIH cost advisor',
-    body: 'The 50-bed in-source run (~AU$60–80K) that turns the AU$425.74 in-house cost from modelled to measured (today: 0 beds in-house).',
+    owners: 'Nic, accountant, SIH cost advisor',
+    body: 'The 50-bed in-source run (about AU$60K to AU$80K) that turns the AU$426 in-house bed cost from modelled to measured. Today: 0 beds built in-house.',
     status: 'Not started',
   },
   {
     number: 4,
     title: 'Impact and consent hold up',
     owners: 'Ben',
-    body: 'A measurement-method one-pager separating verified from modelled from future, and a consent-cleared story list (today only Ivy Johnson, Dianne Stokes, Ray Nelson).',
+    body: 'A measurement-method one-pager separating verified from modelled from future, plus a consent-cleared story list (today only Ivy Johnson, Dianne Stokes, Ray Nelson).',
     status: 'In progress',
   },
   {
     number: 5,
     title: 'Governance and people look fundable',
-    owners: 'Ben / Nic',
-    body: 'The step from advisory to an independent-majority board (gates SEFA’s debt line) and a 12-month role map naming the GM and BD roles before the team slide ships.',
+    owners: 'Ben, Nic',
+    body: 'The step from an advisory committee to an independent-majority board (it gates SEFA debt), and a 12-month role map naming the GM and BD hires.',
     status: 'Not started',
+  },
+];
+
+// ── The program timeline ────────────────────────────────────────────────────
+const MILESTONES: Array<{ when: string; what: string; tier?: Tier }> = [
+  {
+    when: 'Now, June 2026',
+    what: 'The documents are done. 496 beds proven and tracked. Signed capital today: AU$0.',
+  },
+  {
+    when: '1 July 2026',
+    what: 'Supply Nation 51% First Nations ownership threshold tightens. A legal-structure gate.',
+  },
+  {
+    when: 'By 31 August 2026',
+    what: 'Close the first ~AU$400K of signed, match-eligible capital. This is the one deadline that matters.',
+    tier: 'Open',
+  },
+  { when: 'September 2026', what: 'QBE Stage 2 application submitted.' },
+  { when: 'November 2026', what: 'QBE outcome decided. The match is paid against capital already raised.' },
+];
+
+const PHASES: Array<{ n: number; name: string; horizon: string; body: string }> = [
+  {
+    n: 1,
+    name: 'De-risk',
+    horizon: 'next ~12 months',
+    body: 'Run the 50-bed proof, close the first ~AU$400K, get the accountant carve-out, decide the legal entity, and put the first community operator on payroll.',
+  },
+  {
+    n: 2,
+    name: 'Prove the engine',
+    horizon: 'after de-risk',
+    body: 'Institutional buyers shift from grant-funded to procurement-funded. The first community-employed operator runs a repeatable build.',
+  },
+  {
+    n: 3,
+    name: 'Scale on country',
+    horizon: 'the endgame',
+    body: 'Distributed, community-owned production. The central organisation steps back. The job was always to become unnecessary.',
+  },
+];
+
+// ── The 12-area scoreboard (one line each, not essays) ──────────────────────
+type Row = {
+  number: number;
+  name: string;
+  from?: string;
+  to?: string;
+  label?: string;
+  priority: boolean;
+  line: string;
+};
+
+const ROWS: Row[] = [
+  {
+    number: 1,
+    name: 'Vision & Ambition',
+    from: '8',
+    to: '9',
+    priority: false,
+    line: 'Become unnecessary: communities owning the means to collect, make, repair, and sell.',
+  },
+  {
+    number: 2,
+    name: 'Social Objective & Impact',
+    from: '5',
+    to: '8',
+    priority: true,
+    line: 'Every metric labelled verified, modelled, or future. No health claims without partner evidence.',
+  },
+  {
+    number: 3,
+    name: 'Business Model Clarity',
+    from: '4',
+    to: '7',
+    priority: true,
+    line: 'About 89% grant-funded today. The path off grants: in-source plastic, shift buyers to procurement.',
+  },
+  {
+    number: 4,
+    name: 'Financial Management',
+    from: '4',
+    to: '7',
+    priority: true,
+    line: 'Money is tracked, but not yet one accountant-signed, Goods-only figure. That sign-off is the gate.',
+  },
+  {
+    number: 5,
+    name: 'Strategic Planning & Risk',
+    from: '5',
+    to: '7',
+    priority: true,
+    line: 'Three phases with pre-agreed scenario forks, and a scored register of 14 risks with named owners.',
+  },
+  {
+    number: 6,
+    name: 'Process & Technology',
+    from: '7',
+    to: '8',
+    priority: false,
+    line: 'The operating loop is mapped end to end. The QR register of 496 beds is the strongest single proof.',
+  },
+  {
+    number: 7,
+    name: 'Governance, Data & Reporting',
+    from: '5',
+    to: '8',
+    priority: true,
+    line: 'Advisory committee and a real OCAP data practice are live. A fiduciary board is still to stand up.',
+  },
+  {
+    number: 8,
+    name: 'People & Organisation',
+    from: '6',
+    to: '7',
+    priority: false,
+    line: 'Two founders carry six domains. Phased hires triggered by signed capital, the GM first.',
+  },
+  {
+    number: 9,
+    name: 'Legal Structure',
+    from: '5',
+    to: '7',
+    priority: false,
+    line: 'The keystone. One legally-reviewed entity-wording block gates Supply Nation, IBA, and procurement.',
+  },
+  {
+    number: 10,
+    name: 'Investors & Capital Raising',
+    from: '6',
+    to: '8',
+    priority: false,
+    line: 'Demand is proven (an Elder self-funding 20 beds, 107 beds via Centrecorp). The ask is the first signed dollar.',
+  },
+  {
+    number: 11,
+    name: 'Cost Model',
+    label: 'P0',
+    priority: true,
+    line: 'What does in-sourcing plastic do to the bed cost? Buy-kit AU$685, factory AU$426, community AU$271 (modelled).',
+  },
+  {
+    number: 12,
+    name: 'Investor Alignment',
+    label: 'Working',
+    priority: false,
+    line: 'Every funder scored against Goods own filter, to produce a defensible shortlist for the first ~AU$400K.',
+  },
+];
+
+// ── The live models (the real, openable links) ──────────────────────────────
+const MODELS: Array<{ href: string; title: string; body: string }> = [
+  {
+    href: '/sites/qbe',
+    title: 'Live cost-model cockpit',
+    body: 'The interactive engine: unit economics, the injection stack, and the 36-month forecast you can change inputs on.',
+  },
+  {
+    href: '/sites/cost-lab',
+    title: 'Cost Lab',
+    body: 'The first-principles working room. Build a bed up from raw materials and watch breakeven move.',
+  },
+  {
+    href: '/sites/cost-lab/playbook',
+    title: 'Cost Lab playbook',
+    body: 'The five analogies and set-plays for explaining the cost-down to any audience in plain language.',
   },
 ];
 
 const serif = { fontFamily: 'Georgia, serif' } as const;
 
+function SectionHeading({
+  icon: Icon,
+  children,
+  color = '#A8643F',
+}: {
+  icon: typeof Gauge;
+  children: React.ReactNode;
+  color?: string;
+}) {
+  return (
+    <div className="flex items-center gap-2">
+      <Icon className="h-5 w-5" style={{ color }} />
+      <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl" style={serif}>
+        {children}
+      </h2>
+    </div>
+  );
+}
+
 export default function QbeReadinessPage() {
   return (
     <main className="min-h-screen bg-[#FDF8F3] text-[#2B2A26]">
-      {/* Confidential banner — defence in depth alongside the password gate */}
+      {/* Confidential banner */}
       <div className="border-b border-amber-300 bg-[#FBEFD8]">
-        <div className="mx-auto flex max-w-6xl items-center gap-2 px-4 py-2 text-xs font-medium text-amber-900 sm:px-6">
+        <div className="mx-auto flex max-w-5xl items-center gap-2 px-4 py-2 text-xs font-medium text-amber-900 sm:px-6">
           <Lock className="h-3.5 w-3.5 shrink-0" />
-          Confidential — investor draft, 13 June 2026. Nothing here is audited or final. Re-pull
-          Xero before any external send.
+          Confidential investor draft, June 2026. Nothing here is audited or final. Re-pull Xero
+          before any external send.
         </div>
       </div>
 
       {/* Header */}
       <section className="border-b border-stone-800 bg-[#24211D] text-[#FDF8F3]">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+        <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
           <div className="flex flex-wrap items-center gap-2">
             <Badge className="border-[#BBA255]/30 bg-[#BBA255]/15 text-[#FDF8F3]">
-              QBE readiness one-pager
+              QBE readiness
             </Badge>
             <Badge className="border-white/15 bg-white/10 text-[#FDF8F3]">
-              12 areas · the ask · five proofs
+              One goal · five proofs · the timeline
             </Badge>
           </div>
 
           <p className="mt-6 text-xs font-semibold uppercase tracking-[0.28em] text-[#BBA255]">
             Goods on Country
           </p>
-          <h1 className="mt-3 max-w-4xl text-4xl font-light leading-tight sm:text-5xl" style={serif}>
+          <h1 className="mt-3 max-w-3xl text-4xl font-light leading-tight sm:text-5xl" style={serif}>
             A good bed can prevent heart disease.
           </h1>
-          <p className="mt-5 max-w-3xl text-base leading-7 text-[#E6DFD1] sm:text-lg">
-            A social enterprise delivering quality, washable, repairable household goods to remote
-            Indigenous communities — built for actual remote conditions from recycled plastic, every
-            unit tracked, production moving toward community ownership. We make environmental-health
-            hardware, not charity furniture, and our endgame is to become unnecessary: local people
-            making, owning, and repairing the goods themselves.
+          <p className="mt-5 max-w-2xl text-base leading-7 text-[#E6DFD1] sm:text-lg">
+            We deliver quality, washable, repairable household goods to remote Indigenous
+            communities, built for real remote conditions from recycled plastic, every unit tracked.
+            This is environmental-health hardware, not charity furniture. The endgame is to become
+            unnecessary: local people making, owning, and repairing the goods themselves.
           </p>
         </div>
       </section>
 
-      {/* Evidence legend */}
+      {/* Evidence labels */}
       <section className="border-b border-stone-200 bg-white">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-3 px-4 py-4 sm:px-6">
+        <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-5 gap-y-3 px-4 py-4 sm:px-6">
           <span className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
             Evidence labels
           </span>
@@ -431,20 +407,14 @@ export default function QbeReadinessPage() {
         </div>
       </section>
 
-      {/* The 10-second view */}
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-        <div className="flex items-center gap-2">
-          <Gauge className="h-5 w-5 text-[#A8643F]" />
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl" style={serif}>
-            The 10-second view
-          </h2>
-        </div>
-        <p className="mt-3 max-w-3xl text-sm leading-6 text-stone-600">
-          What is deployed, what is banked, what is signed versus sought, and the match ceiling.
+      {/* 10-second proof */}
+      <section className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
+        <SectionHeading icon={Gauge}>The proof, in 10 seconds</SectionHeading>
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-stone-600">
+          What is deployed, what is banked, what is signed versus sought.
         </p>
-
         <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {TEN_SECOND_METRICS.map((m) => (
+          {METRICS.map((m) => (
             <div
               key={m.value}
               className="flex flex-col rounded-xl border border-stone-200 bg-white p-5 shadow-sm"
@@ -460,33 +430,55 @@ export default function QbeReadinessPage() {
         </div>
       </section>
 
+      {/* The simple frame */}
+      <section className="border-y border-stone-200 bg-[#24211D] text-[#FDF8F3]">
+        <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#BBA255]">
+            The whole thing, simply
+          </p>
+          <p className="mt-4 max-w-3xl text-xl leading-8 sm:text-2xl" style={serif}>
+            Twelve readiness areas collapse into one goal and five proofs. The homework is finished.
+            What is left is not more documents. It is real-world evidence.
+          </p>
+          <p className="mt-4 max-w-2xl text-sm leading-6 text-[#E6DFD1]">
+            Close one signed dollar, get accountant-signed numbers, decide the legal entity, measure
+            (not model) the bed cost, and clear consent on impact. Get those and the QBE match doubles
+            the money. That is the game between now and 31 August.
+          </p>
+        </div>
+      </section>
+
+      {/* The one goal */}
+      <section className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
+        <SectionHeading icon={Target}>The one goal</SectionHeading>
+        <div className="mt-6 rounded-2xl border border-rose-200 bg-rose-50/60 p-6 sm:p-8">
+          <p className="text-lg leading-8 text-[#2B2A26] sm:text-xl">
+            Close the first{' '}
+            <span className="font-semibold">~AU$400K of signed, match-eligible capital by 31
+            August 2026.</span>{' '}
+            QBE then adds up to AU$400K, but only as a match, so signed external money has to come
+            first. Today that number is{' '}
+            <span className="font-semibold text-rose-700">AU$0 signed</span>. The entire stage is the
+            work of getting it off zero. A conversation problem, not a discovery problem.
+          </p>
+        </div>
+      </section>
+
       {/* The ask */}
       <section className="border-t border-stone-200 bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-          <div className="flex items-center gap-2">
-            <CircleDollarSign className="h-5 w-5 text-[#A8643F]" />
-            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl" style={serif}>
-              The ask
-            </h2>
-          </div>
-
-          <p className="mt-4 max-w-3xl text-base leading-7 text-stone-700">
-            AU$900K–$1M, blended and{' '}
-            <span className="font-semibold text-[#2B2A26]">non-equity</span> — a de-risking round
-            (~89% grant-funded by design), not a growth round. No equity: the end-state is
-            community-owned production, so capital that needs an exit would contradict the thing
-            being built. The unlock is the first ~AU$400K of signed, match-eligible capital before
-            the September 2026 Stage 2 application — signatures locked through August (signed today: 0).
-            A conversation problem, not a discovery problem. The match is an output of money raised
-            first, not an input.
+        <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
+          <SectionHeading icon={CircleDollarSign}>The ask</SectionHeading>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-stone-700">
+            AU$900K to AU$1M, blended and non-equity. A de-risking round, not a growth round. No
+            equity, because the end-state is community-owned production, so capital that needs an exit
+            would contradict the thing being built.
           </p>
 
-          {/* The stack */}
-          <h3 className="mt-9 text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
-            The stack (junior → senior)
+          <h3 className="mt-8 text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
+            The stack, junior to senior
           </h3>
           <div className="mt-3 grid gap-4 sm:grid-cols-3">
-            {ASK_STACK.map((item) => (
+            {STACK.map((item) => (
               <div
                 key={item.label}
                 className="flex flex-col rounded-xl border border-stone-200 bg-[#FDF8F3] p-5 shadow-sm"
@@ -501,39 +493,22 @@ export default function QbeReadinessPage() {
             ))}
           </div>
           <p className="mt-3 text-xs leading-5 text-stone-500">
-            All sought except the QBE invitation.
+            All sought except the QBE invitation. See the numbers move in the{' '}
+            <Link href="/sites/qbe" className="font-semibold text-[#A8643F] underline">
+              live cost-model cockpit
+            </Link>
+            .
           </p>
-
-          {/* First use of funds */}
-          <div className="mt-8 rounded-xl border border-sky-200 bg-sky-50/60 p-5">
-            <div className="flex items-start justify-between gap-3">
-              <h3 className="text-base font-semibold leading-snug text-[#2B2A26]">
-                First use of funds: the 50-bed in-source production run, ~AU$60–80K
-              </h3>
-              <Pill tier="Modelled" />
-            </div>
-            <p className="mt-2 text-sm leading-6 text-stone-600">
-              The single experiment the catalytic ask is built around — it turns the central cost
-              claim from modelled to measured. Pass confirms AU$425.74 and the raise scales; miss
-              re-bases the raise honestly at AU$684.79.
-            </p>
-          </div>
         </div>
       </section>
 
-      {/* The five proofs — are we ready? */}
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-        <div className="flex items-center gap-2">
-          <ShieldCheck className="h-5 w-5 text-[#A8643F]" />
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl" style={serif}>
-            Are we ready? The five proofs
-          </h2>
-        </div>
-        <p className="mt-3 max-w-3xl text-sm leading-6 text-stone-600">
-          The human work left — none of it is a writing task; the documentation is done. Each proof
-          carries an owner and a current status.
+      {/* The five proofs */}
+      <section className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
+        <SectionHeading icon={ShieldCheck}>The five proofs</SectionHeading>
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-stone-600">
+          The real to-do list. None of it is a writing task. Each proof carries an owner and a
+          status.
         </p>
-
         <div className="mt-7 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {PROOFS.map((proof) => (
             <div
@@ -566,101 +541,143 @@ export default function QbeReadinessPage() {
         </div>
       </section>
 
-      {/* The 12 areas */}
+      {/* The program timeline */}
       <section className="border-y border-stone-200 bg-[#F6EFE6]">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-          <div className="flex items-center gap-2">
-            <Gauge className="h-5 w-5 text-[#5C8A86]" />
-            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl" style={serif}>
-              The 12 diagnostic areas
-            </h2>
-          </div>
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-stone-700">
-            Each area carries a score (now → target) and the substance a reader needs to act. A
-            star marks a priority area for the round.
+        <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
+          <SectionHeading icon={CalendarDays} color="#5C8A86">
+            The program timeline
+          </SectionHeading>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-stone-700">
+            The near-term gates first, then the three phases of the full program.
           </p>
 
-          <div className="mt-7 grid gap-5 md:grid-cols-2">
-            {AREAS.map((area) => {
-              const Icon = area.icon;
-              return (
-                <article
-                  key={area.number}
-                  className="flex flex-col rounded-xl border border-stone-200 bg-white p-5 shadow-sm"
-                >
-                  <header className="flex items-start gap-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#F2E9DF] text-[#A8643F]">
-                      <Icon className="h-4 w-4" />
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-start justify-between gap-3">
-                        <h3 className="text-base font-semibold leading-snug text-[#2B2A26]">
-                          <span className="text-stone-400">{area.number}.</span> {area.name}
-                          {area.priority ? (
-                            <span className="ml-1.5 text-[#BBA255]" aria-label="priority area">
-                              ★
-                            </span>
-                          ) : null}
-                        </h3>
-                      </div>
-                      <div className="mt-1.5 flex flex-wrap items-center gap-2">
-                        <Badge
-                          variant="outline"
-                          className="border-stone-300 bg-stone-50 text-[11px] font-semibold text-stone-700"
-                        >
-                          <TrendingUp className="h-3 w-3" />
-                          {area.score}
-                        </Badge>
-                        {area.priority ? (
-                          <Badge
-                            variant="outline"
-                            className="border-[#BBA255]/50 bg-[#FFF9EA] text-[11px] font-semibold text-[#8A6D1F]"
-                          >
-                            Priority
-                          </Badge>
-                        ) : null}
-                      </div>
-                    </div>
-                  </header>
+          {/* Near-term gates */}
+          <ol className="mt-7 space-y-0 border-l-2 border-stone-300 pl-6">
+            {MILESTONES.map((m) => (
+              <li key={m.when} className="relative pb-6 last:pb-0">
+                <span className="absolute -left-[1.92rem] top-1 h-3.5 w-3.5 rounded-full border-2 border-[#5C8A86] bg-[#FDF8F3]" />
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-sm font-semibold text-[#2B2A26]">{m.when}</span>
+                  {m.tier ? <Pill tier={m.tier} /> : null}
+                </div>
+                <p className="mt-1 text-sm leading-6 text-stone-600">{m.what}</p>
+              </li>
+            ))}
+          </ol>
 
-                  <ul className="mt-4 space-y-2.5">
-                    {area.points.map((p, i) => (
-                      <li key={i} className="flex gap-2.5 text-sm leading-6 text-stone-600">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#5C8A86]" />
-                        <span>{p}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <p className="mt-4 border-t border-stone-100 pt-3 text-xs text-stone-500">
-                    <span className="font-semibold uppercase tracking-[0.14em] text-stone-400">
-                      Artifact
-                    </span>{' '}
-                    <span className="font-mono">{area.artifact}</span>
-                  </p>
-                </article>
-              );
-            })}
+          {/* The three phases */}
+          <h3 className="mt-10 text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
+            The three phases
+          </h3>
+          <div className="mt-3 grid gap-4 md:grid-cols-3">
+            {PHASES.map((p) => (
+              <div
+                key={p.n}
+                className="flex flex-col rounded-xl border border-stone-200 bg-white p-5 shadow-sm"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#5C8A86]/15 text-sm font-bold text-[#3F6E6A]">
+                    {p.n}
+                  </span>
+                  <h4 className="text-base font-semibold text-[#2B2A26]">{p.name}</h4>
+                </div>
+                <p className="mt-1 text-xs font-medium uppercase tracking-[0.12em] text-stone-400">
+                  {p.horizon}
+                </p>
+                <p className="mt-3 text-sm leading-6 text-stone-600">{p.body}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Evidence / footer */}
-      <section className="border-t border-stone-200 bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+      {/* The 12-area scoreboard */}
+      <section className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
+        <SectionHeading icon={ListChecks}>The 12 readiness areas, at a glance</SectionHeading>
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-stone-600">
+          Each area shows a score, now to target. A star marks a priority for this round.
+        </p>
+        <div className="mt-6 overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm">
+          {ROWS.map((r, i) => (
+            <div
+              key={r.number}
+              className={`flex flex-col gap-1 px-4 py-4 sm:flex-row sm:items-center sm:gap-4 sm:px-5 ${
+                i > 0 ? 'border-t border-stone-100' : ''
+              }`}
+            >
+              <div className="flex items-center gap-2 sm:w-64 sm:shrink-0">
+                <span className="text-sm font-semibold tabular-nums text-stone-400">{r.number}</span>
+                <span className="text-sm font-semibold text-[#2B2A26]">{r.name}</span>
+                {r.priority ? (
+                  <span className="text-[#BBA255]" aria-label="priority area">
+                    ★
+                  </span>
+                ) : null}
+              </div>
+              <div className="sm:w-24 sm:shrink-0">
+                {r.from && r.to ? (
+                  <span className="inline-flex items-center gap-1 rounded-md border border-stone-200 bg-stone-50 px-2 py-0.5 text-xs font-semibold tabular-nums text-stone-700">
+                    {r.from}
+                    <ArrowRight className="h-3 w-3 text-stone-400" />
+                    {r.to}
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center rounded-md border border-[#BBA255]/40 bg-[#FFF9EA] px-2 py-0.5 text-xs font-semibold text-[#8A6D1F]">
+                    {r.label}
+                  </span>
+                )}
+              </div>
+              <p className="text-sm leading-6 text-stone-600 sm:flex-1">{r.line}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* The live models */}
+      <section className="border-y border-stone-200 bg-[#F6EFE6]">
+        <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
+          <SectionHeading icon={ExternalLink} color="#5C8A86">
+            Open the real models
+          </SectionHeading>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-stone-700">
+            These are live and interactive, on this same login. Click in and change the inputs.
+          </p>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {MODELS.map((model) => (
+              <Link
+                key={model.href}
+                href={model.href}
+                className="group flex flex-col rounded-xl border border-stone-200 bg-white p-5 shadow-sm transition hover:border-[#5C8A86] hover:shadow"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <h3 className="text-base font-semibold leading-snug text-[#2B2A26]">
+                    {model.title}
+                  </h3>
+                  <ArrowRight className="h-4 w-4 shrink-0 text-stone-400 transition group-hover:translate-x-0.5 group-hover:text-[#5C8A86]" />
+                </div>
+                <p className="mt-2 text-sm leading-6 text-stone-600">{model.body}</p>
+                <span className="mt-3 font-mono text-xs text-stone-400">{model.href}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Provenance footer */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
           <div className="flex items-center gap-2">
             <BadgeCheck className="h-4 w-4 text-stone-400" />
             <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
-              Evidence &amp; provenance
+              Evidence and provenance
             </h2>
           </div>
           <p className="mt-3 max-w-3xl text-xs leading-5 text-stone-500">
-            This page distils the full 12-area strategic pack held in the repo. Source of truth:
-            00-master-alignment-map.md (2026-06-13), where every number traces. DRAFT for founder
-            review — nothing here is audited or final. Modelled figures are planning assumptions (0
-            beds assembled in-house); workpaper figures are unaudited Xero mirror data. Re-pull Xero
-            before any external send and apply the entity-wording and number-audit checks before
-            publishing.
+            This page distils the full 12-area strategic pack held in the repo (2026-06-13), where
+            every number traces. A draft for founder review. Modelled figures are planning
+            assumptions (0 beds assembled in-house). Workpaper figures are unaudited Xero mirror
+            data and are not yet a Goods-only carve-out. Re-pull Xero and apply the entity-wording
+            and number-audit checks before any external send.
           </p>
         </div>
       </section>
