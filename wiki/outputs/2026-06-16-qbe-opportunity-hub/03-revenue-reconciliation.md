@@ -110,6 +110,20 @@ Once these are settled, the signed number replaces every workpaper figure across
 
 ---
 
+## Live re-verification (2026-06-16, read-only Xero, Nicholas Marchesi org `786af1ed`)
+
+Pulled read-only against live Xero via the act-infra token (no write was made; OAuth refresh only). This resolves two of the open questions above:
+
+1. **The TFN void+rebook has NOT been actioned since 2026-06-03.** Both mis-booked bills are still present and unchanged: `a23c77b7…` (Type **ACCPAY**, Status **AUTHORISED**, $89,361, contact "The Funding Network", 27 Nov 2025) and `0115a78d…` (ACCPAY, AUTHORISED, $55,197, 17 Dec 2025), both tracked **"Business Divisions = A Curious Tractor"** — neither tagged ACT-GD. There is **no ACCREC (income) invoice to The Funding Network** anywhere in the org, so no rebook has been started. ⇒ The **+$144,558 TFN add is still genuinely additional** (not yet in the ACCREC set the $741,111 was built from); there is no risk of double-recognition from a prior rebook.
+
+2. **Entity resolved — the ACT-GD ACCREC set lives in the Nicholas Marchesi sole-trader org.** Only one Xero org is reachable on this OAuth connection: **Nicholas Marchesi** (`786af1ed-e3ce-42fc-9ea9-ddf3447d79d0`). "ACT-GD — Goods" is an **ACTIVE** option under that org's "Project Tracking" category. "A Curious Tractor" is **not a separate connected org** — it is a "Business Divisions" tracking option *inside the same Nicholas Marchesi org*. So the $741,111 ACT-GD set and the TFN money sit in the **same** org. (Caveat: a wholly separate "A Curious Tractor Pty Ltd" Xero behind a different login would be outside this token's reach, but it does not hold the ACT-GD cut — that lives here.)
+
+3. **Dedup — the ~$84k Nov cluster is probably NOT the TFN money (timing argues against it).** No deposit of $89,361 / $55,197 / $144,558 (nor gross $99,290 / $61,330) appears as a reconciled bank transaction Nov–Dec 2025. The ~$84k cluster of generic "Nicholas Marchesi"-contact RECEIVE deposits the fix-note flagged falls on **17–24 Nov 2025** ($15k + $5.5k + 2×$6k + $6,295.93 + $10k + $5k + $30k = **$83,796**) — but it **predates the 28 Nov TFN tranche-1 grant letter**, and TFN distributes within ~2 working days of the letter, so on timing it is unlikely to be the TFN cash. The TFN deposits remain **not visible via API** (unreconciled live feed or another account), so the dedup stays a bank-rec-UI task — but the double-count risk against that specific cluster is lower than the magnitude alone suggested.
+
+**Net:** the **+$166,458** swing and **~$907,569** recommended figure stand. The only un-cleared item is **locating the TFN cash deposit** (to confirm it isn't already recognised under another contact/account) and then actioning the void+rebook per `wiki/outputs/2026-06-01-tfn-xero-fix-note.md`.
+
+---
+
 ## Provenance
 
 Figures and bases traced to: `wiki/canon/needs-signoff.md`, `wiki/outputs/2026-06-03-cluster2-PR2-description.md`, `wiki/outputs/2026-05-12-xero-day1-reconciliation.md`, `wiki/outputs/2026-05-30-3-statement-model-v0.2-audit.md`, and `compendium.ts verifiedFinancials`. Xero organisation financial year confirmed read-only as 1 July 2025 to 30 June 2026; no Xero figure was pulled into this note, because the connected org is ACT-wide and cannot isolate the Goods (`ACT-GD`) cut or the sole-trader books through the available read-only tools. That isolation is exactly the accountant step above.

@@ -6,7 +6,7 @@ Resume anchor for a fresh session. Cross-ref: memory `goods-qbe-opportunity-hub.
 <!-- This section is extracted by SessionStart hook for quick resume -->
 **Updated:** 2026-06-16T23:35:00+10:00
 **Goal:** Land ONE accountant-signed Goods revenue figure for QBE Stage 2 and close out the QBE opportunity hub. The reconciliation analysis is DONE; remaining steps are human (sign-off, send letters, deck-to-Drive, hackathon pick, two clauses).
-**Branch:** `docs/snow-onepager-assets` at `4a2b020` — 1 commit AHEAD of origin (UNPUSHED). PR #124 open, NOT merged, prod untouched.
+**Branch:** `docs/snow-onepager-assets` at `089fb33`, pushed (in sync with origin). PR #124 open, NOT merged, prod untouched.
 **Test:** `cd v2 && npm run build` · `npm run check:drift:ci`
 
 ### Now
@@ -20,7 +20,7 @@ Resume anchor for a fresh session. Cross-ref: memory `goods-qbe-opportunity-hub.
 - [x] Re-ported + re-fetched-to-verify the Notion "Revenue reconciled" page `380ebcf981cf81908ec1f245bdd10a39`.
 
 ### Next
-- [ ] (Optional, Tier 2) `git push` → updates PR #124 with `4a2b020`.
+- [x] Pushed `089fb33` → PR #124 updated (2026-06-16).
 - [ ] (Human) Accountant signs ONE figure: verify the +$166,458 swing; do the TFN void+rebook (`wiki/outputs/2026-06-01-tfn-xero-fix-note.md`) + dedup vs the Nov-2025 "Nic Marchesi" deposit cluster; decide carve-out scope ($741,111 all-sources vs $713,827 Goods-only).
 - [ ] (Human) Ben personalises + sends the 5 Tier-1 funder letters (`wiki/outputs/2026-06-16-qbe-opportunity-hub/04-funder-letters.md`).
 - [ ] (Human) Ben drags the investor deck into Drive bundle `1QEzivSw0jydwByAM8PA3VH8-wMlUG1iX`; then add a direct Notion link on the Strategic-pack page.
@@ -31,17 +31,18 @@ Resume anchor for a fresh session. Cross-ref: memory `goods-qbe-opportunity-hub.
 - Recommended sign-off figure: **~$907,569** (cash, Goods-attributable), pending the 3 clearances.
 
 ### Open Questions
-- UNCONFIRMED: has the TFN void+rebook been actioned in Xero since 2026-06-03? If yes, TFN is already in the ACCREC set — do not double-add. (Needs a live Xero check via the act-infra token method; the read-only MCP can't isolate ACT-GD.)
-- UNCONFIRMED: which Xero org holds the ACT-GD ACCREC set the $741,111 was built from — Nic Marchesi sole-trader `786af1ed` (where the TFN bills sit) vs A Curious Tractor Pty Ltd?
+- ✅ RESOLVED (2026-06-16, live read-only Xero via act-infra token): TFN void+rebook **NOT actioned** — both bills still ACCPAY/AUTHORISED ($89,361 `a23c77b7…` + $55,197 `0115a78d…`, tracked "Business Divisions=A Curious Tractor", not ACT-GD), and **no ACCREC income invoice to TFN exists**. ⇒ the +$144,558 add is still genuinely additional; no double-add risk from a prior rebook.
+- ✅ RESOLVED (2026-06-16): the ACT-GD ACCREC set lives in the **Nicholas Marchesi sole-trader org** (`786af1ed`) — the only org on this connection. "ACT-GD — Goods" is an ACTIVE "Project Tracking" option there; "A Curious Tractor" is a *Business Divisions* tracking option in the SAME org, not a separate Xero. (A wholly separate ACT Pty Ltd Xero on another login can't be ruled out via this token, but it does not hold ACT-GD.)
+- ⏳ STILL OPEN (bank-rec UI only): locate the TFN cash deposit. No $89,361/$55,197/$144,558 deposit is visible via API Nov–Dec 2025; the ~$84k generic-contact cluster the fix-note flagged is **17–24 Nov** ($83,796) and **predates the 28 Nov TFN letter**, so on timing it's probably NOT the TFN money. Find the deposit before recognising +$144,558. Detail: `03-revenue-reconciliation.md` "Live re-verification (2026-06-16)".
 
 ---
 
 ## Resume prompt (paste into a fresh session)
-"Resume the Goods QBE work. Read `thoughts/shared/handoffs/qbe-thursday/current.md` (Ledger first) + memory `goods-qbe-opportunity-hub` + `tfn-xero-misbooking`. The investor-outreach engine, the SIH alignment-tool population, the 5 funder-letter drafts, the full Notion alignment, AND the revenue reconciliation (including the CORRECTED $201,900-bucket trace, 2026-06-16) are all DONE. Branch `docs/snow-onepager-assets` at `4a2b020` — 1 commit ahead of origin (UNPUSHED), PR #124 open, NOT merged, prod untouched. Open items are human-side: (1) accountant signs ONE revenue figure — recommend ~$907,569; first do the TFN void+rebook + bank dedup and decide the carve-out scope; the bucket adds +$166,458 not $201,900, and FRRR must NOT be added (it is the VFFF $50K already counted); (2) Ben sends the 5 Tier-1 funder letters; (3) Ben drags the investor deck into the Drive bundle then add a Notion link; (4) pick the hackathon challenge; (5) raise the two clauses (cl 7.3 IP, cl 5.3 co-invest) with Jay/legal, cost model to Matt by end June. Optional Tier-2: push 4a2b020 to update PR #124."
+"Resume the Goods QBE work. Read `thoughts/shared/handoffs/qbe-thursday/current.md` (Ledger first) + memory `goods-qbe-opportunity-hub` + `tfn-xero-misbooking`. The investor-outreach engine, the SIH alignment-tool population, the 5 funder-letter drafts, the full Notion alignment, AND the revenue reconciliation (including the CORRECTED $201,900-bucket trace, 2026-06-16) are all DONE. Branch `docs/snow-onepager-assets` at `089fb33`, pushed (PR #124 current), NOT merged, prod untouched. Open items are human-side: (1) accountant signs ONE revenue figure — recommend ~$907,569; first do the TFN void+rebook + bank dedup and decide the carve-out scope; the bucket adds +$166,458 not $201,900, and FRRR must NOT be added (it is the VFFF $50K already counted); (2) Ben sends the 5 Tier-1 funder letters; (3) Ben drags the investor deck into the Drive bundle then add a Notion link; (4) pick the hackathon challenge; (5) raise the two clauses (cl 7.3 IP, cl 5.3 co-invest) with Jay/legal, cost model to Matt by end June."
 
 ## Git / deploy state
-- Branch `docs/snow-onepager-assets`, HEAD `4a2b020` (= `c780f6d` + the 2026-06-16 reconcile-correction commit). **1 commit AHEAD of origin — UNPUSHED.** **NOT merged to main. Prod untouched.** PR #124 open.
-- 6 commits on the branch: `9249350` (gated `/sites/qbe-readiness`) · `c54e360` (Netlify archive) · `139ebce` (simplify qbe-readiness) · `77fd337` (investor engine: GHL pull + populated alignment tool + Area 12) · `c780f6d` (engine follow-through: SIH tool canonical + populated xlsx + revenue reconciliation + 5 funder-letter drafts) · `4a2b020` (reconcile correction: $201,900 bucket → +$166,458, recommended ~$907,569).
+- Branch `docs/snow-onepager-assets`, HEAD `089fb33` (= `c780f6d` + the 2026-06-16 reconcile-correction commit). **Pushed, in sync with origin.** **NOT merged to main. Prod untouched.** PR #124 open.
+- 6 commits on the branch: `9249350` (gated `/sites/qbe-readiness`) · `c54e360` (Netlify archive) · `139ebce` (simplify qbe-readiness) · `77fd337` (investor engine: GHL pull + populated alignment tool + Area 12) · `c780f6d` (engine follow-through: SIH tool canonical + populated xlsx + revenue reconciliation + 5 funder-letter drafts) · `089fb33` (reconcile correction: $201,900 bucket → +$166,458, recommended ~$907,569).
 - **🚩 Material finance finding — CORRECTED 2026-06-16 (was wrong, now traced):** the "$201,900 bucket" does NOT add $201,900. Traced against live Xero (2026-06-01 fix-note + grant-content.ts:149): **TFN = +$144,558** (not $130K; net of TFN's 10% fee; mis-booked as 2 ACCPAY bills → needs void+rebook + bank dedup) · **FRRR = +$0** (it IS the VFFF $50,000 already in the canon — same "Backing the Future" grant, double-count) · **AMP = +$21,900** (already booked 2024 income, just untagged ACT-GD; fold in). **Corrected swing = +$166,458 → ~$907,569** (or ~$893,011 if TFN at its $130K headline). FRRR must NOT be added. Full corrected trace + recommended figure in `wiki/outputs/2026-06-16-qbe-opportunity-hub/03-revenue-reconciliation.md` (rewritten). ⚠️ Notion "Revenue reconciled" page `380ebcf981cf81908ec1f245bdd10a39` still carries the OLD framing — re-port before any external share.
 - Populated SIH xlsx: `~/Downloads/Investor Alignment Tool (2026) - Goods POPULATED.xlsx`. Funder letter drafts: `04-funder-letters.md` (Ben personalises + sends, Tier 3).
 - Vercel preview (branch alias, SSO + then `/investors/login` pw `OnCountry-E1C4AC`): `https://goods-on-country-git-docs-snow-7e5e3a-benjamin-knights-projects.vercel.app/sites/qbe-readiness`
