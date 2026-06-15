@@ -7,6 +7,8 @@ reason: internal investor scoring matrix
 
 > Reviewable investor-fit matrix based on the CASE Smart Impact Capital tool. Use it to choose fit-for-purpose capital, not to create fake precision. The source summary is [[../sources/case-investor-alignment-tool]].
 
+> **Canonical note (2026-06-16):** For the QBE / Catalysing Impact raise, the canonical investor scorer is now the **SIH 2026 Investor Alignment Tool** (8 knockout + 14 fit, no weights) populated warmest-first in `wiki/outputs/2026-06-16-qbe-opportunity-hub/02-investor-alignment.md` (and the populated `.xlsx`). This CASE Smart Impact Capital matrix (6 knockout + 10 weighted fit) is retained as internal intel and history; the per-investor profile cards in this folder remain the live research layer. Where the two differ, the SIH tool wins.
+
 ## Scoring legend
 
 | Score | Meaning |

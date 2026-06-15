@@ -102,7 +102,7 @@ The CRM is heavily grant / philanthropy. The program prefers **repayable** finan
 | Prospect | Type | Capital | Knockout read | Why it fits / watch-out |
 |---|---|---|---|---|
 | **First Australians Capital (FAC)** | Indigenous-led capital + business support | R / concessional | Strong pass | Indigenous-led, early-commercial, non-equity, capability support alongside capital. Highest-fit net-new prospect. Open a conversation now. |
-| **QLD Partnering for Impact (PFI)** | Qld Government repayable-investment program | **R** | Pass on substance; **watch timing** | Repayable investment ($640K of a $3.2M facility noted in ACT finance); EOI window was March 2026, so confirm whether a 2026 round is still open before counting it. |
+| **QLD Partnering for Impact (PFI)** | Qld Government repayable-investment program | **R** | **Fail this cycle (closed + size)** | Verified 2026-06-16: the 2026 round is closed (Stage 1 closed 15 Mar 2026, Stage 2 by invitation closed 3 May, agreements by 30 June; no future round announced). Min $500K and the government covers only up to 20% of total proposal value, so it needs a much larger co-invested project than our $150K to $400K ask. Promoter is Social Impact Hub itself. Watch for a future round; not a Sept-2026 match source. |
 | **Indigenous Business Australia (IBA)** | Commonwealth Indigenous finance | R (loans) | Confirm K5/K7 | Loans to Indigenous enterprise; confirm terms are concessional and non-equity for our stage. |
 | **SVA / SEDIF** (Social Enterprise Development & Investment Funds) | Impact debt | R | Confirm K3/K8 | Established social-enterprise debt; confirm minimum cheque and stage fit. |
 | **Conscious Investment Management** | Impact fund | R + equity | Confirm K7 | Does both debt and equity; only pursue the debt side (equity fails K7). |
@@ -120,9 +120,34 @@ The CRM is heavily grant / philanthropy. The program prefers **repayable** finan
 
 1. **The match can be built from warm ground.** Five Tier-1 relationships (Snow, SEFA, Centrecorp, Minderoo, VFFF) plus an active Tier-2 ask list already cover the $150K floor several times over **if** they convert to signed LOIs in time. The work is conversion, not discovery.
 2. **SEFA is the single highest-value warm lead** because it is repayable and already in advanced discussion. Repayable commitments are what the program most wants to see matched. Prioritise moving SEFA to a term sheet.
-3. **The repayable gap is real.** Almost everything warm is a grant. To show the program a credible repayable component, open First Australians Capital now and confirm whether QLD PFI has a live 2026 round.
+3. **The repayable gap is real.** Almost everything warm is a grant. The strongest repayable plays are SEFA (already advanced) and First Australians Capital (open it now). QLD PFI is closed for this cycle (verified), so it is not a September match source.
 4. **Keep grant-vs-match honest.** Centrecorp's bed order and the buyer pipeline are revenue, not match capital. The QBE and DEWR asks cannot count as match. Don't let the headline pipeline number flatter the match position.
-5. **Next mechanical steps on the engine:** (a) stand the 8+14 criteria up in the actual SIH spreadsheet so SIH sees its own tool populated; (b) run the Tier-1 and Tier-2 names through SIH's "Letter to Funders" conversion path (EOI → LOI → Term Sheet); (c) keep the GHL pull current as stages move (re-run the read-only scripts monthly).
+5. **Next mechanical steps on the engine:** (a) DONE: the 8+14 criteria and the warmest-first investors are now stood up in the actual SIH spreadsheet (see below); (b) run the Tier-1 and Tier-2 names through SIH's "Letter to Funders" conversion path (EOI → LOI → Term Sheet); (c) keep the GHL pull current as stages move (re-run the read-only scripts monthly).
+
+---
+
+## Part D. The populated SIH spreadsheet
+
+The blank `Investor Alignment Tool (2026).xlsx` template is now filled and saved as **`Investor Alignment Tool (2026) - Goods POPULATED.xlsx`** (in `~/Downloads`; the blank original is untouched). Tab 1 (Our Needs) carries the 8 knockout + 14 fit criteria above with priorities; Tab 3 scores the 12 investors below. The tool's own RESULTS formulas compute these on open (values verified independently):
+
+| Investor | Knockout | High-priority fit | All fit |
+|---|---|---|---|
+| Snow Foundation | **Yes** | 7/7 | 14/14 |
+| SEFA | **Yes** | 7/7 | 14/14 |
+| Centrecorp Foundation | **Yes** | 7/7 | 14/14 |
+| Minderoo Foundation | **Yes** | 7/7 | 13/14 |
+| Vincent Fairfax Family Foundation | **Yes** | 7/7 | 13/14 |
+| Paul Ramsay Foundation | **Yes** | 7/7 | 13/14 |
+| Eloise Hall (impact investor) | **Yes** | 7/7 | 13/14 |
+| Tim Fairfax Family Foundation | **Yes** | 6/7 | 12/14 |
+| FRRR | **Yes** | 6/7 | 12/14 |
+| The Ian Potter Foundation | **Yes** | 5/7 | 11/14 |
+| First Australians Capital | **No** (timing) | 7/7 | 14/14 |
+| Indigenous Business Australia | **No** (timing) | 7/7 | 14/14 |
+
+Two reads of this table: the Tier-1 three (Snow, SEFA, Centrecorp) are the cleanest targets (full marks, knockout pass); and the two net-new repayable prospects (FAC, IBA) score full fit but **fail the knockout on timing alone**, which is the honest signal that they are the right partners for the *next* cycle, not a September signature.
+
+Two caveats on the file: (1) saving through the script strips the in-cell dropdown menus (the written values still match the dropdown options exactly, so every formula computes correctly; only the click-to-pick UI is gone, which matters only for future manual edits); (2) Tab 2 (Investor Tracking, the CRM log) is not yet filled. Both are quick follow-ups if wanted.
 
 ---
 
