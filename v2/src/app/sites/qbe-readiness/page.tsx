@@ -307,9 +307,9 @@ const ROWS: Row[] = [
   {
     number: 12,
     name: 'Investor Alignment',
-    label: 'Working',
+    label: 'Populated',
     priority: false,
-    line: 'Every funder scored against Goods own filter, to produce a defensible shortlist for the first ~AU$400K.',
+    line: 'Goods own filter (8 knockout, 14 fit) now scores a warmest-first shortlist: SEFA, Snow, Centrecorp, Minderoo, and VFFF lead the first ~AU$400K.',
   },
 ];
 
