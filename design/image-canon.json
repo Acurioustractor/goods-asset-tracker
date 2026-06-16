@@ -51,10 +51,10 @@
     "12": []
   },
   "gaps": [
-    { "areaId": "05", "subject": "Strategic Planning & Risk", "need": "Branded visual for the scored risk register / risk horizon. No existing image. Generate in the goods-ill line style." },
-    { "areaId": "07", "subject": "Governance, Data & Reporting", "need": "Branded visual for governance / board structure / sign-off path. No existing image. Generate." },
-    { "areaId": "08", "subject": "People & Enterprise", "need": "Branded team / jobs-on-Country image. nic-with-elder is a placeholder. Possible gap." },
-    { "areaId": "09", "subject": "Legal Structure (keystone)", "need": "Branded entity-structure / transition-to-community-ownership diagram. ownership-handover covers narrative, not legal structure. Generate." },
-    { "areaId": "12", "subject": "Investor Alignment Tool", "need": "Branded alignment-matrix visual. No existing image. Generate." }
+    { "areaId": "05", "subject": "Strategic Planning & Risk", "need": "Branded visual for the scored risk register / risk horizon.", "draft": "generated-images/goods-illustrations/qbe-05-risk/01-risk-horizon.png", "draftStatus": "drafted 2026-06-16, pending Ben approval + promotion to v2/public/images/brand" },
+    { "areaId": "07", "subject": "Governance, Data & Reporting", "need": "Branded visual for governance / board structure / sign-off path.", "draft": "generated-images/goods-illustrations/qbe-07-governance/01-governance-signoff.png", "draftStatus": "drafted 2026-06-16, pending Ben approval + promotion" },
+    { "areaId": "08", "subject": "People & Enterprise", "need": "Branded team / jobs-on-Country image.", "draft": "generated-images/goods-illustrations/qbe-08-people/01-jobs-on-country.png", "draftStatus": "drafted 2026-06-16, pending Ben approval + promotion" },
+    { "areaId": "09", "subject": "Legal Structure (keystone)", "need": "Branded entity-structure / transition-to-community-ownership diagram.", "draft": "generated-images/goods-illustrations/qbe-09-ownership/01-handover.png", "draftStatus": "drafted 2026-06-16, pending Ben approval + promotion" },
+    { "areaId": "12", "subject": "Investor Alignment Tool", "need": "Branded alignment-matrix visual.", "draft": "generated-images/goods-illustrations/qbe-12-alignment/01-alignment-matrix.png", "draftStatus": "drafted 2026-06-16, pending Ben approval + promotion" }
   ]
 }
