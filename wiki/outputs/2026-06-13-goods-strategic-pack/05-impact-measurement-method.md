@@ -25,7 +25,7 @@ Three columns, one rule: a metric only moves left as the evidence catches up. No
 | Plastic diverted per bed | **20 kg** | **[VERIFIED]** — `products.ts`, single source of truth |
 | Consent-cleared community voices | **3** (Ivy Johnson, Dianne Stokes, Ray Nelson) | **[VERIFIED]** — consent confirmed; everyone else consent-pending |
 | Product feedback that changed design | Captured on delivery + return visits; reshaped the bed | **[VERIFIED]** — qualitative, recorded |
-| Projected unit cost after in-sourcing | $425.74 (factory) / $270.74 (community) | **[MODELLED]** — 0 beds assembled in-house yet |
+| Projected unit cost after in-sourcing | $425.74 (factory) / $421 (community) | **[MODELLED]** — 0 beds assembled in-house yet |
 | Mattress wash frequency | Not yet collected | **[FUTURE]** |
 | Bed survival at 12 / 24 / 36 months | Not yet collected | **[FUTURE]** |
 | Scabies / bed-bug indicators | Not yet collected | **[FUTURE]** |

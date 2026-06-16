@@ -37,7 +37,7 @@ Goods has received **AU$649,710.79** to date [WORKPAPER — Xero mirror, 29 May 
 
 At today's cost, the Stretch Bed sells for AU$750 [VERIFIED] against a marginal cost of AU$684.79 [WORKPAPER] and a fixed cost block near AU$109,500 a year [MODELLED]. On those numbers, breakeven sits around 1,679 beds a year while we currently deploy about 130. That is out of reach, and we will not pretend otherwise.
 
-The lever that changes the picture is in-sourcing the plastic. We have verified an 8.6× markup on the HDPE legs we currently buy from an external supplier. Our containerised production model — collect, shred, press, cut, and assemble on country — projects a unit cost falling from AU$684.79 to AU$425.74 in a factory configuration and AU$270.74 in a community configuration [all MODELLED]. At those costs, breakeven drops to 333–338 beds a year, which is within sight of demand. The critical caveat: we have assembled zero beds in-house so far. This number is a hypothesis, not a result.
+The lever that changes the picture is in-sourcing the plastic. We have verified an 8.6× markup on the HDPE legs we currently buy from an external supplier. Our containerised production model — collect, shred, press, cut, and assemble on country — projects a unit cost falling from AU$684.79 to AU$425.74 in a factory configuration and AU$421 in a community configuration [all MODELLED]. At those costs, breakeven drops to 333–338 beds a year, which is within sight of demand. The critical caveat: we have assembled zero beds in-house so far. This number is a hypothesis, not a result.
 
 ### 4. What we are asking catalytic capital to do
 

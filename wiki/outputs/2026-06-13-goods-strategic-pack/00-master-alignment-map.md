@@ -56,7 +56,7 @@ The three shifts: **material** (durable, washable, repairable goods replace fail
 | Fixed cost block | ~AU$109,500/yr | [MODELLED] |
 | Breakeven, today's cost | ~1,679 Stretch beds/yr | [MODELLED] — out of reach (deploying ~130/yr now) |
 | In-source target cost (factory) | AU$425.74 | [MODELLED] — **0 beds assembled in-house yet** |
-| In-source target cost (community) | AU$270.74 | [MODELLED] |
+| In-source target cost (community) | AU$421 | [MODELLED] |
 | Breakeven after cost-down | 333–338 beds/yr | [MODELLED] |
 | Key input proof | 8.6× "idiot index" markup on Defy HDPE legs | [VERIFIED] |
 
@@ -103,7 +103,7 @@ Snow Foundation $193,785 (2023–25) · TFN $130,000 (Dec 2025) · FRRR+VFFF Bac
 
 ## 4. The hypothesis this capital tests (the honest core)
 
-The capital case is **100% modelled.** The 8.6× markup on outsourced HDPE legs is [VERIFIED]; the claim that in-sourcing drops unit cost from $684.79 → $425.74 (factory) → $270.74 (community) is [MODELLED] with **0 beds assembled in-house** and a stale inventory snapshot (2026-03-27).
+The capital case is **100% modelled.** The 8.6× markup on outsourced HDPE legs is [VERIFIED]; the claim that in-sourcing drops unit cost from $684.79 → $425.74 (factory) → $421 (community) is [MODELLED] with **0 beds assembled in-house** and a stale inventory snapshot (2026-03-27).
 
 **The de-risking experiment:** ~AU$60–80K funds a 50-bed in-source production run.
 - **Pass** = $425.74 confirmed → scale the raise.
@@ -179,7 +179,7 @@ Key-person/founder bottleneck (**already happening**, high) · cashflow ("costs 
 | 3 | Plastic: 9,920 / 9,225 vs 2,660 kg | Use **2,660 kg (Stretch only) [VERIFIED]**; retire the higher figures. |
 | 4 | Revenue: $649,710.79 / $732,210.79 / $537,595 / $405,685 | Use **received $649,710.79 [WORKPAPER]** for billing view, **$405,685** for grants-received; never "audited". |
 | 5 | Capital stack differs: catalytic-capital.md (PFI $640K, Mindaroo $200K, QBE $400K) vs deck (Snow + SEFA $300K + QBE up to $400K + philanthropy $500K) | Use the **deck stack** as primary (it is the adversarially-reviewed version). Note PFI/Minderoo as relationship-stage pipeline, not in the headline ask. |
-| 6 | Unit cost-down $425.74/$270.74 | Always [MODELLED], 0 beds in-house. Frame as the hypothesis the capital tests. |
+| 6 | Unit cost-down $425.74/$421 | Always [MODELLED], 0 beds in-house. Frame as the hypothesis the capital tests. |
 | 7 | QBE match cap $200K vs $400K | **RESOLVED 2026-06-13 from program docs (EOI, Letter to Funders 1 Apr 2026, Induction slides).** Cap is **AU$400,000 per enterprise from a $1M pool**, **at least 1:1 matched to secured external investment** (more is better), **repayable finance prioritised over grants**. Match must be **legally binding** (letters of commitment / loan / investment agreements) and is **verified by SIH** at the Sept 2026 application; conditional grants possible if match isn't fully locked. **Stop modelling at $200K — use $400K with the 1:1 rule.** Propagate to memo §4, one-pager, deck slide 11, next-stage focus. |
 | 14 | EOI on record (submitted 2 Feb 2026) states a **$210K** capital target with **old figures** (369 beds / 8 communities / 25 kg per bed / 9,225 kg / 40% profit share) | The EOI is the historical entry, not a current claim. Our reconciled canon (496 / 9 / 20 kg / 2,660 kg) supersedes it. The Stage 2 ask (AU$900K–1M blended; first ~$400K signed) is deliberately larger than the EOI — fine, but be aware Stage 2 diligence may compare against the EOI. Do not restate the old EOI figures externally. |
 | 15 | Stage 2 requires **audited or accountant-endorsed** financials + **legally-binding** match evidence by **September 2026** | This sharpens the Area 04 P0: the accountant carve-out/endorsement is now a hard Stage-2 gate, not just good practice. Converting pipeline → signed commitments before September is the critical path. |

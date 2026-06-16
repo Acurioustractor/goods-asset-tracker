@@ -103,7 +103,7 @@ The three shifts: **material** (durable, washable, repairable goods replace fail
 | Fixed cost block | ~AU$109,500/yr | [MODELLED] |
 | Breakeven, today's cost | ~1,679 Stretch beds/yr | [MODELLED] — out of reach (deploying ~130/yr now) |
 | In-source target cost (factory) | AU$425.74 | [MODELLED] — **0 beds assembled in-house yet** |
-| In-source target cost (community) | AU$270.74 | [MODELLED] |
+| In-source target cost (community) | AU$421 | [MODELLED] |
 | Breakeven after cost-down | 333–338 beds/yr | [MODELLED] |
 | Key input proof | 8.6× "idiot index" markup on Defy HDPE legs | [VERIFIED] |
 
@@ -150,7 +150,7 @@ Snow Foundation $193,785 (2023–25) · TFN $130,000 (Dec 2025) · FRRR+VFFF Bac
 
 ## 4. The hypothesis this capital tests (the honest core)
 
-The capital case is **100% modelled.** The 8.6× markup on outsourced HDPE legs is [VERIFIED]; the claim that in-sourcing drops unit cost from $684.79 → $425.74 (factory) → $270.74 (community) is [MODELLED] with **0 beds assembled in-house** and a stale inventory snapshot (2026-03-27).
+The capital case is **100% modelled.** The 8.6× markup on outsourced HDPE legs is [VERIFIED]; the claim that in-sourcing drops unit cost from $684.79 → $425.74 (factory) → $421 (community) is [MODELLED] with **0 beds assembled in-house** and a stale inventory snapshot (2026-03-27).
 
 **The de-risking experiment:** ~AU$60–80K funds a 50-bed in-source production run.
 - **Pass** = $425.74 confirmed → scale the raise.
@@ -226,7 +226,7 @@ Key-person/founder bottleneck (**already happening**, high) · cashflow ("costs 
 | 3 | Plastic: 9,920 / 9,225 vs 2,660 kg | Use **2,660 kg (Stretch only) [VERIFIED]**; retire the higher figures. |
 | 4 | Revenue: $649,710.79 / $732,210.79 / $537,595 / $405,685 | Use **received $649,710.79 [WORKPAPER]** for billing view, **$405,685** for grants-received; never "audited". |
 | 5 | Capital stack differs: catalytic-capital.md (PFI $640K, Mindaroo $200K, QBE $400K) vs deck (Snow + SEFA $300K + QBE up to $400K + philanthropy $500K) | Use the **deck stack** as primary (it is the adversarially-reviewed version). Note PFI/Minderoo as relationship-stage pipeline, not in the headline ask. |
-| 6 | Unit cost-down $425.74/$270.74 | Always [MODELLED], 0 beds in-house. Frame as the hypothesis the capital tests. |
+| 6 | Unit cost-down $425.74/$421 | Always [MODELLED], 0 beds in-house. Frame as the hypothesis the capital tests. |
 | 7 | QBE match cap $200K vs $400K | **RESOLVED 2026-06-13 from program docs (EOI, Letter to Funders 1 Apr 2026, Induction slides).** Cap is **AU$400,000 per enterprise from a $1M pool**, **at least 1:1 matched to secured external investment** (more is better), **repayable finance prioritised over grants**. Match must be **legally binding** (letters of commitment / loan / investment agreements) and is **verified by SIH** at the Sept 2026 application; conditional grants possible if match isn't fully locked. **Stop modelling at $200K — use $400K with the 1:1 rule.** Propagate to memo §4, one-pager, deck slide 11, next-stage focus. |
 | 14 | EOI on record (submitted 2 Feb 2026) states a **$210K** capital target with **old figures** (369 beds / 8 communities / 25 kg per bed / 9,225 kg / 40% profit share) | The EOI is the historical entry, not a current claim. Our reconciled canon (496 / 9 / 20 kg / 2,660 kg) supersedes it. The Stage 2 ask (AU$900K–1M blended; first ~$400K signed) is deliberately larger than the EOI — fine, but be aware Stage 2 diligence may compare against the EOI. Do not restate the old EOI figures externally. |
 | 15 | Stage 2 requires **audited or accountant-endorsed** financials + **legally-binding** match evidence by **September 2026** | This sharpens the Area 04 P0: the accountant carve-out/endorsement is now a hard Stage-2 gate, not just good practice. Converting pipeline → signed commitments before September is the critical path. |
@@ -540,7 +540,7 @@ Three columns, one rule: a metric only moves left as the evidence catches up. No
 | Plastic diverted per bed | **20 kg** | **[VERIFIED]** — `products.ts`, single source of truth |
 | Consent-cleared community voices | **3** (Ivy Johnson, Dianne Stokes, Ray Nelson) | **[VERIFIED]** — consent confirmed; everyone else consent-pending |
 | Product feedback that changed design | Captured on delivery + return visits; reshaped the bed | **[VERIFIED]** — qualitative, recorded |
-| Projected unit cost after in-sourcing | $425.74 (factory) / $270.74 (community) | **[MODELLED]** — 0 beds assembled in-house yet |
+| Projected unit cost after in-sourcing | $425.74 (factory) / $421 (community) | **[MODELLED]** — 0 beds assembled in-house yet |
 | Mattress wash frequency | Not yet collected | **[FUTURE]** |
 | Bed survival at 12 / 24 / 36 months | Not yet collected | **[FUTURE]** |
 | Scabies / bed-bug indicators | Not yet collected | **[FUTURE]** |
@@ -704,7 +704,7 @@ This is the heart of what the diagnostic asked for, and we will be plain about i
 
 **The path has two moves, and they compound:**
 
-1. **In-source the plastic to bring the cost down.** We have verified an 8.6× markup on the HDPE legs we currently buy from an external supplier [VERIFIED]. The containerised production model projects unit cost falling from **AU$684.79 → AU$425.74** (factory configuration) and **→ AU$270.74** (community configuration) [all MODELLED]. At the factory target, breakeven drops from ~1,679 to **333–338 beds a year** [MODELLED] — within sight of demand. The critical caveat, stated everywhere in this pack: **zero beds have been assembled in-house so far.** This is a hypothesis, not a result.
+1. **In-source the plastic to bring the cost down.** We have verified an 8.6× markup on the HDPE legs we currently buy from an external supplier [VERIFIED]. The containerised production model projects unit cost falling from **AU$684.79 → AU$425.74** (factory configuration) and **→ AU$421** (community configuration) [all MODELLED]. At the factory target, breakeven drops from ~1,679 to **333–338 beds a year** [MODELLED] — within sight of demand. The critical caveat, stated everywhere in this pack: **zero beds have been assembled in-house so far.** This is a hypothesis, not a result.
 
 2. **Move institutional buyers from grant-funded to procurement-funded.** Segment 1's capacity is real but grant-derived. The transition is the same buyers (and the Segment 3 procurement pools behind them) purchasing through contracted procurement rather than grant rounds — which requires the 51% structure and the first signed procurement/offtake commitment.
 
@@ -723,8 +723,8 @@ A single, honest table. Today's marginal cost is a workpaper figure (unaudited X
 | Line | Today | In-source target (factory) | In-source target (community) |
 |---|---:|---:|---:|
 | Sale price (list) | AU$750 **[VERIFIED]** | AU$750 | AU$750 |
-| Marginal cost per bed | AU$684.79 **[WORKPAPER]** | AU$425.74 **[MODELLED]** | AU$270.74 **[MODELLED]** |
-| Contribution per bed | ~AU$65 | ~AU$324 | ~AU$479 |
+| Marginal cost per bed | AU$684.79 **[WORKPAPER]** | AU$425.74 **[MODELLED]** | AU$421 **[MODELLED]** |
+| Contribution per bed | ~AU$65 | ~AU$324 | ~AU$329 |
 | Breakeven volume (beds/yr) | ~1,679 **[MODELLED]** | 333–338 **[MODELLED]** | <333 **[MODELLED]** |
 | Beds assembled in-house to date | — | **0** | **0** |
 
@@ -797,7 +797,7 @@ The cost model is the heart of the catalytic case. It asks one question: **what 
 |---|---|---|---|
 | **Buy-Kit (today)** | AU$684.79 | [WORKPAPER] | all components bought in |
 | **Factory in-source** | AU$425.74 | [MODELLED] | shred, press, cut, assemble in a containerised factory configuration |
-| **Community in-source** | AU$270.74 | [MODELLED] | same plant moved toward community ownership/operation |
+| **Community in-source** | AU$421 | [MODELLED] | same plant moved toward community ownership/operation |
 
 **The effect on breakeven.** Moving off Buy-Kit drops breakeven from ~1,679 beds/yr to **333–338 beds/yr** [MODELLED] — within sight of demand rather than out of reach.
 
@@ -1661,7 +1661,7 @@ Goods has received **AU$649,710.79** to date [WORKPAPER — Xero mirror, 29 May 
 
 At today's cost, the Stretch Bed sells for AU$750 [VERIFIED] against a marginal cost of AU$684.79 [WORKPAPER] and a fixed cost block near AU$109,500 a year [MODELLED]. On those numbers, breakeven sits around 1,679 beds a year while we currently deploy about 130. That is out of reach, and we will not pretend otherwise.
 
-The lever that changes the picture is in-sourcing the plastic. We have verified an 8.6× markup on the HDPE legs we currently buy from an external supplier. Our containerised production model — collect, shred, press, cut, and assemble on country — projects a unit cost falling from AU$684.79 to AU$425.74 in a factory configuration and AU$270.74 in a community configuration [all MODELLED]. At those costs, breakeven drops to 333–338 beds a year, which is within sight of demand. The critical caveat: we have assembled zero beds in-house so far. This number is a hypothesis, not a result.
+The lever that changes the picture is in-sourcing the plastic. We have verified an 8.6× markup on the HDPE legs we currently buy from an external supplier. Our containerised production model — collect, shred, press, cut, and assemble on country — projects a unit cost falling from AU$684.79 to AU$425.74 in a factory configuration and AU$421 in a community configuration [all MODELLED]. At those costs, breakeven drops to 333–338 beds a year, which is within sight of demand. The critical caveat: we have assembled zero beds in-house so far. This number is a hypothesis, not a result.
 
 ### 4. What we are asking catalytic capital to do
 
@@ -1723,7 +1723,7 @@ We are asking a catalytic partner to be that first signed commitment. The match 
 The **Stretch Bed** — recycled HDPE legs, galvanised steel poles, Australian canvas. 26 kg, holds 200 kg, assembles in ~5 minutes with no tools, 10+ year life, 5-year warranty, 20 kg plastic diverted per bed. An X-trestle tension design where the canvas is structural. AU$750. The only product for direct sale; a washing-machine prototype (Pakkimjalki Kari) and an on-country production plant follow.
 
 ### The honest commercial reality
-~89% grant-funded, by design. Direct commercial revenue is AU$90 (3 orders) — we have proven communities want the product and funders will pay; we have **not yet** proven the unit economics. Today: sells at $750, costs $684.79 to make [WORKPAPER]. The lever is **in-sourcing the plastic** (8.6× markup verified on bought-in legs), which models a drop to **$425.74 (factory) / $270.74 (community)** [MODELLED — 0 beds assembled in-house yet]. That brings breakeven from ~1,679 beds/yr to ~333–338.
+~89% grant-funded, by design. Direct commercial revenue is AU$90 (3 orders) — we have proven communities want the product and funders will pay; we have **not yet** proven the unit economics. Today: sells at $750, costs $684.79 to make [WORKPAPER]. The lever is **in-sourcing the plastic** (8.6× markup verified on bought-in legs), which models a drop to **$425.74 (factory) / $421 (community)** [MODELLED — 0 beds assembled in-house yet]. That brings breakeven from ~1,679 beds/yr to ~333–338.
 
 ### The ask — AU$900K–$1M, blended, **non-equity**
 Close the first **~AU$400K of signed, match-eligible capital by 31 Aug 2026** to unlock the QBE Catalysing Impact match (up to $400K, contingent). **Signed LOIs today: 0** — a conversation problem, not a discovery problem.

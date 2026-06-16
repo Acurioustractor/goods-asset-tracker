@@ -59,7 +59,7 @@ note: distilled from the 12-area strategic pack. Nothing here is audited or fina
 ### 4. Financial Management  (4→7, ★)
 - Money in: AU$649,710.79 received / AU$732,210.79 billed / 88.8% collection [all WORKPAPER, Xero mirror 29 May, unaudited]. Commercial revenue AU$90 (3 orders).
 - The single most important caveat: **there is not yet one accountant-endorsed, Goods-only revenue figure.** The trading org (Nicholas Marchesi sole trader) also holds non-Goods income (SMART Recovery, HipCamp), so the Xero total is not a Goods carve-out. Producing one is now a hard QBE Stage-2 gate.
-- Unit economics today: sells AU$750 [VERIFIED], marginal cost AU$684.79 [WORKPAPER], ~AU$65 contribution, fixed block ~AU$109,500/yr → breakeven ~1,679 beds/yr [MODELLED] against ~130 deployed now. The cost-down is the lever (factory AU$425.74 / community AU$270.74 [MODELLED], 0 beds in-house) — breakeven drops to 333–338 beds/yr.
+- Unit economics today: sells AU$750 [VERIFIED], marginal cost AU$684.79 [WORKPAPER], ~AU$65 contribution, fixed block ~AU$109,500/yr → breakeven ~1,679 beds/yr [MODELLED] against ~130 deployed now. The cost-down is the lever (factory AU$425.74 / community AU$421 [MODELLED], 0 beds in-house) — breakeven drops to 333–338 beds/yr.
 - 36-month forecast [all MODELLED]: without injection −AU$487,722 at month 36; with the injection stack +AU$212,278, through an intra-period trough of −AU$177,292. Founder time is costed in the model (AU$560/day × 150 days/yr), not treated as free. Opening cash is a flagged AU$50K placeholder ("TO CONFIRM") — the highest-leverage input to lock.
 - Artifact: 15-financial-summary.md
 
@@ -106,7 +106,7 @@ note: distilled from the 12-area strategic pack. Nothing here is audited or fina
 - Artifact: 01-strategy-memo.md · 02-one-pager.md · Goods-on-Country-Investor-Deck.pptx
 
 ### 11. Cost Model  (P0)
-- The heart of the catalytic case, one question: what does in-sourcing the plastic do to unit cost and therefore breakeven? Three build methods — Buy-Kit (today) AU$684.79 [WORKPAPER]; Factory in-source AU$425.74 [MODELLED]; Community in-source AU$270.74 [MODELLED].
+- The heart of the catalytic case, one question: what does in-sourcing the plastic do to unit cost and therefore breakeven? Three build methods — Buy-Kit (today) AU$684.79 [WORKPAPER]; Factory in-source AU$425.74 [MODELLED]; Community in-source AU$421 [MODELLED].
 - The one piece of hard evidence underneath the whole model: an **8.6× markup ("idiot index") on the HDPE legs** bought from Defy [VERIFIED]. Everything else in the cost-down is modelled.
 - Honest status: a credible hypothesis, not a result — **0 beds assembled in-house**, against a stale inventory snapshot (2026-03-27). The 50-bed run (~AU$60–80K) is the experiment that converts it.
 - Capex carries two coexisting figures to reconcile: a confirmed press-capex line of AU$110,046, and a wider gross-capex range of AU$112–222K (midpoint ~AU$167K, firm quote pending). Accountant to confirm which is canonical.

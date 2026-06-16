@@ -60,7 +60,7 @@ The cost model is the heart of the catalytic case. It asks one question: **what 
 |---|---|---|---|
 | **Buy-Kit (today)** | AU$684.79 | [WORKPAPER] | all components bought in |
 | **Factory in-source** | AU$425.74 | [MODELLED] | shred, press, cut, assemble in a containerised factory configuration |
-| **Community in-source** | AU$270.74 | [MODELLED] | same plant moved toward community ownership/operation |
+| **Community in-source** | AU$421 | [MODELLED] | same plant moved toward community ownership/operation |
 
 **The effect on breakeven.** Moving off Buy-Kit drops breakeven from ~1,679 beds/yr to **333–338 beds/yr** [MODELLED] — within sight of demand rather than out of reach.
 

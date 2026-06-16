@@ -96,7 +96,7 @@ This is the heart of what the diagnostic asked for, and we will be plain about i
 
 **The path has two moves, and they compound:**
 
-1. **In-source the plastic to bring the cost down.** We have verified an 8.6× markup on the HDPE legs we currently buy from an external supplier [VERIFIED]. The containerised production model projects unit cost falling from **AU$684.79 → AU$425.74** (factory configuration) and **→ AU$270.74** (community configuration) [all MODELLED]. At the factory target, breakeven drops from ~1,679 to **333–338 beds a year** [MODELLED] — within sight of demand. The critical caveat, stated everywhere in this pack: **zero beds have been assembled in-house so far.** This is a hypothesis, not a result.
+1. **In-source the plastic to bring the cost down.** We have verified an 8.6× markup on the HDPE legs we currently buy from an external supplier [VERIFIED]. The containerised production model projects unit cost falling from **AU$684.79 → AU$425.74** (factory configuration) and **→ AU$421** (community configuration) [all MODELLED]. At the factory target, breakeven drops from ~1,679 to **333–338 beds a year** [MODELLED] — within sight of demand. The critical caveat, stated everywhere in this pack: **zero beds have been assembled in-house so far.** This is a hypothesis, not a result.
 
 2. **Move institutional buyers from grant-funded to procurement-funded.** Segment 1's capacity is real but grant-derived. The transition is the same buyers (and the Segment 3 procurement pools behind them) purchasing through contracted procurement rather than grant rounds — which requires the 51% structure and the first signed procurement/offtake commitment.
 
@@ -115,8 +115,8 @@ A single, honest table. Today's marginal cost is a workpaper figure (unaudited X
 | Line | Today | In-source target (factory) | In-source target (community) |
 |---|---:|---:|---:|
 | Sale price (list) | AU$750 **[VERIFIED]** | AU$750 | AU$750 |
-| Marginal cost per bed | AU$684.79 **[WORKPAPER]** | AU$425.74 **[MODELLED]** | AU$270.74 **[MODELLED]** |
-| Contribution per bed | ~AU$65 | ~AU$324 | ~AU$479 |
+| Marginal cost per bed | AU$684.79 **[WORKPAPER]** | AU$425.74 **[MODELLED]** | AU$421 **[MODELLED]** |
+| Contribution per bed | ~AU$65 | ~AU$324 | ~AU$329 |
 | Breakeven volume (beds/yr) | ~1,679 **[MODELLED]** | 333–338 **[MODELLED]** | <333 **[MODELLED]** |
 | Beds assembled in-house to date | — | **0** | **0** |
 
