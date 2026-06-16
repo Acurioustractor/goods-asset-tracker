@@ -102,7 +102,7 @@
       "priority": "P0",
       "band": "partial",
       "sihPriorityGap": false,
-      "gap": "0 signed LOIs -> match gate open; no signed/eligible commitment register; QBE rules (200K vs 400K cap; what counts as match) unconfirmed (the open Jay email). A binding offtake/forward-purchase LOI fixes the match AND the weak-commercial-paperwork gap at once."
+      "gap": "0 signed LOIs -> the match gate is still open (a conversion problem, not a discovery problem). Since this gap was written, two parts have moved: the QBE cap is RESOLVED (AU$400K per enterprise, at least 1:1, repayable preferred; confirmed from program docs 2026-06-13 — stop modelling at $200K), and the signed/eligible commitment register now EXISTS (CivicGraph Match Campaign tab; GHL reauth verified 10 Jun 2026) but holds 0 signed entries. Remaining: the register needs its first signed commitment, and what counts as eligible match is still to be confirmed in writing (the open Jay email). A binding offtake/forward-purchase LOI fixes the match AND the weak-commercial-paperwork gap at once."
     },
     {
       "id": "11",
