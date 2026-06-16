@@ -294,6 +294,20 @@
       "qbeAreas": ["02"],
       "citesCanon": ["cleared-voices"],
       "lastVerified": "2026-06-02"
+    },
+    {
+      "id": "risk-register",
+      "title": "Scored risk register (14 risks)",
+      "pillar": "governance",
+      "type": "repo doc",
+      "location": "wiki/articles/governance/risk-register.md",
+      "status": "written",
+      "claimLabels": ["verified", "modelled", "internal-only"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": ["05", "07"],
+      "citesCanon": ["signed-lois", "beds-deployed", "communities-served"],
+      "lastVerified": "2026-06-13"
     }
   ]
 }
