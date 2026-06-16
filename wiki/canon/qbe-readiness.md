@@ -17,7 +17,7 @@ None. Every qbeAreas id on an artifact resolves to a real diagnostic area.
 | 06 | Process & Technology | 7→8 | P1 | 1 | 2026-06-06 | 🟢 ok |
 | 07 | Governance, Data & Reporting * | 5→8 | P0 | 4 | 2026-06-16 | 🟢 ok |
 | 08 | People & Enterprise | 6→7 | P1 | 1 | 2026-06-17 | 🟢 ok |
-| 09 | **Legal Structure** (keystone) | 5→7 | P0 | 0 | — | 🔴 none |
+| 09 | **Legal Structure** (keystone) | 5→7 | P0 | 1 | 2026-06-17 | 🟡 thin |
 | 10 | Investors & Capital Raising | 6→8 | P0 | 3 | 2026-06-02 | 🟢 ok |
 | 11 | Cost Model v6 | — | P0 | 4 | 2026-06-05 | 🟢 ok |
 | 12 | Investor Alignment Tool | — | P0 | 0 | — | 🔴 none |
@@ -25,15 +25,14 @@ None. Every qbeAreas id on an artifact resolves to a real diagnostic area.
 `*` = SIH priority gap. Coverage: 🟢 ok · 🟡 thin (P0 with <2 artifacts) · 🟠 stale (freshest >45d) · 🔴 none.
 
 ## Coverage gaps (P0 / keystone, build these)
-- **09 Legal Structure** (KEYSTONE) — no artifacts cover this area. Gap: Entity/ownership decision is OPEN — the keystone. It is simultaneously the CASE knockout blocker, V4 Area 9, the Supply Nation 51% cert (1-July deadline), and the precondition for FAC/IBA capital. One approved entity-wording block + a decided transition path needed.
 - **12 Investor Alignment Tool** — no artifacts cover this area. Gap: CASE Tab-1 self-documentation started, but GHL reauth + QBE rules + written commitments block a populated alignment register; CASE knockout #2 (Legal Structure) is the failing criterion. Notion-added area, no V4 score.
 
 ## Build queue (ranked — build top-down)
 
 Deterministic ranking: P0 (+100), keystone (+50), SIH priority-gap (+20), maturity score-gap (×5), thin coverage (≤2 artifacts), staleness, and catalytic-blocker rank.
 
-1. **09 Legal Structure** — P0, keystone, score 5→7, 0 artifacts, catalytic blocker #1.
-   - Entity/ownership decision is OPEN — the keystone. It is simultaneously the CASE knockout blocker, V4 Area 9, the Supply Nation 51% cert (1-July deadline), and the precondition for FAC/IBA capital. One approved entity-wording block + a decided transition path needed.
+1. **09 Legal Structure** — P0, keystone, score 5→7, 1 artifact, catalytic blocker #1.
+   - Entity/ownership decision is OPEN — the keystone, and it remains a human/legal action, not a documentation gap. The entity-wording block now EXISTS and is registered to this area (wiki/outputs/2026-06-13-goods-strategic-pack/04-entity-wording-block.md: one reusable paragraph + web/investor/grant/contract variants, all entity numbers reconciled to canon — sole trader ABN 21 591 780 066, A Curious Tractor Pty Ltd ACN 697 347 676, Butterfly Movement DGR home not-live-until-FY2026-27, A Kind Tractor dormant), but it is a DRAFT for MinterEllison review, not an APPROVED block. Six legal questions stay open: go-forward entity form beneath A Curious Tractor; community-production entity form; contracting party / seller-of-record during migration; the Supply Nation 51% First Nations-ownership precondition (IPP threshold tightens ~1 July 2026); the mission lock (none today); and DGR timing / related-party boundary. It is simultaneously the CASE knockout blocker, V4 Area 9, the Supply Nation 51% cert, and the precondition for FAC/IBA capital. Needs: legal sign-off on the wording block + a decided transition path + a decided 51% ownership structure.
 2. **03 Business Model Clarity** — P0, SIH priority gap, score 4→7, 4 artifacts, catalytic blocker #2.
    - Buyer/demand pipeline unverified (GHL reauth); demand cannot be quoted as committed until reconciled to Xero. Joint-lowest V4 score.
 3. **04 Financial Management** — P0, SIH priority gap, score 4→7, 4 artifacts, catalytic blocker #3.
@@ -67,7 +66,7 @@ Deterministic ranking: P0 (+100), keystone (+50), SIH priority-gap (+20), maturi
 - **06 Process & Technology**: Asset register + bed records (/bed)
 - **07 Governance, Data & Reporting**: Ledger-story pipeline; Storyteller triage; Scored risk register (14 risks); Governance & data framework
 - **08 People & Enterprise**: 12-month role map & founder-dependency plan
-- **09 Legal Structure**: _none_
+- **09 Legal Structure**: Entity wording block (legal structure)
 - **10 Investors & Capital Raising**: 19-slide deck blueprint; Catalytic pitch bundle (7 docs); Pencil designed deck
 - **11 Cost Model v6**: Cost Lab (/sites/cost-lab); Investor cockpit (/investors); Cost model v6 engine; Best-case scenario (seed fleet of 3)
 - **12 Investor Alignment Tool**: _none_

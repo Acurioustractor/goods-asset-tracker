@@ -336,6 +336,20 @@
       "qbeAreas": ["08"],
       "citesCanon": ["signed-lois", "entity-trading-goforward"],
       "lastVerified": "2026-06-17"
+    },
+    {
+      "id": "entity-wording-block",
+      "title": "Entity wording block (legal structure)",
+      "pillar": "governance",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-06-13-goods-strategic-pack/04-entity-wording-block.md",
+      "status": "written",
+      "claimLabels": ["verified", "target", "future"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic/legal",
+      "qbeAreas": ["09"],
+      "citesCanon": ["entity-operating-now", "entity-trading-goforward", "entity-dgr-home", "entity-dormant"],
+      "lastVerified": "2026-06-17"
     }
   ]
 }
