@@ -31,8 +31,7 @@ export async function GET() {
         basket: a.basketBedsDeployed,
       },
       washers: {
-        working: a.washersWorking,
-        deployed: a.washersDeployed,
+        inCommunity: a.washersInCommunity,
       },
       communitiesServed: a.communitiesServed,
       plasticDivertedKg: a.plasticKg,
@@ -40,7 +39,7 @@ export async function GET() {
       livesImpactedModelled: Math.round(a.bedsDeployed * 2.5),
       notes: {
         plastic: 'Stretch beds only (recycled HDPE). Basket beds are not a plastic-diversion product.',
-        washers: '14 telemetry-working of 28 physically deployed.',
+        washers: '16 washing machines in community (curated, Ben-confirmed; supersedes the raw register row count).',
         basis: "status='deployed', summed by quantity; excludes pipeline/requested placeholders.",
       },
     };

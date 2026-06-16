@@ -61,16 +61,10 @@ export const CANON: CanonFact[] = [
     definition: 'Current flagship beds deployed. Drives plastic-kg.',
   },
   {
-    id: 'washers-deployed', label: 'Washing machines deployed', value: CANONICAL_ASSETS.washersDeployed, unit: 'units',
+    id: 'washers-in-community', label: 'Washing machines in community', value: CANONICAL_ASSETS.washersInCommunity, unit: 'units',
     domain: 'assets', claimLabel: 'verified', dataClass: 'green',
-    source: 'v2 Supabase `assets` via asset-canonical.ts', check: 'auto', asAt: '2026-05-30', owner: 'Ben',
-    definition: 'Physically-deployed Pakkimjalki Kari units.',
-  },
-  {
-    id: 'washers-working', label: 'Washing machines working', value: CANONICAL_ASSETS.washersWorking, unit: 'units',
-    domain: 'assets', claimLabel: 'verified', dataClass: 'green',
-    source: 'Washer telemetry (constant, not yet auto-derived from the register)', check: 'manual', asAt: '2026-06-06', owner: 'Ben',
-    definition: '14 working is a telemetry call, not derivable from the register. Re-confirm from pings.',
+    source: 'Curated in-community count (Ben-confirmed 2026-06-11); supersedes the register deployed-row count pending a status cleanup', check: 'manual', asAt: '2026-06-11', owner: 'Ben',
+    definition: '16 Pakkimjalki Kari washing machines in community. Single public figure; not auto-derived from the register.',
   },
   {
     id: 'communities-served', label: 'Communities served', value: CANONICAL_ASSETS.communitiesServed, unit: 'communities',
