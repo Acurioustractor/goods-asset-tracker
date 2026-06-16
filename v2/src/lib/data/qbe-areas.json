@@ -61,7 +61,7 @@
       "priority": "P1",
       "band": "strength",
       "sihPriorityGap": false,
-      "gap": "GHL reauth; the Drive evidence pack has never been access-tested from an external account."
+      "gap": "GHL/HighLevel reauth RESOLVED (API verified 10 Jun 2026; CivicGraph syncs the 3 Goods pipelines every 12h + hosts the commitment register). Remaining: the Drive evidence pack has never been external-account access-tested (non-Goods account), and the transferable production SOP (shred/press/cut/assemble parameters) is still to be written."
     },
     {
       "id": "07",

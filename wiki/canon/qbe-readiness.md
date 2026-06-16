@@ -53,7 +53,7 @@ Deterministic ranking: P0 (+100), keystone (+50), SIH priority-gap (+20), maturi
 10. **08 People & Enterprise** — score 6→7, 0 artifacts.
    - Two founders are the only workers — the biggest capacity constraint; priority hires (GM + Business Development) and a 12-month role map are pending.
 11. **06 Process & Technology** — score 7→8, 1 artifact.
-   - GHL reauth; the Drive evidence pack has never been access-tested from an external account.
+   - GHL/HighLevel reauth RESOLVED (API verified 10 Jun 2026; CivicGraph syncs the 3 Goods pipelines every 12h + hosts the commitment register). Remaining: the Drive evidence pack has never been external-account access-tested (non-Goods account), and the transferable production SOP (shred/press/cut/assemble parameters) is still to be written.
 12. **01 Vision & Ambition** — score 8→9, 5 artifacts.
    - Founder/legal must confirm the entity + community-ownership language; do not claim the ownership transfer is already complete.
 
