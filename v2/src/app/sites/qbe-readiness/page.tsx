@@ -302,7 +302,7 @@ const ROWS: Row[] = [
     name: 'Cost Model',
     label: 'P0',
     priority: true,
-    line: 'What does in-sourcing plastic do to the bed cost? Buy-kit AU$685, factory AU$426, community AU$271 (modelled).',
+    line: 'What does in-sourcing plastic do to the bed cost? Buy-kit AU$685, factory AU$426, community AU$421 (modelled).',
   },
   {
     number: 12,
