@@ -15,7 +15,7 @@ None. Every qbeAreas id on an artifact resolves to a real diagnostic area.
 | 04 | Financial Management * | 4→7 | P0 | 4 | 2026-06-05 | 🟢 ok |
 | 05 | Strategic Planning & Risk * | 5→7 | P0 | 2 | 2026-06-13 | 🟢 ok |
 | 06 | Process & Technology | 7→8 | P1 | 1 | 2026-06-06 | 🟢 ok |
-| 07 | Governance, Data & Reporting * | 5→8 | P0 | 3 | 2026-06-13 | 🟢 ok |
+| 07 | Governance, Data & Reporting * | 5→8 | P0 | 4 | 2026-06-16 | 🟢 ok |
 | 08 | People & Enterprise | 6→7 | P1 | 0 | — | 🔴 none |
 | 09 | **Legal Structure** (keystone) | 5→7 | P0 | 0 | — | 🔴 none |
 | 10 | Investors & Capital Raising | 6→8 | P0 | 3 | 2026-06-02 | 🟢 ok |
@@ -38,8 +38,8 @@ Deterministic ranking: P0 (+100), keystone (+50), SIH priority-gap (+20), maturi
    - Buyer/demand pipeline unverified (GHL reauth); demand cannot be quoted as committed until reconciled to Xero. Joint-lowest V4 score.
 3. **04 Financial Management** — P0, SIH priority gap, score 4→7, 4 artifacts, catalytic blocker #3.
    - Three revenue cuts still unreconciled (standing P0 — needs one accountant-reviewed Goods-only figure); founder time uncosted at fair-market replacement rate; no cashflow-buffer policy; bookkeeper AP-matching pending. Joint-lowest V4 score.
-4. **07 Governance, Data & Reporting** — P0, SIH priority gap, score 5→8, 3 artifacts, catalytic blocker #4.
-   - New entity has no formal governance/board structure (advisory != board); named approval/sign-off path for the reviewer pack not set; reports not audited / no consolidated annual cycle; named commercial/scale-up skills gap.
+4. **07 Governance, Data & Reporting** — P0, SIH priority gap, score 5→8, 4 artifacts, catalytic blocker #4.
+   - Governance framework now DOCUMENTED and registered to this area (wiki/outputs/2026-06-13-goods-strategic-pack/18-governance-framework.md: an 11-member monthly advisory committee and a real OCAP data-sovereignty practice are named strengths; the move to a fiduciary board is framed as a plan-with-a-trigger). The gaps are unchanged human actions, not missing documents: 0 independent directors recruited and no fiduciary board (advisory != board; SEFA's ~AU$300K working-capital line is gated on an independent-majority board); reports remain unaudited management data with no consolidated annual cycle (gated on the accountant-reviewed Goods-only figure); the named approval/sign-off path for the reviewer pack is documented but not yet formally adopted; named commercial/scale-up skills gap on the committee. R7 in the risk register profiles this gap but does not close it.
 5. **12 Investor Alignment Tool** — P0, 0 artifacts.
    - CASE Tab-1 self-documentation started, but GHL reauth + QBE rules + written commitments block a populated alignment register; CASE knockout #2 (Legal Structure) is the failing criterion. Notion-added area, no V4 score.
 6. **02 Social Objective & Impact / MEL** — P0, SIH priority gap, score 5→8, 11 artifacts, catalytic blocker #5.
@@ -65,7 +65,7 @@ Deterministic ranking: P0 (+100), keystone (+50), SIH priority-gap (+20), maturi
 - **04 Financial Management**: Cost Lab (/sites/cost-lab); Investor cockpit (/investors); Cost Lab playbook; Canonical numbers sheet
 - **05 Strategic Planning & Risk**: Best-case scenario (seed fleet of 3); Scored risk register (14 risks)
 - **06 Process & Technology**: Asset register + bed records (/bed)
-- **07 Governance, Data & Reporting**: Ledger-story pipeline; Storyteller triage; Scored risk register (14 risks)
+- **07 Governance, Data & Reporting**: Ledger-story pipeline; Storyteller triage; Scored risk register (14 risks); Governance & data framework
 - **08 People & Enterprise**: _none_
 - **09 Legal Structure**: _none_
 - **10 Investors & Capital Raising**: 19-slide deck blueprint; Catalytic pitch bundle (7 docs); Pencil designed deck
