@@ -18,6 +18,7 @@ export function NewsletterSignup({
   defaultEmail = '',
 }: NewsletterSignupProps) {
   const [email, setEmail] = useState(defaultEmail);
+  const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
 
@@ -29,7 +30,7 @@ export function NewsletterSignup({
       const response = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, tag }),
+        body: JSON.stringify({ email, tag, consent }),
       });
 
       const data = await response.json();
@@ -65,6 +66,16 @@ export function NewsletterSignup({
         placeholder="your@email.com"
         className="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
       />
+      <label className="flex items-start gap-2 text-xs text-muted-foreground">
+        <input
+          type="checkbox"
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+          required
+          className="mt-0.5 h-4 w-4 shrink-0 rounded border-input accent-primary"
+        />
+        <span>Yes, email me occasional Goods updates. I can unsubscribe anytime.</span>
+      </label>
       <Button type="submit" className="w-full" disabled={status === 'submitting'}>
         {status === 'submitting' ? 'Submitting...' : buttonText}
       </Button>
