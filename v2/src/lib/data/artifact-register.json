@@ -322,6 +322,20 @@
       "qbeAreas": ["07"],
       "citesCanon": ["entity-operating-now", "entity-trading-goforward", "entity-dgr-home", "signed-lois"],
       "lastVerified": "2026-06-16"
+    },
+    {
+      "id": "role-map",
+      "title": "12-month role map & founder-dependency plan",
+      "pillar": "governance",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-06-13-goods-strategic-pack/07-role-map.md",
+      "status": "written",
+      "claimLabels": ["verified", "modelled", "target", "future"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": ["08"],
+      "citesCanon": ["signed-lois", "entity-trading-goforward"],
+      "lastVerified": "2026-06-17"
     }
   ]
 }

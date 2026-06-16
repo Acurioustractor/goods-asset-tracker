@@ -16,7 +16,7 @@ None. Every qbeAreas id on an artifact resolves to a real diagnostic area.
 | 05 | Strategic Planning & Risk * | 5→7 | P0 | 2 | 2026-06-13 | 🟢 ok |
 | 06 | Process & Technology | 7→8 | P1 | 1 | 2026-06-06 | 🟢 ok |
 | 07 | Governance, Data & Reporting * | 5→8 | P0 | 4 | 2026-06-16 | 🟢 ok |
-| 08 | People & Enterprise | 6→7 | P1 | 0 | — | 🔴 none |
+| 08 | People & Enterprise | 6→7 | P1 | 1 | 2026-06-17 | 🟢 ok |
 | 09 | **Legal Structure** (keystone) | 5→7 | P0 | 0 | — | 🔴 none |
 | 10 | Investors & Capital Raising | 6→8 | P0 | 3 | 2026-06-02 | 🟢 ok |
 | 11 | Cost Model v6 | — | P0 | 4 | 2026-06-05 | 🟢 ok |
@@ -50,10 +50,10 @@ Deterministic ranking: P0 (+100), keystone (+50), SIH priority-gap (+20), maturi
    - Scored risk register now EXISTS (14 risks, likelihood x consequence, named owners, per-line QBE-shareable/Internal-only split, do-no-harm frame, monthly review cadence; R9 explicitly profiles environmental risk) at wiki/articles/governance/risk-register.md, now tagged to this area in the artifact register. Remaining: it is a founder-review DRAFT (not board-adopted or audited), the monthly re-score is not yet running as a discipline, and environmental end-of-life/offcut controls are defined but not operational.
 9. **11 Cost Model v6** — P0, 4 artifacts.
    - Verified BOM + $110,046 press capex are solid, but facility/site capex is modelled, not vendor-quoted (112K-222K factory gross; 100K-150K/site on-Country). Needs 3 vendor quotes — the SIH-Advisory deliverable. Notion-added area, no V4 score.
-10. **08 People & Enterprise** — score 6→7, 0 artifacts.
-   - Two founders are the only workers — the biggest capacity constraint; priority hires (GM + Business Development) and a 12-month role map are pending.
-11. **06 Process & Technology** — score 7→8, 1 artifact.
+10. **06 Process & Technology** — score 7→8, 1 artifact.
    - GHL/HighLevel reauth RESOLVED (API verified 10 Jun 2026; CivicGraph syncs the 3 Goods pipelines every 12h + hosts the commitment register). Remaining: the Drive evidence pack has never been external-account access-tested (non-Goods account), and the transferable production SOP (shred/press/cut/assemble parameters) is still to be written.
+11. **08 People & Enterprise** — score 6→7, 1 artifact.
+   - 12-month role map now DOCUMENTED and registered to this area (wiki/outputs/2026-06-13-goods-strategic-pack/07-role-map.md: load-bearing capacity is 2 FTE founders; phased hires GM-then-Business-Development funded from the ~AU$200K hires line, each trigger-gated not calendar-gated; founder time costed at the locked $560/day in the cost model). The gap is the unchanged human action: 0 hires made — two founders remain the only workers (the #1 'already happening' risk), and founder labour is modelled but not yet drawn as a fixed Goods salary. Phase-1 hiring must begin as the interim scaffolding (QBE skilled volunteering + 6-session PIN mentoring) tapers ~August.
 12. **01 Vision & Ambition** — score 8→9, 5 artifacts.
    - Founder/legal must confirm the entity + community-ownership language; do not claim the ownership transfer is already complete.
 
@@ -66,7 +66,7 @@ Deterministic ranking: P0 (+100), keystone (+50), SIH priority-gap (+20), maturi
 - **05 Strategic Planning & Risk**: Best-case scenario (seed fleet of 3); Scored risk register (14 risks)
 - **06 Process & Technology**: Asset register + bed records (/bed)
 - **07 Governance, Data & Reporting**: Ledger-story pipeline; Storyteller triage; Scored risk register (14 risks); Governance & data framework
-- **08 People & Enterprise**: _none_
+- **08 People & Enterprise**: 12-month role map & founder-dependency plan
 - **09 Legal Structure**: _none_
 - **10 Investors & Capital Raising**: 19-slide deck blueprint; Catalytic pitch bundle (7 docs); Pencil designed deck
 - **11 Cost Model v6**: Cost Lab (/sites/cost-lab); Investor cockpit (/investors); Cost model v6 engine; Best-case scenario (seed fleet of 3)
