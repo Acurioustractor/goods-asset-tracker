@@ -18,7 +18,7 @@ Everything else (impact one-pager, quarterly one-pager, partner update) is suppo
 ## Pre-send blockers (must clear first)
 
 1. ~~Washing-machine number inconsistent across surfaces.~~ **RESOLVED 2026-06-11.** Ben confirmed **16 in community** is the single figure; the deployed/working split is retired. Set as a curated canonical value (`washersInCommunity: 16`) across every surface (canon, fetcher, dashboard, grant docs, about, API, Snow config, scripts). Build + drift CI green; the drift checker now intentionally skips washers (the register still holds 28 deployed rows pending a status cleanup, so 16 is curated, not row-derived). NOTE: the live dashboard shows 16 only after these local changes are committed and deployed.
-2. **Re-export the impact one-pager.** The exported `2026-06-10-snow-impact-one-pager.pdf/png` predates this session's edits (the "where your support went" allocation bar + the 16 washers). Re-export from the Pencil deck once #1 is settled.
+2. ~~Re-export the impact one-pager.~~ **RESOLVED 2026-06-16.** Re-exported from the Pencil deck as `2026-06-16-snow-impact-one-pager.pdf/png` with the 16 washers (and the "where your support went" allocation bar); the stale `2026-06-10` export has been removed.
 3. **Quarterly one-pager not exported.** It lives in the Pencil deck (frame "Snow Quarterly One-Pager") but has no PDF/PNG yet. Export if we want it in the pack.
 4. **`2026-Q2.md` is stale — do not send.** It still shows "$275,000 paid / $120,000 to be paid", "25 kg per bed", and a $395K commitment view that is now reconciled to fully-drawn / $0 outstanding. Superseded by the figure reconciliation. (This is also where the $120K in the reference infographic came from.)
 5. **Partner update has open placeholders.** `2026-06-09-snow-partner-update.md` still has `[CONFIRM]` tags (Katrina / Alice Springs jobs specifics, pouch status, filming status). Close those before it goes out.
@@ -31,7 +31,7 @@ Everything else (impact one-pager, quarterly one-pager, partner update) is suppo
 |---|---|---|---|---|
 | Partner dashboard | Live web (gated) | `/partners/snow/dashboard`, pw `snow2026` | Current, on canon | **Yes — primary** |
 | Branded partnership one-pager | PNG + HTML | `2026-06-11-snow-partnership-one-pager.*` | New, current (16-washer caveat) | **Yes — primary** |
-| Impact one-pager | PDF + PNG (Pencil) | `2026-06-10-snow-impact-one-pager.*` | Needs re-export (blocker #2) | After re-export |
+| Impact one-pager | PDF + PNG (Pencil) | `2026-06-16-snow-impact-one-pager.*` | Re-exported, current (16 washers) | **Yes** |
 | Quarterly one-pager | Pencil deck frame | deck `goods-theory-of-change-v2.pen` | Not exported (blocker #3) | Optional, after export |
 | Partner update (June) | Markdown | `2026-06-09-snow-partner-update.md` | Draft, has `[CONFIRM]`s | After placeholders closed |
 | Figure reconciliation | Markdown | `2026-06-09-snow-figure-reconciliation.md` | Current (the $493,130 basis) | Internal / on request |
