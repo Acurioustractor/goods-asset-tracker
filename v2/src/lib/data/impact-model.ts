@@ -110,7 +110,7 @@ export const REVENUE_SEGMENTS: RevenueSegment[] = [
     id: 'donor-institutional',
     name: 'Donor-Funded Institutional',
     description: 'Foundations / philanthropic buyers funding beds for community distribution at scale',
-    currentEvidence: '109 beds to Centrecorp — institutional buyer at scale (income_type=grant, not commercial sale)',
+    currentEvidence: '107 beds to Centrecorp — institutional buyer at scale (income_type=grant, not commercial sale)',
     projectedShare: 44,
   },
   {
@@ -600,7 +600,7 @@ export const DEFAULT_OPPORTUNITIES: OptimizationOpportunity[] = [
   {
     id: 'b2b-pipeline',
     title: 'B2B / institutional channel has strongest commercial evidence',
-    description: '109 beds granted to Centrecorp (an institutional buyer, income_type=grant) demonstrates demand at scale. Emergency services are a natural fit: NT already calls them "cyclone beds." Secure letters of intent from potential B2B/institutional clients.',
+    description: '107 beds granted to Centrecorp (an institutional buyer, income_type=grant) demonstrates demand at scale. Emergency services are a natural fit: NT already calls them "cyclone beds." Secure letters of intent from potential B2B/institutional clients.',
     dimension: 'economic',
     potential: 'high',
     dataSource: 'Revenue segments + meeting notes',
