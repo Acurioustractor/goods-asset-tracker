@@ -1820,7 +1820,7 @@
                   "id": "TfJ0t",
                   "name": "N",
                   "fill": "$gold",
-                  "content": "28",
+                  "content": "16",
                   "fontFamily": "$display",
                   "fontSize": 66,
                   "fontWeight": "600"
@@ -4352,7 +4352,7 @@
                   "id": "c2kKR",
                   "name": "L",
                   "fill": "$teal-ink",
-                  "content": "14 / 28",
+                  "content": "16",
                   "fontFamily": "$display",
                   "fontSize": 42,
                   "fontWeight": "600"
@@ -4364,7 +4364,7 @@
                   "fill": "$ink",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "washing machines live",
+                  "content": "washing machines in community",
                   "lineHeight": 1.45,
                   "fontFamily": "$body",
                   "fontSize": 19,
@@ -6016,6 +6016,1309 @@
           "textGrowth": "fixed-width",
           "width": "fill_container",
           "content": "Prepared for The Snow Foundation   ·   The quarter to June 2026   ·   Counted from the asset register, Xero-reconciled   ·   Live dashboard: goodsoncountry.com/partners/snow/dashboard",
+          "lineHeight": 1.4,
+          "fontFamily": "$body",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "JZAso",
+      "x": -1071,
+      "y": 3660,
+      "name": "QBE Readiness One-Pager",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "$cream",
+      "layout": "vertical",
+      "gap": 18,
+      "padding": [
+        64,
+        120
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "FKTLf",
+          "name": "Head",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "frame",
+              "id": "S8g7y1",
+              "name": "Tab",
+              "fill": "$terracotta",
+              "cornerRadius": 7,
+              "padding": [
+                9,
+                17
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "B3E7c",
+                  "name": "TabLabel",
+                  "fill": "$cream",
+                  "content": "QBE READINESS · 2026",
+                  "fontFamily": "$body",
+                  "fontSize": 16,
+                  "fontWeight": "700",
+                  "letterSpacing": 2
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "A3LCFD",
+              "name": "H",
+              "fill": "$ink",
+              "content": "The homework is finished. Now the money.",
+              "fontFamily": "$display",
+              "fontSize": 46,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "onOvC",
+          "name": "Goal",
+          "width": "fill_container",
+          "fill": "$terracotta-tint",
+          "cornerRadius": 16,
+          "layout": "vertical",
+          "gap": 10,
+          "padding": [
+            24,
+            32
+          ],
+          "children": [
+            {
+              "type": "icon",
+              "id": "hLneb",
+              "x": 28,
+              "y": 30,
+              "name": "Icon",
+              "enabled": false,
+              "width": 42,
+              "height": 42,
+              "icon": "heart-pulse",
+              "library": "lucide",
+              "fill": "$terracotta"
+            },
+            {
+              "type": "text",
+              "id": "qtNzM",
+              "name": "L",
+              "fill": "$terracotta-ink",
+              "content": "THE GOAL",
+              "fontFamily": "$display",
+              "fontSize": 18,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "m97pd2",
+              "name": "T",
+              "fill": "$ink",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Close the first ~$400K of signed, match-eligible capital by 31 August 2026. QBE then matches up to $400K, but signed external money comes first. Today: $0 signed.",
+              "lineHeight": 1.45,
+              "fontFamily": "$body",
+              "fontSize": 19,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "eMND0",
+          "name": "Metrics",
+          "width": "fill_container",
+          "gap": 26,
+          "children": [
+            {
+              "type": "frame",
+              "id": "fL2iR",
+              "name": "Card",
+              "width": "fill_container",
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                22,
+                26
+              ],
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "Qt2vN",
+                  "x": 28,
+                  "y": 30,
+                  "name": "Icon",
+                  "enabled": false,
+                  "width": 42,
+                  "height": 42,
+                  "icon": "heart-pulse",
+                  "library": "lucide",
+                  "fill": "$terracotta"
+                },
+                {
+                  "type": "text",
+                  "id": "zZe3A",
+                  "name": "L",
+                  "fill": "$terracotta-ink",
+                  "content": "496",
+                  "fontFamily": "$display",
+                  "fontSize": 42,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "yiNGr",
+                  "name": "T",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "beds in community",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$body",
+                  "fontSize": 19,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "iObdI",
+              "name": "Card",
+              "width": "fill_container",
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                22,
+                26
+              ],
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "T6vCY",
+                  "x": 28,
+                  "y": 30,
+                  "name": "Icon",
+                  "enabled": false,
+                  "width": 42,
+                  "height": 42,
+                  "icon": "briefcase",
+                  "library": "lucide",
+                  "fill": "$sage"
+                },
+                {
+                  "type": "text",
+                  "id": "FYXzB",
+                  "name": "L",
+                  "fill": "$sage-ink",
+                  "content": "9",
+                  "fontFamily": "$display",
+                  "fontSize": 42,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "KB8bF",
+                  "name": "T",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "remote communities",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$body",
+                  "fontSize": 19,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ApcNp",
+              "name": "Card",
+              "width": "fill_container",
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                22,
+                26
+              ],
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "OAhLf",
+                  "x": 28,
+                  "y": 30,
+                  "name": "Icon",
+                  "enabled": false,
+                  "width": 42,
+                  "height": 42,
+                  "icon": "recycle",
+                  "library": "lucide",
+                  "fill": "$teal"
+                },
+                {
+                  "type": "text",
+                  "id": "WIxpb",
+                  "name": "L",
+                  "fill": "$teal-ink",
+                  "content": "16",
+                  "fontFamily": "$display",
+                  "fontSize": 42,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "kzj3J",
+                  "name": "T",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "washing machines in community",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$body",
+                  "fontSize": 19,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "GHJkH",
+              "name": "Card",
+              "width": "fill_container",
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                22,
+                26
+              ],
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "YX7tz",
+                  "x": 28,
+                  "y": 30,
+                  "name": "Icon",
+                  "enabled": false,
+                  "width": 42,
+                  "height": 42,
+                  "icon": "key-round",
+                  "library": "lucide",
+                  "fill": "$gold"
+                },
+                {
+                  "type": "text",
+                  "id": "MlDNr",
+                  "name": "L",
+                  "fill": "$gold-ink",
+                  "content": "$741,111",
+                  "fontFamily": "$display",
+                  "fontSize": 42,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "Rwsjj",
+                  "name": "T",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "secured to date",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$body",
+                  "fontSize": 19,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "l5aBJ",
+          "name": "Five Proofs",
+          "width": "fill_container",
+          "gap": 14,
+          "children": [
+            {
+              "type": "frame",
+              "id": "pCtLm",
+              "name": "Card",
+              "width": "fill_container",
+              "height": 182,
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 22,
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "isxsf",
+                  "name": "Icon",
+                  "width": 30,
+                  "height": 30,
+                  "icon": "badge-dollar-sign",
+                  "library": "lucide",
+                  "fill": "$terracotta"
+                },
+                {
+                  "type": "text",
+                  "id": "OebFz",
+                  "name": "L",
+                  "fill": "$ink",
+                  "content": "1 · The money is real",
+                  "fontFamily": "$display",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "Sct7k",
+                  "name": "T",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "One signed commitment, plus an accountant-signed, Goods-only figure.",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$body",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "O919pH",
+              "name": "Card",
+              "width": "fill_container",
+              "height": 182,
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 22,
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "gG7Cs",
+                  "name": "Icon",
+                  "width": 30,
+                  "height": 30,
+                  "icon": "landmark",
+                  "library": "lucide",
+                  "fill": "$sage"
+                },
+                {
+                  "type": "text",
+                  "id": "Gl9u1",
+                  "name": "L",
+                  "fill": "$ink",
+                  "content": "2 · The legal vehicle",
+                  "fontFamily": "$display",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "P76zOY",
+                  "name": "T",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "One approved entity-wording block. The keystone.",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$body",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "j2qkdf",
+              "name": "Card",
+              "width": "fill_container",
+              "height": 182,
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 22,
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "OC58X",
+                  "name": "Icon",
+                  "width": 30,
+                  "height": 30,
+                  "icon": "trending-down",
+                  "library": "lucide",
+                  "fill": "$teal"
+                },
+                {
+                  "type": "text",
+                  "id": "hIFS2",
+                  "name": "L",
+                  "fill": "$ink",
+                  "content": "3 · Cost-down measured",
+                  "fontFamily": "$display",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "o3F93",
+                  "name": "T",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "The 50-bed in-source run proves the $421 in-house bed cost.",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$body",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "u1wtx",
+              "name": "Card",
+              "width": "fill_container",
+              "height": 182,
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 22,
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "yrZtp",
+                  "name": "Icon",
+                  "width": 30,
+                  "height": 30,
+                  "icon": "heart-handshake",
+                  "library": "lucide",
+                  "fill": "$gold"
+                },
+                {
+                  "type": "text",
+                  "id": "rO9Bn",
+                  "name": "L",
+                  "fill": "$ink",
+                  "content": "4 · Impact and consent",
+                  "fontFamily": "$display",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "z3DmS",
+                  "name": "T",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "A measurement-method one-pager and a consent-cleared story list.",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$body",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "RhR69",
+              "name": "Card",
+              "width": "fill_container",
+              "height": 182,
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 22,
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "r8cbh",
+                  "name": "Icon",
+                  "width": 30,
+                  "height": 30,
+                  "icon": "users",
+                  "library": "lucide",
+                  "fill": "$terracotta"
+                },
+                {
+                  "type": "text",
+                  "id": "GbvUK",
+                  "name": "L",
+                  "fill": "$ink",
+                  "content": "5 · Governance and people",
+                  "fontFamily": "$display",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "dHOPu",
+                  "name": "T",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Advisory to an independent-majority board, and a 12-month role map.",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$body",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Z4I5a",
+          "name": "Timeline",
+          "width": "fill_container",
+          "gap": 26,
+          "children": [
+            {
+              "type": "frame",
+              "id": "b0Wc9",
+              "name": "Card",
+              "width": "fill_container",
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                22,
+                26
+              ],
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "HSpzo",
+                  "x": 28,
+                  "y": 30,
+                  "name": "Icon",
+                  "enabled": false,
+                  "width": 42,
+                  "height": 42,
+                  "icon": "heart-pulse",
+                  "library": "lucide",
+                  "fill": "$terracotta"
+                },
+                {
+                  "type": "text",
+                  "id": "oX32r",
+                  "name": "L",
+                  "fill": "$terracotta-ink",
+                  "content": "1 Jul",
+                  "fontFamily": "$display",
+                  "fontSize": 26,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "POr9j",
+                  "name": "T",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Supply Nation 51% gate",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$body",
+                  "fontSize": 19,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "QsdoW",
+              "name": "Card",
+              "width": "fill_container",
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                22,
+                26
+              ],
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "gHOii",
+                  "x": 28,
+                  "y": 30,
+                  "name": "Icon",
+                  "enabled": false,
+                  "width": 42,
+                  "height": 42,
+                  "icon": "briefcase",
+                  "library": "lucide",
+                  "fill": "$sage"
+                },
+                {
+                  "type": "text",
+                  "id": "fPfd7",
+                  "name": "L",
+                  "fill": "$sage-ink",
+                  "content": "31 Aug",
+                  "fontFamily": "$display",
+                  "fontSize": 26,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "yDwOP",
+                  "name": "T",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Close ~$400K signed",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$body",
+                  "fontSize": 19,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "uUp53",
+              "name": "Card",
+              "width": "fill_container",
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                22,
+                26
+              ],
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "Si8Rb",
+                  "x": 28,
+                  "y": 30,
+                  "name": "Icon",
+                  "enabled": false,
+                  "width": 42,
+                  "height": 42,
+                  "icon": "recycle",
+                  "library": "lucide",
+                  "fill": "$teal"
+                },
+                {
+                  "type": "text",
+                  "id": "Z8zZza",
+                  "name": "L",
+                  "fill": "$teal-ink",
+                  "content": "Sep",
+                  "fontFamily": "$display",
+                  "fontSize": 26,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "EOSRa",
+                  "name": "T",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "QBE Stage 2 submitted",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$body",
+                  "fontSize": 19,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "mBzhw",
+              "name": "Card",
+              "width": "fill_container",
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                22,
+                26
+              ],
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "J3Rej",
+                  "x": 28,
+                  "y": 30,
+                  "name": "Icon",
+                  "enabled": false,
+                  "width": 42,
+                  "height": 42,
+                  "icon": "key-round",
+                  "library": "lucide",
+                  "fill": "$gold"
+                },
+                {
+                  "type": "text",
+                  "id": "tYr8q",
+                  "name": "L",
+                  "fill": "$gold-ink",
+                  "content": "Nov",
+                  "fontFamily": "$display",
+                  "fontSize": 26,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "M20xu6",
+                  "name": "T",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Outcome decided",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$body",
+                  "fontSize": 19,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "BGOAt",
+          "name": "Scoreboard head",
+          "fill": "$ink-muted",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "THE 12 READINESS AREAS      ·      now → target      ·      ★ priority      ·      ◆ keystone",
+          "lineHeight": 1.4,
+          "fontFamily": "$body",
+          "fontSize": 14,
+          "fontWeight": "700",
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "id": "YjbAd",
+          "name": "Scoreboard A",
+          "fill": "$ink",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "01 Vision 8→9       02 Impact 5→8 ★       03 Business Model 4→7 ★       04 Financial 4→7 ★       05 Strategy & Risk 5→7 ★       06 Process & Tech 7→8",
+          "lineHeight": 1.6,
+          "fontFamily": "$body",
+          "fontSize": 16,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "MD6ge",
+          "name": "Scoreboard B",
+          "fill": "$ink",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "07 Governance 5→8 ★       08 People & Org 6→7       09 Legal Structure 5→7 ◆       10 Investors & Capital 6→8       11 Cost Model P0       12 Investor Alignment populated",
+          "lineHeight": 1.6,
+          "fontFamily": "$body",
+          "fontSize": 16,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "SgIw8",
+          "name": "Footer",
+          "fill": "$ink-muted",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "Goods on Country   ·   QBE / Catalysing Impact (Social Impact Hub + QBE Foundation)   ·   Counted from the asset register and Xero-reconciled   ·   $741,111 is an unaudited Xero workpaper, not a Goods-only carve-out   ·   goodsoncountry.com/sites/qbe-readiness",
+          "lineHeight": 1.4,
+          "fontFamily": "$body",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "unN8M",
+      "x": -1071,
+      "y": 4900,
+      "name": "Vision One-Pager",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "$cream",
+      "layout": "vertical",
+      "gap": 30,
+      "padding": [
+        96,
+        120
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "H9inF",
+          "name": "Head",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "children": [
+            {
+              "type": "text",
+              "id": "SifVp",
+              "name": "Eyebrow",
+              "fill": "$terracotta",
+              "content": "VISION & AMBITION   ·   QBE AREA 01",
+              "fontFamily": "$body",
+              "fontSize": 15,
+              "fontWeight": "700",
+              "letterSpacing": 2
+            },
+            {
+              "type": "text",
+              "id": "ed6bt",
+              "name": "Title",
+              "fill": "$ink",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "The making belongs on Country.",
+              "fontFamily": "Newsreader",
+              "fontSize": 60,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "u6DCLx",
+              "name": "Subtitle",
+              "fill": "$ink-muted",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Goods presses recycled-plastic beds on Country and builds the production so the community owns it. Health hardware, local jobs, and assets that stay home.",
+              "lineHeight": 1.45,
+              "fontFamily": "$body",
+              "fontSize": 21,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "iSrqY",
+          "name": "Photo strip",
+          "width": "fill_container",
+          "height": 336,
+          "gap": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "YLrKA",
+              "name": "Shot",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 14,
+                  "id": "GNVe4",
+                  "name": "Photo",
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "deck-assets/nic-with-elder-on-verandah.jpg",
+                    "mode": "fill"
+                  },
+                  "width": "fill_container",
+                  "height": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "DoO8v",
+                  "name": "Caption",
+                  "fill": "$ink-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "We listen first, then build.",
+                  "lineHeight": 1.35,
+                  "fontFamily": "$body",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "J6Cme",
+              "name": "Shot",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 14,
+                  "id": "WFq4Y",
+                  "name": "Photo",
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "deck-assets/factory-panorama.jpg",
+                    "mode": "fill"
+                  },
+                  "width": "fill_container",
+                  "height": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "V6PMI9",
+                  "name": "Caption",
+                  "fill": "$ink-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "We press the recycled-plastic legs on Country, not in a city factory.",
+                  "lineHeight": 1.35,
+                  "fontFamily": "$body",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "t9RMe",
+              "name": "Shot",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 14,
+                  "id": "YbsXU",
+                  "name": "Photo",
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "deck-assets/mykel-indoor.jpg",
+                    "mode": "fill"
+                  },
+                  "width": "fill_container",
+                  "height": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "lI2T6",
+                  "name": "Caption",
+                  "fill": "$ink-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Mykel built Stretch Beds with Oonchiumpa and kept one for himself.",
+                  "lineHeight": 1.35,
+                  "fontFamily": "$body",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "m2ouN",
+          "name": "The simple logic",
+          "width": "fill_container",
+          "height": "fill_container",
+          "gap": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "L58OP8",
+              "name": "The need",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "$clay-tint",
+              "cornerRadius": 16,
+              "stroke": "$clay",
+              "strokeWidth": 1.4,
+              "strokeAlignment": "inner",
+              "layout": "vertical",
+              "gap": 8,
+              "padding": [
+                20,
+                22
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "cw9Wb",
+                  "name": "Beat title",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "The need",
+                  "fontFamily": "Newsreader",
+                  "fontSize": 22,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "sKCWI",
+                  "name": "Beat body",
+                  "fill": "$ink-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Too few beds, and families on the floor. Scabies, Strep A and rheumatic heart disease at rates found almost nowhere else on earth.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "$body",
+                  "fontSize": 15.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "rDNi9",
+              "name": "What we make",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "$sage-tint",
+              "cornerRadius": 16,
+              "stroke": "$sage",
+              "strokeWidth": 1.4,
+              "strokeAlignment": "inner",
+              "layout": "vertical",
+              "gap": 8,
+              "padding": [
+                20,
+                22
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "GRJhS",
+                  "name": "Beat title",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "What we make",
+                  "fontFamily": "Newsreader",
+                  "fontSize": 22,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "ADnje",
+                  "name": "Beat body",
+                  "fill": "$ink-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "The Stretch Bed: recycled-plastic X-trestle legs, two steel poles, canvas. 26 kg, holds 200 kg, ten-year life, five minutes to build with no tools.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "$body",
+                  "fontSize": 15.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "saM9E",
+              "name": "The one move",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "$teal-tint",
+              "cornerRadius": 16,
+              "stroke": "$teal",
+              "strokeWidth": 1.4,
+              "strokeAlignment": "inner",
+              "layout": "vertical",
+              "gap": 8,
+              "padding": [
+                20,
+                22
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "oUwAm",
+                  "name": "Beat title",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "The one move",
+                  "fontFamily": "Newsreader",
+                  "fontSize": 22,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "rmX3C",
+                  "name": "Beat body",
+                  "fill": "$ink-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Press our own legs on Country. A set drops from $344 to about $150, saving $194 a bed. Break-even falls from 1,679 beds a year to 338.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "$body",
+                  "fontSize": 15.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "KR0Aj",
+              "name": "Become unnecessary",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "$terracotta-tint",
+              "cornerRadius": 16,
+              "stroke": "$terracotta",
+              "strokeWidth": 1.4,
+              "strokeAlignment": "inner",
+              "layout": "vertical",
+              "gap": 8,
+              "padding": [
+                20,
+                22
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "mj62d",
+                  "name": "Beat title",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Become unnecessary",
+                  "fontFamily": "Newsreader",
+                  "fontSize": 22,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "BwoT7",
+                  "name": "Beat body",
+                  "fill": "$ink-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "A containerised plant collects, shreds and presses on Country, then moves into community ownership. The plant, the jobs and the value stay home.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "$body",
+                  "fontSize": 15.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Rjtd5",
+          "name": "The ask",
+          "width": "fill_container",
+          "fill": "$terracotta-tint",
+          "cornerRadius": 16,
+          "gap": 40,
+          "padding": [
+            22,
+            32
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "YRe3t",
+              "name": "Ask text",
+              "width": 1000,
+              "layout": "vertical",
+              "gap": 5,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "rJJMl",
+                  "name": "Ask label",
+                  "fill": "$terracotta",
+                  "content": "THE ASK",
+                  "fontFamily": "$body",
+                  "fontSize": 14,
+                  "fontWeight": "700",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "x3OQ8V",
+                  "name": "Ask body",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "$400,000 in catalytic capital, a recoverable grant that converts into community ownership. Signed community demand is the match.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "$body",
+                  "fontSize": 19,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "Rqrbl",
+              "name": "Mission",
+              "fill": "$terracotta",
+              "textGrowth": "fixed-width",
+              "width": 540,
+              "content": "Our goal is to become unnecessary.",
+              "textAlign": "right",
+              "fontFamily": "Newsreader",
+              "fontSize": 26,
+              "fontWeight": "700",
+              "fontStyle": "italic"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "bZM0H",
+          "name": "Footer",
+          "fill": "$ink-muted",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "Goods on Country   ·   Vision & Ambition (QBE Area 01)   ·   Cost figures engine-locked from the BOM, break-even modelled   ·   The making belongs on Country   ·   goodsoncountry.com/pitch",
           "lineHeight": 1.4,
           "fontFamily": "$body",
           "fontSize": 15,
