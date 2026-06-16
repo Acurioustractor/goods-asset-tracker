@@ -4,19 +4,38 @@ Resume anchor for a fresh session. Cross-ref: memory `goods-qbe-opportunity-hub.
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-06-17 (NEWEST — QBE AREA WALKTHROUGH **COMPLETE**: Areas 07-12 done this session, on top of 01-06 last session. All 12 areas walked, aligned to canon, drift fixed, committed per area. Pattern each area: card -> fetch Notion page -> check numbers vs canon -> fix drift on Notion + repo -> regen readiness -> commit. The QBE-PACK-BUILD detail below is an earlier session, archived.)
-**Goal:** ~~Walk each QBE area~~ DONE (all 12). Next is the human-gated work, not more walking.
-**Branch:** `docs/snow-onepager-assets` at `0a4d70b`, pushed (in sync with origin). `check:drift:ci` GREEN.
+**Updated:** 2026-06-17 (NEWEST — QBE AREA WALKTHROUGH **COMPLETE** (all 12, drift-aligned to canon). Area 09 coverage corrected (1->3 artifacts, 🟢) + founder sequencing captured (charity ~end July). **NEXT TASK = a Notion-page-by-page REVIEW pass** (read each of the 12 QBE Diagnostic pages one at a time as a reviewer would, now that the underlying data is aligned). The QBE-PACK-BUILD detail far below is an earlier session, archived.)
+**Goal:** Area-data walkthrough DONE. NEXT: review each of the 12 QBE Diagnostic **Notion pages** one-by-one (reviewer-facing QA, not data alignment — that's done).
+**Branch:** `docs/snow-onepager-assets` at `09704e0`, pushed (in sync with origin). `check:drift:ci` GREEN.
 **Test:** `cd v2 && npm run build` · `npm run check:drift:ci`
 
-### ▶ WALKTHROUGH COMPLETE — final scorecard
-All 12 areas now have >=1 registered artifact (no 🔴-none remaining). 11/12 🟢 ok; only **09 Legal Structure (keystone) is 🟡 thin** — correct, registering the entity-wording-block proof does NOT close the entity/ownership decision (a Ben/legal action). The pattern across 07-12 was the same: the genuine "Full artifact" the Notion page cited was unregistered, so the area looked thin/none until registered. Resume target is no longer a walkthrough — it is the standing human-gated items below.
-**▶ STANDING HUMAN-GATED (carried, NOT walkthrough):** (1) accountant signs ONE Goods-only money-in figure (~$907,569 rec.) — the P0 behind Areas 04/10; (2) Ben sends the first match-eligible LOI ask (Area 10/12 conversion — 0 signed); (3) legal (MinterEllison) signs off the entity-wording block + decides the entity/ownership path + Supply Nation 51% (Area 09 keystone); (4) 3 vendor quotes for facility capex (Area 11). Plus open flags below.
+### ▶ NEXT TASK — NOTION-PAGE-BY-PAGE REVIEW (one at a time, in order)
+[->] The data walkthrough is done (every area aligned to canon, drift fixed, artifacts registered). This next pass READS each of the 12 QBE Diagnostic Artifact DB pages **as a reviewer would**, one at a time, present a short card, get Ben's reaction, fix anything he flags, move to the next. **DB:** "QBE Diagnostic Artifact Database" `cb3794d427914d72bf1036106d8116f5` (data source `collection://2cd9505f-2a50-496e-aa86-f03ada2cf95e`). **Page IDs in order:**
+- 01 Vision & Ambition — `36eebcf9-81cf-8187-b43c-db663f3dcbf9`
+- 02 Social Objective & Impact — `36eebcf9-81cf-8100-bff8-f866fa0b8820`
+- 03 Business Model — `36eebcf9-81cf-81fb-8aa8-de54f38bdeb4`
+- 04 Financial Management — `36eebcf9-81cf-8167-884f-c3d5ecda0e32`
+- 05 Strategic Planning & Risk — `36eebcf9-81cf-8143-a283-efd1eb5260d7`
+- 06 Process & Technology — `36eebcf9-81cf-8165-9f6a-fab915672b57`
+- 07 Governance, Data & Reporting — `36eebcf9-81cf-813e-9b6f-c95d4e5a703a`
+- 08 People & Organisation — `36eebcf9-81cf-813c-bfbb-ca1709600971`
+- 09 Legal Structure (keystone) — `36eebcf9-81cf-8106-b398-d52438170718`
+- 10 Investors & Capital Raising — `36eebcf9-81cf-8132-9a11-e33e2d121bf9`
+- 11 Cost Model v6 — `36febcf9-81cf-8146-a55d-e05050e956e9`
+- 12 Investor Alignment Tool — `36febcf9-81cf-81f5-ad6d-ee375364d032`
+**Per-page review checklist:** (a) does it read clearly for a cold QBE/SIH reviewer; (b) every number still matches canon (`v2/src/lib/data/canon.ts`) — data was aligned this session, so this is a re-confirm; (c) claim labels honest (verified vs modelled vs target/future), no overclaim; (d) the `OnCountry-E1C4AC` password is correct (swept 07/08/09/10/12; **01-06 NOT yet checked for the dead `goods2026`** — verify each); (e) reviewer routes/links work; (f) anything Ben wants reworded. Fix-on-Notion as you go; only touch repo/canon if a number is actually wrong.
+**⚠️ Carry into the review:** (i) Areas **01-06 were NOT in the password sweep** — check each for dead `goods2026` and swap to `OnCountry-E1C4AC` if present; (ii) `/impact` gate = a 3rd unknown password (Ben to supply or drop /impact); (iii) Notion 12 still describes the CASE 6/10 tool while SIH 8/14 is canonical — Ben's call whether to rebuild that page; (iv) password is correct but still plaintext in Notion (hygiene, Ben's call).
+
+### ▶ STANDING HUMAN-GATED (carried, runs in parallel to the review)
+(1) accountant signs ONE Goods-only money-in figure (~$907,569 rec.) — the P0 behind Areas 04/10; (2) Ben sends the first match-eligible LOI ask (Area 10/12 conversion — 0 signed); (3) legal (MinterEllison) entity sign-off + entity/ownership path + Supply Nation 51% (Area 09 keystone) — **sequenced AFTER the Butterfly charity lands (~end July 2026)**, flexible approach, most of the 15-item legal checklist NOT yet decided (the correct posture, see Area 09 gap); (4) 3 vendor quotes for facility capex (Area 11).
+
+### Final scorecard (after this session)
+All 12 areas have >=1 registered artifact (no 🔴-none). **All 12 🟢 ok** after the Area 09 coverage fix (1->3 artifacts); 09 stays #1 in the build queue (keystone + P0 + blocker) because green = evidence-pack-complete, NOT decision-made. The 07-12 pattern: the genuine "Full artifact" the Notion page cited was unregistered, so the area looked thin/none until registered.
 
 ### This Session (2026-06-17 — AREA WALKTHROUGH, Areas 07-12 + password sweep)
 - **07 Governance** (`36eebcf9…813e`): on-canon (496/9/2,660kg, entity language, 11-member committee, SEFA $300K all verify). Registered `18-governance-framework.md` (was the cited-but-unregistered Full artifact) -> 4 artifacts. Gap = documented-not-done; NOT stale (R7 profiles but doesn't close it). Commit `4fe909b`.
 - **08 People** (`36eebcf9…813c`): on-canon (founder $560/day + fixed block $109,500 verify vs LOCKED cost engine). Registered `07-role-map.md` -> 0->1. Gap = documented-not-done (0 hires). Commit `c09ba46`.
-- **09 Legal Structure KEYSTONE** (`36eebcf9…8106`): ALL entity numbers on canon (sole-trader ABN 21 591 780 066, ACT Pty Ltd ACN 697 347 676, Butterfly, A Kind Tractor dormant; retired wrong ABN avoided). Registered `04-entity-wording-block.md` -> 0->1 (🔴->🟡 thin, still #1 in queue). FIXED a stale line IN the artifact (claimed grant-content.ts still had wrong ABN 50 001 350 152 + DGR-true; verified clean since 2026-05-29). Gap = documented-not-decided. Commit `da7e3e2`.
+- **09 Legal Structure KEYSTONE** (`36eebcf9…8106`): ALL entity numbers on canon (sole-trader ABN 21 591 780 066, ACT Pty Ltd ACN 697 347 676, Butterfly, A Kind Tractor dormant; retired wrong ABN avoided). Registered `04-entity-wording-block.md` (commit `da7e3e2`, 0->1, 🔴->🟡). FIXED a stale line IN that artifact (claimed grant-content.ts still had wrong ABN 50 001 350 152 + DGR-true; verified clean since 2026-05-29). **Then (commit `88c9ed8`) registered the 2 missing real proofs — `legal-structure-full-review.md` (the 27.5KB canon SOURCE for the entity facts, was untracked, now committed) + `legal-structure.md` article -> 1->3 artifacts -> 🟡 thin -> 🟢 ok.** Thin was understated coverage, NOT a real gap; 09 STILL #1 in queue (green = evidence complete, decision still open). **Founder sequencing (commit `09704e0`):** Butterfly charity ~end July (slipped from 26-Jun); 15-item legal checklist worked through after, flexibly; most undecided = correct posture. Drafted the full 15-item MinterEllison checklist for Ben in-chat (A entity form/B migration mechanics/C reg numbers/D charity-DGR/E mission-lock+IP/F public copy).
 - **10 Investors** (`36eebcf9…8132`): revenue on canon (650,910.79 paid). De-staled the 1-June body (predated 13-June reconciliation): GHL 401->verified 10 Jun; QBE cap unconfirmed->$400K confirmed; capital ask misframed as $112-222K facility capex -> reconciled $900K-$1M blended. Gap rewritten. Commit `c2bb871`.
 - **11 Cost Model** (`36febcf9…8146`): VERIFY-ONLY, CLEAN. All cost numbers match canon (684.79/425.74/420.74 = 685/426/421; saving 194; fixed 109,500; capex 110,046/112-222K). QBE framing already correct. No changes.
 - **12 Investor Alignment** (`36febcf9…81f5`): registered BOTH populated tools — SIH canonical (8/14, GHL-pulled 16 Jun) + CASE intel (6/10) -> 0->2 🟢. De-staled like Area 10 (GHL, QBE cap, password). Gap rewritten. Commit `0a4d70b`.
