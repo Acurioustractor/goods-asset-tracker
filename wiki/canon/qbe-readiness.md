@@ -20,12 +20,12 @@ None. Every qbeAreas id on an artifact resolves to a real diagnostic area.
 | 09 | **Legal Structure** (keystone) | 5→7 | P0 | 1 | 2026-06-17 | 🟡 thin |
 | 10 | Investors & Capital Raising | 6→8 | P0 | 3 | 2026-06-02 | 🟢 ok |
 | 11 | Cost Model v6 | — | P0 | 4 | 2026-06-05 | 🟢 ok |
-| 12 | Investor Alignment Tool | — | P0 | 0 | — | 🔴 none |
+| 12 | Investor Alignment Tool | — | P0 | 2 | 2026-06-17 | 🟢 ok |
 
 `*` = SIH priority gap. Coverage: 🟢 ok · 🟡 thin (P0 with <2 artifacts) · 🟠 stale (freshest >45d) · 🔴 none.
 
-## Coverage gaps (P0 / keystone, build these)
-- **12 Investor Alignment Tool** — no artifacts cover this area. Gap: CASE Tab-1 self-documentation started, but GHL reauth + QBE rules + written commitments block a populated alignment register; CASE knockout #2 (Legal Structure) is the failing criterion. Notion-added area, no V4 score.
+## Coverage gaps
+None. Every P0/keystone area has at least one current artifact.
 
 ## Build queue (ranked — build top-down)
 
@@ -39,16 +39,16 @@ Deterministic ranking: P0 (+100), keystone (+50), SIH priority-gap (+20), maturi
    - Three revenue cuts still unreconciled (standing P0 — needs one accountant-reviewed Goods-only figure); founder time uncosted at fair-market replacement rate; no cashflow-buffer policy; bookkeeper AP-matching pending. Joint-lowest V4 score.
 4. **07 Governance, Data & Reporting** — P0, SIH priority gap, score 5→8, 4 artifacts, catalytic blocker #4.
    - Governance framework now DOCUMENTED and registered to this area (wiki/outputs/2026-06-13-goods-strategic-pack/18-governance-framework.md: an 11-member monthly advisory committee and a real OCAP data-sovereignty practice are named strengths; the move to a fiduciary board is framed as a plan-with-a-trigger). The gaps are unchanged human actions, not missing documents: 0 independent directors recruited and no fiduciary board (advisory != board; SEFA's ~AU$300K working-capital line is gated on an independent-majority board); reports remain unaudited management data with no consolidated annual cycle (gated on the accountant-reviewed Goods-only figure); the named approval/sign-off path for the reviewer pack is documented but not yet formally adopted; named commercial/scale-up skills gap on the committee. R7 in the risk register profiles this gap but does not close it.
-5. **12 Investor Alignment Tool** — P0, 0 artifacts.
-   - CASE Tab-1 self-documentation started, but GHL reauth + QBE rules + written commitments block a populated alignment register; CASE knockout #2 (Legal Structure) is the failing criterion. Notion-added area, no V4 score.
-6. **02 Social Objective & Impact / MEL** — P0, SIH priority gap, score 5→8, 11 artifacts, catalytic blocker #5.
+5. **02 Social Objective & Impact / MEL** — P0, SIH priority gap, score 5→8, 11 artifacts, catalytic blocker #5.
    - No named MEL framework / Theory-of-Change logic chain documented; consent-cleared story list is a primary gap; verified asset counts must stay separated from modelled/future health outcomes (AI-overclaim discipline).
-7. **10 Investors & Capital Raising** — P0, score 6→8, 3 artifacts, catalytic blocker #2.
+6. **10 Investors & Capital Raising** — P0, score 6→8, 3 artifacts, catalytic blocker #2.
    - 0 signed LOIs -> the match gate is still open (a conversion problem, not a discovery problem). Since this gap was written, two parts have moved: the QBE cap is RESOLVED (AU$400K per enterprise, at least 1:1, repayable preferred; confirmed from program docs 2026-06-13 — stop modelling at $200K), and the signed/eligible commitment register now EXISTS (CivicGraph Match Campaign tab; GHL reauth verified 10 Jun 2026) but holds 0 signed entries. Remaining: the register needs its first signed commitment, and what counts as eligible match is still to be confirmed in writing (the open Jay email). A binding offtake/forward-purchase LOI fixes the match AND the weak-commercial-paperwork gap at once.
-8. **05 Strategic Planning & Risk** — P0, SIH priority gap, score 5→7, 2 artifacts.
+7. **05 Strategic Planning & Risk** — P0, SIH priority gap, score 5→7, 2 artifacts.
    - Scored risk register now EXISTS (14 risks, likelihood x consequence, named owners, per-line QBE-shareable/Internal-only split, do-no-harm frame, monthly review cadence; R9 explicitly profiles environmental risk) at wiki/articles/governance/risk-register.md, now tagged to this area in the artifact register. Remaining: it is a founder-review DRAFT (not board-adopted or audited), the monthly re-score is not yet running as a discipline, and environmental end-of-life/offcut controls are defined but not operational.
-9. **11 Cost Model v6** — P0, 4 artifacts.
+8. **11 Cost Model v6** — P0, 4 artifacts.
    - Verified BOM + $110,046 press capex are solid, but facility/site capex is modelled, not vendor-quoted (112K-222K factory gross; 100K-150K/site on-Country). Needs 3 vendor quotes — the SIH-Advisory deliverable. Notion-added area, no V4 score.
+9. **12 Investor Alignment Tool** — P0, 2 artifacts.
+   - Alignment tool now POPULATED and registered to this area (two are tracked: the canonical SIH tool — 8 knockout / 14 fit, scored from a read-only GHL pull 2026-06-16 of 82 funder contacts + 49 funder-pipeline opportunities, at wiki/outputs/2026-06-16-qbe-opportunity-hub/02-investor-alignment.md; and the CASE tool — 6 knockout / 10 weighted, kept as intel, at wiki/outputs/2026-06-13-goods-strategic-pack/12-investor-alignment.md). Since the gap was written, GHL reauth is RESOLVED (verified 10 Jun 2026) and the QBE cap is RESOLVED (AU$400K, confirmed 2026-06-13). Remaining: 0 signed/eligible written commitments (the same conversion gap as Area 10), and the Legal Structure knockout (Area 09 keystone) is still the failing criterion until the entity/ownership decision is made. Notion-added area, no V4 score.
 10. **06 Process & Technology** — score 7→8, 1 artifact.
    - GHL/HighLevel reauth RESOLVED (API verified 10 Jun 2026; CivicGraph syncs the 3 Goods pipelines every 12h + hosts the commitment register). Remaining: the Drive evidence pack has never been external-account access-tested (non-Goods account), and the transferable production SOP (shred/press/cut/assemble parameters) is still to be written.
 11. **08 People & Enterprise** — score 6→7, 1 artifact.
@@ -69,7 +69,7 @@ Deterministic ranking: P0 (+100), keystone (+50), SIH priority-gap (+20), maturi
 - **09 Legal Structure**: Entity wording block (legal structure)
 - **10 Investors & Capital Raising**: 19-slide deck blueprint; Catalytic pitch bundle (7 docs); Pencil designed deck
 - **11 Cost Model v6**: Cost Lab (/sites/cost-lab); Investor cockpit (/investors); Cost model v6 engine; Best-case scenario (seed fleet of 3)
-- **12 Investor Alignment Tool**: _none_
+- **12 Investor Alignment Tool**: Investor Alignment Tool (SIH, populated, canonical); Investor Alignment Tool (CASE, populated, intel)
 
 ## Catalytic-raise blockers (from the alignment report §5)
 

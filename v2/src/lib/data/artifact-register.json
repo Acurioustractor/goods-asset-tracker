@@ -350,6 +350,34 @@
       "qbeAreas": ["09"],
       "citesCanon": ["entity-operating-now", "entity-trading-goforward", "entity-dgr-home", "entity-dormant"],
       "lastVerified": "2026-06-17"
+    },
+    {
+      "id": "investor-alignment-sih",
+      "title": "Investor Alignment Tool (SIH, populated, canonical)",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-06-16-qbe-opportunity-hub/02-investor-alignment.md",
+      "status": "written",
+      "claimLabels": ["verified", "modelled", "internal-only"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": ["12"],
+      "citesCanon": ["signed-lois", "beds-deployed", "communities-served"],
+      "lastVerified": "2026-06-17"
+    },
+    {
+      "id": "investor-alignment-case",
+      "title": "Investor Alignment Tool (CASE, populated, intel)",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-06-13-goods-strategic-pack/12-investor-alignment.md",
+      "status": "written",
+      "claimLabels": ["verified", "modelled", "internal-only"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": ["12"],
+      "citesCanon": ["entity-trading-goforward", "beds-deployed", "communities-served", "signed-lois"],
+      "lastVerified": "2026-06-17"
     }
   ]
 }
