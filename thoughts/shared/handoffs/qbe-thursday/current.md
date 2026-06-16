@@ -4,10 +4,53 @@ Resume anchor for a fresh session. Cross-ref: memory `goods-qbe-opportunity-hub.
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-06-16 (newest — QBE PACK BUILD session: reviewed the whole QBE artifact set, ran a truth pass, shipped 2 canon fixes LIVE to prod, committed the strategic pack, refreshed Notion + /sites/qbe-readiness, and built + exported a QBE readiness one-pager in Pencil. Remaining = human-gated decisions.)
-**Goal:** Build the most up-to-date QBE Stage-2 pack across Notion + web + deck, aligned to one canon (Artifact Hub = master). DONE for all buildable items.
-**Branch:** `docs/snow-onepager-assets` at `e7116b7`, pushed (in sync with origin). PR #124 still open, NOT merged. **main MOVED — now `560e7d9`: 16 washers (PR #123 `3d74dc5`) + Centrecorp 107 (PR #125 `560e7d9`) are MERGED + LIVE on prod.**
+**Updated:** 2026-06-16 (NEWEST — QBE AREA WALKTHROUGH session: went area-by-area through the 12 QBE diagnostic areas reviewing each area's overview/right-artifact/live-pages/deck-image-onepager/Notion-page, aligning to canon and fixing drift. Completed Areas 01-06. Plus big side-builds: unified media library + image tagging + dedup, a reference-only image canon, the Vision one-pager, 5 gap illustrations, and a pack-wide $270.74->$421 cost-consistency sweep. The QBE-PACK-BUILD detail below is the PREVIOUS session, archived.)
+**Goal:** Walk each QBE area; confirm overview/artifact/live/deck/Notion; align to canon; fix drift; commit per area. **Resume at Area 07.**
+**Branch:** `docs/snow-onepager-assets` at `574f635`, pushed (in sync with origin). `check:drift:ci` GREEN at checkpoint.
 **Test:** `cd v2 && npm run build` · `npm run check:drift:ci`
+
+### ▶ RESUME AT AREA 07
+[->] Resume the area-by-area walkthrough at **Area 07 (Governance, Data & Reporting)** — V4 5->8, P0, SIH priority-gap; now **3 artifacts** (the risk register was tagged to it this session). Per-area pattern: present a card (overview / right artifact / live pages / deck-image-onepager / Notion page) -> fetch the area's Notion page (the "QBE Diagnostic Artifact Database" `cb3794d427914d72bf1036106d8116f5` or the Strategic-Pack sections under Opportunity Hub `380ebcf981cf819cac62f51dd9532e84`) -> check every number against `v2/src/lib/data/canon.ts` -> fix drift on Notion + repo -> `node scripts/check-qbe-readiness.mjs` to regen -> commit per area. **Remaining: 07, 08 (0 artifacts), 09 Legal Structure KEYSTONE (0 artifacts), 10, 11, 12 (0 artifacts).** NB Area 07 gap may be partly stale (risk-register R7 addresses governance) — check before treating it as open.
+
+### This Session (2026-06-16 — AREA WALKTHROUGH, Areas 01-06)
+- **01 Vision:** Notion "Pitch Page and Documents" (`373ebcf981cf80748e1ef80e281b8fd6`) consent line split (cleared storyteller voices = canon 6, vs named partners Dianne/Kristy/Boe). `/pitch` edits DEFERRED (Ben: after walkthrough). Vision one-pager BUILT (.pen frame `unN8M`, photo-led); PNG/PDF export BLOCKED (Pencil export tool glitched all session; render via `/pencil-queue`).
+- **02 Impact:** re-exported the Snow impact one-pager with 16 washers -> `wiki/outputs/funder-reports/snow/2026-06-16-snow-impact-one-pager.{png,pdf}`; stale 2026-06-10 removed; send-overview repointed.
+- **03 Business Model** (Notion "14 Business model" `380ebcf981cf81298affc19a14e14684`): community DIRECT $270.74 was mislabeled as marginal next to factory $425.74 -> fixed to $421 (marginal), contribution ~$479->~$329.
+- **04 Financial** ("15 Financial summary" `380ebcf981cf81d4939df9a3abbe23b7`): same $270.74->$421 in §3. Money-in figures LEFT to accountant (standing P0); page handles them honestly.
+- **PACK-WIDE $270.74->$421 SWEEP (Ben decided: marginal-consistent).** community MARGINAL = direct $270.74 + ~$150 long-haul freight = ~$421 = canon `marginal-community`. Fixed 9 Notion pack pages (Business Model, Financial summary, 00 master-alignment, 05 impact-method, Strategic Pack overview, 04 Financial Mgmt, 01 strategy memo, 02 one-pager) + repo `wiki/outputs/2026-06-13-goods-strategic-pack/*.md`. Cost Model v6 page kept its precise $420.74 (same number). KEPT $270.74 where it is correctly the DIRECT cost (historical docs + impact-model.ts).
+- **05 Strategy & Risk** ("16 Strategic plan" `380ebcf981cf8185b1e6fe34a630a25d`): on-canon. The 14-risk scored register EXISTS (`wiki/articles/governance/risk-register.md`) but was never registered -> tagged to `artifact-register.json` qbeAreas [05,07]; rewrote the stale gap. Scorecard: Area 05 thin->ok, Governance 07 -> 3 artifacts.
+- **06 Process & Tech** ("06 - Process & Technology" `36eebcf981cf81659f6afab915672b57`): body said GHL unverified (401, 1 Jun) but properties + reality show GHL verified 10 Jun (16-Jun outreach engine pulled 82 contacts) -> fixed the stale body; narrowed canon gap (GHL resolved; remaining = Drive external-account test + transferable production SOP).
+
+### Side-builds this session (all committed + pushed)
+- **/admin/media-library** — ALL 212 local website images + full Empathy Ledger library in one grid; filter by source+subject, search, preview/copy/download (`b6dff72`).
+- **Local image subject tagging** (`namespace:value`, EL-consistent) -> `v2/data/local-image-tags.json` + tag editor in the modal.
+- **Content-hash dedup** — `scripts/image-dedup.mjs` -> `v2/data/image-dedup.json`; one card per unique image (212->207), NOTHING deleted.
+- **`design/image-canon.json`** — REFERENCE-ONLY image index (best image per subject -> QBE areas; never copies). Deleted the 26 `design/canon-images/` copies I had made (the duplication Ben flagged).
+- **Vision one-pager** (`unN8M`) committed inside `design/goods-theory-of-change-v2.pen` (.pen now tracked).
+- **5 QBE gap illustrations DRAFTED** (areas 05/07/08/09/12) in `generated-images/goods-illustrations/qbe-*` — QA'd clean, NOT promoted to v2/public (await Ben cull). Map: `wiki/outputs/2026-06-16-qbe-gap-illustrations-map.md`.
+
+### Open / Held (this session)
+- **EL upload** ("add local photos into EL") HELD — external write to a consent-managed Indigenous storyteller DB; most local images don't belong there; community photos need per-image consent. Ben points at specific photos + confirms consent, then upload.
+- **impact-model.ts** carries a stale v5 `$140.74` community figure on live `/impact` (2026-05-30 quarantine doc) — older drift, separate follow-up.
+- **Vision one-pager PNG/PDF** export pending (Pencil glitch) — `/pencil-queue`.
+- **5 gap illustrations** await Ben's cull + promotion to `v2/public/images/brand/` (then move each from image-canon `gaps` to `images`).
+- **`/pitch` page** edits deferred (Area 01).
+
+### Commits this session (all pushed; origin @ 574f635)
+- `b6dff72` media-library + subject tagging + content-hash dedup + reference image-canon
+- `7035feb` Vision one-pager (.pen) + swap stale snow export for 16-washer 2026-06-16
+- `9c7be38` QBE gap-illustration drafts recorded + shot-list
+- `4dda752` pack sweep: community cost 270.74 (direct) -> 421 (marginal)
+- `9b0e3b1` Area 05 — registered the scored risk register; gap was stale
+- `574f635` Area 06 — GHL reauth resolved (verified 10 Jun); narrowed the gap
+
+### Cost nuance to reload (the sweep)
+Community DIRECT $270.74 (parity w/ factory direct $275.74) vs community MARGINAL $421 (= +~$150 freight, parity w/ factory marginal $425.74, = canon `marginal-community`). Use MARGINAL ($421) in cost-down ladders; DIRECT ($270.74) only where explicitly labeled direct.
+
+---
+
+## ⌂ PREVIOUS SESSION DETAIL — QBE PACK BUILD (2026-06-16, archived; still-open human-gated items carried forward)
+> Carried-forward open items from this previous session (still human-gated): choose canonical washer PRICE (A $4,300/$2-2.5K vs B $4.5-5K/$1-2K); the 5 proofs; accountant signs ONE Goods-only revenue figure (~$907,569 recommended — verify the +$166,458 swing + carve-out scope $741,111 vs $713,827; TFN void+rebook + bank dedup); send the 5 Tier-1 funder letters; drag the deck into Drive; PR #124 NOT merged. Prod is at `560e7d9` (16 washers + Centrecorp 107 LIVE).
 
 ### Now
 [->] QBE pack is assembled, current, durable; 2 canon fixes (16 washers, Centrecorp 107) are LIVE on prod. Nothing autonomous left — all remaining items are human-gated decisions (see Next + `wiki/outputs/2026-06-16-qbe-pack-decisions-for-ben.md`). On resume, ask Ben what's next. The QBE-readiness one-pager PNG/PDF + the deck's new one-pager frame (`JZAso`) are saved on disk but UNTRACKED.
