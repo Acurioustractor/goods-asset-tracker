@@ -674,8 +674,8 @@ function PartnersSection() {
       name: 'Centrecorp',
       location: 'Distribution Partner',
       role: 'Grant-Funded Distribution Partner',
-      model: 'Donor and institutional buyer at scale — 109 beds grant-funded for distribution to Utopia Homelands communities. Demonstrates delivery at scale and provides evidence of institutional demand for funding applications.',
-      status: '109 beds delivered — institutional partnership evidence',
+      model: 'Donor and institutional buyer at scale — 107 beds grant-funded for distribution to Utopia Homelands communities. Demonstrates delivery at scale and provides evidence of institutional demand for funding applications.',
+      status: '107 beds delivered — institutional partnership evidence',
       color: '#D4A574',
     },
     {
