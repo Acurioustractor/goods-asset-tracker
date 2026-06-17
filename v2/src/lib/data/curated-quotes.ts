@@ -117,10 +117,18 @@ export const curatedQuotes: Record<string, CuratedQuote[]> = {
   ],
 
   'Fred Campbell': [
-    // Dedup 2026-06-17 (Ben): the "Good sleep. No sound, no people shouting. Just quiet."
-    // quote is Walter's, not Fred's. Removed here. Fred's real curated bed quote is TBD
-    // (his trip line is about "good employment", not the bed); falls back to the
-    // syndication API until a real quote is added.
+    // Real quotes from Fred's EL article (fred-campbell-trust-earned, public 2026-04-13).
+    // Kept to Fred's own voice + the bed. His four Xavier-specific quotes (disability /
+    // youth-detention story) are HELD pending Xavier's consent (Tier-3). The earlier
+    // "Good sleep..." quote was Walter's (deduped 2026-06-17).
+    {
+      text: 'The families right now, like you see in most of those houses that we went to, the beds were on the ground. It\'s a safety thing. Some of our kids have come up with scabies and stuff that shed from the dogs. But knowing that they can pack that up, put it away into a tidy small space in the back of a car and use it wherever they can go. That\'s something they can\'t do with those other sturdy metal ones.',
+      context: 'Why the Stretch Bed works in community',
+    },
+    {
+      text: 'It\'s easy to get them on bail and stuff like that, but with safe plans and actions, I\'ll make sure that we don\'t put a plan together where it\'s gonna fail the young kid itself. And we see them going back and their bail conditions breaching them and they go back into the system.',
+      context: 'Case planning that does not fail young people',
+    },
   ],
 
   'Gary': [
