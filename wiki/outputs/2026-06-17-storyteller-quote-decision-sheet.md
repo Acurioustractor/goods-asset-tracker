@@ -72,7 +72,9 @@ prime candidates to elevate.
 
 ---
 
-## TIER 3 — Pending consent (needs your confirmation before any use)
+## TIER 3 — Not being pursued (Ben 2026-06-17)
+
+> **Dropped from the clearance backlog (not needed):** Frankie Holmes OAM, Casey Holmes OAM, Charley, Joey, Kylie Bloomfield. Xavier was cleared (→ EXT, see Tier 1 / applied). The rows below are kept for record; no action pending.
 
 | Voice | Role | Status | Action |
 |-------|------|--------|--------|
@@ -135,8 +137,8 @@ Daniel Patrick Noble, Shayne Bloomfield, Jason, Gary, Dorrie Jones (consent conf
 McCartney, Jimmy Frank, Xavier (on the main Stretch Bed photo) — **29 community** — + **3 practitioner** voices (Dr Boe Remenyi,
 Chloe, Wayne Glenn; labelled as practitioners, not community recipients).
 
-**Still website-display-only / pending:** Tier 3 set (Frankie Holmes OAM, Casey Holmes OAM,
-Charley, Joey, Kylie Bloomfield) + anonymous trip voices + excluded (Georgina, Nic, Ben).
+**Website-display-only / not pursued:** Tier 3 set dropped (Frankie & Casey Holmes OAM, Charley,
+Joey, Kylie Bloomfield — not needed, Ben 2026-06-17) + anonymous trip voices + excluded (Georgina, Nic, Ben).
 
 **Cleanups (done 2026-06-17):** Fred/Walter duplicate quote deduped — confirmed Walter's, removed
 from Fred Campbell (his real bed quote still TBD). Ray Nelson's `recipient_consent_at` stamped in
