@@ -118,9 +118,9 @@ export const curatedQuotes: Record<string, CuratedQuote[]> = {
 
   'Fred Campbell': [
     // Real quotes from Fred's EL article (fred-campbell-trust-earned, public 2026-04-13).
-    // Kept to Fred's own voice + the bed. His four Xavier-specific quotes (disability /
-    // youth-detention story) are HELD pending Xavier's consent (Tier-3). The earlier
-    // "Good sleep..." quote was Walter's (deduped 2026-06-17).
+    // Xavier's consent confirmed by Ben 2026-06-17, so his story (told in Fred's voice) is
+    // now included below. The disability / youth-detention specifics are deliberately left
+    // out. The earlier "Good sleep..." quote was Walter's (deduped 2026-06-17).
     {
       text: 'The families right now, like you see in most of those houses that we went to, the beds were on the ground. It\'s a safety thing. Some of our kids have come up with scabies and stuff that shed from the dogs. But knowing that they can pack that up, put it away into a tidy small space in the back of a car and use it wherever they can go. That\'s something they can\'t do with those other sturdy metal ones.',
       context: 'Why the Stretch Bed works in community',
@@ -128,6 +128,18 @@ export const curatedQuotes: Record<string, CuratedQuote[]> = {
     {
       text: 'It\'s easy to get them on bail and stuff like that, but with safe plans and actions, I\'ll make sure that we don\'t put a plan together where it\'s gonna fail the young kid itself. And we see them going back and their bail conditions breaching them and they go back into the system.',
       context: 'Case planning that does not fail young people',
+    },
+    {
+      text: 'He knew what he was doing. He had the pattern of how everything was all coming together. He loved it. We took him back to the family and he just was so proud showing them that he can build it.',
+      context: 'Xavier, proud building his Stretch Bed',
+    },
+    {
+      text: 'He couldn\'t stop thanking me. The smile on his face all the way back home. He got out showing his family the bag, and he\'s walking around everywhere with those shoes on, running everywhere.',
+      context: 'Xavier, after his first paid build',
+    },
+    {
+      text: 'I reckon if anything, he\'d be probably one of the ideal candidates to go around and show the community, and how to even teach these other younger guys.',
+      context: 'Xavier as a future teacher on country',
     },
   ],
 

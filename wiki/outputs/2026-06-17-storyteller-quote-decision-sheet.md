@@ -79,7 +79,7 @@ prime candidates to elevate.
 | **Frankie Holmes OAM** | Elder | Has a trip quote; Elder consent not secured | Secure Elder consent |
 | **Casey Holmes OAM** | Elder | Pending; needs a quote captured | Secure Elder consent + quote |
 | **Charley** | Arlparra | EL cinema clip exists; consent pending | Confirm consent → flip EL publish |
-| **Xavier** | — | Pending consent + portrait + quote | Confirm consent, capture portrait |
+| **Xavier** | Young builder, Alice Springs | ✅ Consent confirmed 2026-06-17 → cleared (EXT); on the main Stretch Bed photo | Story told in Fred Campbell's voice (no own EL record); portrait xavier-stretch-bed-alice-springs.jpg |
 | **Joey** | — | Portrait exists; needs quote + consent | Confirm consent + capture a quote |
 | **Kylie Bloomfield** | — | In curated-quotes but **no quote text** | Pull a quote from EL |
 | 7 anonymous trip voices | Arlparra / Arawerr households + Elders | Cleared but unnamed (role-only) | Keep as anonymous field evidence |
@@ -125,18 +125,18 @@ read-only `/api/v1/content-hub/storytellers` pull.
 
 ## ✅ APPLIED TO CANON (2026-06-17)
 
-`cleared-voices` = **31** (external use), per this consent pass.
+`cleared-voices` = **32** (external use), per this consent pass.
 
-**Cleared for external use (31):** Ivy Johnson, Dianne Stokes, Ray Nelson, Mykel, Kristy
+**Cleared for external use (32):** Ivy Johnson, Dianne Stokes, Ray Nelson, Mykel, Kristy
 Bloomfield, Norman Frank, Linda Turner, Alfred Johnson, Brian Russell, Karen Liddle, Katrina
 Bloomfield, Annie Morrison, Heather Mundo, Fred Campbell, Gloria Turner, Carmelita & Colette,
 Daniel Patrick Noble, Shayne Bloomfield, Jason, Gary, Dorrie Jones (consent confirmed
 2026-06-17), Cliff Plummer, Mark, Melissa Jackson, Patricia Frank, Risilda Hogan, Tracy
-McCartney, Jimmy Frank — **28 community** — + **3 practitioner** voices (Dr Boe Remenyi,
+McCartney, Jimmy Frank, Xavier (on the main Stretch Bed photo) — **29 community** — + **3 practitioner** voices (Dr Boe Remenyi,
 Chloe, Wayne Glenn; labelled as practitioners, not community recipients).
 
 **Still website-display-only / pending:** Tier 3 set (Frankie Holmes OAM, Casey Holmes OAM,
-Charley, Xavier, Joey, Kylie Bloomfield) + anonymous trip voices + excluded (Georgina, Nic, Ben).
+Charley, Joey, Kylie Bloomfield) + anonymous trip voices + excluded (Georgina, Nic, Ben).
 
 **Cleanups (done 2026-06-17):** Fred/Walter duplicate quote deduped — confirmed Walter's, removed
 from Fred Campbell (his real bed quote still TBD). Ray Nelson's `recipient_consent_at` stamped in
