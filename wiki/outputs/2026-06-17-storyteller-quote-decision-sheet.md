@@ -56,7 +56,7 @@ prime candidates to elevate.
 | **Risilda Hogan**               | Community (housing journey)        | "I was living at the tin shed. Then I started working, got help from Stronger Families, and moved into this house."                                     | Curated                                                                                                 |          |
 | **Carmelita & Colette**★        | Palm Island                        | "We do need rest. It's for our health: maintaining health and being well."                                                                              | Curated (joint card)                                                                                    |          |
 | **Daniel Patrick Noble**★       | Palm Island                        | "A lot of them are low income earners. Just to have that extra cost of bringing things over, it all adds up. Sometimes people would rather go without." | Curated                                                                                                 |          |
-| **Dorrie Jones**★               | Arlparra recipient                 | "Good for me and comfy… easy to put together."                                                                                                          | Trip beat; triage lists as **pending consent** — confirm before external                                |          |
+| **Dorrie Jones**★               | Arlparra recipient                 | "Good for me and comfy… easy to put together."                                                                                                          | Trip beat; consent CONFIRMED by Ben 2026-06-17 → EXT                                |          |
 | **Shayne Bloomfield**★          | Partner / TO                       | "This partnership could go a long way. I feel it's got a long, long path ahead."                                                                        | Curated; partner voice                                                                                  |          |
 | **Jason**★                      | Community / worker                 | "When it comes from an Aboriginal person, it works. That's what makes the difference."                                                                  | Curated                                                                                                 |          |
 | **Gary**★                       | Community leadership               | "We don't force nothing on them. We just sit down and explain what we do… When they're ready, they'll try."                                             | Curated                                                                                                 |          |
@@ -120,3 +120,23 @@ confirmation — stamp it.
 Pull the live EL roster (all 240 storyteller records: name, community, elder status, consent
 flags) to surface any storyteller we haven't curated yet. Say the word and I'll run the
 read-only `/api/v1/content-hub/storytellers` pull.
+
+---
+
+## ✅ APPLIED TO CANON (2026-06-17)
+
+`cleared-voices` = **31** (external use), per this consent pass.
+
+**Cleared for external use (31):** Ivy Johnson, Dianne Stokes, Ray Nelson, Mykel, Kristy
+Bloomfield, Norman Frank, Linda Turner, Alfred Johnson, Brian Russell, Karen Liddle, Katrina
+Bloomfield, Annie Morrison, Heather Mundo, Fred Campbell, Gloria Turner, Carmelita & Colette,
+Daniel Patrick Noble, Shayne Bloomfield, Jason, Gary, Dorrie Jones (consent confirmed
+2026-06-17), Cliff Plummer, Mark, Melissa Jackson, Patricia Frank, Risilda Hogan, Tracy
+McCartney, Jimmy Frank — **28 community** — + **3 practitioner** voices (Dr Boe Remenyi,
+Chloe, Wayne Glenn; labelled as practitioners, not community recipients).
+
+**Still website-display-only / pending:** Tier 3 set (Frankie Holmes OAM, Casey Holmes OAM,
+Charley, Xavier, Joey, Kylie Bloomfield) + anonymous trip voices + excluded (Georgina, Nic, Ben).
+
+**Cleanups outstanding:** Fred Campbell + Walter share an identical quote (dedupe); Ray Nelson's
+`recipient_consent_at` is still None in the v2 register (stamp it).

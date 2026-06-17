@@ -15,7 +15,7 @@ Every weekly ledger draft features a storyteller in the cleared roster.
 
 32 named voices in the pool. 26 have a weekly ledger post, 6 do not. (3 cleared-but-unnamed role labels excluded from the weekly-post backlog.)
 
-> **Two consent tiers.** Canon `cleared-voices` = **22** is the EXTERNAL list cleared for funder/QBE use (Ben consent pass 2026-06-17 — see wiki/outputs/2026-06-17-storyteller-quote-decision-sheet.md; incl. 2 practitioner voices, label accordingly). Canon `display-storyteller-pool` = **32** is the website roster: everyone with a public curated quote or a cleared trip VoiceCard (incl. partners/board). This script computes the live pool (**32**) from curated-quotes + trip-stories; it is a coverage queue, not a clearance list, and consent is re-gated on every draft.
+> **Two consent tiers.** Canon `cleared-voices` = **31** is the EXTERNAL list cleared for funder/QBE use (Ben consent pass 2026-06-17 — see wiki/outputs/2026-06-17-storyteller-quote-decision-sheet.md; incl. 2 practitioner voices, label accordingly). Canon `display-storyteller-pool` = **32** is the website roster: everyone with a public curated quote or a cleared trip VoiceCard (incl. partners/board). This script computes the live pool (**32**) from curated-quotes + trip-stories; it is a coverage queue, not a clearance list, and consent is re-gated on every draft.
 
 | Voice | Sources | Weekly post |
 |---|---|---|

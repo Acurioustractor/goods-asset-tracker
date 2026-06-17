@@ -23,7 +23,7 @@ Three columns, one rule: a metric only moves left as the evidence catches up. No
 | Communities served | **9** | **[VERIFIED]** — founder-confirmed, reviewer-approved public figure |
 | HDPE plastic diverted (Stretch only) | **2,660 kg** (133 × 20 kg) | **[MODELLED]** — count × per-bed assumption from `products.ts` |
 | Plastic diverted per bed | **20 kg** | **[VERIFIED]** — `products.ts`, single source of truth |
-| Consent-cleared community voices | **3** (Ivy Johnson, Dianne Stokes, Ray Nelson) | **[VERIFIED]** — consent confirmed; everyone else consent-pending |
+| Consent-cleared voices (external use) | **31** (28 community + 3 practitioner) | **[VERIFIED]** — Ben consent pass 2026-06-17; practitioner voices (Dr Boe Remenyi, Chloe, Wayne Glenn) labelled as such, not community recipients |
 | Product feedback that changed design | Captured on delivery + return visits; reshaped the bed | **[VERIFIED]** — qualitative, recorded |
 | Projected unit cost after in-sourcing | $425.74 (factory) / $421 (community) | **[MODELLED]** — 0 beds assembled in-house yet |
 | Mattress wash frequency | Not yet collected | **[FUTURE]** |
@@ -76,10 +76,10 @@ This chain is the **WHY** — the rationale for treating a bed and a washing mac
 
 Consent is not a compliance step bolted on at the end — it is part of how we measure, in the OCAP tradition (Ownership, Control, Access, Possession).
 
-- **Only consent-cleared voices are used externally.** Today that is exactly three: **Ivy Johnson, Dianne Stokes, and Ray Nelson.** Everyone else is consent-pending and is not named, quoted, or pictured in any external material.
+- **Voices used externally are consent-cleared.** As of the 2026-06-17 consent pass, 31 voices are cleared for external/funder use (28 community + 3 practitioner). The broader website storyteller roster carries curated / Empathy Ledger consent for site display; any voice still consent-pending is not named, quoted, or pictured in external funder material until it is cleared.
 - **Consent travels with the data.** A story's permission status is attached to the story — when it moves to the wiki, a newsletter, an Empathy Ledger syndication, a deck, or the website, its consent status moves with it and is re-checked at the point of use.
 - **The human anchor we can use:** Ray Nelson's bed (consent-cleared) — *"Since receiving their new beds, they are no longer experiencing back pains."* This is a lived-experience account, presented as such, not as a clinical result.
-- **The short consent-cleared list is itself a current gap.** Three cleared voices is too few to evidence impact at the scale the work is reaching. Closing that list — confirming consent with more storytellers, properly — is a measurement-method task, not a marketing one.
+- **The consent-cleared list was expanded properly.** The 2026-06-17 consent pass grew the cleared list from 3 to 31 voices, each with consent confirmed by the founder, closing what had been a measurement-method gap. Keeping consent current as voices are added stays an ongoing discipline, not a marketing task.
 
 ---
 
@@ -88,7 +88,7 @@ Consent is not a compliance step bolted on at the end — it is part of how we m
 The measurement method has two honest gaps. Naming them as the next builds is what makes the page credible rather than thin.
 
 1. **A partner-validated outcomes method.** Co-design a health-outcomes measure with Miwatj / clinical partners — the legitimate route to ever moving a health indicator out of the FUTURE column. Until it runs, the claim ceiling holds.
-2. **A consent-cleared story list.** Expand beyond the current three (Ivy Johnson, Dianne Stokes, Ray Nelson) with confirmed, documented consent, so impact can be evidenced through community voice without breaching OCAP.
+2. **Keep the consent-cleared story list current.** The 2026-06-17 consent pass cleared 31 voices with confirmed, documented consent; the ongoing task is maintaining that consent as voices are added or updated, so impact stays evidenced through community voice without breaching OCAP.
 3. **Turn the bed into something easy to follow** (the near-term measurement build that feeds the FUTURE column): QR / ID-based bed check-ins, repair and replacement requests, simple "still in use" checks, and a record of whether a bed has moved, been damaged, been repaired or been thrown out. This is how survival-at-12/24/36-months and reuse metrics eventually become **[VERIFIED]** rather than **[FUTURE]**.
 
 > The discipline underneath all three: a metric earns its way leftward — FUTURE → MODELLED → VERIFIED — only as real evidence arrives. We would rather show a funder a gap they can see than a number that hides one.
