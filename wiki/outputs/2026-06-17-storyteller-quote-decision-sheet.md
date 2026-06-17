@@ -138,5 +138,6 @@ Chloe, Wayne Glenn; labelled as practitioners, not community recipients).
 **Still website-display-only / pending:** Tier 3 set (Frankie Holmes OAM, Casey Holmes OAM,
 Charley, Xavier, Joey, Kylie Bloomfield) + anonymous trip voices + excluded (Georgina, Nic, Ben).
 
-**Cleanups outstanding:** Fred Campbell + Walter share an identical quote (dedupe); Ray Nelson's
-`recipient_consent_at` is still None in the v2 register (stamp it).
+**Cleanups (done 2026-06-17):** Fred/Walter duplicate quote deduped — confirmed Walter's, removed
+from Fred Campbell (his real bed quote still TBD). Ray Nelson's `recipient_consent_at` stamped in
+the v2 register (GB0-156-96 = 2026-06-17).
