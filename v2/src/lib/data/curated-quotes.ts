@@ -117,10 +117,10 @@ export const curatedQuotes: Record<string, CuratedQuote[]> = {
   ],
 
   'Fred Campbell': [
-    {
-      text: 'Good sleep. No sound, no people shouting. Just quiet.',
-      context: 'On the Stretch Bed',
-    },
+    // Dedup 2026-06-17 (Ben): the "Good sleep. No sound, no people shouting. Just quiet."
+    // quote is Walter's, not Fred's. Removed here. Fred's real curated bed quote is TBD
+    // (his trip line is about "good employment", not the bed); falls back to the
+    // syndication API until a real quote is added.
   ],
 
   'Gary': [
