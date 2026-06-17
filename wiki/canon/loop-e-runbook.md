@@ -67,14 +67,21 @@ Then open `wiki/canon/story-coverage.md` and act on the top of the build queue.
 
 Cadence target: one weekly post. Field notes monthly/per trip. Funder cut quarterly.
 
-## Known caveat: the consent-tier mismatch
+## The two consent tiers (resolved 2026-06-17)
 
-The pool (~32 named) and canon `cleared-voices` (6) differ **by design, not drift**. Canon
-counts the narrow "cleared to publish/weave" community set; the pool counts everyone with a
-public curated quote or a cleared trip VoiceCard (includes partners/board). This is the open
-"3 deck / ~25 display / 6 canon" question. The detector reports both and never hard-fails on
-the gap. The skill re-runs the full consent gate before any draft, so the pool is a coverage
-queue, not a clearance list. Resolving the tier definition is a separate human decision.
+Consent lives in two canon facts, by design:
+
+- **`cleared-voices` = 3** — the OCAP-strict EXTERNAL list (Ivy Johnson, Dianne Stokes,
+  Ray Nelson). The only voices used in funder/QBE claims; everyone else is consent-pending
+  for external use. This is the conservative number Goods commits to in external material.
+- **`display-storyteller-pool` = ~32** — the website roster: everyone with a public curated
+  quote or a cleared trip VoiceCard (incl. partners/board). A coverage queue, NOT a clearance
+  list. Mirrors the live pool this detector computes from curated-quotes ∪ trip-stories cleared.
+
+The detector reports both, never hard-fails on the gap, and **warns** if the canon
+`display-storyteller-pool` value drifts from the computed pool. The skill re-runs the full
+consent gate before any draft. (This replaces the old "3 deck / ~25 display / 6 canon"
+ambiguity — the 6-with-wrong-names canon entry was reconciled 2026-06-17.)
 
 ## What Loop E deliberately does not do
 

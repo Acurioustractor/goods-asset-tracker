@@ -236,8 +236,8 @@
       "dataClass": "red",
       "owner": "Ben",
       "qbeAreas": ["02"],
-      "citesCanon": ["cleared-voices", "el-published-stories"],
-      "lastVerified": "2026-06-02"
+      "citesCanon": ["display-storyteller-pool", "el-published-stories"],
+      "lastVerified": "2026-06-17"
     },
     {
       "id": "utopia-field-note",
@@ -250,8 +250,8 @@
       "dataClass": "red",
       "owner": "Ben",
       "qbeAreas": ["02"],
-      "citesCanon": ["cleared-voices", "communities-served"],
-      "lastVerified": "2026-06-02"
+      "citesCanon": ["display-storyteller-pool", "communities-served"],
+      "lastVerified": "2026-06-17"
     },
     {
       "id": "ledger-story-pipeline",
@@ -264,8 +264,8 @@
       "dataClass": "red",
       "owner": "Ben",
       "qbeAreas": ["02", "07"],
-      "citesCanon": ["cleared-voices"],
-      "lastVerified": "2026-06-05"
+      "citesCanon": ["display-storyteller-pool"],
+      "lastVerified": "2026-06-17"
     },
     {
       "id": "storyteller-triage",
@@ -278,8 +278,8 @@
       "dataClass": "red",
       "owner": "Ben",
       "qbeAreas": ["02", "07"],
-      "citesCanon": ["cleared-voices"],
-      "lastVerified": "2026-06-03"
+      "citesCanon": ["display-storyteller-pool"],
+      "lastVerified": "2026-06-17"
     },
     {
       "id": "cleared-voice-roster",
@@ -292,8 +292,22 @@
       "dataClass": "red",
       "owner": "Ben",
       "qbeAreas": ["02"],
+      "citesCanon": ["display-storyteller-pool"],
+      "lastVerified": "2026-06-17"
+    },
+    {
+      "id": "impact-measurement-method",
+      "title": "Impact measurement method (consent-cleared voices)",
+      "pillar": "stories",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-06-13-goods-strategic-pack/05-impact-measurement-method.md",
+      "status": "written",
+      "claimLabels": ["verified"],
+      "dataClass": "red",
+      "owner": "Ben",
+      "qbeAreas": ["02"],
       "citesCanon": ["cleared-voices"],
-      "lastVerified": "2026-06-02"
+      "lastVerified": "2026-06-17"
     },
     {
       "id": "risk-register",

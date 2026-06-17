@@ -84,6 +84,8 @@ const pool = [...poolMap.values()].sort((a, b) => a.name.localeCompare(b.name));
 const canonSrc = await slurp(path.join(dataDir, 'canon.ts'));
 const canonVoiceMatch = canonSrc.match(/id:\s*'cleared-voices'[\s\S]*?value:\s*(\d+)/);
 const canonClearedCount = canonVoiceMatch ? Number(canonVoiceMatch[1]) : null;
+const canonDisplayMatch = canonSrc.match(/id:\s*'display-storyteller-pool'[\s\S]*?value:\s*(\d+)/);
+const canonDisplayCount = canonDisplayMatch ? Number(canonDisplayMatch[1]) : null;
 
 // ── 3. Existing weekly-ledger coverage + cadence ─────────────────────────────
 const ledgerEntries = await lsDir(ledgerDir);
@@ -174,7 +176,7 @@ queue.sort((a, b) => b.rank - a.rank);
 
 // ── Console ──────────────────────────────────────────────────────────────────
 console.log('Goods story + illustration coverage scan (Loop E)\n');
-console.log(`Cleared-voice pool: ${pool.length} named (from curated-quotes + trip-stories cleared VoiceCards; ${anonClearedSet.size} unnamed role label(s) excluded). Canon cleared-voices = ${canonClearedCount ?? '?'}.`);
+console.log(`Storyteller pool (display tier): ${pool.length} named computed (curated-quotes + trip-stories cleared VoiceCards; ${anonClearedSet.size} unnamed role label(s) excluded). Canon: cleared-voices (external strict) = ${canonClearedCount ?? '?'}, display-storyteller-pool = ${canonDisplayCount ?? '?'}.`);
 console.log(`Weekly posts: ${featured.size} voice(s) featured, ${unfeatured.length} unfeatured. Cadence: ${cadenceDays === null ? 'never posted' : `${cadenceDays}d since last`}${cadenceOverdue ? ' [OVERDUE]' : ''}.`);
 console.log(`Illustrations: ${illTopics.filter((t) => t.status === 'promoted').length}/${illTopics.length} topics promoted, ${illGaps.length} gap(s).`);
 if (orphanDrafts.length) console.log(`\n⚠ ${orphanDrafts.length} ledger draft(s) feature a storyteller not in the cleared roster (see report).`);
@@ -184,9 +186,12 @@ console.log('');
 
 // ── Report file ──────────────────────────────────────────────────────────────
 // Optional tier-mismatch note (a block of [note, ''] so the spacer survives, or [] when aligned).
-const tierBlock = canonClearedCount != null && canonClearedCount !== pool.length
-  ? [`> The pool (${pool.length}) and canon \`cleared-voices\` (${canonClearedCount}) differ by design, not drift. Canon counts the narrow "cleared to publish/weave" community set; the pool counts everyone with a public curated quote or a cleared trip VoiceCard (includes partners/board). This is the known consent-tier question (3 deck / ~25 display / 6 canon). The skill re-runs the full consent gate before drafting, so the pool is a coverage queue, not a clearance list.`, '']
-  : [];
+const displayDrift = canonDisplayCount != null && canonDisplayCount !== pool.length;
+const tierBlock = [
+  `> **Two consent tiers (reconciled 2026-06-17).** Canon \`cleared-voices\` = **${canonClearedCount ?? '?'}** is the OCAP-strict EXTERNAL list (Ivy Johnson, Dianne Stokes, Ray Nelson) — the only voices used in funder/QBE claims. Canon \`display-storyteller-pool\` = **${canonDisplayCount ?? '?'}** is the website roster: everyone with a public curated quote or a cleared trip VoiceCard (incl. partners/board). This script computes the live pool (**${pool.length}**) from curated-quotes + trip-stories; it is a coverage queue, not a clearance list, and consent is re-gated on every draft.`
+    + (displayDrift ? `\n>\n> ⚠ Canon \`display-storyteller-pool\` (${canonDisplayCount}) ≠ computed pool (${pool.length}) — update the canon fact to ${pool.length}.` : ''),
+  '',
+];
 
 const md = [
   '# Story + illustration coverage (Loop E)',

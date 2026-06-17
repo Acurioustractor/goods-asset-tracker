@@ -143,11 +143,23 @@ export const CANON: CanonFact[] = [
   },
 
   // ── Story / consent (RED data class — recipient/storyteller; never auto-published) ──
+  // Two consent tiers (reconciled 2026-06-17). cleared-voices = the OCAP-strict EXTERNAL list
+  // we make funder/QBE claims on. display-storyteller-pool = the broader website roster,
+  // computed live by Loop E (check-story-coverage.mjs). Do NOT conflate them: external claims
+  // use cleared-voices (3); the pool is a coverage queue, not a clearance list.
   {
-    id: 'cleared-voices', label: 'Consent-cleared voices', value: 6, unit: 'voices',
+    id: 'cleared-voices', label: 'Consent-cleared voices (external use)', value: 3, unit: 'voices',
     domain: 'story', claimLabel: 'verified', dataClass: 'red',
-    source: 'Storyteller triage + Ben consent pass (wiki/outputs/2026-06-03-storyteller-triage.md)', check: 'manual', asAt: '2026-06-03', owner: 'Ben',
-    definition: 'Cleared to publish/weave: Linda Turner, Alfred Johnson, Norman Frank, Mykel, Fred, + Utopia voices cleared 2026-06-02. RED: never to external models, never auto-published.',
+    source: 'QBE strategic pack 05-impact-measurement-method.md (2026-06-13) + Ray Nelson consent confirmation 2026-06-17', check: 'manual', asAt: '2026-06-17', owner: 'Ben',
+    definition: 'Voices with confirmed, documented consent for EXTERNAL use (funder material, public web, QBE): Ivy Johnson, Dianne Stokes, Ray Nelson. The conservative funder-facing claim; everyone else is consent-pending for external use. RED: never to external models, never auto-published. Broader website roster = display-storyteller-pool.',
+    reconcilesWith: ['display-storyteller-pool'],
+  },
+  {
+    id: 'display-storyteller-pool', label: 'Website storyteller pool (display tier)', value: 32, unit: 'voices',
+    domain: 'story', claimLabel: 'internal-only', dataClass: 'red',
+    source: 'check-story-coverage.mjs computed pool (curated-quotes.ts ∪ trip-stories.ts cleared VoiceCards); mirror of wiki/canon/story-coverage.md', check: 'manual', asAt: '2026-06-16', owner: 'Ben',
+    definition: 'Named voices live on the website via a public curated quote or a cleared trip VoiceCard (incl. partners/board). A coverage queue, NOT the external-clearance list — use cleared-voices (3) for any external/funder claim. Mirrors the Loop E computed pool; re-confirm each run (Loop E warns if this drifts from the computed count).',
+    reconcilesWith: ['cleared-voices'],
   },
   {
     id: 'el-published-stories', label: 'Empathy Ledger published stories', value: 0, unit: 'stories',

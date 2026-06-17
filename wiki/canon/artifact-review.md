@@ -11,7 +11,7 @@ None. Every citesCanon id resolves to a canon fact.
 - **Pitch Page and Documents (Notion)**
   - revenue-received (canon 2026-06-03 > verified 2026-06-02)
 - **Impact page (/impact)**
-  - washers-working (canon 2026-06-06 > verified 2026-06-03)
+  - washers-in-community (canon 2026-06-11 > verified 2026-06-03)
 - **Canonical numbers sheet**
   - beds-deployed (canon 2026-05-30 > verified 2026-05-29)
   - stretch-beds-deployed (canon 2026-05-30 > verified 2026-05-29)
@@ -23,10 +23,3 @@ None. Every citesCanon id resolves to a canon fact.
   - beds-deployed (canon 2026-05-30 > verified 2026-05-18)
   - communities-served (canon 2026-05-30 > verified 2026-05-18)
   - plastic-kg (canon 2026-05-30 > verified 2026-05-18)
-- **Community Stories + Empathy Ledger (/stories)**
-  - cleared-voices (canon 2026-06-03 > verified 2026-06-02)
-  - el-published-stories (canon 2026-06-03 > verified 2026-06-02)
-- **Utopia field note**
-  - cleared-voices (canon 2026-06-03 > verified 2026-06-02)
-- **Cleared-voice roster**
-  - cleared-voices (canon 2026-06-03 > verified 2026-06-02)
