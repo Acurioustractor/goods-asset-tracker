@@ -148,10 +148,10 @@ export const CANON: CanonFact[] = [
   // computed live by Loop E (check-story-coverage.mjs). Do NOT conflate them: external claims
   // use cleared-voices (3); the pool is a coverage queue, not a clearance list.
   {
-    id: 'cleared-voices', label: 'Consent-cleared voices (external use)', value: 3, unit: 'voices',
+    id: 'cleared-voices', label: 'Consent-cleared voices (external use)', value: 22, unit: 'voices',
     domain: 'story', claimLabel: 'verified', dataClass: 'red',
-    source: 'QBE strategic pack 05-impact-measurement-method.md (2026-06-13) + Ray Nelson consent confirmation 2026-06-17', check: 'manual', asAt: '2026-06-17', owner: 'Ben',
-    definition: 'Voices with confirmed, documented consent for EXTERNAL use (funder material, public web, QBE): Ivy Johnson, Dianne Stokes, Ray Nelson. The conservative funder-facing claim; everyone else is consent-pending for external use. RED: never to external models, never auto-published. Broader website roster = display-storyteller-pool.',
+    source: 'Ben consent pass 2026-06-17 (wiki/outputs/2026-06-17-storyteller-quote-decision-sheet.md); quotes from curated-quotes.ts + trip-stories.ts; supersedes the prior 3-voice strict list (pack 05)', check: 'manual', asAt: '2026-06-17', owner: 'Ben',
+    definition: 'Voices Ben cleared for EXTERNAL use (funder material, public web, QBE) in the 2026-06-17 consent pass: Ivy Johnson, Dianne Stokes, Ray Nelson, Mykel, Kristy Bloomfield, Norman Frank, Linda Turner, Alfred Johnson, Brian Russell, Karen Liddle, Katrina Bloomfield, Annie Morrison, Heather Mundo, Fred Campbell, Gloria Turner, Carmelita & Colette (joint card), Daniel Patrick Noble, Shayne Bloomfield, Jason, Gary, + practitioner voices Dr Boe Remenyi & Chloe (label as practitioners, NOT community recipients). Dorrie Jones is ★-marked but HELD pending a consent confirm (would make 23). RED: never to external models, never auto-published. Broader website roster = display-storyteller-pool.',
     reconcilesWith: ['display-storyteller-pool'],
   },
   {

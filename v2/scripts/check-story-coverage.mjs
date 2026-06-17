@@ -188,7 +188,7 @@ console.log('');
 // Optional tier-mismatch note (a block of [note, ''] so the spacer survives, or [] when aligned).
 const displayDrift = canonDisplayCount != null && canonDisplayCount !== pool.length;
 const tierBlock = [
-  `> **Two consent tiers (reconciled 2026-06-17).** Canon \`cleared-voices\` = **${canonClearedCount ?? '?'}** is the OCAP-strict EXTERNAL list (Ivy Johnson, Dianne Stokes, Ray Nelson) — the only voices used in funder/QBE claims. Canon \`display-storyteller-pool\` = **${canonDisplayCount ?? '?'}** is the website roster: everyone with a public curated quote or a cleared trip VoiceCard (incl. partners/board). This script computes the live pool (**${pool.length}**) from curated-quotes + trip-stories; it is a coverage queue, not a clearance list, and consent is re-gated on every draft.`
+  `> **Two consent tiers.** Canon \`cleared-voices\` = **${canonClearedCount ?? '?'}** is the EXTERNAL list cleared for funder/QBE use (Ben consent pass 2026-06-17 — see wiki/outputs/2026-06-17-storyteller-quote-decision-sheet.md; incl. 2 practitioner voices, label accordingly). Canon \`display-storyteller-pool\` = **${canonDisplayCount ?? '?'}** is the website roster: everyone with a public curated quote or a cleared trip VoiceCard (incl. partners/board). This script computes the live pool (**${pool.length}**) from curated-quotes + trip-stories; it is a coverage queue, not a clearance list, and consent is re-gated on every draft.`
     + (displayDrift ? `\n>\n> ⚠ Canon \`display-storyteller-pool\` (${canonDisplayCount}) ≠ computed pool (${pool.length}) — update the canon fact to ${pool.length}.` : ''),
   '',
 ];

@@ -71,9 +71,11 @@ Cadence target: one weekly post. Field notes monthly/per trip. Funder cut quarte
 
 Consent lives in two canon facts, by design:
 
-- **`cleared-voices` = 3** — the OCAP-strict EXTERNAL list (Ivy Johnson, Dianne Stokes,
-  Ray Nelson). The only voices used in funder/QBE claims; everyone else is consent-pending
-  for external use. This is the conservative number Goods commits to in external material.
+- **`cleared-voices` = 22** — the EXTERNAL list cleared for funder/QBE use (Ben consent
+  pass 2026-06-17, see `wiki/outputs/2026-06-17-storyteller-quote-decision-sheet.md`).
+  Includes community voices + two practitioner voices (Dr Boe Remenyi, Chloe — label as
+  practitioners). Everyone outside this list is website-display-only or consent-pending.
+  (Dorrie Jones is held pending a consent confirm.)
 - **`display-storyteller-pool` = ~32** — the website roster: everyone with a public curated
   quote or a cleared trip VoiceCard (incl. partners/board). A coverage queue, NOT a clearance
   list. Mirrors the live pool this detector computes from curated-quotes ∪ trip-stories cleared.
