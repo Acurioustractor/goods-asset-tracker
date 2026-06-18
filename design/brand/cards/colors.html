@@ -1,0 +1,51 @@
+<!-- @dsCard group="Foundations" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Goods colour</title>
+<link rel="stylesheet" href="../tokens.css">
+<style>
+  body { margin: 0; background: var(--goods-bg); color: var(--goods-text);
+         font-family: var(--goods-font-body); padding: 40px; }
+  h1 { font-family: var(--goods-font-display); font-weight: 700; font-size: 34px;
+       letter-spacing: var(--goods-display-tracking); margin: 0 0 4px; }
+  .sub { color: var(--goods-text-muted); margin: 0 0 28px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+  .sw { border-radius: var(--goods-radius); overflow: hidden; border: 1px solid var(--goods-border);
+        background: var(--goods-surface); box-shadow: var(--goods-shadow-card); }
+  .chip { height: 78px; }
+  .meta { padding: 10px 12px; }
+  .name { font-weight: 600; font-size: 13px; }
+  .hex { color: var(--goods-text-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+  .role { color: var(--goods-text-muted); font-size: 11px; margin-top: 2px; }
+  .eyebrow { text-transform: uppercase; letter-spacing: var(--goods-eyebrow-tracking);
+             font-size: 11px; color: var(--goods-primary); font-weight: 700; margin: 26px 0 10px; }
+</style>
+</head>
+<body>
+  <h1>Goods colour</h1>
+  <p class="sub">Cream is the ground. Terracotta is the primary. Sage carries connection to Country.</p>
+
+  <div class="eyebrow">Brand</div>
+  <div class="grid">
+    <div class="sw"><div class="chip" style="background:var(--goods-terracotta)"></div><div class="meta"><div class="name">Terracotta</div><div class="hex">#C45C3E</div><div class="role">primary / brand</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--goods-clay)"></div><div class="meta"><div class="name">Clay</div><div class="hex">#A8643F</div><div class="role">HDPE / chart anchor</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--goods-sage)"></div><div class="meta"><div class="name">Sage</div><div class="hex">#8B9D77</div><div class="role">connection to Country</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--goods-cream); border-bottom:1px solid var(--goods-border)"></div><div class="meta"><div class="name">Cream</div><div class="hex">#FBF8F1</div><div class="role">ground / surface</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--goods-ink)"></div><div class="meta"><div class="name">Ink</div><div class="hex">#2B2A26</div><div class="role">body text</div></div></div>
+  </div>
+
+  <div class="eyebrow">Extended (charts, panels)</div>
+  <div class="grid">
+    <div class="sw"><div class="chip" style="background:var(--goods-olive)"></div><div class="meta"><div class="name">Olive</div><div class="hex">#7E9A68</div><div class="role">hardware / factory</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--goods-green)"></div><div class="meta"><div class="name">Green</div><div class="hex">#5E7A4C</div><div class="role">surplus / community</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--goods-teal)"></div><div class="meta"><div class="name">Teal</div><div class="hex">#5C8A86</div><div class="role">canvas / freight</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--goods-gold)"></div><div class="meta"><div class="name">Gold</div><div class="hex">#BBA255</div><div class="role">steel / labour</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--goods-rose)"></div><div class="meta"><div class="name">Rose</div><div class="hex">#C18A7B</div><div class="role">comparison panels</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--goods-sub)"></div><div class="meta"><div class="name">Sub</div><div class="hex">#7A7363</div><div class="role">captions</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--goods-grid)"></div><div class="meta"><div class="name">Grid</div><div class="hex">#E6DFD1</div><div class="role">hairlines</div></div></div>
+  </div>
+</body>
+</html>

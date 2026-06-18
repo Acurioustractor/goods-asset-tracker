@@ -1,0 +1,51 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Goods callouts</title>
+<link rel="stylesheet" href="../tokens.css">
+<style>
+  body { margin: 0; background: var(--goods-bg); color: var(--goods-text);
+         font-family: var(--goods-font-body); padding: 40px; line-height: 1.55; }
+  .eyebrow { text-transform: uppercase; letter-spacing: var(--goods-eyebrow-tracking);
+             font-size: 11px; color: var(--goods-primary); font-weight: 700; margin: 0 0 14px; }
+  .callout { border-radius: var(--goods-radius-card); padding: 18px 22px; margin-bottom: 18px;
+             display: flex; gap: 14px; align-items: flex-start; font-size: 14px; }
+  .ic { font-size: 18px; line-height: 1.4; }
+  .key { background: var(--goods-surface); border: 1px solid var(--goods-border); }
+  .key b { color: var(--goods-text); }
+  .ceiling { background: #FBEFE9; border: 1px solid var(--goods-terracotta); }
+  .ceiling b { color: var(--goods-terracotta); }
+  .label-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .tag { font-size: 11px; font-weight: 700; border-radius: 9999px; padding: 3px 10px; }
+  .verified { background: rgba(94,122,76,0.14); color: var(--goods-green); }
+  .modelled { background: rgba(187,162,85,0.18); color: #8a7726; }
+  .future { background: rgba(122,115,99,0.14); color: var(--goods-sub); }
+</style>
+</head>
+<body>
+  <div class="eyebrow">Key points callout</div>
+  <div class="callout key">
+    <span class="ic">📌</span>
+    <div><b>Key points (at a glance).</b> The discipline in four lines. The full method is the
+    sub-page at the bottom. Used at the top of funder pages and diagnostic artifacts.</div>
+  </div>
+
+  <div class="eyebrow">Claim-ceiling callout</div>
+  <div class="callout ceiling">
+    <span class="ic">⚖️</span>
+    <div><b>Claim ceiling.</b> The scabies to rheumatic heart disease pathway is the why, never a
+    claimed outcome. A health outcome is claimed only when a partner clinical method produces it,
+    attributed to them.</div>
+  </div>
+
+  <div class="eyebrow">Honest-label tags</div>
+  <div class="label-row">
+    <span class="tag verified">Verified</span>
+    <span class="tag modelled">Modelled</span>
+    <span class="tag future">Future</span>
+  </div>
+</body>
+</html>

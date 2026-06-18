@@ -1,0 +1,76 @@
+/* ============================================================================
+   Goods on Country — canonical design tokens (single source of truth)
+   ----------------------------------------------------------------------------
+   This file is THE place the Goods brand is defined. Every surface should
+   derive from it instead of re-encoding the palette: the web app
+   (v2/src/app/globals.css, currently OKLCH), the theory-of-change generator
+   (scripts/generate_theory_of_change.py, currently hard-coded hex), the Pencil
+   deck (design/*.pen), and the goods-illustrations skill.
+
+   Reconciled 2026-06-19 from: the 2026-06-03 brand guide (§4 colour, §5 type),
+   globals.css (the live OKLCH theme), and the cost-story hex palette. Where the
+   guide named two values for the same role, the role decides (see comments).
+
+   Genuine choices flagged [CHOICE]: change the one variable, everything follows.
+   ========================================================================== */
+
+:root {
+  /* ---- Surface / ground -------------------------------------------------- */
+  --goods-cream:        #FBF8F1;  /* primary surface (cost-story card frame)   */
+  --goods-cream-logo:   #FDF8F3;  /* logo cream square variant                 */
+  --goods-card:         #FFFFFF;  /* pure-white card on cream                  */
+  --goods-grid:         #E6DFD1;  /* hairlines, chart gridlines, dividers      */
+
+  /* ---- Brand primary ----------------------------------------------------- */
+  /* [CHOICE] the Goods terracotta. Logo terracotta is the brand primary; clay
+     is the chart/HDPE anchor. They are different roles, not competitors. */
+  --goods-terracotta:   #C45C3E;  /* primary / brand (logo keyline + rule)     */
+  --goods-clay:         #A8643F;  /* HDPE plastic, the chart anchor            */
+
+  /* ---- Secondary accents (connection to Country) ------------------------- */
+  --goods-sage:         #8B9D77;  /* "ON COUNTRY" sage (secondary accent)      */
+  --goods-olive:        #7E9A68;  /* hardware / contribution / factory         */
+  --goods-green:        #5E7A4C;  /* surplus / community / fixed block         */
+  --goods-teal:         #5C8A86;  /* canvas / freight / buy-kit                */
+  --goods-gold:         #BBA255;  /* steel / labour                           */
+  --goods-rose:         #C18A7B;  /* "defy" comparison panels                  */
+
+  /* ---- Ink / text -------------------------------------------------------- */
+  --goods-ink:          #2B2A26;  /* body text                                 */
+  --goods-ink-logo:     #2E2E2E;  /* "Goods" wordmark ink                      */
+  --goods-charcoal:     #0A0A0A;  /* logo on light                            */
+  --goods-sub:          #7A7363;  /* captions, sub-text                        */
+
+  /* ---- Type -------------------------------------------------------------- */
+  /* Display = Georgia (editorial, public pages). Logo = Poppins Medium 500
+     (logo ONLY, see brand guide §3). Body = system sans. The guide flags the
+     Inter/Playfair/Geist loads in layout.tsx as unused; drop them. */
+  --goods-font-display: Georgia, "Times New Roman", serif;
+  --goods-font-logo:    "Poppins", "Helvetica Neue", Arial, sans-serif;
+  --goods-font-body:    system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+
+  --goods-display-tracking: -0.01em;   /* editorial headings sit tight        */
+  --goods-eyebrow-tracking: 0.12em;    /* all-caps eyebrows / labels          */
+
+  /* ---- Radius / elevation ------------------------------------------------ */
+  --goods-radius:       0.625rem;      /* base 10px                            */
+  --goods-radius-card:  1.5rem;        /* rounded-3xl, the Goods card radius   */
+  --goods-shadow-card:  0 1px 3px rgba(43, 42, 38, 0.08),
+                        0 6px 18px rgba(43, 42, 38, 0.06);
+
+  /* ---- Spacing rhythm ---------------------------------------------------- */
+  --goods-pad-card:     2rem;          /* p-8 on cards (p-5 on mobile)         */
+  --goods-gap:          1rem;
+}
+
+/* Semantic aliases so component CSS reads by intent, not by colour name.
+   Re-point these (not the raw hex) when a role changes. */
+:root {
+  --goods-bg:            var(--goods-cream);
+  --goods-surface:       var(--goods-card);
+  --goods-primary:       var(--goods-terracotta);
+  --goods-accent:        var(--goods-sage);
+  --goods-text:          var(--goods-ink);
+  --goods-text-muted:    var(--goods-sub);
+  --goods-border:        var(--goods-grid);
+}

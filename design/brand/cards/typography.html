@@ -1,0 +1,50 @@
+<!-- @dsCard group="Foundations" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Goods typography</title>
+<link rel="stylesheet" href="../tokens.css">
+<style>
+  body { margin: 0; background: var(--goods-bg); color: var(--goods-text);
+         font-family: var(--goods-font-body); padding: 40px; }
+  .eyebrow { text-transform: uppercase; letter-spacing: var(--goods-eyebrow-tracking);
+             font-size: 11px; color: var(--goods-primary); font-weight: 700; margin: 0 0 6px; }
+  .display { font-family: var(--goods-font-display); letter-spacing: var(--goods-display-tracking);
+             color: var(--goods-text); margin: 0 0 4px; line-height: 1.1; }
+  .d1 { font-size: 46px; font-weight: 700; }
+  .d2 { font-size: 30px; font-weight: 700; }
+  .d3 { font-size: 22px; font-weight: 700; }
+  .note { color: var(--goods-text-muted); font-size: 13px; margin: 4px 0 30px; }
+  .logo { font-family: var(--goods-font-logo); font-weight: 500; font-size: 40px;
+          color: var(--goods-ink-logo); letter-spacing: -0.02em; }
+  .logo .oc { font-size: 15px; letter-spacing: 0.5em; color: var(--goods-sage);
+              vertical-align: middle; margin-left: 12px; }
+  .body { max-width: 560px; font-size: 16px; line-height: 1.6; color: var(--goods-text); }
+  .caption { font-size: 13px; color: var(--goods-text-muted); }
+  hr { border: 0; border-top: 1px solid var(--goods-border); margin: 30px 0; }
+</style>
+</head>
+<body>
+  <div class="eyebrow">Display — Georgia (editorial)</div>
+  <p class="display d1">The making belongs On Country.</p>
+  <p class="display d2">She designed it. She named it.</p>
+  <p class="display d3">Built with communities, not for them.</p>
+  <p class="note">Georgia, "Times New Roman", serif. Warm, editorial, on every machine. Headings sit tight (-0.01em).</p>
+
+  <hr>
+
+  <div class="eyebrow">Logo — Poppins Medium 500 (logo only)</div>
+  <p class="logo">Goods.<span class="oc">ON COUNTRY</span></p>
+  <p class="note">Poppins Medium for the wordmark only. Never use Poppins for body or display copy.</p>
+
+  <hr>
+
+  <div class="eyebrow">Body — system sans</div>
+  <p class="body">Plain declaratives, short sentences, real community language. Lead with the
+  person or the impact, then the spec. A quote sits next to the data it humanises, voice plus
+  face plus number on the same beat.</p>
+  <p class="caption">"Hardly anyone around the community has beds." Ivy, Palm Island.</p>
+</body>
+</html>
