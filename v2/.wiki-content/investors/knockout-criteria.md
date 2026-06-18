@@ -2,8 +2,6 @@
 
 > Six filters every potential investor must pass before we spend time on them. From CASE Smart Impact Capital. Beck Parkinson's discipline: "a quick 'no' is much more helpful than a long drawn-out process."
 
-> **Canonical note (2026-06-16):** The QBE program's **SIH 2026 tool uses 8 knockouts** (this CASE set of 6 plus Timing, Exit Expectations, and Impact Alignment). For the Catalysing Impact raise the SIH 8-knockout set is canonical (see [[alignment-tool]] and `wiki/outputs/2026-06-16-qbe-opportunity-hub/02-investor-alignment.md`). These six remain a useful quick internal screen.
-
 ## The six filters
 
 | # | Criterion | Test | Goods' hard requirement |
