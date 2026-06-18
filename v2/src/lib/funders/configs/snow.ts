@@ -134,7 +134,7 @@ export const snowConfig: FunderConfig = {
       id: 7,
       name: 'Long-term, flexible funding',
       evidence:
-        '"We don\'t force nothing on them. We just sit down and explain what we do, or we let them look and listen. When they\'re ready, they\'ll try." (Gary).\n- Snow has backed Goods with roughly $493,000 to date (verified, Xero), the foundation relationship that made the field-testing and the first plant possible.\n- The next step is a blended-finance pathway: a first-mover, recoverable commitment aligned with the QBE Catalysing Impact plan, moving Goods from grant-funded toward a community-owned enterprise that can stand on its own (future; the specific ask is being scoped with QBE).\n- Full cost recovery: moving from zero-margin delivery toward sustainable pricing and reinvestment.',
+        '"We don\'t force nothing on them. We just sit down and explain what we do, or we let them look and listen. When they\'re ready, they\'ll try." (Gary).\n- Snow has backed Goods with roughly $493,000 to date (verified, Xero), the foundation relationship that made the field-testing and the first plant possible.\n- The next step is a blended-finance pathway: as much of the next commitment as possible structured as a first-mover, recoverable loan rather than a grant, aligned with the QBE Catalysing Impact plan, moving Goods from grant-funded toward a community-owned enterprise that can stand on its own. The amount, the conditions it carries, and the impact it is held to are the three things we want to work out together with Snow (future; the specific ask is being scoped alongside QBE).\n- Full cost recovery: moving from zero-margin delivery toward sustainable pricing and reinvestment.',
     },
     {
       id: 8,

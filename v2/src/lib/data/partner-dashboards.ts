@@ -275,7 +275,7 @@ const snow: PartnerDashboard = {
     invitation: {
       eyebrow: 'An invitation to Snow',
       title: 'From grant partner to impact investor',
-      body: 'Snow has opened a conversation about coming into this next chapter as more than a grant maker: as an impact investor, through recoverable or repayable finance that fits the work and returns to Snow over time. It is an exploration, not a commitment, and it sits alongside the partnership we already have, not in place of it.',
+      body: 'Snow has opened a conversation about coming into this next chapter as more than a grant maker: as an impact investor. Our hope is to structure as much of the next commitment as possible as a loan, recoverable capital that returns to Snow over time and can be put back to work, rather than a grant. The three things we want to settle together with Snow are the amount, the conditions it carries, and the impact it is held to. It is an exploration, not a commitment, and it sits alongside the partnership we already have, not in place of it.',
     },
     qbeNote:
       'Goods was selected into QBE Catalysing Impact 2026, a blended finance accelerator run by the Social Impact Hub. Stage 2 can match up to $400,000, but only against capital we raise alongside it, and repayable finance is prioritised over grants. The match is contingent, and it is not secured until it is awarded.',
