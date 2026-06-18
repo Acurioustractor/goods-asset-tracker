@@ -17,7 +17,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Impact Model — Goods on Country',
   description:
-    'Goods on Country impact model for health, environmental, economic, community ownership and production outcomes from Stretch Beds and practical household infrastructure.',
+    'Goods on Country impact model: five outcome domains (rest and health; dignity and safety; self-determination and community-led design; jobs and ownership; circular and local economy) carried by community voices and canon numbers.',
   alternates: {
     canonical: 'https://www.goodsoncountry.com/impact',
   },
@@ -144,6 +144,7 @@ function DimensionIcon({ icon, color }: { icon: string; color: string }) {
     briefcase: 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
     users: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
     factory: 'M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z',
+    home: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
   };
 
   return (
@@ -174,9 +175,9 @@ function LossFunctionSection({ snapshot }: { snapshot: ImpactSnapshot }) {
     <section className="py-12" style={{ backgroundColor: '#C45C3E' }}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
-          <p className="text-sm uppercase tracking-widest text-white/60 mb-2">The Loss Function</p>
+          <p className="text-sm uppercase tracking-widest text-white/60 mb-2">By the numbers</p>
           <h2 className="text-2xl font-light text-white" style={{ fontFamily: 'Georgia, serif' }}>
-            Impact Per Dollar
+            What is deployed, and what it cost
           </h2>
         </div>
 
@@ -262,23 +263,86 @@ function DimensionCard({ dimension }: { dimension: ImpactDimension }) {
   );
 }
 
-function FiveDimensionsSection({ dimensions }: { dimensions: ImpactDimension[] }) {
+// The top line: three shifts (the elevator version). Each shift gathers outcome
+// domains beneath it (framework §2). This is the headline; the five domains carry
+// the evidence underneath.
+function ThreeShiftsSection() {
+  const shifts = [
+    {
+      label: 'Material shift',
+      color: '#8B9D77',
+      text: 'Waste plastic becomes a durable, washable, repairable good, made On Country.',
+    },
+    {
+      label: 'Economic shift',
+      color: '#5E7D9A',
+      text: 'The freight tax puts a basic good out of reach, so the bed is built to beat the true remote cost. Value, jobs and the making stay local, and the in-house cost-down moves Goods from grant-funded toward an enterprise communities can own.',
+    },
+    {
+      label: 'Story shift',
+      color: '#C45C3E',
+      text: 'Communities name it (Pakkimjalki Kari, named in Warumungu), design it, and own the record of it, on their terms. This is Indigenous self-determination.',
+    },
+  ];
+
   return (
-    <section className="py-16 md:py-20" style={{ backgroundColor: '#FDF8F3' }}>
+    <section className="py-16 md:py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <p className="text-sm uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
-            Five Dimensions
+            The top line
           </p>
           <h2
             className="text-3xl font-light mb-2"
             style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}
           >
-            How We Measure Impact
+            Three shifts
           </h2>
           <p className="text-sm max-w-xl mx-auto" style={{ color: '#5E5E5E' }}>
-            Each dimension tracks current metrics from our asset register, fleet telemetry, and community
-            engagement — with clear targets for Year 1, Year 3, and 2030.
+            In one breath, the change is three shifts. The five domains beneath them carry the evidence:
+            a community voice, a counted number, and an honest label, on the same beat.
+          </p>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
+          {shifts.map((s) => (
+            <div
+              key={s.label}
+              className="rounded-lg p-6 border-l-4"
+              style={{ borderColor: s.color, backgroundColor: '#FDF8F3' }}
+            >
+              <p className="text-sm font-medium uppercase tracking-wide mb-2" style={{ color: s.color }}>
+                {s.label}
+              </p>
+              <p className="text-sm" style={{ color: '#5E5E5E' }}>
+                {s.text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FiveDomainsSection({ dimensions }: { dimensions: ImpactDimension[] }) {
+  return (
+    <section className="py-16 md:py-20" style={{ backgroundColor: '#FDF8F3' }}>
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <p className="text-sm uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
+            Five domains
+          </p>
+          <h2
+            className="text-3xl font-light mb-2"
+            style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}
+          >
+            How the change shows up
+          </h2>
+          <p className="text-sm max-w-xl mx-auto" style={{ color: '#5E5E5E' }}>
+            Five outcome domains, each pairing a cleared community voice with a canon number from our
+            asset register, fleet telemetry and community engagement. Every number carries an honest
+            label and a target for Year 1, Year 3 and 2030.
           </p>
         </div>
 
@@ -288,6 +352,64 @@ function FiveDimensionsSection({ dimensions }: { dimensions: ImpactDimension[] }
           {dimensions.map((dim) => (
             <DimensionCard key={dim.id} dimension={dim} />
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// The two through-lines that run across all five domains (framework §6): the
+// economics story and Indigenous sovereignty. Not separate domains; the spine that
+// connects them.
+function ThroughLinesSection() {
+  const lines = [
+    {
+      label: 'The economics are the impact',
+      color: '#5E7D9A',
+      text: 'A basic good is out of reach in remote communities because of the freight tax and goods that fail in months. Goods answers with a durable, washable, repairable bed built to beat the true remote cost, made On Country so the value and the jobs stay local, with an in-house cost-down that moves the work from grant-funded toward a community-owned enterprise that can stand on its own.',
+    },
+    {
+      label: 'Indigenous sovereignty',
+      color: '#C45C3E',
+      text: 'Self-determination runs through every layer: cultural (the washing machine named Pakkimjalki Kari in Warumungu), design (named and tested in community), data (consent travels with the story), and economic (jobs, then ownership of the making). Sovereignty is what "become unnecessary" means in practice.',
+    },
+  ];
+
+  return (
+    <section className="py-16 md:py-20 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-10">
+            <p className="text-sm uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
+              Two through-lines
+            </p>
+            <h2
+              className="text-3xl font-light mb-2"
+              style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}
+            >
+              What runs across all five
+            </h2>
+            <p className="text-sm max-w-xl mx-auto" style={{ color: '#5E5E5E' }}>
+              Two lines connect the domains. They are the spine of the story, not a footnote to the product.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {lines.map((l) => (
+              <div
+                key={l.label}
+                className="rounded-lg p-6 border-l-4"
+                style={{ borderColor: l.color, backgroundColor: '#FDF8F3' }}
+              >
+                <p className="text-base font-medium mb-2" style={{ color: l.color, fontFamily: 'Georgia, serif' }}>
+                  {l.label}
+                </p>
+                <p className="text-sm" style={{ color: '#5E5E5E' }}>
+                  {l.text}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -385,73 +507,11 @@ function HealthCascadeSection({ cascade }: { cascade: ImpactSnapshot['healthCasc
   );
 }
 
-function OptimizationSection({
-  opportunities,
-}: {
-  opportunities: ImpactSnapshot['optimizationOpportunities'];
-}) {
-  const potentialColors = { high: '#C45C3E', medium: '#D4A574', low: '#8B9D77' };
-
-  return (
-    <section className="py-16 md:py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
-              Data-Driven Insights
-            </p>
-            <h2
-              className="text-3xl font-light mb-2"
-              style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}
-            >
-              Optimization Opportunities
-            </h2>
-            <p className="text-sm" style={{ color: '#5E5E5E' }}>
-              Patterns identified from live data — where each improvement dollar has the most impact.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            {opportunities.slice(0, 6).map((opp) => (
-              <div
-                key={opp.id}
-                className="p-4 rounded-lg border"
-                style={{ borderColor: '#E8DED4', backgroundColor: '#FDF8F3' }}
-              >
-                <div className="flex items-start gap-3">
-                  <div
-                    className="w-2 h-2 rounded-full mt-2 shrink-0"
-                    style={{ backgroundColor: potentialColors[opp.potential] }}
-                  />
-                  <div className="flex-1">
-                    <p className="font-medium text-sm" style={{ color: '#2E2E2E' }}>
-                      {opp.title}
-                    </p>
-                    <p className="text-sm mt-1" style={{ color: '#5E5E5E' }}>
-                      {opp.description}
-                    </p>
-                    <p className="text-xs mt-2" style={{ color: '#8B9D77' }}>
-                      Source: {opp.dataSource}
-                    </p>
-                  </div>
-                  <span
-                    className="text-xs px-2 py-0.5 rounded-full shrink-0"
-                    style={{
-                      backgroundColor: `${potentialColors[opp.potential]}20`,
-                      color: potentialColors[opp.potential],
-                    }}
-                  >
-                    {opp.potential}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+// P4 (2026-06-18): the public "Optimization Opportunities" section was removed.
+// "Loss function / optimization / improvement dollar" is internal engineer framing,
+// not a community-outcome surface, and it competes with the five domains. The data
+// (snapshot.optimizationOpportunities) is still computed and exposed via /api/impact
+// for internal and agent use; it just no longer renders on the public page.
 
 function ProductionCostSection() {
   return (
@@ -460,18 +520,20 @@ function ProductionCostSection() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-sm uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
-              Work-Integrated Social Enterprise
+              The economics through-line
             </p>
             <h2
               className="text-3xl font-light mb-2"
               style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}
             >
-              Cost Per Bed &amp; Employment Impact
+              How the cost comes down
             </h2>
             <p className="text-sm" style={{ color: '#5E5E5E' }}>
-              Every bed creates roughly {MODELLED_LABOUR_HOURS_PER_BED.toFixed(1)} modelled hours of
-              employment for at-risk youth and community members. At 1,500 beds/year, that&apos;s
-              about {(1500 * MODELLED_LABOUR_HOURS_PER_BED).toLocaleString()} hours of employment.
+              The freight tax puts a basic good out of reach, so the bed is built to beat the true
+              remote cost, not the sticker price. As the making moves On Country and in-sources, the
+              direct cost per bed comes down and the value stays local. Every bed also creates roughly{' '}
+              {MODELLED_LABOUR_HOURS_PER_BED.toFixed(1)} modelled hours of employment; at 1,500 beds a
+              year that is about {(1500 * MODELLED_LABOUR_HOURS_PER_BED).toLocaleString()} hours of work.
             </p>
           </div>
 
@@ -577,7 +639,7 @@ function HowWeTrackSection() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-sm uppercase tracking-widest mb-4" style={{ color: '#8B9D77' }}>
-              Australian Living Map of Alternatives
+              Measurement &amp; accountability
             </p>
             <h2
               className="text-3xl font-light mb-2"
@@ -586,7 +648,7 @@ function HowWeTrackSection() {
               How We Measure
             </h2>
             <p className="text-sm" style={{ color: '#5E5E5E' }}>
-              Our learning and accountability lens for holding product data, community feedback, consent and practical change together.
+              How we hold product data, community feedback, consent and practical change together.
             </p>
           </div>
 
@@ -867,6 +929,80 @@ function PartnersSection() {
   );
 }
 
+// The single human spine (framework §6): "Mykel's arc is the model in one person:
+// waste, to product, to skill, to work, to ownership." Carries the jobs/ownership
+// and circular domains in one face, with his consent (Ben, 2026-06-18). As a young
+// person his material is handled with Oonchiumpa and guardian in the loop.
+function MykelFeatureSection() {
+  return (
+    <section className="py-16 md:py-24" style={{ backgroundColor: '#2E2E2E' }}>
+      <div className="container mx-auto px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <p className="text-sm uppercase tracking-widest text-white/50 mb-4">
+              The model in one person
+            </p>
+            <h2
+              className="text-3xl md:text-4xl font-light text-white mb-3"
+              style={{ fontFamily: 'Georgia, serif' }}
+            >
+              Mykel
+            </h2>
+            <p className="text-sm text-white/60 max-w-2xl mx-auto">
+              Waste to product to skill to work to ownership, in one person. Mykel built the bed he
+              slept on that night and kept going: seven beds by the end of the second day, out the
+              back of the Oonchiumpa office in Alice Springs.
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2 md:items-center">
+            <div className="aspect-video rounded-lg overflow-hidden bg-black/30">
+              <video
+                src="/video/partners/oonchiumpa/mykel-building-the-bed.mp4"
+                poster="/video/partners/oonchiumpa/mykel-building-the-bed-poster.jpg"
+                controls
+                preload="none"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div>
+              <blockquote className="border-l-2 pl-4 mb-6" style={{ borderColor: '#C45C3E' }}>
+                <p
+                  className="text-2xl font-light text-white mb-2"
+                  style={{ fontFamily: 'Georgia, serif' }}
+                >
+                  &ldquo;I&rsquo;ll be rocking up every day to make them.&rdquo;
+                </p>
+                <p className="text-sm text-white/50">
+                  Mykel, asked whether he would make beds every day if the making moved closer to home
+                </p>
+              </blockquote>
+
+              <p className="text-sm text-white/70 mb-4">
+                He turned the finished bed over in his hands, then explained it was made from bottle
+                lids shredded and pressed into something strong enough to stand on. Fred, his
+                Oonchiumpa support worker, watched him work, called him grandson, and said: &ldquo;That
+                could be a good employment for yourself too, grandson. Later on.&rdquo;
+              </p>
+
+              <p className="text-sm italic text-white/60">
+                &ldquo;Comfortable as. Smooth, tight, hard, fancy.&rdquo;{' '}
+                <span className="not-italic text-white/40">Mykel, on the bed</span>
+              </p>
+
+              <p className="text-xs text-white/30 mt-6">
+                Shared with consent. Mykel is a young person; his material is handled with Oonchiumpa
+                and his guardian in the loop.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ---------------------------------------------------------------------------
 // Main async component
 // ---------------------------------------------------------------------------
@@ -877,11 +1013,13 @@ async function ImpactDashboard() {
   return (
     <>
       <LossFunctionSection snapshot={snapshot} />
-      <FiveDimensionsSection dimensions={snapshot.dimensions} />
-      <HealthCascadeSection cascade={snapshot.healthCascade} />
+      <ThreeShiftsSection />
+      <FiveDomainsSection dimensions={snapshot.dimensions} />
+      <MykelFeatureSection />
+      <ThroughLinesSection />
       <ProductionCostSection />
+      <HealthCascadeSection cascade={snapshot.healthCascade} />
       <PartnersSection />
-      <OptimizationSection opportunities={snapshot.optimizationOpportunities} />
       <HowWeTrackSection />
     </>
   );
@@ -921,8 +1059,8 @@ export default function ImpactPage() {
               Impact Model
             </h1>
             <p className="text-lg max-w-2xl mx-auto mb-2" style={{ color: '#5E5E5E' }}>
-              Five dimensions of impact, tracked from our asset register, fleet
-              telemetry, and community voices.
+              Three shifts in one breath, five outcome domains underneath. Every claim pairs a
+              community voice with a counted number and an honest label.
             </p>
             <p className="text-sm max-w-xl mx-auto" style={{ color: '#8B9D77' }}>
               Numbers drawn from our asset register and fleet data. Every target is accountable.
@@ -965,10 +1103,10 @@ export default function ImpactPage() {
             className="text-3xl md:text-4xl font-light text-white mb-6"
             style={{ fontFamily: 'Georgia, serif' }}
           >
-            Be Part of This Impact
+            Back the work
           </h2>
           <p className="text-white/80 max-w-xl mx-auto mb-8">
-            Every bed purchased or sponsored adds to these numbers and changes a family&apos;s life.
+            Every bed is built On Country and counted here. Back the making, and follow where it goes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white hover:bg-white/90" style={{ color: '#C45C3E' }} asChild>
