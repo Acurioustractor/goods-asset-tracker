@@ -2,15 +2,18 @@
 """
 Goods on Country — Theory of Change as a results-chain logic model (SVG).
 
-Built to take on the SIH Impact Investment Readiness Diagnostic V4 and QBE
-Catalysing Impact feedback:
+Conforms to the canonical impact model (wiki/outputs/2026-06-18-goods-impact-
+framework.md) and answers the SIH Diagnostic V4 / QBE Catalysing Impact feedback:
   - explicit logic chain: inputs -> activities -> outputs -> outcomes -> impact
-  - outcomes grouped by the two QBE Foundation priorities (Inclusion + Climate
-    Resilience) and the 5 impact dimensions in v2/src/lib/data/impact-model.ts
+  - OUTCOMES = the five canonical domains (rest & health; dignity & safety;
+    self-determination; jobs & ownership; circular & local economy)
+  - IMPACT = the three shifts (material, economic, story)
+  - claim ceiling stated on the image: scabies->RHD is the why, never claimed
+  - numbers are canon (v2/src/lib/data/asset-canonical.ts): 496 / 9 / 16 / 2,660kg
   - honest status flags: tracked / partial / modelled / design-target
   - the community-led operating cycle kept as the "Activities" band
 
-Companion doc: wiki/outputs/2026-05-29-goods-theory-of-change-and-mel.md
+Companion doc: wiki/outputs/2026-06-18-goods-impact-framework.md
 Output:        v2/public/theory-of-change.svg  (+ png/pdf via rsvg-convert)
 Regenerate:    python3 scripts/generate_theory_of_change.py
 """
@@ -169,70 +172,79 @@ S.append(chip_row([
 ], oy, oh, TEAL))
 S.append(arrow_down(midx, oy+oh, oy+oh+26))
 
-# =================================================================== OUTCOMES
-ocy, och = oy+oh+26, 322
+# =================================================================== OUTCOMES (five domains)
+ocy, och = oy+oh+26, 300
 S.append(rail(ocy, och, "OUTCOMES", GOLD))
+S.append(text(CX0, ocy+4, "FIVE OUTCOME DOMAINS  ·  each carried by cleared voices, anchored to a canon number",
+              13, darken(GOLD), weight="700", anchor="start", spacing="0.6"))
 
-def dim_card(x, y, w, h, name, color, rows):
+def dom_card(x, y, w, h, name, color, claim, anchor):
     out = [rrect(x, y, w, h, 13, "#FFFFFF", stroke=color, sw=1.5, shadow=True)]
     out.append(rrect(x, y, w, 30, 13, color))
-    out.append(rrect(x, y+16, w, 14, 0, color))  # square off bottom of header
-    out.append(text(x+w/2, y+20, name, 14.5, "#FFFFFF", weight="700"))
-    labels = ["Short", "Medium", "Long"]
-    ry = y + 46
-    for j, txt in enumerate(rows):
-        out.append(text(x+12, ry, labels[j], 11, darken(color), weight="700", anchor="start", spacing="0.4"))
-        lines = wrap(txt, int((w-24)/6.6))
-        out.append(mtext(x+w/2, ry+16, lines, 12.5, INK, 15))
-        ry += 16 + 15*len(lines) + 8
+    out.append(rrect(x, y+16, w, 14, 0, color))  # square off header bottom
+    out.append(text(x+w/2, y+20, name, 13.5, "#FFFFFF", weight="700"))
+    lines = wrap(claim, int((w-26)/6.2))
+    out.append(mtext(x+w/2, y+52, lines, 12.5, INK, 16))
+    ay = y + h - 34
+    out.append(f'<line x1="{x+12}" y1="{ay-15}" x2="{x+w-12}" y2="{ay-15}" stroke="{color}" stroke-width="1" opacity="0.45"/>')
+    aln = wrap(anchor, int((w-22)/5.8))
+    out.append(mtext(x+w/2, ay, aln, 12, darken(color), 14, weight="700"))
     return "".join(out)
 
-# two QBE-priority panels
-pgap = 22
-incl_w = CXW*0.70 - pgap/2
-clim_w = CXW*0.30 - pgap/2
-incl_x = CX0
-clim_x = CX0 + incl_w + pgap
-
-# priority headers
-S.append(text(incl_x, ocy+4, "INCLUSION  ·  QBE Foundation priority", 13, darken(TERRA), weight="700", anchor="start", spacing="0.8"))
-S.append(text(clim_x, ocy+4, "CLIMATE RESILIENCE  ·  QBE", 13, darken(SAGE), weight="700", anchor="start", spacing="0.8"))
-
-dy = ocy + 14
-dh = och - 14
-# Inclusion: 3 dimension cards
-dim_gap = 16
-dcw = (incl_w - dim_gap*2) / 3
-S.append(dim_card(incl_x, dy, dcw, dh, "Health & wellbeing", CLAY, [
-    "Off-floor sleeping; a clean-bedding pathway in the home.",
-    "Less scabies and Strep A exposure; assets still in use at 12 months.",
-    "Reduced rheumatic heart disease burden (with health-evidence partners).",
-]))
-S.append(dim_card(incl_x+dcw+dim_gap, dy, dcw, dh, "Economic inclusion", GOLD, [
-    "Household income retained; first local paid work.",
-    "Members trained and employed; institutional orders convert.",
-    "Sustainable local livelihoods (WISE employment).",
-]))
-S.append(dim_card(incl_x+2*(dcw+dim_gap), dy, dcw, dh, "Community ownership", TEAL, [
-    "Community co-leads design and production.",
-    "Named lead on payroll; community entity invoices the buyer.",
-    "Community-owned production on Country. We become unnecessary.",
-]))
-# Climate: 1 dimension card
-S.append(dim_card(clim_x, dy, clim_w, dh, "Environmental", SAGE, [
-    "Community plastic captured and re-used; less landfill.",
-    "A working circular loop; replacement cycles lengthen.",
-    "A measurable environmental-health evidence base.",
-]))
+domains = [
+    ("Rest & health", CLAY,
+     "Off-the-ground, washable sleep: why a bed and a washer are health hardware, not furniture.",
+     "496 beds · 9 communities"),
+    ("Dignity & safety", TERRA,
+     "A bed is safety and belonging. The freight tax is why a basic good is out of reach. A need, not charity.",
+     "9 communities served"),
+    ("Self-determination", TEAL,
+     "Designed in community, owned by them. 'Never been asked' becomes 'named it, tested it, built what they asked for'.",
+     "Pakkimjalki Kari, named in Warumungu"),
+    ("Jobs & ownership", GOLD,
+     "The making moves On Country. Young people build the product and, in time, hold the work and the ownership.",
+     "16 washers in community · 50-bed run (target)"),
+    ("Circular & local economy", SAGE,
+     "Plastic becomes beds On Country. Value and capability stay local, toward an enterprise that funds itself.",
+     "2,660kg diverted (20kg/bed, modelled)"),
+]
+dgap = 16
+dcw = (CXW - dgap*4) / 5
+dy = ocy + 16
+dh = och - 52
+for i, (name, color, claim, anchor) in enumerate(domains):
+    x = CX0 + i*(dcw+dgap)
+    S.append(dom_card(x, dy, dcw, dh, name, color, claim, anchor))
+# the claim ceiling, stated on the image
+S.append(text(CX0, ocy+och-8,
+   "Claim ceiling: the scabies to rheumatic heart disease pathway is our why, never a claimed outcome. A health outcome is claimed only when a partner clinical method (Miwatj) produces it, attributed to them.",
+   12, INK_MUTE, italic=True, anchor="start", family=SERIF))
 S.append(arrow_down(midx, ocy+och, ocy+och+26))
 
-# ===================================================================== IMPACT
-imy, imh = ocy+och+26, 64
-S.append(rail(imy, imh, "IMPACT", TERRA))
-S.append(rrect(CX0, imy, CXW, imh, 14, tint(TERRA), stroke=TERRA, sw=1.5))
-S.append(text((CX0+CX1)/2, imy+imh/2+5,
-   "Healthier, more self-determining remote communities: locally-owned manufacturing and a circular economy that keeps value on Country.",
-   16, darken(TERRA), weight="600"))
+# ===================================================================== IMPACT (the three shifts)
+imy, imh = ocy+och+26, 134
+S.append(rail(imy, imh, "THE 3 SHIFTS", TERRA))
+shifts = [
+    ("Material shift", SAGE,
+     "Waste plastic becomes a durable, washable, repairable good, made On Country."),
+    ("Economic shift", GOLD,
+     "Built to beat the true remote cost, not the sticker price. Value, jobs and the making stay local, moving from grant-funded toward community ownership."),
+    ("Story shift", TEAL,
+     "Communities name it, design it, and own the record of it, on their terms. Indigenous self-determination."),
+]
+sgap = 18
+scw = (CXW - sgap*2) / 3
+sh = 86
+sy = imy + 12
+for i, (name, color, body) in enumerate(shifts):
+    x = CX0 + i*(scw+sgap)
+    S.append(rrect(x, sy, scw, sh, 13, tint(color, 0.12), stroke=color, sw=1.5, shadow=True))
+    S.append(text(x+16, sy+25, name, 15, darken(color), weight="700", anchor="start"))
+    blines = wrap(body, int((scw-32)/6.4))
+    S.append(mtext(x+scw/2, sy+46, blines, 12.5, INK, 15))
+S.append(text(midx, imy+imh-10,
+   "Healthier, more self-determining communities, with locally-owned production and a circular economy that keeps value on Country.",
+   15, darken(TERRA), weight="600", family=SERIF, italic=True))
 
 # ------------------------------------------------------------- metrics + key
 my = imy + imh + 30
@@ -240,11 +252,11 @@ S.append(text(40, my, "PRIORITY METRICS", 13, INK_MUTE, weight="700", anchor="st
 S.append(text(40, my+22, "Status:  ● tracked (live)    ◐ partial / data thin    ○ modelled (proxy, not measured)    □ design target",
               13, INK_MUTE, anchor="start"))
 metrics = [
-    ("Beds delivered", "495 → 1,500 (Yr1)", "●", TEAL),
-    ("Plastic diverted", "~2,640 kg → 30 t", "◐", SAGE),
+    ("Beds delivered", "496 → 1,500 (Yr1)", "●", TEAL),
+    ("Plastic diverted", "2,660 kg → 30 t", "○", SAGE),
     ("Communities reached", "9 → 12", "●", CLAY),
-    ("Consent-led stories", "12 → 50", "●", GOLD),
-    ("Community-ownership test", "0/4 → 4/4 at month 6", "□", TERRA),
+    ("Washers in community", "16", "●", GOLD),
+    ("Community-owned production", "0/4 → 4/4 at month 6", "□", TERRA),
 ]
 mgap = 14
 mw = (1600 - mgap*(len(metrics)-1)) / len(metrics)
@@ -262,7 +274,7 @@ S.append(f'<line x1="40" y1="{fy-18}" x2="1640" y2="{fy-18}" stroke="{HAIR}" str
 S.append(text(W/2, fy+4,
    "The model: community leads the design. Goods supports the building. Production transfers to community ownership.",
    17, INK, family=SERIF))
-S.append(text(W/2, fy+28, "Sources: SIH Diagnostic V4 · QBE Catalysing Impact · impact-model.ts · asset register (2026-05-26). Outcomes shown are intended; see the MEL doc for what is tracked vs modelled.",
+S.append(text(W/2, fy+28, "Sources: canonical impact model (2026-06-18) · asset-canonical.ts (496 beds / 9 communities / 16 washers / 2,660kg) · SIH Diagnostic V4 · QBE Catalysing Impact. Labels mark what is verified, modelled, or future.",
               12, INK_MUTE, italic=True, family=SERIF))
 
 S.append("</svg>")
