@@ -6,6 +6,7 @@ import {
   videoGallery,
 } from '@/lib/data/content';
 import { media } from '@/lib/data/media';
+import { isClearedForExternal } from '@/lib/data/cleared-voices';
 import GalleryClient from '@/components/gallery-client';
 import type { GalleryPhoto, GalleryStoryteller, GalleryVideo } from '@/components/gallery-client';
 import type { SyndicationStoryteller } from '@/lib/empathy-ledger/types';
@@ -259,6 +260,8 @@ export default async function GalleryPage() {
   } else {
     storytellers = mapFallbackStorytellers();
   }
+  // Consent gate (default-deny): only voices cleared for external/open-web use.
+  storytellers = storytellers.filter((s) => isClearedForExternal(s.name));
 
   const photos = buildPhotos(storytellers);
   const videos = mapVideos();

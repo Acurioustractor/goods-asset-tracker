@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { storytellerProfiles, storytellerEnrichment, videoGallery } from '@/lib/data/content';
 import { curatedQuotes } from '@/lib/data/curated-quotes';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
+import { isClearedForExternal } from '@/lib/data/cleared-voices';
 import type { SyndicationStoryteller } from '@/lib/empathy-ledger/types';
 import type { Metadata } from 'next';
 
@@ -94,6 +95,8 @@ function isPublicStoryteller(p: StorytellerGridProfile) {
   // Every public storyteller card needs at least one related quote.
   // Profiles without any quote are placeholder rows; hide them.
   if (!p.keyQuote || p.keyQuote.trim() === '') return false;
+  // Consent gate (default-deny): only voices cleared for external/open-web use.
+  if (!isClearedForExternal(p.name)) return false;
   return true;
 }
 
@@ -204,9 +207,15 @@ export default async function StoriesPage() {
     hasStorytellerVideo: resolveStorytellerVideo(s.storytellerName ?? s.authorName ?? null),
   }));
 
+  // Consent gate (default-deny): a published story renders only if its storyteller
+  // (or author) is cleared for external display.
+  const clearedStories = enrichedStories.filter((s) =>
+    isClearedForExternal(s.storytellerName ?? s.authorName ?? null),
+  );
+
   // Split into text and video stories — only stories with usable media survive.
-  const textStories = enrichedStories.filter((s) => !s.videoLink && s.heroImage);
-  const videoStoryLinks = enrichedStories.filter((s) => s.videoLink);
+  const textStories = clearedStories.filter((s) => !s.videoLink && s.heroImage);
+  const videoStoryLinks = clearedStories.filter((s) => s.videoLink);
 
   // Live counts for the stats bar (replace stale hardcoded values).
   const storytellerCount = allStorytellers.length;

@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { empathyLedger } from '@/lib/empathy-ledger';
 import { communityPartnerships } from '@/lib/data/content';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
+import { isClearedForExternal } from '@/lib/data/cleared-voices';
 import type { SyndicationStoryteller, ProjectInsights } from '@/lib/empathy-ledger/types';
 
 export const metadata = {
@@ -43,8 +44,17 @@ async function getProjectData() {
     empathyLedger.getProjectInsights(),
     empathyLedger.getMedia({ type: 'image', elderApproved: true, limit: 12 }),
   ]);
-  const storytellers = storytellersRaw.filter(isRealPerson);
-  return { storytellers, insights, photos };
+  // Consent gate (default-deny): isRealPerson removes team/system accounts, then the
+  // cleared-voices allowlist limits the open web to externally-cleared voices only.
+  const storytellers = storytellersRaw
+    .filter(isRealPerson)
+    .filter((s) => isClearedForExternal(s.name));
+  // Same gate on the ungated top-quotes path: drop any quote attributed to a voice
+  // not cleared for external display (unattributed quotes are dropped too — safe direction).
+  const gatedInsights = insights
+    ? { ...insights, topQuotes: insights.topQuotes.filter((q) => isClearedForExternal(q.storytellerName)) }
+    : insights;
+  return { storytellers, insights: gatedInsights, photos };
 }
 
 // ─── Server components ──────────────────────────────────────
