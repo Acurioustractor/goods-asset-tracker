@@ -5,7 +5,7 @@
 ## Articles
 
 - [[metrics-tracked]]: current evidence, near-term build and possible future metrics
-- [[alma-framework]]: Australian Living Map of Alternatives as a review lens, not a finished answer
+- [[alma-framework]]: the story-selection lens as a review lens, not a finished answer
 - [[theory-of-change]]: plain theory of change
 - [[empathy-ledger-impact]]: consented story practice and technical reference
 - [[impact-measurement-report]]: what the Stage 2 report should contain

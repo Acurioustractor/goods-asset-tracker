@@ -64,7 +64,7 @@ Standard checks + confirm funding commitments with investors, lenders, funders d
 | Pitch deck | Exists, polish needed |
 | Business plan | Strategy PD approximates; formalisation needed |
 | 3-statement financial model | **Not built (priority)** |
-| Impact Measurement Report | Australian Living Map of Alternatives framework articulated; report to be compiled |
+| Impact Measurement Report | Story-selection lens articulated; report to be compiled |
 | Audited financials | A Kind Tractor Ltd compliance context exists, but Goods-specific financials are not audited (Xero exports + accountant endorsement acceptable) |
 | Governance docs | **In recruitment / draft (priority)** |
 
