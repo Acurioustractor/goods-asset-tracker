@@ -14,7 +14,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Community Insights',
   description:
-    'Thematic analysis of community voices across health, dignity, community-led design, and basic needs.',
+    'Thematic analysis of community voices, mapped onto the five Goods on Country outcome domains: rest and health, dignity and safety, self-determination and community-led design, jobs and ownership, and circular and local economy.',
 };
 
 export default function InsightsPage() {
@@ -38,37 +38,52 @@ export default function InsightsPage() {
     .filter((c) => c.storytellerCount > 0)
     .sort((a, b) => b.storytellerCount - a.storytellerCount);
 
-  // Impact dimensions stats
-  const impactDimensions = [
+  // The five canonical outcome domains (single impact model). Each maps the quote
+  // THEMES that feed it (themes are the listening layer, not a rival pillar set).
+  // Two domains (jobs/ownership, circular/local economy) are thin or emerging in the
+  // current quote corpus, which is weighted to product, health, dignity and design;
+  // those voices (Mykel, Fred) are carried on /impact and /stories, not yet tagged
+  // as their own quote themes here. Shown honestly rather than padded.
+  const fiveDomains = [
     {
-      id: 'health',
-      title: 'Health',
-      value: themeCounts.health,
-      description: 'Voices connecting beds to health outcomes',
+      id: 'rest-health',
+      title: 'Rest & health',
+      themes: ['health', 'washing-machine', 'product-feedback'] as ThemeId[],
+      description: 'Off-the-ground, washable sleep as health hardware',
       color: 'red',
     },
     {
-      id: 'dignity',
-      title: 'Dignity',
-      value: themeCounts.dignity,
-      description: 'Voices about safety and self-worth',
+      id: 'dignity-safety',
+      title: 'Dignity & safety',
+      themes: ['dignity', 'community-need'] as ThemeId[],
+      description: 'A bed is safety and belonging. A need, not charity',
       color: 'purple',
     },
     {
-      id: 'co-design',
-      title: 'Community-Led Design',
-      value: themeCounts['co-design'],
-      description: 'Voices about community-led design and the solutions that come from it',
+      id: 'self-determination',
+      title: 'Self-determination & community-led design',
+      themes: ['co-design'] as ThemeId[],
+      description: 'Named, tested and owned in community',
       color: 'amber',
     },
     {
-      id: 'need',
-      title: 'Basic Needs',
-      value: themeCounts['community-need'] + themeCounts['freight-tax'],
-      description: 'Voices about essential access',
-      color: 'blue',
+      id: 'circular-economy',
+      title: 'Circular & local economy',
+      themes: ['freight-tax'] as ThemeId[],
+      description: 'Value and the making stay local',
+      color: 'teal',
     },
-  ];
+    {
+      id: 'jobs-ownership',
+      title: 'Jobs, On Country work & ownership',
+      themes: [] as ThemeId[],
+      description: 'Young people building the work, toward ownership',
+      color: 'green',
+    },
+  ].map((d) => ({
+    ...d,
+    value: d.themes.reduce((sum, t) => sum + (themeCounts[t] ?? 0), 0),
+  }));
 
   return (
     <main>
@@ -277,7 +292,7 @@ export default function InsightsPage() {
         </div>
       </section>
 
-      {/* Impact Dimensions */}
+      {/* The five domains */}
       <section className="py-16 md:py-20 bg-foreground text-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -285,36 +300,40 @@ export default function InsightsPage() {
               className="text-3xl font-light mb-4"
               style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
             >
-              Impact Dimensions
+              The five domains
             </h2>
             <p className="text-background/60 max-w-xl mx-auto">
-              The four pillars of community feedback
+              How these themed voices map onto our five outcome domains. Jobs and ownership voices
+              (Mykel, Fred) are emerging in this quote set and are carried on the impact page.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            {impactDimensions.map((dimension) => (
-              <div
-                key={dimension.id}
-                className="text-center p-6 rounded-lg bg-background/5 border border-background/10"
-              >
-                <p
-                  className={`text-4xl font-bold mb-2 ${
-                    dimension.color === 'red'
-                      ? 'text-red-400'
-                      : dimension.color === 'purple'
-                        ? 'text-purple-400'
-                        : dimension.color === 'amber'
-                          ? 'text-amber-400'
-                          : 'text-blue-400'
-                  }`}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
+            {fiveDomains.map((domain) => {
+              const colorClass =
+                {
+                  red: 'text-red-400',
+                  purple: 'text-purple-400',
+                  amber: 'text-amber-400',
+                  teal: 'text-teal-400',
+                  green: 'text-emerald-400',
+                }[domain.color] ?? 'text-blue-400';
+
+              return (
+                <div
+                  key={domain.id}
+                  className="text-center p-6 rounded-lg bg-background/5 border border-background/10"
                 >
-                  {dimension.value}
-                </p>
-                <p className="font-medium text-background mb-1">{dimension.title}</p>
-                <p className="text-xs text-background/50">{dimension.description}</p>
-              </div>
-            ))}
+                  <p className={`text-4xl font-bold mb-2 ${colorClass}`}>
+                    {domain.value > 0 ? domain.value : (
+                      <span className="text-xl font-light text-background/40">Emerging</span>
+                    )}
+                  </p>
+                  <p className="font-medium text-background mb-1 text-sm">{domain.title}</p>
+                  <p className="text-xs text-background/50">{domain.description}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
