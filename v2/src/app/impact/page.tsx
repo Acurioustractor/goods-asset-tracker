@@ -294,6 +294,13 @@ function FiveDimensionsSection({ dimensions }: { dimensions: ImpactDimension[] }
   );
 }
 
+// CLAIM CEILING (P0, 2026-06-18): this section is the WHY (the reason a bed and a
+// washing machine are health hardware), never a claimed outcome. The "INTERRUPTED"
+// badges, the interrupted-step colouring, the "RHD Is Entirely Preventable" header
+// and the "beds interrupting floor sleeping / wash cycles breaking scabies chain"
+// labels were removed: each implied a prevented health outcome we cannot stand
+// behind. A health outcome only returns when a partner clinical method (Miwatj)
+// produces it, attributed to that partner.
 function HealthCascadeSection({ cascade }: { cascade: ImpactSnapshot['healthCascade'] }) {
   return (
     <section className="py-16 md:py-20" style={{ backgroundColor: '#2E2E2E' }}>
@@ -301,23 +308,24 @@ function HealthCascadeSection({ cascade }: { cascade: ImpactSnapshot['healthCasc
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-sm uppercase tracking-widest text-white/50 mb-4">
-              The Health Cascade
+              Why this is health hardware
             </p>
             <h2
               className="text-3xl font-light text-white mb-2"
               style={{ fontFamily: 'Georgia, serif' }}
             >
-              RHD Is Entirely Preventable
+              The pathway a bed and a washer sit in
             </h2>
             <p className="text-sm text-white/60">
-              Rheumatic Heart Disease kills children in remote Australia. This is the chain
-              we&apos;re breaking — and where our products intervene.
+              This is why we treat a bed and a washing machine as health hardware, not furniture.
+              Off-the-ground, washable sleep supports the conditions needed to interrupt the
+              scabies to rheumatic heart disease pathway. We do not claim a bed prevents heart
+              disease: that needs a partner clinical method.
             </p>
           </div>
 
           <div className="space-y-0">
             {cascade.steps.map((step, i) => {
-              const isInterrupted = step.interrupted;
               const isLast = i === cascade.steps.length - 1;
 
               return (
@@ -326,44 +334,21 @@ function HealthCascadeSection({ cascade }: { cascade: ImpactSnapshot['healthCasc
                   {!isLast && (
                     <div
                       className="absolute left-5 top-12 w-0.5 h-8"
-                      style={{
-                        backgroundColor: isInterrupted ? '#8B9D77' : '#C45C3E',
-                        opacity: isInterrupted ? 1 : 0.4,
-                      }}
+                      style={{ backgroundColor: '#C45C3E', opacity: 0.4 }}
                     />
                   )}
 
                   <div className="flex items-start gap-4 py-3">
-                    {/* Status indicator */}
+                    {/* Step indicator */}
                     <div
                       className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 mt-0.5"
-                      style={{
-                        backgroundColor: isInterrupted ? '#8B9D77' : 'rgba(196, 92, 62, 0.3)',
-                      }}
+                      style={{ backgroundColor: 'rgba(196, 92, 62, 0.3)' }}
                     >
-                      {isInterrupted ? (
-                        <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                      ) : (
-                        <svg className="w-5 h-5 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                        </svg>
-                      )}
+                      <span className="text-sm font-medium text-white/70">{i + 1}</span>
                     </div>
 
                     <div className="flex-1">
-                      <p className={`font-medium ${isInterrupted ? 'text-white' : 'text-white/70'}`}>
-                        {step.label}
-                        {isInterrupted && (
-                          <span
-                            className="ml-2 text-xs px-2 py-0.5 rounded-full"
-                            style={{ backgroundColor: '#8B9D77', color: 'white' }}
-                          >
-                            INTERRUPTED
-                          </span>
-                        )}
-                      </p>
+                      <p className="font-medium text-white/80">{step.label}</p>
                       <p className="text-sm text-white/50">{step.description}</p>
                       {step.liveMetric && (
                         <p className="text-sm mt-1" style={{ color: '#8B9D77' }}>
@@ -377,17 +362,17 @@ function HealthCascadeSection({ cascade }: { cascade: ImpactSnapshot['healthCasc
             })}
           </div>
 
-          {/* Summary stats */}
+          {/* Summary stats — counted activity, not a claimed health outcome */}
           <div className="grid grid-cols-3 gap-2 md:gap-4 mt-10 pt-6 border-t border-white/10">
             <div className="text-center">
               <p className="text-xl md:text-2xl font-light text-white">{cascade.bedsDelivered}</p>
-              <p className="text-[10px] md:text-xs text-white/50">Beds interrupting floor sleeping</p>
+              <p className="text-[10px] md:text-xs text-white/50">Beds delivered</p>
             </div>
             <div className="text-center">
               <p className="text-xl md:text-2xl font-light" style={{ color: '#8B9D77' }}>
                 {cascade.totalWashCycles.toLocaleString()}
               </p>
-              <p className="text-[10px] md:text-xs text-white/50">Wash cycles breaking scabies chain</p>
+              <p className="text-[10px] md:text-xs text-white/50">Wash cycles completed</p>
             </div>
             <div className="text-center">
               <p className="text-xl md:text-2xl font-light text-white">{cascade.machinesOnline}</p>

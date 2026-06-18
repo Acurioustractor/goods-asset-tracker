@@ -1,5 +1,6 @@
 import { videoUrl } from '@/lib/data/media';
 import { deployments, EXPECTED_DEPLOYED_BEDS } from '@/lib/data/compendium';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 
 // Core content and messaging for Goods on Country
 // Source: COMPENDIUM_JANUARY_2026.md
@@ -83,9 +84,9 @@ The answer became Goods: durable, repairable, community-designed "health hardwar
 export const impact = {
   headline: 'Real Impact',
   stats: [
-    { value: '520+', label: 'Assets tracked in register', icon: 'bed' },
+    { value: String(CANONICAL_ASSETS.bedsDeployed), label: 'Beds deployed', icon: 'bed' }, // canonical: see asset-canonical.ts
     { value: '107', label: 'Stretch Beds on order', icon: 'demand' },
-    { value: '9', label: 'Communities served', icon: 'community' }, // canonical: see asset-canonical.ts
+    { value: String(CANONICAL_ASSETS.communitiesServed), label: 'Communities served', icon: 'community' }, // canonical: see asset-canonical.ts
     { value: '$3M/yr', label: 'Washing machines sold → dumps', icon: 'problem', source: 'Alice Springs provider' },
   ],
 };

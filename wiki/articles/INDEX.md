@@ -88,9 +88,9 @@ Who helps us (non-cash).
 - [[support-network/cohort-peers]]: Good Cycles, Adapt, RoboFit, Ngardara, Patburn
 
 ### [[impact/README|impact/]]
-Australian Living Map of Alternatives, OCAP, theory of change, Empathy Ledger.
+Story-selection lens, OCAP, theory of change, Empathy Ledger.
 - [[impact/metrics-tracked]]: current evidence vs possible future metrics
-- [[impact/alma-framework]]: Australian Living Map of Alternatives as a review lens, not a finished answer
+- [[impact/alma-framework]]: the story-selection lens as a review lens, not a finished answer
 - [[impact/theory-of-change]]: plain theory of change
 - [[impact/empathy-ledger-impact]]: consented story practice and technical reference
 - [[impact/impact-measurement-report]]: required for Stage 2

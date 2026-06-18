@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { communityLocations } from '@/lib/data/content';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { CommunityMapClient } from './map-wrapper';
 
 export const metadata: Metadata = {
@@ -10,7 +11,6 @@ export const metadata: Metadata = {
 
 export default function CommunitiesIndex() {
   const sorted = [...communityLocations].sort((a, b) => b.bedsDelivered - a.bedsDelivered);
-  const total = sorted.reduce((s, c) => s + c.bedsDelivered, 0);
 
   return (
     <article className="mx-auto max-w-5xl px-4 py-12 sm:py-16">
@@ -20,8 +20,8 @@ export default function CommunitiesIndex() {
         <p className="mt-4 max-w-prose text-base text-stone-700">
           Every community where Goods on Country beds and washing machines are in homes.
           {' '}
-          <strong className="text-amber-700">{total.toLocaleString()} beds</strong> across{' '}
-          <strong className="text-amber-700">{sorted.length} places</strong>.
+          <strong className="text-amber-700">{CANONICAL_ASSETS.bedsDeployed.toLocaleString()} beds</strong> across{' '}
+          <strong className="text-amber-700">{CANONICAL_ASSETS.communitiesServed} communities</strong>.
         </p>
       </header>
 

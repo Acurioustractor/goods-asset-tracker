@@ -1,16 +1,16 @@
-# Australian Living Map of Alternatives
+# The story-selection lens
 
-> The Australian Living Map of Alternatives is a useful direction for Goods because it lets stories, consent, community meaning and operational data sit together. It is not a finished measurement system. The current pack needs to show which parts are live, which parts are being tested, and which claims are still too early.
+> The story-selection lens is a useful direction for Goods because it lets stories, consent, community meaning and operational data sit together. It is not a finished measurement system. The current pack needs to show which parts are live, which parts are being tested, and which claims are still too early.
 
-The Australian Living Map of Alternatives is ACT's learning and accountability lens. It is designed to help us notice what communities are saying, what products are doing, what risks are emerging, and what should change next. For Goods, it should be used to keep impact evidence close to real products and real community feedback, not to turn people's stories into a score.
+The story-selection lens is ACT's learning and accountability lens. It is designed to help us notice what communities are saying, what products are doing, what risks are emerging, and what should change next. For Goods, it should be used to keep impact evidence close to real products and real community feedback, not to turn people's stories into a score.
 
 ## Why we are drawn to it
 
-The reason is not "because the Australian Living Map of Alternatives is better than SROI". It is more grounded than that.
+The reason is not "because the story-selection lens is better than SROI". It is more grounded than that.
 
 Goods needs a way to humanise data. The work includes health outcomes, waste reduction, jobs, product durability, pride, agency, local ownership and stories. A single number will not hold all of that honestly.
 
-The Australian Living Map of Alternatives helps ask better questions about each piece of evidence:
+The story-selection lens helps ask better questions about each piece of evidence:
 
 | Signal | Plain question |
 |---|---|
@@ -27,7 +27,7 @@ SROI can be useful for some funders, but it is not the right centre for Goods ri
 
 The risk is that it turns community experience into a single financial proxy before we have listened enough. That can hide the parts we care about most: whether someone wants the product, whether it gets used, whether it can be washed, whether it avoids the dump, whether a local operator can earn from it, and whether the person telling the story still controls the story.
 
-## How Goods should use the Australian Living Map of Alternatives now
+## How Goods should use the story-selection lens now
 
 Use it as a review lens, not as a claim that the measurement system is complete.
 

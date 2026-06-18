@@ -77,15 +77,18 @@ export interface OptimizationOpportunity {
   dataSource: string;
 }
 
+// CLAIM CEILING (P0, 2026-06-18): the scabies to RHD pathway is our WHY, never a
+// claimed outcome. The cascade now explains the pathway as rationale (why a bed and
+// a washer are health hardware). The `interrupted` flag and `sleepNightsProvided`
+// proxy were removed: badging a step "INTERRUPTED" claims a prevented health
+// outcome we cannot stand behind.
 export interface HealthCascadeData {
   totalWashCycles: number;
   machinesOnline: number;
   bedsDelivered: number;
-  sleepNightsProvided: number; // beds × avg household × days since delivery
   steps: {
     label: string;
     description: string;
-    interrupted: boolean;
     liveMetric?: { value: number; unit: string };
   }[];
 }
@@ -232,10 +235,13 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
   {
     id: 'health',
     name: 'Health & Wellbeing',
-    description: 'Beds and washing machines as health hardware, interrupting the scabies → Strep A → RHD cascade',
+    // CLAIM CEILING (P0, 2026-06-18): the scabies to RHD pathway is our WHY, never a
+    // claimed outcome. This describes why a bed and a washer are health hardware; it
+    // does not claim a bed prevents or interrupts heart disease.
+    description: 'Why a bed and a washing machine are health hardware: off-the-ground, washable sleep supports the conditions needed to interrupt the scabies to rheumatic heart disease pathway',
     icon: 'heart',
     color: '#C45C3E',
-    primaryMetricId: 'sleep-nights',
+    primaryMetricId: 'beds-delivered',
     communityQuote: {
       text: 'Scabies often leads to Rheumatic Heart Disease, so washing machines are essential to be able to clean infected clothing, bedding and towels.',
       author: 'Jessica Allardyce',
@@ -251,23 +257,14 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         targets: { year1: 1500, year3: 5000, vision2030: 25000 },
         source: 'supabase',
         sourceDetail: 'assets table: count where product ilike %bed%',
-        proxyFor: 'Households with proper sleeping infrastructure',
+        proxyFor: 'Households with off-the-ground, washable sleeping infrastructure',
         optimizationLevers: ['Production capacity', 'Freight partnerships', 'Community demand pipeline'],
         computeFn: 'getBedsDelivered',
       },
-      {
-        id: 'sleep-nights',
-        confidence: 'modelled',
-        name: 'Sleep Nights Provided',
-        unit: 'nights',
-        current: null,
-        targets: { year1: 1_368_750, year3: 4_562_500, vision2030: 22_812_500 },
-        source: 'computed',
-        sourceDetail: 'beds × 2.5 people × 365 nights',
-        proxyFor: 'Improved health outcomes from proper rest',
-        optimizationLevers: ['More beds delivered', 'Product longevity'],
-        computeFn: 'computeSleepNights',
-      },
+      // CLAIM CEILING (P0, 2026-06-18): the "sleep-nights" metric was removed here.
+      // It was a modelled health proxy ("Improved health outcomes from proper rest")
+      // presented as an outcome, which the claim ceiling forbids. A health outcome
+      // only returns when a partner clinical method (Miwatj) produces it, attributed.
       {
         id: 'wash-cycles',
         confidence: 'verified',
@@ -277,7 +274,9 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         targets: { year1: 15000, year3: 60000, vision2030: 500000 },
         source: 'supabase',
         sourceDetail: 'usage_logs table: count where event_type = cycle_complete',
-        proxyFor: 'Scabies/RHD prevention through clean bedding',
+        // Counted activity, not a claimed health outcome. Clean washing is part of
+        // why a washer is health hardware; we do not claim it prevents RHD.
+        proxyFor: 'Washable bedding kept clean (the conditions the scabies pathway depends on)',
         optimizationLevers: ['Machine uptime', 'Community adoption', 'Fleet expansion'],
         computeFn: 'getWashCycles',
       },
@@ -417,19 +416,11 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
           'Xero workpaper (verified, not audited): TOTAL revenue received since inception (2023-07-01 → 2026-04-30), ~89% grant-funded (Snow + Centrecorp + VFFF + QIC) and ~11% commercial. This is NOT annual commercial traction — FY26 YTD commercial-only is ~$61K. The target is the Year-1 TOTAL-revenue target across all 7 segments (donor-institutional through adjacent), not a commercial-only target. Do not read cumulative grant-heavy revenue as recurring commercial run-rate.',
         optimizationLevers: ['B2B pipeline', 'Government procurement', 'E-commerce launch'],
       },
-      {
-        id: 'govt-savings',
-        confidence: 'modelled',
-        name: 'Government Health Savings (est.)',
-        unit: '$',
-        current: null,
-        targets: { year1: 2_000_000, year3: 10_000_000, vision2030: 50_000_000 },
-        source: 'computed',
-        sourceDetail: 'MODELLED, not measured: ~$70K per surgical RHD admission (END RHD 2018; NOT $250K) × estimated cases prevented. Needs a health-evidence partner before external use.',
-        proxyFor: 'Healthcare system cost reduction from preventive health hardware',
-        optimizationLevers: ['Bed and washer deployment', 'Evidence gathering for health impact'],
-        computeFn: 'computeGovtSavings',
-      },
+      // CLAIM CEILING (P0, 2026-06-18): the "govt-savings" metric (modelled government
+      // health savings from "cases prevented") was removed. A government-savings
+      // dollar figure presented as an outcome is forbidden by the claim ceiling: it
+      // implies a prevented health outcome we cannot stand behind. It only returns
+      // when a partner clinical/evaluation method (Miwatj) produces it, attributed.
     ],
   },
 

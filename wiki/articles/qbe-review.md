@@ -71,7 +71,7 @@ Older working drafts exist internally, but the durable review pages are the ente
 - [[capital/README|Capital]]: instruments, blended finance, catalytic capital, our stack
 - [[investors/README|Investors]]: profiles, alignment tool, pipeline
 - [[governance/README|Governance]]: board, risk, legal, compliance
-- [[impact/README|Impact]]: Australian Living Map of Alternatives, theory of change, Empathy Ledger
+- [[impact/README|Impact]]: the story-selection lens, theory of change, Empathy Ledger
 - [[support-network/README|Support network]]: SIH, PIN, Mint Ellison, advisory, cohort peers
 - [[products/README|Products]]: Stretch Bed, washing machines
 - [[communities/README|Communities]]: deployment partners

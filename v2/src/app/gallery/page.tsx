@@ -6,6 +6,7 @@ import {
   videoGallery,
 } from '@/lib/data/content';
 import { media } from '@/lib/data/media';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { isClearedForExternal } from '@/lib/data/cleared-voices';
 import GalleryClient from '@/components/gallery-client';
 import type { GalleryPhoto, GalleryStoryteller, GalleryVideo } from '@/components/gallery-client';
@@ -174,7 +175,7 @@ function buildPhotos(storytellers: GalleryStoryteller[]): GalleryPhoto[] {
       location: 'Tennant Creek, NT',
       community: 'tennant-creek',
       caption: 'Community Testing',
-      subcaption: '8 prototype units deployed',
+      subcaption: `${CANONICAL_ASSETS.washersInCommunity} washing machines in community`,
     });
   }
 

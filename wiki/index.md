@@ -19,7 +19,7 @@
 | [articles/investors/](articles/investors/) | One profile per funder + alignment tool + pipeline |
 | [articles/governance/](articles/governance/) | Board, risk, policies, legal structure, ACNC/ASIC |
 | [articles/support-network/](articles/support-network/) | SIH, PIN, Mint Ellison, advisory group, cohort peers |
-| [articles/impact/](articles/impact/) | ALMA, OCAP, theory of change, Empathy Ledger |
+| [articles/impact/](articles/impact/) | Story-selection lens, OCAP, theory of change, Empathy Ledger |
 | [articles/products/](articles/products/) | Stretch Bed, washing machines |
 | [articles/communities/](articles/communities/) | Deployment partners (PICC, Oonchiumpa, NPY, Centrecorp…) |
 | [articles/enterprise/](articles/enterprise/) | 10 diagnostic topics as durable articles |

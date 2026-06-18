@@ -13,7 +13,7 @@ import type { SyndicationStoryteller, ProjectInsights } from '@/lib/empathy-ledg
 
 export const metadata = {
   title: 'Community Dashboard - Goods on Country',
-  description: 'Meet the 29 storytellers shaping Goods on Country. Explore community voices, themes, insights, and impact across remote Australia.',
+  description: 'Meet the storytellers shaping Goods on Country. Explore community voices, themes, insights, and impact across remote Australia.',
 };
 
 // ─── Data fetching ──────────────────────────────────────────
@@ -674,7 +674,7 @@ export default async function CommunityPage() {
             <span className="text-primary">Be part of the next one.</span>
           </h2>
           <p className="text-background/70 max-w-xl mx-auto mb-8">
-            When you purchase or sponsor a bed, you become part of this community.
+            Buy a bed or back one for a community, and you back community-led production.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90" asChild>

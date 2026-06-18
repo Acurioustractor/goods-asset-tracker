@@ -9,7 +9,7 @@ compendium/
 ├── README.md              ← You are here
 ├── identity.md            ← Project identity, philosophy alignment, LCAA
 ├── stories/
-│   ├── index.md           ← Linked vignettes overview + ALMA aggregate
+│   ├── index.md           ← Linked vignettes overview + story-selection lens aggregate
 │   ├── community-innovation.md
 │   └── ellen-friday-fridge.md
 ├── operations/

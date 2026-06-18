@@ -24,21 +24,12 @@ import { PLASTIC_KG_PER_BED } from './products';
 /** Average household size used to convert beds → people reached. MODELLED. */
 const AVG_HOUSEHOLD_SIZE = 2.5;
 
-/** Nights per year, for sleep-nights provided. */
-const NIGHTS_PER_YEAR = 365;
-
-/**
- * Cost to the health system per surgical RHD admission, used for the MODELLED
- * government-savings estimate. Source: END RHD 2018 (~$70K per surgical
- * admission). NOTE: this is NOT the older $250K figure (the impact-model
- * sourceDetail explicitly flags $250K as wrong). Reconciled to
- * impact-model.ts `govt-savings` metric sourceDetail. MODELLED, not measured.
- */
-const RHD_SURGICAL_ADMISSION_COST_AUD = 70_000;
-
-/** MODELLED incidence assumptions for the conservative govt-savings estimate. */
-const BEDS_PER_RHD_CASE_PREVENTED = 500; // 1 RHD case prevented per ~500 beds (× household)
-const WASH_CYCLES_PER_RHD_CASE_PREVENTED = 5_000;
+// CLAIM CEILING (P0, 2026-06-18): removed NIGHTS_PER_YEAR (sleep-nights health
+// proxy), RHD_SURGICAL_ADMISSION_COST_AUD, BEDS_PER_RHD_CASE_PREVENTED and
+// WASH_CYCLES_PER_RHD_CASE_PREVENTED. These drove the "sleep-nights" and
+// "govt-savings" metrics, both claimed health outcomes (modelled cases prevented /
+// government savings) that the claim ceiling forbids. A health outcome only returns
+// when a partner clinical method (Miwatj) produces it, attributed to that partner.
 
 /**
  * Washing machines: 16 in community is the canonical, Ben-confirmed figure
@@ -194,9 +185,11 @@ async function getStorytellerStats(): Promise<StorytellerStats> {
 // Compute derived metrics
 // ---------------------------------------------------------------------------
 
-function computeSleepNights(beds: number): number {
-  return Math.round(beds * AVG_HOUSEHOLD_SIZE * NIGHTS_PER_YEAR);
-}
+// CLAIM CEILING (P0, 2026-06-18): computeSleepNights and computeGovtSavings were
+// removed. Both produced claimed health outcomes (sleep-nights as a health proxy;
+// government savings from modelled "RHD cases prevented") that the claim ceiling
+// forbids. They only return when a partner clinical method (Miwatj) produces the
+// figure, attributed to that partner.
 
 /** Plastic diverted (kg). STRETCH beds only — recycled HDPE. Basket Beds are not a plastic product. */
 function computePlasticDiverted(stretchBeds: number): number {
@@ -207,25 +200,8 @@ function computeEmploymentHours(beds: number): number {
   return Math.round(beds * MODELLED_LABOUR_HOURS_PER_BED);
 }
 
-function computeGovtSavings(beds: number, washCycles: number): number {
-  // MODELLED, conservative — not measured. Needs a health-evidence partner
-  // before external use. Uses ~$70K per surgical RHD admission (END RHD 2018),
-  // NOT the discredited $250K figure.
-  // - Each bed serves ~AVG_HOUSEHOLD_SIZE people
-  // - Clean bedding reduces scabies risk → reduces RHD
-  // - Estimate: 1 RHD case prevented per ~500 beds (× household)
-  const rhdCasesPrevented = (beds * AVG_HOUSEHOLD_SIZE) / BEDS_PER_RHD_CASE_PREVENTED;
-  const savingsFromBeds = rhdCasesPrevented * RHD_SURGICAL_ADMISSION_COST_AUD;
-
-  // Wash cycles prevent skin infections; ~1 RHD case prevented per 5000 cycles
-  const rhdFromWashing = washCycles / WASH_CYCLES_PER_RHD_CASE_PREVENTED;
-  const savingsFromWashing = rhdFromWashing * RHD_SURGICAL_ADMISSION_COST_AUD;
-
-  return Math.round(savingsFromBeds + savingsFromWashing);
-}
-
 // ---------------------------------------------------------------------------
-// Build health cascade data
+// Build health cascade data (the WHY, not a claimed outcome)
 // ---------------------------------------------------------------------------
 
 function buildHealthCascade(
@@ -233,42 +209,34 @@ function buildHealthCascade(
   washCycles: number,
   machinesOnline: number,
 ): HealthCascadeData {
+  // CLAIM CEILING (P0, 2026-06-18): the steps describe the pathway as our WHY (the
+  // reason a bed and a washer are health hardware). No step is badged "interrupted"
+  // and no prevented outcome is claimed. Wash cycles are shown as counted activity.
   return {
     totalWashCycles: washCycles,
     machinesOnline,
     bedsDelivered: beds,
-    sleepNightsProvided: computeSleepNights(beds),
     steps: [
       {
-        label: 'No washing machine',
-        description: 'Families can\'t clean bedding regularly',
-        interrupted: machinesOnline > 0,
+        label: 'Washing bedding regularly is hard',
+        description: 'Without a working washing machine, families struggle to clean bedding and clothes',
         liveMetric: { value: washCycles, unit: 'wash cycles completed' },
       },
       {
-        label: 'Dirty bedding',
+        label: 'Bedding stays dirty',
         description: 'Unwashed sheets and blankets harbour scabies mites',
-        interrupted: washCycles > 0,
       },
       {
         label: 'Scabies infection',
         description: '1 in 3 children in remote communities have scabies at any time',
-        interrupted: false,
       },
       {
         label: 'Group A Streptococcus',
         description: 'Scabies sores become infected with Strep A bacteria',
-        interrupted: false,
       },
       {
-        label: 'Rheumatic Heart Disease',
-        description: 'Repeated Strep A infections trigger autoimmune heart damage',
-        interrupted: false,
-      },
-      {
-        label: 'Heart failure & death',
-        description: 'RHD is entirely preventable — yet children are dying from it',
-        interrupted: false,
+        label: 'Rheumatic fever and rheumatic heart disease',
+        description: 'Repeated Strep A infections can trigger autoimmune heart damage',
       },
     ],
   };
@@ -326,15 +294,15 @@ function populateDimensions(
   fleetStats: FleetStats,
   storytellerStats: StorytellerStats,
 ): ImpactDimension[] {
+  // CLAIM CEILING (P0, 2026-06-18): 'sleep-nights' and 'govt-savings' removed (the
+  // metrics themselves were removed from impact-model.ts as claimed health outcomes).
   const liveValues: Record<string, number> = {
     'beds-delivered': assetStats.totalBeds,
-    'sleep-nights': computeSleepNights(assetStats.totalBeds),
     'wash-cycles': fleetStats.totalWashCycles,
     'plastic-diverted': computePlasticDiverted(assetStats.stretchBedsDeployed),
     'employment-hours': computeEmploymentHours(assetStats.totalBeds),
     'storytellers-active': storytellerStats.storytellerCount,
     'communities-served': assetStats.communitiesServed,
-    'govt-savings': computeGovtSavings(assetStats.totalBeds, fleetStats.totalWashCycles),
   };
 
   return dimensions.map((dim) => ({

@@ -16,7 +16,7 @@ voice_owner: "Community makers and service teams"
 
 On Palm Island, community-led prototyping of beds and washing machines connected local needs directly to manufacturing solutions. What started as conversations about broken essentials became a practical pathway: identify what's needed, prototype with community input, test in real conditions, iterate. The link to Orange Sky's laundry service origins showed that simple, well-designed solutions for hygiene and dignity can scale when they're built with the people who use them.
 
-## ALMA Signals
+## Story-selection lens signals
 
 | Signal | Score |
 |--------|-------|

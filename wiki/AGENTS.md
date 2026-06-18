@@ -31,7 +31,7 @@ wiki/
     governance/       (board, risk, policies, legal structure, compliance)
     program/          (QBE program structure, stages, deadlines, weekly actions)
     support-network/  (SIH, PIN, cohort peers, advisors, legal / accounting support)
-    impact/           (ALMA, OCAP, theory of change, Empathy Ledger)
+    impact/           (story-selection lens, OCAP, theory of change, Empathy Ledger)
     products/         (Stretch Bed, washing machines, basket beds — cross-links to v2 source)
     communities/      (deployment partners, place-based relationships)
     enterprise/       (diagnostic topic briefs — mirror of thoughts/shared/qbe-program/diagnostic)
@@ -74,7 +74,7 @@ wiki/
 2. **Capital & blended finance** — the 13 instruments, catalytic capital, stack design.
 3. **Investors & funders** — per-entity profile cards, alignment scores, pipeline state.
 4. **Governance & compliance** — board, risk, policies, legal structure, ACNC/ASIC.
-5. **Impact infrastructure** — ALMA, OCAP, Empathy Ledger integration.
+5. **Impact infrastructure**: the story-selection lens, OCAP, Empathy Ledger integration.
 6. **Support network** — Social Impact Hub, PIN, Mint Ellison legal, advisory group.
 7. **Stretch Bed & washing machine** — product narrative that anchors investor conversations.
 8. **Communities & deployments** — PICC, Oonchiumpa, Centrecorp, NPY, Homelands.
