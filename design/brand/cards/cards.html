@@ -1,0 +1,57 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Goods cards</title>
+<link rel="stylesheet" href="../tokens.css">
+<style>
+  body { margin: 0; background: var(--goods-bg); color: var(--goods-text);
+         font-family: var(--goods-font-body); padding: 40px; }
+  .eyebrow { text-transform: uppercase; letter-spacing: var(--goods-eyebrow-tracking);
+             font-size: 11px; color: var(--goods-primary); font-weight: 700; margin: 0 0 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+  .card { background: var(--goods-surface); border: 1px solid var(--goods-border);
+          border-radius: var(--goods-radius-card); padding: var(--goods-pad-card);
+          box-shadow: var(--goods-shadow-card); }
+  .card h3 { font-family: var(--goods-font-display); font-weight: 700; font-size: 20px;
+             margin: 0 0 8px; letter-spacing: var(--goods-display-tracking); }
+  .card p { margin: 0; color: var(--goods-text-muted); font-size: 14px; line-height: 1.5; }
+  .stat { font-family: var(--goods-font-display); font-size: 44px; font-weight: 700;
+          color: var(--goods-primary); line-height: 1; }
+  .stat .unit { font-size: 16px; color: var(--goods-text-muted); font-family: var(--goods-font-body); }
+  .label { text-transform: uppercase; letter-spacing: var(--goods-eyebrow-tracking);
+           font-size: 11px; color: var(--goods-text-muted); margin-top: 10px; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 700; border-radius: 9999px;
+           padding: 3px 10px; background: rgba(94,122,76,0.14); color: var(--goods-green); margin-top: 12px; }
+  .quote { font-family: var(--goods-font-display); font-size: 17px; line-height: 1.5; margin: 0 0 14px; }
+  .by { font-size: 13px; color: var(--goods-text-muted); }
+</style>
+</head>
+<body>
+  <div class="eyebrow">Cream cards (rounded-3xl, Georgia heading)</div>
+  <div class="grid">
+    <div class="card">
+      <div class="stat">496<span class="unit"> beds</span></div>
+      <div class="label">Deployed across 9 communities</div>
+      <span class="badge">Verified</span>
+    </div>
+    <div class="card">
+      <div class="stat">2,660<span class="unit"> kg</span></div>
+      <div class="label">HDPE diverted, 20kg per bed</div>
+      <span class="badge" style="background:rgba(187,162,85,0.18); color:#8a7726">Modelled</span>
+    </div>
+    <div class="card">
+      <h3>The Stretch Bed</h3>
+      <p>Recycled HDPE X-trestle legs, galvanised steel poles, structural canvas. 26kg, holds
+      200kg, 5-minute no-tools assembly.</p>
+      <span class="badge" style="background:rgba(196,92,62,0.14); color:var(--goods-terracotta)">For sale</span>
+    </div>
+    <div class="card">
+      <p class="quote">"We've never been asked what sort of house we'd like to live in."</p>
+      <p class="by">Linda Turner, Tennant Creek</p>
+    </div>
+  </div>
+</body>
+</html>

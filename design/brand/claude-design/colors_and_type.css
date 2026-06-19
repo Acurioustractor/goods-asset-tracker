@@ -1,0 +1,198 @@
+/* =========================================================================
+   Goods on Country — Colors & Type  (pulled from the Claude Design system
+   project a24f62c8 and reconciled to canon, 2026-06-19)
+   Source of truth: v2/src/app/globals.css + this file.
+   Reconciliation applied:
+   - Display font -> Georgia (Ben, 2026-06-19), dropping Playfair Display.
+     Georgia is the brand-guide canonical display, used on the public pages
+     and the theory-of-change diagram. Inter is kept as the body sans.
+   - Palette agrees with design/brand/tokens.css (terracotta #C45C3E,
+     sage #8B9D77). See that file for the role-based semantic aliases and the
+     voice / claim-ceiling governance.
+   ========================================================================= */
+
+/* --- Fonts ---------------------------------------------------------------- */
+/* Body = Inter (next/font/google). Display = Georgia (system serif, no load). */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* ---------- Color tokens (OKLCH — copied verbatim from globals.css) ----- */
+  --background: oklch(0.99 0.005 80);     /* warm off-white */
+  --foreground: oklch(0.2 0.02 50);       /* warm dark brown */
+  --card: oklch(1 0 0);                   /* pure white card */
+  --card-foreground: oklch(0.2 0.02 50);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.02 50);
+
+  --primary: oklch(0.55 0.15 45);         /* terracotta / ochre */
+  --primary-foreground: oklch(0.99 0.005 80);
+
+  --secondary: oklch(0.85 0.04 85);       /* warm sand */
+  --secondary-foreground: oklch(0.2 0.02 50);
+
+  --muted: oklch(0.95 0.02 80);           /* light cream */
+  --muted-foreground: oklch(0.45 0.02 50);
+
+  --accent: oklch(0.65 0.12 140);         /* sage green — connection to Country */
+  --accent-foreground: oklch(0.99 0.005 80);
+
+  --destructive: oklch(0.577 0.245 27.325);
+
+  --border: oklch(0.88 0.03 80);
+  --input: oklch(0.92 0.02 80);
+  --ring: oklch(0.55 0.15 45);
+
+  /* Chart / data colors — earthy tones */
+  --chart-1: oklch(0.55 0.15 45);    /* terracotta */
+  --chart-2: oklch(0.65 0.12 140);   /* sage */
+  --chart-3: oklch(0.7 0.1 85);      /* gold / sand */
+  --chart-4: oklch(0.5 0.08 30);     /* clay */
+  --chart-5: oklch(0.6 0.1 180);     /* teal */
+
+  /* ---------- Convenience hex aliases (for places that can't use oklch) ---- */
+  /* These match design/brand/tokens.css. */
+  --hex-terracotta: #C45C3E;   /* primary line in logo, brand primary */
+  --hex-cream: #FBF8F1;        /* surface (logo cream #FDF8F3 is the variant) */
+  --hex-sage: #8B9D77;         /* logo wordmark accent, connection to Country */
+  --hex-ink: #2B2A26;          /* body ink (logo wordmark ink #2E2E2E) */
+  --hex-sand: #E8DCC8;
+  --hex-clay: #A8643F;         /* HDPE / chart anchor */
+
+  /* ---------- Radii ------------------------------------------------------- */
+  --radius: 0.625rem;                       /* base radius (10px) */
+  --radius-sm: calc(var(--radius) - 4px);   /* 6px */
+  --radius-md: calc(var(--radius) - 2px);   /* 8px */
+  --radius-lg: var(--radius);               /* 10px */
+  --radius-xl: calc(var(--radius) + 4px);   /* 14px */
+  --radius-2xl: calc(var(--radius) + 8px);  /* 18px */
+  --radius-3xl: calc(var(--radius) + 12px); /* 22px */
+  --radius-pill: 9999px;
+
+  /* ---------- Elevation --------------------------------------------------- */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.06);
+
+  /* ---------- Spacing scale (Tailwind default — 4px ramp) ----------------- */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px — typical section vertical padding */
+
+  /* ---------- Type families ---------------------------------------------- */
+  /* Display = Georgia (reconciled 2026-06-19). Logo = Poppins (logo only).   */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-logo: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'Menlo', 'Monaco', 'Cascadia Mono', monospace;
+
+  /* ---------- Type tokens — base scale ----------------------------------- */
+  --text-xs: 0.75rem;     /* 12 */
+  --text-sm: 0.875rem;    /* 14 */
+  --text-base: 1rem;      /* 16 */
+  --text-lg: 1.125rem;    /* 18 */
+  --text-xl: 1.25rem;     /* 20 */
+  --text-2xl: 1.5rem;     /* 24 */
+  --text-3xl: 1.875rem;   /* 30 */
+  --text-4xl: 2.25rem;    /* 36 */
+  --text-5xl: 3rem;       /* 48 */
+  --text-6xl: 3.75rem;    /* 60 */
+}
+
+/* =========================================================================
+   Semantic type styles — match the v2 marketing site composition.
+   ========================================================================= */
+
+body {
+  font-family: var(--font-sans);
+  color: var(--foreground);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.eyebrow,
+.text-eyebrow {
+  font: 500 var(--text-sm) / 1.2 var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin: 0 0 var(--space-4);
+}
+
+h1,
+.h1 {
+  font: 700 var(--text-5xl) / 1.1 var(--font-display);
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+
+h2,
+.h2 {
+  font: 700 var(--text-4xl) / 1.2 var(--font-display);
+  letter-spacing: -0.005em;
+  color: var(--foreground);
+}
+
+h3,
+.h3 {
+  font: 600 var(--text-xl) / 1.25 var(--font-sans);
+  color: var(--foreground);
+}
+
+h4,
+.h4 {
+  font: 600 var(--text-base) / 1.3 var(--font-sans);
+  color: var(--foreground);
+}
+
+p,
+.body {
+  font: 400 var(--text-base) / 1.6 var(--font-sans);
+  color: var(--foreground);
+}
+
+.lede,
+.body-lg {
+  font: 400 var(--text-lg) / 1.55 var(--font-sans);
+  color: var(--muted-foreground);
+}
+
+.body-sm,
+small {
+  font: 400 var(--text-sm) / 1.55 var(--font-sans);
+  color: var(--muted-foreground);
+}
+
+.caption {
+  font: 400 var(--text-xs) / 1.4 var(--font-sans);
+  color: var(--muted-foreground);
+}
+
+code,
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+blockquote,
+.pull-quote {
+  font: 400 var(--text-2xl) / 1.4 var(--font-display);
+  font-style: italic;
+  color: var(--foreground);
+  border-left: 3px solid var(--primary);
+  padding-left: var(--space-6);
+  margin: var(--space-8) 0;
+}
+
+/* Display heading — used for the biggest hero lines */
+.display {
+  font: 700 var(--text-6xl) / 1.05 var(--font-display);
+  letter-spacing: -0.015em;
+}

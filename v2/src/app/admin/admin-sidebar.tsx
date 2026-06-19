@@ -36,6 +36,7 @@ import {
   ChevronDown,
   ChevronRight,
   Network,
+  LayoutGrid,
 } from 'lucide-react';
 
 type NavItem = { name: string; href: string; icon: React.ComponentType<{ className?: string }> };
@@ -72,6 +73,7 @@ const navigation: NavGroup[] = [
     group: 'Story',
     items: [
       { name: 'Photos',       href: '/admin/photos',          icon: Images },
+      { name: 'Canon board',  href: '/admin/canon',           icon: LayoutGrid },
       { name: 'Photo review', href: '/admin/photo-review',     icon: Images },
       { name: 'Stories (EL)', href: '/admin/el-stories',      icon: BookOpen },
       { name: 'Storytellers', href: '/admin/el-storytellers', icon: Users },
@@ -115,6 +117,7 @@ const moreNavigation: NavItem[] = [
   { name: 'Fleet',           href: '/admin/fleet',         icon: Truck },
   // Content
   { name: 'Library',         href: '/admin/library',       icon: Boxes },
+  { name: 'Media library',   href: '/admin/media-library', icon: Images },
   // Photo browser (Photos hub is canonical)
   { name: 'Browse photos',   href: '/admin/photos-browser', icon: Images },
 ];
