@@ -1,0 +1,48 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Goods buttons</title>
+<link rel="stylesheet" href="../tokens.css">
+<style>
+  body { margin: 0; background: var(--goods-bg); color: var(--goods-text);
+         font-family: var(--goods-font-body); padding: 40px; }
+  .eyebrow { text-transform: uppercase; letter-spacing: var(--goods-eyebrow-tracking);
+             font-size: 11px; color: var(--goods-primary); font-weight: 700; margin: 0 0 14px; }
+  .row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-bottom: 26px; }
+  .btn { font-family: var(--goods-font-body); font-weight: 600; border-radius: 9999px;
+         cursor: pointer; border: 1.5px solid transparent; padding: 12px 22px; font-size: 15px; }
+  .btn.sm { padding: 8px 16px; font-size: 13px; }
+  .primary { background: var(--goods-primary); color: var(--goods-cream); }
+  .secondary { background: var(--goods-sage); color: #fff; }
+  .ghost { background: transparent; color: var(--goods-primary); border-color: var(--goods-primary); }
+  .note { color: var(--goods-text-muted); font-size: 13px; margin: 0 0 24px; }
+</style>
+</head>
+<body>
+  <div class="eyebrow">CTAs — verb-first, matched to product status</div>
+  <div class="row">
+    <button class="btn primary">Buy now</button>
+    <button class="btn secondary">Register interest</button>
+    <button class="btn ghost">Download the plans</button>
+    <button class="btn ghost">Partner with us</button>
+  </div>
+  <p class="note">"Buy now" is the Stretch Bed only. Register interest = the washing machine.
+  Download the plans = the Basket Bed. Never list a prototype or archived product as for sale.</p>
+
+  <div class="eyebrow">Variants</div>
+  <div class="row">
+    <button class="btn primary">Primary</button>
+    <button class="btn secondary">Secondary</button>
+    <button class="btn ghost">Ghost</button>
+  </div>
+  <div class="eyebrow">Small</div>
+  <div class="row">
+    <button class="btn primary sm">Primary</button>
+    <button class="btn secondary sm">Secondary</button>
+    <button class="btn ghost sm">Ghost</button>
+  </div>
+</body>
+</html>
