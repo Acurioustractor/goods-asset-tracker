@@ -20,6 +20,8 @@
   --goods-cream-logo:   #FDF8F3;  /* logo cream square variant                 */
   --goods-card:         #FFFFFF;  /* pure-white card on cream                  */
   --goods-grid:         #E6DFD1;  /* hairlines, chart gridlines, dividers      */
+  --goods-cream-muted:  #F1ECE4;  /* muted section surface (web theme --muted) */
+  --goods-sand:         #E8DCC8;  /* warm sand, subtle surfaces (web --secondary) */
 
   /* ---- Brand primary ----------------------------------------------------- */
   /* [CHOICE] the Goods terracotta. Logo terracotta is the brand primary; clay

@@ -21,18 +21,37 @@ Regenerate:    python3 scripts/generate_theory_of_change.py
 from pathlib import Path
 
 # ------------------------------------------------------------------- palette
-BG       = "#FBFAF5"
-INK      = "#2A241E"
-INK_MUTE = "#6F6155"
-HAIR     = "#C9BCA8"
-SAND     = "#EFE8DA"
-SAND_HI  = "#E4DAC6"
+# Canonical source: design/brand/tokens.css (the single place the Goods brand
+# is defined). We parse the --goods-* hex tokens from it so this generator
+# never re-encodes the palette. The fallbacks keep the script working if the
+# file moves or a token is renamed; they mirror the canon values.
+import re as _re
 
-TERRA = "#BD6A3C"
-SAGE  = "#6F9C68"
-GOLD  = "#C2A55E"
-CLAY  = "#8A5A45"
-TEAL  = "#4C9B97"
+def _load_brand_tokens():
+    p = Path(__file__).resolve().parent.parent / "design" / "brand" / "tokens.css"
+    try:
+        txt = p.read_text()
+    except OSError:
+        return {}
+    return {m.group(1): m.group(2).upper()
+            for m in _re.finditer(r"--goods-([a-z0-9-]+):\s*(#[0-9A-Fa-f]{6})", txt)}
+
+_T = _load_brand_tokens()
+def _tok(name, fallback):
+    return _T.get(name, fallback)
+
+BG       = _tok("cream", "#FBF8F1")   # primary surface
+INK      = _tok("ink", "#2B2A26")     # body text
+INK_MUTE = _tok("sub", "#7A7363")     # captions / sub-text
+HAIR     = _tok("grid", "#E6DFD1")    # hairlines, gridlines, dividers, arrows
+SAND     = _tok("grid", "#E6DFD1")    # (no canonical "sand"; nearest is grid) currently unused
+SAND_HI  = _tok("grid", "#E6DFD1")
+
+TERRA = _tok("terracotta", "#C45C3E")
+SAGE  = _tok("sage", "#8B9D77")
+GOLD  = _tok("gold", "#BBA255")
+CLAY  = _tok("clay", "#A8643F")
+TEAL  = _tok("teal", "#5C8A86")
 
 def darken(hex_color, f=0.74):
     h = hex_color.lstrip("#")
