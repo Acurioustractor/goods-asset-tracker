@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 const frames = [
-  { src: '/images/product/stretch-bed-kids-building.jpg', alt: 'Kids in community clipping recycled plastic legs onto steel poles', label: 'Clip legs onto poles' },
+  { src: '/images/product/stretch-bed-kids-building.jpg', alt: 'Kids in community threading steel poles through the recycled-plastic X-legs', label: 'Thread poles through the X-legs' },
   { src: '/images/media-pack/community-bed-assembly.jpg', alt: 'Two community members threading canvas over the bed frame', label: 'Thread canvas over frame' },
   { src: '/images/media-pack/community-testing-bed-golden-hour.jpg', alt: 'Community member testing the Stretch Bed at golden hour', label: 'Test it out' },
   { src: '/images/product/stretch-bed-community.jpg', alt: 'Elder woman standing proudly next to assembled Stretch Bed on red dirt', label: 'Done. On country.' },

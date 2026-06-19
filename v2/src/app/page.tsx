@@ -349,7 +349,7 @@ export default async function HomePage() {
                   images={[
                     { src: '/images/pitch/bed-seq-1-leg-pole.jpg', alt: 'First pole threads through canvas sleeve' },
                     { src: '/images/pitch/bed-seq-2-legs-pole.jpg', alt: 'Second pole through the other side' },
-                    { src: '/images/pitch/bed-seq-3-all-parts.jpg', alt: 'Legs clip onto both poles' },
+                    { src: '/images/pitch/bed-seq-3-all-parts.jpg', alt: 'Both poles thread through the X-leg holes' },
                     { src: '/images/pitch/bed-assembled.jpg', alt: 'Assembled Stretch Bed' },
                   ]}
                   aspect="4/3"
@@ -359,7 +359,7 @@ export default async function HomePage() {
                     <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">5</div>
                     <h3 className="text-lg font-semibold text-background">Assemble</h3>
                   </div>
-                  <p className="text-sm text-background/60 leading-relaxed">Thread one pole through each side of the canvas. Clip the legs on. Done in under 5 minutes, no tools.</p>
+                  <p className="text-sm text-background/60 leading-relaxed">Thread a pole through each canvas sleeve and the X-leg holes, then tension. Done in under 5 minutes, no tools.</p>
                 </div>
               </div>
             </div>

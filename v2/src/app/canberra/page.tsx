@@ -219,7 +219,7 @@ export default async function CanberraPage() {
           The bed
         </p>
         <h2 className="font-display text-2xl sm:text-3xl mb-4 leading-tight" style={{ color: CHARCOAL }}>
-          The Stretch Bed — built to break the chain.
+          The Stretch Bed: health hardware, not furniture.
         </h2>
         <p className="text-base sm:text-lg leading-relaxed mb-3" style={{ color: `${CHARCOAL}cc` }}>
           Recycled plastic legs, two galvanised steel poles, heavy-duty Australian canvas. No foam
@@ -227,7 +227,7 @@ export default async function CanberraPage() {
           the wash. The frame wipes down. Nothing to harbour scabies, mould, or Strep A.
         </p>
         <p className="text-base sm:text-lg leading-relaxed mb-6" style={{ color: `${CHARCOAL}cc` }}>
-          It clicks together in five minutes with no tools and holds 200kg. Designed for ten-plus
+          It assembles in five minutes with no tools and holds 200kg. Designed for ten-plus
           years in remote Country, then to come apart for repair when it doesn&apos;t. The bed you can
           sit on right now is one of more than 400 living in homes across Palm Island, Tennant
           Creek, Maningrida, Utopia Homelands, and beyond. Each has a QR code. Each has a story.
@@ -267,9 +267,10 @@ export default async function CanberraPage() {
           Pakkimjalki Kari — the washing house.
         </h2>
         <p className="text-base sm:text-lg leading-relaxed mb-6" style={{ color: `${CHARCOAL}cc` }}>
-          A commercial-grade machine tough enough for remote conditions, and the second tool in
-          the cascade. Clean clothes and clean bedding are how families stop scabies before it
-          becomes Strep A. Elder Dianne Stokes, Warumungu, named the machine at Tennant Creek.
+          A commercial-grade machine tough enough for remote conditions, and the second piece of
+          health hardware alongside the bed. Clean clothes and clean bedding are everyday
+          healthy-home basics that remote families too often go without. Elder Dianne Stokes,
+          Warumungu, named the machine at Tennant Creek.
         </p>
 
         <div className="relative aspect-[4/5] w-full max-w-sm mx-auto overflow-hidden rounded-3xl shadow-sm mb-4">

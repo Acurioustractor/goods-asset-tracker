@@ -442,7 +442,7 @@ const utopia: TripStory = {
       paragraphs: [
         'Two days out the back of the Oonchiumpa office in Alice Springs. Young men and young women, supported by Oonchiumpa workers, built [Stretch Beds](/shop/stretch-bed-single) from flat-pack. Every young person who built one kept one for themselves. The rest got loaded into the truck for the run out to the Utopia homelands the next morning.',
         'Centrecorp Foundation paid for the materials. Oonchiumpa held the program: who got picked up each morning, what the room felt like, which households the rest of the beds would go to. The young people did the building. Oonchiumpa chose where the rest went and we drove the truck out.',
-        'Two galvanised steel poles thread through sleeves in heavy-duty Australian canvas. Four legs, pressed from recycled HDPE that communities collect, click onto the poles. The whole thing weighs 26kg, holds 200kg, and assembles in about five minutes with no tools. It replaces a thin mattress on a concrete floor, or a door taken off its hinges and laid flat.',
+        'Two galvanised steel poles thread through sleeves in heavy-duty Australian canvas and the holes in two X-legs, pressed from recycled HDPE that communities collect. Tension holds it together. The whole thing weighs 26kg, holds 200kg, and assembles in about five minutes with no tools. It replaces a thin mattress on a concrete floor, or a door taken off its hinges and laid flat.',
         'More than 400 Stretch Beds have gone into homes across the country since 2023. This trip added 107. Most went to households across the Utopia homelands. Four went to two senior Alyawarr brothers at Ampilatwatja.',
       ],
     },

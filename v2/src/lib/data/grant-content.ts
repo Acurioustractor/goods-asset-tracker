@@ -33,7 +33,7 @@ export const orgIdentity = {
   tradingAs: 'Goods on Country',
   website: 'www.goodsoncountry.com',
   tagline: 'Goods that heal.',
-  oneLiner: 'A good bed can prevent heart disease.',
+  oneLiner: 'A good bed is health hardware, not furniture.',
   mission:
     'To transform essential household goods — beds, washing machines, refrigerators — into community-owned assets that improve lives in remote Australia, designed with communities and eventually manufactured by them.',
   philosophy: 'Our job is to become unnecessary.',
