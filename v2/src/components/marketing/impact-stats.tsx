@@ -1,7 +1,3 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { createClient } from '@/lib/supabase/client';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 
 interface ImpactStat {
@@ -15,65 +11,24 @@ interface ImpactStatsProps {
   stats?: ImpactStat[];
   title?: string;
   subtitle?: string;
-  fetchLive?: boolean;
 }
 
+// Canon quartet. Single source of truth: asset-canonical.ts. These are CURATED
+// figures, deliberately NOT raw register row counts (the register holds more
+// rows than the curated totals, e.g. washers). Claim ceiling: we show what we
+// have placed, never a claimed health outcome such as "lives impacted".
 const defaultStats: ImpactStat[] = [
-  { value: CANONICAL_ASSETS.bedsDeployed, label: 'Beds Delivered' },
-  { value: CANONICAL_ASSETS.communitiesServed, label: 'Communities Served' },
-  { value: 1500, label: 'Lives Impacted', prefix: '~' },
-  { value: 100, label: 'Community Designed & Led', suffix: '%' },
+  { value: CANONICAL_ASSETS.bedsDeployed, label: 'Beds delivered' },
+  { value: CANONICAL_ASSETS.communitiesServed, label: 'Communities' },
+  { value: CANONICAL_ASSETS.washersInCommunity, label: 'Washing machines in community' },
+  { value: CANONICAL_ASSETS.plasticKg, label: 'Plastic diverted', suffix: 'kg' },
 ];
 
 export function ImpactStats({
-  stats: propStats,
+  stats = defaultStats,
   title = 'Our Impact',
-  subtitle = 'Every bed tells a story of comfort, dignity, and care.',
-  fetchLive = false,
+  subtitle = 'Beds and washing machines in homes across remote Australia.',
 }: ImpactStatsProps) {
-  const [stats, setStats] = useState<ImpactStat[]>(propStats || defaultStats);
-  const [loading, setLoading] = useState(fetchLive);
-
-  useEffect(() => {
-    if (!fetchLive) return;
-
-    async function fetchStats() {
-      try {
-        const supabase = createClient();
-
-        // Fetch total assets
-        const { count: totalAssets } = await supabase
-          .from('assets')
-          .select('*', { count: 'exact', head: true });
-
-        // Fetch unique communities
-        const { data: communities } = await supabase
-          .from('assets')
-          .select('community')
-          .not('community', 'is', null);
-
-        const uniqueCommunities = new Set(communities?.map((a) => a.community)).size;
-
-        // Estimate lives impacted (avg 4 people per household)
-        const livesImpacted = (totalAssets || 0) * 4;
-
-        setStats([
-          { value: totalAssets || 0, label: 'Beds Delivered' },
-          { value: uniqueCommunities, label: 'Communities Served' },
-          { value: livesImpacted, label: 'Lives Impacted', prefix: '~' },
-          { value: 100, label: 'Community Designed & Led', suffix: '%' },
-        ]);
-      } catch (error) {
-        console.error('Error fetching impact stats:', error);
-        // Keep default stats on error
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchStats();
-  }, [fetchLive]);
-
   return (
     <section className="bg-primary py-16 md:py-20">
       <div className="container mx-auto px-4">
@@ -88,17 +43,9 @@ export function ImpactStats({
           {stats.map((stat, index) => (
             <div key={index} className="text-center">
               <div className="text-4xl font-bold text-primary-foreground md:text-5xl">
-                {loading ? (
-                  <span className="inline-block h-12 w-24 animate-pulse rounded bg-primary-foreground/20" />
-                ) : (
-                  <>
-                    {stat.prefix}
-                    {typeof stat.value === 'number'
-                      ? stat.value.toLocaleString()
-                      : stat.value}
-                    {stat.suffix}
-                  </>
-                )}
+                {stat.prefix}
+                {typeof stat.value === 'number' ? stat.value.toLocaleString() : stat.value}
+                {stat.suffix}
               </div>
               <div className="mt-2 text-sm font-medium text-primary-foreground/80 md:text-base">
                 {stat.label}
