@@ -261,9 +261,9 @@ export default async function StoryPage() {
                   className="text-xl md:text-2xl font-light text-primary leading-relaxed"
                   style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
                 >
-                  A washing machine breaks the cascade.<br />
-                  Clean bedding breaks the cycle.<br />
-                  A good bed can prevent heart disease.
+                  A washing machine. Clean bedding. A dry, washable bed.<br />
+                  This is health hardware, not furniture.<br />
+                  We build the conditions for healthier homes.
                 </p>
               </div>
             </div>
@@ -388,7 +388,7 @@ export default async function StoryPage() {
                   <div className="space-y-4 text-muted-foreground leading-relaxed mb-8">
                     <p>
                       Two galvanised steel poles thread through heavy-duty Australian canvas.
-                      Four legs made from recycled HDPE plastic, with production designed to move toward On-Country.
+                      Two X-trestle legs pressed from recycled HDPE plastic, with production designed to move toward On-Country.
                       Each bed diverts 20kg of plastic from landfill.
                     </p>
                     <p>

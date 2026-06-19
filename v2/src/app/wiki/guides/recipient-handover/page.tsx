@@ -67,9 +67,9 @@ export default function RecipientHandoverPage() {
 
         <h3>2. &ldquo;Here&apos;s how it works.&rdquo;</h3>
         <blockquote>
-          &ldquo;Five-minute setup, no tools. The two poles slide through the canvas sleeves.
-          The plastic legs click onto the pole ends. Push from the end, not the side — you&apos;ll
-          hear it seat.&rdquo;
+          &ldquo;Five-minute setup, no tools. The two poles slide through the canvas sleeves and
+          the holes at the top of the plastic X-legs. Push the pole in from its end, not the
+          side, and tension holds it.&rdquo;
         </blockquote>
         <p>
           Demonstrate once. Then let them try. If they want to pull it apart and put it back
