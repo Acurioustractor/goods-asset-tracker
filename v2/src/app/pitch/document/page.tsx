@@ -217,21 +217,6 @@ export default function PitchDocumentPage() {
             ))}
           </div>
 
-          <div className="grid grid-cols-3 gap-4 mb-10">
-            <div className="border border-neutral-200 rounded-lg p-4 text-center">
-              <p className="text-xl font-bold text-black">$600</p>
-              <p className="text-xs text-neutral-500">Production cost</p>
-            </div>
-            <div className="border border-neutral-200 rounded-lg p-4 text-center">
-              <p className="text-xl font-bold text-black">$850</p>
-              <p className="text-xs text-neutral-500">Sponsored</p>
-            </div>
-            <div className="border border-neutral-200 rounded-lg p-4 text-center">
-              <p className="text-xl font-bold text-black">$1,200</p>
-              <p className="text-xs text-neutral-500">Retail</p>
-            </div>
-          </div>
-
           {/* Product photo — /public/images/product/stretch-bed-hero.jpg */}
           {media.product.stretchBedHero ? (
             <div className="aspect-video rounded-lg overflow-hidden relative">
