@@ -758,8 +758,8 @@ export type CommunityLocation = {
   /**
    * When true, the live-map resolver does NOT override `bedsDelivered`
    * with the count from the QR-tagged assets register. Use for hand-
-   * curated entries that aren't yet fully tracked in the register
-   * (e.g. Mount Isa, Kalgoorlie) so the map reflects ground truth.
+   * curated entries not yet tracked in the register, so the map can
+   * reflect a confirmed on-ground number ahead of full QR registration.
    */
   staticBedCount?: boolean;
 };
@@ -829,7 +829,6 @@ export const communityLocations: CommunityLocation[] = [
     description: 'Northwest Queensland mining town and service centre for surrounding communities. Goods has begun seeding beds here as a stepping stone to further Queensland deployments.',
     highlight: 'Stepping stone for Queensland deployments beyond Palm Island',
     tooltipDirection: 'right',
-    staticBedCount: true,
   },
   {
     id: 'kalgoorlie',
@@ -842,7 +841,6 @@ export const communityLocations: CommunityLocation[] = [
     description: "Goldfields region of Western Australia. Goods' first Western Australia deployment, seeding beds with community partners in and around Kalgoorlie.",
     highlight: "First Western Australia deployment for Goods on Country",
     tooltipDirection: 'right',
-    staticBedCount: true,
   },
   {
     id: 'maningrida',
