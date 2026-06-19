@@ -381,7 +381,7 @@ export default function QbeReadinessPage() {
             Goods on Country
           </p>
           <h1 className="mt-3 max-w-3xl text-4xl font-light leading-tight sm:text-5xl" style={serif}>
-            A good bed can prevent heart disease.
+            A good bed is health hardware.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-7 text-[#E6DFD1] sm:text-lg">
             We deliver quality, washable, repairable household goods to remote Indigenous
