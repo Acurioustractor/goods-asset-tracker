@@ -15,7 +15,7 @@ import type { ImpactSnapshot, ImpactDimension, ImpactMetric } from '@/lib/data/i
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Impact Model — Goods on Country',
+  title: 'Impact Model: Goods on Country',
   description:
     'Goods on Country impact model for health, environmental, economic, community ownership and production outcomes from Stretch Beds and practical household infrastructure.',
   alternates: {
@@ -59,7 +59,7 @@ function ProvenanceBadge({ metric }: { metric: ImpactMetric }) {
     <span
       className="ml-1.5 inline-flex items-center rounded px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide align-middle"
       style={{ backgroundColor: s.bg, color: s.fg }}
-      title={`${s.label} — ${s.desc}. Source (${metric.source}): ${metric.sourceDetail}`}
+      title={`${s.label}: ${s.desc}. Source (${metric.source}): ${metric.sourceDetail}`}
     >
       {s.label}
     </span>
@@ -253,7 +253,7 @@ function DimensionCard({ dimension }: { dimension: ImpactDimension }) {
               &ldquo;{dimension.communityQuote.text}&rdquo;
             </p>
             <p className="text-xs mt-1" style={{ color: '#8B9D77' }}>
-              — {dimension.communityQuote.author}, {dimension.communityQuote.context}
+              {dimension.communityQuote.author}, {dimension.communityQuote.context}
             </p>
           </div>
         )}
@@ -659,23 +659,23 @@ function PartnersSection() {
       location: 'Alice Springs, NT',
       role: 'Cultural Lead & Design in Community',
       model: '100% Aboriginal-owned consultancy. Two years designing products in community, "around the fire." Paid at university-equivalent cultural consultation rates (~$3,800/day). Planning to host production facility in Alice Springs.',
-      status: 'Active — delivering beds on country together',
+      status: 'Active: delivering beds on country together',
       color: '#C45C3E',
     },
     {
       name: 'Palm Island Community Company',
       location: 'Palm Island, QLD',
       role: 'Production & Youth Employment',
-      model: 'New production site at Palm Island. PICC has existing funding to support at-risk youth through training programs. The WISE model in action — young people run production, learn manufacturing skills, earn wages.',
-      status: 'Active — new production site, youth pathways',
+      model: 'New production site at Palm Island. PICC has existing funding to support at-risk youth through training programs. The WISE model in action: young people run production, learn manufacturing skills, earn wages.',
+      status: 'Active: new production site, youth pathways',
       color: '#8B9D77',
     },
     {
       name: 'Centrecorp',
       location: 'Distribution Partner',
       role: 'Grant-Funded Distribution Partner',
-      model: 'Donor and institutional buyer at scale — 107 beds grant-funded for distribution to Utopia Homelands communities. Demonstrates delivery at scale and provides evidence of institutional demand for funding applications.',
-      status: '107 beds delivered — institutional partnership evidence',
+      model: 'Donor and institutional buyer at scale: 107 beds grant-funded for distribution to Utopia Homelands communities. Demonstrates delivery at scale and provides evidence of institutional demand for funding applications.',
+      status: '107 beds delivered: institutional partnership evidence',
       color: '#D4A574',
     },
     {
@@ -683,7 +683,7 @@ function PartnersSection() {
       location: 'Tennant Creek, NT',
       role: 'Elder Advisory & Design in Community',
       model: 'Elder Dianne named the washing machine "Pakkimjalki Kari" in Warumungu language. Norman Frank founded Wilya Janta for housing advocacy. Both shape product design through direct community feedback.',
-      status: 'Ongoing — Elder-led product refinement',
+      status: 'Ongoing: Elder-led product refinement',
       color: '#7C6F64',
     },
     {
@@ -691,7 +691,7 @@ function PartnersSection() {
       location: 'Sydney / On-country',
       role: 'Recycling & Manufacturing',
       model: 'Taught ACT plastic recycling and helped build the containerised production plant. Training Palm Island team (Ebony & Jahvan Oui) in production skills for community manufacturing transfer.',
-      status: 'Active — skills transfer ongoing',
+      status: 'Active: skills transfer ongoing',
       color: '#5E7D9A',
     },
   ];
@@ -711,7 +711,7 @@ function PartnersSection() {
               How It Works
             </h2>
             <p className="text-sm text-white/60 max-w-lg mx-auto">
-              Not licensing — transferring. Communities receive full training, manufacturing capability,
+              Not licensing. Transferring. Communities receive full training, manufacturing capability,
               and documentation. They keep 100% of what they make and sell.
             </p>
           </div>
