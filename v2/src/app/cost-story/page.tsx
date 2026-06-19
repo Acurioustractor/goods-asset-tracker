@@ -387,7 +387,7 @@ export default function CostStoryPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button
               size="lg"
-              className="bg-accent-foreground text-accent hover:bg-accent-foreground/90"
+              className="bg-background text-foreground hover:bg-background/90"
               asChild
             >
               <Link href="/partner">Explore the capital stack</Link>

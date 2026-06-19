@@ -439,7 +439,7 @@ export default async function HomePage() {
       </section>
 
       {/* 4. Impact Stats */}
-      <ImpactStats fetchLive={true} />
+      <ImpactStats />
 
       {/* 4b. Field notes — most recent published scrollytelling story.
           Self-hides until at least one story has published: true. */}
@@ -448,7 +448,7 @@ export default async function HomePage() {
       {/* 5. Community Voices: from Empathy Ledger */}
       <FeaturedStories
         title="Community Voices"
-        subtitle="33 storytellers across 8 communities have shaped and validated the Goods approach"
+        subtitle="32 storytellers across remote Australia have shaped and validated the Goods approach"
         maxStories={3}
       />
 
@@ -462,7 +462,7 @@ export default async function HomePage() {
             Community-designed. Manufactured On-Country. Built to last more than ten years in remote Australia.
           </p>
           <div className="mt-8 flex justify-center">
-            <Button size="lg" className="bg-accent-foreground text-accent hover:bg-accent-foreground/90" asChild>
+            <Button size="lg" className="bg-background text-foreground hover:bg-background/90" asChild>
               <Link href="/shop/stretch-bed-single">Shop the Stretch Bed</Link>
             </Button>
           </div>

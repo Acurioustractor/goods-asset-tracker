@@ -82,7 +82,7 @@
   --muted: var(--goods-cream-muted);
   --muted-foreground: var(--goods-sub);
   --accent: var(--goods-sage);
-  --accent-foreground: var(--goods-cream);
+  --accent-foreground: var(--goods-ink); /* dark text on the muted sage; passes AA (cream was ~2.6:1) */
   --destructive: oklch(0.577 0.245 27.325); /* functional error red, not a brand colour */
   --border: var(--goods-grid);
   --input: var(--goods-grid);
