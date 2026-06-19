@@ -487,7 +487,7 @@ export default async function HomePage() {
       {/* 5. Community Voices: from Empathy Ledger */}
       <FeaturedStories
         title="Community Voices"
-        subtitle="33 storytellers across 8 communities have shaped and validated the Goods approach"
+        subtitle="32 storytellers across remote Australia have shaped and validated the Goods approach"
         maxStories={3}
       />
 

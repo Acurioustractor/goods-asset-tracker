@@ -64,8 +64,8 @@ async function fetchCounts(): Promise<Map<string, number>> {
 
 function mergeLocations(counts: Map<string, number>): CommunityLocation[] {
   return communityLocations.map((loc) => {
-    // Hand-curated entries stay static (e.g. Mount Isa, Kalgoorlie where
-    // the user has set the on-ground number ahead of full QR registration).
+    // Hand-curated entries stay static (where the user has set the
+    // on-ground number ahead of full QR registration).
     if (loc.staticBedCount) return loc;
     const live = counts.get(loc.name);
     if (live === undefined) return loc;

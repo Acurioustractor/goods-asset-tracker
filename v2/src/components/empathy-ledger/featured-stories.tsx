@@ -27,7 +27,7 @@ const themeStyles: Record<string, { label: string; className: string }> = {
 
 export async function FeaturedStories({
   title = 'Community Voices',
-  subtitle = '15 storytellers across 6 communities have shaped and validated the Goods approach',
+  subtitle = '32 storytellers across remote Australia have shaped and validated the Goods approach',
   showViewAll = true,
   viewAllLink = '/stories',
   maxStories = 3,
@@ -146,7 +146,7 @@ export async function FeaturedStories({
 // Loading state
 export function FeaturedStoriesSkeleton({
   title = 'Community Voices',
-  subtitle = '15 storytellers across 6 communities have shaped and validated the Goods approach',
+  subtitle = '32 storytellers across remote Australia have shaped and validated the Goods approach',
   count = 3,
 }: {
   title?: string;
