@@ -129,20 +129,6 @@ export default function PitchPage() {
               {/* Right: Assembly sequence animation */}
               <div>
                 <AssemblySequence />
-                <div className="grid grid-cols-3 gap-3 mt-8">
-                  <div className="text-center p-3 rounded-xl border border-border">
-                    <div className="text-xl font-bold text-primary">$600</div>
-                    <div className="text-xs text-muted-foreground mt-0.5">production cost</div>
-                  </div>
-                  <div className="text-center p-3 rounded-xl border border-border">
-                    <div className="text-xl font-bold text-primary">$850</div>
-                    <div className="text-xs text-muted-foreground mt-0.5">sponsored</div>
-                  </div>
-                  <div className="text-center p-3 rounded-xl border border-border">
-                    <div className="text-xl font-bold text-primary">$1,200</div>
-                    <div className="text-xs text-muted-foreground mt-0.5">retail</div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
