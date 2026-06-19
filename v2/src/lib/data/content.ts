@@ -27,7 +27,7 @@ export const brand = {
   },
 
   // Memorable one-liners
-  oneLiner: 'A good bed can prevent heart disease.',
+  oneLiner: 'A good bed is health hardware, not furniture.',
   philosophy: 'Our job is to become unnecessary.',
 };
 
@@ -575,7 +575,7 @@ export const processSteps = [
     step: 5,
     title: 'Assemble',
     subtitle: 'Steel poles through canvas',
-    description: 'Two galvanised steel poles (26.9mm OD) thread through sleeves sewn into heavy-duty Australian canvas. The recycled plastic legs click onto the poles. No tools, under 5 minutes. 200kg load capacity.',
+    description: 'Two galvanised steel poles (26.9mm OD) thread through sleeves sewn into heavy-duty Australian canvas and the holes in the recycled-plastic X-legs. Tension holds it together. No tools, under 5 minutes. 200kg load capacity.',
     icon: 'weave',
   },
   {

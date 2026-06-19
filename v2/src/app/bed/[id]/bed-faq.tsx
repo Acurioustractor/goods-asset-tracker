@@ -20,9 +20,9 @@ function bedEntries(uniqueId: string): Entry[] {
       q: 'How do I set this up?',
       a: (
         <>
-          Two steel poles slide through the canvas sleeves. The four plastic legs click onto the
-          ends of the poles. No tools, about 5 minutes. If a leg won&apos;t click on, push from the
-          end of the pole, not the side.
+          Two steel poles slide through the canvas sleeves and the holes at the top of the two
+          plastic X-legs. Tension holds it together. No tools, about 5 minutes. If a pole
+          won&apos;t go through, push from the end of the pole, not the side.
         </>
       ),
     },

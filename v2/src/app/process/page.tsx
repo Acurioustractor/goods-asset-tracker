@@ -128,7 +128,7 @@ const STEPS: Step[] = [
     step: 5,
     label: 'Assemble',
     title: 'Built by the people who use it',
-    body: 'Two galvanised steel poles thread through canvas sleeves. Four recycled-plastic legs click onto the poles. No tools, no fasteners, under five minutes. The Stretch Bed is designed so the person who lives with it is the person who assembles it, and so a kid can rebuild it next time the family moves house.',
+    body: 'Two galvanised steel poles thread through the canvas sleeves and the holes in two recycled-plastic X-legs. Tension holds it together, no tools, no fasteners, under five minutes. The Stretch Bed is designed so the person who lives with it is the person who assembles it, and so a kid can rebuild it next time the family moves house.',
     // hero + supporting are replaced at request time with live EL photos
     // from the Alice Springs May 2026 build (event:alice-build). Local
     // values stay as a fallback if EL is unreachable.

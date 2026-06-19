@@ -12,8 +12,8 @@ type Part = {
 const BED_PARTS: Part[] = [
   { label: 'Canvas', desc: 'Heavy-duty Australian canvas with sewn pole sleeves. Washable.' },
   { label: 'Pole × 2', desc: 'Galvanised steel, 26.9mm OD × 2.6mm wall. Slides through the canvas sleeves.' },
-  { label: 'Leg × 4', desc: 'Recycled HDPE plastic. Each leg clicks onto a pole end. Push from the end, not the side.' },
-  { label: 'End cap × 4', desc: 'Sits inside each leg. Stops dirt and moisture entering the pole.' },
+  { label: 'X-trestle leg × 2', desc: 'Recycled HDPE plastic. Each pole threads through the holes at the top of the X-leg; push the pole in from its end, not the side, and tension holds it.' },
+  { label: 'End cap × 4', desc: 'Sits inside each pole end. Stops dirt and moisture entering the pole.' },
 ];
 
 const MACHINE_PARTS: Part[] = [
