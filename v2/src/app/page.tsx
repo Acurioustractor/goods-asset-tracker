@@ -53,45 +53,6 @@ export default async function HomePage() {
         imageAlt="A young man lying full-length on a Stretch Bed on country: recycled plastic legs, galvanised steel poles, heavy-duty canvas"
       />
 
-      {/* 1b. Philanthropist pathway: visible immediately after the hero. */}
-      <section className="border-b border-border bg-background py-10 md:py-12">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[1.15fr_0.85fr] md:items-center">
-            <div>
-              <p className="mb-3 text-xs uppercase tracking-[0.25em] text-accent">
-                Back the work
-              </p>
-              <h2
-                className="mb-4 text-2xl font-light leading-tight text-foreground md:text-4xl"
-                style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-              >
-                Philanthropic and patient capital can move the making to Country.
-              </h2>
-              <p className="max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                Goods on Country builds essential health hardware with remote First Nations
-                communities. Beds now. Washing machines next. Community-owned production over time.
-              </p>
-            </div>
-            <div className="rounded-xl border border-border bg-muted/30 p-5 md:p-6">
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                A Curious Tractor Pty Ltd is the trading company behind Goods on Country. The
-                Butterfly Movement Ltd is the DGR pathway for eligible giving while the long-term
-                structure is being designed to protect enterprise discipline and community
-                ownership.
-              </p>
-              <div className="mt-5 flex flex-col gap-3 sm:flex-row md:flex-col lg:flex-row">
-                <Button asChild>
-                  <Link href="/partner">Explore the capital stack</Link>
-                </Button>
-                <Button variant="outline" asChild>
-                  <Link href="/process">See how it is made</Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 2. The Stretch Bed: Materials + Assembly + Price comparison */}
       <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -478,7 +439,7 @@ export default async function HomePage() {
       </section>
 
       {/* 4. Impact Stats */}
-      <ImpactStats fetchLive={true} />
+      <ImpactStats />
 
       {/* 4b. Field notes — most recent published scrollytelling story.
           Self-hides until at least one story has published: true. */}
@@ -501,7 +462,7 @@ export default async function HomePage() {
             Community-designed. Assembled on Country. Built to last more than ten years in remote Australia.
           </p>
           <div className="mt-8 flex justify-center">
-            <Button size="lg" className="bg-accent-foreground text-accent hover:bg-accent-foreground/90" asChild>
+            <Button size="lg" className="bg-background text-foreground hover:bg-background/90" asChild>
               <Link href="/shop/stretch-bed-single">Shop the Stretch Bed</Link>
             </Button>
           </div>
