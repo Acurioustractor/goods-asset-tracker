@@ -759,8 +759,8 @@ export type CommunityLocation = {
   /**
    * When true, the live-map resolver does NOT override `bedsDelivered`
    * with the count from the QR-tagged assets register. Use for hand-
-   * curated entries that aren't yet fully tracked in the register
-   * (e.g. Mount Isa, Kalgoorlie) so the map reflects ground truth.
+   * curated entries not yet tracked in the register, so the map can
+   * reflect a confirmed on-ground number ahead of full QR registration.
    */
   staticBedCount?: boolean;
 };
@@ -830,7 +830,6 @@ export const communityLocations: CommunityLocation[] = [
     description: 'Northwest Queensland mining town and service centre for surrounding communities. Goods has begun seeding beds here as a stepping stone to further Queensland deployments.',
     highlight: 'Stepping stone for Queensland deployments beyond Palm Island',
     tooltipDirection: 'right',
-    staticBedCount: true,
   },
   {
     id: 'kalgoorlie',
@@ -843,7 +842,6 @@ export const communityLocations: CommunityLocation[] = [
     description: "Goldfields region of Western Australia. Goods' first Western Australia deployment, seeding beds with community partners in and around Kalgoorlie.",
     highlight: "First Western Australia deployment for Goods on Country",
     tooltipDirection: 'right',
-    staticBedCount: true,
   },
   {
     id: 'maningrida',
@@ -856,6 +854,29 @@ export const communityLocations: CommunityLocation[] = [
     description: 'On the banks of the Liverpool River in Arnhem Land. A diverse community of over 2,500 people from multiple language groups.',
     highlight: 'Serving multiple language groups across Arnhem Land',
   },
+  {
+    id: 'darwin',
+    name: 'Darwin',
+    region: 'Northern Territory',
+    lat: -12.4634,
+    lng: 130.8456,
+    storytellerCount: 0,
+    bedsDelivered: 1,
+    description: 'Top End deployment. One bed delivered in the Darwin region as Goods extends across the north.',
+    highlight: 'First Darwin-region deployment',
+  },
+  {
+    id: 'canberra',
+    name: 'Canberra',
+    region: 'Australian Capital Territory',
+    lat: -35.2809,
+    lng: 149.13,
+    storytellerCount: 0,
+    bedsDelivered: 2,
+    description: 'Two beds delivered in the Canberra region.',
+    highlight: 'First beds in the Canberra region',
+    tooltipDirection: 'left',
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -866,12 +887,14 @@ export const communityLocations: CommunityLocation[] = [
 // (sums to EXPECTED_DEPLOYED_BEDS = 496; the live Supabase register is
 // authoritative, this is the labelled static fallback).
 //
-// `communityPartnerships` (narrative subset) and `communityLocations` (heatpost-
-// map baselines, live-overridden except where staticBedCount=true) are
-// INTENTIONALLY NARROWER scopes than the full register — they omit communities
-// that have no map pin / no narrative partner (e.g. Darwin 1, Canberra 2 in the
-// canonical list have neither). So we do NOT force their sums to equal 496;
-// inventing pins/partners for them would be fabrication. Instead we assert that
+// `communityLocations` (heatpost-map baselines, live-overridden except where
+// staticBedCount=true) now covers all 9 deployed communities, including the
+// single-bed capital-city deployments Darwin (1) and Canberra (2), so the map
+// matches the published "9 communities / 496 beds". `communityPartnerships`
+// (narrative subset) stays INTENTIONALLY NARROWER: it lists only communities
+// with a real narrative partner, so it still omits Darwin/Canberra (a bare
+// deployment is not a partnership story, and inventing one would be fabrication).
+// So we do NOT force either array's sum to equal 496. Instead we assert that
 // (a) no single community's static count EXCEEDS the canonical register value,
 // and (b) neither array's total exceeds EXPECTED_DEPLOYED_BEDS. This catches the
 // previous divergence (139/141/60/96 baselines that overstated some communities)

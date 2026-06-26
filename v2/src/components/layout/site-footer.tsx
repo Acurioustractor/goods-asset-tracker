@@ -120,7 +120,7 @@ export function SiteFooter() {
               />
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">
-              Community-designed health hardware. Manufactured On-Country. Made by community, made for community.
+              Community-designed health hardware. Assembled on Country. Made by community, made for community.
             </p>
             {/* Social Links */}
             <div className="mt-4 flex gap-4">

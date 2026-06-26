@@ -161,7 +161,7 @@ export default async function HomePage() {
               /* eslint-disable-next-line @next/next/no-img-element */
               <img
                 src={overrideImage}
-                alt="Beds being made on country"
+                alt="Beds assembled on Country"
                 className="absolute inset-0 h-full w-full object-cover opacity-70"
               />
             ) : (
@@ -190,13 +190,13 @@ export default async function HomePage() {
             <div className="relative container mx-auto px-4 py-24 md:py-32">
               <div className="max-w-3xl mx-auto text-center text-background">
                 <p className="text-xs uppercase tracking-[0.25em] text-background/70 mb-4">
-                  On-Country manufacturing
+                  Toward manufacturing on Country
                 </p>
                 <h2
                   className="text-3xl md:text-5xl font-light leading-tight"
                   style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
                 >
-                  Beds being made by the people who&rsquo;ll sleep on them.
+                  Beds assembled by the people who&rsquo;ll sleep on them.
                 </h2>
               </div>
             </div>
@@ -222,7 +222,7 @@ export default async function HomePage() {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <p className="text-sm uppercase tracking-widest text-background/40 mb-4">
-              On-Country Manufacturing
+              Toward On-Country Manufacturing
             </p>
             <h2
               className="text-3xl md:text-4xl font-light mb-4 leading-snug"
@@ -459,7 +459,7 @@ export default async function HomePage() {
             {brand.oneLiner}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-accent-foreground/80">
-            Community-designed. Manufactured On-Country. Built to last more than ten years in remote Australia.
+            Community-designed. Assembled on Country. Built to last more than ten years in remote Australia.
           </p>
           <div className="mt-8 flex justify-center">
             <Button size="lg" className="bg-background text-foreground hover:bg-background/90" asChild>

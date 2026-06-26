@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { TheoryOfChange } from '@/components/marketing';
 import { fetchImpactData } from '@/lib/data/impact-fetcher';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import {
   MODELLED_LABOUR_HOURS_PER_BED,
   REVENUE_SEGMENTS,
@@ -183,12 +184,12 @@ function LossFunctionSection({ snapshot }: { snapshot: ImpactSnapshot }) {
 
         <div className="grid grid-cols-3 md:grid-cols-6 gap-4 md:gap-6">
           {[
-            { value: summary.totalAssets, label: 'Assets Deployed', sub: 'beds + washers' },
-            { value: `${(summary.livesImpacted).toLocaleString()}+`, label: 'Lives Impacted', sub: 'avg 2.5 per bed' },
-            { value: `${(summary.plasticDivertedKg / 1000).toFixed(1)}t`, label: 'Plastic Diverted', sub: `${summary.plasticDivertedKg.toLocaleString()}kg` },
-            { value: summary.communitiesServed, label: 'Communities', sub: 'across Australia' },
-            { value: summary.employmentHoursCreated.toLocaleString(), label: 'Employment Hrs', sub: `${MODELLED_LABOUR_HOURS_PER_BED.toFixed(1)}hrs/bed` },
-            { value: `$${(summary.totalInvestment / 1000).toFixed(0)}K`, label: 'Invested', sub: `$${(summary.totalInvestment / summary.totalAssets).toFixed(0)}/asset` },
+            { value: CANONICAL_ASSETS.bedsDeployed, label: 'Beds delivered', sub: 'across Australia' },
+            { value: CANONICAL_ASSETS.washersInCommunity, label: 'Washing machines', sub: 'in community' },
+            { value: `${(CANONICAL_ASSETS.plasticKg / 1000).toFixed(2)}t`, label: 'Plastic diverted', sub: `${CANONICAL_ASSETS.plasticKg.toLocaleString()}kg` },
+            { value: CANONICAL_ASSETS.communitiesServed, label: 'Communities', sub: 'across Australia' },
+            { value: Math.round(CANONICAL_ASSETS.bedsDeployed * MODELLED_LABOUR_HOURS_PER_BED).toLocaleString(), label: 'Employment hrs', sub: `${MODELLED_LABOUR_HOURS_PER_BED.toFixed(1)}hrs/bed, modelled` },
+            { value: `$${(summary.totalInvestment / 1000).toFixed(0)}K`, label: 'Invested', sub: 'to date' },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <p className="text-2xl md:text-4xl font-light text-white mb-1">{stat.value}</p>
