@@ -456,7 +456,7 @@ const utopia: TripStory = {
       logo: '/images/partners/centrecorp-foundation.jpg',
       url: '/partners/centrecorp',
       body: 'Centrecorp paid for the materials for this build, the ones the young people in Alice put together and the local team delivered to Utopia. They also funded the first batch of beds we delivered to Utopia in October 2025. They are an Aboriginal Trust based in the Northern Territory.',
-      cta: 'Read the story of the first Utopia delivery, October 2025',
+      cta: 'See the Centrecorp Foundation partnership story',
       metrics: [
         { value: '107', label: 'beds delivered to Utopia Homelands on this trip' },
       ],

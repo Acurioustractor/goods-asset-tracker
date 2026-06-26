@@ -321,7 +321,8 @@ export default function CentrecorpStory() {
           ))}
         </div>
         <div className="cc-links cc-reveal cc-d2">
-          <Link href="/shop/stretch-bed-single" className="cc-btn cc-btn-solid">The Stretch Bed</Link>
+          <Link href="/field-notes/utopia-may-2026" className="cc-btn cc-btn-solid">Read the full field story</Link>
+          <Link href="/shop/stretch-bed-single" className="cc-btn">The Stretch Bed</Link>
           <a href="/docs/partners/centrecorp/utopia-outcomes-one-pager.pdf" className="cc-btn">Outcomes one-pager</a>
           <a href="https://www.centrecorpfoundation.com.au/" target="_blank" rel="noopener" className="cc-btn">Visit Centrecorp Foundation</a>
           <Link href="/contact" className="cc-btn">Contact Goods</Link>
