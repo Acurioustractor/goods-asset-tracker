@@ -1,0 +1,94 @@
+<!doctype html>
+<!-- @dsCard group="Investment" name="Investment stat band" subtitle="The investment case in four numbers, sand band" viewport="700x220" -->
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_base.css">
+<style>
+  /* Sand ground so this band reads as a sibling to, but distinct from, the terracotta impact band. */
+  .card {
+    padding: 0;
+    background: var(--secondary);
+    border-radius: var(--radius);
+    overflow: hidden;
+    color: var(--foreground);
+  }
+  .band {
+    padding: 28px 32px;
+  }
+  .eyebrow {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--primary);
+    margin: 0 0 22px 0;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .stat {
+    padding: 0 20px;
+    border-left: 1px solid var(--border);
+  }
+  .stat:first-child {
+    padding-left: 0;
+    border-left: none;
+  }
+  .num {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    color: var(--foreground);
+    font-size: 34px;
+    line-height: 1.05;
+    margin: 0;
+  }
+  .num .unit {
+    color: var(--primary);
+  }
+  .stat-label {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    line-height: 1.35;
+    color: var(--muted-foreground);
+    margin: 10px 0 0 0;
+  }
+  .tick {
+    display: inline-block;
+    width: 22px;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 2px;
+    margin: 12px 0 0 0;
+  }
+</style>
+</head><body>
+  <div class="card">
+    <div class="band">
+      <p class="eyebrow">The investment case in four numbers</p>
+      <div class="stats">
+        <div class="stat">
+          <p class="num"><span class="unit">AU$</span>713,827</p>
+          <span class="tick"></span>
+          <p class="stat-label">Signed FY revenue, accountant-signed</p>
+        </div>
+        <div class="stat">
+          <p class="num"><span class="unit">$</span>750</p>
+          <span class="tick"></span>
+          <p class="stat-label">Per bed</p>
+        </div>
+        <div class="stat">
+          <p class="num">496</p>
+          <span class="tick"></span>
+          <p class="stat-label">Beds delivered</p>
+        </div>
+        <div class="stat">
+          <p class="num"><span class="unit">AU$</span>400K</p>
+          <span class="tick"></span>
+          <p class="stat-label">Match target (QBE contingent, not secured)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body></html>
