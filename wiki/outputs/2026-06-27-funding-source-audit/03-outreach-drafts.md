@@ -66,7 +66,7 @@ Ben Knight
 Co-founder, Goods on Country
 [phone] · [email] · goodsoncountry.com
 
-*Note: verified concessional, $100K to $10M, no ownership gate, but NT-anchored and needs a matched PRIVATE co-contribution (grants do not count). Suits the NT plant specifically. Also chase the NT Recycling Modernisation Fund Round 2 (~$1.47M, reportedly open) for plant capex. https://jobsfund.nt.gov.au/products-and-services/business-investment-concessional-loans*
+*Note: verified concessional, $100K to $10M, no ownership gate, but NT-anchored and needs a matched PRIVATE co-contribution (grants do not count). Suits the NT plant specifically. Correction (2026-06-28): do NOT chase the NT Recycling Modernisation Fund Round 2 for plant capex, it closed 28 Feb 2023 (and CENT closed ~Jan 2024). For an NT grant, register interest for the next NT recycling-infrastructure round via GrantsNT / Circular Economy NT instead. https://jobsfund.nt.gov.au/products-and-services/business-investment-concessional-loans*
 
 ---
 
