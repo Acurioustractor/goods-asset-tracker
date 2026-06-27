@@ -278,6 +278,22 @@ For each pathway, the working row should show:
 - Build a weekly opportunity health report: new matches, deadlines, evidence gaps, actions waiting for approval, GHL tasks created and decisions made.
 - Use Grantscope to compare Goods targets against current philanthropy philosophy, future philanthropy partner fit, procurement timing and relationship warmth.
 
+## Ongoing Operation: the funding-pipeline skill
+
+The operational implementation of this loop is the `funding-pipeline` skill (`.claude/skills/funding-pipeline/`, local). It exists because the loop recorded opportunities but never re-checked their dates: a June 2026 audit carried "NT RMF Round 2, live" when that round had closed in February 2023. The skill makes the date check non-skippable.
+
+Each run: pull GHL (read-only) and Grantscope leads, **verify every open/close date on the live source page** (a syndicated or DB row is a lead, not a deadline), score for Goods fit, and write a dated shortlist to `wiki/outputs/<date>-funding-refresh/` plus a Notion review page. It writes nothing to GHL or Notion-as-action on its own.
+
+The alignment rule is **one writer per layer**:
+
+| Layer | Owns | Written by |
+|---|---|---|
+| Repo (`wiki/outputs/*-funding-refresh/`, `artifact-register.json`) | Verified evidence + audit trail | The skill, every run |
+| Notion (review page) | Human decisions: add / retire / owner / go-no-go | Skill writes the page; founder ticks decisions |
+| GHL (Grants + Supporter Journey) | Live pipeline state + action | Only `v2/scripts/ghl-grants-sync.mjs`, dry-run then `--commit` |
+
+Shared stage language across all three (Identified to In Progress to Submitted to Awarded/Declined). Retire dead grants to "Grant Declined" + status lost, never delete. The refresh and the Notion review page are Tier 1-2 and can run on a weekly cron; the GHL write is Tier 3 (day-shift, founder's explicit approval, never AFK-queued). First run: 2026-06-28, `wiki/outputs/2026-06-28-funding-refresh/` (all 10 GHL Grants rows verified dead; SEDI + NT Advanced Manufacturing added as the live fits).
+
 ## Related
 
 - [[source-register]]
