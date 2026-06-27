@@ -47,12 +47,14 @@ const ADD = [
   {
     name: 'SEDI Capability Building Grants (DSS) — open rolling ~early 2027, up to $120K, no ownership gate',
     monetaryValue: 120000,
-    note: 'Verified open 2026-06-28. For-profit social enterprise eligible (Pathway 1). Funds capability services, not plant. EOI. https://www.dss.gov.au/social-impact-investing/social-enterprise-development-initiative',
+    contactName: 'SEDI Capability Building Grants',
+    contactCompany: 'Dept of Social Services / Impact Investing Australia',
   },
   {
     name: 'NT Advanced Manufacturing Ecosystem Fund — open rolling, $25K–$500K matched, no gate (the plant)',
     monetaryValue: 500000,
-    note: 'Verified 2026-06-28 (confirm rolling status on NT page). Funds advanced-manufacturing capability — fits the On Country shred/melt/press plant. https://business.gov.au/grants-and-programs/advanced-manufacturing-ecosystem-fund-nt',
+    contactName: 'NT Advanced Manufacturing Ecosystem Fund',
+    contactCompany: 'NT Government',
   },
 ];
 
@@ -86,34 +88,44 @@ async function main() {
   const pipeline = (meta.pipelines || []).find((p) => p.id === GRANTS_PIPELINE);
   const stages = pipeline?.stages || [];
   const identified = stages.find((s) => /identif/i.test(s.name)) || stages[0];
+  const declined = stages.find((s) => /declin|lost|closed|abandon/i.test(s.name)) || null;
   console.log(`Pipeline: ${pipeline?.name} | stages: ${stages.map((s) => s.name).join(', ')}`);
-  console.log(`Add-stage for new grants: "${identified?.name}"\n`);
+  console.log(`Add-stage for new grants: "${identified?.name}" | Retire-stage: "${declined?.name || '(none — will use status=lost)'}"\n`);
 
   const opps = await fetchOpps(GRANTS_PIPELINE);
   console.log(`Found ${opps.length} opportunities in the Grants pipeline.\n`);
 
-  console.log('--- RETIRE (set status=abandoned + note) ---');
+  const retireBody = declined
+    ? { pipelineId: GRANTS_PIPELINE, pipelineStageId: declined.id, status: 'lost' }
+    : { pipelineId: GRANTS_PIPELINE, status: 'lost' };
+  console.log(`--- RETIRE (move to "${declined?.name || 'lost'}" + status=lost) ---`);
   for (const [needle, reason] of RETIRE) {
     const matches = opps.filter((o) => (o.name || '').toLowerCase().includes(needle.toLowerCase()) && o.status === 'open');
     if (!matches.length) { console.log(`  (no open match for "${needle}")`); continue; }
     for (const o of matches) {
       console.log(`  ${COMMIT ? 'RETIRING' : 'would retire'}: "${o.name}" [${o.id}] — ${reason}`);
       if (COMMIT) {
-        await ghl('PUT', `/opportunities/${o.id}`, { pipelineId: GRANTS_PIPELINE, status: 'abandoned' });
+        await ghl('PUT', `/opportunities/${o.id}`, retireBody);
       }
     }
   }
 
-  console.log('\n--- ADD (create open opportunity) ---');
+  console.log('\n--- ADD (create program contact + open opportunity) ---');
   for (const g of ADD) {
     const exists = opps.find((o) => (o.name || '').toLowerCase().includes(g.name.slice(0, 20).toLowerCase()));
     if (exists) { console.log(`  (already exists: "${exists.name}")`); continue; }
-    console.log(`  ${COMMIT ? 'CREATING' : 'would create'}: "${g.name}" | $${g.monetaryValue}`);
+    console.log(`  ${COMMIT ? 'CREATING' : 'would create'}: contact "${g.contactName}" + opp "${g.name}" | $${g.monetaryValue}`);
     if (COMMIT) {
+      const c = await ghl('POST', `/contacts/`, {
+        locationId: LOC, firstName: g.contactName, lastName: 'Grant Program', companyName: g.contactCompany,
+        tags: ['goods-grant-program', 'goods-capital-target'], source: 'funding-pipeline skill',
+      });
+      const contactId = c.contact?.id || c.id;
       await ghl('POST', `/opportunities/`, {
         pipelineId: GRANTS_PIPELINE, locationId: LOC, pipelineStageId: identified?.id,
-        name: g.name, monetaryValue: g.monetaryValue, status: 'open',
+        name: g.name, monetaryValue: g.monetaryValue, status: 'open', contactId,
       });
+      console.log(`    created contact ${contactId} + opportunity`);
     }
   }
 
