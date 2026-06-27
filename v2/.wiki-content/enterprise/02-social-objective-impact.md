@@ -30,11 +30,11 @@ The health logic is simple enough to explain without making it smaller than it i
 - Rheumatic fever can become rheumatic heart disease.
 - A bed and washing machine are therefore part of environmental health hardware in the home.
 
-This is why the public Goods line matters:
+This is why a bed and a washing machine are treated as health hardware, not furniture:
 
-> "A good bed can prevent heart disease."
+> "Off-the-ground, washable sleep supports the conditions needed to interrupt the scabies to rheumatic heart disease pathway."
 
-That line should always be explained with care. Goods has not completed a clinical study showing that a particular Stretch Bed directly reduces rheumatic heart disease. The responsible claim is that washable beds and reliable washing machines support the environmental-health conditions needed to interrupt known infection pathways.
+This is a why, not a claimed outcome (claim ceiling, 2026-06-18). Goods has not completed a clinical study showing that a particular Stretch Bed directly reduces rheumatic heart disease, so we do not say a bed prevents heart disease. The responsible claim is that washable beds and reliable washing machines support the environmental-health conditions needed to interrupt known infection pathways. A health outcome only leaves the future column when a partner clinical method (Miwatj and equivalent ACCHOs) produces it, attributed to that partner.
 
 ## What The Current System Gets Wrong
 
@@ -235,9 +235,9 @@ The next measurement spine is product-led, not survey-led.
 | Story consent records | Who has approved what story, image or video for what use | Needs human review before broad publication |
 | Product referrals and repeat purchases | Whether people want more after seeing or using the product | Emerging evidence, not yet formal metric |
 
-## Australian Living Map Of Alternatives, Story And Consent
+## The story-selection lens, story and consent
 
-The Australian Living Map of Alternatives is useful as a lens because it keeps the data human. It should not be presented as if it solves impact measurement by itself.
+The story-selection lens is useful because it keeps the data human. It should not be presented as if it solves impact measurement by itself.
 
 The impact model should hold three things together:
 
@@ -302,7 +302,7 @@ These are the questions we should answer before this topic becomes the final Not
 - Should the deployment headline use 389 tracked assets, 412 beds plus 9 washers, or "hundreds of tracked assets" until the registers are reconciled?
 - Is 9,225kg the right public plastic-diversion number, or should it be framed as an internal estimate?
 - Which washing-machine telemetry can be shown without exposing private household data?
-- Which Australian Living Map of Alternatives language feels true to how we talk, and which parts still sound like a framework pasted on top?
+- Which story-selection lens language feels true to how we talk, and which parts still sound like a framework pasted on top?
 
 ## Related Wiki Pages
 

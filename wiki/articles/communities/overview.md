@@ -4,9 +4,8 @@
 
 ## How to read this
 
-- The bed and washing-machine numbers below come from the March 2026 compendium deployment snapshot unless a row says otherwise.
-- The snapshot totals are 412 beds and 9 washing machines across 7 deployment rows.
-- Those numbers are not the same as every other count in the pack. Other pages use tracked assets, approved invoices, historical prototypes or current product records. Keep the source type visible when using a number externally.
+- The canonical headline is 496 beds deployed across 9 communities, with 16 washing machines in community (asset-canonical.ts).
+- The per-place bed and washing-machine numbers in the table below come from the March 2026 compendium deployment snapshot unless a row says otherwise. They are a source-typed sub-view, not the canonical headline, so their row sum will be narrower than 496. Keep the source type visible when using a number externally.
 - "Storytellers / voices" means named people already recorded in the knowledge base. Consent and use permissions still need to be checked before external sharing.
 
 ## Deployment and Relationship Table

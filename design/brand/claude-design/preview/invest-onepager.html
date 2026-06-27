@@ -1,0 +1,362 @@
+<!doctype html>
+<!-- @dsCard group="Investment" name="Funder one-pager" subtitle="The Goods investment story on one page" viewport="700x1180" -->
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_base.css">
+<style>
+  .card {
+    width: 700px;
+    padding: 0;
+    background: var(--background);
+    color: var(--foreground);
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+  .sheet { padding: 0 0 30px; }
+
+  /* Header band */
+  .hdr {
+    position: relative;
+    padding: 30px 36px 24px;
+    background: var(--secondary);
+    border-bottom: 3px solid var(--primary);
+  }
+  .hdr .eyebrow {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted-foreground);
+  }
+  .hdr h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    font-size: 44px;
+    line-height: 1.02;
+    margin: 10px 0 8px;
+    color: var(--foreground);
+  }
+  .hdr .position {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--foreground);
+    max-width: 460px;
+  }
+
+  /* Hero strip */
+  .hero-strip {
+    height: 86px;
+    background-image: url(../assets/hero-stretch-bed-on-country.jpg);
+    background-size: cover;
+    background-position: center 40%;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .body { padding: 26px 36px 0; }
+
+  .sect-eyebrow {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  /* The work */
+  .work p {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.62;
+    color: var(--foreground);
+    margin: 0 0 10px;
+  }
+  .work .why {
+    color: var(--muted-foreground);
+    font-size: 13px;
+  }
+  .work strong { color: var(--primary); font-weight: 600; }
+
+  .rule {
+    height: 2px;
+    background: var(--primary);
+    opacity: 0.85;
+    margin: 24px 36px;
+    border: 0;
+  }
+  .rule.soft { background: var(--border); height: 1px; opacity: 1; margin: 22px 36px; }
+
+  /* Traction stats */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    padding: 0 36px;
+  }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 16px 14px;
+  }
+  .stat .num {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--foreground);
+  }
+  .stat .lbl {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    line-height: 1.35;
+    color: var(--muted-foreground);
+    margin-top: 8px;
+  }
+  .stat.revenue { border-top-color: var(--chart-3); }
+
+  /* The ask */
+  .ask {
+    margin: 0 36px;
+    background: var(--muted);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--primary);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+  }
+  .ask .ask-top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+  .ask h3 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 21px;
+    letter-spacing: -0.01em;
+    margin: 4px 0 0;
+    color: var(--foreground);
+  }
+  .ask .amount {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 26px;
+    color: var(--primary);
+    white-space: nowrap;
+  }
+  .ask .contingent {
+    display: inline-block;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--primary-foreground);
+    background: var(--foreground);
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+  .ask p {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--foreground);
+    margin: 12px 0 0;
+  }
+
+  /* Capital stack */
+  .stack { padding: 0 36px; }
+  .stack-rows { display: flex; flex-direction: column; gap: 9px; margin-top: 6px; }
+  .srow { display: flex; align-items: center; gap: 12px; }
+  .srow .name {
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    width: 150px;
+    color: var(--foreground);
+    flex-shrink: 0;
+  }
+  .srow .name b { font-weight: 600; }
+  .srow .name span {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted-foreground);
+    margin-top: 2px;
+  }
+  .bar {
+    height: 26px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    color: var(--primary-foreground);
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .bar.repay { background: var(--primary); }
+  .bar.grant { background: var(--accent); color: var(--accent-foreground); }
+  .bar.grant2 { background: var(--chart-3); color: var(--foreground); }
+
+  .stack-track {
+    position: relative;
+    margin: 16px 0 4px;
+    height: 14px;
+  }
+  .matchline {
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    left: 88.2%;
+    border-left: 2px dashed var(--foreground);
+  }
+  .matchline .tag {
+    position: absolute;
+    top: -16px;
+    left: 6px;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--muted-foreground);
+    white-space: nowrap;
+  }
+  .stack-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .stack-total .t-lbl {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--muted-foreground);
+  }
+  .stack-total .t-val {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 22px;
+    color: var(--foreground);
+  }
+  .stack-total .t-val b { color: var(--primary); font-weight: 300; }
+
+  /* Footer honest labels */
+  .foot {
+    margin: 26px 36px 0;
+    padding: 16px 0 0;
+    border-top: 2px solid var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 18px;
+  }
+  .foot .labels {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    line-height: 1.55;
+    color: var(--muted-foreground);
+    max-width: 430px;
+  }
+  .foot .labels b { color: var(--foreground); font-weight: 600; }
+  .foot .contact {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary);
+    white-space: nowrap;
+  }
+</style>
+</head><body>
+<div class="card">
+  <div class="sheet">
+
+    <div class="hdr">
+      <div class="eyebrow">Investment one-pager</div>
+      <h1>Goods on Country</h1>
+      <div class="position">Quality beds as health hardware, made and owned On Country.</div>
+    </div>
+    <div class="hero-strip"></div>
+
+    <div class="body work">
+      <div class="sect-eyebrow">The work</div>
+      <p>The <strong>Stretch Bed</strong> is health hardware, not furniture. Recycled HDPE X-trestle legs, 2 galvanised steel poles and a heavy-duty canvas that is structural to the frame. It carries 200kg, weighs 26kg and assembles in about 5 minutes with no tools. Every bed diverts 20kg of HDPE from waste.</p>
+      <p>Beds are made on a movable On Country plant: collect plastic, shred, melt, press into components. The plant can pass to community ownership, so the value and the jobs stay local.</p>
+      <p class="why">Why it matters: a clean, washable bed is part of the scabies to rheumatic heart disease pathway. Better sleeping conditions, alongside named clinical partners, are how that pathway could be interrupted over time. This is the reason for the work, not a claimed Goods outcome.</p>
+    </div>
+
+    <hr class="rule">
+
+    <div class="stats">
+      <div class="stat">
+        <div class="num">496</div>
+        <div class="lbl">beds delivered</div>
+      </div>
+      <div class="stat">
+        <div class="num">9</div>
+        <div class="lbl">communities</div>
+      </div>
+      <div class="stat">
+        <div class="num">2,660kg</div>
+        <div class="lbl">HDPE diverted (modelled)</div>
+      </div>
+      <div class="stat revenue">
+        <div class="num">$713,827</div>
+        <div class="lbl">signed FY revenue (Goods-only, accountant-signed)</div>
+      </div>
+    </div>
+
+    <hr class="rule soft">
+
+    <div class="body" style="padding-top:0;">
+      <div class="sect-eyebrow">The ask</div>
+    </div>
+    <div class="ask">
+      <div class="ask-top">
+        <h3>QBE Foundation, Catalysing Impact Stage 2</h3>
+        <div class="amount">up to AU$400,000</div>
+      </div>
+      <div class="contingent">Contingent, not secured</div>
+      <p>From a roughly AU$1M shared pool, with an AU$150,000 floor. The grant must be matched at least 1:1 by signed, legally-binding external capital raised first. Repayable finance is prioritised above grants. Apply around September 2026, outcome around November 2026.</p>
+    </div>
+
+    <hr class="rule soft">
+
+    <div class="stack">
+      <div class="sect-eyebrow">Capital stack to clear the match (target asks)</div>
+      <div class="stack-rows">
+        <div class="srow">
+          <div class="name"><b>SEFA Loan Fund</b><span>Repayable, the anchor, no ownership gate</span></div>
+          <div class="bar repay" style="width:58.8%;">$250K</div>
+        </div>
+        <div class="srow">
+          <div class="name"><b>Snow Foundation</b><span>Grant toward repayable or multi-year</span></div>
+          <div class="bar grant" style="width:23.5%;">$100K</div>
+        </div>
+        <div class="srow">
+          <div class="name"><b>Centrecorp Foundation</b><span>Grant, separate from its bed order</span></div>
+          <div class="bar grant2" style="width:17.6%;">$75K</div>
+        </div>
+      </div>
+
+      <div class="stack-total">
+        <div class="t-lbl">Total target ask, repayable core, clears the $400K match</div>
+        <div class="t-val"><b>$425K</b></div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <div class="labels">
+        <b>Honest labels:</b> QBE is contingent and not secured. The signed-commitment register holds <b>0 signed entries today</b>. Capital-stack figures are target asks, not awarded amounts.
+      </div>
+      <div class="contact">goodsoncountry.com</div>
+    </div>
+
+  </div>
+</div>
+</body></html>

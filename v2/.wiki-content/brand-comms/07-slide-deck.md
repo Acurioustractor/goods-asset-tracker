@@ -262,7 +262,7 @@ Before any live session:
 > No. Sponsorship and procurement, not donations. We're an enterprise. Communities are co-designers and customers, not beneficiaries.
 
 **"Who's done the impact measurement?"**
-> Empathy Ledger captures storyteller voices with consent. ALMA framework underpins our theory of change. Quantitative deployment numbers are tracked in our asset register. See [v2/src/lib/data/impact-model.ts](../../v2/src/lib/data/impact-model.ts).
+> Empathy Ledger captures storyteller voices with consent. The story-selection lens underpins our theory of change. Quantitative deployment numbers are tracked in our asset register. See [v2/src/lib/data/impact-model.ts](../../v2/src/lib/data/impact-model.ts).
 
 **"What if a community doesn't want this?"**
 > Then we don't deploy. Decisions belong to community. We've walked away from communities who weren't ready and that was the right call.

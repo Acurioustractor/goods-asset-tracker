@@ -16,7 +16,7 @@ voice_owner: "Community member (identity protected)"
 
 After the storm, Ellen's damaged fridge became a symbol of the broader problem Goods on Country addresses: essential goods in remote communities break, and replacement pathways are slow, expensive, or non-existent. The health impact — food safety, dignity, daily life disruption — makes this more than an appliance issue. It's a health and equity issue that drives Goods' expansion into fridges as the next essential product line.
 
-## ALMA Signals
+## Story-selection lens signals
 
 | Signal | Score |
 |--------|-------|

@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Goods on Country — SEFA Loan Fund Application Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #FCFBF7;
+    --paper: #FFFFFF;
+    --ink: #2A2620;
+    --ink-muted: #6F6155;
+    --ink-soft: #8A7C6D;
+    --border: #E6DFD1;
+    --terracotta: #B0673B;
+    --terracotta-ink: #9A5230;
+    --terracotta-tint: #F4E7DF;
+    --sage: #7E9A68;
+    --sage-ink: #4E7548;
+    --sage-tint: #EAF0E2;
+    --teal: #4E8F88;
+    --teal-ink: #357873;
+    --teal-tint: #E2EEEC;
+    --gold: #C2A85A;
+    --gold-ink: #8A7332;
+    --gold-tint: #F1E9CF;
+    --lora: 'Lora', Georgia, serif;
+    --inter: 'Inter', -apple-system, system-ui, sans-serif;
+  }
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #DAD3C4; font-family: var(--inter); color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--cream);
+    padding: 12mm 14mm 9mm;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .mast { display: flex; align-items: flex-end; justify-content: space-between; border-bottom: 2px solid var(--ink); padding-bottom: 8px; }
+  .wordmark { font-family: var(--lora); font-weight: 700; font-size: 20px; letter-spacing: -0.3px; }
+  .wordmark .oc { color: var(--terracotta); font-weight: 600; }
+  .mast .doc { text-align: right; font-size: 10px; color: var(--ink-muted); line-height: 1.35; }
+  .mast .doc b { color: var(--ink); font-weight: 600; }
+
+  .draftbar { margin-top: 8px; background: var(--gold-tint); border: 1px solid #E4D49A; border-radius: 7px; padding: 6px 11px; font-size: 9.5px; color: #6B5A22; line-height: 1.4; }
+  .draftbar b { color: #4A3F18; }
+
+  .titlewrap { margin-top: 12px; }
+  .title { font-family: var(--lora); font-weight: 700; font-size: 24px; line-height: 1.14; letter-spacing: -0.4px; }
+  .title .oc { color: var(--terracotta); }
+  .lede { font-size: 12px; line-height: 1.5; color: var(--ink-muted); margin-top: 7px; max-width: 168mm; }
+  .lede b { color: var(--ink); font-weight: 600; }
+
+  .ask { margin-top: 13px; background: var(--terracotta); border-radius: 13px; padding: 14px 18px; color: var(--cream); }
+  .ask .k { font-family: var(--inter); font-weight: 700; font-size: 9.5px; letter-spacing: 1.3px; text-transform: uppercase; opacity: .82; }
+  .ask .big { font-family: var(--lora); font-weight: 700; font-size: 21px; line-height: 1.22; margin-top: 4px; }
+  .ask .big span { font-weight: 500; font-size: 15px; opacity: .92; }
+  .ask .sub { font-size: 11px; line-height: 1.48; margin-top: 7px; opacity: .96; }
+  .ask .sub b { font-weight: 700; }
+  .askgrid { display: flex; gap: 0; margin-top: 11px; border-top: 1px solid rgba(255,255,255,.28); padding-top: 10px; }
+  .askgrid .c { flex: 1; padding-right: 12px; }
+  .askgrid .c + .c { border-left: 1px solid rgba(255,255,255,.28); padding-left: 14px; }
+  .askgrid .cl { font-size: 8.6px; letter-spacing: .8px; text-transform: uppercase; opacity: .8; }
+  .askgrid .cv { font-family: var(--lora); font-weight: 600; font-size: 13px; margin-top: 3px; line-height: 1.25; }
+  .askgrid .cv small { font-weight: 400; font-size: 9.5px; opacity: .9; display: block; margin-top: 1px; }
+
+  .pill { display: inline-block; background: var(--gold); color: #4A3F18; font-family: var(--lora); font-weight: 700; font-size: 13px; padding: 5px 13px; border-radius: 7px; margin: 15px 0 10px; }
+  .pill.sage { background: var(--sage-ink); color: #fff; }
+  .pill.teal { background: var(--teal-ink); color: #fff; }
+  .pill small { font-weight: 400; font-size: 9.5px; }
+
+  .fit { display: flex; flex-direction: column; gap: 8px; }
+  .fititem { display: flex; gap: 11px; align-items: flex-start; }
+  .fititem .bx { flex: none; width: 21px; height: 21px; border-radius: 6px; background: var(--sage-ink); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; margin-top: 1px; }
+  .fititem .t { font-size: 11.4px; line-height: 1.44; color: var(--ink); }
+  .fititem .t b { font-weight: 600; color: var(--terracotta-ink); }
+
+  .stats { display: flex; gap: 9px; margin-top: 2px; }
+  .stat { flex: 1; background: var(--paper); border: 1px solid var(--border); border-radius: 10px; padding: 11px 8px; text-align: center; }
+  .stat .num { font-family: var(--lora); font-weight: 700; font-size: 24px; line-height: 1; color: var(--terracotta-ink); }
+  .stat .lbl { font-size: 9.4px; line-height: 1.3; color: var(--ink-muted); margin-top: 6px; }
+  .stat .lbl b { color: var(--ink); font-weight: 600; }
+
+  .cols { display: flex; gap: 16px; }
+  .cols .col { flex: 1; }
+
+  .prod { background: var(--terracotta-tint); border: 1px solid #EBD6C8; border-radius: 10px; padding: 12px 14px; }
+  .prod h4 { font-family: var(--lora); font-size: 12.5px; color: var(--terracotta-ink); font-weight: 700; }
+  .prod p { font-size: 10.6px; line-height: 1.46; color: var(--ink); margin-top: 5px; }
+  .prod p b { font-weight: 600; }
+
+  table.econ { width: 100%; border-collapse: collapse; font-size: 11px; }
+  table.econ th, table.econ td { padding: 7px 9px; text-align: right; border-bottom: 1px solid var(--border); }
+  table.econ thead th { font-size: 9.2px; letter-spacing: .4px; text-transform: uppercase; color: var(--ink-muted); border-bottom: 1.5px solid var(--ink); font-weight: 600; }
+  table.econ td:first-child, table.econ th:first-child { text-align: left; }
+  table.econ td.row-label { font-weight: 500; color: var(--ink); }
+  table.econ td.hl { background: var(--sage-tint); font-weight: 700; color: var(--sage-ink); }
+  table.econ th.hl { background: var(--sage-ink); color: #fff; border-bottom-color: var(--sage-ink); }
+  .econ-note { font-size: 9.2px; color: var(--ink-soft); margin-top: 5px; line-height: 1.4; }
+
+  .case { background: var(--sage-ink); color: #fff; border-radius: 10px; padding: 12px 15px; margin-top: 11px; }
+  .case .k { font-size: 8.8px; letter-spacing: 1.1px; text-transform: uppercase; opacity: .82; }
+  .case p { font-family: var(--lora); font-size: 14px; line-height: 1.42; margin-top: 4px; font-weight: 500; }
+  .case p b { font-weight: 700; }
+
+  .block .h { font-family: var(--lora); font-weight: 700; font-size: 13px; color: var(--ink); margin-bottom: 6px; }
+  .block ul { list-style: none; }
+  .block li { font-size: 11px; line-height: 1.5; color: var(--ink); padding-left: 16px; position: relative; margin-bottom: 6px; }
+  .block li::before { content: ''; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--terracotta); }
+  .block li b { font-weight: 600; }
+
+  .uof { display: flex; flex-direction: column; gap: 7px; }
+  .uofrow { display: flex; align-items: baseline; gap: 10px; font-size: 11px; }
+  .uofrow .dot { flex: none; width: 9px; height: 9px; border-radius: 2px; position: relative; top: 1px; }
+  .uofrow .lbl { flex: 1; line-height: 1.4; }
+  .uofrow .lbl b { font-weight: 600; }
+  .uofrow .amt { font-family: var(--lora); font-weight: 600; font-size: 10.5px; color: var(--ink-muted); white-space: nowrap; }
+
+  .honesty { background: var(--paper); border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: 9px; padding: 11px 14px; margin-top: 15px; }
+  .honesty .h { font-family: var(--lora); font-weight: 700; font-size: 12.5px; color: var(--gold-ink); margin-bottom: 5px; }
+  .honesty p { font-size: 10.5px; line-height: 1.5; color: var(--ink); }
+  .honesty p b { font-weight: 600; }
+
+  .next { background: var(--teal-ink); color: #fff; border-radius: 11px; padding: 14px 17px; margin-top: 15px; }
+  .next .h { font-family: var(--lora); font-weight: 700; font-size: 15px; }
+  .next p { font-size: 11px; line-height: 1.5; margin-top: 6px; opacity: .97; }
+  .next .contact { display: flex; gap: 22px; margin-top: 11px; font-size: 11px; flex-wrap: wrap; }
+  .next .contact div b { display: block; font-size: 8.6px; letter-spacing: .7px; text-transform: uppercase; opacity: .8; font-weight: 600; margin-bottom: 2px; }
+
+  .prov { margin-top: 15px; border-top: 1px solid var(--border); padding-top: 9px; font-size: 8.2px; line-height: 1.5; color: var(--ink-soft); }
+  .prov b { color: var(--ink-muted); font-weight: 600; }
+
+  .foot { margin-top: auto; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8.2px; color: var(--ink-soft); }
+  .spacer { height: 13px; }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 — the pitch ============ -->
+<section class="page">
+  <div class="mast">
+    <div class="wordmark">GOODS <span class="oc">on Country</span></div>
+    <div class="doc"><b>SEFA Loan Fund</b> &middot; Application Brief<br />Prepared 27 June 2026 &middot; Confidential</div>
+  </div>
+
+  <div class="draftbar">
+    <b>DRAFT for founder sign-off.</b> Management figures, not audited. Goods only basis. Figures labelled verified, modelled, or target. The borrowing entity and security are being finalised through a current legal review (noted on page 3). Not a commitment of capital or a finalised facility.
+  </div>
+
+  <div class="titlewrap">
+    <div class="title">Catalytic finance to bring Stretch Bed production <span class="oc">On Country</span>.</div>
+    <p class="lede">Goods is a social enterprise delivering quality, washable, flat packable furniture to remote Indigenous communities across Australia. The flagship <b>Stretch Bed</b> is made from recycled HDPE plastic, galvanised steel and heavy duty Australian canvas, built for remote conditions. We are raising blended catalytic capital to move production from bought in kits toward a community ownable manufacturing line, On Country.</p>
+  </div>
+
+  <div class="ask">
+    <div class="k">The ask</div>
+    <div class="big">AU$250,000 <span>repayable facility, as the anchor of a ~AU$425,000 blended capital stack</span></div>
+    <div class="sub">SEFA is the keystone. A signed SEFA facility is structured to help unlock a <b>contingent philanthropic catalytic match</b> (terms being confirmed in writing). It is the single commitment the whole raise turns on, and the longest pole: a first time, logistics heavy borrower runs a 2 to 4 month credit assessment, so we are opening this now.</div>
+    <div class="askgrid">
+      <div class="c"><div class="cl">Instrument</div><div class="cv">Repayable<small>term &amp; rate to SEFA assessment</small></div></div>
+      <div class="c"><div class="cl">Purpose</div><div class="cv">On Country<small>production scale up</small></div></div>
+      <div class="c"><div class="cl">Signed today</div><div class="cv">AU$0<small>this is the gate</small></div></div>
+      <div class="c"><div class="cl">Window</div><div class="cv">Before 31 Aug<small>first match eligible LOI</small></div></div>
+    </div>
+  </div>
+
+  <div class="pill sage">Why SEFA is the right lender</div>
+  <div class="fit">
+    <div class="fititem"><div class="bx">&#10003;</div><div class="t">Goods sits squarely inside <b>both</b> of SEFA's named impact streams: <b>Aboriginal Community Enterprises</b> and <b>Community Environment Enterprises</b>. A recycled plastic bed built with and for remote First Nations communities is the intersection of the two.</div></div>
+    <div class="fititem"><div class="bx">&#10003;</div><div class="t"><b>No First Nations ownership gate.</b> SEFA lends to social enterprise companies and to charities on the strength of the enterprise. The entity ownership question that gates other Indigenous lenders is not a barrier here, which is precisely why SEFA is the anchor.</div></div>
+    <div class="fititem"><div class="bx">&#10003;</div><div class="t">Mission alignment runs to SEFA's own ownership: the <b>NSW Aboriginal Land Council is SEFA's majority shareholder</b>. A loan into On Country production advances a shared agenda, not just a balance sheet.</div></div>
+    <div class="fititem"><div class="bx">&#10003;</div><div class="t">The ask sits cleanly inside SEFA's <b>AU$200K to AU$5M band</b>, above the floor, at a size a first facility can carry.</div></div>
+  </div>
+
+  <div class="pill">Proven in country</div>
+  <div class="stats">
+    <div class="stat"><div class="num">496</div><div class="lbl"><b>beds deployed</b><br />across Australia</div></div>
+    <div class="stat"><div class="num">9</div><div class="lbl"><b>communities</b><br />served</div></div>
+    <div class="stat"><div class="num">$713,827</div><div class="lbl"><b>revenue</b>, Goods only<br />management, not audited</div></div>
+    <div class="stat"><div class="num">20kg</div><div class="lbl">HDPE diverted <b>per bed</b><br />design spec, modelled</div></div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="cols">
+    <div class="col">
+      <div class="prod">
+        <h4>The Stretch Bed, the only direct sale product</h4>
+        <p>Recycled HDPE X trestle legs, two galvanised steel poles, heavy duty canvas. <b>200kg capacity, ~5 minute no tools assembly, a 10 plus year design life.</b> One clear unit, a real price of <b>AU$750</b>, sold direct and through partners with per bed records.</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="prod" style="background:var(--teal-tint); border-color:#CFE3DF;">
+        <h4 style="color:var(--teal-ink);">The move this capital funds</h4>
+        <p>Today Goods buys bed kits in. This facility stands up an <b>On Country production line</b>: collect plastic, shred, press, build the bed components in community. It lowers the cost of every bed and builds an asset a community can ultimately own and operate.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Goods on Country &middot; SEFA Loan Fund Application Brief</span>
+    <span>Page 1 of 3 &middot; Confidential draft</span>
+  </div>
+</section>
+
+<!-- ============ PAGE 2 — the numbers + repayment ============ -->
+<section class="page">
+  <div class="mast">
+    <div class="wordmark">GOODS <span class="oc">on Country</span></div>
+    <div class="doc"><b>The unit economics &amp; how the loan is repaid</b><br />Cost model v6, computed 27 June 2026</div>
+  </div>
+
+  <div class="pill teal">Unit economics: the capital buys a structural cost down</div>
+  <table class="econ">
+    <thead>
+      <tr><th>Per bed</th><th>Buy kit (today)</th><th class="hl">In source (factory)</th><th>On Country (scale)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="row-label">Sale price</td><td>$750</td><td class="hl">$750</td><td>$750</td></tr>
+      <tr><td class="row-label">Marginal cost / bed</td><td>$684.79</td><td class="hl">$425.74</td><td>$415.74</td></tr>
+      <tr><td class="row-label">Contribution / bed</td><td>$65</td><td class="hl">$324</td><td>$334</td></tr>
+      <tr><td class="row-label">Annual fixed block</td><td>$109,500</td><td class="hl">$109,500&ndash;163,500</td><td>$133,500</td></tr>
+      <tr><td class="row-label">Breakeven (beds / yr)</td><td>1,679</td><td class="hl">338</td><td>399</td></tr>
+    </tbody>
+  </table>
+  <div class="econ-note">Cost model v6, computed 27 June 2026 (modelled). Bed level bill of materials is largely verified; facility and site capex is modelled pending three vendor quotes. Sale price AU$750 verified.</div>
+
+  <div class="case">
+    <div class="k">The investment case in one line</div>
+    <p>Capital moves Goods from buying kits at ~$685 per bed to in sourcing at ~$426 per bed, a <b>~$260 per bed structural cost down</b>, while building a production asset communities can own.</p>
+  </div>
+
+  <div class="pill sage">How the loan is repaid</div>
+  <div class="block">
+    <ul>
+      <li><b>The cost down is itself the repayment engine.</b> Each in sourced bed contributes ~$324 against price, versus ~$65 on a bought in kit today. On the volume Goods already moves, and as it grows, that ~$260 per bed improvement converts demand into serviceable cash.</li>
+      <li><b>Contribution above breakeven services the facility.</b> Past the in source breakeven (338 to 399 beds per year), every additional bed throws off ~$324 to ~$334 toward fixed costs, then debt service.</li>
+      <li><b>The catalytic match de risks the principal.</b> The SEFA facility is structured to draw matched philanthropic capital in behind it (contingent, terms being confirmed), reducing the net capital that must be repaid from trading.</li>
+      <li><b>A detailed three year cash flow forecast and a workbook reconciled to the books are in preparation</b> for SEFA's credit team. Final term and rate are for SEFA's assessment.</li>
+    </ul>
+  </div>
+
+  <div class="cols" style="margin-top:13px;">
+    <div class="col">
+      <div class="block">
+        <div class="pill" style="margin-top:0;">Security</div>
+        <ul>
+          <li><b>Plant and equipment</b> funded by this facility (the production line) is the primary asset security.</li>
+          <li><b>Trade receivables</b> (~AU$143,000, stated separately from recognised revenue) support a working capital position.</li>
+          <li><b>No real property</b> is held. We are open to a <b>philanthropic guarantee enhancement</b> to de risk a senior position if useful to SEFA.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="pill" style="margin-top:0;">Use of funds <small>(illustrative, tied to the cost model)</small></div>
+      <div class="uof">
+        <div class="uofrow"><span class="dot" style="background:var(--terracotta);"></span><span class="lbl"><b>On Country production facility</b>, equipment and container build</span><span class="amt">majority</span></div>
+        <div class="uofrow"><span class="dot" style="background:var(--sage-ink);"></span><span class="lbl"><b>50 bed in source production run</b>, proves the line</span><span class="amt">~$21K + setup</span></div>
+        <div class="uofrow"><span class="dot" style="background:var(--teal-ink);"></span><span class="lbl"><b>Fixed block runway</b>, production, facility, field</span><span class="amt">~$133.5K / yr</span></div>
+        <div class="uofrow"><span class="dot" style="background:var(--gold);"></span><span class="lbl"><b>Contingency</b></span><span class="amt">confirm %</span></div>
+      </div>
+      <div class="econ-note">Final use of funds confirmed against three vendor quotes and the accountant. The capital plan is quoted, not estimated, before signing.</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Goods on Country &middot; SEFA Loan Fund Application Brief</span>
+    <span>Page 2 of 3 &middot; Confidential draft</span>
+  </div>
+</section>
+
+<!-- ============ PAGE 3 — the stack, the asks, provenance ============ -->
+<section class="page">
+  <div class="mast">
+    <div class="wordmark">GOODS <span class="oc">on Country</span></div>
+    <div class="doc"><b>The capital stack, the risks, the next step</b><br />Confidential draft &middot; 27 June 2026</div>
+  </div>
+
+  <div class="pill teal">The full capital stack (target, nothing signed yet)</div>
+  <table class="econ">
+    <thead><tr><th>Source</th><th>Target</th><th>Type</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td class="row-label hl" style="text-align:left;">SEFA (this ask)</td><td class="hl">$250K</td><td class="hl">Repayable</td><td class="hl">Opening now</td></tr>
+      <tr><td class="row-label">Snow Foundation</td><td>$100K</td><td>Repayable</td><td>In discussion</td></tr>
+      <tr><td class="row-label">Centrecorp</td><td>$75K</td><td>Grant</td><td>In discussion</td></tr>
+      <tr><td class="row-label" style="font-weight:700;">Signed external subtotal</td><td style="font-weight:700;">$425K</td><td>&mdash;</td><td style="font-weight:700;color:var(--terracotta-ink);">$0 signed</td></tr>
+      <tr><td class="row-label">Philanthropic match</td><td>contingent</td><td>Catalytic</td><td>Terms being confirmed</td></tr>
+    </tbody>
+  </table>
+  <div class="econ-note">The mechanic: signed external capital is structured to unlock the contingent philanthropic match. Nothing converts until the first signed, match eligible commitment lands. Match ratio, eligibility and cap are being confirmed with the funder in writing.</div>
+
+  <div class="honesty">
+    <div class="h">The risks we name ourselves</div>
+    <p>Founder led today with no funded staff; the raise funds a 12 month role map. The contracting entity and a First Nations ownership pathway are in a legal review concluding around end July 2026. Single product concentration around the Stretch Bed. Facility capex is modelled pending three vendor quotes. <b>Naming these up front is the honest position, and each maps to a mitigation we can walk through.</b></p>
+  </div>
+
+  <div class="next">
+    <div class="h">What we are asking SEFA, and the next step</div>
+    <p>An exploratory credit conversation, opened now against the 31 August match window. We will confirm together: minimum loan size and that AU$250K to AU$400K is in band; appetite for remote NT and WA logistics heavy recycled plastic manufacturing; a realistic application to signed facility timeline for a first time borrower; and indicative rate and security. We arrive with the signed AU$713,827 Goods only revenue figure, the 496 bed record, the cost model, and a cash flow forecast in preparation.</p>
+    <div class="contact">
+      <div><b>Submit</b>sefa.com.au / access-impact-finance</div>
+      <div><b>Call</b>(02) 8199 3360</div>
+      <div><b>From</b>Ben Knight &amp; Nic Marchesi OAM, co-founders</div>
+    </div>
+  </div>
+
+  <div class="prov">
+    <b>Provenance.</b> Verified (canon): 496 beds, 9 communities, AU$750 price, materials and specs (asset-canonical.ts, products.ts).
+    Cost model v6 (computed 27 June 2026, engine.ts): marginal $425.74 factory / $415.74 On Country / $684.79 buy kit; contribution $324 / $334 / $65 vs $750; fixed block $109,500 to $163,500 per year; breakeven 338 to 399 beds per year.
+    Management, not audited: AU$713,827 Goods only revenue (accountant signed carve out, distinct from AU$741,111 all sources); ~AU$143,000 receivables stated separately.
+    Modelled (design spec, not weighbridge verified): 20kg HDPE per bed.
+    Target, none signed: SEFA $250K + Snow $100K + Centrecorp $75K = $425K; philanthropic match contingent, terms being confirmed in writing.
+    SEFA program facts: sefa.com.au/access-impact-finance. Entity and DGR wording held pending the post handover legal review. No clinical or health outcome claims are made.
+  </div>
+
+  <div class="foot">
+    <span>Goods on Country &middot; SEFA Loan Fund Application Brief &middot; DRAFT, founder sign-off required</span>
+    <span>Page 3 of 3 &middot; Confidential draft</span>
+  </div>
+</section>
+
+</body>
+</html>

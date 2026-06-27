@@ -126,7 +126,7 @@ async function getStorytellersForGrid(): Promise<StorytellerGridProfile[]> {
     themes: p.themes,
     transcriptCount: 0,
     emotionalTone: null,
-  }));
+  })).filter(isPublicStoryteller);
 }
 
 // Fetch media gallery from Empathy Ledger
@@ -279,10 +279,9 @@ export default async function StoriesPage() {
           ============================================================ */}
       <section className="py-6 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             {[
               { value: String(storytellerCount), label: 'Storytellers', sub: `across ${communityCount} places` },
-              { value: '500+', label: 'Minutes', sub: 'of community feedback' },
               { value: String(communityCount), label: 'Communities', sub: 'across remote Australia' },
               { value: String(CANONICAL_ASSETS.bedsDeployed), label: 'Beds Delivered', sub: 'and counting' },
             ].map((stat) => (
@@ -757,8 +756,8 @@ export default async function StoriesPage() {
             Every bed has a story.<br />Be part of the next one.
           </h2>
           <p className="text-background/70 max-w-xl mx-auto mb-8">
-            When you purchase or sponsor a bed, you become part of this community.
-            You&apos;ll receive updates as your bed reaches its new home.
+            Back a bed and you back community-led production. You&apos;ll get
+            updates as it reaches the family who asked for it.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90" asChild>

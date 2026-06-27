@@ -143,11 +143,23 @@ export const CANON: CanonFact[] = [
   },
 
   // ── Story / consent (RED data class — recipient/storyteller; never auto-published) ──
+  // Two consent tiers (reconciled 2026-06-17). cleared-voices = the OCAP-strict EXTERNAL list
+  // we make funder/QBE claims on. display-storyteller-pool = the broader website roster,
+  // computed live by Loop E (check-story-coverage.mjs). Do NOT conflate them: external claims
+  // use cleared-voices (3); the pool is a coverage queue, not a clearance list.
   {
-    id: 'cleared-voices', label: 'Consent-cleared voices', value: 6, unit: 'voices',
+    id: 'cleared-voices', label: 'Consent-cleared voices (external use)', value: 32, unit: 'voices',
     domain: 'story', claimLabel: 'verified', dataClass: 'red',
-    source: 'Storyteller triage + Ben consent pass (wiki/outputs/2026-06-03-storyteller-triage.md)', check: 'manual', asAt: '2026-06-03', owner: 'Ben',
-    definition: 'Cleared to publish/weave: Linda Turner, Alfred Johnson, Norman Frank, Mykel, Fred, + Utopia voices cleared 2026-06-02. RED: never to external models, never auto-published.',
+    source: 'Ben consent pass 2026-06-17 (wiki/outputs/2026-06-17-storyteller-quote-decision-sheet.md); quotes from curated-quotes.ts + trip-stories.ts; supersedes the prior 3-voice strict list (pack 05)', check: 'manual', asAt: '2026-06-17', owner: 'Ben',
+    definition: 'Voices Ben cleared for EXTERNAL use (funder material, public web, QBE) in the 2026-06-17 consent pass: Ivy Johnson, Dianne Stokes, Ray Nelson, Mykel, Kristy Bloomfield, Norman Frank, Linda Turner, Alfred Johnson, Brian Russell, Karen Liddle, Katrina Bloomfield, Annie Morrison, Heather Mundo, Fred Campbell, Gloria Turner, Carmelita & Colette (joint card), Daniel Patrick Noble, Shayne Bloomfield, Jason, Gary, Dorrie Jones (consent confirmed 2026-06-17), Cliff Plummer, Mark, Melissa Jackson, Patricia Frank, Risilda Hogan, Tracy McCartney, Jimmy Frank, Xavier (consent confirmed 2026-06-17; pictured on the main Stretch Bed photo; story told in Fred Campbell\'s voice, no own EL record), + practitioner voices Dr Boe Remenyi, Chloe & Wayne Glenn (label as practitioners, NOT community recipients). RED: never to external models, never auto-published. Broader website roster = display-storyteller-pool.',
+    reconcilesWith: ['display-storyteller-pool'],
+  },
+  {
+    id: 'display-storyteller-pool', label: 'Website storyteller pool (display tier)', value: 32, unit: 'voices',
+    domain: 'story', claimLabel: 'internal-only', dataClass: 'red',
+    source: 'check-story-coverage.mjs computed pool (curated-quotes.ts ∪ trip-stories.ts cleared VoiceCards); mirror of wiki/canon/story-coverage.md', check: 'manual', asAt: '2026-06-16', owner: 'Ben',
+    definition: 'Named voices live on the website via a public curated quote or a cleared trip VoiceCard (incl. partners/board). A coverage queue, NOT the external-clearance list — use cleared-voices (3) for any external/funder claim. Mirrors the Loop E computed pool; re-confirm each run (Loop E warns if this drifts from the computed count).',
+    reconcilesWith: ['cleared-voices'],
   },
   {
     id: 'el-published-stories', label: 'Empathy Ledger published stories', value: 0, unit: 'stories',

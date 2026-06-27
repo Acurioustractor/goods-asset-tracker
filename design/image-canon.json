@@ -1,0 +1,358 @@
+{
+  "_note": "THE IMAGE CANON — a REFERENCE-ONLY index. The visual twin of canon.ts. It NEVER holds copies of images: every entry points at the canonical on-disk path of the one best image per subject, mapped to the QBE areas it serves. Single source per image. dataClass mirrors canon.ts (green = public-safe, red = consent-gated). type: photo | illustration | chart | logo. Canonical store policy: web images live under v2/public/images/** (served at /images/**); the .pen deck mirrors a subset in design/deck-assets/ because Pencil image fills need a file path relative to the .pen (tolerated deck mirror, not a second source of truth). generated-images/ is AI scratch, never canonical. Edit here first. Replaces the earlier design/canon-images/ folder, which was deleted because it duplicated files.",
+  "asOf": "2026-06-16",
+  "owner": "Ben",
+  "policy": {
+    "webCanonicalRoot": "v2/public/images",
+    "deckMirror": "design/deck-assets (Pencil needs path-relative assets; mirror, not a source)",
+    "scratch": "generated-images (AI outputs, never canonical)",
+    "rule": "reference a canonical path; never copy an image to make a set"
+  },
+  "images": [
+    {
+      "subject": "Stretch Bed in use, hero",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "A washable bed off the ground is health hardware.",
+      "qbeAreas": [
+        "01",
+        "02"
+      ],
+      "canonicalPath": "design/deck-assets/stretch-bed-in-use.jpg"
+    },
+    {
+      "subject": "Kids building a Stretch Bed",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "Five minutes to build, no tools.",
+      "qbeAreas": [
+        "02",
+        "06"
+      ],
+      "canonicalPath": "design/deck-assets/stretch-bed-kids-building.jpg"
+    },
+    {
+      "subject": "Stretch Bed anatomy / how it works",
+      "type": "illustration",
+      "dataClass": "green",
+      "caption": "Recycled-plastic X-trestle legs, two steel poles, structural canvas.",
+      "qbeAreas": [
+        "06"
+      ],
+      "canonicalPath": "design/deck-assets/goods-bed-anatomy.jpg"
+    },
+    {
+      "subject": "Assembly diagram (branded line art)",
+      "type": "illustration",
+      "dataClass": "green",
+      "caption": "X-trestle tension assembly.",
+      "qbeAreas": [
+        "06"
+      ],
+      "canonicalPath": "v2/public/images/brand/goods-ill-assembly.png"
+    },
+    {
+      "subject": "Heat press making the legs (the one move)",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "We press the recycled-plastic legs on Country, not in a city factory.",
+      "qbeAreas": [
+        "03",
+        "06",
+        "11"
+      ],
+      "canonicalPath": "v2/public/images/process/heat-press-full.jpg"
+    },
+    {
+      "subject": "Pressed HDPE sheets",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "Waste becomes a product.",
+      "qbeAreas": [
+        "06"
+      ],
+      "canonicalPath": "v2/public/images/process/pressed-sheets.jpg"
+    },
+    {
+      "subject": "Shredder / granulator",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "Collect, shred, melt, press.",
+      "qbeAreas": [
+        "06"
+      ],
+      "canonicalPath": "design/deck-assets/shredder-granulator.jpg"
+    },
+    {
+      "subject": "Shredded plastic feedstock",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "20kg of HDPE diverted per bed.",
+      "qbeAreas": [
+        "03",
+        "06"
+      ],
+      "canonicalPath": "design/deck-assets/shredded-plastic-tubs.jpg"
+    },
+    {
+      "subject": "The on-Country plant / facility",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "A containerised plant that can move into community ownership.",
+      "qbeAreas": [
+        "06",
+        "11"
+      ],
+      "canonicalPath": "v2/public/images/process/facility-full-site.jpg"
+    },
+    {
+      "subject": "Facility panorama",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "The production line on Country.",
+      "qbeAreas": [
+        "06",
+        "11"
+      ],
+      "canonicalPath": "v2/public/images/process/factory-panorama.jpg"
+    },
+    {
+      "subject": "The plastic loop / journey",
+      "type": "illustration",
+      "dataClass": "green",
+      "caption": "From waste to bed to job, on Country.",
+      "qbeAreas": [
+        "03",
+        "06"
+      ],
+      "canonicalPath": "design/deck-assets/goods-plastic-journey.jpg"
+    },
+    {
+      "subject": "Community ownership pathway",
+      "type": "illustration",
+      "dataClass": "green",
+      "caption": "The plant, the jobs and the value stay home.",
+      "qbeAreas": [
+        "01",
+        "09"
+      ],
+      "canonicalPath": "design/deck-assets/goods-community-ownership-v2.png"
+    },
+    {
+      "subject": "Utopia community / on-Country delivery",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "Delivered to Utopia, Arawerr and Ampilatwatja.",
+      "qbeAreas": [
+        "02"
+      ],
+      "canonicalPath": "v2/public/images/utopia/utopia-09.jpg"
+    },
+    {
+      "subject": "Nic with an Elder on the verandah",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "Listening first.",
+      "qbeAreas": [
+        "02",
+        "08"
+      ],
+      "canonicalPath": "v2/public/images/media-pack/nic-with-elder-on-verandah.jpg"
+    },
+    {
+      "subject": "Cost-down curve",
+      "type": "chart",
+      "dataClass": "green",
+      "caption": "Marginal cost falls as we press our own legs.",
+      "qbeAreas": [
+        "03",
+        "10",
+        "11"
+      ],
+      "canonicalPath": "design/deck-assets/goods-cost-curve.png"
+    },
+    {
+      "subject": "Break-even chart",
+      "type": "chart",
+      "dataClass": "green",
+      "caption": "Break-even drops from 1,679 beds a year to 338.",
+      "qbeAreas": [
+        "03",
+        "10",
+        "11"
+      ],
+      "canonicalPath": "design/deck-assets/goods-breakeven.png"
+    },
+    {
+      "subject": "Where the money goes (Sankey)",
+      "type": "chart",
+      "dataClass": "green",
+      "caption": "Every dollar traced.",
+      "qbeAreas": [
+        "04",
+        "11"
+      ],
+      "canonicalPath": "design/deck-assets/goods-sankey-money.png"
+    },
+    {
+      "subject": "Where $750 goes",
+      "type": "chart",
+      "dataClass": "green",
+      "caption": "What a bed price actually covers.",
+      "qbeAreas": [
+        "04",
+        "11"
+      ],
+      "canonicalPath": "design/deck-assets/goods-where-750-goes.png"
+    },
+    {
+      "subject": "Goods inline logo (black)",
+      "type": "logo",
+      "dataClass": "green",
+      "caption": "On light backgrounds.",
+      "qbeAreas": [
+        "01"
+      ],
+      "canonicalPath": "design/deck-assets/goods-inline-black.png"
+    },
+    {
+      "subject": "Goods inline logo (white)",
+      "type": "logo",
+      "dataClass": "green",
+      "caption": "On dark / photo backgrounds.",
+      "qbeAreas": [
+        "01"
+      ],
+      "canonicalPath": "design/deck-assets/goods-inline-white.png"
+    },
+    {
+      "subject": "Mykel (cleared storyteller)",
+      "type": "photo",
+      "dataClass": "red",
+      "consentCleared": true,
+      "caption": "Built Stretch Beds with Oonchiumpa and kept one for himself.",
+      "qbeAreas": [
+        "02"
+      ],
+      "canonicalPath": "v2/public/images/people/mykel.jpg"
+    },
+    {
+      "subject": "Linda Turner (cleared storyteller)",
+      "type": "photo",
+      "dataClass": "red",
+      "consentCleared": true,
+      "caption": "Consent-cleared voice.",
+      "qbeAreas": [
+        "02"
+      ],
+      "canonicalPath": "v2/public/images/people/linda-turner.jpg"
+    },
+    {
+      "subject": "Alfred Johnson (cleared storyteller)",
+      "type": "photo",
+      "dataClass": "red",
+      "consentCleared": true,
+      "caption": "Consent-cleared voice.",
+      "qbeAreas": [
+        "02"
+      ],
+      "canonicalPath": "v2/public/images/people/alfred-johnson.jpg"
+    },
+    {
+      "subject": "Norman Frank (cleared storyteller)",
+      "type": "photo",
+      "dataClass": "red",
+      "consentCleared": true,
+      "caption": "Consent-cleared voice.",
+      "qbeAreas": [
+        "02"
+      ],
+      "canonicalPath": "v2/public/images/people/norman-frank.jpg"
+    }
+  ],
+  "areaCoverage": {
+    "10": [
+      "Break-even chart",
+      "Cost-down curve"
+    ],
+    "11": [
+      "The on-Country plant / facility",
+      "Heat press making the legs (the one move)",
+      "Cost-down curve",
+      "Break-even chart"
+    ],
+    "12": [],
+    "01": [
+      "Stretch Bed in use, hero",
+      "Community ownership pathway",
+      "Goods inline logo (black)"
+    ],
+    "02": [
+      "Utopia community / on-Country delivery",
+      "Nic with an Elder on the verandah",
+      "Mykel (cleared storyteller)"
+    ],
+    "03": [
+      "Cost-down curve",
+      "Heat press making the legs (the one move)",
+      "The plastic loop / journey",
+      "Shredded plastic feedstock"
+    ],
+    "04": [
+      "Where the money goes (Sankey)",
+      "Where $750 goes"
+    ],
+    "05": [],
+    "06": [
+      "Stretch Bed anatomy / how it works",
+      "Assembly diagram (branded line art)",
+      "Shredder / granulator",
+      "Pressed HDPE sheets",
+      "The on-Country plant / facility"
+    ],
+    "07": [],
+    "08": [
+      "Nic with an Elder on the verandah"
+    ],
+    "09": [
+      "Community ownership pathway"
+    ]
+  },
+  "gaps": [
+    {
+      "areaId": "05",
+      "subject": "Strategic Planning & Risk",
+      "need": "Branded visual for the scored risk register / risk horizon.",
+      "draft": "generated-images/goods-illustrations/qbe-05-risk/01-risk-horizon.png",
+      "draftStatus": "drafted 2026-06-16, pending Ben approval + promotion to v2/public/images/brand"
+    },
+    {
+      "areaId": "07",
+      "subject": "Governance, Data & Reporting",
+      "need": "Branded visual for governance / board structure / sign-off path.",
+      "draft": "generated-images/goods-illustrations/qbe-07-governance/01-governance-signoff.png",
+      "draftStatus": "drafted 2026-06-16, pending Ben approval + promotion"
+    },
+    {
+      "areaId": "08",
+      "subject": "People & Enterprise",
+      "need": "Branded team / jobs-on-Country image.",
+      "draft": "generated-images/goods-illustrations/qbe-08-people/01-jobs-on-country.png",
+      "draftStatus": "drafted 2026-06-16, pending Ben approval + promotion"
+    },
+    {
+      "areaId": "09",
+      "subject": "Legal Structure (keystone)",
+      "need": "Branded entity-structure / transition-to-community-ownership diagram.",
+      "draft": "generated-images/goods-illustrations/qbe-09-ownership/01-handover.png",
+      "draftStatus": "drafted 2026-06-16, pending Ben approval + promotion"
+    },
+    {
+      "areaId": "12",
+      "subject": "Investor Alignment Tool",
+      "need": "Branded alignment-matrix visual.",
+      "draft": "generated-images/goods-illustrations/qbe-12-alignment/01-alignment-matrix.png",
+      "draftStatus": "drafted 2026-06-16, pending Ben approval + promotion"
+    }
+  ]
+}

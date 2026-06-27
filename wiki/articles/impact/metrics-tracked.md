@@ -45,10 +45,10 @@ These are useful, but they should not be described as fully live yet:
 
 Keep these tied to the source system or Xero snapshot when used externally:
 
-- 389 products deployed, from existing wiki and app data
-- 8 communities served, from existing wiki and app data
-- 9,225 kg plastic diverted, computed from product counts and product assumptions
-- $537,595 cumulative revenue recorded in ACT-GD, from the working finance snapshot
+- 496 beds deployed, canonical figure (asset-canonical.ts: 133 Stretch, 363 Basket legacy)
+- 9 communities served, canonical figure (asset-canonical.ts)
+- 2,660kg plastic diverted, modelled at 20kg per bed (asset-canonical.ts)
+- Cumulative revenue is accountant-gated and reconciliation-pending. Do not state a revenue figure here as an impact number until the accountant signs one off.
 
 ## Human review focus
 

@@ -18,7 +18,7 @@
 - The current maturity of the work: products in market, philanthropic support secured, commercial sales model still emerging.
 - The role split between founder accountability, advisory support, community partners and professional/program support.
 - The honest gaps: impact measurement, legal structure, governance, finance modelling, sales discipline and working capital.
-- The view that the Australian Living Map of Alternatives is a learning lens, not a complete measurement system.
+- The view that the story-selection lens is a learning lens, not a complete measurement system.
 - The practical product logic: washable beds, repairable washing machines, future fridge/resource hub, circular material flow and On-Country production.
 - The capital logic: grants, patient or concessional capital, sales revenue and careful sequencing before equity.
 

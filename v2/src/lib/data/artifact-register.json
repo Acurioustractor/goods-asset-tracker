@@ -236,8 +236,8 @@
       "dataClass": "red",
       "owner": "Ben",
       "qbeAreas": ["02"],
-      "citesCanon": ["cleared-voices", "el-published-stories"],
-      "lastVerified": "2026-06-02"
+      "citesCanon": ["display-storyteller-pool", "el-published-stories"],
+      "lastVerified": "2026-06-17"
     },
     {
       "id": "utopia-field-note",
@@ -250,8 +250,8 @@
       "dataClass": "red",
       "owner": "Ben",
       "qbeAreas": ["02"],
-      "citesCanon": ["cleared-voices", "communities-served"],
-      "lastVerified": "2026-06-02"
+      "citesCanon": ["display-storyteller-pool", "communities-served"],
+      "lastVerified": "2026-06-17"
     },
     {
       "id": "ledger-story-pipeline",
@@ -264,8 +264,8 @@
       "dataClass": "red",
       "owner": "Ben",
       "qbeAreas": ["02", "07"],
-      "citesCanon": ["cleared-voices"],
-      "lastVerified": "2026-06-05"
+      "citesCanon": ["display-storyteller-pool"],
+      "lastVerified": "2026-06-17"
     },
     {
       "id": "storyteller-triage",
@@ -278,8 +278,8 @@
       "dataClass": "red",
       "owner": "Ben",
       "qbeAreas": ["02", "07"],
-      "citesCanon": ["cleared-voices"],
-      "lastVerified": "2026-06-03"
+      "citesCanon": ["display-storyteller-pool"],
+      "lastVerified": "2026-06-17"
     },
     {
       "id": "cleared-voice-roster",
@@ -292,8 +292,190 @@
       "dataClass": "red",
       "owner": "Ben",
       "qbeAreas": ["02"],
+      "citesCanon": ["display-storyteller-pool"],
+      "lastVerified": "2026-06-17"
+    },
+    {
+      "id": "impact-measurement-method",
+      "title": "Impact measurement method (consent-cleared voices)",
+      "pillar": "stories",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-06-13-goods-strategic-pack/05-impact-measurement-method.md",
+      "status": "written",
+      "claimLabels": ["verified"],
+      "dataClass": "red",
+      "owner": "Ben",
+      "qbeAreas": ["02"],
       "citesCanon": ["cleared-voices"],
-      "lastVerified": "2026-06-02"
+      "lastVerified": "2026-06-17"
+    },
+    {
+      "id": "risk-register",
+      "title": "Scored risk register (14 risks)",
+      "pillar": "governance",
+      "type": "repo doc",
+      "location": "wiki/articles/governance/risk-register.md",
+      "status": "written",
+      "claimLabels": ["verified", "modelled", "internal-only"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": ["05", "07"],
+      "citesCanon": ["signed-lois", "beds-deployed", "communities-served"],
+      "lastVerified": "2026-06-13"
+    },
+    {
+      "id": "governance-framework",
+      "title": "Governance & data framework",
+      "pillar": "governance",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-06-13-goods-strategic-pack/18-governance-framework.md",
+      "status": "written",
+      "claimLabels": ["verified", "modelled", "target"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": ["07"],
+      "citesCanon": ["entity-operating-now", "entity-trading-goforward", "entity-dgr-home", "signed-lois"],
+      "lastVerified": "2026-06-16"
+    },
+    {
+      "id": "role-map",
+      "title": "12-month role map & founder-dependency plan",
+      "pillar": "governance",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-06-13-goods-strategic-pack/07-role-map.md",
+      "status": "written",
+      "claimLabels": ["verified", "modelled", "target", "future"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": ["08"],
+      "citesCanon": ["signed-lois", "entity-trading-goforward"],
+      "lastVerified": "2026-06-17"
+    },
+    {
+      "id": "entity-wording-block",
+      "title": "Entity wording block (legal structure)",
+      "pillar": "governance",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-06-13-goods-strategic-pack/04-entity-wording-block.md",
+      "status": "written",
+      "claimLabels": ["verified", "target", "future"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic/legal",
+      "qbeAreas": ["09"],
+      "citesCanon": ["entity-operating-now", "entity-trading-goforward", "entity-dgr-home", "entity-dormant"],
+      "lastVerified": "2026-06-17"
+    },
+    {
+      "id": "legal-structure-full-review",
+      "title": "Area 09 legal structure full review",
+      "pillar": "governance",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-05-29-qbe-area-09-legal-structure-full-review.md",
+      "status": "written",
+      "claimLabels": ["verified", "target", "future"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic/legal",
+      "qbeAreas": ["09"],
+      "citesCanon": ["entity-operating-now", "entity-trading-goforward", "entity-dgr-home", "entity-dormant"],
+      "lastVerified": "2026-06-17"
+    },
+    {
+      "id": "legal-structure-article",
+      "title": "Legal structure (wiki article)",
+      "pillar": "governance",
+      "type": "repo doc",
+      "location": "wiki/articles/governance/legal-structure.md",
+      "status": "written",
+      "claimLabels": ["verified", "target", "future"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic/legal",
+      "qbeAreas": ["09"],
+      "citesCanon": ["entity-operating-now", "entity-trading-goforward", "entity-dgr-home", "entity-dormant"],
+      "lastVerified": "2026-06-17"
+    },
+    {
+      "id": "investor-alignment-sih",
+      "title": "Investor Alignment Tool (SIH, populated, canonical)",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-06-16-qbe-opportunity-hub/02-investor-alignment.md",
+      "status": "written",
+      "claimLabels": ["verified", "modelled", "internal-only"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": ["12"],
+      "citesCanon": ["signed-lois", "beds-deployed", "communities-served"],
+      "lastVerified": "2026-06-17"
+    },
+    {
+      "id": "investor-alignment-case",
+      "title": "Investor Alignment Tool (CASE, populated, intel)",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-06-13-goods-strategic-pack/12-investor-alignment.md",
+      "status": "written",
+      "claimLabels": ["verified", "modelled", "internal-only"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": ["12"],
+      "citesCanon": ["entity-trading-goforward", "beds-deployed", "communities-served", "signed-lois"],
+      "lastVerified": "2026-06-17"
+    },
+    {
+      "id": "sefa-loan-brief",
+      "title": "SEFA Loan Fund application brief (DRAFT)",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/funder-reports/sefa/2026-06-27-sefa-loan-application-brief.pdf",
+      "status": "written",
+      "claimLabels": ["verified", "modelled", "internal-only"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": ["10", "11", "12"],
+      "citesCanon": ["beds-deployed", "communities-served", "stretch-price", "plastic-kg", "revenue-carveout", "accounts-receivable", "marginal-buykit", "marginal-factory", "marginal-community", "save-per-bed", "signed-lois"],
+      "lastVerified": "2026-06-27"
+    },
+    {
+      "id": "snow-first-mover-brief",
+      "title": "Snow Foundation first-mover brief (DRAFT)",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/funder-reports/snow/2026-06-27-snow-first-mover-brief.pdf",
+      "status": "written",
+      "claimLabels": ["verified", "modelled", "internal-only"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": ["10", "12"],
+      "citesCanon": ["beds-deployed", "communities-served", "stretch-price", "plastic-kg", "revenue-carveout", "marginal-buykit", "marginal-factory", "save-per-bed", "signed-lois"],
+      "lastVerified": "2026-06-27"
+    },
+    {
+      "id": "centrecorp-nextround-brief",
+      "title": "Centrecorp next-round beds brief (DRAFT)",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/funder-reports/centrecorp/2026-06-27-centrecorp-nextround-brief.pdf",
+      "status": "written",
+      "claimLabels": ["verified", "modelled", "internal-only"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": ["02", "10"],
+      "citesCanon": ["beds-deployed", "communities-served", "stretch-price", "plastic-kg", "signed-lois"],
+      "lastVerified": "2026-06-27"
+    },
+    {
+      "id": "funding-source-audit-2026-06",
+      "title": "Expanded funding-source audit (web + GrantScope, verified top tier)",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-06-27-funding-source-audit/",
+      "status": "written",
+      "claimLabels": ["verified", "internal-only"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": ["10", "12"],
+      "citesCanon": ["beds-deployed", "communities-served", "revenue-carveout", "signed-lois"],
+      "lastVerified": "2026-06-28"
     }
   ]
 }

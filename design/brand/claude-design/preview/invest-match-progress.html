@@ -1,0 +1,178 @@
+<!doctype html>
+<!-- @dsCard group="Investment" name="Match progress meter" subtitle="Signed external capital toward the $400K match" viewport="700x240" -->
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_base.css">
+<style>
+  .card {
+    background: var(--card);
+    padding: 24px 28px;
+  }
+  .meter-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+  .meter-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    font-size: 19px;
+    color: var(--foreground);
+  }
+  .meter-title strong {
+    font-weight: 400;
+  }
+  .tag-contingent {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    background: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 3px 9px;
+    white-space: nowrap;
+  }
+  /* progress track: full width is the $400,000 target */
+  .track {
+    position: relative;
+    height: 26px;
+    background: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    overflow: visible;
+  }
+  /* filled portion driven by --signed-pct (0 today). repayable-first, so terracotta. */
+  .fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--signed-pct, 0%);
+    background: var(--primary);
+    border-radius: 999px;
+  }
+  /* floor tick at $150,000 of the $400,000 target = 37.5% */
+  .floor-tick {
+    position: absolute;
+    top: -7px;
+    bottom: -7px;
+    left: 37.5%;
+    width: 2px;
+    background: var(--chart-4);
+  }
+  .floor-label {
+    position: absolute;
+    top: -22px;
+    left: 37.5%;
+    transform: translateX(-50%);
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--chart-4);
+    white-space: nowrap;
+  }
+  /* target end-cap label at the right of the track */
+  .target-cap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--foreground);
+    border-radius: 0 999px 999px 0;
+  }
+  .scale {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--muted-foreground);
+  }
+  .meter-foot {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .foot-label {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--muted-foreground);
+  }
+  .foot-figure {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    font-size: 22px;
+    color: var(--foreground);
+  }
+  .foot-figure .of {
+    color: var(--muted-foreground);
+    font-size: 15px;
+  }
+  .legend {
+    display: flex;
+    gap: 18px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+  .legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--muted-foreground);
+  }
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    flex: 0 0 auto;
+  }
+  .dot.signed { background: var(--primary); }
+  .dot.floor { background: var(--chart-4); }
+  .dot.target { background: var(--foreground); }
+</style>
+</head><body>
+  <div class="card" style="--signed-pct: 0%;">
+    <div class="meter-head">
+      <div class="meter-title">QBE match target <strong>$400,000</strong> (1:1, repayable first)</div>
+      <span class="tag-contingent">Contingent, not secured</span>
+    </div>
+
+    <div class="track">
+      <div class="fill"></div>
+      <div class="floor-tick"></div>
+      <div class="floor-label">$150K floor</div>
+      <div class="target-cap"></div>
+    </div>
+    <div class="scale">
+      <span>$0</span>
+      <span>$400,000 target</span>
+    </div>
+
+    <div class="meter-foot">
+      <div class="foot-label">Signed and match-eligible today</div>
+      <div class="foot-figure">$0 <span class="of">of $400,000</span></div>
+    </div>
+
+    <div class="legend">
+      <span><span class="dot signed"></span>Signed repayable, match-eligible</span>
+      <span><span class="dot floor"></span>$150K minimum floor</span>
+      <span><span class="dot target"></span>$400K target (QBE contingent)</span>
+    </div>
+  </div>
+</body></html>

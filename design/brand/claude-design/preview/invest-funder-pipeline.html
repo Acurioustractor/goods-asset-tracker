@@ -1,0 +1,252 @@
+<!doctype html>
+<!-- @dsCard group="Investment" name="Funder pipeline board" subtitle="15 prospects sequenced to a signed September match" viewport="700x840" -->
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_base.css">
+<style>
+  .card {
+    width: 700px;
+    padding: 26px 28px 24px;
+    background: var(--background);
+    color: var(--foreground);
+    box-sizing: border-box;
+  }
+  .head { margin-bottom: 18px; }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    font-size: 27px;
+    line-height: 1.1;
+    margin: 0 0 8px;
+  }
+  .note {
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: var(--muted-foreground);
+    max-width: 600px;
+    margin: 0;
+  }
+  .legend {
+    display: flex;
+    gap: 18px;
+    margin: 14px 0 4px;
+    flex-wrap: wrap;
+  }
+  .legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted-foreground);
+    font-weight: 600;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+  .dot.repay { background: var(--primary); }
+  .dot.grant { background: var(--accent); }
+  .dot.gated { background: var(--muted-foreground); }
+
+  .lane {
+    border-top: 1px solid var(--border);
+    padding-top: 13px;
+    margin-top: 14px;
+  }
+  .lane-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 11px;
+  }
+  .lane-label {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--foreground);
+  }
+  .lane-count {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--muted-foreground);
+    letter-spacing: 0.04em;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 9px; }
+
+  .chip {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left-width: 4px;
+    border-radius: 0.5rem;
+    padding: 9px 12px;
+    min-width: 142px;
+    box-sizing: border-box;
+  }
+  .chip-name {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--foreground);
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  .chip-meta { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+  .tag {
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+  }
+  .band {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--muted-foreground);
+    line-height: 1.2;
+  }
+
+  .chip.repay { border-left-color: var(--primary); }
+  .chip.repay .tag { background: var(--primary); color: var(--primary-foreground); }
+  .chip.grant { border-left-color: var(--accent); }
+  .chip.grant .tag { background: var(--accent); color: var(--accent-foreground); }
+  .chip.gated { border-left-color: var(--muted-foreground); background: var(--muted); }
+  .chip.gated .tag { background: var(--muted-foreground); color: var(--primary-foreground); }
+
+  .lane.park .chip { opacity: 0.85; }
+
+  .footer {
+    margin-top: 18px;
+    border-top: 1px dashed var(--border);
+    padding-top: 12px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .flag {
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+    color: var(--muted-foreground);
+    background: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 4px 11px;
+  }
+  .flag.hot { color: var(--primary); border-color: var(--primary); background: var(--card); }
+</style>
+</head><body>
+<div class="card">
+  <div class="head">
+    <div class="eyebrow">Capital pipeline</div>
+    <h1 class="title">Funder pipeline board</h1>
+    <p class="note">Ranked by proximity to a signed, match-eligible commitment before the September 2026 application. Repayable foregrounded. The QBE grant must be matched at least 1:1 by signed external capital raised first.</p>
+    <div class="legend">
+      <span><i class="dot repay"></i>Repayable</span>
+      <span><i class="dot grant"></i>Grant</span>
+      <span><i class="dot gated"></i>Ownership-gated</span>
+    </div>
+  </div>
+
+  <div class="lane">
+    <div class="lane-head">
+      <div class="lane-label">Lane 1: Warm, no ownership gate, work first</div>
+      <div class="lane-count">10 prospects</div>
+    </div>
+    <div class="chips">
+      <div class="chip repay">
+        <div class="chip-name">SEFA Loan Fund</div>
+        <div class="chip-meta"><span class="tag">Repayable</span><span class="band">$200K to $400K, anchor</span></div>
+      </div>
+      <div class="chip grant">
+        <div class="chip-name">Snow Foundation</div>
+        <div class="chip-meta"><span class="tag">Grant</span><span class="band">to repayable</span></div>
+      </div>
+      <div class="chip grant">
+        <div class="chip-name">Centrecorp Foundation</div>
+        <div class="chip-meta"><span class="tag">Grant</span><span class="band">plus bed-buyer</span></div>
+      </div>
+      <div class="chip repay">
+        <div class="chip-name">Bank Australia</div>
+        <div class="chip-meta"><span class="tag">Repayable</span><span class="band">senior</span></div>
+      </div>
+      <div class="chip repay">
+        <div class="chip-name">White Box SELF</div>
+        <div class="chip-meta"><span class="tag">Repayable</span><span class="band">gate: PBI plus DGR or Supply Nation</span></div>
+      </div>
+      <div class="chip grant">
+        <div class="chip-name">Minderoo</div>
+        <div class="chip-meta"><span class="tag">Grant</span></div>
+      </div>
+      <div class="chip grant">
+        <div class="chip-name">VFFF</div>
+        <div class="chip-meta"><span class="tag">Grant</span></div>
+      </div>
+      <div class="chip grant">
+        <div class="chip-name">Aboriginal Investment NT</div>
+        <div class="chip-meta"><span class="tag">Grant</span></div>
+      </div>
+      <div class="chip repay">
+        <div class="chip-name">WA Impact Loan Fund</div>
+        <div class="chip-meta"><span class="tag">Repayable</span><span class="band">WA only</span></div>
+      </div>
+      <div class="chip repay">
+        <div class="chip-name">Tripple</div>
+        <div class="chip-meta"><span class="tag">Repayable</span><span class="band">concessional, warm intro</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lane">
+    <div class="lane-head">
+      <div class="lane-label">Lane 2: Gated on 50% First Nations ownership (post-September)</div>
+      <div class="lane-count">3 prospects</div>
+    </div>
+    <div class="chips">
+      <div class="chip gated">
+        <div class="chip-name">IBA Business Loan</div>
+        <div class="chip-meta"><span class="tag">Gated</span></div>
+      </div>
+      <div class="chip gated">
+        <div class="chip-name">First Australians Capital</div>
+        <div class="chip-meta"><span class="tag">Gated</span></div>
+      </div>
+      <div class="chip gated">
+        <div class="chip-name">NAB/IBA Guarantee</div>
+        <div class="chip-meta"><span class="tag">Gated</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lane park">
+    <div class="lane-head">
+      <div class="lane-label">Lane 3: Park (too slow or too big)</div>
+      <div class="lane-count">2 prospects</div>
+    </div>
+    <div class="chips">
+      <div class="chip grant">
+        <div class="chip-name">Paul Ramsay Foundation</div>
+        <div class="chip-meta"><span class="tag">Grant</span><span class="band">direct PRI</span></div>
+      </div>
+      <div class="chip grant">
+        <div class="chip-name">PRF via FAC</div>
+        <div class="chip-meta"><span class="tag">Grant</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="flag hot">QBE prize up to AU$400,000: contingent, not secured</span>
+    <span class="flag">0 signed today</span>
+    <span class="flag">Bands are target asks, not awarded</span>
+  </div>
+</div>
+</body></html>

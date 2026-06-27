@@ -2,7 +2,7 @@
 
 Stories from Goods on Country's work in community manufacturing and essential goods delivery.
 
-## ALMA Aggregate
+## Story-selection lens aggregate
 
 | Signal | Average Score |
 |--------|--------------|

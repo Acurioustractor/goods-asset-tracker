@@ -1,0 +1,59 @@
+/* Shared base for design system preview cards.
+   Each card is rendered ~700px wide. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Canon palette (hex), mirrored from design/brand/tokens.css. */
+  --background: #FBF8F1;
+  --foreground: #2B2A26;
+  --card: #FFFFFF;
+  --primary: #C45C3E;
+  --primary-foreground: #FBF8F1;
+  --secondary: #E8DCC8;
+  --secondary-foreground: #2B2A26;
+  --muted: #F1ECE4;
+  --muted-foreground: #7A7363;
+  --accent: #8B9D77;
+  --accent-foreground: #2B2A26; /* ink on the muted sage, passes AA */
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: #E6DFD1;
+  --input: #E6DFD1;
+  --ring: #C45C3E;
+  --chart-1: #C45C3E;
+  --chart-2: #8B9D77;
+  --chart-3: #BBA255;
+  --chart-4: #A8643F;
+  --chart-5: #5C8A86;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --radius: 0.625rem;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  color: var(--foreground);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+}
+
+.card {
+  width: 700px;
+  padding: 24px 28px;
+  background: var(--background);
+}
+
+.row { display: flex; align-items: center; gap: 16px; }
+.col { display: flex; flex-direction: column; gap: 12px; }
+.label {
+  font: 500 11px/1.2 var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted-foreground);
+}
+.mono {
+  font: 400 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--muted-foreground);
+}

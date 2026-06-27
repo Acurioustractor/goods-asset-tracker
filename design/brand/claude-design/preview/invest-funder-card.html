@@ -1,0 +1,125 @@
+<!doctype html>
+<!-- @dsCard group="Investment" name="Funder card" subtitle="Reusable prospect card, SEFA shown" viewport="700x300" -->
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_base.css">
+<style>
+  .card {
+    width: 700px;
+    padding: 0;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    color: var(--foreground);
+  }
+  /* Left accent bar in terracotta signals repayable finance */
+  .accent-bar {
+    width: 8px;
+    flex: 0 0 8px;
+    background: var(--primary);
+  }
+  .body {
+    flex: 1;
+    padding: 22px 26px 24px 24px;
+  }
+  .head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 4px;
+  }
+  .funder-name {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    font-size: 23px;
+    line-height: 1.2;
+    color: var(--foreground);
+  }
+  .template-tag {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 9.5px;
+    color: var(--muted-foreground);
+    white-space: nowrap;
+    padding-top: 6px;
+  }
+  .type-tag {
+    display: inline-block;
+    margin: 8px 0 14px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 10px;
+    color: var(--primary);
+    background: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 4px 11px;
+  }
+  .fields {
+    display: grid;
+    grid-template-columns: 124px 1fr;
+    row-gap: 9px;
+    column-gap: 14px;
+    align-items: baseline;
+  }
+  .field-label {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 10px;
+    color: var(--muted-foreground);
+    padding-top: 1px;
+  }
+  .field-value {
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: var(--foreground);
+  }
+  .field-value .sub {
+    color: var(--muted-foreground);
+    font-size: 12px;
+  }
+  .yes {
+    color: var(--accent-foreground);
+    font-weight: 600;
+  }
+  .uncertain {
+    color: var(--chart-4);
+    font-weight: 600;
+  }
+  .next .field-value {
+    color: var(--primary);
+    font-weight: 600;
+  }
+</style>
+</head><body>
+<div class="card">
+  <div class="accent-bar"></div>
+  <div class="body">
+    <div class="head">
+      <div class="funder-name">SEFA (Social Enterprise Finance Australia)</div>
+      <div class="template-tag">One funder per card</div>
+    </div>
+    <span class="type-tag">Repayable, no ownership gate</span>
+    <div class="fields">
+      <div class="field-label">Cheque</div>
+      <div class="field-value">$200K to $400K <span class="sub">(band $200K to $5M)</span></div>
+
+      <div class="field-label">Match-eligible</div>
+      <div class="field-value"><span class="yes">Yes</span>, repayable, QBE preferred form</div>
+
+      <div class="field-label">Can sign by Sept</div>
+      <div class="field-value"><span class="uncertain">Uncertain</span>, credit assessment 2 to 4 months, open now</div>
+
+      <div class="field-label next">Next action</div>
+      <div class="field-value next">Call (02) 8199 3360, lodge the Access impact finance form this week</div>
+    </div>
+  </div>
+</div>
+</body></html>

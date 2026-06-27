@@ -51,7 +51,7 @@
       "priority": "P0",
       "band": "priority-gap",
       "sihPriorityGap": true,
-      "gap": "No scored risk register; environmental risk not explicitly profiled (waste streams, contamination, plastic stockpiling); shareability decision pending."
+      "gap": "Scored risk register now EXISTS (14 risks, likelihood x consequence, named owners, per-line QBE-shareable/Internal-only split, do-no-harm frame, monthly review cadence; R9 explicitly profiles environmental risk) at wiki/articles/governance/risk-register.md, now tagged to this area in the artifact register. Remaining: it is a founder-review DRAFT (not board-adopted or audited), the monthly re-score is not yet running as a discipline, and environmental end-of-life/offcut controls are defined but not operational."
     },
     {
       "id": "06",
@@ -61,7 +61,7 @@
       "priority": "P1",
       "band": "strength",
       "sihPriorityGap": false,
-      "gap": "GHL reauth; the Drive evidence pack has never been access-tested from an external account."
+      "gap": "GHL/HighLevel reauth RESOLVED (API verified 10 Jun 2026; CivicGraph syncs the 3 Goods pipelines every 12h + hosts the commitment register). Remaining: the Drive evidence pack has never been external-account access-tested (non-Goods account), and the transferable production SOP (shred/press/cut/assemble parameters) is still to be written."
     },
     {
       "id": "07",
@@ -71,7 +71,7 @@
       "priority": "P0",
       "band": "priority-gap",
       "sihPriorityGap": true,
-      "gap": "New entity has no formal governance/board structure (advisory != board); named approval/sign-off path for the reviewer pack not set; reports not audited / no consolidated annual cycle; named commercial/scale-up skills gap."
+      "gap": "Governance framework now DOCUMENTED and registered to this area (wiki/outputs/2026-06-13-goods-strategic-pack/18-governance-framework.md: an 11-member monthly advisory committee and a real OCAP data-sovereignty practice are named strengths; the move to a fiduciary board is framed as a plan-with-a-trigger). The gaps are unchanged human actions, not missing documents: 0 independent directors recruited and no fiduciary board (advisory != board; SEFA's ~AU$300K working-capital line is gated on an independent-majority board); reports remain unaudited management data with no consolidated annual cycle (gated on the accountant-reviewed Goods-only figure); the named approval/sign-off path for the reviewer pack is documented but not yet formally adopted; named commercial/scale-up skills gap on the committee. R7 in the risk register profiles this gap but does not close it."
     },
     {
       "id": "08",
@@ -81,7 +81,7 @@
       "priority": "P1",
       "band": "partial",
       "sihPriorityGap": false,
-      "gap": "Two founders are the only workers — the biggest capacity constraint; priority hires (GM + Business Development) and a 12-month role map are pending."
+      "gap": "12-month role map now DOCUMENTED and registered to this area (wiki/outputs/2026-06-13-goods-strategic-pack/07-role-map.md: load-bearing capacity is 2 FTE founders; phased hires GM-then-Business-Development funded from the ~AU$200K hires line, each trigger-gated not calendar-gated; founder time costed at the locked $560/day in the cost model). The gap is the unchanged human action: 0 hires made — two founders remain the only workers (the #1 'already happening' risk), and founder labour is modelled but not yet drawn as a fixed Goods salary. Phase-1 hiring must begin as the interim scaffolding (QBE skilled volunteering + 6-session PIN mentoring) tapers ~August."
     },
     {
       "id": "09",
@@ -92,7 +92,7 @@
       "band": "partial",
       "sihPriorityGap": false,
       "keystone": true,
-      "gap": "Entity/ownership decision is OPEN — the keystone. It is simultaneously the CASE knockout blocker, V4 Area 9, the Supply Nation 51% cert (1-July deadline), and the precondition for FAC/IBA capital. One approved entity-wording block + a decided transition path needed."
+      "gap": "Entity/ownership decision is OPEN — the keystone, and it remains a human/legal action, not a documentation gap. The entity-wording block now EXISTS and is registered to this area (wiki/outputs/2026-06-13-goods-strategic-pack/04-entity-wording-block.md: one reusable paragraph + web/investor/grant/contract variants, all entity numbers reconciled to canon — sole trader ABN 21 591 780 066, A Curious Tractor Pty Ltd ACN 697 347 676, Butterfly Movement DGR home not-live-until-FY2026-27, A Kind Tractor dormant), but it is a DRAFT for MinterEllison review, not an APPROVED block. Six legal questions stay open: go-forward entity form beneath A Curious Tractor; community-production entity form; contracting party / seller-of-record during migration; the Supply Nation 51% First Nations-ownership precondition (IPP threshold tightens ~1 July 2026); the mission lock (none today); and DGR timing / related-party boundary. It is simultaneously the CASE knockout blocker, V4 Area 9, the Supply Nation 51% cert, and the precondition for FAC/IBA capital. Needs: legal sign-off on the wording block + a decided transition path + a decided 51% ownership structure. Founder sequencing (2026-06-17): the Butterfly charity/DGR handover is now expected to be sorted by ~end July 2026 (slipped from the earlier 26-June target); the entity-structure questions are then worked through after the charity lands, with a deliberately flexible approach. Most of the 15-item legal checklist (04-entity-wording-block.md C + the full review) is NOT yet decided, and that is the correct, defensible posture for now — not a doc to fabricate."
     },
     {
       "id": "10",
@@ -102,7 +102,7 @@
       "priority": "P0",
       "band": "partial",
       "sihPriorityGap": false,
-      "gap": "0 signed LOIs -> match gate open; no signed/eligible commitment register; QBE rules (200K vs 400K cap; what counts as match) unconfirmed (the open Jay email). A binding offtake/forward-purchase LOI fixes the match AND the weak-commercial-paperwork gap at once."
+      "gap": "0 signed LOIs -> the match gate is still open (a conversion problem, not a discovery problem). Since this gap was written, two parts have moved: the QBE cap is RESOLVED (AU$400K per enterprise, at least 1:1, repayable preferred; confirmed from program docs 2026-06-13 — stop modelling at $200K), and the signed/eligible commitment register now EXISTS (CivicGraph Match Campaign tab; GHL reauth verified 10 Jun 2026) but holds 0 signed entries. Remaining: the register needs its first signed commitment, and what counts as eligible match is still to be confirmed in writing (the open Jay email). A binding offtake/forward-purchase LOI fixes the match AND the weak-commercial-paperwork gap at once."
     },
     {
       "id": "11",
@@ -122,7 +122,7 @@
       "priority": "P0",
       "band": "priority-gap",
       "sihPriorityGap": false,
-      "gap": "CASE Tab-1 self-documentation started, but GHL reauth + QBE rules + written commitments block a populated alignment register; CASE knockout #2 (Legal Structure) is the failing criterion. Notion-added area, no V4 score."
+      "gap": "Alignment tool now POPULATED and registered to this area (two are tracked: the canonical SIH tool — 8 knockout / 14 fit, scored from a read-only GHL pull 2026-06-16 of 82 funder contacts + 49 funder-pipeline opportunities, at wiki/outputs/2026-06-16-qbe-opportunity-hub/02-investor-alignment.md; and the CASE tool — 6 knockout / 10 weighted, kept as intel, at wiki/outputs/2026-06-13-goods-strategic-pack/12-investor-alignment.md). Since the gap was written, GHL reauth is RESOLVED (verified 10 Jun 2026) and the QBE cap is RESOLVED (AU$400K, confirmed 2026-06-13). Remaining: 0 signed/eligible written commitments (the same conversion gap as Area 10), and the Legal Structure knockout (Area 09 keystone) is still the failing criterion until the entity/ownership decision is made. Notion-added area, no V4 score."
     }
   ],
   "catalyticBlockers": [

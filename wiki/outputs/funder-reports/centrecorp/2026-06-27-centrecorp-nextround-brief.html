@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Goods on Country — Centrecorp Foundation, next-round beds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream:#FCFBF7; --paper:#FFFFFF; --ink:#2A2620; --ink-muted:#6F6155; --ink-soft:#8A7C6D; --border:#E6DFD1;
+    --terracotta:#B0673B; --terracotta-ink:#9A5230; --terracotta-tint:#F4E7DF;
+    --sage:#7E9A68; --sage-ink:#4E7548; --sage-tint:#EAF0E2;
+    --teal:#4E8F88; --teal-ink:#357873; --teal-tint:#E2EEEC;
+    --gold:#C2A85A; --gold-ink:#8A7332; --gold-tint:#F1E9CF;
+    --lora:'Lora',Georgia,serif; --inter:'Inter',-apple-system,system-ui,sans-serif;
+  }
+  @page { size: A4; margin: 0; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html, body { background:#DAD3C4; font-family:var(--inter); color:var(--ink); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page { width:210mm; min-height:297mm; background:var(--cream); padding:12mm 14mm 9mm; page-break-after:always; display:flex; flex-direction:column; }
+  .page:last-child { page-break-after:auto; }
+  .mast { display:flex; align-items:flex-end; justify-content:space-between; border-bottom:2px solid var(--ink); padding-bottom:8px; }
+  .wordmark { font-family:var(--lora); font-weight:700; font-size:20px; letter-spacing:-0.3px; }
+  .wordmark .oc { color:var(--terracotta); font-weight:600; }
+  .mast .doc { text-align:right; font-size:10px; color:var(--ink-muted); line-height:1.35; }
+  .mast .doc b { color:var(--ink); font-weight:600; }
+  .draftbar { margin-top:8px; background:var(--gold-tint); border:1px solid #E4D49A; border-radius:7px; padding:6px 11px; font-size:9.5px; color:#6B5A22; line-height:1.4; }
+  .draftbar b { color:#4A3F18; }
+  .titlewrap { margin-top:12px; }
+  .title { font-family:var(--lora); font-weight:700; font-size:24px; line-height:1.14; letter-spacing:-0.4px; }
+  .title .oc { color:var(--terracotta); }
+  .lede { font-size:12px; line-height:1.5; color:var(--ink-muted); margin-top:7px; max-width:168mm; }
+  .lede b { color:var(--ink); font-weight:600; }
+  .banner { margin-top:13px; background:var(--sage-ink); border-radius:13px; padding:14px 18px; color:var(--cream); }
+  .banner .k { font-weight:700; font-size:9.5px; letter-spacing:1.3px; text-transform:uppercase; opacity:.85; }
+  .banner p { font-size:11.6px; line-height:1.52; margin-top:6px; }
+  .banner p b { font-weight:700; }
+  .quote { margin-top:12px; background:var(--terracotta-tint); border:1px solid #EBD6C8; border-left:4px solid var(--terracotta); border-radius:10px; padding:13px 16px; }
+  .quote .q { font-family:var(--lora); font-weight:600; font-size:16px; line-height:1.36; color:var(--terracotta-ink); }
+  .quote .a { font-size:10.5px; color:var(--ink-muted); margin-top:6px; }
+  .quote .a b { color:var(--ink); font-weight:600; }
+  .pill { display:inline-block; background:var(--gold); color:#4A3F18; font-family:var(--lora); font-weight:700; font-size:13px; padding:5px 13px; border-radius:7px; margin:15px 0 10px; }
+  .pill.sage { background:var(--sage-ink); color:#fff; }
+  .pill.teal { background:var(--teal-ink); color:#fff; }
+  .pill.terra { background:var(--terracotta); color:#fff; }
+  .stats { display:flex; gap:9px; margin-top:2px; }
+  .stat { flex:1; background:var(--paper); border:1px solid var(--border); border-radius:10px; padding:11px 8px; text-align:center; }
+  .stat .num { font-family:var(--lora); font-weight:700; font-size:23px; line-height:1; color:var(--terracotta-ink); }
+  .stat .lbl { font-size:9.3px; line-height:1.3; color:var(--ink-muted); margin-top:6px; }
+  .stat .lbl b { color:var(--ink); font-weight:600; }
+  .block .h { font-family:var(--lora); font-weight:700; font-size:13px; color:var(--ink); margin-bottom:6px; }
+  .block p { font-size:11.4px; line-height:1.55; color:var(--ink); }
+  .block p b { font-weight:600; }
+  .block ul { list-style:none; margin-top:4px; }
+  .block li { font-size:11.2px; line-height:1.5; color:var(--ink); padding-left:16px; position:relative; margin-bottom:7px; }
+  .block li::before { content:''; position:absolute; left:0; top:7px; width:6px; height:6px; border-radius:50%; background:var(--terracotta); }
+  .block li b { font-weight:600; }
+  .next { background:var(--teal-ink); color:#fff; border-radius:11px; padding:14px 17px; margin-top:15px; }
+  .next .h { font-family:var(--lora); font-weight:700; font-size:15px; }
+  .next p { font-size:11px; line-height:1.5; margin-top:6px; opacity:.97; }
+  .next .contact { display:flex; gap:22px; margin-top:11px; font-size:11px; flex-wrap:wrap; }
+  .next .contact div b { display:block; font-size:8.6px; letter-spacing:.7px; text-transform:uppercase; opacity:.8; font-weight:600; margin-bottom:2px; }
+  .prov { margin-top:15px; border-top:1px solid var(--border); padding-top:9px; font-size:8.2px; line-height:1.5; color:var(--ink-soft); }
+  .prov b { color:var(--ink-muted); font-weight:600; }
+  .foot { margin-top:auto; padding-top:8px; border-top:1px solid var(--border); display:flex; justify-content:space-between; font-size:8.2px; color:var(--ink-soft); }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<section class="page">
+  <div class="mast">
+    <div class="wordmark">GOODS <span class="oc">on Country</span></div>
+    <div class="doc"><b>Centrecorp Foundation</b> &middot; Next-round beds, Central Australia<br />Prepared 27 June 2026 &middot; Confidential</div>
+  </div>
+  <div class="draftbar"><b>DRAFT for founder sign-off.</b> Management figures, not audited. Restricted to Central Australian benefit, Trust-Deed bound. The QBE match is a program term, contingent and being confirmed. Community member quote used with consent (confirm before send). Not a commitment of capital.</div>
+
+  <div class="titlewrap">
+    <div class="title">What your backing built, <span class="oc">and the next round.</span></div>
+    <p class="lede">Ahead of your June board, one request: that Centrecorp's next round of beds for Central Australia be a decision the board can make this month, and that it count as committed support we can build further capital behind.</p>
+  </div>
+
+  <div class="banner">
+    <div class="k">First, what your support already did</div>
+    <p>Three weeks ago we delivered <b>87 Stretch Beds across Utopia Homelands over two days</b>, working with the Oonchiumpa Consultancy and the Utopia Council. Thirty-six went straight into households; the rest went to community institutions to place on their own terms. That run kept <b>1.74 tonnes of plastic</b> out of the community dump. Every bed carries a QR tag, so you can follow each one in the register rather than take our word for it.</p>
+  </div>
+
+  <div class="quote">
+    <div class="q">&ldquo;I'm no longer waking up with back pain.&rdquo;</div>
+    <div class="a"><b>Ray Nelson</b>, out on the Plenty Highway, on the bed he now sleeps on. That is the whole point of the thing, said by the man sleeping on it.</div>
+  </div>
+
+  <div class="pill">The Utopia delivery, in numbers</div>
+  <div class="stats">
+    <div class="stat"><div class="num">87</div><div class="lbl"><b>Stretch Beds</b><br />delivered, two days</div></div>
+    <div class="stat"><div class="num">36</div><div class="lbl">straight into<br /><b>households</b></div></div>
+    <div class="stat"><div class="num">1.74t</div><div class="lbl"><b>plastic</b> kept<br />from the dump</div></div>
+    <div class="stat"><div class="num">QR</div><div class="lbl"><b>tagged &amp; traceable</b><br />in the register</div></div>
+  </div>
+
+  <div class="foot"><span>Goods on Country &middot; Centrecorp Foundation, next-round beds</span><span>Page 1 of 2 &middot; Confidential draft</span></div>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page">
+  <div class="mast">
+    <div class="wordmark">GOODS <span class="oc">on Country</span></div>
+    <div class="doc"><b>The honest position, the ask, the timing</b><br />Confidential draft &middot; 27 June 2026</div>
+  </div>
+
+  <div class="pill sage" style="margin-top:13px;">Where the business honestly sits</div>
+  <div class="block">
+    <p>We will be straight, because Centrecorp has earned that. Goods is <b>about 89% grant-funded today, by design.</b> We have proven communities want the bed and that funders will back deployments. What we have not yet proven is that we can make the beds cheaply enough to stand on their own. The next step is a <b>50-bed run made end to end, costed at about AU$60,000 to $80,000</b>, that turns our central cost claim from modelled to measured.</p>
+  </div>
+
+  <div class="pill terra">The ask</div>
+  <div class="block">
+    <p>Commit to the <b>next round of Stretch Beds for Aboriginal families and young people in Central Australia</b> (the consolidated board package proposes ~130 beds; confirm the next-round amount). As before, this is <b>restricted to Central Australian benefit</b>: beds delivered with local partners, allocated transparently, with photos, counts and feedback reported back to you. No part of it funds product development or work outside Central Australia.</p>
+  </div>
+
+  <div class="pill teal">Why the timing matters</div>
+  <div class="block">
+    <ul>
+      <li><b>Your board meets this month.</b> A clear decision then lets us plan delivery properly.</li>
+      <li>A committed contribution would also <b>count as match-eligible external capital under QBE's Catalysing Impact program</b>, which matches the capital we raise and so stretches the reach of your dollar, provided a commitment is in place before <b>31 August 2026</b>. Today we hold none. The match is a multiplier on your support, not the headline.</li>
+    </ul>
+  </div>
+
+  <div class="next">
+    <div class="h">The real ask: a board decision in the next few weeks</div>
+    <p>Everything that backs this is in the consolidated 26 June board package and the live register. We can walk the board through any of it, and bring the per-bed records and the cost work to whatever depth helps. Thank you for backing this from the start.</p>
+    <div class="contact">
+      <div><b>Relationship contact</b>Randle Walker (Jodie also on thread)</div>
+      <div><b>From</b>Ben Knight &amp; Nic Marchesi OAM, co-founders</div>
+    </div>
+  </div>
+
+  <div class="prov">
+    <b>Provenance.</b> Utopia delivery (Centrecorp cover note + Utopia impact report): 87 Stretch Beds over two days, 36 into households, 1.74 tonnes plastic diverted (87 &times; 20kg = 1,740kg), QR-tagged in the register. Verified (canon): broader 496 beds / 9 communities / AU$750 (asset-canonical.ts, products.ts). Cost-model v6 (computed 27 June 2026): 50-bed run ~AU$60,000 to $80,000 to move the cost claim modelled to measured. ~89% grant-funded is a management figure. QBE match: program terms, contingent, not secured until awarded; confirm rules in writing. Restricted to Central Australia per the Centrecorp Trust Deed. Ray Nelson quote used with consent (confirm before send). Next-round bed count to confirm against the consolidated board package.
+  </div>
+
+  <div class="foot"><span>Goods on Country &middot; Centrecorp Foundation, next-round beds &middot; DRAFT, founder sign-off required</span><span>Page 2 of 2 &middot; Confidential draft</span></div>
+</section>
+
+</body>
+</html>

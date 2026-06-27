@@ -74,7 +74,7 @@ export const snowConfig: FunderConfig = {
       name: 'On-Country production facility',
       budgetAud: 155000,
       description:
-        'FY25 main + FY26 Operational + FY26 Scale-Up $60K (incoming). Plant comprises plastic shredder + pellet/sheet press + computer-controlled router. Full deployment capacity: 30 beds/week. Each bed uses 25 kg of plastic waste fitting in a 25 L tub. Multi-product capable — same infrastructure will produce washing machines and fridges (Q3-Q4).',
+        'FY25 main + FY26 Operational + FY26 Scale-Up $60K (incoming). Plant comprises plastic shredder + pellet/sheet press + computer-controlled router. Full deployment capacity: 30 beds/week. Each bed uses 20kg of plastic waste fitting in a 25 L tub. Multi-product capable: the same infrastructure produces washing machines now, with a fridge a future community-led product line (design not yet started, progressing when community is ready).',
       outcomes: '~85% complete; final assembly + community siting decision pending.',
     },
     {
@@ -87,54 +87,60 @@ export const snowConfig: FunderConfig = {
         'Snow + Centrecorp + Vincent Fairfax + Rotary alignment closed for FY26; Minderoo Goods $900K pitch positioned for mid-May 2026.',
     },
   ],
+  // Snow's own eight funding principles, each brought to the spine (P4, 2026-06-19):
+  // a cleared community voice, a canon number, and an honest label (verified /
+  // modelled / future). Voices are verbatim from curated-quotes.ts and every author
+  // is on the cleared-for-external list. Numbers come from canon (496 beds / 9
+  // communities / 16 washers / 2,660kg at 20kg per bed; ~$493K Snow relationship;
+  // 15-20 beds / 8 families is the Snow-funded field-test period before Centrecorp).
   principles: [
     {
       id: 1,
       name: 'First Nations leadership and empowerment',
       evidence:
-        '- Bloomfield family leads design decisions on washing machine V1; asked Nic + Ben to help plan next homestead iteration ($100K project) — reciprocal partnership.\n- Cultural advisors paid at university research rates ($3,800/day) throughout 2024-25 — "we asked for no favours."\n- Aboriginal ownership: exploring models where communities own production assets and generate revenue (Palm Island offered to buy a plant; QIC building 50 beds with staff for NAIDOC).',
+        '"Now we\'ve got our own ways, we can collaborate with our own people. Not only here. It\'ll be everywhere." (Norman Frank, Tennant Creek).\n- The Oonchiumpa Bloomfield family leads design decisions; cultural advisors are paid at university research rates (about $3,800 a day) through 2024-25 (verified).\n- 9 communities served to date (verified). The path runs toward community-owned production assets (future): Palm Island offered to buy a plant, and QIC committed to building 50 beds with staff for NAIDOC week.',
     },
     {
       id: 2,
       name: 'Early partnership and design in community',
       evidence:
-        '- Product evolved through iterative yarning + relational feedback — Norm Frank’s maroon request became a design feature; Diane Stokes’ "20 more" validated cleanability + durability.\n- Current 15-20 bed / 8 family sample. Targeting a few hundred (this $120K round) before scaling to 5,000+.\n- Co-creating an agreement template with Snow Foundation that can be replicated for other organisations.',
+        '"We\'ve never been asked what sort of house we\'d like to live in." (Linda Turner, Tennant Creek).\n- The product evolved through iterative yarning and relational feedback: Norman Frank\'s maroon request became a design feature, and Dianne Stokes received one bed then asked for twenty more within two weeks (verified).\n- 15-20 beds across 8 families in the Snow-funded field-test period, before the Centrecorp scale-up of 107 beds (verified).\n- Co-creating a partnership agreement template with Snow Foundation that can be replicated for other organisations.',
     },
     {
       id: 3,
       name: 'Place-based, on-Country delivery',
       evidence:
-        '- Northern Territory focus: Alice Springs · Tennant Creek · Katherine · Darwin circuit. Utopian Homelands + Maningrida sites confirmed.\n- Production planned in community sheds (Tennant Creek Community Shed interested in hosting).\n- 25 kg of local plastic waste per bed — adapts to community waste streams.\n- NT is one of Snow’s four priority places — full alignment.',
+        '"Every time I go away, it\'s like it\'s calling me. Come back home." (Dianne Stokes, Tennant Creek, who named the washing machine Pakkimjalki Kari in Warumungu).\n- Northern Territory circuit: Alice Springs, Tennant Creek, Katherine and Darwin, with Utopia Homelands and Maningrida sites confirmed. NT is one of Snow\'s four priority places (verified).\n- 2,660kg of plastic diverted to date at 20kg of local waste per bed (modelled); production is planned in community sheds.',
     },
     {
       id: 4,
       name: 'Genuine collaboration and partnerships',
       evidence:
-        '- Orange Sky-inspired model: ACT builds container facilities, local organisations staff and operate them.\n- Partner pipeline: Red Dust Robotics · Deadly Science · Centre of Appropriate Technology · NPY Women’s Council (Angela Lynch) · Tennant Creek Community Shed · Mayor Sid Tennant Creek.\n- Reciprocity: products address community-chosen priorities (beds, washing machines, fridges).\n- Anti-duplication: partnering with existing strong organisations rather than creating a separate Aboriginal-controlled entity.',
+        '"When it comes from an Aboriginal person, it works. That\'s what makes the difference." (Jason).\n- An Orange Sky-inspired model: ACT builds container facilities, local organisations staff and operate them. 16 washing machines are now in community (verified).\n- Partner pipeline includes the Centre of Appropriate Technology, NPY Women\'s Council and the Tennant Creek Community Shed; we partner with existing strong organisations rather than create a separate entity.\n- Products address community-chosen priorities: beds and washing machines now, with a fridge as a future product line the community is exploring (design not yet started; it progresses when community is ready).',
     },
     {
       id: 5,
       name: 'Advocacy and policy influence',
       evidence:
-        '- Addressing the documented $3M/year washing machine dumping cycle in Alice Springs.\n- Each bed diverts 25 kg of plastic from landfill.\n- Building community-led evidence for policy change on plastic waste, circular economy in remote communities, and procurement standards.',
+        '"We challenge a lot of that and try to make a difference. Make it easier for our people to live in their homes." (Jimmy Frank).\n- 2,660kg of plastic diverted from landfill to date at 20kg per bed (modelled); the work addresses the documented washing-machine dumping cycle in Central Australia (external estimate, about $3M a year in Alice Springs).\n- Building community-led evidence for policy change on plastic waste, circular economy in remote communities, and social procurement (future).',
     },
     {
       id: 6,
       name: 'Evidence-based and culturally safe programs',
       evidence:
-        '- Product evolution through community yarning + relational feedback — not extractive research.\n- Cultural safety in design: beds work inside/outside, are cleanable + movable, match house colours.\n- Trauma-aware approach: no imposed solutions; no "fixing" communities with Western furniture models.\n- Workforce training: manufacturing, materials processing, computer-controlled routing, plastic collection + sorting.',
+        '"It\'s a really simple idea to a really complex issue. One that can be taken and modified for individual families and communities." (Wayne Glenn, practitioner).\n- Product evolution comes through community yarning and relational feedback, not extractive research; beds work inside and outside, are cleanable and movable, and match house colours (verified).\n- Workforce training covers manufacturing, materials processing, computer-controlled routing, and plastic collection and sorting.',
     },
     {
       id: 7,
       name: 'Long-term, flexible funding',
       evidence:
-        '- Multi-year vision: 1,000-bed inventory + social enterprise model. Snow’s social impact loan pathway being explored.\n- Full cost recovery: moving from zero-margin product delivery → sustainable pricing → reinvestment.\n- Flexible funding: $120K request includes production plant infrastructure serving multiple purposes (beds, washing machines, fridges).\n- Local workforce pipelines: 30 beds/week over 2 months supports sustained local employment per production run.',
+        '"We don\'t force nothing on them. We just sit down and explain what we do, or we let them look and listen. When they\'re ready, they\'ll try." (Gary).\n- Snow has backed Goods with roughly $493,000 to date (verified, Xero), the foundation relationship that made the field-testing and the first plant possible.\n- The next step is a blended-finance pathway: as much of the next commitment as possible structured as a first-mover, recoverable loan rather than a grant, aligned with the QBE Catalysing Impact plan, moving Goods from grant-funded toward a community-owned enterprise that can stand on its own. The amount, the conditions it carries, and the impact it is held to are the three things we want to work out together with Snow (future; the specific ask is being scoped alongside QBE).\n- Full cost recovery: moving from zero-margin delivery toward sustainable pricing and reinvestment.',
     },
     {
       id: 8,
       name: 'Data sovereignty and Indigenous IP',
       evidence:
-        '- Products designed in community with the Bloomfield family. Cultural knowledge and design decisions stay with community.\n- Testing feedback returns to Bloomfields first; production learnings shared with partner communities before external reporting.\n- Practical production partnership where communities retain control.\n- ACT commits to Indigenous Data Sovereignty principles for any future impact measurement.',
+        '"Now we\'re in a position to say: this is a sacred site for us as Aboriginal women and traditional owners." (Kristy Bloomfield, Oonchiumpa).\n- Products are designed in community with the Bloomfield family; cultural knowledge and design decisions stay with community (verified).\n- Consent travels with the story and testing feedback returns to community first, in the Mukurtu and Warumungu lineage; ACT commits to Indigenous Data Sovereignty principles for any future impact measurement (future).',
     },
   ],
   risks: [
@@ -148,7 +154,7 @@ export const snowConfig: FunderConfig = {
       risk: 'Demand for production plant',
       status: 'Low',
       mitigation:
-        'Committed runs across NT circuit; multi-product capability (beds → washers → fridges) reduces single-product dependency',
+        'Committed runs across NT circuit; multi-product capability (beds and washers now, a fridge as a future line) reduces single-product dependency',
     },
     {
       risk: 'Upfront payment + cashflow',
@@ -212,9 +218,9 @@ export const snowConfig: FunderConfig = {
     },
   ],
   headlineAchievements:
-    '### Product\n- **3 generations of stretch beds** developed (V1 → V3, V4 in design). 25 kg of plastic waste diverted per bed.\n- **Containerised washing machine V1** built and field-tested with Bloomfield family in Tennant Creek (Jan 2026).\n- **Production plant infrastructure** progressed from concept to near-complete containerised facility (shredder + extruder + CNC router for bed components). Investment to date ~$100,000 (TFN + ACT).\n- **15-20 beds deployed** across 8 families for field testing (Diane Stokes, Norm Frank, Utopian Homelands, Tennant Creek participants) prior to the Centrecorp scale-up. Trip-period numbers below.\n\n### Partnership\n- **Oonchiumpa Bloomfield family** partnership formalising — paid cultural consultation at university research rates (~$3,800/day), tiered payment structures, planned co-hosting of production plant.\n- **Four health organisations** initiated engagement after the 2025 Healthy Homes forum.\n- **Centrecorp Foundation** confirmed partnership for May 17-27 Central Australia deployment (Mparntwe + Utopia homelands).\n- **Homeland School Company** confirmed Q3 deployment — 1-2 washers + 65 beds across Maningrida communities.\n\n### Demand validation\n- **200-350 bed requests** logged from communities + health organisations.\n- **Diane Stokes** received 1 bed, requested 20 more within 2 weeks, offered to self-fund.\n- **Norm Frank** requested 3 beds in maroon after his daughter trialled them.\n- **Utopian Homelands** requested beds for every child (~6,000 worth).\n- **Palm Island Community Company** offered to purchase a production plant outright after watching the production video.\n- **QIC** committed to building 50 beds with staff for NAIDOC week.',
+    '### Product\n- **3 generations of stretch beds** developed (V1 → V3, V4 in design). 20kg of plastic waste diverted per bed.\n- **Containerised washing machine V1** built and field-tested with Bloomfield family in Tennant Creek (Jan 2026).\n- **Production plant infrastructure** progressed from concept to near-complete containerised facility (shredder + extruder + CNC router for bed components). Investment to date ~$100,000 (TFN + ACT).\n- **15-20 beds deployed** across 8 families for field testing (Diane Stokes, Norm Frank, Utopian Homelands, Tennant Creek participants) prior to the Centrecorp scale-up. Trip-period numbers below.\n\n### Partnership\n- **Oonchiumpa Bloomfield family** partnership formalising — paid cultural consultation at university research rates (~$3,800/day), tiered payment structures, planned co-hosting of production plant.\n- **Four health organisations** initiated engagement after the 2025 Healthy Homes forum.\n- **Centrecorp Foundation** confirmed partnership for May 17-27 Central Australia deployment (Mparntwe + Utopia homelands).\n- **Homeland School Company** confirmed Q3 deployment — 1-2 washers + 65 beds across Maningrida communities.\n\n### Demand validation\n- **200-350 bed requests** logged from communities + health organisations.\n- **Diane Stokes** received 1 bed, requested 20 more within 2 weeks, offered to self-fund.\n- **Norm Frank** requested 3 beds in maroon after his daughter trialled them.\n- **Utopian Homelands** requested beds for every child (~6,000 worth).\n- **Palm Island Community Company** offered to purchase a production plant outright after watching the production video.\n- **QIC** committed to building 50 beds with staff for NAIDOC week.',
   additionalContext:
-    '## RHD + Healthy Homes connection\n\n- Cleanable, durable beds and washing machines are foundational health interventions, especially relevant to **Rheumatic Heart Disease prevention** through housing quality and sleep health.\n- Four health organisations engaged after the 2025 Healthy Homes forum. **Anna Phillip** (Healthy Homes Project Coordinator) is a primary contact.\n- **Remote Laundry Collective**: washing machines built with Bloomfield family in January 2026; same production plant will scale washing machine access.\n- Multi-product capability means RHD-relevant interventions (beds + washers + fridges) flow from one infrastructure investment.',
+    '## RHD + Healthy Homes connection\n\n- This is why a bed and a washing machine are health hardware, not furniture: cleanable, durable beds and reliable washing machines support the conditions needed to interrupt the scabies to rheumatic heart disease pathway. We do not claim a bed prevents heart disease; that would need a partner clinical method.\n- Four health organisations engaged after the 2025 Healthy Homes forum. **Anna Phillip** (Healthy Homes Project Coordinator) is a primary contact.\n- **Remote Laundry Collective**: washing machines built with Bloomfield family in January 2026; same production plant will scale washing machine access.\n- Multi-product capability means health hardware (beds and washers now, with a fridge as a future line) flows from one infrastructure investment.',
   // PROPOSED 2026-06-09 (Claude) — grounded in canon + the Snow catch-up email.
   // Confirm dial labels, current stage, focus priorities, and the ignition chain
   // with Ben before sending. These three are the narrative spine's beats 3-5.

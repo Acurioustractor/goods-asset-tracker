@@ -122,8 +122,8 @@ These are generated from Goods-tagged Xero rows using account codes, vendors and
 | Basket Bed historic price | `$370` | Historic / not current offer | Do not use as current Stretch Bed pricing. |
 | Workshop / corporate build | `$6,000` | Pricing reference | Admin strategy page. |
 | Delivery line item | `$3,000` | Pricing reference | Admin strategy page. |
-| Washing-machine prototype cost | `$4,300` per machine | Founder/product estimate | Prototype only. Not resident-scale pricing. |
-| Washing-machine target price | `$2,000-$2,500` per machine | Target | Needs engineering and supplier pathway. |
+| Washing-machine prototype cost | `$4,500-$5,000` per machine | Founder/product estimate | Prototype only. Not resident-scale pricing. |
+| Washing-machine target price | `$1,000-$2,000` per machine | Target | Needs engineering and supplier pathway. |
 | First production plant investment | `$100,000` | Source-backed estimate | TFN `$80K` plus ACT `$20K` in compendium notes. |
 | Scale-up facility cost | `$600,000` each | Finance model assumption | Used for investment model, not actual invoice total. |
 | Annual operating costs | `$600,000` | Finance model assumption | Needs Goods-specific P&L and Xero reconciliation. |
