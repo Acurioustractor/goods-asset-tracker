@@ -420,6 +420,62 @@
       "qbeAreas": ["12"],
       "citesCanon": ["entity-trading-goforward", "beds-deployed", "communities-served", "signed-lois"],
       "lastVerified": "2026-06-17"
+    },
+    {
+      "id": "sefa-loan-brief",
+      "title": "SEFA Loan Fund application brief (DRAFT)",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/funder-reports/sefa/2026-06-27-sefa-loan-application-brief.pdf",
+      "status": "written",
+      "claimLabels": ["verified", "modelled", "internal-only"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": ["10", "11", "12"],
+      "citesCanon": ["beds-deployed", "communities-served", "stretch-price", "plastic-kg", "revenue-carveout", "accounts-receivable", "marginal-buykit", "marginal-factory", "marginal-community", "save-per-bed", "signed-lois"],
+      "lastVerified": "2026-06-27"
+    },
+    {
+      "id": "snow-first-mover-brief",
+      "title": "Snow Foundation first-mover brief (DRAFT)",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/funder-reports/snow/2026-06-27-snow-first-mover-brief.pdf",
+      "status": "written",
+      "claimLabels": ["verified", "modelled", "internal-only"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": ["10", "12"],
+      "citesCanon": ["beds-deployed", "communities-served", "stretch-price", "plastic-kg", "revenue-carveout", "marginal-buykit", "marginal-factory", "save-per-bed", "signed-lois"],
+      "lastVerified": "2026-06-27"
+    },
+    {
+      "id": "centrecorp-nextround-brief",
+      "title": "Centrecorp next-round beds brief (DRAFT)",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/funder-reports/centrecorp/2026-06-27-centrecorp-nextround-brief.pdf",
+      "status": "written",
+      "claimLabels": ["verified", "modelled", "internal-only"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": ["02", "10"],
+      "citesCanon": ["beds-deployed", "communities-served", "stretch-price", "plastic-kg", "signed-lois"],
+      "lastVerified": "2026-06-27"
+    },
+    {
+      "id": "funding-source-audit-2026-06",
+      "title": "Expanded funding-source audit (web + GrantScope, verified top tier)",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-06-27-funding-source-audit/",
+      "status": "written",
+      "claimLabels": ["verified", "internal-only"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": ["10", "12"],
+      "citesCanon": ["beds-deployed", "communities-served", "revenue-carveout", "signed-lois"],
+      "lastVerified": "2026-06-28"
     }
   ]
 }

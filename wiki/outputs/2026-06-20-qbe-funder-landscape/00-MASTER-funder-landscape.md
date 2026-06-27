@@ -329,3 +329,19 @@ Sources suspected to exist or matter but not fully confirmed this pass. Grouped 
 ## One-line strategic read
 
 The clean, no-ownership-gate repayable anchors are SEFA (best fit), Bank Australia (senior layer), White Box SELF (gated on certification/Butterfly structure), and the WA Impact Loan Fund (WA-only). The biggest repayable lines (IBA, FAC, NAB/IBA Guarantee) are all blocked behind the unresolved First Nations ownership / entity decision and are post-September lines, not Sept anchors. Grants (Snow, Centrecorp, Minderoo, VFFF, Aboriginal Investment NT, Balnaves) fill and complete the round but count at lower priority than loans. Start the SEFA conversation THIS WEEK.
+
+---
+
+## Addendum (2026-06-28): Expanded funding-source audit
+
+A multi-agent web audit (10 categories) plus a GrantScope DB mine added 181 deduped new funding sources beyond this register: 125 from the web sweep, and 56 net-new from GrantScope (of 68 Goods-scored grants). The consolidated ranked list, the GrantScope mine, a verification pass on the top tier, and outreach drafts live in `wiki/outputs/2026-06-27-funding-source-audit/`:
+
+- `00-expanded-source-list.md` - 125 web sources, ranked, with a Top 15
+- `01-grantscope-mine.md` - 56 new providers from the grant DB (goods_relevance_score >= 60)
+- `02-verification-pass.md` - the chase-worthy top tier, re-verified on the live pages
+- `03-outreach-drafts.md` - drafts for the verified repayable picks
+- `sources.json` / `grantscope-sources.json` / `*.provenance.md`
+
+Verified highest-value new picks (no ownership gate, repayable, move-now): **First Nations Finance** (Indigenous-owned lender, no borrower gate) and **CEFC via NAB Green Equipment Finance** (0.5% discount on the recycling plant). **Invest NT concessional loans** and the **NT Recycling Modernisation Fund Round 2** suit the On Country NT plant. Two grant-DB false positives were caught and dropped (NIAA IAS, Education BEEF). The richest seam overall is ownership-gate-free repayable/concessional debt plus circular-economy state grants that fund the plant (most need an in-state facility and a future round).
+
+Confidence labels in those files are agent and model assessments, not Ben verifications; re-check each page before outreach.

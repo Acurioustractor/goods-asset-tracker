@@ -1,0 +1,2819 @@
+[
+  {
+    "name": "Strengthening Rural Communities (SRC)",
+    "provider": "Foundation For Rural And Regional Renewal",
+    "amount_min": null,
+    "amount_max": null,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://frrr.org.au/funding/find-funding-now/#strengthening-rural-communities-src",
+    "geography": "AU-NSW, AU-VIC",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 100,
+    "goods_relevance_signals": {
+      "geography": "national",
+      "tier1_hits": [
+        "aboriginal",
+        "first nations"
+      ],
+      "tier2_hits": [
+        "remote",
+        "regional",
+        "rural",
+        "social enterprise"
+      ],
+      "tier3_hits": [
+        "community",
+        "organisation"
+      ],
+      "amount_band": "10K-100K",
+      "category_hits": [
+        "indigenous",
+        "aboriginal",
+        "first nations",
+        "community",
+        "community development",
+        "remote",
+        "regional",
+        "social enterprise"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": true,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": "FRRR supports not-for-profit organisations that are incorporated or have an ABN. Projects must have a charitable purpose and provide broad community benefit. For-profit organisations and individuals are not eligible.",
+    "_open": true,
+    "_known": true,
+    "newToAudit": false,
+    "open": true
+  },
+  {
+    "name": "First Nations Targeted Grant",
+    "provider": "Paul Ramsay Foundation Limited",
+    "amount_min": 50000,
+    "amount_max": 500000,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://paulramsayfoundation.org.au/#first-nations-targeted-grant",
+    "geography": "AU-National",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 100,
+    "goods_relevance_signals": {
+      "geography": "unknown",
+      "tier1_hits": [
+        "aboriginal",
+        "first nations",
+        "aboriginal community controlled",
+        "acco",
+        "self-determination"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [
+        "community",
+        "organisation",
+        "capacity"
+      ],
+      "amount_band": "100K-1M",
+      "category_hits": [
+        "indigenous",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": true,
+    "newToAudit": false,
+    "open": true
+  },
+  {
+    "name": "Indigenous Advancement Strategy (IAS)",
+    "provider": "NIAA",
+    "amount_min": 100000,
+    "amount_max": 500000,
+    "closes_at": "2026-06-30",
+    "deadline": "2026-06-30",
+    "url": "https://www.niaa.gov.au/indigenous-affairs/grants-and-funding/indigenous-advancement-strategy",
+    "geography": "AU",
+    "grant_type": "open_opportunity",
+    "grant_structure": {
+      "type": "competitive_grant",
+      "total_budget": "$7.2B over 4 years to 2026-27",
+      "duration_note": "Varies per Grant Opportunity Guidelines. Typically 1-5 years.",
+      "is_competitive": true,
+      "program_streams": [
+        "Jobs, Land and the Economy",
+        "Children and Schooling",
+        "Safety and Wellbeing",
+        "Culture and Capability"
+      ],
+      "number_of_grants": "Multiple rounds across multiple streams"
+    },
+    "goods_relevance_score": 100,
+    "goods_relevance_signals": {
+      "geography": "national",
+      "tier1_hits": [
+        "indigenous",
+        "aboriginal",
+        "first nations",
+        "torres strait",
+        "household goods"
+      ],
+      "tier2_hits": [
+        "remote",
+        "regional",
+        "community development",
+        "social enterprise",
+        "wellbeing"
+      ],
+      "tier3_hits": [
+        "community",
+        "children"
+      ],
+      "amount_band": "100K-1M",
+      "provider_hit": "niaa",
+      "category_hits": [
+        "indigenous",
+        "aboriginal",
+        "first nations",
+        "community development",
+        "remote",
+        "regional",
+        "social enterprise",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": true,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": "The Indigenous Advancement Strategy (IAS) funds programs benefiting First Nations Australians across six key components: Jobs and Economy, Children and Schooling, Safety and Wellbeing, Culture and Capability, Remote Australian Strategies, and Research and Evaluation. The Australian Government allocated $7.2 billion to IAS over four years to 2026-27. Applicants should check GrantConnect for current funding opportunities or contact their local NIAA Regional Office. Communities can also submit Community Initiated Proposals directly to NIAA. Funded providers must work in genuine partnership with First Nations communities in project design and delivery.",
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "ILSC Our Country Our Future - Small Projects",
+    "provider": "Indigenous Land and Sea Corporation (ILSC)",
+    "amount_min": 0,
+    "amount_max": 100000,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://ilsc.gov.au/partner-with-us/our-country-our-future/",
+    "geography": "AU",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 100,
+    "goods_relevance_signals": {
+      "geography": "national",
+      "tier1_hits": [
+        "indigenous",
+        "aboriginal",
+        "first nations",
+        "torres strait",
+        "community infrastructure",
+        "beds",
+        "washing machine"
+      ],
+      "tier2_hits": [
+        "remote",
+        "social enterprise"
+      ],
+      "tier3_hits": [
+        "community",
+        "infrastructure"
+      ],
+      "amount_band": "100K-1M",
+      "provider_hit": "indigenous",
+      "category_hits": [
+        "indigenous",
+        "aboriginal",
+        "first nations",
+        "community",
+        "community development",
+        "remote",
+        "social enterprise",
+        "community infrastructure"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": true,
+    "dgr_required": null,
+    "focus_areas": [
+      "first-nations",
+      "infrastructure",
+      "land-management"
+    ],
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": true,
+    "newToAudit": false,
+    "open": true
+  },
+  {
+    "name": "Pathways Out of Homelessness — First Steps: Breaking the Cycle of Indigenous Homelessness (2019-20)",
+    "provider": "Brisbane City Council",
+    "amount_min": 150000,
+    "amount_max": 150000,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://data.brisbane.qld.gov.au/explore/dataset/grants-recipients/table/#6476-murrie-watch-aboriginal-and-torres-strait-islanders-corporation-pathways-ou-m5mgpk",
+    "geography": null,
+    "grant_type": "historical_award",
+    "grant_structure": null,
+    "goods_relevance_score": 98,
+    "goods_relevance_signals": {
+      "geography": "unknown",
+      "tier1_hits": [
+        "indigenous",
+        "aboriginal",
+        "torres strait"
+      ],
+      "tier2_hits": [
+        "homelessness"
+      ],
+      "tier3_hits": [
+        "community"
+      ],
+      "amount_band": "100K-1M",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "housing"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Building Early Education Fund – Aboriginal Community Controlled Organisation (ACCO) Grant Opportunity",
+    "provider": "Department of Education",
+    "amount_min": null,
+    "amount_max": 3000000,
+    "closes_at": "2027-06-30",
+    "deadline": "2027-06-30",
+    "url": "https://www.grants.gov.au/Go/Show?GoUuid=add491e4-04d1-444f-984d-3222c4bc535d",
+    "geography": "national",
+    "grant_type": "government",
+    "grant_structure": null,
+    "goods_relevance_score": 94,
+    "goods_relevance_signals": {
+      "geography": "unknown",
+      "tier1_hits": [
+        "aboriginal",
+        "aboriginal community controlled",
+        "acco"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [
+        "community",
+        "capital",
+        "organisation"
+      ],
+      "amount_band": "1M+",
+      "category_hits": [
+        "indigenous",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": true,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Aboriginal Affairs NSW Closing the Gap Partnership Grant Funding",
+    "provider": "NSW Government — Aboriginal Affairs",
+    "amount_min": null,
+    "amount_max": 5000000,
+    "closes_at": "2026-06-30",
+    "deadline": "2026-06-30",
+    "url": "https://www.nsw.gov.au/grants-and-funding/aboriginal-affairs-nsw-closing-gap-partnership-grant-funding",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 93,
+    "goods_relevance_signals": {
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal",
+        "closing the gap"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [],
+      "amount_band": "1M+",
+      "provider_hit": "aboriginal",
+      "category_hits": [
+        "indigenous",
+        "aboriginal",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "SEDI First Nations Social Enterprise Grants",
+    "provider": "Impact Investing Australia + Malu Pty Ltd (admin) — Dept of Social Services (funder)",
+    "amount_min": null,
+    "amount_max": null,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://impactinvestingaustralia.com/looking-for-funding-or-investors/#sedi-first-nations",
+    "geography": null,
+    "grant_type": "open_opportunity",
+    "grant_structure": {
+      "total_amount": 2500000,
+      "duration_years": null,
+      "amount_per_year": null,
+      "priority_cohorts": [
+        "First Nations social enterprises",
+        "Social enterprises serving entrenched disadvantage",
+        "Trading Indigenous owned or controlled organisations"
+      ],
+      "evaluation_budget": null
+    },
+    "goods_relevance_score": 88,
+    "goods_relevance_signals": null,
+    "accepts_pty_ltd": true,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": null,
+    "pipeline_stage": "discovered",
+    "requirements_summary": "Eligible applicants must be Australian social enterprises or trading Indigenous organisations with annual trading revenue exceeding $50,000, currently providing direct benefits to people experiencing entrenched disadvantage, and seeking to scale impact in Department of Social Services outcome areas. New applicants submit an Expression of Interest for a preliminary eligibility phone conversation with IIA, then submit full applications on a rolling basis. Grants up to $120,000 fund capability building services (financial, legal, consulting, impact measurement). The program operates on rolling rounds through early 2027, with no set application deadline.",
+    "_open": true,
+    "_known": true,
+    "newToAudit": false,
+    "open": true
+  },
+  {
+    "name": "Indigenous Languages Creative Residencies",
+    "provider": "DE",
+    "amount_min": null,
+    "amount_max": 24000,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://www.slq.qld.gov.au/discover/first-nations-cultures/aboriginal-and-torres-strait-islander-languages/residency-program",
+    "geography": "AU-QLD",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 87,
+    "goods_relevance_signals": {
+      "geography": "AU-QLD",
+      "tier1_hits": [
+        "indigenous",
+        "aboriginal",
+        "first nations",
+        "torres strait"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [],
+      "amount_band": "10K-100K",
+      "category_hits": [
+        "indigenous"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "First Nations Targeted Grant Round",
+    "provider": "Paul Ramsay Foundation Limited",
+    "amount_min": 50000,
+    "amount_max": 500000,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://www.paulramsayfoundation.org.au/news-resources/first-nations-targeted-grant-round#first-nations-targeted-grant-round",
+    "geography": "AU-National",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 86,
+    "goods_relevance_signals": {
+      "geography": "unknown",
+      "tier1_hits": [
+        "first nations",
+        "torres strait",
+        "self-determination"
+      ],
+      "tier2_hits": [
+        "remote",
+        "regional"
+      ],
+      "tier3_hits": [
+        "organization"
+      ],
+      "amount_band": "100K-1M",
+      "category_hits": [
+        "indigenous",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "archived",
+    "requirements_summary": "Grants are available to First Nations-led organisations in Tasmania, the Northern Territory, the Torres Strait, regional and remote Queensland, and regional and remote South Australia to support self-determination.",
+    "_open": true,
+    "_known": true,
+    "newToAudit": false,
+    "open": true
+  },
+  {
+    "name": "Pathways Out of Homelessness — IUIH First Nations Tenancy Support Service.  Applicant received multi-year funding spread across three years. (2022-23)",
+    "provider": "Brisbane City Council",
+    "amount_min": 150000,
+    "amount_max": 150000,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://data.brisbane.qld.gov.au/explore/dataset/grants-recipients/table/#9409-institute-for-urban-indigenous-health-ltd-pathways-out-of-homelessness-iuih-9w6t2v",
+    "geography": null,
+    "grant_type": "historical_award",
+    "grant_structure": null,
+    "goods_relevance_score": 84,
+    "goods_relevance_signals": {
+      "geography": "unknown",
+      "tier1_hits": [
+        "indigenous",
+        "first nations"
+      ],
+      "tier2_hits": [
+        "homelessness"
+      ],
+      "tier3_hits": [
+        "community",
+        "health"
+      ],
+      "amount_band": "100K-1M",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "housing"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Puntukurnu Aboriginal Medical Service Aboriginal Corporation — Towards the renovation of shared and external spaces to establish the PAMS Short Stay Renal Hostel accommodation and the Wellness Centre,",
+    "provider": "Lotterywest",
+    "amount_min": null,
+    "amount_max": 707180,
+    "closes_at": null,
+    "deadline": null,
+    "url": null,
+    "geography": "AU-WA",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 84,
+    "goods_relevance_signals": {
+      "geography": "AU-WA",
+      "tier1_hits": [
+        "aboriginal",
+        "acco"
+      ],
+      "tier2_hits": [
+        "accommodation"
+      ],
+      "tier3_hits": [
+        "community"
+      ],
+      "amount_band": "100K-1M",
+      "category_hits": [
+        "indigenous",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Indigenous Australians' Health Programme (IAHP) Primary Health Care Centres - Emerging Child and Maternal Priorities Program — Mums & Bubs Extended maternal & Child Health Program Initiative",
+    "provider": "QH",
+    "amount_min": null,
+    "amount_max": 738434,
+    "closes_at": null,
+    "deadline": "2026-11-30",
+    "url": null,
+    "geography": "AU-QLD",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 82,
+    "goods_relevance_signals": {
+      "geography": "AU-QLD",
+      "tier1_hits": [
+        "indigenous",
+        "acco",
+        "closing the gap"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [
+        "health"
+      ],
+      "amount_band": "100K-1M",
+      "category_hits": [
+        "indigenous",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Closing the Gap program",
+    "provider": "NSW Government — Department of Planning, Housing and Infrastructure",
+    "amount_min": null,
+    "amount_max": 22039344,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://www.nsw.gov.au/grants-and-funding/closing-gap-program",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 82,
+    "goods_relevance_signals": {
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal",
+        "closing the gap"
+      ],
+      "tier2_hits": [
+        "housing"
+      ],
+      "tier3_hits": [
+        "community",
+        "infrastructure",
+        "organisation"
+      ],
+      "amount_band": "1M+",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "aboriginal"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Aboriginal and Torres Strait Islander(ATSI) initiatives",
+    "provider": "DTMR",
+    "amount_min": null,
+    "amount_max": 12610000,
+    "closes_at": null,
+    "deadline": null,
+    "url": null,
+    "geography": "AU-QLD",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 82,
+    "goods_relevance_signals": {
+      "geography": "AU-QLD",
+      "tier1_hits": [
+        "aboriginal",
+        "torres strait"
+      ],
+      "tier2_hits": [
+        "remote"
+      ],
+      "tier3_hits": [],
+      "amount_band": "1M+",
+      "category_hits": [
+        "indigenous",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "SEDI Capability Building Grant",
+    "provider": "Impact Investing Australia (admin) — Dept of Social Services (funder)",
+    "amount_min": 0,
+    "amount_max": 120000,
+    "closes_at": "2027-06-30",
+    "deadline": "2027-06-30",
+    "url": "https://impactinvestingaustralia.com/looking-for-funding-or-investors/",
+    "geography": null,
+    "grant_type": "open_opportunity",
+    "grant_structure": {
+      "total_amount": 120000,
+      "duration_years": null,
+      "amount_per_year": null,
+      "priority_cohorts": [
+        "Indigenous owned or controlled organisations",
+        "Social enterprises addressing entrenched disadvantage",
+        "Organisations serving communities, employment, education and First Nations Australians"
+      ],
+      "evaluation_budget": null
+    },
+    "goods_relevance_score": 82,
+    "goods_relevance_signals": {
+      "sedi_hit": true,
+      "geography": "unknown",
+      "manual_pin": "2026-05-27 pinned 82 — #1 open capability fit (sweep TL;DR)",
+      "tier1_hits": [
+        "indigenous"
+      ],
+      "tier2_hits": [
+        "social enterprise"
+      ],
+      "tier3_hits": [],
+      "amount_band": "100K-1M",
+      "category_hits": [],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": true,
+    "dgr_required": null,
+    "focus_areas": [
+      "social-enterprise",
+      "capability-building"
+    ],
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": "Eligible applicants must be social enterprises or trading Indigenous organisations with defined social benefit, trading revenue exceeding $50,000 annually, providing direct services to people experiencing entrenched disadvantage in approved DSS outcome areas across Australia. Grants up to $120,000 support capability building services including financial advice, impact measurement, business consulting and legal support. This is a competitive process with no guaranteed award for meeting eligibility criteria. Applications can register interest with Impact Investing Australia for updates on extension opportunities.",
+    "_open": true,
+    "_known": true,
+    "newToAudit": false,
+    "open": true
+  },
+  {
+    "name": "IBA Start-Up Finance Package",
+    "provider": "Indigenous Business Australia",
+    "amount_min": null,
+    "amount_max": 150000,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://iba.gov.au/business/business-finance/",
+    "geography": null,
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 82,
+    "goods_relevance_signals": null,
+    "accepts_pty_ltd": true,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": null,
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": true,
+    "newToAudit": false,
+    "open": true
+  },
+  {
+    "name": "Supply Nation Certification + Buyer Access",
+    "provider": "Supply Nation",
+    "amount_min": null,
+    "amount_max": null,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://supplynation.org.au/",
+    "geography": null,
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 80,
+    "goods_relevance_signals": null,
+    "accepts_pty_ltd": true,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": null,
+    "pipeline_stage": "discovered",
+    "requirements_summary": "The program is open to Aboriginal and Torres Strait Islander businesses, aiming to connect them with corporate, government, and not-for-profit members. Verified Indigenous businesses can join to access procurement opportunities and grow their businesses.",
+    "_open": true,
+    "_known": true,
+    "newToAudit": false,
+    "open": true
+  },
+  {
+    "name": "AHO - Tertiary Accommodations Grants FY25/26",
+    "provider": "NSW Government — Department of Communities and Justice",
+    "amount_min": null,
+    "amount_max": 10000,
+    "closes_at": "2026-06-30",
+    "deadline": "2026-06-30",
+    "url": "https://www.nsw.gov.au/grants-and-funding/aho-tertiary-accommodations-grants-fy25/26",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 78,
+    "goods_relevance_signals": {
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal",
+        "torres strait",
+        "acco"
+      ],
+      "tier2_hits": [
+        "accommodation"
+      ],
+      "tier3_hits": [],
+      "amount_band": "10K-100K",
+      "category_hits": [
+        "indigenous",
+        "aboriginal"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Centre for Aboriginal Health Ministerial Approved Grants",
+    "provider": "NSW Government — NSW Health",
+    "amount_min": null,
+    "amount_max": 9737700,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://www.nsw.gov.au/grants-and-funding/centre-for-aboriginal-health-ministerial-approved-grants",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 76,
+    "goods_relevance_signals": {
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal",
+        "aboriginal community controlled"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [
+        "community",
+        "health",
+        "organisation"
+      ],
+      "amount_band": "1M+",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "aboriginal"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Indigenous VET Partnership",
+    "provider": "DTET",
+    "amount_min": null,
+    "amount_max": 1000000,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://training.qld.gov.au/community-orgs/funded/vet-partnership",
+    "geography": "AU-QLD",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 76,
+    "goods_relevance_signals": {
+      "geography": "AU-QLD",
+      "tier1_hits": [
+        "indigenous",
+        "aboriginal",
+        "torres strait"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [],
+      "amount_band": "1M+",
+      "category_hits": [
+        "indigenous"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Ngaanyatjarra Media (Aboriginal Corporation) — Towards the Turlku Purtingkatja (Cultural Festival) will foster community engagement while celebrating and honoring Indigenous heritage and culture.",
+    "provider": "Lotterywest",
+    "amount_min": null,
+    "amount_max": 115520,
+    "closes_at": null,
+    "deadline": null,
+    "url": null,
+    "geography": "AU-WA",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 75,
+    "goods_relevance_signals": {
+      "geography": "AU-WA",
+      "tier1_hits": [
+        "indigenous",
+        "aboriginal"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [
+        "community"
+      ],
+      "amount_band": "100K-1M",
+      "category_hits": [
+        "indigenous",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Aboriginals Benefit Account (ABA) Grants",
+    "provider": "NIAA / Aboriginal Investment NT",
+    "amount_min": 20000,
+    "amount_max": 1000000,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://aboriginalinvestment.org.au/grants",
+    "geography": null,
+    "grant_type": "open_opportunity",
+    "grant_structure": {
+      "total_amount": 60300000,
+      "duration_years": null,
+      "amount_per_year": null,
+      "priority_cohorts": [
+        "Aboriginal businesses in start-up phase",
+        "Aboriginal businesses in growth phase",
+        "Aboriginal community-led projects",
+        "Urban, regional and remote Aboriginal communities"
+      ],
+      "evaluation_budget": null
+    },
+    "goods_relevance_score": 75,
+    "goods_relevance_signals": null,
+    "accepts_pty_ltd": true,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": null,
+    "pipeline_stage": "discovered",
+    "requirements_summary": "Grants available to support Aboriginal businesses and community initiatives across the Northern Territory, including community projects, business start-ups, and growth phases.",
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Newman Women's Shelter Inc. — Towards costs for the expansion of accommodation of Newman Women's Shelter to support women and children experiencing family domestic violence or homelessness.",
+    "provider": "Lotterywest",
+    "amount_min": null,
+    "amount_max": 108550,
+    "closes_at": null,
+    "deadline": null,
+    "url": null,
+    "geography": "AU-WA",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 75,
+    "goods_relevance_signals": {
+      "geography": "AU-WA",
+      "tier1_hits": [
+        "acco"
+      ],
+      "tier2_hits": [
+        "homelessness",
+        "shelter",
+        "accommodation",
+        "domestic violence"
+      ],
+      "tier3_hits": [
+        "children",
+        "family"
+      ],
+      "amount_band": "100K-1M",
+      "category_hits": [],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Aboriginal and Torres Strait Islander(ATSI) initiatives",
+    "provider": "DTMR",
+    "amount_min": null,
+    "amount_max": 12610000,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://www.tmr.qld.gov.au/community-and-environment/indigenous-programs/funding-primary-access-infrastructure-for-aboriginal-and-torres-strait-islander-communities",
+    "geography": null,
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 74,
+    "goods_relevance_signals": {
+      "geography": "unknown",
+      "tier1_hits": [
+        "aboriginal",
+        "torres strait"
+      ],
+      "tier2_hits": [
+        "remote"
+      ],
+      "tier3_hits": [],
+      "amount_band": "1M+",
+      "category_hits": [
+        "indigenous",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Binar Futures Ltd — Towards development and community-led initiatives, strengthening Binar Futures’ capacity to deliver programs that improve wellbeing outcomes for Aboriginal youth across Western Aus",
+    "provider": "Lotterywest",
+    "amount_min": null,
+    "amount_max": 1800000,
+    "closes_at": null,
+    "deadline": null,
+    "url": null,
+    "geography": "AU-WA",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 74,
+    "goods_relevance_signals": {
+      "geography": "AU-WA",
+      "tier1_hits": [
+        "aboriginal"
+      ],
+      "tier2_hits": [
+        "community-led",
+        "wellbeing"
+      ],
+      "tier3_hits": [
+        "community",
+        "youth",
+        "capacity"
+      ],
+      "amount_band": "1M+",
+      "category_hits": [
+        "indigenous",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Indigenous Cultural Preservation Grant",
+    "provider": "Philanthropy Australia",
+    "amount_min": 50000,
+    "amount_max": 200000,
+    "closes_at": "2026-09-30",
+    "deadline": "2026-09-30",
+    "url": "https://www.grants.gov.au/Go/Show?GoUuid=6175e504-aa5e-4d2a-92c0-e2e6d4d9dded",
+    "geography": null,
+    "grant_type": "open_opportunity",
+    "grant_structure": {
+      "total_amount": 200000,
+      "duration_years": 3,
+      "amount_per_year": null,
+      "priority_cohorts": [
+        "Aboriginal and Torres Strait Islander Australians"
+      ],
+      "evaluation_budget": null
+    },
+    "goods_relevance_score": 73,
+    "goods_relevance_signals": {
+      "geography": "unknown",
+      "tier1_hits": [
+        "indigenous",
+        "aboriginal",
+        "torres strait"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [],
+      "amount_band": "100K-1M",
+      "category_hits": [
+        "community",
+        "indigenous"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": true,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": "Eligible organisations must be Aboriginal and/or Torres Strait Islander Corporations, government entities, companies, associations, not-for-profit organisations, or local government councils with an ABN, GST registration (if applicable), and an Australian financial institution account. Projects must be located in Australian states and territories (ACT, NSW, VIC, SA, WA, QLD, NT, TAS) and commence after 1 July 2026. Grant funding ranges from $20,000 to $200,000 for projects lasting 12 to 36 months. Applications must be submitted through SmartyGrants by 16 March 2026 at 11:30 pm ACT Local Time. Late submissions will not be accepted.",
+    "_open": true,
+    "_known": true,
+    "newToAudit": false,
+    "open": true
+  },
+  {
+    "name": "Aboriginal Housing Office Sector Capability Grant 2024",
+    "provider": "NSW Government — Homes NSW",
+    "amount_min": null,
+    "amount_max": 50000,
+    "closes_at": "2024-05-17",
+    "deadline": "2024-05-17",
+    "url": "https://www.nsw.gov.au/grants-and-funding/sector-capability",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 72,
+    "goods_relevance_signals": {
+      "closed": true,
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal",
+        "community housing",
+        "aboriginal housing"
+      ],
+      "tier2_hits": [
+        "housing"
+      ],
+      "tier3_hits": [
+        "community"
+      ],
+      "amount_band": "10K-100K",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "aboriginal"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": true,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "archived",
+    "requirements_summary": null,
+    "_open": false,
+    "_known": false,
+    "newToAudit": true,
+    "open": false
+  },
+  {
+    "name": "Aboriginal-led alcohol and other drugs research consortium to support better outcomes for Aboriginal families",
+    "provider": "NSW Government — NSW Health",
+    "amount_min": null,
+    "amount_max": 2000000,
+    "closes_at": null,
+    "deadline": "2026-03-04",
+    "url": "https://www.nsw.gov.au/grants-and-funding/aboriginal-led-alcohol-and-other-drugs-research-consortium",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 72,
+    "goods_relevance_signals": {
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal"
+      ],
+      "tier2_hits": [
+        "wellbeing"
+      ],
+      "tier3_hits": [
+        "health"
+      ],
+      "amount_band": "1M+",
+      "category_hits": [
+        "indigenous",
+        "aboriginal",
+        "community",
+        "regional"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "archived",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Healing at Home on Country, Aboriginal Elders & Mentors Grant Program on behalf of Corrective Services NSW",
+    "provider": "NSW Government — Department of Communities and Justice",
+    "amount_min": null,
+    "amount_max": 10000,
+    "closes_at": "2026-06-30",
+    "deadline": "2026-06-30",
+    "url": "https://www.nsw.gov.au/grants-and-funding/healing-at-home-on-country-aboriginal-elders-mentors-grant-program-on-behalf-of-corrective-services-nsw",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 71,
+    "goods_relevance_signals": {
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal",
+        "aboriginal community controlled"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [
+        "community",
+        "organisation"
+      ],
+      "amount_band": "10K-100K",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "aboriginal"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": true,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Closing the Gap Socio-Economic Outcome 17 Digital Inclusion Hub",
+    "provider": "NSW Government — Aboriginal Outcomes Unit",
+    "amount_min": null,
+    "amount_max": 250000,
+    "closes_at": "2026-05-15",
+    "deadline": "2026-05-15",
+    "url": "https://www.nsw.gov.au/grants-and-funding/closing-gap-socio-economic-outcome-17-digital-inclusion-hub",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 70,
+    "goods_relevance_signals": {
+      "closed": true,
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal",
+        "aboriginal community controlled",
+        "closing the gap"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [
+        "community",
+        "organisation"
+      ],
+      "amount_band": "100K-1M",
+      "provider_hit": "aboriginal",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "aboriginal"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": false,
+    "_known": false,
+    "newToAudit": true,
+    "open": false
+  },
+  {
+    "name": "Hermannsburg Aboriginal Charitable Trust — NT Enterprise",
+    "provider": "Hermannsburg Aboriginal Charitable Trust",
+    "amount_min": 20000,
+    "amount_max": 200000,
+    "closes_at": null,
+    "deadline": null,
+    "url": null,
+    "geography": null,
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 69,
+    "goods_relevance_signals": {
+      "geography": "unknown",
+      "tier1_hits": [
+        "indigenous",
+        "aboriginal"
+      ],
+      "tier2_hits": [
+        "housing",
+        "social enterprise"
+      ],
+      "tier3_hits": [
+        "community"
+      ],
+      "amount_band": "100K-1M",
+      "provider_hit": "aboriginal",
+      "category_hits": [],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": true,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Home Buyer Booster Grant",
+    "provider": "NSW Government — Aboriginal Housing Office",
+    "amount_min": null,
+    "amount_max": 2500,
+    "closes_at": "2026-06-30",
+    "deadline": "2026-06-30",
+    "url": "https://www.nsw.gov.au/grants-and-funding/home-buyer-booster-grant",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 69,
+    "goods_relevance_signals": {
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal",
+        "aboriginal housing"
+      ],
+      "tier2_hits": [
+        "housing"
+      ],
+      "tier3_hits": [],
+      "amount_band": "<5K",
+      "provider_hit": "aboriginal",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "aboriginal"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Strengthening Community Capability - Stream 2",
+    "provider": "NSW Government — Aboriginal Affairs",
+    "amount_min": null,
+    "amount_max": 200000,
+    "closes_at": "2022-04-04",
+    "deadline": "2022-04-04",
+    "url": "https://www.nsw.gov.au/grants-and-funding/strengthening-community-capability-stream-2",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 69,
+    "goods_relevance_signals": {
+      "closed": true,
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal",
+        "torres strait",
+        "acco"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [
+        "community",
+        "organisation"
+      ],
+      "amount_band": "100K-1M",
+      "provider_hit": "aboriginal",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "aboriginal",
+        "regional"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "archived",
+    "requirements_summary": null,
+    "_open": false,
+    "_known": false,
+    "newToAudit": true,
+    "open": false
+  },
+  {
+    "name": "Indigenous Languages and Arts – Strategic Projects 2025-26",
+    "provider": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+    "amount_min": null,
+    "amount_max": null,
+    "closes_at": "2026-06-30",
+    "deadline": "2026-06-30",
+    "url": "https://www.grants.gov.au/Go/Show?GoUuid=e83cbb62-47a6-4084-96da-49cdca62f413",
+    "geography": "national",
+    "grant_type": "government",
+    "grant_structure": null,
+    "goods_relevance_score": 69,
+    "goods_relevance_signals": {
+      "geography": "unknown",
+      "tier1_hits": [
+        "indigenous",
+        "aboriginal",
+        "torres strait"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [],
+      "amount_band": null,
+      "category_hits": [
+        "indigenous",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "archived",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Aboriginal Languages Centre Partnership Program 2025-2026",
+    "provider": "NSW Government — Aboriginal Languages Trust",
+    "amount_min": null,
+    "amount_max": 600000,
+    "closes_at": null,
+    "deadline": "2026-05-25",
+    "url": "https://www.nsw.gov.au/grants-and-funding/aboriginal-languages-centre-partnership-program-2025-2026",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 68,
+    "goods_relevance_signals": {
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal",
+        "closing the gap"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [],
+      "amount_band": "100K-1M",
+      "provider_hit": "aboriginal",
+      "category_hits": [
+        "indigenous",
+        "aboriginal"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "archived",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Support for veterans and their families",
+    "provider": "ACT Government",
+    "amount_min": null,
+    "amount_max": null,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://www.act.gov.au/community/support-for-veterans-and-their-families",
+    "geography": "AU-ACT",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 68,
+    "goods_relevance_signals": {
+      "geography": "non-goods:AU-ACT",
+      "tier1_hits": [
+        "aboriginal",
+        "torres strait"
+      ],
+      "tier2_hits": [
+        "disability"
+      ],
+      "tier3_hits": [
+        "community",
+        "youth",
+        "family"
+      ],
+      "amount_band": null,
+      "category_hits": [
+        "indigenous",
+        "community",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "NAIDOC Perth Aboriginal Corporation — Towards the 2025 NAIDOC Week Perth, celebrating and recognising the history, culture, and achievements of Aboriginal and Torres Strait Islander people across WA.",
+    "provider": "Lotterywest",
+    "amount_min": null,
+    "amount_max": 110000,
+    "closes_at": null,
+    "deadline": null,
+    "url": null,
+    "geography": "AU-WA",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 67,
+    "goods_relevance_signals": {
+      "geography": "AU-WA",
+      "tier1_hits": [
+        "aboriginal",
+        "torres strait"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [],
+      "amount_band": "100K-1M",
+      "category_hits": [
+        "indigenous"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Strengthening Community Capability - Stream 1",
+    "provider": "NSW Government — Aboriginal Affairs",
+    "amount_min": null,
+    "amount_max": 50000,
+    "closes_at": "2022-04-04",
+    "deadline": "2022-04-04",
+    "url": "https://www.nsw.gov.au/grants-and-funding/strengthening-community-capability-stream-1",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 67,
+    "goods_relevance_signals": {
+      "closed": true,
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal",
+        "torres strait",
+        "acco"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [
+        "community",
+        "organisation"
+      ],
+      "amount_band": "10K-100K",
+      "provider_hit": "aboriginal",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "aboriginal",
+        "regional"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "archived",
+    "requirements_summary": null,
+    "_open": false,
+    "_known": false,
+    "newToAudit": true,
+    "open": false
+  },
+  {
+    "name": "John Moriarty Football",
+    "provider": "Moriarty Foundation",
+    "amount_min": null,
+    "amount_max": null,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://www.moriartyfoundation.org.au#john-moriarty-football",
+    "geography": "AU-NSW, AU-NT, AU-QLD",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 66,
+    "goods_relevance_signals": {
+      "geography": "unknown",
+      "tier1_hits": [
+        "aboriginal",
+        "torres strait"
+      ],
+      "tier2_hits": [
+        "remote",
+        "regional",
+        "wellbeing"
+      ],
+      "tier3_hits": [
+        "children",
+        "health"
+      ],
+      "amount_band": null,
+      "category_hits": [
+        "indigenous",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "John Moriarty Football (JMF)",
+    "provider": "Moriarty Foundation",
+    "amount_min": null,
+    "amount_max": null,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://www.moriartyfoundation.org.au#john-moriarty-football-jmf",
+    "geography": "AU-NSW, AU-NT, AU-QLD",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 66,
+    "goods_relevance_signals": {
+      "geography": "unknown",
+      "tier1_hits": [
+        "aboriginal",
+        "torres strait"
+      ],
+      "tier2_hits": [
+        "remote",
+        "regional",
+        "wellbeing"
+      ],
+      "tier3_hits": [
+        "children",
+        "health"
+      ],
+      "amount_band": null,
+      "category_hits": [
+        "indigenous",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Central Aboriginal Charitable Trust — Central Australia",
+    "provider": "Central Aboriginal Charitable Trust",
+    "amount_min": 20000,
+    "amount_max": 200000,
+    "closes_at": null,
+    "deadline": null,
+    "url": null,
+    "geography": null,
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 65,
+    "goods_relevance_signals": {
+      "geography": "unknown",
+      "tier1_hits": [
+        "indigenous",
+        "aboriginal"
+      ],
+      "tier2_hits": [
+        "housing"
+      ],
+      "tier3_hits": [
+        "youth",
+        "health",
+        "infrastructure"
+      ],
+      "amount_band": "100K-1M",
+      "provider_hit": "aboriginal",
+      "category_hits": [],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Kadadjiny Aboriginal Corporation — Towards the Binalup, Menang - First Light, First People project, to support Indigenous heritage to be respected, acknowledged and embraced.",
+    "provider": "Lotterywest",
+    "amount_min": null,
+    "amount_max": 45094,
+    "closes_at": null,
+    "deadline": null,
+    "url": null,
+    "geography": "AU-WA",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 65,
+    "goods_relevance_signals": {
+      "geography": "AU-WA",
+      "tier1_hits": [
+        "indigenous",
+        "aboriginal"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [],
+      "amount_band": "10K-100K",
+      "category_hits": [
+        "indigenous"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Westpac Foundation Inclusive Employment Grant",
+    "provider": "Westpac Foundation",
+    "amount_min": 0,
+    "amount_max": 50000,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://westpacfoundation.com.au/our-grants/",
+    "geography": "AU",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 65,
+    "goods_relevance_signals": {
+      "hand_set": true,
+      "rationale": "high fit (work-integrated SE, indigenous/remote priority) but round opens 2026 date TBC",
+      "sweep_ref": "grants-sweep-2026-05-27 §3"
+    },
+    "accepts_pty_ltd": true,
+    "dgr_required": null,
+    "focus_areas": [
+      "social enterprise",
+      "indigenous economic participation",
+      "employment"
+    ],
+    "pile": null,
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": true,
+    "newToAudit": false,
+    "open": true
+  },
+  {
+    "name": "Aboriginal and Torres Strait Islander Arts Development Fund",
+    "provider": "Arts Queensland",
+    "amount_min": 1000,
+    "amount_max": 70000,
+    "closes_at": "2026-06-30",
+    "deadline": "2026-06-30",
+    "url": "https://www.arts.qld.gov.au/funding-opportunities/funding/aboriginal-and-torres-strait-islander-arts-development-fund",
+    "geography": null,
+    "grant_type": "open_opportunity",
+    "grant_structure": {
+      "type": "competitive_grant",
+      "duration_years": 1,
+      "is_competitive": true,
+      "visual_arts_max": 30000,
+      "access_supplement": 10000,
+      "performing_arts_max": 70000,
+      "access_supplement_note": "Additional for disability access"
+    },
+    "goods_relevance_score": 64,
+    "goods_relevance_signals": {
+      "geography": "unknown",
+      "tier1_hits": [
+        "aboriginal",
+        "torres strait"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [],
+      "amount_band": "10K-100K",
+      "category_hits": [
+        "indigenous",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": "Aboriginal and Torres Strait Islander individuals, groups, and organisations based in Queensland can apply for one-off grants to support new creative performing arts work (up to $70,000) or visual arts market development activities (up to $30,000) for projects up to one year. Applicants must be Australian citizens/permanent residents (if individual), have an active ABN and bank account, not owe Arts Queensland money, not have received funding in the previous round, and submit applications by 2pm on 22 June 2026. Additional funding up to $10,000 is available for disability access costs.",
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Deadly Deposit Grant",
+    "provider": "NSW Government — Aboriginal Housing Office",
+    "amount_min": null,
+    "amount_max": 10000,
+    "closes_at": "2026-06-30",
+    "deadline": "2026-06-30",
+    "url": "https://www.nsw.gov.au/grants-and-funding/deadly-deposit-grant",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 64,
+    "goods_relevance_signals": {
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal",
+        "aboriginal housing"
+      ],
+      "tier2_hits": [
+        "housing"
+      ],
+      "tier3_hits": [],
+      "amount_band": "10K-100K",
+      "provider_hit": "aboriginal",
+      "category_hits": [
+        "indigenous",
+        "aboriginal"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": " ACCOs Governance, Resilience, Opportunities and Workforce (GROW)",
+    "provider": "NSW Government — Department of Communities and Justice",
+    "amount_min": null,
+    "amount_max": 50000,
+    "closes_at": "2026-03-19",
+    "deadline": "2026-03-19",
+    "url": "https://www.nsw.gov.au/grants-and-funding/accos-governance-resilience-opportunities-and-workforce-grow",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 64,
+    "goods_relevance_signals": {
+      "closed": true,
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal",
+        "aboriginal community controlled",
+        "acco"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [
+        "community",
+        "organisation",
+        "capacity"
+      ],
+      "amount_band": "10K-100K",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "aboriginal",
+        "regional"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "archived",
+    "requirements_summary": null,
+    "_open": false,
+    "_known": false,
+    "newToAudit": true,
+    "open": false
+  },
+  {
+    "name": "Pilbara Aboriginal Health Alliance Limited — Towards organsiational development and community driven initiates to improve the health and wellbeing outcomes of Aboriginal people across the Pilbara.",
+    "provider": "Lotterywest",
+    "amount_min": null,
+    "amount_max": 1300000,
+    "closes_at": null,
+    "deadline": null,
+    "url": null,
+    "geography": "AU-WA",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 64,
+    "goods_relevance_signals": {
+      "geography": "AU-WA",
+      "tier1_hits": [
+        "aboriginal"
+      ],
+      "tier2_hits": [
+        "wellbeing"
+      ],
+      "tier3_hits": [
+        "community",
+        "health"
+      ],
+      "amount_band": "1M+",
+      "category_hits": [
+        "indigenous",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Western Australian Family Violence Prevention Legal Service Aboriginal Corporation — Towards a vehicle to provide family and domestic violence outreach services across the East Kimberley.",
+    "provider": "Lotterywest",
+    "amount_min": null,
+    "amount_max": 182371,
+    "closes_at": null,
+    "deadline": null,
+    "url": null,
+    "geography": "AU-WA",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 63,
+    "goods_relevance_signals": {
+      "geography": "AU-WA",
+      "tier1_hits": [
+        "aboriginal"
+      ],
+      "tier2_hits": [
+        "family violence",
+        "domestic violence"
+      ],
+      "tier3_hits": [
+        "family"
+      ],
+      "amount_band": "100K-1M",
+      "category_hits": [
+        "indigenous"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Ngaanyatjarra Health Service (Aboriginal Corporation) — Towards the Ngaanyatjarra Community Bus Service, to improve access to aged care, youth services, health care, and cultural obligations for Ngaan",
+    "provider": "Lotterywest",
+    "amount_min": null,
+    "amount_max": 152462,
+    "closes_at": null,
+    "deadline": null,
+    "url": null,
+    "geography": "AU-WA",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 63,
+    "goods_relevance_signals": {
+      "geography": "AU-WA",
+      "tier1_hits": [
+        "aboriginal"
+      ],
+      "tier2_hits": [
+        "aged care"
+      ],
+      "tier3_hits": [
+        "community",
+        "youth",
+        "health"
+      ],
+      "amount_band": "100K-1M",
+      "category_hits": [
+        "indigenous",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Agency Collaborates – Community Initiated",
+    "provider": "National Indigenous Australians Agency",
+    "amount_min": null,
+    "amount_max": null,
+    "closes_at": "2026-12-30",
+    "deadline": "2026-12-30",
+    "url": "https://www.grants.gov.au/Go/Show?GoUuid=af51f2f8-e3e3-4628-9a9d-ab0607ca11e8",
+    "geography": "national",
+    "grant_type": "government",
+    "grant_structure": null,
+    "goods_relevance_score": 62,
+    "goods_relevance_signals": {
+      "geography": "unknown",
+      "tier1_hits": [
+        "indigenous",
+        "aboriginal",
+        "torres strait"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [
+        "community"
+      ],
+      "amount_band": null,
+      "category_hits": [
+        "indigenous",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "archived",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Aboriginal Community Infrastructure Program",
+    "provider": "Victorian Government — Local Gov VIC",
+    "amount_min": null,
+    "amount_max": null,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://www.localgovernment.vic.gov.au/lgv-funding-programs/aboriginal-community-infrastructure-program",
+    "geography": "AU-VIC",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 62,
+    "goods_relevance_signals": {
+      "geography": "non-goods:AU-VIC",
+      "tier1_hits": [
+        "aboriginal",
+        "community infrastructure"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [
+        "community",
+        "infrastructure"
+      ],
+      "amount_band": null,
+      "category_hits": [
+        "indigenous",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "NAIF Small Loans Program",
+    "provider": "Northern Australia Infrastructure Facility",
+    "amount_min": null,
+    "amount_max": null,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://naif.gov.au/",
+    "geography": null,
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 62,
+    "goods_relevance_signals": null,
+    "accepts_pty_ltd": true,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": null,
+    "pipeline_stage": "discovered",
+    "requirements_summary": "NAIF provides financing for infrastructure projects in northern Australia delivering public benefit through economic growth, jobs, and Indigenous outcomes. Eligible projects include those in industries such as resources, agriculture and water, energy, and social infrastructure.",
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "2024-2026 LDM Operational Funding - Stream 1",
+    "provider": "NSW Government — Aboriginal Affairs",
+    "amount_min": null,
+    "amount_max": 475000,
+    "closes_at": "2026-06-30",
+    "deadline": "2026-06-30",
+    "url": "https://www.nsw.gov.au/grants-and-funding/2024-2026-ldm-operational-funding-stream-1",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 61,
+    "goods_relevance_signals": {
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [
+        "community"
+      ],
+      "amount_band": "100K-1M",
+      "provider_hit": "aboriginal",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "aboriginal"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "SHFT26015: Linen Supply - Cockatoo Island Accommodation",
+    "provider": "Sydney Harbour Federation Trust",
+    "amount_min": 0,
+    "amount_max": 0,
+    "closes_at": "2026-06-12",
+    "deadline": "2026-06-12",
+    "url": "https://www.tenders.gov.au/Atm/Show/0cf625a0-a251-4b59-aca3-0395047c6470",
+    "geography": "AU",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 61,
+    "goods_relevance_signals": {
+      "geography": "national",
+      "tier1_hits": [
+        "acco"
+      ],
+      "tier2_hits": [
+        "accommodation"
+      ],
+      "tier3_hits": [],
+      "amount_band": null,
+      "category_hits": [],
+      "discovery_boost": "procurement",
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": true,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": null,
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": false,
+    "_known": false,
+    "newToAudit": true,
+    "open": false
+  },
+  {
+    "name": "Cairns Private Hospital - General Medical Beds",
+    "provider": "QH",
+    "amount_min": null,
+    "amount_max": 7240043,
+    "closes_at": null,
+    "deadline": null,
+    "url": null,
+    "geography": "AU-QLD",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 61,
+    "goods_relevance_signals": {
+      "geography": "AU-QLD",
+      "tier1_hits": [
+        "first nations",
+        "beds"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [],
+      "amount_band": "1M+",
+      "category_hits": [
+        "indigenous"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Housing Support Program — Accommodation and Support for Homeless Young Women and their Children (2019-20)",
+    "provider": "Brisbane City Council",
+    "amount_min": 10000,
+    "amount_max": 10000,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://data.brisbane.qld.gov.au/explore/dataset/grants-recipients/table/#6458-the-lady-musgrave-trust-housing-support-program-accommodation-and-support-f-qxihtj",
+    "geography": null,
+    "grant_type": "historical_award",
+    "grant_structure": null,
+    "goods_relevance_score": 61,
+    "goods_relevance_signals": {
+      "geography": "unknown",
+      "tier1_hits": [
+        "acco"
+      ],
+      "tier2_hits": [
+        "housing",
+        "accommodation"
+      ],
+      "tier3_hits": [
+        "community",
+        "children"
+      ],
+      "amount_band": "10K-100K",
+      "category_hits": [
+        "community",
+        "housing"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Agency Collaborates (non-competitive)",
+    "provider": "National Indigenous Australians Agency",
+    "amount_min": null,
+    "amount_max": null,
+    "closes_at": "2026-12-30",
+    "deadline": "2026-12-30",
+    "url": "https://www.grants.gov.au/Go/Show?GoUuid=ed3ec8b9-54e4-471e-8655-367583472cff",
+    "geography": "national",
+    "grant_type": "government",
+    "grant_structure": null,
+    "goods_relevance_score": 61,
+    "goods_relevance_signals": {
+      "geography": "unknown",
+      "tier1_hits": [
+        "indigenous",
+        "aboriginal",
+        "torres strait"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [],
+      "amount_band": null,
+      "category_hits": [
+        "indigenous",
+        "community"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "archived",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Aboriginal Housing Office (AHO) SHAF ACHP 2024 Stream 2 - Upgrades to long-term vacant properties",
+    "provider": "NSW Government — Department of Communities and Justice",
+    "amount_min": null,
+    "amount_max": 44000000,
+    "closes_at": "2024-04-12",
+    "deadline": "2024-04-12",
+    "url": "https://www.nsw.gov.au/grants-and-funding/aboriginal-housing-office-aho-shaf-achp-2024-stream-2-upgrades-to-long-term-vacant-properties",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 60,
+    "goods_relevance_signals": {
+      "closed": true,
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal",
+        "aboriginal housing"
+      ],
+      "tier2_hits": [
+        "housing"
+      ],
+      "tier3_hits": [],
+      "amount_band": "1M+",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "aboriginal"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "archived",
+    "requirements_summary": null,
+    "_open": false,
+    "_known": false,
+    "newToAudit": true,
+    "open": false
+  },
+  {
+    "name": "Aboriginal Housing Office (AHO) SHAF ACHP 2024 Stream 4 - Acquisitions (from the open market)",
+    "provider": "NSW Government — Department of Communities and Justice",
+    "amount_min": null,
+    "amount_max": 44000000,
+    "closes_at": "2024-04-12",
+    "deadline": "2024-04-12",
+    "url": "https://www.nsw.gov.au/grants-and-funding/aboriginal-housing-office-aho-shaf-achp-2024-stream-4-acquisitions-from-open-market",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 60,
+    "goods_relevance_signals": {
+      "closed": true,
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal",
+        "aboriginal housing"
+      ],
+      "tier2_hits": [
+        "housing"
+      ],
+      "tier3_hits": [],
+      "amount_band": "1M+",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "aboriginal"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "archived",
+    "requirements_summary": null,
+    "_open": false,
+    "_known": false,
+    "newToAudit": true,
+    "open": false
+  },
+  {
+    "name": "Healing And Wellbeing",
+    "provider": "ANNAMILA FIRST NATIONS FOUNDATION LTD",
+    "amount_min": null,
+    "amount_max": null,
+    "closes_at": "2026-09-30",
+    "deadline": "2026-09-30",
+    "url": "https://www.annamila.com/#healing-and-wellbeing",
+    "geography": "AU-VIC",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 60,
+    "goods_relevance_signals": {
+      "geography": "unknown",
+      "tier1_hits": [
+        "first nations",
+        "first peoples"
+      ],
+      "tier2_hits": [
+        "wellbeing"
+      ],
+      "tier3_hits": [],
+      "amount_band": null,
+      "provider_hit": "first nations",
+      "category_hits": [
+        "indigenous"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": true,
+    "newToAudit": false,
+    "open": true
+  },
+  {
+    "name": "2026-27 ACEMP Northern NSW",
+    "provider": "NSW Government — Aboriginal Affairs",
+    "amount_min": null,
+    "amount_max": 103000,
+    "closes_at": "2026-06-16",
+    "deadline": "2026-06-08",
+    "url": "https://www.nsw.gov.au/grants-and-funding/2026-27-acemp-northern-nsw",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 60,
+    "goods_relevance_signals": {
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [],
+      "amount_band": "100K-1M",
+      "provider_hit": "aboriginal",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "aboriginal"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": false,
+    "_known": false,
+    "newToAudit": true,
+    "open": false
+  },
+  {
+    "name": "Many Rivers Microfinance",
+    "provider": "Many Rivers",
+    "amount_min": null,
+    "amount_max": null,
+    "closes_at": null,
+    "deadline": null,
+    "url": "https://manyrivers.org.au/",
+    "geography": null,
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 60,
+    "goods_relevance_signals": null,
+    "accepts_pty_ltd": true,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": null,
+    "pipeline_stage": "discovered",
+    "requirements_summary": "Many Rivers provides business support and economic development to help people start and grow their own small business, with a focus on Indigenous Australian entrepreneurs.",
+    "_open": true,
+    "_known": true,
+    "newToAudit": false,
+    "open": true
+  },
+  {
+    "name": "2025-2026 Minister's Discretionary Fund",
+    "provider": "NSW Government — Aboriginal Affairs",
+    "amount_min": null,
+    "amount_max": 100000,
+    "closes_at": "2026-06-30",
+    "deadline": "2026-06-30",
+    "url": "https://www.nsw.gov.au/grants-and-funding/2025-2026-ministers-discretionary-fund",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 60,
+    "goods_relevance_signals": {
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [],
+      "amount_band": "100K-1M",
+      "provider_hit": "aboriginal",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "aboriginal"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Aboriginal Housing Office (AHO) SHAF ACHP 2024 Stream 1 - Preliminary works & DA development",
+    "provider": "NSW Government — Department of Communities and Justice",
+    "amount_min": null,
+    "amount_max": 44000000,
+    "closes_at": "2024-04-12",
+    "deadline": "2024-04-12",
+    "url": "https://www.nsw.gov.au/grants-and-funding/aboriginal-housing-office-aho-shaf-achp-2024-stream-1-preliminary-works-da-development",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 60,
+    "goods_relevance_signals": {
+      "closed": true,
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal",
+        "aboriginal housing"
+      ],
+      "tier2_hits": [
+        "housing"
+      ],
+      "tier3_hits": [],
+      "amount_band": "1M+",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "aboriginal"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "archived",
+    "requirements_summary": null,
+    "_open": false,
+    "_known": false,
+    "newToAudit": true,
+    "open": false
+  },
+  {
+    "name": "Beyond the Broncos Careers Club",
+    "provider": "DE",
+    "amount_min": null,
+    "amount_max": 2751425,
+    "closes_at": "2026-12-31",
+    "deadline": "2026-12-31",
+    "url": "https://www.broncos.com.au/community/programs2/girls-academy",
+    "geography": "AU-QLD",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 60,
+    "goods_relevance_signals": {
+      "geography": "AU-QLD",
+      "tier1_hits": [
+        "aboriginal",
+        "torres strait"
+      ],
+      "tier2_hits": [
+        "wellbeing"
+      ],
+      "tier3_hits": [
+        "health"
+      ],
+      "amount_band": "1M+",
+      "category_hits": [
+        "indigenous"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  },
+  {
+    "name": "Aboriginal Housing Office (AHO) SHAF ACHP 2024 Stream 3 - Shovel-ready new construction & prefabricated homes",
+    "provider": "NSW Government — Department of Communities and Justice",
+    "amount_min": null,
+    "amount_max": 44000000,
+    "closes_at": "2024-04-12",
+    "deadline": "2024-04-12",
+    "url": "https://www.nsw.gov.au/grants-and-funding/aboriginal-housing-office-aho-shaf-achp-2024-stream-3-shovel-ready-new-construction-prefabricated-homes",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 60,
+    "goods_relevance_signals": {
+      "closed": true,
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal",
+        "aboriginal housing"
+      ],
+      "tier2_hits": [
+        "housing"
+      ],
+      "tier3_hits": [],
+      "amount_band": "1M+",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "aboriginal"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "archived",
+    "requirements_summary": null,
+    "_open": false,
+    "_known": false,
+    "newToAudit": true,
+    "open": false
+  },
+  {
+    "name": "2024-2026 LDM Governance Groups ",
+    "provider": "NSW Government — Aboriginal Affairs",
+    "amount_min": null,
+    "amount_max": 30000,
+    "closes_at": "2026-06-30",
+    "deadline": "2026-06-30",
+    "url": "https://www.nsw.gov.au/grants-and-funding/2024-2026-ldm-governance-groups",
+    "geography": "AU-NSW",
+    "grant_type": "open_opportunity",
+    "grant_structure": null,
+    "goods_relevance_score": 60,
+    "goods_relevance_signals": {
+      "geography": "non-goods:AU-NSW",
+      "tier1_hits": [
+        "aboriginal"
+      ],
+      "tier2_hits": [],
+      "tier3_hits": [
+        "community",
+        "capacity"
+      ],
+      "amount_band": "10K-100K",
+      "provider_hit": "aboriginal",
+      "category_hits": [
+        "indigenous",
+        "community",
+        "aboriginal"
+      ],
+      "disqualifier_hits": []
+    },
+    "accepts_pty_ltd": null,
+    "dgr_required": null,
+    "focus_areas": null,
+    "pile": "Grants",
+    "pipeline_stage": "discovered",
+    "requirements_summary": null,
+    "_open": true,
+    "_known": false,
+    "newToAudit": true,
+    "open": true
+  }
+]
