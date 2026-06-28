@@ -476,6 +476,20 @@
       "qbeAreas": ["10", "12"],
       "citesCanon": ["beds-deployed", "communities-served", "revenue-carveout", "signed-lois"],
       "lastVerified": "2026-06-28"
+    },
+    {
+      "id": "funding-refresh-2026-06-28",
+      "title": "Funding pipeline refresh — open-now shortlist with live-verified dates",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-06-28-funding-refresh/",
+      "status": "written",
+      "claimLabels": ["verified", "internal-only"],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": ["10", "12"],
+      "citesCanon": ["beds-deployed", "communities-served", "signed-lois"],
+      "lastVerified": "2026-06-28"
     }
   ]
 }
