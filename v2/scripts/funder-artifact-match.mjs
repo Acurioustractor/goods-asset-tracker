@@ -84,7 +84,13 @@ function recommend(o, stageName) {
   const type = funderType(o.name);
   const recipe = STAGE[stageName] || STAGE['Cultivating'];
   const specific = SPECIFIC.filter(([k]) => o.name.toLowerCase().includes(k)).flatMap(([, ids]) => ids);
-  const pillars = recipe.pillars === 'TYPE' ? TYPE_PILLARS[type] : recipe.pillars;
+  let pillars = recipe.pillars === 'TYPE' ? TYPE_PILLARS[type] : recipe.pillars;
+  // Repayable lenders decide on the cost/repayment case, not the impact story.
+  // Lead with costing during cultivation (Qualified/Cultivating) where the stage
+  // recipe is otherwise type-agnostic. Ask made already carries costing via TYPE.
+  if (type === 'repayable' && (stageName === 'Cultivating' || stageName === 'Qualified') && !pillars.includes('costing')) {
+    pillars = ['costing', ...pillars];
+  }
   const fromPillars = (recipe.lead || []).concat(pillars.flatMap((p) => LEADS[p] || []));
   const send = [...new Set([...specific, ...fromPillars])].filter((id) => byId[id]);
   return { type, recipe, send };

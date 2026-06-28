@@ -27,6 +27,7 @@ Funder-specific overrides (send these directly): **SEFA** → SEFA loan brief; *
 | **Identified** | the public pitch page link, nothing more | (none) — qualify the fit | confirmed real fit + a way in |
 | **Qualified** | one-pager / pitch page | a 20-minute conversation | a relationship starts |
 | **Cultivating** | one impact proof + one story (their pillar) | gauge interest in the specific ask | you send the actual ask |
+| **Cultivating** *(repayable lenders)* | lead with **costing** (cost-story + repayment case), then one impact proof | gauge interest in the loan | you send the actual ask |
 | **Ask made** | the funder-specific brief + numbers + governance | the **specific** amount, instrument, and use of funds | they say yes |
 | **Delivering** | the agreement (term sheet or grant agreement) + reporting plan, then the **invoice + bank details** | sign, then pay | money lands |
 | **Stewarding** | the impact report + acquittal | (care, report well) | acquittal delivered |
