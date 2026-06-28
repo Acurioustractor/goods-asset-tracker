@@ -39,8 +39,8 @@ const RETIRE = [
   ['Qld Gives', 'CLOSED 12 Dec 2025 — NFP-only, wrong entity'],
   ['NAIDOC', 'CLOSED 19 Feb 2026 — off-mission (event funding)'],
   ['Agricultural Traceability', 'CLOSED 18 Feb 2026 — off-mission (ag traceability)'],
+  ['Various Indigenous', 'Vague catch-all — maps to NIAA IAS (invitation-leaning) + IBA (ownership-gated); no clean actionable target for Goods today. Revisit post entity restructure.'],
 ];
-// "Various Indigenous Grants" is intentionally NOT retired — resolve to a named program.
 
 // Verified OPEN grants to add (status open, in the Identified stage).
 const ADD = [
