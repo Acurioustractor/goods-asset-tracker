@@ -1,17 +1,19 @@
 #!/usr/bin/env node
 /**
- * Move a person to a new stage in a GHL people pipeline. DRY-RUN BY DEFAULT.
+ * Move / correct a person in a GHL people pipeline. DRY-RUN BY DEFAULT.
  *
  * One real event = one stage forward. (met them -> Cultivating; sent the ask
- * -> Ask made; they said yes -> Committed; money in -> Stewarding.)
+ * -> Ask made; they said yes -> Delivering; money in -> Stewarding.)
  *
  * Usage:
- *   node ghl-people-move.mjs "Eloise Hall" "Ask made"            # dry-run
- *   node ghl-people-move.mjs "Eloise Hall" "Ask made" --commit   # apply
+ *   node ghl-people-move.mjs "Eloise Hall" "Ask made"              # dry-run stage move
+ *   node ghl-people-move.mjs "Eloise Hall" "Ask made" --commit     # apply
+ *   node ghl-people-move.mjs "QBE Foundation" "Cultivating" --value 400000 --commit
+ *   node ghl-people-move.mjs "Paul Ramsay" --lost --commit         # mark lost (no stage needed)
  *   node ghl-people-move.mjs --pipeline funder "Snow" "Renewing" --commit
  *
- * Matches the person by name substring (must be unique). Prints the exact
- * before/after. The only write is the gated stage change.
+ * Matches the person by unique name substring. The only writes (stage, value,
+ * lost status) are gated behind --commit.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -30,9 +32,13 @@ const PIPELINES = { funder: 'JvBFYpVpyKsw899lkFgj' };
 
 const args = process.argv.slice(2);
 const COMMIT = args.includes('--commit');
-const pipeFlag = args.indexOf('--pipeline');
-const PIPELINE = pipeFlag >= 0 ? (PIPELINES[args[pipeFlag + 1]] || PIPELINES.funder) : PIPELINES.funder;
-const positional = args.filter((a, i) => !a.startsWith('--') && args[i - 1] !== '--pipeline');
+const LOST = args.includes('--lost');
+const valIdx = args.indexOf('--value');
+const VALUE = valIdx >= 0 ? Number(args[valIdx + 1]) : null;
+const pipeIdx = args.indexOf('--pipeline');
+const PIPELINE = pipeIdx >= 0 ? (PIPELINES[args[pipeIdx + 1]] || PIPELINES.funder) : PIPELINES.funder;
+const skip = new Set([pipeIdx + 1, valIdx + 1].filter((i) => i > 0));
+const positional = args.filter((a, i) => !a.startsWith('--') && !skip.has(i));
 const [NAME, STAGE] = positional;
 
 async function ghl(method, urlPath, body) {
@@ -55,28 +61,34 @@ async function fetchOpps(pipelineId) {
 
 async function main() {
   if (!TOKEN || !LOC) { console.error('Missing GHL creds in v2/.env.local'); process.exit(1); }
-  if (!NAME || !STAGE) { console.error('Usage: node ghl-people-move.mjs "Name" "Target Stage" [--commit]'); process.exit(1); }
-
+  if (!NAME || (!STAGE && !LOST && VALUE == null)) {
+    console.error('Usage: node ghl-people-move.mjs "Name" "Stage" [--value N] [--lost] [--commit]'); process.exit(1);
+  }
   const meta = await ghl('GET', `/opportunities/pipelines?locationId=${LOC}`);
   const pipeline = (meta.pipelines || []).find((p) => p.id === PIPELINE);
   const stages = pipeline?.stages || [];
-  const target = stages.find((s) => s.name.toLowerCase().includes(STAGE.toLowerCase()));
-  if (!target) { console.error(`No stage matching "${STAGE}". Stages: ${stages.map((s) => s.name).join(', ')}`); process.exit(1); }
   const stageName = Object.fromEntries(stages.map((s) => [s.id, s.name]));
+  let target = null;
+  if (STAGE) {
+    target = stages.find((s) => s.name.toLowerCase().includes(STAGE.toLowerCase()));
+    if (!target) { console.error(`No stage matching "${STAGE}". Stages: ${stages.map((s) => s.name).join(', ')}`); process.exit(1); }
+  }
 
   const matches = (await fetchOpps(PIPELINE)).filter((o) => o.status === 'open' && (o.name || '').toLowerCase().includes(NAME.toLowerCase()));
   if (matches.length === 0) { console.error(`No open person matching "${NAME}".`); process.exit(1); }
   if (matches.length > 1) { console.error(`"${NAME}" matches ${matches.length}: ${matches.map((o) => o.name).join(' | ')}. Be more specific.`); process.exit(1); }
   const o = matches[0];
 
-  console.log(`\n${COMMIT ? 'MOVING' : 'DRY-RUN'}: ${o.name}`);
-  console.log(`   ${stageName[o.pipelineStageId]}  ->  ${target.name}`);
-  if (o.pipelineStageId === target.id) { console.log('   (already in that stage — nothing to do)'); return; }
-  if (COMMIT) {
-    await ghl('PUT', `/opportunities/${o.id}`, { pipelineId: PIPELINE, pipelineStageId: target.id });
-    console.log('   done.');
-  } else {
-    console.log('   re-run with --commit to apply.');
-  }
+  const changes = [];
+  const body = { pipelineId: PIPELINE };
+  if (target && target.id !== o.pipelineStageId) { body.pipelineStageId = target.id; changes.push(`stage ${stageName[o.pipelineStageId]} -> ${target.name}`); }
+  if (VALUE != null && VALUE !== o.monetaryValue) { body.monetaryValue = VALUE; changes.push(`value ${o.monetaryValue ?? '?'} -> ${VALUE}`); }
+  if (LOST && o.status !== 'lost') { body.status = 'lost'; changes.push(`status ${o.status} -> lost`); }
+
+  console.log(`\n${COMMIT ? 'APPLYING' : 'DRY-RUN'}: ${o.name}`);
+  if (!changes.length) { console.log('   (nothing to change)'); return; }
+  for (const c of changes) console.log(`   ${c}`);
+  if (COMMIT) { await ghl('PUT', `/opportunities/${o.id}`, body); console.log('   done.'); }
+  else console.log('   re-run with --commit to apply.');
 }
 main().catch((e) => { console.error(e.message); process.exit(1); });
