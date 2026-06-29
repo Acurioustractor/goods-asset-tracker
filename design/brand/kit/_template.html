@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Goods artifact — [rename]</title>
+<!-- Export metadata: keep in sync with the root artboard class + its size -->
+<meta name="hz:slide-selector" content=".slide" />
+<meta name="hz:canvas-width" content="1920" />
+<meta name="hz:canvas-height" content="1080" />
+<!-- Brand fonts (Georgia + Sinter/Inter), Adobe Fonts kit -->
+<link rel="stylesheet" href="https://use.typekit.net/bys2ofg.css">
+<!-- Shared brand components -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  /* Artifact-specific tweaks only. Reuse kit.css classes for everything brand. */
+  @page { size: 20in 11.25in; margin: 0; }            /* 16:9; A4 portrait = 13.33in 18.85in */
+</style>
+</head>
+<body>
+
+  <!-- One artboard per page/slide. Add the size class: .slide (16:9) | .onepager (A4) | .square (social).
+       Reference photos by canon path (see photo-contact-sheet.html); numbers come from canon.ts. -->
+  <div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+    <span class="slide-num">01 / 01</span>
+    <p class="eyebrow terra">Eyebrow</p>
+    <h2 class="display">Headline goes here.</h2>
+
+    <!-- Example: stat grid (swap in canon numbers) -->
+    <div class="stat-grid after-head">
+      <div class="stat"><div class="num">496</div><div class="lbl">beds deployed</div></div>
+      <div class="stat sage"><div class="num">9</div><div class="lbl">communities</div></div>
+      <div class="stat sage"><div class="num">2,660kg</div><div class="lbl">HDPE diverted</div></div>
+    </div>
+
+    <p class="footnote">Footnote / source line. Figures in AUD.</p>
+  </div>
+
+</body>
+</html>

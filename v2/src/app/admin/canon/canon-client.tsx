@@ -10,10 +10,27 @@ export interface CanonImage {
   qbeAreas: string[];
   canonicalPath: string;
   consentCleared: boolean;
+  /** Purpose-slot key this image is the canon pick for (design/canon-slots.json). */
+  slot?: string;
   /** Grid + preview src (served via the canon-image API). */
   src: string;
   /** Public web URL if the image lives under v2/public/**, else null. */
   webUrl: string | null;
+}
+
+/** A purpose slot the raise needs an asset for (design/canon-slots.json). */
+export interface CanonSlot {
+  key: string;
+  label: string;
+  group: string;
+  type: string;
+  dataClass: string;
+  areas: string[];
+  use?: string;
+  note?: string;
+  seed?: string | null;
+  /** Grid src for the seed image, served via the canon-image API (null for videos / missing). */
+  seedSrc?: string | null;
 }
 
 export interface CanonGap {
@@ -35,15 +52,21 @@ export interface ElPhoto {
   consent: boolean;
   elderOk: boolean;
   location: string;
+  /** image (default) | video | portrait (RED, consent-gated). */
+  kind?: 'image' | 'video' | 'portrait';
 }
 
-/** An EL photo pinned to an area (persisted in canon-el-picks.json). */
+/** An EL asset pinned to an area or slot (persisted in canon-el-picks.json). */
 export interface CanonElPick {
   elId: string;
   url: string;
   title: string;
   consent: string;
   tags?: string[];
+  /** image | video | portrait — so pinned tiles can badge videos / RED faces. */
+  kind?: 'image' | 'video' | 'portrait';
+  /** Thumbnail URL (videos have a poster distinct from the playable url). */
+  thumb?: string;
 }
 
 type TypeFilter = 'all' | 'photo' | 'illustration' | 'chart' | 'logo';
@@ -96,9 +119,13 @@ function elConsentString(p: ElPhoto): string {
         : 'el:not-flagged';
 }
 
-function elThumb(url: string): string {
-  return url.includes('/storage/v1/object/public/story-images/')
-    ? url.replace('/object/public/', '/render/image/public/') + '?width=480&quality=60&resize=cover'
+// Route EL thumbnails through our cache proxy so grids never blank under EL's
+// burst throttling and repeat loads are instant. Only proxies EL hosts; anything
+// else (local /api paths, our own urls) is returned untouched.
+function elProxy(url: string): string {
+  if (!url || url.startsWith('/')) return url;
+  return /empathyledger\.com|supabase\.co/.test(url)
+    ? `/api/admin/el-image?url=${encodeURIComponent(url)}`
     : url;
 }
 
@@ -106,12 +133,14 @@ export function CanonBoardClient({
   images,
   gaps,
   areaNames,
+  slots,
   elPhotos,
   elPicks,
 }: {
   images: CanonImage[];
   gaps: CanonGap[];
   areaNames: Record<string, string>;
+  slots: CanonSlot[];
   elPhotos: ElPhoto[];
   elPicks: Picks;
 }) {
@@ -178,6 +207,13 @@ export function CanonBoardClient({
     return map;
   }, [gaps]);
 
+  // Friendly picker title for an area id or a slot key (slot-filling lives in the Studio tab).
+  const bucketLabel = useCallback(
+    (key: string) =>
+      areaNames[key] ? `Area ${key} · ${areaNames[key]}` : slots.find((s) => s.key === key)?.label || key,
+    [areaNames, slots],
+  );
+
   const addPick = useCallback(
     async (areaId: string, photo: ElPhoto) => {
       setError(null);
@@ -187,6 +223,8 @@ export function CanonBoardClient({
         title: photo.title,
         consent: elConsentString(photo),
         tags: photo.tags,
+        kind: photo.kind || 'image',
+        thumb: photo.thumb || photo.url,
       };
       try {
         const res = await fetch('/api/admin/canon-el-pick', {
@@ -411,13 +449,13 @@ export function CanonBoardClient({
                       >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                          src={elThumb(p.url)}
+                          src={elProxy(p.thumb || p.url)}
                           alt={p.title}
                           loading="lazy"
                           className="absolute inset-0 h-full w-full object-cover"
                         />
                         <span className="absolute top-1.5 left-1.5 rounded-full bg-blue-600 px-2 py-0.5 text-[9px] font-semibold text-white">
-                          EL pick
+                          {p.kind === 'video' ? '▶ EL video' : p.kind === 'portrait' ? 'EL face' : 'EL pick'}
                         </span>
                         <span
                           className={
@@ -472,7 +510,7 @@ export function CanonBoardClient({
       {pickerArea && (
         <ElPickerModal
           areaId={pickerArea}
-          areaLabel={`${pickerArea} · ${areaNames[pickerArea]}`}
+          areaLabel={bucketLabel(pickerArea)}
           photos={elPhotos}
           pinnedIds={new Set((picks[pickerArea] ?? []).map((p) => p.elId))}
           onAssign={(photo) => addPick(pickerArea, photo)}
@@ -638,12 +676,20 @@ function ElPickerModal({
 }) {
   const [query, setQuery] = useState('');
   const [publicOnly, setPublicOnly] = useState(false);
+  const [kindFilter, setKindFilter] = useState<'all' | 'image' | 'video' | 'portrait'>('all');
   const [preview, setPreview] = useState<ElPhoto | null>(null);
   const [busy, setBusy] = useState(false);
+
+  const kindCounts = useMemo(() => {
+    const c = { all: photos.length, image: 0, video: 0, portrait: 0 };
+    for (const p of photos) c[p.kind || 'image'] += 1;
+    return c;
+  }, [photos]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return photos.filter((p) => {
+      if (kindFilter !== 'all' && (p.kind || 'image') !== kindFilter) return false;
       if (publicOnly && !p.isPublic) return false;
       if (!q) return true;
       return (
@@ -652,7 +698,7 @@ function ElPickerModal({
         p.tags.some((t) => t.toLowerCase().includes(q))
       );
     });
-  }, [photos, query, publicOnly]);
+  }, [photos, query, publicOnly, kindFilter]);
 
   const assign = useCallback(
     async (photo: ElPhoto) => {
@@ -688,6 +734,26 @@ function ElPickerModal({
         </header>
 
         <div className="flex flex-wrap items-center gap-2 mb-4">
+          {([
+            ['all', 'All'],
+            ['image', 'Photos'],
+            ['video', 'Videos'],
+            ['portrait', 'Faces'],
+          ] as const).map(([k, label]) => (
+            <button
+              key={k}
+              type="button"
+              onClick={() => setKindFilter(k)}
+              className={
+                'rounded-full border px-3 py-1.5 text-xs font-medium transition ' +
+                (kindFilter === k
+                  ? 'bg-foreground text-background border-foreground'
+                  : 'bg-background text-foreground border-border hover:border-foreground')
+              }
+            >
+              {label} <span className="opacity-70">{kindCounts[k]}</span>
+            </button>
+          ))}
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -721,13 +787,16 @@ function ElPickerModal({
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={p.thumb}
+                  src={elProxy(p.thumb)}
                   alt={p.title}
                   loading="lazy"
                   className="aspect-square w-full bg-muted object-cover"
                 />
+                {p.kind === 'video' && (
+                  <span className="absolute inset-0 flex items-center justify-center text-2xl text-white/90 drop-shadow">▶</span>
+                )}
                 <span className={'absolute left-1 top-1 rounded px-1.5 py-0.5 text-[9px] font-semibold ' + b.cls}>
-                  {b.text}
+                  {p.kind === 'portrait' ? 'RED · face' : b.text}
                 </span>
                 {pinned && (
                   <span className="absolute right-1 top-1 rounded bg-blue-600 px-1.5 py-0.5 text-[9px] font-semibold text-white">
@@ -759,7 +828,11 @@ function ElPickerModal({
             onClick={(e) => e.stopPropagation()}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={preview.url} alt={preview.title} className="max-h-[68vh] w-full bg-black object-contain" />
+            <img
+              src={elProxy(preview.kind === 'video' ? preview.thumb : preview.url)}
+              alt={preview.title}
+              className="max-h-[68vh] w-full bg-black object-contain"
+            />
             <div className="flex flex-wrap items-center justify-between gap-3 p-4">
               <div className="min-w-0">
                 <span className={'rounded px-2 py-0.5 text-[11px] font-semibold ' + elBadge(preview).cls}>

@@ -1,0 +1,557 @@
+{
+  "_note": "CANON SLOTS — the purpose taxonomy for the raise. Each slot is one job an image/video must do across the investment artifacts (deck, one-pager, data room, funder cards). The review tool (canon-build.mjs) shows every candidate against these slots so Ben picks the single best asset per slot; canon-assign.mjs writes the winner into image-canon.json tagged with slot+purpose, overwriting the weaker pick. dataClass: green = public-safe, red = consent-gated (storytellers, identifiable people). 'seed' is the current best-known pick so the board renders filled-vs-empty on day one.",
+  "asOf": "2026-06-29",
+  "owner": "Ben",
+  "groups": [
+    "Hero & narrative",
+    "Product",
+    "Plant & manufacturing",
+    "Community & impact",
+    "Storytellers (RED)",
+    "Cost & finance",
+    "Logos",
+    "Video",
+    "QBE area visuals"
+  ],
+  "slots": [
+    {
+      "key": "cover-hero",
+      "label": "Cover / hero",
+      "group": "Hero & narrative",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "01",
+        "02"
+      ],
+      "use": "deck cover, one-pager header, data-room cover",
+      "note": "The single strongest Goods-on-Country frame: community plus bed, warm light.",
+      "seed": "design/deck-assets/stretch-bed-in-use.jpg"
+    },
+    {
+      "key": "problem",
+      "label": "The problem",
+      "group": "Hero & narrative",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "02"
+      ],
+      "use": "problem slide, why-now",
+      "note": "Shows the need a bed off the ground answers. No staged misery.",
+      "seed": null
+    },
+    {
+      "key": "closing-hero",
+      "label": "Closing image",
+      "group": "Hero & narrative",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "01"
+      ],
+      "use": "final slide, thank-you, back cover",
+      "note": "An image that leaves the room hopeful.",
+      "seed": null
+    },
+    {
+      "key": "product-hero",
+      "label": "Product hero",
+      "group": "Product",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "06"
+      ],
+      "use": "product slide, shop, spec sheet",
+      "note": "Clean Stretch Bed, the object itself.",
+      "seed": "v2/public/images/product/stretch-bed-hero.jpg"
+    },
+    {
+      "key": "product-in-use",
+      "label": "Bed in use",
+      "group": "Product",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "01",
+        "02"
+      ],
+      "use": "product, impact",
+      "note": "Someone using the bed in community.",
+      "seed": "v2/public/images/product/stretch-bed-in-use.jpg"
+    },
+    {
+      "key": "product-anatomy",
+      "label": "How it works (anatomy)",
+      "group": "Product",
+      "type": "illustration",
+      "dataClass": "green",
+      "areas": [
+        "06"
+      ],
+      "use": "how-it-works slide, spec sheet",
+      "note": "Recycled-plastic X-trestle legs, two steel poles, structural canvas.",
+      "seed": "design/deck-assets/goods-bed-anatomy.jpg"
+    },
+    {
+      "key": "assembly-sequence",
+      "label": "Assembly steps",
+      "group": "Product",
+      "type": "illustration",
+      "dataClass": "green",
+      "areas": [
+        "06"
+      ],
+      "use": "how-it-works, instructions",
+      "note": "X-trestle tension assembly, no tools, ~5 min.",
+      "seed": "v2/public/images/brand/goods-ill-assembly.png"
+    },
+    {
+      "key": "kids-building",
+      "label": "Kids building it",
+      "group": "Product",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "02",
+        "06"
+      ],
+      "use": "product, community joy",
+      "note": "Five minutes to build, no tools.",
+      "seed": "design/deck-assets/stretch-bed-kids-building.jpg"
+    },
+    {
+      "key": "plant-hero",
+      "label": "On-Country plant",
+      "group": "Plant & manufacturing",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "06",
+        "11"
+      ],
+      "use": "manufacturing, ownership pathway",
+      "note": "Containerised plant that can move to community ownership.",
+      "seed": "v2/public/images/process/facility-full-site.jpg"
+    },
+    {
+      "key": "plant-panorama",
+      "label": "Plant panorama",
+      "group": "Plant & manufacturing",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "06",
+        "11"
+      ],
+      "use": "manufacturing wide shot",
+      "note": "The production line on Country.",
+      "seed": "v2/public/images/process/factory-panorama.jpg"
+    },
+    {
+      "key": "plant-the-one-move",
+      "label": "The one move (heat press)",
+      "group": "Plant & manufacturing",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "03",
+        "06",
+        "11"
+      ],
+      "use": "manufacturing, cost story",
+      "note": "Pressing the recycled-plastic legs on Country, not in a city factory.",
+      "seed": "v2/public/images/process/heat-press-full.jpg"
+    },
+    {
+      "key": "pressed-sheets",
+      "label": "Pressed HDPE sheets",
+      "group": "Plant & manufacturing",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "06"
+      ],
+      "use": "manufacturing",
+      "note": "Waste becomes a product.",
+      "seed": "v2/public/images/process/pressed-sheets.jpg"
+    },
+    {
+      "key": "shredder",
+      "label": "Shredder / granulator",
+      "group": "Plant & manufacturing",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "06"
+      ],
+      "use": "manufacturing",
+      "note": "Collect, shred, melt, press.",
+      "seed": "design/deck-assets/shredder-granulator.jpg"
+    },
+    {
+      "key": "plastic-feedstock",
+      "label": "Shredded plastic feedstock",
+      "group": "Plant & manufacturing",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "03",
+        "06"
+      ],
+      "use": "manufacturing, impact",
+      "note": "20kg of HDPE diverted per bed.",
+      "seed": "design/deck-assets/shredded-plastic-tubs.jpg"
+    },
+    {
+      "key": "plastic-loop",
+      "label": "Plastic loop (diagram)",
+      "group": "Plant & manufacturing",
+      "type": "illustration",
+      "dataClass": "green",
+      "areas": [
+        "03",
+        "06"
+      ],
+      "use": "circular-economy slide",
+      "note": "From waste to bed to job, on Country.",
+      "seed": "design/deck-assets/goods-plastic-journey.jpg"
+    },
+    {
+      "key": "community-delivery",
+      "label": "Delivery on Country",
+      "group": "Community & impact",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "02"
+      ],
+      "use": "impact, community",
+      "note": "Delivered to Utopia, Arawerr and Ampilatwatja.",
+      "seed": "v2/public/images/utopia/utopia-09.jpg"
+    },
+    {
+      "key": "listening-first",
+      "label": "Listening first",
+      "group": "Community & impact",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "02",
+        "08"
+      ],
+      "use": "approach, governance",
+      "note": "Nic with an Elder on the verandah.",
+      "seed": "v2/public/images/media-pack/nic-with-elder-on-verandah.jpg"
+    },
+    {
+      "key": "community-ownership",
+      "label": "Community ownership (diagram)",
+      "group": "Community & impact",
+      "type": "illustration",
+      "dataClass": "green",
+      "areas": [
+        "01",
+        "09"
+      ],
+      "use": "ownership pathway",
+      "note": "The plant, the jobs and the value stay home.",
+      "seed": "design/deck-assets/goods-community-ownership-v2.png"
+    },
+    {
+      "key": "map",
+      "label": "Communities map",
+      "group": "Community & impact",
+      "type": "chart",
+      "dataClass": "green",
+      "areas": [
+        "02"
+      ],
+      "use": "reach, footprint",
+      "note": "9 communities served, 10 touched.",
+      "seed": "v2/public/images/australia-map.png"
+    },
+    {
+      "key": "washing-machine",
+      "label": "Washing machine",
+      "group": "Community & impact",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "02"
+      ],
+      "use": "second product line",
+      "note": "Pakkimjalki Kari prototype.",
+      "seed": "v2/public/images/product/washing-machine-hero.jpg"
+    },
+    {
+      "key": "storyteller-mykel",
+      "label": "Mykel",
+      "group": "Storytellers (RED)",
+      "type": "photo",
+      "dataClass": "red",
+      "areas": [
+        "02"
+      ],
+      "use": "voice slide, story card",
+      "note": "Cleared. Built Stretch Beds with Oonchiumpa and kept one for himself.",
+      "seed": "v2/public/images/people/mykel.jpg"
+    },
+    {
+      "key": "storyteller-linda-turner",
+      "label": "Linda Turner",
+      "group": "Storytellers (RED)",
+      "type": "photo",
+      "dataClass": "red",
+      "areas": [
+        "02"
+      ],
+      "use": "voice slide, story card",
+      "note": "Cleared voice.",
+      "seed": "v2/public/images/people/linda-turner.jpg"
+    },
+    {
+      "key": "storyteller-alfred-johnson",
+      "label": "Alfred Johnson",
+      "group": "Storytellers (RED)",
+      "type": "photo",
+      "dataClass": "red",
+      "areas": [
+        "02"
+      ],
+      "use": "voice slide, story card",
+      "note": "Cleared voice.",
+      "seed": "v2/public/images/people/alfred-johnson.jpg"
+    },
+    {
+      "key": "storyteller-norman-frank",
+      "label": "Norman Frank",
+      "group": "Storytellers (RED)",
+      "type": "photo",
+      "dataClass": "red",
+      "areas": [
+        "02"
+      ],
+      "use": "voice slide, story card",
+      "note": "Cleared voice.",
+      "seed": "v2/public/images/people/norman-frank.jpg"
+    },
+    {
+      "key": "cost-curve",
+      "label": "Cost-down curve",
+      "group": "Cost & finance",
+      "type": "chart",
+      "dataClass": "green",
+      "areas": [
+        "03",
+        "10",
+        "11"
+      ],
+      "use": "cost story",
+      "note": "Marginal cost falls as we press our own legs.",
+      "seed": "design/deck-assets/goods-cost-curve.png"
+    },
+    {
+      "key": "breakeven",
+      "label": "Break-even chart",
+      "group": "Cost & finance",
+      "type": "chart",
+      "dataClass": "green",
+      "areas": [
+        "03",
+        "10",
+        "11"
+      ],
+      "use": "cost story",
+      "note": "Break-even drops from 1,679 beds a year to 338.",
+      "seed": "design/deck-assets/goods-breakeven.png"
+    },
+    {
+      "key": "sankey",
+      "label": "Money flow (Sankey)",
+      "group": "Cost & finance",
+      "type": "chart",
+      "dataClass": "green",
+      "areas": [
+        "04",
+        "11"
+      ],
+      "use": "finance, every dollar traced",
+      "note": "Every dollar traced.",
+      "seed": "design/deck-assets/goods-sankey-money.png"
+    },
+    {
+      "key": "where-750",
+      "label": "Where $750 goes",
+      "group": "Cost & finance",
+      "type": "chart",
+      "dataClass": "green",
+      "areas": [
+        "04",
+        "11"
+      ],
+      "use": "unit economics",
+      "note": "What a bed price actually covers.",
+      "seed": "design/deck-assets/goods-where-750-goes.png"
+    },
+    {
+      "key": "logo-black",
+      "label": "Logo (black)",
+      "group": "Logos",
+      "type": "logo",
+      "dataClass": "green",
+      "areas": [
+        "01"
+      ],
+      "use": "light backgrounds",
+      "note": "Inline wordmark, black.",
+      "seed": "design/deck-assets/goods-inline-black.png"
+    },
+    {
+      "key": "logo-white",
+      "label": "Logo (white)",
+      "group": "Logos",
+      "type": "logo",
+      "dataClass": "green",
+      "areas": [
+        "01"
+      ],
+      "use": "dark / photo backgrounds",
+      "note": "Inline wordmark, white.",
+      "seed": "design/deck-assets/goods-inline-white.png"
+    },
+    {
+      "key": "video-hero",
+      "label": "Hero video",
+      "group": "Video",
+      "type": "video",
+      "dataClass": "green",
+      "areas": [
+        "01"
+      ],
+      "use": "site hero, deck open",
+      "note": "Ambient Goods-on-Country background.",
+      "seed": "v2/public/video/hero-desktop.mp4"
+    },
+    {
+      "key": "video-build",
+      "label": "Build video",
+      "group": "Video",
+      "type": "video",
+      "dataClass": "red",
+      "areas": [
+        "02",
+        "06"
+      ],
+      "use": "how-it-works, story",
+      "note": "Mykel building the bed (cleared). RED, identifiable.",
+      "seed": "v2/public/video/partners/oonchiumpa/mykel-building-the-bed.mp4"
+    },
+    {
+      "key": "video-testimony",
+      "label": "Testimony video",
+      "group": "Video",
+      "type": "video",
+      "dataClass": "red",
+      "areas": [
+        "02"
+      ],
+      "use": "voice, impact",
+      "note": "Jaquilane testimony. RED, confirm consent.",
+      "seed": "v2/public/video/jaquilane-testimony.mp4"
+    },
+    {
+      "key": "video-plant",
+      "label": "Plant video",
+      "group": "Video",
+      "type": "video",
+      "dataClass": "green",
+      "areas": [
+        "06",
+        "11"
+      ],
+      "use": "manufacturing",
+      "note": "Recycling / production line.",
+      "seed": "v2/public/video/recycling-plant-desktop.mp4"
+    },
+    {
+      "key": "video-community",
+      "label": "Community video",
+      "group": "Video",
+      "type": "video",
+      "dataClass": "green",
+      "areas": [
+        "02"
+      ],
+      "use": "community b-roll",
+      "note": "Community life and delivery.",
+      "seed": "v2/public/video/community-desktop.mp4"
+    },
+    {
+      "key": "area-05-risk",
+      "label": "Area 05 — Risk",
+      "group": "QBE area visuals",
+      "type": "illustration",
+      "dataClass": "green",
+      "areas": [
+        "05"
+      ],
+      "use": "QBE risk register",
+      "note": "Branded risk-horizon visual. Draft pending Ben approval.",
+      "seed": "generated-images/goods-illustrations/qbe-05-risk/01-risk-horizon.png"
+    },
+    {
+      "key": "area-07-governance",
+      "label": "Area 07 — Governance",
+      "group": "QBE area visuals",
+      "type": "illustration",
+      "dataClass": "green",
+      "areas": [
+        "07"
+      ],
+      "use": "governance / reporting",
+      "note": "Branded governance sign-off visual. Draft pending approval.",
+      "seed": "generated-images/goods-illustrations/qbe-07-governance/01-governance-signoff.png"
+    },
+    {
+      "key": "area-08-people",
+      "label": "Area 08 — People",
+      "group": "QBE area visuals",
+      "type": "illustration",
+      "dataClass": "green",
+      "areas": [
+        "08"
+      ],
+      "use": "jobs on Country",
+      "note": "Branded team / jobs visual. Draft pending approval.",
+      "seed": "generated-images/goods-illustrations/qbe-08-people/01-jobs-on-country.png"
+    },
+    {
+      "key": "area-09-ownership",
+      "label": "Area 09 — Ownership diagram",
+      "group": "QBE area visuals",
+      "type": "illustration",
+      "dataClass": "green",
+      "areas": [
+        "09"
+      ],
+      "use": "entity / transition to community ownership",
+      "note": "Branded entity-structure diagram. Draft pending approval.",
+      "seed": "generated-images/goods-illustrations/qbe-09-ownership/01-handover.png"
+    },
+    {
+      "key": "area-12-alignment",
+      "label": "Area 12 — Alignment",
+      "group": "QBE area visuals",
+      "type": "illustration",
+      "dataClass": "green",
+      "areas": [
+        "12"
+      ],
+      "use": "investor alignment tool",
+      "note": "Branded alignment-matrix visual. Draft pending approval.",
+      "seed": "generated-images/goods-illustrations/qbe-12-alignment/01-alignment-matrix.png"
+    }
+  ]
+}

@@ -1,1 +1,52 @@
-{}
+{
+  "plant-hero": [
+    {
+      "elId": "37d70ec3-b232-4af4-bfc3-9feb93540c4c",
+      "url": "https://www.empathyledger.com/api/media/37d70ec3-b232-4af4-bfc3-9feb93540c4c/file",
+      "title": "Image: 20260329-1E5A2830.jpg",
+      "consent": "el:not-flagged",
+      "kind": "image",
+      "thumb": "https://www.empathyledger.com/api/media/37d70ec3-b232-4af4-bfc3-9feb93540c4c/file?v=thumb"
+    }
+  ],
+  "video-hero": [
+    {
+      "elId": "89f865f3-4606-479f-9013-3bd55c57a4c6",
+      "url": "https://www.empathyledger.com/api/media/89f865f3-4606-479f-9013-3bd55c57a4c6/file",
+      "title": "Video: Hero overlay.mp4",
+      "consent": "el:not-flagged",
+      "kind": "video",
+      "thumb": "https://www.empathyledger.com/api/media/89f865f3-4606-479f-9013-3bd55c57a4c6/file?v=thumb"
+    }
+  ],
+  "video-build": [
+    {
+      "elId": "f571db9c-a178-40fd-a5fd-a9e15ed09a72",
+      "url": "https://www.empathyledger.com/api/media/f571db9c-a178-40fd-a5fd-a9e15ed09a72/file",
+      "title": "Video: Boys making normal speed.mp4",
+      "consent": "el:not-flagged",
+      "kind": "video",
+      "thumb": "https://www.empathyledger.com/api/media/f571db9c-a178-40fd-a5fd-a9e15ed09a72/file?v=thumb"
+    }
+  ],
+  "video-testimony": [
+    {
+      "elId": "0f8a221a-9616-416e-b755-46657873bde8",
+      "url": "https://www.empathyledger.com/api/media/0f8a221a-9616-416e-b755-46657873bde8/file",
+      "title": "Video: Karen on Beds.mp4",
+      "consent": "el:not-flagged",
+      "kind": "video",
+      "thumb": "https://www.empathyledger.com/api/media/0f8a221a-9616-416e-b755-46657873bde8/file?v=thumb"
+    }
+  ],
+  "video-community": [
+    {
+      "elId": "69678fd8-cc2f-4739-8aab-381d0ef35e69",
+      "url": "https://www.empathyledger.com/api/media/69678fd8-cc2f-4739-8aab-381d0ef35e69/file",
+      "title": "Video: Charley Utpoia.mp4",
+      "consent": "el:not-flagged",
+      "kind": "video",
+      "thumb": "https://www.empathyledger.com/api/media/69678fd8-cc2f-4739-8aab-381d0ef35e69/file?v=thumb"
+    }
+  ]
+}

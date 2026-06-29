@@ -10,6 +10,7 @@ import { revalidatePath } from 'next/cache';
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { writeCanonResolved } from '@/lib/data/canon-el-picks';
 
 export const runtime = 'nodejs';
 
@@ -84,6 +85,7 @@ export async function POST(req: Request) {
     .split(',')
     .map((s) => s.trim())
     .filter(Boolean);
+  const slot = String(form.get('slot') || '').trim();
 
   try {
     const buf = Buffer.from(await file.arrayBuffer());
@@ -97,11 +99,15 @@ export async function POST(req: Request) {
     const canonicalPath = `v2/public/images/uploads/${filename}`;
     const entry: RawImg = { subject, type, dataClass, caption, qbeAreas: areas, canonicalPath };
     if (dataClass === 'red') entry.consentCleared = consentCleared;
+    if (slot) entry.slot = slot; // tag straight to a purpose slot when uploading from the Studio
 
     const canonFile = path.join(root, 'design', 'image-canon.json');
     const raw = JSON.parse(fs.readFileSync(canonFile, 'utf8')) as RawCanon;
     if (!Array.isArray(raw.images)) raw.images = [];
-    raw.images = raw.images.filter((im) => im.canonicalPath !== canonicalPath);
+    // overwrite same path, and (if tagging a slot) whatever held that slot before
+    raw.images = raw.images.filter(
+      (im) => im.canonicalPath !== canonicalPath && (!slot || (im as RawImg).slot !== slot),
+    );
     raw.images.push(entry);
     if (raw.areaCoverage) {
       for (const a of areas) {
@@ -111,6 +117,7 @@ export async function POST(req: Request) {
       }
     }
     fs.writeFileSync(canonFile, JSON.stringify(raw, null, 2) + '\n', 'utf8');
+    if (slot) writeCanonResolved(); // keep the resolved map current when tagging a slot
     revalidatePath('/admin/canon');
 
     return NextResponse.json({
@@ -122,6 +129,7 @@ export async function POST(req: Request) {
         caption,
         qbeAreas: areas,
         canonicalPath,
+        slot: slot || undefined,
         consentCleared: dataClass === 'red' ? consentCleared : false,
         src: `/api/admin/canon-image?path=${encodeURIComponent(canonicalPath)}`,
         webUrl: `/images/uploads/${filename}`,
