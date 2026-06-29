@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Goods on Country — Investor Deck</title>
+<!-- Self-describing layout metadata for the Adobe Express exporter -->
+<meta name="hz:slide-selector" content=".slide" />
+<meta name="hz:canvas-width" content="1920" />
+<meta name="hz:canvas-height" content="1080" />
+<!-- Brand fonts: Georgia (display) + Sinter/Inter (body), Adobe Fonts kit bys2ofg -->
+<link rel="stylesheet" href="https://use.typekit.net/bys2ofg.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FBF8F1;
+    --cream-muted: #F1ECE4;
+    --sand: #E8DCC8;
+    --card: #FFFFFF;
+    --grid: #E6DFD1;
+    --terracotta: #C45C3E;
+    --clay: #A8643F;
+    --sage: #8B9D77;
+    --olive: #7E9A68;
+    --green: #5E7A4C;
+    --teal: #5C8A86;
+    --gold: #BBA255;
+    --ink: #2B2A26;
+    --sub: #7A7363;
+    --display: "georgia", Georgia, "Times New Roman", serif;
+    --sans: "sinter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  body {
+    background: #d8d2c6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 28px 0;
+    font-family: var(--sans);
+  }
+
+  /* ---- Slide canvas (16:9, 1920x1080) ---- */
+  .slide {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    background: var(--cream);
+    overflow: hidden;
+    padding: 110px 130px;
+    display: flex;
+    flex-direction: column;
+    color: var(--ink);
+    font-family: var(--sans);
+  }
+
+  /* ---- Shared type roles ---- */
+  .eyebrow {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 23px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sage);
+  }
+  .eyebrow.terra { color: var(--terracotta); }
+  .display {
+    font-family: var(--display);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.04;
+    color: var(--ink);
+  }
+  h1.display { font-size: 104px; }
+  h2.display { font-size: 76px; }
+  .body {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .body.muted { color: var(--sub); }
+  .small { font-size: 24px; line-height: 1.5; color: var(--sub); }
+  .footnote {
+    position: absolute;
+    left: 130px;
+    bottom: 64px;
+    font-size: 20px;
+    color: var(--sub);
+    max-width: 1400px;
+    line-height: 1.45;
+  }
+  .slide-num {
+    position: absolute;
+    top: 72px;
+    right: 96px;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--sub);
+  }
+  .wordmark {
+    position: absolute;
+    left: 130px;
+    bottom: 64px;
+    height: 30px;
+    opacity: 0.8;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sub);
+    border: 1px solid var(--grid);
+    border-radius: 999px;
+    padding: 6px 16px;
+  }
+
+  /* ============ Slide 1 — Cover ============ */
+  .s-cover {
+    background-image: linear-gradient(rgba(43,42,38,0.30), rgba(43,42,38,0.74)), url('CANON:cover-hero');
+    background-size: cover;
+    background-position: center 35%;
+    justify-content: flex-end;
+  }
+  .s-cover .cover-logo { position: absolute; top: 96px; left: 130px; height: 52px; }
+  .s-cover .eyebrow { color: var(--sand); }
+  .s-cover h1.display { color: #FBF8F1; max-width: 1500px; }
+  .s-cover .tagline { font-size: 36px; color: #FBF8F1; margin-top: 34px; max-width: 1180px; line-height: 1.4; }
+  .s-cover .cover-meta {
+    margin-top: 56px; display: flex; gap: 18px; align-items: center; flex-wrap: wrap;
+  }
+  .s-cover .pill {
+    font-family: var(--sans); font-weight: 600; font-size: 26px; color: #FBF8F1;
+    background: rgba(251,248,241,0.14); border: 1px solid rgba(251,248,241,0.32);
+    border-radius: 999px; padding: 12px 26px; backdrop-filter: none;
+  }
+  .s-cover .foot { position: absolute; bottom: 60px; right: 96px; color: var(--sand); font-size: 22px; }
+
+  /* ============ Quote slides (why / pull) ============ */
+  .s-quote { flex-direction: row; gap: 0; padding: 0; }
+  .s-quote .portrait { width: 720px; background-size: cover; background-position: center top; flex: none; }
+  .s-quote .qbody { flex: 1; padding: 120px 110px; display: flex; flex-direction: column; justify-content: center; }
+  .bigquote {
+    font-family: var(--display); font-weight: 400; font-size: 64px; line-height: 1.16;
+    letter-spacing: -0.01em; color: var(--ink);
+  }
+  .bigquote .mark { color: var(--terracotta); }
+  .attrib { font-family: var(--sans); font-weight: 700; font-size: 28px; color: var(--terracotta); margin-top: 40px; letter-spacing: 0.01em; }
+  .attrib span { color: var(--sub); font-weight: 500; }
+  .qframe { font-family: var(--sans); font-size: 30px; line-height: 1.5; color: var(--sub); margin-top: 40px; max-width: 900px; }
+
+  /* ============ Generic content head ============ */
+  .lead-head { max-width: 1500px; }
+  .lead-head .eyebrow { margin-bottom: 26px; }
+  .after-head { margin-top: 44px; }
+
+  /* ============ Health-chain pills (problem) ============ */
+  .chain { display: flex; align-items: center; gap: 0; margin-top: 12px; flex-wrap: wrap; }
+  .chain .link {
+    font-family: var(--sans); font-weight: 600; font-size: 27px; color: var(--ink);
+    background: var(--card); border: 1px solid var(--grid); border-radius: 14px;
+    padding: 18px 26px;
+  }
+  .chain .link.lead { background: var(--sage); color: #fff; border-color: var(--sage); }
+  .chain .conn { width: 46px; height: 2px; background: var(--clay); margin: 0 8px; flex: none; }
+
+  /* ============ Stat grid (traction) ============ */
+  .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 12px; }
+  .stat {
+    background: var(--card); border: 1px solid var(--grid); border-radius: 24px; padding: 40px 42px;
+  }
+  .stat .num { font-family: var(--display); font-weight: 400; font-size: 78px; line-height: 1; letter-spacing: -0.01em; color: var(--terracotta); }
+  .stat.sage .num { color: var(--green); }
+  .stat .lbl { font-family: var(--sans); font-size: 26px; color: var(--sub); margin-top: 16px; line-height: 1.35; }
+
+  /* ============ Spec list (product) ============ */
+  .s-split { flex-direction: row; gap: 0; padding: 0; }
+  .s-split .split-text { flex: 1; padding: 110px 110px; display: flex; flex-direction: column; justify-content: center; }
+  .s-split .split-img { width: 760px; background-size: cover; background-position: center; flex: none; }
+  .speclist { list-style: none; margin-top: 40px; }
+  .speclist li { font-family: var(--sans); font-size: 30px; color: var(--ink); padding: 22px 0; border-bottom: 1px solid var(--grid); line-height: 1.35; }
+  .speclist li:last-child { border-bottom: none; }
+  .speclist b { font-weight: 700; }
+  .price-row { margin-top: 36px; display: flex; align-items: baseline; gap: 18px; }
+  .price-row .p { font-family: var(--display); font-size: 64px; color: var(--terracotta); }
+  .price-row .pl { font-size: 26px; color: var(--sub); }
+
+  /* ============ Bar charts (hinge / cost / breakeven) ============ */
+  .chartwrap { margin-top: 30px; display: flex; align-items: flex-end; gap: 70px; height: 520px; }
+  .bar-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+  .bar {
+    width: 230px; border-radius: 16px 16px 0 0; display: flex; align-items: flex-start; justify-content: center;
+    padding-top: 22px; color: #fff; font-family: var(--display); font-size: 46px;
+  }
+  .bar-label { font-family: var(--sans); font-size: 26px; color: var(--ink); margin-top: 22px; text-align: center; font-weight: 600; }
+  .bar-sub { font-family: var(--sans); font-size: 21px; color: var(--sub); margin-top: 6px; text-align: center; }
+
+  /* hinge two-bar */
+  .hinge { display: flex; align-items: flex-end; gap: 90px; margin-top: 20px; height: 460px; }
+  .hinge .big { width: 300px; background: var(--clay); height: 100%; }
+  .hinge .small-bar { width: 300px; background: var(--sage); height: 53px; }
+  .hinge .hcol { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+  .hinge .hbar { border-radius: 16px 16px 0 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 20px; color: #fff; font-family: var(--display); font-size: 52px; }
+  .hinge-call {
+    margin-left: 60px; align-self: center; max-width: 620px;
+  }
+  .hinge-call .x { font-family: var(--display); font-size: 120px; color: var(--terracotta); line-height: 1; }
+  .hinge-call .xl { font-family: var(--sans); font-size: 30px; color: var(--ink); margin-top: 14px; line-height: 1.4; }
+
+  /* contribution annotation chips on cost slide */
+  .contrib { font-family: var(--sans); font-size: 22px; color: var(--green); font-weight: 700; margin-top: 8px; }
+  .modelled { font-size: 18px; color: var(--gold); font-weight: 700; letter-spacing: 0.04em; }
+
+  /* ============ Steps (model) ============ */
+  .steps { display: flex; gap: 16px; margin-top: 40px; }
+  .step {
+    flex: 1; background: var(--card); border: 1px solid var(--grid); border-radius: 16px;
+    padding: 26px 18px; text-align: center; font-family: var(--sans); font-weight: 700;
+    font-size: 28px; color: var(--ink);
+  }
+  .step .sn { display: block; font-size: 20px; color: var(--terracotta); margin-bottom: 8px; font-weight: 700; }
+
+  /* ============ Theory of change band ============ */
+  .toc { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 40px; }
+  .toc .tcell { border-radius: 20px; padding: 34px 30px; border: 1px solid var(--grid); }
+  .toc .tk { font-family: var(--sans); font-weight: 700; font-size: 22px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+  .toc .tt { font-family: var(--sans); font-size: 25px; line-height: 1.4; color: var(--ink); }
+  .toc .c-in { background: var(--cream-muted); }
+  .toc .c-in .tk { color: var(--clay); }
+  .toc .c-out { background: #eef0e8; }
+  .toc .c-out .tk { color: var(--green); }
+  .toc .c-outcome { background: #e9efee; }
+  .toc .c-outcome .tk { color: var(--teal); }
+  .toc .c-shift { background: var(--ink); }
+  .toc .c-shift .tk { color: var(--sage); }
+  .toc .c-shift .tt { color: #FBF8F1; }
+  .claimtag { font-size: 18px; font-weight: 700; letter-spacing: 0.04em; margin-top: 14px; display: inline-block; }
+  .claim-v { color: var(--green); }
+  .claim-m { color: var(--gold); }
+  .claim-t { color: var(--sage); }
+
+  /* ============ Ask / capital stack ============ */
+  .ask-amt { font-family: var(--display); font-size: 130px; color: var(--terracotta); line-height: 1; margin-top: 6px; }
+  .ask-amt small { font-size: 40px; color: var(--ink); }
+  .stack { margin-top: 44px; display: flex; flex-direction: column; gap: 16px; max-width: 1400px; }
+  .stack-row { display: flex; align-items: center; gap: 22px; font-family: var(--sans); font-size: 28px; color: var(--ink); }
+  .swatch { width: 22px; height: 22px; border-radius: 6px; flex: none; }
+  .stack-row .name { flex: 1; }
+  .stack-row .val { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .stack-row .inst { color: var(--sub); font-size: 23px; }
+
+  /* ============ Pathway (ownership) ============ */
+  .pathway3 { display: flex; align-items: stretch; gap: 0; margin-top: 44px; }
+  .pstage { flex: 1; background: var(--card); border: 1px solid var(--grid); border-radius: 20px; padding: 38px 34px; }
+  .pstage .pk { font-family: var(--sans); font-weight: 700; font-size: 22px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 16px; }
+  .pstage .pt { font-family: var(--sans); font-size: 25px; line-height: 1.4; color: var(--ink); }
+  .pstage.end { background: var(--sage); border-color: var(--sage); }
+  .pstage.end .pk { color: #2b2a26; }
+  .pstage.end .pt { color: #1f2418; }
+  .parrow { align-self: center; width: 54px; flex: none; text-align: center; color: var(--clay); font-size: 40px; font-family: var(--sans); }
+
+  /* ============ Dark slides (catalytic / close) ============ */
+  .s-dark { background: var(--ink); color: #FBF8F1; }
+  .s-dark .display { color: #FBF8F1; }
+  .s-dark .body { color: #e8e2d6; }
+  .s-dark .eyebrow { color: var(--sage); }
+  .s-dark .slide-num { color: #6f6a5e; }
+  .s-dark .small { color: #b8b1a3; }
+  .s-close-img {
+    background-image: linear-gradient(rgba(43,42,38,0.46), rgba(43,42,38,0.82)), url('CANON:community-delivery');
+    background-size: cover; background-position: center;
+  }
+  .closequote { font-family: var(--display); font-size: 46px; line-height: 1.25; color: #FBF8F1; margin-top: 18px; max-width: 1400px; }
+  .closequote .a { display: block; font-family: var(--sans); font-size: 24px; color: var(--sage); font-weight: 700; margin-top: 10px; }
+  .cta { font-family: var(--sans); font-size: 34px; font-weight: 700; color: #FBF8F1; margin-top: 8px; }
+  .mission { font-family: var(--display); font-size: 40px; color: var(--sage); margin-top: 18px; }
+
+  .catalytic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px 56px; margin-top: 44px; max-width: 1560px; }
+  .cat-item .ck { font-family: var(--sans); font-weight: 700; font-size: 24px; color: var(--sage); letter-spacing: 0.04em; margin-bottom: 12px; }
+  .cat-item .ct { font-family: var(--sans); font-size: 28px; line-height: 1.45; color: #e8e2d6; }
+  .cat-item .ct b { color: #FBF8F1; }
+
+  /* ---- Print: one slide per 16:9 page, full bleed ---- */
+  @page { size: 20in 11.25in; margin: 0; }
+  @media print {
+    body { background: #fff; gap: 0; padding: 0; display: block; }
+    .slide { box-shadow: none; break-after: page; page-break-after: always; }
+    .slide:last-child { break-after: auto; page-break-after: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ Slide 1 — Cover ============ -->
+<div class="slide s-cover" data-canvas-width="1920" data-canvas-height="1080">
+  <img class="cover-logo" src="../../deck-assets/goods-inline-white.png" alt="Goods on Country">
+  <p class="eyebrow">Investment opportunity</p>
+  <h1 class="display">Beds off the ground, made and owned On Country.</h1>
+  <p class="tagline">A catalytic capital raise to move the press into community hands.</p>
+  <div class="cover-meta">
+    <span class="pill">496 beds</span>
+    <span class="pill">9 communities</span>
+    <span class="pill">16 washing machines</span>
+    <span class="pill">2,660kg plastic diverted</span>
+  </div>
+  <p class="foot">Prepared for investors and funders. Founder-audited. 2026</p>
+</div>
+
+<!-- ============ Slide 2 — The why (Linda) ============ -->
+<div class="slide s-quote" data-canvas-width="1920" data-canvas-height="1080">
+  <div class="portrait" style="background-image:url('CANON:storyteller-linda-turner')"></div>
+  <div class="qbody">
+    <span class="slide-num">02 / 16</span>
+    <p class="eyebrow terra" style="margin-bottom:34px;">The why</p>
+    <p class="bigquote"><span class="mark">"</span>We've never been asked what sort of house we'd like to live in.<span class="mark">"</span></p>
+    <p class="attrib">Linda Turner <span>Tennant Creek</span></p>
+    <p class="qframe">That is the whole thesis. Goods exists because the people closest to the problem were never asked, and they are the ones who should lead the answer.</p>
+  </div>
+</div>
+
+<!-- ============ Slide 3 — The problem / system ============ -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <span class="slide-num">03 / 16</span>
+  <div class="lead-head">
+    <p class="eyebrow">The problem</p>
+    <h2 class="display">A washable bed off the ground is health hardware.</h2>
+  </div>
+  <p class="body muted after-head" style="max-width:1500px;">In remote communities a bed you can wash, and a washing machine that survives the conditions, are the first practical links in a chain that public health already understands.</p>
+  <div class="chain" style="margin-top:48px;">
+    <span class="link lead">Washable bed off the ground</span>
+    <span class="conn"></span>
+    <span class="link">better skin health</span>
+    <span class="conn"></span>
+    <span class="link">scabies</span>
+    <span class="conn"></span>
+    <span class="link">Strep A</span>
+    <span class="conn"></span>
+    <span class="link">acute rheumatic fever</span>
+    <span class="conn"></span>
+    <span class="link">rheumatic heart disease</span>
+  </div>
+  <p class="body" style="margin-top:54px;max-width:1500px;"><b>"</b>You have to bring them on the barge. Pay for freight. It all adds up.<b>"</b> &nbsp; <span style="color:var(--terracotta);font-weight:700;">Alfred Johnson, Palm Island</span></p>
+  <p class="footnote">The scabies to rheumatic heart disease pathway is recognised public health logic. It is the reason this work matters, not a health outcome Goods claims. Any outcome would be measured with a named clinical partner.</p>
+</div>
+
+<!-- ============ Slide 4 — The insight / hinge ============ -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <span class="slide-num">04 / 16</span>
+  <div class="lead-head">
+    <p class="eyebrow terra">The insight</p>
+    <h2 class="display">Owning the press is the whole business.</h2>
+  </div>
+  <div style="display:flex;align-items:flex-end;margin-top:30px;">
+    <div class="hinge">
+      <div class="hcol">
+        <div class="hbar big">$344</div>
+        <div class="bar-label">Finished leg kit<br>bought from a city factory</div>
+      </div>
+      <div class="hcol">
+        <div class="hbar small-bar">$40</div>
+        <div class="bar-label">Raw shredded plastic<br>inside the same legs</div>
+      </div>
+    </div>
+    <div class="hinge-call">
+      <div class="x">8.6&times;</div>
+      <div class="xl">markup on the recycled plastic leg. Pressing our own legs saves <b style="color:var(--terracotta)">$194 a bed</b>. Whoever owns the press owns the margin, and we are building it so community does.</div>
+    </div>
+  </div>
+  <p class="footnote">Bill of materials, engine-locked. Steel and canvas sit under 3&times;; hardware about 1&times;. The plastic is the whole game.</p>
+</div>
+
+<!-- ============ Slide 5 — Proof / traction ============ -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <span class="slide-num">05 / 16</span>
+  <div class="lead-head">
+    <p class="eyebrow terra">Proof, not promises</p>
+    <h2 class="display">Already real, deployed, and tracked.</h2>
+  </div>
+  <div class="stat-grid after-head">
+    <div class="stat"><div class="num">496</div><div class="lbl">beds deployed<br>363 Basket, 133 Stretch</div></div>
+    <div class="stat sage"><div class="num">9</div><div class="lbl">communities served<br>10 distinct communities touched</div></div>
+    <div class="stat sage"><div class="num">16</div><div class="lbl">washing machines in community</div></div>
+    <div class="stat sage"><div class="num">2,660kg</div><div class="lbl">recycled HDPE diverted</div></div>
+    <div class="stat"><div class="num">$741,111</div><div class="lbl">funding received to date, Goods-scoped</div></div>
+    <div class="stat"><div class="num">$713,827</div><div class="lbl">accountant-signed Goods-only revenue carve-out</div></div>
+  </div>
+  <p class="footnote">Bed counts are QR-tracked in the asset register and drift-guarded. Revenue is Goods-scoped cash received, restated 3 Jun 2026; $143,000 in authorised receivables sits on top. No surplus is claimed: the connected entity runs an FY26 net loss, investing ahead of revenue. Figures in AUD.</p>
+</div>
+
+<!-- ============ Slide 6 — The product ============ -->
+<div class="slide s-split" data-canvas-width="1920" data-canvas-height="1080">
+  <div class="split-text">
+    <span class="slide-num" style="color:var(--sub)">06 / 16</span>
+    <p class="eyebrow terra">The product</p>
+    <h2 class="display" style="margin-top:24px;">The Stretch Bed</h2>
+    <ul class="speclist">
+      <li>Recycled HDPE X-trestle legs, two galvanised steel poles, and <b>structural canvas</b>. Tension does the work, no screws.</li>
+      <li><b>26kg</b>, holds <b>200kg</b>, packs to <b>188&times;92&times;25cm</b></li>
+      <li>Assembles in about <b>5 minutes</b>, no tools. <b>10+ year</b> design life, 5 year warranty.</li>
+      <li><b>20kg</b> of HDPE diverted per bed. Washable, repairable, flat-packs for freight.</li>
+    </ul>
+    <div class="price-row"><span class="p">$750</span><span class="pl">current shop price, the only direct-sale product</span></div>
+  </div>
+  <div class="split-img" style="background-image:url('CANON:product-anatomy')"></div>
+</div>
+
+<!-- ============ Slide 7 — Unit economics ============ -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <span class="slide-num">07 / 16</span>
+  <div class="lead-head">
+    <p class="eyebrow terra">Unit economics</p>
+    <h2 class="display">The press moves us from underwater to viable.</h2>
+  </div>
+  <div class="chartwrap">
+    <div class="bar-col">
+      <div class="bar" style="height:340px;background:var(--teal)">$685</div>
+      <div class="bar-label">Buy-Kit</div>
+      <div class="bar-sub">contribution $65 / bed</div>
+    </div>
+    <div class="bar-col">
+      <div class="bar" style="height:212px;background:var(--olive)">$426</div>
+      <div class="bar-label">Factory<br>press our own legs</div>
+      <div class="bar-sub">contribution $324 / bed</div>
+    </div>
+    <div class="bar-col">
+      <div class="bar" style="height:209px;background:var(--green)">$421</div>
+      <div class="bar-label">Community <span class="modelled">MODELLED</span></div>
+      <div class="bar-sub">contribution $329 / bed</div>
+    </div>
+    <div style="align-self:center;max-width:560px;margin-left:40px;">
+      <p class="body">Marginal cost per bed against the $750 price. The same <b>$109,500</b> annual fixed block clears at one-fifth the volume once leg-pressing comes in-house.</p>
+      <p class="small" style="margin-top:18px;">Buy-Kit and Factory are engine-locked from the bill of materials. The Community state is modelled on a fair-wage band and free community-collected feedstock.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Slide 8 — Break-even ============ -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <span class="slide-num">08 / 16</span>
+  <div class="lead-head">
+    <p class="eyebrow terra">The step-change</p>
+    <h2 class="display">Break-even falls from 1,679 beds a year to 338.</h2>
+  </div>
+  <div class="chartwrap">
+    <div class="bar-col">
+      <div class="bar" style="height:430px;background:var(--teal)">1,679</div>
+      <div class="bar-label">Buy-Kit</div>
+    </div>
+    <div class="bar-col">
+      <div class="bar" style="height:87px;background:var(--olive)">338</div>
+      <div class="bar-label">Factory</div>
+    </div>
+    <div class="bar-col">
+      <div class="bar" style="height:85px;background:var(--green)">333</div>
+      <div class="bar-label">Community <span class="modelled">MODELLED</span></div>
+    </div>
+    <div style="align-self:center;max-width:600px;margin-left:40px;">
+      <p class="body">This is arithmetic, not narrative. The press is the single most fundable use of funds: a hard step-change tied to one asset.</p>
+      <p class="small" style="margin-top:18px;">Today the honest run-rate is about <b>120 beds a year</b>. Reaching the 338 Factory break-even is a 2.8&times; lift, closed by the demand commitments in the ask, not assumed.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Slide 9 — Pull, not push ============ -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <span class="slide-num">09 / 16</span>
+  <div class="lead-head">
+    <p class="eyebrow">Pull, not push</p>
+    <h2 class="display">Communities are pulling this forward.</h2>
+  </div>
+  <div style="display:flex;gap:48px;margin-top:50px;">
+    <div style="flex:1;display:flex;gap:30px;align-items:flex-start;">
+      <div style="width:200px;height:240px;border-radius:18px;background-size:cover;background-position:center top;flex:none;background-image:url('CANON:storyteller-norman-frank')"></div>
+      <div>
+        <p class="body" style="font-family:var(--display);font-size:34px;line-height:1.25;">"Now we've got our own ways, we can collaborate with our own people. Not only here. It'll be everywhere."</p>
+        <p class="attrib" style="font-size:25px;margin-top:24px;">Norman Frank <span>Tennant Creek</span></p>
+      </div>
+    </div>
+    <div style="flex:1;display:flex;gap:30px;align-items:flex-start;">
+      <div style="width:200px;height:240px;border-radius:18px;background-size:cover;background-position:center top;flex:none;background-image:url('CANON:storyteller-mykel')"></div>
+      <div>
+        <p class="body" style="font-family:var(--display);font-size:34px;line-height:1.25;">"I was looking for a job like this, but couldn't find any. Now I'll be rocking up every day to make them."</p>
+        <p class="attrib" style="font-size:25px;margin-top:24px;">Mykel <span>Alice Springs, built the beds</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="footnote">Communities have asked for repeat and additional orders. Demand quantities are held qualitatively until each carries a dated provenance and consent record. Voices used here are consent-cleared.</p>
+</div>
+
+<!-- ============ Slide 10 — The scale model ============ -->
+<div class="slide s-split" data-canvas-width="1920" data-canvas-height="1080">
+  <div class="split-text">
+    <span class="slide-num" style="color:var(--sub)">10 / 16</span>
+    <p class="eyebrow terra">The scale model</p>
+    <h2 class="display" style="margin-top:24px;">A movable plant, On Country.</h2>
+    <p class="body muted" style="margin-top:28px;max-width:760px;">A two-container system that travels community to community and is built to move into community ownership. About 30 beds a week.</p>
+    <div class="steps">
+      <div class="step"><span class="sn">01</span>Collect</div>
+      <div class="step"><span class="sn">02</span>Shred</div>
+      <div class="step"><span class="sn">03</span>Press</div>
+      <div class="step"><span class="sn">04</span>Assemble</div>
+    </div>
+    <p class="body" style="margin-top:36px;"><b style="color:var(--terracotta)">$110,046</b> of press capex is already spent. The plant, the jobs and the margin stay home.</p>
+    <p class="mission" style="color:var(--terracotta);font-size:34px;margin-top:20px;">"Our goal is to become unnecessary."</p>
+  </div>
+  <div class="split-img" style="background-image:url('CANON:plant-hero')"></div>
+</div>
+
+<!-- ============ Slide 11 — Impact thesis ============ -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <span class="slide-num">11 / 16</span>
+  <div class="lead-head">
+    <p class="eyebrow">Impact thesis</p>
+    <h2 class="display">From inputs to systemic shift, every link labelled.</h2>
+  </div>
+  <div class="toc">
+    <div class="tcell c-in"><div class="tk">Input</div><div class="tt">Recycled plastic, fair-wage local labour, design led by community.</div></div>
+    <div class="tcell c-out"><div class="tk">Output</div><div class="tt">Beds off the ground and working washing machines.<span class="claimtag claim-v">496 beds, 16 washers, 2,660kg</span></div></div>
+    <div class="tcell c-outcome"><div class="tk">Outcome</div><div class="tt">Health hardware in the home and fair-wage local jobs.<span class="claimtag claim-m">pathway recognised, incidence modelled</span></div></div>
+    <div class="tcell c-shift"><div class="tk">Systemic shift</div><div class="tt">The plant, the jobs and the margin move into community ownership.<span class="claimtag claim-t">target</span></div></div>
+  </div>
+  <p class="footnote">Indigenous data sovereignty applied (CARE, OCAP). Community controls its own register, story and impact data. The consent gate is codified as policy, not a promise.</p>
+</div>
+
+<!-- ============ Slide 12 — Team & Indigenous-led pathway ============ -->
+<div class="slide s-split" data-canvas-width="1920" data-canvas-height="1080">
+  <div class="split-text">
+    <span class="slide-num" style="color:var(--sub)">12 / 16</span>
+    <p class="eyebrow terra">Team and partners</p>
+    <h2 class="display" style="margin-top:24px;">Design happens in community.</h2>
+    <p class="body" style="margin-top:30px;max-width:780px;">Founded by Ben Knight and Nic Marchesi in 2018, after Dr Boe Remenyi's rheumatic heart disease death certificates prompted one question: what can we build?</p>
+    <p class="body" style="margin-top:24px;max-width:780px;"><b>Oonchiumpa</b>, a 100% Aboriginal-owned consultancy in Alice Springs, leads design. <b>Palm Island Community Company</b> is a community partner. The work happens around the fire, with Elders.</p>
+    <p class="small" style="margin-top:26px;max-width:780px;">Stated honestly: the two founders are currently the only workers, the biggest constraint. Priority hires are a GM and Business Development lead, plus commercial directors for the new governance structure.</p>
+  </div>
+  <div class="split-img" style="background-image:url('CANON:listening-first')"></div>
+</div>
+
+<!-- ============ Slide 13 — Why catalytic capital ============ -->
+<div class="slide s-dark" data-canvas-width="1920" data-canvas-height="1080">
+  <span class="slide-num">13 / 16</span>
+  <div class="lead-head">
+    <p class="eyebrow">Why catalytic capital</p>
+    <h2 class="display">Too proven for a grant. Not yet bankable for commercial money.</h2>
+  </div>
+  <div class="catalytic-grid">
+    <div class="cat-item"><div class="ck">The gap</div><div class="ct">Real deployment proof, but commercial lenders will not yet underwrite a first-of-kind containerised plant for remote communities.</div></div>
+    <div class="cat-item"><div class="ck">Additionality</div><div class="ct">The press is exactly what commercial money will not fund yet, so the catalytic dollar is <b>additional by definition</b>.</div></div>
+    <div class="cat-item"><div class="ck">Exit of concession</div><div class="ct">Structured as a <b>recoverable grant with a transfer trigger</b>. The plant transfers to a community corporation at nominal value, the concession recovered from margin or written down into community ownership.</div></div>
+    <div class="cat-item"><div class="ck">Leverage</div><div class="ct">About <b>$4.10 of commercial capital</b> is historically mobilised per $1 of concessional capital. <span class="small">External benchmark.</span></div></div>
+  </div>
+</div>
+
+<!-- ============ Slide 14 — The ask + capital stack ============ -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080" style="justify-content:center;">
+  <span class="slide-num">14 / 16</span>
+  <div class="lead-head">
+    <p class="eyebrow terra">The ask</p>
+    <h2 class="display" style="margin-top:14px;">Signed, match-eligible catalytic capital.</h2>
+  </div>
+  <div style="display:flex;gap:80px;margin-top:24px;align-items:flex-start;">
+    <div style="flex:none;">
+      <div class="ask-amt">$400K<small> target</small></div>
+      <p class="small" style="max-width:460px;margin-top:18px;">As a recoverable grant that converts into community ownership. Signed grant agreements, executed concessional debt, and binding offtake commitments all count as match.</p>
+    </div>
+    <div style="flex:1;">
+      <p class="body muted" style="margin-bottom:8px;">An indicative blended stack. 0 signed today; this is a conversion task, not discovery.</p>
+      <div class="stack">
+        <div class="stack-row"><span class="swatch" style="background:var(--terracotta)"></span><span class="name">Concessional / repayable lead <span class="inst">no ownership gate</span></span><span class="val">$250K</span></div>
+        <div class="stack-row"><span class="swatch" style="background:var(--sage)"></span><span class="name">Philanthropic first-loss <span class="inst">grant toward repayable</span></span><span class="val">$100K</span></div>
+        <div class="stack-row"><span class="swatch" style="background:var(--gold)"></span><span class="name">Buyer / procurement <span class="inst">separate from bed orders</span></span><span class="val">$75K</span></div>
+        <div class="stack-row"><span class="swatch" style="background:var(--teal)"></span><span class="name">Demand-side commitments <span class="inst">count as match and as commercial proof</span></span><span class="val">LOIs</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="footnote">Any QBE Foundation match is conditional on its program rules and is upside, never the headline. Pipeline is not committed capital; the match is the reward for closing it. Figures are target asks in AUD, not awarded amounts.</p>
+</div>
+
+<!-- ============ Slide 15 — Ownership & governance ============ -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <span class="slide-num">15 / 16</span>
+  <div class="lead-head">
+    <p class="eyebrow terra">Ownership and governance</p>
+    <h2 class="display">A time-bound transfer to genuine Indigenous ownership.</h2>
+  </div>
+  <div class="pathway3">
+    <div class="pstage"><div class="pk">Today</div><div class="pt">Goods trades through a sole trader, migrating to A Curious Tractor Pty Ltd as the go-forward company.</div></div>
+    <div class="parrow">&rsaquo;</div>
+    <div class="pstage"><div class="pk">Transition</div><div class="pt">Supply Nation certified joint venture with a community corporation, 50%+ Indigenous board control, a documented capability plan.</div></div>
+    <div class="parrow">&rsaquo;</div>
+    <div class="pstage end"><div class="pk">Endpoint</div><div class="pt">A community corporation, 51%+ owned and controlled, holds the plant, the jobs and the margin. An optional trust locks the asset to community.</div></div>
+  </div>
+  <p class="body" style="margin-top:40px;max-width:1560px;">This pathway is in active design <b>with</b> Palm Island Community Company and Oonchiumpa, not designed for them. 51% certification also unlocks the Indigenous Procurement Policy set-aside, making the community plant a preferred supplier.</p>
+  <p class="footnote">Entity and ownership structure is an open decision in progress with legal counsel. Stated honestly, not as finished.</p>
+</div>
+
+<!-- ============ Slide 16 — The close ============ -->
+<div class="slide s-dark s-close-img" data-canvas-width="1920" data-canvas-height="1080" style="justify-content:center;">
+  <span class="slide-num">16 / 16</span>
+  <p class="eyebrow">The close</p>
+  <h2 class="display" style="font-size:64px;max-width:1500px;margin-top:14px;">Build the press, and the value of every bed stays where the beds are.</h2>
+  <p class="cta" style="margin-top:34px;">The ask: $400K of signed, match-eligible capital, moving the press toward community ownership.</p>
+  <p class="closequote" style="margin-top:40px;">"We've never been asked what sort of house we'd like to live in." <span class="a">Linda Turner, and now her community is building the beds.</span></p>
+  <p class="closequote" style="margin-top:24px;">"I'll be rocking up every day to make them." <span class="a">Mykel, Alice Springs.</span></p>
+  <p class="mission">Our goal is to become unnecessary. &nbsp; goodsoncountry.com</p>
+</div>
+
+</body>
+</html>
