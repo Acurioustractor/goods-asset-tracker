@@ -25,6 +25,22 @@ offline/print companion and feed the same canon files.
 
 Run order to refresh the board's EL data cache + the offline sheets: `cd v2 && node scripts/el-photo-review.mjs && node scripts/canon-build.mjs`. Collapse picks to the resolved map any time with `node scripts/canon-resolve.mjs` (the board also does this on every pin).
 
+## Wire picks straight into an artifact (the closed loop)
+Reference any canon image by its **slot**, not a file path: write `CANON:<slot-key>` inside a
+`src="…"` or `url('…')`. When you render, the current winner from `design/canon-resolved.json`
+is baked in automatically.
+
+```html
+<div class="op-hero" style="background-image:url('CANON:cover-hero')"></div>
+<img src="CANON:storyteller-mykel">
+```
+- `design/brand/kit/render.sh <artifact>` detects `CANON:` tokens and bakes them before rendering.
+- Or bake manually: `node v2/scripts/canon-render.mjs <artifact.html> [--inline]` → writes `<artifact>.resolved.html`.
+- Resolution per slot: local canon pick → EL pick (from the local `.el-cache`, so it works even when EL is down) → seed. EL CDN downloads are cached in `design/.canon-cache/`.
+- `--inline` base64-embeds every image for a self-contained file (Adobe Express / portable PDF).
+
+So: pick on `/admin/canon` → `canon-resolved.json` updates → re-render the deck/one-pager → your pick is in it. `funder-onepager.html` and `claude-design/invest-deck-full.html` are wired this way.
+
 ## The canon photo/video loop (review absolutely everything → pick → overwrite)
 The investment imagery is driven by **purpose slots**, not loose filenames. Each slot is one job an asset must do (cover, product hero, the plant, a named storyteller, a video).
 
