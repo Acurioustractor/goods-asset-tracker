@@ -11,11 +11,13 @@ import Link from 'next/link';
 import { safeImageUrl } from '@/lib/empathy-ledger/media-tier';
 import { getCanonElPicks } from '@/lib/data/canon-el-picks';
 import {
-  CanonBoardClient,
   type CanonImage,
   type CanonGap,
+  type CanonSlot,
   type ElPhoto,
 } from './canon-client';
+import { CanonShell, type Candidate } from './canon-studio';
+import { getLocalImages } from '@/lib/data/local-images';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -36,8 +38,12 @@ const AREA_NAMES: Record<string, string> = {
   '12': 'Investor Alignment',
 };
 
-const EL_URL = process.env.EMPATHY_LEDGER_SUPABASE_URL || '';
-const EL_KEY = process.env.EMPATHY_LEDGER_SUPABASE_KEY || '';
+// EL content-hub API (the legacy EL Supabase keys were disabled org-wide
+// 2026-06-17, so the old /rest/v1 path is dead — we read the public content-hub).
+const EL_API = (process.env.EMPATHY_LEDGER_API_URL || 'https://empathy-ledger-v2.vercel.app').replace(/\/$/, '');
+const EL_API_KEY = process.env.EMPATHY_LEDGER_API_KEY || '';
+const EL_PCODE = process.env.EMPATHY_LEDGER_PROJECT_CODE || 'goods-on-country';
+const EL_SLUG = process.env.EMPATHY_LEDGER_SITE_SLUG || 'goods-asset-register';
 const EL_PID = process.env.EMPATHY_LEDGER_PROJECT_ID || '';
 
 function repoRoot(): string {
@@ -53,6 +59,7 @@ interface RawImage {
   qbeAreas?: string[];
   canonicalPath: string;
   consentCleared?: boolean;
+  slot?: string;
 }
 
 function loadCanon(): { asOf: string; images: CanonImage[]; gaps: CanonGap[]; error: string | null } {
@@ -75,6 +82,7 @@ function loadCanon(): { asOf: string; images: CanonImage[]; gaps: CanonGap[]; er
       qbeAreas: im.qbeAreas ?? [],
       canonicalPath: im.canonicalPath,
       consentCleared: !!im.consentCleared,
+      slot: im.slot,
       src: `/api/admin/canon-image?path=${encodeURIComponent(im.canonicalPath)}`,
       webUrl: im.canonicalPath.startsWith('v2/public/')
         ? '/' + im.canonicalPath.slice('v2/public/'.length)
@@ -86,75 +94,171 @@ function loadCanon(): { asOf: string; images: CanonImage[]; gaps: CanonGap[]; er
   }
 }
 
-interface ElRow {
+interface ElMediaRow {
   id: string;
+  url: string;
+  thumbnailUrl: string | null;
   title: string | null;
-  tags: string[] | null;
-  is_public: boolean;
-  has_explicit_consent: boolean;
-  requires_elder_review: boolean;
-  elder_reviewed: boolean;
-  location_text: string | null;
-  story_image_url: string | null;
-  media_url: string | null;
+  altText: string | null;
+  culturalTags: string[] | null;
+  consentObtained: boolean | null;
+  elderApproved: boolean | null;
+  isHero: boolean | null;
 }
 
-// Fetch the EL photo library (same query + privacy guard as the dashboard picker).
+// Fetch the EL photo library via the content-hub API. Consent flags come straight
+// from EL; most project uploads carry none yet, so they surface as "not flagged"
+// and the human still holds the final community-consent call.
 async function fetchElPhotos(): Promise<ElPhoto[]> {
-  if (!EL_URL || !EL_KEY || !EL_PID) return [];
-  const url =
-    `${EL_URL}/rest/v1/stories?project_id=eq.${EL_PID}` +
-    `&select=id,title,tags,is_public,has_explicit_consent,requires_elder_review,elder_reviewed,location_text,story_image_url,media_url` +
-    `&or=(story_image_url.not.is.null,media_url.not.is.null)&order=created_at.desc&limit=500`;
-  const res = await fetch(url, {
-    headers: { apikey: EL_KEY, Authorization: `Bearer ${EL_KEY}` },
-    cache: 'no-store',
-  });
-  if (!res.ok) return [];
-  const rows = (await res.json()) as ElRow[];
-  return rows
-    .map((s): ElPhoto | null => {
-      const u = s.story_image_url || s.media_url;
-      if (!u || /\.(mp4|mov|m4v|webm)(\?|$)/i.test(u)) return null;
-      if (!safeImageUrl(u)) return null;
-      const thumb = u.includes('/storage/v1/object/public/story-images/')
-        ? u.replace('/object/public/', '/render/image/public/') + '?width=480&quality=60&resize=cover'
-        : u;
-      return {
+  if (!EL_API_KEY) return [];
+  try {
+    const url = `${EL_API}/api/v1/content-hub/media?project_code=${EL_PCODE}&type=image&limit=300`;
+    const res = await fetch(url, { headers: { 'X-API-Key': EL_API_KEY }, cache: 'no-store' });
+    if (!res.ok) return [];
+    const rows = (((await res.json()) as { media?: ElMediaRow[] })?.media ?? []);
+    return rows
+      .map((m): ElPhoto | null => {
+        if (!m.url || !safeImageUrl(m.url)) return null;
+        return {
+          id: m.id,
+          url: m.url,
+          thumb: m.thumbnailUrl || m.url,
+          title: m.title || m.altText || '',
+          tags: m.culturalTags || [],
+          isPublic: false, // content-hub exposes no public flag; nothing is public by default
+          consent: !!m.consentObtained,
+          elderOk: !!m.elderApproved,
+          location: '',
+          kind: 'image' as const,
+        };
+      })
+      .filter((p): p is ElPhoto => p !== null);
+  } catch {
+    return [];
+  }
+}
+
+// EL videos (content-hub). Same consent semantics; thumb is the poster frame.
+async function fetchElVideos(): Promise<ElPhoto[]> {
+  if (!EL_API_KEY) return [];
+  try {
+    const url = `${EL_API}/api/v1/content-hub/media?project_code=${EL_PCODE}&type=video&limit=100`;
+    const res = await fetch(url, { headers: { 'X-API-Key': EL_API_KEY }, cache: 'no-store' });
+    if (!res.ok) return [];
+    const rows = (((await res.json()) as { media?: ElMediaRow[] })?.media ?? []);
+    return rows
+      .filter((m) => m.url)
+      .map((m) => ({
+        id: m.id,
+        url: m.url,
+        thumb: m.thumbnailUrl || m.url,
+        title: m.title || m.altText || '',
+        tags: m.culturalTags || [],
+        isPublic: false,
+        consent: !!m.consentObtained,
+        elderOk: !!m.elderApproved,
+        location: '',
+        kind: 'video' as const,
+      }));
+  } catch {
+    return [];
+  }
+}
+
+// EL storyteller portraits (syndication). Always RED — consent-gated faces.
+async function fetchElPortraits(): Promise<ElPhoto[]> {
+  if (!EL_API_KEY || !EL_SLUG || !EL_PID) return [];
+  try {
+    const url = `${EL_API}/api/v1/sites/${EL_SLUG}/projects/${EL_PID}/storytellers?limit=100`;
+    const res = await fetch(url, { headers: { Authorization: `Bearer ${EL_API_KEY}` }, cache: 'no-store' });
+    if (!res.ok) return [];
+    const rows = (((await res.json()) as { storytellers?: { id: string; name?: string; avatarUrl?: string; isElder?: boolean; location?: string }[] })?.storytellers ?? []);
+    return rows
+      .filter((s) => s.avatarUrl && safeImageUrl(s.avatarUrl))
+      .map((s) => ({
         id: s.id,
-        url: u,
-        thumb,
-        title: s.title || '',
-        tags: s.tags || [],
-        isPublic: !!s.is_public,
-        consent: !!s.has_explicit_consent,
-        elderOk: !s.requires_elder_review || !!s.elder_reviewed,
-        location: s.location_text || '',
-      };
-    })
-    .filter((p): p is ElPhoto => p !== null);
+        url: s.avatarUrl as string,
+        thumb: s.avatarUrl as string,
+        title: s.name || '',
+        tags: s.isElder ? ['elder'] : [],
+        isPublic: false,
+        consent: false, // RED: the human holds the consent call
+        elderOk: false,
+        location: s.location || '',
+        kind: 'portrait' as const,
+      }));
+  } catch {
+    return [];
+  }
+}
+
+interface RawSlot {
+  key: string; label: string; group: string; type: string; dataClass: string;
+  areas?: string[]; use?: string; note?: string; seed?: string | null;
+}
+function loadSlots(): CanonSlot[] {
+  try {
+    const p = path.join(repoRoot(), 'design', 'canon-slots.json');
+    const raw = JSON.parse(fs.readFileSync(p, 'utf8')) as { slots?: RawSlot[] };
+    return (raw.slots ?? []).map((s) => ({
+      key: s.key, label: s.label, group: s.group, type: s.type, dataClass: s.dataClass,
+      areas: s.areas ?? [], use: s.use, note: s.note, seed: s.seed ?? null,
+      seedSrc: s.seed && s.type !== 'video' && fs.existsSync(path.join(repoRoot(), s.seed))
+        ? `/api/admin/canon-image?path=${encodeURIComponent(s.seed)}`
+        : null,
+    }));
+  } catch {
+    return [];
+  }
 }
 
 export default async function CanonBoardPage() {
   const { asOf, images, gaps, error } = loadCanon();
-  const elPhotos = await fetchElPhotos();
+  const [imgPhotos, vids, portraits] = await Promise.all([
+    fetchElPhotos(),
+    fetchElVideos(),
+    fetchElPortraits(),
+  ]);
+  const elPhotos = [...imgPhotos, ...vids, ...portraits];
+  const slots = loadSlots();
   const elPicks = getCanonElPicks();
-  const elMissing = !EL_URL || !EL_KEY || !EL_PID;
+  const elMissing = !EL_API_KEY;
+
+  // Unified candidate pool for the Studio: every EL asset + every repo image.
+  const elConsentStr = (p: ElPhoto) =>
+    p.isPublic ? 'el:public' : p.consent && p.elderOk ? 'el:gated-ok' : p.consent ? 'el:consent-elder-pending' : 'el:not-flagged';
+  const elCandidates: Candidate[] = elPhotos.map((p) => ({
+    id: p.id, source: 'el', kind: p.kind || 'image',
+    thumb: p.thumb, full: p.url, title: p.title, tags: p.tags,
+    area: p.tags[0]?.split(':').pop() || '', url: p.url, consent: elConsentStr(p),
+  }));
+  const repoCandidates: Candidate[] = getLocalImages().map((im) => ({
+    id: im.url, source: 'repo',
+    kind: /\/people\//.test(im.url) ? 'portrait' : 'image',
+    thumb: im.url, full: im.url,
+    title: im.filename.replace(/\.[a-z0-9]+$/i, ''), tags: im.tags, area: im.area,
+    path: `v2/public${im.url}`,
+  }));
+  const candidates = [...repoCandidates, ...elCandidates];
+
+  const canonBySlot: Record<string, { canonicalPath: string; src: string; subject: string }> = {};
+  for (const im of images) if (im.slot) canonBySlot[im.slot] = { canonicalPath: im.canonicalPath, src: im.src, subject: im.subject };
 
   return (
     <div className="p-2 sm:p-4">
       <header className="mb-6">
-        <h1 className="text-2xl font-bold">Canon photo board</h1>
+        <h1 className="text-2xl font-bold">Canon studio</h1>
         <p className="mt-1 max-w-3xl text-sm text-muted-foreground">
-          The approved image per subject, organised by QBE diagnostic area. Click any image to copy
-          its path for Pencil or its web URL for the site. To pull a different shot, hit{' '}
-          <strong>Add from Empathy Ledger</strong> on any area and browse the whole EL library. The
-          raw local pool is in{' '}
+          Fill each purpose the raise needs with its best asset. The <strong>Studio</strong> tab walks
+          you slot by slot: for each, the whole pool (Empathy Ledger photos, videos, faces + every repo
+          image) is ranked best-first, one click pins the winner and jumps to the next empty slot. The{' '}
+          <strong>By QBE area</strong> tab is the reference view. Picks save instantly and regenerate{' '}
+          <code className="text-xs">design/canon-resolved.json</code>, so every artifact pulls the
+          winner. Raw pool: {' '}
           <Link href="/admin/media-library" className="underline hover:text-foreground">
             Media library
           </Link>
-          . Local canon lives in <code className="text-xs">design/image-canon.json</code>; EL picks
-          in <code className="text-xs">data/canon-el-picks.json</code>.
+          .
         </p>
         <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
           <span>
@@ -176,19 +280,21 @@ export default async function CanonBoardPage() {
         )}
         {elMissing && (
           <p className="mt-3 rounded-md bg-amber-50 px-3 py-2 text-xs text-amber-700">
-            Empathy Ledger is unavailable (env vars{' '}
-            <code>EMPATHY_LEDGER_SUPABASE_URL/KEY/PROJECT_ID</code> not set). The EL picker will be
-            empty.
+            Empathy Ledger is unavailable (env var <code>EMPATHY_LEDGER_API_KEY</code> not set). The
+            EL picker will be empty.
           </p>
         )}
       </header>
 
-      <CanonBoardClient
+      <CanonShell
         images={images}
         gaps={gaps}
         areaNames={AREA_NAMES}
+        slots={slots}
         elPhotos={elPhotos}
         elPicks={elPicks}
+        candidates={candidates}
+        canonBySlot={canonBySlot}
       />
     </div>
   );

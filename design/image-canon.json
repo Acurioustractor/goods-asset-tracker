@@ -1,6 +1,6 @@
 {
   "_note": "THE IMAGE CANON — a REFERENCE-ONLY index. The visual twin of canon.ts. It NEVER holds copies of images: every entry points at the canonical on-disk path of the one best image per subject, mapped to the QBE areas it serves. Single source per image. dataClass mirrors canon.ts (green = public-safe, red = consent-gated). type: photo | illustration | chart | logo. Canonical store policy: web images live under v2/public/images/** (served at /images/**); the .pen deck mirrors a subset in design/deck-assets/ because Pencil image fills need a file path relative to the .pen (tolerated deck mirror, not a second source of truth). generated-images/ is AI scratch, never canonical. Edit here first. Replaces the earlier design/canon-images/ folder, which was deleted because it duplicated files.",
-  "asOf": "2026-06-16",
+  "asOf": "2026-06-28",
   "owner": "Ben",
   "policy": {
     "webCanonicalRoot": "v2/public/images",
@@ -268,6 +268,131 @@
         "02"
       ],
       "canonicalPath": "v2/public/images/people/norman-frank.jpg"
+    },
+    {
+      "subject": "Cover / hero",
+      "slot": "cover-hero",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "The single strongest Goods-on-Country frame: community plus bed, warm light.",
+      "qbeAreas": [
+        "01",
+        "02"
+      ],
+      "canonicalPath": "v2/public/images/product/stretch-bed-community.jpg"
+    },
+    {
+      "subject": "The problem",
+      "slot": "problem",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "Shows the need a bed off the ground answers. No staged misery.",
+      "qbeAreas": [
+        "02"
+      ],
+      "canonicalPath": "v2/public/images/media-pack/deadly-heart-trek-aug-2025.jpg"
+    },
+    {
+      "subject": "Closing image",
+      "slot": "closing-hero",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "An image that leaves the room hopeful.",
+      "qbeAreas": [
+        "01"
+      ],
+      "canonicalPath": "v2/public/images/media-pack/lying-on-stretch-bed.jpg"
+    },
+    {
+      "subject": "Bed in use",
+      "slot": "product-in-use",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "Someone using the bed in community.",
+      "qbeAreas": [
+        "01",
+        "02"
+      ],
+      "canonicalPath": "v2/public/images/media-pack/lying-on-stretch-bed.jpg"
+    },
+    {
+      "subject": "Assembly steps",
+      "slot": "assembly-sequence",
+      "type": "illustration",
+      "dataClass": "green",
+      "caption": "X-trestle tension assembly, no tools, ~5 min.",
+      "qbeAreas": [
+        "06"
+      ],
+      "canonicalPath": "v2/public/images/product/stretch-bed-overview.png"
+    },
+    {
+      "subject": "Kids building it",
+      "slot": "kids-building",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "Five minutes to build, no tools.",
+      "qbeAreas": [
+        "02",
+        "06"
+      ],
+      "canonicalPath": "v2/public/images/build/build-001.jpg"
+    },
+    {
+      "subject": "Pressed HDPE sheets",
+      "slot": "pressed-sheets",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "Waste becomes a product.",
+      "qbeAreas": [
+        "06"
+      ],
+      "canonicalPath": "v2/public/images/process/pressed-sheets-stacked.jpg"
+    },
+    {
+      "subject": "Shredded plastic feedstock",
+      "slot": "plastic-feedstock",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "20kg of HDPE diverted per bed.",
+      "qbeAreas": [
+        "03",
+        "06"
+      ],
+      "canonicalPath": "v2/public/images/process/shredded-chips-weighed.jpg"
+    },
+    {
+      "subject": "Communities map",
+      "slot": "map",
+      "type": "chart",
+      "dataClass": "green",
+      "caption": "9 communities served, 10 touched.",
+      "qbeAreas": [
+        "02"
+      ],
+      "canonicalPath": "v2/public/images/qbe/communities-screen.png"
+    },
+    {
+      "subject": "Washing machine",
+      "slot": "washing-machine",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "Pakkimjalki Kari prototype.",
+      "qbeAreas": [
+        "02"
+      ],
+      "canonicalPath": "v2/public/images/media-pack/washing-machine-enclosure-sunset.jpg"
+    },
+    {
+      "subject": "Area 05 — Risk",
+      "slot": "area-05-risk",
+      "type": "illustration",
+      "dataClass": "green",
+      "caption": "Branded risk-horizon visual. Draft pending Ben approval.",
+      "qbeAreas": [
+        "05"
+      ],
+      "canonicalPath": "v2/public/images/build/build-097.jpg"
     }
   ],
   "areaCoverage": {
