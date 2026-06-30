@@ -77,8 +77,11 @@ export default function PitchDocumentPage() {
             <p className="text-xs uppercase tracking-[0.3em] text-neutral-400 mb-2">
               A Curious Tractor
             </p>
+            <p className="text-xs text-neutral-400 mb-2">
+              Investment Proposal &middot; Updated 1 July 2026
+            </p>
             <p className="text-xs text-neutral-400 mb-16">
-              Investment Proposal &middot; Q1 2026
+              Catalysing Impact, powered by Social Impact Hub, in partnership with QBE Foundation
             </p>
 
             <h1

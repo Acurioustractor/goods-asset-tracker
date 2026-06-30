@@ -106,7 +106,7 @@ export const CANON: CanonFact[] = [
     id: 'revenue-carveout', label: 'Goods revenue carve-out', value: 713_827, unit: 'AUD',
     domain: 'money', claimLabel: 'verified', dataClass: 'amber',
     source: 'Goods carve-out, pitch blueprint A3', check: 'manual', asAt: '2026-06-02', owner: 'Ben/accountant',
-    definition: 'Citable carve-out. No surplus claimed: connected entity runs an FY26 net loss. A third cut pending one accountant-reviewed Goods-only figure (P0, Area 04).',
+    definition: 'Citable accountant-signed Goods-only carve-out. No surplus claimed: connected entity runs an FY26 net loss. Use alongside revenue-received ($741,111 all-sources) with the basis named.',
     reconcilesWith: ['revenue-received'],
   },
 
@@ -146,7 +146,7 @@ export const CANON: CanonFact[] = [
   // Two consent tiers (reconciled 2026-06-17). cleared-voices = the OCAP-strict EXTERNAL list
   // we make funder/QBE claims on. display-storyteller-pool = the broader website roster,
   // computed live by Loop E (check-story-coverage.mjs). Do NOT conflate them: external claims
-  // use cleared-voices (3); the pool is a coverage queue, not a clearance list.
+  // use cleared-voices; the pool is a coverage queue, not a clearance list.
   {
     id: 'cleared-voices', label: 'Consent-cleared voices (external use)', value: 32, unit: 'voices',
     domain: 'story', claimLabel: 'verified', dataClass: 'red',
@@ -158,7 +158,7 @@ export const CANON: CanonFact[] = [
     id: 'display-storyteller-pool', label: 'Website storyteller pool (display tier)', value: 32, unit: 'voices',
     domain: 'story', claimLabel: 'internal-only', dataClass: 'red',
     source: 'check-story-coverage.mjs computed pool (curated-quotes.ts ∪ trip-stories.ts cleared VoiceCards); mirror of wiki/canon/story-coverage.md', check: 'manual', asAt: '2026-06-16', owner: 'Ben',
-    definition: 'Named voices live on the website via a public curated quote or a cleared trip VoiceCard (incl. partners/board). A coverage queue, NOT the external-clearance list — use cleared-voices (3) for any external/funder claim. Mirrors the Loop E computed pool; re-confirm each run (Loop E warns if this drifts from the computed count).',
+    definition: 'Named voices live on the website via a public curated quote or a cleared trip VoiceCard (incl. partners/board). A coverage queue, NOT the external-clearance list — use cleared-voices for any external/funder claim. Mirrors the Loop E computed pool; re-confirm each run (Loop E warns if this drifts from the computed count).',
     reconcilesWith: ['cleared-voices'],
   },
   {

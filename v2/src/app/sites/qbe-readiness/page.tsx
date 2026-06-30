@@ -82,10 +82,10 @@ const METRICS: Array<{ value: string; label: string; sub: string; tier: Tier }> 
     tier: 'Verified',
   },
   {
-    value: '~AU$650K',
-    label: 'received to date',
-    sub: 'Xero workpaper, unaudited. Not yet a Goods-only carve-out.',
-    tier: 'Workpaper',
+    value: 'AU$713,827',
+    label: 'Goods-only received',
+    sub: 'Accountant-signed carve-out, within AU$741,111 all-sources received.',
+    tier: 'Verified',
   },
   {
     value: 'AU$0 signed',
@@ -132,7 +132,7 @@ const PROOFS: Array<{
     number: 1,
     title: 'The money is real',
     owners: 'Ben, Nic, accountant',
-    body: 'One signed commitment (an LOI or offtake) plus one accountant-reviewed, Goods-only revenue figure. The signature unlocks the QBE match.',
+    body: 'The accountant-signed Goods-only figure is done at AU$713,827. The live gap is one signed commitment: an LOI, offtake, term sheet, or facility that QBE accepts as match evidence.',
     status: 'In progress',
   },
   {
@@ -153,7 +153,7 @@ const PROOFS: Array<{
     number: 4,
     title: 'Impact and consent hold up',
     owners: 'Ben',
-    body: 'A measurement-method one-pager separating verified from modelled from future, plus a consent-cleared story list (today only Ivy Johnson, Dianne Stokes, Ray Nelson).',
+    body: 'The named impact method is in place and 32 voices are cleared for external use. The live discipline is keeping every public claim labelled verified, modelled, target, or future.',
     status: 'In progress',
   },
   {
@@ -168,8 +168,8 @@ const PROOFS: Array<{
 // ── The program timeline ────────────────────────────────────────────────────
 const MILESTONES: Array<{ when: string; what: string; tier?: Tier }> = [
   {
-    when: 'Now, June 2026',
-    what: 'The documents are done. 496 beds proven and tracked. Signed capital today: AU$0.',
+    when: 'Now, 26 June 2026',
+    what: 'The documents are done. 496 beds proven and tracked. Accountant-signed Goods-only revenue: AU$713,827. Signed match capital today: AU$0.',
   },
   {
     when: '1 July 2026',
@@ -189,7 +189,7 @@ const PHASES: Array<{ n: number; name: string; horizon: string; body: string }> 
     n: 1,
     name: 'De-risk',
     horizon: 'next ~12 months',
-    body: 'Run the 50-bed proof, close the first ~AU$400K, get the accountant carve-out, decide the legal entity, and put the first community operator on payroll.',
+    body: 'Run the 50-bed proof, close the first ~AU$400K, use the accountant-signed carve-out, decide the legal entity, and put the first community operator on payroll.',
   },
   {
     n: 2,
@@ -247,7 +247,7 @@ const ROWS: Row[] = [
     from: '4',
     to: '7',
     priority: true,
-    line: 'Money is tracked, but not yet one accountant-signed, Goods-only figure. That sign-off is the gate.',
+    line: 'The Goods-only figure is now accountant-signed at AU$713,827. The gates are opening cash, capex quotes, and full workbook review.',
   },
   {
     number: 5,
@@ -441,7 +441,7 @@ export default function QbeReadinessPage() {
             What is left is not more documents. It is real-world evidence.
           </p>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-[#E6DFD1]">
-            Close one signed dollar, get accountant-signed numbers, decide the legal entity, measure
+            Close one signed dollar, use accountant-signed numbers, decide the legal entity, measure
             (not model) the bed cost, and clear consent on impact. Get those and the QBE match doubles
             the money. That is the game between now and 31 August.
           </p>
