@@ -67,8 +67,8 @@ export async function proxy(request: NextRequest) {
     pathname !== '/api/investors/auth'
   ) {
     const authCookie = request.cookies.get(INVESTORS_COOKIE)?.value
-    const expectedPassword = process.env.INVESTORS_PASSWORD || 'goods2026'
-    if (authCookie !== expectedPassword) {
+    const expectedPassword = process.env.INVESTORS_PASSWORD?.trim()
+    if (!expectedPassword || authCookie !== expectedPassword) {
       const loginUrl = new URL('/investors/login', request.url)
       loginUrl.searchParams.set('from', pathname)
       return NextResponse.redirect(loginUrl)
