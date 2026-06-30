@@ -174,7 +174,7 @@ The Empathy Ledger client at [v2/src/lib/empathy-ledger/client.ts](../../v2/src/
 | Washing machine | Patricia Frank, Jessica Allardyce, Dianne Stokes |
 | Future and intergenerational | Norman Frank, Linda Turner |
 | Product feedback | Ivy, Melissa Jackson, Norman Frank |
-| Youth pathway / On-Country employment | Mykel (consent pending, internal only) |
+| Youth pathway / On-Country employment | Mykel; Xavier (told in Fred Campbell's voice) — cleared for external use (Oonchiumpa-facilitated, 2026-06-26) |
 
 ## Journey stories (longer narrative arcs)
 
@@ -204,8 +204,8 @@ EL Supabase direct (when API down):
 
 Voices we want but don't yet have on file:
 - Maningrida community voices (we deliver there, no quoted feedback yet)
-- Utopia Homelands voices — *partially captured: Mykel, consent pending. More to come as the Oonchiumpa relationship continues.*
-- A young person's voice from any community — *captured: Mykel, consent pending (internal only).*
-- A maker / production worker voice (Ebony or Jahvan Oui from Palm Island) — *Mykel also speaks to this from the maker side, consent pending.*
+- Utopia Homelands voices — *captured and cleared: Mykel and Xavier from the May 2026 trip. More to come as the Oonchiumpa relationship continues.*
+- A young person's voice from any community — *captured and cleared: Mykel (Oonchiumpa-facilitated, 2026-06-26).*
+- A maker / production worker voice (Ebony or Jahvan Oui from Palm Island) — *Mykel and Xavier also speak to this from the maker side, cleared.*
 - A second video from Dianne Stokes about Pakkimjalki Kari (placeholder in `videoTestimonials`)
-- Utopia Elders' voices, including the two Order of Australia recipients at Ampilatwatja and their short bed video (May 2026 trip, consent and full names to confirm)
+- Utopia Elders' voices, including the two Order of Australia recipients at Ampilatwatja and their short bed video (May 2026 trip, cleared for use; individual full names still to confirm before crediting them by name)

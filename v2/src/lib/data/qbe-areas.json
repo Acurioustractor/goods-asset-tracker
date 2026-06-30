@@ -41,7 +41,7 @@
       "priority": "P0",
       "band": "priority-gap",
       "sihPriorityGap": true,
-      "gap": "Three revenue cuts still unreconciled (standing P0 — needs one accountant-reviewed Goods-only figure); founder time uncosted at fair-market replacement rate; no cashflow-buffer policy; bookkeeper AP-matching pending. Joint-lowest V4 score."
+      "gap": "Accountant-signed Goods-only revenue is now DONE at AU$713,827, within AU$741,111 all-sources received. Remaining finance gates: lock the real opening-cash figure, attach firm capex/vendor quotes, supply the full workbook for reviewer/accountant check, keep AP matching as bookkeeper clean-up, and maintain the no-surplus line. Joint-lowest V4 score remains from the 1 May diagnostic, but the revenue-carve-out gate is closed."
     },
     {
       "id": "05",
@@ -71,7 +71,7 @@
       "priority": "P0",
       "band": "priority-gap",
       "sihPriorityGap": true,
-      "gap": "Governance framework now DOCUMENTED and registered to this area (wiki/outputs/2026-06-13-goods-strategic-pack/18-governance-framework.md: an 11-member monthly advisory committee and a real OCAP data-sovereignty practice are named strengths; the move to a fiduciary board is framed as a plan-with-a-trigger). The gaps are unchanged human actions, not missing documents: 0 independent directors recruited and no fiduciary board (advisory != board; SEFA's ~AU$300K working-capital line is gated on an independent-majority board); reports remain unaudited management data with no consolidated annual cycle (gated on the accountant-reviewed Goods-only figure); the named approval/sign-off path for the reviewer pack is documented but not yet formally adopted; named commercial/scale-up skills gap on the committee. R7 in the risk register profiles this gap but does not close it."
+      "gap": "Governance framework now DOCUMENTED and registered to this area (wiki/outputs/2026-06-13-goods-strategic-pack/18-governance-framework.md: an 11-member monthly advisory committee and a real OCAP data-sovereignty practice are named strengths; the move to a fiduciary board is framed as a plan-with-a-trigger). The gaps are unchanged human actions, not missing documents: 0 independent directors recruited and no fiduciary board (advisory != board; SEFA's ~AU$300K working-capital line is gated on an independent-majority board); reports remain management data with no consolidated audited annual cycle; the named approval/sign-off path for the reviewer pack is documented but not yet formally adopted; named commercial/scale-up skills gap on the committee. R7 in the risk register profiles this gap but does not close it."
     },
     {
       "id": "08",
@@ -139,7 +139,7 @@
     {
       "rank": 3,
       "areaIds": ["04"],
-      "summary": "Financial reconciliation + founder-time costing. Reconcile the three coexisting revenue cuts into one accountant-reviewed Goods-only figure; cost founder time at fair-market replacement rate even if not drawn; hold the no-surplus line (FY26 net loss is the correct, fundable scale-up story)."
+      "summary": "Finance controls. Accountant-signed Goods-only revenue is now closed at AU$713,827; keep the no-surplus line, lock opening cash, attach firm capex/vendor quotes, and keep the full workbook reviewable."
     },
     {
       "rank": 4,
