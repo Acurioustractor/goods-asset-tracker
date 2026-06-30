@@ -10,7 +10,7 @@
  * card frame mirrors the original infographic exports.
  */
 
-import { useState, useSyncExternalStore } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import {
   Bar,
   BarChart,
@@ -69,6 +69,12 @@ function ChartFrame({
   height?: number;
   children: React.ReactNode;
 }) {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
     <figure className="my-10">
       <div className="rounded-3xl border border-border bg-[#FBF8F1] p-5 shadow-sm md:p-8">
@@ -89,7 +95,9 @@ function ChartFrame({
           ) : null}
         </figcaption>
         <div className="mt-6 w-full" style={{ height }}>
-          {children}
+          {isMounted ? children : (
+            <div className="h-full w-full rounded-2xl border border-dashed" style={{ borderColor: C.grid }} aria-hidden="true" />
+          )}
         </div>
         {source ? (
           <p

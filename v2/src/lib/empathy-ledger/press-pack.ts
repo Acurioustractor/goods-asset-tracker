@@ -25,6 +25,11 @@ const REVALIDATE_SECONDS = 300; // 5 min
 const PRESS_FEATURED_TAG = 'press-featured';
 const PRESS_VERTICAL_TAG = 'press-vertical';
 
+function isExpectedELAuthFailure(status: number, body: string): boolean {
+  if (![401, 403].includes(status)) return false;
+  return body.includes('Legacy API keys are disabled') || body.toLowerCase().includes('jwt');
+}
+
 export interface PressPhoto {
   id: string;
   src: string;
@@ -105,7 +110,9 @@ async function elFetch<T>(table: string, query: string): Promise<T[]> {
     });
     if (!res.ok) {
       const body = await res.text().catch(() => '');
-      console.error(`[press-pack] ${table} ${res.status}: ${body.slice(0, 200)}`);
+      if (!isExpectedELAuthFailure(res.status, body)) {
+        console.error(`[press-pack] ${table} ${res.status}: ${body.slice(0, 200)}`);
+      }
       return [];
     }
     return (await res.json()) as T[];

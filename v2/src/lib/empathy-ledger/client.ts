@@ -260,6 +260,34 @@ class SyndicationFetchError extends Error {
   }
 }
 
+class ELSupabaseFetchError extends Error {
+  constructor(
+    public readonly status: number,
+    public readonly body: string,
+  ) {
+    super(status ? `EL Supabase error: ${status}` : 'EL Supabase is not configured');
+    this.name = 'ELSupabaseFetchError';
+  }
+}
+
+function isELSupabaseUnavailable(error: unknown): boolean {
+  if (!(error instanceof ELSupabaseFetchError)) return false;
+  if (error.status === 0) return true;
+  if (![401, 403].includes(error.status)) return false;
+
+  const body = error.body.toLowerCase();
+  return (
+    body.includes('legacy api keys are disabled') ||
+    body.includes('jwt') ||
+    body.includes('api key')
+  );
+}
+
+function logUnexpectedELSupabaseError(message: string, error: unknown): void {
+  if (isELSupabaseUnavailable(error)) return;
+  console.error(message, error);
+}
+
 /**
  * Empathy Ledger Client
  */
@@ -274,6 +302,10 @@ async function fetchFromELSupabase<T>(
   queryParams: string,
   options: { revalidate?: number } = {}
 ): Promise<T> {
+  if (!EL_SUPABASE_URL || !EL_SUPABASE_KEY) {
+    throw new ELSupabaseFetchError(0, 'EL Supabase credentials are not configured');
+  }
+
   const url = `${EL_SUPABASE_URL}/rest/v1/${table}?${queryParams}`;
   const response = await fetch(url, {
     headers: {
@@ -283,7 +315,8 @@ async function fetchFromELSupabase<T>(
     next: { revalidate: options.revalidate ?? 300 },
   });
   if (!response.ok) {
-    throw new Error(`EL Supabase error: ${response.status}`);
+    const body = await response.text().catch(() => '');
+    throw new ELSupabaseFetchError(response.status, body);
   }
   return response.json();
 }
@@ -296,6 +329,10 @@ async function fetchFromELSupabaseRpc<T>(
   select = '',
   options: { revalidate?: number } = {},
 ): Promise<T> {
+  if (!EL_SUPABASE_URL || !EL_SUPABASE_KEY) {
+    throw new ELSupabaseFetchError(0, 'EL Supabase credentials are not configured');
+  }
+
   const url = `${EL_SUPABASE_URL}/rest/v1/rpc/${fn}${select ? `?${select}` : ''}`;
   const response = await fetch(url, {
     method: 'POST',
@@ -308,7 +345,8 @@ async function fetchFromELSupabaseRpc<T>(
     next: { revalidate: options.revalidate ?? 60 },
   });
   if (!response.ok) {
-    throw new Error(`EL Supabase RPC error: ${response.status}`);
+    const responseBody = await response.text().catch(() => '');
+    throw new ELSupabaseFetchError(response.status, responseBody);
   }
   return response.json();
 }
@@ -356,16 +394,21 @@ export const empathyLedger = {
       // pages should always reflect the latest EL state (curators iterate
       // on body, media, themes, blocks).
       if (EL_SUPABASE_URL && EL_SUPABASE_KEY) {
-        const rows = await fetchFromELSupabase<Record<string, unknown>[]>(
-          'stories',
-          `id=eq.${id}&select=*,storyteller:storytellers(id,display_name,location,is_elder)&limit=1`,
-          { revalidate: 0 },
-        );
-        if (rows.length > 0) {
-          return {
-            ...mapStoryFromAPI(rows[0]),
-            storytellerName: (rows[0].storyteller as Record<string, unknown>)?.display_name as string ?? null,
-          };
+        try {
+          const rows = await fetchFromELSupabase<Record<string, unknown>[]>(
+            'stories',
+            `id=eq.${id}&select=*,storyteller:storytellers(id,display_name,location,is_elder)&limit=1`,
+            { revalidate: 0 },
+          );
+          if (rows.length > 0) {
+            return {
+              ...mapStoryFromAPI(rows[0]),
+              storytellerName: (rows[0].storyteller as Record<string, unknown>)?.display_name as string ?? null,
+            };
+          }
+        } catch (directError) {
+          if (isELSupabaseUnavailable(directError)) return null;
+          console.error(`[EmpathyLedger] Failed to fetch story ${id} from EL Supabase:`, directError);
         }
       }
 
@@ -460,7 +503,7 @@ export const empathyLedger = {
             contentStatus: (statusById.get(s.id) ?? null) as EmpathyLedgerStoryteller['contentStatus'],
           }));
         } catch (enrichError) {
-          console.error('[EmpathyLedger] Failed to enrich storyteller status:', enrichError);
+          logUnexpectedELSupabaseError('[EmpathyLedger] Failed to enrich storyteller status:', enrichError);
         }
       }
 
@@ -519,7 +562,7 @@ export const empathyLedger = {
       candidateRows.forEach((r) => bump(r.storyteller_id, 'candidate'));
       return out;
     } catch (error) {
-      console.error('[EmpathyLedger] Failed to compute Goods site clearance:', error);
+      logUnexpectedELSupabaseError('[EmpathyLedger] Failed to compute Goods site clearance:', error);
       return {};
     }
   },
@@ -779,7 +822,7 @@ export const empathyLedger = {
         storytellerName: (raw.storyteller as Record<string, unknown>)?.display_name as string ?? null,
       }));
     } catch (error) {
-      console.error('[EmpathyLedger] Failed to fetch project stories:', error);
+      logUnexpectedELSupabaseError('[EmpathyLedger] Failed to fetch project stories:', error);
       return [];
     }
   },
@@ -888,7 +931,7 @@ export const empathyLedger = {
         };
       });
     } catch (error) {
-      console.error('[EmpathyLedger] Failed to fetch project galleries:', error);
+      logUnexpectedELSupabaseError('[EmpathyLedger] Failed to fetch project galleries:', error);
       return [];
     }
   },
@@ -987,7 +1030,7 @@ export const empathyLedger = {
         };
       });
     } catch (error) {
-      console.error('[EmpathyLedger] Failed to enrich storytellers:', error);
+      logUnexpectedELSupabaseError('[EmpathyLedger] Failed to enrich storytellers:', error);
       return storytellers;
     }
   },
@@ -1021,7 +1064,7 @@ export const empathyLedger = {
           isCoverImage: false,
         }));
     } catch (error) {
-      console.error('[EmpathyLedger] Failed to fetch project media:', error);
+      logUnexpectedELSupabaseError('[EmpathyLedger] Failed to fetch project media:', error);
       return [];
     }
   },
