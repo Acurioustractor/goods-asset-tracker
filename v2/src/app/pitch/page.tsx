@@ -562,7 +562,7 @@ export default function PitchPage() {
       </section>
 
       {/* ================================================================
-          11. THE ASK: $500K scaling vision
+          11. THE ASK: $400K catalytic raise
           ================================================================ */}
       <section className="py-24 bg-foreground text-background">
         <div className="container mx-auto px-4">
@@ -574,35 +574,26 @@ export default function PitchPage() {
               className="text-4xl md:text-6xl font-light mb-6"
               style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
             >
-              $500,000
+              {investmentCase.totalAsk}
             </h2>
-            <p className="text-xl text-background/60 mb-16 max-w-2xl mx-auto">
-              To go hard now: support a model that brings enterprise ownership back to community,
-              and design something that can be copied by every community across Australia.
+            <p className="text-xl text-background/60 mb-3 max-w-2xl mx-auto">
+              Signed, match-eligible catalytic capital: a recoverable grant that converts into
+              community ownership, moving the press into community hands.
+            </p>
+            <p className="text-xs text-background/30 mb-16">
+              Catalysing Impact, powered by Social Impact Hub, in partnership with QBE Foundation.
             </p>
 
             <div className="grid gap-6 md:grid-cols-3 max-w-3xl mx-auto mb-16">
-              <div className="rounded-2xl bg-background/5 border border-background/10 p-8 text-left">
-                <div className="text-3xl font-bold text-primary mb-2">$150K</div>
-                <h3 className="text-lg font-semibold text-background mb-3">Production at Scale</h3>
-                <p className="text-sm text-background/50 leading-relaxed">
-                  Complete and deploy the production plant. Capacity for 30+ beds per week across multiple communities.
-                </p>
-              </div>
-              <div className="rounded-2xl bg-background/5 border border-background/10 p-8 text-left">
-                <div className="text-3xl font-bold text-primary mb-2">$200K</div>
-                <h3 className="text-lg font-semibold text-background mb-3">Beds to Community</h3>
-                <p className="text-sm text-background/50 leading-relaxed">
-                  300+ beds deployed through community partnerships. Health hardware reaching families who need it.
-                </p>
-              </div>
-              <div className="rounded-2xl bg-background/5 border border-background/10 p-8 text-left">
-                <div className="text-3xl font-bold text-primary mb-2">$150K</div>
-                <h3 className="text-lg font-semibold text-background mb-3">Enterprise Model</h3>
-                <p className="text-sm text-background/50 leading-relaxed">
-                  Build the replicable model: training, documentation, and support for community-owned enterprises.
-                </p>
-              </div>
+              {investmentCase.fundingLines.map((line) => (
+                <div key={line.id} className="rounded-2xl bg-background/5 border border-background/10 p-8 text-left">
+                  <div className="text-3xl font-bold text-primary mb-2">{line.amount}</div>
+                  <h3 className="text-lg font-semibold text-background mb-3">{line.title}</h3>
+                  <p className="text-sm text-background/50 leading-relaxed">
+                    {line.description}
+                  </p>
+                </div>
+              ))}
             </div>
 
             <div className="bg-background/5 border border-background/10 rounded-2xl p-8 md:p-10 max-w-2xl mx-auto mb-16 text-left">
@@ -619,9 +610,9 @@ export default function PitchPage() {
               </p>
             </div>
 
-            {/* Supported by */}
+            {/* In conversation with: $0 signed today, this is a conversion task not a discovery one */}
             <div>
-              <p className="text-xs uppercase tracking-widest text-background/30 mb-4">Supported by</p>
+              <p className="text-xs uppercase tracking-widest text-background/30 mb-4">In active conversation with</p>
               <div className="flex flex-wrap items-center justify-center gap-6">
                 {investmentCase.funders.map((f) => (
                   <span key={f.name} className="text-background/60 text-sm font-medium">
