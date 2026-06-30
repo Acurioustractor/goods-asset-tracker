@@ -18,6 +18,8 @@
 
 **Update 2026-05-22:** Mykel (young maker, Utopia Homelands) added to Group 3 from the Oonchiumpa-supported Utopia trip. First young-person and first Utopia voice captured. Youth consent protocol applies, see the note under Group 3. Two senior men at Ampilatwatja, both recent Order of Australia recipients (given four beds), and their short bed video are also pending capture and confirmation of names, credit and consent.
 
+**Update 2026-06-26:** Mykel and Xavier (Xavier's arc told in Fred Campbell's voice) are CLEARED for external and funder use, Oonchiumpa-facilitated and approved (Ben consent pass; mirrors canon `cleared-voices.ts` + `canon.ts`). Their verbatim quotes are live on `/partners/centrecorp` and `/field-notes/utopia-may-2026`. The two Ampilatwatja Order of Australia Elders are cleared for use; their individual full names are still to confirm before crediting them by name. The youth-consent process note under Group 3 stays as guidance for the next young person.
+
 ---
 
 ## Group 1. Quote ready, EL row missing (fastest unlock)
@@ -112,13 +114,15 @@ These eight names appear in `content.ts` and/or `compendium.ts` but have no EL r
 | Marty Taylor | Tennant Creek (Wilya Janta context) | Listed in compendium | Low, coordination role |
 | Narelle Anderson | Tennant Creek (Wilya Janta context) | Listed in compendium | Low, coordination role |
 | Dr Simon Quilty | NT health (CEO context) | Listed as CEO context, 20+ years NT health | Low, paid expert voice, different consent path |
-| Mykel | Utopia Homelands (Central Australia) | Verbatim quotes from build-day recording (May 2026 trip). See [02-storyteller-voices.md](02-storyteller-voices.md) Utopia Homelands voices. | **High**, first young-person and first Utopia voice. Youth consent applies. |
+| Mykel | Utopia Homelands (Central Australia) | Verbatim quotes from build-day recording (May 2026 trip). See [02-storyteller-voices.md](02-storyteller-voices.md) Utopia Homelands voices. | **CLEARED 2026-06-26** (Oonchiumpa-facilitated). Live on /partners/centrecorp + /field-notes/utopia-may-2026. |
 
 **Process for each:** see "Onboarding a brand-new storyteller" in [CONSENT_PROCESS.md](CONSENT_PROCESS.md). Steps 1-9: confirm EL record needed → consent conversation → consent form signed → EL storyteller record created → EL story record with quote + photo → syndication flags set → sync script → verify on website.
 
-### Youth consent note (Mykel, and any young person)
+### Youth consent note (satisfied for Mykel; guidance for any young person)
 
-Mykel is a young person, so the standard flow gets one addition: consent is not his to give alone. Before any external use of his name, words, photo or video:
+> Status: for Mykel this is SATISFIED — Oonchiumpa facilitated and approved his use, cleared 2026-06-26. The steps below remain the standard for the next young person.
+
+A young person's consent is not theirs to give alone. Before any external use of a young person's name, words, photo or video:
 
 - Family / guardian consent is required as well as Mykel's own willingness, with Oonchiumpa facilitating and Fred Campbell (Youth Case Worker, Oonchiumpa) as the natural contact.
 - Confirm the Elder present and how he wishes to be credited (the recording uses kinship terms "grandson" and "brother"; full name and consent to confirm).
