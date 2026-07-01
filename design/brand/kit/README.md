@@ -41,6 +41,44 @@ is baked in automatically.
 
 So: pick on `/admin/canon` → `canon-resolved.json` updates → re-render the deck/one-pager → your pick is in it. `funder-onepager.html` and `claude-design/invest-deck-full.html` are wired this way.
 
+## Numbers the same way (never retype a canon figure)
+Reference any canonical figure by its **canon id**: write `CANON:num:<canon-id>` where the
+figure goes. The same bake resolves it to the exact formatted string from
+`design/canon-numbers.json` (`496`, `2,660kg`, `$713,827`), which is GENERATED from
+`v2/src/lib/data/canon.ts` (the apex registry) by `v2/scripts/canon-numbers.mjs`.
+
+```html
+<div class="stat"><div class="num">CANON:num:beds-deployed</div><div class="lbl">beds deployed</div></div>
+<span class="pill">CANON:num:plastic-kg plastic diverted</span>
+```
+- When a figure changes: change `canon.ts` first (the standing rule), then `cd v2 && node scripts/canon-numbers.mjs` to regenerate the JSON, then re-render. Never hand-edit `canon-numbers.json`.
+- `render.sh` runs `canon-numbers.mjs --check` before every bake that uses number tokens and REFUSES to render if the JSON has drifted from `canon.ts`, so a stale figure cannot ship silently.
+- Prefix trick for currency variants: the token bakes `$750`, so `AUCANON:num:stretch-price` bakes to `AU$750`.
+- Only figures with a canon id get tokens. Narrative numbers that are not canon facts (the $400K ask, the BOM's $344 leg, break-even bed counts) stay hand-written where they are.
+- The deck and `funder-onepager.html` are wired this way; `funder-landscape-onepager.html` carries only pipeline-target amounts (no canon ids), so it has no number tokens.
+
+## Stages the same way (never retype the pipeline)
+The internal landscape one-pager's status pills come from GHL, not from hand-typing.
+Each pill is a token, `GHL:stage:<funder-key>` (keys: `sefa`, `snow`, `centrecorp`,
+`white-box`, `minderoo`, `vfff`, `qbe`), plus one `GHL:stages-asat` stamp line.
+`v2/scripts/landscape-stages.mjs` resolves them at render time.
+
+```bash
+design/brand/kit/render.sh --live-stages design/brand/kit/funder-landscape-onepager.html
+```
+- `--live-stages` pulls the funder pipeline live (GET only, via `ghl-people-pull.mjs`
+  run from `v2/` so `.env.local` resolves), matches each row by org name through the
+  explicit alias map in the script, and saves the result to
+  `design/brand/kit/landscape-stages.json` (no GHL contact ids, safe to commit).
+- Without the flag, the last saved pull is baked and the stamp says so with THAT
+  pull's date. No saved pull yet: every pill reads STALE. Never a silent lie.
+- Stage words are GHL's own (Identified, Qualified, Cultivating, Ask made,
+  Delivering, Stewarding, Renewing). An unknown GHL stage renders raw, never guessed.
+  A funder in the HTML but missing from GHL renders "not in GHL".
+- New funder row: add the row in the HTML with a `GHL:stage:<key>` pill AND the key's
+  org aliases to `FUNDERS` in `landscape-stages.mjs`. Stage moves belong in GHL
+  (`ghl-people-move.mjs`, dry-run first); this pipeline only reads.
+
 ## The canon photo/video loop (review absolutely everything → pick → overwrite)
 The investment imagery is driven by **purpose slots**, not loose filenames. Each slot is one job an asset must do (cover, product hero, the plant, a named storyteller, a video).
 

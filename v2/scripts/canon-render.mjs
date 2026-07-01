@@ -6,6 +6,13 @@
  * design/canon-resolved.json. So finishing slots on /admin/canon renders straight
  * into the deck / one-pager — no hand-editing image paths ever again.
  *
+ * NUMBERS work the same way: a `CANON:num:<canon-id>` token anywhere in the HTML
+ * is rewritten to the formatted figure from design/canon-numbers.json (generated
+ * from src/lib/data/canon.ts by canon-numbers.mjs; render.sh runs its --check
+ * first so a stale numbers file fails the bake instead of shipping old figures).
+ * Number tokens are resolved BEFORE image slots, and the slot regex skips the
+ * `num:` prefix, so the two token kinds never collide.
+ *
  * Resolution per slot (canon-resolved precedence already applied: canon > EL > seed):
  *   - local/seed path -> path RELATIVE to the artifact (works via file://, the kit's
  *     http.server, and as a standalone file).
@@ -89,10 +96,25 @@ const cacheEl = async (url) => {
 };
 
 const main = async () => {
-  const html = fs.readFileSync(abs, 'utf8');
-  const slots = [...new Set([...html.matchAll(/CANON:([a-z0-9-]+)/g)].map((m) => m[1]))];
-  const srcBySlot = {};
+  let html = fs.readFileSync(abs, 'utf8');
   const missing = [];
+
+  // ── Pass 1: number tokens (CANON:num:<canon-id> -> formatted figure) ──
+  let numsBaked = 0;
+  if (/CANON:num:/.test(html)) {
+    const numbersPath = path.join(REPO, 'design', 'canon-numbers.json');
+    if (!fs.existsSync(numbersPath)) { console.error('Artifact uses CANON:num: tokens but design/canon-numbers.json is missing — run v2/scripts/canon-numbers.mjs.'); process.exit(1); }
+    const { numbers } = JSON.parse(fs.readFileSync(numbersPath, 'utf8'));
+    html = html.replace(/CANON:num:([a-z0-9-]+)/g, (token, id) => {
+      if (numbers[id]?.value != null) { numsBaked++; return numbers[id].value; }
+      missing.push(`num:${id} (no such canon figure)`);
+      return token;
+    });
+  }
+
+  // ── Pass 2: image slot tokens (CANON:<slot>, `num:` excluded) ──
+  const slots = [...new Set([...html.matchAll(/CANON:(?!num:)([a-z0-9-]+)/g)].map((m) => m[1]))];
+  const srcBySlot = {};
   for (const slot of slots) {
     const r = resolved[slot];
     if (!r) { missing.push(`${slot} (no such slot)`); continue; }
@@ -108,12 +130,12 @@ const main = async () => {
     srcBySlot[slot] = inline ? dataUri(fp) : relTo(fp);
   }
   let replaced = 0;
-  const out = html.replace(/CANON:([a-z0-9-]+)/g, (token, slot) => {
+  const out = html.replace(/CANON:(?!num:)([a-z0-9-]+)/g, (token, slot) => {
     if (srcBySlot[slot]) { replaced++; return srcBySlot[slot]; }
     return token;
   });
   fs.writeFileSync(outAbs, out);
-  console.log(`canon-render: ${replaced} slot token(s) baked -> ${path.relative(process.cwd(), outAbs)}`);
+  console.log(`canon-render: ${replaced} slot token(s) + ${numsBaked} number token(s) baked -> ${path.relative(process.cwd(), outAbs)}`);
   if (missing.length) console.log(`  ${missing.length} unresolved: ${missing.join(', ')}`);
 };
 main().catch((e) => { console.error('FAILED:', e instanceof Error ? e.message : e); process.exit(1); });
