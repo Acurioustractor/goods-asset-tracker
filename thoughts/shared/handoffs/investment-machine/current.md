@@ -22,10 +22,19 @@ Full ultracode review (32 agents) of the QBE Start Here Notion tree, the Claude 
 - CommBank Green Equipment Finance: $20K+, 0.5% green discount, needs credit package + which-ABN answer.
 - Tripple (Milgrom): direct impact loans, Ngutu College precedent, post-QBE, ask Snow for the intro.
 
-## Staged for Ben's approval (NONE executed)
-- GHL: 4 new contacts/opps, Minderoo stage correction, Snow dedupe, values on 8 valueless rows, 6 stalled-ask nudges, 22-Identified triage. Apply via `ghl-people-move.mjs` dry-run first.
-- Notion: 4 Funder Pipeline rows, 2 register rows, fill null Owners/Due Dates, one Machine Dashboard page, resolve the trash state.
-- Sends (founder voice, one sitting): SEFA loan brief, Jay rules email, White Box SELF EOI, Snow repayable reframe, LendForGood question.
+## Staged writes: APPLIED 2026-07-02 with Ben's approval (commit `72507f1`; NO emails sent)
+Applied via `v2/scripts/ghl-staged-writes-20260702.mjs` (dry-run shown first, then --commit):
+- GHL: LendForGood (Cultivating $100K, contact `Nuan5jdJAbEH32SjOpvF`, opp `UNgZ0ZRcYcEk4uLXNBla`), Metro Finance (Qualified $60K, `b3n50TPZP2vrSJ1M6o2X`/`7fQ9ggCQZXXDgVO1NGJC`), CommBank (Identified), Tripple (Identified), Sea Swift + INPEX (partner rows). Snow historic row renamed "Snow Foundation — historical funding (Xero-reconciled)", moved to Renewing, value corrected $402,930 → $493,130 (Xero wins, review call #5). Centrecorp $123,332 historical row recreated at Renewing. 22 Identified triaged: needs-followup on Sally Knox, John Chambers, IMB, East Arnhem, NAACT; monitor on the rest. Tag-family gap report generated (report-only; most pre-existing rows missing Class/Type/Signal).
+- Notion: 4 Funder Pipeline rows created; 2 QBE register rows (LendForGood `390ebcf981cf81a298e7f10e0979c529` Tier 1, Metro `390ebcf981cf81d5b100f018cc15dd77` Tier 2; both due 2026-07-18, Match Eligible TBC, full GHL ids); Owner=Ben set on FRRR/SEDI/Sisters/Clean Energy/ANZ rows (FRRR + SEDI have no published close dates so Due Date left empty); **Machine Dashboard page created in the data room: `390ebcf981cf8158ad49eb0461538324`** (under front door `38cebcf981cf8105a322dbc988a373dd`).
+- Local: register-status seed list extended to 13 rows; Monday page regenerated post-writes.
+
+## Still gated on Ben (send-dependent or a decision)
+- The 5 sends (SEFA loan brief, Jay rules email incl. LendForGood question, White Box EOI, Snow repayable reframe + Tripple intro ask, Metro broker enquiry). NO emails have been sent.
+- SEFA stage move (happens ON SEND) + the $250K vs $300K figure call (then sync GHL/Notion/readiness page together).
+- Minderoo: verify whether a real ask went out; if not, move back to Cultivating (left untouched, cannot verify the negative).
+- Six stalled asks: nudge-then-mark-lost starts with a send, so untouched.
+- Values for rows with no sourced figure (First Nations Finance, CEFC/NAB, Invest NT, the five valueless Ask-made rows).
+- The Notion trash decision (restore the operating-plan tree or declare the DBs + repo canonical).
 
 ## Tier 1 builds: DONE 2026-07-02 (commit `765d396`, local, not pushed)
 All seven built, reviewer-audited (1 should-fix + 5 nits found and fixed), gates green (v2 `npm run build` + `npm run check:drift`):
