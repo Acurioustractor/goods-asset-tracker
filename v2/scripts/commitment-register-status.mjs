@@ -12,7 +12,7 @@
  *
  * Notion access is GET only (page-level GETs against a seed list of row ids).
  * The Notion row-query endpoint is a POST, so this script never enumerates new
- * rows itself: SEED_ROWS below carries the 11 row page ids as at 2026-07-02.
+ * rows itself: SEED_ROWS below carries the 13 row page ids (11 as at 2026-07-02 plus LendForGood and Metro added the same day).
  * When a row is added to the register, append its page id here (open the row in
  * Notion, copy the 32-hex id from the URL). The script tells you the seed date
  * on every run so a stale list is visible, not silent.
@@ -77,6 +77,8 @@ const SEED_ROWS = [
   '38febcf981cf818ebb91d143894382f3', // FRRR Strengthening Rural Communities
   '38febcf981cf8199a7e8c2061eaa1c6c', // Sisters of Charity
   '38febcf981cf81bc84d1cce560399def', // ANZ Seeds of Renewal
+  '390ebcf981cf81a298e7f10e0979c529', // LendForGood (added 2026-07-02, staged writes)
+  '390ebcf981cf81d5b100f018cc15dd77', // Metro Finance MetroEco (added 2026-07-02, staged writes)
 ];
 
 // MANUAL SNAPSHOT 2026-07-02: the register as read live that day. 11 rows, every
