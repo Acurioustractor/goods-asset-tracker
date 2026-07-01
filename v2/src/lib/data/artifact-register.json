@@ -490,6 +490,48 @@
       "qbeAreas": ["10", "12"],
       "citesCanon": ["beds-deployed", "communities-served", "signed-lois"],
       "lastVerified": "2026-06-28"
+    },
+    {
+      "id": "invest-deck-full",
+      "title": "Investment deck (16 slides, rendered)",
+      "pillar": "pitch",
+      "type": "design file",
+      "location": "design/brand/claude-design/invest-deck-full.html",
+      "status": "built",
+      "claimLabels": ["verified", "modelled", "target"],
+      "dataClass": "amber",
+      "owner": "Ben",
+      "qbeAreas": ["01", "10"],
+      "citesCanon": ["beds-deployed", "stretch-beds-deployed", "communities-served", "washers-in-community", "plastic-kg", "revenue-received", "revenue-carveout", "accounts-receivable", "stretch-price", "marginal-buykit", "marginal-factory", "save-per-bed", "signed-lois"],
+      "lastVerified": "2026-07-01"
+    },
+    {
+      "id": "funder-onepager",
+      "title": "Funder one-pager (rendered)",
+      "pillar": "pitch",
+      "type": "design file",
+      "location": "design/brand/kit/funder-onepager.html",
+      "status": "built",
+      "claimLabels": ["verified", "target"],
+      "dataClass": "amber",
+      "owner": "Ben",
+      "qbeAreas": ["01", "10"],
+      "citesCanon": ["beds-deployed", "communities-served", "plastic-kg", "revenue-carveout"],
+      "lastVerified": "2026-07-01"
+    },
+    {
+      "id": "funder-landscape-onepager",
+      "title": "Funder landscape one-pager (internal, SIH-facing)",
+      "pillar": "pitch",
+      "type": "design file",
+      "location": "design/brand/kit/funder-landscape-onepager.html",
+      "status": "built",
+      "claimLabels": ["verified", "target", "internal-only"],
+      "dataClass": "amber",
+      "owner": "Ben",
+      "qbeAreas": ["10", "12"],
+      "citesCanon": ["signed-lois"],
+      "lastVerified": "2026-07-01"
     }
   ]
 }
