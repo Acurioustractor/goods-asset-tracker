@@ -32,15 +32,15 @@ The rotated GHL private integration token (post security incident) authorises th
 
 Five buckets. QBE priority (on the register, matched-capital ask), Workbench (active follow-up in the Funder Pipeline), Stewarding only (money already in, reporting relationship), Buyer or demand (wrong pipeline, move it), Parked (monitor tag, nobody re-researches it).
 
-### Bucket 1: QBE priority (13 register rows, target asks $1,370,000)
+### Bucket 1: QBE priority (13 register rows, target asks $1,420,000)
 
 Target asks, never committed money. Signed today: $0.
 
 | Funder | Ask | Stage (GHL) | 31 Aug call | The one next move |
 |---|---|---|---|---|
-| SEFA (anchor) | $250K register, $300K pipeline DB: **conflict, Ben calls the figure** | Cultivating | STRETCH, tightening daily | SEND the intro plus loan brief, lodge the Access form, phone (02) 8199 3360. Credit runs 2 to 4 months; every day of delay eats the window. |
+| SEFA (anchor) | $300,000 (Ben's call, 2026-07-03; reconciled in the register, pipeline DB and GHL same day) | Cultivating | STRETCH, tightening daily | SEND the intro plus loan brief, lodge the Access form, phone (02) 8199 3360. Credit runs 2 to 4 months; every day of delay eats the window. |
 | White Box SELF | $250,000 | Cultivating | STRETCH | Lodge the SELF EOI; ask the eligibility question in the EOI instead of self-screening out. |
-| Minderoo | $200,000 | Ask made in register, Cultivating in pipeline DB: **conflict** | STRETCH | Verify a real ask exists. If not, correct to Cultivating (the 28 Jun finding) and cultivate honestly. |
+| Minderoo | $200,000 | Ask made (confirmed real by Ben, 2026-07-03) | STRETCH | Follow up the $200K catalytic ask; push toward a written LOI so it counts as match. |
 | SEDI Capability | $120,000 | Qualified | STRETCH | Prepare and lodge. No ownership gate, verified open. |
 | Snow (first-mover) | $100,000 | Ask made | SIGNABLE | Confirm the Round 4 email went out, book the call, push toward a repayable LOI so it counts as match. |
 | LendForGood | $100,000 | Cultivating | SIGNABLE if SIH originates | One yes/no question to Jay: will SIH originate a Goods campaign. Draft ready. |
@@ -52,7 +52,7 @@ Target asks, never committed money. Signed today: $0.
 | Sisters of Charity | $20,000 | Identified | Needs DGR Item 1 partner | Qualify the partner-led route or park. |
 | ANZ Seeds of Renewal | $15,000 | Qualified | Small | Lodge before 30 Jul. |
 
-Lead stack: SEFA $250K plus Snow $100K plus Centrecorp $75K equals $425K, clears the gate on paper with zero redundancy. Bench if a leg fails: White Box, LendForGood, Metro, Minderoo-if-real.
+Lead stack: SEFA $300K plus Snow $100K plus Centrecorp $75K equals $475K, clears the gate on paper with zero redundancy. Bench if a leg fails: White Box, LendForGood, Metro, Minderoo.
 
 **Conditional promotion: Tim Fairfax Family Foundation ($150K, Ask made).** The scout pass says invitation-only, no open round, DGR Item 1 required, never in the match stack. But the pipeline DB row is live as of today with a dated action: confirm with Katie Norman by 10 Jul the $150K/year structure, decision path, written LOI timing and QBE match treatment. Promote to the register only if Katie confirms a written commitment path. Until then it stays Workbench. (Both signals preserved; promotion on evidence, not hope.)
 
@@ -112,8 +112,8 @@ Coverage after corrections: 63 of 63 open rows enumerated and bucketed. QBE prio
 
 ## 4. Conflicts the reconciliation surfaced (each needs one decision)
 
-1. **SEFA figure:** $250K on the QBE Register, $300K on the Funder Pipeline DB. One figure everywhere before the send. Ben's call, standing open since 28 Jun.
-2. **Minderoo stage:** Ask made on the register and in the GHL review list, Cultivating with "no formal ask yet" on the pipeline DB. Either a real ask went out (date it, keep Ask made, count it in indicator 3) or it did not (correct to Cultivating everywhere, again).
+1. **SEFA figure: RESOLVED 2026-07-03.** Ben called $300,000. Applied same day to the QBE Register, the GHL opportunity value, the send documents (intro email, loan brief) and every design surface. Lead stack now $475K.
+2. **Minderoo stage: RESOLVED 2026-07-03.** Ben confirmed the ask is real. Ask made stands in GHL and the register; the pipeline DB row corrected to Ask made with a follow-up action (push toward a written LOI so it counts as match).
 3. **Register and pipeline DB are nearly disjoint:** only 4 of 13 register rows (SEFA, Minderoo, LendForGood, Metro) have Funder Pipeline rows. Nine register asks (White Box, Snow, Centrecorp, VFFF, SEDI, FRRR, Clean Energy, ANZ, Sisters) are invisible on the working shortlist. The containment rule (register inside pipeline inside GHL) needs the nine mirror rows added. Staged in section 7.
 4. **Tim Fairfax double signal:** scout says park forever, pipeline DB says live conversation with a 10 Jul date. Resolved above: workbench now, register on written evidence.
 5. **GHL token scopes:** section 2. Machine blind until fixed.

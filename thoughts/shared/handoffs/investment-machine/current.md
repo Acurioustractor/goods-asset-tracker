@@ -35,6 +35,8 @@ status: active
 - [ ] Commitment-stage surface (no web surface captures into GHL today).
 
 ### Decisions
+- **2026-07-03 (Ben): SEFA = $300,000.** Applied to register, GHL, send docs (email + brief PDF re-rendered), all design surfaces. Lead stack now $475K (SEFA $300K + Snow $100K + Centrecorp $75K).
+- **2026-07-03 (Ben): Minderoo ask is real.** Ask made stands everywhere; pipeline DB corrected; next push = written LOI so it counts as match.
 - Quote $713,827 externally (accountant-signed carve-out) until Ben + accountant resolve the ~$907,569 reconciliation.
 - Xero wins on conflicts (Snow corrected to $493,130).
 

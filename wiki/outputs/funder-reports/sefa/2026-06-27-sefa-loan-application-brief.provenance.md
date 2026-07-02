@@ -49,3 +49,6 @@ These come from `02-repayable-finance-shortlist.md` (which cites sefa.com.au + t
 
 ## Render
 `2026-06-27-sefa-loan-application-brief.html` → headless Chrome `--print-to-pdf` → `.pdf` (3 pages, A4). House funder-report style (Lora + Inter; cream / terracotta / sage / teal / gold).
+
+## Update 2026-07-03
+Ask figure set to **AU$300,000** by Ben (2026-07-03), stack ~AU$475,000 (SEFA $300K + Snow $100K + Centrecorp $75K). Updated in the brief HTML headline, the intro email (both versions), the QBE Opportunity Register (Target AUD), the GHL opportunity value, and all design surfaces. No other brief figures depend on the facility size (verified: single occurrence of the old figure). PDF re-rendered from the updated HTML.

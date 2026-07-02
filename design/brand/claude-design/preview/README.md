@@ -18,7 +18,7 @@ Built from the QBE Catalysing Impact Stage 2 funder work
 **target asks, not awarded**; QBE is **contingent**; **0 signed today**.
 
 - `invest-onepager.html` — funder one-pager (health-hardware story, traction, the ask, the stack).
-- `invest-capital-stack.html` — the $425K match diagram: SEFA $250K repayable + Snow $100K + Centrecorp $75K against the contingent $400K line.
+- `invest-capital-stack.html` — the $475K match diagram: SEFA $300K repayable + Snow $100K + Centrecorp $75K against the contingent $400K line (SEFA figure set at $300K by Ben, 2026-07-03).
 - `invest-match-progress.html` — reusable $0-of-$400K signed-match meter.
 - `invest-funder-pipeline.html` — the reconciled five-bucket board (QBE priority, workbench, stewarding, demand-side, parked), rebuilt 2026-07-03 from `wiki/outputs/2026-07-03-pipeline-strategy.md`.
 - `invest-funder-card.html` — reusable one-funder template (SEFA worked example).
