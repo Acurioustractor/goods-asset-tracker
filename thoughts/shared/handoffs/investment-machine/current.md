@@ -15,9 +15,8 @@ status: active
 **Test:** `cd v2 && npm run build && npm run check:drift`
 
 ### Now
-[->] Notion apply pending: auto-mode classifier blocks the mass write; Ben runs the verified script himself (dry-run clean twice): `cd v2 && node <scratchpad>/notion-apply-20260703.mjs`. Adds Bucket property + buckets 19 rows + 14 new rows (9 QBE mirrors, 5 qualify-ins) + Machine Dashboard block.
-[->] GHL token FIXED 2026-07-03 06:36 (Ben installed fresh pit-2342 token in v2/.env.local; opportunities/contacts 200). Machine live; 2026-07-03 monday one-pager regenerated from the live board.
-[->] Live-pull corrections folded into strategy doc section 3.5: TFN IS The Funding Network ($130K Stewarding, one entity); AMP Foundation $21,900 / John Villiers / Red Dust $15,950 / QIC $12,000 = past funders at Stewarding (renewal lane, NOT qualify-ins, NOT buyer moves); Garma = showcase/demand; 63/63 rows enumerated.
+[->] RECONCILIATION FULLY APPLIED 2026-07-03: Ben ran `notion-apply-20260703.mjs` (verified live: Funder Pipeline DB = 33 rows, QBE priority 13 + Workbench 20, Bucket field live, dashboard block posted). Register containment restored. GHL token fixed (fresh pit-2342). SEFA $300K + Minderoo-ask-real decisions applied everywhere. The machine's next constraint is SENDS, nothing structural.
+[->] Live-pull facts in strategy doc section 3.5: TFN IS The Funding Network ($130K Stewarding, one entity); AMP Foundation $21,900 / John Villiers / Red Dust $15,950 / QIC $12,000 = past funders at Stewarding (renewal lane); Garma = showcase/demand; 63/63 rows enumerated.
 
 ### This Session (2026-07-03 — pipeline strategy + reconciliation)
 - [x] Scope confirmed by Ben: review all GHL pipelines, build the specific strategy, reconcile GHL/Notion, align share assets in Claude Design.
