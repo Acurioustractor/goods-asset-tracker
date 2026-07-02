@@ -605,8 +605,8 @@ export default function PitchPage() {
               </h3>
               <p className="text-background/60 leading-relaxed">
                 Indigenous intelligence and ownership. A model designed by community, run by community,
-                that tells the story of what&rsquo;s possible when enterprise grows through action,
-                not just in Australia, but everywhere communities want to manufacture their own future.
+                that tells the story of what&rsquo;s possible when enterprise grows through action.
+                The next step is a community-owned press producing about 30 beds a week.
               </p>
             </div>
 

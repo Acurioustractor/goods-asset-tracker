@@ -78,7 +78,7 @@ export default function PitchDocumentPage() {
               A Curious Tractor
             </p>
             <p className="text-xs text-neutral-400 mb-2">
-              Investment Proposal &middot; Updated 1 July 2026
+              Investment Proposal &middot; Updated 3 July 2026
             </p>
             <p className="text-xs text-neutral-400 mb-16">
               Catalysing Impact, powered by Social Impact Hub, in partnership with QBE Foundation
@@ -123,7 +123,7 @@ export default function PitchDocumentPage() {
             ================================================================ */}
         <section className="page-break px-12 py-16">
           <p className="text-xs uppercase tracking-[0.3em] text-neutral-400 mb-6">
-            01 &mdash; The Problem
+            01 &middot; The Problem
           </p>
           <h2
             className="text-3xl font-light text-black mb-4"
@@ -148,8 +148,8 @@ export default function PitchDocumentPage() {
           <div className="avoid-break bg-neutral-50 rounded-lg p-6 border border-neutral-100">
             <p className="text-2xl font-bold text-black mb-2">$3M / year</p>
             <p className="text-sm text-neutral-600">
-              One Alice Springs provider sells $3 million of washing machines annually into communities &mdash; most
-              ending up in dumps. Our solution: a &ldquo;virus&rdquo; of better products people choose first.
+              One Alice Springs provider sells $3 million of washing machines a year into communities.
+              Most end up in dumps. Our solution: a &ldquo;virus&rdquo; of better products people choose first.
             </p>
           </div>
         </section>
@@ -159,7 +159,7 @@ export default function PitchDocumentPage() {
             ================================================================ */}
         <section className="page-break px-12 py-16">
           <p className="text-xs uppercase tracking-[0.3em] text-neutral-400 mb-6">
-            02 &mdash; Evidence of Demand
+            02 &middot; Evidence of Demand
           </p>
           <h2
             className="text-3xl font-light text-black mb-2"
@@ -168,7 +168,7 @@ export default function PitchDocumentPage() {
             200&ndash;350 beds requested
           </h2>
           <p className="text-base text-neutral-500 mb-10">
-            Organic demand from communities and health organisations &mdash; not manufactured need.
+            Organic demand from communities and health organisations, not manufactured need.
           </p>
 
           <div className="space-y-6">
@@ -191,7 +191,7 @@ export default function PitchDocumentPage() {
             ================================================================ */}
         <section className="page-break px-12 py-16">
           <p className="text-xs uppercase tracking-[0.3em] text-neutral-400 mb-6">
-            03 &mdash; The Product
+            03 &middot; The Product
           </p>
           <h2
             className="text-3xl font-light text-black mb-4"
@@ -206,7 +206,7 @@ export default function PitchDocumentPage() {
 
           <div className="grid grid-cols-2 gap-x-8 gap-y-3 mb-10">
             {[
-              '26kg — carried by one person',
+              '26kg, carried by one person',
               '200kg load capacity',
               '5-minute assembly, no tools',
               '20kg plastic diverted per bed',
@@ -237,7 +237,7 @@ export default function PitchDocumentPage() {
             ================================================================ */}
         <section className="page-break px-12 py-16">
           <p className="text-xs uppercase tracking-[0.3em] text-neutral-400 mb-6">
-            04 &mdash; The Model
+            04 &middot; The Model
           </p>
           <h2
             className="text-3xl font-light text-black mb-4"
@@ -247,7 +247,7 @@ export default function PitchDocumentPage() {
           </h2>
           <p className="text-base text-neutral-600 mb-10 max-w-2xl leading-relaxed">
             Products can be Aboriginal owned and controlled while sold commercially.
-            No need for a separate &ldquo;Goods charity&rdquo; &mdash; leverage existing
+            No need for a separate &ldquo;Goods charity&rdquo;. Leverage existing
             strong community organisations.
           </p>
 
@@ -258,7 +258,7 @@ export default function PitchDocumentPage() {
             </div>
             <div className="avoid-break text-center border border-neutral-200 rounded-lg p-6">
               <p className="text-4xl font-bold text-black mb-1">$0</p>
-              <p className="text-sm text-neutral-600">licensing fees &mdash; communities keep everything</p>
+              <p className="text-sm text-neutral-600">licensing fees, communities keep everything</p>
             </div>
           </div>
 
@@ -276,7 +276,7 @@ export default function PitchDocumentPage() {
             Containerised Production Plant
           </h3>
           <p className="text-sm text-neutral-600 mb-6 max-w-xl">
-            Not a sunk cost &mdash; it&rsquo;s an impact asset. The facility is portable,
+            Not a sunk cost. It&rsquo;s an impact asset. The facility is portable,
             community-deployable, and generates revenue.
           </p>
 
@@ -367,7 +367,7 @@ export default function PitchDocumentPage() {
             ================================================================ */}
         <section className="page-break px-12 py-16">
           <p className="text-xs uppercase tracking-[0.3em] text-neutral-400 mb-6">
-            06 &mdash; Risks &amp; Mitigations
+            06 &middot; Risks &amp; Mitigations
           </p>
           <h2
             className="text-3xl font-light text-black mb-4"
@@ -398,7 +398,7 @@ export default function PitchDocumentPage() {
             ================================================================ */}
         <section className="page-break px-12 py-16">
           <p className="text-xs uppercase tracking-[0.3em] text-neutral-400 mb-6">
-            07 &mdash; Timeline
+            07 &middot; Timeline
           </p>
           <h2
             className="text-3xl font-light text-black mb-10"
@@ -431,7 +431,7 @@ export default function PitchDocumentPage() {
           {/* THE ASK */}
           <div className="border-t-2 border-black pt-10">
             <p className="text-xs uppercase tracking-[0.3em] text-neutral-400 mb-6">
-              08 &mdash; The Investment
+              08 &middot; The Investment
             </p>
             <h2
               className="text-3xl font-light text-black mb-8"
@@ -469,7 +469,7 @@ export default function PitchDocumentPage() {
                   {investmentCase.potentialFunders.map((f) => (
                     <div key={f.name} className="text-sm">
                       <span className="font-medium text-black">{f.name}</span>
-                      <span className="text-neutral-400"> &mdash; {f.focus}</span>
+                      <span className="text-neutral-400"> &middot; {f.focus}</span>
                     </div>
                   ))}
                 </div>
@@ -486,7 +486,7 @@ export default function PitchDocumentPage() {
               </p>
               <p className="text-sm text-neutral-600 max-w-lg mx-auto mb-4 leading-relaxed">
                 We&rsquo;re building a model where First Nations communities have the tools
-                to manufacture durable, desirable products from their own waste streams &mdash;
+                to manufacture durable, desirable products from their own waste streams,
                 creating jobs and pride while displacing the disposable furniture cycle
                 that fills community dumps.
               </p>

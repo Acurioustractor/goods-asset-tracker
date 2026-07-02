@@ -4,7 +4,7 @@
 > Status: **DRAFT, founder sign-off required.** Management data, not audited. Every figure below carries a confidence level: **Verified** (queried the canonical source), **Inferred** (derived from an internal grounded doc, not re-checked live), **Unverified** (single source, taken on faith / to confirm with the counterparty).
 
 ## What this asset is
-A 3-page, lender-grade brief for **SEFA (Social Enterprise Finance Australia)** — the AU$250K anchor of the ~AU$425K QBE match stack. Built from today's `2026-06-27-qbe-diagnostic-review/` pack (investment memo, money one-pager, risk register, team/governance, financials-lock checklist) and the SEFA analysis in `2026-06-20-qbe-funder-landscape/02-repayable-finance-shortlist.md`. No new figures were introduced beyond those two grounded sources.
+A 3-page, lender-grade brief for **SEFA (Social Enterprise Finance Australia)**, the AU$300K anchor of the ~AU$475K QBE match stack. Built from today's `2026-06-27-qbe-diagnostic-review/` pack (investment memo, money one-pager, risk register, team/governance, financials-lock checklist) and the SEFA analysis in `2026-06-20-qbe-funder-landscape/02-repayable-finance-shortlist.md`. No new figures were introduced beyond those two grounded sources.
 
 ## Figure-by-figure
 
@@ -51,4 +51,4 @@ These come from `02-repayable-finance-shortlist.md` (which cites sefa.com.au + t
 `2026-06-27-sefa-loan-application-brief.html` → headless Chrome `--print-to-pdf` → `.pdf` (3 pages, A4). House funder-report style (Lora + Inter; cream / terracotta / sage / teal / gold).
 
 ## Update 2026-07-03
-Ask figure set to **AU$300,000** by Ben (2026-07-03), stack ~AU$475,000 (SEFA $300K + Snow $100K + Centrecorp $75K). Updated in the brief HTML headline, the intro email (both versions), the QBE Opportunity Register (Target AUD), the GHL opportunity value, and all design surfaces. No other brief figures depend on the facility size (verified: single occurrence of the old figure). PDF re-rendered from the updated HTML.
+Ask figure set to **AU$300,000** by Ben (2026-07-03), stack ~AU$475,000 (SEFA $300K + Snow $100K + Centrecorp $75K). The 2026-07-03 pass corrected only the page-1 masthead; the page-3 stack table, next-step band and in-brief provenance still carried the old $250K/$425K figures until the 2026-07-03 alignment sweep. All occurrences now read $300K / $475K: page-1 ask and masthead, page-3 stack table (SEFA row + subtotal), next-step band ("AU$300K to AU$400K"), and the page-3 provenance line. Mastheads bumped to 3 July; the "computed 27 June 2026" cost-model notes are the genuine computation date and left as-is. Credit line added to the page-1 footer. Re-render the PDF from the updated HTML. NOTE (open, low): the page-2 cost table shows On Country marginal $415.74 / breakeven 399 while canon rounds On Country to 421 / 338; leave until Ben or the accountant confirms which is the shipping figure.

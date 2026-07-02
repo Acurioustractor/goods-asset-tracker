@@ -473,7 +473,7 @@ const impactModelRows = [
   {
     dimension: 'Community ownership',
     proof: 'Oonchiumpa, PICC, community pages, published field stories and the stated aim to become unnecessary.',
-    caution: 'Ownership pathway is proposed/co-designed, not complete.',
+    caution: 'Ownership pathway is proposed and shaped with community, not complete.',
   },
   {
     dimension: 'Production efficiency',
@@ -688,7 +688,7 @@ export function QbeSiteWorkspace() {
                 QBE capital pathway
               </Badge>
               <Badge className="border-white/15 bg-white/10 text-[#FDF8F3]">
-                3 June 2026
+                3 July 2026
               </Badge>
             </div>
 
@@ -709,6 +709,8 @@ export function QbeSiteWorkspace() {
                 <p className="text-xs uppercase tracking-[0.2em] text-[#BBA255]">Catalytic ask</p>
                 <p className="mt-2 text-2xl font-semibold">~$400k</p>
                 <p className="mt-1 text-xs text-[#E6DFD1]">Signed match-eligible capital to close. QBE Stage 2 funds up to $400K, at least matched, not secured until awarded.</p>
+                <p className="mt-2 text-xs font-semibold text-[#FDF8F3]">$0 of $400K signed</p>
+                <p className="mt-1 text-xs text-[#E6DFD1]">Lead stack AU$475K: SEFA $300K, Snow $100K, Centrecorp $75K.</p>
               </div>
               <div className="rounded-lg border border-white/10 bg-white/5 p-4">
                 <p className="text-xs uppercase tracking-[0.2em] text-[#BBA255]">Cost unlock</p>
@@ -1422,6 +1424,10 @@ export function QbeSiteWorkspace() {
           </div>
         </div>
       </section>
+
+      <p className="mx-auto max-w-7xl px-4 pb-10 text-xs text-stone-400 sm:px-6 lg:px-8">
+        Catalysing Impact, powered by Social Impact Hub, in partnership with QBE Foundation.
+      </p>
     </main>
   );
 }

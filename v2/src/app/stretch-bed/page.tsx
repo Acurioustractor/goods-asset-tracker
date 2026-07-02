@@ -97,7 +97,7 @@ const steps = [
   {
     n: 5,
     title: 'Lie down',
-    body: 'That is the bed. It sits low and sturdy, holds up to 200 kg, and packs flat again when you need to move it.',
+    body: 'That is the bed. It sits low and sturdy, holds up to 200kg, and packs flat again when you need to move it.',
     img: '/images/product/stretch-bed-in-use.jpg',
   },
 ];

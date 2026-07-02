@@ -9,13 +9,21 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-07-03 (end of pipeline-strategy session, saved for /clear)
+**Updated:** 2026-07-03 pt2 (investor asset alignment sweep — workflow audit + Tier-1 fixes applied, Tier-2 held for Ben)
 **Goal:** Signed match-eligible capital toward the $400K QBE match (due 31 Aug). Next phase (Ben's words): full review of current Claude Design assets, build ALL the PDFs and live pages needed for sharing, then review all photos and add more.
-**Branch:** docs/snow-onepager-assets (everything PUSHED through `8e85184`)
-**Test:** `cd v2 && npm run build && npm run check:drift`
+**Branch:** docs/snow-onepager-assets (alignment-sweep changes UNCOMMITTED in working tree, prior work PUSHED through `8e85184`)
+**Test:** `cd v2 && npm run build && npm run check:drift` — both GREEN after the sweep.
 
 ### Now
-[->] NEXT PHASE, three steps in order: (1) full audit of the Claude Design project "Goods on Country — Investor Materials" (`b333c5aa-2dfa-4043-ab5f-ef7460692623`) — what exists, what renders, what is stale vs the $475K/$300K figures, incl. the UNVERIFIED 52-file Colors/Components/Spacing/Type/UI-Kit-Web batch from 2026-07-01; (2) build every share-ready PDF + live page the artifact map needs (strategy doc section 6 = the ask-to-artifact map; render.sh bakes PDF+PNG; --live-stages works again); (3) review ALL photos (canon 16/40 slots set, 4 RED consent-gated; untracked new photos sit in `design/deck-assets/` and `design/_image-originals/`) and add more to the design project.
+[->] Alignment sweep DONE (Tier 1). The money spine is now consistent everywhere: no `$250K`/`$425K` SEFA-stack drift survives (grep-confirmed). Full audit at `wiki/outputs/2026-07-03-investor-asset-alignment.md` (31-agent workflow). THREE items HELD for Ben (asked, he was AFK): (1) apply the Notion "Start Here" front-door rewrite — proposed "The ask" block leads with $400K/$475K/SEFA $300K and reorders numbers to lead with $713,827 (front door currently still leads with $741,111); (2) push the corrected deck + SEFA/Snow/Centrecorp PDFs to Claude Design `b333c5aa` and eyeball each render; (3) deck slide-14 stack — name funders (mirror teaser) vs keep generic instruments = strategic disclosure call. Changes are UNCOMMITTED — Ben reviews the diff, then commit/push.
+
+### This Session (2026-07-03 pt2 — investor asset alignment sweep)
+- [x] 31-agent workflow audited all 14 investor surfaces (9 Claude Design invest-* + live pages + 3 send PDFs) vs canon spine + voice rules, with adversarial verify + photo/video review. Report: `wiki/outputs/2026-07-03-investor-asset-alignment.md`.
+- [x] KEY FINDING: SEFA brief was self-contradicting ($300K page 1, $250K/$425K page 3) — the 2026-07-03 re-render only fixed the masthead; sidecar falsely claimed "single occurrence". FIXED all pages + sidecar. LESSON: a partial re-render can leave downstream pages stale; grep every occurrence.
+- [x] Tier-1 fixes applied + verified (build + check:drift GREEN): content.ts SEFA $250K→$300K (fixes /pitch + /pitch/document stack to $475K); deck slide 14 + Express-export $250K→$300K + title em dash; Snow brief anchor locked $100K, "twice the work" 4x→1; Centrecorp brief double-count reworded + Q2 "$550 verified" dropped + $832,832 captioned gross-vs-paid; credit line added to SEFA/Snow/Centrecorp PDFs + email + /investors + /impact + /cost-story + /sites/qbe + /sites/cost-lab; /sites/qbe-readiness Grants ~$500K→~$225K; /sites/qbe named $475K stack + $0/$400K; co-design removed; /process product mechanic fixed. SEFA/Snow/Centrecorp/deck PDFs re-rendered.
+- [x] 28 files changed (+96/−66), 4 PDFs re-rendered. UNCOMMITTED (Ben reviews diff).
+- [ ] HELD (Ben AFK): Notion front door rewrite, Claude Design push, deck funder-naming decision (see Now).
+- [ ] PHOTO/VIDEO headlines from the audit: NO consent-cleared human hero exists — `community-testing-bed-golden-hour.jpg` is the #1 unlock, blocked only by consent. URGENT: `jaquilane-testimony.mp4` is wired LIVE on /story but Jaquilane is NOT cleared — pull or clear before funder-facing. Cleared + ready: mykel.jpg + mykel-building-the-bed.mp4, process shots, recycling-plant-desktop.mp4.
 
 ### This Session (2026-07-03 — pipeline strategy, reconciliation, decisions applied)
 - [x] Five-bucket reconciliation of all 63 open Supporter Journey rows: `wiki/outputs/2026-07-03-pipeline-strategy.md` (strategy, artifact map, live-pull corrections in 3.5).

@@ -600,7 +600,7 @@ export const investmentCase = {
     {
       id: 'sefa',
       title: 'SEFA — repayable finance anchor',
-      amount: '$250,000',
+      amount: '$300,000',
       description: 'Concessional/blended loan, no ownership gate. Lends to social-enterprise companies. The anchor of every scenario; repayable carries the highest QBE match value.',
     },
     {
@@ -734,7 +734,7 @@ export const investmentCase = {
   // this is a conversion task, not a discovery one. Do not present these as
   // secured funding.
   funders: [
-    { name: 'SEFA', type: 'Repayable finance, target $250K', status: 'Briefing' },
+    { name: 'SEFA', type: 'Repayable finance, target $300K', status: 'Briefing' },
     { name: 'Snow Foundation', type: 'Multi-year LOI, target $100K', status: 'Pursuing' },
     { name: 'Centrecorp Foundation', type: 'Grant + bed order, target $75K', status: 'Pursuing' },
     { name: 'The Funding Network', amount: '~$80K', type: 'Production facility', status: 'Completed' },

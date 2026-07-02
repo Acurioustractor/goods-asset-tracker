@@ -46,7 +46,7 @@ export const metadata = {
   openGraph: {
     title: 'How a Stretch Bed is Made · Goods on Country',
     description:
-      'Recycled plastic, On-Country pressing, CNC cutting, hydraulic-pressed legs, and community assembly. Every Stretch Bed is built, not bought.',
+      'Recycled plastic, On-Country pressing, CNC cutting, heat-pressed legs, and community assembly. Every Stretch Bed is built, not bought.',
     url: 'https://www.goodsoncountry.com/process',
     images: [
       {
@@ -116,7 +116,7 @@ const STEPS: Step[] = [
     step: 4,
     label: 'Finish',
     title: 'Edges smoothed, drilled by hand',
-    body: 'Once the legs are cut, the edges get smoothed with a bull-nose router. Then the young people from Oonchiumpa drill the holes and fit the screws and bolts that hold each leg together. By the time the parts ship, they’re ready to click together in a remote community in five minutes flat.',
+    body: 'Once the legs are cut, the edges get smoothed with a bull-nose router. Then the young people from Oonchiumpa drill the pole holes into the top of each leg. By the time the parts ship, a family can thread the poles and tension the bed together in a remote community in about five minutes, no tools.',
     hero: { src: '/images/process/bull-nose-router.jpg', alt: 'A bull-nose router smoothing the edges of a CNC-cut Stretch Bed leg' },
     supporting: [
       { src: '/images/process/cnc-tools-drill.jpg', alt: 'Drilling tools laid out at the workstation' },

@@ -81,7 +81,7 @@ export function InvestmentSkin() {
         <div className="flex items-center gap-2.5">
           <span className="h-2 w-2 rounded-full bg-emerald-400" />
           <span className="text-[10px] uppercase tracking-[0.22em] text-emerald-400">MODEL</span>
-          <span className="text-[10px] uppercase tracking-[0.22em] text-zinc-500">INVESTMENT LAYER · ${SALE} INSTITUTIONAL SALE → COMMUNITY CO-OP</span>
+          <span className="text-[10px] uppercase tracking-[0.22em] text-zinc-500">INVESTMENT LAYER · ${SALE} FROM INSTITUTIONAL SALE TO COMMUNITY CO-OP</span>
         </div>
         <button onClick={() => setBrokerage(Number(W.act_brokerage_default))} className="text-[10px] uppercase tracking-[0.16em] text-zinc-500 transition-colors hover:text-cyan-300">
           RESET → ${W.act_brokerage_default}
@@ -125,12 +125,12 @@ export function InvestmentSkin() {
           <FlowBar label={`Sale price · institutional`} value={fmt(SALE)} valueColor="#67e8f9" widthPct={100} barColor="#0e7490" />
           <FlowBar label="− COGS (community)" value={`−${fmt(COGS)}`} valueColor="#d4d4d8" widthPct={p(COGS)} barColor="#52525b" />
           <FlowBar label="− Freight" value={`−${fmt(FREIGHT)}`} valueColor="#d4d4d8" widthPct={p(FREIGHT)} barColor="#3f3f46" />
-          <FlowBar label="− ACT brokerage → debt service" value={`−${fmt(brokerage)}`} valueColor={AMBER} widthPct={p(brokerage)} barColor={AMBER} emphasis />
+          <FlowBar label="− ACT brokerage to debt service" value={`−${fmt(brokerage)}`} valueColor={AMBER} widthPct={p(brokerage)} barColor={AMBER} emphasis />
           <FlowBar label="− Cashflow buffer" value={`−${fmt(BUFFER)}`} valueColor="#d4d4d8" widthPct={p(BUFFER)} barColor="#6b7280" />
           <FlowBar label="= Community co-op margin (keeps)" value={fmtCents(coop)} valueColor={coopPos ? POS : NEG} widthPct={p(Math.max(0, coop))} barColor={POS} emphasis />
         </div>
         <div className="shrink-0 border-t border-zinc-800 px-3 py-1.5 text-[10px] leading-snug text-zinc-600">
-          The ${FAIR_WAGE} fair wage sits INSIDE COGS — the green co-op margin is ON TOP of dignified paid work.{!coopPos && <span className="text-red-400"> ⚠ At {fmt(brokerage)}/bed the community is underwater ({fmtCents(coop)}) — brokerage must flex down.</span>}
+          The ${FAIR_WAGE} fair wage sits inside COGS. The green co-op margin sits on top of dignified paid work.{!coopPos && <span className="text-red-400"> ⚠ At {fmt(brokerage)}/bed the community is underwater ({fmtCents(coop)}). Brokerage must flex down.</span>}
         </div>
       </div>
 
@@ -149,13 +149,13 @@ export function InvestmentSkin() {
             </div>
           </div>
           <p className={`mt-1.5 text-[9px] ${under500 ? 'text-red-400' : 'text-zinc-600'}`}>
-            {under500 ? `⚠ under-covers $500K — floor ~$${FLOOR}/bed` : `${fmt(annualBrokerage)}/yr services both tranches`}
+            {under500 ? `⚠ under-covers $500K, floor ~$${FLOOR}/bed` : `${fmt(annualBrokerage)}/yr services both tranches`}
           </p>
         </div>
         <div className="border border-zinc-800 p-3">
           <Label>1 · DEFY-DECOUPLED</Label>
           <p className="mt-1.5 text-[10px] leading-relaxed text-zinc-400">
-            The Defy HDPE kit price has <span className="text-cyan-300">zero effect</span> on community COGS — free community-collected plastic decouples it.
+            The Defy HDPE kit price has <span className="text-cyan-300">zero effect</span> on community COGS. Free community-collected plastic decouples it.
           </p>
         </div>
         <div className="border border-zinc-800 p-3">

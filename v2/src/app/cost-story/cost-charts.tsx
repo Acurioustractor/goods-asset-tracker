@@ -407,13 +407,13 @@ export function CostCurveChart() {
     <ChartFrame
       title="Goods' cost-down path (an experience curve)"
       subtitle="Marginal cost per bed falls as we mature in production, the same shape as solar panels and EV batteries."
-      source={`Goods cost model v6. Marginal cost = what one more bed costs to make + freight, before the ${fmt(m.fixedBlock)}/yr fixed block. Solid points are real/target paths (Buy-Kit → Factory → Community); the dashed tail is illustrative, with the actual learning rate pending Defy volume quotes.`}
+      source={`Goods cost model v6. Marginal cost = what one more bed costs to make + freight, before the ${fmt(m.fixedBlock)}/yr fixed block. Solid points are real/target paths (Buy-Kit, then Factory, then Community); the dashed tail is illustrative, with the actual learning rate pending Defy volume quotes.`}
     >
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ left: 8, right: 24, top: 24, bottom: 16 }}>
           <CartesianGrid stroke={C.grid} />
           <XAxis dataKey="x" stroke={C.sub} fontSize={12}
-            label={{ value: 'cumulative beds produced → production maturity', position: 'insideBottom', offset: -6, fill: C.sub, fontSize: 11 }} />
+            label={{ value: 'cumulative beds produced, toward production maturity', position: 'insideBottom', offset: -6, fill: C.sub, fontSize: 11 }} />
           <YAxis stroke={C.sub} fontSize={12} tickFormatter={(v: number) => fmt(v)} width={64} domain={[300, yMax]} />
           <Tooltip content={<MoneyTip />} />
           <ReferenceLine y={price} stroke={C.clay} strokeDasharray="4 4" label={refLabel(`Sells for ${fmt(price)}, marginal sits below`, C.clay, 'insideTopRight')} />
@@ -616,7 +616,7 @@ export function CostDock() {
           </div>
           <input type="range" min={WAGE_MIN} max={WAGE_MAX} step={5} value={wage}
             onChange={(e) => setWage(Number(e.target.value))} className="w-full" style={{ accentColor: C.green }} />
-          <p className="mt-0.5 text-[10px]" style={{ color: C.sub }}>→ community {fmt(m.marginalCommunity)}/bed</p>
+          <p className="mt-0.5 text-[10px]" style={{ color: C.sub }}>community marginal cost: {fmt(m.marginalCommunity)}/bed</p>
         </label>
         {/* Live readout */}
         <div className="flex gap-4 rounded-xl bg-white/70 px-4 py-2 text-center md:gap-5">

@@ -103,7 +103,7 @@ const METRICS: Array<{ value: string; label: string; sub: string; tier: Tier }> 
 
 // ── The ask (the stack, junior to senior) ──────────────────────────────────
 const STACK: Array<{ label: string; amount: string; detail: string; tier: Tier }> = [
-  { label: 'Grants', amount: '~AU$500K', detail: 'Snow R4/R5, Centrecorp, VFFF', tier: 'Target' },
+  { label: 'Grants', amount: '~AU$225K', detail: 'Snow R4/R5, Centrecorp, VFFF', tier: 'Target' },
   {
     label: 'QBE match',
     amount: 'up to AU$400K',
@@ -168,7 +168,7 @@ const PROOFS: Array<{
 // ── The program timeline ────────────────────────────────────────────────────
 const MILESTONES: Array<{ when: string; what: string; tier?: Tier }> = [
   {
-    when: 'Now, 26 June 2026',
+    when: 'As at 3 July 2026',
     what: 'The documents are done. 496 beds proven and tracked. Accountant-signed Goods-only revenue: AU$713,827. Signed match capital today: AU$0.',
   },
   {
@@ -199,7 +199,7 @@ const PHASES: Array<{ n: number; name: string; horizon: string; body: string }> 
   },
   {
     n: 3,
-    name: 'Scale on country',
+    name: 'Scale On Country',
     horizon: 'the endgame',
     body: 'Distributed, community-owned production. The central organisation steps back. The job was always to become unnecessary.',
   },
@@ -678,6 +678,9 @@ export default function QbeReadinessPage() {
             assumptions (0 beds assembled in-house). Workpaper figures are unaudited Xero mirror
             data and are not yet a Goods-only carve-out. Re-pull Xero and apply the entity-wording
             and number-audit checks before any external send.
+          </p>
+          <p className="mt-4 text-xs text-stone-400">
+            Catalysing Impact, powered by Social Impact Hub, in partnership with QBE Foundation.
           </p>
         </div>
       </section>

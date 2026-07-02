@@ -341,7 +341,7 @@ export default function CostStoryPage() {
         <Diagram
           src="/goods-community-ownership-v2.png"
           alt="Three-stage path to community ownership: buy-kit today, an on-Country green shipping-container plant with a plastic shredder and press, then community-owned production"
-          caption="Buy-kit → On-Country plant → community-owned. The capital buys the path, not just the press."
+          caption="Buy-kit, then On-Country plant, then community-owned. The capital buys the path, not just the press."
         />
         <PullQuote
           quote="I'll be rocking up every day to make them."
@@ -403,6 +403,10 @@ export default function CostStoryPage() {
           </div>
         </div>
       </section>
+
+      <p className="py-6 text-center text-xs text-muted-foreground/60">
+        Catalysing Impact, powered by Social Impact Hub, in partnership with QBE Foundation.
+      </p>
     </CostModelProvider>
   );
 }

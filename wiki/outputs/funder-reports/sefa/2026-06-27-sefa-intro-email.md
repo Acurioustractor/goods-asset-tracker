@@ -30,6 +30,8 @@ Ben Knight
 Co-founder, Goods on Country
 [phone] · [email] · goodsoncountry.com
 
+Catalysing Impact, powered by Social Impact Hub, in partnership with QBE Foundation.
+
 ---
 
 ## Short version (for a character-limited form field, ~90 words)
