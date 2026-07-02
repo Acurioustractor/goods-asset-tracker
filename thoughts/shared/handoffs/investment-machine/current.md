@@ -1,3 +1,51 @@
+---
+date: 2026-07-03T06:30:00+09:30
+session_name: investment-machine
+branch: docs/snow-onepager-assets
+status: active
+---
+
+# Work Stream: investment-machine
+
+## Ledger
+<!-- This section is extracted by SessionStart hook for quick resume -->
+**Updated:** 2026-07-03 (pipeline strategy session)
+**Goal:** Signed match-eligible capital toward the $400K QBE match (due 31 Aug). Machine phase: investment portfolio + artifacts.
+**Branch:** docs/snow-onepager-assets (machine commits pushed through `dd012d8`)
+**Test:** `cd v2 && npm run build && npm run check:drift`
+
+### Now
+[->] BLOCKER: rotated GHL private-integration token only carries the `locations` scope; `contacts` + `opportunities` return 401 (verified against the API 2026-07-03). ALL machine scripts dead. Ben: GHL Settings > Private Integrations > tick View/Edit Contacts + View/Edit Opportunities, then verify with `cd v2 && node scripts/ghl-people-pull.mjs`.
+[->] Staged Notion writes from the reconciliation await Ben's go (section 7 of `wiki/outputs/2026-07-03-pipeline-strategy.md`): 9 register-mirror rows + Bucket property + 8 qualify-ins on the Funder Pipeline DB.
+
+### This Session (2026-07-03 — pipeline strategy + reconciliation)
+- [x] Scope confirmed by Ben: review all GHL pipelines, build the specific strategy, reconcile GHL/Notion, align share assets in Claude Design.
+- [x] Five-bucket reconciliation of every open Supporter Journey record written: `wiki/outputs/2026-07-03-pipeline-strategy.md` (strategy, conflicts, artifact map, staged writes).
+- [x] Five conflicts surfaced: SEFA $250K vs $300K across the two Notion DBs; Minderoo Ask-made vs Cultivating; register/pipeline DBs share only 4 of 13 rows; Tim Fairfax scout-park vs live 10-Jul action; GHL token scopes.
+- [x] Bryan Foundation answered: in GHL + Funder Pipeline, correctly NOT on QBE register; nudge first, promote only on a live reply with an amount.
+- [x] `invest-funder-pipeline.html` rebuilt as the five-bucket board (as-at 2026-07-03) and PUSHED to Claude Design project b333c5aa (Investor Materials).
+- [x] Strategy doc added to artifact-register.json (id `pipeline-strategy-20260703`); drift check green; artifact-base.md regenerated (46 artifacts, 0 dead).
+
+### Next
+- [ ] (Ben, 2 min) GHL token scope fix (above), then re-run `monday-onepager.mjs` for the full 63-row bucketed board.
+- [ ] (Ben, gated) The 5 sends — SEFA first; SEFA figure call; Minderoo ask-or-not; Notion trash decision.
+- [ ] (Ben, gated) Approve staged Notion writes (strategy doc section 7).
+- [ ] Machine build-next: bucket tags in `ghl-people-pull`, containment-check line on the Monday one-pager, Bucket-aware `funder-artifact-match` (strategy doc section 8).
+- [ ] Commitment-stage surface (no web surface captures into GHL today).
+
+### Decisions
+- Quote $713,827 externally (accountant-signed carve-out) until Ben + accountant resolve the ~$907,569 reconciliation.
+- Xero wins on conflicts (Snow corrected to $493,130).
+
+### Open Questions
+- UNCONFIRMED: exact scope of "next phase of investment portfolio and artifacts" — ask Ben 1-3 targeted questions on resume before building.
+- UNCONFIRMED: whether any of the 5 sends went out since 2026-07-02.
+
+---
+
+## Context
+<!-- Original handoff content follows -->
+
 # Investment machine: review + blueprint (2026-07-02)
 
 ## What this is
