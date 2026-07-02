@@ -38,7 +38,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 
 export const metadata: Metadata = {
-  title: 'QBE Readiness One-Pager · Goods on Country',
+  title: 'QBE Readiness One-Pager',
   description:
     'The simple version: one goal, five proofs, and the program timeline for the Goods on Country QBE capital pathway.',
   robots: { index: false, follow: false },
