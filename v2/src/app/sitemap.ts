@@ -121,12 +121,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       .eq('is_active', true);
 
     if (products) {
-      productPages = products.map((product) => ({
-        url: `${baseUrl}/shop/${product.slug}`,
-        lastModified: new Date(product.updated_at),
-        changeFrequency: 'weekly' as const,
-        priority: 0.8,
-      }));
+      const staticUrls = new Set(staticPages.map((p) => p.url));
+      productPages = products
+        .map((product) => ({
+          url: `${baseUrl}/shop/${product.slug}`,
+          lastModified: new Date(product.updated_at),
+          changeFrequency: 'weekly' as const,
+          priority: 0.8,
+        }))
+        .filter((p) => !staticUrls.has(p.url));
     }
   } catch (error) {
     console.error('Error fetching products for sitemap:', error);

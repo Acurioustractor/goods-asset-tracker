@@ -25,8 +25,8 @@ export async function proxy(request: NextRequest) {
   )
   if (isPasswordProtected && pathname !== '/impact/login' && pathname !== '/api/impact/auth') {
     const authCookie = request.cookies.get(PASSWORD_COOKIE)?.value
-    const expectedPassword = process.env.IMPACT_PASSWORD || 'goods2026'
-    if (authCookie !== expectedPassword) {
+    const expectedPassword = process.env.IMPACT_PASSWORD?.trim()
+    if (!expectedPassword || authCookie !== expectedPassword) {
       const loginUrl = new URL('/impact/login', request.url)
       loginUrl.searchParams.set('from', pathname)
       return NextResponse.redirect(loginUrl)
@@ -40,8 +40,8 @@ export async function proxy(request: NextRequest) {
     pathname !== '/api/insiders/auth'
   ) {
     const authCookie = request.cookies.get(INSIDERS_COOKIE)?.value
-    const expectedPassword = process.env.INSIDERS_PASSWORD || 'goods2026'
-    if (authCookie !== expectedPassword) {
+    const expectedPassword = process.env.INSIDERS_PASSWORD?.trim()
+    if (!expectedPassword || authCookie !== expectedPassword) {
       const loginUrl = new URL('/insiders/login', request.url)
       loginUrl.searchParams.set('from', pathname)
       return NextResponse.redirect(loginUrl)
@@ -67,8 +67,8 @@ export async function proxy(request: NextRequest) {
     pathname !== '/api/investors/auth'
   ) {
     const authCookie = request.cookies.get(INVESTORS_COOKIE)?.value
-    const expectedPassword = process.env.INVESTORS_PASSWORD || 'goods2026'
-    if (authCookie !== expectedPassword) {
+    const expectedPassword = process.env.INVESTORS_PASSWORD?.trim()
+    if (!expectedPassword || authCookie !== expectedPassword) {
       const loginUrl = new URL('/investors/login', request.url)
       loginUrl.searchParams.set('from', pathname)
       return NextResponse.redirect(loginUrl)
