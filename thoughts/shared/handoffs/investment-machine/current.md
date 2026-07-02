@@ -15,8 +15,9 @@ status: active
 **Test:** `cd v2 && npm run build && npm run check:drift`
 
 ### Now
-[->] BLOCKER: rotated GHL private-integration token only carries the `locations` scope; `contacts` + `opportunities` return 401 (verified against the API 2026-07-03). ALL machine scripts dead. Ben: GHL Settings > Private Integrations > tick View/Edit Contacts + View/Edit Opportunities, then verify with `cd v2 && node scripts/ghl-people-pull.mjs`.
-[->] Staged Notion writes from the reconciliation await Ben's go (section 7 of `wiki/outputs/2026-07-03-pipeline-strategy.md`): 9 register-mirror rows + Bucket property + 8 qualify-ins on the Funder Pipeline DB.
+[->] Notion apply pending: auto-mode classifier blocks the mass write; Ben runs the verified script himself (dry-run clean twice): `cd v2 && node <scratchpad>/notion-apply-20260703.mjs`. Adds Bucket property + buckets 19 rows + 14 new rows (9 QBE mirrors, 5 qualify-ins) + Machine Dashboard block.
+[->] GHL token FIXED 2026-07-03 06:36 (Ben installed fresh pit-2342 token in v2/.env.local; opportunities/contacts 200). Machine live; 2026-07-03 monday one-pager regenerated from the live board.
+[->] Live-pull corrections folded into strategy doc section 3.5: TFN IS The Funding Network ($130K Stewarding, one entity); AMP Foundation $21,900 / John Villiers / Red Dust $15,950 / QIC $12,000 = past funders at Stewarding (renewal lane, NOT qualify-ins, NOT buyer moves); Garma = showcase/demand; 63/63 rows enumerated.
 
 ### This Session (2026-07-03 — pipeline strategy + reconciliation)
 - [x] Scope confirmed by Ben: review all GHL pipelines, build the specific strategy, reconcile GHL/Notion, align share assets in Claude Design.

@@ -26,11 +26,7 @@ Everything else (Grants board, A Curious Tractor, CONTAINED, Harvest, The Shop, 
 
 The rotated GHL private integration token (post security incident) authorises the `locations` scope only. `contacts` and `opportunities` return 401. Verified directly against the API 2026-07-03. Every machine script (`ghl-people-pull`, `funder-artifact-match`, `monday-onepager`, `ghl-people-move`) is dead until the scopes are restored.
 
-**Fix (Ben, about 2 minutes):** GHL, Settings, Private Integrations, open the current integration, tick the scopes: View Contacts, Edit Contacts, View Opportunities, Edit Opportunities (and View Custom Fields if listed). Save. No new token needed unless GHL forces a regenerate; if it does, paste the new `pit-...` value into `v2/.env.local` as `GHL_API_KEY`.
-
-Verify with: `cd v2 && node scripts/ghl-people-pull.mjs` (should print the board, not a 401).
-
-Until then, record-level GHL claims below are as at 2026-07-02 and marked Inferred where the overnight state could have moved.
+**FIXED same day:** Ben installed a fresh private integration token (2026-07-03, 06:36); `opportunities` and `contacts` verified 200 and the full live pull ran clean. The machine is live again. Section 3.5 records what the live pull corrected.
 
 ## 3. The reconciliation: every open Supporter Journey record, bucketed
 
@@ -70,17 +66,17 @@ Already on the pipeline DB and correctly placed: Tim Fairfax (above), Bryan Foun
 
 | Name | Call | Why |
 |---|---|---|
-| NAACT (Northern Australian Aboriginal Charitable Trust) | Work | One of the 28 Jun work-five. NT footprint fit. |
-| Yeperenye Charitable Trust | Work | Alice Springs base, Central Australia orbit alongside Centrecorp and Oonchiumpa. |
-| The John Villiers Trust | Work | QLD regional health and community remit, real fit. |
-| AMP Foundation | Work | An AMP Spark relationship already exists in the ledger history. Warm door. |
-| StreetSmart Australia | Work (small) | Homelessness-adjacent bedding fit, small grants. |
-| INPEX Community Investment | Work (cost-offset) | Rolling, NT, priorities map near one to one. Partner tag, not match. |
-| Australian Communities Foundation | Work (light) | Giving-circle and DAF pathway to individual philanthropists. |
-| The Funding Network | Work (light) | Pitch-event pathway; a September event is post-window pipeline. |
+| NAACT (Northern Australian Aboriginal Charitable Trust) | Work | One of the 28 Jun work-five. NT footprint fit. Confirmed Identified in GHL. |
+| Yeperenye Charitable Trust | Work | Alice Springs base, Central Australia orbit alongside Centrecorp and Oonchiumpa. Confirmed Identified in GHL. |
+| StreetSmart Australia | Work (small) | Homelessness-adjacent bedding fit, small grants. Confirmed Identified in GHL. |
+| INPEX Community Investment | Work (cost-offset) | Rolling, NT, priorities map near one to one. Partner tag, not match. Confirmed Identified in GHL. |
+| Australian Communities Foundation | Work (light) | Giving-circle and DAF pathway to individual philanthropists. Confirmed Identified in GHL. |
+| The John Villiers Trust | CORRECTED: renewal lane | Live pull shows Stewarding: a past funder, not a cold prospect. Renewal touch, Ben decides. |
+| AMP Foundation | CORRECTED: renewal lane | Live pull shows Stewarding, $21,900 received. Warm past funder, renewal touch. |
+| The Funding Network | CORRECTED: same entity as TFN | Live pull shows Stewarding, $130,000. This IS the TFN of the mis-booking question. One entity, one row. |
 | Social Impact Hub Foundation | Reclassify | This is Jay's shop, the QBE intermediary. Partner and steward, never an ask row. |
-| Red Dust | Confirm then move | Likely a program partner or demand signal, not a funder. Buyer or demand bucket pending the live pull. |
-| QIC | Confirm | Unclear whether funder or procurement interest. Classify on the live pull. |
+| Red Dust | CORRECTED: Stewarding | Live pull shows $15,950 received. A money relationship, not a demand signal. Stays in Supporter Journey. |
+| QIC | CORRECTED: Stewarding | Live pull shows $12,000 received. Same. |
 | BHP Foundation, Fortescue Foundation, Rio Tinto Foundation, Nova Peris Foundation, Brisbane Powerhouse Foundation, Westpac Scholars Trust | Park | Long-cycle, no open door, or remit mismatch (Westpac Scholars funds individuals). Monitor tag. |
 
 Plus the work-five leftovers from the 28 Jun triage: Sally Knox, John Chambers, IMB Bank Community Foundation, Developing East Arnhem (all 30 plus days cold, nudge drafts exist).
@@ -100,7 +96,19 @@ Red Dust and QIC pending confirmation (above). Anything else the live pull shows
 
 The Tier C refutations of 2026-07-02 stand: Bank Australia, Aboriginal Investment NT (natural first funder for the future 51% entity, Round 3 opens Feb 2027), Impact Seed WA, English Family Foundation (Butterfly-era), Macquarie Group Foundation, FGII (nominate by 17 Aug for Perth November as post-QBE pipeline), First Nations Innovation Acceleration QLD, Impact Investment Partners, Industry Growth Program, Giant Leap, Boundless Earth. Plus the six parked names from the 17 (table above) and the remaining cold Identified rows.
 
-**Honesty note on coverage:** 63 opportunities are open in Supporter Journey today; roughly 50 are named and bucketed above. The remainder are unnamed cold Identified rows the dead token blocks from enumerating. Default: Parked. First machine run after the scope fix emits the complete bucketed list and this file gets superseded.
+### 3.5 Live-pull corrections (2026-07-03, Verified, full 63-row enumeration)
+
+The token fix landed the same morning and the live pull enumerated all 63 open rows. Corrections to the provisional calls above, plus the previously unnamed rows:
+
+- **TFN is The Funding Network.** One entity, $130,000 at Stewarding. The provisional table had it twice (a stewarding row and a qualify-in). One row, stewarding, and it carries the $144,558 mis-booking question.
+- **Five "qualify-ins" were actually past funders at Stewarding:** AMP Foundation ($21,900), The John Villiers Trust, Red Dust ($15,950), QIC ($12,000), plus an FRRR historic row ($50,000, separate from the new FRRR SRC application at Qualified). None are cold prospects; none move to Buyer or Demand. They form a **renewal lane**: warm past funders who already said yes once. Ben decides which get a renewal touch tied to the raise.
+- **Confirmed at Identified** (qualify-in stands): NAACT, Yeperenye, StreetSmart, INPEX, Australian Communities Foundation, plus Sea Swift (cost-offset, round opened 1 Jul).
+- **Newly enumerated Identified, default Parked pending a look:** Mjd Foundation, Community Resources Limited, Uniting Church Frontier Services, Country Connect Foundation, Regional Arts Australia.
+- **Garma Festival (Qualified, "Beds Showcase")** is a showcase and demand surface, not capital. Buyer or demand bucket.
+- **Delivering and money-in rows confirmed:** Homeland School Company $44,000 (Delivering), Mala'la Health Service $5,434, Julalikari Council $19,800, Our Community Shed $20,265 (Stewarding or Renewing). These read like funded deployments or orders; confirm buyer versus funder nature at the next Tuesday sitting, then move any pure orders to the Buyer Pipeline.
+- Tim Fairfax was touched today (Ben's session) and sits at Ask made with the 10 Jul Katie Norman action. Minderoo remains Ask made in GHL; decision 2 still open.
+
+Coverage after corrections: 63 of 63 open rows enumerated and bucketed. QBE priority 13, Workbench 20 (incl. 6 confirmed qualify-ins), Stewarding and renewal lane 12, Buyer or demand 1 (Garma, pending Ben), Parked 17.
 
 ## 4. Conflicts the reconciliation surfaced (each needs one decision)
 
@@ -144,7 +152,7 @@ Sources: the repo artifact base (45 artifacts, 0 dead), the Claude Design projec
 **Notion Funder Pipeline DB:**
 - [ ] Add the nine register mirror rows: White Box, Snow first-mover, Centrecorp next-round, VFFF, SEDI, FRRR SRC, Clean Energy Advice, ANZ Seeds, Sisters of Charity (stage, type, amount, next action, GHL opp id where known), restoring register inside pipeline containment.
 - [ ] Add a Bucket select property (QBE priority, Workbench, Stewarding, Buyer-demand, Parked) and set it on all rows per section 3, so the classification lives where the review happens.
-- [ ] Add workbench rows for the eight qualify-ins (NAACT, Yeperenye, John Villiers, AMP Foundation, StreetSmart, INPEX, Australian Communities Foundation, The Funding Network) at their honest stages.
+- [ ] Add workbench rows for the five confirmed qualify-ins (NAACT, Yeperenye, StreetSmart, INPEX, Australian Communities Foundation) at Identified. (John Villiers, AMP and The Funding Network dropped: live pull shows they are past funders at Stewarding, renewal lane instead.)
 
 **Notion QBE Register:**
 - [ ] SEFA amount to the single figure once Ben calls it (and the same figure into GHL and the readiness page, one sitting).
