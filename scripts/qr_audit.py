@@ -20,7 +20,7 @@ import requests
 
 # Configuration
 SUPABASE_URL = 'https://cwsyhpiuepvdjtxaozwf.supabase.co'
-SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw'
+SUPABASE_KEY = 'REDACTED_LEGACY_KEY_ROTATED_2026-06-30'
 EXPECTED_DOMAIN = 'goodsoncountry.netlify.app'
 EXPECTED_URL_PATTERN = re.compile(r'^https://goodsoncountry\.netlify\.app/\?asset_id=GB0-[\w-]+$')
 
