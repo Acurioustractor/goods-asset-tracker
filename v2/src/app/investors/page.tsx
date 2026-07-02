@@ -17,7 +17,7 @@ import { Suspense } from 'react';
 import { CostModelWorkspace } from '@/app/admin/cost-model/cost-model-workspace';
 
 export const metadata = {
-  title: 'Investor Cockpit — Goods on Country',
+  title: 'Investor Cockpit',
   description:
     'Interactive verified bed cost model + investment view. Marginal-cost-first, QBE-ready capital case.',
 };

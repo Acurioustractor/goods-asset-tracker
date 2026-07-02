@@ -5,7 +5,7 @@ import { ArticleRenderer } from '@/components/insiders/article-renderer';
 import { PLAYBOOK_MD } from '../playbook-content';
 
 export const metadata: Metadata = {
-  title: 'Cost Lab Playbook · Goods on Country',
+  title: 'Cost Lab Playbook',
   description:
     'Analogies, audience one-liners, set plays and the first working-session agenda for the Goods Cost Lab.',
   robots: {
