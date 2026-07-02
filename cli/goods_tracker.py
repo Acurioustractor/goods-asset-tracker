@@ -831,7 +831,7 @@ def audit_history(limit):
 
     # Try to get Supabase credentials from config or use defaults
     supabase_url = config.get('supabase_url', 'https://cwsyhpiuepvdjtxaozwf.supabase.co')
-    supabase_key = config.get('supabase_anon_key', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw')
+    supabase_key = config.get('supabase_anon_key', 'REDACTED_LEGACY_KEY_ROTATED_2026-06-30')
 
     try:
         response = requests.get(
@@ -885,7 +885,7 @@ def audit_changes(limit, asset):
 
     # Try to get Supabase credentials from config or use defaults
     supabase_url = config.get('supabase_url', 'https://cwsyhpiuepvdjtxaozwf.supabase.co')
-    supabase_key = config.get('supabase_anon_key', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3c3locGl1ZXB2ZGp0eGFvendmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NTcxODgsImV4cCI6MjA4MDIzMzE4OH0.Pgexh-ff_zU4SsDWV3uGO7foQjCO8xZbWvN_BU6Vxkw')
+    supabase_key = config.get('supabase_anon_key', 'REDACTED_LEGACY_KEY_ROTATED_2026-06-30')
 
     try:
         url = f"{supabase_url}/rest/v1/asset_change_log?select=*&order=change_date.desc&limit={limit}"

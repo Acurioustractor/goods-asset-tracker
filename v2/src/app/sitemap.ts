@@ -135,26 +135,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Error fetching products for sitemap:', error);
   }
 
-  // Dynamic story pages
-  let storyPages: MetadataRoute.Sitemap = [];
-  try {
-    const supabase = createServiceClient();
-    const { data: stories } = await supabase
-      .from('stories')
-      .select('slug, updated_at')
-      .eq('is_published', true);
+  // Story detail pages resolve Empathy Ledger story ids (/stories/[id] calls
+  // empathyLedger.getStory), not the local stories table, so local slugs 404.
+  // Re-add story entries here from EL ids once the EL keys are restored.
 
-    if (stories) {
-      storyPages = stories.map((story) => ({
-        url: `${baseUrl}/stories/${story.slug}`,
-        lastModified: new Date(story.updated_at),
-        changeFrequency: 'monthly' as const,
-        priority: 0.6,
-      }));
-    }
-  } catch (error) {
-    console.error('Error fetching stories for sitemap:', error);
-  }
-
-  return [...staticPages, ...productPages, ...storyPages];
+  return [...staticPages, ...productPages];
 }
