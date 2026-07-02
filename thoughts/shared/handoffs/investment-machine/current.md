@@ -9,29 +9,28 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-07-03 (pipeline strategy session)
-**Goal:** Signed match-eligible capital toward the $400K QBE match (due 31 Aug). Machine phase: investment portfolio + artifacts.
-**Branch:** docs/snow-onepager-assets (machine commits pushed through `dd012d8`)
+**Updated:** 2026-07-03 (end of pipeline-strategy session, saved for /clear)
+**Goal:** Signed match-eligible capital toward the $400K QBE match (due 31 Aug). Next phase (Ben's words): full review of current Claude Design assets, build ALL the PDFs and live pages needed for sharing, then review all photos and add more.
+**Branch:** docs/snow-onepager-assets (everything PUSHED through `8e85184`)
 **Test:** `cd v2 && npm run build && npm run check:drift`
 
 ### Now
-[->] RECONCILIATION FULLY APPLIED 2026-07-03: Ben ran `notion-apply-20260703.mjs` (verified live: Funder Pipeline DB = 33 rows, QBE priority 13 + Workbench 20, Bucket field live, dashboard block posted). Register containment restored. GHL token fixed (fresh pit-2342). SEFA $300K + Minderoo-ask-real decisions applied everywhere. The machine's next constraint is SENDS, nothing structural.
-[->] Live-pull facts in strategy doc section 3.5: TFN IS The Funding Network ($130K Stewarding, one entity); AMP Foundation $21,900 / John Villiers / Red Dust $15,950 / QIC $12,000 = past funders at Stewarding (renewal lane); Garma = showcase/demand; 63/63 rows enumerated.
+[->] NEXT PHASE, three steps in order: (1) full audit of the Claude Design project "Goods on Country — Investor Materials" (`b333c5aa-2dfa-4043-ab5f-ef7460692623`) — what exists, what renders, what is stale vs the $475K/$300K figures, incl. the UNVERIFIED 52-file Colors/Components/Spacing/Type/UI-Kit-Web batch from 2026-07-01; (2) build every share-ready PDF + live page the artifact map needs (strategy doc section 6 = the ask-to-artifact map; render.sh bakes PDF+PNG; --live-stages works again); (3) review ALL photos (canon 16/40 slots set, 4 RED consent-gated; untracked new photos sit in `design/deck-assets/` and `design/_image-originals/`) and add more to the design project.
 
-### This Session (2026-07-03 — pipeline strategy + reconciliation)
-- [x] Scope confirmed by Ben: review all GHL pipelines, build the specific strategy, reconcile GHL/Notion, align share assets in Claude Design.
-- [x] Five-bucket reconciliation of every open Supporter Journey record written: `wiki/outputs/2026-07-03-pipeline-strategy.md` (strategy, conflicts, artifact map, staged writes).
-- [x] Five conflicts surfaced: SEFA $250K vs $300K across the two Notion DBs; Minderoo Ask-made vs Cultivating; register/pipeline DBs share only 4 of 13 rows; Tim Fairfax scout-park vs live 10-Jul action; GHL token scopes.
-- [x] Bryan Foundation answered: in GHL + Funder Pipeline, correctly NOT on QBE register; nudge first, promote only on a live reply with an amount.
-- [x] `invest-funder-pipeline.html` rebuilt as the five-bucket board (as-at 2026-07-03) and PUSHED to Claude Design project b333c5aa (Investor Materials).
-- [x] Strategy doc added to artifact-register.json (id `pipeline-strategy-20260703`); drift check green; artifact-base.md regenerated (46 artifacts, 0 dead).
+### This Session (2026-07-03 — pipeline strategy, reconciliation, decisions applied)
+- [x] Five-bucket reconciliation of all 63 open Supporter Journey rows: `wiki/outputs/2026-07-03-pipeline-strategy.md` (strategy, artifact map, live-pull corrections in 3.5).
+- [x] Notion APPLIED by Ben: Funder Pipeline DB = 33 rows (QBE priority 13 + Workbench 20), Bucket field live, 9 register mirrors + 5 qualify-ins created, dashboard block posted. Register containment restored.
+- [x] GHL token fixed (fresh pit-2342 in v2/.env.local); machine scripts live; landscape one-pager re-rendered with 7 live stage pills.
+- [x] DECISIONS APPLIED: SEFA = $300,000 everywhere (register, GHL, email + brief PDF re-rendered, all design surfaces; lead stack $475K). Minderoo ask confirmed real (Ask made everywhere, push to written LOI).
+- [x] 5 preview cards pushed to Claude Design (funder-pipeline board, capital stack, onepager, teaser); strategy doc registered in artifact-register.json (46 artifacts, drift green).
+- [x] All pushed: `98c22ed`..`8e85184`.
 
 ### Next
-- [ ] (Ben, 2 min) GHL token scope fix (above), then re-run `monday-onepager.mjs` for the full 63-row bucketed board.
-- [ ] (Ben, gated) The 5 sends — SEFA first; SEFA figure call; Minderoo ask-or-not; Notion trash decision.
-- [ ] (Ben, gated) Approve staged Notion writes (strategy doc section 7).
-- [ ] Machine build-next: bucket tags in `ghl-people-pull`, containment-check line on the Monday one-pager, Bucket-aware `funder-artifact-match` (strategy doc section 8).
-- [ ] Commitment-stage surface (no web surface captures into GHL today).
+- [ ] Claude Design full asset review (step 1 above) — start with DesignSync list_files + the artifact map in strategy doc section 6; verify the 52-file 2026-07-01 batch renders before trusting it.
+- [ ] Build the share set: PDFs via `design/brand/kit/render.sh` + live pages; every artifact carries the credit line + as-at date + canon figures ($475K stack, $300K SEFA, $713,827 revenue, 496/9/16/2,660kg).
+- [ ] Photo pass: canon slots (24 empty, 4 RED consent-gated need Ben's picks), triage `design/deck-assets/` + `design/_image-originals/` (untracked), push keepers to the design project assets/.
+- [ ] (Ben, gated) The 5 sends — SEFA first ($300K docs ready); Katie Norman confirm by 10 Jul; Notion trash decision.
+- [ ] Machine build-next: bucket tags in `ghl-people-pull`, containment-check on Monday one-pager, Bucket-aware `funder-artifact-match` (strategy doc section 8).
 
 ### Decisions
 - **2026-07-03 (Ben): SEFA = $300,000.** Applied to register, GHL, send docs (email + brief PDF re-rendered), all design surfaces. Lead stack now $475K (SEFA $300K + Snow $100K + Centrecorp $75K).
@@ -40,8 +39,10 @@ status: active
 - Xero wins on conflicts (Snow corrected to $493,130).
 
 ### Open Questions
-- UNCONFIRMED: exact scope of "next phase of investment portfolio and artifacts" — ask Ben 1-3 targeted questions on resume before building.
-- UNCONFIRMED: whether any of the 5 sends went out since 2026-07-02.
+- UNCONFIRMED: which audiences the "share set" must cover beyond funders (SIH/Jay pack? QBE hackathon? buyers?) — confirm with Ben before building new pages.
+- UNCONFIRMED: whether any of the 5 sends went out yet.
+- UNCONFIRMED: whether the 52-file design-system batch (2026-07-01) renders in Claude Design — verify before the old project (`a24f62c8`) is deleted.
+- Consent gate stands: only the 32 cleared voices in anything funder-facing; 4 RED canon slots need Ben to name picks.
 
 ---
 
