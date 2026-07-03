@@ -402,7 +402,7 @@ export default async function HomePage() {
                   <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl bg-muted shadow-sm">
                     <Image
                       src={heroSrc}
-                      alt="Young people from Oonchiumpa building a Stretch Bed in Alice Springs"
+                      alt="The Oonchiumpa team with a Stretch Bed at the Alice Springs production facility"
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover"
@@ -424,9 +424,9 @@ export default async function HomePage() {
               })()}
               <div className="grid grid-cols-3 gap-3">
                 {[
-                  { key: 'oonchiumpa.thumb1', fallback: '/images/partners/centrecorp/utopia/hero-elder-bed.jpg', alt: 'A Warumungu Elder on a Stretch Bed at Utopia Homelands' },
-                  { key: 'oonchiumpa.thumb2', fallback: '/images/partners/centrecorp/utopia/community-build.jpg', alt: 'Community members assembling Stretch Beds at Utopia Homelands' },
-                  { key: 'oonchiumpa.thumb3', fallback: '/images/partners/centrecorp/utopia/verandah-test.jpg', alt: 'A Stretch Bed being tested on a homelands verandah' },
+                  { key: 'oonchiumpa.thumb1', fallback: '/images/partners/centrecorp/utopia/hero-elder-bed.jpg', alt: 'Two men seated with a Stretch Bed' },
+                  { key: 'oonchiumpa.thumb2', fallback: '/images/partners/centrecorp/utopia/community-build.jpg', alt: 'A young person with a Stretch Bed at the Alice Springs build' },
+                  { key: 'oonchiumpa.thumb3', fallback: '/images/partners/centrecorp/utopia/verandah-test.jpg', alt: 'Building a Stretch Bed leg from recycled plastic in Alice Springs' },
                 ].map((t) => {
                   const src = ov(t.key, t.fallback);
                   return (

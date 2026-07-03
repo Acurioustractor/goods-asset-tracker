@@ -42,5 +42,10 @@
     "gallery.4": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/story-images/trip-may-2026/canon/20260521-1e5a5466.jpg",
     "gallery.5": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/story-images/trip-may-2026/canon/20260521-1e5a5895.jpg",
     "gallery.6": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/story-images/trip-may-2026/canon/20260521-1e5a5765.jpg"
+  },
+  "home": {
+    "oonchiumpa.hero": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/story-images/trip-may-2026/alice-build/20260520-1e5a5387.jpg",
+    "oonchiumpa.thumb2": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/story-images/trip-may-2026/alice-build/20260520-1e5a5368.jpg",
+    "oonchiumpa.thumb3": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/story-images/trip-may-2026/alice-build/20260519-1e5a5061.jpg"
   }
 }
