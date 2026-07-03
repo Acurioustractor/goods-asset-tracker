@@ -102,10 +102,15 @@ if (moves.length === 0) { console.log('\nNothing to move.'); process.exit(0); }
 
 // Apply: git mv each file, then write RESTORE.md and stamp archive_path.
 fs.mkdirSync(ARCHIVE_DIR, { recursive: true });
-const manifest = [`# Archive ${date}`, '', 'Moved by content-apply-archive.mjs. Reverse with `git revert <batch commit>` or move each back.', ''];
+const restorePath = path.join(path.dirname(ARCHIVE_DIR), 'RESTORE.md');
+const manifest = [];
 for (const m of moves) {
   fs.mkdirSync(path.dirname(m.to), { recursive: true });
-  execSync(`git mv "${m.from}" "${m.to}"`, { stdio: 'pipe' });
+  try {
+    execSync(`git mv "${m.from}" "${m.to}"`, { stdio: 'pipe' }); // tracked file
+  } catch {
+    fs.renameSync(m.from, m.to); // untracked file — plain move, git add on commit
+  }
   manifest.push(`- ${m.to}  (was ${m.from})`);
   const patch = await fetch(`${REST}/content_items?id=eq.${m.id}`, {
     method: 'PATCH', headers: { ...H, Prefer: 'return=minimal' },
@@ -113,7 +118,11 @@ for (const m of moves) {
   });
   if (!patch.ok) console.error(`  WARN: row ${m.id} moved on disk but PATCH failed: ${patch.status}`);
 }
-fs.writeFileSync(path.join(path.dirname(ARCHIVE_DIR), 'RESTORE.md'), manifest.join('\n') + '\n');
+// Append-safe so a resumed run adds to the same manifest instead of clobbering it.
+const header = fs.existsSync(restorePath)
+  ? ''
+  : `# Archive ${date}\n\nMoved by content-apply-archive.mjs. Reverse with \`git revert <batch commit>\` or move each back.\n\n`;
+fs.appendFileSync(restorePath, header + manifest.join('\n') + '\n');
 
 console.log(`\nMoved ${moves.length} files into ${ARCHIVE_DIR}/ and stamped archive_path.`);
 console.log('Review with `git status`, then commit the batch (one commit = one revertable unit).');
