@@ -23,6 +23,9 @@ export interface UnifiedItem {
   archived?: boolean;
   /** Set = this image is the winner for a raise canon slot (guarded from cull). */
   canonSlot?: string;
+  mediaType?: 'image' | 'video';
+  /** Poster/thumbnail image url for a video tile. */
+  poster?: string;
 }
 
 type SourceFilter = 'all' | 'website' | 'el';
@@ -367,7 +370,9 @@ export function MediaLibraryClient({
             const badge = consentBadge(it);
             const isSel = selected.has(it.id);
             const isCursor = idx === cursor;
-            const canCurate = it.source === 'website' && !!it.contentId;
+            const canCurate = !!it.contentId;
+            const isVideo = it.mediaType === 'video';
+            const thumb = isVideo ? it.poster : it.src;
             return (
               <div
                 key={it.id}
@@ -384,13 +389,22 @@ export function MediaLibraryClient({
                   className="absolute inset-0 h-full w-full text-left"
                   title={it.title}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={it.src}
-                    alt={it.title}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover group-hover:scale-[1.02] transition-transform"
-                  />
+                  {thumb ? (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
+                      src={thumb}
+                      alt={it.title}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover group-hover:scale-[1.02] transition-transform"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center bg-neutral-800 text-2xl">🎬</div>
+                  )}
+                  {isVideo && (
+                    <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-sm text-white">▶</span>
+                    </span>
+                  )}
                 </button>
 
                 {/* consent / source badge */}
@@ -505,7 +519,9 @@ function PreviewModal({
   const [copied, setCopied] = useState(false);
   const badge = consentBadge(item);
   const isWebsite = item.source === 'website';
-  const canCurate = isWebsite && !!item.contentId;
+  const isVideo = item.mediaType === 'video';
+  const canCurate = !!item.contentId;
+  const showTagEditor = isWebsite && !isVideo;
 
   // Tag editor state (website items only). Seeded from the item's current tags.
   const [draftTags, setDraftTags] = useState<string[]>(item.tags);
@@ -578,14 +594,23 @@ function PreviewModal({
         onClick={(e) => e.stopPropagation()}
         className="bg-background text-foreground max-w-5xl w-full max-h-[92vh] rounded-2xl overflow-hidden grid md:grid-cols-[1fr_320px] cursor-default"
       >
-        {/* Image side */}
+        {/* Media side */}
         <div className="bg-black flex items-center justify-center min-h-[40vh] md:min-h-[60vh]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={item.full}
-            alt={item.title}
-            className="max-h-[88vh] max-w-full object-contain"
-          />
+          {isVideo ? (
+            <video
+              src={item.full}
+              poster={item.poster}
+              controls
+              className="max-h-[88vh] max-w-full object-contain"
+            />
+          ) : (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={item.full}
+              alt={item.title}
+              className="max-h-[88vh] max-w-full object-contain"
+            />
+          )}
         </div>
 
         {/* Metadata side */}
@@ -680,7 +705,7 @@ function PreviewModal({
             </div>
           )}
 
-          {isWebsite ? (
+          {showTagEditor ? (
             <div className="mb-5">
               <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2">
                 Subject tags

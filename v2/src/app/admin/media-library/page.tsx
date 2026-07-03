@@ -4,7 +4,7 @@
 // only (no upload/tag writes here).
 
 import { safeImageUrl } from '@/lib/empathy-ledger/media-tier';
-import { getLocalImages } from '@/lib/data/local-images';
+import { getLocalImages, getLocalVideos } from '@/lib/data/local-images';
 import { createServiceClient } from '@/lib/supabase/server';
 import { MediaLibraryClient, type UnifiedItem } from './library-client';
 
@@ -28,6 +28,7 @@ interface ElPhoto {
   consent: boolean;
   elderOk: boolean;
   location: string;
+  mediaType: 'image' | 'video';
 }
 
 interface ElMediaRow {
@@ -39,9 +40,10 @@ interface ElMediaRow {
   culturalTags: string[] | null;
   consentObtained: boolean | null;
   elderApproved: boolean | null;
+  mediaType?: string | null;
 }
 
-async function fetchElPhotos(): Promise<ElPhoto[]> {
+async function fetchElMedia(type: 'image' | 'video'): Promise<ElPhoto[]> {
   if (!EL_API_KEY) return [];
   const out: ElPhoto[] = [];
   try {
@@ -49,13 +51,16 @@ async function fetchElPhotos(): Promise<ElPhoto[]> {
     // hasMore=false (safety cap 20 pages / 1000 items). Previously a single
     // limit=300 call silently returned only the first 50.
     for (let page = 1; page <= 20; page += 1) {
-      const url = `${EL_API}/api/v1/content-hub/media?project_code=${EL_PCODE}&type=image&limit=50&page=${page}`;
+      const url = `${EL_API}/api/v1/content-hub/media?project_code=${EL_PCODE}&type=${type}&limit=50&page=${page}`;
       const res = await fetch(url, { headers: { 'X-API-Key': EL_API_KEY }, cache: 'no-store' });
       if (!res.ok) break;
       const json = (await res.json()) as { media?: ElMediaRow[]; pagination?: { hasMore?: boolean } };
       const rows = json?.media ?? [];
       for (const m of rows) {
-        if (!m.url || !safeImageUrl(m.url)) continue;
+        if (!m.url) continue;
+        // Keep the private-bucket guard for images; video urls stream via the
+        // proxy/direct so the content-hub host is fine.
+        if (type === 'image' && !safeImageUrl(m.url)) continue;
         out.push({
           id: m.id,
           url: m.url,
@@ -66,6 +71,7 @@ async function fetchElPhotos(): Promise<ElPhoto[]> {
           consent: !!m.consentObtained,
           elderOk: !!m.elderApproved,
           location: '',
+          mediaType: type,
         });
       }
       if (rows.length === 0 || !json?.pagination?.hasMore) break;
@@ -116,8 +122,7 @@ async function fetchCuration(): Promise<{ byRef: Map<string, CurationRow>; ready
     const supabase = createServiceClient();
     const { data, error } = await supabase
       .from('content_items')
-      .select('id, ref, starred, rating, archived_at, canon_slot, consent_tier')
-      .eq('source', 'local');
+      .select('id, ref, starred, rating, archived_at, canon_slot, consent_tier');
     if (error) return { byRef: new Map(), ready: false };
     const byRef = new Map<string, CurationRow>();
     for (const r of (data ?? []) as CurationRow[]) byRef.set(r.ref, r);
@@ -129,59 +134,99 @@ async function fetchCuration(): Promise<{ byRef: Map<string, CurationRow>; ready
 
 export default async function MediaLibraryPage() {
   const elMissing = !EL_API_KEY;
-  const [elPhotos, curation] = await Promise.all([fetchElPhotos(), fetchCuration()]);
+  const [elImages, elVideos, curation] = await Promise.all([
+    fetchElMedia('image'),
+    fetchElMedia('video'),
+    fetchCuration(),
+  ]);
   const { byRef: curationByRef, ready: curationReady } = curation;
 
-  // Route EL images through the server-side proxy (/api/admin/el-image): EL's
-  // media endpoint 307-redirects and throttles direct browser bursts, so 50+
-  // raw <img> loads blank out. The proxy fetches with the API key, follows the
-  // redirect, and caches — so tiles render and repeat loads are instant.
-  const elProxy = (u: string) => `/api/admin/el-image?url=${encodeURIComponent(u)}`;
-  const elItems: UnifiedItem[] = elPhotos.map((p) => ({
-    id: `el:${p.id}`,
-    src: elProxy(p.thumb || p.url),
-    full: elProxy(p.url),
-    source: 'el',
-    area: elArea(p),
-    title: p.title || '(untitled EL photo)',
-    tags: p.tags,
-    consent: elConsent(p),
-  }));
-
-  const localItems: UnifiedItem[] = getLocalImages().map((img) => {
-    const c = curationByRef.get(img.url);
+  // Attach curation state (from content_items, keyed by ref) to any item.
+  const withCuration = (base: UnifiedItem, ref: string): UnifiedItem => {
+    const c = curationByRef.get(ref);
     return {
-      id: `website:${img.url}`,
-      src: img.url,
-      full: img.url,
-      source: 'website',
-      area: img.area,
-      title: img.filename,
-      // Saved subject tags drive the subject filter + search. The folder (`area`)
-      // stays a separate field, so we don't duplicate it into tags here.
-      tags: img.tags,
-      consent: 'local',
-      // Other paths where this exact image also lives (content-hash dups).
-      aliases: img.aliases,
-      // Curation state from content_items (undefined until the index is built).
+      ...base,
       contentId: c?.id,
       starred: c?.starred ?? false,
       rating: c?.rating ?? 0,
       archived: !!c?.archived_at,
       canonSlot: c?.canon_slot ?? undefined,
     };
-  });
+  };
 
-  const items: UnifiedItem[] = [...localItems, ...elItems];
+  // Route EL media through the server-side proxy (/api/admin/el-image): EL's
+  // media endpoint 307-redirects and throttles direct browser bursts, so raw
+  // <img> loads blank out. The proxy fetches with the API key, follows the
+  // redirect, and caches. Video plays direct (a single <video> follows the
+  // redirect fine and we don't want to buffer the whole file through the proxy).
+  const elProxy = (u: string) => `/api/admin/el-image?url=${encodeURIComponent(u)}`;
+  const elItems: UnifiedItem[] = [...elImages, ...elVideos].map((p) =>
+    withCuration(
+      {
+        id: `el:${p.id}`,
+        src: elProxy(p.thumb || p.url),
+        full: p.mediaType === 'video' ? p.url : elProxy(p.url),
+        poster: elProxy(p.thumb || p.url),
+        mediaType: p.mediaType,
+        source: 'el',
+        area: elArea(p),
+        title: p.title || (p.mediaType === 'video' ? '(untitled EL video)' : '(untitled EL photo)'),
+        tags: p.tags,
+        consent: elConsent(p),
+      },
+      p.id,
+    ),
+  );
+
+  const localImageItems: UnifiedItem[] = getLocalImages().map((img) =>
+    withCuration(
+      {
+        id: `website:${img.url}`,
+        src: img.url,
+        full: img.url,
+        mediaType: 'image',
+        source: 'website',
+        area: img.area,
+        title: img.filename,
+        // Saved subject tags drive the subject filter + search. The folder (`area`)
+        // stays a separate field, so we don't duplicate it into tags here.
+        tags: img.tags,
+        consent: 'local',
+        // Other paths where this exact image also lives (content-hash dups).
+        aliases: img.aliases,
+      },
+      img.url,
+    ),
+  );
+
+  const localVideoItems: UnifiedItem[] = getLocalVideos().map((v) =>
+    withCuration(
+      {
+        id: `website:${v.url}`,
+        src: v.poster || v.url,
+        full: v.url,
+        poster: v.poster || undefined,
+        mediaType: 'video',
+        source: 'website',
+        area: v.area,
+        title: v.filename,
+        tags: [],
+        consent: 'local',
+      },
+      v.url,
+    ),
+  );
+
+  const items: UnifiedItem[] = [...localImageItems, ...localVideoItems, ...elItems];
 
   return (
     <div className="p-6">
       <header className="mb-6">
         <h1 className="text-2xl font-bold">Media library</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Every image in the project — local website assets and the Empathy Ledger photo library —
-          in one browsable grid. Filter by source or subject, click any image to copy its URL or
-          download it.
+          Every photo and video in the project — local website assets and the Empathy Ledger
+          library — in one grid. Star keepers, archive junk, rate and search. Filter by source,
+          subject, starred or archived.
         </p>
         {elMissing && (
           <p className="mt-3 rounded-md bg-amber-50 px-3 py-2 text-xs text-amber-700 dark:bg-amber-950/40 dark:text-amber-300">

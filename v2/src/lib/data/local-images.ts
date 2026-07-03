@@ -108,3 +108,64 @@ export function getLocalImageAreas(localImages: LocalImage[]): string[] {
     a.localeCompare(b),
   );
 }
+
+const VIDEO_RE = /\.(mp4|webm|mov|m4v)$/i;
+
+export interface LocalVideo {
+  url: string;
+  area: string;
+  filename: string;
+  source: 'website';
+  /** Sibling poster image (/video/…-poster.jpg) if one exists, else null. */
+  poster: string | null;
+}
+
+/**
+ * Walk public/video and return one LocalVideo per web-ready clip. Skips the
+ * `-mobile` variants (lower-res twins of `-desktop`) so each clip lists once,
+ * and resolves a sibling `<base>-poster.jpg` for the grid thumbnail.
+ */
+export function getLocalVideos(): LocalVideo[] {
+  const root = join(process.cwd(), 'public', 'video');
+  const out: LocalVideo[] = [];
+
+  function posterFor(dir: string, filename: string, relSegments: string[]): string | null {
+    const base = filename.replace(/-(desktop|mobile)\.\w+$/i, '').replace(/\.\w+$/, '');
+    const candidates = [`${base}-poster.jpg`, `${base.split('-')[0]}-poster.jpg`];
+    for (const c of candidates) {
+      if (existsSync(join(dir, c))) return `/video/${[...relSegments, c].join('/')}`;
+    }
+    return null;
+  }
+
+  function walk(dir: string, relSegments: string[]) {
+    const entries = readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      if (entry.name.startsWith('.')) continue;
+      const childRel = [...relSegments, entry.name];
+      if (entry.isDirectory()) {
+        walk(join(dir, entry.name), childRel);
+      } else if (entry.isFile() && VIDEO_RE.test(entry.name) && !/-mobile\.\w+$/i.test(entry.name)) {
+        out.push({
+          url: `/video/${childRel.join('/')}`,
+          area: relSegments.length > 0 ? relSegments[0] : 'video',
+          filename: entry.name,
+          source: 'website',
+          poster: posterFor(dir, entry.name, relSegments),
+        });
+      }
+    }
+  }
+
+  try {
+    walk(root, []);
+  } catch {
+    return [];
+  }
+
+  out.sort((a, b) => {
+    if (a.area !== b.area) return a.area.localeCompare(b.area);
+    return a.filename.localeCompare(b.filename);
+  });
+  return out;
+}
