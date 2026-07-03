@@ -17,7 +17,7 @@ create table if not exists public.storytellers (
   aliases              text[] not null default '{}',
   slug                 text unique,
   role                 text,                       -- 'Elder', 'Health Practitioner', ...
-  community_id         uuid references public.communities(id),
+  community_id         text references public.communities(id),
   is_elder             boolean not null default false,
   portrait_content_id  uuid references public.content_items(id),  -- the chosen public portrait
   consent_tier         text not null default 'red' check (consent_tier in ('public', 'gated', 'red')),
@@ -30,7 +30,7 @@ create index if not exists storytellers_consent_idx   on public.storytellers (co
 create table if not exists public.quotes (
   id             uuid primary key default gen_random_uuid(),
   storyteller_id uuid references public.storytellers(id) on delete cascade,
-  community_id   uuid references public.communities(id),
+  community_id   text references public.communities(id),
   text           text not null,
   context        text,
   theme          text,
