@@ -71,6 +71,7 @@ export function MediaLibraryClient({
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [showArchived, setShowArchived] = useState(false);
   const [starredOnly, setStarredOnly] = useState(false);
+  const [selectMode, setSelectMode] = useState(false); // click tiles to select for batch ops
   const [cursor, setCursor] = useState(0); // index into `filtered`, for keyboard cull
   const [err, setErr] = useState('');
   // Empathy Ledger loads after first paint (kept out of the blocking server render).
@@ -224,6 +225,26 @@ export function MediaLibraryClient({
   const archivedCount = useMemo(() => items.filter((it) => it.archived).length, [items]);
   const starredCount = useMemo(() => items.filter((it) => it.starred).length, [items]);
 
+  // Batch selection helpers. selectAt supports shift-click range select over the
+  // currently-filtered set (only curatable items can be selected).
+  const lastSelIdx = useRef<number | null>(null);
+  const selectAt = useCallback(
+    (idx: number, id: string, shift: boolean) => {
+      if (shift && lastSelIdx.current !== null) {
+        const [a, b] = [lastSelIdx.current, idx].sort((x, y) => x - y);
+        const range = filtered.slice(a, b + 1).filter((f) => f.contentId).map((f) => f.id);
+        setSelected((prev) => { const n = new Set(prev); range.forEach((r) => n.add(r)); return n; });
+      } else {
+        toggleSelect(id);
+      }
+      lastSelIdx.current = idx;
+    },
+    [filtered, toggleSelect],
+  );
+  const selectAllFiltered = useCallback(() => {
+    setSelected(new Set(filtered.filter((it) => it.contentId).map((it) => it.id)));
+  }, [filtered]);
+
   // Clamp cursor when the filtered set shrinks/changes.
   useEffect(() => {
     setCursor((c) => (filtered.length === 0 ? 0 : Math.min(c, filtered.length - 1)));
@@ -360,10 +381,18 @@ export function MediaLibraryClient({
 
       {/* Curation view toggles */}
       <div className="flex flex-wrap items-center gap-2 mb-3">
+        {toggleBtn(
+          selectMode,
+          () => { setSelectMode((v) => !v); if (selectMode) setSelected(new Set()); },
+          selectMode ? 'Selecting — click tiles' : '☑ Select multiple',
+          selectMode ? selected.size : undefined,
+        )}
         {toggleBtn(starredOnly, () => setStarredOnly((v) => !v), '★ Starred only', starredCount)}
         {toggleBtn(showArchived, () => setShowArchived((v) => !v), showArchived ? 'Viewing archive' : 'Show archived', archivedCount)}
         <span className="text-[11px] text-muted-foreground ml-1 hidden sm:inline">
-          keys: j/k move · s star · x archive · 1–5 rate · space select · A select all · enter open
+          {selectMode
+            ? 'click tiles to select · shift-click for a range · then use the bar below'
+            : 'keys: j/k move · s star · x archive · 1–5 rate · space select · A all · enter open'}
         </span>
       </div>
 
@@ -423,10 +452,17 @@ export function MediaLibraryClient({
           <span className="text-sm font-semibold">{selected.size} selected</span>
           <button type="button" onClick={() => bulkSet({ starred: true })} className="rounded-lg border border-border px-2.5 py-1 text-xs hover:border-foreground">★ Star</button>
           <button type="button" onClick={() => bulkSet({ starred: false })} className="rounded-lg border border-border px-2.5 py-1 text-xs hover:border-foreground">☆ Unstar</button>
-          <button type="button" onClick={() => bulkSet({ archived: true })} className="rounded-lg border border-border px-2.5 py-1 text-xs text-red-600 hover:border-red-500">Archive</button>
+          <span className="flex items-center gap-1 border-l border-border pl-2 ml-1">
+            <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Rate</span>
+            {[1, 2, 3, 4, 5].map((r) => (
+              <button key={r} type="button" onClick={() => bulkSet({ rating: r })} className="rounded px-1 text-xs text-muted-foreground hover:text-yellow-500" aria-label={`Rate ${r}`}>{r}★</button>
+            ))}
+          </span>
+          <button type="button" onClick={() => bulkSet({ archived: true })} className="rounded-lg border border-red-300 px-2.5 py-1 text-xs font-medium text-red-600 hover:bg-red-50 dark:border-red-800 dark:hover:bg-red-950/30">🗑 Archive (cull)</button>
           {showArchived && (
             <button type="button" onClick={() => bulkSet({ archived: false })} className="rounded-lg border border-border px-2.5 py-1 text-xs hover:border-foreground">Restore</button>
           )}
+          <button type="button" onClick={selectAllFiltered} className="rounded-lg border border-border px-2.5 py-1 text-xs hover:border-foreground">Select all {filtered.length}</button>
           <button type="button" onClick={() => setSelected(new Set())} className="ml-auto rounded-lg px-2.5 py-1 text-xs text-muted-foreground hover:text-foreground">Clear</button>
         </div>
       )}
@@ -451,15 +487,23 @@ export function MediaLibraryClient({
                 ref={(el) => { if (el) tileRefs.current.set(idx, el); else tileRefs.current.delete(idx); }}
                 className={
                   'relative aspect-square rounded-lg overflow-hidden bg-muted border transition group ' +
-                  (isCursor ? 'border-accent ring-2 ring-accent ' : 'border-border hover:border-foreground/60 ') +
+                  (isSel
+                    ? 'ring-2 ring-blue-500 border-blue-500 '
+                    : isCursor
+                      ? 'border-accent ring-2 ring-accent '
+                      : 'border-border hover:border-foreground/60 ') +
                   (it.archived ? 'opacity-60 ' : '')
                 }
               >
                 <button
                   type="button"
-                  onClick={() => { setCursor(idx); setActive(it); }}
+                  onClick={(e) => {
+                    setCursor(idx);
+                    if (selectMode) { if (canCurate) selectAt(idx, it.id, e.shiftKey); }
+                    else setActive(it);
+                  }}
                   className="absolute inset-0 h-full w-full text-left"
-                  title={it.title}
+                  title={selectMode ? (canCurate ? 'Click to select (shift-click for a range)' : 'Not indexed — cannot select') : it.title}
                 >
                   {thumb ? (
                     /* eslint-disable-next-line @next/next/no-img-element */
@@ -484,15 +528,19 @@ export function MediaLibraryClient({
                   {badge.text}
                 </span>
 
-                {/* select checkbox (website only) */}
+                {/* select checkbox (curatable items) — always visible in select mode */}
                 {canCurate && (
                   <button
                     type="button"
-                    onClick={() => toggleSelect(it.id)}
+                    onClick={(e) => { e.stopPropagation(); selectAt(idx, it.id, e.shiftKey); }}
                     aria-label={isSel ? 'Deselect' : 'Select'}
                     className={
-                      'absolute bottom-1.5 left-1.5 h-5 w-5 rounded border flex items-center justify-center text-[11px] font-bold transition ' +
-                      (isSel ? 'bg-accent text-white border-accent' : 'bg-background/80 border-border text-transparent hover:text-muted-foreground')
+                      'absolute bottom-1.5 left-1.5 h-6 w-6 rounded border flex items-center justify-center text-[12px] font-bold transition ' +
+                      (isSel
+                        ? 'bg-blue-500 text-white border-blue-500'
+                        : selectMode
+                          ? 'bg-background/90 border-blue-400 text-transparent hover:text-blue-500'
+                          : 'bg-background/80 border-border text-transparent opacity-0 group-hover:opacity-100 hover:text-muted-foreground')
                     }
                   >
                     ✓
