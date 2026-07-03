@@ -1,6 +1,6 @@
 {
-  "asOf": "2026-06-28",
-  "filled": 16,
+  "asOf": "2026-07-03",
+  "filled": 40,
   "total": 40,
   "resolved": {
     "cover-hero": {
@@ -51,10 +51,10 @@
       "areas": [
         "06"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "v2/public/images/product/stretch-bed-hero.jpg",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "product-in-use": {
       "label": "Bed in use",
@@ -78,10 +78,10 @@
       "areas": [
         "06"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "design/deck-assets/goods-bed-anatomy.jpg",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "assembly-sequence": {
       "label": "Assembly steps",
@@ -136,10 +136,10 @@
         "06",
         "11"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "v2/public/images/process/factory-panorama.jpg",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "plant-the-one-move": {
       "label": "The one move (heat press)",
@@ -151,10 +151,10 @@
         "06",
         "11"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "v2/public/images/process/heat-press-full.jpg",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "pressed-sheets": {
       "label": "Pressed HDPE sheets",
@@ -177,10 +177,10 @@
       "areas": [
         "06"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "design/deck-assets/shredder-granulator.jpg",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "plastic-feedstock": {
       "label": "Shredded plastic feedstock",
@@ -205,10 +205,10 @@
         "03",
         "06"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "design/deck-assets/goods-plastic-journey.jpg",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "community-delivery": {
       "label": "Delivery on Country",
@@ -218,10 +218,10 @@
       "areas": [
         "02"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "v2/public/images/utopia/utopia-09.jpg",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "listening-first": {
       "label": "Listening first",
@@ -232,10 +232,10 @@
         "02",
         "08"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "v2/public/images/media-pack/nic-with-elder-on-verandah.jpg",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "community-ownership": {
       "label": "Community ownership (diagram)",
@@ -246,10 +246,10 @@
         "01",
         "09"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "design/deck-assets/goods-community-ownership-v2.png",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "map": {
       "label": "Communities map",
@@ -285,10 +285,10 @@
       "areas": [
         "02"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "v2/public/images/people/mykel.jpg",
-      "consent": "gated",
-      "status": "seed"
+      "consent": "cleared",
+      "status": "canon"
     },
     "storyteller-linda-turner": {
       "label": "Linda Turner",
@@ -298,10 +298,10 @@
       "areas": [
         "02"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "v2/public/images/people/linda-turner.jpg",
-      "consent": "gated",
-      "status": "seed"
+      "consent": "cleared",
+      "status": "canon"
     },
     "storyteller-alfred-johnson": {
       "label": "Alfred Johnson",
@@ -311,10 +311,10 @@
       "areas": [
         "02"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "v2/public/images/people/alfred-johnson.jpg",
-      "consent": "gated",
-      "status": "seed"
+      "consent": "cleared",
+      "status": "canon"
     },
     "storyteller-norman-frank": {
       "label": "Norman Frank",
@@ -324,10 +324,10 @@
       "areas": [
         "02"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "v2/public/images/people/norman-frank.jpg",
-      "consent": "gated",
-      "status": "seed"
+      "consent": "cleared",
+      "status": "canon"
     },
     "cost-curve": {
       "label": "Cost-down curve",
@@ -339,10 +339,10 @@
         "10",
         "11"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "design/deck-assets/goods-cost-curve.png",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "breakeven": {
       "label": "Break-even chart",
@@ -354,10 +354,10 @@
         "10",
         "11"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "design/deck-assets/goods-breakeven.png",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "sankey": {
       "label": "Money flow (Sankey)",
@@ -368,10 +368,10 @@
         "04",
         "11"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "design/deck-assets/goods-sankey-money.png",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "where-750": {
       "label": "Where $750 goes",
@@ -382,10 +382,10 @@
         "04",
         "11"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "design/deck-assets/goods-where-750-goes.png",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "logo-black": {
       "label": "Logo (black)",
@@ -395,10 +395,10 @@
       "areas": [
         "01"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "design/deck-assets/goods-inline-black.png",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "logo-white": {
       "label": "Logo (white)",
@@ -408,10 +408,10 @@
       "areas": [
         "01"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "design/deck-assets/goods-inline-white.png",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "video-hero": {
       "label": "Hero video",
@@ -471,10 +471,10 @@
         "06",
         "11"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "v2/public/video/recycling-plant-desktop.mp4",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "video-community": {
       "label": "Community video",
@@ -513,10 +513,10 @@
       "areas": [
         "07"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "generated-images/goods-illustrations/qbe-07-governance/01-governance-signoff.png",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "area-08-people": {
       "label": "Area 08 — People",
@@ -526,10 +526,10 @@
       "areas": [
         "08"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "generated-images/goods-illustrations/qbe-08-people/01-jobs-on-country.png",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "area-09-ownership": {
       "label": "Area 09 — Ownership diagram",
@@ -539,10 +539,10 @@
       "areas": [
         "09"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "generated-images/goods-illustrations/qbe-09-ownership/01-handover.png",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     },
     "area-12-alignment": {
       "label": "Area 12 — Alignment",
@@ -552,10 +552,10 @@
       "areas": [
         "12"
       ],
-      "source": "seed",
+      "source": "local",
       "path": "generated-images/goods-illustrations/qbe-12-alignment/01-alignment-matrix.png",
       "consent": "public",
-      "status": "seed"
+      "status": "canon"
     }
   }
 }
