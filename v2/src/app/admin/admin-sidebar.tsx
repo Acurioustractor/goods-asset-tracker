@@ -72,11 +72,11 @@ const navigation: NavGroup[] = [
   {
     group: 'Story',
     items: [
-      { name: 'Photos',       href: '/admin/photos',          icon: Images },
-      { name: 'Canon board',  href: '/admin/canon',           icon: LayoutGrid },
-      { name: 'Photo review', href: '/admin/photo-review',     icon: Images },
-      { name: 'Stories (EL)', href: '/admin/el-stories',      icon: BookOpen },
-      { name: 'Storytellers', href: '/admin/el-storytellers', icon: Users },
+      { name: 'Media library', href: '/admin/media-library',   icon: Images },
+      { name: 'People',        href: '/admin/people',          icon: Users },
+      { name: 'Canon board',   href: '/admin/canon',           icon: LayoutGrid },
+      { name: 'Stories (EL)',  href: '/admin/el-stories',      icon: BookOpen },
+      { name: 'Storytellers',  href: '/admin/el-storytellers', icon: Users },
     ],
   },
   {
@@ -117,9 +117,11 @@ const moreNavigation: NavItem[] = [
   { name: 'Fleet',           href: '/admin/fleet',         icon: Truck },
   // Content
   { name: 'Library',         href: '/admin/library',       icon: Boxes },
-  { name: 'Media library',   href: '/admin/media-library', icon: Images },
-  // Photo browser (Photos hub is canonical)
-  { name: 'Browse photos',   href: '/admin/photos-browser', icon: Images },
+  // Legacy photo tools — superseded by Media library (Story). Kept for their
+  // unique bits: /admin/photos (elder-consent tag workflow), /admin/photo-review
+  // (GPS map + consent + CSV export). photos-browser retired -> media-library.
+  { name: 'Photos (legacy)', href: '/admin/photos',        icon: Images },
+  { name: 'Photo review',    href: '/admin/photo-review',  icon: Images },
 ];
 
 export default function AdminSidebar({ userEmail }: { userEmail: string }) {
