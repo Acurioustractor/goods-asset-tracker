@@ -446,24 +446,21 @@ export const empathyLedger = {
   /**
    * Fetch Goods community voices for public pages.
    *
-   * Uses the project-scoped content-hub endpoint (real author names) instead
-   * of the unfiltered plain /api/stories feed, strips cross-project
-   * contamination (SMART Recovery, Confit — see isGoodsCommunityVoice) and
-   * "Unknown"/test rows, then ranks the richest stories first. Being returned
-   * by the public content hub is itself the consent gate, so we filter on
-   * isPublic/withdrawn/archived rather than the syndication flag.
+   * Scopes to the canonical Goods EL project by project_id (the hard association).
+   * The `goods-on-country` content-hub projectCode aggregates adjacent A Curious
+   * Tractor projects (BG-Fit / JusticeHub / Spinifex youth-justice) and leaked
+   * their stories onto public Goods pages, so we query the Goods project directly
+   * instead. getProjectStories gates published + public; filterByConsent adds
+   * withdrawn/archived/syndication; isGoodsCommunityVoice drops any residual
+   * test/"Unknown" rows; rankGoodsStories orders the richest stories first.
    */
   async getGoodsStories(params: { limit?: number } = {}): Promise<EmpathyLedgerStory[]> {
     if (!ENABLE_EMPATHY_LEDGER) return [];
 
     try {
-      const response = await fetchFromEmpathyLedger<{ stories: Record<string, unknown>[] }>('/stories', {
-        projectCode: GOODS_PROJECT_CODE,
-        limit: 100,
-      });
-      const stories = (response.stories || [])
-        .map(mapStoryFromAPI)
-        .filter((s) => !s.consentWithdrawnAt && !s.isArchived && s.isPublic)
+      const stories = filterByConsent(
+        await this.getProjectStories({ limit: (params.limit ?? 3) * 4 }),
+      )
         .filter(isGoodsCommunityVoice)
         .sort(rankGoodsStories);
       return params.limit ? stories.slice(0, params.limit) : stories;
