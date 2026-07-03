@@ -396,43 +396,63 @@ export default async function HomePage() {
             </div>
 
             <div className="space-y-3">
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl bg-muted shadow-sm">
-                <Image
-                  src="/images/product/stretch-bed-kids-building.jpg"
-                  alt="Young people from Oonchiumpa building a Stretch Bed in Alice Springs"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
+              {(() => {
+                const heroSrc = ov('oonchiumpa.hero', '/images/product/stretch-bed-kids-building.jpg');
+                return (
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl bg-muted shadow-sm">
+                    <Image
+                      src={heroSrc}
+                      alt="Young people from Oonchiumpa building a Stretch Bed in Alice Springs"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                    {canSwap && (
+                      <MediaSwapZone
+                        slug={HOME_SLUG}
+                        overrideKey="oonchiumpa.hero"
+                        currentUrl={heroSrc}
+                        tagQuery={['participant:oonchiumpa-young-people']}
+                        kind="photo"
+                        label="swap"
+                        broadTag="product:stretch-bed"
+                        folders={HOME_FOLDERS}
+                      />
+                    )}
+                  </div>
+                );
+              })()}
               <div className="grid grid-cols-3 gap-3">
-                <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-muted">
-                  <Image
-                    src="/images/partners/centrecorp/utopia/hero-elder-bed.jpg"
-                    alt="A Warumungu Elder on a Stretch Bed at Utopia Homelands"
-                    fill
-                    sizes="(max-width: 768px) 33vw, 17vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-muted">
-                  <Image
-                    src="/images/partners/centrecorp/utopia/community-build.jpg"
-                    alt="Community members assembling Stretch Beds at Utopia Homelands"
-                    fill
-                    sizes="(max-width: 768px) 33vw, 17vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-muted">
-                  <Image
-                    src="/images/partners/centrecorp/utopia/verandah-test.jpg"
-                    alt="A Stretch Bed being tested on a homelands verandah"
-                    fill
-                    sizes="(max-width: 768px) 33vw, 17vw"
-                    className="object-cover"
-                  />
-                </div>
+                {[
+                  { key: 'oonchiumpa.thumb1', fallback: '/images/partners/centrecorp/utopia/hero-elder-bed.jpg', alt: 'A Warumungu Elder on a Stretch Bed at Utopia Homelands' },
+                  { key: 'oonchiumpa.thumb2', fallback: '/images/partners/centrecorp/utopia/community-build.jpg', alt: 'Community members assembling Stretch Beds at Utopia Homelands' },
+                  { key: 'oonchiumpa.thumb3', fallback: '/images/partners/centrecorp/utopia/verandah-test.jpg', alt: 'A Stretch Bed being tested on a homelands verandah' },
+                ].map((t) => {
+                  const src = ov(t.key, t.fallback);
+                  return (
+                    <div key={t.key} className="relative aspect-square w-full overflow-hidden rounded-xl bg-muted">
+                      <Image
+                        src={src}
+                        alt={t.alt}
+                        fill
+                        sizes="(max-width: 768px) 33vw, 17vw"
+                        className="object-cover"
+                      />
+                      {canSwap && (
+                        <MediaSwapZone
+                          slug={HOME_SLUG}
+                          overrideKey={t.key}
+                          currentUrl={src}
+                          tagQuery={['product:stretch-bed']}
+                          kind="photo"
+                          label="swap"
+                          broadTag="product:stretch-bed"
+                          folders={HOME_FOLDERS}
+                        />
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
