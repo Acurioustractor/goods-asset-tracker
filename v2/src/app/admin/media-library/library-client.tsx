@@ -588,13 +588,20 @@ function PreviewModal({
   }, []);
 
   const saveTags = useCallback(async () => {
+    if (!item.contentId) {
+      setSaveState('error');
+      setSaveError('Not indexed yet — run npm run content:index to tag this item.');
+      return;
+    }
     setSaveState('saving');
     setSaveError('');
     try {
-      const res = await fetch('/api/admin/local-image-tag', {
+      // DB-backed: tags live in content_items (kept across reindex). Replaces the
+      // old local-image-tags.json write; the JSON is now insert-seed only.
+      const res = await fetch('/api/admin/content-item', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: item.full, tags: draftTags }),
+        body: JSON.stringify({ id: item.contentId, tags: draftTags }),
       });
       const data = (await res.json()) as { ok: boolean; error?: string };
       if (!res.ok || !data.ok) {
@@ -608,7 +615,7 @@ function PreviewModal({
       setSaveState('error');
       setSaveError(e instanceof Error ? e.message : String(e));
     }
-  }, [item.full, item.id, draftTags, onSaveTags]);
+  }, [item.contentId, item.id, draftTags, onSaveTags]);
 
   const copy = useCallback(async (text: string) => {
     try {

@@ -117,6 +117,7 @@ interface CurationRow {
   consent_tier: string | null;
   community_id: string | null;
   storyteller_id: string | null;
+  tags: string[] | null;
 }
 
 interface Curation {
@@ -131,7 +132,7 @@ async function fetchCuration(): Promise<Curation> {
   try {
     const supabase = createServiceClient();
     const [ci, comms, sts] = await Promise.all([
-      supabase.from('content_items').select('id, ref, starred, rating, archived_at, canon_slot, consent_tier, community_id, storyteller_id'),
+      supabase.from('content_items').select('id, ref, starred, rating, archived_at, canon_slot, consent_tier, community_id, storyteller_id, tags'),
       supabase.from('communities').select('id, name'),
       supabase.from('storytellers').select('id, display_name'),
     ]);
@@ -169,6 +170,10 @@ export default async function MediaLibraryPage() {
       canonSlot: c?.canon_slot ?? undefined,
       community: c?.community_id ? commName.get(c.community_id) : undefined,
       person: c?.storyteller_id ? personName.get(c.storyteller_id) : undefined,
+      // Tags are DB-backed once indexed: content_items.tags is the live store
+      // (edits go there via /api/admin/content-item). Fall back to the crawl
+      // tags only for items that have no index row yet.
+      tags: c ? (c.tags ?? []) : base.tags,
     };
   };
 
