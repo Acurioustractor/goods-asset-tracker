@@ -85,6 +85,8 @@ for (const im of (readJSON('../design/image-canon.json', { images: [] }).images 
   let filePath = null; let url = null;
   if (p.startsWith('v2/public/images/')) { filePath = p.slice('v2/'.length); url = '/images/' + p.slice('v2/public/images/'.length); }
   else if (p.startsWith('public/images/')) { filePath = p; url = '/images/' + p.slice('public/images/'.length); }
+  else if (p.startsWith('v2/public/video/')) { filePath = p.slice('v2/'.length); url = '/video/' + p.slice('v2/public/video/'.length); }
+  else if (p.startsWith('public/video/')) { filePath = p; url = '/video/' + p.slice('public/video/'.length); }
   if (!url) continue;
   slotByUrl[url] = im.slot;
   try { slotByChecksum[md5File(filePath)] = im.slot; } catch { /* missing */ }

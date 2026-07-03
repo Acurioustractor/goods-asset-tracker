@@ -478,6 +478,39 @@
         "12"
       ],
       "canonicalPath": "generated-images/goods-illustrations/qbe-12-alignment/01-alignment-matrix.png"
+    },
+    {
+      "subject": "Hero video",
+      "slot": "video-hero",
+      "type": "video",
+      "dataClass": "green",
+      "caption": "Brand hero background.",
+      "qbeAreas": [
+        "01"
+      ],
+      "canonicalPath": "v2/public/video/hero-desktop.mp4"
+    },
+    {
+      "subject": "Community video",
+      "slot": "video-community",
+      "type": "video",
+      "dataClass": "green",
+      "caption": "Community ambience On Country.",
+      "qbeAreas": [
+        "10"
+      ],
+      "canonicalPath": "v2/public/video/community-desktop.mp4"
+    },
+    {
+      "subject": "Build video",
+      "slot": "video-build",
+      "type": "video",
+      "dataClass": "green",
+      "caption": "Young people building the beds.",
+      "qbeAreas": [
+        "07"
+      ],
+      "canonicalPath": "v2/public/video/building-together-desktop.mp4"
     }
   ],
   "areaCoverage": {

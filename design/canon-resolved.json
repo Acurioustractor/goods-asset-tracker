@@ -421,13 +421,10 @@
       "areas": [
         "01"
       ],
-      "source": "el-pick",
-      "url": "https://www.empathyledger.com/api/media/89f865f3-4606-479f-9013-3bd55c57a4c6/file",
-      "elId": "89f865f3-4606-479f-9013-3bd55c57a4c6",
-      "kind": "video",
-      "consent": "el:not-flagged",
-      "alternates": 0,
-      "status": "el-pick"
+      "source": "local",
+      "path": "v2/public/video/hero-desktop.mp4",
+      "consent": "public",
+      "status": "canon"
     },
     "video-build": {
       "label": "Build video",
@@ -438,13 +435,10 @@
         "02",
         "06"
       ],
-      "source": "el-pick",
-      "url": "https://www.empathyledger.com/api/media/f571db9c-a178-40fd-a5fd-a9e15ed09a72/file",
-      "elId": "f571db9c-a178-40fd-a5fd-a9e15ed09a72",
-      "kind": "video",
-      "consent": "el:not-flagged",
-      "alternates": 0,
-      "status": "el-pick"
+      "source": "local",
+      "path": "v2/public/video/building-together-desktop.mp4",
+      "consent": "gated",
+      "status": "canon"
     },
     "video-testimony": {
       "label": "Testimony video",
@@ -484,13 +478,10 @@
       "areas": [
         "02"
       ],
-      "source": "el-pick",
-      "url": "https://www.empathyledger.com/api/media/69678fd8-cc2f-4739-8aab-381d0ef35e69/file",
-      "elId": "69678fd8-cc2f-4739-8aab-381d0ef35e69",
-      "kind": "video",
-      "consent": "el:not-flagged",
-      "alternates": 0,
-      "status": "el-pick"
+      "source": "local",
+      "path": "v2/public/video/community-desktop.mp4",
+      "consent": "public",
+      "status": "canon"
     },
     "area-05-risk": {
       "label": "Area 05 — Risk",
