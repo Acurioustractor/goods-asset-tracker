@@ -9,6 +9,7 @@ import { unstable_cache } from 'next/cache';
 import { safeImageUrl } from '@/lib/empathy-ledger/media-tier';
 import { getLocalImages, getLocalVideos } from '@/lib/data/local-images';
 import { createServiceClient } from '@/lib/supabase/server';
+import { themeForItem } from '@/lib/data/themes';
 import type { UnifiedItem } from './library-client';
 
 // EL content-hub API (legacy EL Supabase keys disabled org-wide 2026-06-17).
@@ -158,17 +159,20 @@ function makeAttach(curation: Curation): (base: UnifiedItem, ref: string) => Uni
   const { byRef, commName, personName } = curation;
   return (base, ref) => {
     const c = byRef.get(ref);
+    const canonSlot = c?.canon_slot ?? undefined;
+    // Tags are DB-backed once indexed; fall back to crawl tags only if no row.
+    const tags = c ? (c.tags ?? []) : base.tags;
     return {
       ...base,
       contentId: c?.id,
       starred: c?.starred ?? false,
       rating: c?.rating ?? 0,
       archived: !!c?.archived_at,
-      canonSlot: c?.canon_slot ?? undefined,
+      canonSlot,
       community: c?.community_id ? commName.get(c.community_id) : undefined,
       person: c?.storyteller_id ? personName.get(c.storyteller_id) : undefined,
-      // Tags are DB-backed once indexed; fall back to crawl tags only if no row.
-      tags: c ? (c.tags ?? []) : base.tags,
+      tags,
+      theme: themeForItem({ area: base.area, canonSlot: canonSlot ?? null, tags }) ?? undefined,
     };
   };
 }

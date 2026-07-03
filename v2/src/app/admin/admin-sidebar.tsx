@@ -73,6 +73,7 @@ const navigation: NavGroup[] = [
     group: 'Story',
     items: [
       { name: 'Media library', href: '/admin/media-library',   icon: Images },
+      { name: 'Media gaps',    href: '/admin/media-gaps',      icon: Radar },
       { name: 'People',        href: '/admin/people',          icon: Users },
       { name: 'Canon board',   href: '/admin/canon',           icon: LayoutGrid },
       { name: 'Stories (EL)',  href: '/admin/el-stories',      icon: BookOpen },

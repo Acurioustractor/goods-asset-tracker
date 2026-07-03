@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { themeName } from '@/lib/data/themes';
 
 export interface UnifiedItem {
   id: string;
@@ -30,6 +31,8 @@ export interface UnifiedItem {
   community?: string;
   /** Storyteller whose portrait this is (content_items.storyteller_id → display_name). */
   person?: string;
+  /** Primary theme id (themes.ts derivation: theme:<id> tag > canon slot > folder). */
+  theme?: string;
 }
 
 type SourceFilter = 'all' | 'website' | 'el';
@@ -64,6 +67,7 @@ export function MediaLibraryClient({
   const [items, setItems] = useState<UnifiedItem[]>(initialItems);
   const [sourceFilter, setSourceFilter] = useState<SourceFilter>('all');
   const [area, setArea] = useState<string>('__all');
+  const [theme, setTheme] = useState<string>('__all');
   const [community, setCommunity] = useState<string>('__all');
   const [search, setSearch] = useState('');
   const [active, setActive] = useState<UnifiedItem | null>(null);
@@ -204,6 +208,19 @@ export function MediaLibraryClient({
       .map(([value, count]) => ({ value, count }));
   }, [items, sourceFilter]);
 
+  // Themes present in the current source view (from themes.ts derivation).
+  const themeOptions = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const it of items) {
+      if (sourceFilter !== 'all' && it.source !== sourceFilter) continue;
+      if (!it.theme) continue;
+      counts.set(it.theme, (counts.get(it.theme) || 0) + 1);
+    }
+    return Array.from(counts.entries())
+      .map(([value, count]) => ({ value, name: themeName(value) || value, count }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }, [items, sourceFilter]);
+
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
     return items.filter((it) => {
@@ -212,15 +229,16 @@ export function MediaLibraryClient({
       if (showArchived && !it.archived) return false;
       if (starredOnly && !it.starred) return false;
       if (sourceFilter !== 'all' && it.source !== sourceFilter) return false;
+      if (theme !== '__all' && it.theme !== theme) return false;
       if (area !== '__all' && it.area !== area && !it.tags.includes(area)) return false;
       if (community !== '__all' && it.community !== community) return false;
       if (q) {
-        const hay = `${it.title} ${it.area} ${it.tags.join(' ')} ${it.community ?? ''} ${it.person ?? ''} ${it.full}`.toLowerCase();
+        const hay = `${it.title} ${it.area} ${it.tags.join(' ')} ${it.community ?? ''} ${it.person ?? ''} ${themeName(it.theme) ?? ''} ${it.full}`.toLowerCase();
         if (!hay.includes(q)) return false;
       }
       return true;
     });
-  }, [items, sourceFilter, area, community, search, showArchived, starredOnly]);
+  }, [items, sourceFilter, theme, area, community, search, showArchived, starredOnly]);
 
   const archivedCount = useMemo(() => items.filter((it) => it.archived).length, [items]);
   const starredCount = useMemo(() => items.filter((it) => it.starred).length, [items]);
@@ -413,6 +431,24 @@ export function MediaLibraryClient({
             ))}
           </select>
         </label>
+
+        {themeOptions.length > 0 && (
+          <label className="flex items-center gap-2 text-sm">
+            <span className="text-muted-foreground whitespace-nowrap">Theme</span>
+            <select
+              value={theme}
+              onChange={(e) => setTheme(e.target.value)}
+              className="rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+            >
+              <option value="__all">All themes</option>
+              {themeOptions.map((t) => (
+                <option key={t.value} value={t.value}>
+                  {t.name} ({t.count})
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
 
         {communityOptions.length > 0 && (
           <label className="flex items-center gap-2 text-sm">
@@ -764,6 +800,9 @@ function PreviewModal({
             <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium">
               {item.area}
             </span>
+            {item.theme && (
+              <span className="rounded-full bg-indigo-100 text-indigo-700 px-2 py-0.5 text-[10px] font-medium">{themeName(item.theme)}</span>
+            )}
             {item.community && (
               <span className="rounded-full bg-sky-100 text-sky-700 px-2 py-0.5 text-[10px] font-medium">📍 {item.community}</span>
             )}
