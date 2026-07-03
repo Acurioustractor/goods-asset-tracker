@@ -256,7 +256,36 @@ async function syncEl() {
   console.log(`el    : ${media.length} media (${imgs} img · ${media.length - imgs} video) — inserted ${inserts.length}, patched ${patches.length}, withdrawn->red ${withdrawn}`);
 }
 
+// ============================================================================
+// PASS 4 — link content_items to communities + storytellers (gallery search)
+// ============================================================================
+async function syncLinks() {
+  const get = (p) => fetch(`${REST}/${p}`, { headers: H }).then((r) => (r.ok ? r.json() : []));
+  const commIds = new Set((await get('communities?select=id')).map((c) => c.id));
+  if (commIds.size === 0) { console.log('links : skipped (no communities table)'); return; }
+  const sts = await get('storytellers?select=id,community_id,portrait_content_id&portrait_content_id=not.is.null');
+  const stByPortrait = new Map(sts.map((s) => [s.portrait_content_id, s]));
+  const items = await get('content_items?source=eq.local&select=id,area,url,community_id,storyteller_id');
+  let linked = 0;
+  for (const it of items) {
+    let community_id = it.community_id;
+    let storyteller_id = it.storyteller_id;
+    if (!community_id) {
+      if (commIds.has(it.area)) community_id = it.area;                    // e.g. area 'utopia' -> community 'utopia'
+      else if (/\/utopia[-/]/i.test(it.url) && commIds.has('utopia')) community_id = 'utopia';
+    }
+    const st = stByPortrait.get(it.id);                                    // this photo IS someone's portrait
+    if (st) { storyteller_id = st.id; if (!community_id) community_id = st.community_id; }
+    if ((community_id || null) !== (it.community_id || null) || (storyteller_id || null) !== (it.storyteller_id || null)) {
+      await patchById(it.id, { community_id: community_id || null, storyteller_id: storyteller_id || null });
+      linked += 1;
+    }
+  }
+  console.log(`links : patched ${linked} content_items (community + storyteller)`);
+}
+
 // --- run ---------------------------------------------------------------------
 await syncLocal();
 await syncEl();
+await syncLinks();
 console.log('done. canon slots mapped:', Object.keys(slotByChecksum).length);

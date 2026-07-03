@@ -115,20 +115,36 @@ interface CurationRow {
   archived_at: string | null;
   canon_slot: string | null;
   consent_tier: string | null;
+  community_id: string | null;
+  storyteller_id: string | null;
 }
 
-async function fetchCuration(): Promise<{ byRef: Map<string, CurationRow>; ready: boolean }> {
+interface Curation {
+  byRef: Map<string, CurationRow>;
+  ready: boolean;
+  commName: Map<string, string>;
+  personName: Map<string, string>;
+}
+
+async function fetchCuration(): Promise<Curation> {
+  const empty: Curation = { byRef: new Map(), ready: false, commName: new Map(), personName: new Map() };
   try {
     const supabase = createServiceClient();
-    const { data, error } = await supabase
-      .from('content_items')
-      .select('id, ref, starred, rating, archived_at, canon_slot, consent_tier');
-    if (error) return { byRef: new Map(), ready: false };
+    const [ci, comms, sts] = await Promise.all([
+      supabase.from('content_items').select('id, ref, starred, rating, archived_at, canon_slot, consent_tier, community_id, storyteller_id'),
+      supabase.from('communities').select('id, name'),
+      supabase.from('storytellers').select('id, display_name'),
+    ]);
+    if (ci.error) return empty;
     const byRef = new Map<string, CurationRow>();
-    for (const r of (data ?? []) as CurationRow[]) byRef.set(r.ref, r);
-    return { byRef, ready: (data?.length ?? 0) > 0 };
+    for (const r of (ci.data ?? []) as CurationRow[]) byRef.set(r.ref, r);
+    const commName = new Map<string, string>();
+    for (const c of comms.data ?? []) commName.set(c.id as string, c.name as string);
+    const personName = new Map<string, string>();
+    for (const s of sts.data ?? []) personName.set(s.id as string, s.display_name as string);
+    return { byRef, ready: (ci.data?.length ?? 0) > 0, commName, personName };
   } catch {
-    return { byRef: new Map(), ready: false };
+    return empty;
   }
 }
 
@@ -139,9 +155,9 @@ export default async function MediaLibraryPage() {
     fetchElMedia('video'),
     fetchCuration(),
   ]);
-  const { byRef: curationByRef, ready: curationReady } = curation;
+  const { byRef: curationByRef, ready: curationReady, commName, personName } = curation;
 
-  // Attach curation state (from content_items, keyed by ref) to any item.
+  // Attach curation state + community/person names (from content_items, keyed by ref).
   const withCuration = (base: UnifiedItem, ref: string): UnifiedItem => {
     const c = curationByRef.get(ref);
     return {
@@ -151,6 +167,8 @@ export default async function MediaLibraryPage() {
       rating: c?.rating ?? 0,
       archived: !!c?.archived_at,
       canonSlot: c?.canon_slot ?? undefined,
+      community: c?.community_id ? commName.get(c.community_id) : undefined,
+      person: c?.storyteller_id ? personName.get(c.storyteller_id) : undefined,
     };
   };
 
