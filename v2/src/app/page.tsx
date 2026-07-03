@@ -7,6 +7,7 @@ import { MediaSlot } from '@/components/ui/media-slot';
 import { Button } from '@/components/ui/button';
 import { brand } from '@/lib/data/content';
 import { videoUrl } from '@/lib/data/media';
+import { canonVideoSrc } from '@/lib/data/canon-videos';
 import { FeaturedStories } from '@/components/empathy-ledger/featured-stories';
 import { FieldNotesTile } from '@/components/marketing/field-notes-tile';
 import { getStoryOverrides } from '@/lib/field-notes/overrides';
@@ -44,11 +45,11 @@ export default async function HomePage() {
         subtitle={brand.hero.home.subheadline}
         primaryCta={{ text: 'Shop the Stretch Bed', href: '/shop/stretch-bed-single' }}
         secondaryCta={{ text: 'Back the work', href: '/partner' }}
-        videoSrc={{
+        videoSrc={canonVideoSrc('video-hero', {
           desktop: videoUrl('hero-desktop.mp4'),
           mobile: videoUrl('hero-mobile.mp4'),
           poster: '/video/hero-poster.jpg',
-        }}
+        })}
         imageSrc="/images/media-pack/lying-on-stretch-bed.jpg"
         imageAlt="A young man lying full-length on a Stretch Bed on country: recycled plastic legs, galvanised steel poles, heavy-duty canvas"
       />
