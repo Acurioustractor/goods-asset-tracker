@@ -49,6 +49,20 @@ const H = { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}`, 'Content-Type': '
 const date = new Date().toISOString().slice(0, 10);
 const ARCHIVE_DIR = path.join('_archive', date, 'public-images');
 
+// Guard: is this image referenced anywhere in the live app source? The DB
+// used_where field is often empty, so grep v2/src for the filename as a backstop
+// — moving a referenced image would 404 on live pages (e.g. the /stretch-bed
+// flagship). Conservative: any basename match blocks the move (--force overrides).
+function referencedInCode(url) {
+  const base = path.basename(url);
+  try {
+    const out = execSync(`grep -rlF ${JSON.stringify(base)} v2/src 2>/dev/null || true`, { encoding: 'utf8' });
+    return out.split('\n').map((s) => s.trim()).filter(Boolean).filter((f) => !f.includes('node_modules'));
+  } catch {
+    return [];
+  }
+}
+
 const res = await fetch(
   `${REST}/content_items?source=eq.local&archived_at=not.is.null&archive_path=is.null&select=id,url,ref,area,canon_slot,consent_tier,used_where`,
   { headers: H },
@@ -63,6 +77,8 @@ for (const r of rows) {
   if (r.canon_slot) reasons.push(`canon:${r.canon_slot}`);
   if (r.consent_tier === 'red') reasons.push('consent:red');
   if (Array.isArray(r.used_where) && r.used_where.length) reasons.push(`used(${r.used_where.length})`);
+  const codeRefs = referencedInCode(r.url);
+  if (codeRefs.length) reasons.push(`in-code(${codeRefs.length}: ${codeRefs.map((f) => f.replace(/^v2\/src\//, '')).join(', ')})`);
   if (reasons.length && !FORCE) { blocked.push({ ...r, reasons }); continue; }
   const rel = r.url.replace(/^\/images\//, '');            // e.g. product/foo.jpg
   const from = path.join('v2', 'public', 'images', rel);
