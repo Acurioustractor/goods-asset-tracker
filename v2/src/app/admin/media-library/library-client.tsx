@@ -73,10 +73,37 @@ export function MediaLibraryClient({
   const [starredOnly, setStarredOnly] = useState(false);
   const [cursor, setCursor] = useState(0); // index into `filtered`, for keyboard cull
   const [err, setErr] = useState('');
+  // Empathy Ledger loads after first paint (kept out of the blocking server render).
+  const elRef = useRef<UnifiedItem[]>([]);
+  const [elState, setElState] = useState<'loading' | 'done' | 'error'>('loading');
+  const [elMissing, setElMissing] = useState(false);
 
-  // Keep in sync if the server re-renders with fresh items (e.g. revalidate).
+  // Fetch Empathy Ledger media after first paint, then merge onto local items.
+  // This is why the page paints instantly now — the paged EL API no longer blocks
+  // the server render.
   useEffect(() => {
-    setItems(initialItems);
+    let cancelled = false;
+    setElState('loading');
+    fetch('/api/admin/el-media')
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
+      .then((d: { items?: UnifiedItem[]; elMissing?: boolean }) => {
+        if (cancelled) return;
+        elRef.current = d.items ?? [];
+        setElMissing(!!d.elMissing);
+        setItems((prev) => [...prev.filter((i) => i.source !== 'el'), ...elRef.current]);
+        setElState('done');
+      })
+      .catch(() => {
+        if (!cancelled) setElState('error');
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Server re-render (revalidate): reset local items, keep any EL already loaded.
+  useEffect(() => {
+    setItems([...initialItems, ...elRef.current]);
   }, [initialItems]);
 
   const updateItemTags = useCallback((id: string, tags: string[]) => {
@@ -316,6 +343,13 @@ export function MediaLibraryClient({
           {err}
         </p>
       )}
+      {(elMissing || elState === 'error') && (
+        <p className="mb-4 rounded-md bg-amber-50 px-3 py-2 text-xs text-amber-700 dark:bg-amber-950/40 dark:text-amber-300">
+          {elMissing
+            ? 'Empathy Ledger unavailable (EMPATHY_LEDGER_API_KEY not set). Showing local website media only.'
+            : 'Couldn’t load Empathy Ledger media this time. Showing local website media only.'}
+        </p>
+      )}
 
       {/* Source filter chips */}
       <div className="flex flex-wrap gap-2 mb-3">
@@ -378,7 +412,8 @@ export function MediaLibraryClient({
         />
 
         <span className="text-xs text-muted-foreground whitespace-nowrap">
-          {filtered.length} image{filtered.length === 1 ? '' : 's'}
+          {filtered.length} item{filtered.length === 1 ? '' : 's'}
+          {elState === 'loading' && <span className="ml-1 opacity-70">· loading Empathy Ledger…</span>}
         </span>
       </div>
 
