@@ -83,19 +83,29 @@ walk(imagesRoot, []);
 let savedTags = {};
 try { savedTags = JSON.parse(fs.readFileSync('data/local-image-tags.json', 'utf8')); } catch { /* none */ }
 
+// Canon picks are mapped by CHECKSUM (dedup-proof) with a url fallback: a canon
+// image is flagged on whichever indexed row holds its bytes, even if dedup made
+// a byte-identical twin the canonical file.
 const slotByUrl = {};
+const slotByChecksum = {};
 try {
   const canon = JSON.parse(fs.readFileSync('../design/image-canon.json', 'utf8'));
   for (const im of canon.images || []) {
     if (!im.canonicalPath || !im.slot) continue;
     const p = im.canonicalPath;
-    if (p.startsWith('v2/public/images/')) slotByUrl['/images/' + p.slice('v2/public/images/'.length)] = im.slot;
-    else if (p.startsWith('public/images/')) slotByUrl['/images/' + p.slice('public/images/'.length)] = im.slot;
+    let filePath = null;
+    let url = null;
+    if (p.startsWith('v2/public/images/')) { filePath = p.slice('v2/'.length); url = '/images/' + p.slice('v2/public/images/'.length); }
+    else if (p.startsWith('public/images/')) { filePath = p; url = '/images/' + p.slice('public/images/'.length); }
+    if (!url) continue;                                 // canon pick outside public/images (e.g. deck-assets)
+    slotByUrl[url] = im.slot;
+    try { slotByChecksum[crypto.createHash('md5').update(fs.readFileSync(filePath)).digest('hex')] = im.slot; } catch { /* file moved/missing */ }
   }
 } catch { /* none */ }
 
-// Consent: default-deny leans safe. People portraits are gated (need a name +
-// clearance check in Phase 2); everything else is already-public web imagery.
+// Consent: default-deny leans safe. People portraits and storyteller canon picks
+// are gated (need a name + clearance check in Phase 2); everything else is
+// already-public web imagery.
 const consentFor = (area) => (area === 'people' ? 'gated' : 'public');
 const subtypeFor = (area, filename) =>
   area === 'people' ? 'portrait' : (area === 'brand' && /logo/i.test(filename) ? 'logo' : null);
@@ -113,13 +123,15 @@ const existing = await getExisting();
 const inserts = [];
 const patches = [];
 for (const f of files) {
-  const canon_slot = slotByUrl[f.url] || null;
+  const canon_slot = slotByChecksum[f.checksum] || slotByUrl[f.url] || null;
+  const isStoryteller = !!canon_slot && canon_slot.startsWith('storyteller-');
   const cur = existing.get(f.checksum);
   if (!cur) {
     inserts.push({
       source: 'local', ref: f.url, url: f.url, media_type: 'image', checksum: f.checksum,
       area: f.area, tags: savedTags[f.url] || [], canon_slot,
-      consent_tier: consentFor(f.area), media_subtype: subtypeFor(f.area, f.filename),
+      consent_tier: isStoryteller ? 'gated' : consentFor(f.area),
+      media_subtype: isStoryteller ? 'portrait' : subtypeFor(f.area, f.filename),
     });
   } else {
     const body = {};                                   // crawl-derived columns ONLY
