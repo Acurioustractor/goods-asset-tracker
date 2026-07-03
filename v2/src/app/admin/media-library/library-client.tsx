@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 export interface UnifiedItem {
   id: string;
@@ -15,6 +15,14 @@ export interface UnifiedItem {
   consent: 'public' | 'gated-ok' | 'elder-pending' | 'flagged' | 'local';
   /** Other /images/... paths holding a byte-identical copy (website only). */
   aliases?: string[];
+  // --- curation state (website items indexed in content_items) ---
+  /** content_items.id — present only once the index is built. Required to curate. */
+  contentId?: string;
+  starred?: boolean;
+  rating?: number;
+  archived?: boolean;
+  /** Set = this image is the winner for a raise canon slot (guarded from cull). */
+  canonSlot?: string;
 }
 
 type SourceFilter = 'all' | 'website' | 'el';
@@ -35,33 +43,93 @@ function consentBadge(item: UnifiedItem): { text: string; cls: string } {
   }
 }
 
-export function MediaLibraryClient({ items: initialItems }: { items: UnifiedItem[] }) {
-  // Local copy so saved website tags update the grid/filters without a reload.
+/** A patch sent to /api/admin/content-item and applied optimistically to state. */
+type CurationPatch = { starred?: boolean; rating?: number; archived?: boolean };
+
+export function MediaLibraryClient({
+  items: initialItems,
+  curationReady,
+}: {
+  items: UnifiedItem[];
+  curationReady: boolean;
+}) {
+  // Local copy so saved tags + curation state update the grid without a reload.
   const [items, setItems] = useState<UnifiedItem[]>(initialItems);
   const [sourceFilter, setSourceFilter] = useState<SourceFilter>('all');
   const [area, setArea] = useState<string>('__all');
   const [search, setSearch] = useState('');
   const [active, setActive] = useState<UnifiedItem | null>(null);
+  // curation UI state
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [showArchived, setShowArchived] = useState(false);
+  const [starredOnly, setStarredOnly] = useState(false);
+  const [cursor, setCursor] = useState(0); // index into `filtered`, for keyboard cull
+  const [err, setErr] = useState('');
 
   // Keep in sync if the server re-renders with fresh items (e.g. revalidate).
   useEffect(() => {
     setItems(initialItems);
   }, [initialItems]);
 
-  // Patch one item's tags in place (after a successful save). Also refreshes the
-  // open preview so its chips reflect the new state.
   const updateItemTags = useCallback((id: string, tags: string[]) => {
     setItems((prev) => prev.map((it) => (it.id === id ? { ...it, tags } : it)));
     setActive((cur) => (cur && cur.id === id ? { ...cur, tags } : cur));
   }, []);
 
-  // Esc closes preview
-  useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') setActive(null);
-    }
-    document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
+  // --- curation write: optimistic, reverts on API failure --------------------
+  const mutate = useCallback(
+    async (ids: string[], patch: CurationPatch) => {
+      const targets = items.filter((it) => ids.includes(it.id));
+      const contentIds = targets.map((it) => it.contentId).filter((x): x is string => !!x);
+      if (contentIds.length === 0) {
+        setErr('These items are not indexed yet — run npm run content:index first.');
+        return;
+      }
+      setErr('');
+      const snapshot = items;
+      const apply = (it: UnifiedItem): UnifiedItem => ({
+        ...it,
+        ...(patch.starred !== undefined ? { starred: patch.starred } : {}),
+        ...(patch.rating !== undefined ? { rating: patch.rating } : {}),
+        ...(patch.archived !== undefined ? { archived: patch.archived } : {}),
+      });
+      setItems((prev) => prev.map((it) => (ids.includes(it.id) && it.contentId ? apply(it) : it)));
+      setActive((cur) => (cur && ids.includes(cur.id) && cur.contentId ? apply(cur) : cur));
+      try {
+        const res = await fetch('/api/admin/content-item', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ids: contentIds, ...patch }),
+        });
+        const data = (await res.json()) as { ok: boolean; error?: string };
+        if (!res.ok || !data.ok) throw new Error(data.error || `HTTP ${res.status}`);
+      } catch (e) {
+        setItems(snapshot); // revert
+        setErr(`Save failed: ${e instanceof Error ? e.message : String(e)}`);
+      }
+    },
+    [items],
+  );
+
+  const toggleStar = useCallback((it: UnifiedItem) => mutate([it.id], { starred: !it.starred }), [mutate]);
+  const toggleArchive = useCallback((it: UnifiedItem) => mutate([it.id], { archived: !it.archived }), [mutate]);
+  const setRating = useCallback((it: UnifiedItem, r: number) => mutate([it.id], { rating: r }), [mutate]);
+  const bulkSet = useCallback(
+    (patch: CurationPatch) => {
+      const ids = Array.from(selected);
+      if (ids.length) mutate(ids, patch);
+      if (patch.archived !== undefined) setSelected(new Set()); // archived items leave the view
+    },
+    [selected, mutate],
+  );
+
+  const toggleSelect = useCallback((id: string) => {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
   }, []);
 
   const sourceCounts = useMemo(() => {
@@ -74,9 +142,6 @@ export function MediaLibraryClient({ items: initialItems }: { items: UnifiedItem
     return { all: items.length, website, el };
   }, [items]);
 
-  // Subjects (with counts) limited to the items visible under the current source
-  // filter, so the dropdown stays relevant. A "subject" is the folder `area` OR
-  // any saved/EL tag — so newly-saved website tags become filterable.
   const areaOptions = useMemo(() => {
     const counts = new Map<string, number>();
     const bump = (key: string) => counts.set(key, (counts.get(key) || 0) + 1);
@@ -93,6 +158,10 @@ export function MediaLibraryClient({ items: initialItems }: { items: UnifiedItem
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
     return items.filter((it) => {
+      // Archived hidden by default; toggle to review the archive.
+      if (!showArchived && it.archived) return false;
+      if (showArchived && !it.archived) return false;
+      if (starredOnly && !it.starred) return false;
       if (sourceFilter !== 'all' && it.source !== sourceFilter) return false;
       if (area !== '__all' && it.area !== area && !it.tags.includes(area)) return false;
       if (q) {
@@ -101,7 +170,82 @@ export function MediaLibraryClient({ items: initialItems }: { items: UnifiedItem
       }
       return true;
     });
-  }, [items, sourceFilter, area, search]);
+  }, [items, sourceFilter, area, search, showArchived, starredOnly]);
+
+  const archivedCount = useMemo(() => items.filter((it) => it.archived).length, [items]);
+  const starredCount = useMemo(() => items.filter((it) => it.starred).length, [items]);
+
+  // Clamp cursor when the filtered set shrinks/changes.
+  useEffect(() => {
+    setCursor((c) => (filtered.length === 0 ? 0 : Math.min(c, filtered.length - 1)));
+  }, [filtered.length]);
+
+  // Scroll the cursor tile into view.
+  const tileRefs = useRef<Map<number, HTMLElement>>(new Map());
+  useEffect(() => {
+    tileRefs.current.get(cursor)?.scrollIntoView({ block: 'nearest' });
+  }, [cursor]);
+
+  // --- keyboard: navigate + cull without leaving the keyboard ----------------
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      // Modal open: only Escape (closes it).
+      if (active) {
+        if (e.key === 'Escape') setActive(null);
+        return;
+      }
+      // Don't hijack typing.
+      const t = e.target as HTMLElement | null;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable)) {
+        return;
+      }
+      if (e.key === 'Escape') {
+        setSelected(new Set());
+        return;
+      }
+      const cur = filtered[cursor];
+      switch (e.key) {
+        case 'ArrowRight':
+        case 'j':
+          e.preventDefault();
+          setCursor((c) => Math.min(c + 1, Math.max(filtered.length - 1, 0)));
+          break;
+        case 'ArrowLeft':
+        case 'k':
+          e.preventDefault();
+          setCursor((c) => Math.max(c - 1, 0));
+          break;
+        case 's':
+          if (cur) { e.preventDefault(); toggleStar(cur); }
+          break;
+        case 'x':
+          if (cur) { e.preventDefault(); toggleArchive(cur); }
+          break;
+        case ' ':
+          if (cur) { e.preventDefault(); toggleSelect(cur.id); }
+          break;
+        case 'A':
+          e.preventDefault();
+          setSelected(new Set(filtered.filter((it) => it.contentId).map((it) => it.id)));
+          break;
+        case 'Enter':
+          if (cur) { e.preventDefault(); setActive(cur); }
+          break;
+        case '0':
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+          if (cur && cur.contentId) { e.preventDefault(); setRating(cur, Number(e.key)); }
+          break;
+        default:
+          break;
+      }
+    }
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [active, filtered, cursor, toggleStar, toggleArchive, toggleSelect, setRating]);
 
   const chip = (key: SourceFilter, label: string, count: number) => {
     const isActive = sourceFilter === key;
@@ -123,17 +267,52 @@ export function MediaLibraryClient({ items: initialItems }: { items: UnifiedItem
     );
   };
 
+  const toggleBtn = (on: boolean, onClick: () => void, label: string, count?: number) => (
+    <button
+      type="button"
+      onClick={onClick}
+      className={
+        'inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium border transition ' +
+        (on ? 'bg-foreground text-background border-foreground' : 'bg-background text-foreground border-border hover:border-foreground')
+      }
+    >
+      <span>{label}</span>
+      {count !== undefined && <span className={on ? 'opacity-80' : 'text-muted-foreground'}>{count}</span>}
+    </button>
+  );
+
   return (
     <div>
+      {!curationReady && (
+        <p className="mb-4 rounded-md bg-amber-50 px-3 py-2 text-xs text-amber-800 dark:bg-amber-950/40 dark:text-amber-300">
+          Curation index not built yet. Run <code>cd v2 &amp;&amp; npm run content:index</code> to enable star, rating and archive.
+          You can still browse every image below.
+        </p>
+      )}
+      {err && (
+        <p className="mb-4 rounded-md bg-red-50 px-3 py-2 text-xs text-red-700 dark:bg-red-950/40 dark:text-red-300">
+          {err}
+        </p>
+      )}
+
       {/* Source filter chips */}
-      <div className="flex flex-wrap gap-2 mb-4">
+      <div className="flex flex-wrap gap-2 mb-3">
         {chip('all', 'All', sourceCounts.all)}
         {chip('website', 'Website', sourceCounts.website)}
         {chip('el', 'Empathy Ledger', sourceCounts.el)}
       </div>
 
+      {/* Curation view toggles */}
+      <div className="flex flex-wrap items-center gap-2 mb-3">
+        {toggleBtn(starredOnly, () => setStarredOnly((v) => !v), '★ Starred only', starredCount)}
+        {toggleBtn(showArchived, () => setShowArchived((v) => !v), showArchived ? 'Viewing archive' : 'Show archived', archivedCount)}
+        <span className="text-[11px] text-muted-foreground ml-1 hidden sm:inline">
+          keys: j/k move · s star · x archive · 1–5 rate · space select · A select all · enter open
+        </span>
+      </div>
+
       {/* Subject + search */}
-      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
         <label className="flex items-center gap-2 text-sm">
           <span className="text-muted-foreground whitespace-nowrap">Subject</span>
           <select
@@ -163,6 +342,20 @@ export function MediaLibraryClient({ items: initialItems }: { items: UnifiedItem
         </span>
       </div>
 
+      {/* Bulk action bar */}
+      {selected.size > 0 && (
+        <div className="sticky top-2 z-20 mb-4 flex flex-wrap items-center gap-2 rounded-xl border border-border bg-card px-3 py-2 shadow-sm">
+          <span className="text-sm font-semibold">{selected.size} selected</span>
+          <button type="button" onClick={() => bulkSet({ starred: true })} className="rounded-lg border border-border px-2.5 py-1 text-xs hover:border-foreground">★ Star</button>
+          <button type="button" onClick={() => bulkSet({ starred: false })} className="rounded-lg border border-border px-2.5 py-1 text-xs hover:border-foreground">☆ Unstar</button>
+          <button type="button" onClick={() => bulkSet({ archived: true })} className="rounded-lg border border-border px-2.5 py-1 text-xs text-red-600 hover:border-red-500">Archive</button>
+          {showArchived && (
+            <button type="button" onClick={() => bulkSet({ archived: false })} className="rounded-lg border border-border px-2.5 py-1 text-xs hover:border-foreground">Restore</button>
+          )}
+          <button type="button" onClick={() => setSelected(new Set())} className="ml-auto rounded-lg px-2.5 py-1 text-xs text-muted-foreground hover:text-foreground">Clear</button>
+        </div>
+      )}
+
       {/* Grid */}
       {filtered.length === 0 ? (
         <p className="text-center text-muted-foreground py-12">
@@ -170,44 +363,95 @@ export function MediaLibraryClient({ items: initialItems }: { items: UnifiedItem
         </p>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-          {filtered.map((it) => {
+          {filtered.map((it, idx) => {
             const badge = consentBadge(it);
+            const isSel = selected.has(it.id);
+            const isCursor = idx === cursor;
+            const canCurate = it.source === 'website' && !!it.contentId;
             return (
-              <button
+              <div
                 key={it.id}
-                type="button"
-                onClick={() => setActive(it)}
-                className="relative aspect-square rounded-lg overflow-hidden bg-muted border border-border hover:border-foreground/60 transition group text-left"
-                title={it.title}
+                ref={(el) => { if (el) tileRefs.current.set(idx, el); else tileRefs.current.delete(idx); }}
+                className={
+                  'relative aspect-square rounded-lg overflow-hidden bg-muted border transition group ' +
+                  (isCursor ? 'border-accent ring-2 ring-accent ' : 'border-border hover:border-foreground/60 ') +
+                  (it.archived ? 'opacity-60 ' : '')
+                }
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={it.src}
-                  alt={it.title}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover group-hover:scale-[1.02] transition-transform"
-                />
-                <span
-                  className={
-                    'absolute top-1.5 left-1.5 rounded-full px-2 py-0.5 text-[9px] font-semibold ' +
-                    badge.cls
-                  }
+                <button
+                  type="button"
+                  onClick={() => { setCursor(idx); setActive(it); }}
+                  className="absolute inset-0 h-full w-full text-left"
+                  title={it.title}
                 >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={it.src}
+                    alt={it.title}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover group-hover:scale-[1.02] transition-transform"
+                  />
+                </button>
+
+                {/* consent / source badge */}
+                <span className={'pointer-events-none absolute top-1.5 left-1.5 rounded-full px-2 py-0.5 text-[9px] font-semibold ' + badge.cls}>
                   {badge.text}
                 </span>
+
+                {/* select checkbox (website only) */}
+                {canCurate && (
+                  <button
+                    type="button"
+                    onClick={() => toggleSelect(it.id)}
+                    aria-label={isSel ? 'Deselect' : 'Select'}
+                    className={
+                      'absolute bottom-1.5 left-1.5 h-5 w-5 rounded border flex items-center justify-center text-[11px] font-bold transition ' +
+                      (isSel ? 'bg-accent text-white border-accent' : 'bg-background/80 border-border text-transparent hover:text-muted-foreground')
+                    }
+                  >
+                    ✓
+                  </button>
+                )}
+
+                {/* star toggle (website only) */}
+                {canCurate && (
+                  <button
+                    type="button"
+                    onClick={() => toggleStar(it)}
+                    aria-label={it.starred ? 'Unstar' : 'Star'}
+                    className={
+                      'absolute top-1.5 right-1.5 h-6 w-6 rounded-full flex items-center justify-center text-sm transition ' +
+                      (it.starred ? 'bg-yellow-400 text-black' : 'bg-background/70 text-muted-foreground opacity-0 group-hover:opacity-100 hover:text-foreground')
+                    }
+                  >
+                    {it.starred ? '★' : '☆'}
+                  </button>
+                )}
+
+                {/* archive marker */}
+                {it.archived && (
+                  <span className="pointer-events-none absolute top-8 right-1.5 rounded-full bg-red-600 text-white px-1.5 py-0.5 text-[9px] font-semibold">
+                    archived
+                  </span>
+                )}
+                {it.canonSlot && (
+                  <span className="pointer-events-none absolute bottom-1.5 right-1.5 rounded-full bg-emerald-600 text-white px-1.5 py-0.5 text-[9px] font-semibold" title={`Canon pick: ${it.canonSlot}`}>
+                    canon
+                  </span>
+                )}
                 {it.aliases && it.aliases.length > 0 && (
                   <span
-                    className="absolute top-1.5 right-1.5 rounded-full bg-blue-100 text-blue-700 px-1.5 py-0.5 text-[9px] font-semibold"
+                    className="pointer-events-none absolute top-1.5 right-9 rounded-full bg-blue-100 text-blue-700 px-1.5 py-0.5 text-[9px] font-semibold"
                     title={`Also at ${it.aliases.length} other location${it.aliases.length === 1 ? '' : 's'}`}
                   >
                     +{it.aliases.length}
                   </span>
                 )}
-                <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent px-2 py-2 text-[10px] text-white line-clamp-2">
+                <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent px-2 pt-4 pb-2 text-[10px] text-white line-clamp-2">
                   <span className="block opacity-70">{it.area}</span>
                   {it.title}
                 </span>
-              </button>
+              </div>
             );
           })}
         </div>
@@ -216,8 +460,12 @@ export function MediaLibraryClient({ items: initialItems }: { items: UnifiedItem
       {active && (
         <PreviewModal
           item={active}
+          curationReady={curationReady}
           onClose={() => setActive(null)}
           onSaveTags={updateItemTags}
+          onToggleStar={toggleStar}
+          onToggleArchive={toggleArchive}
+          onSetRating={setRating}
         />
       )}
     </div>
@@ -239,16 +487,25 @@ type SaveState = 'idle' | 'saving' | 'saved' | 'error';
 
 function PreviewModal({
   item,
+  curationReady,
   onClose,
   onSaveTags,
+  onToggleStar,
+  onToggleArchive,
+  onSetRating,
 }: {
   item: UnifiedItem;
+  curationReady: boolean;
   onClose: () => void;
   onSaveTags: (id: string, tags: string[]) => void;
+  onToggleStar: (it: UnifiedItem) => void;
+  onToggleArchive: (it: UnifiedItem) => void;
+  onSetRating: (it: UnifiedItem, r: number) => void;
 }) {
   const [copied, setCopied] = useState(false);
   const badge = consentBadge(item);
   const isWebsite = item.source === 'website';
+  const canCurate = isWebsite && !!item.contentId;
 
   // Tag editor state (website items only). Seeded from the item's current tags.
   const [draftTags, setDraftTags] = useState<string[]>(item.tags);
@@ -355,7 +612,58 @@ function PreviewModal({
             <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium">
               {item.area}
             </span>
+            {item.canonSlot && (
+              <span className="rounded-full bg-emerald-100 text-emerald-700 px-2 py-0.5 text-[10px] font-semibold" title="This image is a locked canon pick">
+                canon: {item.canonSlot}
+              </span>
+            )}
           </div>
+
+          {/* Curation controls (website items with an index row) */}
+          {canCurate ? (
+            <div className="mb-5 rounded-lg border border-border p-3">
+              <div className="flex items-center gap-2 mb-2">
+                <button
+                  type="button"
+                  onClick={() => onToggleStar(item)}
+                  className={
+                    'inline-flex items-center gap-1 rounded-lg border px-2.5 py-1 text-xs font-medium transition ' +
+                    (item.starred ? 'bg-yellow-400 text-black border-yellow-400' : 'border-border hover:border-foreground')
+                  }
+                >
+                  {item.starred ? '★ Starred' : '☆ Star'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onToggleArchive(item)}
+                  className={
+                    'inline-flex items-center gap-1 rounded-lg border px-2.5 py-1 text-xs font-medium transition ' +
+                    (item.archived ? 'bg-red-600 text-white border-red-600' : 'border-border text-red-600 hover:border-red-500')
+                  }
+                >
+                  {item.archived ? 'Archived · restore' : 'Archive'}
+                </button>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="text-[10px] uppercase tracking-widest text-muted-foreground mr-1">Rate</span>
+                {[1, 2, 3, 4, 5].map((r) => (
+                  <button
+                    key={r}
+                    type="button"
+                    onClick={() => onSetRating(item, (item.rating ?? 0) === r ? 0 : r)}
+                    aria-label={`Rate ${r}`}
+                    className={'text-lg leading-none transition ' + ((item.rating ?? 0) >= r ? 'text-yellow-500' : 'text-muted-foreground hover:text-foreground')}
+                  >
+                    ★
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : (
+            isWebsite && !curationReady && (
+              <p className="mb-5 text-[11px] text-amber-700">Run the content index to star / rate / archive this image.</p>
+            )
+          )}
 
           {item.aliases && item.aliases.length > 0 && (
             <div className="mb-5">

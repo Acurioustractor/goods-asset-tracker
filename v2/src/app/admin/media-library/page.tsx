@@ -5,6 +5,7 @@
 
 import { safeImageUrl } from '@/lib/empathy-ledger/media-tier';
 import { getLocalImages } from '@/lib/data/local-images';
+import { createServiceClient } from '@/lib/supabase/server';
 import { MediaLibraryClient, type UnifiedItem } from './library-client';
 
 export const dynamic = 'force-dynamic';
@@ -88,9 +89,41 @@ function elArea(p: ElPhoto): string {
   return 'el';
 }
 
+// --- curation state (content_items index) -----------------------------------
+// Resilient: before the Phase 0 migration is applied the table does not exist,
+// so a failed query just yields no curation state and the "index not built"
+// banner shows. The gallery still browses every image.
+
+interface CurationRow {
+  id: string;
+  ref: string;
+  starred: boolean;
+  rating: number | null;
+  archived_at: string | null;
+  canon_slot: string | null;
+  consent_tier: string | null;
+}
+
+async function fetchCuration(): Promise<{ byRef: Map<string, CurationRow>; ready: boolean }> {
+  try {
+    const supabase = createServiceClient();
+    const { data, error } = await supabase
+      .from('content_items')
+      .select('id, ref, starred, rating, archived_at, canon_slot, consent_tier')
+      .eq('source', 'local');
+    if (error) return { byRef: new Map(), ready: false };
+    const byRef = new Map<string, CurationRow>();
+    for (const r of (data ?? []) as CurationRow[]) byRef.set(r.ref, r);
+    return { byRef, ready: (data?.length ?? 0) > 0 };
+  } catch {
+    return { byRef: new Map(), ready: false };
+  }
+}
+
 export default async function MediaLibraryPage() {
   const elMissing = !EL_API_KEY;
-  const elPhotos = await fetchElPhotos();
+  const [elPhotos, curation] = await Promise.all([fetchElPhotos(), fetchCuration()]);
+  const { byRef: curationByRef, ready: curationReady } = curation;
 
   const elItems: UnifiedItem[] = elPhotos.map((p) => ({
     id: `el:${p.id}`,
@@ -103,20 +136,29 @@ export default async function MediaLibraryPage() {
     consent: elConsent(p),
   }));
 
-  const localItems: UnifiedItem[] = getLocalImages().map((img) => ({
-    id: `website:${img.url}`,
-    src: img.url,
-    full: img.url,
-    source: 'website',
-    area: img.area,
-    title: img.filename,
-    // Saved subject tags drive the subject filter + search. The folder (`area`)
-    // stays a separate field, so we don't duplicate it into tags here.
-    tags: img.tags,
-    consent: 'local',
-    // Other paths where this exact image also lives (content-hash dups).
-    aliases: img.aliases,
-  }));
+  const localItems: UnifiedItem[] = getLocalImages().map((img) => {
+    const c = curationByRef.get(img.url);
+    return {
+      id: `website:${img.url}`,
+      src: img.url,
+      full: img.url,
+      source: 'website',
+      area: img.area,
+      title: img.filename,
+      // Saved subject tags drive the subject filter + search. The folder (`area`)
+      // stays a separate field, so we don't duplicate it into tags here.
+      tags: img.tags,
+      consent: 'local',
+      // Other paths where this exact image also lives (content-hash dups).
+      aliases: img.aliases,
+      // Curation state from content_items (undefined until the index is built).
+      contentId: c?.id,
+      starred: c?.starred ?? false,
+      rating: c?.rating ?? 0,
+      archived: !!c?.archived_at,
+      canonSlot: c?.canon_slot ?? undefined,
+    };
+  });
 
   const items: UnifiedItem[] = [...localItems, ...elItems];
 
@@ -136,7 +178,7 @@ export default async function MediaLibraryPage() {
           </p>
         )}
       </header>
-      <MediaLibraryClient items={items} />
+      <MediaLibraryClient items={items} curationReady={curationReady} />
     </div>
   );
 }

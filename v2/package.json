@@ -9,6 +9,8 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
+    "content:index": "node scripts/content-index.mjs",
+    "content:archive": "cd .. && node v2/scripts/content-apply-archive.mjs",
     "check:community-copy": "node scripts/check-community-copy.mjs",
     "check:qbe-guardrails": "node scripts/check-qbe-guardrails.mjs",
     "check:asset-drift": "node --env-file=.env.local scripts/check-asset-drift.mjs",
