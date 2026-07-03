@@ -424,66 +424,12 @@ export default async function StoryPage() {
         </section>
 
         {/* ════════════════════════════════════════════════════════════════
-            5c. JAQUILANE: Video overlay: "What the Stretch Bed means"
+            5c/5d. JAQUILANE testimony PULLED 2026-07-03 — consent clearance is
+            in conflict across our records, so both the overlay and the embedded
+            testimony are removed from the live page until a single source of
+            truth confirms clearance. Assets remain in the repo (jaquilane-*.mp4)
+            and STORY_VIDEOS.jaquilane*; re-add this section once cleared.
             ════════════════════════════════════════════════════════════ */}
-        <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-          <video
-            className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={STORY_VIDEOS.jaquilaneOverlay.poster}
-          >
-            <source src={STORY_VIDEOS.jaquilaneOverlay.desktop} media="(min-width: 768px)" type="video/mp4" />
-            <source src={STORY_VIDEOS.jaquilaneOverlay.mobile} type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-black/50" />
-          <div className="relative z-10 container mx-auto px-4 text-center">
-            <p className="text-sm uppercase tracking-widest text-primary mb-6">Community Voice</p>
-            <h2
-              className="text-3xl md:text-5xl font-light text-white mb-6 leading-snug"
-              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-            >
-              &ldquo;It&rsquo;s so amazing with just waste&rdquo;
-            </h2>
-            <p className="text-xl text-white/60 max-w-xl mx-auto">
-              Jaquilane, Rupanya woman, Alice Springs. On why the Stretch Bed matters.
-            </p>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════════════════════════════════
-            5d. JAQUILANE: Embedded testimony (with audio)
-            ════════════════════════════════════════════════════════════ */}
-        <section className="min-h-screen flex items-center justify-center bg-foreground text-background">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto">
-              <p className="text-sm uppercase tracking-widest text-background/40 mb-4 text-center">
-                Hear From Jaquilane
-              </p>
-              <h2
-                className="text-2xl md:text-3xl font-light text-center mb-3"
-                style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-              >
-                Jaquilane on the Stretch Bed
-              </h2>
-              <p className="text-background/50 text-center mb-8">
-                Rupanya woman, Alice Springs. On beds made from waste, kids jumping on them, and why they need more.
-              </p>
-              <div className="aspect-video rounded-xl overflow-hidden bg-black">
-                <video
-                  className="w-full h-full"
-                  controls
-                  preload="metadata"
-                  poster={STORY_VIDEOS.jaquilaneOverlay.poster}
-                >
-                  <source src={STORY_VIDEOS.jaquilaneTestimony} type="video/mp4" />
-                </video>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* ════════════════════════════════════════════════════════════════
             6. WASHING MACHINE: Full-page video with overlay

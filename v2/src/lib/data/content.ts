@@ -1065,15 +1065,9 @@ export const storytellerEnrichment: Record<string, {
 
 // Video gallery items: local videos + external embeds
 export const videoGallery = [
-  {
-    id: 'jaquilane-testimony',
-    title: 'Jaquilane\'s Story',
-    description: 'A community member shares their experience with Goods on Country.',
-    src: videoUrl('jaquilane-testimony.mp4'),
-    poster: '/video/jaquilane-poster.jpg',
-    type: 'local' as const,
-    category: 'testimony',
-  },
+  // Jaquilane testimony PULLED 2026-07-03 — consent clearance in conflict; removed
+  // from all public surfaces (/gallery, /stories, /story) until clearance is
+  // confirmed. Asset remains in the repo (jaquilane-testimony.mp4). Re-add once cleared.
   {
     id: 'cliff-beds-dignity',
     title: 'Beds and Dignity',
