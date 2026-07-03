@@ -3,6 +3,7 @@
 **Date:** 2026-07-03
 **For:** whoever is filming (field trips, plant days, community visits) plus the motion/overlay work done at a desk.
 **Companion to:** `wiki/outputs/2026-07-03-thematic-media-system.md` (the themes, and why each shot matters).
+**Shareable page:** https://claude.ai/code/artifact/5c8d3ed6-75ce-4f5f-aa54-e6218cbb63b3 (the hand-to-the-videographer version of this brief).
 **Voice rules:** zero em dashes, straight quotes, "On Country" capitalised, units without a space (20kg).
 
 ---
