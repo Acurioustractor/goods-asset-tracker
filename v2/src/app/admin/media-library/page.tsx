@@ -43,15 +43,20 @@ interface ElMediaRow {
 
 async function fetchElPhotos(): Promise<ElPhoto[]> {
   if (!EL_API_KEY) return [];
+  const out: ElPhoto[] = [];
   try {
-    const url = `${EL_API}/api/v1/content-hub/media?project_code=${EL_PCODE}&type=image&limit=300`;
-    const res = await fetch(url, { headers: { 'X-API-Key': EL_API_KEY }, cache: 'no-store' });
-    if (!res.ok) return [];
-    const rows = (((await res.json()) as { media?: ElMediaRow[] })?.media ?? []);
-    return rows
-      .map((m): ElPhoto | null => {
-        if (!m.url || !safeImageUrl(m.url)) return null;
-        return {
+    // The content-hub API hard-caps page size at 50, so page through until
+    // hasMore=false (safety cap 20 pages / 1000 items). Previously a single
+    // limit=300 call silently returned only the first 50.
+    for (let page = 1; page <= 20; page += 1) {
+      const url = `${EL_API}/api/v1/content-hub/media?project_code=${EL_PCODE}&type=image&limit=50&page=${page}`;
+      const res = await fetch(url, { headers: { 'X-API-Key': EL_API_KEY }, cache: 'no-store' });
+      if (!res.ok) break;
+      const json = (await res.json()) as { media?: ElMediaRow[]; pagination?: { hasMore?: boolean } };
+      const rows = json?.media ?? [];
+      for (const m of rows) {
+        if (!m.url || !safeImageUrl(m.url)) continue;
+        out.push({
           id: m.id,
           url: m.url,
           thumb: m.thumbnailUrl || m.url,
@@ -61,12 +66,14 @@ async function fetchElPhotos(): Promise<ElPhoto[]> {
           consent: !!m.consentObtained,
           elderOk: !!m.elderApproved,
           location: '',
-        };
-      })
-      .filter((p): p is ElPhoto => p !== null);
+        });
+      }
+      if (rows.length === 0 || !json?.pagination?.hasMore) break;
+    }
   } catch {
-    return [];
+    // return whatever we collected
   }
+  return out;
 }
 
 // --- unified mapping --------------------------------------------------------
@@ -125,10 +132,15 @@ export default async function MediaLibraryPage() {
   const [elPhotos, curation] = await Promise.all([fetchElPhotos(), fetchCuration()]);
   const { byRef: curationByRef, ready: curationReady } = curation;
 
+  // Route EL images through the server-side proxy (/api/admin/el-image): EL's
+  // media endpoint 307-redirects and throttles direct browser bursts, so 50+
+  // raw <img> loads blank out. The proxy fetches with the API key, follows the
+  // redirect, and caches — so tiles render and repeat loads are instant.
+  const elProxy = (u: string) => `/api/admin/el-image?url=${encodeURIComponent(u)}`;
   const elItems: UnifiedItem[] = elPhotos.map((p) => ({
     id: `el:${p.id}`,
-    src: p.thumb || p.url,
-    full: p.url,
+    src: elProxy(p.thumb || p.url),
+    full: elProxy(p.url),
     source: 'el',
     area: elArea(p),
     title: p.title || '(untitled EL photo)',
