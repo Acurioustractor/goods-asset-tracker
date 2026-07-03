@@ -63,7 +63,7 @@ export default async function MediaGapsPage() {
   const { rows: all, ready } = await fetchRows();
   const rows = all.filter((r) => !r.archived_at);
 
-  const stat = new Map(THEMES.map((t) => [t.id, { img: 0, vid: 0, overlay: 0, cleared: 0, blocked: 0 }]));
+  const stat = new Map(THEMES.map((t) => [t.id, { img: 0, vid: 0, overlay: 0, cleared: 0, blocked: 0, canonVideoLocal: false }]));
   let unthemed = 0;
   for (const r of rows) {
     const id = themeForItem({ area: r.area, canonSlot: r.canon_slot, tags: r.tags });
@@ -72,6 +72,9 @@ export default async function MediaGapsPage() {
     if (r.media_type === 'video') s.vid += 1;
     else s.img += 1;
     if (r.media_subtype === 'overlay') s.overlay += 1;
+    // A local canon video (a video content_item with a canon_slot) is always
+    // available; a slot resolving to a remote EL url never reaches content_items.
+    if (r.media_type === 'video' && r.canon_slot) s.canonVideoLocal = true;
     if (r.consent_tier === 'red') s.blocked += 1;
     else s.cleared += 1;
   }
@@ -100,6 +103,7 @@ export default async function MediaGapsPage() {
               <th className="px-3 py-2 text-center">Images</th>
               <th className="px-3 py-2 text-center">Videos</th>
               <th className="px-3 py-2 text-center">Overlays</th>
+              <th className="px-3 py-2 text-center">Canon video</th>
               <th className="px-3 py-2 text-center">Consent</th>
               <th className="px-3 py-2 text-left">What we still need</th>
             </tr>
@@ -117,6 +121,16 @@ export default async function MediaGapsPage() {
                   <Cell n={s.img} label="images" />
                   <Cell n={s.vid} label="videos" />
                   <Cell n={s.overlay} label="overlays" />
+                  <td className="px-3 py-2 text-center">
+                    <span
+                      className={
+                        'inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold ' +
+                        (s.canonVideoLocal ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-700')
+                      }
+                    >
+                      {s.canonVideoLocal ? 'local' : 'none'}
+                    </span>
+                  </td>
                   <td className="px-3 py-2 text-center text-xs">
                     <span className="text-emerald-700">{s.cleared} ok</span>
                     {s.blocked > 0 && <span className="text-red-600"> · {s.blocked} red</span>}
