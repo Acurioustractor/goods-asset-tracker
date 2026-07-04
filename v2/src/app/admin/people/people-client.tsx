@@ -8,6 +8,15 @@ function initials(name: string): string {
   return name.split(/\s+/).map((w) => w[0]).filter(Boolean).slice(0, 2).join('').toUpperCase();
 }
 
+// EL media URLs won't render in a browser <img>, so route them through our
+// same-origin proxy. Local /paths and other hosts pass through untouched.
+function proxied(url: string): string {
+  if (/empathyledger\.com|yvnuayzslukamizrlhwb\.supabase\.co/.test(url)) {
+    return `/api/media-proxy?src=${encodeURIComponent(url)}`;
+  }
+  return url;
+}
+
 const TYPE_CLS: Record<PersonType, string> = {
   funder: 'bg-emerald-100 text-emerald-800',
   capital: 'bg-teal-100 text-teal-800',
@@ -34,7 +43,7 @@ function Avatar({ p, size }: { p: Person; size: number }) {
     // eslint-disable-next-line @next/next/no-img-element
     return (
       <img
-        src={p.photo}
+        src={proxied(p.photo)}
         alt={p.name}
         width={size}
         height={size}
