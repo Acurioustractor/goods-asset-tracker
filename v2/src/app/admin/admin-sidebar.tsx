@@ -81,6 +81,7 @@ const navigation: NavGroup[] = [
       { name: 'Stories (EL)',  href: '/admin/el-stories',      icon: BookOpen },
       { name: 'Storytellers',  href: '/admin/el-storytellers', icon: Users },
       { name: 'Quotes',        href: '/admin/quotes',          icon: Quote },
+      { name: 'Community stories', href: '/admin/community-stories', icon: Globe },
     ],
   },
   {
