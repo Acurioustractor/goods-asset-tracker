@@ -88,6 +88,8 @@ export interface Person {
   tags: string[];
   sources: string[];
   ghl?: PersonGhl | null; // live GHL overlay (added by getEngagementPeopleWithGhl)
+  featured?: boolean; // curated pin, from people_overrides
+  edited?: boolean; // has a curated override row
 }
 
 function slug(s: string): string {

@@ -9,9 +9,33 @@
  * nothing, the page renders the pure in-repo list unchanged (ghlOk=false).
  */
 
-import { getEngagementPeople, type Person, type PersonGhl, type Warmth } from './people';
+import { getEngagementPeople, PERSON_TYPES, type Person, type PersonGhl, type Warmth } from './people';
 import { fetchOpportunitiesForPipelines, type GoodsOpportunity } from './ghl';
 import { GOODS_PIPELINES, STAGE_TO_RUNG, type LoiRung } from './data/loi-pipeline';
+import { createServiceClient } from './supabase/server';
+
+interface OverrideRow {
+  person_id: string;
+  photo_url: string | null;
+  bio: string | null;
+  featured: boolean;
+  hidden: boolean;
+}
+
+// Curated display overrides from public.people_overrides (service-role only).
+// Optional: any failure (missing env/table) leaves the aggregated list intact.
+async function fetchOverrides(): Promise<Map<string, OverrideRow>> {
+  try {
+    const supabase = createServiceClient();
+    const { data, error } = await supabase
+      .from('people_overrides')
+      .select('person_id, photo_url, bio, featured, hidden');
+    if (error || !data) return new Map();
+    return new Map((data as OverrideRow[]).map((r) => [r.person_id, r]));
+  } catch {
+    return new Map();
+  }
+}
 
 // Live GHL stageId -> human stage name (from loi-pipeline.ts stage comments).
 const STAGE_NAMES: Record<string, string> = {
@@ -81,7 +105,33 @@ export interface PeopleWithGhl {
 }
 
 export async function getEngagementPeopleWithGhl(): Promise<PeopleWithGhl> {
-  const people = getEngagementPeople();
+  // Base static aggregation, then apply curated overrides (photo/bio/featured/hidden).
+  const overrides = await fetchOverrides();
+  let people = getEngagementPeople();
+  if (overrides.size > 0) {
+    people = people
+      .filter((p) => !overrides.get(p.id)?.hidden)
+      .map((p) => {
+        const o = overrides.get(p.id);
+        if (!o) return p;
+        return {
+          ...p,
+          photo: o.photo_url ?? p.photo,
+          notes: o.bio ?? p.notes,
+          featured: !!o.featured,
+          edited: true,
+        };
+      });
+    // Re-sort so featured pins rise to the top of their type group.
+    const ti = (t: Person['type']) => PERSON_TYPES.findIndex((x) => x.key === t);
+    people.sort(
+      (a, b) =>
+        ti(a.type) - ti(b.type) ||
+        (a.featured === b.featured ? 0 : a.featured ? -1 : 1) ||
+        (b.amount ?? 0) - (a.amount ?? 0) ||
+        a.name.localeCompare(b.name),
+    );
+  }
 
   let opportunities: GoodsOpportunity[] = [];
   let ghlOk = false;

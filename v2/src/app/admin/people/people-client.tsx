@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { PERSON_TYPES, personTypeLabel, type Person, type PersonType } from '@/lib/people';
 
 function initials(name: string): string {
@@ -79,11 +80,79 @@ function StagePill({ ghl }: { ghl: NonNullable<Person['ghl']> }) {
   );
 }
 
+// Curated-override editor: photo, bio, featured. Writes to people_overrides.
+function EditPanel({ person, onSaved }: { person: Person; onSaved: () => void }) {
+  const [photo, setPhoto] = useState(person.photo ?? '');
+  const [bio, setBio] = useState(person.notes ?? '');
+  const [featured, setFeatured] = useState(!!person.featured);
+  const [saving, setSaving] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+
+  const save = async () => {
+    setSaving(true);
+    setErr(null);
+    try {
+      const res = await fetch('/api/admin/person-override', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ person_id: person.id, photo_url: photo.trim() || null, bio: bio.trim() || null, featured }),
+      });
+      const j = await res.json();
+      if (!res.ok || !j.ok) throw new Error(j.error || 'save failed');
+      onSaved();
+    } catch (e) {
+      setErr(e instanceof Error ? e.message : 'save failed');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="mt-4 rounded-xl border border-gray-200 bg-gray-50 p-4 space-y-3">
+      <div className="text-[11px] uppercase tracking-wider text-gray-400">Curated overrides</div>
+      <label className="block">
+        <span className="text-xs text-gray-600">Photo URL</span>
+        <input
+          value={photo}
+          onChange={(e) => setPhoto(e.target.value)}
+          placeholder="https://… or /images/people/name.jpg"
+          className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+        />
+      </label>
+      <label className="block">
+        <span className="text-xs text-gray-600">Bio / description</span>
+        <textarea
+          value={bio}
+          onChange={(e) => setBio(e.target.value)}
+          rows={3}
+          className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+        />
+      </label>
+      <label className="flex items-center gap-2 text-sm text-gray-700">
+        <input type="checkbox" checked={featured} onChange={(e) => setFeatured(e.target.checked)} />
+        Featured (pin to top of its type)
+      </label>
+      {err && <p className="text-xs text-rose-600">{err}</p>}
+      <div className="flex justify-end">
+        <button
+          onClick={save}
+          disabled={saving}
+          className="rounded-lg bg-gray-900 px-4 py-1.5 text-sm font-medium text-white hover:bg-gray-700 disabled:opacity-50"
+        >
+          {saving ? 'Saving…' : 'Save'}
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function PeopleClient({ people, counts }: { people: Person[]; counts: Record<string, number> }) {
+  const router = useRouter();
   const [view, setView] = useState<'grid' | 'list'>('grid');
   const [type, setType] = useState<PersonType | 'all'>('all');
   const [q, setQ] = useState('');
   const [openId, setOpenId] = useState<string | null>(null);
+  const [editing, setEditing] = useState(false);
 
   const filtered = useMemo(() => {
     const needle = q.trim().toLowerCase();
@@ -100,6 +169,7 @@ export default function PeopleClient({ people, counts }: { people: Person[]; cou
   }, [people, type, q]);
 
   const open = people.find((p) => p.id === openId) ?? null;
+  useEffect(() => { setEditing(false); }, [openId]);
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpenId(null); };
@@ -155,7 +225,9 @@ export default function PeopleClient({ people, counts }: { people: Person[]; cou
             >
               <div className="flex flex-col items-center text-center">
                 <Avatar p={p} size={72} />
-                <div className="mt-3 font-semibold text-gray-900 leading-tight">{p.name}</div>
+                <div className="mt-3 font-semibold text-gray-900 leading-tight">
+                  {p.featured && <span title="Featured" className="text-amber-500">★ </span>}{p.name}
+                </div>
                 {p.org && <div className="mt-0.5 text-xs text-gray-500 leading-tight">{p.org}</div>}
                 {p.role && <div className="mt-0.5 text-[11px] text-gray-400 leading-tight">{p.role}</div>}
                 <div className="mt-2"><TypeBadge t={p.type} /></div>
@@ -210,12 +282,23 @@ export default function PeopleClient({ people, counts }: { people: Person[]; cou
       {open && (
         <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/50 p-4 sm:p-8" onClick={() => setOpenId(null)}>
           <div className="relative w-full max-w-2xl rounded-2xl bg-white shadow-xl" onClick={(e) => e.stopPropagation()}>
-            <button onClick={() => setOpenId(null)} className="absolute right-3 top-3 rounded-full bg-gray-100 hover:bg-gray-200 w-8 h-8 text-gray-600" aria-label="Close">✕</button>
+            <div className="absolute right-3 top-3 flex items-center gap-2">
+              <button
+                onClick={() => setEditing((v) => !v)}
+                className={`rounded-full px-3 h-8 text-xs font-medium ${editing ? 'bg-orange-100 text-orange-800' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}
+              >
+                {editing ? 'Editing' : 'Edit'}
+              </button>
+              <button onClick={() => setOpenId(null)} className="rounded-full bg-gray-100 hover:bg-gray-200 w-8 h-8 text-gray-600" aria-label="Close">✕</button>
+            </div>
             <div className="p-6">
               <div className="flex items-start gap-4">
                 <Avatar p={open} size={72} />
                 <div className="min-w-0">
-                  <h2 className="text-xl font-bold text-gray-900">{open.name}</h2>
+                  <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                    {open.featured && <span title="Featured" className="text-amber-500">★</span>}
+                    {open.name}
+                  </h2>
                   {open.org && <div className="text-sm text-gray-600 mt-0.5">{open.org}</div>}
                   {open.role && <div className="text-sm text-gray-500">{open.role}</div>}
                   <div className="mt-2 flex flex-wrap items-center gap-2">
@@ -239,7 +322,9 @@ export default function PeopleClient({ people, counts }: { people: Person[]; cou
                 </div>
               </div>
 
-              {open.notes && <p className="mt-4 text-sm text-gray-700 leading-relaxed">{open.notes}</p>}
+              {editing && <EditPanel person={open} onSaved={() => { setEditing(false); router.refresh(); }} />}
+
+              {!editing && open.notes && <p className="mt-4 text-sm text-gray-700 leading-relaxed">{open.notes}</p>}
 
               {open.contacts.length > 0 && (
                 <div className="mt-4">
