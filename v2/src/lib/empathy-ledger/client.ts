@@ -377,6 +377,33 @@ function mapMediaAssetRow(raw: Record<string, unknown>): EmpathyLedgerMedia {
   };
 }
 
+// A Goods storyteller = an EL person who has at least one Goods-project story.
+export interface GoodsStorytellerStory {
+  id: string;
+  title: string;
+  excerpt: string | null;
+  themes: string[];
+  location: string | null;
+  hasTranscript: boolean;
+  status: string;
+  isPublic: boolean;
+  imageUrl: string | null;
+  createdAt: string;
+}
+export interface GoodsStorytellerProfile {
+  id: string;
+  name: string;
+  slug: string;
+  bio: string | null;
+  location: string | null;
+  isElder: boolean;
+  portraitUrl: string | null;
+  storyCount: number;
+  publishedCount: number;
+  themes: string[];
+  stories: GoodsStorytellerStory[];
+}
+
 export const empathyLedger = {
   /**
    * Check if Empathy Ledger integration is enabled
@@ -890,6 +917,88 @@ export const empathyLedger = {
       return [...themes, ...tags].some((x) => x.includes(needle));
     };
     return [...pool.filter(onTheme), ...pool.filter((s) => !onTheme(s))].slice(0, limit);
+  },
+
+  /**
+   * Goods storytellers = EL people with at least one Goods-project story
+   * (project_id-scoped, NOT the whole EL directory). Each profile carries its
+   * Goods stories with excerpts (quotes), themes, location and a transcript
+   * indicator, for the admin grid/list/modal. EL is the source of truth.
+   */
+  async getGoodsStorytellerProfiles(): Promise<GoodsStorytellerProfile[]> {
+    if (!ENABLE_EMPATHY_LEDGER || !EL_SUPABASE_URL || !EL_SUPABASE_KEY || !GOODS_PROJECT_ID) return [];
+    try {
+      const s = (v: unknown): string | null => (typeof v === 'string' && v ? v : null);
+      const arr = (v: unknown): string[] =>
+        Array.isArray(v) ? v.map((x) => (typeof x === 'string' ? x : ((x as { name?: string })?.name ?? ''))).filter(Boolean) : [];
+
+      const storySel = 'id,title,excerpt,syndication_excerpt,themes,cultural_themes,transcript_id,transcription,location,location_text,status,is_public,storyteller_id,story_image_url,media_url,created_at';
+      const stories = await fetchFromELSupabase<Record<string, unknown>[]>(
+        'stories',
+        `project_id=eq.${GOODS_PROJECT_ID}&storyteller_id=not.is.null&select=${storySel}&order=created_at.desc&limit=2000`,
+      );
+      const byTeller = new Map<string, Record<string, unknown>[]>();
+      for (const st of stories) {
+        const tid = st.storyteller_id as string;
+        if (!byTeller.has(tid)) byTeller.set(tid, []);
+        byTeller.get(tid)!.push(st);
+      }
+      const ids = [...byTeller.keys()];
+      if (ids.length === 0) return [];
+
+      const tellers = await fetchFromELSupabase<Record<string, unknown>[]>(
+        'storytellers',
+        `id=in.(${ids.join(',')})&select=id,display_name,bio,public_avatar_url,profile_image_url,is_elder,location`,
+      );
+      const tellerById = new Map(tellers.map((t) => [t.id as string, t]));
+
+      const profiles: GoodsStorytellerProfile[] = [];
+      for (const [tid, sts] of byTeller) {
+        const t = tellerById.get(tid);
+        const name = (t?.display_name as string) || 'Unknown';
+        const themes = new Set<string>();
+        const mapped: GoodsStorytellerStory[] = sts.map((st) => {
+          const th = [...arr(st.themes), ...arr(st.cultural_themes)];
+          th.forEach((x) => themes.add(x));
+          return {
+            id: st.id as string,
+            title: (st.title as string) || 'Untitled',
+            excerpt: s(st.syndication_excerpt) ?? s(st.excerpt),
+            themes: th,
+            location: s(st.location_text) ?? s(st.location),
+            hasTranscript: !!(st.transcript_id || st.transcription),
+            status: (st.status as string) || 'unknown',
+            isPublic: st.is_public === true,
+            imageUrl: s(st.story_image_url) ?? s(st.media_url),
+            createdAt: (st.created_at as string) || '',
+          };
+        });
+        profiles.push({
+          id: tid,
+          name,
+          slug: name.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''),
+          bio: s(t?.bio),
+          location: s(t?.location) ?? (mapped.find((m) => m.location)?.location ?? null),
+          isElder: t?.is_elder === true,
+          portraitUrl: s(t?.public_avatar_url) ?? s(t?.profile_image_url),
+          storyCount: mapped.length,
+          publishedCount: mapped.filter((m) => m.status === 'published' && m.isPublic).length,
+          themes: [...themes],
+          stories: mapped,
+        });
+      }
+      profiles.sort(
+        (a, b) =>
+          (b.isElder ? 1 : 0) - (a.isElder ? 1 : 0) ||
+          b.publishedCount - a.publishedCount ||
+          b.storyCount - a.storyCount ||
+          a.name.localeCompare(b.name),
+      );
+      return profiles;
+    } catch (error) {
+      logUnexpectedELSupabaseError('[EmpathyLedger] Failed to fetch Goods storyteller profiles:', error);
+      return [];
+    }
   },
 
   /**
