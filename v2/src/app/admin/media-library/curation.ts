@@ -124,6 +124,7 @@ interface CurationRow {
   community_id: string | null;
   storyteller_id: string | null;
   tags: string[] | null;
+  media_subtype: string | null;
 }
 
 interface Curation {
@@ -138,7 +139,7 @@ async function fetchCuration(): Promise<Curation> {
   try {
     const supabase = createServiceClient();
     const [ci, comms, sts] = await Promise.all([
-      supabase.from('content_items').select('id, ref, starred, rating, archived_at, canon_slot, consent_tier, community_id, storyteller_id, tags'),
+      supabase.from('content_items').select('id, ref, starred, rating, archived_at, canon_slot, consent_tier, community_id, storyteller_id, tags, media_subtype'),
       supabase.from('communities').select('id, name'),
       supabase.from('storytellers').select('id, display_name'),
     ]);
@@ -171,6 +172,7 @@ function makeAttach(curation: Curation): (base: UnifiedItem, ref: string) => Uni
       canonSlot,
       community: c?.community_id ? commName.get(c.community_id) : undefined,
       person: c?.storyteller_id ? personName.get(c.storyteller_id) : undefined,
+      mediaSubtype: c?.media_subtype ?? base.mediaSubtype,
       tags,
       theme: themeForItem({ area: base.area, canonSlot: canonSlot ?? null, tags }) ?? undefined,
     };

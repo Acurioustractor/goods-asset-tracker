@@ -29,9 +29,10 @@ export default async function MediaLibraryPage() {
       <header className="mb-6">
         <h1 className="text-2xl font-bold">Media library</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Every photo and video in the project — local website assets and the Empathy Ledger
-          library — in one grid. Star keepers, archive junk, rate and search. Filter by source,
-          subject, community, starred or archived.
+          Every photo, video and overlay in the project — local website assets and the Empathy
+          Ledger library — in one grid. Star keepers, archive junk, rate, tag a community, and
+          search. Filter by type (image / video / overlay), source, subject, community, starred
+          or archived.
         </p>
       </header>
       <MediaLibraryClient items={items} curationReady={curationReady} communities={communities} />

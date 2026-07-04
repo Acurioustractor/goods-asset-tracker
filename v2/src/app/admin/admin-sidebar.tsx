@@ -122,11 +122,9 @@ const moreNavigation: NavItem[] = [
   { name: 'Fleet',           href: '/admin/fleet',         icon: Truck },
   // Content
   { name: 'Library',         href: '/admin/library',       icon: Boxes },
-  // Legacy photo tools — superseded by Media library (Story). Kept for their
-  // unique bits: /admin/photos (elder-consent tag workflow), /admin/photo-review
-  // (GPS map + consent + CSV export). photos-browser retired -> media-library.
-  { name: 'Photos (legacy)', href: '/admin/photos',        icon: Images },
-  { name: 'Photo review',    href: '/admin/photo-review',  icon: Images },
+  // Legacy photo tools retired 2026-07-04 -> Media library (Story). /admin/photos,
+  // /admin/photo-review and /admin/photos-browser now redirect there; their old
+  // implementations remain in-folder + git history for restore.
 ];
 
 export default function AdminSidebar({ userEmail }: { userEmail: string }) {

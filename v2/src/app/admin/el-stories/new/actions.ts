@@ -99,7 +99,7 @@ export async function createStory(input: CreateStoryInput): Promise<{
   const story = rows[0];
 
   revalidatePath('/stories');
-  revalidatePath('/admin/photos');
+  revalidatePath('/admin/media-library');
   revalidatePath('/admin/el-stories');
 
   return {

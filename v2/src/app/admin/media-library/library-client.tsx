@@ -25,6 +25,8 @@ export interface UnifiedItem {
   /** Set = this image is the winner for a raise canon slot (guarded from cull). */
   canonSlot?: string;
   mediaType?: 'image' | 'video';
+  /** e.g. 'overlay' | 'portrait' | 'render' — from content_items.media_subtype. */
+  mediaSubtype?: string;
   /** Poster/thumbnail image url for a video tile. */
   poster?: string;
   /** Community this asset belongs to (content_items.community_id → communities.name). */
@@ -72,6 +74,7 @@ export function MediaLibraryClient({
   const [area, setArea] = useState<string>('__all');
   const [theme, setTheme] = useState<string>('__all');
   const [community, setCommunity] = useState<string>('__all');
+  const [kind, setKind] = useState<'all' | 'image' | 'video' | 'overlay'>('all');
   const [search, setSearch] = useState('');
   const [active, setActive] = useState<UnifiedItem | null>(null);
   // curation UI state
@@ -227,6 +230,15 @@ export function MediaLibraryClient({
       .sort((a, b) => a.name.localeCompare(b.name));
   }, [items, sourceFilter]);
 
+  const kindCounts = useMemo(() => {
+    let image = 0, video = 0, overlay = 0;
+    for (const it of items) {
+      if (it.mediaType === 'video') video++; else image++;
+      if (it.mediaSubtype === 'overlay') overlay++;
+    }
+    return { image, video, overlay };
+  }, [items]);
+
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
     return items.filter((it) => {
@@ -238,13 +250,16 @@ export function MediaLibraryClient({
       if (theme !== '__all' && it.theme !== theme) return false;
       if (area !== '__all' && it.area !== area && !it.tags.includes(area)) return false;
       if (community !== '__all' && it.community !== community) return false;
+      if (kind === 'image' && it.mediaType !== 'image') return false;
+      if (kind === 'video' && it.mediaType !== 'video') return false;
+      if (kind === 'overlay' && it.mediaSubtype !== 'overlay') return false;
       if (q) {
         const hay = `${it.title} ${it.area} ${it.tags.join(' ')} ${it.community ?? ''} ${it.person ?? ''} ${themeName(it.theme) ?? ''} ${it.full}`.toLowerCase();
         if (!hay.includes(q)) return false;
       }
       return true;
     });
-  }, [items, sourceFilter, theme, area, community, search, showArchived, starredOnly]);
+  }, [items, sourceFilter, theme, area, community, kind, search, showArchived, starredOnly]);
 
   const archivedCount = useMemo(() => items.filter((it) => it.archived).length, [items]);
   const starredCount = useMemo(() => items.filter((it) => it.starred).length, [items]);
@@ -473,6 +488,20 @@ export function MediaLibraryClient({
             </select>
           </label>
         )}
+
+        <label className="flex items-center gap-2 text-sm">
+          <span className="text-muted-foreground whitespace-nowrap">Type</span>
+          <select
+            value={kind}
+            onChange={(e) => setKind(e.target.value as 'all' | 'image' | 'video' | 'overlay')}
+            className="rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+          >
+            <option value="all">All types</option>
+            <option value="image">Images ({kindCounts.image})</option>
+            <option value="video">Video ({kindCounts.video})</option>
+            {kindCounts.overlay > 0 && <option value="overlay">Overlays ({kindCounts.overlay})</option>}
+          </select>
+        </label>
 
         <input
           type="search"
