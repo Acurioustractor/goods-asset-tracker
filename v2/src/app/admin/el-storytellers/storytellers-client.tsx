@@ -7,16 +7,24 @@ function initials(name: string): string {
   return name.split(/\s+/).map((w) => w[0]).filter(Boolean).slice(0, 2).join('').toUpperCase();
 }
 
+// EL proxy URLs won't render in a browser <img> (they error even though a
+// server fetch follows the redirect chain), so stream external images through
+// our same-origin /api/media-proxy. Local /paths pass through untouched.
+function proxied(url: string): string {
+  return /^https?:\/\//.test(url) ? `/api/media-proxy?src=${encodeURIComponent(url)}` : url;
+}
+
 function Portrait({ url, name, size }: { url: string | null; name: string; size: number }) {
   const [broken, setBroken] = useState(false);
   if (url && !broken) {
     // eslint-disable-next-line @next/next/no-img-element
     return (
       <img
-        src={url}
+        src={proxied(url)}
         alt={name}
         width={size}
         height={size}
+        referrerPolicy="no-referrer"
         onError={() => setBroken(true)}
         className="rounded-full object-cover bg-gray-100"
         style={{ width: size, height: size }}
