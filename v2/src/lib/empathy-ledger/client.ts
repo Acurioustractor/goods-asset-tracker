@@ -8,7 +8,6 @@ import type {
   EmpathyLedgerStory,
   EmpathyLedgerStoryteller,
   ContentPlacement,
-  MediaResponse,
   PlacementsResponse,
   MediaQueryParams,
   StoriesQueryParams,
@@ -351,6 +350,33 @@ async function fetchFromELSupabaseRpc<T>(
   return response.json();
 }
 
+// Map an EL media_assets row (direct Supabase) to EmpathyLedgerMedia.
+function mapMediaAssetRow(raw: Record<string, unknown>): EmpathyLedgerMedia {
+  const s = (v: unknown): string | null => (typeof v === 'string' && v ? v : null);
+  const n = (v: unknown): number | null => (typeof v === 'number' ? v : null);
+  return {
+    id: String(raw.id),
+    url: s(raw.cdn_url) ?? s(raw.url) ?? s(raw.large_url) ?? s(raw.medium_url) ?? '',
+    thumbnailUrl: s(raw.thumbnail_url) ?? s(raw.medium_url) ?? s(raw.cdn_url),
+    title: s(raw.title) ?? s(raw.caption) ?? s(raw.display_name),
+    description: s(raw.description),
+    altText: s(raw.alt_text),
+    mediaType: (raw.media_type as EmpathyLedgerMedia['mediaType']) ?? 'image',
+    width: n(raw.width),
+    height: n(raw.height),
+    duration: n(raw.duration),
+    organizationId: s(raw.organization_id),
+    projectCode: s(raw.project_code),
+    elderApproved: raw.elder_approved === true,
+    consentObtained: raw.consent_obtained === true,
+    culturalTags: Array.isArray(raw.cultural_tags) ? (raw.cultural_tags as string[]) : [],
+    culturalSensitivity: (raw.cultural_sensitivity as EmpathyLedgerMedia['culturalSensitivity']) ?? null,
+    attributionText: s(raw.attribution_text),
+    uploaderName: s(raw.photographer_name),
+    createdAt: s(raw.created_at) ?? s(raw.uploaded_at) ?? '',
+  };
+}
+
 export const empathyLedger = {
   /**
    * Check if Empathy Ledger integration is enabled
@@ -364,19 +390,30 @@ export const empathyLedger = {
    */
   async getMedia(params: MediaQueryParams = {}): Promise<EmpathyLedgerMedia[]> {
     if (!ENABLE_EMPATHY_LEDGER) return [];
+    if (!EL_SUPABASE_URL || !EL_SUPABASE_KEY || !GOODS_PROJECT_ID) return [];
 
     try {
-      const response = await fetchFromEmpathyLedger<MediaResponse>('/media', {
-        type: params.type,
-        elder_approved: params.elderApproved,
-        cultural_tags: params.culturalTags?.join(','),
-        project_code: params.projectCode ?? GOODS_PROJECT_CODE,
-        limit: params.limit,
-        page: params.page,
-      });
-      return response.media;
+      // Goods project ONLY, by project_id from EL Supabase (media_assets). Same
+      // reason as getGoodsStories: the `goods-on-country` content-hub projectCode
+      // aggregates adjacent EL projects and leaks their photos onto Goods pages.
+      // visibility=public is EL's public gate; callers add elderApproved for the
+      // cultural-safety gate (Goods media marked elder_approved=true only).
+      const clauses = [
+        `project_id=eq.${GOODS_PROJECT_ID}`,
+        'visibility=eq.public',
+        'order=uploaded_at.desc.nullslast,created_at.desc',
+      ];
+      if (params.type) clauses.push(`media_type=eq.${params.type}`);
+      if (params.elderApproved) clauses.push('elder_approved=eq.true');
+      if (params.culturalTags?.length) clauses.push(`cultural_tags=ov.{${params.culturalTags.join(',')}}`);
+      if (params.limit) clauses.push(`limit=${params.limit}`);
+      clauses.push(
+        'select=id,cdn_url,url,large_url,medium_url,thumbnail_url,title,caption,display_name,description,alt_text,media_type,width,height,duration,cultural_sensitivity,cultural_tags,attribution_text,organization_id,project_code,elder_approved,consent_obtained,photographer_name,uploaded_at,created_at',
+      );
+      const rows = await fetchFromELSupabase<Record<string, unknown>[]>('media_assets', clauses.join('&'));
+      return rows.map(mapMediaAssetRow);
     } catch (error) {
-      console.error('[EmpathyLedger] Failed to fetch media:', error);
+      logUnexpectedELSupabaseError('[EmpathyLedger] Failed to fetch media:', error);
       return [];
     }
   },
