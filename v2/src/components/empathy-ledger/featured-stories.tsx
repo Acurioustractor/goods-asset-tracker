@@ -189,7 +189,6 @@ export async function CommunityGallery({
 }: CommunityGalleryProps) {
   const media = await empathyLedger.getMedia({
     type: 'image',
-    elderApproved: true,
     culturalTags: community ? [community] : undefined,
     limit: maxImages,
   });

@@ -135,7 +135,6 @@ async function MediaFromLedger() {
   try {
     media = await empathyLedger.getMedia({
       type: 'image',
-      elderApproved: true,
       limit: 12
     });
   } catch {

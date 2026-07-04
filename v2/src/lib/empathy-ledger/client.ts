@@ -396,11 +396,19 @@ export const empathyLedger = {
       // Goods project ONLY, by project_id from EL Supabase (media_assets). Same
       // reason as getGoodsStories: the `goods-on-country` content-hub projectCode
       // aggregates adjacent EL projects and leaks their photos onto Goods pages.
-      // visibility=public is EL's public gate; callers add elderApproved for the
-      // cultural-safety gate (Goods media marked elder_approved=true only).
+      //
+      // Consent gate (the right process, EL is source of truth):
+      //   - visibility=public          EL has published it for external view
+      //   - NOT is_sacred_no_publish   hard stop, never overridable
+      //   - NOT removed_by_storyteller storyteller withdrawal, honoured always
+      // elderApproved is an OPTIONAL stricter tier a caller can request; it is
+      // not required for public display (Ben's call 2026-07-04), so Goods public
+      // media shows now while EL elder-review catches up.
       const clauses = [
         `project_id=eq.${GOODS_PROJECT_ID}`,
         'visibility=eq.public',
+        'is_sacred_no_publish=not.eq.true',
+        'removed_by_storyteller_at=is.null',
         'order=uploaded_at.desc.nullslast,created_at.desc',
       ];
       if (params.type) clauses.push(`media_type=eq.${params.type}`);
