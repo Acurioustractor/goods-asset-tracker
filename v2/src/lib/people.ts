@@ -21,7 +21,7 @@
 
 import { team } from './data/team';
 import { advisoryBoard, communityPartners, funding } from './data/compendium';
-import { healthBuyers, procurementBuyers } from './data/outreach-targets';
+import { allTargets } from './data/outreach-targets';
 
 export type PersonType =
   | 'funder'
@@ -127,6 +127,32 @@ function partnerType(cat: string): PersonType {
   }
 }
 
+// outreach-targets category -> People type.
+function outreachType(cat: string): PersonType {
+  switch (cat) {
+    case 'philanthropy_active':
+    case 'philanthropy_pipeline':
+    case 'philanthropy_prospect':
+    case 'aboriginal_trust':
+      return 'funder';
+    case 'impact_finance':
+      return 'capital';
+    case 'government_grant':
+      return 'government';
+    case 'health_buyer':
+    case 'procurement_buyer':
+      return 'buyer';
+    case 'community_partner':
+      return 'partner';
+    case 'manufacturing_partner':
+    case 'distribution_partner':
+    case 'corporate':
+      return 'corporate';
+    default:
+      return 'partner';
+  }
+}
+
 // Curated Butterfly Movement governance (from 2026-07-04 people-page research +
 // [[butterfly-movement-charity]]). Not in a single in-repo file yet.
 const BUTTERFLY_BOARD: { name: string; org: string; role: string }[] = [
@@ -142,9 +168,13 @@ export function getEngagementPeople(): Person[] {
   const seen = new Set<string>(); // dedupe individuals across staff/board/advisor
 
   const addPerson = (p: Person) => {
-    const key = p.isOrg ? `org:${normName(p.name)}` : `p:${normName(p.name)}`;
-    if (seen.has(key)) return;
-    seen.add(key);
+    // Dedupe by normalised name AND by id: sources are processed richest-first
+    // (compendium before outreach), so a later duplicate (same person/org, or a
+    // colliding id slug) is dropped and the earlier, richer record is kept.
+    const nameKey = p.isOrg ? `org:${normName(p.name)}` : `p:${normName(p.name)}`;
+    if (seen.has(nameKey) || seen.has(`id:${p.id}`)) return;
+    seen.add(nameKey);
+    seen.add(`id:${p.id}`);
     out.push(p);
   };
 
@@ -274,18 +304,22 @@ export function getEngagementPeople(): Person[] {
     });
   }
 
-  // 6. Buyers (commercial bed orders) from the outreach register. Deduped, so a
-  // health org already listed as a partner keeps its partner record.
-  for (const t of [...procurementBuyers, ...healthBuyers]) {
+  // 6. Everyone else we engage with, from the outreach register (allTargets):
+  // aboriginal trusts (incl. Centrecorp), philanthropy prospects, impact finance,
+  // government programs, buyers, and community/manufacturing/distribution
+  // partners. Deduped, so records already sourced from the compendium keep their
+  // richer entry.
+  for (const t of allTargets) {
+    const type = outreachType(t.category);
     addPerson({
-      id: `buyer-${t.id}`,
+      id: `${type}-${t.id}`,
       name: t.name,
       org: null,
       role: null,
-      type: 'buyer',
+      type,
       isOrg: true,
       email: t.contactEmail ?? null,
-      location: t.states?.join(', ') ?? null,
+      location: t.states?.length ? t.states.join(', ') : null,
       website: null,
       photo: null,
       amount: null,
