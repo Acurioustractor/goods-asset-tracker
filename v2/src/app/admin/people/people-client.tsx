@@ -11,6 +11,7 @@ const TYPE_CLS: Record<PersonType, string> = {
   funder: 'bg-emerald-100 text-emerald-800',
   capital: 'bg-teal-100 text-teal-800',
   government: 'bg-sky-100 text-sky-800',
+  buyer: 'bg-lime-100 text-lime-800',
   partner: 'bg-orange-100 text-orange-800',
   health: 'bg-rose-100 text-rose-800',
   corporate: 'bg-indigo-100 text-indigo-800',

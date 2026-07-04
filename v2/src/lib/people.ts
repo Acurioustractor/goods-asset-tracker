@@ -21,11 +21,13 @@
 
 import { team } from './data/team';
 import { advisoryBoard, communityPartners, funding } from './data/compendium';
+import { healthBuyers, procurementBuyers } from './data/outreach-targets';
 
 export type PersonType =
   | 'funder'
   | 'capital'
   | 'government'
+  | 'buyer'
   | 'partner'
   | 'health'
   | 'corporate'
@@ -37,6 +39,7 @@ export const PERSON_TYPES: { key: PersonType; label: string; blurb: string }[] =
   { key: 'funder', label: 'Funders', blurb: 'Foundations & philanthropy' },
   { key: 'capital', label: 'Capital / Lenders', blurb: 'Repayable finance' },
   { key: 'government', label: 'Government', blurb: 'Grant programs' },
+  { key: 'buyer', label: 'Buyers', blurb: 'Commercial bed orders' },
   { key: 'partner', label: 'Community partners', blurb: 'Delivery & community' },
   { key: 'health', label: 'Health partners', blurb: 'Clinical & health services' },
   { key: 'corporate', label: 'Corporate / Mfg', blurb: 'Manufacturing & logistics' },
@@ -266,6 +269,29 @@ export function getEngagementPeople(): Person[] {
       contacts: (p.contacts ?? []).map((c) => ({ name: c.name, role: c.role ?? null, email: c.email ?? null })),
       tags: p.keyFacts?.slice(0, 2) ?? [],
       sources: ['compendium.communityPartners'],
+    });
+  }
+
+  // 6. Buyers (commercial bed orders) from the outreach register. Deduped, so a
+  // health org already listed as a partner keeps its partner record.
+  for (const t of [...procurementBuyers, ...healthBuyers]) {
+    addPerson({
+      id: `buyer-${t.id}`,
+      name: t.name,
+      org: null,
+      role: null,
+      type: 'buyer',
+      isOrg: true,
+      email: t.contactEmail ?? null,
+      location: t.states?.join(', ') ?? null,
+      website: null,
+      photo: null,
+      amount: null,
+      status: t.status,
+      notes: t.grantRelevance || t.notes || null,
+      contacts: t.contactName ? [{ name: t.contactName, role: null, email: t.contactEmail ?? null }] : [],
+      tags: [t.amountSignal, t.instrument, t.priority].filter((x): x is string => Boolean(x)),
+      sources: ['outreach-targets'],
     });
   }
 
