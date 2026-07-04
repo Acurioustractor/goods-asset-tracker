@@ -45,9 +45,12 @@ if (!SB_URL.includes('cwsyhpiuepvdjtxaozwf')) { console.error(`Refusing: not the
 const REST = `${SB_URL}/rest/v1`;
 const H = { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}`, 'Content-Type': 'application/json' };
 
-const EL_API = (env.EMPATHY_LEDGER_API_URL || process.env.EMPATHY_LEDGER_API_URL || 'https://empathy-ledger-v2.vercel.app').replace(/\/$/, '');
-const EL_KEY = env.EMPATHY_LEDGER_API_KEY || process.env.EMPATHY_LEDGER_API_KEY || '';
-const EL_PCODE = env.EMPATHY_LEDGER_PROJECT_CODE || process.env.EMPATHY_LEDGER_PROJECT_CODE || 'goods-on-country';
+// EL media is read direct from EL Supabase by PROJECT_ID (the hard association).
+// The content-hub projectCode aggregates adjacent projects (BG-Fit / JusticeHub /
+// Spinifex) and leaked their media into this Goods-only index — see getMedia.
+const EL_SB_URL = (env.EMPATHY_LEDGER_SUPABASE_URL || process.env.EMPATHY_LEDGER_SUPABASE_URL || '').replace(/\/$/, '');
+const EL_SB_KEY = env.EMPATHY_LEDGER_SUPABASE_KEY || process.env.EMPATHY_LEDGER_SUPABASE_KEY || '';
+const EL_PROJECT_ID = env.EMPATHY_LEDGER_PROJECT_ID || process.env.EMPATHY_LEDGER_PROJECT_ID || '6bd47c8a-e676-456f-aa25-ddcbb5a31047';
 
 const md5File = (p) => crypto.createHash('md5').update(fs.readFileSync(p)).digest('hex');
 const readJSON = (p, def) => { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return def; } };
@@ -189,37 +192,49 @@ async function syncLocal() {
 // ============================================================================
 // PASS 3 — Empathy Ledger media (image + video), ref identity, consent re-sync
 // ============================================================================
-async function fetchElAll(type) {
+async function fetchElMediaAssets(mediaType) {
+  const sel = 'id,cdn_url,url,large_url,medium_url,thumbnail_url,media_type,width,height,duration,cultural_tags,visibility,is_sacred_no_publish,removed_by_storyteller_at,elder_approved,consent_obtained';
   const out = [];
-  for (let page = 1; page <= 20; page += 1) {
-    const url = `${EL_API}/api/v1/content-hub/media?project_code=${EL_PCODE}&type=${type}&limit=50&page=${page}`;
-    const res = await fetch(url, { headers: { 'X-API-Key': EL_KEY }, cache: 'no-store' });
-    if (!res.ok) break;
-    const json = await res.json();
-    const rows = json?.media ?? [];
+  for (let offset = 0; offset < 6000; offset += 1000) {
+    const q = `project_id=eq.${EL_PROJECT_ID}&media_type=eq.${mediaType}&select=${sel}&order=created_at.desc&limit=1000&offset=${offset}`;
+    const res = await fetch(`${EL_SB_URL}/rest/v1/media_assets?${q}`, {
+      headers: { apikey: EL_SB_KEY, Authorization: `Bearer ${EL_SB_KEY}` }, cache: 'no-store',
+    });
+    if (!res.ok) throw new Error(`EL media_assets ${mediaType}: ${res.status} ${await res.text()}`);
+    const rows = await res.json();
     out.push(...rows);
-    if (rows.length === 0 || !json?.pagination?.hasMore) break;
+    if (rows.length < 1000) break;
   }
   return out;
 }
+// Canonical Goods consent policy — EL is the source of truth. Hard stops win.
+//   red    = sacred-no-publish OR storyteller-withdrawn OR not public (never show)
+//   gated  = public AND elder-approved (cleared: funder/press/hero tier)
+//   public = public, not yet elder-reviewed (shows on the site)
 function elConsentTier(m) {
-  // default-deny: only a fully consented + elder-approved item is usable (gated)
-  return m.consentObtained && m.elderApproved ? 'gated' : 'red';
+  if (m.is_sacred_no_publish === true) return 'red';
+  if (m.removed_by_storyteller_at) return 'red';
+  if (m.visibility !== 'public') return 'red';
+  return m.elder_approved === true ? 'gated' : 'public';
 }
 function elArea(m) {
-  const t = (m.culturalTags || [])[0];
+  const t = (m.cultural_tags || [])[0];
   if (t) return t.includes(':') ? (t.split(':')[1] || t) : t;
   return 'el';
 }
+const elUrl = (m) => m.cdn_url || m.url || m.large_url || m.medium_url || null;
+const elPoster = (m) => m.thumbnail_url || m.medium_url || elUrl(m);
 
 async function syncEl() {
-  if (!EL_KEY) { console.log('el    : skipped (no EMPATHY_LEDGER_API_KEY)'); return; }
-  // Tag media_type by the FETCH endpoint (the content-hub video rows don't carry
-  // mediaType='video' reliably), not by the row's own field.
+  if (!EL_SB_URL || !EL_SB_KEY) { console.log('el    : skipped (no EMPATHY_LEDGER_SUPABASE_URL/KEY)'); return; }
   const media = [
-    ...(await fetchElAll('image')).map((m) => ({ m, mt: 'image' })),
-    ...(await fetchElAll('video')).map((m) => ({ m, mt: 'video' })),
-  ].filter(({ m }) => m && m.id && m.url && /^https:\/\//.test(m.url));
+    ...(await fetchElMediaAssets('image')).map((m) => ({ m, mt: 'image' })),
+    ...(await fetchElMediaAssets('video')).map((m) => ({ m, mt: 'video' })),
+  ].filter(({ m }) => m && m.id && elUrl(m));
+  // Safety: never run the destructive re-sync on an empty/failed fetch (would
+  // otherwise flip every EL row to red).
+  if (media.length === 0) { console.log('el    : fetch returned 0 Goods media — skipping (no changes)'); return; }
+
   const existing = new Map();
   for (const r of await fetchExisting('source=eq.el', 'id,ref,url,poster_url,consent_tier,area,media_type')) existing.set(r.ref, r);
 
@@ -229,10 +244,10 @@ async function syncEl() {
     if (seenRefs.has(m.id)) continue;
     seenRefs.add(m.id);
     const desired = {
-      url: m.url, poster_url: m.thumbnailUrl || m.url,
+      url: elUrl(m), poster_url: elPoster(m),
       media_type: mt,
       consent_tier: elConsentTier(m), area: elArea(m),
-      tags: m.culturalTags || [],
+      tags: m.cultural_tags || [],
     };
     const cur = existing.get(m.id);
     if (!cur) {
@@ -247,7 +262,9 @@ async function syncEl() {
       if (Object.keys(body).length) patches.push({ id: cur.id, body });
     }
   }
-  // Re-sync: any EL row no longer in the feed flips to consent_tier='red' (withdrawn = default-deny).
+  // Re-sync: any EL row no longer in the Goods feed flips to red (withdrawn or a
+  // leaked non-Goods row = default-deny). Non-destructive; leaked-row deletion is
+  // a separate, deliberate cleanup (scripts/content-cleanup-leaked-el.mjs).
   let withdrawn = 0;
   for (const [ref, r] of existing) {
     if (!seenRefs.has(ref) && r.consent_tier !== 'red') { await patchById(r.id, { consent_tier: 'red' }); withdrawn += 1; }
@@ -255,7 +272,7 @@ async function syncEl() {
   await insertBatch(inserts);
   for (const p of patches) await patchById(p.id, p.body);
   const imgs = media.filter(({ mt }) => mt === 'image').length;
-  console.log(`el    : ${media.length} media (${imgs} img · ${media.length - imgs} video) — inserted ${inserts.length}, patched ${patches.length}, withdrawn->red ${withdrawn}`);
+  console.log(`el    : ${media.length} Goods media (${imgs} img · ${media.length - imgs} video) — inserted ${inserts.length}, patched ${patches.length}, absent->red ${withdrawn}`);
 }
 
 // ============================================================================
