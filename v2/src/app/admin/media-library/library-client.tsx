@@ -415,7 +415,7 @@ export function MediaLibraryClient({
       </div>
 
       {/* Subject + search */}
-      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+      <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 mb-4">
         <label className="flex items-center gap-2 text-sm">
           <span className="text-muted-foreground whitespace-nowrap">Subject</span>
           <select
@@ -473,7 +473,7 @@ export function MediaLibraryClient({
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search title, subject, tags, filename…"
-          className="flex-1 rounded-lg border border-input bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+          className="flex-1 min-w-[14rem] rounded-lg border border-input bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
         />
 
         <span className="text-xs text-muted-foreground whitespace-nowrap">
