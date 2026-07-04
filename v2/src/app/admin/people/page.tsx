@@ -13,7 +13,8 @@
 
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { getEngagementPeople, typeCounts } from '@/lib/people';
+import { typeCounts } from '@/lib/people';
+import { getEngagementPeopleWithGhl } from '@/lib/people-ghl';
 import PeopleClient from './people-client';
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 
 export default async function PeoplePage() {
-  const people = getEngagementPeople();
+  const { people, ghlOk, matched } = await getEngagementPeopleWithGhl();
   const counts = typeCounts(people);
   const orgs = people.filter((p) => p.isOrg).length;
 
@@ -40,10 +41,19 @@ export default async function PeoplePage() {
         </p>
       </header>
 
-      <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-gray-500">
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-gray-500">
         <span><span className="font-bold text-gray-900">{people.length}</span> records</span>
         <span><span className="font-bold text-gray-900">{people.length - orgs}</span> people</span>
         <span><span className="font-bold text-gray-900">{orgs}</span> organisations</span>
+        {ghlOk ? (
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs text-emerald-700">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> live GHL · {matched} matched
+          </span>
+        ) : (
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-2.5 py-0.5 text-xs text-gray-500">
+            <span className="h-1.5 w-1.5 rounded-full bg-gray-400" /> GHL offline · showing static
+          </span>
+        )}
       </div>
 
       {people.length === 0 ? (

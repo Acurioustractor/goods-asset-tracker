@@ -52,6 +52,16 @@ export function personTypeLabel(t: PersonType): string {
   return TYPE_LABEL[t] ?? t;
 }
 
+export type Warmth = 'hot' | 'warm' | 'steady' | 'cool' | 'cold';
+// Live GHL pipeline overlay, attached by lib/people-ghl.ts (server-only).
+export interface PersonGhl {
+  stage: string; // live stage name, e.g. "Cultivating", "Committed", "Stewarding"
+  rung: string; // LOI ladder rung: target | signed | contract | cash
+  warmth: Warmth;
+  value: number; // opportunity monetary value, AUD
+  status: string; // open | won | lost | abandoned
+}
+
 export interface PersonContact {
   name: string;
   role: string | null;
@@ -74,6 +84,7 @@ export interface Person {
   contacts: PersonContact[];
   tags: string[];
   sources: string[];
+  ghl?: PersonGhl | null; // live GHL overlay (added by getEngagementPeopleWithGhl)
 }
 
 function slug(s: string): string {

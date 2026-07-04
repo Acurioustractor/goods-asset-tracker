@@ -57,6 +57,27 @@ function TypeBadge({ t }: { t: PersonType }) {
   return <span className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${TYPE_CLS[t]}`}>{personTypeLabel(t)}</span>;
 }
 
+const WARMTH: Record<string, { dot: string; label: string }> = {
+  hot: { dot: 'bg-emerald-500', label: 'Hot' },
+  warm: { dot: 'bg-amber-500', label: 'Warm' },
+  steady: { dot: 'bg-sky-500', label: 'Steady' },
+  cool: { dot: 'bg-gray-400', label: 'Cool' },
+  cold: { dot: 'bg-rose-400', label: 'Cold' },
+};
+
+function StagePill({ ghl }: { ghl: NonNullable<Person['ghl']> }) {
+  const w = WARMTH[ghl.warmth] ?? WARMTH.cool;
+  return (
+    <span
+      className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-medium text-gray-700"
+      title={`Live GHL: ${ghl.stage} · ${w.label}`}
+    >
+      <span className={`h-1.5 w-1.5 rounded-full ${w.dot}`} />
+      {ghl.stage}
+    </span>
+  );
+}
+
 export default function PeopleClient({ people, counts }: { people: Person[]; counts: Record<string, number> }) {
   const [view, setView] = useState<'grid' | 'list'>('grid');
   const [type, setType] = useState<PersonType | 'all'>('all');
@@ -137,6 +158,7 @@ export default function PeopleClient({ people, counts }: { people: Person[]; cou
                 {p.org && <div className="mt-0.5 text-xs text-gray-500 leading-tight">{p.org}</div>}
                 {p.role && <div className="mt-0.5 text-[11px] text-gray-400 leading-tight">{p.role}</div>}
                 <div className="mt-2"><TypeBadge t={p.type} /></div>
+                {p.ghl && <div className="mt-1.5"><StagePill ghl={p.ghl} /></div>}
                 {p.amount != null && (
                   <div className="mt-1.5 text-xs font-semibold text-emerald-700">
                     {aud(p.amount)}{p.status ? <span className="font-normal text-gray-400"> · {p.status}</span> : null}
@@ -157,6 +179,7 @@ export default function PeopleClient({ people, counts }: { people: Person[]; cou
                 <th className="px-4 py-2 text-left">Name</th>
                 <th className="px-4 py-2 text-left">Org</th>
                 <th className="px-4 py-2 text-left">Type</th>
+                <th className="px-4 py-2 text-left">Stage (live)</th>
                 <th className="px-4 py-2 text-left">Role</th>
                 <th className="px-4 py-2 text-right">Amount</th>
               </tr>
@@ -172,6 +195,7 @@ export default function PeopleClient({ people, counts }: { people: Person[]; cou
                   </td>
                   <td className="px-4 py-2.5 text-gray-600">{p.org ?? '—'}</td>
                   <td className="px-4 py-2.5"><TypeBadge t={p.type} /></td>
+                  <td className="px-4 py-2.5">{p.ghl ? <StagePill ghl={p.ghl} /> : <span className="text-gray-300">—</span>}</td>
                   <td className="px-4 py-2.5 text-gray-500 text-xs">{p.role ?? '—'}</td>
                   <td className="px-4 py-2.5 text-right tabular-nums text-emerald-700 font-medium">{p.amount != null ? aud(p.amount) : ''}</td>
                 </tr>
@@ -195,11 +219,18 @@ export default function PeopleClient({ people, counts }: { people: Person[]; cou
                   {open.role && <div className="text-sm text-gray-500">{open.role}</div>}
                   <div className="mt-2 flex flex-wrap items-center gap-2">
                     <TypeBadge t={open.type} />
+                    {open.ghl && <StagePill ghl={open.ghl} />}
                     {open.location && <span className="text-xs text-gray-500">📍 {open.location}</span>}
                     {open.amount != null && (
                       <span className="text-xs font-semibold text-emerald-700">{aud(open.amount)}{open.status ? ` · ${open.status}` : ''}</span>
                     )}
                   </div>
+                  {open.ghl && (
+                    <div className="mt-1 text-[11px] text-gray-500">
+                      Live pipeline: <span className="font-medium text-gray-700">{open.ghl.stage}</span>
+                      {open.ghl.value > 0 && <> · {aud(open.ghl.value)}</>} · {open.ghl.status}
+                    </div>
+                  )}
                   <div className="mt-2 flex flex-wrap gap-3 text-xs">
                     {open.email && <a href={`mailto:${open.email}`} className="text-orange-700 hover:underline">{open.email}</a>}
                     {open.website && <a href={open.website} target="_blank" rel="noreferrer" className="text-blue-700 hover:underline">website ↗</a>}
