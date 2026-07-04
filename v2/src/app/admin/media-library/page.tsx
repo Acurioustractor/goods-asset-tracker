@@ -6,12 +6,23 @@
 
 import { buildLocalItems } from './curation';
 import { MediaLibraryClient } from './library-client';
+import { createServiceClient } from '@/lib/supabase/server';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
+async function fetchCommunities(): Promise<{ id: string; name: string }[]> {
+  try {
+    const supabase = createServiceClient();
+    const { data } = await supabase.from('communities').select('id, name').order('name');
+    return (data ?? []) as { id: string; name: string }[];
+  } catch {
+    return [];
+  }
+}
+
 export default async function MediaLibraryPage() {
-  const { items, curationReady } = await buildLocalItems();
+  const [{ items, curationReady }, communities] = await Promise.all([buildLocalItems(), fetchCommunities()]);
 
   return (
     <div className="p-6">
@@ -23,7 +34,7 @@ export default async function MediaLibraryPage() {
           subject, community, starred or archived.
         </p>
       </header>
-      <MediaLibraryClient items={items} curationReady={curationReady} />
+      <MediaLibraryClient items={items} curationReady={curationReady} communities={communities} />
     </div>
   );
 }

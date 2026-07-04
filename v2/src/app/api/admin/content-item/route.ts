@@ -20,6 +20,7 @@ interface Body {
   archived?: boolean;
   tags?: string[];
   consent_tier?: 'public' | 'gated' | 'red';
+  community_id?: string | null;
 }
 
 export async function POST(request: NextRequest) {
@@ -55,6 +56,10 @@ export async function POST(request: NextRequest) {
   if (Array.isArray(body.tags)) patch.tags = body.tags.filter((t) => typeof t === 'string');
   if (body.consent_tier && ['public', 'gated', 'red'].includes(body.consent_tier)) {
     patch.consent_tier = body.consent_tier;
+  }
+  // Community tag: a uuid FK to communities.id, or null to clear.
+  if ('community_id' in body) {
+    patch.community_id = body.community_id ? String(body.community_id) : null;
   }
 
   if (Object.keys(patch).length === 0) {

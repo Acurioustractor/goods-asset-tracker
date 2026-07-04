@@ -54,15 +54,18 @@ function consentBadge(item: UnifiedItem): { text: string; cls: string } {
 }
 
 /** A patch sent to /api/admin/content-item and applied optimistically to state. */
-type CurationPatch = { starred?: boolean; rating?: number; archived?: boolean };
+type CurationPatch = { starred?: boolean; rating?: number; archived?: boolean; community_id?: string | null };
 
 export function MediaLibraryClient({
   items: initialItems,
   curationReady,
+  communities = [],
 }: {
   items: UnifiedItem[];
   curationReady: boolean;
+  communities?: { id: string; name: string }[];
 }) {
+  const commMap = useMemo(() => new Map(communities.map((c) => [c.id, c.name])), [communities]);
   // Local copy so saved tags + curation state update the grid without a reload.
   const [items, setItems] = useState<UnifiedItem[]>(initialItems);
   const [sourceFilter, setSourceFilter] = useState<SourceFilter>('all');
@@ -132,6 +135,9 @@ export function MediaLibraryClient({
         ...(patch.starred !== undefined ? { starred: patch.starred } : {}),
         ...(patch.rating !== undefined ? { rating: patch.rating } : {}),
         ...(patch.archived !== undefined ? { archived: patch.archived } : {}),
+        ...(patch.community_id !== undefined
+          ? { community: patch.community_id ? commMap.get(patch.community_id) : undefined }
+          : {}),
       });
       setItems((prev) => prev.map((it) => (ids.includes(it.id) && it.contentId ? apply(it) : it)));
       setActive((cur) => (cur && ids.includes(cur.id) && cur.contentId ? apply(cur) : cur));
@@ -148,7 +154,7 @@ export function MediaLibraryClient({
         setErr(`Save failed: ${e instanceof Error ? e.message : String(e)}`);
       }
     },
-    [items],
+    [items, commMap],
   );
 
   const toggleStar = useCallback((it: UnifiedItem) => mutate([it.id], { starred: !it.starred }), [mutate]);
@@ -494,6 +500,25 @@ export function MediaLibraryClient({
               <button key={r} type="button" onClick={() => bulkSet({ rating: r })} className="rounded px-1 text-xs text-muted-foreground hover:text-yellow-500" aria-label={`Rate ${r}`}>{r}★</button>
             ))}
           </span>
+          {communities.length > 0 && (
+            <select
+              aria-label="Tag community"
+              defaultValue=""
+              onChange={(e) => {
+                const v = e.target.value;
+                e.target.value = '';
+                if (v === '__clear') bulkSet({ community_id: null });
+                else if (v) bulkSet({ community_id: v });
+              }}
+              className="border-l border-border pl-2 ml-1 rounded-lg border px-2 py-1 text-xs bg-background"
+            >
+              <option value="" disabled>Tag community…</option>
+              {communities.map((c) => (
+                <option key={c.id} value={c.id}>{c.name}</option>
+              ))}
+              <option value="__clear">— Clear community —</option>
+            </select>
+          )}
           <button type="button" onClick={() => bulkSet({ archived: true })} className="rounded-lg border border-red-300 px-2.5 py-1 text-xs font-medium text-red-600 hover:bg-red-50 dark:border-red-800 dark:hover:bg-red-950/30">🗑 Archive (cull)</button>
           {showArchived && (
             <button type="button" onClick={() => bulkSet({ archived: false })} className="rounded-lg border border-border px-2.5 py-1 text-xs hover:border-foreground">Restore</button>
