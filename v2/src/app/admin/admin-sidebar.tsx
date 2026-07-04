@@ -9,6 +9,7 @@ import {
   ShoppingCart,
   Wrench,
   BookOpen,
+  Quote,
   Users,
   Menu,
   X,
@@ -79,6 +80,7 @@ const navigation: NavGroup[] = [
       { name: 'Canon board',   href: '/admin/canon',           icon: LayoutGrid },
       { name: 'Stories (EL)',  href: '/admin/el-stories',      icon: BookOpen },
       { name: 'Storytellers',  href: '/admin/el-storytellers', icon: Users },
+      { name: 'Quotes',        href: '/admin/quotes',          icon: Quote },
     ],
   },
   {
