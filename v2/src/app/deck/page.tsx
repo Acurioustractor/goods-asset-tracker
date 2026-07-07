@@ -67,6 +67,30 @@ function Frame({ children }: { children: React.ReactNode }) {
   );
 }
 
+/* Canonical media-pack photography (cleared for external use). */
+const PHOTO = {
+  cover: '/images/media-pack/lying-on-stretch-bed.jpg',
+  product: '/images/media-pack/thumbs-up-stretch-bed.jpg',
+  community: '/images/media-pack/community-testing-bed-golden-hour.jpg',
+  team: '/images/media-pack/nic-with-elder-on-verandah.jpg',
+} as const;
+
+/* Rounded, object-cover photo with an optional cleared-voice caption. */
+function Photo({ src, alt, caption, who }: { src: string; alt: string; caption?: string; who?: string }) {
+  return (
+    <figure className="m-0 flex h-full flex-col gap-3">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src} alt={alt} className="min-h-0 w-full flex-1 rounded-xl object-cover" />
+      {caption && (
+        <figcaption className="text-sm italic leading-relaxed text-muted-foreground">
+          &ldquo;{caption}&rdquo;
+          {who && <span className="mt-1 block text-xs not-italic text-muted-foreground/80">{who}</span>}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
 /* ---------- the slides -------------------------------------------------- */
 
 const SLIDES: { id: string; render: () => React.ReactNode }[] = [
@@ -74,21 +98,32 @@ const SLIDES: { id: string; render: () => React.ReactNode }[] = [
   {
     id: 'cover',
     render: () => (
-      <Frame>
-        <Eyebrow>Goods on Country · Investor brief · 2026</Eyebrow>
-        <h1 className="text-4xl font-light leading-[1.05] text-foreground sm:text-6xl lg:text-7xl" style={display}>
-          We press recycled-plastic beds{' '}
-          <span className="text-primary">On Country</span>, and build the factory so community owns it.
-        </h1>
-        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
-          A good bed is health hardware, not furniture. Goods turns local plastic waste into durable,
-          washable beds — and hands the means of making them to the communities that need them.
-        </p>
-        <p className="mt-10 text-sm text-muted-foreground">
-          Raising <span className="font-medium text-foreground">AU$400,000</span> in catalytic capital
-          that converts into community ownership.
-        </p>
-      </Frame>
+      <div className="relative h-full w-full">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={PHOTO.cover}
+          alt="A young man lying full-length on a Stretch Bed on Country, the recycled-plastic X-trestle legs and canvas visible"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-tr from-black/90 via-black/60 to-black/25" />
+        <div className="relative mx-auto flex h-full w-full max-w-5xl flex-col justify-end px-6 pb-16 pt-20 sm:px-12 sm:pb-24">
+          <p className="mb-5 text-[11px] font-medium uppercase tracking-[0.25em] text-[color:var(--goods-terracotta)] sm:text-xs">
+            Goods on Country · Investor brief · 2026
+          </p>
+          <h1 className="max-w-4xl text-4xl font-light leading-[1.05] text-white sm:text-6xl lg:text-7xl" style={display}>
+            We press recycled-plastic beds{' '}
+            <span className="text-[color:var(--goods-terracotta)]">On Country</span>, and build the factory so community owns it.
+          </h1>
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-white/80 sm:text-xl">
+            A good bed is health hardware, not furniture. Goods turns local plastic waste into durable,
+            washable beds — and hands the means of making them to the communities that need them.
+          </p>
+          <p className="mt-8 text-sm text-white/70">
+            Raising <span className="font-medium text-white">AU$400,000</span> in catalytic capital
+            that converts into community ownership.
+          </p>
+        </div>
+      </div>
     ),
   },
 
@@ -105,7 +140,7 @@ const SLIDES: { id: string; render: () => React.ReactNode }[] = [
           {[
             {
               h: 'The freight tax',
-              p: '"You can’t just go down to the store and buy beds. You have to bring them on the barge, pay for freight — and still, not everyone gets one."',
+              p: '"You can’t just go down to the store and buy beds. It’s a big muck-around. You have to bring them on the barge, pay for freight, and still, not everyone gets one."',
               who: 'Alfred Johnson, Palm Island',
             },
             {
@@ -170,23 +205,31 @@ const SLIDES: { id: string; render: () => React.ReactNode }[] = [
         <h2 className="max-w-3xl text-3xl font-light leading-tight text-foreground sm:text-5xl" style={display}>
           Collect the plastic. Press the parts. Build a bed that lasts a decade.
         </h2>
-        <div className="mt-10 grid gap-6 sm:grid-cols-3">
-          {[
-            ['1 · Recycled HDPE legs', 'Two crossed-plank X-trestles pressed On Country from 20kg of diverted plastic.'],
-            ['2 · Two steel poles', 'Galvanised poles thread through the leg holes and the canvas sleeves.'],
-            ['3 · Structural canvas', 'Tensioning the canvas braces the frame — no tools, ~5 minutes, it won’t stand without it.'],
-          ].map(([h, p]) => (
-            <div key={h} className="rounded-lg border border-border bg-card p-5">
-              <h3 className="text-base font-medium text-foreground">{h}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p}</p>
+        <div className="mt-8 grid gap-8 lg:grid-cols-2">
+          <div className="flex flex-col gap-4">
+            {[
+              ['1 · Recycled HDPE legs', 'Two crossed-plank X-trestles pressed On Country from 20kg of diverted plastic.'],
+              ['2 · Two steel poles', 'Galvanised poles thread through the leg holes and the canvas sleeves.'],
+              ['3 · Structural canvas', 'Tensioning the canvas braces the frame — no tools, ~5 minutes, it won’t stand without it.'],
+            ].map(([h, p]) => (
+              <div key={h} className="border-l-2 border-primary/40 pl-4">
+                <h3 className="text-base font-medium text-foreground">{h}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{p}</p>
+              </div>
+            ))}
+            <div className="mt-1 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
+              <span><span className="font-medium text-foreground">200kg</span> capacity</span>
+              <span><span className="font-medium text-foreground">26kg</span>, flat-packable</span>
+              <span><span className="font-medium text-foreground">10+ year</span> life</span>
+              <span><span className="font-medium text-foreground">20kg</span> plastic / bed</span>
             </div>
-          ))}
-        </div>
-        <div className="mt-10 flex flex-wrap gap-x-8 gap-y-2 text-sm text-muted-foreground">
-          <span><span className="font-medium text-foreground">200kg</span> capacity</span>
-          <span><span className="font-medium text-foreground">26kg</span>, flat-packable</span>
-          <span><span className="font-medium text-foreground">10+ year</span> design life</span>
-          <span><span className="font-medium text-foreground">20kg</span> plastic diverted per bed</span>
+          </div>
+          <Photo
+            src={PHOTO.product}
+            alt="A young man sitting on a Stretch Bed, thumbs up, the speckled recycled-plastic X-trestle legs and canvas clearly visible"
+            caption="Having a bed is something you need; you feel more safe when you sleep in a bed. It’s different than sleeping on the couch or the ground."
+            who="Alfred Johnson, Palm Island"
+          />
         </div>
         <p className="mt-6 max-w-2xl text-base text-foreground">
           The magic isn&rsquo;t the bed. It&rsquo;s that <span className="text-primary">the making belongs On Country</span> — the
@@ -216,21 +259,27 @@ const SLIDES: { id: string; render: () => React.ReactNode }[] = [
         <div className="mt-4">
           <Tag kind="verified">Verified · canon, reconciled 2026-05-30</Tag>
         </div>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-lg bg-muted p-5">
-            <p className="text-sm leading-relaxed text-foreground">
-              <span className="font-medium">200–350 bed requests logged.</span> Elder Dianne Stokes asked for 20
-              more and offered to self-fund. PICC offered to buy a plant outright. Centrecorp funded a 107-bed
-              deployment.
-            </p>
-            <div className="mt-3"><Tag kind="interest">Demand is interest, not committed revenue</Tag></div>
+        <div className="mt-8 grid gap-4 lg:grid-cols-2">
+          <div className="flex flex-col gap-4">
+            <div className="rounded-lg bg-muted p-5">
+              <p className="text-sm leading-relaxed text-foreground">
+                <span className="font-medium">200–350 bed requests logged.</span> Elder Dianne Stokes asked for 20
+                more and offered to self-fund. PICC offered to buy a plant outright. Centrecorp funded a 107-bed
+                deployment.
+              </p>
+              <div className="mt-3"><Tag kind="interest">Demand is interest, not committed revenue</Tag></div>
+            </div>
+            <div className="rounded-lg bg-muted p-5">
+              <p className="text-sm italic leading-relaxed text-foreground">
+                &ldquo;It&rsquo;s more better than laying around on the floors. It was easy to make. It&rsquo;s nice.&rdquo;
+              </p>
+              <p className="mt-3 text-xs text-muted-foreground">Ivy, Palm Island — after receiving her bed</p>
+            </div>
           </div>
-          <div className="rounded-lg bg-muted p-5">
-            <p className="text-sm italic leading-relaxed text-foreground">
-              &ldquo;It&rsquo;s more better than laying around on the floors. It was easy to make. It&rsquo;s nice.&rdquo;
-            </p>
-            <p className="mt-3 text-xs text-muted-foreground">Ivy, Palm Island — after receiving her bed</p>
-          </div>
+          <Photo
+            src={PHOTO.community}
+            alt="Community members gathered at golden hour around a Stretch Bed, one person testing it, the multicoloured recycled-plastic legs in the foreground"
+          />
         </div>
       </Frame>
     ),
@@ -401,8 +450,14 @@ const SLIDES: { id: string; render: () => React.ReactNode }[] = [
         <h2 className="max-w-3xl text-3xl font-light leading-tight text-foreground sm:text-5xl" style={display}>
           Two founders, an eleven-member advisory circle, and a plan to make ourselves unnecessary.
         </h2>
-        <div className="mt-10 grid gap-8 sm:grid-cols-2">
-          <div className="space-y-5">
+        <div className="mt-8 grid gap-8 lg:grid-cols-2">
+          <Photo
+            src={PHOTO.team}
+            alt="Co-founder Nic Marchesi seated on a Stretch Bed in conversation with an Elder and a community member on a shaded verandah"
+            caption="Working both ways — cultural side in white society and Indigenous society."
+            who="Dianne Stokes, Elder, Tennant Creek"
+          />
+          <div className="flex flex-col gap-5">
             {[
               ['Nicholas Marchesi', 'Co-founder & Project Lead — community-led design, on-country manufacturing.'],
               ['Benjamin Knight', 'Co-founder — story, technology, and the systems that connect product to community.'],
@@ -412,17 +467,17 @@ const SLIDES: { id: string; render: () => React.ReactNode }[] = [
                 <p className="mt-1 text-sm text-muted-foreground">{r}</p>
               </div>
             ))}
-          </div>
-          <div className="space-y-4 text-sm text-muted-foreground">
-            <p>
-              <span className="font-medium text-foreground">11-member monthly advisory committee</span>, moving to a
-              fiduciary board (trigger-gated). Data held under OCAP® Indigenous data sovereignty.
-            </p>
-            <p>
-              <span className="font-medium text-foreground">12-month role map:</span> GM, then Business Development —
-              each hire trigger-gated to milestones, not calendar.
-            </p>
-            <div><Tag kind="future">Honest: 0 hires and 0 independent directors yet — this round funds the first</Tag></div>
+            <div className="space-y-3 text-sm text-muted-foreground">
+              <p>
+                <span className="font-medium text-foreground">11-member monthly advisory committee</span>, moving to a
+                fiduciary board (trigger-gated). Data held under OCAP® Indigenous data sovereignty.
+              </p>
+              <p>
+                <span className="font-medium text-foreground">12-month role map:</span> GM, then Business Development —
+                each hire trigger-gated to milestones, not calendar.
+              </p>
+              <div><Tag kind="future">Honest: 0 hires and 0 independent directors yet — this round funds the first</Tag></div>
+            </div>
           </div>
         </div>
       </Frame>
@@ -513,7 +568,7 @@ const SLIDES: { id: string; render: () => React.ReactNode }[] = [
         <h2 className="max-w-3xl text-3xl font-light leading-tight text-foreground sm:text-5xl" style={display}>
           Four things to believe.
         </h2>
-        <ol className="mt-10 space-y-6">
+        <ol className="mt-8 space-y-5">
           {[
             ['The market is turning', 'Procurement targets, Closing the Gap, recycled feedstock and freight costs all point the same way — toward buying durable goods made in community.'],
             ['There is early proof', `${A.bedsDeployed} beds, ${A.communitiesServed} communities, ${A.plasticKg.toLocaleString()}kg of plastic diverted, and buyers asking for more.`],
@@ -529,6 +584,12 @@ const SLIDES: { id: string; render: () => React.ReactNode }[] = [
             </li>
           ))}
         </ol>
+        <blockquote className="mt-8 border-l-2 border-primary pl-4 text-lg font-light italic text-foreground" style={display}>
+          &ldquo;I want to see a better future for our kids and better housing for our people.&rdquo;
+          <span className="mt-1 block font-sans text-xs not-italic text-muted-foreground">
+            Norman Frank, Elder, Tennant Creek
+          </span>
+        </blockquote>
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <Link
             href="/impact"
