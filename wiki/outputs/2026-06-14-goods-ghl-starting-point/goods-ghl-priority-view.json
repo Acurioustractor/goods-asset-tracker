@@ -1,0 +1,2370 @@
+{
+  "payload": {
+    "title": "Goods Capital Pipeline Starting Point",
+    "generatedAt": "2026-06-14T06:49:26.421Z",
+    "source": {
+      "label": "Live GHL + Goods investor pack",
+      "status": "Read-only review"
+    },
+    "scope": {
+      "accountSet": "All live Goods-related GHL pipelines, all GHL contacts, and the 14-row investor import set",
+      "rankingBasis": "QBE-match actionability: signed-commitment likelihood before Aug 31, relationship warmth, stage, amount, blocker count",
+      "sourceOfTruth": "Live GHL for CRM coverage; investor CSV/wiki pack for capital-raise strategy",
+      "sourceScope": "GHL contacts, GHL opportunities, investor import CSV, local wiki outputs",
+      "actionOwner": "Ben/Nic owner model from investor pipeline",
+      "accountOwner": "Owner field in investor CSV",
+      "ownershipActionModel": "Founder-owned next actions; no automated outbound sends",
+      "motionGoal": "mixed",
+      "batchSize": 5,
+      "capacityWindow": 5,
+      "sourcesChecked": [
+        "crm",
+        "document_store/user-provided pack"
+      ],
+      "evidenceLanes": [
+        "Live GHL API",
+        "HighLevel connector spot check",
+        "Investor CSV",
+        "Wiki strategy docs"
+      ],
+      "assumptions": "Assumption-based: all Goods-related pipelines and investor pack are the candidate universe; buyer/demand records are context unless funder evidence exists."
+    },
+    "workNow": [
+      {
+        "rank": 1,
+        "account": "Snow Foundation",
+        "motion": "mixed",
+        "whyNow": "Proposal / LOI out; shortlist target; AU$200,000 target; first signature unlocks the room before Aug 31.",
+        "primaryContact": "Confirm formal grants contact; Sally Grimsley-Ballard is known advisory relationship",
+        "secondaryContact": "Nic as co-sender",
+        "oppRecommendation": "work account before opp/write commitment",
+        "nextStep": "Send R4/R5 cover note; ask Snow to be the FIRST signature — decision in next fortnight",
+        "sequenceAngle": "First-signature / Jigsaw co-investment precedent",
+        "confidence": "High",
+        "status": "ready_now"
+      },
+      {
+        "rank": 2,
+        "account": "Centrecorp Foundation",
+        "motion": "mixed",
+        "whyNow": "In conversation; shortlist target; AU$106,150 target; nearest board decision and Central Australia commitment window.",
+        "primaryContact": "Confirm Randle Walker / Jodie for formal board ask",
+        "secondaryContact": "None confirmed",
+        "oppRecommendation": "work account before opp/write commitment",
+        "nextStep": "Get next-round beds to a board decision at the ~26 June board; let it count as match-eligible",
+        "sequenceAngle": "Forward beds only, Trust-Deed-safe, QBE as multiplier",
+        "confidence": "High",
+        "status": "ready_now"
+      },
+      {
+        "rank": 3,
+        "account": "SEFA",
+        "motion": "mixed",
+        "whyNow": "Contacted; shortlist target; AU$300,000 target; senior debt conversation should start before gates are complete.",
+        "primaryContact": "Confirm Hannah Ebeling; Joel Bird may be secondary",
+        "secondaryContact": "Nic for debt structure",
+        "oppRecommendation": "work account before opp/write commitment",
+        "nextStep": "Email Hannah Ebeling to open the lender conversation; be honest the 3 gates are unmet",
+        "sequenceAngle": "Honest debt-readiness conversation, not a money ask",
+        "confidence": "Medium",
+        "status": "ready_now"
+      },
+      {
+        "rank": 4,
+        "account": "Paul Ramsay Foundation (PFI)",
+        "motion": "mixed",
+        "whyNow": "Proposal / LOI out; shortlist target; AU$640,000 target; EOI is already in; keep warm without chasing.",
+        "primaryContact": "Confirm PFI EOI contact before chase",
+        "secondaryContact": "None confirmed",
+        "oppRecommendation": "monitor submitted proposal, light check-in",
+        "nextStep": "Await EOI feedback; confirm AU$640K still stands and that they will open doors",
+        "sequenceAngle": "No-pressure update on EOI and ask for open doors",
+        "confidence": "Medium",
+        "status": "partial"
+      },
+      {
+        "rank": 5,
+        "account": "Indigenous Business Australia (IBA)",
+        "motion": "mixed",
+        "whyNow": "In conversation; shortlist target; AU$5,000,000 target; later senior anchor; progress in parallel without setting match pace.",
+        "primaryContact": "Confirm IBA relationship contact; Nic owns path",
+        "secondaryContact": "None confirmed",
+        "oppRecommendation": "work prerequisites before proposal",
+        "nextStep": "Build the business plan to qualify; decide entity/Indigenous-ownership structure",
+        "sequenceAngle": "Business plan and ownership structure readiness",
+        "confidence": "Medium",
+        "status": "partial"
+      }
+    ],
+    "monitor": [
+      {
+        "account": "QBE Foundation",
+        "motion": "mixed",
+        "reasonToMonitor": "Program host; not external match-eligible capital.",
+        "triggerToRevisit": "Stage 2 package or SIH verification ask changes.",
+        "status": "monitor"
+      },
+      {
+        "account": "First Australians Capital",
+        "motion": "mixed",
+        "reasonToMonitor": "Strong fit but research-stage and needs warm intro.",
+        "triggerToRevisit": "IBA/SIH intro available or entity path clarified.",
+        "status": "monitor"
+      },
+      {
+        "account": "FRRR",
+        "motion": "mixed",
+        "reasonToMonitor": "Received/bench relationship; useful after first tranche or as connector.",
+        "triggerToRevisit": "Snow/Centrecorp first signature lands or new ask amount is set.",
+        "status": "monitor"
+      },
+      {
+        "account": "VFFF",
+        "motion": "mixed",
+        "reasonToMonitor": "Received/bench relationship; useful after first tranche or as connector.",
+        "triggerToRevisit": "Snow/Centrecorp first signature lands or new ask amount is set.",
+        "status": "monitor"
+      },
+      {
+        "account": "The Funding Network (TFN)",
+        "motion": "mixed",
+        "reasonToMonitor": "Received/bench relationship; useful after first tranche or as connector.",
+        "triggerToRevisit": "Snow/Centrecorp first signature lands or new ask amount is set.",
+        "status": "monitor"
+      }
+    ],
+    "suppressOrBlock": [
+      {
+        "account": "Minderoo Foundation",
+        "motion": "mixed",
+        "suppressorOrBlocker": "Knockout unconfirmed; do not run formal ask yet.",
+        "evidence": "PARKED — knockout UNCONFIRMED (Geography).",
+        "status": "blocked"
+      },
+      {
+        "account": "Tim Fairfax Family Foundation",
+        "motion": "mixed",
+        "suppressorOrBlocker": "Knockout unconfirmed; do not run formal ask yet.",
+        "evidence": "PARKED — knockout UNCONFIRMED (Capital Type / Stage / Size).",
+        "status": "blocked"
+      },
+      {
+        "account": "AMP Foundation (Spark)",
+        "motion": "mixed",
+        "suppressorOrBlocker": "Knockout unconfirmed; do not run formal ask yet.",
+        "evidence": "PARKED — knockout UNCONFIRMED (Geography / Size / Stage).",
+        "status": "blocked"
+      },
+      {
+        "account": "QBE Ventures",
+        "motion": "mixed",
+        "suppressorOrBlocker": "2026 knockout fail",
+        "evidence": "CSV notes: equity-only / legal structure / stage fail.",
+        "status": "suppressed"
+      }
+    ],
+    "evidenceGaps": [
+      "Dedicated QBE-match capital pipeline does not exist in live GHL yet.",
+      "The HighLevel connector search did not reliably find Goods capital records; direct LeadConnector API was used for live CRM truth.",
+      "Several formal contacts/salutations remain confirm-only: Snow, Centrecorp, SEFA, Tim Fairfax, QBE Foundation, QBE Ventures.",
+      "Stage 7 signed/match-eligible total is currently zero in the designed investor pipeline because it has not been imported and no signed commitments are recorded in the pack.",
+      "No agreements/e-signature source was checked, so legal commitment status is unverified outside the pack."
+    ],
+    "sourceDetails": {
+      "pipelineSummary": [
+        {
+          "pipeline": "Goods — Buyer Pipeline",
+          "opportunityCount": 14,
+          "totalValue": 1881721,
+          "byStage": {
+            "Outreach Queued | open": {
+              "count": 8,
+              "value": 1770771
+            },
+            "Proposed | open": {
+              "count": 1,
+              "value": 106150
+            },
+            "Outreach Queued | abandoned": {
+              "count": 1,
+              "value": 0
+            },
+            "In Conversation | open": {
+              "count": 4,
+              "value": 4800
+            }
+          }
+        },
+        {
+          "pipeline": "Goods — Demand Register",
+          "opportunityCount": 74,
+          "totalValue": 9015250,
+          "byStage": {
+            "Signal | open": {
+              "count": 71,
+              "value": 9015250
+            },
+            "Buyer Matched | open": {
+              "count": 3,
+              "value": 0
+            }
+          }
+        },
+        {
+          "pipeline": "Goods Supporter Journey",
+          "opportunityCount": 49,
+          "totalValue": 5178111,
+          "byStage": {
+            "Identified | open": {
+              "count": 21,
+              "value": 0
+            },
+            "Cultivating | open": {
+              "count": 4,
+              "value": 0
+            },
+            "Ask made | open": {
+              "count": 10,
+              "value": 4282500
+            },
+            "Qualified | open": {
+              "count": 1,
+              "value": 0
+            },
+            "Stewarding / Reporting | open": {
+              "count": 10,
+              "value": 811546
+            },
+            "Renewing | open": {
+              "count": 2,
+              "value": 40065
+            },
+            "Delivering | open": {
+              "count": 1,
+              "value": 44000
+            }
+          }
+        },
+        {
+          "pipeline": "Grants",
+          "opportunityCount": 10,
+          "totalValue": 1425000,
+          "byStage": {
+            "Grant Opportunity Identified | open": {
+              "count": 6,
+              "value": 1085000
+            },
+            "Application In Progress | open": {
+              "count": 3,
+              "value": 300000
+            },
+            "Grant Submitted | open": {
+              "count": 1,
+              "value": 40000
+            }
+          }
+        }
+      ],
+      "contactSummary": {
+        "totalContactsFetched": 2978,
+        "goodsTaggedContacts": 439,
+        "funderLikeContacts": 81,
+        "selectedTagCounts": [
+          [
+            "project:act-gd",
+            421
+          ],
+          [
+            "role:partner",
+            222
+          ],
+          [
+            "project:act-hv",
+            215
+          ],
+          [
+            "role:supporter",
+            176
+          ],
+          [
+            "comms:act-newsletter",
+            152
+          ],
+          [
+            "comms:goods-newsletter",
+            140
+          ],
+          [
+            "comms:harvest-newsletter",
+            115
+          ],
+          [
+            "interest:markets",
+            103
+          ],
+          [
+            "interest:membership",
+            96
+          ],
+          [
+            "interest:events",
+            95
+          ],
+          [
+            "interest:community",
+            91
+          ],
+          [
+            "comms:supporter-drip",
+            86
+          ],
+          [
+            "role:buyer",
+            82
+          ],
+          [
+            "role:funder",
+            81
+          ],
+          [
+            "project:contained-adelaide-2026",
+            79
+          ],
+          [
+            "project:contained",
+            79
+          ],
+          [
+            "goods-newsletter",
+            79
+          ],
+          [
+            "interest:workshops",
+            71
+          ],
+          [
+            "interest:garden",
+            66
+          ],
+          [
+            "comms:funder-drip",
+            62
+          ],
+          [
+            "interest:food",
+            61
+          ],
+          [
+            "project:act-jh",
+            58
+          ],
+          [
+            "interest:sustainability",
+            49
+          ],
+          [
+            "interest:volunteer",
+            46
+          ],
+          [
+            "goods-warm",
+            41
+          ],
+          [
+            "interest:justice-reform",
+            35
+          ],
+          [
+            "role:supplier",
+            35
+          ],
+          [
+            "project:act-el",
+            35
+          ],
+          [
+            "role:community",
+            29
+          ],
+          [
+            "comms:buyer-drip",
+            29
+          ],
+          [
+            "comms:newsletter",
+            28
+          ],
+          [
+            "role:service",
+            27
+          ],
+          [
+            "role:storyteller",
+            27
+          ],
+          [
+            "project:act-cn",
+            26
+          ],
+          [
+            "project:act-ce",
+            25
+          ],
+          [
+            "interest:venue",
+            23
+          ],
+          [
+            "comms:justicehub-newsletter",
+            20
+          ],
+          [
+            "goods-inquiry",
+            19
+          ],
+          [
+            "goods-tier-aware",
+            17
+          ],
+          [
+            "interest:container",
+            17
+          ],
+          [
+            "role:council",
+            14
+          ],
+          [
+            "goods-cooling",
+            13
+          ],
+          [
+            "comms:partner-drip",
+            13
+          ],
+          [
+            "goods-hot",
+            12
+          ],
+          [
+            "goods-cold",
+            11
+          ],
+          [
+            "project:act-core",
+            10
+          ],
+          [
+            "project:act-ca",
+            10
+          ],
+          [
+            "role:community-controlled",
+            8
+          ],
+          [
+            "role:media",
+            6
+          ],
+          [
+            "goods-steady",
+            6
+          ],
+          [
+            "role:gov",
+            5
+          ],
+          [
+            "role:advisory",
+            5
+          ],
+          [
+            "role:advisor",
+            4
+          ],
+          [
+            "role:health-service",
+            3
+          ],
+          [
+            "interest:festivals",
+            3
+          ],
+          [
+            "role:policy",
+            2
+          ],
+          [
+            "interest:washer",
+            2
+          ],
+          [
+            "goods-priority-medium",
+            2
+          ],
+          [
+            "goods-priority-high",
+            2
+          ],
+          [
+            "role:researcher",
+            2
+          ],
+          [
+            "goods-bulk-order-inquiry",
+            1
+          ],
+          [
+            "goods-tier-engaged",
+            1
+          ],
+          [
+            "role:elder",
+            1
+          ],
+          [
+            "project:act-in",
+            1
+          ],
+          [
+            "interest:bulk-order",
+            1
+          ],
+          [
+            "goods-showcase",
+            1
+          ],
+          [
+            "role:housing",
+            1
+          ],
+          [
+            "role:housing-provider",
+            1
+          ],
+          [
+            "project:watch",
+            1
+          ],
+          [
+            "project:act-ra",
+            1
+          ],
+          [
+            "project:act-oo",
+            1
+          ],
+          [
+            "project:act-fa",
+            1
+          ],
+          [
+            "project:act-mr",
+            1
+          ],
+          [
+            "project:act-rp",
+            1
+          ],
+          [
+            "project:act-gl",
+            1
+          ],
+          [
+            "interest:storytelling",
+            1
+          ],
+          [
+            "goods-impact-finance",
+            1
+          ],
+          [
+            "goods-new",
+            1
+          ],
+          [
+            "interest:education",
+            1
+          ],
+          [
+            "goods-rfq:washing-machines",
+            1
+          ]
+        ]
+      }
+    }
+  },
+  "candidates": [
+    {
+      "org": "QBE Foundation",
+      "stage": "In conversation",
+      "leadValue": 400000,
+      "owner": "Ben",
+      "tags": [
+        "cap-grant",
+        "geo-national",
+        "goods-capital-target",
+        "goods-strategic-target"
+      ],
+      "nextAction": "Complete PIN working session; submit Stage 2 package — by Sept 2026",
+      "notes": "Anchor / program host (this is the match mechanism, not a match-eligible external commitment). Knockout PASS, 3/3 high-fit, 10/10 fit. Stage 1 AU$10K committed; INV-0289 (AU$10,800) outstanding — chase. Stage 2 up to AU$400K, >=1:1 match, legally-binding evidence verified by SIH Sept 2026. Confirm contact: Jay Boolkin (coordinator), Lauren (climate/inclusion).",
+      "email": "",
+      "contactPath": "Confirm Jay Boolkin / Lauren as formal Stage 2 contact",
+      "crmContactCount": 1,
+      "crmOpportunityCount": 1,
+      "crmContactMatches": [
+        {
+          "name": "qbe foundation",
+          "companyName": "QBE Foundation",
+          "email": "",
+          "tags": [
+            "project:act-gd",
+            "goods-warm",
+            "role:funder",
+            "comms:funder-drip"
+          ]
+        }
+      ],
+      "crmOpportunityMatches": [
+        {
+          "name": "QBE Foundation",
+          "pipeline": "Goods Supporter Journey",
+          "stage": "Ask made",
+          "value": 2000000,
+          "status": "open"
+        }
+      ],
+      "blockers": [],
+      "score": 56,
+      "source": "Investor import CSV + live GHL coverage check"
+    },
+    {
+      "org": "Snow Foundation",
+      "stage": "Proposal / LOI out",
+      "leadValue": 200000,
+      "owner": "Ben",
+      "tags": [
+        "cap-grant",
+        "geo-NT",
+        "priority-shortlist",
+        "goods-capital-target",
+        "goods-strategic-target"
+      ],
+      "nextAction": "Send R4/R5 cover note; ask Snow to be the FIRST signature — decision in next fortnight",
+      "notes": "SHORTLIST #1 (the unlock). Knockout PASS, 3/3, 10/10. ~AU$493K invoiced since 2023 (accrual, unaudited). Ask AU$130-200K NT-restricted, separate from anchor; co-funds the 50-bed in-source run and anchors the blend. Co-owned Ben+Nic. Confirm contact/salutation: Sally Grimsley-Ballard (advisory group) — may not be the formal grants contact.",
+      "email": "",
+      "contactPath": "Confirm formal grants contact; Sally Grimsley-Ballard is known advisory relationship",
+      "crmContactCount": 5,
+      "crmOpportunityCount": 1,
+      "crmContactMatches": [
+        {
+          "name": "georgina byron",
+          "companyName": "Snow Foundation",
+          "email": "g.byron@snowfoundation.org.au",
+          "tags": [
+            "project:act-gd",
+            "goods-hot",
+            "role:funder",
+            "comms:funder-drip"
+          ]
+        },
+        {
+          "name": "maree meredith",
+          "companyName": "Snow Foundation",
+          "email": "m.meredith@snowfoundation.org.au",
+          "tags": [
+            "goods-newsletter",
+            "project:act-gd",
+            "role:supporter",
+            "comms:goods-newsletter",
+            "comms:supporter-drip",
+            "ring:50",
+            "campaign-stage:captured-newsletter-nurture",
+            "engagement:nurture",
+            "cohort:public"
+          ]
+        },
+        {
+          "name": "ashley machuca",
+          "companyName": "Snow Foundation",
+          "email": "a.machuca@snowfoundation.org.au",
+          "tags": [
+            "goods-newsletter",
+            "project:act-gd",
+            "goods-hot",
+            "role:supporter",
+            "comms:goods-newsletter",
+            "role:funder",
+            "comms:funder-drip",
+            "comms:supporter-drip",
+            "campaign-stage:personal-invite",
+            "engagement:personal-vip",
+            "ring:vip",
+            "cohort:public"
+          ]
+        },
+        {
+          "name": "carolyn ludovici",
+          "companyName": "Snow Foundation",
+          "email": "c.ludovici@snowfoundation.org.au",
+          "tags": [
+            "goods-newsletter",
+            "goods-hot",
+            "role:funder",
+            "project:act-gd",
+            "comms:goods-newsletter",
+            "comms:funder-drip",
+            "campaign-stage:personal-invite",
+            "engagement:personal-vip",
+            "ring:vip",
+            "cohort:public"
+          ]
+        },
+        {
+          "name": "matt brein",
+          "companyName": "Snow Foundation",
+          "email": "m.breen@snowfoundation.org.au",
+          "tags": [
+            "goods-newsletter",
+            "project:act-gd",
+            "comms:goods-newsletter",
+            "campaign-stage:captured-newsletter-nurture",
+            "engagement:nurture",
+            "cohort:public",
+            "role:supporter"
+          ]
+        }
+      ],
+      "crmOpportunityMatches": [
+        {
+          "name": "Snow Foundation",
+          "pipeline": "Goods Supporter Journey",
+          "stage": "Stewarding / Reporting",
+          "value": 402930,
+          "status": "open"
+        }
+      ],
+      "blockers": [],
+      "score": 84,
+      "source": "Investor import CSV + live GHL coverage check"
+    },
+    {
+      "org": "Centrecorp Foundation",
+      "stage": "In conversation",
+      "leadValue": 106150,
+      "owner": "Ben",
+      "tags": [
+        "cap-grant",
+        "geo-central-australia",
+        "priority-shortlist",
+        "goods-capital-target",
+        "goods-strategic-target"
+      ],
+      "nextAction": "Get next-round beds to a board decision at the ~26 June board; let it count as match-eligible",
+      "notes": "SHORTLIST #2 (nearest board decision). Knockout PASS, 3/3, fit 8-10/10. ~130 Stretch Beds (~AU$106,150 incl GST, subject to final quote) to ~26 June board. Trust-Deed-bound to Central Australia — forward-beds only, QBE match named as a multiplier. Prior ~AU$123,332 entangled with voided invoices — DO NOT quote externally. Confirm contact: Randle Walker (relationship), Jodie (on thread).",
+      "email": "",
+      "contactPath": "Confirm Randle Walker / Jodie for formal board ask",
+      "crmContactCount": 2,
+      "crmOpportunityCount": 2,
+      "crmContactMatches": [
+        {
+          "name": "centrecorp foundation",
+          "companyName": "",
+          "email": "",
+          "tags": []
+        },
+        {
+          "name": "randle walker",
+          "companyName": "Centrecorp",
+          "email": "randle@centrecorp.com.au",
+          "tags": [
+            "goods-newsletter",
+            "project:act-gd",
+            "project:act-ca",
+            "goods-hot",
+            "audience-brand",
+            "goods-impact-report-needed",
+            "goods-report-board-pack",
+            "goods-report-centrecorp-june26",
+            "goods-story-consent-needed",
+            "role:supporter",
+            "comms:goods-newsletter",
+            "role:corporate",
+            "role:funder",
+            "role:partner",
+            "comms:newsletter",
+            "comms:funder-drip",
+            "comms:supporter-drip",
+            "comms:partner-drip",
+            "comms:act-newsletter"
+          ]
+        }
+      ],
+      "crmOpportunityMatches": [
+        {
+          "name": "Centrecorp Foundation - 130 Stretch Beds - June 26 board",
+          "pipeline": "Goods — Buyer Pipeline",
+          "stage": "Proposed",
+          "value": 106150,
+          "status": "open"
+        },
+        {
+          "name": "Centrecorp Foundation",
+          "pipeline": "Goods Supporter Journey",
+          "stage": "Stewarding / Reporting",
+          "value": 123332,
+          "status": "open"
+        }
+      ],
+      "blockers": [],
+      "score": 75.123,
+      "source": "Investor import CSV + live GHL coverage check"
+    },
+    {
+      "org": "SEFA",
+      "stage": "Contacted",
+      "leadValue": 300000,
+      "owner": "Ben",
+      "tags": [
+        "cap-concessional-debt",
+        "geo-national",
+        "priority-shortlist",
+        "goods-capital-target",
+        "goods-strategic-target"
+      ],
+      "nextAction": "Email Hannah Ebeling to open the lender conversation; be honest the 3 gates are unmet",
+      "notes": "SHORTLIST #3 (senior concessional base). Knockout PASS, 3/3, 10/10. ~AU$300K working-capital line at base of the blend; Jigsaw syndicate-agent option. Three gates NOT yet met: Goods-only financial model, independent-majority fiduciary board, serviceable revenue covenant. Near-term conversation, medium-term signature. Confirm contact: Hannah Ebeling (CEO; open by email not LinkedIn); Joel Bird.",
+      "email": "",
+      "contactPath": "Confirm Hannah Ebeling; Joel Bird may be secondary",
+      "crmContactCount": 5,
+      "crmOpportunityCount": 0,
+      "crmContactMatches": [
+        {
+          "name": "sefa",
+          "companyName": "SEFA",
+          "email": "info@sefa.com.au",
+          "tags": [
+            "audience-brand",
+            "project:act-gd",
+            "role:supporter",
+            "comms:goods-newsletter",
+            "comms:supporter-drip",
+            "comms:act-newsletter",
+            "campaign-stage:captured-newsletter-nurture",
+            "engagement:nurture",
+            "cohort:public"
+          ]
+        },
+        {
+          "name": "leigh brezler",
+          "companyName": "SEFA Partnerships",
+          "email": "leigh.brezler@sefapartnerships.org.au",
+          "tags": [
+            "audience-brand",
+            "project:act-gd",
+            "role:supporter",
+            "comms:goods-newsletter",
+            "comms:supporter-drip",
+            "comms:act-newsletter",
+            "campaign-stage:captured-newsletter-nurture",
+            "engagement:nurture",
+            "cohort:public"
+          ]
+        },
+        {
+          "name": "joel bird",
+          "companyName": "SEFA",
+          "email": "joel.bird@sefa.com.au",
+          "tags": [
+            "audience-brand",
+            "project:act-gd",
+            "role:supporter",
+            "comms:goods-newsletter",
+            "comms:supporter-drip",
+            "comms:act-newsletter",
+            "ring:150",
+            "campaign-stage:captured-newsletter-nurture",
+            "engagement:nurture",
+            "cohort:public"
+          ]
+        },
+        {
+          "name": "jordan meehan",
+          "companyName": "WalknTalk Collective",
+          "email": "jordan@walkntalkcollective.org.au",
+          "tags": []
+        },
+        {
+          "name": "chris bennett",
+          "companyName": "NACCHO",
+          "email": "chris@walkntalkcollective.org.au",
+          "tags": []
+        }
+      ],
+      "crmOpportunityMatches": [],
+      "blockers": [
+        "Three lender gates not met"
+      ],
+      "score": 61,
+      "source": "Investor import CSV + live GHL coverage check"
+    },
+    {
+      "org": "Paul Ramsay Foundation (PFI)",
+      "stage": "Proposal / LOI out",
+      "leadValue": 640000,
+      "owner": "Ben",
+      "tags": [
+        "cap-concessional-debt",
+        "geo-national",
+        "priority-shortlist",
+        "goods-capital-target",
+        "goods-strategic-target"
+      ],
+      "nextAction": "Await EOI feedback; confirm AU$640K still stands and that they will open doors",
+      "notes": "SHORTLIST #4 (catalytic recoverable layer). Knockout PASS, 3/3, 10/10. AU$640K recoverable-grant target, EOI in — ball in their court, founder cannot accelerate. One soft spot: rated only Somewhat on Connections — confirm they will introduce, not just write a cheque. Jigsaw co-investor.",
+      "email": "",
+      "contactPath": "Confirm PFI EOI contact before chase",
+      "crmContactCount": 4,
+      "crmOpportunityCount": 2,
+      "crmContactMatches": [
+        {
+          "name": "paul ramsay foundation",
+          "companyName": "",
+          "email": "suzie@paulramsayfoundation.org.au",
+          "tags": []
+        },
+        {
+          "name": "william frazer",
+          "companyName": "Paul Ramsay Foundation",
+          "email": "wfrazer@paulramsayfoundation.org.au",
+          "tags": [
+            "project:act-gd",
+            "goods-steady",
+            "role:funder",
+            "comms:funder-drip",
+            "ring:50",
+            "audience-brand",
+            "role:supporter",
+            "comms:goods-newsletter",
+            "role:partner",
+            "project:act-jh",
+            "comms:supporter-drip",
+            "comms:act-newsletter",
+            "campaign-stage:captured-newsletter-nurture",
+            "engagement:nurture",
+            "project:contained",
+            "project:contained-adelaide-2026",
+            "cohort:public"
+          ]
+        },
+        {
+          "name": "prebhjot kaur",
+          "companyName": "Paul Ramsay Foundation",
+          "email": "pkaur@paulramsayfoundation.org.au",
+          "tags": [
+            "goods-newsletter",
+            "audience-brand",
+            "project:act-gd",
+            "role:community",
+            "project:act-jh",
+            "role:partner",
+            "lane:community",
+            "campaign-stage:captured-newsletter-nurture",
+            "engagement:nurture",
+            "cohort:public"
+          ]
+        },
+        {
+          "name": "general — paul ramsay foundation",
+          "companyName": "Paul Ramsay Foundation",
+          "email": "hello@paulramsayfoundation.org.au",
+          "tags": [
+            "audience-brand",
+            "role:funder",
+            "project:act-gd",
+            "comms:goods-newsletter",
+            "role:partner",
+            "project:act-jh",
+            "comms:funder-drip",
+            "comms:act-newsletter",
+            "campaign-stage:personal-invite",
+            "engagement:personal-vip",
+            "project:contained",
+            "project:contained-adelaide-2026",
+            "ring:vip",
+            "cohort:public"
+          ]
+        }
+      ],
+      "crmOpportunityMatches": [
+        {
+          "name": "Paul Ramsay Foundation",
+          "pipeline": "Goods Supporter Journey",
+          "stage": "Ask made",
+          "value": 0,
+          "status": "open"
+        },
+        {
+          "name": "general — paul ramsay foundation — CONTAINED engagement",
+          "pipeline": "CONTAINED Engagement",
+          "stage": "Identified",
+          "value": 0,
+          "status": "open"
+        }
+      ],
+      "blockers": [
+        "Funder-led timing"
+      ],
+      "score": 89,
+      "source": "Investor import CSV + live GHL coverage check"
+    },
+    {
+      "org": "Indigenous Business Australia (IBA)",
+      "stage": "In conversation",
+      "leadValue": 5000000,
+      "owner": "Nic",
+      "tags": [
+        "cap-concessional-debt",
+        "geo-national",
+        "priority-shortlist",
+        "goods-capital-target",
+        "goods-strategic-target"
+      ],
+      "nextAction": "Build the business plan to qualify; decide entity/Indigenous-ownership structure",
+      "notes": "SHORTLIST #5 (later senior anchor — NOT first-AU$400K tranche). Knockout PASS, 3/3, 10/10. Up to AU$5M (typical 30% grant / 70% debt); value shown is the facility ceiling, not a near-term ask. Gated on business plan + the entity/Indigenous-ownership decision (which gates eligibility). Owner Nic.",
+      "email": "",
+      "contactPath": "Confirm IBA relationship contact; Nic owns path",
+      "crmContactCount": 0,
+      "crmOpportunityCount": 0,
+      "crmContactMatches": [],
+      "crmOpportunityMatches": [],
+      "blockers": [
+        "Business plan/entity path not complete"
+      ],
+      "score": 72,
+      "source": "Investor import CSV + live GHL coverage check"
+    },
+    {
+      "org": "First Australians Capital",
+      "stage": "Qualified (passes knockouts)",
+      "leadValue": 500000,
+      "owner": "Nic",
+      "tags": [
+        "cap-concessional-debt",
+        "geo-national",
+        "goods-capital-target",
+        "goods-strategic-target"
+      ],
+      "nextAction": "Seek a warm intro via IBA or SIH; research specific deal terms",
+      "notes": "BENCH (keep warm). Knockout PASS, 3/3, 10/10. Indigenous-led CDFI; indicative AU$100-500K debt (value = top of band). Position as complementary to / split facility with IBA senior debt. Research-stage — not yet contacted. Owner Nic.",
+      "email": "",
+      "contactPath": "Needs warm intro via IBA or SIH",
+      "crmContactCount": 0,
+      "crmOpportunityCount": 0,
+      "crmContactMatches": [],
+      "crmOpportunityMatches": [],
+      "blockers": [],
+      "score": 30,
+      "source": "Investor import CSV + live GHL coverage check"
+    },
+    {
+      "org": "Minderoo Foundation",
+      "stage": "Parked",
+      "leadValue": 200000,
+      "owner": "Ben",
+      "tags": [
+        "cap-grant",
+        "geo-national",
+        "knockout-unconfirmed",
+        "goods-capital-target",
+        "goods-strategic-target"
+      ],
+      "nextAction": "Hold warm via Lucy Stronach until the June 2026 board; confirm geography/mandate fit before any ask",
+      "notes": "PARKED — knockout UNCONFIRMED (Geography). Killer uncertainty: stated priorities are oceans + modern slavery; fit to remote-housing-durability/economic-inclusion is unconfirmed in the wiki. Every other knockout looks aligned. AU$200K catalytic-bucket target. Gated on June 2026 Minderoo Board justice-strategy decision. Connector: Beck Parkinson. Email lstronach@minderoo.org is real (Lucy Stronach).",
+      "email": "lstronach@minderoo.org",
+      "contactPath": "Lucy Stronach email is in source; confirm mandate before ask",
+      "crmContactCount": 1,
+      "crmOpportunityCount": 2,
+      "crmContactMatches": [
+        {
+          "name": "lucy stronach",
+          "companyName": "Minderoo Foundation",
+          "email": "lstronach@minderoo.org",
+          "tags": [
+            "project:act-gd",
+            "goods-steady",
+            "role:funder",
+            "comms:funder-drip",
+            "ring:50",
+            "goods-newsletter",
+            "contained-personal-outreach",
+            "contained",
+            "project:act-ce",
+            "audience-brand",
+            "role:supporter",
+            "comms:goods-newsletter",
+            "project:act-jh",
+            "interest:justice-reform",
+            "role:partner",
+            "project:act-cn",
+            "comms:newsletter",
+            "comms:supporter-drip",
+            "comms:partner-drip",
+            "comms:justicehub-newsletter",
+            "comms:act-newsletter",
+            "campaign-stage:needs-enrichment",
+            "engagement:warm",
+            "newsletter-stream:funder-brief",
+            "newsletter-stream:youth-justice-brief",
+            "project:contained",
+            "project:contained-adelaide-2026",
+            "cohort:public"
+          ]
+        }
+      ],
+      "crmOpportunityMatches": [
+        {
+          "name": "Minderoo Foundation",
+          "pipeline": "Goods Supporter Journey",
+          "stage": "Ask made",
+          "value": 200000,
+          "status": "open"
+        },
+        {
+          "name": "lucy stronach — CONTAINED engagement",
+          "pipeline": "CONTAINED Engagement",
+          "stage": "Personal outreach",
+          "value": 0,
+          "status": "open"
+        }
+      ],
+      "blockers": [
+        "Knockout unconfirmed"
+      ],
+      "score": -9,
+      "source": "Investor import CSV + live GHL coverage check"
+    },
+    {
+      "org": "Tim Fairfax Family Foundation",
+      "stage": "Parked",
+      "leadValue": 150000,
+      "owner": "Ben",
+      "tags": [
+        "cap-grant",
+        "geo-QLD",
+        "knockout-unconfirmed",
+        "goods-capital-target",
+        "goods-strategic-target"
+      ],
+      "nextAction": "Keep warm via Katie Norman; lead with Palm Island + youth jobs; confirm stage/ticket/instrument fit",
+      "notes": "PARKED — knockout UNCONFIRMED (Capital Type / Stage / Size). Killer uncertainty: strong geography+mission (QLD, remote, Indigenous, community dev) but profile does not confirm they fund at Goods' early-commercial stage, ticket band, or instrument. Indicative AU$50-150K grant (value = top of band). Grant-layer complement to Snow R4. Confirm contact: Katie Norman.",
+      "email": "",
+      "contactPath": "Confirm Katie Norman as advisory path",
+      "crmContactCount": 3,
+      "crmOpportunityCount": 2,
+      "crmContactMatches": [
+        {
+          "name": "vincent fairfax family foundation",
+          "companyName": "",
+          "email": "",
+          "tags": []
+        },
+        {
+          "name": "katie norman",
+          "companyName": "Tim Fairfax Family Foundation",
+          "email": "knorman@tfff.org.au",
+          "tags": [
+            "audience-brand",
+            "project:act-gd",
+            "goods-warm",
+            "role:supporter",
+            "comms:goods-newsletter",
+            "role:funder",
+            "comms:funder-drip",
+            "comms:supporter-drip",
+            "comms:act-newsletter",
+            "ring:50",
+            "campaign-stage:personal-invite",
+            "engagement:personal-vip",
+            "project:contained",
+            "project:contained-adelaide-2026",
+            "ring:vip",
+            "cohort:public"
+          ]
+        },
+        {
+          "name": "el schwanke",
+          "companyName": "Vincent Fairfax Family Foundation",
+          "email": "elschwanke@vfff.org.au",
+          "tags": [
+            "goods-newsletter",
+            "project:act-gd",
+            "goods-cooling",
+            "audience-brand",
+            "role:supporter",
+            "comms:goods-newsletter",
+            "role:funder",
+            "role:partner",
+            "comms:newsletter",
+            "comms:funder-drip",
+            "comms:supporter-drip",
+            "comms:partner-drip",
+            "comms:act-newsletter"
+          ]
+        }
+      ],
+      "crmOpportunityMatches": [
+        {
+          "name": "Tim Fairfax Family Foundation",
+          "pipeline": "Goods Supporter Journey",
+          "stage": "Ask made",
+          "value": 0,
+          "status": "open"
+        },
+        {
+          "name": "Vincent Fairfax Family Foundation",
+          "pipeline": "Goods Supporter Journey",
+          "stage": "Stewarding / Reporting",
+          "value": 50000,
+          "status": "open"
+        }
+      ],
+      "blockers": [
+        "Knockout unconfirmed"
+      ],
+      "score": -10,
+      "source": "Investor import CSV + live GHL coverage check"
+    },
+    {
+      "org": "FRRR",
+      "stage": "In conversation",
+      "leadValue": 0,
+      "owner": "Ben",
+      "tags": [
+        "cap-grant",
+        "geo-remote-australia",
+        "goods-capital-target",
+        "goods-strategic-target"
+      ],
+      "nextAction": "Contact Steph Pearson re a second ask coordinated with the QBE match process",
+      "notes": "BENCH / received. Knockout PASS, 3/3, 10/10. Received AU$50K Backing the Future (JOINT with VFFF — one grant, not two); Palm Island acquittal complete Mar 2026. Already a QBE Local Division Partnership — may be receptive to a coordinated second ask. No new ask amount set yet — VALUE BLANK. Contact Steph Pearson (s.pearson@frrr.org.au, real).",
+      "email": "s.pearson@frrr.org.au",
+      "contactPath": "Steph Pearson email is in source",
+      "crmContactCount": 3,
+      "crmOpportunityCount": 1,
+      "crmContactMatches": [
+        {
+          "name": "steph pearson",
+          "companyName": "",
+          "email": "s.pearson@frrr.org.au",
+          "tags": [
+            "goods-inquiry",
+            "goods-newsletter",
+            "goods-cooling",
+            "source:inquiry",
+            "project:act-gd",
+            "role:community",
+            "source:gmail-discovery",
+            "role:funder",
+            "lane:community",
+            "role:buyer",
+            "goods-tier-aware",
+            "campaign-stage:personal-invite",
+            "engagement:personal-vip",
+            "newsletter-stream:daily-adelaide-recap",
+            "newsletter-stream:funder-brief",
+            "newsletter-stream:media-pack",
+            "newsletter-stream:youth-justice-brief",
+            "ring:vip",
+            "cohort:public"
+          ]
+        },
+        {
+          "name": "foundation for rural & regional renewal",
+          "companyName": "",
+          "email": "news@frrrnews.org.au",
+          "tags": []
+        },
+        {
+          "name": "danielle griffin",
+          "companyName": "",
+          "email": "d.griffin@frrr.org.au",
+          "tags": []
+        }
+      ],
+      "crmOpportunityMatches": [
+        {
+          "name": "FRRR",
+          "pipeline": "Goods Supporter Journey",
+          "stage": "Stewarding / Reporting",
+          "value": 50000,
+          "status": "open"
+        }
+      ],
+      "blockers": [],
+      "score": 48,
+      "source": "Investor import CSV + live GHL coverage check"
+    },
+    {
+      "org": "VFFF",
+      "stage": "In conversation",
+      "leadValue": 0,
+      "owner": "Ben",
+      "tags": [
+        "cap-grant",
+        "geo-remote-australia",
+        "goods-capital-target",
+        "goods-strategic-target"
+      ],
+      "nextAction": "Explore a VFFF Round 2; confirm appetite via N. Chinner / E. Schwanke",
+      "notes": "BENCH / received. Knockout PASS, 3/3, 9/10. Co-funder of the AU$50K Backing the Future grant (FRRR administers). Explore Round 2 as part of the philanthropic layer. No new ask amount set yet — VALUE BLANK. Contacts: N. Chinner (nchinner@vfff.org.au), E. Schwanke (elschwanke@vfff.org.au) — both real.",
+      "email": "nchinner@vfff.org.au",
+      "contactPath": "N. Chinner / E. Schwanke emails are in source",
+      "crmContactCount": 2,
+      "crmOpportunityCount": 2,
+      "crmContactMatches": [
+        {
+          "name": "vincent fairfax family foundation",
+          "companyName": "",
+          "email": "",
+          "tags": []
+        },
+        {
+          "name": "el schwanke",
+          "companyName": "Vincent Fairfax Family Foundation",
+          "email": "elschwanke@vfff.org.au",
+          "tags": [
+            "goods-newsletter",
+            "project:act-gd",
+            "goods-cooling",
+            "audience-brand",
+            "role:supporter",
+            "comms:goods-newsletter",
+            "role:funder",
+            "role:partner",
+            "comms:newsletter",
+            "comms:funder-drip",
+            "comms:supporter-drip",
+            "comms:partner-drip",
+            "comms:act-newsletter"
+          ]
+        }
+      ],
+      "crmOpportunityMatches": [
+        {
+          "name": "Fairfax Goods Grant",
+          "pipeline": "A Curious Tractor",
+          "stage": "Graduation",
+          "value": 50000,
+          "status": "won"
+        },
+        {
+          "name": "Vincent Fairfax Family Foundation",
+          "pipeline": "Goods Supporter Journey",
+          "stage": "Stewarding / Reporting",
+          "value": 50000,
+          "status": "open"
+        }
+      ],
+      "blockers": [],
+      "score": 48,
+      "source": "Investor import CSV + live GHL coverage check"
+    },
+    {
+      "org": "AMP Foundation (Spark)",
+      "stage": "Parked",
+      "leadValue": 0,
+      "owner": "Ben",
+      "tags": [
+        "cap-grant",
+        "geo-national",
+        "knockout-unconfirmed",
+        "goods-capital-target",
+        "goods-strategic-target"
+      ],
+      "nextAction": "Light-touch — confirm purpose, acquittal, and alumni pathway",
+      "notes": "PARKED — knockout UNCONFIRMED (Geography / Size / Stage). Killer uncertainty: thin profile — no stated geographic mandate, ticket range, or stage focus for a follow-on. Received AU$21.9K Spark (Jun 2024); warm. Credentialing relationship, not a core first-AU$400K target. No new ask amount set — VALUE BLANK.",
+      "email": "",
+      "contactPath": "Confirm AMP/Spark alumni pathway contact",
+      "crmContactCount": 1,
+      "crmOpportunityCount": 1,
+      "crmContactMatches": [
+        {
+          "name": "amp foundation tomorrow makers",
+          "companyName": "AMP Foundation",
+          "email": "ampfoundation_tomorrowmakers@amp.com.au",
+          "tags": [
+            "goods-cooling",
+            "audience-brand",
+            "role:funder",
+            "project:act-gd",
+            "comms:goods-newsletter",
+            "comms:funder-drip",
+            "comms:act-newsletter",
+            "campaign-stage:personal-invite",
+            "engagement:personal-vip",
+            "ring:vip",
+            "cohort:public"
+          ]
+        }
+      ],
+      "crmOpportunityMatches": [
+        {
+          "name": "AMP Foundation",
+          "pipeline": "Goods Supporter Journey",
+          "stage": "Stewarding / Reporting",
+          "value": 21900,
+          "status": "open"
+        }
+      ],
+      "blockers": [
+        "Knockout unconfirmed"
+      ],
+      "score": -13,
+      "source": "Investor import CSV + live GHL coverage check"
+    },
+    {
+      "org": "The Funding Network (TFN)",
+      "stage": "In conversation",
+      "leadValue": 0,
+      "owner": "Ben",
+      "tags": [
+        "cap-grant",
+        "geo-national",
+        "goods-capital-target",
+        "goods-strategic-target"
+      ],
+      "nextAction": "Return for follow-on or, more valuably, referral to downstream funders",
+      "notes": "BENCH / connector. Knockout PASS, 3/3, 10/10. Received AU$130K (Dec 2025); relationship active. Most valuable as an alumni-network CONNECTOR to downstream funders, not a follow-on cheque. No new ask amount set — VALUE BLANK.",
+      "email": "",
+      "contactPath": "Confirm TFN alumni/network contact",
+      "crmContactCount": 3,
+      "crmOpportunityCount": 1,
+      "crmContactMatches": [
+        {
+          "name": "the funding network",
+          "companyName": "",
+          "email": "",
+          "tags": []
+        },
+        {
+          "name": "kristen lark",
+          "companyName": "The Funding Network",
+          "email": "kristen.lark@thefundingnetwork.com.au",
+          "tags": [
+            "goods-cooling",
+            "audience-brand",
+            "role:funder",
+            "project:act-gd",
+            "comms:goods-newsletter",
+            "comms:funder-drip",
+            "comms:act-newsletter",
+            "campaign-stage:personal-invite",
+            "engagement:personal-vip",
+            "ring:vip",
+            "cohort:public"
+          ]
+        },
+        {
+          "name": "maddi alderuccio",
+          "companyName": "The Funding Network",
+          "email": "madeline.alderuccio@thefundingnetwork.com.au",
+          "tags": [
+            "goods-newsletter",
+            "project:act-ca",
+            "project:act-gd",
+            "goods-cooling",
+            "audience-brand",
+            "role:supporter",
+            "comms:goods-newsletter",
+            "role:funder",
+            "role:partner",
+            "comms:newsletter",
+            "comms:funder-drip",
+            "comms:supporter-drip",
+            "comms:partner-drip",
+            "comms:act-newsletter"
+          ]
+        }
+      ],
+      "crmOpportunityMatches": [
+        {
+          "name": "The Funding Network",
+          "pipeline": "Goods Supporter Journey",
+          "stage": "Stewarding / Reporting",
+          "value": 130000,
+          "status": "open"
+        }
+      ],
+      "blockers": [],
+      "score": 48,
+      "source": "Investor import CSV + live GHL coverage check"
+    },
+    {
+      "org": "QBE Ventures",
+      "stage": "Declined",
+      "leadValue": 0,
+      "owner": "Ben",
+      "tags": [
+        "cap-equity-NO",
+        "knockout-fail",
+        "goods-strategic-target"
+      ],
+      "nextAction": "Re-evaluate after the legal-structure decision lands (2027); Lighthouse is the only 2026 door",
+      "notes": "DECLINED — knockout FAIL. Killer criterion: Capital Type — equity / SAFEs / convertible notes only; Goods needs grants + concessional debt, no equity in 2026. Also fails Legal Structure (equity into eventual CLG/hybrid is complex, forces a new entity) and Stage of Growth (standard cheque AU$5-15M scale-up equity vs early-commercial de-risking). 2/3 high-fit, 7/10. Lighthouse discovery program is the one narrow 2026-compatible pathway. Confirm contact: 'Alex' (first name only in sources).",
+      "email": "",
+      "contactPath": "Confirm Alex / Lighthouse-only path for 2027",
+      "crmContactCount": 0,
+      "crmOpportunityCount": 0,
+      "crmContactMatches": [],
+      "crmOpportunityMatches": [],
+      "blockers": [
+        "Knockout failed"
+      ],
+      "score": -103,
+      "source": "Investor import CSV + live GHL coverage check"
+    }
+  ],
+  "livePotentialOpps": [
+    {
+      "id": "f8CVsp8afeeuqnSsHBUM",
+      "name": "QBE Foundation",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "a23b26b4-ace3-4199-8a14-b65ed888aa52",
+      "stage": "Ask made",
+      "value": 2000000,
+      "status": "open",
+      "contactId": "vsxUqDjzEYUkLVSNZqse",
+      "contactName": "QBE Foundation",
+      "source": "",
+      "updatedAt": "2026-05-31T23:10:10.686Z"
+    },
+    {
+      "id": "zAZtJBfdQ0PBdFYUDCLw",
+      "name": "REAL Innovation Fund (DEWR)",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "a23b26b4-ace3-4199-8a14-b65ed888aa52",
+      "stage": "Ask made",
+      "value": 2000000,
+      "status": "open",
+      "contactId": "MymJIeUEL8btnnIT7bJB",
+      "contactName": "REAL Innovation Fund",
+      "source": "",
+      "updatedAt": "2026-05-31T23:23:56.363Z"
+    },
+    {
+      "id": "Ds4wOLantvPGzEZYrNf1",
+      "name": "2026 Research Acceleration Awards — Women And Infants Research Fou",
+      "pipelineId": "scom3L0kNwA1W0zPIzMe",
+      "pipeline": "Grants",
+      "stageId": "8124c61a-1175-461e-be5d-1fa64ef6dd65",
+      "stage": "Grant Opportunity Identified",
+      "value": 500000,
+      "status": "open",
+      "contactId": "uAsIUWBHez3DzVex8rtm",
+      "contactName": "GrantScope Triage",
+      "source": "",
+      "updatedAt": "2026-06-08T23:21:10.187Z"
+    },
+    {
+      "id": "qqMUNJI4qHbPR2lLHqn9",
+      "name": "Snow Foundation",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "3e38f65b-a515-4e32-9fc9-57ea1531edc6",
+      "stage": "Stewarding / Reporting",
+      "value": 402930,
+      "status": "open",
+      "contactId": "laCUDrYPbaEP5rC9UEcf",
+      "contactName": "Carolyn Ludovici",
+      "source": "",
+      "updatedAt": "2026-06-01T01:42:45.356Z"
+    },
+    {
+      "id": "7FHIwiztoQDOu1nHBq1H",
+      "name": "NATIONAL ABORIGINAL AND TORRES STRAIT ISLANDER FLEXIBLE AGED CARE PROGRAM IT GRANT OPPORTUNITY EARLY 2026 [",
+      "pipelineId": "scom3L0kNwA1W0zPIzMe",
+      "pipeline": "Grants",
+      "stageId": "8124c61a-1175-461e-be5d-1fa64ef6dd65",
+      "stage": "Grant Opportunity Identified",
+      "value": 260000,
+      "status": "open",
+      "contactId": "VfEBYrMWswkt7jfYjmd0",
+      "contactName": "Rachel Atkinson",
+      "source": "",
+      "updatedAt": "2026-06-09T02:28:58.194Z"
+    },
+    {
+      "id": "fDwIxiQjAr0EdQf5ZW3g",
+      "name": "Regional Business Gateways (Qld) — Harvest — $250-600K — EOI closes 17 Jul 2026",
+      "pipelineId": "scom3L0kNwA1W0zPIzMe",
+      "pipeline": "Grants",
+      "stageId": "8124c61a-1175-461e-be5d-1fa64ef6dd65",
+      "stage": "Grant Opportunity Identified",
+      "value": 250000,
+      "status": "open",
+      "contactId": "EifRnI53zg8NvrpL3k6e",
+      "contactName": "Business Queensland (CDSB) — Regional Business Gateways",
+      "source": "",
+      "updatedAt": "2026-06-07T10:38:20.409Z"
+    },
+    {
+      "id": "zQZWXJyILdvzwm8OACPr",
+      "name": "Minderoo Foundation",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "a23b26b4-ace3-4199-8a14-b65ed888aa52",
+      "stage": "Ask made",
+      "value": 200000,
+      "status": "open",
+      "contactId": "bkZQ6vDNekvTtUVV1TpI",
+      "contactName": "Lucy Stronach",
+      "source": "",
+      "updatedAt": "2026-05-31T23:21:44.477Z"
+    },
+    {
+      "id": "2Do48BPXGyCflnYfz9aI",
+      "name": "Indigenous Languages and Arts - Open Competitive Grant Opportunity 2026",
+      "pipelineId": "scom3L0kNwA1W0zPIzMe",
+      "pipeline": "Grants",
+      "stageId": "3eb617e6-5635-4091-bd04-acc72d2ae5b0",
+      "stage": "Application In Progress",
+      "value": 200000,
+      "status": "open",
+      "contactId": "VfEBYrMWswkt7jfYjmd0",
+      "contactName": "Rachel Atkinson",
+      "source": "https://www.grants.gov.au/Go/Show?GoUuid=6175e504-aa5e-4d2a-92c0-e2e6d4d9dded",
+      "updatedAt": "2026-06-09T02:28:58.194Z"
+    },
+    {
+      "id": "XyQ1n71CS3RU6mRKBo7n",
+      "name": "The Funding Network",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "3e38f65b-a515-4e32-9fc9-57ea1531edc6",
+      "stage": "Stewarding / Reporting",
+      "value": 130000,
+      "status": "open",
+      "contactId": "eCzgIXkVKLh3B413GVde",
+      "contactName": "Kristen Lark",
+      "source": "",
+      "updatedAt": "2026-05-31T23:56:51.072Z"
+    },
+    {
+      "id": "KZSUEe89wSm1vMLYMUr8",
+      "name": "Centrecorp Foundation",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "3e38f65b-a515-4e32-9fc9-57ea1531edc6",
+      "stage": "Stewarding / Reporting",
+      "value": 123332,
+      "status": "open",
+      "contactId": "ehnCEv62bCaGNTd1QuGp",
+      "contactName": "Randle Walker",
+      "source": "",
+      "updatedAt": "2026-06-01T00:24:11.133Z"
+    },
+    {
+      "id": "TUpPBR3c76JeuksojRz1",
+      "name": "Centrecorp Foundation - 130 Stretch Beds - June 26 board",
+      "pipelineId": "FjMyJM3YzWQFmKqR9fur",
+      "pipeline": "Goods — Buyer Pipeline",
+      "stageId": "e23847c3-5f74-4da6-a907-6c3d6d45008c",
+      "stage": "Proposed",
+      "value": 106150,
+      "status": "open",
+      "contactId": "ehnCEv62bCaGNTd1QuGp",
+      "contactName": "Randle Walker",
+      "source": "",
+      "updatedAt": "2026-06-10T19:04:43.602Z"
+    },
+    {
+      "id": "hBe1beU590KWh1NIiROc",
+      "name": "Indigenous Languages and Arts - Open Competitive Grant Opportunity 2026",
+      "pipelineId": "scom3L0kNwA1W0zPIzMe",
+      "pipeline": "Grants",
+      "stageId": "3eb617e6-5635-4091-bd04-acc72d2ae5b0",
+      "stage": "Application In Progress",
+      "value": 100000,
+      "status": "open",
+      "contactId": "fnCak04opqtSP8QPfD2G",
+      "contactName": "Shaun Fisher",
+      "source": "ACT Intelligence",
+      "updatedAt": "2026-06-07T18:56:17.317Z"
+    },
+    {
+      "id": "aoQOBrSfVUz6XPwMkQLV",
+      "name": "Rotary Eclub Outback Australia",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "a23b26b4-ace3-4199-8a14-b65ed888aa52",
+      "stage": "Ask made",
+      "value": 82500,
+      "status": "open",
+      "contactId": "huXguIGvyFHkixustqey",
+      "contactName": "Accounts Rotary Eclub Outback Australia, Division 9560",
+      "source": "",
+      "updatedAt": "2026-05-31T23:11:57.495Z"
+    },
+    {
+      "id": "L49Oi4l2b2J6miZJZl9C",
+      "name": "FRRR",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "3e38f65b-a515-4e32-9fc9-57ea1531edc6",
+      "stage": "Stewarding / Reporting",
+      "value": 50000,
+      "status": "open",
+      "contactId": "jatY7yhZL4h5OtexuCJ1",
+      "contactName": "Steph Pearson",
+      "source": "",
+      "updatedAt": "2026-06-09T02:38:29.430Z"
+    },
+    {
+      "id": "DhnO6BxwW2q0Yfb2cqVG",
+      "name": "Vincent Fairfax Family Foundation",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "3e38f65b-a515-4e32-9fc9-57ea1531edc6",
+      "stage": "Stewarding / Reporting",
+      "value": 50000,
+      "status": "open",
+      "contactId": "G4vUZfUSQadk1R4KGRZC",
+      "contactName": "El Schwanke",
+      "source": "",
+      "updatedAt": "2026-05-31T23:56:50.282Z"
+    },
+    {
+      "id": "aasLMpGbpMRHQTVTZRbu",
+      "name": "Professional Development Workshops — The Dyslexia Speld Foundation ",
+      "pipelineId": "scom3L0kNwA1W0zPIzMe",
+      "pipeline": "Grants",
+      "stageId": "8124c61a-1175-461e-be5d-1fa64ef6dd65",
+      "stage": "Grant Opportunity Identified",
+      "value": 50000,
+      "status": "open",
+      "contactId": "uAsIUWBHez3DzVex8rtm",
+      "contactName": "GrantScope Triage",
+      "source": "",
+      "updatedAt": "2026-06-08T23:21:10.187Z"
+    },
+    {
+      "id": "zD6MJc2OaESlItFvBf9t",
+      "name": "Homeland School Company",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "15b7b876-16e3-4c57-84e6-7c09d703888e",
+      "stage": "Delivering",
+      "value": 44000,
+      "status": "open",
+      "contactId": "hv7tFXO8UGDq3dMc98SG",
+      "contactName": "Accounts Homeland School Company",
+      "source": "",
+      "updatedAt": "2026-05-31T23:12:01.123Z"
+    },
+    {
+      "id": "h2MuUfvVaEeqM1djcTw1",
+      "name": "Qld Gives - Dec 25",
+      "pipelineId": "scom3L0kNwA1W0zPIzMe",
+      "pipeline": "Grants",
+      "stageId": "8b0818ce-3fe8-4aae-97ab-905366fdd5ee",
+      "stage": "Grant Submitted",
+      "value": 40000,
+      "status": "open",
+      "contactId": "wQVJE0BSUbasxNGSUuSE",
+      "contactName": "Seana Osbourne",
+      "source": "https://queenslandgives.org.au/grants/general-fund-grant-making/",
+      "updatedAt": "2026-06-07T18:55:07.766Z"
+    },
+    {
+      "id": "F8VWhCxMMDZeRHRaPv1V",
+      "name": "2026 NAIDOC Local Grants Opportunity",
+      "pipelineId": "scom3L0kNwA1W0zPIzMe",
+      "pipeline": "Grants",
+      "stageId": "8124c61a-1175-461e-be5d-1fa64ef6dd65",
+      "stage": "Grant Opportunity Identified",
+      "value": 25000,
+      "status": "open",
+      "contactId": "yk4uK8rgDNGA87EUqNbu",
+      "contactName": "Kristy Bloomfield",
+      "source": "",
+      "updatedAt": "2026-06-14T02:47:27.097Z"
+    },
+    {
+      "id": "s9M9mZEDSCpRepxyhaG3",
+      "name": "AMP Foundation",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "3e38f65b-a515-4e32-9fc9-57ea1531edc6",
+      "stage": "Stewarding / Reporting",
+      "value": 21900,
+      "status": "open",
+      "contactId": "wJXLZamvwqPSXxjtd6CC",
+      "contactName": "AMP Foundation Tomorrow Makers",
+      "source": "",
+      "updatedAt": "2026-05-31T23:56:51.892Z"
+    },
+    {
+      "id": "4Pj3I50fVumajVGM4pzG",
+      "name": "Our Community Shed",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "ff90ea45-2196-4a7a-a311-8f27c3c7cda6",
+      "stage": "Renewing",
+      "value": 20265,
+      "status": "open",
+      "contactId": "SYhvJjn05QVkvbFJPhGv",
+      "contactName": "Coordinator — Our Community Shed",
+      "source": "",
+      "updatedAt": "2026-05-31T23:56:55.111Z"
+    },
+    {
+      "id": "BgnVYnDSpv7rkIHzaVMg",
+      "name": "Julalikari Council Aboriginal Corp",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "ff90ea45-2196-4a7a-a311-8f27c3c7cda6",
+      "stage": "Renewing",
+      "value": 19800,
+      "status": "open",
+      "contactId": "OSWHIOCG3vHdyAEHot6F",
+      "contactName": "GM Corporate — Julalikari",
+      "source": "",
+      "updatedAt": "2026-05-31T23:56:54.335Z"
+    },
+    {
+      "id": "p8kfEWpLqyaeR5pUCSn7",
+      "name": "Red Dust",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "3e38f65b-a515-4e32-9fc9-57ea1531edc6",
+      "stage": "Stewarding / Reporting",
+      "value": 15950,
+      "status": "open",
+      "contactId": "3v2RCOhzU5fCgsxEDgff",
+      "contactName": "Fiona Scicluna",
+      "source": "",
+      "updatedAt": "2026-05-31T23:56:52.673Z"
+    },
+    {
+      "id": "97JpDZ8tcaLXuh0Au89k",
+      "name": "QIC",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "3e38f65b-a515-4e32-9fc9-57ea1531edc6",
+      "stage": "Stewarding / Reporting",
+      "value": 12000,
+      "status": "open",
+      "contactId": "0ShRsxG5CBklEgpCIQQU",
+      "contactName": "Justin Welfare",
+      "source": "",
+      "updatedAt": "2026-05-31T23:56:53.466Z"
+    },
+    {
+      "id": "il3UzxiULN0FcLSAKJCI",
+      "name": "Mala'la Health Service Aboriginal Corp",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "3e38f65b-a515-4e32-9fc9-57ea1531edc6",
+      "stage": "Stewarding / Reporting",
+      "value": 5434,
+      "status": "open",
+      "contactId": "Z6POQ8e2wtBKSWDuPLEx",
+      "contactName": "Accounts Mala’la Health Service Aboriginal Corporation",
+      "source": "",
+      "updatedAt": "2026-05-31T23:56:56.398Z"
+    },
+    {
+      "id": "fPj88zqC6RoVzsmdRfnt",
+      "name": "The Trustee For Brisbane Powerhouse Foundation — philanthropy prospect",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "DuFuIL2RIYXnP5rQ9VdM",
+      "contactName": "The Trustee For Brisbane Powerhouse Foundation",
+      "source": "",
+      "updatedAt": "2026-06-07T10:36:40.742Z"
+    },
+    {
+      "id": "LmyVsecxIRAtQLkqu7S7",
+      "name": "Streetsmart Australia — philanthropy prospect",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "JTEvwifZrwAbQ0iBSwYZ",
+      "contactName": "Streetsmart Australia",
+      "source": "",
+      "updatedAt": "2026-06-07T10:36:38.212Z"
+    },
+    {
+      "id": "VRFgg5hW9XtmKRXuC8Rw",
+      "name": "Regional Arts Australia — philanthropy prospect",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "2vtRL71b3ZnpQmeIBTnP",
+      "contactName": "Regional Arts Australia",
+      "source": "",
+      "updatedAt": "2026-06-07T10:36:35.986Z"
+    },
+    {
+      "id": "STxbWqSdhI6INozX5CVI",
+      "name": "Social Impact Hub Foundation — philanthropy prospect",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "36rP4PyOwtyeQwqctYpM",
+      "contactName": "Social Impact Hub Foundation",
+      "source": "",
+      "updatedAt": "2026-06-07T10:36:33.745Z"
+    },
+    {
+      "id": "yOYoGXzFqNg9KRAjrSYt",
+      "name": "The Trustee for Westpac Scholars Trust — philanthropy prospect",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "iwFqh8WjsFNO91ORk5OC",
+      "contactName": "The Trustee for Westpac Scholars Trust",
+      "source": "",
+      "updatedAt": "2026-06-07T10:36:31.315Z"
+    },
+    {
+      "id": "KhVLBI65lSvV5vuhYAhY",
+      "name": "Sally Knox - Funder Lead",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "yAlAcbmzacZWICuoJvJB",
+      "contactName": "Sally Knox",
+      "source": "",
+      "updatedAt": "2026-05-31T22:51:51.964Z"
+    },
+    {
+      "id": "TVozgT8b4o8mDbEQMFHH",
+      "name": "John Chambers - Funder Lead",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "x957DZg5cNXfzuw6keTQ",
+      "contactName": "John Chambers",
+      "source": "",
+      "updatedAt": "2026-05-31T22:51:54.978Z"
+    },
+    {
+      "id": "2oRNt8FEpvBnbBAZzgCb",
+      "name": "Eloise Hall - Impact Investor",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "524aca71-287d-4eeb-a53a-66ff3a7aede5",
+      "stage": "Cultivating",
+      "value": 0,
+      "status": "open",
+      "contactId": "OKXlDD1Rjz5pHU4l1acb",
+      "contactName": "Eloise Hall",
+      "source": "",
+      "updatedAt": "2026-05-31T23:10:16.465Z"
+    },
+    {
+      "id": "ihodM2eQqGW7UlS7WeKp",
+      "name": "Tim Fairfax Family Foundation",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "a23b26b4-ace3-4199-8a14-b65ed888aa52",
+      "stage": "Ask made",
+      "value": 0,
+      "status": "open",
+      "contactId": "LrnFSa8OwzINnTHCmIGj",
+      "contactName": "Katie Norman",
+      "source": "",
+      "updatedAt": "2026-05-31T23:21:49.575Z"
+    },
+    {
+      "id": "oZejjLcisgyDGnfJCbZj",
+      "name": "Dusseldorp Forum",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "524aca71-287d-4eeb-a53a-66ff3a7aede5",
+      "stage": "Cultivating",
+      "value": 0,
+      "status": "open",
+      "contactId": "3LNDa9OQDi3ztpZFHJr2",
+      "contactName": "Dusseldorp Forum",
+      "source": "",
+      "updatedAt": "2026-06-01T00:02:09.078Z"
+    },
+    {
+      "id": "WZV0GZCPpn2w9EZ10bgL",
+      "name": "IMB Bank Community Foundation",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "PHHd3dypMwyJ7FnSfbZk",
+      "contactName": "IMB Bank Community Foundation",
+      "source": "",
+      "updatedAt": "2026-05-31T22:51:57.396Z"
+    },
+    {
+      "id": "Wx35axGV7phZbXvtKIbn",
+      "name": "Social Enterprise Development Initiative (SEDI)",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "XKfO7huCETKk4t81mNqo",
+      "contactName": "Social Enterprise Development Initiative",
+      "source": "",
+      "updatedAt": "2026-05-31T22:52:00.366Z"
+    },
+    {
+      "id": "r87foKQ1q1zeievMjNKW",
+      "name": "Garma Festival — Beds Showcase",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "a84114da-8888-4357-a2df-01b29f37209d",
+      "stage": "Qualified",
+      "value": 0,
+      "status": "open",
+      "contactId": "xAzy2ZbeEM8eZIepIesD",
+      "contactName": "Garma Festival — Beds Showcase",
+      "source": "",
+      "updatedAt": "2026-05-31T23:10:46.565Z"
+    },
+    {
+      "id": "9Aixc85gjfby6N2spacz",
+      "name": "ALIVE National Centre (UniMelb) — research partnership, not a bed buyer",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "524aca71-287d-4eeb-a53a-66ff3a7aede5",
+      "stage": "Cultivating",
+      "value": 0,
+      "status": "open",
+      "contactId": "Uv47RXPyZub1vnmDF56K",
+      "contactName": "ALIVE",
+      "source": "",
+      "updatedAt": "2026-06-10T19:02:13.329Z"
+    },
+    {
+      "id": "y4Zppt4TNDtMYZwJBDY1",
+      "name": "Brian M Davis Charitable Foundation",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "a23b26b4-ace3-4199-8a14-b65ed888aa52",
+      "stage": "Ask made",
+      "value": 0,
+      "status": "open",
+      "contactId": "QdAmpE07Z361Rrx6ilS2",
+      "contactName": "Sarah Bartak",
+      "source": "",
+      "updatedAt": "2026-05-31T23:11:15.634Z"
+    },
+    {
+      "id": "HXXRIEY3OfR6LYDq8p4j",
+      "name": "The Ian Potter Foundation",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "a23b26b4-ace3-4199-8a14-b65ed888aa52",
+      "stage": "Ask made",
+      "value": 0,
+      "status": "open",
+      "contactId": "PoPY4biO1VsofPFGdpv5",
+      "contactName": "Alberto Furlan",
+      "source": "",
+      "updatedAt": "2026-05-31T23:21:51.922Z"
+    },
+    {
+      "id": "5nhYHB7YkyqTySyNTdqq",
+      "name": "The Bryan Foundation",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "a23b26b4-ace3-4199-8a14-b65ed888aa52",
+      "stage": "Ask made",
+      "value": 0,
+      "status": "open",
+      "contactId": "MgsF7e1f2HSeuFcZZVhF",
+      "contactName": "Matthew Cox",
+      "source": "",
+      "updatedAt": "2026-05-31T23:21:54.289Z"
+    },
+    {
+      "id": "LWzmUl9NTI43afsHhliE",
+      "name": "Mjd Foundation Limited",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "ncVQTxZmdfspexpSkR8z",
+      "contactName": "Mjd Foundation Limited",
+      "source": "",
+      "updatedAt": "2026-05-31T22:52:02.602Z"
+    },
+    {
+      "id": "3NId58w5rK6O0UKhKzxx",
+      "name": "The Trustee For Yeperenye Charitable Trust",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "xIStDdvnPsmfKp2EoAIW",
+      "contactName": "The Trustee For Yeperenye Charitable Trust",
+      "source": "",
+      "updatedAt": "2026-05-31T22:52:05.062Z"
+    },
+    {
+      "id": "U4cMqcvDhJMfWqeCs7ym",
+      "name": "Community Resources Limited",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "fIiriDYS0e0HwR1M7D0F",
+      "contactName": "Community Resources Limited",
+      "source": "",
+      "updatedAt": "2026-05-31T22:52:07.376Z"
+    },
+    {
+      "id": "lFoVYyO2VfhZDfiF1waB",
+      "name": "Uniting Church Australia Frontier Services",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "KOtvGX8lGsN6ZNG8cPhb",
+      "contactName": "Uniting Church Australia Frontier Services",
+      "source": "",
+      "updatedAt": "2026-05-31T22:52:09.817Z"
+    },
+    {
+      "id": "hekp6I7uxGfj5PXyHY3v",
+      "name": "Country Connect Foundation Limited",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "BkJQuNuBASZ8IjOUahd2",
+      "contactName": "Country Connect Foundation Limited",
+      "source": "",
+      "updatedAt": "2026-05-31T22:52:12.322Z"
+    },
+    {
+      "id": "hG0SQ299JVYY0VXOHyfz",
+      "name": "BHP Foundation",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "zffdKRqhKOl2xBLEpSwm",
+      "contactName": "BHP Foundation",
+      "source": "",
+      "updatedAt": "2026-05-31T22:52:14.838Z"
+    },
+    {
+      "id": "l05FmgHvA7VVLW0YoUUZ",
+      "name": "Rio Tinto Foundation",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "uo6eSEenYR3yTeFf93KF",
+      "contactName": "Rio Tinto Foundation",
+      "source": "",
+      "updatedAt": "2026-05-31T22:52:24.611Z"
+    },
+    {
+      "id": "UvUgoHaufbVw9vQ5YTj2",
+      "name": "Fortescue Foundation",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "qTilKBcNiD0ZM9QIIRN5",
+      "contactName": "Fortescue Foundation",
+      "source": "",
+      "updatedAt": "2026-05-31T22:52:26.899Z"
+    },
+    {
+      "id": "39Ark93fypPo5Zw3ta2A",
+      "name": "Developing East Arnhem Limited",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "9wnByK8VulQhE5aP8fKy",
+      "contactName": "Developing East Arnhem Limited",
+      "source": "",
+      "updatedAt": "2026-05-31T22:52:29.700Z"
+    },
+    {
+      "id": "mVhvIM9lM4HxMZGlCYKI",
+      "name": "Northern Australian Aboriginal Charitable Trust",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "E7ivWmLQPzfCXEwv9piz",
+      "contactName": "Northern Australian Aboriginal Charitable Trust",
+      "source": "",
+      "updatedAt": "2026-05-31T22:52:31.886Z"
+    },
+    {
+      "id": "Ta7jW4bTPKde687rLlmK",
+      "name": "Nova Peris Foundation",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "yvU4ZBhH8zW1IGG8wl0A",
+      "contactName": "Nova Peris Foundation",
+      "source": "",
+      "updatedAt": "2026-05-31T22:52:34.181Z"
+    },
+    {
+      "id": "dhsCzGXudxdL29OKJhpI",
+      "name": "Australian Communities Foundation",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "cf8d31d2-73be-4119-b56b-7b0334254197",
+      "stage": "Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "h4A6ROeJZd7rCeQBdwvo",
+      "contactName": "Australian Communities Foundation",
+      "source": "",
+      "updatedAt": "2026-05-31T22:52:38.695Z"
+    },
+    {
+      "id": "nsSkwDuMlfulSzwticWu",
+      "name": "Paul Ramsay Foundation",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "a23b26b4-ace3-4199-8a14-b65ed888aa52",
+      "stage": "Ask made",
+      "value": 0,
+      "status": "open",
+      "contactId": "86IotCHStn0fEHyhFtoF",
+      "contactName": "William Frazer",
+      "source": "",
+      "updatedAt": "2026-05-31T23:21:46.836Z"
+    },
+    {
+      "id": "T70nnJpkZbcptToK3mMe",
+      "name": "Rotary Global Grant (washers/beds)",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "a23b26b4-ace3-4199-8a14-b65ed888aa52",
+      "stage": "Ask made",
+      "value": 0,
+      "status": "open",
+      "contactId": "5EfSDhGNzQmIcgLz5LuH",
+      "contactName": "Pene Curtis",
+      "source": "",
+      "updatedAt": "2026-06-09T02:39:17.434Z"
+    },
+    {
+      "id": "CWGyaToraH7h8lBszXn2",
+      "name": "Philanthropy Australia",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "524aca71-287d-4eeb-a53a-66ff3a7aede5",
+      "stage": "Cultivating",
+      "value": 0,
+      "status": "open",
+      "contactId": "O8F7kwyzHdWEbOjQ0Zob",
+      "contactName": "Kim Harland",
+      "source": "",
+      "updatedAt": "2026-06-08T23:24:00.297Z"
+    },
+    {
+      "id": "7rt2vYxaP5HPp8SNu9sD",
+      "name": "The John Villiers Trust",
+      "pipelineId": "JvBFYpVpyKsw899lkFgj",
+      "pipeline": "Goods Supporter Journey",
+      "stageId": "3e38f65b-a515-4e32-9fc9-57ea1531edc6",
+      "stage": "Stewarding / Reporting",
+      "value": 0,
+      "status": "open",
+      "contactId": "hQdMEJd33LmL3jzONRGh",
+      "contactName": "Fiona Maxwell",
+      "source": "",
+      "updatedAt": "2026-06-08T23:31:20.327Z"
+    },
+    {
+      "id": "81LQ1sTKAWjuH9NgbA8x",
+      "name": "Various Indigenous Grants",
+      "pipelineId": "scom3L0kNwA1W0zPIzMe",
+      "pipeline": "Grants",
+      "stageId": "8124c61a-1175-461e-be5d-1fa64ef6dd65",
+      "stage": "Grant Opportunity Identified",
+      "value": 0,
+      "status": "open",
+      "contactId": "yk4uK8rgDNGA87EUqNbu",
+      "contactName": "Kristy Bloomfield",
+      "source": "",
+      "updatedAt": "2026-06-08T19:15:44.041Z"
+    },
+    {
+      "id": "Q8nizhsNObkLDrW5fNms",
+      "name": "Agricultural Traceability Grants",
+      "pipelineId": "scom3L0kNwA1W0zPIzMe",
+      "pipeline": "Grants",
+      "stageId": "3eb617e6-5635-4091-bd04-acc72d2ae5b0",
+      "stage": "Application In Progress",
+      "value": 0,
+      "status": "open",
+      "contactId": "fnCak04opqtSP8QPfD2G",
+      "contactName": "Shaun Fisher",
+      "source": "ACT Intelligence",
+      "updatedAt": "2026-06-07T18:58:10.052Z"
+    }
+  ]
+}

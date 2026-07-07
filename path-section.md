@@ -1,0 +1,294 @@
+- generic [ref=e115]:
+  - generic [ref=e116]:
+    - generic [ref=e118]:
+      - generic [ref=e119]:
+        - paragraph [ref=e120]: The goal
+        - heading "Where we are heading" [level=2] [ref=e121]
+      - generic [ref=e122]: Direction, not measurement
+    - paragraph [ref=e123]: The goal is not more beds shipped in from somewhere else. It is a production economy that runs on country, employs local people, and becomes community owned. A bed delivered is the output. Who owns the means of making the next one is the outcome.
+    - paragraph [ref=e124]: Across this page, a good moved is the output. What changes for people, and who owns the means of making the next one, is the outcome.
+  - generic [ref=e125]:
+    - generic [ref=e127]:
+      - generic [ref=e128]:
+        - paragraph [ref=e129]: The path
+        - heading "What it takes, and how the money is built" [level=2] [ref=e130]
+      - generic "Forward targets and live conversations, not money in the bank. Only the secured figure is received." [ref=e131]: Not yet measured
+    - generic [ref=e133]:
+      - generic [ref=e134]:
+        - paragraph [ref=e135]: Target ~$3M
+        - paragraph [ref=e136]: blended capital raise (target)
+      - generic [ref=e137]:
+        - paragraph [ref=e138]: The lever
+        - paragraph [ref=e139]:
+          - text: QBE Catalysing Impact 2026 will match up to
+          - generic [ref=e140]: $400K
+          - text: ", but only against capital we raise alongside it. It is matched, not yet awarded. Closing that match is what unlocks the next stage."
+      - generic [ref=e141]:
+        - generic [ref=e142]:
+          - paragraph [ref=e143]: Catalytic blended
+          - generic [ref=e146]:
+            - generic [ref=e147]: $1.5M
+            - generic [ref=e148]: In conversation
+        - generic [ref=e149]:
+          - paragraph [ref=e150]: Subordinated debt
+          - generic [ref=e153]:
+            - generic [ref=e154]: $300K
+            - generic [ref=e155]: In outreach
+        - generic [ref=e156]:
+          - paragraph [ref=e157]: Match grant
+          - generic [ref=e160]:
+            - generic [ref=e161]: Up to $400K
+            - generic [ref=e162]: Conditional on matched raise
+        - generic [ref=e163]:
+          - paragraph [ref=e164]: To be raised
+          - generic [ref=e167]:
+            - generic [ref=e168]: $1M
+            - generic [ref=e169]: Pipeline
+      - generic [ref=e170]:
+        - paragraph [ref=e171]: $741,111
+        - paragraph [ref=e172]: secured to date
+        - generic "Xero-reconciled receipts to date. The forward figures above are targets and live conversations, not money in the bank." [ref=e173]: Counted
+      - paragraph [ref=e175]: Forward figures are targets and live conversations, shown without naming the funders we are in discussion with. Only the secured figure is money received.
+  - generic [ref=e176]:
+    - generic [ref=e178]:
+      - generic [ref=e179]:
+        - paragraph [ref=e180]: The assets that stay
+        - heading "What the community comes to own" [level=2] [ref=e181]
+      - generic "What exists today is counted; the ownership transfer is in design. Stages are named, not claimed done." [ref=e182]: Not yet measured
+    - paragraph [ref=e184]: We are building a recycled-plastic plant on country, collect, shred, melt, press, that is designed to leave our hands. The community becomes the operator, then the owner, of the means of making the next bed.
+    - generic [ref=e185]:
+      - generic [ref=e186]:
+        - generic [ref=e187]:
+          - paragraph [ref=e188]: On-country recycling and press plant
+          - paragraph [ref=e189]: Central Australia, siting in decision
+        - list [ref=e190]:
+          - listitem [ref=e191]:
+            - generic [ref=e193]: Planned
+          - listitem [ref=e194]:
+            - generic [ref=e196]: Built
+          - listitem [ref=e197]:
+            - generic [ref=e199]: Operating
+          - listitem [ref=e200]:
+            - generic [ref=e202]: Community run
+          - listitem [ref=e203]:
+            - generic [ref=e205]: Community owned
+        - paragraph [ref=e206]: Commissioning now, about 85 percent complete. Designed to move to community operation, then ownership.
+      - generic [ref=e207]:
+        - generic [ref=e208]:
+          - paragraph [ref=e209]: Alice Springs production facility
+          - paragraph [ref=e210]: Mparntwe, led with Oonchiumpa
+        - list [ref=e211]:
+          - listitem [ref=e212]:
+            - generic [ref=e214]: Planned
+          - listitem [ref=e215]:
+            - generic [ref=e217]: Built
+          - listitem [ref=e218]:
+            - generic [ref=e220]: Operating
+          - listitem [ref=e221]:
+            - generic [ref=e223]: Community run
+          - listitem [ref=e224]:
+            - generic [ref=e226]: Community owned
+        - paragraph [ref=e227]: REAL Innovation Fund submission lodged with a First Nations jobs pathway. Decision pending.
+    - paragraph [ref=e228]: Owned means the community holds the plant, the income it makes, the maintenance, and the decisions. That transfer is the point, and it is still ahead of us.
+  - generic [ref=e229]:
+    - generic [ref=e231]:
+      - generic [ref=e232]:
+        - paragraph [ref=e233]: The proof, honestly graded
+        - heading "What is already on country, and still working" [level=2] [ref=e234]
+      - generic "Delivery counts are counted. Plastic and people reached are modelled assumptions, labelled below." [ref=e235]: Counted
+    - generic [ref=e237]:
+      - generic [ref=e238]:
+        - generic [ref=e239]:
+          - paragraph [ref=e240]: "496"
+          - generic [ref=e241]: in service
+        - paragraph [ref=e242]: Beds in community
+        - paragraph [ref=e243]: Across 9 communities, still in homes.
+        - generic "Distinct asset-register records. A bed delivered is an output; a bed still in use is closer to the outcome." [ref=e245]: Counted
+      - generic [ref=e247]:
+        - paragraph [ref=e249]: "133"
+        - paragraph [ref=e250]: Recycled-plastic Stretch Beds
+        - paragraph [ref=e251]: Each one diverts about 20kg of HDPE from landfill.
+        - generic [ref=e253]: Counted
+      - generic [ref=e255]:
+        - generic [ref=e256]:
+          - paragraph [ref=e257]: 14 / 28
+          - generic [ref=e258]: live / deployed
+        - paragraph [ref=e260]: Washing machines
+        - paragraph [ref=e261]: 14 deployed machines are not reporting live. We name them rather than round them into the win.
+        - generic "Working count is hand-confirmed; telemetry coverage is partial." [ref=e263]: Counted
+      - generic [ref=e265]:
+        - paragraph [ref=e267]: 2.66 t
+        - paragraph [ref=e268]: Plastic kept out of landfill
+        - paragraph [ref=e269]: Modelled at about 20kg per Stretch Bed.
+        - generic "Assumes ~20kg HDPE per Stretch Bed. Not weighed per unit." [ref=e271]: Modelled
+      - generic [ref=e273]:
+        - paragraph [ref=e275]: ~1,240
+        - paragraph [ref=e276]: People reached
+        - paragraph [ref=e277]: Modelled at about 2.5 people per bed.
+        - generic "A planning assumption (~2.5 per bed), not a headcount." [ref=e279]: Modelled
+    - paragraph [ref=e281]:
+      - generic [ref=e282]: "The 9 communities:"
+      - text: Tennant Creek · Utopia Homelands · Palm Island · Maningrida · Kalgoorlie · Alice Springs · Mount Isa · Darwin · Canberra
+    - generic [ref=e283]:
+      - paragraph [ref=e284]: From the field
+      - generic [ref=e285]:
+        - figure [ref=e286]:
+          - img "Tennant Creek community" [ref=e288]
+        - figure [ref=e289]:
+          - img "Community members assembling a bed" [ref=e291]
+        - figure [ref=e292]:
+          - img "Nic with an Elder on a verandah" [ref=e294]
+        - figure [ref=e295]:
+          - img "A Stretch Bed in a remote community home" [ref=e297]
+        - figure [ref=e298]:
+          - img "A washing machine deployed in community" [ref=e300]
+        - figure [ref=e301]:
+          - img "A family testing a bed at golden hour" [ref=e303]
+  - generic [ref=e304]:
+    - generic [ref=e306]:
+      - generic [ref=e307]:
+        - paragraph [ref=e308]: In their words
+        - heading "What the people closest to this say" [level=2] [ref=e309]
+      - generic [ref=e310]: Consented, qualitative
+    - paragraph [ref=e311]: Drawn from consented stories on Empathy Ledger. The quality signal is the themes and the voices that come up across the work, not a single satisfaction score. Where a voice is absent, consent is not yet given, not that there is no story.
+    - generic [ref=e312]:
+      - generic [ref=e313]:
+        - text: Community resilience
+        - generic [ref=e314]: · 28
+      - generic [ref=e315]:
+        - text: Housing sovereignty
+        - generic [ref=e316]: · 20
+      - generic [ref=e317]:
+        - text: Connection to country
+        - generic [ref=e318]: · 13
+      - generic [ref=e319]:
+        - text: Cultural protocols
+        - generic [ref=e320]: · 12
+      - generic [ref=e321]:
+        - text: Mental health
+        - generic [ref=e322]: · 12
+      - generic [ref=e323]:
+        - text: Cultural identity
+        - generic [ref=e324]: · 9
+  - generic [ref=e325]:
+    - generic [ref=e327]:
+      - generic [ref=e328]:
+        - paragraph [ref=e329]: The next handovers
+        - heading "Where this goes from here" [level=2] [ref=e330]
+      - generic "Forward plan. Items are by stage; nothing planned reads as done." [ref=e331]: Not yet measured
+    - generic [ref=e333]:
+      - generic [ref=e334]:
+        - paragraph [ref=e335]: Up next
+        - list [ref=e336]:
+          - listitem [ref=e337]:
+            - paragraph [ref=e338]: Community siting decision for the plant
+            - paragraph [ref=e339]: Tennant Creek or Mparntwe
+          - listitem [ref=e340]:
+            - paragraph [ref=e341]: "Katrina: train-the-trainer at Witta"
+            - paragraph [ref=e342]: Skills travel home to run the Alice Springs build
+          - listitem [ref=e343]:
+            - paragraph [ref=e344]: QBE Catalysing Impact, Stage 2
+            - paragraph [ref=e345]: September; could bring matched catalytic capital
+          - listitem [ref=e346]:
+            - paragraph [ref=e347]: Investment + loan opportunity with Snow
+            - paragraph [ref=e348]: Exploring recoverable / impact-investment finance; intro to Bhanvi via Snow
+      - generic [ref=e349]:
+        - paragraph [ref=e350]: In progress
+        - list [ref=e351]:
+          - listitem [ref=e352]:
+            - paragraph [ref=e353]: Commission the on-country production plant
+            - paragraph [ref=e354]: ~85% complete
+          - listitem [ref=e355]:
+            - paragraph [ref=e356]: Alice Springs facility with Oonchiumpa
+            - paragraph [ref=e357]: REAL Innovation Fund submission lodged, decision pending
+          - listitem [ref=e358]:
+            - paragraph [ref=e359]: New washing machine prototype
+            - paragraph [ref=e360]: Next-generation build in development now
+          - listitem [ref=e361]:
+            - paragraph [ref=e362]: The Butterfly Movement charity transition
+            - paragraph [ref=e363]: Goods DGR home; Aboriginal-led board forming
+      - generic [ref=e364]:
+        - paragraph [ref=e365]: Done
+        - list [ref=e366]:
+          - listitem [ref=e367]:
+            - paragraph [ref=e368]: 496 beds delivered across 9 communities
+          - listitem [ref=e369]:
+            - paragraph [ref=e370]: Containerised production plant built
+            - paragraph [ref=e371]: Recycled-plastic line
+          - listitem [ref=e372]:
+            - paragraph [ref=e373]: 28 washing machines deployed, 14 reporting live
+          - listitem [ref=e374]:
+            - paragraph [ref=e375]: Utopia + Alice Springs trip, May 2026
+            - paragraph [ref=e376]: 87 beds that trip
+    - list [ref=e377]:
+      - listitem [ref=e378]:
+        - paragraph [ref=e380]: "2023"
+        - paragraph [ref=e381]: Snow becomes an anchor backer
+        - paragraph [ref=e382]: Support before the proof was in the houses
+      - listitem [ref=e383]:
+        - paragraph [ref=e385]: "2024"
+        - paragraph [ref=e386]: Grant 2024/OC0014
+        - paragraph [ref=e387]: Multi-year support across beds, the production facility, and the team
+      - listitem [ref=e388]:
+        - paragraph [ref=e390]: Apr 2025
+        - paragraph [ref=e391]: Snow visits Tennant Creek with us
+        - paragraph [ref=e392]: Sally Grimsley-Ballard on country on 2 April 2025, seeing the work first-hand
+      - listitem [ref=e393]:
+        - paragraph [ref=e395]: Aug 2025
+        - paragraph [ref=e396]: Deadly Heart Trek, Katherine
+        - paragraph [ref=e397]: Out on the Katherine visit, 8 August 2025
+      - listitem [ref=e398]:
+        - paragraph [ref=e400]: Jan 2026
+        - paragraph [ref=e401]: First washing machine given to Dianne Stokes
+        - paragraph [ref=e402]: In Tennant Creek. She named it Pakkimjalki Kari in Warumungu
+      - listitem [ref=e403]:
+        - paragraph [ref=e405]: Early 2026
+        - paragraph [ref=e406]: Selected into QBE Catalysing Impact 2026
+        - paragraph [ref=e407]: Blended-finance accelerator run by the Social Impact Hub
+      - listitem [ref=e408]:
+        - paragraph [ref=e410]: May 2026
+        - paragraph [ref=e411]: Central Australia deployment
+        - paragraph [ref=e412]: Utopia + Alice Springs; 87 beds that trip, with Centrecorp
+      - listitem [ref=e413]:
+        - paragraph [ref=e415]: Jun 2026
+        - paragraph [ref=e416]: Oonchiumpa REAL Innovation Fund submission
+        - paragraph [ref=e417]: A community-owned Alice Springs facility + jobs pathway, decision pending
+      - listitem [ref=e418]:
+        - paragraph [ref=e420]: To date
+        - paragraph [ref=e421]: ~$493K invested by Snow over three years
+        - paragraph [ref=e422]: Fully received. The anchor that makes the blended raise credible
+  - generic [ref=e423]:
+    - generic [ref=e426]:
+      - paragraph [ref=e427]: Back the next handover
+      - heading "Back the next handover" [level=2] [ref=e428]
+    - generic [ref=e429]:
+      - paragraph [ref=e430]: Help close the match
+      - paragraph [ref=e431]: QBE will match up to $400K, but only against capital we raise alongside it. Closing that gap is what unlocks the next community-owned facility.
+      - link "Help close the match →" [ref=e433] [cursor=pointer]:
+        - /url: /partner
+    - generic [ref=e434]:
+      - paragraph [ref=e435]: Go deeper
+      - generic [ref=e436]:
+        - link "The Snow Foundation on Empathy Ledger → Your stories, quotes and photos, gathered with consent, yours to revisit anytime" [ref=e437] [cursor=pointer]:
+          - /url: https://www.empathyledger.com/organisations/snow-foundation
+          - paragraph [ref=e438]: The Snow Foundation on Empathy Ledger →
+          - paragraph [ref=e439]: Your stories, quotes and photos, gathered with consent, yours to revisit anytime
+        - link "Snow + Goods at Tennant Creek → Photo album, 2 April 2025" [ref=e440] [cursor=pointer]:
+          - /url: https://photos.google.com/share/AF1QipMM88kHBqqUV-udXeHpTB0FjhY8my5_dNWw7CeSphrsq20wt4BlLTmy9O-QoRfBwQ?key=TkY0VHA3cVVKR3V1T0NqOHFBSUpXZ0pGX01WSkNR
+          - paragraph [ref=e441]: Snow + Goods at Tennant Creek →
+          - paragraph [ref=e442]: Photo album, 2 April 2025
+        - link "Deadly Heart Trek, Katherine → Photo album, 8 August 2025" [ref=e443] [cursor=pointer]:
+          - /url: https://photos.google.com/share/AF1QipNbosyzxtrQ0jy240fbDj6Bc58GrvH3dcxBsIfPfX9XMOk8v58MWIRKbA5xxV1KRw?key=dnlaTFhkb2llNHFqSXlWRnBUUy15X1VhSTVZZ1JR
+          - paragraph [ref=e444]: Deadly Heart Trek, Katherine →
+          - paragraph [ref=e445]: Photo album, 8 August 2025
+        - link "The Utopia trip, in full → Photos + story from the May run" [ref=e446] [cursor=pointer]:
+          - /url: /field-notes/utopia-may-2026
+          - paragraph [ref=e447]: The Utopia trip, in full →
+          - paragraph [ref=e448]: Photos + story from the May run
+        - link "How the Stretch Bed works →" [ref=e449] [cursor=pointer]:
+          - /url: /stretch-bed
+          - paragraph [ref=e450]: How the Stretch Bed works →
+        - link "Live impact dashboard → The full public impact view" [ref=e451] [cursor=pointer]:
+          - /url: /impact
+          - paragraph [ref=e452]: Live impact dashboard →
+          - paragraph [ref=e453]: The full public impact view

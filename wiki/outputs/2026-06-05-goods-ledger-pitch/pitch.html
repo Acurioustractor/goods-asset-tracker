@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Goods Ledger · pitch for alignment</title>
+<style>
+  :root {
+    --cream: #FDF8F3; --paper: #FBF8F1; --ink: #0A0A0A;
+    --terracotta: #A8643F; --clay: #C45C3E; --sage: #8B9D77; --sand: #E6DFD1;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--cream); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3, .display { font-family: Georgia, serif; font-weight: 400; }
+  .kicker { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 12px; }
+  section { padding: 56px 0; }
+  section + section { border-top: 1px solid var(--sand); }
+
+  .masthead { padding: 88px 0 64px; }
+  .masthead h1 { font-size: 56px; line-height: 1.05; margin-bottom: 20px; }
+  .masthead .standfirst { font-size: 21px; font-family: Georgia, serif; color: #3a3a3a; max-width: 620px; }
+  .status-chip { display: inline-block; background: var(--sage); color: #fff; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; margin-bottom: 28px; }
+
+  h2 { font-size: 32px; margin-bottom: 18px; }
+  p { margin-bottom: 14px; max-width: 640px; }
+  .lede { font-size: 18px; font-family: Georgia, serif; }
+
+  /* the mocked weekly unit */
+  .post-card { background: #fff; border: 1px solid var(--sand); border-radius: 4px; overflow: hidden; max-width: 560px; margin: 28px 0 10px; box-shadow: 0 1px 6px rgba(10,10,10,0.05); }
+  .post-card img { width: 100%; height: 380px; object-fit: cover; display: block; }
+  .img-caption { font-size: 12px; color: #8a8a8a; padding: 8px 30px 0; }
+  .focus { border-left: 4px solid var(--terracotta); background: #fff; padding: 20px 26px; max-width: 640px; }
+  .map-wrap { background: #fff; border: 1px solid var(--sand); border-radius: 4px; padding: 26px; margin: 26px 0 10px; }
+  .map-wrap svg { width: 100%; height: auto; display: block; }
+  .map-legend { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 14px; font-size: 13px; color: #4a4a4a; }
+  .map-legend span::before { content: ''; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 7px; }
+  .map-legend .now::before { background: var(--clay); }
+  .map-legend .next::before { background: var(--sage); }
+  .make-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 26px 0 10px; }
+  .make-card { background: var(--paper); border: 1px solid var(--sand); border-radius: 4px; padding: 20px 18px; }
+  .make-card .tag { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage); margin-bottom: 8px; }
+  .make-card h3 { font-size: 19px; margin-bottom: 10px; }
+  .make-card p, .make-card li { font-size: 13.5px; color: #3a3a3a; margin-bottom: 8px; }
+  .make-card ul { padding-left: 16px; }
+  .make-card .have { color: var(--sage); font-weight: 600; }
+  .make-card .gap { color: var(--clay); font-weight: 600; }
+  @media (max-width: 640px) { .make-grid { grid-template-columns: 1fr; } }
+  .value-list { list-style: none; padding: 0; margin: 24px 0; }
+  .value-list li { padding: 16px 0; border-bottom: 1px solid var(--sand); max-width: 640px; margin: 0; }
+  .value-list b { font-family: Georgia, serif; font-weight: 400; font-size: 19px; color: var(--terracotta); display: block; margin-bottom: 4px; }
+  .year-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 26px 0 18px; }
+  .year-grid .cell { background: var(--paper); border: 1px solid var(--sand); border-radius: 4px; padding: 22px 18px; text-align: center; }
+  .year-grid .big { font-family: Georgia, serif; font-size: 48px; line-height: 1; color: var(--terracotta); }
+  .year-grid .label { font-size: 13px; color: #4a4a4a; margin-top: 8px; }
+  .post-body { padding: 26px 30px 30px; }
+  .post-quote { font-family: Georgia, serif; font-size: 21px; line-height: 1.45; margin-bottom: 14px; }
+  .post-context { font-size: 15px; color: #4a4a4a; margin-bottom: 14px; }
+  .post-byline { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--terracotta); }
+  .caption { font-size: 13px; color: #777; }
+
+  /* rhythm strip */
+  .rhythm { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 26px 0 8px; }
+  .beat { background: var(--paper); border: 1px solid var(--sand); border-radius: 4px; padding: 18px 16px; }
+  .beat .freq { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage); margin-bottom: 6px; }
+  .beat .name { font-family: Georgia, serif; font-size: 18px; margin-bottom: 6px; }
+  .beat p { font-size: 13px; color: #4a4a4a; margin: 0; }
+
+  table { border-collapse: collapse; width: 100%; margin: 22px 0 8px; font-size: 15px; }
+  th { text-align: left; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terracotta); padding: 10px 14px 10px 0; border-bottom: 2px solid var(--ink); }
+  td { padding: 12px 14px 12px 0; border-bottom: 1px solid var(--sand); vertical-align: top; }
+  td:first-child { font-family: Georgia, serif; white-space: nowrap; }
+
+  .evidence li, .questions li, .checklist li { margin-bottom: 12px; max-width: 640px; }
+  ul, ol { padding-left: 22px; }
+  .evidence b { color: var(--terracotta); font-weight: 600; }
+
+  .q-arc { margin: 22px 0; }
+  .q-row { display: grid; grid-template-columns: 110px 1fr 90px; gap: 18px; padding: 14px 0; border-bottom: 1px solid var(--sand); }
+  .q-row .q { font-family: Georgia, serif; font-size: 17px; color: var(--terracotta); }
+  .q-row .what { font-size: 15px; }
+  .q-row .cost { font-size: 15px; text-align: right; color: #4a4a4a; }
+
+  .trip-box { background: var(--paper); border-left: 4px solid var(--sage); padding: 24px 28px; margin: 24px 0; }
+  .trip-box .fill { color: var(--clay); font-style: italic; }
+
+  .questions li b { font-family: Georgia, serif; font-weight: 400; font-size: 17px; display: block; }
+  footer { padding: 40px 0 80px; font-size: 13px; color: #777; }
+  @media (max-width: 640px) { .rhythm { grid-template-columns: 1fr 1fr; } .masthead h1 { font-size: 40px; } .q-row { grid-template-columns: 80px 1fr 70px; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <section class="masthead">
+    <div class="status-chip">Pitch · for alignment · June 2026</div>
+    <h1>The Goods Ledger</h1>
+    <p class="standfirst">A living, public record of the people who make and sleep on Goods. One face, one voice, one place, every week. Built with community, paid back to community, and ending in an open door rather than a report.</p>
+  </section>
+
+  <section>
+    <div class="kicker">The idea</div>
+    <h2>Not a book. Not a documentary. A ledger that accumulates.</h2>
+    <p class="lede focus">Humans of New York did not start with a book. It started with a feed that earned trust one face at a time for years; the books were printed from a corpus people already loved, and the feed went on to raise about US$20 million for the people in it. StoryCorps shows the durable version: the consent-governed archive IS the institution, and books and broadcasts are cuts from it.</p>
+    <p>We already own the hard part. Empathy Ledger holds 240 storytellers, transcripts, quotes, consent gates and place data. The Utopia field note proved the format. The decision is to surface this as the centering artifact: an accumulating ledger of real people, in their own words, on country.</p>
+    <p>The book and the film still happen. They come FROM the corpus: a team of people aligning their skills around stories people already love, with what they earn going back to the communities whose stories they are. The ledger starts this month with material we already hold and have cleared.</p>
+  </section>
+
+  <section>
+    <div class="kicker">The unit</div>
+    <h2>What one week looks like</h2>
+    <p>The whole thing rests on a unit small enough to never miss a week. One photo. The person's words, verbatim. Their name and their place. Nothing else carries the post.</p>
+
+    <div class="post-card">
+      <img src="../../../v2/public/images/stories/utopia/07-elders.jpg" alt="Sitting down with the old men, Utopia homelands">
+      <p class="img-caption">Pictured: sitting down with the old men, Utopia homelands.</p>
+      <div class="post-body">
+        <p class="post-quote">"Most of our people in community are just on a blanket on the ground. These beds will come in handy. Mainly for the old elders. Getting up and down off the ground is very hard."</p>
+        <p class="post-byline">Voice: Katrina Bloomfield · Alice Springs · May 2026</p>
+      </div>
+    </div>
+    <p class="caption">The rule this card teaches: who is pictured and who is speaking are tagged separately and both named, every time. When we hold a portrait of the speaker, face and voice are the same person. When we do not, the photo carries its own caption and the gap goes on the shoot list. Every photo gets people-tagged at capture: who is in frame, recorded on the day.</p>
+  </section>
+
+  <section>
+    <div class="kicker">Proof we can start</div>
+    <h2>The first entry, ready to make</h2>
+    <p>One person, three artifacts, all from material we already hold. Karen Liddle, Traditional Owner, Oonchiumpa. Four of her quotes are consent-cleared and live on the Utopia field note today.</p>
+    <div class="make-grid">
+      <div class="make-card">
+        <div class="tag">Story · publish now</div>
+        <h3>The post</h3>
+        <p>"To see kids' faces with joy after making a bed, it just really hits you."</p>
+        <p>Two days in Alice Springs. Young people from Oonchiumpa built Stretch Beds, then rode out with the deliveries to the homelands. Karen has been saying it from the start: there is always a story behind a child.</p>
+        <p><span class="have">Have:</span> quote cleared, context true, byline ready. Costs nothing. Publishable this week.</p>
+      </div>
+      <div class="make-card">
+        <div class="tag">Photo · have + one gap</div>
+        <h3>The frame</h3>
+        <p><span class="have">Have:</span> the build at Alice Springs from the May set (hands, planks, the young people at work). Captioned honestly: pictured is the build.</p>
+        <p><span class="gap">Gap:</span> a portrait of Karen on country, named on the day. First item on the next trip's shoot list, so her face and her voice can sit together.</p>
+      </div>
+      <div class="make-card">
+        <div class="tag">Video · cut this week</div>
+        <h3>60 seconds</h3>
+        <ul>
+          <li>Open on hands: plank, pole, canvas going taut (3 to 4 short shots from May trip footage)</li>
+          <li>Karen's voice over the build: the kids' faces line, then "we're silent achievers"</li>
+          <li>One title card: Karen Liddle · Oonchiumpa · Alice Springs</li>
+          <li>End on a made bed and one line: The Goods Ledger. New entry weekly.</li>
+        </ul>
+        <p><span class="have">Have:</span> footage in media/, ffmpeg cut tools in tools/. <span class="gap">Confirm:</span> Karen's May audio is clean enough; if not, her words go on screen as text over the build.</p>
+      </div>
+    </div>
+    <p class="caption">This is the test of the whole idea: if these three cannot be made in a week from what we hold, the cadence is not real. They can.</p>
+  </section>
+
+  <section>
+    <div class="kicker">The rhythm</div>
+    <h2>Four beats, one capture</h2>
+    <div class="rhythm">
+      <div class="beat"><div class="freq">Weekly</div><div class="name">Ledger post</div><p>One face, one voice, one place. Site first, then social.</p></div>
+      <div class="beat"><div class="freq">Monthly</div><div class="name">Field note</div><p>The Utopia pattern. Every trip ships one within two weeks.</p></div>
+      <div class="beat"><div class="freq">Quarterly</div><div class="name">Funder cut</div><p>The quarter in three voices, ending in an invitation out.</p></div>
+      <div class="beat"><div class="freq">Yearly</div><div class="name">Volume 1</div><p>A printed annual from the consented feed. Launched in community first.</p></div>
+    </div>
+    <p>Each field trip is captured once and cut four ways. Nothing is produced for one purpose only, and nothing needs new capture infrastructure beyond the trips already happening.</p>
+  </section>
+
+  <section>
+    <div class="kicker">Who it serves</div>
+    <h2>One ledger, four audiences</h2>
+    <table>
+      <tr><th>Audience</th><th>What they get</th><th>The cut</th></tr>
+      <tr><td>Public</td><td>Compounding familiarity with real people: Mykel, Karen, Katrina, the makers and the households</td><td>Weekly post</td></tr>
+      <tr><td>Funders</td><td>Traction with faces, tied to the canonical numbers (496 beds, 9 communities), then an invitation onto country to meet it</td><td>Quarterly cut as the door; the trip is the proof</td></tr>
+      <tr><td>Community</td><td>Their record, under their control: storyteller-owned pages, paid stories, unpublish at will, the printed volume launched on country first</td><td>Empathy Ledger + Volume 1</td></tr>
+      <tr><td>Movement</td><td>The worked example of consent-governed storytelling other A Curious Tractor projects plug into</td><td>The protocol + the platform itself</td></tr>
+    </table>
+    <p class="caption">Lineage worth naming: Mukurtu, the world standard for Indigenous community archives, began with the Warumungu community in Tennant Creek. The same community that named Pakkimjalki Kari. We are building in a recognised tradition, with a product attached.</p>
+  </section>
+
+  <section>
+    <div class="kicker">Where the value goes</div>
+    <h2>Real value for the people in it</h2>
+    <ul class="value-list">
+      <li><b>Storytellers are paid, every time.</b> A set rate per published story, written into the protocol. Not exposure, not a thank-you. Payment.</li>
+      <li><b>What the stories earn goes back.</b> The printed volume, the film when its team forms, any licensing: proceeds return to the communities whose stories they are. The story told is the reason the money exists, so the money follows the story home.</li>
+      <li><b>The insights work for community first.</b> What the ledger surfaces (who needs beds, what is working, what people actually want next) drives what gets built and funded. The community reads its own ledger before any funder does.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="kicker">The door</div>
+    <h2>Not a white paper. A trip.</h2>
+    <p class="lede">The people who want to know more and hold the means to change things do not get a forum, a white paper, or a PDF impact report. They get an invitation: come out with us, sit down with the people in the ledger, see the work where it happens.</p>
+    <p>The ledger builds the interest week by week. The trip converts it. The community hosts it, on their terms, and hosting is paid community work. A funder who has sat on country with Karen and the old men does not need an impact report; they have met the impact, and they know exactly what their capital changes.</p>
+    <p class="caption">Every quarterly cut ends the same way: not "read more" but "come out". Visits run on community consent like everything else in the ledger.</p>
+  </section>
+
+  <section>
+    <div class="kicker">The live map</div>
+    <h2>Every story lands on country</h2>
+    <p class="lede">The ledger has a map view. Every post is pinned where it happened. Click a pin, meet a person, hear their voice. That is the whole feature.</p>
+    <div class="map-wrap">
+      <svg viewBox="0 0 400 340" role="img" aria-label="Map of Australia with ledger story pins">
+        <path d="M281,36 L273,96 L256,98 L230,48 L181,51 L132,69 L107,100 L35,141 L47,206 L47,244 L73,250 L124,232 L183,219 L225,250 L251,272 L289,283 L314,286 L344,272 L354,240 L369,184 L365,162 L335,118 L317,112 L308,91 Z"
+              fill="#FBF8F1" stroke="#A8643F" stroke-width="2" stroke-linejoin="round"/>
+        <ellipse cx="315" cy="313" rx="14" ry="10" fill="#FBF8F1" stroke="#A8643F" stroke-width="2"/>
+        <!-- pins: cleared stories today (clay) -->
+        <circle cx="207" cy="151" r="7" fill="#C45C3E"/><text x="218" y="156" font-size="12" fill="#0A0A0A">Alice Springs</text>
+        <circle cx="216" cy="133" r="7" fill="#C45C3E"/><text x="227" y="130" font-size="12" fill="#0A0A0A">Utopia homelands</text>
+        <!-- pins: next (sage) -->
+        <circle cx="210" cy="113" r="6" fill="#8B9D77"/><text x="221" y="110" font-size="12" fill="#0A0A0A">Tennant Creek</text>
+        <circle cx="318" cy="103" r="6" fill="#8B9D77"/><text x="252" y="93" font-size="12" fill="#0A0A0A">Palm Island</text>
+      </svg>
+      <div class="map-legend"><span class="now">Voices on the ledger now (May trip)</span><span class="next">Where the work already is, stories next</span></div>
+    </div>
+    <p>The map answers three questions at a glance: where the work is, who is there, and where it is growing. A year of weekly posts fills it in pin by pin, and that filling-in IS the impact picture. No charts, no dashboard.</p>
+    <p>It is also the tour menu. The places on the map are the places you can be invited to. And it already runs on data we hold: every Empathy Ledger media asset carries place and GPS, so the map is a view over the spine, not a new system.</p>
+    <p class="caption">Cultural guardrail: pins sit at the community level only, never on a house or an outstation, and a community can ask for its pin to come off the public map at any time.</p>
+  </section>
+
+  <section>
+    <div class="kicker">Year one</div>
+    <h2>What exists after a year of this</h2>
+    <div class="year-grid">
+      <div class="cell"><div class="big">52</div><div class="label">faces and voices on the record, in their own words</div></div>
+      <div class="cell"><div class="big">12</div><div class="label">field notes, one for every trip</div></div>
+      <div class="cell"><div class="big">2-3</div><div class="label">paid community storyteller roles, ownership enacted</div></div>
+      <div class="cell"><div class="big">1</div><div class="label">printed volume, launched on country first</div></div>
+    </div>
+    <p class="lede">A year from now there is a body of work nobody can argue with: a growing public record of real people, made with them, owned with them. Funders see traction. Communities see themselves. The movement sees a model it can copy.</p>
+    <p class="caption">All of it from trips already happening, inside the year's $50K storytelling budget. The quarter-by-quarter detail lives in the decision report, not in this pitch. Nothing depends on a publisher, a broadcaster, or a production company saying yes.</p>
+  </section>
+
+  <section>
+    <div class="kicker">Next trip</div>
+    <h2>Linking the ledger to the next trip</h2>
+    <div class="trip-box">
+      <p><b>Trip:</b> <span class="fill">[name + dates, Ben to fill]</span> · <b>Communities:</b> <span class="fill">[fill]</span></p>
+      <p>What the trip comes home with, per cleared person:</p>
+      <ul class="checklist">
+        <li>One portrait, one working-hands shot, one country shot</li>
+        <li>60 to 90 seconds of voice: what they were doing, in their words</li>
+        <li>Consent re-checked on camera (ongoing consent, not a one-off form)</li>
+        <li><b>Everyone in frame named on the day</b>, so face and voice never get crossed later</li>
+        <li>The trip's own count (beds delivered, homes visited) recorded at the time</li>
+      </ul>
+      <p>That single capture set feeds four to six weekly posts, the trip's field note, and the quarter's funder cut. The ledger-story skill drafts them; Ben reviews and publishes.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">To align on</div>
+    <h2>Seven decisions before we start</h2>
+    <ol class="questions">
+      <li><b>The name.</b> "The Goods Ledger" or stay with "Field Notes"? Empathy Ledger remains the infrastructure brand either way.</li>
+      <li><b>The cadence promise.</b> Weekly is the commitment that makes it compound. Is weekly honest for us, or do we start fortnightly and upgrade?</li>
+      <li><b>Who edits.</b> The part-time story editor from Q2 is the single most leveraged spend. Agree the role now, name the person later.</li>
+      <li><b>Storyteller payment.</b> A set rate per published story, in the protocol, paid every time. What is the number?</li>
+      <li><b>The value-back rule.</b> Proceeds from every cut (volume, film, licensing) return to community. Agree the split and the vehicle it flows through.</li>
+      <li><b>The tour offer.</b> Hosting visitors on country is paid community work on community terms: who hosts, what a visit requires culturally, what visitors contribute. Sketch the first one around the next trip.</li>
+      <li><b>Community-first launch + where it starts.</b> Volume 1 launches on country before any city event, and Utopia material leads. Locked?</li>
+    </ol>
+  </section>
+
+  <footer>
+    Decision basis: wiki/outputs/2026-06-05-goods-story-artifact-decision.md (deep research, 28 sources, claims adversarially verified). Operational skill: .claude/skills/ledger-story/. All quotes and photos in this mock are consent-cleared and already public on the Utopia field note. Drafted 5 June 2026 for alignment, not publication.
+  </footer>
+
+</div>
+</body>
+</html>

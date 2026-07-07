@@ -1,0 +1,3398 @@
+{
+  "stats": {
+    "generatedAt": "2026-07-05T00:34:29.424Z",
+    "runDate": "2026-07-05",
+    "sourceUrlCount": 38,
+    "queryCount": 18,
+    "rawCandidateCount": 1799,
+    "mergedCandidateCount": 1014,
+    "resultCount": 80,
+    "accessIssueCount": 24
+  },
+  "missionProfile": {
+    "name": "Goods on Country",
+    "summary": "First Nations led social enterprise building durable Stretch Beds and remote-ready washing machine pathways for remote Indigenous communities, using recycled HDPE, on-country manufacturing, jobs, circular economy infrastructure, and institutional buyer demand.",
+    "strongSignals": [
+      "First Nations",
+      "Aboriginal",
+      "Torres Strait",
+      "Indigenous",
+      "remote",
+      "regional",
+      "Northern Territory",
+      "Central Australia",
+      "Cape York",
+      "Arnhem Land",
+      "APY Lands",
+      "NPY Lands",
+      "social enterprise",
+      "impact investment",
+      "circular economy",
+      "recycled plastic",
+      "manufacturing",
+      "equipment finance",
+      "working capital",
+      "community ownership",
+      "housing",
+      "health",
+      "employment",
+      "procurement",
+      "environment",
+      "clean energy",
+      "philanthropy"
+    ],
+    "negativeSignals": [
+      "biomedical research",
+      "clinical trial",
+      "scholarship only",
+      "student scholarship",
+      "arts only",
+      "sport only",
+      "academic research only",
+      "export market only",
+      "individual applicants only",
+      "grant award",
+      "award view",
+      "past recipients",
+      "applications closed",
+      "round closed",
+      "now closed",
+      "case study"
+    ],
+    "fundingUses": [
+      "plant fit-out",
+      "manufacturing equipment",
+      "recycled HDPE processing",
+      "canvas and steel inventory",
+      "remote community deployments",
+      "first purchase orders",
+      "working capital",
+      "on-country jobs",
+      "impact measurement",
+      "clean energy advice"
+    ]
+  },
+  "lanes": [
+    {
+      "id": "government_grants",
+      "label": "Government grants",
+      "priority": 5,
+      "sourceUrls": [
+        "https://business.gov.au/grants-and-programs",
+        "https://www.grants.gov.au/Go/List",
+        "https://www.indigenous.gov.au/grants",
+        "https://www.communitygrants.gov.au/",
+        "https://www.nt.gov.au/industry/business-grants-funding",
+        "https://www.business.qld.gov.au/starting-business/advice-support/grants"
+      ],
+      "queries": [
+        "Australia grant remote First Nations social enterprise manufacturing",
+        "site:grants.gov.au Aboriginal remote community manufacturing grant",
+        "site:business.gov.au grants circular economy manufacturing Indigenous Australia",
+        "site:indigenous.gov.au grants business remote communities employment",
+        "Northern Territory grant recycled plastic manufacturing First Nations",
+        "Queensland grant social enterprise equipment First Nations manufacturing"
+      ],
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice."
+    },
+    {
+      "id": "indigenous_business_loans",
+      "label": "Indigenous and business loans",
+      "priority": 5,
+      "sourceUrls": [
+        "https://www.iba.gov.au/business/finance/",
+        "https://www.iba.gov.au/business/",
+        "https://business.gov.au/grants-and-programs/iba-business-loan-package",
+        "https://firstnationsfinance.com.au/",
+        "https://www.nab.com.au/business/loans-and-finance/business-loans/indigenous-business-loans"
+      ],
+      "queries": [
+        "Australia Indigenous business loan manufacturing equipment working capital",
+        "IBA business finance social enterprise manufacturing equipment",
+        "First Nations business finance Australia working capital equipment",
+        "Indigenous business loan remote community manufacturing Australia"
+      ],
+      "nextAction": "Check ownership/control requirements and structure the ask around equipment, working capital, buyer orders, and repayment source."
+    },
+    {
+      "id": "impact_finance",
+      "label": "Impact finance",
+      "priority": 5,
+      "sourceUrls": [
+        "https://sefa.com.au/access-impact-finance/",
+        "https://whiteboxenterprises.com.au/self/",
+        "https://lendforgood.com/",
+        "https://impactinvestingaustralia.com/",
+        "https://www.socialventures.com.au/",
+        "https://www.foresters.org.au/"
+      ],
+      "queries": [
+        "Australia impact finance social enterprise First Nations manufacturing loan",
+        "recoverable grant social enterprise Indigenous Australia",
+        "concessional loan social enterprise circular economy Australia",
+        "impact investment Indigenous enterprise working capital Australia",
+        "Australia social enterprise loan equipment finance"
+      ],
+      "nextAction": "Build a repayable-finance memo: use of funds, buyer pipeline, gross margin, repayment pathway, security, risks, and catalytic co-capital."
+    },
+    {
+      "id": "philanthropy",
+      "label": "Philanthropy",
+      "priority": 4,
+      "sourceUrls": [
+        "https://www.philanthropy.org.au/",
+        "https://www.communityfoundation.org.au/",
+        "https://frrr.org.au/funding/",
+        "https://www.sistersofcharityfoundation.org.au/",
+        "https://www.anz.com.au/about-us/esg/environmental-sustainability/seeds-of-renewal/",
+        "https://www.snowfoundation.org.au/",
+        "https://www.tfff.org.au/",
+        "https://www.thebryanfoundation.org.au/",
+        "https://www.thebryanfoundation.org.au/impact-investments.php",
+        "https://www.minderoo.org/",
+        "https://www.ianpotter.org.au/",
+        "https://www.paulramsayfoundation.org.au/",
+        "https://www.vfff.org.au/"
+      ],
+      "queries": [
+        "Australia foundation grants First Nations remote communities social enterprise",
+        "Australian philanthropy Indigenous enterprise circular economy manufacturing",
+        "foundation impact investment social enterprise Australia First Nations",
+        "private ancillary fund First Nations remote communities employment Australia",
+        "The Bryan Foundation impact investment social enterprise Australia",
+        "Australian Communities Foundation First Nations remote community grant"
+      ],
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path."
+    },
+    {
+      "id": "buyer_finance",
+      "label": "Buyer finance and procurement",
+      "priority": 4,
+      "sourceUrls": [
+        "https://www.supplynation.org.au/",
+        "https://buy.nsw.gov.au/schemes/supplier-hub",
+        "https://www.tenders.gov.au/",
+        "https://tenderlink.com/"
+      ],
+      "queries": [
+        "Australia Indigenous procurement furniture remote housing beds",
+        "forward purchase agreement social enterprise Australia manufacturing",
+        "remote housing procurement furniture Indigenous supplier Australia",
+        "government procurement Indigenous beds remote communities Australia",
+        "corporate procurement First Nations social enterprise furniture Australia"
+      ],
+      "nextAction": "Turn into buyer pipeline work: target buyer, product fit, likely volume, procurement pathway, deposit or forward-order ask."
+    },
+    {
+      "id": "equipment_and_clean_energy",
+      "label": "Equipment, circular economy and clean energy",
+      "priority": 4,
+      "sourceUrls": [
+        "https://arena.gov.au/funding/",
+        "https://www.cefc.com.au/where-we-invest/",
+        "https://www.energy.gov.au/government-priorities/energy-programs",
+        "https://www.dcceew.gov.au/environment/protection/waste/how-we-manage-waste/recycling-modernisation-fund"
+      ],
+      "queries": [
+        "Australia circular economy grant recycled plastic manufacturing equipment",
+        "Australia clean energy advice grant First Nations community manufacturing",
+        "Australia recycling modernisation fund plastic manufacturing Indigenous",
+        "clean energy grant remote Indigenous community enterprise Australia",
+        "circular economy equipment finance social enterprise Australia"
+      ],
+      "nextAction": "Check whether the opportunity funds advice, capex, energy upgrade, recycling infrastructure, or buyer procurement; map to the plant budget."
+    }
+  ],
+  "accessIssues": [
+    {
+      "source": "grants.gov.au",
+      "lane": "government_grants",
+      "url": "https://www.grants.gov.au/Go/List",
+      "issue": "HTTP 403"
+    },
+    {
+      "source": "communitygrants.gov.au",
+      "lane": "government_grants",
+      "url": "https://www.communitygrants.gov.au/",
+      "issue": "HTTP 403"
+    },
+    {
+      "source": "nt.gov.au",
+      "lane": "government_grants",
+      "url": "https://www.nt.gov.au/industry/business-grants-funding",
+      "issue": "HTTP 403"
+    },
+    {
+      "source": "iba.gov.au",
+      "lane": "indigenous_business_loans",
+      "url": "https://www.iba.gov.au/business/finance/",
+      "issue": "HTTP 403"
+    },
+    {
+      "source": "iba.gov.au",
+      "lane": "indigenous_business_loans",
+      "url": "https://www.iba.gov.au/business/",
+      "issue": "HTTP 403"
+    },
+    {
+      "source": "business.gov.au",
+      "lane": "indigenous_business_loans",
+      "url": "https://business.gov.au/grants-and-programs/iba-business-loan-package",
+      "issue": "HTTP 404"
+    },
+    {
+      "source": "firstnationsfinance.com.au",
+      "lane": "indigenous_business_loans",
+      "url": "https://firstnationsfinance.com.au/",
+      "issue": "fetch failed"
+    },
+    {
+      "source": "nab.com.au",
+      "lane": "indigenous_business_loans",
+      "url": "https://www.nab.com.au/business/loans-and-finance/business-loans/indigenous-business-loans",
+      "issue": "HTTP 404"
+    },
+    {
+      "source": "lendforgood.com",
+      "lane": "impact_finance",
+      "url": "https://lendforgood.com/",
+      "issue": "fetch failed"
+    },
+    {
+      "source": "foresters.org.au",
+      "lane": "impact_finance",
+      "url": "https://www.foresters.org.au/",
+      "issue": "fetch failed"
+    },
+    {
+      "source": "sistersofcharityfoundation.org.au",
+      "lane": "philanthropy",
+      "url": "https://www.sistersofcharityfoundation.org.au/",
+      "issue": "HTTP 521"
+    },
+    {
+      "source": "anz.com.au",
+      "lane": "philanthropy",
+      "url": "https://www.anz.com.au/about-us/esg/environmental-sustainability/seeds-of-renewal/",
+      "issue": "HTTP 404"
+    },
+    {
+      "source": "buy.nsw.gov.au",
+      "lane": "buyer_finance",
+      "url": "https://buy.nsw.gov.au/schemes/supplier-hub",
+      "issue": "HTTP 403"
+    },
+    {
+      "source": "tenders.gov.au",
+      "lane": "buyer_finance",
+      "url": "https://www.tenders.gov.au/",
+      "issue": "HTTP 403"
+    },
+    {
+      "source": "energy.gov.au",
+      "lane": "equipment_and_clean_energy",
+      "url": "https://www.energy.gov.au/government-priorities/energy-programs",
+      "issue": "Request timed out"
+    },
+    {
+      "source": "dcceew.gov.au",
+      "lane": "equipment_and_clean_energy",
+      "url": "https://www.dcceew.gov.au/environment/protection/waste/how-we-manage-waste/recycling-modernisation-fund",
+      "issue": "Request timed out"
+    },
+    {
+      "source": "iba.gov.au",
+      "lane": "indigenous_business_loans",
+      "url": "https://iba.gov.au/business/finance",
+      "issue": "HTTP 403"
+    },
+    {
+      "source": "iba.gov.au",
+      "lane": "indigenous_business_loans",
+      "url": "https://iba.gov.au/business/finance/business-loan",
+      "issue": "HTTP 403"
+    },
+    {
+      "source": "iba.gov.au",
+      "lane": "indigenous_business_loans",
+      "url": "https://iba.gov.au/business/equipment-finance",
+      "issue": "HTTP 403"
+    },
+    {
+      "source": "dss.gov.au",
+      "lane": "government_grants",
+      "url": "https://www.dss.gov.au/social-impact-investing/social-enterprise-development-initiative",
+      "issue": "Request timed out"
+    },
+    {
+      "source": "business.nt.gov.au",
+      "lane": "indigenous_business_loans",
+      "url": "https://business.nt.gov.au/help-for-business/support-for-nt-aboriginal-businesses",
+      "issue": "HTTP 403"
+    },
+    {
+      "source": "sedigrants.grantplatform.com",
+      "lane": "government_grants",
+      "url": "https://sedigrants.grantplatform.com",
+      "issue": "HTTP 403"
+    },
+    {
+      "source": "nt.gov.au",
+      "lane": "government_grants",
+      "url": "https://nt.gov.au/community/grants-and-volunteers/grants/grants-directory",
+      "issue": "HTTP 403"
+    },
+    {
+      "source": "iba.gov.au",
+      "lane": "indigenous_business_loans",
+      "url": "https://iba.gov.au/business/finance/start-finance-package",
+      "issue": "HTTP 403"
+    }
+  ],
+  "opportunities": [
+    {
+      "rank": 1,
+      "title": "Strengthening First Nations-led organisations in regional and remote QLD, SA, TAS, and the NT",
+      "url": "https://www.paulramsayfoundation.org.au/news-resources/strengthening-first-nations-led-organisations-in-regional-and-remote-queensland-south-australia-tasmania-and-the-northern-territory",
+      "source": "paulramsayfoundation.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 60,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source",
+        "amount mentioned"
+      ],
+      "matchedTerms": [
+        "remote",
+        "regional",
+        "First Nations",
+        "Torres Strait",
+        "Northern Territory"
+      ],
+      "amountHint": "$6 m",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Northern Territory; Queensland; South Australia; remote; regional",
+      "entityHint": "First Nations-led/control",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: First Nations, Torres Strait, remote, regional, Northern Territory",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "source link: https://www.paulramsayfoundation.org.au/",
+      "snippet": "We're pleased to announce the recipients of $6 million in new funding to organisations working to grow opportunities for First Nations communities in the Northern Territory, the Torres Strait, Tasmania, regional and remote South Australia and regional and remote Queensland.",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 2,
+      "title": "Indigenous Business Grants Australia 2026 | Funding & Support Guide - Grants Assist",
+      "url": "https://www.australiangrants.org/indigenous-business-funding-and-grants",
+      "source": "australiangrants.org",
+      "laneId": "indigenous_business_loans",
+      "lane": "Indigenous and business loans",
+      "score": 59,
+      "scoreReasons": [
+        "Australia signal",
+        "amount mentioned"
+      ],
+      "matchedTerms": [
+        "Indigenous",
+        "indigenous",
+        "business",
+        "equipment finance",
+        "loans",
+        "Aboriginal",
+        "Torres Strait"
+      ],
+      "amountHint": "$10k; $100k",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Aboriginal, Torres Strait, Indigenous, indigenous, business, loans",
+      "nextAction": "Check ownership/control requirements and structure the ask around equipment, working capital, buyer orders, and repayment source.",
+      "foundVia": "search: Australia Indigenous business loan manufacturing equipment working capital | search: IBA business finance social enterprise manufacturing equipment | search: Indigenous business loan remote community manufacturing Australia | search: recoverable grant social enterprise Indigenous Australia",
+      "snippet": "Apply for Indigenous business funding. IBA loans with 30% grants, state programs $10k-$100k. Aboriginal & Torres Strait Islander support.",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Indigenous and business loans"
+      ],
+      "laneIds": [
+        "indigenous_business_loans"
+      ]
+    },
+    {
+      "rank": 3,
+      "title": "Grants and funding - qld.gov.au",
+      "url": "https://www.qld.gov.au/firstnations/grants-funding",
+      "source": "qld.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 58,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "grants",
+        "First Nations",
+        "Aboriginal",
+        "Torres Strait",
+        "health"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Aboriginal, Torres Strait, grants",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "search: Queensland grant social enterprise equipment First Nations manufacturing",
+      "snippet": "Grants and funding available to Aboriginal and Torres Strait Islander peoples and businesses.",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 4,
+      "title": "Grants | Indigenous",
+      "url": "https://www.indigenous.gov.au/grants",
+      "source": "indigenous.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 57,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source",
+        "date/application signal",
+        "Rolling / no set close"
+      ],
+      "matchedTerms": [
+        "First Nations",
+        "Indigenous",
+        "government",
+        "grants",
+        "clean energy",
+        "clean energy advice",
+        "Aboriginal",
+        "Torres Strait"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "no set closing date",
+      "statusHint": "Rolling / no set close",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: First Nations, Indigenous, government, grants",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source: https://www.indigenous.gov.au/grants | source link: https://www.indigenous.gov.au/grants | search: Australia grant remote First Nations social enterprise manufacturing | search: Queensland grant social enterprise equipment First Nations manufacturing | search: Australia foundation grants First Nations remote communities social enterprise",
+      "snippet": "Australian Government grants for First Nations Australians",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 5,
+      "title": "Indigenous, NFP and Social Enterprise Grants | Avant Group",
+      "url": "https://avantgroup.com.au/indigenous-nfp-social-grants",
+      "source": "avantgroup.com.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 55,
+      "scoreReasons": [
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "Indigenous",
+        "social enterprise",
+        "grants",
+        "Aboriginal",
+        "Torres Strait"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep",
+        "Eligibility entity not found in sweep"
+      ],
+      "whyGoods": "Matched: Aboriginal, Torres Strait, Indigenous, social enterprise, grants",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "search: Australia grant remote First Nations social enterprise manufacturing | search: Queensland grant social enterprise equipment First Nations manufacturing | search: Australia foundation grants First Nations remote communities social enterprise",
+      "snippet": "Explore current grants for Aboriginal and Torres Strait Islander organisations, not‑for‑profits and social enterprises, with funding to support community impact.",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 6,
+      "title": "Supply Nation | Australia's largest national directory of Indigenous businesses",
+      "url": "https://supplynation.org.au",
+      "source": "supplynation.org.au",
+      "laneId": "indigenous_business_loans",
+      "lane": "Indigenous and business loans",
+      "score": 55,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "Indigenous",
+        "indigenous",
+        "business",
+        "Aboriginal",
+        "Torres Strait"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "national",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Aboriginal, Torres Strait, Indigenous, indigenous, business",
+      "nextAction": "Check ownership/control requirements and structure the ask around equipment, working capital, buyer orders, and repayment source.",
+      "foundVia": "search: First Nations business finance Australia working capital equipment",
+      "snippet": "Supply Nation provides Australia’s largest national directory of verified Aboriginal and Torres Strait Islander businesses.",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Indigenous and business loans"
+      ],
+      "laneIds": [
+        "indigenous_business_loans"
+      ]
+    },
+    {
+      "rank": 7,
+      "title": "Business Finance - Indigenous Business Australia",
+      "url": "https://iba.gov.au/business/finance",
+      "source": "iba.gov.au",
+      "laneId": "indigenous_business_loans",
+      "lane": "Indigenous and business loans",
+      "score": 53,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "Indigenous",
+        "indigenous",
+        "business",
+        "working capital"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Indigenous, indigenous, business",
+      "nextAction": "Check ownership/control requirements and structure the ask around equipment, working capital, buyer orders, and repayment source.",
+      "foundVia": "search: Australia Indigenous business loan manufacturing equipment working capital | search: IBA business finance social enterprise manufacturing equipment | search: Indigenous business loan remote community manufacturing Australia",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Indigenous and business loans"
+      ],
+      "laneIds": [
+        "indigenous_business_loans"
+      ]
+    },
+    {
+      "rank": 8,
+      "title": "Business Loan - Indigenous Business Australia",
+      "url": "https://iba.gov.au/business/finance/business-loan",
+      "source": "iba.gov.au",
+      "laneId": "indigenous_business_loans",
+      "lane": "Indigenous and business loans",
+      "score": 53,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "Indigenous",
+        "indigenous",
+        "business",
+        "working capital"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Indigenous, indigenous, business",
+      "nextAction": "Check ownership/control requirements and structure the ask around equipment, working capital, buyer orders, and repayment source.",
+      "foundVia": "search: Australia Indigenous business loan manufacturing equipment working capital",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Indigenous and business loans"
+      ],
+      "laneIds": [
+        "indigenous_business_loans"
+      ]
+    },
+    {
+      "rank": 9,
+      "title": "Business Loan Package | business.gov.au",
+      "url": "https://business.gov.au/grants-and-programs/Business-Loan-Package",
+      "source": "business.gov.au",
+      "laneId": "indigenous_business_loans",
+      "lane": "Indigenous and business loans",
+      "score": 53,
+      "scoreReasons": [
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "business",
+        "Indigenous",
+        "working capital",
+        "indigenous",
+        "loans"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: business",
+      "nextAction": "Check ownership/control requirements and structure the ask around equipment, working capital, buyer orders, and repayment source.",
+      "foundVia": "search: Australia Indigenous business loan manufacturing equipment working capital",
+      "snippet": "Find out how to get a loan to grow your business.",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Indigenous and business loans"
+      ],
+      "laneIds": [
+        "indigenous_business_loans"
+      ]
+    },
+    {
+      "rank": 10,
+      "title": "PDF The Indigenous Business Sectory Strategy - NIAA",
+      "url": "https://www.niaa.gov.au/sites/default/files/documents/publications/ibss_strategy.pdf",
+      "source": "niaa.gov.au",
+      "laneId": "impact_finance",
+      "lane": "Impact finance",
+      "score": 52,
+      "scoreReasons": [
+        "institutional source",
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "Indigenous",
+        "Aboriginal",
+        "Torres Strait",
+        "finance"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep",
+        "Eligibility entity not found in sweep"
+      ],
+      "whyGoods": "Matched: Indigenous",
+      "nextAction": "Build a repayable-finance memo: use of funds, buyer pipeline, gross margin, repayment pathway, security, risks, and catalytic co-capital.",
+      "foundVia": "search: impact investment Indigenous enterprise working capital Australia",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Impact finance"
+      ],
+      "laneIds": [
+        "impact_finance"
+      ]
+    },
+    {
+      "rank": 11,
+      "title": "First Nations Clean Energy Advice Grants Round 1 | business.gov.au",
+      "url": "https://business.gov.au/grants-and-programs/first-nations-clean-energy-advice-grants",
+      "source": "business.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 51,
+      "scoreReasons": [
+        "date/application signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "First Nations",
+        "clean energy",
+        "clean energy advice",
+        "grants"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: First Nations, clean energy, clean energy advice, grants",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://www.indigenous.gov.au/grants",
+      "snippet": "Find out how to get funding for First Nations communities to engage with clean energy development.",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 12,
+      "title": "Equipment Finance - Indigenous Business Australia - iba.gov.au",
+      "url": "https://iba.gov.au/business/equipment-finance",
+      "source": "iba.gov.au",
+      "laneId": "indigenous_business_loans",
+      "lane": "Indigenous and business loans",
+      "score": 49,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "Indigenous",
+        "equipment finance",
+        "indigenous",
+        "business"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Indigenous, equipment finance, indigenous, business",
+      "nextAction": "Check ownership/control requirements and structure the ask around equipment, working capital, buyer orders, and repayment source.",
+      "foundVia": "search: IBA business finance social enterprise manufacturing equipment",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Indigenous and business loans"
+      ],
+      "laneIds": [
+        "indigenous_business_loans"
+      ]
+    },
+    {
+      "rank": 13,
+      "title": "Impact Investment Partners | ImpactIP | Australia",
+      "url": "https://www.impactip.com.au",
+      "source": "impactip.com.au",
+      "laneId": "impact_finance",
+      "lane": "Impact finance",
+      "score": 49,
+      "scoreReasons": [
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "impact investment",
+        "impact",
+        "Aboriginal",
+        "Torres Strait",
+        "Indigenous"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Indigenous, impact investment, impact",
+      "nextAction": "Build a repayable-finance memo: use of funds, buyer pipeline, gross margin, repayment pathway, security, risks, and catalytic co-capital.",
+      "foundVia": "search: impact investment Indigenous enterprise working capital Australia",
+      "snippet": "Impact Investment Partners | ImpactIP | Australia | Enabling Indigenous Business",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Impact finance"
+      ],
+      "laneIds": [
+        "impact_finance"
+      ]
+    },
+    {
+      "rank": 14,
+      "title": "Community Support in Remote Queensland and the Northern Territory - Tim Fairfax Family Foundation",
+      "url": "https://www.tfff.org.au/community-support-in-remote-queensland-and-the-northern-territory",
+      "source": "tfff.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 47,
+      "scoreReasons": [
+        "institutional source",
+        "date/application signal"
+      ],
+      "matchedTerms": [
+        "Aboriginal",
+        "Torres Strait",
+        "remote",
+        "Northern Territory"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Northern Territory; Queensland; remote",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: remote, Northern Territory",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "source link: https://www.tfff.org.au/",
+      "snippet": "Community Support in Remote Queensland and the Northern Territory - Tim Fairfax Family Foundation Menu About Funding Strategy Where We Work Our People Annual Reports 2024-2025 2023-2024 2022-2023 2021-2022 2020-2021 Ningana Trust News & Impact Contact Us close Search Menu About Funding Strategy Where We Work Our People Annual Reports 2024-2025 2023-2024 2022-2023 2021-2022 2020-2021 Ningana Trust News & Impact Contact Us close Community Support in Remote Queensland and the Northern Territory Murrup partners with re...",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 15,
+      "title": "Indigenous Grants",
+      "url": "https://www.thegrantshub.com.au/blog/articles/indigenous-grants",
+      "source": "thegrantshub.com.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 47,
+      "scoreReasons": [
+        "Australia signal",
+        "date/application signal"
+      ],
+      "matchedTerms": [
+        "Indigenous",
+        "First Nations",
+        "Aboriginal",
+        "Torres Strait"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Indigenous",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "search: Australia foundation grants First Nations remote communities social enterprise",
+      "snippet": "There are currently 300+ Indigenous grants available across Australia. Here are some of the indigenous grants currently accepting applications.",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 16,
+      "title": "Social Enterprise Development Initiative - Department of Social Services",
+      "url": "https://www.dss.gov.au/social-impact-investing/social-enterprise-development-initiative",
+      "source": "dss.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 47,
+      "scoreReasons": [
+        "institutional source",
+        "amount mentioned",
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "social enterprise",
+        "First Nations",
+        "grants",
+        "impact"
+      ],
+      "amountHint": "$120,000",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: social enterprise",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "search: Australia grant remote First Nations social enterprise manufacturing | search: recoverable grant social enterprise Indigenous Australia | search: Australia foundation grants First Nations remote communities social enterprise | search: foundation impact investment social enterprise Australia First Nations",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 17,
+      "title": "First Nations Finance | Australia's Indigenous Non-Bank Lender",
+      "url": "https://firstnations.co",
+      "source": "firstnations.co",
+      "laneId": "indigenous_business_loans",
+      "lane": "Indigenous and business loans",
+      "score": 46,
+      "scoreReasons": [
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "First Nations",
+        "Indigenous",
+        "indigenous",
+        "business",
+        "finance"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: First Nations, Indigenous, indigenous, business",
+      "nextAction": "Check ownership/control requirements and structure the ask around equipment, working capital, buyer orders, and repayment source.",
+      "foundVia": "search: First Nations business finance Australia working capital equipment | search: Australia impact finance social enterprise First Nations manufacturing loan",
+      "snippet": "We provide finance to all Australian businesses, inc. sole traders, SME's , publicly listed companies & government organisations.",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Indigenous and business loans"
+      ],
+      "laneIds": [
+        "indigenous_business_loans"
+      ]
+    },
+    {
+      "rank": 18,
+      "title": "Indigenous Business Australia (IBA) Equipment Finance - Grants.com.au",
+      "url": "https://www.grants.com.au/grants/indigenous-business-australia-iba-equipment-finance",
+      "source": "grants.com.au",
+      "laneId": "indigenous_business_loans",
+      "lane": "Indigenous and business loans",
+      "score": 46,
+      "scoreReasons": [
+        "Australia signal",
+        "date/application signal"
+      ],
+      "matchedTerms": [
+        "Indigenous",
+        "equipment finance",
+        "indigenous",
+        "business"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Indigenous, equipment finance, indigenous, business",
+      "nextAction": "Check ownership/control requirements and structure the ask around equipment, working capital, buyer orders, and repayment source.",
+      "foundVia": "search: IBA business finance social enterprise manufacturing equipment",
+      "snippet": "This program offers tailored Finance Lease and Chattel Mortgage solutions to help finance assets for growing Indigenous businesses. The objective is to",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Indigenous and business loans"
+      ],
+      "laneIds": [
+        "indigenous_business_loans"
+      ]
+    },
+    {
+      "rank": 19,
+      "title": "Support for NT Aboriginal Businesses | Business NT",
+      "url": "https://business.nt.gov.au/help-for-business/support-for-nt-aboriginal-businesses",
+      "source": "business.nt.gov.au",
+      "laneId": "indigenous_business_loans",
+      "lane": "Indigenous and business loans",
+      "score": 46,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "Aboriginal",
+        "business",
+        "Northern Territory"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Northern Territory",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Aboriginal, business",
+      "nextAction": "Check ownership/control requirements and structure the ask around equipment, working capital, buyer orders, and repayment source.",
+      "foundVia": "search: Indigenous business loan remote community manufacturing Australia",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Indigenous and business loans"
+      ],
+      "laneIds": [
+        "indigenous_business_loans"
+      ]
+    },
+    {
+      "rank": 20,
+      "title": "White Box launches first-of-its-kind loan fund to fuel growth in social enterprises - Philanthropy Australia",
+      "url": "https://www.philanthropy.org.au/news-and-stories/white-box-launches-first-of-its-kind-loan-fund-to-fuel-growth-in-social-enterprises",
+      "source": "philanthropy.org.au",
+      "laneId": "impact_finance",
+      "lane": "Impact finance",
+      "score": 46,
+      "scoreReasons": [
+        "institutional source",
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "philanthropy",
+        "social enterprise",
+        "employment"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: social enterprise, philanthropy",
+      "nextAction": "Build a repayable-finance memo: use of funds, buyer pipeline, gross margin, repayment pathway, security, risks, and catalytic co-capital.",
+      "foundVia": "search: Australia social enterprise loan equipment finance",
+      "snippet": "Strengthening giving for a more generous, just and sustainable future.",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Impact finance"
+      ],
+      "laneIds": [
+        "impact_finance"
+      ]
+    },
+    {
+      "rank": 21,
+      "title": "Tim Fairfax Family Foundation - Creating opportunities in rural, regional, and remote communities of Queensland and the Northern Territory",
+      "url": "https://www.tfff.org.au",
+      "source": "tfff.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 45,
+      "scoreReasons": [
+        "date/application signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "remote",
+        "regional",
+        "Northern Territory"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Northern Territory; Queensland; remote; regional",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: remote, regional, Northern Territory",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "source: https://www.tfff.org.au/ | source link: https://www.tfff.org.au/",
+      "snippet": "Tim Fairfax Family Foundation - Creating opportunities in rural, regional, and remote communities of Queensland and the Northern Territory Menu About Funding Strategy Where We Work Our People Annual Reports 2024-2025 2023-2024 2022-2023 2021-2022 2020-2021 Ningana Trust News & Impact Contact Us close Search Menu About Funding Strategy Where We Work Our People Annual Reports 2024-2025 2023-2024 2022-2023 2021-2022 2020-2021 Ningana Trust News & Impact Contact Us close The Tim Fairfax Family Foundation is proud to su...",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 22,
+      "title": "PRF Website",
+      "url": "https://www.paulramsayfoundation.org.au",
+      "source": "paulramsayfoundation.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 44,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "First Nations",
+        "remote",
+        "regional"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "remote; regional",
+      "entityHint": "First Nations-led/control",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep",
+        "Eligibility entity not found in sweep"
+      ],
+      "whyGoods": "Matched: First Nations, remote, regional",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "source: https://www.paulramsayfoundation.org.au/ | source link: https://www.paulramsayfoundation.org.au/",
+      "snippet": "PRF Website About Us About us  Our Founder's story Our team Our Board First Nations Advisory Council Work with us How We Work How we work  Our approach How we invest Our partners PRF Fellows News & resources Contact  X Featured story Strengthening First Nations-led organisations in regional and remote QLD, SA, TAS, and the NT Read article  Read article  More from PRF View all  PRF News June 30, 2026 June 30, 2026 Strengthening First Nations-led organisations in regional and remote QLD, SA, TAS, and the NT PRF...",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 23,
+      "title": "SEDI Grants",
+      "url": "https://sedigrants.grantplatform.com",
+      "source": "sedigrants.grantplatform.com",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 44,
+      "scoreReasons": [
+        "Australia signal",
+        "amount mentioned"
+      ],
+      "matchedTerms": [
+        "grants",
+        "social enterprise",
+        "Indigenous",
+        "impact"
+      ],
+      "amountHint": "$120,000",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: grants",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "search: Australia grant remote First Nations social enterprise manufacturing | search: recoverable grant social enterprise Indigenous Australia",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 24,
+      "title": "Supply Nation | Australia's largest national directory of Indigenous businesses",
+      "url": "https://www.supplynation.org.au",
+      "source": "supplynation.org.au",
+      "laneId": "buyer_finance",
+      "lane": "Buyer finance and procurement",
+      "score": 44,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "Aboriginal",
+        "Torres Strait",
+        "Indigenous"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "national",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Aboriginal, Torres Strait, Indigenous",
+      "nextAction": "Turn into buyer pipeline work: target buyer, product fit, likely volume, procurement pathway, deposit or forward-order ask.",
+      "foundVia": "source: https://www.supplynation.org.au/",
+      "snippet": "Supply Nation provides Australia’s largest national directory of verified Aboriginal and Torres Strait Islander businesses.",
+      "crmSuggestion": "Notion Buyer/Demand register + GHL Buyer or Demand pipeline",
+      "lanes": [
+        "Buyer finance and procurement"
+      ],
+      "laneIds": [
+        "buyer_finance"
+      ]
+    },
+    {
+      "rank": 25,
+      "title": "Grants directory | NT.GOV.AU - Northern Territory Government",
+      "url": "https://nt.gov.au/community/grants-and-volunteers/grants/grants-directory",
+      "source": "nt.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 43,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "Northern Territory",
+        "government",
+        "grants"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Northern Territory",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Northern Territory, government, grants",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "search: Northern Territory grant recycled plastic manufacturing First Nations",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 26,
+      "title": "GrantsNT",
+      "url": "https://grantsnt.nt.gov.au",
+      "source": "grantsnt.nt.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 43,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "grants",
+        "Northern Territory",
+        "government"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Northern Territory",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Northern Territory, government, grants",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "search: Northern Territory grant recycled plastic manufacturing First Nations",
+      "snippet": "GrantsNT is the online grant management system for the Northern Territory Government. You can use GrantsNT to search for previous, current and expired Grants from the Northern Territory Government. You can use GrantsNT to manage your reporting of performance and payment for approved grants. You can use GrantsNT to be notified of and stay up to date with the latest grants from the Northern Territory Government.",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 27,
+      "title": "PDF I M P A C T F R A M E W O R K - firstaustralianscapital.org",
+      "url": "https://firstaustralianscapital.org/wp-content/uploads/2024/12/FINAL-COPY-Indigenous-First-Impact-Framework-4-compressed.pdf",
+      "source": "firstaustralianscapital.org",
+      "laneId": "impact_finance",
+      "lane": "Impact finance",
+      "score": 43,
+      "scoreReasons": [
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "Indigenous",
+        "impact",
+        "impact investment"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Indigenous, impact",
+      "nextAction": "Build a repayable-finance memo: use of funds, buyer pipeline, gross margin, repayment pathway, security, risks, and catalytic co-capital.",
+      "foundVia": "search: impact investment Indigenous enterprise working capital Australia",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Impact finance"
+      ],
+      "laneIds": [
+        "impact_finance"
+      ]
+    },
+    {
+      "rank": 28,
+      "title": "Social Enterprise Loan Fund - White Box Enterprises",
+      "url": "https://whiteboxenterprises.com.au/innovate/self",
+      "source": "whiteboxenterprises.com.au",
+      "laneId": "impact_finance",
+      "lane": "Impact finance",
+      "score": 43,
+      "scoreReasons": [
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "social enterprise",
+        "employment",
+        "impact",
+        "finance"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: social enterprise, finance",
+      "nextAction": "Build a repayable-finance memo: use of funds, buyer pipeline, gross margin, repayment pathway, security, risks, and catalytic co-capital.",
+      "foundVia": "source link: https://whiteboxenterprises.com.au/self/ | search: concessional loan social enterprise circular economy Australia | search: Australia social enterprise loan equipment finance",
+      "snippet": "Social Enterprise Loan Fund - White Box Enterprises Home Build Strengthen Financial Wellbeing Program Advisory Property Finance Innovate Social Enterprise Loan Fund Payment By Outcomes Trial Disability Enterprise Evolve Program WorkFoundations Program SEWF 2022 About Our Why Our Story Our Evaluations Our Team Our Values Our Supporters News Contact ✕ SELF Social Enterprise Loan Fund Empowering social enterprises with the right capital at the right time. Launched in 2025, the Social Enterprise Loan Fund (SELF) is Aus...",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Impact finance"
+      ],
+      "laneIds": [
+        "impact_finance"
+      ]
+    },
+    {
+      "rank": 29,
+      "title": "Start-Up Finance Package - Indigenous Business Australia",
+      "url": "https://iba.gov.au/business/finance/start-finance-package",
+      "source": "iba.gov.au",
+      "laneId": "indigenous_business_loans",
+      "lane": "Indigenous and business loans",
+      "score": 43,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source",
+        "date/application signal"
+      ],
+      "matchedTerms": [
+        "Indigenous",
+        "indigenous",
+        "business"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Indigenous, indigenous, business",
+      "nextAction": "Check ownership/control requirements and structure the ask around equipment, working capital, buyer orders, and repayment source.",
+      "foundVia": "search: Indigenous business loan remote community manufacturing Australia",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Indigenous and business loans"
+      ],
+      "laneIds": [
+        "indigenous_business_loans"
+      ]
+    },
+    {
+      "rank": 30,
+      "title": "PDF Philanthropy and Indigenous Initiatives: Insights From Australian Donors",
+      "url": "https://opus.lib.uts.edu.au/bitstream/10453/185818/2/Aust%20J%20Social%20Issues%20-%202025%20-%20McEwen%20-%20Philanthropy%20and%20Indigenous%20Initiatives%20%20Insights%20From%20Australian%20Donors.pdf",
+      "source": "opus.lib.uts.edu.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 42,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source",
+        "date/application signal"
+      ],
+      "matchedTerms": [
+        "Indigenous",
+        "philanthropy"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Indigenous, philanthropy",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "search: Australian philanthropy Indigenous enterprise circular economy manufacturing",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 31,
+      "title": "Current Grant Opportunity List: GrantConnect",
+      "url": "https://www.grants.gov.au/Go/List?orderBy=Close+Date+%26+Time+-+Ascending&Keyword=indigenous&KeywordTypeSearch=AllWord",
+      "source": "grants.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 41,
+      "scoreReasons": [
+        "date/application signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "Indigenous",
+        "grants"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Indigenous, grants",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "search: site:grants.gov.au Aboriginal remote community manufacturing grant",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 32,
+      "title": "First Nations-Led Change: Best practice insights How can Australian philanthropy best support climate action? Here are key tips from experts and not-for-profit leaders mobilising at this critical moment.",
+      "url": "https://communityfoundation.org.au/article/first-nations-led-change-best-practice-insights",
+      "source": "communityfoundation.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 41,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "First Nations",
+        "philanthropy"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "NFP; First Nations-led/control",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: First Nations, philanthropy",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "source link: https://www.communityfoundation.org.au/",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 33,
+      "title": "Help build the First Nations economy - First Australians Capital",
+      "url": "https://firstaustralianscapital.org/help-build-the-first-nations-economy",
+      "source": "firstaustralianscapital.org",
+      "laneId": "indigenous_business_loans",
+      "lane": "Indigenous and business loans",
+      "score": 41,
+      "scoreReasons": [
+        "amount mentioned",
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "First Nations",
+        "business",
+        "impact"
+      ],
+      "amountHint": "$100M",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: First Nations",
+      "nextAction": "Check ownership/control requirements and structure the ask around equipment, working capital, buyer orders, and repayment source.",
+      "foundVia": "search: First Nations business finance Australia working capital equipment | search: impact investment Indigenous enterprise working capital Australia | search: foundation impact investment social enterprise Australia First Nations",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Indigenous and business loans"
+      ],
+      "laneIds": [
+        "indigenous_business_loans"
+      ]
+    },
+    {
+      "rank": 34,
+      "title": "Aboriginal and Torres Strait Islander peoples | Your Career",
+      "url": "https://www.yourcareer.gov.au/school-leavers-support/school-leavers-information-kit/aboriginal-torres-strait-islander-peoples",
+      "source": "yourcareer.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 40,
+      "scoreReasons": [
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "Aboriginal",
+        "Torres Strait"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Aboriginal, Torres Strait",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://www.indigenous.gov.au/grants",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 35,
+      "title": "Aboriginal Investment NT | Backing Aboriginal-led development through ...",
+      "url": "https://www.aboriginalinvestment.org.au",
+      "source": "aboriginalinvestment.org.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 40,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "Aboriginal",
+        "Northern Territory"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Northern Territory",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Aboriginal",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "search: Northern Territory grant recycled plastic manufacturing First Nations",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 36,
+      "title": "First Nations Digital Inclusion | Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "url": "https://www.infrastructure.gov.au/media-communications/first-nations-digital-inclusion",
+      "source": "infrastructure.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 40,
+      "scoreReasons": [
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "First Nations",
+        "regional"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "regional",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: First Nations, regional",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://www.indigenous.gov.au/grants",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 37,
+      "title": "Flags",
+      "url": "https://www.indigenous.gov.au/moments-aboriginal-and-torres-strait-islander-flags",
+      "source": "indigenous.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 40,
+      "scoreReasons": [
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "Aboriginal",
+        "Indigenous"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Aboriginal, Indigenous",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://www.indigenous.gov.au/grants",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 38,
+      "title": "Grants for Aboriginal Businesses | NT",
+      "url": "https://www.aboriginalinvestment.org.au/grants",
+      "source": "aboriginalinvestment.org.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 40,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "Aboriginal",
+        "grants"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep",
+        "Eligibility entity not found in sweep"
+      ],
+      "whyGoods": "Matched: Aboriginal, grants",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "search: Northern Territory grant recycled plastic manufacturing First Nations",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 39,
+      "title": "Indigenous.gov.au Connecting With First Nations Australians",
+      "url": "https://www.indigenous.gov.au",
+      "source": "indigenous.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 40,
+      "scoreReasons": [
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "First Nations",
+        "Indigenous"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: First Nations, Indigenous",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://www.indigenous.gov.au/grants",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 40,
+      "title": "Manufacturing industry grants",
+      "url": "https://www.business.qld.gov.au/industries/manufacturing-retail/manufacturing/grant-programs",
+      "source": "business.qld.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 40,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "manufacturing",
+        "grants"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: manufacturing, grants",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://www.business.qld.gov.au/starting-business/advice-support/grants",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 41,
+      "title": "Not for profit finance and social enterprise lending | Bank Australia",
+      "url": "https://www.bankaust.com.au/impact-finance/not-for-profit-finance-and-for-purpose-lending",
+      "source": "bankaust.com.au",
+      "laneId": "impact_finance",
+      "lane": "Impact finance",
+      "score": 40,
+      "scoreReasons": [
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "social enterprise",
+        "impact",
+        "finance"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: social enterprise, impact, finance",
+      "nextAction": "Build a repayable-finance memo: use of funds, buyer pipeline, gross margin, repayment pathway, security, risks, and catalytic co-capital.",
+      "foundVia": "search: concessional loan social enterprise circular economy Australia | search: Australia social enterprise loan equipment finance",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Impact finance"
+      ],
+      "laneIds": [
+        "impact_finance"
+      ]
+    },
+    {
+      "rank": 42,
+      "title": "Our Impact",
+      "url": "https://www.impactnorth.org.au/our-impact",
+      "source": "impactnorth.org.au",
+      "laneId": "impact_finance",
+      "lane": "Impact finance",
+      "score": 40,
+      "scoreReasons": [
+        "institutional source",
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "impact",
+        "Indigenous"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: impact",
+      "nextAction": "Build a repayable-finance memo: use of funds, buyer pipeline, gross margin, repayment pathway, security, risks, and catalytic co-capital.",
+      "foundVia": "search: Australia impact finance social enterprise First Nations manufacturing loan",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Impact finance"
+      ],
+      "laneIds": [
+        "impact_finance"
+      ]
+    },
+    {
+      "rank": 43,
+      "title": "Our Story",
+      "url": "https://sefa.com.au/our-story",
+      "source": "sefa.com.au",
+      "laneId": "impact_finance",
+      "lane": "Impact finance",
+      "score": 40,
+      "scoreReasons": [
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "social enterprise",
+        "impact",
+        "finance"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Needs manual fit check.",
+      "nextAction": "Build a repayable-finance memo: use of funds, buyer pipeline, gross margin, repayment pathway, security, risks, and catalytic co-capital.",
+      "foundVia": "source link: https://sefa.com.au/access-impact-finance/ | search: Australia impact finance social enterprise First Nations manufacturing loan",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Impact finance"
+      ],
+      "laneIds": [
+        "impact_finance"
+      ]
+    },
+    {
+      "rank": 44,
+      "title": "Regional Business Gateways Program",
+      "url": "https://www.business.qld.gov.au/running-business/support-services/financial/grants/regional-business-gateways",
+      "source": "business.qld.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 40,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "regional",
+        "grants"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "regional",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: regional, grants",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://www.business.qld.gov.au/starting-business/advice-support/grants",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 45,
+      "title": "Where we invest - Clean Energy Finance Corporation",
+      "url": "https://www.cefc.com.au/where-we-invest",
+      "source": "cefc.com.au",
+      "laneId": "equipment_and_clean_energy",
+      "lane": "Equipment, circular economy and clean energy",
+      "score": 39,
+      "scoreReasons": [
+        "amount mentioned",
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "clean energy",
+        "clean",
+        "energy"
+      ],
+      "amountHint": "$10 b",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: clean energy, clean, energy",
+      "nextAction": "Check whether the opportunity funds advice, capex, energy upgrade, recycling infrastructure, or buyer procurement; map to the plant budget.",
+      "foundVia": "source: https://www.cefc.com.au/where-we-invest/ | source link: https://www.cefc.com.au/where-we-invest/",
+      "snippet": "Helping cut emissions by investing $10 billion on behalf of the Australian Government – in agriculture, cleantech innovation, energy generation and storage, infrastructure, property, transport and waste.",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Equipment, circular economy and clean energy"
+      ],
+      "laneIds": [
+        "equipment_and_clean_energy"
+      ]
+    },
+    {
+      "rank": 46,
+      "title": "Artlands 2026: A National Gathering for Regional Creative Futures Regional Arts Australia (RAA) is the national organisation for rural, regional, and remote arts. It delivers the Commonwealth&rsquo;s Regional Arts...",
+      "url": "https://www.tfff.org.au/artlands-2026-a-national-gathering-for-regional-creative-futures",
+      "source": "tfff.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 38,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "remote",
+        "regional"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "remote; regional; national",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: remote, regional",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "source link: https://www.tfff.org.au/",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 47,
+      "title": "CEO Update: A Shared Commitment to Change Andrew reflects on the power of collaboration in philanthropy, lessons from recent conversations on gender equity and First Nations-led change, and updates on the evolution of the Impact Fund.",
+      "url": "https://communityfoundation.org.au/article/ceo-update-june-2026",
+      "source": "communityfoundation.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 38,
+      "scoreReasons": [
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "First Nations",
+        "philanthropy"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "First Nations-led/control",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: First Nations, philanthropy",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "source link: https://www.communityfoundation.org.au/",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 48,
+      "title": "For enterprises",
+      "url": "https://impactinvestingaustralia.com/looking-for-funding-or-investors",
+      "source": "impactinvestingaustralia.com",
+      "laneId": "impact_finance",
+      "lane": "Impact finance",
+      "score": 38,
+      "scoreReasons": [
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "impact",
+        "social enterprise",
+        "First Nations",
+        "employment"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep",
+        "Eligibility entity not found in sweep"
+      ],
+      "whyGoods": "Matched: impact",
+      "nextAction": "Build a repayable-finance memo: use of funds, buyer pipeline, gross margin, repayment pathway, security, risks, and catalytic co-capital.",
+      "foundVia": "source link: https://impactinvestingaustralia.com/ | search: foundation impact investment social enterprise Australia First Nations",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Impact finance"
+      ],
+      "laneIds": [
+        "impact_finance"
+      ]
+    },
+    {
+      "rank": 49,
+      "title": "Indigenous Business Council",
+      "url": "https://ibcouncil.org.au",
+      "source": "ibcouncil.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 38,
+      "scoreReasons": [
+        "institutional source",
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "Indigenous",
+        "First Nations"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep",
+        "Eligibility entity not found in sweep"
+      ],
+      "whyGoods": "Matched: Indigenous",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "search: Australian philanthropy Indigenous enterprise circular economy manufacturing",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 50,
+      "title": "Peer Network Philanthropic advocacy as an ally to the social enterprise sector",
+      "url": "https://philanthropy.org.au/whats-on/?event_type=43",
+      "source": "philanthropy.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 38,
+      "scoreReasons": [
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "social enterprise",
+        "philanthropy"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: social enterprise, philanthropy",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "source link: https://www.philanthropy.org.au/",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 51,
+      "title": "Philanthropy and Indigenous Initiatives: Insights From Australian ...",
+      "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/ajs4.70003",
+      "source": "onlinelibrary.wiley.com",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 38,
+      "scoreReasons": [
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "Indigenous",
+        "philanthropy"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Indigenous, philanthropy",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "search: Australian philanthropy Indigenous enterprise circular economy manufacturing",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 52,
+      "title": "Torres Strait Kaziw Meta Becomes First Certified Indigenous Boarding Facility in Australia Torres Strait Kaziw Meta (Kaziw Meta) is a boarding facility on Thursday Island for students in Years 7-12. It is...",
+      "url": "https://www.tfff.org.au/torres-strait-kaziw-meta",
+      "source": "tfff.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 38,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "Torres Strait",
+        "Indigenous"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Torres Strait, Indigenous",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "source link: https://www.tfff.org.au/",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 53,
+      "title": "Environment and business",
+      "url": "https://www.business.qld.gov.au/running-business/environment",
+      "source": "business.qld.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 37,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "environment"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: environment",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://www.business.qld.gov.au/starting-business/advice-support/grants",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 54,
+      "title": "Environmental codes of practice for industry",
+      "url": "https://www.business.qld.gov.au/industries/industry-codes",
+      "source": "business.qld.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 37,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "environment"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: environment",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://www.business.qld.gov.au/starting-business/advice-support/grants",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 55,
+      "title": "First Nations We’re working towards a reconciled Australia where First Nations peoples’ rights and opportunities are guaranteed.",
+      "url": "https://www.socialventures.org.au/expert_area/first-nations",
+      "source": "socialventures.org.au",
+      "laneId": "impact_finance",
+      "lane": "Impact finance",
+      "score": 37,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "First Nations"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: First Nations",
+      "nextAction": "Build a repayable-finance memo: use of funds, buyer pipeline, gross margin, repayment pathway, security, risks, and catalytic co-capital.",
+      "foundVia": "source link: https://www.socialventures.com.au/",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Impact finance"
+      ],
+      "laneIds": [
+        "impact_finance"
+      ]
+    },
+    {
+      "rank": 56,
+      "title": "GrantConnect Homepage: GrantConnect",
+      "url": "https://www.grants.gov.au",
+      "source": "grants.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 37,
+      "scoreReasons": [
+        "institutional source",
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "grants",
+        "government"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: grants",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "search: site:grants.gov.au Aboriginal remote community manufacturing grant | search: recoverable grant social enterprise Indigenous Australia",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 57,
+      "title": "Home | Impact Investing Australia",
+      "url": "https://impactinvestingaustralia.com",
+      "source": "impactinvestingaustralia.com",
+      "laneId": "impact_finance",
+      "lane": "Impact finance",
+      "score": 37,
+      "scoreReasons": [
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "impact investment",
+        "impact"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep",
+        "Eligibility entity not found in sweep"
+      ],
+      "whyGoods": "Matched: impact investment, impact",
+      "nextAction": "Build a repayable-finance memo: use of funds, buyer pipeline, gross margin, repayment pathway, security, risks, and catalytic co-capital.",
+      "foundVia": "source: https://impactinvestingaustralia.com/ | source link: https://impactinvestingaustralia.com/",
+      "snippet": "Home | Impact Investing Australia New to impact investing What is impact investing Who are the investors IIA investor network Want to get involved Case studies For enterprises SEDI Grants Intermediaries Incubators and accelerators For investors IIA investor network Impact Deal Tracker Impact investment advisors Impact investments News and resources Resources Reports Submissions Newsletters News Media releases Media coverage Events New to impact investing What is impact investing Who are the investors IIA investor n...",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Impact finance"
+      ],
+      "laneIds": [
+        "impact_finance"
+      ]
+    },
+    {
+      "rank": 58,
+      "title": "Housing and accommodation",
+      "url": "https://www.business.qld.gov.au/industries/housing-accommodation",
+      "source": "business.qld.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 37,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "housing"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: housing",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://www.business.qld.gov.au/starting-business/advice-support/grants",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 59,
+      "title": "Indigenous businesses",
+      "url": "https://business.gov.au/grants-and-support/indigenous-businesses",
+      "source": "business.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 37,
+      "scoreReasons": [
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "Indigenous",
+        "grants"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Indigenous, grants",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://business.gov.au/grants-and-programs",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 60,
+      "title": "Manufacturing and retail",
+      "url": "https://www.business.qld.gov.au/industries/manufacturing-retail",
+      "source": "business.qld.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 37,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "manufacturing"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: manufacturing",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://www.business.qld.gov.au/starting-business/advice-support/grants",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 61,
+      "title": "Queensland Government Grants Finder",
+      "url": "https://www.grants.services.qld.gov.au",
+      "source": "grants.services.qld.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 37,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "government",
+        "grants"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Queensland",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: government, grants",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "search: Queensland grant social enterprise equipment First Nations manufacturing",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 62,
+      "title": "Workplace health and safety",
+      "url": "https://www.business.qld.gov.au/running-business/whs",
+      "source": "business.qld.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 37,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "health"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: health",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://www.business.qld.gov.au/starting-business/advice-support/grants",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 63,
+      "title": "Annual Report Highlights: 2024-2025 FY25 saw the TFFF distribute $8.096 million to 43 for-purpose organisations through values-based philanthropy. This included the commencement of three nine-year...",
+      "url": "https://www.tfff.org.au/annual-report-highlights-2024-2025",
+      "source": "tfff.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 36,
+      "scoreReasons": [
+        "amount mentioned",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "philanthropy"
+      ],
+      "amountHint": "$8.096 m",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep"
+      ],
+      "whyGoods": "Matched: philanthropy",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "source link: https://www.tfff.org.au/",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 64,
+      "title": "Closing the Gap: Our Educational Outcomes Work, Two Years On A closer look at our educational outcomes work, focusing on the building blocks of effective teaching. We explore what the data shows and how philanthropy can respond. Read more here",
+      "url": "https://www.snowfoundation.org.au/news/closing-the-gap-our-educational-outcomes-work-two-years-on",
+      "source": "snowfoundation.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 36,
+      "scoreReasons": [
+        "date/application signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "philanthropy"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: philanthropy",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "source link: https://www.snowfoundation.org.au/",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 65,
+      "title": "Home - First Australians Capital",
+      "url": "https://firstaustralianscapital.org",
+      "source": "firstaustralianscapital.org",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 36,
+      "scoreReasons": [
+        "date/application signal"
+      ],
+      "matchedTerms": [
+        "First Nations",
+        "Indigenous"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Needs manual fit check.",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "search: foundation impact investment social enterprise Australia First Nations",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 66,
+      "title": "The Long View: Chris Miller on philanthropy and lasting impact For more than two decades, Chris Miller has been a part of the ACF giving community. We sat down with him to discuss his philanthropic philosophy grounded in relationships, trust, and long-term commitment.",
+      "url": "https://communityfoundation.org.au/article/chris-miller-philanthropy-and-lasting-impact",
+      "source": "communityfoundation.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 36,
+      "scoreReasons": [
+        "date/application signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "philanthropy"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: philanthropy",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "source link: https://www.communityfoundation.org.au/",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 67,
+      "title": "Conference Philanthropy Australia Conference 2026",
+      "url": "https://philanthropy.org.au/whats-on/?event_type=40",
+      "source": "philanthropy.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 35,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "philanthropy"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: philanthropy",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "source link: https://www.philanthropy.org.au/",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 68,
+      "title": "Country Centred Economy | GoodHuman",
+      "url": "https://www.goodhuman.com.au/cc-ce",
+      "source": "goodhuman.com.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 35,
+      "scoreReasons": [
+        "Australia signal"
+      ],
+      "matchedTerms": [
+        "Indigenous",
+        "circular economy"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Needs manual fit check.",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "search: Australian philanthropy Indigenous enterprise circular economy manufacturing",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 69,
+      "title": "Home - Philanthropy Australia",
+      "url": "https://www.philanthropy.org.au",
+      "source": "philanthropy.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 35,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "philanthropy"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: philanthropy",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "source: https://www.philanthropy.org.au/ | source link: https://www.philanthropy.org.au/",
+      "snippet": "Strengthening giving for a more generous, just and sustainable future.",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 70,
+      "title": "Home | The Ian Potter Foundation",
+      "url": "https://www.ianpotter.org.au",
+      "source": "ianpotter.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 35,
+      "scoreReasons": [
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "health",
+        "environment"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: health, environment",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "source: https://www.ianpotter.org.au/",
+      "snippet": "Home | The Ian Potter Foundation FAQs Contact Us Login Our Vision Our Vision Funding Pillars Funding Principles About Us About Us Our History About Sir Ian Potter Our People Donate VALE Professor Emma Johnston Tribute What We Support What We Support Program Areas Arts Community Wellbeing Early Childhood Development Environment Medical Research Public Health Major Grants Sub-Funds Public Health New funding guidelines from 2026 Learn more For Grantseekers For Grantseekers Can we apply? Universities/Research Institute...",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 71,
+      "title": "News and stories Australia’s giving paradox: why a wealthy nation underperforms on generosity",
+      "url": "https://www.philanthropy.org.au/news-and-stories?news_type=96",
+      "source": "philanthropy.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 35,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "philanthropy"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Queensland",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: philanthropy",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "source link: https://www.philanthropy.org.au/",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 72,
+      "title": "Philanthropy Australia",
+      "url": "https://www.snowfoundation.org.au/partners/philanthropy-australia",
+      "source": "snowfoundation.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 35,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "philanthropy"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: philanthropy",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "source link: https://www.snowfoundation.org.au/",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 73,
+      "title": "Read more",
+      "url": "https://www.philanthropy.org.au/whats-on/philanthropy-australia-conference-2026",
+      "source": "philanthropy.org.au",
+      "laneId": "philanthropy",
+      "lane": "Philanthropy",
+      "score": 35,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "philanthropy"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: philanthropy",
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path.",
+      "foundVia": "source link: https://www.philanthropy.org.au/",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Philanthropy"
+      ],
+      "laneIds": [
+        "philanthropy"
+      ]
+    },
+    {
+      "rank": 74,
+      "title": "SELF loan offers working capital and unexpected clarity for Good Cycles.",
+      "url": "https://whiteboxenterprises.com.au/self-loan-offers-working-capital-and-unexpected-clarity-for-good-cycles",
+      "source": "whiteboxenterprises.com.au",
+      "laneId": "impact_finance",
+      "lane": "Impact finance",
+      "score": 35,
+      "scoreReasons": [],
+      "matchedTerms": [
+        "working capital"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: working capital",
+      "nextAction": "Build a repayable-finance memo: use of funds, buyer pipeline, gross margin, repayment pathway, security, risks, and catalytic co-capital.",
+      "foundVia": "source link: https://whiteboxenterprises.com.au/self/",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Goods Supporter Journey, relationship-led",
+      "lanes": [
+        "Impact finance"
+      ],
+      "laneIds": [
+        "impact_finance"
+      ]
+    },
+    {
+      "rank": 75,
+      "title": "Selling or leaving your business",
+      "url": "https://www.business.qld.gov.au/running-business/selling-closing-leaving",
+      "source": "business.qld.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 35,
+      "scoreReasons": [
+        "date/application signal",
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Needs manual fit check.",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://www.business.qld.gov.au/starting-business/advice-support/grants",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 76,
+      "title": "About this site",
+      "url": "https://www.indigenous.gov.au/about-site",
+      "source": "indigenous.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 34,
+      "scoreReasons": [
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "Indigenous"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Indigenous",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://www.indigenous.gov.au/grants",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 77,
+      "title": "Accessibility",
+      "url": "https://www.indigenous.gov.au/accessibility",
+      "source": "indigenous.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 34,
+      "scoreReasons": [
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "Indigenous"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Indigenous",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://www.indigenous.gov.au/grants",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 78,
+      "title": "Acknowledgement of Country",
+      "url": "https://www.indigenous.gov.au/acknowledgement-country",
+      "source": "indigenous.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 34,
+      "scoreReasons": [
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "Indigenous"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: Indigenous",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://www.indigenous.gov.au/grants",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 79,
+      "title": "Advance Queensland grants",
+      "url": "https://www.business.qld.gov.au/industries/science-it-creative/science/advance-qld-initiative",
+      "source": "business.qld.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 34,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "grants"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Queensland",
+      "entityHint": "Unknown",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Eligibility entity not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: grants",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://www.business.qld.gov.au/starting-business/advice-support/grants",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    },
+    {
+      "rank": 80,
+      "title": "Business Basics Grants Program",
+      "url": "https://www.business.qld.gov.au/running-business/support-services/financial/grants/business-basics-grant",
+      "source": "business.qld.gov.au",
+      "laneId": "government_grants",
+      "lane": "Government grants",
+      "score": 34,
+      "scoreReasons": [
+        "Australia signal",
+        "institutional source"
+      ],
+      "matchedTerms": [
+        "grants"
+      ],
+      "amountHint": "Unknown",
+      "dueDateHint": "Unknown",
+      "statusHint": "Unknown",
+      "geographyHint": "Unknown",
+      "entityHint": "Business/social enterprise",
+      "riskFlags": [
+        "Close date not found in sweep",
+        "Amount not found in sweep"
+      ],
+      "whyGoods": "Matched: grants",
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice.",
+      "foundVia": "source link: https://www.business.qld.gov.au/starting-business/advice-support/grants",
+      "snippet": "",
+      "crmSuggestion": "Notion Funder Pipeline + GHL Grants pipeline after manual eligibility check",
+      "lanes": [
+        "Government grants"
+      ],
+      "laneIds": [
+        "government_grants"
+      ]
+    }
+  ]
+}

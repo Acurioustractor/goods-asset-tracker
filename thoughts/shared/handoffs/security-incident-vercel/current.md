@@ -1,6 +1,6 @@
-# Security incident — Vercel deployment deleted — RESOLVED
+# Security incident — Vercel deployment deleted — CLOSED
 
-_Opened 2026-06-28. **RESOLVED 2026-07-01.** Site restored + verified. Restore side closed; provider-key rotations remain (human, non-blocking)._
+_Opened 2026-06-28. Restore RESOLVED 2026-07-01. **FULLY CLOSED 2026-07-03** — all rotations done and verified: EL Supabase key (surfaces live again), GHL pit-token (writes re-armed), Stripe sk/pk/whsec (live checkout session verified through prod), GitHub CI secret, legacy keys scrubbed from 20 files (PR #141), all 3 proxy gates fail-closed (PR #140). Deploy pipeline properly restored: rootDirectory=v2 + www/apex as PROJECT domains (apex 307s to www) + `vercel git connect` — merge to main auto-deploys, manual aliasing dead. Remaining tails (non-blocking): MiniMax key (m3 pool, not the site), EL API key only if an EL-API-only endpoint fails, observe first real Stripe webhook delivery._
 **Live:** https://www.goodsoncountry.com — www + apex 200, TLS ok, DB pages 200, zero runtime errors.
 
 ## What happened

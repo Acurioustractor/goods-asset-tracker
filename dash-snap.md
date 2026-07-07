@@ -1,0 +1,298 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - navigation [ref=e4]:
+        - link "Goods on Country home" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "Goods on Country" [ref=e6]
+        - generic [ref=e7]:
+          - link "Stretch Bed" [ref=e8] [cursor=pointer]:
+            - /url: /shop/stretch-bed-single
+          - link "Pakkimjalki Kari(Washing Machine)" [ref=e9] [cursor=pointer]:
+            - /url: /shop/washing-machine
+            - text: Pakkimjalki Kari
+            - generic [ref=e10]: (Washing Machine)
+          - link "How It's Made" [ref=e11] [cursor=pointer]:
+            - /url: /process
+          - link "Back the work" [ref=e12] [cursor=pointer]:
+            - /url: /partner
+          - link "Our Story" [ref=e13] [cursor=pointer]:
+            - /url: /story
+          - link "Contact" [ref=e14] [cursor=pointer]:
+            - /url: /contact
+        - generic [ref=e15]:
+          - link "Back the work" [ref=e16] [cursor=pointer]:
+            - /url: /partner
+          - link "Buy Now" [ref=e17] [cursor=pointer]:
+            - /url: /shop/stretch-bed-single
+          - button "Shopping cart with 0 items" [ref=e18]:
+            - img
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - generic [ref=e23]: "496"
+        - generic [ref=e24]: beds across Australia
+      - generic [ref=e25]:
+        - generic [ref=e26]: "9"
+        - generic [ref=e27]: communities
+      - generic [ref=e28]:
+        - generic [ref=e29]: 20kg
+        - generic [ref=e30]: plastic diverted per bed
+    - main [ref=e31]:
+      - main [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34]:
+            - link "Goods On Country · Partner dashboard" [ref=e35] [cursor=pointer]:
+              - /url: /
+              - generic [ref=e36]: Goods
+              - generic [ref=e37]: On Country · Partner dashboard
+            - img "The Snow Foundation" [ref=e39]
+          - paragraph [ref=e40]: The Snow Foundation
+          - heading "What your backing is making possible on country" [level=1] [ref=e41]
+          - paragraph [ref=e42]: A live view of where Goods on Country is at, built for The Snow Foundation. The numbers below update on their own from the field. The rest is what we are working on, where we have come from, and what is next.
+          - generic [ref=e43]:
+            - generic [ref=e44]:
+              - paragraph [ref=e45]: "496"
+              - paragraph [ref=e46]: Beds in community
+            - generic [ref=e47]:
+              - paragraph [ref=e48]: "9"
+              - paragraph [ref=e49]: Communities
+            - generic [ref=e50]:
+              - paragraph [ref=e51]: 2.66 t
+              - paragraph [ref=e52]: Plastic diverted
+            - generic [ref=e53]:
+              - paragraph [ref=e54]: 14 / 28
+              - paragraph [ref=e55]: Washers live / out
+            - generic [ref=e56]:
+              - paragraph [ref=e57]: $741K
+              - paragraph [ref=e58]: Funding received
+          - paragraph [ref=e61]: Right nowCommissioning the first containerised plant (~85%); the Alice Springs facility submission with Oonchiumpa is in review.
+        - generic [ref=e62]:
+          - tablist "Dashboard sections" [ref=e64]:
+            - tab "Trajectory" [selected] [ref=e65]
+            - tab "Stewardship" [ref=e66]
+            - tab "Roadmap" [ref=e67]
+            - tab "Community voice" [ref=e68]
+          - tabpanel "Trajectory" [ref=e69]:
+            - generic [ref=e70]:
+              - paragraph [ref=e73]: The trajectory, live from the field
+              - generic [ref=e74]:
+                - generic [ref=e75]:
+                  - paragraph [ref=e76]: "496"
+                  - paragraph [ref=e77]: Beds in community
+                  - paragraph [ref=e78]: 133 recycled-plastic Stretch Beds
+                - generic [ref=e79]:
+                  - paragraph [ref=e80]: "9"
+                  - paragraph [ref=e81]: Communities
+                - generic [ref=e82]:
+                  - paragraph [ref=e83]: 2.66 t
+                  - paragraph [ref=e84]: Plastic diverted
+                  - paragraph [ref=e85]: ~20 kg per Stretch Bed
+                - generic [ref=e86]:
+                  - paragraph [ref=e87]: 14 / 28
+                  - paragraph [ref=e88]: Washing machines
+                  - paragraph [ref=e89]: live / deployed
+                - generic [ref=e90]:
+                  - paragraph [ref=e91]: 1 + 1
+                  - paragraph [ref=e92]: Production facilities
+                  - paragraph [ref=e93]: One containerised plant being commissioned; a second, community-owned facility in Alice Springs with Oonchiumpa is in a federal funding submission (decision pending).
+              - paragraph [ref=e94]:
+                - generic [ref=e95]: "The 9 communities:"
+                - text: Tennant Creek · Utopia Homelands · Palm Island · Maningrida · Kalgoorlie · Alice Springs · Mount Isa · Darwin · Canberra
+              - paragraph [ref=e96]: Beds, communities, plastic (Stretch Beds only) and washing machines read live from the Goods asset register. Production facilities are a curated count.
+            - generic [ref=e98]:
+              - paragraph [ref=e99]: From funding to change on country
+              - generic [ref=e100]:
+                - generic [ref=e101]:
+                  - generic [ref=e102]: Step 1
+                  - paragraph [ref=e103]: $741K
+                  - paragraph [ref=e104]: Funding received
+                  - paragraph [ref=e105]: All sources, reconciles to Xero
+                - generic [ref=e106]:
+                  - generic [ref=e107]: Step 2
+                  - paragraph [ref=e108]: 496 + 28
+                  - paragraph [ref=e109]: Beds + washing machines delivered
+                  - paragraph [ref=e110]: Across 9 communities
+                - generic [ref=e111]:
+                  - generic [ref=e112]: Step 3
+                  - paragraph [ref=e113]: ~1,240
+                  - paragraph [ref=e114]: People reached
+                  - paragraph [ref=e115]: Modelled, ~2.5 per bed
+                - generic [ref=e116]:
+                  - generic [ref=e117]: Step 4
+                  - paragraph [ref=e118]: 2.66 t
+                  - paragraph [ref=e119]: Plastic kept out of landfill
+                  - paragraph [ref=e120]: Recycled into Stretch Beds
+              - paragraph [ref=e121]: "The chain from capital to community: funding becomes goods in homes, people reached, and plastic kept out of landfill."
+            - generic [ref=e123]:
+              - paragraph [ref=e124]: Out in the world
+              - paragraph [ref=e125]: "The Goods display at Canberra Airport drives people to a dedicated page. A snapshot of the response:"
+              - generic [ref=e126]:
+                - generic [ref=e127]:
+                  - paragraph [ref=e128]: "73"
+                  - paragraph [ref=e129]: visits to the /canberra airport page
+                - generic [ref=e130]:
+                  - paragraph [ref=e131]: "318"
+                  - paragraph [ref=e132]: total website visitors
+                  - paragraph [ref=e133]: A step-change once the display went up
+                - generic [ref=e134]:
+                  - paragraph [ref=e135]: LinkedIn
+                  - paragraph [ref=e136]: top referrer (41 visitors)
+                - generic [ref=e137]:
+                  - paragraph [ref=e138]: "44"
+                  - paragraph [ref=e139]: reads of the Utopia trip story
+              - paragraph [ref=e140]: Last 30 days, to 9 June 2026 (Vercel Analytics)
+            - generic [ref=e142]:
+              - paragraph [ref=e143]: From the field
+              - generic [ref=e144]:
+                - figure [ref=e145]:
+                  - img "Tennant Creek community" [ref=e147]
+                - figure [ref=e148]:
+                  - img "Community members assembling a bed" [ref=e150]
+                - figure [ref=e151]:
+                  - img "Nic with an Elder on a verandah" [ref=e153]
+                - figure [ref=e154]:
+                  - img "A Stretch Bed in a remote community home" [ref=e156]
+                - figure [ref=e157]:
+                  - img "A washing machine deployed in community" [ref=e159]
+                - figure [ref=e160]:
+                  - img "A family testing a bed at golden hour" [ref=e162]
+        - generic [ref=e163]:
+          - paragraph [ref=e164]: Go deeper
+          - generic [ref=e165]:
+            - link "The Snow Foundation on Empathy Ledger → Your stories, quotes and photos, gathered with consent, yours to revisit anytime" [ref=e166] [cursor=pointer]:
+              - /url: https://www.empathyledger.com/organisations/snow-foundation
+              - paragraph [ref=e167]: The Snow Foundation on Empathy Ledger →
+              - paragraph [ref=e168]: Your stories, quotes and photos, gathered with consent, yours to revisit anytime
+            - link "Snow + Goods at Tennant Creek → Photo album, 2 April 2025" [ref=e169] [cursor=pointer]:
+              - /url: https://photos.google.com/share/AF1QipMM88kHBqqUV-udXeHpTB0FjhY8my5_dNWw7CeSphrsq20wt4BlLTmy9O-QoRfBwQ?key=TkY0VHA3cVVKR3V1T0NqOHFBSUpXZ0pGX01WSkNR
+              - paragraph [ref=e170]: Snow + Goods at Tennant Creek →
+              - paragraph [ref=e171]: Photo album, 2 April 2025
+            - link "Deadly Heart Trek, Katherine → Photo album, 8 August 2025" [ref=e172] [cursor=pointer]:
+              - /url: https://photos.google.com/share/AF1QipNbosyzxtrQ0jy240fbDj6Bc58GrvH3dcxBsIfPfX9XMOk8v58MWIRKbA5xxV1KRw?key=dnlaTFhkb2llNHFqSXlWRnBUUy15X1VhSTVZZ1JR
+              - paragraph [ref=e173]: Deadly Heart Trek, Katherine →
+              - paragraph [ref=e174]: Photo album, 8 August 2025
+            - link "The Utopia trip, in full → Photos + story from the May run" [ref=e175] [cursor=pointer]:
+              - /url: /field-notes/utopia-may-2026
+              - paragraph [ref=e176]: The Utopia trip, in full →
+              - paragraph [ref=e177]: Photos + story from the May run
+            - link "How the Stretch Bed works →" [ref=e178] [cursor=pointer]:
+              - /url: /stretch-bed
+              - paragraph [ref=e179]: How the Stretch Bed works →
+            - link "Live impact dashboard → The full public impact view" [ref=e180] [cursor=pointer]:
+              - /url: /impact
+              - paragraph [ref=e181]: Live impact dashboard →
+              - paragraph [ref=e182]: The full public impact view
+        - paragraph [ref=e184]: Goods on Country acknowledges the Traditional Owners of the lands on which we work, and pays respect to Elders past, present and emerging. This work is done on country, with country, for country.
+    - contentinfo [ref=e185]:
+      - generic [ref=e188]:
+        - heading "Stay close to the story" [level=3] [ref=e189]
+        - paragraph [ref=e190]: Updates on new beds, new communities, and what's happening On-Country. No spam, ever.
+        - generic [ref=e191]:
+          - textbox "your@email.com" [ref=e192]
+          - button "Subscribe" [ref=e193]
+      - generic [ref=e194]:
+        - generic [ref=e195]:
+          - generic [ref=e196]:
+            - link "Goods on Country home" [ref=e197] [cursor=pointer]:
+              - /url: /
+              - img "Goods on Country" [ref=e198]
+            - paragraph [ref=e199]: Community-designed health hardware. Manufactured On-Country. Made by community, made for community.
+            - link "LinkedIn" [ref=e201] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/a-curious-tractor/
+              - img [ref=e202]
+          - generic [ref=e204]:
+            - heading "Product" [level=3] [ref=e205]
+            - list [ref=e206]:
+              - listitem [ref=e207]:
+                - link "The Stretch Bed" [ref=e208] [cursor=pointer]:
+                  - /url: /shop/stretch-bed-single
+              - listitem [ref=e209]:
+                - link "How It's Made" [ref=e210] [cursor=pointer]:
+                  - /url: /process
+              - listitem [ref=e211]:
+                - link "Washing Machines" [ref=e212] [cursor=pointer]:
+                  - /url: /shop/washing-machine
+          - generic [ref=e213]:
+            - heading "About" [level=3] [ref=e214]
+            - list [ref=e215]:
+              - listitem [ref=e216]:
+                - link "Our Story" [ref=e217] [cursor=pointer]:
+                  - /url: /story
+              - listitem [ref=e218]:
+                - link "Community Stories" [ref=e219] [cursor=pointer]:
+                  - /url: /stories
+              - listitem [ref=e220]:
+                - link "Communities" [ref=e221] [cursor=pointer]:
+                  - /url: /communities
+              - listitem [ref=e222]:
+                - link "Impact" [ref=e223] [cursor=pointer]:
+                  - /url: /story#impact
+              - listitem [ref=e224]:
+                - link "Centrecorp Partnership" [ref=e225] [cursor=pointer]:
+                  - /url: /partners/centrecorp
+              - listitem [ref=e226]:
+                - link "Gallery" [ref=e227] [cursor=pointer]:
+                  - /url: /gallery
+          - generic [ref=e228]:
+            - heading "Connect" [level=3] [ref=e229]
+            - list [ref=e230]:
+              - listitem [ref=e231]:
+                - link "Back the work" [ref=e232] [cursor=pointer]:
+                  - /url: /partner
+              - listitem [ref=e233]:
+                - link "Partner With Us" [ref=e234] [cursor=pointer]:
+                  - /url: /partner
+              - listitem [ref=e235]:
+                - link "Sponsor a Bed" [ref=e236] [cursor=pointer]:
+                  - /url: /sponsor
+              - listitem [ref=e237]:
+                - link "Support / FAQ" [ref=e238] [cursor=pointer]:
+                  - /url: /support
+              - listitem [ref=e239]:
+                - link "Contact" [ref=e240] [cursor=pointer]:
+                  - /url: /contact
+        - generic [ref=e242]:
+          - generic [ref=e243]:
+            - paragraph [ref=e244]: Backed by
+            - generic [ref=e245]:
+              - link "Snow Foundation" [ref=e246] [cursor=pointer]:
+                - /url: https://www.snowfoundation.org.au
+                - img "Snow Foundation" [ref=e247]
+              - link "Centrecorp Foundation" [ref=e248] [cursor=pointer]:
+                - /url: /partners/centrecorp
+                - img "Centrecorp Foundation" [ref=e249]
+              - link "The Funding Network" [ref=e250] [cursor=pointer]:
+                - /url: https://www.thefundingnetwork.com.au
+                - img "The Funding Network" [ref=e251]
+              - link "FRRR" [ref=e252] [cursor=pointer]:
+                - /url: https://frrr.org.au
+                - img "FRRR" [ref=e253]
+              - link "AMP Foundation" [ref=e254] [cursor=pointer]:
+                - /url: https://ampfoundation.com.au
+                - img "AMP Foundation" [ref=e255]
+              - link "QBE Foundation" [ref=e256] [cursor=pointer]:
+                - /url: https://www.qbe.com/sustainability/qbe-foundation
+                - img "QBE Foundation" [ref=e257]
+          - generic [ref=e258]:
+            - paragraph [ref=e259]: Community partner
+            - link "Oonchiumpa Consultancy" [ref=e261] [cursor=pointer]:
+              - /url: https://oonchiumpa.com.au
+              - img "Oonchiumpa Consultancy" [ref=e262]
+        - generic [ref=e263]:
+          - paragraph [ref=e264]: DGR pathway
+          - paragraph [ref=e265]: DGR-deductible giving is available only through The Butterfly Movement Ltd, an ACNC-registered charity and Item 1 DGR. The Goods on Country giving pathway through Butterfly is being formalised for FY2026-27. Confirm current routing with us before structuring a tax-deductible gift. Goods on Country and A Curious Tractor Pty Ltd are not themselves DGR-endorsed.
+        - generic [ref=e266]:
+          - paragraph [ref=e268]: Goods on Country acknowledges the Traditional Owners of the lands on which we live and work. We pay our respects to Elders past, present, and emerging.
+          - generic [ref=e269]:
+            - paragraph [ref=e270]: © 2026 Goods on Country. All rights reserved.
+            - generic [ref=e271]:
+              - link "Privacy" [ref=e272] [cursor=pointer]:
+                - /url: /privacy
+              - link "Terms" [ref=e273] [cursor=pointer]:
+                - /url: /terms
+              - link "Contact" [ref=e274] [cursor=pointer]:
+                - /url: /contact
+              - button "Feedback" [ref=e275]
+  - button "Open Next.js Dev Tools" [ref=e281] [cursor=pointer]:
+    - img [ref=e282]
+  - alert [ref=e285]

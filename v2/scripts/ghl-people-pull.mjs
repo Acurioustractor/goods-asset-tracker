@@ -123,6 +123,8 @@ async function main() {
         openCount: opps.length,
         stages: order.map((sid) => ({ name: stageName[sid], count: (byStage[sid] || []).length })),
         opportunities: opps.map((o) => ({
+          id: o.id,
+          contactId: o.contact?.id || o.contactId || null,
           name: o.name,
           org: o.contact?.companyName || o.contact?.name || null,
           stage: stageName[o.pipelineStageId] || o.pipelineStageId,

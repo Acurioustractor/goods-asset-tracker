@@ -547,6 +547,19 @@
       "path": "generated-images/goods-illustrations/qbe-12-alignment/01-alignment-matrix.png",
       "consent": "public",
       "status": "canon"
+    },
+    "storyteller-dianne-stokes": {
+      "label": "Dianne Stokes",
+      "group": "Storytellers (RED)",
+      "type": "photo",
+      "dataClass": "red",
+      "areas": [
+        "02"
+      ],
+      "source": "local",
+      "path": "v2/public/images/people/dianne-stokes.jpg",
+      "consent": "cleared",
+      "status": "canon"
     }
   }
 }

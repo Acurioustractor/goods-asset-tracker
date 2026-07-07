@@ -312,6 +312,19 @@
       "seed": "v2/public/images/people/linda-turner.jpg"
     },
     {
+      "key": "storyteller-dianne-stokes",
+      "label": "Dianne Stokes",
+      "group": "Storytellers (RED)",
+      "type": "photo",
+      "dataClass": "red",
+      "areas": [
+        "02"
+      ],
+      "use": "voice slide, story card",
+      "note": "Cleared voice. Warumungu Elder; named Pakkimjalki Kari.",
+      "seed": "v2/public/images/people/dianne-stokes.jpg"
+    },
+    {
       "key": "storyteller-alfred-johnson",
       "label": "Alfred Johnson",
       "group": "Storytellers (RED)",

@@ -61,6 +61,22 @@ htmlcov/
 *.tmp
 *.temp
 .cache/
+tmp/
+v2/tmp/
+
+# Scratch / not for the repo (sensitive or session-local)
+REAL grant docs/
+
+# Generated video/render output — ~1.3GB, several files >100MB (GitHub rejects).
+# Regenerable; keep source clips in storage, not git.
+output/
+
+# Heavy media assets — keep local / in object storage, not git (like output/).
+# Originals, generated renders and deck-export artifacts, not app-served images.
+generated-images/
+design/_image-originals/
+design/deck-assets/
+design/brand/claude-design/
 
 # QR code generation (keep these in repo for now, but could move to CDN later)
 # data/qr_codes/png/*.png

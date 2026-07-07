@@ -1,0 +1,36 @@
+.git
+.claude
+.playwright-mcp
+node_modules
+
+01.06.2026
+Goods Beds Utopia day 2 QR code
+Goods Beds Utpoia - QR Codes
+REAL grant docs
+Story images
+Utopia Photos Export
+Utpoia Photos Export
+_archive
+deploy
+design
+generated-images
+media
+output
+tmp
+wiki/outputs
+
+/*.png
+/*.jpg
+/*.jpeg
+/*.JPG
+/*.zip
+
+v2/.next
+v2/.turbo
+v2/node_modules
+v2/.env*
+v2/.vercel
+v2/.DS_Store
+v2/tsconfig.tsbuildinfo
+v2/lint.txt
+v2/output

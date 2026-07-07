@@ -1,0 +1,196 @@
+{
+  "missionProfile": {
+    "name": "Goods on Country",
+    "summary": "First Nations led social enterprise building durable Stretch Beds and remote-ready washing machine pathways for remote Indigenous communities, using recycled HDPE, on-country manufacturing, jobs, circular economy infrastructure, and institutional buyer demand.",
+    "strongSignals": [
+      "First Nations",
+      "Aboriginal",
+      "Torres Strait",
+      "Indigenous",
+      "remote",
+      "regional",
+      "Northern Territory",
+      "Central Australia",
+      "Cape York",
+      "Arnhem Land",
+      "APY Lands",
+      "NPY Lands",
+      "social enterprise",
+      "impact investment",
+      "circular economy",
+      "recycled plastic",
+      "manufacturing",
+      "equipment finance",
+      "working capital",
+      "community ownership",
+      "housing",
+      "health",
+      "employment",
+      "procurement",
+      "environment",
+      "clean energy",
+      "philanthropy"
+    ],
+    "negativeSignals": [
+      "biomedical research",
+      "clinical trial",
+      "scholarship only",
+      "student scholarship",
+      "arts only",
+      "sport only",
+      "academic research only",
+      "export market only",
+      "individual applicants only",
+      "grant award",
+      "award view",
+      "past recipients",
+      "applications closed",
+      "round closed",
+      "now closed",
+      "case study"
+    ],
+    "fundingUses": [
+      "plant fit-out",
+      "manufacturing equipment",
+      "recycled HDPE processing",
+      "canvas and steel inventory",
+      "remote community deployments",
+      "first purchase orders",
+      "working capital",
+      "on-country jobs",
+      "impact measurement",
+      "clean energy advice"
+    ]
+  },
+  "lanes": [
+    {
+      "id": "government_grants",
+      "label": "Government grants",
+      "priority": 5,
+      "sourceUrls": [
+        "https://business.gov.au/grants-and-programs",
+        "https://www.grants.gov.au/Go/List",
+        "https://www.indigenous.gov.au/grants",
+        "https://www.communitygrants.gov.au/",
+        "https://www.nt.gov.au/industry/business-grants-funding",
+        "https://www.business.qld.gov.au/starting-business/advice-support/grants"
+      ],
+      "queries": [
+        "Australia grant remote First Nations social enterprise manufacturing",
+        "site:grants.gov.au Aboriginal remote community manufacturing grant",
+        "site:business.gov.au grants circular economy manufacturing Indigenous Australia",
+        "site:indigenous.gov.au grants business remote communities employment",
+        "Northern Territory grant recycled plastic manufacturing First Nations",
+        "Queensland grant social enterprise equipment First Nations manufacturing"
+      ],
+      "nextAction": "Verify eligibility, close date, entity requirements, co-contribution, and whether Goods applies directly or through a partner/DGR auspice."
+    },
+    {
+      "id": "indigenous_business_loans",
+      "label": "Indigenous and business loans",
+      "priority": 5,
+      "sourceUrls": [
+        "https://www.iba.gov.au/business/finance/",
+        "https://www.iba.gov.au/business/",
+        "https://business.gov.au/grants-and-programs/iba-business-loan-package",
+        "https://firstnationsfinance.com.au/",
+        "https://www.nab.com.au/business/loans-and-finance/business-loans/indigenous-business-loans"
+      ],
+      "queries": [
+        "Australia Indigenous business loan manufacturing equipment working capital",
+        "IBA business finance social enterprise manufacturing equipment",
+        "First Nations business finance Australia working capital equipment",
+        "Indigenous business loan remote community manufacturing Australia"
+      ],
+      "nextAction": "Check ownership/control requirements and structure the ask around equipment, working capital, buyer orders, and repayment source."
+    },
+    {
+      "id": "impact_finance",
+      "label": "Impact finance",
+      "priority": 5,
+      "sourceUrls": [
+        "https://sefa.com.au/access-impact-finance/",
+        "https://whiteboxenterprises.com.au/self/",
+        "https://lendforgood.com/",
+        "https://impactinvestingaustralia.com/",
+        "https://www.socialventures.com.au/",
+        "https://www.foresters.org.au/"
+      ],
+      "queries": [
+        "Australia impact finance social enterprise First Nations manufacturing loan",
+        "recoverable grant social enterprise Indigenous Australia",
+        "concessional loan social enterprise circular economy Australia",
+        "impact investment Indigenous enterprise working capital Australia",
+        "Australia social enterprise loan equipment finance"
+      ],
+      "nextAction": "Build a repayable-finance memo: use of funds, buyer pipeline, gross margin, repayment pathway, security, risks, and catalytic co-capital."
+    },
+    {
+      "id": "philanthropy",
+      "label": "Philanthropy",
+      "priority": 4,
+      "sourceUrls": [
+        "https://www.philanthropy.org.au/",
+        "https://www.communityfoundation.org.au/",
+        "https://frrr.org.au/funding/",
+        "https://www.sistersofcharityfoundation.org.au/",
+        "https://www.anz.com.au/about-us/esg/environmental-sustainability/seeds-of-renewal/",
+        "https://www.snowfoundation.org.au/",
+        "https://www.tfff.org.au/",
+        "https://www.thebryanfoundation.org.au/",
+        "https://www.thebryanfoundation.org.au/impact-investments.php",
+        "https://www.minderoo.org/",
+        "https://www.ianpotter.org.au/",
+        "https://www.paulramsayfoundation.org.au/",
+        "https://www.vfff.org.au/"
+      ],
+      "queries": [
+        "Australia foundation grants First Nations remote communities social enterprise",
+        "Australian philanthropy Indigenous enterprise circular economy manufacturing",
+        "foundation impact investment social enterprise Australia First Nations",
+        "private ancillary fund First Nations remote communities employment Australia",
+        "The Bryan Foundation impact investment social enterprise Australia",
+        "Australian Communities Foundation First Nations remote community grant"
+      ],
+      "nextAction": "Classify as relationship-led or open application, then create a one-page tailored fit note and decide the warm intro path."
+    },
+    {
+      "id": "buyer_finance",
+      "label": "Buyer finance and procurement",
+      "priority": 4,
+      "sourceUrls": [
+        "https://www.supplynation.org.au/",
+        "https://buy.nsw.gov.au/schemes/supplier-hub",
+        "https://www.tenders.gov.au/",
+        "https://tenderlink.com/"
+      ],
+      "queries": [
+        "Australia Indigenous procurement furniture remote housing beds",
+        "forward purchase agreement social enterprise Australia manufacturing",
+        "remote housing procurement furniture Indigenous supplier Australia",
+        "government procurement Indigenous beds remote communities Australia",
+        "corporate procurement First Nations social enterprise furniture Australia"
+      ],
+      "nextAction": "Turn into buyer pipeline work: target buyer, product fit, likely volume, procurement pathway, deposit or forward-order ask."
+    },
+    {
+      "id": "equipment_and_clean_energy",
+      "label": "Equipment, circular economy and clean energy",
+      "priority": 4,
+      "sourceUrls": [
+        "https://arena.gov.au/funding/",
+        "https://www.cefc.com.au/where-we-invest/",
+        "https://www.energy.gov.au/government-priorities/energy-programs",
+        "https://www.dcceew.gov.au/environment/protection/waste/how-we-manage-waste/recycling-modernisation-fund"
+      ],
+      "queries": [
+        "Australia circular economy grant recycled plastic manufacturing equipment",
+        "Australia clean energy advice grant First Nations community manufacturing",
+        "Australia recycling modernisation fund plastic manufacturing Indigenous",
+        "clean energy grant remote Indigenous community enterprise Australia",
+        "circular economy equipment finance social enterprise Australia"
+      ],
+      "nextAction": "Check whether the opportunity funds advice, capex, energy upgrade, recycling infrastructure, or buyer procurement; map to the plant budget."
+    }
+  ]
+}

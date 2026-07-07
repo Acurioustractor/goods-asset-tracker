@@ -1,0 +1,54 @@
+QBE reviewer evidence pack - 2026-06-01
+
+Purpose
+This pack is a reviewer index for the Goods on Country QBE diagnostic work. It is not an audited data room, legal opinion, or permissioned public folder. It points reviewers to the current public tooling, the current Notion diagnostic areas, and the live-data checks completed on 1 June 2026.
+
+Reviewer access
+- Public site: https://www.goodsoncountry.com
+- Impact model: https://www.goodsoncountry.com/impact
+- Partner page: https://www.goodsoncountry.com/partner
+- Stretch Bed: https://www.goodsoncountry.com/stretch-bed
+- Shop page: https://www.goodsoncountry.com/shop/stretch-bed-single
+- Press and brand page: https://www.goodsoncountry.com/press
+- Investor cockpit: https://www.goodsoncountry.com/investors?skin=mc
+- Investor login: https://www.goodsoncountry.com/investors/login
+- Reviewer password for investor pages: goods2026
+
+Canonical operating facts
+- Stretch Bed is the only direct-sale product.
+- Stretch Bed materials are recycled HDPE plastic legs, galvanised steel poles, and heavy-duty canvas.
+- Current verified deployment metrics used in the website and QBE review are 496 deployed bed units, 9 served communities, and 2,660 kg Stretch-only HDPE diversion.
+- Plastic diversion is Stretch-only: 133 Stretch beds x 20 kg HDPE. Basket Beds are not counted as plastic diversion.
+- Products and specs should be checked against v2/src/lib/data/products.ts before changing public copy.
+
+Financial evidence checked on 1 June 2026
+- Live Xero connector organisation: Nicholas Marchesi, ABN 21 591 780 066, Organisation ID 786af1ed-e3ce-42fc-9ea9-ddf3447d79d0, AUD, active.
+- Live Xero profit and loss report for 1 July 2025 to 31 May 2026: total income AUD 1,281,868.26, total operating expenses AUD 1,658,129.73, net profit AUD -376,261.47. This is whole-organisation, not Goods-only.
+- Live Xero balance sheet at 31 May 2026: total assets AUD 1,993,076.86, total liabilities AUD 2,248,778.71, net assets AUD -255,701.85. This is whole-organisation, not Goods-only.
+- ACT-GD scoped Xero mirror, excluding voided/deleted invoices, latest invoice date 26 May 2026: 330 rows total.
+- ACT-GD accounts receivable: 19 invoices, AUD 733,410.79 raised, AUD 650,910.79 paid, AUD 82,500 outstanding.
+- The only ACT-GD open receivable in that check is Rotary Eclub Outback Australia, Division 9560, INV-0222, due 24 April 2025, AUD 82,500 outstanding.
+- Xero aged receivables by contact confirmed the same Rotary receivable at report date 31 May 2026.
+- ACT-GD accounts payable matching gaps totalled AUD 165,502.78 in authorised/submitted unpaid bills. Treat this as a bookkeeping/payment-matching clean-up queue, not as a public debt claim, until reviewed by the bookkeeper/accountant.
+
+Cost model guardrails for reviewers
+- The cost reframe re-partitions the same total into marginal cost and annual fixed block. It does not make the bed magically cheaper.
+- At the current buy-kit path, the next bed costs about AUD 685 in marginal cost against a maximum intended price of AUD 750, leaving about AUD 65 contribution before fixed costs.
+- The fixed annual block is about AUD 109,500 at the locked founder rate of AUD 560/day.
+- Breakeven is volume-dependent. Buy-kit at low volume needs about 1,679 beds/year to absorb the fixed block. Factory/in-house production brings marginal cost down to about AUD 426 and breakeven to about 338 beds/year.
+- Do not quote a loose "AUD 90K-200K" capital ask. Use either AUD 112K-222K gross or approximately AUD 2K-112K net after already-invested capital, and state the basis.
+- The older AUD 600 code figure excludes long-haul freight and fixed absorption; the current external line is about AUD 685 marginal in the buy-kit case.
+
+Connector and sharing status
+- HighLevel: blocked on 1 June 2026 by connector error "401 Reauthentication required". Pipeline and engagement records from HighLevel were not rechecked in this pass.
+- Google Drive: the connector can create/import/read files in the authenticated account, but no sharing-permission update tool was exposed in this session. Any Drive file created in this pass still needs an external-account access test before sending to QBE or consultants.
+- Notion: database fetch worked; SQL-style database query errored, so page updates use known page IDs plus direct fetch/readback rather than table export.
+- Xero: live connector reports and ACT-GD scoped Xero mirror checks completed as read-only evidence.
+
+External sharing checklist before QBE or consultant forwarding
+- Test every Drive link from a non-Goods Google account.
+- Keep admin-only, repository, local, markdown, and raw workpaper links out of public reviewer pages.
+- Use the investor cockpit and public pages as reviewer routes; do not send admin routes as the main review surface.
+- Label each claim as verified, modelled, target, or future.
+- Keep the legal entity language precise: current operating org is Nicholas Marchesi sole trader; go-forward trading structure and charity/DGR routing need accountant/legal confirmation before submissions.
+- Do not describe future community-owned manufacturing as already transferred.
