@@ -14,6 +14,6 @@ export const dynamic = 'force-dynamic';
 export async function GET(request: NextRequest) {
   const guard = await requireAdmin(request);
   if (guard) return guard;
-  const { items, elMissing } = await buildElItems();
-  return NextResponse.json({ items, elMissing });
+  const { items, elMissing, roster } = await buildElItems();
+  return NextResponse.json({ items, elMissing, roster });
 }
