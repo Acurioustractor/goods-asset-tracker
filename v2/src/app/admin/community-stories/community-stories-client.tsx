@@ -10,9 +10,9 @@ export interface CommunityBundle {
   status: string | null;
   region: string | null;
   partner: string | null;
-  storytellers: { display_name: string; is_elder: boolean; portrait_url: string | null }[];
+  storytellers: { display_name: string; is_elder: boolean; portrait_url: string | null; source?: 'el' | 'local' }[];
   quotes: { id: string; text: string; context: string | null; storyteller: string | null }[];
-  media: { id: string; url: string; poster_url: string | null; media_type: string }[];
+  media: { id: string; url: string; poster_url: string | null; media_type: string; source?: 'el' | 'local' }[];
 }
 
 function proxied(url: string): string {
@@ -212,7 +212,11 @@ export default function CommunityStoriesClient({ communities }: { communities: C
                     {open.storytellers.map((s, i) => (
                       <div key={i} className="flex items-center gap-2">
                         <Face name={s.display_name} url={s.portrait_url} />
-                        <span className="text-sm text-gray-700">{s.display_name}{s.is_elder && <span className="ml-1 text-purple-700 text-xs">Elder</span>}</span>
+                        <span className="text-sm text-gray-700">
+                          {s.display_name}
+                          {s.is_elder && <span className="ml-1 text-purple-700 text-xs">Elder</span>}
+                          {s.source === 'el' && <span className="ml-1 rounded bg-violet-100 px-1 py-0.5 text-[9px] font-semibold text-violet-700" title="Matched from Empathy Ledger location">EL</span>}
+                        </span>
                       </div>
                     ))}
                   </div>

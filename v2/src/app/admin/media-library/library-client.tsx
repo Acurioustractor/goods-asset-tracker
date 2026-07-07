@@ -33,11 +33,31 @@ export interface UnifiedItem {
   community?: string;
   /** Storyteller whose portrait this is (content_items.storyteller_id → display_name). */
   person?: string;
+  /** People depicted in this EL photo — EL media_storytellers junction, keyed by the
+   *  media_asset_id (= the id after the `el:` prefix). EL images only. */
+  people?: { id: string; name: string }[];
   /** Primary theme id (themes.ts derivation: theme:<id> tag > canon slot > folder). */
   theme?: string;
 }
 
 type SourceFilter = 'all' | 'website' | 'el';
+/** Pickable storyteller for photo→people alignment (from the project_storytellers roster). */
+type RosterPerson = { id: string; name: string; isElder?: boolean };
+
+// Measured image aspect ratios are cached here so repeat loads (the whole
+// iterate-and-refresh loop) lay the justified grid out correctly on the FIRST
+// paint instead of measure-then-reflow. Bump the version to invalidate.
+const ASPECT_CACHE_KEY = 'mlib:aspects:v1';
+function loadAspectCache(): Record<string, number> {
+  if (typeof window === 'undefined') return {};
+  try {
+    const raw = window.localStorage.getItem(ASPECT_CACHE_KEY);
+    const parsed = raw ? JSON.parse(raw) : null;
+    return parsed && typeof parsed === 'object' ? (parsed as Record<string, number>) : {};
+  } catch {
+    return {};
+  }
+}
 
 function consentBadge(item: UnifiedItem): { text: string; cls: string } {
   switch (item.consent) {
@@ -74,7 +94,15 @@ export function MediaLibraryClient({
   const [area, setArea] = useState<string>('__all');
   const [theme, setTheme] = useState<string>('__all');
   const [community, setCommunity] = useState<string>('__all');
+  const [personFilter, setPersonFilter] = useState<string>('__all');
+  const [needsPeople, setNeedsPeople] = useState(false);
+  const [roster, setRoster] = useState<RosterPerson[]>([]);
   const [kind, setKind] = useState<'all' | 'image' | 'video' | 'overlay'>('all');
+  // Justified-rows layout state: measured image aspect ratios + the grid's width.
+  // Seeded from the localStorage cache so a re-load lays out with no reflow.
+  const [aspects, setAspects] = useState<Record<string, number>>(loadAspectCache);
+  const [gridWidth, setGridWidth] = useState(0);
+  const gridRef = useRef<HTMLDivElement>(null);
   const [search, setSearch] = useState('');
   const [active, setActive] = useState<UnifiedItem | null>(null);
   // curation UI state
@@ -97,10 +125,11 @@ export function MediaLibraryClient({
     setElState('loading');
     fetch('/api/admin/el-media')
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
-      .then((d: { items?: UnifiedItem[]; elMissing?: boolean }) => {
+      .then((d: { items?: UnifiedItem[]; elMissing?: boolean; roster?: RosterPerson[] }) => {
         if (cancelled) return;
         elRef.current = d.items ?? [];
         setElMissing(!!d.elMissing);
+        setRoster(d.roster ?? []);
         setItems((prev) => [...prev.filter((i) => i.source !== 'el'), ...elRef.current]);
         setElState('done');
       })
@@ -116,6 +145,28 @@ export function MediaLibraryClient({
   useEffect(() => {
     setItems([...initialItems, ...elRef.current]);
   }, [initialItems]);
+
+  // Measure the grid width for the justified-rows layout.
+  useEffect(() => {
+    const el = gridRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver((entries) => { for (const e of entries) setGridWidth(e.contentRect.width); });
+    ro.observe(el);
+    setGridWidth(el.clientWidth);
+    return () => ro.disconnect();
+  }, []);
+
+  // Persist measured aspects (debounced) so the next load skips the reflow. A
+  // cold load coalesces its burst of onLoad measurements into a single write.
+  const aspectFlush = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (aspectFlush.current) clearTimeout(aspectFlush.current);
+    aspectFlush.current = setTimeout(() => {
+      try { window.localStorage.setItem(ASPECT_CACHE_KEY, JSON.stringify(aspects)); } catch { /* quota / private mode */ }
+    }, 400);
+    return () => { if (aspectFlush.current) clearTimeout(aspectFlush.current); };
+  }, [aspects]);
 
   const updateItemTags = useCallback((id: string, tags: string[]) => {
     setItems((prev) => prev.map((it) => (it.id === id ? { ...it, tags } : it)));
@@ -181,6 +232,41 @@ export function MediaLibraryClient({
     });
   }, []);
 
+  // --- photo→people alignment: writes to EL media_storytellers (not content_items).
+  // Keyed by media_asset_id (= item.id minus the `el:` prefix). Optimistic; reverts.
+  const mutatePeople = useCallback(
+    async (item: UnifiedItem, storytellerId: string, action: 'add' | 'remove') => {
+      if (item.source !== 'el') return;
+      const mediaAssetId = item.id.replace(/^el:/, '');
+      const name = roster.find((p) => p.id === storytellerId)?.name ?? '';
+      setErr('');
+      const snapshot = items;
+      const apply = (it: UnifiedItem): UnifiedItem => {
+        const cur = it.people ?? [];
+        const people = action === 'remove'
+          ? cur.filter((x) => x.id !== storytellerId)
+          : (cur.some((x) => x.id === storytellerId) ? cur : [...cur, { id: storytellerId, name }]);
+        return { ...it, people };
+      };
+      setItems((prev) => prev.map((it) => (it.id === item.id ? apply(it) : it)));
+      setActive((cur) => (cur && cur.id === item.id ? apply(cur) : cur));
+      try {
+        const res = await fetch('/api/admin/el-align', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mediaAssetId, storytellerId, action }),
+        });
+        const data = (await res.json()) as { ok: boolean; error?: string };
+        if (!res.ok || !data.ok) throw new Error(data.error || `HTTP ${res.status}`);
+      } catch (e) {
+        setItems(snapshot); // revert
+        setActive((cur) => (cur && cur.id === item.id ? snapshot.find((s) => s.id === item.id) ?? cur : cur));
+        setErr(`People save failed: ${e instanceof Error ? e.message : String(e)}`);
+      }
+    },
+    [items, roster],
+  );
+
   const sourceCounts = useMemo(() => {
     let website = 0;
     let el = 0;
@@ -217,6 +303,24 @@ export function MediaLibraryClient({
       .map(([value, count]) => ({ value, count }));
   }, [items, sourceFilter]);
 
+  // People tagged across EL photos in the current source view (media_storytellers).
+  const personOptions = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const it of items) {
+      if (sourceFilter !== 'all' && it.source !== sourceFilter) continue;
+      for (const p of it.people ?? []) counts.set(p.name, (counts.get(p.name) || 0) + 1);
+    }
+    return Array.from(counts.entries())
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .map(([value, count]) => ({ value, count }));
+  }, [items, sourceFilter]);
+
+  // EL images with no one tagged yet — the alignment backlog.
+  const needsPeopleCount = useMemo(
+    () => items.filter((it) => it.source === 'el' && it.mediaType === 'image' && (it.people ?? []).length === 0).length,
+    [items],
+  );
+
   // Themes present in the current source view (from themes.ts derivation).
   const themeOptions = useMemo(() => {
     const counts = new Map<string, number>();
@@ -250,6 +354,8 @@ export function MediaLibraryClient({
       if (theme !== '__all' && it.theme !== theme) return false;
       if (area !== '__all' && it.area !== area && !it.tags.includes(area)) return false;
       if (community !== '__all' && it.community !== community) return false;
+      if (personFilter !== '__all' && !(it.people ?? []).some((p) => p.name === personFilter)) return false;
+      if (needsPeople && !(it.source === 'el' && it.mediaType === 'image' && (it.people ?? []).length === 0)) return false;
       if (kind === 'image' && it.mediaType !== 'image') return false;
       if (kind === 'video' && it.mediaType !== 'video') return false;
       if (kind === 'overlay' && it.mediaSubtype !== 'overlay') return false;
@@ -259,7 +365,37 @@ export function MediaLibraryClient({
       }
       return true;
     });
-  }, [items, sourceFilter, theme, area, community, kind, search, showArchived, starredOnly]);
+  }, [items, sourceFilter, theme, area, community, personFilter, needsPeople, kind, search, showArchived, starredOnly]);
+
+  // Justified-rows layout (Google-Photos style): every photo shown whole at its
+  // natural aspect, but each row shares a height so the grid stays clean and even.
+  // Aspects are measured from the images as they load; clamped so a freak
+  // panorama/very-tall shot can't blow out a row.
+  const rows = useMemo(() => {
+    // MAX_PER_ROW caps a run of tall (portrait) photos so a cluster of them can't
+    // cram 11-12 into one row of narrow strips — they break into fewer, larger
+    // tiles instead. Landscape rows fill on width well before the cap, so it only
+    // bites on portrait clusters. MAX_A also higher so panoramas aren't chopped.
+    const ROW_H = 220, GAP = 12, MIN_A = 0.5, MAX_A = 2.6, DEF_A = 1.4, MAX_PER_ROW = 6;
+    type Cell = { it: UnifiedItem; idx: number; w: number; h: number };
+    if (gridWidth <= 0) return [] as { items: Cell[] }[];
+    const out: { items: Cell[] }[] = [];
+    let cur: { it: UnifiedItem; idx: number; a: number }[] = [];
+    let sumA = 0;
+    const flush = (stretch: boolean) => {
+      if (!cur.length) return;
+      const h = stretch ? (gridWidth - GAP * (cur.length - 1)) / sumA : ROW_H;
+      out.push({ items: cur.map((c) => ({ it: c.it, idx: c.idx, w: c.a * h, h })) });
+      cur = []; sumA = 0;
+    };
+    filtered.forEach((it, idx) => {
+      const a = Math.min(MAX_A, Math.max(MIN_A, aspects[it.id] ?? DEF_A));
+      cur.push({ it, idx, a }); sumA += a;
+      if (sumA * ROW_H + GAP * (cur.length - 1) >= gridWidth || cur.length >= MAX_PER_ROW) flush(true);
+    });
+    flush(false); // last row keeps the natural height, left-aligned
+    return out;
+  }, [filtered, aspects, gridWidth]);
 
   const archivedCount = useMemo(() => items.filter((it) => it.archived).length, [items]);
   const starredCount = useMemo(() => items.filter((it) => it.starred).length, [items]);
@@ -489,6 +625,29 @@ export function MediaLibraryClient({
           </label>
         )}
 
+        {personOptions.length > 0 && (
+          <label className="flex items-center gap-2 text-sm">
+            <span className="text-muted-foreground whitespace-nowrap">Person</span>
+            <select
+              value={personFilter}
+              onChange={(e) => setPersonFilter(e.target.value)}
+              className="rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+            >
+              <option value="__all">Anyone</option>
+              {personOptions.map((p) => (
+                <option key={p.value} value={p.value}>{p.value} ({p.count})</option>
+              ))}
+            </select>
+          </label>
+        )}
+
+        {needsPeopleCount > 0 && (
+          <label className="flex items-center gap-2 text-sm" title="EL photos with no one tagged yet — the alignment backlog">
+            <input type="checkbox" checked={needsPeople} onChange={(e) => setNeedsPeople(e.target.checked)} />
+            <span className="text-muted-foreground whitespace-nowrap">Needs people ({needsPeopleCount})</span>
+          </label>
+        )}
+
         <label className="flex items-center gap-2 text-sm">
           <span className="text-muted-foreground whitespace-nowrap">Type</span>
           <select
@@ -563,8 +722,10 @@ export function MediaLibraryClient({
           No images match the current filters.
         </p>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-          {filtered.map((it, idx) => {
+        <div ref={gridRef}>
+          {rows.map((row, ri) => (
+            <div key={ri} className="mb-3 flex gap-3">
+              {row.items.map(({ it, idx, w, h }) => {
             const badge = consentBadge(it);
             const isSel = selected.has(it.id);
             const isCursor = idx === cursor;
@@ -575,8 +736,9 @@ export function MediaLibraryClient({
               <div
                 key={it.id}
                 ref={(el) => { if (el) tileRefs.current.set(idx, el); else tileRefs.current.delete(idx); }}
+                style={{ width: `${w}px`, height: `${h}px` }}
                 className={
-                  'relative aspect-square rounded-lg overflow-hidden bg-muted border transition group ' +
+                  'relative shrink-0 rounded-lg overflow-hidden bg-muted border transition group ' +
                   (isSel
                     ? 'ring-2 ring-blue-500 border-blue-500 '
                     : isCursor
@@ -585,6 +747,32 @@ export function MediaLibraryClient({
                   (it.archived ? 'opacity-60 ' : '')
                 }
               >
+                {/* Box is sized to the image's measured aspect, so object-contain shows the whole photo with no bars. */}
+                {thumb ? (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    src={thumb}
+                    alt={it.title}
+                    loading="lazy"
+                    ref={(el) => {
+                      // Catch already-cached images that never fire onLoad.
+                      if (el && el.complete && el.naturalWidth && aspects[it.id] === undefined) {
+                        const ar = el.naturalWidth / el.naturalHeight;
+                        queueMicrotask(() => setAspects((m) => (m[it.id] ? m : { ...m, [it.id]: ar })));
+                      }
+                    }}
+                    onLoad={(e) => {
+                      const im = e.currentTarget;
+                      if (im.naturalWidth && im.naturalHeight) {
+                        const ar = im.naturalWidth / im.naturalHeight;
+                        setAspects((m) => (m[it.id] ? m : { ...m, [it.id]: ar }));
+                      }
+                    }}
+                    className="absolute inset-0 h-full w-full object-contain transition-opacity group-hover:opacity-95"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center bg-neutral-800 text-2xl">🎬</div>
+                )}
                 <button
                   type="button"
                   onClick={(e) => {
@@ -594,29 +782,27 @@ export function MediaLibraryClient({
                   }}
                   className="absolute inset-0 h-full w-full text-left"
                   title={selectMode ? (canCurate ? 'Click to select (shift-click for a range)' : 'Not indexed — cannot select') : it.title}
-                >
-                  {thumb ? (
-                    /* eslint-disable-next-line @next/next/no-img-element */
-                    <img
-                      src={thumb}
-                      alt={it.title}
-                      loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover group-hover:scale-[1.02] transition-transform"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center bg-neutral-800 text-2xl">🎬</div>
-                  )}
-                  {isVideo && (
-                    <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-sm text-white">▶</span>
-                    </span>
-                  )}
-                </button>
+                />
+                {isVideo && (
+                  <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-sm text-white">▶</span>
+                  </span>
+                )}
 
                 {/* consent / source badge */}
                 <span className={'pointer-events-none absolute top-1.5 left-1.5 rounded-full px-2 py-0.5 text-[9px] font-semibold ' + badge.cls}>
                   {badge.text}
                 </span>
+
+                {/* people tagged (EL alignment) */}
+                {it.people && it.people.length > 0 && (
+                  <span
+                    className="pointer-events-none absolute top-7 left-1.5 max-w-[85%] truncate rounded-full bg-violet-600/90 px-1.5 py-0.5 text-[9px] font-semibold text-white"
+                    title={it.people.map((p) => p.name).join(', ')}
+                  >
+                    {it.people.length === 1 ? it.people[0].name : `👤 ${it.people.length}`}
+                  </span>
+                )}
 
                 {/* select checkbox (curatable items) — always visible in select mode */}
                 {canCurate && (
@@ -676,8 +862,10 @@ export function MediaLibraryClient({
                   {it.title}
                 </span>
               </div>
-            );
-          })}
+                );
+              })}
+            </div>
+          ))}
         </div>
       )}
 
@@ -685,11 +873,13 @@ export function MediaLibraryClient({
         <PreviewModal
           item={active}
           curationReady={curationReady}
+          roster={roster}
           onClose={() => setActive(null)}
           onSaveTags={updateItemTags}
           onToggleStar={toggleStar}
           onToggleArchive={toggleArchive}
           onSetRating={setRating}
+          onMutatePeople={mutatePeople}
         />
       )}
     </div>
@@ -712,19 +902,23 @@ type SaveState = 'idle' | 'saving' | 'saved' | 'error';
 function PreviewModal({
   item,
   curationReady,
+  roster,
   onClose,
   onSaveTags,
   onToggleStar,
   onToggleArchive,
   onSetRating,
+  onMutatePeople,
 }: {
   item: UnifiedItem;
   curationReady: boolean;
+  roster: RosterPerson[];
   onClose: () => void;
   onSaveTags: (id: string, tags: string[]) => void;
   onToggleStar: (it: UnifiedItem) => void;
   onToggleArchive: (it: UnifiedItem) => void;
   onSetRating: (it: UnifiedItem, r: number) => void;
+  onMutatePeople: (it: UnifiedItem, storytellerId: string, action: 'add' | 'remove') => void;
 }) {
   const [copied, setCopied] = useState(false);
   const badge = consentBadge(item);
@@ -869,6 +1063,44 @@ function PreviewModal({
               </span>
             )}
           </div>
+
+          {/* People in this photo — EL alignment (media_storytellers). EL images only. */}
+          {item.source === 'el' && !isVideo && (
+            <div className="mb-5 rounded-lg border border-border p-3">
+              <div className="mb-2 text-[10px] uppercase tracking-widest text-muted-foreground">People in this photo</div>
+              <div className="mb-2 flex flex-wrap gap-1">
+                {(item.people ?? []).length === 0 && (
+                  <span className="text-xs text-muted-foreground">No one tagged yet.</span>
+                )}
+                {(item.people ?? []).map((pp) => (
+                  <button
+                    key={pp.id}
+                    type="button"
+                    onClick={() => onMutatePeople(item, pp.id, 'remove')}
+                    title="Click to remove"
+                    className="rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-800 hover:bg-red-100 hover:text-red-700"
+                  >
+                    {pp.name} ×
+                  </button>
+                ))}
+              </div>
+              <select
+                value=""
+                onChange={(e) => { if (e.target.value) onMutatePeople(item, e.target.value, 'add'); }}
+                className="w-full rounded-lg border border-input bg-background px-2 py-1.5 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              >
+                <option value="">+ add person…</option>
+                {roster
+                  .filter((x) => !(item.people ?? []).some((y) => y.id === x.id))
+                  .map((x) => (
+                    <option key={x.id} value={x.id}>{x.name}{x.isElder ? ' (elder)' : ''}</option>
+                  ))}
+              </select>
+              <p className="mt-1.5 text-[10px] text-muted-foreground">
+                Writes to EL <code className="rounded bg-muted px-1">media_storytellers</code> as appears_in, consent pending. The photo is already public; this records who is in it.
+              </p>
+            </div>
+          )}
 
           {/* Curation controls (website items with an index row) */}
           {canCurate ? (

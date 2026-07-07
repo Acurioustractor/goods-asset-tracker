@@ -11,6 +11,11 @@ import { NextResponse } from 'next/server';
 export const runtime = 'nodejs';
 
 const KEY = process.env.EMPATHY_LEDGER_API_KEY || '';
+// EL Supabase storage host + service key: the private `story-media` bucket (the 52
+// gated migrations) is only fetchable server-side with this key. We send it ONLY to
+// the exact EL storage origin, never to any other allowed host.
+const SB_URL = (process.env.EMPATHY_LEDGER_SUPABASE_URL || '').replace(/\/$/, '');
+const SB_KEY = process.env.EMPATHY_LEDGER_SUPABASE_KEY || '';
 const ALLOW = [/^https:\/\/www\.empathyledger\.com\//, /^https:\/\/[a-z0-9-]+\.supabase\.co\//];
 
 export async function GET(req: Request) {
@@ -18,9 +23,17 @@ export async function GET(req: Request) {
   if (!url || !ALLOW.some((re) => re.test(url))) {
     return NextResponse.json({ error: 'url required, EL host only' }, { status: 400 });
   }
+  // Gated EL storage objects need the Supabase service key; the public content-hub
+  // host uses the content-hub API key. Anything else gets neither.
+  const isGatedStorage = !!(SB_URL && SB_KEY && url.startsWith(`${SB_URL}/storage/`));
+  const headers: Record<string, string> = isGatedStorage
+    ? { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}` }
+    : KEY
+      ? { 'X-API-Key': KEY }
+      : {};
   try {
     const upstream = await fetch(url, {
-      headers: KEY ? { 'X-API-Key': KEY } : {},
+      headers,
       cache: 'force-cache',
       next: { revalidate: 86400 },
     });
@@ -29,7 +42,10 @@ export async function GET(req: Request) {
     return new NextResponse(buf, {
       headers: {
         'Content-Type': upstream.headers.get('content-type') || 'image/jpeg',
-        'Cache-Control': 'public, max-age=86400, stale-while-revalidate=604800',
+        // Gated bytes: keep them out of shared caches (admin-only, per-user).
+        'Cache-Control': isGatedStorage
+          ? 'private, max-age=3600, must-revalidate'
+          : 'public, max-age=86400, stale-while-revalidate=604800',
       },
     });
   } catch (e) {

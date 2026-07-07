@@ -10,6 +10,7 @@ import { safeImageUrl } from '@/lib/empathy-ledger/media-tier';
 import { getLocalImages, getLocalVideos } from '@/lib/data/local-images';
 import { createServiceClient } from '@/lib/supabase/server';
 import { themeForItem } from '@/lib/data/themes';
+import { getAlignData, type AlignPhoto, type AlignPerson } from '@/lib/empathy-ledger/align';
 import type { UnifiedItem } from './library-client';
 
 // EL content-hub API (legacy EL Supabase keys disabled org-wide 2026-06-17).
@@ -225,14 +226,28 @@ export async function buildLocalItems(): Promise<{ items: UnifiedItem[]; curatio
   return { items: [...localImageItems, ...localVideoItems], curationReady: curation.ready };
 }
 
-/** Empathy Ledger images + video, curation-merged. Slower (paged EL API) — call
+/** Empathy Ledger images + video, curation-merged, with photo→people alignment.
+ *  Unions two EL reads: the content-hub API (rich consent/tag metadata + video) and
+ *  the full direct-Supabase align library (all 240 images incl. the ~37 gated shots
+ *  the content-hub hides, each carrying its media_storytellers people). Also returns
+ *  the pickable storyteller roster. Slower (paged EL API + direct Supabase) — call
  *  from the client after first paint via /api/admin/el-media. */
-export async function buildElItems(): Promise<{ items: UnifiedItem[]; elMissing: boolean }> {
-  if (!EL_API_KEY) return { items: [], elMissing: true };
+export async function buildElItems(): Promise<{ items: UnifiedItem[]; elMissing: boolean; roster: AlignPerson[] }> {
   const curation = await fetchCuration();
   const attach = makeAttach(curation);
-  const [elImages, elVideos] = await Promise.all([fetchElMedia('image'), fetchElMedia('video')]);
-  const items = [...elImages, ...elVideos].map((p) =>
+
+  // Full alignable library + junction people + roster (direct EL Supabase, 240 images).
+  let align: { photos: AlignPhoto[]; persons: AlignPerson[] } = { photos: [], persons: [] };
+  try { align = await getAlignData(); } catch { /* leave empty on EL read failure */ }
+  const peopleById = new Map(align.photos.map((p) => [p.id, p.people]));
+
+  // Content-hub items (rich metadata + video). Empty if the content-hub key is absent.
+  const [elImages, elVideos] = EL_API_KEY
+    ? await Promise.all([fetchElMedia('image'), fetchElMedia('video')])
+    : [[] as ElPhoto[], [] as ElPhoto[]];
+  const hubImageIds = new Set(elImages.map((p) => p.id));
+
+  const hubItems = [...elImages, ...elVideos].map((p) =>
     attach(
       {
         id: `el:${p.id}`,
@@ -245,9 +260,40 @@ export async function buildElItems(): Promise<{ items: UnifiedItem[]; elMissing:
         title: p.title || (p.mediaType === 'video' ? '(untitled EL video)' : '(untitled EL photo)'),
         tags: p.tags,
         consent: elConsent(p),
+        people: p.mediaType === 'image' ? (peopleById.get(p.id) ?? []) : undefined,
       },
       p.id,
     ),
   );
-  return { items, elMissing: false };
+
+  // Align-library photos the content-hub API doesn't surface (gated/pending shots we
+  // still need to align) — basic metadata, people attached. Skip rows with no
+  // fetchable URL: the 52 migrated photos live in a private bucket with null
+  // cdn_url/thumbnail_url, so elProxy('') would render a broken tile. They are
+  // byte-identical copies of website images already shown in the grid; to surface
+  // them here their EL cdn_url must be backfilled (a Tier-3 EL write).
+  const extraItems = align.photos
+    .filter((p) => !hubImageIds.has(p.id) && (p.thumb || p.url))
+    .map((p) =>
+      attach(
+        {
+          id: `el:${p.id}`,
+          src: elProxy(p.thumb || p.url),
+          full: elProxy(p.url),
+          poster: elProxy(p.thumb || p.url),
+          mediaType: 'image',
+          source: 'el',
+          area: p.gallery || 'el',
+          title: p.title || '(untitled EL photo)',
+          tags: [],
+          consent: 'flagged',
+          people: p.people,
+        },
+        p.id,
+      ),
+    );
+
+  const items = [...hubItems, ...extraItems];
+  const elMissing = !EL_API_KEY && align.photos.length === 0;
+  return { items, elMissing, roster: align.persons };
 }
