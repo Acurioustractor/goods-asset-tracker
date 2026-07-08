@@ -492,12 +492,13 @@ export function MediaLibraryClient({
     return () => document.removeEventListener('keydown', onKey);
   }, [active, filtered, cursor, toggleStar, toggleArchive, toggleSelect, setRating]);
 
-  const chip = (key: SourceFilter, label: string, count: number) => {
+  const chip = (key: SourceFilter, label: string, count: number, title?: string) => {
     const isActive = sourceFilter === key;
     return (
       <button
         key={key}
         type="button"
+        title={title}
         onClick={() => setSourceFilter(key)}
         className={
           'inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-medium border transition ' +
@@ -548,11 +549,15 @@ export function MediaLibraryClient({
       )}
 
       {/* Source filter chips */}
-      <div className="flex flex-wrap gap-2 mb-3">
-        {chip('all', 'All', sourceCounts.all)}
-        {chip('website', 'Website', sourceCounts.website)}
-        {chip('el', 'Empathy Ledger', sourceCounts.el)}
+      <div className="flex flex-wrap items-center gap-2 mb-1.5">
+        {chip('all', 'All', sourceCounts.all, 'Everything, both sources')}
+        {chip('website', 'Website', sourceCounts.website, "The site's own image & video files (public/) — marketing, product, brand. Yours to use freely.")}
+        {chip('el', 'Empathy Ledger', sourceCounts.el, 'Community photos & videos in Empathy Ledger — consent-governed, linked to the people & communities in them.')}
       </div>
+      <p className="mb-3 text-[11px] text-muted-foreground">
+        <span className="font-medium text-foreground">Website</span> = the site&rsquo;s own files ·{' '}
+        <span className="font-medium text-foreground">Empathy Ledger</span> = consent-governed community media (tag people &amp; community on these)
+      </p>
 
       {/* Curation view toggles */}
       <div className="flex flex-wrap items-center gap-2 mb-3">
@@ -675,6 +680,20 @@ export function MediaLibraryClient({
           {elState === 'loading' && <span className="ml-1 opacity-70">· loading Empathy Ledger…</span>}
         </span>
       </div>
+
+      {/* Archive-only mode: make it unmistakable why the grid is small */}
+      {showArchived && (
+        <div className="mb-4 flex flex-wrap items-center gap-2 rounded-lg border border-amber-300 bg-amber-50 px-3 py-2 text-xs text-amber-800 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-300">
+          <span>You&rsquo;re viewing <span className="font-semibold">archived items only</span> ({archivedCount}) — the rest of the library is hidden.</span>
+          <button
+            type="button"
+            onClick={() => setShowArchived(false)}
+            className="rounded-md border border-amber-400 px-2 py-0.5 font-medium hover:bg-amber-100 dark:border-amber-700 dark:hover:bg-amber-900/40"
+          >
+            ← Back to full library
+          </button>
+        </div>
+      )}
 
       {/* Bulk action bar */}
       {selected.size > 0 && (

@@ -29,10 +29,16 @@ export default async function MediaLibraryPage() {
       <header className="mb-6">
         <h1 className="text-2xl font-bold">Media library</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Every photo, video and overlay in the project — local website assets and the Empathy
-          Ledger library — in one grid. Star keepers, archive junk, rate, tag a community, and
-          search. Filter by type (image / video / overlay), source, subject, community, starred
-          or archived.
+          One place to curate every photo and video in the project. Star the keepers, archive the
+          junk, rate them, and tag who is in each shot and which community it belongs to.
+        </p>
+        <p className="mt-2 max-w-3xl text-xs text-muted-foreground">
+          It pulls from two sources.{' '}
+          <span className="font-medium text-foreground">Website</span> — the image and video files
+          the goodsoncountry.com site is built from (yours to use freely).{' '}
+          <span className="font-medium text-foreground">Empathy Ledger</span> — community photos and
+          videos held in the Empathy Ledger platform, which governs consent and links each photo to
+          the people and communities in it. Tagging people / community applies to those.
         </p>
       </header>
       <MediaLibraryClient items={items} curationReady={curationReady} communities={communities} />
