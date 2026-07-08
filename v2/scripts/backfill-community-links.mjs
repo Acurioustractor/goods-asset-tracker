@@ -17,10 +17,16 @@ const g = (k) => { const m = env.match(new RegExp('^' + k + '=(.*)$', 'm')); ret
 const URL_ = g('NEXT_PUBLIC_SUPABASE_URL');
 const KEY = g('SUPABASE_SERVICE_ROLE_KEY') || g('SUPABASE_SERVICE_KEY');
 const H = { apikey: KEY, Authorization: 'Bearer ' + KEY, 'Content-Type': 'application/json' };
+// EL DB — el-source content_items carry a media_asset UUID as their ref, with no
+// place in the ref; their community comes from the EL gallery the photo sits in.
+const E_URL = g('EMPATHY_LEDGER_SUPABASE_URL');
+const E_KEY = g('EMPATHY_LEDGER_SUPABASE_KEY');
+const EH = { apikey: E_KEY, Authorization: 'Bearer ' + E_KEY };
+const chunk = (a, n) => { const o = []; for (let i = 0; i < a.length; i += n) o.push(a.slice(i, i + n)); return o; };
 
 // --- matcher (mirror of src/lib/data/community-match.ts) ---------------------
 const ALIASES = {
-  'Alice Springs': ['mparntwe'], 'Tennant Creek': ['wumpurrarni'], 'Palm Island': ['bwgcolman'],
+  'Alice Springs': ['mparntwe', 'oonchiumpa'], 'Tennant Creek': ['wumpurrarni'], 'Palm Island': ['bwgcolman'],
   'Kalgoorlie': ['ninga mia', 'wongatha'], 'Mt Isa': ['mount isa'],
   "Galiwin'ku": ['elcho island', 'galiwinku'],
   'Groote Archipelago': ['groote eylandt', 'groote', 'angurugu', 'umbakumba'],
@@ -47,18 +53,39 @@ const j = async (path, opts) => { const r = await fetch(`${URL_}/rest/v1/${path}
   const commName = new Map(comms.map((c) => [c.id, c.name]));
 
   // Untagged items only — match on the ref (path/filename) plus any tags.
-  const rows = await j('content_items?community_id=is.null&select=id,ref,tags&limit=5000');
+  const rows = await j('content_items?community_id=is.null&select=id,ref,tags,source&limit=5000');
+
+  // EL-source rows carry a media_asset UUID as ref (no place text); resolve the EL
+  // gallery each photo sits in ("Goods. Tennant Creek" -> Tennant Creek) and match that.
+  const elIds = rows.filter((r) => r.source === 'el' && /^[0-9a-f-]{36}$/.test(r.ref || '')).map((r) => r.ref);
+  const galleryByMedia = new Map();
+  if (elIds.length && E_URL && E_KEY) {
+    const ej = async (p) => { const r = await fetch(`${E_URL}/rest/v1/${p}`, { headers: EH }); if (!r.ok) throw new Error(`EL ${r.status} ${await r.text()}`); return r.json(); };
+    const assoc = [];
+    for (const c of chunk(elIds, 100)) assoc.push(...await ej(`gallery_media_associations?media_asset_id=in.(${c.join(',')})&select=media_asset_id,gallery_id`));
+    const gids = [...new Set(assoc.map((a) => a.gallery_id))];
+    const gals = gids.length ? await ej(`galleries?id=in.(${gids.join(',')})&select=id,title`) : [];
+    const galTitle = new Map(gals.map((gg) => [gg.id, gg.title]));
+    for (const a of assoc) galleryByMedia.set(a.media_asset_id, galTitle.get(a.gallery_id) || '');
+  }
+
   const hits = [];
   for (const r of rows) {
-    const hay = `${r.ref || ''} ${(r.tags || []).join(' ')}`;
+    // el rows: gallery name (+tags); others: ref path (+tags). Never feed the raw
+    // UUID ref to the matcher.
+    const hay = r.source === 'el'
+      ? `${galleryByMedia.get(r.ref) || ''} ${(r.tags || []).join(' ')}`
+      : `${r.ref || ''} ${(r.tags || []).join(' ')}`;
     const m = match(hay);
-    if (m) hits.push({ id: r.id, ref: r.ref, community_id: m.id, community: m.name });
+    if (m) hits.push({ id: r.id, ref: r.ref, source: r.source, community_id: m.id, community: m.name });
   }
 
   const byComm = {};
   for (const h of hits) (byComm[h.community] ??= []).push(h);
+  const bySource = {};
+  for (const h of hits) bySource[h.source || 'local'] = (bySource[h.source || 'local'] || 0) + 1;
   console.log(`content_items with NULL community_id: ${rows.length}`);
-  console.log(`would tag: ${hits.length}\n`);
+  console.log(`would tag: ${hits.length} (by source: ${JSON.stringify(bySource)})\n`);
   for (const [name, list] of Object.entries(byComm).sort((a, b) => b[1].length - a[1].length)) {
     console.log(`  ${name} (${list.length})`);
     for (const h of list.slice(0, 4)) console.log(`      ${h.ref}`);

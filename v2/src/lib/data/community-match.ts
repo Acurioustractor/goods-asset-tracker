@@ -16,7 +16,9 @@ export interface CommunityLite {
 // titles, gallery names). Traditional names in the communities table are matched
 // automatically; these cover the rest.
 const ALIASES: Record<string, string[]> = {
-  'Alice Springs': ['mparntwe'],
+  // Oonchiumpa is the Alice Springs production partner (Karen Liddle) — its media
+  // is filed under the org name, which is an Alice Springs place-proxy.
+  'Alice Springs': ['mparntwe', 'oonchiumpa'],
   'Tennant Creek': ['wumpurrarni'],
   'Palm Island': ['bwgcolman'],
   'Kalgoorlie': ['ninga mia', 'wongatha'],
