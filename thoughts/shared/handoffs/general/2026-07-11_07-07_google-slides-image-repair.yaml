@@ -1,0 +1,56 @@
+---
+session: general
+date: 2026-07-11
+status: partial
+outcome: PARTIAL_MINUS
+---
+
+goal: Finalise the Goods on Country investor deck in Google Slides using community voices, mission-first narrative, real photos, and a grounded investment case.
+now: Repair all broken images in the live deck using embedded image bytes, then verify in the actual Google Slides editor rather than API thumbnails.
+test: Open https://docs.google.com/presentation/d/1ClOU09dQVs_m_SvGcqAY3FeZnPWqBL0ZPxjdKqV1M8c/edit and visually check slides 1-12 after a hard refresh; no warning triangles or blank image frames may remain.
+
+done_this_session:
+  - task: Rewrote the 12-slide deck around community voice -> Stretch Bed -> Oonchiumpa/Mykel -> Utopia proof -> plant -> community ownership -> business model -> risks -> $400k ask.
+    files: []
+  - task: Added plain-spoken speaker notes to all 12 slides and renamed the deck.
+    files: []
+  - task: Built and verified the local source/consent system used for quotes and photo choices.
+    files: [v2/src/lib/data/community-narrative.ts, v2/src/lib/data/pitch-photo-review.ts, v2/src/lib/data/cleared-voices.ts, v2/src/lib/data/curated-quotes.ts, v2/src/lib/data/trip-stories.ts]
+
+blockers: [Google Slides editor shows broken-image warning triangles and blank frames even though connector-generated thumbnails rendered the photos. The prior verification was therefore a false positive caused by cached/server thumbnails.]
+
+questions: [Can the Slides connector embed local image bytes reliably with image_uris when the request URL and temp path contain no spaces? If not, rebuild the deck as a local PPTX with embedded images and import it as native Google Slides.]
+
+decisions:
+  - narrative_spine: A bed off the ground is the first proof of a bigger transfer; community-held making is the mission.
+  - ownership_language: Describe a pathway moving closer to community ownership, never claim ownership is complete.
+  - evidence_order: Community voices and the Alice-to-Utopia story come before product mechanics and investor language.
+  - image_verification: Actual Google Slides editor rendering is authoritative; connector thumbnails alone are insufficient.
+
+findings:
+  - deck_identity: Presentation ID 1ClOU09dQVs_m_SvGcqAY3FeZnPWqBL0ZPxjdKqV1M8c; title "Goods on Country | Community-held making | Investor deck | July 2026"; 12 slides p1-p12.
+  - broken_objects: Images are p1_i8; p2_i19; p3_i22,p3_i23,p3_i24; p4_i36,p4_i39,p4_i42,p4_i45; p5_i24; p6_i21; p7_i16; p8_i21; p9_i19; p12_i16.
+  - editor_evidence: User screenshot at /var/folders/z9/_yr73vds5p71pmdbhg0z_yqw0000gn/T/TemporaryItems/NSIRD_screencaptureui_GNjuKP/Screenshot 2026-07-10 at 1.27.54 pm.png shows warning triangles/blank frames on slides 1,3,4,5,6,7,8 and likely every image slide.
+  - connector_failure: replaceImage using public https://www.goodsoncountry.com/images/... URLs appeared correct in API thumbnails but later broke in the editor. A local image_uris attempt using a workspace path containing spaces appeared to be a no-op.
+  - intended_sources: Use local files under v2/public/images. Key images: hero/stretch-bed-on-country.jpg; people/ivy.jpg; people/mykel.jpg; people/dianne-stokes.jpg; stories/utopia/01-hero.jpg,04-build.jpg,08-beforeafter.jpg,09-offground.jpg,10-next.jpg; process/factory-panorama.jpg; media-pack/community-bed-assembly.jpg; media-pack/lying-on-stretch-bed.jpg; product/stretch-bed-hero.jpg and product/stretch-bed-kids-building.jpg.
+
+worked: [Google Slides connector text edits, speaker-note edits, direct object-ID targeting, fresh slide readback, community narrative and cleared quote sources.]
+failed: [Public-URL replaceImage produced unstable linked images; connector thumbnails falsely suggested success; Chrome extension control was unavailable; in-app browser was selected but was not the user's signed-in Chrome editor.]
+
+next:
+  - Copy one source image to a no-space temp path such as /tmp/goods-slides/ivy.jpg and test replaceImage with url=/tmp/goods-slides/ivy.jpg plus image_uris=/tmp/goods-slides/ivy.jpg on p2_i19.
+  - Hard-refresh the signed-in Google Slides editor and confirm the image is truly visible. If successful, repeat for all 15 object IDs using one grounded batch per slide and verify each in-editor.
+  - If local embedding still fails, use the Presentations skill to recreate/import a PPTX with embedded images, preserving the existing 12-slide text, layouts, notes, and title; return the new verified Google Slides URL.
+  - Re-run full connector readback, fresh LARGE thumbnails, and actual editor screenshots. Do not call complete until both surfaces agree.
+
+files:
+  created: [thoughts/shared/handoffs/general/2026-07-11_07-07_google-slides-image-repair.yaml]
+  modified: []
+
+# ── 2026-07-11 (later, Cowork session): PARKED by Ben ("forget the google slides deck
+# for now — concentrate on getting this right in claude design"). Findings this session:
+# no Slides connector available; Drive connector cannot see the presentation (different
+# account or file-scope); Chrome extension content scripts wedged (restart Chrome).
+# The code deck + Claude Design artifact are the live design source; see
+# wiki/outputs/2026-07-10-deck-innovation-handoff.md §0. The PPTX-rebuild fallback in
+# `next` above remains the right path if the Slides copy is revived.
