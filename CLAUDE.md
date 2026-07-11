@@ -129,6 +129,9 @@ cd v2 && npm run lint     # ESLint
 - Lead with impact, not charity
 - Use real community language ("deadly" = excellent)
 - Always centre Indigenous voices and agency
+- NEVER "co-design" / "co-designed" — the products are **designed in community / designed with community** (Ben, 2026-07-11). Co-design implies a facilitated joint process; the truth is the design happens in community, led by community. (Data keys like `theme: 'co-design'` in content.ts are pending a separate migration — don't add new ones.)
+- Ownership is a **pathway** — "moving closer to community ownership", never claimed complete
+- scabies→RHD is the **why**, never a claimed health outcome
 
 ## Database Operations
 - **DDL (CREATE, ALTER, DROP):** Use `psql` directly — the Supabase `exec_sql` RPC does not support DDL.

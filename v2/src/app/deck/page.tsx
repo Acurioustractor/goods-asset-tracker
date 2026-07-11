@@ -429,7 +429,7 @@ const SLIDES: { id: string; render: () => React.ReactNode }[] = [
             ['Ownership, by design', 'Each plant is built to move into community hands (Supply Nation 51% First Nations-ownership path). The model gets more defensible the more it gives away.'],
             ['A cost-down curve', 'Verified bill of materials + in-sourced plastic drive marginal cost from $685 toward $421 as volume and local capability grow.'],
             ['Field-proven evidence', `${A.bedsDeployed} beds across ${A.communitiesServed} communities, with consent-based stories through the Empathy Ledger — proof procurement buyers can stand on.`],
-            ['Relationships, not access', 'Years of Elder-led co-design. You can copy a bed. You can’t copy trust that was earned On Country.'],
+            ['Relationships, not access', 'Years of design in community, led by Elders. You can copy a bed. You can’t copy trust that was earned On Country.'],
           ].map(([h, p]) => (
             <div key={h} className="rounded-lg border border-border bg-card p-5">
               <h3 className="text-base font-medium text-foreground">{h}</h3>
@@ -576,7 +576,7 @@ const SLIDES: { id: string; render: () => React.ReactNode }[] = [
           {[
             ['The market is turning', 'Procurement targets, Closing the Gap, recycled feedstock and freight costs all point the same way — toward buying durable goods made in community.'],
             ['There is early proof', `${A.bedsDeployed} beds, ${A.communitiesServed} communities, ${A.plasticKg.toLocaleString()}kg of plastic diverted, and buyers asking for more.`],
-            ['This team can win', 'Elder-led co-design, on-country manufacturing, and consent-based evidence a competitor can’t shortcut.'],
+            ['This team can win', 'Design in community led by Elders, on-country manufacturing, and consent-based evidence a competitor can’t shortcut.'],
             ['This round gets us there', 'Measured (not modelled) unit economics, the first procurement-funded revenue, and a plant on the path to community ownership.'],
           ].map(([h, p], i) => (
             <li key={h} className="flex gap-4">
