@@ -46,6 +46,11 @@ The yaml's PPTX-rebuild fallback stands if the Slides copy is ever needed again.
 **Next (per §4):** ClaimChips/EvidenceDrawer into `/deck` reading `claims-ledger.ts`;
 The Experiment (50-bed pre-registration) page; PDF snapshot export of the register.
 
+**Later on 2026-07-11 the work moved narrative-first (Ben's call):** see
+`wiki/outputs/2026-07-11-narrative-foundation.md` (model definition + all voices/communities —
+Ben-gated) and `wiki/outputs/2026-07-11-codex-ultraplan-handoff.md` (the plan run for stories,
+tone, theory of change). Deck spine work resumes only after the model definition is signed.
+
 ---
 
 ## 1. Where everything lives
