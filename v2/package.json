@@ -13,6 +13,7 @@
     "content:archive": "cd .. && node v2/scripts/content-apply-archive.mjs",
     "check:community-copy": "node scripts/check-community-copy.mjs",
     "check:qbe-guardrails": "node scripts/check-qbe-guardrails.mjs",
+    "check:storytellers": "node scripts/check-storyteller-registry.mjs",
     "check:asset-drift": "node --env-file=.env.local scripts/check-asset-drift.mjs",
     "check:canon": "node scripts/check-canon-drift.mjs",
     "check:artifacts": "node scripts/check-artifact-drift.mjs",

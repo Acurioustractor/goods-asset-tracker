@@ -318,10 +318,8 @@ export const curatedQuotes: Record<string, CuratedQuote[]> = {
   ],
 
   'Walter': [
-    {
-      text: 'Good sleep. No sound, no people shouting. Just quiet.',
-      context: 'On the Stretch Bed',
-    },
+    // HOLD: not consent-cleared (storyteller-registry.ts). His quiet-sleep quote
+    // removed from data 2026-07-12; text preserved in git history and the registry.
   ],
 
   'Wayne Glenn': [

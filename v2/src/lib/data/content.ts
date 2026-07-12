@@ -236,10 +236,12 @@ export const quotes = [
     theme: 'health',
     verified: true,
   },
+  // Jessica Allardyce's washing/RHD quote removed 2026-07-12: not consent-cleared
+  // (storyteller-registry.ts tier: hold). Use Dr Boe Remenyi's line instead.
   {
-    text: 'Scabies often leads to Rheumatic Heart Disease, so washing machines are essential to be able to clean infected clothing, bedding and towels.',
-    author: 'Jessica Allardyce',
-    context: 'Miwatj Health',
+    text: 'It\'s great to say you should wash your sheets every week. But if you don\'t have a washing machine, that\'s not going to work.',
+    author: 'Dr Boe Remenyi',
+    context: 'Paediatric Cardiologist',
     theme: 'health',
     verified: true,
   },
@@ -437,12 +439,12 @@ export const impactStories = [
     summary: 'Elder Norman Frank founded Wilya Janta to advocate for housing. When his daughter tried a Goods bed, he called asking for three more, in maroon.',
   },
   {
-    id: 'jessica-health-connection',
-    title: 'The Scabies → Heart Disease Pathway',
-    person: 'Jessica Allardyce',
-    location: 'Gapuwiyak, East Arnhem, NT',
-    quote: 'Scabies often leads to Rheumatic Heart Disease, so washing machines are essential.',
-    summary: 'A washing machine isn\'t a convenience. It\'s cardiac prevention. Clean bedding breaks the scabies cycle.',
+    id: 'boe-washing-logic',
+    title: 'Why Washing Machines Matter',
+    person: 'Dr Boe Remenyi',
+    location: 'Paediatric Cardiologist, NT',
+    quote: 'It\'s great to say you should wash your sheets every week. But if you don\'t have a washing machine, that\'s not going to work.',
+    summary: 'A practitioner\'s logic: education only works when the hardware exists at home. Clean bedding supports the conditions that interrupt the scabies to RHD pathway.',
   },
   {
     id: 'cliff-health-messages',
@@ -619,7 +621,7 @@ export const investmentCase = {
 
   demand: [
     { text: 'Dianne Stokes received one bed, then asked for 20 more within two weeks and offered to fund them herself', person: 'Dianne Stokes, Tennant Creek' },
-    { text: 'Norm Frank called requesting three beds in maroon after his daughter tried them', person: 'Norman Frank, Tennant Creek' },
+    { text: 'Norman Frank called requesting three beds in maroon after his daughter tried them', person: 'Norman Frank, Tennant Creek' },
     { text: 'Utopian homelands want beds for every child (~$150,000 worth)', person: 'Utopia Homelands, NT' },
     { text: 'Homeland Schools Company requesting 65 beds for kids across Maningrida communities', person: 'Maningrida, NT' },
     { text: 'Four health organisations reached out following last year\'s forum', person: 'Healthy Homes coordinators, OT workers' },

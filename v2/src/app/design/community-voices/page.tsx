@@ -20,7 +20,7 @@ const testimonials = [
   },
   {
     quote: "My daughter tried one and now I want three beds in maroon for my family.",
-    author: 'Norm Frank',
+    author: 'Norman Frank',
     location: 'Alice Homelands',
     image: null,
   },
