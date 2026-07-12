@@ -138,10 +138,10 @@ export default function WashingMachinePage() {
                   with good environmental health, but kills children in remote communities.
                 </p>
                 <blockquote className="border-l-4 border-red-300 pl-4 italic text-red-900">
-                  &ldquo;Scabies often leads to Rheumatic Heart Disease, so washing machines are essential
-                  to be able to clean infected clothing, bedding and towels.&rdquo;
+                  &ldquo;It&rsquo;s great to say you should wash your sheets every week. But if you
+                  don&rsquo;t have a washing machine, that&rsquo;s not going to work.&rdquo;
                   <footer className="text-sm font-medium mt-1 not-italic">
-                    &mdash; Jessica Allardyce, Miwatj Health
+                    &mdash; Dr Boe Remenyi, Paediatric Cardiologist
                   </footer>
                 </blockquote>
               </div>

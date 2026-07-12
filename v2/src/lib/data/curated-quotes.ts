@@ -95,10 +95,8 @@ export const curatedQuotes: Record<string, CuratedQuote[]> = {
   ],
 
   'Dianne Stokes': [
-    {
-      text: 'I\'m a traditional owner and where I live is in the boundary of my totem. I\'ve been here almost 24 years without shelter. The only thing I had was my car.',
-      context: 'Housing need',
-    },
+    // Totem/24-years line removed 2026-07-12 — hold for Dianne's say-so
+    // (narrative foundation §3). Text preserved in git history.
     {
       text: 'It means something that really makes me happy. Every time I go away, it\'s like it\'s calling me. Come back home.',
       context: 'Connection to Country',
@@ -238,7 +236,7 @@ export const curatedQuotes: Record<string, CuratedQuote[]> = {
   'Linda Turner': [
     {
       text: 'We\'ve never been asked what sort of house we\'d like to live in.',
-      context: 'Co-design',
+      context: 'Being asked',
     },
     {
       text: 'We try to lead by example to our kids and grandkids.',

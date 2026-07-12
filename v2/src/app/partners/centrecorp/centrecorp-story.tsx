@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
+import { PLASTIC_KG_PER_BED, STRETCH_BED } from '@/lib/data/products';
 
 /**
  * Centrecorp Foundation partnership — immersive Utopia story.
@@ -15,22 +16,23 @@ import { useEffect, useRef } from 'react';
 const STORY = '/images/partners/centrecorp/story';
 
 const beds = [
-  { v: '26kg', l: 'flat-packs, one person can carry it' },
-  { v: '200kg', l: 'load capacity, rated' },
-  { v: '~5 min', l: 'to assemble, no tools' },
-  { v: '20kg', l: 'of recycled plastic per bed' },
-  { v: '10+ yrs', l: 'design life, 5-year warranty' },
+  { v: STRETCH_BED.specs.weight, l: 'flat-packs, one person can carry it' },
+  { v: STRETCH_BED.specs.loadCapacity, l: 'load capacity, rated' },
+  // canonical '~5 minutes' / '10+ years', abbreviated to fit the stat tiles
+  { v: STRETCH_BED.specs.assemblyTime.replace('minutes', 'min'), l: 'to assemble, no tools' },
+  { v: `${PLASTIC_KG_PER_BED}kg`, l: 'of recycled plastic per bed' },
+  { v: STRETCH_BED.specs.designLifespan.replace('years', 'yrs'), l: 'design life, 5-year warranty' },
   { v: '496', l: 'beds in homes across 9 communities since 2023' },
 ];
 
 const voices = [
   { q: 'Comfortable as. Smooth, tight, hard, fancy. It\'s not trampoline.', who: 'Mykel', where: 'Young builder, Utopia Homelands' },
   { q: 'That is something Central Australia need.', who: 'Fred Campbell', where: 'Youth Case Worker, Oonchiumpa' },
-  { q: 'From the waste, plastic. Perfect. That is really a perfect idea.', who: 'Jacqueline', where: 'Central Australia product feedback' },
+  { q: 'Good for me and comfy, easy to put together.', who: 'Dorrie Jones', where: 'Arlparra product feedback' },
 ];
 
 const goodNewsStory = [
-  'A Curious Tractor, in partnership with Oonchiumpa Consultancy and Services, is proud to support our remote communities by building and delivering Goods Beds to community members in Alparra and Ampilatwatja who are less fortunate.',
+  'A Curious Tractor, in partnership with Oonchiumpa Consultancy and Services, is proud to support our remote communities by building and delivering Goods Beds to community members in Alparra and Ampilatwatja.',
   'We are honoured to share that respected Elders Frank Holmes and Mr Donald Thompson OAM from Antarrengeny have since been in contact and expressed they are very grateful. They told us that since receiving their new beds, they are no longer experiencing back pains. Their words remind us why this work matters.',
   'We look forward to continuing this strong partnership and remain committed to improving comfort, dignity and wellbeing across our remote communities.',
 ];
@@ -119,7 +121,7 @@ export default function CentrecorpStory() {
           <span className="cc-lead">In Alice Springs,</span> young people were supported by the Centrecorp Foundation to build their own beds, and every young person who built one kept one. Oonchiumpa held the whole trip, the cultural connection and the call on where it went. That order matters. The opposite of charity is asking people what they need, then building it with them.
         </p>
         <p className="cc-reveal cc-d2">
-          The Stretch Bed is a plain object. Two galvanised steel poles thread through the sleeves of heavy-duty canvas and through the holes in two recycled-plastic X-legs. Tension the frame and it pulls tight, and the canvas is what holds it up. It weighs 26kg, holds 200kg, and goes together in about five minutes with no tools. What it replaces is harder: a thin mattress on a concrete floor, or a door taken off its hinges and laid flat.
+          The Stretch Bed is a plain object. Two galvanised steel poles thread through the sleeves of heavy-duty canvas and through the holes in two recycled-plastic X-legs. Tension the frame and it pulls tight, and the canvas is what holds it up. It weighs {STRETCH_BED.specs.weight}, holds {STRETCH_BED.specs.loadCapacity}, and goes together in about five minutes with no tools. What it replaces is harder: a thin mattress on a concrete floor, or a door taken off its hinges and laid flat.
         </p>
         <p className="cc-reveal cc-d2">
           Goods on Country has put 496 beds into homes across 9 communities since 2023. This trip added more, and pointed at where the work goes next.

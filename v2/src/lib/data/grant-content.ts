@@ -171,13 +171,13 @@ export const communityQuotes = {
   freightAndAccess: [
     { quote: "You can't just go down to the store and buy beds. It's a big muck-around.", person: 'Alfred Johnson', community: 'Palm Island' },
     { quote: 'The freight is very, very dear.', person: 'Carmelita', community: 'Palm Island' },
-    { quote: 'We are on an island — literally. Therefore anything we purchase is so much more expensive due to freight.', person: 'Simone Grimmond', community: 'Groote Archipelago' },
+    { quote: 'Sometimes people would rather go without.', person: 'Daniel Patrick Noble', community: 'Palm Island' },
   ],
   healthLink: [
-    { quote: 'There is also a lot of scabies and this often leads to Rheumatic Heart Disease, so washing machines are essential.', person: 'Jessica Allardyce', community: 'East Arnhem' },
+    { quote: "It's great to say you should wash your sheets every week. But if you don't have a washing machine, that's not going to work.", person: 'Dr Boe Remenyi, paediatric cardiologist', community: 'Practitioner' },
   ],
   productFeedback: [
-    { quote: "From the waste, plastic. Perfect. That's really a perfect idea. Because it's very expensive buying bed. But with this here, it's so amazing.", person: 'Jacqueline', community: 'Alice Springs' },
+    { quote: 'Good for me and comfy, easy to put together.', person: 'Dorrie Jones', community: 'Arlparra (Utopia Homelands)' },
   ],
   communityOwnership: [
     { quote: "We've never been asked at what sort of house we'd like to live in.", person: 'Linda Turner', community: 'Tennant Creek' },

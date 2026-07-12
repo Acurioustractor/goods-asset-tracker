@@ -279,7 +279,7 @@ export const partners = {
   communityPartners: [
     {
       name: 'Dianne Stokes',
-      role: 'Elder & Co-designer',
+      role: 'Elder & Designer',
       location: 'Tennant Creek',
       contribution: 'Named the washing machine "Pakkimjalki Kari", refines designs "around the fire" with family',
     },
@@ -485,10 +485,10 @@ export const communityPartnerships = [
     name: 'Tennant Creek',
     region: 'Northern Territory',
     headline: 'Where it all began',
-    description: 'Tennant Creek is the birthplace of Goods on Country. Elder Diane Stokes received the first bed and came back within two weeks requesting twenty more. Norm Frank called asking for three beds in maroon after his daughter tried one. The Pakkimjalki Kari washing machine was named here in Warumungu language by Diane herself.',
-    keyPeople: ['Diane Stokes', 'Norm Frank', 'Kristy Bloomfield'],
+    description: 'Tennant Creek is the birthplace of Goods on Country. Elder Dianne Stokes received the first bed and came back within two weeks requesting twenty more. Norman Frank called asking for three beds in maroon after his daughter tried one. The Pakkimjalki Kari washing machine was named here in Warumungu language by Dianne herself.',
+    keyPeople: ['Dianne Stokes', 'Norman Frank', 'Kristy Bloomfield'],
     bedsDelivered: 159,
-    highlight: 'Diane named the washing machine "Pakkimjalki Kari" in Warumungu language',
+    highlight: 'Dianne named the washing machine "Pakkimjalki Kari" in Warumungu language',
   },
   {
     id: 'alice-springs',
@@ -599,26 +599,26 @@ export const investmentCase = {
   fundingLines: [
     {
       id: 'sefa',
-      title: 'SEFA — repayable finance anchor',
+      title: 'SEFA: repayable finance anchor',
       amount: '$300,000',
       description: 'Concessional/blended loan, no ownership gate. Lends to social-enterprise companies. The anchor of every scenario; repayable carries the highest QBE match value.',
     },
     {
       id: 'snow',
-      title: 'Snow Foundation — first-mover commitment',
+      title: 'Snow Foundation: first-mover commitment',
       amount: '$100,000',
       description: 'Deepest funder relationship, repeat backer. Being reframed from a grant ask to a signed multi-year LOI or repayable first-mover paper, the form QBE counts as match.',
     },
     {
       id: 'centrecorp',
-      title: 'Centrecorp Foundation — grant / bed-order split',
+      title: 'Centrecorp Foundation: grant / bed-order split',
       amount: '$75,000',
       description: 'Central Australia grant kept separate from the bed-order revenue it sits alongside, so the match and the sale are never double-counted.',
     },
   ],
 
   demand: [
-    { text: 'Diane Stokes received one bed, requested 20 more within two weeks, offering to fund them herself', person: 'Diane Stokes, Tennant Creek' },
+    { text: 'Dianne Stokes received one bed, then asked for 20 more within two weeks and offered to fund them herself', person: 'Dianne Stokes, Tennant Creek' },
     { text: 'Norm Frank called requesting three beds in maroon after his daughter tried them', person: 'Norman Frank, Tennant Creek' },
     { text: 'Utopian homelands want beds for every child (~$150,000 worth)', person: 'Utopia Homelands, NT' },
     { text: 'Homeland Schools Company requesting 65 beds for kids across Maningrida communities', person: 'Maningrida, NT' },
@@ -709,7 +709,7 @@ export const investmentCase = {
     {
       period: 'End Jul 2026',
       items: [
-        'Butterfly charity / DGR transition expected to land',
+        'Butterfly DGR transition expected to land',
         'Entity and 51% First Nations ownership path reviewed with legal counsel',
       ],
     },
@@ -821,7 +821,7 @@ export const communityLocations: CommunityLocation[] = [
     storytellerCount: 0,
     bedsDelivered: 147,
     description: 'Anmatyerr and Alyawarr country, including the Ampilatwatja outstation where Frankie Holmes OAM and Mr Donald Thompson OAM each received beds in May 2026. Multiple outstations across the homelands. Young people in Alice Springs built and delivered beds to outstation families the next day.',
-    highlight: 'Co-designed and built with young people in Alice Springs, delivered on country to outstation families. Includes Ampilatwatja, where two senior Alyawarr brothers received beds in May 2026.',
+    highlight: 'Designed and built with young people in Alice Springs, delivered on country to outstation families. Includes Ampilatwatja, where two senior Alyawarr brothers received beds in May 2026.',
     tooltipDirection: 'left',
   },
   // Ampilatwatja folded into Utopia Homelands on the heatpost map (same
@@ -1304,8 +1304,8 @@ export const mediaPack = {
       downloadSrc: videoUrl('recycling-plant-desktop.mp4'),
     },
     {
-      title: 'Community Voices: Bed Recipient, Alice Springs',
-      description: 'A community member and Stretch Bed recipient from Alice Springs shares their experience.',
+      title: 'Community Voices: Alice Springs',
+      description: 'A community member from Alice Springs shares their experience of the Stretch Bed.',
       embedUrl: 'https://share.descript.com/embed/LAT0KNJMxmH',
       downloadSrc: undefined as string | undefined,
     },

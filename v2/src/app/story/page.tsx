@@ -6,6 +6,7 @@ import { empathyLedger } from '@/lib/empathy-ledger';
 import { MediaSlot, VideoSlot } from '@/components/ui/media-slot';
 import { Button } from '@/components/ui/button';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
+import { PLASTIC_KG_PER_BED, STRETCH_BED } from '@/lib/data/products';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -360,12 +361,12 @@ export default async function StoryPage() {
               className="text-4xl md:text-6xl font-light text-white mb-6 leading-[1.1]"
               style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
             >
-              26kg. Supports 200kg.<br />
+              {STRETCH_BED.specs.weight}. Supports {STRETCH_BED.specs.loadCapacity}.<br />
               No tools. 5 minutes.
             </h2>
             <p className="text-xl text-white/60 max-w-2xl mx-auto">
               Recycled plastic legs, galvanised steel poles, heavy-duty canvas.
-              Each bed diverts 20kg of plastic from landfill.
+              Each bed diverts {PLASTIC_KG_PER_BED}kg of plastic from landfill.
             </p>
           </div>
         </section>
@@ -389,7 +390,7 @@ export default async function StoryPage() {
                     <p>
                       Two galvanised steel poles thread through heavy-duty Australian canvas.
                       Two X-trestle legs pressed from recycled HDPE plastic, with production designed to move toward On-Country.
-                      Each bed diverts 20kg of plastic from landfill.
+                      Each bed diverts {PLASTIC_KG_PER_BED}kg of plastic from landfill.
                     </p>
                     <p>
                       No-tool assembly in 5 minutes. Works inside and outside. Fully washable.
@@ -548,7 +549,7 @@ export default async function StoryPage() {
         {[
           { quote: quotes.find(q => q.author === 'Alfred Johnson' && q.theme === 'freight-tax'), fallbackImage: media.community.palmIsland || '/images/community/palm-island.jpg' },
           { quote: quotes.find(q => q.author === 'Chloe'), fallbackImage: '/images/community/tennant-creek.jpg' },
-          { quote: quotes.find(q => q.author === 'Jessica Allardyce'), fallbackImage: '/images/community/tennant-creek.jpg' },
+          { quote: quotes.find(q => q.author === 'Patricia Frank'), fallbackImage: '/images/community/tennant-creek.jpg' },
           { quote: quotes.find(q => q.author === 'Linda Turner'), fallbackImage: media.community.tennantCreek || '/images/community/tennant-creek.jpg' },
         ].filter(panel => panel.quote).map((panel, i) => (
           <section key={`voice-${i}`} className="min-h-screen flex items-center justify-center relative overflow-hidden">
@@ -720,7 +721,7 @@ export default async function StoryPage() {
                       into precision-cut bed components, moving toward On-Country production.
                     </p>
                     <p>
-                      Capacity: ~30 beds per week. Each bed diverts 20kg of HDPE plastic from landfill.
+                      Capacity: ~30 beds per week. Each bed diverts {PLASTIC_KG_PER_BED}kg of HDPE plastic from landfill.
                       Built so local people can operate the machinery: real jobs, real skills, a pathway to local ownership.
                     </p>
                   </div>
@@ -730,7 +731,7 @@ export default async function StoryPage() {
                       <div className="text-xs text-muted-foreground mt-1">beds/week</div>
                     </div>
                     <div className="text-center p-4 rounded-xl border border-border bg-background">
-                      <div className="text-2xl font-bold text-primary">20kg</div>
+                      <div className="text-2xl font-bold text-primary">{PLASTIC_KG_PER_BED}kg</div>
                       <div className="text-xs text-muted-foreground mt-1">plastic per bed</div>
                     </div>
                     <div className="text-center p-4 rounded-xl border border-border bg-background">
@@ -804,7 +805,7 @@ export default async function StoryPage() {
                 {[
                   { value: '496', label: 'bed units deployed' },
                   { value: String(CANONICAL_ASSETS.communitiesServed), label: 'communities served' },
-                  { value: '20kg', label: 'plastic per bed diverted' },
+                  { value: `${PLASTIC_KG_PER_BED}kg`, label: 'plastic per bed diverted' },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center p-6 rounded-xl bg-white/5 border border-white/10">
                     <div className="text-3xl md:text-4xl font-bold text-primary mb-1">{stat.value}</div>

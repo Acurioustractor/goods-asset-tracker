@@ -77,7 +77,7 @@ const scenarioOptions: Array<{
     volume: 1000,
     location: 'on_country',
     containerise: true,
-    description: 'Community-owned plant, fair-wage labour and local plastic loop.',
+    description: 'Plant on the community-ownership pathway: fair-wage labour and a local plastic loop.',
   },
 ];
 

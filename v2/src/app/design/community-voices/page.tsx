@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { PLASTIC_KG_PER_BED, STRETCH_BED } from '@/lib/data/products';
 
 const testimonials = [
   {
@@ -179,16 +180,16 @@ export default function CommunityVoicesPage() {
                 The Stretch Bed
               </h2>
               <p className="text-lg mb-6" style={{ color: '#5E5E5E' }}>
-                Co-designed with communities over 500+ minutes of feedback. Built from recycled plastic,
+                Designed with communities over 500+ minutes of feedback. Built from recycled plastic,
                 designed for remote conditions, and made to last.
               </p>
 
               <div className="space-y-3 mb-8">
                 {[
-                  'Made from 20kg recycled plastic',
+                  `Made from ${PLASTIC_KG_PER_BED}kg recycled plastic`,
                   '5-minute assembly, no tools required',
                   'Washable mattress components',
-                  'Designed to last 10+ years',
+                  `Designed to last ${STRETCH_BED.specs.designLifespan}`,
                 ].map((feature) => (
                   <div key={feature} className="flex items-center gap-3">
                     <div

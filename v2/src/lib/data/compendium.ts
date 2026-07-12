@@ -486,7 +486,7 @@ export const communityVoices: CommunityVoice[] = [
 
   // Tennant Creek
   {
-    id: 'dianne', name: 'Dianne Stokes', role: 'Waramungu and Warlmanpa Elder, named and designed the Pakkimjalki Kari washing machine', community: 'Tennant Creek', state: 'NT',
+    id: 'dianne', name: 'Dianne Stokes', role: 'Warumungu and Warlmanpa Elder, named and designed the Pakkimjalki Kari washing machine', community: 'Tennant Creek', state: 'NT',
     quotes: [
       'Working both ways — cultural side in white society and Indigenous society.',
       'Hardly any people around the community have beds.',
@@ -514,10 +514,9 @@ export const communityVoices: CommunityVoice[] = [
     context: 'Connected Goods with language groups across NT for washing machine naming.',
   },
   {
-    id: 'jimmy', name: 'Jimmy Frank Jupurrurla', role: 'Traditional Owner, Weave Bed Co-designer', community: 'Tennant Creek', state: 'NT',
+    id: 'jimmy', name: 'Jimmy Frank Jupurrurla', role: 'Traditional Owner', community: 'Tennant Creek', state: 'NT',
     quotes: [
       'Our strengths is our culture, our country, you know, and our language.',
-      'Imagine if you could weave a bed?',
     ],
   },
   {

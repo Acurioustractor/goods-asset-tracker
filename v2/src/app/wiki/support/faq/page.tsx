@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { FAQPageJsonLd } from '@/components/seo';
+import { PLASTIC_KG_PER_BED, STRETCH_BED } from '@/lib/data/products';
 
 export const metadata: Metadata = {
   title: 'FAQ | Goods Wiki',
@@ -22,11 +23,11 @@ const faqs = [
     questions: [
       {
         q: 'What is a Stretch Bed?',
-        a: 'The Stretch Bed is a flat-packable, washable bed made from recycled HDPE plastic panels (legs), galvanised steel poles, and heavy-duty Australian canvas. It weighs 26kg, holds 200kg, and assembles in about 5 minutes with no tools.',
+        a: `The Stretch Bed is a flat-packable, washable bed made from recycled HDPE plastic panels (legs), galvanised steel poles, and heavy-duty Australian canvas. It weighs ${STRETCH_BED.specs.weight}, holds ${STRETCH_BED.specs.loadCapacity}, and assembles in about 5 minutes with no tools.`,
       },
       {
         q: 'How long does a Stretch Bed last?',
-        a: 'The Stretch Bed is designed to last 10+ years of use. The recycled plastic legs are virtually indestructible, the galvanised steel poles resist rust, and the canvas sleeping surface can be removed and washed.',
+        a: `The Stretch Bed is designed to last ${STRETCH_BED.specs.designLifespan} of use. The recycled plastic legs are virtually indestructible, the galvanised steel poles resist rust, and the canvas sleeping surface can be removed and washed.`,
       },
       {
         q: 'Can I wash the bed?',
@@ -55,7 +56,7 @@ const faqs = [
       },
       {
         q: 'Can I sponsor beds for a community?',
-        a: 'Absolutely! Our sponsorship program lets you buy beds that are delivered to communities in need. You\'ll receive impact photos and a story about where your sponsored bed went.',
+        a: 'Absolutely! Our sponsorship program lets you buy beds that are delivered to communities that have asked for them. You\'ll receive impact photos and a story about where your sponsored bed went.',
       },
       {
         q: 'Do you offer bulk/wholesale pricing?',
@@ -89,7 +90,7 @@ const faqs = [
       },
       {
         q: 'How much plastic does each bed divert from landfill?',
-        a: 'Each Stretch Bed uses approximately 20kg of recycled HDPE plastic that would otherwise end up in landfill or the environment.',
+        a: `Each Stretch Bed uses approximately ${PLASTIC_KG_PER_BED}kg of recycled HDPE plastic that would otherwise end up in landfill or the environment.`,
       },
       {
         q: 'Can I volunteer or get involved?',
