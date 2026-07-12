@@ -433,8 +433,8 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         status: 'approved',
       },
     ],
-    portrait: null,
-    notes: 'Voice-only by design: no portrait.',
+    portrait: '/images/people/karen-liddle.jpg',
+    notes: 'Portrait added 2026-07-12 (build-073.jpg, website source).',
   },
   {
     slug: 'katrina-bloomfield',
