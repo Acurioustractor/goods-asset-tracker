@@ -78,6 +78,12 @@ design/_image-originals/
 design/deck-assets/
 design/brand/claude-design/
 
+# Local browsing/staging folder for the System visuals review (symlinks into
+# v2/public + generated-images/goods-illustrations/, built 2026-07-13). Not
+# real files, but local-machine-only paths — regenerate with
+# scripts/build-system-visuals-staging.sh rather than committing.
+design/system-visuals/
+
 # QR code generation (keep these in repo for now, but could move to CDN later)
 # data/qr_codes/png/*.png
 # data/qr_codes/svg/*.svg

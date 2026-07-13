@@ -51,21 +51,21 @@ const components = [
     n: '2',
     title: 'Galvanised steel poles',
     body: `${STRETCH_BED.materials.frame.detail}. Rated for ${STRETCH_BED.specs.loadCapacity}. They run the length of the bed and carry the load.`,
-    img: '/images/product/stretch-bed-poles.jpg',
+    img: '/images/pitch/bed-poles.jpg',
   },
   {
     key: 'canvas',
     n: '1',
     title: 'Heavy-duty canvas',
     body: 'Australian canvas with sewn sleeves along both long edges. Fully washable, quick-drying. It is also the bracing: the bed will not stand without it.',
-    img: '/images/product/stretch-bed-detail.jpg',
+    img: '/images/pitch/bed-canvas.jpg',
   },
   {
     key: 'legs',
     n: '2',
     title: 'Recycled-plastic legs',
     body: 'Pressed from community-collected plastic waste, the HDPE planks cross into two X-frame trestles, each with a hole at the top for a pole to thread through. Virtually indestructible, no screws.',
-    img: '/images/product/stretch-bed-legs.jpg',
+    img: '/images/pitch/bed-frame-legs.jpg',
   },
 ];
 
@@ -167,17 +167,17 @@ export default async function StretchBedPage() {
         </div>
       </section>
 
-      {/* Overview diagram (fixed infographic, not swappable) */}
+      {/* Overview photo (real product photography, fixed, not swappable) */}
       <section className="mx-auto max-w-6xl px-6 pt-14">
         <p className="mb-4 text-center text-sm uppercase tracking-[0.18em] text-[#B0673B]">
-          The whole bed, one diagram
+          The whole bed, three parts
         </p>
         <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
           <Image
-            src="/goods-bed-anatomy.jpg"
-            alt="Anatomy of the Stretch Bed: galvanised steel poles, heavy-duty canvas, and recycled-plastic X-trestle legs, with the cost of each part"
-            width={1264}
-            height={848}
+            src="/images/pitch/bed-seq-3-all-parts.jpg"
+            alt="The three parts of a Stretch Bed laid out together: two recycled-plastic X-trestle legs, two galvanised steel poles, and the folded canvas"
+            width={2000}
+            height={1333}
             className="h-auto w-full"
             priority
           />
@@ -261,10 +261,10 @@ export default async function StretchBedPage() {
         </p>
         <div className="mt-8 overflow-hidden rounded-xl border border-slate-200 shadow-sm">
           <Image
-            src="/goods-bed-assembly.jpg"
-            alt="How the Stretch Bed goes together: lay out the parts, stand the X-legs, thread the poles, tension it, done"
-            width={1264}
-            height={848}
+            src="/images/pitch/bed-assembled.jpg"
+            alt="The finished Stretch Bed, tensioned and standing on its X-trestle legs"
+            width={2000}
+            height={1333}
             className="h-auto w-full"
           />
         </div>

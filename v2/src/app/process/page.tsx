@@ -489,6 +489,20 @@ export default async function ProcessPage() {
               </p>
             </div>
 
+            {/* What's inside one container: shred, press, assemble. */}
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl bg-[#FBFAF5] shadow-sm mb-3">
+              <Image
+                src="/goods-container-plant.png"
+                alt="Inside one shipping container: a shredder turns plastic to chip, a heat press presses it into sheet, and an X-trestle leg is assembled at a bench"
+                fill
+                sizes="(max-width: 1024px) 100vw, 1000px"
+                className="object-contain"
+              />
+            </div>
+            <p className="text-sm text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
+              Shred, press, assemble. One container holds every step from plastic to leg.
+            </p>
+
             {/* The ownership path: buy-kit, on-country plant, community-owned. */}
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl bg-[#FBFAF5] shadow-sm mb-3">
               <Image

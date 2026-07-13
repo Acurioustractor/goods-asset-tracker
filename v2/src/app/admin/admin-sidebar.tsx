@@ -38,6 +38,7 @@ import {
   ChevronRight,
   Network,
   LayoutGrid,
+  Layers,
 } from 'lucide-react';
 
 type NavItem = { name: string; href: string; icon: React.ComponentType<{ className?: string }> };
@@ -77,6 +78,7 @@ const navigation: NavGroup[] = [
       { name: 'Media gaps',    href: '/admin/media-gaps',      icon: Radar },
       { name: 'Consent',       href: '/admin/consent',         icon: FileCheck },
       { name: 'Canon board',   href: '/admin/canon',           icon: LayoutGrid },
+      { name: 'System visuals', href: '/admin/system-visuals', icon: Layers },
       { name: 'Registry',      href: '/admin/storytellers',    icon: Users },
       { name: 'Stories (EL)',  href: '/admin/el-stories',      icon: BookOpen },
       { name: 'Storytellers (EL)', href: '/admin/el-storytellers', icon: Users },
