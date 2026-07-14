@@ -180,3 +180,6 @@ design/.canon-cache/
 # Rendered artifact outputs (regenerable via render.sh)
 design/brand/claude-design/*.pdf
 design/brand/claude-design/*-preview.png
+
+# RED / sacred-source storyteller transcript extractions — never commit (Ben custodian; keep local only)
+thoughts/shared/handoffs/goods-quote-analysis/
