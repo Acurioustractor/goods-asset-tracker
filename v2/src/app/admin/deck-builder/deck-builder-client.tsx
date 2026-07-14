@@ -20,7 +20,7 @@ import { getStoryteller } from '@/lib/data/storyteller-registry';
 
 const STORAGE_KEY = 'goods-deck-v1';
 
-type TextField = 'headline' | 'body';
+type TextField = 'headline' | 'body' | 'script';
 
 /** Consent-safe: primary → approved, never a `hold` quote. */
 function leadQuote(name: string) {
@@ -44,7 +44,7 @@ function initials(name: string) {
 
 function canonical(slideId: string, field: TextField): string {
   const slide = deckSlides.find((s) => s.id === slideId);
-  return slide ? slide[field] : '';
+  return slide ? (slide[field] ?? '') : '';
 }
 
 /** Uncontrolled contentEditable. React owns the text node; caret is preserved
@@ -328,6 +328,20 @@ function SlideCard({
           </div>
         )}
 
+        {slide.script && (
+          <div className="mt-5 rounded-md border border-dashed border-primary/30 bg-primary/[0.03] p-4">
+            <p className="mb-2 text-[11px] font-semibold uppercase tracking-widest text-primary/70">
+              Spoken — presenter script (Present: press N)
+            </p>
+            <Editable
+              ariaLabel={`${slide.eyebrow} presenter script`}
+              value={getText(slide, 'script')}
+              onCommit={(v) => onText(slide.id, 'script', v)}
+              className="text-sm italic leading-relaxed text-foreground/80"
+            />
+          </div>
+        )}
+
         {slide.video && (
           <div className="mt-5 rounded-md border border-border bg-muted/30 p-4">
             <p className="flex items-center gap-2 text-sm font-semibold text-foreground">
@@ -446,6 +460,7 @@ function PresentOverlay({
   getVoice: (slide: DeckSlide, idx: number) => string;
 }) {
   const total = deckSlides.length;
+  const [showNotes, setShowNotes] = useState(false);
   const go = useCallback(
     (delta: number) => setIndex(Math.min(total - 1, Math.max(0, index + delta))),
     [index, setIndex, total],
@@ -459,6 +474,9 @@ function PresentOverlay({
       } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
         e.preventDefault();
         go(-1);
+      } else if (e.key === 'n' || e.key === 'N') {
+        e.preventDefault();
+        setShowNotes((v) => !v);
       } else if (e.key === 'Escape') {
         onClose();
       }
@@ -468,19 +486,41 @@ function PresentOverlay({
   }, [go, onClose]);
 
   const slide = deckSlides[index];
+  const notes = getText(slide, 'script');
 
   return (
     <div className="fixed inset-0 z-50 bg-black">
       <PresentSlide slide={slide} getText={getText} getVoice={getVoice} />
 
-      <button
-        type="button"
-        onClick={onClose}
-        className="absolute right-4 top-4 z-10 inline-flex items-center gap-1 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/25"
-      >
-        <X className="h-4 w-4" />
-        Exit
-      </button>
+      <div className="absolute right-4 top-4 z-10 flex items-center gap-2">
+        <button
+          type="button"
+          onClick={() => setShowNotes((v) => !v)}
+          className={[
+            'inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold backdrop-blur-sm transition-colors',
+            showNotes ? 'bg-white/90 text-black' : 'bg-white/15 text-white hover:bg-white/25',
+          ].join(' ')}
+        >
+          Notes (N)
+        </button>
+        <button
+          type="button"
+          onClick={onClose}
+          className="inline-flex items-center gap-1 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/25"
+        >
+          <X className="h-4 w-4" />
+          Exit
+        </button>
+      </div>
+
+      {showNotes && notes && (
+        <aside className="absolute right-4 top-16 z-10 max-h-[70vh] w-[22rem] max-w-[calc(100vw-2rem)] overflow-y-auto rounded-lg bg-black/80 p-4 backdrop-blur-md">
+          <p className="mb-2 text-[10px] font-semibold uppercase tracking-widest text-white/50">
+            {slide.eyebrow} — spoken
+          </p>
+          <p className="text-sm leading-relaxed text-white/90">{notes}</p>
+        </aside>
+      )}
 
       <div className="absolute left-4 top-4 z-10 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm">
         {index + 1} / {total}
@@ -661,8 +701,10 @@ export function DeckClient() {
       const changes: string[] = [];
       const h = overrides[`${slide.id}.headline`];
       const b = overrides[`${slide.id}.body`];
+      const sc = overrides[`${slide.id}.script`];
       if (h !== undefined) changes.push(`- headline → ${h}`);
       if (b !== undefined) changes.push(`- body → ${b}`);
+      if (sc !== undefined) changes.push(`- script → ${sc}`);
       (slide.voiceNames ?? []).forEach((defName, idx) => {
         const picked = voicePicks[`${slide.id}.voice.${idx}`];
         if (picked && picked !== defName) changes.push(`- voice ${idx + 1}: ${defName} → ${picked}`);
@@ -687,13 +729,13 @@ export function DeckClient() {
       <div className="border-b border-border bg-foreground text-background">
         <div className="container mx-auto px-4 py-8">
           <Link
-            href="/pitch"
+            href="/pitch/deck"
             className="mb-4 inline-flex items-center gap-2 text-sm text-background/70 transition-colors hover:text-background"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to pitch
+            View the public deck
           </Link>
-          <p className="mb-2 text-sm uppercase tracking-widest text-primary">The deck</p>
+          <p className="mb-2 text-sm uppercase tracking-widest text-primary">Deck builder · internal</p>
           <h1
             className="max-w-3xl text-3xl font-light leading-tight md:text-5xl"
             style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
@@ -701,10 +743,12 @@ export function DeckClient() {
             The whole story, one screen. Edit any slide, then present.
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-background/70">
-            Nine slides on the signed six-turn spine: the model and the loop, then each belief turn
-            with its voices, the ask last. Click any headline or paragraph to edit it in place — your
-            changes save in this browser. Hit <span className="font-semibold text-background">Present</span> to
-            open the main deck. Updated {deckUpdated}.
+            Ten slides on the signed six-turn spine. Click any headline, paragraph or script to
+            edit it in place — your changes save in this browser; export them for Claude to
+            commit. The public page at /pitch/deck renders the committed version. Hit{' '}
+            <span className="font-semibold text-background">Present</span> to open the main deck,
+            and press <span className="font-semibold text-background">N</span> in Present for
+            speaker notes. Updated {deckUpdated}.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-3">
