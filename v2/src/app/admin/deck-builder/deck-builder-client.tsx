@@ -729,13 +729,13 @@ export function DeckClient() {
       <div className="border-b border-border bg-foreground text-background">
         <div className="container mx-auto px-4 py-8">
           <Link
-            href="/pitch"
+            href="/pitch/deck"
             className="mb-4 inline-flex items-center gap-2 text-sm text-background/70 transition-colors hover:text-background"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to pitch
+            View the public deck
           </Link>
-          <p className="mb-2 text-sm uppercase tracking-widest text-primary">The deck</p>
+          <p className="mb-2 text-sm uppercase tracking-widest text-primary">Deck builder · internal</p>
           <h1
             className="max-w-3xl text-3xl font-light leading-tight md:text-5xl"
             style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
@@ -743,12 +743,12 @@ export function DeckClient() {
             The whole story, one screen. Edit any slide, then present.
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-background/70">
-            Ten slides on the signed six-turn spine: the model and the loop, each belief turn with
-            its voices, the truck-test hinge, the ask last. Every slide carries the spoken script.
-            Click any headline, paragraph or script to edit it in place — your changes save in this
-            browser. Hit <span className="font-semibold text-background">Present</span> to open the
-            main deck, and press <span className="font-semibold text-background">N</span> in Present
-            for speaker notes. Updated {deckUpdated}.
+            Ten slides on the signed six-turn spine. Click any headline, paragraph or script to
+            edit it in place — your changes save in this browser; export them for Claude to
+            commit. The public page at /pitch/deck renders the committed version. Hit{' '}
+            <span className="font-semibold text-background">Present</span> to open the main deck,
+            and press <span className="font-semibold text-background">N</span> in Present for
+            speaker notes. Updated {deckUpdated}.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-3">

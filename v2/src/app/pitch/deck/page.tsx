@@ -1,11 +1,11 @@
-import { DeckClient } from './deck-client';
+import { DeckPublic } from './deck-public';
 
 export const metadata = {
-  title: 'The deck | Goods on Country pitch',
+  title: 'The Goods story deck | Goods on Country',
   description:
-    'The whole aligned investor deck on one screen: edit any slide in place, then hit Present to open the main deck.',
+    'Ten turns through what communities have built with Goods: the need, the products they designed, the making moving into community hands, and what moves next. Real voices, real photographs, audited numbers.',
 };
 
 export default function PitchDeckPage() {
-  return <DeckClient />;
+  return <DeckPublic />;
 }
