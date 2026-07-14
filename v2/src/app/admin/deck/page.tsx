@@ -147,7 +147,7 @@ export default async function DeckPage({ searchParams }: DeckPageProps) {
             {' · '}
             <Link href="/admin/reports" className="text-blue-700 hover:underline">/admin/reports</Link>
             {' · '}
-            <Link href="/admin/photos" className="text-blue-700 hover:underline">Curate photos</Link>
+            <Link href="/admin/media-library" className="text-blue-700 hover:underline">Curate photos</Link>
           </p>
         </div>
         <div className="text-right text-xs text-gray-500">

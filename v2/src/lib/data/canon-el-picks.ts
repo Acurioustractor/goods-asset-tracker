@@ -20,6 +20,8 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 
 const PICKS_PATH = join(process.cwd(), 'data', 'canon-el-picks.json');
+// design/ is a sibling of v2/ (process.cwd() is v2 in the running app).
+const DESIGN = join(process.cwd(), '..', 'design');
 
 export interface CanonElPick {
   /** Empathy Ledger story id (provenance + dedupe key). */
@@ -30,6 +32,10 @@ export interface CanonElPick {
   /** 'el:public' | 'el:gated-ok' | 'el:consent-elder-pending' | 'el:not-flagged'. */
   consent: string;
   tags?: string[];
+  /** image | video | portrait — so the board can badge non-photo picks. */
+  kind?: 'image' | 'video' | 'portrait';
+  /** Thumbnail/poster URL (videos differ from the playable url). */
+  thumb?: string;
 }
 
 type Store = Record<string, CanonElPick[]>; // areaId -> picks
@@ -59,6 +65,7 @@ export function addCanonElPick(areaId: string, pick: CanonElPick): void {
   if (!store[areaId]) store[areaId] = [];
   if (!store[areaId].some((p) => p.elId === pick.elId)) store[areaId].push(pick);
   writeStore(store);
+  writeCanonResolved();
 }
 
 /** Remove an EL photo from an area. */
@@ -68,4 +75,51 @@ export function removeCanonElPick(areaId: string, elId: string): void {
   store[areaId] = store[areaId].filter((p) => p.elId !== elId);
   if (store[areaId].length === 0) delete store[areaId];
   writeStore(store);
+  writeCanonResolved();
+}
+
+interface SlotDef { key: string; label: string; group: string; type: string; dataClass: string; areas?: string[]; seed?: string | null; }
+interface CanonImg { slot?: string; canonicalPath: string; source?: string; elId?: string; consentCleared?: boolean; }
+
+/**
+ * Collapse every source into one flat slot -> winner map (design/canon-resolved.json)
+ * so artifacts pull the chosen asset with no second decision. Precedence:
+ * local canon (slot-tagged) > EL pick under the slot key > seed > empty.
+ * Called after every pick change so the loop closes automatically; also runnable
+ * standalone via scripts/canon-resolve.mjs. Best-effort: never throws into the route.
+ */
+export function writeCanonResolved(): void {
+  try {
+    const slotsDoc = JSON.parse(readFileSync(join(DESIGN, 'canon-slots.json'), 'utf-8')) as { slots?: SlotDef[] };
+    const canon = JSON.parse(readFileSync(join(DESIGN, 'image-canon.json'), 'utf-8')) as { images?: CanonImg[] };
+    const picks = readStore();
+    const localBySlot: Record<string, CanonImg> = {};
+    for (const im of canon.images || []) if (im.slot) localBySlot[im.slot] = im;
+
+    const resolved: Record<string, unknown> = {};
+    let filled = 0;
+    for (const s of slotsDoc.slots || []) {
+      const base = { label: s.label, group: s.group, type: s.type, dataClass: s.dataClass, areas: s.areas || [] };
+      const local = localBySlot[s.key];
+      const sp = picks[s.key] || [];
+      if (local) {
+        resolved[s.key] = { ...base, source: local.source === 'empathy-ledger' ? 'el-canon' : 'local', path: local.canonicalPath, elId: local.elId, consent: local.consentCleared ? 'cleared' : s.dataClass === 'red' ? 'gated' : 'public', status: 'canon' };
+        filled++;
+      } else if (sp.length) {
+        const p = sp[sp.length - 1];
+        resolved[s.key] = { ...base, source: 'el-pick', url: p.url, elId: p.elId, kind: p.kind || 'image', consent: p.consent || 'el:not-flagged', alternates: sp.length - 1, status: 'el-pick' };
+        filled++;
+      } else if (s.seed) {
+        resolved[s.key] = { ...base, source: 'seed', path: s.seed, consent: s.dataClass === 'red' ? 'gated' : 'public', status: 'seed' };
+      } else {
+        resolved[s.key] = { ...base, source: 'none', status: 'empty' };
+      }
+    }
+    writeFileSync(
+      join(DESIGN, 'canon-resolved.json'),
+      JSON.stringify({ asOf: new Date().toISOString().slice(0, 10), filled, total: (slotsDoc.slots || []).length, resolved }, null, 2) + '\n',
+    );
+  } catch {
+    // best-effort; the standalone script can always regenerate it
+  }
 }

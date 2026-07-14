@@ -3,18 +3,19 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { PLASTIC_KG_PER_BED, STRETCH_BED } from '@/lib/data/products';
 
 const steps = [
   {
     number: '01',
     title: 'You Buy',
-    description: 'Purchase a bed for yourself or sponsor one for a family in need.',
+    description: 'Purchase a bed for yourself or sponsor one for a family in a remote community.',
     icon: '🛒',
   },
   {
     number: '02',
     title: 'We Build',
-    description: 'Community members build each bed from 20kg of recycled plastic.',
+    description: `Community members build each bed from ${PLASTIC_KG_PER_BED}kg of recycled plastic.`,
     icon: '🔧',
   },
   {
@@ -209,15 +210,15 @@ export default function MissionForwardPage() {
               </h2>
               <p className="text-lg text-gray-600 mb-8">
                 Purpose-built for remote Australia. Stackable, washable, and made from
-                recycled plastic. Each bed diverts 20kg from landfill.
+                recycled plastic. Each bed diverts {PLASTIC_KG_PER_BED}kg from landfill.
               </p>
 
               <div className="space-y-4 mb-8">
                 {[
                   { label: '5 minutes', desc: 'Assembly time, no tools' },
                   { label: 'Washable', desc: 'Fully cleanable mattress' },
-                  { label: '10+ years', desc: 'Designed to last' },
-                  { label: 'Community', desc: 'Co-designed with Elders' },
+                  { label: STRETCH_BED.specs.designLifespan, desc: 'Designed to last' },
+                  { label: 'Community', desc: 'Designed with Elders' },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-4">
                     <div

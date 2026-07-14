@@ -7,6 +7,7 @@ import { MediaSlot } from '@/components/ui/media-slot';
 import { Button } from '@/components/ui/button';
 import { brand } from '@/lib/data/content';
 import { videoUrl } from '@/lib/data/media';
+import { canonVideoSrc } from '@/lib/data/canon-videos';
 import { FeaturedStories } from '@/components/empathy-ledger/featured-stories';
 import { FieldNotesTile } from '@/components/marketing/field-notes-tile';
 import { getStoryOverrides } from '@/lib/field-notes/overrides';
@@ -44,11 +45,11 @@ export default async function HomePage() {
         subtitle={brand.hero.home.subheadline}
         primaryCta={{ text: 'Shop the Stretch Bed', href: '/shop/stretch-bed-single' }}
         secondaryCta={{ text: 'Back the work', href: '/partner' }}
-        videoSrc={{
+        videoSrc={canonVideoSrc('video-hero', {
           desktop: videoUrl('hero-desktop.mp4'),
           mobile: videoUrl('hero-mobile.mp4'),
           poster: '/video/hero-poster.jpg',
-        }}
+        })}
         imageSrc="/images/media-pack/lying-on-stretch-bed.jpg"
         imageAlt="A young man lying full-length on a Stretch Bed on country: recycled plastic legs, galvanised steel poles, heavy-duty canvas"
       />
@@ -395,43 +396,63 @@ export default async function HomePage() {
             </div>
 
             <div className="space-y-3">
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl bg-muted shadow-sm">
-                <Image
-                  src="/images/product/stretch-bed-kids-building.jpg"
-                  alt="Young people from Oonchiumpa building a Stretch Bed in Alice Springs"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
+              {(() => {
+                const heroSrc = ov('oonchiumpa.hero', '/images/product/stretch-bed-kids-building.jpg');
+                return (
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl bg-muted shadow-sm">
+                    <Image
+                      src={heroSrc}
+                      alt="The Oonchiumpa team with a Stretch Bed at the Alice Springs production facility"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                    {canSwap && (
+                      <MediaSwapZone
+                        slug={HOME_SLUG}
+                        overrideKey="oonchiumpa.hero"
+                        currentUrl={heroSrc}
+                        tagQuery={['participant:oonchiumpa-young-people']}
+                        kind="photo"
+                        label="swap"
+                        broadTag="product:stretch-bed"
+                        folders={HOME_FOLDERS}
+                      />
+                    )}
+                  </div>
+                );
+              })()}
               <div className="grid grid-cols-3 gap-3">
-                <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-muted">
-                  <Image
-                    src="/images/partners/centrecorp/utopia/hero-elder-bed.jpg"
-                    alt="A Warumungu Elder on a Stretch Bed at Utopia Homelands"
-                    fill
-                    sizes="(max-width: 768px) 33vw, 17vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-muted">
-                  <Image
-                    src="/images/partners/centrecorp/utopia/community-build.jpg"
-                    alt="Community members assembling Stretch Beds at Utopia Homelands"
-                    fill
-                    sizes="(max-width: 768px) 33vw, 17vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-muted">
-                  <Image
-                    src="/images/partners/centrecorp/utopia/verandah-test.jpg"
-                    alt="A Stretch Bed being tested on a homelands verandah"
-                    fill
-                    sizes="(max-width: 768px) 33vw, 17vw"
-                    className="object-cover"
-                  />
-                </div>
+                {[
+                  { key: 'oonchiumpa.thumb1', fallback: '/images/partners/centrecorp/utopia/hero-elder-bed.jpg', alt: 'Two men seated with a Stretch Bed' },
+                  { key: 'oonchiumpa.thumb2', fallback: '/images/partners/centrecorp/utopia/community-build.jpg', alt: 'A young person with a Stretch Bed at the Alice Springs build' },
+                  { key: 'oonchiumpa.thumb3', fallback: '/images/partners/centrecorp/utopia/verandah-test.jpg', alt: 'Building a Stretch Bed leg from recycled plastic in Alice Springs' },
+                ].map((t) => {
+                  const src = ov(t.key, t.fallback);
+                  return (
+                    <div key={t.key} className="relative aspect-square w-full overflow-hidden rounded-xl bg-muted">
+                      <Image
+                        src={src}
+                        alt={t.alt}
+                        fill
+                        sizes="(max-width: 768px) 33vw, 17vw"
+                        className="object-cover"
+                      />
+                      {canSwap && (
+                        <MediaSwapZone
+                          slug={HOME_SLUG}
+                          overrideKey={t.key}
+                          currentUrl={src}
+                          tagQuery={['product:stretch-bed']}
+                          kind="photo"
+                          label="swap"
+                          broadTag="product:stretch-bed"
+                          folders={HOME_FOLDERS}
+                        />
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>

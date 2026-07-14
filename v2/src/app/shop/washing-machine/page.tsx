@@ -325,12 +325,12 @@ export default function WashingMachinePage() {
                     className="text-lg text-foreground leading-relaxed mb-2"
                     style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
                   >
-                    &ldquo;Scabies often leads to Rheumatic Heart Disease, so washing machines are essential
-                    to be able to clean infected clothing, bedding and towels.&rdquo;
+                    &ldquo;It&rsquo;s great to say you should wash your sheets every week. But if you
+                    don&rsquo;t have a washing machine, that&rsquo;s not going to work.&rdquo;
                   </p>
                   <footer className="text-sm text-muted-foreground">
-                    <span className="font-medium text-foreground">Jessica Allardyce</span>
-                    <span>, Miwatj Health</span>
+                    <span className="font-medium text-foreground">Dr Boe Remenyi</span>
+                    <span>, Paediatric Cardiologist</span>
                   </footer>
                 </blockquote>
 

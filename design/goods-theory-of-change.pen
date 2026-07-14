@@ -1,0 +1,1139 @@
+{
+  "version": "2.11",
+  "children": [
+    {
+      "type": "frame",
+      "id": "YL8jZ",
+      "x": 0,
+      "y": 0,
+      "name": "Goods — Theory of Change",
+      "width": 1680,
+      "height": 1080,
+      "fill": "$bg",
+      "layout": "none",
+      "children": [
+        {
+          "type": "text",
+          "id": "q1cOHJ",
+          "x": 0,
+          "y": 40,
+          "name": "Title",
+          "fill": "$ink",
+          "textGrowth": "fixed-width",
+          "width": 1680,
+          "content": "Goods theory of change",
+          "textAlign": "center",
+          "fontFamily": "Newsreader",
+          "fontSize": 56,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "q7ZBOg",
+          "x": 0,
+          "y": 114,
+          "name": "Subtitle",
+          "fill": "$ink-muted",
+          "textGrowth": "fixed-width",
+          "width": 1680,
+          "content": "How listening, designing in community, delivering and learning create practical outcomes on Country.",
+          "textAlign": "center",
+          "fontFamily": "Newsreader",
+          "fontSize": 22,
+          "fontWeight": "normal",
+          "fontStyle": "italic"
+        },
+        {
+          "type": "frame",
+          "id": "ZnkIO",
+          "x": 260,
+          "y": 204,
+          "name": "Cycle bracket",
+          "width": 1128,
+          "height": 34,
+          "fill": "$sand",
+          "cornerRadius": 12,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1.2,
+            "fill": "$hair"
+          },
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "R4OvxH",
+              "fill": "$sage-ink",
+              "content": "CORE OPERATING CYCLE",
+              "fontFamily": "Geist",
+              "fontSize": 15,
+              "fontWeight": "700",
+              "letterSpacing": 1.6
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "qAcDb",
+          "x": 40,
+          "y": 250,
+          "name": "01 Problem",
+          "width": 200,
+          "height": 300,
+          "fill": "$clay-tint",
+          "cornerRadius": 18,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1.6,
+            "fill": "$clay"
+          },
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#5A4A381A",
+            "offset": {
+              "x": 0,
+              "y": 4
+            },
+            "blur": 14
+          },
+          "layout": "vertical",
+          "gap": 8,
+          "padding": 18,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "xAOUH",
+              "name": "r1",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "SRIXz",
+                  "name": "b1",
+                  "width": 30,
+                  "height": 30,
+                  "fill": "$clay",
+                  "cornerRadius": 15,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "KqEi0",
+                      "fill": "#FFFFFF",
+                      "content": "1",
+                      "fontFamily": "Geist",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "icon_font",
+              "id": "I0znCo",
+              "width": 46,
+              "height": 46,
+              "iconFontName": "triangle-alert",
+              "iconFontFamily": "lucide",
+              "fill": "$clay"
+            },
+            {
+              "type": "text",
+              "id": "sMEq6",
+              "fill": "$clay-ink",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Problem",
+              "textAlign": "center",
+              "fontFamily": "Geist",
+              "fontSize": 21,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "ajr2Q",
+              "fill": "$ink-muted",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Remote homes face unsuitable, costly, short-lived household goods.",
+              "lineHeight": 1.32,
+              "textAlign": "center",
+              "fontFamily": "Geist",
+              "fontSize": 14.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "O9Z7Z",
+          "x": 268,
+          "y": 250,
+          "name": "02 Listen",
+          "width": 200,
+          "height": 300,
+          "fill": "$sage-tint",
+          "cornerRadius": 18,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1.6,
+            "fill": "$sage"
+          },
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#5A4A381A",
+            "offset": {
+              "x": 0,
+              "y": 4
+            },
+            "blur": 14
+          },
+          "layout": "vertical",
+          "gap": 8,
+          "padding": 18,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "Ir8MB",
+              "name": "r2",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "K3ul8I",
+                  "name": "b2",
+                  "width": 30,
+                  "height": 30,
+                  "fill": "$sage",
+                  "cornerRadius": 15,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "hdFni",
+                      "fill": "#FFFFFF",
+                      "content": "2",
+                      "fontFamily": "Geist",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "icon_font",
+              "id": "OoJAq",
+              "width": 46,
+              "height": 46,
+              "iconFontName": "messages-square",
+              "iconFontFamily": "lucide",
+              "fill": "$sage"
+            },
+            {
+              "type": "text",
+              "id": "JpWdM",
+              "fill": "$sage-ink",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Listen",
+              "textAlign": "center",
+              "fontFamily": "Geist",
+              "fontSize": 21,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "X99lj",
+              "fill": "$ink-muted",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Listen with community and partners. Community leads.",
+              "lineHeight": 1.32,
+              "textAlign": "center",
+              "fontFamily": "Geist",
+              "fontSize": 14.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "a5Mqb",
+          "x": 496,
+          "y": 250,
+          "name": "03 Design",
+          "width": 200,
+          "height": 300,
+          "fill": "$sage-tint",
+          "cornerRadius": 18,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1.6,
+            "fill": "$sage"
+          },
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#5A4A381A",
+            "offset": {
+              "x": 0,
+              "y": 4
+            },
+            "blur": 14
+          },
+          "layout": "vertical",
+          "gap": 8,
+          "padding": 18,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "i9UXq5",
+              "name": "r3",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "GlLP6",
+                  "name": "b3",
+                  "width": 30,
+                  "height": 30,
+                  "fill": "$sage",
+                  "cornerRadius": 15,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "htCNj",
+                      "fill": "#FFFFFF",
+                      "content": "3",
+                      "fontFamily": "Geist",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "icon_font",
+              "id": "z2Exv2",
+              "width": 46,
+              "height": 46,
+              "iconFontName": "pencil-ruler",
+              "iconFontFamily": "lucide",
+              "fill": "$sage"
+            },
+            {
+              "type": "text",
+              "id": "O1TfI",
+              "fill": "$sage-ink",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Design",
+              "textAlign": "center",
+              "fontFamily": "Geist",
+              "fontSize": 21,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "cTxE2",
+              "fill": "$ink-muted",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Design in community: washable, repairable, flat-packable products.",
+              "lineHeight": 1.32,
+              "textAlign": "center",
+              "fontFamily": "Geist",
+              "fontSize": 14.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "l3XWTk",
+          "x": 724,
+          "y": 250,
+          "name": "04 Deliver",
+          "width": 200,
+          "height": 300,
+          "fill": "$teal-tint",
+          "cornerRadius": 18,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1.6,
+            "fill": "$teal"
+          },
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#5A4A381A",
+            "offset": {
+              "x": 0,
+              "y": 4
+            },
+            "blur": 14
+          },
+          "layout": "vertical",
+          "gap": 8,
+          "padding": 18,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "JsheU",
+              "name": "r4",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "TxHfE",
+                  "name": "b4",
+                  "width": 30,
+                  "height": 30,
+                  "fill": "$teal",
+                  "cornerRadius": 15,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "HhdNF",
+                      "fill": "#FFFFFF",
+                      "content": "4",
+                      "fontFamily": "Geist",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "icon_font",
+              "id": "IMpq0",
+              "width": 46,
+              "height": 46,
+              "iconFontName": "truck",
+              "iconFontFamily": "lucide",
+              "fill": "$teal"
+            },
+            {
+              "type": "text",
+              "id": "JDeqf",
+              "fill": "$teal-ink",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Deliver",
+              "textAlign": "center",
+              "fontFamily": "Geist",
+              "fontSize": 21,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "ROhm7",
+              "fill": "$ink-muted",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Deliver and track every product through the QR asset register.",
+              "lineHeight": 1.32,
+              "textAlign": "center",
+              "fontFamily": "Geist",
+              "fontSize": 14.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "rBjg0",
+          "x": 952,
+          "y": 250,
+          "name": "05 Learn",
+          "width": 200,
+          "height": 300,
+          "fill": "$teal-tint",
+          "cornerRadius": 18,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1.6,
+            "fill": "$teal"
+          },
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#5A4A381A",
+            "offset": {
+              "x": 0,
+              "y": 4
+            },
+            "blur": 14
+          },
+          "layout": "vertical",
+          "gap": 8,
+          "padding": 18,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "kL7ox",
+              "name": "r5",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Dn9ci",
+                  "name": "b5",
+                  "width": 30,
+                  "height": 30,
+                  "fill": "$teal",
+                  "cornerRadius": 15,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "lo6bU",
+                      "fill": "#FFFFFF",
+                      "content": "5",
+                      "fontFamily": "Geist",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "icon_font",
+              "id": "LPgnA",
+              "width": 46,
+              "height": 46,
+              "iconFontName": "book-open",
+              "iconFontFamily": "lucide",
+              "fill": "$teal"
+            },
+            {
+              "type": "text",
+              "id": "kSbMe",
+              "fill": "$teal-ink",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Learn",
+              "textAlign": "center",
+              "fontFamily": "Geist",
+              "fontSize": 21,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "w7LZY",
+              "fill": "$ink-muted",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Capture feedback, scans, stories, repairs and demand.",
+              "lineHeight": 1.32,
+              "textAlign": "center",
+              "fontFamily": "Geist",
+              "fontSize": 14.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "tyrFD",
+          "x": 1180,
+          "y": 250,
+          "name": "06 Improve",
+          "width": 200,
+          "height": 300,
+          "fill": "$sage-tint",
+          "cornerRadius": 18,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1.6,
+            "fill": "$sage"
+          },
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#5A4A381A",
+            "offset": {
+              "x": 0,
+              "y": 4
+            },
+            "blur": 14
+          },
+          "layout": "vertical",
+          "gap": 8,
+          "padding": 18,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "I9Hr60",
+              "name": "r6",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "uQJkR",
+                  "name": "b6",
+                  "width": 30,
+                  "height": 30,
+                  "fill": "$sage",
+                  "cornerRadius": 15,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "qMHD1",
+                      "fill": "#FFFFFF",
+                      "content": "6",
+                      "fontFamily": "Geist",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "icon_font",
+              "id": "KLbl4",
+              "width": 46,
+              "height": 46,
+              "iconFontName": "refresh-cw",
+              "iconFontFamily": "lucide",
+              "fill": "$sage"
+            },
+            {
+              "type": "text",
+              "id": "HGgZj",
+              "fill": "$sage-ink",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Improve",
+              "textAlign": "center",
+              "fontFamily": "Geist",
+              "fontSize": 21,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "i24ks",
+              "fill": "$ink-muted",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Improve product, support, production and reporting.",
+              "lineHeight": 1.32,
+              "textAlign": "center",
+              "fontFamily": "Geist",
+              "fontSize": 14.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "EgzR8",
+          "x": 1420,
+          "y": 150,
+          "name": "07 Near-term outcomes",
+          "width": 232,
+          "height": 310,
+          "fill": "$gold-tint",
+          "cornerRadius": 18,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1.6,
+            "fill": "$gold"
+          },
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#5A4A381A",
+            "offset": {
+              "x": 0,
+              "y": 4
+            },
+            "blur": 14
+          },
+          "layout": "vertical",
+          "gap": 8,
+          "padding": 20,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "RUcn9",
+              "name": "r7",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tWQb0",
+                  "name": "b7",
+                  "width": 30,
+                  "height": 30,
+                  "fill": "$gold",
+                  "cornerRadius": 15,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "SLgf0",
+                      "fill": "#FFFFFF",
+                      "content": "7",
+                      "fontFamily": "Geist",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "icon_font",
+              "id": "rpwAi",
+              "width": 48,
+              "height": 48,
+              "iconFontName": "bed",
+              "iconFontFamily": "lucide",
+              "fill": "$gold"
+            },
+            {
+              "type": "text",
+              "id": "i4bUI",
+              "fill": "$gold-ink",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Near-term outcomes",
+              "lineHeight": 1.15,
+              "textAlign": "center",
+              "fontFamily": "Geist",
+              "fontSize": 21,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "Gq84c",
+              "fill": "$ink-muted",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Off-floor sleeping, cleaner-bedding pathway, repair visibility, less failed-product waste.",
+              "lineHeight": 1.32,
+              "textAlign": "center",
+              "fontFamily": "Geist",
+              "fontSize": 14.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ORT53",
+          "x": 1420,
+          "y": 620,
+          "name": "08 Longer-term target",
+          "width": 232,
+          "height": 310,
+          "fill": "$terracotta-tint",
+          "cornerRadius": 18,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1.6,
+            "fill": "$terracotta"
+          },
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#5A4A381A",
+            "offset": {
+              "x": 0,
+              "y": 4
+            },
+            "blur": 14
+          },
+          "layout": "vertical",
+          "gap": 8,
+          "padding": 20,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "QSS0U",
+              "name": "r8",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ovbmz",
+                  "name": "b8",
+                  "width": 30,
+                  "height": 30,
+                  "fill": "$terracotta",
+                  "cornerRadius": 15,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "aC82X",
+                      "fill": "#FFFFFF",
+                      "content": "8",
+                      "fontFamily": "Geist",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "icon_font",
+              "id": "o3CYu",
+              "width": 48,
+              "height": 48,
+              "iconFontName": "sprout",
+              "iconFontFamily": "lucide",
+              "fill": "$terracotta"
+            },
+            {
+              "type": "text",
+              "id": "jmjbX",
+              "fill": "$terracotta-ink",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Longer-term target",
+              "lineHeight": 1.15,
+              "textAlign": "center",
+              "fontFamily": "Geist",
+              "fontSize": 21,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "bx3DK",
+              "fill": "$ink-muted",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Community-owned production, local paid work, ownership, stronger environmental-health evidence.",
+              "lineHeight": 1.32,
+              "textAlign": "center",
+              "fontFamily": "Geist",
+              "fontSize": 14.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "path",
+          "id": "nrgHb",
+          "x": 240,
+          "y": 395,
+          "name": "arrow 1-2",
+          "geometry": "M0 5l26 0m-4-3.5l4 3.5-4 3.5",
+          "viewBox": [
+            0,
+            0,
+            28,
+            10
+          ],
+          "width": 28,
+          "height": 10,
+          "stroke": {
+            "align": "center",
+            "thickness": 2.6,
+            "join": "round",
+            "cap": "round",
+            "fill": "$hair"
+          }
+        },
+        {
+          "type": "path",
+          "id": "AS74B",
+          "x": 468,
+          "y": 395,
+          "name": "arrow 2-3",
+          "geometry": "M0 5l26 0m-4-3.5l4 3.5-4 3.5",
+          "viewBox": [
+            0,
+            0,
+            28,
+            10
+          ],
+          "width": 28,
+          "height": 10,
+          "stroke": {
+            "align": "center",
+            "thickness": 2.6,
+            "join": "round",
+            "cap": "round",
+            "fill": "$hair"
+          }
+        },
+        {
+          "type": "path",
+          "id": "se5ZY",
+          "x": 696,
+          "y": 395,
+          "name": "arrow 3-4",
+          "geometry": "M0 5l26 0m-4-3.5l4 3.5-4 3.5",
+          "viewBox": [
+            0,
+            0,
+            28,
+            10
+          ],
+          "width": 28,
+          "height": 10,
+          "stroke": {
+            "align": "center",
+            "thickness": 2.6,
+            "join": "round",
+            "cap": "round",
+            "fill": "$hair"
+          }
+        },
+        {
+          "type": "path",
+          "id": "lPh7c",
+          "x": 924,
+          "y": 395,
+          "name": "arrow 4-5",
+          "geometry": "M0 5l26 0m-4-3.5l4 3.5-4 3.5",
+          "viewBox": [
+            0,
+            0,
+            28,
+            10
+          ],
+          "width": 28,
+          "height": 10,
+          "stroke": {
+            "align": "center",
+            "thickness": 2.6,
+            "join": "round",
+            "cap": "round",
+            "fill": "$hair"
+          }
+        },
+        {
+          "type": "path",
+          "id": "LaQRE",
+          "x": 1152,
+          "y": 395,
+          "name": "arrow 5-6",
+          "geometry": "M0 5l26 0m-4-3.5l4 3.5-4 3.5",
+          "viewBox": [
+            0,
+            0,
+            28,
+            10
+          ],
+          "width": 28,
+          "height": 10,
+          "stroke": {
+            "align": "center",
+            "thickness": 2.6,
+            "join": "round",
+            "cap": "round",
+            "fill": "$hair"
+          }
+        },
+        {
+          "type": "path",
+          "id": "HZcC8",
+          "x": 1380,
+          "y": 305,
+          "name": "split to outcomes",
+          "geometry": "M0 95l16 0m0-91l0 462m0-462l24 0m-6-4l6 4-6 4m-18 458l24 0m-6-4l6 4-6 4",
+          "viewBox": [
+            0,
+            0,
+            40,
+            470
+          ],
+          "width": 40,
+          "height": 470,
+          "stroke": {
+            "align": "center",
+            "thickness": 2.6,
+            "join": "round",
+            "cap": "round",
+            "fill": "$hair"
+          }
+        },
+        {
+          "type": "path",
+          "id": "QT7z9",
+          "x": 590,
+          "y": 546,
+          "name": "feedback loop",
+          "geometry": "M946 384l0 52-940 0 0-428m-4 0l4-6 4 6",
+          "viewBox": [
+            0,
+            0,
+            950,
+            440
+          ],
+          "width": 950,
+          "height": 440,
+          "stroke": {
+            "align": "center",
+            "thickness": 2.6,
+            "join": "round",
+            "cap": "round",
+            "fill": "$hair"
+          }
+        },
+        {
+          "type": "text",
+          "id": "hvK8n",
+          "x": 566,
+          "y": 952,
+          "name": "loop label",
+          "fill": "$ink-muted",
+          "textGrowth": "fixed-width",
+          "width": 1000,
+          "content": "What we learn returns to the design. The cycle repeats with every delivery.",
+          "textAlign": "center",
+          "fontFamily": "Newsreader",
+          "fontSize": 18,
+          "fontWeight": "normal",
+          "fontStyle": "italic"
+        },
+        {
+          "type": "frame",
+          "id": "sNtAm",
+          "x": 0,
+          "y": 1022,
+          "name": "Footer — the model",
+          "width": 1680,
+          "gap": 6,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "nwvpc",
+              "fill": "$ink",
+              "content": "The model:",
+              "fontFamily": "Newsreader",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "k6T2c",
+              "fill": "$ink",
+              "content": "community leads the design. Goods supports the building. Production transfers to community ownership.",
+              "fontFamily": "Newsreader",
+              "fontSize": 20,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "bg": {
+      "type": "color",
+      "value": "#FBFAF5"
+    },
+    "clay": {
+      "type": "color",
+      "value": "#8A5A45"
+    },
+    "clay-ink": {
+      "type": "color",
+      "value": "#664233"
+    },
+    "clay-tint": {
+      "type": "color",
+      "value": "#8A5A4520"
+    },
+    "gold": {
+      "type": "color",
+      "value": "#C2A55E"
+    },
+    "gold-ink": {
+      "type": "color",
+      "value": "#8A7332"
+    },
+    "gold-tint": {
+      "type": "color",
+      "value": "#C2A55E20"
+    },
+    "hair": {
+      "type": "color",
+      "value": "#C9BCA8"
+    },
+    "ink": {
+      "type": "color",
+      "value": "#2A241E"
+    },
+    "ink-muted": {
+      "type": "color",
+      "value": "#6F6155"
+    },
+    "sage": {
+      "type": "color",
+      "value": "#6F9C68"
+    },
+    "sage-ink": {
+      "type": "color",
+      "value": "#4E7548"
+    },
+    "sage-tint": {
+      "type": "color",
+      "value": "#6F9C6820"
+    },
+    "sand": {
+      "type": "color",
+      "value": "#EFE8DA"
+    },
+    "teal": {
+      "type": "color",
+      "value": "#4C9B97"
+    },
+    "teal-ink": {
+      "type": "color",
+      "value": "#357873"
+    },
+    "teal-tint": {
+      "type": "color",
+      "value": "#4C9B9720"
+    },
+    "terracotta": {
+      "type": "color",
+      "value": "#BD6A3C"
+    },
+    "terracotta-ink": {
+      "type": "color",
+      "value": "#9A5230"
+    },
+    "terracotta-tint": {
+      "type": "color",
+      "value": "#BD6A3C20"
+    }
+  }
+}

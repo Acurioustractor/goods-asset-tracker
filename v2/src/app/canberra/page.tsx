@@ -179,10 +179,10 @@ export default async function CanberraPage() {
           </p>
 
           <p className="text-base sm:text-lg leading-relaxed italic" style={{ color: `${CHARCOAL}cc` }}>
-            &ldquo;Scabies often leads to Rheumatic Heart Disease, so washing machines are essential to be
-            able to clean infected clothing, bedding and towels.&rdquo;
+            &ldquo;It&rsquo;s great to say you should wash your sheets every week. But if you don&rsquo;t
+            have a washing machine, that&rsquo;s not going to work.&rdquo;
             <span className="block not-italic mt-2 text-sm" style={{ color: `${CHARCOAL}99` }}>
-              Jessica Allardyce, Miwatj Health
+              Dr Boe Remenyi, Paediatric Cardiologist
             </span>
           </p>
         </div>

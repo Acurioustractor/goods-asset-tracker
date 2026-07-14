@@ -42,7 +42,7 @@ async function getProjectData() {
   const [storytellersRaw, insights, photos] = await Promise.all([
     empathyLedger.getProjectStorytellers({ limit: 50 }),
     empathyLedger.getProjectInsights(),
-    empathyLedger.getMedia({ type: 'image', elderApproved: true, limit: 12 }),
+    empathyLedger.getMedia({ type: 'image', limit: 12 }),
   ]);
   // Consent gate (default-deny): isRealPerson removes team/system accounts, then the
   // cleared-voices allowlist limits the open web to externally-cleared voices only.

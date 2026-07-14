@@ -8,7 +8,7 @@ import { ImpactBanner } from './impact-banner';
 // Routes that should render WITHOUT the public site header, footer, and impact banner.
 // Funder briefs are confidential investor docs and should not display the public nav.
 // Field-notes are full-bleed immersive scrollytelling — they own the whole viewport.
-const STANDALONE_PATH_PREFIXES = ['/funders', '/insiders', '/investors', '/admin', '/field-notes', '/sites'];
+const STANDALONE_PATH_PREFIXES = ['/funders', '/insiders', '/investors', '/admin', '/field-notes', '/sites', '/deck'];
 
 // Standalone routes matched by pattern rather than prefix. The gated partner
 // dashboard (/partners/<slug>/dashboard) is a confidential, full-page funder

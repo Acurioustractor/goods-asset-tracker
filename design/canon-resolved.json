@@ -1,0 +1,565 @@
+{
+  "asOf": "2026-07-03",
+  "filled": 40,
+  "total": 40,
+  "resolved": {
+    "cover-hero": {
+      "label": "Cover / hero",
+      "group": "Hero & narrative",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "01",
+        "02"
+      ],
+      "source": "local",
+      "path": "v2/public/images/product/stretch-bed-community.jpg",
+      "consent": "public",
+      "status": "canon"
+    },
+    "problem": {
+      "label": "The problem",
+      "group": "Hero & narrative",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "02"
+      ],
+      "source": "local",
+      "path": "v2/public/images/media-pack/deadly-heart-trek-aug-2025.jpg",
+      "consent": "public",
+      "status": "canon"
+    },
+    "closing-hero": {
+      "label": "Closing image",
+      "group": "Hero & narrative",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "01"
+      ],
+      "source": "local",
+      "path": "v2/public/images/media-pack/lying-on-stretch-bed.jpg",
+      "consent": "public",
+      "status": "canon"
+    },
+    "product-hero": {
+      "label": "Product hero",
+      "group": "Product",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "06"
+      ],
+      "source": "local",
+      "path": "v2/public/images/product/stretch-bed-hero.jpg",
+      "consent": "public",
+      "status": "canon"
+    },
+    "product-in-use": {
+      "label": "Bed in use",
+      "group": "Product",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "01",
+        "02"
+      ],
+      "source": "local",
+      "path": "v2/public/images/media-pack/lying-on-stretch-bed.jpg",
+      "consent": "public",
+      "status": "canon"
+    },
+    "product-anatomy": {
+      "label": "How it works (anatomy)",
+      "group": "Product",
+      "type": "illustration",
+      "dataClass": "green",
+      "areas": [
+        "06"
+      ],
+      "source": "local",
+      "path": "design/deck-assets/goods-bed-anatomy.jpg",
+      "consent": "public",
+      "status": "canon"
+    },
+    "assembly-sequence": {
+      "label": "Assembly steps",
+      "group": "Product",
+      "type": "illustration",
+      "dataClass": "green",
+      "areas": [
+        "06"
+      ],
+      "source": "local",
+      "path": "v2/public/images/product/stretch-bed-overview.png",
+      "consent": "public",
+      "status": "canon"
+    },
+    "kids-building": {
+      "label": "Kids building it",
+      "group": "Product",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "02",
+        "06"
+      ],
+      "source": "local",
+      "path": "v2/public/images/build/build-001.jpg",
+      "consent": "public",
+      "status": "canon"
+    },
+    "plant-hero": {
+      "label": "On-Country plant",
+      "group": "Plant & manufacturing",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "06",
+        "11"
+      ],
+      "source": "el-pick",
+      "url": "https://www.empathyledger.com/api/media/37d70ec3-b232-4af4-bfc3-9feb93540c4c/file",
+      "elId": "37d70ec3-b232-4af4-bfc3-9feb93540c4c",
+      "kind": "image",
+      "consent": "el:not-flagged",
+      "alternates": 0,
+      "status": "el-pick"
+    },
+    "plant-panorama": {
+      "label": "Plant panorama",
+      "group": "Plant & manufacturing",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "06",
+        "11"
+      ],
+      "source": "local",
+      "path": "v2/public/images/process/factory-panorama.jpg",
+      "consent": "public",
+      "status": "canon"
+    },
+    "plant-the-one-move": {
+      "label": "The one move (heat press)",
+      "group": "Plant & manufacturing",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "03",
+        "06",
+        "11"
+      ],
+      "source": "local",
+      "path": "v2/public/images/process/heat-press-full.jpg",
+      "consent": "public",
+      "status": "canon"
+    },
+    "pressed-sheets": {
+      "label": "Pressed HDPE sheets",
+      "group": "Plant & manufacturing",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "06"
+      ],
+      "source": "local",
+      "path": "v2/public/images/process/pressed-sheets-stacked.jpg",
+      "consent": "public",
+      "status": "canon"
+    },
+    "shredder": {
+      "label": "Shredder / granulator",
+      "group": "Plant & manufacturing",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "06"
+      ],
+      "source": "local",
+      "path": "design/deck-assets/shredder-granulator.jpg",
+      "consent": "public",
+      "status": "canon"
+    },
+    "plastic-feedstock": {
+      "label": "Shredded plastic feedstock",
+      "group": "Plant & manufacturing",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "03",
+        "06"
+      ],
+      "source": "local",
+      "path": "v2/public/images/process/shredded-chips-weighed.jpg",
+      "consent": "public",
+      "status": "canon"
+    },
+    "plastic-loop": {
+      "label": "Plastic loop (diagram)",
+      "group": "Plant & manufacturing",
+      "type": "illustration",
+      "dataClass": "green",
+      "areas": [
+        "03",
+        "06"
+      ],
+      "source": "local",
+      "path": "design/deck-assets/goods-plastic-journey.jpg",
+      "consent": "public",
+      "status": "canon"
+    },
+    "community-delivery": {
+      "label": "Delivery on Country",
+      "group": "Community & impact",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "02"
+      ],
+      "source": "local",
+      "path": "v2/public/images/utopia/utopia-09.jpg",
+      "consent": "public",
+      "status": "canon"
+    },
+    "listening-first": {
+      "label": "Listening first",
+      "group": "Community & impact",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "02",
+        "08"
+      ],
+      "source": "local",
+      "path": "v2/public/images/media-pack/nic-with-elder-on-verandah.jpg",
+      "consent": "public",
+      "status": "canon"
+    },
+    "community-ownership": {
+      "label": "Community ownership (diagram)",
+      "group": "Community & impact",
+      "type": "illustration",
+      "dataClass": "green",
+      "areas": [
+        "01",
+        "09"
+      ],
+      "source": "local",
+      "path": "design/deck-assets/goods-community-ownership-v2.png",
+      "consent": "public",
+      "status": "canon"
+    },
+    "map": {
+      "label": "Communities map",
+      "group": "Community & impact",
+      "type": "chart",
+      "dataClass": "green",
+      "areas": [
+        "02"
+      ],
+      "source": "local",
+      "path": "v2/public/images/qbe/communities-screen.png",
+      "consent": "public",
+      "status": "canon"
+    },
+    "washing-machine": {
+      "label": "Washing machine",
+      "group": "Community & impact",
+      "type": "photo",
+      "dataClass": "green",
+      "areas": [
+        "02"
+      ],
+      "source": "local",
+      "path": "v2/public/images/media-pack/washing-machine-enclosure-sunset.jpg",
+      "consent": "public",
+      "status": "canon"
+    },
+    "storyteller-mykel": {
+      "label": "Mykel",
+      "group": "Storytellers (RED)",
+      "type": "photo",
+      "dataClass": "red",
+      "areas": [
+        "02"
+      ],
+      "source": "local",
+      "path": "v2/public/images/people/mykel.jpg",
+      "consent": "cleared",
+      "status": "canon"
+    },
+    "storyteller-linda-turner": {
+      "label": "Linda Turner",
+      "group": "Storytellers (RED)",
+      "type": "photo",
+      "dataClass": "red",
+      "areas": [
+        "02"
+      ],
+      "source": "local",
+      "path": "v2/public/images/people/linda-turner.jpg",
+      "consent": "cleared",
+      "status": "canon"
+    },
+    "storyteller-alfred-johnson": {
+      "label": "Alfred Johnson",
+      "group": "Storytellers (RED)",
+      "type": "photo",
+      "dataClass": "red",
+      "areas": [
+        "02"
+      ],
+      "source": "local",
+      "path": "v2/public/images/people/alfred-johnson.jpg",
+      "consent": "cleared",
+      "status": "canon"
+    },
+    "storyteller-norman-frank": {
+      "label": "Norman Frank",
+      "group": "Storytellers (RED)",
+      "type": "photo",
+      "dataClass": "red",
+      "areas": [
+        "02"
+      ],
+      "source": "local",
+      "path": "v2/public/images/people/norman-frank.jpg",
+      "consent": "cleared",
+      "status": "canon"
+    },
+    "cost-curve": {
+      "label": "Cost-down curve",
+      "group": "Cost & finance",
+      "type": "chart",
+      "dataClass": "green",
+      "areas": [
+        "03",
+        "10",
+        "11"
+      ],
+      "source": "local",
+      "path": "design/deck-assets/goods-cost-curve.png",
+      "consent": "public",
+      "status": "canon"
+    },
+    "breakeven": {
+      "label": "Break-even chart",
+      "group": "Cost & finance",
+      "type": "chart",
+      "dataClass": "green",
+      "areas": [
+        "03",
+        "10",
+        "11"
+      ],
+      "source": "local",
+      "path": "design/deck-assets/goods-breakeven.png",
+      "consent": "public",
+      "status": "canon"
+    },
+    "sankey": {
+      "label": "Money flow (Sankey)",
+      "group": "Cost & finance",
+      "type": "chart",
+      "dataClass": "green",
+      "areas": [
+        "04",
+        "11"
+      ],
+      "source": "local",
+      "path": "design/deck-assets/goods-sankey-money.png",
+      "consent": "public",
+      "status": "canon"
+    },
+    "where-750": {
+      "label": "Where $750 goes",
+      "group": "Cost & finance",
+      "type": "chart",
+      "dataClass": "green",
+      "areas": [
+        "04",
+        "11"
+      ],
+      "source": "local",
+      "path": "design/deck-assets/goods-where-750-goes.png",
+      "consent": "public",
+      "status": "canon"
+    },
+    "logo-black": {
+      "label": "Logo (black)",
+      "group": "Logos",
+      "type": "logo",
+      "dataClass": "green",
+      "areas": [
+        "01"
+      ],
+      "source": "local",
+      "path": "design/deck-assets/goods-inline-black.png",
+      "consent": "public",
+      "status": "canon"
+    },
+    "logo-white": {
+      "label": "Logo (white)",
+      "group": "Logos",
+      "type": "logo",
+      "dataClass": "green",
+      "areas": [
+        "01"
+      ],
+      "source": "local",
+      "path": "design/deck-assets/goods-inline-white.png",
+      "consent": "public",
+      "status": "canon"
+    },
+    "video-hero": {
+      "label": "Hero video",
+      "group": "Video",
+      "type": "video",
+      "dataClass": "green",
+      "areas": [
+        "01"
+      ],
+      "source": "local",
+      "path": "v2/public/video/hero-desktop.mp4",
+      "consent": "public",
+      "status": "canon"
+    },
+    "video-build": {
+      "label": "Build video",
+      "group": "Video",
+      "type": "video",
+      "dataClass": "red",
+      "areas": [
+        "02",
+        "06"
+      ],
+      "source": "local",
+      "path": "v2/public/video/building-together-desktop.mp4",
+      "consent": "gated",
+      "status": "canon"
+    },
+    "video-testimony": {
+      "label": "Testimony video",
+      "group": "Video",
+      "type": "video",
+      "dataClass": "red",
+      "areas": [
+        "02"
+      ],
+      "source": "el-pick",
+      "url": "https://www.empathyledger.com/api/media/0f8a221a-9616-416e-b755-46657873bde8/file",
+      "elId": "0f8a221a-9616-416e-b755-46657873bde8",
+      "kind": "video",
+      "consent": "el:not-flagged",
+      "alternates": 0,
+      "status": "el-pick"
+    },
+    "video-plant": {
+      "label": "Plant video",
+      "group": "Video",
+      "type": "video",
+      "dataClass": "green",
+      "areas": [
+        "06",
+        "11"
+      ],
+      "source": "local",
+      "path": "v2/public/video/recycling-plant-desktop.mp4",
+      "consent": "public",
+      "status": "canon"
+    },
+    "video-community": {
+      "label": "Community video",
+      "group": "Video",
+      "type": "video",
+      "dataClass": "green",
+      "areas": [
+        "02"
+      ],
+      "source": "local",
+      "path": "v2/public/video/community-desktop.mp4",
+      "consent": "public",
+      "status": "canon"
+    },
+    "area-05-risk": {
+      "label": "Area 05 — Risk",
+      "group": "QBE area visuals",
+      "type": "illustration",
+      "dataClass": "green",
+      "areas": [
+        "05"
+      ],
+      "source": "local",
+      "path": "v2/public/images/build/build-097.jpg",
+      "consent": "public",
+      "status": "canon"
+    },
+    "area-07-governance": {
+      "label": "Area 07 — Governance",
+      "group": "QBE area visuals",
+      "type": "illustration",
+      "dataClass": "green",
+      "areas": [
+        "07"
+      ],
+      "source": "local",
+      "path": "generated-images/goods-illustrations/qbe-07-governance/01-governance-signoff.png",
+      "consent": "public",
+      "status": "canon"
+    },
+    "area-08-people": {
+      "label": "Area 08 — People",
+      "group": "QBE area visuals",
+      "type": "illustration",
+      "dataClass": "green",
+      "areas": [
+        "08"
+      ],
+      "source": "local",
+      "path": "generated-images/goods-illustrations/qbe-08-people/01-jobs-on-country.png",
+      "consent": "public",
+      "status": "canon"
+    },
+    "area-09-ownership": {
+      "label": "Area 09 — Ownership diagram",
+      "group": "QBE area visuals",
+      "type": "illustration",
+      "dataClass": "green",
+      "areas": [
+        "09"
+      ],
+      "source": "local",
+      "path": "generated-images/goods-illustrations/qbe-09-ownership/01-handover.png",
+      "consent": "public",
+      "status": "canon"
+    },
+    "area-12-alignment": {
+      "label": "Area 12 — Alignment",
+      "group": "QBE area visuals",
+      "type": "illustration",
+      "dataClass": "green",
+      "areas": [
+        "12"
+      ],
+      "source": "local",
+      "path": "generated-images/goods-illustrations/qbe-12-alignment/01-alignment-matrix.png",
+      "consent": "public",
+      "status": "canon"
+    },
+    "storyteller-dianne-stokes": {
+      "label": "Dianne Stokes",
+      "group": "Storytellers (RED)",
+      "type": "photo",
+      "dataClass": "red",
+      "areas": [
+        "02"
+      ],
+      "source": "local",
+      "path": "v2/public/images/people/dianne-stokes.jpg",
+      "consent": "cleared",
+      "status": "canon"
+    }
+  }
+}

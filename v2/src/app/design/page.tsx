@@ -128,7 +128,7 @@ export default function DesignPage() {
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Community-Driven</h3>
                 <p className="text-sm text-muted-foreground">
-                  Co-designed with communities, not for them. Voice in every decision.
+                  Designed with communities, not for them. Voice in every decision.
                 </p>
               </div>
               <div>

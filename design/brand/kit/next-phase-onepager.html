@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Goods on Country: next phase one-pager</title>
+<meta name="hz:slide-selector" content=".onepager" />
+<meta name="hz:canvas-width" content="1280" />
+<meta name="hz:canvas-height" content="1811" />
+<link rel="stylesheet" href="https://use.typekit.net/bys2ofg.css">
+<link rel="stylesheet" href="kit.css">
+<style>
+  @page { size: 8.5in 12.02in; margin: 0; }   /* matches .onepager 1280x1811 */
+  /* Images are referenced by canon SLOT (CANON:<slot>); render.sh / canon-render bake
+     in the current pick from design/canon-resolved.json. Edit the slot on /admin/canon,
+     re-render, the one-pager updates. */
+  .op { padding: 0; }
+  .op-hero { position: relative; flex: none; height: 410px; background-size: cover; background-position: center;
+    background-image: linear-gradient(rgba(43,42,38,0.24), rgba(43,42,38,0.80)), url('CANON:cover-hero'); }
+  .op-hero .pad { position: absolute; inset: 0; padding: 56px 100px 60px; display: flex; flex-direction: column; color: #FBF8F1; }
+  .op-hero .wm { height: 40px; align-self: flex-start; }
+  .op-hero .headwrap { margin-top: auto; }
+  .op-hero h1 { font-family: var(--display); font-weight: 400; font-size: 58px; line-height: 1.05; letter-spacing: -0.01em; max-width: 1020px; }
+  .op-hero p { font-size: 26px; color: #e8e2d6; margin-top: 16px; max-width: 900px; line-height: 1.4; }
+  .op-body { padding: 34px 100px 0; }
+  .op .eyebrow { font-size: 19px; }
+  .op .stat-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 12px; }
+  .op .stat { padding: 16px 24px; border-radius: 16px; }
+  .op .stat .num { font-size: 44px; } .op .stat .lbl { font-size: 18px; margin-top: 6px; }
+  .op-three { display: flex; gap: 24px; margin-top: 12px; }
+  .op-three .col { flex: 1; background: var(--card); border: 1px solid var(--grid); border-radius: 16px; padding: 20px 24px; }
+  .op-three h3 { font-family: var(--display); font-weight: 400; font-size: 27px; margin: 0 0 8px; }
+  .op-three p { font-size: 19px; line-height: 1.4; color: var(--ink); }
+  .op-three .note { display: block; margin-top: 8px; font-size: 16px; color: var(--sub); }
+  .op-section { margin-top: 26px; }
+  .op-quote { margin: 26px 0 0; padding: 24px 28px; background: var(--card); border: 1px solid var(--grid); border-radius: 20px; display: flex; gap: 28px; align-items: stretch; }
+  .op-quote .pic { width: 300px; border-radius: 14px; background-size: cover; background-position: center; flex: none; border: 1px solid var(--grid); }
+  .op-quote .q { font-family: var(--display); font-size: 22px; line-height: 1.3; color: var(--ink); }
+  .op-quote .by { font-weight: 700; font-size: 18px; color: var(--terracotta); margin-top: 6px; }
+  .op-quote .by span { color: var(--sub); font-weight: 500; }
+  .op-quote .qb + .qb { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--grid); }
+  .op-ask { margin-top: 26px; padding: 26px 36px; background: var(--ink); color: #FBF8F1; border-radius: 20px; }
+  .op-ask .eyebrow { color: var(--sage); }
+  .op-ask h3 { font-family: var(--display); font-weight: 400; font-size: 32px; margin: 8px 0 8px; color: #FBF8F1; }
+  .op-ask p { font-size: 19px; line-height: 1.45; color: #e8e2d6; max-width: 1000px; }
+  .op-foot { padding: 18px 100px 32px; font-size: 16px; color: var(--sub); line-height: 1.45; }
+</style>
+</head>
+<body>
+
+  <div class="onepager op" data-canvas-width="1280" data-canvas-height="1811">
+    <div class="op-hero">
+      <div class="pad">
+        <img class="wm" src="CANON:logo-white" alt="Goods on Country" />
+        <div class="headwrap">
+          <h1>The next phase: communities building their own.</h1>
+          <p>Waste plastic becomes quality furniture, made On Country. Now the factory itself moves toward community ownership.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="op-body">
+      <p class="eyebrow">Where we are, in numbers</p>
+      <div class="stat-grid">
+        <div class="stat"><div class="num">CANON:num:beds-deployed</div><div class="lbl">beds deployed</div></div>
+        <div class="stat sage"><div class="num">CANON:num:communities-served</div><div class="lbl">communities served</div></div>
+        <div class="stat"><div class="num">CANON:num:washers-in-community</div><div class="lbl">washing machines in community</div></div>
+        <div class="stat sage"><div class="num">CANON:num:plastic-kg</div><div class="lbl">recycled HDPE diverted</div></div>
+        <div class="stat"><div class="num">CANON:num:revenue-carveout</div><div class="lbl">revenue to date</div></div>
+        <div class="stat sage"><div class="num">CANON:num:stretch-price</div><div class="lbl">per Stretch Bed</div></div>
+      </div>
+
+      <div class="op-section">
+        <p class="eyebrow terra">The next phase</p>
+        <div class="op-three">
+          <div class="col">
+            <h3>Community ownership</h3>
+            <p>The On Country plant is designed to move into community hands. The 51% First Nations ownership pathway is in legal design now.</p>
+          </div>
+          <div class="col">
+            <h3>Capacity and jobs</h3>
+            <p>Communities building their own products. Real jobs, real skills, and the skills stay. First concrete step: a 50-bed production run made in-house, turning the modelled CANON:num:marginal-factory unit cost into a measured one.</p>
+            <span class="note">Unit cost is modelled until the run is complete.</span>
+          </div>
+          <div class="col">
+            <h3>The health pathway</h3>
+            <p>Beds lift people off the floor. Washable canvas cuts the scabies pathway, and scabies can lead to rheumatic heart disease. That pathway is why we do this work. We count beds, washers and communities. We do not claim health outcomes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="op-quote">
+        <div class="pic" style="background-image:url('CANON:kids-building')"></div>
+        <div>
+          <div class="qb">
+            <div class="q">"He knew what he was doing. He had the pattern of how everything was all coming together. He loved it. We took him back to the family and he just was so proud showing them that he can build it."</div>
+            <div class="by">Fred Campbell <span>· Xavier, proud building his Stretch Bed</span></div>
+          </div>
+          <div class="qb">
+            <div class="q">"Now we've got our own ways, we can collaborate with our own people. Not only here. It'll be everywhere."</div>
+            <div class="by">Norman Frank <span>· Self-determination</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="op-ask">
+        <p class="eyebrow">What it takes</p>
+        <h3>AU$400,000 catalytic capital that converts into community ownership.</h3>
+        <p>A recoverable grant funds the plant's move into community hands, matched by QBE Catalysing Impact up to AU$400,000 against signed external capital. The indicative stack: SEFA $300K, Snow Foundation $100K, Centrecorp $75K. This stack is pipeline, not committed capital. Every dollar is traced.</p>
+      </div>
+    </div>
+
+    <p class="op-foot">Figures as at 2 July 2026. Revenue is the accountant-signed Goods carve-out. Costs marked modelled are modelled, not measured. Catalysing Impact, powered by Social Impact Hub, in partnership with QBE Foundation. Made by A Curious Tractor Pty Ltd t/a Goods. goodsoncountry.com/pitch</p>
+  </div>
+
+</body>
+</html>

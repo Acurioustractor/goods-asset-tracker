@@ -64,6 +64,11 @@ async function fetchFromStories(tags: string[], crossProject = false): Promise<E
   // photos land with no project_id at all.
   const params = [
     crossProject ? null : `project_id=eq.${EL_PROJECT_ID}`,
+    // Consent gate: only offer story media cleared for public view (matches the
+    // live-site story gate). withdrawn / archived stories never appear.
+    `is_public=eq.true`,
+    `consent_withdrawn_at=is.null`,
+    `is_archived=not.eq.true`,
     tags.length > 0 ? `tags=cs.{${quoteTags(tags)}}` : null,
     `select=id,title,media_url,story_image_url,tags,story_type,created_at`,
     `order=created_at.desc`,
@@ -82,6 +87,11 @@ async function fetchFromMediaAssets(tags: string[], crossProject = false): Promi
   // crossProject=true drops the project_id filter for the photo browser.
   const params = [
     crossProject ? null : `project_id=eq.${EL_PROJECT_ID}`,
+    // Consent gate: only ever offer media that may be published (matches the
+    // live-site gate in empathyLedger.getMedia). Hard stops always apply.
+    `visibility=eq.public`,
+    `is_sacred_no_publish=not.eq.true`,
+    `removed_by_storyteller_at=is.null`,
     tags.length > 0 ? `cultural_tags=cs.{${quoteTags(tags)}}` : null,
     `select=id,original_filename,filename,cdn_url,thumbnail_url,cultural_tags,media_type,visibility,uploaded_at,created_at`,
     `order=uploaded_at.desc`,

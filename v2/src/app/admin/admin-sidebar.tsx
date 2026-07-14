@@ -9,6 +9,7 @@ import {
   ShoppingCart,
   Wrench,
   BookOpen,
+  Quote,
   Users,
   Menu,
   X,
@@ -37,6 +38,7 @@ import {
   ChevronRight,
   Network,
   LayoutGrid,
+  Layers,
 } from 'lucide-react';
 
 type NavItem = { name: string; href: string; icon: React.ComponentType<{ className?: string }> };
@@ -72,16 +74,23 @@ const navigation: NavGroup[] = [
   {
     group: 'Story',
     items: [
-      { name: 'Photos',       href: '/admin/photos',          icon: Images },
-      { name: 'Canon board',  href: '/admin/canon',           icon: LayoutGrid },
-      { name: 'Photo review', href: '/admin/photo-review',     icon: Images },
-      { name: 'Stories (EL)', href: '/admin/el-stories',      icon: BookOpen },
-      { name: 'Storytellers', href: '/admin/el-storytellers', icon: Users },
+      { name: 'Media library', href: '/admin/media-library',   icon: Images },
+      { name: 'Media gaps',    href: '/admin/media-gaps',      icon: Radar },
+      { name: 'Consent',       href: '/admin/consent',         icon: FileCheck },
+      { name: 'Canon board',   href: '/admin/canon',           icon: LayoutGrid },
+      { name: 'System visuals', href: '/admin/system-visuals', icon: Layers },
+      { name: 'Registry',      href: '/admin/storytellers',    icon: Users },
+      { name: 'Stories (EL)',  href: '/admin/el-stories',      icon: BookOpen },
+      { name: 'Storytellers (EL)', href: '/admin/el-storytellers', icon: Users },
+      { name: 'Quotes',        href: '/admin/quotes',          icon: Quote },
+      { name: 'Community stories', href: '/admin/community-stories', icon: Globe },
+      { name: 'Site content', href: '/admin/site-content',     icon: FileText },
     ],
   },
   {
     group: 'Money',
     items: [
+      { name: 'People',    href: '/admin/people',              icon: Users },
       { name: 'Funders',   href: '/admin/funders',             icon: Building2 },
       { name: 'Deals',     href: '/admin/deals',               icon: Crosshair },
       { name: 'LOI tracker', href: '/admin/loi-tracker',        icon: FileSignature },
@@ -117,9 +126,9 @@ const moreNavigation: NavItem[] = [
   { name: 'Fleet',           href: '/admin/fleet',         icon: Truck },
   // Content
   { name: 'Library',         href: '/admin/library',       icon: Boxes },
-  { name: 'Media library',   href: '/admin/media-library', icon: Images },
-  // Photo browser (Photos hub is canonical)
-  { name: 'Browse photos',   href: '/admin/photos-browser', icon: Images },
+  // Legacy photo tools retired 2026-07-04 -> Media library (Story). /admin/photos,
+  // /admin/photo-review and /admin/photos-browser now redirect there; their old
+  // implementations remain in-folder + git history for restore.
 ];
 
 export default function AdminSidebar({ userEmail }: { userEmail: string }) {

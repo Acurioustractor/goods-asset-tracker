@@ -53,8 +53,8 @@ export default async function ElStoriesIndex() {
           <h1 className="text-2xl font-bold tracking-tight">Stories in Empathy Ledger (Goods)</h1>
           <p className="mt-1 text-sm text-gray-500 max-w-prose">
             Every Goods story in EL (last 100). Filter / curate via tags. Approve consent via{' '}
-            <code className="rounded bg-gray-100 px-1">/admin/photos</code>{' '}
-            (per-tile elder review buttons) or directly in EL admin.
+            <code className="rounded bg-gray-100 px-1">/admin/consent</code>{' '}
+            or directly in EL admin.
           </p>
           <p className="mt-2 text-xs text-gray-500">
             <span className="rounded bg-emerald-100 px-2 py-0.5 text-emerald-800">{publicCount} public</span>

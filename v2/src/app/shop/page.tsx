@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { media } from '@/lib/data/media';
-import { STRETCH_BED, WASHING_MACHINE, BASKET_BED } from '@/lib/data/products';
+import { PLASTIC_KG_PER_BED, STRETCH_BED, WASHING_MACHINE, BASKET_BED } from '@/lib/data/products';
 import { ItemListJsonLd } from '@/components/seo';
 
 export const metadata = {
@@ -89,7 +89,7 @@ export default function ShopPage() {
             </h1>
             <p className="text-lg" style={{ color: '#5E5E5E' }}>
               Every purchase supports remote First Nations communities across Australia.
-              Each bed diverts 20kg of plastic from landfill.
+              Each bed diverts {PLASTIC_KG_PER_BED}kg of plastic from landfill.
             </p>
           </div>
         </div>
@@ -216,7 +216,7 @@ export default function ShopPage() {
                 The Stretch Bed
               </p>
               <h2 className="text-3xl font-light mb-6" style={{ color: '#2E2E2E', fontFamily: 'Georgia, serif' }}>
-                Co-designed with Community
+                Designed with Community
               </h2>
               <p className="mb-6" style={{ color: '#5E5E5E' }}>
                 500+ minutes of community feedback shapes every product we make.
@@ -225,10 +225,10 @@ export default function ShopPage() {
 
               <div className="space-y-4 mb-8">
                 {[
-                  'Made from 20kg recycled plastic',
+                  `Made from ${PLASTIC_KG_PER_BED}kg recycled plastic`,
                   '5-minute assembly, no tools required',
                   'Washable mattress components',
-                  'Designed to last 10+ years',
+                  `Designed to last ${STRETCH_BED.specs.designLifespan}`,
                   'Stackable for easy transport',
                 ].map((feature) => (
                   <div key={feature} className="flex items-center gap-3">
@@ -260,7 +260,7 @@ export default function ShopPage() {
             Want to make an even bigger impact?
           </h2>
           <p className="text-white/70 max-w-xl mx-auto mb-8">
-            Sponsor a bed for a family in need. 100% of your sponsorship goes directly
+            Sponsor a bed for a family who has asked for one. 100% of your sponsorship goes directly
             to delivering comfort to remote communities.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

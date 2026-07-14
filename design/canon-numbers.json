@@ -1,0 +1,131 @@
+{
+  "_comment": "GENERATED from v2/src/lib/data/canon.ts by v2/scripts/canon-numbers.mjs — do not hand-edit. Artifacts reference these as CANON:num:<id>; canon-render.mjs bakes the formatted value. Verify with: node v2/scripts/canon-numbers.mjs --check",
+  "numbers": {
+    "beds-deployed": {
+      "value": "496",
+      "raw": 496,
+      "unit": "units",
+      "label": "Beds deployed",
+      "asAt": "2026-05-30"
+    },
+    "stretch-beds-deployed": {
+      "value": "133",
+      "raw": 133,
+      "unit": "units",
+      "label": "Stretch Beds deployed",
+      "asAt": "2026-05-30"
+    },
+    "washers-in-community": {
+      "value": "16",
+      "raw": 16,
+      "unit": "units",
+      "label": "Washing machines in community",
+      "asAt": "2026-06-11"
+    },
+    "communities-served": {
+      "value": "9",
+      "raw": 9,
+      "unit": "communities",
+      "label": "Communities served",
+      "asAt": "2026-05-30"
+    },
+    "plastic-kg": {
+      "value": "2,660kg",
+      "raw": 2660,
+      "unit": "kg",
+      "label": "Recycled HDPE diverted",
+      "asAt": "2026-05-30"
+    },
+    "revenue-received": {
+      "value": "$741,111",
+      "raw": 741111,
+      "unit": "AUD",
+      "label": "Funding received (site figure)",
+      "asAt": "2026-06-03"
+    },
+    "accounts-receivable": {
+      "value": "$143,000",
+      "raw": 143000,
+      "unit": "AUD",
+      "label": "Accounts receivable",
+      "asAt": "2026-06-03"
+    },
+    "revenue-xero-paid": {
+      "value": "$650,910.79",
+      "raw": 650910.79,
+      "unit": "AUD",
+      "label": "ACT-GD receivables paid (Xero cut)",
+      "asAt": "2026-06-01"
+    },
+    "revenue-carveout": {
+      "value": "$713,827",
+      "raw": 713827,
+      "unit": "AUD",
+      "label": "Goods revenue carve-out",
+      "asAt": "2026-06-02"
+    },
+    "stretch-price": {
+      "value": "$750",
+      "raw": 750,
+      "unit": "AUD",
+      "label": "Stretch Bed price",
+      "asAt": "2026-05-29"
+    },
+    "marginal-buykit": {
+      "value": "$685",
+      "raw": 685,
+      "unit": "AUD",
+      "label": "Marginal cost / bed (Buy-Kit)",
+      "asAt": "2026-05-29"
+    },
+    "marginal-factory": {
+      "value": "$426",
+      "raw": 426,
+      "unit": "AUD",
+      "label": "Marginal cost / bed (Factory)",
+      "asAt": "2026-05-29"
+    },
+    "marginal-community": {
+      "value": "$421",
+      "raw": 421,
+      "unit": "AUD",
+      "label": "Marginal cost / bed (Community)",
+      "asAt": "2026-05-29"
+    },
+    "save-per-bed": {
+      "value": "$194",
+      "raw": 194,
+      "unit": "AUD",
+      "label": "Saving from pressing in-house",
+      "asAt": "2026-05-29"
+    },
+    "cleared-voices": {
+      "value": "32",
+      "raw": 32,
+      "unit": "voices",
+      "label": "Consent-cleared voices (external use)",
+      "asAt": "2026-06-17"
+    },
+    "display-storyteller-pool": {
+      "value": "32",
+      "raw": 32,
+      "unit": "voices",
+      "label": "Website storyteller pool (display tier)",
+      "asAt": "2026-06-16"
+    },
+    "el-published-stories": {
+      "value": "0",
+      "raw": 0,
+      "unit": "stories",
+      "label": "Empathy Ledger published stories",
+      "asAt": "2026-06-03"
+    },
+    "signed-lois": {
+      "value": "0",
+      "raw": 0,
+      "unit": "LOIs",
+      "label": "Signed LOIs",
+      "asAt": "2026-05-30"
+    }
+  }
+}

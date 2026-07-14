@@ -1,0 +1,1351 @@
+{
+  "asOf": "2026-07-07",
+  "count": 269,
+  "picks": {
+    "G1": {
+      "id": "7dcbec94-b2b1-4131-9159-43223b0f827c",
+      "filename": "20260522-1e5a6075.jpg",
+      "area": "trip-may-2026"
+    },
+    "G2": {
+      "id": "d9712cd5-4a2a-4d08-b9df-a2635f38ef9e",
+      "filename": "20260521-1e5a5434.jpg",
+      "area": "trip-may-2026"
+    },
+    "G3": {
+      "id": "a0d3d75b-d218-40cf-8d8e-5b2f102182b7",
+      "filename": "20260521-1e5a5437.jpg",
+      "area": "trip-may-2026"
+    },
+    "G4": {
+      "id": "86423fc1-841f-4403-b96d-b65281bb891e",
+      "filename": "20260521-1e5a5466.jpg",
+      "area": "trip-may-2026"
+    },
+    "G5": {
+      "id": "51186c3c-72de-481a-892c-4aed8d116643",
+      "filename": "20260521-1e5a5494.jpg",
+      "area": "trip-may-2026"
+    },
+    "G6": {
+      "id": "0f858e78-a087-4287-9a72-56015b681399",
+      "filename": "20260521-1e5a5506.jpg",
+      "area": "trip-may-2026"
+    },
+    "G7": {
+      "id": "9b39982c-227c-4700-810f-81530a01bd7b",
+      "filename": "20260521-1e5a5512.jpg",
+      "area": "trip-may-2026"
+    },
+    "G8": {
+      "id": "bd6c7c83-48c5-4d6f-a9bf-e895af3a5aa8",
+      "filename": "20260521-1e5a5535.jpg",
+      "area": "trip-may-2026"
+    },
+    "G9": {
+      "id": "7ffd584d-9289-4bb2-b702-40712652894d",
+      "filename": "20260521-1e5a5591.jpg",
+      "area": "trip-may-2026"
+    },
+    "G10": {
+      "id": "25f41a4a-01a9-4705-a502-507f399f9ffa",
+      "filename": "20260521-1e5a5610.jpg",
+      "area": "trip-may-2026"
+    },
+    "G11": {
+      "id": "b9e09ecd-c817-4958-9b58-ba9cecac3291",
+      "filename": "20260521-1e5a5685.jpg",
+      "area": "trip-may-2026"
+    },
+    "G12": {
+      "id": "8026131a-cabe-49aa-b5bf-187313461370",
+      "filename": "20260521-1e5a5757.jpg",
+      "area": "trip-may-2026"
+    },
+    "G13": {
+      "id": "a7702b3e-da2d-45e6-8509-ee413327328d",
+      "filename": "20260521-1e5a5765.jpg",
+      "area": "trip-may-2026"
+    },
+    "G14": {
+      "id": "00f1016d-2bde-4c96-ab44-9977ed7911c1",
+      "filename": "20260521-1e5a5820.jpg",
+      "area": "trip-may-2026"
+    },
+    "G15": {
+      "id": "6fa3f844-3afd-4dd5-a983-40f779131313",
+      "filename": "20260521-1e5a5845.jpg",
+      "area": "trip-may-2026"
+    },
+    "G16": {
+      "id": "b0c5cd67-0d92-4e94-b494-476abb84db53",
+      "filename": "20260521-1e5a5871.jpg",
+      "area": "trip-may-2026"
+    },
+    "G17": {
+      "id": "09d0bfe5-2706-4ce1-ac9c-064232fd7693",
+      "filename": "20260522-1e5a6099.jpg",
+      "area": "trip-may-2026"
+    },
+    "G18": {
+      "id": "5f446f09-c699-48fb-9307-2b6ffad8e8bd",
+      "filename": "20260522-1e5a6103.jpg",
+      "area": "trip-may-2026"
+    },
+    "G19": {
+      "id": "3f96ad3d-ce73-4c9e-8705-538a8ada3b1f",
+      "filename": "20260521-1e5a5473.jpg",
+      "area": "trip-may-2026"
+    },
+    "G20": {
+      "id": "0551b12a-71eb-4c80-a426-d62f0087d40c",
+      "filename": "20260521-1e5a5620.jpg",
+      "area": "trip-may-2026"
+    },
+    "G21": {
+      "id": "615bbc69-01d9-4064-a31e-5e23871d32ae",
+      "filename": "20260521-1e5a5646.jpg",
+      "area": "trip-may-2026"
+    },
+    "G22": {
+      "id": "c098bdb7-409b-4543-afdd-c044b72d8083",
+      "filename": "20260521-1e5a5673.jpg",
+      "area": "trip-may-2026"
+    },
+    "G23": {
+      "id": "ebce2ae5-4de8-45a6-ab73-1ba07b924b7b",
+      "filename": "20260521-1e5a5745.jpg",
+      "area": "trip-may-2026"
+    },
+    "G24": {
+      "id": "6cad12d0-fecd-4004-b5d1-04b6b00ac9e9",
+      "filename": "20260521-1e5a5748.jpg",
+      "area": "trip-may-2026"
+    },
+    "G25": {
+      "id": "683f6b86-f26e-4f21-8dd1-143b44359c54",
+      "filename": "20260521-1e5a5754.jpg",
+      "area": "trip-may-2026"
+    },
+    "G26": {
+      "id": "02ec1345-22b1-4be2-b10e-6edf7f4baa40",
+      "filename": "20260521-1e5a5760.jpg",
+      "area": "trip-may-2026"
+    },
+    "G27": {
+      "id": "04450349-0d89-4337-9206-479841b34d24",
+      "filename": "20260522-1e5a6020.jpg",
+      "area": "trip-may-2026"
+    },
+    "G28": {
+      "id": "bd9e17b1-0f84-44a4-8d56-aeb2c1541015",
+      "filename": "20260522-1e5a6070.jpg",
+      "area": "trip-may-2026"
+    },
+    "G29": {
+      "id": "ea630657-493f-480b-a897-dd0b16876b9b",
+      "filename": "20260522-1e5a6078.jpg",
+      "area": "trip-may-2026"
+    },
+    "G30": {
+      "id": "7e5d7d4f-8d5b-4c6e-b80d-f53bd7863a48",
+      "filename": "20260522-1e5a6079.jpg",
+      "area": "trip-may-2026"
+    },
+    "G31": {
+      "id": "fd2130fe-d168-46b9-93c7-4c58f38c09f7",
+      "filename": "20260521-1e5a5490.jpg",
+      "area": "trip-may-2026"
+    },
+    "G32": {
+      "id": "ab6229f2-ff68-45e5-9d7d-a513217e8364",
+      "filename": "20260521-1e5a5499.jpg",
+      "area": "trip-may-2026"
+    },
+    "G33": {
+      "id": "9870837f-b5d0-4e26-a69e-2d5171e56bb2",
+      "filename": "20260521-1e5a5509.jpg",
+      "area": "trip-may-2026"
+    },
+    "G34": {
+      "id": "adefaab2-96f4-48df-ace3-500d951d76ef",
+      "filename": "20260521-1e5a5542.jpg",
+      "area": "trip-may-2026"
+    },
+    "G35": {
+      "id": "2f8ed284-f4bf-46f2-aced-2ddf5595b0d2",
+      "filename": "20260521-1e5a5626.jpg",
+      "area": "trip-may-2026"
+    },
+    "G36": {
+      "id": "bbd95bba-c70b-4f7c-9869-f33404412f2f",
+      "filename": "20260521-1e5a5428.jpg",
+      "area": "trip-may-2026"
+    },
+    "G37": {
+      "id": "f62b0b6a-c0dc-4199-9fa7-e5b6ea51df2a",
+      "filename": "20260521-1e5a5431.jpg",
+      "area": "trip-may-2026"
+    },
+    "G38": {
+      "id": "744d239d-8967-44e2-8bbe-be4d12d052ba",
+      "filename": "20260521-1e5a5457.jpg",
+      "area": "trip-may-2026"
+    },
+    "G39": {
+      "id": "1bc1c002-ac53-491b-bc07-e4aeebbce00b",
+      "filename": "20260521-1e5a5476.jpg",
+      "area": "trip-may-2026"
+    },
+    "G40": {
+      "id": "2b507145-093a-405d-a91f-f10314528b73",
+      "filename": "20260521-1e5a5478.jpg",
+      "area": "trip-may-2026"
+    },
+    "G41": {
+      "id": "1d9e9b8b-c459-4ce3-b745-3e0e6704321d",
+      "filename": "20260521-1e5a5502.jpg",
+      "area": "trip-may-2026"
+    },
+    "G42": {
+      "id": "c49168bc-2f49-4219-8dba-a1a32dc69e12",
+      "filename": "20260521-1e5a5513.jpg",
+      "area": "trip-may-2026"
+    },
+    "G43": {
+      "id": "b751f2c2-9d2a-4f96-9603-1b855ed173e3",
+      "filename": "20260521-1e5a5517.jpg",
+      "area": "trip-may-2026"
+    },
+    "G44": {
+      "id": "e4908aa0-0de4-4705-b6e0-752086e61b9a",
+      "filename": "20260521-1e5a5520.jpg",
+      "area": "trip-may-2026"
+    },
+    "G45": {
+      "id": "79ac1c59-4724-4c1e-b9b2-94e539c32b5f",
+      "filename": "20260521-1e5a5523.jpg",
+      "area": "trip-may-2026"
+    },
+    "G46": {
+      "id": "acabb53c-dcf5-43a1-8c5a-c7c77d02c20c",
+      "filename": "20260521-1e5a5527.jpg",
+      "area": "trip-may-2026"
+    },
+    "G47": {
+      "id": "741b6769-0dfa-4ba9-8ab0-866dbc187879",
+      "filename": "20260521-1e5a5529.jpg",
+      "area": "trip-may-2026"
+    },
+    "G48": {
+      "id": "57d74d08-f9c7-4cb2-a868-22cccb174189",
+      "filename": "20260521-1e5a5536.jpg",
+      "area": "trip-may-2026"
+    },
+    "G49": {
+      "id": "74912fee-0e0f-4862-9eeb-9f5555c5e085",
+      "filename": "20260521-1e5a5539.jpg",
+      "area": "trip-may-2026"
+    },
+    "G50": {
+      "id": "42261c1b-1cc3-4b17-bc87-e9f0556a15dc",
+      "filename": "20260521-1e5a5547.jpg",
+      "area": "trip-may-2026"
+    },
+    "G51": {
+      "id": "48abe2b4-f86a-43a6-8344-d14c1786069d",
+      "filename": "20260521-1e5a5551.jpg",
+      "area": "trip-may-2026"
+    },
+    "G52": {
+      "id": "adcdb44c-4470-44ee-9e39-1e5118b23d67",
+      "filename": "20260521-1e5a5554.jpg",
+      "area": "trip-may-2026"
+    },
+    "G53": {
+      "id": "b6960fe1-6b80-4996-bcb5-c4f3836667dd",
+      "filename": "20260521-1e5a5556.jpg",
+      "area": "trip-may-2026"
+    },
+    "G54": {
+      "id": "e54bef24-9dfd-4537-9192-3b9505a108a3",
+      "filename": "20260521-1e5a5561.jpg",
+      "area": "trip-may-2026"
+    },
+    "G55": {
+      "id": "3a19d154-b971-4b47-9b0b-82a8c46e2917",
+      "filename": "20260521-1e5a5566.jpg",
+      "area": "trip-may-2026"
+    },
+    "G56": {
+      "id": "2a0beb92-b656-4c88-9583-e0a55440e4ac",
+      "filename": "20260521-1e5a5575.jpg",
+      "area": "trip-may-2026"
+    },
+    "G57": {
+      "id": "f954e672-58a8-4c44-aab4-8923ee9ed161",
+      "filename": "20260521-1e5a5580.jpg",
+      "area": "trip-may-2026"
+    },
+    "G58": {
+      "id": "ff43eba9-21d7-4568-ae32-09d8d53d0c43",
+      "filename": "20260521-1e5a5581.jpg",
+      "area": "trip-may-2026"
+    },
+    "G59": {
+      "id": "474a6c2b-c44b-49be-b478-dcd172e90e87",
+      "filename": "20260521-1e5a5583.jpg",
+      "area": "trip-may-2026"
+    },
+    "G60": {
+      "id": "beba0324-e709-4bb4-9cf1-7f070e43ae7f",
+      "filename": "20260521-1e5a5586.jpg",
+      "area": "trip-may-2026"
+    },
+    "G61": {
+      "id": "7ec3711b-2c9a-407d-93d5-80bf7d353184",
+      "filename": "20260521-1e5a5598.jpg",
+      "area": "trip-may-2026"
+    },
+    "G62": {
+      "id": "00d5fafb-127d-4dbb-a2b9-071c56df409f",
+      "filename": "20260521-1e5a5602.jpg",
+      "area": "trip-may-2026"
+    },
+    "G63": {
+      "id": "ecd0e3c8-4799-4e20-9284-46cb7344909c",
+      "filename": "20260521-1e5a5605.jpg",
+      "area": "trip-may-2026"
+    },
+    "G64": {
+      "id": "52a62646-479f-4b9d-8def-06f47276ed24",
+      "filename": "20260521-1e5a5629.jpg",
+      "area": "trip-may-2026"
+    },
+    "G65": {
+      "id": "6696361d-5bb7-483f-97ed-dd8bd6a8c01f",
+      "filename": "20260521-1e5a5631.jpg",
+      "area": "trip-may-2026"
+    },
+    "G66": {
+      "id": "5396278f-6504-447e-bd0f-03da1160d5ff",
+      "filename": "20260521-1e5a5638.jpg",
+      "area": "trip-may-2026"
+    },
+    "G67": {
+      "id": "c7ea36aa-ab9d-4fa7-aca0-0e82b8f34d69",
+      "filename": "20260521-1e5a5641.jpg",
+      "area": "trip-may-2026"
+    },
+    "G68": {
+      "id": "b0da4416-2eb3-4599-9341-086f499fe76b",
+      "filename": "20260521-1e5a5644.jpg",
+      "area": "trip-may-2026"
+    },
+    "G69": {
+      "id": "e21fde28-428d-495c-a737-c09c859c8bb5",
+      "filename": "20260521-1e5a5650.jpg",
+      "area": "trip-may-2026"
+    },
+    "G70": {
+      "id": "cdf44cef-30dc-462d-9bf3-16496169d23e",
+      "filename": "20260521-1e5a5652.jpg",
+      "area": "trip-may-2026"
+    },
+    "G71": {
+      "id": "7b95c8f0-8ffa-46ec-948d-9c62639936d5",
+      "filename": "20260521-1e5a5658.jpg",
+      "area": "trip-may-2026"
+    },
+    "G72": {
+      "id": "3d71af8b-f605-4d22-8f56-b3125f34973d",
+      "filename": "20260521-1e5a5663.jpg",
+      "area": "trip-may-2026"
+    },
+    "G73": {
+      "id": "7785c9f2-42f2-400f-a9d6-99d58b846e8a",
+      "filename": "20260521-1e5a5674.jpg",
+      "area": "trip-may-2026"
+    },
+    "G74": {
+      "id": "2144e2a4-1e4b-4e35-ab03-47928a0b9ed2",
+      "filename": "20260521-1e5a5683.jpg",
+      "area": "trip-may-2026"
+    },
+    "G75": {
+      "id": "bd3e6fee-9c44-4ea0-80f7-1915c8edb0a9",
+      "filename": "20260521-1e5a5688.jpg",
+      "area": "trip-may-2026"
+    },
+    "G76": {
+      "id": "a3d130d3-25c7-4757-8a01-059fa2cdbbd7",
+      "filename": "20260521-1e5a5698.jpg",
+      "area": "trip-may-2026"
+    },
+    "G77": {
+      "id": "a5b13a8c-43fb-4f7c-8f07-f01454f9f1a5",
+      "filename": "20260521-1e5a5700.jpg",
+      "area": "trip-may-2026"
+    },
+    "G78": {
+      "id": "236ab7c8-e07d-49d4-af6e-7e886fb0c7ac",
+      "filename": "20260521-1e5a5701.jpg",
+      "area": "trip-may-2026"
+    },
+    "G79": {
+      "id": "2a4cc018-cf67-4814-934a-16d9a3235152",
+      "filename": "20260521-1e5a5703.jpg",
+      "area": "trip-may-2026"
+    },
+    "G80": {
+      "id": "d8f1e9c7-17a5-48f9-b4b3-d1d819a18bdb",
+      "filename": "20260521-1e5a5706.jpg",
+      "area": "trip-may-2026"
+    },
+    "G81": {
+      "id": "0a1bc5b4-a6c8-4522-9579-8deaabf916c7",
+      "filename": "20260521-1e5a5710.jpg",
+      "area": "trip-may-2026"
+    },
+    "G82": {
+      "id": "6ae03964-be98-4ab2-ad3e-732390e2e8e0",
+      "filename": "20260521-1e5a5713.jpg",
+      "area": "trip-may-2026"
+    },
+    "G83": {
+      "id": "51747af1-d48e-4fdc-acb8-217d91cfbfa1",
+      "filename": "20260521-1e5a5716.jpg",
+      "area": "trip-may-2026"
+    },
+    "G84": {
+      "id": "10fe681f-a233-46ca-8c7e-9e3e50b2b102",
+      "filename": "20260521-1e5a5719.jpg",
+      "area": "trip-may-2026"
+    },
+    "G85": {
+      "id": "f2337573-a6db-4bb5-9d09-be5429e4959a",
+      "filename": "20260521-1e5a5721.jpg",
+      "area": "trip-may-2026"
+    },
+    "G86": {
+      "id": "af40c436-a9dd-4a5c-a7e4-40a410e179e7",
+      "filename": "20260521-1e5a5725.jpg",
+      "area": "trip-may-2026"
+    },
+    "G87": {
+      "id": "0f50f18a-1a57-4168-8cdb-ae799afeef12",
+      "filename": "20260521-1e5a5728.jpg",
+      "area": "trip-may-2026"
+    },
+    "G88": {
+      "id": "10e37f84-5e30-43c5-a269-937d51859abc",
+      "filename": "20260521-1e5a5731.jpg",
+      "area": "trip-may-2026"
+    },
+    "G89": {
+      "id": "9405969a-7ff8-47d0-a1ea-d9d5283edcb4",
+      "filename": "20260521-1e5a5733.jpg",
+      "area": "trip-may-2026"
+    },
+    "G90": {
+      "id": "b649505b-b7ca-4ff2-b5e7-d594074460f4",
+      "filename": "20260521-1e5a5734.jpg",
+      "area": "trip-may-2026"
+    },
+    "G91": {
+      "id": "16da18c0-e1a0-4505-8795-280872a92a90",
+      "filename": "20260521-1e5a5737.jpg",
+      "area": "trip-may-2026"
+    },
+    "G92": {
+      "id": "897bdfe1-9100-4604-a286-261874e5be9d",
+      "filename": "20260521-1e5a5740.jpg",
+      "area": "trip-may-2026"
+    },
+    "G93": {
+      "id": "869af0a7-62bf-4593-898f-4fe531b5e464",
+      "filename": "20260521-1e5a5741.jpg",
+      "area": "trip-may-2026"
+    },
+    "G94": {
+      "id": "dd1406f4-697c-471c-a400-a4ffe50c2d5d",
+      "filename": "20260521-1e5a5742.jpg",
+      "area": "trip-may-2026"
+    },
+    "G95": {
+      "id": "ad389f2e-332c-4e95-b579-6e3eb971fb8f",
+      "filename": "20260521-1e5a5752.jpg",
+      "area": "trip-may-2026"
+    },
+    "G96": {
+      "id": "a7cea4b8-8b9e-4cf7-b8a3-b876ccba5f0f",
+      "filename": "20260521-1e5a5762.jpg",
+      "area": "trip-may-2026"
+    },
+    "G97": {
+      "id": "1e01c9f2-bcfe-427e-81de-1153aa943c33",
+      "filename": "20260521-1e5a5778.jpg",
+      "area": "trip-may-2026"
+    },
+    "G98": {
+      "id": "ca4ee2b8-16ed-4fc9-8eab-19d7de107ebd",
+      "filename": "20260521-1e5a5785.jpg",
+      "area": "trip-may-2026"
+    },
+    "G99": {
+      "id": "62b74253-e344-41d9-8ced-3e104c10bdc5",
+      "filename": "20260521-1e5a5791.jpg",
+      "area": "trip-may-2026"
+    },
+    "G100": {
+      "id": "956e23cf-6af3-4a19-86a8-a2564224e852",
+      "filename": "20260521-1e5a5794.jpg",
+      "area": "trip-may-2026"
+    },
+    "G101": {
+      "id": "4941818e-0f2b-45da-8113-16fce4cfcba4",
+      "filename": "20260521-1e5a5796.jpg",
+      "area": "trip-may-2026"
+    },
+    "G102": {
+      "id": "5d9f0356-de65-4abd-bdfb-1c76278cf753",
+      "filename": "20260521-1e5a5800.jpg",
+      "area": "trip-may-2026"
+    },
+    "G103": {
+      "id": "186835e8-95da-4f44-933a-2c8da77db1c7",
+      "filename": "20260521-1e5a5801.jpg",
+      "area": "trip-may-2026"
+    },
+    "G104": {
+      "id": "c6aeaa5b-642a-422c-aade-c459bc45d539",
+      "filename": "20260521-1e5a5814.jpg",
+      "area": "trip-may-2026"
+    },
+    "G105": {
+      "id": "058ca5de-321a-4dbd-9bde-0aeec93e1a2d",
+      "filename": "20260521-1e5a5818.jpg",
+      "area": "trip-may-2026"
+    },
+    "G106": {
+      "id": "aade2bc3-35df-40b0-a5af-8f3d26172aa7",
+      "filename": "20260521-1e5a5823.jpg",
+      "area": "trip-may-2026"
+    },
+    "G107": {
+      "id": "86ab1701-2391-432e-bd25-7ca87fe1557e",
+      "filename": "20260521-1e5a5826.jpg",
+      "area": "trip-may-2026"
+    },
+    "G108": {
+      "id": "9f76fc12-c5aa-40fe-9ab0-8bbccf7ad837",
+      "filename": "20260521-1e5a5832.jpg",
+      "area": "trip-may-2026"
+    },
+    "G109": {
+      "id": "3217cb27-27b6-4c0e-b804-52cc09439f17",
+      "filename": "20260521-1e5a5835.jpg",
+      "area": "trip-may-2026"
+    },
+    "G110": {
+      "id": "4c695a21-6846-46ec-95d4-9ac5aafa62ad",
+      "filename": "20260521-1e5a5838.jpg",
+      "area": "trip-may-2026"
+    },
+    "G111": {
+      "id": "015602de-5d0c-4489-8c80-3f9df4bb2179",
+      "filename": "20260521-1e5a5839.jpg",
+      "area": "trip-may-2026"
+    },
+    "G112": {
+      "id": "687807e7-8b8b-42e5-ada3-e63a6a97809a",
+      "filename": "20260521-1e5a5848.jpg",
+      "area": "trip-may-2026"
+    },
+    "G113": {
+      "id": "67d54a6c-7a59-4954-920d-b806a24846a3",
+      "filename": "20260521-1e5a5850.jpg",
+      "area": "trip-may-2026"
+    },
+    "G114": {
+      "id": "23e2c7d9-e8a6-436c-926c-b94f2b59df8c",
+      "filename": "20260521-1e5a5853.jpg",
+      "area": "trip-may-2026"
+    },
+    "G115": {
+      "id": "85865708-b3d0-40dd-8520-1a4e89b8fc49",
+      "filename": "20260521-1e5a5859.jpg",
+      "area": "trip-may-2026"
+    },
+    "G116": {
+      "id": "51bc7a0c-bc61-4b43-a846-edd32b8254e5",
+      "filename": "20260521-1e5a5862.jpg",
+      "area": "trip-may-2026"
+    },
+    "G117": {
+      "id": "1b078741-ff93-45a3-b576-fc6305e338dd",
+      "filename": "20260521-1e5a5866.jpg",
+      "area": "trip-may-2026"
+    },
+    "G118": {
+      "id": "9f64f365-a742-4680-86d4-76d342a0180e",
+      "filename": "20260521-1e5a5869.jpg",
+      "area": "trip-may-2026"
+    },
+    "G119": {
+      "id": "05b6ac34-9329-4885-a234-c56818f29cc1",
+      "filename": "20260521-1e5a5877.jpg",
+      "area": "trip-may-2026"
+    },
+    "G120": {
+      "id": "e8d8dd48-98ba-472d-aaba-de2357431744",
+      "filename": "20260521-1e5a5880.jpg",
+      "area": "trip-may-2026"
+    },
+    "G121": {
+      "id": "bb532d7d-7eb6-4408-9a6e-ed6f18dfe834",
+      "filename": "20260521-1e5a5889.jpg",
+      "area": "trip-may-2026"
+    },
+    "G122": {
+      "id": "1e540a5d-d263-4402-9bff-a0efe3353e2f",
+      "filename": "20260521-1e5a5892.jpg",
+      "area": "trip-may-2026"
+    },
+    "G123": {
+      "id": "890744cf-3e25-475c-af86-9225bae82877",
+      "filename": "20260521-1e5a5895.jpg",
+      "area": "trip-may-2026"
+    },
+    "G124": {
+      "id": "4cdd960d-26f8-4645-be0c-35e8702092c2",
+      "filename": "20260521-1e5a5897.jpg",
+      "area": "trip-may-2026"
+    },
+    "G125": {
+      "id": "50553f90-2ac9-4a9a-bf7c-4aa280026711",
+      "filename": "20260521-1e5a5907.jpg",
+      "area": "trip-may-2026"
+    },
+    "G126": {
+      "id": "16dd9230-ee2a-480a-8471-7a58a9569a84",
+      "filename": "20260521-1e5a5911.jpg",
+      "area": "trip-may-2026"
+    },
+    "G127": {
+      "id": "463cb9c4-62b8-41c2-b7bb-f8d26f9d6ab8",
+      "filename": "20260521-1e5a5915.jpg",
+      "area": "trip-may-2026"
+    },
+    "G128": {
+      "id": "28d2dea3-90f4-49f1-9b28-23c41e926de6",
+      "filename": "20260521-1e5a5919.jpg",
+      "area": "trip-may-2026"
+    },
+    "G129": {
+      "id": "25c9a396-9a42-41ff-ac74-5568df0ad98b",
+      "filename": "20260521-1e5a5922.jpg",
+      "area": "trip-may-2026"
+    },
+    "G130": {
+      "id": "8678c4e6-8142-496a-b27c-1d28d93115aa",
+      "filename": "20260521-1e5a5931.jpg",
+      "area": "trip-may-2026"
+    },
+    "G131": {
+      "id": "bc51dadf-3de6-46ed-ab7c-86f6ec9c1fe7",
+      "filename": "20260521-1e5a5940.jpg",
+      "area": "trip-may-2026"
+    },
+    "G132": {
+      "id": "c16e45dc-f2cf-437a-8344-bb542f6f2360",
+      "filename": "20260522-1e5a5979.jpg",
+      "area": "trip-may-2026"
+    },
+    "G133": {
+      "id": "17623706-4fab-4056-b49f-871376b0d0f4",
+      "filename": "20260522-1e5a5982.jpg",
+      "area": "trip-may-2026"
+    },
+    "G134": {
+      "id": "ede7d83b-954b-4685-8870-c92372d482da",
+      "filename": "20260522-1e5a5986.jpg",
+      "area": "trip-may-2026"
+    },
+    "G135": {
+      "id": "7942b096-d7b8-4d41-8ebf-b0139e7d8fc0",
+      "filename": "20260522-1e5a5987.jpg",
+      "area": "trip-may-2026"
+    },
+    "G136": {
+      "id": "59ec9057-e8ec-4d52-a506-1abd6c9a40d8",
+      "filename": "20260522-1e5a5992.jpg",
+      "area": "trip-may-2026"
+    },
+    "G137": {
+      "id": "7414d34f-066c-4413-ae3b-b16360c0bb1b",
+      "filename": "20260522-1e5a5993.jpg",
+      "area": "trip-may-2026"
+    },
+    "G138": {
+      "id": "c0f5b634-3206-41a2-92bf-8361a61b891d",
+      "filename": "20260522-1e5a5994.jpg",
+      "area": "trip-may-2026"
+    },
+    "G139": {
+      "id": "a9dbe2e2-1767-40ab-9509-903bbbc2d86a",
+      "filename": "20260522-1e5a5997.jpg",
+      "area": "trip-may-2026"
+    },
+    "G140": {
+      "id": "ed0f98f1-84d3-4a7b-897f-8b5951e8af14",
+      "filename": "20260522-1e5a6001.jpg",
+      "area": "trip-may-2026"
+    },
+    "G141": {
+      "id": "34e2c282-4001-4d96-9bc0-95b1a11ee66c",
+      "filename": "20260522-1e5a6002.jpg",
+      "area": "trip-may-2026"
+    },
+    "G142": {
+      "id": "501ee688-ad39-44f9-8e1c-c0885307ea43",
+      "filename": "20260522-1e5a6003.jpg",
+      "area": "trip-may-2026"
+    },
+    "G143": {
+      "id": "eef68207-b1b1-4c53-8d88-55d048a747f7",
+      "filename": "20260522-1e5a6006.jpg",
+      "area": "trip-may-2026"
+    },
+    "G144": {
+      "id": "0200411c-2a99-4ad3-8a76-67c78df47d85",
+      "filename": "20260522-1e5a6009.jpg",
+      "area": "trip-may-2026"
+    },
+    "G145": {
+      "id": "6f837ce9-3c1b-4693-888b-a88519a95286",
+      "filename": "20260522-1e5a6010.jpg",
+      "area": "trip-may-2026"
+    },
+    "G146": {
+      "id": "1713a2ad-c81b-4b7e-aa3d-9d1dd5513329",
+      "filename": "20260522-1e5a6019.jpg",
+      "area": "trip-may-2026"
+    },
+    "G147": {
+      "id": "92a86278-d1f2-4a63-a49b-c62e0bd37966",
+      "filename": "20260522-1e5a6022.jpg",
+      "area": "trip-may-2026"
+    },
+    "G148": {
+      "id": "5a675b0b-9ad0-49a2-98fd-87bf10befd13",
+      "filename": "20260522-1e5a6025.jpg",
+      "area": "trip-may-2026"
+    },
+    "G149": {
+      "id": "08da58c5-f80c-4dc3-9ff6-e963f6175a24",
+      "filename": "20260522-1e5a6027.jpg",
+      "area": "trip-may-2026"
+    },
+    "G150": {
+      "id": "82fb13ec-68cb-427d-93d1-44dafa2d25f3",
+      "filename": "20260522-1e5a6028.jpg",
+      "area": "trip-may-2026"
+    },
+    "G151": {
+      "id": "564b462e-a5c7-4b90-9ad5-ca866818e7b2",
+      "filename": "20260522-1e5a6031.jpg",
+      "area": "trip-may-2026"
+    },
+    "G152": {
+      "id": "6d9d3c24-85b5-4286-b29d-cbc04b0d5daa",
+      "filename": "20260522-1e5a6033.jpg",
+      "area": "trip-may-2026"
+    },
+    "G153": {
+      "id": "7eaf74a5-eb8d-441e-9d2b-e934c2888341",
+      "filename": "20260522-1e5a6037.jpg",
+      "area": "trip-may-2026"
+    },
+    "G154": {
+      "id": "6104f2b1-fa27-472b-9ae6-1a04d28e15fc",
+      "filename": "20260522-1e5a6040.jpg",
+      "area": "trip-may-2026"
+    },
+    "G155": {
+      "id": "4c428470-6623-42a7-80b7-fb571eb9d54a",
+      "filename": "20260522-1e5a6042.jpg",
+      "area": "trip-may-2026"
+    },
+    "G156": {
+      "id": "64679dc6-6b1d-4252-9824-07790840b138",
+      "filename": "20260522-1e5a6045.jpg",
+      "area": "trip-may-2026"
+    },
+    "G157": {
+      "id": "34f3ecfd-f1d9-4d98-9377-23f2cf8e268f",
+      "filename": "20260522-1e5a6046.jpg",
+      "area": "trip-may-2026"
+    },
+    "G158": {
+      "id": "79a5a036-5156-44e6-8904-6bb38e368889",
+      "filename": "20260522-1e5a6047.jpg",
+      "area": "trip-may-2026"
+    },
+    "G159": {
+      "id": "c2407dc0-4c72-4cf4-a0de-981c6ddaf525",
+      "filename": "20260522-1e5a6051.jpg",
+      "area": "trip-may-2026"
+    },
+    "G160": {
+      "id": "7c60c626-11c8-4b9f-8214-3241e89ca95d",
+      "filename": "20260522-1e5a6054.jpg",
+      "area": "trip-may-2026"
+    },
+    "G161": {
+      "id": "242f523a-d9f4-4be6-ab3b-acf94bf9be1d",
+      "filename": "20260522-1e5a6057.jpg",
+      "area": "trip-may-2026"
+    },
+    "G162": {
+      "id": "b4a80f77-55dd-46df-8ef7-dbb2c852a58d",
+      "filename": "20260522-1e5a6069.jpg",
+      "area": "trip-may-2026"
+    },
+    "G163": {
+      "id": "10720b5f-92bb-431c-a461-2976f9ea73fd",
+      "filename": "20260522-1e5a6073.jpg",
+      "area": "trip-may-2026"
+    },
+    "G164": {
+      "id": "39b628d3-ea1f-443f-8555-e03d2e422cf3",
+      "filename": "20260522-1e5a6076.jpg",
+      "area": "trip-may-2026"
+    },
+    "G165": {
+      "id": "2745bd58-7ba8-4581-99c5-d0b8eab31e65",
+      "filename": "20260522-1e5a6082.jpg",
+      "area": "trip-may-2026"
+    },
+    "G166": {
+      "id": "c3fc4909-ca5d-437f-8337-b7065c277351",
+      "filename": "20260522-1e5a6088.jpg",
+      "area": "trip-may-2026"
+    },
+    "G167": {
+      "id": "ec9ba475-cfec-4a42-b2c5-18ed7e528149",
+      "filename": "20260522-1e5a6091.jpg",
+      "area": "trip-may-2026"
+    },
+    "G168": {
+      "id": "5025e394-9767-417b-8915-4476754ece0f",
+      "filename": "20260522-1e5a6096.jpg",
+      "area": "trip-may-2026"
+    },
+    "G169": {
+      "id": "8adba12c-e0ed-4a19-a54c-ffd5838902f8",
+      "filename": "20260522-1e5a6097.jpg",
+      "area": "trip-may-2026"
+    },
+    "G170": {
+      "id": "bdeb8419-1136-4c6f-8545-38c42d2be725",
+      "filename": "20260522-1e5a6105.jpg",
+      "area": "trip-may-2026"
+    },
+    "G171": {
+      "id": "c1384539-f6c1-481c-be7b-9d8c4cd55b19",
+      "filename": "20260522-1e5a6106.jpg",
+      "area": "trip-may-2026"
+    },
+    "G172": {
+      "id": "b124a310-dc00-42dc-945e-13303044ab1c",
+      "filename": "20260522-1e5a6114.jpg",
+      "area": "trip-may-2026"
+    },
+    "G173": {
+      "id": "c088f922-15bb-4bc5-8714-c3d622ca1758",
+      "filename": "20250812-IMG_1815.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G174": {
+      "id": "499f3dbd-320d-45cf-aee8-4cc281d7fea7",
+      "filename": "20250813-IMG_2139.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G175": {
+      "id": "688596eb-ac88-4d06-86a1-0b4bc61eb502",
+      "filename": "20250813-IMG_2173.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G176": {
+      "id": "2ac50943-aca9-4424-9936-36b154070a3b",
+      "filename": "20250813-IMG_2192.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G177": {
+      "id": "2b42ccac-ac3a-4b56-a032-a0d7a2ca7a84",
+      "filename": "20250813-IMG_2219.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G178": {
+      "id": "070fe87e-beb7-440e-b03d-ae4f3303dabb",
+      "filename": "20250813-IMG_2261.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G179": {
+      "id": "37d70ec3-b232-4af4-bfc3-9feb93540c4c",
+      "filename": "20260329-1E5A2830.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G180": {
+      "id": "e5aa6e29-ef91-4d98-a557-e12fb479150b",
+      "filename": "20260329-1E5A2831.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G181": {
+      "id": "1b4571a4-769b-4394-9574-807df9b40d05",
+      "filename": "20260329-1E5A2835.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G182": {
+      "id": "4ecf98ae-d25c-4014-adfb-4bf247b3f6ce",
+      "filename": "20260329-1E5A2837.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G183": {
+      "id": "32549a94-3ef2-4fe9-a68a-709005a0db86",
+      "filename": "20260329-1E5A2839.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G184": {
+      "id": "c9f7b354-65db-4a1a-bb0a-ef93db034b10",
+      "filename": "20250812-IMG_1782.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G185": {
+      "id": "2c0dd86b-aeb3-4ade-9f56-a81c8f199e99",
+      "filename": "20250812-IMG_1791.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G186": {
+      "id": "24636541-917a-417e-956f-316248394d95",
+      "filename": "20250812-IMG_1793.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G187": {
+      "id": "4775981c-382f-4da2-b111-6787083fa4f9",
+      "filename": "20250812-IMG_1798.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G188": {
+      "id": "c50cec11-1f5a-4468-98b6-4e72f3307b99",
+      "filename": "20250812-IMG_1817.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G189": {
+      "id": "21ab030e-ddc7-4185-9296-fa1a7d9db9f5",
+      "filename": "20250813-IMG_2108.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G190": {
+      "id": "a61cc78d-cb65-46b4-978b-63885b6de3b1",
+      "filename": "20260329-1E5A2843.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G191": {
+      "id": "f6f3db2c-d697-40af-9f5e-61ed30a84ea9",
+      "filename": "20260329-1E5A2844.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G192": {
+      "id": "c1ea40d1-4bf2-40ec-843e-b04cada05606",
+      "filename": "20260329-1E5A2845.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G193": {
+      "id": "51444ffc-21ed-473d-bfed-ca971fe92a7a",
+      "filename": "20260329-1E5A2851.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G194": {
+      "id": "d070dd17-d47e-43b1-8c7b-fa683dab4bae",
+      "filename": "20260329-1E5A2829.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G195": {
+      "id": "4058a061-97a2-43e2-9154-792b6dbc31a7",
+      "filename": "20260329-1E5A2853.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G196": {
+      "id": "a97d4850-b2fc-4a27-907e-e8420aa35b4a",
+      "filename": "20260329-1E5A2855.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G197": {
+      "id": "08dbadd6-ba25-41b3-af07-4197d492d7a4",
+      "filename": "20260329-1E5A2857.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G198": {
+      "id": "8fa0eac2-1539-4281-9a39-99566018de71",
+      "filename": "20260329-1E5A2858.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G199": {
+      "id": "10158f1b-f3a7-4003-9ac1-5f23c02d11ea",
+      "filename": "20260329-1E5A2836.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G200": {
+      "id": "bbc50586-8996-42b9-9e3b-babac25e4587",
+      "filename": "20260329-1E5A2860.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G201": {
+      "id": "f13459b8-6119-40d1-83e9-ea6ac720a725",
+      "filename": "20250813-IMG_2220.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G202": {
+      "id": "0d49bc8f-09ca-4d8a-8595-ecf69a8ed413",
+      "filename": "20250813-IMG_2253.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G203": {
+      "id": "ffee6b91-d441-4430-baf0-66509e345e99",
+      "filename": "20250812-IMG_1795.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G204": {
+      "id": "dd63e99a-e035-4ecf-8309-585dba43017d",
+      "filename": "20250812-IMG_1837.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G205": {
+      "id": "75f66627-459e-422f-af10-08cde9e16206",
+      "filename": "20250813-IMG_2302.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G206": {
+      "id": "924007c3-b424-4dd3-a5c8-d021732d08c7",
+      "filename": "20250813-IMG_2058.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G207": {
+      "id": "d6c34255-c2e1-4c68-9a02-1f2f4715e7bd",
+      "filename": "20250813-IMG_2087.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G208": {
+      "id": "9095cafb-1570-4ccf-af97-af86bfc2e038",
+      "filename": "20260329-1E5A2863.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G209": {
+      "id": "c56c6e30-ef00-4346-b824-a64bb01e5024",
+      "filename": "20260329-1E5A2872.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G210": {
+      "id": "fa69dfa6-8cbd-4440-ad5e-1fd925c7e793",
+      "filename": "20250812-IMG_1784.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G211": {
+      "id": "d08dd5f8-4724-42b3-8392-e71b67d6c7b2",
+      "filename": "20250813-IMG_2227.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G212": {
+      "id": "29de7ead-a8c6-4692-bfe0-945e79717986",
+      "filename": "20250813-IMG_2245.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G213": {
+      "id": "f36d5024-0455-4162-b588-bac7b43e145b",
+      "filename": "20250813-IMG_2266.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G214": {
+      "id": "09b2f868-8f10-4cb6-8815-a97106585ac8",
+      "filename": "20250813-IMG_2283.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G215": {
+      "id": "47e2ac3b-1236-44b4-a015-1da4e4ebfdff",
+      "filename": "20250812-IMG_1823.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G216": {
+      "id": "1040e413-3136-431b-a403-cef98cceadd4",
+      "filename": "20250812-IMG_1835.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G217": {
+      "id": "640bf80f-8996-4b88-a2b2-9c1c4a8fdadd",
+      "filename": "20250813-IMG_2200.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G218": {
+      "id": "f2a2a445-6695-4669-938b-63c78ee80804",
+      "filename": "20250813-IMG_2202.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G219": {
+      "id": "9487ae25-b332-435c-b4ba-32b13739e783",
+      "filename": "20260329-1E5A2856.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G220": {
+      "id": "8fb306dd-c853-45b2-b891-35d48301e978",
+      "filename": "20260329-1E5A2834.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G221": {
+      "id": "3512da96-5ac2-451c-84cd-2b52dbd7451d",
+      "filename": "20260329-1E5A2859.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G222": {
+      "id": "7d960662-77a0-4747-8ab6-1d24607ce491",
+      "filename": "20260329-1E5A2861.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G223": {
+      "id": "43c289e3-e731-43d4-bed7-221603123850",
+      "filename": "20260329-1E5A2840.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G224": {
+      "id": "78fcd643-8566-4acc-b0dd-bfb7611d1097",
+      "filename": "20250813-IMG_2319.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G225": {
+      "id": "72327163-31c0-4279-97d6-b314cebf062f",
+      "filename": "20260329-1E5A2862.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G226": {
+      "id": "7080f063-2d51-4307-bf9f-573d922bfeb3",
+      "filename": "20260329-1E5A2841.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G227": {
+      "id": "3e113664-7ebd-4549-9b8d-d5c3c5a4c239",
+      "filename": "20260329-1E5A2842.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G228": {
+      "id": "818b77e2-c3c5-4a77-8460-6cb4afab2455",
+      "filename": "20260329-1E5A2864.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G229": {
+      "id": "87dc0c7e-4060-46e0-970c-4b56c829be17",
+      "filename": "20260329-1E5A2865.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G230": {
+      "id": "e4297139-c2a4-4edd-9db3-df3e680e61ac",
+      "filename": "20260329-1E5A2866.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G231": {
+      "id": "6505d292-dd60-484e-8da7-8b1bc67302c4",
+      "filename": "20260329-1E5A2867.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G232": {
+      "id": "9afae3f7-4669-4aae-8198-bca55723ad59",
+      "filename": "20260329-1E5A2846.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G233": {
+      "id": "4d1f14e7-ed7d-4bec-b943-9436df2791f9",
+      "filename": "20260329-1E5A2848.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G234": {
+      "id": "3ea06250-f740-4ea8-b196-09a520b5a0a8",
+      "filename": "20260329-1E5A2849.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G235": {
+      "id": "562613b7-cafb-4366-8fdd-0fbc794f3619",
+      "filename": "20260329-1E5A2850.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G236": {
+      "id": "aa2fcca2-e4a1-4065-9c02-5b9e013ac2d1",
+      "filename": "20260329-1E5A2852.jpg",
+      "area": "Goods. Tennant Creek"
+    },
+    "G237": {
+      "id": "36b4b37e-6363-4186-b3a7-6d2b37c3190f",
+      "filename": "build-001.jpg",
+      "area": "build"
+    },
+    "G238": {
+      "id": "3184074f-d24f-4380-9cf6-62476477018e",
+      "filename": "build-009.jpg",
+      "area": "build"
+    },
+    "G239": {
+      "id": "8319b3d0-3a24-4b2a-baca-7896ad9af935",
+      "filename": "build-073.jpg",
+      "area": "build"
+    },
+    "G240": {
+      "id": "3157174e-188c-488b-816c-3dfad641f79f",
+      "filename": "build-017.jpg",
+      "area": "build"
+    },
+    "G241": {
+      "id": "4158e404-273c-4a6e-8585-752f0fdc13f1",
+      "filename": "build-081.jpg",
+      "area": "build"
+    },
+    "G242": {
+      "id": "bfa8295c-0988-48a6-bff3-07db9526d7b0",
+      "filename": "build-025.jpg",
+      "area": "build"
+    },
+    "G243": {
+      "id": "cd4255fb-5026-4ab6-9eb0-ab0f0a8d328d",
+      "filename": "build-089.jpg",
+      "area": "build"
+    },
+    "G244": {
+      "id": "7c476bd5-0c38-4a64-8c2b-59209c9466c0",
+      "filename": "build-033.jpg",
+      "area": "build"
+    },
+    "G245": {
+      "id": "6d716ef3-f7b1-4b9c-904d-f1de5940416e",
+      "filename": "build-097.jpg",
+      "area": "build"
+    },
+    "G246": {
+      "id": "e7f4b03b-fb21-4405-ad95-ff8896dd1ae8",
+      "filename": "build-041.jpg",
+      "area": "build"
+    },
+    "G247": {
+      "id": "ad0efe6a-ca57-4963-b3de-220ca60bb53e",
+      "filename": "build-105.jpg",
+      "area": "build"
+    },
+    "G248": {
+      "id": "550e3dad-7907-4667-8008-f5f2b9696240",
+      "filename": "build-049.jpg",
+      "area": "build"
+    },
+    "G249": {
+      "id": "3b5fa019-80cd-4d9c-b0bb-5297e27b2a78",
+      "filename": "build-113.jpg",
+      "area": "build"
+    },
+    "G250": {
+      "id": "4bc67905-6a81-45ba-ab23-1bd01f371fea",
+      "filename": "build-057.jpg",
+      "area": "build"
+    },
+    "G251": {
+      "id": "8d825d48-7ce2-4524-a0c4-7ef4cfb75e15",
+      "filename": "build-121.jpg",
+      "area": "build"
+    },
+    "G252": {
+      "id": "4dc9b0ff-d61a-4c09-a3de-56e5f76af518",
+      "filename": "build-065.jpg",
+      "area": "build"
+    },
+    "G253": {
+      "id": "31188894-330e-4023-8be0-2f3a5000a079",
+      "filename": "final-assembly.jpg",
+      "area": "partners"
+    },
+    "G254": {
+      "id": "7e161881-b1e9-4119-8c03-547c330620ed",
+      "filename": "building-bed.jpg",
+      "area": "partners"
+    },
+    "G255": {
+      "id": "8205f10d-4b66-474b-b079-40f618f29f35",
+      "filename": "delivery-trailer.jpg",
+      "area": "partners"
+    },
+    "G256": {
+      "id": "f988ed35-4374-4760-8680-fbfe4c4e0b57",
+      "filename": "elders-bed.jpg",
+      "area": "partners"
+    },
+    "G257": {
+      "id": "0f17c9b0-9b68-4b9a-9efa-9eb915b3c1d7",
+      "filename": "community-build.jpg",
+      "area": "partners"
+    },
+    "G258": {
+      "id": "f804c1f2-5324-463e-a698-8cda90ccab69",
+      "filename": "delivery-court.jpg",
+      "area": "partners"
+    },
+    "G259": {
+      "id": "e357c6d8-98a0-4d71-aad3-1cebbe5fcfda",
+      "filename": "elder-feedback.jpg",
+      "area": "partners"
+    },
+    "G260": {
+      "id": "53e4dbf8-9e54-4f5f-b011-9d4ae472fbcf",
+      "filename": "finished-bed-country.jpg",
+      "area": "partners"
+    },
+    "G261": {
+      "id": "d68089d4-3eeb-4bb4-8f8e-7bc23a45d652",
+      "filename": "hero-elder-bed.jpg",
+      "area": "partners"
+    },
+    "G262": {
+      "id": "794e2b5a-1585-41a2-8c8b-261e7e463728",
+      "filename": "home-setup.jpg",
+      "area": "partners"
+    },
+    "G263": {
+      "id": "bfdac2a6-728b-46b7-be8a-345eb3a98826",
+      "filename": "unpacking-parts.jpg",
+      "area": "partners"
+    },
+    "G264": {
+      "id": "9a189bcb-a347-484e-9cad-42403005d5f7",
+      "filename": "verandah-test.jpg",
+      "area": "partners"
+    },
+    "G265": {
+      "id": "35352c1c-5892-47c8-96c2-9f8e72e99305",
+      "filename": "20251107-1E5A5974.jpg",
+      "area": "projects"
+    },
+    "G266": {
+      "id": "ec590ace-0b16-41bc-aaa2-6662a088a99a",
+      "filename": "20251107-1E5A6052.jpg",
+      "area": "projects"
+    },
+    "G267": {
+      "id": "96e9cce3-e157-4eae-9342-46672c401d43",
+      "filename": "Screenshot 2026-02-13 at 1.44.27 pm.png",
+      "area": "projects"
+    },
+    "G268": {
+      "id": "c564777c-c87c-4591-868c-010df7874f3e",
+      "filename": "tennant-creek.jpg",
+      "area": "community"
+    },
+    "G269": {
+      "id": "fcde7920-e21e-44fb-9fc7-063157b6d8de",
+      "filename": "Screenshot 2026-05-25 at 8.59.38 am.png",
+      "area": "bf17d0a9-2b12-4e4a-982e-09a8b1952ec6"
+    }
+  }
+}

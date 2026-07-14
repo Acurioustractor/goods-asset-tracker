@@ -250,7 +250,7 @@ export default async function VideoBriefPage({ params }: PageProps) {
           <li>Edit in Premiere → export H.264 1080p mp4 with the suggested filename.</li>
           <li>Drop file(s) into any folder, then run: <code className="rounded bg-white px-1.5 py-0.5">node scripts/upload-videos.mjs &quot;/path/to/folder&quot;</code></li>
           <li>Tags auto-derive from filename. Default: pending elder review, not public.</li>
-          <li>Open <Link href="/admin/photos" className="text-blue-700 hover:underline">/admin/photos</Link>, filter to <code className="rounded bg-white px-1 text-[10px]">🎬 Videos</code>, tap <span className="rounded bg-emerald-100 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-900">✓ Approve public</span> on the hero videos.</li>
+          <li>Open <Link href="/admin/media-library" className="text-blue-700 hover:underline">/admin/media-library</Link>, set <code className="rounded bg-white px-1 text-[10px]">Type → Video</code>, then clear consent for the hero videos in <Link href="/admin/consent" className="text-blue-700 hover:underline">/admin/consent</Link>.</li>
           <li>Refresh this page — the slot flips to filled. Refresh the deck preview to see the video in the report.</li>
         </ol>
       </div>

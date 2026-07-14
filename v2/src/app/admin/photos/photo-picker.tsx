@@ -1,9 +1,32 @@
 'use client';
 
 import { useMemo, useState, useTransition } from 'react';
-import type { PhotoStory } from './page';
 import { reviewPhoto } from './actions';
 import { bulkUpdateTags } from './bulk-tag-actions';
+
+// Type inlined 2026-07-04 when /admin/photos was retired to a redirect (page.tsx
+// no longer exports it). This client is dead code, kept in-folder for restore.
+type PhotoStory = {
+  id: string;
+  title: string;
+  content: string;
+  url: string;
+  videoUrl: string | null;
+  isVideo: boolean;
+  durationSeconds: number | null;
+  tags: string[];
+  isPublic: boolean;
+  needsElder: boolean;
+  consent: boolean;
+  location: string | null;
+  bedId: string | null;
+  community: string | null;
+  day: string | null;
+  source: string | null;
+  use: string | null;
+  themes: string[];
+  createdAt: string;
+};
 
 const COMMUNITY_LABELS: Record<string, string> = {
   'utopia-homelands': 'Utopia Homelands',

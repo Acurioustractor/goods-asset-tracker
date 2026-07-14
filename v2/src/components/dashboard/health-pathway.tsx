@@ -104,11 +104,11 @@ export function HealthPathway({ strategyLine }: { strategyLine?: string }) {
       {/* The clearest health-partner voice we hold */}
       <figure className="mt-6 max-w-2xl rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
         <blockquote className="font-display text-lg leading-snug" style={{ color: CHARCOAL }}>
-          &ldquo;There is also a lot of scabies and this often leads to Rheumatic Heart Disease, so washing
-          machines are essential to be able to clean infected clothing, bedding and towels.&rdquo;
+          &ldquo;It&rsquo;s great to say you should wash your sheets every week. But if you don&rsquo;t
+          have a washing machine, that&rsquo;s not going to work.&rdquo;
         </blockquote>
         <figcaption className="mt-3 text-xs uppercase tracking-wide" style={{ color: SAGE }}>
-          Jessica Allardyce · Miwatj Health, East Arnhem Land
+          Dr Boe Remenyi · Paediatric Cardiologist (practitioner)
         </figcaption>
       </figure>
     </div>

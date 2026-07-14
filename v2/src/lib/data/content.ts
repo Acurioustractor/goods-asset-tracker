@@ -236,10 +236,12 @@ export const quotes = [
     theme: 'health',
     verified: true,
   },
+  // Jessica Allardyce's washing/RHD quote removed 2026-07-12: not consent-cleared
+  // (storyteller-registry.ts tier: hold). Use Dr Boe Remenyi's line instead.
   {
-    text: 'Scabies often leads to Rheumatic Heart Disease, so washing machines are essential to be able to clean infected clothing, bedding and towels.',
-    author: 'Jessica Allardyce',
-    context: 'Miwatj Health',
+    text: 'It\'s great to say you should wash your sheets every week. But if you don\'t have a washing machine, that\'s not going to work.',
+    author: 'Dr Boe Remenyi',
+    context: 'Paediatric Cardiologist',
     theme: 'health',
     verified: true,
   },
@@ -279,7 +281,7 @@ export const partners = {
   communityPartners: [
     {
       name: 'Dianne Stokes',
-      role: 'Elder & Co-designer',
+      role: 'Elder & Designer',
       location: 'Tennant Creek',
       contribution: 'Named the washing machine "Pakkimjalki Kari", refines designs "around the fire" with family',
     },
@@ -437,12 +439,12 @@ export const impactStories = [
     summary: 'Elder Norman Frank founded Wilya Janta to advocate for housing. When his daughter tried a Goods bed, he called asking for three more, in maroon.',
   },
   {
-    id: 'jessica-health-connection',
-    title: 'The Scabies → Heart Disease Pathway',
-    person: 'Jessica Allardyce',
-    location: 'Gapuwiyak, East Arnhem, NT',
-    quote: 'Scabies often leads to Rheumatic Heart Disease, so washing machines are essential.',
-    summary: 'A washing machine isn\'t a convenience. It\'s cardiac prevention. Clean bedding breaks the scabies cycle.',
+    id: 'boe-washing-logic',
+    title: 'Why Washing Machines Matter',
+    person: 'Dr Boe Remenyi',
+    location: 'Paediatric Cardiologist, NT',
+    quote: 'It\'s great to say you should wash your sheets every week. But if you don\'t have a washing machine, that\'s not going to work.',
+    summary: 'A practitioner\'s logic: education only works when the hardware exists at home. Clean bedding supports the conditions that interrupt the scabies to RHD pathway.',
   },
   {
     id: 'cliff-health-messages',
@@ -485,10 +487,10 @@ export const communityPartnerships = [
     name: 'Tennant Creek',
     region: 'Northern Territory',
     headline: 'Where it all began',
-    description: 'Tennant Creek is the birthplace of Goods on Country. Elder Diane Stokes received the first bed and came back within two weeks requesting twenty more. Norm Frank called asking for three beds in maroon after his daughter tried one. The Pakkimjalki Kari washing machine was named here in Warumungu language by Diane herself.',
-    keyPeople: ['Diane Stokes', 'Norm Frank', 'Kristy Bloomfield'],
+    description: 'Tennant Creek is the birthplace of Goods on Country. Elder Dianne Stokes received the first bed and came back within two weeks requesting twenty more. Norman Frank called asking for three beds in maroon after his daughter tried one. The Pakkimjalki Kari washing machine was named here in Warumungu language by Dianne herself.',
+    keyPeople: ['Dianne Stokes', 'Norman Frank', 'Kristy Bloomfield'],
     bedsDelivered: 159,
-    highlight: 'Diane named the washing machine "Pakkimjalki Kari" in Warumungu language',
+    highlight: 'Dianne named the washing machine "Pakkimjalki Kari" in Warumungu language',
   },
   {
     id: 'alice-springs',
@@ -588,30 +590,38 @@ export const processSteps = [
   },
 ];
 
-// Investment case: sourced from Snow Foundation Q1 2026 proposal
-// Sally's feedback incorporated: removed Deadly Heart Trek reference,
-// added Do No Harm principle, fleshed out risks + mitigations
+// Investment case: the QBE Foundation catalytic raise, current as of 1 Jul 2026.
+// Ask, stack, risks and timeline are sourced from canon (canon.ts) and the QBE
+// Opportunity Register (Notion, "Goods x QBE - Start Here"). Update both when
+// the raise moves. Credit line required on all investor materials: "Catalysing
+// Impact, powered by Social Impact Hub, in partnership with QBE Foundation."
 export const investmentCase = {
-  headline: 'Making beds as ubiquitous in remote Australia as a troop carrier or an Akubra hat.',
-  totalAsk: '$120,000',
+  headline: 'Beds off the ground, made and owned On Country.',
+  totalAsk: '$400,000',
   fundingLines: [
     {
-      id: 'beds',
-      title: '100 Beds for Communities',
-      amount: '$60,000',
-      description: '100 stretch beds for requesting communities and health organisations. The old $600/bed planning anchor excludes long-haul freight and fixed-block absorption; current Buy-Kit marginal cost is $684.79/bed, with fixed costs treated separately.',
+      id: 'sefa',
+      title: 'SEFA: repayable finance anchor',
+      amount: '$300,000',
+      description: 'Concessional/blended loan, no ownership gate. Lends to social-enterprise companies. The anchor of every scenario; repayable carries the highest QBE match value.',
     },
     {
-      id: 'plant',
-      title: 'On-Country Production Plant',
-      amount: '$60,000',
-      description: 'Completes containerised production facility (current investment ~$100K from TFN and ACT). Enables community-based manufacturing, creating local jobs. Capacity: ~30 beds per week.',
+      id: 'snow',
+      title: 'Snow Foundation: first-mover commitment',
+      amount: '$100,000',
+      description: 'Deepest funder relationship, repeat backer. Being reframed from a grant ask to a signed multi-year LOI or repayable first-mover paper, the form QBE counts as match.',
+    },
+    {
+      id: 'centrecorp',
+      title: 'Centrecorp Foundation: grant / bed-order split',
+      amount: '$75,000',
+      description: 'Central Australia grant kept separate from the bed-order revenue it sits alongside, so the match and the sale are never double-counted.',
     },
   ],
 
   demand: [
-    { text: 'Diane Stokes received one bed, requested 20 more within two weeks, offering to fund them herself', person: 'Diane Stokes, Tennant Creek' },
-    { text: 'Norm Frank called requesting three beds in maroon after his daughter tried them', person: 'Norman Frank, Tennant Creek' },
+    { text: 'Dianne Stokes received one bed, then asked for 20 more within two weeks and offered to fund them herself', person: 'Dianne Stokes, Tennant Creek' },
+    { text: 'Norman Frank called requesting three beds in maroon after his daughter tried them', person: 'Norman Frank, Tennant Creek' },
     { text: 'Utopian homelands want beds for every child (~$150,000 worth)', person: 'Utopia Homelands, NT' },
     { text: 'Homeland Schools Company requesting 65 beds for kids across Maningrida communities', person: 'Maningrida, NT' },
     { text: 'Four health organisations reached out following last year\'s forum', person: 'Healthy Homes coordinators, OT workers' },
@@ -619,122 +629,123 @@ export const investmentCase = {
   ],
 
   productionPlant: {
-    investment: '~$100,000 already invested (TFN + ACT)',
+    investment: '$110,046 of press capex already spent (TFN + ACT)',
     capabilities: [
       'Shred plastic waste',
-      'Create pellets and press sheets',
-      'Computer-controlled router to cut bed components',
+      'Press recycled HDPE into the X-trestle leg components',
+      'Computer-controlled cutting for canvas and bed components',
     ],
-    capacity: '~30 beds per week when deployed for 2 months',
-    model: 'One container with shredder fills 200 tubs with processed plastic; production container arrives to build 200 beds from that plastic.',
-    futureCapability: 'Same facility will produce washing machines and fridges using different molds and cut files.',
+    capacity: '~30 beds a week, built to move community to community',
+    model: 'A two-container system: one collects and shreds plastic on an ongoing basis, the other presses and assembles. Built to move into community ownership.',
+    futureCapability: 'Same facility will produce washing machines using different molds and cut files.',
     plasticPerBed: '20kg per bed',
   },
 
+  // Current working risk picture (wiki/articles/governance/risk-register.md).
+  // A founder-review draft, not yet board-adopted.
   risks: [
     {
-      risk: 'Plastic waste supply',
-      detail: 'Communities may not generate enough consistent plastic waste to sustain production runs.',
-      mitigation: 'Two-container model separates collection (ongoing) from production (periodic). Shredder container stays in community collecting waste between production runs. Multiple community sources can feed one production run.',
+      risk: 'Key people',
+      detail: 'The two founders remain the bottleneck. High likelihood, high consequence.',
+      mitigation: 'Move production, operations and sales into clearer roles. Phase-1 hires (GM, then Business Development) are the priority once the catalytic raise lands.',
     },
     {
-      risk: 'Demand for production plant',
-      detail: 'Communities and organisations may not want to host or pay for the production facility.',
-      mitigation: 'Palm Island Community Company saw the video and said "we\'ll buy it." Communities may pay ~$5,000/week to host, creating local jobs. QIC wants to build 50 beds with staff for NAIDOC week. Multiple expressions of interest validate demand.',
+      risk: 'Debt',
+      detail: 'Repayable capital is taken on before the model can service it. Medium likelihood, high consequence.',
+      mitigation: 'Patient terms, stress tests, and debt sized to credible demand, not hope. SEFA is structured as concessional, not market-rate.',
     },
     {
-      risk: 'Payment model sustainability',
-      detail: 'Current model has no margin: funds come in, products go out. Not financially sustainable long-term.',
-      mitigation: 'This investment helps shift toward sustainable model. Social enterprise pathway: use philanthropy to build plant, then loan or rent to communities creating revenue. If ACT could build 1,000 beds on hand and sell them, this creates revenue stream for reinvestment.',
+      risk: 'Governance',
+      detail: 'Legal or board structure lags investor needs. Medium likelihood, high consequence.',
+      mitigation: 'Advisory committee in place today; QBE, SIH and legal counsel are helping pick the minimum viable structure once the entity decision lands (~end July 2026).',
     },
     {
-      risk: 'Product durability at scale',
-      detail: 'Only 15-20 stretch beds deployed to ~8 families. Insufficient sample size for confident scaling.',
-      mitigation: 'This funding deploys 100 beds for robust feedback before scaling to 5,000+ units. One bed has been outside at the farm for 6+ weeks testing durability. Targeting a few hundred beds deployed before major scale-up.',
+      risk: 'Community ownership',
+      detail: 'The local ownership model ends up too Western, complex, or under-resourced. Medium likelihood, high consequence.',
+      mitigation: 'In active design with Palm Island Community Company and Oonchiumpa, learning from existing community-controlled structures, tested place by place.',
     },
     {
-      risk: 'Key learnings from iteration',
-      detail: 'Each production run reveals improvements needed. V4 iterations still evolving.',
-      mitigation: 'Measured approach: deploy, gather feedback, iterate. Field testing from expanded deployment informs next version. Marginal cost per bed is $684.79 today (Buy-Kit), modelled at $425.74 with on-country factory production.',
+      risk: 'Cashflow',
+      detail: 'Costs land before grant or customer payments. High likelihood, medium-to-high consequence.',
+      mitigation: 'Working capital planning, shorter payment cycles, debt only taken when matched to revenue.',
     },
     {
-      risk: 'Do no harm',
-      detail: 'Risk of disrupting community dynamics, creating dependency, or cultural harm through imposed solutions.',
-      mitigation: 'Two years of iterative engagement with the Bloomfield family. Products designed in community, "around the fire," not imposed. Community members lead the design. Dynamic consent: communities choose what they need, when. Partnership models through existing strong community organisations.',
+      risk: 'Story and data',
+      detail: 'A story or image is used in a way the storyteller did not consent to. Medium likelihood, very high consequence.',
+      mitigation: 'Consent practice, story return, withdrawal rights, careful approval before anything ships externally.',
+    },
+    {
+      risk: 'Environmental',
+      detail: 'Goods adds to the waste problem it is trying to solve: offcuts, end-of-life parts, transport emissions. Medium likelihood, high consequence.',
+      mitigation: 'Design for repair, reuse and end-of-life; environmental controls are an active gap being worked on, not yet solved.',
+    },
+    {
+      risk: 'Production',
+      detail: 'Materials, machinery or labour delay delivery. Medium likelihood, medium-to-high consequence.',
+      mitigation: 'Supplier planning, inventory buffers, simpler SOPs, local operator training.',
     },
   ],
 
   partnerships: [
     {
-      name: 'Oonchiumpa Bloomfield Family',
-      role: 'Lead cultural consultants and product designers (community-led)',
-      detail: 'Paid top rates for cultural consultation (comparable to university research rates ~$3,800/day). Building washing machines together. Planning to host production plant in Alice Springs.',
+      name: 'Oonchiumpa',
+      role: 'Lead design partner, 100% Aboriginal-owned consultancy',
+      detail: 'Led by Kristy Bloomfield in Alice Springs. Design happens in community, around the fire, with Elders. Two years of iterative engagement.',
     },
     {
-      name: 'Red Dust Robotics',
-      role: 'Youth STEM education',
-      detail: 'Young fella teaching kids 3D printing and robotics: potential manufacturing skills pathway.',
-    },
-    {
-      name: 'Centre of Appropriate Technology',
-      role: 'Remote technology specialists',
-      detail: 'Decades of experience designing appropriate technology for remote communities.',
-    },
-    {
-      name: 'NPY Women\'s Council',
-      role: 'Community distribution',
-      detail: 'Angela Lynch: "always looking for beds." Established community network across NPY lands.',
-    },
-    {
-      name: 'Tennant Creek Community Shed',
-      role: 'Plastic collection and shredding hub',
-      detail: 'Interested in hosting shredding and plastic collection operations.',
+      name: 'Palm Island Community Company',
+      role: 'Community delivery partner',
+      detail: 'Guides beds to the families who need them, with Elder advisory. Central to the early feedback that shaped the bed design.',
     },
   ],
 
+  // The QBE Stage 2 critical path (Goods x QBE - Start Here, Notion, 26 Jun 2026).
   timeline: [
     {
-      period: 'Late Jan 2026',
+      period: 'Mid-Jul 2026',
       items: [
-        'Nic travels to Alice Springs and Tennant Creek',
-        'Build 5 washing machines with Bloomfield family',
-        'Deliver beds and gather feedback',
-        'Discuss production facility hosting and payment tiers',
+        'Advisory workshop tests the cost model and scenarios before the raise',
+        'Repayable finance conversations open: SEFA, Snow, Centrecorp, White Box SELF',
       ],
     },
     {
-      period: 'Q1 2026',
+      period: 'End Jul 2026',
       items: [
-        'Produce and deploy 100 beds to requesting communities',
-        'Complete production facility infrastructure',
-        'Establish first community production site',
-        'Formalise partnership agreements',
+        'Butterfly DGR transition expected to land',
+        'Entity and 51% First Nations ownership path reviewed with legal counsel',
       ],
     },
     {
-      period: 'Q2–Q4 2026',
+      period: 'Aug 2026',
       items: [
-        'Circuit production runs across NT communities',
-        'Expand to washing machine and fridge production',
-        'Build toward 1,000-bed inventory for commercial sales',
-        'Explore social impact loan for working capital',
+        'QBE Foundation hackathon with Catalysing Impact and Social Impact Hub',
+        'Target: close the first AU$400,000 of signed, match-eligible capital by 31 August',
+      ],
+    },
+    {
+      period: 'Sep–Nov 2026',
+      items: [
+        'QBE Stage 2 application submitted (September)',
+        'Steering Committee assessment (October)',
+        'Funding outcome decided (November)',
       ],
     },
   ],
 
+  // Active pipeline, QBE Opportunity Register (Notion). None signed yet —
+  // this is a conversion task, not a discovery one. Do not present these as
+  // secured funding.
   funders: [
-    { name: 'Snow Foundation', type: 'Strategic partner', status: 'Active' },
+    { name: 'SEFA', type: 'Repayable finance, target $300K', status: 'Briefing' },
+    { name: 'Snow Foundation', type: 'Multi-year LOI, target $100K', status: 'Pursuing' },
+    { name: 'Centrecorp Foundation', type: 'Grant + bed order, target $75K', status: 'Pursuing' },
     { name: 'The Funding Network', amount: '~$80K', type: 'Production facility', status: 'Completed' },
-    { name: 'Centre Corp Foundation', type: 'Beds', status: 'In discussion' },
   ],
 
   potentialFunders: [
-    { name: 'Minderoo Foundation', focus: 'Scale and systems change' },
-    { name: 'SEDI (Social Enterprise Development Initiative)', focus: 'Government grants for social enterprises' },
-    { name: 'Australian Communities Foundation', focus: 'Collective giving for community-led solutions' },
-    { name: 'Future Fund (ABC Foundation)', focus: 'Indigenous economic empowerment' },
-    { name: 'Giant Leap', focus: 'Impact VC for scalable social enterprise' },
-    { name: 'Circular Future Fund', focus: 'Circular economy and plastic waste' },
+    { name: 'White Box SELF', focus: 'Repayable social-enterprise loan, target $250K' },
+    { name: 'Minderoo Foundation', focus: 'Catalytic QBE-aligned grant, target $200K' },
+    { name: 'Vincent Fairfax Family Foundation', focus: 'Repeat-funder grant tail, target $50K' },
   ],
 };
 
@@ -812,7 +823,7 @@ export const communityLocations: CommunityLocation[] = [
     storytellerCount: 0,
     bedsDelivered: 147,
     description: 'Anmatyerr and Alyawarr country, including the Ampilatwatja outstation where Frankie Holmes OAM and Mr Donald Thompson OAM each received beds in May 2026. Multiple outstations across the homelands. Young people in Alice Springs built and delivered beds to outstation families the next day.',
-    highlight: 'Co-designed and built with young people in Alice Springs, delivered on country to outstation families. Includes Ampilatwatja, where two senior Alyawarr brothers received beds in May 2026.',
+    highlight: 'Designed and built with young people in Alice Springs, delivered on country to outstation families. Includes Ampilatwatja, where two senior Alyawarr brothers received beds in May 2026.',
     tooltipDirection: 'left',
   },
   // Ampilatwatja folded into Utopia Homelands on the heatpost map (same
@@ -1056,15 +1067,9 @@ export const storytellerEnrichment: Record<string, {
 
 // Video gallery items: local videos + external embeds
 export const videoGallery = [
-  {
-    id: 'jaquilane-testimony',
-    title: 'Jaquilane\'s Story',
-    description: 'A community member shares their experience with Goods on Country.',
-    src: videoUrl('jaquilane-testimony.mp4'),
-    poster: '/video/jaquilane-poster.jpg',
-    type: 'local' as const,
-    category: 'testimony',
-  },
+  // Jaquilane testimony PULLED 2026-07-03 — consent clearance in conflict; removed
+  // from all public surfaces (/gallery, /stories, /story) until clearance is
+  // confirmed. Asset remains in the repo (jaquilane-testimony.mp4). Re-add once cleared.
   {
     id: 'cliff-beds-dignity',
     title: 'Beds and Dignity',
@@ -1301,8 +1306,8 @@ export const mediaPack = {
       downloadSrc: videoUrl('recycling-plant-desktop.mp4'),
     },
     {
-      title: 'Community Voices: Bed Recipient, Alice Springs',
-      description: 'A community member and Stretch Bed recipient from Alice Springs shares their experience.',
+      title: 'Community Voices: Alice Springs',
+      description: 'A community member from Alice Springs shares their experience of the Stretch Bed.',
       embedUrl: 'https://share.descript.com/embed/LAT0KNJMxmH',
       downloadSrc: undefined as string | undefined,
     },

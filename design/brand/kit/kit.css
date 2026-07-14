@@ -1,0 +1,103 @@
+/* ============================================================================
+   Goods on Country — Claude Design KIT (shared brand components)
+   ----------------------------------------------------------------------------
+   Link this in any artifact for instant brand consistency:
+       <link rel="stylesheet" href="kit.css">
+   Tokens mirror design/brand/tokens.css (the single source of truth). Fonts load
+   per-artifact via the Adobe Fonts (Typekit) link in the artifact <head>:
+       <link rel="stylesheet" href="https://use.typekit.net/bys2ofg.css">
+   For Adobe Express export, the build step inlines this file + images (kit.css is
+   external here for fast authoring; export needs a self-contained file).
+   ========================================================================== */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #FBF8F1; --cream-muted: #F1ECE4; --sand: #E8DCC8; --card: #FFFFFF; --grid: #E6DFD1;
+  --terracotta: #C45C3E; --clay: #A8643F; --sage: #8B9D77; --olive: #7E9A68; --green: #5E7A4C;
+  --teal: #5C8A86; --gold: #BBA255; --ink: #2B2A26; --sub: #7A7363;
+  --display: "georgia", Georgia, "Times New Roman", serif;
+  --sans: "sinter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Screen scaffold (stacks artboards on a neutral ground for preview) */
+body { background: #d8d2c6; display: flex; flex-direction: column; align-items: center; gap: 28px; padding: 28px 0; font-family: var(--sans); }
+
+/* ---- Artboards: put ONE size class on each root element ----
+   Each root also needs data-canvas-width/height + the <head> hz: meta for export. */
+.slide   { position: relative; width: 1920px; height: 1080px; padding: 110px 130px; background: var(--cream); overflow: hidden; color: var(--ink); font-family: var(--sans); display: flex; flex-direction: column; } /* 16:9 deck */
+.onepager{ position: relative; width: 1280px; height: 1811px; padding: 110px 120px; background: var(--cream); overflow: hidden; color: var(--ink); font-family: var(--sans); display: flex; flex-direction: column; } /* A4 portrait */
+.square  { position: relative; width: 1080px; height: 1080px; padding: 90px; background: var(--cream); overflow: hidden; color: var(--ink); font-family: var(--sans); display: flex; flex-direction: column; } /* social */
+
+/* ---- Type roles ---- */
+.eyebrow { font-weight: 700; font-size: 23px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sage); }
+.eyebrow.terra { color: var(--terracotta); }
+.display { font-family: var(--display); font-weight: 400; letter-spacing: -0.01em; line-height: 1.04; color: var(--ink); }
+h1.display { font-size: 104px; } h2.display { font-size: 76px; } h3.display { font-size: 48px; }
+.body { font-size: 32px; line-height: 1.5; color: var(--ink); } .body.muted { color: var(--sub); }
+.small { font-size: 24px; line-height: 1.5; color: var(--sub); }
+.footnote { position: absolute; left: 130px; bottom: 64px; font-size: 20px; color: var(--sub); max-width: 1400px; line-height: 1.45; }
+.slide-num { position: absolute; top: 72px; right: 96px; font-size: 22px; font-weight: 700; letter-spacing: 0.08em; color: var(--sub); }
+.lead-head { max-width: 1500px; } .lead-head .eyebrow { margin-bottom: 26px; } .after-head { margin-top: 44px; }
+
+/* ---- Stat grid / cards ---- */
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.stat { background: var(--card); border: 1px solid var(--grid); border-radius: 24px; padding: 40px 42px; }
+.stat .num { font-family: var(--display); font-weight: 400; font-size: 78px; line-height: 1; letter-spacing: -0.01em; color: var(--terracotta); }
+.stat.sage .num { color: var(--green); }
+.stat .lbl { font-size: 26px; color: var(--sub); margin-top: 16px; line-height: 1.35; }
+
+/* ---- Quote block ---- */
+.bigquote { font-family: var(--display); font-weight: 400; font-size: 64px; line-height: 1.16; letter-spacing: -0.01em; color: var(--ink); }
+.bigquote .mark { color: var(--terracotta); }
+.attrib { font-weight: 700; font-size: 28px; color: var(--terracotta); margin-top: 40px; }
+.attrib span { color: var(--sub); font-weight: 500; }
+.qframe { font-size: 30px; line-height: 1.5; color: var(--sub); margin-top: 40px; max-width: 900px; }
+
+/* ---- Split (text + full-bleed image) ---- */
+.split { flex-direction: row !important; gap: 0; padding: 0 !important; }
+.split .split-text { flex: 1; padding: 110px; display: flex; flex-direction: column; justify-content: center; }
+.split .split-img { width: 760px; background-size: cover; background-position: center; flex: none; }
+
+/* ---- Spec list ---- */
+.speclist { list-style: none; margin-top: 40px; }
+.speclist li { font-size: 30px; color: var(--ink); padding: 22px 0; border-bottom: 1px solid var(--grid); line-height: 1.35; }
+.speclist li:last-child { border-bottom: none; } .speclist b { font-weight: 700; }
+
+/* ---- Cost / break-even bar chart ---- */
+.chartwrap { display: flex; align-items: flex-end; gap: 70px; }
+.bar-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+.bar { width: 230px; border-radius: 16px 16px 0 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 22px; color: #fff; font-family: var(--display); font-size: 46px; }
+.bar-label { font-size: 26px; color: var(--ink); margin-top: 22px; text-align: center; font-weight: 600; }
+.bar-sub { font-size: 21px; color: var(--sub); margin-top: 6px; text-align: center; }
+.modelled { font-size: 18px; color: var(--gold); font-weight: 700; letter-spacing: 0.04em; }
+
+/* ---- Process steps / pills / chain ---- */
+.steps { display: flex; gap: 16px; }
+.step { flex: 1; background: var(--card); border: 1px solid var(--grid); border-radius: 16px; padding: 26px 18px; text-align: center; font-weight: 700; font-size: 28px; color: var(--ink); }
+.step .sn { display: block; font-size: 20px; color: var(--terracotta); margin-bottom: 8px; }
+.chain { display: flex; align-items: center; flex-wrap: wrap; }
+.chain .link { font-weight: 600; font-size: 27px; color: var(--ink); background: var(--card); border: 1px solid var(--grid); border-radius: 14px; padding: 18px 26px; }
+.chain .link.lead { background: var(--sage); color: #fff; border-color: var(--sage); }
+.chain .conn { width: 46px; height: 2px; background: var(--clay); margin: 0 8px; flex: none; }
+
+/* ---- Stack rows (capital stack) ---- */
+.stack { display: flex; flex-direction: column; gap: 16px; }
+.stack-row { display: flex; align-items: center; gap: 22px; font-size: 28px; color: var(--ink); }
+.swatch { width: 22px; height: 22px; border-radius: 6px; flex: none; }
+.stack-row .name { flex: 1; } .stack-row .val { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* ---- Dark variant ---- */
+.dark { background: var(--ink) !important; color: #FBF8F1; }
+.dark .display { color: #FBF8F1; } .dark .body { color: #e8e2d6; } .dark .eyebrow { color: var(--sage); }
+.dark .slide-num { color: #6f6a5e; } .dark .small { color: #b8b1a3; }
+
+/* ---- Logo ---- */
+.wordmark { height: 52px; }
+
+/* ---- Print: one artboard per page, full bleed (set @page size per artifact) ---- */
+@media print {
+  body { background: #fff; gap: 0; padding: 0; display: block; }
+  .slide, .onepager, .square { box-shadow: none; break-after: page; page-break-after: always; }
+  .slide:last-child, .onepager:last-child, .square:last-child { break-after: auto; page-break-after: auto; }
+}

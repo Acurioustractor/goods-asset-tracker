@@ -8,11 +8,27 @@
       "type": "repo doc",
       "location": "wiki/outputs/2026-06-02-qbe-catalytic-pitch/00-MASTER-pitch-deck-blueprint.md",
       "status": "written",
-      "claimLabels": ["verified", "modelled"],
+      "claimLabels": [
+        "verified",
+        "modelled"
+      ],
       "dataClass": "amber",
       "owner": "Ben/Nic",
-      "qbeAreas": ["01", "10"],
-      "citesCanon": ["beds-deployed", "communities-served", "plastic-kg", "revenue-xero-paid", "stretch-price", "marginal-buykit", "marginal-factory", "marginal-community", "save-per-bed"],
+      "qbeAreas": [
+        "01",
+        "10"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "communities-served",
+        "plastic-kg",
+        "revenue-xero-paid",
+        "stretch-price",
+        "marginal-buykit",
+        "marginal-factory",
+        "marginal-community",
+        "save-per-bed"
+      ],
       "lastVerified": "2026-06-02"
     },
     {
@@ -22,11 +38,23 @@
       "type": "repo doc",
       "location": "wiki/outputs/2026-06-02-qbe-catalytic-pitch/",
       "status": "written",
-      "claimLabels": ["verified", "modelled"],
+      "claimLabels": [
+        "verified",
+        "modelled"
+      ],
       "dataClass": "amber",
       "owner": "Ben/Nic",
-      "qbeAreas": ["01", "02", "10"],
-      "citesCanon": ["beds-deployed", "communities-served", "revenue-xero-paid", "save-per-bed"],
+      "qbeAreas": [
+        "01",
+        "02",
+        "10"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "communities-served",
+        "revenue-xero-paid",
+        "save-per-bed"
+      ],
       "lastVerified": "2026-06-02"
     },
     {
@@ -36,11 +64,22 @@
       "type": "design file",
       "location": "design/goods-theory-of-change-v2.pen",
       "status": "in-build",
-      "claimLabels": ["verified", "modelled"],
+      "claimLabels": [
+        "verified",
+        "modelled"
+      ],
       "dataClass": "amber",
       "owner": "Ben",
-      "qbeAreas": ["01", "10"],
-      "citesCanon": ["beds-deployed", "communities-served", "revenue-received", "save-per-bed"],
+      "qbeAreas": [
+        "01",
+        "10"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "communities-served",
+        "revenue-received",
+        "save-per-bed"
+      ],
       "lastVerified": "2026-06-02"
     },
     {
@@ -50,11 +89,21 @@
       "type": "notion page",
       "location": "https://app.notion.com/p/373ebcf981cf80748e1ef80e281b8fd6",
       "status": "live",
-      "claimLabels": ["verified"],
+      "claimLabels": [
+        "verified"
+      ],
       "dataClass": "green",
       "owner": "Ben",
-      "qbeAreas": ["01"],
-      "citesCanon": ["beds-deployed", "communities-served", "revenue-received", "marginal-buykit", "save-per-bed"],
+      "qbeAreas": [
+        "01"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "communities-served",
+        "revenue-received",
+        "marginal-buykit",
+        "save-per-bed"
+      ],
       "lastVerified": "2026-06-02"
     },
     {
@@ -64,11 +113,18 @@
       "type": "live route",
       "location": "https://goodsoncountry.com/pitch",
       "status": "live-public",
-      "claimLabels": ["verified"],
+      "claimLabels": [
+        "verified"
+      ],
       "dataClass": "green",
       "owner": "Ben",
-      "qbeAreas": ["01"],
-      "citesCanon": ["beds-deployed", "communities-served"],
+      "qbeAreas": [
+        "01"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "communities-served"
+      ],
       "lastVerified": "2026-05-30"
     },
     {
@@ -78,11 +134,24 @@
       "type": "live route (gated)",
       "location": "https://goodsoncountry.com/sites/cost-lab",
       "status": "live-gated",
-      "claimLabels": ["verified", "modelled"],
+      "claimLabels": [
+        "verified",
+        "modelled"
+      ],
       "dataClass": "amber",
       "owner": "Ben/Nic",
-      "qbeAreas": ["03", "04", "11"],
-      "citesCanon": ["marginal-buykit", "marginal-factory", "marginal-community", "save-per-bed", "stretch-price"],
+      "qbeAreas": [
+        "03",
+        "04",
+        "11"
+      ],
+      "citesCanon": [
+        "marginal-buykit",
+        "marginal-factory",
+        "marginal-community",
+        "save-per-bed",
+        "stretch-price"
+      ],
       "lastVerified": "2026-06-05"
     },
     {
@@ -92,11 +161,22 @@
       "type": "live route (gated)",
       "location": "https://goodsoncountry.com/investors",
       "status": "live-gated",
-      "claimLabels": ["verified", "modelled"],
+      "claimLabels": [
+        "verified",
+        "modelled"
+      ],
       "dataClass": "amber",
       "owner": "Ben/Nic",
-      "qbeAreas": ["04", "11"],
-      "citesCanon": ["marginal-buykit", "marginal-factory", "stretch-price", "revenue-received"],
+      "qbeAreas": [
+        "04",
+        "11"
+      ],
+      "citesCanon": [
+        "marginal-buykit",
+        "marginal-factory",
+        "stretch-price",
+        "revenue-received"
+      ],
       "lastVerified": "2026-06-05"
     },
     {
@@ -106,11 +186,21 @@
       "type": "live route",
       "location": "https://goodsoncountry.com/cost-story",
       "status": "live-public",
-      "claimLabels": ["verified", "modelled"],
+      "claimLabels": [
+        "verified",
+        "modelled"
+      ],
       "dataClass": "green",
       "owner": "Ben",
-      "qbeAreas": ["03"],
-      "citesCanon": ["marginal-buykit", "save-per-bed", "stretch-price", "plastic-kg"],
+      "qbeAreas": [
+        "03"
+      ],
+      "citesCanon": [
+        "marginal-buykit",
+        "save-per-bed",
+        "stretch-price",
+        "plastic-kg"
+      ],
       "lastVerified": "2026-06-02"
     },
     {
@@ -120,11 +210,22 @@
       "type": "repo code",
       "location": "v2/src/lib/cost-model/engine.ts",
       "status": "built",
-      "claimLabels": ["verified", "modelled"],
+      "claimLabels": [
+        "verified",
+        "modelled"
+      ],
       "dataClass": "green",
       "owner": "Ben",
-      "qbeAreas": ["03", "11"],
-      "citesCanon": ["marginal-buykit", "marginal-factory", "marginal-community", "save-per-bed"],
+      "qbeAreas": [
+        "03",
+        "11"
+      ],
+      "citesCanon": [
+        "marginal-buykit",
+        "marginal-factory",
+        "marginal-community",
+        "save-per-bed"
+      ],
       "lastVerified": "2026-05-29"
     },
     {
@@ -134,11 +235,19 @@
       "type": "repo doc",
       "location": "wiki/outputs/2026-06-05-goods-best-case-scenario.md",
       "status": "modelled",
-      "claimLabels": ["modelled"],
+      "claimLabels": [
+        "modelled"
+      ],
       "dataClass": "amber",
       "owner": "Ben/Nic",
-      "qbeAreas": ["05", "11"],
-      "citesCanon": ["marginal-factory", "marginal-community"],
+      "qbeAreas": [
+        "05",
+        "11"
+      ],
+      "citesCanon": [
+        "marginal-factory",
+        "marginal-community"
+      ],
       "lastVerified": "2026-06-05"
     },
     {
@@ -148,11 +257,20 @@
       "type": "repo doc",
       "location": "wiki/outputs/2026-06-05-cost-lab-playbook.md",
       "status": "written",
-      "claimLabels": ["internal-only"],
+      "claimLabels": [
+        "internal-only"
+      ],
       "dataClass": "amber",
       "owner": "Ben/Nic",
-      "qbeAreas": ["03", "04"],
-      "citesCanon": ["marginal-buykit", "save-per-bed", "stretch-price"],
+      "qbeAreas": [
+        "03",
+        "04"
+      ],
+      "citesCanon": [
+        "marginal-buykit",
+        "save-per-bed",
+        "stretch-price"
+      ],
       "lastVerified": "2026-06-05"
     },
     {
@@ -162,11 +280,22 @@
       "type": "live route",
       "location": "https://goodsoncountry.com/impact",
       "status": "live-public",
-      "claimLabels": ["verified", "modelled"],
+      "claimLabels": [
+        "verified",
+        "modelled"
+      ],
       "dataClass": "green",
       "owner": "Ben",
-      "qbeAreas": ["02"],
-      "citesCanon": ["beds-deployed", "communities-served", "plastic-kg", "washers-in-community", "revenue-received"],
+      "qbeAreas": [
+        "02"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "communities-served",
+        "plastic-kg",
+        "washers-in-community",
+        "revenue-received"
+      ],
       "lastVerified": "2026-06-03"
     },
     {
@@ -176,11 +305,24 @@
       "type": "repo doc",
       "location": "wiki/outputs/2026-05-29-qbe-canonical-numbers-sheet.md",
       "status": "written",
-      "claimLabels": ["verified"],
+      "claimLabels": [
+        "verified"
+      ],
       "dataClass": "amber",
       "owner": "Ben",
-      "qbeAreas": ["02", "04"],
-      "citesCanon": ["beds-deployed", "stretch-beds-deployed", "communities-served", "plastic-kg", "stretch-price", "revenue-received", "accounts-receivable"],
+      "qbeAreas": [
+        "02",
+        "04"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "stretch-beds-deployed",
+        "communities-served",
+        "plastic-kg",
+        "stretch-price",
+        "revenue-received",
+        "accounts-receivable"
+      ],
       "lastVerified": "2026-05-29"
     },
     {
@@ -190,11 +332,19 @@
       "type": "live route",
       "location": "https://goodsoncountry.com/bed/GB0-156-40",
       "status": "live-public",
-      "claimLabels": ["verified"],
+      "claimLabels": [
+        "verified"
+      ],
       "dataClass": "green",
       "owner": "Ben",
-      "qbeAreas": ["02", "06"],
-      "citesCanon": ["beds-deployed", "stretch-beds-deployed"],
+      "qbeAreas": [
+        "02",
+        "06"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "stretch-beds-deployed"
+      ],
       "lastVerified": "2026-06-06"
     },
     {
@@ -204,11 +354,18 @@
       "type": "live route",
       "location": "https://goodsoncountry.com/communities",
       "status": "live-public",
-      "claimLabels": ["verified", "modelled"],
+      "claimLabels": [
+        "verified",
+        "modelled"
+      ],
       "dataClass": "green",
       "owner": "Ben",
-      "qbeAreas": ["02"],
-      "citesCanon": ["communities-served"],
+      "qbeAreas": [
+        "02"
+      ],
+      "citesCanon": [
+        "communities-served"
+      ],
       "lastVerified": "2026-05-30"
     },
     {
@@ -218,11 +375,20 @@
       "type": "repo doc",
       "location": "wiki/outputs/2026-05-18-centrecorp-utopia-impact-report.md",
       "status": "written",
-      "claimLabels": ["verified", "modelled"],
+      "claimLabels": [
+        "verified",
+        "modelled"
+      ],
       "dataClass": "amber",
       "owner": "Ben",
-      "qbeAreas": ["02"],
-      "citesCanon": ["beds-deployed", "communities-served", "plastic-kg"],
+      "qbeAreas": [
+        "02"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "communities-served",
+        "plastic-kg"
+      ],
       "lastVerified": "2026-05-18"
     },
     {
@@ -232,11 +398,18 @@
       "type": "live route",
       "location": "https://goodsoncountry.com/stories",
       "status": "live-public",
-      "claimLabels": ["verified"],
+      "claimLabels": [
+        "verified"
+      ],
       "dataClass": "red",
       "owner": "Ben",
-      "qbeAreas": ["02"],
-      "citesCanon": ["display-storyteller-pool", "el-published-stories"],
+      "qbeAreas": [
+        "02"
+      ],
+      "citesCanon": [
+        "display-storyteller-pool",
+        "el-published-stories"
+      ],
       "lastVerified": "2026-06-17"
     },
     {
@@ -246,11 +419,18 @@
       "type": "live route",
       "location": "https://goodsoncountry.com/field-notes/utopia-may-2026",
       "status": "live-public",
-      "claimLabels": ["verified"],
+      "claimLabels": [
+        "verified"
+      ],
       "dataClass": "red",
       "owner": "Ben",
-      "qbeAreas": ["02"],
-      "citesCanon": ["display-storyteller-pool", "communities-served"],
+      "qbeAreas": [
+        "02"
+      ],
+      "citesCanon": [
+        "display-storyteller-pool",
+        "communities-served"
+      ],
       "lastVerified": "2026-06-17"
     },
     {
@@ -260,11 +440,18 @@
       "type": "skill",
       "location": ".claude/skills/ledger-story",
       "status": "built",
-      "claimLabels": ["internal-only"],
+      "claimLabels": [
+        "internal-only"
+      ],
       "dataClass": "red",
       "owner": "Ben",
-      "qbeAreas": ["02", "07"],
-      "citesCanon": ["display-storyteller-pool"],
+      "qbeAreas": [
+        "02",
+        "07"
+      ],
+      "citesCanon": [
+        "display-storyteller-pool"
+      ],
       "lastVerified": "2026-06-17"
     },
     {
@@ -274,11 +461,18 @@
       "type": "repo doc",
       "location": "wiki/outputs/2026-06-03-storyteller-triage.md",
       "status": "written",
-      "claimLabels": ["internal-only"],
+      "claimLabels": [
+        "internal-only"
+      ],
       "dataClass": "red",
       "owner": "Ben",
-      "qbeAreas": ["02", "07"],
-      "citesCanon": ["display-storyteller-pool"],
+      "qbeAreas": [
+        "02",
+        "07"
+      ],
+      "citesCanon": [
+        "display-storyteller-pool"
+      ],
       "lastVerified": "2026-06-17"
     },
     {
@@ -288,11 +482,17 @@
       "type": "repo doc",
       "location": "wiki/outputs/2026-06-02-qbe-catalytic-pitch/05-goods-voice-map.md",
       "status": "locked",
-      "claimLabels": ["verified"],
+      "claimLabels": [
+        "verified"
+      ],
       "dataClass": "red",
       "owner": "Ben",
-      "qbeAreas": ["02"],
-      "citesCanon": ["display-storyteller-pool"],
+      "qbeAreas": [
+        "02"
+      ],
+      "citesCanon": [
+        "display-storyteller-pool"
+      ],
       "lastVerified": "2026-06-17"
     },
     {
@@ -302,11 +502,17 @@
       "type": "repo doc",
       "location": "wiki/outputs/2026-06-13-goods-strategic-pack/05-impact-measurement-method.md",
       "status": "written",
-      "claimLabels": ["verified"],
+      "claimLabels": [
+        "verified"
+      ],
       "dataClass": "red",
       "owner": "Ben",
-      "qbeAreas": ["02"],
-      "citesCanon": ["cleared-voices"],
+      "qbeAreas": [
+        "02"
+      ],
+      "citesCanon": [
+        "cleared-voices"
+      ],
       "lastVerified": "2026-06-17"
     },
     {
@@ -316,11 +522,22 @@
       "type": "repo doc",
       "location": "wiki/articles/governance/risk-register.md",
       "status": "written",
-      "claimLabels": ["verified", "modelled", "internal-only"],
+      "claimLabels": [
+        "verified",
+        "modelled",
+        "internal-only"
+      ],
       "dataClass": "amber",
       "owner": "Ben/Nic",
-      "qbeAreas": ["05", "07"],
-      "citesCanon": ["signed-lois", "beds-deployed", "communities-served"],
+      "qbeAreas": [
+        "05",
+        "07"
+      ],
+      "citesCanon": [
+        "signed-lois",
+        "beds-deployed",
+        "communities-served"
+      ],
       "lastVerified": "2026-06-13"
     },
     {
@@ -330,11 +547,22 @@
       "type": "repo doc",
       "location": "wiki/outputs/2026-06-13-goods-strategic-pack/18-governance-framework.md",
       "status": "written",
-      "claimLabels": ["verified", "modelled", "target"],
+      "claimLabels": [
+        "verified",
+        "modelled",
+        "target"
+      ],
       "dataClass": "amber",
       "owner": "Ben/Nic",
-      "qbeAreas": ["07"],
-      "citesCanon": ["entity-operating-now", "entity-trading-goforward", "entity-dgr-home", "signed-lois"],
+      "qbeAreas": [
+        "07"
+      ],
+      "citesCanon": [
+        "entity-operating-now",
+        "entity-trading-goforward",
+        "entity-dgr-home",
+        "signed-lois"
+      ],
       "lastVerified": "2026-06-16"
     },
     {
@@ -344,11 +572,21 @@
       "type": "repo doc",
       "location": "wiki/outputs/2026-06-13-goods-strategic-pack/07-role-map.md",
       "status": "written",
-      "claimLabels": ["verified", "modelled", "target", "future"],
+      "claimLabels": [
+        "verified",
+        "modelled",
+        "target",
+        "future"
+      ],
       "dataClass": "amber",
       "owner": "Ben/Nic",
-      "qbeAreas": ["08"],
-      "citesCanon": ["signed-lois", "entity-trading-goforward"],
+      "qbeAreas": [
+        "08"
+      ],
+      "citesCanon": [
+        "signed-lois",
+        "entity-trading-goforward"
+      ],
       "lastVerified": "2026-06-17"
     },
     {
@@ -358,11 +596,22 @@
       "type": "repo doc",
       "location": "wiki/outputs/2026-06-13-goods-strategic-pack/04-entity-wording-block.md",
       "status": "written",
-      "claimLabels": ["verified", "target", "future"],
+      "claimLabels": [
+        "verified",
+        "target",
+        "future"
+      ],
       "dataClass": "amber",
       "owner": "Ben/Nic/legal",
-      "qbeAreas": ["09"],
-      "citesCanon": ["entity-operating-now", "entity-trading-goforward", "entity-dgr-home", "entity-dormant"],
+      "qbeAreas": [
+        "09"
+      ],
+      "citesCanon": [
+        "entity-operating-now",
+        "entity-trading-goforward",
+        "entity-dgr-home",
+        "entity-dormant"
+      ],
       "lastVerified": "2026-06-17"
     },
     {
@@ -372,11 +621,22 @@
       "type": "repo doc",
       "location": "wiki/outputs/2026-05-29-qbe-area-09-legal-structure-full-review.md",
       "status": "written",
-      "claimLabels": ["verified", "target", "future"],
+      "claimLabels": [
+        "verified",
+        "target",
+        "future"
+      ],
       "dataClass": "amber",
       "owner": "Ben/Nic/legal",
-      "qbeAreas": ["09"],
-      "citesCanon": ["entity-operating-now", "entity-trading-goforward", "entity-dgr-home", "entity-dormant"],
+      "qbeAreas": [
+        "09"
+      ],
+      "citesCanon": [
+        "entity-operating-now",
+        "entity-trading-goforward",
+        "entity-dgr-home",
+        "entity-dormant"
+      ],
       "lastVerified": "2026-06-17"
     },
     {
@@ -386,11 +646,22 @@
       "type": "repo doc",
       "location": "wiki/articles/governance/legal-structure.md",
       "status": "written",
-      "claimLabels": ["verified", "target", "future"],
+      "claimLabels": [
+        "verified",
+        "target",
+        "future"
+      ],
       "dataClass": "amber",
       "owner": "Ben/Nic/legal",
-      "qbeAreas": ["09"],
-      "citesCanon": ["entity-operating-now", "entity-trading-goforward", "entity-dgr-home", "entity-dormant"],
+      "qbeAreas": [
+        "09"
+      ],
+      "citesCanon": [
+        "entity-operating-now",
+        "entity-trading-goforward",
+        "entity-dgr-home",
+        "entity-dormant"
+      ],
       "lastVerified": "2026-06-17"
     },
     {
@@ -400,11 +671,21 @@
       "type": "repo doc",
       "location": "wiki/outputs/2026-06-16-qbe-opportunity-hub/02-investor-alignment.md",
       "status": "written",
-      "claimLabels": ["verified", "modelled", "internal-only"],
+      "claimLabels": [
+        "verified",
+        "modelled",
+        "internal-only"
+      ],
       "dataClass": "amber",
       "owner": "Ben/Nic",
-      "qbeAreas": ["12"],
-      "citesCanon": ["signed-lois", "beds-deployed", "communities-served"],
+      "qbeAreas": [
+        "12"
+      ],
+      "citesCanon": [
+        "signed-lois",
+        "beds-deployed",
+        "communities-served"
+      ],
       "lastVerified": "2026-06-17"
     },
     {
@@ -414,11 +695,22 @@
       "type": "repo doc",
       "location": "wiki/outputs/2026-06-13-goods-strategic-pack/12-investor-alignment.md",
       "status": "written",
-      "claimLabels": ["verified", "modelled", "internal-only"],
+      "claimLabels": [
+        "verified",
+        "modelled",
+        "internal-only"
+      ],
       "dataClass": "amber",
       "owner": "Ben/Nic",
-      "qbeAreas": ["12"],
-      "citesCanon": ["entity-trading-goforward", "beds-deployed", "communities-served", "signed-lois"],
+      "qbeAreas": [
+        "12"
+      ],
+      "citesCanon": [
+        "entity-trading-goforward",
+        "beds-deployed",
+        "communities-served",
+        "signed-lois"
+      ],
       "lastVerified": "2026-06-17"
     },
     {
@@ -428,11 +720,31 @@
       "type": "repo doc",
       "location": "wiki/outputs/funder-reports/sefa/2026-06-27-sefa-loan-application-brief.pdf",
       "status": "written",
-      "claimLabels": ["verified", "modelled", "internal-only"],
+      "claimLabels": [
+        "verified",
+        "modelled",
+        "internal-only"
+      ],
       "dataClass": "amber",
       "owner": "Ben/Nic",
-      "qbeAreas": ["10", "11", "12"],
-      "citesCanon": ["beds-deployed", "communities-served", "stretch-price", "plastic-kg", "revenue-carveout", "accounts-receivable", "marginal-buykit", "marginal-factory", "marginal-community", "save-per-bed", "signed-lois"],
+      "qbeAreas": [
+        "10",
+        "11",
+        "12"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "communities-served",
+        "stretch-price",
+        "plastic-kg",
+        "revenue-carveout",
+        "accounts-receivable",
+        "marginal-buykit",
+        "marginal-factory",
+        "marginal-community",
+        "save-per-bed",
+        "signed-lois"
+      ],
       "lastVerified": "2026-06-27"
     },
     {
@@ -442,11 +754,28 @@
       "type": "repo doc",
       "location": "wiki/outputs/funder-reports/snow/2026-06-27-snow-first-mover-brief.pdf",
       "status": "written",
-      "claimLabels": ["verified", "modelled", "internal-only"],
+      "claimLabels": [
+        "verified",
+        "modelled",
+        "internal-only"
+      ],
       "dataClass": "amber",
       "owner": "Ben/Nic",
-      "qbeAreas": ["10", "12"],
-      "citesCanon": ["beds-deployed", "communities-served", "stretch-price", "plastic-kg", "revenue-carveout", "marginal-buykit", "marginal-factory", "save-per-bed", "signed-lois"],
+      "qbeAreas": [
+        "10",
+        "12"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "communities-served",
+        "stretch-price",
+        "plastic-kg",
+        "revenue-carveout",
+        "marginal-buykit",
+        "marginal-factory",
+        "save-per-bed",
+        "signed-lois"
+      ],
       "lastVerified": "2026-06-27"
     },
     {
@@ -456,11 +785,24 @@
       "type": "repo doc",
       "location": "wiki/outputs/funder-reports/centrecorp/2026-06-27-centrecorp-nextround-brief.pdf",
       "status": "written",
-      "claimLabels": ["verified", "modelled", "internal-only"],
+      "claimLabels": [
+        "verified",
+        "modelled",
+        "internal-only"
+      ],
       "dataClass": "amber",
       "owner": "Ben/Nic",
-      "qbeAreas": ["02", "10"],
-      "citesCanon": ["beds-deployed", "communities-served", "stretch-price", "plastic-kg", "signed-lois"],
+      "qbeAreas": [
+        "02",
+        "10"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "communities-served",
+        "stretch-price",
+        "plastic-kg",
+        "signed-lois"
+      ],
       "lastVerified": "2026-06-27"
     },
     {
@@ -470,12 +812,322 @@
       "type": "repo doc",
       "location": "wiki/outputs/2026-06-27-funding-source-audit/",
       "status": "written",
-      "claimLabels": ["verified", "internal-only"],
+      "claimLabels": [
+        "verified",
+        "internal-only"
+      ],
       "dataClass": "amber",
       "owner": "Ben/Nic",
-      "qbeAreas": ["10", "12"],
-      "citesCanon": ["beds-deployed", "communities-served", "revenue-carveout", "signed-lois"],
+      "qbeAreas": [
+        "10",
+        "12"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "communities-served",
+        "revenue-carveout",
+        "signed-lois"
+      ],
       "lastVerified": "2026-06-28"
+    },
+    {
+      "id": "funding-refresh-2026-06-28",
+      "title": "Funding pipeline refresh: open-now shortlist with live-verified dates",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-06-28-funding-refresh/",
+      "status": "written",
+      "claimLabels": [
+        "verified",
+        "internal-only"
+      ],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": [
+        "10",
+        "12"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "communities-served",
+        "signed-lois"
+      ],
+      "lastVerified": "2026-06-28"
+    },
+    {
+      "id": "invest-deck-full",
+      "title": "Investment deck (16 slides, rendered)",
+      "pillar": "pitch",
+      "type": "design file",
+      "location": "design/brand/claude-design/invest-deck-full.html",
+      "status": "built",
+      "claimLabels": [
+        "verified",
+        "modelled",
+        "target"
+      ],
+      "dataClass": "amber",
+      "owner": "Ben",
+      "qbeAreas": [
+        "01",
+        "10"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "stretch-beds-deployed",
+        "communities-served",
+        "washers-in-community",
+        "plastic-kg",
+        "revenue-received",
+        "revenue-carveout",
+        "accounts-receivable",
+        "stretch-price",
+        "marginal-buykit",
+        "marginal-factory",
+        "save-per-bed",
+        "signed-lois"
+      ],
+      "lastVerified": "2026-07-01"
+    },
+    {
+      "id": "funder-onepager",
+      "title": "Funder one-pager (rendered)",
+      "pillar": "pitch",
+      "type": "design file",
+      "location": "design/brand/kit/funder-onepager.html",
+      "status": "built",
+      "claimLabels": [
+        "verified",
+        "target"
+      ],
+      "dataClass": "amber",
+      "owner": "Ben",
+      "qbeAreas": [
+        "01",
+        "10"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "communities-served",
+        "plastic-kg",
+        "revenue-carveout"
+      ],
+      "lastVerified": "2026-07-01"
+    },
+    {
+      "id": "funder-landscape-onepager",
+      "title": "Funder landscape one-pager (internal, SIH-facing)",
+      "pillar": "pitch",
+      "type": "design file",
+      "location": "design/brand/kit/funder-landscape-onepager.html",
+      "status": "built",
+      "claimLabels": [
+        "verified",
+        "target",
+        "internal-only"
+      ],
+      "dataClass": "amber",
+      "owner": "Ben",
+      "qbeAreas": [
+        "10",
+        "12"
+      ],
+      "citesCanon": [
+        "signed-lois"
+      ],
+      "lastVerified": "2026-07-01"
+    },
+    {
+      "id": "investment-machine-review",
+      "title": "Investment machine review (Notion + design surfaces)",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-07-02-investment-machine/01-notion-and-design-review.md",
+      "status": "written",
+      "claimLabels": [
+        "verified",
+        "internal-only"
+      ],
+      "dataClass": "amber",
+      "owner": "Ben",
+      "qbeAreas": [
+        "10",
+        "12"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "stretch-beds-deployed",
+        "communities-served",
+        "washers-in-community",
+        "plastic-kg",
+        "revenue-received",
+        "revenue-carveout",
+        "stretch-price",
+        "signed-lois"
+      ],
+      "lastVerified": "2026-07-02"
+    },
+    {
+      "id": "investor-targets-2026-07",
+      "title": "Investor targets shortlist (July 2026)",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-07-02-investment-machine/02-investor-targets.md",
+      "status": "written",
+      "claimLabels": [
+        "verified",
+        "internal-only"
+      ],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": [
+        "10",
+        "12"
+      ],
+      "citesCanon": [
+        "signed-lois"
+      ],
+      "lastVerified": "2026-07-02"
+    },
+    {
+      "id": "machine-blueprint",
+      "title": "Investment machine blueprint (GHL + Notion operating system)",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-07-02-investment-machine/03-machine-blueprint.md",
+      "status": "written",
+      "claimLabels": [
+        "verified",
+        "internal-only"
+      ],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": [
+        "10",
+        "12"
+      ],
+      "citesCanon": [
+        "revenue-received",
+        "revenue-carveout",
+        "signed-lois",
+        "cleared-voices"
+      ],
+      "lastVerified": "2026-07-02"
+    },
+    {
+      "id": "pipeline-strategy-20260703",
+      "title": "Pipeline strategy and five-bucket reconciliation (July 2026)",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-07-03-pipeline-strategy.md",
+      "status": "written",
+      "claimLabels": [
+        "verified",
+        "internal-only"
+      ],
+      "dataClass": "amber",
+      "owner": "Ben/Nic",
+      "qbeAreas": [
+        "10",
+        "12"
+      ],
+      "citesCanon": [
+        "signed-lois"
+      ],
+      "lastVerified": "2026-07-03"
+    },
+    {
+      "id": "new-outreach-drafts",
+      "title": "New outreach drafts (LendForGood, Metro, Tripple)",
+      "pillar": "pitch",
+      "type": "repo doc",
+      "location": "wiki/outputs/2026-07-02-investment-machine/04-new-outreach-drafts.md",
+      "status": "written",
+      "claimLabels": [
+        "verified",
+        "internal-only"
+      ],
+      "dataClass": "amber",
+      "owner": "Ben",
+      "qbeAreas": [
+        "10",
+        "12"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "communities-served",
+        "revenue-carveout"
+      ],
+      "lastVerified": "2026-07-02"
+    },
+    {
+      "id": "next-phase-onepager",
+      "title": "Next-phase one-pager (rendered)",
+      "pillar": "pitch",
+      "type": "design file",
+      "location": "design/brand/kit/next-phase-onepager.html",
+      "status": "in-build",
+      "claimLabels": [
+        "verified",
+        "target"
+      ],
+      "dataClass": "amber",
+      "owner": "Ben",
+      "qbeAreas": [
+        "01",
+        "10"
+      ],
+      "citesCanon": [
+        "beds-deployed",
+        "communities-served",
+        "plastic-kg",
+        "revenue-carveout",
+        "signed-lois"
+      ],
+      "lastVerified": "2026-07-02"
+    },
+    {
+      "id": "machine-dashboard-notion",
+      "title": "Machine Dashboard (Notion)",
+      "pillar": "pitch",
+      "type": "notion page",
+      "location": "https://app.notion.com/p/390ebcf981cf8158ad49eb0461538324",
+      "status": "live",
+      "claimLabels": [
+        "verified",
+        "internal-only"
+      ],
+      "dataClass": "amber",
+      "owner": "Ben",
+      "qbeAreas": [
+        "10",
+        "12"
+      ],
+      "citesCanon": [
+        "signed-lois"
+      ],
+      "lastVerified": "2026-07-02"
+    },
+    {
+      "id": "monday-onepager-generator",
+      "title": "Monday one-pager generator",
+      "pillar": "pitch",
+      "type": "repo code",
+      "location": "v2/scripts/monday-onepager.mjs",
+      "status": "built",
+      "claimLabels": [
+        "internal-only"
+      ],
+      "dataClass": "amber",
+      "owner": "Ben",
+      "qbeAreas": [
+        "10",
+        "12"
+      ],
+      "citesCanon": [
+        "signed-lois"
+      ],
+      "lastVerified": "2026-07-02"
     }
   ]
 }

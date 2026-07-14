@@ -8,7 +8,6 @@ import type {
   EmpathyLedgerStory,
   EmpathyLedgerStoryteller,
   ContentPlacement,
-  MediaResponse,
   PlacementsResponse,
   MediaQueryParams,
   StoriesQueryParams,
@@ -260,6 +259,34 @@ class SyndicationFetchError extends Error {
   }
 }
 
+class ELSupabaseFetchError extends Error {
+  constructor(
+    public readonly status: number,
+    public readonly body: string,
+  ) {
+    super(status ? `EL Supabase error: ${status}` : 'EL Supabase is not configured');
+    this.name = 'ELSupabaseFetchError';
+  }
+}
+
+function isELSupabaseUnavailable(error: unknown): boolean {
+  if (!(error instanceof ELSupabaseFetchError)) return false;
+  if (error.status === 0) return true;
+  if (![401, 403].includes(error.status)) return false;
+
+  const body = error.body.toLowerCase();
+  return (
+    body.includes('legacy api keys are disabled') ||
+    body.includes('jwt') ||
+    body.includes('api key')
+  );
+}
+
+function logUnexpectedELSupabaseError(message: string, error: unknown): void {
+  if (isELSupabaseUnavailable(error)) return;
+  console.error(message, error);
+}
+
 /**
  * Empathy Ledger Client
  */
@@ -274,6 +301,10 @@ async function fetchFromELSupabase<T>(
   queryParams: string,
   options: { revalidate?: number } = {}
 ): Promise<T> {
+  if (!EL_SUPABASE_URL || !EL_SUPABASE_KEY) {
+    throw new ELSupabaseFetchError(0, 'EL Supabase credentials are not configured');
+  }
+
   const url = `${EL_SUPABASE_URL}/rest/v1/${table}?${queryParams}`;
   const response = await fetch(url, {
     headers: {
@@ -283,7 +314,8 @@ async function fetchFromELSupabase<T>(
     next: { revalidate: options.revalidate ?? 300 },
   });
   if (!response.ok) {
-    throw new Error(`EL Supabase error: ${response.status}`);
+    const body = await response.text().catch(() => '');
+    throw new ELSupabaseFetchError(response.status, body);
   }
   return response.json();
 }
@@ -296,6 +328,10 @@ async function fetchFromELSupabaseRpc<T>(
   select = '',
   options: { revalidate?: number } = {},
 ): Promise<T> {
+  if (!EL_SUPABASE_URL || !EL_SUPABASE_KEY) {
+    throw new ELSupabaseFetchError(0, 'EL Supabase credentials are not configured');
+  }
+
   const url = `${EL_SUPABASE_URL}/rest/v1/rpc/${fn}${select ? `?${select}` : ''}`;
   const response = await fetch(url, {
     method: 'POST',
@@ -308,9 +344,64 @@ async function fetchFromELSupabaseRpc<T>(
     next: { revalidate: options.revalidate ?? 60 },
   });
   if (!response.ok) {
-    throw new Error(`EL Supabase RPC error: ${response.status}`);
+    const responseBody = await response.text().catch(() => '');
+    throw new ELSupabaseFetchError(response.status, responseBody);
   }
   return response.json();
+}
+
+// Map an EL media_assets row (direct Supabase) to EmpathyLedgerMedia.
+function mapMediaAssetRow(raw: Record<string, unknown>): EmpathyLedgerMedia {
+  const s = (v: unknown): string | null => (typeof v === 'string' && v ? v : null);
+  const n = (v: unknown): number | null => (typeof v === 'number' ? v : null);
+  return {
+    id: String(raw.id),
+    url: s(raw.cdn_url) ?? s(raw.url) ?? s(raw.large_url) ?? s(raw.medium_url) ?? '',
+    thumbnailUrl: s(raw.thumbnail_url) ?? s(raw.medium_url) ?? s(raw.cdn_url),
+    title: s(raw.title) ?? s(raw.caption) ?? s(raw.display_name),
+    description: s(raw.description),
+    altText: s(raw.alt_text),
+    mediaType: (raw.media_type as EmpathyLedgerMedia['mediaType']) ?? 'image',
+    width: n(raw.width),
+    height: n(raw.height),
+    duration: n(raw.duration),
+    organizationId: s(raw.organization_id),
+    projectCode: s(raw.project_code),
+    elderApproved: raw.elder_approved === true,
+    consentObtained: raw.consent_obtained === true,
+    culturalTags: Array.isArray(raw.cultural_tags) ? (raw.cultural_tags as string[]) : [],
+    culturalSensitivity: (raw.cultural_sensitivity as EmpathyLedgerMedia['culturalSensitivity']) ?? null,
+    attributionText: s(raw.attribution_text),
+    uploaderName: s(raw.photographer_name),
+    createdAt: s(raw.created_at) ?? s(raw.uploaded_at) ?? '',
+  };
+}
+
+// A Goods storyteller = an EL person who has at least one Goods-project story.
+export interface GoodsStorytellerStory {
+  id: string;
+  title: string;
+  excerpt: string | null;
+  themes: string[];
+  location: string | null;
+  hasTranscript: boolean;
+  status: string;
+  isPublic: boolean;
+  imageUrl: string | null;
+  createdAt: string;
+}
+export interface GoodsStorytellerProfile {
+  id: string;
+  name: string;
+  slug: string;
+  bio: string | null;
+  location: string | null;
+  isElder: boolean;
+  portraitUrl: string | null;
+  storyCount: number;
+  publishedCount: number;
+  themes: string[];
+  stories: GoodsStorytellerStory[];
 }
 
 export const empathyLedger = {
@@ -326,19 +417,38 @@ export const empathyLedger = {
    */
   async getMedia(params: MediaQueryParams = {}): Promise<EmpathyLedgerMedia[]> {
     if (!ENABLE_EMPATHY_LEDGER) return [];
+    if (!EL_SUPABASE_URL || !EL_SUPABASE_KEY || !GOODS_PROJECT_ID) return [];
 
     try {
-      const response = await fetchFromEmpathyLedger<MediaResponse>('/media', {
-        type: params.type,
-        elder_approved: params.elderApproved,
-        cultural_tags: params.culturalTags?.join(','),
-        project_code: params.projectCode ?? GOODS_PROJECT_CODE,
-        limit: params.limit,
-        page: params.page,
-      });
-      return response.media;
+      // Goods project ONLY, by project_id from EL Supabase (media_assets). Same
+      // reason as getGoodsStories: the `goods-on-country` content-hub projectCode
+      // aggregates adjacent EL projects and leaks their photos onto Goods pages.
+      //
+      // Consent gate (the right process, EL is source of truth):
+      //   - visibility=public          EL has published it for external view
+      //   - NOT is_sacred_no_publish   hard stop, never overridable
+      //   - NOT removed_by_storyteller storyteller withdrawal, honoured always
+      // elderApproved is an OPTIONAL stricter tier a caller can request; it is
+      // not required for public display (Ben's call 2026-07-04), so Goods public
+      // media shows now while EL elder-review catches up.
+      const clauses = [
+        `project_id=eq.${GOODS_PROJECT_ID}`,
+        'visibility=eq.public',
+        'is_sacred_no_publish=not.eq.true',
+        'removed_by_storyteller_at=is.null',
+        'order=uploaded_at.desc.nullslast,created_at.desc',
+      ];
+      if (params.type) clauses.push(`media_type=eq.${params.type}`);
+      if (params.elderApproved) clauses.push('elder_approved=eq.true');
+      if (params.culturalTags?.length) clauses.push(`cultural_tags=ov.{${params.culturalTags.join(',')}}`);
+      if (params.limit) clauses.push(`limit=${params.limit}`);
+      clauses.push(
+        'select=id,cdn_url,url,large_url,medium_url,thumbnail_url,title,caption,display_name,description,alt_text,media_type,width,height,duration,cultural_sensitivity,cultural_tags,attribution_text,organization_id,project_code,elder_approved,consent_obtained,photographer_name,uploaded_at,created_at',
+      );
+      const rows = await fetchFromELSupabase<Record<string, unknown>[]>('media_assets', clauses.join('&'));
+      return rows.map(mapMediaAssetRow);
     } catch (error) {
-      console.error('[EmpathyLedger] Failed to fetch media:', error);
+      logUnexpectedELSupabaseError('[EmpathyLedger] Failed to fetch media:', error);
       return [];
     }
   },
@@ -356,16 +466,21 @@ export const empathyLedger = {
       // pages should always reflect the latest EL state (curators iterate
       // on body, media, themes, blocks).
       if (EL_SUPABASE_URL && EL_SUPABASE_KEY) {
-        const rows = await fetchFromELSupabase<Record<string, unknown>[]>(
-          'stories',
-          `id=eq.${id}&select=*,storyteller:storytellers(id,display_name,location,is_elder)&limit=1`,
-          { revalidate: 0 },
-        );
-        if (rows.length > 0) {
-          return {
-            ...mapStoryFromAPI(rows[0]),
-            storytellerName: (rows[0].storyteller as Record<string, unknown>)?.display_name as string ?? null,
-          };
+        try {
+          const rows = await fetchFromELSupabase<Record<string, unknown>[]>(
+            'stories',
+            `id=eq.${id}&select=*,storyteller:storytellers(id,display_name,location,is_elder)&limit=1`,
+            { revalidate: 0 },
+          );
+          if (rows.length > 0) {
+            return {
+              ...mapStoryFromAPI(rows[0]),
+              storytellerName: (rows[0].storyteller as Record<string, unknown>)?.display_name as string ?? null,
+            };
+          }
+        } catch (directError) {
+          if (isELSupabaseUnavailable(directError)) return null;
+          console.error(`[EmpathyLedger] Failed to fetch story ${id} from EL Supabase:`, directError);
         }
       }
 
@@ -403,24 +518,21 @@ export const empathyLedger = {
   /**
    * Fetch Goods community voices for public pages.
    *
-   * Uses the project-scoped content-hub endpoint (real author names) instead
-   * of the unfiltered plain /api/stories feed, strips cross-project
-   * contamination (SMART Recovery, Confit — see isGoodsCommunityVoice) and
-   * "Unknown"/test rows, then ranks the richest stories first. Being returned
-   * by the public content hub is itself the consent gate, so we filter on
-   * isPublic/withdrawn/archived rather than the syndication flag.
+   * Scopes to the canonical Goods EL project by project_id (the hard association).
+   * The `goods-on-country` content-hub projectCode aggregates adjacent A Curious
+   * Tractor projects (BG-Fit / JusticeHub / Spinifex youth-justice) and leaked
+   * their stories onto public Goods pages, so we query the Goods project directly
+   * instead. getProjectStories gates published + public; filterByConsent adds
+   * withdrawn/archived/syndication; isGoodsCommunityVoice drops any residual
+   * test/"Unknown" rows; rankGoodsStories orders the richest stories first.
    */
   async getGoodsStories(params: { limit?: number } = {}): Promise<EmpathyLedgerStory[]> {
     if (!ENABLE_EMPATHY_LEDGER) return [];
 
     try {
-      const response = await fetchFromEmpathyLedger<{ stories: Record<string, unknown>[] }>('/stories', {
-        projectCode: GOODS_PROJECT_CODE,
-        limit: 100,
-      });
-      const stories = (response.stories || [])
-        .map(mapStoryFromAPI)
-        .filter((s) => !s.consentWithdrawnAt && !s.isArchived && s.isPublic)
+      const stories = filterByConsent(
+        await this.getProjectStories({ limit: (params.limit ?? 3) * 4 }),
+      )
         .filter(isGoodsCommunityVoice)
         .sort(rankGoodsStories);
       return params.limit ? stories.slice(0, params.limit) : stories;
@@ -460,7 +572,7 @@ export const empathyLedger = {
             contentStatus: (statusById.get(s.id) ?? null) as EmpathyLedgerStoryteller['contentStatus'],
           }));
         } catch (enrichError) {
-          console.error('[EmpathyLedger] Failed to enrich storyteller status:', enrichError);
+          logUnexpectedELSupabaseError('[EmpathyLedger] Failed to enrich storyteller status:', enrichError);
         }
       }
 
@@ -519,7 +631,7 @@ export const empathyLedger = {
       candidateRows.forEach((r) => bump(r.storyteller_id, 'candidate'));
       return out;
     } catch (error) {
-      console.error('[EmpathyLedger] Failed to compute Goods site clearance:', error);
+      logUnexpectedELSupabaseError('[EmpathyLedger] Failed to compute Goods site clearance:', error);
       return {};
     }
   },
@@ -779,7 +891,7 @@ export const empathyLedger = {
         storytellerName: (raw.storyteller as Record<string, unknown>)?.display_name as string ?? null,
       }));
     } catch (error) {
-      console.error('[EmpathyLedger] Failed to fetch project stories:', error);
+      logUnexpectedELSupabaseError('[EmpathyLedger] Failed to fetch project stories:', error);
       return [];
     }
   },
@@ -805,6 +917,88 @@ export const empathyLedger = {
       return [...themes, ...tags].some((x) => x.includes(needle));
     };
     return [...pool.filter(onTheme), ...pool.filter((s) => !onTheme(s))].slice(0, limit);
+  },
+
+  /**
+   * Goods storytellers = EL people with at least one Goods-project story
+   * (project_id-scoped, NOT the whole EL directory). Each profile carries its
+   * Goods stories with excerpts (quotes), themes, location and a transcript
+   * indicator, for the admin grid/list/modal. EL is the source of truth.
+   */
+  async getGoodsStorytellerProfiles(): Promise<GoodsStorytellerProfile[]> {
+    if (!ENABLE_EMPATHY_LEDGER || !EL_SUPABASE_URL || !EL_SUPABASE_KEY || !GOODS_PROJECT_ID) return [];
+    try {
+      const s = (v: unknown): string | null => (typeof v === 'string' && v ? v : null);
+      const arr = (v: unknown): string[] =>
+        Array.isArray(v) ? v.map((x) => (typeof x === 'string' ? x : ((x as { name?: string })?.name ?? ''))).filter(Boolean) : [];
+
+      const storySel = 'id,title,excerpt,syndication_excerpt,themes,cultural_themes,transcript_id,transcription,location,location_text,status,is_public,storyteller_id,story_image_url,media_url,created_at';
+      const stories = await fetchFromELSupabase<Record<string, unknown>[]>(
+        'stories',
+        `project_id=eq.${GOODS_PROJECT_ID}&storyteller_id=not.is.null&select=${storySel}&order=created_at.desc&limit=2000`,
+      );
+      const byTeller = new Map<string, Record<string, unknown>[]>();
+      for (const st of stories) {
+        const tid = st.storyteller_id as string;
+        if (!byTeller.has(tid)) byTeller.set(tid, []);
+        byTeller.get(tid)!.push(st);
+      }
+      const ids = [...byTeller.keys()];
+      if (ids.length === 0) return [];
+
+      const tellers = await fetchFromELSupabase<Record<string, unknown>[]>(
+        'storytellers',
+        `id=in.(${ids.join(',')})&select=id,display_name,bio,public_avatar_url,profile_image_url,is_elder,location`,
+      );
+      const tellerById = new Map(tellers.map((t) => [t.id as string, t]));
+
+      const profiles: GoodsStorytellerProfile[] = [];
+      for (const [tid, sts] of byTeller) {
+        const t = tellerById.get(tid);
+        const name = (t?.display_name as string) || 'Unknown';
+        const themes = new Set<string>();
+        const mapped: GoodsStorytellerStory[] = sts.map((st) => {
+          const th = [...arr(st.themes), ...arr(st.cultural_themes)];
+          th.forEach((x) => themes.add(x));
+          return {
+            id: st.id as string,
+            title: (st.title as string) || 'Untitled',
+            excerpt: s(st.syndication_excerpt) ?? s(st.excerpt),
+            themes: th,
+            location: s(st.location_text) ?? s(st.location),
+            hasTranscript: !!(st.transcript_id || st.transcription),
+            status: (st.status as string) || 'unknown',
+            isPublic: st.is_public === true,
+            imageUrl: s(st.story_image_url) ?? s(st.media_url),
+            createdAt: (st.created_at as string) || '',
+          };
+        });
+        profiles.push({
+          id: tid,
+          name,
+          slug: name.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''),
+          bio: s(t?.bio),
+          location: s(t?.location) ?? (mapped.find((m) => m.location)?.location ?? null),
+          isElder: t?.is_elder === true,
+          portraitUrl: s(t?.public_avatar_url) ?? s(t?.profile_image_url),
+          storyCount: mapped.length,
+          publishedCount: mapped.filter((m) => m.status === 'published' && m.isPublic).length,
+          themes: [...themes],
+          stories: mapped,
+        });
+      }
+      profiles.sort(
+        (a, b) =>
+          (b.isElder ? 1 : 0) - (a.isElder ? 1 : 0) ||
+          b.publishedCount - a.publishedCount ||
+          b.storyCount - a.storyCount ||
+          a.name.localeCompare(b.name),
+      );
+      return profiles;
+    } catch (error) {
+      logUnexpectedELSupabaseError('[EmpathyLedger] Failed to fetch Goods storyteller profiles:', error);
+      return [];
+    }
   },
 
   /**
@@ -888,7 +1082,7 @@ export const empathyLedger = {
         };
       });
     } catch (error) {
-      console.error('[EmpathyLedger] Failed to fetch project galleries:', error);
+      logUnexpectedELSupabaseError('[EmpathyLedger] Failed to fetch project galleries:', error);
       return [];
     }
   },
@@ -987,7 +1181,7 @@ export const empathyLedger = {
         };
       });
     } catch (error) {
-      console.error('[EmpathyLedger] Failed to enrich storytellers:', error);
+      logUnexpectedELSupabaseError('[EmpathyLedger] Failed to enrich storytellers:', error);
       return storytellers;
     }
   },
@@ -1021,7 +1215,7 @@ export const empathyLedger = {
           isCoverImage: false,
         }));
     } catch (error) {
-      console.error('[EmpathyLedger] Failed to fetch project media:', error);
+      logUnexpectedELSupabaseError('[EmpathyLedger] Failed to fetch project media:', error);
       return [];
     }
   },

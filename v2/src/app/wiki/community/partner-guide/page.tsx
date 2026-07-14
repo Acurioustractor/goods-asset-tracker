@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { PLASTIC_KG_PER_BED } from '@/lib/data/products';
 
 export const metadata: Metadata = {
   title: 'Partner Guide | Goods Wiki',
@@ -27,7 +28,7 @@ export default function PartnerGuidePage() {
           Goods on Country is a social enterprise delivering quality furniture to remote Indigenous communities
           across Australia. Our flagship product — the <strong>Stretch Bed</strong> — is a flat-packable,
           washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty canvas.
-          Each bed diverts 20kg of plastic from landfill.
+          Each bed diverts {PLASTIC_KG_PER_BED}kg of plastic from landfill.
         </p>
 
         <div className="grid md:grid-cols-3 gap-6 not-prose my-8">
@@ -48,7 +49,7 @@ export default function PartnerGuidePage() {
         <h2>Partnership Opportunities</h2>
 
         <h3>Corporate Sponsorship</h3>
-        <p>Sponsor bed deliveries for communities in need.</p>
+        <p>Sponsor bed deliveries for communities that have asked for them.</p>
 
         <div className="not-prose my-6 overflow-x-auto">
           <table className="min-w-full border border-gray-200 rounded-lg overflow-hidden">

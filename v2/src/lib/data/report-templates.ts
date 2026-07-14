@@ -76,7 +76,7 @@ export const IMPACT_REPORT_TEMPLATES: ImpactReportTemplate[] = [
     ],
     callToAction: {
       label: 'Renew / scale the partnership',
-      body: 'Talk to us about the next tranche, a multi-year commitment, or co-designing the community-ownership transition.',
+      body: 'Talk to us about the next tranche, a multi-year commitment, or shaping the community-ownership transition together.',
     },
     audienceNotes:
       'Active funders (already giving): stewardship tone — "here is what your money did". Prospect funders (cultivating): pitch tone — "here is the proof, here is the ask". Same report, switch the opening line and the CTA emphasis. Never claim DGR is live for Goods (the Butterfly routing is FY2026-27).',

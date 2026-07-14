@@ -2,6 +2,9 @@
   "/images/media-pack/thumbs-up-stretch-bed.jpg": [
     "/images/people/xavier-stretch-bed-alice-springs.jpg"
   ],
+  "/images/people/mykel.jpg": [
+    "/images/partners/centrecorp/story/mykel.jpg"
+  ],
   "/images/process/factory-panorama.jpg": [
     "/images/process/20260329-factory-panorama.jpg"
   ],
@@ -13,5 +16,38 @@
   ],
   "/images/product/washing-machine-hero.jpg": [
     "/images/product/washing-machine-installed.jpg"
+  ],
+  "/images/stories/utopia/01-hero.jpg": [
+    "/images/partners/centrecorp/story/01-hero.jpg"
+  ],
+  "/images/stories/utopia/02-arrive.jpg": [
+    "/images/partners/centrecorp/story/02-arrive.jpg"
+  ],
+  "/images/stories/utopia/03-materials.jpg": [
+    "/images/partners/centrecorp/story/03-materials.jpg"
+  ],
+  "/images/stories/utopia/04-build.jpg": [
+    "/images/partners/centrecorp/story/04-build.jpg"
+  ],
+  "/images/stories/utopia/05-waste.jpg": [
+    "/images/partners/centrecorp/story/05-waste.jpg"
+  ],
+  "/images/stories/utopia/06-delivery.jpg": [
+    "/images/partners/centrecorp/story/06-delivery.jpg"
+  ],
+  "/images/stories/utopia/07-elders.jpg": [
+    "/images/partners/centrecorp/story/07-elders.jpg"
+  ],
+  "/images/stories/utopia/08-beforeafter.jpg": [
+    "/images/partners/centrecorp/story/08-beforeafter.jpg"
+  ],
+  "/images/stories/utopia/09-offground.jpg": [
+    "/images/partners/centrecorp/story/09-offground.jpg"
+  ],
+  "/images/stories/utopia/10-next.jpg": [
+    "/images/partners/centrecorp/story/10-next.jpg"
+  ],
+  "/images/stories/utopia/11-close.jpg": [
+    "/images/partners/centrecorp/story/11-close.jpg"
   ]
 }

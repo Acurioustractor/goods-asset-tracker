@@ -953,6 +953,10 @@ export function CostLabWorkspace() {
           </div>
         </div>
       </section>
+
+      <p className="mx-auto max-w-7xl px-4 pb-4 text-xs text-stone-400 sm:px-6 lg:px-8">
+        Catalysing Impact, powered by Social Impact Hub, in partnership with QBE Foundation.
+      </p>
     </main>
   );
 }

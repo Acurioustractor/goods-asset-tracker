@@ -1,0 +1,183 @@
+{
+  "meta": {
+    "title": "Goods Stretch Bed cost model v6 — reconfigured (idiot-index, fixed-vs-marginal, founder-time reallocation)",
+    "version": "v6",
+    "created": "2026-05-29",
+    "reconfigures": "v2/src/lib/data/cost-model-scenarios.json (v5, 2026-05-28)",
+    "companion_doc": "01-bed-cost-model-reconfigured.md",
+    "claim_labels": ["verified", "modelled", "target", "future", "internal_only"],
+    "price_per_bed_aud": 750,
+    "price_source": "shop stretch-bed-single (verified)",
+    "hdpe_kg_per_bed": 20
+  },
+  "idiot_index": [
+    { "element": "HDPE kit (Defy cut+finished)", "raw_floor": 40.00, "raw_floor_basis": "20kg x $2.00/kg (Defy shred floor, INV-1731 verified)", "current_paid": 344.05, "idiot_index": 8.6, "raw_polymer_floor": 16.00, "raw_polymer_floor_basis": "20kg x $0.80/kg (Envirobank raw-polymer rate)", "idiot_index_vs_raw_polymer": 21.5, "biggest_lever": true, "cost_down_path": "In-source shred+press+CNC -> factory legs ~$150/bed; moves ~$194/bed and captures ~$289 Defy margin", "raw_source": "20kg x $2/kg INV-1731 (verified)", "current_source": "INV-1602/1732 (verified)" },
+    { "element": "HDPE pre-pressed panel path (alt)", "raw_floor": 40.00, "current_paid": 400.00, "idiot_index": 10.0, "biggest_lever": false, "cost_down_path": "AVOID: pay press margin but still CNC+assemble. Use only if our press is down.", "raw_source": "verified", "current_source": "2 x $200 INV-1731 (verified)" },
+    { "element": "Steel poles (DNA Steel finished)", "raw_floor": 12.67, "current_paid": 27.00, "idiot_index": 2.1, "biggest_lever": false, "cost_down_path": "Already reasonable; local NT-procurement premium worth keeping", "raw_source": "1.88m x $5.50/m Brisbane Steel (modelled, midpoint of 10.34-15.00)", "current_source": "DNA Steel Notion BOM (verified)" },
+    { "element": "Canvas (Centre Canvas finished)", "raw_floor": 38.50, "current_paid": 93.50, "idiot_index": 2.4, "biggest_lever": false, "cost_down_path": "In-house sewing line only at volume; competitive vs $130 self-sew", "raw_source": "2.1m x $15-20/m raw 12oz (modelled, midpoint of 32-45)", "current_source": "3 invoices 270 covers (verified)" },
+    { "element": "End caps", "raw_floor": 2.60, "current_paid": 3.20, "idiot_index": 1.2, "biggest_lever": false, "cost_down_path": "Near cost; bulk-supplier direct", "raw_source": "4 x $0.65 (modelled)", "current_source": "4 x $0.80 (verified)" },
+    { "element": "Screws", "raw_floor": 1.04, "current_paid": 1.04, "idiot_index": 1.0, "biggest_lever": false, "cost_down_path": "Already raw rate", "raw_source": "16 x $0.065 (verified)", "current_source": "Coastal Fasteners RB20247673190 (verified)" },
+    { "element": "Bolts", "raw_floor": 0.60, "current_paid": 1.00, "idiot_index": 1.7, "biggest_lever": false, "cost_down_path": "Trivial $ impact", "raw_source": "2 x $0.30 (modelled)", "current_source": "2 x $0.50 est (inferred)" },
+    { "element": "Defy assembly labour", "raw_floor": 60.00, "current_paid": 55.95, "idiot_index": 0.9, "biggest_lever": false, "cost_down_path": "Competitive; in-sourcing is a jobs/mission move not a cost move", "raw_source": "in-house equiv $40-80 (modelled)", "current_source": "Defy line 2026-03-19 (verified)" }
+  ],
+  "build_paths": [
+    { "path": "a_defy_kit", "label": "Defy finished kit", "defy_does": "shred+press+CNC+finish", "we_do": "assemble", "plastic_cost_per_bed": 344.05, "idiot_index": 8.6, "direct_total": 469.79, "verdict": "best bought-in path today, no capex", "confidence": "verified" },
+    { "path": "b_defy_panel", "label": "Defy pre-pressed panels", "defy_does": "shred+press", "we_do": "CNC+assemble", "plastic_cost_per_bed": 400.00, "idiot_index": 10.0, "direct_total": 584.07, "verdict": "worst value, avoid", "confidence": "verified" },
+    { "path": "c_raw_shred_factory", "label": "Raw shred (factory path)", "defy_does": "supply bagged shred", "we_do": "press+CNC+assemble", "plastic_cost_per_bed": 55.00, "idiot_index": 1.4, "direct_total": 275.74, "verdict": "target state, needs press+CNC capex", "confidence": "verified_inputs_modelled_total" },
+    { "defy_margin_per_bed": 289.05, "basis": "kit $344.05 - raw shred $55.00", "annual_prize_at_500": 144525, "confidence": "modelled" }
+  ],
+  "reframed_unit_economics": {
+    "naive_distortion": {
+      "fully_loaded_per_bed_at_100": 1912,
+      "components": { "defy_kit_direct_with_assembly_freight": 534.79, "v5_overhead_per_bed": 1377 },
+      "v5_overhead_breakdown_at_100": { "kirmos_facility": 270, "founder_production": 300, "admin": 147, "field_travel": 510, "long_haul_freight": 150 },
+      "why_misleading": "fixed annual block divided by artificially small 100-bed denominator; long_haul_freight is variable, misclassified",
+      "confidence": "verified_arithmetic_misleading_framing"
+    },
+    "honest_marginal_cost_per_bed": [
+      { "path": "defy_kit_today", "direct_materials": 469.79, "assembly_labour": 40.00, "local_freight": 25.00, "long_haul_freight": 150.00, "marginal_total": 684.79, "confidence": "modelled", "label": "verified_inputs" },
+      { "path": "factory_future", "factory_direct": 275.74, "long_haul_freight": 150.00, "marginal_total": 425.74, "confidence": "modelled", "label": "future" }
+    ],
+    "annual_fixed_block": {
+      "kirmos_facility": 27000,
+      "founder_production_time": 16800,
+      "admin": 14700,
+      "field_travel": 51000,
+      "total_per_year": 109500,
+      "excluded_deliberately": { "founder_fundraising": 28000, "founder_commercialisation": 14000, "note": "cost-of-capital + customer-acquisition, NOT unit cost" },
+      "confidence": "modelled"
+    },
+    "breakeven_volume_beds_per_year": {
+      "factory_path": { "price": 750, "marginal": 425.74, "contribution": 324.26, "fixed_block": 109500, "breakeven_beds": 338, "confidence": "modelled" },
+      "defy_kit_path": { "price": 750, "marginal": 684.79, "contribution": 65.21, "fixed_block": 109500, "breakeven_beds": 1679, "note": "cannot cover fixed costs on bought-in path; in-sourcing closes the economics", "confidence": "modelled" }
+    },
+    "fixed_block_absorption_reference_only": [
+      { "beds_per_year": 100, "fixed_per_bed": 1095 },
+      { "beds_per_year": 500, "fixed_per_bed": 219 },
+      { "beds_per_year": 1000, "fixed_per_bed": 110 }
+    ]
+  },
+  "founder_time_split": {
+    "rate_per_day": 560,
+    "rate_confidence": "LOCKED_2026-05-29",
+    "total_days_per_year": 150,
+    "days_confidence": "unverified_FOUNDER_CONFIRM",
+    "conflict_note": "LOCKED to Day 3 fair-market basis: $140K/yr at 250 days = $560/day. (Prior $1,000/day assumption retired.)",
+    "split": [
+      { "activity": "Production / ops", "days_per_year": 30, "annual_cost": 16800, "treatment": "annual_fixed_block, amortizes to ~0 with volume", "touches_unit_cost": true },
+      { "activity": "Fundraising / philanthropy", "days_per_year": 50, "annual_cost": 28000, "treatment": "cost_of_capital - raises philanthropic $ that fund capex + fixed block", "touches_unit_cost": false },
+      { "activity": "Commercialisation / buyer-dev", "days_per_year": 25, "annual_cost": 14000, "treatment": "customer_acquisition - recovered in margin across an order", "touches_unit_cost": false },
+      { "activity": "Governance / strategy / brand", "days_per_year": 45, "annual_cost": 25200, "treatment": "act_wide_overhead - not a Goods unit cost", "touches_unit_cost": false }
+    ],
+    "per_bed_wrong": 840,
+    "per_bed_wrong_basis": "all 150 days x $560 = $84,000 / 100 beds",
+    "per_bed_right_by_volume": [
+      { "beds_per_year": 100, "per_bed": 168 },
+      { "beds_per_year": 500, "per_bed": 33.6 },
+      { "beds_per_year": 1000, "per_bed": 16.8 }
+    ],
+    "per_bed_right_basis": "production share only ($16,800) / beds, and even this sits in fixed block",
+    "funding_linkage": [
+      { "element": "Plant / capex ($112-222K gross; ~$2-112K net after $110,046 invested)", "funded_by": "philanthropy (QBE match + 2nd funder)", "rationale": "one-off capability build; the 50 fundraising-days raise exactly this" },
+      { "element": "Training (Defy $6K/session)", "funded_by": "philanthropy / employment grants", "rationale": "workforce development" },
+      { "element": "R&D (Defy design, Samuel Hafer $19.5K)", "funded_by": "philanthropy / R&D Tax Incentive", "rationale": "pre-commercial" },
+      { "element": "Annual fixed block (~$109.5K/yr)", "funded_by": "philanthropy today -> bed margin at scale", "rationale": "bridge to commercial sustainability" },
+      { "element": "Per-bed variable (materials, assembly, freight)", "funded_by": "commercial (bed price $750)", "rationale": "the bit a buyer pays for" },
+      { "element": "Founder commercialisation (25 days)", "funded_by": "recovered in margin across won orders", "rationale": "customer acquisition cost" }
+    ]
+  },
+  "factory_economics": {
+    "factory_direct_per_bed": 275.74,
+    "in_house_legs_per_bed": 150.00,
+    "in_house_legs_basis": "plastic $55 + diesel $15 + labour $80",
+    "bought_in_legs_per_bed": 344.05,
+    "saving_per_bed_legs": 194.05,
+    "capex_low": 112000,
+    "capex_high": 222000,
+    "already_invested": 110046,
+    "gross_capital_ask_low": 112000,
+    "gross_capital_ask_high": 222000,
+    "net_capital_ask_low": 2000,
+    "net_capital_ask_high": 112000,
+    "net_capital_ask_note": "net after 110,046 already invested (facility $100K + Carbatec $10,046)",
+    "payback_years": [
+      { "beds_per_year": 100, "annual_saving": 19400, "payback_on_gross_112k": 5.8, "payback_on_gross_222k": 11.4 },
+      { "beds_per_year": 500, "annual_saving": 97000, "payback_on_gross_112k": 1.2, "payback_on_gross_222k": 2.3 },
+      { "beds_per_year": 1000, "annual_saving": 194000, "payback_on_gross_112k": 0.6, "payback_on_gross_222k": 1.1 }
+    ],
+    "rule": "capex only sensible above ~300 beds/yr committed; buy Defy kits below that",
+    "confidence": "modelled"
+  },
+  "cost_down_trajectory": [
+    { "stage": 0, "label": "Defy kits", "trigger": "today ~100/yr, no plant", "plastic_legs_per_bed": 344.05, "direct_total": 469.79, "marginal_with_freight": 685, "confidence": "verified" },
+    { "stage": 1, "label": "In-source assembly", "trigger": "~150-300/yr, $2K bench + trained operators", "plastic_legs_per_bed": 344.05, "direct_total": 469.79, "marginal_with_freight": 660, "confidence": "target" },
+    { "stage": 2, "label": "In-source pressing+CNC (Factory)", "trigger": "~300-500/yr committed, $90-200K capex", "plastic_legs_per_bed": 150.00, "direct_total": 275.74, "marginal_with_freight": 426, "confidence": "target_future" },
+    { "stage": 3, "label": "Community + free waste plastic", "trigger": "~1,000/yr, CDP/volunteer + council-paid feedstock", "plastic_legs_per_bed": 27.00, "direct_total": 140.74, "marginal_with_freight": 291, "confidence": "future" }
+  ],
+  "assumptions_explicit": {
+    "working_days_per_year": 250,
+    "factory_throughput_beds_per_day": "4-5",
+    "facility_capacity_beds_per_year": 1000,
+    "capex_trigger_committed_volume": 300,
+    "price_held_flat": 750,
+    "community_stage_requires": "council waste-offset revenue + CDP/employment-grant labour (both future, not contracted)"
+  },
+  "first_principles_floor": {
+    "floor_total_per_bed": 128.99,
+    "current_defy_kit_direct": 469.79,
+    "gap_supply_chain_markup": 340.80,
+    "hdpe_kit_share_of_gap": 289.05,
+    "confidence": "modelled",
+    "use": "aspirational floor only, not achievable today"
+  },
+  "critical_review": [
+    { "item": "HDPE kit (Defy)", "value": 344.05, "source": "INV-1602+INV-1732", "confidence": "verified", "issue": "none", "recommended_fix": "Get volume quote at 500/1000/5000 - this is the swing number" },
+    { "item": "Steel poles", "value": 27.00, "source": "DNA Steel Notion BOM", "confidence": "verified", "issue": "invoices in Notion not ACT-GD Xero", "recommended_fix": "Pull Notion invoices to confirm + get volume" },
+    { "item": "Canvas", "value": 93.50, "source": "Centre Canvas 3 invoices 270 covers", "confidence": "verified", "issue": "tagged ACT-IN; $10,285 duplicate", "recommended_fix": "Retag ACT-IN->ACT-GD $14,915; reconcile duplicate" },
+    { "item": "End caps", "value": 3.20, "source": "Hardware supplier", "confidence": "verified", "issue": "none", "recommended_fix": "none" },
+    { "item": "Screws", "value": 1.04, "source": "Coastal Fasteners RB20247673190", "confidence": "verified", "issue": "tagged ACT-FM shared with facility", "recommended_fix": "Split-tag to ACT-GD" },
+    { "item": "Bolts", "value": 1.00, "source": "estimate", "confidence": "inferred", "issue": "rate estimated", "recommended_fix": "Confirm on next Coastal invoice OCR" },
+    { "item": "Defy-kit direct total", "value": 469.79, "source": "sum of BOM", "confidence": "verified", "issue": "none", "recommended_fix": "none" },
+    { "item": "Defy panel each", "value": 200.00, "source": "INV-1731", "confidence": "verified", "issue": "none", "recommended_fix": "none" },
+    { "item": "Defy cut+finish only", "value": 121.00, "source": "INV-1602 16 beds", "confidence": "verified", "issue": "none", "recommended_fix": "none" },
+    { "item": "Defy assembly labour", "value": 55.95, "source": "Defy line 2026-03-19", "confidence": "verified", "issue": "none", "recommended_fix": "none" },
+    { "item": "HDPE shred rate", "value": 2.00, "source": "INV-1731 1200kg bag", "confidence": "verified", "issue": "none", "recommended_fix": "none" },
+    { "item": "Delivery rate per kg", "value": 0.75, "source": "INV-1731 $900/1200kg", "confidence": "verified", "issue": "none", "recommended_fix": "none" },
+    { "item": "Raw HDPE per bed no delivery", "value": 40.00, "source": "20kg x $2/kg", "confidence": "verified", "issue": "none", "recommended_fix": "none" },
+    { "item": "Raw HDPE per bed with delivery", "value": 55.00, "source": "20kg x $2.75/kg", "confidence": "verified", "issue": "none", "recommended_fix": "none" },
+    { "item": "HDPE kg per bed", "value": 20, "source": "Ben confirmed", "confidence": "verified", "issue": "none", "recommended_fix": "none" },
+    { "item": "Factory direct total", "value": 275.74, "source": "modelled build-up", "confidence": "modelled", "issue": "diesel+labour allocation estimates", "recommended_fix": "Validate via SIH advisory cost tool" },
+    { "item": "Diesel per bed factory", "value": 15.00, "source": "25L/day / 5 beds", "confidence": "modelled", "issue": "allocation estimate", "recommended_fix": "Meter actual fuel" },
+    { "item": "Operator labour per bed factory", "value": 80.00, "source": "$400/day / 5 beds", "confidence": "modelled", "issue": "5/day throughput unproven", "recommended_fix": "Time-study a real run" },
+    { "item": "Production operator per day", "value": 400, "source": "v5 labour_rates", "confidence": "inferred", "issue": "not invoice-tied", "recommended_fix": "Confirm vs payroll/contractor rate" },
+    { "item": "Kirmos facility per month 50pct", "value": 2250, "source": "$4,500/mo invoice x 50%", "confidence": "inferred", "issue": "50% split is estimate", "recommended_fix": "Confirm beds-vs-other split with Nic" },
+    { "item": "First-principles floor", "value": 128.99, "source": "v5 modelled", "confidence": "modelled", "issue": "benchmark not achievable today", "recommended_fix": "Keep as aspirational floor only" },
+    { "item": "Steel raw rate per m", "value": 5.50, "source": "Brisbane Steel Xero", "confidence": "verified", "issue": "floor calc only", "recommended_fix": "none" },
+    { "item": "Canvas raw 12oz per m", "value": 17.50, "source": "wholesale benchmark", "confidence": "unverified", "issue": "no quote obtained", "recommended_fix": "Get raw-canvas quote to firm index" },
+    { "item": "Founder rate per day", "value": 560, "source": "Day 3 fair-market $140K/yr at 250 days", "confidence": "LOCKED_2026-05-29", "issue": "none", "recommended_fix": "none" },
+    { "item": "Founder days per year on Goods", "value": 150, "source": "v5 assumption", "confidence": "unverified", "issue": "FOUNDER-CONFIRM; not time-tracked", "recommended_fix": "Ben/Nic confirm FTE %" },
+    { "item": "Founder split days 30/50/25/45", "value": 150, "source": "v5 assumption", "confidence": "unverified", "issue": "FOUNDER-CONFIRM; not evidenced", "recommended_fix": "Ben/Nic confirm activity split" },
+    { "item": "Founder production per bed at 100", "value": 168, "source": "$16,800/100", "confidence": "modelled", "issue": "production share of fixed block at $560/day", "recommended_fix": "none" },
+    { "item": "Field travel per bed at 100", "value": 510, "source": "v5 ($51K/yr)", "confidence": "modelled", "issue": "lumpy relationship cost", "recommended_fix": "Treat as fixed block not per-bed" },
+    { "item": "Admin per bed at 100", "value": 147, "source": "v5 ($14.7K/yr)", "confidence": "modelled", "issue": "not itemised", "recommended_fix": "Tie to actual admin spend" },
+    { "item": "Long-haul freight per bed", "value": 150, "source": "v5 overhead line", "confidence": "wrong", "issue": "classified as overhead; it is variable", "recommended_fix": "Move into marginal cost (done in v6)" },
+    { "item": "Local freight per bed", "value": 25.00, "source": "v5 estimate", "confidence": "modelled", "issue": "none", "recommended_fix": "Confirm vs Loadshift/Peak Up actuals" },
+    { "item": "Annual fixed block", "value": 109500, "source": "v6 recompute (founder production at $560/day)", "confidence": "modelled", "issue": "built from modelled lines", "recommended_fix": "Lock after founder-confirm" },
+    { "item": "Marginal cost Defy-kit today", "value": 684.79, "source": "v6 recompute", "confidence": "modelled", "issue": "none", "recommended_fix": "none" },
+    { "item": "Marginal cost factory", "value": 425.74, "source": "v6 recompute", "confidence": "modelled", "issue": "assumes in-house plant live", "recommended_fix": "none" },
+    { "item": "Breakeven volume factory", "value": 338, "source": "$109.5K / $324.26", "confidence": "modelled", "issue": "sensitive to fixed block + price", "recommended_fix": "Re-run after founder-confirm" },
+    { "item": "Naive fully-loaded at 100", "value": 1912, "source": "v5 fully_loaded_grid", "confidence": "verified", "issue": "misleading framing", "recommended_fix": "Always pair with marginal + fixed" },
+    { "item": "Capex to state_4", "value": 222000, "source": "v5 modelled (high)", "confidence": "modelled", "issue": "equipment not firm-quoted", "recommended_fix": "Get firm shredder/press/CNC quotes" },
+    { "item": "Net capital ask high", "value": 112000, "source": "gross capex $222K - $110,046 invested", "confidence": "modelled", "issue": "none", "recommended_fix": "none" },
+    { "item": "Gross capital ask high", "value": 222000, "source": "full capex high (pre-credit)", "confidence": "modelled", "issue": "none", "recommended_fix": "none" },
+    { "item": "Defy margin per bed", "value": 289.05, "source": "$344.05 - $55", "confidence": "modelled", "issue": "none", "recommended_fix": "the in-sourcing prize" },
+    { "item": "Payback at 500/yr on $112K gross", "value": 1.2, "source": "$112K/$97K", "confidence": "modelled", "issue": "depends on hitting 500/yr", "recommended_fix": "Tie capex draw to committed volume" },
+    { "item": "Price per bed", "value": 750, "source": "shop stretch-bed-single", "confidence": "verified", "issue": "none", "recommended_fix": "none" },
+    { "item": "Commercial benchmark per bed", "value": 801, "source": "Centrecorp INV-0291", "confidence": "verified", "issue": "grant-funded not open-market", "recommended_fix": "Don't quote as market price" },
+    { "item": "Counterfactual steel-frame bed low", "value": 1500, "source": "AU 2026 market scan", "confidence": "inferred", "issue": "no firm quotes", "recommended_fix": "Get 2-3 retail quotes" },
+    { "item": "Philanthropy per founder-day", "value": 5000, "source": "v5 estimate", "confidence": "unverified", "issue": "not evidenced", "recommended_fix": "Back-test against actual raises" },
+    { "item": "Xero per-bed proxy", "value": 991.49, "source": "act-infra last-50 window", "confidence": "modelled", "issue": "dominated by non-production cost", "recommended_fix": "Do NOT quote as actual" },
+    { "item": "Fully-loaded $600 codebase", "value": 600, "source": "FRRR + Day 4", "confidence": "modelled", "issue": "low-volume planning figure", "recommended_fix": "Keep as planning anchor not marginal" }
+  ],
+  "gaps": "All five scoped READ-FIRST files present and read. diagnostic-v4.md and act-infra-scan.md digests present and incorporated (confirmed v3->v5 lineage, $991.49/bed proxy caveat, $120K mistag list). No figure invented; every number traces to a named source."
+}

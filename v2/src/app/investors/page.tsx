@@ -32,6 +32,9 @@ export default function InvestorsCockpitPage() {
       >
         <CostModelWorkspace defaultSkin="investment" />
       </Suspense>
+      <p className="text-xs text-gray-500 text-center py-4">
+        Catalysing Impact, powered by Social Impact Hub, in partnership with QBE Foundation.
+      </p>
     </div>
   );
 }

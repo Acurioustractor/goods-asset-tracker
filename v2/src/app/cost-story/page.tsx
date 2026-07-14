@@ -196,8 +196,8 @@ export default function CostStoryPage() {
           Keep an eye on it; it drives everything that follows.
         </p>
         <Diagram
-          src="/goods-bed-anatomy.jpg"
-          alt="Anatomy of a $750 bed: recycled-HDPE X-trestle legs, galvanised steel poles, olive canvas and hardware, with the cost of each part"
+          src="/images/pitch/bed-seq-3-all-parts.jpg"
+          alt="The three parts of a Stretch Bed laid out together: two recycled-HDPE X-trestle legs, two galvanised steel poles, and folded canvas"
           caption="Recycled-plastic X-trestle legs, steel poles, canvas, hardware. Direct cost $534.79 on the buy-kit path."
         />
         <p className="mt-4 text-lg leading-relaxed text-muted-foreground md:text-xl">
@@ -206,9 +206,9 @@ export default function CostStoryPage() {
           minutes.
         </p>
         <Diagram
-          src="/goods-bed-assembly.jpg"
-          alt="Five-step assembly: lay out the parts, stand the X-legs, thread the poles, tension it, done"
-          caption="Three parts, five steps, no tools. Tension turns the canvas into the structure."
+          src="/images/pitch/bed-assembled.jpg"
+          alt="The finished Stretch Bed, tensioned and standing on its X-trestle legs"
+          caption="Three parts, no tools. Tension turns the canvas into the structure."
         />
         <p className="mt-6 text-lg leading-relaxed text-muted-foreground md:text-xl">
           So what does each part actually cost? Here&rsquo;s the bill, line by line.
@@ -314,6 +314,11 @@ export default function CostStoryPage() {
           fifth of the beds to clear them.
         </p>
         <Diagram
+          src="/goods-container-plant.png"
+          alt="Inside one shipping container: a shredder turns plastic to chip, a heat press presses it into sheet, and an X-trestle leg is assembled at a bench"
+          caption="Shred, press, assemble. One container holds every step from plastic to leg."
+        />
+        <Diagram
           src="/images/process/container-factory.jpg"
           alt="The real on-Country plant: a shipping container with a plastic shredder inside, on red dirt"
           caption="The real thing, not a render: our container plant with the plastic shredder inside. Bringing the press home is what turns $344 legs into ~$150 legs."
@@ -341,7 +346,7 @@ export default function CostStoryPage() {
         <Diagram
           src="/goods-community-ownership-v2.png"
           alt="Three-stage path to community ownership: buy-kit today, an on-Country green shipping-container plant with a plastic shredder and press, then community-owned production"
-          caption="Buy-kit → On-Country plant → community-owned. The capital buys the path, not just the press."
+          caption="Buy-kit, then On-Country plant, then community-owned. The capital buys the path, not just the press."
         />
         <PullQuote
           quote="I'll be rocking up every day to make them."
@@ -403,6 +408,10 @@ export default function CostStoryPage() {
           </div>
         </div>
       </section>
+
+      <p className="py-6 text-center text-xs text-muted-foreground/60">
+        Catalysing Impact, powered by Social Impact Hub, in partnership with QBE Foundation.
+      </p>
     </CostModelProvider>
   );
 }

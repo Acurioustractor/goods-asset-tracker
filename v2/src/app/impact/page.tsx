@@ -1132,6 +1132,10 @@ export default function ImpactPage() {
           </div>
         </div>
       </section>
+
+      <p className="py-6 text-center text-xs text-muted-foreground/60">
+        Catalysing Impact, powered by Social Impact Hub, in partnership with QBE Foundation.
+      </p>
     </main>
   );
 }
