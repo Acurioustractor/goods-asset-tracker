@@ -2,17 +2,26 @@
  * The Goods investor deck — one canonical, aligned sequence.
  *
  * Spine: the SIGNED 6-turn narrative foundation (wiki/outputs/2026-07-11-
- * narrative-foundation.md §1-2, §7): model + the loop up front, then the six
- * belief turns each carried by a named voice, the ask once and last.
+ * narrative-foundation.md §1-2, §7), integrated with Ben's 14 July story-first
+ * draft per wiki/outputs/2026-07-15-strategy-deck-core-messaging.md: model +
+ * the loop up front, the six belief turns each carried by a named voice, the
+ * truck-test hinge between Turn 4 and Turn 5, the ask once and last.
  *
  * This file is the single source of truth for the deck's words and picture
  * choices. The /pitch/deck page lets Ben edit copy live in the browser
  * (saved to localStorage, exported back here to commit) and open a Present
- * (fullscreen) view — the "main deck".
+ * (fullscreen) view — the "main deck". Every slide carries a presenter
+ * script in Ben's spoken voice; Present mode shows it as notes (N key).
  *
  * Voices resolve through storyteller-registry.ts, so every quote is
  * consent-tiered; the page never surfaces a `hold` quote (e.g. Dianne's
  * totem line). Photos are real, web-served paths under /public/images.
+ *
+ * Claims-status labels (observed / requested / agreed / delivered / measured
+ * / proposed) ride on chip labels and notes. NO Kununurra content may enter
+ * this file until the Elder clears her words and has a registry record
+ * (core-messaging doc §5) — this page is public and click-to-editable, so
+ * "gated in the code" is not a real gate.
  */
 
 export interface DeckChip {
@@ -32,7 +41,7 @@ export interface DeckVideo {
   note: string;
 }
 
-export type SlideKind = 'cover' | 'model' | 'turn' | 'ask' | 'closing';
+export type SlideKind = 'cover' | 'model' | 'turn' | 'hinge' | 'ask' | 'closing';
 
 export interface DeckSlide {
   id: string;
@@ -52,14 +61,16 @@ export interface DeckSlide {
   voiceAlternates?: string[];
   /** Verbatim field/anonymous lines shown as pull-quotes. */
   literalQuotes?: LiteralQuote[];
-  /** Data chips (canon figures / quiet specs). */
+  /** Data chips (canon figures / quiet specs), claims-status in the label. */
   chips?: DeckChip[];
   video?: DeckVideo;
+  /** Presenter script — Ben's spoken voice, shown as notes in Present (N). */
+  script?: string;
   /** Editorial / provenance note shown in the edit margin, never in Present. */
   note: string;
 }
 
-export const deckUpdated = '14 July 2026';
+export const deckUpdated = '15 July 2026';
 
 export const deckSlides: DeckSlide[] = [
   {
@@ -71,6 +82,8 @@ export const deckSlides: DeckSlide[] = [
     body: 'Quality furniture and appliances for remote Indigenous communities. Designed in community, made on Country, moving toward community ownership.',
     photo: '/images/product/stretch-bed-community.jpg',
     photoAlt: 'A Stretch Bed set up in a remote community home',
+    script:
+      'Goods turns community knowledge into health hardware, local work, and production that communities can own. Goods started with a bed, but the first thing we had to learn was how to sit down. From a distance it can look like Goods is a couple of people driving around Australia taking products into communities. The photographs tend to show the truck, the bed and the handover. They do not show the part that makes any of it possible. Before we arrive, someone has taken the call, spoken with families, worked out where we should go and decided to let us in. They carry the relationships. We carry the components.',
     note: 'Cover line = Ben\'s, 9 July workshop (narrative-foundation §1). Language rule: "designed in community", never "co-design".',
   },
   {
@@ -80,7 +93,7 @@ export const deckSlides: DeckSlide[] = [
     headline: 'One loop, run twice. Two products, community-designed.',
     body: 'The Stretch Bed and Pakkimjalki Kari, the washing machine Dianne Stokes named in Warumungu, both came through the same loop, in different community hands each time. Every product into a home feeds back into the next design, and the plant itself is built to be handed over, place by place.',
     photo: '/images/process/factory-panorama.jpg',
-    photoAlt: 'The containerised on-Country plant',
+    photoAlt: 'The containerised plant on Country',
     steps: [
       'Listen: the community names the need',
       'Design in community: specs from lived conditions',
@@ -88,6 +101,8 @@ export const deckSlides: DeckSlide[] = [
       'Deliver and feed back: beds into homes, feedback into design',
       'Transfer and support: the plant moves toward community hands',
     ],
+    script:
+      'Goods is one loop, run twice. Listen. Design in community. Make on Country. Deliver and feed back. Transfer and support. The Stretch Bed came through that loop, and so did Pakkimjalki Kari, the washing machine Dianne Stokes designed and named in Warumungu. Two products, different community hands each time: Elders designing around the fire, a family building the current machines with Nic, young people building beds through Oonchiumpa. Every product into a home feeds back into the next design. And the plant itself is built to be handed over, place by place, with Goods staying on as support rather than owner.',
     note: 'Five-stage loop, narrative-foundation §1. Two-product loop: Pakkimjalki Kari is the second proof, not a side product.',
   },
   {
@@ -95,7 +110,7 @@ export const deckSlides: DeckSlide[] = [
     kind: 'turn',
     eyebrow: 'Turn 1',
     headline: 'The need is real, and people name it themselves.',
-    body: 'Before any bed lands, the community names the need, in its own words, not ours.',
+    body: 'Sit on the dirt. Leave the pen alone. Listen long enough for the idea to change. Before any bed lands, the community names the need, in its own words, not ours.',
     photo: '/images/media-pack/nic-with-elder-on-verandah.jpg',
     photoAlt: 'Nic listening with an Elder on a verandah',
     voiceNames: ['Ivy', 'Katrina Bloomfield'],
@@ -104,7 +119,9 @@ export const deckSlides: DeckSlide[] = [
       { text: 'We\'ve been sleeping on a door.', attribution: 'Arlparra household' },
       { text: 'Off the ground. That\'s the main thing.', attribution: 'Arlparra Elder' },
     ],
-    note: 'Turn 1, narrative-foundation §2. Anonymous Arlparra lines are usable unnamed (community-narrative.ts).',
+    script:
+      'We came with prototypes and more certainty than we should have had. Gary in Mount Isa described consultation as sitting on the grass or dirt, around the fire, without the pen and paper, and listening. His words exposed something uncomfortable. Asking is easy. The hard part is staying quiet when the answer begins to undo your idea. People spoke about family coming to stay and too few beds in the house. Freight. Mattresses on floors. Snakes. Sore knees. In Arlparra, a household told us they had been sleeping on a door. People already understood all of this. They did not need us to diagnose their lives. We were the ones catching up.',
+    note: 'Turn 1, narrative-foundation §2. Anonymous Arlparra lines are usable unnamed (community-narrative.ts). Gary\'s fire-and-dirt description stays narrated, never in quotation marks, until transcript-verified.',
   },
   {
     id: 'turn-2',
@@ -116,33 +133,37 @@ export const deckSlides: DeckSlide[] = [
     photoAlt: 'Remote community, the problem of reach and cost',
     voiceNames: ['Alfred Johnson', 'Daniel Patrick Noble'],
     voiceAlternates: ['Ivy', 'Jason'],
-    note: 'Turn 2, narrative-foundation §2. "The two price tags" diagram belongs here.',
+    script:
+      'A product made for a quiet suburban bedroom does not always survive a large family, constant movement, heat and dust. And most products never get there at all. Alfred Johnson on Palm Island put it plainly: you have to bring them on the barge, you have to pay for freight, and it all adds up. Daniel Patrick Noble told us what that arithmetic means: sometimes people would rather go without. Freight, cost and distance break the ordinary supply chain long before it reaches the community. Remote families pay too much for goods that fail too quickly. They can be made better.',
+    note: 'Turn 2, narrative-foundation §2. "The two price tags" diagram belongs here (photo gap: nothing yet shows the supply failure itself).',
   },
   {
     id: 'turn-3',
     kind: 'turn',
     eyebrow: 'Turn 3',
     headline: 'The products work because community designed them. Both of them.',
-    body: 'Specs come from lived conditions: washable, low for Elders, no tools, built to survive remote. The Stretch Bed and the washing machine Dianne named both prove it.',
+    body: 'Maroon. Washable canvas. Replaceable parts. A height older people could get out of. The specs come from lived conditions, and the Stretch Bed and the washing machine Dianne named both carry them.',
     photo: '/images/product/stretch-bed-hero.jpg',
     photoAlt: 'The Stretch Bed, community-designed',
     voiceNames: ['Dianne Stokes', 'Dorrie Jones', 'Melissa Jackson', 'Patricia Frank'],
     voiceAlternates: ['Heather Mundo'],
     chips: [
-      { label: 'Weight', value: '26 kg' },
-      { label: 'Capacity', value: '200 kg' },
-      { label: 'Assembly', value: 'No tools, ~5 min' },
+      { label: 'Weight', value: '26kg' },
+      { label: 'Capacity', value: '200kg' },
+      { label: 'Assembly', value: 'No tools, ~5min' },
       { label: 'Material', value: 'Recycled HDPE + canvas' },
       { label: 'Washer base', value: 'Speed Queen, one-button' },
     ],
-    note: 'Turn 3, narrative-foundation §2-3. Dianne\'s PRIMARY quote is Pakkimjalki Kari; her totem line is HOLD — never surface it. Specs from products.ts.',
+    script:
+      'Norman asked for maroon. The request sounds small until you notice what usually happens: a product arrives in whatever colour somebody else selected, and the person using it is expected to be grateful. Maroon went into the work. The bed changed. Washable canvas. Replaceable parts. A flat pack for the road. No toolbox needed. A height that gave older knees a fair chance. The Stretch Bed is made from those corrections. The washing machine followed the bed; one without the other left the job half done. Dianne Stokes designed it and named it Pakkimjalki Kari. She says that every time she goes away, it is like it is calling her: come back home.',
+    note: 'Turn 3, narrative-foundation §2-3. Dianne\'s PRIMARY quote is Pakkimjalki Kari; her totem line is HOLD — never surface it. Specs from products.ts. Health carried by Patricia Frank + Dr Boe Remenyi (labelled practitioner); the why only, never an outcome.',
   },
   {
     id: 'turn-4',
     kind: 'turn',
     eyebrow: 'Turn 4',
     headline: 'The making belongs in community hands. Young people are one proof; families are another.',
-    body: 'The Bloomfield family built the five current machines with Nic. Young makers built the Utopia beds through Oonchiumpa. Different hands, the same loop.',
+    body: 'The Bloomfield family built the current washing machines with Nic. Young makers built the Utopia beds through Oonchiumpa. Different hands, the same loop. The direction of the request is changing: from receiving products to making them.',
     photo: '/images/build/build-001.jpg',
     photoAlt: 'Young people building a bed on Country',
     voiceNames: ['Mykel', 'Fred Campbell', 'Karen Liddle', 'Kristy Bloomfield'],
@@ -152,45 +173,73 @@ export const deckSlides: DeckSlide[] = [
       href: '/field-notes/utopia-may-2026',
       note: 'At his house, putting the bed together. Already live and public.',
     },
-    note: 'Turn 4, narrative-foundation §2. Fred narrates Xavier — never a direct Xavier quote.',
+    script:
+      'The work with Oonchiumpa in Alice Springs pushed the question to the front. Young people built beds outside the office before the Utopia trip. Mykel said, "Yeah, I\'ll be rocking up every day to make them." He was not talking about attending a program. He was talking about making something his community needed. Fred, his case worker, tells the story of Xavier going back to family, so proud showing them that he can build it. And the Bloomfield family built the current washing machines with Nic. Different hands, the same loop. Mykel made us look at the supply chain from the other end: why did the making, the wage and the machinery keep beginning somewhere else?',
+    note: 'Turn 4, narrative-foundation §2. Fred narrates Xavier — never a direct Xavier quote. Mykel on screen is always the registry verbatim, never a paraphrase.',
+  },
+  {
+    id: 'hinge-truck-test',
+    kind: 'hinge',
+    eyebrow: 'The hinge',
+    headline: 'The product is proven. The transfer is not.',
+    body: 'What came in on the truck? What leaves on it? What stays? If the beds stay while the wages, tools, knowledge and decisions leave with us, the old arrangement has survived the delivery.',
+    photo: '/images/utopia/utopia-09.jpg',
+    photoAlt: 'A delivery day on Country, Utopia',
+    chips: [
+      { label: 'Delivered · beds', value: '496 across 9 communities' },
+      { label: 'Delivered · washing machines', value: '16 in community' },
+      { label: 'Delivered · plastic diverted', value: '2,660kg' },
+    ],
+    script:
+      'The beds are real. The deliveries are real. 496 beds across nine communities. Sixteen washing machines in community. 2,660kg of plastic diverted. People have assembled them, used them and asked for more. But a delivery count does not tell us where the work, tools, contracts, margin or decisions sit. The truck is a useful test for this whole project. What came in on it? What leaves on it? What stays? If the beds stay but the jobs, tools, knowledge and decisions leave with us, then we have delivered a product and preserved the old arrangement.',
+    note: 'The truck test, adopted from Ben\'s 14 July draft (core-messaging doc §2-3). The one framing device, used once — Ben\'s rule. 2,660kg is Stretch-only provenance (133 × 20kg). Photo is place-attributable (Utopia).',
   },
   {
     id: 'turn-5',
     kind: 'turn',
     eyebrow: 'Turn 5',
-    headline: 'The plant makes the pattern transferable. Ownership is the promise.',
-    body: 'The containerised plant is visible, teachable and movable — Alice to Tennant Creek to Katherine to Darwin. It is built to be handed over, place by place, with Goods staying on as support, not owner. PICC has asked to buy a production facility of its own; Dianne received one bed and came back to self-fund twenty.',
+    headline: 'The plant makes the pattern transferable. Ownership is the promise, and it is not true yet.',
+    body: 'The containerised plant is visible, teachable and movable: Alice to Tennant Creek to Katherine to Darwin. But a plant is an operating system: orders, wages, safety, maintenance, working capital, quality, governance. Handed over without that system, it becomes another dead machine at the edge of town. Ownership is a pathway. What has to move: title, contracts, margin, knowledge, decisions.',
     photo: '/images/process/heat-press-full.jpg',
     photoAlt: 'The heat press — the one move at the heart of the plant',
     voiceNames: ['Norman Frank', 'Shayne Bloomfield'],
     voiceAlternates: ['Karen Liddle', 'Dianne Stokes'],
-    note: 'Turn 5, narrative-foundation §2. Ownership is a PATHWAY, never claimed complete (locked by Ben 2026-07-10).',
+    chips: [
+      { label: 'Requested · Oonchiumpa', value: 'Interest in owning a plant' },
+      { label: 'Requested · PICC', value: 'Asked to buy a facility' },
+      { label: 'Requested · Dianne', value: 'Came back to self-fund 20 beds' },
+    ],
+    script:
+      'Dropping machinery in a community would be the easy part. Keeping it operating is another matter. People need wages and enough orders to support them. There is safety training, maintenance, quality control and the gap between buying materials and being paid. A facility handed over without that support can become another dead machine sitting at the edge of town. Goods is not yet a community-owned production system, and we will not use the word ownership as decoration. Oonchiumpa has asked about owning a plant. PICC has asked to buy a production facility. These are requests, not settled deals. We are moving closer to community ownership, and we have to be explicit about what Goods holds today, what can move, on what timetable, and what support remains after it does.',
+    note: 'Turn 5, narrative-foundation §2 merged with the 14 July operating-system framing. Ownership is a PATHWAY, never claimed complete (locked by Ben 2026-07-10). Demand signals are labelled requested — an invitation is not a mandate.',
   },
   {
     id: 'ask',
     kind: 'ask',
     eyebrow: 'Turn 6 · The ask',
-    headline: 'What the capital does — once, near the end.',
-    body: 'The funding buys the bridge: the 50-bed in-source run (modelled, then measured), the first place-based ownership pathway with Oonchiumpa, the enterprise-support layer, and plant capex. AU$400K recoverable, at least 1:1 match-eligible, through QBE Catalysing Impact, on top of SEFA $300K, Snow $100K and Centrecorp $75K.',
+    headline: 'What the capital does, once, near the end.',
+    body: 'The funding buys the bridge: the 50-bed in-source run (modelled, then measured), the first place-based ownership pathway with Oonchiumpa, the enterprise-support layer, and plant capex. AU$400K through QBE Catalysing Impact, matched at least 1:1 by signed external commitments. The target match stack (SEFA $300K, Snow $100K, Centrecorp $75K) is proposed today, not signed. Ordinary capital will not fund this stage, because the return being built is the transfer itself.',
     photo: '/images/qbe/communities-screen.png',
     photoAlt: 'The nine communities served, on the map',
     chips: [
-      { label: 'Beds delivered', value: '496 across 9 communities' },
-      { label: 'Washing machines in community', value: '16' },
-      { label: 'Plastic diverted', value: '2,660 kg' },
-      { label: 'Revenue (accountant-signed carve-out)', value: 'AU$713,827' },
-      { label: 'Current ask', value: 'AU$400K (QBE, by 31 Aug 2026)' },
+      { label: 'Measured · revenue (accountant-signed carve-out)', value: 'AU$713,827' },
+      { label: 'Proposed · the ask', value: 'AU$400K QBE Catalysing Impact' },
+      { label: 'Gate', value: 'Signed LOIs by 31 Aug 2026' },
     ],
-    note: 'Turn 6, narrative-foundation §2/§5. Every number audits back to /register. Revenue LOCKED to the $713,827 carve-out on all external surfaces.',
+    script:
+      'We are not asking you to rescue a community or sponsor a delivery photograph. The funding buys the bridge: the first 50-bed production run in our own plant, taking the cost model from modelled to measured; the first place-based ownership pathway with Oonchiumpa; the enterprise-support layer; and plant capital. AU$400K through QBE Catalysing Impact, matched at least one to one by signed external commitments. We need those signed letters by 31 August. Ordinary capital will not fund this stage, because the return we are building is the transfer itself: assets, jobs and authority moving to community hands. We ask partners to accept that trust moves more slowly than a grant deadline.',
+    note: 'Turn 6, narrative-foundation §2/§5. Every number audits back to /register. Revenue LOCKED to the $713,827 carve-out on all external surfaces. Match stack is PROPOSED (0 signed LOIs today) — never shown as committed. QBE prefers repayable structures; structure not settled, so "recoverable" is not promised. 31 Aug = LOI gate; application Sept, outcomes Nov.',
   },
   {
     id: 'closing',
     kind: 'closing',
     eyebrow: 'The promise',
-    headline: 'The funding buys the middle of the sentence, so communities can own the end of it.',
-    body: 'Community is the subject of the first beat and the last. Goods only appears in the middle, as the verb.',
+    headline: 'We know what we need. Sit down and ask us, make it with us, and leave the making with us.',
+    body: 'A Goods synthesis, assembled from what people have told us; no one person said this sentence. The funding buys the middle of the sentence, so communities can own the end of it.',
     photo: '/images/media-pack/lying-on-stretch-bed.jpg',
     photoAlt: 'Resting on a Stretch Bed, off the ground',
-    note: 'Closing. Credit rule (spine): they said, it changed, it returned.',
+    script:
+      'We have been using one sentence to hold all of this. We know what we need. Sit down and ask us, make it with us, and leave the making with us. No one person said that whole sentence. We assembled it from what people have told us and from the direction they have pushed the work. Each part makes a demand on us: whether we believe the knowledge already in community, whether we can listen long enough to have our plans changed, who is being paid, and what stays after we leave. Community is the subject of the first beat and the last. Goods only appears in the middle, as the verb.',
+    note: 'Closing. The synthesis is NEVER rendered in quotation marks and never attributed to a community member (essay rule). Credit rule (spine): they said, it changed, it returned.',
   },
 ];
