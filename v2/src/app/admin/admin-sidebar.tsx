@@ -74,6 +74,8 @@ const navigation: NavGroup[] = [
   {
     group: 'Story',
     items: [
+      { name: 'Deck builder',  href: '/admin/deck-builder',    icon: LayoutGrid },
+      { name: 'Story atlas',   href: '/admin/story-atlas',     icon: Users },
       { name: 'Media library', href: '/admin/media-library',   icon: Images },
       { name: 'Media gaps',    href: '/admin/media-gaps',      icon: Radar },
       { name: 'Consent',       href: '/admin/consent',         icon: FileCheck },
