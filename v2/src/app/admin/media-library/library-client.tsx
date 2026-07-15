@@ -27,6 +27,8 @@ export interface UnifiedItem {
   mediaType?: 'image' | 'video';
   /** e.g. 'overlay' | 'portrait' | 'render' — from content_items.media_subtype. */
   mediaSubtype?: string;
+  /** Free-form curation notes (content_items.notes). */
+  notes?: string | null;
   /** Poster/thumbnail image url for a video tile. */
   poster?: string;
   /** Community this asset belongs to (content_items.community_id → communities.name). */
@@ -171,6 +173,11 @@ export function MediaLibraryClient({
   const updateItemTags = useCallback((id: string, tags: string[]) => {
     setItems((prev) => prev.map((it) => (it.id === id ? { ...it, tags } : it)));
     setActive((cur) => (cur && cur.id === id ? { ...cur, tags } : cur));
+  }, []);
+
+  const updateItemNotes = useCallback((id: string, notes: string | null) => {
+    setItems((prev) => prev.map((it) => (it.id === id ? { ...it, notes } : it)));
+    setActive((cur) => (cur && cur.id === id ? { ...cur, notes } : cur));
   }, []);
 
   // --- curation write: optimistic, reverts on API failure --------------------
@@ -868,6 +875,11 @@ export function MediaLibraryClient({
                     canon
                   </span>
                 )}
+                {it.notes && (
+                  <span className="pointer-events-none absolute bottom-8 right-1.5 rounded-full bg-amber-500 text-white px-1.5 py-0.5 text-[9px] font-semibold" title={it.notes}>
+                    ✎
+                  </span>
+                )}
                 {it.aliases && it.aliases.length > 0 && (
                   <span
                     className="pointer-events-none absolute top-1.5 right-9 rounded-full bg-blue-100 text-blue-700 px-1.5 py-0.5 text-[9px] font-semibold"
@@ -895,6 +907,7 @@ export function MediaLibraryClient({
           roster={roster}
           onClose={() => setActive(null)}
           onSaveTags={updateItemTags}
+          onSaveNotes={updateItemNotes}
           onToggleStar={toggleStar}
           onToggleArchive={toggleArchive}
           onSetRating={setRating}
@@ -924,6 +937,7 @@ function PreviewModal({
   roster,
   onClose,
   onSaveTags,
+  onSaveNotes,
   onToggleStar,
   onToggleArchive,
   onSetRating,
@@ -934,6 +948,7 @@ function PreviewModal({
   roster: RosterPerson[];
   onClose: () => void;
   onSaveTags: (id: string, tags: string[]) => void;
+  onSaveNotes: (id: string, notes: string | null) => void;
   onToggleStar: (it: UnifiedItem) => void;
   onToggleArchive: (it: UnifiedItem) => void;
   onSetRating: (it: UnifiedItem, r: number) => void;
@@ -952,6 +967,13 @@ function PreviewModal({
   const [saveState, setSaveState] = useState<SaveState>('idle');
   const [saveError, setSaveError] = useState('');
 
+  // Notes editor state. Seeded from the item; kept local so a failed save
+  // doesn't wipe what was typed.
+  const [draftNotes, setDraftNotes] = useState(item.notes ?? '');
+  const [notesState, setNotesState] = useState<SaveState>('idle');
+  const [notesError, setNotesError] = useState('');
+  const [notesColPending, setNotesColPending] = useState(false);
+
   // Re-seed if a different item opens in the same modal instance.
   useEffect(() => {
     setDraftTags(item.tags);
@@ -959,6 +981,17 @@ function PreviewModal({
     setSaveState('idle');
     setSaveError('');
   }, [item.id, item.tags]);
+
+  const itemNotes = item.notes ?? '';
+  useEffect(() => {
+    setDraftNotes(itemNotes);
+    setNotesState('idle');
+    setNotesError('');
+    setNotesColPending(false);
+    // Seed only when a different item opens; item.notes changes from our own
+    // optimistic save must not clobber the draft.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [item.id]);
 
   const addTag = useCallback((raw: string) => {
     const t = raw.trim();
@@ -1002,6 +1035,38 @@ function PreviewModal({
       setSaveError(e instanceof Error ? e.message : String(e));
     }
   }, [item.contentId, item.id, draftTags, onSaveTags]);
+
+  // Notes save: optimistic (grid badge + state update immediately), reverts on
+  // API failure. Same {ids:[...]} body shape as the other curation writes.
+  const saveNotes = useCallback(async () => {
+    if (!item.contentId) {
+      setNotesState('error');
+      setNotesError('Not indexed yet. Run npm run content:index first.');
+      return;
+    }
+    const prev = item.notes ?? null;
+    const next = draftNotes.trim() === '' ? null : draftNotes;
+    setNotesState('saving');
+    setNotesError('');
+    setNotesColPending(false);
+    onSaveNotes(item.id, next); // optimistic
+    try {
+      const res = await fetch('/api/admin/content-item', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids: [item.contentId], notes: next ?? '' }),
+      });
+      const data = (await res.json()) as { ok: boolean; error?: string };
+      if (!res.ok || !data.ok) throw new Error(data.error || `HTTP ${res.status}`);
+      setNotesState('saved');
+    } catch (e) {
+      onSaveNotes(item.id, prev); // revert
+      const msg = e instanceof Error ? e.message : String(e);
+      setNotesState('error');
+      setNotesError(msg);
+      if (/column|schema cache|42703/i.test(msg)) setNotesColPending(true);
+    }
+  }, [item.contentId, item.id, item.notes, draftNotes, onSaveNotes]);
 
   const copy = useCallback(async (text: string) => {
     try {
@@ -1165,6 +1230,39 @@ function PreviewModal({
             isWebsite && !curationReady && (
               <p className="mb-5 text-[11px] text-amber-700">Run the content index to star / rate / archive this image.</p>
             )
+          )}
+
+          {/* Notes (content_items.notes) — any indexed item */}
+          {canCurate && (
+            <div className="mb-5">
+              <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2">
+                Notes
+              </p>
+              <textarea
+                value={draftNotes}
+                onChange={(e) => { setDraftNotes(e.target.value); setNotesState('idle'); }}
+                rows={3}
+                placeholder="Why it's a keeper, what to fix, where it's used…"
+                className="w-full rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              />
+              <button
+                type="button"
+                onClick={saveNotes}
+                disabled={notesState === 'saving'}
+                className="mt-1.5 w-full rounded-lg bg-foreground text-background px-3 py-2 text-sm font-semibold hover:opacity-90 transition disabled:opacity-50"
+              >
+                {notesState === 'saving' ? 'Saving…' : 'Save notes'}
+              </button>
+              <p className="mt-1.5 text-[11px] min-h-[1rem]" aria-live="polite">
+                {notesState === 'saved' && <span className="text-green-600">✓ Saved</span>}
+                {notesState === 'error' && (
+                  <span className="text-red-600">Error: {notesError}</span>
+                )}
+                {notesColPending && (
+                  <span className="block text-muted-foreground">Notes column pending: run the ALTER in Supabase SQL editor</span>
+                )}
+              </p>
+            </div>
           )}
 
           {item.aliases && item.aliases.length > 0 && (

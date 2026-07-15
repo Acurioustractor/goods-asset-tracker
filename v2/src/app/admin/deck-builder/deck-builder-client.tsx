@@ -9,14 +9,33 @@ import {
   ArrowRight,
   Copy,
   Download,
+  Film,
+  Images,
   PlayCircle,
   Presentation,
   Quote,
   RotateCcw,
+  Star,
   X,
 } from 'lucide-react';
 import { deckSlides, deckUpdated, type DeckSlide } from '@/lib/data/deck';
-import { getStoryteller } from '@/lib/data/storyteller-registry';
+import { getStoryteller, STORYTELLER_REGISTRY } from '@/lib/data/storyteller-registry';
+
+/** Item shape served by /api/admin/media-pick (local, committed media only). */
+interface MediaPickItem {
+  id: string;
+  url: string;
+  poster_url: string | null;
+  media_type: 'image' | 'video';
+  area: string | null;
+  starred: boolean;
+  tags: string[];
+}
+
+interface VideoPick {
+  src: string;
+  poster: string;
+}
 
 const STORAGE_KEY = 'goods-deck-v1';
 
@@ -153,7 +172,7 @@ function VoiceCard({
 
       {open && pickable.length > 0 && (
         <div className="mt-4 border-t border-border pt-3">
-          <div className="grid gap-2 sm:grid-cols-2">
+          <div className="grid max-h-72 gap-2 overflow-y-auto pr-1 sm:grid-cols-2">
             {pickable.map((name) => {
               const alt = getStoryteller(name);
               const altQuote = leadQuote(name);
@@ -188,9 +207,152 @@ function VoiceCard({
   );
 }
 
+/** Every externally-cleared voice is swappable onto any slide (one system). */
+const ALL_CLEARED_VOICES = STORYTELLER_REGISTRY.filter((s) => s.tier === 'external').map(
+  (s) => s.name,
+);
+
 function voicePool(slide: DeckSlide, currentAtIndex: string): string[] {
   return Array.from(
-    new Set([...(slide.voiceNames ?? []), ...(slide.voiceAlternates ?? []), currentAtIndex]),
+    new Set([
+      ...(slide.voiceNames ?? []),
+      ...(slide.voiceAlternates ?? []),
+      currentAtIndex,
+      ...ALL_CLEARED_VOICES,
+    ]),
+  );
+}
+
+/* ── Media picker (photo/video swap widget) ─────────────────────────────── */
+
+function MediaPicker({
+  kind,
+  items,
+  onPick,
+  onReset,
+  onClose,
+}: {
+  kind: 'image' | 'video';
+  items: MediaPickItem[] | null;
+  onPick: (item: MediaPickItem) => void;
+  onReset: () => void;
+  onClose: () => void;
+}) {
+  const [q, setQ] = useState('');
+  const [area, setArea] = useState<string | null>(null);
+
+  const pool = (items ?? []).filter((i) => i.media_type === kind);
+  const areas = Array.from(new Set(pool.map((i) => i.area).filter(Boolean))).sort() as string[];
+  const needle = q.trim().toLowerCase();
+  const shown = pool.filter(
+    (i) =>
+      (!area || i.area === area) &&
+      (!needle ||
+        i.url.toLowerCase().includes(needle) ||
+        i.tags.some((t) => t.toLowerCase().includes(needle))),
+  );
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onClick={onClose}>
+      <div
+        className="flex max-h-[85vh] w-full max-w-4xl flex-col rounded-lg border border-border bg-card shadow-xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center gap-3 border-b border-border p-4">
+          <p className="text-sm font-semibold text-foreground">
+            Swap {kind === 'image' ? 'photo' : 'video'} — every committed {kind} in the library
+          </p>
+          <input
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="Search path or tag"
+            className="ml-auto w-48 rounded-md border border-border bg-background px-2.5 py-1.5 text-xs text-foreground outline-none focus:ring-1 focus:ring-primary/40"
+          />
+          <button
+            type="button"
+            onClick={onReset}
+            className="inline-flex items-center gap-1 rounded-md border border-border px-2.5 py-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground"
+          >
+            <RotateCcw className="h-3 w-3" />
+            Canonical
+          </button>
+          <button type="button" onClick={onClose} className="text-muted-foreground hover:text-foreground">
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div className="flex flex-wrap gap-1.5 border-b border-border px-4 py-2">
+          <button
+            type="button"
+            onClick={() => setArea(null)}
+            className={[
+              'rounded-full px-2.5 py-1 text-[11px] font-semibold',
+              area === null ? 'bg-primary text-primary-foreground' : 'border border-border text-muted-foreground hover:text-foreground',
+            ].join(' ')}
+          >
+            All ({pool.length})
+          </button>
+          {areas.map((a) => (
+            <button
+              key={a}
+              type="button"
+              onClick={() => setArea(a === area ? null : a)}
+              className={[
+                'rounded-full px-2.5 py-1 text-[11px] font-semibold',
+                area === a ? 'bg-primary text-primary-foreground' : 'border border-border text-muted-foreground hover:text-foreground',
+              ].join(' ')}
+            >
+              {a}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid flex-1 grid-cols-3 gap-2 overflow-y-auto p-4 sm:grid-cols-4 md:grid-cols-5">
+          {items === null && (
+            <p className="col-span-full py-8 text-center text-sm text-muted-foreground">Loading the library…</p>
+          )}
+          {items !== null && shown.length === 0 && (
+            <p className="col-span-full py-8 text-center text-sm text-muted-foreground">Nothing matches.</p>
+          )}
+          {shown.map((i) => {
+            const thumb = i.media_type === 'video' ? i.poster_url : i.url;
+            return (
+              <button
+                key={i.id}
+                type="button"
+                onClick={() => onPick(i)}
+                title={i.url}
+                className="group relative overflow-hidden rounded-md border border-border bg-muted transition-transform hover:scale-[1.02] focus:ring-2 focus:ring-primary/50"
+              >
+                {thumb ? (
+                  // eslint-disable-next-line @next/next/no-img-element -- admin picker thumbs, local files
+                  <img src={thumb} alt={i.url} loading="lazy" className="h-24 w-full object-cover" />
+                ) : (
+                  <span className="flex h-24 w-full items-center justify-center text-[10px] text-muted-foreground">
+                    <Film className="mr-1 h-3 w-3" />
+                    no poster
+                  </span>
+                )}
+                {i.starred && (
+                  <Star className="absolute right-1 top-1 h-3.5 w-3.5 fill-yellow-400 text-yellow-400 drop-shadow" />
+                )}
+                <span className="absolute inset-x-0 bottom-0 truncate bg-black/60 px-1.5 py-0.5 text-left text-[9px] text-white opacity-0 transition-opacity group-hover:opacity-100">
+                  {i.url.split('/').slice(-2).join('/')}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <p className="border-t border-border px-4 py-2 text-[11px] text-muted-foreground">
+          Picks save in this browser; hit Export edits to hand them to Claude to commit. Local committed media only; tag and star in the{' '}
+          <Link href="/admin/media-library" className="underline hover:text-foreground">
+            media library
+          </Link>
+          .
+        </p>
+      </div>
+    </div>
   );
 }
 
@@ -206,6 +368,9 @@ function SlideCard({
   onVoice,
   onResetSlide,
   isDirty,
+  photoSrc,
+  onSwapPhoto,
+  onSwapVideo,
 }: {
   slide: DeckSlide;
   index: number;
@@ -216,12 +381,15 @@ function SlideCard({
   onVoice: (slideId: string, idx: number, name: string) => void;
   onResetSlide: (slideId: string) => void;
   isDirty: boolean;
+  photoSrc: string;
+  onSwapPhoto: () => void;
+  onSwapVideo: () => void;
 }) {
   return (
     <div id={slide.id} className="scroll-mt-24 rounded-lg border border-border bg-card">
       <div className="relative aspect-[16/7] w-full overflow-hidden rounded-t-lg border-b border-border bg-muted">
         <Image
-          src={slide.photo}
+          src={photoSrc}
           alt={slide.photoAlt}
           fill
           sizes="(max-width: 1024px) 100vw, 860px"
@@ -233,6 +401,24 @@ function SlideCard({
         <span className="absolute right-3 top-3 rounded-full bg-white/85 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest text-black/70">
           {slide.kind}
         </span>
+        <div className="absolute bottom-3 right-3 flex gap-2">
+          <button
+            type="button"
+            onClick={onSwapPhoto}
+            className="inline-flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur-sm transition-colors hover:bg-black/80"
+          >
+            <Images className="h-3 w-3" />
+            Swap photo
+          </button>
+          <button
+            type="button"
+            onClick={onSwapVideo}
+            className="inline-flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur-sm transition-colors hover:bg-black/80"
+          >
+            <Film className="h-3 w-3" />
+            {slide.inlineVideo ? 'Swap video' : 'Add video'}
+          </button>
+        </div>
       </div>
 
       <div className="p-5 md:p-6">
@@ -373,18 +559,36 @@ function PresentSlide({
   slide,
   getText,
   getVoice,
+  getPhoto,
+  getVideo,
 }: {
   slide: DeckSlide;
   getText: (slide: DeckSlide, field: TextField) => string;
   getVoice: (slide: DeckSlide, idx: number) => string;
+  getPhoto: (slide: DeckSlide) => string;
+  getVideo: (slide: DeckSlide) => VideoPick | null;
 }) {
   const leadName = slide.voiceNames?.[0] ? getVoice(slide, 0) : null;
   const registryQuote = leadName ? leadQuote(leadName) : null;
   const literal = slide.literalQuotes?.[0] ?? null;
+  const video = getVideo(slide);
 
   return (
     <div className="absolute inset-0">
-      <Image src={slide.photo} alt={slide.photoAlt} fill sizes="100vw" className="object-cover" priority />
+      {video ? (
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src={video.src}
+          poster={video.poster || undefined}
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-label={slide.photoAlt}
+        />
+      ) : (
+        <Image src={getPhoto(slide)} alt={slide.photoAlt} fill sizes="100vw" className="object-cover" priority />
+      )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/25" />
 
       <div className="absolute inset-x-0 bottom-0 p-6 md:p-16">
@@ -452,12 +656,16 @@ function PresentOverlay({
   onClose,
   getText,
   getVoice,
+  getPhoto,
+  getVideo,
 }: {
   index: number;
   setIndex: (i: number) => void;
   onClose: () => void;
   getText: (slide: DeckSlide, field: TextField) => string;
   getVoice: (slide: DeckSlide, idx: number) => string;
+  getPhoto: (slide: DeckSlide) => string;
+  getVideo: (slide: DeckSlide) => VideoPick | null;
 }) {
   const total = deckSlides.length;
   const [showNotes, setShowNotes] = useState(false);
@@ -490,7 +698,7 @@ function PresentOverlay({
 
   return (
     <div className="fixed inset-0 z-50 bg-black">
-      <PresentSlide slide={slide} getText={getText} getVoice={getVoice} />
+      <PresentSlide slide={slide} getText={getText} getVoice={getVoice} getPhoto={getPhoto} getVideo={getVideo} />
 
       <div className="absolute right-4 top-4 z-10 flex items-center gap-2">
         <button
@@ -614,9 +822,13 @@ function ExportModal({ text, onClose }: { text: string; onClose: () => void }) {
 export function DeckClient() {
   const [overrides, setOverrides] = useState<Record<string, string>>({});
   const [voicePicks, setVoicePicks] = useState<Record<string, string>>({});
+  const [photoPicks, setPhotoPicks] = useState<Record<string, string>>({});
+  const [videoPicks, setVideoPicks] = useState<Record<string, VideoPick>>({});
   const [hydrated, setHydrated] = useState(false);
   const [presentIndex, setPresentIndex] = useState<number | null>(null);
   const [exportText, setExportText] = useState<string | null>(null);
+  const [picker, setPicker] = useState<{ slideId: string; kind: 'image' | 'video' } | null>(null);
+  const [pickItems, setPickItems] = useState<MediaPickItem[] | null>(null);
 
   useEffect(() => {
     try {
@@ -625,9 +837,13 @@ export function DeckClient() {
         const parsed = JSON.parse(raw) as {
           text?: Record<string, string>;
           voices?: Record<string, string>;
+          photos?: Record<string, string>;
+          videos?: Record<string, VideoPick>;
         };
         setOverrides(parsed.text ?? {});
         setVoicePicks(parsed.voices ?? {});
+        setPhotoPicks(parsed.photos ?? {});
+        setVideoPicks(parsed.videos ?? {});
       }
     } catch {
       /* ignore corrupt storage */
@@ -637,8 +853,41 @@ export function DeckClient() {
 
   useEffect(() => {
     if (!hydrated) return;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ text: overrides, voices: voicePicks }));
-  }, [overrides, voicePicks, hydrated]);
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({ text: overrides, voices: voicePicks, photos: photoPicks, videos: videoPicks }),
+    );
+  }, [overrides, voicePicks, photoPicks, videoPicks, hydrated]);
+
+  const openPicker = useCallback(
+    (slideId: string, kind: 'image' | 'video') => {
+      setPicker({ slideId, kind });
+      if (pickItems === null) {
+        fetch('/api/admin/media-pick')
+          .then((r) => r.json())
+          .then((d) => setPickItems(Array.isArray(d.items) ? d.items : []))
+          .catch(() => setPickItems([]));
+      }
+    },
+    [pickItems],
+  );
+
+  const getPhoto = useCallback(
+    (slide: DeckSlide) => photoPicks[slide.id] ?? slide.photo,
+    [photoPicks],
+  );
+
+  const getVideo = useCallback(
+    (slide: DeckSlide): VideoPick | null => {
+      const picked = videoPicks[slide.id];
+      if (picked) return picked;
+      if (slide.inlineVideo?.mode === 'loop') {
+        return { src: slide.inlineVideo.src, poster: slide.inlineVideo.poster };
+      }
+      return null;
+    },
+    [videoPicks],
+  );
 
   const getText = useCallback(
     (slide: DeckSlide, field: TextField) => overrides[`${slide.id}.${field}`] ?? slide[field],
@@ -683,14 +932,26 @@ export function DeckClient() {
       for (const [k, v] of Object.entries(prev)) if (!k.startsWith(`${slideId}.voice.`)) next[k] = v;
       return next;
     });
+    setPhotoPicks((prev) => {
+      const next = { ...prev };
+      delete next[slideId];
+      return next;
+    });
+    setVideoPicks((prev) => {
+      const next = { ...prev };
+      delete next[slideId];
+      return next;
+    });
   }, []);
 
   const dirtySlides = useMemo(() => {
     const set = new Set<string>();
     for (const k of Object.keys(overrides)) set.add(k.split('.')[0]);
     for (const k of Object.keys(voicePicks)) set.add(k.split('.')[0]);
+    for (const k of Object.keys(photoPicks)) set.add(k);
+    for (const k of Object.keys(videoPicks)) set.add(k);
     return set;
-  }, [overrides, voicePicks]);
+  }, [overrides, voicePicks, photoPicks, videoPicks]);
 
   const editCount = dirtySlides.size;
 
@@ -709,6 +970,12 @@ export function DeckClient() {
         const picked = voicePicks[`${slide.id}.voice.${idx}`];
         if (picked && picked !== defName) changes.push(`- voice ${idx + 1}: ${defName} → ${picked}`);
       });
+      const photoPicked = photoPicks[slide.id];
+      if (photoPicked && photoPicked !== slide.photo) changes.push(`- photo → ${photoPicked}`);
+      const videoPicked = videoPicks[slide.id];
+      if (videoPicked && videoPicked.src !== slide.inlineVideo?.src) {
+        changes.push(`- video → ${videoPicked.src} (poster: ${videoPicked.poster || 'none'})`);
+      }
       if (changes.length) {
         any = true;
         lines.push(`## Slide ${i + 1} — ${slide.id} (${slide.eyebrow})`, ...changes, '');
@@ -716,11 +983,13 @@ export function DeckClient() {
     });
     if (!any) lines.push('_No edits yet — the deck matches deck.ts._');
     setExportText(lines.join('\n'));
-  }, [overrides, voicePicks]);
+  }, [overrides, voicePicks, photoPicks, videoPicks]);
 
   const resetAll = useCallback(() => {
     setOverrides({});
     setVoicePicks({});
+    setPhotoPicks({});
+    setVideoPicks({});
   }, []);
 
   return (
@@ -796,6 +1065,9 @@ export function DeckClient() {
             onVoice={onVoice}
             onResetSlide={onResetSlide}
             isDirty={dirtySlides.has(slide.id)}
+            photoSrc={getPhoto(slide)}
+            onSwapPhoto={() => openPicker(slide.id, 'image')}
+            onSwapVideo={() => openPicker(slide.id, 'video')}
           />
         ))}
 
@@ -818,6 +1090,43 @@ export function DeckClient() {
           onClose={() => setPresentIndex(null)}
           getText={getText}
           getVoice={getVoice}
+          getPhoto={getPhoto}
+          getVideo={getVideo}
+        />
+      )}
+
+      {picker !== null && (
+        <MediaPicker
+          kind={picker.kind}
+          items={pickItems}
+          onPick={(item) => {
+            if (picker.kind === 'image') {
+              setPhotoPicks((prev) => ({ ...prev, [picker.slideId]: item.url }));
+            } else {
+              setVideoPicks((prev) => ({
+                ...prev,
+                [picker.slideId]: { src: item.url, poster: item.poster_url ?? '' },
+              }));
+            }
+            setPicker(null);
+          }}
+          onReset={() => {
+            if (picker.kind === 'image') {
+              setPhotoPicks((prev) => {
+                const next = { ...prev };
+                delete next[picker.slideId];
+                return next;
+              });
+            } else {
+              setVideoPicks((prev) => {
+                const next = { ...prev };
+                delete next[picker.slideId];
+                return next;
+              });
+            }
+            setPicker(null);
+          }}
+          onClose={() => setPicker(null)}
         />
       )}
 

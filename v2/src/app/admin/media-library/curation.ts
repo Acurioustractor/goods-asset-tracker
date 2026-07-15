@@ -126,7 +126,10 @@ interface CurationRow {
   storyteller_id: string | null;
   tags: string[] | null;
   media_subtype: string | null;
+  notes?: string | null;
 }
+
+const CI_COLS = 'id, ref, starred, rating, archived_at, canon_slot, consent_tier, community_id, storyteller_id, tags, media_subtype';
 
 interface Curation {
   byRef: Map<string, CurationRow>;
@@ -139,11 +142,16 @@ async function fetchCuration(): Promise<Curation> {
   const empty: Curation = { byRef: new Map(), ready: false, commName: new Map(), personName: new Map() };
   try {
     const supabase = createServiceClient();
-    const [ci, comms, sts] = await Promise.all([
-      supabase.from('content_items').select('id, ref, starred, rating, archived_at, canon_slot, consent_tier, community_id, storyteller_id, tags, media_subtype'),
+    const [ciWithNotes, comms, sts] = await Promise.all([
+      supabase.from('content_items').select(`${CI_COLS}, notes`),
       supabase.from('communities').select('id, name'),
       supabase.from('storytellers').select('id, display_name'),
     ]);
+    // The notes column may not exist yet (ALTER pending): retry without it so
+    // the rest of the curation state still loads.
+    const ci = ciWithNotes.error
+      ? await supabase.from('content_items').select(CI_COLS)
+      : ciWithNotes;
     if (ci.error) return empty;
     const byRef = new Map<string, CurationRow>();
     for (const r of (ci.data ?? []) as CurationRow[]) byRef.set(r.ref, r);
@@ -174,6 +182,7 @@ function makeAttach(curation: Curation): (base: UnifiedItem, ref: string) => Uni
       community: c?.community_id ? commName.get(c.community_id) : undefined,
       person: c?.storyteller_id ? personName.get(c.storyteller_id) : undefined,
       mediaSubtype: c?.media_subtype ?? base.mediaSubtype,
+      notes: c?.notes ?? null,
       tags,
       theme: themeForItem({ area: base.area, canonSlot: canonSlot ?? null, tags }) ?? undefined,
     };
