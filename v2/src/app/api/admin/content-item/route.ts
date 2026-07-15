@@ -21,6 +21,8 @@ interface Body {
   tags?: string[];
   consent_tier?: 'public' | 'gated' | 'red';
   community_id?: string | null;
+  /** Free-text curation note (nullable text column; cap 2000 chars). */
+  notes?: string | null;
 }
 
 export async function POST(request: NextRequest) {
@@ -60,6 +62,15 @@ export async function POST(request: NextRequest) {
   // Community tag: a uuid FK to communities.id, or null to clear.
   if ('community_id' in body) {
     patch.community_id = body.community_id ? String(body.community_id) : null;
+  }
+  // Curation note: free text or null to clear. Requires the nullable `notes`
+  // column (ALTER TABLE content_items ADD COLUMN IF NOT EXISTS notes text).
+  if ('notes' in body) {
+    if (body.notes !== null && typeof body.notes !== 'string') {
+      return NextResponse.json({ ok: false, error: 'notes must be a string or null' }, { status: 400 });
+    }
+    const trimmed = body.notes === null ? '' : body.notes.trim();
+    patch.notes = trimmed ? trimmed.slice(0, 2000) : null;
   }
 
   if (Object.keys(patch).length === 0) {
