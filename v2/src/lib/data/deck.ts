@@ -178,14 +178,19 @@ export const deckSlides: DeckSlide[] = [
     eyebrow: 'Turn 2',
     headline: 'The supply that already exists fails these places.',
     body: 'Freight, cost and distance break the ordinary supply chain long before it reaches the community.',
-    photo: '/images/media-pack/deadly-heart-trek-aug-2025.jpg',
-    photoAlt: 'Remote community, the problem of reach and cost',
+    photo: '/images/community/kalgoorlie/mattress-dumped-jerry-can.jpg',
+    photoAlt: 'A failed mattress dumped on red dirt near Kalgoorlie',
     voiceNames: ['Alfred Johnson', 'Daniel Patrick Noble'],
     voiceAlternates: ['Ivy', 'Jason'],
+    gallery: [
+      { src: '/images/community/kalgoorlie/dump-site-dawn.jpg', alt: 'A bushland dumping ground at dawn: fridges, mattresses, a couch' },
+      { src: '/images/community/kalgoorlie/mattress-ochre.jpg', alt: 'A foam mattress dyed the colour of the dirt it was abandoned on' },
+      { src: '/images/community/kalgoorlie/mattress-decayed.jpg', alt: 'A sun-bleached mattress rotting into the scrub' },
+    ],
     goDeeper: [{ label: 'What a bed really costs', href: '/cost-story' }],
     script:
       'A product made for a quiet suburban bedroom does not always survive a large family, constant movement, heat and dust. And most products never get there at all. Alfred Johnson on Palm Island put it plainly: you have to bring them on the barge, you have to pay for freight, and it all adds up. Daniel Patrick Noble told us what that arithmetic means: sometimes people would rather go without. Freight, cost and distance break the ordinary supply chain long before it reaches the community. Remote families pay too much for goods that fail too quickly. They can be made better.',
-    note: 'Turn 2, narrative-foundation §2. "The two price tags" diagram belongs here (photo gap: nothing yet shows the supply failure itself).',
+    note: 'Turn 2, narrative-foundation §2. Photo gap CLOSED 15 July: the Kalgoorlie dump/mattress series shows the supply failure itself, no people, place-attributed. "The two price tags" diagram draft awaits approval.',
   },
   {
     id: 'turn-3',
@@ -248,8 +253,8 @@ export const deckSlides: DeckSlide[] = [
     gallery: [
       { src: '/images/build/build-009.jpg', alt: 'Build day with Oonchiumpa, Alice Springs' },
       { src: '/images/build/build-025.jpg', alt: 'Young makers assembling beds' },
-      { src: '/images/build/build-057.jpg', alt: 'Hands on the work, build day' },
-      { src: '/images/build/build-105.jpg', alt: 'Finished beds from the build session' },
+      { src: '/images/community/unplaced/rec-assembly-03-threading-pole.jpg', alt: 'Kids threading a steel pole through the canvas sleeve' },
+      { src: '/images/community/unplaced/rec-assembly-07-wheelchair-guide.jpg', alt: 'An Elder guiding two young builders through the canvas fit' },
     ],
     goDeeper: [{ label: 'The Utopia field note', href: '/field-notes/utopia-may-2026' }],
     script:
@@ -277,7 +282,7 @@ export const deckSlides: DeckSlide[] = [
     gallery: [
       { src: '/images/utopia/utopia-02.jpg', alt: 'Delivery day, Utopia homelands' },
       { src: '/images/utopia/utopia-05.jpg', alt: 'Beds arriving on Country' },
-      { src: '/images/utopia/utopia-12.jpg', alt: 'Unloading in community' },
+      { src: '/images/community/palm-island/bedding-golden-hour.jpg', alt: 'Kids carrying new bedding home at golden hour, Palm Island' },
     ],
     goDeeper: [
       { label: 'Every number, audited', href: '/register' },
@@ -308,6 +313,7 @@ export const deckSlides: DeckSlide[] = [
       mode: 'loop',
     },
     gallery: [
+      { src: '/images/community/alice-springs/oonchiumpa-team-red-bed.jpg', alt: 'The Oonchiumpa team with a finished Stretch Bed and stacked leg components' },
       { src: '/images/process/heat-press-detail.jpg', alt: 'The heat press, up close' },
       { src: '/images/process/cnc-router-full.jpg', alt: 'CNC cutting the leg components' },
       { src: '/images/process/parts-rack-sorted.jpg', alt: 'Cut parts, racked and sorted' },
@@ -352,10 +358,11 @@ export const deckSlides: DeckSlide[] = [
     photo: '/images/media-pack/lying-on-stretch-bed.jpg',
     photoAlt: 'Resting on a Stretch Bed, off the ground',
     gallery: [
+      { src: '/images/community/alice-springs/stretch-bed-two-generations.jpg', alt: 'Two generations sharing a new Stretch Bed on Country' },
+      { src: '/images/community/unplaced/rec-bed-done-joy.jpg', alt: 'Two kids laughing on the Stretch Bed they just built' },
+      { src: '/images/community/alice-springs/oonchiumpa-office-joy.jpg', alt: 'The Oonchiumpa team testing a Stretch Bed, laughing' },
       { src: '/images/media-pack/woman-on-red-stretch-bed.jpg', alt: 'Resting on a red Stretch Bed' },
-      { src: '/images/media-pack/thumbs-up-stretch-bed.jpg', alt: 'Thumbs up from a new bed' },
-      { src: '/images/product/stretch-bed-in-use.jpg', alt: 'A Stretch Bed in daily use' },
-      { src: '/images/media-pack/goods-branding-golden-hour.jpg', alt: 'Goods, golden hour' },
+      { src: '/images/community/alice-springs/stretch-bed-kids-pile.jpg', alt: 'A pile of kids claiming two new Stretch Beds' },
     ],
     goDeeper: [
       { label: 'Back the work', href: '/get-involved' },
