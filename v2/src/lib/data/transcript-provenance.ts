@@ -188,7 +188,7 @@ export const TRANSCRIPT_PROVENANCE: Record<string, TranscriptProvenance> = {
     recordingDates: ['2025-01-18'],
     releaseState: 'blocked_no_review_or_grant',
     inQuoteAnalysis: true,
-    note: 'EL files this under the Goods project; the Notion card tagged it "Beyond Shadows". Longest transcript in the corpus. Read before leaning harder on the fire-and-dirt line.',
+    note: 'EL files this under the Goods project; the Notion "Beyond Shadows" tag was a mis-filing. Longest transcript in the corpus (15 bed mentions). Fire-and-dirt consultation line VERIFIED verbatim 2026-07-15: "sitting down on the grass, on the dirt, with the fire, that\'s our consultation, without the pen and paper, and just actually sit down and listen." Promoting it into the registry as an on-screen quote is Ben\'s call.',
   },
   'Wayne Glenn': {
     kind: 'el-transcript',

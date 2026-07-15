@@ -170,7 +170,7 @@ export const deckSlides: DeckSlide[] = [
     ],
     script:
       'We came with prototypes and more certainty than we should have had. Gary in Mount Isa described consultation as sitting on the grass or dirt, around the fire, without the pen and paper, and listening. His words exposed something uncomfortable. Asking is easy. The hard part is staying quiet when the answer begins to undo your idea. People spoke about family coming to stay and too few beds in the house. Freight. Mattresses on floors. Snakes. Sore knees. In Arlparra, a household told us they had been sleeping on a door. People already understood all of this. They did not need us to diagnose their lives. We were the ones catching up.',
-    note: 'Turn 1, narrative-foundation §2. Anonymous Arlparra lines are usable unnamed (community-narrative.ts). Gary\'s fire-and-dirt description stays narrated, never in quotation marks, until transcript-verified.',
+    note: 'Turn 1, narrative-foundation §2. Anonymous Arlparra lines are usable unnamed (community-narrative.ts). Gary\'s fire-and-dirt description VERIFIED against his transcript 2026-07-15 (near-verbatim; interview is substantially about Goods). Narration is faithful; promoting the exact line to an on-screen registry quote is Ben\'s call.',
   },
   {
     id: 'turn-2',
