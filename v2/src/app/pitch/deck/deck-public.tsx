@@ -14,6 +14,24 @@ import {
 } from 'lucide-react';
 import { deckSlides, deckUpdated, type DeckSlide, type GalleryImage } from '@/lib/data/deck';
 import { getStoryteller } from '@/lib/data/storyteller-registry';
+import { getProvenance } from '@/lib/data/transcript-provenance';
+
+/** The quiet line that makes a quote real: when and how it was recorded. */
+function recordedLine(name: string): string | null {
+  const p = getProvenance(name);
+  if (p.kind === 'el-transcript' && p.recordingDates?.length) {
+    const [y, m] = p.recordingDates[0].split('-');
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December',
+    ];
+    const mi = parseInt(m, 10) - 1;
+    if (mi >= 0 && mi < 12) return `recorded ${months[mi]} ${y}`;
+  }
+  if (p.kind === 'ben-provided-transcript') return 'in his own recorded words';
+  if (p.kind === 'trip-notes') return 'from trip notes, shared with permission';
+  return null;
+}
 
 /** Consent-safe: primary → approved, never a `hold` quote. */
 function leadQuote(name: string) {
@@ -62,6 +80,7 @@ function VoiceCard({ name }: { name: string }) {
   const record = getStoryteller(name);
   const quote = leadQuote(name);
   if (!quote) return null;
+  const whisper = recordedLine(name);
   return (
     <figure className="rounded-md border border-border bg-card p-4">
       <div className="flex items-start gap-3">
@@ -74,7 +93,41 @@ function VoiceCard({ name }: { name: string }) {
       <blockquote className="mt-3 text-sm leading-relaxed text-foreground">
         &ldquo;{quote.text}&rdquo;
       </blockquote>
-      {quote.context && <p className="mt-1 text-xs text-muted-foreground">{quote.context}</p>}
+      {(quote.context || whisper) && (
+        <p className="mt-1 text-xs text-muted-foreground">
+          {quote.context}
+          {quote.context && whisper ? ' · ' : ''}
+          {whisper}
+        </p>
+      )}
+    </figure>
+  );
+}
+
+/** The turn's anchor voice: a large pull-quote with the person, not a card. */
+function LeadVoice({ name }: { name: string }) {
+  const record = getStoryteller(name);
+  const quote = leadQuote(name);
+  if (!quote) return null;
+  const whisper = recordedLine(name);
+  return (
+    <figure className="mt-8 border-l-2 border-primary/60 pl-5 md:pl-6">
+      <blockquote
+        className="text-xl leading-snug text-foreground md:text-2xl"
+        style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+      >
+        &ldquo;{quote.text}&rdquo;
+      </blockquote>
+      <figcaption className="mt-4 flex items-center gap-3">
+        <VoiceAvatar name={name} size={48} />
+        <div>
+          <p className="text-sm font-semibold text-foreground">{name}</p>
+          <p className="text-xs text-muted-foreground">
+            {record?.role}
+            {whisper ? ` · ${whisper}` : ''}
+          </p>
+        </div>
+      </figcaption>
     </figure>
   );
 }
@@ -183,11 +236,24 @@ function SlideSection({
   total: number;
   onOpenImage: (img: GalleryImage) => void;
 }) {
+  const [leadName, ...restNames] = slide.voiceNames ?? [];
   return (
-    <section id={slide.id} className="scroll-mt-24 rounded-lg border border-border bg-card">
-      <SlideMedia slide={slide} />
-      <div className="p-5 md:p-8">
-        <div className="flex items-center justify-between gap-3">
+    <section id={slide.id} className="scroll-mt-24">
+      {/* Place and time: the thread that connects the chapters */}
+      {slide.place && (
+        <div className="mb-5 flex items-center gap-4">
+          <span className="h-px flex-1 bg-border" />
+          <p className="text-[11px] uppercase tracking-[0.25em] text-muted-foreground">{slide.place}</p>
+          <span className="h-px flex-1 bg-border" />
+        </div>
+      )}
+
+      <div className="overflow-hidden rounded-lg border border-border">
+        <SlideMedia slide={slide} />
+      </div>
+
+      <div className="mx-auto mt-8 max-w-3xl">
+        <div className="flex items-baseline justify-between gap-3">
           <p className="text-xs uppercase tracking-widest text-accent">{slide.eyebrow}</p>
           <p className="text-[11px] font-semibold text-muted-foreground">
             {index + 1} / {total}
@@ -201,14 +267,24 @@ function SlideSection({
           {slide.headline}
         </h2>
 
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+        <p className="mt-4 text-sm font-medium leading-relaxed text-muted-foreground md:text-base">
           {slide.body}
         </p>
 
+        {/* The narration: told in the first person, the way it gets told in the room */}
+        {slide.script && (
+          <p
+            className="mt-5 text-lg leading-relaxed text-foreground/90"
+            style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+          >
+            {slide.script}
+          </p>
+        )}
+
         {slide.steps && (
-          <ol className="mt-6 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+          <ol className="mt-7 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
             {slide.steps.map((step, i) => (
-              <li key={step} className="flex gap-2 rounded-md border border-border bg-background p-3">
+              <li key={step} className="flex gap-2 rounded-md border border-border bg-card p-3">
                 <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">
                   {i + 1}
                 </span>
@@ -217,6 +293,8 @@ function SlideSection({
             ))}
           </ol>
         )}
+
+        {leadName && <LeadVoice name={leadName} />}
 
         {slide.literalQuotes && slide.literalQuotes.length > 0 && (
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -232,18 +310,18 @@ function SlideSection({
           </div>
         )}
 
-        {slide.voiceNames && slide.voiceNames.length > 0 && (
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-            {slide.voiceNames.map((name) => (
+        {restNames.length > 0 && (
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            {restNames.map((name) => (
               <VoiceCard key={name} name={name} />
             ))}
           </div>
         )}
 
         {slide.chips && slide.chips.length > 0 && (
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div className="mt-7 flex flex-wrap gap-2">
             {slide.chips.map((chip) => (
-              <div key={chip.label} className="rounded-md border border-border bg-background px-3 py-2">
+              <div key={chip.label} className="rounded-md border border-border bg-card px-3 py-2">
                 <p className="text-[10px] uppercase tracking-wide text-muted-foreground">{chip.label}</p>
                 <p className="text-sm font-semibold text-foreground">{chip.value}</p>
               </div>
@@ -291,6 +369,9 @@ function PresentSlide({ slide }: { slide: DeckSlide }) {
 
       <div className="absolute inset-x-0 bottom-0 p-6 md:p-16">
         <div className="mx-auto max-w-4xl">
+          {slide.place && (
+            <p className="mb-1 text-[10px] uppercase tracking-[0.3em] text-white/50">{slide.place}</p>
+          )}
           <p className="text-xs uppercase tracking-[0.3em] text-white/70 md:text-sm">{slide.eyebrow}</p>
           <h2
             className="mt-3 text-3xl font-light leading-tight text-white md:text-5xl"
@@ -485,14 +566,15 @@ export function DeckPublic() {
             className="max-w-3xl text-3xl font-light leading-tight md:text-5xl"
             style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
           >
-            The whole story, one page.
+            The whole story, told straight.
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-background/70 md:text-base">
-            Ten turns through what communities have built with Goods: the need, named by the people
-            living it; the products they designed; the making moving into community hands; and what
-            has to move next. Real voices, real photographs, and numbers that audit back to the
-            public register. Updated {deckUpdated}.
+            Ten turns, told in the first person, the way it gets told in the room. Every voice is a
+            real person, recorded on Country with their permission, and each quote says when. The
+            photographs are from the deliveries and builds they show. Every number audits back to
+            the public register. Updated {deckUpdated}.
           </p>
+          <p className="mt-2 text-xs text-background/50">Narrated by Ben Knight, co-founder.</p>
 
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <button
@@ -514,17 +596,22 @@ export function DeckPublic() {
         </div>
       </div>
 
-      {/* Slides */}
-      <div className="container mx-auto max-w-4xl space-y-8 px-4 py-10">
+      {/* Chapters, connected by the thread */}
+      <div className="container mx-auto max-w-4xl px-4 py-12">
         {deckSlides.map((slide, index) => (
-          <SlideSection
-            key={slide.id}
-            slide={slide}
-            index={index}
-            total={deckSlides.length}
-            onOpenImage={setLightbox}
-          />
+          <div key={slide.id}>
+            {index > 0 && (
+              <div className="mx-auto my-14 h-12 w-px border-l-2 border-dashed border-border" aria-hidden />
+            )}
+            <SlideSection
+              slide={slide}
+              index={index}
+              total={deckSlides.length}
+              onOpenImage={setLightbox}
+            />
+          </div>
         ))}
+        <div className="mx-auto my-14 h-12 w-px border-l-2 border-dashed border-border" aria-hidden />
 
         {/* Closing band */}
         <div className="rounded-lg border border-border bg-card p-6 text-center md:p-10">
