@@ -8,9 +8,45 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import type { StorytellerRecord, VoiceTier } from '@/lib/data/storyteller-registry';
+import {
+  getProvenance,
+  provenanceLabel,
+  releaseStateLabel,
+  type ProvenanceKind,
+} from '@/lib/data/transcript-provenance';
 
 /** Registry record annotated server-side with its atlas place bucket. */
 export type AtlasRecord = StorytellerRecord & { place: string };
+
+// Provenance kind buckets for the filter. The provenance module is metadata
+// only (counts, dates, release states); no transcript text exists in it and
+// none is ever rendered here.
+export type ProvenanceGroup = 'transcript-backed' | 'trip-notes' | 'curated' | 'other';
+
+export function provenanceGroup(kind: ProvenanceKind): ProvenanceGroup {
+  if (kind === 'el-transcript' || kind === 'ben-provided-transcript') return 'transcript-backed';
+  if (kind === 'trip-notes') return 'trip-notes';
+  if (kind === 'curated') return 'curated';
+  return 'other';
+}
+
+const PROVENANCE_BADGE: Record<ProvenanceKind, string> = {
+  'el-transcript': 'bg-emerald-50 text-emerald-700 border-emerald-200',
+  'ben-provided-transcript': 'bg-green-50 text-green-700 border-green-200',
+  'trip-notes': 'bg-sky-50 text-sky-700 border-sky-200',
+  'funder-pack': 'bg-gray-100 text-gray-600 border-gray-200',
+  narrated: 'bg-gray-50 text-gray-500 border-gray-200 italic',
+  'content-hardcoded': 'bg-amber-50 text-amber-800 border-amber-200',
+  curated: 'bg-amber-50 text-amber-800 border-amber-200',
+};
+
+const PROVENANCE_FILTER_OPTIONS: Array<{ value: 'all' | ProvenanceGroup; label: string }> = [
+  { value: 'all', label: 'All provenance' },
+  { value: 'transcript-backed', label: 'Transcript-backed' },
+  { value: 'trip-notes', label: 'Trip notes' },
+  { value: 'curated', label: 'Curated, no primary source' },
+  { value: 'other', label: 'Other (funder pack, hardcoded, narrated)' },
+];
 
 const DISPLAY_FONT = { fontFamily: 'var(--font-display, Georgia, serif)' } as const;
 
@@ -50,6 +86,7 @@ function initials(name: string): string {
 
 function StorytellerCard({ rec }: { rec: AtlasRecord }) {
   const tier = TIER_BADGE[rec.tier];
+  const prov = getProvenance(rec.name);
   return (
     <article className="rounded-lg border border-border bg-card p-4">
       <div className="flex items-start gap-3">
@@ -126,12 +163,32 @@ function StorytellerCard({ rec }: { rec: AtlasRecord }) {
         <p className="mt-3 text-xs text-muted-foreground">No quotes on record.</p>
       )}
 
-      {/* Provenance: the registry carries no transcript/source field yet, so we
-          render a neutral registry label. A transcriptSource field is pending
-          (wiki storyteller provenance model). Do not invent transcript links. */}
-      <p className="mt-3 text-[10px] uppercase tracking-wide text-muted-foreground/80">
-        provenance: registry
-      </p>
+      {/* Provenance from transcript-provenance.ts (keyed by registry name).
+          Metadata only: kind, counts, dates, EL release state. Transcript text
+          never enters this repo and is never rendered. */}
+      <div className="mt-3 space-y-1">
+        <div className="flex flex-wrap items-center gap-1.5">
+          <span
+            className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[11px] font-medium ${PROVENANCE_BADGE[prov.kind]}`}
+          >
+            {provenanceLabel(prov)}
+          </span>
+          {prov.inQuoteAnalysis ? (
+            <span className="inline-flex items-center rounded-full border border-border bg-background px-1.5 py-px text-[10px] text-muted-foreground">
+              in the 6-turn quote analysis (local)
+            </span>
+          ) : null}
+        </div>
+        {prov.recordingDates?.length || prov.releaseState || prov.note ? (
+          <p className="text-[11px] leading-relaxed text-muted-foreground">
+            {prov.recordingDates?.length ? (
+              <span>Recorded {prov.recordingDates.join(' · ')}. </span>
+            ) : null}
+            {prov.releaseState ? <span>EL: {releaseStateLabel(prov.releaseState)}. </span> : null}
+            {prov.note ? <span>{prov.note}</span> : null}
+          </p>
+        ) : null}
+      </div>
     </article>
   );
 }
@@ -145,6 +202,7 @@ export default function AtlasClient({
 }) {
   const [tier, setTier] = useState<'all' | VoiceTier>('all');
   const [place, setPlace] = useState<string>('all');
+  const [prov, setProv] = useState<'all' | ProvenanceGroup>('all');
   const [search, setSearch] = useState('');
 
   const placesWithVoices = useMemo(
@@ -157,6 +215,7 @@ export default function AtlasClient({
     return records.filter((r) => {
       if (tier !== 'all' && r.tier !== tier) return false;
       if (place !== 'all' && r.place !== place) return false;
+      if (prov !== 'all' && provenanceGroup(getProvenance(r.name).kind) !== prov) return false;
       if (q) {
         const hay = [r.name, ...(r.aliases ?? []), r.role, r.community]
           .join(' ')
@@ -165,7 +224,7 @@ export default function AtlasClient({
       }
       return true;
     });
-  }, [records, tier, place, search]);
+  }, [records, tier, place, prov, search]);
 
   const groups = useMemo(
     () =>
@@ -207,6 +266,18 @@ export default function AtlasClient({
           {placesWithVoices.map((p) => (
             <option key={p} value={p}>
               {p}
+            </option>
+          ))}
+        </select>
+        <select
+          value={prov}
+          onChange={(e) => setProv(e.target.value as 'all' | ProvenanceGroup)}
+          className="h-9 rounded-md border border-border bg-background px-2 text-sm text-foreground"
+          aria-label="Filter by transcript provenance"
+        >
+          {PROVENANCE_FILTER_OPTIONS.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
             </option>
           ))}
         </select>
