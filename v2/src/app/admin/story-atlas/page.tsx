@@ -5,7 +5,9 @@
 // live page. Body is the full roster grouped by community, with consent tiers,
 // all blessed AND held quotes (badged), and provenance labels.
 //
-// Data source: v2/src/lib/data/storyteller-registry.ts only. Canonical metrics
+// Data sources: v2/src/lib/data/storyteller-registry.ts (voices, quotes, tiers)
+// and v2/src/lib/data/transcript-provenance.ts (transcript metadata only, keyed
+// by registry name; no transcript text exists there or here). Canonical metrics
 // imported from asset-canonical.ts, never hardcoded.
 
 import type { Metadata } from 'next';
@@ -15,6 +17,14 @@ import {
   STORYTELLER_REGISTRY,
   type StorytellerRecord,
 } from '@/lib/data/storyteller-registry';
+import {
+  getProvenance,
+  provenanceLabel,
+  releaseStateLabel,
+  PROVENANCE_ASOF,
+  PROVENANCE_SOURCE,
+  UNREGISTERED_TRANSCRIPTS,
+} from '@/lib/data/transcript-provenance';
 import AtlasClient, { type AtlasRecord } from './atlas-client';
 
 export const metadata: Metadata = {
@@ -141,6 +151,18 @@ export default function StoryAtlasPage() {
     return { ...theme, voiceCount: voices.length, places };
   });
 
+  // Provenance summary over the whole roster (metadata only; grouping mirrors
+  // provenanceGroup() in atlas-client.tsx, kept local because client-module
+  // functions cannot be called from a server component).
+  const provKinds = records.map((r) => getProvenance(r.name).kind);
+  const transcriptBacked = provKinds.filter(
+    (k) => k === 'el-transcript' || k === 'ben-provided-transcript',
+  ).length;
+  const tripNotes = provKinds.filter((k) => k === 'trip-notes').length;
+  const curatedNoSource = provKinds.filter((k) => k === 'curated').length;
+
+  const unregistered = Object.entries(UNREGISTERED_TRANSCRIPTS);
+
   return (
     <div className="space-y-8 p-6 pb-16">
       <header className="flex flex-wrap items-start justify-between gap-4">
@@ -178,6 +200,46 @@ export default function StoryAtlasPage() {
           </Link>
         </div>
       </header>
+
+      <section aria-label="Provenance summary" className="space-y-3">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs text-emerald-700">
+            <span className="font-bold">{transcriptBacked}</span>&nbsp;transcript-backed
+          </span>
+          <span className="inline-flex items-center rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs text-sky-700">
+            <span className="font-bold">{tripNotes}</span>&nbsp;trip notes
+          </span>
+          <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs text-amber-800">
+            <span className="font-bold">{curatedNoSource}</span>&nbsp;curated, no primary source
+          </span>
+        </div>
+        <p className="text-xs text-muted-foreground">
+          Provenance as of {PROVENANCE_ASOF}: {PROVENANCE_SOURCE}
+        </p>
+        {unregistered.length > 0 ? (
+          <div className="max-w-md rounded-lg border border-border bg-card p-3">
+            <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+              Not yet in the registry
+            </p>
+            {unregistered.map(([name, p]) => (
+              <div key={name} className="mt-1.5">
+                <p className="text-sm text-foreground" style={DISPLAY_FONT}>
+                  {name}
+                  <span className="ml-2 align-middle text-xs font-normal text-muted-foreground">
+                    transcript on file, not yet in the registry
+                  </span>
+                </p>
+                <p className="mt-0.5 text-[11px] text-muted-foreground">
+                  {provenanceLabel(p)}
+                  {p.recordingDates?.length ? `. Recorded ${p.recordingDates.join(' · ')}` : ''}
+                  {p.releaseState ? `. EL: ${releaseStateLabel(p.releaseState)}` : ''}
+                  {p.note ? `. ${p.note}` : ''}
+                </p>
+              </div>
+            ))}
+          </div>
+        ) : null}
+      </section>
 
       <section aria-labelledby="themes-heading">
         <h2 id="themes-heading" className="text-xl text-foreground" style={DISPLAY_FONT}>
