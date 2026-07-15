@@ -192,7 +192,7 @@ export const deckSlides: DeckSlide[] = [
     kind: 'turn',
     eyebrow: 'Turn 3',
     headline: 'The products work because community designed them. Both of them.',
-    body: 'Maroon. Washable canvas. Replaceable parts. A height older people could get out of. The specs come from lived conditions, and the Stretch Bed and the washing machine Dianne named both carry them.',
+    body: 'Washable canvas. Replaceable parts. A height older people could get out of. The specs come from lived conditions, and the Stretch Bed and the washing machine Dianne named both carry them.',
     photo: '/images/product/stretch-bed-hero.jpg',
     photoAlt: 'The Stretch Bed, community-designed',
     voiceNames: ['Dianne Stokes', 'Dorrie Jones', 'Melissa Jackson', 'Patricia Frank'],
@@ -221,7 +221,7 @@ export const deckSlides: DeckSlide[] = [
       { label: 'Pakkimjalki Kari', href: '/wiki/products/washing-machine' },
     ],
     script:
-      'Norman asked for maroon. The request sounds small until you notice what usually happens: a product arrives in whatever colour somebody else selected, and the person using it is expected to be grateful. Maroon went into the work. The bed changed. Washable canvas. Replaceable parts. A flat pack for the road. No toolbox needed. A height that gave older knees a fair chance. The Stretch Bed is made from those corrections. The washing machine followed the bed; one without the other left the job half done. Dianne Stokes designed it and named it Pakkimjalki Kari. She says that every time she goes away, it is like it is calling her: come back home.',
+      'People showed us what the last bed got wrong, and the next one changed. Washable canvas. Replaceable parts. A flat pack for the road. No toolbox needed. A height that gave older knees a fair chance. The Stretch Bed is made from those corrections. Every version carries the fingerprints of people who told us the last one was not good enough. The washing machine followed the bed; one without the other left the job half done. Dianne Stokes designed it and named it Pakkimjalki Kari. She says that every time she goes away, it is like it is calling her: come back home.',
     note: 'Turn 3, narrative-foundation §2-3. Dianne\'s PRIMARY quote is Pakkimjalki Kari; her totem line is HOLD — never surface it. Specs from products.ts. Health carried by Patricia Frank + Dr Boe Remenyi (labelled practitioner); the why only, never an outcome.',
   },
   {

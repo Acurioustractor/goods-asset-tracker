@@ -52,7 +52,7 @@ Quote rule: anything on screen in quotation marks renders registry-verbatim thro
 | 2 | **The model** | One loop, run twice. Two products, designed in community. Steps: Listen · Design in community · Make on Country · Deliver and feed back · Transfer and support | Dianne Stokes named as designer and namer (external) | delivered (both products shipped through the loop) | process/factory-panorama.jpg | recycling-plant loop |
 | 3 | **Turn 1: the need is real, and people name it themselves** | Sit on the dirt. Leave the pen alone. Listen long enough for the idea to change. | Anonymous Arlparra lines (usable unnamed) · Ivy (external) · Katrina Bloomfield (external, voice-only) · alternates Linda Turner, Gary (narrated only, E4 flag) | observed | media-pack/nic-with-elder-on-verandah.jpg | community b-roll |
 | 4 | **Turn 2: the existing supply fails these places** | "You have to bring them on the barge. You can't just take them on the boat. You have to pay for freight. It all adds up." Alfred Johnson, Palm Island | Alfred Johnson (external) · Daniel Patrick Noble (external) | observed | media-pack/deadly-heart-trek-aug-2025.jpg (weakest fit, see gaps) | stretch-bed montage |
-| 5 | **Turn 3: the products work because community designed them. Both of them.** | Maroon. Washable canvas. Replaceable parts. A height older people could get out of. | Dianne Stokes (external, Pakkimjalki Kari line) · Dorrie Jones (external) · Melissa Jackson (external) · Patricia Frank (external, washing and health) · Dr Boe Remenyi (external, labelled practitioner) | delivered; health stated as the why only | product/stretch-bed-hero.jpg + pitch/bed-seq strip + product/washing-machine-name.jpg | jaquilane overlay where testimony referenced |
+| 5 | **Turn 3: the products work because community designed them. Both of them.** | Washable canvas. Replaceable parts. A height older people could get out of. | Dianne Stokes (external, Pakkimjalki Kari line) · Dorrie Jones (external) · Melissa Jackson (external) · Patricia Frank (external, washing and health) · Dr Boe Remenyi (external, labelled practitioner) | delivered; health stated as the why only | product/stretch-bed-hero.jpg + pitch/bed-seq strip + product/washing-machine-name.jpg | jaquilane overlay where testimony referenced |
 | 6 | **Turn 4: the making belongs in community hands** | "Yeah, I'll be rocking up every day to make them." Mykel, Utopia | Mykel (external, youth-care framing) · Fred Campbell narrating Xavier (external, never Xavier direct) · Karen Liddle (external) · Kristy Bloomfield (external) · Bloomfield family build narrated as fact | delivered (paid builds happened) | build/build-001.jpg | mykel-building-the-bed.mp4, already wired |
 | 7 | **Hinge: the truck test** | The product is proven. The transfer is not. What came in on the truck? What leaves on it? What stays? Chips: 496 beds across 9 communities (delivered) · 16 washing machines in community (delivered) · 2,660kg plastic diverted (delivered, Stretch-only) | Goods (Ben), no community voice | delivered (chips), proposed (the transfer) | utopia/utopia-09.jpg (place-attributable delivery) | utopia-delivery-road.mp4 |
 | 8 | **Turn 5: the plant makes the pattern transferable; ownership is the promise, and it is not true yet** | Ownership is a pathway. What has to move: title, contracts, margin, knowledge, decisions. | Norman Frank (external) · Shayne Bloomfield (external) · alternates Karen Liddle, Dianne Stokes | proposed (transfer plan), requested (Oonchiumpa plant interest, PICC facility ask, Dianne's 20, Anyinginyi reorder) | process/heat-press-full.jpg + community-ownership diagram inset | recycling-plant loop |
@@ -103,13 +103,15 @@ people would rather go without. Freight, cost and distance break the ordinary su
 before it reaches the community. Remote families pay too much for goods that fail too quickly.
 They can be made better.
 
-**5. Turn 3.** Norman asked for maroon. The request sounds small until you notice what usually
-happens: a product arrives in whatever colour somebody else selected, and the person using it is
-expected to be grateful. Maroon went into the work. The bed changed. Washable canvas. Replaceable
-parts. A flat pack for the road. No toolbox needed. A height that gave older knees a fair chance.
-The Stretch Bed is made from those corrections. The washing machine followed the bed; one without
-the other left the job half done. Dianne Stokes designed it and named it Pakkimjalki Kari. She
-says that every time she goes away, it is like it is calling her: come back home.
+**5. Turn 3.** People showed us what the last bed got wrong, and the next one changed. Washable
+canvas. Replaceable parts. A flat pack for the road. No toolbox needed. A height that gave older
+knees a fair chance. The Stretch Bed is made from those corrections. Every version carries the
+fingerprints of people who told us the last one was not good enough. The washing machine followed
+the bed; one without the other left the job half done. Dianne Stokes designed it and named it
+Pakkimjalki Kari. She says that every time she goes away, it is like it is calling her: come
+back home. (Word purged 15 July on Ben's call: the colour-request opener read as branding, not
+meaning. The factual demand record, three beds requested after his daughter tried one, stays in
+the compendium register.)
 
 **6. Turn 4.** The work with Oonchiumpa in Alice Springs pushed the question to the front. Young
 people built beds outside the office before the Utopia trip. Mykel said, "Yeah, I'll be rocking
