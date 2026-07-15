@@ -226,9 +226,12 @@ machinery-and-working-capital language. One ask per room, the other two deleted.
 2. CONSENT, CRITICAL: the drinking-in-front-yards detail never surfaces anywhere.
 3. FIGURE, HIGH: match stack (SEFA $300K, Snow $100K, Centrecorp $75K) is proposed, 0 signed
    LOIs today; never shown as committed. Fixed in deck.ts this session.
-4. CONSENT-QUOTE, MEDIUM: Gary's fire-and-dirt consultation description is narrated, never in
-   quotation marks, until transcript-verified (his transcript is also tagged to a different ACT
-   project).
+4. RESOLVED 2026-07-15: Gary's fire-and-dirt line verified against his 5,264-word transcript,
+   near-verbatim ("sitting down on the grass, on the dirt, with the fire, that's our
+   consultation, without the pen and paper, and just actually sit down and listen"), in an
+   interview substantially about Goods (15 bed mentions); the "Beyond Shadows" tag was a Notion
+   mis-filing, EL files it under Goods. Narration in the script is faithful; on-screen verbatim
+   use awaits Ben promoting the line into the registry.
 5. FIGURE-CLAIM, MEDIUM: Norman's and Patricia's role in Warumungu naming is unverified; Dianne
    as designer and namer of both products' story is registry-supported and usable.
 6. BRAND, MEDIUM: deck.ts carried em dashes, spaced units and lowercase on-Country; fixed this
