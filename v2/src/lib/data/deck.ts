@@ -73,6 +73,8 @@ export interface DeckSlide {
   /** Served path under /public. */
   photo: string;
   photoAlt: string;
+  /** Place and time stamp shown on the public story page ("Tennant Creek · 2025"). */
+  place?: string;
   /** The five loop stages, model slide only. */
   steps?: string[];
   /** Registry voices carrying this slide, in display order. */
@@ -108,6 +110,7 @@ export const deckSlides: DeckSlide[] = [
     body: 'Quality furniture and appliances for remote Indigenous communities. Designed in community, made on Country, moving toward community ownership.',
     photo: '/images/product/stretch-bed-community.jpg',
     photoAlt: 'A Stretch Bed set up in a remote community home',
+    place: 'Nine communities across Australia',
     goDeeper: [
       { label: 'The work', href: '/the-work' },
       { label: 'The communities', href: '/communities' },
@@ -124,6 +127,7 @@ export const deckSlides: DeckSlide[] = [
     body: 'The Stretch Bed and Pakkimjalki Kari, the washing machine Dianne Stokes named in Warumungu, both came through the same loop, in different community hands each time. Every product into a home feeds back into the next design, and the plant itself is built to be handed over, place by place.',
     photo: '/images/process/factory-panorama.jpg',
     photoAlt: 'The containerised plant on Country',
+    place: 'The plant · Alice Springs',
     steps: [
       'Listen: the community names the need',
       'Design in community: specs from lived conditions',
@@ -153,6 +157,7 @@ export const deckSlides: DeckSlide[] = [
     body: 'Sit on the dirt. Leave the pen alone. Listen long enough for the idea to change. Before any bed lands, the community names the need, in its own words, not ours.',
     photo: '/images/media-pack/nic-with-elder-on-verandah.jpg',
     photoAlt: 'Nic listening with an Elder on a verandah',
+    place: 'Mount Isa · Arlparra · Palm Island · 2024 onward',
     voiceNames: ['Ivy', 'Katrina Bloomfield'],
     voiceAlternates: ['Linda Turner', 'Melissa Jackson'],
     literalQuotes: [
@@ -180,6 +185,7 @@ export const deckSlides: DeckSlide[] = [
     body: 'Freight, cost and distance break the ordinary supply chain long before it reaches the community.',
     photo: '/images/community/kalgoorlie/mattress-dumped-jerry-can.jpg',
     photoAlt: 'A failed mattress dumped on red dirt near Kalgoorlie',
+    place: 'Kalgoorlie · Palm Island',
     voiceNames: ['Alfred Johnson', 'Daniel Patrick Noble'],
     voiceAlternates: ['Ivy', 'Jason'],
     gallery: [
@@ -200,6 +206,7 @@ export const deckSlides: DeckSlide[] = [
     body: 'Washable canvas. Replaceable parts. A height older people could get out of. The specs come from lived conditions, and the Stretch Bed and the washing machine Dianne named both carry them.',
     photo: '/images/product/stretch-bed-hero.jpg',
     photoAlt: 'The Stretch Bed, community-designed',
+    place: 'Tennant Creek · Arlparra',
     voiceNames: ['Dianne Stokes', 'Dorrie Jones', 'Melissa Jackson', 'Patricia Frank'],
     voiceAlternates: ['Heather Mundo'],
     chips: [
@@ -237,6 +244,7 @@ export const deckSlides: DeckSlide[] = [
     body: 'The Bloomfield family built the current washing machines with Nic. Young makers built the Utopia beds through Oonchiumpa. Different hands, the same loop. The direction of the request is changing: from receiving products to making them.',
     photo: '/images/build/build-001.jpg',
     photoAlt: 'Young people building a bed on Country',
+    place: 'Alice Springs · Utopia · May 2026',
     voiceNames: ['Mykel', 'Fred Campbell', 'Karen Liddle', 'Kristy Bloomfield'],
     voiceAlternates: ['Katrina Bloomfield'],
     video: {
@@ -269,6 +277,7 @@ export const deckSlides: DeckSlide[] = [
     body: 'What came in on the truck? What leaves on it? What stays? If the beds stay while the wages, tools, knowledge and decisions leave with us, the old arrangement has survived the delivery.',
     photo: '/images/utopia/utopia-09.jpg',
     photoAlt: 'A delivery day on Country, Utopia',
+    place: 'Utopia homelands · May 2026',
     chips: [
       { label: 'Delivered · beds', value: '496 across 9 communities' },
       { label: 'Delivered · washing machines', value: '16 in community' },
@@ -300,6 +309,7 @@ export const deckSlides: DeckSlide[] = [
     body: 'The containerised plant is visible, teachable and movable: Alice to Tennant Creek to Katherine to Darwin. But a plant is an operating system: orders, wages, safety, maintenance, working capital, quality, governance. Handed over without that system, it becomes another dead machine at the edge of town. Ownership is a pathway. What has to move: title, contracts, margin, knowledge, decisions.',
     photo: '/images/process/heat-press-full.jpg',
     photoAlt: 'The heat press — the one move at the heart of the plant',
+    place: 'Alice Springs to Tennant Creek to Katherine to Darwin',
     voiceNames: ['Norman Frank', 'Shayne Bloomfield'],
     voiceAlternates: ['Karen Liddle', 'Dianne Stokes'],
     chips: [
@@ -335,6 +345,7 @@ export const deckSlides: DeckSlide[] = [
     body: 'The funding buys the bridge: the 50-bed in-source run (modelled, then measured), the first place-based ownership pathway with Oonchiumpa, the enterprise-support layer, and plant capex. AU$400K through QBE Catalysing Impact, matched at least 1:1 by signed external commitments. The target match stack (SEFA $300K, Snow $100K, Centrecorp $75K) is proposed today, not signed. Ordinary capital will not fund this stage, because the return being built is the transfer itself.',
     photo: '/images/qbe/communities-screen.png',
     photoAlt: 'The nine communities served, on the map',
+    place: 'Signed letters by 31 August 2026',
     chips: [
       { label: 'Measured · revenue (accountant-signed carve-out)', value: 'AU$713,827' },
       { label: 'Proposed · the ask', value: 'AU$400K QBE Catalysing Impact' },
@@ -357,6 +368,7 @@ export const deckSlides: DeckSlide[] = [
     body: 'A Goods synthesis, assembled from what people have told us; no one person said this sentence. The funding buys the middle of the sentence, so communities can own the end of it.',
     photo: '/images/media-pack/lying-on-stretch-bed.jpg',
     photoAlt: 'Resting on a Stretch Bed, off the ground',
+    place: 'Every community, on its own terms',
     gallery: [
       { src: '/images/community/alice-springs/stretch-bed-two-generations.jpg', alt: 'Two generations sharing a new Stretch Bed on Country' },
       { src: '/images/community/unplaced/rec-bed-done-joy.jpg', alt: 'Two kids laughing on the Stretch Bed they just built' },
