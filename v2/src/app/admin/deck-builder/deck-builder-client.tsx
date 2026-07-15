@@ -325,8 +325,10 @@ function MediaPicker({
                 className="group relative overflow-hidden rounded-md border border-border bg-muted transition-transform hover:scale-[1.02] focus:ring-2 focus:ring-primary/50"
               >
                 {thumb ? (
-                  // eslint-disable-next-line @next/next/no-img-element -- admin picker thumbs, local files
-                  <img src={thumb} alt={i.url} loading="lazy" className="h-24 w-full object-cover" />
+                  <span className="relative block h-24 w-full">
+                    {/* next/image thumbnails: originals are 1-3MB each; 255 raw <img> tags drowned production */}
+                    <Image src={thumb} alt={i.url} fill sizes="200px" quality={55} className="object-cover" />
+                  </span>
                 ) : (
                   <span className="flex h-24 w-full items-center justify-center text-[10px] text-muted-foreground">
                     <Film className="mr-1 h-3 w-3" />
