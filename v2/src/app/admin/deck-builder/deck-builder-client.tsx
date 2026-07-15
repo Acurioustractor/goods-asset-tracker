@@ -327,7 +327,7 @@ function MediaPicker({
                 {thumb ? (
                   <span className="relative block h-24 w-full">
                     {/* next/image thumbnails: originals are 1-3MB each; 255 raw <img> tags drowned production */}
-                    <Image src={thumb} alt={i.url} fill sizes="200px" quality={55} className="object-cover" />
+                    <Image src={thumb} alt={i.url} fill sizes="200px" quality={75} className="object-cover" />
                   </span>
                 ) : (
                   <span className="flex h-24 w-full items-center justify-center text-[10px] text-muted-foreground">
