@@ -19,7 +19,7 @@
  */
 
 import type { LoiRung } from '@/lib/data/loi-pipeline';
-import { GOODS_PIPELINES } from '@/lib/data/loi-pipeline';
+import { GOODS_PIPELINES, ON_COUNTRY_PRODUCTION_TAGS } from '@/lib/data/loi-pipeline';
 
 export interface SmartList {
   /** Stable identifier used in URLs and API calls */
@@ -223,6 +223,21 @@ export const AUDIENCE_SEGMENTS: AudienceSegment[] = [
     recommendedReportId: 'supply-partner',
     campaignNote:
       'Relationship cadence: the supply-partner brief + a volume forecast. Drives prioritisation and volume pricing, not fundraising.',
+  },
+  {
+    id: 'community-makers',
+    name: 'Community makers',
+    supportLevel: 'On-country capability',
+    description:
+      'Local champions in the On-Country Production journey. This is a small relationship and capability list, not a marketing audience.',
+    source: { kind: 'tag', tag: ON_COUNTRY_PRODUCTION_TAGS.champion },
+    ghlSmartListRecipe:
+      'Contact tag is goods-prod-champion. Only widen to goods-prod-trainee when the campaign is deliberately about training support.',
+    softCap: 30,
+    hardCap: 80,
+    recommendedReportId: 'supply-partner',
+    campaignNote:
+      'Relationship + capability cadence: celebrate milestones, share know-how, and keep it personal. Never blast this list.',
   },
   {
     id: 'vendor',
