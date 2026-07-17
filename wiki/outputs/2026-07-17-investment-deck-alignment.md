@@ -208,7 +208,7 @@ Use recognised IRIS+ metric families so investors see a standard taxonomy, not i
 
 Impact investors reward a fixed impact bundle attached to every unit sold (blended value in one transaction). Present each Stretch Bed as carrying:
 
-> **20 kg HDPE diverted [M]** · **~26 kg CO₂e avoided** (illustrative: 20kg × ~1.3 kg CO₂e/kg recycled-vs-virgin HDPE — label as illustrative, show a range, lock one LCA source before publishing) · **AU$X wages on-Country** [Goods payroll data needed] · **1 household's sleeping/washing capacity improved [V]**.
+> **20 kg HDPE diverted [M]** · **~26 kg CO₂e avoided** (illustrative: 20kg × ~1.3 kg CO₂e/kg recycled-vs-virgin HDPE — label as illustrative, show a range, lock one LCA source before publishing) · **$130 fair wage per bed [M]** (the community fair-wage figure from the best-case model; a plant-payroll actual will confirm it) · **1 household's sleeping/washing capacity improved [V]**.
 
 It scales linearly in the deck: per bed → per 1,000 beds → per plant. This is the single cleanest way to make "each unit is financially self-sustaining *and* carries a defined impact payload."
 
