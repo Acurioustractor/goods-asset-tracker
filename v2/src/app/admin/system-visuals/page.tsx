@@ -129,7 +129,9 @@ const CONCEPTS: Concept[] = [
     key: 'ownership',
     label: 'Community ownership — the transfer',
     blurb: '"We don’t license. We transfer." Goods’s goal is to become unnecessary.',
-    live: [{ path: '/goods-community-ownership-v2.png', usedIn: ['process page', 'cost-story page'] }],
+    // Held pending checkpoint 25 (Ben, 2026-07-17): pulled off /process +
+    // /cost-story and moved behind the admin-gated held-asset route.
+    live: [{ path: '/api/admin/held-asset/goods-community-ownership-v2.png', usedIn: ['pitch proof drawer (admin review only)'] }],
     generated: ['qbe-09-ownership/01-handover.png', 'test-batch/03-ownership-handover.png'],
     calibration: ['goods-community-ownership.jpg'],
     calibrationNote: 'v1 of the ownership image, superseded on the live site by -v2 in the public root; this file sits unused in the calibration folder.',
@@ -163,7 +165,8 @@ const CONCEPTS: Concept[] = [
         '/goods-marginal-vs-fixed.png', '/goods-sankey-money.svg', '/goods-sankey-plastic.png',
         '/goods-scenarios.png', '/goods-idiot-index.svg', '/goods-model-engine.png',
         '/goods-fully-loaded-volume.svg', '/goods-anatomy-bed.png', '/goods-where-750-goes.svg',
-        '/operating-model.png',
+        // Held pending checkpoint 25 — moved out of public/, admin-gated route.
+        '/api/admin/held-asset/operating-model.png',
       ],
     },
     warning: 'Naming collision: goods-anatomy-bed.png (this orphaned script family) is a different file from goods-bed-anatomy.jpg (the live illustration above). Easy to grab the wrong one.',

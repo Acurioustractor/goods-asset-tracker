@@ -14,6 +14,8 @@ const nextConfig: NextConfig = {
   // the serverless bundle so the read never 500s on Vercel.
   outputFileTracingIncludes: {
     '/admin/photo-review/raw': ['src/app/admin/photo-review/raw/photo-review.html'],
+    // Checkpoint-held review diagrams, admin-gated (kept out of public/).
+    '/api/admin/held-asset/[name]': ['src/app/api/admin/held-asset/assets/*'],
   },
   // Public media is served by Vercel as static assets. Do not trace it into
   // serverless functions; large photo/video folders can push admin routes over

@@ -343,11 +343,8 @@ export default function CostStoryPage() {
         <p className="mt-4 text-xl leading-relaxed text-background md:text-2xl" style={displayFont}>
           Our goal is to become unnecessary.
         </p>
-        <Diagram
-          src="/goods-community-ownership-v2.png"
-          alt="Three-stage path to community ownership: buy-kit today, an on-Country green shipping-container plant with a plastic shredder and press, then community-owned production"
-          caption="Buy-kit, then On-Country plant, then community-owned. The capital buys the path, not just the press."
-        />
+        {/* Ownership-pathway drawing removed pending checkpoint 25 (Ben,
+            2026-07-17). Restore from /api/admin/held-asset once approved. */}
         <PullQuote
           quote="I'll be rocking up every day to make them."
           name="Mykel"
