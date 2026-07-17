@@ -95,4 +95,36 @@ Rendered PNGs in `v2/public/deck-slides/`, source in `v2/public/deck-slides/slid
 
 ---
 
+## 5. Present order and the compliance audit
+
+**Present from `v2/public/deck-slides/goods-simple-deck.pdf`** (11 pages, 16:9). The ask sits last, after the anchor line and the best case have earned it:
+
+1. From waste to ownership (cover)
+2. The why (health hardware, honest)
+3. The problem
+4. The product
+5. How it is made (waste becomes a bed)
+6. The model (waste to ownership)
+7. Proof (496 · 9 · 16 · 2,660kg)
+8. The impact (fixed payload)
+9. Fair wages cost the model nothing (the funder anchor)
+10. The best case (modelled compounding)
+11. The ask (AU$400,000, matched)
+
+**Compliance audit (all 11 slides PASS):**
+
+| Check | Result | Notes |
+|---|---|---|
+| Banned words (empower, beneficiaries, ecosystem, scalable solution, catalytic, transformational, journey, unlock, game-changing) | PASS | "catalytic" only inside "QBE Catalysing Impact"; the earlier "unlocks the match" / "catalytic capital" wording is removed |
+| Claim ceiling (scabies→RHD is the why, never a claimed outcome) | PASS | Slide 2 states the burden as context and says plainly "we never claim to cure it"; contribution, not attribution |
+| Ownership as a pathway, never complete | PASS | "moving into their hands", "over time owns the making", "become unnecessary" |
+| No charity framing | PASS | Impact framed as value, not charity |
+| Demand as interest, not revenue | PASS | Best case names signed demand as the constraint, not booked revenue |
+| Em dashes | PASS | None; colons and periods throughout |
+| Canon numbers | PASS | 496 (split 133+363), 9, 16, 2,660kg, 20kg/bed, $750; modelled figures labelled |
+
+**Before a live funder meeting:** add a source to the slide-2 RHD line (AIHW / END RHD CRE) and have a human confirm exact figures against the primary PDFs (several block automated access).
+
+---
+
 *To change any figure once you lock it (revenue, breakeven basis, wages-per-bed), edit `slides-source.html` and re-render, or ask and I will swap it in and re-export.*
