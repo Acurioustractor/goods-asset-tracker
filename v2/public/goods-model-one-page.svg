@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1060" font-family="sans-serif">
+  <defs>
+    <style>
+      .serif{font-family:Georgia,'Times New Roman',serif;}
+      .sans{font-family:-apple-system,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;}
+      .mono{font-family:ui-monospace,Menlo,Consolas,'Liberation Mono',monospace;}
+      .ink{fill:#2A241C;}
+      .soft{fill:#4A4034;}
+      .mut{fill:#7C6F5A;}
+      text{ -webkit-font-smoothing:antialiased; }
+    </style>
+  </defs>
+
+  <!-- ground -->
+  <rect x="0" y="0" width="1600" height="1060" fill="#F5F0E4"/>
+
+  <!-- ================= HEADER ================= -->
+  <text x="60" y="74" class="serif ink" font-size="44" font-weight="600">The Goods Model</text>
+  <text x="60" y="104" class="sans mut" font-size="16">Community leads the design. Goods supports the building. Production transfers to community ownership.</text>
+  <text x="1540" y="66" class="mono ink" font-size="15" text-anchor="end">496 beds  ·  9 communities  ·  16 washers  ·  2,660 kg diverted  ·  A$750 / bed</text>
+  <text x="1540" y="92" class="mono mut" font-size="11" text-anchor="end" letter-spacing="1">CANON · ASSET-CANONICAL.TS · 17 JUL 2026</text>
+  <line x1="60" y1="126" x2="1540" y2="126" stroke="#DED0B4" stroke-width="1"/>
+
+  <!-- ================= THE WHY ================= -->
+  <rect x="60" y="148" width="1480" height="120" rx="14" fill="#F3E7E1" stroke="#E6CFC5" stroke-width="1"/>
+  <text x="84" y="182" class="mono" font-size="12" letter-spacing="2" fill="#B0503C">THE WHY</text>
+  <text x="84" y="212" class="sans ink" font-size="16">Remote homes face costly, short-lived goods. Floor-sleeping and dirty bedding feed the</text>
+  <text x="84" y="236" class="sans ink" font-size="16">scabies → rheumatic heart disease pathway. A bed and a washing machine are health hardware.</text>
+  <!-- claim ceiling -->
+  <rect x="1004" y="164" width="512" height="88" rx="10" fill="none" stroke="#B0503C" stroke-width="1.4" stroke-dasharray="5 5"/>
+  <text x="1024" y="190" class="mono" font-size="11" letter-spacing="1.5" fill="#B0503C">THE CLAIM CEILING</text>
+  <text x="1024" y="212" class="sans" font-size="12.5" fill="#6E3E33">The pathway is our why, never a claimed outcome.</text>
+  <text x="1024" y="230" class="sans" font-size="12.5" fill="#6E3E33">A health result is claimed only when a clinical partner</text>
+  <text x="1024" y="246" class="sans" font-size="12.5" fill="#6E3E33">(Miwatj) produces it, attributed to them.</text>
+
+  <!-- ================= THE SPINE / ARC ================= -->
+  <text x="84" y="300" class="mono" font-size="12" letter-spacing="2" fill="#B9852F">THE SPINE · WASTE BECOMES OWNERSHIP · THE MODEL IN ONE PERSON</text>
+
+  <!-- Stage 1 WASTE (eucalypt) -->
+  <rect x="85" y="316" width="250" height="180" rx="14" fill="#FBF7EE" stroke="#E7DCC4"/>
+  <rect x="85" y="316" width="250" height="7" rx="3.5" fill="#5E7350"/>
+  <text x="105" y="360" class="serif" font-size="25" font-weight="600" fill="#5E7350">WASTE</text>
+  <text x="105" y="388" class="sans soft" font-size="13.5">HDPE from community</text>
+  <text x="105" y="407" class="sans soft" font-size="13.5">waste. Local and free.</text>
+  <line x1="105" y1="428" x2="315" y2="428" stroke="#EADFC8"/>
+  <text x="105" y="463" class="serif ink" font-size="19">20 kg / bed</text>
+  <circle cx="228" cy="457" r="9" fill="#BE8636"/><text x="228" y="461" class="mono" font-size="11" font-weight="700" fill="#FFF" text-anchor="middle">M</text>
+
+  <!-- Stage 2 PRODUCT (terracotta) -->
+  <rect x="380" y="316" width="250" height="180" rx="14" fill="#FBF7EE" stroke="#E7DCC4"/>
+  <rect x="380" y="316" width="250" height="7" rx="3.5" fill="#B0503C"/>
+  <text x="400" y="360" class="serif" font-size="25" font-weight="600" fill="#B0503C">PRODUCT</text>
+  <text x="400" y="388" class="sans soft" font-size="13.5">Designed in community,</text>
+  <text x="400" y="407" class="sans soft" font-size="13.5">with those who use it.</text>
+  <line x1="400" y1="428" x2="610" y2="428" stroke="#EADFC8"/>
+  <text x="400" y="458" class="serif ink" font-size="19">496 beds</text>
+  <circle cx="512" cy="452" r="9" fill="#4E7C51"/><text x="512" y="456" class="mono" font-size="11" font-weight="700" fill="#FFF" text-anchor="middle">V</text>
+  <text x="400" y="480" class="mono mut" font-size="10.5">133 STRETCH FLAGSHIP + 363 BASKET LEGACY</text>
+
+  <!-- Stage 3 SKILL (teal) -->
+  <rect x="675" y="316" width="250" height="180" rx="14" fill="#FBF7EE" stroke="#E7DCC4"/>
+  <rect x="675" y="316" width="250" height="7" rx="3.5" fill="#3F7C77"/>
+  <text x="695" y="360" class="serif" font-size="25" font-weight="600" fill="#3F7C77">SKILL</text>
+  <text x="695" y="388" class="sans soft" font-size="13.5">Press, cut and assemble.</text>
+  <text x="695" y="407" class="sans soft" font-size="13.5">Know-how stays local.</text>
+  <line x1="695" y1="428" x2="905" y2="428" stroke="#EADFC8"/>
+  <text x="695" y="463" class="serif ink" font-size="19" font-style="italic">Mykel's arc</text>
+
+  <!-- Stage 4 WORK (bronze) -->
+  <rect x="970" y="316" width="250" height="180" rx="14" fill="#FBF7EE" stroke="#E7DCC4"/>
+  <rect x="970" y="316" width="250" height="7" rx="3.5" fill="#9A6C34"/>
+  <text x="990" y="360" class="serif" font-size="25" font-weight="600" fill="#9A6C34">WORK</text>
+  <text x="990" y="388" class="sans soft" font-size="13.5">Made where the plastic,</text>
+  <text x="990" y="407" class="sans soft" font-size="13.5">people and need are.</text>
+  <line x1="990" y1="428" x2="1200" y2="428" stroke="#EADFC8"/>
+  <text x="990" y="463" class="serif ink" font-size="19">16 washers</text>
+  <circle cx="1128" cy="457" r="9" fill="#4E7C51"/><text x="1128" y="461" class="mono" font-size="11" font-weight="700" fill="#FFF" text-anchor="middle">V</text>
+
+  <!-- Stage 5 OWNERSHIP (deep ochre) -->
+  <rect x="1265" y="316" width="250" height="180" rx="14" fill="#F7EAD0" stroke="#D9B978"/>
+  <rect x="1265" y="316" width="250" height="7" rx="3.5" fill="#9C6C1C"/>
+  <text x="1285" y="360" class="serif" font-size="25" font-weight="600" fill="#9C6C1C">OWNERSHIP</text>
+  <text x="1285" y="388" class="sans soft" font-size="13.5">Transfers to community.</text>
+  <text x="1285" y="407" class="sans soft" font-size="13.5">Goods becomes unnecessary.</text>
+  <line x1="1285" y1="428" x2="1495" y2="428" stroke="#E7D3A6"/>
+  <text x="1285" y="463" class="serif ink" font-size="19">0/4 → 4/4</text>
+  <circle cx="1420" cy="457" r="9" fill="#6B7687"/><text x="1420" y="461" class="mono" font-size="11" font-weight="700" fill="#FFF" text-anchor="middle">T</text>
+
+  <!-- chevrons -->
+  <path d="M 350 388 L 366 406 L 350 424" fill="none" stroke="#B9852F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 645 388 L 661 406 L 645 424" fill="none" stroke="#B9852F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 940 388 L 956 406 L 940 424" fill="none" stroke="#B9852F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 1235 388 L 1251 406 L 1235 424" fill="none" stroke="#B9852F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ================= ENGINE ROW: loop + two streams ================= -->
+  <!-- loop -->
+  <rect x="85" y="520" width="545" height="86" rx="12" fill="#F1EAD8" stroke="#E7DCC4"/>
+  <text x="105" y="548" class="mono" font-size="11" letter-spacing="1.5" fill="#B9852F">THE COMMUNITY-LED LOOP</text>
+  <text x="105" y="576" class="serif ink" font-size="16.5">Listen → Design → Make → Deliver → Learn → Improve  ↺</text>
+  <text x="105" y="596" class="sans mut" font-size="12">Community-led, and it repeats: what we learn returns to the design with every delivery.</text>
+
+  <!-- two capital streams -->
+  <rect x="675" y="520" width="840" height="86" rx="12" fill="#F1EAD8" stroke="#E7DCC4"/>
+  <text x="695" y="548" class="mono" font-size="11" letter-spacing="1.5" fill="#B9852F">TWO CAPITAL STREAMS, ONE PURPOSE</text>
+  <text x="695" y="574" class="sans ink" font-size="14">Philanthropy → Butterfly Movement (DGR) → funds the plant, training and fixed block.</text>
+  <text x="695" y="595" class="sans ink" font-size="14">Product revenue → A Curious Tractor Pty Ltd (trading co) → pays the per-bed cost (A$750).</text>
+
+  <!-- ================= WHAT CHANGES: shifts + domains ================= -->
+  <text x="84" y="652" class="mono" font-size="12" letter-spacing="2" fill="#B9852F">WHAT CHANGES · THREE SHIFTS, FIVE DOMAINS</text>
+
+  <!-- Col A Material -->
+  <rect x="85" y="668" width="455" height="210" rx="14" fill="#FBF7EE" stroke="#E7DCC4"/>
+  <rect x="85" y="668" width="455" height="7" rx="3.5" fill="#5E7350"/>
+  <text x="107" y="708" class="serif" font-size="20" font-weight="600" fill="#5E7350">Material shift</text>
+  <text x="107" y="732" class="sans soft" font-size="13">Waste plastic becomes a durable, washable,</text>
+  <text x="107" y="750" class="sans soft" font-size="13">repairable good, made On Country.</text>
+  <circle cx="113" cy="787" r="5" fill="#5E7350"/>
+  <text x="128" y="785" class="mono" font-size="10.5" letter-spacing="0.5" fill="#5E7350">CIRCULAR &amp; LOCAL ECONOMY</text>
+  <text x="128" y="805" class="serif ink" font-size="15">2,660 kg diverted</text>
+  <circle cx="300" cy="800" r="8" fill="#BE8636"/><text x="300" y="804" class="mono" font-size="10" font-weight="700" fill="#FFF" text-anchor="middle">M</text>
+  <circle cx="113" cy="835" r="5" fill="#B0503C"/>
+  <text x="128" y="833" class="mono" font-size="10.5" letter-spacing="0.5" fill="#B0503C">REST &amp; HEALTH</text>
+  <text x="128" y="853" class="serif ink" font-size="15">496 beds, 9 communities</text>
+  <circle cx="360" cy="848" r="8" fill="#4E7C51"/><text x="360" y="852" class="mono" font-size="10" font-weight="700" fill="#FFF" text-anchor="middle">V</text>
+
+  <!-- Col B Economic -->
+  <rect x="572" y="668" width="455" height="210" rx="14" fill="#FBF7EE" stroke="#E7DCC4"/>
+  <rect x="572" y="668" width="455" height="7" rx="3.5" fill="#9A6C34"/>
+  <text x="594" y="708" class="serif" font-size="20" font-weight="600" fill="#9A6C34">Economic shift</text>
+  <text x="594" y="732" class="sans soft" font-size="13">Built to beat the true remote cost. Value and jobs</text>
+  <text x="594" y="750" class="sans soft" font-size="13">stay local; grant-funded toward community-owned.</text>
+  <circle cx="600" cy="787" r="5" fill="#BE8636"/>
+  <text x="615" y="785" class="mono" font-size="10.5" letter-spacing="0.5" fill="#A9762E">DIGNITY &amp; SAFETY</text>
+  <text x="615" y="805" class="serif ink" font-size="15">9 communities served</text>
+  <circle cx="820" cy="800" r="8" fill="#4E7C51"/><text x="820" y="804" class="mono" font-size="10" font-weight="700" fill="#FFF" text-anchor="middle">V</text>
+  <circle cx="600" cy="835" r="5" fill="#9A6C34"/>
+  <text x="615" y="833" class="mono" font-size="10.5" letter-spacing="0.5" fill="#9A6C34">JOBS &amp; PATH TO OWNERSHIP</text>
+  <text x="615" y="853" class="serif ink" font-size="15">16 washers · 50-bed run</text>
+  <circle cx="838" cy="848" r="8" fill="#4E7C51"/><text x="838" y="852" class="mono" font-size="10" font-weight="700" fill="#FFF" text-anchor="middle">V</text>
+  <circle cx="870" cy="848" r="8" fill="#6B7687"/><text x="870" y="852" class="mono" font-size="10" font-weight="700" fill="#FFF" text-anchor="middle">T</text>
+
+  <!-- Col C Story -->
+  <rect x="1060" y="668" width="455" height="210" rx="14" fill="#FBF7EE" stroke="#E7DCC4"/>
+  <rect x="1060" y="668" width="455" height="7" rx="3.5" fill="#3F7C77"/>
+  <text x="1082" y="708" class="serif" font-size="20" font-weight="600" fill="#3F7C77">Story shift</text>
+  <text x="1082" y="732" class="sans soft" font-size="13">Communities name it, design it, and own the record</text>
+  <text x="1082" y="750" class="sans soft" font-size="13">of it. Indigenous self-determination.</text>
+  <circle cx="1088" cy="787" r="5" fill="#3F7C77"/>
+  <text x="1103" y="785" class="mono" font-size="10.5" letter-spacing="0.5" fill="#3F7C77">SELF-DETERMINATION &amp; COMMUNITY-LED DESIGN</text>
+  <text x="1103" y="805" class="serif ink" font-size="15">Pakkimjalki Kari</text>
+  <circle cx="1290" cy="800" r="8" fill="#4E7C51"/><text x="1290" y="804" class="mono" font-size="10" font-weight="700" fill="#FFF" text-anchor="middle">V</text>
+  <text x="1103" y="838" class="sans mut" font-size="12">Named in Warumungu by Elder Dianne Stokes.</text>
+  <text x="1103" y="856" class="sans mut" font-size="12">Carries the two through-lines below.</text>
+
+  <!-- ================= THROUGH-LINES ================= -->
+  <rect x="60" y="898" width="1480" height="40" rx="10" fill="#F5EFE3" stroke="#E7DCC4"/>
+  <text x="80" y="923" class="mono" font-size="10.5" letter-spacing="1" fill="#B9852F">ECONOMICS STORY</text>
+  <text x="300" y="923" class="sans soft" font-size="13">A basic good built to beat the true remote cost, made On Country: the in-house cost-down (toward ~A$425 / bed, modelled) moves Goods from grant-funded to community-owned.</text>
+  <rect x="60" y="944" width="1480" height="40" rx="10" fill="#F5EFE3" stroke="#E7DCC4"/>
+  <text x="80" y="969" class="mono" font-size="10.5" letter-spacing="1" fill="#B9852F">SOVEREIGNTY</text>
+  <text x="300" y="969" class="sans soft" font-size="13">Cultural (named in Warumungu) · design (named and tested in community) · data (consent travels with the story) · economic (jobs, then ownership of the making).</text>
+
+  <!-- ================= FOOTER ================= -->
+  <circle cx="66" cy="1024" r="6" fill="#4E7C51"/><text x="78" y="1028" class="mono soft" font-size="12">V verified: what we have counted</text>
+  <circle cx="352" cy="1024" r="6" fill="#BE8636"/><text x="364" y="1028" class="mono soft" font-size="12">M modelled: best estimate</text>
+  <circle cx="604" cy="1024" r="6" fill="#6B7687"/><text x="616" y="1028" class="mono soft" font-size="12">T target: not yet claimed</text>
+  <text x="1540" y="1028" class="serif mut" font-size="13" font-style="italic" text-anchor="end">The spine: a voice, a canon number, an honest label, together.</text>
+</svg>
