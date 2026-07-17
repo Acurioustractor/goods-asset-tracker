@@ -30,9 +30,22 @@ Strong, simple, and honest. It stays inside the claim ceiling, which is what a s
 
 > 496 beds across 9 communities, 16 washing machines, 2,660kg of plastic diverted. Every bed carries a QR digital twin: GPS, recipient, delivery date. Click any one.
 
-**Why it is fundable (the leverage)**
+**How much we are asking for, and why**
 
-> AU$400K signed unlocks the QBE Catalysing Impact match. Blended and non-equity, because the end state is community-owned production. $1 of catalytic capital crowds in up to $2.
+> AU$400,000 through QBE Catalysing Impact, matched at least one to one by signed commitments (about $800,000 working once matched). Signed letters by 31 August 2026.
+
+What it buys, the bridge from 496 delivered beds to the first community-owned run:
+
+> 1. A 50-bed run in our own plant, taking the cost model from modelled to measured.
+> 2. The first place-based ownership pathway, with Oonchiumpa.
+> 3. The enterprise-support layer: orders, wages, quality, working capital.
+> 4. Plant capital: the first containers.
+
+Why this structure, not ordinary capital:
+
+> Ordinary capital will not fund this stage, because the return we are building is the transfer itself: assets, jobs and decisions moving to community hands. Repayable finance fits, because a container repays its own build cost in under a year. (Match stack proposed, 0 signed LOIs today: SEFA $300K, Snow $100K, Centrecorp $75K.)
+
+> Note on words: the 15 July brand rules ban "unlock" and "catalytic" (the latter survives only inside the program name "QBE Catalysing Impact"), plus empower, beneficiaries, journey, transformational, game-changing. This ask copy is written clean; earlier drafts that said "unlocks the match" or "catalytic capital" are retired.
 
 **The one discipline that sets Goods apart**
 
@@ -40,7 +53,25 @@ Strong, simple, and honest. It stays inside the claim ceiling, which is what a s
 
 ---
 
-## 3. The deck image set (9 simple slides, one idea each)
+## 3. The best case, in one line for funders (modelled)
+
+The single strongest line for an impact investor, straight from the best-case model (`2026-06-05-goods-best-case-scenario.md`):
+
+> **Fair wages cost the model nothing.** Community production paying a fair wage lands about $5 a bed below a factory ($420.74 vs $425.74 marginal, modelled). There is no trade-off between viable economics and paying people properly.
+
+Then the compounding, if the round lands:
+
+> One signed round, $400,000 plus the $400,000 match, seeds three containers making 1,500 beds a year. The roughly $312,000 annual surplus self-funds about 2.5 new containers a year. By year five: 5,000+ beds a year, 100+ tonnes of plastic diverted, $650,000+ a year in community wages, about $1M a year of surplus compounding. Then each container transfers to a community corporation with its self-feeding loop. What compounds is not Goods revenue. It is community-owned productive capacity.
+
+The honest constraint (say it, do not hide it):
+
+> Break-even is about 338 beds a year on the factory path, and 496 are already delivered. The binding constraint in the best case is signed demand, not cost. The same signatures that meet the QBE match are what make the compounding real: one activity, both payoffs. All compounding figures are modelled; container costs are pending three vendor quotes.
+
+The engine underneath it: a finished HDPE leg kit costs $344.05 (verified invoices); the shredded plastic inside it costs about $40. That 8.6x gap is where the business lives. Owning the press captures about $194 a bed of it, lifting contribution from about $65 to about $324 a bed at the $750 price. The containers, the loans and the compounding are all machinery for capturing that gap in community hands.
+
+---
+
+## 4. The deck image set (11 simple slides, one idea each)
 
 Rendered PNGs in `v2/public/deck-slides/`, source in `v2/public/deck-slides/slides-source.html` (edit the HTML and re-render to change any text or number). Each is 3200x1800 (16:9), drops straight into Google Slides / Canva / Keynote.
 
@@ -54,9 +85,11 @@ Rendered PNGs in `v2/public/deck-slides/`, source in `v2/public/deck-slides/slid
 | 6 | `goods-slide-06-model.png` | The making moves on Country: WASTE → PRODUCT → SKILL → WORK → OWNERSHIP |
 | 7 | `goods-slide-07-proof.png` | Already shipped, every one trackable: 496 · 9 · 16 · 2,660kg |
 | 8 | `goods-slide-08-impact.png` | Every bed carries a fixed impact payload (the funder impact message) |
-| 9 | `goods-slide-09-ask.png` | AU$400K signed unlocks the match (grants + concessional debt + catalytic top) |
+| 9 | `goods-slide-09-ask.png` | AU$400,000, matched one to one, signed by 31 Aug 2026; what it buys (the bridge) |
+| 10 | `goods-slide-10-anchor-line.png` | Fair wages cost the model nothing (the impact-investor anchor line) |
+| 11 | `goods-slide-11-best-case.png` | One signed round seeds a fleet that funds itself (the modelled compounding) |
 
-**How they map to the full deck architecture** (see the alignment doc): 1 → cover/thesis · 2 → the why (S2/S3) · 3 → problem (S3) · 4 → product (S5) · 5 → how it's made (S6/S8) · 6 → the model / ownership (S15) · 7 → traction (S7) · 8 → impact thesis (S6) · 9 → the ask (S16).
+**How they map to the full deck architecture** (see the alignment doc): 1 → cover/thesis · 2 → the why (S2/S3) · 3 → problem (S3) · 4 → product (S5) · 5 → how it's made (S6/S8) · 6 → the model / ownership (S15) · 7 → traction (S7) · 8 → impact thesis (S6) · 9 → the ask (S16) · 10 → the funder anchor line (S10/S16) · 11 → the best case / why-now upside (S13/S16).
 
 **Every number wears its honest label:** ● verified (what we have counted) · ● modelled (best estimate) · ● target (not yet claimed). Beds are shown split (133 Stretch + 363 Basket), never blended.
 
