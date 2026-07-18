@@ -58,6 +58,12 @@ The simple deck's diagram slides currently use clean CSS visuals, and **they sta
 now. The hand-drawn illustrations are a later polish, swapped in slide by slide once
 generated. The system to make them is built and locked:
 
+> **The full story + the non-negotiable rules:**
+> `wiki/outputs/2026-07-18-goods-drawing-system.md` (why we abandoned hand-coded SVG,
+> the locked speckle style, and how to continue in Claude Code CLI). Read it before
+> touching any diagram. To load the skill locally: `bash scripts/setup-drawing-skill.sh`.
+
+
 - **Skill / rules:** `design/brand/goods-diagrams/` (SKILL.md + references + overlay
   templates). The `.claude/skills/goods-diagrams/` copy is the working one.
 - **Prompts + slide text:** `wiki/outputs/2026-07-18-goods-image-generation-pack.md` —
