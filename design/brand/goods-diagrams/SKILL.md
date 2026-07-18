@@ -22,11 +22,12 @@ description: >
 Every Goods diagram must look like it came from one hand, and hand-coding SVG
 shapes never gets there: each element drifts slightly and the whole thing reads as
 "not quite right". The picture is **drawn by a real image model** (the latest
-Gemini, "Nano Banana Pro"), steered by the existing `goods-ill-*` reference set so
-every new illustration matches the hand. The proof is
-`v2/public/images/brand/goods-ill-plastic-loop.png`: a full loop diagram, clay
-line, sage flecks, chunky arrows, drawn by the model. That is the target and the
-method.
+Gemini, "Nano Banana Pro"), steered by the reference set so every new illustration
+matches the hand. The locked hand is **`goods-styleref-speckle.png`** (Ben,
+"closest we have"): warm cream ground, one clay-brown outline, rounded stadium ends
+with a pole-hole, and a dense clay-brown terrazzo speckle for recycled plastic.
+`goods-ill-plastic-loop.png` shows the same hand carrying a full loop with chunky
+arrows. Those are the target and the method.
 
 So there are two jobs, and they use different tools:
 
@@ -67,8 +68,10 @@ programmatic. The `goods-ill-*` set is the style anchor for both.
   sage `#8B9D77`, surplus / community = green `#5E7A4C`, factory / contribution =
   olive `#7E9A68`, brand keyline = terracotta `#C45C3E`. Colour carries meaning;
   never colour a thing off-map.
-- **Speckle:** recycled-plastic surfaces carry small sage `#8B9D77` flecks (the
-  terrazzo signature). It is how plastic reads as recycled.
+- **Speckle:** recycled-plastic surfaces carry a **dense fine terrazzo stipple in
+  the clay `#A8643F` tone** (sage `#8B9D77` may lightly accent it) — the signature
+  in `goods-styleref-speckle.png`. It is how plastic reads as recycled. Flat fill,
+  never engraving hatch or parallel-line shading.
 - **Labels:** uppercase, mono, ink `#2B2A26`, letter-spacing ~0.12em; eyebrows in
   terracotta. Added in the template, **never inside the illustration**.
 - **Tokens:** everything derives from `design/brand/tokens.css` (the single source
@@ -94,29 +97,32 @@ These are non-negotiable because they protect people and the truth:
 - **No cultural cliché.** No dot-painting, flags, boomerangs, faces, or symbols in
   place/ownership motifs. Keep them neutral (house-in-hands, horizon line).
 
-## Assemble a diagram
+## Add the labels (overlay them on the generated picture)
 
-1. Copy `assets/diagram-template.svg` to your working file. It carries the cream
-   ground, the palette tokens, the hand-drawn arrow filter, the label/eyebrow/
-   number text styles, and the three canvas sizes (16:9 slide, 4:3, 1:1).
-2. Inline the motif symbols you use from `assets/motifs.svg` into the diagram's
-   `<defs>`, then place them with `<use href="#motif-bed">`. Inline rather than
-   reference the external file: external `<use href="motifs.svg#id">` does not
-   render or export reliably, and inlining keeps the diagram self-contained (it
-   exports cleanly to PDF / Adobe Express). Do not edit the motif paths; only
-   position and scale them. See `assets/example-plastic-loop.svg`.
-3. Draw the **arrows and flow lines** as `<path>` elements with
-   `filter="url(#hand)"` and the clay stroke, so they read hand-drawn but sit
-   exactly where you place them. Full arrow + connector conventions are in
-   `references/build-and-assemble.md`.
-4. Add **labels and one canon number** as kit text (uppercase mono). Reference
-   canon figures with the `CANON:num:<id>` token so `render.sh` bakes the current
-   value and refuses to ship a stale one.
-5. Render with `design/brand/kit/render.sh <file>` → PDF + preview PNG, or export
-   the SVG directly for a deck.
-6. QA: render, eyeball against the `goods-ill-*` set and the rules above, fix. Because
-   every element is a reused motif and every diagram inherits the same template,
-   drift is impossible by construction.
+The model draws no text on purpose (AI text is unreliable and can't be
+canon-checked). Lay the exact words over the generated picture with one of the two
+overlay templates. Both share the same no-overlap layout: the picture sits in a
+centre band on the same cream, eyebrow + title in the top margin, caption + one
+number in the bottom margin — the zones are physically separate, so labels can't
+collide the way hand-placed ones used to.
+
+- **`assets/overlay-template.svg`** — the portable one. Point its `<image>` at your
+  PNG, overwrite the bracketed text, delete unused label slots, export straight into
+  a deck. Canon numbers are typed by hand (current values are listed in the file).
+- **`assets/overlay-template.html`** — the canon-baking one. Use it when the caption
+  carries a canon figure: write `CANON:num:<id>` and run
+  `design/brand/kit/render.sh <file>` → PDF + preview PNG with the number baked from
+  `canon.ts`. render.sh refuses to ship an unknown id or a drifted number — that
+  refusal is the reason to prefer HTML when a number is involved.
+
+Rules for the label layer: uppercase mono, ink; eyebrow in terracotta; at most one
+number and never a dollar figure; no em dashes. Then QA — hold it beside
+`goods-styleref-speckle.png` and the standing rules, and fix.
+
+For a multi-part picture (the loop's COLLECT / PRESS / A BED), both templates carry
+commented point-label slots you move under each part. If a diagram genuinely needs
+exact connective **arrows** drawn in vector (not baked into the generated picture),
+the arrow / `#hand`-filter conventions live in `references/build-and-assemble.md`.
 
 A worked example is in `assets/example-plastic-loop.svg`.
 

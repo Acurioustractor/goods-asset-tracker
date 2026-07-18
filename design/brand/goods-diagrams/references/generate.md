@@ -22,31 +22,42 @@ The workflow is the same for all three.
 
 ## The steering examples — attach these EVERY time
 
-Attach 2-4 of the existing set from `v2/public/images/brand/` as style references.
-They teach the model the hand; skipping them is why generations drift:
+Attach 2-4 from `v2/public/images/brand/` as style references. They teach the model
+the hand; skipping them is why generations drift:
 
-- **`goods-ill-plastic-loop.png`** — the exemplar: the clay line weight, the loop,
-  the chunky outlined arrows. Attach this to almost everything.
-- **`goods-ill-leg.png`** — the X-trestle leg and the sage-green terrazzo speckle
-  (the recycled-plastic signature).
+- **`goods-styleref-speckle.png`** — **THE anchor. Attach to everything.** Cream
+  ground, one warm clay-brown outline, rounded stadium ends with a pole-hole, and
+  the dense clay-brown terrazzo speckle that is the recycled-plastic signature. This
+  is the locked hand (Ben, "closest we have"); match it above all.
+- **`goods-ill-plastic-loop.png`** — the loop shape and the chunky outlined arrows.
 - **`goods-ill-plant.png`** — the container plant, roller doors, interior objects.
 - **`goods-ill-canvas.png`** / **`goods-ill-poles.png`** — canvas (teal) and steel
   (gold), if the scene has them.
 
+Alternate texture on file: **`goods-styleref-hatch.png`** is the same X-leg in an
+engraving / parallel-hatch style on white. We are NOT using it — the speckle is the
+recycled-plastic brand signature — but it is kept in case the hatch look is ever
+wanted. Do not mix the two in one set; attach the speckle anchor, not the hatch.
+
 ## The master style prompt (append to every scene)
 
-> Draw ONE clean flat line illustration on a warm cream (#FBF8F1) background. One
-> consistent medium-weight terracotta-clay (#A8643F) outline, rounded caps and
-> joins, a single confident line, no shading, no gradient, no 3D, no drop shadow.
-> Recycled-plastic surfaces carry a few small sage-green (#8B9D77) terrazzo flecks.
-> Colour ONLY by material: plastic clay #A8643F, steel gold #BBA255, canvas teal
-> #5C8A86, place / On Country sage #8B9D77. Chunky outlined clay arrows for any
-> flow. NO text, NO labels, NO numbers, NO people's faces, NO cultural symbols (no
-> dot-painting, flags, boomerangs). Objects are open outlines on cream, not filled.
-> The Stretch Bed is X-trestle true: two crossed-plank recycled-plastic legs, steel
-> poles through the canvas sleeves into the leg holes, canvas taut and structural
-> (never clip-on, woven, timber, or a hammock). Match the attached reference images
-> exactly so it reads as one family, one hand. Aspect ratio 16:9.
+> Draw ONE clean flat line illustration on a warm cream (#FBF8F1) background, in the
+> exact hand of the attached reference images. One single confident medium-weight
+> warm clay-brown (#A8643F) outline, rounded caps and joins, no double or sketchy
+> lines. Recycled-plastic surfaces are filled edge to edge with a fine even TERRAZZO
+> SPECKLE: many small clay-brown flecks in the same tone as the outline (this dense
+> stipple is how recycled plastic reads; sage-green #8B9D77 flecks may lightly accent
+> it). Otherwise flat: NO shading, NO engraving hatching, NO parallel-line shading,
+> NO gradient, NO 3D, NO drop shadow. Colour ONLY by material: recycled plastic
+> clay-brown #A8643F, steel gold #BBA255, canvas teal #5C8A86, place / On Country
+> sage #8B9D77. Chunky outlined clay arrows for any flow. Objects are open outlines
+> on cream (not filled blocks); a recycled-plastic plank end is a rounded stadium cap
+> with a small circular pole-hole, exactly like the reference. NO text, NO labels, NO
+> numbers, NO people's faces, NO cultural symbols (no dot-painting, flags,
+> boomerangs). The Stretch Bed is X-trestle true: two crossed-plank recycled-plastic
+> legs, steel poles through the canvas sleeves into the leg holes, canvas taut and
+> structural (never clip-on, woven, timber, or a hammock). Match the attached
+> reference images exactly so it reads as one family, one hand. Aspect ratio 16:9.
 
 ## Per-diagram scene prompts (paste one, then the master prompt)
 
@@ -77,11 +88,16 @@ script and a by-hand generation produce the same thing.
 ## Then: labels and numbers (the ONLY place SVG is used)
 
 The model draws no text on purpose (AI text is unreliable and cannot be
-canon-checked). Add labels, at most one canon number (never a dollar figure), and
-any precise connective arrows **over** the generated image, using
-`assets/diagram-template.svg` (or Canva / Figma). Reference canon figures with the
-`CANON:num:<id>` token so `render.sh` bakes the current value. This keeps the
-drawing beautiful and the words exact.
+canon-checked). Lay the words over the generated picture with an overlay template
+(same no-overlap layout: picture centre-band, text in the margins):
+
+- **`assets/overlay-template.svg`** — portable; point its `<image>` at your PNG,
+  type the labels, export into a deck. Canon numbers typed by hand (values in-file).
+- **`assets/overlay-template.html`** — canon-baking; write `CANON:num:<id>` and run
+  `design/brand/kit/render.sh` → PDF/PNG with the number baked and drift-checked.
+
+At most one number, never a dollar figure. This keeps the drawing beautiful and the
+words exact.
 
 ## Grow the library, don't regenerate ad hoc
 

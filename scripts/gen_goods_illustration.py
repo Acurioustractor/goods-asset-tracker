@@ -31,26 +31,32 @@ import argparse, base64, json, os, sys, pathlib
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DEFAULT_MODEL = "gemini-3-pro-image-preview"   # latest ("Nano Banana Pro"); fallback: gemini-2.5-flash-image
 DEFAULT_REFS = [
-    "v2/public/images/brand/goods-ill-plastic-loop.png",
-    "v2/public/images/brand/goods-ill-leg.png",
-    "v2/public/images/brand/goods-ill-plant.png",
-    "v2/public/images/brand/goods-ill-canvas.png",
+    "v2/public/images/brand/goods-styleref-speckle.png",   # PRIMARY hand: cream + dense brown terrazzo speckle, X-leg true
+    "v2/public/images/brand/goods-ill-plastic-loop.png",   # the loop + chunky outlined arrows
+    "v2/public/images/brand/goods-ill-plant.png",          # container plant, roller doors
+    "v2/public/images/brand/goods-ill-canvas.png",         # canvas (teal) + steel (gold)
 ]
 
 # The locked style, appended to every scene so the model draws one hand.
+# Corrected to the goods-styleref-speckle.png anchor: the recycled-plastic texture is a
+# DENSE fine terrazzo stipple in the clay-brown tone (not sparse sage flecks), the fill is
+# flat (no engraving hatch), and plastic ends are rounded stadium caps with a pole-hole.
 MASTER_STYLE = (
-    "Draw ONE clean flat line illustration on a warm cream (#FBF8F1) background. "
-    "One consistent medium-weight terracotta-clay (#A8643F) outline, rounded caps and joins, "
-    "a single confident line, no shading, no gradient, no 3D, no drop shadow. "
-    "Recycled-plastic surfaces carry a few small sage-green (#8B9D77) terrazzo flecks. "
-    "Colour ONLY by material: plastic clay #A8643F, steel gold #BBA255, canvas teal #5C8A86, "
-    "place / On Country sage #8B9D77. Chunky outlined clay arrows for any flow. "
-    "NO text, NO labels, NO numbers, NO people's faces, NO cultural symbols "
-    "(no dot-painting, flags, boomerangs). Objects are open outlines on cream, not filled. "
-    "The Stretch Bed is X-trestle true: two crossed-plank recycled-plastic legs, steel poles "
-    "through the canvas sleeves into the leg holes, canvas taut and structural (never clip-on, "
-    "woven, timber, or a hammock). Match the attached reference images exactly so it reads as "
-    "one family, one hand."
+    "Draw ONE clean flat line illustration on a warm cream (#FBF8F1) background, in the exact "
+    "hand of the attached reference images. One single confident medium-weight warm clay-brown "
+    "(#A8643F) outline, rounded caps and joins, no double or sketchy lines. Recycled-plastic "
+    "surfaces are filled edge to edge with a fine even TERRAZZO SPECKLE: many small clay-brown "
+    "flecks in the same tone as the outline (this dense stipple is how recycled plastic reads; "
+    "sage-green #8B9D77 flecks may lightly accent it). Otherwise flat: NO shading, NO engraving "
+    "hatching, NO parallel-line shading, NO gradient, NO 3D, NO drop shadow. Colour ONLY by "
+    "material: recycled plastic clay-brown #A8643F, steel gold #BBA255, canvas teal #5C8A86, "
+    "place / On Country sage #8B9D77. Chunky outlined clay arrows for any flow. Objects are open "
+    "outlines on cream (not filled blocks); a recycled-plastic plank end is a rounded stadium cap "
+    "with a small circular pole-hole, exactly like the reference. NO text, NO labels, NO numbers, "
+    "NO people's faces, NO cultural symbols (no dot-painting, flags, boomerangs). The Stretch Bed "
+    "is X-trestle true: two crossed-plank recycled-plastic legs, steel poles through the canvas "
+    "sleeves into the leg holes, canvas taut and structural (never clip-on, woven, timber, or a "
+    "hammock). Match the attached reference images exactly so it reads as one family, one hand."
 )
 
 # Built-in scene prompts (the "what to draw"; the locked style is added automatically).
@@ -60,7 +66,9 @@ PROMPTS = {
         "flakes, then a heat press, then a finished Stretch Bed, with an arrow returning "
         "offcuts from the bed back to the flakes.",
     "x-leg":
-        "a single recycled-plastic X-trestle bed leg (two crossed speckled planks) standing upright.",
+        "a single recycled-plastic X-trestle bed leg: two crossed planks with rounded stadium "
+        "ends, a small circular pole-hole at each top end, filled with the dense clay-brown "
+        "terrazzo speckle, exactly like the reference.",
     "flywheel":
         "a circular flywheel of four stages with clockwise arrows: make in-house, sell, surplus, "
         "fund the next container; a shipping container at the centre.",
