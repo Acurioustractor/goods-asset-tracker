@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
+import { STRETCH_BED } from '@/lib/data/products';
 
 export const metadata = {
   title: 'Products | Goods Wiki',
@@ -15,7 +16,12 @@ const products = [
     statusColor: 'bg-green-100 text-green-800',
     description:
       'Flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty canvas.',
-    specs: ['26kg weight', '200kg capacity', '188×92×25cm', '~5 min assembly'],
+    specs: [
+      `${STRETCH_BED.specs.weight} weight`,
+      `${STRETCH_BED.specs.loadCapacity} capacity`,
+      STRETCH_BED.specs.dimensions.replace(/\s/g, ''), // compact '188×92×25cm' chip
+      `${STRETCH_BED.specs.assemblyTime.replace('minutes', 'min')} assembly`,
+    ],
     icon: (
       <svg
         className="w-8 h-8"

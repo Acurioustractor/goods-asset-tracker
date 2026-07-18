@@ -3,6 +3,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { PLASTIC_KG_PER_BED, STRETCH_BED } from '@/lib/data/products';
+
+// '26.9mm OD × 2.6mm wall' — derived from the canonical frame spec (drops the length).
+const POLE_SPEC = STRETCH_BED.materials.frame.detail.split(',')[0];
 
 /* ─── Section data ─── */
 const SECTIONS = [
@@ -238,7 +242,7 @@ export default function FacilityManualPage() {
               Indigenous communities across Australia.
             </p>
             <ul className="space-y-2 mt-4">
-              <li>Reduce plastic waste locally. Each bed diverts <strong>20kg of HDPE</strong> from landfill</li>
+              <li>Reduce plastic waste locally. Each bed diverts <strong>{PLASTIC_KG_PER_BED}kg of HDPE</strong> from landfill</li>
               <li>Enable community-owned production and income</li>
               <li>Create a repeatable, teachable system that can move between locations</li>
               <li>Zero-waste approach: all offcuts go back through the shredder</li>
@@ -256,15 +260,15 @@ export default function FacilityManualPage() {
 
           <div className="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 sm:p-8">
             <p className="text-lg text-stone-600 leading-relaxed">
-              A flat-packable, washable bed made from recycled HDPE plastic (legs), galvanised steel poles (26.9mm OD × 2.6mm wall),
-              and heavy-duty Australian canvas (sleeping surface). Assembles in ~5 minutes, no tools required.
+              A flat-packable, washable bed made from recycled HDPE plastic (legs), galvanised steel poles ({POLE_SPEC}),
+              and heavy-duty Australian canvas (sleeping surface). Assembles in {STRETCH_BED.specs.assemblyTime}, no tools required.
             </p>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 my-6 text-center">
-              <div className="bg-stone-50 rounded-xl p-4"><p className="text-2xl font-bold text-green-700">26kg</p><p className="text-xs text-stone-500 mt-1">Total weight</p></div>
-              <div className="bg-stone-50 rounded-xl p-4"><p className="text-2xl font-bold text-green-700">200kg</p><p className="text-xs text-stone-500 mt-1">Load capacity</p></div>
-              <div className="bg-stone-50 rounded-xl p-4"><p className="text-2xl font-bold text-green-700">20kg</p><p className="text-xs text-stone-500 mt-1">HDPE diverted</p></div>
-              <div className="bg-stone-50 rounded-xl p-4"><p className="text-2xl font-bold text-green-700">10yr</p><p className="text-xs text-stone-500 mt-1">Design lifespan</p></div>
+              <div className="bg-stone-50 rounded-xl p-4"><p className="text-2xl font-bold text-green-700">{STRETCH_BED.specs.weight}</p><p className="text-xs text-stone-500 mt-1">Total weight</p></div>
+              <div className="bg-stone-50 rounded-xl p-4"><p className="text-2xl font-bold text-green-700">{STRETCH_BED.specs.loadCapacity}</p><p className="text-xs text-stone-500 mt-1">Load capacity</p></div>
+              <div className="bg-stone-50 rounded-xl p-4"><p className="text-2xl font-bold text-green-700">{PLASTIC_KG_PER_BED}kg</p><p className="text-xs text-stone-500 mt-1">HDPE diverted</p></div>
+              <div className="bg-stone-50 rounded-xl p-4"><p className="text-2xl font-bold text-green-700">{STRETCH_BED.specs.designLifespan}</p><p className="text-xs text-stone-500 mt-1">Design lifespan</p></div>
             </div>
 
             <PhotoGrid>
@@ -284,7 +288,7 @@ export default function FacilityManualPage() {
                 <li>Button head screws for folding mechanism</li>
               </ul>
               <p className="mt-3 text-sm"><strong>1 side = 4 long leg pieces + 4 rectangular tab pieces</strong> · <strong>1 bed = 2 sides + 2 poles + 1 canvas</strong></p>
-              <p className="text-sm">Each side weighs ~10kg of recycled plastic (20kg total per bed).</p>
+              <p className="text-sm">Each side weighs ~10kg of recycled plastic ({PLASTIC_KG_PER_BED}kg total per bed).</p>
             </Callout>
 
             <PhotoGrid>
@@ -578,8 +582,8 @@ export default function FacilityManualPage() {
               ['6/day', 'Max sheets', 'Limited by press'],
               ['~25 L/day', 'Diesel', 'Very consistent'],
               ['5–6/day', 'Target beds', 'End-to-end'],
-              ['20kg', 'Plastic per bed', '10kg per side'],
-              ['26kg', 'Bed weight', 'Inc. poles & canvas'],
+              [`${PLASTIC_KG_PER_BED}kg`, 'Plastic per bed', '10kg per side'],
+              [STRETCH_BED.specs.weight, 'Bed weight', 'Inc. poles & canvas'],
             ].map(([value, label, note]) => (
               <div key={label as string} className="bg-white rounded-xl border border-stone-200 p-4 text-center">
                 <p className="text-xl font-bold text-green-700">{value}</p>
@@ -641,7 +645,7 @@ export default function FacilityManualPage() {
           <div className="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 mt-6">
             <h3 className="font-bold text-red-700 mb-3">What Makes a Bad Bed</h3>
             <ul className="space-y-2 text-stone-600">
-              <li>❌ Structural failure under 200kg load test</li>
+              <li>❌ Structural failure under {STRETCH_BED.specs.loadCapacity} load test</li>
               <li>❌ Pieces too warped to assemble (pole won&apos;t thread)</li>
               <li>❌ Sharp edges that weren&apos;t caught in finishing</li>
               <li>❌ Screw holes that don&apos;t align (jig has worn out)</li>
@@ -651,7 +655,7 @@ export default function FacilityManualPage() {
           <div className="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 mt-4">
             <h3 className="font-bold text-stone-800 mb-3">Testing</h3>
             <ul className="space-y-1 text-stone-600">
-              <li>Every batch should be test-assembled with canvas + 200kg load before shipping</li>
+              <li>Every batch should be test-assembled with canvas + {STRETCH_BED.specs.loadCapacity} load before shipping</li>
               <li>Skinnier/thinner leg pieces need extra load testing</li>
             </ul>
           </div>

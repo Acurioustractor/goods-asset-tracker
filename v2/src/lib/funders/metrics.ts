@@ -103,7 +103,7 @@ const commitmentProgressBar: MetricResolver = async (ctx) => {
   }
   // Unit-based commitments — count delivered units in period, respecting
   // optional community scope. Delivery can exceed the original commitment
-  // (e.g. 556 beds against a 109-unit commitment), so clamp the bar to 0-20
+  // (e.g. 536 beds against a 109-unit commitment), so clamp the bar to 0-20
   // segments and the displayed pct to 0-100 — an unclamped `'░'.repeat(20-filled)`
   // throws RangeError on overshoot and surfaces as a [METRIC ERROR] in the deck.
   const periodRes = await scopedAssetsQuery(ctx).ilike('product', '%bed%').in('status', ['deployed', 'allocated']);

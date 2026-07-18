@@ -121,7 +121,7 @@ const SECTIONS: PartnerSection[] = [
     copy: {
       title: 'Impact summary you can lift',
       body:
-        'Centrecorp Foundation funded the materials for this trip. On this run, 107 beds were delivered into homes in the Utopia Homelands. Centrecorp Foundation is an Aboriginal Trust based in the Northern Territory, backing the people of this Country directly.',
+        'Centrecorp Foundation funded the materials for this trip. On this run, 87 beds were delivered into homes in the Utopia Homelands. Centrecorp Foundation is an Aboriginal Trust based in the Northern Territory, backing the people of this Country directly.',
     },
   },
   {

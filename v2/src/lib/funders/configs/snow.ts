@@ -90,8 +90,8 @@ export const snowConfig: FunderConfig = {
   // Snow's own eight funding principles, each brought to the spine (P4, 2026-06-19):
   // a cleared community voice, a canon number, and an honest label (verified /
   // modelled / future). Voices are verbatim from curated-quotes.ts and every author
-  // is on the cleared-for-external list. Numbers come from canon (556 beds / 9
-  // communities / 18 washers / 3,860kg at 20kg per Stretch bed (193 Stretch only); ~$493K Snow relationship;
+  // is on the cleared-for-external list. Numbers come from canon (536 beds / 9
+  // communities / 18 washers / 3,460kg at 20kg per Stretch bed (173 Stretch only); ~$493K Snow relationship;
   // 15-20 beds / 8 families is the Snow-funded field-test period before Centrecorp).
   principles: [
     {
@@ -110,7 +110,7 @@ export const snowConfig: FunderConfig = {
       id: 3,
       name: 'Place-based, on-Country delivery',
       evidence:
-        '"Every time I go away, it\'s like it\'s calling me. Come back home." (Dianne Stokes, Tennant Creek, who named the washing machine Pakkimjalki Kari in Warumungu).\n- Northern Territory circuit: Alice Springs, Tennant Creek, Katherine and Darwin, with Utopia Homelands and Maningrida sites confirmed. NT is one of Snow\'s four priority places (verified).\n- 3,860kg of plastic diverted to date at 20kg of local waste per Stretch Bed, Stretch only (modelled); production is planned in community sheds.',
+        '"Every time I go away, it\'s like it\'s calling me. Come back home." (Dianne Stokes, Tennant Creek, who named the washing machine Pakkimjalki Kari in Warumungu).\n- Northern Territory circuit: Alice Springs, Tennant Creek, Katherine and Darwin, with Utopia Homelands and Maningrida sites confirmed. NT is one of Snow\'s four priority places (verified).\n- 3,460kg of plastic diverted to date at 20kg of local waste per Stretch Bed, Stretch only (modelled); production is planned in community sheds.',
     },
     {
       id: 4,
@@ -122,7 +122,7 @@ export const snowConfig: FunderConfig = {
       id: 5,
       name: 'Advocacy and policy influence',
       evidence:
-        '"We challenge a lot of that and try to make a difference. Make it easier for our people to live in their homes." (Jimmy Frank).\n- 3,860kg of plastic diverted from landfill to date at 20kg per Stretch Bed, Stretch only (modelled); the work addresses the documented washing-machine dumping cycle in Central Australia (external estimate, about $3M a year in Alice Springs).\n- Building community-led evidence for policy change on plastic waste, circular economy in remote communities, and social procurement (future).',
+        '"We challenge a lot of that and try to make a difference. Make it easier for our people to live in their homes." (Jimmy Frank).\n- 3,460kg of plastic diverted from landfill to date at 20kg per Stretch Bed, Stretch only (modelled); the work addresses the documented washing-machine dumping cycle in Central Australia (external estimate, about $3M a year in Alice Springs).\n- Building community-led evidence for policy change on plastic waste, circular economy in remote communities, and social procurement (future).',
     },
     {
       id: 6,

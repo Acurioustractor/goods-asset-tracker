@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { STRETCH_BED } from '@/lib/data/products';
 
 export const metadata: Metadata = {
   title: 'Plant safety briefing | Goods Wiki',
@@ -142,7 +143,7 @@ export default function SafetyBriefingPage() {
             palm pad. No bare-hand sewing.
           </li>
           <li>
-            <strong>Lift with legs, not back.</strong> A finished bed is 26kg + the steel
+            <strong>Lift with legs, not back.</strong> A finished bed is {STRETCH_BED.specs.weight} + the steel
             poles are awkward.
           </li>
         </ul>

@@ -2,15 +2,15 @@
   "_comment": "GENERATED from v2/src/lib/data/canon.ts by v2/scripts/canon-numbers.mjs — do not hand-edit. Artifacts reference these as CANON:num:<id>; canon-render.mjs bakes the formatted value. Verify with: node v2/scripts/canon-numbers.mjs --check",
   "numbers": {
     "beds-deployed": {
-      "value": "556",
-      "raw": 556,
+      "value": "536",
+      "raw": 536,
       "unit": "units",
       "label": "Beds deployed",
       "asAt": "2026-07-18"
     },
     "stretch-beds-deployed": {
-      "value": "193",
-      "raw": 193,
+      "value": "173",
+      "raw": 173,
       "unit": "units",
       "label": "Stretch Beds deployed",
       "asAt": "2026-05-30"
@@ -30,8 +30,8 @@
       "asAt": "2026-05-30"
     },
     "plastic-kg": {
-      "value": "3,860kg",
-      "raw": 3860,
+      "value": "3,460kg",
+      "raw": 3460,
       "unit": "kg",
       "label": "Recycled HDPE diverted",
       "asAt": "2026-05-30"

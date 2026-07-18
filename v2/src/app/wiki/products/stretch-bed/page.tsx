@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
-import { STRETCH_BED } from '@/lib/data/products';
+import { PLASTIC_KG_PER_BED, STRETCH_BED } from '@/lib/data/products';
 
 export const metadata: Metadata = {
   title: 'The Stretch Bed - Complete Guide | Goods Wiki',
@@ -37,7 +36,7 @@ export default function StretchBedGuidePage() {
           <div className="grid md:grid-cols-3 gap-4 text-sm">
             <div>
               <div className="font-medium text-gray-700">Assembly Time</div>
-              <div className="text-gray-900">~5 minutes</div>
+              <div className="text-gray-900">{STRETCH_BED.specs.assemblyTime}</div>
             </div>
             <div>
               <div className="font-medium text-gray-700">Tools Required</div>
@@ -49,11 +48,11 @@ export default function StretchBedGuidePage() {
             </div>
             <div>
               <div className="font-medium text-gray-700">Load Capacity</div>
-              <div className="text-gray-900">200kg</div>
+              <div className="text-gray-900">{STRETCH_BED.specs.loadCapacity}</div>
             </div>
             <div>
               <div className="font-medium text-gray-700">Dimensions</div>
-              <div className="text-gray-900">188 x 92 x 25cm</div>
+              <div className="text-gray-900">{STRETCH_BED.specs.dimensions}</div>
             </div>
           </div>
         </div>
@@ -88,15 +87,15 @@ export default function StretchBedGuidePage() {
                   </tr>
                   <tr>
                     <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Load Capacity</td>
-                    <td className="px-4 py-3">200kg (tested)</td>
+                    <td className="px-4 py-3">{STRETCH_BED.specs.loadCapacity} (tested)</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Dimensions</td>
-                    <td className="px-4 py-3">188cm x 92cm x 25cm (L x W x H)</td>
+                    <td className="px-4 py-3">{STRETCH_BED.specs.dimensions} (L x W x H)</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Assembly Time</td>
-                    <td className="px-4 py-3">~5 minutes</td>
+                    <td className="px-4 py-3">{STRETCH_BED.specs.assemblyTime}</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Tools Required</td>
@@ -104,7 +103,7 @@ export default function StretchBedGuidePage() {
                   </tr>
                   <tr>
                     <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Design Lifespan</td>
-                    <td className="px-4 py-3">10+ years</td>
+                    <td className="px-4 py-3">{STRETCH_BED.specs.designLifespan}</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Plastic Diverted</td>
@@ -130,7 +129,7 @@ export default function StretchBedGuidePage() {
                 <tbody className="divide-y divide-gray-200">
                   <tr>
                     <td className="px-4 py-3 font-medium">Frame</td>
-                    <td className="px-4 py-3">Galvanised steel pipe<br/><span className="text-sm text-gray-600">26.9mm OD x 2.6mm wall, 1950mm length</span></td>
+                    <td className="px-4 py-3">Galvanised steel pipe<br/><span className="text-sm text-gray-600">{STRETCH_BED.materials.frame.detail}</span></td>
                     <td className="px-4 py-3">DNA Steel Direct, Alice Springs</td>
                   </tr>
                   <tr>
@@ -140,7 +139,7 @@ export default function StretchBedGuidePage() {
                   </tr>
                   <tr>
                     <td className="px-4 py-3 font-medium">Legs</td>
-                    <td className="px-4 py-3">Recycled HDPE plastic panels</td>
+                    <td className="px-4 py-3">Recycled HDPE X-trestle legs — two crossed-plank &quot;X&quot; assemblies</td>
                     <td className="px-4 py-3">Defy Design, Sydney (current)<br/>On-country production (future)</td>
                   </tr>
                   <tr>
@@ -150,15 +149,15 @@ export default function StretchBedGuidePage() {
                   </tr>
                   <tr>
                     <td className="px-4 py-3 font-medium">Joinery</td>
-                    <td className="px-4 py-3">Slot-together &quot;T&quot; section<br/><span className="text-sm text-gray-600">No screws or hardware needed</span></td>
-                    <td className="px-4 py-3">Custom manufactured</td>
+                    <td className="px-4 py-3">X-trestle tension assembly<br/><span className="text-sm text-gray-600">Poles thread through the canvas sleeves and X-leg holes — no screws or hardware</span></td>
+                    <td className="px-4 py-3">Tension design (no fasteners)</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <p className="text-sm text-blue-900">
-                <strong>Environmental Impact:</strong> Each bed diverts 20kg of HDPE plastic from landfill.
+                <strong>Environmental Impact:</strong> Each bed diverts {PLASTIC_KG_PER_BED}kg of HDPE plastic from landfill.
                 The recycled HDPE is currently sourced from Defy Design&apos;s Sydney operations. Future vision:
                 on-country collection and processing in community-owned facilities.
               </p>
@@ -168,7 +167,7 @@ export default function StretchBedGuidePage() {
           {/* Assembly Instructions */}
           <section id="assembly" className="mb-12">
             <h2>Assembly Instructions</h2>
-            <p><strong>Total Time:</strong> ~5 minutes | <strong>People:</strong> 1-2 | <strong>Tools:</strong> None required</p>
+            <p><strong>Total Time:</strong> {STRETCH_BED.specs.assemblyTime} | <strong>People:</strong> 1-2 | <strong>Tools:</strong> None required</p>
 
             <div className="not-prose space-y-6 mt-6">
               <div className="border-l-4 border-green-500 pl-4">
@@ -177,32 +176,32 @@ export default function StretchBedGuidePage() {
               </div>
 
               <div className="border-l-4 border-green-500 pl-4">
-                <h3 className="font-semibold text-lg mb-2">Step 2: Frame Assembly</h3>
-                <p className="text-gray-700 mb-2">Connect steel pipe pieces using the slot-together &quot;T&quot; section joinery.</p>
+                <h3 className="font-semibold text-lg mb-2">Step 2: Thread the Poles</h3>
+                <p className="text-gray-700 mb-2">Thread the two galvanised steel poles through the canvas long-edge sleeves.</p>
                 <ul className="list-disc list-inside text-gray-700 space-y-1">
                   <li>No tools or fasteners needed</li>
-                  <li>Pieces click together</li>
-                  <li>Creates rigid rectangular frame</li>
+                  <li>Canvas sleeves run the full length of each side</li>
+                  <li>Poles and canvas become one unit</li>
                 </ul>
               </div>
 
               <div className="border-l-4 border-green-500 pl-4">
-                <h3 className="font-semibold text-lg mb-2">Step 3: Attach Recycled Plastic Legs</h3>
-                <p className="text-gray-700 mb-2">Insert HDPE leg panels into frame corners.</p>
+                <h3 className="font-semibold text-lg mb-2">Step 3: Stand the X-Trestles</h3>
+                <p className="text-gray-700 mb-2">Stand the two recycled-HDPE X-trestle legs and seat the pole ends into the top holes of each &quot;X&quot;.</p>
                 <ul className="list-disc list-inside text-gray-700 space-y-1">
-                  <li>Slide legs onto frame ends</li>
-                  <li>Secure with built-in slots (no screws)</li>
-                  <li>Ensure all four legs are firmly attached</li>
+                  <li>One X-trestle at each end of the bed</li>
+                  <li>Pole ends drop into the holes at the top of the crossed planks</li>
+                  <li>No slots, screws or clips</li>
                 </ul>
               </div>
 
               <div className="border-l-4 border-green-500 pl-4">
-                <h3 className="font-semibold text-lg mb-2">Step 4: Canvas Attachment</h3>
-                <p className="text-gray-700 mb-2">Stretch heavy-duty canvas across the frame.</p>
+                <h3 className="font-semibold text-lg mb-2">Step 4: Tension the Bed</h3>
+                <p className="text-gray-700 mb-2">Ease the trestles outward so the assembly pulls tight — tension is what holds the bed together.</p>
                 <ul className="list-disc list-inside text-gray-700 space-y-1">
-                  <li>Canvas works like a catamaran trampoline</li>
-                  <li>Tension creates body-adaptive surface</li>
-                  <li>Secure all edges to frame</li>
+                  <li>Tension pulls the poles deep into the X-leg holes</li>
+                  <li>The canvas is structural — it braces the frame</li>
+                  <li>Works like a catamaran trampoline: tension creates the body-adaptive surface</li>
                 </ul>
               </div>
 
@@ -214,7 +213,7 @@ export default function StretchBedGuidePage() {
               <div className="border-l-4 border-green-500 pl-4">
                 <h3 className="font-semibold text-lg mb-2">Step 6: Final Check</h3>
                 <ul className="list-disc list-inside text-gray-700 space-y-1">
-                  <li>Ensure all connections are secure</li>
+                  <li>Ensure the poles are seated deep in both X-leg holes</li>
                   <li>Test bed stability by applying weight</li>
                   <li>Check canvas tension is even</li>
                   <li>Verify bed sits level on ground</li>
@@ -324,13 +323,13 @@ export default function StretchBedGuidePage() {
                   </tr>
                   <tr>
                     <td className="px-4 py-3 font-medium">Canvas feels loose</td>
-                    <td className="px-4 py-3">Natural settling or incorrect installation</td>
-                    <td className="px-4 py-3">Re-tension canvas by adjusting attachment points</td>
+                    <td className="px-4 py-3">Natural settling or incomplete tensioning</td>
+                    <td className="px-4 py-3">Re-tension the assembly so the poles pull deeper into the X-leg holes</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 font-medium">Leg feels loose</td>
-                    <td className="px-4 py-3">Connection not fully seated</td>
-                    <td className="px-4 py-3">Remove and reseat leg firmly into frame slot</td>
+                    <td className="px-4 py-3">Pole not fully seated in the X-leg holes</td>
+                    <td className="px-4 py-3">Re-seat the pole ends deep into the X-leg holes and re-tension</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 font-medium">Canvas tears</td>
@@ -389,7 +388,7 @@ export default function StretchBedGuidePage() {
           <section id="safety" className="mb-12">
             <h2>Safety Information</h2>
             <ul>
-              <li><strong>Load capacity:</strong> 200kg tested and verified</li>
+              <li><strong>Load capacity:</strong> {STRETCH_BED.specs.loadCapacity} tested and verified</li>
               <li><strong>Durability testing:</strong> Conducted before deployment using the Australian Living Map of Alternatives harm-risk protocol</li>
               <li><strong>Weather resistance:</strong> Designed for extreme conditions - dust, heat, humidity</li>
               <li><strong>Pest resistance:</strong> No fabric crevices like traditional mattresses - resistant to bed bugs</li>

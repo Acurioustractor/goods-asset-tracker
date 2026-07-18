@@ -52,7 +52,7 @@ export const CANON: CanonFact[] = [
     id: 'beds-deployed', label: 'Beds deployed', value: CANONICAL_ASSETS.bedsDeployed, unit: 'units',
     domain: 'assets', claimLabel: 'verified', dataClass: 'green',
     source: 'v2 Supabase `assets` (status=deployed) via asset-canonical.ts', check: 'auto', asAt: '2026-07-18', owner: 'Ben',
-    definition: 'Deployed bed units in the register: 363 Basket (legacy) + 193 Stretch (flagship, incl. Maningrida +60, Jul 2026).',
+    definition: 'Deployed bed units in the register: 363 Basket (legacy) + 173 Stretch (flagship, incl. Maningrida +40, Jul 2026).',
   },
   {
     id: 'stretch-beds-deployed', label: 'Stretch Beds deployed', value: CANONICAL_ASSETS.stretchBedsDeployed, unit: 'units',

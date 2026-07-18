@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { NewsletterSignup } from '@/components/newsletter-signup';
+import { PLASTIC_KG_PER_BED, STRETCH_BED } from '@/lib/data/products';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -116,14 +117,14 @@ export default function BasketBedPlansPage() {
                       <p className="text-muted-foreground mb-4">
                         Everything we learned from the Basket Bed went into designing
                         the Stretch Bed. Recycled HDPE plastic legs, galvanised steel
-                        poles, and heavy-duty washable canvas. 26kg, 200kg capacity,
-                        designed to last 10+ years. Each bed diverts 20kg of plastic from landfill.
+                        poles, and heavy-duty washable canvas. {STRETCH_BED.specs.weight}, {STRETCH_BED.specs.loadCapacity} capacity,
+                        designed to last {STRETCH_BED.specs.designLifespan}. Each bed diverts {PLASTIC_KG_PER_BED}kg of plastic from landfill.
                       </p>
                       <div className="space-y-3">
                         <h4 className="font-semibold text-foreground">How It Improved</h4>
                         <ul className="space-y-1 text-sm text-muted-foreground">
                           <li>&bull; Recycled HDPE plastic legs &mdash; virtually indestructible, no UV degradation</li>
-                          <li>&bull; Galvanised steel poles &mdash; 200kg capacity vs basket frame limits</li>
+                          <li>&bull; Galvanised steel poles &mdash; {STRETCH_BED.specs.loadCapacity} capacity vs basket frame limits</li>
                           <li>&bull; Washable canvas surface &mdash; no more moisture-trapping foam</li>
                           <li>&bull; Slot-together design &mdash; no zip ties, no degradable parts</li>
                           <li>&bull; 500+ minutes of community feedback shaped every detail</li>
@@ -264,7 +265,7 @@ export default function BasketBedPlansPage() {
             <p className="text-muted-foreground mb-8">
               The Stretch Bed is our current flagship &mdash; everything we learned from the
               Basket Bed, improved. Recycled HDPE plastic legs, galvanised steel poles,
-              and heavy-duty canvas. 26kg, flat-packs, no tools. Each bed diverts 20kg
+              and heavy-duty canvas. {STRETCH_BED.specs.weight}, flat-packs, no tools. Each bed diverts {PLASTIC_KG_PER_BED}kg
               of plastic from landfill.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

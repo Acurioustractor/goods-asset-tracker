@@ -764,10 +764,10 @@ export default async function OonchiumpaPartnerPage() {
               className="font-display text-3xl sm:text-4xl leading-tight mb-5"
               style={{ color: CHARCOAL }}
             >
-              107 beds in homes, on country.
+              87 beds in homes, on country.
             </h2>
             <p className="text-base sm:text-lg leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-              The first big deployment of the new Stretch Bed: 107 beds delivered to Utopia Homelands,
+              The first big deployment of the new Stretch Bed: 87 beds delivered to Utopia Homelands,
               unpacked on verandahs, assembled by the families who would sleep on them. Funded by
               Centrecorp Foundation. Coordinated through the Oonchiumpa network. Logged under QR codes
               so we know where every bed is.

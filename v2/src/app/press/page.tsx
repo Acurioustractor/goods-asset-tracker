@@ -41,7 +41,7 @@ const logoVariants = [
 ] as const;
 
 const keyFacts = [
-  { value: '556', label: 'Beds delivered', verified: true }, // canonical: see asset-canonical.ts (193 Stretch + 363 Basket)
+  { value: '536', label: 'Beds delivered', verified: true }, // canonical: see asset-canonical.ts (173 Stretch + 363 Basket)
   { value: '9', label: 'Communities', verified: true },
   { value: `${PLASTIC_KG_PER_BED}kg`, label: 'HDPE diverted per bed', verified: true },
   { value: STRETCH_BED.specs.loadCapacity, label: 'Load capacity', verified: true },
@@ -79,12 +79,12 @@ const shareableSnippets = [
   {
     title: 'Tweet / LinkedIn (280 chars)',
     body:
-      'Goods on Country: First Nations communities designing the goods they need. Stretch Bed: recycled plastic, galvanised steel, Australian canvas. 556 delivered across 9 communities. Designed On-Country, made On-Country. goodsoncountry.com',
+      'Goods on Country: First Nations communities designing the goods they need. Stretch Bed: recycled plastic, galvanised steel, Australian canvas. 536 delivered across 9 communities. Designed On-Country, made On-Country. goodsoncountry.com',
   },
   {
     title: 'Email signature blurb (60 words)',
     body:
-      'Goods on Country is a social enterprise delivering health hardware to First Nations communities. The flagship Stretch Bed is designed On-Country with the families who use it: recycled HDPE plastic, galvanised steel, heavy-duty canvas. 556 beds delivered. Long-term goal: transfer manufacturing to community-owned enterprises. goodsoncountry.com',
+      'Goods on Country is a social enterprise delivering health hardware to First Nations communities. The flagship Stretch Bed is designed On-Country with the families who use it: recycled HDPE plastic, galvanised steel, heavy-duty canvas. 536 beds delivered. Long-term goal: transfer manufacturing to community-owned enterprises. goodsoncountry.com',
   },
   {
     title: 'One-line for intros',

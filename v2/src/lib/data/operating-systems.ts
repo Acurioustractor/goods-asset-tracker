@@ -113,7 +113,7 @@ export const FRESHNESS_DOMAINS: FreshnessDomain[] = [
   {
     id: 'assets',
     label: 'Asset register',
-    backsClaim: '"556 beds deployed across 9 communities"',
+    backsClaim: '"536 beds deployed across 9 communities"',
     table: 'assets',
     column: 'created_time',
     staleAfterDays: 45,

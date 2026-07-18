@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useCart } from '@/lib/cart';
-import { isPurchasableProductType } from '@/lib/data/products';
+import { isPurchasableProductType, STRETCH_BED } from '@/lib/data/products';
 
 // Palette — matches the Canberra hero so the cross-page flow feels like one site.
 const CREAM = '#FDF8F3';
@@ -229,7 +229,7 @@ function SponsorContent() {
               {bed.name}
             </h2>
             <p className="text-sm sm:text-base" style={{ color: `${CHARCOAL}cc` }}>
-              Recycled plastic, canvas, steel. 200kg capacity. Flat-packed for remote freight.{' '}
+              Recycled plastic, canvas, steel. {STRETCH_BED.specs.loadCapacity} capacity. Flat-packed for remote freight.{' '}
               <Link
                 href="/shop/stretch-bed-single"
                 className="underline-offset-4 hover:underline"

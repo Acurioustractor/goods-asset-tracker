@@ -29,6 +29,7 @@ import {
   YAxis,
 } from 'recharts';
 import { fmt, fmtInt, LEGS_SAVING_PER_BED, SHRED_FLOOR_PER_BED } from '@/lib/cost-model/engine';
+import { STRETCH_BED } from '@/lib/data/products';
 import {
   BEDS_MAX,
   BEDS_MIN,
@@ -489,7 +490,7 @@ export function CostBreakdown() {
     { name: 'Two steel poles', cost: i.steel_per_bed, tag: 'fair', plain: 'Galvanised, they thread through the canvas sleeves. Close to the raw steel price, so nothing to win here.' },
     { name: 'Hardware', cost: i.hardware_per_bed, tag: 'fair', plain: 'Caps, screws and bolts. Basically raw cost. Fair.' },
     { name: 'Putting it together', cost: assembly, tag: 'the work', plain: 'Assembly labour and getting the materials in. On Country, this becomes local, paid work, the kind of job worth keeping.' },
-    { name: 'Freight to community', cost: i.long_haul_freight_per_bed, tag: 'falls with scale', plain: 'Getting a 26kg bed out bush. Ship the plant and the plastic once, instead of finished beds every time, and this drops.' },
+    { name: 'Freight to community', cost: i.long_haul_freight_per_bed, tag: 'falls with scale', plain: `Getting a ${STRETCH_BED.specs.weight} bed out bush. Ship the plant and the plastic once, instead of finished beds every time, and this drops.` },
   ];
 
   return (

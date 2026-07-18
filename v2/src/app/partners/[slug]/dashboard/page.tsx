@@ -6,6 +6,7 @@ import { getPartnerDashboard, type OwnershipStage } from '@/lib/data/partner-das
 import { getDashboardImageOverrides, resolveDashImg } from '@/lib/data/partner-dashboard-images';
 import { safeImageUrl } from '@/lib/empathy-ledger/media-tier';
 import { getAssetStats } from '@/lib/data/impact-fetcher';
+import { PLASTIC_KG_PER_BED } from '@/lib/data/products';
 import { getRoadmap } from '@/lib/data/roadmap';
 import { verifiedFinancials } from '@/lib/data/compendium';
 import { empathyLedger } from '@/lib/empathy-ledger/client';
@@ -136,7 +137,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
   const beds = stats ? stats.totalBeds.toLocaleString() : '–';
   const communities = stats ? String(stats.communitiesServed) : '–';
   const stretch = stats ? stats.stretchBedsDeployed.toLocaleString() : '–';
-  const plasticT = stats ? `${((stats.stretchBedsDeployed * 20) / 1000).toFixed(2)} t` : '–';
+  const plasticT = stats ? `${((stats.stretchBedsDeployed * PLASTIC_KG_PER_BED) / 1000).toFixed(2)} t` : '–';
   const washers = stats ? String(stats.washersInCommunity) : '–';
   const peopleReached = stats ? Math.round(stats.totalBeds * 2.5) : null;
   const communityList = stats
@@ -361,7 +362,7 @@ export default async function PartnerDashboardPage({ params }: Props) {
             <MetricCard
               value={stretch}
               label="Recycled-plastic Stretch Beds"
-              comparison="Each one diverts about 20kg of HDPE from landfill."
+              comparison={`Each one diverts about ${PLASTIC_KG_PER_BED}kg of HDPE from landfill.`}
               grade="counted"
             />
             <MetricCard
@@ -375,9 +376,9 @@ export default async function PartnerDashboardPage({ params }: Props) {
             <MetricCard
               value={plasticT}
               label="Plastic kept out of landfill"
-              comparison="Modelled at about 20kg per Stretch Bed."
+              comparison={`Modelled at about ${PLASTIC_KG_PER_BED}kg per Stretch Bed.`}
               grade="modelled"
-              note="Assumes ~20kg HDPE per Stretch Bed. Not weighed per unit."
+              note={`Assumes ~${PLASTIC_KG_PER_BED}kg HDPE per Stretch Bed. Not weighed per unit.`}
             />
             <MetricCard
               value={peopleReached ? `~${peopleReached.toLocaleString()}` : '–'}

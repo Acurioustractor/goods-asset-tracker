@@ -1,3 +1,4 @@
+import { STRETCH_BED } from '@/lib/data/products';
 import { StretchBedSvg } from './stretch-bed-svg';
 
 type Props = {
@@ -9,9 +10,12 @@ type Part = {
   desc: string;
 };
 
+// '26.9mm OD × 2.6mm wall' — derived from the canonical frame spec (drops the length).
+const POLE_SPEC = STRETCH_BED.materials.frame.detail.split(',')[0];
+
 const BED_PARTS: Part[] = [
   { label: 'Canvas', desc: 'Heavy-duty Australian canvas with sewn pole sleeves. Washable.' },
-  { label: 'Pole × 2', desc: 'Galvanised steel, 26.9mm OD × 2.6mm wall. Slides through the canvas sleeves.' },
+  { label: 'Pole × 2', desc: `Galvanised steel, ${POLE_SPEC}. Slides through the canvas sleeves.` },
   { label: 'X-trestle leg × 2', desc: 'Recycled HDPE plastic. Each pole threads through the holes at the top of the X-leg; push the pole in from its end, not the side, and tension holds it.' },
   { label: 'End cap × 4', desc: 'Sits inside each pole end. Stops dirt and moisture entering the pole.' },
 ];

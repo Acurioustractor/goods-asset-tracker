@@ -33,7 +33,7 @@ export default function PartnerGuidePage() {
 
         <div className="grid md:grid-cols-3 gap-6 not-prose my-8">
           <div className="text-center p-4 bg-green-50 rounded-lg">
-            <div className="text-3xl font-bold text-green-600">556</div>
+            <div className="text-3xl font-bold text-green-600">536</div>
             <div className="text-sm text-gray-600 mt-1">Beds deployed</div>
           </div>
           <div className="text-center p-4 bg-green-50 rounded-lg">

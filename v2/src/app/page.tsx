@@ -6,6 +6,7 @@ import { CyclingImage } from '@/components/pitch/cycling-image';
 import { MediaSlot } from '@/components/ui/media-slot';
 import { Button } from '@/components/ui/button';
 import { brand } from '@/lib/data/content';
+import { PLASTIC_KG_PER_BED, STRETCH_BED } from '@/lib/data/products';
 import { videoUrl } from '@/lib/data/media';
 import { canonVideoSrc } from '@/lib/data/canon-videos';
 import { FeaturedStories } from '@/components/empathy-ledger/featured-stories';
@@ -15,6 +16,9 @@ import { createClient } from '@/lib/supabase/server';
 import { MediaSwapZone, type SwapFolder } from '@/components/admin/media-swap-picker';
 
 const HOME_SLUG = 'home';
+
+// '26.9mm' — pole outside diameter, derived from the canonical frame spec.
+const POLE_OD = STRETCH_BED.materials.frame.detail.split(' ')[0];
 
 const HOME_FOLDERS: SwapFolder[] = [
   { label: 'All recent', emoji: '🕘', tags: [] },
@@ -68,7 +72,7 @@ export default async function HomePage() {
               Three materials. No tools. Five minutes.
             </h2>
             <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
-              26kg, supports 200kg, designed to last 10+ years. Each bed diverts 20kg of plastic from landfill.
+              {STRETCH_BED.specs.weight}, supports {STRETCH_BED.specs.loadCapacity}, designed to last {STRETCH_BED.specs.designLifespan}. Each bed diverts {PLASTIC_KG_PER_BED}kg of plastic from landfill.
             </p>
 
             <div className="grid gap-12 lg:grid-cols-2 items-start">
@@ -81,15 +85,15 @@ export default async function HomePage() {
                     alt: 'Recycled HDPE plastic legs, pressed from community waste',
                     label: 'Recycled plastic legs',
                     title: 'Recycled Plastic Frame',
-                    body: 'HDPE legs from community plastic. 20kg diverted per bed.',
+                    body: `HDPE legs from community plastic. ${PLASTIC_KG_PER_BED}kg diverted per bed.`,
                   },
                   {
                     key: 'materials.1',
                     fallback: '/images/pitch/bed-poles.jpg',
-                    alt: 'Galvanised steel pole, 26.9mm OD',
+                    alt: `Galvanised steel pole, ${POLE_OD} OD`,
                     label: 'Steel pole',
                     title: 'Galvanised Steel Poles',
-                    body: 'Two 26.9mm poles thread through canvas sleeves.',
+                    body: `Two ${POLE_OD} poles thread through canvas sleeves.`,
                   },
                   {
                     key: 'materials.2',
@@ -327,7 +331,7 @@ export default async function HomePage() {
             </div>
 
             <div className="text-center">
-              <p className="text-background/40 text-sm">~30 beds per week &middot; 20kg plastic diverted per bed</p>
+              <p className="text-background/40 text-sm">~30 beds per week &middot; {PLASTIC_KG_PER_BED}kg plastic diverted per bed</p>
             </div>
           </div>
         </div>

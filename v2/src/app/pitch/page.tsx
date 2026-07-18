@@ -1,623 +1,303 @@
 import Link from 'next/link';
-import { communityPartnerships, investmentCase, quotes, oonchiumpaPartnership, partnershipJourney, advisoryGroup, goodsOrbit, storytellerProfiles } from '@/lib/data/content';
+import { ArrowRight, Compass, FileText, Images, MessageSquareQuote, Presentation } from 'lucide-react';
+import {
+  advisoryGroup,
+  communityPartnerships,
+  investmentCase,
+  oonchiumpaPartnership,
+} from '@/lib/data/content';
+import Image from 'next/image';
 import { MediaSlot } from '@/components/ui/media-slot';
 import { AssemblySequence } from '@/components/pitch/assembly-sequence';
 import { CyclingImage } from '@/components/pitch/cycling-image';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
+import { PLASTIC_KG_PER_BED, STRETCH_BED, WASHING_MACHINE } from '@/lib/data/products';
+import { getStoryteller, type StorytellerRecord } from '@/lib/data/storyteller-registry';
 
 export const metadata = {
   title: 'Pitch | Goods on Country',
-  description: 'Community-designed beds from recycled plastic. Local jobs, community ownership, Indigenous enterprise.',
+  description:
+    'Goods on Country works with First Nations communities to build beds, washing machines, and the production plant that can move into community ownership.',
 };
 
-// Pick specific quotes for the pitch
-const dignityQuote = quotes.find(q => q.author === 'Alfred Johnson');
-const healthQuote = quotes.find(q => q.author === 'Jessica Allardyce');
-const codesignQuote = quotes.find(q => q.author === 'Dianne Stokes');
-const normanQuote = quotes.find(q => q.author === 'Norman Frank' && q.theme === 'community-need');
+const plainCase = [
+  'People are asking for beds that work in heat, dust, freight, and crowded houses.',
+  `The Stretch Bed exists: ${STRETCH_BED.specs.weight}, ${STRETCH_BED.specs.loadCapacity} load, no tools, recycled HDPE legs, steel poles, canvas.`,
+  'Demand has names attached: Dianne Stokes, Utopia Homelands, Homeland Schools, Maningrida.',
+  'The plant is the path from Goods-run production to community-owned making.',
+];
+
+const problemPains = [
+  {
+    title: 'Beds do not arrive easily',
+    proof: 'Freight turns a basic bed into a hard purchase. In places like Palm Island and Maningrida, the cost and timing change the decision.',
+  },
+  {
+    title: 'Goods break before they should',
+    proof: 'Household products are usually made for metro houses, not heat, dust, shared use, repairs, and long distances.',
+  },
+  {
+    title: 'Waste and work leave Country',
+    proof: 'Plastic goes to landfill. Finished goods come back on trucks, barges, and grant budgets. The making happens somewhere else.',
+  },
+];
+
+const workaroundRows = [
+  {
+    today: 'Buy cheap goods, pay heavy freight, replace them when they fail.',
+    goods: 'Use a washable product designed for remote use, repair, movement, and long life.',
+  },
+  {
+    today: 'Run short project batches that stop when the funding ends.',
+    goods: 'Sell beds, supply funded batches, and keep the production work moving toward community ownership.',
+  },
+  {
+    today: 'Ship waste out, ship furniture in, keep jobs elsewhere.',
+    goods: 'Collect plastic locally, press it into bed components, and train local operators over time.',
+  },
+];
+
+const tractionStats = [
+  {
+    value: String(CANONICAL_ASSETS.bedsDeployed),
+    label: 'tracked bed units deployed across current and earlier designs',
+  },
+  {
+    value: String(CANONICAL_ASSETS.communitiesServed),
+    label: 'communities served through the asset register',
+  },
+  {
+    value: '107',
+    label: 'additional beds on order or requested in current demand signals',
+  },
+  {
+    value: `${PLASTIC_KG_PER_BED}kg`,
+    label: 'HDPE diverted per current Stretch Bed design',
+  },
+];
+
+const whyNow = [
+  {
+    force: 'The demand is named',
+    detail:
+      'Dianne Stokes asked for 20 more beds after receiving one. Utopia Homelands, Homeland Schools, health coordinators, and NPY Women\'s Council are live signals.',
+  },
+  {
+    force: 'The plant is no longer theory',
+    detail:
+      'The press, shredder, CNC, and container workflow are built enough to move from proof to regular production practice.',
+  },
+  {
+    force: 'The next funding step has a date',
+    detail:
+      'QBE Catalysing Impact, SEFA, Snow, Centrecorp, and White Box SELF are the next conversations. The question is how much can be signed before the next QBE stage.',
+  },
+];
+
+const businessModel = [
+  {
+    buyer: 'Procurement and health buyers',
+    buys: 'Stretch Bed batches for communities, schools, housing programs, and health partners.',
+    reason: 'They get a bed with specs, support, tracking, and real use in community.',
+  },
+  {
+    buyer: 'Sponsors and funders',
+    buys: 'Beds, production capability, and the capital bridge into On-Country manufacturing.',
+    reason: 'Their money turns into beds, equipment, local training, and a clearer ownership path.',
+  },
+  {
+    buyer: 'Direct customers',
+    buys: 'The Stretch Bed through ecommerce. Pakkimjalki Kari remains register-interest only.',
+    reason: 'Direct sales prove people will buy the bed and keep stock moving.',
+  },
+];
+
+const firstChannels = [
+  {
+    wedge: 'Convert live demand',
+    action:
+      'Close the named bed requests already in motion: Utopia, Homeland Schools, NPY Women\'s Council, health coordinators, and repeat community requests.',
+  },
+  {
+    wedge: 'Health hardware channel',
+    action:
+      'Use ACCHOs, environmental health teams, schools, and housing partners as the buyers who already see the bedding, washing, scabies, and overcrowding problem.',
+  },
+  {
+    wedge: 'Community production partners',
+    action:
+      'Move from bed batches to hosted or owned production runs with Oonchiumpa, Palm Island Community Company, and future community-controlled partners.',
+  },
+];
+
+const competition = [
+  {
+    alternative: 'Standard beds and mattresses',
+    appeal: 'Known products, existing suppliers, familiar procurement.',
+    breaks: 'Bulky freight, hard to wash, poor remote repair fit, limited ownership pathway.',
+    win: 'Flat-packable, washable, repairable parts, QR-tracked support, remote-first design.',
+  },
+  {
+    alternative: 'Camping or emergency beds',
+    appeal: 'Cheap, light, easy to buy in small batches.',
+    breaks: 'Not built as long-life household infrastructure or community production assets.',
+    win: `Designed as health hardware with a ${STRETCH_BED.specs.designLifespan.replace(/s$/, '')} design life and local manufacturing pathway.`,
+  },
+  {
+    alternative: 'Do nothing / wait for the next funded program',
+    appeal: 'No new procurement risk today.',
+    breaks: 'Families keep using the broken workaround and waste keeps moving through the same loop.',
+    win: 'Goods turns named demand into beds now and production capability over time.',
+  },
+];
+
+// The strongest cleared, quoted, photo-backed voices for the investor story:
+// community members alongside the practitioners who see the problem daily.
+// Source of truth is storyteller-registry.ts (tier 'external' only, never 'hold').
+const REAL_VOICE_NAMES = ['Dianne Stokes', 'Norman Frank', 'Cliff Plummer', 'Chloe', 'Wayne Glenn', 'Dr Boe Remenyi'];
+
+function leadQuote(record: StorytellerRecord) {
+  return record.quotes.find((q) => q.status === 'primary') ?? record.quotes.find((q) => q.status === 'approved') ?? null;
+}
+
+const realVoices = REAL_VOICE_NAMES.map((name) => getStoryteller(name))
+  .filter((record): record is StorytellerRecord => record !== undefined && record.tier === 'external')
+  .map((record) => ({ record, quote: leadQuote(record) }))
+  .filter((entry): entry is { record: StorytellerRecord; quote: NonNullable<ReturnType<typeof leadQuote>> } => Boolean(entry.quote));
 
 export default function PitchPage() {
+  const featuredPartnerships = communityPartnerships.filter((p) => p.bedsDelivered > 0).slice(0, 6);
+  const topRisks = investmentCase.risks.slice(0, 4);
+
   return (
     <main>
-
-      {/* ================================================================
-          1. THE HOOK
-          ================================================================ */}
-      <section className="min-h-[85vh] flex items-center justify-center bg-foreground text-background relative overflow-hidden">
-        <div className="container mx-auto px-4 text-center py-20 relative z-10">
-          <p className="text-sm uppercase tracking-widest text-primary mb-12">
-            A good bed is health hardware, not furniture.
-          </p>
-          <h1
-            className="text-4xl md:text-6xl lg:text-7xl font-light max-w-4xl mx-auto mb-10 leading-[1.1]"
-            style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-          >
-            What if communities owned the factory, ran the business, and built enterprise from their own waste?
-          </h1>
-          <p className="text-xl text-background/70 max-w-2xl mx-auto leading-relaxed">
-            Thousands of people in remote Australia sleep on the floor tonight.
-            We&rsquo;re building a model where communities manufacture health hardware, create local jobs,
-            and own the whole thing.
-          </p>
-        </div>
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <svg className="w-5 h-5 text-background/20" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
-          </svg>
-        </div>
-      </section>
-
-      {/* ================================================================
-          2. THE STRETCH BED: 4 component boxes
-          ================================================================ */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <p className="text-sm uppercase tracking-widest text-accent mb-4">
-              The Stretch Bed
-            </p>
-            <h2
-              className="text-3xl md:text-4xl font-light text-foreground mb-4 leading-snug"
+      <section className="min-h-[86vh] bg-foreground text-background">
+        <div className="container mx-auto grid min-h-[86vh] items-center gap-12 px-4 py-20 lg:grid-cols-[1.05fr_0.95fr]">
+          <div>
+            <p className="mb-6 text-sm uppercase tracking-widest text-primary">Goods on Country</p>
+            <h1
+              className="mb-8 max-w-4xl text-4xl font-light leading-[1.08] md:text-6xl lg:text-7xl"
               style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
             >
-              Three materials. No tools. Five minutes.
-            </h2>
-            <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
-              26kg, supports 200kg, designed to last 10+ years. Each bed diverts 20kg of plastic from landfill.
+              Beds off the ground, plastic out of landfill, manufacturing moving On Country.
+            </h1>
+            <p className="max-w-2xl text-lg leading-relaxed text-background/70 md:text-xl">
+              The Stretch Bed is {STRETCH_BED.specs.weight}, washable, and built from recycled HDPE, galvanised steel, and canvas.
+              The bigger work is the plant: turning local plastic into local production.
             </p>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/pitch/deck"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+              >
+                Open the deck <Presentation className="h-4 w-4" />
+              </Link>
+              <Link
+                href="#ask"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-background/25 px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-background/10"
+              >
+                See the ask <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/pitch/document"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-background/25 px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-background/10"
+              >
+                PDF version <FileText className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/pitch/workshop"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-background/25 px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-background/10"
+              >
+                Workshop <MessageSquareQuote className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/pitch/investor-lab"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-background/25 px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-background/10"
+              >
+                Investor lab <Compass className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/pitch/photo-review"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-background/25 px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-background/10"
+              >
+                Photo review <Images className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
 
-            <div className="grid gap-12 lg:grid-cols-2 items-start">
-              {/* Left: 4 component boxes */}
-              <div className="grid gap-4 grid-cols-2">
-                {/* Recycled plastic frame */}
-                <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
-                  <MediaSlot
-                    src="/images/pitch/bed-frame-legs.jpg"
-                    alt="Recycled HDPE plastic legs, pressed from community waste"
-                    label="Recycled plastic legs"
-                    aspect="4/3"
-                  />
-                  <div className="p-3">
-                    <h3 className="font-semibold text-foreground text-sm mb-0.5">Recycled Plastic Frame</h3>
-                    <p className="text-xs text-muted-foreground">HDPE legs from community plastic. 20kg diverted per bed.</p>
-                  </div>
+          <div className="rounded-lg border border-background/10 bg-background/5 p-5">
+            <p className="mb-4 text-xs uppercase tracking-widest text-background/40">
+              The case in plain words
+            </p>
+            <div className="space-y-4">
+              {plainCase.map((item, index) => (
+                <div key={item} className="flex gap-4">
+                  <span className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+                    {index + 1}
+                  </span>
+                  <p className="text-sm leading-relaxed text-background/75">{item}</p>
                 </div>
-
-                {/* Steel poles */}
-                <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
-                  <MediaSlot
-                    src="/images/pitch/bed-poles.jpg"
-                    alt="Galvanised steel pole, 26.9mm OD"
-                    label="Steel pole"
-                    aspect="4/3"
-                  />
-                  <div className="p-3">
-                    <h3 className="font-semibold text-foreground text-sm mb-0.5">Galvanised Steel Poles</h3>
-                    <p className="text-xs text-muted-foreground">Two 26.9mm poles thread through canvas sleeves.</p>
-                  </div>
-                </div>
-
-                {/* Canvas */}
-                <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
-                  <MediaSlot
-                    src="/images/pitch/bed-canvas.jpg"
-                    alt="Heavy-duty Australian canvas with Goods. branding"
-                    label="Canvas"
-                    aspect="4/3"
-                  />
-                  <div className="p-3">
-                    <h3 className="font-semibold text-foreground text-sm mb-0.5">Heavy-Duty Canvas</h3>
-                    <p className="text-xs text-muted-foreground">Washable, repairable, built for remote conditions.</p>
-                  </div>
-                </div>
-
-                {/* QR Code Tracking */}
-                <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
-                  <MediaSlot
-                    src="/images/media-pack/nic-with-elder-on-verandah.jpg"
-                    alt="Nic sitting on a Stretch Bed with an elder on a verandah, ongoing support and connection"
-                    label="Support system"
-                    aspect="4/3"
-                  />
-                  <div className="p-3">
-                    <h3 className="font-semibold text-foreground text-sm mb-0.5">Support System</h3>
-                    <p className="text-xs text-muted-foreground">Every bed tracked. Ask questions, stay connected, get support.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right: Assembly sequence animation */}
-              <div>
-                <AssemblySequence />
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ================================================================
-          3. HERO IMAGE: Large photo of finished bed in use
-          ================================================================ */}
-      <section className="bg-muted/30">
-        <div className="container mx-auto px-4 py-4">
-          <div className="max-w-5xl mx-auto">
+      <section className="bg-background py-20" id="problem">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-5xl">
+            <p className="mb-4 text-sm uppercase tracking-widest text-accent">01 - Problem</p>
+            <h2
+              className="mb-5 max-w-3xl text-3xl font-light leading-tight text-foreground md:text-5xl"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+            >
+              This shows up in homes, freight bills, and community dumps.
+            </h2>
+            <p className="mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              The old system ships in whatever is available, then asks families and community organisations
+              to carry the cost when it breaks, cannot be washed, or never arrives.
+            </p>
+
+            <div className="grid gap-4 md:grid-cols-3">
+              {problemPains.map((pain) => (
+                <div key={pain.title} className="rounded-lg border border-border bg-muted/20 p-6">
+                  <h3 className="mb-3 text-lg font-semibold text-foreground">{pain.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{pain.proof}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-muted/30 py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <MediaSlot
               src="/images/media-pack/woman-on-red-stretch-bed.jpg"
-              alt="A woman sitting on a Stretch Bed with red recycled plastic legs in Alice Springs"
-              label="Stretch Bed in use: red legs, Alice Springs"
-              aspect="16/9"
-              className="rounded-2xl overflow-hidden"
+              alt="A woman sitting on a red Stretch Bed in Alice Springs"
+              label="Stretch Bed in use"
+              aspect="4/3"
+              className="overflow-hidden rounded-lg"
             />
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          4. ON-COUNTRY MANUFACTURING: Rubbish to bed
-          ================================================================ */}
-      <section className="py-20 bg-foreground text-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <p className="text-sm uppercase tracking-widest text-background/40 mb-4">
-              On-Country Manufacturing
-            </p>
-            <h2
-              className="text-3xl md:text-4xl font-light mb-4 leading-snug"
-              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-            >
-              From rubbish to bed
-            </h2>
-            <p className="text-background/60 mb-12 max-w-2xl">
-              A containerised production plant designed to turn community plastic waste into bed components, moving toward On-Country production. Local people do the making.
-            </p>
-
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
-              {/* Step 1: Collect */}
-              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
-                <MediaSlot
-                  src="/images/process/color-samples.jpg"
-                  alt="Sorted recycled plastic from community waste"
-                  label="Collect"
-                  aspect="4/3"
-                />
-                <div className="p-5">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">1</div>
-                    <h3 className="text-lg font-semibold text-background">Collect</h3>
-                  </div>
-                  <p className="text-sm text-background/60 leading-relaxed">Local people gather plastic waste from around community. Sorted by colour, cleaned, ready for shredding.</p>
-                </div>
-              </div>
-
-              {/* Step 2: Shred */}
-              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
-                <MediaSlot
-                  src="/images/process/container-factory.jpg"
-                  alt="Plastic shredder inside containerised production plant"
-                  label="Shred"
-                  aspect="4/3"
-                />
-                <div className="p-5">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">2</div>
-                    <h3 className="text-lg font-semibold text-background">Shred</h3>
-                  </div>
-                  <p className="text-sm text-background/60 leading-relaxed">Plastic goes into the shredder: a containerised unit that stays on site between production runs.</p>
-                </div>
-              </div>
-
-              {/* Step 3: Press (cycling images) */}
-              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
-                <CyclingImage
-                  images={[
-                    { src: '/images/process/hydraulic-press.jpg', alt: 'Hydraulic press compressing recycled plastic into sheets' },
-                    { src: '/images/process/pressed-sheets.jpg', alt: 'Stack of pressed recycled plastic legs in multiple colours' },
-                  ]}
-                  aspect="4/3"
-                />
-                <div className="p-5">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">3</div>
-                    <h3 className="text-lg font-semibold text-background">Press</h3>
-                  </div>
-                  <p className="text-sm text-background/60 leading-relaxed">Shredded plastic is heated and pressed into durable sheets. Each colour is unique, made from whatever plastic the community collected.</p>
-                </div>
-              </div>
-
-              {/* Step 4: Cut */}
-              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
-                <MediaSlot
-                  src="/images/process/cnc-cutter.jpg"
-                  alt="CNC router cutting bed leg components from pressed plastic sheet"
-                  label="Cut"
-                  aspect="4/3"
-                />
-                <div className="p-5">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">4</div>
-                    <h3 className="text-lg font-semibold text-background">Cut</h3>
-                  </div>
-                  <p className="text-sm text-background/60 leading-relaxed">A CNC router cuts bed leg components from the pressed sheets. Precise, repeatable, minimal waste.</p>
-                </div>
-              </div>
-
-              {/* Step 5: Assemble (cycling images) */}
-              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
-                <CyclingImage
-                  images={[
-                    { src: '/images/pitch/bed-seq-1-leg-pole.jpg', alt: 'First pole threads through canvas sleeve' },
-                    { src: '/images/pitch/bed-seq-2-legs-pole.jpg', alt: 'Second pole through the other side' },
-                    { src: '/images/pitch/bed-seq-3-all-parts.jpg', alt: 'Both poles thread through the X-leg holes' },
-                    { src: '/images/pitch/bed-assembled.jpg', alt: 'Assembled Stretch Bed' },
-                  ]}
-                  aspect="4/3"
-                />
-                <div className="p-5">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">5</div>
-                    <h3 className="text-lg font-semibold text-background">Assemble</h3>
-                  </div>
-                  <p className="text-sm text-background/60 leading-relaxed">Thread a pole through each canvas sleeve and the X-leg holes, then tension. Done in under 5 minutes, no tools.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <p className="text-background/40 text-sm">~30 beds per week &middot; 20kg plastic diverted per bed</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          5. THE PARTNERSHIP: Oonchiumpa, community ownership, sovereignty
-          ================================================================ */}
-      <section className="py-20 md:py-28 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <p className="text-sm uppercase tracking-widest text-accent mb-4">
-              The Partnership
-            </p>
-            <h2
-              className="text-3xl md:text-5xl font-light text-foreground mb-6 leading-snug"
-              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-            >
-              A model built to transfer to community over time
-            </h2>
-            <p className="text-lg text-muted-foreground mb-4 max-w-3xl">
-              Through our partnership with {oonchiumpaPartnership.headline} ({oonchiumpaPartnership.subheadline}),
-              we&rsquo;re building a model designed to transfer capability to communities over time.
-              From collecting waste to delivering beds. The pathway supports enterprise, healthier homes, pride, and sovereignty.
-            </p>
-
-            <div className="grid gap-12 lg:grid-cols-2 items-start mt-12">
-              <div>
-                <p className="text-muted-foreground leading-relaxed mb-8">
-                  {oonchiumpaPartnership.description}
-                </p>
-
-                {/* What community ownership means */}
-                <div className="space-y-4 mb-8">
-                  {[
-                    { title: 'Enterprise', desc: 'Community-owned manufacturing: local people making and selling products' },
-                    { title: 'Health hardware', desc: 'Cleanable, durable beds and reliable washing machines that support healthier homes' },
-                    { title: 'Pride & sovereignty', desc: 'Indigenous intelligence guiding design, production, and business decisions' },
-                    { title: 'New ideas', desc: 'A platform for other products and enterprises generated by and from community' },
-                  ].map((item) => (
-                    <div key={item.title} className="flex gap-4 items-start">
-                      <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <div>
-                        <span className="font-semibold text-foreground">{item.title}</span>
-                        <span className="text-muted-foreground">: {item.desc}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Kristy Bloomfield quote */}
-                <blockquote className="border-l-2 border-primary pl-6">
-                  <p
-                    className="text-xl text-foreground leading-relaxed mb-3"
-                    style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-                  >
-                    &ldquo;{oonchiumpaPartnership.kristyQuote.text}&rdquo;
-                  </p>
-                  <footer className="text-sm text-muted-foreground">
-                    <span className="font-medium text-foreground">{oonchiumpaPartnership.kristyQuote.author}</span>
-                    <span>, {oonchiumpaPartnership.kristyQuote.context}</span>
-                  </footer>
-                </blockquote>
-              </div>
-
-              {/* Fred's video testimonial */}
-              <div>
-                <div className="aspect-video rounded-xl overflow-hidden bg-muted mb-4">
-                  <iframe
-                    src={oonchiumpaPartnership.fredVideo.embedUrl}
-                    className="w-full h-full"
-                    allow="autoplay; fullscreen"
-                    allowFullScreen
-                  />
-                </div>
-                <p className="text-sm text-muted-foreground text-center">
-                  {oonchiumpaPartnership.fredVideo.title}
-                </p>
-              </div>
-            </div>
-
-            {/* Partnership iteration journey */}
-            <div className="mt-20">
-              <h3
-                className="text-2xl md:text-3xl font-light text-foreground mb-10"
-                style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-              >
-                How we got here
-              </h3>
-              <div className="relative">
-                <div className="absolute left-5 top-0 bottom-0 w-px bg-border hidden md:block" />
-                <div className="space-y-8">
-                  {partnershipJourney.map((step) => (
-                    <div key={step.step} className="flex gap-6 items-start">
-                      <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0 relative z-10">
-                        {step.step}
-                      </div>
-                      <div className="pt-1.5">
-                        <h4 className="font-semibold text-foreground mb-1">{step.title}</h4>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          6. IMPACT TO DATE
-          ================================================================ */}
-      <section className="py-20 bg-foreground text-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <p className="text-sm uppercase tracking-widest text-background/40 mb-4">
-              Impact to date
-            </p>
-            <h2
-              className="text-3xl md:text-4xl font-light mb-12"
-              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-            >
-              This isn&rsquo;t a concept. It&rsquo;s working.
-            </h2>
-
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-12">
-              {[
-                { value: '496', label: 'bed units deployed' },
-                { value: String(CANONICAL_ASSETS.communitiesServed), label: 'communities' },
-                { value: '2+', label: 'years with Bloomfield family' },
-                { value: '20kg', label: 'plastic per bed' },
-              ].map((stat) => (
-                <div key={stat.label} className="text-center p-6 rounded-xl bg-background/5 border border-background/10">
-                  <div className="text-3xl md:text-4xl font-bold text-primary mb-1">{stat.value}</div>
-                  <div className="text-sm text-background/50">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              {communityPartnerships.filter(p => p.bedsDelivered > 0).map((p) => (
-                <div key={p.id} className="rounded-xl bg-background/5 border border-background/10 p-5">
-                  <div className="flex items-start justify-between mb-2">
-                    <div>
-                      <h3 className="font-semibold text-background">{p.name}</h3>
-                      <p className="text-xs text-background/40">{p.region}</p>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-xl font-bold text-primary">{p.bedsDelivered}</div>
-                      <div className="text-xs text-background/40">beds</div>
-                    </div>
-                  </div>
-                  <p className="text-sm text-background/60">{p.headline}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          7. COMMUNITY VOICES
-          ================================================================ */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <p className="text-sm uppercase tracking-widest text-accent mb-4">
-              Community voices
-            </p>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mt-8">
-              {[dignityQuote, healthQuote, codesignQuote, normanQuote].filter(Boolean).map((q) => (
-                <div key={q!.author + q!.theme} className="flex flex-col">
-                  <blockquote className="flex-1">
-                    <p
-                      className="text-lg text-foreground leading-relaxed mb-4"
-                      style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-                    >
-                      &ldquo;{q!.text}&rdquo;
-                    </p>
-                  </blockquote>
-                  <footer className="text-sm">
-                    <span className="font-medium text-foreground">{q!.author}</span>
-                    <span className="text-muted-foreground">, {q!.context}</span>
-                  </footer>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          8. ADVISORY BOARD
-          ================================================================ */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <p className="text-sm uppercase tracking-widest text-accent mb-4">
-              Advisory board
-            </p>
-            <h2
-              className="text-3xl md:text-4xl font-light text-foreground mb-12 leading-snug"
-              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-            >
-              Who guides this
-            </h2>
-
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {advisoryGroup.map((person) => (
-                <div key={person.name} className="rounded-xl bg-background border border-border p-5">
-                  <h3 className="font-semibold text-foreground">{person.name}</h3>
-                  <p className="text-sm text-primary font-medium">{person.title}</p>
-                  {person.org && <p className="text-xs text-muted-foreground mt-1">{person.org}</p>}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          9. GOODS ORBIT: Community partners and people we engage with
-          ================================================================ */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <p className="text-sm uppercase tracking-widest text-accent mb-4">
-              The Goods orbit
-            </p>
-            <h2
-              className="text-2xl md:text-3xl font-light text-foreground mb-3 leading-snug"
-              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-            >
-              People and partners we work with
-            </h2>
-            <p className="text-muted-foreground mb-10 max-w-2xl">
-              The community members, organisations, and allies who have been part of the journey: designing in community, testing, delivering, and advocating.
-            </p>
-
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {goodsOrbit.map((person) => (
-                <div key={person.name} className="rounded-xl border border-border p-4">
-                  <h3 className="font-semibold text-foreground text-sm">{person.name}</h3>
-                  <p className="text-xs text-primary font-medium">{person.title}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{person.org}</p>
-                  <p className="text-xs text-muted-foreground/70 mt-2 leading-relaxed">{person.role}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          10. STORYTELLERS: Community voices, Empathy Ledger
-          ================================================================ */}
-      <section className="py-16 bg-foreground text-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <p className="text-sm uppercase tracking-widest text-background/40 mb-4">
-              Storytellers
-            </p>
-            <h2
-              className="text-2xl md:text-3xl font-light mb-3"
-              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-            >
-              Listening to impact
-            </h2>
-            <p className="text-background/60 mb-10 max-w-2xl">
-              Every product decision is refined by community feedback. Through our Empathy Ledger process,
-              storytellers own their narratives, sharing on their terms, shaping what gets built next.
-            </p>
-
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {storytellerProfiles.map((person) => (
-                <div key={person.id} className="rounded-xl bg-background/5 border border-background/10 p-4">
-                  <h3 className="font-semibold text-background text-sm">{person.name}</h3>
-                  {person.role && <p className="text-xs text-primary">{person.role}</p>}
-                  <p className="text-xs text-background/40 mt-0.5">{person.location}</p>
-                  <p
-                    className="text-xs text-background/50 mt-2 leading-relaxed italic"
-                    style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-                  >
-                    &ldquo;{person.keyQuote.length > 80 ? person.keyQuote.slice(0, 80) + '...' : person.keyQuote}&rdquo;
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <p className="text-xs text-background/30 mt-6 text-center">
-              All stories shared with consent through Empathy Ledger. Community members own their narratives.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          11. THE ASK: $400K catalytic raise
-          ================================================================ */}
-      <section className="py-24 bg-foreground text-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-sm uppercase tracking-widest text-background/40 mb-6">
-              The ask
-            </p>
-            <h2
-              className="text-4xl md:text-6xl font-light mb-6"
-              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-            >
-              {investmentCase.totalAsk}
-            </h2>
-            <p className="text-xl text-background/60 mb-3 max-w-2xl mx-auto">
-              Signed, match-eligible catalytic capital: a recoverable grant that converts into
-              community ownership, moving the press into community hands.
-            </p>
-            <p className="text-xs text-background/30 mb-16">
-              Catalysing Impact, powered by Social Impact Hub, in partnership with QBE Foundation.
-            </p>
-
-            <div className="grid gap-6 md:grid-cols-3 max-w-3xl mx-auto mb-16">
-              {investmentCase.fundingLines.map((line) => (
-                <div key={line.id} className="rounded-2xl bg-background/5 border border-background/10 p-8 text-left">
-                  <div className="text-3xl font-bold text-primary mb-2">{line.amount}</div>
-                  <h3 className="text-lg font-semibold text-background mb-3">{line.title}</h3>
-                  <p className="text-sm text-background/50 leading-relaxed">
-                    {line.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div className="bg-background/5 border border-background/10 rounded-2xl p-8 md:p-10 max-w-2xl mx-auto mb-16 text-left">
-              <h3
-                className="text-xl font-light text-background mb-4"
-                style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-              >
-                The story this tells
-              </h3>
-              <p className="text-background/60 leading-relaxed">
-                Indigenous intelligence and ownership. A model designed by community, run by community,
-                that tells the story of what&rsquo;s possible when enterprise grows through action.
-                The next step is a community-owned press producing about 30 beds a week.
-              </p>
-            </div>
-
-            {/* In conversation with: $0 signed today, this is a conversion task not a discovery one */}
             <div>
-              <p className="text-xs uppercase tracking-widest text-background/30 mb-4">In active conversation with</p>
-              <div className="flex flex-wrap items-center justify-center gap-6">
-                {investmentCase.funders.map((f) => (
-                  <span key={f.name} className="text-background/60 text-sm font-medium">
-                    {f.name}
-                  </span>
+              <p className="mb-4 text-sm uppercase tracking-widest text-accent">02 - Current workaround</p>
+              <h2
+                className="mb-8 text-3xl font-light leading-tight text-foreground md:text-4xl"
+                style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+              >
+                People already solve this problem. The market gives them bad options.
+              </h2>
+              <div className="overflow-hidden rounded-lg border border-border bg-background">
+                <div className="grid grid-cols-2 border-b border-border bg-muted/40 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                  <div className="p-4">Today</div>
+                  <div className="border-l border-border p-4">With Goods</div>
+                </div>
+                {workaroundRows.map((row) => (
+                  <div key={row.today} className="grid grid-cols-2 border-b border-border last:border-b-0">
+                    <p className="p-4 text-sm leading-relaxed text-muted-foreground">{row.today}</p>
+                    <p className="border-l border-border p-4 text-sm leading-relaxed text-foreground">{row.goods}</p>
+                  </div>
                 ))}
               </div>
             </div>
@@ -625,51 +305,464 @@ export default function PitchPage() {
         </div>
       </section>
 
-      {/* ================================================================
-          11. CLOSING
-          ================================================================ */}
-      <section className="py-24 md:py-32 bg-background">
+      <section className="bg-background py-20" id="product">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="mx-auto max-w-5xl">
+            <p className="mb-4 text-sm uppercase tracking-widest text-accent">03 - Product</p>
+            <div className="mb-12 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+              <div>
+                <h2
+                  className="mb-5 text-3xl font-light leading-tight text-foreground md:text-5xl"
+                  style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+                >
+                  {STRETCH_BED.name}: thread the poles, tension the legs, sleep off the ground.
+                </h2>
+                <p className="mb-8 text-lg leading-relaxed text-muted-foreground">
+                  {STRETCH_BED.tagline} It is the product proof for the model:
+                  practical enough to sell now, simple enough to assemble in minutes, and built
+                  for future On-Country production.
+                </p>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {[
+                    STRETCH_BED.specs.weight,
+                    `${STRETCH_BED.specs.loadCapacity} load capacity`,
+                    `${STRETCH_BED.specs.assemblyTime} assembly`,
+                    `${STRETCH_BED.specs.designLifespan} design life`,
+                    STRETCH_BED.specs.plasticDiverted,
+                    STRETCH_BED.specs.toolsRequired === 'None' ? 'No tools required' : STRETCH_BED.specs.toolsRequired,
+                  ].map((feature) => (
+                    <div key={feature} className="rounded-lg border border-border bg-muted/20 p-4 text-sm font-medium text-foreground">
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <AssemblySequence />
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-3">
+              <div className="rounded-lg border border-border bg-muted/20">
+                <MediaSlot
+                  src="/images/pitch/bed-frame-legs.jpg"
+                  alt="Recycled HDPE plastic legs pressed from community waste"
+                  label="Recycled HDPE legs"
+                  aspect="4/3"
+                />
+                <div className="p-4">
+                  <h3 className="mb-1 text-sm font-semibold text-foreground">Recycled HDPE legs</h3>
+                  <p className="text-xs leading-relaxed text-muted-foreground">
+                    Two X-trestle legs pressed from HDPE plastic waste.
+                  </p>
+                </div>
+              </div>
+              <div className="rounded-lg border border-border bg-muted/20">
+                <MediaSlot
+                  src="/images/pitch/bed-poles.jpg"
+                  alt="Galvanised steel poles for the Stretch Bed"
+                  label="Galvanised steel"
+                  aspect="4/3"
+                />
+                <div className="p-4">
+                  <h3 className="mb-1 text-sm font-semibold text-foreground">Galvanised steel poles</h3>
+                  <p className="text-xs leading-relaxed text-muted-foreground">
+                    Two poles thread through the canvas sleeves and legs.
+                  </p>
+                </div>
+              </div>
+              <div className="rounded-lg border border-border bg-muted/20">
+                <MediaSlot
+                  src="/images/pitch/bed-canvas.jpg"
+                  alt="Heavy-duty Australian canvas sleeping surface"
+                  label="Heavy-duty canvas"
+                  aspect="4/3"
+                />
+                <div className="p-4">
+                  <h3 className="mb-1 text-sm font-semibold text-foreground">Washable canvas</h3>
+                  <p className="text-xs leading-relaxed text-muted-foreground">
+                    A cleanable, repairable sleeping surface built for remote use.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-foreground py-20 text-background" id="traction">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-5xl">
+            <p className="mb-4 text-sm uppercase tracking-widest text-background/40">04 - Traction</p>
             <h2
-              className="text-3xl md:text-5xl font-light text-foreground leading-snug mb-8"
+              className="mb-5 max-w-3xl text-3xl font-light leading-tight md:text-5xl"
               style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
             >
-              We&rsquo;re not building beds.<br />
-              We&rsquo;re building local enterprise.
+              This is not a concept deck. Beds are already in homes.
             </h2>
-            <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">
-              Durable products from community waste. Local jobs. Community ownership.
-              A model that can be copied everywhere.
+            <p className="mb-12 max-w-2xl text-lg leading-relaxed text-background/65">
+              The strongest signal is not a survey. It is people who used the bed, then asked for more.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <div className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {tractionStats.map((stat) => (
+                <div key={stat.label} className="rounded-lg border border-background/10 bg-background/5 p-6">
+                  <p className="mb-2 text-3xl font-bold text-primary md:text-4xl">{stat.value}</p>
+                  <p className="text-sm leading-relaxed text-background/55">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              {investmentCase.demand.slice(0, 4).map((item) => (
+                <div key={item.text} className="rounded-lg border border-background/10 bg-background/5 p-5">
+                  <p className="mb-3 text-sm leading-relaxed text-background/75">{item.text}</p>
+                  <p className="text-xs uppercase tracking-widest text-background/35">{item.person}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-background py-20" id="why-now">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-5xl">
+            <p className="mb-4 text-sm uppercase tracking-widest text-accent">05 - Why now</p>
+            <h2
+              className="mb-10 max-w-3xl text-3xl font-light leading-tight text-foreground md:text-5xl"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+            >
+              Three things have changed.
+            </h2>
+            <div className="grid gap-4 md:grid-cols-3">
+              {whyNow.map((item) => (
+                <div key={item.force} className="rounded-lg border border-border p-6">
+                  <h3 className="mb-3 text-lg font-semibold text-foreground">{item.force}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{item.detail}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-muted/30 py-20" id="model">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-5xl">
+            <p className="mb-4 text-sm uppercase tracking-widest text-accent">06 - Business model</p>
+            <div className="mb-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+              <div>
+                <h2
+                  className="mb-5 text-3xl font-light leading-tight text-foreground md:text-5xl"
+                  style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+                >
+                  Product revenue now. Community-owned production over time.
+                </h2>
+                <p className="mb-6 text-lg leading-relaxed text-muted-foreground">
+                  The simple model: sell durable goods, use patient capital to build production,
+                  then move more of the making and margin to community-controlled partners.
+                </p>
+                <div className="rounded-lg border border-border bg-background p-5">
+                  <p className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">Money flow</p>
+                  <p className="text-lg font-semibold text-foreground">
+                    Bed orders + sponsored deployments + patient capital = inventory, plant capability, and local production runs.
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {businessModel.map((row) => (
+                  <div key={row.buyer} className="rounded-lg border border-border bg-background p-5">
+                    <h3 className="mb-2 text-base font-semibold text-foreground">{row.buyer}</h3>
+                    <p className="mb-2 text-sm leading-relaxed text-muted-foreground">{row.buys}</p>
+                    <p className="text-sm leading-relaxed text-foreground">{row.reason}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-lg border border-border bg-background p-6">
+              <p className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">Product boundary</p>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                The Stretch Bed is the commercial anchor and the only direct-sale product. {WASHING_MACHINE.name}
+                {' '}is a prototype and register-interest pathway, not a checkout product.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-background py-20" id="first-channels">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-5xl">
+            <p className="mb-4 text-sm uppercase tracking-widest text-accent">07 - First channels</p>
+            <h2
+              className="mb-10 max-w-3xl text-3xl font-light leading-tight text-foreground md:text-5xl"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+            >
+              The first buyers and partners are not theoretical.
+            </h2>
+            <div className="grid gap-4 md:grid-cols-3">
+              {firstChannels.map((item) => (
+                <div key={item.wedge} className="rounded-lg border border-border p-6">
+                  <h3 className="mb-3 text-lg font-semibold text-foreground">{item.wedge}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{item.action}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-muted/30 py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+            <div>
+              <p className="mb-4 text-sm uppercase tracking-widest text-accent">08 - Manufacturing advantage</p>
+              <h2
+                className="mb-5 text-3xl font-light leading-tight text-foreground md:text-5xl"
+                style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+              >
+                The plant is the bridge from product sales to community ownership.
+              </h2>
+              <p className="mb-8 text-lg leading-relaxed text-muted-foreground">
+                Through {oonchiumpaPartnership.headline}, Goods is building a practical model:
+                collect plastic, shred it, press it, cut bed parts, assemble beds, train local operators.
+              </p>
+              <div className="grid gap-4 sm:grid-cols-3">
+                {[
+                  investmentCase.productionPlant.capacity,
+                  investmentCase.productionPlant.investment,
+                  `${PLASTIC_KG_PER_BED}kg HDPE per bed`,
+                ].map((item) => (
+                  <div key={item} className="rounded-lg border border-border bg-background p-4 text-sm font-semibold text-foreground">
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-lg border border-border bg-background p-5">
+              <CyclingImage
+                images={[
+                  { src: '/images/process/hydraulic-press.jpg', alt: 'Hydraulic press compressing recycled plastic into sheets' },
+                  { src: '/images/process/pressed-sheets.jpg', alt: 'Stack of pressed recycled plastic sheets' },
+                  { src: '/images/process/cnc-cutter.jpg', alt: 'CNC router cutting bed components from pressed plastic' },
+                ]}
+                aspect="4/3"
+              />
+              <div className="mt-5 space-y-3">
+                {investmentCase.productionPlant.capabilities.map((capability) => (
+                  <p key={capability} className="text-sm leading-relaxed text-muted-foreground">
+                    <span className="font-semibold text-foreground">{capability}.</span>
+                  </p>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-foreground py-20 text-background" id="competition">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-5xl">
+            <p className="mb-4 text-sm uppercase tracking-widest text-background/40">09 - Competition</p>
+            <h2
+              className="mb-8 max-w-3xl text-3xl font-light leading-tight md:text-5xl"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+            >
+              The competition is the broken default.
+            </h2>
+            <div className="overflow-hidden rounded-lg border border-background/10">
+              <div className="hidden grid-cols-[0.8fr_1fr_1fr_1fr] bg-background/10 text-xs font-semibold uppercase tracking-widest text-background/45 md:grid">
+                <div className="p-4">Alternative</div>
+                <div className="border-l border-background/10 p-4">What buyers like</div>
+                <div className="border-l border-background/10 p-4">What breaks</div>
+                <div className="border-l border-background/10 p-4">Why Goods wins</div>
+              </div>
+              {competition.map((row) => (
+                <div key={row.alternative} className="grid gap-0 border-t border-background/10 md:grid-cols-[0.8fr_1fr_1fr_1fr]">
+                  <h3 className="p-4 text-sm font-semibold text-background">{row.alternative}</h3>
+                  <p className="border-t border-background/10 p-4 text-sm leading-relaxed text-background/55 md:border-l md:border-t-0">{row.appeal}</p>
+                  <p className="border-t border-background/10 p-4 text-sm leading-relaxed text-background/55 md:border-l md:border-t-0">{row.breaks}</p>
+                  <p className="border-t border-background/10 p-4 text-sm leading-relaxed text-background/75 md:border-l md:border-t-0">{row.win}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-background py-20" id="risks">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-5xl">
+            <p className="mb-4 text-sm uppercase tracking-widest text-accent">10 - Risks and mitigations</p>
+            <h2
+              className="mb-5 max-w-3xl text-3xl font-light leading-tight text-foreground md:text-5xl"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+            >
+              The risks are real. The work now is to make them governable.
+            </h2>
+            <p className="mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              The next stage needs clear roles, careful debt, clean governance, story consent, and cashflow that does not outrun orders.
+            </p>
+            <div className="grid gap-4 md:grid-cols-2">
+              {topRisks.map((risk) => (
+                <div key={risk.risk} className="rounded-lg border border-border p-6">
+                  <h3 className="mb-2 text-lg font-semibold text-foreground">{risk.risk}</h3>
+                  <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{risk.detail}</p>
+                  <p className="text-sm leading-relaxed text-foreground">{risk.mitigation}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-muted/30 py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-5xl">
+            <p className="mb-4 text-sm uppercase tracking-widest text-accent">11 - People and proof</p>
+            <h2
+              className="mb-10 max-w-3xl text-3xl font-light leading-tight text-foreground md:text-5xl"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+            >
+              The proof has names, places, and people around it.
+            </h2>
+
+            <div className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {featuredPartnerships.map((p) => (
+                <div key={p.id} className="rounded-lg border border-border bg-background p-5">
+                  <div className="mb-3 flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="font-semibold text-foreground">{p.name}</h3>
+                      <p className="text-xs text-muted-foreground">{p.region}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xl font-bold text-primary">{p.bedsDelivered}</p>
+                      <p className="text-xs text-muted-foreground">beds</p>
+                    </div>
+                  </div>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{p.headline}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mb-12">
+              <h3 className="mb-2 text-lg font-semibold text-foreground">Real voices</h3>
+              <p className="mb-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                Community members and the practitioners who see the problem every day, quoted directly and named with consent.
+              </p>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {realVoices.map(({ record, quote }) => (
+                  <div key={record.slug} className="rounded-lg border border-border bg-background p-5">
+                    <div className="mb-4 flex items-center gap-3">
+                      {record.portrait ? (
+                        <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-full bg-muted">
+                          <Image src={record.portrait} alt={record.name} fill className="object-cover" sizes="48px" />
+                        </div>
+                      ) : (
+                        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-muted text-sm font-semibold text-muted-foreground">
+                          {record.name
+                            .split(' ')
+                            .filter((part) => part && part[0] === part[0].toUpperCase())
+                            .map((part) => part[0])
+                            .slice(0, 2)
+                            .join('')}
+                        </div>
+                      )}
+                      <div>
+                        <p className="text-sm font-semibold text-foreground">{record.name}</p>
+                        <p className="text-xs text-muted-foreground">{record.role}</p>
+                      </div>
+                    </div>
+                    <p className="text-sm leading-relaxed text-foreground">&quot;{quote.text}&quot;</p>
+                    <p className="mt-2 text-xs text-muted-foreground">{quote.context} &middot; {record.community}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
+              <div className="rounded-lg border border-border bg-background p-6">
+                <h3 className="mb-4 text-lg font-semibold text-foreground">Named demand</h3>
+                <div className="space-y-4">
+                  {investmentCase.demand.slice(0, 4).map((item) => (
+                    <div key={item.text} className="border-l border-border pl-4">
+                      <p className="text-sm leading-relaxed text-foreground">{item.text}</p>
+                      <p className="mt-1 text-xs text-muted-foreground">{item.person}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-lg border border-border bg-background p-6">
+                <h3 className="mb-4 text-lg font-semibold text-foreground">Advisory group</h3>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {advisoryGroup.map((person) => (
+                    <div key={person.name} className="border-l border-border pl-4">
+                      <p className="text-sm font-semibold text-foreground">{person.name}</p>
+                      <p className="text-xs font-medium text-primary">{person.title}</p>
+                      {person.org && <p className="mt-1 text-xs text-muted-foreground">{person.org}</p>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-foreground py-24 text-background" id="ask">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-5xl">
+            <p className="mb-4 text-center text-sm uppercase tracking-widest text-background/40">12 - Ask</p>
+            <h2
+              className="mb-5 text-center text-4xl font-light leading-tight md:text-6xl"
+              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+            >
+              {investmentCase.totalAsk} to move from batches to steady production.
+            </h2>
+            <p className="mx-auto mb-12 max-w-2xl text-center text-lg leading-relaxed text-background/65">
+              The immediate job is to close signed, match-eligible capital for stock, production roles,
+              partner work, and the plant pathway.
+            </p>
+
+            <div className="mb-12 grid gap-4 md:grid-cols-3">
+              {investmentCase.fundingLines.map((line) => (
+                <div key={line.id} className="rounded-lg border border-background/10 bg-background/5 p-6">
+                  <p className="mb-2 text-3xl font-bold text-primary">{line.amount}</p>
+                  <h3 className="mb-3 text-lg font-semibold text-background">{line.title}</h3>
+                  <p className="text-sm leading-relaxed text-background/55">{line.description}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="rounded-lg border border-background/10 bg-background/5 p-8 text-center">
+              <p
+                className="mb-4 text-2xl font-light leading-tight text-background md:text-3xl"
+                style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+              >
+                Why invest now
+              </p>
+              <p className="mx-auto max-w-3xl text-background/65">
+                The product exists. The demand is named. The plant pathway is real. The next step is to make production
+                less founder-led and easier for community partners to own.
+              </p>
+            </div>
+
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
                 href="/partner"
-                className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground rounded-xl text-lg font-medium hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-8 py-4 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
               >
-                Partner With Us
+                Partner with Goods <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center px-8 py-4 border border-border text-foreground rounded-xl text-lg font-medium hover:bg-muted transition-colors"
+                className="inline-flex items-center justify-center rounded-lg border border-background/25 px-8 py-4 text-sm font-semibold text-background transition-colors hover:bg-background/10"
               >
-                Get in Touch
+                Contact the team
               </Link>
-            </div>
-
-            <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
-              <Link
-                href="/pitch/document"
-                className="inline-flex items-center gap-2 hover:text-foreground transition-colors"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                </svg>
-                Download as PDF
-              </Link>
-              <span className="text-muted-foreground/30">|</span>
-              <span>hi@act.place</span>
             </div>
           </div>
         </div>

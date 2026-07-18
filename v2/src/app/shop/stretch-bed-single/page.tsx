@@ -11,13 +11,12 @@ import { AssemblySequence } from '@/components/pitch/assembly-sequence';
 import { CyclingImage } from '@/components/pitch/cycling-image';
 import { media } from '@/lib/data/media';
 import { quotes } from '@/lib/data/content';
-import { STRETCH_BED } from '@/lib/data/products';
+import { STRETCH_BED, PLASTIC_KG_PER_BED } from '@/lib/data/products';
 import { BreadcrumbJsonLd, StretchBedProductJsonLd } from '@/components/seo';
 
 export const metadata = {
   title: 'The Stretch Bed',
-  description:
-    'Flat-packable, washable Stretch Bed made from recycled HDPE plastic, galvanised steel poles, and heavy-duty canvas. 26kg, 200kg capacity, assembles in 5 minutes.',
+  description: `Flat-packable, washable Stretch Bed made from recycled HDPE plastic, galvanised steel poles, and heavy-duty canvas. ${STRETCH_BED.specs.weight}, ${STRETCH_BED.specs.loadCapacity} capacity, assembles in ${STRETCH_BED.specs.assemblyTime.replace('~', '')}.`,
   alternates: {
     canonical: 'https://www.goodsoncountry.com/shop/stretch-bed-single',
   },
@@ -174,7 +173,7 @@ export default function StretchBedPage() {
                   <div>
                     <p className="font-medium text-foreground">Your Impact</p>
                     <p className="text-sm text-muted-foreground">
-                      Each bed diverts 20kg of plastic from landfill and supports community-led manufacturing in remote Australia.
+                      Each bed diverts {PLASTIC_KG_PER_BED}kg of plastic from landfill and supports community-led manufacturing in remote Australia.
                     </p>
                   </div>
                 </div>
@@ -238,7 +237,7 @@ export default function StretchBedPage() {
                   </svg>
                 </div>
                 <h3 className="font-semibold text-foreground mb-1">Recycled Plastic Legs</h3>
-                <p className="text-sm text-muted-foreground">20kg of HDPE diverted from landfill per bed. Virtually indestructible in any conditions.</p>
+                <p className="text-sm text-muted-foreground">{PLASTIC_KG_PER_BED}kg of HDPE diverted from landfill per bed. Virtually indestructible in any conditions.</p>
               </CardContent>
             </Card>
             <Card>
@@ -249,7 +248,7 @@ export default function StretchBedPage() {
                   </svg>
                 </div>
                 <h3 className="font-semibold text-foreground mb-1">Galvanised Steel Poles</h3>
-                <p className="text-sm text-muted-foreground">26.9mm outer diameter, rated for 200kg capacity. Designed to last 10+ years.</p>
+                <p className="text-sm text-muted-foreground">{STRETCH_BED.materials.frame.detail.split(',')[0]}, rated for {STRETCH_BED.specs.loadCapacity} capacity. Designed to last {STRETCH_BED.specs.designLifespan}.</p>
               </CardContent>
             </Card>
             <Card>
@@ -374,7 +373,7 @@ export default function StretchBedPage() {
             </div>
 
             <div className="text-center">
-              <p className="text-background/40 text-sm">~30 beds per week &middot; 20kg plastic diverted per bed</p>
+              <p className="text-background/40 text-sm">~30 beds per week &middot; {PLASTIC_KG_PER_BED}kg plastic diverted per bed</p>
             </div>
           </div>
         </div>

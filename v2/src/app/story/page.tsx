@@ -87,7 +87,7 @@ const TIMELINE = [
   { year: '2020', title: 'The Pattern', description: 'Orange Sky expands to remote communities. Nic sees people without beds, without washing machines, children with skin infections cascading into heart disease.' },
   { year: '2022', title: 'The Question', description: '"What can we actually build that makes a difference?" Goods project kicks off with an advisory session in November.' },
   { year: '2023', title: 'A Curious Tractor', description: 'Organisation formally founded. First bed prototypes developed with the Bloomfield family "around the fire."' },
-  { year: '2024', title: '556 Beds', description: 'Active pilots deliver beds across Palm Island, Tennant Creek, Mt Isa, Kalgoorlie, and more. Community feedback shapes every iteration.' },
+  { year: '2024', title: '536 Beds', description: 'Active pilots deliver beds across Palm Island, Tennant Creek, Mt Isa, Kalgoorlie, and more. Community feedback shapes every iteration.' },
   { year: '2025', title: 'Washing Machines', description: 'Pakkimjalki Kari, named in Warumungu language by Elder Dianne Stokes. Commercial-grade, one-button operation. 9 communities served.' },
 ];
 
@@ -803,7 +803,7 @@ export default async function StoryPage() {
               </h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-12">
                 {[
-                  { value: '556', label: 'bed units deployed' },
+                  { value: '536', label: 'bed units deployed' },
                   { value: String(CANONICAL_ASSETS.communitiesServed), label: 'communities served' },
                   { value: `${PLASTIC_KG_PER_BED}kg`, label: 'plastic per bed diverted' },
                 ].map((stat) => (

@@ -76,7 +76,7 @@ function Pill({ tier }: { tier: Tier }) {
 // ── 10-second proof ────────────────────────────────────────────────────────
 const METRICS: Array<{ value: string; label: string; sub: string; tier: Tier }> = [
   {
-    value: '556 beds',
+    value: '536 beds',
     label: '9 communities',
     sub: 'Every bed QR-tracked in a live register a stranger can scan.',
     tier: 'Verified',
@@ -169,7 +169,7 @@ const PROOFS: Array<{
 const MILESTONES: Array<{ when: string; what: string; tier?: Tier }> = [
   {
     when: 'As at 3 July 2026',
-    what: 'The documents are done. 556 beds proven and tracked. Accountant-signed Goods-only revenue: AU$713,827. Signed match capital today: AU$0.',
+    what: 'The documents are done. 536 beds proven and tracked. Accountant-signed Goods-only revenue: AU$713,827. Signed match capital today: AU$0.',
   },
   {
     when: '1 July 2026',
@@ -263,7 +263,7 @@ const ROWS: Row[] = [
     from: '7',
     to: '8',
     priority: false,
-    line: 'The operating loop is mapped end to end. The QR register of 556 beds is the strongest single proof.',
+    line: 'The operating loop is mapped end to end. The QR register of 536 beds is the strongest single proof.',
   },
   {
     number: 7,

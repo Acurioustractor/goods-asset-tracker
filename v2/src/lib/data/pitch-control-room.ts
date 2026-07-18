@@ -139,9 +139,9 @@ export const investmentBridge = {
     'The exit is the point. Success looks like communities owning production and Goods becoming unnecessary.',
   ],
   whatItBuys: [
-    { item: 'Beds delivered to date', figure: '556 across 9 communities' },
+    { item: 'Beds delivered to date', figure: '536 across 9 communities' },
     { item: 'Washing machines in community', figure: '18' },
-    { item: 'Plastic diverted', figure: '3,860 kg (Stretch only)' },
+    { item: 'Plastic diverted', figure: '3,460 kg (Stretch only)' },
     { item: 'Revenue (Goods carve-out, accountant-signed)', figure: 'AU$713,827' },
     { item: 'Current ask', figure: 'AU$400K (QBE, signed by 31 Aug 2026) on top of SEFA $300K + Snow $100K + Centrecorp $75K' },
   ],
