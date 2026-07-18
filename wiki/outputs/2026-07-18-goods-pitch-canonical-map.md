@@ -48,6 +48,24 @@ remove when convenient.
 Present order is the slide order: the ask sits last, after the anchor line and the best
 case have earned it.
 
+## 1b. The cockpit and the digital deck (added 2026-07-18, late)
+
+- **`/admin/pitch-cockpit`** — the one admin page for the whole pitch: deck plan
+  slide-by-slide with the WHY and talk track (thumbnails link to the rendered
+  slides), the storyteller model (every registry + curated quote, topic-tagged
+  incl. washing machines / beds, consent tier, transcript provenance), starred
+  photos + all videos (star in media library, they appear here as the deck swap
+  pool), the ask (buckets, modelled economics, all supporters with $, receivables,
+  every prospect group, advisory board, entity/charity direction), the drawings
+  (all generated + reference, Gemini status + one-run command), and canon numbers
+  with JSON backup + copy-paste Notion alignment block.
+- **Data spine:** `v2/src/lib/data/pitch-cockpit.ts` (DECK_PLAN mirrors
+  slides-source.html order — change both together). Everything else imports from
+  its own source of truth.
+- **`/pitch/simple`** — the digital deck (better than the PDF): the rendered
+  slide PNGs with arrow-key nav, F fullscreen, N presenter notes (the talk
+  track). Auto-picks-up a re-render. The PDF stays as the export.
+
 ## 2. Retired — do NOT use or build on
 
 - **`design/brand/claude-design/invest-deck-full.html`** — the old dense 16-slide
