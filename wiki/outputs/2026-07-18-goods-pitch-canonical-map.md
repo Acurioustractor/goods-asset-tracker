@@ -19,11 +19,15 @@ prototype… came out as an obligation"), slide 6 "Communities did not validate 
 design. They changed it." (Basket → Stretch → Pakkimjalki Kari), slide 14 the close
 (the synthesis line, labelled as a Goods synthesis, never quoted). Registry-verbatim
 cleared quotes placed by purpose: Gloria (the why), Dorrie (product), Melissa + Heather
-(design authorship), Annie (demand, on proof), Mykel (fair wages / making). Numbers
-moved to the Maningrida-inclusive set: **556 beds (193 Stretch + 363 Basket), 18
-washers, 3,860kg**, 9 communities — flagged "register reconciliation in progress" until
-`v2/scripts/backfill-maningrida-2026-07.mjs --apply` runs (then sweep asset-canonical.ts
-+ drift snapshot + canon.ts; steps in the script header). The 8 hand-drawn diagrams
+(design authorship), Annie (demand, on proof), Mykel (fair wages / making).
+
+**Numbers (FINAL, late 2026-07-18 — register + canon + every surface swept, drift
+gate GREEN): 536 beds = 363 Basket + 173 Stretch · 18 washers · 3,460kg (173 × 20,
+Stretch only) · 9 communities. Maningrida = 40 Stretch Beds + 2 washers, exactly per
+Homeland INV-0303.** History for the record: an interim +60 was backfilled then
+corrected the same evening (`backfill-maningrida-2026-07.mjs` then
+`correct-maningrida-to-40.mjs`, both Ben-applied). Never resurrect 556 / 193 / 3,860
+or the 60-bed figure. The 8 hand-drawn diagrams
 WERE GENERATED 2026-07-18 into `v2/public/images/brand/generated/` and four are
 swapped in (health-chain → why, plastic-loop → how it's made, impact-per-bed → impact,
 x-leg → product inset). Flywheel / containers / how-its-made / markup-gap remain
@@ -156,3 +160,27 @@ generated. The system to make them is built and locked:
   slide → re-render the PDF.
 - **The finish line:** one canonical PDF, simplest message, ask last, in the locked
   hand, every number labelled, consent gate cleared.
+
+## 10. Session close 2026-07-18 — resume from here
+
+**Done and verified (all committed on `docs/snow-onepager-assets`, local only):**
+14-slide deck rendered (PDF + PNGs) · all 8 diagrams generated, four placed ·
+`/admin/pitch-cockpit` + `/pitch/simple` live · canon at the FINAL 536/173/18/3,460
+set with `npm run check:drift` GREEN against the register · admin audit done
+(install-checklist now X-trestle-true, 180°C everywhere, 30 Weave-labelled register
+rows renamed, stale roadmap card fixed) · slide 4 softened (59% leads, $3M =
+provider estimate) · slide 1, 2 locked by Ben.
+
+**Open items:**
+1. Slide 3 (health hardware): Ben marked "needs change", reason not yet captured.
+2. Model + best-case slides: CSS vs the generated flywheel/containers drawings — Ben's eye.
+3. Photo breather for slide 2: pick a starred, cleared Kalgoorlie photo (cockpit Media tab).
+4. Branch carries other sessions' WIP inside commits `beff50b`+ — review `git log --stat` before pushing.
+5. Old pre-rename `goods-slide-*` PNGs still tracked; remove when convenient.
+
+**To resume in a fresh session:** read this file → `2026-07-18-goods-drawing-system.md`
+→ the generation pack → open `/admin/pitch-cockpit`. Deck edits: change
+`slides-source.html` + `v2/src/lib/data/pitch-cockpit.ts` together, then
+`node scripts/render-deck.mjs`. Numbers: change `canon.ts`/`asset-canonical.ts` first,
+run `node scripts/canon-numbers.mjs` + `npm run check:drift`, then sweep surfaces.
+Gemini: key in `~/.claude.json` (mcpServers.gemini-image.env), inject at runtime.
