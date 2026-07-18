@@ -286,6 +286,15 @@
   .cat-item .ct { font-family: var(--sans); font-size: 28px; line-height: 1.45; color: #e8e2d6; }
   .cat-item .ct b { color: #FBF8F1; }
 
+  /* ============ Full-bleed photo pages (people / product / plant) ============ */
+  .s-photo { padding: 0; justify-content: flex-end; background-size: cover; background-position: center; }
+  .s-photo::after { content:""; position:absolute; inset:0; background: linear-gradient(rgba(43,42,38,0) 42%, rgba(43,42,38,0.86)); z-index:1; }
+  .s-photo .pcap { position: relative; z-index: 2; padding: 0 130px 100px; }
+  .s-photo .eyebrow { color: var(--sand); margin-bottom: 20px; }
+  .s-photo .pline { font-family: var(--display); font-size: 62px; line-height: 1.1; color:#FBF8F1; max-width: 1400px; letter-spacing: -0.01em; }
+  .s-photo .pattr { font-family: var(--sans); font-weight: 700; font-size: 27px; color: var(--sand); margin-top: 24px; }
+  .s-photo .pattr span { color: #d8cdb8; font-weight: 500; }
+
   /* ---- Print: one slide per 16:9 page, full bleed ---- */
   @page { size: 20in 11.25in; margin: 0; }
   @media print {
@@ -324,6 +333,15 @@
     <p class="bigquote"><span class="mark">"</span>We've never been asked what sort of house we'd like to live in.<span class="mark">"</span></p>
     <p class="attrib">Linda Turner <span>Tennant Creek</span></p>
     <p class="qframe">That is the whole thesis. Goods exists because the people closest to the problem were never asked, and they are the ones who should lead the answer.</p>
+  </div>
+</div>
+
+<!-- ============ Photo — In community (Dianne) ============ -->
+<div class="slide s-photo" data-canvas-width="1920" data-canvas-height="1080" style="background-image:url('/v2/public/images/people/dianne-stokes.jpg');background-position:center 30%;">
+  <div class="pcap">
+    <p class="eyebrow">In community</p>
+    <p class="pline">"Every time I go away, it's like it's calling me. Come back home."</p>
+    <p class="pattr">Dianne Stokes <span>Elder and design lead, Tennant Creek</span></p>
   </div>
 </div>
 
@@ -413,6 +431,15 @@
   <div class="split-img" style="background-image:url('CANON:product-anatomy')"></div>
 </div>
 
+<!-- ============ Photo — The product ============ -->
+<div class="slide s-photo" data-canvas-width="1920" data-canvas-height="1080" style="background-image:url('/v2/public/images/product/stretch-bed-hero.jpg');">
+  <div class="pcap">
+    <p class="eyebrow">The product</p>
+    <p class="pline">Off the ground. Washable. Flat-packed for the barge.</p>
+    <p class="pattr">The Stretch Bed <span>recycled plastic, steel, and structural canvas</span></p>
+  </div>
+</div>
+
 <!-- ============ Slide 7 — Unit economics ============ -->
 <div class="slide" data-canvas-width="1920" data-canvas-height="1080">
   <span class="slide-num">07 / 16</span>
@@ -465,6 +492,15 @@
   <p class="footnote">Communities have asked for repeat and additional orders. Demand quantities are held qualitatively until each carries a dated provenance and consent record. Voices used here are consent-cleared.</p>
 </div>
 
+<!-- ============ Photo — Made on Country (Mykel) ============ -->
+<div class="slide s-photo" data-canvas-width="1920" data-canvas-height="1080" style="background-image:url('/v2/public/images/people/mykel.jpg');background-position:center 22%;">
+  <div class="pcap">
+    <p class="eyebrow">Made on Country</p>
+    <p class="pline">"Comfortable as. Smooth, tight, hard, fancy."</p>
+    <p class="pattr">Mykel <span>Alice Springs, built the beds</span></p>
+  </div>
+</div>
+
 <!-- ============ Slide 10 — The scale model ============ -->
 <div class="slide s-split" data-canvas-width="1920" data-canvas-height="1080">
   <div class="split-text">
@@ -482,6 +518,15 @@
     <p class="mission" style="color:var(--terracotta);font-size:34px;margin-top:20px;">"Our goal is to become unnecessary."</p>
   </div>
   <div class="split-img" style="background-image:url('CANON:plant-hero')"></div>
+</div>
+
+<!-- ============ Photo — The plant ============ -->
+<div class="slide s-photo" data-canvas-width="1920" data-canvas-height="1080" style="background-image:url('/v2/public/images/process/facility-full-site.jpg');">
+  <div class="pcap">
+    <p class="eyebrow">The plant</p>
+    <p class="pline">A containerised factory, built to move into community hands.</p>
+    <p class="pattr">Collect, shred, press, assemble <span>On Country</span></p>
+  </div>
 </div>
 
 <!-- ============ Slide 11 — Impact thesis ============ -->
@@ -569,6 +614,14 @@
   </div>
   <p class="body" style="margin-top:40px;max-width:1560px;">This pathway is in active design <b>with</b> Palm Island Community Company and Oonchiumpa, not designed for them. 51% certification also unlocks the Indigenous Procurement Policy set-aside, making the community plant a preferred supplier.</p>
   <p class="footnote">Entity and ownership structure is an open decision in progress with legal counsel. Stated honestly, not as finished.</p>
+</div>
+
+<!-- ============ Photo — Why it matters (rest, in-home) ============ -->
+<div class="slide s-photo" data-canvas-width="1920" data-canvas-height="1080" style="background-image:url('/v2/public/images/media-pack/woman-on-red-stretch-bed.jpg');background-position:center 40%;">
+  <div class="pcap">
+    <p class="eyebrow">Why it matters</p>
+    <p class="pline">A bed off the ground. That is the whole point.</p>
+  </div>
 </div>
 
 <!-- ============ Slide 16 — The close ============ -->

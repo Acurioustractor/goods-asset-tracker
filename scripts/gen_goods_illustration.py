@@ -111,14 +111,65 @@ def b64_image(path):
     return mime, base64.b64encode(data).decode()
 
 
+TRANSPARENT_NOTE = (
+    " IMPORTANT: render on a FULLY TRANSPARENT background (alpha channel), with NO cream fill "
+    "and NO backdrop of any kind. Draw only the line-art object and its speckle, nothing behind "
+    "it, so the PNG drops cleanly onto any slide colour. Output a PNG with real transparency."
+)
+
+
+def build_prompt(scene, aspect, transparent):
+    style = MASTER_STYLE
+    if transparent:
+        # drop the cream-ground instruction and demand transparency instead
+        style = style.replace(
+            "on a warm cream (#FBF8F1) background, in the exact hand of the attached reference images",
+            "in the exact hand of the attached reference images") + TRANSPARENT_NOTE
+    return f"{scene}\n\n{style}\n\nAspect ratio {aspect}."
+
+
+def generate_one(scene, out, model, aspect, refs, transparent, key, requests):
+    prompt = build_prompt(scene, aspect, transparent)
+    parts = [{"text": prompt}]
+    for r in refs:
+        try:
+            mime, data = b64_image(r)
+            parts.append({"inline_data": {"mime_type": mime, "data": data}})
+        except FileNotFoundError:
+            print(f"  (skipping missing ref: {r})", file=sys.stderr)
+    body = {
+        "contents": [{"role": "user", "parts": parts}],
+        "generationConfig": {"responseModalities": ["IMAGE"], "imageConfig": {"aspectRatio": aspect}},
+    }
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+    resp = requests.post(url, headers={"x-goog-api-key": key, "Content-Type": "application/json"},
+                         data=json.dumps(body), timeout=180)
+    if resp.status_code != 200:
+        print(f"  API error {resp.status_code}: {resp.text[:300]}", file=sys.stderr)
+        return False
+    for cand in resp.json().get("candidates", []):
+        for part in cand.get("content", {}).get("parts", []):
+            inline = part.get("inlineData") or part.get("inline_data")
+            if inline and inline.get("data"):
+                pathlib.Path(out).parent.mkdir(parents=True, exist_ok=True)
+                pathlib.Path(out).write_bytes(base64.b64decode(inline["data"]))
+                print(f"  wrote {out}")
+                return True
+    print(f"  no image returned for {out}", file=sys.stderr)
+    return False
+
+
 def main():
-    ap = argparse.ArgumentParser()
+    ap = argparse.ArgumentParser(description="Generate Goods line illustrations with Gemini, steered by the goods-styleref set.")
     g = ap.add_mutually_exclusive_group(required=True)
-    g.add_argument("--name", choices=sorted(PROMPTS), help="a built-in scene prompt")
+    g.add_argument("--name", choices=sorted(PROMPTS), help="one built-in scene prompt")
     g.add_argument("--scene", help="your own scene description (locked style is appended)")
-    ap.add_argument("--out", default="goods-illustration.png")
+    g.add_argument("--all", action="store_true", help="ONE RUN: generate every built-in diagram")
+    ap.add_argument("--out", default="goods-illustration.png", help="output file (single mode)")
+    ap.add_argument("--outdir", default=".", help="output directory (--all mode)")
     ap.add_argument("--model", default=DEFAULT_MODEL)
     ap.add_argument("--aspect", default="16:9", help="e.g. 16:9, 4:3, 1:1")
+    ap.add_argument("--transparent", action="store_true", help="no cream ground: transparent PNG for any slide")
     ap.add_argument("--refs", nargs="*", default=DEFAULT_REFS, help="reference images that steer the style")
     args = ap.parse_args()
 
@@ -126,44 +177,32 @@ def main():
     if not key:
         sys.exit("No GEMINI_API_KEY / GOOGLE_API_KEY found. Add one to v2/.env.local "
                  "(get it free at https://aistudio.google.com/apikey).")
-
     try:
         import requests
     except ImportError:
         sys.exit("pip install requests")
 
+    suffix = "-nobg" if args.transparent else ""
+    if args.all:
+        print(f"ONE RUN: {len(PROMPTS)} diagrams with {args.model}, {len(args.refs)} refs"
+              f"{' (transparent)' if args.transparent else ''} -> {args.outdir}")
+        ok = 0
+        for name in sorted(PROMPTS):
+            out = os.path.join(args.outdir, f"goods-ill-{name}{suffix}.png")
+            print(f"[{name}]")
+            if generate_one(PROMPTS[name], out, args.model, args.aspect, args.refs, args.transparent, key, requests):
+                ok += 1
+        print(f"Done: {ok}/{len(PROMPTS)} generated into {args.outdir}")
+        sys.exit(0 if ok == len(PROMPTS) else 1)
+
     scene = PROMPTS[args.name] if args.name else args.scene
-    prompt = f"{scene}\n\n{MASTER_STYLE}\n\nAspect ratio {args.aspect}."
-
-    parts = [{"text": prompt}]
-    for r in args.refs:
-        try:
-            mime, data = b64_image(r)
-            parts.append({"inline_data": {"mime_type": mime, "data": data}})
-        except FileNotFoundError:
-            print(f"  (skipping missing ref: {r})", file=sys.stderr)
-
-    body = {
-        "contents": [{"role": "user", "parts": parts}],
-        "generationConfig": {"responseModalities": ["IMAGE"], "imageConfig": {"aspectRatio": args.aspect}},
-    }
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{args.model}:generateContent"
-    print(f"Generating '{args.name or 'custom'}' with {args.model} + {len(parts)-1} refs ...")
-    resp = requests.post(url, headers={"x-goog-api-key": key, "Content-Type": "application/json"},
-                         data=json.dumps(body), timeout=180)
-    if resp.status_code != 200:
-        sys.exit(f"Gemini API error {resp.status_code}: {resp.text[:600]}")
-
-    out_written = None
-    for cand in resp.json().get("candidates", []):
-        for part in cand.get("content", {}).get("parts", []):
-            inline = part.get("inlineData") or part.get("inline_data")
-            if inline and inline.get("data"):
-                pathlib.Path(args.out).write_bytes(base64.b64decode(inline["data"]))
-                out_written = args.out
-    if not out_written:
-        sys.exit("No image returned. Raw response head:\n" + resp.text[:600])
-    print(f"Wrote {out_written}")
+    out = args.out
+    if args.transparent and out == "goods-illustration.png":
+        out = f"goods-illustration{suffix}.png"
+    print(f"Generating '{args.name or 'custom'}' with {args.model} + {len(args.refs)} refs "
+          f"{'(transparent) ' if args.transparent else ''}...")
+    ok = generate_one(scene, out, args.model, args.aspect, args.refs, args.transparent, key, requests)
+    sys.exit(0 if ok else 1)
 
 
 if __name__ == "__main__":
