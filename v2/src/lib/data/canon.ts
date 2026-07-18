@@ -51,8 +51,8 @@ export const CANON: CanonFact[] = [
   {
     id: 'beds-deployed', label: 'Beds deployed', value: CANONICAL_ASSETS.bedsDeployed, unit: 'units',
     domain: 'assets', claimLabel: 'verified', dataClass: 'green',
-    source: 'v2 Supabase `assets` (status=deployed) via asset-canonical.ts', check: 'auto', asAt: '2026-05-30', owner: 'Ben',
-    definition: 'Deployed bed units in the register: 363 Basket (legacy) + 133 Stretch (flagship).',
+    source: 'v2 Supabase `assets` (status=deployed) via asset-canonical.ts', check: 'auto', asAt: '2026-07-18', owner: 'Ben',
+    definition: 'Deployed bed units in the register: 363 Basket (legacy) + 193 Stretch (flagship, incl. Maningrida +60, Jul 2026).',
   },
   {
     id: 'stretch-beds-deployed', label: 'Stretch Beds deployed', value: CANONICAL_ASSETS.stretchBedsDeployed, unit: 'units',
@@ -63,8 +63,8 @@ export const CANON: CanonFact[] = [
   {
     id: 'washers-in-community', label: 'Washing machines in community', value: CANONICAL_ASSETS.washersInCommunity, unit: 'units',
     domain: 'assets', claimLabel: 'verified', dataClass: 'green',
-    source: 'Curated in-community count (Ben-confirmed 2026-06-11); supersedes the register deployed-row count pending a status cleanup', check: 'manual', asAt: '2026-06-11', owner: 'Ben',
-    definition: '16 Pakkimjalki Kari washing machines in community. Single public figure; not auto-derived from the register.',
+    source: 'Curated in-community count (Ben-confirmed 2026-06-11; +2 Maningrida, Ben-reported 2026-07-18); supersedes the register deployed-row count pending a status cleanup', check: 'manual', asAt: '2026-07-18', owner: 'Ben',
+    definition: '18 Pakkimjalki Kari washing machines in community (16 confirmed 2026-06-11 + 2 Maningrida Jul 2026). Single public figure; not auto-derived from the register.',
   },
   {
     id: 'communities-served', label: 'Communities served', value: CANONICAL_ASSETS.communitiesServed, unit: 'communities',

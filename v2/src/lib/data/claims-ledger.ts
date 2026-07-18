@@ -72,7 +72,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   {
     id: 'beds-deployed',
     headline: 'Beds deployed',
-    statement: 'Beds deployed across remote Australia, per the live asset register: 363 Basket (legacy) + 133 Stretch (flagship).',
+    statement: 'Beds deployed across remote Australia, per the live asset register: 363 Basket (legacy) + 193 Stretch (flagship).',
     figure: greenFigure('beds-deployed'),
     factId: 'beds-deployed',
     status: 'verified',
@@ -271,6 +271,7 @@ export const ANTI_CLAIMS: { statement: string; why: string }[] = [
 
 export const CLAIMS_CHANGELOG: { date: string; note: string }[] = [
   { date: '2026-07-11', note: 'Claims Register published. Consolidated-revenue row LOCKED; the unsigned figure removed from /deck client JS (it had shipped in a risk row).' },
+  { date: '2026-07-18', note: 'Maningrida delivery registered (+60 Stretch, +2 washers, Homeland School Company, farm-made): 556 beds, 193 Stretch, 18 washers, 3,860kg HDPE (Stretch only, 193 x 20kg).' },
   { date: '2026-07-10', note: 'Investor deck v1 shipped with label pills (verified / modelled / interest / future) on every claim.' },
   { date: '2026-06-17', note: 'Consent pass: 32 voices cleared for external use; default-deny gate live in cleared-voices.ts.' },
   { date: '2026-06-11', note: 'Washing-machine count curated to 16 in-community (founder-confirmed), superseding the raw register row count.' },

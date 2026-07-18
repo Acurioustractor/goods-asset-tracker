@@ -44,7 +44,7 @@ The answer became Goods: durable, repairable, community-designed "health hardwar
     { year: '2016-2020', event: 'Orange Sky expands to remote communities (now 1/3 of services)' },
     { year: 'Nov 2022', event: 'Goods project kicks off with advisory session' },
     { year: 'Sept 2023', event: 'A Curious Tractor formally founded' },
-    { year: '2024+', event: 'Active bed pilots deliver 496 beds across communities' }, // canonical: see asset-canonical.ts
+    { year: '2024+', event: 'Active bed pilots deliver 556 beds across communities' }, // canonical: see asset-canonical.ts
   ],
 
   problem: {
@@ -427,7 +427,7 @@ export const impactStories = [
     title: 'Rest for Recovery',
     person: 'Gloria Turner',
     location: 'Kalgoorlie, WA',
-    quote: 'The impact of a mattress on overall health.',
+    quote: 'Sleep on a good mattress. For the back, the legs, the muscles.',
     summary: 'Gloria is a great-grandmother on dialysis. For her, a mattress isn\'t about comfort. It\'s about managing chronic illness.',
   },
   {
@@ -539,7 +539,7 @@ export const communityPartnerships = [
     headline: 'Arnhem Land partnership',
     description: 'Maningrida sits on the banks of the Liverpool River in Arnhem Land. This diverse community of over 2,500 people from multiple language groups is a hub for Yolŋu and other First Nations art and culture. Goods partners with local organisations to deliver beds to families across the region.',
     keyPeople: ['Local organisations', 'Community leaders'],
-    bedsDelivered: 18,
+    bedsDelivered: 78,
     highlight: 'Serving multiple language groups across Arnhem Land',
   },
 ];
@@ -786,7 +786,7 @@ export const communityLocations: CommunityLocation[] = [
     storytellerCount: 6,
     bedsDelivered: 159,
     description: 'The birthplace of Goods on Country. Elder Dianne Stokes received the first bed and came back requesting twenty more.',
-    highlight: 'Dianne named the washing machine "Pakkimjalji Kari" in Warumungu language',
+    highlight: 'Dianne named the washing machine "Pakkimjalki Kari" in Warumungu language',
   },
   {
     id: 'palm-island',
@@ -861,7 +861,7 @@ export const communityLocations: CommunityLocation[] = [
     lat: -12.056,
     lng: 134.269,
     storytellerCount: 0,
-    bedsDelivered: 18,
+    bedsDelivered: 78,
     description: 'On the banks of the Liverpool River in Arnhem Land. A diverse community of over 2,500 people from multiple language groups.',
     highlight: 'Serving multiple language groups across Arnhem Land',
   },
@@ -895,13 +895,13 @@ export const communityLocations: CommunityLocation[] = [
 // ---------------------------------------------------------------------------
 //
 // The canonical deployed-bed register lives in compendium.ts `deployments`
-// (sums to EXPECTED_DEPLOYED_BEDS = 496; the live Supabase register is
+// (sums to EXPECTED_DEPLOYED_BEDS = 556; the live Supabase register is
 // authoritative, this is the labelled static fallback).
 //
 // `communityLocations` (heatpost-map baselines, live-overridden except where
 // staticBedCount=true) now covers all 9 deployed communities, including the
 // single-bed capital-city deployments Darwin (1) and Canberra (2), so the map
-// matches the published "9 communities / 496 beds". `communityPartnerships`
+// matches the published "9 communities / 556 beds". `communityPartnerships`
 // (narrative subset) stays INTENTIONALLY NARROWER: it lists only communities
 // with a real narrative partner, so it still omits Darwin/Canberra (a bare
 // deployment is not a partnership story, and inventing one would be fabrication).
@@ -1063,6 +1063,7 @@ export const storytellerEnrichment: Record<string, {
   'Patricia Frank': { community: 'tennant-creek', localPhoto: '/images/people/patricia-frank.jpg' },
   'Cliff Plummer': { community: 'tennant-creek', localPhoto: '/images/people/cliff-plummer.jpg', hasVideo: true, videoEmbed: 'https://share.descript.com/embed/2gxa5x40r9N', role: 'Health Practitioner' },
   'Brian Russell': { community: 'tennant-creek', localPhoto: '/images/people/brian-russell.jpg' },
+  'Dr Boe Remenyi': { localPhoto: '/images/people/boe-remenyi.jpg', role: 'Paediatric Cardiologist, NT' },
 };
 
 // Video gallery items: local videos + external embeds
@@ -1258,7 +1259,7 @@ export const mediaPack = {
   aboutACT: `A Curious Tractor is the organisation behind Goods on Country. Founded in September 2023 by Nicholas Marchesi and Benjamin Knight, ACT exists to design, manufacture, and transfer ownership of essential goods to remote First Nations communities across Australia. The name reflects the approach: curiosity-driven problem solving applied to entrenched disadvantage. ACT is a social enterprise working toward community ownership of manufacturing.`, // NOTE: ACT (A Curious Tractor Pty Ltd) is NOT a registered charity or DGR entity — do not add that claim here.
 
   // Copy-paste-ready press boilerplate
-  pressBoilerplate: `Goods on Country is a social enterprise delivering durable, community-designed essential goods to remote First Nations communities across Australia. The flagship product, the Stretch Bed, is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty Australian canvas. Each bed diverts 20kg of plastic from landfill, assembles in under five minutes with no tools, and supports up to 200kg. With 496 beds delivered across 9 communities, Goods on Country addresses the environmental health conditions that drive preventable disease, including Rheumatic Heart Disease, by putting health hardware directly into the hands of families who need it. The organisation's long-term goal is to transfer manufacturing capability to community-owned enterprises. Founded in 2023, Goods on Country is a project of A Curious Tractor.`,
+  pressBoilerplate: `Goods on Country is a social enterprise delivering durable, community-designed essential goods to remote First Nations communities across Australia. The flagship product, the Stretch Bed, is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty Australian canvas. Each bed diverts 20kg of plastic from landfill, assembles in under five minutes with no tools, and supports up to 200kg. With 556 beds delivered across 9 communities, Goods on Country addresses the environmental health conditions that drive preventable disease, including Rheumatic Heart Disease, by putting health hardware directly into the hands of families who need it. The organisation's long-term goal is to transfer manufacturing capability to community-owned enterprises. Founded in 2023, Goods on Country is a project of A Curious Tractor.`,
 
   // Brand color palette
   brandColors: [

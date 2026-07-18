@@ -27,11 +27,11 @@ import { createClient } from '@supabase/supabase-js';
 // the raw register deployed-row count pending a status cleanup, so it cannot be
 // validated against the register here. Re-confirm it manually.
 const CANONICAL_ASSETS = {
-  bedsDeployed: 496,
-  stretchBedsDeployed: 133,
+  bedsDeployed: 556,
+  stretchBedsDeployed: 193,
   basketBedsDeployed: 363,
   communitiesServed: 9,
-  plasticKg: 2660,
+  plasticKg: 3860,
 };
 const PLASTIC_KG_PER_BED = 20;
 

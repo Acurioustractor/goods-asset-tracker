@@ -22,7 +22,7 @@ const beds = [
   { v: STRETCH_BED.specs.assemblyTime.replace('minutes', 'min'), l: 'to assemble, no tools' },
   { v: `${PLASTIC_KG_PER_BED}kg`, l: 'of recycled plastic per bed' },
   { v: STRETCH_BED.specs.designLifespan.replace('years', 'yrs'), l: 'design life, 5-year warranty' },
-  { v: '496', l: 'beds in homes across 9 communities since 2023' },
+  { v: '556', l: 'beds in homes across 9 communities since 2023' },
 ];
 
 const voices = [
@@ -124,7 +124,7 @@ export default function CentrecorpStory() {
           The Stretch Bed is a plain object. Two galvanised steel poles thread through the sleeves of heavy-duty canvas and through the holes in two recycled-plastic X-legs. Tension the frame and it pulls tight, and the canvas is what holds it up. It weighs {STRETCH_BED.specs.weight}, holds {STRETCH_BED.specs.loadCapacity}, and goes together in about five minutes with no tools. What it replaces is harder: a thin mattress on a concrete floor, or a door taken off its hinges and laid flat.
         </p>
         <p className="cc-reveal cc-d2">
-          Goods on Country has put 496 beds into homes across 9 communities since 2023. This trip added more, and pointed at where the work goes next.
+          Goods on Country has put 556 beds into homes across 9 communities since 2023. This trip added more, and pointed at where the work goes next.
         </p>
       </section>
 
@@ -287,7 +287,7 @@ export default function CentrecorpStory() {
         <div className="cc-wrap">
           <div className="cc-statlead cc-reveal">Where the beds have gone</div>
           <div className="cc-statgrid">
-            <div className="cc-stat cc-reveal"><div className="cc-v">496</div><div className="cc-l">beds in homes since 2023</div></div>
+            <div className="cc-stat cc-reveal"><div className="cc-v">556</div><div className="cc-l">beds in homes since 2023</div></div>
             <div className="cc-stat cc-reveal cc-d1"><div className="cc-v">9</div><div className="cc-l">communities served</div></div>
             <div className="cc-stat cc-reveal cc-d1"><div className="cc-v">87</div><div className="cc-l">beds to community, this round</div></div>
             <div className="cc-stat cc-reveal cc-d2"><div className="cc-v">1,740kg</div><div className="cc-l">recycled plastic, this round</div></div>

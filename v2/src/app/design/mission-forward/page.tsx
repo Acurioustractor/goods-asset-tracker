@@ -276,7 +276,7 @@ export default function MissionForwardPage() {
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 // canonical: see asset-canonical.ts
-                { percentage: '496', label: 'Beds Delivered', desc: 'Across 9 communities' },
+                { percentage: '556', label: 'Beds Delivered', desc: 'Across 9 communities' },
                 { percentage: '60%', label: 'Scabies Reduction', desc: 'From community laundries' },
                 { percentage: '$6', label: 'Healthcare Saved', desc: 'Per $1 invested' },
               ].map((item) => (

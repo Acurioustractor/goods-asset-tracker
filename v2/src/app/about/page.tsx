@@ -81,7 +81,7 @@ export default function AboutPage() {
         </p>
         <p className="text-lg leading-relaxed mb-10" style={{ color: `${CHARCOAL}cc` }}>
           We started in 2023 with a question about preventable disease. We&apos;ve since
-          delivered 496 beds across 9 communities, and the model is now
+          delivered 556 beds across 9 communities, and the model is now
           headed toward community ownership.
         </p>
 

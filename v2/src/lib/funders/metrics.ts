@@ -63,7 +63,7 @@ const washersThisPeriod: MetricResolver = async (ctx) => {
 
 // Washing machines in community — canonical curated figure (Ben, 2026-06-11).
 const washersInCommunity: MetricResolver = async () =>
-  '16 washing machines in community';
+  '18 washing machines in community';
 
 // Plastic = STRETCH beds only (recycled HDPE). Basket beds are not a plastic product.
 const plasticKgTransferred: MetricResolver = async (ctx) => {
@@ -103,7 +103,7 @@ const commitmentProgressBar: MetricResolver = async (ctx) => {
   }
   // Unit-based commitments — count delivered units in period, respecting
   // optional community scope. Delivery can exceed the original commitment
-  // (e.g. 496 beds against a 109-unit commitment), so clamp the bar to 0-20
+  // (e.g. 556 beds against a 109-unit commitment), so clamp the bar to 0-20
   // segments and the displayed pct to 0-100 — an unclamped `'░'.repeat(20-filled)`
   // throws RangeError on overshoot and surfaces as a [METRIC ERROR] in the deck.
   const periodRes = await scopedAssetsQuery(ctx).ilike('product', '%bed%').in('status', ['deployed', 'allocated']);
