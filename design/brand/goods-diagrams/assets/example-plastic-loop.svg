@@ -1,0 +1,53 @@
+<!--
+  Worked example: THE PLASTIC LOOP, assembled the Goods way.
+  The motifs used are INLINED into <defs> below (copied from motifs.svg by id) and
+  referenced locally with <use href="#motif-flake">. Inline rather than external-file
+  <use>, because external href to a separate SVG does not render/export reliably, and
+  inlining makes the diagram self-contained (exports cleanly to PDF / Adobe Express).
+  Arrows are code-drawn <path>s with the #hand filter. Labels are kit text. One
+  spec-class number. NOTHING here is a freehand icon: objects are <use> refs, only
+  structure and text are authored. (Symbols are placeholders until real art is dropped in.)
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" font-family="sans-serif">
+  <defs>
+    <filter id="hand" x="-6%" y="-6%" width="112%" height="112%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.016" numOctaves="3" seed="5" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <style>
+      .arrow{stroke:#A8643F;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+      .arrow-return{stroke:#8B9D77;stroke-width:3;fill:none;stroke-linecap:round;stroke-dasharray:2 9;}
+      .eyebrow{font-family:ui-monospace,Menlo,Consolas,monospace;fill:#C45C3E;font-size:15px;letter-spacing:2.5px;}
+      .label{font-family:ui-monospace,Menlo,Consolas,monospace;fill:#2B2A26;font-size:17px;letter-spacing:1.5px;font-weight:600;text-anchor:middle;}
+      .num{font-family:ui-monospace,Menlo,Consolas,monospace;fill:#8B9D77;font-size:17px;letter-spacing:1.5px;font-weight:600;text-anchor:middle;}
+      .ph-box{fill:none;stroke:#A8643F;stroke-width:2.5;stroke-dasharray:5 6;}
+      .ph-txt{font-family:ui-monospace,Menlo,Consolas,monospace;fill:#A8643F;font-size:16px;letter-spacing:1px;text-anchor:middle;}
+    </style>
+    <!-- motifs used, inlined from motifs.svg (placeholders until real art is dropped in) -->
+    <symbol id="motif-flake" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184" rx="14"/><text class="ph-txt" x="100" y="106">FLAKE</text></symbol>
+    <symbol id="motif-press" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184" rx="14"/><text class="ph-txt" x="100" y="106">PRESS</text></symbol>
+    <symbol id="motif-bed" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184" rx="14"/><text class="ph-txt" x="100" y="106">BED</text></symbol>
+  </defs>
+
+  <rect x="0" y="0" width="1600" height="900" fill="#FBF8F1"/>
+  <text x="80" y="90" class="eyebrow">GOODS ON COUNTRY · THE PLASTIC LOOP</text>
+
+  <use href="#motif-flake" x="180" y="320" width="220" height="220"/>
+  <use href="#motif-press" x="640" y="320" width="220" height="220"/>
+  <use href="#motif-bed"   x="1100" y="320" width="220" height="220"/>
+
+  <g filter="url(#hand)">
+    <path class="arrow" d="M420 430 C 500 415, 560 415, 630 428"/>
+    <path class="arrow" d="M630 428 l-16 -9 M630 428 l-14 10"/>
+    <path class="arrow" d="M880 430 C 970 415, 1030 415, 1090 428"/>
+    <path class="arrow" d="M1090 428 l-16 -9 M1090 428 l-14 10"/>
+    <path class="arrow-return" d="M1210 560 C 1080 700, 520 700, 290 566"/>
+    <path class="arrow-return" d="M290 566 l14 8 M290 566 l3 -15"/>
+  </g>
+
+  <text x="290" y="596" class="label">COLLECT</text>
+  <text x="750" y="596" class="label">PRESS</text>
+  <text x="1210" y="596" class="label">A BED</text>
+  <text x="760" y="690" class="num">OFFCUTS RETURN TO FEEDSTOCK</text>
+  <text x="760" y="774" class="num">20KG PER BED · ON COUNTRY</text>
+</svg>

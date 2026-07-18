@@ -1,0 +1,43 @@
+<!--
+  Goods motif library (SCAFFOLD). Each <symbol> is a labelled placeholder until the
+  real vectorised art is dropped in. Build the art once via references/build-and-assemble.md
+  (route 1a hand-drawn/community preferred, or 1b locked-style AI), then replace the
+  placeholder contents of each symbol. KEEP THE ids and the 200x200 viewBox so every
+  diagram that already references them updates automatically.
+  Seven motifs have seed art in v2/public/images/brand/goods-ill-* (marked SEED) — vectorise those first.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute">
+  <defs>
+    <style>
+      .ph-box{fill:none;stroke:#A8643F;stroke-width:2.5;stroke-dasharray:5 6;rx:14;}
+      .ph-txt{font-family:ui-monospace,Menlo,Consolas,monospace;fill:#A8643F;font-size:15px;letter-spacing:1px;text-anchor:middle;}
+      .ph-seed{font-family:ui-monospace,Menlo,Consolas,monospace;fill:#8B9D77;font-size:11px;letter-spacing:1px;text-anchor:middle;}
+    </style>
+  </defs>
+
+  <!-- objects / materials -->
+  <symbol id="motif-bed" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="98">BED</text><text class="ph-seed" x="100" y="120">SEED: assembly</text></symbol>
+  <symbol id="motif-x-leg" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="98">X-LEG</text><text class="ph-seed" x="100" y="120">SEED: leg</text></symbol>
+  <symbol id="motif-pole" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="98">POLE</text><text class="ph-seed" x="100" y="120">SEED: poles</text></symbol>
+  <symbol id="motif-canvas" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="98">CANVAS</text><text class="ph-seed" x="100" y="120">SEED: canvas</text></symbol>
+  <symbol id="motif-flake" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="104">FLAKE</text></symbol>
+  <symbol id="motif-sheet" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="104">SHEET</text></symbol>
+  <symbol id="motif-press" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="104">PRESS</text></symbol>
+  <symbol id="motif-plant" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="98">PLANT</text><text class="ph-seed" x="100" y="120">SEED: plant</text></symbol>
+  <symbol id="motif-washer" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="98">WASHER</text><text class="ph-seed" x="100" y="120">SEED: washing-machine</text></symbol>
+  <symbol id="motif-loop" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="98">LOOP</text><text class="ph-seed" x="100" y="120">SEED: plastic-loop</text></symbol>
+
+  <!-- people-through-hands / place -->
+  <symbol id="motif-hand" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="104">HAND</text></symbol>
+  <symbol id="motif-hands-cupped" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="104">HANDS</text></symbol>
+  <symbol id="motif-house" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="104">HOUSE</text></symbol>
+  <symbol id="motif-country" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="104">COUNTRY</text></symbol>
+  <symbol id="motif-key" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="104">KEY</text></symbol>
+  <symbol id="motif-truck" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="104">TRUCK</text></symbol>
+
+  <!-- concept glyphs -->
+  <symbol id="motif-chain-link" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="104">LINK</text></symbol>
+  <symbol id="motif-water-drop" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="104">DROP</text></symbol>
+  <symbol id="motif-container-block" viewBox="0 0 200 200"><rect class="ph-box" x="8" y="8" width="184" height="184"/><text class="ph-txt" x="100" y="104">CONTAINER</text></symbol>
+  <symbol id="motif-number-badge" viewBox="0 0 200 200"><circle cx="100" cy="100" r="90" fill="none" stroke="#A8643F" stroke-width="2.5" stroke-dasharray="5 6"/><text class="ph-txt" x="100" y="106">NUMBER</text></symbol>
+</svg>
