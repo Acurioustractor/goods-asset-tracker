@@ -108,7 +108,7 @@ export const PRODUCTION_FACILITY = {
   model: 'Two-container system (shredder container + production container)',
   machines: [
     'Shredder',
-    'Heat Press (190°C, ~5,000 PSI)',
+    'Heat Press (180°C, ~5,000 PSI)',
     'Cooling Rack',
     'CNC Router',
     'Flip Table',

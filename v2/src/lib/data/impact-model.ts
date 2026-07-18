@@ -183,7 +183,7 @@ export interface ProductionLabourStage {
 export const PRODUCTION_LABOUR_STAGES: ProductionLabourStage[] = [
   { stage: 'Plastic collection & sorting', hoursPerUnit: 0.5, personnelRequired: 1 },
   { stage: 'Shredding & pelletising', hoursPerUnit: 0.3, personnelRequired: 1 },
-  { stage: 'Sheet pressing (190°C, 5000 PSI)', hoursPerUnit: 1.0, personnelRequired: 1 },
+  { stage: 'Sheet pressing (180°C, 5000 PSI)', hoursPerUnit: 1.0, personnelRequired: 1 },
   { stage: 'CNC cutting', hoursPerUnit: 3.5, personnelRequired: 1 },
   { stage: 'Canvas & steel prep', hoursPerUnit: 0.5, personnelRequired: 1 },
   { stage: 'Assembly & QC', hoursPerUnit: 0.5, personnelRequired: 2 },
