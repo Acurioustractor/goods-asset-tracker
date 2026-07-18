@@ -1,9 +1,17 @@
-# Goods diagrams — build the library once, assemble forever
+# Goods diagrams — assembly conventions + the optional vector path
+
+> **Read `references/generate.md` first.** The picture is *generated* with the
+> drawing model, not hand-built in SVG. This file has two uses. **(A) Always
+> relevant:** Part 4's label / arrow / canon-number conventions — the thin SVG kit
+> layer you add *over* a generated image. **(B) Optional, secondary:** Parts 1–3,
+> the SVG motif library and vectorise route, for the rare diagram that must be
+> programmatic / exactly editable vector rather than a generated picture. Do not
+> reach for Parts 1–3 by default; generation is the method.
 
 Two separate jobs. Building a motif is rare and careful; assembling a diagram is
 common and cheap. Keep them separate.
 
-## Part 1 — The motif catalogue (build these ~20 once)
+## Part 1 — The motif catalogue (optional vector path — build these ~20 once)
 
 The library is the single source of truth for Goods visuals, the way `products.ts`
 is for specs. Build it once; every diagram reuses it. The seven marked SEED

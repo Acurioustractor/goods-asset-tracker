@@ -17,45 +17,44 @@ description: >
 
 # Goods on Country — explainer diagrams
 
-## The one principle: consistency is structural, not a matter of redrawing
+## The one principle: draw with the model, never hand-code the picture
 
-Every Goods diagram must look like it came from one hand. That does not come from
-drawing carefully each time. It comes from **never redrawing**: each visual
-element (a bed, a plastic flake, a container plant, a hand) is drawn **once**, in
-the locked style, and then the *exact same vector* is reused in every diagram.
-Diagrams are **composed** from that fixed set, and the arrows, labels and numbers
-are added precisely as code. Redrawing an element inline, even well, is the exact
-habit that produces the "not quite right" drift. Do not do it.
+Every Goods diagram must look like it came from one hand, and hand-coding SVG
+shapes never gets there: each element drifts slightly and the whole thing reads as
+"not quite right". The picture is **drawn by a real image model** (the latest
+Gemini, "Nano Banana Pro"), steered by the existing `goods-ill-*` reference set so
+every new illustration matches the hand. The proof is
+`v2/public/images/brand/goods-ill-plastic-loop.png`: a full loop diagram, clay
+line, sage flecks, chunky arrows, drawn by the model. That is the target and the
+method.
 
-So there are two different jobs, and they use different methods:
+So there are two jobs, and they use different tools:
 
-1. **The elements** (objects, scenes, icons) → come from the **motif library**
-   (`assets/motifs.svg`). Built once (see `references/build-and-assemble.md`), reused
-   forever. AI generation or vectorization is only ever used to *build the
-   library*, never to make a finished diagram.
-2. **The structure** (arrows, flow lines, labels, numbers, layout) → added as
-   **precise code** in the assembly template (`assets/diagram-template.svg`).
-   Whole-image AI gets arrows, flow and text wrong, so structure is always drawn
-   by hand in code, where it is exact, editable and canon-checkable.
+1. **The picture** (the objects, the scene, the loop, even simple arrows) → is
+   **generated** with the drawing model, steered by the reference set. This is the
+   primary method: read **`references/generate.md`** first. Never hand-author the
+   picture in SVG; that is the drift habit we are leaving behind.
+2. **The precise labels and numbers** (and any exact connective arrow the model
+   cannot place reliably) → are added **over** the generated image in the kit
+   (`assets/diagram-template.svg`), because AI text is unreliable and cannot be
+   canon-checked. This is the only place SVG is used.
 
-A Goods diagram = **library motifs + code-drawn structure + kit labels.** Nothing
-about a diagram is ever freehand-authored from scratch.
+A Goods diagram = **a model-drawn illustration + a thin kit layer of exact labels.**
 
-## Before you draw: is the library ready?
+## Before you draw
 
-Check `assets/motifs.svg` for the motif you need.
+1. **Generate the picture.** Read `references/generate.md`. Attach 2-4 of the
+   `goods-ill-*` reference images, paste the master style prompt + the scene, and
+   generate (Gemini / ChatGPT / Recraft, or `scripts/gen_goods_illustration.py`).
+   Generate 3-4, keep the best, and save it so it is reused, not regenerated.
+2. **Add the labels** over it in the kit (see "Assemble" below), with at most one
+   canon number, never a dollar figure.
 
-- **Motif exists** → compose the diagram (see "Assemble" below). This is the
-  common, cheap, always-on-brand path.
-- **Motif missing** → build it once, the right way, before using it. Read
-  `references/build-and-assemble.md` and follow route 1a (hand-drawn / community,
-  preferred for Goods) or 1b (locked-style AI generation). Vectorize, normalise,
-  add it to the library, *then* compose. Never sketch a missing motif inline to
-  "just get this one done" — that is how the set drifts.
-
-The seed set already exists as raster art in `v2/public/images/brand/goods-ill-*`
-(bed assembly, canvas, leg, plant, plastic-loop, poles, washing-machine). These
-are the style anchors and the first motifs to vectorise.
+An optional, secondary path exists for cases that genuinely need exact, editable,
+recombinable **vector** pieces rather than a generated picture (an SVG motif
+library composed by code): it is documented in `references/build-and-assemble.md`.
+Default to generation; reach for the vector path only when a diagram must be
+programmatic. The `goods-ill-*` set is the style anchor for both.
 
 ## The locked style (summary — full spec in references/style-and-rules.md)
 
@@ -123,14 +122,18 @@ A worked example is in `assets/example-plastic-loop.svg`.
 
 ## When to read the references
 
+- **`references/generate.md`** — **read this first, it is the primary method.** How
+  to draw the picture by generating it with the latest Gemini image model, steered
+  by the `goods-ill-*` reference set: which reference images to attach, the master
+  style prompt, and a per-diagram scene prompt for each one in the catalogue. This
+  is where every new illustration starts.
 - **`references/style-and-rules.md`** — the full palette + material map + type +
   line spec, and every standing rule with the reason behind it. Read before
-  building a motif or judging whether a diagram is on-brand.
-- **`references/build-and-assemble.md`** — the motif catalogue (~20 to build), the
-  two build routes (1a hand-drawn/community, 1b locked-style AI) with the exact
-  locked style prompt, the vectorise-and-normalise steps, and the full arrow /
-  label / canon-token assembly conventions. Read before building any motif or
-  wiring a new diagram.
+  generating or judging whether a diagram is on-brand.
+- **`references/build-and-assemble.md`** — the label/assembly conventions (arrows,
+  eyebrows, canon-number tokens) for the thin SVG layer added over a generated
+  image, plus the optional secondary vector path (the motif catalogue and the
+  vectorise-and-normalise route) for the rare diagram that must be programmatic.
 
 ## Tools
 
