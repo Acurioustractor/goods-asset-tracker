@@ -9,9 +9,27 @@ one plan, one visual system. Read this before touching any pitch artifact.
 ## 1. THE deck (canonical)
 
 **`v2/public/deck-slides/goods-simple-deck.pdf`** — the simple deck, one idea per
-slide, ask last. Source: **`v2/public/deck-slides/slides-source.html`** (edit the HTML,
-re-render, done). This is the deck we present and finish. Everything else supports it
-or is retired.
+slide, ask last. Source: **`v2/public/deck-slides/slides-source.html`**. Re-render with
+`node scripts/render-deck.mjs` (writes the 14 slide PNGs + the PDF). This is the deck
+we present and finish. Everything else supports it or is retired.
+
+**Updated 2026-07-18 (evening):** the deck is now **14 slides**. Added: slide 2 the
+Ninga Mia first-bed story (observed field record, ends "entered the tent as a
+prototype… came out as an obligation"), slide 6 "Communities did not validate the
+design. They changed it." (Basket → Stretch → Pakkimjalki Kari), slide 14 the close
+(the synthesis line, labelled as a Goods synthesis, never quoted). Registry-verbatim
+cleared quotes placed by purpose: Gloria (the why), Dorrie (product), Melissa + Heather
+(design authorship), Annie (demand, on proof), Mykel (fair wages / making). Numbers
+moved to the Maningrida-inclusive set: **556 beds (193 Stretch + 363 Basket), 18
+washers, 3,860kg**, 9 communities — flagged "register reconciliation in progress" until
+`v2/scripts/backfill-maningrida-2026-07.mjs --apply` runs (then sweep asset-canonical.ts
++ drift snapshot + canon.ts; steps in the script header). The 8 hand-drawn diagrams
+WERE GENERATED 2026-07-18 into `v2/public/images/brand/generated/` and four are
+swapped in (health-chain → why, plastic-loop → how it's made, impact-per-bed → impact,
+x-leg → product inset). Flywheel / containers / how-its-made / markup-gap remain
+available; model + best-case slides stay CSS pending Ben's eye. Old
+`goods-slide-*-…png` renders under the pre-2026-07-18 names are stale (tracked) —
+remove when convenient.
 
 | # | Slide | The one message | Visual (now) | Hand-drawn swap (later) |
 |---|-------|-----------------|--------------|--------------------------|
