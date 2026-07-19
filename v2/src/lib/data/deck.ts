@@ -245,7 +245,7 @@ export const deckSlides: DeckSlide[] = [
     photo: '/images/build/build-001.jpg',
     photoAlt: 'Young people building a bed on Country',
     place: 'Alice Springs · Utopia · May 2026',
-    voiceNames: ['Mykel', 'Fred Campbell', 'Karen Liddle', 'Kristy Bloomfield'],
+    voiceNames: ['Mykel', 'Fred Campbell', 'Karen Liddle', 'Kristy Bloomfield', 'Shayne Bloomfield'],
     voiceAlternates: ['Katrina Bloomfield'],
     video: {
       label: 'Mykel, in his own voice',
@@ -266,8 +266,8 @@ export const deckSlides: DeckSlide[] = [
     ],
     goDeeper: [{ label: 'The Utopia field note', href: '/field-notes/utopia-may-2026' }],
     script:
-      'The work with Oonchiumpa in Alice Springs pushed the question to the front. Young people built beds outside the office before the Utopia trip. Mykel said, "Yeah, I\'ll be rocking up every day to make them." He was not talking about attending a program. He was talking about making something his community needed. Fred, his case worker, tells the story of Xavier going back to family, so proud showing them that he can build it. And the Bloomfield family built the current washing machines with Nic. Different hands, the same loop. Mykel made us look at the supply chain from the other end: why did the making, the wage and the machinery keep beginning somewhere else?',
-    note: 'Turn 4, narrative-foundation §2. Fred narrates Xavier — never a direct Xavier quote. Mykel on screen is always the registry verbatim, never a paraphrase.',
+      'The work with Oonchiumpa in Alice Springs pushed the question to the front. Young people built beds outside the office before the Utopia trip. Mykel said, "Yeah, I\'ll be rocking up every day to make them." He was not talking about attending a program. He was talking about making something his community needed. Fred, his case worker, tells the story of Xavier going back to family, so proud showing them that he can build it. And the Bloomfield family built the current washing machines with Nic. Different hands, the same loop. Mykel made us look at the supply chain from the other end: why did the making, the wage and the machinery keep beginning somewhere else? Shayne Bloomfield, who drove the Maningrida delivery, puts the whole turn in one line: "A lot of people say community is community and they need what we\'ve got. When you flip it, we need what they\'ve got." And the proof that it holds: "Today my mum still gets text messages from her family saying, I can\'t believe how good this bed\'s going ... I don\'t want to get outta bed in the morning \'cause it\'s just so comfortable."',
+    note: 'Turn 4, narrative-foundation §2. Fred narrates Xavier — never a direct Xavier quote. Mykel on screen is always the registry verbatim, never a paraphrase. Shayne Bloomfield quotes cleared by Ben 2026-07-20 (registry verbatim).',
   },
   {
     id: 'hinge-truck-test',

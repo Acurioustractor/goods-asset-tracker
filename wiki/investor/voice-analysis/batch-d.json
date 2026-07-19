@@ -1,0 +1,695 @@
+{
+  "transcripts": [
+    {
+      "storyteller": "Linda Turner",
+      "transcript_id": "aa903b5a-998c-4a53-b5c4-228de1867177",
+      "held": false,
+      "top_quotes": [
+        {
+          "text": "we've never been asked, we've never been asked at what sort of house we'd like to live in. So this is a really exciting, exciting time.",
+          "timestamp": "[00:07:00]",
+          "context": "Describing the moment an architect asked what designing her own house would mean, the first time anyone had asked.",
+          "themes": ["never-asked", "design-in-community"],
+          "domain": "self-determination",
+          "strength": "deck",
+          "sensitivity": null
+        },
+        {
+          "text": "the impact we've... spoken about Trisha and I, is to, we're setting this up for our kids and grandkids... independence, um, having a, being in charge of your own destiny, I guess. Um, being able to live on your own place.",
+          "timestamp": "[00:09:00]",
+          "context": "Her answer to what 'impact' means, rejecting western metrics in favour of intergenerational independence.",
+          "themes": ["ownership-pathway", "family-kids"],
+          "domain": "self-determination",
+          "strength": "deck",
+          "sensitivity": "names a third party (Trisha)"
+        },
+        {
+          "text": "That's where the money goes off in the middle, in the bureaucracy, in the public servant. You know, that's where most of the money gets and hardly anything reaches the ground.",
+          "timestamp": "[00:13:00]",
+          "context": "Explaining why billions in Indigenous housing funding never reaches communities.",
+          "themes": ["system-failure"],
+          "domain": "self-determination",
+          "strength": "strong",
+          "sensitivity": null
+        },
+        {
+          "text": "I think it's a 10 year, um, waiting list on the waiting list for public housing here... it's a human, right? Yeah. For everybody to have, you know, houses, but, you know, Aboriginal people, I guess make do with what we can, you know, live in tin houses, find ways around that.",
+          "timestamp": "[00:12:00]",
+          "context": "On the housing backlog in Tennant Creek (transcribed as 'Ken Creek') and communities making do.",
+          "themes": ["system-failure", "dignity-safety"],
+          "domain": "dignity-safety",
+          "strength": "strong",
+          "sensitivity": "transcription garbles the place name; verify 'Tennant Creek' before use"
+        },
+        {
+          "text": "that story about a village, it takes a village to grow children up. Um, it was certainly true in my case 'cause everyone in the, in the camp, you know, looked out for all the kids.",
+          "timestamp": "[00:01:00]",
+          "context": "Recalling her bush childhood north of Tennant Creek on a cattle station.",
+          "themes": ["country-culture", "family-kids"],
+          "domain": "dignity-safety",
+          "strength": "supporting",
+          "sensitivity": null
+        }
+      ],
+      "themes_present": [
+        {"theme": "never-asked", "evidence": "The architect's question about designing her own house was the first time anyone had asked what sort of house she wanted to live in."},
+        {"theme": "design-in-community", "evidence": "Wilya Janta houses are being designed by Linda and Trisha as culturally appropriate, climate-friendly housing led from community."},
+        {"theme": "ownership-pathway", "evidence": "The whole project is framed as leaving houses, land and a business to kids and grandkids, being in charge of your own destiny."},
+        {"theme": "system-failure", "evidence": "Ten-year public housing waitlist, 450-house parity gap, and funding lost to bureaucracy before it reaches the ground."},
+        {"theme": "country-culture", "evidence": "Warumungu identity, cultural naming protocol (LT for a deceased elder's name), bush medicine and bush tucker business plans."},
+        {"theme": "family-kids", "evidence": "Training kids and grandkids to identify bush medicines; the village-raising-children childhood."},
+        {"theme": "elders-protocol", "evidence": "Explains the deceased-name protocol behind being called LT."},
+        {"theme": "reciprocity-partnership", "evidence": "Speaks warmly of engineers, architects and philanthropic supporters building Norman's house with them."}
+      ],
+      "narrative_summary": "Linda Turner (LT) is a proud Warumungu woman born in the bush 160km north of Tennant Creek, now co-leading culturally appropriate housing and a bush medicine/tourism business with her partner Trisha alongside the Wilya Janta housing work. Her transcript is not about Goods products directly; it is the strongest articulation in this batch of the 'never asked' insight that underpins Goods' design-in-community stance. She also gives sharp, quotable analysis of why government housing money fails to reach the ground, and defines impact as intergenerational independence rather than western metrics.",
+      "analysis_notes": "No direct Stretch Bed or washing machine content; this is Wilya Janta/housing adjacent, so use for the why-we-listen story, not product testimony. Names mentioned: Trisha (business partner), Norman (Norman Frank, house underway), Nick. Place details: Tennant Creek (mis-transcribed 'Ken Creek', 'Tenant Creek'), Warumungu country, Darwin anecdote. Transcript is interviewer-question-heavy and un-labelled; the racism anecdote ([00:03:00]-[00:04:00], 'not all aboriginal people are Vegas' is a garbled word) and intervention section ([00:02:00]-[00:03:00]) are powerful but sensitive and partly garbled, so unusable externally without her review. The '450 houses' and '$4 billion' figures are her recollections, not verified canon."
+    },
+    {
+      "storyteller": "Norman Frank",
+      "transcript_id": "0071d5be-6c2a-4818-a762-67e3f2409eea",
+      "held": false,
+      "top_quotes": [
+        {
+          "text": "I think the government didn't work and the architect didn't work with us. And collaborate how we wanna live and how we wanna, how we want our houses. Now we got our, we've got our own ways sold so that now we can collaborate with our own people.",
+          "timestamp": "[00:06:00]",
+          "context": "His answer to why decent housing hasn't happened before, naming the failure to work with community.",
+          "themes": ["never-asked", "system-failure", "design-in-community"],
+          "domain": "self-determination",
+          "strength": "deck",
+          "sensitivity": null
+        },
+        {
+          "text": "They just say you're getting a house, but you don't really own that house. That house belong to the government.",
+          "timestamp": "[00:08:00]",
+          "context": "Describing being moved off stations into town and into government housing after 1977.",
+          "themes": ["ownership-pathway", "system-failure"],
+          "domain": "jobs-ownership",
+          "strength": "deck",
+          "sensitivity": null
+        },
+        {
+          "text": "you don't walk into a community until you talk to the traditional owners and the... so that you can work and talk.",
+          "timestamp": "[00:07:00]",
+          "context": "His rule for how any organisation should enter and work with a new community.",
+          "themes": ["elders-protocol", "design-in-community"],
+          "domain": "self-determination",
+          "strength": "strong",
+          "sensitivity": "sentence trails off in transcription; check audio before quoting externally"
+        },
+        {
+          "text": "I wanna see my kids leading William Guna and I take over and my grandkids as well, you know, because I'm just, to some, I'm just opening the gateway for them.",
+          "timestamp": "[00:07:00]",
+          "context": "His ten-year vision for Wilya Janta (transcribed 'William Guna') passing to his children and grandchildren.",
+          "themes": ["ownership-pathway", "family-kids"],
+          "domain": "jobs-ownership",
+          "strength": "strong",
+          "sensitivity": "organisation name garbled in transcription (Wilya Janta)"
+        },
+        {
+          "text": "Our culture is very important to people. Without your culture, I feel, I feel I feel lost with my strong.",
+          "timestamp": "[00:11:00]",
+          "context": "Explaining that housing must adapt to culture (avoidance relationships, sleeping patterns) rather than erase it.",
+          "themes": ["country-culture"],
+          "domain": "dignity-safety",
+          "strength": "supporting",
+          "sensitivity": "final clause garbled; verify against audio"
+        }
+      ],
+      "themes_present": [
+        {"theme": "never-asked", "evidence": "Government and architects never collaborated on how people want to live; Wilya Janta exists to change that."},
+        {"theme": "design-in-community", "evidence": "Houses designed around climate, avoidance relationships ('poisons', mother-in-laws) and how families actually sleep and move."},
+        {"theme": "ownership-pathway", "evidence": "Contrast between government-owned houses and his own block, display house, and succession plan to his kids."},
+        {"theme": "system-failure", "evidence": "Station days, being 'kicked off the station and sent back into town, then got dumped in town', living how the government wants."},
+        {"theme": "elders-protocol", "evidence": "Traditional-owner-first rule for entering any community; totem and clan introductions."},
+        {"theme": "country-culture", "evidence": "Detailed clan, totem (white cockatoo, wild possum) and country connections; the two-snakes logo from Jim Cargo country."},
+        {"theme": "family-kids", "evidence": "Better future and housing framed entirely around kids, grandkids and next generations."},
+        {"theme": "reciprocity-partnership", "evidence": "The 20-year friendship and partnership with Simon, tested in the bush and built on working people out."}
+      ],
+      "narrative_summary": "Norman Frank is a Warumungu man from Tennant Creek, co-founder with Simon of Wilya Janta ('standing strong'), the community-led culturally appropriate housing organisation, with the first house being built on his own block. His transcript gives Goods its clearest community-voiced statement of the failure Goods positions against (government and architects never working with people) and of ownership as the goal, including the line that a government house is never really yours. He also models partnership done right: a 20-year relationship, traditional-owner protocol, and asking each community how they want things.",
+      "analysis_notes": "No direct Goods product content; use as the housing/self-determination context that Goods beds sit inside, and for partnership-protocol framing. Names: Simon (Wilya Janta co-founder), wife Serena, references to NITV coverage and Canberra funding trip. Transcription is heavily garbled ('Willy Gunter'/'William Guna' = Wilya Janta; 'mb brandy'/'Bombi people' likely yapa/countrymen terms; 'Nan Creek' = Tennant Creek) so every external quote needs audio verification. His account of living 20 years ago in a tin shed with one power point and one tap opposite the doctor's flash house ([00:03:00]-[00:04:00]) is a strong origin story but attribute the place carefully (transcript says Utopia, likely a mis-hearing of a Tennant Creek location - flag before use)."
+    },
+    {
+      "storyteller": "Brian Russell",
+      "transcript_id": "d23dbf4f-8ae6-436a-8bd4-115d33bb20b5",
+      "held": false,
+      "top_quotes": [
+        {
+          "text": "Tenant. Craig is very good out here at the stage, and I love you fellas bed and all that. Yeah. Thank you for that.",
+          "timestamp": "[00:00:00]",
+          "context": "Spontaneous thanks for the bed while explaining why he likes living in Tennant Creek.",
+          "themes": ["rest-sleep-health"],
+          "domain": "rest-health",
+          "strength": "strong",
+          "sensitivity": "transcription garbles 'Tennant Creek'"
+        },
+        {
+          "text": "I reckon the bed is more bad than the bed you bought for the shop. It costs about 500 bucks, and $600, mate, yeah.",
+          "timestamp": "[00:01:00]",
+          "context": "Comparing the Goods bed favourably against $500-600 shop-bought beds ('more bad' reads as 'more better' in his speech).",
+          "themes": ["product-durability", "rest-sleep-health"],
+          "domain": "rest-health",
+          "strength": "strong",
+          "sensitivity": "dialect/transcription: 'more bad' = 'more better'; verify audio before external use"
+        },
+        {
+          "text": "Yeah, because I had a heart attack last year, 1st of November from the blockage of my heart... I got no bone in my feet. So been in a wheelchair for nearly three months.",
+          "timestamp": "[00:01:00]",
+          "context": "His own explanation of why a proper bed matters for his health after a heart attack and motorbike accident.",
+          "themes": ["rest-sleep-health", "dignity-safety"],
+          "domain": "rest-health",
+          "strength": "strong",
+          "sensitivity": "health testimony, keep in his voice; never present as a Goods health outcome claim"
+        },
+        {
+          "text": "Because your back pain and all this, and you're gonna be moving around rib side with a problem in your leg. Your hip may be sore or something. Around that bed is more bed than other bed from the shop.",
+          "timestamp": "[00:04:00]",
+          "context": "Why he thinks the beds will succeed in Tennant Creek and other communities.",
+          "themes": ["rest-sleep-health", "product-durability"],
+          "domain": "rest-health",
+          "strength": "supporting",
+          "sensitivity": "health testimony in his own voice; garbled phrasing"
+        },
+        {
+          "text": "You don't have to just ring, just going and just talk to some of the elders, oh, the elders would probably take you around. Welcome with the country, yeah.",
+          "timestamp": "[00:04:00]",
+          "context": "His advice to Goods on how to enter other communities respectfully.",
+          "themes": ["elders-protocol", "reciprocity-partnership"],
+          "domain": "self-determination",
+          "strength": "strong",
+          "sensitivity": null
+        }
+      ],
+      "themes_present": [
+        {"theme": "rest-sleep-health", "evidence": "Sleeping on an 'old rusty bunk broken' while recovering from a heart attack and leg injuries; the Goods bed beats shop beds for his back and hips."},
+        {"theme": "washing-clean", "evidence": "Names the 'aboriginal washing machine, and dryers' at Barunga ('Baranga') and links washing to 'scabies and all that'."},
+        {"theme": "elders-protocol", "evidence": "Go in, talk to the elders, they will take you around and welcome you to country."},
+        {"theme": "system-failure", "evidence": "Five and a half years at the block with no shower, no public toilet, no electricity, just a recently acquired generator."},
+        {"theme": "dignity-safety", "evidence": "Wants a shower and toilet at the block instead of going into town; feeling settled and safe at Auntie Dianne's place."},
+        {"theme": "family-kids", "evidence": "Supports Dianne's idea to use the land to bring kids out bush away from town; extensive family mapping to Doomadgee and the Gulf."},
+        {"theme": "country-culture", "evidence": "Identifies as a Garawa ('go a') man through his grandmother from the Gulf country near the Queensland border."}
+      ],
+      "narrative_summary": "Brian Russell is a Garawa man born 1974, raised in Doomadgee, who has lived for five and a half years at Auntie Dianne Stokes' block on Warrego Road outside Tennant Creek, and has received a Goods bed. His transcript is direct recipient testimony: he compares the Goods bed favourably to $500-600 shop beds, explains in his own words why a real bed matters after his heart attack and leg injuries, and confirms the washing-machine/scabies connection from Barunga. He also grounds the infrastructure gap (no toilet, shower or power at the block) and gives Goods practical elders-first advice for new communities.",
+      "analysis_notes": "Speaker labels are clean (Speaker 3 interviewer / Speaker 4 Brian). Heavy dialect plus rough transcription ('more bad' = more better, 'Tenant Craig', 'iStent Creek') means all quotes need audio verification before external use. Health content (heart attack 1 Nov, stents, strokes-adjacent injuries, wheelchair) must stay strictly his testimony with sensitivity flags. Names: Dianne Stokes (Auntie, block owner), Preston Johnny, Terrance Stanley, Travis Fraser, Greg George Junior (grandfather relation), family names Eff/goer/Johnny/Douglas. Places: Warrego Road block, Doomadgee, Barunga, Murranji/'Murray dad' area on the Plenty Highway (garbled). The washing machine at 'Baranga' is his report, not canon; do not use as a Goods deployment claim."
+    },
+    {
+      "storyteller": "Chloe",
+      "transcript_id": "fb9ce2cd-3983-48f1-b7d3-5825d9588759",
+      "held": false,
+      "top_quotes": [
+        {
+          "text": "I've put up with a few of my clients going to hospital with pneumonia from sleeping on the ground because it's too cold. And then in the summer I've put up with them telling me constantly like, we're scared to sleep here, we're scared to sleep there because of snakes.",
+          "timestamp": null,
+          "context": "Describing sleeping conditions for homeless clients at Boulder Camp and Ninga Mia near Kalgoorlie.",
+          "themes": ["rest-sleep-health", "dignity-safety", "system-failure"],
+          "domain": "rest-health",
+          "strength": "deck",
+          "sensitivity": "practitioner testimony about vulnerable clients; health context, not an outcome claim"
+        },
+        {
+          "text": "at first when you told me about it, I'm just like, yeah like yeah no I don't think that's possible but now that you've just showed us and helped us put it together it's amazing. It is a good idea. One it's getting them off the cold ground.",
+          "timestamp": null,
+          "context": "Her first impression after assembling the bed, converting from scepticism on the spot.",
+          "themes": ["product-durability", "rest-sleep-health"],
+          "domain": "rest-health",
+          "strength": "deck",
+          "sensitivity": null
+        },
+        {
+          "text": "So there'll be a number of people using the same mattress over and over and over now these mattresses don't get treated they don't get cleaned so that's another thing like the bed bugs and whatever else lives in a mattress.",
+          "timestamp": null,
+          "context": "Explaining how shared, unwashable mattresses circulate between transient community members.",
+          "themes": ["washing-clean", "system-failure"],
+          "domain": "circular-economy",
+          "strength": "strong",
+          "sensitivity": null
+        },
+        {
+          "text": "A carry bag will be good, because a lot of them are homeless and going from place to place, town to town, house to house. So a really good strong carry bag that's going to last a while would be good.",
+          "timestamp": null,
+          "context": "Her concrete product improvement suggestion for mobile, homeless users.",
+          "themes": ["product-durability", "design-in-community"],
+          "domain": "dignity-safety",
+          "strength": "strong",
+          "sensitivity": null
+        },
+        {
+          "text": "Everyone's got a voice and I think it's good that you went and got their feedback reached out and let them have their opinion... and then let them sleep on it.",
+          "timestamp": null,
+          "context": "Endorsing Goods' approach of getting feedback directly from the people who will sleep on the beds.",
+          "themes": ["design-in-community", "never-asked"],
+          "domain": "self-determination",
+          "strength": "strong",
+          "sensitivity": null
+        }
+      ],
+      "themes_present": [
+        {"theme": "rest-sleep-health", "evidence": "Clients hospitalised with pneumonia from sleeping on cold ground; elders sent to Perth because the cold could kill them."},
+        {"theme": "dignity-safety", "evidence": "Clients scared to sleep in places because of snakes and bugs; burnt blankets and mattresses; six people to a tent."},
+        {"theme": "washing-clean", "evidence": "Shared mattresses never treated or cleaned, bed bugs; washability named as a key advantage of the Goods bed."},
+        {"theme": "design-in-community", "evidence": "Praises Goods for reaching out, getting feedback and letting people sleep on it; suggests carry bag and strap improvements."},
+        {"theme": "product-durability", "evidence": "Notes 'nothing survives' in these communities and wants long-term (two weeks, two years) testing; wants a strong carry bag."},
+        {"theme": "system-failure", "evidence": "Homelessness itself is named as the driver behind drinking and rough sleeping at Boulder Camp and Ninga Mia."}
+      ],
+      "narrative_summary": "Chloe is the Aboriginal Homeless Fringe Dweller Support Worker in Kalgoorlie, visiting Boulder Camp and Ninga Mia daily with breakfast and support. Her transcript is frontline-practitioner evidence of the problem the bed answers: pneumonia hospitalisations from cold-ground sleeping, snake fear, shared unwashed mattresses, and elders medically evacuated to Perth. She converts from open scepticism to endorsement after assembling a bed, and gives Goods its most actionable early product feedback (carry bag, straps, long-term trialling) plus validation of the feedback-first engagement model.",
+      "analysis_notes": "Practitioner voice, not a community bed recipient; label her as a practitioner if quoted (consistent with the 3-practitioners-labelled rule). No timestamps in this transcript. Interviewer and storyteller are not labelled and some interviewer remarks (e.g. 'it's just shocking sometimes in these communities how nothing survives') sit adjacent to her lines - the 'nothing survives' line is the INTERVIEWER'S, do not attribute to Chloe. Places: Boulder Camp, Ninga Mia ('Ningamai'/'Dingamai'), Kalgoorlie, Perth; mentions Nick returning in a few weeks and 'Bega' (likely Bega Garnbirringu health service). Her cautious 'it might improve the health side of things' framing is appropriately conditional - keep that hedging if used; do not sharpen it into an outcome claim."
+    },
+    {
+      "storyteller": "Gloria Turner",
+      "transcript_id": "1941f6ea-7142-412d-aadc-5c5caff727b5",
+      "held": false,
+      "top_quotes": [
+        {
+          "text": "Because it's hard to do it. Plus, I'm disability, I can't wash my mattress. Yeah. It's hard.",
+          "timestamp": null,
+          "context": "On why a washable mattress matters when disability makes cleaning a normal mattress impossible.",
+          "themes": ["washing-clean", "dignity-safety"],
+          "domain": "dignity-safety",
+          "strength": "deck",
+          "sensitivity": "references her own disability; health testimony, keep in her voice"
+        },
+        {
+          "text": "A bit rough and ready. I want a good mattress to sleep on.",
+          "timestamp": null,
+          "context": "Her plain description of her current sleep before the new mattress.",
+          "themes": ["rest-sleep-health"],
+          "domain": "rest-health",
+          "strength": "strong",
+          "sensitivity": null
+        },
+        {
+          "text": "Sleep on a good mattress. For the back of legs, muscles.",
+          "timestamp": null,
+          "context": "The piece of wisdom she would give anyone, drawn from living with dialysis and a sore body.",
+          "themes": ["rest-sleep-health"],
+          "domain": "rest-health",
+          "strength": "strong",
+          "sensitivity": null
+        },
+        {
+          "text": "I'm originally from Warburton but I'm down here because of my dialysis, for my treatment.",
+          "timestamp": null,
+          "context": "Why she lives at the Kalgoorlie camp far from home, framing the displacement dialysis forces.",
+          "themes": ["system-failure", "country-culture"],
+          "domain": "rest-health",
+          "strength": "supporting",
+          "sensitivity": "health testimony (dialysis, kidney disease); handle with care and her consent"
+        },
+        {
+          "text": "Because we are family... They help a lot to me. Helping me.",
+          "timestamp": null,
+          "context": "Why the women at the camp look after each other around the big fire.",
+          "themes": ["family-kids", "dignity-safety"],
+          "domain": "dignity-safety",
+          "strength": "supporting",
+          "sensitivity": null
+        }
+      ],
+      "themes_present": [
+        {"theme": "rest-sleep-health", "evidence": "Sleep is 'a bit rough and ready'; a good mattress matters for her back, legs and muscles; her core advice is to sleep on a good mattress."},
+        {"theme": "washing-clean", "evidence": "She physically cannot wash a conventional mattress because of her disability, making washability a dignity issue."},
+        {"theme": "dignity-safety", "evidence": "Wants her own bed, prefers sleeping alone, has her own space; the quiet camp with the ladies is a safe place."},
+        {"theme": "family-kids", "evidence": "Stays with her daughter and sisters (kin and skin sisters) who look after her because 'we are family'; proud great-grandmother."},
+        {"theme": "country-culture", "evidence": "From Warburton/Cosmo, displaced to Kalgoorlie and Perth by dialysis, was homesick for country."},
+        {"theme": "system-failure", "evidence": "Dialysis forces her to live years away from Warburton; long stints in Perth hostels before a place near Kalgoorlie was found."},
+        {"theme": "design-in-community", "evidence": "She was the first person ever to sleep on the new mattress and the ladies helped make the bed; her feedback (spring and cushion) is design input."}
+      ],
+      "narrative_summary": "Gloria Turner is a great-grandmother from Warburton (raised at Cosmo Newbery mission) living at a Kalgoorlie camp because dialysis keeps her from home, cared for by her daughter and sisters. She was the first person ever to sleep on the new Goods mattress, and her transcript turns washability from a feature into a dignity issue: she cannot wash a normal mattress because of her disability. Her repeated, unprompted refrain - sleep on a good mattress, for your back, legs and muscles - is the impact model in an elder's own words.",
+      "analysis_notes": "Memory notes her earlier paraphrased quote was already corrected on /stories; use only these transcript lines. No timestamps. Sensitive health content throughout (dialysis, fistula, disability) - internal context, external use only as her own testimony with clearance. She declined the 'Gloria mattress' naming - do not brand anything with her name. Consent to use the video is on tape ('Are you okay for us to use this video? Yeah'). Transcription is rough (name spelled 'T-L-O-R-I-A', 'them brand ones' likely 'them brand new ones', 'massage' possibly 'my back'/'rest' confusion - she uses massage/therapy to mean comfort); verify audio before quoting. Mentions Nick and Ben by name; interviewer promises return in four weeks. Product feedback: she'd design 'one with spring mattress and cushion on it' - wants more cushioning."
+    },
+    {
+      "storyteller": "Wayne Glenn",
+      "transcript_id": "c02507cd-6bbf-4ae6-b821-98d5819857d2",
+      "held": false,
+      "top_quotes": [
+        {
+          "text": "There's primary health issues that, um, that don't exist anywhere else in the world and are still entrenched in Indigenous communities... unless we can kind of start to advocate for and shift some of those systemic issues around housing, um, then it makes it very challenging.",
+          "timestamp": "[00:02:00]",
+          "context": "Red Dust's rationale for why health programs fail without shifting the housing and sleeping environment.",
+          "themes": ["system-failure", "rest-sleep-health"],
+          "domain": "rest-health",
+          "strength": "deck",
+          "sensitivity": "names RHD/scabies/trachoma; use as the WHY, never as a Goods outcome claim"
+        },
+        {
+          "text": "with the overcrowding issues in housing, um, the bedding environment is often, um, pretty grim as far as what people are sleeping on, what people have access to... people are just sleeping where they can.",
+          "timestamp": "[00:03:00]",
+          "context": "Describing the bedding reality created by overcrowding and transience in remote communities.",
+          "themes": ["rest-sleep-health", "system-failure"],
+          "domain": "rest-health",
+          "strength": "deck",
+          "sensitivity": null
+        },
+        {
+          "text": "You know, it's one of those things where you look at it and kind of go, why hasn't anyone thought of this before? Why hasn't anyone explored this before?",
+          "timestamp": "[00:04:00]",
+          "context": "His first reaction to the bed prototype.",
+          "themes": ["product-durability", "design-in-community"],
+          "domain": "rest-health",
+          "strength": "strong",
+          "sensitivity": null
+        },
+        {
+          "text": "It's a really simple idea, um, to a really complex issue, um, that can be taken and, taken and modified for individual families, individual communities... we also talked about, um, uh, giving ownership to communities and to families, um, which is really important. And it's an idea that people will take and, and take it in their own direction. I think that's what excites me most about it.",
+          "timestamp": "[00:04:00]",
+          "context": "Why the adaptable, community-owned nature of the bed excites him more than the product itself.",
+          "themes": ["ownership-pathway", "design-in-community"],
+          "domain": "self-determination",
+          "strength": "deck",
+          "sensitivity": null
+        },
+        {
+          "text": "It's an entirely preventable disease, um, that still remains, um, entrenched in remote communities... if we just keep plowing away at the same old messaging, without challenging some of those underlying factors, and providing alternatives for people, we're not going to shift it.",
+          "timestamp": "[00:06:00]",
+          "context": "On rheumatic heart disease and why alternatives like the bed matter more than more health messaging.",
+          "themes": ["system-failure", "rest-sleep-health"],
+          "domain": "rest-health",
+          "strength": "strong",
+          "sensitivity": "RHD framing = the WHY only; keep his hedged, systemic framing intact"
+        }
+      ],
+      "themes_present": [
+        {"theme": "system-failure", "evidence": "Entrenched, preventable diseases driven by systemic housing issues; health messaging alone cannot shift them."},
+        {"theme": "rest-sleep-health", "evidence": "Grim bedding environments from overcrowding and transience; people sleeping where they can."},
+        {"theme": "washing-clean", "evidence": "Lists hygienic alongside easy-to-use, transportable and functional as what communities want in a bed."},
+        {"theme": "design-in-community", "evidence": "Red Dust's model is asking communities what they want; he frames the bed as something to road test and modify with communities."},
+        {"theme": "ownership-pathway", "evidence": "Giving ownership to communities and families, letting them take the idea in their own direction, is what excites him most."},
+        {"theme": "product-durability", "evidence": "Wants it road tested ('you're never going to know until it hits the road') and adapted as it goes."}
+      ],
+      "narrative_summary": "Wayne Glenn is a practitioner with Red Dust, which runs health programs in remote NT communities from Darwin and Alice Springs. His transcript is the strongest practitioner articulation of the Goods theory of change: entrenched preventable diseases like RHD sit on systemic housing and bedding failures, and messaging without alternatives will never shift them. He validates the first bed prototype ('why hasn't anyone thought of this before?') and, crucially, names community ownership and adaptation - not the product - as the exciting part.",
+      "analysis_notes": "Practitioner voice - label as such per cleared-voices rules. The first ~2 paragraphs (lines 6-9) are off-topic audio-gear chat between crew, unusable. RHD/scabies/trachoma content must stay as his systemic framing (the WHY), never converted into Goods outcome claims. This interview is at the first-prototype stage ('crate' concept, 'you can have the first one ever'), so product references are the early basket-bed era, not the Stretch Bed - date any usage accordingly. No community or individual names; organisations: Red Dust, offices Darwin and Alice Springs. The closing crew banter ('if it's not actually a piece of junk...') is interviewer speech, not Wayne's."
+    },
+    {
+      "storyteller": "Alfred Johnson",
+      "transcript_id": "dd88ccfd-c556-4bfe-9b2f-c9e184eb0884",
+      "held": false,
+      "top_quotes": [
+        {
+          "text": "You can't just go down to the store and buy beds and stuff, it's hard for families and, especially over here, you won't just have a family, one family in one house. You'll have multiple families, in the one house and not everyone gets a bed, and not everyone has that place to stay.",
+          "timestamp": "[00:01:00]",
+          "context": "Explaining the barge-freight barrier and overcrowding reality of getting beds onto Palm Island.",
+          "themes": ["system-failure", "rest-sleep-health"],
+          "domain": "rest-health",
+          "strength": "deck",
+          "sensitivity": null
+        },
+        {
+          "text": "having a bed is something like, you need, you can't, you feel more safe when you sleep in a bed. It's different than sleeping on the couch, and then sleeping on the ground, most people do be doing that, sleeping on couches and stuff, don't have beds.",
+          "timestamp": "[00:02:00]",
+          "context": "On the felt difference between a bed and the couch or floor most people make do with.",
+          "themes": ["dignity-safety", "rest-sleep-health"],
+          "domain": "dignity-safety",
+          "strength": "deck",
+          "sensitivity": null
+        },
+        {
+          "text": "I just think not being shame... you got to get that shameless out of the way and go and ask, sit down and talk to them... you really got to know the family, and have that inside look of it, and that's the only way you will know if you go and approach them and ask them because they're not going to come to you.",
+          "timestamp": "[00:03:00]",
+          "context": "His advice on how Goods must handle shame so people will say when beds are not working.",
+          "themes": ["never-asked", "design-in-community", "reciprocity-partnership"],
+          "domain": "self-determination",
+          "strength": "deck",
+          "sensitivity": null
+        },
+        {
+          "text": "Oh, easy. Nice, quick and easy. That's it... zip ties all you need, zip them together, chuck the sheet on, you go to sleep.",
+          "timestamp": "[00:02:00]",
+          "context": "Describing assembling the basket bed himself.",
+          "themes": ["product-durability"],
+          "domain": "rest-health",
+          "strength": "strong",
+          "sensitivity": "zip-tie assembly = basket bed era, not the Stretch Bed; date if used"
+        },
+        {
+          "text": "Easy. It's all you need easy to put together, easy to maintain.",
+          "timestamp": "[00:02:00]",
+          "context": "Summing up the bed after trying it, including that it is easy to wash.",
+          "themes": ["washing-clean", "product-durability"],
+          "domain": "rest-health",
+          "strength": "supporting",
+          "sensitivity": null
+        }
+      ],
+      "themes_present": [
+        {"theme": "system-failure", "evidence": "Barge freight makes beds a 'muck around' - queen/king beds come via Lucinda and Ingham; families go without."},
+        {"theme": "rest-sleep-health", "evidence": "Bad beds mean bad backs; a bed means better rest than couches and floors."},
+        {"theme": "dignity-safety", "evidence": "'You feel more safe when you sleep in a bed' - safety framing of bed ownership."},
+        {"theme": "design-in-community", "evidence": "Advises sitting down with families, knowing them from the inside, so feedback is honest."},
+        {"theme": "never-asked", "evidence": "Shame keeps people from asking or complaining; Goods must go to them because 'they're not going to come to you'."},
+        {"theme": "washing-clean", "evidence": "Easy to wash, toppers with protectors underneath - washability noticed and valued."},
+        {"theme": "product-durability", "evidence": "Quick zip-tie assembly, easy to maintain; comfort validated after a swim."},
+        {"theme": "family-kids", "evidence": "Multiple families in one house; Christmas Cup footy bringing communities and families together."},
+        {"theme": "country-culture", "evidence": "Palm Island as home base for family, footy and Christmas despite living in Brisbane."}
+      ],
+      "narrative_summary": "Alfred Johnson grew up between Palm Island, Townsville and Brisbane and comes home for Christmas and the Christmas Cup footy. He assembled and slept on a basket bed and gives Goods clean, quotable testimony on all three fronts: the freight barrier that keeps beds off Palm Island, the felt safety of having a bed versus a couch or the ground, and - most valuably - the shame dynamic that will hide product failures unless Goods sits down with families and asks. His 'not being shame' advice directly shaped the reflection the interviewer voices on feedback loops.",
+      "analysis_notes": "Basket-bed era testimony (zip ties, toppers) - date and product-label any external use; do not attach to the Stretch Bed. Places: Palm Island, Townsville, Brisbane (Everton Park), Lucinda barge, Ingham (transcribed 'England'!), and tour reference to Kalgoorlie, Tennant, Mount Isa. The 'drive to England' lines are transcription garbles of Ingham. Communities named for Christmas Cup: Cherbourg, Yarrabah ('Yarrabaugh'). Mid-interview interruption with a child ('Papa! ... Come here, baby') - trim if quoting. Interviewer reflection about 'shame factor' at [00:03:00]-[00:04:00] is the interviewer's, not Alfred's."
+    },
+    {
+      "storyteller": "Cliff Plummer",
+      "transcript_id": "76060e94-af3f-422a-a672-60a152589f40",
+      "held": false,
+      "top_quotes": [
+        {
+          "text": "I tried the mattress there is very comfortable and, and that's the reason why I was the first one that ask.",
+          "timestamp": "[00:03:00]",
+          "context": "A 38-year Aboriginal health practitioner explaining he asked for a bed first after trying it.",
+          "themes": ["rest-sleep-health", "product-durability"],
+          "domain": "rest-health",
+          "strength": "strong",
+          "sensitivity": null
+        },
+        {
+          "text": "Like me, see, I had a couple of strokes and a lot of the time I can't get up. If I have two of those things, the crate stuff, I'd be okay. You know, I'd just get up.",
+          "timestamp": "[00:04:00]",
+          "context": "Accessibility feedback: bed height matters for people recovering from strokes; two crates would let him get up.",
+          "themes": ["product-durability", "rest-sleep-health"],
+          "domain": "rest-health",
+          "strength": "deck",
+          "sensitivity": "health testimony (strokes), keep in his voice"
+        },
+        {
+          "text": "people have to try it out, you know? And if you go demonstrate like in the community living area, for example, and get the community members to try it out, you know, you'll get better results there.",
+          "timestamp": "[00:04:00]",
+          "context": "His advice on how to gauge demand: demonstrate in community living areas and let people try it.",
+          "themes": ["design-in-community"],
+          "domain": "self-determination",
+          "strength": "strong",
+          "sensitivity": null
+        },
+        {
+          "text": "A lot of the issues are alcohol, you know, like have noises and that... you can't sort of rest, you need to get a rash late at night, you know?",
+          "timestamp": "[00:03:00]",
+          "context": "On why rest is hard in community - noise late at night makes sleep precarious.",
+          "themes": ["rest-sleep-health", "system-failure"],
+          "domain": "rest-health",
+          "strength": "supporting",
+          "sensitivity": "garbled transcription ('get a rash' likely 'can't rest'); references family/alcohol, he was reluctant - handle gently"
+        },
+        {
+          "text": "Ah, they just get whatever from the store there. Some buy swags and that, you know.",
+          "timestamp": "[00:03:00]",
+          "context": "What people in Tennant Creek currently sleep on: whatever the store has, or swags.",
+          "themes": ["rest-sleep-health", "system-failure"],
+          "domain": "rest-health",
+          "strength": "supporting",
+          "sensitivity": null
+        }
+      ],
+      "themes_present": [
+        {"theme": "rest-sleep-health", "evidence": "Noise and alcohol issues make rest hard; people sleep on whatever the store sells or swags; the mattress is 'very comfortable'."},
+        {"theme": "product-durability", "evidence": "Assembly 'pretty simple' but bed height is a barrier for stroke survivors - concrete accessibility feedback (two crates)."},
+        {"theme": "design-in-community", "evidence": "Demonstrate in community living areas and let members try it out before judging demand."},
+        {"theme": "system-failure", "evidence": "Alcohol and other drugs as the entrenched drivers putting people in hospital, framed by a career health worker."},
+        {"theme": "country-culture", "evidence": "Warumungu ('Warga') man whose grandfather's country is the old Phillip Creek mission area."},
+        {"theme": "making-jobs", "evidence": "38 years in Aboriginal health, retired and returned to work in health promotion, making health messages through music and YouTube."}
+      ],
+      "narrative_summary": "Cliff Plummer is a Warumungu man and Aboriginal health practitioner with 38 years' service in Tennant Creek, now in health promotion after finding retirement boring. He tried the Goods mattress, found it comfortable enough to be 'the first one that ask', and contributes the batch's most concrete accessibility insight: stroke survivors need more bed height to get up. As a career health worker he also validates the demonstrate-and-try engagement model over surveys.",
+      "analysis_notes": "Practitioner-adjacent community voice (local AHP). Health disclosures (strokes) need sensitivity handling. He was visibly reluctant discussing family/alcohol noise ('I don't like really talking about... my family making noises') - respect that reluctance, do not quote that section externally. 'Crate stuff' places this in the basket-bed/crate era - date accordingly. Places: Tennant Creek, Phillip Creek mission (shared country with Norman Frank), Darwin (schooling). Transcription garbles: 'Warga' = Warumungu, 'get a rash' likely 'can't rest'; verify audio. No third-party names."
+    },
+    {
+      "storyteller": "Jason",
+      "transcript_id": "0ffcd646-a311-4237-8f6f-8ad0ce60b967",
+      "held": false,
+      "top_quotes": [
+        {
+          "text": "Try it. Try it. You won't regret it, I tell you. You won't regret it, trust me. If I can do it, you can.",
+          "timestamp": "[00:01:00]",
+          "context": "His message to other communities unsure about the beds.",
+          "themes": ["reciprocity-partnership", "product-durability"],
+          "domain": "rest-health",
+          "strength": "deck",
+          "sensitivity": null
+        },
+        {
+          "text": "Oh, even like you said, you can Make it into a bed. You can even turn it into a table... so I've done it myself. Yeah, and it works. Comes from an Aboriginal person, it works.",
+          "timestamp": "[00:01:00]",
+          "context": "Vouching for the bed's versatility after converting it to a table himself, with Aboriginal endorsement framing.",
+          "themes": ["product-durability", "design-in-community"],
+          "domain": "rest-health",
+          "strength": "strong",
+          "sensitivity": null
+        },
+        {
+          "text": "For me, I no longer like to just lay around anywhere and lay around anyhow. So for me, I can just take it here and there. Just to get out and walk about... Down the corner, of my yard, just laying down in there.",
+          "timestamp": "[00:01:00]",
+          "context": "How the portable bed changed where and how he rests - no longer lying around 'anyhow'.",
+          "themes": ["dignity-safety", "rest-sleep-health"],
+          "domain": "dignity-safety",
+          "strength": "strong",
+          "sensitivity": null
+        },
+        {
+          "text": "Ah, nice and comfortable. But it's just that my dogs rip my cushion off them.",
+          "timestamp": "[00:00:00]",
+          "context": "First-night verdict plus real-world durability feedback: dogs destroyed the cushion.",
+          "themes": ["product-durability", "rest-sleep-health"],
+          "domain": "rest-health",
+          "strength": "supporting",
+          "sensitivity": null
+        },
+        {
+          "text": "Maybe put something up like a, to a little business note to let people know when you're coming over and when you're going So, you'll have more people ready for you the next time you come over.",
+          "timestamp": "[00:02:00]",
+          "context": "Practical advice for the 100-bed build weekend: announce visits in advance so people are ready.",
+          "themes": ["reciprocity-partnership", "design-in-community"],
+          "domain": "self-determination",
+          "strength": "supporting",
+          "sensitivity": null
+        }
+      ],
+      "themes_present": [
+        {"theme": "rest-sleep-health", "evidence": "First-night sleep was 'nice and comfortable'; bed dignifies rest instead of lying around 'anyhow'."},
+        {"theme": "product-durability", "evidence": "Converted it to a table himself and 'it works'; dogs ripping cushions is real-world durability feedback; prefers single/smaller size."},
+        {"theme": "washing-clean", "evidence": "He hand-washes the mattress himself and enjoys doing it."},
+        {"theme": "dignity-safety", "evidence": "Portability lets him rest properly in his own yard and outdoors rather than laying around anywhere."},
+        {"theme": "design-in-community", "evidence": "Endorsement 'comes from an Aboriginal person, it works'; gives operational advice for community build weekends."},
+        {"theme": "reciprocity-partnership", "evidence": "Was actively looking for the team when they arrived, wants a heads-up system so more people are ready."}
+      ],
+      "narrative_summary": "Jason is a Palm Island man of 49 years who received one of the early beds, slept on it from the first night, hand-washes the mattress and has already converted it into a table. He is the batch's purest word-of-mouth ambassador: his repeated, emphatic 'Try it. You won't regret it' is peer-to-peer marketing in a way no Goods copy can be. He also grounds practical operations feedback (announce visits, single beds preferred, dogs destroy cushions) from the 100-bed community build weekend.",
+      "analysis_notes": "Surname withheld/garbled ('Jason M... C-O-O-L-B-U double R A' suggests Coolburra) - confirm spelling before crediting. Basket-bed era (cushion toppers, table conversion). Product feedback: dogs ripped cushion off, prefers single/smaller size, wants blanket pairing. Mentions Nick and the barge/ranger station missed-meeting story - light, usable colour. Interview refers to making 100 beds that weekend on Palm Island - useful dating detail but verify against register before citing the number. Some passages are garbled ('probably pee with my blanket' is clearly mis-transcribed - unusable); final lines are joking banter."
+    },
+    {
+      "storyteller": "Daniel Patrick Noble",
+      "transcript_id": "d1baf567-e019-4db5-87ce-b2064a1e3fd7",
+      "held": false,
+      "top_quotes": [
+        {
+          "text": "the cost of, not only purchasing it, the cost of having it freighted over as well, it all adds up... a lot of them are low income earners... And sometimes people would rather just go without.",
+          "timestamp": "[00:01:00]",
+          "context": "Explaining why freight costs mean Palm Island families simply go without furniture.",
+          "themes": ["system-failure"],
+          "domain": "dignity-safety",
+          "strength": "deck",
+          "sensitivity": null
+        },
+        {
+          "text": "why not just get something, say, a 150 bed that would only last maybe a year or two compared to a 500 bed plus freight. That, you're looking at nearly 1, 000 to get that over. It all adds up, so why not stick to the cheaper options, and it doesn't last a lifetime compared to the dearer ones.",
+          "timestamp": "[00:03:00]",
+          "context": "The cheap-bed trap: freight economics force short-life purchases that break within a year or two.",
+          "themes": ["system-failure", "product-durability"],
+          "domain": "circular-economy",
+          "strength": "deck",
+          "sensitivity": null
+        },
+        {
+          "text": "It's not wise to be in community when we're having sorry business, when someone's passed, especially on the day of the funeral... it all comes down to common sense and respect.",
+          "timestamp": "[00:05:00]",
+          "context": "Cultural protocol advice for Goods entering communities: permission, sorry business, respect.",
+          "themes": ["elders-protocol", "country-culture"],
+          "domain": "self-determination",
+          "strength": "strong",
+          "sensitivity": null
+        },
+        {
+          "text": "I noticed earlier one of your colleagues there, he was packing it up into a box type Structure Which could actually act as a coffee table in your lounge room when families come over need a place to sleep Dismantle the coffee table and here we go. We have a bed.",
+          "timestamp": "[00:04:00]",
+          "context": "His read of the pack-down design as a coffee-table-to-bed solution for visiting family.",
+          "themes": ["product-durability", "family-kids"],
+          "domain": "rest-health",
+          "strength": "strong",
+          "sensitivity": null
+        },
+        {
+          "text": "I reckon you should give this a go in Yarraba. See what people think. Because again, we don't have any accommodation there. We don't have any, guest houses. These would be a perfect idea.",
+          "timestamp": "[00:06:00]",
+          "context": "Inviting Goods to trial the beds in Yarrabah, his home community with no visitor accommodation.",
+          "themes": ["reciprocity-partnership"],
+          "domain": "rest-health",
+          "strength": "strong",
+          "sensitivity": "an invitation, not a mandate - do not present as an agreed deployment"
+        }
+      ],
+      "themes_present": [
+        {"theme": "system-failure", "evidence": "Freight over the ocean doubles costs for low-income families, forcing cheap short-life purchases or going without."},
+        {"theme": "product-durability", "evidence": "Articulates the $150-bed-lasts-a-year trap; found the prototype too firm and wants another cushioning layer; values the pack-away design."},
+        {"theme": "elders-protocol", "evidence": "Ask permission to enter yards and community, stay away during sorry business and funerals."},
+        {"theme": "country-culture", "evidence": "Yarrabah man with deep Palm Island family ties; 'Palm Island always feels like home'; seafood and spider shells."},
+        {"theme": "family-kids", "evidence": "His cousin gave up her bed for him; beds for visiting family are the immediate use case he sees."},
+        {"theme": "reciprocity-partnership", "evidence": "Invites Goods to Yarrabah and freely offers advice on protocol and product."}
+      ],
+      "narrative_summary": "Daniel Patrick Noble is a Yarrabah man with deep Palm Island family ties, interviewed while visiting his auntie and sleeping in his cousin's vacated bed. He gives the batch's sharpest economic analysis of the remote furniture trap: freight economics push low-income families to $150 beds that die in a year or to going without entirely. He validates the pack-away/coffee-table design for overcrowded homes with visiting family, delivers clear cultural-protocol guidance (sorry business, permission), and extends an invitation to trial the beds in Yarrabah.",
+      "analysis_notes": "The Yarrabah suggestion is an invitation, not a deal - claims-status rule applies. Product feedback: too firm for him, add a cushioning layer; likes the length (he is tall). Places: Yarrabah ('Yarraba'), Palm Island, Cairns. Names: none beyond family relations (auntie, cousin, uncle - unnamed). Opening lines about buying a Yarrabah footy jersey are casual colour. His freight/pricing figures ($150 vs $500 bed, ~$1,000 landed) are his illustrative estimates, not canon pricing - never cite as Goods data."
+    },
+    {
+      "storyteller": "Carmelita & Colette",
+      "transcript_id": "db918deb-4698-4d3d-ab5b-72de5634774d",
+      "held": false,
+      "top_quotes": [
+        {
+          "text": "Anyone, get some money, they'll go out to town and buy a new washing machine, fridge. Like any white goods, furniture, bed, lounge, dining suite. Everybody goes to Townsville... But the fright is very, it's very dear. Very dear.",
+          "timestamp": "[00:01:00]",
+          "context": "How all white goods and furniture for Palm Island come via Townsville shops with painful barge freight.",
+          "themes": ["system-failure"],
+          "domain": "dignity-safety",
+          "strength": "deck",
+          "sensitivity": "two-voice transcript; speakers not individually labelled here - attribute jointly to Carmelita & Colette"
+        },
+        {
+          "text": "We do need rest. Yes. We do. We do. It's for our health. Maintaining health and being.",
+          "timestamp": "[00:01:00]",
+          "context": "Their shared answer on why a good night's sleep matters.",
+          "themes": ["rest-sleep-health"],
+          "domain": "rest-health",
+          "strength": "strong",
+          "sensitivity": "two voices overlapping; attribution between the two women unclear - quote jointly"
+        },
+        {
+          "text": "we can't afford it. Like new mattress... And beds. It's hard. And because of the cost of living for a couple of years. Yeah. That's very hard for locally on Palm Island.",
+          "timestamp": "[00:02:00]",
+          "context": "Cost-of-living pressure making new mattresses and beds unaffordable locally.",
+          "themes": ["system-failure", "rest-sleep-health"],
+          "domain": "dignity-safety",
+          "strength": "strong",
+          "sensitivity": "attribution between the two speakers unclear - quote jointly"
+        },
+        {
+          "text": "these collapsed beds, be good when you get Christmas holidays, school holidays, when family coming from the mainland. Pull it out... And kids, they always, Sleep out with family or have to have their friends. Sometimes family don't have extra mattresses.",
+          "timestamp": "[00:02:00]",
+          "context": "The visiting-family use case: collapsible beds for Christmas, school holidays and kids' sleepovers.",
+          "themes": ["family-kids", "rest-sleep-health"],
+          "domain": "rest-health",
+          "strength": "deck",
+          "sensitivity": "attribution between the two speakers unclear - quote jointly"
+        },
+        {
+          "text": "It's pretty easy to keep clean. You can wash it. Wash it out, pack it up. Then the next time you have family come over for celebration, or an event on Palm Island, it's an easy thing just to pull out. Then when they go, pack it up.",
+          "timestamp": "[00:03:00]",
+          "context": "Immediate grasp of the wash-and-pack cycle fitting Palm Island's event and visiting rhythms.",
+          "themes": ["washing-clean", "family-kids"],
+          "domain": "circular-economy",
+          "strength": "strong",
+          "sensitivity": "attribution between the two speakers unclear - quote jointly"
+        }
+      ],
+      "themes_present": [
+        {"theme": "system-failure", "evidence": "All furniture and white goods come from Townsville (Good Guys, Harvey Norman) via the Lucinda barge at 'very dear' freight; cost of living makes beds unaffordable."},
+        {"theme": "rest-sleep-health", "evidence": "'We do need rest... It's for our health' - sleep tied directly to maintaining health and wellbeing."},
+        {"theme": "washing-clean", "evidence": "Washable, packable mattresses immediately understood as easy to keep clean between family visits."},
+        {"theme": "family-kids", "evidence": "Christmas and school holidays bring mainland family and kids' sleepovers; households lack spare mattresses."},
+        {"theme": "country-culture", "evidence": "'Even though if we go away on a trip, we always come back to Palm. It's always home to us.'"},
+        {"theme": "reciprocity-partnership", "evidence": "'It saves us money, but people appreciate things like this' - gratitude framed as mutual respect, with granddaughter Lizzie enlisted as comfort-tester."}
+      ],
+      "narrative_summary": "Carmelita and Colette are two Palm Island women interviewed together, speaking for the household economics of a 4,500-person island where every bed, fridge and washing machine comes from Townsville shops via dear barge freight. Their transcript nails the demand side of the Goods story: unaffordable mattresses under cost-of-living pressure, and the Christmas/school-holiday surge of visiting family and kids with nothing spare to sleep on. They immediately grasp the wash-pack-redeploy cycle, making them strong voices for both the freight-failure and washability narratives.",
+      "analysis_notes": "Two-voice transcript: only the opening name exchange is attributed (Colette first, then Carmelita); every substantive quote afterwards is unlabelled with overlapping affirmations, so all quotes must be attributed jointly 'Carmelita & Colette' unless audio review separates them - flagged per quote. Names: Lizzie (granddaughter, third party). Places: Palm Island (pop. ~4,500 - their figure, close to canon but verify before external use), Townsville, Lucinda barge; shops Good Guys and Harvey Norman. 'Fright' = freight throughout. Interview ends before the comfort test ('round two') - no sleep testimony from them, only anticipation; do not present as recipient testimony."
+    }
+  ]
+}

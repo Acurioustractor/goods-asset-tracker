@@ -1,0 +1,321 @@
+{
+  "transcripts": [
+    {
+      "storyteller": "Kylie Bloomfield",
+      "transcript_id": "7645e742-a62e-4517-8462-ddc6748e4831",
+      "held": false,
+      "top_quotes": [
+        {
+          "text": "my mum gets the phone call and she's like, your uncle said they had the best night's sleep just outta these beds, made outta crates with the cushion and the thing. It's like unreal, unreal. The impact that ... you have",
+          "timestamp": "[00:16:00]",
+          "context": "Kylie recounts family feedback after Sarah (a nurse volunteer, 'adopted daughter') built beds for extended family at Utopia community.",
+          "themes": ["rest-sleep-health", "family-kids", "reciprocity-partnership"],
+          "domain": "rest-health",
+          "strength": "deck",
+          "sensitivity": "Second-hand report (uncle via mum); 'made outta crates' describes the Basket Bed era, not the Stretch Bed"
+        },
+        {
+          "text": "I feel, um, really strong about my connection to country ... very, very privileged, um, from, you know, just our great, uh, grandparents and extended, um, what we call grannies and stuff that, um, connected to the country, the owners of the place, um, and that have handed it down to us.",
+          "timestamp": "[00:01:00]",
+          "context": "Opening answer on what the family place means to her.",
+          "themes": ["country-culture", "elders-protocol"],
+          "domain": "self-determination",
+          "strength": "strong",
+          "sensitivity": null
+        },
+        {
+          "text": "this week has made a huge impact on our family and creating our own history ... we still tell the past, but we also gonna tell the future as well.",
+          "timestamp": "[00:02:00]",
+          "context": "On the build week where the Goods/ACT crew helped restore the family homestead roof.",
+          "themes": ["reciprocity-partnership", "country-culture"],
+          "domain": "self-determination",
+          "strength": "strong",
+          "sensitivity": null
+        },
+        {
+          "text": "We've waited so long for this house and no one in Alice Springs would touch it. Get two bloke to bring five contractors in that like, ... done in a week.",
+          "timestamp": "[00:19:00]",
+          "context": "Contrasting years of service-system inaction with the one-week community build.",
+          "themes": ["system-failure", "reciprocity-partnership"],
+          "domain": "dignity-safety",
+          "strength": "deck",
+          "sensitivity": null
+        },
+        {
+          "text": "our kids and their kids being connected the way they are now ... it's very important that they keep that very, um, that trust together and connection to be able to protect this place.",
+          "timestamp": "[00:14:00]",
+          "context": "Her ten-year hope: intergenerational connection protecting the family's country, with businesses the kids can take over.",
+          "themes": ["family-kids", "ownership-pathway", "country-culture"],
+          "domain": "self-determination",
+          "strength": "strong",
+          "sensitivity": null
+        }
+      ],
+      "themes_present": [
+        {"theme": "country-culture", "evidence": "Deep connection to inherited country runs through the whole interview; wants to share and protect untouched country."},
+        {"theme": "family-kids", "evidence": "16 grandkids, 10-year goal-setting talks with kids, family businesses for the next generation."},
+        {"theme": "ownership-pathway", "evidence": "Kids' studies deliberately mapped to taking over family-owned businesses; community wealth-building discussion."},
+        {"theme": "reciprocity-partnership", "evidence": "'Lifetime of friendship and family' created with the build crew; Hewitt family lease built on trust before any agreement."},
+        {"theme": "rest-sleep-health", "evidence": "Uncle's 'best night's sleep' from the beds built at Utopia."},
+        {"theme": "system-failure", "evidence": "No Alice Springs contractor would touch the house for years; politicians painting Aboriginal men with the same brush."},
+        {"theme": "elders-protocol", "evidence": "Dad, Shane, Jason and Fred as role models; importance of parents and old people showing the way; leaving something for her father and his grandkids."},
+        {"theme": "never-asked", "evidence": "Implicit: services 'ignore the men' as too far gone; her insistence that breaking the cycle must include them."},
+        {"theme": "design-in-community", "evidence": "Everyone had input in the build; 'we couldn't do it without community' exchange (attribution partly ambiguous)."}
+      ],
+      "narrative_summary": "Kylie Bloomfield is a Bloomfield family member (Kristy Bloomfield's kin, Alice Springs region) speaking at the end of a week-long family-homestead restoration led with Nic and the Goods/ACT crew. She gives the Goods story its strongest picture of reciprocity and self-determination: a family building its own future on country, kids mapped onto family businesses, men reclaimed as role models, and a lived example of the bed impact via her uncle's 'best night's sleep' at Utopia. Her material is about partnership and community wealth more than product, making it ideal for the ownership-pathway and 'designed in community' narrative.",
+      "analysis_notes": "SPEAKER LABELS ARE MERGED: the whole transcript is under one 'Kylie:' label but clearly interleaves the interviewer (Nic or Ben) and Kylie; each selected quote was checked for context, but lines like 'we couldn't do it without community' and the 'strong women standing up' passage are likely the interviewer's and were excluded. Names mentioned: Nick (Nic), Kristy, Tanya, Sarah (nurse who built beds at Utopia), Fred (husband, 27 years), Deacon, Shane, Jason, Chrisy/Kirsty, the Hewitt family (lessors), Sox. Place: the Bloomfield family property near Alice Springs (Oonchiumpa context); 'atnpa' means hopping mice. The beds referenced are the crate/Basket-style beds, not the Stretch Bed, so don't attach the quote to Stretch specs. Party/casino banter at the end is unusable filler. The uncle's sleep line is second-hand testimony; fine internally, would need care externally."
+    },
+    {
+      "storyteller": "Tracy McCartney",
+      "transcript_id": "2ddd4625-40c4-4e85-99b8-6e538b81e1e1",
+      "held": false,
+      "top_quotes": [
+        {
+          "text": "for washing their blankets so then they've got clean fresh blankets to sleep in which is the whole circle for them with clean clothes clean blankets it's um helping health wise and everything sores and stuff like that",
+          "timestamp": null,
+          "context": "Describing why the washing service matters for people sleeping rough in Kalgoorlie.",
+          "themes": ["washing-clean", "rest-sleep-health"],
+          "domain": "rest-health",
+          "strength": "deck",
+          "sensitivity": "Health-adjacent testimony (sores) — keep as her own words, never as a claimed Goods health outcome"
+        },
+        {
+          "text": "I'm here for you ... I'm not looking down on you because you need a washing truck, I'm not ... looking down on you because you have to live the way you're living",
+          "timestamp": null,
+          "context": "Her ethic of friendship over service delivery at the Kalgoorlie hub.",
+          "themes": ["dignity-safety", "reciprocity-partnership"],
+          "domain": "dignity-safety",
+          "strength": "deck",
+          "sensitivity": null
+        },
+        {
+          "text": "it's a safe place where people feel comfortable to come and sit and relax and, yes, get the services available, but just to be in this space and know that it's their ... their space",
+          "timestamp": null,
+          "context": "Describing the morning routine at the M25/Church of Christ hub where homeless people shower, wash and eat.",
+          "themes": ["dignity-safety", "washing-clean"],
+          "domain": "dignity-safety",
+          "strength": "strong",
+          "sensitivity": null
+        },
+        {
+          "text": "doctors at the hospital and nurses have said you know since these services have been introduced that they see people coming in getting treated are cleaner",
+          "timestamp": null,
+          "context": "Second-hand clinician feedback on the washing/shower services.",
+          "themes": ["washing-clean", "system-failure"],
+          "domain": "rest-health",
+          "strength": "supporting",
+          "sensitivity": "Hearsay health observation — internal colour only, not a claimable outcome"
+        },
+        {
+          "text": "some kids ... come in and have their ... clean clothes and have their shower and get ready ... and have breakfast before they get off to school so then they feel good to go into the school environment",
+          "timestamp": null,
+          "context": "How the service sets kids up for school, including kids sleeping rough with family.",
+          "themes": ["family-kids", "washing-clean", "dignity-safety"],
+          "domain": "dignity-safety",
+          "strength": "strong",
+          "sensitivity": "Mentions kids sleeping rough — handle with care externally"
+        }
+      ],
+      "themes_present": [
+        {"theme": "washing-clean", "evidence": "The entire interview is about the washing/shower service: 22 to ~50 loads context, blankets, clothes ready for the next day."},
+        {"theme": "dignity-safety", "evidence": "Safe space framing, 'not looking down on you', cutting through shame."},
+        {"theme": "family-kids", "evidence": "Kids known since babies, school-readiness routine, Niall's story, kite school for out-of-community kids."},
+        {"theme": "rest-sleep-health", "evidence": "Clean blankets to sleep in; clinicians noting people presenting cleaner; sores."},
+        {"theme": "reciprocity-partnership", "evidence": "Collaboration with Orange Sky, shower trucks, Centrelink visits, haircuts — 'we can do so much when we work together'."},
+        {"theme": "system-failure", "evidence": "Before the service there was nowhere affordable/reachable to wash; need is only growing."},
+        {"theme": "country-culture", "evidence": "People coming in from the Ngaanyatjarra lands communities and returning; Cecily accessing the truck at Ninga Mia too."}
+      ],
+      "narrative_summary": "Tracy McCartney runs the Church of Christ hospitality hub in Kalgoorlie (ex-secretary of 20 years) where homeless friends shower, wash clothes and eat, alongside the Orange Sky truck. Her transcript is the strongest washing-and-dignity material in this batch: the full 'circle' of clean clothes and clean blankets, shame-free service, and kids readied for school. For Goods it grounds the washing-machine strand of the story in a partner's lived practice rather than product claims.",
+      "analysis_notes": "This is an Orange Sky-context interview in Kalgoorlie WA (canon note: Tracy = Kalgoorlie, the earlier Mount Isa mislink was already fixed). It is washing-service testimony, not Goods bed/washer product feedback — useful for the why of Pakkimjalki Kari, but don't imply she uses Goods machines. No timestamps in this transcript. Names: Cecily (regular from the lands, staying at Ninga Mia), Philip (truck operator, 'part of the family'), Stuart (his predecessor), Judy/Judith (Orange Sky), Niall (boy who lost mum and nana in an accident, spine injuries, boarding school in Coolgardie) — Niall's story is SENSITIVE, told off-camera-style, do not use externally. A long mid-file section is badly garbled machine transcription (the passage around 'medicines your terminus ... transfusion treatments') and is unusable; some quotes above have no clean timestamp anchors. Repeated duplicated lines ('And I think that's what's so amazing about her') indicate transcription artifacts."
+    },
+    {
+      "storyteller": "Ana - Bega",
+      "transcript_id": "ea791a75-1e47-46ec-8cc5-2094e18bf925",
+      "held": false,
+      "top_quotes": [
+        {
+          "text": "you could see the confidence in people walking around the streets. Whereas before, people ... who weren't able to have showers, who weren't able to have clean clothes, they would slump. They wouldn't look up ... It's almost like giving them a new sense of life.",
+          "timestamp": null,
+          "context": "Community-reported change in Kalgoorlie after the Orange Sky truck and shower service arrived.",
+          "themes": ["washing-clean", "dignity-safety"],
+          "domain": "dignity-safety",
+          "strength": "deck",
+          "sensitivity": null
+        },
+        {
+          "text": "They used to do on average about 22 loads down there. They are averaging about 50 odd loads now. So it has increased tenfold ... what we can see is that community really need it.",
+          "timestamp": null,
+          "context": "Growth of the washing service at Church of Christ, Bega's biggest partner site.",
+          "themes": ["washing-clean", "system-failure"],
+          "domain": "circular-economy",
+          "strength": "strong",
+          "sensitivity": "Her arithmetic ('tenfold') doesn't match her own numbers (22 to ~50); quote whole or not at all"
+        },
+        {
+          "text": "at first the numbers were low because I think some people were a bit scared to come and use the service ... then after a while what they realise is actually it's okay ... this is what the service is for. It's for me. And everyone just comes down ... they are not ashamed about it.",
+          "timestamp": null,
+          "context": "How shame around using the laundry service dissolved over time.",
+          "themes": ["dignity-safety", "washing-clean"],
+          "domain": "dignity-safety",
+          "strength": "strong",
+          "sensitivity": null
+        },
+        {
+          "text": "If you can make a connection with a person, you can make their day ... to say hello to somebody, to actually ask about their day, to generally find out about them, it's not hard to do. And it doesn't cost much. But it can mean so much to that person.",
+          "timestamp": null,
+          "context": "Her read on the 'friends' ethos of dignity-first service.",
+          "themes": ["dignity-safety", "reciprocity-partnership"],
+          "domain": "dignity-safety",
+          "strength": "supporting",
+          "sensitivity": null
+        },
+        {
+          "text": "those who don't have a roof over their head ... clothes on their back, or just even a blanket to keep warm at night. I don't think there's many words for ... tough is probably just on the tip of it.",
+          "timestamp": null,
+          "context": "Describing hardship in Kalgoorlie, including whole families on the street.",
+          "themes": ["dignity-safety", "system-failure"],
+          "domain": "dignity-safety",
+          "strength": "supporting",
+          "sensitivity": "Poverty description of identifiable community — use with care"
+        }
+      ],
+      "themes_present": [
+        {"theme": "washing-clean", "evidence": "Whole interview centres the mobile laundry: loads growth, permanent-pod future, Goldfields expansion need (Laverton, Esperance)."},
+        {"theme": "dignity-safety", "evidence": "Confidence transformation, shame dissolving, connection ethos."},
+        {"theme": "system-failure", "evidence": "Cost-of-living squeeze ($2 to $6-7 butter), families homeless, need only growing."},
+        {"theme": "reciprocity-partnership", "evidence": "Bega hosting the service, collaboration across Goldfields services, easy working relationship with the Orange Sky team."},
+        {"theme": "family-kids", "evidence": "Creche background, ten years watching children grow into adults running their own families."}
+      ],
+      "narrative_summary": "Ana (gives her name on tape as Anna King) is Health Programs Coordinator at Bega, the Aboriginal health service for the Goldfields, based in Kalgoorlie WA — 16 years there, ex-creche coordinator. Her transcript is professional-partner testimony on what reliable washing access does for dignity and visible confidence in a community, plus concrete service-growth numbers. For Goods she is context for the washing strand, not community product testimony.",
+      "analysis_notes": "PLACE/RELEVANCE: despite the 'Bega' label (the organisation, not Bega NSW), she speaks from Kalgoorlie/Goldfields WA — outside the core Goods bed communities. Material is entirely about Orange Sky's laundry service, with zero mention of Goods beds or Pakkimjalki Kari; treat as adjacent evidence for the washing thesis, and label her a practitioner voice, not a Goods community storyteller. The interviewer self-identifies as ex-Orange Sky staff, so this interview may belong to an Orange Sky story-set rather than Goods. Name discrepancy: header 'Ana - Bega' vs spoken 'Anna King, A-N-A-K-I-N-G' (spelling as transcribed is itself inconsistent) — resolve before any attribution. Names: Philip, Stuart, Clyde, Judith/Jude. Her '22 to 50 loads = tenfold' is internally inconsistent; also repeated duplicate sentences near the end are transcription artifacts."
+    },
+    {
+      "storyteller": "Melissa Jackson",
+      "transcript_id": "7741cfb3-e312-48a6-9561-ecd723027306",
+      "held": false,
+      "top_quotes": [
+        {
+          "text": "I have a friend from the women's shelter and she told me, oh no, it's a bed. So they going around making beds for free to giving out, I thought, oh, that's nice, and I said, I wanna have some too.",
+          "timestamp": "[00:00:00]",
+          "context": "How she found out about the bed builds after first seeing the frames at the primary school fun day.",
+          "themes": ["design-in-community", "family-kids"],
+          "domain": "dignity-safety",
+          "strength": "strong",
+          "sensitivity": "Mentions the women's shelter as the referral path — keep the shelter detail out of external use"
+        },
+        {
+          "text": "I think it's a great bed. Nice bed. And it's more lower, um, more comfortable. ... Without having board on it.",
+          "timestamp": "[00:01:00]",
+          "context": "Her first impression of the bed compared to the metal bunks her family uses.",
+          "themes": ["product-durability", "rest-sleep-health"],
+          "domain": "rest-health",
+          "strength": "strong",
+          "sensitivity": null
+        },
+        {
+          "text": "it's a good job like washing the bed afterwards ... have it more softer and comfortable. And it's more lower for little ones too, yeah.",
+          "timestamp": "[00:02:00]",
+          "context": "On the washable mattress/top and why the low height suits small children.",
+          "themes": ["washing-clean", "family-kids", "product-durability"],
+          "domain": "rest-health",
+          "strength": "deck",
+          "sensitivity": null
+        },
+        {
+          "text": "Tennant Creek. It's a beautiful place to live in. Like everyone knows each other ... it's a bright place and you get to meet a lot of different people ... and get to see new things like this.",
+          "timestamp": "[00:03:00]",
+          "context": "Her picture of Tennant Creek as a connected community welcoming the bed program.",
+          "themes": ["country-culture", "design-in-community"],
+          "domain": "self-determination",
+          "strength": "strong",
+          "sensitivity": null
+        },
+        {
+          "text": "And even especially for our older people too. They like to have lower beds",
+          "timestamp": "[00:03:00]",
+          "context": "Unprompted product feedback that Elders prefer the lower bed height.",
+          "themes": ["elders-protocol", "product-durability"],
+          "domain": "rest-health",
+          "strength": "deck",
+          "sensitivity": null
+        }
+      ],
+      "themes_present": [
+        {"theme": "washing-clean", "evidence": "Values being able to wash the bed and its blankets."},
+        {"theme": "family-kids", "evidence": "Ordering a queen and two singles for a crowded household (son, brother-in-law, mother-in-law, kids); lower beds good for little ones; youth centre and families looking after kids."},
+        {"theme": "product-durability", "evidence": "Comfort, low height, no board — concrete design feedback from a recipient."},
+        {"theme": "elders-protocol", "evidence": "Older people like lower beds."},
+        {"theme": "design-in-community", "evidence": "Beds built with her at her place, young relative Junior helping the build."},
+        {"theme": "country-culture", "evidence": "Borroloola roots, Tennant Creek since age five with her grandmother, everyone-knows-each-other community."}
+      ],
+      "narrative_summary": "Melissa Jackson is a Tennant Creek resident (originally Borroloola, top end; in Tennant Creek since age five) receiving beds on the day of the interview — one queen and two singles for a multi-generation household currently improvising with metal bunks. She is exactly the community voice the Goods story needs: word-of-mouth discovery, immediate grasp of the washable and low-height design benefits, and unprompted feedback that Elders prefer lower beds. Short but dense recipient testimony from the largest deployment community.",
+      "analysis_notes": "Place details: mentions seeing the frames at the primary school fun day and a bed build at 'Weaver Road' (transcribed; plausibly the actual Tennant Creek street — verify; do NOT confuse with the discontinued Weave Bed product). Household: son Jay Ron, brother-in-law, mother-in-law, kids; 'Junior' is a young family member helping build. Beds given free — consistent with grant-funded Tennant Creek deployment. Transcript is short (577 words) and somewhat broken English-as-spoken; quotes kept verbatim. Speaker labels are clean (Speaker = interviewer, Speaker 2 = Melissa). The garbled 'Mom pool is your mom' exchange and the trailing cut-off sentence are unusable. Canon note: memory flags Melissa as having no live EL storyteller page — this transcript exists, so that's about publication not material."
+    },
+    {
+      "storyteller": "Nicholas Marchesi",
+      "transcript_id": "9d40505a-8047-497d-9861-85e18692308f",
+      "held": false,
+      "staff": true,
+      "top_quotes": [
+        {
+          "text": "traditional western goods end up in these communities and they're not adequate for the conditions that they're meant to be in. These goods are two to five times the price that we would see in a metro environment. They don't last. They end up in landfill and they're making people sick.",
+          "timestamp": "[00:00:00]",
+          "context": "Nic framing the core problem Goods exists to solve.",
+          "themes": ["system-failure", "product-durability"],
+          "domain": "circular-economy",
+          "strength": "deck",
+          "sensitivity": "Staff voice — process narrative only, never community testimony; 'making people sick' needs claim-hygiene framing (the why, not an outcome)"
+        },
+        {
+          "text": "working with the community and working with Elders, we've designed this stretch bed. This bed is made completely from recycled plastic ... from rubbish in the community ... This bed is fully repairable. Each component can be replaced and repaired.",
+          "timestamp": "[00:00:00]",
+          "context": "Introducing the Stretch Bed and its design-in-community provenance.",
+          "themes": ["design-in-community", "product-durability", "elders-protocol"],
+          "domain": "circular-economy",
+          "strength": "deck",
+          "sensitivity": "Staff voice"
+        },
+        {
+          "text": "Each bed uses 20 kilos of recycled plastic from the community.",
+          "timestamp": "[00:01:00]",
+          "context": "Walking through the on-Country production facility, shredding community plastic into bed material.",
+          "themes": ["making-jobs", "design-in-community"],
+          "domain": "circular-economy",
+          "strength": "strong",
+          "sensitivity": "Staff voice; matches canon 20kg/bed"
+        },
+        {
+          "text": "This here is the canvas topper that can be put into a washing machine and washed to remove all of those bed bugs and scabies",
+          "timestamp": "[00:02:00]",
+          "context": "Showing the flat-packed bed components and the washability rationale.",
+          "themes": ["washing-clean", "rest-sleep-health"],
+          "domain": "rest-health",
+          "strength": "strong",
+          "sensitivity": "Scabies is the WHY framing only — never convert to a health-outcome claim"
+        },
+        {
+          "text": "We're really excited to continue to grow this project, all led by the community, made by, for and with the community themselves.",
+          "timestamp": "[00:03:00]",
+          "context": "Closing line of the facility walkthrough video.",
+          "themes": ["ownership-pathway", "design-in-community", "making-jobs"],
+          "domain": "jobs-ownership",
+          "strength": "strong",
+          "sensitivity": "Staff voice; 'led by the community' is aspirational framing — ownership is a pathway, keep consistent with canon"
+        }
+      ],
+      "themes_present": [
+        {"theme": "system-failure", "evidence": "Western goods 2-5x metro price, don't last, end in landfill, make people sick."},
+        {"theme": "design-in-community", "evidence": "Bed designed working with community and Elders; plastic collected in community."},
+        {"theme": "product-durability", "evidence": "Fully repairable, every component replaceable, waterproof easy-clean sheets."},
+        {"theme": "washing-clean", "evidence": "Fully washable mattress/canvas topper, fits a small washing machine."},
+        {"theme": "rest-sleep-health", "evidence": "Mattresses get dirty, go inside and outside, overcrowding — the bed answers that."},
+        {"theme": "making-jobs", "evidence": "On-Country production facility with community collecting and shredding plastic."},
+        {"theme": "ownership-pathway", "evidence": "'Led by the community, made by, for and with the community' close."},
+        {"theme": "elders-protocol", "evidence": "Elders named as design partners."},
+        {"theme": "circular-economy", "evidence": "20kg community rubbish per bed, shred-melt-press-cut walkthrough (note: not a taxonomy id, captured under domain instead)."}
+      ],
+      "narrative_summary": "Nicholas (Nic) Marchesi is the Goods founder (A Curious Tractor) and this is a scripted 'Goods overview #2' promo/update video, not an interview. It gives the cleanest end-to-end process narrative in the corpus: problem framing (inadequate, overpriced western goods), the Stretch Bed's design-with-community provenance, and a full shred-to-assembly facility walkthrough. Use for process/founder narration only, never as community testimony.",
+      "analysis_notes": "STAFF VOICE — flagged staff:true. Canon check: 20kg plastic per bed and 180 degrees press temp both MATCH current canon (this transcript is a good 180C source). Terminology drift vs canon: he says 'better mattress'/'completely washable mattress' where canon specifies the canvas sleeping surface is washable, and 'two fully collapsible frames' vs canon's X-trestle language — fine on video, don't copy into spec text. Fridges mentioned as a product ambition (not in current product canon). 'Made completely from recycled plastic' overstates: canvas and steel poles are not recycled plastic — do not reuse that sentence verbatim in claim-checked copy. Cutting machine 'we haven't named yet'; 'Come on, Puppy' aside is filler. Monologue, no attribution issues."
+    }
+  ]
+}

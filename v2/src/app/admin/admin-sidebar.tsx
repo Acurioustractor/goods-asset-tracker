@@ -56,6 +56,7 @@ const navigation: NavGroup[] = [
       { name: 'Dashboard',   href: '/admin',                    icon: LayoutDashboard },
       { name: 'Atlas',       href: '/admin/atlas',              icon: Globe },
       { name: 'Voices',      href: '/admin/voices',             icon: Users },
+      { name: 'Voice Impact', href: '/admin/voice-impact',      icon: Users },
       { name: 'Money story', href: '/admin/cost-model',         icon: Calculator },
       { name: 'People',      href: '/admin/people',             icon: Building2 },
       { name: 'Raise',       href: '/admin/deals',              icon: Crosshair },

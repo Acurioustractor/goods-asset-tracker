@@ -16,6 +16,7 @@ const TIER_TONE: Record<VoiceTier, string> = {
 
 const TABS: { label: string; href: string; current?: boolean }[] = [
   { label: 'Overview', href: '/admin/voices', current: true },
+  { label: 'Voice Impact Model', href: '/admin/voice-impact' },
   { label: 'Atlas', href: '/admin/story-atlas' },
   { label: 'Registry', href: '/admin/storytellers' },
   { label: 'Quotes', href: '/admin/quotes' },
