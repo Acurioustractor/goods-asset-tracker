@@ -25,7 +25,7 @@ const NAME_FIX = { 'Shane Bloomfield': 'Shayne Bloomfield', 'Kirsty Bloomfield':
 async function elConsentSnapshot() {
   if (!EL_URL || !EL_KEY) throw new Error('EL env missing');
   const res = await fetch(
-    `${EL_URL}/rest/v1/transcripts?project_id=eq.${GOODS_PROJECT}&deleted_at=is.null&consent_withdrawn_at=is.null&word_count=gte.100&select=id,title,word_count,ai_analysis_allowed,ai_processing_consent,privacy_level,cultural_sensitivity,requires_elder_review,storyteller_id,storytellers(display_name,public_avatar_url,profile_image_url,location,is_elder)&limit=100`,
+    `${EL_URL}/rest/v1/transcripts?project_id=eq.${GOODS_PROJECT}&deleted_at=is.null&consent_withdrawn_at=is.null&word_count=gte.100&select=id,title,word_count,character_count,ai_analysis_allowed,ai_processing_consent,privacy_level,cultural_sensitivity,requires_elder_review,storyteller_id,storytellers(display_name,public_avatar_url,profile_image_url,location,is_elder)&limit=100`,
     { headers: { apikey: EL_KEY, Authorization: `Bearer ${EL_KEY}` } },
   );
   if (!res.ok) throw new Error(`EL ${res.status}`);
@@ -72,6 +72,7 @@ for (const a of analyses) {
       staff: !!a.staff,
       transcriptCount: 0,
       totalWords: 0,
+      totalChars: 0,
       elConsent: {
         aiAnalysisAllowed: elRow.ai_analysis_allowed,
         aiProcessingConsent: elRow.ai_processing_consent,
@@ -87,11 +88,13 @@ for (const a of analyses) {
   v.staff = v.staff || !!a.staff;
   v.transcriptCount += 1;
   v.totalWords += elRow.word_count || 0;
+  v.totalChars += elRow.character_count || 0;
   v.transcripts.push({
     storyteller: name,
     transcriptId: a.transcript_id,
     title: elRow.title || '',
     wordCount: elRow.word_count || 0,
+    characterCount: elRow.character_count || 0,
     held: !!a.held,
     staff: !!a.staff,
     topQuotes: (a.top_quotes || []).map((q) => ({

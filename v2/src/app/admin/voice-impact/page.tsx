@@ -169,15 +169,22 @@ export default async function VoiceImpactPage() {
             return (
               <div key={v.name} className={`rounded-lg border p-4 ${v.held ? 'border-red-200 bg-red-50/40' : 'border-stone-200'}`}>
                 <div className="flex items-start gap-3">
-                  {v.portrait ? (
-                    // EL-hosted portrait; plain img keeps remote domains simple on an admin page.
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={v.portrait} alt={v.name} className="h-14 w-14 rounded-full object-cover" />
-                  ) : (
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-stone-200 font-serif text-lg text-stone-600">
-                      {v.name.split(' ').map((p) => p[0]).slice(0, 2).join('')}
+                  <div className="shrink-0 text-center">
+                    {v.portrait ? (
+                      // EL-hosted portrait; plain img keeps remote domains simple on an admin page.
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={v.portrait} alt={v.name} className="h-14 w-14 rounded-full object-cover" />
+                    ) : (
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-stone-200 font-serif text-lg text-stone-600">
+                        {v.name.split(' ').map((p) => p[0]).slice(0, 2).join('')}
+                      </div>
+                    )}
+                    <div className="mt-1 text-[10px] font-medium leading-tight text-stone-500">
+                      {v.transcriptCount}T
+                      <br />
+                      {(v.totalChars / 1000).toFixed(1)}k ch
                     </div>
-                  )}
+                  </div>
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="font-semibold text-stone-900">{v.name}</span>
@@ -187,7 +194,8 @@ export default async function VoiceImpactPage() {
                     </div>
                     <div className="text-xs text-stone-500">
                       {v.location ?? 'location unrecorded'} · {v.transcriptCount} transcript{v.transcriptCount > 1 ? 's' : ''} ·{' '}
-                      {v.totalWords.toLocaleString()} words{photos > 0 ? ` · ${photos} linked photo${photos > 1 ? 's' : ''}` : ''}
+                      {v.totalWords.toLocaleString()} words · {v.totalChars.toLocaleString()} characters
+                      {photos > 0 ? ` · ${photos} linked photo${photos > 1 ? 's' : ''}` : ''}
                     </div>
                   </div>
                 </div>

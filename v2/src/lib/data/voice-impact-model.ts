@@ -98,6 +98,7 @@ export interface VoiceTranscriptAnalysis {
   transcriptId: string;
   title: string;
   wordCount: number;
+  characterCount: number;
   held: boolean;
   staff: boolean;
   topQuotes: VoiceQuote[];
@@ -116,6 +117,7 @@ export interface VoiceProfile {
   staff: boolean;
   transcriptCount: number;
   totalWords: number;
+  totalChars: number;
   /** EL's own consent flags, shown honestly next to Ben's blanket analysis authorisation. */
   elConsent: {
     aiAnalysisAllowed: boolean | null;
