@@ -13,7 +13,7 @@
 | 1 | Storytellers, quotes + impact-link model | `01-storytellers.md` | IN PROGRESS |
 | 2 | Financial modelling — how it works, how to explain it | `02-financial-model.md` | DRAFT (Ben review) — label conflicts + revenue triangle flagged inside |
 | 3 | Key partners + people who make it possible | `03-partners-people.md` | DRAFT 2026-07-20 — off crm_contacts (135); dedup queue + 4 Ben items inside |
-| 4 | QBE work — opportunity register, supporters, Artifact Hub, Cost Model v6 (Notion review) | `04-qbe-pipeline.md` | pending |
+| 4 | QBE work — opportunity register, supporters, Artifact Hub, Cost Model v6 (Notion review) | `04-qbe-pipeline.md` | DRAFT 2026-07-20 — must-win status table + 4 stale Notion items (Utopia 107/87 line, runway gates, Centrecorp 130-bed figure, Snow acquittal) |
 | 5 | Diagrams + model drawings — existing and not-yet-done | `05-diagrams.md` | DRAFT 2026-07-20 — 4 money charts verified at canon; map.png STALE (496/9) needs regen; 7-item not-yet-drawn list inside |
 | 6 | Full written stories (Project History; People, Places and the Work) | `06-full-stories.md` | DRAFT 2026-07-20 — 1 trip story + 6 journeyStories + deck narrative mapped to pitch moments; Maningrida = biggest story hole; 6 stories-to-write list inside |
 | 7 | Photos + videos — full media inventory (incl. Nic plant walkthrough, Sinnae, Mykel, Karen videos) | `07-media.md` | DRAFT 2026-07-20 — 37 deck images + 134 starred mapped; Mykel/Karen videos found, Sinnae NOT found, May-trip footage confirmed absent; tagging effectively unstarted (1 image); media_links seed plan inside |
