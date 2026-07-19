@@ -68,7 +68,7 @@ Austcover (Vanessa Jennings, canvas), Beko (Amanda Hart, washer prototype conver
 
 ## Data-quality queue (feeds the crm_contacts cleanup task)
 
-- Duplicate people: Tony / Tony (Anyinginyi) / Tony Miles = one person, three rows. Tanya Turner x2. Tara Castle x2. Georgina Byron appears as funder and (wrongly) as storyteller "Georgina Byron AM". Marty Taylor and Narelle Anderson each solo plus a combined row. Norman Frank + Simon Quilty combined row duplicates their solo rows. Homeland School(s) Company x3 variants.
+- Duplicate people: Tony / Tony (Anyinginyi) / Tony Miles = one person, three rows. Tanya Turner x2. Tara Castle x2. (Correction 2026-07-20: "Georgina Byron AM" as storyteller is RIGHT — she has 2 EL transcripts, now in the Voice Impact Model as the funder-witness voice; the funder row and storyteller row should link, not merge.) Marty Taylor and Narelle Anderson each solo plus a combined row. Norman Frank + Simon Quilty combined row duplicates their solo rows. Homeland School(s) Company x3 variants.
 - Org-as-contact rows to move to an ORG layer: Envirobank, Julalikari Council, Urapuntja, PICC, Homeland Schools, Centrecorp Foundation, Utopia Homelands, WHSAC x2, Dusseldorp Forum, Giant Leap, Paul Ramsay, Tim Fairfax, Oranges & Sardines, NT Housing, Our Shed, BHAC laundromat, Red Dust Studios, Tennant Creek youth centre.
 - 98 contacts have no last-contact date; Gmail sweep only covered addresses on file.
 
