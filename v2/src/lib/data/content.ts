@@ -44,7 +44,7 @@ The answer became Goods: durable, repairable, community-designed "health hardwar
     { year: '2016-2020', event: 'Orange Sky expands to remote communities (now 1/3 of services)' },
     { year: 'Nov 2022', event: 'Goods project kicks off with advisory session' },
     { year: 'Sept 2023', event: 'A Curious Tractor formally founded' },
-    { year: '2024+', event: 'Active bed pilots deliver 536 beds across communities' }, // canonical: see asset-canonical.ts
+    { year: '2024+', event: 'Active bed pilots deliver 540 beds across communities' }, // canonical: see asset-canonical.ts
   ],
 
   problem: {
@@ -895,17 +895,17 @@ export const communityLocations: CommunityLocation[] = [
 // ---------------------------------------------------------------------------
 //
 // The canonical deployed-bed register lives in compendium.ts `deployments`
-// (sums to EXPECTED_DEPLOYED_BEDS = 536; the live Supabase register is
+// (sums to EXPECTED_DEPLOYED_BEDS = 540; the live Supabase register is
 // authoritative, this is the labelled static fallback).
 //
 // `communityLocations` (heatpost-map baselines, live-overridden except where
 // staticBedCount=true) now covers all 9 deployed communities, including the
 // single-bed capital-city deployments Darwin (1) and Canberra (2), so the map
-// matches the published "9 communities / 536 beds". `communityPartnerships`
+// matches the published "11 communities / 540 beds". `communityPartnerships`
 // (narrative subset) stays INTENTIONALLY NARROWER: it lists only communities
 // with a real narrative partner, so it still omits Darwin/Canberra (a bare
 // deployment is not a partnership story, and inventing one would be fabrication).
-// So we do NOT force either array's sum to equal 536. Instead we assert that
+// So we do NOT force either array's sum to equal 540. Instead we assert that
 // (a) no single community's static count EXCEEDS the canonical register value,
 // and (b) neither array's total exceeds EXPECTED_DEPLOYED_BEDS. This catches the
 // previous divergence (139/141/60/96 baselines that overstated some communities)
@@ -1259,7 +1259,7 @@ export const mediaPack = {
   aboutACT: `A Curious Tractor is the organisation behind Goods on Country. Founded in September 2023 by Nicholas Marchesi and Benjamin Knight, ACT exists to design, manufacture, and transfer ownership of essential goods to remote First Nations communities across Australia. The name reflects the approach: curiosity-driven problem solving applied to entrenched disadvantage. ACT is a social enterprise working toward community ownership of manufacturing.`, // NOTE: ACT (A Curious Tractor Pty Ltd) is NOT a registered charity or DGR entity — do not add that claim here.
 
   // Copy-paste-ready press boilerplate
-  pressBoilerplate: `Goods on Country is a social enterprise delivering durable, community-designed essential goods to remote First Nations communities across Australia. The flagship product, the Stretch Bed, is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty Australian canvas. Each bed diverts 20kg of plastic from landfill, assembles in under five minutes with no tools, and supports up to 200kg. With 536 beds delivered across 9 communities, Goods on Country addresses the environmental health conditions that drive preventable disease, including Rheumatic Heart Disease, by putting health hardware directly into the hands of families who need it. The organisation's long-term goal is to transfer manufacturing capability to community-owned enterprises. Founded in 2023, Goods on Country is a project of A Curious Tractor.`,
+  pressBoilerplate: `Goods on Country is a social enterprise delivering durable, community-designed essential goods to remote First Nations communities across Australia. The flagship product, the Stretch Bed, is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty Australian canvas. Each bed diverts 20kg of plastic from landfill, assembles in under five minutes with no tools, and supports up to 200kg. With 540 beds delivered across 11 communities, Goods on Country addresses the environmental health conditions that drive preventable disease, including Rheumatic Heart Disease, by putting health hardware directly into the hands of families who need it. The organisation's long-term goal is to transfer manufacturing capability to community-owned enterprises. Founded in 2023, Goods on Country is a project of A Curious Tractor.`,
 
   // Brand color palette
   brandColors: [

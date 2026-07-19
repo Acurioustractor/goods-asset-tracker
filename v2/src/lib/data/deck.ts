@@ -279,9 +279,9 @@ export const deckSlides: DeckSlide[] = [
     photoAlt: 'A delivery day on Country, Utopia',
     place: 'Utopia homelands · May 2026',
     chips: [
-      { label: 'Delivered · beds', value: '536 across 9 communities' },
+      { label: 'Delivered · beds', value: '540 across 11 communities' },
       { label: 'Delivered · washing machines', value: '16 in community' },
-      { label: 'Delivered · plastic diverted', value: '3,460kg (Stretch only)' },
+      { label: 'Delivered · plastic diverted', value: '3,540kg (Stretch only)' },
     ],
     inlineVideo: {
       src: '/video/partners/centrecorp/utopia-delivery-road.mp4',
@@ -298,8 +298,8 @@ export const deckSlides: DeckSlide[] = [
       { label: 'One bed\'s life', href: '/bed/GB0-156-40' },
     ],
     script:
-      'The beds are real. The deliveries are real. 536 beds across nine communities. Eighteen washing machines in community. 3,460kg of plastic diverted, counted on Stretch Beds only. People have assembled them, used them and asked for more. But a delivery count does not tell us where the work, tools, contracts, margin or decisions sit. The truck is a useful test for this whole project. What came in on it? What leaves on it? What stays? If the beds stay but the jobs, tools, knowledge and decisions leave with us, then we have delivered a product and preserved the old arrangement.',
-    note: 'The truck test, adopted from Ben\'s 14 July draft (core-messaging doc §2-3). The one framing device, used once — Ben\'s rule. 3,460kg is Stretch-only provenance (173 × 20kg). Photo is place-attributable (Utopia).',
+      'The beds are real. The deliveries are real. 540 beds across eleven communities. Twenty washing machines in community. 3,540kg of plastic diverted, counted on Stretch Beds only. People have assembled them, used them and asked for more. But a delivery count does not tell us where the work, tools, contracts, margin or decisions sit. The truck is a useful test for this whole project. What came in on it? What leaves on it? What stays? If the beds stay but the jobs, tools, knowledge and decisions leave with us, then we have delivered a product and preserved the old arrangement.',
+    note: 'The truck test, adopted from Ben\'s 14 July draft (core-messaging doc §2-3). The one framing device, used once — Ben\'s rule. 3,540kg is Stretch-only provenance (177 × 20kg). Photo is place-attributable (Utopia).',
   },
   {
     id: 'turn-5',
@@ -344,7 +344,7 @@ export const deckSlides: DeckSlide[] = [
     headline: 'What the capital does, once, near the end.',
     body: 'The funding buys the bridge: the 50-bed in-source run (modelled, then measured), the first place-based ownership pathway with Oonchiumpa, the enterprise-support layer, and plant capex. AU$400K through QBE Catalysing Impact, matched at least 1:1 by signed external commitments. The target match stack (SEFA $300K, Snow $100K, Centrecorp $75K) is proposed today, not signed. Ordinary capital will not fund this stage, because the return being built is the transfer itself.',
     photo: '/images/qbe/communities-screen.png',
-    photoAlt: 'The nine communities served, on the map',
+    photoAlt: 'The eleven communities served, on the map',
     place: 'Signed letters by 31 August 2026',
     chips: [
       { label: 'Measured · revenue (accountant-signed carve-out)', value: 'AU$713,827' },

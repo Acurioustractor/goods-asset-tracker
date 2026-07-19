@@ -72,7 +72,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   {
     id: 'beds-deployed',
     headline: 'Beds deployed',
-    statement: 'Beds deployed across remote Australia, per the live asset register: 363 Basket (legacy) + 173 Stretch (flagship).',
+    statement: 'Beds deployed across remote Australia, per the live asset register: 363 Basket (legacy) + 177 Stretch (flagship).',
     figure: greenFigure('beds-deployed'),
     factId: 'beds-deployed',
     status: 'verified',

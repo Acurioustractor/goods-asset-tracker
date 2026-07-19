@@ -370,14 +370,15 @@ export interface CommunityDeployment {
 // CANONICAL deployed-bed register (static fallback). The LIVE /impact register
 // (Supabase `assets`) is authoritative; these per-community numbers are the
 // labelled static fallback, reconciled 2026-05-29 to the locked canonical split:
-//   Tennant Creek 159, Utopia 147, Palm Island 131, Maningrida 58 (incl. +40 Jul
-//   2026), Kalgoorlie 20, Alice Springs 16, Mt Isa 2, Darwin 1, Canberra 2 = 536
+//   Tennant Creek 160, Utopia 147, Palm Island 131, Maningrida 58 (incl. +40 Jul
+//   2026), Kalgoorlie 20, Alice Springs 16, Mt Isa 2, Darwin 1, Canberra 2,
+//   Kununurra 2, Katherine 1 (Ben count rulings 2026-07-19) = 540
 //   deployed beds.
 // This array is the SINGLE source for the static deployed-bed count via
 // getDeploymentTotals(); content.ts derives its counts from EXPECTED_DEPLOYED_BEDS.
 export const deployments: CommunityDeployment[] = [
   { id: 'palm-island', community: 'Palm Island', traditionalName: 'Bwgcolman', state: 'QLD', beds: 131, washers: 4, status: 'active', partner: 'PICC', contacts: ['Eb & Jahvan Oui'] },
-  { id: 'tennant-creek', community: 'Tennant Creek', traditionalName: 'Wumpurrarni', state: 'NT', beds: 159, washers: 5, status: 'active', partner: 'Wilya Janta', contacts: ['Norman Frank', 'Dr Simon Quilty'] },
+  { id: 'tennant-creek', community: 'Tennant Creek', traditionalName: 'Wumpurrarni', state: 'NT', beds: 160, washers: 5, status: 'active', partner: 'Wilya Janta', contacts: ['Norman Frank', 'Dr Simon Quilty'] },
   { id: 'alice-homelands', community: 'Alice Homelands', state: 'NT', beds: 16, washers: 0, status: 'active', partner: 'Oonchiumpa', contacts: ['Kristy Bloomfield'] },
   { id: 'maningrida', community: 'Maningrida', state: 'NT', beds: 58, washers: 2, status: 'active', partner: 'Homeland Schools Co.' },
   { id: 'kalgoorlie', community: 'Kalgoorlie', traditionalName: 'Ninga Mia', state: 'WA', beds: 20, washers: 0, status: 'active', partner: 'The Community Shed' },
@@ -385,6 +386,8 @@ export const deployments: CommunityDeployment[] = [
   { id: 'mt-isa', community: 'Mt Isa', traditionalName: 'Kalkadoon', state: 'QLD', beds: 2, washers: 0, status: 'testing', partner: 'BG Fit & Men\'s Shed' },
   { id: 'darwin', community: 'Darwin', state: 'NT', beds: 1, washers: 1, status: 'testing', partner: 'Red Dust' },
   { id: 'canberra', community: 'Canberra', state: 'ACT', beds: 2, washers: 0, status: 'testing' },
+  { id: 'kununurra', community: 'Kununurra', state: 'WA', beds: 2, washers: 0, status: 'testing' },
+  { id: 'katherine', community: 'Katherine', state: 'NT', beds: 1, washers: 0, status: 'testing' },
 ];
 
 /**
@@ -392,7 +395,7 @@ export const deployments: CommunityDeployment[] = [
  * count used across content.ts, funder pages, and the impact summary. The live
  * Supabase register stays authoritative; this is the labelled static fallback.
  */
-export const EXPECTED_DEPLOYED_BEDS = 536; // canonical: see asset-canonical.ts (bedsDeployed)
+export const EXPECTED_DEPLOYED_BEDS = 540; // canonical: see asset-canonical.ts (bedsDeployed)
 
 export function getDeploymentTotals() {
   const beds = deployments.reduce((s, d) => s + d.beds, 0);
@@ -630,7 +633,7 @@ export const productionFacility = {
 
 export const environmentalImpact = {
   plasticPerBed: { min: PLASTIC_KG_PER_BED, max: 25, unit: 'kg HDPE' },
-  // Plastic = STRETCH beds only (173 × 20kg = 3,460 kg). Basket Beds are NOT a
+  // Plastic = STRETCH beds only (177 × 20kg = 3,540 kg). Basket Beds are NOT a
   // plastic product, so this is NOT an all-beds × 20 figure. Canonical: see
   // asset-canonical.ts (plasticKg); live source = getCanonicalAssetRollup().
   totalDivertedToDate: CANONICAL_ASSETS.plasticKg,

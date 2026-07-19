@@ -44,60 +44,38 @@ import {
 type NavItem = { name: string; href: string; icon: React.ComponentType<{ className?: string }> };
 type NavGroup = { group: string; items: NavItem[] };
 
-// Musk-5 minimal nav (restructured 2026-05-28 from 35 → 5 top-level + collapsible More).
-// Every item must justify its presence: who uses it, how often, what's the outcome.
-// 5 hubs, each links to its primary page; sub-pages either tabs inside that page or in More.
+// Two-wing nav (restructured 2026-07-19, wiki/investor/09-admin-ia.md).
+// Wing A = Investor Wiki: one item per pitch-area hub, mirroring the 8 passes
+// in wiki/investor/00-INDEX.md. Wing B = Operations: the field/ops day tools.
+// Everything absorbed into a hub stays reachable via that hub's tab row and
+// via the More drawer — no route was removed.
 const navigation: NavGroup[] = [
   {
-    group: 'Today',
+    group: 'Investor wiki',
     items: [
-      { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
-      { name: 'Operating systems', href: '/admin/operating-systems', icon: Network },
+      { name: 'Dashboard',   href: '/admin',                    icon: LayoutDashboard },
+      { name: 'Atlas',       href: '/admin/atlas',              icon: Globe },
+      { name: 'Voices',      href: '/admin/voices',             icon: Users },
+      { name: 'Money story', href: '/admin/cost-model',         icon: Calculator },
+      { name: 'People',      href: '/admin/people',             icon: Building2 },
+      { name: 'Raise',       href: '/admin/deals',              icon: Crosshair },
+      { name: 'Communities', href: '/admin/communities',        icon: Globe },
+      { name: 'Visuals',     href: '/admin/system-visuals',     icon: Layers },
+      { name: 'Media',       href: '/admin/media-library',      icon: Images },
+      { name: 'Pitch',       href: '/admin/pitch-cockpit',      icon: Presentation },
+      { name: 'Consent',     href: '/admin/consent',            icon: FileCheck },
     ],
   },
   {
-    group: 'Make',
+    group: 'Operations',
     items: [
-      { name: 'Production',  href: '/admin/production', icon: Wrench },
-      { name: 'Cost model',  href: '/admin/cost-model', icon: Calculator },
-      { name: 'Assets',      href: '/admin/assets',     icon: Library },
-    ],
-  },
-  {
-    group: 'Place',
-    items: [
-      { name: 'Communities',    href: '/admin/communities',    icon: Globe },
+      { name: 'Today',          href: '/admin/today',          icon: LayoutDashboard },
+      { name: 'Facility',       href: '/admin/facility',       icon: Boxes },
+      { name: 'Production',     href: '/admin/production',     icon: Wrench },
+      { name: 'Assets',         href: '/admin/assets',         icon: Library },
       { name: 'Trip preflight', href: '/admin/bed-preflight',  icon: FileCheck },
       { name: 'Install',        href: '/admin/install-bulk',   icon: Camera },
-    ],
-  },
-  {
-    group: 'Story',
-    items: [
-      { name: 'Pitch cockpit', href: '/admin/pitch-cockpit',   icon: Presentation },
-      { name: 'Deck builder',  href: '/admin/deck-builder',    icon: LayoutGrid },
-      { name: 'Story atlas',   href: '/admin/story-atlas',     icon: Users },
-      { name: 'Media library', href: '/admin/media-library',   icon: Images },
-      { name: 'Media gaps',    href: '/admin/media-gaps',      icon: Radar },
-      { name: 'Consent',       href: '/admin/consent',         icon: FileCheck },
-      { name: 'Canon board',   href: '/admin/canon',           icon: LayoutGrid },
-      { name: 'System visuals', href: '/admin/system-visuals', icon: Layers },
-      { name: 'Registry',      href: '/admin/storytellers',    icon: Users },
-      { name: 'Stories (EL)',  href: '/admin/el-stories',      icon: BookOpen },
-      { name: 'Storytellers (EL)', href: '/admin/el-storytellers', icon: Users },
-      { name: 'Quotes',        href: '/admin/quotes',          icon: Quote },
-      { name: 'Community stories', href: '/admin/community-stories', icon: Globe },
-      { name: 'Site content', href: '/admin/site-content',     icon: FileText },
-    ],
-  },
-  {
-    group: 'Money',
-    items: [
-      { name: 'People',    href: '/admin/people',              icon: Users },
-      { name: 'Funders',   href: '/admin/funders',             icon: Building2 },
-      { name: 'Deals',     href: '/admin/deals',               icon: Crosshair },
-      { name: 'LOI tracker', href: '/admin/loi-tracker',        icon: FileSignature },
-      { name: 'Xero recon', href: '/admin/xero-reconciliation', icon: FileCheck },
+      { name: 'Xero recon',     href: '/admin/xero-reconciliation', icon: FileCheck },
     ],
   },
 ];
@@ -110,6 +88,25 @@ const navigation: NavGroup[] = [
 //
 // /admin/alice-fill is a one-off wizard for 2026-05-21 trip catch-up — never re-linked.
 const moreNavigation: NavItem[] = [
+  // Story surfaces absorbed into the Voices hub (tabs there link to each)
+  { name: 'Story atlas',     href: '/admin/story-atlas',   icon: Users },
+  { name: 'Registry',        href: '/admin/storytellers',  icon: Users },
+  { name: 'Quotes',          href: '/admin/quotes',        icon: Quote },
+  { name: 'Stories (EL)',    href: '/admin/el-stories',    icon: BookOpen },
+  { name: 'Storytellers (EL)', href: '/admin/el-storytellers', icon: Users },
+  { name: 'Community stories', href: '/admin/community-stories', icon: Globe },
+  // Pitch surfaces absorbed into the Pitch hub
+  { name: 'Deck builder',    href: '/admin/deck-builder',  icon: LayoutGrid },
+  { name: 'Quote cards',     href: '/admin/quote-cards',   icon: Quote },
+  // Content/canon absorbed into Visuals
+  { name: 'Canon board',     href: '/admin/canon',         icon: LayoutGrid },
+  { name: 'Media gaps',      href: '/admin/media-gaps',    icon: Radar },
+  { name: 'Site content',    href: '/admin/site-content',  icon: FileText },
+  // Money/pipeline absorbed into Raise + People
+  { name: 'Funders',         href: '/admin/funders',       icon: Building2 },
+  { name: 'LOI tracker',     href: '/admin/loi-tracker',   icon: FileSignature },
+  // Misc
+  { name: 'Operating systems', href: '/admin/operating-systems', icon: Network },
   // Field workflow
   { name: 'Bed signals',     href: '/admin/bed-signals',   icon: Radar },
   { name: 'Install checklist', href: '/admin/install-checklist', icon: ClipboardCheck },

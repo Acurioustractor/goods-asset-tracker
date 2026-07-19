@@ -336,7 +336,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         current: null,
         targets: { year1: 12, year3: 25, vision2030: 60 },
         source: 'supabase',
-        sourceDetail: 'assets table: distinct community values where status in (deployed, allocated). Canonical: 9 communities served (deployed); ~10 distinct incl. allocated/placeholder (2026-05-30).',
+        sourceDetail: 'assets table: distinct community values where status in (deployed, allocated). Canonical: 11 communities served (deployed); ~12 distinct incl. allocated/placeholder (2026-07-19).',
         optimizationLevers: ['Distribution partnerships', 'Freight networks', 'Health org partnerships'],
         computeFn: 'getCommunitiesServed',
       },

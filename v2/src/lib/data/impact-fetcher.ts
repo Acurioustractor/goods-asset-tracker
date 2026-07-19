@@ -16,6 +16,7 @@ import {
   type OptimizationOpportunity,
 } from './impact-model';
 import { PLASTIC_KG_PER_BED } from './products';
+import { CANONICAL_ASSETS } from './asset-canonical';
 
 // ---------------------------------------------------------------------------
 // Named, sourced constants for derived impact metrics
@@ -32,13 +33,14 @@ const AVG_HOUSEHOLD_SIZE = 2.5;
 // when a partner clinical method (Miwatj) produces it, attributed to that partner.
 
 /**
- * Washing machines: 16 in community is the canonical, Ben-confirmed figure
- * (2026-06-11). It is the single public count and supersedes the old deployed/
- * working split. The register still holds more deployed washer rows pending a
- * status cleanup, so this is a curated constant, not auto-derived from rows.
- * Never publish the raw register row count (deployed) or 41 (all rows).
+ * Washing machines: the canonical, Ben-confirmed in-community figure lives in
+ * CANONICAL_ASSETS.washersInCommunity (asset-canonical.ts). It is the single
+ * public count and supersedes the old deployed/working split. The register
+ * still holds more deployed washer rows pending a status cleanup, so this is
+ * a curated constant, not auto-derived from rows. Never publish the raw
+ * register row count (deployed) or 41 (all rows).
  */
-const WASHERS_IN_COMMUNITY = 16;
+const WASHERS_IN_COMMUNITY = CANONICAL_ASSETS.washersInCommunity;
 
 // ---------------------------------------------------------------------------
 // Individual data fetchers
@@ -49,7 +51,7 @@ interface AssetStats {
   totalBeds: number; // deployed beds (Stretch + Basket)
   stretchBedsDeployed: number; // recycled-HDPE beds — the plastic-diversion product
   basketBedsDeployed: number; // archived prototype — NOT a plastic product
-  washersInCommunity: number; // canonical in-community washing-machine count (16, curated)
+  washersInCommunity: number; // canonical in-community washing-machine count (curated)
   communitiesServed: number;
   communityBreakdown: { community: string; count: number }[];
 }

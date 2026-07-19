@@ -200,7 +200,7 @@ const snow: PartnerDashboard = {
   audience: 'funder',
   heroLine: 'Where this is heading, and what it takes to get there',
   intro:
-    'Three years ago, Snow backed an idea that was more promise than proof. That backing is in the houses now. We are building a recycled-plastic production economy on Country, designed to transfer into community ownership, with beds and washing machines already in homes across nine communities. This page is a record of what it built, and a map of where it goes next.',
+    'Three years ago, Snow backed an idea that was more promise than proof. That backing is in the houses now. We are building a recycled-plastic production economy on Country, designed to transfer into community ownership, with beds and washing machines already in homes across eleven communities. This page is a record of what it built, and a map of where it goes next.',
   thesisLine:
     'A bed off the floor and clean bedding sit inside the documented prevention chain for rheumatic heart disease. That is what Snow has been backing.',
   goalStatement:
@@ -322,9 +322,9 @@ const snow: PartnerDashboard = {
     {
       heading: 'Done',
       items: [
-        { title: '536 beds delivered across 9 communities' },
+        { title: '540 beds delivered across 11 communities' },
         { title: 'Containerised production plant built (recycled-plastic line)' },
-        { title: '18 washing machines in community' },
+        { title: '20 washing machines in community' },
         { title: 'Utopia + Alice Springs trip, May 2026', note: '87 beds that trip' },
       ],
     },

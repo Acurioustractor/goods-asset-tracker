@@ -90,15 +90,15 @@ export const snowConfig: FunderConfig = {
   // Snow's own eight funding principles, each brought to the spine (P4, 2026-06-19):
   // a cleared community voice, a canon number, and an honest label (verified /
   // modelled / future). Voices are verbatim from curated-quotes.ts and every author
-  // is on the cleared-for-external list. Numbers come from canon (536 beds / 9
-  // communities / 18 washers / 3,460kg at 20kg per Stretch bed (173 Stretch only); ~$493K Snow relationship;
+  // is on the cleared-for-external list. Numbers come from canon (540 beds / 11
+  // communities / 20 washers / 3,540kg at 20kg per Stretch bed (177 Stretch only); ~$493K Snow relationship;
   // 15-20 beds / 8 families is the Snow-funded field-test period before Centrecorp).
   principles: [
     {
       id: 1,
       name: 'First Nations leadership and empowerment',
       evidence:
-        '"Now we\'ve got our own ways, we can collaborate with our own people. Not only here. It\'ll be everywhere." (Norman Frank, Tennant Creek).\n- The Oonchiumpa Bloomfield family leads design decisions; cultural advisors are paid at university research rates (about $3,800 a day) through 2024-25 (verified).\n- 9 communities served to date (verified). The path runs toward community-owned production assets (future): Palm Island offered to buy a plant, and QIC committed to building 50 beds with staff for NAIDOC week.',
+        '"Now we\'ve got our own ways, we can collaborate with our own people. Not only here. It\'ll be everywhere." (Norman Frank, Tennant Creek).\n- The Oonchiumpa Bloomfield family leads design decisions; cultural advisors are paid at university research rates (about $3,800 a day) through 2024-25 (verified).\n- 11 communities served to date (verified). The path runs toward community-owned production assets (future): Palm Island offered to buy a plant, and QIC committed to building 50 beds with staff for NAIDOC week.',
     },
     {
       id: 2,
@@ -110,19 +110,19 @@ export const snowConfig: FunderConfig = {
       id: 3,
       name: 'Place-based, on-Country delivery',
       evidence:
-        '"Every time I go away, it\'s like it\'s calling me. Come back home." (Dianne Stokes, Tennant Creek, who named the washing machine Pakkimjalki Kari in Warumungu).\n- Northern Territory circuit: Alice Springs, Tennant Creek, Katherine and Darwin, with Utopia Homelands and Maningrida sites confirmed. NT is one of Snow\'s four priority places (verified).\n- 3,460kg of plastic diverted to date at 20kg of local waste per Stretch Bed, Stretch only (modelled); production is planned in community sheds.',
+        '"Every time I go away, it\'s like it\'s calling me. Come back home." (Dianne Stokes, Tennant Creek, who named the washing machine Pakkimjalki Kari in Warumungu).\n- Northern Territory circuit: Alice Springs, Tennant Creek, Katherine and Darwin, with Utopia Homelands and Maningrida sites confirmed. NT is one of Snow\'s four priority places (verified).\n- 3,540kg of plastic diverted to date at 20kg of local waste per Stretch Bed, Stretch only (modelled); production is planned in community sheds.',
     },
     {
       id: 4,
       name: 'Genuine collaboration and partnerships',
       evidence:
-        '"When it comes from an Aboriginal person, it works. That\'s what makes the difference." (Jason).\n- An Orange Sky-inspired model: ACT builds container facilities, local organisations staff and operate them. 18 washing machines are now in community (verified).\n- Partner pipeline includes the Centre of Appropriate Technology, NPY Women\'s Council and the Tennant Creek Community Shed; we partner with existing strong organisations rather than create a separate entity.\n- Products address community-chosen priorities: beds and washing machines now, with a fridge as a future product line the community is exploring (design not yet started; it progresses when community is ready).',
+        '"When it comes from an Aboriginal person, it works. That\'s what makes the difference." (Jason).\n- An Orange Sky-inspired model: ACT builds container facilities, local organisations staff and operate them. 20 washing machines are now in community (verified).\n- Partner pipeline includes the Centre of Appropriate Technology, NPY Women\'s Council and the Tennant Creek Community Shed; we partner with existing strong organisations rather than create a separate entity.\n- Products address community-chosen priorities: beds and washing machines now, with a fridge as a future product line the community is exploring (design not yet started; it progresses when community is ready).',
     },
     {
       id: 5,
       name: 'Advocacy and policy influence',
       evidence:
-        '"We challenge a lot of that and try to make a difference. Make it easier for our people to live in their homes." (Jimmy Frank).\n- 3,460kg of plastic diverted from landfill to date at 20kg per Stretch Bed, Stretch only (modelled); the work addresses the documented washing-machine dumping cycle in Central Australia (external estimate, about $3M a year in Alice Springs).\n- Building community-led evidence for policy change on plastic waste, circular economy in remote communities, and social procurement (future).',
+        '"We challenge a lot of that and try to make a difference. Make it easier for our people to live in their homes." (Jimmy Frank).\n- 3,540kg of plastic diverted from landfill to date at 20kg per Stretch Bed, Stretch only (modelled); the work addresses the documented washing-machine dumping cycle in Central Australia (external estimate, about $3M a year in Alice Springs).\n- Building community-led evidence for policy change on plastic waste, circular economy in remote communities, and social procurement (future).',
     },
     {
       id: 6,

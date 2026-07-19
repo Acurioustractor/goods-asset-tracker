@@ -39,7 +39,7 @@ export async function GET() {
       livesImpactedModelled: Math.round(a.bedsDeployed * 2.5),
       notes: {
         plastic: 'Stretch beds only (recycled HDPE). Basket beds are not a plastic-diversion product.',
-        washers: '18 washing machines in community (curated, Ben-confirmed; supersedes the raw register row count).',
+        washers: `${a.washersInCommunity} washing machines in community (curated, Ben-confirmed; supersedes the raw register row count).`,
         basis: "status='deployed', summed by quantity; excludes pipeline/requested placeholders.",
       },
     };

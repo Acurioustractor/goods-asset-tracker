@@ -10,7 +10,7 @@ Great to meet you at Parliament House today.
 
 That Stretch Bed you scanned? It started as recycled plastic collected from remote communities, was pressed into legs, paired with galvanised steel poles and heavy-duty canvas, and assembled right here for the event.
 
-We've delivered 536 beds across 9 communities — from Palm Island to Tennant Creek to Utopia Homelands. Each one is tracked from manufacture to delivery (you saw how that works when you scanned the QR code).
+We've delivered 540 beds across 11 communities — from Palm Island to Tennant Creek to Utopia Homelands. Each one is tracked from manufacture to delivery (you saw how that works when you scanned the QR code).
 
 But beds are just the start. We're also building:
 

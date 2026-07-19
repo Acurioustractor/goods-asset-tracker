@@ -24,6 +24,11 @@ type CommunityRow = {
   lng: number | null;
   name_aliases: string[] | null;
   notes: string | null;
+  facility_interest: string | null;
+  facility_notes: string | null;
+  key_people: Array<{ name: string; role?: string; org?: string; storytellerSlug?: string; note?: string }> | null;
+  procurement_contacts: Array<{ name: string; org?: string; note?: string }> | null;
+  notion_url: string | null;
 };
 
 type RollupRow = {
@@ -100,7 +105,7 @@ export default async function CommunityDetailPage({
   const [commRes, rollupRes] = await Promise.all([
     supabase
       .from('communities')
-      .select('id, name, traditional_name, state, status, partner, contacts, region, lat, lng, name_aliases, notes')
+      .select('id, name, traditional_name, state, status, partner, contacts, region, lat, lng, name_aliases, notes, facility_interest, facility_notes, key_people, procurement_contacts, notion_url')
       .eq('id', id)
       .maybeSingle(),
     supabase
@@ -263,6 +268,51 @@ export default async function CommunityDetailPage({
         <Kpi label="Open Demand" value={fmt(rollup.open_demand_qty)} sub={fmtMoney(rollup.open_demand_value_cents)} />
         <Kpi label="Demand Gap" value={fmt(gap)} sub={gap > 0 ? 'beds short of demand' : 'fulfilled or no demand'} highlight={gap > 20} />
       </section>
+
+      {/* People & facility — live from communities columns (seeded 2026-07-19) */}
+      {((community.key_people?.length || 0) > 0 || (community.procurement_contacts?.length || 0) > 0 || community.facility_interest) && (
+        <section className="grid gap-4 md:grid-cols-2">
+          <div className="rounded-lg border bg-white p-4">
+            <h2 className="text-sm font-semibold">People</h2>
+            <ul className="mt-2 space-y-2">
+              {(community.key_people || []).map((p) => (
+                <li key={p.name} className="text-sm">
+                  {p.storytellerSlug ? (
+                    <Link href={`/storytellers/${p.storytellerSlug}`} className="font-medium hover:underline">{p.name}</Link>
+                  ) : (
+                    <span className="font-medium">{p.name}</span>
+                  )}
+                  <span className="text-xs text-gray-500">{p.role ? ` · ${p.role}` : ''}{p.org ? ` · ${p.org}` : ''}</span>
+                  {p.note && <div className="text-[11px] text-gray-400">{p.note}</div>}
+                </li>
+              ))}
+              {(community.procurement_contacts || []).map((p) => (
+                <li key={p.name} className="text-sm">
+                  <span className="font-medium">{p.name}</span>
+                  {p.org && <span className="text-xs text-gray-500"> · {p.org}</span>}
+                  <span className="ml-1.5 rounded-full bg-blue-100 px-1.5 py-0.5 text-[10px] font-semibold text-blue-800">procurement</span>
+                  {p.note && <div className="text-[11px] text-gray-400">{p.note}</div>}
+                </li>
+              ))}
+            </ul>
+            {community.notion_url && (
+              <a href={community.notion_url} className="mt-2 inline-block text-[11px] text-gray-400 underline" target="_blank" rel="noreferrer">Notion record</a>
+            )}
+          </div>
+          <div className="rounded-lg border bg-white p-4">
+            <h2 className="text-sm font-semibold">Production facility</h2>
+            {community.facility_interest ? (
+              <p className="mt-2 inline-flex rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-semibold text-emerald-800 capitalize">{community.facility_interest}</p>
+            ) : (
+              <p className="mt-2 text-sm text-gray-400">Not yet assessed.</p>
+            )}
+            {community.facility_notes && <p className="mt-2 text-xs leading-relaxed text-gray-500">{community.facility_notes}</p>}
+            <p className="mt-3 text-[11px] text-gray-400">
+              Stages: interested → exploring → committed → progressing. Evidence-only, never guessed.
+            </p>
+          </div>
+        </section>
+      )}
 
       {(rollup.active_pipeline_cents > 0 || rollup.won_revenue_cents > 0) && (
         <section className="rounded-lg border bg-gray-50 px-4 py-3 text-sm text-gray-700">

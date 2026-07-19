@@ -28,7 +28,7 @@ export const THEMES: Theme[] = [
   { id: 'jobs-ownership',   name: 'Jobs & Community Ownership',        blurb: 'Real paid jobs On Country, young people building the product, the arc toward community-owned enterprise.', investment: 'Community ownership is the endgame: the plant is built to transfer. The recoverable-grant thesis.', story: 'The Model, commerce not charity, the ownership handover.' },
   { id: 'cost-curve',       name: 'The Freight Tax & Cost Curve',      blurb: 'The economics through-line. The remoteness freight premium, and the cost-down as production in-sources On Country.', investment: 'Unit economics work and THE ASK ($400K by 31 Aug, 1:1 match).', story: 'The Problem, the freight tax.' },
   { id: 'storytellers',     name: 'Storytellers & Voices',            blurb: 'Consent-cleared portraits, interviews and quotes. Community members, Elders, health workers, funders.', investment: 'Real unmet demand pull: a named consent-cleared community member with their bed.', story: 'The Voice, community members name the need.' },
-  { id: 'communities',      name: 'Communities & Country',            blurb: 'Place-based media grouped by community and Country, and the surrounding landscape.', investment: 'Proof of delivery at scale: hundreds of beds across nine communities, every unit QR-tracked.', story: 'This is working, the live map.' },
+  { id: 'communities',      name: 'Communities & Country',            blurb: 'Place-based media grouped by community and Country, and the surrounding landscape.', investment: 'Proof of delivery at scale: hundreds of beds across eleven communities, every unit QR-tracked.', story: 'This is working, the live map.' },
 ];
 
 export const THEME_IDS = THEMES.map((t) => t.id);
