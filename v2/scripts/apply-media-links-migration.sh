@@ -1,23 +1,16 @@
 #!/bin/bash
 # Applies scripts/migrations/2026-07-20-media-links.sql to the Goods
 # project (cwsyhpiuepvdjtxaozwf) via the Supabase Management API, using the
-# access token from your own shell (supabase login). Run by Ben with `!`.
+# access token from your own shell (supabase login).
+# Sends the file verbatim (newlines preserved — the SQL has inline -- comments,
+# so collapsing newlines comments out the rest of the statement) with a curl
+# User-Agent, since the default urllib UA gets a Cloudflare 403.
+# APPLIED 2026-07-20; idempotent, safe to re-run.
 set -euo pipefail
 TOK=$(cat ~/.supabase/access-token 2>/dev/null || security find-generic-password -s 'Supabase CLI' -w)
-SQL=$(grep -v '^--' "$(dirname "$0")/migrations/2026-07-20-media-links.sql" | tr '\n' ' ')
-python3 - "$TOK" "$SQL" <<'EOF'
-import json, sys, urllib.request
-tok, sql = sys.argv[1], sys.argv[2]
-req = urllib.request.Request(
-    "https://api.supabase.com/v1/projects/cwsyhpiuepvdjtxaozwf/database/query",
-    data=json.dumps({"query": sql}).encode(),
-    headers={"Authorization": f"Bearer {tok}", "Content-Type": "application/json"},
-    method="POST",
-)
-try:
-    print(urllib.request.urlopen(req).read().decode())
-    print("MIGRATION APPLIED OK")
-except urllib.error.HTTPError as e:
-    print("FAILED:", e.code, e.read().decode())
-    sys.exit(1)
-EOF
+DIR=$(dirname "$0")
+BODY=$(python3 -c 'import json,sys; print(json.dumps({"query": open(sys.argv[1]).read()}))' "$DIR/migrations/2026-07-20-media-links.sql")
+curl -sf -X POST "https://api.supabase.com/v1/projects/cwsyhpiuepvdjtxaozwf/database/query" \
+  -H "Authorization: Bearer $TOK" -H "Content-Type: application/json" \
+  -H "User-Agent: supabase-cli" -d "$BODY" \
+  && echo "MIGRATION APPLIED OK"

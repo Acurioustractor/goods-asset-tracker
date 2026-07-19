@@ -24,7 +24,8 @@ const H = { apikey: KEY, Authorization: `Bearer ${KEY}`, 'Content-Type': 'applic
 async function goods(pathq, init) {
   const res = await fetch(`${URL}/rest/v1/${pathq}`, { headers: H, ...init });
   if (!res.ok) throw new Error(`${pathq}: ${res.status} ${await res.text()}`);
-  return res.status === 204 ? null : res.json();
+  const text = await res.text();
+  return text ? JSON.parse(text) : null;
 }
 
 const norm = (s) => (s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
@@ -43,7 +44,8 @@ const resolveCommunity = (name) => communityByName.get(norm(name)) || communityB
 
 const rows = [];
 const unresolved = [];
-const add = (r) => rows.push({ relation: 'shows', consent_status: 'unknown', ...r });
+// Every row carries the same key set (PostgREST bulk insert requires it).
+const add = (r) => rows.push({ relation: 'shows', consent_status: 'unknown', title: null, notes: null, ...r });
 
 // --- 1. starred manifest -----------------------------------------------------
 const manifestPath = path.join(ROOT, 'design/starred-images/_manifest.csv');
