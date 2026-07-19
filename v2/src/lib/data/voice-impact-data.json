@@ -10,6 +10,7 @@
    "portrait": "https://www.empathyledger.com/api/media/536596fd-f0c7-4c42-94e6-53d2eec6e64c/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 5,
    "totalWords": 8443,
    "totalChars": 46887,
@@ -564,6 +565,7 @@
    "portrait": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/profile-images/storytellers/jimmy_frank.jpg",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 4269,
    "totalChars": 24137,
@@ -707,6 +709,214 @@
    ]
   },
   {
+   "name": "Georgina Byron AM",
+   "elStorytellerId": "beeecef9-125f-4507-be00-7dd1312f4fd7",
+   "location": "Tennant Creek, Northern Territory, Australia",
+   "isElder": false,
+   "portrait": "https://www.empathyledger.com/api/media/fe258ff2-623b-4d98-8654-0490376b9b8f/file",
+   "held": false,
+   "staff": false,
+   "funder": true,
+   "transcriptCount": 2,
+   "totalWords": 2687,
+   "totalChars": 15262,
+   "elConsent": {
+    "aiAnalysisAllowed": true,
+    "aiProcessingConsent": true,
+    "privacyLevel": "private",
+    "culturalSensitivity": "standard",
+    "requiresElderReview": false
+   },
+   "transcripts": [
+    {
+     "storyteller": "Georgina Byron AM",
+     "transcriptId": "1698578b-b16a-48ca-8182-9ffbf313c8db",
+     "title": "Georgina Tennent Reflection",
+     "wordCount": 1913,
+     "characterCount": 10674,
+     "held": false,
+     "staff": false,
+     "topQuotes": [
+      {
+       "text": "The reaction has been so overwhelmingly positive and for me to get that insight is just, validated what they're doing.",
+       "timestamp": "00:03:00",
+       "context": "Seeing community response to the beds on the Tennant Creek trip; funder validation in her own words.",
+       "themes": [
+        "reciprocity-partnership",
+        "product-durability"
+       ],
+       "domain": "self-determination",
+       "strength": "deck",
+       "sensitivity": "Funder voice, not community testimony; label as Snow Foundation CEO witness",
+       "cleared": false
+      },
+      {
+       "text": "For me, I wanted to see how the beds would be received and for me it was an overwhelming, yes, we want and need these beds ... And you're doing it with community. It's not a for, it's a with, and that's really important too.",
+       "timestamp": "00:11:00",
+       "context": "Her closing verdict on the trip; the with-not-for line lands the design-with-community principle from a funder's mouth.",
+       "themes": [
+        "design-in-community",
+        "reciprocity-partnership"
+       ],
+       "domain": "self-determination",
+       "strength": "deck",
+       "sensitivity": "Transcript reads 'It's not a four' (audio: 'for'); verify before external use",
+       "cleared": false
+      },
+      {
+       "text": "Healthy homes is the start of everything because you need to have a home that you can call home ... and you're free from mites in your in your home and in your walls and in your bed.",
+       "timestamp": "00:01:00",
+       "context": "What she took from visiting homes in Tennant Creek; the healthy-home why.",
+       "themes": [
+        "rest-sleep-health",
+        "dignity-safety"
+       ],
+       "domain": "rest-health",
+       "strength": "strong",
+       "sensitivity": "The why framing, not an outcome claim",
+       "cleared": false
+      },
+      {
+       "text": "Our role is to plug the gaps. There's quite a few gaps to plug. So we can't do it all. We can do our bit. And we can catalyze others to do their bit as well.",
+       "timestamp": "00:07:00",
+       "context": "How Snow Foundation sees its role; the catalytic-philanthropy frame in her words.",
+       "themes": [
+        "reciprocity-partnership"
+       ],
+       "domain": "jobs-ownership",
+       "strength": "strong",
+       "sensitivity": null,
+       "cleared": false
+      },
+      {
+       "text": "We look at empowering communities and we look at backing entrepreneurs because we are well aware that social change requires innovation and great people to take those risks.",
+       "timestamp": "00:04:00",
+       "context": "Snow's two objectives, said while explaining why they back Goods.",
+       "themes": [
+        "reciprocity-partnership",
+        "ownership-pathway"
+       ],
+       "domain": "jobs-ownership",
+       "strength": "supporting",
+       "sensitivity": "'Empowering' is her word (banned in Goods copy; verbatim quotes exempt but prefer other lines for deck use)",
+       "cleared": false
+      }
+     ],
+     "themesPresent": [
+      {
+       "theme": "reciprocity-partnership",
+       "note": "Friendship and two-way learning with Elders; with-not-for; collaborating with Wilya Janta, Orange Sky, Curious Tractor."
+      },
+      {
+       "theme": "rest-sleep-health",
+       "note": "Healthy homes as the start of everything; mites in walls and beds; RHD commitment 12-13 years and five more."
+      },
+      {
+       "theme": "design-in-community",
+       "note": "The house designed by community, culturally appropriate, solar powered; beds received as wanted, not delivered at."
+      },
+      {
+       "theme": "elders-protocol",
+       "note": "Gratitude to Elders, Patricia, Dianne, Jimmy, Norman, Simon Quilty; time given as generosity."
+      },
+      {
+       "theme": "family-kids",
+       "note": "Healthy kids, educated in their own culture, keeping language; kids around her through the recording."
+      },
+      {
+       "theme": "country-culture",
+       "note": "Culture as the main insight of the trip; two worlds understanding."
+      }
+     ],
+     "narrativeSummary": "Georgina Byron AM, CEO of the Snow Foundation, recorded on the Tennant Creek trip. This is the funder-witness voice: she watched the beds land in community, called the reception an overwhelming yes, and framed Goods as with-not-for. She connects the healthy-homes why, Snow's catalytic role, and a 12-plus-year RHD commitment with five more years just signed.",
+     "analysisNotes": "IMPORTANT: not community testimony; always label as Snow Foundation CEO. Transcription is rough on names: 'Tenant C Creek' (Tennant Creek), 'Will Genta' (Wilya Janta), 'Diane' (Dianne), 'Gal Land' (likely Gadigal land), 'Ru tails' (roo tails), 'CEA' (CEO), 'Patricia and LTI' unclear - verify names against audio before quoting passages containing them. Bed description ('lightweight crates' with washable topper) is the BASKET Bed era. Referendum passage is thoughtful but politically sensitive; hold for context-appropriate use only. She uses 'empowering' repeatedly - her word, verbatim-exempt, but prefer other lines externally."
+    },
+    {
+     "storyteller": "Georgina Byron AM",
+     "transcriptId": "007368d4-f535-4877-900c-be1e9c549596",
+     "title": "Deadly Hearts Trek",
+     "wordCount": 774,
+     "characterCount": 4588,
+     "held": false,
+     "staff": false,
+     "topQuotes": [
+      {
+       "text": "The goods project Nick and Ben, and together with the family built a bed ... just seeing that family jump on that bed and do it together and have a bit of a laugh and just felt really, you know, welcoming and warm. So that was really special.",
+       "timestamp": "00:00:00",
+       "context": "Katherine, on the Deadly Heart Trek: watching a family build a Basket Bed together.",
+       "themes": [
+        "family-kids",
+        "making-jobs"
+       ],
+       "domain": "dignity-safety",
+       "strength": "deck",
+       "sensitivity": "Funder voice; Basket Bed era; transcript says 'Catherine' for Katherine",
+       "cleared": false
+      },
+      {
+       "text": "Us non-indigenous people, we don't have to face that. It's very rare that any of us get rheumatic heart disease because we've got access to a medical system on our doorstep ... Aboriginal communities don't have that health equity.",
+       "timestamp": "00:01:00",
+       "context": "The health-equity framing of RHD from the funder who has backed it for over a decade.",
+       "themes": [
+        "rest-sleep-health",
+        "system-failure"
+       ],
+       "domain": "rest-health",
+       "strength": "strong",
+       "sensitivity": "RHD content: the why, never a Goods outcome claim",
+       "cleared": false
+      },
+      {
+       "text": "This trek is absolutely driven by culture, and community ... It's led by community, ensured that it's culturally safe, and then you have access, the community has access to those medical experts.",
+       "timestamp": "00:02:00",
+       "context": "What makes the Deadly Heart Trek work; the community-led principle.",
+       "themes": [
+        "design-in-community",
+        "elders-protocol"
+       ],
+       "domain": "self-determination",
+       "strength": "strong",
+       "sensitivity": null,
+       "cleared": false
+      },
+      {
+       "text": "May was talking about the load that she has to have with constantly informing white people aboriginal ways. It is very, very different and we have a responsibility to understand that and learn and adapt.",
+       "timestamp": "00:02:00",
+       "context": "Relaying Elder May's teaching about the load of two-way education.",
+       "themes": [
+        "elders-protocol",
+        "country-culture"
+       ],
+       "domain": "self-determination",
+       "strength": "supporting",
+       "sensitivity": "Relays an Elder's words second-hand; verify May's name and consent before external use",
+       "cleared": false
+      }
+     ],
+     "themesPresent": [
+      {
+       "theme": "family-kids",
+       "note": "A family building and jumping on the bed together in Katherine."
+      },
+      {
+       "theme": "rest-sleep-health",
+       "note": "RHD as everyday reality; penicillin injections for up to a decade; health equity gap."
+      },
+      {
+       "theme": "elders-protocol",
+       "note": "Cultural briefing by Elder May; two-way learning."
+      },
+      {
+       "theme": "design-in-community",
+       "note": "Community-led, culturally safe as the trek's core principle."
+      }
+     ],
+     "narrativeSummary": "Georgina on the Deadly Heart Trek in Katherine, where the Goods team built a Basket Bed with a family mid-trek. Connects the bed moment to the RHD prevention work and the health-equity gap, and centres community leadership and cultural safety as the operating principles.",
+     "analysisNotes": "Filed under EL project 96ded48f (Deadly Heart Trek), not the Goods project; included via EXTRA_TRANSCRIPT_IDS. 'Catherine' = Katherine throughout. Basket Bed era. Second-hand Elder content (May) needs name/consent verification."
+    }
+   ]
+  },
+  {
    "name": "Wayne Glenn",
    "elStorytellerId": "8c6bec38-100e-427b-929e-e0acfb6fea67",
    "location": "Darwin, Northern Territory, Australia",
@@ -714,6 +924,7 @@
    "portrait": "https://www.empathyledger.com/api/media/b79233f9-16da-452f-b074-2db82b61298c/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 1023,
    "totalChars": 5795,
@@ -839,6 +1050,7 @@
    "portrait": "https://www.empathyledger.com/api/media/fda858fc-1eff-4f14-95a8-32d53c248eda/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 932,
    "totalChars": 4870,
@@ -976,6 +1188,7 @@
    "portrait": "https://www.empathyledger.com/api/media/956699b5-20fd-4118-ada9-5d94b49f4997/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 5264,
    "totalChars": 27173,
@@ -1128,6 +1341,7 @@
    "portrait": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/media/projects/6bd47c8a-e676-456f-aa25-ddcbb5a31047/media/1770953867375_20251107-1E5A5974.jpg",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 3936,
    "totalChars": 21905,
@@ -1270,6 +1484,7 @@
    "portrait": "https://www.empathyledger.com/api/media/49d3faf5-8ed5-4c48-aaf6-13dc8271f9f5/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 3646,
    "totalChars": 19724,
@@ -1409,6 +1624,7 @@
    "portrait": "https://www.empathyledger.com/api/media/c0c5d0f8-5651-40c2-b94a-b7ccc9a4f80f/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 2916,
    "totalChars": 15005,
@@ -1539,6 +1755,7 @@
    "portrait": "https://www.empathyledger.com/api/media/67f2d6ca-9fa7-444b-8540-7b1f9cecf836/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 2444,
    "totalChars": 13202,
@@ -1671,6 +1888,7 @@
    "portrait": "https://www.empathyledger.com/api/media/3e77c75c-1a20-495f-803b-b35b752c1072/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 2262,
    "totalChars": 11943,
@@ -1804,6 +2022,7 @@
    "portrait": "https://www.empathyledger.com/api/media/c6380511-ba48-4ffc-98ca-e776cc7d8de6/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 1175,
    "totalChars": 6249,
@@ -1930,6 +2149,7 @@
    "portrait": "https://www.empathyledger.com/api/media/853eded5-00be-4e91-8a4c-b5773b404310/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 1083,
    "totalChars": 5851,
@@ -2053,6 +2273,7 @@
    "portrait": "https://www.empathyledger.com/api/media/5da42995-819a-46cf-9597-b79622073ba3/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 615,
    "totalChars": 3276,
@@ -2176,6 +2397,7 @@
    "portrait": "https://www.empathyledger.com/api/media/6174f78f-da79-4cb7-b286-4ca4a27fb095/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 577,
    "totalChars": 3452,
@@ -2302,6 +2524,7 @@
    "portrait": "https://www.empathyledger.com/api/media/96e9cce3-e157-4eae-9342-46672c401d43/file",
    "held": false,
    "staff": true,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 567,
    "totalChars": 3240,
@@ -2441,6 +2664,7 @@
    "portrait": "https://www.empathyledger.com/api/media/e803f092-904c-4f65-9431-d597068e2442/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 299,
    "totalChars": 1583,
@@ -2574,6 +2798,7 @@
    "portrait": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/profile-images/storytellers/ana___bega.jpg",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 3054,
    "totalChars": 16294,
@@ -2695,6 +2920,7 @@
    "portrait": "https://www.empathyledger.com/api/media/184ba704-609e-4d5d-80af-3b332a9e92b2/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 1034,
    "totalChars": 5380,
@@ -2822,6 +3048,7 @@
    "portrait": "https://www.empathyledger.com/api/media/9ced48e6-9a19-46fc-a106-9dbe0fb7140c/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 817,
    "totalChars": 4163,
@@ -2947,6 +3174,7 @@
    "portrait": "https://www.empathyledger.com/api/media/cceba80f-2a71-4c94-8d5d-9555d8977bfd/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 793,
    "totalChars": 4263,
@@ -3071,6 +3299,7 @@
    "portrait": "https://www.empathyledger.com/api/media/2509e451-e570-49d8-902a-7b9990bd6798/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 713,
    "totalChars": 3805,
@@ -3193,6 +3422,7 @@
    "portrait": "https://www.empathyledger.com/api/media/f8db412f-3f46-44e2-bcd7-5f054de24900/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 1380,
    "totalChars": 7974,
@@ -3321,6 +3551,7 @@
    "portrait": "https://www.empathyledger.com/api/media/3cc7a098-4ca3-45ca-a589-e443aa9f6aab/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 832,
    "totalChars": 4334,
@@ -3450,6 +3681,7 @@
    "portrait": "https://www.empathyledger.com/api/media/ff0d049e-fbf8-44e9-bc43-6a690779d186/file",
    "held": true,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 615,
    "totalChars": 3056,
@@ -3541,6 +3773,7 @@
    "portrait": "https://www.empathyledger.com/api/media/2ddd6e38-4c53-4524-9176-60d5da9f7c8d/file",
    "held": false,
    "staff": false,
+   "funder": false,
    "transcriptCount": 1,
    "totalWords": 389,
    "totalChars": 1963,

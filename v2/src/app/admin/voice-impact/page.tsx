@@ -191,6 +191,7 @@ export default async function VoiceImpactPage() {
                       {v.isElder && <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold text-amber-800">ELDER</span>}
                       {v.held && <span className="rounded-full bg-red-100 px-2 py-0.5 text-[10px] font-semibold text-red-700">HELD · internal only</span>}
                       {v.staff && <span className="rounded-full bg-stone-200 px-2 py-0.5 text-[10px] font-semibold text-stone-600">STAFF</span>}
+                      {v.funder && <span className="rounded-full bg-sky-100 px-2 py-0.5 text-[10px] font-semibold text-sky-800">FUNDER WITNESS</span>}
                     </div>
                     <div className="text-xs text-stone-500">
                       {v.location ?? 'location unrecorded'} · {v.transcriptCount} transcript{v.transcriptCount > 1 ? 's' : ''} ·{' '}

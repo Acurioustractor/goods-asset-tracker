@@ -19,6 +19,13 @@ const EL_URL = (process.env.EMPATHY_LEDGER_SUPABASE_URL || '').replace(/"/g, '')
 const EL_KEY = (process.env.EMPATHY_LEDGER_SUPABASE_KEY || '').replace(/"/g, '');
 const GOODS_PROJECT = '6bd47c8a-e676-456f-aa25-ddcbb5a31047';
 
+// Goods-relevant transcripts filed outside the Goods project in EL
+// (null project_id, or another project like the Deadly Heart Trek).
+const EXTRA_TRANSCRIPT_IDS = [
+  '1698578b-b16a-48ca-8182-9ffbf313c8db', // Georgina Byron AM — Tennant reflection (project_id null)
+  '007368d4-f535-4877-900c-be1e9c549596', // Georgina Byron AM — Deadly Hearts Trek (Katherine)
+];
+
 // EL filing-name -> canonical name (Ben-confirmed).
 const NAME_FIX = { 'Shane Bloomfield': 'Shayne Bloomfield', 'Kirsty Bloomfield': 'Kristy Bloomfield' };
 
@@ -32,7 +39,18 @@ async function elConsentSnapshot() {
   return res.json();
 }
 
-const el = await elConsentSnapshot();
+async function elExtraRows() {
+  const sel =
+    'id,title,word_count,character_count,ai_analysis_allowed,ai_processing_consent,privacy_level,cultural_sensitivity,requires_elder_review,storyteller_id,storytellers(display_name,public_avatar_url,profile_image_url,location,is_elder)';
+  const res = await fetch(
+    `${EL_URL}/rest/v1/transcripts?id=in.(${EXTRA_TRANSCRIPT_IDS.join(',')})&select=${sel}`,
+    { headers: { apikey: EL_KEY, Authorization: `Bearer ${EL_KEY}` } },
+  );
+  if (!res.ok) throw new Error(`EL extra ${res.status}`);
+  return res.json();
+}
+
+const el = [...(await elConsentSnapshot()), ...(await elExtraRows())];
 const elById = new Map(el.map((t) => [t.id, t]));
 
 const analyses = [];
@@ -70,6 +88,7 @@ for (const a of analyses) {
       portrait: elRow.storytellers?.profile_image_url || elRow.storytellers?.public_avatar_url || null,
       held: !!a.held,
       staff: !!a.staff,
+      funder: !!a.funder,
       transcriptCount: 0,
       totalWords: 0,
       totalChars: 0,
@@ -86,6 +105,7 @@ for (const a of analyses) {
   const v = byVoice.get(name);
   v.held = v.held || !!a.held;
   v.staff = v.staff || !!a.staff;
+  v.funder = v.funder || !!a.funder;
   v.transcriptCount += 1;
   v.totalWords += elRow.word_count || 0;
   v.totalChars += elRow.character_count || 0;

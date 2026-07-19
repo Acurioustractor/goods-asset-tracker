@@ -115,6 +115,8 @@ export interface VoiceProfile {
   portrait: string | null;
   held: boolean;
   staff: boolean;
+  /** Funder-witness voice (e.g. Snow Foundation CEO) — never community testimony. */
+  funder?: boolean;
   transcriptCount: number;
   totalWords: number;
   totalChars: number;
