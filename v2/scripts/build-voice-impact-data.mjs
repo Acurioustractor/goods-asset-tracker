@@ -24,6 +24,16 @@ const GOODS_PROJECT = '6bd47c8a-e676-456f-aa25-ddcbb5a31047';
 const EXTRA_TRANSCRIPT_IDS = [
   '1698578b-b16a-48ca-8182-9ffbf313c8db', // Georgina Byron AM — Tennant reflection (project_id null)
   '007368d4-f535-4877-900c-be1e9c549596', // Georgina Byron AM — Deadly Hearts Trek (Katherine)
+  '0ecb0185-6533-4275-a150-1634eb9fd616', // Margaret Lloyd — interview (Utopia link pending Ben confirm)
+  'c14ee313-36ce-4fcd-9206-100de73907a4', // Tanya Turner — overall interview (dup 'Tanya1' df1dc435 excluded)
+  '05e786cb-1e0c-49d7-878d-4e7ed546f111', // Kristy — Oonchiumpa summary
+  'f5e322b9-7009-4e41-88e6-2f154448ffd0', // Kristy — full interview
+  'dce4ba4b-d8b3-4322-88bf-e4d9106cd7fe', // Kristy — sitdown #1 (dup dd245985 excluded)
+  '8d6b2835-ae86-43cd-ada7-fd4a8a3410f8', // Kristy — law students (dup be2a232f excluded)
+  'f5083053-a937-4640-ad1d-6cd4dc4a6aef', // Kristy — bringing kids back to country
+  '8fccf899-44a2-483e-b91c-07f1d60dbe54', // Kristy — alliance statement Aug 24
+  '8c08aead-9e66-4d97-bbc1-62e24aa734eb', // Kristy — judges welcome
+  '24c0a11b-24b8-420a-950c-23d1ad33faef', // Kristy — Caterpillar Dreaming (cultural, review)
 ];
 
 // EL filing-name -> canonical name (Ben-confirmed).
