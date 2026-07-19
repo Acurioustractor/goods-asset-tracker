@@ -2,15 +2,23 @@
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-07-19T12:30:00Z
+**Updated:** 2026-07-20
 **Goal:** Investor wiki (8 areas, one careful pass each) + admin restructure into a wiki dashboard + the Goods Atlas (map of everything: communities, people, products, stories, media).
 **Branch:** claude/investment-deck-alignment-y3qc43
 **Test:** `cd v2 && npm run build` (exit 0) + `node --env-file=.env.local scripts/check-asset-drift.mjs` (green)
 
 ### Now
-[->] All shipped locally + pushed. Morning: Ben reviews /admin (wiki dashboard), /admin/atlas, /admin/facility, /admin/communities; then next wiki areas (3 people, 4 QBE/Notion, 5 diagrams, 6 stories, 7 media, 8 deck review).
+[->] All 8 wiki areas drafted. Ben: (1) SAVE the Pencil editor so the .pen canon sweep flushes to disk (19 nodes updated in-editor, file mtime still 8 Jul), then commit it; (2) answer the Ben items below; (3) apply media_links: `v2/scripts/apply-media-links-migration.sh` then `node --env-file=.env.local scripts/backfill-media-links.mjs --apply` (dry-run clean, 105 links).
 
-### This Session (2026-07-19)
+### This Session (2026-07-20)
+- [x] Area 8: `design/goods-funder-deck.html` swept 496/9/16/2,660kg → 540/11/20/3,540kg (committed). `.pen` deck + 3 one-pagers + Pakkimjalki card + admin canon-strip mock swept in-editor (19 text nodes; PENDING Pencil save to disk). "About 130 deployed now" on the $426 slide left as-is pending the $426 claim-label ruling.
+- [x] Area 3: `03-partners-people.md` off crm_contacts (135) — network shape, Elders, partners by function, funders labelled honestly, dedup queue (Tony x3, Tanya Turner x2, Georgina-as-storyteller, org-as-contact rows).
+- [x] Area 4: `04-qbe-pipeline.md` — Notion operating-plan review; 4 stale Notion items: Utopia "107 vs 87" line (ruling is 147), runway gates dated 3 Jul with 18 Jul gate passing at $0 signed, Centrecorp 130-bed figure unverified, Snow acquittal Tier A fixes still staged.
+- [x] Areas 5/6/7 (subagent passes): `05-diagrams.md` (4 money charts verified at canon; **design/deck-photos/map.png STALE 496/9 → NEEDS REGEN**; 7-item not-yet-drawn list), `06-full-stories.md` (Maningrida 40 beds = biggest story hole; 6 stories-to-write), `07-media.md` (Mykel + Karen videos found in v2/public/video/partners/oonchiumpa/; Nic walkthrough = Descript embed only; Sinnae video NOT found; May-trip footage confirmed absent; local-image-tags.json has exactly 1 tag).
+- [x] `/admin/people` wired to crm_contacts: new `v2/src/lib/people-crm.ts` adapter (storyteller-only rows excluded; roles→type lanes; Elder + last-contact tags), people-ghl.ts falls back to runtime aggregation if table unreachable. Build green, drift green.
+- [x] media_links staged (NOT applied): `v2/scripts/migrations/2026-07-20-media-links.sql` (typed media↔entity junction, RLS default-deny) + apply script + `backfill-media-links.mjs` (starred manifest + local-image-tags + EL media_storytellers scoped to Goods project_id; dry-run = 105 links: 54 person / 36 community / 15 story; 1 unresolved: EL "Shane Bloomfield" vs crm "Shayne Bloomfield").
+
+### Earlier Session (2026-07-19)
 - [x] Investor wiki scaffolded: `wiki/investor/00-INDEX.md` + Area 1 (storytellers: 40 voices, 70 quotes, domain coverage; circular economy = 2-quote gap) + Area 2 (financial model; label conflicts flagged) + Area 9 (admin IA, all 57 routes dispositioned) + Area 10 (community counts) + Area 11 (Goods Atlas model).
 - [x] Admin restructured: `/admin` = wiki dashboard (canon strip live from CANONICAL_ASSETS); old ops home preserved verbatim at `/admin/today`; `/admin/voices` hub built; two-wing sidebar (Investor wiki / Operations), nothing removed.
 - [x] `/admin/facility` = production facility overview (8-step process w/ real photos, 3 videos, cost case, shifts, gaps panel). Pencil mocks for dashboard + Voices + Atlas in `design/goods-theory-of-change-v2.pen`.
@@ -21,9 +29,9 @@
 - [x] `crm_contacts` hub seeded: 84 people from 21 Goods sources (idempotent `scripts/seed-crm-contacts.ts`) + Gmail sweep (33 last_contact_dates) + 19 discovery candidates added on Ben's approval → ~135 contacts.
 
 ### Next
-- [ ] Wiki areas 3-8 (people doc, QBE Notion review, diagrams, full stories, media, deck slide review — deck HTML/.pen still carry OLD numbers 496/536; fix in Area 8).
-- [ ] Wire `/admin/people` to read crm_contacts (replace runtime aggregation).
-- [ ] `media_links` table migration + backfill (image tags, EL media_storytellers junction, video paths).
+- [ ] Ben saves Pencil → commit the .pen sweep; apply media_links migration + backfill.
+- [ ] Regenerate `design/deck-photos/map.png` (still 496 beds / 9 places; canon 540/11 incl. Kununurra + Katherine).
+- [ ] Refresh Notion QBE runway gates + fix the Utopia "107 vs 87" line to 147 (day-shift, Ben review).
 - [ ] Notion Community OS ↔ Supabase ↔ GHL sync jobs (end name-matching).
 - [ ] Cleanups: Tony Miles ↔ "Tony (Anyinginyi)" merge; org-as-contact rows (Oranges & Sardines, Our Shed, foundations) → ORG layer; washer register status cleanup (~12 rows) to make 20 query-derivable.
 - [ ] Ben: Margaret (Utopia) registry record/spelling; Julalikari washer recipients; youth-centre follow-up; claim-label ruling ($426 verified vs modelled vs deck "measured"); delete stale SUPABASE_ACCESS_TOKEN line in ~/.zshrc.
