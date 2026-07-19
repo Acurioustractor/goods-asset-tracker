@@ -63,7 +63,7 @@ Ten slides each with a full spoken script: `cover`, `model`, `turn-1` (need is r
 
 ## 5. Stories to write next
 
-1. **Maningrida delivery story** (40 beds + 8 washers in community): the biggest deployment with zero narrative and zero photos. Needs a source trip or partner account; do not synthesise.
+1. **Maningrida delivery story** (40 beds + 8 washers in community): the biggest deployment with no narrative. UPDATE 2026-07-20: a firsthand source now exists — Shayne Bloomfield's EL transcript (section 6 below) covers the whole trip. Write it from his account once quotes clear; do not synthesise beyond it.
 2. **Mykel / Oonchiumpa young-builders story** (registry: yes, two primary quotes): the ownership-pathway proof piece the deck references but no standalone written story carries.
 3. **Pakkimjalki Kari full story** (Dianne naming + Bloomfield family build, Jan 2026): scattered across content.ts, deck model slide, and narrative-foundation; deserves one canonical long-form telling.
 4. **Palm Island story beyond Ivy** (Alfred Johnson freight arithmetic + PICC partnership): problem-moment depth outside the NT.
@@ -71,3 +71,40 @@ Ten slides each with a full spoken script: `cover`, `model`, `turn-1` (need is r
 6. Housekeeping, not writing: sweep deck.ts scripts to 540/177/20/11/3,540 (Area 8), resolve Ampilatwatja Elders' name-credit confirmation, and confirm whether journeyStories get their own section on `/stories` (open question in the stories-page ledger).
 
 *Claims status: inventory is observed from the named files; deployment figures are register-verified canon (Area 10); nothing here creates a new external claim.*
+
+## 6. Shayne Bloomfield quote candidates (added 2026-07-20, pending Ben clearance)
+
+Source: EL transcript `4b390461-d019-4498-9ece-dc44bf6c4268` ("Shane Bloomfield - Recording",
+3,936 words; spelling Ben-confirmed as Shayne). Analysis authorised by Ben 2026-07-20. This is
+the **firsthand Maningrida delivery account**: the Darwin drive, the laundromat refurb, ~20 beds
+built with young people at the aged-care service, washers installed. It also carries reciprocity
+and protocol lines that generalise. All candidates verbatim from the transcript (filler trimmed
+where marked ...); NONE cleared for external use until Ben passes them.
+
+1. **Reciprocity (deck-grade):** "A lot of people say community is community and they need
+   what we've got. When you flip it, we need what they've got."
+2. **The beds, eight weeks on:** "Today my mum still gets text messages from her family
+   saying, I can't believe how good this bed's going ... I don't want to get outta bed in the
+   morning 'cause it's just so comfortable."
+3. **Protocol / how we enter:** "We've liaised with Aboriginal elders, traditional owners of
+   that community, before we've liaised with government members."
+4. **Maningrida aged care:** "We made 20 odd beds in aged care ... utilizing the young people
+   of the aged care service ... They were so willing to learn about how these beds came
+   together."
+5. **What Elders wanted:** "All they wanted was something that's off the ground ... sit on the
+   edge of it and just pop themselves up. Just amazing."
+6. **The washers + recycled plastic:** "They're definitely not gonna break, I can tell you
+   that ... the recycled plastic that you use is blowing my mind away. Every sheet was a
+   different design."
+7. **Connection to country:** "I can go away for years and I come back. The first thing I do
+   is I put my hands on the ground and I say, I'm back."
+8. **Partnership:** already in the registry as his primary quote ("This partnership could go a
+   long way. I feel it's got a long, long path ahead.").
+
+Claim-hygiene note: his hot-wash-kills-disease lines are his own observed testimony; if ever
+used they stay in his voice and never become a Goods health-outcome claim (scabies→RHD stays
+the why only).
+
+Provenance updated: `transcript-provenance.ts` Shayne entry moved
+`blocked_analysis_not_authorized` → `blocked_no_review_or_grant`; EL "Shane" spelling aliased
+to crm "Shayne" in `backfill-media-links.mjs`.

@@ -39,7 +39,9 @@ for (const c of communities) {
   communityByName.set(norm(c.name), c.id);
   communityByName.set(norm(c.name).split(' ')[0], c.id); // "tennant" -> Tennant Creek
 }
-const resolvePerson = (name) => contactByName.get(norm(name)) || null;
+// EL-side spelling variants -> crm canonical (Ben-confirmed 2026-07-20).
+const NAME_ALIASES = new Map([['shane bloomfield', 'shayne bloomfield']]);
+const resolvePerson = (name) => contactByName.get(NAME_ALIASES.get(norm(name)) || norm(name)) || null;
 const resolveCommunity = (name) => communityByName.get(norm(name)) || communityByName.get(norm(name).split(' ')[0]) || null;
 
 const rows = [];

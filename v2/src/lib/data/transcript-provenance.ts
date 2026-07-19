@@ -255,8 +255,8 @@ export const TRANSCRIPT_PROVENANCE: Record<string, TranscriptProvenance> = {
     kind: 'el-transcript',
     transcriptCount: 1,
     approxWords: 3936,
-    releaseState: 'blocked_analysis_not_authorized',
-    note: 'Filed in EL as "Shane Bloomfield". Long recording on file; analysis not yet authorised.',
+    releaseState: 'blocked_no_review_or_grant',
+    note: 'Filed in EL as "Shane Bloomfield" (Ben-confirmed spelling: Shayne, 2026-07-20). Analysis authorised by Ben 2026-07-20; transcript is the firsthand Maningrida delivery account (laundromat refurb, ~20 aged-care beds, washers). Quote candidates staged in wiki/investor/06-full-stories.md pending Ben quote clearance.',
   },
   'Kylie Bloomfield': {
     kind: 'el-transcript',
