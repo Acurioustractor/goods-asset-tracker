@@ -42,7 +42,7 @@
        "domain": "dignity-safety",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "I will know where to come. If I need to wash my blanket, I don't have to go do it in town. Laundry, do it here.",
@@ -55,7 +55,7 @@
        "domain": "dignity-safety",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "It makes me feel proud.",
@@ -146,7 +146,7 @@
        "domain": "self-determination",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "They need to hear from the ground, who wants it, who's gonna do it, who's out there, who needs help?",
@@ -159,7 +159,7 @@
        "domain": "self-determination",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "Why do I think it's comfortable? Because I was looking for these kinds before having a milk crate and a mattress on top. It was comfortable, but not much. But this is more.",
@@ -172,7 +172,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "It's my home and I've got it registered last year... I wanna have a cultural area there, cultural center, and a youth center.",
@@ -3719,7 +3719,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": "Depicts personal hardship (tent, 'rubbish house'); use with dignity framing and confirm consent/clearance before external use.",
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "Because I was sleeping on floor, turn around, turn around. Yeah. No comfortable nothing.",
@@ -3731,7 +3731,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "Our bed is right. That's good. Good... I can sleep there. Yeah.",
@@ -3744,7 +3744,7 @@
        "domain": "rest-health",
        "strength": "strong",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       }
      ],
      "themesPresent": [

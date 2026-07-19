@@ -16,7 +16,8 @@
      ],
      "domain": "rest-health",
      "strength": "deck",
-     "sensitivity": "Depicts personal hardship (tent, 'rubbish house'); use with dignity framing and confirm consent/clearance before external use."
+     "sensitivity": "Depicts personal hardship (tent, 'rubbish house'); use with dignity framing and confirm consent/clearance before external use.",
+     "cleared": true
     },
     {
      "text": "Because I was sleeping on floor, turn around, turn around. Yeah. No comfortable nothing.",
@@ -27,7 +28,8 @@
      ],
      "domain": "rest-health",
      "strength": "deck",
-     "sensitivity": null
+     "sensitivity": null,
+     "cleared": true
     },
     {
      "text": "Our bed is right. That's good. Good... I can sleep there. Yeah.",
@@ -39,7 +41,8 @@
      ],
      "domain": "rest-health",
      "strength": "strong",
-     "sensitivity": null
+     "sensitivity": null,
+     "cleared": true
     }
    ],
    "themes_present": [

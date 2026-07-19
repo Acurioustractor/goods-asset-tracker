@@ -1,499 +1,815 @@
 {
-  "transcripts": [
+ "transcripts": [
+  {
+   "storyteller": "Dianne Stokes",
+   "transcript_id": "1cc79556-5fa8-4c1d-a5c9-b470bbd13bad",
+   "held": false,
+   "top_quotes": [
     {
-      "storyteller": "Dianne Stokes",
-      "transcript_id": "1cc79556-5fa8-4c1d-a5c9-b470bbd13bad",
-      "held": false,
-      "top_quotes": [
-        {
-          "text": "I'm happy. I, I can't tell you how my heart is, uh, hopping and skipping inside me.",
-          "timestamp": "[00:14:00]",
-          "context": "Dianne's reaction at the reveal of the new washing machine at her son Sebastian's house.",
-          "themes": ["washing-clean", "dignity-safety"],
-          "domain": "dignity-safety",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "I will know where to come. If I need to wash my blanket, I don't have to go do it in town. Laundry, do it here.",
-          "timestamp": "[00:18:00]",
-          "context": "On what the machine changes: no more paid trips to the town laundromat to wash blankets.",
-          "themes": ["washing-clean", "system-failure"],
-          "domain": "dignity-safety",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "It makes me feel proud.",
-          "timestamp": "[00:02:00]",
-          "context": "Her answer when asked how it feels to have the washing machine named in language.",
-          "themes": ["country-culture", "washing-clean"],
-          "domain": "self-determination",
-          "strength": "strong",
-          "sensitivity": "Language naming content; elders-protocol care. Transcription garbles the name ('ganja Curry' / 'Bug in UK') — canonical name is Pakkimjalki Kari, Warumungu; verify before any use."
-        },
-        {
-          "text": "...my grandson lives at... stays at Bush doing work. So when he comes in, he comes in a bunch of boys, they come here see so they can wash their clothes and feel happy.",
-          "timestamp": "[00:08:00]",
-          "context": "Who will use the machine: station-working grandson and his mates washing after coming in from bush work.",
-          "themes": ["washing-clean", "family-kids"],
-          "domain": "dignity-safety",
-          "strength": "strong",
-          "sensitivity": null
-        },
-        {
-          "text": "I was gonna have a washing machine, but I haven't got a house yet. So I said, no, my son would need a washing machine because this washing machine is not his.",
-          "timestamp": "[00:09:00]",
-          "context": "Dianne redirected the machine to her son's house because she still has no house on her block.",
-          "themes": ["system-failure", "family-kids"],
-          "domain": "dignity-safety",
-          "strength": "strong",
-          "sensitivity": "Housing deprivation context — handle respectfully; she herself has no house."
-        }
-      ],
-      "themes_present": [
-        {"id": "washing-clean", "evidence": "Entire transcript is the delivery and first run of the Pakkimjalki Kari washing machine at House 13, Alba Camp."},
-        {"id": "family-kids", "evidence": "Machine is for son Sebastian, grandson Stanley and station boys, daughters and grandkids across the camp."},
-        {"id": "system-failure", "evidence": "Existing machine broken with no one knowing why or for how long; Dianne herself has no house; families paying to wash in town."},
-        {"id": "country-culture", "evidence": "Machine named in language; feeling proud of a washing machine in language."},
-        {"id": "product-durability", "evidence": "Nick/Ben frame it as $4,000, 10-year, too-heavy-to-steal machine; Dianne calls it 'indestructible washing machine'."},
-        {"id": "dignity-safety", "evidence": "Washing blankets and sheets at home instead of the town laundromat; boys 'wash their clothes and feel happy'."}
-      ],
-      "narrative_summary": "Verite footage of the first washing machine delivery to Alba Camp, Tennant Creek: Dianne Stokes walks Ben and Nic to her son Sebastian's House 13, where the old machine is dead. She gives Goods its strongest delivery-day reaction line ('my heart is hopping and skipping inside me') and grounds the washer story in real logistics: broken machines, no house of her own, trips to town to wash blankets. It also captures her pricing candour — people can only pay if they're working — useful for the affordability model.",
-      "analysis_notes": "Messy multi-speaker field recording; Speaker 9 is Dianne (confident from content), Speaker 10 is Nic, Speaker 12 likely Ben — several short lines (Speakers 11/13/14/15/16/18/19) are ambiguous, do not attribute. The washing machine name is transcribed as 'ganja Curry' and language as 'Bug in UK' — almost certainly mis-transcriptions of Pakkimjalki Kari / Warumungu; never quote those garbled forms. Contains family deaths at the camp ([00:04:00] ex-husband, brother, others passed there) — sorry-business sensitive, unusable externally. Nic states cost 'about $4,000' and 'last 10 years'. Her line 'sometimes people would afford to pay unless they're working' is honest price feedback. Place details: Alba Camp, House 13, community centre unused, kids' playground with outdoor fan for people sleeping outside."
+     "text": "I'm happy. I, I can't tell you how my heart is, uh, hopping and skipping inside me.",
+     "timestamp": "[00:14:00]",
+     "context": "Dianne's reaction at the reveal of the new washing machine at her son Sebastian's house.",
+     "themes": [
+      "washing-clean",
+      "dignity-safety"
+     ],
+     "domain": "dignity-safety",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
     },
     {
-      "storyteller": "Dianne Stokes",
-      "transcript_id": "37fbb44f-3628-4378-b00e-1765a42179cd",
-      "held": false,
-      "top_quotes": [
-        {
-          "text": "If you have an idea what place you'd go to first go and talk to... the elders. Sit down and talk to them or a group of people and tell them if you can show them how to make them beds, and they'll probably be keen on joining in and helping out.",
-          "timestamp": "[00:09:00]",
-          "context": "Dianne teaching Goods the protocol for entering a new community.",
-          "themes": ["elders-protocol", "design-in-community"],
-          "domain": "self-determination",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "They need to hear from the ground, who wants it, who's gonna do it, who's out there, who needs help?",
-          "timestamp": "[00:10:00]",
-          "context": "On why community knowledge, not government assumption, should drive what gets delivered.",
-          "themes": ["never-asked", "design-in-community"],
-          "domain": "self-determination",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "Why do I think it's comfortable? Because I was looking for these kinds before having a milk crate and a mattress on top. It was comfortable, but not much. But this is more.",
-          "timestamp": "[00:14:00]",
-          "context": "First lie-down verdict on the finished bed, contrasted with her milk-crate setup.",
-          "themes": ["rest-sleep-health", "product-durability"],
-          "domain": "rest-health",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "It's my home and I've got it registered last year... I wanna have a cultural area there, cultural center, and a youth center.",
-          "timestamp": "[00:02:00]",
-          "context": "Her plans for her registered block: a both-ways cultural and youth centre for kids in trouble.",
-          "themes": ["country-culture", "family-kids", "ownership-pathway"],
-          "domain": "self-determination",
-          "strength": "strong",
-          "sensitivity": null
-        },
-        {
-          "text": "Do you think other people are gonna want their beds or, yeah, they'll probably want it... I'm thinking of getting one for them too, made up for them.",
-          "timestamp": "[00:13:00]",
-          "context": "Demand spreading through kinship — nephew, caravan family, families sleeping by the creek.",
-          "themes": ["family-kids", "reciprocity-partnership"],
-          "domain": "rest-health",
-          "strength": "supporting",
-          "sensitivity": "Contains interviewer's question fused into the line — trim to Dianne's words only if used."
-        }
-      ],
-      "themes_present": [
-        {"id": "elders-protocol", "evidence": "Explicit instruction to go to elders first, sit down, talk, before doing anything in a community."},
-        {"id": "design-in-community", "evidence": "Show people how to make the beds so they join in; talk to community and organisation first about how they feel."},
-        {"id": "never-asked", "evidence": "'They need to hear from the ground' — decisions made without asking community are the failure she names."},
-        {"id": "country-culture", "evidence": "Traditional owner on her totem boundary; country 'calling me back home'; both-ways language education; living-museum plan."},
-        {"id": "rest-sleep-health", "evidence": "Milk crates and mattress before; the finished bed judged comfortable and 'number one'."},
-        {"id": "family-kids", "evidence": "Youth centre plans for kids with ankle monitors; beds for nephew and creek families."},
-        {"id": "ownership-pathway", "evidence": "Men's shed idea — working 'away where they can make as many as' beds locally."},
-        {"id": "product-durability", "evidence": "Zipping two beds together 'more strong', washable — daughter's washing machine will do it."}
-      ],
-      "narrative_summary": "Dianne's full seated interview: traditional owner who lived 23 years on her block with only her car for shelter, now with registered land and plans for a both-ways cultural and youth centre. She delivers the elders-first protocol lines that define how Goods enters communities, and gives the milk-crate-to-real-bed comfort verdict at the bed build. This is the source transcript for both the consent-protocol story and the design-in-community story.",
-      "analysis_notes": "TOTEM FLAG: opening line 'where I live is where it's in the boundary of my totem' — totem line, registry HOLD, never external, never deck-grade. Her language name appears garbled ('right now he's in my language, ma, I'm a manga' and 'Billy Belly means good') — transcription unreliable on language words, verify with Dianne before quoting any language term. Lightly labelled transcript with interviewer questions interleaved unlabelled mid-paragraph — trim carefully. Boarding-school section is her biography, usable with care but not Goods product content. Place details: 'War Town' (likely a mishearing, possibly Warumungu town reference), block near Tennant Creek, cement slab awaiting shelter."
+     "text": "I will know where to come. If I need to wash my blanket, I don't have to go do it in town. Laundry, do it here.",
+     "timestamp": "[00:18:00]",
+     "context": "On what the machine changes: no more paid trips to the town laundromat to wash blankets.",
+     "themes": [
+      "washing-clean",
+      "system-failure"
+     ],
+     "domain": "dignity-safety",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
     },
     {
-      "storyteller": "Dianne Stokes",
-      "transcript_id": "4d0fa2ab-4041-48ad-afa8-c586c22b39ba",
-      "held": false,
-      "top_quotes": [
-        {
-          "text": "When I first moved in, the only shelter I had was my car. My little car. That was it.",
-          "timestamp": null,
-          "context": "Opening of her life story on her block — twenty-four years starting with nothing but a car.",
-          "themes": ["country-culture", "system-failure"],
-          "domain": "dignity-safety",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "Every time I go away from here, it's like it's calling me. Come back home. And I do feel that. When I get home, I feel happy I'm at home.",
-          "timestamp": null,
-          "context": "What her Country means to her.",
-          "themes": ["country-culture"],
-          "domain": "self-determination",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "If you have an idea about going somewhere to help, go talk to the elders first. Sit down and talk to them. They need to hear from the ground. Who wants it, who's going to do it, who's out there, who needs help.",
-          "timestamp": null,
-          "context": "The protocol teaching, in its cleanest edited form.",
-          "themes": ["elders-protocol", "never-asked"],
-          "domain": "self-determination",
-          "strength": "deck",
-          "sensitivity": "This is a cleaned/edited rendering of the raw 37fbb44f lines — confirm edited text is approved as verbatim-equivalent before quoting."
-        },
-        {
-          "text": "When I come back here, I know I've got no one to tell me what to do. It's my home. And I got it registered last year.",
-          "timestamp": null,
-          "context": "Autonomy and land registration on her father's country.",
-          "themes": ["country-culture", "ownership-pathway"],
-          "domain": "self-determination",
-          "strength": "strong",
-          "sensitivity": null
-        },
-        {
-          "text": "In the back corner of my boundary, I want to have a cultural area. A cultural centre and a youth centre... The kids who are in trouble with the police, who have them devices on their legs sometimes and are not going to school. They need somewhere to go.",
-          "timestamp": null,
-          "context": "Her vision for the block: a place for kids on ankle monitors.",
-          "themes": ["family-kids", "country-culture"],
-          "domain": "self-determination",
-          "strength": "strong",
-          "sensitivity": "References youth in the justice system — no identifying details, but handle with care."
-        }
-      ],
-      "themes_present": [
-        {"id": "country-culture", "evidence": "Whole piece is Country, totem boundary, fathers-to-fathers land, both-ways language education, living museum."},
-        {"id": "elders-protocol", "evidence": "Go talk to the elders first; they need to hear from the ground."},
-        {"id": "never-asked", "evidence": "Ground-up needs identification is the counter to outside assumption."},
-        {"id": "family-kids", "evidence": "Youth centre for kids in trouble with police; teaching in language and English."},
-        {"id": "ownership-pathway", "evidence": "Registered land, self-directed plans, 'someone with the money to help me out' — she owns the vision, seeks only capital."},
-        {"id": "system-failure", "evidence": "A traditional owner living 24 years on her own country with no house, sheltering in her car."}
-      ],
-      "narrative_summary": "A polished first-person edit of Dianne's life story: traditional owner on her totem boundary, 24 years from car-as-shelter to registered land, with a clear self-determined vision for a cultural and youth centre. It gives Goods its cleanest tellable version of the 'listening-first' protocol and the deepest why behind partnering with her. It is an edited narrative derived from the raw 37fbb44f interview, not an independent recording.",
-      "analysis_notes": "TOTEM FLAG: 'where I live is right in the boundary of my totem' — totem line, registry HOLD, never external, never deck-grade. This file is an edited/cleaned monologue (no timestamps, no speaker labels) derived from transcript 37fbb44f — quotes here are editorially smoothed; for strict-verbatim use, prefer the raw 37fbb44f wording or get sign-off on the edited text. Minor inconsistency: says '24 years' where the raw says 23. No product content at all — this is the person, not the bed."
+     "text": "It makes me feel proud.",
+     "timestamp": "[00:02:00]",
+     "context": "Her answer when asked how it feels to have the washing machine named in language.",
+     "themes": [
+      "country-culture",
+      "washing-clean"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": "Language naming content; elders-protocol care. Transcription garbles the name ('ganja Curry' / 'Bug in UK') \u2014 canonical name is Pakkimjalki Kari, Warumungu; verify before any use."
     },
     {
-      "storyteller": "Dianne Stokes",
-      "transcript_id": "60afd811-3962-4859-9fc4-04e9a3652ab2",
-      "held": false,
-      "top_quotes": [
-        {
-          "text": "We get scared of people sleeping on the ground. You and Nic came over and done this bed... what he's doing is amazing job.",
-          "timestamp": "[00:00:00]",
-          "context": "Her opening reflection after the washing machine and bed trip.",
-          "themes": ["rest-sleep-health", "reciprocity-partnership"],
-          "domain": "rest-health",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "I didn't get money, but those two young fellows that are doing something, they offered us and shared their blessings with us. So I shared my blessings to them.",
-          "timestamp": "[00:02:00]",
-          "context": "Answering her son's 'where did you get money from?' — her framing of two-way reciprocity.",
-          "themes": ["reciprocity-partnership"],
-          "domain": "self-determination",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "Why I'm helping you is 'cause, I'm a traditional owner. And I live here and I wanted to help, to let people know that these two young fellas came to do this for us. We need to respect them... That's how my feeling is to respect.",
-          "timestamp": "[00:02:00]",
-          "context": "Why she vouches for Goods in her community.",
-          "themes": ["elders-protocol", "reciprocity-partnership"],
-          "domain": "self-determination",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "If we have our own contract doing all these in the communities, they can sell 'em to people... and even to Tennant Creek come where we have NAIDOC week or we have show... marquees sort of sell 'em.",
-          "timestamp": "[00:04:00]",
-          "context": "Her unprompted vision of community-owned bed-making enterprise and local sales.",
-          "themes": ["making-jobs", "ownership-pathway"],
-          "domain": "jobs-ownership",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "Well, my legacy in my life, that's what I'm thinking of. I hope my legacy stands out for my people when I pass what I've done. What I have achieved in my life, living in this community.",
-          "timestamp": "[00:03:00]",
-          "context": "Framing the beds, the machine and her block plans as legacy for her people.",
-          "themes": ["country-culture", "ownership-pathway"],
-          "domain": "self-determination",
-          "strength": "deck",
-          "sensitivity": "Speaks of her own passing — use respectfully; standard Indigenous cultural care around death references."
-        }
-      ],
-      "themes_present": [
-        {"id": "rest-sleep-health", "evidence": "'We get scared of people sleeping on the ground'; milk crates with old beds on top as the before-state."},
-        {"id": "reciprocity-partnership", "evidence": "Blessings shared both ways; respect for the 'two young fellas'; her role as endorser."},
-        {"id": "elders-protocol", "evidence": "Traditional-owner authority as the reason her endorsement carries; 'they'll listen to him' insight on who speaks to whom."},
-        {"id": "making-jobs", "evidence": "Community contracts making and selling beds at NAIDOC week and shows."},
-        {"id": "ownership-pathway", "evidence": "Wants communities to make and sell the beds themselves; her own home and cultural centre buildout."},
-        {"id": "washing-clean", "evidence": "Son telling family not to overuse his machine so his mum can wash there too."},
-        {"id": "family-kids", "evidence": "Grandsons helped make the beds and 'still wanna help'; donga plan for kids in trouble with police."},
-        {"id": "product-durability", "evidence": "'Very nice beds', low-sitting bed suits brother's wife who needs to sit up; contrast with heavy bunks and crates."}
-      ],
-      "narrative_summary": "Post-trip debrief where Dianne steps back from the deliveries and gives Goods its reciprocity and ownership narrative: blessings flowing both ways instead of money, her traditional-owner endorsement as the reason the community respects the work, and an unprompted vision of community-owned contracts making and selling beds at NAIDOC week. Ends on legacy — what she wants to leave her people. This is arguably her strongest single transcript for the jobs-ownership and partnership domains.",
-      "analysis_notes": "Interviewer questions are embedded unlabelled (e.g. 'Is there something that you would like in particular...') — trim before quoting. 'Bam' at [00:03:00] is likely a grandson's name or transcription noise — don't name. Word-of-mouth demand evidence: families asking 'where did you get that from', son/nephew/grandson grabbing beds before going bush. Her asks (grading, shed, donga, cultural centre funding) are requests, not commitments — claims-status 'requested' if ever referenced. Mentions stolen-generation family visiting from the southeast coast — sensitive biography, fine as context, careful externally."
+     "text": "...my grandson lives at... stays at Bush doing work. So when he comes in, he comes in a bunch of boys, they come here see so they can wash their clothes and feel happy.",
+     "timestamp": "[00:08:00]",
+     "context": "Who will use the machine: station-working grandson and his mates washing after coming in from bush work.",
+     "themes": [
+      "washing-clean",
+      "family-kids"
+     ],
+     "domain": "dignity-safety",
+     "strength": "strong",
+     "sensitivity": null
     },
     {
-      "storyteller": "Dianne Stokes",
-      "transcript_id": "e46693fa-d308-4931-8647-8d80a90abbbd",
-      "held": false,
-      "top_quotes": [
-        {
-          "text": "I can't tell you how my heart is hopping and skipping inside me.",
-          "timestamp": null,
-          "context": "Quoted in the article at the washing machine reveal; matches raw transcript 1cc79556.",
-          "themes": ["washing-clean", "dignity-safety"],
-          "domain": "dignity-safety",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "This is number one.",
-          "timestamp": null,
-          "context": "Her verdict lying on the finished Stretch Bed for the first time; corroborated by raw 37fbb44f ('it's this number one').",
-          "themes": ["rest-sleep-health", "product-durability"],
-          "domain": "rest-health",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "It takes my memories back to when I was young.",
-          "timestamp": null,
-          "context": "Watching the bed assembled; corroborated in raw 37fbb44f.",
-          "themes": ["country-culture", "rest-sleep-health"],
-          "domain": "rest-health",
-          "strength": "strong",
-          "sensitivity": null
-        }
-      ],
-      "themes_present": [
-        {"id": "washing-clean", "evidence": "Pakkimjalki Kari naming and delivery is the article's centrepiece."},
-        {"id": "rest-sleep-health", "evidence": "Milk crates to Basket Bed to Stretch Bed arc; Brian Russell's medical need for a bed; scabies-RHD framing."},
-        {"id": "elders-protocol", "evidence": "'The Protocol' section is built on her go-to-the-elders teaching."},
-        {"id": "design-in-community", "evidence": "Fire-side design refinement; feedback loop from Basket to Weave to Stretch."},
-        {"id": "reciprocity-partnership", "evidence": "'Blessings Shared' section — beds traded for protocol, machines for language."},
-        {"id": "making-jobs", "evidence": "Community-owned contracts and NAIDOC-week sales vision."},
-        {"id": "ownership-pathway", "evidence": "Community-owned workshops framing of her future vision."},
-        {"id": "country-culture", "evidence": "Country calling her home; Warumungu naming; living museum."},
-        {"id": "product-durability", "evidence": "Washable/repairable philosophy; 'indestructible' machine; foam breakdown critique."},
-        {"id": "family-kids", "evidence": "Grandson Stanley, Amber, grandkids at the reveal; youth centre plans."},
-        {"id": "never-asked", "evidence": "'You never assume you know what people need. You ask, and then you listen.'"},
-        {"id": "system-failure", "evidence": "Dead washing machine nobody could date; 30-minute paid laundromat runs; 23 years without a house."}
-      ],
-      "narrative_summary": "This is NOT a raw transcript — it is a drafted narrative article ('Pakkimjalki Kari: Beds, Washing Machines, and the Blessings We Share') weaving Dianne's story with Brian Russell, Fred Campbell, Shaun Fisher and Norman Frank quotes into the full Basket-Weave-Stretch product arc. As analysis material it shows how the Goods team has already synthesised her story; as a quote source it is secondary — every quote must be verified against raw transcripts before use.",
-      "analysis_notes": "SOURCE TYPE: editorial article draft, not testimony — narrator claims are the author's, not Dianne's. CANON CONTRADICTIONS: says '369 basket beds' (canon: 363) and '8 communities' (canon: 11 served); Stretch Bed described as 'fifteen kilograms of community plastic', 'Twelve kilos', 'Twenty-one kilograms of plastic diverted' (canon: 20kg HDPE per bed, bed is 26kg); 'catamaran trampoline' and 'satisfying click of poles' phrasing edges toward the banned clip-on description; '20 washing machines' matches current canon but article predates it. Uses the BANNED word 'co-designed' (Weave Bed section) and gives the discontinued Weave Bed a hero section — both must not propagate. Health framing ('A washable bed breaks that cycle') overshoots the scabies-to-RHD WHY-only ceiling — flag as claim-ceiling breach if reused. Third-party quotes (Brian Russell 'It's gonna be home for me now', Fred Campbell, Shaun Fisher, Norman Frank three-maroon-beds request) need their own consent verification — not Dianne's to clear. Totem referenced ('within the boundary of her totem') — totem line, registry HOLD, never external."
-    },
-    {
-      "storyteller": "Dianne Stokes (synthesis)",
-      "transcript_id": "synthesis",
-      "held": false,
-      "top_quotes": [
-        {
-          "text": "I'm happy. I, I can't tell you how my heart is, uh, hopping and skipping inside me.",
-          "timestamp": "[00:14:00]",
-          "context": "Washing machine reveal at Sebastian's house (raw source 1cc79556) — the single best delivery-day emotion line.",
-          "themes": ["washing-clean", "dignity-safety"],
-          "domain": "dignity-safety",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "If you have an idea what place you'd go to first go and talk to... the elders. Sit down and talk to them... and they'll probably be keen on joining in and helping out.",
-          "timestamp": "[00:09:00]",
-          "context": "The protocol teaching (raw source 37fbb44f) — the origin of the Goods listening-first method.",
-          "themes": ["elders-protocol", "design-in-community"],
-          "domain": "self-determination",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "I didn't get money, but those two young fellows that are doing something, they offered us and shared their blessings with us. So I shared my blessings to them.",
-          "timestamp": "[00:02:00]",
-          "context": "The reciprocity frame (60afd811) — partnership as two-way blessing exchange, not charity.",
-          "themes": ["reciprocity-partnership"],
-          "domain": "self-determination",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "If we have our own contract doing all these in the communities, they can sell 'em to people... where we have NAIDOC week or we have show... marquees sort of sell 'em.",
-          "timestamp": "[00:04:00]",
-          "context": "Community-owned manufacturing and sales vision (60afd811) — the ownership-pathway line in her own words.",
-          "themes": ["making-jobs", "ownership-pathway"],
-          "domain": "jobs-ownership",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "Why do I think it's comfortable? Because I was looking for these kinds before having a milk crate and a mattress on top. It was comfortable, but not much. But this is more.",
-          "timestamp": "[00:14:00]",
-          "context": "First lie-down product verdict (37fbb44f), before-and-after in one breath; pairs with 'this is number one'.",
-          "themes": ["rest-sleep-health", "product-durability"],
-          "domain": "rest-health",
-          "strength": "deck",
-          "sensitivity": null
-        }
-      ],
-      "themes_present": [
-        {"id": "elders-protocol", "evidence": "Across all five: she is the elder who taught Goods the go-to-elders-first protocol and lends traditional-owner endorsement."},
-        {"id": "reciprocity-partnership", "evidence": "Blessings-both-ways framing and respect for the 'two young fellas' recur in 60afd811 and e46693fa."},
-        {"id": "washing-clean", "evidence": "She named Pakkimjalki Kari in Warumungu and anchored the first washer delivery at Alba Camp."},
-        {"id": "rest-sleep-health", "evidence": "Milk-crates-to-Stretch-Bed arc; fear of people sleeping on the ground."},
-        {"id": "making-jobs", "evidence": "Community contracts, NAIDOC-week sales, men's shed manufacturing ideas."},
-        {"id": "ownership-pathway", "evidence": "Registered land, self-owned vision, community-made-and-sold beds."},
-        {"id": "country-culture", "evidence": "Country calling her home, both-ways education, living museum, language naming."},
-        {"id": "design-in-community", "evidence": "Fire-side refinement and show-them-how-to-make-beds participation model."},
-        {"id": "never-asked", "evidence": "'They need to hear from the ground' — her core critique of top-down delivery."},
-        {"id": "family-kids", "evidence": "Everything routes through kin: Sebastian, Stanley, daughters, grandsons helping build."},
-        {"id": "system-failure", "evidence": "23 years without a house; dead machines; paid town laundromat runs."},
-        {"id": "product-durability", "evidence": "'Indestructible washing machine'; washable beds; zip-together strength."},
-        {"id": "dignity-safety", "evidence": "Off the ground, clean blankets at home, pride in language-named equipment."}
-      ],
-      "narrative_summary": "Dianne Stokes is the anchor voice of the Goods story: a Warumungu traditional owner near Tennant Creek who lived 23 years on her country with only her car for shelter, taught Goods its elders-first protocol, named the washing machine Pakkimjalki Kari in language, and articulates unprompted the community-ownership future the enterprise is building toward. Across five transcripts she covers every domain of the Voice Impact Model — rest, dignity, self-determination, jobs-ownership — with deck-grade lines in each. She is simultaneously beneficiary, designer, endorser and strategist, which is exactly the design-in-community claim in lived form.",
-      "analysis_notes": "TOTEM: her totem-boundary line appears in 37fbb44f, 4d0fa2ab and e46693fa — registry HOLD, never external, never deck-grade in any variant. Source hierarchy: 1cc79556, 37fbb44f, 60afd811 are raw recordings (quote authority); 4d0fa2ab is an edited monologue of 37fbb44f; e46693fa is an article draft with multiple canon contradictions (369 beds, 8 communities, 12kg/15kg/21kg specs, banned 'co-designed', Weave Bed hero section, health-outcome overclaim) — never use as canon or verbatim source. Language-word transcriptions are unreliable in the raw files (garbled machine name); the canonical name Pakkimjalki Kari comes from established registry, not these transcripts. Ambiguous speaker labels throughout 1cc79556 — attribute only Speaker 9 lines to Dianne."
-    },
-    {
-      "storyteller": "Annie Morrison",
-      "transcript_id": "889a854a-f9dd-455e-aa41-aaf7fa390458",
-      "held": false,
-      "top_quotes": [
-        {
-          "text": "I was looking at it good... because I was trying to ask them if they can make one for me. 'cause save me moving my bunks. My bunk is too heavy and you know, I need something where likely easy to move around, you know?",
-          "timestamp": "[00:03:00]",
-          "context": "Her reaction to the beds being made near her house — portability over heavy bunks is her stated need.",
-          "themes": ["rest-sleep-health", "product-durability"],
-          "domain": "rest-health",
-          "strength": "strong",
-          "sensitivity": null
-        },
-        {
-          "text": "That's why we need in our community, you know, why we got a lot of old people there. You know, we might do something for them, you know, show them, you know.",
-          "timestamp": "[00:03:00]",
-          "context": "On why washing machines matter — for the old people in her community.",
-          "themes": ["washing-clean", "elders-protocol"],
-          "domain": "dignity-safety",
-          "strength": "strong",
-          "sensitivity": null
-        },
-        {
-          "text": "Now we got our own washing, but we can do it for ourselves, you know, for the old people.",
-          "timestamp": "[00:04:00]",
-          "context": "Community members washing for elders — care flowing to old people.",
-          "themes": ["washing-clean", "reciprocity-partnership"],
-          "domain": "dignity-safety",
-          "strength": "supporting",
-          "sensitivity": null
-        },
-        {
-          "text": "I like go back to my own homeland. And teach my kids all them things, what I done... 'cause my homeland is no alcoholic, no drugs at all. You know, it's good.",
-          "timestamp": "[00:02:00]",
-          "context": "What gives her joy: homeland as the safe, teaching place away from town.",
-          "themes": ["country-culture", "family-kids"],
-          "domain": "self-determination",
-          "strength": "strong",
-          "sensitivity": "References alcohol/drugs in town — keep as her own framing, no community-deficit generalisation."
-        },
-        {
-          "text": "We used to just go hunting with families and grandparents. They show us what to do and get what, what is right and what is wrong... we catch some bush tuck and take it back for families and we share with our families too.",
-          "timestamp": "[00:02:00]",
-          "context": "Her account of growing up on the station — intergenerational teaching and sharing.",
-          "themes": ["country-culture", "family-kids"],
-          "domain": "self-determination",
-          "strength": "supporting",
-          "sensitivity": null
-        }
-      ],
-      "themes_present": [
-        {"id": "rest-sleep-health", "evidence": "Wants a bed made for her; her bunk is too heavy to move."},
-        {"id": "product-durability", "evidence": "Values something light and easy to move around versus heavy bunks."},
-        {"id": "washing-clean", "evidence": "Names washing machines as a community need, especially for old people."},
-        {"id": "country-culture", "evidence": "Grew up on the station hunting with grandparents; homeland is her grandfather's country; 40 years of church."},
-        {"id": "family-kids", "evidence": "Wants to take her kids back to homeland to teach them what she was taught."},
-        {"id": "elders-protocol", "evidence": "Frames need through what old people in the community require."},
-        {"id": "reciprocity-partnership", "evidence": "Sharing bush tucker with families; doing washing for elders; cooking kangaroo tails and damper together at the build."}
-      ],
-      "narrative_summary": "Annie Morrison grew up on Rockhampton Downs station in the 1960s and now has a homeland about 87km from Tennant Creek on her grandfather's country, alcohol- and drug-free, where she wants to raise and teach her kids. Her transcript gives Goods grounded demand evidence — she asked for a bed on the spot because her bunk is too heavy — and frames washing machines as elder care, a community-need articulation in her own voice. She embodies the intergenerational teaching and homeland-movement context Goods works within.",
-      "analysis_notes": "Spelling ambiguity: she spells her name 'A-L-N-I-E' but header says Annie — verify spelling before external credit. Station name transcribed as 'rocking the dam station' (likely Rockhampton Downs); homeland name inaudible/garbled ('It's called, that's why my grandfather's country') — place name missing, don't guess. Interviewer questions occupy much of the transcript; her answers are short — thin but genuine. She had NOT yet tried the bed at time of interview ('No, I didn't try it yet') so no comfort testimony exists. Distances: homeland 180 or 87 Ks from Tennant — transcript says 'a hundred, um, 80, 87 Ks', ambiguous, don't cite a number."
-    },
-    {
-      "storyteller": "Risilda Hogan",
-      "transcript_id": "769e6784-4818-4d3a-9219-0b508bd4690b",
-      "held": false,
-      "top_quotes": [
-        {
-          "text": "Sleeping on the mattress, on the floor... don't have any mattresses. Gotta buy them one once in the shop for me and my little ones.",
-          "timestamp": "[00:01:00]",
-          "context": "Her current sleeping situation with five children — mattresses on the floor, and not enough of them.",
-          "themes": ["rest-sleep-health", "system-failure", "family-kids"],
-          "domain": "rest-health",
-          "strength": "deck",
-          "sensitivity": "Household hardship with children — use with care and her consent status checked."
-        },
-        {
-          "text": "Oh, that's really cool. I like it. Think my two little one will be happy. And my eldest son, second son, he's happy.",
-          "timestamp": "[00:01:00]",
-          "context": "Her reaction to the bed being made at her house, framed through her kids' happiness.",
-          "themes": ["rest-sleep-health", "family-kids"],
-          "domain": "rest-health",
-          "strength": "strong",
-          "sensitivity": null
-        },
-        {
-          "text": "There's four bedroom and we need four beds.",
-          "timestamp": "[00:03:00]",
-          "context": "Plain statement of household need — four bedrooms, four beds.",
-          "themes": ["rest-sleep-health", "never-asked"],
-          "domain": "rest-health",
-          "strength": "strong",
-          "sensitivity": null
-        },
-        {
-          "text": "I was living at the Tin shed... Hot. Hot and too much mosquito at night, but I had support helping me people like in town.",
-          "timestamp": "[00:00:00]",
-          "context": "Her housing journey from a tin shed to this house with Stronger Families support.",
-          "themes": ["dignity-safety", "system-failure"],
-          "domain": "dignity-safety",
-          "strength": "strong",
-          "sensitivity": "Past housing hardship — respectful framing only."
-        },
-        {
-          "text": "I'm gonna stay here for so long, not gonna move out. I like it here.",
-          "timestamp": "[00:04:00]",
-          "context": "Stability and belonging in her new house in Tennant Creek.",
-          "themes": ["dignity-safety", "family-kids"],
-          "domain": "dignity-safety",
-          "strength": "supporting",
-          "sensitivity": null
-        }
-      ],
-      "themes_present": [
-        {"id": "rest-sleep-health", "evidence": "Mattresses on the floor, some kids without; 'good old nap' after a work day; four beds needed."},
-        {"id": "dignity-safety", "evidence": "Tin shed (hot, mosquitoes) to a house she intends to keep for good."},
-        {"id": "family-kids", "evidence": "Five children, their happiness at the new bed, school every day, youth centre and sports available."},
-        {"id": "system-failure", "evidence": "A working mother of five with no mattresses for all her kids; prior tin-shed housing."},
-        {"id": "never-asked", "evidence": "Simple, direct statement of need (four beds) that no service had met."}
-      ],
-      "narrative_summary": "Risilda Hogan is a working mother of five in Tennant Creek who moved from a tin shed into a house with Stronger Families support, where her family was sleeping on mattresses on the floor — and short of mattresses at that. Her transcript is short and reserved but gives Goods the clearest before-state evidence in the batch: a four-bedroom house needing four beds, told without drama. Her kids' happiness at the bed build is the human payoff.",
-      "analysis_notes": "Name discrepancy: transcript renders her introduction as 'Zelda Hogan' but she spells R-I-S-I-L-D-A — use Risilda, verify preferred name before credit. Wilya Janta connection: interviewer says her house 'featured in many photos with Willy Janta' but she says she doesn't know, just moved in June/July last year — do NOT claim a Wilya Janta relationship for her. Reserved interviewee; several answers are 'not sure' — do not pad her voice. Town problems line ('Drinking and drugs that needs to stop') is her view; avoid deficit framing externally. Tennant Creek place details: primary school attended daily, youth centre and sports rec available."
+     "text": "I was gonna have a washing machine, but I haven't got a house yet. So I said, no, my son would need a washing machine because this washing machine is not his.",
+     "timestamp": "[00:09:00]",
+     "context": "Dianne redirected the machine to her son's house because she still has no house on her block.",
+     "themes": [
+      "system-failure",
+      "family-kids"
+     ],
+     "domain": "dignity-safety",
+     "strength": "strong",
+     "sensitivity": "Housing deprivation context \u2014 handle respectfully; she herself has no house."
     }
-  ]
+   ],
+   "themes_present": [
+    {
+     "id": "washing-clean",
+     "evidence": "Entire transcript is the delivery and first run of the Pakkimjalki Kari washing machine at House 13, Alba Camp."
+    },
+    {
+     "id": "family-kids",
+     "evidence": "Machine is for son Sebastian, grandson Stanley and station boys, daughters and grandkids across the camp."
+    },
+    {
+     "id": "system-failure",
+     "evidence": "Existing machine broken with no one knowing why or for how long; Dianne herself has no house; families paying to wash in town."
+    },
+    {
+     "id": "country-culture",
+     "evidence": "Machine named in language; feeling proud of a washing machine in language."
+    },
+    {
+     "id": "product-durability",
+     "evidence": "Nick/Ben frame it as $4,000, 10-year, too-heavy-to-steal machine; Dianne calls it 'indestructible washing machine'."
+    },
+    {
+     "id": "dignity-safety",
+     "evidence": "Washing blankets and sheets at home instead of the town laundromat; boys 'wash their clothes and feel happy'."
+    }
+   ],
+   "narrative_summary": "Verite footage of the first washing machine delivery to Alba Camp, Tennant Creek: Dianne Stokes walks Ben and Nic to her son Sebastian's House 13, where the old machine is dead. She gives Goods its strongest delivery-day reaction line ('my heart is hopping and skipping inside me') and grounds the washer story in real logistics: broken machines, no house of her own, trips to town to wash blankets. It also captures her pricing candour \u2014 people can only pay if they're working \u2014 useful for the affordability model.",
+   "analysis_notes": "Messy multi-speaker field recording; Speaker 9 is Dianne (confident from content), Speaker 10 is Nic, Speaker 12 likely Ben \u2014 several short lines (Speakers 11/13/14/15/16/18/19) are ambiguous, do not attribute. The washing machine name is transcribed as 'ganja Curry' and language as 'Bug in UK' \u2014 almost certainly mis-transcriptions of Pakkimjalki Kari / Warumungu; never quote those garbled forms. Contains family deaths at the camp ([00:04:00] ex-husband, brother, others passed there) \u2014 sorry-business sensitive, unusable externally. Nic states cost 'about $4,000' and 'last 10 years'. Her line 'sometimes people would afford to pay unless they're working' is honest price feedback. Place details: Alba Camp, House 13, community centre unused, kids' playground with outdoor fan for people sleeping outside."
+  },
+  {
+   "storyteller": "Dianne Stokes",
+   "transcript_id": "37fbb44f-3628-4378-b00e-1765a42179cd",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "If you have an idea what place you'd go to first go and talk to... the elders. Sit down and talk to them or a group of people and tell them if you can show them how to make them beds, and they'll probably be keen on joining in and helping out.",
+     "timestamp": "[00:09:00]",
+     "context": "Dianne teaching Goods the protocol for entering a new community.",
+     "themes": [
+      "elders-protocol",
+      "design-in-community"
+     ],
+     "domain": "self-determination",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "They need to hear from the ground, who wants it, who's gonna do it, who's out there, who needs help?",
+     "timestamp": "[00:10:00]",
+     "context": "On why community knowledge, not government assumption, should drive what gets delivered.",
+     "themes": [
+      "never-asked",
+      "design-in-community"
+     ],
+     "domain": "self-determination",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "Why do I think it's comfortable? Because I was looking for these kinds before having a milk crate and a mattress on top. It was comfortable, but not much. But this is more.",
+     "timestamp": "[00:14:00]",
+     "context": "First lie-down verdict on the finished bed, contrasted with her milk-crate setup.",
+     "themes": [
+      "rest-sleep-health",
+      "product-durability"
+     ],
+     "domain": "rest-health",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "It's my home and I've got it registered last year... I wanna have a cultural area there, cultural center, and a youth center.",
+     "timestamp": "[00:02:00]",
+     "context": "Her plans for her registered block: a both-ways cultural and youth centre for kids in trouble.",
+     "themes": [
+      "country-culture",
+      "family-kids",
+      "ownership-pathway"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": null
+    },
+    {
+     "text": "Do you think other people are gonna want their beds or, yeah, they'll probably want it... I'm thinking of getting one for them too, made up for them.",
+     "timestamp": "[00:13:00]",
+     "context": "Demand spreading through kinship \u2014 nephew, caravan family, families sleeping by the creek.",
+     "themes": [
+      "family-kids",
+      "reciprocity-partnership"
+     ],
+     "domain": "rest-health",
+     "strength": "supporting",
+     "sensitivity": "Contains interviewer's question fused into the line \u2014 trim to Dianne's words only if used."
+    }
+   ],
+   "themes_present": [
+    {
+     "id": "elders-protocol",
+     "evidence": "Explicit instruction to go to elders first, sit down, talk, before doing anything in a community."
+    },
+    {
+     "id": "design-in-community",
+     "evidence": "Show people how to make the beds so they join in; talk to community and organisation first about how they feel."
+    },
+    {
+     "id": "never-asked",
+     "evidence": "'They need to hear from the ground' \u2014 decisions made without asking community are the failure she names."
+    },
+    {
+     "id": "country-culture",
+     "evidence": "Traditional owner on her totem boundary; country 'calling me back home'; both-ways language education; living-museum plan."
+    },
+    {
+     "id": "rest-sleep-health",
+     "evidence": "Milk crates and mattress before; the finished bed judged comfortable and 'number one'."
+    },
+    {
+     "id": "family-kids",
+     "evidence": "Youth centre plans for kids with ankle monitors; beds for nephew and creek families."
+    },
+    {
+     "id": "ownership-pathway",
+     "evidence": "Men's shed idea \u2014 working 'away where they can make as many as' beds locally."
+    },
+    {
+     "id": "product-durability",
+     "evidence": "Zipping two beds together 'more strong', washable \u2014 daughter's washing machine will do it."
+    }
+   ],
+   "narrative_summary": "Dianne's full seated interview: traditional owner who lived 23 years on her block with only her car for shelter, now with registered land and plans for a both-ways cultural and youth centre. She delivers the elders-first protocol lines that define how Goods enters communities, and gives the milk-crate-to-real-bed comfort verdict at the bed build. This is the source transcript for both the consent-protocol story and the design-in-community story.",
+   "analysis_notes": "TOTEM FLAG: opening line 'where I live is where it's in the boundary of my totem' \u2014 totem line, registry HOLD, never external, never deck-grade. Her language name appears garbled ('right now he's in my language, ma, I'm a manga' and 'Billy Belly means good') \u2014 transcription unreliable on language words, verify with Dianne before quoting any language term. Lightly labelled transcript with interviewer questions interleaved unlabelled mid-paragraph \u2014 trim carefully. Boarding-school section is her biography, usable with care but not Goods product content. Place details: 'War Town' (likely a mishearing, possibly Warumungu town reference), block near Tennant Creek, cement slab awaiting shelter."
+  },
+  {
+   "storyteller": "Dianne Stokes",
+   "transcript_id": "4d0fa2ab-4041-48ad-afa8-c586c22b39ba",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "When I first moved in, the only shelter I had was my car. My little car. That was it.",
+     "timestamp": null,
+     "context": "Opening of her life story on her block \u2014 twenty-four years starting with nothing but a car.",
+     "themes": [
+      "country-culture",
+      "system-failure"
+     ],
+     "domain": "dignity-safety",
+     "strength": "deck",
+     "sensitivity": null
+    },
+    {
+     "text": "Every time I go away from here, it's like it's calling me. Come back home. And I do feel that. When I get home, I feel happy I'm at home.",
+     "timestamp": null,
+     "context": "What her Country means to her.",
+     "themes": [
+      "country-culture"
+     ],
+     "domain": "self-determination",
+     "strength": "deck",
+     "sensitivity": null
+    },
+    {
+     "text": "If you have an idea about going somewhere to help, go talk to the elders first. Sit down and talk to them. They need to hear from the ground. Who wants it, who's going to do it, who's out there, who needs help.",
+     "timestamp": null,
+     "context": "The protocol teaching, in its cleanest edited form.",
+     "themes": [
+      "elders-protocol",
+      "never-asked"
+     ],
+     "domain": "self-determination",
+     "strength": "deck",
+     "sensitivity": "This is a cleaned/edited rendering of the raw 37fbb44f lines \u2014 confirm edited text is approved as verbatim-equivalent before quoting."
+    },
+    {
+     "text": "When I come back here, I know I've got no one to tell me what to do. It's my home. And I got it registered last year.",
+     "timestamp": null,
+     "context": "Autonomy and land registration on her father's country.",
+     "themes": [
+      "country-culture",
+      "ownership-pathway"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": null
+    },
+    {
+     "text": "In the back corner of my boundary, I want to have a cultural area. A cultural centre and a youth centre... The kids who are in trouble with the police, who have them devices on their legs sometimes and are not going to school. They need somewhere to go.",
+     "timestamp": null,
+     "context": "Her vision for the block: a place for kids on ankle monitors.",
+     "themes": [
+      "family-kids",
+      "country-culture"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": "References youth in the justice system \u2014 no identifying details, but handle with care."
+    }
+   ],
+   "themes_present": [
+    {
+     "id": "country-culture",
+     "evidence": "Whole piece is Country, totem boundary, fathers-to-fathers land, both-ways language education, living museum."
+    },
+    {
+     "id": "elders-protocol",
+     "evidence": "Go talk to the elders first; they need to hear from the ground."
+    },
+    {
+     "id": "never-asked",
+     "evidence": "Ground-up needs identification is the counter to outside assumption."
+    },
+    {
+     "id": "family-kids",
+     "evidence": "Youth centre for kids in trouble with police; teaching in language and English."
+    },
+    {
+     "id": "ownership-pathway",
+     "evidence": "Registered land, self-directed plans, 'someone with the money to help me out' \u2014 she owns the vision, seeks only capital."
+    },
+    {
+     "id": "system-failure",
+     "evidence": "A traditional owner living 24 years on her own country with no house, sheltering in her car."
+    }
+   ],
+   "narrative_summary": "A polished first-person edit of Dianne's life story: traditional owner on her totem boundary, 24 years from car-as-shelter to registered land, with a clear self-determined vision for a cultural and youth centre. It gives Goods its cleanest tellable version of the 'listening-first' protocol and the deepest why behind partnering with her. It is an edited narrative derived from the raw 37fbb44f interview, not an independent recording.",
+   "analysis_notes": "TOTEM FLAG: 'where I live is right in the boundary of my totem' \u2014 totem line, registry HOLD, never external, never deck-grade. This file is an edited/cleaned monologue (no timestamps, no speaker labels) derived from transcript 37fbb44f \u2014 quotes here are editorially smoothed; for strict-verbatim use, prefer the raw 37fbb44f wording or get sign-off on the edited text. Minor inconsistency: says '24 years' where the raw says 23. No product content at all \u2014 this is the person, not the bed."
+  },
+  {
+   "storyteller": "Dianne Stokes",
+   "transcript_id": "60afd811-3962-4859-9fc4-04e9a3652ab2",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "We get scared of people sleeping on the ground. You and Nic came over and done this bed... what he's doing is amazing job.",
+     "timestamp": "[00:00:00]",
+     "context": "Her opening reflection after the washing machine and bed trip.",
+     "themes": [
+      "rest-sleep-health",
+      "reciprocity-partnership"
+     ],
+     "domain": "rest-health",
+     "strength": "deck",
+     "sensitivity": null
+    },
+    {
+     "text": "I didn't get money, but those two young fellows that are doing something, they offered us and shared their blessings with us. So I shared my blessings to them.",
+     "timestamp": "[00:02:00]",
+     "context": "Answering her son's 'where did you get money from?' \u2014 her framing of two-way reciprocity.",
+     "themes": [
+      "reciprocity-partnership"
+     ],
+     "domain": "self-determination",
+     "strength": "deck",
+     "sensitivity": null
+    },
+    {
+     "text": "Why I'm helping you is 'cause, I'm a traditional owner. And I live here and I wanted to help, to let people know that these two young fellas came to do this for us. We need to respect them... That's how my feeling is to respect.",
+     "timestamp": "[00:02:00]",
+     "context": "Why she vouches for Goods in her community.",
+     "themes": [
+      "elders-protocol",
+      "reciprocity-partnership"
+     ],
+     "domain": "self-determination",
+     "strength": "deck",
+     "sensitivity": null
+    },
+    {
+     "text": "If we have our own contract doing all these in the communities, they can sell 'em to people... and even to Tennant Creek come where we have NAIDOC week or we have show... marquees sort of sell 'em.",
+     "timestamp": "[00:04:00]",
+     "context": "Her unprompted vision of community-owned bed-making enterprise and local sales.",
+     "themes": [
+      "making-jobs",
+      "ownership-pathway"
+     ],
+     "domain": "jobs-ownership",
+     "strength": "deck",
+     "sensitivity": null
+    },
+    {
+     "text": "Well, my legacy in my life, that's what I'm thinking of. I hope my legacy stands out for my people when I pass what I've done. What I have achieved in my life, living in this community.",
+     "timestamp": "[00:03:00]",
+     "context": "Framing the beds, the machine and her block plans as legacy for her people.",
+     "themes": [
+      "country-culture",
+      "ownership-pathway"
+     ],
+     "domain": "self-determination",
+     "strength": "deck",
+     "sensitivity": "Speaks of her own passing \u2014 use respectfully; standard Indigenous cultural care around death references."
+    }
+   ],
+   "themes_present": [
+    {
+     "id": "rest-sleep-health",
+     "evidence": "'We get scared of people sleeping on the ground'; milk crates with old beds on top as the before-state."
+    },
+    {
+     "id": "reciprocity-partnership",
+     "evidence": "Blessings shared both ways; respect for the 'two young fellas'; her role as endorser."
+    },
+    {
+     "id": "elders-protocol",
+     "evidence": "Traditional-owner authority as the reason her endorsement carries; 'they'll listen to him' insight on who speaks to whom."
+    },
+    {
+     "id": "making-jobs",
+     "evidence": "Community contracts making and selling beds at NAIDOC week and shows."
+    },
+    {
+     "id": "ownership-pathway",
+     "evidence": "Wants communities to make and sell the beds themselves; her own home and cultural centre buildout."
+    },
+    {
+     "id": "washing-clean",
+     "evidence": "Son telling family not to overuse his machine so his mum can wash there too."
+    },
+    {
+     "id": "family-kids",
+     "evidence": "Grandsons helped make the beds and 'still wanna help'; donga plan for kids in trouble with police."
+    },
+    {
+     "id": "product-durability",
+     "evidence": "'Very nice beds', low-sitting bed suits brother's wife who needs to sit up; contrast with heavy bunks and crates."
+    }
+   ],
+   "narrative_summary": "Post-trip debrief where Dianne steps back from the deliveries and gives Goods its reciprocity and ownership narrative: blessings flowing both ways instead of money, her traditional-owner endorsement as the reason the community respects the work, and an unprompted vision of community-owned contracts making and selling beds at NAIDOC week. Ends on legacy \u2014 what she wants to leave her people. This is arguably her strongest single transcript for the jobs-ownership and partnership domains.",
+   "analysis_notes": "Interviewer questions are embedded unlabelled (e.g. 'Is there something that you would like in particular...') \u2014 trim before quoting. 'Bam' at [00:03:00] is likely a grandson's name or transcription noise \u2014 don't name. Word-of-mouth demand evidence: families asking 'where did you get that from', son/nephew/grandson grabbing beds before going bush. Her asks (grading, shed, donga, cultural centre funding) are requests, not commitments \u2014 claims-status 'requested' if ever referenced. Mentions stolen-generation family visiting from the southeast coast \u2014 sensitive biography, fine as context, careful externally."
+  },
+  {
+   "storyteller": "Dianne Stokes",
+   "transcript_id": "e46693fa-d308-4931-8647-8d80a90abbbd",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "I can't tell you how my heart is hopping and skipping inside me.",
+     "timestamp": null,
+     "context": "Quoted in the article at the washing machine reveal; matches raw transcript 1cc79556.",
+     "themes": [
+      "washing-clean",
+      "dignity-safety"
+     ],
+     "domain": "dignity-safety",
+     "strength": "deck",
+     "sensitivity": null
+    },
+    {
+     "text": "This is number one.",
+     "timestamp": null,
+     "context": "Her verdict lying on the finished Stretch Bed for the first time; corroborated by raw 37fbb44f ('it's this number one').",
+     "themes": [
+      "rest-sleep-health",
+      "product-durability"
+     ],
+     "domain": "rest-health",
+     "strength": "deck",
+     "sensitivity": null
+    },
+    {
+     "text": "It takes my memories back to when I was young.",
+     "timestamp": null,
+     "context": "Watching the bed assembled; corroborated in raw 37fbb44f.",
+     "themes": [
+      "country-culture",
+      "rest-sleep-health"
+     ],
+     "domain": "rest-health",
+     "strength": "strong",
+     "sensitivity": null
+    }
+   ],
+   "themes_present": [
+    {
+     "id": "washing-clean",
+     "evidence": "Pakkimjalki Kari naming and delivery is the article's centrepiece."
+    },
+    {
+     "id": "rest-sleep-health",
+     "evidence": "Milk crates to Basket Bed to Stretch Bed arc; Brian Russell's medical need for a bed; scabies-RHD framing."
+    },
+    {
+     "id": "elders-protocol",
+     "evidence": "'The Protocol' section is built on her go-to-the-elders teaching."
+    },
+    {
+     "id": "design-in-community",
+     "evidence": "Fire-side design refinement; feedback loop from Basket to Weave to Stretch."
+    },
+    {
+     "id": "reciprocity-partnership",
+     "evidence": "'Blessings Shared' section \u2014 beds traded for protocol, machines for language."
+    },
+    {
+     "id": "making-jobs",
+     "evidence": "Community-owned contracts and NAIDOC-week sales vision."
+    },
+    {
+     "id": "ownership-pathway",
+     "evidence": "Community-owned workshops framing of her future vision."
+    },
+    {
+     "id": "country-culture",
+     "evidence": "Country calling her home; Warumungu naming; living museum."
+    },
+    {
+     "id": "product-durability",
+     "evidence": "Washable/repairable philosophy; 'indestructible' machine; foam breakdown critique."
+    },
+    {
+     "id": "family-kids",
+     "evidence": "Grandson Stanley, Amber, grandkids at the reveal; youth centre plans."
+    },
+    {
+     "id": "never-asked",
+     "evidence": "'You never assume you know what people need. You ask, and then you listen.'"
+    },
+    {
+     "id": "system-failure",
+     "evidence": "Dead washing machine nobody could date; 30-minute paid laundromat runs; 23 years without a house."
+    }
+   ],
+   "narrative_summary": "This is NOT a raw transcript \u2014 it is a drafted narrative article ('Pakkimjalki Kari: Beds, Washing Machines, and the Blessings We Share') weaving Dianne's story with Brian Russell, Fred Campbell, Shaun Fisher and Norman Frank quotes into the full Basket-Weave-Stretch product arc. As analysis material it shows how the Goods team has already synthesised her story; as a quote source it is secondary \u2014 every quote must be verified against raw transcripts before use.",
+   "analysis_notes": "SOURCE TYPE: editorial article draft, not testimony \u2014 narrator claims are the author's, not Dianne's. CANON CONTRADICTIONS: says '369 basket beds' (canon: 363) and '8 communities' (canon: 11 served); Stretch Bed described as 'fifteen kilograms of community plastic', 'Twelve kilos', 'Twenty-one kilograms of plastic diverted' (canon: 20kg HDPE per bed, bed is 26kg); 'catamaran trampoline' and 'satisfying click of poles' phrasing edges toward the banned clip-on description; '20 washing machines' matches current canon but article predates it. Uses the BANNED word 'co-designed' (Weave Bed section) and gives the discontinued Weave Bed a hero section \u2014 both must not propagate. Health framing ('A washable bed breaks that cycle') overshoots the scabies-to-RHD WHY-only ceiling \u2014 flag as claim-ceiling breach if reused. Third-party quotes (Brian Russell 'It's gonna be home for me now', Fred Campbell, Shaun Fisher, Norman Frank three-maroon-beds request) need their own consent verification \u2014 not Dianne's to clear. Totem referenced ('within the boundary of her totem') \u2014 totem line, registry HOLD, never external."
+  },
+  {
+   "storyteller": "Dianne Stokes (synthesis)",
+   "transcript_id": "synthesis",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "I'm happy. I, I can't tell you how my heart is, uh, hopping and skipping inside me.",
+     "timestamp": "[00:14:00]",
+     "context": "Washing machine reveal at Sebastian's house (raw source 1cc79556) \u2014 the single best delivery-day emotion line.",
+     "themes": [
+      "washing-clean",
+      "dignity-safety"
+     ],
+     "domain": "dignity-safety",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "If you have an idea what place you'd go to first go and talk to... the elders. Sit down and talk to them... and they'll probably be keen on joining in and helping out.",
+     "timestamp": "[00:09:00]",
+     "context": "The protocol teaching (raw source 37fbb44f) \u2014 the origin of the Goods listening-first method.",
+     "themes": [
+      "elders-protocol",
+      "design-in-community"
+     ],
+     "domain": "self-determination",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "I didn't get money, but those two young fellows that are doing something, they offered us and shared their blessings with us. So I shared my blessings to them.",
+     "timestamp": "[00:02:00]",
+     "context": "The reciprocity frame (60afd811) \u2014 partnership as two-way blessing exchange, not charity.",
+     "themes": [
+      "reciprocity-partnership"
+     ],
+     "domain": "self-determination",
+     "strength": "deck",
+     "sensitivity": null
+    },
+    {
+     "text": "If we have our own contract doing all these in the communities, they can sell 'em to people... where we have NAIDOC week or we have show... marquees sort of sell 'em.",
+     "timestamp": "[00:04:00]",
+     "context": "Community-owned manufacturing and sales vision (60afd811) \u2014 the ownership-pathway line in her own words.",
+     "themes": [
+      "making-jobs",
+      "ownership-pathway"
+     ],
+     "domain": "jobs-ownership",
+     "strength": "deck",
+     "sensitivity": null
+    },
+    {
+     "text": "Why do I think it's comfortable? Because I was looking for these kinds before having a milk crate and a mattress on top. It was comfortable, but not much. But this is more.",
+     "timestamp": "[00:14:00]",
+     "context": "First lie-down product verdict (37fbb44f), before-and-after in one breath; pairs with 'this is number one'.",
+     "themes": [
+      "rest-sleep-health",
+      "product-durability"
+     ],
+     "domain": "rest-health",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    }
+   ],
+   "themes_present": [
+    {
+     "id": "elders-protocol",
+     "evidence": "Across all five: she is the elder who taught Goods the go-to-elders-first protocol and lends traditional-owner endorsement."
+    },
+    {
+     "id": "reciprocity-partnership",
+     "evidence": "Blessings-both-ways framing and respect for the 'two young fellas' recur in 60afd811 and e46693fa."
+    },
+    {
+     "id": "washing-clean",
+     "evidence": "She named Pakkimjalki Kari in Warumungu and anchored the first washer delivery at Alba Camp."
+    },
+    {
+     "id": "rest-sleep-health",
+     "evidence": "Milk-crates-to-Stretch-Bed arc; fear of people sleeping on the ground."
+    },
+    {
+     "id": "making-jobs",
+     "evidence": "Community contracts, NAIDOC-week sales, men's shed manufacturing ideas."
+    },
+    {
+     "id": "ownership-pathway",
+     "evidence": "Registered land, self-owned vision, community-made-and-sold beds."
+    },
+    {
+     "id": "country-culture",
+     "evidence": "Country calling her home, both-ways education, living museum, language naming."
+    },
+    {
+     "id": "design-in-community",
+     "evidence": "Fire-side refinement and show-them-how-to-make-beds participation model."
+    },
+    {
+     "id": "never-asked",
+     "evidence": "'They need to hear from the ground' \u2014 her core critique of top-down delivery."
+    },
+    {
+     "id": "family-kids",
+     "evidence": "Everything routes through kin: Sebastian, Stanley, daughters, grandsons helping build."
+    },
+    {
+     "id": "system-failure",
+     "evidence": "23 years without a house; dead machines; paid town laundromat runs."
+    },
+    {
+     "id": "product-durability",
+     "evidence": "'Indestructible washing machine'; washable beds; zip-together strength."
+    },
+    {
+     "id": "dignity-safety",
+     "evidence": "Off the ground, clean blankets at home, pride in language-named equipment."
+    }
+   ],
+   "narrative_summary": "Dianne Stokes is the anchor voice of the Goods story: a Warumungu traditional owner near Tennant Creek who lived 23 years on her country with only her car for shelter, taught Goods its elders-first protocol, named the washing machine Pakkimjalki Kari in language, and articulates unprompted the community-ownership future the enterprise is building toward. Across five transcripts she covers every domain of the Voice Impact Model \u2014 rest, dignity, self-determination, jobs-ownership \u2014 with deck-grade lines in each. She is simultaneously beneficiary, designer, endorser and strategist, which is exactly the design-in-community claim in lived form.",
+   "analysis_notes": "TOTEM: her totem-boundary line appears in 37fbb44f, 4d0fa2ab and e46693fa \u2014 registry HOLD, never external, never deck-grade in any variant. Source hierarchy: 1cc79556, 37fbb44f, 60afd811 are raw recordings (quote authority); 4d0fa2ab is an edited monologue of 37fbb44f; e46693fa is an article draft with multiple canon contradictions (369 beds, 8 communities, 12kg/15kg/21kg specs, banned 'co-designed', Weave Bed hero section, health-outcome overclaim) \u2014 never use as canon or verbatim source. Language-word transcriptions are unreliable in the raw files (garbled machine name); the canonical name Pakkimjalki Kari comes from established registry, not these transcripts. Ambiguous speaker labels throughout 1cc79556 \u2014 attribute only Speaker 9 lines to Dianne."
+  },
+  {
+   "storyteller": "Annie Morrison",
+   "transcript_id": "889a854a-f9dd-455e-aa41-aaf7fa390458",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "I was looking at it good... because I was trying to ask them if they can make one for me. 'cause save me moving my bunks. My bunk is too heavy and you know, I need something where likely easy to move around, you know?",
+     "timestamp": "[00:03:00]",
+     "context": "Her reaction to the beds being made near her house \u2014 portability over heavy bunks is her stated need.",
+     "themes": [
+      "rest-sleep-health",
+      "product-durability"
+     ],
+     "domain": "rest-health",
+     "strength": "strong",
+     "sensitivity": null
+    },
+    {
+     "text": "That's why we need in our community, you know, why we got a lot of old people there. You know, we might do something for them, you know, show them, you know.",
+     "timestamp": "[00:03:00]",
+     "context": "On why washing machines matter \u2014 for the old people in her community.",
+     "themes": [
+      "washing-clean",
+      "elders-protocol"
+     ],
+     "domain": "dignity-safety",
+     "strength": "strong",
+     "sensitivity": null
+    },
+    {
+     "text": "Now we got our own washing, but we can do it for ourselves, you know, for the old people.",
+     "timestamp": "[00:04:00]",
+     "context": "Community members washing for elders \u2014 care flowing to old people.",
+     "themes": [
+      "washing-clean",
+      "reciprocity-partnership"
+     ],
+     "domain": "dignity-safety",
+     "strength": "supporting",
+     "sensitivity": null
+    },
+    {
+     "text": "I like go back to my own homeland. And teach my kids all them things, what I done... 'cause my homeland is no alcoholic, no drugs at all. You know, it's good.",
+     "timestamp": "[00:02:00]",
+     "context": "What gives her joy: homeland as the safe, teaching place away from town.",
+     "themes": [
+      "country-culture",
+      "family-kids"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": "References alcohol/drugs in town \u2014 keep as her own framing, no community-deficit generalisation."
+    },
+    {
+     "text": "We used to just go hunting with families and grandparents. They show us what to do and get what, what is right and what is wrong... we catch some bush tuck and take it back for families and we share with our families too.",
+     "timestamp": "[00:02:00]",
+     "context": "Her account of growing up on the station \u2014 intergenerational teaching and sharing.",
+     "themes": [
+      "country-culture",
+      "family-kids"
+     ],
+     "domain": "self-determination",
+     "strength": "supporting",
+     "sensitivity": null
+    }
+   ],
+   "themes_present": [
+    {
+     "id": "rest-sleep-health",
+     "evidence": "Wants a bed made for her; her bunk is too heavy to move."
+    },
+    {
+     "id": "product-durability",
+     "evidence": "Values something light and easy to move around versus heavy bunks."
+    },
+    {
+     "id": "washing-clean",
+     "evidence": "Names washing machines as a community need, especially for old people."
+    },
+    {
+     "id": "country-culture",
+     "evidence": "Grew up on the station hunting with grandparents; homeland is her grandfather's country; 40 years of church."
+    },
+    {
+     "id": "family-kids",
+     "evidence": "Wants to take her kids back to homeland to teach them what she was taught."
+    },
+    {
+     "id": "elders-protocol",
+     "evidence": "Frames need through what old people in the community require."
+    },
+    {
+     "id": "reciprocity-partnership",
+     "evidence": "Sharing bush tucker with families; doing washing for elders; cooking kangaroo tails and damper together at the build."
+    }
+   ],
+   "narrative_summary": "Annie Morrison grew up on Rockhampton Downs station in the 1960s and now has a homeland about 87km from Tennant Creek on her grandfather's country, alcohol- and drug-free, where she wants to raise and teach her kids. Her transcript gives Goods grounded demand evidence \u2014 she asked for a bed on the spot because her bunk is too heavy \u2014 and frames washing machines as elder care, a community-need articulation in her own voice. She embodies the intergenerational teaching and homeland-movement context Goods works within.",
+   "analysis_notes": "Spelling ambiguity: she spells her name 'A-L-N-I-E' but header says Annie \u2014 verify spelling before external credit. Station name transcribed as 'rocking the dam station' (likely Rockhampton Downs); homeland name inaudible/garbled ('It's called, that's why my grandfather's country') \u2014 place name missing, don't guess. Interviewer questions occupy much of the transcript; her answers are short \u2014 thin but genuine. She had NOT yet tried the bed at time of interview ('No, I didn't try it yet') so no comfort testimony exists. Distances: homeland 180 or 87 Ks from Tennant \u2014 transcript says 'a hundred, um, 80, 87 Ks', ambiguous, don't cite a number."
+  },
+  {
+   "storyteller": "Risilda Hogan",
+   "transcript_id": "769e6784-4818-4d3a-9219-0b508bd4690b",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "Sleeping on the mattress, on the floor... don't have any mattresses. Gotta buy them one once in the shop for me and my little ones.",
+     "timestamp": "[00:01:00]",
+     "context": "Her current sleeping situation with five children \u2014 mattresses on the floor, and not enough of them.",
+     "themes": [
+      "rest-sleep-health",
+      "system-failure",
+      "family-kids"
+     ],
+     "domain": "rest-health",
+     "strength": "deck",
+     "sensitivity": "Household hardship with children \u2014 use with care and her consent status checked."
+    },
+    {
+     "text": "Oh, that's really cool. I like it. Think my two little one will be happy. And my eldest son, second son, he's happy.",
+     "timestamp": "[00:01:00]",
+     "context": "Her reaction to the bed being made at her house, framed through her kids' happiness.",
+     "themes": [
+      "rest-sleep-health",
+      "family-kids"
+     ],
+     "domain": "rest-health",
+     "strength": "strong",
+     "sensitivity": null
+    },
+    {
+     "text": "There's four bedroom and we need four beds.",
+     "timestamp": "[00:03:00]",
+     "context": "Plain statement of household need \u2014 four bedrooms, four beds.",
+     "themes": [
+      "rest-sleep-health",
+      "never-asked"
+     ],
+     "domain": "rest-health",
+     "strength": "strong",
+     "sensitivity": null
+    },
+    {
+     "text": "I was living at the Tin shed... Hot. Hot and too much mosquito at night, but I had support helping me people like in town.",
+     "timestamp": "[00:00:00]",
+     "context": "Her housing journey from a tin shed to this house with Stronger Families support.",
+     "themes": [
+      "dignity-safety",
+      "system-failure"
+     ],
+     "domain": "dignity-safety",
+     "strength": "strong",
+     "sensitivity": "Past housing hardship \u2014 respectful framing only."
+    },
+    {
+     "text": "I'm gonna stay here for so long, not gonna move out. I like it here.",
+     "timestamp": "[00:04:00]",
+     "context": "Stability and belonging in her new house in Tennant Creek.",
+     "themes": [
+      "dignity-safety",
+      "family-kids"
+     ],
+     "domain": "dignity-safety",
+     "strength": "supporting",
+     "sensitivity": null
+    }
+   ],
+   "themes_present": [
+    {
+     "id": "rest-sleep-health",
+     "evidence": "Mattresses on the floor, some kids without; 'good old nap' after a work day; four beds needed."
+    },
+    {
+     "id": "dignity-safety",
+     "evidence": "Tin shed (hot, mosquitoes) to a house she intends to keep for good."
+    },
+    {
+     "id": "family-kids",
+     "evidence": "Five children, their happiness at the new bed, school every day, youth centre and sports available."
+    },
+    {
+     "id": "system-failure",
+     "evidence": "A working mother of five with no mattresses for all her kids; prior tin-shed housing."
+    },
+    {
+     "id": "never-asked",
+     "evidence": "Simple, direct statement of need (four beds) that no service had met."
+    }
+   ],
+   "narrative_summary": "Risilda Hogan is a working mother of five in Tennant Creek who moved from a tin shed into a house with Stronger Families support, where her family was sleeping on mattresses on the floor \u2014 and short of mattresses at that. Her transcript is short and reserved but gives Goods the clearest before-state evidence in the batch: a four-bedroom house needing four beds, told without drama. Her kids' happiness at the bed build is the human payoff.",
+   "analysis_notes": "Name discrepancy: transcript renders her introduction as 'Zelda Hogan' but she spells R-I-S-I-L-D-A \u2014 use Risilda, verify preferred name before credit. Wilya Janta connection: interviewer says her house 'featured in many photos with Willy Janta' but she says she doesn't know, just moved in June/July last year \u2014 do NOT claim a Wilya Janta relationship for her. Reserved interviewee; several answers are 'not sure' \u2014 do not pad her voice. Town problems line ('Drinking and drugs that needs to stop') is her view; avoid deficit framing externally. Tennant Creek place details: primary school attended daily, youth centre and sports rec available."
+  }
+ ]
 }

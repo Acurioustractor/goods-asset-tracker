@@ -1,7 +1,7 @@
-# Quote review — all extracted quotes (2026-07-20, rev 3: + Georgina, Margaret, Kristy, Tanya)
+# Quote review — all extracted quotes (2026-07-20, rev 4)
 
-> Ben's clearing pass. Every quote is transcript-verbatim (trims marked ...). Mark each CLEAR / HOLD / EDIT; I flip `cleared: true` and rebuild.
-> Strength: deck / strong / supporting / internal-only. ⚑ = sensitivity flag. ✅ = already cleared.
+> Ben's clearing pass. Verbatim only (trims marked ...). Mark CLEAR / HOLD / EDIT; I flip `cleared: true` and rebuild.
+> deck / strong / supporting / internal-only. ⚑ = sensitivity. ✅ = cleared.
 
 ## Dianne Stokes  (ELDER)
 *Tennant Creek, Northern Territory, Australia · 5 transcript(s) · 8,443 words · 46,887 characters*
@@ -9,11 +9,11 @@
 **Transcript: Getting washing machine** (2,631w, `1cc79556`)
 _Verite footage of the first washing machine delivery to Alba Camp, Tennant Creek: Dianne Stokes walks Ben and Nic to her son Sebastian's House 13, where the old machine is dead. She gives Goods its strongest delivery-day reaction line ('my heart is hopping and skipping inside me') and grounds the washer story in real logistics: broken machines, no house of her own, trips to town to wash blankets. It also captures her pricing candour — people can only pay if they're working — useful for the affordability model._
 
-**Q1** [ ] (deck · [00:14:00])
+**Q1** ✅ CLEARED (deck · [00:14:00])
 > "I'm happy. I, I can't tell you how my heart is, uh, hopping and skipping inside me."
 *Dianne's reaction at the reveal of the new washing machine at her son Sebastian's house.* — themes: washing-clean, dignity-safety → dignity-safety
 
-**Q2** [ ] (deck · [00:18:00])
+**Q2** ✅ CLEARED (deck · [00:18:00])
 > "I will know where to come. If I need to wash my blanket, I don't have to go do it in town. Laundry, do it here."
 *On what the machine changes: no more paid trips to the town laundromat to wash blankets.* — themes: washing-clean, system-failure → dignity-safety
 
@@ -34,15 +34,15 @@ Notes: Messy multi-speaker field recording; Speaker 9 is Dianne (confident from 
 **Transcript: Untitled** (2,159w, `37fbb44f`)
 _Dianne's full seated interview: traditional owner who lived 23 years on her block with only her car for shelter, now with registered land and plans for a both-ways cultural and youth centre. She delivers the elders-first protocol lines that define how Goods enters communities, and gives the milk-crate-to-real-bed comfort verdict at the bed build. This is the source transcript for both the consent-protocol story and the design-in-community story._
 
-**Q6** [ ] (deck · [00:09:00])
+**Q6** ✅ CLEARED (deck · [00:09:00])
 > "If you have an idea what place you'd go to first go and talk to... the elders. Sit down and talk to them or a group of people and tell them if you can show them how to make them beds, and they'll probably be keen on joining in and helping out."
 *Dianne teaching Goods the protocol for entering a new community.* — themes: elders-protocol, design-in-community → self-determination
 
-**Q7** [ ] (deck · [00:10:00])
+**Q7** ✅ CLEARED (deck · [00:10:00])
 > "They need to hear from the ground, who wants it, who's gonna do it, who's out there, who needs help?"
 *On why community knowledge, not government assumption, should drive what gets delivered.* — themes: never-asked, design-in-community → self-determination
 
-**Q8** [ ] (deck · [00:14:00])
+**Q8** ✅ CLEARED (deck · [00:14:00])
 > "Why do I think it's comfortable? Because I was looking for these kinds before having a milk crate and a mattress on top. It was comfortable, but not much. But this is more."
 *First lie-down verdict on the finished bed, contrasted with her milk-crate setup.* — themes: rest-sleep-health, product-durability → rest-health
 
@@ -792,19 +792,19 @@ Notes: Only 299 words but almost every line is usable; single-speaker transcript
 
 _Margaret Lloyd, ~30 years resident in Wenitong, describes sleeping in a tent beside her 'rubbish house' on a bare frame with no mattress, or on the floor. The Goods team delivers a bed on camera and she immediately approves it, confirming she can sleep straight on the canvas without a mattress. A short but direct before/after delivery testimony — one of the clearest 'this is why the bed exists' clips in the set._
 
-**Q148** [ ] (deck · 00:00:00 · ⚑ Depicts personal hardship (tent, 'rubbish house'); use with dignity framing and confirm consent/clearance before external use.)
+**Q148** ✅ CLEARED (deck · 00:00:00 · ⚑ Depicts personal hardship (tent, 'rubbish house'); use with dignity framing and confirm consent/clearance before external use.)
 > "I sleep in the tent but look, there's my house or the rubbish house... No mattress. Look, the be- bed was mine. Just for chucking us blanket, that's all, that's all I was sleeping."
 *Margaret describing her sleeping situation in Wenitong before the Goods bed delivery: sleeping in a tent beside an uninhabitable house, on a bed frame with no mattress, just a blanket.* — themes: rest-sleep-health, system-failure, dignity-safety → rest-health
 
-**Q149** [ ] (deck · 00:00:00)
+**Q149** ✅ CLEARED (deck · 00:00:00)
 > "Because I was sleeping on floor, turn around, turn around. Yeah. No comfortable nothing."
 *Why the new bed matters: she had been sleeping on the floor, unable to get comfortable.* — themes: rest-sleep-health → rest-health
 
-**Q150** [ ] (strong · 00:00:00)
+**Q150** ✅ CLEARED (strong · 00:00:00)
 > "Our bed is right. That's good. Good... I can sleep there. Yeah."
 *Her verdict on the just-delivered bed, including that the canvas surface works without a mattress (mattresses go missing: 'all the mattress has gone somewhere').* — themes: product-durability, rest-sleep-health → rest-health
 
-Notes: GEO CHECK for the Margaret-of-Utopia question: she says the location is 'Wenitong' (likely Wenten/Wenitong outstation transcription — phonetically close to Wetenngerr/Amengernternenh area names; Utopia homelands include Arnkawenyerr/Atnwengerrp outstations). The transcript does NOT say Utopia explicitly and gives no leadership context; it does not confirm she is the Utopia community leader Margaret. Flag: 'Wenitong' may be a mis-transcription of an Utopia outstation name — needs Ben/field confirmation. Speaker labels: 'Speaker' = Margaret, 'Speaker 2' = interviewer (likely Ben/Nic), 'Speaker 3' = second team member. English is a later language for her; quotes kept verbatim — do not smooth without clearance.
+Notes: GEO CHECK for the Margaret-of-Utopia question: she says the location is 'Wenitong' (likely Wenten/Wenitong outstation transcription — phonetically close to Wetenngerr/Amengernternenh area names; Utopia homelands include Arnkawenyerr/Atnwengerrp outstations). The transcript does NOT say Utopia explicitly and gives no leadership context; it does not confirm she is the Utopia community leader Margaret. Flag: 'Wenitong' may be a mis-transcription of an Utopia outstation name — needs Ben/field confirmation. Speaker labels: 'Speaker' = Margaret, 'Speaker 2' = interviewer (likely Ben/Nic), 'Speaker 3' = second team member. English is a later language for her; quotes kept verbatim — do not smooth without clearance. CONFIRMED by Ben 2026-07-20: Margaret Lloyd IS the Utopia Margaret; crm_contacts row linked (empathy_ledger_id set), provenance entry added.
 
 ## Ana - Bega
 *Perth, Western Australia, Australia · 1 transcript(s) · 3,054 words · 16,294 characters*
