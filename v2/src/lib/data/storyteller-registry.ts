@@ -502,9 +502,19 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         context: 'Cultural healing',
         status: 'approved',
       },
+      {
+        text: "A lot of people say community is community and they need what we've got. When you flip it, we need what they've got.",
+        context: 'Reciprocity: what community delivery means',
+        status: 'approved',
+      },
+      {
+        text: "Today my mum still gets text messages from her family saying, I can't believe how good this bed's going ... I don't want to get outta bed in the morning 'cause it's just so comfortable.",
+        context: 'Eight weeks after the bed deliveries',
+        status: 'approved',
+      },
     ],
     portrait: null,
-    notes: 'Voice-only by design: no portrait.',
+    notes: 'Voice-only by design: no portrait. Quotes 3-4 cleared by Ben 2026-07-20 from his EL transcript (the firsthand Maningrida delivery account; remaining candidates in wiki/investor/06-full-stories.md §6).',
   },
   {
     slug: 'dorrie-jones',

@@ -79,11 +79,11 @@ Source: EL transcript `4b390461-d019-4498-9ece-dc44bf6c4268` ("Shane Bloomfield 
 the **firsthand Maningrida delivery account**: the Darwin drive, the laundromat refurb, ~20 beds
 built with young people at the aged-care service, washers installed. It also carries reciprocity
 and protocol lines that generalise. All candidates verbatim from the transcript (filler trimmed
-where marked ...); NONE cleared for external use until Ben passes them.
+where marked ...); Candidates 1-2 CLEARED by Ben 2026-07-20 and promoted to storyteller-registry.ts; 3-7 remain pending.
 
-1. **Reciprocity (deck-grade):** "A lot of people say community is community and they need
+1. **Reciprocity (deck-grade):** CLEARED + PROMOTED to registry 2026-07-20. "A lot of people say community is community and they need
    what we've got. When you flip it, we need what they've got."
-2. **The beds, eight weeks on:** "Today my mum still gets text messages from her family
+2. **The beds, eight weeks on:** CLEARED + PROMOTED to registry 2026-07-20. "Today my mum still gets text messages from her family
    saying, I can't believe how good this bed's going ... I don't want to get outta bed in the
    morning 'cause it's just so comfortable."
 3. **Protocol / how we enter:** "We've liaised with Aboriginal elders, traditional owners of
