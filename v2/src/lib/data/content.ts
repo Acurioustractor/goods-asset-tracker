@@ -905,7 +905,7 @@ export const communityLocations: CommunityLocation[] = [
 // (narrative subset) stays INTENTIONALLY NARROWER: it lists only communities
 // with a real narrative partner, so it still omits Darwin/Canberra (a bare
 // deployment is not a partnership story, and inventing one would be fabrication).
-// So we do NOT force either array's sum to equal 496. Instead we assert that
+// So we do NOT force either array's sum to equal 536. Instead we assert that
 // (a) no single community's static count EXCEEDS the canonical register value,
 // and (b) neither array's total exceeds EXPECTED_DEPLOYED_BEDS. This catches the
 // previous divergence (139/141/60/96 baselines that overstated some communities)

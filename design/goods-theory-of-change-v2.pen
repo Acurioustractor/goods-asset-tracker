@@ -1,5 +1,5 @@
 {
-  "version": "2.13",
+  "version": "2.14",
   "children": [
     {
       "type": "frame",
@@ -1027,7 +1027,7 @@
         {
           "type": "image",
           "enabled": true,
-          "url": "deck-assets/stretch-bed-in-use.jpg",
+          "url": "deck-photos/cover-hero.jpg",
           "mode": "fill"
         },
         {
@@ -1219,7 +1219,7 @@
               "fill": "$cream",
               "textGrowth": "fixed-width",
               "width": "fill_container",
-              "content": "“We’ve never been asked what sort of house we’d like to live in.”",
+              "content": "\"Working both ways, cultural side in white society and Indigenous society.\"",
               "lineHeight": 1.16,
               "fontFamily": "$display",
               "fontSize": 64,
@@ -1231,7 +1231,7 @@
               "id": "p62n93",
               "name": "Attrib",
               "fill": "$sand",
-              "content": "Linda Turner   ·   Tennant Creek, NT",
+              "content": "Dianne Stokes   ·   Tennant Creek, NT",
               "fontFamily": "$body",
               "fontSize": 24,
               "fontWeight": "600"
@@ -1243,7 +1243,7 @@
               "fill": "$onDarkDim",
               "textGrowth": "fixed-width",
               "width": "fill_container",
-              "content": "The opposite of charity is asking. Goods exists because the people closest to the problem were never asked, and they’re the ones who should lead the answer.",
+              "content": "Elder Dianne Stokes designed the bed and named the washing machine Pakkimjalki Kari in Warumungu language. Goods works both ways, so the people who live the need lead the design.",
               "lineHeight": 1.5,
               "fontFamily": "$body",
               "fontSize": 25,
@@ -1254,11 +1254,11 @@
         {
           "type": "rectangle",
           "id": "IvPfX",
-          "name": "Linda photo",
+          "name": "Dianne photo",
           "fill": {
             "type": "image",
             "enabled": true,
-            "url": "deck-assets/linda-turner.jpg",
+            "url": "deck-photos/storyteller-dianne-stokes.jpg",
             "mode": "fill"
           },
           "width": "fill_container",
@@ -1439,7 +1439,7 @@
           "fill": {
             "type": "image",
             "enabled": true,
-            "url": "deck-assets/utopia-09.jpg",
+            "url": "deck-photos/community-delivery.jpg",
             "mode": "fill"
           },
           "width": "fill_container",
@@ -1647,7 +1647,7 @@
           "fill": {
             "type": "image",
             "enabled": true,
-            "url": "deck-assets/heat-press-full.jpg",
+            "url": "deck-photos/plant-the-one-move.jpg",
             "mode": "fill"
           },
           "width": "fill_container",
@@ -1969,7 +1969,7 @@
           "fill": {
             "type": "image",
             "enabled": true,
-            "url": "deck-assets/goods-cost-curve.png",
+            "url": "deck-photos/cost-curve.png",
             "mode": "fit"
           },
           "width": "fill_container",
@@ -2063,7 +2063,7 @@
           "fill": {
             "type": "image",
             "enabled": true,
-            "url": "deck-assets/goods-breakeven.png",
+            "url": "deck-photos/breakeven.png",
             "mode": "fit"
           },
           "width": "fill_container",
@@ -3203,7 +3203,7 @@
           "fill": {
             "type": "image",
             "enabled": true,
-            "url": "deck-assets/goods-community-ownership-v2.png",
+            "url": "deck-photos/community-ownership.png",
             "mode": "fit"
           },
           "width": "fill_container",
@@ -3409,7 +3409,7 @@
           "fill": {
             "type": "image",
             "enabled": true,
-            "url": "deck-assets/utopia-16.jpg",
+            "url": "deck-photos/kids-building.jpg",
             "mode": "fill"
           },
           "width": "fill_container",
@@ -3605,7 +3605,7 @@
           "fill": {
             "type": "image",
             "enabled": true,
-            "url": "deck-assets/goods-bed-anatomy.jpg",
+            "url": "deck-photos/product-anatomy.jpg",
             "mode": "fit"
           },
           "width": "fill_container",
@@ -4140,7 +4140,7 @@
           "fill": {
             "type": "image",
             "enabled": true,
-            "url": "deck-assets/goods-plastic-journey.jpg",
+            "url": "deck-photos/plastic-loop.jpg",
             "mode": "fit"
           },
           "width": "fill_container",
@@ -7325,6 +7325,894 @@
           "fontWeight": "normal"
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "q7rJVM",
+      "x": 10400,
+      "y": 0,
+      "name": "Slide 03b — Repair not replace",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "$dark",
+      "layout": "vertical",
+      "gap": 34,
+      "padding": [
+        120,
+        130
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "rWx2j",
+          "name": "Head",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 18,
+          "children": [
+            {
+              "type": "frame",
+              "id": "TVNKY",
+              "name": "Tab",
+              "fill": "$terracotta",
+              "cornerRadius": 7,
+              "padding": [
+                9,
+                17
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "hYYiu",
+                  "name": "TabLabel",
+                  "fill": "$cream",
+                  "content": "THE PHILOSOPHY",
+                  "fontFamily": "$body",
+                  "fontSize": 16,
+                  "fontWeight": "700",
+                  "letterSpacing": 2
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "oSmgD",
+              "name": "H",
+              "fill": "$cream",
+              "textGrowth": "fixed-width",
+              "width": 1400,
+              "content": "Repair, not replace.",
+              "lineHeight": 1.1,
+              "fontFamily": "$display",
+              "fontSize": 58,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "FaMU8",
+          "name": "Body",
+          "fill": "$onDark",
+          "textGrowth": "fixed-width",
+          "width": 1500,
+          "content": "Most goods sent to remote communities are designed somewhere else, for somewhere else. They arrive, they fail in the conditions, and they end up on Country as waste. Charity that replaces rather than repairs leaves the same gap next year, plus the rubbish.",
+          "lineHeight": 1.5,
+          "fontFamily": "$body",
+          "fontSize": 25,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "Blwqe",
+          "name": "Evidence",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            14,
+            0,
+            0,
+            0
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "BIXY2",
+              "name": "Row",
+              "width": "fill_container",
+              "gap": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "A6OP5",
+                  "name": "Card",
+                  "width": "fill_container",
+                  "fill": "#2C2820",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": [
+                    22,
+                    26
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "zJJly",
+                      "name": "Label",
+                      "fill": "$sage",
+                      "content": "The freight tax",
+                      "fontFamily": "$body",
+                      "fontSize": 20,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "ishoa",
+                      "name": "Body",
+                      "fill": "$onDarkDim",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "A city bed or fridge is barged in at heavy cost, then thrown out when it breaks. You pay for freight, and it all adds up. Alfred Johnson, Palm Island.",
+                      "lineHeight": 1.4,
+                      "fontFamily": "$body",
+                      "fontSize": 21,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "gWMnb",
+                  "name": "Card",
+                  "width": "fill_container",
+                  "fill": "#2C2820",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": [
+                    22,
+                    26
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "uD7gs",
+                      "name": "Label",
+                      "fill": "$sage",
+                      "content": "Designed to be dumped",
+                      "fontFamily": "$body",
+                      "fontSize": 20,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "uMfuo",
+                      "name": "Body",
+                      "fill": "$onDarkDim",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "One Alice Springs provider sells about $3,000,000 a year of washing machines into remote communities. Most are in the dump within months.",
+                      "lineHeight": 1.4,
+                      "fontFamily": "$body",
+                      "fontSize": 21,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "kCW05",
+              "name": "Row",
+              "width": "fill_container",
+              "gap": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "O9TLXk",
+                  "name": "Card",
+                  "width": "fill_container",
+                  "fill": "#2C2820",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": [
+                    22,
+                    26
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "qJ1Y3",
+                      "name": "Label",
+                      "fill": "$sage",
+                      "content": "The waste stays home",
+                      "fontFamily": "$body",
+                      "fontSize": 20,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "WYpBO",
+                      "name": "Body",
+                      "fill": "$onDarkDim",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "A pallet of bottled water dropped in weekly keeps people alive, and leaves plastic that gets burned or buried on significant Country.",
+                      "lineHeight": 1.4,
+                      "fontFamily": "$body",
+                      "fontSize": 21,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "acxWh",
+                  "name": "Card",
+                  "width": "fill_container",
+                  "fill": "#2C2820",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": [
+                    22,
+                    26
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "CHbbL",
+                      "name": "Label",
+                      "fill": "$sage",
+                      "content": "Our answer",
+                      "fontFamily": "$body",
+                      "fontSize": 20,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "tpS0E",
+                      "name": "Body",
+                      "fill": "$onDarkDim",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Build things that are washable, repairable, and made from what is already there. Keep the making, the repair and the value On Country.",
+                      "lineHeight": 1.4,
+                      "fontFamily": "$body",
+                      "fontSize": 21,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "s1wOu",
+      "x": 12400,
+      "y": 0,
+      "name": "Slide 06b — The wider family",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "$cream",
+      "layout": "vertical",
+      "gap": 22,
+      "padding": [
+        84,
+        120,
+        64,
+        120
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "XWWpA",
+          "name": "Head",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 14,
+          "children": [
+            {
+              "type": "frame",
+              "id": "SfPAo",
+              "name": "Tab",
+              "fill": "$terracotta",
+              "cornerRadius": 7,
+              "padding": [
+                9,
+                17
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "XIibs",
+                  "name": "TabLabel",
+                  "fill": "$cream",
+                  "content": "THE WIDER FAMILY",
+                  "fontFamily": "$body",
+                  "fontSize": 16,
+                  "fontWeight": "700",
+                  "letterSpacing": 2
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "la4du",
+              "name": "H",
+              "fill": "$ink",
+              "content": "The bed is the start, not the whole idea.",
+              "fontFamily": "$display",
+              "fontSize": 50,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Hi68H",
+          "name": "Family",
+          "width": "fill_container",
+          "height": "fill_container",
+          "gap": 24,
+          "children": [
+            {
+              "type": "frame",
+              "id": "IAJ7A",
+              "name": "Card",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "stroke": "$border",
+              "strokeWidth": 1.2,
+              "strokeAlignment": "inner",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                36,
+                34
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "CsTgq",
+                  "name": "Title",
+                  "fill": "$ink",
+                  "content": "Pakkimjalki Kari",
+                  "fontFamily": "$display",
+                  "fontSize": 32,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "Yp39t",
+                  "name": "Body",
+                  "fill": "$ink-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "A washing machine built for remote conditions, on a commercial Speed Queen base. Named in Warumungu by Elder Dianne Stokes. 16 in community, still a prototype. Keep the toughness, cut the price, make repair possible close to home.",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$body",
+                  "fontSize": 21,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "UB4mX",
+              "name": "Card",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "stroke": "$border",
+              "strokeWidth": 1.2,
+              "strokeAlignment": "inner",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                36,
+                34
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "CWcqP",
+                  "name": "Title",
+                  "fill": "$ink",
+                  "content": "The Basket Bed",
+                  "fontFamily": "$display",
+                  "fontSize": 32,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "G6YGJ",
+                  "name": "Body",
+                  "fill": "$ink-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Our first bed. We are retiring it from sale and opening the design, so anyone can build it, improve it, and repair it.",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$body",
+                  "fontSize": 21,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "y6EGQk",
+              "name": "Card",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "stroke": "$border",
+              "strokeWidth": 1.2,
+              "strokeAlignment": "inner",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                36,
+                34
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "qkqlx",
+                  "name": "Title",
+                  "fill": "$ink",
+                  "content": "The horizon",
+                  "fontFamily": "$display",
+                  "fontSize": 32,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "wIDZp",
+                  "name": "Body",
+                  "fill": "$ink-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Communities keep asking for the next thing. In the Central Desert, someone asked us to design a car that does not break down. It is the direction: appropriate technology, designed in community.",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$body",
+                  "fontSize": 21,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "PkbV1",
+      "x": 14400,
+      "y": 0,
+      "name": "Slide 16b — Ownership & governance",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "$cream",
+      "layout": "vertical",
+      "gap": 28,
+      "padding": [
+        90,
+        120,
+        76,
+        120
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "U5FRIW",
+          "name": "Head",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "frame",
+              "id": "UzYrV",
+              "name": "Tab",
+              "fill": "$terracotta",
+              "cornerRadius": 7,
+              "padding": [
+                9,
+                17
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Bg8BS",
+                  "name": "TabLabel",
+                  "fill": "$cream",
+                  "content": "OWNERSHIP AND GOVERNANCE",
+                  "fontFamily": "$body",
+                  "fontSize": 16,
+                  "fontWeight": "700",
+                  "letterSpacing": 2
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "nnyhl",
+              "name": "H",
+              "fill": "$ink",
+              "content": "Built to be owned On Country.",
+              "fontFamily": "$display",
+              "fontSize": 54,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "Xb82x",
+              "name": "Body",
+              "fill": "$ink",
+              "textGrowth": "fixed-width",
+              "width": 1560,
+              "content": "A hub and spoke model. A Curious Tractor holds the shared parts: design, brand, machinery and capital. Community-controlled enterprises do the making, repair and selling, and hold the jobs and the margin where the beds are. Charitable and tax-deductible (DGR) functions run through The Butterfly Movement, our charitable home from this financial year.",
+              "lineHeight": 1.45,
+              "fontFamily": "$body",
+              "fontSize": 22,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "G9DEgg",
+          "name": "Governance",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 18,
+          "children": [
+            {
+              "type": "frame",
+              "id": "xlKhL",
+              "name": "Pathway",
+              "width": "fill_container",
+              "height": "fill_container",
+              "gap": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "rSR36",
+                  "name": "Stage",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "$paper",
+                  "cornerRadius": 16,
+                  "stroke": "$border",
+                  "strokeWidth": 1.2,
+                  "strokeAlignment": "inner",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 30,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "d8DClm",
+                      "name": "K",
+                      "fill": "$terracotta-ink",
+                      "content": "TODAY",
+                      "fontFamily": "$body",
+                      "fontSize": 15,
+                      "fontWeight": "700",
+                      "letterSpacing": 1.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "cFAXx",
+                      "name": "T",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Goods trades through a sole trader, migrating to A Curious Tractor Pty Ltd as the go-forward company.",
+                      "lineHeight": 1.4,
+                      "fontFamily": "$body",
+                      "fontSize": 21,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "oUdKM",
+                  "name": "Stage",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "$paper",
+                  "cornerRadius": 16,
+                  "stroke": "$border",
+                  "strokeWidth": 1.2,
+                  "strokeAlignment": "inner",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 30,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t9P1e0",
+                      "name": "K",
+                      "fill": "$terracotta-ink",
+                      "content": "TRANSITION",
+                      "fontFamily": "$body",
+                      "fontSize": 15,
+                      "fontWeight": "700",
+                      "letterSpacing": 1.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "Wxo9L",
+                      "name": "T",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Supply Nation certified joint venture with a community corporation, 50%+ Indigenous board control, and a documented capability plan.",
+                      "lineHeight": 1.4,
+                      "fontFamily": "$body",
+                      "fontSize": 21,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "YtCZ1",
+                  "name": "Stage end",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "$sage",
+                  "cornerRadius": 16,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 30,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "HT4e1",
+                      "name": "K",
+                      "fill": "$cream",
+                      "content": "ENDPOINT",
+                      "fontFamily": "$body",
+                      "fontSize": 15,
+                      "fontWeight": "700",
+                      "letterSpacing": 1.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "Q8iVa",
+                      "name": "T",
+                      "fill": "$cream",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "A community corporation, 51%+ owned and controlled, holds the plant, the jobs and the margin.",
+                      "lineHeight": 1.4,
+                      "fontFamily": "$body",
+                      "fontSize": 21,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "pDTVt",
+              "name": "Footnote",
+              "fill": "$ink-muted",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Entity, charitable status and the 51% ownership structure are open decisions in progress with legal counsel. Stated honestly, not as finished.",
+              "lineHeight": 1.4,
+              "fontFamily": "$body",
+              "fontSize": 16,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "YHmhK",
+      "x": 16400,
+      "y": 0,
+      "name": "Slide 13b — QBE catalyst & letters",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "$dark",
+      "layout": "vertical",
+      "gap": 34,
+      "padding": [
+        120,
+        130
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "Qgkn7",
+          "name": "Head",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 18,
+          "children": [
+            {
+              "type": "frame",
+              "id": "e5zKy3",
+              "name": "Tab",
+              "fill": "$terracotta",
+              "cornerRadius": 7,
+              "padding": [
+                9,
+                17
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ZlfGY",
+                  "name": "TabLabel",
+                  "fill": "$cream",
+                  "content": "THE CATALYTIC MOMENT",
+                  "fontFamily": "$body",
+                  "fontSize": 16,
+                  "fontWeight": "700",
+                  "letterSpacing": 2
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "c1Mkvu",
+              "name": "H",
+              "fill": "$cream",
+              "textGrowth": "fixed-width",
+              "width": 1400,
+              "content": "The first signed yes makes the rest possible.",
+              "lineHeight": 1.1,
+              "fontFamily": "$display",
+              "fontSize": 58,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "zEFEo",
+          "name": "Body",
+          "fill": "$onDark",
+          "textGrowth": "fixed-width",
+          "width": 1500,
+          "content": "Goods is one of ten enterprises selected for Catalysing Impact, powered by Social Impact Hub in partnership with the QBE Foundation. QBE will contribute up to $400,000 of untied funding, on one condition: that other funders commit matched capital first. So an early commitment is not only support. It is the thing that brings the rest of the raise, and the QBE contribution behind it.",
+          "lineHeight": 1.5,
+          "fontFamily": "$body",
+          "fontSize": 25,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "Awo89",
+          "name": "Asks",
+          "width": "fill_container",
+          "height": "fill_container",
+          "gap": 20,
+          "padding": [
+            14,
+            0,
+            0,
+            0
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "t24UCW",
+              "name": "Card",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#2C2820",
+              "cornerRadius": 12,
+              "layout": "vertical",
+              "gap": 10,
+              "padding": [
+                28,
+                32
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Q5Mn0",
+                  "name": "Label",
+                  "fill": "$sage",
+                  "content": "What counts as match",
+                  "fontFamily": "$body",
+                  "fontSize": 21,
+                  "fontWeight": "700",
+                  "letterSpacing": 0.5
+                },
+                {
+                  "type": "text",
+                  "id": "uchej",
+                  "name": "Body",
+                  "fill": "$onDarkDim",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "A signed letter of intent or term sheet, confirmed before the end of August 2026. Disbursement can come later. Repayable commitments carry the most weight, and grants count too.",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$body",
+                  "fontSize": 22,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "OuQTx",
+              "name": "Card",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#2C2820",
+              "cornerRadius": 12,
+              "layout": "vertical",
+              "gap": 10,
+              "padding": [
+                28,
+                32
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "H6p5u",
+                  "name": "Label",
+                  "fill": "$sage",
+                  "content": "What we are asking of you",
+                  "fontFamily": "$body",
+                  "fontSize": 21,
+                  "fontWeight": "700",
+                  "letterSpacing": 0.5
+                },
+                {
+                  "type": "text",
+                  "id": "gJoZD",
+                  "name": "Body",
+                  "fill": "$onDarkDim",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "If you believe in this, say so early and in writing. Your yes is what the next funder reads.",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$body",
+                  "fontSize": 22,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "variables": {
@@ -7444,5 +8332,6 @@
       "type": "color",
       "value": "#FFFFFF"
     }
-  }
+  },
+  "fileToken": "53170587-c66a-4750-b225-4dc5271b5040"
 }
