@@ -26,7 +26,7 @@
 | Frankie Holmes OAM (Elder) | Ampilatwatja | Cleared voice (full-name credit pending confirmation) |
 | Kristy Bloomfield | Alice Springs / Utopia (Oonchiumpa) | Lead of the ownership pathway conversation; most active community relationship (2026-07-17) |
 | Karen Liddle | Utopia (Oonchiumpa) | Oonchiumpa chair; youth build program |
-| Jimmy Frank, Mislam Sam, Tracy McCartney, Margaret (Utopia), Aunty Jean O'Reera (Kununurra) | various | Community leaders on the register; Margaret's registry spelling and Aunty Jean's record are open items with Ben |
+| Jimmy Frank, Mislam Sam, Tracy McCartney, Margaret (Utopia), Aunty Jean O'Reera (Kununurra) | various | Community leaders on the register; Margaret = Margaret Lloyd (Ben confirmed 2026-07-20, crm + EL linked); Aunty Jean's record remains open |
 
 ## Partner organisations by function
 
@@ -74,7 +74,6 @@ Austcover (Vanessa Jennings, canvas), Beko (Amanda Hart, washer prototype conver
 
 ## Open items (Ben)
 
-- Margaret (Utopia): registry spelling / EL record match.
 - Julalikari washer recipients: named contacts for GB0-WM-TC-JUL rows.
 - Tennant Creek youth centre: follow-up owner and named contact.
 - Ampilatwatja OAM Elders: confirm full names before crediting by name in any external artifact.

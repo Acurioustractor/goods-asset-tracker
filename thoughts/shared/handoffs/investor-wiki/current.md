@@ -36,7 +36,7 @@
 - [ ] Refresh Notion QBE runway gates + fix the Utopia "107 vs 87" line to 147 (day-shift, Ben review).
 - [ ] Notion Community OS ↔ Supabase ↔ GHL sync jobs (end name-matching).
 - [ ] Cleanups: Tony Miles ↔ "Tony (Anyinginyi)" merge; org-as-contact rows (Oranges & Sardines, Our Shed, foundations) → ORG layer; washer register status cleanup (~12 rows) to make 20 query-derivable.
-- [ ] Ben: Margaret (Utopia) registry record/spelling; Julalikari washer recipients; youth-centre follow-up; claim-label ruling ($426 verified vs modelled vs deck "measured"); delete stale SUPABASE_ACCESS_TOKEN line in ~/.zshrc.
+- [ ] Ben: Margaret (Utopia) RESOLVED 2026-07-20 = Margaret Lloyd (crm + provenance linked); Julalikari washer recipients; youth-centre follow-up; claim-label ruling ($426 verified vs modelled vs deck "measured"); delete stale SUPABASE_ACCESS_TOKEN line in ~/.zshrc.
 
 ### Decisions
 - Nothing deleted in admin restructure; absorb-by-navigation (hubs + tabs), old routes intact.
