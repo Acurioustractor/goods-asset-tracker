@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1410" height="1340" viewBox="0 0 1410 1340">
+<rect width="1410" height="1340" fill="#F5EEE4"/>
+<path d="M39.3,646.5 L55.7,503.2 L95.1,449.0 L154.1,429.7 L219.7,418.1 L295.1,391.0 L337.7,332.9 L380.4,301.9 L419.7,267.1 L462.3,193.5 L508.3,181.9 L531.2,224.5 L580.4,209.0 L616.5,112.3 L675.5,100.6 L672.2,81.3 L728.0,96.8 L767.3,108.4 L816.5,108.4 L806.7,166.5 L783.7,209.0 L819.8,259.4 L872.2,282.6 L914.9,317.4 L944.4,305.8 L970.6,212.9 L964.0,154.8 L990.3,69.7 L1003.4,46.5 L1036.2,181.9 L1069.0,185.8 L1091.9,224.5 L1124.7,363.9 L1206.7,414.2 L1229.7,495.5 L1272.3,541.9 L1347.7,634.8 L1364.1,723.9 L1328.0,886.5 L1288.7,944.5 L1249.3,1068.4 L1177.2,1099.4 L1128.0,1141.9 L1072.3,1114.8 L1032.9,1134.2 L950.9,1107.1 L908.3,1076.1 L888.6,1010.3 L846.0,991.0 L869.0,960.0 L832.9,983.2 L816.5,936.8 L777.1,983.2 L728.0,905.8 L626.3,855.5 L501.7,882.6 L380.4,944.5 L324.6,944.5 L245.9,967.7 L193.5,991.0 L98.4,960.0 L118.0,917.4 L121.3,859.4 L85.3,739.4 L39.3,646.5 Z" fill="#EAE0D0" stroke="#C9BCA8" stroke-width="3"/>
+<circle cx="729" cy="99" r="36" fill="#B44D2B" fill-opacity="0.85"/>
+<circle cx="756" cy="72" r="9" fill="#4E8F88" stroke="#F5EEE4" stroke-width="2.5"/>
+<text x="779" y="95" font-family="Georgia" font-size="26" fill="#26201B" text-anchor="start">Maningrida</text>
+<text x="779" y="121" font-family="Helvetica" font-size="21" fill="#8A7F72" text-anchor="start">58 beds</text>
+<circle cx="618" cy="115" r="13" fill="#B44D2B" fill-opacity="0.85"/>
+<text x="591" y="111" font-family="Georgia" font-size="26" fill="#26201B" text-anchor="end">Darwin</text>
+<text x="591" y="137" font-family="Helvetica" font-size="21" fill="#8A7F72" text-anchor="end">1 bed</text>
+<circle cx="549" cy="243" r="15" fill="#B44D2B" fill-opacity="0.85"/>
+<text x="520" y="239" font-family="Georgia" font-size="26" fill="#26201B" text-anchor="end">Kununurra</text>
+<text x="520" y="265" font-family="Helvetica" font-size="21" fill="#8A7F72" text-anchor="end">2 beds</text>
+<circle cx="664" cy="192" r="13" fill="#B44D2B" fill-opacity="0.85"/>
+<text x="692" y="210" font-family="Georgia" font-size="26" fill="#26201B" text-anchor="start">Katherine</text>
+<text x="692" y="236" font-family="Helvetica" font-size="21" fill="#8A7F72" text-anchor="start">1 bed</text>
+<circle cx="727" cy="393" r="53" fill="#B44D2B" fill-opacity="0.85"/>
+<circle cx="767" cy="353" r="9" fill="#4E8F88" stroke="#F5EEE4" stroke-width="2.5"/>
+<text x="794" y="359" font-family="Georgia" font-size="26" fill="#26201B" text-anchor="start">Tennant Creek</text>
+<text x="794" y="385" font-family="Helvetica" font-size="21" fill="#8A7F72" text-anchor="start">160 beds</text>
+<circle cx="902" cy="435" r="15" fill="#B44D2B" fill-opacity="0.85"/>
+<text x="930" y="431" font-family="Georgia" font-size="26" fill="#26201B" text-anchor="start">Mount Isa</text>
+<text x="930" y="457" font-family="Helvetica" font-size="21" fill="#8A7F72" text-anchor="start">2 beds</text>
+<circle cx="1134" cy="357" r="49" fill="#B44D2B" fill-opacity="0.85"/>
+<circle cx="1171" cy="321" r="9" fill="#4E8F88" stroke="#F5EEE4" stroke-width="2.5"/>
+<text x="1197" y="353" font-family="Georgia" font-size="26" fill="#26201B" text-anchor="start">Palm Island</text>
+<text x="1197" y="379" font-family="Helvetica" font-size="21" fill="#8A7F72" text-anchor="start">131 beds</text>
+<circle cx="747" cy="493" r="51" fill="#B44D2B" fill-opacity="0.85"/>
+<circle cx="785" cy="454" r="9" fill="#4E8F88" stroke="#F5EEE4" stroke-width="2.5"/>
+<text x="812" y="529" font-family="Georgia" font-size="26" fill="#26201B" text-anchor="start">Utopia Homelands</text>
+<text x="812" y="555" font-family="Helvetica" font-size="21" fill="#8A7F72" text-anchor="start">147 beds</text>
+<circle cx="717" cy="550" r="24" fill="#B44D2B" fill-opacity="0.85"/>
+<circle cx="735" cy="532" r="9" fill="#4E8F88" stroke="#F5EEE4" stroke-width="2.5"/>
+<text x="680" y="576" font-family="Georgia" font-size="26" fill="#26201B" text-anchor="end">Alice Springs</text>
+<text x="680" y="602" font-family="Helvetica" font-size="21" fill="#8A7F72" text-anchor="end">16 beds</text>
+<circle cx="310" cy="823" r="25" fill="#B44D2B" fill-opacity="0.85"/>
+<text x="350" y="819" font-family="Georgia" font-size="26" fill="#26201B" text-anchor="start">Kalgoorlie</text>
+<text x="350" y="845" font-family="Helvetica" font-size="21" fill="#8A7F72" text-anchor="start">20 beds</text>
+<circle cx="1217" cy="999" r="15" fill="#B44D2B" fill-opacity="0.85"/>
+<text x="1188" y="995" font-family="Georgia" font-size="26" fill="#26201B" text-anchor="end">Canberra</text>
+<text x="1188" y="1021" font-family="Helvetica" font-size="21" fill="#8A7F72" text-anchor="end">2 beds</text>
+<text x="60" y="1270" font-family="Georgia" font-size="40" fill="#26201B">540 beds · 20 washing machines · 11 communities</text>
+<text x="60" y="1310" font-family="Helvetica" font-size="22" fill="#8A7F72">Register-verified, July 2026. Marker size = beds delivered. Teal dot = washing machines in community.</text>
+</svg>
