@@ -46,7 +46,7 @@ const navigation: NavGroup[] = [
       { name: 'Communities',       href: '/admin/communities',    icon: MapPin },
       { name: 'Media Room',        href: '/admin/media-library',  icon: ImageIcon },
       { name: 'Money',             href: '/admin/cost-model',     icon: CircleDollarSign },
-      { name: 'Products & Plant',  href: '/admin/facility',       icon: Factory },
+      { name: 'Products & Plant',  href: '/admin/products',       icon: Factory },
       { name: 'Pipeline',          href: '/admin/pipeline',       icon: KanbanSquare },
     ],
   },
@@ -103,6 +103,7 @@ const moreNavigation: NavItem[] = [
   { name: 'Deals (Kanban)',     href: '/admin/deals',             icon: KanbanSquare },
   { name: 'LOI tracker',        href: '/admin/loi-tracker',       icon: KanbanSquare },
   // → Products & Plant
+  { name: 'Facility',           href: '/admin/facility',          icon: Factory },
   { name: 'Production',         href: '/admin/production',        icon: Factory },
   // → Field
   { name: 'Bed signals',        href: '/admin/bed-signals',       icon: Radio },
