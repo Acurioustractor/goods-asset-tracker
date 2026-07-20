@@ -55,7 +55,7 @@ When the full visual deck exists in Figma, Pencil, or Google Slides, link it her
 **Body:**
 
 - A social enterprise, not a charity.
-- Co-designed with Elders, made on-country.
+- Designed with Elders in community, made On Country.
 - Our job is to become unnecessary.
 
 **Speaker notes:**
@@ -146,7 +146,7 @@ When the full visual deck exists in Figma, Pencil, or Google Slides, link it her
 |-----------|---------------:|-----------|
 | Tennant Creek | 139 | Where it began. Dianne named the washer. |
 | Palm Island | 141 | "Hardly anyone has beds." Ivy. |
-| Alice Springs | 60 | Co-design hub via Oonchiumpa. |
+| Alice Springs | 60 | Design-in-community hub via Oonchiumpa. |
 | Utopia Homelands | 24 | Family-by-family deployment. |
 | Maningrida | 18 | Arnhem Land partnership. |
 | Townsville | (logistics hub) | Reduces freight tax to PI. |
@@ -192,7 +192,7 @@ When the full visual deck exists in Figma, Pencil, or Google Slides, link it her
 
 - We sell the Stretch Bed. Revenue funds the work.
 - The plant is designed to move to community ownership.
-- Communities co-design, name, manufacture, sell.
+- Communities design, name, manufacture, sell.
 - We become unnecessary.
 
 **Pathways:**
@@ -259,7 +259,7 @@ Before any live session:
 > The plant model removes it. When we make on-country, no freight. Until then, we use regional logistics hubs (Townsville for far north QLD, Alice Springs for NT) to share freight loads.
 
 **"Are these donations?"**
-> No. Sponsorship and procurement, not donations. We're an enterprise. Communities are co-designers and customers, not beneficiaries.
+> No. Sponsorship and procurement, not donations. We're an enterprise. Communities are design partners and customers, not beneficiaries.
 
 **"Who's done the impact measurement?"**
 > Empathy Ledger captures storyteller voices with consent. The story-selection lens underpins our theory of change. Quantitative deployment numbers are tracked in our asset register. See [v2/src/lib/data/impact-model.ts](../../v2/src/lib/data/impact-model.ts).

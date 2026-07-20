@@ -91,11 +91,11 @@ These never appear in Goods copy. No exceptions.
 
 | Don't write | Write |
 |-------------|-------|
-| Goods on Country donates beds to Indigenous communities. | Goods on Country builds beds with communities in remote Australia. Every bed is co-designed and every purchase supports community-led manufacturing. |
+| Goods on Country donates beds to Indigenous communities. | Goods on Country builds beds with communities in remote Australia. Every bed is designed in community and every purchase supports community-led manufacturing. |
 | Help us help these families! | Diane Stokes received one bed and asked for twenty more. The demand is here. The next 100 beds need funding. |
 | Our innovative, scalable solution unlocks community impact. | The Stretch Bed flat-packs, weighs 26kg, and assembles in five minutes with no tools. We have made 400 of them. Communities want thousands more. |
 | Indigenous Australians need beds. | Ivy in Palm Island said: "Hardly anyone around the community has beds. When family comes to visit, people sleep on the floor." |
-| Our team is passionate about empowering remote communities. | Elder Dianne Stokes co-designs the products. She named the washing machine Pakkimjalki Kari in Warumungu. Our job is to become unnecessary. |
+| Our team is passionate about empowering remote communities. | Elder Dianne Stokes shapes the products as a design partner. She named the washing machine Pakkimjalki Kari in Warumungu. Our job is to become unnecessary. |
 | Thanks to your generous donation... | Your $600 funded a Stretch Bed. It went to a family in Maningrida who requested one. Here is the photo. |
 
 ## Quick checklist (run before sending)

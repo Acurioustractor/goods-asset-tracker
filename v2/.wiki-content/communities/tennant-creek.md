@@ -1,12 +1,12 @@
 # Tennant Creek
 
-> Tennant Creek is an important co-design and deployment place, especially through Elder Dianne Stokes and washing-machine work. It was a leading plant option, but funding uncertainty means it should now be described as a live possibility rather than the locked next site.
+> Tennant Creek is an important design-in-community and deployment place, especially through Elder Dianne Stokes and washing-machine work. It was a leading plant option, but funding uncertainty means it should now be described as a live possibility rather than the locked next site.
 
 ## Why it matters
 
 Tennant Creek has shaped the products through real time in community. Ben described sitting with Dianne Stokes, making and testing bed ideas together, then taking that feedback into the next design.
 
-That kind of practical co-design is more important than a polished claim about consultation.
+That kind of practical design in community is more important than a polished claim about consultation.
 
 ## Current threads
 
