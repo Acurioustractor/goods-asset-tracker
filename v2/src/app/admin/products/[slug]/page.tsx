@@ -1,13 +1,11 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getProductWiki, PRODUCT_WIKIS } from '@/lib/data/product-wiki';
+import { getProductWiki } from '@/lib/data/product-wiki';
+import { createServiceClient } from '@/lib/supabase/server';
+import { getMediaLinksFor } from '@/lib/data/media-links';
 import { ArrowLeft, ArrowRight, Play } from 'lucide-react';
 
-export const dynamic = 'force-static';
-
-export function generateStaticParams() {
-  return PRODUCT_WIKIS.map((p) => ({ slug: p.slug }));
-}
+export const dynamic = 'force-dynamic';
 
 const STATUS_TONE: Record<string, string> = {
   flagship: 'bg-primary text-primary-foreground',
@@ -20,6 +18,17 @@ export default async function ProductWikiPage({ params }: { params: Promise<{ sl
   const { slug } = await params;
   const p = getProductWiki(slug);
   if (!p) notFound();
+
+  // Live media tagged to this product in the Media Room, merged with the
+  // authored media (deduped by src). Tag a photo/video to this product in the
+  // Media Room and it appears here.
+  const supabase = createServiceClient();
+  const tagged = await getMediaLinksFor(supabase, 'product', slug);
+  const authoredSrcs = new Set(p.media.map((m) => m.src));
+  const taggedMedia = tagged
+    .filter((t) => !authoredSrcs.has(t.src))
+    .map((t) => ({ type: t.type, src: t.src, poster: t.poster, caption: t.caption }));
+  const allMedia = [...p.media, ...taggedMedia];
 
   return (
     <div className="max-w-[1100px] mx-auto pb-16">
@@ -137,8 +146,8 @@ export default async function ProductWikiPage({ params }: { params: Promise<{ sl
       <section id="media" className="mt-14 scroll-mt-16">
         <h2 className="font-display text-2xl font-bold mb-4" style={{ fontFamily: 'Georgia, serif' }}>Media</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-          {p.media.map((m, i) => (
-            <figure key={i} className="relative rounded-xl overflow-hidden border" style={{ aspectRatio: '4 / 3' }}>
+          {allMedia.map((m, i) => (
+            <figure key={m.src + i} className="relative rounded-xl overflow-hidden border" style={{ aspectRatio: '4 / 3' }}>
               {m.type === 'video' ? (
                 <VideoTile src={m.src} poster={m.poster} />
               ) : (
@@ -149,7 +158,11 @@ export default async function ProductWikiPage({ params }: { params: Promise<{ sl
             </figure>
           ))}
         </div>
-        <p className="mt-2 text-xs text-muted-foreground">Media flows from the Media Room. Tag a photo or video to this product there and it appears here.</p>
+        <p className="mt-2 text-xs text-muted-foreground">
+          {taggedMedia.length > 0
+            ? `${taggedMedia.length} item${taggedMedia.length === 1 ? '' : 's'} tagged to this product in the Media Room, shown alongside the curated set.`
+            : 'Media flows from the Media Room. Tag a photo or video to this product there and it appears here.'}
+        </p>
       </section>
 
       {/* Voices */}

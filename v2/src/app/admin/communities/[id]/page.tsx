@@ -8,6 +8,7 @@ import { AddDemandForm } from './add-demand-form';
 import { CommunityMetaForm } from './community-meta-form';
 import { getCommunityVoices, getCommunityStories } from '@/lib/data/community-stories';
 import CommunityPresent, { type PresentSlide } from './community-present';
+import { getMediaLinksFor } from '@/lib/data/media-links';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -234,8 +235,16 @@ export default async function CommunityDetailPage({
   // Media + registry storytellers for this community
   type MediaItem = { id: string; url: string; poster_url: string | null; media_type: string };
   const mediaItems = (mediaRes.data || []) as MediaItem[];
-  const photos = mediaItems.filter((m) => m.media_type !== 'video');
-  const videos = mediaItems.filter((m) => m.media_type === 'video');
+  // Merge in media tagged to this community via the media_links junction (the
+  // Media Room / backfill), deduped against the content_items set by URL.
+  const taggedComm = await getMediaLinksFor(supabase, 'community', community.id);
+  const existingUrls = new Set(mediaItems.map((m) => m.poster_url || m.url));
+  const extraMedia: MediaItem[] = taggedComm
+    .filter((t) => !existingUrls.has(t.src))
+    .map((t) => ({ id: t.id, url: t.src, poster_url: t.poster ?? null, media_type: t.type === 'video' ? 'video' : 'image' }));
+  const allMediaItems = [...mediaItems, ...extraMedia];
+  const photos = allMediaItems.filter((m) => m.media_type !== 'video');
+  const videos = allMediaItems.filter((m) => m.media_type === 'video');
   const storytellers = ((voicesRes.data || []) as Array<{ id: string; display_name: string; is_elder: boolean; portrait: { url?: string } | Array<{ url?: string }> | null }>).map((v) => ({
     name: v.display_name,
     elder: Boolean(v.is_elder),
