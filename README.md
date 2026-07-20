@@ -1,6 +1,6 @@
 # Goods Real-Time Asset Tracking System
 
-A world-class real-time asset tracking system for managing 389 individual assets (369 beds, 20 washers) across multiple remote Australian communities.
+A world-class real-time asset tracking system for managing the Goods asset register: 540 deployed beds (363 Basket + 177 Stretch) and the washing machine fleet (20 in community) across multiple remote Australian communities.
 
 ## 📊 Project Overview
 

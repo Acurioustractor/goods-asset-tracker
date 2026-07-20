@@ -1,5 +1,7 @@
 # Strategy deck core messaging, aligned
 
+> CANON NOTE (2026-07-20): figures in this dated doc predate the final canon (540 beds / 177 Stretch / 20 washers / 11 communities / 3,540kg). Do not copy numbers from here; use canon.ts.
+
 *2026-07-15. This is the single aligned message architecture for the Goods strategy deck, produced
 from four sources: the signed narrative foundation (`wiki/outputs/2026-07-11-narrative-foundation.md`),
 the live deck (`v2/src/lib/data/deck.ts`, goodsoncountry.com/pitch/deck), Ben's 14 July

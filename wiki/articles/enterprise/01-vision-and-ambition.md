@@ -22,7 +22,7 @@ Make Goods beds, washers and future essential goods as normal in remote communit
 
 The longer version is more specific:
 
-- Products are co-designed with communities, not dropped in from a city office.
+- Products are designed with communities, not dropped in from a city office.
 - The Stretch Bed is a real product now, not only a prototype.
 - Pakkimjalki Kari is still a prototype, but the direction is clear: a repairable washing machine for remote conditions, named in Warumungu language by Elder Dianne Stokes.
 - The production system is not a metaphor. There is a two-container plastic re-production facility with a shredder, heat press, cooling press, CNC router, generator, jigs, safety procedures and operating notes.

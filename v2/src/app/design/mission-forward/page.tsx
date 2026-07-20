@@ -172,12 +172,12 @@ export default function MissionForwardPage() {
           <div className="max-w-2xl mx-auto mt-16">
             <div className="flex justify-between text-sm text-white/60 mb-2">
               <span>Progress to 1,000 beds</span>
-              <span>496 / 1,000</span>{/* canonical: see asset-canonical.ts */}
+              <span>540 / 1,000</span>{/* canonical: see asset-canonical.ts */}
             </div>
             <div className="h-4 bg-white/20 rounded-full overflow-hidden">
               <div
                 className="h-full rounded-full"
-                style={{ width: '49.6%', backgroundColor: '#E07A3E' }}
+                style={{ width: '54%', backgroundColor: '#E07A3E' }}
               />
             </div>
           </div>

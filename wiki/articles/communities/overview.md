@@ -4,8 +4,8 @@
 
 ## How to read this
 
-- The canonical headline is 496 beds deployed across 9 communities, with 16 washing machines in community (asset-canonical.ts).
-- The per-place bed and washing-machine numbers in the table below come from the March 2026 compendium deployment snapshot unless a row says otherwise. They are a source-typed sub-view, not the canonical headline, so their row sum will be narrower than 496. Keep the source type visible when using a number externally.
+- The canonical headline is 540 beds deployed across 11 communities, with 20 washing machines in community (asset-canonical.ts).
+- The per-place bed and washing-machine numbers in the table below come from the March 2026 compendium deployment snapshot unless a row says otherwise. They are a source-typed sub-view, not the canonical headline, so their row sum will be narrower than 540. Keep the source type visible when using a number externally.
 - "Storytellers / voices" means named people already recorded in the knowledge base. Consent and use permissions still need to be checked before external sharing.
 
 ## Deployment and Relationship Table
@@ -13,7 +13,7 @@
 | Place | State | Beds | Washing machines | Partner / pathway | Storytellers / voices already documented | What this place proves or tests |
 | --- | --- | ---: | ---: | --- | --- | --- |
 | [[palm-island-picc|Palm Island / Bwgcolman]] | QLD | 141 | 4 | PICC, with Ebony and Jahvan Oui connected to future manufacturing conversations | Ivy, Alfred Johnson, Carmelita, Jason | Largest bed deployment in the snapshot; strong access and freight evidence; possible community-owned production pathway; PICC 40-bed discussion sits in demand evidence. |
-| [[tennant-creek|Tennant Creek / Wumpurrarni]] | NT | 139 | 5 | Wilya Janta, Anyinginyi Health and Tennant Creek cultural advisers | Dianne Stokes, Norman Frank Jupurrurla, Linda Turner, Patricia Frank, Jimmy Frank Jupurrurla, Cliff Plummer, Zelda Hogan, Brian Russell, Melissa Jackson, Annie Morrison | Deepest co-design history; Pakkimjalki Kari naming; health, housing and washing-machine evidence; possible future plant pathway. |
+| [[tennant-creek|Tennant Creek / Wumpurrarni]] | NT | 160 | 5 | Wilya Janta, Anyinginyi Health and Tennant Creek cultural advisers | Dianne Stokes, Norman Frank Jupurrurla, Linda Turner, Patricia Frank, Jimmy Frank Jupurrurla, Cliff Plummer, Zelda Hogan, Brian Russell, Melissa Jackson, Annie Morrison | Deepest design-in-community history; Pakkimjalki Kari naming; health, housing and washing-machine evidence; possible future plant pathway. |
 | [[alice-springs-oonchiumpa|Alice Homelands / Oonchiumpa]] | NT | 60 | 0 | Oonchiumpa, Ntumbu group and Central Australia delivery pathway | Fred Campbell, Jacqueline | Strong production-facility candidate; youth, cultural consultation and Central Australia delivery learning. |
 | [[alice-springs-oonchiumpa|Utopia Homelands]] | NT | 24 | 0 | Oonchiumpa and Centrecorp pathway | Story permissions still to be packaged | Current deployment row plus a separate approved 107-bed pathway signal. Do not merge those numbers without review. |
 | [[maningrida|Maningrida]] | NT | 24 | 0 in deployment snapshot | Homeland Schools Company | Story permissions still to be packaged | School and child-bed pathway. Separate source trail records one washing-machine invoice and a 65-bed request. |

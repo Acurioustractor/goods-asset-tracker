@@ -1,5 +1,7 @@
 # Area 10 — Community counts reconciliation
 
+> SUPERSEDED NOTE (2026-07-20): the tables below capture the pre-ruling state (536/173/18/3,460). Ben's 2026-07-19 rulings resolved them: FINAL CANON = 540 beds / 177 Stretch / 363 Basket / 20 washers in community / 11 communities / 3,540kg; Utopia 147, Tennant Creek 160, Maningrida 58 beds + 8 washers, Kununurra 2 (GB0-158), Katherine 1 (GB0-159), youth centre 1 (GB0-160), Julalikari +2 washers. Read the tables as history of the reconciliation, not as canon.
+
 > Purpose: one ruling per line so 536/173/18/3,460 (or corrected figures) land identically in
 > the live register, repo canon, Community OS (Notion), and the Artifact Hub spine (Notion).
 > READ-ONLY pass: no Notion or database writes until Ben rules.

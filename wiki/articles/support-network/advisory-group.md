@@ -34,7 +34,7 @@
 | **Tanya Turner** | Oonchiumpa Manager. | Local operating context and partner coordination. |
 | **Karen Liddle** | Oonchiumpa Board Chair. | Oonchiumpa governance context. |
 | **Fred Campbell** | Oonchiumpa Youth Case Worker. | Youth pathway and Alice Springs operating context. |
-| **Dianne Stokes** | Waramungu and Warlmanpa Elder, Tennant Creek co-designer and naming partner for Pakkimjalki Kari. | Product feedback, cultural authority, story consent and real co-design discipline. |
+| **Dianne Stokes** | Waramungu and Warlmanpa Elder, Tennant Creek design partner and naming partner for Pakkimjalki Kari. | Product feedback, cultural authority, story consent and real design-in-community discipline. |
 | **Palm Island Community Company (PICC)** | Palm Island partner and possible future production-facility owner or operator. | Largest deployment pathway, community-controlled delivery and local ownership question. |
 | **Rachel Atkinson** | PICC leadership named in ACT core facts. | Palm Island organisation relationship and partnership pathway. |
 | **Narelle** | PICC contact recorded in the Goods compendium. | Partner communication and order pathway context. Surname and role need confirmation before external use. |

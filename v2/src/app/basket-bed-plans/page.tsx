@@ -77,7 +77,7 @@ export default function BasketBedPlansPage() {
                           <li>&bull; Flat-packable and easy to transport to remote communities</li>
                           <li>&bull; No tools required for assembly</li>
                           <li>&bull; Stackable for efficient freight</li>
-                          <li>&bull; Served hundreds of families across 9 communities</li>
+                          <li>&bull; Served hundreds of families across 11 communities</li>
                           <li>&bull; Proved the concept that purpose-built beds are needed</li>
                         </ul>
                       </div>

@@ -45,9 +45,9 @@ These are useful, but they should not be described as fully live yet:
 
 Keep these tied to the source system or Xero snapshot when used externally:
 
-- 496 beds deployed, canonical figure (asset-canonical.ts: 133 Stretch, 363 Basket legacy)
-- 9 communities served, canonical figure (asset-canonical.ts)
-- 2,660kg plastic diverted, modelled at 20kg per bed (asset-canonical.ts)
+- 540 beds deployed, canonical figure (asset-canonical.ts: 177 Stretch, 363 Basket legacy)
+- 11 communities served, canonical figure (asset-canonical.ts)
+- 3,540kg plastic diverted, modelled at 20kg per bed (asset-canonical.ts)
 - Cumulative revenue is accountant-gated and reconciliation-pending. Do not state a revenue figure here as an impact number until the accountant signs one off.
 
 ## Human review focus

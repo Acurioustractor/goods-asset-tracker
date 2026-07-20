@@ -489,7 +489,7 @@ export const communityPartnerships = [
     headline: 'Where it all began',
     description: 'Tennant Creek is the birthplace of Goods on Country. Elder Dianne Stokes received the first bed and came back within two weeks requesting twenty more. Norman Frank called asking for three beds in maroon after his daughter tried one. The Pakkimjalki Kari washing machine was named here in Warumungu language by Dianne herself.',
     keyPeople: ['Dianne Stokes', 'Norman Frank', 'Kristy Bloomfield'],
-    bedsDelivered: 159,
+    bedsDelivered: 160,
     highlight: 'Dianne named the washing machine "Pakkimjalki Kari" in Warumungu language',
   },
   {
@@ -784,7 +784,7 @@ export const communityLocations: CommunityLocation[] = [
     lat: -19.648,
     lng: 134.192,
     storytellerCount: 6,
-    bedsDelivered: 159,
+    bedsDelivered: 160,
     description: 'The birthplace of Goods on Country. Elder Dianne Stokes received the first bed and came back requesting twenty more.',
     highlight: 'Dianne named the washing machine "Pakkimjalki Kari" in Warumungu language',
   },
