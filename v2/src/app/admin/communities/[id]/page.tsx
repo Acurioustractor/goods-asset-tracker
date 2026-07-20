@@ -147,7 +147,7 @@ export default async function CommunityDetailPage({
   const escapeForIlike = (s: string) => s.replace(/[%_]/g, (m) => `\\${m}`);
   const orFilter = matchNames.map((n) => `community.ilike.${escapeForIlike(n)}`).join(',');
 
-  const [assetsRes, demandRes, dealsRes, machineAssetsRes] = await Promise.all([
+  const [assetsRes, demandRes, dealsRes, machineAssetsRes, mediaRes, voicesRes] = await Promise.all([
     supabase
       .from('assets')
       .select('unique_id, name, product, status, supply_date, partner_name, quantity, notes')
@@ -172,6 +172,16 @@ export default async function CommunityDetailPage({
       .eq('community_id', id)
       .ilike('product', '%machine%')
       .not('machine_id', 'is', null),
+    supabase
+      .from('content_items')
+      .select('id, url, poster_url, media_type, consent_tier')
+      .eq('community_id', id)
+      .neq('consent_tier', 'red')
+      .limit(60),
+    supabase
+      .from('storytellers')
+      .select('id, display_name, is_elder, portrait:content_items(url)')
+      .eq('community_id', id),
   ]);
 
   const assets = (assetsRes.data || []) as AssetRow[];
@@ -208,6 +218,17 @@ export default async function CommunityDetailPage({
       openAlertsByMachine.set(r.machine_id, (openAlertsByMachine.get(r.machine_id) || 0) + 1);
     }
   }
+
+  // Media + registry storytellers for this community
+  type MediaItem = { id: string; url: string; poster_url: string | null; media_type: string };
+  const mediaItems = (mediaRes.data || []) as MediaItem[];
+  const photos = mediaItems.filter((m) => m.media_type !== 'video');
+  const videos = mediaItems.filter((m) => m.media_type === 'video');
+  const storytellers = ((voicesRes.data || []) as Array<{ id: string; display_name: string; is_elder: boolean; portrait: { url?: string } | Array<{ url?: string }> | null }>).map((v) => ({
+    name: v.display_name,
+    elder: Boolean(v.is_elder),
+    portrait: Array.isArray(v.portrait) ? (v.portrait[0]?.url ?? null) : (v.portrait?.url ?? null),
+  }));
 
   // Human stories: compendium (sync) + Empathy Ledger (async, swallow failures)
   const communityMatch = { name: community.name, aliases: aliases };
@@ -261,6 +282,27 @@ export default async function CommunityDetailPage({
         />
       </header>
 
+      {/* Jump bar */}
+      <nav className="sticky top-0 z-20 -mx-4 border-b border-border bg-background/95 px-4 py-2.5 backdrop-blur sm:-mx-6 sm:px-6">
+        <div className="flex flex-wrap gap-2 text-xs font-medium">
+          {[
+            ['#people', 'People'],
+            ['#demand', `Demand (${demand.length})`],
+            ['#voices', `Voices (${storytellers.length + compendiumVoices.length})`],
+            ['#media', `Media (${photos.length + videos.length})`],
+            ['#assets', `Assets (${assets.length})`],
+            machineAssets.length > 0 ? ['#machines', `Machines (${machineAssets.length})`] : null,
+            ['#deals', `Deals (${deals.length})`],
+          ]
+            .filter((x): x is [string, string] => Boolean(x))
+            .map(([href, label]) => (
+              <a key={href} href={href} className="rounded-full bg-primary/10 px-3 py-1 text-primary hover:bg-primary/20">
+                {label}
+              </a>
+            ))}
+        </div>
+      </nav>
+
       {/* KPIs */}
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Kpi label="Beds Deployed" value={fmt(rollup.deployed_beds)} sub={`${fmt(rollup.deployed_machines)} machines`} />
@@ -271,7 +313,7 @@ export default async function CommunityDetailPage({
 
       {/* People & facility — live from communities columns (seeded 2026-07-19) */}
       {((community.key_people?.length || 0) > 0 || (community.procurement_contacts?.length || 0) > 0 || community.facility_interest) && (
-        <section className="grid gap-4 md:grid-cols-2">
+        <section id="people" className="scroll-mt-24 grid gap-4 md:grid-cols-2">
           <div className="rounded-lg border bg-card p-4">
             <h2 className="text-sm font-semibold font-display">People</h2>
             <ul className="mt-2 space-y-2">
@@ -327,7 +369,7 @@ export default async function CommunityDetailPage({
       )}
 
       {/* Demand */}
-      <section className="space-y-3">
+      <section id="demand" className="scroll-mt-24 space-y-3">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <div>
             <h2 className="text-base font-semibold font-display">Documented Demand</h2>
@@ -366,15 +408,35 @@ export default async function CommunityDetailPage({
       </section>
 
       {/* Community voices + Empathy Ledger stories */}
-      {(compendiumVoices.length > 0 || elStories.length > 0) && (
-        <section className="space-y-4">
+      {(compendiumVoices.length > 0 || elStories.length > 0 || storytellers.length > 0) && (
+        <section id="voices" className="scroll-mt-24 space-y-4">
           <div>
             <h2 className="text-base font-semibold font-display">Community Voices</h2>
             <p className="text-xs text-muted-foreground">
+              {storytellers.length > 0 && <>{storytellers.length} storyteller{storytellers.length === 1 ? '' : 's'} · </>}
               {compendiumVoices.length} compendium voice{compendiumVoices.length === 1 ? '' : 's'}
               {elStories.length > 0 && <> + {elStories.length} Empathy Ledger {elStories.length === 1 ? 'story' : 'stories'}</>}
             </p>
           </div>
+
+          {storytellers.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {storytellers.map((v) => (
+                <span key={v.name} className="flex items-center gap-2 rounded-full border bg-card px-3 py-1.5 text-sm">
+                  {v.portrait ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={v.portrait} alt="" className="h-6 w-6 rounded-full object-cover" loading="lazy" />
+                  ) : (
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-muted text-[10px] font-semibold text-muted-foreground">
+                      {v.name.slice(0, 1)}
+                    </span>
+                  )}
+                  <span className="font-medium">{v.name}</span>
+                  {v.elder && <span className="rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-semibold text-primary">Elder</span>}
+                </span>
+              ))}
+            </div>
+          )}
 
           {compendiumVoices.length > 0 && (
             <div className="grid gap-3 md:grid-cols-2">
@@ -426,8 +488,53 @@ export default async function CommunityDetailPage({
         </section>
       )}
 
+      {/* Media gallery */}
+      <section id="media" className="scroll-mt-24 space-y-3">
+        <div className="flex flex-wrap items-baseline justify-between gap-3">
+          <div>
+            <h2 className="text-base font-semibold font-display">Photos &amp; Video</h2>
+            <p className="text-xs text-muted-foreground">
+              {photos.length} photo{photos.length === 1 ? '' : 's'} · {videos.length} video{videos.length === 1 ? '' : 's'} tagged to this community (red-tier excluded)
+            </p>
+          </div>
+          <Link href="/admin/media-library" className="text-xs font-medium text-primary hover:underline">
+            Curate in media library →
+          </Link>
+        </div>
+        {photos.length === 0 && videos.length === 0 ? (
+          <Card>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">
+                Nothing tagged to {community.name} yet — tag photos and videos in the media library and they appear here.
+              </p>
+            </CardContent>
+          </Card>
+        ) : (
+          <>
+            {photos.length > 0 && (
+              <div className="grid grid-cols-3 gap-1.5 sm:grid-cols-4 lg:grid-cols-6">
+                {photos.slice(0, 18).map((m) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img key={m.id} src={m.poster_url || m.url} alt="" className="aspect-square w-full rounded-lg object-cover" loading="lazy" />
+                ))}
+              </div>
+            )}
+            {photos.length > 18 && (
+              <p className="text-xs text-muted-foreground">Showing 18 of {photos.length} photos.</p>
+            )}
+            {videos.length > 0 && (
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
+                {videos.slice(0, 8).map((m) => (
+                  <video key={m.id} src={m.url} poster={m.poster_url || undefined} controls preload="none" className="aspect-video w-full rounded-lg bg-black object-cover" />
+                ))}
+              </div>
+            )}
+          </>
+        )}
+      </section>
+
       {/* Assets */}
-      <section className="space-y-3">
+      <section id="assets" className="scroll-mt-24 space-y-3">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <div>
             <h2 className="text-base font-semibold font-display">Assets at {community.name}</h2>
@@ -495,7 +602,7 @@ export default async function CommunityDetailPage({
 
       {/* Fleet: washing machines deployed here */}
       {machineAssets.length > 0 && (
-        <section className="space-y-3">
+        <section id="machines" className="scroll-mt-24 space-y-3">
           <div className="flex flex-wrap items-baseline justify-between gap-3">
             <div>
               <h2 className="text-base font-semibold font-display">Washing Machines</h2>
@@ -572,7 +679,7 @@ export default async function CommunityDetailPage({
       )}
 
       {/* Deals linked via metadata->>community_id */}
-      <section className="space-y-3">
+      <section id="deals" className="scroll-mt-24 space-y-3">
         <div>
           <h2 className="text-base font-semibold font-display">CRM Deals</h2>
           <p className="text-xs text-muted-foreground">
