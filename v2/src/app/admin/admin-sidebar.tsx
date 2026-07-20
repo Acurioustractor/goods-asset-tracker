@@ -141,12 +141,12 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
   const [moreOpen, setMoreOpen] = useState(inMore);
 
   const renderNavContent = () => (
-    <div className="admin-sidebar-scroll flex h-full flex-col overflow-y-auto bg-[#201B17] border-r border-[#3A322B] px-6 pb-4 pt-6">
+    <div className="admin-sidebar-scroll flex h-full flex-col overflow-y-auto bg-[#F5EEE4] border-r border-[#E0D5C2] px-6 pb-4 pt-6">
       <div className="flex h-12 shrink-0 items-center justify-between">
          <span className="font-display text-xl tracking-tight flex items-baseline gap-1.5" style={{ fontFamily: 'Georgia, serif' }}>
-            <span className="text-[#E08A5E]">Goods</span> <span className="text-[#F5EEE4]">on Country</span>
+            <span className="text-[#B44D2B]">Goods</span> <span className="text-[#26201B]">on Country</span>
          </span>
-         <button className="md:hidden text-[#A79C8C] hover:text-[#F5EEE4]" onClick={() => setMobileMenuOpen(false)}>
+         <button className="md:hidden text-[#8A7F72] hover:text-[#26201B]" onClick={() => setMobileMenuOpen(false)}>
            <X className="h-6 w-6" />
          </button>
       </div>
@@ -154,7 +154,7 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
         <ul role="list" className="flex flex-1 flex-col gap-y-8">
           {navigation.map((group) => (
             <li key={group.group}>
-              <div className="text-[11px] font-semibold leading-6 text-[#C9906F] uppercase tracking-[0.14em] mb-2">
+              <div className="text-[11px] font-semibold leading-6 text-[#B44D2B] uppercase tracking-[0.14em] mb-2">
                 {group.group}
               </div>
               <ul role="list" className="-mx-2 space-y-1">
@@ -168,8 +168,8 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
                         className={`
                           group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-medium transition-all
                           ${isActive
-                            ? 'bg-[#B44D2B] text-[#F5EEE4] shadow-md'
-                            : 'text-[#D8CFC0] hover:text-[#F5EEE4] hover:bg-[#2C2620]'
+                            ? 'bg-[#B44D2B] text-[#F5EEE4] shadow-sm'
+                            : 'text-[#3A322B] hover:text-[#26201B] hover:bg-[#EAE0D0]'
                           }
                         `}
                       >
@@ -188,7 +188,7 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
             <button
               type="button"
               onClick={() => setMoreOpen((v) => !v)}
-              className="flex w-full items-center justify-between text-[11px] font-semibold leading-6 text-[#8A7F72] uppercase tracking-[0.14em] mb-2 hover:text-[#D8CFC0] transition-colors"
+              className="flex w-full items-center justify-between text-[11px] font-semibold leading-6 text-[#8A7F72] uppercase tracking-[0.14em] mb-2 hover:text-[#26201B] transition-colors"
             >
               <span className="flex items-center gap-2">
                 <MoreHorizontal className="h-3.5 w-3.5" /> More
@@ -208,8 +208,8 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
                         className={`
                           group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-medium transition-all
                           ${isActive
-                            ? 'bg-[#B44D2B] text-[#F5EEE4] shadow-md'
-                            : 'text-[#A79C8C] hover:text-[#F5EEE4] hover:bg-[#2C2620]'
+                            ? 'bg-[#B44D2B] text-[#F5EEE4] shadow-sm'
+                            : 'text-[#6E645A] hover:text-[#26201B] hover:bg-[#EAE0D0]'
                           }
                         `}
                       >
@@ -224,20 +224,20 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
           </li>
 
           <li className="mt-auto pt-8">
-             <div className="px-2 pt-3 pb-1 text-[10px] uppercase tracking-wider text-[#8A7F72] border-t border-[#3A322B]">
+             <div className="px-2 pt-3 pb-1 text-[10px] uppercase tracking-wider text-[#8A7F72] border-t border-[#E0D5C2]">
                Archived decks (moved 2026-05-15)
              </div>
-             <p className="px-2 pb-2 text-[10px] leading-snug text-[#6E645A]">
+             <p className="px-2 pb-2 text-[10px] leading-snug text-[#A79C8C]">
                One-shot proposal pages now live in <code>_archive/2026-05-15-admin-decks/</code>.
                See <code>RESTORE.md</code> to bring one back.
              </p>
-             <div className="flex items-center gap-x-4 px-2 py-3 text-sm font-medium leading-6 text-[#A79C8C] border-t border-[#3A322B]">
+             <div className="flex items-center gap-x-4 px-2 py-3 text-sm font-medium leading-6 text-[#6E645A] border-t border-[#E0D5C2]">
                <span className="truncate">{userEmail}</span>
              </div>
              <form action="/api/auth/signout" method="POST">
                <button
                  type="submit"
-                 className="group flex w-full gap-x-3 rounded-md p-2 text-sm font-medium leading-6 text-[#D8CFC0] hover:bg-[#2C2620] hover:text-[#F5EEE4] transition-colors"
+                 className="group flex w-full gap-x-3 rounded-md p-2 text-sm font-medium leading-6 text-[#3A322B] hover:bg-[#EAE0D0] hover:text-[#26201B] transition-colors"
                >
                  <LogOut className="h-5 w-5 shrink-0" aria-hidden="true" />
                  Sign Out
