@@ -4372,11 +4372,6 @@
           "source": "design/starred-images/_manifest.csv:78"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/people/alfred-johnson.jpg",
-          "source": "design/starred-images/_manifest.csv:78"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/media.ts",
           "source": "v2/src/lib/data/media.ts:132"
@@ -4428,11 +4423,6 @@
           "source": "design/starred-images/_manifest.csv:19"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/build/build-073.jpg",
-          "source": "design/starred-images/_manifest.csv:19"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/product-wiki.ts",
           "source": "v2/src/lib/data/product-wiki.ts:141"
@@ -4467,11 +4457,6 @@
           "kind": "area",
           "value": "build",
           "source": "design/starred-images/_manifest.csv:21"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/build/build-097.jpg",
-          "source": "design/starred-images/_manifest.csv:21"
         }
       ],
       "has_person": false,
@@ -4502,11 +4487,6 @@
         {
           "kind": "note",
           "value": "This is the main image to use for the on Country Production Facility",
-          "source": "design/starred-images/_manifest.csv:111"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/factory-panorama.jpg",
           "source": "design/starred-images/_manifest.csv:111"
         }
       ],
@@ -4547,11 +4527,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:88"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/linda-turner.jpg",
           "source": "design/starred-images/_manifest.csv:88"
         },
         {
@@ -4615,11 +4590,6 @@
           "source": "design/starred-images/_manifest.csv:90"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/people/mykel.jpg",
-          "source": "design/starred-images/_manifest.csv:90"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/storyteller-registry.ts",
           "source": "v2/src/lib/data/storyteller-registry.ts:455"
@@ -4652,11 +4622,6 @@
         {
           "kind": "area",
           "value": "media-pack",
-          "source": "design/starred-images/_manifest.csv:68"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/nic-with-elder-on-verandah.jpg",
           "source": "design/starred-images/_manifest.csv:68"
         },
         {
@@ -4705,11 +4670,6 @@
           "source": "design/starred-images/_manifest.csv:117"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/product/stretch-bed-community.jpg",
-          "source": "design/starred-images/_manifest.csv:117"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/product-wiki.ts",
           "source": "v2/src/lib/data/product-wiki.ts:94"
@@ -4749,11 +4709,6 @@
           "kind": "area",
           "value": "utopia",
           "source": "design/starred-images/_manifest.csv:126"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/utopia/utopia-02.jpg",
-          "source": "design/starred-images/_manifest.csv:126"
         }
       ],
       "has_person": false,
@@ -4784,11 +4739,6 @@
         {
           "kind": "area",
           "value": "utopia",
-          "source": "design/starred-images/_manifest.csv:127"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/utopia/utopia-06.jpg",
           "source": "design/starred-images/_manifest.csv:127"
         }
       ],
@@ -4825,11 +4775,6 @@
         {
           "kind": "area",
           "value": "utopia",
-          "source": "design/starred-images/_manifest.csv:128"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/utopia/utopia-09.jpg",
           "source": "design/starred-images/_manifest.csv:128"
         }
       ],
@@ -5009,11 +4954,6 @@
           "source": "design/starred-images/_manifest.csv:119"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/product/washing-machine.jpg",
-          "source": "design/starred-images/_manifest.csv:119"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/product-wiki.ts",
           "source": "v2/src/lib/data/product-wiki.ts:203"
@@ -5048,11 +4988,6 @@
           "kind": "area",
           "value": "build",
           "source": "design/starred-images/_manifest.csv:21"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/build/build-097.jpg",
-          "source": "design/starred-images/_manifest.csv:21"
         }
       ],
       "has_person": false,
@@ -5083,11 +5018,6 @@
         {
           "kind": "note",
           "value": "Profile image for Karen Liddle",
-          "source": "design/starred-images/_manifest.csv:19"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/build/build-073.jpg",
           "source": "design/starred-images/_manifest.csv:19"
         }
       ],
@@ -5125,11 +5055,6 @@
           "kind": "note",
           "value": "Great shot of young people building",
           "source": "design/starred-images/_manifest.csv:15"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/build/build-001.jpg",
-          "source": "design/starred-images/_manifest.csv:15"
         }
       ],
       "has_person": true,
@@ -5164,11 +5089,6 @@
         {
           "kind": "note",
           "value": "Sitting around the fire with Dianne Stokes designing, building and learning",
-          "source": "design/starred-images/_manifest.csv:24"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/alice-springs/bush-camp-fire.jpg",
           "source": "design/starred-images/_manifest.csv:24"
         }
       ],
@@ -5205,11 +5125,6 @@
           "kind": "note",
           "value": "An original photo from Kalgoorlie - very important for the first part of the Goods. journey and the first bed with Gloria.",
           "source": "design/starred-images/_manifest.csv:30"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/kalgoorlie/camp-visit.jpg",
-          "source": "design/starred-images/_manifest.csv:30"
         }
       ],
       "has_person": true,
@@ -5239,11 +5154,6 @@
         {
           "kind": "area",
           "value": "community",
-          "source": "design/starred-images/_manifest.csv:32"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/kalgoorlie/elder-orange-walker.jpg",
           "source": "design/starred-images/_manifest.csv:32"
         }
       ],
@@ -5280,11 +5190,6 @@
           "kind": "note",
           "value": "Palm Island",
           "source": "design/starred-images/_manifest.csv:38"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/palm-island/two-men-thumbs-up.jpg",
-          "source": "design/starred-images/_manifest.csv:38"
         }
       ],
       "has_person": true,
@@ -5314,11 +5219,6 @@
         {
           "kind": "area",
           "value": "community",
-          "source": "design/starred-images/_manifest.csv:23"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/alice-springs/atnarpa-portrait.jpg",
           "source": "design/starred-images/_manifest.csv:23"
         }
       ],
@@ -5350,11 +5250,6 @@
           "kind": "note",
           "value": "On Palm Island making with families - the original basket bed",
           "source": "design/starred-images/_manifest.csv:35"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/palm-island/family-dogs-new-bed.jpg",
-          "source": "design/starred-images/_manifest.csv:35"
         }
       ],
       "has_person": false,
@@ -5384,11 +5279,6 @@
         {
           "kind": "note",
           "value": "Palm Island",
-          "source": "design/starred-images/_manifest.csv:39"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/palm-island/woman-boy-new-bed.jpg",
           "source": "design/starred-images/_manifest.csv:39"
         }
       ],
@@ -5420,11 +5310,6 @@
           "kind": "note",
           "value": "RHD doctors for the Deadly Hearts Trek in Katherine",
           "source": "design/starred-images/_manifest.csv:29"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/darwin/deadly-heart-first-lie-down.jpg",
-          "source": "design/starred-images/_manifest.csv:29"
         }
       ],
       "has_person": false,
@@ -5455,11 +5340,6 @@
           "kind": "area",
           "value": "community",
           "source": "design/starred-images/_manifest.csv:46"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/unplaced/two-men-shelter.jpg",
-          "source": "design/starred-images/_manifest.csv:46"
         }
       ],
       "has_person": true,
@@ -5485,11 +5365,6 @@
         {
           "kind": "area",
           "value": "community",
-          "source": "design/starred-images/_manifest.csv:41"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/tennant-creek.jpg",
           "source": "design/starred-images/_manifest.csv:41"
         }
       ],
@@ -5520,11 +5395,6 @@
         {
           "kind": "note",
           "value": "The Oonchiumpa team - important photo - ready to go out to Utopia on Country delivering beds",
-          "source": "design/starred-images/_manifest.csv:26"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/alice-springs/oonchiumpa-team-red-bed.jpg",
           "source": "design/starred-images/_manifest.csv:26"
         }
       ],
@@ -5561,11 +5431,6 @@
           "kind": "note",
           "value": "Xavier with his family and the stretch bed",
           "source": "design/starred-images/_manifest.csv:27"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/alice-springs/stretch-bed-kids-pile.jpg",
-          "source": "design/starred-images/_manifest.csv:27"
         }
       ],
       "has_person": true,
@@ -5600,11 +5465,6 @@
         {
           "kind": "note",
           "value": "Xavier with his grandmother",
-          "source": "design/starred-images/_manifest.csv:28"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/alice-springs/stretch-bed-two-generations.jpg",
           "source": "design/starred-images/_manifest.csv:28"
         }
       ],
@@ -5957,11 +5817,6 @@
           "kind": "note",
           "value": "At Parliment house with teh Snow Foundaiton",
           "source": "design/starred-images/_manifest.csv:69"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/parliament-house-event-mar-2025.jpg",
-          "source": "design/starred-images/_manifest.csv:69"
         }
       ],
       "has_person": false,
@@ -6000,11 +5855,6 @@
           "kind": "note",
           "value": "The Stretch bed at Canberra Airport supported by the Snow Foundation",
           "source": "design/starred-images/_manifest.csv:64"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/canberra-airport-display-may-2025.jpg",
-          "source": "design/starred-images/_manifest.csv:64"
         }
       ],
       "has_person": false,
@@ -6040,11 +5890,6 @@
           "kind": "note",
           "value": "Important moment with Dianne Stokes helping to design the washing machine",
           "source": "design/starred-images/_manifest.csv:71"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/speed-queen-controls.jpg",
-          "source": "design/starred-images/_manifest.csv:71"
         }
       ],
       "has_person": true,
@@ -6074,11 +5919,6 @@
         {
           "kind": "area",
           "value": "media-pack",
-          "source": "design/starred-images/_manifest.csv:68"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/nic-with-elder-on-verandah.jpg",
           "source": "design/starred-images/_manifest.csv:68"
         }
       ],
@@ -6110,11 +5950,6 @@
           "kind": "area",
           "value": "media-pack",
           "source": "design/starred-images/_manifest.csv:65"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/deadly-heart-trek-aug-2025.jpg",
-          "source": "design/starred-images/_manifest.csv:65"
         }
       ],
       "has_person": false,
@@ -6144,11 +5979,6 @@
         {
           "kind": "area",
           "value": "media-pack",
-          "source": "design/starred-images/_manifest.csv:67"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/lying-on-stretch-bed.jpg",
           "source": "design/starred-images/_manifest.csv:67"
         }
       ],
@@ -6180,11 +6010,6 @@
           "kind": "area",
           "value": "media-pack",
           "source": "design/starred-images/_manifest.csv:70"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/sally-georgina-tennant-creek-jul-2025.jpg",
-          "source": "design/starred-images/_manifest.csv:70"
         }
       ],
       "has_person": false,
@@ -6215,11 +6040,6 @@
           "kind": "area",
           "value": "media-pack",
           "source": "design/starred-images/_manifest.csv:72"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/washing-machine-enclosure-sunset.jpg",
-          "source": "design/starred-images/_manifest.csv:72"
         }
       ],
       "has_person": false,
@@ -6247,11 +6067,6 @@
         {
           "kind": "area",
           "value": "partners",
-          "source": "design/starred-images/_manifest.csv:76"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/video/partners/oonchiumpa/karen-liddle-on-beds.mp4",
           "source": "design/starred-images/_manifest.csv:76"
         }
       ],
@@ -6281,11 +6096,6 @@
           "kind": "area",
           "value": "partners",
           "source": "design/starred-images/_manifest.csv:77"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/video/partners/oonchiumpa/mykel-building-the-bed.mp4",
-          "source": "design/starred-images/_manifest.csv:77"
         }
       ],
       "has_person": false,
@@ -6311,11 +6121,6 @@
         {
           "kind": "area",
           "value": "partners",
-          "source": "design/starred-images/_manifest.csv:75"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/partners/centrecorp/utopia/community-build.jpg",
           "source": "design/starred-images/_manifest.csv:75"
         }
       ],
@@ -6348,11 +6153,6 @@
           "kind": "area",
           "value": "people",
           "source": "design/starred-images/_manifest.csv:83"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/fred-campbell.png",
-          "source": "design/starred-images/_manifest.csv:83"
         }
       ],
       "has_person": true,
@@ -6382,11 +6182,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:84"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/gloria-turner.jpg",
           "source": "design/starred-images/_manifest.csv:84"
         }
       ],
@@ -6418,11 +6213,6 @@
           "kind": "area",
           "value": "people",
           "source": "design/starred-images/_manifest.csv:85"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/heather-mundo.jpg",
-          "source": "design/starred-images/_manifest.csv:85"
         }
       ],
       "has_person": true,
@@ -6452,11 +6242,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:87"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/kristy-bloomfield.jpg",
           "source": "design/starred-images/_manifest.csv:87"
         }
       ],
@@ -6492,11 +6277,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:90"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/mykel.jpg",
           "source": "design/starred-images/_manifest.csv:90"
         }
       ],
@@ -6538,11 +6318,6 @@
           "kind": "area",
           "value": "people",
           "source": "design/starred-images/_manifest.csv:78"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/alfred-johnson.jpg",
-          "source": "design/starred-images/_manifest.csv:78"
         }
       ],
       "has_person": true,
@@ -6577,11 +6352,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:80"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/carmelita-colette.jpg",
           "source": "design/starred-images/_manifest.csv:80"
         }
       ],
@@ -6618,11 +6388,6 @@
           "kind": "area",
           "value": "people",
           "source": "design/starred-images/_manifest.csv:81"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/daniel-patrick-noble.jpg",
-          "source": "design/starred-images/_manifest.csv:81"
         }
       ],
       "has_person": true,
@@ -6657,11 +6422,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:86"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/ivy.jpg",
           "source": "design/starred-images/_manifest.csv:86"
         }
       ],
@@ -6698,11 +6458,6 @@
           "kind": "area",
           "value": "people",
           "source": "design/starred-images/_manifest.csv:79"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/brian-russell.jpg",
-          "source": "design/starred-images/_manifest.csv:79"
         }
       ],
       "has_person": true,
@@ -6737,11 +6492,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:82"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/dianne-stokes.jpg",
           "source": "design/starred-images/_manifest.csv:82"
         }
       ],
@@ -6783,11 +6533,6 @@
           "kind": "area",
           "value": "people",
           "source": "design/starred-images/_manifest.csv:88"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/linda-turner.jpg",
-          "source": "design/starred-images/_manifest.csv:88"
         }
       ],
       "has_person": true,
@@ -6823,11 +6568,6 @@
           "kind": "area",
           "value": "people",
           "source": "design/starred-images/_manifest.csv:89"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/melissa-jackson.jpg",
-          "source": "design/starred-images/_manifest.csv:89"
         }
       ],
       "has_person": true,
@@ -6858,11 +6598,6 @@
         {
           "kind": "note",
           "value": "This is the main image to use for the on Country Production Facility",
-          "source": "design/starred-images/_manifest.csv:111"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/factory-panorama.jpg",
           "source": "design/starred-images/_manifest.csv:111"
         }
       ],
@@ -6899,11 +6634,6 @@
           "kind": "note",
           "value": "plastic chips",
           "source": "design/starred-images/_manifest.csv:113"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/shredded-chips-weighed.jpg",
-          "source": "design/starred-images/_manifest.csv:113"
         }
       ],
       "has_person": false,
@@ -6934,11 +6664,6 @@
           "kind": "area",
           "value": "process",
           "source": "design/starred-images/_manifest.csv:112"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/pressed-sheets-stacked.jpg",
-          "source": "design/starred-images/_manifest.csv:112"
         }
       ],
       "has_person": false,
@@ -6964,11 +6689,6 @@
         {
           "kind": "area",
           "value": "process",
-          "source": "design/starred-images/_manifest.csv:99"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/06-deliver.jpg",
           "source": "design/starred-images/_manifest.csv:99"
         }
       ],
@@ -7000,11 +6720,6 @@
         {
           "kind": "note",
           "value": "Use this to explain the bed",
-          "source": "design/starred-images/_manifest.csv:118"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/product/stretch-bed-overview.png",
           "source": "design/starred-images/_manifest.csv:118"
         }
       ],
@@ -7046,11 +6761,6 @@
           "kind": "note",
           "value": "Main image of Dianne Stokes with the Stretch bed",
           "source": "design/starred-images/_manifest.csv:117"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/product/stretch-bed-community.jpg",
-          "source": "design/starred-images/_manifest.csv:117"
         }
       ],
       "has_person": true,
@@ -7081,11 +6791,6 @@
           "kind": "note",
           "value": "Main image of the washing machine",
           "source": "design/starred-images/_manifest.csv:119"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/product/washing-machine.jpg",
-          "source": "design/starred-images/_manifest.csv:119"
         }
       ],
       "has_person": false,
@@ -7111,11 +6816,6 @@
         {
           "kind": "note",
           "value": "This is a founder photo",
-          "source": "design/starred-images/_manifest.csv:120"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/program/qbe-cover-letter-photo.jpeg",
           "source": "design/starred-images/_manifest.csv:120"
         }
       ],
@@ -7143,11 +6843,6 @@
           "kind": "area",
           "value": "stories",
           "source": "design/starred-images/_manifest.csv:121"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/stories/utopia/01-hero.jpg",
-          "source": "design/starred-images/_manifest.csv:121"
         }
       ],
       "has_person": false,
@@ -7173,11 +6868,6 @@
         {
           "kind": "area",
           "value": "stories",
-          "source": "design/starred-images/_manifest.csv:122"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/stories/utopia/06-delivery.jpg",
           "source": "design/starred-images/_manifest.csv:122"
         }
       ],
@@ -7205,11 +6895,6 @@
           "kind": "area",
           "value": "stories",
           "source": "design/starred-images/_manifest.csv:123"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/stories/utopia/08-beforeafter.jpg",
-          "source": "design/starred-images/_manifest.csv:123"
         }
       ],
       "has_person": false,
@@ -7236,11 +6921,6 @@
           "kind": "area",
           "value": "stories",
           "source": "design/starred-images/_manifest.csv:124"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/stories/utopia/09-offground.jpg",
-          "source": "design/starred-images/_manifest.csv:124"
         }
       ],
       "has_person": false,
@@ -7266,11 +6946,6 @@
         {
           "kind": "area",
           "value": "stories",
-          "source": "design/starred-images/_manifest.csv:125"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/stories/utopia/10-next.jpg",
           "source": "design/starred-images/_manifest.csv:125"
         }
       ],
@@ -7308,11 +6983,6 @@
           "kind": "area",
           "value": "utopia",
           "source": "design/starred-images/_manifest.csv:128"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/utopia/utopia-09.jpg",
-          "source": "design/starred-images/_manifest.csv:128"
         }
       ],
       "has_person": false,
@@ -7343,11 +7013,6 @@
         {
           "kind": "area",
           "value": "utopia",
-          "source": "design/starred-images/_manifest.csv:126"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/utopia/utopia-02.jpg",
           "source": "design/starred-images/_manifest.csv:126"
         }
       ],
@@ -7380,11 +7045,6 @@
           "kind": "area",
           "value": "utopia",
           "source": "design/starred-images/_manifest.csv:127"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/utopia/utopia-06.jpg",
-          "source": "design/starred-images/_manifest.csv:127"
         }
       ],
       "has_person": false,
@@ -7416,11 +7076,6 @@
           "kind": "area",
           "value": "utopia",
           "source": "design/starred-images/_manifest.csv:129"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/utopia/utopia-10.jpg",
-          "source": "design/starred-images/_manifest.csv:129"
         }
       ],
       "has_person": false,
@@ -7451,11 +7106,6 @@
         {
           "kind": "area",
           "value": "utopia",
-          "source": "design/starred-images/_manifest.csv:130"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/utopia/utopia-15.jpg",
           "source": "design/starred-images/_manifest.csv:130"
         }
       ],
@@ -7680,11 +7330,6 @@
           "source": "design/starred-images/_manifest.csv:15"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/build/build-001.jpg",
-          "source": "design/starred-images/_manifest.csv:15"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/product-wiki.ts",
           "source": "v2/src/lib/data/product-wiki.ts:248"
@@ -7718,11 +7363,6 @@
         {
           "kind": "note",
           "value": "Profile image for Karen Liddle",
-          "source": "design/starred-images/_manifest.csv:19"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/build/build-073.jpg",
           "source": "design/starred-images/_manifest.csv:19"
         },
         {
@@ -7760,11 +7400,6 @@
           "kind": "area",
           "value": "build",
           "source": "design/starred-images/_manifest.csv:21"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/build/build-097.jpg",
-          "source": "design/starred-images/_manifest.csv:21"
         }
       ],
       "has_person": false,
@@ -7799,11 +7434,6 @@
         {
           "kind": "area",
           "value": "community",
-          "source": "design/starred-images/_manifest.csv:23"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/alice-springs/atnarpa-portrait.jpg",
           "source": "design/starred-images/_manifest.csv:23"
         }
       ],
@@ -7845,11 +7475,6 @@
           "kind": "note",
           "value": "Sitting around the fire with Dianne Stokes designing, building and learning",
           "source": "design/starred-images/_manifest.csv:24"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/alice-springs/bush-camp-fire.jpg",
-          "source": "design/starred-images/_manifest.csv:24"
         }
       ],
       "has_person": true,
@@ -7879,11 +7504,6 @@
         {
           "kind": "area",
           "value": "community",
-          "source": "design/starred-images/_manifest.csv:25"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/alice-springs/frame-build-camp.jpg",
           "source": "design/starred-images/_manifest.csv:25"
         }
       ],
@@ -7945,11 +7565,6 @@
           "kind": "note",
           "value": "The Oonchiumpa team - important photo - ready to go out to Utopia on Country delivering beds",
           "source": "design/starred-images/_manifest.csv:26"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/alice-springs/oonchiumpa-team-red-bed.jpg",
-          "source": "design/starred-images/_manifest.csv:26"
         }
       ],
       "has_person": false,
@@ -7989,11 +7604,6 @@
         {
           "kind": "note",
           "value": "Xavier with his family and the stretch bed",
-          "source": "design/starred-images/_manifest.csv:27"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/alice-springs/stretch-bed-kids-pile.jpg",
           "source": "design/starred-images/_manifest.csv:27"
         }
       ],
@@ -8035,11 +7645,6 @@
           "kind": "note",
           "value": "Xavier with his grandmother",
           "source": "design/starred-images/_manifest.csv:28"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/alice-springs/stretch-bed-two-generations.jpg",
-          "source": "design/starred-images/_manifest.csv:28"
         }
       ],
       "has_person": true,
@@ -8074,11 +7679,6 @@
         {
           "kind": "note",
           "value": "RHD doctors for the Deadly Hearts Trek in Katherine",
-          "source": "design/starred-images/_manifest.csv:29"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/darwin/deadly-heart-first-lie-down.jpg",
           "source": "design/starred-images/_manifest.csv:29"
         }
       ],
@@ -8145,11 +7745,6 @@
           "kind": "note",
           "value": "An original photo from Kalgoorlie - very important for the first part of the Goods. journey and the first bed with Gloria.",
           "source": "design/starred-images/_manifest.csv:30"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/kalgoorlie/camp-visit.jpg",
-          "source": "design/starred-images/_manifest.csv:30"
         }
       ],
       "has_person": true,
@@ -8179,11 +7774,6 @@
         {
           "kind": "area",
           "value": "community",
-          "source": "design/starred-images/_manifest.csv:31"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/kalgoorlie/crate-bases-build.jpg",
           "source": "design/starred-images/_manifest.csv:31"
         }
       ],
@@ -8295,11 +7885,6 @@
           "kind": "area",
           "value": "community",
           "source": "design/starred-images/_manifest.csv:32"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/kalgoorlie/elder-orange-walker.jpg",
-          "source": "design/starred-images/_manifest.csv:32"
         }
       ],
       "has_person": true,
@@ -8329,11 +7914,6 @@
         {
           "kind": "area",
           "value": "community",
-          "source": "design/starred-images/_manifest.csv:33"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/kalgoorlie/man-new-mattress.jpg",
           "source": "design/starred-images/_manifest.csv:33"
         }
       ],
@@ -8490,11 +8070,6 @@
           "kind": "area",
           "value": "community",
           "source": "design/starred-images/_manifest.csv:34"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/palm-island/crate-build-shed.jpg",
-          "source": "design/starred-images/_manifest.csv:34"
         }
       ],
       "has_person": false,
@@ -8555,11 +8130,6 @@
           "kind": "note",
           "value": "On Palm Island making with families - the original basket bed",
           "source": "design/starred-images/_manifest.csv:35"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/palm-island/family-dogs-new-bed.jpg",
-          "source": "design/starred-images/_manifest.csv:35"
         }
       ],
       "has_person": false,
@@ -8615,11 +8185,6 @@
           "kind": "area",
           "value": "community",
           "source": "design/starred-images/_manifest.csv:36"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/palm-island/kids-unroll-topper.jpg",
-          "source": "design/starred-images/_manifest.csv:36"
         }
       ],
       "has_person": false,
@@ -8649,11 +8214,6 @@
         {
           "kind": "area",
           "value": "community",
-          "source": "design/starred-images/_manifest.csv:37"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/palm-island/naidoc-nan-kids-bed.jpg",
           "source": "design/starred-images/_manifest.csv:37"
         }
       ],
@@ -8720,11 +8280,6 @@
           "kind": "note",
           "value": "Palm Island",
           "source": "design/starred-images/_manifest.csv:38"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/palm-island/two-men-thumbs-up.jpg",
-          "source": "design/starred-images/_manifest.csv:38"
         }
       ],
       "has_person": true,
@@ -8760,11 +8315,6 @@
           "kind": "note",
           "value": "Palm Island",
           "source": "design/starred-images/_manifest.csv:39"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/palm-island/woman-boy-new-bed.jpg",
-          "source": "design/starred-images/_manifest.csv:39"
         }
       ],
       "has_person": false,
@@ -8794,11 +8344,6 @@
         {
           "kind": "area",
           "value": "community",
-          "source": "design/starred-images/_manifest.csv:40"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/palm-island/woman-new-bed-home.jpg",
           "source": "design/starred-images/_manifest.csv:40"
         }
       ],
@@ -8830,11 +8375,6 @@
         {
           "kind": "area",
           "value": "community",
-          "source": "design/starred-images/_manifest.csv:41"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/tennant-creek.jpg",
           "source": "design/starred-images/_manifest.csv:41"
         },
         {
@@ -8881,11 +8421,6 @@
           "kind": "area",
           "value": "community",
           "source": "design/starred-images/_manifest.csv:46"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/unplaced/two-men-shelter.jpg",
-          "source": "design/starred-images/_manifest.csv:46"
         }
       ],
       "has_person": true,
@@ -8924,11 +8459,6 @@
           "kind": "note",
           "value": "The Stretch bed at Canberra Airport supported by the Snow Foundation",
           "source": "design/starred-images/_manifest.csv:64"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/canberra-airport-display-may-2025.jpg",
-          "source": "design/starred-images/_manifest.csv:64"
         }
       ],
       "has_person": false,
@@ -8959,11 +8489,6 @@
           "kind": "area",
           "value": "media-pack",
           "source": "design/starred-images/_manifest.csv:65"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/deadly-heart-trek-aug-2025.jpg",
-          "source": "design/starred-images/_manifest.csv:65"
         }
       ],
       "has_person": false,
@@ -8993,11 +8518,6 @@
         {
           "kind": "area",
           "value": "media-pack",
-          "source": "design/starred-images/_manifest.csv:67"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/lying-on-stretch-bed.jpg",
           "source": "design/starred-images/_manifest.csv:67"
         },
         {
@@ -9036,11 +8556,6 @@
           "source": "design/starred-images/_manifest.csv:68"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/nic-with-elder-on-verandah.jpg",
-          "source": "design/starred-images/_manifest.csv:68"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/content.ts",
           "source": "v2/src/lib/data/content.ts:1418"
@@ -9074,11 +8589,6 @@
           "kind": "note",
           "value": "At Parliment house with teh Snow Foundaiton",
           "source": "design/starred-images/_manifest.csv:69"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/parliament-house-event-mar-2025.jpg",
-          "source": "design/starred-images/_manifest.csv:69"
         }
       ],
       "has_person": false,
@@ -9108,11 +8618,6 @@
         {
           "kind": "area",
           "value": "media-pack",
-          "source": "design/starred-images/_manifest.csv:70"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/sally-georgina-tennant-creek-jul-2025.jpg",
           "source": "design/starred-images/_manifest.csv:70"
         }
       ],
@@ -9151,11 +8656,6 @@
           "source": "design/starred-images/_manifest.csv:71"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/speed-queen-controls.jpg",
-          "source": "design/starred-images/_manifest.csv:71"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/content.ts",
           "source": "v2/src/lib/data/content.ts:1421"
@@ -9191,11 +8691,6 @@
           "source": "design/starred-images/_manifest.csv:72"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/washing-machine-enclosure-sunset.jpg",
-          "source": "design/starred-images/_manifest.csv:72"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/content.ts",
           "source": "v2/src/lib/data/content.ts:1420"
@@ -9224,11 +8719,6 @@
         {
           "kind": "area",
           "value": "partners",
-          "source": "design/starred-images/_manifest.csv:74"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/partners/centrecorp/good-news/building-bed.jpg",
           "source": "design/starred-images/_manifest.csv:74"
         }
       ],
@@ -9302,11 +8792,6 @@
         {
           "kind": "area",
           "value": "stories",
-          "source": "design/starred-images/_manifest.csv:121"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/stories/utopia/01-hero.jpg",
           "source": "design/starred-images/_manifest.csv:121"
         },
         {
@@ -9460,11 +8945,6 @@
           "source": "design/starred-images/_manifest.csv:122"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/stories/utopia/06-delivery.jpg",
-          "source": "design/starred-images/_manifest.csv:122"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/trip-stories.ts",
           "source": "v2/src/lib/data/trip-stories.ts:646"
@@ -9537,11 +9017,6 @@
           "source": "design/starred-images/_manifest.csv:123"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/stories/utopia/08-beforeafter.jpg",
-          "source": "design/starred-images/_manifest.csv:123"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/trip-stories.ts",
           "source": "v2/src/lib/data/trip-stories.ts:780"
@@ -9578,11 +9053,6 @@
           "source": "design/starred-images/_manifest.csv:124"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/stories/utopia/09-offground.jpg",
-          "source": "design/starred-images/_manifest.csv:124"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/trip-stories.ts",
           "source": "v2/src/lib/data/trip-stories.ts:772"
@@ -9616,11 +9086,6 @@
         {
           "kind": "area",
           "value": "stories",
-          "source": "design/starred-images/_manifest.csv:125"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/stories/utopia/10-next.jpg",
           "source": "design/starred-images/_manifest.csv:125"
         }
       ],
@@ -9690,11 +9155,6 @@
           "source": "design/starred-images/_manifest.csv:90"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/people/mykel.jpg",
-          "source": "design/starred-images/_manifest.csv:90"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/storyteller-registry.ts",
           "source": "v2/src/lib/data/storyteller-registry.ts:455"
@@ -9754,11 +9214,6 @@
         {
           "kind": "area",
           "value": "partners",
-          "source": "design/starred-images/_manifest.csv:75"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/partners/centrecorp/utopia/community-build.jpg",
           "source": "design/starred-images/_manifest.csv:75"
         }
       ],
@@ -10015,11 +9470,6 @@
           "source": "design/starred-images/_manifest.csv:78"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/people/alfred-johnson.jpg",
-          "source": "design/starred-images/_manifest.csv:78"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/media.ts",
           "source": "v2/src/lib/data/media.ts:132"
@@ -10163,11 +9613,6 @@
           "source": "design/starred-images/_manifest.csv:79"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/people/brian-russell.jpg",
-          "source": "design/starred-images/_manifest.csv:79"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/media.ts",
           "source": "v2/src/lib/data/media.ts:47"
@@ -10230,11 +9675,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:80"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/carmelita-colette.jpg",
           "source": "design/starred-images/_manifest.csv:80"
         },
         {
@@ -10358,11 +9798,6 @@
           "source": "design/starred-images/_manifest.csv:81"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/people/daniel-patrick-noble.jpg",
-          "source": "design/starred-images/_manifest.csv:81"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/storyteller-registry.ts",
           "source": "v2/src/lib/data/storyteller-registry.ts:819"
@@ -10405,11 +9840,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:82"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/dianne-stokes.jpg",
           "source": "design/starred-images/_manifest.csv:82"
         },
         {
@@ -10471,11 +9901,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:83"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/fred-campbell.png",
           "source": "design/starred-images/_manifest.csv:83"
         },
         {
@@ -10549,11 +9974,6 @@
           "source": "design/starred-images/_manifest.csv:84"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/people/gloria-turner.jpg",
-          "source": "design/starred-images/_manifest.csv:84"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/storyteller-registry.ts",
           "source": "v2/src/lib/data/storyteller-registry.ts:868"
@@ -10591,11 +10011,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:85"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/heather-mundo.jpg",
           "source": "design/starred-images/_manifest.csv:85"
         },
         {
@@ -10641,11 +10056,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:86"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/ivy.jpg",
           "source": "design/starred-images/_manifest.csv:86"
         },
         {
@@ -10795,11 +10205,6 @@
           "source": "design/starred-images/_manifest.csv:87"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/people/kristy-bloomfield.jpg",
-          "source": "design/starred-images/_manifest.csv:87"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/storyteller-registry.ts",
           "source": "v2/src/lib/data/storyteller-registry.ts:618"
@@ -10847,11 +10252,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:88"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/linda-turner.jpg",
           "source": "design/starred-images/_manifest.csv:88"
         },
         {
@@ -10920,11 +10320,6 @@
           "source": "design/starred-images/_manifest.csv:89"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/people/melissa-jackson.jpg",
-          "source": "design/starred-images/_manifest.csv:89"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/storyteller-registry.ts",
           "source": "v2/src/lib/data/storyteller-registry.ts:369"
@@ -10970,11 +10365,6 @@
           "source": "design/starred-images/_manifest.csv:90"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/people/mykel.jpg",
-          "source": "design/starred-images/_manifest.csv:90"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/storyteller-registry.ts",
           "source": "v2/src/lib/data/storyteller-registry.ts:455"
@@ -11007,11 +10397,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:91"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/nic-and-ben-warumungu.jpg",
           "source": "design/starred-images/_manifest.csv:91"
         }
       ],
@@ -11441,11 +10826,6 @@
           "source": "design/starred-images/_manifest.csv:99"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/process/06-deliver.jpg",
-          "source": "design/starred-images/_manifest.csv:99"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/media.ts",
           "source": "v2/src/lib/data/media.ts:41"
@@ -11505,11 +10885,6 @@
           "kind": "area",
           "value": "process",
           "source": "design/starred-images/_manifest.csv:100"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/bull-nose-router.jpg",
-          "source": "design/starred-images/_manifest.csv:100"
         }
       ],
       "has_person": false,
@@ -11564,11 +10939,6 @@
         {
           "kind": "area",
           "value": "process",
-          "source": "design/starred-images/_manifest.csv:101"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/cnc-cutter.jpg",
           "source": "design/starred-images/_manifest.csv:101"
         },
         {
@@ -11665,11 +11035,6 @@
           "kind": "area",
           "value": "process",
           "source": "design/starred-images/_manifest.csv:102"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/cnc-offcuts-jigsaw.jpg",
-          "source": "design/starred-images/_manifest.csv:102"
         }
       ],
       "has_person": false,
@@ -11700,11 +11065,6 @@
           "kind": "area",
           "value": "process",
           "source": "design/starred-images/_manifest.csv:103"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/cnc-router-full.jpg",
-          "source": "design/starred-images/_manifest.csv:103"
         }
       ],
       "has_person": false,
@@ -11734,11 +11094,6 @@
         {
           "kind": "area",
           "value": "process",
-          "source": "design/starred-images/_manifest.csv:104"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/cnc-router-head.jpg",
           "source": "design/starred-images/_manifest.csv:104"
         }
       ],
@@ -11794,11 +11149,6 @@
         {
           "kind": "area",
           "value": "process",
-          "source": "design/starred-images/_manifest.csv:105"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/cnc-software.jpg",
           "source": "design/starred-images/_manifest.csv:105"
         }
       ],
@@ -11882,11 +11232,6 @@
           "source": "design/starred-images/_manifest.csv:106"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/process/color-samples.jpg",
-          "source": "design/starred-images/_manifest.csv:106"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/media.ts",
           "source": "v2/src/lib/data/media.ts:103"
@@ -11919,11 +11264,6 @@
         {
           "kind": "area",
           "value": "process",
-          "source": "design/starred-images/_manifest.csv:107"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/container-factory.jpg",
           "source": "design/starred-images/_manifest.csv:107"
         },
         {
@@ -11970,11 +11310,6 @@
           "kind": "area",
           "value": "process",
           "source": "design/starred-images/_manifest.csv:108"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/containers-angle.jpg",
-          "source": "design/starred-images/_manifest.csv:108"
         }
       ],
       "has_person": false,
@@ -12004,11 +11339,6 @@
         {
           "kind": "area",
           "value": "process",
-          "source": "design/starred-images/_manifest.csv:109"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/containers-wide-angle.jpg",
           "source": "design/starred-images/_manifest.csv:109"
         },
         {
@@ -12049,11 +11379,6 @@
         {
           "kind": "area",
           "value": "process",
-          "source": "design/starred-images/_manifest.csv:110"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/cut-legs-stored.jpg",
           "source": "design/starred-images/_manifest.csv:110"
         }
       ],
@@ -12170,11 +11495,6 @@
         {
           "kind": "note",
           "value": "This is the main image to use for the on Country Production Facility",
-          "source": "design/starred-images/_manifest.csv:111"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/factory-panorama.jpg",
           "source": "design/starred-images/_manifest.csv:111"
         }
       ],
@@ -12456,11 +11776,6 @@
           "kind": "area",
           "value": "process",
           "source": "design/starred-images/_manifest.csv:112"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/pressed-sheets-stacked.jpg",
-          "source": "design/starred-images/_manifest.csv:112"
         }
       ],
       "has_person": false,
@@ -12555,11 +11870,6 @@
         {
           "kind": "note",
           "value": "plastic chips",
-          "source": "design/starred-images/_manifest.csv:113"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/shredded-chips-weighed.jpg",
           "source": "design/starred-images/_manifest.csv:113"
         }
       ],
@@ -12726,11 +12036,6 @@
           "kind": "area",
           "value": "process",
           "source": "design/starred-images/_manifest.csv:114"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/workstation-container.jpg",
-          "source": "design/starred-images/_manifest.csv:114"
         }
       ],
       "has_person": false,
@@ -12760,11 +12065,6 @@
         {
           "kind": "area",
           "value": "product",
-          "source": "design/starred-images/_manifest.csv:115"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/product/basket-bed-hero.jpg",
           "source": "design/starred-images/_manifest.csv:115"
         },
         {
@@ -12874,11 +12174,6 @@
           "source": "design/starred-images/_manifest.csv:116"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/product/stretch-bed-assembly.jpg",
-          "source": "design/starred-images/_manifest.csv:116"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/media.ts",
           "source": "v2/src/lib/data/media.ts:71"
@@ -12926,11 +12221,6 @@
         {
           "kind": "note",
           "value": "Main image of Dianne Stokes with the Stretch bed",
-          "source": "design/starred-images/_manifest.csv:117"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/product/stretch-bed-community.jpg",
           "source": "design/starred-images/_manifest.csv:117"
         },
         {
@@ -13169,11 +12459,6 @@
           "kind": "note",
           "value": "Use this to explain the bed",
           "source": "design/starred-images/_manifest.csv:118"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/product/stretch-bed-overview.png",
-          "source": "design/starred-images/_manifest.csv:118"
         }
       ],
       "has_person": false,
@@ -13397,11 +12682,6 @@
           "source": "design/starred-images/_manifest.csv:119"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/product/washing-machine.jpg",
-          "source": "design/starred-images/_manifest.csv:119"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/product-wiki.ts",
           "source": "v2/src/lib/data/product-wiki.ts:203"
@@ -13436,11 +12716,6 @@
           "kind": "note",
           "value": "This is a founder photo",
           "source": "design/starred-images/_manifest.csv:120"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/program/qbe-cover-letter-photo.jpeg",
-          "source": "design/starred-images/_manifest.csv:120"
         }
       ],
       "has_person": false,
@@ -13471,11 +12746,6 @@
         {
           "kind": "area",
           "value": "stories",
-          "source": "design/starred-images/_manifest.csv:121"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/stories/utopia/01-hero.jpg",
           "source": "design/starred-images/_manifest.csv:121"
         },
         {
@@ -13629,11 +12899,6 @@
           "source": "design/starred-images/_manifest.csv:122"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/stories/utopia/06-delivery.jpg",
-          "source": "design/starred-images/_manifest.csv:122"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/trip-stories.ts",
           "source": "v2/src/lib/data/trip-stories.ts:646"
@@ -13706,11 +12971,6 @@
           "source": "design/starred-images/_manifest.csv:123"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/stories/utopia/08-beforeafter.jpg",
-          "source": "design/starred-images/_manifest.csv:123"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/trip-stories.ts",
           "source": "v2/src/lib/data/trip-stories.ts:780"
@@ -13747,11 +13007,6 @@
           "source": "design/starred-images/_manifest.csv:124"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/stories/utopia/09-offground.jpg",
-          "source": "design/starred-images/_manifest.csv:124"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/trip-stories.ts",
           "source": "v2/src/lib/data/trip-stories.ts:772"
@@ -13785,11 +13040,6 @@
         {
           "kind": "area",
           "value": "stories",
-          "source": "design/starred-images/_manifest.csv:125"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/stories/utopia/10-next.jpg",
           "source": "design/starred-images/_manifest.csv:125"
         }
       ],
@@ -13895,11 +13145,6 @@
           "kind": "area",
           "value": "utopia",
           "source": "design/starred-images/_manifest.csv:126"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/utopia/utopia-02.jpg",
-          "source": "design/starred-images/_manifest.csv:126"
         }
       ],
       "has_person": false,
@@ -13994,11 +13239,6 @@
           "kind": "area",
           "value": "utopia",
           "source": "design/starred-images/_manifest.csv:127"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/utopia/utopia-06.jpg",
-          "source": "design/starred-images/_manifest.csv:127"
         }
       ],
       "has_person": false,
@@ -14077,11 +13317,6 @@
           "kind": "area",
           "value": "utopia",
           "source": "design/starred-images/_manifest.csv:128"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/utopia/utopia-09.jpg",
-          "source": "design/starred-images/_manifest.csv:128"
         }
       ],
       "has_person": false,
@@ -14112,11 +13347,6 @@
         {
           "kind": "area",
           "value": "utopia",
-          "source": "design/starred-images/_manifest.csv:129"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/utopia/utopia-10.jpg",
           "source": "design/starred-images/_manifest.csv:129"
         }
       ],
@@ -14232,11 +13462,6 @@
         {
           "kind": "area",
           "value": "utopia",
-          "source": "design/starred-images/_manifest.csv:130"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/utopia/utopia-15.jpg",
           "source": "design/starred-images/_manifest.csv:130"
         }
       ],
@@ -14529,11 +13754,6 @@
           "kind": "area",
           "value": "partners",
           "source": "design/starred-images/_manifest.csv:76"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/video/partners/oonchiumpa/karen-liddle-on-beds.mp4",
-          "source": "design/starred-images/_manifest.csv:76"
         }
       ],
       "has_person": false,
@@ -14595,11 +13815,6 @@
           "source": "design/starred-images/_manifest.csv:77"
         },
         {
-          "kind": "el_media_id",
-          "value": "/video/partners/oonchiumpa/mykel-building-the-bed.mp4",
-          "source": "design/starred-images/_manifest.csv:77"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/product-wiki.ts",
           "source": "v2/src/lib/data/product-wiki.ts:137"
@@ -14642,11 +13857,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:78"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/alfred-johnson.jpg",
           "source": "design/starred-images/_manifest.csv:78"
         },
         {
@@ -14702,11 +13912,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:79"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/brian-russell.jpg",
           "source": "design/starred-images/_manifest.csv:79"
         },
         {
@@ -14770,11 +13975,6 @@
           "source": "design/starred-images/_manifest.csv:80"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/people/carmelita-colette.jpg",
-          "source": "design/starred-images/_manifest.csv:80"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/storyteller-registry.ts",
           "source": "v2/src/lib/data/storyteller-registry.ts:786"
@@ -14815,11 +14015,6 @@
           "source": "design/starred-images/_manifest.csv:81"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/people/daniel-patrick-noble.jpg",
-          "source": "design/starred-images/_manifest.csv:81"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/storyteller-registry.ts",
           "source": "v2/src/lib/data/storyteller-registry.ts:819"
@@ -14857,11 +14052,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:82"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/dianne-stokes.jpg",
           "source": "design/starred-images/_manifest.csv:82"
         },
         {
@@ -14921,11 +14111,6 @@
           "source": "design/starred-images/_manifest.csv:83"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/people/fred-campbell.png",
-          "source": "design/starred-images/_manifest.csv:83"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/storyteller-registry.ts",
           "source": "v2/src/lib/data/storyteller-registry.ts:512"
@@ -14958,11 +14143,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:84"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/gloria-turner.jpg",
           "source": "design/starred-images/_manifest.csv:84"
         },
         {
@@ -15003,11 +14183,6 @@
         {
           "kind": "area",
           "value": "people",
-          "source": "design/starred-images/_manifest.csv:86"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/ivy.jpg",
           "source": "design/starred-images/_manifest.csv:86"
         },
         {
@@ -15076,11 +14251,6 @@
           "source": "design/starred-images/_manifest.csv:88"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/people/linda-turner.jpg",
-          "source": "design/starred-images/_manifest.csv:88"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/media.ts",
           "source": "v2/src/lib/data/media.ts:50"
@@ -15141,11 +14311,6 @@
           "source": "design/starred-images/_manifest.csv:89"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/people/melissa-jackson.jpg",
-          "source": "design/starred-images/_manifest.csv:89"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/storyteller-registry.ts",
           "source": "v2/src/lib/data/storyteller-registry.ts:369"
@@ -15186,11 +14351,6 @@
           "source": "design/starred-images/_manifest.csv:90"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/people/mykel.jpg",
-          "source": "design/starred-images/_manifest.csv:90"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/storyteller-registry.ts",
           "source": "v2/src/lib/data/storyteller-registry.ts:455"
@@ -15217,11 +14377,6 @@
           "kind": "area",
           "value": "build",
           "source": "design/starred-images/_manifest.csv:16"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/build/build-009.jpg",
-          "source": "design/starred-images/_manifest.csv:16"
         }
       ],
       "has_person": false,
@@ -15242,11 +14397,6 @@
         {
           "kind": "area",
           "value": "build",
-          "source": "design/starred-images/_manifest.csv:18"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/build/build-041.jpg",
           "source": "design/starred-images/_manifest.csv:18"
         }
       ],
@@ -15297,11 +14447,6 @@
         {
           "kind": "area",
           "value": "process",
-          "source": "design/starred-images/_manifest.csv:107"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/container-factory.jpg",
           "source": "design/starred-images/_manifest.csv:107"
         },
         {
@@ -16262,11 +15407,6 @@
           "kind": "area",
           "value": "brand",
           "source": "design/starred-images/_manifest.csv:9"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/brand/goods-20kg-plastic-one-bed.png",
-          "source": "design/starred-images/_manifest.csv:9"
         }
       ],
       "has_person": false,
@@ -16287,11 +15427,6 @@
         {
           "kind": "area",
           "value": "brand",
-          "source": "design/starred-images/_manifest.csv:10"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/brand/goods-ill-assembly.png",
           "source": "design/starred-images/_manifest.csv:10"
         }
       ],
@@ -16314,11 +15449,6 @@
           "kind": "area",
           "value": "brand",
           "source": "design/starred-images/_manifest.csv:11"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/brand/goods-ill-plant.png",
-          "source": "design/starred-images/_manifest.csv:11"
         }
       ],
       "has_person": false,
@@ -16339,11 +15469,6 @@
         {
           "kind": "area",
           "value": "brand",
-          "source": "design/starred-images/_manifest.csv:12"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/brand/goods-ill-plastic-loop.png",
           "source": "design/starred-images/_manifest.csv:12"
         }
       ],
@@ -16366,11 +15491,6 @@
           "kind": "area",
           "value": "brand",
           "source": "design/starred-images/_manifest.csv:13"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/brand/goods-ill-poles.png",
-          "source": "design/starred-images/_manifest.csv:13"
         }
       ],
       "has_person": false,
@@ -16391,11 +15511,6 @@
         {
           "kind": "area",
           "value": "brand",
-          "source": "design/starred-images/_manifest.csv:14"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/brand/goods-plastic-loop-v1.png",
           "source": "design/starred-images/_manifest.csv:14"
         }
       ],
@@ -16418,11 +15533,6 @@
           "kind": "area",
           "value": "build",
           "source": "design/starred-images/_manifest.csv:16"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/build/build-009.jpg",
-          "source": "design/starred-images/_manifest.csv:16"
         }
       ],
       "has_person": false,
@@ -16443,11 +15553,6 @@
         {
           "kind": "area",
           "value": "build",
-          "source": "design/starred-images/_manifest.csv:17"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/build/build-025.jpg",
           "source": "design/starred-images/_manifest.csv:17"
         }
       ],
@@ -16470,11 +15575,6 @@
           "kind": "area",
           "value": "build",
           "source": "design/starred-images/_manifest.csv:18"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/build/build-041.jpg",
-          "source": "design/starred-images/_manifest.csv:18"
         }
       ],
       "has_person": false,
@@ -16496,11 +15596,6 @@
           "kind": "area",
           "value": "build",
           "source": "design/starred-images/_manifest.csv:20"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/build/build-089.jpg",
-          "source": "design/starred-images/_manifest.csv:20"
         }
       ],
       "has_person": false,
@@ -16521,11 +15616,6 @@
         {
           "kind": "area",
           "value": "build",
-          "source": "design/starred-images/_manifest.csv:22"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/build/build-105.jpg",
           "source": "design/starred-images/_manifest.csv:22"
         }
       ],
@@ -16552,11 +15642,6 @@
           "kind": "area",
           "value": "community",
           "source": "design/starred-images/_manifest.csv:31"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/kalgoorlie/crate-bases-build.jpg",
-          "source": "design/starred-images/_manifest.csv:31"
         }
       ],
       "has_person": false,
@@ -16581,11 +15666,6 @@
         {
           "kind": "area",
           "value": "community",
-          "source": "design/starred-images/_manifest.csv:34"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/palm-island/crate-build-shed.jpg",
           "source": "design/starred-images/_manifest.csv:34"
         }
       ],
@@ -16612,11 +15692,6 @@
           "kind": "area",
           "value": "community",
           "source": "design/starred-images/_manifest.csv:25"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/alice-springs/frame-build-camp.jpg",
-          "source": "design/starred-images/_manifest.csv:25"
         }
       ],
       "has_person": false,
@@ -16641,11 +15716,6 @@
         {
           "kind": "area",
           "value": "community",
-          "source": "design/starred-images/_manifest.csv:36"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/palm-island/kids-unroll-topper.jpg",
           "source": "design/starred-images/_manifest.csv:36"
         }
       ],
@@ -16672,11 +15742,6 @@
           "kind": "area",
           "value": "community",
           "source": "design/starred-images/_manifest.csv:33"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/kalgoorlie/man-new-mattress.jpg",
-          "source": "design/starred-images/_manifest.csv:33"
         }
       ],
       "has_person": false,
@@ -16701,11 +15766,6 @@
         {
           "kind": "area",
           "value": "community",
-          "source": "design/starred-images/_manifest.csv:42"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/unplaced/man-new-topper.jpg",
           "source": "design/starred-images/_manifest.csv:42"
         }
       ],
@@ -16732,11 +15792,6 @@
           "kind": "area",
           "value": "community",
           "source": "design/starred-images/_manifest.csv:37"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/palm-island/naidoc-nan-kids-bed.jpg",
-          "source": "design/starred-images/_manifest.csv:37"
         }
       ],
       "has_person": false,
@@ -16761,11 +15816,6 @@
         {
           "kind": "area",
           "value": "community",
-          "source": "design/starred-images/_manifest.csv:43"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/unplaced/rec-assembly-04-wide.jpg",
           "source": "design/starred-images/_manifest.csv:43"
         }
       ],
@@ -16792,11 +15842,6 @@
           "kind": "area",
           "value": "community",
           "source": "design/starred-images/_manifest.csv:44"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/unplaced/rec-assembly-05-pole-sleeve.jpg",
-          "source": "design/starred-images/_manifest.csv:44"
         }
       ],
       "has_person": false,
@@ -16822,11 +15867,6 @@
           "kind": "area",
           "value": "community",
           "source": "design/starred-images/_manifest.csv:45"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/unplaced/three-men-thumbs-up.jpg",
-          "source": "design/starred-images/_manifest.csv:45"
         }
       ],
       "has_person": false,
@@ -16851,11 +15891,6 @@
         {
           "kind": "area",
           "value": "community",
-          "source": "design/starred-images/_manifest.csv:40"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/palm-island/woman-new-bed-home.jpg",
           "source": "design/starred-images/_manifest.csv:40"
         }
       ],
@@ -17122,11 +16157,6 @@
           "kind": "area",
           "value": "media-pack",
           "source": "design/starred-images/_manifest.csv:66"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/goods-early-2023-community.jpg",
-          "source": "design/starred-images/_manifest.csv:66"
         }
       ],
       "has_person": false,
@@ -17152,11 +16182,6 @@
           "kind": "area",
           "value": "media-pack",
           "source": "design/starred-images/_manifest.csv:73"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/woman-on-red-stretch-bed.jpg",
-          "source": "design/starred-images/_manifest.csv:73"
         }
       ],
       "has_person": false,
@@ -17177,11 +16202,6 @@
         {
           "kind": "area",
           "value": "partners",
-          "source": "design/starred-images/_manifest.csv:74"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/partners/centrecorp/good-news/building-bed.jpg",
           "source": "design/starred-images/_manifest.csv:74"
         }
       ],
@@ -17208,11 +16228,6 @@
           "kind": "area",
           "value": "people",
           "source": "design/starred-images/_manifest.csv:91"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/people/nic-and-ben-warumungu.jpg",
-          "source": "design/starred-images/_manifest.csv:91"
         }
       ],
       "has_person": false,
@@ -17237,11 +16252,6 @@
         {
           "kind": "area",
           "value": "pitch",
-          "source": "design/starred-images/_manifest.csv:92"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/pitch/bed-assembled.jpg",
           "source": "design/starred-images/_manifest.csv:92"
         }
       ],
@@ -17268,11 +16278,6 @@
           "kind": "area",
           "value": "pitch",
           "source": "design/starred-images/_manifest.csv:93"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/pitch/bed-canvas.jpg",
-          "source": "design/starred-images/_manifest.csv:93"
         }
       ],
       "has_person": false,
@@ -17297,11 +16302,6 @@
         {
           "kind": "area",
           "value": "pitch",
-          "source": "design/starred-images/_manifest.csv:94"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/pitch/bed-frame-legs.jpg",
           "source": "design/starred-images/_manifest.csv:94"
         }
       ],
@@ -17328,11 +16328,6 @@
           "kind": "area",
           "value": "pitch",
           "source": "design/starred-images/_manifest.csv:95"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/pitch/bed-poles.jpg",
-          "source": "design/starred-images/_manifest.csv:95"
         }
       ],
       "has_person": false,
@@ -17357,11 +16352,6 @@
         {
           "kind": "area",
           "value": "pitch",
-          "source": "design/starred-images/_manifest.csv:96"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/pitch/bed-seq-1-leg-pole.jpg",
           "source": "design/starred-images/_manifest.csv:96"
         }
       ],
@@ -17388,11 +16378,6 @@
           "kind": "area",
           "value": "pitch",
           "source": "design/starred-images/_manifest.csv:97"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/pitch/bed-seq-2-legs-pole.jpg",
-          "source": "design/starred-images/_manifest.csv:97"
         }
       ],
       "has_person": false,
@@ -17417,11 +16402,6 @@
         {
           "kind": "area",
           "value": "pitch",
-          "source": "design/starred-images/_manifest.csv:98"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/pitch/bed-seq-3-all-parts.jpg",
           "source": "design/starred-images/_manifest.csv:98"
         }
       ],
@@ -17448,11 +16428,6 @@
           "kind": "area",
           "value": "process",
           "source": "design/starred-images/_manifest.csv:100"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/bull-nose-router.jpg",
-          "source": "design/starred-images/_manifest.csv:100"
         }
       ],
       "has_person": false,
@@ -17477,11 +16452,6 @@
         {
           "kind": "area",
           "value": "process",
-          "source": "design/starred-images/_manifest.csv:101"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/cnc-cutter.jpg",
           "source": "design/starred-images/_manifest.csv:101"
         }
       ],
@@ -17508,11 +16478,6 @@
           "kind": "area",
           "value": "process",
           "source": "design/starred-images/_manifest.csv:102"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/cnc-offcuts-jigsaw.jpg",
-          "source": "design/starred-images/_manifest.csv:102"
         }
       ],
       "has_person": false,
@@ -17537,11 +16502,6 @@
         {
           "kind": "area",
           "value": "process",
-          "source": "design/starred-images/_manifest.csv:103"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/cnc-router-full.jpg",
           "source": "design/starred-images/_manifest.csv:103"
         }
       ],
@@ -17568,11 +16528,6 @@
           "kind": "area",
           "value": "process",
           "source": "design/starred-images/_manifest.csv:104"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/cnc-router-head.jpg",
-          "source": "design/starred-images/_manifest.csv:104"
         }
       ],
       "has_person": false,
@@ -17597,11 +16552,6 @@
         {
           "kind": "area",
           "value": "process",
-          "source": "design/starred-images/_manifest.csv:105"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/cnc-software.jpg",
           "source": "design/starred-images/_manifest.csv:105"
         }
       ],
@@ -17628,11 +16578,6 @@
           "kind": "area",
           "value": "process",
           "source": "design/starred-images/_manifest.csv:106"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/color-samples.jpg",
-          "source": "design/starred-images/_manifest.csv:106"
         }
       ],
       "has_person": false,
@@ -17657,11 +16602,6 @@
         {
           "kind": "area",
           "value": "process",
-          "source": "design/starred-images/_manifest.csv:107"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/container-factory.jpg",
           "source": "design/starred-images/_manifest.csv:107"
         }
       ],
@@ -17688,11 +16628,6 @@
           "kind": "area",
           "value": "process",
           "source": "design/starred-images/_manifest.csv:108"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/containers-angle.jpg",
-          "source": "design/starred-images/_manifest.csv:108"
         }
       ],
       "has_person": false,
@@ -17717,11 +16652,6 @@
         {
           "kind": "area",
           "value": "process",
-          "source": "design/starred-images/_manifest.csv:109"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/containers-wide-angle.jpg",
           "source": "design/starred-images/_manifest.csv:109"
         }
       ],
@@ -17748,11 +16678,6 @@
           "kind": "area",
           "value": "process",
           "source": "design/starred-images/_manifest.csv:110"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/cut-legs-stored.jpg",
-          "source": "design/starred-images/_manifest.csv:110"
         }
       ],
       "has_person": false,
@@ -17777,11 +16702,6 @@
         {
           "kind": "area",
           "value": "process",
-          "source": "design/starred-images/_manifest.csv:114"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/process/workstation-container.jpg",
           "source": "design/starred-images/_manifest.csv:114"
         }
       ],
@@ -17808,11 +16728,6 @@
           "kind": "area",
           "value": "product",
           "source": "design/starred-images/_manifest.csv:115"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/product/basket-bed-hero.jpg",
-          "source": "design/starred-images/_manifest.csv:115"
         }
       ],
       "has_person": false,
@@ -17837,11 +16752,6 @@
         {
           "kind": "area",
           "value": "product",
-          "source": "design/starred-images/_manifest.csv:116"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/product/stretch-bed-assembly.jpg",
           "source": "design/starred-images/_manifest.csv:116"
         }
       ],
@@ -18314,11 +17224,6 @@
           "kind": "area",
           "value": "build",
           "source": "design/starred-images/_manifest.csv:16"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/build/build-009.jpg",
-          "source": "design/starred-images/_manifest.csv:16"
         }
       ],
       "has_person": false,
@@ -18355,11 +17260,6 @@
           "kind": "area",
           "value": "build",
           "source": "design/starred-images/_manifest.csv:17"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/build/build-025.jpg",
-          "source": "design/starred-images/_manifest.csv:17"
         }
       ],
       "has_person": false,
@@ -18395,11 +17295,6 @@
         {
           "kind": "area",
           "value": "build",
-          "source": "design/starred-images/_manifest.csv:18"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/build/build-041.jpg",
           "source": "design/starred-images/_manifest.csv:18"
         }
       ],
@@ -18484,11 +17379,6 @@
           "source": "design/starred-images/_manifest.csv:20"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/build/build-089.jpg",
-          "source": "design/starred-images/_manifest.csv:20"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/product-wiki.ts",
           "source": "v2/src/lib/data/product-wiki.ts:410"
@@ -18512,11 +17402,6 @@
         {
           "kind": "area",
           "value": "build",
-          "source": "design/starred-images/_manifest.csv:22"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/build/build-105.jpg",
           "source": "design/starred-images/_manifest.csv:22"
         },
         {
@@ -18596,11 +17481,6 @@
         {
           "kind": "area",
           "value": "community",
-          "source": "design/starred-images/_manifest.csv:42"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/unplaced/man-new-topper.jpg",
           "source": "design/starred-images/_manifest.csv:42"
         }
       ],
@@ -18741,11 +17621,6 @@
           "kind": "area",
           "value": "community",
           "source": "design/starred-images/_manifest.csv:43"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/unplaced/rec-assembly-04-wide.jpg",
-          "source": "design/starred-images/_manifest.csv:43"
         }
       ],
       "has_person": false,
@@ -18770,11 +17645,6 @@
         {
           "kind": "area",
           "value": "community",
-          "source": "design/starred-images/_manifest.csv:44"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/unplaced/rec-assembly-05-pole-sleeve.jpg",
           "source": "design/starred-images/_manifest.csv:44"
         }
       ],
@@ -18895,11 +17765,6 @@
         {
           "kind": "area",
           "value": "community",
-          "source": "design/starred-images/_manifest.csv:45"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/community/unplaced/three-men-thumbs-up.jpg",
           "source": "design/starred-images/_manifest.csv:45"
         }
       ],
@@ -19022,11 +17887,6 @@
           "source": "design/starred-images/_manifest.csv:66"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/goods-early-2023-community.jpg",
-          "source": "design/starred-images/_manifest.csv:66"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/product-wiki.ts",
           "source": "v2/src/lib/data/product-wiki.ts:361"
@@ -19098,11 +17958,6 @@
         {
           "kind": "area",
           "value": "media-pack",
-          "source": "design/starred-images/_manifest.csv:73"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/media-pack/woman-on-red-stretch-bed.jpg",
           "source": "design/starred-images/_manifest.csv:73"
         },
         {
@@ -19298,11 +18153,6 @@
           "source": "design/starred-images/_manifest.csv:92"
         },
         {
-          "kind": "el_media_id",
-          "value": "/images/pitch/bed-assembled.jpg",
-          "source": "design/starred-images/_manifest.csv:92"
-        },
-        {
           "kind": "code-ref",
           "value": "v2/src/lib/data/product-wiki.ts",
           "source": "v2/src/lib/data/product-wiki.ts:140"
@@ -19331,11 +18181,6 @@
           "kind": "area",
           "value": "pitch",
           "source": "design/starred-images/_manifest.csv:93"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/pitch/bed-canvas.jpg",
-          "source": "design/starred-images/_manifest.csv:93"
         }
       ],
       "has_person": false,
@@ -19361,11 +18206,6 @@
           "kind": "area",
           "value": "pitch",
           "source": "design/starred-images/_manifest.csv:94"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/pitch/bed-frame-legs.jpg",
-          "source": "design/starred-images/_manifest.csv:94"
         }
       ],
       "has_person": false,
@@ -19390,11 +18230,6 @@
         {
           "kind": "area",
           "value": "pitch",
-          "source": "design/starred-images/_manifest.csv:95"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/pitch/bed-poles.jpg",
           "source": "design/starred-images/_manifest.csv:95"
         },
         {
@@ -19453,11 +18288,6 @@
           "kind": "area",
           "value": "pitch",
           "source": "design/starred-images/_manifest.csv:96"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/pitch/bed-seq-1-leg-pole.jpg",
-          "source": "design/starred-images/_manifest.csv:96"
         }
       ],
       "has_person": false,
@@ -19483,11 +18313,6 @@
           "kind": "area",
           "value": "pitch",
           "source": "design/starred-images/_manifest.csv:97"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/pitch/bed-seq-2-legs-pole.jpg",
-          "source": "design/starred-images/_manifest.csv:97"
         }
       ],
       "has_person": false,
@@ -19512,11 +18337,6 @@
         {
           "kind": "area",
           "value": "pitch",
-          "source": "design/starred-images/_manifest.csv:98"
-        },
-        {
-          "kind": "el_media_id",
-          "value": "/images/pitch/bed-seq-3-all-parts.jpg",
           "source": "design/starred-images/_manifest.csv:98"
         }
       ],

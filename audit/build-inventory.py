@@ -64,7 +64,9 @@ def load_manifest():
                 tags.append({'kind': kind, 'value': v,
                              'source': f'design/starred-images/_manifest.csv:{line}'})
         ref = (r.get('ref') or '').strip()
-        if ref:
+        # ref holds an EL media_asset UUID for el-sourced rows, but a repo PATH for
+        # local rows. Only a UUID is a genuine "already in EL" hint.
+        if ref and re.match(r'^[0-9a-f]{8}-[0-9a-f]{4}-', ref):
             tags.append({'kind': 'el_media_id', 'value': ref,
                          'source': f'design/starred-images/_manifest.csv:{line}'})
         if not tags:
