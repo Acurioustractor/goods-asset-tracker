@@ -39,7 +39,7 @@ This is the real governance-adjacent network. It should be shown plainly, with r
 | **A Kind Tractor Ltd** | Dormant and not used (ABN 73 669 029 341). Not DGR. | No Goods role. Not the trading entity, charity home or DGR pathway. |
 | **Kristy Bloomfield / Oonchiumpa Consultancy** | Cultural lead, Alice Springs partner and potential production pathway. | First Nations leadership, Central Australian governance context and possible Supply Nation/IPP pathway. |
 | **Karen Liddle / Tanya Turner / Fred Campbell / Oonchiumpa** | Oonchiumpa leadership/operating context recorded in the compendium. | Local governance, management, youth pathway and community-led operating design. |
-| **Dianne Stokes** | Waramungu and Warlmanpa Elder, Tennant Creek co-designer and naming partner for Pakkimjalki Kari. | Story consent, product feedback, cultural authority and relationship accountability. |
+| **Dianne Stokes** | Waramungu and Warlmanpa Elder, Tennant Creek design partner and naming partner for Pakkimjalki Kari. | Story consent, product feedback, cultural authority and relationship accountability. |
 | **Palm Island Community Company (PICC)** | Palm Island partner and possible production-facility owner/operator. | Community-controlled delivery and future plant ownership question. |
 | **Ebony and Jahvan Oui** | Palm Island production pathway connected to Defy training. | Future local manufacturing capability and operator pathway. |
 | **Sally Grimsley-Ballard / Snow Foundation** | Strategic funder partner and advisory group member. | Funder judgement, long-term relationship discipline and capital pathway advice. |

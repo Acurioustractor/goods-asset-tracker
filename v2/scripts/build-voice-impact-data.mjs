@@ -80,6 +80,27 @@ const normThemesPresent = (arr) =>
       : { theme: normTheme(x.theme ?? x.id), note: x.note || '' },
   );
 
+// Registry-banned fragments must never reach v2/src, even in admin data —
+// the guard (check-storyteller-registry.mjs) enforces this. Redact at build.
+const BANNED_FRAGMENTS = ['boundary of my totem'];
+function redactText(s) {
+  let out = s;
+  for (const f of BANNED_FRAGMENTS) out = out.split(f).join('[held fragment redacted]');
+  return out;
+}
+function redactHeld(q) {
+  if (BANNED_FRAGMENTS.some((f) => (q.text || '').includes(f))) {
+    return {
+      ...q,
+      text: '[HELD LINE REDACTED - registry hold (Dianne totem line); read in Empathy Ledger only]',
+      strength: 'internal-only',
+      cleared: false,
+      sensitivity: 'registry HOLD; redacted from this dataset',
+    };
+  }
+  return q;
+}
+
 const byVoice = new Map();
 for (const a of analyses) {
   const elRow = elById.get(a.transcript_id);
@@ -127,7 +148,7 @@ for (const a of analyses) {
     characterCount: elRow.character_count || 0,
     held: !!a.held,
     staff: !!a.staff,
-    topQuotes: (a.top_quotes || []).map((q) => ({
+    topQuotes: (a.top_quotes || []).map((q) => redactHeld(q)).map((q) => ({
       text: q.text,
       timestamp: q.timestamp ?? null,
       context: q.context || '',
@@ -138,8 +159,8 @@ for (const a of analyses) {
       cleared: !!q.cleared,
     })),
     themesPresent: normThemesPresent(a.themes_present),
-    narrativeSummary: a.narrative_summary || '',
-    analysisNotes: a.analysis_notes || '',
+    narrativeSummary: redactText(a.narrative_summary || ''),
+    analysisNotes: redactText(a.analysis_notes || ''),
   });
 }
 

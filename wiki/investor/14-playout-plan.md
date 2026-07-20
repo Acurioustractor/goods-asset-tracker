@@ -22,21 +22,20 @@ to improvisation.
 
 | Beat | Stat | Voice (cleared today) | Media on hand | Ready? |
 |---|---|---|---|---|
-| 1. The problem | freight/price/dump cycle | NEEDS CLEARING: Daniel D34/D35, Alfred D18, Jimmy D15, Carmelita D36 | problem.jpg, community-delivery.jpg | voice pending |
-| 2. Never asked | 60-year default | NEEDS CLEARING: Linda D24, Gary D16 | listening-first.jpg | voice pending |
+| 1. The problem | freight/price/dump cycle | Daniel x2, Alfred x3, Jimmy x2, Carmelita & Colette x2 ✅ (cleared 2026-07-20) | problem.jpg, community-delivery.jpg | READY |
+| 2. Never asked | 60-year default | Linda D24 ✅, Gary D16-D17 ✅, Tanya consulted-line ✅ | listening-first.jpg | READY |
 | 3. Designed in community | 180°C, X-trestle, products.ts specs | Dianne D3 "go and talk to the elders" ✅ | product-anatomy.jpg, Dianne portrait + storyteller photo | READY |
 | 4. Proof at delivery | 540 / 177 / 20 / 11 / 3,540kg | Margaret x3 ✅ + Dianne D5 milk-crate ✅ | map.png (canon), delivery photos, Margaret needs a photo | READY (photo gap) |
-| 5. The loop works | 3,540kg, plastic loop | Shayne "not gonna break / blowing my mind" (pending) | plastic-loop.jpg, sankey, shredder.jpg, washing-machine.jpg | voice pending |
+| 5. The loop works | 3,540kg, plastic loop | Shayne washer/plastic quote ✅ | plastic-loop.jpg, sankey, shredder.jpg, washing-machine.jpg | READY |
 | 6. Delivery in community hands | Maningrida 58 beds + 8 washers | Shayne x2 ✅ | community photos; Mykel video, Karen video (linked) | READY |
 | 7. The making | Mykel/Oonchiumpa builds | Mykel registry ✅, Karen registry ✅ | mykel-building-the-bed.mp4 (linked), kids-building.jpg, assembly-sequence.png | READY |
 | 8. The hinge (truck test) | $685 vs $426, break-even 333-338 | Dianne D4 "hear from the ground" ✅ | cost-curve.png, breakeven.png | READY |
-| 9. Ownership is the ask | Oonchiumpa request (requested, not settled) | NEEDS CLEARING: Kristy generational-wealth + Tanya allies | community-ownership.png, area-09 | voice pending |
-| 10. The funder witness | Snow ~$493K delivered, $0 signed match | NEEDS CLEARING + audio check: Georgina with-not-for | storyteller portraits, Deadly Heart context | voice pending |
+| 9. Ownership is the ask | Oonchiumpa request (requested, not settled) | Kristy x4 ✅ + Tanya x3 ✅ (Tanya now in registry) | community-ownership.png, area-09 | READY |
+| 10. The funder witness | Snow ~$493K delivered, $0 signed match | Georgina x3 ✅ (funder-voice label; audio name-checks before passages with names) | storyteller portraits, Deadly Heart context | READY |
 | 11. The ask | $400K signed match-eligible by 31 Aug; QBE up to $400K | (numbers slide, no quote needed) | map.png, where-750.png | READY |
 | 12. Close | "We know what we need" synthesis line (never quoted) | Dianne D8 blessings ✅ | closing-hero.jpg | READY |
 
-Seven of twelve beats are fully ready today; five wait only on the clearing pass (the exact
-quote numbers are listed, all in QUOTE-REVIEW.md).
+ALL TWELVE BEATS ARE READY (Ben mass-clearing pass 2026-07-20: 56 quotes cleared). The .pen deck rebuild is unblocked.
 
 ## 3. Surface map (one spine, many cuts)
 

@@ -1,191 +1,297 @@
 {
-  "transcripts": [
+ "transcripts": [
+  {
+   "storyteller": "Kristy Bloomfield",
+   "transcript_id": "05e786cb-1e0c-49d7-878d-4e7ed546f111",
+   "held": false,
+   "top_quotes": [
     {
-      "storyteller": "Kristy Bloomfield",
-      "transcript_id": "05e786cb-1e0c-49d7-878d-4e7ed546f111",
-      "held": false,
-      "top_quotes": [
-        {
-          "text": "helping these young people to be strong in both those worlds because at the moment for a young person in central australia you basically have to choose you really have to just choose whether you're going to be strong in culture and your aboriginality or if you're going to be strong in the Western world",
-          "timestamp": null,
-          "context": "Explaining the Oonchiumpa 'two worlds' principle behind their youth work. SPEAKER AMBIGUITY: this passage may be Tanya (Kristy's sister/partner in the business) rather than Kristy — the transcript has no speaker labels and refers to 'like Kristy said'. Do not attribute to Kristy without checking audio.",
-          "themes": ["country-culture", "family-kids", "system-failure"],
-          "domain": "self-determination",
-          "strength": "strong",
-          "sensitivity": "speaker-attribution-ambiguous"
-        },
-        {
-          "text": "when we first started we pretty much got all the young people that every other service couldn't handle... It's culturally led Aboriginal authority and Aboriginal guidance and support.",
-          "timestamp": null,
-          "context": "Describing why services refer the hardest cases to Oonchiumpa — cultural authority and family connection succeed where mainstream services fail. Strong relatability line for why community-led delivery (the Goods ownership-pathway logic) works.",
-          "themes": ["ownership-pathway", "system-failure", "design-in-community"],
-          "domain": "self-determination",
-          "strength": "strong",
-          "sensitivity": null
-        },
-        {
-          "text": "a lot of these kids come from you know elders who were stockman, elders who knew the land, elders who knew how to look after cattle, look after horses and all of that and grew up in stock camps. So we want to be able to share that strength with them as well and bring that mentoring ship with the elders, with that young fellow or young girl who come out on country",
-          "timestamp": null,
-          "context": "The Loves Creek on-country vision: cattle enterprise plus elder-led mentoring for young people. Directly parallels the Goods on-country jobs/ownership story.",
-          "themes": ["making-jobs", "country-culture", "elders-protocol"],
-          "domain": "jobs-ownership",
-          "strength": "strong",
-          "sensitivity": null
-        },
-        {
-          "text": "Dad wants to then, you know, do all these machinery jobs, you know, and getting real jobs out in the community and learning and training.",
-          "timestamp": null,
-          "context": "On the family grading/grazing business plans on their country — 'real jobs' in community as the goal. Compact, quotable jobs-on-country line.",
-          "themes": ["making-jobs", "ownership-pathway"],
-          "domain": "jobs-ownership",
-          "strength": "supporting",
-          "sensitivity": null
-        },
-        {
-          "text": "we also want to be able to share the workload because we're drowning at the moment as, you know, our own people, but also as central Australians that have worked hard to get us where we are today",
-          "timestamp": null,
-          "context": "On the load carried by Aboriginal leaders navigating the white system on behalf of many language groups. Grounds why reciprocal partnership (not extraction) matters.",
-          "themes": ["reciprocity-partnership", "system-failure"],
-          "domain": "self-determination",
-          "strength": "supporting",
-          "sensitivity": null
-        }
-      ],
-      "themes_present": [
-        {"theme": "ownership-pathway", "note": "Culturally-led Aboriginal authority as the operating model; family enterprises (grazing licence, grading contract, Hewitt Agribusiness partnership) on their own land."},
-        {"theme": "country-culture", "note": "Traditional-owner identity, Loves Creek, caterpillar dreaming discussion; two-worlds framework."},
-        {"theme": "system-failure", "note": "Justice reinvestment knockbacks, Central Land Council conflict, kids' education 'zero', 10-year-olds locked up, services that couldn't handle the kids."},
-        {"theme": "making-jobs", "note": "Cattle/stock-camp training pathways, machinery jobs, McDonald's traineeships."},
-        {"theme": "family-kids", "note": "Case stories of Anthony and a young girl; big-sister/little-sister model; ripple effect through kinship."},
-        {"theme": "reciprocity-partnership", "note": "Knowledge-sharing with Palm Island rangers, Diagrama Spain, Snow Foundation intro discussed by Ben."},
-        {"theme": "elders-protocol", "note": "Yipa-Rinya caterpillar dreaming explanation; men's ceremony discussion — cultural content requiring review."}
-      ],
-      "narrative_summary": "A website-planning call between Ben and Kristy (with Tanya joining, largely unlabelled) covering the Oonchiumpa story: two pioneering Central Australian families, 20+ years in Aboriginal legal services, Royal Commission and Geneva advocacy, and the founding of a culturally-led youth service that takes the young people no other service could handle. The 'two worlds' principle — young people forced to choose between strength in culture and strength in the Western world — anchors their model of Aboriginal authority, family connection, and elder mentoring. The forward vision is enterprise on their own country: grazing licence, cattle, training pathways and 'real jobs' at Loves Creek. For Goods this is ownership-pathway relatability material, not product testimony; Kristy is the lead of the Goods community-ownership conversation and this shows the leadership depth behind it.",
-      "analysis_notes": "NEAR-DUPLICATE of transcript f5e322b9 (same call; this file has an extra opening section on the walking trail, Palm Island rangers and Napa Homestead). CANON: no Goods product content; do not source bed/washer claims here. NO SPEAKER LABELS — Kristy and Tanya are interleaved; several key passages (two-worlds explanation, education-is-zero worry) are plausibly Tanya; flag before attribution. SENSITIVE: names of minors and case details (Anthony, Operation Luna referrals, a young girl's mental-health/child-protection history) must never be used externally. Critical remarks about named third parties (Tony McAvoy, Central Land Council, NAAJA board, Congress/Back on Track) are unusable externally. Caterpillar dreaming (Yipa-Rinya) content: elders-protocol, review before any use. Snow Foundation / Deadly Heart Trek discussion is Ben speaking, useful internal context only. Transcription quality is rough (e.g. 'Unchakable'/'Chupa' for Oonchiumpa, 'traditional learners' likely 'traditional owners')."
+     "text": "helping these young people to be strong in both those worlds because at the moment for a young person in central australia you basically have to choose you really have to just choose whether you're going to be strong in culture and your aboriginality or if you're going to be strong in the Western world",
+     "timestamp": null,
+     "context": "Explaining the Oonchiumpa 'two worlds' principle behind their youth work. SPEAKER AMBIGUITY: this passage may be Tanya (Kristy's sister/partner in the business) rather than Kristy \u2014 the transcript has no speaker labels and refers to 'like Kristy said'. Do not attribute to Kristy without checking audio.",
+     "themes": [
+      "country-culture",
+      "family-kids",
+      "system-failure"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": "speaker-attribution-ambiguous"
     },
     {
-      "storyteller": "Kristy Bloomfield",
-      "transcript_id": "f5e322b9-7009-4e41-88e6-2f154448ffd0",
-      "held": false,
-      "top_quotes": [
-        {
-          "text": "we're basically sort of castles of this sort of middleman between the two worlds, trying to help these young people and their family be strong in both those spaces and do whatever we need to do to link them into whatever they need to be linked into",
-          "timestamp": null,
-          "context": "Describing Oonchiumpa's bridging role between culture and the Western system. Transcription garbled ('castles' likely 'catalysts' or similar). SPEAKER AMBIGUITY: may be Tanya.",
-          "themes": ["design-in-community", "family-kids"],
-          "domain": "self-determination",
-          "strength": "supporting",
-          "sensitivity": "speaker-attribution-ambiguous; verify wording against audio"
-        },
-        {
-          "text": "with dad's comments, you know, you're only going to get a yes or no, so you might as well do it",
-          "timestamp": null,
-          "context": "Her father's advice underpinning the sisters' willingness to build the business and challenge institutions. Warm, human leadership line.",
-          "themes": ["family-kids", "ownership-pathway"],
-          "domain": "self-determination",
-          "strength": "supporting",
-          "sensitivity": null
-        },
-        {
-          "text": "working in the legal space for over 20 years has given us, you know, our backbone in navigating many things",
-          "timestamp": null,
-          "context": "On the legal-career foundation of Oonchiumpa's leadership; part of the credibility story for the ownership-pathway partner.",
-          "themes": ["ownership-pathway"],
-          "domain": "self-determination",
-          "strength": "supporting",
-          "sensitivity": null
-        },
-        {
-          "text": "mentoring leadership, we're able to guide them in being young, independent, young people in strength in living in both worlds... breaking the cycle, but that's based as Aboriginal-led and for traditional owners, working with traditional owners, working with language groups",
-          "timestamp": null,
-          "context": "Kristy's own funder-facing summary of what resourcing Oonchiumpa achieves — Aboriginal-led, traditional-owner-grounded, cycle-breaking.",
-          "themes": ["ownership-pathway", "design-in-community"],
-          "domain": "self-determination",
-          "strength": "strong",
-          "sensitivity": null
-        },
-        {
-          "text": "she was back on track for two years, and they hadn't been able to do anything with a young girl... within four or five months we were able to get her doctor's health check done... and she's now off Operation Luna",
-          "timestamp": null,
-          "context": "Concrete evidence of the culturally-led model outperforming a funded mainstream service. Powerful internally; unusable externally due to identifiable case detail.",
-          "themes": ["system-failure", "family-kids"],
-          "domain": "dignity-safety",
-          "strength": "supporting",
-          "sensitivity": "identifiable minor case detail — internal use only"
-        }
-      ],
-      "themes_present": [
-        {"theme": "ownership-pathway", "note": "Aboriginal-led business built on cultural authority; funder pitch is mentoring leadership plus breaking the cycle."},
-        {"theme": "system-failure", "note": "Services that reward bad behaviour, justice reinvestment rejection, legislation locking up 10-year-olds."},
-        {"theme": "country-culture", "note": "Two-worlds framework; Loves Creek on-country plans; caterpillar dreaming (protocol)."},
-        {"theme": "making-jobs", "note": "Grazing licence, Hewitt Agribusiness, stock-camp training, machinery jobs."},
-        {"theme": "family-kids", "note": "Kinship-based youth work; grandmothers/uncles engaging with staff; case stories."}
-      ],
-      "narrative_summary": "This is the same recorded call as transcript 05e786cb minus its opening section — the Oonchiumpa bio, the two-worlds principle, the youth-work case stories, the funding picture (roughly $1.8M over 18 months, justice reinvestment knockback) and the Loves Creek enterprise vision. Kristy traces the family's station and legal-service history into a culturally-led service that succeeds with young people every other provider gave up on, and articulates a clear funder ask: Aboriginal-led mentoring that builds strength in both worlds. The relevance to Goods is the ownership-pathway spine: this is what community-led capability and enterprise ambition look like in the person leading that conversation with Goods.",
-      "analysis_notes": "DUPLICATE CONTENT: near-identical to 05e786cb (that file adds ~1,400 opening words on walking trail/Palm Island/bios). Recommend treating 05e786cb as the master and this ID as a duplicate pointer to avoid double-counting quotes. All sensitivity notes from 05e786cb apply: no speaker labels (Kristy vs Tanya ambiguity), minors named with child-protection detail, critical remarks about named individuals/organisations, elders-protocol dreaming content, rough transcription. No Goods product content; no canon figures touched."
+     "text": "when we first started we pretty much got all the young people that every other service couldn't handle... It's culturally led Aboriginal authority and Aboriginal guidance and support.",
+     "timestamp": null,
+     "context": "Describing why services refer the hardest cases to Oonchiumpa \u2014 cultural authority and family connection succeed where mainstream services fail. Strong relatability line for why community-led delivery (the Goods ownership-pathway logic) works.",
+     "themes": [
+      "ownership-pathway",
+      "system-failure",
+      "design-in-community"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": null
     },
     {
-      "storyteller": "Kristy Bloomfield",
-      "transcript_id": "dce4ba4b-d8b3-4322-88bf-e4d9106cd7fe",
-      "held": false,
-      "top_quotes": [
-        {
-          "text": "We're in a position to make change and bring that generational wealth out on Loves Creek Station. And to be a part of these the cattle industry, which is a multimillion dollar business, we wanna bring that multimillion dollar business to our families on Aboriginal land and to lead that.",
-          "timestamp": "00:19:00",
-          "context": "On the vision for Loves Creek after the 1994 land claim — enterprise led by traditional owners on their own land. The clearest single articulation of the ownership ambition Goods' pathway plugs into.",
-          "themes": ["ownership-pathway", "making-jobs"],
-          "domain": "jobs-ownership",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "We know what we wanna do on our land, and we know how to get there. I think it's just about having our land councils, our government supporting us in delivering this... Self-determination for us as aboriginal people, as our old people have led the way for us.",
-          "timestamp": "00:20:00",
-          "context": "Closing the on-country vision: communities once ran like small towns with their own infrastructure and councils; the ask is support, not control. Echoes the Goods 'we know what we need' synthesis — note that sentence itself is a Goods synthesis, never quoted; this is Kristy's real version.",
-          "themes": ["ownership-pathway", "country-culture"],
-          "domain": "self-determination",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "Aboriginal people wanna work with aboriginal people and aboriginal kids wanna work with Aboriginal people. So I think that's our message that Aboriginal culturally led programs is working and has worked. And I feel the government should let it be and let it continue.",
-          "timestamp": "00:16:00",
-          "context": "On sharing knowledge across communities and why culturally-led delivery works — strong relatability for community-led delivery of Goods.",
-          "themes": ["design-in-community", "ownership-pathway"],
-          "domain": "self-determination",
-          "strength": "strong",
-          "sensitivity": null
-        },
-        {
-          "text": "Having pathways, having training developments out on country and meaningful training development programs for our young people to then gain employment out on the stock camp, out on these stations across the country. Having that experience and training, we will only thrive as aboriginal people.",
-          "timestamp": "00:20:00",
-          "context": "On-country training-to-employment pathway; directly relatable to the Goods plant-to-community-ownership jobs story.",
-          "themes": ["making-jobs", "country-culture"],
-          "domain": "jobs-ownership",
-          "strength": "strong",
-          "sensitivity": null
-        },
-        {
-          "text": "the old homestead out there represents the heartache that our granny felt, being a slave out on our own country... That also feeling proud of being able to be acknowledged and recognised in the federal court to having land rights out on the country is very proud for us. And that was our land and that has always been our land as aboriginal people.",
-          "timestamp": "00:22:00",
-          "context": "The double history of the Loves Creek homestead — heartache and pride held together. Deep context for why ownership on country matters; handle with care given historical trauma content.",
-          "themes": ["country-culture", "ownership-pathway"],
-          "domain": "self-determination",
-          "strength": "strong",
-          "sensitivity": "historical trauma (slavery, rations, stolen generations context) — review with Kristy before external use"
-        }
-      ],
-      "themes_present": [
-        {"theme": "ownership-pathway", "note": "Generational wealth on Aboriginal land, land claim 1994, homestead returned, cattle enterprise, self-determination as the through-line."},
-        {"theme": "country-culture", "note": "Traditional-owner identity from both parents' lines; sacred and burial sites; songs and dances from the land claim 'nobody can take away from us'."},
-        {"theme": "making-jobs", "note": "Stock-camp training pathways, McDonald's traineeships, youth wanting to become Oonchiumpa youth workers."},
-        {"theme": "system-failure", "note": "Don Dale, Operation Luna, town lacking empathy, overcrowding, food insecurity, family violence in town camps."},
-        {"theme": "family-kids", "note": "Six kids on one income, basketball across the country, sharing that upbringing with town kids who never had it."},
-        {"theme": "elders-protocol", "note": "Stolen-generations family stories (grandfather; grandmother darkening sons' skin to evade welfare; Auntie Pat at St Mary's) — cultural/trauma content requiring review."},
-        {"theme": "never-asked", "note": "Implicit: government changing on communities that once ran themselves; 'let it be and let it continue'."}
-      ],
-      "narrative_summary": "A clean, labelled sit-down interview (Ben as Speaker 59, Kristy Speaker 60) that is the strongest of the three: Kristy grounds her identity as a Central/Eastern Arrernte and Alyawarre traditional owner, tells the family's stolen-generations and station history, and lays out the Oonchiumpa model of cultural authority in youth work. It builds to the Loves Creek vision — generational wealth, cattle enterprise, on-country training and employment, and self-determination in her own words. This is the leadership backbone of the Goods community-ownership pathway story: the person leading that conversation articulating exactly what community-led enterprise on Aboriginal land looks like.",
-      "analysis_notes": "Best source of the three: speaker-labelled with timestamps. No Goods product content; no canon figures. SENSITIVE: (1) stolen-generations family stories (grandfather removed to the Bungalow; grandmother putting uncles in the sun; forced marriage under police threat) and Auntie Pat's St Mary's cane story — trauma/family content, review before any external use; (2) named minor 'Jacqueline Button' with Don Dale/corrections history — never external; (3) sacred and burial site references — elders-protocol, location detail must not travel. Names: Kristy spells her name K-R-I-S-T-Y B-L-O-O-M-F-I-E-L-D on tape; transcript renders the org as 'Chupa'/'Trumper'/'on Trump clip' — all are Oonchiumpa mis-transcriptions. 'In Blood' is likely a mis-transcription of a community name (possibly Epenarra region near Hatches Creek) — verify before use."
+     "text": "a lot of these kids come from you know elders who were stockman, elders who knew the land, elders who knew how to look after cattle, look after horses and all of that and grew up in stock camps. So we want to be able to share that strength with them as well and bring that mentoring ship with the elders, with that young fellow or young girl who come out on country",
+     "timestamp": null,
+     "context": "The Loves Creek on-country vision: cattle enterprise plus elder-led mentoring for young people. Directly parallels the Goods on-country jobs/ownership story.",
+     "themes": [
+      "making-jobs",
+      "country-culture",
+      "elders-protocol"
+     ],
+     "domain": "jobs-ownership",
+     "strength": "strong",
+     "sensitivity": null
+    },
+    {
+     "text": "Dad wants to then, you know, do all these machinery jobs, you know, and getting real jobs out in the community and learning and training.",
+     "timestamp": null,
+     "context": "On the family grading/grazing business plans on their country \u2014 'real jobs' in community as the goal. Compact, quotable jobs-on-country line.",
+     "themes": [
+      "making-jobs",
+      "ownership-pathway"
+     ],
+     "domain": "jobs-ownership",
+     "strength": "supporting",
+     "sensitivity": null
+    },
+    {
+     "text": "we also want to be able to share the workload because we're drowning at the moment as, you know, our own people, but also as central Australians that have worked hard to get us where we are today",
+     "timestamp": null,
+     "context": "On the load carried by Aboriginal leaders navigating the white system on behalf of many language groups. Grounds why reciprocal partnership (not extraction) matters.",
+     "themes": [
+      "reciprocity-partnership",
+      "system-failure"
+     ],
+     "domain": "self-determination",
+     "strength": "supporting",
+     "sensitivity": null
     }
-  ]
+   ],
+   "themes_present": [
+    {
+     "theme": "ownership-pathway",
+     "note": "Culturally-led Aboriginal authority as the operating model; family enterprises (grazing licence, grading contract, Hewitt Agribusiness partnership) on their own land."
+    },
+    {
+     "theme": "country-culture",
+     "note": "Traditional-owner identity, Loves Creek, caterpillar dreaming discussion; two-worlds framework."
+    },
+    {
+     "theme": "system-failure",
+     "note": "Justice reinvestment knockbacks, Central Land Council conflict, kids' education 'zero', 10-year-olds locked up, services that couldn't handle the kids."
+    },
+    {
+     "theme": "making-jobs",
+     "note": "Cattle/stock-camp training pathways, machinery jobs, McDonald's traineeships."
+    },
+    {
+     "theme": "family-kids",
+     "note": "Case stories of Anthony and a young girl; big-sister/little-sister model; ripple effect through kinship."
+    },
+    {
+     "theme": "reciprocity-partnership",
+     "note": "Knowledge-sharing with Palm Island rangers, Diagrama Spain, Snow Foundation intro discussed by Ben."
+    },
+    {
+     "theme": "elders-protocol",
+     "note": "Yipa-Rinya caterpillar dreaming explanation; men's ceremony discussion \u2014 cultural content requiring review."
+    }
+   ],
+   "narrative_summary": "A website-planning call between Ben and Kristy (with Tanya joining, largely unlabelled) covering the Oonchiumpa story: two pioneering Central Australian families, 20+ years in Aboriginal legal services, Royal Commission and Geneva advocacy, and the founding of a culturally-led youth service that takes the young people no other service could handle. The 'two worlds' principle \u2014 young people forced to choose between strength in culture and strength in the Western world \u2014 anchors their model of Aboriginal authority, family connection, and elder mentoring. The forward vision is enterprise on their own country: grazing licence, cattle, training pathways and 'real jobs' at Loves Creek. For Goods this is ownership-pathway relatability material, not product testimony; Kristy is the lead of the Goods community-ownership conversation and this shows the leadership depth behind it.",
+   "analysis_notes": "NEAR-DUPLICATE of transcript f5e322b9 (same call; this file has an extra opening section on the walking trail, Palm Island rangers and Napa Homestead). CANON: no Goods product content; do not source bed/washer claims here. NO SPEAKER LABELS \u2014 Kristy and Tanya are interleaved; several key passages (two-worlds explanation, education-is-zero worry) are plausibly Tanya; flag before attribution. SENSITIVE: names of minors and case details (Anthony, Operation Luna referrals, a young girl's mental-health/child-protection history) must never be used externally. Critical remarks about named third parties (Tony McAvoy, Central Land Council, NAAJA board, Congress/Back on Track) are unusable externally. Caterpillar dreaming (Yipa-Rinya) content: elders-protocol, review before any use. Snow Foundation / Deadly Heart Trek discussion is Ben speaking, useful internal context only. Transcription quality is rough (e.g. 'Unchakable'/'Chupa' for Oonchiumpa, 'traditional learners' likely 'traditional owners')."
+  },
+  {
+   "storyteller": "Kristy Bloomfield",
+   "transcript_id": "f5e322b9-7009-4e41-88e6-2f154448ffd0",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "we're basically sort of castles of this sort of middleman between the two worlds, trying to help these young people and their family be strong in both those spaces and do whatever we need to do to link them into whatever they need to be linked into",
+     "timestamp": null,
+     "context": "Describing Oonchiumpa's bridging role between culture and the Western system. Transcription garbled ('castles' likely 'catalysts' or similar). SPEAKER AMBIGUITY: may be Tanya.",
+     "themes": [
+      "design-in-community",
+      "family-kids"
+     ],
+     "domain": "self-determination",
+     "strength": "supporting",
+     "sensitivity": "speaker-attribution-ambiguous; verify wording against audio"
+    },
+    {
+     "text": "with dad's comments, you know, you're only going to get a yes or no, so you might as well do it",
+     "timestamp": null,
+     "context": "Her father's advice underpinning the sisters' willingness to build the business and challenge institutions. Warm, human leadership line.",
+     "themes": [
+      "family-kids",
+      "ownership-pathway"
+     ],
+     "domain": "self-determination",
+     "strength": "supporting",
+     "sensitivity": null
+    },
+    {
+     "text": "working in the legal space for over 20 years has given us, you know, our backbone in navigating many things",
+     "timestamp": null,
+     "context": "On the legal-career foundation of Oonchiumpa's leadership; part of the credibility story for the ownership-pathway partner.",
+     "themes": [
+      "ownership-pathway"
+     ],
+     "domain": "self-determination",
+     "strength": "supporting",
+     "sensitivity": null
+    },
+    {
+     "text": "mentoring leadership, we're able to guide them in being young, independent, young people in strength in living in both worlds... breaking the cycle, but that's based as Aboriginal-led and for traditional owners, working with traditional owners, working with language groups",
+     "timestamp": null,
+     "context": "Kristy's own funder-facing summary of what resourcing Oonchiumpa achieves \u2014 Aboriginal-led, traditional-owner-grounded, cycle-breaking.",
+     "themes": [
+      "ownership-pathway",
+      "design-in-community"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": null
+    },
+    {
+     "text": "she was back on track for two years, and they hadn't been able to do anything with a young girl... within four or five months we were able to get her doctor's health check done... and she's now off Operation Luna",
+     "timestamp": null,
+     "context": "Concrete evidence of the culturally-led model outperforming a funded mainstream service. Powerful internally; unusable externally due to identifiable case detail.",
+     "themes": [
+      "system-failure",
+      "family-kids"
+     ],
+     "domain": "dignity-safety",
+     "strength": "supporting",
+     "sensitivity": "identifiable minor case detail \u2014 internal use only"
+    }
+   ],
+   "themes_present": [
+    {
+     "theme": "ownership-pathway",
+     "note": "Aboriginal-led business built on cultural authority; funder pitch is mentoring leadership plus breaking the cycle."
+    },
+    {
+     "theme": "system-failure",
+     "note": "Services that reward bad behaviour, justice reinvestment rejection, legislation locking up 10-year-olds."
+    },
+    {
+     "theme": "country-culture",
+     "note": "Two-worlds framework; Loves Creek on-country plans; caterpillar dreaming (protocol)."
+    },
+    {
+     "theme": "making-jobs",
+     "note": "Grazing licence, Hewitt Agribusiness, stock-camp training, machinery jobs."
+    },
+    {
+     "theme": "family-kids",
+     "note": "Kinship-based youth work; grandmothers/uncles engaging with staff; case stories."
+    }
+   ],
+   "narrative_summary": "This is the same recorded call as transcript 05e786cb minus its opening section \u2014 the Oonchiumpa bio, the two-worlds principle, the youth-work case stories, the funding picture (roughly $1.8M over 18 months, justice reinvestment knockback) and the Loves Creek enterprise vision. Kristy traces the family's station and legal-service history into a culturally-led service that succeeds with young people every other provider gave up on, and articulates a clear funder ask: Aboriginal-led mentoring that builds strength in both worlds. The relevance to Goods is the ownership-pathway spine: this is what community-led capability and enterprise ambition look like in the person leading that conversation with Goods.",
+   "analysis_notes": "DUPLICATE CONTENT: near-identical to 05e786cb (that file adds ~1,400 opening words on walking trail/Palm Island/bios). Recommend treating 05e786cb as the master and this ID as a duplicate pointer to avoid double-counting quotes. All sensitivity notes from 05e786cb apply: no speaker labels (Kristy vs Tanya ambiguity), minors named with child-protection detail, critical remarks about named individuals/organisations, elders-protocol dreaming content, rough transcription. No Goods product content; no canon figures touched."
+  },
+  {
+   "storyteller": "Kristy Bloomfield",
+   "transcript_id": "dce4ba4b-d8b3-4322-88bf-e4d9106cd7fe",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "We're in a position to make change and bring that generational wealth out on Loves Creek Station. And to be a part of these the cattle industry, which is a multimillion dollar business, we wanna bring that multimillion dollar business to our families on Aboriginal land and to lead that.",
+     "timestamp": "00:19:00",
+     "context": "On the vision for Loves Creek after the 1994 land claim \u2014 enterprise led by traditional owners on their own land. The clearest single articulation of the ownership ambition Goods' pathway plugs into.",
+     "themes": [
+      "ownership-pathway",
+      "making-jobs"
+     ],
+     "domain": "jobs-ownership",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "We know what we wanna do on our land, and we know how to get there. I think it's just about having our land councils, our government supporting us in delivering this... Self-determination for us as aboriginal people, as our old people have led the way for us.",
+     "timestamp": "00:20:00",
+     "context": "Closing the on-country vision: communities once ran like small towns with their own infrastructure and councils; the ask is support, not control. Echoes the Goods 'we know what we need' synthesis \u2014 note that sentence itself is a Goods synthesis, never quoted; this is Kristy's real version.",
+     "themes": [
+      "ownership-pathway",
+      "country-culture"
+     ],
+     "domain": "self-determination",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "Aboriginal people wanna work with aboriginal people and aboriginal kids wanna work with Aboriginal people. So I think that's our message that Aboriginal culturally led programs is working and has worked. And I feel the government should let it be and let it continue.",
+     "timestamp": "00:16:00",
+     "context": "On sharing knowledge across communities and why culturally-led delivery works \u2014 strong relatability for community-led delivery of Goods.",
+     "themes": [
+      "design-in-community",
+      "ownership-pathway"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": null
+    },
+    {
+     "text": "Having pathways, having training developments out on country and meaningful training development programs for our young people to then gain employment out on the stock camp, out on these stations across the country. Having that experience and training, we will only thrive as aboriginal people.",
+     "timestamp": "00:20:00",
+     "context": "On-country training-to-employment pathway; directly relatable to the Goods plant-to-community-ownership jobs story.",
+     "themes": [
+      "making-jobs",
+      "country-culture"
+     ],
+     "domain": "jobs-ownership",
+     "strength": "strong",
+     "sensitivity": null
+    },
+    {
+     "text": "the old homestead out there represents the heartache that our granny felt, being a slave out on our own country... That also feeling proud of being able to be acknowledged and recognised in the federal court to having land rights out on the country is very proud for us. And that was our land and that has always been our land as aboriginal people.",
+     "timestamp": "00:22:00",
+     "context": "The double history of the Loves Creek homestead \u2014 heartache and pride held together. Deep context for why ownership on country matters; handle with care given historical trauma content.",
+     "themes": [
+      "country-culture",
+      "ownership-pathway"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": "historical trauma (slavery, rations, stolen generations context) \u2014 review with Kristy before external use"
+    }
+   ],
+   "themes_present": [
+    {
+     "theme": "ownership-pathway",
+     "note": "Generational wealth on Aboriginal land, land claim 1994, homestead returned, cattle enterprise, self-determination as the through-line."
+    },
+    {
+     "theme": "country-culture",
+     "note": "Traditional-owner identity from both parents' lines; sacred and burial sites; songs and dances from the land claim 'nobody can take away from us'."
+    },
+    {
+     "theme": "making-jobs",
+     "note": "Stock-camp training pathways, McDonald's traineeships, youth wanting to become Oonchiumpa youth workers."
+    },
+    {
+     "theme": "system-failure",
+     "note": "Don Dale, Operation Luna, town lacking empathy, overcrowding, food insecurity, family violence in town camps."
+    },
+    {
+     "theme": "family-kids",
+     "note": "Six kids on one income, basketball across the country, sharing that upbringing with town kids who never had it."
+    },
+    {
+     "theme": "elders-protocol",
+     "note": "Stolen-generations family stories (grandfather; grandmother darkening sons' skin to evade welfare; Auntie Pat at St Mary's) \u2014 cultural/trauma content requiring review."
+    },
+    {
+     "theme": "never-asked",
+     "note": "Implicit: government changing on communities that once ran themselves; 'let it be and let it continue'."
+    }
+   ],
+   "narrative_summary": "A clean, labelled sit-down interview (Ben as Speaker 59, Kristy Speaker 60) that is the strongest of the three: Kristy grounds her identity as a Central/Eastern Arrernte and Alyawarre traditional owner, tells the family's stolen-generations and station history, and lays out the Oonchiumpa model of cultural authority in youth work. It builds to the Loves Creek vision \u2014 generational wealth, cattle enterprise, on-country training and employment, and self-determination in her own words. This is the leadership backbone of the Goods community-ownership pathway story: the person leading that conversation articulating exactly what community-led enterprise on Aboriginal land looks like.",
+   "analysis_notes": "Best source of the three: speaker-labelled with timestamps. No Goods product content; no canon figures. SENSITIVE: (1) stolen-generations family stories (grandfather removed to the Bungalow; grandmother putting uncles in the sun; forced marriage under police threat) and Auntie Pat's St Mary's cane story \u2014 trauma/family content, review before any external use; (2) named minor 'Jacqueline Button' with Don Dale/corrections history \u2014 never external; (3) sacred and burial site references \u2014 elders-protocol, location detail must not travel. Names: Kristy spells her name K-R-I-S-T-Y B-L-O-O-M-F-I-E-L-D on tape; transcript renders the org as 'Chupa'/'Trumper'/'on Trump clip' \u2014 all are Oonchiumpa mis-transcriptions. 'In Blood' is likely a mis-transcription of a community name (possibly Epenarra region near Hatches Creek) \u2014 verify before use."
+  }
+ ]
 }

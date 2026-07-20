@@ -237,7 +237,7 @@
       }
      ],
      "narrativeSummary": "Dianne's full seated interview: traditional owner who lived 23 years on her block with only her car for shelter, now with registered land and plans for a both-ways cultural and youth centre. She delivers the elders-first protocol lines that define how Goods enters communities, and gives the milk-crate-to-real-bed comfort verdict at the bed build. This is the source transcript for both the consent-protocol story and the design-in-community story.",
-     "analysisNotes": "TOTEM FLAG: opening line 'where I live is where it's in the boundary of my totem' — totem line, registry HOLD, never external, never deck-grade. Her language name appears garbled ('right now he's in my language, ma, I'm a manga' and 'Billy Belly means good') — transcription unreliable on language words, verify with Dianne before quoting any language term. Lightly labelled transcript with interviewer questions interleaved unlabelled mid-paragraph — trim carefully. Boarding-school section is her biography, usable with care but not Goods product content. Place details: 'War Town' (likely a mishearing, possibly Warumungu town reference), block near Tennant Creek, cement slab awaiting shelter."
+     "analysisNotes": "TOTEM FLAG: opening line 'where I live is where it's in the [held fragment redacted]' — totem line, registry HOLD, never external, never deck-grade. Her language name appears garbled ('right now he's in my language, ma, I'm a manga' and 'Billy Belly means good') — transcription unreliable on language words, verify with Dianne before quoting any language term. Lightly labelled transcript with interviewer questions interleaved unlabelled mid-paragraph — trim carefully. Boarding-school section is her biography, usable with care but not Goods product content. Place details: 'War Town' (likely a mishearing, possibly Warumungu town reference), block near Tennant Creek, cement slab awaiting shelter."
     },
     {
      "storyteller": "Dianne Stokes",
@@ -259,7 +259,7 @@
        "domain": "dignity-safety",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "Every time I go away from here, it's like it's calling me. Come back home. And I do feel that. When I get home, I feel happy I'm at home.",
@@ -340,7 +340,7 @@
       }
      ],
      "narrativeSummary": "A polished first-person edit of Dianne's life story: traditional owner on her totem boundary, 24 years from car-as-shelter to registered land, with a clear self-determined vision for a cultural and youth centre. It gives Goods its cleanest tellable version of the 'listening-first' protocol and the deepest why behind partnering with her. It is an edited narrative derived from the raw 37fbb44f interview, not an independent recording.",
-     "analysisNotes": "TOTEM FLAG: 'where I live is right in the boundary of my totem' — totem line, registry HOLD, never external, never deck-grade. This file is an edited/cleaned monologue (no timestamps, no speaker labels) derived from transcript 37fbb44f — quotes here are editorially smoothed; for strict-verbatim use, prefer the raw 37fbb44f wording or get sign-off on the edited text. Minor inconsistency: says '24 years' where the raw says 23. No product content at all — this is the person, not the bed."
+     "analysisNotes": "TOTEM FLAG: 'where I live is right in the [held fragment redacted]' — totem line, registry HOLD, never external, never deck-grade. This file is an edited/cleaned monologue (no timestamps, no speaker labels) derived from transcript 37fbb44f — quotes here are editorially smoothed; for strict-verbatim use, prefer the raw 37fbb44f wording or get sign-off on the edited text. Minor inconsistency: says '24 years' where the raw says 23. No product content at all — this is the person, not the bed."
     },
     {
      "storyteller": "Dianne Stokes",
@@ -362,7 +362,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "I didn't get money, but those two young fellows that are doing something, they offered us and shared their blessings with us. So I shared my blessings to them.",
@@ -387,7 +387,7 @@
        "domain": "self-determination",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "If we have our own contract doing all these in the communities, they can sell 'em to people... and even to Tennant Creek come where we have NAIDOC week or we have show... marquees sort of sell 'em.",
@@ -400,7 +400,7 @@
        "domain": "jobs-ownership",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "Well, my legacy in my life, that's what I'm thinking of. I hope my legacy stands out for my people when I pass what I've done. What I have achieved in my life, living in this community.",
@@ -807,7 +807,7 @@
        "domain": "jobs-ownership",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "We know what we wanna do on our land, and we know how to get there. I think it's just about having our land councils, our government supporting us in delivering this... Self-determination for us as aboriginal people, as our old people have led the way for us.",
@@ -820,7 +820,7 @@
        "domain": "self-determination",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "Aboriginal people wanna work with aboriginal people and aboriginal kids wanna work with Aboriginal people. So I think that's our message that Aboriginal culturally led programs is working and has worked. And I feel the government should let it be and let it continue.",
@@ -916,7 +916,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "There's a lack of housing, which leads to a lack of sleep for our young people, which leads to a low attendance of school education... quite often our young people are breaking in and looking for food and being out on the streets because there is such an overcrowding house that they don't wanna be home.",
@@ -930,7 +930,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "We wanna be able to create generational wealth, economic development on our own land. We see too many times that a lot of other businesses are thriving. Why can't we thrive as Aboriginal people on our land as well?",
@@ -943,7 +943,7 @@
        "domain": "jobs-ownership",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "How do we as Oonchiumpa make sure that we're not being used? And how do we Oonchiumpa create our own revenue... create revenue for them to consult with us.",
@@ -1363,7 +1363,7 @@
        "domain": "self-determination",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "That's where we talk about allies, right? It's about letting Aboriginal people lead, but being an ally on the side... whereas I think in Australia we've got that upside down completely.",
@@ -1376,7 +1376,7 @@
        "domain": "self-determination",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "If we have the knowledge that we have some long-term security, we can really throw ourselves into... what's our goals? ... everything's just been like treading water.",
@@ -1402,7 +1402,7 @@
        "domain": "self-determination",
        "strength": "deck",
        "sensitivity": "Adjacent lines reference despair, racism, alcoholism, DV — quote the hope line alone; do not extend.",
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "Our young people, unfortunately, are just collateral in a bigger issue. The issue doesn't sit with them. It sits on a much broader level and with adults, not with children.",
@@ -1486,7 +1486,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "When white man first came to here, they moved, moved us around like cattle ... and over the 75, 70 years or 80 years, someone's been doing something for us mob, you know? And then building something and making decisions for us mob ... we got a broker that cycle ... other people telling us what's best for our community.",
@@ -1513,7 +1513,7 @@
        "domain": "dignity-safety",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "Looking at how much plastic that get used in a country and get ended up in some gutter or on some beach somewhere ... it doesn't broke down as other material does ... I really, really love that, looking after country.",
@@ -1597,6 +1597,162 @@
    ]
   },
   {
+   "name": "Shayne Bloomfield",
+   "elStorytellerId": "70757a05-10d8-4b7e-8616-7821fb64b1e0",
+   "location": "Alice Springs, Northern Territory, Australia",
+   "isElder": false,
+   "portrait": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/media/projects/6bd47c8a-e676-456f-aa25-ddcbb5a31047/media/1770953867375_20251107-1E5A5974.jpg",
+   "held": false,
+   "staff": false,
+   "funder": false,
+   "transcriptCount": 1,
+   "totalWords": 3936,
+   "totalChars": 21905,
+   "elConsent": {
+    "aiAnalysisAllowed": null,
+    "aiProcessingConsent": false,
+    "privacyLevel": "private",
+    "culturalSensitivity": "standard",
+    "requiresElderReview": false
+   },
+   "transcripts": [
+    {
+     "storyteller": "Shayne Bloomfield",
+     "transcriptId": "4b390461-d019-4498-9ece-dc44bf6c4268",
+     "title": "Shane Bloomfield - Recording",
+     "wordCount": 3936,
+     "characterCount": 21905,
+     "held": false,
+     "staff": false,
+     "topQuotes": [
+      {
+       "text": "A lot of people say community is community and they need what we've got. When you flip it, we need what they've got.",
+       "timestamp": "00:11:00",
+       "context": "What being in community means; reciprocity as the operating principle.",
+       "themes": [
+        "reciprocity-partnership"
+       ],
+       "domain": "self-determination",
+       "strength": "deck",
+       "sensitivity": null,
+       "cleared": true
+      },
+      {
+       "text": "Today my mum still gets text messages from her family saying, I can't believe how good this bed's going ... I don't want to get outta bed in the morning 'cause it's just so comfortable.",
+       "timestamp": "00:12:00",
+       "context": "Eight weeks after the bed deliveries, unsolicited family feedback.",
+       "themes": [
+        "rest-sleep-health",
+        "product-durability",
+        "family-kids"
+       ],
+       "domain": "rest-health",
+       "strength": "deck",
+       "sensitivity": null,
+       "cleared": true
+      },
+      {
+       "text": "We've liaised with Aboriginal elders, traditional owners of that community, before we've liaised with government members.",
+       "timestamp": "00:15:00",
+       "context": "How Goods enters a community; protocol before administration.",
+       "themes": [
+        "elders-protocol",
+        "reciprocity-partnership"
+       ],
+       "domain": "self-determination",
+       "strength": "strong",
+       "sensitivity": null,
+       "cleared": true
+      },
+      {
+       "text": "We made 20 odd beds in aged care ... utilizing the young people of the aged care service ... They were so willing to learn about how these beds came together.",
+       "timestamp": "00:22:00",
+       "context": "Maningrida delivery: young people building beds for Elders at the aged-care service.",
+       "themes": [
+        "making-jobs",
+        "family-kids"
+       ],
+       "domain": "jobs-ownership",
+       "strength": "strong",
+       "sensitivity": null,
+       "cleared": true
+      },
+      {
+       "text": "All they wanted was something that's off the ground ... sit on the edge of it and just pop themselves up. Just amazing.",
+       "timestamp": "00:23:00",
+       "context": "What the aged-care Elders actually asked for from a bed.",
+       "themes": [
+        "dignity-safety",
+        "rest-sleep-health",
+        "design-in-community"
+       ],
+       "domain": "dignity-safety",
+       "strength": "strong",
+       "sensitivity": null,
+       "cleared": true
+      },
+      {
+       "text": "They're definitely not gonna break, I can tell you that ... the recycled plastic that you use from that is blowing my mind away ... Every sheet was a different design.",
+       "timestamp": "00:25:00",
+       "context": "On the washing machines and the recycled-plastic panels, after the Maningrida installs.",
+       "themes": [
+        "product-durability",
+        "washing-clean"
+       ],
+       "domain": "circular-economy",
+       "strength": "deck",
+       "sensitivity": null,
+       "cleared": true
+      }
+     ],
+     "themesPresent": [
+      {
+       "theme": "reciprocity-partnership",
+       "note": "The spine of the whole interview: two-way need, orgs that promise the world vs turning up with food and work."
+      },
+      {
+       "theme": "elders-protocol",
+       "note": "Elders and traditional owners first, government business managers second; take the lead of Elders on country."
+      },
+      {
+       "theme": "making-jobs",
+       "note": "Beds built with young people at the Maningrida aged-care service; laundromat refurbished by hand."
+      },
+      {
+       "theme": "rest-sleep-health",
+       "note": "Elders off the ground; family still texting about the beds eight weeks on."
+      },
+      {
+       "theme": "washing-clean",
+       "note": "Hot fast wash in his own words kills the diseases that live in bedding in the tropics."
+      },
+      {
+       "theme": "product-durability",
+       "note": "Washers 'definitely not gonna break'; recycled plastic sheets each a different design."
+      },
+      {
+       "theme": "country-culture",
+       "note": "Hands on the ground coming home; sleeping close to the ground as part of health and wellbeing."
+      },
+      {
+       "theme": "dignity-safety",
+       "note": "A bed at the right height Elders can get out of by themselves."
+      },
+      {
+       "theme": "ownership-pathway",
+       "note": "Aboriginal organisation leads, non-Indigenous organisation works with and alongside."
+      },
+      {
+       "theme": "family-kids",
+       "note": "Oldest of six; the Bloomfield family thread through the whole Goods build story."
+      }
+     ],
+     "narrativeSummary": "Shayne Bloomfield is the oldest of the six Bloomfield siblings, a former station hand and park ranger from Loves Creek, now city-based. His transcript is the only firsthand narrative of the Maningrida delivery: the Darwin drive, gutting and refurbishing the laundromat, building about 20 beds with young people at the aged-care service, and installing the washers. He also articulates the reciprocity principle and Elders-first protocol better than any other voice on file.",
+     "analysisNotes": "Filed in EL as 'Shane'; Ben confirmed Shayne 2026-07-20. His hot-wash/disease lines are observed testimony, never a Goods health claim. Mentions Orange Sky, Marie Meredith, NPA and the girls' tourism business. Quotes 1-2 cleared by Ben 2026-07-20 and promoted to registry + deck; 3-5 pending."
+    }
+   ]
+  },
+  {
    "name": "Georgina Byron AM",
    "elStorytellerId": "beeecef9-125f-4507-be00-7dd1312f4fd7",
    "location": "Tennant Creek, Northern Territory, Australia",
@@ -1636,7 +1792,7 @@
        "domain": "self-determination",
        "strength": "deck",
        "sensitivity": "Funder voice, not community testimony; label as Snow Foundation CEO witness",
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "For me, I wanted to see how the beds would be received and for me it was an overwhelming, yes, we want and need these beds ... And you're doing it with community. It's not a for, it's a with, and that's really important too.",
@@ -1649,7 +1805,7 @@
        "domain": "self-determination",
        "strength": "deck",
        "sensitivity": "Transcript reads 'It's not a four' (audio: 'for'); verify before external use",
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "Healthy homes is the start of everything because you need to have a home that you can call home ... and you're free from mites in your in your home and in your walls and in your bed.",
@@ -1739,7 +1895,7 @@
        "domain": "dignity-safety",
        "strength": "deck",
        "sensitivity": "Funder voice; Basket Bed era; transcript says 'Catherine' for Katherine",
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "Us non-indigenous people, we don't have to face that. It's very rare that any of us get rheumatic heart disease because we've got access to a medical system on our doorstep ... Aboriginal communities don't have that health equity.",
@@ -1857,7 +2013,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "You know, it's one of those things where you look at it and kind of go, why hasn't anyone thought of this before? Why hasn't anyone explored this before?",
@@ -1883,7 +2039,7 @@
        "domain": "self-determination",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "It's an entirely preventable disease, um, that still remains, um, entrenched in remote communities... if we just keep plowing away at the same old messaging, without challenging some of those underlying factors, and providing alternatives for people, we're not going to shift it.",
@@ -1970,7 +2126,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "having a bed is something like, you need, you can't, you feel more safe when you sleep in a bed. It's different than sleeping on the couch, and then sleeping on the ground, most people do be doing that, sleeping on couches and stuff, don't have beds.",
@@ -1983,7 +2139,7 @@
        "domain": "dignity-safety",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "I just think not being shame... you got to get that shameless out of the way and go and ask, sit down and talk to them... you really got to know the family, and have that inside look of it, and that's the only way you will know if you go and approach them and ask them because they're not going to come to you.",
@@ -1997,7 +2153,7 @@
        "domain": "self-determination",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "Oh, easy. Nice, quick and easy. That's it... zip ties all you need, zip them together, chuck the sheet on, you go to sleep.",
@@ -2109,7 +2265,7 @@
        "domain": "self-determination",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "We could even teach them down there to make it, you know, and you want this bed, here, well, come on, give me a hand, make it, you know, and they can take the skill to make it. And they, well, take pride, that's my bed, you know.",
@@ -2123,7 +2279,7 @@
        "domain": "jobs-ownership",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "At the moment, like we've got a lot of homeless people down the river and that's all they is mattresses and like you said, you know, diseases mattress material, you know, the scabies, you know, all the bed sores and everything. But with those things at least they can fold it up ... or even sleep off the ground.",
@@ -2222,149 +2378,6 @@
    ]
   },
   {
-   "name": "Shayne Bloomfield",
-   "elStorytellerId": "70757a05-10d8-4b7e-8616-7821fb64b1e0",
-   "location": "Alice Springs, Northern Territory, Australia",
-   "isElder": false,
-   "portrait": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/media/projects/6bd47c8a-e676-456f-aa25-ddcbb5a31047/media/1770953867375_20251107-1E5A5974.jpg",
-   "held": false,
-   "staff": false,
-   "funder": false,
-   "transcriptCount": 1,
-   "totalWords": 3936,
-   "totalChars": 21905,
-   "elConsent": {
-    "aiAnalysisAllowed": null,
-    "aiProcessingConsent": false,
-    "privacyLevel": "private",
-    "culturalSensitivity": "standard",
-    "requiresElderReview": false
-   },
-   "transcripts": [
-    {
-     "storyteller": "Shayne Bloomfield",
-     "transcriptId": "4b390461-d019-4498-9ece-dc44bf6c4268",
-     "title": "Shane Bloomfield - Recording",
-     "wordCount": 3936,
-     "characterCount": 21905,
-     "held": false,
-     "staff": false,
-     "topQuotes": [
-      {
-       "text": "A lot of people say community is community and they need what we've got. When you flip it, we need what they've got.",
-       "timestamp": "00:11:00",
-       "context": "What being in community means; reciprocity as the operating principle.",
-       "themes": [
-        "reciprocity-partnership"
-       ],
-       "domain": "self-determination",
-       "strength": "deck",
-       "sensitivity": null,
-       "cleared": true
-      },
-      {
-       "text": "Today my mum still gets text messages from her family saying, I can't believe how good this bed's going ... I don't want to get outta bed in the morning 'cause it's just so comfortable.",
-       "timestamp": "00:12:00",
-       "context": "Eight weeks after the bed deliveries, unsolicited family feedback.",
-       "themes": [
-        "rest-sleep-health",
-        "product-durability",
-        "family-kids"
-       ],
-       "domain": "rest-health",
-       "strength": "deck",
-       "sensitivity": null,
-       "cleared": true
-      },
-      {
-       "text": "We've liaised with Aboriginal elders, traditional owners of that community, before we've liaised with government members.",
-       "timestamp": "00:15:00",
-       "context": "How Goods enters a community; protocol before administration.",
-       "themes": [
-        "elders-protocol",
-        "reciprocity-partnership"
-       ],
-       "domain": "self-determination",
-       "strength": "strong",
-       "sensitivity": null,
-       "cleared": false
-      },
-      {
-       "text": "We made 20 odd beds in aged care ... utilizing the young people of the aged care service ... They were so willing to learn about how these beds came together.",
-       "timestamp": "00:22:00",
-       "context": "Maningrida delivery: young people building beds for Elders at the aged-care service.",
-       "themes": [
-        "making-jobs",
-        "family-kids"
-       ],
-       "domain": "jobs-ownership",
-       "strength": "strong",
-       "sensitivity": null,
-       "cleared": false
-      },
-      {
-       "text": "All they wanted was something that's off the ground ... sit on the edge of it and just pop themselves up. Just amazing.",
-       "timestamp": "00:23:00",
-       "context": "What the aged-care Elders actually asked for from a bed.",
-       "themes": [
-        "dignity-safety",
-        "rest-sleep-health",
-        "design-in-community"
-       ],
-       "domain": "dignity-safety",
-       "strength": "strong",
-       "sensitivity": null,
-       "cleared": false
-      }
-     ],
-     "themesPresent": [
-      {
-       "theme": "reciprocity-partnership",
-       "note": "The spine of the whole interview: two-way need, orgs that promise the world vs turning up with food and work."
-      },
-      {
-       "theme": "elders-protocol",
-       "note": "Elders and traditional owners first, government business managers second; take the lead of Elders on country."
-      },
-      {
-       "theme": "making-jobs",
-       "note": "Beds built with young people at the Maningrida aged-care service; laundromat refurbished by hand."
-      },
-      {
-       "theme": "rest-sleep-health",
-       "note": "Elders off the ground; family still texting about the beds eight weeks on."
-      },
-      {
-       "theme": "washing-clean",
-       "note": "Hot fast wash in his own words kills the diseases that live in bedding in the tropics."
-      },
-      {
-       "theme": "product-durability",
-       "note": "Washers 'definitely not gonna break'; recycled plastic sheets each a different design."
-      },
-      {
-       "theme": "country-culture",
-       "note": "Hands on the ground coming home; sleeping close to the ground as part of health and wellbeing."
-      },
-      {
-       "theme": "dignity-safety",
-       "note": "A bed at the right height Elders can get out of by themselves."
-      },
-      {
-       "theme": "ownership-pathway",
-       "note": "Aboriginal organisation leads, non-Indigenous organisation works with and alongside."
-      },
-      {
-       "theme": "family-kids",
-       "note": "Oldest of six; the Bloomfield family thread through the whole Goods build story."
-      }
-     ],
-     "narrativeSummary": "Shayne Bloomfield is the oldest of the six Bloomfield siblings, a former station hand and park ranger from Loves Creek, now city-based. His transcript is the only firsthand narrative of the Maningrida delivery: the Darwin drive, gutting and refurbishing the laundromat, building about 20 beds with young people at the aged-care service, and installing the washers. He also articulates the reciprocity principle and Elders-first protocol better than any other voice on file.",
-     "analysisNotes": "Filed in EL as 'Shane'; Ben confirmed Shayne 2026-07-20. His hot-wash/disease lines are observed testimony, never a Goods health claim. Mentions Orange Sky, Marie Meredith, NPA and the girls' tourism business. Quotes 1-2 cleared by Ben 2026-07-20 and promoted to registry + deck; 3-5 pending."
-    }
-   ]
-  },
-  {
    "name": "Kylie Bloomfield",
    "elStorytellerId": "d007b2f8-a48b-49af-ac9f-331f72a64c74",
    "location": "Alice Springs, Northern Territory, Australia",
@@ -2405,7 +2418,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": "Second-hand report (uncle via mum); 'made outta crates' describes the Basket Bed era, not the Stretch Bed",
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "I feel, um, really strong about my connection to country ... very, very privileged, um, from, you know, just our great, uh, grandparents and extended, um, what we call grannies and stuff that, um, connected to the country, the owners of the place, um, and that have handed it down to us.",
@@ -2444,7 +2457,7 @@
        "domain": "dignity-safety",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "our kids and their kids being connected the way they are now ... it's very important that they keep that very, um, that trust together and connection to be able to protect this place.",
@@ -2544,7 +2557,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": "Health-adjacent testimony (sores) — keep as her own words, never as a claimed Goods health outcome",
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "I'm here for you ... I'm not looking down on you because you need a washing truck, I'm not ... looking down on you because you have to live the way you're living",
@@ -2557,7 +2570,7 @@
        "domain": "dignity-safety",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "it's a safe place where people feel comfortable to come and sit and relax and, yes, get the services available, but just to be in this space and know that it's their ... their space",
@@ -2675,7 +2688,7 @@
        "domain": "self-determination",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "the impact we've... spoken about Trisha and I, is to, we're setting this up for our kids and grandkids... independence, um, having a, being in charge of your own destiny, I guess. Um, being able to live on your own place.",
@@ -2943,7 +2956,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": "practitioner testimony about vulnerable clients; health context, not an outcome claim",
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "at first when you told me about it, I'm just like, yeah like yeah no I don't think that's possible but now that you've just showed us and helped us put it together it's amazing. It is a good idea. One it's getting them off the cold ground.",
@@ -2956,7 +2969,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "So there'll be a number of people using the same mattress over and over and over now these mattresses don't get treated they don't get cleaned so that's another thing like the bed bugs and whatever else lives in a mattress.",
@@ -3068,7 +3081,7 @@
        "domain": "dignity-safety",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "why not just get something, say, a 150 bed that would only last maybe a year or two compared to a 500 bed plus freight. That, you're looking at nearly 1, 000 to get that over. It all adds up, so why not stick to the cheaper options, and it doesn't last a lifetime compared to the dearer ones.",
@@ -3081,7 +3094,7 @@
        "domain": "circular-economy",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "It's not wise to be in community when we're having sorry business, when someone's passed, especially on the day of the funeral... it all comes down to common sense and respect.",
@@ -3192,7 +3205,7 @@
        "domain": "dignity-safety",
        "strength": "deck",
        "sensitivity": "two-voice transcript; speakers not individually labelled here - attribute jointly to Carmelita & Colette",
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "We do need rest. Yes. We do. We do. It's for our health. Maintaining health and being.",
@@ -3230,7 +3243,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": "attribution between the two speakers unclear - quote jointly",
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "It's pretty easy to keep clean. You can wash it. Wash it out, pack it up. Then the next time you have family come over for celebration, or an event on Palm Island, it's an easy thing just to pull out. Then when they go, pack it up.",
@@ -3344,7 +3357,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "Tennant Creek. It's a beautiful place to live in. Like everyone knows each other ... it's a bright place and you get to meet a lot of different people ... and get to see new things like this.",
@@ -3370,7 +3383,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       }
      ],
      "themesPresent": [
@@ -3457,7 +3470,7 @@
        ],
        "domain": "circular-economy",
        "strength": "deck",
-       "sensitivity": "Staff voice",
+       "sensitivity": "Staff voice. EDIT REQUIRED before any use (Ben 2026-07-20): 'made completely from recycled plastic' overstates; the LEGS are recycled plastic, poles are galvanised steel, canvas is structural. Use only with the correction.",
        "cleared": false
       },
       {
@@ -3610,7 +3623,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "It's just right. For us, for, see, that's even like when you're going out to camp and you can take that out too, sit, lay on the beach, under the shade.",
@@ -3928,7 +3941,7 @@
        "domain": "dignity-safety",
        "strength": "deck",
        "sensitivity": "references her own disability; health testimony, keep in her voice",
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "A bit rough and ready. I want a good mattress to sleep on.",
@@ -4056,7 +4069,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": null,
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "Oh, even like you said, you can Make it into a bed. You can even turn it into a table... so I've done it myself. Yeah, and it works. Comes from an Aboriginal person, it works.",
@@ -4195,7 +4208,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": "health testimony (strokes), keep in his voice",
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "people have to try it out, you know? And if you go demonstrate like in the community living area, for example, and get the community members to try it out, you know, you'll get better results there.",
@@ -4308,7 +4321,7 @@
        "domain": "rest-health",
        "strength": "deck",
        "sensitivity": "Household hardship with children — use with care and her consent status checked.",
-       "cleared": false
+       "cleared": true
       },
       {
        "text": "Oh, that's really cool. I like it. Think my two little one will be happy. And my eldest son, second son, he's happy.",

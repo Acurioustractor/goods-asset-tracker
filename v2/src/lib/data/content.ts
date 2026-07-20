@@ -85,7 +85,7 @@ export const impact = {
   headline: 'Real Impact',
   stats: [
     { value: String(CANONICAL_ASSETS.bedsDeployed), label: 'Beds deployed', icon: 'bed' }, // canonical: see asset-canonical.ts
-    { value: '107', label: 'Stretch Beds on order', icon: 'demand' },
+    { value: '147', label: 'Beds delivered at Utopia Homelands', icon: 'demand' }, // Centrecorp order delivered; Ben ruling 2026-07-20
     { value: String(CANONICAL_ASSETS.communitiesServed), label: 'Communities served', icon: 'community' }, // canonical: see asset-canonical.ts
     { value: '$3M/yr', label: 'Washing machines sold → dumps', icon: 'problem', source: 'Alice Springs provider' },
   ],
@@ -542,6 +542,26 @@ export const communityPartnerships = [
     bedsDelivered: 58,
     highlight: 'Serving multiple language groups across Arnhem Land',
   },
+  {
+    id: 'kununurra',
+    name: 'Kununurra',
+    region: 'Western Australia',
+    headline: 'East Kimberley delivery',
+    description: 'Goods reached the East Kimberley in 2026 with Stretch Bed deliveries to Kununurra. The relationship is young and led by local Elders; the story of this place will be told when the community chooses to tell it.',
+    keyPeople: ['Local Elders'],
+    bedsDelivered: 2,
+    highlight: 'First deliveries into Western Australia\'s far north',
+  },
+  {
+    id: 'katherine',
+    name: 'Katherine',
+    region: 'Northern Territory',
+    headline: 'On the road south',
+    description: 'Katherine sits at the crossroads of the Territory. Goods delivered here alongside the Deadly Heart Trek, building a bed with a local family as part of the rheumatic heart disease prevention work that inspired the products.',
+    keyPeople: ['Deadly Heart Trek partners'],
+    bedsDelivered: 1,
+    highlight: 'Delivered alongside the Deadly Heart Trek',
+  },
 ];
 
 // Process steps for "How It's Made"
@@ -864,6 +884,28 @@ export const communityLocations: CommunityLocation[] = [
     bedsDelivered: 58,
     description: 'On the banks of the Liverpool River in Arnhem Land. A diverse community of over 2,500 people from multiple language groups.',
     highlight: 'Serving multiple language groups across Arnhem Land',
+  },
+  {
+    id: 'kununurra',
+    name: 'Kununurra',
+    region: 'Western Australia',
+    lat: -15.7736,
+    lng: 128.7386,
+    storytellerCount: 0,
+    bedsDelivered: 2,
+    description: 'East Kimberley deliveries, 2026. A young relationship led by local Elders.',
+    highlight: 'First deliveries into the East Kimberley',
+  },
+  {
+    id: 'katherine',
+    name: 'Katherine',
+    region: 'Northern Territory',
+    lat: -14.4652,
+    lng: 132.2635,
+    storytellerCount: 0,
+    bedsDelivered: 1,
+    description: 'Delivered alongside the Deadly Heart Trek, building a bed with a local family.',
+    highlight: 'Delivered alongside the Deadly Heart Trek',
   },
   {
     id: 'darwin',

@@ -61,7 +61,7 @@ A world-class product company photographs its product the way the product is act
 | `product/washing-machine-hero.jpg` | Main hero | Shop page, decks |
 | `product/washing-machine-installed.jpg` | In situ | Community deployment narrative |
 | `product/washing-machine-community.jpg` | In use, community context | Community pages |
-| `product/washing-machine-name.jpg` | The naming context | Co-design narrative, Dianne credit |
+| `product/washing-machine-name.jpg` | The naming context | Design-in-community narrative, Dianne credit |
 | `media-pack/speed-queen-controls.jpg` | Single-button interface | Specs, simplicity story |
 | `media-pack/washing-machine-enclosure-sunset.jpg` | Recycled HDPE housing | Materials, design |
 
@@ -82,7 +82,7 @@ Six numbered stages: source, process, cut, build, weave, deliver. Plus CNC, hydr
 | Gap | Priority | Why |
 |-----|----------|-----|
 | Palm Island landscape and community context | High | We've delivered 141 beds there. No landscape on file. |
-| Alice Springs landscape | High | Co-design hub, no landscape. |
+| Alice Springs landscape | High | Design-in-community hub, no landscape. |
 | Townsville logistics hub | Medium | Logistics narrative needs visual. |
 | Maningrida and Arnhem Land scenes | High | We deliver there, no imagery. |
 | Ebony and Jahvan Oui (future manufacturing leads) | High | Co-ownership story needs the people. |

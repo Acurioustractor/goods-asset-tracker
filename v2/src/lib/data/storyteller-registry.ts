@@ -120,6 +120,26 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         context: 'The bed against what she improvised before',
         status: 'approved',
       },
+      {
+        text: "When I first moved in, the only shelter I had was my car. My little car. That was it.",
+        context: "Opening of her life story on her block \u2014 twenty-four years starting with nothing but a car.",
+        status: 'approved',
+      },
+      {
+        text: "We get scared of people sleeping on the ground. You and Nic came over and done this bed... what he's doing is amazing job.",
+        context: "Her opening reflection after the washing machine and bed trip.",
+        status: 'approved',
+      },
+      {
+        text: "Why I'm helping you is 'cause, I'm a traditional owner. And I live here and I wanted to help, to let people know that these two young fellas came to do this for us. We need to respect them... That's how my feeling is to respect.",
+        context: "Why she vouches for Goods in her community.",
+        status: 'approved',
+      },
+      {
+        text: "If we have our own contract doing all these in the communities, they can sell 'em to people... and even to Tennant Creek come where we have NAIDOC week or we have show... marquees sort of sell 'em.",
+        context: "Her unprompted vision of community-owned bed-making enterprise and local sales.",
+        status: 'approved',
+      },
     ],
     bannedFragments: ['boundary of my totem'],
     portrait: '/images/people/dianne-stokes.jpg',
@@ -200,6 +220,11 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         context: 'Ownership pathway',
         status: 'approved',
       },
+      {
+        text: "we've never been asked, we've never been asked at what sort of house we'd like to live in. So this is a really exciting, exciting time.",
+        context: "Describing the moment an architect asked what designing her own house would mean, the first time anyone had asked.",
+        status: 'approved',
+      },
     ],
     portrait: '/images/people/linda-turner.jpg',
   },
@@ -252,6 +277,16 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
       {
         text: 'Climate change is coming. Those houses are not right for it.',
         context: 'Housing and climate',
+        status: 'approved',
+      },
+      {
+        text: "I grew up in a washing machine where you just push that $1 in ... there was like 15 people living in the house ... that washing machine's gonna be used every day, you know, three or four times a day, you know, maybe five, 10 times ... just imagine that you got something that is not suitable for that sort of a huge usage. And I really like your project. You are really considering that.",
+        context: "Jimmy explaining why commercial-grade washing machines matter in overcrowded houses, directly endorsing the Goods washing machine project.",
+        status: 'approved',
+      },
+      {
+        text: "Anything from a Holden car to a fridge or a washing machine or TV, it just costs more, you know, in these remote communities and especially the fridges and the washing machine ... they always broke down. But it costs people a lot more if they're not buying the right material ... when you go in a remote community, there's not much job ... they leaning on very small income.",
+        context: "Jimmy on the poverty premium: remote people on the smallest incomes pay the most for goods that fail fastest.",
         status: 'approved',
       },
     ],
@@ -320,6 +355,16 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         context: 'Community',
         status: 'approved',
       },
+      {
+        text: "it's a good job like washing the bed afterwards ... have it more softer and comfortable. And it's more lower for little ones too, yeah.",
+        context: "On the washable mattress/top and why the low height suits small children.",
+        status: 'approved',
+      },
+      {
+        text: "And even especially for our older people too. They like to have lower beds",
+        context: "Unprompted product feedback that Elders prefer the lower bed height.",
+        status: 'approved',
+      },
     ],
     portrait: '/images/people/melissa-jackson.jpg',
   },
@@ -335,6 +380,11 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         text: 'I was living at the tin shed. Then I started working, got help from Stronger Families, and moved into this house.',
         context: 'Housing journey',
         status: 'primary',
+      },
+      {
+        text: "Sleeping on the mattress, on the floor... don't have any mattresses. Gotta buy them one once in the shop for me and my little ones.",
+        context: "Her current sleeping situation with five children \u2014 mattresses on the floor, and not enough of them.",
+        status: 'approved',
       },
     ],
     portrait: '/images/people/risilda-hogan.jpg',
@@ -360,6 +410,11 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
       {
         text: 'You got to get health messages across.',
         context: 'Health messaging',
+        status: 'approved',
+      },
+      {
+        text: "Like me, see, I had a couple of strokes and a lot of the time I can't get up. If I have two of those things, the crate stuff, I'd be okay. You know, I'd just get up.",
+        context: "Accessibility feedback: bed height matters for people recovering from strokes; two crates would let him get up.",
         status: 'approved',
       },
     ],
@@ -534,6 +589,31 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         context: 'Sovereignty',
         status: 'approved',
       },
+      {
+        text: "We're in a position to make change and bring that generational wealth out on Loves Creek Station. And to be a part of these the cattle industry, which is a multimillion dollar business, we wanna bring that multimillion dollar business to our families on Aboriginal land and to lead that.",
+        context: "On the vision for Loves Creek after the 1994 land claim \u2014 enterprise led by traditional owners on their own land. The clearest single articulation of the ownership ambition Goods' pathway plugs into.",
+        status: 'approved',
+      },
+      {
+        text: "We know what we wanna do on our land, and we know how to get there. I think it's just about having our land councils, our government supporting us in delivering this... Self-determination for us as aboriginal people, as our old people have led the way for us.",
+        context: "Closing the on-country vision: communities once ran like small towns with their own infrastructure and councils; the ask is support, not control. Echoes the Goods 'we know what we need' synthesis \u2014 note that sentence itself is a Goods synthesis, never quoted; this is Kristy's real version.",
+        status: 'approved',
+      },
+      {
+        text: "It's important for us to have a safe home. And for our young people... to have an opportunity to have their own bed, to have their own belongings, to be a kid... the same experience that many other Australians have that take advantage of having their own room and beds.",
+        context: "Kristy on overcrowded housing in Central Australia \u2014 visiting family 'sleeping on their beds' \u2014 and what a bed of one's own means for a child. The single most directly Goods-relevant line in the batch.",
+        status: 'approved',
+      },
+      {
+        text: "There's a lack of housing, which leads to a lack of sleep for our young people, which leads to a low attendance of school education... quite often our young people are breaking in and looking for food and being out on the streets because there is such an overcrowding house that they don't wanna be home.",
+        context: "The causal chain from overcrowding to sleeplessness to school non-attendance to justice contact \u2014 the sleep-as-foundation logic of the Stretch Bed, in a community leader's own words.",
+        status: 'approved',
+      },
+      {
+        text: "We wanna be able to create generational wealth, economic development on our own land. We see too many times that a lot of other businesses are thriving. Why can't we thrive as Aboriginal people on our land as well?",
+        context: "Oonchiumpa's economic vision \u2014 the demand side of the Goods community-ownership pathway (on-country manufacturing moving to community ownership).",
+        status: 'approved',
+      },
     ],
     portrait: '/images/people/kristy-bloomfield.jpg',
   },
@@ -563,6 +643,26 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
       {
         text: "Today my mum still gets text messages from her family saying, I can't believe how good this bed's going ... I don't want to get outta bed in the morning 'cause it's just so comfortable.",
         context: 'Eight weeks after the bed deliveries',
+        status: 'approved',
+      },
+      {
+        text: "We've liaised with Aboriginal elders, traditional owners of that community, before we've liaised with government members.",
+        context: "How Goods enters a community; protocol before administration.",
+        status: 'approved',
+      },
+      {
+        text: "We made 20 odd beds in aged care ... utilizing the young people of the aged care service ... They were so willing to learn about how these beds came together.",
+        context: "Maningrida delivery: young people building beds for Elders at the aged-care service.",
+        status: 'approved',
+      },
+      {
+        text: "All they wanted was something that's off the ground ... sit on the edge of it and just pop themselves up. Just amazing.",
+        context: "What the aged-care Elders actually asked for from a bed.",
+        status: 'approved',
+      },
+      {
+        text: "They're definitely not gonna break, I can tell you that ... the recycled plastic that you use from that is blowing my mind away ... Every sheet was a different design.",
+        context: "On the washing machines and the recycled-plastic panels, after the Maningrida installs.",
         status: 'approved',
       },
     ],
@@ -602,6 +702,11 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         context: 'Housing need on Palm Island',
         status: 'primary',
       },
+      {
+        text: "We, I was laying down on the floor, me and my partner, so we got a bed to lay on there, so it's easy for us to get off it. Up, yeah.",
+        context: "Ivy on moving from sleeping on the floor with her partner to sleeping on the Goods bed.",
+        status: 'approved',
+      },
     ],
     portrait: '/images/people/ivy.jpg',
     notes: 'Ben to confirm which Ivy (index flag). Data uses bare "Ivy"; allowlist also carries "Ivy Johnson".',
@@ -623,6 +728,21 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
       {
         text: 'You got to get that shame out of the way and go and ask, sit down and talk to them.',
         context: 'Community connection',
+        status: 'approved',
+      },
+      {
+        text: "You can't just go down to the store and buy beds and stuff, it's hard for families and, especially over here, you won't just have a family, one family in one house. You'll have multiple families, in the one house and not everyone gets a bed, and not everyone has that place to stay.",
+        context: "Explaining the barge-freight barrier and overcrowding reality of getting beds onto Palm Island.",
+        status: 'approved',
+      },
+      {
+        text: "having a bed is something like, you need, you can't, you feel more safe when you sleep in a bed. It's different than sleeping on the couch, and then sleeping on the ground, most people do be doing that, sleeping on couches and stuff, don't have beds.",
+        context: "On the felt difference between a bed and the couch or floor most people make do with.",
+        status: 'approved',
+      },
+      {
+        text: "I just think not being shame... you got to get that shameless out of the way and go and ask, sit down and talk to them... you really got to know the family, and have that inside look of it, and that's the only way you will know if you go and approach them and ask them because they're not going to come to you.",
+        context: "His advice on how Goods must handle shame so people will say when beds are not working.",
         status: 'approved',
       },
     ],
@@ -652,6 +772,16 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         context: 'Freight burden',
         status: 'approved',
       },
+      {
+        text: "Anyone, get some money, they'll go out to town and buy a new washing machine, fridge. Like any white goods, furniture, bed, lounge, dining suite. Everybody goes to Townsville... But the fright is very, it's very dear. Very dear.",
+        context: "How all white goods and furniture for Palm Island come via Townsville shops with painful barge freight.",
+        status: 'approved',
+      },
+      {
+        text: "these collapsed beds, be good when you get Christmas holidays, school holidays, when family coming from the mainland. Pull it out... And kids, they always, Sleep out with family or have to have their friends. Sometimes family don't have extra mattresses.",
+        context: "The visiting-family use case: collapsible beds for Christmas, school holidays and kids' sleepovers.",
+        status: 'approved',
+      },
     ],
     portrait: '/images/people/carmelita-colette.jpg',
     notes: 'Always the joint card. Single-name "Carmelita" appears in compendium and fails the consent gate: use the joint form.',
@@ -675,6 +805,16 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         context: 'Connection to community',
         status: 'approved',
       },
+      {
+        text: "the cost of, not only purchasing it, the cost of having it freighted over as well, it all adds up... a lot of them are low income earners... And sometimes people would rather just go without.",
+        context: "Explaining why freight costs mean Palm Island families simply go without furniture.",
+        status: 'approved',
+      },
+      {
+        text: "why not just get something, say, a 150 bed that would only last maybe a year or two compared to a 500 bed plus freight. That, you're looking at nearly 1, 000 to get that over. It all adds up, so why not stick to the cheaper options, and it doesn't last a lifetime compared to the dearer ones.",
+        context: "The cheap-bed trap: freight economics force short-life purchases that break within a year or two.",
+        status: 'approved',
+      },
     ],
     portrait: '/images/people/daniel-patrick-noble.jpg',
   },
@@ -690,6 +830,11 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         text: 'When it comes from an Aboriginal person, it works. That\'s what makes the difference.',
         context: 'Community-led solutions',
         status: 'primary',
+      },
+      {
+        text: "Try it. Try it. You won't regret it, I tell you. You won't regret it, trust me. If I can do it, you can.",
+        context: "His message to other communities unsure about the beds.",
+        status: 'approved',
       },
     ],
     portrait: '/images/people/jason.jpg',
@@ -714,6 +859,11 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         context: 'Kinship',
         status: 'approved',
       },
+      {
+        text: "Because it's hard to do it. Plus, I'm disability, I can't wash my mattress. Yeah. It's hard.",
+        context: "On why a washable mattress matters when disability makes cleaning a normal mattress impossible.",
+        status: 'approved',
+      },
     ],
     portrait: '/images/people/gloria-turner.jpg',
     notes: 'Place conflict flagged: community-narrative groups her with Palm/Tennant voices. Kalgoorlie is canonical until Ben says otherwise.',
@@ -734,6 +884,16 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
       {
         text: 'Something as simple as a good bed makes a huge difference. It improves their health, helps with mobility, and gives them dignity.',
         context: 'Why a bed is health hardware',
+        status: 'approved',
+      },
+      {
+        text: "I've put up with a few of my clients going to hospital with pneumonia from sleeping on the ground because it's too cold. And then in the summer I've put up with them telling me constantly like, we're scared to sleep here, we're scared to sleep there because of snakes.",
+        context: "Describing sleeping conditions for homeless clients at Boulder Camp and Ninga Mia near Kalgoorlie.",
+        status: 'approved',
+      },
+      {
+        text: "at first when you told me about it, I'm just like, yeah like yeah no I don't think that's possible but now that you've just showed us and helped us put it together it's amazing. It is a good idea. One it's getting them off the cold ground.",
+        context: "Her first impression after assembling the bed, converting from scepticism on the spot.",
         status: 'approved',
       },
     ],
@@ -758,9 +918,46 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         status: 'hold',
         note: 'Second quote variant (content.ts/compendium). Pick ONE at narrative sign-off; curated line is what renders today.',
       },
+      {
+        text: "for washing their blankets so then they've got clean fresh blankets to sleep in which is the whole circle for them with clean clothes clean blankets it's um helping health wise and everything sores and stuff like that",
+        context: "Describing why the washing service matters for people sleeping rough in Kalgoorlie.",
+        status: 'approved',
+      },
+      {
+        text: "I'm here for you ... I'm not looking down on you because you need a washing truck, I'm not ... looking down on you because you have to live the way you're living",
+        context: "Her ethic of friendship over service delivery at the Kalgoorlie hub.",
+        status: 'approved',
+      },
     ],
     portrait: '/images/people/tracy-mccartney.jpg',
     notes: 'Foundation flagged a place conflict; data files consistently say Kalgoorlie.',
+  },
+  {
+    slug: 'tanya-turner',
+    name: 'Tanya Turner',
+    role: 'Oonchiumpa Consultancy leadership, Alice Springs',
+    community: 'Alice Springs / Utopia (Oonchiumpa)',
+    tier: 'external',
+    turns: '2, 5 (never asked; ownership)',
+    quotes: [
+      {
+        text: "We're given the opportunity to be consulted with, but you're never given the opportunity... it's rare that you're consulted with and then told, Hey.",
+        context: 'Consultation without decision power; the never-asked pattern from the leadership side',
+        status: 'approved',
+      },
+      {
+        text: "That's where we talk about allies, right? It's about letting Aboriginal people lead, but being an ally on the side.",
+        context: 'The posture partners must hold',
+        status: 'primary',
+      },
+      {
+        text: 'Working towards how we as an Aboriginal community bring back our lives, create something for our people to want to live for.',
+        context: 'What the work is ultimately for',
+        status: 'approved',
+      },
+    ],
+    portrait: null,
+    notes: 'All three quotes cleared by Ben 2026-07-20 (Voice Impact Model pass). EL transcript c14ee313; a duplicate filing (Tanya1) exists in EL. Note: the "Judges welcome" transcript filed under Kristy is mostly Tanya speaking.',
   },
 
   // ── Katherine / Mount Isa / Darwin ───────────────────────────────────────
@@ -803,6 +1000,16 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         context: 'Working with young people',
         status: 'approved',
       },
+      {
+        text: "Well, sitting down on the grass, on the dirt, with the fire, that's our consultation, without the pen and paper, and just actually sit down and listen.",
+        context: "Gary answering what real consultation with Elders and community means, versus government meeting-minutes consultation.",
+        status: 'approved',
+      },
+      {
+        text: "We could even teach them down there to make it, you know, and you want this bed, here, well, come on, give me a hand, make it, you know, and they can take the skill to make it. And they, well, take pride, that's my bed, you know.",
+        context: "Gary proposing that homeless people by the river help build their own beds at the Men's Shed and take ownership of them.",
+        status: 'approved',
+      },
     ],
     portrait: '/images/people/gary.jpg',
   },
@@ -827,6 +1034,16 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
       {
         text: 'We see entrenched primary health issues in communities: rheumatic heart disease, scabies, trachoma. Issues that don\'t exist anywhere else in the world.',
         context: 'Health inequity',
+        status: 'approved',
+      },
+      {
+        text: "with the overcrowding issues in housing, um, the bedding environment is often, um, pretty grim as far as what people are sleeping on, what people have access to... people are just sleeping where they can.",
+        context: "Describing the bedding reality created by overcrowding and transience in remote communities.",
+        status: 'approved',
+      },
+      {
+        text: "It's a really simple idea, um, to a really complex issue, um, that can be taken and, taken and modified for individual families, individual communities... we also talked about, um, uh, giving ownership to communities and to families, um, which is really important. And it's an idea that people will take and, and take it in their own direction. I think that's what excites me most about it.",
+        context: "Why the adaptable, community-owned nature of the bed excites him more than the product itself.",
         status: 'approved',
       },
     ],
@@ -1019,6 +1236,31 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         context: 'On Goods on Country',
         status: 'hold',
         note: 'Verbatim funder speech containing "empowering": Ben to decide use or retire (checkpoint B-5b).',
+      },
+      {
+        text: "my mum gets the phone call and she's like, your uncle said they had the best night's sleep just outta these beds, made outta crates with the cushion and the thing. It's like unreal, unreal. The impact that ... you have",
+        context: "Kylie recounts family feedback after Sarah (a nurse volunteer, 'adopted daughter') built beds for extended family at Utopia community.",
+        status: 'approved',
+      },
+      {
+        text: "We've waited so long for this house and no one in Alice Springs would touch it. Get two bloke to bring five contractors in that like, ... done in a week.",
+        context: "Contrasting years of service-system inaction with the one-week community build.",
+        status: 'approved',
+      },
+      {
+        text: "The reaction has been so overwhelmingly positive and for me to get that insight is just, validated what they're doing.",
+        context: "Seeing community response to the beds on the Tennant Creek trip; funder validation in her own words.",
+        status: 'approved',
+      },
+      {
+        text: "For me, I wanted to see how the beds would be received and for me it was an overwhelming, yes, we want and need these beds ... And you're doing it with community. It's not a for, it's a with, and that's really important too.",
+        context: "Her closing verdict on the trip; the with-not-for line lands the design-with-community principle from a funder's mouth.",
+        status: 'approved',
+      },
+      {
+        text: "The goods project Nick and Ben, and together with the family built a bed ... just seeing that family jump on that bed and do it together and have a bit of a laugh and just felt really, you know, welcoming and warm. So that was really special.",
+        context: "Katherine, on the Deadly Heart Trek: watching a family build a Basket Bed together.",
+        status: 'approved',
       },
     ],
     portrait: null,

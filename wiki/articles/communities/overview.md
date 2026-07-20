@@ -30,7 +30,7 @@
 | 107 beds approved, INV-0291 paid | Centrecorp / Utopia pathway | Approved source signal | This is stronger than a warm lead, but it should be reconciled against the current delivery and asset register before being used as a deployed count. |
 | 65 beds for children | Maningrida / Homeland Schools Company | Requested | School-linked demand. Keep separate from the 24-bed deployment row. |
 | 40 beds discussed | Palm Island / PICC | Requested | Warm community-partner demand tied to the existing Palm Island relationship. |
-| 20 beds offered to self-fund | Tennant Creek / Dianne Stokes | Requested | Strong product validation because the request followed direct use and co-design. |
+| 20 beds offered to self-fund | Tennant Creek / Dianne Stokes | Requested | Strong product validation because the request followed direct use and design work done in community. |
 | 3 maroon beds | Tennant Creek / Norman Frank | Requested | Product-referral signal after family use. |
 | Beds for every child | Utopia Homelands | Requested | Needs a clean scope, funding path and delivery plan before external use. |
 | 500 mattresses and 300 washing machines | Groote Archipelago | Exploring | Large market signal, not revenue. Useful for capacity and capital planning only after qualification. |

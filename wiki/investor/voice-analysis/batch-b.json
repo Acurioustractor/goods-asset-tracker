@@ -219,7 +219,8 @@
      ],
      "domain": "dignity-safety",
      "strength": "deck",
-     "sensitivity": null
+     "sensitivity": null,
+     "cleared": true
     },
     {
      "text": "Every time I go away from here, it's like it's calling me. Come back home. And I do feel that. When I get home, I feel happy I'm at home.",
@@ -313,7 +314,8 @@
      ],
      "domain": "rest-health",
      "strength": "deck",
-     "sensitivity": null
+     "sensitivity": null,
+     "cleared": true
     },
     {
      "text": "I didn't get money, but those two young fellows that are doing something, they offered us and shared their blessings with us. So I shared my blessings to them.",
@@ -336,7 +338,8 @@
      ],
      "domain": "self-determination",
      "strength": "deck",
-     "sensitivity": null
+     "sensitivity": null,
+     "cleared": true
     },
     {
      "text": "If we have our own contract doing all these in the communities, they can sell 'em to people... and even to Tennant Creek come where we have NAIDOC week or we have show... marquees sort of sell 'em.",
@@ -348,7 +351,8 @@
      ],
      "domain": "jobs-ownership",
      "strength": "deck",
-     "sensitivity": null
+     "sensitivity": null,
+     "cleared": true
     },
     {
      "text": "Well, my legacy in my life, that's what I'm thinking of. I hope my legacy stands out for my people when I pass what I've done. What I have achieved in my life, living in this community.",
@@ -547,7 +551,8 @@
      ],
      "domain": "jobs-ownership",
      "strength": "deck",
-     "sensitivity": null
+     "sensitivity": null,
+     "cleared": true
     },
     {
      "text": "Why do I think it's comfortable? Because I was looking for these kinds before having a milk crate and a mattress on top. It was comfortable, but not much. But this is more.",
@@ -735,7 +740,8 @@
      ],
      "domain": "rest-health",
      "strength": "deck",
-     "sensitivity": "Household hardship with children \u2014 use with care and her consent status checked."
+     "sensitivity": "Household hardship with children \u2014 use with care and her consent status checked.",
+     "cleared": true
     },
     {
      "text": "Oh, that's really cool. I like it. Think my two little one will be happy. And my eldest son, second son, he's happy.",

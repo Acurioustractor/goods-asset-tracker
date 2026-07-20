@@ -77,7 +77,8 @@
      ],
      "domain": "self-determination",
      "strength": "deck",
-     "sensitivity": null
+     "sensitivity": null,
+     "cleared": true
     },
     {
      "text": "That's where we talk about allies, right? It's about letting Aboriginal people lead, but being an ally on the side... whereas I think in Australia we've got that upside down completely.",
@@ -89,7 +90,8 @@
      ],
      "domain": "self-determination",
      "strength": "deck",
-     "sensitivity": null
+     "sensitivity": null,
+     "cleared": true
     },
     {
      "text": "If we have the knowledge that we have some long-term security, we can really throw ourselves into... what's our goals? ... everything's just been like treading water.",
@@ -113,7 +115,8 @@
      ],
      "domain": "self-determination",
      "strength": "deck",
-     "sensitivity": "Adjacent lines reference despair, racism, alcoholism, DV \u2014 quote the hope line alone; do not extend."
+     "sensitivity": "Adjacent lines reference despair, racism, alcoholism, DV \u2014 quote the hope line alone; do not extend.",
+     "cleared": true
     },
     {
      "text": "Our young people, unfortunately, are just collateral in a bigger issue. The issue doesn't sit with them. It sits on a much broader level and with adults, not with children.",
@@ -169,7 +172,8 @@
      ],
      "domain": "rest-health",
      "strength": "deck",
-     "sensitivity": null
+     "sensitivity": null,
+     "cleared": true
     },
     {
      "text": "There's a lack of housing, which leads to a lack of sleep for our young people, which leads to a low attendance of school education... quite often our young people are breaking in and looking for food and being out on the streets because there is such an overcrowding house that they don't wanna be home.",
@@ -182,7 +186,8 @@
      ],
      "domain": "rest-health",
      "strength": "deck",
-     "sensitivity": null
+     "sensitivity": null,
+     "cleared": true
     },
     {
      "text": "We wanna be able to create generational wealth, economic development on our own land. We see too many times that a lot of other businesses are thriving. Why can't we thrive as Aboriginal people on our land as well?",
@@ -194,7 +199,8 @@
      ],
      "domain": "jobs-ownership",
      "strength": "deck",
-     "sensitivity": null
+     "sensitivity": null,
+     "cleared": true
     },
     {
      "text": "How do we as Oonchiumpa make sure that we're not being used? And how do we Oonchiumpa create our own revenue... create revenue for them to consult with us.",

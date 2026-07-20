@@ -1,289 +1,482 @@
 {
-  "transcripts": [
+ "transcripts": [
+  {
+   "storyteller": "Gary",
+   "transcript_id": "582288e5-d939-4bd8-aea5-fd86b7529313",
+   "held": false,
+   "top_quotes": [
     {
-      "storyteller": "Gary",
-      "transcript_id": "582288e5-d939-4bd8-aea5-fd86b7529313",
-      "held": false,
-      "top_quotes": [
-        {
-          "text": "Well, sitting down on the grass, on the dirt, with the fire, that's our consultation, without the pen and paper, and just actually sit down and listen.",
-          "timestamp": null,
-          "context": "Gary answering what real consultation with Elders and community means, versus government meeting-minutes consultation.",
-          "themes": ["never-asked", "design-in-community", "elders-protocol"],
-          "domain": "self-determination",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "We could even teach them down there to make it, you know, and you want this bed, here, well, come on, give me a hand, make it, you know, and they can take the skill to make it. And they, well, take pride, that's my bed, you know.",
-          "timestamp": null,
-          "context": "Gary proposing that homeless people by the river help build their own beds at the Men's Shed and take ownership of them.",
-          "themes": ["making-jobs", "ownership-pathway", "dignity-safety"],
-          "domain": "jobs-ownership",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "At the moment, like we've got a lot of homeless people down the river and that's all they is mattresses and like you said, you know, diseases mattress material, you know, the scabies, you know, all the bed sores and everything. But with those things at least they can fold it up ... or even sleep off the ground.",
-          "timestamp": null,
-          "context": "Gary describing the bed situation for homeless people in Mount Isa and why an off-the-ground foldable bed matters.",
-          "themes": ["rest-sleep-health", "dignity-safety", "system-failure"],
-          "domain": "rest-health",
-          "strength": "strong",
-          "sensitivity": "health testimony (scabies, bed sores), keep in his voice; the 'like you said' shows he is echoing the interviewer's framing in part"
-        },
-        {
-          "text": "That way with them beds, at least that'll stop them fighting, you know, stealing each other's bed or shit like that. Now, at least it'll be tidy, they can fold it back up, leave it under a tree and then when they want the bed, they can just pull it out.",
-          "timestamp": null,
-          "context": "Gary on how personal, foldable beds would ease tension between the seven different groups camped along the river.",
-          "themes": ["dignity-safety", "rest-sleep-health"],
-          "domain": "dignity-safety",
-          "strength": "strong",
-          "sensitivity": "mild swearing; describes inter-group conflict among displaced people, review before external use"
-        },
-        {
-          "text": "The council asked us, you know, with the bottle tops, with the plastic bottles, they want us to take control of, they help us set up to crush the plastic and make tables out of it. They want the men's shed to take over that initiative where these blokes can make money.",
-          "timestamp": null,
-          "context": "Gary describing an existing local appetite in Mount Isa for a men's-shed-run plastic recycling operation, which he links directly to the Goods model.",
-          "themes": ["making-jobs", "ownership-pathway"],
-          "domain": "circular-economy",
-          "strength": "strong",
-          "sensitivity": "transcription is run-on and slightly garbled ('have to mention took over' likely 'the men's shed took over'); light trim applied, verify against audio before external use"
-        }
-      ],
-      "themes_present": [
-        {"theme": "rest-sleep-health", "evidence": "Homeless people sleeping on the dirt and diseased mattresses by the river; beds getting people off the ground."},
-        {"theme": "washing-clean", "evidence": "Old fellas bring their clothes in weekly to wash via Orange Sky (he says 'Orange Square'), 'stop that soreness and visits to the doctor'."},
-        {"theme": "dignity-safety", "evidence": "Own foldable beds would stop fighting and bed-stealing among the river camps; the Men's Shed as a no-judgement safe circle."},
-        {"theme": "design-in-community", "evidence": "Real consultation is sitting on the dirt with a fire, not four walls and statistics; the shed can source and make the beds locally."},
-        {"theme": "never-asked", "evidence": "Services 'just coming in, ticking their boxes'; government asks for stats and meeting minutes instead of listening."},
-        {"theme": "making-jobs", "evidence": "Wire work, pallet work, welding trade pathways (two men into mines/boilermaker FIFO), plastic-crushing as income for the blokes."},
-        {"theme": "ownership-pathway", "evidence": "Wants the men's shed to take control of the council plastic initiative and people to build and own their own beds."},
-        {"theme": "country-culture", "evidence": "'You been at Bushy? ... There's your culture' — healing happens out bush, bush camps, cultural protocol between river groups."},
-        {"theme": "elders-protocol", "evidence": "Uncle Dean teaching welding, Uncle Kevin doing suicide talks, elders' medicine cabinets; consultation must go through sitting with old people."},
-        {"theme": "reciprocity-partnership", "evidence": "Collaboration and trust ('plus trust us') named as what makes camps and wellness sustainable; links to Palm Island, ADRA, Rangers."},
-        {"theme": "system-failure", "evidence": "Programs not structured right, contractors 'fly and tick their boxes', repeated identical correctional programs, questioning of black men despite six safe years."},
-        {"theme": "family-kids", "evidence": "Bike program giving rebuilt bikes to kids walking between schools; playgroup next door; stolen-generation family history on Palm/Fantome Island."}
-      ],
-      "narrative_summary": "Gary Hartman is the Men's Shed Coordinator at the children and family centre in Mount Isa, a deeply trusted community man who runs woodwork, wire art, bike rebuilding and suicide-prevention yarning circles for men coming out of jail, diversion and off the street. His transcript is really about community-led healing and enterprise: what happens when men make things, own things, and are consulted on the dirt rather than through paperwork. For Goods it is gold on the demand side and the model side at once: he independently validates the bed need (homeless river camps, scabies, mattress disease), the make-it-yourself ownership pathway, and a ready local partner appetite for plastic recycling and on-site bed assembly.",
-      "analysis_notes": "No speaker labels at all — interviewer (sounds like Ben) questions are interleaved in the same run-on text, so every quote needs attribution care; the interviewer's words about mattress cost on Palm Island and Brisbane plastic recyclers are NOT Gary's. He is addressed as both 'Gary' and 'Brad' early on (transcription confusion with Brady/Brodie, a youth worker he praises at length). Heavy sensitive non-Goods content: suicide march after 22 deaths in one month in Mount Isa, men carrying nooses — powerful but not Goods material and needs extreme care. Names mentioned: Brady/Brodie, Uncle Dean, Uncle Kevin, Richard Cassidy (Minga Minga Rangers CEO, Palm Island), Ebenezer, Daniel (psych support), Gigi. 'Orange Square' = almost certainly Orange Sky laundry. Stolen-generation family history (grandmother's mother, Fantome/Palm Island) is cultural/family content, review before any use. The bed under discussion is the foldable crate-style bed (Basket Bed era), not the Stretch Bed."
+     "text": "Well, sitting down on the grass, on the dirt, with the fire, that's our consultation, without the pen and paper, and just actually sit down and listen.",
+     "timestamp": null,
+     "context": "Gary answering what real consultation with Elders and community means, versus government meeting-minutes consultation.",
+     "themes": [
+      "never-asked",
+      "design-in-community",
+      "elders-protocol"
+     ],
+     "domain": "self-determination",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
     },
     {
-      "storyteller": "Jimmy Frank",
-      "transcript_id": "84b0fd52-fab7-4f9a-9d2e-02a22994b059",
-      "held": false,
-      "top_quotes": [
-        {
-          "text": "I grew up in a washing machine where you just push that $1 in ... there was like 15 people living in the house ... that washing machine's gonna be used every day, you know, three or four times a day, you know, maybe five, 10 times ... just imagine that you got something that is not suitable for that sort of a huge usage. And I really like your project. You are really considering that.",
-          "timestamp": "00:10:00",
-          "context": "Jimmy explaining why commercial-grade washing machines matter in overcrowded houses, directly endorsing the Goods washing machine project.",
-          "themes": ["washing-clean", "product-durability", "family-kids"],
-          "domain": "rest-health",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "When white man first came to here, they moved, moved us around like cattle ... and over the 75, 70 years or 80 years, someone's been doing something for us mob, you know? And then building something and making decisions for us mob ... we got a broker that cycle ... other people telling us what's best for our community.",
-          "timestamp": "00:06:00",
-          "context": "Jimmy, chairperson of the Wilya Janta housing project, on why Indigenous-led design has taken so long in Australia.",
-          "themes": ["never-asked", "design-in-community", "country-culture"],
-          "domain": "self-determination",
-          "strength": "deck",
-          "sensitivity": "'we got a broker that cycle' is the transcriber's rendering of 'we've got to break that cycle' — verify against audio before quoting; historical dispossession content, keep whole and in his voice"
-        },
-        {
-          "text": "Anything from a Holden car to a fridge or a washing machine or TV, it just costs more, you know, in these remote communities and especially the fridges and the washing machine ... they always broke down. But it costs people a lot more if they're not buying the right material ... when you go in a remote community, there's not much job ... they leaning on very small income.",
-          "timestamp": "00:12:00",
-          "context": "Jimmy on the poverty premium: remote people on the smallest incomes pay the most for goods that fail fastest.",
-          "themes": ["system-failure", "product-durability"],
-          "domain": "dignity-safety",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "Looking at how much plastic that get used in a country and get ended up in some gutter or on some beach somewhere ... it doesn't broke down as other material does ... I really, really love that, looking after country.",
-          "timestamp": "00:11:00",
-          "context": "Jimmy connecting the recycled-plastic materials in Goods products to caring for Country.",
-          "themes": ["country-culture"],
-          "domain": "circular-economy",
-          "strength": "strong",
-          "sensitivity": null
-        },
-        {
-          "text": "I'm still happy that, you know, where people can use our ideas ... long as it's helping, benefit our people ... but I got an issue with someone using our word to benefit themself ... more like stealing, I would say ... I'm very supportive around people making difference ... and letting us make those decisions for our people.",
-          "timestamp": "00:24:00",
-          "context": "Jimmy on story and intellectual-property ownership, effectively articulating the Empathy Ledger consent model in his own words.",
-          "themes": ["reciprocity-partnership", "never-asked"],
-          "domain": "self-determination",
-          "strength": "strong",
-          "sensitivity": "lightly trimmed across a halting passage; verify assembly against audio before external use"
-        }
-      ],
-      "themes_present": [
-        {"theme": "washing-clean", "evidence": "Grew up with a $1 coin-op machine serving a 15-person household used up to 10 times a day; endorses the Goods durable washer."},
-        {"theme": "product-durability", "evidence": "Fridges, washers and aircons 'don't last too long' in remote communities and always break down, costing poor households more."},
-        {"theme": "design-in-community", "evidence": "Wilya Janta exists so Warumungu people design their own houses and even certify them themselves."},
-        {"theme": "never-asked", "evidence": "70-80 years of someone else 'making decisions for us mob'; programs from NSW/Victoria run local youth with no Elder involvement."},
-        {"theme": "system-failure", "evidence": "Says billions came into Tennant Creek since the intervention/regional deal 'but we've got very little to show for it'; NT housing wouldn't let Norman flip his own solar switch."},
-        {"theme": "ownership-pathway", "evidence": "Wilya Janta plan: two-three display homes now, whole-NT procedures in 10 years, local people as certifiers of their own houses."},
-        {"theme": "country-culture", "evidence": "Warumungu traditional owner, artifact-making with old fellas from age 19, ceremony, dance group, 'our strengths is our culture, our country and our language'."},
-        {"theme": "elders-protocol", "evidence": "Learned from old fellas making boomerangs and spears; argues Elders and traditional owners should run and be accountable for programs."},
-        {"theme": "reciprocity-partnership", "evidence": "Distinguishes welcome idea-sharing that benefits his people from 'stealing' words for others' benefit; positive on partnering with Goods and Original Power."},
-        {"theme": "making-jobs", "evidence": "Notes there is 'not much job' in remote communities and welfare incomes can't carry the cost load — the gap Goods employment addresses."},
-        {"theme": "dignity-safety", "evidence": "Brio artist group counters the post-intervention marginalisation of Aboriginal men as 'rapists, molesters, pedophiles'."},
-        {"theme": "family-kids", "evidence": "Overcrowded houses with 6-12 kids and four adults; power runs out every Monday, $100-170 of power debt in summer."}
-      ],
-      "narrative_summary": "Jimmy Frank (wants his Warumungu name, spelling to come from Simon, used going forward) is a Warumungu traditional owner in Tennant Creek: cultural liaison, artist with the Brio men's group, and chairperson of the Wilya Janta Indigenous-led housing project with Simon. His transcript is a sophisticated systems critique — decisions made for mob for 80 years, billions into Tennant with little to show, houses and appliances not built for overcrowded remote life — paired with the alternative: local people designing, certifying and owning their own infrastructure. For Goods he gives deck-grade validation of the washing machine thesis (durability under 10-wash-a-day loads), the poverty premium, plastic-as-caring-for-Country, and a near-perfect articulation of the story-ownership model behind the Empathy Ledger.",
-      "analysis_notes": "Speakers are labelled: Ben = interviewer, Speaker 28 = Jimmy (Speaker 29/30 are brief interjections, likely Nic/crew — attribution of those lines uncertain). Jimmy asked for his traditional name spelling from 'Simon Jaba' (likely Simon Japangardi/Jampijinpa of Wilya Janta) — get this before any published credit. Names mentioned: Simon, Norman (Frank — the solar-on-roof CLO story, ABC covered it), Lauren Mellor (transcribed 'Meow'/'Malor') of Original Power, Lucy. The '$3 billion into Tennant Creek' figure is his claim, unverified — never externalise as fact. 'William Genta/Jan/Agenda' throughout = Wilya Janta. Transcription is rough in places ('broker that cycle' = break that cycle; 'baldman' unclear); all assembled quotes should be checked against audio before leaving internal use. Consistent with canon that transcripts exist for Tennant Creek voices; supports but never claims health outcomes (he says 'our health rate is going really high' as context)."
+     "text": "We could even teach them down there to make it, you know, and you want this bed, here, well, come on, give me a hand, make it, you know, and they can take the skill to make it. And they, well, take pride, that's my bed, you know.",
+     "timestamp": null,
+     "context": "Gary proposing that homeless people by the river help build their own beds at the Men's Shed and take ownership of them.",
+     "themes": [
+      "making-jobs",
+      "ownership-pathway",
+      "dignity-safety"
+     ],
+     "domain": "jobs-ownership",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
     },
     {
-      "storyteller": "Walter",
-      "transcript_id": "0a1907c5-8f96-4a7d-9c39-12bc2bf63e03",
-      "held": true,
-      "top_quotes": [
-        {
-          "text": "This bed is good. And it's outside this place. On this big shed. And nice and cool wind come in.",
-          "timestamp": null,
-          "context": "Walter on the Goods bed set up under the big shed at Boulder Camp.",
-          "themes": ["rest-sleep-health", "country-culture"],
-          "domain": "rest-health",
-          "strength": "internal-only",
-          "sensitivity": "PERMANENTLY HELD voice — internal analysis only, never publish"
-        },
-        {
-          "text": "Good, good, good sleep. I like. No sound. No sound. No people just shouting.",
-          "timestamp": null,
-          "context": "Walter on what a good sleep means to him.",
-          "themes": ["rest-sleep-health", "dignity-safety"],
-          "domain": "rest-health",
-          "strength": "internal-only",
-          "sensitivity": "PERMANENTLY HELD voice — internal analysis only, never publish"
-        },
-        {
-          "text": "Yeah, make more. For the people to come and sleep here.",
-          "timestamp": null,
-          "context": "Walter answering whether Goods should make more beds and whether the community would want them.",
-          "themes": ["rest-sleep-health", "family-kids"],
-          "domain": "rest-health",
-          "strength": "internal-only",
-          "sensitivity": "PERMANENTLY HELD voice — internal analysis only, never publish; the 'better than mattress just on the ground, eh?' framing that follows is the interviewer's, Walter only agrees"
-        }
-      ],
-      "themes_present": [
-        {"theme": "rest-sleep-health", "evidence": "Sleeps well off the ground on the bed; values quiet, undisturbed sleep away from shouting."},
-        {"theme": "country-culture", "evidence": "Boulder Camp is where he always stayed and schooled; people come from Warburton and South Australia; likes tourists learning about boulder and culture."},
-        {"theme": "dignity-safety", "evidence": "Wants the place cleaned up and wood stocked; good sleep for him means peace and no shouting."},
-        {"theme": "system-failure", "evidence": "Notes the mine is getting 'too close' to Boulder Camp — an encroachment concern, faintly stated."}
-      ],
-      "narrative_summary": "Walter Young is an older man from Warburton way who has long lived at Boulder Camp (people come there from Warburton and South Australia), where he went to school. His short, gentle transcript is about the simple texture of a good life at camp: a bed under the big shed with cool wind, quiet sleep with no shouting, tea and a feed in the morning. For the Goods story he is direct field evidence that the bed works and is wanted ('make more'), but he is a permanently held voice, so his value is internal grounding only, never external material.",
-      "analysis_notes": "PERMANENTLY HELD — analyse fully, publish nothing; every quote marked internal-only. Very thin (615 words) and the tail of the transcript is garbled noise (repeated dots, 'Hlecto honey?', a second unidentified voice from 'South Stranga' — possibly another person entering; attribution there impossible). Interviewer questions are heavily leading; several of Walter's answers are single-word agreements to the interviewer's phrasing (flagged on quote 3). Place details: Boulder Camp, Warburton (transcribed 'Woburton'), mine encroaching too close, tourists from Perth photographing the camp. He mentions owning a mattress, sleeping bag and tent stacked 'really high' inside — his current sleeping setup alongside the bed."
+     "text": "At the moment, like we've got a lot of homeless people down the river and that's all they is mattresses and like you said, you know, diseases mattress material, you know, the scabies, you know, all the bed sores and everything. But with those things at least they can fold it up ... or even sleep off the ground.",
+     "timestamp": null,
+     "context": "Gary describing the bed situation for homeless people in Mount Isa and why an off-the-ground foldable bed matters.",
+     "themes": [
+      "rest-sleep-health",
+      "dignity-safety",
+      "system-failure"
+     ],
+     "domain": "rest-health",
+     "strength": "strong",
+     "sensitivity": "health testimony (scabies, bed sores), keep in his voice; the 'like you said' shows he is echoing the interviewer's framing in part"
     },
     {
-      "storyteller": "Ivy",
-      "transcript_id": "9e508f22-aa10-4879-9bdf-86ad44039058",
-      "held": false,
-      "top_quotes": [
-        {
-          "text": "It's very hard and expensive on Palm or even in Townsville. It's hard for them to bring it over.",
-          "timestamp": "00:00:00",
-          "context": "Ivy on why beds and white goods are so hard to get on Palm Island.",
-          "themes": ["system-failure"],
-          "domain": "dignity-safety",
-          "strength": "strong",
-          "sensitivity": null
-        },
-        {
-          "text": "Hardly any people around the community haven't got hardly any beds. When they got family members out for siblings.",
-          "timestamp": "00:00:00",
-          "context": "Ivy describing how few households on Palm Island have beds, especially when extended family stays.",
-          "themes": ["rest-sleep-health", "family-kids", "system-failure"],
-          "domain": "rest-health",
-          "strength": "deck",
-          "sensitivity": "double-negative phrasing is verbatim and slightly garbled — meaning is 'hardly any people have beds'; keep verbatim or verify audio, never smooth silently"
-        },
-        {
-          "text": "We, I was laying down on the floor, me and my partner, so we got a bed to lay on there, so it's easy for us to get off it. Up, yeah.",
-          "timestamp": "00:01:00",
-          "context": "Ivy on moving from sleeping on the floor with her partner to sleeping on the Goods bed.",
-          "themes": ["rest-sleep-health", "dignity-safety"],
-          "domain": "rest-health",
-          "strength": "deck",
-          "sensitivity": null
-        },
-        {
-          "text": "It's just right. For us, for, see, that's even like when you're going out to camp and you can take that out too, sit, lay on the beach, under the shade.",
-          "timestamp": "00:01:00",
-          "context": "Ivy on the bed's portability fitting how her family actually lives — taking it out camping and to the beach.",
-          "themes": ["country-culture", "family-kids"],
-          "domain": "rest-health",
-          "strength": "strong",
-          "sensitivity": null
-        },
-        {
-          "text": "I think it's best to work with more community, like people who want to, I haven't got hardly any beds and that, yeah, because most of them, they don't have white goods and everything, and it's very hard for them.",
-          "timestamp": "00:01:00",
-          "context": "Ivy's advice to Goods: keep working with more of the community because most households lack beds and white goods.",
-          "themes": ["reciprocity-partnership", "system-failure"],
-          "domain": "dignity-safety",
-          "strength": "strong",
-          "sensitivity": null
-        }
-      ],
-      "themes_present": [
-        {"theme": "rest-sleep-health", "evidence": "She and her partner were sleeping on the floor before the bed; 'more better than laying around on the floors'."},
-        {"theme": "dignity-safety", "evidence": "Bed height off the crate makes it easy for people to get up and off — dignity and mobility, especially for older people."},
-        {"theme": "system-failure", "evidence": "Beds and white goods are prohibitively expensive on Palm Island and hard to freight over from Townsville."},
-        {"theme": "family-kids", "evidence": "Grandchildren over for the beach; sister's children coming for Christmas and New Year — beds absorb family surges."},
-        {"theme": "country-culture", "evidence": "The bed goes out to camp and onto the beach under the shade — it fits life lived outdoors on the island."},
-        {"theme": "reciprocity-partnership", "evidence": "Explicitly tells Goods to work with more community members who want beds."},
-        {"theme": "product-durability", "evidence": "Notes the crate base is easier than screw-together bed frames and was easy to make."},
-        {"theme": "design-in-community", "evidence": "Her feedback on ease of assembly and crate-vs-screws is lived product design input from community."}
-      ],
-      "narrative_summary": "Ivy is a grandmother on Palm Island with grandchildren around and a sister's family arriving for Christmas — a house where extended family flows through. Her short transcript is a clean demand-and-impact story: beds and white goods are unaffordable and hard to freight to the island, most households go without, and she and her partner were sleeping on the floor before the Goods bed. She gives Goods the freight/poverty-premium evidence, the floor-to-bed moment, and the portability insight (camp, beach, shade) that shows the design fits island life.",
-      "analysis_notes": "Only 299 words but almost every line is usable; single-speaker transcript (interviewer questions removed), so context for some fragments is missing — 'She buy white goods from there in the store' has an unclear referent. The bed described is the crate-based Basket Bed ('good that you've got the crate to put it on', 'this crate is more easier'), not the Stretch Bed — do not attach these quotes to Stretch Bed marketing. Several sentences are grammatically fragmentary; per hard rules keep verbatim rather than smoothing. Place: Palm Island, freight from Townsville. No surname in header — confirm identity/consent record before any external use."
+     "text": "That way with them beds, at least that'll stop them fighting, you know, stealing each other's bed or shit like that. Now, at least it'll be tidy, they can fold it back up, leave it under a tree and then when they want the bed, they can just pull it out.",
+     "timestamp": null,
+     "context": "Gary on how personal, foldable beds would ease tension between the seven different groups camped along the river.",
+     "themes": [
+      "dignity-safety",
+      "rest-sleep-health"
+     ],
+     "domain": "dignity-safety",
+     "strength": "strong",
+     "sensitivity": "mild swearing; describes inter-group conflict among displaced people, review before external use"
     },
     {
-      "storyteller": "Mark",
-      "transcript_id": "df17b0c7-fc3d-479d-b835-68fdbca5c8c8",
-      "held": false,
-      "top_quotes": [
-        {
-          "text": "I reckon it's good yeah, I feel I sleep comfortable.",
-          "timestamp": null,
-          "context": "Mark's verdict on the Goods bed after trying it in Mount Isa.",
-          "themes": ["rest-sleep-health"],
-          "domain": "rest-health",
-          "strength": "supporting",
-          "sensitivity": null
-        },
-        {
-          "text": "Look, we put together like, went to like a, tied up with a little plastic, like a crate. Yeah, it's all crates and we joined them up together and yeah, make it look like a single bunker ... Five or 10 minutes, just five minutes, eight minutes.",
-          "timestamp": null,
-          "context": "Mark describing building the crate bed himself and how quickly it went together.",
-          "themes": ["making-jobs", "design-in-community"],
-          "domain": "circular-economy",
-          "strength": "supporting",
-          "sensitivity": null
-        },
-        {
-          "text": "Yeah, I reckon it'll last a long time, yeah. ... Yeah, I reckon, yeah. Couple other fellas maybe want some.",
-          "timestamp": null,
-          "context": "Mark on durability and whether other fellas in Mount Isa would want the bed.",
-          "themes": ["product-durability"],
-          "domain": "rest-health",
-          "strength": "supporting",
-          "sensitivity": "answers closely track the interviewer's leading questions ('you'll last a long time you reckon?') — treat as assent, not spontaneous testimony"
-        }
-      ],
-      "themes_present": [
-        {"theme": "rest-sleep-health", "evidence": "Sleeps on a single bunk he's 'having a problem with'; finds the Goods bed comfortable and would sleep on it every night."},
-        {"theme": "making-jobs", "evidence": "Helped assemble the crate bed himself in five to ten minutes."},
-        {"theme": "product-durability", "evidence": "Reckons the bed will last a long time (in response to a leading question)."},
-        {"theme": "design-in-community", "evidence": "First-hand assembly feedback: joining crates was quick and between hard and easy."},
-        {"theme": "country-culture", "evidence": "Identifies his country as the Northern Territory though he lives in Mount Isa — mobility between town and country."}
-      ],
-      "narrative_summary": "Mark is a Northern Territory man living in Mount Isa who tried and helped assemble a crate bed during a community build. His very short transcript is a simple product test: his current single bunk gives him problems, the new bed is comfortable, went together in five to ten minutes, and he reckons a couple of other fellas would want one. He gives Goods light supporting evidence of demand and buildability in Mount Isa, nothing deck-grade.",
-      "analysis_notes": "Thin transcript (389 words), heavily interviewer-led — most answers are short assents to the interviewer's phrasing, so nothing here reaches deck strength. Only 3 quotes supplied rather than padding to 5. No surname; identity/consent record needed before any use. The bed is the crate/Basket Bed prototype ('it's all crates and we joined them up together'), not the Stretch Bed — do not attach to Stretch Bed claims. Minor transcript confusion: he says he lives in Mount Isa but the interviewer's echo 'come up to the Northern Territory' muddles direction of the move; 'single bunker, just queen size' contradicts itself (single vs queen), likely mis-transcription."
+     "text": "The council asked us, you know, with the bottle tops, with the plastic bottles, they want us to take control of, they help us set up to crush the plastic and make tables out of it. They want the men's shed to take over that initiative where these blokes can make money.",
+     "timestamp": null,
+     "context": "Gary describing an existing local appetite in Mount Isa for a men's-shed-run plastic recycling operation, which he links directly to the Goods model.",
+     "themes": [
+      "making-jobs",
+      "ownership-pathway"
+     ],
+     "domain": "circular-economy",
+     "strength": "strong",
+     "sensitivity": "transcription is run-on and slightly garbled ('have to mention took over' likely 'the men's shed took over'); light trim applied, verify against audio before external use"
     }
-  ]
+   ],
+   "themes_present": [
+    {
+     "theme": "rest-sleep-health",
+     "evidence": "Homeless people sleeping on the dirt and diseased mattresses by the river; beds getting people off the ground."
+    },
+    {
+     "theme": "washing-clean",
+     "evidence": "Old fellas bring their clothes in weekly to wash via Orange Sky (he says 'Orange Square'), 'stop that soreness and visits to the doctor'."
+    },
+    {
+     "theme": "dignity-safety",
+     "evidence": "Own foldable beds would stop fighting and bed-stealing among the river camps; the Men's Shed as a no-judgement safe circle."
+    },
+    {
+     "theme": "design-in-community",
+     "evidence": "Real consultation is sitting on the dirt with a fire, not four walls and statistics; the shed can source and make the beds locally."
+    },
+    {
+     "theme": "never-asked",
+     "evidence": "Services 'just coming in, ticking their boxes'; government asks for stats and meeting minutes instead of listening."
+    },
+    {
+     "theme": "making-jobs",
+     "evidence": "Wire work, pallet work, welding trade pathways (two men into mines/boilermaker FIFO), plastic-crushing as income for the blokes."
+    },
+    {
+     "theme": "ownership-pathway",
+     "evidence": "Wants the men's shed to take control of the council plastic initiative and people to build and own their own beds."
+    },
+    {
+     "theme": "country-culture",
+     "evidence": "'You been at Bushy? ... There's your culture' \u2014 healing happens out bush, bush camps, cultural protocol between river groups."
+    },
+    {
+     "theme": "elders-protocol",
+     "evidence": "Uncle Dean teaching welding, Uncle Kevin doing suicide talks, elders' medicine cabinets; consultation must go through sitting with old people."
+    },
+    {
+     "theme": "reciprocity-partnership",
+     "evidence": "Collaboration and trust ('plus trust us') named as what makes camps and wellness sustainable; links to Palm Island, ADRA, Rangers."
+    },
+    {
+     "theme": "system-failure",
+     "evidence": "Programs not structured right, contractors 'fly and tick their boxes', repeated identical correctional programs, questioning of black men despite six safe years."
+    },
+    {
+     "theme": "family-kids",
+     "evidence": "Bike program giving rebuilt bikes to kids walking between schools; playgroup next door; stolen-generation family history on Palm/Fantome Island."
+    }
+   ],
+   "narrative_summary": "Gary Hartman is the Men's Shed Coordinator at the children and family centre in Mount Isa, a deeply trusted community man who runs woodwork, wire art, bike rebuilding and suicide-prevention yarning circles for men coming out of jail, diversion and off the street. His transcript is really about community-led healing and enterprise: what happens when men make things, own things, and are consulted on the dirt rather than through paperwork. For Goods it is gold on the demand side and the model side at once: he independently validates the bed need (homeless river camps, scabies, mattress disease), the make-it-yourself ownership pathway, and a ready local partner appetite for plastic recycling and on-site bed assembly.",
+   "analysis_notes": "No speaker labels at all \u2014 interviewer (sounds like Ben) questions are interleaved in the same run-on text, so every quote needs attribution care; the interviewer's words about mattress cost on Palm Island and Brisbane plastic recyclers are NOT Gary's. He is addressed as both 'Gary' and 'Brad' early on (transcription confusion with Brady/Brodie, a youth worker he praises at length). Heavy sensitive non-Goods content: suicide march after 22 deaths in one month in Mount Isa, men carrying nooses \u2014 powerful but not Goods material and needs extreme care. Names mentioned: Brady/Brodie, Uncle Dean, Uncle Kevin, Richard Cassidy (Minga Minga Rangers CEO, Palm Island), Ebenezer, Daniel (psych support), Gigi. 'Orange Square' = almost certainly Orange Sky laundry. Stolen-generation family history (grandmother's mother, Fantome/Palm Island) is cultural/family content, review before any use. The bed under discussion is the foldable crate-style bed (Basket Bed era), not the Stretch Bed."
+  },
+  {
+   "storyteller": "Jimmy Frank",
+   "transcript_id": "84b0fd52-fab7-4f9a-9d2e-02a22994b059",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "I grew up in a washing machine where you just push that $1 in ... there was like 15 people living in the house ... that washing machine's gonna be used every day, you know, three or four times a day, you know, maybe five, 10 times ... just imagine that you got something that is not suitable for that sort of a huge usage. And I really like your project. You are really considering that.",
+     "timestamp": "00:10:00",
+     "context": "Jimmy explaining why commercial-grade washing machines matter in overcrowded houses, directly endorsing the Goods washing machine project.",
+     "themes": [
+      "washing-clean",
+      "product-durability",
+      "family-kids"
+     ],
+     "domain": "rest-health",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "When white man first came to here, they moved, moved us around like cattle ... and over the 75, 70 years or 80 years, someone's been doing something for us mob, you know? And then building something and making decisions for us mob ... we got a broker that cycle ... other people telling us what's best for our community.",
+     "timestamp": "00:06:00",
+     "context": "Jimmy, chairperson of the Wilya Janta housing project, on why Indigenous-led design has taken so long in Australia.",
+     "themes": [
+      "never-asked",
+      "design-in-community",
+      "country-culture"
+     ],
+     "domain": "self-determination",
+     "strength": "deck",
+     "sensitivity": "'we got a broker that cycle' is the transcriber's rendering of 'we've got to break that cycle' \u2014 verify against audio before quoting; historical dispossession content, keep whole and in his voice"
+    },
+    {
+     "text": "Anything from a Holden car to a fridge or a washing machine or TV, it just costs more, you know, in these remote communities and especially the fridges and the washing machine ... they always broke down. But it costs people a lot more if they're not buying the right material ... when you go in a remote community, there's not much job ... they leaning on very small income.",
+     "timestamp": "00:12:00",
+     "context": "Jimmy on the poverty premium: remote people on the smallest incomes pay the most for goods that fail fastest.",
+     "themes": [
+      "system-failure",
+      "product-durability"
+     ],
+     "domain": "dignity-safety",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "Looking at how much plastic that get used in a country and get ended up in some gutter or on some beach somewhere ... it doesn't broke down as other material does ... I really, really love that, looking after country.",
+     "timestamp": "00:11:00",
+     "context": "Jimmy connecting the recycled-plastic materials in Goods products to caring for Country.",
+     "themes": [
+      "country-culture"
+     ],
+     "domain": "circular-economy",
+     "strength": "strong",
+     "sensitivity": null
+    },
+    {
+     "text": "I'm still happy that, you know, where people can use our ideas ... long as it's helping, benefit our people ... but I got an issue with someone using our word to benefit themself ... more like stealing, I would say ... I'm very supportive around people making difference ... and letting us make those decisions for our people.",
+     "timestamp": "00:24:00",
+     "context": "Jimmy on story and intellectual-property ownership, effectively articulating the Empathy Ledger consent model in his own words.",
+     "themes": [
+      "reciprocity-partnership",
+      "never-asked"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": "lightly trimmed across a halting passage; verify assembly against audio before external use"
+    }
+   ],
+   "themes_present": [
+    {
+     "theme": "washing-clean",
+     "evidence": "Grew up with a $1 coin-op machine serving a 15-person household used up to 10 times a day; endorses the Goods durable washer."
+    },
+    {
+     "theme": "product-durability",
+     "evidence": "Fridges, washers and aircons 'don't last too long' in remote communities and always break down, costing poor households more."
+    },
+    {
+     "theme": "design-in-community",
+     "evidence": "Wilya Janta exists so Warumungu people design their own houses and even certify them themselves."
+    },
+    {
+     "theme": "never-asked",
+     "evidence": "70-80 years of someone else 'making decisions for us mob'; programs from NSW/Victoria run local youth with no Elder involvement."
+    },
+    {
+     "theme": "system-failure",
+     "evidence": "Says billions came into Tennant Creek since the intervention/regional deal 'but we've got very little to show for it'; NT housing wouldn't let Norman flip his own solar switch."
+    },
+    {
+     "theme": "ownership-pathway",
+     "evidence": "Wilya Janta plan: two-three display homes now, whole-NT procedures in 10 years, local people as certifiers of their own houses."
+    },
+    {
+     "theme": "country-culture",
+     "evidence": "Warumungu traditional owner, artifact-making with old fellas from age 19, ceremony, dance group, 'our strengths is our culture, our country and our language'."
+    },
+    {
+     "theme": "elders-protocol",
+     "evidence": "Learned from old fellas making boomerangs and spears; argues Elders and traditional owners should run and be accountable for programs."
+    },
+    {
+     "theme": "reciprocity-partnership",
+     "evidence": "Distinguishes welcome idea-sharing that benefits his people from 'stealing' words for others' benefit; positive on partnering with Goods and Original Power."
+    },
+    {
+     "theme": "making-jobs",
+     "evidence": "Notes there is 'not much job' in remote communities and welfare incomes can't carry the cost load \u2014 the gap Goods employment addresses."
+    },
+    {
+     "theme": "dignity-safety",
+     "evidence": "Brio artist group counters the post-intervention marginalisation of Aboriginal men as 'rapists, molesters, pedophiles'."
+    },
+    {
+     "theme": "family-kids",
+     "evidence": "Overcrowded houses with 6-12 kids and four adults; power runs out every Monday, $100-170 of power debt in summer."
+    }
+   ],
+   "narrative_summary": "Jimmy Frank (wants his Warumungu name, spelling to come from Simon, used going forward) is a Warumungu traditional owner in Tennant Creek: cultural liaison, artist with the Brio men's group, and chairperson of the Wilya Janta Indigenous-led housing project with Simon. His transcript is a sophisticated systems critique \u2014 decisions made for mob for 80 years, billions into Tennant with little to show, houses and appliances not built for overcrowded remote life \u2014 paired with the alternative: local people designing, certifying and owning their own infrastructure. For Goods he gives deck-grade validation of the washing machine thesis (durability under 10-wash-a-day loads), the poverty premium, plastic-as-caring-for-Country, and a near-perfect articulation of the story-ownership model behind the Empathy Ledger.",
+   "analysis_notes": "Speakers are labelled: Ben = interviewer, Speaker 28 = Jimmy (Speaker 29/30 are brief interjections, likely Nic/crew \u2014 attribution of those lines uncertain). Jimmy asked for his traditional name spelling from 'Simon Jaba' (likely Simon Japangardi/Jampijinpa of Wilya Janta) \u2014 get this before any published credit. Names mentioned: Simon, Norman (Frank \u2014 the solar-on-roof CLO story, ABC covered it), Lauren Mellor (transcribed 'Meow'/'Malor') of Original Power, Lucy. The '$3 billion into Tennant Creek' figure is his claim, unverified \u2014 never externalise as fact. 'William Genta/Jan/Agenda' throughout = Wilya Janta. Transcription is rough in places ('broker that cycle' = break that cycle; 'baldman' unclear); all assembled quotes should be checked against audio before leaving internal use. Consistent with canon that transcripts exist for Tennant Creek voices; supports but never claims health outcomes (he says 'our health rate is going really high' as context)."
+  },
+  {
+   "storyteller": "Walter",
+   "transcript_id": "0a1907c5-8f96-4a7d-9c39-12bc2bf63e03",
+   "held": true,
+   "top_quotes": [
+    {
+     "text": "This bed is good. And it's outside this place. On this big shed. And nice and cool wind come in.",
+     "timestamp": null,
+     "context": "Walter on the Goods bed set up under the big shed at Boulder Camp.",
+     "themes": [
+      "rest-sleep-health",
+      "country-culture"
+     ],
+     "domain": "rest-health",
+     "strength": "internal-only",
+     "sensitivity": "PERMANENTLY HELD voice \u2014 internal analysis only, never publish"
+    },
+    {
+     "text": "Good, good, good sleep. I like. No sound. No sound. No people just shouting.",
+     "timestamp": null,
+     "context": "Walter on what a good sleep means to him.",
+     "themes": [
+      "rest-sleep-health",
+      "dignity-safety"
+     ],
+     "domain": "rest-health",
+     "strength": "internal-only",
+     "sensitivity": "PERMANENTLY HELD voice \u2014 internal analysis only, never publish"
+    },
+    {
+     "text": "Yeah, make more. For the people to come and sleep here.",
+     "timestamp": null,
+     "context": "Walter answering whether Goods should make more beds and whether the community would want them.",
+     "themes": [
+      "rest-sleep-health",
+      "family-kids"
+     ],
+     "domain": "rest-health",
+     "strength": "internal-only",
+     "sensitivity": "PERMANENTLY HELD voice \u2014 internal analysis only, never publish; the 'better than mattress just on the ground, eh?' framing that follows is the interviewer's, Walter only agrees"
+    }
+   ],
+   "themes_present": [
+    {
+     "theme": "rest-sleep-health",
+     "evidence": "Sleeps well off the ground on the bed; values quiet, undisturbed sleep away from shouting."
+    },
+    {
+     "theme": "country-culture",
+     "evidence": "Boulder Camp is where he always stayed and schooled; people come from Warburton and South Australia; likes tourists learning about boulder and culture."
+    },
+    {
+     "theme": "dignity-safety",
+     "evidence": "Wants the place cleaned up and wood stocked; good sleep for him means peace and no shouting."
+    },
+    {
+     "theme": "system-failure",
+     "evidence": "Notes the mine is getting 'too close' to Boulder Camp \u2014 an encroachment concern, faintly stated."
+    }
+   ],
+   "narrative_summary": "Walter Young is an older man from Warburton way who has long lived at Boulder Camp (people come there from Warburton and South Australia), where he went to school. His short, gentle transcript is about the simple texture of a good life at camp: a bed under the big shed with cool wind, quiet sleep with no shouting, tea and a feed in the morning. For the Goods story he is direct field evidence that the bed works and is wanted ('make more'), but he is a permanently held voice, so his value is internal grounding only, never external material.",
+   "analysis_notes": "PERMANENTLY HELD \u2014 analyse fully, publish nothing; every quote marked internal-only. Very thin (615 words) and the tail of the transcript is garbled noise (repeated dots, 'Hlecto honey?', a second unidentified voice from 'South Stranga' \u2014 possibly another person entering; attribution there impossible). Interviewer questions are heavily leading; several of Walter's answers are single-word agreements to the interviewer's phrasing (flagged on quote 3). Place details: Boulder Camp, Warburton (transcribed 'Woburton'), mine encroaching too close, tourists from Perth photographing the camp. He mentions owning a mattress, sleeping bag and tent stacked 'really high' inside \u2014 his current sleeping setup alongside the bed."
+  },
+  {
+   "storyteller": "Ivy",
+   "transcript_id": "9e508f22-aa10-4879-9bdf-86ad44039058",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "It's very hard and expensive on Palm or even in Townsville. It's hard for them to bring it over.",
+     "timestamp": "00:00:00",
+     "context": "Ivy on why beds and white goods are so hard to get on Palm Island.",
+     "themes": [
+      "system-failure"
+     ],
+     "domain": "dignity-safety",
+     "strength": "strong",
+     "sensitivity": null
+    },
+    {
+     "text": "Hardly any people around the community haven't got hardly any beds. When they got family members out for siblings.",
+     "timestamp": "00:00:00",
+     "context": "Ivy describing how few households on Palm Island have beds, especially when extended family stays.",
+     "themes": [
+      "rest-sleep-health",
+      "family-kids",
+      "system-failure"
+     ],
+     "domain": "rest-health",
+     "strength": "deck",
+     "sensitivity": "double-negative phrasing is verbatim and slightly garbled \u2014 meaning is 'hardly any people have beds'; keep verbatim or verify audio, never smooth silently"
+    },
+    {
+     "text": "We, I was laying down on the floor, me and my partner, so we got a bed to lay on there, so it's easy for us to get off it. Up, yeah.",
+     "timestamp": "00:01:00",
+     "context": "Ivy on moving from sleeping on the floor with her partner to sleeping on the Goods bed.",
+     "themes": [
+      "rest-sleep-health",
+      "dignity-safety"
+     ],
+     "domain": "rest-health",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "It's just right. For us, for, see, that's even like when you're going out to camp and you can take that out too, sit, lay on the beach, under the shade.",
+     "timestamp": "00:01:00",
+     "context": "Ivy on the bed's portability fitting how her family actually lives \u2014 taking it out camping and to the beach.",
+     "themes": [
+      "country-culture",
+      "family-kids"
+     ],
+     "domain": "rest-health",
+     "strength": "strong",
+     "sensitivity": null
+    },
+    {
+     "text": "I think it's best to work with more community, like people who want to, I haven't got hardly any beds and that, yeah, because most of them, they don't have white goods and everything, and it's very hard for them.",
+     "timestamp": "00:01:00",
+     "context": "Ivy's advice to Goods: keep working with more of the community because most households lack beds and white goods.",
+     "themes": [
+      "reciprocity-partnership",
+      "system-failure"
+     ],
+     "domain": "dignity-safety",
+     "strength": "strong",
+     "sensitivity": null
+    }
+   ],
+   "themes_present": [
+    {
+     "theme": "rest-sleep-health",
+     "evidence": "She and her partner were sleeping on the floor before the bed; 'more better than laying around on the floors'."
+    },
+    {
+     "theme": "dignity-safety",
+     "evidence": "Bed height off the crate makes it easy for people to get up and off \u2014 dignity and mobility, especially for older people."
+    },
+    {
+     "theme": "system-failure",
+     "evidence": "Beds and white goods are prohibitively expensive on Palm Island and hard to freight over from Townsville."
+    },
+    {
+     "theme": "family-kids",
+     "evidence": "Grandchildren over for the beach; sister's children coming for Christmas and New Year \u2014 beds absorb family surges."
+    },
+    {
+     "theme": "country-culture",
+     "evidence": "The bed goes out to camp and onto the beach under the shade \u2014 it fits life lived outdoors on the island."
+    },
+    {
+     "theme": "reciprocity-partnership",
+     "evidence": "Explicitly tells Goods to work with more community members who want beds."
+    },
+    {
+     "theme": "product-durability",
+     "evidence": "Notes the crate base is easier than screw-together bed frames and was easy to make."
+    },
+    {
+     "theme": "design-in-community",
+     "evidence": "Her feedback on ease of assembly and crate-vs-screws is lived product design input from community."
+    }
+   ],
+   "narrative_summary": "Ivy is a grandmother on Palm Island with grandchildren around and a sister's family arriving for Christmas \u2014 a house where extended family flows through. Her short transcript is a clean demand-and-impact story: beds and white goods are unaffordable and hard to freight to the island, most households go without, and she and her partner were sleeping on the floor before the Goods bed. She gives Goods the freight/poverty-premium evidence, the floor-to-bed moment, and the portability insight (camp, beach, shade) that shows the design fits island life.",
+   "analysis_notes": "Only 299 words but almost every line is usable; single-speaker transcript (interviewer questions removed), so context for some fragments is missing \u2014 'She buy white goods from there in the store' has an unclear referent. The bed described is the crate-based Basket Bed ('good that you've got the crate to put it on', 'this crate is more easier'), not the Stretch Bed \u2014 do not attach these quotes to Stretch Bed marketing. Several sentences are grammatically fragmentary; per hard rules keep verbatim rather than smoothing. Place: Palm Island, freight from Townsville. No surname in header \u2014 confirm identity/consent record before any external use."
+  },
+  {
+   "storyteller": "Mark",
+   "transcript_id": "df17b0c7-fc3d-479d-b835-68fdbca5c8c8",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "I reckon it's good yeah, I feel I sleep comfortable.",
+     "timestamp": null,
+     "context": "Mark's verdict on the Goods bed after trying it in Mount Isa.",
+     "themes": [
+      "rest-sleep-health"
+     ],
+     "domain": "rest-health",
+     "strength": "supporting",
+     "sensitivity": null
+    },
+    {
+     "text": "Look, we put together like, went to like a, tied up with a little plastic, like a crate. Yeah, it's all crates and we joined them up together and yeah, make it look like a single bunker ... Five or 10 minutes, just five minutes, eight minutes.",
+     "timestamp": null,
+     "context": "Mark describing building the crate bed himself and how quickly it went together.",
+     "themes": [
+      "making-jobs",
+      "design-in-community"
+     ],
+     "domain": "circular-economy",
+     "strength": "supporting",
+     "sensitivity": null
+    },
+    {
+     "text": "Yeah, I reckon it'll last a long time, yeah. ... Yeah, I reckon, yeah. Couple other fellas maybe want some.",
+     "timestamp": null,
+     "context": "Mark on durability and whether other fellas in Mount Isa would want the bed.",
+     "themes": [
+      "product-durability"
+     ],
+     "domain": "rest-health",
+     "strength": "supporting",
+     "sensitivity": "answers closely track the interviewer's leading questions ('you'll last a long time you reckon?') \u2014 treat as assent, not spontaneous testimony"
+    }
+   ],
+   "themes_present": [
+    {
+     "theme": "rest-sleep-health",
+     "evidence": "Sleeps on a single bunk he's 'having a problem with'; finds the Goods bed comfortable and would sleep on it every night."
+    },
+    {
+     "theme": "making-jobs",
+     "evidence": "Helped assemble the crate bed himself in five to ten minutes."
+    },
+    {
+     "theme": "product-durability",
+     "evidence": "Reckons the bed will last a long time (in response to a leading question)."
+    },
+    {
+     "theme": "design-in-community",
+     "evidence": "First-hand assembly feedback: joining crates was quick and between hard and easy."
+    },
+    {
+     "theme": "country-culture",
+     "evidence": "Identifies his country as the Northern Territory though he lives in Mount Isa \u2014 mobility between town and country."
+    }
+   ],
+   "narrative_summary": "Mark is a Northern Territory man living in Mount Isa who tried and helped assemble a crate bed during a community build. His very short transcript is a simple product test: his current single bunk gives him problems, the new bed is comfortable, went together in five to ten minutes, and he reckons a couple of other fellas would want one. He gives Goods light supporting evidence of demand and buildability in Mount Isa, nothing deck-grade.",
+   "analysis_notes": "Thin transcript (389 words), heavily interviewer-led \u2014 most answers are short assents to the interviewer's phrasing, so nothing here reaches deck strength. Only 3 quotes supplied rather than padding to 5. No surname; identity/consent record needed before any use. The bed is the crate/Basket Bed prototype ('it's all crates and we joined them up together'), not the Stretch Bed \u2014 do not attach to Stretch Bed claims. Minor transcript confusion: he says he lives in Mount Isa but the interviewer's echo 'come up to the Northern Territory' muddles direction of the move; 'single bunker, just queen size' contradicts itself (single vs queen), likely mis-transcription."
+  }
+ ]
 }

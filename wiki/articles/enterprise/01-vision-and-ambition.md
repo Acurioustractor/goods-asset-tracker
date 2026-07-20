@@ -211,7 +211,7 @@ Palm Island is not an abstract market. The repo records it as the largest deploy
 
 ### Tennant Creek
 
-Dianne Stokes is central because she is not only a recipient. She is a co-designer and cultural authority in the work.
+Dianne Stokes is central because she is not only a recipient. She is a design partner and cultural authority in the work.
 
 The current knowledge base records that Dianne:
 

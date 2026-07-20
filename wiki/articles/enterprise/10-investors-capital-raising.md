@@ -52,7 +52,7 @@ It is not yet a modelled raise. It needs a use-of-funds table, tranche logic, ca
 
 | Capital type | Fit for Goods | Watch-outs |
 |---|---|---|
-| Grants | Strong fit for R&D, co-design, early plant proof, evaluation and community engagement. | Can keep Goods batch-funded if not paired with sales and working capital. |
+| Grants | Strong fit for R&D, design-in-community work, early plant proof, evaluation and community engagement. | Can keep Goods batch-funded if not paired with sales and working capital. |
 | Philanthropy | Strong fit for proof, partner support and patient growth. | Needs reporting discipline and clear claims. |
 | Recoverable grants | Possible fit if repayment is patient and tied to credible cashflow. | Dangerous if treated like a grant. |
 | Patient loans | Possible fit for inventory or confirmed-order working capital. | Needs debt-service model and governance. |
