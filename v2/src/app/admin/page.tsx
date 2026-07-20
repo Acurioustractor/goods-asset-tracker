@@ -1,189 +1,183 @@
 import Link from 'next/link';
+import { createServiceClient } from '@/lib/supabase/server';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { canonValue } from '@/lib/data/canon';
-import { WIKI_AREAS, STATUS_LABEL, NEEDS_BEN, type AreaStatus } from '@/lib/data/investor-wiki';
-import { ADMIN_ROUTE_DIRECTORY, ROUTE_STATUS_LABEL, type RouteStatus } from '@/lib/data/admin-routes';
+import { NEEDS_BEN } from '@/lib/data/investor-wiki';
+import MapCard, { type MapCommunity } from './map-card';
+import { ChevronRight, ArrowRight } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
-const STATUS_TONE: Record<AreaStatus, string> = {
-  pending: 'bg-amber-100 text-amber-900',
-  'in-progress': 'bg-primary/10 text-primary',
-  draft: 'bg-emerald-100 text-emerald-900',
-  locked: 'bg-primary text-primary-foreground',
-};
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
-export default function InvestorWikiDashboard() {
+export default async function MapHome() {
+  const supabase = createServiceClient();
+  const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+
+  const [commRes, rollupRes, assetsRes, signalsRes, mediaCountRes] = await Promise.all([
+    supabase.from('communities').select('id, name, state, status, lat, lng, facility_interest'),
+    supabase.from('community_rollup').select('id, deployed_beds'),
+    supabase.from('assets').select('unique_id, community_id, product, quantity').eq('status', 'deployed'),
+    supabase.from('bed_signals').select('asset_id, created_at').gte('created_at', thirtyDaysAgo),
+    supabase.from('content_items').select('id', { count: 'exact', head: true }),
+  ]);
+
+  const rollup = new Map((rollupRes.data || []).map((r) => [r.id as string, r]));
+  const washersByComm = new Map<string, number>();
+  const assetCommunity = new Map<string, string>();
+  for (const a of assetsRes.data || []) {
+    if (!a.community_id) continue;
+    assetCommunity.set(a.unique_id as string, a.community_id as string);
+    if (a.product === 'Washing Machine') {
+      washersByComm.set(a.community_id as string, (washersByComm.get(a.community_id as string) || 0) + ((a.quantity as number) || 1));
+    }
+  }
+  const signalsByComm = new Map<string, number>();
+  for (const sig of signalsRes.data || []) {
+    const cid = assetCommunity.get(sig.asset_id as string);
+    if (cid) signalsByComm.set(cid, (signalsByComm.get(cid) || 0) + 1);
+  }
+
+  const communities: MapCommunity[] = (commRes.data || [])
+    .filter((c) => c.lat != null && c.lng != null)
+    .map((c) => ({
+      id: c.id as string,
+      name: c.name as string,
+      lat: c.lat as number,
+      lng: c.lng as number,
+      beds: (rollup.get(c.id as string)?.deployed_beds as number) || 0,
+      washers: washersByComm.get(c.id as string) || 0,
+      signals30d: signalsByComm.get(c.id as string) || 0,
+      facilityInterest: (c.facility_interest as string) || null,
+      status: c.status as string,
+    }));
+
+  const withBeds = communities.filter((c) => c.beds > 0).sort((a, b) => b.beds - a.beds);
+  const totalSignals = [...signalsByComm.values()].reduce((n, v) => n + v, 0);
+  const changedCount = signalsByComm.size;
+
+  const now = new Date();
+  const dateLabel = `${['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][now.getDay()]} ${now.getDate()} ${MONTHS[now.getMonth()]}`;
+
   const revenue = Number(canonValue('revenue-carveout'));
-  const canonStats: { value: string; label: string }[] = [
-    { value: String(CANONICAL_ASSETS.bedsDeployed), label: 'beds delivered' },
-    { value: String(CANONICAL_ASSETS.stretchBedsDeployed), label: 'Stretch Beds' },
-    { value: String(CANONICAL_ASSETS.washersInCommunity), label: 'washers in community' },
-    { value: `${CANONICAL_ASSETS.plasticKg.toLocaleString()}kg`, label: 'HDPE diverted' },
-    { value: `$${revenue.toLocaleString()}`, label: 'Goods-only revenue · signed' },
+  const mediaCount = mediaCountRes.count ?? 0;
+
+  const canonStats = [
+    { value: String(CANONICAL_ASSETS.bedsDeployed), label: 'beds' },
+    { value: String(CANONICAL_ASSETS.stretchBedsDeployed), label: 'stretch' },
+    { value: String(CANONICAL_ASSETS.washersInCommunity), label: 'washers' },
+    { value: String(CANONICAL_ASSETS.communitiesServed), label: 'communities' },
+    { value: `${CANONICAL_ASSETS.plasticKg.toLocaleString()}kg`, label: 'HDPE' },
   ];
-  const drafted = WIKI_AREAS.filter((a) => a.status === 'draft' || a.status === 'locked').length;
+
+  const tiles = [
+    { name: 'Media Room', sub: `${mediaCount.toLocaleString()} items · tag & add`, href: '/admin/media-library' },
+    { name: 'Money', sub: `$${revenue.toLocaleString()} signed`, href: '/admin/cost-model' },
+    { name: 'Products & Plant', sub: 'Stretch Bed · the plant', href: '/admin/facility' },
+  ];
 
   return (
-    <div className="px-4 md:px-8 py-6 space-y-6 max-w-7xl mx-auto">
-      <header className="flex items-end justify-between gap-4 flex-wrap">
+    <div className="max-w-[1600px] mx-auto space-y-4">
+      {/* Header + canon strip */}
+      <header className="flex items-end justify-between gap-6 flex-wrap">
         <div>
-          <h1 className="font-display text-3xl font-bold">Investor wiki</h1>
-          <p className="text-sm text-muted-foreground mt-1">
-            Every pitch area, one careful pass. Canon-locked figures, cleared voices only.
-          </p>
+          <p className="text-sm text-muted-foreground">{dateLabel}</p>
+          <h1 className="font-display text-3xl font-bold" style={{ fontFamily: 'Georgia, serif' }}>Where things stand</h1>
         </div>
-        <div className="flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-4 py-1.5">
-          <span className="h-2 w-2 rounded-full bg-emerald-600" aria-hidden />
-          <span className="text-xs font-semibold text-emerald-900">Canon locked · drift green</span>
-        </div>
-      </header>
-
-      {/* Canon numbers strip — the only figures allowed on any surface */}
-      <section aria-label="Canonical figures" className="grid grid-cols-2 md:grid-cols-5 gap-3">
-        {canonStats.map((s) => (
-          <div key={s.label} className="rounded-2xl border bg-card shadow-sm px-4 py-3">
-            <div className="font-display text-2xl font-bold text-orange-800 tabular-nums">{s.value}</div>
-            <div className="text-[11px] text-muted-foreground mt-0.5">{s.label}</div>
-          </div>
-        ))}
-      </section>
-
-      {/* Area cards */}
-      <section aria-label="Pitch areas">
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-            The areas — one careful pass each
-          </h2>
-          <p className="text-xs text-muted-foreground">{drafted} of {WIKI_AREAS.length} drafted</p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {WIKI_AREAS.map((a) => (
-            <Link
-              key={a.slug}
-              href={a.href}
-              className="rounded-2xl border bg-card shadow-sm p-4 hover:shadow-md transition-shadow flex flex-col gap-2"
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-display text-sm text-muted-foreground">{a.num}</span>
-                <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold tracking-wide ${STATUS_TONE[a.status]}`}>
-                  {STATUS_LABEL[a.status]}
-                </span>
-              </div>
-              <h3 className="font-display text-lg font-bold leading-tight">{a.title}</h3>
-              <p className="text-xs text-muted-foreground leading-snug">{a.description}</p>
-              <p className="text-[11px] font-semibold text-muted-foreground mt-auto">{a.metric}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* The system row — voices, atlas, playout */}
-      <section aria-label="The system" className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        <Link href="/admin/voice-impact" className="rounded-2xl border bg-card shadow-sm p-4 hover:shadow-md transition-shadow">
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Voice Impact Model</h2>
-          <p className="text-sm leading-relaxed text-muted-foreground">
-            Every transcript deep-analysed: 29 voices, 192 coded quotes, 56 cleared. Portraits, themes,
-            consent flags and linked media, mapped to the five outcome domains.
-          </p>
-          <p className="mt-2 text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Open the voices →</p>
-        </Link>
-        <Link href="/admin/atlas" className="rounded-2xl border bg-card shadow-sm p-4 hover:shadow-md transition-shadow">
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Goods Atlas</h2>
-          <p className="text-sm leading-relaxed text-muted-foreground">
-            The map of everything: communities sized by beds, washers, facility interest, live signals,
-            people and media, one drill-down per place.
-          </p>
-          <p className="mt-2 text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Open the map →</p>
-        </Link>
-        <div className="rounded-2xl border bg-emerald-50/70 border-emerald-200 p-4">
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-emerald-900 mb-2">Playout: 12 of 12 beats ready</h2>
-          <p className="text-sm leading-relaxed text-emerald-900/80">
-            Every narrative beat has its stat, cleared voice, face and media linked. The .pen deck rebuild
-            is unblocked; blueprint in wiki/investor/14-playout-plan.md.
-          </p>
-        </div>
-      </section>
-
-      {/* Needs Ben + consent gate + communities + ops entry */}
-      <section className="grid grid-cols-1 lg:grid-cols-4 gap-3">
-        <div className="lg:col-span-1 rounded-2xl border bg-amber-50/60 p-4">
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Needs Ben</h2>
-          <ul className="space-y-1.5">
-            {NEEDS_BEN.map((n) => (
-              <li key={n.label} className="flex items-start gap-2 text-sm">
-                <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-orange-600 flex-shrink-0" aria-hidden />
-                {n.href ? (
-                  <Link href={n.href} className="hover:underline">{n.label}</Link>
-                ) : (
-                  <span>{n.label}</span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <Link href="/admin/consent" className="rounded-2xl border bg-primary text-primary-foreground p-4 hover:shadow-md transition-shadow">
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-2">Consent gate</h2>
-          <p className="text-sm leading-relaxed text-primary-foreground/80">
-            Held voices stay held. Default-deny. Open the consent worklist before anything ships.
-          </p>
-          <p className="mt-2 text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Open worklist →</p>
-        </Link>
-        <Link href="/admin/communities" className="rounded-2xl border bg-card shadow-sm p-4 hover:shadow-md transition-shadow">
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Communities</h2>
-          <p className="text-sm leading-relaxed text-muted-foreground">
-            Every community: beds by product, washers, outstanding deliveries, signals, people and facility interest.
-          </p>
-          <p className="mt-2 text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Open register →</p>
-        </Link>
-        <Link href="/admin/today" className="rounded-2xl border bg-card shadow-sm p-4 hover:shadow-md transition-shadow">
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Operations</h2>
-          <p className="text-sm leading-relaxed text-muted-foreground">
-            Beds in motion, live field signals, money watch and today&apos;s call — the ops day view.
-          </p>
-          <p className="mt-2 text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Open Today →</p>
-        </Link>
-      </section>
-
-      {/* Complete route directory — every /admin route, dispositioned (Area 9) */}
-      <section aria-label="All admin routes">
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-            Every route — the full directory
-          </h2>
-          <p className="text-xs text-muted-foreground">
-            {ADMIN_ROUTE_DIRECTORY.reduce((n, g) => n + g.routes.length, 0)} routes · wiki/investor/09-admin-ia.md
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
-          {ADMIN_ROUTE_DIRECTORY.map((g) => (
-            <div key={g.group} className="rounded-2xl border bg-card shadow-sm p-4">
-              <h3 className="font-display text-sm font-bold mb-2">{g.group}</h3>
-              <ul className="space-y-1">
-                {g.routes.map((r) => (
-                  <li key={r.href} className="flex items-center justify-between gap-2 text-sm">
-                    <Link href={r.href} className="truncate hover:underline text-foreground">
-                      {r.name}
-                    </Link>
-                    <span className={`shrink-0 rounded-full px-1.5 py-0.5 text-[9px] font-semibold tracking-wide ${ROUTE_TONE[r.status]}`}>
-                      {ROUTE_STATUS_LABEL[r.status]}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+        <div className="flex items-end gap-6">
+          {canonStats.map((s) => (
+            <div key={s.label} className="text-right">
+              <div className="font-display text-2xl font-bold tabular-nums" style={{ fontFamily: 'Georgia, serif' }}>{s.value}</div>
+              <div className="text-[11px] text-muted-foreground">{s.label}</div>
             </div>
           ))}
         </div>
-      </section>
+      </header>
+
+      {/* Body: map + tiles | rail */}
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-4 items-stretch">
+        {/* Left: map + product tiles */}
+        <div className="flex flex-col gap-4 min-w-0">
+          <div className="relative rounded-2xl border bg-[#FBF8F1] overflow-hidden" style={{ minHeight: 460 }}>
+            <MapCard communities={communities} />
+            <Link
+              href="/admin/atlas"
+              className="absolute bottom-3 right-3 rounded-lg bg-card/90 backdrop-blur border px-3 py-1.5 text-xs font-semibold text-primary hover:bg-card shadow-sm flex items-center gap-1"
+            >
+              Open the full Atlas <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+            <div className="absolute bottom-3 left-3 rounded-lg bg-card/90 backdrop-blur border px-3 py-1.5 text-xs text-muted-foreground shadow-sm">
+              {CANONICAL_ASSETS.bedsDeployed} beds · {CANONICAL_ASSETS.washersInCommunity} washers · {CANONICAL_ASSETS.communitiesServed} communities
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {tiles.map((t) => (
+              <Link key={t.name} href={t.href} className="flex items-center justify-between gap-3 rounded-xl border bg-card px-4 py-3 hover:shadow-md transition-shadow">
+                <div className="min-w-0">
+                  <div className="text-sm font-semibold truncate">{t.name}</div>
+                  <div className="text-xs text-muted-foreground truncate">{t.sub}</div>
+                </div>
+                <ChevronRight className="h-4 w-4 text-muted-foreground shrink-0" />
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Right rail */}
+        <div className="flex flex-col gap-4">
+          {/* Needs you */}
+          <div className="rounded-2xl border bg-card p-4">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="font-display text-lg font-bold" style={{ fontFamily: 'Georgia, serif' }}>Needs you</h2>
+              <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-bold text-primary">{NEEDS_BEN.length}</span>
+            </div>
+            <ul className="space-y-2.5">
+              {NEEDS_BEN.slice(0, 5).map((n) => (
+                <li key={n.label} className="flex items-start gap-2.5">
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" aria-hidden />
+                  {n.href ? (
+                    <Link href={n.href} className="text-sm leading-snug hover:underline">{n.label}</Link>
+                  ) : (
+                    <span className="text-sm leading-snug">{n.label}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Changed lately */}
+          <div className="rounded-2xl border bg-card p-4">
+            <h2 className="font-display text-lg font-bold mb-2" style={{ fontFamily: 'Georgia, serif' }}>Changed lately</h2>
+            <p className="text-sm text-muted-foreground">
+              <span className="font-semibold text-foreground tabular-nums">{totalSignals}</span> bed scans across{' '}
+              <span className="font-semibold text-foreground tabular-nums">{changedCount}</span> communities in the last 30 days.
+            </p>
+            <Link href="/admin/bed-signals" className="mt-2 inline-block text-sm font-semibold text-primary hover:underline">See the signals →</Link>
+          </div>
+
+          {/* Communities */}
+          <div className="rounded-2xl border bg-card p-4 flex-1">
+            <h2 className="font-display text-lg font-bold mb-2" style={{ fontFamily: 'Georgia, serif' }}>Communities · {CANONICAL_ASSETS.communitiesServed}</h2>
+            <ul className="space-y-1.5">
+              {withBeds.slice(0, 7).map((c) => (
+                <li key={c.id}>
+                  <Link href={`/admin/communities/${c.id}`} className="flex items-center justify-between gap-2 hover:text-primary transition-colors">
+                    <span className="flex items-center gap-1.5 text-sm truncate">
+                      {c.name}
+                      {c.washers > 0 && <span className="h-1.5 w-1.5 rounded-full bg-[#4E8F88]" aria-hidden />}
+                    </span>
+                    <span className="font-display text-sm font-bold tabular-nums" style={{ fontFamily: 'Georgia, serif' }}>{c.beds}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            {withBeds.length > 7 && (
+              <p className="mt-2 text-xs text-muted-foreground">+ {withBeds.length - 7} more places</p>
+            )}
+            <Link href="/admin/communities" className="mt-2 inline-block text-sm font-semibold text-primary hover:underline">All communities →</Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
-
-const ROUTE_TONE: Record<RouteStatus, string> = {
-  hub: 'bg-orange-100 text-orange-900',
-  active: 'bg-emerald-100 text-emerald-900',
-  absorbed: 'bg-primary/10 text-primary',
-  utility: 'bg-muted text-foreground',
-  stale: 'bg-muted text-muted-foreground',
-  'one-off': 'bg-muted text-muted-foreground',
-};
