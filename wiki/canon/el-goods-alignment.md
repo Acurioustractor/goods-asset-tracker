@@ -46,7 +46,7 @@
 
 Run it after adding/tagging storytellers or photos in Goods; it pushes the enrichment to EL and shows what's newly arrived from EL. First run (2026-07-20) pushed 5 storyteller links; place/nation were already aligned so it was idempotent there.
 
-**Live write-through (next):** the Media Room `POST /api/admin/media-link` can call the same sync for the one tagged item, so tagging in Goods reflects in EL immediately rather than on the next `sync:el`.
+**Live write-through (built):** `POST /api/admin/media-link` calls `lib/data/el-sync.ts` for the tagged item, so tagging in the Media Room reflects in EL immediately — community → EL `country_or_place` + verified nation (Goods-project media only), person → EL `media_storytellers` link (any EL media the person appears in; crm name → project storyteller, unresolved people skipped not guessed). Best-effort: an EL failure never fails the Goods tag, and the response carries an `elSync` note; `npm run sync:el` reconciles the rest (local media, cross-org place). Verified live: community `synced:true`, person `synced:true` (409 = already-linked).
 
 ## The seamless flow (target, mostly in place)
 

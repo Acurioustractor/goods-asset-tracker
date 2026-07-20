@@ -9,6 +9,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/server';
 import { requireAdmin } from '@/lib/auth/admin';
+import { syncMediaLinkToEL } from '@/lib/data/el-sync';
 
 export const runtime = 'nodejs';
 
@@ -99,7 +100,19 @@ export async function POST(request: NextRequest) {
     .single();
 
   if (error) return NextResponse.json({ ok: false, error: error.message }, { status: 500 });
-  return NextResponse.json({ ok: true, link: data });
+
+  // Live write-through to Empathy Ledger: if this media lives in EL, push the tag
+  // there now. Best-effort — a failure never fails the Goods tag; `npm run sync:el`
+  // reconciles anyway. Only community/person on EL-hosted media sync (no file
+  // uploads, no guessed nations/people). See lib/data/el-sync.ts.
+  const elSync = await syncMediaLinkToEL({
+    media_source: body.media_source,
+    media_key: body.media_key,
+    target_type: body.target_type,
+    target_key: body.target_key,
+  });
+
+  return NextResponse.json({ ok: true, link: data, elSync });
 }
 
 // DELETE /api/admin/media-link?id=.. → remove one link.
