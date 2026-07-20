@@ -33,7 +33,7 @@
 
 ### Next
 - [ ] Ben saves Pencil → commit the .pen sweep; apply media_links migration + backfill.
-- [ ] Regenerate `design/deck-photos/map.png` (still 496 beds / 9 places; canon 540/11 incl. Kununurra + Katherine).
+- [x] map.png REGENERATED 2026-07-20 (540/20/11, register per-community counts, SVG source alongside; deck's embedded copy swapped). 5 case-study one-pagers in `wiki/investor/case-studies/`.
 - [ ] Refresh Notion QBE runway gates + fix the Utopia "107 vs 87" line to 147 (day-shift, Ben review).
 - [ ] Notion Community OS ↔ Supabase ↔ GHL sync jobs (end name-matching).
 - [ ] Cleanups: Tony Miles ↔ "Tony (Anyinginyi)" merge; org-as-contact rows (Oranges & Sardines, Our Shed, foundations) → ORG layer; washer register status cleanup (~12 rows) to make 20 query-derivable.
