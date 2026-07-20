@@ -53,6 +53,25 @@ async function mediaCounts(): Promise<Map<string, number>> {
   }
 }
 
+// Voice location string -> communities.id (community pages + Atlas share these ids).
+const COMMUNITY_MATCH: [RegExp, string, string][] = [
+  [/tennant/i, 'tennant-creek', 'Tennant Creek'],
+  [/utopia|arlparra|wenitong/i, 'utopia', 'Utopia Homelands'],
+  [/alice/i, 'alice-springs', 'Alice Springs'],
+  [/palm island/i, 'palm-island', 'Palm Island'],
+  [/maningrida/i, 'maningrida', 'Maningrida'],
+  [/kalgoorlie|goldfields/i, 'kalgoorlie', 'Kalgoorlie'],
+  [/darwin/i, 'darwin', 'Darwin'],
+  [/katherine/i, 'katherine', 'Katherine'],
+  [/kununurra/i, 'kununurra', 'Kununurra'],
+  [/mount isa|mt isa/i, 'mt-isa', 'Mt Isa'],
+];
+function communityFor(location: string | null, name: string): { id: string; label: string } | null {
+  const hay = `${location ?? ''} ${name}`;
+  for (const [re, id, label] of COMMUNITY_MATCH) if (re.test(hay)) return { id, label };
+  return null;
+}
+
 export default async function VoiceImpactPage() {
   const media = await mediaCounts();
   const voices = VOICE_IMPACT.voices;
@@ -103,6 +122,33 @@ export default async function VoiceImpactPage() {
           </div>
         ))}
       </div>
+
+      {/* Portrait wall — every voice, at a glance */}
+      <section>
+        <h2 className="font-serif text-xl text-stone-900">Every voice</h2>
+        <div className="mt-4 flex flex-wrap gap-4">
+          {voices.map((v) => (
+            <a key={v.name} href={`#voice-${v.name.replace(/[^a-zA-Z]+/g, '-')}`} className="group w-24 text-center">
+              {v.portrait ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={v.portrait}
+                  alt={v.name}
+                  className={`mx-auto h-20 w-20 rounded-full object-cover ring-2 transition group-hover:ring-orange-600 ${v.held ? 'ring-red-300 grayscale' : v.staff ? 'ring-stone-300' : v.funder ? 'ring-sky-300' : 'ring-stone-200'}`}
+                />
+              ) : (
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-stone-200 font-serif text-xl text-stone-600 ring-2 ring-stone-200 group-hover:ring-orange-600">
+                  {v.name.split(' ').map((p) => p[0]).slice(0, 2).join('')}
+                </div>
+              )}
+              <div className="mt-1.5 truncate text-[11px] font-medium text-stone-700">{v.name}</div>
+              <div className="text-[10px] text-stone-400">
+                {v.transcriptCount}T · {(v.totalChars / 1000).toFixed(1)}k ch
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
 
       {/* Domain coverage */}
       <section>
@@ -166,8 +212,13 @@ export default async function VoiceImpactPage() {
             const best = vq.find((q) => q.strength === 'deck') ?? vq[0];
             const vThemes = [...new Set(v.transcripts.flatMap((t) => t.themesPresent.map((x) => x.theme)))];
             const photos = media.get(v.name) ?? 0;
+            const community = communityFor(v.location, v.name);
             return (
-              <div key={v.name} className={`rounded-lg border p-4 ${v.held ? 'border-red-200 bg-red-50/40' : 'border-stone-200'}`}>
+              <div
+                key={v.name}
+                id={`voice-${v.name.replace(/[^a-zA-Z]+/g, '-')}`}
+                className={`scroll-mt-6 rounded-lg border p-4 ${v.held ? 'border-red-200 bg-red-50/40' : 'border-stone-200'}`}
+              >
                 <div className="flex items-start gap-3">
                   <div className="shrink-0 text-center">
                     {v.portrait ? (
@@ -194,7 +245,14 @@ export default async function VoiceImpactPage() {
                       {v.funder && <span className="rounded-full bg-sky-100 px-2 py-0.5 text-[10px] font-semibold text-sky-800">FUNDER WITNESS</span>}
                     </div>
                     <div className="text-xs text-stone-500">
-                      {v.location ?? 'location unrecorded'} · {v.transcriptCount} transcript{v.transcriptCount > 1 ? 's' : ''} ·{' '}
+                      {community ? (
+                        <Link href={`/admin/communities/${community.id}`} className="text-orange-800 hover:underline">
+                          {community.label}
+                        </Link>
+                      ) : (
+                        v.location ?? 'location unrecorded'
+                      )}{' '}
+                      · {v.transcriptCount} transcript{v.transcriptCount > 1 ? 's' : ''} ·{' '}
                       {v.totalWords.toLocaleString()} words · {v.totalChars.toLocaleString()} characters
                       {photos > 0 ? ` · ${photos} linked photo${photos > 1 ? 's' : ''}` : ''}
                     </div>

@@ -112,6 +112,33 @@ if (EL_URL && EL_KEY) {
   } catch (e) { console.log('EL junction skipped:', e.message); }
 } else console.log('EL env missing — skipping source 3');
 
+// --- 4. curated video + portrait links (hand-maintained) ---------------------
+const MANUAL_LINKS = [
+  { person: 'Mykel', key: 'v2/public/video/partners/oonchiumpa/mykel-building-the-bed.mp4', type: 'video', title: 'Mykel building his bed at home, in his own voice' },
+  { person: 'Karen Liddle', key: 'v2/public/video/partners/oonchiumpa/karen-liddle-on-beds.mp4', type: 'video', title: 'Karen Liddle on the beds' },
+];
+for (const m of MANUAL_LINKS) {
+  const id = resolvePerson(m.person);
+  if (id) add({ media_source: 'local', media_key: m.key, media_type: m.type, title: m.title, target_type: 'person', target_key: id, source: 'manual', consent_status: 'cleared' });
+  else unresolved.push(`manual person "${m.person}"`);
+}
+
+// --- 5. EL portraits as person photos ---------------------------------------
+if (EL_URL && EL_KEY) {
+  try {
+    const res = await fetch(`${EL_URL}/rest/v1/storytellers?select=id,display_name,profile_image_url,public_avatar_url&limit=2000`, { headers: { apikey: EL_KEY, Authorization: `Bearer ${EL_KEY}` } });
+    if (res.ok) {
+      const ALIAS = { 'shane bloomfield': 'shayne bloomfield', 'kirsty bloomfield': 'kristy bloomfield' };
+      for (const s of await res.json()) {
+        const url = s.profile_image_url || s.public_avatar_url;
+        if (!url) continue;
+        const id = contactByName.get(ALIAS[norm(s.display_name)] || norm(s.display_name));
+        if (id) add({ media_source: 'external', media_key: url, media_type: 'photo', title: `${s.display_name} portrait (EL)`, target_type: 'person', target_key: id, source: 'el-portrait' });
+      }
+    }
+  } catch { /* portraits are best-effort */ }
+}
+
 // --- dedupe + report ---------------------------------------------------------
 const seen = new Set();
 const unique = rows.filter((r) => {
