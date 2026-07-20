@@ -9,6 +9,7 @@ import { CommunityMetaForm } from './community-meta-form';
 import { getCommunityVoices, getCommunityStories } from '@/lib/data/community-stories';
 import CommunityPresent, { type PresentSlide } from './community-present';
 import { getMediaLinksFor } from '@/lib/data/media-links';
+import { StorytellerAvatar } from '@/components/storyteller-avatar';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -575,14 +576,7 @@ export default async function CommunityDetailPage({
             <div className="flex flex-wrap gap-2">
               {storytellers.map((v) => (
                 <span key={v.name} className="flex items-center gap-2 rounded-full border bg-card px-3 py-1.5 text-sm">
-                  {v.portrait ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={v.portrait} alt="" className="h-6 w-6 rounded-full object-cover" loading="lazy" />
-                  ) : (
-                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-muted text-[10px] font-semibold text-muted-foreground">
-                      {v.name.slice(0, 1)}
-                    </span>
-                  )}
+                  <StorytellerAvatar name={v.name} src={v.portrait} size={24} />
                   <span className="font-medium">{v.name}</span>
                   {v.elder && <span className="rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-semibold text-primary">Elder</span>}
                 </span>

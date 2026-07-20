@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import type { Metadata } from 'next';
 import { getGoodsStorytellers, slugify } from '@/lib/storytellers';
+import { StorytellerAvatar } from '@/components/storyteller-avatar';
 
 export const metadata: Metadata = {
   title: 'Storytellers — Goods on Country',
@@ -61,21 +61,12 @@ export default async function StorytellersIndex() {
                   className="group block h-full overflow-hidden rounded-xl border border-stone-200 bg-white transition-all hover:-translate-y-0.5 hover:border-amber-300 hover:shadow-md"
                 >
                   <div className="flex gap-3 p-4">
-                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full bg-stone-100">
-                      {s.avatarUrl ? (
-                        <Image
-                          src={s.avatarUrl}
-                          alt={s.displayName}
-                          fill
-                          className="object-cover"
-                          sizes="56px"
-                        />
-                      ) : (
-                        <span className="flex h-full w-full items-center justify-center text-lg font-semibold text-stone-400">
-                          {s.displayName.charAt(0)}
-                        </span>
-                      )}
-                    </div>
+                    <StorytellerAvatar
+                      name={s.displayName}
+                      src={s.avatarUrl}
+                      size={56}
+                      className="shrink-0"
+                    />
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1.5">
                         <h2 className="truncate font-display text-base font-medium text-stone-900 group-hover:text-amber-700">

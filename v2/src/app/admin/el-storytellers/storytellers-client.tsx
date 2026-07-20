@@ -2,44 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import type { GoodsStorytellerProfile } from '@/lib/empathy-ledger/client';
-
-function initials(name: string): string {
-  return name.split(/\s+/).map((w) => w[0]).filter(Boolean).slice(0, 2).join('').toUpperCase();
-}
-
-// EL proxy URLs won't render in a browser <img> (they error even though a
-// server fetch follows the redirect chain), so stream external images through
-// our same-origin /api/media-proxy. Local /paths pass through untouched.
-function proxied(url: string): string {
-  return /^https?:\/\//.test(url) ? `/api/media-proxy?src=${encodeURIComponent(url)}` : url;
-}
-
-function Portrait({ url, name, size }: { url: string | null; name: string; size: number }) {
-  const [broken, setBroken] = useState(false);
-  if (url && !broken) {
-    // eslint-disable-next-line @next/next/no-img-element
-    return (
-      <img
-        src={proxied(url)}
-        alt={name}
-        width={size}
-        height={size}
-        referrerPolicy="no-referrer"
-        onError={() => setBroken(true)}
-        className="rounded-full object-cover bg-muted"
-        style={{ width: size, height: size }}
-      />
-    );
-  }
-  return (
-    <div
-      className="rounded-full bg-muted text-muted-foreground flex items-center justify-center font-semibold"
-      style={{ width: size, height: size, fontSize: size * 0.34 }}
-    >
-      {initials(name)}
-    </div>
-  );
-}
+import { StorytellerAvatar } from '@/components/storyteller-avatar';
 
 function StatusPill({ status, isPublic }: { status: string; isPublic: boolean }) {
   const cleared = status === 'published' && isPublic;
@@ -128,7 +91,7 @@ export default function StorytellersClient({
               className="group text-left rounded-2xl border border-border bg-card p-4 hover:border-primary/50 hover:shadow-sm transition"
             >
               <div className="flex flex-col items-center text-center">
-                <Portrait url={p.portraitUrl} name={p.name} size={88} />
+                <StorytellerAvatar src={p.portraitUrl} name={p.name} size={88} />
                 <div className="mt-3 font-semibold text-foreground leading-tight">{p.name}</div>
                 {p.isElder && <span className="mt-1 rounded-full bg-purple-100 text-purple-800 px-2 py-0.5 text-[10px] font-medium">Elder</span>}
                 {p.location && <div className="mt-1 text-xs text-muted-foreground">{p.location}</div>}
@@ -163,7 +126,7 @@ export default function StorytellersClient({
                 >
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-3">
-                      <Portrait url={p.portraitUrl} name={p.name} size={36} />
+                      <StorytellerAvatar src={p.portraitUrl} name={p.name} size={36} />
                       <span className="font-medium text-foreground">{p.name}</span>
                       {p.isElder && <span className="rounded-full bg-purple-100 text-purple-800 px-1.5 py-0.5 text-[9px] font-medium">Elder</span>}
                     </div>
@@ -200,7 +163,7 @@ export default function StorytellersClient({
 
             <div className="p-6">
               <div className="flex items-start gap-4">
-                <Portrait url={open.portraitUrl} name={open.name} size={72} />
+                <StorytellerAvatar src={open.portraitUrl} name={open.name} size={72} />
                 <div className="min-w-0">
                   <h2 className="text-xl font-bold text-foreground flex items-center gap-2 flex-wrap">
                     {open.name}

@@ -12,6 +12,7 @@ import { communityMedia } from '@/lib/data/community-media';
 import { resolveCommunityMedia } from '@/lib/data/community-media-resolver';
 import { communityFunding } from '@/lib/data/community-funding';
 import { getCommunityVoices } from '@/lib/data/community-stories';
+import { StorytellerAvatar } from '@/components/storyteller-avatar';
 import { isClearedForExternal } from '@/lib/data/cleared-voices';
 import { getGoodsStorytellers, slugify } from '@/lib/storytellers';
 import { makeCommunityMatcher } from '@/lib/data/community-match';
@@ -280,18 +281,12 @@ export default async function CommunityPage({ params }: PageProps) {
                     href={`/storytellers/${tellerSlug}`}
                     className="flex items-center gap-3 rounded-lg border border-stone-200 bg-white p-3 transition-colors hover:border-amber-300 hover:bg-amber-50/40"
                   >
-                    <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-amber-100">
-                      {portrait ? (
-                        <Image src={portrait} alt={t.displayName} fill sizes="48px" className="object-cover" />
-                      ) : t.avatarUrl ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={t.avatarUrl} alt={t.displayName} loading="lazy" className="h-full w-full object-cover" />
-                      ) : (
-                        <span className="flex h-full w-full items-center justify-center font-display text-lg text-amber-800">
-                          {t.displayName.charAt(0)}
-                        </span>
-                      )}
-                    </span>
+                    <StorytellerAvatar
+                      name={t.displayName}
+                      src={portrait || t.avatarUrl}
+                      size={48}
+                      className="shrink-0"
+                    />
                     <span className="min-w-0">
                       <span className="block truncate font-medium text-stone-900">
                         {t.displayName}
