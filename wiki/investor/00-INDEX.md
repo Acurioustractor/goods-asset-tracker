@@ -19,6 +19,8 @@
 | 7 | Photos + videos — full media inventory (incl. Nic plant walkthrough, Sinnae, Mykel, Karen videos) | `07-media.md` | DRAFT 2026-07-20 — 37 deck images + 134 starred mapped; Mykel/Karen videos found, Sinnae NOT found, May-trip footage confirmed absent; tagging effectively unstarted (1 image); media_links seed plan inside |
 | 8 | Deck slide-by-slide review (`design/goods-funder-deck.html`) | `08-deck-review.md` | SWEPT 2026-07-20 — HTML deck + .pen deck/one-pagers on 540/177/20/11/3,540 (.pen pending editor save to disk) |
 | 12 | Voice-Led Impact Model (transcripts → themes → domains → QBE areas; methodology, case studies, EL philosophy) | `12-voice-impact-model.md` | BUILT 2026-07-20 — 29 voices/191 quotes; research: `voice-analysis/RESEARCH-impact-model-alignment.md`; flagship story: `wiki/outputs/2026-07-20-the-voices-are-the-evidence.md` |
+| 13 | Linkage coverage (voices x quotes x media x communities, auto-generated) | `13-linkage-coverage.md` | LIVE 2026-07-20 — regenerate via `v2/scripts/build-linkage-coverage.mjs` |
+| 14 | Playout plan (the 12-beat assembly spine; .pen deck rebuilds LAST from this) | `14-playout-plan.md` | BUILT 2026-07-20 — 7/12 beats READY, 5 wait on clearing pass |
 | 10 | Community counts reconciliation (register vs canon vs Community OS vs Artifact Hub) | `10-community-counts.md` | DRAFT — 4 rulings needed from Ben, no writes made |
 | 9 | Admin IA — route review + wiki-dashboard restructure | `09-admin-ia.md` | IMPLEMENTED 2026-07-19 — new `/admin` wiki dashboard + `/admin/voices` hub + two-wing sidebar; old ops home preserved at `/admin/today`; zero routes removed. Mockups in `design/goods-theory-of-change-v2.pen` |
 
