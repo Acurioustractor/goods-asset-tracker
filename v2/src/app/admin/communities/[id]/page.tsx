@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { createServiceClient } from '@/lib/supabase/server';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -126,7 +126,18 @@ export default async function CommunityDetailPage({
   }
 
   const community = commRes.data as CommunityRow | null;
-  if (!community) notFound();
+  if (!community) {
+    // The canonical key is communities.id (kebab slug). Resolve common variants
+    // so a link built from a name or alias (e.g. "utopia-homelands", "mount-isa")
+    // redirects to the canonical page instead of 404ing.
+    const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const { data: all } = await supabase.from('communities').select('id, name, name_aliases');
+    const match = (all as Array<{ id: string; name: string; name_aliases: string[] | null }> | null)?.find(
+      (c) => slugify(c.name) === id || (c.name_aliases || []).some((a) => slugify(a) === id),
+    );
+    if (match && match.id !== id) redirect(`/admin/communities/${match.id}`);
+    notFound();
+  }
 
   const rollup = (rollupRes.data as RollupRow | null) || {
     id,
