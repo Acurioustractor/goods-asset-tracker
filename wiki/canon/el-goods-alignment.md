@@ -32,6 +32,22 @@
 - **3 misfiled storytellers** — a Goods person filed under Snow Foundation / JusticeHub / Oonchiumpa instead of A Curious Tractor.
 - **The org split** — A Curious Tractor (people, 39 storytellers, 1978 media, 18 projects) and Goods on Country (147 media, 0 storytellers) are separate sibling orgs. People live under ACT; photos under Goods. "Community ownership" would mean re-homing to community orgs — an EL governance decision.
 
+## The two-way sync (`npm run sync:el`)
+
+`v2/scripts/sync-goods-el.py` keeps Goods and EL aligned in both directions. Read-only by default; `npm run sync:el:apply` writes.
+
+**Goods → EL** (Goods enriches EL for media that lives in both — 72 EL-referenced Goods `media_links`):
+- community tag → EL `country_or_place` (place name) + **verified** nation only (never guessed).
+- person tag → crm contact name → EL `project_storyteller` id → `media_storytellers` link. Unresolved people are **skipped, not guessed**, and listed (they're in Goods CRM but not yet EL project storytellers — e.g. Margaret Lloyd, Tanya Turner; adding them is an EL-side create).
+- Never uploads a duplicate file. New story *files* enter through EL's own upload flow.
+
+**EL → Goods** (surface new EL content in Goods):
+- reports EL Goods media not yet referenced by `media_links` (113/148 — mostly EL-only raw media) and EL project storytellers with no Goods CRM match (5), so Goods can reference them.
+
+Run it after adding/tagging storytellers or photos in Goods; it pushes the enrichment to EL and shows what's newly arrived from EL. First run (2026-07-20) pushed 5 storyteller links; place/nation were already aligned so it was idempotent there.
+
+**Live write-through (next):** the Media Room `POST /api/admin/media-link` can call the same sync for the one tagged item, so tagging in Goods reflects in EL immediately rather than on the next `sync:el`.
+
 ## The seamless flow (target, mostly in place)
 
 1. A photo of a person/community lives in **EL** (uploaded via EL, consent-governed).
