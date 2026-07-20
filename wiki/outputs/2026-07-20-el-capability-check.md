@@ -2,6 +2,41 @@
 
 **Date:** 2026-07-20 · **Method:** read-only probe of the EL Supabase (`yvnuayzslukamizrlhwb`) with the Goods EL key, scoped to the Goods project `6bd47c8a-…`. No writes performed. Grounds the "EL as system of record for community/story media" decision ([media-tagging-model.md](../canon/media-tagging-model.md)).
 
+## The actual structure (reviewed 2026-07-20) — people and photos live in DIFFERENT orgs
+
+Before the capability question, the hierarchy itself needs stating, because it is not the clean "A Curious Tractor → Goods → storytellers + photos" tree one might assume. EL is multi-tenant, and Goods' data is split across two sibling organizations plus a set of community-orgs that hold nothing Goods yet.
+
+| Org | Tenant | Projects | Storytellers | Media assets |
+|---|---|---|---|---|
+| **A Curious Tractor** (`db0de7bd`) | `5f1314c1` | **18** (CAMPFIRE, Black Cockatoo Valley, CivicGraph, The Caravan, Gold.Phone, Dad.Lab.25, ALIVE, Community Capital, …) | **39** (the people: Gloria Turner, Alfred Johnson, Mykel, Dianne Stokes, Nicholas Marchesi, Ben Knight, Kristy Bloomfield …) | **1,978** (across all ACT projects) |
+| **Goods on Country** (`c312323e`) | `a1adca53` (own tenant) | **1** (Goods on Country) | **0** | **147** (the Goods photos/videos) |
+
+Key facts:
+- **A Curious Tractor and Goods on Country are SEPARATE, sibling organizations**, each with its own tenant. **Goods is NOT a project under the ACT org** — ACT's 18 projects do not include Goods.
+- **The storytellers (people) live under A Curious Tractor, not under Goods.** Goods' org has **0** storytellers. "Goods storytellers" is a *derived* set: ACT people who happen to link to a Goods photo.
+- **The Goods photos (147) live under the Goods org** and link to ACT's people via the `media_storytellers` junction.
+- Of the 25 storytellers linked to Goods media: **22 under A Curious Tractor**, plus 1 each misfiled under **Snow Foundation, JusticeHub, Oonchiumpa** — a small cross-org hygiene issue.
+- **The community-orgs exist but hold nothing Goods.** Tennant Creek, Kalgoorlie, Palm Island, Utopia (Urapuntja) are all EL organizations, but no Goods storyteller or photo is filed under them. The people sit under ACT, not under their own community.
+
+## What this means for "communities owning their story"
+
+Right now the ownership is: **A Curious Tractor owns the people, the Goods org owns the photos, and the communities own nothing.** So "communities owning their story" is not one move away, it is a governance re-org:
+
+- To have a community own its storytellers, those people would move from (or be co-attributed with) A Curious Tractor to their community org (Gloria Turner → Kalgoorlie, Dianne Stokes → Tennant Creek, etc.).
+- To have a community own its media, the 147 Goods photos would move from (or be co-governed with) the Goods org to the community orgs.
+- Neither is a Goods code change — both are **EL data-governance decisions** for whoever owns the ACT/EL structure.
+
+The alternative, lighter reading: keep people under ACT and photos under Goods (the delivery orgs), and express "community ownership" through **consent and visibility governance** (the `default_visibility`, `consent_granted_by`, `requires_consent_from`, elder-review fields) rather than through org-ownership. That is achievable without re-parenting every record.
+
+## Decisions this surfaces for Ben / the EL owner
+
+1. Is the ACT-org / Goods-org **split intentional**, or should Goods be a project *under* A Curious Tractor (like its other 18)? Right now they are siblings with separate tenants.
+2. Should storytellers be **re-homed to their community orgs** (real community ownership), or stay under ACT with community expressed via consent/visibility?
+3. Fix the **3 misfiled storytellers** (Snow Foundation / JusticeHub / Oonchiumpa → should be ACT or their community).
+4. The Goods **local repo media** is a *third* store on top of these two EL orgs — consolidating "all media to EL" means picking which org owns it.
+
+---
+
 ## Verdict
 
 EL is **technically capable** of being the home for Goods' community and people media. The blocker is not capability, it is that **the governance data is almost entirely unpopulated** for Goods, and two things are genuinely EL-side product decisions. The work is roughly 20% code (Goods can do it) and 80% consent/governance process (human, deliberate, and correct that it is).
