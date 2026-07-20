@@ -1,23 +1,8 @@
-import { getBrandStats, getAllPosts } from './actions';
-import { BrandDashboard } from './brand-dashboard';
+import { redirect } from 'next/navigation';
 
-export const dynamic = 'force-dynamic';
-
-export default async function BrandPage() {
-  const [stats, posts] = await Promise.all([
-    getBrandStats(),
-    getAllPosts(),
-  ]);
-
-  return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">Brand & Content</h1>
-        <p className="mt-1 text-sm text-gray-500">
-          LinkedIn post tracking, brand strategy analysis, and content performance
-        </p>
-      </div>
-      <BrandDashboard stats={stats} posts={posts} />
-    </div>
-  );
+// RETIRED 2026-07-20 (admin consolidation, 58→~19 routes). The old implementation
+// is preserved in ./legacy-page.tsx and git history. See the keep/fold/retire table
+// in wiki/outputs/2026-07-20-admin-see-do-public-sweep.md.
+export default function RetiredPage() {
+  redirect('/admin');
 }
