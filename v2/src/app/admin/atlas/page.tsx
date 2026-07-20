@@ -6,21 +6,27 @@ export const dynamic = 'force-dynamic';
 
 /**
  * Goods Atlas — full-screen map dashboard. Server side assembles one payload
- * per community (counts, split, signals, people, facility) from the live
- * register + the community-os columns; the client renders the map and drill
- * panel. Design: "Admin — Goods Atlas" frame in goods-theory-of-change-v2.pen.
+ * per community (counts, split, signals, people, facility, MEDIA, VOICES)
+ * from the live register + community-os columns + content_items + the
+ * storytellers table; the client renders the map and drill panel.
  */
 export default async function AtlasPage() {
   const supabase = createServiceClient();
   const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
 
-  const [commRes, rollupRes, assetsRes, signalsRes] = await Promise.all([
+  const [commRes, rollupRes, assetsRes, signalsRes, mediaRes, voicesRes] = await Promise.all([
     supabase
       .from('communities')
       .select('id, name, traditional_name, state, status, lat, lng, facility_interest, facility_notes, key_people, procurement_contacts'),
     supabase.from('community_rollup').select('id, deployed_beds, deployed_machines, ready_beds, allocated_beds, open_demand_qty'),
     supabase.from('assets').select('unique_id, community_id, product, status, quantity').eq('status', 'deployed'),
     supabase.from('bed_signals').select('asset_id, created_at').gte('created_at', thirtyDaysAgo),
+    supabase
+      .from('content_items')
+      .select('id, community_id, url, poster_url, media_type, consent_tier')
+      .not('community_id', 'is', null)
+      .neq('consent_tier', 'red'),
+    supabase.from('storytellers').select('id, community_id, display_name, is_elder, portrait:content_items(url)'),
   ]);
 
   const rollup = new Map((rollupRes.data || []).map((r) => [r.id as string, r]));
@@ -42,11 +48,39 @@ export default async function AtlasPage() {
     if (cid) signals.set(cid, (signals.get(cid) || 0) + 1);
   }
 
+  // Media per community: up to 8 photo thumbs + counts (photos / videos)
+  const media = new Map<string, { photos: string[]; photoCount: number; videoCount: number }>();
+  for (const m of mediaRes.data || []) {
+    const cid = m.community_id as string;
+    const entry = media.get(cid) || { photos: [], photoCount: 0, videoCount: 0 };
+    if (m.media_type === 'video') {
+      entry.videoCount += 1;
+    } else {
+      entry.photoCount += 1;
+      const thumb = (m.poster_url as string) || (m.url as string);
+      if (entry.photos.length < 8 && thumb) entry.photos.push(thumb);
+    }
+    media.set(cid, entry);
+  }
+
+  // Voices per community from the storytellers table (portrait via content_items join)
+  const voices = new Map<string, AtlasCommunity['voices']>();
+  for (const v of voicesRes.data || []) {
+    if (!v.community_id) continue;
+    const list = voices.get(v.community_id as string) || [];
+    const portrait = Array.isArray(v.portrait)
+      ? ((v.portrait[0] as { url?: string } | undefined)?.url ?? null)
+      : ((v.portrait as { url?: string } | null)?.url ?? null);
+    list.push({ name: v.display_name as string, elder: Boolean(v.is_elder), portrait });
+    voices.set(v.community_id as string, list);
+  }
+
   const communities: AtlasCommunity[] = (commRes.data || [])
     .filter((c) => c.lat != null && c.lng != null)
     .map((c) => {
       const r = rollup.get(c.id as string);
       const sp = split.get(c.id as string) || { basket: 0, stretch: 0, washers: 0 };
+      const md = media.get(c.id as string) || { photos: [], photoCount: 0, videoCount: 0 };
       return {
         id: c.id as string,
         name: c.name as string,
@@ -66,6 +100,10 @@ export default async function AtlasPage() {
         facilityNotes: (c.facility_notes as string) || null,
         keyPeople: (c.key_people as AtlasCommunity['keyPeople']) || [],
         procurement: (c.procurement_contacts as AtlasCommunity['procurement']) || [],
+        photos: md.photos,
+        photoCount: md.photoCount,
+        videoCount: md.videoCount,
+        voices: voices.get(c.id as string) || [],
       };
     });
 
