@@ -73,7 +73,7 @@ export default async function CommunitiesPage() {
   const supabase = createServiceClient();
 
   const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
-  const [rollupRes, demandRes, assetsRes, signalsRes, osColsRes] = await Promise.all([
+  const [rollupRes, demandRes, assetsRes, signalsRes, osColsRes, mediaRes, voicesRes] = await Promise.all([
     supabase.from('community_rollup').select('*'),
     supabase
       .from('community_demand')
@@ -90,6 +90,12 @@ export default async function CommunitiesPage() {
     supabase
       .from('communities')
       .select('id, facility_interest, facility_notes, key_people, procurement_contacts, notion_url'),
+    supabase
+      .from('content_items')
+      .select('id, community_id, url, poster_url, media_type, consent_tier')
+      .not('community_id', 'is', null)
+      .neq('consent_tier', 'red'),
+    supabase.from('storytellers').select('id, community_id, display_name, is_elder, portrait:content_items(url)'),
   ]);
 
   if (rollupRes.error) {
@@ -147,6 +153,27 @@ export default async function CommunitiesPage() {
     }
   }
 
+  // Media + voices per community (same assembly as the Atlas drill panel)
+  const mediaByCommunity = new Map<string, { photos: string[]; photoCount: number; videoCount: number }>();
+  for (const m of (mediaRes.data || []) as Array<{ community_id: string; url: string; poster_url: string | null; media_type: string }>) {
+    const entry = mediaByCommunity.get(m.community_id) || { photos: [], photoCount: 0, videoCount: 0 };
+    if (m.media_type === 'video') entry.videoCount += 1;
+    else {
+      entry.photoCount += 1;
+      const thumb = m.poster_url || m.url;
+      if (entry.photos.length < 4 && thumb) entry.photos.push(thumb);
+    }
+    mediaByCommunity.set(m.community_id, entry);
+  }
+  const voicesByCommunity = new Map<string, Array<{ name: string; elder: boolean; portrait: string | null }>>();
+  for (const v of (voicesRes.data || []) as Array<{ community_id: string | null; display_name: string; is_elder: boolean; portrait: { url?: string } | Array<{ url?: string }> | null }>) {
+    if (!v.community_id) continue;
+    const list = voicesByCommunity.get(v.community_id) || [];
+    const portrait = Array.isArray(v.portrait) ? (v.portrait[0]?.url ?? null) : (v.portrait?.url ?? null);
+    list.push({ name: v.display_name, elder: Boolean(v.is_elder), portrait });
+    voicesByCommunity.set(v.community_id, list);
+  }
+
   const signals30d = new Map<string, number>();
   for (const sig of (signalsRes.data || []) as Array<{ asset_id: string }>) {
     const cid = assetCommunity.get(sig.asset_id);
@@ -189,6 +216,38 @@ export default async function CommunitiesPage() {
         </p>
       </header>
 
+      {/* Jump bar — sticky; sections + one chip per community */}
+      <nav className="sticky top-0 z-20 -mx-4 space-y-2 border-b border-border bg-background/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6">
+        <div className="flex flex-wrap gap-2 text-xs font-medium">
+          {[
+            ['#register', 'Register'],
+            ['#cards', 'Community cards'],
+            ['#demand', 'Demand'],
+            ['#expansion', 'Expansion'],
+          ].map(([href, label]) => (
+            <a key={href} href={href} className="rounded-full bg-primary/10 px-3 py-1 text-primary hover:bg-primary/20">
+              {label}
+            </a>
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {sorted.map((r) => (
+            <a
+              key={r.id}
+              href={`#c-${r.id}`}
+              className={`rounded-full border px-2 py-0.5 text-[11px] transition-colors hover:border-primary hover:text-primary ${
+                r.status === 'active' || r.status === 'testing'
+                  ? 'border-border text-foreground'
+                  : 'border-border/60 text-muted-foreground'
+              }`}
+            >
+              {r.name}
+              {r.deployed_beds > 0 && <span className="ml-1 text-muted-foreground">{fmt(r.deployed_beds)}</span>}
+            </a>
+          ))}
+        </div>
+      </nav>
+
       {/* KPIs */}
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
         <Kpi label="Active Communities" value={fmt(activeCount)} sub={`${rows.length} total in register`} />
@@ -199,7 +258,7 @@ export default async function CommunitiesPage() {
       </section>
 
       {/* Communities table */}
-      <section>
+      <section id="register" className="scroll-mt-28">
         <div className="mb-3 flex items-baseline justify-between">
           <h2 className="text-base font-semibold font-display">Communities Register</h2>
           <span className="text-xs text-muted-foreground">Demand minus deployed = gap to fill</span>
@@ -309,22 +368,39 @@ export default async function CommunitiesPage() {
         </div>
       </section>
 
-      {/* People, procurement + facility per community (overlay; migrates to communities columns) */}
-      <section>
+      {/* Community cards: media + voices + people + facility, one card per place */}
+      <section id="cards" className="scroll-mt-28">
         <div className="mb-3 flex items-baseline justify-between">
-          <h2 className="text-base font-semibold font-display">People &amp; Facility</h2>
+          <h2 className="text-base font-semibold font-display">Community cards</h2>
           <span className="text-xs text-muted-foreground">
-            Live from <code>communities</code> columns (seeded 2026-07-19) · procurement contacts badged
+            Photos + voices from <code>content_items</code>/<code>storytellers</code> · people live from <code>communities</code> columns
           </span>
         </div>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {sorted
-            .filter((r) => osProfiles.has(r.id))
+            .filter((r) => osProfiles.has(r.id) || mediaByCommunity.has(r.id) || voicesByCommunity.has(r.id))
             .map((r) => {
-              const os = osProfiles.get(r.id)!;
+              const os = osProfiles.get(r.id) || {
+                id: r.id,
+                facility_interest: null,
+                facility_notes: null,
+                key_people: [],
+                procurement_contacts: [],
+                notion_url: null,
+              };
               const fi = os.facility_interest as keyof typeof FACILITY_LABEL | null;
+              const md = mediaByCommunity.get(r.id);
+              const vv = voicesByCommunity.get(r.id) || [];
               return (
-                <div key={r.id} className="rounded-lg border bg-card p-4">
+                <div key={r.id} id={`c-${r.id}`} className="scroll-mt-28 rounded-lg border bg-card p-4">
+                  {md && md.photos.length > 0 && (
+                    <div className="-mx-4 -mt-4 mb-3 grid grid-cols-4 gap-px overflow-hidden rounded-t-lg">
+                      {md.photos.map((src, i) => (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img key={i} src={src} alt="" className="aspect-square w-full object-cover" loading="lazy" />
+                      ))}
+                    </div>
+                  )}
                   <div className="flex items-start justify-between gap-2">
                     <Link href={`/admin/communities/${r.id}`} className="font-semibold text-foreground hover:text-primary hover:underline">
                       {r.name}
@@ -367,6 +443,35 @@ export default async function CommunitiesPage() {
                       </li>
                     ))}
                   </ul>
+                  {vv.length > 0 && (
+                    <div className="mt-3 border-t border-border pt-2.5">
+                      <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                        Voices ({vv.length})
+                      </p>
+                      <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+                        {vv.slice(0, 8).map((v) => (
+                          <span key={v.name} className="flex items-center gap-1.5 rounded-full bg-muted px-2 py-0.5 text-[11px]" title={v.name}>
+                            {v.portrait ? (
+                              // eslint-disable-next-line @next/next/no-img-element
+                              <img src={v.portrait} alt="" className="h-4 w-4 rounded-full object-cover" loading="lazy" />
+                            ) : null}
+                            {v.name.split(' ')[0]}
+                            {v.elder && <span className="text-primary">·E</span>}
+                          </span>
+                        ))}
+                        {vv.length > 8 && <span className="text-[11px] text-muted-foreground">+{vv.length - 8}</span>}
+                      </div>
+                    </div>
+                  )}
+                  <div className="mt-3 flex items-center justify-between border-t border-border pt-2 text-[11px] text-muted-foreground">
+                    <span>
+                      {md ? `${md.photoCount} photos${md.videoCount ? ` · ${md.videoCount} videos` : ''}` : 'no tagged media'}
+                    </span>
+                    <span className="flex gap-2">
+                      <Link href="/admin/media-library" className="text-primary hover:underline">media</Link>
+                      <Link href={`/admin/communities/${r.id}`} className="text-primary hover:underline">dashboard →</Link>
+                    </span>
+                  </div>
                   {os.notion_url && (
                     <a href={os.notion_url} className="mt-2 inline-block text-[11px] text-muted-foreground underline" target="_blank" rel="noreferrer">
                       Notion record
@@ -379,7 +484,7 @@ export default async function CommunitiesPage() {
       </section>
 
       {/* Demand records */}
-      <section>
+      <section id="demand" className="scroll-mt-28">
         <div className="mb-3 flex items-baseline justify-between">
           <h2 className="text-base font-semibold font-display">Documented Demand</h2>
           <span className="text-xs text-muted-foreground">{demand.length} open records, edit in <code>community_demand</code> table</span>
@@ -428,7 +533,7 @@ export default async function CommunitiesPage() {
       </section>
 
       {/* Expansion target priorities (static — sourced from desk research) */}
-      <section>
+      <section id="expansion" className="scroll-mt-28">
         <div className="mb-3">
           <h2 className="text-base font-semibold font-display">Expansion Priorities (Desk Research)</h2>
           <p className="text-sm text-muted-foreground">
