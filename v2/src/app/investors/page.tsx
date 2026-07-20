@@ -1,38 +1,26 @@
 /**
- * Investor cockpit (/investors) — the SAME verified cost-model engine + skins as
- * /admin/cost-model, but behind the lightweight shared-password gate in proxy.ts
+ * Investor cost story (/investors) — the SAME narrative cost model as
+ * /admin/cost-model, behind the lightweight shared-password gate in proxy.ts
  * (INVESTORS_PASSWORD) instead of the admin email/allowlist auth.
  *
  * This is the door QBE / investment partners click from the Notion QBE Diagnostic
- * pages: one shared password, then the interactive Investment + Mission Control cockpit.
- * All math is locked client-side (no admin data), so nothing auth-gated leaves the
- * engine. Renders standalone (conditional-chrome hides the public site nav on
- * /investors) so the cockpit owns the full viewport, exactly like the admin route.
- *
- * Defaults to the Investment skin (margin waterfall · brokerage · debt-service) —
- * the most decision-relevant view for this audience; Mission Control / Tesla /
- * Terminal are one toggle away and the choice is shareable via ?skin=.
+ * pages. It renders the seven-chapter cost story with honesty labels — no admin
+ * data, no auth-gated content. The interactive skin prototypes it previously
+ * showed were retired 2026-07-20 (archived at _archive/2026-07-20-cost-model-skins/).
  */
-import { Suspense } from 'react';
-import { CostModelWorkspace } from '@/app/admin/cost-model/cost-model-workspace';
+import CostStoryPage from '@/app/admin/cost-model/page';
 
 export const metadata = {
-  title: 'Investor Cockpit',
+  title: 'The Cost Story — Goods on Country',
   description:
-    'Interactive verified bed cost model + investment view. Marginal-cost-first, QBE-ready capital case.',
+    'The Goods cost model as a plain-language narrative: what a bed costs, what stays, and what the capital buys — every figure labelled by how solid it is.',
 };
 
-export default function InvestorsCockpitPage() {
+export default function InvestorsCostStoryPage() {
   return (
-    <div className="w-full px-4 sm:px-6">
-      <Suspense
-        fallback={
-          <div className="py-20 text-center text-sm text-gray-400">Loading cost model…</div>
-        }
-      >
-        <CostModelWorkspace defaultSkin="investment" />
-      </Suspense>
-      <p className="text-xs text-gray-500 text-center py-4">
+    <div className="w-full bg-background px-4 py-10 sm:px-6">
+      <CostStoryPage />
+      <p className="py-4 text-center text-xs text-muted-foreground">
         Catalysing Impact, powered by Social Impact Hub, in partnership with QBE Foundation.
       </p>
     </div>
