@@ -34,7 +34,7 @@ export default function InvestorWikiDashboard() {
         </div>
         <div className="flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-4 py-1.5">
           <span className="h-2 w-2 rounded-full bg-emerald-600" aria-hidden />
-          <span className="text-xs font-semibold text-emerald-900">Canon ec2edad</span>
+          <span className="text-xs font-semibold text-emerald-900">Canon locked · drift green</span>
         </div>
       </header>
 
@@ -52,7 +52,7 @@ export default function InvestorWikiDashboard() {
       <section aria-label="Pitch areas">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-            Pitch areas — 8 passes
+            The areas — one careful pass each
           </h2>
           <p className="text-xs text-muted-foreground">{drafted} of {WIKI_AREAS.length} drafted</p>
         </div>
@@ -74,6 +74,33 @@ export default function InvestorWikiDashboard() {
               <p className="text-[11px] font-semibold text-stone-600 mt-auto">{a.metric}</p>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* The system row — voices, atlas, playout */}
+      <section aria-label="The system" className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <Link href="/admin/voice-impact" className="rounded-2xl border bg-card shadow-sm p-4 hover:shadow-md transition-shadow">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Voice Impact Model</h2>
+          <p className="text-sm leading-relaxed text-muted-foreground">
+            Every transcript deep-analysed: 29 voices, 192 coded quotes, 56 cleared. Portraits, themes,
+            consent flags and linked media, mapped to the five outcome domains.
+          </p>
+          <p className="mt-2 text-[11px] uppercase tracking-wider font-semibold text-stone-500">Open the voices →</p>
+        </Link>
+        <Link href="/admin/atlas" className="rounded-2xl border bg-card shadow-sm p-4 hover:shadow-md transition-shadow">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Goods Atlas</h2>
+          <p className="text-sm leading-relaxed text-muted-foreground">
+            The map of everything: communities sized by beds, washers, facility interest, live signals,
+            people and media, one drill-down per place.
+          </p>
+          <p className="mt-2 text-[11px] uppercase tracking-wider font-semibold text-stone-500">Open the map →</p>
+        </Link>
+        <div className="rounded-2xl border bg-emerald-50/70 border-emerald-200 p-4">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-emerald-900 mb-2">Playout: 12 of 12 beats ready</h2>
+          <p className="text-sm leading-relaxed text-emerald-900/80">
+            Every narrative beat has its stat, cleared voice, face and media linked. The .pen deck rebuild
+            is unblocked; blueprint in wiki/investor/14-playout-plan.md.
+          </p>
         </div>
       </section>
 
