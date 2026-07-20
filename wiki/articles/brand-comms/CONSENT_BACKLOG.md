@@ -54,9 +54,9 @@ These four are in EL, consent confirmed by you, but the existing repo content is
 - **What we have:** placeholder quote in `content.ts` flagged `verified: false // PLACEHOLDER`: "We see this as bigger than beds. It's about families owning the whole thing, the making, the business, the future."
 - **Theme suggestions for capture:**
   - Community ownership transfer (the model: Goods becoming unnecessary)
-  - Co-design and Oonchiumpa's role
+  - Design in community and Oonchiumpa's role
   - Why this matters for Alice / Atnarpa families
-- **Capture brief:** 5-10 minute conversation. Goal: one verified quote (~25-40 words) on community ownership / co-design. Could double as a deck slide quote.
+- **Capture brief:** 5-10 minute conversation. Goal: one verified quote (~25-40 words) on community ownership / design in community. Could double as a deck slide quote.
 - **Coordinate with:** Tanya Turner (Oonchiumpa Manager) or directly via `kristy.bloomfield@oonchiumpa.com.au`.
 - **Photo:** EL profile photo present.
 - **Process step:** book a call. Do not use the placeholder quote externally even if the existing draft sounds like her.

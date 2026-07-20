@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { PLASTIC_KG_PER_BED } from '@/lib/data/products';
 
 export const metadata: Metadata = {
   title: 'Plastic Processing Guide | Goods Wiki',
@@ -51,7 +52,7 @@ export default function PlasticProcessingPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Accepted Plastics</h2>
             <p className="text-gray-600 mb-6">
               The facility processes HDPE (High-Density Polyethylene), identified by the #2
-              recycling symbol. Each Stretch Bed diverts 20kg of HDPE from landfill.
+              recycling symbol. Each Stretch Bed diverts {PLASTIC_KG_PER_BED}kg of HDPE from landfill.
             </p>
 
             <div className="grid md:grid-cols-2 gap-6 mb-6">
@@ -149,7 +150,7 @@ export default function PlasticProcessingPage() {
             <h3 className="text-lg font-semibold text-gray-900 mb-3">Fume Awareness</h3>
             <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
               <p className="text-sm text-yellow-900">
-                <strong>HDPE at 190°C can produce fumes.</strong> Always ensure adequate ventilation
+                <strong>HDPE at 180°C can produce fumes.</strong> Always ensure adequate ventilation
                 when the heat press is running. If you experience headache, dizziness, or nausea,
                 move to fresh air immediately and notify the supervisor. Never heat PVC — it releases
                 toxic chlorine gas.
@@ -229,7 +230,7 @@ export default function PlasticProcessingPage() {
               <div className="border-l-4 border-green-500 pl-4">
                 <h3 className="font-semibold text-lg mb-2">3. Pressing</h3>
                 <p className="text-gray-700">
-                  Close the press and bring to 190°C at ~5,000 PSI. Maintain for 2–3 hours.
+                  Close the press and bring to 180°C at ~5,000 PSI. Maintain for 2–3 hours.
                   Monitor temperature and pressure gauges throughout the cycle.
                 </p>
               </div>

@@ -200,7 +200,7 @@ const snow: PartnerDashboard = {
   audience: 'funder',
   heroLine: 'Where this is heading, and what it takes to get there',
   intro:
-    'Three years ago, Snow backed an idea that was more promise than proof. That backing is in the houses now. We are building a recycled-plastic production economy on Country, designed to transfer into community ownership, with beds and washing machines already in homes across nine communities. This page is a record of what it built, and a map of where it goes next.',
+    'Three years ago, Snow backed an idea that was more promise than proof. That backing is in the houses now. We are building a recycled-plastic production economy on Country, designed to transfer into community ownership, with beds and washing machines already in homes across eleven communities. This page is a record of what it built, and a map of where it goes next.',
   thesisLine:
     'A bed off the floor and clean bedding sit inside the documented prevention chain for rheumatic heart disease. That is what Snow has been backing.',
   goalStatement:
@@ -322,10 +322,10 @@ const snow: PartnerDashboard = {
     {
       heading: 'Done',
       items: [
-        { title: '496 beds delivered across 9 communities' },
+        { title: '540 beds delivered across 11 communities' },
         { title: 'Containerised production plant built (recycled-plastic line)' },
-        { title: '16 washing machines in community' },
-        { title: 'Utopia + Alice Springs trip, May 2026', note: '107 beds that trip' },
+        { title: '20 washing machines in community' },
+        { title: 'Utopia + Alice Springs trip, May 2026', note: '87 beds that trip' },
       ],
     },
   ],
@@ -336,7 +336,7 @@ const snow: PartnerDashboard = {
     { date: 'Aug 2025', title: 'Deadly Heart Trek, Katherine', detail: 'Out on the Katherine visit, 8 August 2025.' },
     { date: 'Jan 2026', title: 'First washing machine given to Dianne Stokes', detail: 'In Tennant Creek. She named it Pakkimjalki Kari in Warumungu.' },
     { date: 'Early 2026', title: 'Selected into QBE Catalysing Impact 2026', detail: 'Blended-finance accelerator run by the Social Impact Hub. Stage 2 in September could bring matched catalytic capital.' },
-    { date: 'May 2026', title: 'Central Australia deployment', detail: 'Utopia + Alice Springs; 107 beds that trip, with Centrecorp as delivery partner.' },
+    { date: 'May 2026', title: 'Central Australia deployment', detail: 'Utopia + Alice Springs; 87 beds that trip, with Centrecorp as delivery partner.' },
     { date: 'Jun 2026', title: 'Oonchiumpa REAL Innovation Fund submission', detail: 'A community-owned Alice Springs facility + jobs pathway, decision pending.' },
     { date: 'To date', title: 'Nine communities, beds in homes, the first plant being commissioned', detail: 'The base the next stage builds on, with a blended raise now underway to scale it.' },
   ],
@@ -400,7 +400,7 @@ const snow: PartnerDashboard = {
       },
       {
         title: 'The rest went out to the homelands',
-        body: '107 beds went out by truck to Utopia Homelands, Arawerr and Ampilatwatja. Oonchiumpa chose which households; local teams led the deliveries; Centrecorp Foundation paid for the materials.',
+        body: '87 beds went out by truck to Utopia Homelands, Arawerr and Ampilatwatja. Oonchiumpa chose which households; local teams led the deliveries; Centrecorp Foundation paid for the materials.',
       },
     ],
     photos: [

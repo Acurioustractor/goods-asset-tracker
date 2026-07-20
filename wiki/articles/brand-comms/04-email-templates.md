@@ -41,7 +41,7 @@ Examples that work:
 >
 > [Optional: warm intro line if referred. Otherwise skip the small talk.]
 >
-> Goods on Country builds essential goods with remote First Nations communities in Australia. We've delivered over 400 Stretch Beds across eight communities and have 107 more on order. The bed flat-packs, weighs 26kg, costs around $600 to make, and is built from recycled HDPE plastic, galvanised steel, and Australian canvas. Every component is community co-designed.
+> Goods on Country builds essential goods with remote First Nations communities in Australia. We've delivered 540 beds across 11 communities (177 Stretch Beds, 363 Basket Beds). The Stretch Bed flat-packs, weighs 26kg, and is built from recycled HDPE plastic, galvanised steel, and Australian canvas. Every component is designed in community.
 >
 > The reason I'm writing: [specific link to their work]. We're [specific stage / ask], and we'd value [specific thing: 30 minutes, an intro, a written response].
 >

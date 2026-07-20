@@ -51,7 +51,7 @@ const STATUS_STYLE: Record<FreshnessResult['status'], { label: string; cls: stri
   fresh: { label: 'Fresh', cls: 'bg-emerald-100 text-emerald-800' },
   aging: { label: 'Aging', cls: 'bg-amber-100 text-amber-800' },
   stale: { label: 'Stale', cls: 'bg-red-100 text-red-800' },
-  unknown: { label: 'Unknown', cls: 'bg-gray-100 text-gray-600' },
+  unknown: { label: 'Unknown', cls: 'bg-muted text-muted-foreground' },
 };
 
 function fmtDate(iso: string | null): string {
@@ -65,13 +65,13 @@ function fmtDate(iso: string | null): string {
 
 function OwnerCard({ s, accent }: { s: SystemOwner; accent: string }) {
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-4">
+    <div className="rounded-lg border border-border bg-card p-4">
       <div className="flex items-center gap-2">
         <span className={`h-2 w-2 rounded-full ${accent}`} />
-        <p className="text-sm font-semibold text-gray-900">{s.name}</p>
+        <p className="text-sm font-semibold text-foreground">{s.name}</p>
       </div>
-      <p className="mt-1 text-xs font-medium text-gray-500">{s.role}</p>
-      <p className="mt-2 text-xs leading-relaxed text-gray-600">{s.sourceOfTruthFor}</p>
+      <p className="mt-1 text-xs font-medium text-muted-foreground">{s.role}</p>
+      <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{s.sourceOfTruthFor}</p>
     </div>
   );
 }
@@ -85,8 +85,8 @@ export default async function OperatingSystemsPage() {
   return (
     <div className="max-w-5xl space-y-12">
       <header>
-        <h1 className="text-2xl font-semibold text-gray-900">Operating Systems</h1>
-        <p className="mt-2 max-w-3xl text-sm text-gray-600">
+        <h1 className="font-display text-2xl font-semibold text-foreground">Operating Systems</h1>
+        <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
           How Goods&apos; systems fit together, who owns which truth, and whether the data behind our
           external claims is fresh. Data flows <strong>one way</strong> into each owner — every system
           is the source of truth for exactly one domain and reads the others; it never restates them.
@@ -95,57 +95,57 @@ export default async function OperatingSystemsPage() {
 
       {/* 1 — Operating-systems map */}
       <section>
-        <h2 className="mb-1 text-lg font-semibold text-gray-900">Operating-systems map</h2>
-        <p className="mb-4 text-sm text-gray-500">
+        <h2 className="font-display mb-1 text-lg font-semibold text-foreground">Operating-systems map</h2>
+        <p className="mb-4 text-sm text-muted-foreground">
           Three data owners feed one narrative; supporting systems sit alongside.
         </p>
 
-        <p className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-400">
+        <p className="mb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
           Data owners — each the single source of truth for one domain
         </p>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
           {dataOwners.map((s) => (
-            <OwnerCard key={s.key} s={s} accent="bg-sky-500" />
+            <OwnerCard key={s.key} s={s} accent="bg-primary" />
           ))}
         </div>
 
-        <p className="my-3 text-center text-xs font-medium text-gray-400">
+        <p className="my-3 text-center text-xs font-medium text-muted-foreground">
           ↓ feed numbers into (never the reverse) ↓
         </p>
 
         <div className="grid grid-cols-1 gap-3">
           {narrative.map((s) => (
-            <div key={s.key} className="rounded-lg border border-violet-200 bg-violet-50 p-4">
+            <div key={s.key} className="rounded-lg border border-primary/20 bg-primary/10 p-4">
               <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-violet-500" />
-                <p className="text-sm font-semibold text-gray-900">{s.name}</p>
-                <span className="text-xs font-medium text-gray-500">— {s.role}</span>
+                <span className="h-2 w-2 rounded-full bg-primary" />
+                <p className="text-sm font-semibold text-foreground">{s.name}</p>
+                <span className="text-xs font-medium text-muted-foreground">— {s.role}</span>
               </div>
-              <p className="mt-2 text-xs leading-relaxed text-gray-600">{s.sourceOfTruthFor}</p>
-              <p className="mt-1 text-xs font-medium text-violet-700">{s.neverSourceFor}</p>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{s.sourceOfTruthFor}</p>
+              <p className="mt-1 text-xs font-medium text-primary">{s.neverSourceFor}</p>
             </div>
           ))}
         </div>
 
-        <p className="mb-2 mt-6 text-xs font-medium uppercase tracking-wide text-gray-400">
+        <p className="mb-2 mt-6 text-xs font-medium uppercase tracking-wide text-muted-foreground">
           Supporting systems
         </p>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
           {support.map((s) => (
-            <OwnerCard key={s.key} s={s} accent="bg-gray-400" />
+            <OwnerCard key={s.key} s={s} accent="bg-muted-foreground" />
           ))}
         </div>
       </section>
 
       {/* 2 — Source-of-truth matrix */}
       <section>
-        <h2 className="mb-1 text-lg font-semibold text-gray-900">Source-of-truth matrix</h2>
-        <p className="mb-4 text-sm text-gray-500">
+        <h2 className="font-display mb-1 text-lg font-semibold text-foreground">Source-of-truth matrix</h2>
+        <p className="mb-4 text-sm text-muted-foreground">
           Where each fact lives. If two surfaces disagree, the owner below wins.
         </p>
-        <div className="overflow-x-auto rounded-lg border border-gray-200">
+        <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full text-left text-sm">
-            <thead className="bg-gray-50 text-xs uppercase tracking-wide text-gray-500">
+            <thead className="bg-muted text-xs uppercase tracking-wide text-muted-foreground">
               <tr>
                 <th className="px-3 py-2 font-medium">System</th>
                 <th className="px-3 py-2 font-medium">Source of truth for</th>
@@ -154,14 +154,14 @@ export default async function OperatingSystemsPage() {
                 <th className="px-3 py-2 font-medium">Where it lives</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-border">
               {SYSTEM_OWNERS.map((s) => (
                 <tr key={s.key} className="align-top">
-                  <td className="px-3 py-3 font-medium text-gray-900">{s.name}</td>
-                  <td className="px-3 py-3 text-gray-600">{s.sourceOfTruthFor}</td>
-                  <td className="px-3 py-3 text-gray-500">{s.reads}</td>
-                  <td className="px-3 py-3 text-gray-600">{s.neverSourceFor}</td>
-                  <td className="px-3 py-3 text-xs text-gray-400">{s.lives}</td>
+                  <td className="px-3 py-3 font-medium text-foreground">{s.name}</td>
+                  <td className="px-3 py-3 text-muted-foreground">{s.sourceOfTruthFor}</td>
+                  <td className="px-3 py-3 text-muted-foreground">{s.reads}</td>
+                  <td className="px-3 py-3 text-muted-foreground">{s.neverSourceFor}</td>
+                  <td className="px-3 py-3 text-xs text-muted-foreground">{s.lives}</td>
                 </tr>
               ))}
             </tbody>
@@ -171,13 +171,13 @@ export default async function OperatingSystemsPage() {
 
       {/* 3 — Data-freshness checklist (live) */}
       <section>
-        <h2 className="mb-1 text-lg font-semibold text-gray-900">Data-freshness checklist</h2>
-        <p className="mb-4 text-sm text-gray-500">
+        <h2 className="font-display mb-1 text-lg font-semibold text-foreground">Data-freshness checklist</h2>
+        <p className="mb-4 text-sm text-muted-foreground">
           Run before any external demo or funder claim. Status is live from Supabase right now.
         </p>
-        <div className="overflow-x-auto rounded-lg border border-gray-200">
+        <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full text-left text-sm">
-            <thead className="bg-gray-50 text-xs uppercase tracking-wide text-gray-500">
+            <thead className="bg-muted text-xs uppercase tracking-wide text-muted-foreground">
               <tr>
                 <th className="px-3 py-2 font-medium">Status</th>
                 <th className="px-3 py-2 font-medium">Domain</th>
@@ -186,7 +186,7 @@ export default async function OperatingSystemsPage() {
                 <th className="px-3 py-2 font-medium">If stale</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-border">
               {freshness.map((f) => {
                 const st = STATUS_STYLE[f.status];
                 return (
@@ -198,22 +198,22 @@ export default async function OperatingSystemsPage() {
                         {st.label}
                       </span>
                     </td>
-                    <td className="px-3 py-3 font-medium text-gray-900">{f.label}</td>
-                    <td className="whitespace-nowrap px-3 py-3 text-gray-600">
+                    <td className="px-3 py-3 font-medium text-foreground">{f.label}</td>
+                    <td className="whitespace-nowrap px-3 py-3 text-muted-foreground">
                       {fmtDate(f.lastUpdated)}
                       {f.ageDays !== null && (
-                        <span className="ml-1 text-xs text-gray-400">({f.ageDays}d)</span>
+                        <span className="ml-1 text-xs text-muted-foreground">({f.ageDays}d)</span>
                       )}
                     </td>
-                    <td className="px-3 py-3 text-gray-600">{f.backsClaim}</td>
-                    <td className="px-3 py-3 text-xs text-gray-500">{f.verify}</td>
+                    <td className="px-3 py-3 text-muted-foreground">{f.backsClaim}</td>
+                    <td className="px-3 py-3 text-xs text-muted-foreground">{f.verify}</td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
         </div>
-        <p className="mt-3 text-xs text-gray-400">
+        <p className="mt-3 text-xs text-muted-foreground">
           Thresholds are per-domain (e.g. CRM stale after 14 days, fleet after 3). &ldquo;Aging&rdquo;
           = past threshold; &ldquo;Stale&rdquo; = more than double it. &ldquo;Unknown&rdquo; = the
           query did not return a row.

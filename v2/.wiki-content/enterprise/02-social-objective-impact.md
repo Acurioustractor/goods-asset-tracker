@@ -145,7 +145,7 @@ His second point is the one funders should not miss:
 
 ![Dianne Stokes in Tennant Creek](/images/people/dianne-stokes.jpg)
 
-Dianne Stokes is central because she is not only a recipient. She is a co-designer and language holder in the Goods story. The current knowledge base records that she:
+Dianne Stokes is central because she is not only a recipient. She is a design partner and language holder in the Goods story. The current knowledge base records that she:
 
 - named Pakkimjalki Kari in Warumungu language,
 - shaped bed design around the fire with family,

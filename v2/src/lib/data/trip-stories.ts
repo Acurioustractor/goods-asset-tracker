@@ -407,7 +407,7 @@ const utopia: TripStory = {
   slug: 'utopia-may-2026',
   title: 'From Alice Springs to Utopia',
   summary:
-    'Three days across Alice Springs, Utopia, Arawerr and Ampilatwatja. Young people built beds in Alice with Oonchiumpa. Local teams led the deliveries out to the homelands. We sat with Elders. 107 beds, materials from Centrecorp Foundation.',
+    'Three days across Alice Springs, Utopia, Arawerr and Ampilatwatja. Young people built beds in Alice with Oonchiumpa. Local teams led the deliveries out to the homelands. We sat with Elders. 87 beds, materials from Centrecorp Foundation.',
   dateline: 'Alice Springs · Utopia Homelands · Arawerr · Ampilatwatja, NT · 20–22 May 2026',
   published: true,
   blocks: [
@@ -443,7 +443,7 @@ const utopia: TripStory = {
         'Two days out the back of the Oonchiumpa office in Alice Springs. Young men and young women, supported by Oonchiumpa workers, built [Stretch Beds](/shop/stretch-bed-single) from flat-pack. Every young person who built one kept one for themselves. The rest got loaded into the truck for the run out to the Utopia homelands the next morning.',
         'Centrecorp Foundation paid for the materials. Oonchiumpa held the program: who got picked up each morning, what the room felt like, which households the rest of the beds would go to. The young people did the building. Oonchiumpa chose where the rest went and we drove the truck out.',
         'Two galvanised steel poles thread through sleeves in heavy-duty Australian canvas and the holes in two X-legs, pressed from recycled HDPE that communities collect. Tension holds it together. The whole thing weighs 26kg, holds 200kg, and assembles in about five minutes with no tools. It replaces a thin mattress on a concrete floor, or a door taken off its hinges and laid flat.',
-        'More than 400 Stretch Beds have gone into homes across the country since 2023. This trip added 107. Most went to households across the Utopia homelands. Four went to two senior Alyawarr brothers at Ampilatwatja.',
+        'Nearly 500 beds have gone into homes across the country since 2023. This trip added 87 Stretch Beds. Most went to households across the Utopia homelands. Four went to two senior Alyawarr brothers at Ampilatwatja.',
       ],
     },
     // Thank-you to Centrecorp Foundation, the partner who funded the
@@ -458,7 +458,7 @@ const utopia: TripStory = {
       body: 'Centrecorp paid for the materials for this build, the ones the young people in Alice put together and the local team delivered to Utopia. They also funded the first batch of beds we delivered to Utopia in October 2025. They are an Aboriginal Trust based in the Northern Territory.',
       cta: 'See the Centrecorp Foundation partnership story',
       metrics: [
-        { value: '107', label: 'beds delivered to Utopia Homelands on this trip' },
+        { value: '87', label: 'beds delivered to Utopia Homelands on this trip' },
       ],
     },
     // Overlay clip: the boys building. Full-bleed background video with text

@@ -24,6 +24,11 @@ type CommunityRow = {
   lng: number | null;
   name_aliases: string[] | null;
   notes: string | null;
+  facility_interest: string | null;
+  facility_notes: string | null;
+  key_people: Array<{ name: string; role?: string; org?: string; storytellerSlug?: string; note?: string }> | null;
+  procurement_contacts: Array<{ name: string; org?: string; note?: string }> | null;
+  notion_url: string | null;
 };
 
 type RollupRow = {
@@ -62,21 +67,21 @@ type DealRow = {
 };
 
 const ASSET_STATUS_STYLE: Record<string, string> = {
-  deployed: 'bg-green-100 text-green-800',
-  ready: 'bg-amber-100 text-amber-800',
-  allocated: 'bg-blue-100 text-blue-800',
-  requested: 'bg-purple-100 text-purple-800',
-  demo: 'bg-pink-100 text-pink-800',
-  retired: 'bg-gray-100 text-gray-700',
+  deployed: 'bg-emerald-50 text-emerald-700',
+  ready: 'bg-primary/15 text-primary',
+  allocated: 'bg-accent/15 text-accent-foreground',
+  requested: 'bg-muted text-muted-foreground',
+  demo: 'bg-accent/10 text-accent-foreground',
+  retired: 'bg-muted text-muted-foreground',
   under_investigation: 'bg-red-100 text-red-800',
 };
 
 const COMMUNITY_STATUS_STYLE: Record<string, string> = {
-  active: 'bg-green-100 text-green-800 border-green-200',
-  testing: 'bg-amber-100 text-amber-800 border-amber-200',
-  exploring: 'bg-blue-100 text-blue-800 border-blue-200',
-  prospect: 'bg-purple-100 text-purple-800 border-purple-200',
-  administrative: 'bg-gray-100 text-gray-700 border-gray-200',
+  active: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+  testing: 'bg-accent/15 text-accent-foreground border-accent/30',
+  exploring: 'bg-primary/10 text-primary border-primary/20',
+  prospect: 'bg-muted text-muted-foreground border-border',
+  administrative: 'bg-muted text-muted-foreground border-border',
 };
 
 function fmt(n: number | null | undefined): string {
@@ -100,7 +105,7 @@ export default async function CommunityDetailPage({
   const [commRes, rollupRes] = await Promise.all([
     supabase
       .from('communities')
-      .select('id, name, traditional_name, state, status, partner, contacts, region, lat, lng, name_aliases, notes')
+      .select('id, name, traditional_name, state, status, partner, contacts, region, lat, lng, name_aliases, notes, facility_interest, facility_notes, key_people, procurement_contacts, notion_url')
       .eq('id', id)
       .maybeSingle(),
     supabase
@@ -113,7 +118,7 @@ export default async function CommunityDetailPage({
   if (commRes.error) {
     return (
       <div className="p-6">
-        <h1 className="text-xl font-bold">Community</h1>
+        <h1 className="text-xl font-bold font-display">Community</h1>
         <p className="mt-3 text-sm text-red-600">Failed to load: {commRes.error.message}</p>
       </div>
     );
@@ -142,7 +147,7 @@ export default async function CommunityDetailPage({
   const escapeForIlike = (s: string) => s.replace(/[%_]/g, (m) => `\\${m}`);
   const orFilter = matchNames.map((n) => `community.ilike.${escapeForIlike(n)}`).join(',');
 
-  const [assetsRes, demandRes, dealsRes, machineAssetsRes] = await Promise.all([
+  const [assetsRes, demandRes, dealsRes, machineAssetsRes, mediaRes, voicesRes] = await Promise.all([
     supabase
       .from('assets')
       .select('unique_id, name, product, status, supply_date, partner_name, quantity, notes')
@@ -167,6 +172,16 @@ export default async function CommunityDetailPage({
       .eq('community_id', id)
       .ilike('product', '%machine%')
       .not('machine_id', 'is', null),
+    supabase
+      .from('content_items')
+      .select('id, url, poster_url, media_type, consent_tier')
+      .eq('community_id', id)
+      .neq('consent_tier', 'red')
+      .limit(60),
+    supabase
+      .from('storytellers')
+      .select('id, display_name, is_elder, portrait:content_items(url)')
+      .eq('community_id', id),
   ]);
 
   const assets = (assetsRes.data || []) as AssetRow[];
@@ -204,6 +219,17 @@ export default async function CommunityDetailPage({
     }
   }
 
+  // Media + registry storytellers for this community
+  type MediaItem = { id: string; url: string; poster_url: string | null; media_type: string };
+  const mediaItems = (mediaRes.data || []) as MediaItem[];
+  const photos = mediaItems.filter((m) => m.media_type !== 'video');
+  const videos = mediaItems.filter((m) => m.media_type === 'video');
+  const storytellers = ((voicesRes.data || []) as Array<{ id: string; display_name: string; is_elder: boolean; portrait: { url?: string } | Array<{ url?: string }> | null }>).map((v) => ({
+    name: v.display_name,
+    elder: Boolean(v.is_elder),
+    portrait: Array.isArray(v.portrait) ? (v.portrait[0]?.url ?? null) : (v.portrait?.url ?? null),
+  }));
+
   // Human stories: compendium (sync) + Empathy Ledger (async, swallow failures)
   const communityMatch = { name: community.name, aliases: aliases };
   const compendiumVoices = getCommunityVoices(communityMatch);
@@ -222,23 +248,23 @@ export default async function CommunityDetailPage({
     <div className="space-y-8 pb-16">
       {/* Header */}
       <header className="space-y-2">
-        <div className="text-xs text-gray-500">
+        <div className="text-xs text-muted-foreground">
           <Link href="/admin/communities" className="hover:underline">Communities</Link>
           <span className="mx-1.5">/</span>
           <span>{community.name}</span>
         </div>
         <div className="flex flex-wrap items-baseline gap-3">
-          <h1 className="text-2xl font-bold tracking-tight">{community.name}</h1>
+          <h1 className="text-2xl font-bold font-display tracking-tight">{community.name}</h1>
           <Badge variant="outline" className="text-xs">{community.state}</Badge>
-          <span className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium ${COMMUNITY_STATUS_STYLE[community.status] || 'bg-gray-100 text-gray-700'}`}>
+          <span className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium ${COMMUNITY_STATUS_STYLE[community.status] || 'bg-muted text-foreground'}`}>
             {community.status}
           </span>
           {community.traditional_name && (
-            <span className="text-sm italic text-gray-500">{community.traditional_name} Country</span>
+            <span className="text-sm italic text-muted-foreground">{community.traditional_name} Country</span>
           )}
           {community.lat && community.lng && (
             <a
-              className="text-xs text-orange-600 hover:underline"
+              className="text-xs text-primary hover:underline"
               href={`https://www.google.com/maps/search/?api=1&query=${community.lat},${community.lng}`}
               target="_blank"
               rel="noreferrer"
@@ -256,6 +282,27 @@ export default async function CommunityDetailPage({
         />
       </header>
 
+      {/* Jump bar */}
+      <nav className="sticky top-0 z-20 -mx-4 border-b border-border bg-background/95 px-4 py-2.5 backdrop-blur sm:-mx-6 sm:px-6">
+        <div className="flex flex-wrap gap-2 text-xs font-medium">
+          {[
+            ['#people', 'People'],
+            ['#demand', `Demand (${demand.length})`],
+            ['#voices', `Voices (${storytellers.length + compendiumVoices.length})`],
+            ['#media', `Media (${photos.length + videos.length})`],
+            ['#assets', `Assets (${assets.length})`],
+            machineAssets.length > 0 ? ['#machines', `Machines (${machineAssets.length})`] : null,
+            ['#deals', `Deals (${deals.length})`],
+          ]
+            .filter((x): x is [string, string] => Boolean(x))
+            .map(([href, label]) => (
+              <a key={href} href={href} className="rounded-full bg-primary/10 px-3 py-1 text-primary hover:bg-primary/20">
+                {label}
+              </a>
+            ))}
+        </div>
+      </nav>
+
       {/* KPIs */}
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Kpi label="Beds Deployed" value={fmt(rollup.deployed_beds)} sub={`${fmt(rollup.deployed_machines)} machines`} />
@@ -264,11 +311,56 @@ export default async function CommunityDetailPage({
         <Kpi label="Demand Gap" value={fmt(gap)} sub={gap > 0 ? 'beds short of demand' : 'fulfilled or no demand'} highlight={gap > 20} />
       </section>
 
+      {/* People & facility — live from communities columns (seeded 2026-07-19) */}
+      {((community.key_people?.length || 0) > 0 || (community.procurement_contacts?.length || 0) > 0 || community.facility_interest) && (
+        <section id="people" className="scroll-mt-24 grid gap-4 md:grid-cols-2">
+          <div className="rounded-lg border bg-card p-4">
+            <h2 className="text-sm font-semibold font-display">People</h2>
+            <ul className="mt-2 space-y-2">
+              {(community.key_people || []).map((p) => (
+                <li key={p.name} className="text-sm">
+                  {p.storytellerSlug ? (
+                    <Link href={`/storytellers/${p.storytellerSlug}`} className="font-medium hover:underline">{p.name}</Link>
+                  ) : (
+                    <span className="font-medium">{p.name}</span>
+                  )}
+                  <span className="text-xs text-muted-foreground">{p.role ? ` · ${p.role}` : ''}{p.org ? ` · ${p.org}` : ''}</span>
+                  {p.note && <div className="text-[11px] text-muted-foreground">{p.note}</div>}
+                </li>
+              ))}
+              {(community.procurement_contacts || []).map((p) => (
+                <li key={p.name} className="text-sm">
+                  <span className="font-medium">{p.name}</span>
+                  {p.org && <span className="text-xs text-muted-foreground"> · {p.org}</span>}
+                  <span className="ml-1.5 rounded-full bg-accent/15 px-1.5 py-0.5 text-[10px] font-semibold text-accent-foreground">procurement</span>
+                  {p.note && <div className="text-[11px] text-muted-foreground">{p.note}</div>}
+                </li>
+              ))}
+            </ul>
+            {community.notion_url && (
+              <a href={community.notion_url} className="mt-2 inline-block text-[11px] text-muted-foreground underline" target="_blank" rel="noreferrer">Notion record</a>
+            )}
+          </div>
+          <div className="rounded-lg border bg-card p-4">
+            <h2 className="text-sm font-semibold font-display">Production facility</h2>
+            {community.facility_interest ? (
+              <p className="mt-2 inline-flex rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 capitalize">{community.facility_interest}</p>
+            ) : (
+              <p className="mt-2 text-sm text-muted-foreground">Not yet assessed.</p>
+            )}
+            {community.facility_notes && <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{community.facility_notes}</p>}
+            <p className="mt-3 text-[11px] text-muted-foreground">
+              Stages: interested → exploring → committed → progressing. Evidence-only, never guessed.
+            </p>
+          </div>
+        </section>
+      )}
+
       {(rollup.active_pipeline_cents > 0 || rollup.won_revenue_cents > 0) && (
-        <section className="rounded-lg border bg-gray-50 px-4 py-3 text-sm text-gray-700">
+        <section className="rounded-lg border bg-muted px-4 py-3 text-sm text-foreground">
           <strong>CRM:</strong>
           {rollup.active_pipeline_cents > 0 && (
-            <span className="ml-2 text-blue-700">{fmtMoney(rollup.active_pipeline_cents)} active pipeline</span>
+            <span className="ml-2 text-primary">{fmtMoney(rollup.active_pipeline_cents)} active pipeline</span>
           )}
           {rollup.won_revenue_cents > 0 && (
             <span className="ml-2 text-emerald-700">{fmtMoney(rollup.won_revenue_cents)} won</span>
@@ -277,25 +369,25 @@ export default async function CommunityDetailPage({
       )}
 
       {/* Demand */}
-      <section className="space-y-3">
+      <section id="demand" className="scroll-mt-24 space-y-3">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <div>
-            <h2 className="text-base font-semibold">Documented Demand</h2>
-            <p className="text-xs text-gray-500">{demand.length} record{demand.length === 1 ? '' : 's'}. Click <em>edit</em> to update; new requests with <strong>+ Log demand</strong>.</p>
+            <h2 className="text-base font-semibold font-display">Documented Demand</h2>
+            <p className="text-xs text-muted-foreground">{demand.length} record{demand.length === 1 ? '' : 's'}. Click <em>edit</em> to update; new requests with <strong>+ Log demand</strong>.</p>
           </div>
           <AddDemandForm communityId={community.id} />
         </div>
         {demand.length === 0 ? (
           <Card>
             <CardContent>
-              <p className="text-sm text-gray-500">No demand logged yet for this community.</p>
+              <p className="text-sm text-muted-foreground">No demand logged yet for this community.</p>
             </CardContent>
           </Card>
         ) : (
           <div className="overflow-x-auto rounded-lg border">
             <table className="w-full text-sm">
-              <thead className="bg-gray-50">
-                <tr className="border-b text-left text-xs uppercase tracking-wider text-gray-500">
+              <thead className="bg-muted">
+                <tr className="border-b text-left text-xs uppercase tracking-wider text-muted-foreground">
                   <th className="py-2 px-3 font-medium">Requested by</th>
                   <th className="hidden sm:table-cell py-2 px-3 font-medium">Product</th>
                   <th className="py-2 px-3 font-medium text-right">Qty</th>
@@ -316,33 +408,53 @@ export default async function CommunityDetailPage({
       </section>
 
       {/* Community voices + Empathy Ledger stories */}
-      {(compendiumVoices.length > 0 || elStories.length > 0) && (
-        <section className="space-y-4">
+      {(compendiumVoices.length > 0 || elStories.length > 0 || storytellers.length > 0) && (
+        <section id="voices" className="scroll-mt-24 space-y-4">
           <div>
-            <h2 className="text-base font-semibold">Community Voices</h2>
-            <p className="text-xs text-gray-500">
+            <h2 className="text-base font-semibold font-display">Community Voices</h2>
+            <p className="text-xs text-muted-foreground">
+              {storytellers.length > 0 && <>{storytellers.length} storyteller{storytellers.length === 1 ? '' : 's'} · </>}
               {compendiumVoices.length} compendium voice{compendiumVoices.length === 1 ? '' : 's'}
               {elStories.length > 0 && <> + {elStories.length} Empathy Ledger {elStories.length === 1 ? 'story' : 'stories'}</>}
             </p>
           </div>
 
+          {storytellers.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {storytellers.map((v) => (
+                <span key={v.name} className="flex items-center gap-2 rounded-full border bg-card px-3 py-1.5 text-sm">
+                  {v.portrait ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={v.portrait} alt="" className="h-6 w-6 rounded-full object-cover" loading="lazy" />
+                  ) : (
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-muted text-[10px] font-semibold text-muted-foreground">
+                      {v.name.slice(0, 1)}
+                    </span>
+                  )}
+                  <span className="font-medium">{v.name}</span>
+                  {v.elder && <span className="rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-semibold text-primary">Elder</span>}
+                </span>
+              ))}
+            </div>
+          )}
+
           {compendiumVoices.length > 0 && (
             <div className="grid gap-3 md:grid-cols-2">
               {compendiumVoices.map((v) => (
-                <div key={v.id} className="rounded-lg border bg-white p-4">
+                <div key={v.id} className="rounded-lg border bg-card p-4">
                   <div className="mb-2">
-                    <div className="font-medium text-gray-900">{v.name}</div>
-                    {v.role && <div className="text-xs text-gray-500">{v.role}</div>}
+                    <div className="font-medium text-foreground">{v.name}</div>
+                    {v.role && <div className="text-xs text-muted-foreground">{v.role}</div>}
                   </div>
                   <div className="space-y-2">
                     {v.quotes.map((q, i) => (
-                      <blockquote key={i} className="border-l-2 border-orange-200 pl-3 text-sm italic text-gray-700">
+                      <blockquote key={i} className="border-l-2 border-primary/25 pl-3 text-sm italic text-foreground">
                         &ldquo;{q}&rdquo;
                       </blockquote>
                     ))}
                   </div>
                   {v.context && (
-                    <p className="mt-3 text-xs text-gray-500 leading-relaxed">{v.context}</p>
+                    <p className="mt-3 text-xs text-muted-foreground leading-relaxed">{v.context}</p>
                   )}
                 </div>
               ))}
@@ -351,22 +463,22 @@ export default async function CommunityDetailPage({
 
           {elStories.length > 0 && (
             <div>
-              <div className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-500">From Empathy Ledger</div>
+              <div className="mb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">From Empathy Ledger</div>
               <div className="grid gap-3 md:grid-cols-2">
                 {elStories.map((s) => (
                   <Link
                     key={s.id}
                     href={`/stories/${s.id}`}
-                    className="block rounded-lg border bg-white p-4 hover:border-orange-300 hover:shadow-sm transition"
+                    className="block rounded-lg border bg-card p-4 hover:border-primary/40 hover:shadow-sm transition"
                   >
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-muted-foreground">
                       {s.storytellerName || s.authorName}
                       {s.publishedAt && ' · '}
                       {s.publishedAt && new Date(s.publishedAt).toLocaleDateString('en-AU', { month: 'short', year: 'numeric' })}
                     </div>
-                    <div className="mt-1 font-medium text-gray-900 line-clamp-2">{s.title}</div>
+                    <div className="mt-1 font-medium text-foreground line-clamp-2">{s.title}</div>
                     {(s.excerpt || s.summary) && (
-                      <p className="mt-2 text-xs text-gray-600 line-clamp-3">{s.excerpt || s.summary}</p>
+                      <p className="mt-2 text-xs text-muted-foreground line-clamp-3">{s.excerpt || s.summary}</p>
                     )}
                   </Link>
                 ))}
@@ -376,19 +488,64 @@ export default async function CommunityDetailPage({
         </section>
       )}
 
-      {/* Assets */}
-      <section className="space-y-3">
+      {/* Media gallery */}
+      <section id="media" className="scroll-mt-24 space-y-3">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <div>
-            <h2 className="text-base font-semibold">Assets at {community.name}</h2>
-            <p className="text-xs text-gray-500">
+            <h2 className="text-base font-semibold font-display">Photos &amp; Video</h2>
+            <p className="text-xs text-muted-foreground">
+              {photos.length} photo{photos.length === 1 ? '' : 's'} · {videos.length} video{videos.length === 1 ? '' : 's'} tagged to this community (red-tier excluded)
+            </p>
+          </div>
+          <Link href="/admin/media-library" className="text-xs font-medium text-primary hover:underline">
+            Curate in media library →
+          </Link>
+        </div>
+        {photos.length === 0 && videos.length === 0 ? (
+          <Card>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">
+                Nothing tagged to {community.name} yet — tag photos and videos in the media library and they appear here.
+              </p>
+            </CardContent>
+          </Card>
+        ) : (
+          <>
+            {photos.length > 0 && (
+              <div className="grid grid-cols-3 gap-1.5 sm:grid-cols-4 lg:grid-cols-6">
+                {photos.slice(0, 18).map((m) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img key={m.id} src={m.poster_url || m.url} alt="" className="aspect-square w-full rounded-lg object-cover" loading="lazy" />
+                ))}
+              </div>
+            )}
+            {photos.length > 18 && (
+              <p className="text-xs text-muted-foreground">Showing 18 of {photos.length} photos.</p>
+            )}
+            {videos.length > 0 && (
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
+                {videos.slice(0, 8).map((m) => (
+                  <video key={m.id} src={m.url} poster={m.poster_url || undefined} controls preload="none" className="aspect-video w-full rounded-lg bg-black object-cover" />
+                ))}
+              </div>
+            )}
+          </>
+        )}
+      </section>
+
+      {/* Assets */}
+      <section id="assets" className="scroll-mt-24 space-y-3">
+        <div className="flex flex-wrap items-baseline justify-between gap-3">
+          <div>
+            <h2 className="text-base font-semibold font-display">Assets at {community.name}</h2>
+            <p className="text-xs text-muted-foreground">
               {assets.length} record{assets.length === 1 ? '' : 's'} matched on <code>{community.name}</code>
               {aliases.length > 0 && <> + aliases {aliases.map((a) => <code key={a} className="ml-1">{a}</code>)}</>}
             </p>
           </div>
           <div className="flex flex-wrap gap-1.5">
             {[...assetStatusCounts.entries()].map(([s, n]) => (
-              <Badge key={s} className={`text-xs ${ASSET_STATUS_STYLE[s] || 'bg-gray-100 text-gray-700'}`}>
+              <Badge key={s} className={`text-xs ${ASSET_STATUS_STYLE[s] || 'bg-muted text-foreground'}`}>
                 {s.replace(/_/g, ' ')}: <span className="ml-1 font-bold">{n}</span>
               </Badge>
             ))}
@@ -397,14 +554,14 @@ export default async function CommunityDetailPage({
         {assets.length === 0 ? (
           <Card>
             <CardContent>
-              <p className="text-sm text-gray-500">No assets matched to this community yet.</p>
+              <p className="text-sm text-muted-foreground">No assets matched to this community yet.</p>
             </CardContent>
           </Card>
         ) : (
           <div className="overflow-x-auto rounded-lg border">
             <table className="w-full text-sm">
-              <thead className="bg-gray-50">
-                <tr className="border-b text-left text-xs uppercase tracking-wider text-gray-500">
+              <thead className="bg-muted">
+                <tr className="border-b text-left text-xs uppercase tracking-wider text-muted-foreground">
                   <th className="py-2 px-3 font-medium">ID</th>
                   <th className="hidden md:table-cell py-2 px-3 font-medium">Name</th>
                   <th className="hidden sm:table-cell py-2 px-3 font-medium">Product</th>
@@ -415,28 +572,28 @@ export default async function CommunityDetailPage({
               </thead>
               <tbody>
                 {assets.slice(0, 100).map((a) => (
-                  <tr key={a.unique_id} className="border-b last:border-0 hover:bg-gray-50">
+                  <tr key={a.unique_id} className="border-b last:border-0 hover:bg-muted">
                     <td className="py-2 px-3 font-mono text-xs">
-                      <Link href={`/admin/assets/${a.unique_id}`} className="text-orange-600 hover:underline">
+                      <Link href={`/admin/assets/${a.unique_id}`} className="text-primary hover:underline">
                         {a.unique_id}
                       </Link>
                     </td>
-                    <td className="hidden md:table-cell py-2 px-3 text-xs text-gray-700">{a.name || '—'}</td>
-                    <td className="hidden sm:table-cell py-2 px-3 text-xs text-gray-600">{a.product || '—'}</td>
+                    <td className="hidden md:table-cell py-2 px-3 text-xs text-foreground">{a.name || '—'}</td>
+                    <td className="hidden sm:table-cell py-2 px-3 text-xs text-muted-foreground">{a.product || '—'}</td>
                     <td className="py-2 px-3">
-                      <Badge className={`text-xs ${ASSET_STATUS_STYLE[a.status || 'unknown'] || 'bg-gray-100 text-gray-700'}`}>
+                      <Badge className={`text-xs ${ASSET_STATUS_STYLE[a.status || 'unknown'] || 'bg-muted text-foreground'}`}>
                         {(a.status || 'unknown').replace(/_/g, ' ')}
                       </Badge>
                     </td>
-                    <td className="hidden md:table-cell py-2 px-3 text-xs text-gray-500">{a.supply_date || '—'}</td>
-                    <td className="hidden lg:table-cell py-2 px-3 text-xs text-gray-500">{a.partner_name || '—'}</td>
+                    <td className="hidden md:table-cell py-2 px-3 text-xs text-muted-foreground">{a.supply_date || '—'}</td>
+                    <td className="hidden lg:table-cell py-2 px-3 text-xs text-muted-foreground">{a.partner_name || '—'}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
             {assets.length > 100 && (
-              <p className="px-3 py-2 text-xs text-gray-500 bg-gray-50 border-t">
-                Showing first 100 of {assets.length}. Full list in <Link href="/admin/assets" className="text-orange-600 hover:underline">Asset Register</Link>.
+              <p className="px-3 py-2 text-xs text-muted-foreground bg-muted border-t">
+                Showing first 100 of {assets.length}. Full list in <Link href="/admin/assets" className="text-primary hover:underline">Asset Register</Link>.
               </p>
             )}
           </div>
@@ -445,13 +602,13 @@ export default async function CommunityDetailPage({
 
       {/* Fleet: washing machines deployed here */}
       {machineAssets.length > 0 && (
-        <section className="space-y-3">
+        <section id="machines" className="scroll-mt-24 space-y-3">
           <div className="flex flex-wrap items-baseline justify-between gap-3">
             <div>
-              <h2 className="text-base font-semibold">Washing Machines</h2>
-              <p className="text-xs text-gray-500">
+              <h2 className="text-base font-semibold font-display">Washing Machines</h2>
+              <p className="text-xs text-muted-foreground">
                 {machineAssets.length} machine{machineAssets.length === 1 ? '' : 's'} deployed.
-                {' '}<Link href="/admin/fleet" className="text-orange-600 hover:underline">Open fleet dashboard ↗</Link>
+                {' '}<Link href="/admin/fleet" className="text-primary hover:underline">Open fleet dashboard ↗</Link>
               </p>
             </div>
             {[...openAlertsByMachine.values()].reduce((s, n) => s + n, 0) > 0 && (
@@ -462,8 +619,8 @@ export default async function CommunityDetailPage({
           </div>
           <div className="overflow-x-auto rounded-lg border">
             <table className="w-full text-sm">
-              <thead className="bg-gray-50">
-                <tr className="border-b text-left text-xs uppercase tracking-wider text-gray-500">
+              <thead className="bg-muted">
+                <tr className="border-b text-left text-xs uppercase tracking-wider text-muted-foreground">
                   <th className="py-2 px-3 font-medium">Asset</th>
                   <th className="py-2 px-3 font-medium">Device</th>
                   <th className="py-2 px-3 font-medium">Status</th>
@@ -480,23 +637,23 @@ export default async function CommunityDetailPage({
                     : 'never';
                   const isSilent = !lastSeen || Date.now() - new Date(lastSeen).getTime() > 7 * 86400000;
                   return (
-                    <tr key={m.unique_id} className="border-b last:border-0 hover:bg-gray-50">
+                    <tr key={m.unique_id} className="border-b last:border-0 hover:bg-muted">
                       <td className="py-2 px-3">
-                        <Link href={`/bed/${m.unique_id}`} className="font-mono text-xs text-orange-600 hover:underline">
+                        <Link href={`/bed/${m.unique_id}`} className="font-mono text-xs text-primary hover:underline">
                           {m.unique_id}
                         </Link>
-                        {m.name && <div className="text-xs text-gray-600">{m.name}</div>}
+                        {m.name && <div className="text-xs text-muted-foreground">{m.name}</div>}
                       </td>
                       <td className="py-2 px-3">
                         <Link
                           href={`/admin/fleet/${encodeURIComponent(m.machine_id)}`}
-                          className="font-mono text-xs text-blue-600 hover:underline"
+                          className="font-mono text-xs text-primary hover:underline"
                         >
                           {m.machine_id.slice(0, 12)}…
                         </Link>
                       </td>
                       <td className="py-2 px-3">
-                        <Badge className={`text-xs ${ASSET_STATUS_STYLE[m.status || 'unknown'] || 'bg-gray-100 text-gray-700'}`}>
+                        <Badge className={`text-xs ${ASSET_STATUS_STYLE[m.status || 'unknown'] || 'bg-muted text-foreground'}`}>
                           {(m.status || 'unknown').replace(/_/g, ' ')}
                         </Badge>
                       </td>
@@ -509,7 +666,7 @@ export default async function CommunityDetailPage({
                             {alertCount}
                           </span>
                         ) : (
-                          <span className="text-xs text-gray-400">—</span>
+                          <span className="text-xs text-muted-foreground">—</span>
                         )}
                       </td>
                     </tr>
@@ -522,10 +679,10 @@ export default async function CommunityDetailPage({
       )}
 
       {/* Deals linked via metadata->>community_id */}
-      <section className="space-y-3">
+      <section id="deals" className="scroll-mt-24 space-y-3">
         <div>
-          <h2 className="text-base font-semibold">CRM Deals</h2>
-          <p className="text-xs text-gray-500">
+          <h2 className="text-base font-semibold font-display">CRM Deals</h2>
+          <p className="text-xs text-muted-foreground">
             Linked via <code>crm_deals.metadata.community_id = {community.id}</code>.
             {deals.length === 0 && ' Set this metadata in the CRM admin to surface deals here.'}
           </p>
@@ -533,8 +690,8 @@ export default async function CommunityDetailPage({
         {deals.length === 0 ? null : (
           <div className="overflow-x-auto rounded-lg border">
             <table className="w-full text-sm">
-              <thead className="bg-gray-50">
-                <tr className="border-b text-left text-xs uppercase tracking-wider text-gray-500">
+              <thead className="bg-muted">
+                <tr className="border-b text-left text-xs uppercase tracking-wider text-muted-foreground">
                   <th className="py-2 px-3 font-medium">Deal</th>
                   <th className="py-2 px-3 font-medium">Type</th>
                   <th className="py-2 px-3 font-medium">Stage</th>
@@ -545,13 +702,13 @@ export default async function CommunityDetailPage({
               </thead>
               <tbody>
                 {deals.map((d) => (
-                  <tr key={d.id} className="border-b last:border-0 hover:bg-gray-50">
+                  <tr key={d.id} className="border-b last:border-0 hover:bg-muted">
                     <td className="py-2 px-3 font-medium">{d.title}</td>
-                    <td className="py-2 px-3 text-xs text-gray-600">{d.deal_type}</td>
+                    <td className="py-2 px-3 text-xs text-muted-foreground">{d.deal_type}</td>
                     <td className="py-2 px-3 text-xs">{d.pipeline_stage}</td>
                     <td className="py-2 px-3 text-right font-mono">{d.units || '—'}</td>
                     <td className="py-2 px-3 text-right font-mono">{fmtMoney(d.amount_cents)}</td>
-                    <td className="py-2 px-3 text-xs text-gray-500">
+                    <td className="py-2 px-3 text-xs text-muted-foreground">
                       {d.updated_at ? new Date(d.updated_at).toLocaleDateString('en-AU') : '—'}
                     </td>
                   </tr>
@@ -567,11 +724,11 @@ export default async function CommunityDetailPage({
 
 function Kpi({ label, value, sub, highlight }: { label: string; value: string; sub?: string; highlight?: boolean }) {
   return (
-    <Card className={highlight ? 'border-amber-300 bg-amber-50/50' : undefined}>
+    <Card className={highlight ? 'border-primary/30 bg-primary/5' : undefined}>
       <CardContent>
-        <div className="text-xs font-medium uppercase tracking-wide text-gray-500">{label}</div>
-        <div className={`mt-1 text-3xl font-bold ${highlight ? 'text-amber-900' : 'text-gray-900'}`}>{value}</div>
-        {sub && <div className="mt-1 text-xs text-gray-500">{sub}</div>}
+        <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{label}</div>
+        <div className={`mt-1 text-3xl font-bold ${highlight ? 'text-primary' : 'text-foreground'}`}>{value}</div>
+        {sub && <div className="mt-1 text-xs text-muted-foreground">{sub}</div>}
       </CardContent>
     </Card>
   );

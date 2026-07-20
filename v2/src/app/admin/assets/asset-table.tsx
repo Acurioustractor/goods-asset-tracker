@@ -32,7 +32,7 @@ const STATUS_COLOR: Record<string, string> = {
   requested: 'bg-violet-100 text-violet-800 border-violet-200',
   demo: 'bg-cyan-100 text-cyan-800 border-cyan-200',
   under_investigation: 'bg-red-100 text-red-800 border-red-200',
-  retired: 'bg-gray-100 text-gray-700 border-gray-200',
+  retired: 'bg-muted text-foreground border-border',
 };
 
 export function AssetTable({ rows }: { rows: AssetRow[] }) {
@@ -93,11 +93,11 @@ export function AssetTable({ rows }: { rows: AssetRow[] }) {
         <FilterSelect value={batch} onChange={setBatch} options={batches} placeholder="All batches" />
       </div>
 
-      <div className="flex items-center justify-between text-xs text-gray-500">
+      <div className="flex items-center justify-between text-xs text-muted-foreground">
         <div>
-          Showing <span className="font-bold text-gray-900">{filtered.length.toLocaleString()}</span> of {rows.length.toLocaleString()}
+          Showing <span className="font-bold text-foreground">{filtered.length.toLocaleString()}</span> of {rows.length.toLocaleString()}
           {!showRetired && retiredCount > 0 && (
-            <span className="ml-2 text-gray-400">
+            <span className="ml-2 text-muted-foreground">
               ({retiredCount} retired hidden)
             </span>
           )}
@@ -115,7 +115,7 @@ export function AssetTable({ rows }: { rows: AssetRow[] }) {
           <button
             type="button"
             onClick={reset}
-            className="rounded border border-gray-200 px-2 py-1 hover:bg-gray-50"
+            className="rounded border border-border px-2 py-1 hover:bg-muted"
           >
             Reset filters
           </button>
@@ -124,7 +124,7 @@ export function AssetTable({ rows }: { rows: AssetRow[] }) {
 
       <div className="overflow-x-auto rounded-lg border">
         <table className="min-w-full text-sm">
-          <thead className="bg-gray-50 text-xs uppercase tracking-wide text-gray-500">
+          <thead className="bg-muted text-xs uppercase tracking-wide text-muted-foreground">
             <tr>
               <Th>ID</Th>
               <Th>Product</Th>
@@ -140,13 +140,13 @@ export function AssetTable({ rows }: { rows: AssetRow[] }) {
               <Th className="text-right pr-4">Links</Th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100 bg-white">
+          <tbody className="divide-y divide-border bg-card">
             {filtered.slice(0, 400).map((r) => (
-              <tr key={r.unique_id} className="hover:bg-gray-50">
+              <tr key={r.unique_id} className="hover:bg-muted">
                 <Td className="font-mono text-xs">
                   <Link
                     href={`/admin/assets/${encodeURIComponent(r.unique_id)}`}
-                    className="text-blue-700 hover:underline"
+                    className="text-primary hover:underline"
                   >
                     {r.unique_id}
                   </Link>
@@ -162,15 +162,15 @@ export function AssetTable({ rows }: { rows: AssetRow[] }) {
                 </Td>
                 <Td>
                   {r.community ? (
-                    <span>{r.community}{r.place ? <span className="text-gray-400"> · {r.place}</span> : null}</span>
+                    <span>{r.community}{r.place ? <span className="text-muted-foreground"> · {r.place}</span> : null}</span>
                   ) : (
-                    <span className="text-gray-400">--</span>
+                    <span className="text-muted-foreground">--</span>
                   )}
                 </Td>
                 <Td className="max-w-[18ch] truncate" title={r.name || ''}>
-                  {r.name || <span className="text-gray-400">--</span>}
+                  {r.name || <span className="text-muted-foreground">--</span>}
                 </Td>
-                <Td className="whitespace-nowrap text-xs text-gray-500">
+                <Td className="whitespace-nowrap text-xs text-muted-foreground">
                   {r.supply_date ? new Date(r.supply_date).toLocaleDateString('en-AU') : '--'}
                 </Td>
                 <Td className="font-mono text-xs">
@@ -186,21 +186,21 @@ export function AssetTable({ rows }: { rows: AssetRow[] }) {
                 <Td className="whitespace-nowrap text-xs">
                   {r.scans_total > 0 ? (
                     <span>
-                      <span className={r.scans_7d > 0 ? 'font-semibold text-emerald-700' : 'text-gray-500'}>
+                      <span className={r.scans_7d > 0 ? 'font-semibold text-emerald-700' : 'text-muted-foreground'}>
                         {r.scans_7d}
                       </span>
-                      <span className="mx-1 text-gray-300">/</span>
-                      <span className="text-gray-600">{r.scans_total}</span>
+                      <span className="mx-1 text-muted-foreground">/</span>
+                      <span className="text-muted-foreground">{r.scans_total}</span>
                     </span>
                   ) : (
-                    <span className="text-gray-300">--</span>
+                    <span className="text-muted-foreground">--</span>
                   )}
                 </Td>
                 <Td className="pr-4">
                   <div className="flex justify-end gap-1.5">
                     <Link
                       href={`/admin/assets/${encodeURIComponent(r.unique_id)}`}
-                      className="inline-flex items-center gap-1 rounded border border-blue-200 bg-blue-50 px-1.5 py-0.5 text-xs text-blue-700 hover:bg-blue-100"
+                      className="inline-flex items-center gap-1 rounded border border-accent/20 bg-accent/10 px-1.5 py-0.5 text-xs text-accent hover:bg-accent/20"
                       title="Edit this asset"
                     >
                       <Pencil className="h-3 w-3" /> edit
@@ -208,7 +208,7 @@ export function AssetTable({ rows }: { rows: AssetRow[] }) {
                     <Link
                       href={`/bed/${r.unique_id}`}
                       target="_blank"
-                      className="inline-flex items-center gap-1 rounded border border-gray-200 px-1.5 py-0.5 text-xs text-gray-600 hover:bg-gray-50"
+                      className="inline-flex items-center gap-1 rounded border border-border px-1.5 py-0.5 text-xs text-muted-foreground hover:bg-muted"
                       title="Open public bed page"
                     >
                       <ExternalLink className="h-3 w-3" /> page
@@ -218,7 +218,7 @@ export function AssetTable({ rows }: { rows: AssetRow[] }) {
                         href={r.qr_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 rounded border border-gray-200 px-1.5 py-0.5 text-xs text-gray-600 hover:bg-gray-50"
+                        className="inline-flex items-center gap-1 rounded border border-border px-1.5 py-0.5 text-xs text-muted-foreground hover:bg-muted"
                         title={r.qr_url}
                       >
                         <QrCode className="h-3 w-3" /> qr
@@ -231,7 +231,7 @@ export function AssetTable({ rows }: { rows: AssetRow[] }) {
           </tbody>
         </table>
         {filtered.length > 400 && (
-          <div className="border-t bg-gray-50 px-4 py-2 text-xs text-gray-500">
+          <div className="border-t bg-muted px-4 py-2 text-xs text-muted-foreground">
             Showing first 400 rows. Narrow filters to see the rest.
           </div>
         )}
@@ -300,23 +300,23 @@ function FilterSelect({
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="flex h-9 w-full items-center justify-between rounded-md border border-input bg-white px-3 text-sm shadow-xs hover:bg-gray-50 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none"
+        className="flex h-9 w-full items-center justify-between rounded-md border border-input bg-card px-3 text-sm shadow-xs hover:bg-muted focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none"
       >
-        <span className={value ? 'text-gray-900 truncate' : 'text-gray-500 truncate'}>
+        <span className={value ? 'text-foreground truncate' : 'text-muted-foreground truncate'}>
           {value || placeholder}
         </span>
-        <ChevronDown className="ml-2 h-4 w-4 shrink-0 text-gray-400" />
+        <ChevronDown className="ml-2 h-4 w-4 shrink-0 text-muted-foreground" />
       </button>
       {open && (
-        <div className="absolute left-0 right-0 top-full z-50 mt-1 max-h-72 overflow-hidden rounded-md border border-gray-200 bg-white shadow-lg">
+        <div className="absolute left-0 right-0 top-full z-50 mt-1 max-h-72 overflow-hidden rounded-md border border-border bg-card shadow-lg">
           {showFilter && (
-            <div className="border-b border-gray-100 p-1">
+            <div className="border-b border-border p-1">
               <input
                 autoFocus
                 value={filter}
                 onChange={(e) => setFilter(e.target.value)}
                 placeholder="Filter..."
-                className="h-7 w-full rounded border border-transparent bg-gray-50 px-2 text-xs outline-none focus:border-gray-300"
+                className="h-7 w-full rounded border border-transparent bg-muted px-2 text-xs outline-none focus:border-input"
               />
             </div>
           )}
@@ -329,12 +329,12 @@ function FilterSelect({
                   setOpen(false);
                   setFilter('');
                 }}
-                className={`flex w-full items-center justify-between px-3 py-1.5 text-left hover:bg-gray-50 ${
-                  value === '' ? 'font-medium text-gray-900' : 'text-gray-600'
+                className={`flex w-full items-center justify-between px-3 py-1.5 text-left hover:bg-muted ${
+                  value === '' ? 'font-medium text-foreground' : 'text-muted-foreground'
                 }`}
               >
                 <span>{placeholder}</span>
-                {value === '' && <Check className="h-3.5 w-3.5 text-gray-500" />}
+                {value === '' && <Check className="h-3.5 w-3.5 text-muted-foreground" />}
               </button>
             </li>
             {filtered.map((o) => (
@@ -346,17 +346,17 @@ function FilterSelect({
                     setOpen(false);
                     setFilter('');
                   }}
-                  className={`flex w-full items-center justify-between px-3 py-1.5 text-left hover:bg-gray-50 ${
-                    value === o ? 'font-medium text-gray-900' : 'text-gray-700'
+                  className={`flex w-full items-center justify-between px-3 py-1.5 text-left hover:bg-muted ${
+                    value === o ? 'font-medium text-foreground' : 'text-foreground'
                   }`}
                 >
                   <span className="truncate pr-2">{o}</span>
-                  {value === o && <Check className="h-3.5 w-3.5 shrink-0 text-gray-500" />}
+                  {value === o && <Check className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />}
                 </button>
               </li>
             ))}
             {filtered.length === 0 && (
-              <li className="px-3 py-2 text-xs text-gray-400">No matches</li>
+              <li className="px-3 py-2 text-xs text-muted-foreground">No matches</li>
             )}
           </ul>
         </div>
@@ -373,20 +373,20 @@ function uniq(arr: (string | null | undefined)[]): string[] {
 
 function TelemetryDot({ product, lastSeen }: { product: string | null; lastSeen: string | null }) {
   const isMachine = /machine/i.test(product || '');
-  if (!isMachine) return <span className="text-xs text-gray-300">--</span>;
+  if (!isMachine) return <span className="text-xs text-muted-foreground">--</span>;
 
   if (!lastSeen) {
     return (
       <span className="inline-flex items-center gap-1.5" title="Never reported telemetry">
-        <span className="h-2.5 w-2.5 rounded-full bg-gray-300 ring-2 ring-gray-100" />
-        <span className="text-xs text-gray-500">never</span>
+        <span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/40 ring-2 ring-muted" />
+        <span className="text-xs text-muted-foreground">never</span>
       </span>
     );
   }
 
   const last = new Date(lastSeen);
   const days = Math.floor((Date.now() - last.getTime()) / (24 * 60 * 60 * 1000));
-  let color = 'bg-gray-300 ring-gray-100';
+  let color = 'bg-muted-foreground/40 ring-muted';
   let label = `${days}d`;
   if (days <= 7) color = 'bg-emerald-500 ring-emerald-100';
   else if (days <= 30) color = 'bg-amber-500 ring-amber-100';
@@ -398,7 +398,7 @@ function TelemetryDot({ product, lastSeen }: { product: string | null; lastSeen:
       title={`Last telemetry ${last.toLocaleDateString('en-AU')} (${days} days ago)`}
     >
       <span className={`h-2.5 w-2.5 rounded-full ring-2 ${color}`} />
-      <span className="text-xs text-gray-700">{label}</span>
+      <span className="text-xs text-foreground">{label}</span>
     </span>
   );
 }

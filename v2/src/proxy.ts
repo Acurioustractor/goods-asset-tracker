@@ -194,5 +194,12 @@ export const config = {
      * - public folder
      */
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    /*
+     * Admin must ALWAYS be matched, even for paths ending in an image
+     * extension — otherwise a crafted /admin/...foo.png URL on a dynamic
+     * segment slips past the auth check above (the layout renders bare for
+     * unauthenticated users and relies on this proxy to redirect).
+     */
+    '/admin/:path*',
   ],
 }

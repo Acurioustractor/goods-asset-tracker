@@ -38,7 +38,7 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       <AdminSidebar userEmail={user?.email || (isLocalDev ? 'Local Dev' : 'Admin')} />
 
       {/* Main Content Area — sidebar is md:fixed w-72, so we only need left padding */}

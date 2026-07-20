@@ -230,7 +230,7 @@ function StatusBadge({ status }: { status: CheckRow['status'] }) {
     );
   }
   return (
-    <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700">
+    <span className="inline-flex items-center gap-1 rounded-full bg-accent/10 px-2 py-0.5 text-xs font-medium text-accent">
       <AlertCircle className="h-3 w-3" /> Manual
     </span>
   );
@@ -257,7 +257,7 @@ export default async function LaunchChecklistPage() {
               <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500"></span>
             </div>
             <div>
-              <h2 className="text-lg font-bold text-emerald-900">Stripe is LIVE</h2>
+              <h2 className="font-display text-lg font-bold text-emerald-900">Stripe is LIVE</h2>
               <p className="text-sm text-emerald-800">
                 Real cards will be charged on this site. Test all flows in incognito with a hidden SKU and refund
                 from the Stripe dashboard before sharing the shop URL publicly.
@@ -268,11 +268,11 @@ export default async function LaunchChecklistPage() {
       )}
 
       <header>
-        <Link href="/admin/orders" className="text-sm text-gray-500 hover:text-gray-700">
+        <Link href="/admin/orders" className="text-sm text-muted-foreground hover:text-foreground">
           &larr; Back to Orders
         </Link>
-        <h1 className="mt-2 text-2xl font-bold tracking-tight">Stripe launch checklist</h1>
-        <p className="mt-1 text-sm text-gray-600">
+        <h1 className="font-display mt-2 text-2xl font-bold tracking-tight">Stripe launch checklist</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
           Run through this before flipping the shop to live cards. Each fail is a hard blocker on real revenue.
         </p>
       </header>
@@ -280,15 +280,15 @@ export default async function LaunchChecklistPage() {
       <Card>
         <CardContent className="flex flex-wrap items-baseline gap-6">
           <div>
-            <div className="text-3xl font-bold text-gray-900">
-              {passCount}<span className="text-base text-gray-400">/{totalCount}</span>
+            <div className="text-3xl font-bold text-foreground">
+              {passCount}<span className="text-base text-muted-foreground">/{totalCount}</span>
             </div>
-            <div className="text-xs uppercase tracking-wide text-gray-500">Passing</div>
+            <div className="text-xs uppercase tracking-wide text-muted-foreground">Passing</div>
           </div>
           {failCount > 0 && (
             <div>
               <div className="text-3xl font-bold text-red-600">{failCount}</div>
-              <div className="text-xs uppercase tracking-wide text-gray-500">Fixes required</div>
+              <div className="text-xs uppercase tracking-wide text-muted-foreground">Fixes required</div>
             </div>
           )}
           <div className="ml-auto">
@@ -311,26 +311,26 @@ export default async function LaunchChecklistPage() {
               <CardContent>
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="flex-1">
-                    <h3 className="text-sm font-semibold text-gray-900">{c.title}</h3>
-                    <p className="mt-1 text-sm text-gray-600">{c.detail}</p>
+                    <h3 className="text-sm font-semibold text-foreground">{c.title}</h3>
+                    <p className="mt-1 text-sm text-muted-foreground">{c.detail}</p>
                   </div>
                   <StatusBadge status={c.status} />
                 </div>
 
                 {c.action && (
-                  <div className="mt-3 border-t border-gray-100 pt-3">
+                  <div className="mt-3 border-t border-border pt-3">
                     {c.action.href && (
                       <a
                         href={c.action.href}
                         target={c.action.href.startsWith('http') ? '_blank' : undefined}
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-medium text-blue-600 hover:underline"
+                        className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline"
                       >
                         {c.action.label} <ExternalLink className="h-3 w-3" />
                       </a>
                     )}
                     {c.action.command && (
-                      <pre className="mt-1 overflow-x-auto rounded bg-gray-50 px-3 py-2 text-xs text-gray-800">
+                      <pre className="mt-1 overflow-x-auto rounded bg-muted px-3 py-2 text-xs text-foreground">
                         {c.action.command}
                       </pre>
                     )}
@@ -343,24 +343,24 @@ export default async function LaunchChecklistPage() {
       </ul>
 
       {/* Manual sequence summary */}
-      <Card className="border-blue-200 bg-blue-50">
+      <Card className="border-accent/20 bg-accent/5">
         <CardContent>
-          <h2 className="text-sm font-semibold text-blue-900">Recommended order of operations</h2>
-          <ol className="mt-2 ml-5 list-decimal space-y-1 text-sm text-blue-900">
+          <h2 className="font-display text-sm font-semibold text-accent-foreground">Recommended order of operations</h2>
+          <ol className="mt-2 ml-5 list-decimal space-y-1 text-sm text-accent-foreground">
             <li>Get every automated check above to pass.</li>
             <li>
               In <a href="https://dashboard.stripe.com/" target="_blank" rel="noopener noreferrer" className="underline">Stripe</a>:
               toggle off &quot;View test data&quot;, then API keys → reveal live secret + publishable.
             </li>
             <li>
-              Add a webhook endpoint pointing at <code className="rounded bg-blue-100 px-1">https://www.goodsoncountry.com/api/webhooks/stripe</code>{' '}
+              Add a webhook endpoint pointing at <code className="rounded bg-accent/10 px-1">https://www.goodsoncountry.com/api/webhooks/stripe</code>{' '}
               and copy its signing secret.
             </li>
             <li>
               Run the three <code>vercel env</code> swap commands above (secret, publishable, webhook).
             </li>
             <li>
-              <code className="rounded bg-blue-100 px-1">vercel --prod</code> to redeploy with the new envs.
+              <code className="rounded bg-accent/10 px-1">vercel --prod</code> to redeploy with the new envs.
             </li>
             <li>
               Buy a $1 hidden SKU with a real card → confirm it shows in <Link href="/admin/orders" className="underline">orders</Link>{' '}

@@ -199,7 +199,7 @@ export const philanthropyProspects: OutreachTarget[] = [
     id: 'circular-future', name: 'Circular Future Fund / Planet Ark', category: 'philanthropy_prospect', status: 'research', priority: 'medium',
     instrument: 'grant',
     nextAction: 'Research eligibility. Strong circular economy fit.',
-    grantRelevance: 'Environmental angle. 2,660kg+ plastic diverted.', // canonical: see asset-canonical.ts (Stretch beds only)
+    grantRelevance: 'Environmental angle. 3,460kg+ plastic diverted (Stretch beds only).', // canonical: see asset-canonical.ts (Stretch beds only)
   },
   {
     id: 'self-loan', name: 'SELF (Social Enterprise Loan Fund)', category: 'impact_finance', status: 'research', priority: 'medium',
@@ -327,8 +327,8 @@ export const communityAndManufacturingPartners: OutreachTarget[] = [
   {
     id: 'picc', name: 'Palm Island Community Company', category: 'community_partner', status: 'active', priority: 'critical',
     states: ['QLD'], contactName: 'Narelle',
-    amountSignal: '141 beds deployed + 40-bed order + "we\'ll buy the facility"',
-    nextAction: 'Largest deployment. Explore production facility hosting on Palm Island.',
+    amountSignal: '131 beds deployed + 40-bed order + scoping conversations on hosting the facility',
+    nextAction: 'Explore production facility hosting on Palm Island.',
     grantRelevance: 'Flagship QLD proof point. Said they\'d buy the production facility itself.',
   },
   {

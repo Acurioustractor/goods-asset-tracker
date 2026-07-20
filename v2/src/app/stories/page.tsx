@@ -6,10 +6,42 @@ import { MediaGallery, MediaGallerySkeleton } from '@/components/empathy-ledger/
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { storytellerProfiles, storytellerEnrichment, videoGallery } from '@/lib/data/content';
+import { storytellerProfiles, storytellerEnrichment, videoGallery, impactStories, communityPartnerships } from '@/lib/data/content';
 import { curatedQuotes } from '@/lib/data/curated-quotes';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { isClearedForExternal } from '@/lib/data/cleared-voices';
+import { slugify } from '@/lib/storytellers';
+
+// Photos that exist on disk but aren't yet wired into media.ts's communityMedia map.
+// Keyed by communityPartnerships id.
+const communityPhotoOverrides: Record<string, string | undefined> = {
+  'alice-springs': '/images/community/alice-springs/oonchiumpa-team-red-bed.jpg',
+  'palm-island': '/images/community/palm-island/family-dogs-new-bed.jpg',
+  'utopia-homelands': '/images/utopia/utopia-01.jpg',
+  // No dedicated photo folder yet: townsville (0 beds, logistics-only), maningrida.
+};
+
+const impactPersonPhoto: Record<string, string | undefined> = {
+  'alfred-safety': '/images/people/alfred-johnson.jpg',
+  'melissa-comfort': '/images/people/melissa-jackson.jpg',
+  'gloria-health': '/images/people/gloria-turner.jpg',
+  'norman-future': '/images/people/norman-frank.jpg',
+  'cliff-health-messages': '/images/people/cliff-plummer.jpg',
+  'boe-washing-logic': '/images/people/boe-remenyi.jpg',
+};
+
+// Where each impact-quote card links through to. Verified against the storyteller
+// pages actually generated at build time (v2/src/app/storytellers/[slug]) — Melissa
+// Jackson and Norman Frank don't have a live Empathy Ledger storyteller page, so
+// their cards link to their community page instead of a dead /storytellers/ URL.
+const impactStoryLink: Record<string, string> = {
+  'alfred-safety': '/storytellers/alfred-johnson',
+  'melissa-comfort': '/communities/tennant-creek',
+  'gloria-health': '/storytellers/gloria-turner',
+  'norman-future': '/communities/tennant-creek',
+  'boe-washing-logic': '/storytellers/dr-boe-remenyi',
+  'cliff-health-messages': '/storytellers/cliff-plummer',
+};
 import type { SyndicationStoryteller } from '@/lib/empathy-ledger/types';
 import type { Metadata } from 'next';
 
@@ -417,7 +449,8 @@ export default async function StoriesPage() {
             <div className="max-w-5xl mx-auto mb-12">
               <div className="grid md:grid-cols-2 gap-8">
                 {elders.map((person) => (
-                  <Card key={person.id} className="overflow-hidden border-0 shadow-md hover:shadow-xl transition-shadow">
+                  <Link key={person.id} href={`/storytellers/${slugify(person.name)}`} className="group block">
+                  <Card className="overflow-hidden border-0 shadow-md hover:shadow-xl transition-shadow">
                     <CardContent className="p-0">
                       <div className="flex gap-0">
                         {/* Photo */}
@@ -433,7 +466,7 @@ export default async function StoriesPage() {
                         {/* Info */}
                         <div className="flex-1 p-6 flex flex-col justify-center">
                           <div className="flex items-center gap-2 mb-1">
-                            <h3 className="text-lg font-semibold text-foreground">{person.name}</h3>
+                            <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">{person.name}</h3>
                             <Badge className="bg-emerald-600 text-white text-xs">Elder</Badge>
                           </div>
                           {person.role && (
@@ -463,6 +496,7 @@ export default async function StoriesPage() {
                       </div>
                     </CardContent>
                   </Card>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -472,7 +506,8 @@ export default async function StoriesPage() {
           <div className="max-w-6xl mx-auto">
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {others.map((person) => (
-                <Card key={person.id} className="overflow-hidden border-0 shadow-sm hover:shadow-lg transition-shadow">
+                <Link key={person.id} href={`/storytellers/${slugify(person.name)}`} className="group block">
+                <Card className="overflow-hidden border-0 shadow-sm hover:shadow-lg transition-shadow">
                   <CardContent className="p-0">
                     {/* Photo */}
                     <div className="relative aspect-[4/3] bg-muted">
@@ -480,7 +515,7 @@ export default async function StoriesPage() {
                         src={person.photo}
                         alt={person.name}
                         fill
-                        className="object-cover"
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
                       {person.hasVideo && (
@@ -496,7 +531,7 @@ export default async function StoriesPage() {
                     </div>
                     {/* Info */}
                     <div className="p-5">
-                      <h3 className="text-base font-semibold text-foreground mb-0.5">{person.name}</h3>
+                      <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors mb-0.5">{person.name}</h3>
                       {person.role && (
                         <p className="text-xs text-accent-foreground mb-0.5">{person.role}</p>
                       )}
@@ -526,8 +561,172 @@ export default async function StoriesPage() {
                     </div>
                   </CardContent>
                 </Card>
+                </Link>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          IN THEIR OWN WORDS: short impact quote cards
+          ============================================================ */}
+      <section className="py-16 md:py-24 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <p className="text-sm uppercase tracking-widest text-accent mb-4">
+              In Their Own Words
+            </p>
+            <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
+              Moments That Stuck With Us
+            </h2>
+            <p className="max-w-xl mx-auto text-muted-foreground">
+              Short, specific things people told us that changed how we build
+            </p>
+          </div>
+
+          <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {impactStories.map((item) => {
+              const photo = impactPersonPhoto[item.id];
+              const href = impactStoryLink[item.id] ?? '/stories';
+              return (
+                <Link key={item.id} href={href} className="group block">
+                <Card className="overflow-hidden border-0 shadow-sm hover:shadow-lg transition-shadow h-full">
+                  <CardContent className="p-0 flex flex-col h-full">
+                    {photo ? (
+                      <div className="relative aspect-[4/3] bg-muted">
+                        <Image
+                          src={photo}
+                          alt={item.person}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                      </div>
+                    ) : (
+                      <div className="aspect-[4/3] bg-foreground/5 flex items-center justify-center">
+                        <span className="text-4xl text-foreground/20" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>&ldquo;</span>
+                      </div>
+                    )}
+                    <div className="p-5 flex-1 flex flex-col">
+                      <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors mb-2">{item.title}</h3>
+                      <blockquote>
+                        <p
+                          className="text-sm italic text-foreground/80 mb-3"
+                          style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+                        >
+                          &ldquo;{item.quote}&rdquo;
+                        </p>
+                      </blockquote>
+                      <p className="text-sm text-muted-foreground mb-3 flex-1">{item.summary}</p>
+                      <p className="text-xs font-medium text-foreground">{item.person}</p>
+                      <p className="text-xs text-muted-foreground">{item.location}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          COMMUNITIES: partnership summaries
+          ============================================================ */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <p className="text-sm uppercase tracking-widest text-accent mb-4">
+              Where We Work
+            </p>
+            <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
+              Communities
+            </h2>
+            <p className="max-w-xl mx-auto text-muted-foreground">
+              Every partnership started with a conversation, not a delivery schedule
+            </p>
+          </div>
+
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {communityPartnerships.map((c) => {
+              const photo = communityPhotoOverrides[c.id];
+              return (
+                <Link key={c.id} href={`/communities/${c.id}`} className="group block">
+                  <Card className="overflow-hidden border-0 shadow-sm hover:shadow-lg transition-shadow h-full">
+                    <CardContent className="p-0">
+                      {photo ? (
+                        <div className="relative aspect-[16/10] bg-muted">
+                          <Image
+                            src={photo}
+                            alt={c.name}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-300"
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                          />
+                        </div>
+                      ) : (
+                        <div className="aspect-[16/10] bg-foreground/5 flex items-center justify-center">
+                          <span className="text-sm text-muted-foreground">Photo coming soon</span>
+                        </div>
+                      )}
+                      <div className="p-5">
+                        <p className="text-xs uppercase tracking-wide text-accent mb-1">{c.region}</p>
+                        <h3
+                          className="text-lg font-light text-foreground group-hover:text-primary transition-colors mb-2"
+                          style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+                        >
+                          {c.name}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mb-3 line-clamp-3">{c.headline}</p>
+                        {c.bedsDelivered > 0 && (
+                          <p className="text-xs font-medium text-foreground">{c.bedsDelivered} beds delivered</p>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          GO DEEPER: links out to the origin story, field notes, partners
+          ============================================================ */}
+      <section className="py-16 md:py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-widest text-accent mb-4">
+              Go Deeper
+            </p>
+            <h2 className="text-3xl font-light text-foreground mb-4" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
+              More From Goods
+            </h2>
+          </div>
+
+          <div className="max-w-4xl mx-auto grid sm:grid-cols-2 gap-6">
+            {[
+              { href: '/story', title: 'How Goods Started', desc: 'From a health conference in 2018 to beds on the ground: the origin story.' },
+              { href: '/field-notes/utopia-may-2026', title: 'From Alice Springs to Utopia', desc: 'Three days on the road: a build session, deliveries, and sitting with Elders.' },
+              { href: '/partners/oonchiumpa', title: 'Oonchiumpa Consultancy', desc: 'The 100% Aboriginal-owned consultancy leading design in Alice Springs.' },
+              { href: '/partners/centrecorp', title: 'Centrecorp Foundation', desc: 'How the Utopia Homelands deliveries came together.' },
+            ].map((link) => (
+              <Link key={link.href} href={link.href} className="group block">
+                <Card className="border-0 shadow-sm hover:shadow-lg transition-shadow h-full">
+                  <CardContent className="p-6">
+                    <h3
+                      className="text-lg font-light text-foreground group-hover:text-primary transition-colors mb-2"
+                      style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+                    >
+                      {link.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">{link.desc}</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

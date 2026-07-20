@@ -284,7 +284,7 @@ async function syncLinks() {
   if (commIds.size === 0) { console.log('links : skipped (no communities table)'); return; }
   const sts = await get('storytellers?select=id,community_id,portrait_content_id&portrait_content_id=not.is.null');
   const stByPortrait = new Map(sts.map((s) => [s.portrait_content_id, s]));
-  const items = await get('content_items?source=eq.local&select=id,area,url,community_id,storyteller_id');
+  const items = await get('content_items?source=eq.local&select=id,area,url,community_id,storyteller_id,tags');
   let linked = 0;
   for (const it of items) {
     let community_id = it.community_id;
@@ -292,6 +292,13 @@ async function syncLinks() {
     if (!community_id) {
       if (commIds.has(it.area)) community_id = it.area;                    // e.g. area 'utopia' -> community 'utopia'
       else if (/\/utopia[-/]/i.test(it.url) && commIds.has('utopia')) community_id = 'utopia';
+      else {
+        // manual place tag from the media library / local-image-tags.json,
+        // e.g. 'community:tennant-creek' -> community 'tennant-creek'
+        const t = (it.tags || []).find((x) => typeof x === 'string' && x.startsWith('community:'));
+        const id = t ? t.slice('community:'.length) : null;
+        if (id && commIds.has(id)) community_id = id;
+      }
     }
     const st = stByPortrait.get(it.id);                                    // this photo IS someone's portrait
     if (st) { storyteller_id = st.id; if (!community_id) community_id = st.community_id; }

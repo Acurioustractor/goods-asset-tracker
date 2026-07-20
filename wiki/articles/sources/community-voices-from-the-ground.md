@@ -31,7 +31,7 @@ The source is important because it carries the human evidence the first dry wiki
 | Place or pathway | What the source helps show | How to use it carefully |
 |---|---|---|
 | Palm Island | Bed scarcity, freight barriers, safety, dignity and practical assembly feedback. | Use named quotes only after consent and audience are confirmed. |
-| Tennant Creek | Dianne Stokes as co-designer, language holder and practical product validator. | Keep Dianne's authority and context visible. Do not reduce her to a quote. |
+| Tennant Creek | Dianne Stokes as design partner, language holder and practical product validator. | Keep Dianne's authority and context visible. Do not reduce her to a quote. |
 | Alice Springs / Homelands | Product fit for families, movement, sorry business, youth pride and local production interest. | Pair the story with product and production evidence. |
 | East Arnhem / Miwatj | Washing, bedding, scabies, barge freight and health-hardware logic. | Use as health-partner evidence, not clinical proof. |
 | Kalgoorlie | Bedding, dignity, rough-sleeping context and practical support work. | Check sensitivity before external use. |

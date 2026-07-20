@@ -74,7 +74,7 @@ export function RequisitionForm() {
           <div className="space-y-1">
             <Label className="text-xs">Product</Label>
             <select
-              className="w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm"
+              className="w-full rounded-md border border-border bg-card px-3 py-2 text-sm"
               value={product}
               onChange={(e) => setProduct(e.target.value)}
             >

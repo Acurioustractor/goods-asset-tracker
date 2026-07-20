@@ -1,0 +1,77 @@
+<!--
+  GOODS OVERLAY TEMPLATE (SVG) — put exact text on a model-drawn illustration.
+  ───────────────────────────────────────────────────────────────────────────
+  The picture is GENERATED (see references/generate.md); this file only adds the
+  precise words the model is told never to draw. One step:
+
+    1. Point the <image> at your generated PNG (the href near "BASE IMAGE" below).
+    2. Overwrite the [bracketed] eyebrow / title / caption / number text.
+    3. Delete the label slots you don't need; move the ones you keep.
+    4. Export (any vector app, or open in a browser and screenshot / print to PDF).
+
+  WHY THIS LAYOUT CAN'T OVERLAP: the whole frame is the SAME cream the model draws
+  on, so the illustration and the text share one seamless ground. The picture sits
+  in the centre band; text lives in the top and bottom margins. The zones are
+  physically separate, so nothing collides the way hand-placed labels used to.
+
+  CANON NUMBERS: render.sh bakes CANON:num tokens for HTML only, so in SVG type the
+  number by hand. Current canon values (design/canon-numbers.json), so you don't
+  have to look them up:
+    plastic-kg 2,660kg · stretch-beds-deployed 133 · beds-deployed 496
+    communities-served 9 · washers-in-community 16 · save-per-bed $194
+  Spec-class facts are not canon and are always hand-typed: 20KG PER BED · NO TOOLS
+  · 5 MINUTES · 200KG · 26KG. If you want the number auto-checked, use the HTML
+  overlay instead (overlay-template.html) and run design/brand/kit/render.sh.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" font-family="sans-serif">
+  <defs>
+    <style>
+      /* Locked tokens (mirror design/brand/tokens.css). */
+      :root{
+        --cream:#FBF8F1; --clay:#A8643F; --ink:#2B2A26; --sub:#7A7363;
+        --terracotta:#C45C3E; --gold:#BBA255; --teal:#5C8A86; --sage:#8B9D77;
+        --green:#5E7A4C; --olive:#7E9A68;
+      }
+      .eyebrow{font-family:ui-monospace,Menlo,Consolas,monospace;fill:var(--terracotta);font-size:16px;letter-spacing:2.6px;}
+      .title  {font-family:Georgia,serif;fill:var(--ink);font-size:34px;font-weight:700;}
+      /* Labels sit BESIDE the picture's parts. Uppercase mono, centred on their point. */
+      .label  {font-family:ui-monospace,Menlo,Consolas,monospace;fill:var(--ink);font-size:17px;letter-spacing:1.6px;font-weight:600;text-anchor:middle;}
+      .sub    {font-family:ui-monospace,Menlo,Consolas,monospace;fill:var(--sub);font-size:13px;letter-spacing:1px;text-anchor:middle;}
+      /* The ONE canon/spec number. Clay by default (matches the line, stays legible on
+         cream). You MAY tint by material when it reinforces meaning — but avoid pale
+         sage for the number itself; it reads too faint at this size. */
+      .num    {font-family:ui-monospace,Menlo,Consolas,monospace;fill:var(--clay);font-size:19px;letter-spacing:1.6px;font-weight:700;text-anchor:middle;}
+    </style>
+  </defs>
+
+  <!-- Ground: the same cream the model draws on, so the join is seamless. If your
+       generation sits on a slightly warmer cream than #FBF8F1 (some do), set this
+       fill to match it and the picture will blend edge to edge. -->
+  <rect x="0" y="0" width="1600" height="900" fill="#FBF8F1"/>
+
+  <!-- ── BASE IMAGE ──────────────────────────────────────────────────────────
+       Your generated illustration. Keep preserveAspectRatio="xMidYMid meet" so a
+       16:9 generation is never stretched: it centres in this box, cream fills any
+       gap (invisibly, same hex). Swap the href for your file (relative or absolute).
+       While you have no image yet, the dashed box shows where it will land. -->
+  <image href="YOUR-GENERATED.png" x="120" y="146" width="1360" height="576"
+         preserveAspectRatio="xMidYMid meet"/>
+  <rect x="120" y="146" width="1360" height="576" fill="none"
+        stroke="#A8643F" stroke-width="2" stroke-dasharray="6 8" opacity="0.35"/>
+
+  <!-- ── TOP MARGIN: eyebrow + one-idea title ───────────────────────────────── -->
+  <text x="80" y="84"  class="eyebrow">GOODS ON COUNTRY · [SECTION]</text>
+  <text x="78" y="128" class="title">[One idea, in a short line.]</text>
+
+  <!-- ── BOTTOM MARGIN: caption + at most ONE number ─────────────────────────── -->
+  <text x="800" y="778" class="label">[WHAT THIS SHOWS, IN A FEW WORDS]</text>
+  <text x="800" y="814" class="num">[20KG PER BED]</text>
+
+  <!-- ── OPTIONAL: point-labels for a multi-part picture (e.g. the loop's stages)
+       Uncomment and move each to sit under its part of the illustration. Because
+       .label is centre-anchored, set x to the centre of the thing it names.
+  <text x="470"  y="700" class="label">COLLECT</text>
+  <text x="800"  y="700" class="label">PRESS</text>
+  <text x="1130" y="700" class="label">A BED</text>
+  -->
+</svg>

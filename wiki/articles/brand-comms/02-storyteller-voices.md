@@ -21,13 +21,13 @@ The Empathy Ledger client at [v2/src/lib/empathy-ledger/client.ts](../../v2/src/
 
 ### Tennant Creek voices
 
-**Dianne Stokes** — Elder, Co-designer, Tennant Creek
+**Dianne Stokes** — Elder, Design partner, Tennant Creek
 - Photo: [v2/public/images/people/dianne-stokes.jpg](../../v2/public/images/people/dianne-stokes.jpg)
 - Themes: co-design, naming, Warumungu language
 - Pull quotes:
   - "Working both ways, cultural side in white society and Indigenous society."
 - Story: Named the washing machine Pakkimjalki Kari in Warumungu. Received the first Stretch Bed and within two weeks requested 20 more. Sits around the fire with family refining the design.
-- Use for: co-design narratives, naming heritage, Elder authority.
+- Use for: design-in-community narratives, naming heritage, Elder authority.
 
 **Norman Frank Jupurrurla** — Warumungu Elder, Wilya Janta founder, Tennant Creek
 - Photo: [v2/public/images/people/norman-frank.jpg](../../v2/public/images/people/norman-frank.jpg)
@@ -167,7 +167,7 @@ The Empathy Ledger client at [v2/src/lib/empathy-ledger/client.ts](../../v2/src/
 
 | Theme | Best voices |
 |-------|-------------|
-| Co-design / "never been asked" | Linda Turner, Dianne Stokes, Norm Frank |
+| Design in community / "never been asked" | Linda Turner, Dianne Stokes, Norm Frank |
 | Dignity and safety | Ivy, Alfred Johnson, Tracy McCartney, Chloe |
 | Health and recovery | Brian Russell, Jessica Allardyce, Cliff Plummer, Gloria |
 | Freight tax | Alfred Johnson, Carmelita |

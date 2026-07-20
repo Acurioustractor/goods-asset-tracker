@@ -105,7 +105,7 @@ Slowest pipeline. Brand discipline matters most here, because the cost of gettin
 - In person where possible. Phone if not.
 - **Brand discipline:** Listen more than speak. Ask about the community's priorities, not ours.
 
-### Stage 3: Co-design conversation
+### Stage 3: Design conversation in community
 - Always paid at fair rates (cultural consultation: $3,800/day comparable to university research rates).
 - **Materials:** A bed to handle, a washing machine to look at. Not a slide deck.
 
@@ -133,7 +133,7 @@ Match the specific funder to the right URL.
 | Tim Fairfax Family Foundation | `/communities` Far North QLD | Geographic alignment with their priorities. |
 | Paul Ramsay Foundation | `/impact` health pathway | Health and wellbeing strategic priority. |
 | FRRR | `/communities` and `/impact` | Already funded. Backing the Future renewal. |
-| AMP Spark | `/process` and `/about` | Spark is about community-led. Lead with co-design. |
+| AMP Spark | `/process` and `/about` | Spark is about community-led. Lead with design in community. |
 | QBE Foundation | `/insiders` (QBE tree) | They're in the program. Full depth. |
 | QBE Ventures (Alex) | `/insiders` capital section | Catalytic capital conversation. |
 | SEFA (Hannah) | `/insiders` capital section | Blended finance partner. Specific. |

@@ -13,8 +13,8 @@ const CHECKLIST_BEFORE = [
 
 const CHECKLIST_DURING_INSTALL = [
   'Find a clean, flat spot. Knock the canvas out from any packing creases.',
-  'Slide the two steel poles through the canvas sleeves. Direction matters: ribbed pole-end faces the leg socket.',
-  'Click each plastic leg onto a pole end. Push from the end, not the side. You\'ll hear it seat.',
+  'Slide the two steel poles through the canvas long-edge sleeves.',
+  'Stand the two X-trestle legs and thread each pole end through the top holes of the crossed planks. Tensioning the assembly pulls the poles deep into the leg holes: the canvas is structural and braces the frame.',
   'Test by sitting on the centre — canvas takes the load, frame goes rigid.',
   'Place where it lives: floor, room corner, sleepout, outstation.',
 ];
@@ -125,15 +125,8 @@ export default async function InstallChecklistPage({
               Filter
             </button>
           </form>
-          <button
-            type="button"
-            onClick={() => undefined /* server-rendered */ }
-            className="rounded border px-3 py-1 text-xs font-semibold"
-            // Print is handled by browser shortcut + the @media print rules
-            // Most field teams will just hit Cmd/Ctrl + P
-          >
-            ⌘P / Ctrl-P to print
-          </button>
+          {/* Print is handled by the browser shortcut + the @media print rules */}
+          <span className="rounded border px-3 py-1 text-xs font-semibold">⌘P / Ctrl-P to print</span>
         </div>
 
         {/* Header */}

@@ -51,7 +51,7 @@ export function RequestActions({ requestId, currentStatus }: RequestActionsProps
   };
 
   if (availableTransitions.length === 0) {
-    return <span className="text-sm text-gray-400">-</span>;
+    return <span className="text-sm text-muted-foreground">-</span>;
   }
 
   return (
@@ -62,7 +62,7 @@ export function RequestActions({ requestId, currentStatus }: RequestActionsProps
           variant="outline"
           onClick={() => handleStatusChange('approved')}
           disabled={isLoading}
-          className="text-blue-600 hover:text-blue-700"
+          className="text-primary hover:text-primary/80"
         >
           Approve
         </Button>

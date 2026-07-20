@@ -47,7 +47,7 @@ Status language:
 **Accessible source:** [[../sources/goods-strategy-pd]]
 **Best use:** vision, ambition, strategic direction, community ownership pathway.
 
-This is the January 2026 strategy/product document. It states Goods as a circular economy social enterprise co-designing beds, mattresses and washing machines with remote First Nations communities, and converting waste into manufacturing inputs. It names the mission as transferring ownership of production and profits to First Nations communities through local resource use.
+This is the January 2026 strategy/product document. It states Goods as a circular economy social enterprise designing beds, mattresses and washing machines in community with remote First Nations communities, and converting waste into manufacturing inputs. It names the mission as transferring ownership of production and profits to First Nations communities through local resource use.
 
 What it shows:
 

@@ -26,9 +26,9 @@ export default async function ElStorytellersIndex() {
     <div className="space-y-6 pb-16">
       <header className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Storytellers</h1>
-          <p className="mt-1 text-sm text-gray-500 max-w-prose">
-            EL people with at least one <span className="font-medium text-gray-700">Goods</span> story
+          <h1 className="text-2xl font-bold tracking-tight font-display">Storytellers</h1>
+          <p className="mt-1 text-sm text-muted-foreground max-w-prose">
+            EL people with at least one <span className="font-medium text-foreground">Goods</span> story
             (project-scoped, not the whole EL directory). EL is the source of truth — review here, then
             Edit in EL to change. People we engage with (partners, funders, board) live under{' '}
             <Link href="/admin/people" className="text-orange-700 hover:underline">People</Link>.
@@ -42,15 +42,15 @@ export default async function ElStorytellersIndex() {
         </Link>
       </header>
 
-      <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-gray-500">
-        <span><span className="font-bold text-gray-900">{profiles.length}</span> storytellers</span>
-        <span><span className="font-bold text-gray-900">{published}</span> with published public stories</span>
-        <span><span className="font-bold text-gray-900">{elders}</span> Elders</span>
-        <span><span className="font-bold text-gray-900">{withPortrait}</span> with portrait</span>
+      <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-muted-foreground">
+        <span><span className="font-bold text-foreground">{profiles.length}</span> storytellers</span>
+        <span><span className="font-bold text-foreground">{published}</span> with published public stories</span>
+        <span><span className="font-bold text-foreground">{elders}</span> Elders</span>
+        <span><span className="font-bold text-foreground">{withPortrait}</span> with portrait</span>
       </div>
 
       {profiles.length === 0 ? (
-        <p className="rounded border border-dashed border-gray-300 bg-gray-50 p-6 text-center text-sm text-gray-600">
+        <p className="rounded border border-dashed border-border bg-muted p-6 text-center text-sm text-muted-foreground">
           No Goods storytellers loaded (EL may be unreachable, or no project stories carry a storyteller). Refresh in a moment.
         </p>
       ) : (

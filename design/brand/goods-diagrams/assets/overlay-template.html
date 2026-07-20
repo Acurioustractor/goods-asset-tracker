@@ -1,0 +1,85 @@
+<!--
+  GOODS OVERLAY TEMPLATE (HTML) — the canon-baking companion to overlay-template.svg.
+  ───────────────────────────────────────────────────────────────────────────────
+  Use this one when the caption carries a CANON number and you want it AUTO-BAKED and
+  checked (so a stale figure can never ship). The picture is still GENERATED (see
+  references/generate.md); this only lays the exact words over it.
+
+  ONE-STEP USE
+    1. Copy this file next to your generated PNG (keep them in the same folder).
+    2. Set the --img url below to your PNG filename.
+    3. Overwrite the [bracketed] eyebrow / title / caption.
+    4. For the number, write a token the kit resolves, e.g.  CANON:num:plastic-kg
+       (→ 2,660kg). Canon ids: plastic-kg, stretch-beds-deployed, beds-deployed,
+       communities-served, washers-in-community, save-per-bed, stretch-price …
+       full list in design/canon-numbers.json. Spec-class facts that are NOT canon
+       (20KG PER BED, NO TOOLS, 5 MINUTES, 200KG) are typed literally.
+    5. Render:  design/brand/kit/render.sh <this-file>   → PDF + preview PNG, with the
+       canon number baked from canon.ts. render.sh REFUSES to ship if the id is wrong
+       or the number has drifted — that refusal is the whole point of using HTML here.
+
+  WHY IT CAN'T OVERLAP: the page is the same cream the model draws on; the picture
+  sits in the centre band and text lives in the top / bottom margins — separate zones.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  :root{
+    /* --cream is the page ground. If your generation sits on a warmer cream than
+       #FBF8F1 (some do), set --cream to match it so the picture blends edge to edge. */
+    --cream:#FBF8F1; --clay:#A8643F; --ink:#2B2A26; --sub:#7A7363;
+    --terracotta:#C45C3E; --gold:#BBA255; --teal:#5C8A86; --sage:#8B9D77;
+    /* ↓↓ point this at your generated illustration ↓↓ */
+    --img:url("YOUR-GENERATED.png");
+  }
+  @page{ size:1600px 900px; margin:0; }
+  *{ box-sizing:border-box; margin:0; }
+  html,body{ width:1600px; height:900px; }
+  body{
+    background:var(--cream); position:relative; overflow:hidden;
+    font-family:ui-monospace,Menlo,Consolas,monospace; color:var(--ink);
+  }
+
+  /* Centre band: the generated picture, centred, never stretched (same cream fills gaps). */
+  .picture{
+    position:absolute; left:120px; top:146px; width:1360px; height:576px;
+    background:var(--img) center/contain no-repeat;
+  }
+
+  /* Top margin */
+  .eyebrow{ position:absolute; left:80px; top:64px;
+    color:var(--terracotta); font-size:16px; letter-spacing:2.6px; }
+  .title{ position:absolute; left:78px; top:92px; right:80px;
+    font-family:Georgia,serif; font-weight:700; font-size:34px; letter-spacing:.2px; }
+
+  /* Bottom margin: caption + at most ONE number */
+  .caption{ position:absolute; left:80px; right:80px; top:772px; text-align:center;
+    font-size:17px; font-weight:600; letter-spacing:1.6px; }
+  /* Clay by default: matches the line and stays legible on cream. Tint by material
+     only when it reinforces meaning; avoid pale sage for the number (reads too faint). */
+  .number{ position:absolute; left:80px; right:80px; top:808px; text-align:center;
+    color:var(--clay); font-size:19px; font-weight:700; letter-spacing:1.6px; }
+
+  /* Optional point-labels for a multi-part picture — set left/top per part. */
+  .pt{ position:absolute; text-align:center; transform:translateX(-50%);
+    font-size:17px; font-weight:600; letter-spacing:1.6px; }
+</style>
+</head>
+<body>
+  <div class="picture"></div>
+
+  <div class="eyebrow">GOODS ON COUNTRY · [SECTION]</div>
+  <div class="title">[One idea, in a short line.]</div>
+
+  <div class="caption">[WHAT THIS SHOWS, IN A FEW WORDS]</div>
+  <div class="number">CANON:num:plastic-kg DIVERTED</div>
+
+  <!-- Multi-part labels (delete if unused). left = centre of the part it names:
+  <div class="pt" style="left:470px;  top:700px;">COLLECT</div>
+  <div class="pt" style="left:800px;  top:700px;">PRESS</div>
+  <div class="pt" style="left:1130px; top:700px;">A BED</div>
+  -->
+</body>
+</html>

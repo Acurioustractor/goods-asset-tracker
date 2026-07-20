@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { PLASTIC_KG_PER_BED, STRETCH_BED } from '@/lib/data/products';
 
 const stats = [
   { value: '200-350', label: 'Beds Requested' },
@@ -12,10 +13,10 @@ const stats = [
 ];
 
 const communities = [
-  { name: 'Palm Island', beds: 141, region: 'QLD' },
-  { name: 'Tennant Creek', beds: 139, region: 'NT' },
-  { name: 'Alice Homelands', beds: 60, region: 'NT' },
-  { name: 'Maningrida', beds: 24, region: 'NT' },
+  { name: 'Palm Island', beds: 131, region: 'QLD' },
+  { name: 'Tennant Creek', beds: 159, region: 'NT' },
+  { name: 'Alice Homelands', beds: 60, region: 'NT' }, // TODO unresolved: doesn't map cleanly to canonical Alice Springs (16) or Utopia Homelands (147) in content.ts — ask Ben which this label means
+  { name: 'Maningrida', beds: 18, region: 'NT' },
   { name: 'Kalgoorlie', beds: 20, region: 'WA' },
 ];
 
@@ -113,7 +114,7 @@ export default function CountryFirstPage() {
               The Stretch Bed
             </h2>
             <p className="text-stone-600 max-w-xl mx-auto">
-              Stackable, washable, and built to last. Each bed diverts 20kg of plastic from landfill.
+              Stackable, washable, and built to last. Each bed diverts {PLASTIC_KG_PER_BED}kg of plastic from landfill.
             </p>
           </div>
 
@@ -147,7 +148,7 @@ export default function CountryFirstPage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span style={{ color: '#2D5A47' }}>&#10003;</span>
-                  Designed to last 10+ years
+                  Designed to last {STRETCH_BED.specs.designLifespan}
                 </li>
               </ul>
               <p className="text-2xl font-light text-stone-900 mb-6">

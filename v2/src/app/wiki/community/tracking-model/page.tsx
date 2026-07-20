@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { STRETCH_BED } from '@/lib/data/products';
 
 export const metadata: Metadata = {
   title: 'Community Goods Tracking Model | Goods Wiki',
@@ -129,7 +130,7 @@ export default function TrackingModelPage() {
         <h2>The Economic Argument</h2>
         <p>
           Without lifecycle tracking, remote communities are trapped in a cycle of cheap procurement and rapid failure.
-          By tracking what lasts and what doesn&apos;t, we can prove that a $500 Stretch Bed lasting 10+ years
+          By tracking what lasts and what doesn&apos;t, we can prove that a $500 Stretch Bed lasting {STRETCH_BED.specs.designLifespan}
           costs less than replacing $50 beds every 6 months — and the data makes the grant case for quality goods.
         </p>
       </div>

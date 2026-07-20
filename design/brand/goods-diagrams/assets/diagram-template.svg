@@ -1,0 +1,56 @@
+<!--
+  Goods diagram template. Copy this file, keep the <defs> and <style> intact,
+  then place motifs and draw arrows/labels in the marked region.
+  Canvas sizes: 16:9 slide = 1600x900 (below) · 4:3 = 1600x1200 · 1:1 = 1200x1200.
+  Motifs come from motifs.svg (colocate the two files, or inline the <symbol>s you
+  use into <defs> below for a fully portable single file).
+  Render: design/brand/kit/render.sh <file>
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" font-family="sans-serif">
+  <defs>
+    <!-- Hand-drawn wobble for ARROWS and FLOW LINES only (not needed on motifs). -->
+    <filter id="hand" x="-6%" y="-6%" width="112%" height="112%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.016" numOctaves="3" seed="5" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <style>
+      /* Locked tokens (mirror design/brand/tokens.css). */
+      :root{
+        --cream:#FBF8F1; --grid:#E6DFD1; --clay:#A8643F; --ink:#2B2A26; --sub:#7A7363;
+        --terracotta:#C45C3E; --gold:#BBA255; --teal:#5C8A86; --sage:#8B9D77;
+        --green:#5E7A4C; --olive:#7E9A68;
+      }
+      .arrow{stroke:var(--clay);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+      .arrow-return{stroke:var(--sage);stroke-width:3;fill:none;stroke-linecap:round;stroke-dasharray:2 9;}
+      .eyebrow{font-family:ui-monospace,Menlo,Consolas,monospace;fill:var(--terracotta);font-size:15px;letter-spacing:2.5px;}
+      .label{font-family:ui-monospace,Menlo,Consolas,monospace;fill:var(--ink);font-size:16px;letter-spacing:1.5px;font-weight:600;text-anchor:middle;}
+      .sub{font-family:ui-monospace,Menlo,Consolas,monospace;fill:var(--sub);font-size:12.5px;letter-spacing:1px;text-anchor:middle;}
+      .title{font-family:Georgia,serif;fill:var(--ink);font-size:34px;font-weight:700;}
+    </style>
+  </defs>
+
+  <!-- Ground -->
+  <rect x="0" y="0" width="1600" height="900" fill="#FBF8F1"/>
+
+  <!-- Eyebrow + title (optional; a diagram may also be title-less) -->
+  <text x="80" y="86" class="eyebrow">GOODS ON COUNTRY · [SECTION]</text>
+  <text x="78" y="132" class="title">[One idea, in a short line.]</text>
+
+  <!-- ============================================================= -->
+  <!-- COMPOSE HERE. Place motifs, then draw arrows, then add labels. -->
+  <!-- ============================================================= -->
+
+  <!-- 1. Motifs (position/scale only; never edit motif paths) -->
+  <!-- <use href="motifs.svg#motif-flake" x="140" y="360" width="200" height="200"/> -->
+
+  <!-- 2. Arrows / flow lines (hand filter makes them match the motifs) -->
+  <!-- <g filter="url(#hand)"> -->
+  <!--   <path class="arrow" d="M360 460 C 460 445, 560 445, 660 458"/> -->
+  <!--   <path class="arrow" d="M660 458 l-16 -9 M660 458 l-14 10"/>  arrowhead -->
+  <!-- </g> -->
+
+  <!-- 3. Labels (uppercase mono, beside the motif) + at most ONE canon number -->
+  <!-- <text x="240" y="600" class="label">COLLECT</text> -->
+  <!-- <text x="240" y="700" class="label"><tspan fill="#8B9D77">CANON:num:plastic-kg</tspan> DIVERTED</text> -->
+
+</svg>

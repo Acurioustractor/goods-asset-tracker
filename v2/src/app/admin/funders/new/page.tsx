@@ -17,10 +17,10 @@ export default async function NewFunderPage() {
     <div className="space-y-6 pb-16">
       <header>
         <p className="text-xs">
-          <Link href="/admin/funders" className="text-blue-700 hover:underline">← back to funders</Link>
+          <Link href="/admin/funders" className="text-primary hover:underline">← back to funders</Link>
         </p>
-        <h1 className="mt-2 text-2xl font-bold tracking-tight">Add a funder / supporter</h1>
-        <p className="mt-1 text-sm text-gray-500">
+        <h1 className="font-display mt-2 text-2xl font-bold tracking-tight">Add a funder / supporter</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
           New funders are saved to <code>wiki/config/funders.json</code> and appear in{' '}
           <code>/admin/reports</code> immediately. Report shape auto-picks by commitment size
           (&lt; $100K = short visual deck, ≥ $100K = long-form Snow-style). Optional community

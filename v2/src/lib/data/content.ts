@@ -44,7 +44,7 @@ The answer became Goods: durable, repairable, community-designed "health hardwar
     { year: '2016-2020', event: 'Orange Sky expands to remote communities (now 1/3 of services)' },
     { year: 'Nov 2022', event: 'Goods project kicks off with advisory session' },
     { year: 'Sept 2023', event: 'A Curious Tractor formally founded' },
-    { year: '2024+', event: 'Active bed pilots deliver 496 beds across communities' }, // canonical: see asset-canonical.ts
+    { year: '2024+', event: 'Active bed pilots deliver 540 beds across communities' }, // canonical: see asset-canonical.ts
   ],
 
   problem: {
@@ -85,7 +85,7 @@ export const impact = {
   headline: 'Real Impact',
   stats: [
     { value: String(CANONICAL_ASSETS.bedsDeployed), label: 'Beds deployed', icon: 'bed' }, // canonical: see asset-canonical.ts
-    { value: '107', label: 'Stretch Beds on order', icon: 'demand' },
+    { value: '147', label: 'Beds delivered at Utopia Homelands', icon: 'demand' }, // Centrecorp order delivered; Ben ruling 2026-07-20
     { value: String(CANONICAL_ASSETS.communitiesServed), label: 'Communities served', icon: 'community' }, // canonical: see asset-canonical.ts
     { value: '$3M/yr', label: 'Washing machines sold → dumps', icon: 'problem', source: 'Alice Springs provider' },
   ],
@@ -427,7 +427,7 @@ export const impactStories = [
     title: 'Rest for Recovery',
     person: 'Gloria Turner',
     location: 'Kalgoorlie, WA',
-    quote: 'The impact of a mattress on overall health.',
+    quote: 'Sleep on a good mattress. For the back, the legs, the muscles.',
     summary: 'Gloria is a great-grandmother on dialysis. For her, a mattress isn\'t about comfort. It\'s about managing chronic illness.',
   },
   {
@@ -489,7 +489,7 @@ export const communityPartnerships = [
     headline: 'Where it all began',
     description: 'Tennant Creek is the birthplace of Goods on Country. Elder Dianne Stokes received the first bed and came back within two weeks requesting twenty more. Norman Frank called asking for three beds in maroon after his daughter tried one. The Pakkimjalki Kari washing machine was named here in Warumungu language by Dianne herself.',
     keyPeople: ['Dianne Stokes', 'Norman Frank', 'Kristy Bloomfield'],
-    bedsDelivered: 159,
+    bedsDelivered: 160,
     highlight: 'Dianne named the washing machine "Pakkimjalki Kari" in Warumungu language',
   },
   {
@@ -539,8 +539,28 @@ export const communityPartnerships = [
     headline: 'Arnhem Land partnership',
     description: 'Maningrida sits on the banks of the Liverpool River in Arnhem Land. This diverse community of over 2,500 people from multiple language groups is a hub for Yolŋu and other First Nations art and culture. Goods partners with local organisations to deliver beds to families across the region.',
     keyPeople: ['Local organisations', 'Community leaders'],
-    bedsDelivered: 18,
+    bedsDelivered: 58,
     highlight: 'Serving multiple language groups across Arnhem Land',
+  },
+  {
+    id: 'kununurra',
+    name: 'Kununurra',
+    region: 'Western Australia',
+    headline: 'East Kimberley delivery',
+    description: 'Goods reached the East Kimberley in 2026 with Stretch Bed deliveries to Kununurra. The relationship is young and led by local Elders; the story of this place will be told when the community chooses to tell it.',
+    keyPeople: ['Local Elders'],
+    bedsDelivered: 2,
+    highlight: 'First deliveries into Western Australia\'s far north',
+  },
+  {
+    id: 'katherine',
+    name: 'Katherine',
+    region: 'Northern Territory',
+    headline: 'On the road south',
+    description: 'Katherine sits at the crossroads of the Territory. Goods delivered here alongside the Deadly Heart Trek, building a bed with a local family as part of the rheumatic heart disease prevention work that inspired the products.',
+    keyPeople: ['Deadly Heart Trek partners'],
+    bedsDelivered: 1,
+    highlight: 'Delivered alongside the Deadly Heart Trek',
   },
 ];
 
@@ -784,9 +804,9 @@ export const communityLocations: CommunityLocation[] = [
     lat: -19.648,
     lng: 134.192,
     storytellerCount: 6,
-    bedsDelivered: 159,
+    bedsDelivered: 160,
     description: 'The birthplace of Goods on Country. Elder Dianne Stokes received the first bed and came back requesting twenty more.',
-    highlight: 'Dianne named the washing machine "Pakkimjalji Kari" in Warumungu language',
+    highlight: 'Dianne named the washing machine "Pakkimjalki Kari" in Warumungu language',
   },
   {
     id: 'palm-island',
@@ -861,9 +881,31 @@ export const communityLocations: CommunityLocation[] = [
     lat: -12.056,
     lng: 134.269,
     storytellerCount: 0,
-    bedsDelivered: 18,
+    bedsDelivered: 58,
     description: 'On the banks of the Liverpool River in Arnhem Land. A diverse community of over 2,500 people from multiple language groups.',
     highlight: 'Serving multiple language groups across Arnhem Land',
+  },
+  {
+    id: 'kununurra',
+    name: 'Kununurra',
+    region: 'Western Australia',
+    lat: -15.7736,
+    lng: 128.7386,
+    storytellerCount: 0,
+    bedsDelivered: 2,
+    description: 'East Kimberley deliveries, 2026. A young relationship led by local Elders.',
+    highlight: 'First deliveries into the East Kimberley',
+  },
+  {
+    id: 'katherine',
+    name: 'Katherine',
+    region: 'Northern Territory',
+    lat: -14.4652,
+    lng: 132.2635,
+    storytellerCount: 0,
+    bedsDelivered: 1,
+    description: 'Delivered alongside the Deadly Heart Trek, building a bed with a local family.',
+    highlight: 'Delivered alongside the Deadly Heart Trek',
   },
   {
     id: 'darwin',
@@ -895,17 +937,17 @@ export const communityLocations: CommunityLocation[] = [
 // ---------------------------------------------------------------------------
 //
 // The canonical deployed-bed register lives in compendium.ts `deployments`
-// (sums to EXPECTED_DEPLOYED_BEDS = 496; the live Supabase register is
+// (sums to EXPECTED_DEPLOYED_BEDS = 540; the live Supabase register is
 // authoritative, this is the labelled static fallback).
 //
 // `communityLocations` (heatpost-map baselines, live-overridden except where
 // staticBedCount=true) now covers all 9 deployed communities, including the
 // single-bed capital-city deployments Darwin (1) and Canberra (2), so the map
-// matches the published "9 communities / 496 beds". `communityPartnerships`
+// matches the published "11 communities / 540 beds". `communityPartnerships`
 // (narrative subset) stays INTENTIONALLY NARROWER: it lists only communities
 // with a real narrative partner, so it still omits Darwin/Canberra (a bare
 // deployment is not a partnership story, and inventing one would be fabrication).
-// So we do NOT force either array's sum to equal 496. Instead we assert that
+// So we do NOT force either array's sum to equal 540. Instead we assert that
 // (a) no single community's static count EXCEEDS the canonical register value,
 // and (b) neither array's total exceeds EXPECTED_DEPLOYED_BEDS. This catches the
 // previous divergence (139/141/60/96 baselines that overstated some communities)
@@ -1063,6 +1105,7 @@ export const storytellerEnrichment: Record<string, {
   'Patricia Frank': { community: 'tennant-creek', localPhoto: '/images/people/patricia-frank.jpg' },
   'Cliff Plummer': { community: 'tennant-creek', localPhoto: '/images/people/cliff-plummer.jpg', hasVideo: true, videoEmbed: 'https://share.descript.com/embed/2gxa5x40r9N', role: 'Health Practitioner' },
   'Brian Russell': { community: 'tennant-creek', localPhoto: '/images/people/brian-russell.jpg' },
+  'Dr Boe Remenyi': { localPhoto: '/images/people/boe-remenyi.jpg', role: 'Paediatric Cardiologist, NT' },
 };
 
 // Video gallery items: local videos + external embeds
@@ -1258,7 +1301,7 @@ export const mediaPack = {
   aboutACT: `A Curious Tractor is the organisation behind Goods on Country. Founded in September 2023 by Nicholas Marchesi and Benjamin Knight, ACT exists to design, manufacture, and transfer ownership of essential goods to remote First Nations communities across Australia. The name reflects the approach: curiosity-driven problem solving applied to entrenched disadvantage. ACT is a social enterprise working toward community ownership of manufacturing.`, // NOTE: ACT (A Curious Tractor Pty Ltd) is NOT a registered charity or DGR entity — do not add that claim here.
 
   // Copy-paste-ready press boilerplate
-  pressBoilerplate: `Goods on Country is a social enterprise delivering durable, community-designed essential goods to remote First Nations communities across Australia. The flagship product, the Stretch Bed, is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty Australian canvas. Each bed diverts 20kg of plastic from landfill, assembles in under five minutes with no tools, and supports up to 200kg. With 496 beds delivered across 9 communities, Goods on Country addresses the environmental health conditions that drive preventable disease, including Rheumatic Heart Disease, by putting health hardware directly into the hands of families who need it. The organisation's long-term goal is to transfer manufacturing capability to community-owned enterprises. Founded in 2023, Goods on Country is a project of A Curious Tractor.`,
+  pressBoilerplate: `Goods on Country is a social enterprise delivering durable, community-designed essential goods to remote First Nations communities across Australia. The flagship product, the Stretch Bed, is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty Australian canvas. Each bed diverts 20kg of plastic from landfill, assembles in under five minutes with no tools, and supports up to 200kg. With 540 beds delivered across 11 communities, Goods on Country addresses the environmental health conditions that drive preventable disease, including Rheumatic Heart Disease, by putting health hardware directly into the hands of families who need it. The organisation's long-term goal is to transfer manufacturing capability to community-owned enterprises. Founded in 2023, Goods on Country is a project of A Curious Tractor.`,
 
   // Brand color palette
   brandColors: [

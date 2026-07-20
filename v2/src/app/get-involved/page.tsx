@@ -19,9 +19,9 @@ export const metadata: Metadata = {
 
 // Real numbers, pulled from the canonical data files (no invented stats).
 const totals = getDeploymentTotals();
-// "496 beds in homes since 2023" lives in goodsBedStats as the last atom.
+// "540 beds in homes since 2023" lives in goodsBedStats as the last atom.
 const bedsInHomes =
-  goodsBedStats.find((s) => s.label.includes('beds in homes'))?.value ?? '496'; // canonical: see asset-canonical.ts
+  goodsBedStats.find((s) => s.label.includes('beds in homes'))?.value ?? '540'; // canonical: see asset-canonical.ts
 
 const WAYS = [
   {
@@ -68,7 +68,7 @@ export default function GetInvolvedPage() {
           Beds in homes.<br />The making, moving to Country.
         </h1>
         <p className="text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto mb-8" style={{ color: `${CHARCOAL}cc` }}>
-          On the May 2026 Utopia trip we delivered 107 Stretch Beds in a single run. That is what
+          On the May 2026 Utopia trip we delivered 87 Stretch Beds in a single run. That is what
           backing this work looks like: a washable bed off the ground today, and a plant that builds the
           next ones On Country tomorrow.
         </p>
@@ -137,7 +137,7 @@ export default function GetInvolvedPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
             {[
               { value: bedsInHomes, label: 'beds in homes since 2023' },
-              { value: '107', label: 'delivered on the May 2026 Utopia trip' },
+              { value: '87', label: 'delivered on the May 2026 Utopia trip' },
               { value: `${totals.communities}`, label: 'communities across remote Australia' },
               { value: '20kg', label: 'of plastic kept out of landfill, per bed' },
             ].map((stat) => (

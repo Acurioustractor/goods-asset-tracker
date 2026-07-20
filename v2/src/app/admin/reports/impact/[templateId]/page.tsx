@@ -74,18 +74,18 @@ export default async function ImpactReportPage({
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Link
           href="/admin/reports/impact"
-          className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700"
+          className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" /> All report templates
         </Link>
         {servingSegments.length > 0 && (
-          <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500">
+          <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
             <Megaphone className="h-3.5 w-3.5" /> Serves:
             {servingSegments.map((s) => (
               <Link
                 key={s.id}
                 href={`/admin/reach-out?segment=${s.id}`}
-                className="rounded-full bg-violet-100 px-2 py-0.5 font-medium text-violet-700 hover:bg-violet-200"
+                className="rounded-full bg-primary/10 px-2 py-0.5 font-medium text-primary hover:bg-primary/20"
               >
                 {s.name}
               </Link>
@@ -99,7 +99,7 @@ export default async function ImpactReportPage({
         this as an email campaign. Metrics are current snapshots; stories are consent-filtered from Empathy Ledger.
       </div>
 
-      <div className="rounded-xl border border-gray-200 bg-white p-6 sm:p-10">
+      <div className="rounded-xl border border-border bg-card p-6 sm:p-10">
         <ImpactReport
           template={template}
           metrics={metrics}

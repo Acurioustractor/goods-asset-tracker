@@ -1,0 +1,549 @@
+{
+ "transcripts": [
+  {
+   "storyteller": "Margaret Lloyd",
+   "transcript_id": "0ecb0185-6533-4275-a150-1634eb9fd616",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "I sleep in the tent but look, there's my house or the rubbish house... No mattress. Look, the be- bed was mine. Just for chucking us blanket, that's all, that's all I was sleeping.",
+     "timestamp": "00:00:00",
+     "context": "Margaret describing her sleeping situation in Wenitong before the Goods bed delivery: sleeping in a tent beside an uninhabitable house, on a bed frame with no mattress, just a blanket.",
+     "themes": [
+      "rest-sleep-health",
+      "system-failure",
+      "dignity-safety"
+     ],
+     "domain": "rest-health",
+     "strength": "deck",
+     "sensitivity": "Depicts personal hardship (tent, 'rubbish house'); use with dignity framing and confirm consent/clearance before external use.",
+     "cleared": true
+    },
+    {
+     "text": "Because I was sleeping on floor, turn around, turn around. Yeah. No comfortable nothing.",
+     "timestamp": "00:00:00",
+     "context": "Why the new bed matters: she had been sleeping on the floor, unable to get comfortable.",
+     "themes": [
+      "rest-sleep-health"
+     ],
+     "domain": "rest-health",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "Our bed is right. That's good. Good... I can sleep there. Yeah.",
+     "timestamp": "00:00:00",
+     "context": "Her verdict on the just-delivered bed, including that the canvas surface works without a mattress (mattresses go missing: 'all the mattress has gone somewhere').",
+     "themes": [
+      "product-durability",
+      "rest-sleep-health"
+     ],
+     "domain": "rest-health",
+     "strength": "strong",
+     "sensitivity": null,
+     "cleared": true
+    }
+   ],
+   "themes_present": [
+    {
+     "theme": "rest-sleep-health",
+     "note": "Core arc: floor/tent/no-mattress sleeping replaced by the delivered bed."
+    },
+    {
+     "theme": "system-failure",
+     "note": "'Rubbish house' and vanished mattresses point to housing and goods-supply failure."
+    },
+    {
+     "theme": "product-durability",
+     "note": "Canvas sleeping surface removes the mattress dependency (mattresses disappear/degrade)."
+    }
+   ],
+   "narrative_summary": "Margaret Lloyd, ~30 years resident in Wenitong, describes sleeping in a tent beside her 'rubbish house' on a bare frame with no mattress, or on the floor. The Goods team delivers a bed on camera and she immediately approves it, confirming she can sleep straight on the canvas without a mattress. A short but direct before/after delivery testimony \u2014 one of the clearest 'this is why the bed exists' clips in the set.",
+   "analysis_notes": "GEO CHECK for the Margaret-of-Utopia question: she says the location is 'Wenitong' (likely Wenten/Wenitong outstation transcription \u2014 phonetically close to Wetenngerr/Amengernternenh area names; Utopia homelands include Arnkawenyerr/Atnwengerrp outstations). The transcript does NOT say Utopia explicitly and gives no leadership context; it does not confirm she is the Utopia community leader Margaret. Flag: 'Wenitong' may be a mis-transcription of an Utopia outstation name \u2014 needs Ben/field confirmation. Speaker labels: 'Speaker' = Margaret, 'Speaker 2' = interviewer (likely Ben/Nic), 'Speaker 3' = second team member. English is a later language for her; quotes kept verbatim \u2014 do not smooth without clearance. CONFIRMED by Ben 2026-07-20: Margaret Lloyd IS the Utopia Margaret; crm_contacts row linked (empathy_ledger_id set), provenance entry added."
+  },
+  {
+   "storyteller": "Tanya Turner",
+   "transcript_id": "c14ee313-36ce-4fcd-9206-100de73907a4",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "We're given the opportunity to be consulted with, but you're never given the opportunity... it's rare that you're consulted with and then told, Hey. So from that consultation we came up with this, do you wanna do it? It'll be like, oh, from the consultation we came up with this and we've brought in this group to do that for you now.",
+     "timestamp": "00:27:00",
+     "context": "Tanya on how consultation is done TO Aboriginal communities rather than led by them \u2014 the exact failure mode Goods' design-in-community and ownership-pathway model answers.",
+     "themes": [
+      "never-asked",
+      "ownership-pathway"
+     ],
+     "domain": "self-determination",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "That's where we talk about allies, right? It's about letting Aboriginal people lead, but being an ally on the side... whereas I think in Australia we've got that upside down completely.",
+     "timestamp": "00:26:00",
+     "context": "Her definition of the right partnership posture \u2014 Aboriginal-led with allies alongside; directly frames the Goods reciprocity/ownership stance.",
+     "themes": [
+      "reciprocity-partnership",
+      "ownership-pathway"
+     ],
+     "domain": "self-determination",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "If we have the knowledge that we have some long-term security, we can really throw ourselves into... what's our goals? ... everything's just been like treading water.",
+     "timestamp": "00:18:00-00:19:00",
+     "context": "On short-term funding cycles suffocating Aboriginal organisations ('come June, do our staff all need to look for new jobs?') \u2014 the case for patient, ownership-building capital.",
+     "themes": [
+      "ownership-pathway",
+      "system-failure"
+     ],
+     "domain": "jobs-ownership",
+     "strength": "strong",
+     "sensitivity": null
+    },
+    {
+     "text": "Working towards how we as an Aboriginal community bring back our lives, create something for our people to want to live for.",
+     "timestamp": "00:29:00",
+     "context": "Closing vision statement for Alice Springs and Oonchiumpa's leadership of change.",
+     "themes": [
+      "ownership-pathway",
+      "country-culture"
+     ],
+     "domain": "self-determination",
+     "strength": "deck",
+     "sensitivity": "Adjacent lines reference despair, racism, alcoholism, DV \u2014 quote the hope line alone; do not extend.",
+     "cleared": true
+    },
+    {
+     "text": "Our young people, unfortunately, are just collateral in a bigger issue. The issue doesn't sit with them. It sits on a much broader level and with adults, not with children.",
+     "timestamp": "00:29:00",
+     "context": "Reframing youth crime narratives; system-level cause framing that matches Goods' 'the system failed, not the people' stance.",
+     "themes": [
+      "system-failure",
+      "family-kids"
+     ],
+     "domain": "dignity-safety",
+     "strength": "strong",
+     "sensitivity": null
+    }
+   ],
+   "themes_present": [
+    {
+     "theme": "ownership-pathway",
+     "note": "Aboriginal-led change, long-term security enabling dreaming/goals, being 'at the forefront of change'."
+    },
+    {
+     "theme": "never-asked",
+     "note": "Consultation-theatre critique: consulted then handed someone else's solution."
+    },
+    {
+     "theme": "reciprocity-partnership",
+     "note": "Allies-on-the-side model; two-worlds bridging; international Indigenous knowledge exchange."
+    },
+    {
+     "theme": "country-culture",
+     "note": "Return-to-Alice epiphany, connection to country, cultural broker role for young people."
+    },
+    {
+     "theme": "system-failure",
+     "note": "Precarious grant cycles, media's bleak Alice narrative, statues-over-camps imagery."
+    }
+   ],
+   "narrative_summary": "Tanya Turner, Eastern Arrernte lawyer and Oonchiumpa co-lead, traces her path from UWA law through the Victorian Supreme Court (including the Bolt case) back to Alice Springs, legal aid, mediation, and founding work with Kristy. Her through-lines are Aboriginal-led change, the failure of consultation-without-authority, and how funding precarity stops organisations from dreaming. She articulates the ally model \u2014 Aboriginal people lead, partners walk alongside \u2014 that is the backbone of the Goods ownership-pathway story in Alice Springs.",
+   "analysis_notes": "Speaker-label caution: markdown labels '**Tanya:**' and '**Ben:**' are unreliable \u2014 the long passage under '**Ben:**' (from 'And now you look at her...') is clearly Tanya's voice answering, with Ben's questions interleaved un-labelled throughout. Attribute quotes above to Tanya with confidence (content/voice consistent), but do not cite label positions. No direct bed/washer content; value is leadership/ownership context \u2014 she and Kristy 'need to do something for ourselves' is the Oonchiumpa origin note. Contains casual profanity and a named-politician jab (Jacinta) \u2014 avoid those passages externally. 'Naja' = likely NAAJA; 'Chupa/Cho' = Oonchiumpa mis-transcriptions."
+  },
+  {
+   "storyteller": "Kristy Bloomfield",
+   "transcript_id": "8d6b2835-ae86-43cd-ada7-fd4a8a3410f8",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "It's important for us to have a safe home. And for our young people... to have an opportunity to have their own bed, to have their own belongings, to be a kid... the same experience that many other Australians have that take advantage of having their own room and beds.",
+     "timestamp": "00:05:00",
+     "context": "Kristy on overcrowded housing in Central Australia \u2014 visiting family 'sleeping on their beds' \u2014 and what a bed of one's own means for a child. The single most directly Goods-relevant line in the batch.",
+     "themes": [
+      "family-kids",
+      "rest-sleep-health",
+      "dignity-safety"
+     ],
+     "domain": "rest-health",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "There's a lack of housing, which leads to a lack of sleep for our young people, which leads to a low attendance of school education... quite often our young people are breaking in and looking for food and being out on the streets because there is such an overcrowding house that they don't wanna be home.",
+     "timestamp": "00:05:00-00:06:00",
+     "context": "The causal chain from overcrowding to sleeplessness to school non-attendance to justice contact \u2014 the sleep-as-foundation logic of the Stretch Bed, in a community leader's own words.",
+     "themes": [
+      "rest-sleep-health",
+      "system-failure",
+      "family-kids"
+     ],
+     "domain": "rest-health",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "We wanna be able to create generational wealth, economic development on our own land. We see too many times that a lot of other businesses are thriving. Why can't we thrive as Aboriginal people on our land as well?",
+     "timestamp": "00:01:00",
+     "context": "Oonchiumpa's economic vision \u2014 the demand side of the Goods community-ownership pathway (on-country manufacturing moving to community ownership).",
+     "themes": [
+      "ownership-pathway",
+      "making-jobs"
+     ],
+     "domain": "jobs-ownership",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "How do we as Oonchiumpa make sure that we're not being used? And how do we Oonchiumpa create our own revenue... create revenue for them to consult with us.",
+     "timestamp": "00:07:00",
+     "context": "On extraction vs paid Aboriginal expertise \u2014 sets the reciprocity terms any partner (including Goods) must meet.",
+     "themes": [
+      "reciprocity-partnership",
+      "ownership-pathway"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": null
+    },
+    {
+     "text": "Dad wants to be in a position to also train our young men to be able to have excavator licence, a bulldozer and Bobcat... we wanna be able to create this space and tradesmen, stockmen, electricians... to have their own programs on their own community.",
+     "timestamp": "00:11:00-00:13:00",
+     "context": "Henry Bloomfield Contracting and Loves Creek station: on-country training, trades and jobs pipeline \u2014 natural adjacency to Goods' on-country manufacturing jobs story.",
+     "themes": [
+      "making-jobs",
+      "country-culture",
+      "ownership-pathway"
+     ],
+     "domain": "jobs-ownership",
+     "strength": "strong",
+     "sensitivity": null
+    }
+   ],
+   "themes_present": [
+    {
+     "theme": "rest-sleep-health",
+     "note": "Overcrowding -> no bed of your own -> no sleep -> no school; explicit causal chain."
+    },
+    {
+     "theme": "ownership-pathway",
+     "note": "Generational wealth on own land, Oonchiumpa hub, revenue from their own expertise, Loves Creek handback."
+    },
+    {
+     "theme": "making-jobs",
+     "note": "Machinery tickets, trades, stockman training, employment sought from Oonchiumpa by community members."
+    },
+    {
+     "theme": "reciprocity-partnership",
+     "note": "Not being used; paid consultation; brokerage of Aboriginal businesses; ANU law course partnership."
+    },
+    {
+     "theme": "family-kids",
+     "note": "Kinship-system support model; every family member has a role."
+    }
+   ],
+   "narrative_summary": "Kristy Bloomfield, traditional owner of Mparntwe/Alice Springs and Oonchiumpa director, lays out the full Oonchiumpa vision: the ANU true-justice course, an alternative youth service, a one-stop Oonchiumpa hub, Loves Creek station tourism and training, and her father's contracting business training young men on machinery. She names overcrowded housing and children lacking a bed of their own as a root cause of sleeplessness, school absence and offending \u2014 the clearest community-leader articulation of the problem the Stretch Bed answers. Throughout she insists on paid, Aboriginal-led partnership: generational wealth on their own land, never being used.",
+   "analysis_notes": "Highest Goods relevance in the batch: the own-bed/overcrowding passage (00:05:00) is deck-grade for the WHY of beds in Alice Springs, and the ownership/jobs material grounds the ownership-pathway slide with the named Goods partner (Oonchiumpa, per Ben's context: Kristy and Tanya lead Goods in Alice Springs). Transcription noise: 'Chupa/Tupa/on Chomper' = Oonchiumpa; 'ban/Inba/Banis' = Mparntwe variants; dates '2002/2003' are almost certainly mis-transcribed (likely 2022/2023) \u2014 do not cite years. Kylie and Tanya named as colleagues. Quotes above lightly elided with ellipses; verify against raw text before external use."
+  },
+  {
+   "storyteller": "Kristy Bloomfield",
+   "transcript_id": "f5083053-a937-4640-ad1d-6cd4dc4a6aef",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "By the second day they were different kids. The ones who wouldn't talk in town were yarning around the fire. The ones who'd been fighting were looking after each other. That's what Country does \u2014 it reminds them who they are.",
+     "timestamp": null,
+     "context": "Monthly on-Country trips to Atnarpa with eight young people; the transformation being on Country produces.",
+     "themes": [
+      "country-culture",
+      "family-kids"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": null
+    },
+    {
+     "text": "On the last night one of the boys \u2014 15 years old, been in trouble with police since he was 12 \u2014 said to me: 'Aunty, can we come back next week?' That's when you know it's working. He's not asking to go back to town. He's asking to stay on Country.",
+     "timestamp": null,
+     "context": "Outcome moment from the Atnarpa trip; culture-led diversion working.",
+     "themes": [
+      "country-culture",
+      "family-kids"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": "Identifiable-ish minor (age + police history) \u2014 keep anonymised, no photo pairing."
+    },
+    {
+     "text": "Three of those eight kids have gone back to school. Two got jobs. All of them are off the police radar. That's what happens when you lead with culture instead of compliance.",
+     "timestamp": null,
+     "context": "Claimed outcomes of the monthly on-Country trips (NIAA-funded).",
+     "themes": [
+      "country-culture",
+      "making-jobs",
+      "system-failure"
+     ],
+     "domain": "self-determination",
+     "strength": "supporting",
+     "sensitivity": "Outcome claims are Kristy's program figures, not Goods'; never present as Goods outcomes (claim-ceiling rule)."
+    }
+   ],
+   "themes_present": [
+    {
+     "theme": "country-culture",
+     "note": "On-Country immersion as the intervention itself; Elders teaching tracking, stories, bush tucker."
+    },
+    {
+     "theme": "family-kids",
+     "note": "Young people transformed by Elder-led time on Country."
+    },
+    {
+     "theme": "system-failure",
+     "note": "Trip cost vs detention-night cost comparison (figures corrupted in transcript)."
+    }
+   ],
+   "narrative_summary": "Kristy recounts a three-day trip taking eight young people to Atnarpa on Country: settling in with Elders, cultural mornings and practical-skills afternoons (fencing, cattle work, art, bush tucker), and visible transformation by day two. A 15-year-old with a long police history asks to come back the next week; she reports school returns, jobs, and no further police contact across the group. Context for Goods: this is the partner-led on-Country program world the beds and washers land inside, and Atnarpa/Loves Creek is the family station named in her main interview.",
+   "analysis_notes": "Reads as a written/polished account rather than a verbatim interview (no speaker turns, no timestamps) \u2014 treat as Kristy-authored program narrative; confirm provenance before quoting as speech. Dollar figures are corrupted in the source (',000' per trip and ',852' per detention night \u2014 leading digits lost); do NOT reconstruct or cite them. Outcomes are her program's claims \u2014 supporting context only under the Goods claim ceiling."
+  },
+  {
+   "storyteller": "Kristy Bloomfield",
+   "transcript_id": "8fccf899-44a2-483e-b91c-07f1d60dbe54",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "We call for local Aboriginal organisations to be empowered to lead and facilitate fundamental change in the delivery of services and support for Aboriginal children and young people in Mbantua/Alice Springs.",
+     "timestamp": null,
+     "context": "Opening call of the Alliance for Aboriginal Youth in Mbantua statement (2 Aug 2024), issued with Kristy as Oonchiumpa contact.",
+     "themes": [
+      "ownership-pathway",
+      "system-failure"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": null
+    },
+    {
+     "text": "We have seen goodness and potential in our young people, who too frequently are misbehaving or committing crimes as a direct result of hunger, homelessness, mental health, injustice, gaps in service provision and other issues.",
+     "timestamp": null,
+     "context": "Root-cause framing of youth offending; the material-deprivation basis (hunger, homelessness) that Goods' dignity-goods response sits within.",
+     "themes": [
+      "system-failure",
+      "dignity-safety",
+      "family-kids"
+     ],
+     "domain": "dignity-safety",
+     "strength": "strong",
+     "sensitivity": null
+    },
+    {
+     "text": "With millions being spent, we should not still have children and young people hungry, homeless and/or dressed in rags. But we do.",
+     "timestamp": null,
+     "context": "On funding lost to overheads while basics are missing \u2014 the service-system failure Goods' direct-delivery model contrasts with.",
+     "themes": [
+      "system-failure",
+      "dignity-safety"
+     ],
+     "domain": "dignity-safety",
+     "strength": "deck",
+     "sensitivity": null
+    },
+    {
+     "text": "We want to help and we want to be heard.",
+     "timestamp": null,
+     "context": "The Alliance's core ask to government \u2014 community leadership offered and ignored.",
+     "themes": [
+      "never-asked",
+      "ownership-pathway"
+     ],
+     "domain": "self-determination",
+     "strength": "supporting",
+     "sensitivity": null
+    }
+   ],
+   "themes_present": [
+    {
+     "theme": "ownership-pathway",
+     "note": "Aboriginal organisations empowered to lead service change; diversion funding to local Aboriginal orgs."
+    },
+    {
+     "theme": "system-failure",
+     "note": "150+ uncoordinated funded services; money lost to cars, salaries, overhead; justice-system opacity."
+    },
+    {
+     "theme": "making-jobs",
+     "note": "Alliance members seeking permission to employ/train young Aboriginal offenders as diversion."
+    },
+    {
+     "theme": "dignity-safety",
+     "note": "Hunger, homelessness, rags despite millions spent; DV among young people."
+    }
+   ],
+   "narrative_summary": "A formal August 2024 statement by the Alliance for Aboriginal Youth in Mbantua, with Kristy Bloomfield as the Oonchiumpa contact, calling for local Aboriginal organisations to lead youth-service delivery in Alice Springs. It names hunger, homelessness and service gaps as drivers of youth crime, indicts the lack of coordination across 150+ funded services, and proposes Aboriginal-led solutions: employment diversion, justice collaboration with judges, role models, financial literacy and education pilots. For Goods it evidences the leadership standing of its Alice Springs partners and the material-basics deficit its products address.",
+   "analysis_notes": "This is a collective political statement, not personal testimony \u2014 attribute to 'Alliance for Aboriginal Youth in Mbantua (contact: Kristy Bloomfield, Oonchiumpa)' rather than to Kristy personally if used. Note the statement itself uses 'empowered'/'empower' \u2014 a banned pitch word for Goods copy; quote verbatim or not at all, never paraphrase into Goods voice. The judges-collaboration proposal here is the seed of the judges-welcome event in transcript 8c08aead."
+  },
+  {
+   "storyteller": "Kristy Bloomfield",
+   "transcript_id": "8c08aead-9e66-4d97-bbc1-62e24aa734eb",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "Central Arrernte people have always welcomed people to our country, and tonight is no difference... We are rich in our culture, language, knowledge, and history.",
+     "timestamp": "00:05:00-00:06:00",
+     "context": "Kristy's Welcome to Country as traditional owner of Mparntwe, opening the judges' visit hosted by Oonchiumpa.",
+     "themes": [
+      "country-culture",
+      "elders-protocol"
+     ],
+     "domain": "self-determination",
+     "strength": "supporting",
+     "sensitivity": "elders-protocol: Welcome to Country / ceremony content incl. butterfly dance handed down from Nana Bessie Little and smoking ceremony; family names and a deceased Elder are named \u2014 no external use without family clearance."
+    },
+    {
+     "text": "You hear people say the system is broken. From where we stand, the truth is even harder. The system is working exactly as it was built. It just wasn't built for us.",
+     "timestamp": "00:17:00",
+     "context": "Tanya Turner's address to the assembled judges on the justice system in Central Australia. NOTE: this is Tanya speaking, not Kristy.",
+     "themes": [
+      "system-failure"
+     ],
+     "domain": "dignity-safety",
+     "strength": "deck",
+     "sensitivity": "Attribute to Tanya Turner, not Kristy (transcript is filed under Kristy)."
+    },
+    {
+     "text": "Aboriginal people in Central Australia are often living in overcrowded houses under extreme stress, with grief layered upon grief, and with few of the stabilizing supports that most Australians take for granted.",
+     "timestamp": "00:13:00-00:14:00",
+     "context": "Tanya explaining lived reality behind 'non-compliant' behaviour to the judges \u2014 overcrowding and absent basics, the conditions Goods delivers into.",
+     "themes": [
+      "dignity-safety",
+      "system-failure"
+     ],
+     "domain": "dignity-safety",
+     "strength": "strong",
+     "sensitivity": "Tanya speaking."
+    },
+    {
+     "text": "Where culture is strong, kids do well. Where culture is eroded, everything else becomes fragile.",
+     "timestamp": "00:16:00-00:17:00",
+     "context": "Tanya on culture as backbone, not optional extra, for Aboriginal young people.",
+     "themes": [
+      "country-culture",
+      "family-kids"
+     ],
+     "domain": "self-determination",
+     "strength": "deck",
+     "sensitivity": "Tanya speaking."
+    },
+    {
+     "text": "Justice in Central Australia cannot be delivered from afar. It can only be shaped by those who choose to understand this place.",
+     "timestamp": "00:19:00-00:20:00",
+     "context": "Tanya's closing challenge to the judges; 'two cultures, one world working together' is the Oonchiumpa motto \u2014 a template for how any outside partner (including Goods) should show up.",
+     "themes": [
+      "reciprocity-partnership",
+      "country-culture"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": "Tanya speaking."
+    }
+   ],
+   "themes_present": [
+    {
+     "theme": "elders-protocol",
+     "note": "Welcome to Country, butterfly dance from Nana Bessie Little (deceased), smoking ceremony \u2014 all protocol-gated."
+    },
+    {
+     "theme": "system-failure",
+     "note": "'Working exactly as it was built... wasn't built for us'; detention as default; symptom-not-cause responses."
+    },
+    {
+     "theme": "country-culture",
+     "note": "Yeperenye/caterpillar dreaming named in welcome; country holds memory and law; culture as backbone."
+    },
+    {
+     "theme": "dignity-safety",
+     "note": "Overcrowding, food insecurity, trauma behind youth statistics."
+    },
+    {
+     "theme": "reciprocity-partnership",
+     "note": "Judges invited onto country to listen; four-pillar alternative service response; cultural humility asks."
+    }
+   ],
+   "narrative_summary": "An evening welcome event for visiting judges, hosted by Oonchiumpa: Kristy gives the Welcome to Country as Mparntwe traditional owner, her nieces perform the butterfly dance inherited from Nana Bessie Little, and a smoking ceremony follows. Tanya Turner then delivers a substantial address on colonisation's later arrival in Central Australia, the lived reality behind youth-justice statistics, Oonchiumpa's four-pillar alternative service response, and what she needs from judges \u2014 cultural humility, flexible sentencing, belief in young people. Demonstrates Oonchiumpa's cultural authority and institutional reach, the standing behind Goods' Alice Springs partnership.",
+   "analysis_notes": "SPEAKER ATTRIBUTION CRITICAL: file is labelled Kristy but contains three-plus voices \u2014 Speaker 30 = Kristy (welcome, dance intro, smoking ceremony), Speaker 32 = mostly Tanya Turner (main address; she self-introduces at 00:09:00) though Speaker 32 also opens the evening as an MC voice, and later speakers are a judge (thank-you) and photographer. Quotes 2-5 above are Tanya's, flagged individually. Ceremony content (butterfly dance lineage, smoking ceremony, deceased Elder Nana Bessie Little named, family genealogy) carries an elders-protocol hold: nothing ceremonial goes external without family review. The '100 years after the East coast' colonisation framing and 'system working as built' line are powerful context lines, deck-capable after attribution fix and Ben review."
+  },
+  {
+   "storyteller": "Kristy Bloomfield",
+   "transcript_id": "24c0a11b-24b8-420a-950c-23d1ad33faef",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "In the middle of the night they came and bulldozed the tail end of the caterpillar. And even mob talk about that, all them old grannies went crying at that site and were really heartbroken... we could have worked together to create something better.",
+     "timestamp": "00:03:00-00:04:00",
+     "context": "The 1982 Christmas Eve bulldozing of a caterpillar dreaming site near Barrett Drive during supposed consultation with traditional owners.",
+     "themes": [
+      "never-asked",
+      "country-culture",
+      "elders-protocol"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": "elders-protocol: sacred-site and Dreaming content \u2014 no deck/external use without Elder and family review. Historical grief content."
+    },
+    {
+     "text": "Back then we didn't have the opportunity to challenge government. And now that they want the art gallery, we're in a position to say, hey, this is a sacred site for us as Aboriginal women and as traditional owners here.",
+     "timestamp": "00:04:00",
+     "context": "The shift from powerlessness (1982 bulldozing, women's sacred site built over by the school) to present-day traditional-owner authority contesting the art gallery site.",
+     "themes": [
+      "ownership-pathway",
+      "country-culture",
+      "elders-protocol"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": "elders-protocol: references women's sacred site \u2014 review required before any use."
+    },
+    {
+     "text": "These are really significant stories that we all grew up with learning and knowing... even when we get our kids coming back to tell us little stories, it's always really reassuring and good to hear.",
+     "timestamp": "00:02:00",
+     "context": "Sacred sites identified through the native title claim now taught in schools; intergenerational transmission working.",
+     "themes": [
+      "country-culture",
+      "family-kids",
+      "elders-protocol"
+     ],
+     "domain": "self-determination",
+     "strength": "supporting",
+     "sensitivity": "elders-protocol: Dreaming content (Yeperenye caterpillar, dog dreaming) \u2014 review before external use."
+    }
+   ],
+   "themes_present": [
+    {
+     "theme": "elders-protocol",
+     "note": "Entire transcript is Dreaming/sacred-site content (caterpillar, dog dreaming, women's site, burial sites, knowledge deliberately withheld by old people) \u2014 blanket protocol hold."
+    },
+    {
+     "theme": "never-asked",
+     "note": "1982 bulldozing during 'consultation'; flag-order bureaucracy fight; art gallery siting."
+    },
+    {
+     "theme": "ownership-pathway",
+     "note": "Native title recognition converting cultural authority into the power to challenge government."
+    },
+    {
+     "theme": "country-culture",
+     "note": "Landscape-as-story reading of the ranges around Mparntwe."
+    }
+   ],
+   "narrative_summary": "At a lookout over Alice Springs, Kristy reads the landscape for visitors: the Yeperenye caterpillar dreaming travelling through the ranges, the dog dreaming sites around town, the women's sacred site by the creek, and burial sites \u2014 knowledge the old people passed down selectively. She recounts the 1982 Christmas Eve bulldozing of a caterpillar dreaming site and the flags dispute as examples of government acting over traditional owners, and contrasts that with today, where native title standing lets them contest the proposed art gallery on sacred ground. For Goods this is context depth: the cultural authority of its Alice Springs partner, and the arc from never-asked to traditional-owner power.",
+   "analysis_notes": "SENSITIVITY: blanket elders-protocol flag \u2014 all Dreaming, sacred-site, women's-site and burial content; nothing here reaches deck strength without Elder/family review regardless of quote quality, per instruction. Speaker labels: Speaker 39 = Kristy (narrating), Speakers 40/41 = visitors (one plausibly Ben); attribution of short interjections uncertain. Transcript is rough with heavy crosstalk from ~00:06:00 onward \u2014 later fragments (car burning, oval, '80 mils') are too garbled to quote. 'ELTA/Ella Elta' = likely 'altyerre' (Arrernte: Dreaming); 'Thea' = dog dreaming name mis-transcription \u2014 do not reproduce Arrernte words from this transcript without checking spelling with the family."
+  }
+ ]
+}

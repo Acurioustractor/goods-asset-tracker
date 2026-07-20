@@ -13,8 +13,8 @@ export default async function FundersPage() {
     <div className="space-y-6 pb-16">
       <header className="flex items-start justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Funders</h1>
-          <p className="mt-1 text-sm text-gray-500">
+          <h1 className="font-display text-2xl font-bold tracking-tight">Funders</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
             Add a new supporter / organisation and they appear in <code>/admin/reports</code> with a
             full report template wired to live data. JSON-backed funders live at{' '}
             <code>wiki/config/funders.json</code> — built-ins (Centrecorp / Snow) stay in code.
@@ -22,7 +22,7 @@ export default async function FundersPage() {
         </div>
         <Link
           href="/admin/funders/new"
-          className="rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700"
+          className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
         >
           + Add funder
         </Link>
@@ -34,8 +34,8 @@ export default async function FundersPage() {
             <CardContent className="space-y-2 p-5">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <div>
-                  <h2 className="text-lg font-bold">{f.displayName}</h2>
-                  <p className="text-xs text-gray-500">
+                  <h2 className="font-display text-lg font-bold">{f.displayName}</h2>
+                  <p className="text-xs text-muted-foreground">
                     <code>{f.slug}</code> ·{' '}
                     ${f.commitment.totalAud.toLocaleString('en-AU')} commitment
                     {f.commitment.totalUnits ? ` · ${f.commitment.totalUnits} ${f.commitment.unitLabel || 'units'}` : ''}
@@ -45,7 +45,7 @@ export default async function FundersPage() {
                   <Badge variant="secondary" className="text-[10px]">{f.tone}</Badge>
                   <Badge variant="outline" className="text-[10px]">{f.sections.length} sections</Badge>
                   {f.community && (
-                    <Badge variant="outline" className="border-blue-200 bg-blue-50 text-[10px] text-blue-800">
+                    <Badge variant="outline" className="border-primary/20 bg-primary/5 text-[10px] text-primary">
                       scope: {f.community}
                     </Badge>
                   )}
@@ -57,14 +57,14 @@ export default async function FundersPage() {
                 </div>
               </div>
 
-              <p className="text-xs text-gray-500">
-                Photo tags: {f.photoTags.map((t) => <code key={t} className="mr-1 rounded bg-gray-100 px-1.5 py-0.5">{t}</code>)}
+              <p className="text-xs text-muted-foreground">
+                Photo tags: {f.photoTags.map((t) => <code key={t} className="mr-1 rounded bg-muted px-1.5 py-0.5">{t}</code>)}
               </p>
 
               <div className="flex flex-wrap gap-2 pt-1 text-xs">
                 <Link
                   href={`/admin/reports`}
-                  className="rounded border border-gray-200 bg-white px-2 py-1 hover:bg-gray-50"
+                  className="rounded border border-border bg-card px-2 py-1 hover:bg-muted"
                 >
                   → Generate report
                 </Link>
@@ -75,7 +75,7 @@ export default async function FundersPage() {
                   🎬 Video brief
                 </Link>
                 {f.funderContact?.name && (
-                  <span className="rounded border border-gray-100 bg-gray-50 px-2 py-1 text-gray-600">
+                  <span className="rounded border border-border bg-muted px-2 py-1 text-muted-foreground">
                     Contact: {f.funderContact.name}
                   </span>
                 )}

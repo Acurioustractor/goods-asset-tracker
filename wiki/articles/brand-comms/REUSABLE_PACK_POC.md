@@ -14,17 +14,17 @@ A **Storyteller Voices** database in Notion under [02. Storyteller Voices](https
 | Property | Type | Purpose |
 |----------|------|---------|
 | Name | Title | Storyteller's preferred public name |
-| Role | Text | "Elder, Co-designer", "Health Practitioner", etc. |
+| Role | Text | "Elder, Design partner", "Health Practitioner", etc. |
 | Community | Select | Tennant Creek, Palm Island, Alice Springs, Kalgoorlie, Mt Isa, East Arnhem, Maningrida, Other |
 | State | Select | NT, QLD, WA, SA |
 | Themes | Multi-select | co-design, dignity, safety, freight-tax, community-need, product-feedback, health, washing-machine, naming, Elder voice, intergenerational, culture, family |
 | Headline Quote | Text | Verified verbatim pull quote, exact words |
-| Quote Context | Text | "On co-design", "On freight tax", etc. |
+| Quote Context | Text | "On design in community", "On freight tax", etc. |
 | Photo Path | Text | `/images/people/...jpg` (blank if no portrait yet) |
 | EL Story ID | Text | Empathy Ledger UUID if syndicated |
 | Consent | Select | Verified / Withdrawn / Pending review |
 | Featured | Checkbox | True if shown in the /brand 8-storyteller hero gallery |
-| Use For | Multi-select | Co-design narrative / Dignity narrative / Freight cost narrative / Health pathway / RHD prevention / Washing machine narrative / Naming heritage / Elder authority / Intergenerational framing / Product feedback / Cultural strength / Spine of Goods origin |
+| Use For | Multi-select | Design-in-community narrative / Dignity narrative / Freight cost narrative / Health pathway / RHD prevention / Washing machine narrative / Naming heritage / Elder authority / Intergenerational framing / Product feedback / Cultural strength / Spine of Goods origin |
 | Notes | Text | Longer story, alternate quotes, photo gaps, video links |
 
 ### Rows populated (16)

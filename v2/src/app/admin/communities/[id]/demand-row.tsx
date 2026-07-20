@@ -19,11 +19,11 @@ type DemandRow = {
 const STATUS_OPTIONS = ['exploring', 'requested', 'approved', 'allocated', 'fulfilled', 'dropped'] as const;
 
 const STATUS_STYLE: Record<string, string> = {
-  exploring: 'bg-purple-100 text-purple-800',
-  requested: 'bg-blue-100 text-blue-800',
-  approved: 'bg-emerald-100 text-emerald-800',
-  allocated: 'bg-amber-100 text-amber-800',
-  fulfilled: 'bg-gray-100 text-gray-700',
+  exploring: 'bg-primary/10 text-primary',
+  requested: 'bg-accent/15 text-accent-foreground',
+  approved: 'bg-emerald-50 text-emerald-700',
+  allocated: 'bg-primary/15 text-primary',
+  fulfilled: 'bg-muted text-muted-foreground',
   dropped: 'bg-red-50 text-red-700',
 };
 
@@ -36,9 +36,9 @@ export function DemandRowItem({ row }: { row: DemandRow }) {
 
   if (!editing) {
     return (
-      <tr className="border-b last:border-0 hover:bg-gray-50">
-        <td className="py-2 px-3 font-medium">{row.requested_by || <span className="text-gray-400">—</span>}</td>
-        <td className="hidden sm:table-cell py-2 px-3 text-xs text-gray-600">{row.product}</td>
+      <tr className="border-b last:border-0 hover:bg-muted/50">
+        <td className="py-2 px-3 font-medium">{row.requested_by || <span className="text-muted-foreground">—</span>}</td>
+        <td className="hidden sm:table-cell py-2 px-3 text-xs text-muted-foreground">{row.product}</td>
         <td className="py-2 px-3 text-right font-mono">{row.qty}</td>
         <td className="hidden md:table-cell py-2 px-3 text-right font-mono">
           {row.estimated_value_cents
@@ -46,15 +46,15 @@ export function DemandRowItem({ row }: { row: DemandRow }) {
             : '—'}
         </td>
         <td className="py-2 px-3">
-          <Badge className={`text-xs ${STATUS_STYLE[row.status] || 'bg-gray-100 text-gray-700'}`}>
+          <Badge className={`text-xs ${STATUS_STYLE[row.status] || 'bg-muted text-muted-foreground'}`}>
             {row.status}
           </Badge>
         </td>
-        <td className="hidden lg:table-cell py-2 px-3 text-xs text-gray-500 max-w-[280px] truncate">{row.notes || '—'}</td>
+        <td className="hidden lg:table-cell py-2 px-3 text-xs text-muted-foreground max-w-[280px] truncate">{row.notes || '—'}</td>
         <td className="py-2 px-3 text-right">
           <button
             type="button"
-            className="text-xs text-orange-600 hover:underline"
+            className="text-xs text-primary hover:underline"
             onClick={() => setEditing(true)}
           >
             edit
@@ -65,7 +65,7 @@ export function DemandRowItem({ row }: { row: DemandRow }) {
   }
 
   return (
-    <tr className="border-b last:border-0 bg-amber-50/40">
+    <tr className="border-b last:border-0 bg-primary/5">
       <td colSpan={7} className="py-3 px-2 sm:px-3">
         <form
           action={(fd) => {
@@ -131,12 +131,12 @@ export function DemandRowItem({ row }: { row: DemandRow }) {
   );
 }
 
-const inputCls = 'w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500';
+const inputCls = 'w-full rounded-md border border-border px-2 py-1.5 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary';
 
 function Field({ label, children, wide }: { label: string; children: React.ReactNode; wide?: boolean }) {
   return (
     <label className={`block text-xs ${wide ? 'md:col-span-2' : ''}`}>
-      <span className="block font-medium text-gray-600 mb-1">{label}</span>
+      <span className="block font-medium text-muted-foreground mb-1">{label}</span>
       {children}
     </label>
   );

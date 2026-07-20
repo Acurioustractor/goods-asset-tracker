@@ -35,7 +35,7 @@ Use [[funder-register]] as the simple working table for money already received, 
 
 - R&D that may not repay quickly
 - early impact measurement
-- community engagement and co-design
+- community engagement and design-in-community work
 - evaluation and learning
 - work that would become extractive if forced to repay too quickly
 

@@ -48,7 +48,7 @@ These people and organisations sit around the project. Some overlap with the adv
 | **Tanya Turner** | Oonchiumpa Manager. | Local operating context and partner coordination. | Partner role. |
 | **Karen Liddle** | Oonchiumpa Board Chair. | Governance context around the Oonchiumpa relationship. | Oonchiumpa governance, not Goods governance. |
 | **Fred Campbell** | Oonchiumpa Youth Case Worker. | Youth pathway and Alice Springs operating context. | Program and partner context. |
-| **Dianne Stokes** | Waramungu and Warlmanpa Elder, Tennant Creek co-designer and naming partner for Pakkimjalki Kari. | Product feedback, cultural authority, story consent and real co-design discipline. | Community authority and relationship accountability, not formal Goods board authority. |
+| **Dianne Stokes** | Waramungu and Warlmanpa Elder, Tennant Creek design partner and naming partner for Pakkimjalki Kari. | Product feedback, cultural authority, story consent and real design-in-community discipline. | Community authority and relationship accountability, not formal Goods board authority. |
 | **Palm Island Community Company (PICC)** | Palm Island partner and possible future production-facility owner or operator. | Largest deployment pathway, community-controlled delivery and local ownership question. | Partner and possible local owner/operator, not Goods board. |
 | **Rachel Atkinson** | PICC leadership named in ACT core facts. | Palm Island community organisation relationship and partnership pathway. | PICC role. |
 | **Narelle** | PICC contact recorded in Goods compendium. | Partner communication and order pathway context. | Needs surname/role confirmation before external use. |

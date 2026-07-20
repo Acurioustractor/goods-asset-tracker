@@ -15,13 +15,13 @@ export default async function BulkInstallPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
       <header className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Bulk install from photos</h1>
-        <p className="mt-1 text-sm text-gray-600">
+        <h1 className="font-display text-2xl font-bold text-foreground">Bulk install from photos</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
           Drop the photos you took on country. We&apos;ll read the QR sticker and GPS from each
           photo, group them by bed, and let you set community + recipient names in one go.
         </p>
-        <details className="mt-3 text-sm text-gray-700" open>
-          <summary className="cursor-pointer font-medium text-gray-900">
+        <details className="mt-3 text-sm text-foreground" open>
+          <summary className="cursor-pointer font-medium text-foreground">
             Field workflow (zero-app, offline)
           </summary>
           <ol className="mt-2 ml-5 list-decimal space-y-1">
@@ -54,9 +54,9 @@ export default async function BulkInstallPage() {
               <li>Right-click → Quick Actions → <strong>Convert Image</strong> → Format: JPEG → Image Size: Actual → Convert</li>
               <li>Drop the converted JPEGs here</li>
             </ol>
-            Or in Terminal: <code className="bg-white px-1 rounded">cd ~/Downloads &amp;&amp; for f in *.HEIC; do sips -s format jpeg &quot;$f&quot; --out &quot;${'{f%.HEIC}'}.jpg&quot;; done</code>
+            Or in Terminal: <code className="bg-card px-1 rounded">cd ~/Downloads &amp;&amp; for f in *.HEIC; do sips -s format jpeg &quot;$f&quot; --out &quot;${'{f%.HEIC}'}.jpg&quot;; done</code>
           </div>
-          <p className="mt-2 text-xs text-gray-600">
+          <p className="mt-2 text-xs text-muted-foreground">
             Photos without a readable QR get a manual &quot;bed ID&quot; input so you can still match them.
             Photos without a caption: just type the name in the field. No caption ≠ broken.
           </p>

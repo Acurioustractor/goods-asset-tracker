@@ -91,7 +91,7 @@ export const communityPartners: CommunityPartner[] = [
     name: 'Palm Island Community Company (PICC)',
     category: 'core',
     location: 'Palm Island, QLD',
-    description: '141 beds deployed: largest single community deployment. Said "we\'ll buy it" re: production facility itself.',
+    description: '131 beds deployed. Said "we\'ll buy it" re: production facility itself.',
     contacts: [{ name: 'Narelle' }],
     keyFacts: ['40-bed order discussed Feb 2026'],
   },
@@ -109,8 +109,8 @@ export const communityPartners: CommunityPartner[] = [
     name: 'Homeland Schools Company',
     category: 'core',
     location: 'Maningrida, NT',
-    description: '1 washing machine delivered (INV-0303 $4,950). 65 beds requested separately (no invoice yet).',
-    keyFacts: ['INV-0303 $4,950 AUTHORISED: 1x washing machine, unpaid'],
+    description: 'INV-0303 $44,000, Awaiting Payment (line items confirmed via Xero 2026-07-13, corrected from a stale $4,950 note; sent 18 May 2026, due 30 Jun 2026): 2 washing machines ($9,000) + 40 Stretch Beds ($30,000) + a program support trip to train/build/test/document with community, inc. travel and accommodation ($8,000) + delivery ex BNE-DRW-MNG ($5,900), minus a $14,190 in-kind partnership credit. Any further beds beyond these 40 would be a separate, later request.',
+    keyFacts: ['INV-0303 $44,000 AUTHORISED, Awaiting Payment: 2 washing machines + 40 Stretch Beds + program support + delivery, less in-kind credit (verified via Xero 2026-07-13)'],
   },
   {
     id: 'qic',
@@ -286,7 +286,7 @@ export const funding: FundingRecord[] = [
   { id: 'recv-shed-plant-2', source: 'Our Community Shed', amount: 93498, status: 'receivable', notes: 'QU-0012 DRAFT $93,498 (inc GST), Plant Part 2: moulding. 6mo @ $13.3K/mo + $5K transport.' },
   { id: 'recv-picc', source: 'PICC (Palm Island)', amount: 36300, status: 'receivable', notes: 'INV-0317 AUTHORISED $36,300: 40 Stretch Beds @ $750 + $3K delivery' },
   { id: 'recv-rotary', source: 'Rotary Eclub Outback Australia', amount: 82500, status: 'receivable', notes: 'INV-0222 OVERDUE $82,500 (inc GST): 200 Basket Beds v1 @ $350 + $5K project. Due 24 Apr 2025. 11 MONTHS OVERDUE.' },
-  { id: 'recv-homeland', source: 'Homeland School Company', amount: 4950, status: 'receivable', notes: 'INV-0303 AUTHORISED $4,950: 1x Indestructible Washing Machine v1.1, unpaid' },
+  { id: 'recv-homeland', source: 'Homeland School Company', amount: 44000, status: 'receivable', notes: 'INV-0303 AUTHORISED $44,000, Awaiting Payment. Sent 18 May 2026, due 30 Jun 2026. Line items (verified via Xero 2026-07-13): 2x Indestructible Washing Machine v1.1 ($9,000), 40x Stretch Bed ($30,000), 1x program support trip ($8,000), delivery ex BNE-DRW-MNG ($5,900), less $14,190 in-kind partnership credit.' },
 ];
 
 export function getFundingSummary() {
@@ -370,20 +370,24 @@ export interface CommunityDeployment {
 // CANONICAL deployed-bed register (static fallback). The LIVE /impact register
 // (Supabase `assets`) is authoritative; these per-community numbers are the
 // labelled static fallback, reconciled 2026-05-29 to the locked canonical split:
-//   Tennant Creek 159, Utopia 147, Palm Island 131, Kalgoorlie 20, Maningrida 18,
-//   Alice Springs 16, Mt Isa 2, Darwin 1, Canberra 2 = 496 deployed beds.
+//   Tennant Creek 160, Utopia 147, Palm Island 131, Maningrida 58 (incl. +40 Jul
+//   2026), Kalgoorlie 20, Alice Springs 16, Mt Isa 2, Darwin 1, Canberra 2,
+//   Kununurra 2, Katherine 1 (Ben count rulings 2026-07-19) = 540
+//   deployed beds.
 // This array is the SINGLE source for the static deployed-bed count via
 // getDeploymentTotals(); content.ts derives its counts from EXPECTED_DEPLOYED_BEDS.
 export const deployments: CommunityDeployment[] = [
   { id: 'palm-island', community: 'Palm Island', traditionalName: 'Bwgcolman', state: 'QLD', beds: 131, washers: 4, status: 'active', partner: 'PICC', contacts: ['Eb & Jahvan Oui'] },
-  { id: 'tennant-creek', community: 'Tennant Creek', traditionalName: 'Wumpurrarni', state: 'NT', beds: 159, washers: 5, status: 'active', partner: 'Wilya Janta', contacts: ['Norman Frank', 'Dr Simon Quilty'] },
+  { id: 'tennant-creek', community: 'Tennant Creek', traditionalName: 'Wumpurrarni', state: 'NT', beds: 160, washers: 5, status: 'active', partner: 'Wilya Janta', contacts: ['Norman Frank', 'Dr Simon Quilty'] },
   { id: 'alice-homelands', community: 'Alice Homelands', state: 'NT', beds: 16, washers: 0, status: 'active', partner: 'Oonchiumpa', contacts: ['Kristy Bloomfield'] },
-  { id: 'maningrida', community: 'Maningrida', state: 'NT', beds: 18, washers: 0, status: 'active', partner: 'Homeland Schools Co.' },
+  { id: 'maningrida', community: 'Maningrida', state: 'NT', beds: 58, washers: 2, status: 'active', partner: 'Homeland Schools Co.' },
   { id: 'kalgoorlie', community: 'Kalgoorlie', traditionalName: 'Ninga Mia', state: 'WA', beds: 20, washers: 0, status: 'active', partner: 'The Community Shed' },
   { id: 'utopia', community: 'Utopia Homelands', state: 'NT', beds: 147, washers: 0, status: 'active', partner: 'Oonchiumpa' },
   { id: 'mt-isa', community: 'Mt Isa', traditionalName: 'Kalkadoon', state: 'QLD', beds: 2, washers: 0, status: 'testing', partner: 'BG Fit & Men\'s Shed' },
   { id: 'darwin', community: 'Darwin', state: 'NT', beds: 1, washers: 1, status: 'testing', partner: 'Red Dust' },
   { id: 'canberra', community: 'Canberra', state: 'ACT', beds: 2, washers: 0, status: 'testing' },
+  { id: 'kununurra', community: 'Kununurra', state: 'WA', beds: 2, washers: 0, status: 'testing' },
+  { id: 'katherine', community: 'Katherine', state: 'NT', beds: 1, washers: 0, status: 'testing' },
 ];
 
 /**
@@ -391,7 +395,7 @@ export const deployments: CommunityDeployment[] = [
  * count used across content.ts, funder pages, and the impact summary. The live
  * Supabase register stays authoritative; this is the labelled static fallback.
  */
-export const EXPECTED_DEPLOYED_BEDS = 496; // canonical: see asset-canonical.ts (bedsDeployed)
+export const EXPECTED_DEPLOYED_BEDS = 540; // canonical: see asset-canonical.ts (bedsDeployed)
 
 export function getDeploymentTotals() {
   const beds = deployments.reduce((s, d) => s + d.beds, 0);
@@ -629,7 +633,7 @@ export const productionFacility = {
 
 export const environmentalImpact = {
   plasticPerBed: { min: PLASTIC_KG_PER_BED, max: 25, unit: 'kg HDPE' },
-  // Plastic = STRETCH beds only (133 × 20kg = 2,660 kg). Basket Beds are NOT a
+  // Plastic = STRETCH beds only (177 × 20kg = 3,540 kg). Basket Beds are NOT a
   // plastic product, so this is NOT an all-beds × 20 figure. Canonical: see
   // asset-canonical.ts (plasticKg); live source = getCanonicalAssetRollup().
   totalDivertedToDate: CANONICAL_ASSETS.plasticKg,

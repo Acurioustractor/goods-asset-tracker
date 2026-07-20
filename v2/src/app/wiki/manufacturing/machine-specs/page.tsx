@@ -128,7 +128,7 @@ export default function MachineSpecsPage() {
                 <tbody className="divide-y divide-gray-200">
                   <tr>
                     <td className="px-4 py-3 font-medium">Operating Temperature</td>
-                    <td className="px-4 py-3">190°C</td>
+                    <td className="px-4 py-3">180°C</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 font-medium">Pressure</td>
@@ -166,7 +166,7 @@ export default function MachineSpecsPage() {
             <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
               <ul className="list-disc list-inside text-red-900 space-y-2 text-sm">
                 <li>Heat-resistant gloves required when handling frames and sheets</li>
-                <li>Burns risk — surfaces reach 190°C</li>
+                <li>Burns risk — surfaces reach 180°C</li>
                 <li>Adequate ventilation required — HDPE fumes at temperature</li>
                 <li>Keep fire extinguisher accessible at all times</li>
                 <li>Never leave the press unattended during operation</li>

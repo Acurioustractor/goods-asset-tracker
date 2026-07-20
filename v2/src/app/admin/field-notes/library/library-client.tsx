@@ -275,7 +275,7 @@ const CATEGORY_LABELS: Record<BlockCategory, string> = {
 
 const CATEGORY_COLOURS: Record<BlockCategory, string> = {
   atom: 'border-emerald-300 bg-emerald-50/30',
-  bespoke: 'border-blue-300 bg-blue-50/30',
+  bespoke: 'border-primary/40 bg-primary/5',
   structural: 'border-amber-300 bg-amber-50/30',
 };
 
@@ -307,7 +307,7 @@ export function LibraryClient() {
             className={`rounded-full border px-3 py-1.5 font-medium transition ${
               filter === t
                 ? 'border-stone-900 bg-stone-900 text-white'
-                : 'border-stone-200 bg-white text-stone-600 hover:border-stone-400'
+                : 'border-stone-200 bg-card text-stone-600 hover:border-stone-400'
             }`}
           >
             {t === 'all' ? `All (${SPECS.length})` : `${CATEGORY_LABELS[t]} (${SPECS.filter((s) => s.category === t).length})`}

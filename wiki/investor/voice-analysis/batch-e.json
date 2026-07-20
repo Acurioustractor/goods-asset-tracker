@@ -1,0 +1,134 @@
+{
+ "transcripts": [
+  {
+   "storyteller": "Shayne Bloomfield",
+   "transcript_id": "4b390461-d019-4498-9ece-dc44bf6c4268",
+   "held": false,
+   "top_quotes": [
+    {
+     "text": "A lot of people say community is community and they need what we've got. When you flip it, we need what they've got.",
+     "timestamp": "00:11:00",
+     "context": "What being in community means; reciprocity as the operating principle.",
+     "themes": [
+      "reciprocity-partnership"
+     ],
+     "domain": "self-determination",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "Today my mum still gets text messages from her family saying, I can't believe how good this bed's going ... I don't want to get outta bed in the morning 'cause it's just so comfortable.",
+     "timestamp": "00:12:00",
+     "context": "Eight weeks after the bed deliveries, unsolicited family feedback.",
+     "themes": [
+      "rest-sleep-health",
+      "product-durability",
+      "family-kids"
+     ],
+     "domain": "rest-health",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "We've liaised with Aboriginal elders, traditional owners of that community, before we've liaised with government members.",
+     "timestamp": "00:15:00",
+     "context": "How Goods enters a community; protocol before administration.",
+     "themes": [
+      "elders-protocol",
+      "reciprocity-partnership"
+     ],
+     "domain": "self-determination",
+     "strength": "strong",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "We made 20 odd beds in aged care ... utilizing the young people of the aged care service ... They were so willing to learn about how these beds came together.",
+     "timestamp": "00:22:00",
+     "context": "Maningrida delivery: young people building beds for Elders at the aged-care service.",
+     "themes": [
+      "making-jobs",
+      "family-kids"
+     ],
+     "domain": "jobs-ownership",
+     "strength": "strong",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "All they wanted was something that's off the ground ... sit on the edge of it and just pop themselves up. Just amazing.",
+     "timestamp": "00:23:00",
+     "context": "What the aged-care Elders actually asked for from a bed.",
+     "themes": [
+      "dignity-safety",
+      "rest-sleep-health",
+      "design-in-community"
+     ],
+     "domain": "dignity-safety",
+     "strength": "strong",
+     "sensitivity": null,
+     "cleared": true
+    },
+    {
+     "text": "They're definitely not gonna break, I can tell you that ... the recycled plastic that you use from that is blowing my mind away ... Every sheet was a different design.",
+     "timestamp": "00:25:00",
+     "context": "On the washing machines and the recycled-plastic panels, after the Maningrida installs.",
+     "themes": [
+      "product-durability",
+      "washing-clean"
+     ],
+     "domain": "circular-economy",
+     "strength": "deck",
+     "sensitivity": null,
+     "cleared": true
+    }
+   ],
+   "themes_present": [
+    {
+     "theme": "reciprocity-partnership",
+     "note": "The spine of the whole interview: two-way need, orgs that promise the world vs turning up with food and work."
+    },
+    {
+     "theme": "elders-protocol",
+     "note": "Elders and traditional owners first, government business managers second; take the lead of Elders on country."
+    },
+    {
+     "theme": "making-jobs",
+     "note": "Beds built with young people at the Maningrida aged-care service; laundromat refurbished by hand."
+    },
+    {
+     "theme": "rest-sleep-health",
+     "note": "Elders off the ground; family still texting about the beds eight weeks on."
+    },
+    {
+     "theme": "washing-clean",
+     "note": "Hot fast wash in his own words kills the diseases that live in bedding in the tropics."
+    },
+    {
+     "theme": "product-durability",
+     "note": "Washers 'definitely not gonna break'; recycled plastic sheets each a different design."
+    },
+    {
+     "theme": "country-culture",
+     "note": "Hands on the ground coming home; sleeping close to the ground as part of health and wellbeing."
+    },
+    {
+     "theme": "dignity-safety",
+     "note": "A bed at the right height Elders can get out of by themselves."
+    },
+    {
+     "theme": "ownership-pathway",
+     "note": "Aboriginal organisation leads, non-Indigenous organisation works with and alongside."
+    },
+    {
+     "theme": "family-kids",
+     "note": "Oldest of six; the Bloomfield family thread through the whole Goods build story."
+    }
+   ],
+   "narrative_summary": "Shayne Bloomfield is the oldest of the six Bloomfield siblings, a former station hand and park ranger from Loves Creek, now city-based. His transcript is the only firsthand narrative of the Maningrida delivery: the Darwin drive, gutting and refurbishing the laundromat, building about 20 beds with young people at the aged-care service, and installing the washers. He also articulates the reciprocity principle and Elders-first protocol better than any other voice on file.",
+   "analysis_notes": "Filed in EL as 'Shane'; Ben confirmed Shayne 2026-07-20. His hot-wash/disease lines are observed testimony, never a Goods health claim. Mentions Orange Sky, Marie Meredith, NPA and the girls' tourism business. Quotes 1-2 cleared by Ben 2026-07-20 and promoted to registry + deck; 3-5 pending."
+  }
+ ]
+}

@@ -67,10 +67,10 @@ Reference for what we have already: [03-product-image-library.md](03-product-ima
    - Coastal or rangers-station context shot
    - Daily-life street view (with people, no identifying close-ups without consent)
 
-6. **Alice Springs landscape.** Co-design hub via Oonchiumpa. No landscape on file.
+6. **Alice Springs landscape.** Design-in-community hub via Oonchiumpa. No landscape on file.
    - Wide town view at golden hour
    - Oonchiumpa office or workplace context (with consent)
-   - Around-the-fire co-design moment if circumstance allows (Bloomfield family consent)
+   - Around-the-fire design conversation if circumstance allows (Bloomfield family consent)
 
 ### Medium
 
@@ -83,7 +83,7 @@ Reference for what we have already: [03-product-image-library.md](03-product-ima
    - Wide homeland setting
    - A bed in a homeland home (consent permitting)
 
-9. **Co-design "around the fire" scene with Dianne Stokes.** Existing portraits are strong; a wider environmental shot of the design conversation in context would strengthen the co-design story.
+9. **"Around the fire" design scene with Dianne Stokes.** Existing portraits are strong; a wider environmental shot of the design conversation in context would strengthen the design-in-community story.
 
 ## Composition cues
 

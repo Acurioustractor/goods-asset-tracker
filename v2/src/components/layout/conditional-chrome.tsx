@@ -7,12 +7,25 @@ import { ImpactBanner } from './impact-banner';
 
 // Routes that should render WITHOUT the public site header, footer, and impact banner.
 // Funder briefs are confidential investor docs and should not display the public nav.
-// Field-notes are full-bleed immersive scrollytelling — they own the whole viewport.
-const STANDALONE_PATH_PREFIXES = ['/funders', '/insiders', '/investors', '/admin', '/field-notes', '/sites', '/deck'];
+// Field-notes are full-bleed immersive scrollytelling. Pitch working surfaces
+// should not carry the public site chrome.
+const STANDALONE_PATH_PREFIXES = [
+  '/funders',
+  '/insiders',
+  '/investors',
+  '/admin',
+  '/field-notes',
+  '/sites',
+  '/pitch/community-narrative',
+  '/pitch/investor-lab',
+  '/pitch/miro-board',
+  '/pitch/simple',
+  '/deck',
+];
 
 // Standalone routes matched by pattern rather than prefix. The gated partner
 // dashboard (/partners/<slug>/dashboard) is a confidential, full-page funder
-// experience with its own header — it must NOT carry the marketing nav, cart, or
+// experience with its own header, so it must NOT carry the marketing nav, cart, or
 // "Buy Now". The PUBLIC partner pages (/partners/centrecorp etc.) keep the chrome.
 const STANDALONE_PATH_PATTERNS = [/^\/partners\/[^/]+\/dashboard(\/|$)/];
 

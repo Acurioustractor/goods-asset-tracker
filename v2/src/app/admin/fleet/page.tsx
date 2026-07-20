@@ -279,14 +279,14 @@ export default async function FleetDashboardPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Fleet Dashboard</h1>
-          <p className="text-gray-500 mt-1">
+          <h1 className="font-display text-2xl font-bold">Fleet Dashboard</h1>
+          <p className="text-muted-foreground mt-1">
             Pakkimjalki Kari telemetry — {machines.length} connected machines across{' '}
             {new Set(machines.map((m) => m.community).filter(Boolean)).size} communities
             {deployments.length > machines.length && (
               <>
                 {' '}·{' '}
-                <span className="text-gray-700">
+                <span className="text-foreground">
                   {deployments.length} total deployments tracked (incl. units without telemetry hardware)
                 </span>
               </>
@@ -381,7 +381,7 @@ export default async function FleetDashboardPage() {
             <CardContent>
               <div className="text-center py-6">
                 <p className="text-green-600 font-medium">All clear</p>
-                <p className="text-sm text-gray-400 mt-1">No open alerts</p>
+                <p className="text-sm text-muted-foreground mt-1">No open alerts</p>
               </div>
             </CardContent>
           </Card>
@@ -410,7 +410,7 @@ export default async function FleetDashboardPage() {
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle>Telemetry-enabled Machines</CardTitle>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-muted-foreground">
               Sorted by alerts, then online status
             </p>
           </div>
@@ -429,7 +429,7 @@ export default async function FleetDashboardPage() {
           </CardHeader>
           <CardContent>
             {!stories || stories.length === 0 ? (
-              <p className="text-gray-500 text-sm">
+              <p className="text-muted-foreground text-sm">
                 No published stories from fleet communities yet
               </p>
             ) : (
@@ -438,13 +438,13 @@ export default async function FleetDashboardPage() {
                   <Link
                     key={story.id}
                     href={`/stories/${story.id}`}
-                    className="block p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+                    className="block p-3 rounded-lg bg-muted hover:bg-muted transition-colors"
                   >
                     <p className="font-medium text-sm">{story.title}</p>
                     <div className="flex gap-2 mt-1">
                       <Badge variant="outline" className="text-xs">{story.story_type}</Badge>
                       {story.community && (
-                        <span className="text-xs text-gray-400">{story.community}</span>
+                        <span className="text-xs text-muted-foreground">{story.community}</span>
                       )}
                     </div>
                   </Link>
@@ -466,7 +466,7 @@ export default async function FleetDashboardPage() {
                   <span>
                     <span className="font-medium">Support Requests</span>
                     <br />
-                    <span className="text-gray-400 text-xs">View open tickets</span>
+                    <span className="text-muted-foreground text-xs">View open tickets</span>
                   </span>
                 </Button>
               </Link>
@@ -475,7 +475,7 @@ export default async function FleetDashboardPage() {
                   <span>
                     <span className="font-medium">Messages</span>
                     <br />
-                    <span className="text-gray-400 text-xs">Community comms</span>
+                    <span className="text-muted-foreground text-xs">Community comms</span>
                   </span>
                 </Button>
               </Link>
@@ -484,7 +484,7 @@ export default async function FleetDashboardPage() {
                   <span>
                     <span className="font-medium">Submit Ticket</span>
                     <br />
-                    <span className="text-gray-400 text-xs">Report an issue</span>
+                    <span className="text-muted-foreground text-xs">Report an issue</span>
                   </span>
                 </Button>
               </Link>
@@ -493,7 +493,7 @@ export default async function FleetDashboardPage() {
                   <span>
                     <span className="font-medium">Machine Guide</span>
                     <br />
-                    <span className="text-gray-400 text-xs">Pakkimjalki Kari wiki</span>
+                    <span className="text-muted-foreground text-xs">Pakkimjalki Kari wiki</span>
                   </span>
                 </Button>
               </Link>
@@ -508,10 +508,10 @@ export default async function FleetDashboardPage() {
           <CardTitle className="text-sm">Particle.io Webhook Setup</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3 text-sm">
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             To bypass Zapier and send telemetry directly, create a Particle Integration webhook:
           </p>
-          <div className="bg-white rounded border p-3 font-mono text-xs space-y-1">
+          <div className="bg-card rounded border p-3 font-mono text-xs space-y-1">
             <p><strong>URL:</strong> https://www.goodsoncountry.com/api/webhooks/particle</p>
             <p><strong>Request Type:</strong> POST</p>
             <p><strong>Request Format:</strong> JSON</p>
@@ -520,17 +520,17 @@ export default async function FleetDashboardPage() {
           </div>
           <div className="flex items-start gap-2">
             <Badge className="bg-yellow-100 text-yellow-800 shrink-0 mt-0.5">Device Mapping</Badge>
-            <p className="text-gray-500 text-xs">
+            <p className="text-muted-foreground text-xs">
               {machines.filter(m => /^[a-f0-9]{24}$/.test(m.machine_id)).length} of {machines.length} machines
               have Particle coreids mapped. Unmapped machines use human-readable names.
-              Use <code className="bg-gray-100 px-1 rounded">POST /api/admin/fleet/map-device</code> to link coreids.
+              Use <code className="bg-muted px-1 rounded">POST /api/admin/fleet/map-device</code> to link coreids.
             </p>
           </div>
           <div className="flex items-start gap-2">
-            <Badge className="bg-blue-100 text-blue-800 shrink-0 mt-0.5">CSV Import</Badge>
-            <p className="text-gray-500 text-xs">
+            <Badge className="bg-primary/10 text-primary shrink-0 mt-0.5">CSV Import</Badge>
+            <p className="text-muted-foreground text-xs">
               To import historical data from the &ldquo;Goods Washer&rdquo; Google Sheet, export as CSV and POST to{' '}
-              <code className="bg-gray-100 px-1 rounded">/api/admin/fleet/import-csv</code>
+              <code className="bg-muted px-1 rounded">/api/admin/fleet/import-csv</code>
             </p>
           </div>
         </CardContent>
@@ -545,11 +545,11 @@ export default async function FleetDashboardPage() {
           <CardContent>
             <div className="space-y-2">
               {fleetCommentary.slice(0, 10).map((note, i) => (
-                <div key={i} className="flex items-start gap-3 p-2 rounded bg-gray-50 text-sm">
+                <div key={i} className="flex items-start gap-3 p-2 rounded bg-muted text-sm">
                   <Badge variant="outline" className="shrink-0 mt-0.5">
                     {note.machine_id === 'fleet' ? 'Fleet' : note.machine_id}
                   </Badge>
-                  <p className="text-gray-700">{note.commentary}</p>
+                  <p className="text-foreground">{note.commentary}</p>
                 </div>
               ))}
             </div>

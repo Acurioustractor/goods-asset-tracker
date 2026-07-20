@@ -442,14 +442,14 @@ function Thumb({ src, caption, id }: { src: string; caption?: string; id: string
     <div className="w-40 shrink-0">
       <a
         href={`#${id}`}
-        className="flex h-32 w-40 items-center justify-center overflow-hidden rounded-lg border border-gray-200 bg-[#FDF8F3] cursor-zoom-in transition hover:border-gray-400"
+        className="flex h-32 w-40 items-center justify-center overflow-hidden rounded-lg border border-border bg-[#FDF8F3] cursor-zoom-in transition hover:border-border"
       >
         {/* External/dynamic-path images from repo disk; next/image needs static
             dimensions this grid intentionally varies, so plain <img> is simplest. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={src} alt={caption || ''} loading="lazy" className="max-h-full max-w-full object-contain" />
       </a>
-      {caption && <p className="mt-1 truncate text-[11px] text-gray-500" title={caption}>{caption}</p>}
+      {caption && <p className="mt-1 truncate text-[11px] text-muted-foreground" title={caption}>{caption}</p>}
 
       <a
         href="#"
@@ -478,19 +478,19 @@ function VideoThumb({ src, poster, caption, id }: { src: string; poster?: string
     <div className="w-40 shrink-0">
       <a
         href={`#${id}`}
-        className="relative flex h-32 w-40 items-center justify-center overflow-hidden rounded-lg border border-gray-200 bg-gray-900 cursor-zoom-in"
+        className="relative flex h-32 w-40 items-center justify-center overflow-hidden rounded-lg border border-border bg-gray-900 cursor-zoom-in"
       >
         {poster ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={poster} alt={caption || ''} loading="lazy" className="max-h-full max-w-full object-cover opacity-90" />
         ) : (
-          <span className="px-2 text-center text-[10px] text-gray-500">no poster</span>
+          <span className="px-2 text-center text-[10px] text-muted-foreground">no poster</span>
         )}
         <span className="absolute inset-0 flex items-center justify-center bg-black/10">
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-sm text-white">▶</span>
         </span>
       </a>
-      {caption && <p className="mt-1 truncate text-[11px] text-gray-500" title={caption}>{caption}</p>}
+      {caption && <p className="mt-1 truncate text-[11px] text-muted-foreground" title={caption}>{caption}</p>}
 
       <div id={id} className="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 p-6 target:flex">
         <a href="#" className="absolute inset-0" aria-label="Close" />
@@ -527,7 +527,7 @@ export default async function SystemVisualsPage() {
   return (
     <div className="p-2 sm:p-4">
       <header className="mb-6">
-        <h1 className="text-2xl font-bold">System visuals</h1>
+        <h1 className="font-display text-2xl font-bold">System visuals</h1>
         <p className="mt-1 max-w-3xl text-sm text-muted-foreground">
           Everything used to explain Goods, one page: process diagrams (bed anatomy, assembly, the
           plastic loop, ownership, the cost model, theory of change), canon/deck images, storyteller
@@ -543,7 +543,7 @@ export default async function SystemVisualsPage() {
             <a key={j.href} href={j.href} className="text-accent underline hover:text-foreground">{j.label}</a>
           ))}
         </nav>
-        <p className="mt-3 rounded-md bg-gray-50 px-3 py-2 text-xs text-gray-600">
+        <p className="mt-3 rounded-md bg-muted px-3 py-2 text-xs text-muted-foreground">
           This page mirrors onto disk at <code>{STAGING_ROOT}/</code> — three folders of symlinks
           (<code>real-photos/</code>, <code>illustrations/</code>, <code>named/</code>) for browsing
           outside the browser, e.g. to drag into Pencil or hand to a designer. Nothing is duplicated;
@@ -560,12 +560,12 @@ export default async function SystemVisualsPage() {
         )}
       </header>
 
-      <h2 id="section-process" className="mb-3 text-lg font-bold scroll-mt-4">Process diagrams</h2>
+      <h2 id="section-process" className="font-display mb-3 text-lg font-bold scroll-mt-4">Process diagrams</h2>
       <div className="space-y-6">
         {CONCEPTS.map((c) => (
-          <section key={c.key} className="rounded-xl border border-gray-200 bg-white p-4">
+          <section key={c.key} className="rounded-xl border border-border bg-white p-4">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <h2 className="text-base font-semibold">{c.label}</h2>
+              <h2 className="font-display text-base font-semibold">{c.label}</h2>
               {c.live.length > 0 ? (
                 <span className="rounded-full bg-green-100 px-2 py-0.5 text-[11px] font-medium text-green-700">LIVE</span>
               ) : (
@@ -577,13 +577,13 @@ export default async function SystemVisualsPage() {
 
             {c.live.length > 0 && (
               <div className="mt-3">
-                <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-400">Live on site</p>
+                <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Live on site</p>
                 <div className="flex flex-wrap gap-3">
                   {c.live.map((l) => (
                     <div key={l.path} className="flex gap-3">
                       <Thumb src={l.path} caption={l.path} id={slug(`${c.key}-live-${l.path}`)} />
-                      <div className="max-w-xs text-xs text-gray-600">
-                        <p className="font-medium text-gray-700">Used in</p>
+                      <div className="max-w-xs text-xs text-muted-foreground">
+                        <p className="font-medium text-foreground">Used in</p>
                         <ul className="list-inside list-disc">
                           {l.usedIn.map((u) => <li key={u}>{u}</li>)}
                         </ul>
@@ -597,7 +597,7 @@ export default async function SystemVisualsPage() {
 
             {c.generated.length > 0 && (
               <div className="mt-3">
-                <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-400">
+                <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
                   Generated pool (local only) — {c.generated.length}
                 </p>
                 <div className="flex gap-3 overflow-x-auto pb-1">
@@ -610,10 +610,10 @@ export default async function SystemVisualsPage() {
 
             {c.scriptFamily && (
               <div className="mt-3">
-                <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-400">
+                <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
                   Script-generated family ({c.scriptFamily.source}) — orphaned
                 </p>
-                <p className="mb-2 text-xs text-gray-600">{c.scriptFamily.note}</p>
+                <p className="mb-2 text-xs text-muted-foreground">{c.scriptFamily.note}</p>
                 <div className="flex gap-3 overflow-x-auto pb-1">
                   {c.scriptFamily.files.map((f) => <Thumb key={f} src={f} caption={f} id={slug(`${c.key}-sf-${f}`)} />)}
                 </div>
@@ -622,8 +622,8 @@ export default async function SystemVisualsPage() {
 
             {c.calibration && c.calibration.length > 0 && (
               <div className="mt-3">
-                <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-400">Reference / calibration set</p>
-                {c.calibrationNote && <p className="mb-2 text-xs text-gray-600">{c.calibrationNote}</p>}
+                <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Reference / calibration set</p>
+                {c.calibrationNote && <p className="mb-2 text-xs text-muted-foreground">{c.calibrationNote}</p>}
                 <div className="flex gap-3 overflow-x-auto pb-1">
                   {c.calibration.map((f) => <Thumb key={f} src={`/images/brand/${f}`} caption={f} id={slug(`${c.key}-cal-${f}`)} />)}
                 </div>
@@ -634,7 +634,7 @@ export default async function SystemVisualsPage() {
 
         {unsorted.length > 0 && (
           <section className="rounded-xl border border-amber-300 bg-amber-50 p-4">
-            <h2 className="text-base font-semibold text-amber-800">Unsorted generated files</h2>
+            <h2 className="font-display text-base font-semibold text-amber-800">Unsorted generated files</h2>
             <p className="mt-1 text-sm text-amber-700">
               New files in <code>{GENERATED_ROOT}/</code> not yet assigned to a concept above. Add them
               to a concept in this page (or a new one) once their purpose is decided.
@@ -645,9 +645,9 @@ export default async function SystemVisualsPage() {
           </section>
         )}
 
-        <section id="section-canon" className="scroll-mt-4 rounded-xl border border-gray-200 bg-white p-4">
+        <section id="section-canon" className="scroll-mt-4 rounded-xl border border-border bg-white p-4">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
-            <h2 className="text-base font-semibold">Canon & deck images</h2>
+            <h2 className="font-display text-base font-semibold">Canon & deck images</h2>
             <Link href="/admin/canon" className="text-xs text-accent underline hover:text-foreground">
               Open Canon studio to add/change picks →
             </Link>
@@ -669,7 +669,7 @@ export default async function SystemVisualsPage() {
               if (items.length === 0) return null;
               return (
                 <div key={t} className="mt-3">
-                  <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-400">
+                  <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
                     {t} — {items.length}
                   </p>
                   <div className="flex flex-wrap gap-3">
@@ -691,9 +691,9 @@ export default async function SystemVisualsPage() {
           )}
         </section>
 
-        <section id="section-storytellers" className="scroll-mt-4 rounded-xl border border-gray-200 bg-white p-4">
+        <section id="section-storytellers" className="scroll-mt-4 rounded-xl border border-border bg-white p-4">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
-            <h2 className="text-base font-semibold">Storyteller portraits</h2>
+            <h2 className="font-display text-base font-semibold">Storyteller portraits</h2>
             <Link href="/admin/storytellers" className="text-xs text-accent underline hover:text-foreground">
               Open Registry to edit →
             </Link>
@@ -715,9 +715,9 @@ export default async function SystemVisualsPage() {
           </div>
         </section>
 
-        <section id="section-communities" className="scroll-mt-4 rounded-xl border border-gray-200 bg-white p-4">
+        <section id="section-communities" className="scroll-mt-4 rounded-xl border border-border bg-white p-4">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
-            <h2 className="text-base font-semibold">Community images</h2>
+            <h2 className="font-display text-base font-semibold">Community images</h2>
             <Link href="/admin/community-stories" className="text-xs text-accent underline hover:text-foreground">
               Open Community stories →
             </Link>
@@ -738,7 +738,7 @@ export default async function SystemVisualsPage() {
           )}
           {communityImages.buckets.map((b) => (
             <div key={b.id} className="mt-3">
-              <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-400">
+              <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
                 {b.name} — {b.images.length}
               </p>
               <div className="flex gap-3 overflow-x-auto pb-1">
@@ -750,8 +750,8 @@ export default async function SystemVisualsPage() {
           ))}
         </section>
 
-        <section id="section-videos" className="scroll-mt-4 rounded-xl border border-gray-200 bg-white p-4">
-          <h2 className="text-base font-semibold">Videos</h2>
+        <section id="section-videos" className="scroll-mt-4 rounded-xl border border-border bg-white p-4">
+          <h2 className="font-display text-base font-semibold">Videos</h2>
           <p className="mt-1 text-sm text-muted-foreground">
             Click to play, not just zoom. For coverage gaps (which themes have no video at all), see{' '}
             <Link href="/admin/media-gaps" className="underline hover:text-foreground">Media gaps</Link>{' '}
@@ -759,7 +759,7 @@ export default async function SystemVisualsPage() {
           </p>
 
           <div className="mt-4">
-            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-400">
+            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
               Known site videos (hand-verified) — {SITE_VIDEOS.length}
             </p>
             <div className="flex flex-wrap gap-4">
@@ -771,8 +771,8 @@ export default async function SystemVisualsPage() {
                     caption={[v.person, v.place].filter(Boolean).join(' · ') || v.src}
                     id={slug(`video-site-${v.src}`)}
                   />
-                  <div className="max-w-xs text-xs text-gray-600">
-                    {v.person && <p className="font-medium text-gray-700">{v.person}</p>}
+                  <div className="max-w-xs text-xs text-muted-foreground">
+                    {v.person && <p className="font-medium text-foreground">{v.person}</p>}
                     {v.place && <p>{v.place}</p>}
                     {v.usedIn.length > 0 && (
                       <ul className="mt-1 list-inside list-disc">
@@ -788,7 +788,7 @@ export default async function SystemVisualsPage() {
 
           <div className="mt-6">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-gray-400">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
                 Tagged in content_items (live) — {taggedVideos.items.length}
               </p>
               <Link href="/admin/media-library" className="text-xs text-accent underline hover:text-foreground">
@@ -819,8 +819,8 @@ export default async function SystemVisualsPage() {
           </div>
         </section>
 
-        <section id="section-deck-art" className="scroll-mt-4 rounded-xl border border-gray-200 bg-white p-4">
-          <h2 className="text-base font-semibold">Investor deck art (design/deck-photos/)</h2>
+        <section id="section-deck-art" className="scroll-mt-4 rounded-xl border border-border bg-white p-4">
+          <h2 className="font-display text-base font-semibold">Investor deck art (design/deck-photos/)</h2>
           <p className="mt-1 text-sm text-muted-foreground">
             The full Pencil-deck image set, for cross-reference against the concepts above. Synced by{' '}
             <code>v2/scripts/sync-pencil-photos.mjs</code>.

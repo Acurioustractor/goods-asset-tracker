@@ -30,7 +30,7 @@ function consentBadge(p: ElPhoto): { text: string; cls: string } {
   if (p.isPublic) return { text: 'public', cls: 'bg-green-100 text-green-700' };
   if (p.consent && p.elderOk) return { text: 'gated-ok', cls: 'bg-amber-100 text-amber-700' };
   if (p.consent && !p.elderOk) return { text: 'elder review pending', cls: 'bg-orange-100 text-orange-700' };
-  return { text: 'not flagged in EL', cls: 'bg-gray-200 text-gray-600' };
+  return { text: 'not flagged in EL', cls: 'bg-muted text-muted-foreground' };
 }
 
 export function DashboardImagePicker({
@@ -116,8 +116,8 @@ export function DashboardImagePicker({
   return (
     <div className="space-y-6 p-6 pb-24">
       <header>
-        <h1 className="text-2xl font-bold tracking-tight">Dashboard images: {partnerName}</h1>
-        <p className="mt-1 max-w-3xl text-sm text-gray-500">
+        <h1 className="text-2xl font-bold tracking-tight font-display">Dashboard images: {partnerName}</h1>
+        <p className="mt-1 max-w-3xl text-sm text-muted-foreground">
           Assign an Empathy Ledger photo to any image slot on{' '}
           <code>/partners/{slug}/dashboard</code>. Picks write to{' '}
           <code>data/partner-dashboard-images.json</code>. They preview live here, and go to prod when the
@@ -134,7 +134,7 @@ export function DashboardImagePicker({
         <div className="space-y-6">
           {groups.map(([group, gslots]) => (
             <section key={group}>
-              <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">{group}</h2>
+              <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">{group}</h2>
               <ul className="space-y-2">
                 {gslots.map((s) => {
                   const o = ov[s.key];
@@ -143,15 +143,15 @@ export function DashboardImagePicker({
                   return (
                     <li
                       key={s.key}
-                      className={`flex items-center gap-3 rounded-lg border p-2 ${activeSlot === s.key ? 'border-blue-400 ring-2 ring-blue-100' : 'border-gray-200'}`}
+                      className={`flex items-center gap-3 rounded-lg border p-2 ${activeSlot === s.key ? 'border-primary ring-2 ring-primary/20' : 'border-border'}`}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={src} alt="" className="h-14 w-20 shrink-0 rounded object-cover" loading="lazy" />
                       <div className="min-w-0 flex-1">
-                        <p className="truncate text-sm font-medium text-gray-800">{s.label}</p>
-                        <p className="truncate text-[11px] text-gray-400">
+                        <p className="truncate text-sm font-medium text-foreground">{s.label}</p>
+                        <p className="truncate text-[11px] text-muted-foreground">
                           {overridden ? (
-                            <span className="font-semibold text-blue-600">EL · {o.consent}</span>
+                            <span className="font-semibold text-primary">EL · {o.consent}</span>
                           ) : (
                             <span>config default</span>
                           )}
@@ -160,7 +160,7 @@ export function DashboardImagePicker({
                       <div className="flex shrink-0 flex-col items-end gap-1">
                         <button
                           onClick={() => setActiveSlot(activeSlot === s.key ? null : s.key)}
-                          className="rounded bg-gray-900 px-2.5 py-1 text-xs font-medium text-white hover:bg-gray-700"
+                          className="rounded bg-foreground px-2.5 py-1 text-xs font-medium text-background hover:opacity-80"
                         >
                           {activeSlot === s.key ? 'Close' : 'Change'}
                         </button>
@@ -168,7 +168,7 @@ export function DashboardImagePicker({
                           <button
                             onClick={() => save(s.key, null)}
                             disabled={busy === s.key}
-                            className="text-[11px] text-gray-400 hover:text-red-600 disabled:opacity-50"
+                            className="text-[11px] text-muted-foreground hover:text-red-600 disabled:opacity-50"
                           >
                             reset
                           </button>
@@ -185,21 +185,21 @@ export function DashboardImagePicker({
         {/* Photo library (shown when a slot is active) */}
         <div>
           {!active ? (
-            <div className="flex h-full min-h-[200px] items-center justify-center rounded-lg border border-dashed border-gray-300 p-8 text-center text-sm text-gray-400">
+            <div className="flex h-full min-h-[200px] items-center justify-center rounded-lg border border-dashed border-border p-8 text-center text-sm text-muted-foreground">
               Pick a slot on the left, then choose a photo here.
             </div>
           ) : (
             <div className="space-y-3">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-sm font-semibold text-gray-700">Assigning: {active.label}</span>
-                <span className="text-xs text-gray-400">{filtered.length} photos</span>
+                <span className="text-sm font-semibold text-foreground">Assigning: {active.label}</span>
+                <span className="text-xs text-muted-foreground">{filtered.length} photos</span>
               </div>
               <div className="flex flex-wrap items-center gap-2">
                 {PRESETS.map((p) => (
                   <button
                     key={p.key}
                     onClick={() => setPreset(p.key)}
-                    className={`rounded-full px-3 py-1 text-xs font-medium ${preset === p.key ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                    className={`rounded-full px-3 py-1 text-xs font-medium ${preset === p.key ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-muted/70'}`}
                   >
                     {p.label}
                   </button>
@@ -208,7 +208,7 @@ export function DashboardImagePicker({
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="search tag / title / place"
-                  className="ml-auto w-48 rounded border border-gray-300 px-2 py-1 text-xs"
+                  className="ml-auto w-48 rounded border border-border px-2 py-1 text-xs"
                 />
               </div>
               <div className="grid max-h-[72vh] grid-cols-2 gap-2 overflow-y-auto pr-1 sm:grid-cols-3">
@@ -219,16 +219,16 @@ export function DashboardImagePicker({
                       key={p.id}
                       onClick={() => setPreview(p)}
                       title="Click to preview full size"
-                      className="group relative overflow-hidden rounded-lg border border-gray-200 text-left hover:border-blue-400"
+                      className="group relative overflow-hidden rounded-lg border border-border text-left hover:border-primary"
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={p.thumb} alt="" className="aspect-[4/3] w-full bg-gray-100 object-cover" loading="lazy" />
+                      <img src={p.thumb} alt="" className="aspect-[4/3] w-full bg-muted object-cover" loading="lazy" />
                       <span className={`absolute left-1 top-1 rounded px-1.5 py-0.5 text-[10px] font-semibold ${badge.cls}`}>{badge.text}</span>
-                      <span className="block truncate px-1.5 py-1 text-[10px] text-gray-500">{p.title || p.tags.find((t) => t.startsWith('event:')) || p.location || p.id.slice(0, 8)}</span>
+                      <span className="block truncate px-1.5 py-1 text-[10px] text-muted-foreground">{p.title || p.tags.find((t) => t.startsWith('event:')) || p.location || p.id.slice(0, 8)}</span>
                     </button>
                   );
                 })}
-                {filtered.length === 0 ? <p className="col-span-full p-6 text-center text-sm text-gray-400">No photos match.</p> : null}
+                {filtered.length === 0 ? <p className="col-span-full p-6 text-center text-sm text-muted-foreground">No photos match.</p> : null}
               </div>
             </div>
           )}
@@ -238,23 +238,23 @@ export function DashboardImagePicker({
       {/* Full-size preview + assign */}
       {preview && active ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-6" onClick={() => setPreview(null)}>
-          <div className="flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-xl bg-white" onClick={(e) => e.stopPropagation()}>
+          <div className="flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-xl bg-card" onClick={(e) => e.stopPropagation()}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={preview.url} alt="" className="max-h-[68vh] w-full bg-gray-900 object-contain" />
+            <img src={preview.url} alt="" className="max-h-[68vh] w-full bg-foreground object-contain" />
             <div className="flex flex-wrap items-center justify-between gap-3 p-4">
               <div className="min-w-0">
                 <span className={`rounded px-2 py-0.5 text-[11px] font-semibold ${consentBadge(preview).cls}`}>{consentBadge(preview).text}</span>
-                <p className="mt-1 truncate text-sm font-medium text-gray-800">{preview.title || preview.id}</p>
-                <p className="truncate text-xs text-gray-400">{preview.tags.join('  ·  ')}</p>
+                <p className="mt-1 truncate text-sm font-medium text-foreground">{preview.title || preview.id}</p>
+                <p className="truncate text-xs text-muted-foreground">{preview.tags.join('  ·  ')}</p>
               </div>
               <div className="flex shrink-0 gap-2">
-                <button onClick={() => setPreview(null)} className="rounded border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                <button onClick={() => setPreview(null)} className="rounded border border-border px-3 py-2 text-sm font-medium text-foreground hover:bg-muted">
                   Cancel
                 </button>
                 <button
                   onClick={() => assign(active, preview)}
                   disabled={busy === active.key}
-                  className="rounded bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500 disabled:opacity-50"
+                  className="rounded bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
                 >
                   Assign to {active.label}
                 </button>

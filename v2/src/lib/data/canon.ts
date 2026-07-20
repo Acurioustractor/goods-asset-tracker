@@ -51,8 +51,8 @@ export const CANON: CanonFact[] = [
   {
     id: 'beds-deployed', label: 'Beds deployed', value: CANONICAL_ASSETS.bedsDeployed, unit: 'units',
     domain: 'assets', claimLabel: 'verified', dataClass: 'green',
-    source: 'v2 Supabase `assets` (status=deployed) via asset-canonical.ts', check: 'auto', asAt: '2026-05-30', owner: 'Ben',
-    definition: 'Deployed bed units in the register: 363 Basket (legacy) + 133 Stretch (flagship).',
+    source: 'v2 Supabase `assets` (status=deployed) via asset-canonical.ts', check: 'auto', asAt: '2026-07-18', owner: 'Ben',
+    definition: 'Deployed bed units in the register: 363 Basket (legacy) + 177 Stretch (flagship; incl. Maningrida +40 Jul 2026, and Kununurra +2 / Katherine +1 / Tennant youth centre +1, Ben rulings 2026-07-19).',
   },
   {
     id: 'stretch-beds-deployed', label: 'Stretch Beds deployed', value: CANONICAL_ASSETS.stretchBedsDeployed, unit: 'units',
@@ -63,14 +63,14 @@ export const CANON: CanonFact[] = [
   {
     id: 'washers-in-community', label: 'Washing machines in community', value: CANONICAL_ASSETS.washersInCommunity, unit: 'units',
     domain: 'assets', claimLabel: 'verified', dataClass: 'green',
-    source: 'Curated in-community count (Ben-confirmed 2026-06-11); supersedes the register deployed-row count pending a status cleanup', check: 'manual', asAt: '2026-06-11', owner: 'Ben',
-    definition: '16 Pakkimjalki Kari washing machines in community. Single public figure; not auto-derived from the register.',
+    source: 'Curated in-community count (Ben-confirmed 2026-06-11; +2 Maningrida 2026-07-18; +2 Julalikari Tennant Creek 2026-07-19); supersedes the register deployed-row count pending a status cleanup. Purchase ledger: wiki/outputs/2026-05-14-washing-machine-final-reconciliation.md', check: 'manual', asAt: '2026-07-19', owner: 'Ben',
+    definition: '20 Pakkimjalki Kari washing machines in community (16 confirmed 2026-06-11 + 2 Maningrida + 2 Julalikari TC, Jul 2026). Single public figure; not auto-derived from the register.',
   },
   {
     id: 'communities-served', label: 'Communities served', value: CANONICAL_ASSETS.communitiesServed, unit: 'communities',
     domain: 'assets', claimLabel: 'verified', dataClass: 'green',
     source: 'v2 Supabase `assets` via asset-canonical.ts', check: 'auto', asAt: '2026-05-30', owner: 'Ben',
-    definition: '9 served; 10 distinct communities touched.',
+    definition: '11 served (incl. Kununurra + Katherine, added 2026-07-19); 12 distinct communities touched.',
   },
   {
     id: 'plastic-kg', label: 'Recycled HDPE diverted', value: CANONICAL_ASSETS.plasticKg, unit: 'kg',

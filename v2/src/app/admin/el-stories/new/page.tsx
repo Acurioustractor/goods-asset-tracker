@@ -30,13 +30,13 @@ export default async function NewStoryPage() {
     <div className="max-w-3xl space-y-6 pb-16">
       <header>
         <p className="text-xs">
-          <Link href="/admin/el-stories" className="text-blue-700 hover:underline">
+          <Link href="/admin/el-stories" className="text-primary hover:underline">
             ← back to EL stories
           </Link>
         </p>
-        <h1 className="mt-2 text-2xl font-bold tracking-tight">Write a prose story (Empathy Ledger)</h1>
-        <p className="mt-1 text-sm text-gray-500 max-w-prose">
-          Writes directly to the EL <code className="rounded bg-gray-100 px-1">stories</code> table
+        <h1 className="mt-2 text-2xl font-bold tracking-tight font-display">Write a prose story (Empathy Ledger)</h1>
+        <p className="mt-1 text-sm text-muted-foreground max-w-prose">
+          Writes directly to the EL <code className="rounded bg-muted px-1">stories</code> table
           scoped to the Goods project with the canonical tag taxonomy pre-set. Defaults to consent
           pending + not public until you explicitly approve.
         </p>

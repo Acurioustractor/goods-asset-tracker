@@ -82,20 +82,20 @@ export default async function TripReceiptsPage() {
       <header>
         <div className="flex items-start justify-between">
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">Trip receipts</h1>
-            <p className="mt-1 text-sm text-gray-500">
+            <h1 className="font-display text-2xl font-bold tracking-tight">Trip receipts</h1>
+            <p className="mt-1 text-sm text-muted-foreground">
               Each trip (≥3 beds delivered to one community on one date) cross-referenced
               with Xero ACCPAY in a ±3-day to +14-day window. Missing receipts mean
               trip overhead isn&apos;t matched to ACCPAY bills yet — a Xero payment-matching
               gap (not debt), to be reconciled.
             </p>
           </div>
-          <Link href="/admin/scans" className="text-xs text-blue-700 hover:underline">/admin/scans →</Link>
+          <Link href="/admin/scans" className="text-xs text-primary hover:underline">/admin/scans →</Link>
         </div>
       </header>
 
       {tripList.length === 0 && (
-        <Card><CardContent className="p-6 text-sm text-gray-500">No recent trips (≥3 beds same day) found.</CardContent></Card>
+        <Card><CardContent className="p-6 text-sm text-muted-foreground">No recent trips (≥3 beds same day) found.</CardContent></Card>
       )}
 
       <div className="space-y-4">
@@ -109,11 +109,11 @@ export default async function TripReceiptsPage() {
               <CardContent className="space-y-3 p-5">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
                   <div>
-                    <h2 className="text-lg font-bold">
+                    <h2 className="font-display text-lg font-bold">
                       {t.community}
-                      <span className="ml-3 text-sm font-normal text-gray-500">{t.date}</span>
+                      <span className="ml-3 text-sm font-normal text-muted-foreground">{t.date}</span>
                     </h2>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-muted-foreground">
                       <span className="font-bold text-amber-700">{t.bedCount}</span> beds:{' '}
                       <code className="text-[11px]">{t.bedIds.slice(0, 6).join(', ')}{t.bedIds.length > 6 && '…'}</code>
                     </p>
@@ -121,9 +121,9 @@ export default async function TripReceiptsPage() {
                   <div className="text-right">
                     {hasReceipts ? (
                       <>
-                        <p className="text-xs text-gray-500">Xero ACCPAY in window</p>
+                        <p className="text-xs text-muted-foreground">Xero ACCPAY in window</p>
                         <p className="text-lg font-bold text-emerald-700">${total.toLocaleString('en-AU', { maximumFractionDigits: 0 })}</p>
-                        <p className="text-xs text-gray-500">{spend.length} invoices</p>
+                        <p className="text-xs text-muted-foreground">{spend.length} invoices</p>
                       </>
                     ) : (
                       <>
@@ -135,9 +135,9 @@ export default async function TripReceiptsPage() {
                 </div>
 
                 {hasReceipts && (
-                  <div className="overflow-hidden rounded border bg-white">
+                  <div className="overflow-hidden rounded border bg-card">
                     <table className="min-w-full text-xs">
-                      <thead className="bg-gray-50 text-[10px] uppercase tracking-wide text-gray-500">
+                      <thead className="bg-muted text-[10px] uppercase tracking-wide text-muted-foreground">
                         <tr>
                           <th className="px-2 py-1 text-left">Date</th>
                           <th className="px-2 py-1 text-left">Vendor</th>
@@ -145,14 +145,14 @@ export default async function TripReceiptsPage() {
                           <th className="px-2 py-1 text-right">Amount</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-gray-100">
+                      <tbody className="divide-y divide-border">
                         {spend.slice(0, 10).map((inv, i) => {
                           const desc = (inv.line_items || []).map((it) => it.description || '').filter(Boolean).join('; ').slice(0, 60);
                           return (
                             <tr key={i}>
-                              <td className="px-2 py-1 text-gray-500">{inv.date}</td>
+                              <td className="px-2 py-1 text-muted-foreground">{inv.date}</td>
                               <td className="px-2 py-1">{inv.contact_name}</td>
-                              <td className="px-2 py-1 text-gray-600">{desc}</td>
+                              <td className="px-2 py-1 text-muted-foreground">{desc}</td>
                               <td className="px-2 py-1 text-right font-mono">${(inv.total || 0).toFixed(2)}</td>
                             </tr>
                           );
@@ -163,10 +163,10 @@ export default async function TripReceiptsPage() {
                 )}
 
                 <details className="text-xs">
-                  <summary className="cursor-pointer font-medium text-gray-700 hover:text-gray-900">
+                  <summary className="cursor-pointer font-medium text-foreground hover:text-foreground">
                     Expected expense categories (checklist)
                   </summary>
-                  <ul className="mt-2 grid grid-cols-2 gap-1 text-gray-600">
+                  <ul className="mt-2 grid grid-cols-2 gap-1 text-muted-foreground">
                     <li>☐ Fuel / petrol</li>
                     <li>☐ Vehicle hire / 4WD</li>
                     <li>☐ Accommodation (hotel / Airbnb)</li>
@@ -176,7 +176,7 @@ export default async function TripReceiptsPage() {
                     <li>☐ Cash purchases (reconciled)</li>
                     <li>☐ Staff time (FTE allocation)</li>
                   </ul>
-                  <p className="mt-2 text-gray-500">
+                  <p className="mt-2 text-muted-foreground">
                     Some Goods bank-spend has historically not been matched to ACCPAY bills
                     in Xero — a payment-matching gap, not debt (the 2026-05-29 cross-check
                     found $0 paid from personal accounts and no director loan).

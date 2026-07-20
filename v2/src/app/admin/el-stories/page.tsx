@@ -50,13 +50,13 @@ export default async function ElStoriesIndex() {
     <div className="space-y-6 pb-16">
       <header className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Stories in Empathy Ledger (Goods)</h1>
-          <p className="mt-1 text-sm text-gray-500 max-w-prose">
+          <h1 className="text-2xl font-bold tracking-tight font-display">Stories in Empathy Ledger (Goods)</h1>
+          <p className="mt-1 text-sm text-muted-foreground max-w-prose">
             Every Goods story in EL (last 100). Filter / curate via tags. Approve consent via{' '}
-            <code className="rounded bg-gray-100 px-1">/admin/consent</code>{' '}
+            <code className="rounded bg-muted px-1">/admin/consent</code>{' '}
             or directly in EL admin.
           </p>
-          <p className="mt-2 text-xs text-gray-500">
+          <p className="mt-2 text-xs text-muted-foreground">
             <span className="rounded bg-emerald-100 px-2 py-0.5 text-emerald-800">{publicCount} public</span>
             <span className="ml-2 rounded bg-amber-100 px-2 py-0.5 text-amber-800">{pendingReview} pending elder</span>
             <span className="ml-2 rounded bg-stone-100 px-2 py-0.5 text-stone-700">{stories.length} total</span>
@@ -71,13 +71,13 @@ export default async function ElStoriesIndex() {
       </header>
 
       {stories.length === 0 ? (
-        <p className="rounded border border-dashed border-gray-300 bg-gray-50 p-6 text-center text-sm text-gray-600">
+        <p className="rounded border border-dashed border-border bg-muted p-6 text-center text-sm text-muted-foreground">
           No EL stories yet (or EL API unreachable). Click &quot;Write a story&quot; above to compose the first one.
         </p>
       ) : (
-        <div className="overflow-hidden rounded-lg border bg-white">
+        <div className="overflow-hidden rounded-lg border border-border bg-card">
           <table className="min-w-full text-sm">
-            <thead className="bg-gray-50 text-xs uppercase tracking-wide text-gray-500">
+            <thead className="bg-muted text-xs uppercase tracking-wide text-muted-foreground">
               <tr>
                 <th className="px-4 py-2 text-left">Title</th>
                 <th className="px-4 py-2 text-left">Tags</th>
@@ -90,7 +90,7 @@ export default async function ElStoriesIndex() {
             <tbody className="divide-y divide-gray-100">
               {stories.map((s) => (
                 <tr key={s.id} className="hover:bg-amber-50/30">
-                  <td className="px-4 py-2 font-medium text-gray-900 max-w-[40ch] truncate">
+                  <td className="px-4 py-2 font-medium text-foreground max-w-[40ch] truncate">
                     {s.is_public ? (
                       <Link href={`/stories/${s.id}`} target="_blank" className="hover:text-amber-700">
                         {s.title || '(untitled)'}
@@ -102,10 +102,10 @@ export default async function ElStoriesIndex() {
                   <td className="px-4 py-2 text-xs">
                     <div className="flex flex-wrap gap-1">
                       {(s.tags || []).slice(0, 4).map((t) => (
-                        <code key={t} className="rounded bg-gray-100 px-1 text-[10px]">{t}</code>
+                        <code key={t} className="rounded bg-muted px-1 text-[10px]">{t}</code>
                       ))}
                       {(s.tags || []).length > 4 && (
-                        <span className="text-gray-400">+{(s.tags || []).length - 4}</span>
+                        <span className="text-muted-foreground">+{(s.tags || []).length - 4}</span>
                       )}
                     </div>
                   </td>
@@ -123,7 +123,7 @@ export default async function ElStoriesIndex() {
                       <span className="rounded bg-stone-100 px-1.5 py-0.5 text-stone-600">draft</span>
                     )}
                   </td>
-                  <td className="px-4 py-2 text-xs text-gray-500">
+                  <td className="px-4 py-2 text-xs text-muted-foreground">
                     {new Date(s.created_at).toLocaleDateString('en-AU', { year: 'numeric', month: 'short', day: 'numeric' })}
                   </td>
                   <td className="px-4 py-2 text-xs">

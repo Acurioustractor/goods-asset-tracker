@@ -44,59 +44,39 @@ import {
 type NavItem = { name: string; href: string; icon: React.ComponentType<{ className?: string }> };
 type NavGroup = { group: string; items: NavItem[] };
 
-// Musk-5 minimal nav (restructured 2026-05-28 from 35 → 5 top-level + collapsible More).
-// Every item must justify its presence: who uses it, how often, what's the outcome.
-// 5 hubs, each links to its primary page; sub-pages either tabs inside that page or in More.
+// Two-wing nav (restructured 2026-07-19, wiki/investor/09-admin-ia.md).
+// Wing A = Investor Wiki: one item per pitch-area hub, mirroring the 8 passes
+// in wiki/investor/00-INDEX.md. Wing B = Operations: the field/ops day tools.
+// Everything absorbed into a hub stays reachable via that hub's tab row and
+// via the More drawer — no route was removed.
 const navigation: NavGroup[] = [
   {
-    group: 'Today',
+    group: 'Investor wiki',
     items: [
-      { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
-      { name: 'Operating systems', href: '/admin/operating-systems', icon: Network },
+      { name: 'Dashboard',   href: '/admin',                    icon: LayoutDashboard },
+      { name: 'Atlas',       href: '/admin/atlas',              icon: Globe },
+      { name: 'Voices',      href: '/admin/voices',             icon: Users },
+      { name: 'Voice Impact', href: '/admin/voice-impact',      icon: Users },
+      { name: 'Money story', href: '/admin/cost-model',         icon: Calculator },
+      { name: 'People',      href: '/admin/people',             icon: Building2 },
+      { name: 'Raise',       href: '/admin/deals',              icon: Crosshair },
+      { name: 'Communities', href: '/admin/communities',        icon: Globe },
+      { name: 'Visuals',     href: '/admin/system-visuals',     icon: Layers },
+      { name: 'Media',       href: '/admin/media-library',      icon: Images },
+      { name: 'Pitch',       href: '/admin/pitch-cockpit',      icon: Presentation },
+      { name: 'Consent',     href: '/admin/consent',            icon: FileCheck },
     ],
   },
   {
-    group: 'Make',
+    group: 'Operations',
     items: [
-      { name: 'Production',  href: '/admin/production', icon: Wrench },
-      { name: 'Cost model',  href: '/admin/cost-model', icon: Calculator },
-      { name: 'Assets',      href: '/admin/assets',     icon: Library },
-    ],
-  },
-  {
-    group: 'Place',
-    items: [
-      { name: 'Communities',    href: '/admin/communities',    icon: Globe },
+      { name: 'Today',          href: '/admin/today',          icon: LayoutDashboard },
+      { name: 'Facility',       href: '/admin/facility',       icon: Boxes },
+      { name: 'Production',     href: '/admin/production',     icon: Wrench },
+      { name: 'Assets',         href: '/admin/assets',         icon: Library },
       { name: 'Trip preflight', href: '/admin/bed-preflight',  icon: FileCheck },
       { name: 'Install',        href: '/admin/install-bulk',   icon: Camera },
-    ],
-  },
-  {
-    group: 'Story',
-    items: [
-      { name: 'Deck builder',  href: '/admin/deck-builder',    icon: LayoutGrid },
-      { name: 'Story atlas',   href: '/admin/story-atlas',     icon: Users },
-      { name: 'Media library', href: '/admin/media-library',   icon: Images },
-      { name: 'Media gaps',    href: '/admin/media-gaps',      icon: Radar },
-      { name: 'Consent',       href: '/admin/consent',         icon: FileCheck },
-      { name: 'Canon board',   href: '/admin/canon',           icon: LayoutGrid },
-      { name: 'System visuals', href: '/admin/system-visuals', icon: Layers },
-      { name: 'Registry',      href: '/admin/storytellers',    icon: Users },
-      { name: 'Stories (EL)',  href: '/admin/el-stories',      icon: BookOpen },
-      { name: 'Storytellers (EL)', href: '/admin/el-storytellers', icon: Users },
-      { name: 'Quotes',        href: '/admin/quotes',          icon: Quote },
-      { name: 'Community stories', href: '/admin/community-stories', icon: Globe },
-      { name: 'Site content', href: '/admin/site-content',     icon: FileText },
-    ],
-  },
-  {
-    group: 'Money',
-    items: [
-      { name: 'People',    href: '/admin/people',              icon: Users },
-      { name: 'Funders',   href: '/admin/funders',             icon: Building2 },
-      { name: 'Deals',     href: '/admin/deals',               icon: Crosshair },
-      { name: 'LOI tracker', href: '/admin/loi-tracker',        icon: FileSignature },
-      { name: 'Xero recon', href: '/admin/xero-reconciliation', icon: FileCheck },
+      { name: 'Xero recon',     href: '/admin/xero-reconciliation', icon: FileCheck },
     ],
   },
 ];
@@ -109,6 +89,25 @@ const navigation: NavGroup[] = [
 //
 // /admin/alice-fill is a one-off wizard for 2026-05-21 trip catch-up — never re-linked.
 const moreNavigation: NavItem[] = [
+  // Story surfaces absorbed into the Voices hub (tabs there link to each)
+  { name: 'Story atlas',     href: '/admin/story-atlas',   icon: Users },
+  { name: 'Registry',        href: '/admin/storytellers',  icon: Users },
+  { name: 'Quotes',          href: '/admin/quotes',        icon: Quote },
+  { name: 'Stories (EL)',    href: '/admin/el-stories',    icon: BookOpen },
+  { name: 'Storytellers (EL)', href: '/admin/el-storytellers', icon: Users },
+  { name: 'Community stories', href: '/admin/community-stories', icon: Globe },
+  // Pitch surfaces absorbed into the Pitch hub
+  { name: 'Deck builder',    href: '/admin/deck-builder',  icon: LayoutGrid },
+  { name: 'Quote cards',     href: '/admin/quote-cards',   icon: Quote },
+  // Content/canon absorbed into Visuals
+  { name: 'Canon board',     href: '/admin/canon',         icon: LayoutGrid },
+  { name: 'Media gaps',      href: '/admin/media-gaps',    icon: Radar },
+  { name: 'Site content',    href: '/admin/site-content',  icon: FileText },
+  // Money/pipeline absorbed into Raise + People
+  { name: 'Funders',         href: '/admin/funders',       icon: Building2 },
+  { name: 'LOI tracker',     href: '/admin/loi-tracker',   icon: FileSignature },
+  // Misc
+  { name: 'Operating systems', href: '/admin/operating-systems', icon: Network },
   // Field workflow
   { name: 'Bed signals',     href: '/admin/bed-signals',   icon: Radar },
   { name: 'Install checklist', href: '/admin/install-checklist', icon: ClipboardCheck },
@@ -142,12 +141,12 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
   const [moreOpen, setMoreOpen] = useState(inMore);
 
   const renderNavContent = () => (
-    <div className="admin-sidebar-scroll flex h-full flex-col overflow-y-auto bg-slate-900 border-r border-slate-800 px-6 pb-4 pt-6">
+    <div className="admin-sidebar-scroll flex h-full flex-col overflow-y-auto bg-[#F5EEE4] border-r border-[#E0D5C2] px-6 pb-4 pt-6">
       <div className="flex h-12 shrink-0 items-center justify-between">
-         <span className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
-            <span className="text-orange-500">Goods</span> Admin
+         <span className="font-display text-xl tracking-tight flex items-baseline gap-1.5" style={{ fontFamily: 'Georgia, serif' }}>
+            <span className="text-[#B44D2B]">Goods</span> <span className="text-[#26201B]">on Country</span>
          </span>
-         <button className="md:hidden text-slate-400 hover:text-white" onClick={() => setMobileMenuOpen(false)}>
+         <button className="md:hidden text-[#8A7F72] hover:text-[#26201B]" onClick={() => setMobileMenuOpen(false)}>
            <X className="h-6 w-6" />
          </button>
       </div>
@@ -155,7 +154,7 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
         <ul role="list" className="flex flex-1 flex-col gap-y-8">
           {navigation.map((group) => (
             <li key={group.group}>
-              <div className="text-xs font-semibold leading-6 text-slate-400 uppercase tracking-wider mb-2">
+              <div className="text-[11px] font-semibold leading-6 text-[#B44D2B] uppercase tracking-[0.14em] mb-2">
                 {group.group}
               </div>
               <ul role="list" className="-mx-2 space-y-1">
@@ -169,8 +168,8 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
                         className={`
                           group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-medium transition-all
                           ${isActive
-                            ? 'bg-orange-500 text-white shadow-md'
-                            : 'text-slate-300 hover:text-white hover:bg-slate-800'
+                            ? 'bg-[#B44D2B] text-[#F5EEE4] shadow-sm'
+                            : 'text-[#3A322B] hover:text-[#26201B] hover:bg-[#EAE0D0]'
                           }
                         `}
                       >
@@ -189,11 +188,11 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
             <button
               type="button"
               onClick={() => setMoreOpen((v) => !v)}
-              className="flex w-full items-center justify-between text-xs font-semibold leading-6 text-slate-400 uppercase tracking-wider mb-2 hover:text-slate-200 transition-colors"
+              className="flex w-full items-center justify-between text-[11px] font-semibold leading-6 text-[#8A7F72] uppercase tracking-[0.14em] mb-2 hover:text-[#26201B] transition-colors"
             >
               <span className="flex items-center gap-2">
                 <MoreHorizontal className="h-3.5 w-3.5" /> More
-                <span className="text-[10px] normal-case tracking-normal text-slate-500">({moreNavigation.length})</span>
+                <span className="text-[10px] normal-case tracking-normal text-[#8A7F72]">({moreNavigation.length})</span>
               </span>
               {moreOpen ? <ChevronDown className="h-3.5 w-3.5" /> : <ChevronRight className="h-3.5 w-3.5" />}
             </button>
@@ -209,8 +208,8 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
                         className={`
                           group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-medium transition-all
                           ${isActive
-                            ? 'bg-orange-500 text-white shadow-md'
-                            : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                            ? 'bg-[#B44D2B] text-[#F5EEE4] shadow-sm'
+                            : 'text-[#6E645A] hover:text-[#26201B] hover:bg-[#EAE0D0]'
                           }
                         `}
                       >
@@ -225,20 +224,20 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
           </li>
 
           <li className="mt-auto pt-8">
-             <div className="px-2 pt-3 pb-1 text-[10px] uppercase tracking-wider text-slate-500 border-t border-slate-800">
+             <div className="px-2 pt-3 pb-1 text-[10px] uppercase tracking-wider text-[#8A7F72] border-t border-[#E0D5C2]">
                Archived decks (moved 2026-05-15)
              </div>
-             <p className="px-2 pb-2 text-[10px] leading-snug text-slate-600">
+             <p className="px-2 pb-2 text-[10px] leading-snug text-[#A79C8C]">
                One-shot proposal pages now live in <code>_archive/2026-05-15-admin-decks/</code>.
                See <code>RESTORE.md</code> to bring one back.
              </p>
-             <div className="flex items-center gap-x-4 px-2 py-3 text-sm font-medium leading-6 text-slate-400 border-t border-slate-800">
+             <div className="flex items-center gap-x-4 px-2 py-3 text-sm font-medium leading-6 text-[#6E645A] border-t border-[#E0D5C2]">
                <span className="truncate">{userEmail}</span>
              </div>
              <form action="/api/auth/signout" method="POST">
                <button
                  type="submit"
-                 className="group flex w-full gap-x-3 rounded-md p-2 text-sm font-medium leading-6 text-slate-300 hover:bg-slate-800 hover:text-white transition-colors"
+                 className="group flex w-full gap-x-3 rounded-md p-2 text-sm font-medium leading-6 text-[#3A322B] hover:bg-[#EAE0D0] hover:text-[#26201B] transition-colors"
                >
                  <LogOut className="h-5 w-5 shrink-0" aria-hidden="true" />
                  Sign Out
@@ -253,9 +252,9 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
   return (
     <>
       {/* Mobile Header */}
-      <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between border-b border-gray-200 bg-white px-4 shadow-sm sm:px-6 lg:px-8 md:hidden">
-        <div className="flex text-lg font-bold tracking-tight text-gray-900">
-            <span className="text-orange-500 mr-1">Goods</span> Admin
+      <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between border-b border-[#E5DCCB] bg-[#F5EEE4] px-4 shadow-sm sm:px-6 lg:px-8 md:hidden">
+        <div className="flex text-lg tracking-tight text-[#26201B]" style={{ fontFamily: 'Georgia, serif' }}>
+            <span className="text-[#B44D2B] mr-1">Goods</span> on Country
         </div>
         <button type="button" className="-m-2.5 p-2.5 text-gray-700 lg:hidden" onClick={() => setMobileMenuOpen(true)}>
           <span className="sr-only">Open sidebar</span>

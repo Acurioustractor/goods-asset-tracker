@@ -245,7 +245,7 @@ export const deckSlides: DeckSlide[] = [
     photo: '/images/build/build-001.jpg',
     photoAlt: 'Young people building a bed on Country',
     place: 'Alice Springs · Utopia · May 2026',
-    voiceNames: ['Mykel', 'Fred Campbell', 'Karen Liddle', 'Kristy Bloomfield'],
+    voiceNames: ['Mykel', 'Fred Campbell', 'Karen Liddle', 'Kristy Bloomfield', 'Shayne Bloomfield'],
     voiceAlternates: ['Katrina Bloomfield'],
     video: {
       label: 'Mykel, in his own voice',
@@ -266,8 +266,8 @@ export const deckSlides: DeckSlide[] = [
     ],
     goDeeper: [{ label: 'The Utopia field note', href: '/field-notes/utopia-may-2026' }],
     script:
-      'The work with Oonchiumpa in Alice Springs pushed the question to the front. Young people built beds outside the office before the Utopia trip. Mykel said, "Yeah, I\'ll be rocking up every day to make them." He was not talking about attending a program. He was talking about making something his community needed. Fred, his case worker, tells the story of Xavier going back to family, so proud showing them that he can build it. And the Bloomfield family built the current washing machines with Nic. Different hands, the same loop. Mykel made us look at the supply chain from the other end: why did the making, the wage and the machinery keep beginning somewhere else?',
-    note: 'Turn 4, narrative-foundation §2. Fred narrates Xavier — never a direct Xavier quote. Mykel on screen is always the registry verbatim, never a paraphrase.',
+      'The work with Oonchiumpa in Alice Springs pushed the question to the front. Young people built beds outside the office before the Utopia trip. Mykel said, "Yeah, I\'ll be rocking up every day to make them." He was not talking about attending a program. He was talking about making something his community needed. Fred, his case worker, tells the story of Xavier going back to family, so proud showing them that he can build it. And the Bloomfield family built the current washing machines with Nic. Different hands, the same loop. Mykel made us look at the supply chain from the other end: why did the making, the wage and the machinery keep beginning somewhere else? Shayne Bloomfield, who drove the Maningrida delivery, puts the whole turn in one line: "A lot of people say community is community and they need what we\'ve got. When you flip it, we need what they\'ve got." And the proof that it holds: "Today my mum still gets text messages from her family saying, I can\'t believe how good this bed\'s going ... I don\'t want to get outta bed in the morning \'cause it\'s just so comfortable."',
+    note: 'Turn 4, narrative-foundation §2. Fred narrates Xavier — never a direct Xavier quote. Mykel on screen is always the registry verbatim, never a paraphrase. Shayne Bloomfield quotes cleared by Ben 2026-07-20 (registry verbatim).',
   },
   {
     id: 'hinge-truck-test',
@@ -279,9 +279,9 @@ export const deckSlides: DeckSlide[] = [
     photoAlt: 'A delivery day on Country, Utopia',
     place: 'Utopia homelands · May 2026',
     chips: [
-      { label: 'Delivered · beds', value: '496 across 9 communities' },
+      { label: 'Delivered · beds', value: '540 across 11 communities' },
       { label: 'Delivered · washing machines', value: '16 in community' },
-      { label: 'Delivered · plastic diverted', value: '2,660kg' },
+      { label: 'Delivered · plastic diverted', value: '3,540kg (Stretch only)' },
     ],
     inlineVideo: {
       src: '/video/partners/centrecorp/utopia-delivery-road.mp4',
@@ -298,8 +298,8 @@ export const deckSlides: DeckSlide[] = [
       { label: 'One bed\'s life', href: '/bed/GB0-156-40' },
     ],
     script:
-      'The beds are real. The deliveries are real. 496 beds across nine communities. Sixteen washing machines in community. 2,660kg of plastic diverted. People have assembled them, used them and asked for more. But a delivery count does not tell us where the work, tools, contracts, margin or decisions sit. The truck is a useful test for this whole project. What came in on it? What leaves on it? What stays? If the beds stay but the jobs, tools, knowledge and decisions leave with us, then we have delivered a product and preserved the old arrangement.',
-    note: 'The truck test, adopted from Ben\'s 14 July draft (core-messaging doc §2-3). The one framing device, used once — Ben\'s rule. 2,660kg is Stretch-only provenance (133 × 20kg). Photo is place-attributable (Utopia).',
+      'The beds are real. The deliveries are real. 540 beds across eleven communities. Twenty washing machines in community. 3,540kg of plastic diverted, counted on Stretch Beds only. People have assembled them, used them and asked for more. But a delivery count does not tell us where the work, tools, contracts, margin or decisions sit. The truck is a useful test for this whole project. What came in on it? What leaves on it? What stays? If the beds stay but the jobs, tools, knowledge and decisions leave with us, then we have delivered a product and preserved the old arrangement.',
+    note: 'The truck test, adopted from Ben\'s 14 July draft (core-messaging doc §2-3). The one framing device, used once — Ben\'s rule. 3,540kg is Stretch-only provenance (177 × 20kg). Photo is place-attributable (Utopia).',
   },
   {
     id: 'turn-5',
@@ -344,7 +344,7 @@ export const deckSlides: DeckSlide[] = [
     headline: 'What the capital does, once, near the end.',
     body: 'The funding buys the bridge: the 50-bed in-source run (modelled, then measured), the first place-based ownership pathway with Oonchiumpa, the enterprise-support layer, and plant capex. AU$400K through QBE Catalysing Impact, matched at least 1:1 by signed external commitments. The target match stack (SEFA $300K, Snow $100K, Centrecorp $75K) is proposed today, not signed. Ordinary capital will not fund this stage, because the return being built is the transfer itself.',
     photo: '/images/qbe/communities-screen.png',
-    photoAlt: 'The nine communities served, on the map',
+    photoAlt: 'The eleven communities served, on the map',
     place: 'Signed letters by 31 August 2026',
     chips: [
       { label: 'Measured · revenue (accountant-signed carve-out)', value: 'AU$713,827' },

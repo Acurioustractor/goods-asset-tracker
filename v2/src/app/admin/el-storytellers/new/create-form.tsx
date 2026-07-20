@@ -83,7 +83,7 @@ export function CreateStorytellerForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-6 rounded-lg border bg-white p-6">
+    <form onSubmit={onSubmit} className="space-y-6 rounded-lg border border-border bg-card p-6">
       <Section title="Identity">
         <Field label="Display name" required sub="Public-facing name. Slug auto-generated from this.">
           <input
@@ -92,7 +92,7 @@ export function CreateStorytellerForm({
             onChange={(e) => setDisplayName(e.target.value)}
             placeholder="e.g. Ray Nelson"
             required
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+            className="w-full rounded border border-border px-3 py-2 text-sm"
           />
         </Field>
         <Field label="Bio (optional)" sub="One paragraph. Public on /storytellers/[slug].">
@@ -101,7 +101,7 @@ export function CreateStorytellerForm({
             onChange={(e) => setBio(e.target.value)}
             rows={4}
             placeholder="Ray is a senior man from Utopia Homelands who…"
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+            className="w-full rounded border border-border px-3 py-2 text-sm"
           />
         </Field>
         <Field label="Avatar URL (optional)" sub="Pasted URL. EL storage upload happens separately.">
@@ -110,7 +110,7 @@ export function CreateStorytellerForm({
             value={avatarUrl}
             onChange={(e) => setAvatarUrl(e.target.value)}
             placeholder="https://..."
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+            className="w-full rounded border border-border px-3 py-2 text-sm"
           />
         </Field>
       </Section>
@@ -120,7 +120,7 @@ export function CreateStorytellerForm({
           <select
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+            className="w-full rounded border border-border px-3 py-2 text-sm"
           >
             <option value="">— Pick a community —</option>
             {communities.map((c) => (
@@ -134,7 +134,7 @@ export function CreateStorytellerForm({
             value={culturalBackground}
             onChange={(e) => setCulturalBackground(e.target.value)}
             placeholder="Anmatyerr"
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+            className="w-full rounded border border-border px-3 py-2 text-sm"
           />
         </Field>
         <div className="flex flex-wrap gap-4">
@@ -158,7 +158,7 @@ export function CreateStorytellerForm({
           <select
             value={consentSource}
             onChange={(e) => setConsentSource(e.target.value as CreateStorytellerInput['consentSource'])}
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+            className="w-full rounded border border-border px-3 py-2 text-sm"
           >
             <option value="direct-recipient">Direct from recipient</option>
             <option value="family-guardian">Family / guardian (under-18 or hold)</option>
@@ -172,12 +172,12 @@ export function CreateStorytellerForm({
             onChange={(e) => setConsentDetails(e.target.value)}
             rows={3}
             placeholder="Captured 2026-05-22 by [name] via [channel]. Scope: Goods + funder reports OK; not for external press without re-confirmation."
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+            className="w-full rounded border border-border px-3 py-2 text-sm"
           />
         </Field>
         <p className="rounded border border-amber-200 bg-amber-50/60 p-3 text-xs text-amber-900">
           <strong>Important:</strong> this form creates the record as{' '}
-          <code className="rounded bg-white px-1">is_active=false</code>. You still need to verify
+          <code className="rounded bg-muted px-1">is_active=false</code>. You still need to verify
           consent + flip the flag in EL before they appear publicly.
         </p>
       </Section>
@@ -204,7 +204,7 @@ export function CreateStorytellerForm({
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <fieldset className="space-y-3">
-      <legend className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-500">{title}</legend>
+      <legend className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">{title}</legend>
       {children}
     </fieldset>
   );
@@ -213,11 +213,11 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 function Field({ label, sub, required, children }: { label: string; sub?: string; required?: boolean; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium text-gray-700">
+      <span className="mb-1 block text-xs font-medium text-foreground">
         {label}{required && <span className="ml-0.5 text-red-600">*</span>}
       </span>
       {children}
-      {sub && <p className="mt-1 text-[11px] text-gray-500">{sub}</p>}
+      {sub && <p className="mt-1 text-[11px] text-muted-foreground">{sub}</p>}
     </label>
   );
 }

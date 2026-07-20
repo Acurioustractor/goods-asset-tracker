@@ -10,6 +10,7 @@
  */
 
 import { getEngagementPeople, PERSON_TYPES, type Person, type PersonGhl, type Warmth } from './people';
+import { getCrmPeople } from './people-crm';
 import { fetchOpportunitiesForPipelines, type GoodsOpportunity } from './ghl';
 import { GOODS_PIPELINES, STAGE_TO_RUNG, type LoiRung } from './data/loi-pipeline';
 import { createServiceClient } from './supabase/server';
@@ -105,9 +106,10 @@ export interface PeopleWithGhl {
 }
 
 export async function getEngagementPeopleWithGhl(): Promise<PeopleWithGhl> {
-  // Base static aggregation, then apply curated overrides (photo/bio/featured/hidden).
+  // crm_contacts is the person hub; the static aggregation is the fallback
+  // when the table is unreachable or empty. Curated overrides apply either way.
   const overrides = await fetchOverrides();
-  let people = getEngagementPeople();
+  let people = (await getCrmPeople()) ?? getEngagementPeople();
   if (overrides.size > 0) {
     people = people
       .filter((p) => !overrides.get(p.id)?.hidden)

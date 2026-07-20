@@ -106,7 +106,7 @@ Product pages should show the real current specs in the page and keep internal s
 - [[communities/overview]]: overall community table, deployment counts, partners, demand signals and storytellers
 - [[communities/alice-springs-oonchiumpa]]: Central Australia relationship and potential plant pathway
 - [[communities/palm-island-picc]]: PICC relationship and possible community-ownership pathway
-- [[communities/tennant-creek]]: co-design history, washing-machine learning and possible future plant site
+- [[communities/tennant-creek]]: design-in-community history, washing-machine learning and possible future plant site
 - [[communities/maningrida]]
 - [[communities/ninga-mia-kalgoorlie]]
 - [[communities/mount-isa]]

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { NewsletterSignup } from '@/components/newsletter-signup';
 import { getDeploymentTotals } from '@/lib/data/compendium';
+import { STRETCH_BED } from '@/lib/data/products';
 
 // Palette mirrors /sponsor + /contact so the cross-page flow reads as one site.
 const CREAM = '#FDF8F3';
@@ -53,7 +54,7 @@ export default function TheWorkPage() {
             {[
               {
                 title: 'Recycled plastic',
-                body: 'Community plastic waste is shredded, melted, and pressed into the legs. Recycled HDPE plastic, galvanised steel poles, and heavy-duty Australian canvas. 26kg, 200kg capacity, assembled in about five minutes with no tools.',
+                body: `Community plastic waste is shredded, melted, and pressed into the legs. Recycled HDPE plastic, galvanised steel poles, and heavy-duty Australian canvas. ${STRETCH_BED.specs.weight}, ${STRETCH_BED.specs.loadCapacity} capacity, assembled in about five minutes with no tools.`,
               },
               {
                 title: 'A plant that moves',
@@ -112,7 +113,7 @@ export default function TheWorkPage() {
           </h2>
           <p className="text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-8" style={{ color: `${CHARCOAL}cc` }}>
             More than 400 beds have gone into homes since 2023. The May 2026 trip to the Utopia Homelands is
-            the latest chapter: 107 beds in a single run, logged one by one. The field notes follow that
+            the latest chapter: 87 beds in a single run, logged one by one. The field notes follow that
             journey up close.
           </p>
           <Link

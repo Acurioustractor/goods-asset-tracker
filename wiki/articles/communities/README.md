@@ -7,7 +7,7 @@
 - [[overview]]: overall community table, deployment counts, partners, demand signals and storytellers
 - [[alice-springs-oonchiumpa]]: Central Australia relationship and potential plant pathway
 - [[palm-island-picc]]: PICC relationship and possible community-ownership pathway
-- [[tennant-creek]]: co-design history, washing-machine learning and possible future plant site
+- [[tennant-creek]]: design-in-community history, washing-machine learning and possible future plant site
 - [[maningrida]]: Homeland Schools Company connection
 - [[ninga-mia-kalgoorlie]]
 - [[mount-isa]]

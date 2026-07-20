@@ -100,7 +100,7 @@ export function AssetEditForm({
           <select
             value={form.status ?? ''}
             onChange={(e) => setForm({ ...form, status: e.target.value || null })}
-            className="h-9 w-full rounded-md border border-input bg-white px-3 text-sm shadow-xs"
+            className="h-9 w-full rounded-md border border-input bg-card px-3 text-sm shadow-xs"
           >
             <option value="">(unset)</option>
             {statusOptions.map((s) => (
@@ -116,7 +116,7 @@ export function AssetEditForm({
             <select
               value={form.community ?? ''}
               onChange={(e) => setForm({ ...form, community: e.target.value || null })}
-              className="h-9 w-full rounded-md border border-input bg-white px-3 text-sm shadow-xs"
+              className="h-9 w-full rounded-md border border-input bg-card px-3 text-sm shadow-xs"
             >
               <option value="">(unset)</option>
               {communityOptions.map((c) => (
@@ -149,11 +149,11 @@ export function AssetEditForm({
       {/* Existing notes (read-only display) */}
       <Field label="Notes history">
         {form.notes ? (
-          <pre className="max-h-48 overflow-auto whitespace-pre-wrap rounded-md border border-gray-200 bg-gray-50 p-3 text-xs text-gray-700">
+          <pre className="max-h-48 overflow-auto whitespace-pre-wrap rounded-md border border-border bg-muted p-3 text-xs text-foreground">
             {form.notes}
           </pre>
         ) : (
-          <div className="rounded-md border border-dashed border-gray-200 bg-gray-50 p-3 text-xs text-gray-400">
+          <div className="rounded-md border border-dashed border-border bg-muted p-3 text-xs text-muted-foreground">
             No notes yet
           </div>
         )}
@@ -172,7 +172,7 @@ export function AssetEditForm({
           placeholder="Verified physical install at house 12 Ford Cres; bracket missing, machine still works"
           rows={3}
         />
-        <p className="mt-1 text-xs text-gray-500">
+        <p className="mt-1 text-xs text-muted-foreground">
           Saved as a new line, prefixed with today&apos;s date. Existing notes are preserved.
         </p>
       </Field>
@@ -207,7 +207,7 @@ export function AssetEditForm({
 function Field({ label, children }: { label: React.ReactNode; children: React.ReactNode }) {
   return (
     <label className="block space-y-1">
-      <span className="text-xs font-medium text-gray-600">{label}</span>
+      <span className="text-xs font-medium text-muted-foreground">{label}</span>
       {children}
     </label>
   );

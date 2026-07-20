@@ -32,32 +32,32 @@ export default async function PeoplePage() {
   return (
     <div className="space-y-6 pb-16 p-6">
       <header>
-        <h1 className="text-2xl font-bold tracking-tight">People</h1>
-        <p className="mt-1 text-sm text-gray-500 max-w-prose">
+        <h1 className="text-2xl font-bold font-display tracking-tight">People</h1>
+        <p className="mt-1 text-sm text-muted-foreground max-w-prose">
           Everyone we engage with — funders, lenders, partners, advisors, the board and the team.
-          Community members who tell <span className="font-medium text-gray-700">Goods stories</span> live under{' '}
-          <Link href="/admin/el-storytellers" className="text-orange-700 hover:underline">Storytellers</Link>.
+          Community members who tell <span className="font-medium text-foreground">Goods stories</span> live under{' '}
+          <Link href="/admin/el-storytellers" className="text-primary hover:underline">Storytellers</Link>.
           This view is read-only; pipeline stages and outreach are managed in Deals and the LOI tracker.
         </p>
       </header>
 
-      <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-gray-500">
-        <span><span className="font-bold text-gray-900">{people.length}</span> records</span>
-        <span><span className="font-bold text-gray-900">{people.length - orgs}</span> people</span>
-        <span><span className="font-bold text-gray-900">{orgs}</span> organisations</span>
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-muted-foreground">
+        <span><span className="font-bold text-foreground">{people.length}</span> records</span>
+        <span><span className="font-bold text-foreground">{people.length - orgs}</span> people</span>
+        <span><span className="font-bold text-foreground">{orgs}</span> organisations</span>
         {ghlOk ? (
           <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs text-emerald-700">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> live GHL · {matched} matched
           </span>
         ) : (
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-2.5 py-0.5 text-xs text-gray-500">
-            <span className="h-1.5 w-1.5 rounded-full bg-gray-400" /> GHL offline · showing static
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-muted px-2.5 py-0.5 text-xs text-muted-foreground">
+            <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/40" /> GHL offline · showing static
           </span>
         )}
       </div>
 
       {people.length === 0 ? (
-        <p className="rounded border border-dashed border-gray-300 bg-gray-50 p-6 text-center text-sm text-gray-600">
+        <p className="rounded border border-dashed border-border bg-muted p-6 text-center text-sm text-muted-foreground">
           No records aggregated. Check the in-repo data sources.
         </p>
       ) : (

@@ -50,6 +50,8 @@ const CLEARED_VOICES_EXTERNAL: string[] = [
   'Dr Boe Remenyi', 'Boe Remenyi',
   'Chloe',
   'Wayne Glenn',
+  'Margaret Lloyd',
+  'Tanya Turner',
 ];
 
 function normaliseVoiceName(name: string): string {

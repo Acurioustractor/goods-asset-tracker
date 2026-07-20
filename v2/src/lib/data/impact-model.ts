@@ -183,7 +183,7 @@ export interface ProductionLabourStage {
 export const PRODUCTION_LABOUR_STAGES: ProductionLabourStage[] = [
   { stage: 'Plastic collection & sorting', hoursPerUnit: 0.5, personnelRequired: 1 },
   { stage: 'Shredding & pelletising', hoursPerUnit: 0.3, personnelRequired: 1 },
-  { stage: 'Sheet pressing (190°C, 5000 PSI)', hoursPerUnit: 1.0, personnelRequired: 1 },
+  { stage: 'Sheet pressing (180°C, 5000 PSI)', hoursPerUnit: 1.0, personnelRequired: 1 },
   { stage: 'CNC cutting', hoursPerUnit: 3.5, personnelRequired: 1 },
   { stage: 'Canvas & steel prep', hoursPerUnit: 0.5, personnelRequired: 1 },
   { stage: 'Assembly & QC', hoursPerUnit: 0.5, personnelRequired: 2 },
@@ -336,7 +336,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         current: null,
         targets: { year1: 12, year3: 25, vision2030: 60 },
         source: 'supabase',
-        sourceDetail: 'assets table: distinct community values where status in (deployed, allocated). Canonical: 9 communities served (deployed); ~10 distinct incl. allocated/placeholder (2026-05-30).',
+        sourceDetail: 'assets table: distinct community values where status in (deployed, allocated). Canonical: 11 communities served (deployed); ~12 distinct incl. allocated/placeholder (2026-07-19).',
         optimizationLevers: ['Distribution partnerships', 'Freight networks', 'Health org partnerships'],
         computeFn: 'getCommunitiesServed',
       },

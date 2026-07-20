@@ -51,7 +51,7 @@ export default async function AssetRegisterPage() {
   if (assetsRes.error) {
     return (
       <div className="p-6">
-        <h1 className="text-xl font-bold">Asset Register</h1>
+        <h1 className="font-display text-xl font-bold">Asset Register</h1>
         <p className="mt-3 text-sm text-red-600">Failed to load: {assetsRes.error.message}</p>
       </div>
     );
@@ -104,8 +104,8 @@ export default async function AssetRegisterPage() {
   return (
     <div className="space-y-8 pb-16">
       <header>
-        <h1 className="text-2xl font-bold tracking-tight">Asset Register</h1>
-        <p className="mt-1 text-sm text-gray-500">
+        <h1 className="font-display text-2xl font-bold tracking-tight">Asset Register</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
           Every bed and machine Goods has touched. {activeCount.toLocaleString()} active records
           {retiredCount > 0 && <> + {retiredCount} retired</>}
           {' '}across {byProduct.size} product types.
@@ -127,8 +127,8 @@ export default async function AssetRegisterPage() {
       {/* Pipeline summary */}
       <section>
         <div className="mb-3 flex items-baseline justify-between">
-          <h2 className="text-base font-semibold">Pipeline by status</h2>
-          <span className="text-xs text-gray-500">{missingQr} rows still missing a QR url</span>
+          <h2 className="font-display text-base font-semibold">Pipeline by status</h2>
+          <span className="text-xs text-muted-foreground">{missingQr} rows still missing a QR url</span>
         </div>
         <div className="flex flex-wrap gap-2">
           {STATUS_ORDER.filter((s) => byStatus.has(s)).map((s) => (
@@ -154,8 +154,8 @@ export default async function AssetRegisterPage() {
               <div className="text-xs font-medium uppercase tracking-wide text-amber-700">Next Trip Batch</div>
               <div className="text-lg font-bold text-amber-900">GB0-156 — 107 Stretch Beds</div>
               <div className="text-sm text-amber-800/80">
-                Status <code className="rounded bg-white px-1.5 py-0.5">ready</code> — community
-                {' '}<code className="rounded bg-white px-1.5 py-0.5">Pending Delivery</code>. Update each row in-field as it&apos;s placed.
+                Status <code className="rounded bg-card px-1.5 py-0.5">ready</code> — community
+                {' '}<code className="rounded bg-card px-1.5 py-0.5">Pending Delivery</code>. Update each row in-field as it&apos;s placed.
               </div>
             </div>
             <div className="flex flex-wrap gap-2 text-xs">
@@ -163,11 +163,11 @@ export default async function AssetRegisterPage() {
                 href="/admin/assets/batch/156">
                 Allocate batch →
               </Link>
-              <a className="rounded-md border border-amber-300 bg-white px-3 py-1.5 font-medium text-amber-900 hover:bg-amber-100"
+              <a className="rounded-md border border-amber-300 bg-card px-3 py-1.5 font-medium text-amber-900 hover:bg-amber-100"
                 href="/api/admin/assets/batch/156/manifest">
                 Download manifest CSV
               </a>
-              <a className="rounded-md border border-amber-300 bg-white px-3 py-1.5 font-medium text-amber-900 hover:bg-amber-100"
+              <a className="rounded-md border border-amber-300 bg-card px-3 py-1.5 font-medium text-amber-900 hover:bg-amber-100"
                 href="/api/admin/assets/batch/156/print">
                 Print QR sheet (PDF, 18pp)
               </a>
@@ -188,9 +188,9 @@ function Kpi({ label, value, sub, highlight }: { label: string; value: string; s
   return (
     <Card className={highlight ? 'border-amber-300 bg-amber-50/50' : undefined}>
       <CardContent>
-        <div className="text-xs font-medium uppercase tracking-wide text-gray-500">{label}</div>
-        <div className={`mt-1 text-3xl font-bold ${highlight ? 'text-amber-900' : 'text-gray-900'}`}>{value}</div>
-        {sub && <div className="mt-1 text-xs text-gray-500">{sub}</div>}
+        <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{label}</div>
+        <div className={`mt-1 text-3xl font-bold ${highlight ? 'text-amber-900' : 'text-foreground'}`}>{value}</div>
+        {sub && <div className="mt-1 text-xs text-muted-foreground">{sub}</div>}
       </CardContent>
     </Card>
   );

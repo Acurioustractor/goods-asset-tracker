@@ -114,7 +114,7 @@ This is the strategy/product document behind the Goods vision and product thesis
 
 What is inside:
 
-- Goods described as a circular economy social enterprise co-designing essential household goods with remote First Nations communities.
+- Goods described as a circular economy social enterprise designing essential household goods in community with remote First Nations communities.
 - The link between washable beds, repairable washing machines, waste, health hardware and local enterprise.
 - The ambition that Goods beds become a product of first choice in remote communities, not a charity substitute.
 - The ownership pathway: production and profits moving toward First Nations communities through local resource use.
