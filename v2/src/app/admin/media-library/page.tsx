@@ -27,10 +27,11 @@ export default async function MediaLibraryPage() {
   return (
     <div className="p-6">
       <header className="mb-6">
-        <h1 className="font-display text-2xl font-bold">Media library</h1>
+        <h1 className="font-display text-2xl font-bold" style={{ fontFamily: 'Georgia, serif' }}>Media Room</h1>
         <p className="mt-1 text-sm text-muted-foreground">
           One place to curate every photo and video in the project. Star the keepers, archive the
-          junk, rate them, and tag who is in each shot and which community it belongs to.
+          junk, rate them, and tag who is in each shot, which community it belongs to, and which
+          product or story it shows.
         </p>
         <p className="mt-2 max-w-3xl text-xs text-muted-foreground">
           It pulls from two sources.{' '}

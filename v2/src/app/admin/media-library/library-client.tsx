@@ -905,6 +905,7 @@ export function MediaLibraryClient({
           item={active}
           curationReady={curationReady}
           roster={roster}
+          communities={communities}
           onClose={() => setActive(null)}
           onSaveTags={updateItemTags}
           onSaveNotes={updateItemNotes}
@@ -931,10 +932,220 @@ const TAG_NAMESPACES = [
 
 type SaveState = 'idle' | 'saving' | 'saved' | 'error';
 
+// The three real Goods products, for tagging media to a product page.
+const LINKABLE_PRODUCTS: { slug: string; name: string }[] = [
+  { slug: 'stretch-bed', name: 'Stretch Bed' },
+  { slug: 'pakkimjalki-kari', name: 'Pakkimjalki Kari (washer)' },
+  { slug: 'basket-bed', name: 'Basket Bed' },
+];
+
+interface MediaLink {
+  id: string;
+  target_type: 'person' | 'community' | 'asset' | 'product' | 'story';
+  target_key: string;
+  relation: string;
+  consent_status: string | null;
+  source: string | null;
+  title: string | null;
+}
+
+/**
+ * Links panel — reads/writes the media_links typed junction for one media item.
+ * Product + community linking (the gap the old library never had); existing
+ * person/story links from the backfill render read-only-ish here too. Self-
+ * contained: fetches this item's links on open so nothing threads through the
+ * big grid pipeline.
+ */
+function MediaLinksPanel({
+  item,
+  communities,
+}: {
+  item: UnifiedItem;
+  communities: { id: string; name: string }[];
+}) {
+  const mediaSource = item.source === 'el' ? 'el_media' : 'local';
+  const mediaKey = item.source === 'el' ? item.id.replace(/^el:/, '') : item.full;
+  const mediaType = item.mediaType === 'video' ? 'video' : 'photo';
+
+  const [links, setLinks] = useState<MediaLink[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState('');
+  const [productPick, setProductPick] = useState('');
+  const [communityPick, setCommunityPick] = useState('');
+
+  useEffect(() => {
+    let alive = true;
+    setLoading(true);
+    setErr('');
+    const qs = new URLSearchParams({ media_source: mediaSource, media_key: mediaKey });
+    fetch(`/api/admin/media-link?${qs}`)
+      .then((r) => r.json())
+      .then((d) => {
+        if (!alive) return;
+        if (d.ok) setLinks(d.links);
+        else setErr(d.error || 'load failed');
+      })
+      .catch((e) => alive && setErr(String(e)))
+      .finally(() => alive && setLoading(false));
+    return () => {
+      alive = false;
+    };
+  }, [mediaSource, mediaKey]);
+
+  const commName = (id: string) => communities.find((c) => c.id === id)?.name ?? id;
+  const prodName = (slug: string) => LINKABLE_PRODUCTS.find((p) => p.slug === slug)?.name ?? slug;
+
+  const addLink = useCallback(
+    async (target_type: MediaLink['target_type'], target_key: string, title: string | null) => {
+      if (!target_key) return;
+      // already linked?
+      if (links.some((l) => l.target_type === target_type && l.target_key === target_key)) return;
+      setBusy(true);
+      setErr('');
+      try {
+        const res = await fetch('/api/admin/media-link', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            media_source: mediaSource,
+            media_key: mediaKey,
+            media_type: mediaType,
+            title,
+            target_type,
+            target_key,
+          }),
+        });
+        const d = await res.json();
+        if (d.ok && d.link) setLinks((prev) => [...prev, d.link]);
+        else setErr(d.error || 'save failed');
+      } catch (e) {
+        setErr(String(e));
+      } finally {
+        setBusy(false);
+      }
+    },
+    [links, mediaSource, mediaKey, mediaType],
+  );
+
+  const removeLink = useCallback(async (id: string) => {
+    setBusy(true);
+    setErr('');
+    try {
+      const res = await fetch(`/api/admin/media-link?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
+      const d = await res.json();
+      if (d.ok) setLinks((prev) => prev.filter((l) => l.id !== id));
+      else setErr(d.error || 'delete failed');
+    } catch (e) {
+      setErr(String(e));
+    } finally {
+      setBusy(false);
+    }
+  }, []);
+
+  const labelFor = (l: MediaLink) => {
+    if (l.target_type === 'product') return prodName(l.target_key);
+    if (l.target_type === 'community') return commName(l.target_key);
+    return l.title || l.target_key;
+  };
+  const toneFor = (t: MediaLink['target_type']) =>
+    t === 'product'
+      ? 'bg-primary/10 text-primary'
+      : t === 'community'
+        ? 'bg-accent/10 text-accent'
+        : 'bg-muted text-foreground';
+
+  const availableProducts = LINKABLE_PRODUCTS.filter(
+    (p) => !links.some((l) => l.target_type === 'product' && l.target_key === p.slug),
+  );
+  const availableCommunities = communities.filter(
+    (c) => !links.some((l) => l.target_type === 'community' && l.target_key === c.id),
+  );
+
+  return (
+    <div className="mb-5 rounded-lg border border-border p-3">
+      <div className="mb-2 flex items-center justify-between">
+        <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Links</div>
+        {busy && <span className="text-[10px] text-muted-foreground">saving…</span>}
+      </div>
+
+      {loading ? (
+        <div className="text-xs text-muted-foreground">Loading links…</div>
+      ) : (
+        <>
+          <div className="mb-2 flex flex-wrap gap-1">
+            {links.length === 0 && <span className="text-xs text-muted-foreground">Not linked to anything yet.</span>}
+            {links.map((l) => (
+              <button
+                key={l.id}
+                type="button"
+                onClick={() => removeLink(l.id)}
+                title="Click to remove"
+                className={`rounded-full px-2 py-0.5 text-xs hover:bg-red-100 hover:text-red-700 ${toneFor(l.target_type)}`}
+              >
+                <span className="opacity-60 mr-1">{l.target_type}</span>
+                {labelFor(l)} ×
+              </button>
+            ))}
+          </div>
+
+          <div className="space-y-1.5">
+            {/* Add a product link */}
+            <div className="flex gap-1.5">
+              <select
+                value={productPick}
+                onChange={(e) => setProductPick(e.target.value)}
+                className="flex-1 rounded border border-border bg-background px-2 py-1 text-xs"
+              >
+                <option value="">Link a product…</option>
+                {availableProducts.map((p) => (
+                  <option key={p.slug} value={p.slug}>{p.name}</option>
+                ))}
+              </select>
+              <button
+                type="button"
+                disabled={!productPick || busy}
+                onClick={() => { addLink('product', productPick, prodName(productPick)); setProductPick(''); }}
+                className="rounded bg-primary px-2 py-1 text-xs font-medium text-primary-foreground disabled:opacity-40"
+              >
+                Add
+              </button>
+            </div>
+
+            {/* Add a community link */}
+            <div className="flex gap-1.5">
+              <select
+                value={communityPick}
+                onChange={(e) => setCommunityPick(e.target.value)}
+                className="flex-1 rounded border border-border bg-background px-2 py-1 text-xs"
+              >
+                <option value="">Link a community…</option>
+                {availableCommunities.map((c) => (
+                  <option key={c.id} value={c.id}>{c.name}</option>
+                ))}
+              </select>
+              <button
+                type="button"
+                disabled={!communityPick || busy}
+                onClick={() => { addLink('community', communityPick, commName(communityPick)); setCommunityPick(''); }}
+                className="rounded bg-primary px-2 py-1 text-xs font-medium text-primary-foreground disabled:opacity-40"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </>
+      )}
+      {err && <div className="mt-2 text-[11px] text-red-600">{err}</div>}
+    </div>
+  );
+}
+
 function PreviewModal({
   item,
   curationReady,
   roster,
+  communities,
   onClose,
   onSaveTags,
   onSaveNotes,
@@ -946,6 +1157,7 @@ function PreviewModal({
   item: UnifiedItem;
   curationReady: boolean;
   roster: RosterPerson[];
+  communities: { id: string; name: string }[];
   onClose: () => void;
   onSaveTags: (id: string, tags: string[]) => void;
   onSaveNotes: (id: string, notes: string | null) => void;
@@ -1147,6 +1359,10 @@ function PreviewModal({
               </span>
             )}
           </div>
+
+          {/* Links — media_links typed junction (product / community / story). The
+              Atlas + community + product pages read these back. */}
+          <MediaLinksPanel item={item} communities={communities} />
 
           {/* People in this photo — EL alignment (media_storytellers). EL images only. */}
           {item.source === 'el' && !isVideo && (
