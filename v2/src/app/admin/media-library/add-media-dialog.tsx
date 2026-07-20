@@ -63,6 +63,11 @@ export function AddMediaDialog({
     return list.slice(0, 200);
   }, [assets, assetQuery]);
 
+  const selectedAsset = useMemo(
+    () => (assetId ? assets.find((a) => a.unique_id === assetId) ?? null : null),
+    [assets, assetId],
+  );
+
   function reset() {
     setAssetId('');
     setAssetQuery('');
@@ -178,30 +183,65 @@ export function AddMediaDialog({
                   </div>
                 )}
 
-                {/* Bed / asset picker with a filter, since there are hundreds of assets. */}
+                {/* Bed / asset typeahead — hundreds of assets, so type to narrow then click. */}
                 <div className="space-y-1.5">
                   <Label>Bed / asset</Label>
-                  <input
-                    type="text"
-                    value={assetQuery}
-                    onChange={(e) => setAssetQuery(e.target.value)}
-                    placeholder="Filter by ID, community or product..."
-                    className="w-full rounded-md border bg-background p-2 text-sm"
-                  />
-                  <select
-                    value={assetId}
-                    onChange={(e) => setAssetId(e.target.value)}
-                    className="w-full rounded-md border bg-background p-2 text-sm"
-                    size={5}
-                  >
-                    {filteredAssets.map((a) => (
-                      <option key={a.unique_id} value={a.unique_id}>
-                        {a.unique_id} — {a.product || '?'} ({a.community || 'unknown'})
-                      </option>
-                    ))}
-                  </select>
-                  {assetQuery && filteredAssets.length === 200 && (
-                    <p className="text-[11px] text-muted-foreground">Showing first 200. Refine the filter.</p>
+                  {selectedAsset ? (
+                    <div className="flex items-center justify-between gap-2 rounded-md border bg-muted/50 p-2 text-sm">
+                      <span className="min-w-0 truncate">
+                        <span className="font-medium">{selectedAsset.unique_id}</span>{' '}
+                        <span className="text-muted-foreground">
+                          — {selectedAsset.product || '?'} ({selectedAsset.community || 'unknown'})
+                        </span>
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setAssetId('');
+                          setAssetQuery('');
+                        }}
+                        className="shrink-0 text-xs text-muted-foreground underline hover:text-foreground"
+                      >
+                        change
+                      </button>
+                    </div>
+                  ) : (
+                    <>
+                      <input
+                        type="text"
+                        value={assetQuery}
+                        onChange={(e) => setAssetQuery(e.target.value)}
+                        placeholder="Type a bed ID, community or product..."
+                        className="w-full rounded-md border bg-background p-2 text-sm"
+                        autoComplete="off"
+                      />
+                      {assetQuery.trim() && (
+                        <div className="max-h-44 overflow-y-auto rounded-md border">
+                          {filteredAssets.length === 0 ? (
+                            <p className="px-3 py-2 text-sm text-muted-foreground">No match.</p>
+                          ) : (
+                            filteredAssets.map((a) => (
+                              <button
+                                type="button"
+                                key={a.unique_id}
+                                onClick={() => setAssetId(a.unique_id)}
+                                className="block w-full border-b px-3 py-1.5 text-left text-sm last:border-0 hover:bg-muted"
+                              >
+                                <span className="font-medium">{a.unique_id}</span>{' '}
+                                <span className="text-muted-foreground">
+                                  — {a.product || '?'} ({a.community || 'unknown'})
+                                </span>
+                              </button>
+                            ))
+                          )}
+                          {filteredAssets.length === 200 && (
+                            <p className="px-3 py-1.5 text-[11px] text-muted-foreground">
+                              Showing first 200. Keep typing to narrow.
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    </>
                   )}
                 </div>
 

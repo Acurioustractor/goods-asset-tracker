@@ -2,6 +2,14 @@ import Link from 'next/link';
 import { PRODUCT_WIKIS } from '@/lib/data/product-wiki';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { ArrowRight, BookOpen } from 'lucide-react';
+import { AdminHubTabs } from '../admin-hub-tabs';
+
+const PRODUCTS_TABS = [
+  { label: 'Overview', href: '/admin/products' },
+  { label: 'Full story', href: '/admin/products/story' },
+  { label: 'Facility', href: '/admin/facility' },
+  { label: 'Production', href: '/admin/production' },
+];
 
 export const dynamic = 'force-static';
 
@@ -22,6 +30,8 @@ export default function ProductsIndex() {
           walk someone through what Goods makes, how it works, and why it exists.
         </p>
       </header>
+
+      <AdminHubTabs tabs={PRODUCTS_TABS} />
 
       {/* The full Goods story — the marquee entry */}
       <Link

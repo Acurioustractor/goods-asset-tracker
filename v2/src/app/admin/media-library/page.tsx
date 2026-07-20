@@ -7,7 +7,17 @@
 import { buildLocalItems } from './curation';
 import { MediaLibraryClient } from './library-client';
 import { AddMediaDialog, type AssetOption, type RecentBedContent } from './add-media-dialog';
+import { AdminHubTabs } from '../admin-hub-tabs';
 import { createServiceClient } from '@/lib/supabase/server';
+
+const MEDIA_ROOM_TABS = [
+  { label: 'Media Room', href: '/admin/media-library' },
+  { label: 'Canon', href: '/admin/canon' },
+  { label: 'Brand diagrams', href: '/admin/system-visuals' },
+  { label: 'Coverage gaps', href: '/admin/media-gaps' },
+  { label: 'Dashboard images', href: '/admin/dashboard-images' },
+  { label: 'Quote cards', href: '/admin/quote-cards' },
+];
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -80,6 +90,9 @@ export default async function MediaLibraryPage() {
           the people and communities in it. Tagging people / community applies to those.
         </p>
       </header>
+      <div className="mb-6">
+        <AdminHubTabs tabs={MEDIA_ROOM_TABS} />
+      </div>
       <MediaLibraryClient items={items} curationReady={curationReady} communities={communities} />
     </div>
   );
