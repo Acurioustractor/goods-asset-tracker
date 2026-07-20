@@ -72,7 +72,7 @@ const TIER_ORDER: VoiceTier[] = ['external', 'website', 'pending', 'hold', 'fund
 const TIER_META: Record<VoiceTier, { label: string; badge: string; blurb: string }> = {
   external: {
     label: 'External — cleared for web + funder',
-    badge: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+    badge: 'bg-emerald-100 text-emerald-700 border-emerald-300',
     blurb: 'The 32 voices from the 2026-06-17 consent pass. Safe everywhere, with practitioner labels where marked.',
   },
   website: {
@@ -97,14 +97,14 @@ const TIER_META: Record<VoiceTier, { label: string; badge: string; blurb: string
   },
   internal: {
     label: 'Internal',
-    badge: 'bg-gray-100 text-gray-700 border-gray-300',
+    badge: 'bg-muted text-foreground border-border',
     blurb: 'Goods team, not community voices.',
   },
 };
 
 const QUOTE_BADGE: Record<string, string> = {
   primary: 'bg-emerald-600 text-white',
-  approved: 'bg-gray-200 text-gray-800',
+  approved: 'bg-muted text-foreground',
   hold: 'bg-red-600 text-white',
 };
 
@@ -133,14 +133,14 @@ export default function StorytellerRegistryPage() {
   return (
     <div className="space-y-8 pb-20">
       <header>
-        <h1 className="text-2xl font-bold tracking-tight">Registry</h1>
-        <p className="mt-1 max-w-prose text-sm text-gray-500">
+        <h1 className="text-2xl font-bold tracking-tight font-display">Registry</h1>
+        <p className="mt-1 max-w-prose text-sm text-muted-foreground">
           Every voice, every quote on file, every local photo. Driven by{' '}
-          <code className="rounded bg-gray-100 px-1">storyteller-registry.ts</code> (the canonical
-          lockdown) and a live scan of <code className="rounded bg-gray-100 px-1">/public/images</code>.
+          <code className="rounded bg-muted px-1">storyteller-registry.ts</code> (the canonical
+          lockdown) and a live scan of <code className="rounded bg-muted px-1">/public/images</code>.
           No Empathy Ledger dependency, so nothing here goes blank while EL is migrating. The
           registry wins over every other file; drift fails{' '}
-          <code className="rounded bg-gray-100 px-1">npm run check:storytellers</code>. EL profiles
+          <code className="rounded bg-muted px-1">npm run check:storytellers</code>. EL profiles
           themselves live on{' '}
           <Link href="/admin/el-storytellers" className="text-orange-700 hover:underline">
             Storytellers (EL)
@@ -149,9 +149,9 @@ export default function StorytellerRegistryPage() {
       </header>
 
       {/* Status strip */}
-      <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-gray-500">
-        <span><span className="font-bold text-gray-900">{STORYTELLER_REGISTRY.length}</span> voices</span>
-        <span><span className="font-bold text-gray-900">{externalCount}</span> cleared external</span>
+      <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-muted-foreground">
+        <span><span className="font-bold text-foreground">{STORYTELLER_REGISTRY.length}</span> voices</span>
+        <span><span className="font-bold text-foreground">{externalCount}</span> cleared external</span>
         <span className={portraitGaps.length ? 'text-red-700' : ''}>
           <span className="font-bold">{portraitGaps.length}</span> portrait gaps
           {portraitGaps.length > 0 && ': ' + portraitGaps.map((r) => r.name).join(', ')}
@@ -171,14 +171,14 @@ export default function StorytellerRegistryPage() {
         const meta = TIER_META[tier];
         return (
           <section key={tier} className="space-y-4">
-            <div className="sticky top-0 z-10 -mx-2 border-b border-gray-200 bg-white/95 px-2 py-2 backdrop-blur">
+            <div className="sticky top-0 z-10 -mx-2 border-b border-border bg-card/95 px-2 py-2 backdrop-blur">
               <h2 className="flex items-center gap-3 text-lg font-semibold">
                 <span className={`rounded-full border px-3 py-0.5 text-xs font-bold uppercase tracking-wide ${meta.badge}`}>
                   {records.length}
                 </span>
                 {meta.label}
               </h2>
-              <p className="mt-0.5 text-xs text-gray-500">{meta.blurb}</p>
+              <p className="mt-0.5 text-xs text-muted-foreground">{meta.blurb}</p>
             </div>
 
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -192,7 +192,7 @@ export default function StorytellerRegistryPage() {
                 ].filter((q) => !registryTexts.has(normaliseText(q.text)));
 
                 return (
-                  <article key={rec.slug} id={rec.slug} className="rounded-lg border border-gray-200 bg-white shadow-sm">
+                  <article key={rec.slug} id={rec.slug} className="rounded-lg border border-border bg-card shadow-sm">
                     <div className="flex gap-4 p-4">
                       {/* Portrait */}
                       <div className="shrink-0">
@@ -213,9 +213,9 @@ export default function StorytellerRegistryPage() {
                       {/* Identity */}
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2">
-                          <h3 className="text-base font-bold text-gray-900">{rec.name}</h3>
+                          <h3 className="text-base font-bold text-foreground">{rec.name}</h3>
                           {rec.practitioner && (
-                            <span className="rounded bg-indigo-100 px-1.5 py-0.5 text-[10px] font-bold uppercase text-indigo-800">
+                            <span className="rounded bg-accent/15 px-1.5 py-0.5 text-[10px] font-bold uppercase text-accent">
                               practitioner
                             </span>
                           )}
@@ -225,13 +225,13 @@ export default function StorytellerRegistryPage() {
                             </span>
                           )}
                         </div>
-                        <p className="text-sm text-gray-700">{rec.role}</p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-sm text-foreground">{rec.role}</p>
+                        <p className="text-xs text-muted-foreground">
                           {rec.community}
                           {rec.turns ? ` · turn ${rec.turns}` : ''}
                         </p>
                         {(rec.aliases?.length || rec.misspellings?.length) ? (
-                          <p className="mt-1 text-[11px] text-gray-400">
+                          <p className="mt-1 text-[11px] text-muted-foreground">
                             {rec.aliases?.length ? <>aliases: {rec.aliases.join(' · ')}</> : null}
                             {rec.aliases?.length && rec.misspellings?.length ? ' — ' : null}
                             {rec.misspellings?.length ? (
@@ -239,17 +239,17 @@ export default function StorytellerRegistryPage() {
                             ) : null}
                           </p>
                         ) : null}
-                        {rec.notes && <p className="mt-1 text-xs italic text-gray-500">{rec.notes}</p>}
+                        {rec.notes && <p className="mt-1 text-xs italic text-muted-foreground">{rec.notes}</p>}
                       </div>
                     </div>
 
                     {/* Quotes */}
-                    <div className="space-y-2 border-t border-gray-100 px-4 py-3">
+                    <div className="space-y-2 border-t border-border px-4 py-3">
                       {rec.quotes.length === 0 && !rec.narratedBy && (
                         <p className="text-xs text-amber-700">No blessed quotes on file.</p>
                       )}
                       {rec.narratedBy && (
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-muted-foreground">
                           No direct quotes by design — see {rec.narratedBy}&rsquo;s card for the narration lines.
                         </p>
                       )}
@@ -259,10 +259,10 @@ export default function StorytellerRegistryPage() {
                             {q.status}
                           </span>
                           <div className="min-w-0">
-                            <p className={q.status === 'hold' ? 'text-gray-400 line-through decoration-red-300' : 'text-gray-800'}>
+                            <p className={q.status === 'hold' ? 'text-muted-foreground line-through decoration-red-300' : 'text-foreground'}>
                               &ldquo;{q.text}&rdquo;
                             </p>
-                            <p className="text-[11px] text-gray-400">
+                            <p className="text-[11px] text-muted-foreground">
                               {q.context}
                               {q.note ? ` — ${q.note}` : ''}
                             </p>
@@ -271,13 +271,13 @@ export default function StorytellerRegistryPage() {
                       ))}
                       {extraLines.length > 0 && (
                         <details className="pt-1">
-                          <summary className="cursor-pointer text-xs font-medium text-gray-500">
+                          <summary className="cursor-pointer text-xs font-medium text-muted-foreground">
                             {extraLines.length} more line{extraLines.length === 1 ? '' : 's'} on file (curated / transcript overrides)
                           </summary>
                           <div className="mt-2 space-y-1.5">
                             {extraLines.map((q, i) => (
-                              <p key={i} className="text-xs text-gray-600">
-                                &ldquo;{q.text}&rdquo; <span className="text-gray-400">— {q.context}</span>
+                              <p key={i} className="text-xs text-muted-foreground">
+                                &ldquo;{q.text}&rdquo; <span className="text-muted-foreground">— {q.context}</span>
                               </p>
                             ))}
                           </div>
@@ -286,7 +286,7 @@ export default function StorytellerRegistryPage() {
                     </div>
 
                     {/* Photos on file */}
-                    <div className="border-t border-gray-100 px-4 py-3">
+                    <div className="border-t border-border px-4 py-3">
                       {photos.length === 0 ? (
                         <p className="text-xs text-red-600">No photos found under /public/images for &ldquo;{rec.slug}&rdquo;.</p>
                       ) : (
@@ -294,11 +294,11 @@ export default function StorytellerRegistryPage() {
                           {photos.slice(0, 8).map((src) => (
                             <a key={src} href={src} target="_blank" rel="noreferrer" title={src}>
                               {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src={src} alt={src} className="h-14 w-14 rounded object-cover ring-1 ring-gray-200 hover:ring-orange-400" />
+                              <img src={src} alt={src} className="h-14 w-14 rounded object-cover ring-1 ring-border hover:ring-primary/50" />
                             </a>
                           ))}
                           {photos.length > 8 && (
-                            <span className="self-center text-xs text-gray-400">+{photos.length - 8} more</span>
+                            <span className="self-center text-xs text-muted-foreground">+{photos.length - 8} more</span>
                           )}
                         </div>
                       )}
@@ -313,15 +313,15 @@ export default function StorytellerRegistryPage() {
 
       {/* Anonymous field evidence */}
       <section className="space-y-3">
-        <div className="border-b border-gray-200 pb-2">
+        <div className="border-b border-border pb-2">
           <h2 className="text-lg font-semibold">Anonymous field evidence — use unnamed only</h2>
-          <p className="text-xs text-gray-500">Arlparra / Arawerr lines, marked cleared for anonymous use in community-narrative.ts.</p>
+          <p className="text-xs text-muted-foreground">Arlparra / Arawerr lines, marked cleared for anonymous use in community-narrative.ts.</p>
         </div>
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
           {anonymousFieldEvidence.map((q, i) => (
-            <div key={i} className="rounded border border-gray-200 bg-gray-50 p-3 text-sm">
-              <p className="text-gray-800">&ldquo;{q.text}&rdquo;</p>
-              <p className="mt-1 text-[11px] text-gray-500">{q.context} — {q.use}</p>
+            <div key={i} className="rounded border border-border bg-muted p-3 text-sm">
+              <p className="text-foreground">&ldquo;{q.text}&rdquo;</p>
+              <p className="mt-1 text-[11px] text-muted-foreground">{q.context} — {q.use}</p>
             </div>
           ))}
         </div>

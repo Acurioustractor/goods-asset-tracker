@@ -386,7 +386,7 @@ export function BulkInstallClient({ communities }: { communities: Community[] })
     <div className="space-y-6">
       {/* Drop area */}
       <div
-        className="rounded-2xl border-2 border-dashed border-gray-300 bg-gray-50 px-6 py-10 text-center"
+        className="rounded-2xl border-2 border-dashed border-input bg-muted px-6 py-10 text-center"
         onDragOver={(e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -397,12 +397,12 @@ export function BulkInstallClient({ communities }: { communities: Community[] })
           void onFiles(e.dataTransfer.files);
         }}
       >
-        <p className="text-base font-medium text-gray-900">Drop photos here</p>
-        <p className="mt-1 text-sm text-gray-600">JPEG works best. HEIC may fail to decode.</p>
+        <p className="text-base font-medium text-foreground">Drop photos here</p>
+        <p className="mt-1 text-sm text-muted-foreground">JPEG works best. HEIC may fail to decode.</p>
         <button
           type="button"
           onClick={() => fileInputRef.current?.click()}
-          className="mt-4 rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
+          className="mt-4 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
         >
           Or choose files
         </button>
@@ -419,18 +419,18 @@ export function BulkInstallClient({ communities }: { communities: Community[] })
       {photos.length > 0 && (
         <>
           {/* Batch-level community + place */}
-          <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
-            <h2 className="text-sm font-semibold text-gray-900">Defaults for this batch</h2>
-            <p className="mt-0.5 text-xs text-gray-600">
+          <div className="rounded-xl border border-border bg-card p-4 shadow-sm">
+            <h2 className="text-sm font-semibold text-foreground">Defaults for this batch</h2>
+            <p className="mt-0.5 text-xs text-muted-foreground">
               Used for any photo that doesn&apos;t have a per-row override.
             </p>
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">Community</label>
+                <label className="block text-xs font-medium text-foreground mb-1">Community</label>
                 <select
                   value={batchCommunityId}
                   onChange={(e) => setBatchCommunityId(e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm"
+                  className="w-full rounded-lg border border-input bg-card px-3 py-2 text-sm"
                 >
                   <option value="">— Pick a community —</option>
                   {STATUS_GROUP_ORDER.filter((s) => groupedCommunities.has(s)).map((s) => (
@@ -445,7 +445,7 @@ export function BulkInstallClient({ communities }: { communities: Community[] })
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">
+                <label className="block text-xs font-medium text-foreground mb-1">
                   Default place (optional)
                 </label>
                 <input
@@ -453,20 +453,20 @@ export function BulkInstallClient({ communities }: { communities: Community[] })
                   value={batchPlace}
                   onChange={(e) => setBatchPlace(e.target.value)}
                   placeholder="e.g. Utopia Homelands"
-                  className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm"
+                  className="w-full rounded-lg border border-input bg-card px-3 py-2 text-sm"
                 />
               </div>
             </div>
           </div>
 
           {/* Photo table */}
-          <div className="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
-            <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between gap-3">
+          <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden">
+            <div className="px-4 py-3 border-b border-border flex items-center justify-between gap-3">
               <div>
-                <h2 className="text-sm font-semibold text-gray-900">
+                <h2 className="text-sm font-semibold text-foreground">
                   {photos.length} photo{photos.length === 1 ? '' : 's'} loaded
                 </h2>
-                <p className="text-xs text-gray-600">
+                <p className="text-xs text-muted-foreground">
                   {validPhotos.length} ready to save · {unmatchedPhotos.length} need attention
                   {processing && ' · decoding…'}
                 </p>
@@ -475,7 +475,7 @@ export function BulkInstallClient({ communities }: { communities: Community[] })
                 type="button"
                 onClick={saveAll}
                 disabled={savingAll || processing || validPhotos.length === 0}
-                className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700 disabled:opacity-50"
+                className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
               >
                 {savingAll
                   ? 'Saving…'
@@ -483,7 +483,7 @@ export function BulkInstallClient({ communities }: { communities: Community[] })
               </button>
             </div>
 
-            <ul className="divide-y divide-gray-200">
+            <ul className="divide-y divide-border">
               {photos.map((p, i) => (
                 <li key={p.previewUrl} className="px-4 py-3">
                   <div className="flex gap-4">
@@ -493,7 +493,7 @@ export function BulkInstallClient({ communities }: { communities: Community[] })
                       <img
                         src={p.previewUrl}
                         alt={p.fileName}
-                        className="h-24 w-24 rounded-lg object-cover bg-gray-100"
+                        className="h-24 w-24 rounded-lg object-cover bg-muted"
                       />
                     </div>
 
@@ -521,18 +521,18 @@ export function BulkInstallClient({ communities }: { communities: Community[] })
                           <span className="text-[10px] text-emerald-700">QR-decoded</span>
                         )}
                         {p.gps ? (
-                          <span className="text-xs text-gray-600">
+                          <span className="text-xs text-muted-foreground">
                             📍 {p.gps.lat.toFixed(5)}, {p.gps.lng.toFixed(5)}
                           </span>
                         ) : (
                           <span className="text-xs text-amber-700">no GPS in EXIF</span>
                         )}
                         {p.capturedAt && (
-                          <span className="text-xs text-gray-500">
+                          <span className="text-xs text-muted-foreground">
                             {new Date(p.capturedAt).toLocaleString()}
                           </span>
                         )}
-                        <span className="text-xs text-gray-400 truncate">{p.fileName}</span>
+                        <span className="text-xs text-muted-foreground truncate">{p.fileName}</span>
                       </div>
 
                       {p.decodeError && (
@@ -551,8 +551,8 @@ export function BulkInstallClient({ communities }: { communities: Community[] })
                               })
                             }
                             placeholder="Recipient name (e.g. Frank family)"
-                            className={`w-full rounded-lg border bg-white px-3 py-2 text-sm ${
-                              p.recipientFromCaption ? 'border-emerald-300' : 'border-gray-300'
+                            className={`w-full rounded-lg border bg-card px-3 py-2 text-sm ${
+                              p.recipientFromCaption ? 'border-emerald-300' : 'border-input'
                             }`}
                           />
                           {p.recipientFromCaption && (
@@ -566,12 +566,12 @@ export function BulkInstallClient({ communities }: { communities: Community[] })
                           value={p.placeOverride}
                           onChange={(e) => updatePhoto(i, { placeOverride: e.target.value })}
                           placeholder={batchPlace ? `Place override (default: ${batchPlace})` : 'Place (e.g. Sandover Outstation)'}
-                          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm"
+                          className="w-full rounded-lg border border-input bg-card px-3 py-2 text-sm"
                         />
                       </div>
 
                       {p.status === 'saving' && (
-                        <p className="mt-1 text-xs text-gray-600">Saving…</p>
+                        <p className="mt-1 text-xs text-muted-foreground">Saving…</p>
                       )}
                       {p.status === 'saved' && (
                         <p className="mt-1 text-xs text-emerald-700">✓ Saved to register</p>
@@ -586,7 +586,7 @@ export function BulkInstallClient({ communities }: { communities: Community[] })
                       <button
                         type="button"
                         onClick={() => removePhoto(i)}
-                        className="text-xs text-gray-400 hover:text-gray-700"
+                        className="text-xs text-muted-foreground hover:text-foreground"
                       >
                         Remove
                       </button>

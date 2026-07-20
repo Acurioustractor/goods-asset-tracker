@@ -125,11 +125,11 @@ export function RoadmapBoard({ initialItems }: { initialItems: RoadmapCard[] }) 
                   }}
                   onDragOver={(e) => e.preventDefault()}
                   onDrop={(e) => onCardDrop(e, col.key, item.id)}
-                  className="rounded-md p-3 cursor-move bg-white shadow-sm"
+                  className="rounded-md p-3 cursor-move bg-card shadow-sm"
                   style={{ border: '1px solid #E8DED4' }}
                 >
-                  <p className="text-sm font-medium leading-snug" style={{ color: CHARCOAL }}>{item.title}</p>
-                  {item.note ? <p className="text-xs mt-1" style={{ color: `${CHARCOAL}99` }}>{item.note}</p> : null}
+                  <p className="text-sm font-medium leading-snug text-foreground">{item.title}</p>
+                  {item.note ? <p className="text-xs mt-1 text-muted-foreground">{item.note}</p> : null}
                 </div>
               ))}
             </div>

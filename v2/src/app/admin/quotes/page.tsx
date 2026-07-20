@@ -39,8 +39,8 @@ export default async function QuotesPage() {
   return (
     <div className="space-y-6 pb-16 p-6">
       <header>
-        <h1 className="text-2xl font-bold tracking-tight">Quotes</h1>
-        <p className="mt-1 text-sm text-gray-500 max-w-prose">
+        <h1 className="text-2xl font-bold tracking-tight font-display">Quotes</h1>
+        <p className="mt-1 text-sm text-muted-foreground max-w-prose">
           Curated community voices, one record per quote, linked to the person who said it and their
           community. Sourced from Empathy Ledger and the curated set. The people behind them live under{' '}
           <Link href="/admin/el-storytellers" className="text-orange-700 hover:underline">Storytellers</Link>.
@@ -48,18 +48,18 @@ export default async function QuotesPage() {
         </p>
       </header>
 
-      <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-gray-500">
-        <span><span className="font-bold text-gray-900">{rows.length}</span> quotes</span>
-        <span><span className="font-bold text-gray-900">{withPerson}</span> attributed</span>
-        <span><span className="font-bold text-gray-900">{elders}</span> Elder voices</span>
+      <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-muted-foreground">
+        <span><span className="font-bold text-foreground">{rows.length}</span> quotes</span>
+        <span><span className="font-bold text-foreground">{withPerson}</span> attributed</span>
+        <span><span className="font-bold text-foreground">{elders}</span> Elder voices</span>
       </div>
 
       {!ready ? (
-        <p className="rounded border border-dashed border-gray-300 bg-gray-50 p-6 text-center text-sm text-gray-600">
+        <p className="rounded border border-dashed border-border bg-muted p-6 text-center text-sm text-muted-foreground">
           Quotes index not available. Check the quotes table / service key.
         </p>
       ) : rows.length === 0 ? (
-        <p className="rounded border border-dashed border-gray-300 bg-gray-50 p-6 text-center text-sm text-gray-600">
+        <p className="rounded border border-dashed border-border bg-muted p-6 text-center text-sm text-muted-foreground">
           No quotes yet.
         </p>
       ) : (

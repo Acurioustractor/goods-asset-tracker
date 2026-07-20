@@ -100,42 +100,42 @@ export function ComposeForm({
       <CardContent className="space-y-5">
         <header>
           <h2 className="text-base font-semibold">{listName}</h2>
-          {listDescription && <p className="mt-1 text-sm text-gray-600">{listDescription}</p>}
+          {listDescription && <p className="mt-1 text-sm text-muted-foreground">{listDescription}</p>}
         </header>
 
         {/* Preview */}
         {loadingPreview ? (
-          <p className="text-sm text-gray-500">Loading recipient count…</p>
+          <p className="text-sm text-muted-foreground">Loading recipient count…</p>
         ) : previewError ? (
           <div className="flex items-start gap-2 rounded border border-red-200 bg-red-50 p-3 text-sm text-red-800">
             <AlertCircle className="h-4 w-4 shrink-0" />
             <span>{previewError}</span>
           </div>
         ) : preview ? (
-          <div className="rounded border border-gray-200 bg-gray-50 p-3 text-xs">
+          <div className="rounded border border-border bg-muted p-3 text-xs">
             <div className="mb-2 flex items-baseline justify-between">
-              <span className="font-medium uppercase tracking-wide text-gray-500">Recipients</span>
-              <span className="font-mono text-gray-400">{preview.tag}</span>
+              <span className="font-medium uppercase tracking-wide text-muted-foreground">Recipients</span>
+              <span className="font-mono text-muted-foreground">{preview.tag}</span>
             </div>
             <div className="flex flex-wrap gap-x-6 gap-y-1">
               <span>
-                <strong className="text-base text-gray-900">{preview.count}</strong> tagged
+                <strong className="text-base text-foreground">{preview.count}</strong> tagged
               </span>
               <span>
-                <strong className="text-base text-gray-900">{preview.withPhone}</strong> with a phone (eligible)
+                <strong className="text-base text-foreground">{preview.withPhone}</strong> with a phone (eligible)
               </span>
             </div>
             {preview.sample.length > 0 && (
               <details className="mt-2">
-                <summary className="cursor-pointer text-gray-500 hover:text-gray-700">
+                <summary className="cursor-pointer text-muted-foreground hover:text-foreground">
                   Sample ({preview.sample.length})
                 </summary>
-                <ul className="mt-2 space-y-1 text-gray-600">
+                <ul className="mt-2 space-y-1 text-muted-foreground">
                   {preview.sample.map((s) => (
                     <li key={s.id} className="flex items-center gap-2">
                       <span>{s.name || '(no name)'}</span>
                       {s.phone && (
-                        <span className="font-mono text-gray-400">
+                        <span className="font-mono text-muted-foreground">
                           <Phone className="inline h-3 w-3" /> {s.phone}
                         </span>
                       )}
@@ -152,7 +152,7 @@ export function ComposeForm({
 
         {/* Compose */}
         <div>
-          <label htmlFor="reach-message" className="mb-1 block text-sm font-medium text-gray-700">
+          <label htmlFor="reach-message" className="mb-1 block text-sm font-medium text-foreground">
             Message
           </label>
           <textarea
@@ -162,9 +162,9 @@ export function ComposeForm({
             rows={5}
             maxLength={480}
             placeholder="Hi from Goods on Country — …"
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none"
+            className="w-full rounded border border-input px-3 py-2 text-sm focus:border-primary focus:outline-none"
           />
-          <div className="mt-1 flex flex-wrap items-baseline justify-between gap-2 text-xs text-gray-500">
+          <div className="mt-1 flex flex-wrap items-baseline justify-between gap-2 text-xs text-muted-foreground">
             <span>
               {message.length}/480 chars · {segments} segment{segments === 1 ? '' : 's'}
             </span>
@@ -193,11 +193,11 @@ export function ComposeForm({
         </div>
 
         {/* Actions */}
-        <div className="flex flex-wrap gap-2 border-t border-gray-100 pt-3">
+        <div className="flex flex-wrap gap-2 border-t border-border pt-3">
           <button
             onClick={() => handleSend(true)}
             disabled={sending || !message || recipientCount === 0}
-            className="rounded border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+            className="rounded border border-input bg-card px-3 py-1.5 text-sm font-medium text-foreground hover:bg-muted disabled:opacity-50"
           >
             Dry run (estimate only)
           </button>
@@ -205,7 +205,7 @@ export function ComposeForm({
             <button
               onClick={() => setConfirming(true)}
               disabled={sending || overHard || !message || recipientCount === 0 || !preview?.enabled}
-              className="inline-flex items-center gap-2 rounded bg-emerald-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-emerald-700 disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
             >
               <Send className="h-3.5 w-3.5" /> Send to {recipientCount}
             </button>
@@ -225,7 +225,7 @@ export function ComposeForm({
               <button
                 onClick={() => setConfirming(false)}
                 disabled={sending}
-                className="rounded border border-gray-300 bg-white px-2 py-1 text-xs text-gray-700 hover:bg-gray-50"
+                className="rounded border border-input bg-card px-2 py-1 text-xs text-foreground hover:bg-muted"
               >
                 Cancel
               </button>

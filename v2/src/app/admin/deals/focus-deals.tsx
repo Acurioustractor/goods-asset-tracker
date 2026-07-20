@@ -28,7 +28,7 @@ export async function FocusDeals() {
 
   return (
     <section className="rounded-2xl border bg-card shadow-sm overflow-hidden">
-      <div className="px-5 py-4 border-b bg-gradient-to-br from-amber-50 to-stone-50 dark:from-amber-950/30 dark:to-stone-950/30">
+      <div className="px-5 py-4 border-b bg-gradient-to-br from-primary/10 to-accent/10">
         <p className="font-display text-lg font-bold">Focus workstreams</p>
         <p className="text-xs text-muted-foreground">
           The two named deals that unlock the most of the FY26-27 stack — REAL Fund ($2.4M, plants) and Groote ($1.7M, 800 units).

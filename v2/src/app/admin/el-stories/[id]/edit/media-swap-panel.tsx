@@ -117,9 +117,9 @@ export function MediaSwapPanel({ storyId, blocks, defaultTag = 'trip:may-2026' }
   const [busy, setBusy] = useState(false);
 
   return (
-    <div className="rounded-md border border-stone-200 bg-white p-5">
-      <h2 className="text-sm font-semibold text-gray-900">Media in this story ({slots.length})</h2>
-      <p className="mt-1 text-xs text-gray-500">
+    <div className="rounded-md border border-border bg-card p-5">
+      <h2 className="text-sm font-semibold text-foreground">Media in this story ({slots.length})</h2>
+      <p className="mt-1 text-xs text-muted-foreground">
         <strong>Swap</strong> replaces media in an existing slot. <strong>Insert after</strong> adds a
         new figure or video block after this point in the article. Both write straight to EL and show
         on <code>/stories/{storyId}</code> on next request (no cache).
@@ -142,14 +142,14 @@ export function MediaSwapPanel({ storyId, blocks, defaultTag = 'trip:may-2026' }
       </div>
 
       <div className="mt-6 rounded-md border border-dashed border-stone-300 bg-stone-50 p-4">
-        <h3 className="text-xs font-semibold text-gray-800 uppercase tracking-wider">
+        <h3 className="text-xs font-semibold text-foreground uppercase tracking-wider">
           Insert a block at any position
         </h3>
-        <p className="mt-1 text-xs text-gray-500">
+        <p className="mt-1 text-xs text-muted-foreground">
           Drop a new photo, inline video, or full-bleed overlay video <strong>after</strong> any block in the
           article. Useful for sections currently without media.
         </p>
-        <div className="mt-3 max-h-48 overflow-auto rounded border border-stone-200 bg-white">
+        <div className="mt-3 max-h-48 overflow-auto rounded border border-border bg-card">
           <table className="w-full text-xs">
             <tbody>
               {blockHeadings.map((b) => (
@@ -271,8 +271,8 @@ function SlotCard({
         </span>
       </div>
       <div className="p-2 text-xs">
-        <p className="text-gray-700 truncate" title={slot.label}>{slot.label}</p>
-        <p className="text-[10px] font-mono text-gray-400 truncate" title={slot.path}>{slot.path}</p>
+        <p className="text-foreground truncate" title={slot.label}>{slot.label}</p>
+        <p className="text-[10px] font-mono text-muted-foreground truncate" title={slot.path}>{slot.path}</p>
         <button
           type="button"
           onClick={onSwap}
@@ -359,7 +359,7 @@ function PickerModal({
   return (
     <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4" onClick={onClose}>
       <div
-        className="bg-white rounded-lg max-w-5xl w-full max-h-[85vh] flex flex-col overflow-hidden shadow-2xl"
+        className="bg-card rounded-lg max-w-5xl w-full max-h-[85vh] flex flex-col overflow-hidden shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <header className="flex items-center justify-between gap-4 p-4 border-b">
@@ -367,12 +367,12 @@ function PickerModal({
             <h3 className="text-sm font-semibold">
               {mode === 'insert' ? 'Pick a ' + slotKind + ' to insert' : 'Pick a replacement ' + slotKind}
             </h3>
-            <p className="text-xs text-gray-500 mt-1">{mode === 'insert' ? slotLabel : <>Slot: <code className="font-mono">{slotPath}</code> · {slotLabel}</>}</p>
+            <p className="text-xs text-muted-foreground mt-1">{mode === 'insert' ? slotLabel : <>Slot: <code className="font-mono">{slotPath}</code> · {slotLabel}</>}</p>
           </div>
-          <button type="button" onClick={onClose} className="text-gray-500 hover:text-black text-xl leading-none">×</button>
+          <button type="button" onClick={onClose} className="text-muted-foreground hover:text-black text-xl leading-none">×</button>
         </header>
         <div className="p-4 border-b flex items-center gap-2 text-sm">
-          <label className="text-gray-600">Tag filter:</label>
+          <label className="text-muted-foreground">Tag filter:</label>
           <input
             ref={tagInputRef}
             defaultValue={tag}
@@ -386,13 +386,13 @@ function PickerModal({
           >
             Search
           </button>
-          <span className="ml-auto text-xs text-gray-500">{loading ? 'Loading…' : `${items.length} matches`}</span>
+          <span className="ml-auto text-xs text-muted-foreground">{loading ? 'Loading…' : `${items.length} matches`}</span>
         </div>
         <div className="flex-1 overflow-auto p-4">
           {loading ? (
-            <p className="text-sm text-gray-500">Loading…</p>
+            <p className="text-sm text-muted-foreground">Loading…</p>
           ) : items.length === 0 ? (
-            <p className="text-sm text-gray-500">No matches for tag <code>{tag}</code>.</p>
+            <p className="text-sm text-muted-foreground">No matches for tag <code>{tag}</code>.</p>
           ) : (
             <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
               {items.map((it) => (

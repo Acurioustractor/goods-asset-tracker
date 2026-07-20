@@ -64,7 +64,7 @@ function loadAspectCache(): Record<string, number> {
 function consentBadge(item: UnifiedItem): { text: string; cls: string } {
   switch (item.consent) {
     case 'local':
-      return { text: 'Website', cls: 'bg-gray-200 text-gray-700' };
+      return { text: 'Website', cls: 'bg-muted text-foreground' };
     case 'public':
       return { text: 'EL · public', cls: 'bg-green-100 text-green-700' };
     case 'gated-ok':
@@ -73,7 +73,7 @@ function consentBadge(item: UnifiedItem): { text: string; cls: string } {
       return { text: 'EL · elder review pending', cls: 'bg-orange-100 text-orange-700' };
     case 'flagged':
     default:
-      return { text: 'EL · not flagged', cls: 'bg-gray-200 text-gray-600' };
+      return { text: 'EL · not flagged', cls: 'bg-muted text-muted-foreground' };
   }
 }
 
@@ -766,7 +766,7 @@ export function MediaLibraryClient({
                 className={
                   'relative shrink-0 rounded-lg overflow-hidden bg-muted border transition group ' +
                   (isSel
-                    ? 'ring-2 ring-blue-500 border-blue-500 '
+                    ? 'ring-2 ring-primary border-primary '
                     : isCursor
                       ? 'border-accent ring-2 ring-accent '
                       : 'border-border hover:border-foreground/60 ') +
@@ -823,7 +823,7 @@ export function MediaLibraryClient({
                 {/* people tagged (EL alignment) */}
                 {it.people && it.people.length > 0 && (
                   <span
-                    className="pointer-events-none absolute top-7 left-1.5 max-w-[85%] truncate rounded-full bg-violet-600/90 px-1.5 py-0.5 text-[9px] font-semibold text-white"
+                    className="pointer-events-none absolute top-7 left-1.5 max-w-[85%] truncate rounded-full bg-accent/90 px-1.5 py-0.5 text-[9px] font-semibold text-white"
                     title={it.people.map((p) => p.name).join(', ')}
                   >
                     {it.people.length === 1 ? it.people[0].name : `👤 ${it.people.length}`}
@@ -839,9 +839,9 @@ export function MediaLibraryClient({
                     className={
                       'absolute bottom-1.5 left-1.5 h-6 w-6 rounded border flex items-center justify-center text-[12px] font-bold transition ' +
                       (isSel
-                        ? 'bg-blue-500 text-white border-blue-500'
+                        ? 'bg-primary text-primary-foreground border-primary'
                         : selectMode
-                          ? 'bg-background/90 border-blue-400 text-transparent hover:text-blue-500'
+                          ? 'bg-background/90 border-primary/50 text-transparent hover:text-primary'
                           : 'bg-background/80 border-border text-transparent opacity-0 group-hover:opacity-100 hover:text-muted-foreground')
                     }
                   >
@@ -882,7 +882,7 @@ export function MediaLibraryClient({
                 )}
                 {it.aliases && it.aliases.length > 0 && (
                   <span
-                    className="pointer-events-none absolute top-1.5 right-9 rounded-full bg-blue-100 text-blue-700 px-1.5 py-0.5 text-[9px] font-semibold"
+                    className="pointer-events-none absolute top-1.5 right-9 rounded-full bg-primary/10 text-primary px-1.5 py-0.5 text-[9px] font-semibold"
                     title={`Also at ${it.aliases.length} other location${it.aliases.length === 1 ? '' : 's'}`}
                   >
                     +{it.aliases.length}
@@ -1111,7 +1111,7 @@ function PreviewModal({
         {/* Metadata side */}
         <aside className="p-5 overflow-y-auto bg-card border-l border-border">
           <header className="flex items-start justify-between gap-2 mb-4">
-            <h2 className="text-base font-semibold leading-snug break-words">{item.title}</h2>
+            <h2 className="font-display text-base font-semibold leading-snug break-words">{item.title}</h2>
             <button
               type="button"
               onClick={onClose}
@@ -1133,13 +1133,13 @@ function PreviewModal({
               {item.area}
             </span>
             {item.theme && (
-              <span className="rounded-full bg-indigo-100 text-indigo-700 px-2 py-0.5 text-[10px] font-medium">{themeName(item.theme)}</span>
+              <span className="rounded-full bg-primary/10 text-primary px-2 py-0.5 text-[10px] font-medium">{themeName(item.theme)}</span>
             )}
             {item.community && (
-              <span className="rounded-full bg-sky-100 text-sky-700 px-2 py-0.5 text-[10px] font-medium">📍 {item.community}</span>
+              <span className="rounded-full bg-accent/10 text-accent px-2 py-0.5 text-[10px] font-medium">📍 {item.community}</span>
             )}
             {item.person && (
-              <span className="rounded-full bg-violet-100 text-violet-700 px-2 py-0.5 text-[10px] font-medium">{item.person}</span>
+              <span className="rounded-full bg-muted text-foreground px-2 py-0.5 text-[10px] font-medium">{item.person}</span>
             )}
             {item.canonSlot && (
               <span className="rounded-full bg-emerald-100 text-emerald-700 px-2 py-0.5 text-[10px] font-semibold" title="This image is a locked canon pick">

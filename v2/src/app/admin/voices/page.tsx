@@ -7,11 +7,11 @@ export const dynamic = 'force-dynamic';
 
 const TIER_TONE: Record<VoiceTier, string> = {
   external: 'text-emerald-700',
-  website: 'text-sky-700',
-  funder: 'text-sky-700',
+  website: 'text-primary',
+  funder: 'text-primary',
   pending: 'text-amber-700',
   hold: 'text-red-700',
-  internal: 'text-stone-500',
+  internal: 'text-muted-foreground',
 };
 
 const TABS: { label: string; href: string; current?: boolean }[] = [
@@ -55,7 +55,7 @@ export default function VoicesHub() {
         </div>
         <Link
           href="/admin/consent"
-          className="rounded-xl bg-stone-900 text-amber-400 px-4 py-2 text-sm font-semibold hover:bg-stone-800 transition-colors"
+          className="rounded-xl bg-primary text-amber-400 px-4 py-2 text-sm font-semibold hover:bg-primary/90 transition-colors"
         >
           Consent worklist · {holds} hold{holds === 1 ? '' : 's'}
         </Link>

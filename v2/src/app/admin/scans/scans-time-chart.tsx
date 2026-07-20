@@ -21,7 +21,7 @@ interface Bucket {
 export function ScansTimeChart({ data }: { data: Bucket[] }) {
   if (data.length === 0) {
     return (
-      <p className="text-center py-12 text-sm text-gray-500">
+      <p className="text-center py-12 text-sm text-muted-foreground">
         No scans yet. The chart will populate as people open bed pages.
       </p>
     );

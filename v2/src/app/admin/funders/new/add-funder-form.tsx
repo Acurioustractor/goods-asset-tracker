@@ -70,7 +70,7 @@ export function AddFunderForm({ communities }: { communities: string[] }) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-6 rounded-lg border bg-white p-6">
+    <form onSubmit={onSubmit} className="space-y-6 rounded-lg border bg-card p-6">
       <Section title="Identity">
         <Field label="Display name" required>
           <input
@@ -79,7 +79,7 @@ export function AddFunderForm({ communities }: { communities: string[] }) {
             onChange={(e) => { setDisplayName(e.target.value); if (autoSlug) setSlug(slugify(e.target.value)); }}
             placeholder="e.g. Centrebuild Pty Ltd"
             required
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+            className="w-full rounded border border-input px-3 py-2 text-sm"
           />
         </Field>
         <Field label="Slug (URL key)" sub={`Auto: ${effectiveSlug || '—'}`}>
@@ -89,9 +89,9 @@ export function AddFunderForm({ communities }: { communities: string[] }) {
               value={effectiveSlug}
               onChange={(e) => { setSlug(e.target.value); setAutoSlug(false); }}
               placeholder="centrebuild"
-              className="flex-1 rounded border border-gray-300 px-3 py-2 text-sm font-mono"
+              className="flex-1 rounded border border-input px-3 py-2 text-sm font-mono"
             />
-            <label className="flex cursor-pointer items-center gap-1.5 text-xs text-gray-500">
+            <label className="flex cursor-pointer items-center gap-1.5 text-xs text-muted-foreground">
               <input type="checkbox" checked={autoSlug} onChange={(e) => setAutoSlug(e.target.checked)} className="h-3.5 w-3.5" />
               auto
             </label>
@@ -104,7 +104,7 @@ export function AddFunderForm({ communities }: { communities: string[] }) {
             onChange={(e) => setContactName(e.target.value)}
             placeholder="e.g. Centrebuild Pty Ltd"
             required
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+            className="w-full rounded border border-input px-3 py-2 text-sm"
           />
         </Field>
       </Section>
@@ -119,7 +119,7 @@ export function AddFunderForm({ communities }: { communities: string[] }) {
             min="0"
             step="1000"
             required
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+            className="w-full rounded border border-input px-3 py-2 text-sm"
           />
           {totalAud && (
             <p className="mt-1 text-xs text-amber-700">→ Report shape: <strong>{reportShape}</strong></p>
@@ -133,7 +133,7 @@ export function AddFunderForm({ communities }: { communities: string[] }) {
               onChange={(e) => setTotalUnits(e.target.value)}
               placeholder="100"
               min="0"
-              className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+              className="w-full rounded border border-input px-3 py-2 text-sm"
             />
           </Field>
           <Field label="Unit label" sub="e.g. beds / workshops">
@@ -142,7 +142,7 @@ export function AddFunderForm({ communities }: { communities: string[] }) {
               value={unitLabel}
               onChange={(e) => setUnitLabel(e.target.value)}
               placeholder="beds"
-              className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+              className="w-full rounded border border-input px-3 py-2 text-sm"
             />
           </Field>
         </div>
@@ -154,7 +154,7 @@ export function AddFunderForm({ communities }: { communities: string[] }) {
               onChange={(e) => setPaidToDateAud(e.target.value)}
               min="0"
               step="1000"
-              className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+              className="w-full rounded border border-input px-3 py-2 text-sm"
             />
           </Field>
           <Field label="To be paid ($, optional)">
@@ -164,7 +164,7 @@ export function AddFunderForm({ communities }: { communities: string[] }) {
               onChange={(e) => setToBePaidAud(e.target.value)}
               min="0"
               step="1000"
-              className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+              className="w-full rounded border border-input px-3 py-2 text-sm"
             />
           </Field>
         </div>
@@ -173,7 +173,7 @@ export function AddFunderForm({ communities }: { communities: string[] }) {
             type="text"
             value={grantReference}
             onChange={(e) => setGrantReference(e.target.value)}
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+            className="w-full rounded border border-input px-3 py-2 text-sm"
           />
         </Field>
       </Section>
@@ -185,7 +185,7 @@ export function AddFunderForm({ communities }: { communities: string[] }) {
               type="text"
               value={contactPersonName}
               onChange={(e) => setContactPersonName(e.target.value)}
-              className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+              className="w-full rounded border border-input px-3 py-2 text-sm"
             />
           </Field>
           <Field label="Email">
@@ -193,7 +193,7 @@ export function AddFunderForm({ communities }: { communities: string[] }) {
               type="email"
               value={contactPersonEmail}
               onChange={(e) => setContactPersonEmail(e.target.value)}
-              className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+              className="w-full rounded border border-input px-3 py-2 text-sm"
             />
           </Field>
           <Field label="Phone">
@@ -201,7 +201,7 @@ export function AddFunderForm({ communities }: { communities: string[] }) {
               type="tel"
               value={contactPersonPhone}
               onChange={(e) => setContactPersonPhone(e.target.value)}
-              className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+              className="w-full rounded border border-input px-3 py-2 text-sm"
             />
           </Field>
         </div>
@@ -214,14 +214,14 @@ export function AddFunderForm({ communities }: { communities: string[] }) {
             value={photoTagsCsv}
             onChange={(e) => setPhotoTagsCsv(e.target.value)}
             placeholder="e.g. centrebuild-funded, trip-may-2026"
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm font-mono"
+            className="w-full rounded border border-input px-3 py-2 text-sm font-mono"
           />
         </Field>
         <Field label="Community scope (optional)" sub="If set, every metric (beds delivered, communities served, etc.) scopes to this community. Leave empty for all-Goods.">
           <select
             value={community}
             onChange={(e) => setCommunity(e.target.value)}
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+            className="w-full rounded border border-input px-3 py-2 text-sm"
           >
             <option value="">— All Goods (no scope) —</option>
             {communities.map((c) => (
@@ -237,7 +237,7 @@ export function AddFunderForm({ communities }: { communities: string[] }) {
         <button
           type="submit"
           disabled={saving}
-          className="rounded-md bg-amber-600 px-5 py-2 text-sm font-semibold text-white hover:bg-amber-700 disabled:opacity-50"
+          className="rounded-md bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
         >
           {saving ? 'Adding…' : 'Add funder'}
         </button>
@@ -249,7 +249,7 @@ export function AddFunderForm({ communities }: { communities: string[] }) {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <fieldset className="space-y-3">
-      <legend className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-500">{title}</legend>
+      <legend className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">{title}</legend>
       {children}
     </fieldset>
   );
@@ -258,11 +258,11 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 function Field({ label, sub, required, children }: { label: string; sub?: string; required?: boolean; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium text-gray-700">
+      <span className="mb-1 block text-xs font-medium text-foreground">
         {label}{required && <span className="ml-0.5 text-red-600">*</span>}
       </span>
       {children}
-      {sub && <p className="mt-1 text-[11px] text-gray-500">{sub}</p>}
+      {sub && <p className="mt-1 text-[11px] text-muted-foreground">{sub}</p>}
     </label>
   );
 }

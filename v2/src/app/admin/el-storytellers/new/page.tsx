@@ -88,33 +88,33 @@ export default async function NewStorytellerPage({ searchParams }: Props) {
     <div className="max-w-3xl space-y-6 pb-16">
       <header>
         <p className="text-xs">
-          <Link href="/admin/el-storytellers" className="text-blue-700 hover:underline">
+          <Link href="/admin/el-storytellers" className="text-primary hover:underline">
             ← back to storytellers
           </Link>
         </p>
-        <h1 className="mt-2 text-2xl font-bold tracking-tight">Add a storyteller to Empathy Ledger</h1>
-        <p className="mt-1 text-sm text-gray-500 max-w-prose">
+        <h1 className="mt-2 text-2xl font-bold tracking-tight font-display">Add a storyteller to Empathy Ledger</h1>
+        <p className="mt-1 text-sm text-muted-foreground max-w-prose">
           Creates a new EL storyteller scoped to the Goods organisation. Defaults to
-          <code className="mx-1 rounded bg-gray-100 px-1 py-0.5">is_active=false</code> and{' '}
-          <code className="rounded bg-gray-100 px-1 py-0.5">content_status=draft</code> so nothing
+          <code className="mx-1 rounded bg-muted px-1 py-0.5">is_active=false</code> and{' '}
+          <code className="rounded bg-muted px-1 py-0.5">content_status=draft</code> so nothing
           surfaces publicly until you verify consent and flip the flags in EL. After saving, the
           form stays open so you can keep adding — community + consent source persist.
         </p>
         <p className="mt-2 max-w-prose rounded border border-amber-200 bg-amber-50/60 p-3 text-xs text-amber-900">
           Capture consent per{' '}
-          <code className="rounded bg-white px-1 py-0.5">wiki/articles/brand-comms/CONSENT_PROCESS.md</code>{' '}
+          <code className="rounded bg-muted px-1 py-0.5">wiki/articles/brand-comms/CONSENT_PROCESS.md</code>{' '}
           before publishing. For young people (under 18), capture family/guardian consent and
           appropriate cultural facilitation (e.g. Oonchiumpa for Mykel) before flipping
-          <code className="mx-1 rounded bg-white px-1 py-0.5">has_explicit_consent</code> to true.
+          <code className="mx-1 rounded bg-muted px-1 py-0.5">has_explicit_consent</code> to true.
         </p>
       </header>
 
       {gaps.length > 0 && (
-        <section className="rounded-lg border border-blue-200 bg-blue-50/60 p-4">
-          <h2 className="text-sm font-semibold text-blue-900">
+        <section className="rounded-lg border border-primary/20 bg-primary/5 p-4">
+          <h2 className="text-sm font-semibold text-foreground">
             Trip voices mentioned but not yet in EL ({gaps.length})
           </h2>
-          <p className="mt-1 text-xs text-blue-800">
+          <p className="mt-1 text-xs text-muted-foreground">
             Click any name to pre-fill the form. Saves a typing round.
           </p>
           <div className="mt-3 flex flex-wrap gap-2">
@@ -128,7 +128,7 @@ export default async function NewStorytellerPage({ searchParams }: Props) {
                 <Link
                   key={i}
                   href={`/admin/el-storytellers/new?${params.toString()}`}
-                  className="rounded-full border border-blue-300 bg-white px-3 py-1 text-xs font-medium text-blue-800 hover:bg-blue-100"
+                  className="rounded-full border border-primary/30 bg-card px-3 py-1 text-xs font-medium text-primary hover:bg-primary/10"
                   title={`From ${g.storyTitle}`}
                 >
                   + {g.who}{g.community ? ` · ${g.community}` : ''}

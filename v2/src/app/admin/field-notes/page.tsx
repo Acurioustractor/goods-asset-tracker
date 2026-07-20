@@ -100,7 +100,7 @@ export default function FieldNotesIndex() {
                   <strong className="font-mono">{t.atom}</strong> atom
                 </span>
                 {(v.cleared > 0 || v.pending > 0) && (
-                  <span className="rounded bg-blue-50 px-2 py-1 text-blue-800">
+                  <span className="rounded bg-accent/10 px-2 py-1 text-accent">
                     voices:{' '}
                     <strong className="font-mono text-emerald-700">{v.cleared}</strong> cleared,{' '}
                     <strong className="font-mono text-amber-700">{v.pending}</strong> pending
@@ -116,7 +116,7 @@ export default function FieldNotesIndex() {
                 <Link
                   href={`/field-notes/${s.slug}`}
                   target="_blank"
-                  className="rounded border border-blue-200 bg-blue-50 px-2 py-1 font-medium text-blue-800 hover:bg-blue-100"
+                  className="rounded border border-accent/20 bg-accent/10 px-2 py-1 font-medium text-accent hover:bg-accent/20"
                 >
                   → Open (full-screen)
                 </Link>
@@ -142,7 +142,7 @@ export default function FieldNotesIndex() {
         </summary>
         <ol className="mt-3 ml-4 list-decimal space-y-1.5 text-stone-600">
           <li>
-            Open <code className="rounded bg-white px-1.5 py-0.5">src/lib/data/trip-stories.ts</code>{' '}
+            Open <code className="rounded bg-muted px-1.5 py-0.5">src/lib/data/trip-stories.ts</code>{' '}
             and add a new TripStory entry. Copy an existing one as template.
           </li>
           <li>
@@ -153,7 +153,7 @@ export default function FieldNotesIndex() {
             Fill <code>blocks: []</code> with a mix of bespoke (masthead, immersive, bleedquote,
             voices, close, pathways) and atom (goods-facts, health-facts, problem-statement, etc.)
             blocks. See the{' '}
-            <Link href="/admin/field-notes/library" className="font-medium text-blue-700 hover:underline">
+            <Link href="/admin/field-notes/library" className="font-medium text-accent hover:underline">
               block library
             </Link>{' '}
             for every available kind with examples + copy-as-snippet buttons.

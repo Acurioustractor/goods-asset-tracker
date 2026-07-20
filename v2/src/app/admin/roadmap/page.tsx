@@ -21,15 +21,15 @@ export default async function AdminRoadmapPage() {
   }
 
   return (
-    <main className="min-h-screen px-5 sm:px-8 py-10" style={{ backgroundColor: '#FFFFFF', color: '#2E2E2E' }}>
+    <main className="min-h-screen px-5 sm:px-8 py-10 bg-card text-foreground">
       <div className="max-w-5xl mx-auto">
-        <Link href="/admin" className="text-xs uppercase" style={{ color: '#8B9D77' }}>← Admin</Link>
-        <h1 className="font-display text-3xl sm:text-4xl mt-3 mb-2" style={{ color: '#2E2E2E' }}>Roadmap board</h1>
-        <p className="text-sm mb-8" style={{ color: '#2E2E2Ebf' }}>
+        <Link href="/admin" className="text-xs uppercase text-accent">← Admin</Link>
+        <h1 className="font-display text-3xl sm:text-4xl mt-3 mb-2 text-foreground">Roadmap board</h1>
+        <p className="text-sm mb-8 text-muted-foreground">
           The shared Goods roadmap. Drag cards to move and reorder; it updates the partner dashboards live.
         </p>
         {items.length === 0 ? (
-          <p className="text-sm" style={{ color: '#C45C3E' }}>
+          <p className="text-sm text-primary">
             No roadmap items found (or the table is unavailable). Check the roadmap_items table on the Goods project.
           </p>
         ) : (

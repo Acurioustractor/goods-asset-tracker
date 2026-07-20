@@ -69,9 +69,9 @@ const STATE_STYLE: Record<PaymentState, { label: string; badge: string }> = {
   paid: { label: 'Paid', badge: 'bg-green-100 text-green-800' },
   overdue: { label: 'Overdue', badge: 'bg-red-100 text-red-800' },
   authorised: { label: 'Authorised', badge: 'bg-amber-100 text-amber-800' },
-  draft: { label: 'Draft', badge: 'bg-gray-100 text-gray-600' },
-  voided: { label: 'Voided', badge: 'bg-gray-100 text-gray-400' },
-  other: { label: 'Other', badge: 'bg-gray-100 text-gray-600' },
+  draft: { label: 'Draft', badge: 'bg-muted text-muted-foreground' },
+  voided: { label: 'Voided', badge: 'bg-muted text-muted-foreground' },
+  other: { label: 'Other', badge: 'bg-muted text-muted-foreground' },
 };
 
 function fmtDate(d: string | null): string {
@@ -116,15 +116,15 @@ export default async function XeroReconciliationPage() {
   return (
     <div className="space-y-8 pb-16">
       <header>
-        <h1 className="text-2xl font-bold tracking-tight">Xero reconciliation</h1>
-        <p className="mt-1 max-w-3xl text-sm text-gray-500">
+        <h1 className="font-display text-2xl font-bold tracking-tight">Xero reconciliation</h1>
+        <p className="mt-1 max-w-3xl text-sm text-muted-foreground">
           Live Xero invoices (<code>project_code=ACT-GD</code>, VOIDED/DELETED excluded) joined to
           CRM deals by invoice number. Payment status and overdue are read from Xero
           <code className="mx-1">status</code>+<code className="mx-1">due_date</code> — never from
           deal notes. Receivables (ACCREC) are collectable; payables (ACCPAY) are{' '}
           <strong>not debt</strong>.
         </p>
-        <p className="mt-1 text-xs text-gray-400">Data as at {dataAsAt}</p>
+        <p className="mt-1 text-xs text-muted-foreground">Data as at {dataAsAt}</p>
       </header>
 
       {/* Error banners — never let a fetch failure read as a real $0. */}
@@ -141,12 +141,12 @@ export default async function XeroReconciliationPage() {
         </div>
       )}
       {empty && !xero.error && !dealsError && (
-        <Card><CardContent className="p-6 text-sm text-gray-500">No CRM deals or Xero invoices found.</CardContent></Card>
+        <Card><CardContent className="p-6 text-sm text-muted-foreground">No CRM deals or Xero invoices found.</CardContent></Card>
       )}
 
       {/* AR (collectable) tiles */}
       <section>
-        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">Accounts receivable (collectable)</h2>
+        <h2 className="font-display mb-3 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Accounts receivable (collectable)</h2>
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           {[
             { label: 'AR raised (Xero)', value: currency(totals.arRaised), icon: DollarSign, color: 'text-slate-700 bg-slate-100', sub: `${result.matched.filter((m) => m.isAr).length + result.xeroOnly.filter((r) => (r.type || '').toUpperCase() === 'ACCREC').length} ACCREC invoices` },
@@ -161,9 +161,9 @@ export default async function XeroReconciliationPage() {
                     <stat.icon className="h-5 w-5" />
                   </div>
                   <div>
-                    <div className="text-lg font-bold tabular-nums text-gray-900">{stat.value}</div>
-                    <div className="text-xs text-gray-500">{stat.label}</div>
-                    <div className="text-[10px] text-gray-400">{stat.sub}</div>
+                    <div className="text-lg font-bold tabular-nums text-foreground">{stat.value}</div>
+                    <div className="text-xs text-muted-foreground">{stat.label}</div>
+                    <div className="text-[10px] text-muted-foreground">{stat.sub}</div>
                   </div>
                 </div>
               </CardContent>
@@ -177,8 +177,8 @@ export default async function XeroReconciliationPage() {
         <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
             <div>
-              <h2 className="text-sm font-semibold text-gray-700">Accounts payable — payment-matching gap (not debt)</h2>
-              <p className="mt-1 max-w-2xl text-xs text-gray-500">
+              <h2 className="font-display text-sm font-semibold text-foreground">Accounts payable — payment-matching gap (not debt)</h2>
+              <p className="mt-1 max-w-2xl text-xs text-muted-foreground">
                 AUTHORISED-but-unpaid ACCPAY bills. The 2026-05-29 Xero cross-check found AP{' '}
                 <strong>~$0 owed</strong>: all spend came from ACT business accounts, with no
                 director loan. An authorised-but-unpaid bill here is a Xero <em>payment-matching gap</em>{' '}
@@ -186,8 +186,8 @@ export default async function XeroReconciliationPage() {
               </p>
             </div>
             <div className="text-right">
-              <div className="text-lg font-bold tabular-nums text-gray-700">{currency(totals.apMatchingGap)}</div>
-              <div className="text-[10px] text-gray-400">{result.apMatchingGap.length} ACCPAY bills · matching gap</div>
+              <div className="text-lg font-bold tabular-nums text-foreground">{currency(totals.apMatchingGap)}</div>
+              <div className="text-[10px] text-muted-foreground">{result.apMatchingGap.length} ACCPAY bills · matching gap</div>
             </div>
           </div>
         </div>
@@ -197,27 +197,27 @@ export default async function XeroReconciliationPage() {
       {result.arOverdue.length > 0 && (
         <section>
           <div className="mb-4">
-            <h2 className="text-xl font-bold text-red-700">Receivables past due</h2>
-            <p className="mt-1 text-sm text-gray-500">ACCREC invoices authorised with a due date before today — collectable, requires follow-up.</p>
+            <h2 className="font-display text-xl font-bold text-red-700">Receivables past due</h2>
+            <p className="mt-1 text-sm text-muted-foreground">ACCREC invoices authorised with a due date before today — collectable, requires follow-up.</p>
           </div>
           <Card className="border-red-200">
             <CardContent className="overflow-x-auto p-0">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b bg-red-50 text-left">
-                    <th className="px-4 py-3 font-semibold text-gray-700">Invoice</th>
-                    <th className="px-4 py-3 font-semibold text-gray-700">Contact</th>
-                    <th className="px-4 py-3 font-semibold text-gray-700">Due</th>
-                    <th className="px-4 py-3 text-right font-semibold text-gray-700">Total</th>
-                    <th className="px-4 py-3 text-right font-semibold text-gray-700">Outstanding</th>
+                    <th className="px-4 py-3 font-semibold text-foreground">Invoice</th>
+                    <th className="px-4 py-3 font-semibold text-foreground">Contact</th>
+                    <th className="px-4 py-3 font-semibold text-foreground">Due</th>
+                    <th className="px-4 py-3 text-right font-semibold text-foreground">Total</th>
+                    <th className="px-4 py-3 text-right font-semibold text-foreground">Outstanding</th>
                   </tr>
                 </thead>
                 <tbody>
                   {result.arOverdue.map((inv) => (
                     <tr key={inv.invoice_number} className="border-b last:border-b-0">
                       <td className="px-4 py-3"><Badge className="bg-red-100 text-red-800">{inv.invoice_number}</Badge></td>
-                      <td className="px-4 py-3 text-gray-900">{inv.contact_name}</td>
-                      <td className="px-4 py-3 text-gray-600">{fmtDate(inv.due_date)}</td>
+                      <td className="px-4 py-3 text-foreground">{inv.contact_name}</td>
+                      <td className="px-4 py-3 text-muted-foreground">{fmtDate(inv.due_date)}</td>
                       <td className="px-4 py-3 text-right tabular-nums">{currency(inv.total ?? 0)}</td>
                       <td className="px-4 py-3 text-right font-bold tabular-nums text-red-700">{currency(inv.amount_due ?? 0)}</td>
                     </tr>
@@ -233,8 +233,8 @@ export default async function XeroReconciliationPage() {
       {result.mismatches.length > 0 && (
         <section>
           <div className="mb-4">
-            <h2 className="text-xl font-bold text-orange-700">Amount mismatches</h2>
-            <p className="mt-1 text-sm text-gray-500">
+            <h2 className="font-display text-xl font-bold text-orange-700">Amount mismatches</h2>
+            <p className="mt-1 text-sm text-muted-foreground">
               CRM deal amount differs from the Xero invoice <code>total</code> by more than rounding,
               and not by the GST factor (1/11). Worth a manual check.
             </p>
@@ -244,17 +244,17 @@ export default async function XeroReconciliationPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b bg-orange-50 text-left">
-                    <th className="px-4 py-3 font-semibold text-gray-700">Deal</th>
-                    <th className="px-4 py-3 font-semibold text-gray-700">Invoice</th>
-                    <th className="px-4 py-3 text-right font-semibold text-gray-700">CRM amount</th>
-                    <th className="px-4 py-3 text-right font-semibold text-gray-700">Xero total</th>
-                    <th className="px-4 py-3 text-right font-semibold text-gray-700">Diff</th>
+                    <th className="px-4 py-3 font-semibold text-foreground">Deal</th>
+                    <th className="px-4 py-3 font-semibold text-foreground">Invoice</th>
+                    <th className="px-4 py-3 text-right font-semibold text-foreground">CRM amount</th>
+                    <th className="px-4 py-3 text-right font-semibold text-foreground">Xero total</th>
+                    <th className="px-4 py-3 text-right font-semibold text-foreground">Diff</th>
                   </tr>
                 </thead>
                 <tbody>
                   {result.mismatches.map((m) => (
                     <tr key={m.deal.id} className="border-b last:border-b-0">
-                      <td className="px-4 py-3 font-medium text-gray-900">{m.deal.title}</td>
+                      <td className="px-4 py-3 font-medium text-foreground">{m.deal.title}</td>
                       <td className="px-4 py-3"><Badge className="bg-orange-100 text-orange-800">{m.invoiceNumber}</Badge></td>
                       <td className="px-4 py-3 text-right tabular-nums">{currency(m.crmAmount)}</td>
                       <td className="px-4 py-3 text-right tabular-nums">{currency(m.xeroTotal)}</td>
@@ -271,26 +271,26 @@ export default async function XeroReconciliationPage() {
       {/* Matched */}
       <section>
         <div className="mb-4">
-          <h2 className="text-xl font-bold text-gray-900">Matched ({result.matched.length})</h2>
-          <p className="mt-1 text-sm text-gray-500">CRM deals whose invoice number matched a live Xero invoice. Status from Xero.</p>
+          <h2 className="font-display text-xl font-bold text-foreground">Matched ({result.matched.length})</h2>
+          <p className="mt-1 text-sm text-muted-foreground">CRM deals whose invoice number matched a live Xero invoice. Status from Xero.</p>
         </div>
         <Card>
           <CardContent className="overflow-x-auto p-0">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b bg-slate-50 text-left">
-                  <th className="px-4 py-3 font-semibold text-gray-700">Deal</th>
-                  <th className="px-4 py-3 font-semibold text-gray-700">Invoice</th>
-                  <th className="px-4 py-3 font-semibold text-gray-700">AR/AP</th>
-                  <th className="px-4 py-3 text-right font-semibold text-gray-700">Xero total</th>
-                  <th className="px-4 py-3 font-semibold text-gray-700">Status</th>
-                  <th className="px-4 py-3 font-semibold text-gray-700">Agrees</th>
+                  <th className="px-4 py-3 font-semibold text-foreground">Deal</th>
+                  <th className="px-4 py-3 font-semibold text-foreground">Invoice</th>
+                  <th className="px-4 py-3 font-semibold text-foreground">AR/AP</th>
+                  <th className="px-4 py-3 text-right font-semibold text-foreground">Xero total</th>
+                  <th className="px-4 py-3 font-semibold text-foreground">Status</th>
+                  <th className="px-4 py-3 font-semibold text-foreground">Agrees</th>
                 </tr>
               </thead>
               <tbody>
                 {result.matched.map((m) => (
                   <tr key={m.deal.id} className="border-b last:border-b-0 hover:bg-slate-50/50">
-                    <td className="max-w-[220px] truncate px-4 py-2.5 font-medium text-gray-900">{m.deal.title}</td>
+                    <td className="max-w-[220px] truncate px-4 py-2.5 font-medium text-foreground">{m.deal.title}</td>
                     <td className="px-4 py-2.5"><Badge variant="outline" className="font-mono text-xs">{m.invoiceNumber}</Badge></td>
                     <td className="px-4 py-2.5"><Badge variant="outline" className="text-xs">{m.isAr ? 'AR' : 'AP'}</Badge></td>
                     <td className="px-4 py-2.5 text-right font-bold tabular-nums">{currency(m.xeroTotal)}</td>
@@ -308,24 +308,24 @@ export default async function XeroReconciliationPage() {
       {result.crmOnly.length > 0 && (
         <section>
           <div className="mb-4">
-            <h2 className="text-xl font-bold text-gray-900">CRM-only ({result.crmOnly.length})</h2>
-            <p className="mt-1 flex items-center gap-2 text-sm text-gray-500"><Link2Off className="h-4 w-4" /> Deal notes cite an invoice number with no matching live Xero invoice (voided, deleted, or wrong number).</p>
+            <h2 className="font-display text-xl font-bold text-foreground">CRM-only ({result.crmOnly.length})</h2>
+            <p className="mt-1 flex items-center gap-2 text-sm text-muted-foreground"><Link2Off className="h-4 w-4" /> Deal notes cite an invoice number with no matching live Xero invoice (voided, deleted, or wrong number).</p>
           </div>
           <Card>
             <CardContent className="overflow-x-auto p-0">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b bg-slate-50 text-left">
-                    <th className="px-4 py-3 font-semibold text-gray-700">Deal</th>
-                    <th className="px-4 py-3 font-semibold text-gray-700">Cited invoice</th>
-                    <th className="px-4 py-3 text-right font-semibold text-gray-700">CRM amount</th>
-                    <th className="px-4 py-3 font-semibold text-gray-700">Stage</th>
+                    <th className="px-4 py-3 font-semibold text-foreground">Deal</th>
+                    <th className="px-4 py-3 font-semibold text-foreground">Cited invoice</th>
+                    <th className="px-4 py-3 text-right font-semibold text-foreground">CRM amount</th>
+                    <th className="px-4 py-3 font-semibold text-foreground">Stage</th>
                   </tr>
                 </thead>
                 <tbody>
                   {result.crmOnly.map((d) => (
                     <tr key={d.id} className="border-b last:border-b-0">
-                      <td className="px-4 py-2.5 font-medium text-gray-900">{d.title}</td>
+                      <td className="px-4 py-2.5 font-medium text-foreground">{d.title}</td>
                       <td className="px-4 py-2.5"><Badge variant="outline" className="font-mono text-xs">{extractInvoiceNumber(d.notes)}</Badge></td>
                       <td className="px-4 py-2.5 text-right tabular-nums">{d.amount_cents ? currency(d.amount_cents / 100) : '—'}</td>
                       <td className="px-4 py-2.5"><Badge variant="outline" className="text-xs">{d.pipeline_stage}</Badge></td>
@@ -342,26 +342,26 @@ export default async function XeroReconciliationPage() {
       {result.xeroOnly.length > 0 && (
         <section>
           <div className="mb-4">
-            <h2 className="text-xl font-bold text-gray-900">Xero-only ({result.xeroOnly.length})</h2>
-            <p className="mt-1 flex items-center gap-2 text-sm text-gray-500"><FileX2 className="h-4 w-4" /> Live Xero invoices not referenced by any CRM deal — coverage gap in the CRM.</p>
+            <h2 className="font-display text-xl font-bold text-foreground">Xero-only ({result.xeroOnly.length})</h2>
+            <p className="mt-1 flex items-center gap-2 text-sm text-muted-foreground"><FileX2 className="h-4 w-4" /> Live Xero invoices not referenced by any CRM deal — coverage gap in the CRM.</p>
           </div>
           <Card>
             <CardContent className="overflow-x-auto p-0">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b bg-slate-50 text-left">
-                    <th className="px-4 py-3 font-semibold text-gray-700">Invoice</th>
-                    <th className="px-4 py-3 font-semibold text-gray-700">Contact</th>
-                    <th className="px-4 py-3 font-semibold text-gray-700">AR/AP</th>
-                    <th className="px-4 py-3 text-right font-semibold text-gray-700">Total</th>
-                    <th className="px-4 py-3 font-semibold text-gray-700">Status</th>
+                    <th className="px-4 py-3 font-semibold text-foreground">Invoice</th>
+                    <th className="px-4 py-3 font-semibold text-foreground">Contact</th>
+                    <th className="px-4 py-3 font-semibold text-foreground">AR/AP</th>
+                    <th className="px-4 py-3 text-right font-semibold text-foreground">Total</th>
+                    <th className="px-4 py-3 font-semibold text-foreground">Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   {result.xeroOnly.slice(0, 60).map((inv) => (
                     <tr key={inv.invoice_number} className="border-b last:border-b-0">
                       <td className="px-4 py-2.5"><Badge variant="outline" className="font-mono text-xs">{inv.invoice_number}</Badge></td>
-                      <td className="max-w-[220px] truncate px-4 py-2.5 text-gray-900">{inv.contact_name}</td>
+                      <td className="max-w-[220px] truncate px-4 py-2.5 text-foreground">{inv.contact_name}</td>
                       <td className="px-4 py-2.5"><Badge variant="outline" className="text-xs">{(inv.type || '').toUpperCase() === 'ACCREC' ? 'AR' : 'AP'}</Badge></td>
                       <td className="px-4 py-2.5 text-right tabular-nums">{currency(inv.total ?? 0)}</td>
                       <td className="px-4 py-2.5"><Badge className={`text-xs ${STATE_STYLE[paymentStateLabel(inv.status)].badge}`}>{inv.status}</Badge></td>
@@ -370,7 +370,7 @@ export default async function XeroReconciliationPage() {
                 </tbody>
               </table>
               {result.xeroOnly.length > 60 && (
-                <div className="px-4 py-2 text-xs text-gray-400">Showing first 60 of {result.xeroOnly.length}.</div>
+                <div className="px-4 py-2 text-xs text-muted-foreground">Showing first 60 of {result.xeroOnly.length}.</div>
               )}
             </CardContent>
           </Card>
@@ -381,24 +381,24 @@ export default async function XeroReconciliationPage() {
       {result.dealsWithoutInvoice.length > 0 && (
         <section>
           <div className="mb-4">
-            <h2 className="text-xl font-bold text-gray-900">No invoice reference ({result.dealsWithoutInvoice.length})</h2>
-            <p className="mt-1 text-sm text-gray-500">CRM deals with no invoice number in their notes — may need one raised.</p>
+            <h2 className="font-display text-xl font-bold text-foreground">No invoice reference ({result.dealsWithoutInvoice.length})</h2>
+            <p className="mt-1 text-sm text-muted-foreground">CRM deals with no invoice number in their notes — may need one raised.</p>
           </div>
           <Card>
             <CardContent className="overflow-x-auto p-0">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b bg-slate-50 text-left">
-                    <th className="px-4 py-3 font-semibold text-gray-700">Deal</th>
-                    <th className="px-4 py-3 font-semibold text-gray-700">Type</th>
-                    <th className="px-4 py-3 text-right font-semibold text-gray-700">CRM amount</th>
-                    <th className="px-4 py-3 font-semibold text-gray-700">Stage</th>
+                    <th className="px-4 py-3 font-semibold text-foreground">Deal</th>
+                    <th className="px-4 py-3 font-semibold text-foreground">Type</th>
+                    <th className="px-4 py-3 text-right font-semibold text-foreground">CRM amount</th>
+                    <th className="px-4 py-3 font-semibold text-foreground">Stage</th>
                   </tr>
                 </thead>
                 <tbody>
                   {result.dealsWithoutInvoice.map((d) => (
                     <tr key={d.id} className="border-b last:border-b-0 hover:bg-slate-50/50">
-                      <td className="px-4 py-2.5 font-medium text-gray-900">{d.title}</td>
+                      <td className="px-4 py-2.5 font-medium text-foreground">{d.title}</td>
                       <td className="px-4 py-2.5"><Badge variant="outline" className="text-xs">{d.deal_type}</Badge></td>
                       <td className="px-4 py-2.5 text-right tabular-nums">{d.amount_cents ? currency(d.amount_cents / 100) : '—'}</td>
                       <td className="px-4 py-2.5"><Badge variant="outline" className="text-xs">{d.pipeline_stage}</Badge></td>

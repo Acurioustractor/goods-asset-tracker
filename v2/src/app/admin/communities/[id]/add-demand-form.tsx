@@ -6,12 +6,12 @@ import { addDemand } from './actions';
 
 const STATUS_OPTIONS = ['exploring', 'requested', 'approved', 'allocated', 'fulfilled'] as const;
 
-const inputCls = 'w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500';
+const inputCls = 'w-full rounded-md border border-border px-2 py-1.5 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary';
 
 function Field({ label, children, wide }: { label: string; children: React.ReactNode; wide?: boolean }) {
   return (
     <label className={`block text-xs ${wide ? 'md:col-span-2' : ''}`}>
-      <span className="block font-medium text-gray-600 mb-1">{label}</span>
+      <span className="block font-medium text-muted-foreground mb-1">{label}</span>
       {children}
     </label>
   );
@@ -31,7 +31,7 @@ export function AddDemandForm({ communityId }: { communityId: string }) {
   }
 
   return (
-    <div className="rounded-lg border border-amber-200 bg-amber-50/40 p-4">
+    <div className="rounded-lg border border-primary/25 bg-primary/5 p-4">
       <form
         action={(fd) => {
           setError(null);

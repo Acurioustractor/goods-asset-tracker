@@ -24,7 +24,7 @@ export default function CostModelPage() {
     // (-my-8 / md:-my-10) and the horizontal padding (-mx-4 / sm:-mx-6) so a
     // skin can size itself to ~100vh and present one no-scroll viewport.
     <div className="w-full -my-8 md:-my-10 -mx-4 px-4 sm:-mx-6 sm:px-6">
-      <Suspense fallback={<div className="py-20 text-center text-sm text-gray-400">Loading cost model…</div>}>
+      <Suspense fallback={<div className="py-20 text-center text-sm text-muted-foreground">Loading cost model…</div>}>
         <CostModelWorkspace />
       </Suspense>
     </div>

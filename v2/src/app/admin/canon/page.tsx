@@ -247,7 +247,7 @@ export default async function CanonBoardPage() {
   return (
     <div className="p-2 sm:p-4">
       <header className="mb-6">
-        <h1 className="text-2xl font-bold">Canon studio</h1>
+        <h1 className="text-2xl font-bold font-display">Canon studio</h1>
         <p className="mt-1 max-w-3xl text-sm text-muted-foreground">
           Fill each purpose the raise needs with its best asset. The <strong>Studio</strong> tab walks
           you slot by slot: for each, the whole pool (Empathy Ledger photos, videos, faces + every repo

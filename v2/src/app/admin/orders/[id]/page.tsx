@@ -218,12 +218,12 @@ export default async function OrderDetailPage({
         <div>
           <Link
             href="/admin/orders"
-            className="text-sm text-gray-500 hover:text-gray-700"
+            className="text-sm text-muted-foreground hover:text-foreground"
           >
             &larr; Back to Orders
           </Link>
-          <h1 className="text-2xl font-bold mt-2">{order.order_number}</h1>
-          <p className="text-gray-500">
+          <h1 className="font-display text-2xl font-bold mt-2">{order.order_number}</h1>
+          <p className="text-muted-foreground">
             {new Date(order.created_at).toLocaleDateString('en-AU', {
               weekday: 'long',
               year: 'numeric',
@@ -261,31 +261,31 @@ export default async function OrderDetailPage({
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
                   <div>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-1">
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-1">
                       Destination
                     </p>
-                    <p className="font-semibold text-base text-[#2E2E2E]">
+                    <p className="font-semibold text-base text-foreground">
                       {order.sponsored_community || 'Wherever the need is greatest'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-1">
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-1">
                       Sponsored by
                     </p>
-                    <p className="font-semibold text-base text-[#2E2E2E]">
+                    <p className="font-semibold text-base text-foreground">
                       {order.customer_name || order.customer_email || '—'}
                     </p>
                     {order.customer_name && order.customer_email && (
-                      <p className="text-xs text-gray-500 truncate">
+                      <p className="text-xs text-muted-foreground truncate">
                         {order.customer_email}
                       </p>
                     )}
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-1">
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-1">
                       Beds
                     </p>
-                    <p className="font-semibold text-base text-[#2E2E2E]">
+                    <p className="font-semibold text-base text-foreground">
                       {orderItems.reduce((sum, item) => sum + item.quantity, 0)}{' '}
                       &times; Stretch Bed
                     </p>
@@ -293,16 +293,16 @@ export default async function OrderDetailPage({
                 </div>
 
                 {order.sponsor_message ? (
-                  <div className="rounded-xl bg-white border border-[#C45C3E]/30 p-4">
+                  <div className="rounded-xl bg-card border border-[#C45C3E]/30 p-4">
                     <p className="text-[10px] uppercase tracking-[0.2em] text-[#C45C3E] mb-2 font-medium">
                       Message to pass on with the bed
                     </p>
-                    <p className="text-lg italic text-[#2E2E2E] leading-snug">
+                    <p className="text-lg italic text-foreground leading-snug">
                       &ldquo;{order.sponsor_message}&rdquo;
                     </p>
                   </div>
                 ) : (
-                  <p className="text-sm text-gray-500 italic">
+                  <p className="text-sm text-muted-foreground italic">
                     No dedication message from the sponsor.
                   </p>
                 )}
@@ -332,7 +332,7 @@ export default async function OrderDetailPage({
                       )}
                       <div className="flex-1">
                         <h4 className="font-medium">{item.product_name}</h4>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-muted-foreground">
                           Qty: {item.quantity} &times; $
                           {formatAmountFromStripe(item.unit_price_cents)}
                         </p>
@@ -343,7 +343,7 @@ export default async function OrderDetailPage({
                     </div>
 
                     {/* Asset Allocation Section */}
-                    <div className="mt-3 ml-20 p-3 bg-gray-50 rounded-lg space-y-2">
+                    <div className="mt-3 ml-20 p-3 bg-muted rounded-lg space-y-2">
                       {(() => {
                         // Narrow available beds to product type when we can match. The product_type
                         // on the order_item is informal (e.g. "stretch-bed-single"); the asset row
@@ -360,14 +360,14 @@ export default async function OrderDetailPage({
                           <>
                             <form action={linkAsset} className="flex items-center gap-2">
                               <input type="hidden" name="order_item_id" value={item.id} />
-                              <Label htmlFor={`asset-pick-${item.id}`} className="text-sm text-gray-600 whitespace-nowrap">
+                              <Label htmlFor={`asset-pick-${item.id}`} className="text-sm text-muted-foreground whitespace-nowrap">
                                 Allocate bed:
                               </Label>
                               <select
                                 id={`asset-pick-${item.id}`}
                                 name="asset_id"
                                 defaultValue={item.asset_id || ''}
-                                className="flex-1 h-8 rounded border border-gray-300 px-2 text-sm bg-white"
+                                className="flex-1 h-8 rounded border border-input px-2 text-sm bg-card"
                               >
                                 <option value="">— pick from {candidates.length} available —</option>
                                 {item.asset_id && (
@@ -391,7 +391,7 @@ export default async function OrderDetailPage({
 
                             <form action={linkAsset} className="flex items-center gap-2">
                               <input type="hidden" name="order_item_id" value={item.id} />
-                              <Label htmlFor={`asset-${item.id}`} className="text-sm text-gray-600 whitespace-nowrap">
+                              <Label htmlFor={`asset-${item.id}`} className="text-sm text-muted-foreground whitespace-nowrap">
                                 Or type ID:
                               </Label>
                               <Input
@@ -415,7 +415,7 @@ export default async function OrderDetailPage({
                           </Badge>
                           <Link
                             href={`/admin/assets/${item.asset_id}`}
-                            className="text-xs text-blue-600 hover:underline"
+                            className="text-xs text-primary hover:underline"
                           >
                             Open in admin
                           </Link>
@@ -423,7 +423,7 @@ export default async function OrderDetailPage({
                             href={`/bed/${item.asset_id}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-xs text-blue-600 hover:underline"
+                            className="text-xs text-primary hover:underline"
                           >
                             Public page
                           </a>
@@ -446,12 +446,12 @@ export default async function OrderDetailPage({
               <Separator className="my-4" />
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Subtotal</span>
+                  <span className="text-muted-foreground">Subtotal</span>
                   <span>${formatAmountFromStripe(order.subtotal_cents)}</span>
                 </div>
                 {order.shipping_cents > 0 && (
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-500">Shipping</span>
+                    <span className="text-muted-foreground">Shipping</span>
                     <span>${formatAmountFromStripe(order.shipping_cents)}</span>
                   </div>
                 )}
@@ -507,11 +507,11 @@ export default async function OrderDetailPage({
             </CardHeader>
             <CardContent className="space-y-2">
               <div>
-                <Label className="text-gray-500">Email</Label>
+                <Label className="text-muted-foreground">Email</Label>
                 <p>
                   <a
                     href={`mailto:${order.customer_email}`}
-                    className="text-blue-600 hover:underline"
+                    className="text-primary hover:underline"
                   >
                     {order.customer_email}
                   </a>
@@ -519,13 +519,13 @@ export default async function OrderDetailPage({
               </div>
               {order.customer_phone && (
                 <div>
-                  <Label className="text-gray-500">Phone</Label>
+                  <Label className="text-muted-foreground">Phone</Label>
                   <p>{order.customer_phone}</p>
                 </div>
               )}
               {order.customer_notes && (
                 <div>
-                  <Label className="text-gray-500">Customer Notes</Label>
+                  <Label className="text-muted-foreground">Customer Notes</Label>
                   <p className="text-sm">{order.customer_notes}</p>
                 </div>
               )}
@@ -539,19 +539,19 @@ export default async function OrderDetailPage({
             </CardHeader>
             <CardContent className="space-y-2">
               <div className="flex justify-between">
-                <span className="text-gray-500">Status</span>
+                <span className="text-muted-foreground">Status</span>
                 <PaymentBadge status={order.payment_status} />
               </div>
               {order.paid_at && (
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Paid</span>
+                  <span className="text-muted-foreground">Paid</span>
                   <span>
                     {new Date(order.paid_at).toLocaleDateString('en-AU')}
                   </span>
                 </div>
               )}
               {order.stripe_checkout_session_id && (
-                <div className="text-xs text-gray-400 mt-2 break-all">
+                <div className="text-xs text-muted-foreground mt-2 break-all">
                   Session: {order.stripe_checkout_session_id}
                 </div>
               )}
@@ -594,14 +594,14 @@ export default async function OrderDetailPage({
                 </div>
 
                 {order.shipped_at && (
-                  <div className="text-sm text-gray-500">
+                  <div className="text-sm text-muted-foreground">
                     Shipped:{' '}
                     {new Date(order.shipped_at).toLocaleDateString('en-AU')}
                   </div>
                 )}
 
                 {order.delivered_at && (
-                  <div className="text-sm text-gray-500">
+                  <div className="text-sm text-muted-foreground">
                     Delivered:{' '}
                     {new Date(order.delivered_at).toLocaleDateString('en-AU')}
                   </div>
@@ -672,7 +672,7 @@ export default async function OrderDetailPage({
               )}
               <a
                 href={`mailto:${order.customer_email}`}
-                className="block text-center text-sm text-blue-600 hover:underline py-2"
+                className="block text-center text-sm text-primary hover:underline py-2"
               >
                 Email Customer
               </a>
@@ -686,13 +686,13 @@ export default async function OrderDetailPage({
 
 function StatusBadge({ status }: { status: string }) {
   const variants: Record<string, string> = {
-    pending: 'bg-gray-100 text-gray-800',
-    paid: 'bg-blue-100 text-blue-800',
+    pending: 'bg-muted text-foreground',
+    paid: 'bg-primary/10 text-primary',
     processing: 'bg-yellow-100 text-yellow-800',
     shipped: 'bg-purple-100 text-purple-800',
     delivered: 'bg-green-100 text-green-800',
     cancelled: 'bg-red-100 text-red-800',
-    refunded: 'bg-gray-100 text-gray-800',
+    refunded: 'bg-muted text-foreground',
   };
 
   return (
@@ -706,7 +706,7 @@ function PaymentBadge({ status }: { status: string }) {
   const variants: Record<string, string> = {
     unpaid: 'bg-red-100 text-red-800',
     paid: 'bg-green-100 text-green-800',
-    refunded: 'bg-gray-100 text-gray-800',
+    refunded: 'bg-muted text-foreground',
     partial_refund: 'bg-yellow-100 text-yellow-800',
   };
 

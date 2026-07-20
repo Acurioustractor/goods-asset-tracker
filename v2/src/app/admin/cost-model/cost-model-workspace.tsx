@@ -54,15 +54,15 @@ export function CostModelWorkspace({ defaultSkin = 'mc' }: { defaultSkin?: SkinK
       {/* Compact skin toggle bar (single row, ~44px) */}
       <div className="flex shrink-0 items-center justify-between gap-4">
         <div className="min-w-0">
-          <h1 className="truncate text-base font-bold leading-tight tracking-tight text-zinc-900">
+          <h1 className="truncate text-base font-bold font-display leading-tight tracking-tight text-foreground">
             Bed Cost Model
-            <span className="ml-2 hidden text-[11px] font-normal text-gray-400 sm:inline">
+            <span className="ml-2 hidden text-[11px] font-normal text-muted-foreground sm:inline">
               one verified engine · three aesthetics · marginal-cost-first · QBE-ready · share via{' '}
-              <code className="rounded bg-gray-100 px-1 text-[10px]">?skin=</code>
+              <code className="rounded bg-muted px-1 text-[10px]">?skin=</code>
             </span>
           </h1>
         </div>
-        <div className="inline-flex shrink-0 rounded-lg border border-zinc-800 bg-[#0A0A0B] p-0.5">
+        <div className="inline-flex shrink-0 rounded-lg border border-border bg-muted p-0.5">
           {SKINS.map((s) => (
             <button
               key={s.key}
@@ -70,7 +70,7 @@ export function CostModelWorkspace({ defaultSkin = 'mc' }: { defaultSkin?: SkinK
               title={s.tagline}
               aria-pressed={skin === s.key}
               className={`rounded-md px-3 py-1.5 text-left transition-colors ${
-                skin === s.key ? 'bg-white text-zinc-900' : 'text-zinc-400 hover:bg-zinc-900 hover:text-zinc-100'
+                skin === s.key ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-background hover:text-foreground'
               }`}
             >
               <span className="block text-[12px] font-medium leading-none">{s.label}</span>

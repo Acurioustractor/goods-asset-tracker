@@ -49,15 +49,15 @@ const money = (n: number) => `$${n.toLocaleString()}`;
 
 const tierBadge: Record<string, string> = {
   external: 'bg-green-100 text-green-800',
-  website: 'bg-blue-100 text-blue-800',
+  website: 'bg-primary/10 text-primary',
   funder: 'bg-amber-100 text-amber-800',
   hold: 'bg-red-100 text-red-800',
-  pending: 'bg-gray-200 text-gray-700',
-  internal: 'bg-gray-100 text-gray-500',
+  pending: 'bg-muted text-foreground',
+  internal: 'bg-muted text-muted-foreground',
 };
 const statusBadge: Record<string, string> = {
   primary: 'bg-green-100 text-green-800',
-  approved: 'bg-blue-50 text-blue-700',
+  approved: 'bg-primary/10 text-primary',
   hold: 'bg-red-100 text-red-800',
 };
 
@@ -66,7 +66,7 @@ export function CockpitClient({ data }: { data: CockpitData }) {
   return (
     <div className="p-6">
       <header className="mb-4">
-        <h1 className="text-2xl font-bold">Pitch cockpit</h1>
+        <h1 className="font-display text-2xl font-bold">Pitch cockpit</h1>
         <p className="mt-1 text-sm text-muted-foreground">
           The whole pitch on one page: the deck slide by slide, every choosable cleared quote, the
           starred media, the ask and everyone around it, the drawings, and the numbers with their
@@ -124,7 +124,7 @@ function DeckPlanTab({ data }: { data: CockpitData }) {
               <div className="mt-2 flex flex-wrap items-center gap-2 text-xs">
                 <span className="rounded bg-muted px-2 py-0.5">{s.visual}</span>
                 {s.illustration && <span className="rounded bg-amber-50 px-2 py-0.5 text-amber-800">drawn: {s.illustration}</span>}
-                {s.voices.map((v) => <span key={v} className="rounded bg-green-50 px-2 py-0.5 text-green-800">{v}</span>)}
+                {s.voices.map((v) => <span key={v} className="rounded bg-accent/10 px-2 py-0.5 text-accent">{v}</span>)}
                 {s.visualNotes && <span className="text-muted-foreground">{s.visualNotes}</span>}
               </div>
             </div>
@@ -528,7 +528,7 @@ function NumbersTab({ data }: { data: CockpitData }) {
               <tr key={f.id} className="border-t align-top">
                 <td className="p-2 font-medium">{f.label}<div className="text-[10px] font-normal text-muted-foreground">{f.id}</div></td>
                 <td className="p-2 whitespace-nowrap font-semibold">{typeof f.value === 'number' ? f.value.toLocaleString() : f.value}{f.unit ? ` ${f.unit}` : ''}</td>
-                <td className="p-2"><span className={`rounded px-1.5 py-0.5 text-[11px] ${f.claimLabel === 'verified' ? 'bg-green-100 text-green-800' : f.claimLabel === 'modelled' ? 'bg-amber-100 text-amber-800' : 'bg-gray-100 text-gray-700'}`}>{f.claimLabel}</span></td>
+                <td className="p-2"><span className={`rounded px-1.5 py-0.5 text-[11px] ${f.claimLabel === 'verified' ? 'bg-green-100 text-green-800' : f.claimLabel === 'modelled' ? 'bg-amber-100 text-amber-800' : 'bg-muted text-foreground'}`}>{f.claimLabel}</span></td>
                 <td className="p-2 text-xs">{f.domain}</td>
                 <td className="p-2 text-xs whitespace-nowrap">{f.asAt}</td>
                 <td className="p-2 text-xs text-muted-foreground">{f.definition}</td>

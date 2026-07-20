@@ -30,15 +30,15 @@ function ViewToggle({ value, onChange }: { value: ViewMode; onChange: (v: ViewMo
     { key: 'table', label: 'Table' },
   ];
   return (
-    <div className="flex rounded-md border border-gray-200 overflow-hidden text-xs">
+    <div className="flex rounded-md border border-border overflow-hidden text-xs">
       {modes.map((m) => (
         <button
           key={m.key}
           onClick={() => onChange(m.key)}
           className={`px-2.5 py-1 transition-colors ${
             value === m.key
-              ? 'bg-gray-900 text-white'
-              : 'bg-white text-gray-500 hover:bg-gray-50'
+              ? 'bg-primary text-primary-foreground'
+              : 'bg-card text-muted-foreground hover:bg-muted'
           }`}
         >
           {m.label}
@@ -62,9 +62,9 @@ function GalleryFolder({
   return (
     <button
       onClick={onClick}
-      className="text-left group rounded-xl overflow-hidden border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all bg-white"
+      className="text-left group rounded-xl overflow-hidden border border-border hover:border-border hover:shadow-md transition-all bg-card"
     >
-      <div className="relative aspect-[4/3] bg-gray-100 overflow-hidden">
+      <div className="relative aspect-[4/3] bg-muted overflow-hidden">
         {coverUrl ? (
           <Image
             src={coverUrl}
@@ -76,12 +76,12 @@ function GalleryFolder({
         ) : (
           <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
             <div className="text-center">
-              <div className="w-12 h-12 mx-auto mb-2 rounded-lg bg-gray-200 flex items-center justify-center">
-                <svg className="w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="w-12 h-12 mx-auto mb-2 rounded-lg bg-muted flex items-center justify-center">
+                <svg className="w-6 h-6 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
                 </svg>
               </div>
-              <p className="text-xs text-gray-400">No photos yet</p>
+              <p className="text-xs text-muted-foreground">No photos yet</p>
             </div>
           </div>
         )}
@@ -92,11 +92,11 @@ function GalleryFolder({
         )}
       </div>
       <div className="p-3">
-        <p className="text-sm font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">
+        <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
           {gallery.title}
         </p>
         {gallery.description && (
-          <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">{gallery.description}</p>
+          <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">{gallery.description}</p>
         )}
       </div>
     </button>
@@ -116,23 +116,23 @@ function GalleryExpanded({
       <div className="flex items-center gap-3 mb-4">
         <button
           onClick={onClose}
-          className="text-sm text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1"
+          className="text-sm text-primary hover:text-primary/80 font-medium flex items-center gap-1"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
           All Galleries
         </button>
-        <span className="text-gray-300">|</span>
-        <h3 className="text-sm font-semibold text-gray-800">{gallery.title}</h3>
-        <span className="text-xs text-gray-400">{gallery.photos.length} photos</span>
+        <span className="text-muted-foreground/50">|</span>
+        <h3 className="text-sm font-semibold text-foreground">{gallery.title}</h3>
+        <span className="text-xs text-muted-foreground">{gallery.photos.length} photos</span>
       </div>
       {gallery.photos.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
           {gallery.photos.map((photo) => (
             <div
               key={photo.id}
-              className="relative aspect-square rounded-lg overflow-hidden bg-gray-100 group"
+              className="relative aspect-square rounded-lg overflow-hidden bg-muted group"
             >
               <Image
                 src={photo.thumbnailUrl || photo.url}
@@ -154,15 +154,15 @@ function GalleryExpanded({
           ))}
         </div>
       ) : (
-        <div className="rounded-lg border border-dashed border-gray-200 py-10 text-center">
-          <p className="text-sm text-gray-400">No photos in this gallery yet</p>
-          <p className="text-xs text-gray-400 mt-1">
+        <div className="rounded-lg border border-dashed border-border py-10 text-center">
+          <p className="text-sm text-muted-foreground">No photos in this gallery yet</p>
+          <p className="text-xs text-muted-foreground mt-1">
             Add photos via{' '}
             <a
               href={`${EL_ADMIN_URL}/admin/galleries`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-500 hover:underline"
+              className="text-primary hover:underline"
             >
               Empathy Ledger
             </a>
@@ -186,7 +186,7 @@ function VideoSection({
   if (stories.length === 0) {
     return (
       <Card className="border-dashed">
-        <CardContent className="py-8 text-center text-gray-400">
+        <CardContent className="py-8 text-center text-muted-foreground">
           <p className="text-sm">No video stories yet</p>
         </CardContent>
       </Card>
@@ -200,36 +200,36 @@ function VideoSection({
           <div />
           <ViewToggle value={view} onChange={setView} />
         </div>
-        <div className="overflow-x-auto rounded-lg border border-gray-200">
+        <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full text-sm">
-            <thead className="bg-gray-50 border-b border-gray-200">
+            <thead className="bg-muted border-b border-border">
               <tr>
-                <th className="text-left px-4 py-2 text-xs font-medium text-gray-500">Title</th>
-                <th className="text-left px-4 py-2 text-xs font-medium text-gray-500">Storyteller</th>
-                <th className="text-left px-4 py-2 text-xs font-medium text-gray-500">Actions</th>
+                <th className="text-left px-4 py-2 text-xs font-medium text-muted-foreground">Title</th>
+                <th className="text-left px-4 py-2 text-xs font-medium text-muted-foreground">Storyteller</th>
+                <th className="text-left px-4 py-2 text-xs font-medium text-muted-foreground">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {stories.map((v) => (
-                <tr key={v.id} className="hover:bg-gray-50">
+                <tr key={v.id} className="hover:bg-muted">
                   <td className="px-4 py-2.5">
                     <a
                       href={`${EL_ADMIN_URL}/admin/stories/${v.id}/edit`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-medium text-gray-900 hover:text-blue-700"
+                      className="font-medium text-foreground hover:text-primary"
                     >
                       {v.title}
                     </a>
                   </td>
-                  <td className="px-4 py-2.5 text-gray-500">{authors[v.id] || 'Goods on Country'}</td>
+                  <td className="px-4 py-2.5 text-muted-foreground">{authors[v.id] || 'Goods on Country'}</td>
                   <td className="px-4 py-2.5">
                     {v.videoLink && (
                       <a
                         href={v.videoLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs text-blue-600 hover:underline"
+                        className="text-xs text-primary hover:underline"
                       >
                         Watch
                       </a>
@@ -258,18 +258,18 @@ function VideoSection({
               href={`${EL_ADMIN_URL}/admin/stories/${v.id}/edit`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 p-3 rounded-lg border border-gray-100 hover:border-gray-200 hover:bg-gray-50 transition-colors group"
+              className="flex items-center gap-4 p-3 rounded-lg border border-border hover:border-border hover:bg-muted transition-colors group"
             >
-              <div className="w-12 h-12 bg-gray-900 rounded-md flex-shrink-0 flex items-center justify-center">
+              <div className="w-12 h-12 bg-foreground rounded-md flex-shrink-0 flex items-center justify-center">
                 <svg className="w-5 h-5 text-white/70" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 010 1.972l-11.54 6.347a1.125 1.125 0 01-1.667-.986V5.653z" />
                 </svg>
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold text-gray-900 group-hover:text-blue-700 truncate">
+                <p className="text-sm font-semibold text-foreground group-hover:text-primary truncate">
                   {v.title}
                 </p>
-                <p className="text-xs text-gray-500 mt-0.5">{authors[v.id] || 'Goods on Country'}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{authors[v.id] || 'Goods on Country'}</p>
               </div>
             </a>
           ))}
@@ -295,7 +295,7 @@ function VideoSection({
             className="block group"
           >
             <Card className="overflow-hidden hover:shadow-md transition-shadow">
-              <div className="aspect-video bg-gray-900">
+              <div className="aspect-video bg-foreground">
                 <iframe
                   src={v.videoLink!}
                   className="w-full h-full pointer-events-none"
@@ -304,12 +304,12 @@ function VideoSection({
                 />
               </div>
               <CardContent className="py-3">
-                <p className="text-sm font-semibold group-hover:text-blue-700 transition-colors">
+                <p className="text-sm font-semibold group-hover:text-primary transition-colors">
                   {v.title}
                 </p>
-                <p className="text-xs text-gray-500 mt-0.5">{authors[v.id] || 'Goods on Country'}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{authors[v.id] || 'Goods on Country'}</p>
                 {v.excerpt && (
-                  <p className="text-xs text-gray-400 mt-1 line-clamp-2">{v.excerpt}</p>
+                  <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{v.excerpt}</p>
                 )}
               </CardContent>
             </Card>
@@ -337,19 +337,19 @@ function StorytellerSection({
           <div />
           <ViewToggle value={view} onChange={setView} />
         </div>
-        <div className="overflow-x-auto rounded-lg border border-gray-200">
+        <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full text-sm">
-            <thead className="bg-gray-50 border-b border-gray-200">
+            <thead className="bg-muted border-b border-border">
               <tr>
-                <th className="text-left px-4 py-2 text-xs font-medium text-gray-500">Name</th>
-                <th className="text-left px-4 py-2 text-xs font-medium text-gray-500">Location</th>
-                <th className="text-left px-4 py-2 text-xs font-medium text-gray-500">Quotes</th>
-                <th className="text-left px-4 py-2 text-xs font-medium text-gray-500">Themes</th>
+                <th className="text-left px-4 py-2 text-xs font-medium text-muted-foreground">Name</th>
+                <th className="text-left px-4 py-2 text-xs font-medium text-muted-foreground">Location</th>
+                <th className="text-left px-4 py-2 text-xs font-medium text-muted-foreground">Quotes</th>
+                <th className="text-left px-4 py-2 text-xs font-medium text-muted-foreground">Themes</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {storytellers.map((st) => (
-                <tr key={st.id} className="hover:bg-gray-50">
+                <tr key={st.id} className="hover:bg-muted">
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-2">
                       {st.avatarUrl ? (
@@ -361,14 +361,14 @@ function StorytellerSection({
                           <span className="text-xs font-bold text-orange-600">{st.name.charAt(0)}</span>
                         </div>
                       )}
-                      <span className="font-medium text-gray-900">{st.name}</span>
+                      <span className="font-medium text-foreground">{st.name}</span>
                       {st.isElder && (
                         <Badge className="bg-amber-100 text-amber-800 text-[10px]">Elder</Badge>
                       )}
                     </div>
                   </td>
-                  <td className="px-4 py-2.5 text-gray-500">{st.location || '—'}</td>
-                  <td className="px-4 py-2.5 text-gray-500">{st.quotes.length}</td>
+                  <td className="px-4 py-2.5 text-muted-foreground">{st.location || '—'}</td>
+                  <td className="px-4 py-2.5 text-muted-foreground">{st.quotes.length}</td>
                   <td className="px-4 py-2.5">
                     <div className="flex flex-wrap gap-1">
                       {st.themes.slice(0, 3).map((t) => (
@@ -398,7 +398,7 @@ function StorytellerSection({
           {storytellers.map((st) => (
             <div
               key={st.id}
-              className="flex items-center gap-4 p-3 rounded-lg border border-gray-100 hover:border-gray-200 transition-colors"
+              className="flex items-center gap-4 p-3 rounded-lg border border-border hover:border-border transition-colors"
             >
               {st.avatarUrl ? (
                 <div className="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
@@ -414,12 +414,12 @@ function StorytellerSection({
                   <p className="font-semibold text-sm">{st.name}</p>
                   {st.isElder && <Badge className="bg-amber-100 text-amber-800 text-[10px]">Elder</Badge>}
                 </div>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-muted-foreground">
                   {st.location || 'Location unknown'}{st.quotes.length > 0 ? ` · ${st.quotes.length} quote${st.quotes.length !== 1 ? 's' : ''}` : ''}
                 </p>
               </div>
               {st.quotes.length > 0 && (
-                <p className="text-xs text-gray-500 italic max-w-xs truncate hidden lg:block">
+                <p className="text-xs text-muted-foreground italic max-w-xs truncate hidden lg:block">
                   &ldquo;{st.quotes[0].text}&rdquo;
                 </p>
               )}
@@ -453,7 +453,7 @@ function StorytellerSection({
                 )}
                 <div className="min-w-0">
                   <p className="font-semibold">{st.name}</p>
-                  {st.location && <p className="text-xs text-gray-500">{st.location}</p>}
+                  {st.location && <p className="text-xs text-muted-foreground">{st.location}</p>}
                   {st.isElder && (
                     <div className="flex items-center gap-2 mt-1">
                       <Badge className="bg-amber-100 text-amber-800 text-[10px]">Elder</Badge>
@@ -462,7 +462,7 @@ function StorytellerSection({
                 </div>
               </div>
               {st.quotes.length > 0 && (
-                <p className="text-sm text-gray-700 italic leading-relaxed mt-3 line-clamp-3">
+                <p className="text-sm text-foreground italic leading-relaxed mt-3 line-clamp-3">
                   &ldquo;{st.quotes[0].text}&rdquo;
                 </p>
               )}
@@ -501,14 +501,14 @@ export function StoriesDashboard({
     <div className="space-y-10">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Stories & Community Voices</h1>
-        <p className="text-gray-500 mt-1">
+        <h1 className="text-2xl font-bold tracking-tight font-display">Stories & Community Voices</h1>
+        <p className="text-muted-foreground mt-1">
           Content managed in{' '}
           <a
             href={`${EL_ADMIN_URL}/admin/projects/${EL_PROJECT_ID}/edit`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 hover:underline"
+            className="text-primary hover:underline"
           >
             Empathy Ledger
           </a>
@@ -526,7 +526,7 @@ export function StoriesDashboard({
         ].map(({ label, value }) => (
           <Card key={label}>
             <CardContent className="pt-4 text-center">
-              <p className="text-[10px] text-gray-500 uppercase tracking-wider font-medium">{label}</p>
+              <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">{label}</p>
               <p className="text-2xl font-bold">{value}</p>
             </CardContent>
           </Card>
@@ -537,7 +537,7 @@ export function StoriesDashboard({
       <section>
         <div className="mb-1">
           <h2 className="text-lg font-semibold">Video Stories</h2>
-          <p className="text-xs text-gray-500 mt-0.5">
+          <p className="text-xs text-muted-foreground mt-0.5">
             {videoStories.length} community video{videoStories.length !== 1 ? 's' : ''}
           </p>
         </div>
@@ -548,7 +548,7 @@ export function StoriesDashboard({
       <section>
         <div className="mb-4">
           <h2 className="text-lg font-semibold">Published Stories</h2>
-          <p className="text-xs text-gray-500 mt-0.5">
+          <p className="text-xs text-muted-foreground mt-0.5">
             {textStories.length} published stor{textStories.length !== 1 ? 'ies' : 'y'}
           </p>
         </div>
@@ -559,7 +559,7 @@ export function StoriesDashboard({
                 <CardContent className="pt-5">
                   {story.featuredImageUrl && (
                     <a href={`/stories/${story.id}`} className="block">
-                      <div className="relative aspect-video rounded-md overflow-hidden mb-3 bg-gray-100">
+                      <div className="relative aspect-video rounded-md overflow-hidden mb-3 bg-muted">
                         <Image
                           src={story.featuredImageUrl}
                           alt={story.title}
@@ -571,15 +571,15 @@ export function StoriesDashboard({
                     </a>
                   )}
                   <a href={`/stories/${story.id}`} className="group">
-                    <h4 className="text-sm font-semibold group-hover:text-blue-700 transition-colors">
+                    <h4 className="text-sm font-semibold group-hover:text-primary transition-colors">
                       {story.title}
                     </h4>
                   </a>
                   {story.excerpt && (
-                    <p className="text-xs text-gray-500 mt-1 line-clamp-2">{story.excerpt}</p>
+                    <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{story.excerpt}</p>
                   )}
                   <div className="flex items-center justify-between mt-3">
-                    <p className="text-xs text-gray-500">{resolvedAuthors[story.id] || 'Unknown'}</p>
+                    <p className="text-xs text-muted-foreground">{resolvedAuthors[story.id] || 'Unknown'}</p>
                     <div className="flex items-center gap-2">
                       {story.elderApproved && (
                         <Badge className="bg-amber-100 text-amber-800 text-[10px]">Elder approved</Badge>
@@ -588,7 +588,7 @@ export function StoriesDashboard({
                         href={`${EL_ADMIN_URL}/admin/stories/${story.id}/edit`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[10px] text-blue-500 hover:text-blue-700"
+                        className="text-[10px] text-primary/70 hover:text-primary"
                       >
                         Edit
                       </a>
@@ -600,7 +600,7 @@ export function StoriesDashboard({
           </div>
         ) : (
           <Card className="border-dashed">
-            <CardContent className="py-8 text-center text-gray-400">
+            <CardContent className="py-8 text-center text-muted-foreground">
               <p className="text-sm">No published stories yet</p>
             </CardContent>
           </Card>
@@ -611,7 +611,7 @@ export function StoriesDashboard({
       <section>
         <div className="mb-4">
           <h2 className="text-lg font-semibold">Photo Galleries</h2>
-          <p className="text-xs text-gray-500 mt-0.5">
+          <p className="text-xs text-muted-foreground mt-0.5">
             {galleries.length} galleries{totalPhotos > 0 ? ` — ${totalPhotos} photos` : ''}
           </p>
         </div>
@@ -634,14 +634,14 @@ export function StoriesDashboard({
             {uncategorizedPhotos.length > 0 && (
               <div>
                 <div className="mb-2">
-                  <h3 className="text-sm font-semibold text-gray-800">Uncategorized Photos</h3>
-                  <p className="text-xs text-gray-500">{uncategorizedPhotos.length} photos not in a gallery</p>
+                  <h3 className="text-sm font-semibold text-foreground">Uncategorized Photos</h3>
+                  <p className="text-xs text-muted-foreground">{uncategorizedPhotos.length} photos not in a gallery</p>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
                   {uncategorizedPhotos.map((photo) => (
                     <div
                       key={photo.id}
-                      className="relative aspect-square rounded-lg overflow-hidden bg-gray-100 group"
+                      className="relative aspect-square rounded-lg overflow-hidden bg-muted group"
                     >
                       <Image
                         src={photo.thumbnailUrl || photo.url}
@@ -660,7 +660,7 @@ export function StoriesDashboard({
 
         {galleries.length === 0 && uncategorizedPhotos.length === 0 && (
           <Card className="border-dashed">
-            <CardContent className="py-8 text-center text-gray-400">
+            <CardContent className="py-8 text-center text-muted-foreground">
               <p className="text-sm">No photos yet</p>
             </CardContent>
           </Card>
@@ -671,7 +671,7 @@ export function StoriesDashboard({
       <section>
         <div className="mb-1">
           <h2 className="text-lg font-semibold">Storytellers</h2>
-          <p className="text-xs text-gray-500 mt-0.5">
+          <p className="text-xs text-muted-foreground mt-0.5">
             {storytellers.length} community storytellers · {storytellers.filter((s) => s.quotes.length > 0).length} with published quotes
           </p>
         </div>

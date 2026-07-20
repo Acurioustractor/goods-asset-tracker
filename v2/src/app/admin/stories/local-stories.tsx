@@ -69,7 +69,7 @@ export function LocalStoriesManager() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-lg font-semibold">Local Stories</h2>
-          <p className="text-sm text-gray-500">{stories.length} stories in Supabase</p>
+          <p className="text-sm text-muted-foreground">{stories.length} stories in Supabase</p>
         </div>
         <Button onClick={() => setShowAddForm(!showAddForm)}>
           {showAddForm ? 'Cancel' : 'Add Story'}
@@ -97,7 +97,7 @@ export function LocalStoriesManager() {
               </div>
               <div>
                 <Label>Type</Label>
-                <select name="story_type" className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm">
+                <select name="story_type" className="w-full rounded-md border border-border px-3 py-2 text-sm">
                   {STORY_TYPES.map((t) => (
                     <option key={t} value={t}>{t.replace(/_/g, ' ')}</option>
                   ))}
@@ -113,7 +113,7 @@ export function LocalStoriesManager() {
               </div>
               <div>
                 <Label>Publish</Label>
-                <select name="is_published" className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm">
+                <select name="is_published" className="w-full rounded-md border border-border px-3 py-2 text-sm">
                   <option value="false">Draft</option>
                   <option value="true">Publish</option>
                 </select>
@@ -135,7 +135,7 @@ export function LocalStoriesManager() {
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b text-left text-gray-500">
+            <tr className="border-b text-left text-muted-foreground">
               <th className="pb-2 pr-4 font-medium">Title</th>
               <th className="pb-2 pr-4 font-medium">Type</th>
               <th className="pb-2 pr-4 font-medium">Community</th>
@@ -146,7 +146,7 @@ export function LocalStoriesManager() {
           <tbody>
             {stories.length === 0 ? (
               <tr>
-                <td colSpan={5} className="py-8 text-center text-gray-400">
+                <td colSpan={5} className="py-8 text-center text-muted-foreground">
                   No local stories yet
                 </td>
               </tr>
@@ -156,20 +156,20 @@ export function LocalStoriesManager() {
                   <td className="py-3 pr-4">
                     <div className="font-medium">{s.title}</div>
                     {s.subtitle && (
-                      <div className="text-xs text-gray-500">{s.subtitle}</div>
+                      <div className="text-xs text-muted-foreground">{s.subtitle}</div>
                     )}
                   </td>
-                  <td className="py-3 pr-4 text-gray-600">
+                  <td className="py-3 pr-4 text-muted-foreground">
                     {s.story_type.replace(/_/g, ' ')}
                   </td>
-                  <td className="py-3 pr-4 text-gray-600">{s.community || '—'}</td>
+                  <td className="py-3 pr-4 text-muted-foreground">{s.community || '—'}</td>
                   <td className="py-3 pr-4">
                     <div className="flex gap-1">
                       <Badge
                         className={
                           s.is_published
                             ? 'bg-green-100 text-green-800'
-                            : 'bg-gray-100 text-gray-800'
+                            : 'bg-muted text-foreground'
                         }
                       >
                         {s.is_published ? 'Published' : 'Draft'}
@@ -244,7 +244,7 @@ export function LocalStoriesManager() {
                 </div>
                 <div>
                   <Label>Type</Label>
-                  <select name="story_type" defaultValue={s.story_type} className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm">
+                  <select name="story_type" defaultValue={s.story_type} className="w-full rounded-md border border-border px-3 py-2 text-sm">
                     {STORY_TYPES.map((t) => (
                       <option key={t} value={t}>{t.replace(/_/g, ' ')}</option>
                     ))}

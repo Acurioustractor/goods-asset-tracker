@@ -274,7 +274,7 @@ export function CanonStudio({
         {/* overview dots */}
         <div className="flex flex-wrap gap-1">
           {slots.map((s, i) => {
-            const st = canon[s.key] ? 'bg-green-500' : (picks[s.key]?.length ?? 0) > 0 ? 'bg-blue-500' : s.seedSrc ? 'bg-amber-400' : 'bg-gray-300';
+            const st = canon[s.key] ? 'bg-green-500' : (picks[s.key]?.length ?? 0) > 0 ? 'bg-primary' : s.seedSrc ? 'bg-amber-400' : 'bg-muted-foreground/30';
             return (
               <button
                 key={s.key}
@@ -312,7 +312,7 @@ export function CanonStudio({
         <div className="flex shrink-0 items-center gap-3">
           <div className="text-right">
             <div className="text-[11px] font-medium uppercase text-muted-foreground">current</div>
-            <div className={'text-[11px] font-semibold ' + (currentState === 'canon' ? 'text-green-600' : currentState === 'el' ? 'text-blue-600' : currentState === 'seed' ? 'text-amber-600' : 'text-gray-400')}>
+            <div className={'text-[11px] font-semibold ' + (currentState === 'canon' ? 'text-green-600' : currentState === 'el' ? 'text-primary' : currentState === 'seed' ? 'text-amber-600' : 'text-muted-foreground')}>
               {currentState === 'canon' ? 'canon set' : currentState === 'el' ? 'EL pinned' : currentState === 'seed' ? 'seed (unconfirmed)' : 'empty'}
             </div>
             {local || elList.length > 0 ? (
@@ -393,7 +393,7 @@ export function CanonStudio({
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={c.source === 'el' ? elProxy(c.thumb) : c.thumb} alt={c.title} loading="lazy" className="h-full w-full object-cover transition group-hover:scale-[1.03]" />
               {c.kind === 'video' && <span className="absolute inset-0 flex items-center justify-center text-2xl text-white/90 drop-shadow">▶</span>}
-              <span className={'absolute left-1 top-1 rounded px-1.5 py-0.5 text-[8px] font-semibold ' + (c.source === 'el' ? 'bg-blue-600 text-white' : 'bg-gray-800 text-white')}>
+              <span className={'absolute left-1 top-1 rounded px-1.5 py-0.5 text-[8px] font-semibold ' + (c.source === 'el' ? 'bg-primary text-primary-foreground' : 'bg-foreground text-background')}>
                 {c.kind === 'portrait' ? 'RED' : c.source}
               </span>
               {isCurrent && <span className="absolute right-1 top-1 rounded bg-green-600 px-1.5 py-0.5 text-[8px] font-semibold text-white">current</span>}

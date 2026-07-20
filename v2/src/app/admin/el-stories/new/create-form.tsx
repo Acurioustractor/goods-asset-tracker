@@ -89,7 +89,7 @@ export function CreateStoryForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-6 rounded-lg border bg-white p-6">
+    <form onSubmit={onSubmit} className="space-y-6 rounded-lg border border-border bg-card p-6">
       <Section title="Story">
         <Field label="Title" required>
           <input
@@ -98,7 +98,7 @@ export function CreateStoryForm({
             onChange={(e) => setTitle(e.target.value)}
             required
             placeholder="Sentence case. Verbatim quotes OK. No em dashes."
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+            className="w-full rounded border border-border px-3 py-2 text-sm"
           />
         </Field>
         <Field label="Content" required sub="Markdown OK. Paragraphs separated by blank lines.">
@@ -107,7 +107,7 @@ export function CreateStoryForm({
             onChange={(e) => setContent(e.target.value)}
             required
             rows={10}
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm font-serif"
+            className="w-full rounded border border-border px-3 py-2 text-sm font-serif"
             placeholder="The body of the story…"
           />
         </Field>
@@ -116,7 +116,7 @@ export function CreateStoryForm({
             value={excerpt}
             onChange={(e) => setExcerpt(e.target.value)}
             rows={2}
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+            className="w-full rounded border border-border px-3 py-2 text-sm"
           />
         </Field>
         <Field label="Hero image URL (optional)" sub="Use EL story-images bucket or any public URL. EL Storage upload not yet built here.">
@@ -125,7 +125,7 @@ export function CreateStoryForm({
             value={storyImageUrl}
             onChange={(e) => setStoryImageUrl(e.target.value)}
             placeholder="https://..."
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+            className="w-full rounded border border-border px-3 py-2 text-sm"
           />
         </Field>
       </Section>
@@ -135,7 +135,7 @@ export function CreateStoryForm({
           <select
             value={storytellerId}
             onChange={(e) => onPickStoryteller(e.target.value)}
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+            className="w-full rounded border border-border px-3 py-2 text-sm"
           >
             <option value="">— Goods on Country team (fallback) —</option>
             {storytellers.map((t) => (
@@ -151,7 +151,7 @@ export function CreateStoryForm({
             <select
               value={community}
               onChange={(e) => setCommunity(e.target.value)}
-              className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+              className="w-full rounded border border-border px-3 py-2 text-sm"
             >
               <option value="">— No community tag —</option>
               {communities.map((c) => (
@@ -165,7 +165,7 @@ export function CreateStoryForm({
               value={trip}
               onChange={(e) => setTrip(e.target.value)}
               placeholder="trip-may-2026"
-              className="w-full rounded border border-gray-300 px-3 py-2 text-sm font-mono"
+              className="w-full rounded border border-border px-3 py-2 text-sm font-mono"
             />
           </Field>
         </div>
@@ -175,7 +175,7 @@ export function CreateStoryForm({
             value={participant}
             onChange={(e) => setParticipant(e.target.value)}
             placeholder="ray-nelson"
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm font-mono"
+            className="w-full rounded border border-border px-3 py-2 text-sm font-mono"
           />
         </Field>
         <Field label="Themes" sub="Click to toggle. Auto-prefixed with 'theme:'.">
@@ -185,7 +185,7 @@ export function CreateStoryForm({
                 type="button"
                 key={t}
                 onClick={() => toggleTheme(t)}
-                className={`rounded-full border px-2.5 py-1 text-xs transition ${themes.has(t) ? 'border-amber-500 bg-amber-100 text-amber-900' : 'border-gray-200 bg-white text-gray-600 hover:border-gray-400'}`}
+                className={`rounded-full border px-2.5 py-1 text-xs transition ${themes.has(t) ? 'border-amber-500 bg-amber-100 text-amber-900' : 'border-border bg-card text-muted-foreground hover:border-primary/40'}`}
               >
                 {themes.has(t) ? '✓ ' : ''}{t}
               </button>
@@ -194,7 +194,7 @@ export function CreateStoryForm({
         </Field>
         <label className="inline-flex items-center gap-2 text-sm">
           <input type="checkbox" checked={syndicate} onChange={(e) => setSyndicate(e.target.checked)} />
-          Tag <code className="rounded bg-gray-100 px-1">syndicate:goods-longform</code> (featured in /stories index)
+          Tag <code className="rounded bg-muted px-1">syndicate:goods-longform</code> (featured in /stories index)
         </label>
       </Section>
 
@@ -203,7 +203,7 @@ export function CreateStoryForm({
           <select
             value={permLevel}
             onChange={(e) => setPermLevel(e.target.value as 'public' | 'community' | 'private')}
-            className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+            className="w-full rounded border border-border px-3 py-2 text-sm"
           >
             <option value="community">Community (default — internal + partner orgs)</option>
             <option value="public">Public</option>
@@ -220,9 +220,9 @@ export function CreateStoryForm({
             />
             <span>
               <strong>I have captured explicit consent</strong> per{' '}
-              <code className="rounded bg-white px-1">CONSENT_PROCESS.md</code>. Without this,
-              the story stays as <code className="rounded bg-white px-1">draft</code> /{' '}
-              <code className="rounded bg-white px-1">requires_elder_review=true</code>.
+              <code className="rounded bg-muted px-1">CONSENT_PROCESS.md</code>. Without this,
+              the story stays as <code className="rounded bg-muted px-1">draft</code> /{' '}
+              <code className="rounded bg-muted px-1">requires_elder_review=true</code>.
             </span>
           </label>
           <label className="inline-flex items-start gap-2">
@@ -263,7 +263,7 @@ export function CreateStoryForm({
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <fieldset className="space-y-3">
-      <legend className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-500">{title}</legend>
+      <legend className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">{title}</legend>
       {children}
     </fieldset>
   );
@@ -272,11 +272,11 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 function Field({ label, sub, required, children }: { label: string; sub?: string; required?: boolean; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium text-gray-700">
+      <span className="mb-1 block text-xs font-medium text-foreground">
         {label}{required && <span className="ml-0.5 text-red-600">*</span>}
       </span>
       {children}
-      {sub && <p className="mt-1 text-[11px] text-gray-500">{sub}</p>}
+      {sub && <p className="mt-1 text-[11px] text-muted-foreground">{sub}</p>}
     </label>
   );
 }

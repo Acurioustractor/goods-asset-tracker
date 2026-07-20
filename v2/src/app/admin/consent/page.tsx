@@ -95,7 +95,7 @@ export default async function ConsentPage() {
   return (
     <div className="p-6">
       <header className="mb-6">
-        <h1 className="text-2xl font-bold">Consent worklist</h1>
+        <h1 className="font-display text-2xl font-bold">Consent worklist</h1>
         <p className="mt-1 text-sm text-muted-foreground max-w-2xl">
           One consent model, sourced from Empathy Ledger. Public media shows on the site with hard
           stops always enforced (sacred and storyteller-withdrawn never appear). The sweep is to
@@ -118,7 +118,7 @@ export default async function ConsentPage() {
       {/* The elder-review backlog */}
       <section className="mb-8 rounded-xl border border-border bg-card overflow-hidden">
         <div className="bg-amber-500 text-white px-5 py-3">
-          <h2 className="text-lg font-semibold">Elder-review backlog: Empathy Ledger ({elBacklog.length})</h2>
+          <h2 className="font-display text-lg font-semibold">Elder-review backlog: Empathy Ledger ({elBacklog.length})</h2>
         </div>
         <div className="p-5">
           <p className="text-sm text-muted-foreground mb-3 max-w-2xl">
@@ -136,7 +136,7 @@ export default async function ConsentPage() {
 
       {/* Named clearances */}
       <section className="mb-8">
-        <h2 className="text-lg font-semibold mb-3">Named clearances</h2>
+        <h2 className="font-display text-lg font-semibold mb-3">Named clearances</h2>
         <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-sm">
             <thead className="bg-muted/50 text-xs uppercase tracking-wider text-muted-foreground">

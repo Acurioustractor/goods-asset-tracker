@@ -8,9 +8,9 @@ export const dynamic = 'force-dynamic';
 
 const STATUS_TONE: Record<AreaStatus, string> = {
   pending: 'bg-amber-100 text-amber-900',
-  'in-progress': 'bg-sky-100 text-sky-900',
+  'in-progress': 'bg-primary/10 text-primary',
   draft: 'bg-emerald-100 text-emerald-900',
-  locked: 'bg-stone-800 text-stone-100',
+  locked: 'bg-primary text-primary-foreground',
 };
 
 export default function InvestorWikiDashboard() {
@@ -65,14 +65,14 @@ export default function InvestorWikiDashboard() {
               className="rounded-2xl border bg-card shadow-sm p-4 hover:shadow-md transition-shadow flex flex-col gap-2"
             >
               <div className="flex items-center justify-between">
-                <span className="font-display text-sm text-stone-400">{a.num}</span>
+                <span className="font-display text-sm text-muted-foreground">{a.num}</span>
                 <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold tracking-wide ${STATUS_TONE[a.status]}`}>
                   {STATUS_LABEL[a.status]}
                 </span>
               </div>
               <h3 className="font-display text-lg font-bold leading-tight">{a.title}</h3>
               <p className="text-xs text-muted-foreground leading-snug">{a.description}</p>
-              <p className="text-[11px] font-semibold text-stone-600 mt-auto">{a.metric}</p>
+              <p className="text-[11px] font-semibold text-muted-foreground mt-auto">{a.metric}</p>
             </Link>
           ))}
         </div>
@@ -86,7 +86,7 @@ export default function InvestorWikiDashboard() {
             Every transcript deep-analysed: 29 voices, 192 coded quotes, 56 cleared. Portraits, themes,
             consent flags and linked media, mapped to the five outcome domains.
           </p>
-          <p className="mt-2 text-[11px] uppercase tracking-wider font-semibold text-stone-500">Open the voices →</p>
+          <p className="mt-2 text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Open the voices →</p>
         </Link>
         <Link href="/admin/atlas" className="rounded-2xl border bg-card shadow-sm p-4 hover:shadow-md transition-shadow">
           <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Goods Atlas</h2>
@@ -94,7 +94,7 @@ export default function InvestorWikiDashboard() {
             The map of everything: communities sized by beds, washers, facility interest, live signals,
             people and media, one drill-down per place.
           </p>
-          <p className="mt-2 text-[11px] uppercase tracking-wider font-semibold text-stone-500">Open the map →</p>
+          <p className="mt-2 text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Open the map →</p>
         </Link>
         <div className="rounded-2xl border bg-emerald-50/70 border-emerald-200 p-4">
           <h2 className="text-xs font-semibold uppercase tracking-wider text-emerald-900 mb-2">Playout: 12 of 12 beats ready</h2>
@@ -122,26 +122,26 @@ export default function InvestorWikiDashboard() {
             ))}
           </ul>
         </div>
-        <Link href="/admin/consent" className="rounded-2xl border bg-stone-900 text-stone-100 p-4 hover:shadow-md transition-shadow">
+        <Link href="/admin/consent" className="rounded-2xl border bg-primary text-primary-foreground p-4 hover:shadow-md transition-shadow">
           <h2 className="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-2">Consent gate</h2>
-          <p className="text-sm leading-relaxed text-stone-300">
+          <p className="text-sm leading-relaxed text-primary-foreground/80">
             Held voices stay held. Default-deny. Open the consent worklist before anything ships.
           </p>
-          <p className="mt-2 text-[11px] uppercase tracking-wider font-semibold text-stone-400">Open worklist →</p>
+          <p className="mt-2 text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Open worklist →</p>
         </Link>
         <Link href="/admin/communities" className="rounded-2xl border bg-card shadow-sm p-4 hover:shadow-md transition-shadow">
           <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Communities</h2>
           <p className="text-sm leading-relaxed text-muted-foreground">
             Every community: beds by product, washers, outstanding deliveries, signals, people and facility interest.
           </p>
-          <p className="mt-2 text-[11px] uppercase tracking-wider font-semibold text-stone-500">Open register →</p>
+          <p className="mt-2 text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Open register →</p>
         </Link>
         <Link href="/admin/today" className="rounded-2xl border bg-card shadow-sm p-4 hover:shadow-md transition-shadow">
           <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Operations</h2>
           <p className="text-sm leading-relaxed text-muted-foreground">
             Beds in motion, live field signals, money watch and today&apos;s call — the ops day view.
           </p>
-          <p className="mt-2 text-[11px] uppercase tracking-wider font-semibold text-stone-500">Open Today →</p>
+          <p className="mt-2 text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Open Today →</p>
         </Link>
       </section>
 
@@ -162,7 +162,7 @@ export default function InvestorWikiDashboard() {
               <ul className="space-y-1">
                 {g.routes.map((r) => (
                   <li key={r.href} className="flex items-center justify-between gap-2 text-sm">
-                    <Link href={r.href} className="truncate hover:underline text-stone-700">
+                    <Link href={r.href} className="truncate hover:underline text-foreground">
                       {r.name}
                     </Link>
                     <span className={`shrink-0 rounded-full px-1.5 py-0.5 text-[9px] font-semibold tracking-wide ${ROUTE_TONE[r.status]}`}>
@@ -182,8 +182,8 @@ export default function InvestorWikiDashboard() {
 const ROUTE_TONE: Record<RouteStatus, string> = {
   hub: 'bg-orange-100 text-orange-900',
   active: 'bg-emerald-100 text-emerald-900',
-  absorbed: 'bg-sky-100 text-sky-900',
-  utility: 'bg-stone-200 text-stone-700',
-  stale: 'bg-stone-100 text-stone-400',
-  'one-off': 'bg-stone-100 text-stone-400',
+  absorbed: 'bg-primary/10 text-primary',
+  utility: 'bg-muted text-foreground',
+  stale: 'bg-muted text-muted-foreground',
+  'one-off': 'bg-muted text-muted-foreground',
 };

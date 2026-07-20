@@ -79,14 +79,14 @@ export default async function AssetEditPage({
   return (
     <div className="space-y-6 pb-16">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <Link href="/admin/assets" className="inline-flex items-center gap-1.5 text-sm text-gray-600 hover:text-gray-900">
+        <Link href="/admin/assets" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
           <ArrowLeft className="h-4 w-4" /> Back to Asset Register
         </Link>
         <div className="flex items-center gap-2 text-xs">
           <Link
             href={`/bed/${asset.unique_id}`}
             target="_blank"
-            className="inline-flex items-center gap-1 rounded border border-gray-200 bg-white px-2 py-1 text-gray-700 hover:bg-gray-50"
+            className="inline-flex items-center gap-1 rounded border border-border bg-card px-2 py-1 text-foreground hover:bg-muted"
           >
             <ExternalLink className="h-3 w-3" /> Public page
           </Link>
@@ -95,7 +95,7 @@ export default async function AssetEditPage({
               href={asset.qr_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded border border-gray-200 bg-white px-2 py-1 text-gray-700 hover:bg-gray-50"
+              className="rounded border border-border bg-card px-2 py-1 text-foreground hover:bg-muted"
             >
               QR url
             </a>
@@ -104,10 +104,10 @@ export default async function AssetEditPage({
       </div>
 
       <header>
-        <div className="font-mono text-xs uppercase tracking-wide text-gray-500">{asset.product}</div>
-        <h1 className="font-mono text-2xl font-bold tracking-tight">{asset.unique_id}</h1>
-        <p className="mt-1 text-sm text-gray-500">
-          {asset.name || <em className="text-gray-400">unnamed</em>}
+        <div className="font-mono text-xs uppercase tracking-wide text-muted-foreground">{asset.product}</div>
+        <h1 className="font-display font-mono text-2xl font-bold tracking-tight">{asset.unique_id}</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
+          {asset.name || <em className="text-muted-foreground">unnamed</em>}
           {asset.community && <> · {asset.community}</>}
           {asset.place && <> · {asset.place}</>}
         </p>
@@ -138,20 +138,20 @@ export default async function AssetEditPage({
         <Card>
           <CardContent className="space-y-3">
             <div>
-              <div className="text-xs font-medium uppercase tracking-wide text-gray-500">Telemetry</div>
+              <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Telemetry</div>
               {lastEvent ? (
                 <div className="mt-1">
-                  <div className="text-2xl font-bold text-gray-900">
+                  <div className="text-2xl font-bold text-foreground">
                     {daysSilent === 0 ? 'Today' : `${daysSilent}d ago`}
                   </div>
-                  <div className="text-xs text-gray-500">
+                  <div className="text-xs text-muted-foreground">
                     {new Date(lastEvent.created_at).toLocaleString('en-AU')}
                   </div>
                 </div>
               ) : (
                 <div className="mt-1">
-                  <div className="text-2xl font-bold text-gray-400">Never reported</div>
-                  <div className="text-xs text-gray-500">
+                  <div className="text-2xl font-bold text-muted-foreground">Never reported</div>
+                  <div className="text-xs text-muted-foreground">
                     {mapped.length === 0
                       ? 'No coreid mapped'
                       : `Mapped to ${mapped.join(', ')} — no events found`}
@@ -162,38 +162,38 @@ export default async function AssetEditPage({
 
             {mapped.length > 0 && (
               <div>
-                <div className="text-xs font-medium uppercase tracking-wide text-gray-500">Maps to</div>
-                <div className="font-mono text-xs text-gray-700 break-all">{mapped.join('\n')}</div>
+                <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Maps to</div>
+                <div className="font-mono text-xs text-foreground break-all">{mapped.join('\n')}</div>
               </div>
             )}
 
             <div>
-              <div className="text-xs font-medium uppercase tracking-wide text-gray-500">Events seen</div>
-              <div className="text-sm text-gray-900">{events.length.toLocaleString()}</div>
+              <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Events seen</div>
+              <div className="text-sm text-foreground">{events.length.toLocaleString()}</div>
             </div>
 
             <div>
-              <div className="text-xs font-medium uppercase tracking-wide text-gray-500">Supplied</div>
-              <div className="text-sm text-gray-900">
+              <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Supplied</div>
+              <div className="text-sm text-foreground">
                 {asset.supply_date ? new Date(asset.supply_date).toLocaleDateString('en-AU') : '--'}
               </div>
             </div>
 
             {asset.gps && (
               <div>
-                <div className="text-xs font-medium uppercase tracking-wide text-gray-500">GPS</div>
-                <div className="font-mono text-xs text-gray-700">{asset.gps}</div>
+                <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">GPS</div>
+                <div className="font-mono text-xs text-foreground">{asset.gps}</div>
               </div>
             )}
 
             {asset.qr_url && (
               <div>
-                <div className="text-xs font-medium uppercase tracking-wide text-gray-500">QR landing</div>
+                <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">QR landing</div>
                 <a
                   href={asset.qr_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="break-all text-xs text-blue-600 hover:underline"
+                  className="break-all text-xs text-primary hover:underline"
                 >
                   {asset.qr_url}
                 </a>
@@ -211,12 +211,12 @@ export default async function AssetEditPage({
         <Card>
           <CardContent>
             <div className="mb-3 flex items-baseline justify-between">
-              <h2 className="text-base font-semibold">Recent telemetry events</h2>
-              <span className="text-xs text-gray-500">showing latest {Math.min(events.length, 25)} of {events.length}</span>
+              <h2 className="font-display text-base font-semibold">Recent telemetry events</h2>
+              <span className="text-xs text-muted-foreground">showing latest {Math.min(events.length, 25)} of {events.length}</span>
             </div>
             <div className="overflow-x-auto">
               <table className="min-w-full text-sm">
-                <thead className="bg-gray-50 text-xs uppercase tracking-wide text-gray-500">
+                <thead className="bg-muted text-xs uppercase tracking-wide text-muted-foreground">
                   <tr>
                     <th className="px-3 py-2 text-left">When</th>
                     <th className="px-3 py-2 text-left">Event</th>
@@ -225,14 +225,14 @@ export default async function AssetEditPage({
                     <th className="px-3 py-2 text-left">RSSI</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
+                <tbody className="divide-y divide-border">
                   {events.slice(0, 25).map((e, i) => (
                     <tr key={`${e.machine_id}-${e.created_at}-${i}`}>
-                      <td className="px-3 py-2 text-xs text-gray-600">
+                      <td className="px-3 py-2 text-xs text-muted-foreground">
                         {new Date(e.created_at).toLocaleString('en-AU')}
                       </td>
                       <td className="px-3 py-2">{e.event_type || '--'}</td>
-                      <td className="px-3 py-2 text-xs text-gray-700">{e.site_name || '--'}</td>
+                      <td className="px-3 py-2 text-xs text-foreground">{e.site_name || '--'}</td>
                       <td className="px-3 py-2 text-xs">{e.online === false ? 'offline' : e.online === true ? 'online' : '--'}</td>
                       <td className="px-3 py-2 text-xs">{e.signal_rssi ?? '--'}</td>
                     </tr>
@@ -289,7 +289,7 @@ function ConvoPreview({ convos }: { convos: GHLConversationSummary[] }) {
               {labelFor(c.lastMessageType)}
             </span>
             {c.lastMessageDate && (
-              <span className="text-[10px] text-gray-500">
+              <span className="text-[10px] text-muted-foreground">
                 {new Date(c.lastMessageDate).toLocaleString('en-AU', {
                   day: 'numeric',
                   month: 'short',
@@ -304,7 +304,7 @@ function ConvoPreview({ convos }: { convos: GHLConversationSummary[] }) {
               </span>
             )}
           </div>
-          <p className="mt-0.5 line-clamp-2 text-gray-700">{c.lastMessageBody || <em className="text-gray-400">(no preview)</em>}</p>
+          <p className="mt-0.5 line-clamp-2 text-foreground">{c.lastMessageBody || <em className="text-muted-foreground">(no preview)</em>}</p>
         </div>
       ))}
     </div>
@@ -322,15 +322,15 @@ function OwnersBlock({
     return (
       <Card>
         <CardContent>
-          <h2 className="mb-1 text-base font-semibold">Owners &amp; contacts</h2>
-          <p className="text-sm text-gray-500">
+          <h2 className="font-display mb-1 text-base font-semibold">Owners &amp; contacts</h2>
+          <p className="text-sm text-muted-foreground">
             Nobody is connected to this bed yet. Connections appear here when someone buys it,
             claims it via QR scan, opens a support ticket, shares a story, or messages the
             support number tagged with this bed.
           </p>
-          <p className="mt-2 text-xs text-gray-400">
-            GHL inbox: <a href="https://app.gohighlevel.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">app.gohighlevel.com</a>
-            {' · '}Support line: <a href={`tel:${SUPPORT_PHONE}`} className="text-blue-600 hover:underline">{SUPPORT_PHONE}</a>
+          <p className="mt-2 text-xs text-muted-foreground">
+            GHL inbox: <a href="https://app.gohighlevel.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">app.gohighlevel.com</a>
+            {' · '}Support line: <a href={`tel:${SUPPORT_PHONE}`} className="text-primary hover:underline">{SUPPORT_PHONE}</a>
           </p>
         </CardContent>
       </Card>
@@ -340,18 +340,18 @@ function OwnersBlock({
     <Card>
       <CardContent>
         <div className="mb-3 flex items-baseline justify-between">
-          <h2 className="text-base font-semibold">Owners &amp; contacts</h2>
-          <span className="text-xs text-gray-500">{owners.length} {owners.length === 1 ? 'person' : 'people'}</span>
+          <h2 className="font-display text-base font-semibold">Owners &amp; contacts</h2>
+          <span className="text-xs text-muted-foreground">{owners.length} {owners.length === 1 ? 'person' : 'people'}</span>
         </div>
         <ul className="space-y-4">
           {owners.map((group) => (
-            <li key={group.identityKey} className="rounded-lg border border-gray-200 bg-white p-3">
+            <li key={group.identityKey} className="rounded-lg border border-border bg-card p-3">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <div>
-                  <div className="text-sm font-semibold text-gray-900">
+                  <div className="text-sm font-semibold text-foreground">
                     {group.primaryName || group.primaryPhone || group.primaryEmail || 'Unknown contact'}
                   </div>
-                  <div className="mt-0.5 flex flex-wrap items-center gap-2 text-xs text-gray-600">
+                  <div className="mt-0.5 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
                     {group.primaryPhone && (
                       <span className="inline-flex items-center gap-1">
                         <Phone className="h-3 w-3" /> {group.primaryPhone}
@@ -413,7 +413,7 @@ function OwnersBlock({
                   {group.primaryEmail && (
                     <a
                       href={`mailto:${group.primaryEmail}`}
-                      className="inline-flex items-center gap-1 rounded border border-blue-200 bg-blue-50 px-2 py-1 text-blue-700 hover:bg-blue-100"
+                      className="inline-flex items-center gap-1 rounded border border-accent/20 bg-accent/10 px-2 py-1 text-accent hover:bg-accent/20"
                     >
                       <Mail className="h-3 w-3" /> Email
                     </a>
@@ -427,15 +427,15 @@ function OwnersBlock({
               )}
 
               {/* Source links — every touch we know about for this person */}
-              <div className="mt-3 space-y-1 border-t border-gray-100 pt-2 text-xs text-gray-600">
+              <div className="mt-3 space-y-1 border-t border-border pt-2 text-xs text-muted-foreground">
                 {group.links.map((link, idx) => (
                   <div key={`${link.source}-${idx}`} className="flex flex-wrap items-baseline gap-2">
-                    <span className="inline-block w-20 font-medium uppercase tracking-wide text-gray-500">
+                    <span className="inline-block w-20 font-medium uppercase tracking-wide text-muted-foreground">
                       {link.source}
                     </span>
-                    <span className="text-gray-700">{link.detail || '—'}</span>
+                    <span className="text-foreground">{link.detail || '—'}</span>
                     {link.linkedAt && (
-                      <span className="text-gray-400">
+                      <span className="text-muted-foreground">
                         {new Date(link.linkedAt).toLocaleDateString('en-AU')}
                       </span>
                     )}

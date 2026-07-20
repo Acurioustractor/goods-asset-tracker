@@ -44,7 +44,7 @@ export default async function ScansAnalyticsPage() {
   if (scansRes.error) {
     return (
       <div className="space-y-4">
-        <h1 className="text-2xl font-bold">Scans</h1>
+        <h1 className="font-display text-2xl font-bold">Scans</h1>
         <Card className="border-amber-200 bg-amber-50">
           <CardContent className="space-y-2 p-6">
             <p className="font-semibold text-amber-900">
@@ -52,7 +52,7 @@ export default async function ScansAnalyticsPage() {
             </p>
             <p className="text-sm text-amber-800">
               Apply the migration at{' '}
-              <code className="rounded bg-white px-1.5 py-0.5">
+              <code className="rounded bg-card px-1.5 py-0.5">
                 v2/supabase/migrations/20260520000002_bed_scans.sql
               </code>{' '}
               and refresh.
@@ -170,8 +170,8 @@ export default async function ScansAnalyticsPage() {
       <header>
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">Scans</h1>
-            <p className="mt-1 text-sm text-gray-500">
+            <h1 className="font-display text-2xl font-bold tracking-tight">Scans</h1>
+            <p className="mt-1 text-sm text-muted-foreground">
               Every page view of <code className="text-xs">/bed/[id]</code> — i.e. every QR scan that
               successfully opened the URL. Bots and Goods-admin views are excluded from the headline
               counts but kept in the data for transparency.
@@ -194,7 +194,7 @@ export default async function ScansAnalyticsPage() {
       </section>
 
       <section className="grid gap-3 sm:grid-cols-3">
-        <ExclusionBadge label="Bots filtered" value={botCount} color="bg-gray-100 text-gray-700" />
+        <ExclusionBadge label="Bots filtered" value={botCount} color="bg-muted text-foreground" />
         <ExclusionBadge label="Admin views excluded" value={adminCount} color="bg-amber-100 text-amber-800" />
         <ExclusionBadge label="Unique beds scanned" value={perBed.size} color="bg-emerald-100 text-emerald-800" />
       </section>
@@ -203,7 +203,7 @@ export default async function ScansAnalyticsPage() {
           ghost-install pattern: someone scanned but never filled the form. */}
       {missedInstalls.length > 0 && (
         <section>
-          <h2 className="mb-3 flex items-center gap-2 text-base font-semibold">
+          <h2 className="font-display mb-3 flex items-center gap-2 text-base font-semibold">
             <span className="inline-flex h-2 w-2 rounded-full bg-red-500" />
             Missed installs — {missedInstalls.length} bed{missedInstalls.length === 1 ? '' : 's'} scanned but still &ldquo;ready&rdquo;
           </h2>
@@ -219,20 +219,20 @@ export default async function ScansAnalyticsPage() {
                     <Th className="pr-4 text-right">Action</Th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-red-100 bg-white">
+                <tbody className="divide-y divide-red-100 bg-card">
                   {missedInstalls.map((m) => (
                     <tr key={m.unique_id} className="hover:bg-red-50/40">
                       <Td className="font-mono text-xs">
-                        <Link href={`/bed/${m.unique_id}`} target="_blank" className="text-blue-700 hover:underline">
+                        <Link href={`/bed/${m.unique_id}`} target="_blank" className="text-primary hover:underline">
                           {m.unique_id}
                         </Link>
                       </Td>
-                      <Td className="whitespace-nowrap text-xs text-gray-600">
+                      <Td className="whitespace-nowrap text-xs text-muted-foreground">
                         {new Date(m.firstScan).toLocaleString('en-AU', { dateStyle: 'short', timeStyle: 'short' })}
                       </Td>
                       <Td className="text-xs">{m.scanCount}</Td>
                       <Td>
-                        {m.community || <span className="text-gray-400">unassigned</span>}
+                        {m.community || <span className="text-muted-foreground">unassigned</span>}
                       </Td>
                       <Td className="pr-4 text-right">
                         <Link
@@ -256,7 +256,7 @@ export default async function ScansAnalyticsPage() {
       )}
 
       <section>
-        <h2 className="mb-3 text-base font-semibold">Last 30 days</h2>
+        <h2 className="font-display mb-3 text-base font-semibold">Last 30 days</h2>
         <Card>
           <CardContent className="p-4">
             <ScansTimeChart data={chartData} />
@@ -265,13 +265,13 @@ export default async function ScansAnalyticsPage() {
       </section>
 
       <section>
-        <h2 className="mb-3 text-base font-semibold">Top 20 most-scanned beds</h2>
+        <h2 className="font-display mb-3 text-base font-semibold">Top 20 most-scanned beds</h2>
         {topIds.length === 0 ? (
-          <p className="text-sm text-gray-500">No real scans yet.</p>
+          <p className="text-sm text-muted-foreground">No real scans yet.</p>
         ) : (
           <div className="overflow-hidden rounded-lg border">
             <table className="min-w-full text-sm">
-              <thead className="bg-gray-50 text-xs uppercase tracking-wide text-gray-500">
+              <thead className="bg-muted text-xs uppercase tracking-wide text-muted-foreground">
                 <tr>
                   <Th>Rank</Th>
                   <Th>Bed</Th>
@@ -281,23 +281,23 @@ export default async function ScansAnalyticsPage() {
                   <Th className="text-right pr-4">Scans (30d)</Th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100 bg-white">
+              <tbody className="divide-y divide-border bg-card">
                 {topIds.map(([id, count], idx) => {
                   const a = assetMap.get(id);
                   return (
-                    <tr key={id} className="hover:bg-gray-50">
-                      <Td className="text-gray-400">{idx + 1}</Td>
+                    <tr key={id} className="hover:bg-muted">
+                      <Td className="text-muted-foreground">{idx + 1}</Td>
                       <Td className="font-mono text-xs">
-                        <Link href={`/bed/${id}`} target="_blank" className="text-blue-700 hover:underline">
+                        <Link href={`/bed/${id}`} target="_blank" className="text-primary hover:underline">
                           {id}
                         </Link>
                       </Td>
                       <Td>{a?.product || '--'}</Td>
                       <Td>
-                        {a?.community || <span className="text-gray-400">--</span>}
-                        {a?.place ? <span className="text-gray-400"> · {a.place}</span> : null}
+                        {a?.community || <span className="text-muted-foreground">--</span>}
+                        {a?.place ? <span className="text-muted-foreground"> · {a.place}</span> : null}
                       </Td>
-                      <Td>{a?.recipient_name || <span className="text-gray-400">--</span>}</Td>
+                      <Td>{a?.recipient_name || <span className="text-muted-foreground">--</span>}</Td>
                       <Td className="pr-4 text-right">
                         <Badge variant="secondary" className="font-bold">{count}</Badge>
                       </Td>
@@ -311,13 +311,13 @@ export default async function ScansAnalyticsPage() {
       </section>
 
       <section>
-        <h2 className="mb-3 text-base font-semibold">Recent scans</h2>
+        <h2 className="font-display mb-3 text-base font-semibold">Recent scans</h2>
         {recent.length === 0 ? (
-          <p className="text-sm text-gray-500">No real scans yet.</p>
+          <p className="text-sm text-muted-foreground">No real scans yet.</p>
         ) : (
           <div className="overflow-hidden rounded-lg border">
             <table className="min-w-full text-sm">
-              <thead className="bg-gray-50 text-xs uppercase tracking-wide text-gray-500">
+              <thead className="bg-muted text-xs uppercase tracking-wide text-muted-foreground">
                 <tr>
                   <Th>When</Th>
                   <Th>Bed</Th>
@@ -326,22 +326,22 @@ export default async function ScansAnalyticsPage() {
                   <Th>UA</Th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100 bg-white">
+              <tbody className="divide-y divide-border bg-card">
                 {recent.map((s) => {
                   const a = assetMap.get(s.unique_id);
                   return (
-                    <tr key={s.id} className="hover:bg-gray-50">
-                      <Td className="whitespace-nowrap text-xs text-gray-500">
+                    <tr key={s.id} className="hover:bg-muted">
+                      <Td className="whitespace-nowrap text-xs text-muted-foreground">
                         {new Date(s.scanned_at).toLocaleString('en-AU', { dateStyle: 'short', timeStyle: 'short' })}
                       </Td>
                       <Td className="font-mono text-xs">
-                        <Link href={`/bed/${s.unique_id}`} target="_blank" className="text-blue-700 hover:underline">
+                        <Link href={`/bed/${s.unique_id}`} target="_blank" className="text-primary hover:underline">
                           {s.unique_id}
                         </Link>
                       </Td>
-                      <Td>{a?.community || <span className="text-gray-400">--</span>}</Td>
-                      <Td>{a?.recipient_name || <span className="text-gray-400">--</span>}</Td>
-                      <Td className="max-w-[28ch] truncate text-xs text-gray-500" title={s.user_agent || ''}>
+                      <Td>{a?.community || <span className="text-muted-foreground">--</span>}</Td>
+                      <Td>{a?.recipient_name || <span className="text-muted-foreground">--</span>}</Td>
+                      <Td className="max-w-[28ch] truncate text-xs text-muted-foreground" title={s.user_agent || ''}>
                         {shortUa(s.user_agent)}
                       </Td>
                     </tr>
@@ -360,13 +360,13 @@ function Kpi({ label, value, sub, highlight }: { label: string; value: number; s
   return (
     <Card className={highlight ? 'border-emerald-200 bg-emerald-50/40' : ''}>
       <CardContent className="p-4">
-        <div className={`text-xs uppercase tracking-wide ${highlight ? 'text-emerald-700' : 'text-gray-500'}`}>
+        <div className={`text-xs uppercase tracking-wide ${highlight ? 'text-emerald-700' : 'text-muted-foreground'}`}>
           {label}
         </div>
-        <div className={`mt-1 text-2xl font-bold ${highlight ? 'text-emerald-900' : 'text-gray-900'}`}>
+        <div className={`mt-1 text-2xl font-bold ${highlight ? 'text-emerald-900' : 'text-foreground'}`}>
           {value.toLocaleString()}
         </div>
-        {sub && <div className="text-xs text-gray-500">{sub}</div>}
+        {sub && <div className="text-xs text-muted-foreground">{sub}</div>}
       </CardContent>
     </Card>
   );

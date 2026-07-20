@@ -23,7 +23,7 @@ export default function BlockLibraryPage() {
     <div className="max-w-5xl space-y-6 pb-16">
       <header>
         <p className="text-xs">
-          <Link href="/admin/field-notes" className="text-blue-700 hover:underline">← back to field notes</Link>
+          <Link href="/admin/field-notes" className="text-accent hover:underline">← back to field notes</Link>
         </p>
         <h1 className="mt-2 text-3xl font-light" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
           Block library
@@ -33,7 +33,7 @@ export default function BlockLibraryPage() {
           <code>blocks: []</code> in <code>src/lib/data/trip-stories.ts</code>.
           {' '}
           <span className="text-emerald-700">Atom</span> blocks pull universal copy from{' '}
-          <code>story-atoms.ts</code>. <span className="text-blue-700">Bespoke</span> blocks
+          <code>story-atoms.ts</code>. <span className="text-primary">Bespoke</span> blocks
           carry one trip&apos;s specific content. <span className="text-amber-700">Structural</span>{' '}
           blocks (like portal) are self-aware about the project.
         </p>

@@ -17,7 +17,7 @@ export const revalidate = 0;
 const STREAM_BADGE: Record<string, string> = {
   commercial: 'bg-sky-100 text-sky-800',
   philanthropy: 'bg-violet-100 text-violet-800',
-  demand: 'bg-gray-100 text-gray-600',
+  demand: 'bg-muted text-muted-foreground',
 };
 
 function fmtMoney(n: number): string {
@@ -102,8 +102,8 @@ export default async function LoiTrackerPage() {
   return (
     <div className="max-w-6xl space-y-8">
       <header>
-        <h1 className="text-2xl font-semibold text-gray-900">LOI Tracker</h1>
-        <p className="mt-2 max-w-3xl text-sm text-gray-600">
+        <h1 className="font-display text-2xl font-semibold text-foreground">LOI Tracker</h1>
+        <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
           Progress toward the QBE match, read <strong>live from GHL</strong> — the source of truth for
           relationships and pipeline stages. Pulls the three Goods pipelines (Demand Register → Buyer
           Pipeline → Supporter Journey) and maps their stages onto the LOI ladder. Sits beside{' '}
@@ -182,11 +182,11 @@ export default async function LoiTrackerPage() {
 
       {/* The LOI ladder */}
       {!ok ? (
-        <div className="rounded-lg border border-gray-200 bg-white p-6 text-sm text-gray-500">
+        <div className="rounded-lg border border-border bg-card p-6 text-sm text-muted-foreground">
           GHL is not connected in this environment (or returned no data), so the live ladder is empty.
-          Set <code className="rounded bg-gray-100 px-1">GHL_ENABLED</code>,{' '}
-          <code className="rounded bg-gray-100 px-1">GHL_API_KEY</code> and{' '}
-          <code className="rounded bg-gray-100 px-1">GHL_LOCATION_ID</code> to populate it. The ladder,
+          Set <code className="rounded bg-muted px-1">GHL_ENABLED</code>,{' '}
+          <code className="rounded bg-muted px-1">GHL_API_KEY</code> and{' '}
+          <code className="rounded bg-muted px-1">GHL_LOCATION_ID</code> to populate it. The ladder,
           mapping and match rules above still apply.
         </div>
       ) : (
@@ -194,38 +194,38 @@ export default async function LoiTrackerPage() {
           {LOI_RUNGS.map((rung) => {
             const opps = byRung[rung.key].slice().sort((a, b) => b.monetaryValue - a.monetaryValue);
             return (
-              <div key={rung.key} className="rounded-lg border border-gray-200 bg-white">
-                <div className="border-b border-gray-100 p-3">
+              <div key={rung.key} className="rounded-lg border border-border bg-card">
+                <div className="border-b border-border p-3">
                   <div className="flex items-baseline justify-between">
-                    <h2 className="text-sm font-semibold text-gray-900">{rung.label}</h2>
-                    <span className="text-xs font-medium text-gray-500">
+                    <h2 className="font-display text-sm font-semibold text-foreground">{rung.label}</h2>
+                    <span className="text-xs font-medium text-muted-foreground">
                       {opps.length} · {fmtMoney(rungTotal(rung.key))}
                     </span>
                   </div>
-                  <p className="mt-1 text-xs leading-snug text-gray-400">{rung.desc}</p>
+                  <p className="mt-1 text-xs leading-snug text-muted-foreground">{rung.desc}</p>
                 </div>
-                <ul className="divide-y divide-gray-50">
+                <ul className="divide-y divide-border">
                   {opps.length === 0 && (
-                    <li className="p-3 text-xs text-gray-400">No opportunities at this rung.</li>
+                    <li className="p-3 text-xs text-muted-foreground">No opportunities at this rung.</li>
                   )}
                   {opps.map((o) => {
                     const p = PIPELINE_BY_ID[o.pipelineId];
                     return (
                       <li key={o.id} className="p-3">
-                        <p className="text-sm font-medium text-gray-900">{o.name}</p>
+                        <p className="text-sm font-medium text-foreground">{o.name}</p>
                         <div className="mt-1 flex flex-wrap items-center gap-2">
                           {p && (
                             <span
                               className={`rounded px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide ${
-                                STREAM_BADGE[p.stream] ?? 'bg-gray-100 text-gray-600'
+                                STREAM_BADGE[p.stream] ?? 'bg-muted text-muted-foreground'
                               }`}
                             >
                               {p.stream}
                             </span>
                           )}
-                          <span className="text-xs text-gray-500">{fmtMoney(o.monetaryValue)}</span>
+                          <span className="text-xs text-muted-foreground">{fmtMoney(o.monetaryValue)}</span>
                           {o.contactName && (
-                            <span className="text-xs text-gray-400">· {o.contactName}</span>
+                            <span className="text-xs text-muted-foreground">· {o.contactName}</span>
                           )}
                         </div>
                       </li>
@@ -260,7 +260,7 @@ export default async function LoiTrackerPage() {
         </div>
       )}
 
-      <p className="text-xs text-gray-400">
+      <p className="text-xs text-muted-foreground">
         Pipelines read: {GOODS_PIPELINES.map((p) => p.name).join(' · ')}. Stage→rung mapping verified
         against GHL 2026-05-30. Lapsed / Declined / Dormant stages drop off the ladder.
       </p>

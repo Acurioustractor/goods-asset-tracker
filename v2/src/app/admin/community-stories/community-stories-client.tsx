@@ -26,23 +26,23 @@ function initials(name: string): string {
 }
 
 const STATUS_CLS: Record<string, string> = {
-  active: 'bg-emerald-100 text-emerald-800',
+  active: 'bg-emerald-100 text-emerald-700',
   testing: 'bg-amber-100 text-amber-800',
   exploring: 'bg-sky-100 text-sky-800',
-  prospect: 'bg-gray-100 text-gray-600',
-  administrative: 'bg-gray-100 text-gray-500',
+  prospect: 'bg-muted text-muted-foreground',
+  administrative: 'bg-muted text-muted-foreground',
 };
 
 function Thumb({ url, poster, kind }: { url: string; poster: string | null; kind: string }) {
   const [broken, setBroken] = useState(false);
   const src = kind === 'video' ? poster : url;
   if (!src || broken) {
-    return <div className="aspect-square rounded-lg bg-gray-100 flex items-center justify-center text-gray-400 text-xs">{kind === 'video' ? '▶ video' : 'no preview'}</div>;
+    return <div className="aspect-square rounded-lg bg-muted flex items-center justify-center text-muted-foreground text-xs">{kind === 'video' ? '▶ video' : 'no preview'}</div>;
   }
   return (
     <div className="relative">
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={proxied(src)} alt="" loading="lazy" referrerPolicy="no-referrer" onError={() => setBroken(true)} className="aspect-square w-full rounded-lg object-cover bg-gray-100" />
+      <img src={proxied(src)} alt="" loading="lazy" referrerPolicy="no-referrer" onError={() => setBroken(true)} className="aspect-square w-full rounded-lg object-cover bg-muted" />
       {kind === 'video' && <span className="absolute inset-0 flex items-center justify-center text-white text-lg drop-shadow">▶</span>}
     </div>
   );
@@ -52,7 +52,7 @@ function Face({ name, url }: { name: string; url: string | null }) {
   const [broken, setBroken] = useState(false);
   if (url && !broken) {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img src={proxied(url)} alt={name} title={name} referrerPolicy="no-referrer" onError={() => setBroken(true)} className="h-8 w-8 rounded-full object-cover bg-gray-100 ring-2 ring-white" />;
+    return <img src={proxied(url)} alt={name} title={name} referrerPolicy="no-referrer" onError={() => setBroken(true)} className="h-8 w-8 rounded-full object-cover bg-muted ring-2 ring-white" />;
   }
   return <span title={name} className="h-8 w-8 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center text-[10px] font-semibold ring-2 ring-white">{initials(name)}</span>;
 }
@@ -87,10 +87,10 @@ export default function CommunityStoriesClient({ communities }: { communities: C
   }, [open]);
 
   const StatusBadge = ({ s }: { s: string | null }) =>
-    s ? <span className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${STATUS_CLS[s] ?? 'bg-gray-100 text-gray-600'}`}>{s}</span> : null;
+    s ? <span className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${STATUS_CLS[s] ?? 'bg-muted text-muted-foreground'}`}>{s}</span> : null;
 
   const stats = (c: CommunityBundle) => (
-    <div className="flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-gray-500">
+    <div className="flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-muted-foreground">
       <span>{c.storytellers.length} storyteller{c.storytellers.length === 1 ? '' : 's'}</span>
       <span>{c.quotes.length} quote{c.quotes.length === 1 ? '' : 's'}</span>
       <span>{c.media.length} media</span>
@@ -100,11 +100,11 @@ export default function CommunityStoriesClient({ communities }: { communities: C
   return (
     <div>
       <div className="flex flex-wrap items-center gap-3 mb-5">
-        <div className="inline-flex rounded-lg border border-gray-300 overflow-hidden">
-          <button onClick={() => setView('grid')} className={`px-3 py-1.5 text-sm ${view === 'grid' ? 'bg-gray-900 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'}`}>Grid</button>
-          <button onClick={() => setView('list')} className={`px-3 py-1.5 text-sm border-l border-gray-300 ${view === 'list' ? 'bg-gray-900 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'}`}>List</button>
+        <div className="inline-flex rounded-lg border border-border overflow-hidden">
+          <button onClick={() => setView('grid')} className={`px-3 py-1.5 text-sm ${view === 'grid' ? 'bg-primary text-primary-foreground' : 'bg-card text-muted-foreground hover:bg-muted'}`}>Grid</button>
+          <button onClick={() => setView('list')} className={`px-3 py-1.5 text-sm border-l border-border ${view === 'list' ? 'bg-primary text-primary-foreground' : 'bg-card text-muted-foreground hover:bg-muted'}`}>List</button>
         </div>
-        <label className="flex items-center gap-2 text-sm text-gray-600">
+        <label className="flex items-center gap-2 text-sm text-muted-foreground">
           <input type="checkbox" checked={withStoriesOnly} onChange={(e) => setWithStoriesOnly(e.target.checked)} />
           With content only
         </label>
@@ -113,13 +113,13 @@ export default function CommunityStoriesClient({ communities }: { communities: C
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Search community, Country, state…"
-          className="flex-1 min-w-[14rem] rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+          className="flex-1 min-w-[14rem] rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
         />
-        <span className="text-sm text-gray-500 whitespace-nowrap">{filtered.length} shown</span>
+        <span className="text-sm text-muted-foreground whitespace-nowrap">{filtered.length} shown</span>
       </div>
 
       {filtered.length === 0 && (
-        <p className="rounded-lg border border-dashed border-gray-300 p-8 text-center text-sm text-gray-500">
+        <p className="rounded-lg border border-dashed border-border p-8 text-center text-sm text-muted-foreground">
           No communities match. Untick &ldquo;with content only&rdquo; to see every place, including coverage gaps.
         </p>
       )}
@@ -127,15 +127,15 @@ export default function CommunityStoriesClient({ communities }: { communities: C
       {view === 'grid' && filtered.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((c) => (
-            <button key={c.id} onClick={() => setOpenId(c.id)} className="group text-left rounded-2xl border border-gray-200 bg-white p-4 hover:border-orange-400 hover:shadow-sm transition">
+            <button key={c.id} onClick={() => setOpenId(c.id)} className="group text-left rounded-2xl border border-border bg-card p-4 hover:border-primary/50 hover:shadow-sm transition">
               <div className="flex items-start justify-between gap-2">
                 <div className="min-w-0">
-                  <div className="font-semibold text-gray-900">{c.name}</div>
-                  {c.traditional_name && <div className="text-xs text-gray-500 italic">{c.traditional_name}</div>}
+                  <div className="font-semibold text-foreground">{c.name}</div>
+                  {c.traditional_name && <div className="text-xs text-muted-foreground italic">{c.traditional_name}</div>}
                 </div>
                 <StatusBadge s={c.status} />
               </div>
-              <div className="mt-1 text-xs text-gray-400">{[c.state, c.region].filter(Boolean).join(' · ')}</div>
+              <div className="mt-1 text-xs text-muted-foreground">{[c.state, c.region].filter(Boolean).join(' · ')}</div>
               <div className="mt-3">{stats(c)}</div>
               {c.media.length > 0 && (
                 <div className="mt-3 grid grid-cols-4 gap-1.5">
@@ -153,9 +153,9 @@ export default function CommunityStoriesClient({ communities }: { communities: C
       )}
 
       {view === 'list' && filtered.length > 0 && (
-        <div className="overflow-x-auto rounded-xl border border-gray-200">
+        <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-sm">
-            <thead className="bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
+            <thead className="bg-muted text-xs uppercase tracking-wider text-muted-foreground">
               <tr>
                 <th className="px-4 py-2 text-left">Community</th>
                 <th className="px-4 py-2 text-left">State</th>
@@ -168,12 +168,12 @@ export default function CommunityStoriesClient({ communities }: { communities: C
             <tbody className="divide-y divide-gray-100">
               {filtered.map((c) => (
                 <tr key={c.id} onClick={() => setOpenId(c.id)} className="cursor-pointer hover:bg-orange-50/50">
-                  <td className="px-4 py-2.5"><span className="font-medium text-gray-900">{c.name}</span>{c.traditional_name && <span className="text-gray-400 italic"> · {c.traditional_name}</span>}</td>
-                  <td className="px-4 py-2.5 text-gray-600">{c.state ?? '—'}</td>
+                  <td className="px-4 py-2.5"><span className="font-medium text-foreground">{c.name}</span>{c.traditional_name && <span className="text-muted-foreground italic"> · {c.traditional_name}</span>}</td>
+                  <td className="px-4 py-2.5 text-muted-foreground">{c.state ?? '—'}</td>
                   <td className="px-4 py-2.5"><StatusBadge s={c.status} /></td>
-                  <td className="px-4 py-2.5 text-right tabular-nums text-gray-700">{c.storytellers.length}</td>
-                  <td className="px-4 py-2.5 text-right tabular-nums text-gray-700">{c.quotes.length}</td>
-                  <td className="px-4 py-2.5 text-right tabular-nums text-gray-700">{c.media.length}</td>
+                  <td className="px-4 py-2.5 text-right tabular-nums text-foreground">{c.storytellers.length}</td>
+                  <td className="px-4 py-2.5 text-right tabular-nums text-foreground">{c.quotes.length}</td>
+                  <td className="px-4 py-2.5 text-right tabular-nums text-foreground">{c.media.length}</td>
                 </tr>
               ))}
             </tbody>
@@ -183,14 +183,14 @@ export default function CommunityStoriesClient({ communities }: { communities: C
 
       {open && (
         <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/50 p-4 sm:p-8" onClick={() => setOpenId(null)}>
-          <div className="relative w-full max-w-3xl rounded-2xl bg-white shadow-xl" onClick={(e) => e.stopPropagation()}>
-            <button onClick={() => setOpenId(null)} className="absolute right-3 top-3 rounded-full bg-gray-100 hover:bg-gray-200 w-8 h-8 text-gray-600" aria-label="Close">✕</button>
+          <div className="relative w-full max-w-3xl rounded-2xl bg-card shadow-xl" onClick={(e) => e.stopPropagation()}>
+            <button onClick={() => setOpenId(null)} className="absolute right-3 top-3 rounded-full bg-muted hover:bg-muted/70 w-8 h-8 text-muted-foreground" aria-label="Close">✕</button>
             <div className="p-6">
               <div className="flex items-start gap-3">
                 <div className="min-w-0">
-                  <h2 className="text-xl font-bold text-gray-900">{open.name}</h2>
-                  {open.traditional_name && <div className="text-sm text-gray-500 italic">{open.traditional_name}</div>}
-                  <div className="mt-1.5 flex flex-wrap items-center gap-2 text-xs text-gray-500">
+                  <h2 className="text-xl font-bold text-foreground">{open.name}</h2>
+                  {open.traditional_name && <div className="text-sm text-muted-foreground italic">{open.traditional_name}</div>}
+                  <div className="mt-1.5 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
                     <StatusBadge s={open.status} />
                     {[open.state, open.region].filter(Boolean).join(' · ') && <span>{[open.state, open.region].filter(Boolean).join(' · ')}</span>}
                     {open.partner && <span>partner: {open.partner}</span>}
@@ -200,19 +200,19 @@ export default function CommunityStoriesClient({ communities }: { communities: C
               </div>
 
               {count(open) === 0 && (
-                <p className="mt-5 rounded-lg border border-dashed border-gray-300 p-6 text-center text-sm text-gray-500">
+                <p className="mt-5 rounded-lg border border-dashed border-border p-6 text-center text-sm text-muted-foreground">
                   No stories, quotes or media tagged to this community yet. A coverage gap.
                 </p>
               )}
 
               {open.storytellers.length > 0 && (
                 <div className="mt-5">
-                  <div className="text-[11px] uppercase tracking-wider text-gray-400 mb-2">Storytellers</div>
+                  <div className="text-[11px] uppercase tracking-wider text-muted-foreground mb-2">Storytellers</div>
                   <div className="flex flex-wrap gap-3">
                     {open.storytellers.map((s, i) => (
                       <div key={i} className="flex items-center gap-2">
                         <Face name={s.display_name} url={s.portrait_url} />
-                        <span className="text-sm text-gray-700">
+                        <span className="text-sm text-foreground">
                           {s.display_name}
                           {s.is_elder && <span className="ml-1 text-purple-700 text-xs">Elder</span>}
                           {s.source === 'el' && <span className="ml-1 rounded bg-violet-100 px-1 py-0.5 text-[9px] font-semibold text-violet-700" title="Matched from Empathy Ledger location">EL</span>}
@@ -225,12 +225,12 @@ export default function CommunityStoriesClient({ communities }: { communities: C
 
               {open.quotes.length > 0 && (
                 <div className="mt-5">
-                  <div className="text-[11px] uppercase tracking-wider text-gray-400 mb-2">Quotes</div>
+                  <div className="text-[11px] uppercase tracking-wider text-muted-foreground mb-2">Quotes</div>
                   <div className="space-y-3 max-h-64 overflow-y-auto pr-1">
                     {open.quotes.map((quote) => (
-                      <blockquote key={quote.id} className="text-sm text-gray-700">
+                      <blockquote key={quote.id} className="text-sm text-foreground">
                         <span className="italic">“{quote.text}”</span>
-                        <cite className="mt-0.5 block text-[11px] not-italic text-gray-400">{quote.storyteller ?? 'Unattributed'}{quote.context ? ` · ${quote.context}` : ''}</cite>
+                        <cite className="mt-0.5 block text-[11px] not-italic text-muted-foreground">{quote.storyteller ?? 'Unattributed'}{quote.context ? ` · ${quote.context}` : ''}</cite>
                       </blockquote>
                     ))}
                   </div>
@@ -239,7 +239,7 @@ export default function CommunityStoriesClient({ communities }: { communities: C
 
               {open.media.length > 0 && (
                 <div className="mt-5">
-                  <div className="text-[11px] uppercase tracking-wider text-gray-400 mb-2">Media ({open.media.length})</div>
+                  <div className="text-[11px] uppercase tracking-wider text-muted-foreground mb-2">Media ({open.media.length})</div>
                   <div className="grid grid-cols-4 sm:grid-cols-6 gap-1.5 max-h-72 overflow-y-auto">
                     {open.media.map((m) => <Thumb key={m.id} url={m.url} poster={m.poster_url} kind={m.media_type} />)}
                   </div>

@@ -73,10 +73,10 @@ type TypeFilter = 'all' | 'photo' | 'illustration' | 'chart' | 'logo';
 type Picks = Record<string, CanonElPick[]>;
 
 const TYPE_PILL: Record<CanonImage['type'], string> = {
-  photo: 'bg-blue-100 text-blue-700',
+  photo: 'bg-primary/10 text-primary',
   illustration: 'bg-purple-100 text-purple-700',
   chart: 'bg-teal-100 text-teal-700',
-  logo: 'bg-gray-200 text-gray-700',
+  logo: 'bg-muted text-muted-foreground',
 };
 
 function consentPill(im: CanonImage): { text: string; cls: string } {
@@ -93,7 +93,7 @@ function elBadge(p: ElPhoto): { text: string; cls: string } {
   if (p.isPublic) return { text: 'public', cls: 'bg-green-100 text-green-700' };
   if (p.consent && p.elderOk) return { text: 'gated-ok', cls: 'bg-amber-100 text-amber-700' };
   if (p.consent && !p.elderOk) return { text: 'elder pending', cls: 'bg-orange-100 text-orange-700' };
-  return { text: 'not flagged', cls: 'bg-gray-200 text-gray-600' };
+  return { text: 'not flagged', cls: 'bg-muted text-muted-foreground' };
 }
 
 function pickBadge(consent: string): { text: string; cls: string } {
@@ -105,7 +105,7 @@ function pickBadge(consent: string): { text: string; cls: string } {
     case 'el:consent-elder-pending':
       return { text: 'EL · elder pending', cls: 'bg-orange-100 text-orange-700' };
     default:
-      return { text: 'EL · not flagged', cls: 'bg-gray-200 text-gray-600' };
+      return { text: 'EL · not flagged', cls: 'bg-muted text-muted-foreground' };
   }
 }
 
@@ -444,7 +444,7 @@ export function CanonBoardClient({
                     return (
                       <div
                         key={`pick:${id}:${p.elId}`}
-                        className="relative aspect-square rounded-lg overflow-hidden bg-muted border border-blue-300"
+                        className="relative aspect-square rounded-lg overflow-hidden bg-muted border border-primary/40"
                         title={p.title}
                       >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -454,7 +454,7 @@ export function CanonBoardClient({
                           loading="lazy"
                           className="absolute inset-0 h-full w-full object-cover"
                         />
-                        <span className="absolute top-1.5 left-1.5 rounded-full bg-blue-600 px-2 py-0.5 text-[9px] font-semibold text-white">
+                        <span className="absolute top-1.5 left-1.5 rounded-full bg-primary px-2 py-0.5 text-[9px] font-semibold text-primary-foreground">
                           {p.kind === 'video' ? '▶ EL video' : p.kind === 'portrait' ? 'EL face' : 'EL pick'}
                         </span>
                         <span
@@ -782,7 +782,7 @@ function ElPickerModal({
                 title="Click to preview, then assign"
                 className={
                   'group relative overflow-hidden rounded-lg border text-left hover:border-foreground ' +
-                  (pinned ? 'border-blue-400 ring-2 ring-blue-100' : 'border-border')
+                  (pinned ? 'border-primary ring-2 ring-primary/20' : 'border-border')
                 }
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -799,7 +799,7 @@ function ElPickerModal({
                   {p.kind === 'portrait' ? 'RED · face' : b.text}
                 </span>
                 {pinned && (
-                  <span className="absolute right-1 top-1 rounded bg-blue-600 px-1.5 py-0.5 text-[9px] font-semibold text-white">
+                  <span className="absolute right-1 top-1 rounded bg-primary px-1.5 py-0.5 text-[9px] font-semibold text-primary-foreground">
                     pinned
                   </span>
                 )}

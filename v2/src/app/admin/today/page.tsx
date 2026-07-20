@@ -42,8 +42,8 @@ const SIGNAL_BADGE: Record<string, { label: string; emoji: string; tone: string 
   pulse: { label: 'Pulse', emoji: '🫀', tone: 'bg-emerald-100 text-emerald-900' },
   reminder: { label: 'Reminder', emoji: '⏰', tone: 'bg-amber-100 text-amber-900' },
   check_in: { label: 'Check-in', emoji: '⏰', tone: 'bg-amber-100 text-amber-900' },
-  demand_bump: { label: 'Demand', emoji: '📣', tone: 'bg-violet-100 text-violet-900' },
-  name_change: { label: 'Named', emoji: '✏️', tone: 'bg-stone-100 text-stone-900' },
+  demand_bump: { label: 'Demand', emoji: '📣', tone: 'bg-primary/10 text-primary' },
+  name_change: { label: 'Named', emoji: '✏️', tone: 'bg-muted text-foreground' },
   workshop_interest: { label: 'Workshop', emoji: '🪛', tone: 'bg-orange-100 text-orange-900' },
 };
 
@@ -276,7 +276,7 @@ export default async function OpsToday() {
     red: 'bg-red-50 border-red-200 text-red-900',
     amber: 'bg-amber-50 border-amber-200 text-amber-900',
     emerald: 'bg-emerald-50 border-emerald-200 text-emerald-900',
-    blue: 'bg-blue-50 border-blue-200 text-blue-900',
+    blue: 'bg-primary/10 border-primary/20 text-primary',
   };
 
   return (
@@ -307,7 +307,7 @@ export default async function OpsToday() {
               <div className="text-[10px] text-muted-foreground">allocated</div>
             </div>
             <div>
-              <div className="text-xl font-bold tabular-nums text-blue-700">{bedFlow.deployed}</div>
+              <div className="text-xl font-bold tabular-nums text-primary">{bedFlow.deployed}</div>
               <div className="text-[10px] text-muted-foreground">on Country</div>
             </div>
           </div>
@@ -435,7 +435,7 @@ export default async function OpsToday() {
           ) : (
             <ul className="divide-y">
               {signals.slice(0, 8).map((s) => {
-                const badge = SIGNAL_BADGE[s.signal_type] || { label: s.signal_type, emoji: '•', tone: 'bg-stone-100 text-stone-900' };
+                const badge = SIGNAL_BADGE[s.signal_type] || { label: s.signal_type, emoji: '•', tone: 'bg-muted text-foreground' };
                 return (
                   <li key={s.id} className="px-4 py-3 flex items-start gap-3 text-sm">
                     <span className="text-lg flex-shrink-0">{badge.emoji}</span>

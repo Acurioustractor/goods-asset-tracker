@@ -54,8 +54,8 @@ export default async function AdminOrdersPage({
     <div className="space-y-6">
       <div className="flex flex-wrap justify-between items-center gap-3">
         <div>
-          <h1 className="text-2xl font-bold">Orders</h1>
-          <p className="text-gray-500 mt-1">
+          <h1 className="font-display text-2xl font-bold">Orders</h1>
+          <p className="text-muted-foreground mt-1">
             {count} total order{count !== 1 ? 's' : ''}
           </p>
         </div>
@@ -95,7 +95,7 @@ export default async function AdminOrdersPage({
         </CardHeader>
         <CardContent>
           {!orders || orders.length === 0 ? (
-            <p className="text-gray-500 text-center py-8">No orders found</p>
+            <p className="text-muted-foreground text-center py-8">No orders found</p>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full">
@@ -116,7 +116,7 @@ export default async function AdminOrdersPage({
                       <td className="py-4">
                         <Link
                           href={`/admin/orders/${order.id}`}
-                          className="font-medium text-blue-600 hover:underline"
+                          className="font-medium text-primary hover:underline"
                         >
                           {order.order_number}
                         </Link>
@@ -137,14 +137,14 @@ export default async function AdminOrdersPage({
                           </span>
                         )}
                         {order.is_sponsorship && order.sponsored_community && (
-                          <span className="ml-1 align-middle text-xs text-gray-500">
+                          <span className="ml-1 align-middle text-xs text-muted-foreground">
                             → {order.sponsored_community}
                           </span>
                         )}
                       </td>
                       <td className="py-4">
                         <div>{order.customer_name || 'N/A'}</div>
-                        <div className="text-sm text-gray-500">
+                        <div className="text-sm text-muted-foreground">
                           {order.customer_email}
                         </div>
                       </td>
@@ -158,7 +158,7 @@ export default async function AdminOrdersPage({
                       <td className="py-4">
                         <StatusBadge status={order.status} />
                       </td>
-                      <td className="py-4 text-sm text-gray-500">
+                      <td className="py-4 text-sm text-muted-foreground">
                         {new Date(order.created_at).toLocaleDateString('en-AU', {
                           day: 'numeric',
                           month: 'short',
@@ -191,7 +191,7 @@ export default async function AdminOrdersPage({
                   </Button>
                 </Link>
               )}
-              <span className="px-4 py-2 text-sm text-gray-500">
+              <span className="px-4 py-2 text-sm text-muted-foreground">
                 Page {page} of {totalPages}
               </span>
               {page < totalPages && (
@@ -213,13 +213,13 @@ export default async function AdminOrdersPage({
 
 function StatusBadge({ status }: { status: string }) {
   const variants: Record<string, string> = {
-    pending: 'bg-gray-100 text-gray-800',
-    paid: 'bg-blue-100 text-blue-800',
+    pending: 'bg-muted text-foreground',
+    paid: 'bg-primary/10 text-primary',
     processing: 'bg-yellow-100 text-yellow-800',
     shipped: 'bg-purple-100 text-purple-800',
     delivered: 'bg-green-100 text-green-800',
     cancelled: 'bg-red-100 text-red-800',
-    refunded: 'bg-gray-100 text-gray-800',
+    refunded: 'bg-muted text-foreground',
   };
 
   return (

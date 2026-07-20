@@ -136,25 +136,25 @@ export default async function CommunityStoriesPage() {
   return (
     <div className="space-y-6 pb-16 p-6">
       <header>
-        <h1 className="text-2xl font-bold tracking-tight">Community stories</h1>
-        <p className="mt-1 text-sm text-gray-500 max-w-prose">
+        <h1 className="text-2xl font-bold tracking-tight font-display">Community stories</h1>
+        <p className="mt-1 text-sm text-muted-foreground max-w-prose">
           Every place we work, with the storytellers, quotes and media tagged to it. Communities with
           nothing tagged are coverage gaps. For beds, demand and revenue per community, see the ops view at{' '}
           <Link href="/admin/communities" className="text-orange-700 hover:underline">Communities</Link>.
         </p>
       </header>
 
-      <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-gray-500">
-        <span><span className="font-bold text-gray-900">{bundles.length}</span> communities</span>
-        <span><span className="font-bold text-gray-900">{withContent}</span> with content</span>
-        <span><span className="font-bold text-gray-900">{bundles.length - withContent}</span> coverage gaps</span>
+      <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-muted-foreground">
+        <span><span className="font-bold text-foreground">{bundles.length}</span> communities</span>
+        <span><span className="font-bold text-foreground">{withContent}</span> with content</span>
+        <span><span className="font-bold text-foreground">{bundles.length - withContent}</span> coverage gaps</span>
         {elLit > 0 && (
-          <span><span className="font-bold text-gray-900">{elLit}</span> matched from Empathy Ledger locations</span>
+          <span><span className="font-bold text-foreground">{elLit}</span> matched from Empathy Ledger locations</span>
         )}
       </div>
 
       {!ready ? (
-        <p className="rounded border border-dashed border-gray-300 bg-gray-50 p-6 text-center text-sm text-gray-600">
+        <p className="rounded border border-dashed border-border bg-muted p-6 text-center text-sm text-muted-foreground">
           Communities index not available. Check the tables / service key.
         </p>
       ) : (

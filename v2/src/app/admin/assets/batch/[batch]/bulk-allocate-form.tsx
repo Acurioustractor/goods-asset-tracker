@@ -115,7 +115,7 @@ export function BulkAllocateForm({
   return (
     <div className="space-y-4 rounded-lg border border-amber-300 bg-amber-50/40 p-5">
       <div>
-        <h2 className="text-base font-semibold text-amber-900">Allocate batch in one move</h2>
+        <h2 className="font-display text-base font-semibold text-amber-900">Allocate batch in one move</h2>
         <p className="text-xs text-amber-800/80">
           Updates community + status + appends audit note on every selected asset. Untick rows below to leave them alone.
         </p>
@@ -127,7 +127,7 @@ export function BulkAllocateForm({
           <select
             value={communityId}
             onChange={(e) => setCommunityId(e.target.value)}
-            className="w-full rounded-md border border-amber-300 bg-white px-3 py-2.5 text-base md:py-1.5 md:text-sm"
+            className="w-full rounded-md border border-amber-300 bg-card px-3 py-2.5 text-base md:py-1.5 md:text-sm"
           >
             <option value="">— Pick a community —</option>
             {STATUS_GROUP_ORDER.filter((s) => grouped.has(s)).map((s) => (
@@ -145,7 +145,7 @@ export function BulkAllocateForm({
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="w-full rounded-md border border-amber-300 bg-white px-3 py-2.5 text-base md:py-1.5 md:text-sm"
+            className="w-full rounded-md border border-amber-300 bg-card px-3 py-2.5 text-base md:py-1.5 md:text-sm"
           >
             {STATUS_OPTIONS.map((o) => (
               <option key={o.value} value={o.value}>{o.label}</option>
@@ -159,7 +159,7 @@ export function BulkAllocateForm({
             value={note}
             onChange={(e) => setNote(e.target.value)}
             placeholder="leave blank for auto"
-            className="w-full rounded-md border border-amber-300 bg-white px-3 py-2.5 text-base md:py-1.5 md:text-sm"
+            className="w-full rounded-md border border-amber-300 bg-card px-3 py-2.5 text-base md:py-1.5 md:text-sm"
           />
         </label>
       </div>
@@ -181,10 +181,10 @@ export function BulkAllocateForm({
         )}
       </div>
 
-      <div className="overflow-x-auto rounded-md border bg-white">
+      <div className="overflow-x-auto rounded-md border bg-card">
         <table className="w-full text-sm">
-          <thead className="bg-gray-50">
-            <tr className="border-b text-left text-xs uppercase tracking-wider text-gray-500">
+          <thead className="bg-muted">
+            <tr className="border-b text-left text-xs uppercase tracking-wider text-muted-foreground">
               <th className="py-2 px-3 font-medium w-12"></th>
               <th className="py-2 px-3 font-medium">ID</th>
               <th className="py-2 px-3 font-medium">Status</th>
@@ -197,7 +197,7 @@ export function BulkAllocateForm({
               return (
                 <tr
                   key={a.unique_id}
-                  className={`border-b last:border-0 cursor-pointer ${isExcluded ? 'opacity-40' : 'hover:bg-gray-50'}`}
+                  className={`border-b last:border-0 cursor-pointer ${isExcluded ? 'opacity-40' : 'hover:bg-muted'}`}
                   onClick={() => toggleExclude(a.unique_id)}
                 >
                   <td className="py-2.5 px-3">
@@ -212,7 +212,7 @@ export function BulkAllocateForm({
                   </td>
                   <td className="py-2.5 px-3 font-mono text-xs sm:text-sm">{a.unique_id}</td>
                   <td className="py-2.5 px-3 text-xs">{a.status?.replace(/_/g, ' ') || '—'}</td>
-                  <td className="hidden sm:table-cell py-2.5 px-3 text-xs text-gray-600">{a.community || '—'}</td>
+                  <td className="hidden sm:table-cell py-2.5 px-3 text-xs text-muted-foreground">{a.community || '—'}</td>
                 </tr>
               );
             })}

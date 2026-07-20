@@ -146,8 +146,8 @@ export default async function EditStoryPage({ params }: Props) {
     <div className="space-y-6 pb-16">
       <header className="flex items-start justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Edit story</h1>
-          <p className="mt-1 text-sm text-gray-500 max-w-prose">
+          <h1 className="text-2xl font-bold tracking-tight font-display">Edit story</h1>
+          <p className="mt-1 text-sm text-muted-foreground max-w-prose">
             EL is canonical. Edit here <em>or</em> in Empathy Ledger&apos;s native editor —
             either way, Goods picks up the change on next page load (no cache).{' '}
             <Link href={`/stories/${id}`} target="_blank" className="underline">View live</Link>.
@@ -164,14 +164,14 @@ export default async function EditStoryPage({ params }: Props) {
           </a>
           <Link
             href="/admin/el-stories"
-            className="rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="rounded-md border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted"
           >
             ← Back to list
           </Link>
         </div>
       </header>
 
-      <form action={saveStory} className="space-y-6 rounded-lg border bg-white p-6">
+      <form action={saveStory} className="space-y-6 rounded-lg border border-border bg-card p-6">
         <input type="hidden" name="id" value={story.id} />
 
         <Field label="Title" name="title" defaultValue={story.title ?? ''} required />
@@ -220,32 +220,32 @@ export default async function EditStoryPage({ params }: Props) {
             Use sparingly, for trip stories.
           </p>
           <div className="mt-4 grid gap-4">
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-foreground">
               Layout
               <select
                 name="layout"
                 defaultValue={layoutValue}
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+                className="mt-1 block w-full rounded-md border border-border px-3 py-2"
               >
                 <option value="article">article</option>
                 <option value="rich">rich</option>
               </select>
             </label>
 
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-foreground">
               Blocks (JSON array)
               <textarea
                 name="blocks_json"
                 defaultValue={blocksValue}
                 rows={26}
                 spellCheck={false}
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 font-mono text-xs"
+                className="mt-1 block w-full rounded-md border border-border px-3 py-2 font-mono text-xs"
                 placeholder='[
   { "kind": "read", "paragraphs": ["..."] },
   { "kind": "pullquote", "quote": "...", "attribution": "..." }
 ]'
               />
-              <span className="mt-1 block text-xs text-gray-500">
+              <span className="mt-1 block text-xs text-muted-foreground">
                 Block kinds: <code>read</code>, <code>pullquote</code>, <code>figure</code>,{' '}
                 <code>hero-photo</code>, <code>manual-gallery</code>, <code>el-gallery</code>,{' '}
                 <code>el-video-gallery</code>, <code>before-after-split</code>, <code>close</code>.{' '}
@@ -262,14 +262,14 @@ export default async function EditStoryPage({ params }: Props) {
           <span>Public (visible at <code>/stories/{story.id}</code> without auth)</span>
         </label>
 
-        <div className="flex gap-3 pt-4 border-t border-gray-200">
+        <div className="flex gap-3 pt-4 border-t border-border">
           <button type="submit" className="rounded-md bg-amber-600 px-5 py-2 text-sm font-semibold text-white hover:bg-amber-700">
             Save
           </button>
           <Link
             href={`/stories/${id}`}
             target="_blank"
-            className="rounded-md border border-gray-300 px-5 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="rounded-md border border-border px-5 py-2 text-sm font-medium text-foreground hover:bg-muted"
           >
             Preview
           </Link>
@@ -297,7 +297,7 @@ function Field({
   sub?: React.ReactNode;
 }) {
   return (
-    <label className="block text-sm font-medium text-gray-700">
+    <label className="block text-sm font-medium text-foreground">
       {label}{required && <span className="text-red-500"> *</span>}
       {multiline ? (
         <textarea
@@ -305,17 +305,17 @@ function Field({
           defaultValue={defaultValue}
           required={required}
           rows={rows ?? 3}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+          className="mt-1 block w-full rounded-md border border-border px-3 py-2"
         />
       ) : (
         <input
           name={name}
           defaultValue={defaultValue}
           required={required}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+          className="mt-1 block w-full rounded-md border border-border px-3 py-2"
         />
       )}
-      {sub && <span className="mt-1 block text-xs text-gray-500 font-normal">{sub}</span>}
+      {sub && <span className="mt-1 block text-xs text-muted-foreground font-normal">{sub}</span>}
     </label>
   );
 }

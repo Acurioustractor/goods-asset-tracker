@@ -160,13 +160,13 @@ export default async function VideoBriefPage({ params }: PageProps) {
     <div className="space-y-6 pb-16">
       <header>
         <p className="text-xs">
-          <Link href={`/admin/funders`} className="text-blue-700 hover:underline">← back to funders</Link>
+          <Link href={`/admin/funders`} className="text-primary hover:underline">← back to funders</Link>
         </p>
-        <h1 className="mt-2 text-2xl font-bold tracking-tight">{funder.displayName} — video brief</h1>
-        <p className="mt-1 text-sm text-gray-500">
+        <h1 className="font-display mt-2 text-2xl font-bold tracking-tight">{funder.displayName} — video brief</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
           What videos this funder&apos;s reports need, and what&apos;s already in the Empathy Ledger. Filename
           convention for editor exports:{' '}
-          <code className="rounded bg-gray-100 px-1.5 py-0.5 text-xs">
+          <code className="rounded bg-muted px-1.5 py-0.5 text-xs">
             {'{use}_{community}_{subject}_{duration}s.mp4'}
           </code>
         </p>
@@ -190,12 +190,12 @@ export default async function VideoBriefPage({ params }: PageProps) {
             <CardContent className="space-y-3 p-5">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <div>
-                  <h2 className="text-base font-bold">
+                  <h2 className="font-display text-base font-bold">
                     {slot.label}
                     <code className="ml-2 text-xs font-mono text-amber-700">use:{slot.use}</code>
                   </h2>
-                  <p className="mt-1 text-xs text-gray-600">{slot.description}</p>
-                  <p className="mt-1 text-xs text-gray-500">
+                  <p className="mt-1 text-xs text-muted-foreground">{slot.description}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">
                     Target length: <strong>{slot.targetSeconds[0]}–{slot.targetSeconds[1]}s</strong> · Need <strong>{slot.minNeeded}+</strong>
                   </p>
                 </div>
@@ -213,7 +213,7 @@ export default async function VideoBriefPage({ params }: PageProps) {
               </div>
 
               {/* Filename hint */}
-              <div className="rounded border bg-gray-50 p-2 font-mono text-[11px] text-gray-700">
+              <div className="rounded border bg-muted p-2 font-mono text-[11px] text-foreground">
                 Suggested filename:&nbsp;
                 <span className="text-amber-700">
                   {slot.use}_{funder.community ? funder.community.toLowerCase().replace(/\s+/g, '-') : 'utopia'}_
@@ -237,20 +237,20 @@ export default async function VideoBriefPage({ params }: PageProps) {
               )}
 
               {inScopePublic.length === 0 && inScopePending.length === 0 && outOfScope.length === 0 && (
-                <p className="text-xs italic text-gray-500">No videos with this use tag exist yet. Shoot or edit, then upload.</p>
+                <p className="text-xs italic text-muted-foreground">No videos with this use tag exist yet. Shoot or edit, then upload.</p>
               )}
             </CardContent>
           </Card>
         ))}
       </div>
 
-      <div className="rounded-lg border bg-gray-50 p-4 text-xs text-gray-600">
-        <p className="mb-2 font-semibold text-gray-800">How to fill missing slots:</p>
+      <div className="rounded-lg border bg-muted p-4 text-xs text-muted-foreground">
+        <p className="mb-2 font-semibold text-foreground">How to fill missing slots:</p>
         <ol className="ml-4 list-decimal space-y-1">
           <li>Edit in Premiere → export H.264 1080p mp4 with the suggested filename.</li>
-          <li>Drop file(s) into any folder, then run: <code className="rounded bg-white px-1.5 py-0.5">node scripts/upload-videos.mjs &quot;/path/to/folder&quot;</code></li>
+          <li>Drop file(s) into any folder, then run: <code className="rounded bg-card px-1.5 py-0.5">node scripts/upload-videos.mjs &quot;/path/to/folder&quot;</code></li>
           <li>Tags auto-derive from filename. Default: pending elder review, not public.</li>
-          <li>Open <Link href="/admin/media-library" className="text-blue-700 hover:underline">/admin/media-library</Link>, set <code className="rounded bg-white px-1 text-[10px]">Type → Video</code>, then clear consent for the hero videos in <Link href="/admin/consent" className="text-blue-700 hover:underline">/admin/consent</Link>.</li>
+          <li>Open <Link href="/admin/media-library" className="text-primary hover:underline">/admin/media-library</Link>, set <code className="rounded bg-card px-1 text-[10px]">Type → Video</code>, then clear consent for the hero videos in <Link href="/admin/consent" className="text-primary hover:underline">/admin/consent</Link>.</li>
           <li>Refresh this page — the slot flips to filled. Refresh the deck preview to see the video in the report.</li>
         </ol>
       </div>
@@ -259,9 +259,9 @@ export default async function VideoBriefPage({ params }: PageProps) {
 }
 
 function ThumbCard({ v, band, inRangeOk }: { v: ElVideo; band: 'ok' | 'pending' | 'other'; inRangeOk: boolean }) {
-  const ring = band === 'ok' ? 'border-emerald-300' : band === 'pending' ? 'border-amber-300' : 'border-gray-200';
+  const ring = band === 'ok' ? 'border-emerald-300' : band === 'pending' ? 'border-amber-300' : 'border-border';
   return (
-    <div className={`relative overflow-hidden rounded-md border-2 ${ring} bg-white`}>
+    <div className={`relative overflow-hidden rounded-md border-2 ${ring} bg-card`}>
       {v.url && (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={v.url} alt={v.title} className="aspect-[16/9] w-full object-cover" loading="lazy" />
@@ -278,11 +278,11 @@ function ThumbCard({ v, band, inRangeOk }: { v: ElVideo; band: 'ok' | 'pending' 
             <span className="rounded bg-amber-100 px-1 text-amber-800" title="Outside target range">⚠ length</span>
           )}
         </div>
-        <div className="truncate text-gray-600" title={v.title}>{v.title}</div>
+        <div className="truncate text-muted-foreground" title={v.title}>{v.title}</div>
         <div className="flex flex-wrap gap-0.5">
           {band === 'ok' && <span className="rounded bg-emerald-50 px-1 text-emerald-700">✓ public</span>}
           {band === 'pending' && <span className="rounded bg-amber-50 px-1 text-amber-700">⚠ elder</span>}
-          {band === 'other' && <span className="rounded bg-gray-100 px-1 text-gray-600">other funder</span>}
+          {band === 'other' && <span className="rounded bg-muted px-1 text-muted-foreground">other funder</span>}
         </div>
       </div>
     </div>

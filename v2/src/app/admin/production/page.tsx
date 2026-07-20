@@ -219,10 +219,10 @@ const DIESEL_COLORS: Record<string, string> = {
 };
 
 const ENTRY_TYPE_BADGES: Record<string, string> = {
-  reflection: 'bg-blue-100 text-blue-800',
+  reflection: 'bg-primary/10 text-primary',
   issue: 'bg-red-100 text-red-800',
   cost_idea: 'bg-amber-100 text-amber-800',
-  general: 'bg-gray-100 text-gray-800',
+  general: 'bg-muted text-foreground',
 };
 
 export default async function AdminProductionPage() {
@@ -342,7 +342,7 @@ export default async function AdminProductionPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold">Production</h1>
+      <h1 className="font-display text-2xl font-bold">Production</h1>
 
       {/* KPIs */}
       <ProductionKPIGrid kpis={kpis} />
@@ -390,12 +390,12 @@ export default async function AdminProductionPage() {
           <CardContent className="pt-6">
             <h3 className="text-lg font-semibold mb-4">Recent Shifts</h3>
             {recentShifts.length === 0 ? (
-              <p className="text-gray-500 text-sm">No shifts logged yet.</p>
+              <p className="text-muted-foreground text-sm">No shifts logged yet.</p>
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="text-left text-gray-500 border-b">
+                    <tr className="text-left text-muted-foreground border-b">
                       <th className="pb-2 font-medium">Date</th>
                       <th className="pb-2 font-medium">Operator</th>
                       <th className="pb-2 font-medium text-right">Sheets</th>
@@ -433,7 +433,7 @@ export default async function AdminProductionPage() {
           <CardContent className="pt-6">
             <h3 className="text-lg font-semibold mb-4">Process Journal</h3>
             {journalEntries.length === 0 ? (
-              <p className="text-gray-500 text-sm">No journal entries yet.</p>
+              <p className="text-muted-foreground text-sm">No journal entries yet.</p>
             ) : (
               <div className="space-y-3">
                 {journalEntries.slice(0, 8).map((entry) => (
@@ -441,7 +441,7 @@ export default async function AdminProductionPage() {
                     <div className="flex justify-between items-start gap-2">
                       <div className="min-w-0">
                         <p className="font-medium text-sm truncate">{entry.title}</p>
-                        <p className="text-xs text-gray-400">
+                        <p className="text-xs text-muted-foreground">
                           {entry.operator} &middot;{' '}
                           {new Date(entry.entry_date + 'T00:00:00').toLocaleDateString('en-AU', {
                             day: 'numeric', month: 'short',
@@ -453,7 +453,7 @@ export default async function AdminProductionPage() {
                       </Badge>
                     </div>
                     {entry.content && (
-                      <p className="text-xs text-gray-500 mt-1 line-clamp-2">{entry.content}</p>
+                      <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{entry.content}</p>
                     )}
                   </div>
                 ))}

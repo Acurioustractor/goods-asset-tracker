@@ -34,8 +34,8 @@ const PROVENANCE_BADGE: Record<ProvenanceKind, string> = {
   'el-transcript': 'bg-emerald-50 text-emerald-700 border-emerald-200',
   'ben-provided-transcript': 'bg-green-50 text-green-700 border-green-200',
   'trip-notes': 'bg-sky-50 text-sky-700 border-sky-200',
-  'funder-pack': 'bg-gray-100 text-gray-600 border-gray-200',
-  narrated: 'bg-gray-50 text-gray-500 border-gray-200 italic',
+  'funder-pack': 'bg-muted text-muted-foreground border-border',
+  narrated: 'bg-muted text-muted-foreground border-border italic',
   'content-hardcoded': 'bg-amber-50 text-amber-800 border-amber-200',
   curated: 'bg-amber-50 text-amber-800 border-amber-200',
 };
@@ -53,15 +53,15 @@ const DISPLAY_FONT = { fontFamily: 'var(--font-display, Georgia, serif)' } as co
 const TIER_BADGE: Record<VoiceTier, { label: string; cls: string }> = {
   external: { label: 'external cleared', cls: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
   website: { label: 'website only', cls: 'bg-amber-50 text-amber-800 border-amber-200' },
-  funder: { label: 'funder only', cls: 'bg-indigo-50 text-indigo-700 border-indigo-200' },
+  funder: { label: 'funder only', cls: 'bg-accent/10 text-accent border-accent/20' },
   hold: { label: 'HOLD, never external', cls: 'bg-red-50 text-red-700 border-red-200' },
   pending: { label: 'pending confirmation', cls: 'bg-orange-50 text-orange-700 border-orange-200' },
-  internal: { label: 'internal', cls: 'bg-gray-100 text-gray-600 border-gray-200' },
+  internal: { label: 'internal', cls: 'bg-muted text-muted-foreground border-border' },
 };
 
 const QUOTE_STATUS_BADGE: Record<'primary' | 'approved' | 'hold', { label: string; cls: string }> = {
   primary: { label: 'primary', cls: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-  approved: { label: 'approved', cls: 'bg-gray-100 text-gray-600 border-gray-200' },
+  approved: { label: 'approved', cls: 'bg-muted text-muted-foreground border-border' },
   hold: { label: 'HOLD', cls: 'bg-red-100 text-red-700 border-red-200' },
 };
 

@@ -19,15 +19,15 @@ function proxied(url: string): string {
 
 const TYPE_CLS: Record<PersonType, string> = {
   funder: 'bg-emerald-100 text-emerald-800',
-  capital: 'bg-teal-100 text-teal-800',
-  government: 'bg-sky-100 text-sky-800',
-  buyer: 'bg-lime-100 text-lime-800',
-  partner: 'bg-orange-100 text-orange-800',
-  health: 'bg-rose-100 text-rose-800',
-  corporate: 'bg-indigo-100 text-indigo-800',
-  advisor: 'bg-amber-100 text-amber-800',
-  board: 'bg-purple-100 text-purple-800',
-  staff: 'bg-gray-200 text-gray-700',
+  capital: 'bg-primary/15 text-primary',
+  government: 'bg-muted text-muted-foreground',
+  buyer: 'bg-accent/20 text-accent-foreground',
+  partner: 'bg-primary/10 text-primary',
+  health: 'bg-accent/15 text-accent-foreground',
+  corporate: 'bg-muted text-muted-foreground',
+  advisor: 'bg-primary/10 text-primary',
+  board: 'bg-accent/20 text-accent-foreground',
+  staff: 'bg-muted text-muted-foreground',
 };
 
 function aud(n: number): string {
@@ -49,14 +49,14 @@ function Avatar({ p, size }: { p: Person; size: number }) {
         height={size}
         referrerPolicy="no-referrer"
         onError={() => setBroken(true)}
-        className={`${shape} object-cover bg-gray-100`}
+        className={`${shape} object-cover bg-muted`}
         style={{ width: size, height: size }}
       />
     );
   }
   return (
     <div
-      className={`${shape} ${p.isOrg ? 'bg-gray-100 text-gray-500' : 'bg-orange-100 text-orange-700'} flex items-center justify-center font-semibold`}
+      className={`${shape} ${p.isOrg ? 'bg-muted text-muted-foreground' : 'bg-primary/15 text-primary'} flex items-center justify-center font-semibold`}
       style={{ width: size, height: size, fontSize: size * 0.32 }}
     >
       {initials(p.name)}
@@ -70,9 +70,9 @@ function TypeBadge({ t }: { t: PersonType }) {
 
 const WARMTH: Record<string, { dot: string; label: string }> = {
   hot: { dot: 'bg-emerald-500', label: 'Hot' },
-  warm: { dot: 'bg-amber-500', label: 'Warm' },
-  steady: { dot: 'bg-sky-500', label: 'Steady' },
-  cool: { dot: 'bg-gray-400', label: 'Cool' },
+  warm: { dot: 'bg-primary', label: 'Warm' },
+  steady: { dot: 'bg-accent', label: 'Steady' },
+  cool: { dot: 'bg-muted-foreground/40', label: 'Cool' },
   cold: { dot: 'bg-rose-400', label: 'Cold' },
 };
 
@@ -80,7 +80,7 @@ function StagePill({ ghl }: { ghl: NonNullable<Person['ghl']> }) {
   const w = WARMTH[ghl.warmth] ?? WARMTH.cool;
   return (
     <span
-      className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-medium text-gray-700"
+      className="inline-flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-foreground"
       title={`Live GHL: ${ghl.stage} · ${w.label}`}
     >
       <span className={`h-1.5 w-1.5 rounded-full ${w.dot}`} />
@@ -117,27 +117,27 @@ function EditPanel({ person, onSaved }: { person: Person; onSaved: () => void })
   };
 
   return (
-    <div className="mt-4 rounded-xl border border-gray-200 bg-gray-50 p-4 space-y-3">
-      <div className="text-[11px] uppercase tracking-wider text-gray-400">Curated overrides</div>
+    <div className="mt-4 rounded-xl border border-border bg-muted p-4 space-y-3">
+      <div className="text-[11px] uppercase tracking-wider text-muted-foreground">Curated overrides</div>
       <label className="block">
-        <span className="text-xs text-gray-600">Photo URL</span>
+        <span className="text-xs text-muted-foreground">Photo URL</span>
         <input
           value={photo}
           onChange={(e) => setPhoto(e.target.value)}
           placeholder="https://… or /images/people/name.jpg"
-          className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+          className="mt-1 w-full rounded-lg border border-border px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
         />
       </label>
       <label className="block">
-        <span className="text-xs text-gray-600">Bio / description</span>
+        <span className="text-xs text-muted-foreground">Bio / description</span>
         <textarea
           value={bio}
           onChange={(e) => setBio(e.target.value)}
           rows={3}
-          className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+          className="mt-1 w-full rounded-lg border border-border px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
         />
       </label>
-      <label className="flex items-center gap-2 text-sm text-gray-700">
+      <label className="flex items-center gap-2 text-sm text-foreground">
         <input type="checkbox" checked={featured} onChange={(e) => setFeatured(e.target.checked)} />
         Featured (pin to top of its type)
       </label>
@@ -146,7 +146,7 @@ function EditPanel({ person, onSaved }: { person: Person; onSaved: () => void })
         <button
           onClick={save}
           disabled={saving}
-          className="rounded-lg bg-gray-900 px-4 py-1.5 text-sm font-medium text-white hover:bg-gray-700 disabled:opacity-50"
+          className="rounded-lg bg-primary px-4 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
         >
           {saving ? 'Saving…' : 'Save'}
         </button>
@@ -187,7 +187,7 @@ export default function PeopleClient({ people, counts }: { people: Person[]; cou
   }, [open]);
 
   const chip = (active: boolean) =>
-    `rounded-full px-3 py-1 text-xs font-medium transition ${active ? 'bg-gray-900 text-white' : 'bg-white text-gray-600 border border-gray-300 hover:bg-gray-50'}`;
+    `rounded-full px-3 py-1 text-xs font-medium transition ${active ? 'bg-primary text-primary-foreground' : 'bg-card text-muted-foreground border border-border hover:bg-muted'}`;
 
   return (
     <div>
@@ -205,22 +205,22 @@ export default function PeopleClient({ people, counts }: { people: Person[]; cou
 
       {/* controls */}
       <div className="flex flex-wrap items-center gap-3 mb-5">
-        <div className="inline-flex rounded-lg border border-gray-300 overflow-hidden">
-          <button onClick={() => setView('grid')} className={`px-3 py-1.5 text-sm ${view === 'grid' ? 'bg-gray-900 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'}`}>Grid</button>
-          <button onClick={() => setView('list')} className={`px-3 py-1.5 text-sm border-l border-gray-300 ${view === 'list' ? 'bg-gray-900 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'}`}>List</button>
+        <div className="inline-flex rounded-lg border border-border overflow-hidden">
+          <button onClick={() => setView('grid')} className={`px-3 py-1.5 text-sm ${view === 'grid' ? 'bg-primary text-primary-foreground' : 'bg-card text-muted-foreground hover:bg-muted'}`}>Grid</button>
+          <button onClick={() => setView('list')} className={`px-3 py-1.5 text-sm border-l border-border ${view === 'list' ? 'bg-primary text-primary-foreground' : 'bg-card text-muted-foreground hover:bg-muted'}`}>List</button>
         </div>
         <input
           type="search"
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Search name, org, role, location…"
-          className="flex-1 min-w-[14rem] rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+          className="flex-1 min-w-[14rem] rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
         />
-        <span className="text-sm text-gray-500 whitespace-nowrap">{filtered.length} shown</span>
+        <span className="text-sm text-muted-foreground whitespace-nowrap">{filtered.length} shown</span>
       </div>
 
       {filtered.length === 0 && (
-        <p className="rounded-lg border border-dashed border-gray-300 p-8 text-center text-sm text-gray-500">No one matches that filter.</p>
+        <p className="rounded-lg border border-dashed border-border p-8 text-center text-sm text-muted-foreground">No one matches that filter.</p>
       )}
 
       {/* GRID */}
@@ -230,20 +230,20 @@ export default function PeopleClient({ people, counts }: { people: Person[]; cou
             <button
               key={p.id}
               onClick={() => setOpenId(p.id)}
-              className="group text-left rounded-2xl border border-gray-200 bg-white p-4 hover:border-orange-400 hover:shadow-sm transition"
+              className="group text-left rounded-2xl border border-border bg-card p-4 hover:border-primary/50 hover:shadow-sm transition"
             >
               <div className="flex flex-col items-center text-center">
                 <Avatar p={p} size={72} />
-                <div className="mt-3 font-semibold text-gray-900 leading-tight">
-                  {p.featured && <span title="Featured" className="text-amber-500">★ </span>}{p.name}
+                <div className="mt-3 font-semibold text-foreground leading-tight">
+                  {p.featured && <span title="Featured" className="text-primary">★ </span>}{p.name}
                 </div>
-                {p.org && <div className="mt-0.5 text-xs text-gray-500 leading-tight">{p.org}</div>}
-                {p.role && <div className="mt-0.5 text-[11px] text-gray-400 leading-tight">{p.role}</div>}
+                {p.org && <div className="mt-0.5 text-xs text-muted-foreground leading-tight">{p.org}</div>}
+                {p.role && <div className="mt-0.5 text-[11px] text-muted-foreground leading-tight">{p.role}</div>}
                 <div className="mt-2"><TypeBadge t={p.type} /></div>
                 {p.ghl && <div className="mt-1.5"><StagePill ghl={p.ghl} /></div>}
                 {p.amount != null && (
                   <div className="mt-1.5 text-xs font-semibold text-emerald-700">
-                    {aud(p.amount)}{p.status ? <span className="font-normal text-gray-400"> · {p.status}</span> : null}
+                    {aud(p.amount)}{p.status ? <span className="font-normal text-muted-foreground"> · {p.status}</span> : null}
                   </div>
                 )}
               </div>
@@ -254,9 +254,9 @@ export default function PeopleClient({ people, counts }: { people: Person[]; cou
 
       {/* LIST */}
       {view === 'list' && filtered.length > 0 && (
-        <div className="overflow-x-auto rounded-xl border border-gray-200">
+        <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-sm">
-            <thead className="bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
+            <thead className="bg-muted text-xs uppercase tracking-wider text-muted-foreground">
               <tr>
                 <th className="px-4 py-2 text-left">Name</th>
                 <th className="px-4 py-2 text-left">Org</th>
@@ -266,19 +266,19 @@ export default function PeopleClient({ people, counts }: { people: Person[]; cou
                 <th className="px-4 py-2 text-right">Amount</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-border">
               {filtered.map((p) => (
-                <tr key={p.id} onClick={() => setOpenId(p.id)} className="cursor-pointer hover:bg-orange-50/50">
+                <tr key={p.id} onClick={() => setOpenId(p.id)} className="cursor-pointer hover:bg-primary/5">
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-3">
                       <Avatar p={p} size={32} />
-                      <span className="font-medium text-gray-900">{p.name}</span>
+                      <span className="font-medium text-foreground">{p.name}</span>
                     </div>
                   </td>
-                  <td className="px-4 py-2.5 text-gray-600">{p.org ?? '—'}</td>
+                  <td className="px-4 py-2.5 text-muted-foreground">{p.org ?? '—'}</td>
                   <td className="px-4 py-2.5"><TypeBadge t={p.type} /></td>
-                  <td className="px-4 py-2.5">{p.ghl ? <StagePill ghl={p.ghl} /> : <span className="text-gray-300">—</span>}</td>
-                  <td className="px-4 py-2.5 text-gray-500 text-xs">{p.role ?? '—'}</td>
+                  <td className="px-4 py-2.5">{p.ghl ? <StagePill ghl={p.ghl} /> : <span className="text-muted-foreground">—</span>}</td>
+                  <td className="px-4 py-2.5 text-muted-foreground text-xs">{p.role ?? '—'}</td>
                   <td className="px-4 py-2.5 text-right tabular-nums text-emerald-700 font-medium">{p.amount != null ? aud(p.amount) : ''}</td>
                 </tr>
               ))}
@@ -290,60 +290,60 @@ export default function PeopleClient({ people, counts }: { people: Person[]; cou
       {/* MODAL */}
       {open && (
         <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/50 p-4 sm:p-8" onClick={() => setOpenId(null)}>
-          <div className="relative w-full max-w-2xl rounded-2xl bg-white shadow-xl" onClick={(e) => e.stopPropagation()}>
+          <div className="relative w-full max-w-2xl rounded-2xl bg-card shadow-xl" onClick={(e) => e.stopPropagation()}>
             <div className="absolute right-3 top-3 flex items-center gap-2">
               <button
                 onClick={() => setEditing((v) => !v)}
-                className={`rounded-full px-3 h-8 text-xs font-medium ${editing ? 'bg-orange-100 text-orange-800' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}
+                className={`rounded-full px-3 h-8 text-xs font-medium ${editing ? 'bg-primary/15 text-primary' : 'bg-muted hover:bg-muted/70 text-muted-foreground'}`}
               >
                 {editing ? 'Editing' : 'Edit'}
               </button>
-              <button onClick={() => setOpenId(null)} className="rounded-full bg-gray-100 hover:bg-gray-200 w-8 h-8 text-gray-600" aria-label="Close">✕</button>
+              <button onClick={() => setOpenId(null)} className="rounded-full bg-muted hover:bg-muted/70 w-8 h-8 text-muted-foreground" aria-label="Close">✕</button>
             </div>
             <div className="p-6">
               <div className="flex items-start gap-4">
                 <Avatar p={open} size={72} />
                 <div className="min-w-0">
-                  <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                    {open.featured && <span title="Featured" className="text-amber-500">★</span>}
+                  <h2 className="text-xl font-bold font-display text-foreground flex items-center gap-2">
+                    {open.featured && <span title="Featured" className="text-primary">★</span>}
                     {open.name}
                   </h2>
-                  {open.org && <div className="text-sm text-gray-600 mt-0.5">{open.org}</div>}
-                  {open.role && <div className="text-sm text-gray-500">{open.role}</div>}
+                  {open.org && <div className="text-sm text-muted-foreground mt-0.5">{open.org}</div>}
+                  {open.role && <div className="text-sm text-muted-foreground">{open.role}</div>}
                   <div className="mt-2 flex flex-wrap items-center gap-2">
                     <TypeBadge t={open.type} />
                     {open.ghl && <StagePill ghl={open.ghl} />}
-                    {open.location && <span className="text-xs text-gray-500">📍 {open.location}</span>}
+                    {open.location && <span className="text-xs text-muted-foreground">📍 {open.location}</span>}
                     {open.amount != null && (
                       <span className="text-xs font-semibold text-emerald-700">{aud(open.amount)}{open.status ? ` · ${open.status}` : ''}</span>
                     )}
                   </div>
                   {open.ghl && (
-                    <div className="mt-1 text-[11px] text-gray-500">
-                      Live pipeline: <span className="font-medium text-gray-700">{open.ghl.stage}</span>
+                    <div className="mt-1 text-[11px] text-muted-foreground">
+                      Live pipeline: <span className="font-medium text-foreground">{open.ghl.stage}</span>
                       {open.ghl.value > 0 && <> · {aud(open.ghl.value)}</>} · {open.ghl.status}
                     </div>
                   )}
                   <div className="mt-2 flex flex-wrap gap-3 text-xs">
-                    {open.email && <a href={`mailto:${open.email}`} className="text-orange-700 hover:underline">{open.email}</a>}
-                    {open.website && <a href={open.website} target="_blank" rel="noreferrer" className="text-blue-700 hover:underline">website ↗</a>}
+                    {open.email && <a href={`mailto:${open.email}`} className="text-primary hover:underline">{open.email}</a>}
+                    {open.website && <a href={open.website} target="_blank" rel="noreferrer" className="text-primary hover:underline">website ↗</a>}
                   </div>
                 </div>
               </div>
 
               {editing && <EditPanel person={open} onSaved={() => { setEditing(false); router.refresh(); }} />}
 
-              {!editing && open.notes && <p className="mt-4 text-sm text-gray-700 leading-relaxed">{open.notes}</p>}
+              {!editing && open.notes && <p className="mt-4 text-sm text-foreground leading-relaxed">{open.notes}</p>}
 
               {open.contacts.length > 0 && (
                 <div className="mt-4">
-                  <div className="text-[11px] uppercase tracking-wider text-gray-400 mb-1.5">Contacts</div>
+                  <div className="text-[11px] uppercase tracking-wider text-muted-foreground mb-1.5">Contacts</div>
                   <div className="space-y-1">
                     {open.contacts.map((c, i) => (
-                      <div key={i} className="text-sm text-gray-700">
+                      <div key={i} className="text-sm text-foreground">
                         <span className="font-medium">{c.name}</span>
-                        {c.role && <span className="text-gray-500"> · {c.role}</span>}
-                        {c.email && <a href={`mailto:${c.email}`} className="ml-2 text-orange-700 hover:underline">{c.email}</a>}
+                        {c.role && <span className="text-muted-foreground"> · {c.role}</span>}
+                        {c.email && <a href={`mailto:${c.email}`} className="ml-2 text-primary hover:underline">{c.email}</a>}
                       </div>
                     ))}
                   </div>
@@ -353,16 +353,16 @@ export default function PeopleClient({ people, counts }: { people: Person[]; cou
               {open.tags.length > 0 && (
                 <div className="mt-4 flex flex-wrap gap-1.5">
                   {open.tags.map((t, i) => (
-                    <span key={i} className="rounded-full bg-gray-100 text-gray-600 px-2 py-0.5 text-xs">{t}</span>
+                    <span key={i} className="rounded-full bg-muted text-muted-foreground px-2 py-0.5 text-xs">{t}</span>
                   ))}
                 </div>
               )}
 
-              <div className="mt-5 flex flex-wrap gap-3 border-t border-gray-100 pt-4 text-xs">
-                <a href="/admin/deals" className="text-gray-600 hover:text-orange-700 hover:underline">Deals board ↗</a>
-                <a href="/admin/funders" className="text-gray-600 hover:text-orange-700 hover:underline">Funder reports ↗</a>
-                <a href="/admin/loi-tracker" className="text-gray-600 hover:text-orange-700 hover:underline">LOI tracker ↗</a>
-                <span className="ml-auto text-gray-300">from {open.sources.join(', ')}</span>
+              <div className="mt-5 flex flex-wrap gap-3 border-t border-border pt-4 text-xs">
+                <a href="/admin/deals" className="text-muted-foreground hover:text-primary hover:underline">Deals board ↗</a>
+                <a href="/admin/funders" className="text-muted-foreground hover:text-primary hover:underline">Funder reports ↗</a>
+                <a href="/admin/loi-tracker" className="text-muted-foreground hover:text-primary hover:underline">LOI tracker ↗</a>
+                <span className="ml-auto text-muted-foreground">from {open.sources.join(', ')}</span>
               </div>
             </div>
           </div>

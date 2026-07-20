@@ -165,7 +165,7 @@ export default async function MachineDetailPage({ params }: PageProps) {
                 &larr; Fleet
               </Button>
             </Link>
-            <h1 className="text-2xl font-bold">
+            <h1 className="font-display text-2xl font-bold">
               {asset.name || decodedMachineId}
             </h1>
             <MachineStatusBadge
@@ -173,7 +173,7 @@ export default async function MachineDetailPage({ params }: PageProps) {
               online={latestEvent?.online}
             />
           </div>
-          <p className="text-gray-500 mt-1">
+          <p className="text-muted-foreground mt-1">
             {community || 'Unknown community'}
             {latestEvent?.site_name && ` — ${latestEvent.site_name}`}
             {asset.contact_household && ` · ${asset.contact_household}`}
@@ -190,8 +190,8 @@ export default async function MachineDetailPage({ params }: PageProps) {
       </div>
 
       {/* Asset Info Bar */}
-      <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500">
-        <span>Asset ID: <span className="font-mono text-gray-700">{asset.unique_id}</span></span>
+      <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+        <span>Asset ID: <span className="font-mono text-foreground">{asset.unique_id}</span></span>
         {asset.product && <Badge variant="outline">{asset.product}</Badge>}
         {asset.supply_date && (
           <span>Supplied: {new Date(asset.supply_date).toLocaleDateString('en-AU')}</span>
@@ -279,11 +279,11 @@ export default async function MachineDetailPage({ params }: PageProps) {
           </CardHeader>
           <CardContent>
             {!tickets || tickets.length === 0 ? (
-              <p className="text-gray-500 text-sm">No tickets for this machine</p>
+              <p className="text-muted-foreground text-sm">No tickets for this machine</p>
             ) : (
               <div className="space-y-2">
                 {tickets.map((ticket) => (
-                  <div key={ticket.id} className="p-3 rounded-lg bg-gray-50 text-sm">
+                  <div key={ticket.id} className="p-3 rounded-lg bg-muted text-sm">
                     <div className="flex justify-between items-start">
                       <span className="font-medium">{ticket.issue_description}</span>
                       <Badge className={
@@ -294,7 +294,7 @@ export default async function MachineDetailPage({ params }: PageProps) {
                         {ticket.status}
                       </Badge>
                     </div>
-                    <div className="flex gap-2 mt-1.5 text-xs text-gray-400">
+                    <div className="flex gap-2 mt-1.5 text-xs text-muted-foreground">
                       {ticket.priority && <Badge variant="outline" className="text-xs">{ticket.priority}</Badge>}
                       <span>{new Date(ticket.created_at).toLocaleDateString('en-AU')}</span>
                     </div>
@@ -312,11 +312,11 @@ export default async function MachineDetailPage({ params }: PageProps) {
           </CardHeader>
           <CardContent>
             {!checkins || checkins.length === 0 ? (
-              <p className="text-gray-500 text-sm">No inspections recorded</p>
+              <p className="text-muted-foreground text-sm">No inspections recorded</p>
             ) : (
               <div className="space-y-2">
                 {checkins.map((checkin) => (
-                  <div key={checkin.id} className="p-3 rounded-lg bg-gray-50 text-sm">
+                  <div key={checkin.id} className="p-3 rounded-lg bg-muted text-sm">
                     <div className="flex justify-between items-start">
                       <span>{checkin.comments || 'Routine inspection'}</span>
                       <Badge className={
@@ -327,7 +327,7 @@ export default async function MachineDetailPage({ params }: PageProps) {
                         {checkin.status}
                       </Badge>
                     </div>
-                    <span className="text-xs text-gray-400">
+                    <span className="text-xs text-muted-foreground">
                       {new Date(checkin.checkin_date).toLocaleDateString('en-AU')}
                     </span>
                   </div>
@@ -344,20 +344,20 @@ export default async function MachineDetailPage({ params }: PageProps) {
           </CardHeader>
           <CardContent>
             {asset.contact_household ? (
-              <div className="p-3 rounded-lg bg-gray-50">
+              <div className="p-3 rounded-lg bg-muted">
                 <p className="font-medium text-sm">{asset.contact_household}</p>
-                {community && <p className="text-xs text-gray-500 mt-1">{community}</p>}
+                {community && <p className="text-xs text-muted-foreground mt-1">{community}</p>}
               </div>
             ) : !userAssets || userAssets.length === 0 ? (
-              <p className="text-gray-500 text-sm">No household linked</p>
+              <p className="text-muted-foreground text-sm">No household linked</p>
             ) : (
               <div className="space-y-2">
                 {userAssets.map((ua) => (
-                  <div key={ua.id} className="p-3 rounded-lg bg-gray-50 text-sm">
+                  <div key={ua.id} className="p-3 rounded-lg bg-muted text-sm">
                     <span className="font-medium">
                       {(ua.profiles as Record<string, string>)?.display_name || 'Unknown'}
                     </span>
-                    <span className="text-xs text-gray-400 ml-2">
+                    <span className="text-xs text-muted-foreground ml-2">
                       Claimed {new Date(ua.claimed_at).toLocaleDateString('en-AU')}
                     </span>
                   </div>
@@ -374,20 +374,20 @@ export default async function MachineDetailPage({ params }: PageProps) {
           </CardHeader>
           <CardContent>
             {!stories || stories.length === 0 ? (
-              <p className="text-gray-500 text-sm">No published stories from this community</p>
+              <p className="text-muted-foreground text-sm">No published stories from this community</p>
             ) : (
               <div className="space-y-2">
                 {stories.map((story) => (
                   <Link
                     key={story.id}
                     href={`/stories/${story.id}`}
-                    className="block p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+                    className="block p-3 rounded-lg bg-muted hover:bg-muted transition-colors"
                   >
                     <p className="font-medium text-sm">{story.title}</p>
                     <div className="flex gap-2 mt-1">
                       <Badge variant="outline" className="text-xs">{story.story_type}</Badge>
                       {story.community && (
-                        <span className="text-xs text-gray-400">{story.community}</span>
+                        <span className="text-xs text-muted-foreground">{story.community}</span>
                       )}
                     </div>
                   </Link>
@@ -407,12 +407,12 @@ export default async function MachineDetailPage({ params }: PageProps) {
           <CardContent>
             <div className="space-y-2">
               {commentary.map((note) => (
-                <div key={note.id} className="p-3 rounded-lg bg-gray-50 text-sm">
-                  <p className="text-gray-700">{note.commentary}</p>
+                <div key={note.id} className="p-3 rounded-lg bg-muted text-sm">
+                  <p className="text-foreground">{note.commentary}</p>
                   <div className="flex gap-2 mt-1.5">
                     <Badge variant="outline" className="text-xs">{note.commentary_type}</Badge>
                     {note.report_date && (
-                      <span className="text-xs text-gray-400">
+                      <span className="text-xs text-muted-foreground">
                         {new Date(note.report_date).toLocaleDateString('en-AU')}
                       </span>
                     )}

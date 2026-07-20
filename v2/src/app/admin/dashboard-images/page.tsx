@@ -79,8 +79,8 @@ export default async function DashboardImagesPage({
   if (!partner) {
     return (
       <div className="p-6">
-        <h1 className="text-xl font-bold">Dashboard images</h1>
-        <p className="mt-2 text-sm text-gray-600">
+        <h1 className="text-xl font-bold font-display">Dashboard images</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
           No partner dashboard for slug <code>{slug}</code>. Available:{' '}
           {PARTNER_DASHBOARDS.map((p) => p.slug).join(', ')}.
         </p>
@@ -93,7 +93,7 @@ export default async function DashboardImagesPage({
   if (!EL_URL || !EL_KEY || !EL_PID) {
     return (
       <div className="p-6">
-        <h1 className="text-xl font-bold">Dashboard images</h1>
+        <h1 className="text-xl font-bold font-display">Dashboard images</h1>
         <p className="mt-3 text-sm text-amber-700">
           Empathy Ledger env vars not set (<code>EMPATHY_LEDGER_SUPABASE_URL/KEY/PROJECT_ID</code>). The
           picker needs them to list the photo library.

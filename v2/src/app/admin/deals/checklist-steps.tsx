@@ -33,22 +33,22 @@ export function ChecklistSteps({ steps, prefix, initialState, accentColor }: Che
 
   const colors = {
     orange: {
-      badge: 'bg-orange-100 text-orange-800',
-      urgentBorder: 'border-orange-400 bg-orange-50',
-      checkBg: 'bg-orange-500',
-      checkBorder: 'border-orange-500',
-      progressBg: 'bg-orange-100',
-      progressFill: 'bg-orange-500',
-      progressText: 'text-orange-700',
+      badge: 'bg-primary/15 text-primary',
+      urgentBorder: 'border-primary/50 bg-primary/5',
+      checkBg: 'bg-primary',
+      checkBorder: 'border-primary',
+      progressBg: 'bg-primary/15',
+      progressFill: 'bg-primary',
+      progressText: 'text-primary',
     },
     blue: {
-      badge: 'bg-blue-100 text-blue-800',
-      urgentBorder: 'border-blue-400 bg-blue-50',
-      checkBg: 'bg-blue-500',
-      checkBorder: 'border-blue-500',
-      progressBg: 'bg-blue-100',
-      progressFill: 'bg-blue-500',
-      progressText: 'text-blue-700',
+      badge: 'bg-accent/20 text-accent-foreground',
+      urgentBorder: 'border-accent/50 bg-accent/10',
+      checkBg: 'bg-accent',
+      checkBorder: 'border-accent',
+      progressBg: 'bg-accent/20',
+      progressFill: 'bg-accent',
+      progressText: 'text-accent-foreground',
     },
   };
 
@@ -71,8 +71,8 @@ export function ChecklistSteps({ steps, prefix, initialState, accentColor }: Che
 
   return (
     <div className="rounded-xl border overflow-hidden">
-      <div className="bg-gray-50 px-5 py-3 border-b flex items-center justify-between">
-        <div className="text-xs font-bold text-gray-500 uppercase tracking-wide">
+      <div className="bg-muted px-5 py-3 border-b flex items-center justify-between">
+        <div className="text-xs font-bold text-muted-foreground uppercase tracking-wide">
           Next Steps — {prefix === 'groote' ? 'Groote' : 'REAL Fund'}
         </div>
         <div className="flex items-center gap-2">
@@ -103,12 +103,12 @@ export function ChecklistSteps({ steps, prefix, initialState, accentColor }: Che
                 type="button"
                 onClick={() => handleToggle(itemId, isChecked)}
                 disabled={isPending}
-                className={`mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-all duration-200 cursor-pointer hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-300 ${
+                className={`mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-all duration-200 cursor-pointer hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-border ${
                   isChecked
                     ? `${c.checkBorder} ${c.checkBg}`
                     : s.urgent
                       ? c.urgentBorder
-                      : 'border-gray-200 hover:border-gray-400'
+                      : 'border-border hover:border-muted-foreground/50'
                 }`}
                 aria-label={`Mark "${s.action}" as ${isChecked ? 'incomplete' : 'complete'}`}
               >
@@ -117,13 +117,13 @@ export function ChecklistSteps({ steps, prefix, initialState, accentColor }: Che
                     <path d="M2.5 6L5 8.5L9.5 3.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 ) : (
-                  <span className="text-[10px] font-bold text-gray-400">{i + 1}</span>
+                  <span className="text-[10px] font-bold text-muted-foreground">{i + 1}</span>
                 )}
               </button>
               <div className="flex-1">
                 <div className={`text-sm transition-all duration-300 ${
                   isChecked
-                    ? 'line-through text-gray-400'
+                    ? 'line-through text-muted-foreground'
                     : s.urgent
                       ? 'font-semibold'
                       : ''
@@ -131,7 +131,7 @@ export function ChecklistSteps({ steps, prefix, initialState, accentColor }: Che
                   {s.action}
                 </div>
                 <div className={`text-xs transition-colors duration-300 ${
-                  isChecked ? 'text-gray-300' : 'text-gray-400'
+                  isChecked ? 'text-muted-foreground/60' : 'text-muted-foreground'
                 }`}>
                   {s.owner} &middot; {s.when}
                 </div>
