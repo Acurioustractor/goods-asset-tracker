@@ -28,7 +28,8 @@
 
 ## Data-quality items surfaced (for the EL owner / Ben)
 
-- **6 phantom EL rows** — DB rows with no storage bytes (Mykel Overlay video, Kylie Interview.mp3, Dianne Synced.mp3, 3 images). Not healable from the Goods repo; decide: find source, delete row, or mark broken.
+- **Phantom EL rows — 3 verified in the Goods project** (2026-07-21, hardened scan): `20251107-1E5A5974.jpg` (Shayne Bloomfield's portrait), `Mykel Overlay Bed Delivery.mp4`, `Screenshot 2026-02-13 at 1.44.27 pm.png` (a portrait) — DB rows present, storage object returns 400 (bytes gone). The earlier "6 (incl. Kylie/Dianne audio)" count was pre-verification: a HEAD-only probe false-flagged 3 images that actually exist (unpacking-parts/gary/jason), and any audio phantoms would sit under a different project/org (this scan is Goods-project-scoped, 148 rows). Re-run anytime: `node --env-file=v2/.env.local v2/scripts/el-phantom-rows-report.mjs` → `wiki/outputs/2026-07-21-el-phantom-rows-report.json`. Not healable from the Goods repo; EL owner decides per row: re-upload the file, delete the row, or mark broken. NB: 2 of the 3 are the broken portraits (Shayne + a Screenshot) — re-uploading those files fixes both the phantom AND the portrait gap.
+- **`media_assets.community_id` FK — migration STAGED** (not applied): `wiki/outputs/2026-07-21-el-media-community-fk.sql` (idempotent add-column + index + optional dry-run backfill from `country_or_place`, Goods-project scoped). Apply is the EL owner's call.
 - **3 misfiled storytellers** — a Goods person filed under Snow Foundation / JusticeHub / Oonchiumpa instead of A Curious Tractor.
 - **The org split** — A Curious Tractor (people, 39 storytellers, 1978 media, 18 projects) and Goods on Country (147 media, 0 storytellers) are separate sibling orgs. People live under ACT; photos under Goods. "Community ownership" would mean re-homing to community orgs — an EL governance decision.
 

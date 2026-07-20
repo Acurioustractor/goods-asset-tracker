@@ -1,0 +1,36 @@
+{
+  "generated_for": "EL owner review — NOT applied",
+  "scanned_at_note": "timestamp omitted (stamp when reviewed)",
+  "project_id": "6bd47c8a-e676-456f-aa25-ddcbb5a31047",
+  "scanned": 148,
+  "phantom_count": 3,
+  "no_storage_reference_count": 0,
+  "phantoms": [
+    {
+      "id": "35352c1c-5892-47c8-96c2-9f8e72e99305",
+      "name": "20251107-1E5A5974.jpg",
+      "media_type": "image",
+      "is_portrait_of": "70757a05-10d8-4b7e-8616-7821fb64b1e0",
+      "tested_url": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/media/projects/6bd47c8a-e676-456f-aa25-ddcbb5a31047/media/1770953867375_20251107-1E5A5974.jpg",
+      "status": 400
+    },
+    {
+      "id": "b00d0801-1f98-4628-9647-45792df59344",
+      "name": "Mykel Overlay Bed Delivery.mp4",
+      "media_type": "video",
+      "is_portrait_of": null,
+      "tested_url": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/media/bf17d0a9-2b12-4e4a-982e-09a8b1952ec6/d0a162d2-282e-4653-9d12-aa934c9dfa4e/1779530065079-Mykel_Overlay_Bed_Delivery.mp4",
+      "status": 400
+    },
+    {
+      "id": "96e9cce3-e157-4eae-9342-46672c401d43",
+      "name": "Screenshot 2026-02-13 at 1.44.27 pm.png",
+      "media_type": "image",
+      "is_portrait_of": "f1ec31e2-6ff6-4fbd-8951-d17705c195da",
+      "tested_url": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/media/projects/6bd47c8a-e676-456f-aa25-ddcbb5a31047/media/1770954328460_Screenshot_2026-02-13_at_1.44.27_pm.png",
+      "status": 400
+    }
+  ],
+  "no_storage_reference": [],
+  "note": "phantom = DB row present, storage object missing (status != 200). Fix = re-upload the file, delete the row, or mark broken. EL owner decides per row."
+}
