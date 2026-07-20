@@ -26,6 +26,7 @@
     "sync:el": "python3 scripts/sync-goods-el.py",
     "sync:el:apply": "python3 scripts/sync-goods-el.py --apply",
     "storyteller:queue": "python3 scripts/storyteller-sync-queue.py",
+    "sweep:health": "python3 scripts/health-sweep.py",
     "wiki:sync": "if [ -d ../wiki/articles ]; then rm -rf .wiki-content && mkdir -p .wiki-content && cp -R ../wiki/articles/. .wiki-content/; else echo 'wiki:sync skipped (../wiki/articles absent; using tracked .wiki-content/)'; fi",
     "prebuild": "npm run wiki:sync"
   },
