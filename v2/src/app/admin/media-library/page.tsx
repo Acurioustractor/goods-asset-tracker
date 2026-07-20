@@ -6,6 +6,7 @@
 
 import { buildLocalItems } from './curation';
 import { MediaLibraryClient } from './library-client';
+import { AddMediaDialog, type AssetOption, type RecentBedContent } from './add-media-dialog';
 import { createServiceClient } from '@/lib/supabase/server';
 
 export const dynamic = 'force-dynamic';
@@ -21,13 +22,50 @@ async function fetchCommunities(): Promise<{ id: string; name: string }[]> {
   }
 }
 
+/** Assets (beds etc.) for the Add-media dialog's bed picker. */
+async function fetchAssets(): Promise<AssetOption[]> {
+  try {
+    const supabase = createServiceClient();
+    const { data } = await supabase
+      .from('assets')
+      .select('unique_id, product, community')
+      .order('unique_id');
+    return (data ?? []) as AssetOption[];
+  } catch {
+    return [];
+  }
+}
+
+/** The recent bed (compassion) content, absorbed from the retired /admin/compassion page. */
+async function fetchRecentBedContent(): Promise<RecentBedContent[]> {
+  try {
+    const supabase = createServiceClient();
+    const { data } = await supabase
+      .from('compassion_content')
+      .select('id, asset_id, content_type, media_url, caption, created_at, sent_at, viewed_at, is_public')
+      .order('created_at', { ascending: false })
+      .limit(24);
+    return (data ?? []) as RecentBedContent[];
+  } catch {
+    return [];
+  }
+}
+
 export default async function MediaLibraryPage() {
-  const [{ items, curationReady }, communities] = await Promise.all([buildLocalItems(), fetchCommunities()]);
+  const [{ items, curationReady }, communities, assets, recentBedContent] = await Promise.all([
+    buildLocalItems(),
+    fetchCommunities(),
+    fetchAssets(),
+    fetchRecentBedContent(),
+  ]);
 
   return (
     <div className="p-6">
       <header className="mb-6">
-        <h1 className="font-display text-2xl font-bold" style={{ fontFamily: 'Georgia, serif' }}>Media Room</h1>
+        <div className="flex items-start justify-between gap-4">
+          <h1 className="font-display text-2xl font-bold" style={{ fontFamily: 'Georgia, serif' }}>Media Room</h1>
+          <AddMediaDialog assets={assets} recent={recentBedContent} />
+        </div>
         <p className="mt-1 text-sm text-muted-foreground">
           One place to curate every photo and video in the project. Star the keepers, archive the
           junk, rate them, and tag who is in each shot, which community it belongs to, and which

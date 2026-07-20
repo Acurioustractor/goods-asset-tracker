@@ -539,7 +539,7 @@ export default async function OpsToday() {
                 Compassion content uploaded in the last 24h.
               </p>
             </div>
-            <Link href="/admin/compassion" className="text-xs underline hover:text-foreground">
+            <Link href="/admin/media-library" className="text-xs underline hover:text-foreground">
               All →
             </Link>
           </div>
@@ -586,7 +586,7 @@ export default async function OpsToday() {
               📡 Signals
             </Link>
             <Link
-              href="/admin/compassion"
+              href="/admin/media-library"
               className="rounded-xl border hover:bg-amber-50 dark:hover:bg-amber-950/30 p-3 text-center text-sm font-semibold"
             >
               📸 Upload photo

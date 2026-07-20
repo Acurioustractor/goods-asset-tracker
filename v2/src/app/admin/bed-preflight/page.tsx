@@ -321,7 +321,7 @@ export default async function BedPreflightPage() {
             </Link>
           </li>
           <li>
-            <Link href="/admin/compassion" className="block rounded-lg border bg-card p-3 hover:bg-muted">
+            <Link href="/admin/media-library" className="block rounded-lg border bg-card p-3 hover:bg-muted">
               💛 Compassion content (photos)
             </Link>
           </li>

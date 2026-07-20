@@ -133,8 +133,8 @@ export default function RecipientHandoverPage() {
           </li>
           <li>
             One photo of the bed in place is enough. Upload via{' '}
-            <Link href="/admin/compassion" className="text-amber-700 underline">
-              /admin/compassion
+            <Link href="/admin/media-library" className="text-amber-700 underline">
+              the Media Room
             </Link>
             .
           </li>
