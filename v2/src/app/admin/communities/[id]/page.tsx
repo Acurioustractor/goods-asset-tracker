@@ -7,6 +7,7 @@ import { DemandRowItem, type DemandRow } from './demand-row';
 import { AddDemandForm } from './add-demand-form';
 import { CommunityMetaForm } from './community-meta-form';
 import { getCommunityVoices, getCommunityStories } from '@/lib/data/community-stories';
+import CommunityPresent, { type PresentSlide } from './community-present';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -244,6 +245,80 @@ export default async function CommunityDetailPage({
 
   const gap = Math.max(0, rollup.open_demand_qty - rollup.deployed_beds);
 
+  // --- Next-phase support: what this community wants, and the funding to meet it ---
+  const BED_PRICE = 750; // canon retail price (canon.ts bed-price)
+  const isBed = (p: string) => /bed|stretch|basket/i.test(p || '');
+  const isWasher = (p: string) => /wash|machine|pakkimjalki/i.test(p || '');
+  const bedsWanted = demand.filter((d) => isBed(d.product)).reduce((n, d) => n + (d.qty || 0), 0);
+  const washersWanted = demand.filter((d) => isWasher(d.product)).reduce((n, d) => n + (d.qty || 0), 0);
+  const fundingAsk = bedsWanted * BED_PRICE * 100; // cents
+  const raisedCents = rollup.active_pipeline_cents + rollup.won_revenue_cents;
+
+  const supportTiles = [
+    {
+      key: 'beds',
+      label: 'Beds',
+      now: rollup.deployed_beds,
+      want: bedsWanted,
+      href: '/admin/products/stretch-bed',
+      product: 'The Stretch Bed',
+    },
+    {
+      key: 'washers',
+      label: 'Washing machines',
+      now: rollup.deployed_machines,
+      want: washersWanted,
+      href: '/admin/products/pakkimjalki-kari',
+      product: 'Pakkimjalki Kari',
+    },
+    {
+      key: 'facility',
+      label: 'Production facility',
+      now: community.facility_interest || null,
+      want: null,
+      href: '/admin/products/the-plant',
+      product: 'The plant',
+    },
+  ];
+
+  const presentSlides: PresentSlide[] = [
+    { kind: 'title', heading: community.name, sub: `${community.state}${community.traditional_name ? ` · ${community.traditional_name} Country` : ''} · walk-through` },
+    {
+      kind: 'stat',
+      sub: 'Where it is now',
+      heading: 'What Goods has delivered here',
+      lines: [
+        { big: fmt(rollup.deployed_beds), small: 'beds delivered' },
+        { big: fmt(rollup.deployed_machines), small: 'washing machines' },
+      ],
+    },
+    {
+      kind: 'want',
+      sub: 'The next phase',
+      heading: 'What this community wants next',
+      lines: [
+        { big: bedsWanted > 0 ? fmt(bedsWanted) : '—', small: 'more beds' },
+        { big: washersWanted > 0 ? fmt(washersWanted) : '—', small: 'washing machines' },
+        { big: community.facility_interest ? '●' : '—', small: community.facility_interest ? `facility: ${community.facility_interest}` : 'facility not yet assessed' },
+      ],
+    },
+    ...(fundingAsk > 0 || raisedCents > 0
+      ? [{
+          kind: 'funding' as const,
+          sub: 'What it takes to support them',
+          heading: 'The funding we need',
+          lines: [
+            { big: fundingAsk > 0 ? fmtMoney(fundingAsk) : '—', small: `${bedsWanted} beds at $${BED_PRICE}` },
+            { big: raisedCents > 0 ? fmtMoney(raisedCents) : '$0', small: 'raised toward it' },
+          ],
+        }]
+      : []),
+    ...(storytellers.length > 0
+      ? [{ kind: 'voices' as const, sub: 'The people here', heading: 'Whose voices tell this story', names: storytellers.map((v) => v.name) }]
+      : []),
+    ...photos.slice(0, 5).map((ph): PresentSlide => ({ kind: 'photo', photo: ph.poster_url || ph.url, heading: community.name })),
+  ];
+
   return (
     <div className="space-y-8 pb-16">
       {/* Header */}
@@ -286,6 +361,7 @@ export default async function CommunityDetailPage({
       <nav className="sticky top-0 z-20 -mx-4 border-b border-border bg-background/95 px-4 py-2.5 backdrop-blur sm:-mx-6 sm:px-6">
         <div className="flex flex-wrap gap-2 text-xs font-medium">
           {[
+            ['#support', 'Support'],
             ['#people', 'People'],
             ['#demand', `Demand (${demand.length})`],
             ['#voices', `Voices (${storytellers.length + compendiumVoices.length})`],
@@ -309,6 +385,62 @@ export default async function CommunityDetailPage({
         <Kpi label="Ready / Allocated" value={`${fmt(rollup.ready_beds)} / ${fmt(rollup.allocated_beds)}`} sub="awaiting fulfilment" highlight={rollup.ready_beds + rollup.allocated_beds > 0} />
         <Kpi label="Open Demand" value={fmt(rollup.open_demand_qty)} sub={fmtMoney(rollup.open_demand_value_cents)} />
         <Kpi label="Demand Gap" value={fmt(gap)} sub={gap > 0 ? 'beds short of demand' : 'fulfilled or no demand'} highlight={gap > 20} />
+      </section>
+
+      {/* Next phase — how we support this community */}
+      <section id="support" className="scroll-mt-24 rounded-2xl border bg-card p-5">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 className="font-display text-lg font-bold" style={{ fontFamily: 'Georgia, serif' }}>Next phase — how we support {community.name}</h2>
+            <p className="text-xs text-muted-foreground">What they have, what they want, and what it takes to get there. Show them the products; connect the need to the funding.</p>
+          </div>
+          <CommunityPresent community={community.name} slides={presentSlides} />
+        </div>
+
+        {/* Support tiles: beds / washers / facility */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {supportTiles.map((t) => (
+            <Link key={t.key} href={t.href} className="group rounded-xl border bg-background p-4 hover:border-primary/40 transition-colors">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-semibold">{t.label}</span>
+                <span className="text-[11px] text-primary opacity-0 group-hover:opacity-100 transition-opacity">view →</span>
+              </div>
+              <div className="mt-3 flex items-end gap-4">
+                <div>
+                  <div className="font-display text-2xl font-bold tabular-nums" style={{ fontFamily: 'Georgia, serif' }}>
+                    {typeof t.now === 'number' ? fmt(t.now) : t.now ? <span className="text-base capitalize text-emerald-700">{t.now}</span> : '—'}
+                  </div>
+                  <div className="text-[11px] text-muted-foreground">{t.key === 'facility' ? 'interest' : 'here now'}</div>
+                </div>
+                {t.want !== null && (
+                  <div>
+                    <div className="font-display text-2xl font-bold tabular-nums text-primary" style={{ fontFamily: 'Georgia, serif' }}>
+                      {t.want > 0 ? `+${fmt(t.want)}` : '—'}
+                    </div>
+                    <div className="text-[11px] text-muted-foreground">wanted next</div>
+                  </div>
+                )}
+              </div>
+              <div className="mt-3 text-[11px] font-medium text-muted-foreground">{t.product}</div>
+            </Link>
+          ))}
+        </div>
+
+        {/* The demand → funding bridge */}
+        {(fundingAsk > 0 || raisedCents > 0) && (
+          <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 rounded-xl bg-primary/10 px-4 py-3">
+            <div>
+              <div className="font-display text-xl font-bold tabular-nums" style={{ fontFamily: 'Georgia, serif' }}>{fundingAsk > 0 ? fmtMoney(fundingAsk) : '—'}</div>
+              <div className="text-[11px] text-muted-foreground">to meet the ask ({bedsWanted} beds × ${BED_PRICE})</div>
+            </div>
+            <div className="text-2xl text-muted-foreground">→</div>
+            <div>
+              <div className="font-display text-xl font-bold tabular-nums text-emerald-700" style={{ fontFamily: 'Georgia, serif' }}>{fmtMoney(raisedCents)}</div>
+              <div className="text-[11px] text-muted-foreground">raised toward it (pipeline + won)</div>
+            </div>
+            <Link href="/admin/pipeline" className="ml-auto text-sm font-semibold text-primary hover:underline">Open the pipeline →</Link>
+          </div>
+        )}
       </section>
 
       {/* People & facility — live from communities columns (seeded 2026-07-19) */}
