@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { canonValue } from '@/lib/data/canon';
 import { WIKI_AREAS, STATUS_LABEL, NEEDS_BEN, type AreaStatus } from '@/lib/data/investor-wiki';
+import { ADMIN_ROUTE_DIRECTORY, ROUTE_STATUS_LABEL, type RouteStatus } from '@/lib/data/admin-routes';
 
 export const dynamic = 'force-dynamic';
 
@@ -143,6 +144,46 @@ export default function InvestorWikiDashboard() {
           <p className="mt-2 text-[11px] uppercase tracking-wider font-semibold text-stone-500">Open Today →</p>
         </Link>
       </section>
+
+      {/* Complete route directory — every /admin route, dispositioned (Area 9) */}
+      <section aria-label="All admin routes">
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            Every route — the full directory
+          </h2>
+          <p className="text-xs text-muted-foreground">
+            {ADMIN_ROUTE_DIRECTORY.reduce((n, g) => n + g.routes.length, 0)} routes · wiki/investor/09-admin-ia.md
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+          {ADMIN_ROUTE_DIRECTORY.map((g) => (
+            <div key={g.group} className="rounded-2xl border bg-card shadow-sm p-4">
+              <h3 className="font-display text-sm font-bold mb-2">{g.group}</h3>
+              <ul className="space-y-1">
+                {g.routes.map((r) => (
+                  <li key={r.href} className="flex items-center justify-between gap-2 text-sm">
+                    <Link href={r.href} className="truncate hover:underline text-stone-700">
+                      {r.name}
+                    </Link>
+                    <span className={`shrink-0 rounded-full px-1.5 py-0.5 text-[9px] font-semibold tracking-wide ${ROUTE_TONE[r.status]}`}>
+                      {ROUTE_STATUS_LABEL[r.status]}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
+
+const ROUTE_TONE: Record<RouteStatus, string> = {
+  hub: 'bg-orange-100 text-orange-900',
+  active: 'bg-emerald-100 text-emerald-900',
+  absorbed: 'bg-sky-100 text-sky-900',
+  utility: 'bg-stone-200 text-stone-700',
+  stale: 'bg-stone-100 text-stone-400',
+  'one-off': 'bg-stone-100 text-stone-400',
+};
