@@ -26,7 +26,7 @@ TENANT = 'a1adca53-4c80-44b3-a859-e9e12b40e1a8'
 def env(n): return subprocess.run(['bash','-c',f"grep -E '^{n}=' '{V2}/.env.local'|head -1|cut -d= -f2-|tr -d '\"'|tr -d \"'\"|xargs"],capture_output=True,text=True).stdout.strip()
 GU,GK = env('NEXT_PUBLIC_SUPABASE_URL'), env('SUPABASE_SERVICE_ROLE_KEY')
 EU,EK = env('EMPATHY_LEDGER_SUPABASE_URL'), env('EMPATHY_LEDGER_SUPABASE_KEY')
-EL_SITE = 'https://www.empathyledger.com'
+EL_SITE = 'https://empathyledger.com'  # apex; www 307-redirects here
 
 def api(base,key,path):
     try: return json.load(urllib.request.urlopen(urllib.request.Request(f"{base}/rest/v1/{path}",headers={'apikey':key,'Authorization':f'Bearer {key}'}),timeout=30))
@@ -37,11 +37,22 @@ def gq(p):
 def eq(p):
     r=api(EU,EK,p); return r if isinstance(r,list) else []
 def head(url,key=EK):
+    # HEAD first, but the EL serve route and some storage endpoints reject HEAD
+    # or mishandle the www->apex 307 — so fall back to a ranged GET (first byte)
+    # before calling an asset broken. Genuine 400/404s still fail both ways; this
+    # only stops false negatives (e.g. portraits that render fine in a browser).
+    h={'apikey':key,'Authorization':f'Bearer {key}'} if 'supabase.co' in url else {}
     try:
-        h={'apikey':key,'Authorization':f'Bearer {key}'} if 'supabase.co' in url else {}
         r=urllib.request.urlopen(urllib.request.Request(url,method='HEAD',headers=h),timeout=12)
-        ct=r.headers.get('content-type','')
-        return r.status, int(r.headers.get('content-length') or 0), ct
+        if r.status==200:
+            return r.status, int(r.headers.get('content-length') or 0), r.headers.get('content-type','')
+    except Exception:
+        pass
+    try:
+        hg=dict(h); hg['Range']='bytes=0-0'
+        r=urllib.request.urlopen(urllib.request.Request(url,headers=hg),timeout=15)
+        st=200 if r.status in (200,206) else r.status
+        return st, int(r.headers.get('content-length') or 0), r.headers.get('content-type','')
     except Exception as e: return getattr(e,'code',0),0,''
 
 def portrait_url(u):
@@ -60,7 +71,7 @@ def report(cat, broken, total, samples):
 
 def main():
     print("=== EMPATHY LEDGER ===")
-    el_media = eq(f"media_assets?project_id=eq.{PROJECT_ID}&select=id,media_type,url,cdn_url,thumbnail_url,storage_bucket,storage_path,original_filename")
+    el_media = eq(f"media_assets?project_id=eq.{PROJECT_ID}&purged_at=is.null&select=id,media_type,url,cdn_url,thumbnail_url,storage_bucket,storage_path,original_filename")
     # 2. renderable url
     no_url=[m for m in el_media if not (m.get('url') or m.get('cdn_url') or m.get('thumbnail_url'))]
     report("EL media renderable url", len(no_url), len(el_media), [m['original_filename'] for m in no_url])
