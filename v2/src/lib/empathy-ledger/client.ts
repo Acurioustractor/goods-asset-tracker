@@ -22,7 +22,9 @@ import type {
 } from './types';
 
 // Environment configuration
-const EMPATHY_LEDGER_URL = process.env.EMPATHY_LEDGER_API_URL || 'https://empathy-ledger.vercel.app';
+// Canonical EL platform is https://empathyledger.com (empathy-ledger-v2 deploy).
+// The old https://empathy-ledger.vercel.app (v1) is DEAD — do not fall back to it.
+const EMPATHY_LEDGER_URL = process.env.EMPATHY_LEDGER_API_URL || 'https://empathyledger.com';
 const EMPATHY_LEDGER_API_KEY = process.env.EMPATHY_LEDGER_API_KEY || '';
 const GOODS_PROJECT_CODE = process.env.EMPATHY_LEDGER_PROJECT_CODE || 'goods-on-country';
 const GOODS_SITE_SLUG = process.env.EMPATHY_LEDGER_SITE_SLUG || 'goods-asset-register';

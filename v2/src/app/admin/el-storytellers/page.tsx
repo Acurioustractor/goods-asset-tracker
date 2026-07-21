@@ -12,7 +12,10 @@ export const dynamic = 'force-dynamic';
 
 // EL is one Next app serving both /api and /admin, so the API base is also the
 // app base. Deep-link straight to the EL storyteller edit screen.
-const EL_APP_URL = process.env.EMPATHY_LEDGER_API_URL || 'https://empathy-ledger.vercel.app';
+// Human-facing EL platform URL for "Edit in EL" links (storyteller edit pages
+// live at /admin/storytellers/{id}/edit). Canonical apex is empathyledger.com;
+// the old empathy-ledger.vercel.app (v1) is DEAD.
+const EL_APP_URL = process.env.EMPATHY_LEDGER_APP_URL || 'https://empathyledger.com';
 
 export default async function ElStorytellersIndex() {
   // Storytellers = EL people with at least one Goods-project story (not the whole

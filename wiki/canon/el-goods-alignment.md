@@ -49,6 +49,14 @@ Run it after adding/tagging storytellers or photos in Goods; it pushes the enric
 
 **Live write-through (built):** `POST /api/admin/media-link` calls `lib/data/el-sync.ts` for the tagged item, so tagging in the Media Room reflects in EL immediately — community → EL `country_or_place` + verified nation (Goods-project media only), person → EL `media_storytellers` link (any EL media the person appears in; crm name → project storyteller, unresolved people skipped not guessed). Best-effort: an EL failure never fails the Goods tag, and the response carries an `elSync` note; `npm run sync:el` reconciles the rest (local media, cross-org place). Verified live: community `synced:true`, person `synced:true` (409 = already-linked).
 
+## Verified EL connection (2026-07-21, confirmed by the EL platform side)
+
+- **Canonical platform URL:** `https://empathyledger.com` (apex). `www.` 307-redirects to apex; `https://empathy-ledger-v2.vercel.app` is the same deployment. **`https://empathy-ledger.vercel.app` (v1) is DEAD** — removed from Goods code fallbacks.
+- **Data:** Supabase `yvnuayzslukamizrlhwb` (project ref authoritative); a second ref `tednluwflfhxyucgwigh` is LEGACY, do not use. Goods scope = project_id `6bd47c8a-…` (goods-on-country is a PROJECT, not an org). Reads = anon key; enrichment writes = service key, scoped to Goods-project rows only.
+- **Content-hub API:** `{EMPATHY_LEDGER_API_URL}/api/v1/content-hub/…`.
+- **Media serve:** `https://empathyledger.com/api/media/{media_asset_id}/file` — serves only `media_assets.visibility='public'`; private assets 403 with no external auth path. The serve route handles the bucket, so the source bucket need NOT be public — only the asset's `visibility` flag. **Never point an avatar at a raw `storage/v1/object/…` URL** (that is exactly Shayne's break).
+- **Storyteller avatar:** the column is `storytellers.public_avatar_url` (a URL; `profile_image_url` is a computed API field). Best value = a relative `/api/media/{id}/file` for a `visibility='public'` asset. **Set it in the EL admin UI** (`/admin/storytellers/{id}/edit`) or via `PATCH /api/admin/storytellers/{id}` (`avatar_url`) — but that route needs an admin SESSION COOKIE, not an API key, so for Goods it is **UI-only**. **Goods must NOT write `public_avatar_url`** (choosing who represents a person is a consent/representation call gated in the EL platform). Goods' sync/enrichment writes place/nation/`media_storytellers` only — verified it never touches the avatar.
+
 ## The seamless flow (target, mostly in place)
 
 1. A photo of a person/community lives in **EL** (uploaded via EL, consent-governed).

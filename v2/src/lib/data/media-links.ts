@@ -25,7 +25,9 @@ export interface ResolvedMedia {
   targetKey: string;
 }
 
-const EL_MEDIA_BASE = 'https://www.empathyledger.com/api/media';
+// Apex, not www — www 307-redirects to apex, so hitting apex saves a hop. The
+// serve route returns assets whose media_assets.visibility='public'.
+const EL_MEDIA_BASE = 'https://empathyledger.com/api/media';
 
 /** Resolve one media_links row to a servable URL, or null if unresolvable. */
 export function resolveMediaUrl(source: string, key: string): string | null {
