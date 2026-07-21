@@ -1,6 +1,8 @@
 # Area 10 — Community counts reconciliation
 
 > SUPERSEDED NOTE (2026-07-20): the tables below capture the pre-ruling state (536/173/18/3,460). Ben's 2026-07-19 rulings resolved them: FINAL CANON = 540 beds / 177 Stretch / 363 Basket / 20 washers in community / 11 communities / 3,540kg; Utopia 147, Tennant Creek 160, Maningrida 58 beds + 8 washers, Kununurra 2 (GB0-158), Katherine 1 (GB0-159), youth centre 1 (GB0-160), Julalikari +2 washers. Read the tables as history of the reconciliation, not as canon.
+>
+> Corrected to final canon 2026-07-21 (540/177/363/20/11/3,540kg per Ben rulings).
 
 > Purpose: one ruling per line so 536/173/18/3,460 (or corrected figures) land identically in
 > the live register, repo canon, Community OS (Notion), and the Artifact Hub spine (Notion).
@@ -60,7 +62,7 @@ canonical washer figure. Today the 18 is curated and NOT register-derivable, whi
 "explainable numbers" bar.
 
 ## Stale surfaces to sweep after rulings (Tier 2 — Ben approves each)
-1. Notion Artifact Hub spine: 496 → 536, 133 → 173, 16 → 18 (or new), 2,660 → 3,460, revenue note to $713,827-only.
+1. Notion Artifact Hub spine: 496 → 540, 133 → 177, 16 → 20, 2,660 → 3,540, revenue note to $713,827-only.
 2. Community OS counts table: apply per-line rulings above, fill Basket/Stretch splits from register (7 communities ready now).
 3. Community OS washer column to the ruled definition.
 4. Then re-run `check-asset-drift.mjs` and confirm green.

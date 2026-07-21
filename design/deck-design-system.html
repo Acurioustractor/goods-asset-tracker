@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Goods Final Deck - design system</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{
+  --cream:#F2ECE0; --cream-2:#E9E1D2; --panel:#EEE7D9;
+  --ink:#26201B; --ink-2:#5C5248; --muted:#8A7F72;
+  --terra:#B44D2B; --terra-lite:#C9613C; --sage:#5F6E3E; --sage-2:#6F7E4C;
+  --ground:#1C1A17; --ground-2:#252220; --line:rgba(245,238,228,.12);
+  --serif:Georgia,"Times New Roman",serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--ground); color:var(--cream);
+  font-family:var(--sans); line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1160px; margin:0 auto; padding:0 40px;}
+
+/* ---- page header / thesis ---- */
+header{padding:96px 0 60px;}
+.eyebrow{font-size:13px; letter-spacing:.22em; text-transform:uppercase; color:var(--terra-lite); font-weight:700;}
+h1{font-family:var(--serif); font-weight:400; font-size:66px; line-height:1.02; letter-spacing:-.015em;
+   margin:22px 0 26px; text-wrap:balance; max-width:15ch;}
+.thesis{font-size:22px; line-height:1.5; color:rgba(245,238,228,.72); max-width:60ch;}
+.thesis b{color:var(--cream); font-weight:600;}
+.meta{margin-top:34px; font-size:14px; color:var(--muted); letter-spacing:.02em;}
+
+/* ---- token strip ---- */
+.tokens{display:flex; flex-wrap:wrap; gap:40px; padding:34px 0 8px; border-top:1px solid var(--line); margin-top:44px;}
+.tok h4{font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; font-weight:700;}
+.swatches{display:flex; gap:10px;}
+.sw{width:52px;}
+.sw i{display:block; height:52px; border-radius:5px; border:1px solid var(--line);}
+.sw span{display:block; font-size:10.5px; color:var(--muted); margin-top:6px; letter-spacing:.02em;}
+.type-serif{font-family:var(--serif); font-size:34px; color:var(--cream);}
+.type-sans{font-family:var(--sans); font-size:15px; color:rgba(245,238,228,.72); margin-top:4px;}
+.type-label{font-family:var(--sans); font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--terra-lite); font-weight:700; margin-top:8px;}
+
+/* ---- component sections ---- */
+section{padding:56px 0; border-top:1px solid var(--line);}
+.sec-head{display:flex; align-items:baseline; gap:16px; margin-bottom:8px;}
+.sec-tag{font-family:var(--serif); font-size:30px; color:var(--terra-lite);}
+.sec-title{font-family:var(--serif); font-size:30px; color:var(--cream); font-weight:400;}
+.sec-note{font-size:16px; color:rgba(245,238,228,.62); max-width:66ch; margin-bottom:26px;}
+.sec-note b{color:var(--cream); font-weight:600;}
+.used{display:inline-block; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted); border:1px solid var(--line); border-radius:3px; padding:5px 11px; margin-top:16px;}
+
+/* ---- the deck frame (16:9) ---- */
+.frame-wrap{overflow-x:auto; padding-bottom:6px;}
+.frame{
+  position:relative; width:1040px; height:585px; flex:0 0 auto;
+  background:var(--cream); color:var(--ink); overflow:hidden;
+  border-radius:4px; box-shadow:0 30px 70px -30px rgba(0,0,0,.6);
+  font-family:var(--sans);
+}
+.frame.bleed-frame{color:var(--cream);}
+.f-bleed{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+.f-scrim-l{position:absolute; inset:0;
+  background:linear-gradient(90deg, rgba(18,14,11,.90) 0%, rgba(18,14,11,.66) 40%, rgba(18,14,11,.12) 76%, rgba(18,14,11,0) 100%);}
+.f-scrim-b{position:absolute; inset:0;
+  background:linear-gradient(0deg, rgba(18,14,11,.86) 0%, rgba(18,14,11,.28) 44%, rgba(18,14,11,0) 74%);}
+
+/* frame type roles (scaled ~0.54x of 1920 deck) */
+.f-kicker{font-size:12px; letter-spacing:.2em; text-transform:uppercase; font-weight:700;}
+.k-terra{color:var(--terra-lite);}
+.f-quote{font-family:var(--serif); font-weight:400; font-size:33px; line-height:1.2; letter-spacing:-.005em;}
+.f-quote-sm{font-family:var(--serif); font-weight:400; font-size:26px; line-height:1.24;}
+.f-display{font-family:var(--serif); font-weight:400; font-size:48px; line-height:1.02; letter-spacing:-.01em;}
+.f-title{font-family:var(--serif); font-weight:400; font-size:34px; line-height:1.08;}
+.f-body{font-size:14.5px; line-height:1.5; color:var(--ink-2);}
+.f-body-l{color:rgba(245,238,228,.8);}
+.f-attrib{font-size:11.5px; letter-spacing:.13em; text-transform:uppercase; font-weight:700;}
+.f-white{color:var(--cream);} .f-inkmut{color:var(--muted);}
+.f-portrait{width:58px; height:58px; border-radius:50%; object-fit:cover; border:2px solid rgba(245,238,228,.85);}
+.f-foot{position:absolute; left:54px; bottom:34px; font-size:12px; color:var(--muted); letter-spacing:.02em;}
+.f-foot .arw{color:var(--terra-lite);}
+.f-foot-l{color:rgba(245,238,228,.66);}
+.f-num{position:absolute; right:54px; bottom:34px; font-size:12px; letter-spacing:.16em; color:var(--muted);}
+.f-num-l{color:rgba(245,238,228,.5);}
+.f-tag{display:inline-block; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700;
+  padding:4px 9px; border-radius:3px;}
+.tag-line{border:1.5px solid rgba(245,238,228,.4); color:var(--cream);}
+.tag-ink{background:rgba(38,32,27,.08); color:var(--ink-2);}
+.tag-sage{background:rgba(95,110,62,.16); color:#566537;}
+.tag-terra{background:rgba(180,77,43,.14); color:#9A4527;}
+.f-divider{width:44px; height:3px; background:var(--terra-lite); border:0;}
+
+/* stat viz */
+.statrow{display:flex; gap:0;}
+.statrow .st{flex:1;}
+.st .n{font-family:var(--serif); font-weight:400; font-size:58px; line-height:1; color:var(--terra); letter-spacing:-.02em; font-variant-numeric:tabular-nums;}
+.st .n.sm{font-size:44px;}
+.st .l{font-size:12px; color:var(--ink-2); margin-top:10px; font-weight:600; line-height:1.3;}
+.splitbar{height:28px; display:flex; gap:2px;}
+.splitbar i{display:block; height:100%; border-radius:4px;}
+.st .rule{width:26px; height:3px; margin-bottom:12px; border-radius:2px;}
+.legend{display:flex; gap:20px; margin-top:12px; font-size:12px; color:var(--ink-2);}
+.legend b{font-weight:700;}
+.dot{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:7px; vertical-align:middle;}
+
+/* cost figure — two horizontal $750 bars */
+.crow{margin-bottom:40px;}
+.crow-h{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:10px; width:640px;}
+.crow-h .t{font-size:14px; font-weight:700; color:var(--ink);}
+.crow-h .t span{font-weight:400; color:var(--ink-2);}
+.cbar{display:flex; gap:2px; width:640px; height:30px;}
+.cbar i{display:block; height:100%; border-radius:4px;}
+.cbar .cost{background:rgba(38,32,27,.13);}
+.cbar .keep{background:var(--sage);}
+.crow-l{display:flex; justify-content:space-between; width:640px; margin-top:9px; font-size:12.5px; color:var(--ink-2);}
+.keepnum{font-family:var(--serif); font-size:34px; color:var(--sage-2); font-weight:400; letter-spacing:-.01em; font-variant-numeric:tabular-nums;}
+.keeplab{font-size:12px; font-weight:700; color:var(--ink); margin-top:2px;}
+
+/* beat->component map */
+.map{width:100%; border-collapse:collapse; font-size:14.5px;}
+.map th{text-align:left; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
+  font-weight:700; padding:0 16px 12px 0; border-bottom:1px solid var(--line);}
+.map td{padding:13px 16px 13px 0; border-bottom:1px solid var(--line); color:rgba(245,238,228,.82); vertical-align:top;}
+.map td.b{color:var(--cream); font-weight:600; white-space:nowrap;}
+.cchip{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.06em; padding:3px 8px; border-radius:3px;
+  background:rgba(201,97,60,.16); color:var(--terra-lite); margin-right:5px;}
+
+/* next steps */
+.next{background:var(--ground-2); border:1px solid var(--line); border-radius:10px; padding:34px 38px; margin:20px 0 90px;}
+.next h3{font-family:var(--serif); font-size:26px; font-weight:400; margin-bottom:16px;}
+.next ol{margin:0 0 0 20px; color:rgba(245,238,228,.8); font-size:16px;}
+.next li{margin-bottom:9px;}
+.next li b{color:var(--cream);}
+.caption{font-size:13px; color:var(--muted); margin-top:14px; font-style:italic;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Goods Final Deck &nbsp;&middot;&nbsp; design system, not the deck yet</div>
+  <h1>One belief per slide.</h1>
+  <div class="thesis">
+    Each beat does exactly one job: it's carried by <b>a real face</b> or <b>a real number</b>,
+    and three beats leave <b>a quiet door back to the proof</b> on the live site. Photo-forward,
+    sparse, warm. These are the building blocks. Once they feel right, we assemble the twelve beats
+    in <b>Goods_Final_Deck.pen</b>.
+  </div>
+  <div class="meta">Documentary / editorial direction &nbsp;&middot;&nbsp; content spine locked (every quote cleared, every figure register-verified) &nbsp;&middot;&nbsp; 2026-07-21</div>
+
+  <div class="tokens">
+    <div class="tok">
+      <h4>Palette</h4>
+      <div class="swatches">
+        <div class="sw"><i style="background:#F2ECE0"></i><span>cream</span></div>
+        <div class="sw"><i style="background:#26201B"></i><span>ink</span></div>
+        <div class="sw"><i style="background:#B44D2B"></i><span>terracotta</span></div>
+        <div class="sw"><i style="background:#5F6E3E"></i><span>sage</span></div>
+        <div class="sw"><i style="background:#8A7F72"></i><span>muted</span></div>
+      </div>
+    </div>
+    <div class="tok">
+      <h4>Type</h4>
+      <div class="type-serif">Georgia, the display voice</div>
+      <div class="type-sans">System sans for body, captions and data</div>
+      <div class="type-label">Uppercase tracked labels</div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= COMPONENT A ================= -->
+<section id="a">
+  <div class="sec-head"><span class="sec-tag">A</span><span class="sec-title">Photo + quote hero</span></div>
+  <div class="sec-note">
+    The workhorse. A full-bleed On-Country photo, one <b>cleared verbatim quote</b> in Georgia, a portrait
+    chip where the storyteller has a cleared image, and a claim tag. The door line sits bottom-left.
+  </div>
+  <div class="frame-wrap">
+    <div class="frame bleed-frame">
+      <img class="f-bleed" src="deck-photos/listening-first.jpg" alt="Listening first, on Country">
+      <div class="f-scrim-l"></div>
+      <div style="position:absolute; left:54px; top:96px; width:640px;">
+        <div class="f-kicker k-terra" style="margin-bottom:22px;">2 &nbsp;&middot;&nbsp; Never asked &nbsp;&middot;&nbsp; Observed</div>
+        <blockquote class="f-quote f-white" style="margin-bottom:28px;">
+          &ldquo;We&rsquo;ve never been asked what sort of house we&rsquo;d like to live in.&rdquo;
+        </blockquote>
+        <div style="display:flex; align-items:center; gap:14px;">
+          <img class="f-portrait" src="deck-photos/storyteller-linda-turner.jpg" alt="Linda Turner">
+          <div class="f-attrib f-white" style="opacity:.92;">Linda Turner &middot; Tennant Creek</div>
+        </div>
+      </div>
+      <div class="f-num f-num-l">02</div>
+    </div>
+  </div>
+  <div class="used">Used on beats 1 &middot; 2 &middot; 6 &middot; 7 &middot; 10 &middot; 12</div>
+</section>
+
+<!-- ================= COMPONENT B ================= -->
+<section id="b">
+  <div class="sec-head"><span class="sec-tag">B</span><span class="sec-title">Model diagram</span></div>
+  <div class="sec-note">
+    Fine single-weight terracotta line-art to explain how the model works, in the Goods illustration voice.
+    Here: <b>the plastic journey</b>. Same treatment carries the X-trestle tension and the ownership pathway.
+  </div>
+  <div class="frame-wrap">
+    <div class="frame">
+      <div style="position:absolute; left:54px; top:60px; width:600px;">
+        <div class="f-kicker k-terra" style="color:#B44D2B; margin-bottom:16px;">5 &nbsp;&middot;&nbsp; The loop works &nbsp;&middot;&nbsp; Delivered</div>
+        <div class="f-title" style="max-width:14ch;">Waste plastic in, a bed out, on Country.</div>
+      </div>
+
+      <!-- terracotta line-art flow -->
+      <svg viewBox="0 0 940 250" width="932" height="248" style="position:absolute; left:54px; top:216px;"
+           fill="none" stroke="#B44D2B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <!-- baseline the whole journey sits on -->
+        <path d="M28 158 h884" stroke="rgba(38,32,27,.14)" stroke-width="1"/>
+        <!-- 1 collect: milk bottle + crate -->
+        <g>
+          <path d="M46 158 v-26 h44 v26"/>
+          <path d="M46 145 h44 M61 132 v26 M75 132 v26"/>
+          <path d="M78 118 v-24 c0,-4 -3,-6 -7,-6 h-4 v-9 h-8 v9 h-4 c-4,0 -7,2 -7,6 v24"/>
+        </g>
+        <!-- 2 shred: hopper + flake fall -->
+        <g transform="translate(228,0)">
+          <path d="M42 96 l10 -16 h32 l10 16"/>
+          <path d="M38 96 h60 v18 h-60 Z"/>
+          <path d="M44 114 l6 8 6 -8 6 8 6 -8 6 8 6 -8 6 8 6 -8" stroke-width="1.4"/>
+          <path d="M50 132 l3 5 M64 130 l-3 6 M78 134 l3 5 M58 146 l4 4 M72 148 l-4 4 M86 144 l3 5" stroke-width="1.4"/>
+        </g>
+        <!-- 3 press 180C: plates in a frame + heat rising -->
+        <g transform="translate(448,0)">
+          <path d="M40 158 v-56 M96 158 v-56 M40 102 h56"/>
+          <path d="M46 122 h44 M46 142 h44" stroke-width="2.6"/>
+          <path d="M56 132 h24" stroke="#5F6E3E" stroke-width="2.6"/>
+          <path d="M58 92 c3,-4 -3,-8 0,-12 M68 92 c3,-4 -3,-8 0,-12 M78 92 c3,-4 -3,-8 0,-12" stroke-width="1.4"/>
+        </g>
+        <!-- 4 bed: canvas in tension on two X-trestles, poles through -->
+        <g transform="translate(660,0)">
+          <path d="M30 112 q60 8 120 0" stroke-width="2.2"/>
+          <path d="M30 112 m0 0" />
+          <circle cx="30" cy="112" r="3.5"/><circle cx="150" cy="112" r="3.5"/>
+          <path d="M44 116 l24 42 M68 116 l-24 42"/>
+          <path d="M112 116 l24 42 M136 116 l-24 42"/>
+        </g>
+        <!-- quiet connectors -->
+        <g stroke="rgba(180,77,43,.55)" stroke-width="1.4">
+          <path d="M136 128 h72 M200 123 l8 5 -8 5"/>
+          <path d="M366 128 h62 M420 123 l8 5 -8 5"/>
+          <path d="M584 128 h56 M632 123 l8 5 -8 5"/>
+        </g>
+        <!-- numbered stage labels -->
+        <g stroke="none" font-family="ui-sans-serif,system-ui" text-anchor="middle">
+          <text x="68" y="190" fill="#B44D2B" font-size="11" font-weight="700" letter-spacing="2">01</text>
+          <text x="68" y="210" fill="#26201B" font-size="14" font-weight="600">Collect</text>
+          <text x="296" y="190" fill="#B44D2B" font-size="11" font-weight="700" letter-spacing="2">02</text>
+          <text x="296" y="210" fill="#26201B" font-size="14" font-weight="600">Shred</text>
+          <text x="516" y="190" fill="#B44D2B" font-size="11" font-weight="700" letter-spacing="2">03</text>
+          <text x="516" y="210" fill="#26201B" font-size="14" font-weight="600">Press at 180&#176;C</text>
+          <text x="750" y="190" fill="#B44D2B" font-size="11" font-weight="700" letter-spacing="2">04</text>
+          <text x="750" y="210" fill="#26201B" font-size="14" font-weight="600">Bed on Country</text>
+        </g>
+      </svg>
+
+      <div style="position:absolute; left:54px; bottom:44px;">
+        <span class="f-tag tag-sage">20kg diverted per bed</span>
+        &nbsp;
+        <span class="f-tag tag-sage">3,540kg kept out of landfill so far</span>
+      </div>
+      <div class="f-num">05</div>
+    </div>
+  </div>
+  <div class="used">Used on beats 3 (X-trestle) &middot; 5 (plastic journey) &middot; 9 (ownership pathway)</div>
+</section>
+
+<!-- ================= COMPONENT C ================= -->
+<section id="c">
+  <div class="sec-head"><span class="sec-tag">C</span><span class="sec-title">Simple cost figure</span></div>
+  <div class="sec-note">
+    The whole money story in one glance, no chart wall. Same $750 sale price both ways; the sage block is
+    <b>what stays on Country per bed</b>. Making it here keeps roughly <b>five times more</b>.
+  </div>
+  <div class="frame-wrap">
+    <div class="frame">
+      <div style="position:absolute; left:54px; top:56px; width:900px;">
+        <div class="f-kicker" style="color:#B44D2B; margin-bottom:14px;">8 &nbsp;&middot;&nbsp; The hinge &nbsp;&middot;&nbsp; The truck test</div>
+        <div class="f-title" style="max-width:24ch;">Every bed sells for $750. The way we make it decides how much stays.</div>
+        <hr class="f-divider" style="margin-top:18px;">
+      </div>
+
+      <div style="position:absolute; left:54px; top:238px;">
+        <div class="crow">
+          <div class="crow-h"><span class="t">Buy the leg kit <span>&middot; today</span></span><span class="f-tag tag-ink">Measured</span></div>
+          <div class="cbar">
+            <!-- cost 685/750 = 91.3% ; keep 65/750 = 8.7% -->
+            <i class="cost" style="width:91.3%;"></i>
+            <i class="keep" style="width:8.7%;"></i>
+          </div>
+          <div class="crow-l"><span>$685 leaves</span><span style="text-align:right;"><span class="keepnum">$65</span><span class="keeplab" style="display:block;">stays on Country</span></span></div>
+        </div>
+        <div class="crow" style="margin-bottom:0;">
+          <div class="crow-h"><span class="t">Press our own legs <span>&middot; the plan</span></span><span class="f-tag tag-sage">Modelled</span></div>
+          <div class="cbar">
+            <!-- cost 426/750 = 56.8% ; keep 324/750 = 43.2% -->
+            <i class="cost" style="width:56.8%;"></i>
+            <i class="keep" style="width:43.2%;"></i>
+          </div>
+          <div class="crow-l"><span>$426 leaves</span><span style="text-align:right;"><span class="keepnum">$324</span><span class="keeplab" style="display:block;">stays on Country</span></span></div>
+        </div>
+      </div>
+
+      <div style="position:absolute; left:754px; top:252px; width:236px; border-left:2px solid var(--terra); padding-left:22px;">
+        <div class="f-body" style="font-size:14.5px;">
+          Beds pressed in-house so far: <b style="color:var(--ink)">0</b>. That honesty is the pitch.
+          Break-even is about <b style="color:var(--ink)">338 beds a year</b>, once we make them here.
+        </div>
+        <div class="f-tag tag-sage" style="margin-top:14px;">Break-even ~338 / yr &middot; Modelled</div>
+      </div>
+
+      <div class="f-foot"><span style="color:var(--muted)">the full cost model</span> <span class="arw">&rarr;</span> <span style="color:var(--ink-2)">goodsoncountry.com/investors</span></div>
+      <div class="f-num">08</div>
+    </div>
+  </div>
+  <div class="used">Used on beat 8</div>
+</section>
+
+<!-- ================= COMPONENT D ================= -->
+<section id="d">
+  <div class="sec-head"><span class="sec-tag">D</span><span class="sec-title">Data-viz stat panel</span></div>
+  <div class="sec-note">
+    The proof numbers as <b>designed</b> viz, not just big numerals. The 540 splits into what was actually
+    delivered; the rest are clean counters. Register-verified, so it carries a Delivered tag.
+  </div>
+  <div class="frame-wrap">
+    <div class="frame">
+      <div style="position:absolute; left:54px; top:56px; width:900px;">
+        <div class="f-kicker" style="color:#B44D2B; margin-bottom:14px;">4 &nbsp;&middot;&nbsp; Proof at delivery &nbsp;&middot;&nbsp; <span style="color:var(--sage-2)">Delivered &middot; register-verified</span></div>
+        <div class="f-title" style="max-width:26ch;">This is not a pitch about what could happen. It already has.</div>
+        <hr class="f-divider" style="margin-top:18px;">
+      </div>
+
+      <!-- 540 split bar -->
+      <div style="position:absolute; left:54px; top:216px; width:560px;">
+        <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:12px;">
+          <div class="st"><div class="n" style="font-size:64px;">540</div></div>
+          <div class="f-body" style="padding-bottom:8px;">beds delivered into community</div>
+        </div>
+        <div class="splitbar">
+          <i style="width:32.8%; background:var(--terra);"></i>
+          <i style="width:67.2%; background:var(--sage);"></i>
+        </div>
+        <div class="legend">
+          <span><span class="dot" style="background:var(--terra);"></span><b>177</b> Stretch Bed</span>
+          <span><span class="dot" style="background:var(--sage);"></span><b>363</b> Basket Bed</span>
+        </div>
+      </div>
+
+      <!-- counters -->
+      <div class="statrow" style="position:absolute; left:660px; top:216px; width:328px;">
+        <div class="st"><div class="rule" style="background:var(--terra);"></div><div class="n sm">20</div><div class="l">Washing machines<br>in community</div></div>
+        <div class="st"><div class="rule" style="background:var(--sage);"></div><div class="n sm">11</div><div class="l">Communities<br>served</div></div>
+      </div>
+      <div style="position:absolute; left:660px; top:384px; width:328px;">
+        <div class="st"><div class="rule" style="background:var(--terra);"></div><div class="n sm">3,540<span style="font-size:24px;">kg</span></div><div class="l">Recycled HDPE diverted (Stretch beds)</div></div>
+      </div>
+
+      <div style="position:absolute; left:54px; bottom:96px; width:560px;">
+        <blockquote class="f-quote-sm" style="color:#9A4527;">&ldquo;Our bed is right. That&rsquo;s good. Good.&rdquo;</blockquote>
+        <div class="f-attrib f-inkmut" style="margin-top:10px;">Margaret Lloyd &middot; Utopia homelands</div>
+      </div>
+
+      <div class="f-foot"><span style="color:var(--muted)">walk the map</span> <span class="arw">&rarr;</span> <span style="color:var(--ink-2)">goodsoncountry.com/atlas</span></div>
+      <div class="f-num">04</div>
+    </div>
+  </div>
+  <div class="used">Used on beats 4 &middot; 11</div>
+</section>
+
+<!-- ================= COMPONENT E ================= -->
+<section id="e">
+  <div class="sec-head"><span class="sec-tag">E</span><span class="sec-title">The door back to proof</span></div>
+  <div class="sec-note">
+    <b>Only three beats carry a door</b>, so each one lands: the proof beat, the money beat, and the close.
+    One quiet line, bottom-left, a short verb and a real page. No QR, no clutter.
+  </div>
+  <div style="display:flex; flex-wrap:wrap; gap:12px 40px; padding:8px 0 4px;">
+    <div class="f-foot" style="position:static;"><span style="color:var(--muted)">walk the map</span> <span class="arw">&rarr;</span> <span style="color:rgba(245,238,228,.85)">goodsoncountry.com/atlas</span></div>
+    <div class="f-foot" style="position:static;"><span style="color:var(--muted)">the full cost model</span> <span class="arw">&rarr;</span> <span style="color:rgba(245,238,228,.85)">goodsoncountry.com/investors</span></div>
+    <div class="f-foot" style="position:static;"><span style="color:var(--muted)">hear the voices</span> <span class="arw">&rarr;</span> <span style="color:rgba(245,238,228,.85)">goodsoncountry.com/voices</span></div>
+  </div>
+  <div class="used">On beats 4 &middot; 8 &middot; 12 only</div>
+</section>
+
+<!-- ================= BEAT -> COMPONENT MAP ================= -->
+<section id="map">
+  <div class="sec-head"><span class="sec-tag">&#9639;</span><span class="sec-title">How the twelve beats use the components</span></div>
+  <div class="sec-note">The spine is fixed (from the playout plan). This is just which component carries each beat.</div>
+  <table class="map">
+    <thead><tr><th style="width:180px;">Beat</th><th style="width:220px;">Component</th><th>The one job</th></tr></thead>
+    <tbody>
+      <tr><td class="b">1 &middot; The problem</td><td><span class="cchip">A</span> photo + quote</td><td>Freight breaks the old way. Alfred.</td></tr>
+      <tr><td class="b">2 &middot; Never asked</td><td><span class="cchip">A</span> photo + quote</td><td>Sixty years of not asking. Linda.</td></tr>
+      <tr><td class="b">3 &middot; Designed in community</td><td><span class="cchip">A</span> + <span class="cchip">B</span> diagram</td><td>Talk to elders + how the X-trestle stands. Dianne.</td></tr>
+      <tr><td class="b">4 &middot; Proof at delivery</td><td><span class="cchip">D</span> stat viz</td><td>540 / 20 / 11 / 3,540kg, register-verified. Margaret.</td></tr>
+      <tr><td class="b">5 &middot; The loop works</td><td><span class="cchip">B</span> diagram</td><td>Waste plastic to a bed. Shayne.</td></tr>
+      <tr><td class="b">6 &middot; In community hands</td><td><span class="cchip">A</span> photo + quote</td><td>Elders before government. Maningrida 58 + 8.</td></tr>
+      <tr><td class="b">7 &middot; The making</td><td><span class="cchip">A</span> photo + quote</td><td>Built by young people. Mykel.</td></tr>
+      <tr><td class="b">8 &middot; The hinge</td><td><span class="cchip">C</span> cost figure</td><td>$65 vs $324 stays. Break-even 338.</td></tr>
+      <tr><td class="b">9 &middot; Ownership is the ask</td><td><span class="cchip">A</span> + <span class="cchip">B</span> diagram</td><td>The plant moves to community hands. Kristy.</td></tr>
+      <tr><td class="b">10 &middot; The funder witness</td><td><span class="cchip">A</span> photo + quote</td><td>With, not for. Georgina, Snow.</td></tr>
+      <tr><td class="b">11 &middot; The ask</td><td><span class="cchip">D</span> stat viz</td><td>$0 signed vs $400K by 31 Aug.</td></tr>
+      <tr><td class="b">12 &middot; Close</td><td><span class="cchip">A</span> photo + quote</td><td>We know what we need. Dianne blessing.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================= NEXT ================= -->
+<div class="next">
+  <h3>What I need from you before we build in Pencil</h3>
+  <ol>
+    <li><b>The five components</b> above: keep, cut, or change any. Do the diagrams feel like the Goods hand? Is the cost figure simple enough?</li>
+    <li><b>The door lines</b>: are those the right live pages to send funders to, or different ones?</li>
+    <li><b>Photography</b>: this uses the staged deck-photos. Any hero shots you want swapped for something stronger?</li>
+    <li>Then I assemble the twelve beats in <b>Goods_Final_Deck.pen</b> using these exact components, and we review the full run.</li>
+  </ol>
+  <div class="caption">Frames shown at ~half deck size. Content is real and source-verified; provenance in goods-funder-deck-v2.provenance.md.</div>
+</div>
+
+</div>
+</body>
+</html>

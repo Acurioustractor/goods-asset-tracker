@@ -9,7 +9,7 @@
 - Catalysing Impact 2026: 10 enterprises share a $1M pool. Stage 2 grant up to $400K
   ($150K floor), discretionary, must be at least matched by signed external commitments,
   repayable finance preferred. Stage 1 paid $10K flat.
-- Application: online form, closes late September 2026, plus a short pitch + interview.
+- Application: online form, submission due 14 September 2026, plus a short pitch + interview.
   Outcomes November 2026. Match is judged on signed, verifiable paper (amount, instrument,
   funder legal name, a contact SIH can call).
 - Advisory: production cost model with Matt (lead) and Mal (QA). Hackathon: one day,

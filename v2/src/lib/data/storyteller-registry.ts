@@ -1208,9 +1208,16 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
     role: 'Community member',
     community: 'Alice Springs / Utopia',
     tier: 'hold',
-    quotes: [],
+    quotes: [
+      {
+        text: "my mum gets the phone call and she's like, your uncle said they had the best night's sleep just outta these beds, made outta crates with the cushion and the thing. It's like unreal, unreal. The impact that ... you have",
+        context: "Recounting family feedback after Sarah (a nurse volunteer, 'adopted daughter') built beds for extended family at Utopia community.",
+        status: 'approved',
+        note: 'Reattributed 2026-07-21: was misfiled under Georgina Byron. Tier (external use) is Ben\'s call.',
+      },
+    ],
     portrait: null,
-    notes: 'No usable transcript.',
+    notes: 'Quote recovered 2026-07-21 from Georgina misfiling; earlier "no usable transcript" note superseded.',
   },
 
   // ── Funder-only ──────────────────────────────────────────────────────────
@@ -1238,14 +1245,10 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         note: 'Verbatim funder speech containing "empowering": Ben to decide use or retire (checkpoint B-5b).',
       },
       {
-        text: "my mum gets the phone call and she's like, your uncle said they had the best night's sleep just outta these beds, made outta crates with the cushion and the thing. It's like unreal, unreal. The impact that ... you have",
-        context: "Kylie recounts family feedback after Sarah (a nurse volunteer, 'adopted daughter') built beds for extended family at Utopia community.",
-        status: 'approved',
-      },
-      {
         text: "We've waited so long for this house and no one in Alice Springs would touch it. Get two bloke to bring five contractors in that like, ... done in a week.",
         context: "Contrasting years of service-system inaction with the one-week community build.",
-        status: 'approved',
+        status: 'hold',
+        note: 'Speaker attribution unconfirmed: sounds like a community voice from the same trip transcript that carried the two misfiled quotes (moved to Kylie/Katherine 2026-07-21). Confirm it is actually Georgina before use.',
       },
       {
         text: "The reaction has been so overwhelmingly positive and for me to get that insight is just, validated what they're doing.",
@@ -1257,14 +1260,26 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         context: "Her closing verdict on the trip; the with-not-for line lands the design-with-community principle from a funder's mouth.",
         status: 'approved',
       },
+    ],
+    portrait: null,
+    notes: 'Funder testimonial only, clearly labelled. NEVER in the community storyteller set. 2026-07-21: two misfiled quotes moved out (Kylie Bloomfield, Katherine of the Deadly Heart Trek) per Ben; one further quote put on hold pending speaker confirmation.',
+  },
+  {
+    slug: 'katherine-deadly-heart-trek',
+    name: 'Katherine (Deadly Heart Trek)',
+    role: 'Deadly Heart Trek team',
+    community: 'Deadly Heart Trek',
+    tier: 'hold',
+    quotes: [
       {
         text: "The goods project Nick and Ben, and together with the family built a bed ... just seeing that family jump on that bed and do it together and have a bit of a laugh and just felt really, you know, welcoming and warm. So that was really special.",
-        context: "Katherine, on the Deadly Heart Trek: watching a family build a Basket Bed together.",
+        context: 'Watching a family build a Basket Bed together on the Deadly Heart Trek.',
         status: 'approved',
+        note: 'Reattributed 2026-07-21: was misfiled under Georgina Byron. Surname/identity to confirm before crediting by name externally; tier is Ben\'s call.',
       },
     ],
     portrait: null,
-    notes: 'Funder testimonial only, clearly labelled. NEVER in the community storyteller set.',
+    notes: 'Created 2026-07-21 to hold a quote misfiled under Georgina Byron. Identity to confirm.',
   },
 
   // ── Internal ─────────────────────────────────────────────────────────────

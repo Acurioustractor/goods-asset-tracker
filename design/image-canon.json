@@ -1,6 +1,6 @@
 {
   "_note": "THE IMAGE CANON — a REFERENCE-ONLY index. The visual twin of canon.ts. It NEVER holds copies of images: every entry points at the canonical on-disk path of the one best image per subject, mapped to the QBE areas it serves. Single source per image. dataClass mirrors canon.ts (green = public-safe, red = consent-gated). type: photo | illustration | chart | logo. Canonical store policy: web images live under v2/public/images/** (served at /images/**); the .pen deck mirrors a subset in design/deck-assets/ because Pencil image fills need a file path relative to the .pen (tolerated deck mirror, not a second source of truth). generated-images/ is AI scratch, never canonical. Edit here first. Replaces the earlier design/canon-images/ folder, which was deleted because it duplicated files.",
-  "asOf": "2026-07-03",
+  "asOf": "2026-07-18",
   "owner": "Ben",
   "policy": {
     "webCanonicalRoot": "v2/public/images",
@@ -72,18 +72,6 @@
         "11"
       ],
       "canonicalPath": "v2/public/images/process/facility-full-site.jpg"
-    },
-    {
-      "subject": "Cover / hero",
-      "slot": "cover-hero",
-      "type": "photo",
-      "dataClass": "green",
-      "caption": "The single strongest Goods-on-Country frame: community plus bed, warm light.",
-      "qbeAreas": [
-        "01",
-        "02"
-      ],
-      "canonicalPath": "v2/public/images/product/stretch-bed-community.jpg"
     },
     {
       "subject": "The problem",
@@ -511,6 +499,18 @@
         "07"
       ],
       "canonicalPath": "v2/public/video/building-together-desktop.mp4"
+    },
+    {
+      "subject": "Cover / hero",
+      "slot": "cover-hero",
+      "type": "photo",
+      "dataClass": "green",
+      "caption": "The single strongest Goods-on-Country frame: community plus bed, warm light.",
+      "qbeAreas": [
+        "01",
+        "02"
+      ],
+      "canonicalPath": "v2/public/images/brand/generated/goods-ill-impact-per-bed.png"
     }
   ],
   "areaCoverage": {

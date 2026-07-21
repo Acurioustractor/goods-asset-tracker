@@ -1,5 +1,7 @@
 # Goods on Country — cost per bed, made simple
 
+> **CANON NOTE (2026-07-21):** dated workpaper, kept as-is. Quote externally: break-even = **~338 beds/yr (range 333-338) at the one price $750**. The $600 price is retired, so the "333-600" / "~611 @ $600" spans below are historical only. Live figures: `v2/src/lib/data/cost-story.ts` + `wiki/investor/15-money-alignment-audit.md`.
+
 **Date:** 2026-06-02 · **Companion:** `Goods-Cost-Per-Bed-SIMPLE-v1.xlsx` (the playable model)
 **Sources reconciled:** Notion "11 Cost Model v6 reconfigured" + "04 Financial Management"; act-global-infrastructure verified BOM (`thoughts/shared/analysis/2026-05-28-goods-bed-cost-model-v3.json`); v2 site cost-model engine + skins. All four accessed and reconciled 2026-06-02.
 

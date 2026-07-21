@@ -1,7 +1,7 @@
 {
-  "asOf": "2026-07-03",
+  "asOf": "2026-07-18",
   "filled": 40,
-  "total": 40,
+  "total": 41,
   "resolved": {
     "cover-hero": {
       "label": "Cover / hero",
@@ -13,7 +13,7 @@
         "02"
       ],
       "source": "local",
-      "path": "v2/public/images/product/stretch-bed-community.jpg",
+      "path": "v2/public/images/brand/generated/goods-ill-impact-per-bed.png",
       "consent": "public",
       "status": "canon"
     },
@@ -303,6 +303,19 @@
       "consent": "cleared",
       "status": "canon"
     },
+    "storyteller-dianne-stokes": {
+      "label": "Dianne Stokes",
+      "group": "Storytellers (RED)",
+      "type": "photo",
+      "dataClass": "red",
+      "areas": [
+        "02"
+      ],
+      "source": "seed",
+      "path": "v2/public/images/people/dianne-stokes.jpg",
+      "consent": "gated",
+      "status": "seed"
+    },
     "storyteller-alfred-johnson": {
       "label": "Alfred Johnson",
       "group": "Storytellers (RED)",
@@ -546,19 +559,6 @@
       "source": "local",
       "path": "generated-images/goods-illustrations/qbe-12-alignment/01-alignment-matrix.png",
       "consent": "public",
-      "status": "canon"
-    },
-    "storyteller-dianne-stokes": {
-      "label": "Dianne Stokes",
-      "group": "Storytellers (RED)",
-      "type": "photo",
-      "dataClass": "red",
-      "areas": [
-        "02"
-      ],
-      "source": "local",
-      "path": "v2/public/images/people/dianne-stokes.jpg",
-      "consent": "cleared",
       "status": "canon"
     }
   }

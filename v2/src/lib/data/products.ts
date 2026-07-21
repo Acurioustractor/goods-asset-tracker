@@ -103,7 +103,7 @@ export const BASKET_BED = {
 
 export const PRODUCTION_FACILITY = {
   type: 'Containerised mobile plastic re-production facility',
-  investment: '~$100K invested (TFN + ACT funding)',
+  investment: '$110,046 invested (TFN + ACT funding)',
   capacity: '~30 beds/week when deployed for 2 months',
   model: 'Two-container system (shredder container + production container)',
   machines: [

@@ -8,6 +8,7 @@ import {
   MapPin,
   Image as ImageIcon,
   CircleDollarSign,
+  HandCoins,
   Factory,
   KanbanSquare,
   DoorOpen,
@@ -54,6 +55,7 @@ const navigation: NavGroup[] = [
     group: 'Funder room',
     items: [
       { name: 'Start Here',   href: '/investors',           icon: DoorOpen },
+      { name: 'The Ask',      href: '/admin/ask',           icon: HandCoins },
       { name: 'Cost Story',   href: '/admin/cost-model',    icon: ReceiptText },
       { name: 'Voice Impact', href: '/admin/voice-impact',  icon: Quote },
     ],

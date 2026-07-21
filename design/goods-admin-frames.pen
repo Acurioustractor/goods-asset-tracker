@@ -1298,6 +1298,41 @@
         },
         {
           "type": "frame",
+          "id": "T6wWN4",
+          "name": "NavItem Pipeline",
+          "width": "fill_container",
+          "cornerRadius": 8,
+          "gap": 10,
+          "padding": [
+            7,
+            10
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "N7RsP",
+              "name": "NavIcon Pipeline",
+              "width": 16,
+              "height": 16,
+              "icon": "kanban",
+              "library": "lucide",
+              "fill": "$ink-muted"
+            },
+            {
+              "type": "text",
+              "id": "fRV8W",
+              "name": "NavLabel Pipeline",
+              "fill": "$ink",
+              "content": "Pipeline",
+              "fontFamily": "$font-body",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
           "id": "L0qHS3",
           "name": "NavItem Products & Plant",
           "width": "fill_container",
@@ -3331,7 +3366,7 @@
                               "id": "kf56Y",
                               "name": "F2 G Link",
                               "fill": "$terracotta-ink",
-                              "content": "Open in Media Room →",
+                              "content": "＋ Add media · Media Room →",
                               "fontFamily": "$font-body",
                               "fontSize": 12.5,
                               "fontWeight": "600"
@@ -3451,7 +3486,7 @@
                           "id": "G17j6",
                           "name": "F2 G Note",
                           "fill": "$ink-muted",
-                          "content": "wired to media_links · consent-cleared pool only",
+                          "content": "wired to media_links · tag and add as admin · cleared pool renders public",
                           "fontFamily": "$font-body",
                           "fontSize": 11.5,
                           "fontWeight": "normal"
@@ -4126,6 +4161,31 @@
                           "fontSize": 12.5
                         }
                       ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "axcME",
+                  "name": "F3 Add Media Btn",
+                  "fill": "$terracotta",
+                  "cornerRadius": 9,
+                  "stroke": "$terracotta",
+                  "strokeWidth": 1,
+                  "padding": [
+                    6,
+                    12
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "bDmpJ",
+                      "name": "F3 Add Media T",
+                      "fill": "$cream",
+                      "content": "＋ Add media",
+                      "fontFamily": "$font-body",
+                      "fontSize": 12.5,
+                      "fontWeight": "700"
                     }
                   ]
                 }
@@ -5079,7 +5139,7 @@
                       "id": "Y0ytMZ",
                       "name": "F3 I Link",
                       "fill": "$terracotta-ink",
-                      "content": "Link to a story →",
+                      "content": "＋ Link community · storyteller · product",
                       "fontFamily": "$font-body",
                       "fontSize": 13,
                       "fontWeight": "600"
@@ -5158,7 +5218,7 @@
                   "id": "aS7iK",
                   "name": "F4 Sub",
                   "fill": "$ink-muted",
-                  "content": "every figure carries its honesty label",
+                  "content": "honesty label on every figure · live from Xero, GHL, the register",
                   "fontFamily": "$font-body",
                   "fontSize": 12.5,
                   "fontWeight": "normal"
@@ -6737,6 +6797,29 @@
                           "fontWeight": "600"
                         }
                       ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ShQPh",
+                      "name": "F6 Edit Chip",
+                      "fill": "$cream",
+                      "cornerRadius": 7,
+                      "padding": [
+                        5,
+                        11
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "oepvB",
+                          "name": "F6 Edit Chip T",
+                          "fill": "$terracotta-ink",
+                          "content": "✎ edit page",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "600"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -7523,7 +7606,7 @@
                           "id": "OO2Rz",
                           "name": "F6 K Note",
                           "fill": "$ink-muted",
-                          "content": "Same wiki pattern serves Pakkimjalki Kari · Basket Bed · The plant",
+                          "content": "Same wiki pattern serves Pakkimjalki Kari · Basket Bed · The plant · sections editable as admin",
                           "fontFamily": "Inter",
                           "fontSize": 11.5,
                           "fontWeight": "normal"
@@ -7977,12 +8060,1614 @@
                           "id": "Asfog",
                           "name": "F6 M Link",
                           "fill": "$terracotta-ink",
-                          "content": "All Stretch Bed media →",
+                          "content": "＋ Add photos · all media →",
                           "fontFamily": "Inter",
                           "fontSize": 12.5,
                           "fontWeight": "600"
                         }
                       ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "JBF6D",
+      "x": 9360,
+      "y": 1200,
+      "name": "07 Pipeline",
+      "clip": true,
+      "width": 1440,
+      "height": 1024,
+      "fill": "$bg",
+      "children": [
+        {
+          "id": "ffNCS",
+          "type": "ref",
+          "ref": "tlwrQ",
+          "name": "Sidebar · 07 Pipeline",
+          "height": "fill_container"
+        },
+        {
+          "type": "frame",
+          "id": "DPXmw",
+          "name": "F7 Main",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 14,
+          "padding": [
+            22,
+            26
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "YFUoJ",
+              "name": "F7 Header",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "BerJW",
+                  "name": "F7 HL",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "p8fpNa",
+                      "name": "F7 Title",
+                      "fill": "$ink",
+                      "content": "Pipeline",
+                      "fontFamily": "Newsreader",
+                      "fontSize": 31,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "R0Igu",
+                      "name": "F7 Sub",
+                      "fill": "$ink-muted",
+                      "content": "every open opportunity in one place · live from GHL + crm_deals",
+                      "fontFamily": "Inter",
+                      "fontSize": 12.5,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "pijIA",
+                  "name": "F7 Filters",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "z5vk4l",
+                      "name": "F7 F All",
+                      "fill": "$terracotta-tint",
+                      "cornerRadius": 9,
+                      "padding": [
+                        6,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "KdP66",
+                          "name": "F7 FT All",
+                          "fill": "$terracotta-ink",
+                          "content": "All",
+                          "fontFamily": "Inter",
+                          "fontSize": 12.5,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "LDXFS",
+                      "name": "F7 F Funding",
+                      "fill": "$paper",
+                      "cornerRadius": 9,
+                      "stroke": "$line",
+                      "strokeWidth": 1,
+                      "padding": [
+                        6,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "x7v3Y",
+                          "name": "F7 FT Funding",
+                          "fill": "$ink",
+                          "content": "Funding",
+                          "fontFamily": "Inter",
+                          "fontSize": 12.5,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "egMvo",
+                      "name": "F7 F Sales",
+                      "fill": "$paper",
+                      "cornerRadius": 9,
+                      "stroke": "$line",
+                      "strokeWidth": 1,
+                      "padding": [
+                        6,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "mHWXp",
+                          "name": "F7 FT Sales",
+                          "fill": "$ink",
+                          "content": "Sales",
+                          "fontFamily": "Inter",
+                          "fontSize": 12.5,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "GRnia",
+                      "name": "F7 F Partnerships",
+                      "fill": "$paper",
+                      "cornerRadius": 9,
+                      "stroke": "$line",
+                      "strokeWidth": 1,
+                      "padding": [
+                        6,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tfwG6",
+                          "name": "F7 FT Partnerships",
+                          "fill": "$ink",
+                          "content": "Partnerships",
+                          "fontFamily": "Inter",
+                          "fontSize": 12.5,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Bbkz0",
+                      "name": "F7 F Procurement",
+                      "fill": "$paper",
+                      "cornerRadius": 9,
+                      "stroke": "$line",
+                      "strokeWidth": 1,
+                      "padding": [
+                        6,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "iX64I",
+                          "name": "F7 FT Procurement",
+                          "fill": "$ink",
+                          "content": "Procurement",
+                          "fontFamily": "Inter",
+                          "fontSize": 12.5,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "cAc4I",
+              "name": "F7 Gap Band",
+              "width": "fill_container",
+              "fill": "$terracotta-tint",
+              "cornerRadius": 12,
+              "padding": [
+                10,
+                16
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Z8f34V",
+                  "name": "F7 Gap T",
+                  "fill": "$ink",
+                  "content": "0 signed match-eligible commitments · the QBE $400K releases only against signed external capital",
+                  "fontFamily": "Inter",
+                  "fontSize": 12.5,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "yQ8ew",
+                  "name": "F7 Gap Chip",
+                  "fill": "$paper",
+                  "cornerRadius": 8,
+                  "padding": [
+                    3,
+                    8
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "BQpDw",
+                      "name": "F7 Gap Chip T",
+                      "fill": "$terracotta-ink",
+                      "content": "THE GAP",
+                      "fontFamily": "Inter",
+                      "fontSize": 10.5,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "yltgU",
+              "name": "F7 Stats",
+              "width": "fill_container",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "JU5W7",
+                  "name": "F7 St1",
+                  "width": "fill_container",
+                  "fill": "$paper",
+                  "cornerRadius": 14,
+                  "stroke": "$line",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 3,
+                  "padding": [
+                    14,
+                    16
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "h5cFG",
+                      "name": "F7 St1 N",
+                      "fill": "$ink",
+                      "content": "$4.1M",
+                      "fontFamily": "Newsreader",
+                      "fontSize": 27,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ug2Be",
+                      "name": "F7 St1 L",
+                      "fill": "$ink-muted",
+                      "content": "focus deals · REAL Fund + Groote",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "PXHwl",
+                  "name": "F7 St2",
+                  "width": "fill_container",
+                  "fill": "$paper",
+                  "cornerRadius": 14,
+                  "stroke": "$line",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 3,
+                  "padding": [
+                    14,
+                    16
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "J8URw",
+                      "name": "F7 St2 N",
+                      "fill": "$ink",
+                      "content": "$475K",
+                      "fontFamily": "Newsreader",
+                      "fontSize": 27,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "CeKK0",
+                      "name": "F7 St2 L",
+                      "fill": "$ink-muted",
+                      "content": "match stack target · SEFA + Snow + Centrecorp",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "yzPKY",
+                  "name": "F7 St3",
+                  "width": "fill_container",
+                  "fill": "$paper",
+                  "cornerRadius": 14,
+                  "stroke": "$line",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 3,
+                  "padding": [
+                    14,
+                    16
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Bp0jZ",
+                      "name": "F7 St3 N",
+                      "fill": "$ink",
+                      "content": "$400K",
+                      "fontFamily": "Newsreader",
+                      "fontSize": 27,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "qH461",
+                      "name": "F7 St3 L",
+                      "fill": "$ink-muted",
+                      "content": "QBE contingent · $0 signed today",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "GIqfN",
+              "name": "F7 Table",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "$paper",
+              "cornerRadius": 14,
+              "stroke": "$line",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 9,
+              "padding": [
+                14,
+                18
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "whWon",
+                  "name": "F7 TH",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "s2iVyx",
+                      "name": "F7 TH C1",
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "SHYbM",
+                          "name": "F7 TH T1",
+                          "fill": "$ink-muted",
+                          "content": "OPPORTUNITY",
+                          "fontFamily": "Inter",
+                          "fontSize": 10.5,
+                          "fontWeight": "700",
+                          "letterSpacing": 1.2
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "inywN",
+                      "name": "F7 TH C2",
+                      "width": 130,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "O6Fiy",
+                          "name": "F7 TH T2",
+                          "fill": "$ink-muted",
+                          "content": "TYPE",
+                          "fontFamily": "Inter",
+                          "fontSize": 10.5,
+                          "fontWeight": "700",
+                          "letterSpacing": 1.2
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "UEZxA",
+                      "name": "F7 TH C3",
+                      "width": 70,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Gd9jr",
+                          "name": "F7 TH T3",
+                          "fill": "$ink-muted",
+                          "content": "AMOUNT",
+                          "fontFamily": "Inter",
+                          "fontSize": 10.5,
+                          "fontWeight": "700",
+                          "letterSpacing": 1.2
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "cogSt",
+                      "name": "F7 TH C4",
+                      "width": 175,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "yMSoK",
+                          "name": "F7 TH T4",
+                          "fill": "$ink-muted",
+                          "content": "STATUS",
+                          "fontFamily": "Inter",
+                          "fontSize": 10.5,
+                          "fontWeight": "700",
+                          "letterSpacing": 1.2
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "P0P3Im",
+                      "name": "F7 TH C5",
+                      "width": 240,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Y3dpKi",
+                          "name": "F7 TH T5",
+                          "fill": "$ink-muted",
+                          "content": "NEXT",
+                          "fontFamily": "Inter",
+                          "fontSize": 10.5,
+                          "fontWeight": "700",
+                          "letterSpacing": 1.2
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "VZpSt",
+                  "name": "F7 R1",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f3YWy",
+                      "name": "F7 R1 C1",
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "b4fSYD",
+                          "name": "F7 R1 Name",
+                          "fill": "$ink",
+                          "content": "REAL Fund",
+                          "fontFamily": "Inter",
+                          "fontSize": 13.5,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Z7UZO",
+                      "name": "F7 R1 C2",
+                      "width": 130,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "rws0d",
+                          "name": "F7 R1 Type",
+                          "fill": "$cream",
+                          "cornerRadius": 8,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "moD5t",
+                              "name": "F7 R1 Type T",
+                              "fill": "$ink-muted",
+                              "content": "FUNDING",
+                              "fontFamily": "Inter",
+                              "fontSize": 10.5,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "M4km0e",
+                      "name": "F7 R1 C3",
+                      "width": 70,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "XdiYe",
+                          "name": "F7 R1 Amt",
+                          "fill": "$ink",
+                          "content": "$2.4M",
+                          "fontFamily": "Newsreader",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "qkVG7",
+                      "name": "F7 R1 C4",
+                      "width": 175,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "x7oMKz",
+                          "name": "F7 R1 St",
+                          "fill": "$sage-tint",
+                          "cornerRadius": 8,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "vgz73",
+                              "name": "F7 R1 St T",
+                              "fill": "$sage-ink",
+                              "content": "FOCUS DEAL",
+                              "fontFamily": "Inter",
+                              "fontSize": 10.5,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Y98hFX",
+                      "name": "F7 R1 C5",
+                      "width": 240,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "E28DuA",
+                          "name": "F7 R1 Next",
+                          "fill": "$ink-muted",
+                          "content": "checklist live",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "SKwua",
+                  "name": "F7 R2",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ZhDzi",
+                      "name": "F7 R2 C1",
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "gRRoE",
+                          "name": "F7 R2 Name",
+                          "fill": "$ink",
+                          "content": "Groote",
+                          "fontFamily": "Inter",
+                          "fontSize": 13.5,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "q99uU",
+                      "name": "F7 R2 C2",
+                      "width": 130,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "kyVqY",
+                          "name": "F7 R2 Type",
+                          "fill": "$cream",
+                          "cornerRadius": 8,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "YzQYn",
+                              "name": "F7 R2 Type T",
+                              "fill": "$ink-muted",
+                              "content": "PROCUREMENT",
+                              "fontFamily": "Inter",
+                              "fontSize": 10.5,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "sWP5k",
+                      "name": "F7 R2 C3",
+                      "width": 70,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "unsmh",
+                          "name": "F7 R2 Amt",
+                          "fill": "$ink",
+                          "content": "$1.7M",
+                          "fontFamily": "Newsreader",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "hxiFR",
+                      "name": "F7 R2 C4",
+                      "width": 175,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "XsbHJ",
+                          "name": "F7 R2 St",
+                          "fill": "$sage-tint",
+                          "cornerRadius": 8,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Z8a2s",
+                              "name": "F7 R2 St T",
+                              "fill": "$sage-ink",
+                              "content": "FOCUS DEAL",
+                              "fontFamily": "Inter",
+                              "fontSize": 10.5,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "YyGUW",
+                      "name": "F7 R2 C5",
+                      "width": 240,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Q9Je6V",
+                          "name": "F7 R2 Next",
+                          "fill": "$ink-muted",
+                          "content": "checklist live",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "P7o6JJ",
+                  "name": "F7 R3",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "MvQ70",
+                      "name": "F7 R3 C1",
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "RF4uO",
+                          "name": "F7 R3 Name",
+                          "fill": "$ink",
+                          "content": "SEFA",
+                          "fontFamily": "Inter",
+                          "fontSize": 13.5,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "J0Qfh",
+                      "name": "F7 R3 C2",
+                      "width": 130,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "g35OOR",
+                          "name": "F7 R3 Type",
+                          "fill": "$cream",
+                          "cornerRadius": 8,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "YC86q",
+                              "name": "F7 R3 Type T",
+                              "fill": "$ink-muted",
+                              "content": "MATCH STACK",
+                              "fontFamily": "Inter",
+                              "fontSize": 10.5,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Ioa6Y",
+                      "name": "F7 R3 C3",
+                      "width": 70,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "IQFU6",
+                          "name": "F7 R3 Amt",
+                          "fill": "$ink",
+                          "content": "$300K",
+                          "fontFamily": "Newsreader",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Ip9eL",
+                      "name": "F7 R3 C4",
+                      "width": 175,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "yspjF",
+                          "name": "F7 R3 St",
+                          "fill": "$gold-tint",
+                          "cornerRadius": 8,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "VuvRs",
+                              "name": "F7 R3 St T",
+                              "fill": "$clay",
+                              "content": "TARGET ASK",
+                              "fontFamily": "Inter",
+                              "fontSize": 10.5,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tqvhB",
+                      "name": "F7 R3 C5",
+                      "width": 240,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "nAdKX",
+                          "name": "F7 R3 Next",
+                          "fill": "$ink-muted",
+                          "content": "first send · repayable preferred",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "IeBpZ",
+                  "name": "F7 R4",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "KMAha",
+                      "name": "F7 R4 C1",
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "A6uKi",
+                          "name": "F7 R4 Name",
+                          "fill": "$ink",
+                          "content": "Snow Foundation",
+                          "fontFamily": "Inter",
+                          "fontSize": 13.5,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "FBByj",
+                      "name": "F7 R4 C2",
+                      "width": 130,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "X96bxc",
+                          "name": "F7 R4 Type",
+                          "fill": "$cream",
+                          "cornerRadius": 8,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "s0Ic8d",
+                              "name": "F7 R4 Type T",
+                              "fill": "$ink-muted",
+                              "content": "MATCH STACK",
+                              "fontFamily": "Inter",
+                              "fontSize": 10.5,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vO2s9",
+                      "name": "F7 R4 C3",
+                      "width": 70,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "m7siUn",
+                          "name": "F7 R4 Amt",
+                          "fill": "$ink",
+                          "content": "$100K",
+                          "fontFamily": "Newsreader",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "oIs4s",
+                      "name": "F7 R4 C4",
+                      "width": 175,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "lxoxQ",
+                          "name": "F7 R4 St",
+                          "fill": "$gold-tint",
+                          "cornerRadius": 8,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "z6ApqQ",
+                              "name": "F7 R4 St T",
+                              "fill": "$clay",
+                              "content": "TARGET ASK",
+                              "fontFamily": "Inter",
+                              "fontSize": 10.5,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "qKGUu",
+                      "name": "F7 R4 C5",
+                      "width": 240,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "u6s7n4",
+                          "name": "F7 R4 Next",
+                          "fill": "$ink-muted",
+                          "content": "warm · $493,130 backed to date",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Tng8X",
+                  "name": "F7 R5",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "dSxsM",
+                      "name": "F7 R5 C1",
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "g88zsx",
+                          "name": "F7 R5 Name",
+                          "fill": "$ink",
+                          "content": "Centrecorp",
+                          "fontFamily": "Inter",
+                          "fontSize": 13.5,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "eeT3K",
+                      "name": "F7 R5 C2",
+                      "width": 130,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "o7V0ey",
+                          "name": "F7 R5 Type",
+                          "fill": "$cream",
+                          "cornerRadius": 8,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "b2A91v",
+                              "name": "F7 R5 Type T",
+                              "fill": "$ink-muted",
+                              "content": "MATCH STACK",
+                              "fontFamily": "Inter",
+                              "fontSize": 10.5,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Y4A8k6",
+                      "name": "F7 R5 C3",
+                      "width": 70,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "CBXBn",
+                          "name": "F7 R5 Amt",
+                          "fill": "$ink",
+                          "content": "$75K",
+                          "fontFamily": "Newsreader",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "n1c9zs",
+                      "name": "F7 R5 C4",
+                      "width": 175,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "kPZWB",
+                          "name": "F7 R5 St",
+                          "fill": "$gold-tint",
+                          "cornerRadius": 8,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "u9wXs",
+                              "name": "F7 R5 St T",
+                              "fill": "$clay",
+                              "content": "TARGET ASK",
+                              "fontFamily": "Inter",
+                              "fontSize": 10.5,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "zfYOY",
+                      "name": "F7 R5 C5",
+                      "width": 240,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "iQxJZ",
+                          "name": "F7 R5 Next",
+                          "fill": "$ink-muted",
+                          "content": "$123,332 paid to date",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "DVzND",
+                  "name": "F7 R6",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "d1BpqT",
+                      "name": "F7 R6 C1",
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "x6yPX8",
+                          "name": "F7 R6 Name",
+                          "fill": "$ink",
+                          "content": "QBE Catalysing Impact",
+                          "fontFamily": "Inter",
+                          "fontSize": 13.5,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "hQc4s",
+                      "name": "F7 R6 C2",
+                      "width": 130,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "vWnVF",
+                          "name": "F7 R6 Type",
+                          "fill": "$cream",
+                          "cornerRadius": 8,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "H1JaS",
+                              "name": "F7 R6 Type T",
+                              "fill": "$ink-muted",
+                              "content": "CONTINGENT",
+                              "fontFamily": "Inter",
+                              "fontSize": 10.5,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "d1sU1X",
+                      "name": "F7 R6 C3",
+                      "width": 70,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "o7kD2",
+                          "name": "F7 R6 Amt",
+                          "fill": "$ink",
+                          "content": "$400K",
+                          "fontFamily": "Newsreader",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "b7Tej",
+                      "name": "F7 R6 C4",
+                      "width": 175,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "GQiZK",
+                          "name": "F7 R6 St",
+                          "fill": "$terracotta-tint",
+                          "cornerRadius": 8,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "i6zEDW",
+                              "name": "F7 R6 St T",
+                              "fill": "$terracotta-ink",
+                              "content": "NEEDS SIGNED MATCH",
+                              "fontFamily": "Inter",
+                              "fontSize": 10.5,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "AAWTo",
+                      "name": "F7 R6 C5",
+                      "width": 240,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "WGm1W",
+                          "name": "F7 R6 Next",
+                          "fill": "$ink-muted",
+                          "content": "application September",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "JrDnp",
+              "name": "F7 Bottom",
+              "width": "fill_container",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "OyUgj",
+                  "name": "F7 Fresh",
+                  "width": "fill_container",
+                  "fill": "$paper",
+                  "cornerRadius": 14,
+                  "stroke": "$line",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": [
+                    14,
+                    18
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "r5Qt4",
+                      "name": "F7 Fresh Title",
+                      "fill": "$ink",
+                      "content": "Data freshness",
+                      "fontFamily": "Newsreader",
+                      "fontSize": 18,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "PAgV2",
+                      "name": "F7 Fr1",
+                      "width": "fill_container",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "W3VH2o",
+                          "name": "F7 Fr1 D",
+                          "fill": "$sage-ink",
+                          "width": 7,
+                          "height": 7
+                        },
+                        {
+                          "type": "text",
+                          "id": "lpkCi",
+                          "name": "F7 Fr1 T",
+                          "fill": "$ink",
+                          "content": "Asset register · live",
+                          "fontFamily": "Inter",
+                          "fontSize": 12.5,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "GrojF",
+                      "name": "F7 Fr2",
+                      "width": "fill_container",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "NUvLi",
+                          "name": "F7 Fr2 D",
+                          "fill": "$sage-ink",
+                          "width": 7,
+                          "height": 7
+                        },
+                        {
+                          "type": "text",
+                          "id": "VHYKr",
+                          "name": "F7 Fr2 T",
+                          "fill": "$ink",
+                          "content": "Xero mirror · synced today",
+                          "fontFamily": "Inter",
+                          "fontSize": 12.5,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "fLxTi",
+                      "name": "F7 Fr3",
+                      "width": "fill_container",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "aMXP8",
+                          "name": "F7 Fr3 D",
+                          "fill": "$sage-ink",
+                          "width": 7,
+                          "height": 7
+                        },
+                        {
+                          "type": "text",
+                          "id": "P09l7",
+                          "name": "F7 Fr3 T",
+                          "fill": "$ink",
+                          "content": "GHL · live API",
+                          "fontFamily": "Inter",
+                          "fontSize": 12.5,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "C4aL3",
+                      "name": "F7 Fr4",
+                      "width": "fill_container",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "sXKKy",
+                          "name": "F7 Fr4 D",
+                          "fill": "$terracotta",
+                          "width": 7,
+                          "height": 7
+                        },
+                        {
+                          "type": "text",
+                          "id": "Q97gbH",
+                          "name": "F7 Fr4 T",
+                          "fill": "$ink",
+                          "content": "Notion · manual sync · stale",
+                          "fontFamily": "Inter",
+                          "fontSize": 12.5,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ckRLT",
+                      "name": "F7 Fr5",
+                      "width": "fill_container",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "kxsi1",
+                          "name": "F7 Fr5 D",
+                          "fill": "$sage-ink",
+                          "width": 7,
+                          "height": 7
+                        },
+                        {
+                          "type": "text",
+                          "id": "oXVCM",
+                          "name": "F7 Fr5 T",
+                          "fill": "$ink",
+                          "content": "Empathy Ledger · API",
+                          "fontFamily": "Inter",
+                          "fontSize": 12.5,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "uZsST",
+                      "name": "F7 Fresh Link",
+                      "fill": "$terracotta-ink",
+                      "content": "↻ Run sync · drift checks green means the numbers match everywhere",
+                      "fontFamily": "Inter",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "bXkqv",
+                  "name": "F7 Ladder",
+                  "width": "fill_container",
+                  "fill": "$paper",
+                  "cornerRadius": 14,
+                  "stroke": "$line",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": [
+                    14,
+                    18
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "D1Tu69",
+                      "name": "F7 Ladder Title",
+                      "fill": "$ink",
+                      "content": "LOI ladder · 0 signed",
+                      "fontFamily": "Newsreader",
+                      "fontSize": 18,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "WW79F",
+                      "name": "F7 L1",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "WpuSn",
+                          "name": "F7 L1 T",
+                          "fill": "$ink",
+                          "content": "Eligible",
+                          "fontFamily": "Inter",
+                          "fontSize": 12.5,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "jj2jO",
+                          "name": "F7 L1 V",
+                          "fill": "$ink",
+                          "content": "the warm board",
+                          "fontFamily": "Inter",
+                          "fontSize": 12.5,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "jgwwI",
+                      "name": "F7 L2",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "v5Zh0",
+                          "name": "F7 L2 T",
+                          "fill": "$ink",
+                          "content": "Committed",
+                          "fontFamily": "Inter",
+                          "fontSize": 12.5,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Wjkso",
+                          "name": "F7 L2 V",
+                          "fill": "$ink",
+                          "content": "0",
+                          "fontFamily": "Newsreader",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "QZkZ5",
+                      "name": "F7 L3",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "biCCR",
+                          "name": "F7 L3 T",
+                          "fill": "$ink",
+                          "content": "Invoiced",
+                          "fontFamily": "Inter",
+                          "fontSize": 12.5,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "EGl9N",
+                          "name": "F7 L3 V",
+                          "fill": "$ink",
+                          "content": "0",
+                          "fontFamily": "Newsreader",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "u1fmU",
+                      "name": "F7 L4",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "RqtkT",
+                          "name": "F7 L4 T",
+                          "fill": "$ink",
+                          "content": "Secured",
+                          "fontFamily": "Inter",
+                          "fontSize": 12.5,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "BDGQJ",
+                          "name": "F7 L4 V",
+                          "fill": "$ink",
+                          "content": "0",
+                          "fontFamily": "Newsreader",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "viak5",
+                      "name": "F7 Ladder Link",
+                      "fill": "$terracotta-ink",
+                      "content": "Open the LOI tracker →",
+                      "fontFamily": "Inter",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
                     }
                   ]
                 }
