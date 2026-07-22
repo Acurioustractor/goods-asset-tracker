@@ -54,3 +54,26 @@ Winners are raster explorations. Diagrams that repeat across beats (plastic loop
 - `wiki/investor/10-community-counts.md` "canon" column reads 536/173/3,460 — do not source figures from it until corrected.
 - `design/goods-funder-deck.html` (old 5.5MB) — on canon but superseded; fallback only.
 - Old theory-of-change .pen files — verify in Pencil before any reuse.
+
+---
+
+## CORRECTION 2026-07-21 — the "map.png is stale" ruling in this manifest is ITSELF STALE
+
+This manifest lists `design/deck-photos/map.png` as contaminated/stale on 496 beds / 9 communities.
+That was true when written. The map was regenerated from /admin/atlas at canon and VERIFIED by
+reading the image on 2026-07-21:
+
+  header strip: 540 beds · 177 Stretch · 22 washers · 11 communities · 3,540kg
+  per-community beds sum EXACTLY to 540 (Maningrida 58 · Darwin 1 · Kununurra 2 · Katherine 1 ·
+  Tennant Creek 160 · Utopia 147 · Palm Island 131 · Mt Isa 2 · Alice Springs 16 · Kalgoorlie 20 ·
+  Canberra 2)
+
+The stale 496 copy was moved aside to `design/deck-photos/map-stale-496.png.bak`.
+DO NOT re-flag map.png as stale on the strength of the older note above.
+
+TWO REAL ISSUES REMAIN with map.png, neither of them staleness:
+1. Per-community WASHER labels sum to 32 (8+1+16+4+3) while the header says 20. Curated-vs-register
+   split, visible on one image. Pick one convention before this goes to a funder.
+2. It is an admin UI screenshot (Menu button, search box, "Country names" toggle) and needs a
+   chrome-free export for deck use. Canberra (2 beds) and Darwin (1 bed) also read oddly on a
+   "communities served" map.
