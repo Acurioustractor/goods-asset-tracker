@@ -26,7 +26,7 @@ The model was never "make beds cheaper". It is: move each part of the making ont
 4. **Sell and deliver** — orders from community organisations at $750; each one shrinks what philanthropy must carry.
 5. **Own** — the site, the press, the enterprise, the story. Four communities are already in the queue: Palm Island (council, community, PICC), Alice Springs (Oonchiumpa with the $2M REAL application in), Utopia (wants the shredder), Tennant Creek (The Community Shed).
 
-Each stage has its money: gifts buy the early stages time, loans bridge the orders, sales carry the middle, and site capital (IBA-shaped, post-ownership-gate) finishes it. A community site stands on its own at roughly 75-100 beds a year (modelled). The drawn frames 08-11 in the deck file hold this as pictures; the taper (frame 11) is the whole section in one image.
+Each stage has its money: gifts buy the early stages time, loans bridge the orders, sales carry the middle, and site capital (IBA-shaped, post-ownership-gate) finishes it. A community site keeps roughly $329 of every bed; the beds a year it needs to cover its own running costs is being rebuilt from the Oonchiumpa facility budget (the earlier 75-100 figure rested on a rent-only site bill of $24K/yr and understated the real cost, see `wiki/outputs/2026-07-22-community-facility-operating-model.md`). The drawn frames 08-11 in the deck file hold this as pictures; the taper (frame 11) is the whole section in one image.
 
 ## 3 · The overlapping systems (where the bed is a door)
 
@@ -47,7 +47,7 @@ The strategic sentence: **one product, four systems, one pathway out.** Funders 
 01 · The goal was never a bigger Goods. It is a plant that belongs to the people sleeping on the beds.
 02 · Beds don't survive out here. *(Gloria's camp: the visit where the first bed began.)*
 03 · So we asked. Then built it together. *(Sixty years of furniture designed somewhere else, dying in months.)*
-04 · 540 beds. 20 washing machines. 11 communities. *(Every one on the register. Walk the map: /atlas.)*
+04 · 540 beds. 22 washing machines. 11 communities. *(Every one on the register. Walk the map: /atlas.)*
 05 · Waste plastic in. A bed out. On Country. *(20kg a bed. 3,540kg so far.)*
 06 · Maningrida ordered more. We pressed their beds ourselves. *(All 40, at the farm, built in community. The press works; the next run gets the stopwatch.)*
 07 · Built by the people who sleep on them. *(Young people chose a bed as wages. About $100 a day, next to more than $3,600 a day for detention.)*

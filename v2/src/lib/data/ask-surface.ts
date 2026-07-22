@@ -202,7 +202,7 @@ export const GROWTH_STAGES: GrowthStage[] = [
   {
     stage: 'One facility, full',
     beds: '~1,000 beds/yr',
-    means: 'The plant runs at capacity and the model is provable enough to hand over. A community-owned site stands on its own at roughly 75-100 beds a year (site bill ~$24K/yr, ~$329 stays per bed, modelled).',
+    means: 'The plant runs at capacity and the model is provable enough to hand over. A community-owned site keeps ~$329 of every bed. What a site needs to cover its own running costs is being rebuilt from the Oonchiumpa facility budget (rent, insurance, admin, upkeep, staff). The earlier ~$24K/yr figure was a rent line only, not a full site bill.',
     fundedBy: 'Trading surplus + site capital (IBA-shaped, post-ownership-gate). Community ownership is the destination.',
   },
 ];
