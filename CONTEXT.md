@@ -51,7 +51,7 @@
 
 **Kit vs pressed split (resolved 2026-07-21)** — of 177 deployed Stretch Beds, only Maningrida's 40 were farm-pressed; the other ~137 used Defy kits. So "buy-kit = today's default method" is honest, and Maningrida is the proof story. Ben ruling.
 
-**Dianne Stokes consent (Ben ruling 2026-07-21)** — Dianne has consent for all her material; she is a major supporter and adviser. The beat-12 consent gate and D8-blessing hold are LIFTED. (Registry statuses may still carry old holds; treat this ruling as overriding for deck use.)
+**Dianne Stokes consent (Ben ruling 2026-07-21, extended)** — Dianne has consent for all her material **and her image**; she is a major supporter and adviser. The beat-12 consent gate and D8-blessing hold are LIFTED. **The code now matches the ruling (2026-07-21):** her housing/totem quote flipped `hold` to `approved` in `storyteller-registry.ts:95`, the `bannedFragments: ['boundary of my totem']` guard removed from both the registry entry and `v2/scripts/build-voice-impact-data.mjs`. Registry guard passes (44 voices, 34 external). No Dianne photo needs a consent check before external use.
 
 **Maningrida trip photos consent (Ben ruling 2026-07-21)** — the 10 Maningrida/Gamardi trip photos (`design/starred-images/community--maningrida--*.jpg`, originals at `design/deck-photos/maningrida-trip/`) are **consent obtained and evidenced**. Ben confirmed it is sorted and proved; the earlier "consent not recorded" flag on those rows is LIFTED and every `_manifest.csv` row now carries the ruling. Cleared for external use including the children, the Elder and the identifiable faces. ⚠ The evidence itself is not yet pointed at from the repo: when Ben names where it lives (registry entry, EL consent record, or signed form), add the reference to the manifest rows so a future session can verify rather than trust.
 
@@ -67,6 +67,22 @@
 
 **Numbers ruling (Ben 2026-07-21)** — our canon figures stand (540/177/363/20/11/3,540, Utopia 147, requests-not-orders). Nic's BMD doc gets corrected TO canon before it travels again, not the other way.
 
+**Washers in community = 22 (Ben ruling 2026-07-21, SUPERSEDES the 20)** — settled per-community against the live register, not curated:
+
+| Community | in community | register `deployed` rows | gap to restatus |
+|---|---|---|---|
+| Maningrida | 8 | 8 | 0 |
+| Tennant Creek | 9 | 16 | 7 |
+| Palm Island | 4 | 4 | 0 |
+| Alice Springs | 1 | 3 | 2 |
+| Darwin | 0 | 1 | 1 |
+| **Total** | **22** | **32** | **10** |
+
+Register also holds 10 `retired` (Palm Island 3, Tennant Creek 7) and 3 `under_investigation` (Tennant Creek), 45 washer rows in total. **Ben ruled 9 for Tennant Creek, 1 for Alice Springs, 0 for Darwin; Maningrida 8 and Palm Island 4 stand.** The old 20 was curated and never register-derivable (`10-community-counts.md:57-61` had an open "define in community" ruling since June) — this replaces it and closes that question.
+
+⚠ **NOT YET SWEPT INTO CODE.** Canon still says 20 everywhere. Changing it is a canon-figure change, so it needs the full grep-every-surface treatment the 496→540 sweep got: `canon.ts`/`CANONICAL_ASSETS` · `check-asset-drift.mjs` · deck slide 04 counters · the Atlas map header + `design/deck-photos/map.png` regen · `compendium.ts` deployments · `wiki/investor/10-community-counts.md` · Notion spine + Community OS. **Do it as ONE pass — half the surfaces on 20 and half on 22 is worse than all of them on 20.** The 10 register rows above should be restatused in the same pass so 22 becomes derivable by query instead of asserted.
+
 ## Open questions (grill queue)
 1. Working-capital block size (120→338 ramp) — the $426 sense-check session.
-3. Maningrida washers: register carries 8; `10-community-counts.md:53` says "INV-0303 + Ben ruling = 2 FINAL" but the later ruling says 8 = 6 existing + 2 new. Wiki line 53 looks stale — confirm and fix.
+2. **THE 20→22 WASHER SWEEP** (see the washers-in-community ruling above). One pass, all surfaces, plus restatus the 10 stale `deployed` rows.
+3. ~~Maningrida washers 2 vs 8~~ RESOLVED: 8 is correct (6 existing + 2 new); `10-community-counts.md:53` is the stale line, superseded by the 22 ruling above.

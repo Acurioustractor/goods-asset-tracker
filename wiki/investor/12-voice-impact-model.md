@@ -11,7 +11,7 @@
 
 Goods runs a twin-spine impact model:
 
-- **The numeric spine** (canon.ts, register-verified): 540 beds, 177 Stretch, 20 washers in
+- **The numeric spine** (canon.ts, register-verified): 540 beds, 177 Stretch, 22 washers in
   community, 11 communities, 3,540kg HDPE. Numbers prove SCALE. Labels: delivered / measured /
   modelled, never conflated.
 - **The voice spine** (this model): every substantive Empathy Ledger transcript, deep-analysed,
@@ -53,7 +53,7 @@ from. Goods never claims it; they ask for it.
 
 | Domain (impact-model.ts) | Voice evidence | Numeric evidence | Gap |
 |---|---|---|---|
-| Rest & health | 61 quotes; Margaret, Dianne, Brian, Cliff, Melissa, Jimmy | 540 beds, 20 washers | Health lines stay testimony; scabies→RHD remains the WHY |
+| Rest & health | 61 quotes; Margaret, Dianne, Brian, Cliff, Melissa, Jimmy | 540 beds, 22 washers | Health lines stay testimony; scabies→RHD remains the WHY |
 | Dignity & safety | 42 quotes; Alfred, Gloria, Tracy, Carmelita & Colette | communities served | none |
 | Self-determination & community-led design | 63 quotes (largest); Dianne, Linda, Norman, Gary, Tanya, Shayne | storyteller count, production days | The model's strongest voice domain |
 | Jobs, On Country work & ownership | 15 quotes; Kristy, Mykel (registry), Dianne, Gary | employment hours, FTE | Thinnest quote base: grow with production; next trip should record makers |

@@ -1,6 +1,6 @@
 # The Goods Story — current state, for thinking
 
-> CANON NOTE (2026-07-20): figures in this dated doc predate the final canon (540 beds / 177 Stretch / 20 washers / 11 communities / 3,540kg). Do not copy numbers from here; use canon.ts.
+> CANON NOTE (2026-07-20): figures in this dated doc predate the final canon (540 beds / 177 Stretch / 22 washers / 11 communities / 3,540kg). Do not copy numbers from here; use canon.ts.
 
 *Exported from the [Goods Story Spine](https://app.notion.com/p/fe111940fbfe4e24b38b5b14d96e4c31) as it stands today, after a full pass reconciling it against `storyteller-registry.ts`, a live transcript audit of 30 voices, and `wiki/outputs/2026-07-11-narrative-foundation.md`. This is not a finished pitch — it's the current draft, warts flagged, so you can read the whole arc in one sitting and decide what's actually wrong with it.*
 

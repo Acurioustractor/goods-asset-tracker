@@ -14,6 +14,7 @@ const STANDALONE_PATH_PREFIXES = [
   '/insiders',
   '/investors',
   '/admin',
+  '/export',
   '/field-notes',
   '/sites',
   '/pitch/community-narrative',

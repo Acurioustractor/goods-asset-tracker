@@ -3,7 +3,7 @@
 > Inventory of every diagram / model drawing the pitch uses or needs. Compiled 2026-07-20 by
 > scanning `design/deck-photos/`, `design/deck-assets/`, `design/brand/goods-diagrams/`,
 > `v2/public/images/brand/`, `v2/src/app/admin/system-visuals/`, and the funder deck HTML.
-> Canon reference (9f2d7b9): 540 beds / 177 Stretch / 20 washers / 11 communities / 3,540kg HDPE /
+> Canon reference (9f2d7b9): 540 beds / 177 Stretch / 22 washers / 11 communities / 3,540kg HDPE /
 > $713,827 Goods-only revenue / $685 marginal today (measured) / $426 in-house model (modelled) /
 > break-even 333-338 beds per yr (modelled). Figures below verified by reading each image file.
 

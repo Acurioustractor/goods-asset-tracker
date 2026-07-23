@@ -22,7 +22,7 @@ That recording is 292 words long. We think it is one of the most important docum
 
 ## Numbers prove scale. Voices prove meaning.
 
-Goods on Country has delivered 540 beds across 11 communities, with 20 washing machines working
+Goods on Country has delivered 540 beds across 11 communities, with 22 washing machines working
 in community and 3,540kg of waste plastic turned into bed frames. We track every one of those
 numbers in a register, and we label every figure honestly: delivered, measured or modelled,
 never blurred.

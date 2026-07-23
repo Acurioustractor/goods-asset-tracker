@@ -1,6 +1,6 @@
 # Notion Hub <-> Repo Alignment Plan
 
-> CANON NOTE (2026-07-20): figures in this dated doc predate the final canon (540 beds / 177 Stretch / 20 washers / 11 communities / 3,540kg). Do not copy numbers from here; use canon.ts. Re-base Notion fix targets to 540/177/20 before executing.
+> CANON NOTE (2026-07-20): figures in this dated doc predate the final canon (540 beds / 177 Stretch / 22 washers / 11 communities / 3,540kg). Do not copy numbers from here; use canon.ts. Re-base Notion fix targets to 540/177/20 before executing.
 
 > Generated 2026-07-16 from a 41-agent workflow: mapped 23 Notion hub pages + 35 repo sources, cross-checked 4 dimensions (figures, claims hygiene, structure, money spine), adversarially verified every finding against primary sources. 23 confirmed, 5 refuted, 8 low-severity unverified.
 > Hub reviewed: Goods on Country Venture Canvas (c988792d52a04483acbb0f4913eb983e) + showcase desk.

@@ -8,7 +8,7 @@ import { QUOTE_TOPICS, type DeckSlide, type QuoteTopic } from '@/lib/data/pitch-
 
 // ── serialized shapes (kept in sync with page.tsx) ──────────────────────────
 
-interface CockpitQuote { text: string; context: string; status: 'primary' | 'approved' | 'hold'; note: string | null; topics: QuoteTopic[] }
+interface CockpitQuote { text: string; context: string; status: 'primary' | 'approved' | 'hold' | 'retired'; note: string | null; topics: QuoteTopic[] }
 interface CockpitCurated { text: string; context: string; topics: QuoteTopic[] }
 export interface CockpitStoryteller {
   slug: string; name: string; role: string; community: string; tier: string;

@@ -63,8 +63,8 @@ export const CANON: CanonFact[] = [
   {
     id: 'washers-in-community', label: 'Washing machines in community', value: CANONICAL_ASSETS.washersInCommunity, unit: 'units',
     domain: 'assets', claimLabel: 'verified', dataClass: 'green',
-    source: 'Curated in-community count (Ben-confirmed 2026-06-11; +2 Maningrida 2026-07-18; +2 Julalikari Tennant Creek 2026-07-19); supersedes the register deployed-row count pending a status cleanup. Purchase ledger: wiki/outputs/2026-05-14-washing-machine-final-reconciliation.md', check: 'manual', asAt: '2026-07-19', owner: 'Ben',
-    definition: '20 Pakkimjalki Kari washing machines in community (16 confirmed 2026-06-11 + 2 Maningrida + 2 Julalikari TC, Jul 2026). Single public figure; not auto-derived from the register.',
+    source: 'Ben ruling 2026-07-21, settled per community against the live register (supersedes the old curated 20). The register still shows 32 deployed washer rows because 10 are stale (Tennant Creek 7, Alice Springs 2, Darwin 1 pending restatus to retired). Purchase ledger: wiki/outputs/2026-05-14-washing-machine-final-reconciliation.md; ruling table: CONTEXT.md', check: 'manual', asAt: '2026-07-21', owner: 'Ben',
+    definition: '22 Pakkimjalki Kari washing machines in community: Maningrida 8, Tennant Creek 9, Palm Island 4, Alice Springs 1, Darwin 0. Single public figure; becomes register-derivable once the 10 stale deployed rows are restatused.',
   },
   {
     id: 'communities-served', label: 'Communities served', value: CANONICAL_ASSETS.communitiesServed, unit: 'communities',

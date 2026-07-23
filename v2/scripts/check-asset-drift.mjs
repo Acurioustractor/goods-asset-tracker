@@ -22,10 +22,16 @@ import { createClient } from '@supabase/supabase-js';
 // Mirror of CANONICAL_ASSETS in src/lib/data/asset-canonical.ts. The .ts file
 // is the single source of truth; this is the guard's expected snapshot. Keep
 // the two in lockstep — that lockstep is exactly what this script enforces.
-// NOTE: washing machines are intentionally NOT drift-checked. The public count
-// (washersInCommunity = 16) is a CURATED, Ben-confirmed figure that supersedes
-// the raw register deployed-row count pending a status cleanup, so it cannot be
-// validated against the register here. Re-confirm it manually.
+// NOTE: washing machines are deliberately NOT part of the hard drift check, but
+// they are NOT silently ignored either. washersInCommunity = 22 is Ben's ruling
+// of 2026-07-21 (Maningrida 8, Tennant Creek 9, Palm Island 4, Alice Springs 1,
+// Darwin 0), superseding the old curated 20. The register still returns 32
+// `deployed` washer units because 10 rows are stale and should be `retired`:
+// Tennant Creek 7, Alice Springs 2, Darwin 1. Until that restatus lands, this
+// script reports the gap explicitly (see the washer block below) instead of
+// either hard-failing on a known bookkeeping lag or passing in silence.
+const WASHERS_IN_COMMUNITY = 22;
+const WASHER_KNOWN_STALE_DEPLOYED_ROWS = 10; // TC 7 + Alice 2 + Darwin 1
 const CANONICAL_ASSETS = {
   bedsDeployed: 540,
   stretchBedsDeployed: 177,
@@ -101,6 +107,20 @@ const live = {
 console.log(`Live assets register (${url}):`);
 console.log(`  deployed rows: ${deployed.length}  deployed units: ${sum(deployed)}`);
 for (const [k, v] of Object.entries(live)) console.log(`  ${k.padEnd(20)} ${v}`);
+
+// Washing machines: report the known gap loudly, never silently.
+const washerGap = washersDeployed - WASHERS_IN_COMMUNITY;
+console.log('\nWashing machines (curated, not hard drift-checked):');
+console.log(`  in community (canon)      ${WASHERS_IN_COMMUNITY}   (Ben ruling 2026-07-21: Maningrida 8, Tennant Creek 9, Palm Island 4, Alice Springs 1, Darwin 0)`);
+console.log(`  register 'deployed' units ${washersDeployed}`);
+if (washerGap === WASHER_KNOWN_STALE_DEPLOYED_ROWS) {
+  console.log(`  KNOWN GAP ${washerGap}: the stale deployed rows awaiting restatus to 'retired' (Tennant Creek 7, Alice Springs 2, Darwin 1).`);
+  console.log('  Expected. Clear it by restatusing those rows, then make washers a hard-checked field.');
+} else {
+  console.log(`  UNEXPECTED GAP ${washerGap} (expected ${WASHER_KNOWN_STALE_DEPLOYED_ROWS}).`);
+  console.log('  Either the restatus happened (move washers into the hard check and set canon from live)');
+  console.log('  or a washer row changed. Investigate before trusting the public figure.');
+}
 
 const drift = [];
 for (const [k, expected] of Object.entries(CANONICAL_ASSETS)) {

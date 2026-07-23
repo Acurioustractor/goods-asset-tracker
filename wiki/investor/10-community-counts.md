@@ -1,6 +1,6 @@
 # Area 10 — Community counts reconciliation
 
-> SUPERSEDED NOTE (2026-07-20): the tables below capture the pre-ruling state (536/173/18/3,460). Ben's 2026-07-19 rulings resolved them: FINAL CANON = 540 beds / 177 Stretch / 363 Basket / 20 washers in community / 11 communities / 3,540kg; Utopia 147, Tennant Creek 160, Maningrida 58 beds + 8 washers, Kununurra 2 (GB0-158), Katherine 1 (GB0-159), youth centre 1 (GB0-160), Julalikari +2 washers. Read the tables as history of the reconciliation, not as canon.
+> SUPERSEDED NOTE (2026-07-20): the tables below capture the pre-ruling state (536/173/18/3,460). Ben's 2026-07-19 rulings resolved them: FINAL CANON = 540 beds / 177 Stretch / 363 Basket / 22 washers in community (re-ruled 2026-07-21, superseding the curated 20: Maningrida 8, Tennant Creek 9, Palm Island 4, Alice Springs 1, Darwin 0) / 11 communities / 3,540kg; Utopia 147, Tennant Creek 160, Maningrida 58 beds + 8 washers, Kununurra 2 (GB0-158), Katherine 1 (GB0-159), youth centre 1 (GB0-160), Julalikari +2 washers. Read the tables as history of the reconciliation, not as canon.
 >
 > Corrected to final canon 2026-07-21 (540/177/363/20/11/3,540kg per Ben rulings).
 
@@ -56,13 +56,18 @@ core ruling.** (OS itself says: "Fill from the asset register before external cl
 | Darwin | 1 | 0 | |
 | **Totals** | **30** | **11** | CANON says **18 in community** (curated, Ben 2026-06-11); HUB says 16. |
 
-Ruling needed: define "in community" once (deployed-and-working? deployed-and-not-retired?),
-then either mark register rows (retired/failed) so a query can reproduce 18, or restate the
-canonical washer figure. Today the 18 is curated and NOT register-derivable, which fails the
-"explainable numbers" bar.
+**RULING LANDED (Ben, 2026-07-21): washers in community = 22**, settled per community
+against the live register and superseding both the 18 above and the later curated 20:
+Maningrida 8, Tennant Creek 9, Palm Island 4, Alice Springs 1, Darwin 0. The table above is
+the pre-ruling history, not canon. The register still returns 32 `deployed` washer units
+because 10 rows are stale and await restatus to `retired` (Tennant Creek 7, Alice Springs 2,
+Darwin 1); it also holds 10 already-`retired` and 3 `under_investigation` rows, 45 in total.
+`check-asset-drift.mjs` now prints that 10-row gap explicitly rather than skipping washers.
+Once the restatus lands, 22 becomes reproducible by query and washers can move into the hard
+drift check. Full ruling table: CONTEXT.md.
 
 ## Stale surfaces to sweep after rulings (Tier 2 — Ben approves each)
-1. Notion Artifact Hub spine: 496 → 540, 133 → 177, 16 → 20, 2,660 → 3,540, revenue note to $713,827-only.
+1. Notion Artifact Hub spine: 496 → 540, 133 → 177, 16 → 22, 2,660 → 3,540, revenue note to $713,827-only.
 2. Community OS counts table: apply per-line rulings above, fill Basket/Stretch splits from register (7 communities ready now).
 3. Community OS washer column to the ruled definition.
 4. Then re-run `check-asset-drift.mjs` and confirm green.
@@ -86,4 +91,4 @@ canonical washer figure. Today the 18 is curated and NOT register-derivable, whi
 - [ ] Ben to add: the Kununurra Aunty's name; Margaret's video + details (in system, needs updating); youth-centre follow-up.
 - [ ] Community-names review (Ben): align all community/recipient names so everyone can be added properly.
 - [ ] `basket-bed-plans` page says "9 communities" (Basket-specific) — confirm whether it should stay.
-- [ ] `compendium.ts` deployments array: Maningrida washers still listed as 2 vs confirmed 8 — align when washer definition lands.
+- [x] `compendium.ts` deployments array: aligned to the 2026-07-21 ruling (Maningrida 8, Tennant Creek 9, Palm Island 4, Alice Springs 1, Darwin 0 = 22), with a build-time assertion against `CANONICAL_ASSETS.washersInCommunity`.

@@ -96,7 +96,7 @@ export const DECK_PLAN: DeckSlide[] = [
   {
     n: 9, id: 'proof', name: 'Already shipped, and every one is trackable',
     why: 'Traction that survives diligence: every figure is register-backed and labelled, and the newest delivery was made in our own plant — the exact capability the ask funds.',
-    talkTrack: '540 beds (177 Stretch + 363 Basket), 11 communities, 20 washers, 3,540kg plastic — Stretch only, 177 by 20kg. Newest: 40 Stretch Beds and 2 washers to Maningrida Homelands with Homeland School Company, made at our farm plant. Every bed has a QR digital twin.',
+    talkTrack: '540 beds (177 Stretch + 363 Basket), 11 communities, 22 washers, 3,540kg plastic — Stretch only, 177 by 20kg. Newest: 40 Stretch Beds and 2 washers to Maningrida Homelands with Homeland School Company, made at our farm plant. Every bed has a QR digital twin.',
     voices: ['Annie Morrison'], visual: 'stats',
   },
   {

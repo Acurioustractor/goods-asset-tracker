@@ -42,8 +42,8 @@ export interface RegistryQuote {
   text: string;
   /** Short context label. */
   context: string;
-  /** primary = the line to reach for first · approved = fine to use · hold = do not use */
-  status: 'primary' | 'approved' | 'hold';
+  /** primary = the line to reach for first · approved = fine to use · hold = do not use pending a decision · retired = decided against, never reinstate */
+  status: 'primary' | 'approved' | 'hold' | 'retired';
   note?: string;
 }
 
@@ -92,8 +92,8 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
       {
         text: 'I\'m a traditional owner and where I live is in the boundary of my totem. I\'ve been here almost 24 years without shelter. The only thing I had was my car.',
         context: 'Housing need',
-        status: 'hold',
-        note: 'HOLD for Dianne\'s say-so (foundation §3). Removed from curated-quotes 2026-07-12.',
+        status: 'approved',
+        note: 'HOLD LIFTED (Ben ruling 2026-07-21, CONTEXT.md): Dianne has consent for all her material and her image; she is a major supporter and adviser. Supersedes the earlier "HOLD for Dianne\'s say-so" (foundation §3).',
       },
       {
         text: "I'm happy. I, I can't tell you how my heart is, uh, hopping and skipping inside me.",
@@ -141,9 +141,8 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         status: 'approved',
       },
     ],
-    bannedFragments: ['boundary of my totem'],
     portrait: '/images/people/dianne-stokes.jpg',
-    notes: 'Refines designs "around the fire" with family. Received 1 bed, returned in 2 weeks asking for 20, offered to self-fund. Quotes 3-7 cleared by Ben 2026-07-20 from the Voice Impact Model deep pass (D1-D5).',
+    notes: 'Refines designs "around the fire" with family. Received 1 bed, returned in 2 weeks asking for 20, offered to self-fund. Quotes 3-7 cleared by Ben 2026-07-20 from the Voice Impact Model deep pass (D1-D5). CONSENT: Ben ruling 2026-07-21 — Dianne has consent for ALL her material AND her image; every gate on this entry is lifted and the bannedFragments guard was removed to match.',
   },
   {
     slug: 'margaret-lloyd',
@@ -1241,8 +1240,8 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
       {
         text: 'It\'s about empowering communities. They want those beds, and it\'s about supporting inspirational entrepreneurs like Ben.',
         context: 'On Goods on Country',
-        status: 'hold',
-        note: 'Verbatim funder speech containing "empowering": Ben to decide use or retire (checkpoint B-5b).',
+        status: 'retired',
+        note: 'RETIRED (Ben ruling 2026-07-21, checkpoint B-5b resolved): verbatim funder speech containing the banned pitch word "empowering". Pulled from curated-quotes.ts the same day. Verbatim record kept here; never reinstate to a rendered surface.',
       },
       {
         text: "We've waited so long for this house and no one in Alice Springs would touch it. Get two bloke to bring five contractors in that like, ... done in a week.",

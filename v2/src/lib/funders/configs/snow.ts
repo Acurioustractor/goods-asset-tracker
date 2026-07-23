@@ -91,7 +91,7 @@ export const snowConfig: FunderConfig = {
   // a cleared community voice, a canon number, and an honest label (verified /
   // modelled / future). Voices are verbatim from curated-quotes.ts and every author
   // is on the cleared-for-external list. Numbers come from canon (540 beds / 11
-  // communities / 20 washers / 3,540kg at 20kg per Stretch bed (177 Stretch only); ~$493K Snow relationship;
+  // communities / 22 washers / 3,540kg at 20kg per Stretch bed (177 Stretch only); ~$493K Snow relationship;
   // 15-20 beds / 8 families is the Snow-funded field-test period before Centrecorp).
   principles: [
     {
@@ -116,7 +116,7 @@ export const snowConfig: FunderConfig = {
       id: 4,
       name: 'Genuine collaboration and partnerships',
       evidence:
-        '"When it comes from an Aboriginal person, it works. That\'s what makes the difference." (Jason).\n- An Orange Sky-inspired model: ACT builds container facilities, local organisations staff and operate them. 20 washing machines are now in community (verified).\n- Partner pipeline includes the Centre of Appropriate Technology, NPY Women\'s Council and the Tennant Creek Community Shed; we partner with existing strong organisations rather than create a separate entity.\n- Products address community-chosen priorities: beds and washing machines now, with a fridge as a future product line the community is exploring (design not yet started; it progresses when community is ready).',
+        '"When it comes from an Aboriginal person, it works. That\'s what makes the difference." (Jason).\n- An Orange Sky-inspired model: ACT builds container facilities, local organisations staff and operate them. 22 washing machines are now in community (verified).\n- Partner pipeline includes the Centre of Appropriate Technology, NPY Women\'s Council and the Tennant Creek Community Shed; we partner with existing strong organisations rather than create a separate entity.\n- Products address community-chosen priorities: beds and washing machines now, with a fridge as a future product line the community is exploring (design not yet started; it progresses when community is ready).',
     },
     {
       id: 5,

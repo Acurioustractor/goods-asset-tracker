@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Goods on Country - Funder Briefing (12-beat)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Adobe Express import metadata (self-describing) -->
+<meta name="hz:slide-selector" content=".slide">
+<meta name="hz:canvas-width" content="1920">
+<meta name="hz:canvas-height" content="1080">
+<link rel="stylesheet" href="https://use.typekit.net/zke3nrh.css">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#22201d; display:flex; flex-direction:column; align-items:center; }
+
+.slide {
+  position:relative; width:1920px; height:1080px; overflow:hidden;
+  background:#F2ECE0; color:#26201B;
+  font-family:"acumin-pro", system-ui, "Helvetica Neue", Arial, sans-serif;
+  margin:0 auto;
+}
+.slide + .slide { margin-top:2px; }
+.serif { font-family:"source-serif-4", Georgia, "Times New Roman", serif; }
+
+/* full-bleed photo + scrims */
+.bleed { position:absolute; inset:0; width:1920px; height:1080px; object-fit:cover; }
+.scrim-l { position:absolute; inset:0;
+  background:linear-gradient(90deg, rgba(18,14,11,.90) 0%, rgba(18,14,11,.72) 38%, rgba(18,14,11,.20) 74%, rgba(18,14,11,0) 100%); }
+.scrim-b { position:absolute; inset:0;
+  background:linear-gradient(0deg, rgba(18,14,11,.88) 0%, rgba(18,14,11,.32) 42%, rgba(18,14,11,0) 72%); }
+.scrim-full { position:absolute; inset:0; background:rgba(18,14,11,.42); }
+
+/* type roles */
+.kicker { font-weight:700; font-size:22px; letter-spacing:.20em; text-transform:uppercase; }
+.k-terra { color:#C9613C; }
+.k-muted { color:#8A7F72; }
+.display { font-weight:300; font-size:92px; line-height:1.03; letter-spacing:-.01em; }
+.display-xl { font-weight:300; font-size:116px; line-height:.98; letter-spacing:-.015em; }
+.title { font-weight:400; font-size:60px; line-height:1.08; letter-spacing:-.01em; }
+.quote { font-weight:400; font-size:56px; line-height:1.18; letter-spacing:-.005em; }
+.quote-sm { font-weight:400; font-size:44px; line-height:1.22; letter-spacing:-.005em; }
+.lede { font-weight:400; font-size:31px; line-height:1.4; }
+.body { font-weight:400; font-size:24px; line-height:1.5; color:#5C5248; }
+.body-light { color:rgba(245,238,228,.82); }
+.attrib { font-weight:700; font-size:20px; letter-spacing:.14em; text-transform:uppercase; }
+
+.onlight { color:#26201B; } .oncream-muted{ color:#6B6055; }
+.oncream-terra{ color:#B44D2B; }
+.oncream-sage{ color:#5F6E3E; }
+.oncream-white{ color:#F5EEE4; }
+
+.pill { display:inline-block; font-weight:700; font-size:14px; letter-spacing:.13em;
+  text-transform:uppercase; padding:7px 15px 6px; border-radius:3px; }
+.pill-sage { background:rgba(95,110,62,.16); color:#566537; }
+.pill-terra { background:rgba(180,77,43,.14); color:#A0421F; }
+.pill-ink { background:rgba(38,32,27,.08); color:#5C5248; }
+.pill-line { border:1.5px solid rgba(245,238,228,.45); color:#F5EEE4; }
+
+.pnum { position:absolute; right:100px; bottom:60px; font-weight:600; font-size:16px;
+  letter-spacing:.18em; color:#8A7F72; }
+.foot { position:absolute; left:100px; bottom:60px; font-weight:600; font-size:16px;
+  letter-spacing:.18em; text-transform:uppercase; color:#8A7F72; }
+.foot-light { color:rgba(245,238,228,.72); }
+.pnum-light { color:rgba(245,238,228,.6); }
+.divider { width:76px; height:4px; background:#C9613C; border:0; }
+
+/* portrait chip for cleared storytellers */
+.portrait { width:104px; height:104px; border-radius:50%; object-fit:cover;
+  border:3px solid rgba(245,238,228,.85); }
+
+/* stat grid */
+.statwrap { display:flex; gap:0; }
+.stat { flex:1; }
+.stat .n { font-weight:300; font-size:104px; line-height:1; letter-spacing:-.02em; color:#B44D2B; }
+.stat .n-sm { font-size:78px; }
+.stat .l { font-weight:600; font-size:21px; line-height:1.3; margin-top:14px; color:#5C5248; letter-spacing:.01em; }
+
+.chart { position:absolute; object-fit:contain; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================= -->
+<!-- COVER -->
+<!-- ============================================================= -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <img class="bleed" src="deck-photos/cover-hero.jpg" alt="A Stretch Bed on Country">
+  <div class="scrim-l"></div>
+  <div class="scrim-b"></div>
+  <div style="position:absolute; left:100px; top:88px;">
+    <img src="deck-photos/logo-white.png" alt="Goods on Country" style="height:44px;">
+  </div>
+  <div style="position:absolute; left:100px; top:512px; width:1160px;">
+    <div class="kicker" style="color:#E08A5E; margin-bottom:30px;">Funder briefing &nbsp;&middot;&nbsp; July 2026</div>
+    <div class="serif display-xl oncream-white">Quality furniture,<br>delivered on Country.</div>
+    <div class="lede body-light" style="margin-top:36px; max-width:960px;">
+      Beds, washing machines, and a recycled-plastic plant that can move to community hands.
+      Real beds in real communities, on the numbers the register can prove.
+    </div>
+  </div>
+  <div class="foot foot-light">Goods on Country</div>
+  <div class="pnum pnum-light">goodsoncountry.com</div>
+</div>
+
+<!-- ============================================================= -->
+<!-- BEAT 1 - THE PROBLEM -->
+<!-- ============================================================= -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <img class="bleed" src="deck-photos/problem.jpg" alt="Remote community">
+  <div class="scrim-l"></div>
+  <div style="position:absolute; left:100px; top:150px; width:1180px;">
+    <div class="kicker" style="color:#E08A5E; margin-bottom:34px;">1 &nbsp;&middot;&nbsp; The problem &nbsp;&middot;&nbsp; Observed</div>
+    <blockquote class="serif quote oncream-white" style="margin-bottom:40px;">
+      &ldquo;You have to bring them on the barge. You can&rsquo;t just take them on the boat.
+      You have to pay for freight. It all adds up.&rdquo;
+    </blockquote>
+    <div style="display:flex; align-items:center; gap:20px;">
+      <img class="portrait" src="deck-photos/storyteller-alfred-johnson.jpg" alt="Alfred Johnson">
+      <div class="attrib oncream-white" style="opacity:.92;">Alfred Johnson &middot; Palm Island</div>
+    </div>
+  </div>
+  <div style="position:absolute; left:100px; bottom:132px; width:1120px;">
+    <div class="body body-light" style="color:rgba(245,238,228,.78);">
+      Beds bought in the city arrive already worn by the freight, cost too much, and end up in the
+      dump within months. The same cycle, community after community.
+    </div>
+  </div>
+  <div class="foot foot-light">The problem</div>
+  <div class="pnum pnum-light">01</div>
+</div>
+
+<!-- ============================================================= -->
+<!-- BEAT 2 - NEVER ASKED -->
+<!-- ============================================================= -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <img class="bleed" src="deck-photos/listening-first.jpg" alt="Listening on Country">
+  <div class="scrim-l"></div>
+  <div style="position:absolute; left:100px; top:190px; width:1200px;">
+    <div class="kicker" style="color:#E08A5E; margin-bottom:34px;">2 &nbsp;&middot;&nbsp; Never asked &nbsp;&middot;&nbsp; Observed</div>
+    <blockquote class="serif quote oncream-white" style="margin-bottom:44px;">
+      &ldquo;We&rsquo;ve never been asked what sort of house we&rsquo;d like to live in.&rdquo;
+    </blockquote>
+    <div style="display:flex; align-items:center; gap:20px;">
+      <img class="portrait" src="deck-photos/storyteller-linda-turner.jpg" alt="Linda Turner">
+      <div class="attrib oncream-white" style="opacity:.92;">Linda Turner &middot; Tennant Creek</div>
+    </div>
+  </div>
+  <div style="position:absolute; left:100px; bottom:132px; width:1080px;">
+    <div class="body body-light" style="color:rgba(245,238,228,.78);">
+      For sixty years the default was to deliver to communities, not to ask them. Goods starts the
+      other way around: listening first, on Country.
+    </div>
+  </div>
+  <div class="foot foot-light">Never asked</div>
+  <div class="pnum pnum-light">02</div>
+</div>
+
+<!-- ============================================================= -->
+<!-- BEAT 3 - DESIGNED IN COMMUNITY -->
+<!-- ============================================================= -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <img class="bleed" src="deck-photos/product-anatomy.jpg" alt="Stretch Bed anatomy">
+  <div class="scrim-l"></div>
+  <div style="position:absolute; left:100px; top:140px; width:1120px;">
+    <div class="kicker" style="color:#E08A5E; margin-bottom:32px;">3 &nbsp;&middot;&nbsp; Designed in community &nbsp;&middot;&nbsp; Observed</div>
+    <blockquote class="serif quote-sm oncream-white" style="margin-bottom:30px;">
+      &ldquo;Go and talk to the elders. Sit down and talk to them &hellip; show them how to make
+      them beds, and they&rsquo;ll probably be keen on joining in and helping out.&rdquo;
+    </blockquote>
+    <div style="display:flex; align-items:center; gap:20px;">
+      <img class="portrait" src="deck-photos/storyteller-dianne-stokes.jpg" alt="Dianne Stokes">
+      <div class="attrib oncream-white" style="opacity:.92;">Dianne Stokes &middot; Warumungu and Warlmanpa Elder</div>
+    </div>
+  </div>
+  <div style="position:absolute; left:100px; bottom:112px; width:1240px;">
+    <div style="display:flex; gap:14px; flex-wrap:wrap;">
+      <span class="pill pill-line">X-trestle tension design</span>
+      <span class="pill pill-line">Recycled HDPE + steel + canvas</span>
+      <span class="pill pill-line">26kg &middot; 200kg capacity</span>
+      <span class="pill pill-line">~5 min, no tools</span>
+      <span class="pill pill-line">20kg plastic per bed</span>
+      <span class="pill pill-line">Pressed at 180&deg;C</span>
+    </div>
+  </div>
+  <div class="foot foot-light">Designed in community</div>
+  <div class="pnum pnum-light">03</div>
+</div>
+
+<!-- ============================================================= -->
+<!-- BEAT 4 - PROOF AT DELIVERY (cream stat) -->
+<!-- ============================================================= -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <div style="position:absolute; left:100px; top:110px; width:1720px;">
+    <div class="kicker oncream-terra" style="margin-bottom:22px;">4 &nbsp;&middot;&nbsp; Proof at delivery &nbsp;&middot;&nbsp; Delivered</div>
+    <div class="serif title onlight" style="max-width:1300px;">This is not a pitch about what could happen. It already has.</div>
+    <div class="body" style="margin-top:16px;">Register-verified against the live asset register, reconciled 2026-07-19.</div>
+    <hr class="divider" style="margin-top:30px;">
+  </div>
+
+  <div class="statwrap" style="position:absolute; left:100px; top:404px; width:1720px;">
+    <div class="stat"><div class="n">540</div><div class="l">Beds delivered<br>177 Stretch &middot; 363 Basket</div></div>
+    <div class="stat"><div class="n">20</div><div class="l">Washing machines<br>in community</div></div>
+    <div class="stat"><div class="n">11</div><div class="l">Communities<br>served</div></div>
+    <div class="stat"><div class="n n-sm">3,540<span style="font-size:44px;">kg</span></div><div class="l">Recycled HDPE diverted<br>(Stretch beds)</div></div>
+  </div>
+
+  <div style="position:absolute; left:100px; bottom:150px; width:1300px;">
+    <blockquote class="serif quote-sm oncream-terra" style="color:#9A4527;">
+      &ldquo;Our bed is right. That&rsquo;s good. Good.&rdquo;
+    </blockquote>
+    <div class="attrib oncream-muted" style="margin-top:18px;">Margaret Lloyd &middot; Utopia homelands</div>
+  </div>
+  <div class="foot">Proof at delivery</div>
+  <div class="pnum">04</div>
+</div>
+
+<!-- ============================================================= -->
+<!-- BEAT 5 - THE LOOP WORKS -->
+<!-- ============================================================= -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <img class="bleed" src="deck-photos/pressed-sheets.jpg" alt="Pressed recycled-HDPE sheets, each a different design">
+  <div class="scrim-l"></div>
+  <div style="position:absolute; left:100px; top:150px; width:1100px;">
+    <div class="kicker" style="color:#E08A5E; margin-bottom:32px;">5 &nbsp;&middot;&nbsp; The loop works &nbsp;&middot;&nbsp; Delivered</div>
+    <div class="serif title oncream-white" style="margin-bottom:34px; max-width:1020px;">
+      Waste plastic in, a bed out, on Country. 3,540kg of HDPE diverted so far.
+    </div>
+    <blockquote class="serif quote-sm oncream-white" style="margin-bottom:26px; max-width:1020px;">
+      &ldquo;The recycled plastic that you use from that is blowing my mind away &hellip;
+      Every sheet was a different design.&rdquo;
+    </blockquote>
+    <div class="attrib oncream-white" style="opacity:.9;">Shayne Bloomfield &middot; Oonchiumpa, Alice Springs / Utopia</div>
+  </div>
+  <div class="foot foot-light">The loop works</div>
+  <div class="pnum pnum-light">05</div>
+</div>
+
+<!-- ============================================================= -->
+<!-- BEAT 6 - DELIVERY IN COMMUNITY HANDS -->
+<!-- ============================================================= -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <img class="bleed" src="deck-photos/community-delivery.jpg" alt="Delivery on Country">
+  <div class="scrim-l"></div>
+  <div style="position:absolute; left:100px; top:160px; width:1200px;">
+    <div class="kicker" style="color:#E08A5E; margin-bottom:34px;">6 &nbsp;&middot;&nbsp; In community hands &nbsp;&middot;&nbsp; Delivered</div>
+    <blockquote class="serif quote oncream-white" style="margin-bottom:40px;">
+      &ldquo;We&rsquo;ve liaised with Aboriginal elders, traditional owners of that community,
+      before we&rsquo;ve liaised with government members.&rdquo;
+    </blockquote>
+    <div class="attrib oncream-white" style="opacity:.9;">Shayne Bloomfield &middot; Oonchiumpa, Alice Springs / Utopia</div>
+  </div>
+  <div style="position:absolute; left:100px; bottom:132px;">
+    <div style="display:flex; gap:14px;">
+      <span class="pill pill-line">Maningrida &middot; 58 beds</span>
+      <span class="pill pill-line">8 washing machines</span>
+    </div>
+  </div>
+  <div class="foot foot-light">In community hands</div>
+  <div class="pnum pnum-light">06</div>
+</div>
+
+<!-- ============================================================= -->
+<!-- BEAT 7 - THE MAKING -->
+<!-- ============================================================= -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <img class="bleed" src="deck-photos/kids-building.jpg" alt="Young makers building the bed">
+  <div class="scrim-l"></div>
+  <div style="position:absolute; left:100px; top:180px; width:1160px;">
+    <div class="kicker" style="color:#E08A5E; margin-bottom:34px;">7 &nbsp;&middot;&nbsp; The making &nbsp;&middot;&nbsp; Delivered</div>
+    <blockquote class="serif quote oncream-white" style="margin-bottom:40px;">
+      &ldquo;Never would have thought it would have come out like that.&rdquo;
+    </blockquote>
+    <div style="display:flex; align-items:center; gap:20px;">
+      <img class="portrait" src="deck-photos/storyteller-mykel.jpg" alt="Mykel">
+      <div class="attrib oncream-white" style="opacity:.92;">Mykel &middot; Young maker, Utopia</div>
+    </div>
+  </div>
+  <div style="position:absolute; left:100px; bottom:132px; width:1040px;">
+    <div class="body body-light" style="color:rgba(245,238,228,.78);">
+      Built by young people on Country with the Oonchiumpa team. The making is the point: skills,
+      wages, and beds that stay.
+    </div>
+  </div>
+  <div class="foot foot-light">The making</div>
+  <div class="pnum pnum-light">07</div>
+</div>
+
+<!-- ============================================================= -->
+<!-- BEAT 8 - THE HINGE / TRUCK TEST (cream, charts) -->
+<!-- ============================================================= -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <div style="position:absolute; left:100px; top:92px; width:1720px;">
+    <div class="kicker oncream-terra" style="margin-bottom:20px;">8 &nbsp;&middot;&nbsp; The hinge &nbsp;&middot;&nbsp; The truck test</div>
+    <div class="serif title onlight" style="max-width:1500px;">Every bed sells for $750. The way we make it decides how much stays on Country.</div>
+    <hr class="divider" style="margin-top:26px;">
+  </div>
+
+  <div class="statwrap" style="position:absolute; left:100px; top:326px; width:1000px;">
+    <div class="stat"><div class="n n-sm">$685</div><div class="l">Cost per bed today<br><span class="pill pill-ink" style="margin-top:8px;">Verified</span></div></div>
+    <div class="stat"><div class="n n-sm">$426</div><div class="l">Pressing our own legs<br><span class="pill pill-sage" style="margin-top:8px;">Modelled</span></div></div>
+    <div class="stat"><div class="n n-sm">~338</div><div class="l">Beds a year to break even<br><span class="pill pill-sage" style="margin-top:8px;">Modelled</span></div></div>
+  </div>
+
+  <img class="chart" src="deck-photos/cost-curve.png" alt="Cost-down curve, buy-kit to in-house"
+       style="left:96px; top:648px; width:840px; height:372px;">
+  <img class="chart" src="deck-photos/breakeven.png" alt="Break-even chart against fixed costs"
+       style="right:100px; top:300px; width:760px; height:540px;">
+
+  <div style="position:absolute; left:960px; bottom:150px; width:860px;">
+    <blockquote class="serif" style="font-size:26px; line-height:1.34; color:#3f372f; font-style:italic; margin-bottom:14px;">
+      &ldquo;They need to hear from the ground, who wants it, who&rsquo;s gonna do it, who&rsquo;s out
+      there, who needs help?&rdquo;
+    </blockquote>
+    <div class="body" style="color:#6B6055; margin-bottom:16px;">Dianne Stokes &middot; Warumungu and Warlmanpa Elder</div>
+    <div class="body" style="color:#5C5248;">
+      $65 stays with Goods today; about $324 if we press in-house. The Maningrida Stretch run (40 beds, INV-0303) was pressed at our own facility at the farm; the next step is pressing at production rate with measured per-bed costs.
+      That honesty is the pitch. Fixed costs run about $109,500 a year before a single bed is made.
+    </div>
+  </div>
+  <div class="foot">The truck test</div>
+  <div class="pnum">08</div>
+</div>
+
+<!-- ============================================================= -->
+<!-- BEAT 9 - OWNERSHIP IS THE ASK -->
+<!-- ============================================================= -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <img class="bleed" src="deck-photos/plant-panorama.jpg" alt="The on-Country recycled-plastic plant">
+  <div class="scrim-l"></div>
+  <div style="position:absolute; left:100px; top:150px; width:1120px;">
+    <div class="kicker" style="color:#E08A5E; margin-bottom:32px;">9 &nbsp;&middot;&nbsp; Ownership is the ask &nbsp;&middot;&nbsp; Requested</div>
+    <div class="serif title oncream-white" style="margin-bottom:32px; max-width:1040px;">
+      The plant can move to community hands. That is what community is asking for.
+    </div>
+    <blockquote class="serif quote-sm oncream-white" style="margin-bottom:26px; max-width:1040px;">
+      &ldquo;We know what we wanna do on our land, and we know how to get there &hellip;
+      Self-determination for us as Aboriginal people, as our old people have led the way for us.&rdquo;
+    </blockquote>
+    <div class="attrib oncream-white" style="opacity:.9;">Kristy Bloomfield &middot; Oonchiumpa co-founder, Traditional Owner</div>
+  </div>
+  <div style="position:absolute; left:100px; bottom:126px;">
+    <span class="pill pill-line">Community ownership is a pathway, moving closer, not a claim made complete</span>
+  </div>
+  <div class="foot foot-light">Ownership is the ask</div>
+  <div class="pnum pnum-light">09</div>
+</div>
+
+<!-- ============================================================= -->
+<!-- BEAT 10 - THE FUNDER WITNESS -->
+<!-- ============================================================= -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <img class="bleed" src="deck-photos/product-hero.jpg" alt="A Stretch Bed">
+  <div class="scrim-full"></div>
+  <div class="scrim-b"></div>
+  <div style="position:absolute; left:100px; top:158px; width:1420px;">
+    <div class="kicker" style="color:#E08A5E; margin-bottom:34px;">10 &nbsp;&middot;&nbsp; The funder witness &nbsp;&middot;&nbsp; Delivered</div>
+    <blockquote class="serif quote oncream-white" style="margin-bottom:40px;">
+      &ldquo;I wanted to see how the beds would be received and for me it was an overwhelming, yes,
+      we want and need these beds &hellip; And you&rsquo;re doing it with community. It&rsquo;s not
+      a for, it&rsquo;s a with, and that&rsquo;s really important too.&rdquo;
+    </blockquote>
+    <div class="attrib oncream-white" style="opacity:.9;">Georgina Byron AM &middot; CEO, Snow Foundation</div>
+  </div>
+  <div style="position:absolute; left:100px; bottom:132px;">
+    <div style="display:flex; gap:14px;">
+      <span class="pill pill-line">Funder voice</span>
+      <span class="pill pill-line">Snow Foundation &middot; ~$493K delivered</span>
+      <span class="pill pill-line">$0 signed match-eligible capital, so far</span>
+    </div>
+  </div>
+  <div class="foot foot-light">The funder witness</div>
+  <div class="pnum pnum-light">10</div>
+</div>
+
+<!-- ============================================================= -->
+<!-- BEAT 11 - THE ASK (cream stat) -->
+<!-- ============================================================= -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <div style="position:absolute; left:100px; top:100px; width:1720px;">
+    <div class="kicker oncream-terra" style="margin-bottom:22px;">11 &nbsp;&middot;&nbsp; The ask</div>
+    <div class="serif display onlight" style="max-width:1500px;">One signed match by 31 August. QBE matches it, up to $400K.</div>
+    <hr class="divider" style="margin-top:30px;">
+  </div>
+
+  <div class="statwrap" style="position:absolute; left:100px; top:436px; width:1720px;">
+    <div class="stat">
+      <div class="n n-sm">$400K</div>
+      <div class="l">QBE Stage 2, matched &ge;1:1<br><span class="pill pill-sage" style="margin-top:8px;">Proposed &middot; not yet awarded</span></div>
+    </div>
+    <div class="stat">
+      <div class="n n-sm">$0</div>
+      <div class="l">Signed match-eligible<br>capital, today</div>
+    </div>
+    <div class="stat">
+      <div class="n n-sm">$713,827</div>
+      <div class="l">Accountant-signed revenue<br><span class="pill pill-ink" style="margin-top:8px;">Measured</span></div>
+    </div>
+    <div class="stat">
+      <div class="n n-sm">1,000+</div>
+      <div class="l">Beds of named demand<br><span class="pill pill-terra" style="margin-top:8px;">Requested &middot; LOIs, not orders</span></div>
+    </div>
+  </div>
+
+  <div style="position:absolute; left:100px; bottom:150px; width:1600px;">
+    <div class="lede onlight" style="max-width:1560px;">
+      The one move that decides the rest: a signed, match-eligible commitment before 31 August.
+      LOIs are due 31 August; Stage 2 closes late September. It turns a proven business into a plant
+      that can move to community hands.
+    </div>
+  </div>
+  <div class="foot">The ask</div>
+  <div class="pnum">11</div>
+</div>
+
+<!-- ============================================================= -->
+<!-- BEAT 12 - CLOSE -->
+<!-- ============================================================= -->
+<div class="slide" data-canvas-width="1920" data-canvas-height="1080">
+  <img class="bleed" src="deck-photos/closing-hero.jpg" alt="On a Stretch Bed, on Country">
+  <div class="scrim-l"></div>
+  <div class="scrim-b"></div>
+  <div style="position:absolute; left:100px; top:406px; width:1220px;">
+    <!-- Goods synthesis line: never in quote marks, not attributed to a person -->
+    <div class="serif display oncream-white">We know what we need.<br>We are asking to build it here.</div>
+    <div class="lede body-light" style="margin-top:34px; max-width:1040px;">
+      &ldquo;I didn&rsquo;t get money, but those two young fellows that are doing something, they
+      offered us and shared their blessings with us. So I shared my blessings to them.&rdquo;
+    </div>
+    <div class="attrib oncream-white" style="opacity:.9; margin-top:20px;">Dianne Stokes &middot; Warumungu and Warlmanpa Elder</div>
+  </div>
+  <div class="foot foot-light">Goods on Country</div>
+  <div class="pnum pnum-light">goodsoncountry.com</div>
+</div>
+
+</body>
+</html>

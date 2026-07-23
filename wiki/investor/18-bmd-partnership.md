@@ -21,7 +21,7 @@ The doc asks the Foundation to help stand up the Aboriginal-owned enterprise sit
 
 1. **REAL Innovation Fund = APPLIED at ~$2 million over 3 years.** Not secured. The word "secured" and the $1.73M figure come out; "$2 million application with Oonchiumpa, decision pending" goes in.
 2. **QBE submission due 14 September.** Locked; canon updated everywhere.
-3. **Our canon numbers stand:** 540 beds / 20 washers in community / 11 communities, Utopia 147, and "requests and conversations", not "orders". The PDF gets corrected TO canon.
+3. **Our canon numbers stand:** 540 beds / 22 washers in community / 11 communities, Utopia 147, and "requests and conversations", not "orders". The PDF gets corrected TO canon.
 4. "1620 young people" is a typo for 16 to 20.
 
 ## Where BMD sits in the money picture

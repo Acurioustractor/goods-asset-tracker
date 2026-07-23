@@ -54,7 +54,7 @@ The strategic sentence: **one product, four systems, one pathway out.** Funders 
 08 · Watch where each $750 goes. *($65 stays today. $324 when we press here. The bars tell it.)*
 09 · $400K signed by 31 August. QBE doubles it. *(An $800K program that ends the asking. Submission 14 September.)*
 10 · Nobody funds Goods forever. That is the design. *(Gifts end at break-even. Loans go home. Sales carry it. Then it changes owner.)*
-11 · The plant moves into community hands. *(Four communities already asking. A site stands at roughly 75-100 beds a year.)*
+11 · The plant moves into community hands. *(Four communities already asking.)*
 12 · "Every time I go away, it's like it's calling me. Come back home." *(Dianne Stokes, Warumungu Elder, who named Pakkimjalki Kari.)*
 
 What Nic's work adds to this run: the youth-employment engine sits inside 07 and 11 (his BMD framing), and the membership model strengthens the charity story wherever entities appear. What Matt's advice adds: the deck never floats a number the 3-statement model doesn't carry; slide 08-10 figures ARE the model's figures, and the data room behind the deck is /investors plus the Excel.

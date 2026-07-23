@@ -101,7 +101,7 @@ export const impactNumbers = {
   asOf: '2026-05-30',
   totalAssetsTracked: 561, // asset table rows: 520 bed rows + 41 washer rows
   bedsDeployed: CANONICAL_ASSETS.bedsDeployed, // deployed bed units tracked (Stretch + legacy Basket)
-  washersInCommunity: CANONICAL_ASSETS.washersInCommunity, // canonical in-community washing-machine count (curated)
+  washersInCommunity: CANONICAL_ASSETS.washersInCommunity, // canonical in-community washing-machine count (Ben ruling 2026-07-21)
   communitiesEngaged: CANONICAL_ASSETS.communitiesServed, // served communities; distinct register names = 10 incl. placeholder/allocated
   livesImpacted: '1,000+',
   plasticDivertedKg: CANONICAL_ASSETS.plasticKg, // Stretch beds only (133 x 20kg HDPE); Basket Beds are not a plastic product
@@ -208,7 +208,7 @@ export const grantAnswers = {
     medium: `Three things differentiate Goods: (1) Community-led design. Every product decision is shaped in community with the people who use the thing. 500+ minutes of recorded community input drove the evolution from V1 Basket Beds to the V4 Stretch Bed. (2) Local production. Our containerised production facility ($100K invested) is being set up to turn waste plastic into bed components On-Country, creating jobs and a circular economy as it comes online. (3) Ownership pathway. The model is built to transfer capability to communities over time, with full training, capability and documentation, rather than a license.`,
   },
   whoDoYouWorkWith: 'We work with 9 remote Indigenous communities across QLD, NT, WA, and SA. Core community partners include Oonchiumpa Consultancy, Wilya Janta, and Palm Island Community Company. Health partners include Anyinginyi Health, Miwatj Health, Purple House, and Red Dust.',
-  howDoYouMeasureImpact: 'We track impact through: (1) Asset Register — 603 asset rows with QR-coded lifecycle monitoring. (2) Telemetry — 20 washing machines in community, with fleet telemetry not yet fleet-wide. (3) Community feedback — 500+ minutes recorded, 15+ verified storytellers via Empathy Ledger. (4) Environmental metrics — 3,540kg+ plastic diverted (177 Stretch beds x 20kg HDPE, Stretch only; Basket Beds are not a plastic product). (5) Health outcomes — tracking with health partners.',
+  howDoYouMeasureImpact: 'We track impact through: (1) Asset Register — 603 asset rows with QR-coded lifecycle monitoring. (2) Telemetry — 22 washing machines in community, with fleet telemetry not yet fleet-wide. (3) Community feedback — 500+ minutes recorded, 15+ verified storytellers via Empathy Ledger. (4) Environmental metrics — 3,540kg+ plastic diverted (177 Stretch beds x 20kg HDPE, Stretch only; Basket Beds are not a plastic product). (5) Health outcomes — tracking with health partners.',
   whatAreYourFinancials: `~$741.1K ACT-GD ACCREC paid to date, comprising ~$679.7K grant/philanthropic receipts and ~$61.4K commercial/buyer receipts. ~$143K remains outstanding in authorised receivables (Rotary $82.5K, Homeland School $44K, and Regional Arts $16.5K). $100K invested in the production facility. Demand materially exceeds current production capacity. Figures are Xero management data, not audited.`,
   howWillYouUseThisFunding: {
     beds: 'Each $600–850 funds one Stretch Bed deployed to a remote community, diverting 20kg of plastic and providing a 10+ year sleeping surface.',

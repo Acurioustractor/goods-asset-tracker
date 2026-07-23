@@ -4,7 +4,7 @@
 
 ## How to read this
 
-- The canonical headline is 540 beds deployed across 11 communities, with 20 washing machines in community (asset-canonical.ts).
+- The canonical headline is 540 beds deployed across 11 communities, with 22 washing machines in community (asset-canonical.ts).
 - The per-place bed and washing-machine numbers in the table below come from the March 2026 compendium deployment snapshot unless a row says otherwise. They are a source-typed sub-view, not the canonical headline, so their row sum will be narrower than 540. Keep the source type visible when using a number externally.
 - "Storytellers / voices" means named people already recorded in the knowledge base. Consent and use permissions still need to be checked before external sharing.
 

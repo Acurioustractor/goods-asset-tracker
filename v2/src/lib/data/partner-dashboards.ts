@@ -324,7 +324,7 @@ const snow: PartnerDashboard = {
       items: [
         { title: '540 beds delivered across 11 communities' },
         { title: 'Containerised production plant built (recycled-plastic line)' },
-        { title: '20 washing machines in community' },
+        { title: '22 washing machines in community' },
         { title: 'Utopia + Alice Springs trip, May 2026', note: '87 beds that trip' },
       ],
     },

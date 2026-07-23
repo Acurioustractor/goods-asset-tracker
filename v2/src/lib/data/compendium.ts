@@ -378,13 +378,13 @@ export interface CommunityDeployment {
 // getDeploymentTotals(); content.ts derives its counts from EXPECTED_DEPLOYED_BEDS.
 export const deployments: CommunityDeployment[] = [
   { id: 'palm-island', community: 'Palm Island', traditionalName: 'Bwgcolman', state: 'QLD', beds: 131, washers: 4, status: 'active', partner: 'PICC', contacts: ['Eb & Jahvan Oui'] },
-  { id: 'tennant-creek', community: 'Tennant Creek', traditionalName: 'Wumpurrarni', state: 'NT', beds: 160, washers: 5, status: 'active', partner: 'Wilya Janta', contacts: ['Norman Frank', 'Dr Simon Quilty'] },
-  { id: 'alice-homelands', community: 'Alice Homelands', state: 'NT', beds: 16, washers: 0, status: 'active', partner: 'Oonchiumpa', contacts: ['Kristy Bloomfield'] },
-  { id: 'maningrida', community: 'Maningrida', state: 'NT', beds: 58, washers: 2, status: 'active', partner: 'Homeland Schools Co.' },
+  { id: 'tennant-creek', community: 'Tennant Creek', traditionalName: 'Wumpurrarni', state: 'NT', beds: 160, washers: 9, status: 'active', partner: 'Wilya Janta', contacts: ['Norman Frank', 'Dr Simon Quilty'] },
+  { id: 'alice-homelands', community: 'Alice Homelands', state: 'NT', beds: 16, washers: 1, status: 'active', partner: 'Oonchiumpa', contacts: ['Kristy Bloomfield'] },
+  { id: 'maningrida', community: 'Maningrida', state: 'NT', beds: 58, washers: 8, status: 'active', partner: 'Homeland Schools Co.' },
   { id: 'kalgoorlie', community: 'Kalgoorlie', traditionalName: 'Ninga Mia', state: 'WA', beds: 20, washers: 0, status: 'active', partner: 'The Community Shed' },
   { id: 'utopia', community: 'Utopia Homelands', state: 'NT', beds: 147, washers: 0, status: 'active', partner: 'Oonchiumpa' },
   { id: 'mt-isa', community: 'Mt Isa', traditionalName: 'Kalkadoon', state: 'QLD', beds: 2, washers: 0, status: 'testing', partner: 'BG Fit & Men\'s Shed' },
-  { id: 'darwin', community: 'Darwin', state: 'NT', beds: 1, washers: 1, status: 'testing', partner: 'Red Dust' },
+  { id: 'darwin', community: 'Darwin', state: 'NT', beds: 1, washers: 0, status: 'testing', partner: 'Red Dust' },
   { id: 'canberra', community: 'Canberra', state: 'ACT', beds: 2, washers: 0, status: 'testing' },
   { id: 'kununurra', community: 'Kununurra', state: 'WA', beds: 2, washers: 0, status: 'testing' },
   { id: 'katherine', community: 'Katherine', state: 'NT', beds: 1, washers: 0, status: 'testing' },
@@ -414,6 +414,19 @@ export function getDeploymentTotals() {
     throw new Error(
       `[compendium] deployments bed sum (${sum}) != EXPECTED_DEPLOYED_BEDS (${EXPECTED_DEPLOYED_BEDS}). ` +
         `Reconcile the deployments array to the locked canonical split or update EXPECTED_DEPLOYED_BEDS.`,
+    );
+  }
+}
+
+// Same guard for washing machines. Per-community split is Ben's ruling of
+// 2026-07-21 (Maningrida 8, Tennant Creek 9, Palm Island 4, Alice Springs 1,
+// Darwin 0 = 22), superseding the old curated 20.
+{
+  const sum = deployments.reduce((s, d) => s + d.washers, 0);
+  if (sum !== CANONICAL_ASSETS.washersInCommunity) {
+    throw new Error(
+      `[compendium] deployments washer sum (${sum}) != CANONICAL_ASSETS.washersInCommunity (${CANONICAL_ASSETS.washersInCommunity}). ` +
+        `Reconcile the deployments array to the ruled per-community split or update asset-canonical.ts.`,
     );
   }
 }

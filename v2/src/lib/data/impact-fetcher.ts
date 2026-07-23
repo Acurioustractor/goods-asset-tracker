@@ -51,7 +51,7 @@ interface AssetStats {
   totalBeds: number; // deployed beds (Stretch + Basket)
   stretchBedsDeployed: number; // recycled-HDPE beds — the plastic-diversion product
   basketBedsDeployed: number; // archived prototype — NOT a plastic product
-  washersInCommunity: number; // canonical in-community washing-machine count (curated)
+  washersInCommunity: number; // canonical in-community washing-machine count (Ben ruling 2026-07-21)
   communitiesServed: number;
   communityBreakdown: { community: string; count: number }[];
 }
