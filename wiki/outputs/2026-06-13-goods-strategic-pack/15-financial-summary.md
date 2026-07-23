@@ -13,7 +13,7 @@ source_of_truth: 00-master-alignment-map.md (§2 unit economics & money-in, §3 
 
 > **What this is.** A plain-language financial summary for Goods on Country (GOC) that a reader can understand without opening the spreadsheet. It closes the documentation half of QBE Diagnostic **Area 4 (Financial Management)** and **Area 11 (Cost Model)**. It complements the live **Goods Playable Model** — it summarises that model's headline numbers and points to it; it does not reproduce the model.
 >
-> **What it is not.** It is not an audited account. The money-in figures are an unaudited Xero workpaper, the cost-down and forecast figures are modelled with zero beds yet assembled in-house, and the headline capital figures are targets, not signed commitments. Every number below is labelled so the reader can see exactly which is which. The single most important caveat: **there is not yet one accountant-endorsed, Goods-only revenue figure** — producing it is the work, and it is now a hard QBE Stage-2 gate.
+> **What it is not.** It is not an audited account. The money-in figures are an unaudited Xero workpaper, the cost-down and forecast figures are modelled (the make process is proven at 40 beds in-house, the per-bed cost is not yet measured at volume), and the headline capital figures are targets, not signed commitments. Every number below is labelled so the reader can see exactly which is which. The single most important caveat: **there is not yet one accountant-endorsed, Goods-only revenue figure** — producing it is the work, and it is now a hard QBE Stage-2 gate.
 
 ---
 
@@ -66,7 +66,7 @@ The cost model is the heart of the catalytic case. It asks one question: **what 
 
 **The lever, and the one piece of hard evidence.** The cost-down is driven by removing an **8.6× markup ("idiot index") on the HDPE legs** currently bought from an external supplier (Defy) [VERIFIED]. That markup is the single verified data point underneath the whole cost model.
 
-**The honest status — this is a hypothesis, not a result.** Both in-source costs are [MODELLED] with **zero beds assembled in-house so far**, against a stale inventory snapshot (2026-03-27). The cost model is a credible projection, not a measured outcome. The experiment that converts it is a **50-bed in-source production run (~AU$60–80K)**: a pass confirms AU$425.74 and the raise scales on proven economics; a miss re-bases the raise honestly at AU$684.79. A catalytic investor is being asked to fund this experiment, not a finished economic engine.
+**The honest status — this is a hypothesis, not a result.** Both in-source costs are [MODELLED] (the make process is proven at 40 beds pressed + assembled in-house at the farm; the per-bed cost is not yet measured at volume), against a stale inventory snapshot (2026-03-27). The cost model is a credible projection, not a measured outcome. The experiment that converts it is a **50-bed in-source production run (~AU$60–80K)**: a pass confirms AU$425.74 and the raise scales on proven economics; a miss re-bases the raise honestly at AU$684.79. A catalytic investor is being asked to fund this experiment, not a finished economic engine.
 
 ---
 

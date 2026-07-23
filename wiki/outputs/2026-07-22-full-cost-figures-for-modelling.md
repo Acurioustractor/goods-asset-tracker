@@ -70,6 +70,8 @@ The community path sits about **$5 below** the factory path. It is economic pari
 Already spent: **$110,046** (facility $100,000 + Carbatec tooling $10,046).
 Net ask after that: **$1,954 low, $111,954 high**.
 
+> **SUPERSEDED (2026-07-22).** The "$110,046 / $100,000 facility" line above is Ben's original working note for total sunk spend, not an evidenced building cost. It has been reconciled at bill level in `2026-07-22-minimal-viable-facility-model.md`: the evidenced sunk hardware is **~$75K** (Nic bought used) and a fresh community-site replication runs **~$90K to $123K, mid ~$105K**. Use those two figures for the sunk-cost and funder-ask stories respectively. The $110,046 net-ask math below is retained only as the original modelling record; do not quote it forward.
+
 **A standalone community site** (`standalone_site_capex`):
 
 | | Amount |
@@ -168,7 +170,7 @@ To model the ownership routes properly, three numbers are needed and none exist 
 
 1. **A real community-site fixed block.** Operator wage, diesel, maintenance, insurance, admin, repairs. Not the rent line.
 2. **Vendor quotes on the site capex**, to settle $30,000 versus $100-150K and move it off "unverified".
-3. **The 50-bed in-house run.** Zero beds have been pressed in-house. Every figure in the Factory and Community columns is modelled.
+3. **A measured in-house run.** The Factory process is proven: the 40 Maningrida Stretch beds (INV-0303) were made in-house end-to-end at the farm (legs shredded, hot-pressed, CNC-routed, assembled). What is not yet locked is the **measured per-bed cost/time** (diesel, hours, plastic yield) and the **sustained rate** at volume. A short measured run converts the Factory column from modelled to measured. The Community column stays modelled because on-country community production has not been run.
 
 Until 1 and 2 land, any ownership route is being priced against an incomplete cost base, and the earlier finding (that a site cannot buy itself out of surplus at 75 to 100 beds a year) is if anything **understated**, because the surplus it was calculated from used a rent-only bill.
 

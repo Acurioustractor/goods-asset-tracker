@@ -96,7 +96,7 @@ This is the heart of what the diagnostic asked for, and we will be plain about i
 
 **The path has two moves, and they compound:**
 
-1. **In-source the plastic to bring the cost down.** We have verified an 8.6× markup on the HDPE legs we currently buy from an external supplier [VERIFIED]. The containerised production model projects unit cost falling from **AU$684.79 → AU$425.74** (factory configuration) and **→ AU$421** (community configuration) [all MODELLED]. At the factory target, breakeven drops from ~1,679 to **333–338 beds a year** [MODELLED] — within sight of demand. The critical caveat, stated everywhere in this pack: **zero beds have been assembled in-house so far.** This is a hypothesis, not a result.
+1. **In-source the plastic to bring the cost down.** We have verified an 8.6× markup on the HDPE legs we currently buy from an external supplier [VERIFIED]. The containerised production model projects unit cost falling from **AU$684.79 → AU$425.74** (factory configuration) and **→ AU$421** (community configuration) [all MODELLED]. At the factory target, breakeven drops from ~1,679 to **333–338 beds a year** [MODELLED] — within sight of demand. The critical caveat, stated everywhere in this pack: the process is proven (40 beds made in-house at the farm, Maningrida INV-0303), but **the per-bed cost at volume is not yet measured.** The rate, not the capability, is the hypothesis.
 
 2. **Move institutional buyers from grant-funded to procurement-funded.** Segment 1's capacity is real but grant-derived. The transition is the same buyers (and the Segment 3 procurement pools behind them) purchasing through contracted procurement rather than grant rounds — which requires the 51% structure and the first signed procurement/offtake commitment.
 
@@ -110,7 +110,7 @@ A catalytic investor is being asked to fund this experiment, not a finished econ
 
 ## Unit economics
 
-A single, honest table. Today's marginal cost is a workpaper figure (unaudited Xero mirror); the in-source targets are modelled with **zero beds assembled in-house**, and breakeven uses a modelled fixed-cost block of ~AU$109,500/yr.
+A single, honest table. Today's marginal cost is a workpaper figure (unaudited Xero mirror); the in-source targets are modelled (process proven at 40 beds in-house, per-bed cost not yet measured at volume), and breakeven uses a modelled fixed-cost block of ~AU$109,500/yr.
 
 | Line | Today | In-source target (factory) | In-source target (community) |
 |---|---:|---:|---:|

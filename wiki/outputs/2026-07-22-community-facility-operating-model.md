@@ -114,7 +114,7 @@ Three different capacity figures are in play and they do not agree:
 
 At 250/yr a site cannot cover even the bare facility. At 1,250 to 1,500/yr it can cover a fully staffed one, with room.
 
-**This is the second thing that has to be settled,** and it matters as much as the cost side. The whole ownership case turns on which of these is real, and the only way to find out is the 50-bed run with a stopwatch on it.
+**This is the second thing that has to be settled,** and it matters as much as the cost side. The whole ownership case turns on which of these is real. The process is proven (40 beds made in-house at the farm), but the sustained rate is not; the way to settle it is a measured run with a stopwatch on it.
 
 ---
 
@@ -148,7 +148,7 @@ Three figures, three different implied totals. If this has not been submitted ye
 ## 8 · What to settle next
 
 1. **Site manager: full-time $150,000 or a $90,000 coordinator?** Moves break-even by roughly 180 beds.
-2. **Per-site capacity: 250, 1,250 or 1,500 a year?** Decides whether community ownership is viable at all. Needs the 50-bed run.
+2. **Per-site capacity: 250, 1,250 or 1,500 a year?** Decides whether community ownership is viable at all. The process is proven at 40 beds; a measured run confirms the sustained rate.
 3. **Site capex: $30,000 or $100-150K?** Decides whether a community can realistically buy in.
 4. **Is the trainer/WHS role ACT's cost or the site's?** Currently ambiguous in both models.
 5. **Update `ask-surface.ts:205`.** The $24,000 site bill and the 75-100 bed claim are on a live surface and understate the real cost by more than ten times.
