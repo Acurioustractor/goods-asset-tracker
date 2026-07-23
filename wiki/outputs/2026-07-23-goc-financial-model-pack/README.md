@@ -6,8 +6,9 @@ This folder packages everything we have pulled on Goods On Country, with notes a
 
 | File | What it is |
 |---|---|
-| `GOC-3-Statement-Model.xlsx` | **The GOC-only 3-statement financial model Matt asked for.** Live formulas, one Assumptions tab driving Production -> P&L -> Balance Sheet -> Cash Flow, plus a Sources tab. Blue = input (override-able). Balance sheet balances all 5 years (verified by recalc). Base case = the central-production investment case (Pot 1, mirrors Matt's bed model); the community wraparound (Pot 2) is wired but zeroed until the rollout is set. |
-| `goc-data-and-figures-pack.csv` | The full figure set. 117 rows, every one tagged Section / Metric / Value / Unit / Status / Source / Notes. This is the traceable data pathway for the model. |
+| **`GOC-Entity-Model-Inputs.xlsx`** | **SEND THIS TO MATT.** The simple figures sheet, mirroring the format of his `GOC Bed Unit-Costing Model v2.xlsx` (single Inputs page, numbered blocks, blue = input, per-line status + source, All AUD ex-GST, plus a Notes tab). It hands Matt the ENTITY-level figures his bed model doesn't already have (historical actuals, opening position, working capital, tax, financing split, the grant-funded Pot 2) so he can build the GOC-only 3-statement model. We give him the inputs in his format; he builds the statements. |
+| `goc-data-and-figures-pack.csv` | The full figure set behind the Inputs sheet. 117 rows, every one tagged Section / Metric / Value / Unit / Status / Source / Notes. The traceable data pathway. |
+| `GOC-3-Statement-Model.xlsx` | Optional worked reference (not the thing to send). A live-formula 5-year 3-statement build (Assumptions -> Production -> P&L -> Balance Sheet -> Cash Flow), balances all 5 years, in case it is useful to see the figures articulated. Matt builds the real one; this just shows the shape. |
 | `assumptions-alignment.md` | The reconciliation of Matt's `GOC Bed Unit-Costing Model v2.xlsx` against our canon: what matches, the open items resolved, the two-pots investor framing, and the recommended shape of the 3-statement model. |
 | `goc-data-and-figures-pack.provenance.md` | Where every number came from and how confident we are. |
 
