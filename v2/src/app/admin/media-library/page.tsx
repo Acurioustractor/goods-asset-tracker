@@ -76,18 +76,11 @@ export default async function MediaLibraryPage() {
           <h1 className="font-display text-2xl font-bold" style={{ fontFamily: 'Georgia, serif' }}>Media Room</h1>
           <AddMediaDialog assets={assets} recent={recentBedContent} />
         </div>
-        <p className="mt-1 text-sm text-muted-foreground">
-          One place to curate every photo and video in the project. Star the keepers, archive the
-          junk, rate them, and tag who is in each shot, which community it belongs to, and which
-          product or story it shows.
-        </p>
-        <p className="mt-2 max-w-3xl text-xs text-muted-foreground">
-          It pulls from two sources.{' '}
-          <span className="font-medium text-foreground">Website</span> — the image and video files
-          the goodsoncountry.com site is built from (yours to use freely).{' '}
-          <span className="font-medium text-foreground">Empathy Ledger</span> — community photos and
-          videos held in the Empathy Ledger platform, which governs consent and links each photo to
-          the people and communities in it. Tagging people / community applies to those.
+        <p className="mt-1 max-w-3xl text-sm text-muted-foreground">
+          Every photo and video in one place. Switch between <span className="font-medium text-foreground">Photos</span> and{' '}
+          <span className="font-medium text-foreground">Videos</span>, star the keepers, and tag who&rsquo;s in each shot,
+          the community, and the product or story. Open <span className="font-medium text-foreground">Filters</span> to
+          narrow by source (Website / Community / Descript), subject or person.
         </p>
       </header>
       <div className="mb-6">

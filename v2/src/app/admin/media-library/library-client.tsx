@@ -63,25 +63,24 @@ function loadAspectCache(): Record<string, number> {
   }
 }
 
+/** Plain-language source label for the tile + modal. Consent nuance moved off
+ *  the grid; only a clear "held" flag stays visible as a safety marker. */
+function sourceLabel(source: UnifiedItem['source']): string {
+  if (source === 'website') return 'Website';
+  if (source === 'descript') return 'Descript';
+  return 'Community';
+}
+
 function consentBadge(item: UnifiedItem): { text: string; cls: string } {
-  if (item.source === 'descript') {
-    return item.consent === 'flagged'
-      ? { text: 'Descript · held', cls: 'bg-red-100 text-red-700' }
-      : { text: 'Descript', cls: 'bg-violet-100 text-violet-700' };
-  }
-  switch (item.consent) {
-    case 'local':
-      return { text: 'Website', cls: 'bg-muted text-foreground' };
-    case 'public':
-      return { text: 'EL · public', cls: 'bg-green-100 text-green-700' };
-    case 'gated-ok':
-      return { text: 'EL · gated-ok', cls: 'bg-amber-100 text-amber-700' };
-    case 'elder-pending':
-      return { text: 'EL · elder review pending', cls: 'bg-orange-100 text-orange-700' };
-    case 'flagged':
-    default:
-      return { text: 'EL · not flagged', cls: 'bg-muted text-muted-foreground' };
-  }
+  if (item.source === 'website') return { text: 'Website', cls: 'bg-muted text-foreground' };
+  if (item.source === 'descript') return { text: 'Descript', cls: 'bg-violet-100 text-violet-700' };
+  // Empathy Ledger = community media, consent-governed.
+  return { text: 'Community', cls: 'bg-green-100 text-green-700' };
+}
+
+/** True when this item should never go on an external slide without a check. */
+function isHeld(item: UnifiedItem): boolean {
+  return item.consent === 'flagged' || item.consent === 'elder-pending' || item.tags.includes('consent:held');
 }
 
 /** A patch sent to /api/admin/content-item and applied optimistically to state. */
@@ -106,7 +105,11 @@ export function MediaLibraryClient({
   const [personFilter, setPersonFilter] = useState<string>('__all');
   const [needsPeople, setNeedsPeople] = useState(false);
   const [roster, setRoster] = useState<RosterPerson[]>([]);
-  const [kind, setKind] = useState<'all' | 'image' | 'video' | 'overlay'>('all');
+  // Primary mode: Photos vs Videos. Opens on Photos.
+  const [kind, setKind] = useState<'image' | 'video'>('image');
+  // Advanced filters (source / subject / community / person / theme) collapse
+  // behind one toggle so the top stays clean.
+  const [showFilters, setShowFilters] = useState(false);
   // Justified-rows layout state: measured image aspect ratios + the grid's width.
   // Seeded from the localStorage cache so a re-load lays out with no reflow.
   const [aspects, setAspects] = useState<Record<string, number>>(loadAspectCache);
@@ -393,12 +396,11 @@ export function MediaLibraryClient({
   }, [items, sourceFilter]);
 
   const kindCounts = useMemo(() => {
-    let image = 0, video = 0, overlay = 0;
+    let image = 0, video = 0;
     for (const it of items) {
       if (it.mediaType === 'video') video++; else image++;
-      if (it.mediaSubtype === 'overlay') overlay++;
     }
-    return { image, video, overlay };
+    return { image, video };
   }, [items]);
 
   const filtered = useMemo(() => {
@@ -414,9 +416,10 @@ export function MediaLibraryClient({
       if (community !== '__all' && it.community !== community) return false;
       if (personFilter !== '__all' && !(it.people ?? []).some((p) => p.name === personFilter)) return false;
       if (needsPeople && !(it.source === 'el' && it.mediaType === 'image' && (it.people ?? []).length === 0)) return false;
-      if (kind === 'image' && it.mediaType !== 'image') return false;
-      if (kind === 'video' && it.mediaType !== 'video') return false;
-      if (kind === 'overlay' && it.mediaSubtype !== 'overlay') return false;
+      // Photos = anything not a video (undefined mediaType counts as a photo).
+      const isVid = it.mediaType === 'video';
+      if (kind === 'image' && isVid) return false;
+      if (kind === 'video' && !isVid) return false;
       if (q) {
         const hay = `${it.title} ${it.area} ${it.tags.join(' ')} ${it.community ?? ''} ${it.person ?? ''} ${themeName(it.theme) ?? ''} ${it.full}`.toLowerCase();
         if (!hay.includes(q)) return false;
@@ -457,6 +460,15 @@ export function MediaLibraryClient({
 
   const archivedCount = useMemo(() => items.filter((it) => it.archived).length, [items]);
   const starredCount = useMemo(() => items.filter((it) => it.starred).length, [items]);
+  // How many advanced filters are active — shown as a count on the Filters button.
+  const activeFilterCount =
+    (sourceFilter !== 'all' ? 1 : 0) +
+    (area !== '__all' ? 1 : 0) +
+    (community !== '__all' ? 1 : 0) +
+    (personFilter !== '__all' ? 1 : 0) +
+    (theme !== '__all' ? 1 : 0) +
+    (needsPeople ? 1 : 0) +
+    (showArchived ? 1 : 0);
   // Every distinct tag in the library — powers tag autocomplete + click-to-filter.
   const allTags = useMemo(() => {
     const set = new Set<string>();
@@ -619,139 +631,158 @@ export function MediaLibraryClient({
         ))}
       </datalist>
 
-      {/* Source filter chips */}
-      <div className="flex flex-wrap items-center gap-2 mb-1.5">
-        {chip('all', 'All', sourceCounts.all, 'Everything, both sources')}
-        {chip('website', 'Website', sourceCounts.website, "The site's own image & video files (public/) — marketing, product, brand. Yours to use freely.")}
-        {chip('el', 'Empathy Ledger', sourceCounts.el, 'Community photos & videos in Empathy Ledger — consent-governed, linked to the people & communities in them.')}
-        {sourceCounts.descript > 0 && chip('descript', 'Descript', sourceCounts.descript, 'Hosted video cuts on Descript — the walkthrough, timelapse, storyteller cuts. Each carries a consent + canon flag; play inline.')}
-      </div>
-      <p className="mb-3 text-[11px] text-muted-foreground">
-        <span className="font-medium text-foreground">Website</span> = the site&rsquo;s own files ·{' '}
-        <span className="font-medium text-foreground">Empathy Ledger</span> = consent-governed community media (tag people &amp; community on these)
-      </p>
+      {/* ── Primary control: Photos | Videos, search, filters toggle ── */}
+      <div className="mb-3 flex flex-wrap items-center gap-3">
+        <div className="inline-flex rounded-xl border border-border bg-muted/40 p-1">
+          <button
+            type="button"
+            onClick={() => setKind('image')}
+            className={
+              'inline-flex items-center gap-1.5 rounded-lg px-4 py-1.5 text-sm font-semibold transition ' +
+              (kind === 'image' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground')
+            }
+          >
+            Photos <span className={kind === 'image' ? 'text-muted-foreground' : 'opacity-70'}>{kindCounts.image}</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setKind('video')}
+            className={
+              'inline-flex items-center gap-1.5 rounded-lg px-4 py-1.5 text-sm font-semibold transition ' +
+              (kind === 'video' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground')
+            }
+          >
+            Videos <span className={kind === 'video' ? 'text-muted-foreground' : 'opacity-70'}>{kindCounts.video}</span>
+          </button>
+        </div>
 
-      {/* Curation view toggles */}
-      <div className="flex flex-wrap items-center gap-2 mb-3">
+        <input
+          type="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search titles, tags, people…"
+          className="flex-1 min-w-[12rem] rounded-lg border border-input bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+        />
+
+        {toggleBtn(showFilters, () => setShowFilters((v) => !v), 'Filters', activeFilterCount || undefined)}
+
+        <span className="text-xs text-muted-foreground whitespace-nowrap">
+          {filtered.length} item{filtered.length === 1 ? '' : 's'}
+          {elState === 'loading' && <span className="ml-1 opacity-70">· loading…</span>}
+        </span>
+      </div>
+
+      {/* ── Curation toggles (kept light) ── */}
+      <div className="mb-3 flex flex-wrap items-center gap-2">
         {toggleBtn(
           selectMode,
           () => { setSelectMode((v) => !v); if (selectMode) setSelected(new Set()); },
           selectMode ? 'Selecting — click tiles' : '☑ Select multiple',
           selectMode ? selected.size : undefined,
         )}
-        {toggleBtn(starredOnly, () => setStarredOnly((v) => !v), '★ Starred only', starredCount)}
-        {toggleBtn(showArchived, () => setShowArchived((v) => !v), showArchived ? 'Viewing archive' : 'Show archived', archivedCount)}
+        {toggleBtn(starredOnly, () => setStarredOnly((v) => !v), '★ Starred', starredCount)}
         <span className="text-[11px] text-muted-foreground ml-1 hidden sm:inline">
           {selectMode
             ? 'click tiles to select · shift-click for a range · then use the bar below'
-            : 'keys: j/k move · s star · x archive · 1–5 rate · space select · A all · enter open'}
+            : 'keys: j/k move · s star · x archive · 1–5 rate · space select · enter open'}
         </span>
       </div>
 
-      {/* Subject + search */}
-      <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 mb-4">
-        <label className="flex items-center gap-2 text-sm">
-          <span className="text-muted-foreground whitespace-nowrap">Subject</span>
-          <select
-            value={area}
-            onChange={(e) => setArea(e.target.value)}
-            className="rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-          >
-            <option value="__all">All subjects</option>
-            {areaOptions.map((a) => (
-              <option key={a.value} value={a.value}>
-                {a.value} ({a.count})
-              </option>
-            ))}
-          </select>
-        </label>
+      {/* ── Advanced filters (collapsed by default) ── */}
+      {showFilters && (
+        <div className="mb-4 rounded-xl border border-border bg-muted/20 p-3">
+          <div className="mb-2 flex flex-wrap items-center gap-1.5">
+            <span className="mr-1 text-[11px] uppercase tracking-widest text-muted-foreground">Source</span>
+            {chip('all', 'All', sourceCounts.all)}
+            {chip('website', 'Website', sourceCounts.website, "The site's own files — marketing, product, brand. Yours to use freely.")}
+            {chip('el', 'Community', sourceCounts.el, 'Empathy Ledger community media — consent-governed, linked to the people & communities in it.')}
+            {sourceCounts.descript > 0 && chip('descript', 'Descript', sourceCounts.descript, 'Hosted video cuts — walkthrough, timelapse, storyteller cuts. Play inline.')}
+          </div>
 
-        {themeOptions.length > 0 && (
-          <label className="flex items-center gap-2 text-sm">
-            <span className="text-muted-foreground whitespace-nowrap">Theme</span>
-            <select
-              value={theme}
-              onChange={(e) => setTheme(e.target.value)}
-              className="rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-            >
-              <option value="__all">All themes</option>
-              {themeOptions.map((t) => (
-                <option key={t.value} value={t.value}>
-                  {t.name} ({t.count})
-                </option>
-              ))}
-            </select>
-          </label>
-        )}
+          <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
+            <label className="flex items-center gap-2 text-sm">
+              <span className="text-muted-foreground whitespace-nowrap">Subject</span>
+              <select
+                value={area}
+                onChange={(e) => setArea(e.target.value)}
+                className="rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              >
+                <option value="__all">All subjects</option>
+                {areaOptions.map((a) => (
+                  <option key={a.value} value={a.value}>{a.value} ({a.count})</option>
+                ))}
+              </select>
+            </label>
 
-        {communityOptions.length > 0 && (
-          <label className="flex items-center gap-2 text-sm">
-            <span className="text-muted-foreground whitespace-nowrap">Community</span>
-            <select
-              value={community}
-              onChange={(e) => setCommunity(e.target.value)}
-              className="rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-            >
-              <option value="__all">All communities</option>
-              {communityOptions.map((c) => (
-                <option key={c.value} value={c.value}>
-                  {c.value} ({c.count})
-                </option>
-              ))}
-            </select>
-          </label>
-        )}
+            {communityOptions.length > 0 && (
+              <label className="flex items-center gap-2 text-sm">
+                <span className="text-muted-foreground whitespace-nowrap">Community</span>
+                <select
+                  value={community}
+                  onChange={(e) => setCommunity(e.target.value)}
+                  className="rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                >
+                  <option value="__all">All communities</option>
+                  {communityOptions.map((c) => (
+                    <option key={c.value} value={c.value}>{c.value} ({c.count})</option>
+                  ))}
+                </select>
+              </label>
+            )}
 
-        {personOptions.length > 0 && (
-          <label className="flex items-center gap-2 text-sm">
-            <span className="text-muted-foreground whitespace-nowrap">Person</span>
-            <select
-              value={personFilter}
-              onChange={(e) => setPersonFilter(e.target.value)}
-              className="rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-            >
-              <option value="__all">Anyone</option>
-              {personOptions.map((p) => (
-                <option key={p.value} value={p.value}>{p.value} ({p.count})</option>
-              ))}
-            </select>
-          </label>
-        )}
+            {personOptions.length > 0 && (
+              <label className="flex items-center gap-2 text-sm">
+                <span className="text-muted-foreground whitespace-nowrap">Person</span>
+                <select
+                  value={personFilter}
+                  onChange={(e) => setPersonFilter(e.target.value)}
+                  className="rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                >
+                  <option value="__all">Anyone</option>
+                  {personOptions.map((p) => (
+                    <option key={p.value} value={p.value}>{p.value} ({p.count})</option>
+                  ))}
+                </select>
+              </label>
+            )}
 
-        {needsPeopleCount > 0 && (
-          <label className="flex items-center gap-2 text-sm" title="EL photos with no one tagged yet — the alignment backlog">
-            <input type="checkbox" checked={needsPeople} onChange={(e) => setNeedsPeople(e.target.checked)} />
-            <span className="text-muted-foreground whitespace-nowrap">Needs people ({needsPeopleCount})</span>
-          </label>
-        )}
+            {themeOptions.length > 0 && (
+              <label className="flex items-center gap-2 text-sm">
+                <span className="text-muted-foreground whitespace-nowrap">Theme</span>
+                <select
+                  value={theme}
+                  onChange={(e) => setTheme(e.target.value)}
+                  className="rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                >
+                  <option value="__all">All themes</option>
+                  {themeOptions.map((t) => (
+                    <option key={t.value} value={t.value}>{t.name} ({t.count})</option>
+                  ))}
+                </select>
+              </label>
+            )}
 
-        <label className="flex items-center gap-2 text-sm">
-          <span className="text-muted-foreground whitespace-nowrap">Type</span>
-          <select
-            value={kind}
-            onChange={(e) => setKind(e.target.value as 'all' | 'image' | 'video' | 'overlay')}
-            className="rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-          >
-            <option value="all">All types</option>
-            <option value="image">Images ({kindCounts.image})</option>
-            <option value="video">Video ({kindCounts.video})</option>
-            {kindCounts.overlay > 0 && <option value="overlay">Overlays ({kindCounts.overlay})</option>}
-          </select>
-        </label>
+            {needsPeopleCount > 0 && (
+              <label className="flex items-center gap-2 text-sm" title="Community photos with no one tagged yet — the alignment backlog">
+                <input type="checkbox" checked={needsPeople} onChange={(e) => setNeedsPeople(e.target.checked)} />
+                <span className="text-muted-foreground whitespace-nowrap">Needs people ({needsPeopleCount})</span>
+              </label>
+            )}
 
-        <input
-          type="search"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search title, subject, tags, filename…"
-          className="flex-1 min-w-[14rem] rounded-lg border border-input bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-        />
+            {toggleBtn(showArchived, () => setShowArchived((v) => !v), showArchived ? 'Viewing archive' : 'Show archived', archivedCount)}
 
-        <span className="text-xs text-muted-foreground whitespace-nowrap">
-          {filtered.length} item{filtered.length === 1 ? '' : 's'}
-          {elState === 'loading' && <span className="ml-1 opacity-70">· loading Empathy Ledger…</span>}
-        </span>
-      </div>
+            {activeFilterCount > 0 && (
+              <button
+                type="button"
+                onClick={() => { setSourceFilter('all'); setArea('__all'); setCommunity('__all'); setPersonFilter('__all'); setTheme('__all'); setNeedsPeople(false); setShowArchived(false); }}
+                className="rounded-lg px-2.5 py-1.5 text-xs text-muted-foreground hover:text-foreground"
+              >
+                Clear filters
+              </button>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Archive-only mode: make it unmistakable why the grid is small */}
       {showArchived && (
@@ -892,10 +923,17 @@ export function MediaLibraryClient({
                   </span>
                 )}
 
-                {/* consent / source badge */}
+                {/* source badge */}
                 <span className={'pointer-events-none absolute top-1.5 left-1.5 rounded-full px-2 py-0.5 text-[9px] font-semibold ' + badge.cls}>
                   {badge.text}
                 </span>
+
+                {/* held marker — do not place externally without a consent check */}
+                {isHeld(it) && (
+                  <span className="pointer-events-none absolute top-1.5 left-1/2 -translate-x-1/2 rounded-full bg-red-600 px-2 py-0.5 text-[9px] font-semibold text-white">
+                    held
+                  </span>
+                )}
 
                 {/* people tagged (EL alignment) */}
                 {it.people && it.people.length > 0 && (
@@ -1467,7 +1505,7 @@ function PreviewModal({
               {badge.text}
             </span>
             <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium">
-              {item.source === 'website' ? 'Website' : item.source === 'descript' ? 'Descript' : 'Empathy Ledger'}
+              {sourceLabel(item.source)}
             </span>
             <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium">
               {item.area}

@@ -11,7 +11,7 @@ import { getLocalImages, getLocalVideos } from '@/lib/data/local-images';
 import { DESCRIPT_VIDEOS, descriptViewUrl, descriptEmbedUrl } from '@/lib/data/descript-videos';
 import { createServiceClient } from '@/lib/supabase/server';
 import { themeForItem } from '@/lib/data/themes';
-import { getAlignData, type AlignPhoto, type AlignPerson } from '@/lib/empathy-ledger/align';
+import { getAlignData, getElMediaUrls, type AlignPhoto, type AlignPerson } from '@/lib/empathy-ledger/align';
 import type { UnifiedItem } from './library-client';
 
 // EL content-hub API (legacy EL Supabase keys disabled org-wide 2026-06-17).
@@ -274,6 +274,11 @@ export async function buildElItems(): Promise<{ items: UnifiedItem[]; elMissing:
   let align: { photos: AlignPhoto[]; persons: AlignPerson[] } = { photos: [], persons: [] };
   try { align = await getAlignData(); } catch { /* leave empty on EL read failure */ }
   const peopleById = new Map(align.photos.map((p) => [p.id, p.people]));
+  // EL's content-hub `/api/media/<id>/file` endpoint now 403s for Goods media
+  // (all un-consented), so its image URLs render broken tiles. The real bytes
+  // live in EL's public Supabase storage bucket (media_assets.cdn_url), which the
+  // align read already resolves. Prefer that working URL for any content-hub image.
+  const urlById = new Map(align.photos.map((p) => [p.id, { url: p.url, thumb: p.thumb }]));
 
   // Content-hub items (rich metadata + video). Empty if the content-hub key is absent.
   const [elImages, elVideos] = EL_API_KEY
@@ -281,13 +286,26 @@ export async function buildElItems(): Promise<{ items: UnifiedItem[]; elMissing:
     : [[] as ElPhoto[], [] as ElPhoto[]];
   const hubImageIds = new Set(elImages.map((p) => p.id));
 
-  const hubItems = [...elImages, ...elVideos].map((p) =>
-    attach(
+  // Videos/audio: resolve their working Supabase URL too (align covers images only).
+  let videoUrlById = new Map<string, string>();
+  try { videoUrlById = await getElMediaUrls(elVideos.map((v) => v.id)); } catch { /* leave empty */ }
+
+  const hubItems = [...elImages, ...elVideos].map((p) => {
+    // Swap the dead content-hub file URL for the working Supabase storage URL.
+    // Images come from the align read; videos/audio from getElMediaUrls.
+    const isVideo = p.mediaType === 'video';
+    const better = isVideo ? undefined : urlById.get(p.id);
+    const videoUrl = isVideo ? videoUrlById.get(p.id) : undefined;
+    const realUrl = better?.url || videoUrl || p.url;
+    // Video/audio have no image thumbnail — leave the tile poster empty so the
+    // grid shows a clean play placeholder instead of a broken image.
+    const realThumb = isVideo ? '' : (better?.thumb || p.thumb || p.url);
+    return attach(
       {
         id: `el:${p.id}`,
-        src: elProxy(p.thumb || p.url),
-        full: p.mediaType === 'video' ? p.url : elProxy(p.url),
-        poster: elProxy(p.thumb || p.url),
+        src: realThumb ? elProxy(realThumb) : '',
+        full: isVideo ? realUrl : elProxy(realUrl),
+        poster: realThumb ? elProxy(realThumb) : undefined,
         mediaType: p.mediaType,
         source: 'el',
         area: elArea(p),
@@ -297,8 +315,8 @@ export async function buildElItems(): Promise<{ items: UnifiedItem[]; elMissing:
         people: p.mediaType === 'image' ? (peopleById.get(p.id) ?? []) : undefined,
       },
       p.id,
-    ),
-  );
+    );
+  });
 
   // Align-library photos the content-hub API doesn't surface (gated/pending shots we
   // still need to align) — basic metadata, people attached. Skip rows with no

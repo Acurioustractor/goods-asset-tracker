@@ -41,6 +41,27 @@ interface JunctionRow { media_asset_id: string; storyteller_id: string; }
 export interface AlignPhoto { id: string; url: string; thumb: string; title: string; gallery: string; people: { id: string; name: string }[]; }
 export interface AlignPerson { id: string; name: string; portrait: string | null; isElder: boolean; }
 
+/**
+ * Resolve working public-storage URLs for EL media by id (any media type).
+ * EL's content-hub `/api/media/<id>/file` endpoint now 403s for Goods media, so
+ * callers replace those dead URLs with the media_assets.cdn_url (public bucket).
+ * Used for videos/audio the image-only align read doesn't cover.
+ */
+export async function getElMediaUrls(ids: string[]): Promise<Map<string, string>> {
+  const out = new Map<string, string>();
+  if (!ids.length) return out;
+  const storageBase = URL_.replace(/\/$/, '');
+  for (const c of chunk(ids, 100)) {
+    const rows = await elGet<MediaRow>('media_assets', `id=in.(${c.join(',')})&select=id,cdn_url,thumbnail_url,source_url`);
+    for (const m of rows) {
+      const authed = m.source_url ? `${storageBase}/storage/v1/object/${m.source_url}` : '';
+      const url = m.cdn_url || m.thumbnail_url || authed || '';
+      if (url) out.set(m.id, url);
+    }
+  }
+  return out;
+}
+
 export async function getAlignData(): Promise<{ photos: AlignPhoto[]; persons: AlignPerson[] }> {
   // galleries → their media (galleries hold ~136 photos NOT tagged with project_id)
   const pg = await elGet<{ gallery_id: string }>('project_galleries', `project_id=eq.${PID}&select=gallery_id`);
