@@ -29,6 +29,7 @@ export interface AtlasCommunity {
   photoCount: number;
   videoCount: number;
   voices: Array<{ name: string; elder: boolean; portrait: string | null }>;
+  peopleInMedia: Array<{ personKey: string; name: string; photoSrc?: string; mediaCount: number }>;
 }
 
 interface Canon {
@@ -99,6 +100,7 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
           c.name.toLowerCase().includes(q) ||
           c.keyPeople.some((p) => p.name.toLowerCase().includes(q)) ||
           c.voices.some((v) => v.name.toLowerCase().includes(q)) ||
+          c.peopleInMedia.some((p) => p.name.toLowerCase().includes(q)) ||
           c.procurement.some((p) => p.name.toLowerCase().includes(q)),
       )
     : null;
@@ -457,6 +459,30 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
                       {v.elder && (
                         <span className="rounded-full bg-[#B44D2B]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[#B44D2B]">Elder</span>
                       )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* People appearing in this community's media (media_links person tags) */}
+            {selected.peopleInMedia.length > 0 && (
+              <div className="px-5 pt-4">
+                <h3 className="text-[11px] font-semibold uppercase tracking-wider text-[#A79C8C]">
+                  In our media ({selected.peopleInMedia.length})
+                </h3>
+                <ul className="mt-2 space-y-1.5">
+                  {selected.peopleInMedia.map((p) => (
+                    <li key={p.personKey} className="flex items-center gap-2.5 text-sm">
+                      {p.photoSrc ? (
+                        <img src={p.photoSrc} alt="" className="h-7 w-7 rounded-full object-cover" loading="lazy" />
+                      ) : (
+                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#F5EEE4] text-[10px] font-semibold text-[#8A7F72]">
+                          {p.name.slice(0, 1)}
+                        </span>
+                      )}
+                      <span className="font-medium">{p.name}</span>
+                      {p.mediaCount > 1 && <span className="text-[11px] text-[#A79C8C]">×{p.mediaCount}</span>}
                     </li>
                   ))}
                 </ul>
