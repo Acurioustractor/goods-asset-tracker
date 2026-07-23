@@ -117,6 +117,9 @@ export function MediaLibraryClient({
   const gridRef = useRef<HTMLDivElement>(null);
   const [search, setSearch] = useState('');
   const [active, setActive] = useState<UnifiedItem | null>(null);
+  // Thumbnails that failed to load (e.g. gated EL rows with no public cdn_url) —
+  // render a clean "no preview" placeholder instead of a broken image.
+  const [brokenThumbs, setBrokenThumbs] = useState<Set<string>>(new Set());
   // curation UI state
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [bulkTagInput, setBulkTagInput] = useState('');
@@ -865,7 +868,8 @@ export function MediaLibraryClient({
             const isCursor = idx === cursor;
             const canCurate = !!it.contentId;
             const isVideo = it.mediaType === 'video';
-            const thumb = isVideo ? it.poster : it.src;
+            const rawThumb = isVideo ? it.poster : it.src;
+            const thumb = rawThumb && !brokenThumbs.has(it.id) ? rawThumb : undefined;
             return (
               <div
                 key={it.id}
@@ -902,10 +906,14 @@ export function MediaLibraryClient({
                         setAspects((m) => (m[it.id] ? m : { ...m, [it.id]: ar }));
                       }
                     }}
+                    onError={() => setBrokenThumbs((s) => { const n = new Set(s); n.add(it.id); return n; })}
                     className="absolute inset-0 h-full w-full object-contain transition-opacity group-hover:opacity-95"
                   />
                 ) : (
-                  <div className="absolute inset-0 flex items-center justify-center bg-neutral-800 text-2xl">🎬</div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-muted text-muted-foreground">
+                    <span className="text-2xl">{isVideo ? '🎬' : '🖼'}</span>
+                    <span className="text-[9px] uppercase tracking-wider">No preview</span>
+                  </div>
                 )}
                 <button
                   type="button"
