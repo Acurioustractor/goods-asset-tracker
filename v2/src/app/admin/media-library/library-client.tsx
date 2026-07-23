@@ -9,7 +9,7 @@ export interface UnifiedItem {
   src: string;
   /** Full-resolution url. */
   full: string;
-  source: 'el' | 'website';
+  source: 'el' | 'website' | 'descript';
   area: string;
   title: string;
   tags: string[];
@@ -31,6 +31,8 @@ export interface UnifiedItem {
   notes?: string | null;
   /** Poster/thumbnail image url for a video tile. */
   poster?: string;
+  /** For an embed-only video (e.g. Descript): the iframe src to play inline. */
+  embedUrl?: string;
   /** Community this asset belongs to (content_items.community_id → communities.name). */
   community?: string;
   /** Storyteller whose portrait this is (content_items.storyteller_id → display_name). */
@@ -42,7 +44,7 @@ export interface UnifiedItem {
   theme?: string;
 }
 
-type SourceFilter = 'all' | 'website' | 'el';
+type SourceFilter = 'all' | 'website' | 'el' | 'descript';
 /** Pickable storyteller for photo→people alignment (from the project_storytellers roster). */
 type RosterPerson = { id: string; name: string; isElder?: boolean };
 
@@ -62,6 +64,11 @@ function loadAspectCache(): Record<string, number> {
 }
 
 function consentBadge(item: UnifiedItem): { text: string; cls: string } {
+  if (item.source === 'descript') {
+    return item.consent === 'flagged'
+      ? { text: 'Descript · held', cls: 'bg-red-100 text-red-700' }
+      : { text: 'Descript', cls: 'bg-violet-100 text-violet-700' };
+  }
   switch (item.consent) {
     case 'local':
       return { text: 'Website', cls: 'bg-muted text-foreground' };
@@ -109,6 +116,7 @@ export function MediaLibraryClient({
   const [active, setActive] = useState<UnifiedItem | null>(null);
   // curation UI state
   const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [bulkTagInput, setBulkTagInput] = useState('');
   const [showArchived, setShowArchived] = useState(false);
   const [starredOnly, setStarredOnly] = useState(false);
   const [selectMode, setSelectMode] = useState(false); // click tiles to select for batch ops
@@ -230,6 +238,47 @@ export function MediaLibraryClient({
     [selected, mutate],
   );
 
+  // Bulk-ADD a subject tag to the selection without clobbering each item's own
+  // tags (the content-item API replaces tags[], so we merge + write per item).
+  const bulkAddTag = useCallback(
+    async (raw: string) => {
+      const tag = raw.trim();
+      if (!tag) return;
+      const targets = items.filter(
+        (it) => selected.has(it.id) && it.contentId && !it.tags.includes(tag),
+      );
+      if (targets.length === 0) return;
+      setErr('');
+      const snapshot = items;
+      setItems((prev) =>
+        prev.map((it) =>
+          selected.has(it.id) && it.contentId && !it.tags.includes(tag)
+            ? { ...it, tags: [...it.tags, tag] }
+            : it,
+        ),
+      );
+      const results = await Promise.allSettled(
+        targets.map((it) =>
+          fetch('/api/admin/content-item', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: it.contentId, tags: [...it.tags, tag] }),
+          })
+            .then((r) => r.json())
+            .then((d: { ok: boolean; error?: string }) => {
+              if (!d.ok) throw new Error(d.error || 'save failed');
+            }),
+        ),
+      );
+      const failed = results.filter((r) => r.status === 'rejected').length;
+      if (failed) {
+        setItems(snapshot); // revert all on partial failure so state stays truthful
+        setErr(`Bulk tag failed on ${failed}/${targets.length} — nothing changed.`);
+      }
+    },
+    [items, selected],
+  );
+
   const toggleSelect = useCallback((id: string) => {
     setSelected((prev) => {
       const next = new Set(prev);
@@ -277,11 +326,13 @@ export function MediaLibraryClient({
   const sourceCounts = useMemo(() => {
     let website = 0;
     let el = 0;
+    let descript = 0;
     for (const it of items) {
       if (it.source === 'website') website += 1;
+      else if (it.source === 'descript') descript += 1;
       else el += 1;
     }
-    return { all: items.length, website, el };
+    return { all: items.length, website, el, descript };
   }, [items]);
 
   const areaOptions = useMemo(() => {
@@ -406,6 +457,12 @@ export function MediaLibraryClient({
 
   const archivedCount = useMemo(() => items.filter((it) => it.archived).length, [items]);
   const starredCount = useMemo(() => items.filter((it) => it.starred).length, [items]);
+  // Every distinct tag in the library — powers tag autocomplete + click-to-filter.
+  const allTags = useMemo(() => {
+    const set = new Set<string>();
+    for (const it of items) for (const t of it.tags) set.add(t);
+    return Array.from(set).sort((a, b) => a.localeCompare(b));
+  }, [items]);
 
   // Batch selection helpers. selectAt supports shift-click range select over the
   // currently-filtered set (only curatable items can be selected).
@@ -555,11 +612,19 @@ export function MediaLibraryClient({
         </p>
       )}
 
+      {/* Shared tag autocomplete source (bulk bar + item tag editor). */}
+      <datalist id="ml-tag-suggestions">
+        {allTags.map((t) => (
+          <option key={t} value={t} />
+        ))}
+      </datalist>
+
       {/* Source filter chips */}
       <div className="flex flex-wrap items-center gap-2 mb-1.5">
         {chip('all', 'All', sourceCounts.all, 'Everything, both sources')}
         {chip('website', 'Website', sourceCounts.website, "The site's own image & video files (public/) — marketing, product, brand. Yours to use freely.")}
         {chip('el', 'Empathy Ledger', sourceCounts.el, 'Community photos & videos in Empathy Ledger — consent-governed, linked to the people & communities in them.')}
+        {sourceCounts.descript > 0 && chip('descript', 'Descript', sourceCounts.descript, 'Hosted video cuts on Descript — the walkthrough, timelapse, storyteller cuts. Each carries a consent + canon flag; play inline.')}
       </div>
       <p className="mb-3 text-[11px] text-muted-foreground">
         <span className="font-medium text-foreground">Website</span> = the site&rsquo;s own files ·{' '}
@@ -733,6 +798,18 @@ export function MediaLibraryClient({
               <option value="__clear">— Clear community —</option>
             </select>
           )}
+          <div className="flex items-center gap-1">
+            <input
+              type="text"
+              value={bulkTagInput}
+              onChange={(e) => setBulkTagInput(e.target.value)}
+              onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); bulkAddTag(bulkTagInput); setBulkTagInput(''); } }}
+              list="ml-tag-suggestions"
+              placeholder="tag selected…"
+              className="w-32 rounded-lg border border-input bg-background px-2 py-1 text-xs font-mono"
+            />
+            <button type="button" onClick={() => { bulkAddTag(bulkTagInput); setBulkTagInput(''); }} className="rounded-lg border border-border px-2.5 py-1 text-xs hover:border-foreground">+ Tag</button>
+          </div>
           <button type="button" onClick={() => bulkSet({ archived: true })} className="rounded-lg border border-red-300 px-2.5 py-1 text-xs font-medium text-red-600 hover:bg-red-50 dark:border-red-800 dark:hover:bg-red-950/30">🗑 Archive (cull)</button>
           {showArchived && (
             <button type="button" onClick={() => bulkSet({ archived: false })} className="rounded-lg border border-border px-2.5 py-1 text-xs hover:border-foreground">Restore</button>
@@ -913,6 +990,7 @@ export function MediaLibraryClient({
           onToggleArchive={toggleArchive}
           onSetRating={setRating}
           onMutatePeople={mutatePeople}
+          onFilterTag={(t) => { setArea(t); setActive(null); }}
         />
       )}
     </div>
@@ -959,9 +1037,11 @@ interface MediaLink {
 function MediaLinksPanel({
   item,
   communities,
+  people,
 }: {
   item: UnifiedItem;
   communities: { id: string; name: string }[];
+  people: RosterPerson[];
 }) {
   const mediaSource = item.source === 'el' ? 'el_media' : 'local';
   const mediaKey = item.source === 'el' ? item.id.replace(/^el:/, '') : item.full;
@@ -973,6 +1053,7 @@ function MediaLinksPanel({
   const [err, setErr] = useState('');
   const [productPick, setProductPick] = useState('');
   const [communityPick, setCommunityPick] = useState('');
+  const [personPick, setPersonPick] = useState('');
 
   useEffect(() => {
     let alive = true;
@@ -1043,9 +1124,11 @@ function MediaLinksPanel({
     }
   }, []);
 
+  const personName = (id: string) => people.find((p) => p.id === id)?.name ?? id;
   const labelFor = (l: MediaLink) => {
     if (l.target_type === 'product') return prodName(l.target_key);
     if (l.target_type === 'community') return commName(l.target_key);
+    if (l.target_type === 'person') return l.title || personName(l.target_key);
     return l.title || l.target_key;
   };
   const toneFor = (t: MediaLink['target_type']) =>
@@ -1053,13 +1136,21 @@ function MediaLinksPanel({
       ? 'bg-primary/10 text-primary'
       : t === 'community'
         ? 'bg-accent/10 text-accent'
-        : 'bg-muted text-foreground';
+        : t === 'person'
+          ? 'bg-emerald-100 text-emerald-800'
+          : 'bg-muted text-foreground';
 
   const availableProducts = LINKABLE_PRODUCTS.filter(
     (p) => !links.some((l) => l.target_type === 'product' && l.target_key === p.slug),
   );
   const availableCommunities = communities.filter(
     (c) => !links.some((l) => l.target_type === 'community' && l.target_key === c.id),
+  );
+  // Person links let you tag WHO is in a website photo or video. EL images use
+  // their own EL-junction People panel instead, so this picker is website-only.
+  const canLinkPerson = item.source === 'website';
+  const availablePeople = people.filter(
+    (p) => !links.some((l) => l.target_type === 'person' && l.target_key === p.id),
   );
 
   return (
@@ -1090,6 +1181,30 @@ function MediaLinksPanel({
           </div>
 
           <div className="space-y-1.5">
+            {/* Add a person link — who is in this photo / video (website items) */}
+            {canLinkPerson && (
+              <div className="flex gap-1.5">
+                <select
+                  value={personPick}
+                  onChange={(e) => setPersonPick(e.target.value)}
+                  className="flex-1 rounded border border-border bg-background px-2 py-1 text-xs"
+                >
+                  <option value="">Tag a person…{people.length === 0 ? ' (loading…)' : ''}</option>
+                  {availablePeople.map((p) => (
+                    <option key={p.id} value={p.id}>{p.name}{p.isElder ? ' (elder)' : ''}</option>
+                  ))}
+                </select>
+                <button
+                  type="button"
+                  disabled={!personPick || busy}
+                  onClick={() => { addLink('person', personPick, personName(personPick)); setPersonPick(''); }}
+                  className="rounded bg-primary px-2 py-1 text-xs font-medium text-primary-foreground disabled:opacity-40"
+                >
+                  Add
+                </button>
+              </div>
+            )}
+
             {/* Add a product link */}
             <div className="flex gap-1.5">
               <select
@@ -1153,6 +1268,7 @@ function PreviewModal({
   onToggleArchive,
   onSetRating,
   onMutatePeople,
+  onFilterTag,
 }: {
   item: UnifiedItem;
   curationReady: boolean;
@@ -1165,13 +1281,15 @@ function PreviewModal({
   onToggleArchive: (it: UnifiedItem) => void;
   onSetRating: (it: UnifiedItem, r: number) => void;
   onMutatePeople: (it: UnifiedItem, storytellerId: string, action: 'add' | 'remove') => void;
+  onFilterTag: (tag: string) => void;
 }) {
   const [copied, setCopied] = useState(false);
   const badge = consentBadge(item);
   const isWebsite = item.source === 'website';
   const isVideo = item.mediaType === 'video';
   const canCurate = !!item.contentId;
-  const showTagEditor = isWebsite && !isVideo;
+  // Subject tags apply to any indexed website item — images and video alike.
+  const showTagEditor = isWebsite;
 
   // Tag editor state (website items only). Seeded from the item's current tags.
   const [draftTags, setDraftTags] = useState<string[]>(item.tags);
@@ -1304,12 +1422,22 @@ function PreviewModal({
         {/* Media side */}
         <div className="bg-black flex items-center justify-center min-h-[40vh] md:min-h-[60vh]">
           {isVideo ? (
-            <video
-              src={item.full}
-              poster={item.poster}
-              controls
-              className="max-h-[88vh] max-w-full object-contain"
-            />
+            item.embedUrl ? (
+              <iframe
+                src={item.embedUrl}
+                title={item.title}
+                className="w-full aspect-video max-h-[88vh] bg-black"
+                allow="fullscreen; autoplay"
+                allowFullScreen
+              />
+            ) : (
+              <video
+                src={item.full}
+                poster={item.poster}
+                controls
+                className="max-h-[88vh] max-w-full object-contain"
+              />
+            )
           ) : (
             /* eslint-disable-next-line @next/next/no-img-element */
             <img
@@ -1339,11 +1467,17 @@ function PreviewModal({
               {badge.text}
             </span>
             <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium">
-              {item.source === 'website' ? 'Website' : 'Empathy Ledger'}
+              {item.source === 'website' ? 'Website' : item.source === 'descript' ? 'Descript' : 'Empathy Ledger'}
             </span>
             <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium">
               {item.area}
             </span>
+            {item.tags.includes('status:stale-canon') && (
+              <span className="rounded-full bg-amber-100 text-amber-800 px-2 py-0.5 text-[10px] font-semibold" title="Figures in this cut are behind current canon (540/22/3540)">figures stale</span>
+            )}
+            {item.tags.includes('consent:held') && (
+              <span className="rounded-full bg-red-100 text-red-700 px-2 py-0.5 text-[10px] font-semibold" title="Consent not confirmed — do not place on an external slide">consent held</span>
+            )}
             {item.theme && (
               <span className="rounded-full bg-primary/10 text-primary px-2 py-0.5 text-[10px] font-medium">{themeName(item.theme)}</span>
             )}
@@ -1360,9 +1494,18 @@ function PreviewModal({
             )}
           </div>
 
+          {/* Descript cut note (canon / consent context). */}
+          {item.source === 'descript' && item.notes && (
+            <p className="mb-4 rounded-lg border border-border bg-muted/40 p-3 text-xs leading-relaxed text-muted-foreground">
+              {item.notes}
+            </p>
+          )}
+
           {/* Links — media_links typed junction (product / community / story). The
               Atlas + community + product pages read these back. */}
-          <MediaLinksPanel item={item} communities={communities} />
+          {item.source !== 'descript' && (
+            <MediaLinksPanel item={item} communities={communities} people={roster} />
+          )}
 
           {/* People in this photo — EL alignment (media_storytellers). EL images only. */}
           {item.source === 'el' && !isVideo && (
@@ -1538,6 +1681,7 @@ function PreviewModal({
                       addTag(tagInput);
                     }
                   }}
+                  list="ml-tag-suggestions"
                   placeholder="namespace:value"
                   className="flex-1 rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs font-mono text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                 />
@@ -1587,12 +1731,15 @@ function PreviewModal({
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {item.tags.map((t) => (
-                    <span
+                    <button
                       key={t}
-                      className="inline-flex items-center rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono"
+                      type="button"
+                      onClick={() => onFilterTag(t)}
+                      title={`Filter the library to ${t}`}
+                      className="inline-flex items-center rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono hover:bg-primary hover:text-primary-foreground transition"
                     >
                       {t}
-                    </span>
+                    </button>
                   ))}
                 </div>
               </div>

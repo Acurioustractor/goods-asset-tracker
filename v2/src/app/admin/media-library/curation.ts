@@ -8,6 +8,7 @@ import 'server-only';
 import { unstable_cache } from 'next/cache';
 import { safeImageUrl } from '@/lib/empathy-ledger/media-tier';
 import { getLocalImages, getLocalVideos } from '@/lib/data/local-images';
+import { DESCRIPT_VIDEOS, descriptViewUrl, descriptEmbedUrl } from '@/lib/data/descript-videos';
 import { createServiceClient } from '@/lib/supabase/server';
 import { themeForItem } from '@/lib/data/themes';
 import { getAlignData, type AlignPhoto, type AlignPerson } from '@/lib/empathy-ledger/align';
@@ -232,7 +233,31 @@ export async function buildLocalItems(): Promise<{ items: UnifiedItem[]; curatio
     ),
   );
 
-  return { items: [...localImageItems, ...localVideoItems], curationReady: curation.ready };
+  // Descript-hosted video cuts — external embeds, not curatable (no content_items
+  // row), each carrying its own consent + canon flag. Surfaced so "watch everything"
+  // lives in one place. See src/lib/data/descript-videos.ts + the Notion Video Map.
+  const descriptItems: UnifiedItem[] = DESCRIPT_VIDEOS.map((v) => ({
+    id: `descript:${v.viewId}`,
+    src: v.poster,
+    full: descriptViewUrl(v.viewId),
+    poster: v.poster,
+    embedUrl: descriptEmbedUrl(v.viewId),
+    mediaType: 'video' as const,
+    source: 'descript' as const,
+    area: v.beat,
+    title: v.title,
+    tags: [
+      ...(v.canonFresh ? [] : ['status:stale-canon']),
+      ...(v.cleared ? [] : ['consent:held']),
+    ],
+    consent: (v.cleared ? 'public' : 'flagged') as UnifiedItem['consent'],
+    notes: v.note ?? null,
+  }));
+
+  return {
+    items: [...localImageItems, ...localVideoItems, ...descriptItems],
+    curationReady: curation.ready,
+  };
 }
 
 /** Empathy Ledger images + video, curation-merged, with photo→people alignment.

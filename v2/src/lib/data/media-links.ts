@@ -115,3 +115,124 @@ export async function getMediaLinksFor(
   }
   return out;
 }
+
+/** A person surfaced from person media_links, with a photo they appear in. */
+export interface TaggedPerson {
+  /** media_links target_key for the person (storyteller id). */
+  personKey: string;
+  name: string;
+  /** A representative image they appear in (first non-video hit). */
+  photoSrc?: string;
+  /** How many tagged media items they appear in (within this entity's media). */
+  mediaCount: number;
+}
+
+/**
+ * People tagged (person media_links) on media that is ALSO tagged to the given
+ * entity (e.g. a community). This is the read-back for people the Media Room's
+ * person picker records: tag someone in a photo/video that also belongs to a
+ * community, and they surface on that community's page.
+ */
+export async function getPeopleInMediaFor(
+  supabase: SupabaseClient,
+  entityType: MediaTargetType,
+  entityKey: string,
+): Promise<TaggedPerson[]> {
+  // 1. Which media items belong to this entity — keyed by source+key so a shared
+  //    basename across sources can't cross-match.
+  const { data: entityRows } = await supabase
+    .from('media_links')
+    .select('media_source, media_key')
+    .eq('target_type', entityType)
+    .eq('target_key', entityKey);
+  if (!entityRows || entityRows.length === 0) return [];
+  const entitySet = new Set(
+    (entityRows as { media_source: string; media_key: string }[]).map((r) => `${r.media_source}::${r.media_key}`),
+  );
+  const mediaKeys = Array.from(new Set((entityRows as { media_key: string }[]).map((r) => r.media_key)));
+
+  // 2. Person links landing on those media_keys.
+  const { data: personRows } = await supabase
+    .from('media_links')
+    .select('media_source, media_key, media_type, target_key, title')
+    .eq('target_type', 'person')
+    .in('media_key', mediaKeys);
+  if (!personRows) return [];
+
+  const byPerson = new Map<string, TaggedPerson>();
+  for (const r of personRows as MediaLinkRow[]) {
+    if (!entitySet.has(`${r.media_source}::${r.media_key}`)) continue; // same media item both-tagged
+    const cur =
+      byPerson.get(r.target_key) ??
+      { personKey: r.target_key, name: r.title || r.target_key, photoSrc: undefined, mediaCount: 0 };
+    cur.mediaCount += 1;
+    if (cur.name === cur.personKey && r.title) cur.name = r.title;
+    if (!cur.photoSrc && r.media_type !== 'video') {
+      const src = resolveMediaUrl(r.media_source, r.media_key);
+      if (src) cur.photoSrc = src;
+    }
+    byPerson.set(r.target_key, cur);
+  }
+  return Array.from(byPerson.values()).sort((a, b) => b.mediaCount - a.mediaCount);
+}
+
+/**
+ * Bulk version of getPeopleInMediaFor for a whole map surface (e.g. the Atlas):
+ * one query returns every entity→people mapping, computed in memory. Avoids N
+ * round-trips when rendering people-in-media for every community at once.
+ */
+export async function getPeopleInMediaByEntity(
+  supabase: SupabaseClient,
+  entityType: MediaTargetType,
+): Promise<Map<string, TaggedPerson[]>> {
+  const result = new Map<string, TaggedPerson[]>();
+  const { data: rows } = await supabase
+    .from('media_links')
+    .select('media_source, media_key, media_type, target_type, target_key, title')
+    .in('target_type', [entityType, 'person']);
+  if (!rows) return result;
+
+  // Group both tag kinds by the media item (source+key).
+  const entityByKey = new Map<string, string[]>();
+  const personByKey = new Map<string, MediaLinkRow[]>();
+  for (const r of rows as MediaLinkRow[]) {
+    const k = `${r.media_source}::${r.media_key}`;
+    if (r.target_type === entityType) {
+      const arr = entityByKey.get(k) ?? [];
+      arr.push(r.target_key);
+      entityByKey.set(k, arr);
+    } else if (r.target_type === 'person') {
+      const arr = personByKey.get(k) ?? [];
+      arr.push(r);
+      personByKey.set(k, arr);
+    }
+  }
+
+  // For each media item tagged to both an entity and people, attribute the
+  // people to that entity.
+  const acc = new Map<string, Map<string, TaggedPerson>>();
+  for (const [k, entityKeys] of entityByKey) {
+    const persons = personByKey.get(k);
+    if (!persons) continue;
+    for (const ek of entityKeys) {
+      const pmap = acc.get(ek) ?? new Map<string, TaggedPerson>();
+      for (const pr of persons) {
+        const cur =
+          pmap.get(pr.target_key) ??
+          { personKey: pr.target_key, name: pr.title || pr.target_key, photoSrc: undefined, mediaCount: 0 };
+        cur.mediaCount += 1;
+        if (cur.name === cur.personKey && pr.title) cur.name = pr.title;
+        if (!cur.photoSrc && pr.media_type !== 'video') {
+          const src = resolveMediaUrl(pr.media_source, pr.media_key);
+          if (src) cur.photoSrc = src;
+        }
+        pmap.set(pr.target_key, cur);
+      }
+      acc.set(ek, pmap);
+    }
+  }
+  for (const [ek, pmap] of acc) {
+    result.set(ek, Array.from(pmap.values()).sort((a, b) => b.mediaCount - a.mediaCount));
+  }
+  return result;
+}

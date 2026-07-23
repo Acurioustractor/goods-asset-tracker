@@ -8,7 +8,7 @@ import { AddDemandForm } from './add-demand-form';
 import { CommunityMetaForm } from './community-meta-form';
 import { getCommunityVoices, getCommunityStories } from '@/lib/data/community-stories';
 import CommunityPresent, { type PresentSlide } from './community-present';
-import { getMediaLinksFor } from '@/lib/data/media-links';
+import { getMediaLinksFor, getPeopleInMediaFor } from '@/lib/data/media-links';
 import { StorytellerAvatar } from '@/components/storyteller-avatar';
 
 export const dynamic = 'force-dynamic';
@@ -246,6 +246,9 @@ export default async function CommunityDetailPage({
   const allMediaItems = [...mediaItems, ...extraMedia];
   const photos = allMediaItems.filter((m) => m.media_type !== 'video');
   const videos = allMediaItems.filter((m) => m.media_type === 'video');
+  // People tagged (media_links person picker) on media that also belongs to this
+  // community — the read-back for the Media Room's per-item person tagging.
+  const peopleInMedia = await getPeopleInMediaFor(supabase, 'community', community.id);
   const storytellers = ((voicesRes.data || []) as Array<{ id: string; display_name: string; is_elder: boolean; portrait: { url?: string } | Array<{ url?: string }> | null }>).map((v) => ({
     name: v.display_name,
     elder: Boolean(v.is_elder),
@@ -676,6 +679,23 @@ export default async function CommunityDetailPage({
               </div>
             )}
           </>
+        )}
+        {peopleInMedia.length > 0 && (
+          <div className="pt-3">
+            <h3 className="mb-2 text-sm font-semibold font-display">People appearing in this media</h3>
+            <div className="flex flex-wrap gap-2.5">
+              {peopleInMedia.map((p) => (
+                <div key={p.personKey} className="flex items-center gap-2 rounded-full border border-border bg-card py-1 pl-1 pr-3">
+                  <StorytellerAvatar name={p.name} src={p.photoSrc ?? null} size={28} />
+                  <span className="text-xs font-medium">{p.name}</span>
+                  {p.mediaCount > 1 && <span className="text-[10px] text-muted-foreground">×{p.mediaCount}</span>}
+                </div>
+              ))}
+            </div>
+            <p className="mt-1.5 text-[11px] text-muted-foreground">
+              Tagged in the media library. Tag a person in a photo or video that belongs to {community.name} and they appear here.
+            </p>
+          </div>
         )}
       </section>
 
