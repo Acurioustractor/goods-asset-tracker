@@ -48,8 +48,14 @@ All investor materials must carry the program acknowledgement line; QBE logo nee
    passes this week with $0 signed. Needs a refresh pass when Ben reviews.
 3. Centrecorp "130-bed board decision" figure predates the register sweep; verify against
    crm_deals before quoting.
-4. The Snow acquittal (due 31 Jul) still carries 28-washers/25kg/"co-design" per the
-   2026-07-16 Notion audit; Tier A fixes remain staged pending Ben.
+4. Snow acquittal claim-hygiene: RESOLVED 2026-07-24. Acquittal page (`371e`) impact
+   snapshot rebuilt to current canon (540/177/363/3,540kg/11 communities/22 washers in
+   community, as-at 21 Jul; per-community split re-pulled from the register, sums to 540).
+   Reporting master (`367e`) 25kg to 20kg (x4) + co-designed to designed (x2, Goods prose
+   only; Snow's numbered First Nations Principle headings kept verbatim) + canon note.
+   DEWR Stage-Two hub (`36ce`) submitted table left intact with a dated "superseded, do not
+   copy forward" callout above it (496/28/9 was lodged 2 Jun). Remaining before 31 Jul send
+   is Ben's own review, not a figures gap.
 
 ## What this area feeds
 
