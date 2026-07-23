@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { PanelLeftOpen, X, Search, Landmark } from 'lucide-react';
 import AUS from '@/lib/data/australia-map.json';
+import { MAP_H, MAP_W, PLANT, px, py, runPath } from '@/components/maps/map-geo';
 
 export interface AtlasCommunity {
   id: string;
@@ -41,21 +42,12 @@ interface Canon {
 }
 
 /**
- * Real geometry: ABS-derived state boundaries (CC-BY 4.0), pre-projected to
- * Web-Mercator SVG paths at build time into australia-map.json. The
- * projection here MUST match that bake exactly.
+ * Geometry, projection and the plant marker are shared with the deck map
+ * views in src/components/maps/map-geo.ts so every Goods map projects
+ * identically off the same ABS bake (australia-map.json, CC-BY 4.0).
  */
-const W: number = AUS.w;
-const H: number = AUS.h;
-const [LNG_MIN, LNG_MAX, LAT_MIN, LAT_MAX] = AUS.bounds as [number, number, number, number];
-const mercY = (lat: number) => Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
-const Y_TOP = mercY(LAT_MAX);
-const Y_BOT = mercY(LAT_MIN);
-const px = (lng: number) => ((lng - LNG_MIN) / (LNG_MAX - LNG_MIN)) * W;
-const py = (lat: number) => ((Y_TOP - mercY(lat)) / (Y_TOP - Y_BOT)) * H;
-
-/** The on-Country plant (Kirmos facility, Alice Springs) — the runs start here. */
-const PLANT = { lng: 133.8807, lat: -23.698, label: 'the plant' };
+const W = MAP_W;
+const H = MAP_H;
 
 const STATUS_TONE: Record<string, string> = {
   active: '#A34523',
@@ -66,20 +58,6 @@ const STATUS_TONE: Record<string, string> = {
 };
 
 const markerR = (beds: number) => Math.max(6, Math.min(24, 5 + Math.sqrt(beds) * 1.9));
-
-/** Curved "run" from the plant to a community. */
-function runPath(cx: number, cy: number) {
-  const x0 = px(PLANT.lng);
-  const y0 = py(PLANT.lat);
-  const dx = cx - x0;
-  const dy = cy - y0;
-  const dist = Math.hypot(dx, dy);
-  if (dist < 1) return '';
-  const bow = Math.min(60, dist * 0.14);
-  const qx = (x0 + cx) / 2 - (dy / dist) * bow;
-  const qy = (y0 + cy) / 2 + (dx / dist) * bow;
-  return `M${x0},${y0} Q${qx.toFixed(1)},${qy.toFixed(1)} ${cx},${cy}`;
-}
 
 interface Rect { x1: number; y1: number; x2: number; y2: number }
 const overlaps = (a: Rect, b: Rect) => a.x1 < b.x2 && b.x1 < a.x2 && a.y1 < b.y2 && b.y1 < a.y2;

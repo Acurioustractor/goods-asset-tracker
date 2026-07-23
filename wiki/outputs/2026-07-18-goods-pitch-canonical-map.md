@@ -1,6 +1,6 @@
 # Goods pitch — the canonical map (single source of truth)
 
-> CANON NOTE (2026-07-20): figures in this dated doc predate the final canon (540 beds / 177 Stretch / 20 washers / 11 communities / 3,540kg). Do not copy numbers from here; use canon.ts.
+> CANON NOTE (2026-07-20): figures in this dated doc predate the final canon (540 beds / 177 Stretch / 22 washers / 11 communities / 3,540kg). Do not copy numbers from here; use canon.ts.
 
 **Generated:** 2026-07-18 · **This file is the index for the whole pitch effort.** If a
 deck, diagram, number or photo is not pointed to here, it is not canonical. One deck,
