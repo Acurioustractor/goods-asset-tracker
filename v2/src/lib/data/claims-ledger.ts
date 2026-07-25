@@ -288,7 +288,13 @@ export const DIFF_APPOINTMENT = '2026-09-30';
  * Fails loudly (at module load, so at build/dev time) if the ledger violates
  * its own rules. This is the regression test for the 2026-07-11 leak class.
  */
-function assertLedgerSafe(claims: Claim[]): void {
+/**
+ * Exported so the leak-prevention can actually be tested. It runs at module load
+ * below, which means a regression only surfaces as an import-time crash
+ * somewhere downstream, and only if a bad claim happens to exist. The tests in
+ * claims-ledger.guards.test.ts exercise it directly against crafted claims.
+ */
+export function assertLedgerSafe(claims: Claim[]): void {
   for (const c of claims) {
     if (c.status === 'locked') {
       if (c.figure !== undefined) {
