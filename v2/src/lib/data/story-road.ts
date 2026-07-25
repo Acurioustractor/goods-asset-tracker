@@ -72,6 +72,15 @@ export interface StoryGap {
   reason: string;
 }
 
+/**
+ * Either a file we host (click-to-play behind a poster) or a Descript embed from
+ * the Notion media record. Local is preferred where it exists: it needs no third
+ * party, and the poster means nothing downloads until somebody asks for it.
+ */
+export type StoryVideo =
+  | { kind: 'local'; label: string; src: string; poster: string; caption?: string }
+  | { kind: 'descript'; label: string; embedUrl: string; caption?: string };
+
 export type StopKind = 'stop' | 'gap' | 'model' | 'economics' | 'money' | 'closing';
 
 export interface StoryStop {
@@ -88,8 +97,15 @@ export interface StoryStop {
   /** Lead image, or null where no cleared asset exists. */
   photo: StoryImage | null;
   gallery?: StoryImage[];
-  /** Descript embed listed in the Notion media record. */
-  video?: { label: string; embedUrl: string };
+  /**
+   * Clips for this stop, in display order.
+   *
+   * Local clips are click-to-play behind a poster, never autoplaying ambient
+   * backgrounds. This is a page somebody reads: the largest ambient files in
+   * public/video are 15 to 25MB each, and four of them on one page is a story
+   * nobody on a remote connection gets to finish. Poster first, bytes on demand.
+   */
+  videos?: StoryVideo[];
   figures?: StoryFigure[];
   /** Known missing media, surfaced rather than hidden. */
   gaps?: StoryGap[];
@@ -258,6 +274,21 @@ export const storyStops: StoryStop[] = [
     figures: [
       { value: '147', label: 'beds in the Utopia pathway', claim: 'verified' },
     ],
+    videos: [
+      {
+        kind: 'local',
+        label: 'The road out to the homelands',
+        src: '/video/partners/centrecorp/utopia-delivery-road.mp4',
+        poster: '/video/partners/centrecorp/utopia-delivery-road-poster.jpg',
+        caption: 'The road is part of the work. It is not the ending.',
+      },
+      {
+        kind: 'local',
+        label: 'Building the beds at Utopia',
+        src: '/video/partners/centrecorp/utopia-bed-building.mp4',
+        poster: '/video/partners/centrecorp/utopia-bed-building-poster.jpg',
+      },
+    ],
     note: 'Margaret Lloyd carries this stop: hers is the strongest before-the-delivery line in the corpus and it was unused on every existing surface. Utopia is 147 CONFIRMED. Community OS says 169 and is wrong; do not reconcile toward it. The Notion source notes historical records differ on order and delivery tranches, which is why the register rather than a remembered headline is the count authority. "What came in / what left / what stayed" is the hinge of the whole page: it is where the road turns from product proof to transfer proof.',
   },
 
@@ -289,10 +320,20 @@ export const storyStops: StoryStop[] = [
       { value: '60', label: 'Stretch Beds in the first in-house run', claim: 'verified' },
       { value: 'pending', label: 'run ledger closed', claim: 'target' },
     ],
-    video: {
-      label: 'Inside the recycling production facility',
-      embedUrl: 'https://share.descript.com/embed/haRZJbfJadJ',
-    },
+    videos: [
+      {
+        kind: 'local',
+        label: 'Inside the containerised production facility',
+        src: '/video/recycling-plant-desktop.mp4',
+        poster: '/video/recycling-plant-poster.jpg',
+        caption: 'Shredding, heating and pressing recycled HDPE into sheet.',
+      },
+      {
+        kind: 'descript',
+        label: 'On Country Production Facility, part one',
+        embedUrl: 'https://share.descript.com/embed/j6PXvhBP62i',
+      },
+    ],
     gaps: [
       {
         slot: 'voice',
@@ -336,10 +377,26 @@ export const storyStops: StoryStop[] = [
       { value: '45 to 60', label: 'young people over three years', claim: 'proposed' },
       { value: '30 beds/week', label: 'mature facility', claim: 'proposed' },
     ],
-    video: {
-      label: 'Community Voices, Fred from Oonchiumpa',
-      embedUrl: 'https://share.descript.com/embed/YQwAcYfxzkn',
-    },
+    videos: [
+      {
+        kind: 'local',
+        label: 'Mykel building the bed',
+        src: '/video/partners/oonchiumpa/mykel-building-the-bed.mp4',
+        poster: '/video/partners/oonchiumpa/mykel-building-the-bed-poster.jpg',
+        caption: 'The hands changed. This is what that looks like.',
+      },
+      {
+        kind: 'local',
+        label: 'Karen Liddle on the beds',
+        src: '/video/partners/oonchiumpa/karen-liddle-on-beds.mp4',
+        poster: '/video/partners/oonchiumpa/karen-liddle-on-beds-poster.jpg',
+      },
+      {
+        kind: 'descript',
+        label: 'Community Voices, Fred from Oonchiumpa',
+        embedUrl: 'https://share.descript.com/embed/YQwAcYfxzkn',
+      },
+    ],
     note: 'Xavier is NARRATED BY Fred Campbell and must never be given a borrowed first-person quote, however much cleaner the slide would read; the registry records him as narratedBy. The 45-60 young people and 30 beds/week are PROPOSAL figures, not outcomes, and the Notion source says so explicitly. Ownership is a pathway, never claimed complete.',
   },
 
@@ -361,6 +418,15 @@ export const storyStops: StoryStop[] = [
     figures: [
       { value: String(BASKET_BEDS), label: 'Basket Beds, archived and open-sourced', claim: 'verified' },
       { value: '20kg', label: 'recycled HDPE per Stretch Bed', claim: 'verified' },
+    ],
+    videos: [
+      {
+        kind: 'local',
+        label: 'Assembling the Stretch Bed',
+        src: '/video/stretch-bed/assembly.mp4',
+        poster: '/video/stretch-bed/assembly-poster.jpg',
+        caption: 'Flat-packed, no toolbox, about five minutes.',
+      },
     ],
     gaps: [
       {

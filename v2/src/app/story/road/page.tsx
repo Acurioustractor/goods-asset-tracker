@@ -28,6 +28,7 @@ import {
   type StoryFigure,
   type StoryImage,
   type StoryGap,
+  type StoryVideo,
 } from '@/lib/data/story-road';
 import { getStoryteller, type StorytellerRecord } from '@/lib/data/storyteller-registry';
 
@@ -112,6 +113,43 @@ function Figures({ figures }: { figures: StoryFigure[] }) {
   );
 }
 
+/**
+ * Local clips are click-to-play behind their poster: `preload="none"` means the
+ * file is not fetched until somebody presses play. On a page with five clips that
+ * is the difference between a poster and forty megabytes, which matters most for
+ * exactly the people this story is about.
+ */
+function Video({ video }: { video: StoryVideo }) {
+  return (
+    <figure className="my-10">
+      <div className="relative w-full overflow-hidden rounded-md aspect-video bg-muted">
+        {video.kind === 'local' ? (
+          <video
+            controls
+            preload="none"
+            poster={video.poster}
+            className="absolute inset-0 h-full w-full object-cover"
+          >
+            <source src={video.src} type="video/mp4" />
+          </video>
+        ) : (
+          <iframe
+            src={video.embedUrl}
+            title={video.label}
+            allowFullScreen
+            loading="lazy"
+            className="absolute inset-0 h-full w-full border-0"
+          />
+        )}
+      </div>
+      <figcaption className="mt-2 text-sm text-muted-foreground">
+        {video.label}
+        {video.caption && <span className="block mt-0.5">{video.caption}</span>}
+      </figcaption>
+    </figure>
+  );
+}
+
 function Gap({ gap }: { gap: StoryGap }) {
   return (
     <div className="my-8 rounded-md border border-dashed px-5 py-4 text-sm text-muted-foreground">
@@ -185,20 +223,9 @@ function Stop({ stop }: { stop: StoryStop }) {
       {stop.figures && stop.figures.length > 0 && <Figures figures={stop.figures} />}
       {stop.gallery && stop.gallery.length > 0 && <Gallery images={stop.gallery} />}
 
-      {stop.video && (
-        <figure className="my-10">
-          <div className="relative w-full overflow-hidden rounded-md aspect-video">
-            <iframe
-              src={stop.video.embedUrl}
-              title={stop.video.label}
-              allowFullScreen
-              loading="lazy"
-              className="absolute inset-0 h-full w-full border-0"
-            />
-          </div>
-          <figcaption className="mt-2 text-sm text-muted-foreground">{stop.video.label}</figcaption>
-        </figure>
-      )}
+      {stop.videos?.map((video) => (
+        <Video key={video.kind === 'local' ? video.src : video.embedUrl} video={video} />
+      ))}
 
       {stop.gaps?.map((gap) => (
         <Gap key={`${gap.slot}-${gap.wanted}`} gap={gap} />

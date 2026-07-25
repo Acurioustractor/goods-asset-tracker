@@ -12,8 +12,10 @@
  */
 
 import { describe, it, expect } from 'vitest';
+import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { deckSlides } from './deck';
-import { storyStops, storyStopIds, storyGaps } from './story-road';
+import { storyStops, storyStopIds, storyGaps, storyOpening } from './story-road';
 import { isClearedForExternal } from './cleared-voices';
 
 const deckStopIds = deckSlides.filter((s) => s.kind === 'stop').map((s) => s.id);
@@ -105,6 +107,36 @@ describe('voice consent', () => {
     // cleaner and would be a fabrication.
     const named = storyStops.flatMap((s) => s.voiceNames ?? []);
     expect(named).not.toContain('Xavier');
+  });
+});
+
+describe('media exists on disk', () => {
+  // A path typed correctly and pointing at nothing renders a broken poster in
+  // production and nowhere else. Check it here, where it is cheap.
+  const publicDir = resolve(__dirname, '../../../public');
+  const localPath = (p: string) => resolve(publicDir, p.replace(/^\//, ''));
+
+  it('has every stop photo and gallery image on disk', () => {
+    for (const stop of storyStops) {
+      const images = [stop.photo, ...(stop.gallery ?? [])].filter(Boolean) as { src: string }[];
+      for (const img of images) {
+        expect(existsSync(localPath(img.src)), `${stop.id}: ${img.src}`).toBe(true);
+      }
+    }
+  });
+
+  it('has the opening image on disk', () => {
+    expect(existsSync(localPath(storyOpening.photo.src))).toBe(true);
+  });
+
+  it('has every local video and its poster on disk', () => {
+    for (const stop of storyStops) {
+      for (const v of stop.videos ?? []) {
+        if (v.kind !== 'local') continue;
+        expect(existsSync(localPath(v.src)), `${stop.id}: ${v.src}`).toBe(true);
+        expect(existsSync(localPath(v.poster)), `${stop.id}: ${v.poster}`).toBe(true);
+      }
+    }
   });
 });
 
