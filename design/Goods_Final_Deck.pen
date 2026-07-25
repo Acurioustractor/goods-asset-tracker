@@ -38900,6 +38900,2460 @@
           "fontWeight": "normal"
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "RrRxL",
+      "x": 37938,
+      "y": 3400,
+      "name": "GFS 01 — Different places, different pathways",
+      "clip": true,
+      "width": 1280,
+      "height": 720,
+      "fill": {
+        "type": "image",
+        "enabled": true,
+        "url": "deck-photos/cover-hero.jpg",
+        "mode": "fill"
+      },
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "G0kDZ",
+          "x": 0,
+          "y": 0,
+          "name": "Dark image veil",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 270,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#0A0A0AF5",
+                "position": 0
+              },
+              {
+                "color": "#0A0A0AB0",
+                "position": 0.55
+              },
+              {
+                "color": "#0A0A0A24",
+                "position": 1
+              }
+            ]
+          },
+          "width": 1280,
+          "height": 719
+        },
+        {
+          "type": "frame",
+          "id": "S35PHc",
+          "x": 56,
+          "y": 44,
+          "name": "Goods wordmark",
+          "width": 92,
+          "height": 23,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "deck-photos/logo-goods-white.png",
+            "mode": "fit"
+          }
+        },
+        {
+          "type": "frame",
+          "id": "ojiSJ",
+          "x": 56,
+          "y": 378,
+          "name": "Opening statement",
+          "width": 1080,
+          "height": 250,
+          "layout": "vertical",
+          "gap": 18,
+          "children": [
+            {
+              "type": "text",
+              "id": "dPmiE",
+              "name": "Sequence label",
+              "fill": "#E7B07C",
+              "content": "COMMUNITY CAPABILITY MODEL · FUNDER STORY",
+              "fontFamily": "$font-mono",
+              "fontSize": 11,
+              "fontWeight": "700",
+              "letterSpacing": 1.8
+            },
+            {
+              "type": "text",
+              "id": "h7WK0",
+              "name": "Opening title",
+              "fill": "#F5F0E8",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Different places. Different pathways.\nCommunity ownership at every step.",
+              "lineHeight": 1.05,
+              "fontFamily": "$font-display",
+              "fontSize": 48,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "CXAEq",
+              "name": "Opening subtitle",
+              "fill": "#E9E1D2",
+              "textGrowth": "fixed-width",
+              "width": 940,
+              "content": "Communities define the outcome. Goods connects the products, capability, capital and support to make it possible.",
+              "lineHeight": 1.35,
+              "fontFamily": "$font-body",
+              "fontSize": 20,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "v63CX",
+      "x": 39338,
+      "y": 3400,
+      "name": "GFS 02 — One-size programs fail",
+      "clip": true,
+      "width": 1280,
+      "height": 720,
+      "children": [
+        {
+          "type": "frame",
+          "id": "dMFon",
+          "name": "Ink panel",
+          "width": 512,
+          "height": 720,
+          "fill": "$ink",
+          "layout": "vertical",
+          "padding": 44,
+          "children": [
+            {
+              "type": "frame",
+              "id": "p1C6j",
+              "name": "Wordmark",
+              "width": 92,
+              "height": 23,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "deck-photos/logo-goods-white.png",
+                "mode": "fit"
+              }
+            },
+            {
+              "type": "frame",
+              "id": "r3q1I",
+              "name": "Body",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "p0uoCD",
+                  "name": "Rule",
+                  "fill": "$terra",
+                  "width": 34,
+                  "height": 2
+                },
+                {
+                  "type": "text",
+                  "id": "xT8w9",
+                  "name": "Line",
+                  "fill": "$cream",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "One-size programs fail in different places. The scalable thing is a repeatable way to build the right pathway.",
+                  "lineHeight": 1.26,
+                  "fontFamily": "$font-display",
+                  "fontSize": 27,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "S80aH",
+              "name": "Foot",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "vxsYf",
+                  "name": "Folio",
+                  "fill": "$muted-on-ink",
+                  "content": "02",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 9,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1.6
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "w8TJg",
+          "name": "Photo",
+          "width": 768,
+          "height": 720,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../v2/public/images/community/kalgoorlie/mattress-dumped-jerry-can.jpg",
+            "mode": "fill"
+          }
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "HZzCH",
+      "x": 40738,
+      "y": 3400,
+      "name": "GFS 03 — Begin by invitation",
+      "clip": true,
+      "width": 1280,
+      "height": 720,
+      "children": [
+        {
+          "type": "frame",
+          "id": "CAZNz",
+          "name": "Photo",
+          "width": 768,
+          "height": 720,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../v2/public/images/media-pack/nic-with-elder-on-verandah.jpg",
+            "mode": "fill"
+          }
+        },
+        {
+          "type": "frame",
+          "id": "Bdc0N",
+          "name": "Ink panel",
+          "width": 512,
+          "height": 720,
+          "fill": "$ink",
+          "layout": "vertical",
+          "padding": 44,
+          "children": [
+            {
+              "type": "frame",
+              "id": "nxTgy",
+              "name": "Wordmark",
+              "width": 92,
+              "height": 23,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "deck-photos/logo-goods-white.png",
+                "mode": "fit"
+              }
+            },
+            {
+              "type": "frame",
+              "id": "pP4mW",
+              "name": "Body",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 14,
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "igvxM",
+                  "name": "Rule",
+                  "fill": "$terra",
+                  "width": 34,
+                  "height": 2
+                },
+                {
+                  "type": "text",
+                  "id": "I5xxW",
+                  "name": "Line",
+                  "fill": "$cream",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Begin by invitation. Listen before designing.",
+                  "lineHeight": 1.28,
+                  "fontFamily": "$font-display",
+                  "fontSize": 25,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "sBuub",
+                  "name": "Sub",
+                  "fill": "$muted-on-ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "The community names the priority, the local lead, the desired ownership and how much support is useful.",
+                  "lineHeight": 1.55,
+                  "fontFamily": "$font-body",
+                  "fontSize": 11.5,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "RBsx7",
+                  "name": "Voice",
+                  "width": "fill_container",
+                  "stroke": "$terra",
+                  "strokeWidth": {
+                    "left": 1
+                  },
+                  "strokeAlignment": "inner",
+                  "layout": "vertical",
+                  "gap": 5,
+                  "padding": [
+                    10,
+                    0,
+                    0,
+                    12
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "T1WiI",
+                      "name": "Quote",
+                      "fill": "#D8D2C7",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "We've never been asked what sort of house we'd like to live in.",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font-body",
+                      "fontSize": 11.5,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    },
+                    {
+                      "type": "text",
+                      "id": "at4e1",
+                      "name": "Attrib",
+                      "fill": "$muted-on-ink",
+                      "content": "LINDA TURNER · TENNANT CREEK",
+                      "fontFamily": "$font-mono",
+                      "fontSize": 9,
+                      "fontWeight": "normal",
+                      "letterSpacing": 1.1
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "wjVFs",
+              "name": "Foot",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "c6hU2E",
+                  "name": "Folio",
+                  "fill": "$muted-on-ink",
+                  "content": "03",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 9,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1.6
+                },
+                {
+                  "type": "text",
+                  "id": "XJX0a",
+                  "name": "Door",
+                  "fill": "$ink-2",
+                  "content": "COMMUNITY CONTROL",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 9,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "ySDT9",
+      "x": 42138,
+      "y": 3400,
+      "name": "GFS 04 — Community capability model",
+      "clip": true,
+      "width": 1280,
+      "height": 720,
+      "fill": {
+        "type": "image",
+        "enabled": true,
+        "url": "../v2/public/strategy/goods-community-capability-model.png",
+        "mode": "fill"
+      }
+    },
+    {
+      "type": "frame",
+      "id": "QXDem",
+      "x": 37938,
+      "y": 4240,
+      "name": "GFS 05 — Choose only the useful modules",
+      "clip": true,
+      "width": 1280,
+      "height": 720,
+      "fill": "$cream",
+      "layout": "vertical",
+      "gap": 22,
+      "padding": [
+        48,
+        64
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "Egn1d",
+          "name": "Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "text",
+              "id": "w4QAUS",
+              "name": "Kicker",
+              "fill": "$terra",
+              "content": "A MENU, NOT A PRESCRIPTION",
+              "fontFamily": "$font-mono",
+              "fontSize": 11,
+              "fontWeight": "700",
+              "letterSpacing": 1.8
+            },
+            {
+              "type": "text",
+              "id": "hVGZc",
+              "name": "Title",
+              "fill": "$ink",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Communities choose only the capabilities they need.",
+              "lineHeight": 1.1,
+              "fontFamily": "$font-display",
+              "fontSize": 40,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "kteEX",
+              "name": "Subtitle",
+              "fill": "$ink-2",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Every module includes the equipment, people, training, maintenance and operating reality around it.",
+              "fontFamily": "$font-body",
+              "fontSize": 17,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ewd5B",
+          "name": "Capability offers",
+          "width": "fill_container",
+          "height": "fill_container",
+          "gap": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "WwWNW",
+              "name": "START",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#FBF8F2",
+              "stroke": "$terra",
+              "strokeWidth": {
+                "top": 5
+              },
+              "layout": "vertical",
+              "gap": 14,
+              "padding": [
+                22,
+                24
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "h1KJnH",
+                  "name": "START label",
+                  "fill": "$terra",
+                  "content": "START",
+                  "fontFamily": "$font-body",
+                  "fontSize": 16,
+                  "fontWeight": "800",
+                  "letterSpacing": 1.2
+                },
+                {
+                  "type": "text",
+                  "id": "HPmmd",
+                  "name": "START heading",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Solve an immediate need",
+                  "lineHeight": 1.15,
+                  "fontFamily": "$font-display",
+                  "fontSize": 27,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "L3YKT0",
+                  "name": "Stretch Beds + washers",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "YcZs6",
+                      "name": "Bullet",
+                      "fill": "$terra",
+                      "width": 7,
+                      "height": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "CfJ5z",
+                      "name": "Module",
+                      "fill": "$ink-2",
+                      "content": "Stretch Beds + washers",
+                      "fontFamily": "$font-body",
+                      "fontSize": 17,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "VkoSI",
+                  "name": "Repairs + maintenance",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "UIbnf",
+                      "name": "Bullet",
+                      "fill": "$terra",
+                      "width": 7,
+                      "height": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "aT4A5",
+                      "name": "Module",
+                      "fill": "$ink-2",
+                      "content": "Repairs + maintenance",
+                      "fontFamily": "$font-body",
+                      "fontSize": 17,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "hameb",
+                  "name": "Plastic collection",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "ZloEx",
+                      "name": "Bullet",
+                      "fill": "$terra",
+                      "width": 7,
+                      "height": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "r3GFSk",
+                      "name": "Module",
+                      "fill": "$ink-2",
+                      "content": "Plastic collection",
+                      "fontFamily": "$font-body",
+                      "fontSize": 17,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "v7c26C",
+                  "name": "A shredder or single tool",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "j4DON",
+                      "name": "Bullet",
+                      "fill": "$terra",
+                      "width": 7,
+                      "height": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "O1PBG",
+                      "name": "Module",
+                      "fill": "$ink-2",
+                      "content": "A shredder or single tool",
+                      "fontFamily": "$font-body",
+                      "fontSize": 17,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "DzJu9",
+              "name": "BUILD",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#FBF8F2",
+              "stroke": "#C8982C",
+              "strokeWidth": {
+                "top": 5
+              },
+              "layout": "vertical",
+              "gap": 14,
+              "padding": [
+                22,
+                24
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Qb3mY",
+                  "name": "BUILD label",
+                  "fill": "#C8982C",
+                  "content": "BUILD",
+                  "fontFamily": "$font-body",
+                  "fontSize": 16,
+                  "fontWeight": "800",
+                  "letterSpacing": 1.2
+                },
+                {
+                  "type": "text",
+                  "id": "htHtq",
+                  "name": "BUILD heading",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Establish local capability",
+                  "lineHeight": 1.15,
+                  "fontFamily": "$font-display",
+                  "fontSize": 27,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "j5qnN",
+                  "name": "Workspace + equipment",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "dxaE3",
+                      "name": "Bullet",
+                      "fill": "#C8982C",
+                      "width": 7,
+                      "height": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "ms6JR",
+                      "name": "Module",
+                      "fill": "$ink-2",
+                      "content": "Workspace + equipment",
+                      "fontFamily": "$font-body",
+                      "fontSize": 17,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "bDvpz",
+                  "name": "Operators + training",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "MyYVS",
+                      "name": "Bullet",
+                      "fill": "#C8982C",
+                      "width": 7,
+                      "height": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "mdveN",
+                      "name": "Module",
+                      "fill": "$ink-2",
+                      "content": "Operators + training",
+                      "fontFamily": "$font-body",
+                      "fontSize": 17,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "gVIgN",
+                  "name": "Safety + quality systems",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "K63bw6",
+                      "name": "Bullet",
+                      "fill": "#C8982C",
+                      "width": 7,
+                      "height": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "Ziip9",
+                      "name": "Module",
+                      "fill": "$ink-2",
+                      "content": "Safety + quality systems",
+                      "fontFamily": "$font-body",
+                      "fontSize": 17,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Q9Lnf",
+                  "name": "Procurement + logistics",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "MgwqQ",
+                      "name": "Bullet",
+                      "fill": "#C8982C",
+                      "width": 7,
+                      "height": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "GaUui",
+                      "name": "Module",
+                      "fill": "$ink-2",
+                      "content": "Procurement + logistics",
+                      "fontFamily": "$font-body",
+                      "fontSize": 17,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sF8S3",
+              "name": "OWN + GROW",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#FBF8F2",
+              "stroke": "$sage",
+              "strokeWidth": {
+                "top": 5
+              },
+              "layout": "vertical",
+              "gap": 14,
+              "padding": [
+                22,
+                24
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "gHvkc",
+                  "name": "OWN + GROW label",
+                  "fill": "$sage",
+                  "content": "OWN + GROW",
+                  "fontFamily": "$font-body",
+                  "fontSize": 16,
+                  "fontWeight": "800",
+                  "letterSpacing": 1.2
+                },
+                {
+                  "type": "text",
+                  "id": "zchFk",
+                  "name": "OWN + GROW heading",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Develop a local enterprise",
+                  "lineHeight": 1.15,
+                  "fontFamily": "$font-display",
+                  "fontSize": 27,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "E1qDi",
+                  "name": "Production facility",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "n4MAdY",
+                      "name": "Bullet",
+                      "fill": "$sage",
+                      "width": 7,
+                      "height": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "cdD1y",
+                      "name": "Module",
+                      "fill": "$ink-2",
+                      "content": "Production facility",
+                      "fontFamily": "$font-body",
+                      "fontSize": 17,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "MfdeZ",
+                  "name": "Workforce + governance",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "vgYBc",
+                      "name": "Bullet",
+                      "fill": "$sage",
+                      "width": 7,
+                      "height": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "B96e91",
+                      "name": "Module",
+                      "fill": "$ink-2",
+                      "content": "Workforce + governance",
+                      "fontFamily": "$font-body",
+                      "fontSize": 17,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "pxsBm",
+                  "name": "Customers + revenue",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "UPvyT",
+                      "name": "Bullet",
+                      "fill": "$sage",
+                      "width": 7,
+                      "height": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "rU2dt",
+                      "name": "Module",
+                      "fill": "$ink-2",
+                      "content": "Customers + revenue",
+                      "fontFamily": "$font-body",
+                      "fontSize": 17,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "lwA3e",
+                  "name": "Peer training + network",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "qa38k",
+                      "name": "Bullet",
+                      "fill": "$sage",
+                      "width": 7,
+                      "height": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "TOMhx",
+                      "name": "Module",
+                      "fill": "$ink-2",
+                      "content": "Peer training + network",
+                      "fontFamily": "$font-body",
+                      "fontSize": 17,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "JXXYe",
+          "name": "Footnote",
+          "fill": "$ink",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "A shredder can be a complete pathway. A production facility can be another. Scale means making both possible without forcing either.",
+          "textAlign": "center",
+          "fontFamily": "$font-display",
+          "fontSize": 20,
+          "fontWeight": "600",
+          "fontStyle": "italic"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "fx37V",
+      "x": 39338,
+      "y": 4240,
+      "name": "GFS 06 — Three places, three pathways",
+      "clip": true,
+      "width": 1280,
+      "height": 720,
+      "fill": "$cream",
+      "layout": "vertical",
+      "gap": 22,
+      "padding": [
+        48,
+        64
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "fr8dN",
+          "name": "Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "text",
+              "id": "d98l9H",
+              "name": "Kicker",
+              "fill": "$terra",
+              "content": "THE MODEL BECOMES REAL",
+              "fontFamily": "$font-mono",
+              "fontSize": 11,
+              "fontWeight": "700",
+              "letterSpacing": 1.8
+            },
+            {
+              "type": "text",
+              "id": "pDukw",
+              "name": "Title",
+              "fill": "$ink",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Three places. Three different pathways.",
+              "lineHeight": 1.1,
+              "fontFamily": "$font-display",
+              "fontSize": 42,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "XfqqV",
+              "name": "Subtitle",
+              "fill": "$ink-2",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "The same Goods platform supports a focused equipment request, a community shed and a complete production facility.",
+              "fontFamily": "$font-body",
+              "fontSize": 17,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "nIINv",
+          "name": "Pathway examples",
+          "width": "fill_container",
+          "height": "fill_container",
+          "gap": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "oBOiN",
+              "name": "UTOPIA / URAPUNTJA",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#FBF8F2",
+              "stroke": "$terra",
+              "strokeWidth": {
+                "top": 5
+              },
+              "layout": "vertical",
+              "gap": 13,
+              "padding": [
+                22,
+                24
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "z4t5P",
+                  "name": "Place",
+                  "fill": "$terra",
+                  "content": "UTOPIA / URAPUNTJA",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "letterSpacing": 1.2
+                },
+                {
+                  "type": "text",
+                  "id": "iwIXp",
+                  "name": "Offer",
+                  "fill": "$terra",
+                  "content": "START",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "Ukwqo",
+                  "name": "Pathway",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "A shredder pathway",
+                  "lineHeight": 1.15,
+                  "fontFamily": "$font-display",
+                  "fontSize": 26,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "lG2FE",
+                  "name": "Description",
+                  "fill": "$ink-2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Jane wants useful equipment and support around it — not a whole facility.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "$font-body",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "zqfIL",
+                  "name": "Evidence status",
+                  "fill": "$sage",
+                  "content": "RECORDED · LEAD + DELIVERY EVIDENCE",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 9.5,
+                  "fontWeight": "700",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "frame",
+                  "id": "F8D6Qh",
+                  "name": "Next action",
+                  "width": "fill_container",
+                  "stroke": "$terra",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 5,
+                  "padding": [
+                    12,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "H8Quj",
+                      "name": "Next label",
+                      "fill": "$terra",
+                      "content": "NEXT",
+                      "fontFamily": "$font-mono",
+                      "fontSize": 9,
+                      "fontWeight": "700",
+                      "letterSpacing": 1.2
+                    },
+                    {
+                      "type": "text",
+                      "id": "e7UCP",
+                      "name": "Next copy",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Confirm specification, operator and full support cost.",
+                      "lineHeight": 1.35,
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "I6jCgn",
+              "name": "TENNANT CREEK",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#FBF8F2",
+              "stroke": "#C8982C",
+              "strokeWidth": {
+                "top": 5
+              },
+              "layout": "vertical",
+              "gap": 13,
+              "padding": [
+                22,
+                24
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "j6iZDx",
+                  "name": "Place",
+                  "fill": "#C8982C",
+                  "content": "TENNANT CREEK",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "letterSpacing": 1.2
+                },
+                {
+                  "type": "text",
+                  "id": "yLAuN",
+                  "name": "Offer",
+                  "fill": "#C8982C",
+                  "content": "BUILD",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "x4DWg",
+                  "name": "Pathway",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "A community shed pathway",
+                  "lineHeight": 1.15,
+                  "fontFamily": "$font-display",
+                  "fontSize": 26,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "ONRMJ",
+                  "name": "Description",
+                  "fill": "$ink-2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "A shed, youth-centre relationship and existing bed create a practical place to begin.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "$font-body",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "dJkuE",
+                  "name": "Evidence status",
+                  "fill": "$sage",
+                  "content": "RECORDED · LEAD + MEDIA",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 9.5,
+                  "fontWeight": "700",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "frame",
+                  "id": "lE9kW",
+                  "name": "Next action",
+                  "width": "fill_container",
+                  "stroke": "#C8982C",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 5,
+                  "padding": [
+                    12,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "XOW9A",
+                      "name": "Next label",
+                      "fill": "#C8982C",
+                      "content": "NEXT",
+                      "fontFamily": "$font-mono",
+                      "fontSize": 9,
+                      "fontWeight": "700",
+                      "letterSpacing": 1.2
+                    },
+                    {
+                      "type": "text",
+                      "id": "t9aNwO",
+                      "name": "Next copy",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Listen with Michelle; return a ‘what we heard’ brief.",
+                      "lineHeight": 1.35,
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "vHgVO",
+              "name": "ALICE SPRINGS / OONCHIUMPA",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#FBF8F2",
+              "stroke": "$sage",
+              "strokeWidth": {
+                "top": 5
+              },
+              "layout": "vertical",
+              "gap": 13,
+              "padding": [
+                22,
+                24
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "jwUi0",
+                  "name": "Place",
+                  "fill": "$sage",
+                  "content": "ALICE SPRINGS / OONCHIUMPA",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "letterSpacing": 1.2
+                },
+                {
+                  "type": "text",
+                  "id": "mfTQt",
+                  "name": "Offer",
+                  "fill": "$sage",
+                  "content": "OWN + GROW",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "coZ7T",
+                  "name": "Pathway",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "A production facility pathway",
+                  "lineHeight": 1.15,
+                  "fontFamily": "$font-display",
+                  "fontSize": 26,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "o8ev9d",
+                  "name": "Description",
+                  "fill": "$ink-2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "An approved ownership direction, facility design and young workforce story can show the end-to-end model.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "$font-body",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "F2zQvD",
+                  "name": "Evidence status",
+                  "fill": "$sage",
+                  "content": "RECORDED · MODULES SELECTED",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 9.5,
+                  "fontWeight": "700",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "frame",
+                  "id": "riqmr",
+                  "name": "Next action",
+                  "width": "fill_container",
+                  "stroke": "$sage",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 5,
+                  "padding": [
+                    12,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "N4aE3i",
+                      "name": "Next label",
+                      "fill": "$sage",
+                      "content": "NEXT",
+                      "fontFamily": "$font-mono",
+                      "fontSize": 9,
+                      "fontWeight": "700",
+                      "letterSpacing": 1.2
+                    },
+                    {
+                      "type": "text",
+                      "id": "u33wGQ",
+                      "name": "Next copy",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Reconcile DEWR status, budget and unit economics.",
+                      "lineHeight": 1.35,
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "eKMbK",
+          "name": "Footnote",
+          "fill": "$muted",
+          "content": "Pathway costs and operating assumptions remain subject to community confirmation.",
+          "fontFamily": "$font-mono",
+          "fontSize": 9.5,
+          "fontWeight": "normal",
+          "letterSpacing": 1
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "WFbhS",
+      "x": 40738,
+      "y": 4240,
+      "name": "GFS 07 — A portfolio of community pathways",
+      "clip": true,
+      "width": 1280,
+      "height": 720,
+      "fill": "$cream",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": [
+        48,
+        64
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "LCC17",
+          "name": "Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "text",
+              "id": "pA2wB",
+              "name": "Kicker",
+              "fill": "$terra",
+              "content": "A PORTFOLIO, NOT A PIPELINE",
+              "fontFamily": "$font-mono",
+              "fontSize": 11,
+              "fontWeight": "700",
+              "letterSpacing": 1.8
+            },
+            {
+              "type": "text",
+              "id": "YKI9U",
+              "name": "Title",
+              "fill": "$ink",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Each place moves at its own pace.",
+              "lineHeight": 1.1,
+              "fontFamily": "$font-display",
+              "fontSize": 42,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "DLlV7",
+              "name": "Subtitle",
+              "fill": "$ink-2",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "We can coordinate a national learning portfolio without turning communities into targets or forcing a single program.",
+              "fontFamily": "$font-body",
+              "fontSize": 17,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "lBg8l",
+          "name": "Portfolio columns",
+          "width": "fill_container",
+          "height": "fill_container",
+          "gap": 22,
+          "children": [
+            {
+              "type": "frame",
+              "id": "vQXgB",
+              "name": "Priority pathways",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#FBF8F2",
+              "stroke": "$terra",
+              "strokeWidth": {
+                "top": 5
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                22,
+                24
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "KoHWP",
+                  "name": "Active label",
+                  "fill": "$terra",
+                  "content": "ACTIVE PATHWAYS",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "letterSpacing": 1.5
+                },
+                {
+                  "type": "text",
+                  "id": "KfdHe",
+                  "name": "Oonchiumpa · Alice Springs",
+                  "fill": "$ink",
+                  "content": "Oonchiumpa · Alice Springs",
+                  "fontFamily": "$font-display",
+                  "fontSize": 22,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "JjJU9",
+                  "name": "Oonchiumpa · Alice Springs status",
+                  "fill": "$ink-2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Modules selected — facility, workforce and ownership pathway",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "MTLfZ",
+                  "name": "Tennant Creek · Community Shed",
+                  "fill": "$ink",
+                  "content": "Tennant Creek · Community Shed",
+                  "fontFamily": "$font-display",
+                  "fontSize": 22,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "jAfmz",
+                  "name": "Tennant Creek · Community Shed status",
+                  "fill": "$ink-2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Listening — shed and youth-centre pathway",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "b1xc3",
+                  "name": "Utopia · Urapuntja",
+                  "fill": "$ink",
+                  "content": "Utopia · Urapuntja",
+                  "fontFamily": "$font-display",
+                  "fontSize": 22,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "NsYzw",
+                  "name": "Utopia · Urapuntja status",
+                  "fill": "$ink-2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Listening — focused shredder pathway",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "bQJbD",
+                  "name": "Palm Island · Council first",
+                  "fill": "$ink",
+                  "content": "Palm Island · Council first",
+                  "fontFamily": "$font-display",
+                  "fontSize": 22,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "lziNX",
+                  "name": "Palm Island · Council first status",
+                  "fill": "$ink-2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Invitation — confirm local priority and lead",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "P6g7t",
+              "name": "Learning pathways",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#FBF8F2",
+              "stroke": "$sage",
+              "strokeWidth": {
+                "top": 5
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                22,
+                24
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "PQFyZ",
+                  "name": "Learning label",
+                  "fill": "$sage",
+                  "content": "LEARNING + RELATIONSHIPS",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "letterSpacing": 1.5
+                },
+                {
+                  "type": "text",
+                  "id": "R6ENi",
+                  "name": "Maningrida",
+                  "fill": "$ink",
+                  "content": "Maningrida",
+                  "fontFamily": "$font-display",
+                  "fontSize": 22,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "zLy1Y",
+                  "name": "Maningrida status",
+                  "fill": "$ink-2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Review and adapt — connect existing evidence to a next conversation",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "IKk1y",
+                  "name": "East Arnhem · Groote Eylandt",
+                  "fill": "$ink",
+                  "content": "East Arnhem · Groote Eylandt",
+                  "fontFamily": "$font-display",
+                  "fontSize": 22,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "VIvZl",
+                  "name": "East Arnhem · Groote Eylandt status",
+                  "fill": "$ink-2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Listening — understand local priorities, partners and readiness",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "J3V8q",
+                  "name": "NPY Lands",
+                  "fill": "$ink",
+                  "content": "NPY Lands",
+                  "fontFamily": "$font-display",
+                  "fontSize": 22,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "M9ZH3L",
+                  "name": "NPY Lands status",
+                  "fill": "$ink-2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Listening — identify the right place, lead and invitation",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "vxz8U",
+                  "name": "Discipline label",
+                  "fill": "$terra",
+                  "content": "THE DISCIPLINE",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "letterSpacing": 1.2
+                },
+                {
+                  "type": "text",
+                  "id": "hPGlu",
+                  "name": "Discipline",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "No pathway advances without a named local lead, confirmed priority and agreed next step.",
+                  "lineHeight": 1.35,
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "hCK4J",
+          "name": "Footnote",
+          "fill": "$muted",
+          "content": "Stages and contacts are recorded. Public stories, modules, costs and ownership details remain subject to community confirmation.",
+          "fontFamily": "$font-mono",
+          "fontSize": 9.5,
+          "fontWeight": "normal",
+          "letterSpacing": 0.8
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "SzbVu",
+      "x": 42138,
+      "y": 4240,
+      "name": "GFS 08 — Three ways to fund the model",
+      "clip": true,
+      "width": 1280,
+      "height": 720,
+      "fill": "$ground",
+      "layout": "vertical",
+      "gap": 18,
+      "padding": [
+        42,
+        64
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "HXJVK",
+          "name": "Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 7,
+          "children": [
+            {
+              "type": "text",
+              "id": "YupuB",
+              "name": "Kicker",
+              "fill": "$terra-lite",
+              "content": "CATALYTIC CAPITAL",
+              "fontFamily": "$font-mono",
+              "fontSize": 11,
+              "fontWeight": "700",
+              "letterSpacing": 1.8
+            },
+            {
+              "type": "text",
+              "id": "f4vsb",
+              "name": "Title",
+              "fill": "$cream",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Fund a place, a capability or the shared platform.",
+              "lineHeight": 1.1,
+              "fontFamily": "$font-display",
+              "fontSize": 38,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "WR3Cs",
+              "name": "Subtitle",
+              "fill": "$muted-on-ink",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Different capital can enter at different layers — while ownership and value stay with community.",
+              "fontFamily": "$font-body",
+              "fontSize": 15,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "y6SGTb",
+          "name": "Capital layers",
+          "width": "fill_container",
+          "height": 350,
+          "gap": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "dau6z",
+              "name": "PLACE layer",
+              "width": "fill_container",
+              "height": 350,
+              "fill": "$ground-2",
+              "stroke": "$terra-lite",
+              "strokeWidth": {
+                "top": 6
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 22,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "TLy8j",
+                  "name": "PLACE number",
+                  "fill": "$terra-lite",
+                  "content": "01",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 13,
+                  "fontWeight": "700",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "U3JOj",
+                  "name": "PLACE title",
+                  "fill": "$cream",
+                  "content": "PLACE",
+                  "fontFamily": "$font-display",
+                  "fontSize": 27,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "Z0EBaD",
+                  "name": "PLACE description",
+                  "fill": "$cream",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Back one community-defined pathway.",
+                  "lineHeight": 1.35,
+                  "fontFamily": "$font-body",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "qGgVP",
+                  "name": "PLACE examples",
+                  "fill": "$muted-on-ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Equipment · people · setup · local operations",
+                  "lineHeight": 1.4,
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "jVCb9",
+              "name": "CAPABILITY layer",
+              "width": "fill_container",
+              "height": 350,
+              "fill": "$ground-2",
+              "stroke": "#D6A63A",
+              "strokeWidth": {
+                "top": 6
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 22,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "qpM8s",
+                  "name": "CAPABILITY number",
+                  "fill": "#D6A63A",
+                  "content": "02",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 13,
+                  "fontWeight": "700",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "MWwdY",
+                  "name": "CAPABILITY title",
+                  "fill": "$cream",
+                  "content": "CAPABILITY",
+                  "fontFamily": "$font-display",
+                  "fontSize": 27,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "eWChV",
+                  "name": "CAPABILITY description",
+                  "fill": "$cream",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Back one module across several places.",
+                  "lineHeight": 1.35,
+                  "fontFamily": "$font-body",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "KROEW",
+                  "name": "CAPABILITY examples",
+                  "fill": "$muted-on-ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Shredding · training · repairs · procurement",
+                  "lineHeight": 1.4,
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "G83a9",
+              "name": "PLATFORM layer",
+              "width": "fill_container",
+              "height": 350,
+              "fill": "$ground-2",
+              "stroke": "$sage-2",
+              "strokeWidth": {
+                "top": 6
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 22,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "R7daT",
+                  "name": "PLATFORM number",
+                  "fill": "$sage-2",
+                  "content": "03",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 13,
+                  "fontWeight": "700",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "KtD2k",
+                  "name": "PLATFORM title",
+                  "fill": "$cream",
+                  "content": "PLATFORM",
+                  "fontFamily": "$font-display",
+                  "fontSize": 27,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "FedM2",
+                  "name": "PLATFORM description",
+                  "fill": "$cream",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Back the infrastructure communities can reuse.",
+                  "lineHeight": 1.35,
+                  "fontFamily": "$font-body",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "N1dK58",
+                  "name": "PLATFORM examples",
+                  "fill": "$muted-on-ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Designs · technical help · evidence · network",
+                  "lineHeight": 1.4,
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "gs8cc",
+          "name": "Capital mix",
+          "width": "fill_container",
+          "stroke": "#FFFFFF33",
+          "strokeWidth": {
+            "top": 1
+          },
+          "layout": "vertical",
+          "gap": 5,
+          "padding": [
+            12,
+            0,
+            0,
+            0
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "HXHB1",
+              "name": "Capital mix label",
+              "fill": "$terra-lite",
+              "content": "THE BLEND",
+              "fontFamily": "$font-mono",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "letterSpacing": 1.5
+            },
+            {
+              "type": "text",
+              "id": "x1VIj",
+              "name": "Capital mix text",
+              "fill": "$cream",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Procurement + government + philanthropy + partnerships + patient finance + local revenue",
+              "fontFamily": "$font-body",
+              "fontSize": 15,
+              "fontWeight": "600"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "atyzn",
+      "x": 37938,
+      "y": 5080,
+      "name": "GFS 09 — The funder invitation",
+      "clip": true,
+      "width": 1280,
+      "height": 720,
+      "fill": "$cream",
+      "layout": "vertical",
+      "gap": 18,
+      "padding": [
+        42,
+        64
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "Are95",
+          "name": "Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 7,
+          "children": [
+            {
+              "type": "text",
+              "id": "oTpvq",
+              "name": "Kicker",
+              "fill": "$terra",
+              "content": "THE INVITATION",
+              "fontFamily": "$font-mono",
+              "fontSize": 11,
+              "fontWeight": "700",
+              "letterSpacing": 1.8
+            },
+            {
+              "type": "text",
+              "id": "A1JKoh",
+              "name": "Title",
+              "fill": "$ink",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "The first yes makes the rest possible.",
+              "lineHeight": 1.1,
+              "fontFamily": "$font-display",
+              "fontSize": 40,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "fUzkh",
+              "name": "Subtitle",
+              "fill": "$ink-2",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Back enough of the pathway to let community choose, test, learn and own what comes next.",
+              "fontFamily": "$font-body",
+              "fontSize": 15,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ZTGj9",
+          "name": "Three ways to say yes",
+          "width": "fill_container",
+          "height": 346,
+          "gap": 24,
+          "children": [
+            {
+              "type": "frame",
+              "id": "hoXOp",
+              "name": "BACK A PLACE",
+              "width": "fill_container",
+              "height": 346,
+              "fill": "#FBF8F2",
+              "stroke": "$terra",
+              "strokeWidth": {
+                "top": 6
+              },
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 22,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "KWu6R",
+                  "name": "BACK A PLACE number",
+                  "fill": "$terra",
+                  "content": "01",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 13,
+                  "fontWeight": "700",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "LZFls",
+                  "name": "BACK A PLACE heading",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "BACK A PLACE",
+                  "fontFamily": "$font-display",
+                  "fontSize": 25,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "PDW6K",
+                  "name": "BACK A PLACE body",
+                  "fill": "$ink-2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Help one community turn a confirmed priority into a working pathway.",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$font-body",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "u83dF",
+              "name": "BACK A CAPABILITY",
+              "width": "fill_container",
+              "height": 346,
+              "fill": "#FBF8F2",
+              "stroke": "#C8982C",
+              "strokeWidth": {
+                "top": 6
+              },
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 22,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ckLiG",
+                  "name": "BACK A CAPABILITY number",
+                  "fill": "#C8982C",
+                  "content": "02",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 13,
+                  "fontWeight": "700",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "eOfUX",
+                  "name": "BACK A CAPABILITY heading",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "BACK A CAPABILITY",
+                  "fontFamily": "$font-display",
+                  "fontSize": 25,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "dvnee",
+                  "name": "BACK A CAPABILITY body",
+                  "fill": "$ink-2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Make a useful module available wherever communities choose it.",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$font-body",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "fUKtU",
+              "name": "BACK THE PLATFORM",
+              "width": "fill_container",
+              "height": 346,
+              "fill": "#FBF8F2",
+              "stroke": "$sage",
+              "strokeWidth": {
+                "top": 6
+              },
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 22,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "w4Pye4",
+                  "name": "BACK THE PLATFORM number",
+                  "fill": "$sage",
+                  "content": "03",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 13,
+                  "fontWeight": "700",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "yWC1Y",
+                  "name": "BACK THE PLATFORM heading",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "BACK THE PLATFORM",
+                  "fontFamily": "$font-display",
+                  "fontSize": 25,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "Yvjq5",
+                  "name": "BACK THE PLATFORM body",
+                  "fill": "$ink-2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Fund the shared designs, technical support, evidence and learning network.",
+                  "lineHeight": 1.45,
+                  "fontFamily": "$font-body",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "hHgAm",
+          "name": "What funding unlocks",
+          "width": "fill_container",
+          "fill": "$terra",
+          "gap": 18,
+          "padding": [
+            14,
+            18
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "M8k8V",
+              "name": "Unlock label",
+              "fill": "$cream",
+              "content": "WHAT IT UNLOCKS",
+              "fontFamily": "$font-mono",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "letterSpacing": 1.5
+            },
+            {
+              "type": "text",
+              "id": "f4sen",
+              "name": "Unlock text",
+              "fill": "$cream",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "A priced pathway · an agreed ownership plan · a community-ready case for the next capital partner",
+              "fontFamily": "$font-body",
+              "fontSize": 14,
+              "fontWeight": "600"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "EwwiD",
+      "x": 39338,
+      "y": 5080,
+      "name": "GFS 10 — Community ownership is the destination",
+      "clip": true,
+      "width": 1280,
+      "height": 720,
+      "fill": {
+        "type": "image",
+        "enabled": true,
+        "url": "deck-photos/storyteller-dianne-stokes.jpg",
+        "mode": "fill"
+      },
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "w9SLse",
+          "x": 0,
+          "y": 120,
+          "name": "Scrim",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 180,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#0A0A0A00",
+                "position": 0
+              },
+              {
+                "color": "#0A0A0AC4",
+                "position": 0.4
+              },
+              {
+                "color": "#0A0A0AFC",
+                "position": 1
+              }
+            ]
+          },
+          "width": 1280,
+          "height": 600
+        },
+        {
+          "type": "frame",
+          "id": "Ic5QF",
+          "layoutPosition": "absolute",
+          "x": 72,
+          "y": 344,
+          "name": "Content",
+          "width": 1040,
+          "layout": "vertical",
+          "gap": 22,
+          "children": [
+            {
+              "type": "text",
+              "id": "Bd5Pi",
+              "name": "Folio",
+              "fill": "$terra-lite",
+              "content": "10",
+              "fontFamily": "$font-mono",
+              "fontSize": "$size-kicker",
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            },
+            {
+              "type": "text",
+              "id": "WcqvJ",
+              "name": "Quote",
+              "fill": "$cream",
+              "textGrowth": "fixed-width",
+              "width": 1000,
+              "content": "“It means something that really makes me happy. Every time I go away, it's like it's calling me. Come back home.”",
+              "lineHeight": 1.2,
+              "fontFamily": "$font-display",
+              "fontSize": 42,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "gkoZV",
+              "name": "Attrib",
+              "fill": "$muted-on-ink",
+              "content": "DIANNE STOKES · WARUMUNGU AND WARLMANPA ELDER · TENNANT CREEK",
+              "fontFamily": "$font-mono",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 1.6
+            },
+            {
+              "type": "text",
+              "id": "s9WPz",
+              "name": "Sub",
+              "fill": "#C9C2B6",
+              "textGrowth": "fixed-width",
+              "width": 900,
+              "content": "Community chooses. Community builds. Community owns. Goods stays alongside for as much support as is useful.",
+              "fontFamily": "$font-body",
+              "fontSize": 15,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Oq2ZY",
+          "layoutPosition": "absolute",
+          "x": 56,
+          "y": 44,
+          "name": "Wordmark",
+          "width": 92,
+          "height": 23,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "deck-photos/logo-goods-white.png",
+            "mode": "fit"
+          }
+        }
+      ]
     }
   ],
   "themes": {
