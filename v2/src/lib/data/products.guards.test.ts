@@ -16,11 +16,14 @@
 import { describe, it, expect } from 'vitest';
 import {
   isPurchasableProductType,
+  PLASTIC_KG_PER_BED,
   PURCHASABLE_PRODUCT_TYPES,
   STRETCH_BED,
   WASHING_MACHINE,
   BASKET_BED,
 } from './products';
+import { CANONICAL_ASSETS } from './asset-canonical';
+import scenarios from './cost-model-scenarios.json';
 
 describe('isPurchasableProductType', () => {
   describe('accepts the Stretch Bed product type', () => {
@@ -122,5 +125,46 @@ describe('PURCHASABLE_PRODUCT_TYPES (canon invariant)', () => {
     for (const t of others) {
       expect(isPurchasableProductType(t)).toBe(false);
     }
+  });
+});
+
+/**
+ * HDPE mass: two quantities, deliberately separate.
+ * Ben ruling 2026-07-25 (Matt model input 1).
+ *
+ * PURCHASED mass (`physics.hdpe_kg_per_bed`) is the costing basis: x $2.75/kg landed = $55/bed.
+ * IN-PRODUCT mass (`PLASTIC_KG_PER_BED`) is what ends up in a finished bed and is the ONLY
+ * basis for the public diversion claim.
+ *
+ * They are equal today only because press yield has never been measured. The hazard these
+ * tests exist to catch is a costing change silently restating a public impact claim: if
+ * someone repoints the diversion claim at the cost-model field, or edits one constant
+ * expecting both to move, this fails loudly. That is the point.
+ */
+describe('HDPE per-bed mass: purchased vs in-product', () => {
+  it('the public diversion claim is derived from IN-PRODUCT mass, not the costing mass', () => {
+    expect(CANONICAL_ASSETS.plasticKg).toBe(
+      CANONICAL_ASSETS.stretchBedsDeployed * PLASTIC_KG_PER_BED,
+    );
+  });
+
+  it('products.ts in-product mass matches the cost model’s in-product field', () => {
+    expect(PLASTIC_KG_PER_BED).toBe(scenarios.physics.hdpe_in_product_kg_per_bed);
+  });
+
+  it('purchased mass is never below in-product mass (offcut is reshredded, not landfilled)', () => {
+    expect(scenarios.physics.hdpe_kg_per_bed).toBeGreaterThanOrEqual(
+      scenarios.physics.hdpe_in_product_kg_per_bed,
+    );
+  });
+
+  it('confirmed costing basis: 20kg purchased at $2.75/kg landed = $55/bed', () => {
+    const landed =
+      scenarios.defy_verified_rates.hdpe_shred_per_kg.amount +
+      scenarios.defy_verified_rates.delivery_per_kg.amount;
+    expect(landed).toBe(2.75);
+    expect(scenarios.physics.hdpe_kg_per_bed * landed).toBe(
+      scenarios.physics.raw_hdpe_cost_per_bed_with_delivery,
+    );
   });
 });

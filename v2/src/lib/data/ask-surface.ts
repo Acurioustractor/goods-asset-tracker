@@ -41,9 +41,9 @@ export interface AskBlock {
 }
 export const ASK_BLOCKS: AskBlock[] = [
   {
-    name: 'Equipment, net remaining',
-    amount: '$2K–112K',
-    fundsWhat: 'Press, shredder, CNC: $112–222K gross minus $110,046 already invested (TFN + ACT).',
+    name: 'Equipment (gross)',
+    amount: '$112K–222K',
+    fundsWhat: 'Press, shredder, CNC. A rough range with a lot of variables in it, plausibly reaching about $200K. Quoted gross: the $110,046 already invested sits beside this as evidence of skin in the game, never subtracted from it (ruling P, 2026-07-25).',
     label: 'modelled',
   },
   {

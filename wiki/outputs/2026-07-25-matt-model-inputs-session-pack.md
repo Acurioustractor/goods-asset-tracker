@@ -48,6 +48,11 @@ price three of the four live pathways.** Section 7.
 
 ## 1 · HDPE per-bed mass and rate
 
+> **CONFIRMED 2026-07-25 (ruling N).** Swept into code: `physics.hdpe_in_product_kg_per_bed`
+> added alongside the costing field, `PLASTIC_KG_PER_BED` documented as in-product mass, and
+> four guards in `products.guards.test.ts` lock the public diversion claim to the in-product
+> field so a costing tweak can no longer restate it silently.
+
 **Position: keep 20kg at $2.75/kg landed, $55/bed.** Invoice-traceable (Defy INV-1731, $2/kg shred
 plus $0.75/kg delivery). The GoC Q&A's "25kg at $1-2/kg" is retired as a costing figure and kept
 only as an aspirational floor for the free-feedstock community path, where the plastic cost is $0
@@ -73,7 +78,17 @@ measured run.
 
 ## 2 · Site capex
 
-**Position: adopt sunk ~$75K and replication ~$105K (band $90,800 to $123,000). Retire $30,000 and
+> **RULED 2026-07-25 (ruling O), against this recommendation.** Ben: "$110,046 is the actual
+> costs, then we want to get up to about $200,000, as this is a very rough estimate with a lot
+> of variables." **$110,046 stands as the sunk figure**, regraded from `verified` to
+> **`workpaper`** because only ~$43,700 is evidenced at bill level. The ~$75K below is a
+> **bill-level subtotal, not a competing total**: treating a Xero pull's coverage as the
+> boundary of what was spent confuses evidence with fact. Capex is a rough range that may reach
+> about $200,000, which already sits inside the existing $112-222K gross band. The recommended
+> retirements DID carry: $30,000-as-a-site-price and the $100-150K/site band are both gone. The
+> original recommendation is preserved below as the reasoning the ruling overrode.
+
+**Position (superseded): adopt sunk ~$75K and replication ~$105K (band $90,800 to $123,000). Retire $30,000 and
 $100-150K.** Source: `2026-07-22-minimal-viable-facility-model.md`, built bill-and-bank-line level
 off the connected sole-trader Xero.
 
@@ -101,6 +116,11 @@ unevidenced items as a separate disclosed line rather than folded into the total
 ---
 
 ## 3 · Capital ask
+
+> **CONFIRMED 2026-07-25 (ruling P).** Swept into code: `NET_CAPITAL_LOW` / `NET_CAPITAL_HIGH`
+> deleted from `engine.ts` along with the three tests locking them, replaced by a guard that
+> fails if any net capital export returns. The "Net remaining ask $2-112K" fact is gone from
+> `cost-story.ts`, and the net framing is off the three investor-wiki surfaces that carried it.
 
 **Position: quote gross $112,000 to $222,000. Present the sunk spend as evidence of skin in the
 game, never netted off. Never quote "$90-200K", which appears nowhere in any model and is a
@@ -185,6 +205,23 @@ else in this section is sequencing that follows from the answer. Ben to Jay, ear
 ---
 
 ## 5 · The community-facility block, and the denominator nobody has computed
+
+> **NOW IN THE MODEL (2026-07-25), and the arithmetic below independently verified.** The site
+> production block is a first-class concept in the cost engine: `SITE_PRODUCTION_BLOCK` and the
+> `site_supervisor` dial in `cost-model-scenarios.ts`, with `siteProductionBlock` and
+> `breakevenSiteProduction` as engine outputs. Ten guards in `engine.test.ts` lock the numbers.
+> **Every figure in this section was hand-computed and now re-derives from the engine:** the
+> $339.26 contribution, the 234 / 381 / 529 band, the $269.26 not-containerised case, and the
+> 71 that the retired $24,000 rent basis gave.
+>
+> **Added additively on purpose.** `fixedBlock` and every locked break-even are untouched,
+> because they are published figures; the block is a separate pot rather than a re-cut of pot 1.
+> Guards assert the supervisor dial moves neither marginal cost (no double count against the
+> $130/bed fair wage) nor `fixedBlock` (no leak between pots).
+>
+> **The supervisor defaults to `none`.** That is a coding choice, not a ruling: it is the
+> computed floor and the only option that assumes no undecided role. **Ben and Nic still decide
+> it**, and it is the single biggest dial in the model.
 
 ### 5.1 What is actually in the model today
 
@@ -358,8 +395,37 @@ settles it.** Nothing else does. Four sources currently disagree (250 flagged as
 Matt's planning figure, 1,250 from 5 beds/day, ~1,500 from the DEWR "~30 beds per week"), and the
 disagreement is not resolvable from a desk.
 
-**Question for Ben:** were any actuals captured on the 40-bed run? If not, when is the next press
-run, and can it be instrumented?
+> **PARKED 2026-07-25 (Ben).** Do not reopen this from a desk. The Xero mirror
+> (`xero_invoices`, `xero_transactions`) is EMPTY, verified by curl with a key that reads 995
+> rows from `project_knowledge` in the same project, so it is not a permissions problem. No run
+> records exist in the repo. The four inputs needed (dates and working days, who worked and how
+> long, diesel in the window, shred in versus beds out) exist only in Ben's head or in live Xero.
+> **Do not publish a per-bed cost derived from guessing them:** it is what every break-even in
+> §5 divides into.
+>
+> **One live contradiction found while looking, worth more than the search was**
+> (`wiki/articles/enterprise/01-vision-and-ambition.md:154`): the production guide records **one
+> sheet per bed** while Notion StretchBed HQ says **two sheets per bed** and **three beds per
+> day**. One versus two sheets is a 2x difference in plastic per bed, larger than the 20kg
+> versus 25kg gap item 1 worried about, and "3 beds per day" contradicts the model's
+> `factory_beds_per_day: 5` that the 250/500/1,250 spread hangs off. That file already flags it
+> for Nicholas or Defy. Settle it there, not here.
+
+**ANSWERED 2026-07-25 (Ben).** No instrumented capture, no stopwatch on the run. But the 40-bed
+run does have figures we can **estimate from**, so this is a desk job against existing records
+rather than a wait for the next press run.
+
+**What that changes.** The estimate lands at a lower claims grade than a measured run would:
+call it **derived from the 40-bed run**, never "measured". It still beats the current position,
+where $425.74 is modelled from first principles and four sources disagree on the rate (250
+flagged as an assumption, 500 Matt's planning figure, 1,250 from 5 beds/day, ~1,500 from the
+DEWR "~30 beds per week"). A derived estimate narrows that spread; only an instrumented run
+closes it. Instrument the next run anyway.
+
+**Next step for whoever picks this up:** pull the 40-bed run's records (INV-0303 line items,
+materials drawn, diesel purchased in the window, days worked) and back out time, diesel and
+plastic yield per bed. That also answers item 1's press-yield question, which is what decides
+whether purchased and in-product HDPE mass separate.
 
 ---
 
@@ -394,8 +460,43 @@ contribution, throughput constraint) with a site defined as a selection, not a `
 value. Not urgent for the first 3-statement build if it models Oonchiumpa. Blocking the moment the
 model has to price Utopia or Tennant Creek, which is the moment a real ask is written for either.
 
-**Not decided:** the module list above is proposed here, not agreed. It goes to Ben before it goes
-into a workbook.
+**BUILT 2026-07-25 (Ben: "do 7").** `capex_modules` in `cost-model-scenarios.json`, with
+`CAPEX_MODULES` and `priceModuleSelection()` in `cost-model-scenarios.ts` and 12 guards in
+`capex-modules.guards.test.ts`. The `build_states` ladder is untouched because its outputs are
+published. **Three departures from the list proposed above, each for a reason:**
+
+1. **Site base is not a module.** The honest structure is site base plus modules. Utopia wanting
+   a shredder still needs power, a pad and somewhere to put it. Where a partner supplies the shed
+   the base shrinks rather than vanishes, and by how much is that partner's call, not ours.
+   Base band: $31,800 to $64,000.
+2. **Pressing and CNC stay bundled at $32,780.** Circularity INV-0054 covers hot press, cold
+   press and CNC as ONE bill, so they cannot be split from evidence, and splitting them on a
+   guessed ratio would manufacture precision. No live pathway needs them separate: Utopia stops
+   at shredding, Tennant Creek is a shed question, Palm Island has no plant. Split it when a
+   vendor breakdown exists and a pathway actually requires it.
+3. **Collection and baling came back genuinely unpriced**, not merely unlisted. It is absent from
+   the MVF replication table entirely. `priceModuleSelection()` returns `priceable: false` rather
+   than treating it as $0, because treating a missing quote as zero is how a pathway looks
+   cheaper than it is.
+
+**The reassembly is guarded as lossless:** modules plus base reconcile to the MVF's $90,800 to
+$123,000 replication total, because this is an allocation of an evidenced figure rather than a
+new estimate.
+
+**What it changes about the four pathways.** Tennant Creek is now priceable at the module level
+($58,967 low, base excluded) even though its base subtraction is unagreed. **Utopia is still not
+priceable**, and the reason is now specific and fixable: the shredder itself is priced at
+$19,800, and the gap is the collection upstream of it. **Palm Island returns $0**, which is
+recorded as the wrong answer rather than a good one: governance work has a real cost that is not
+plant, it is the most common first step, and it is the most consistently unfunded.
+
+**Still not done on item 7:** the per-module split of the operating block. The $79,333 bare block
+assumes the FULL module set, so a subset carries less and nobody has derived by how much. Until
+that exists, do not quote an operating figure for a partial pathway. That plus a collection quote
+are what make Utopia priceable.
+
+**Not decided:** the module list is still proposed, not agreed. It is now in code so it can be
+argued with concretely, which is not the same as blessed.
 
 ---
 
@@ -403,9 +504,9 @@ into a workbook.
 
 | # | Item | State | Who decides |
 |---|---|---|---|
-| 1 | HDPE 20kg at $2.75, two fields not one | Recommended, ready to confirm | Ben |
-| 2 | Sunk ~$75K / replication ~$105K; retire $30K and $100-150K | Recommended, ready to confirm. **$110,046 vs $75K still unreconciled** | Ben |
-| 3 | Gross $112-222K, sunk as evidence | Recommended, ready to confirm | Ben |
+| 1 | HDPE 20kg at $2.75, two fields not one | **CONFIRMED 2026-07-25 (ruling N).** Swept into code; the two fields now exist and are guarded | Ben |
+| 2 | Sunk capex | **RULED 2026-07-25 (ruling O), and NOT as recommended. $110,046 is the actual sunk spend**, regraded workpaper because only ~$43,700 is bill-evidenced. The ~$75K is a bill-level subtotal, not a competing total. Capex is a rough range that may reach ~$200K. $30K-as-site-price and $100-150K/site retired | Ben |
+| 3 | Gross $112-222K, sunk as evidence | **CONFIRMED 2026-07-25 (ruling P).** Net figure deleted from the engine and its surfaces | Ben |
 | 4 | Capital stack | **Rebuilt off all 67 CRM rows** (§4). Two grants/loans columns, either of which clears the $400K match. Remaining open question is one: what does SIH accept as match paper | Ben to Jay, then Matt |
 | 5 | Community site block | **Computed here: $79,333 bare, $129,333 with a half-time supervisor.** Three cost centres, not two | Ben and Nic on the supervisor; Matt builds |
 | 6 | Maningrida actuals | **Highest value open item.** Everything in 5.6 divides into it | Ben |
@@ -448,7 +549,9 @@ periods in 5.5 and 5.6 are **arithmetic** off those inputs and off a contributio
 itself **modelled** from a run whose per-bed actuals were not captured. Capex figures are
 **evidenced** from Xero at bill and bank-line level except the shredder (**physical only**), the 40ft
 container (**unconfirmed**) and the fit-out lines (**estimates**). CRM figures are **read from GHL
-2026-07-25**, first 50 Supporter Journey rows only, not paginated beyond that. The module list in
+2026-07-25**, all 67 Supporter Journey rows (this footer previously said "first 50 rows only,
+not paginated beyond that", which was stale: §4 was rebuilt off the full set on 2026-07-25 and
+that rebuild is what corrected the SEFA and Centrecorp readings). The module list in
 section 7 is **proposed**, not agreed.
 
 **Sources.** `wiki/outputs/2026-07-23-goc-financial-model-pack/assumptions-alignment.md` ·

@@ -233,7 +233,7 @@ export const COST_CHAPTERS: CostChapter[] = [
   {
     slug: 'capital',
     title: 'The capital ask',
-    lede: 'The equipment is $112–222K gross. $110,046 is already invested, so the remaining ask is small — and we don’t spend it until ~300+ beds/yr are committed.',
+    lede: 'The equipment is $112–222K gross, a rough range with a lot of variables in it that could plausibly reach about $200K. Separately, $110,046 is already invested. We quote both side by side and never net one off the other, and we don’t spend it until ~300+ beds/yr are committed.',
     facts: [
       {
         label: 'Factory set-up cost (gross)',
@@ -246,17 +246,10 @@ export const COST_CHAPTERS: CostChapter[] = [
       {
         label: 'Already invested in the facility',
         value: '$110,046',
-        solidity: 'verified',
-        means: 'Facility and tooling already paid for — the reason the remaining ask can be small. (~$80K TFN + ~$20K ACT.)',
-        source: 'Xero / 04 · Verified Financials',
-      },
-      {
-        label: 'Net remaining ask',
-        value: '$2–112K',
-        solidity: 'modelled',
-        means: 'Gross set-up cost minus what’s already invested.',
-        watchOut: 'Always say whether you’re quoting gross or net. Mixing them is the #1 source of confusion in past conversations.',
-        source: 'Area 11 key points',
+        solidity: 'workpaper',
+        means: 'Actual spend standing up the farm production facility, mostly bought second hand. About $43,700 of it is evidenced at bill level in the connected Xero; the balance is plant we own whose paperwork is still catching up, chiefly the shredder ($19,800, running, invoice not yet located) and a recently bought larger CNC. A filing job, not a fiction.',
+        watchOut: 'Present this BESIDE the gross ask as evidence of skin in the game, never subtracted from it. Not “verified”: only the $43,700 is bill-evidenced. The ~$75K in the minimal-viable-facility note is a bill-level subtotal, not a competing total.',
+        source: 'Ben ruling 2026-07-25 (Matt model input 2); Xero bill-level pull 2026-07-22',
       },
       {
         label: 'QBE Stage 2 ask',

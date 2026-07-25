@@ -19,6 +19,96 @@
 
 ---
 
+## 2026-07-25 (later) — Matt's model inputs, items 1 to 3
+
+Three rulings against the recommended positions in
+`wiki/outputs/2026-07-25-matt-model-inputs-session-pack.md`. Decided simultaneously, so they are
+lettered in item order rather than newest-first. Ben ruling throughout.
+
+### N. HDPE is 20kg at $2.75/kg landed. Two fields, not one.
+
+**Confirmed:** 20kg at $2.75/kg landed, $55/bed. Invoice-traceable to Defy INV-1731 ($2/kg shred
+plus $0.75/kg delivery). The GoC Q&A's "25kg at $1-2/kg" is retired as a costing figure and kept
+only as an aspirational floor for the free-feedstock community path, where plastic costs $0 and
+the rate is moot anyway.
+
+**What was actually wrong, and it was not the number.** The two figures were never measuring the
+same thing. 20kg is the mass in a **finished bed**, which is what the public diversion claim is
+derived from. A purchase quantity and a diverted quantity can legitimately differ, because HDPE
+offcut goes back through the shredder rather than to landfill. The model needs both fields.
+
+**The hazard this closes.** The costing mass and the public-claim mass already lived in two
+separate constants (`physics.hdpe_kg_per_bed` and `PLASTIC_KG_PER_BED`) with nothing stating that
+they are different quantities or stopping anyone collapsing them. A costing tweak could have
+silently restated a public impact claim on twenty-odd surfaces. They are equal today **only**
+because press yield has never been measured, which is what ruling item 6 exists to settle.
+
+**Sweep (done 2026-07-25):** `physics.hdpe_in_product_kg_per_bed` added to
+`cost-model-scenarios.json` with a note naming both quantities and Matt's cell names ·
+`PLASTIC_KG_PER_BED` doc comment in `products.ts` now says IN-PRODUCT, not purchase quantity ·
+four guards in `products.guards.test.ts` lock the public claim to the in-product field, assert
+purchased is never below in-product, and re-derive $55/bed from the Defy rates.
+
+### O. $110,000 is the actual sunk spend. Capex is rough and may reach about $200K.
+
+**Ben ruling, overriding the pack's recommendation.** The pack proposed adopting the
+2026-07-22 minimal-viable-facility figure of ~$75K as sunk. Ben: "$110,000 is the actual costs,
+then we want to get up to about $200,000, as this is a very rough estimate with a lot of
+variables."
+
+**Why the ~$75K was not the better number.** It is a bill-level subtotal, not a competing total.
+The MVF's own tiers are ~$43,700 cleanly evidenced and tagged, ~$12,500 evidenced but
+ambiguous, and $19,800 for a shredder that is physically running with no Xero record. Treating a
+Xero pull's coverage as the boundary of what was spent confuses evidence with fact. Ben spent it
+and is the primary source. This also matches what `2026-07-22-the-money-story-grounded-voice.md`
+already said in prose: about $110,000 has gone in, mostly second hand, and the rest is gear we
+own whose paperwork is catching up. A filing job, not a fiction.
+
+**What did change: the adjective, not the figure.** $110,046 carried `solidity: 'verified'`,
+which is not defensible when only ~$43,700 is bill-evidenced. Regraded **workpaper**. This is
+the same correction shape as ruling H on revenue: keep the number, fix the word.
+
+**Treat capex as a range, not a point.** Gross $112,000 to $222,000, rough, plenty of variables,
+plausibly reaching about $200,000. Ben's figure already sits inside the existing band, so no
+competing number was invented.
+
+**Retired:** the $30,000 community rung as a site price (it is a ladder **increment** on top of
+an already-built ~$200,000 factory, never a site cost, and reading it as one is a category error
+rather than a rounding difference) · the separate "$100-150K per site on-Country" band.
+
+**Still open:** the shredder invoice and the larger CNC are the outstanding paperwork. Note the
+gap is wider than the pack assumed: $84,000 is described elsewhere as "cleanly in the connected
+books" against the MVF's $43,700 clean tier, and those two cannot both be right about "clean".
+
+**Sweep (done 2026-07-25):** `cost-story.ts` capital fact regraded to workpaper with the evidence
+split and a do-not-net watch-out · `ALREADY_INVESTED` docstring in `cost-model-scenarios.ts` ·
+`_capital_added_note` in `cost-model-scenarios.json` explaining the ladder · `qbe-areas.json`
+gap text · engine test asserting the figure stands alone rather than as a deduction.
+
+### P. The capital ask is quoted gross only. The net figure is retired.
+
+**Confirmed:** quote gross $112,000 to $222,000, present sunk spend beside it as evidence of
+skin in the game, never netted off. Never quote "$90-200K", which appears in no model and is a
+transcription artefact.
+
+**Why.** Netting invites "so is it yours or not?", which is the wrong question to invite while
+the handover of the farm plant is in progress and the ownership pathway is the pitch itself.
+Gross plus a sunk-spend line answers it before it is asked. Two numbers, never one net number.
+
+**Sweep (done 2026-07-25):** `NET_CAPITAL_LOW` / `NET_CAPITAL_HIGH` deleted from `engine.ts`
+(they were exported constants, ~$1,954 and ~$111,954, with three tests locking them) · a
+replacement guard fails if any `NET_CAPITAL*` export is reintroduced · the "Net remaining ask
+$2-112K" fact removed from `cost-story.ts` and its chapter lede rewritten · `CAPITAL_GROSS_*`
+docstring corrected, since it previously described itself as "net of the $110,046".
+
+**Prose swept the same day:** `wiki/investor/02-financial-model.md` (3 places) ·
+`wiki/investor/15-money-alignment-audit.md` (4) · `wiki/investor/16-ask-surface-design.md` ·
+`ask-surface.ts`, whose live "Equipment, net remaining / $2K-112K" block is now gross.
+`wiki/canon/qbe-readiness.md` regenerated from `qbe-areas.json` by `check:qbe-readiness`.
+Dated `wiki/outputs/` artifacts are historical record and are deliberately left alone.
+
+---
+
 ## 2026-07-25 — Master strategy alignment session
 
 Twelve rulings. Sources read first, memory distrusted, every claim traced to a path or a

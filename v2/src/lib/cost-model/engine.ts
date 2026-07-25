@@ -32,9 +32,13 @@ import {
   POLYMER_FLOOR_PER_BED,
   STEEL_RAW_FLOOR_PER_BED,
   CANVAS_RAW_FLOOR_PER_BED,
+  SITE_PRODUCTION_BLOCK,
+  SITE_PRODUCTION_BLOCK_BARE,
+  SITE_SUPERVISOR_COST,
   type CostModelInputs,
   type BuildMethod,
   type CostModelLocation as Location,
+  type SiteSupervisor,
 } from '@/lib/data/cost-model-scenarios';
 
 // Re-export the data-layer pieces the skins consume so they have a single import surface.
@@ -46,8 +50,11 @@ export {
   POLYMER_FLOOR_PER_BED,
   STEEL_RAW_FLOOR_PER_BED,
   CANVAS_RAW_FLOOR_PER_BED,
+  SITE_PRODUCTION_BLOCK,
+  SITE_PRODUCTION_BLOCK_BARE,
+  SITE_SUPERVISOR_COST,
 };
-export type { CostModelInputs, BuildMethod, Location };
+export type { CostModelInputs, BuildMethod, Location, SiteSupervisor };
 
 export type Inputs = CostModelInputs;
 
@@ -56,8 +63,12 @@ export type Inputs = CostModelInputs;
 //    into the exact Inputs shape and exports the named constants above.
 export const DEFAULTS: Inputs = CostModelDefaults;
 
-export const NET_CAPITAL_LOW = DEFAULTS.capital_to_factory_low - ALREADY_INVESTED; // ~1,954
-export const NET_CAPITAL_HIGH = DEFAULTS.capital_to_factory_high - ALREADY_INVESTED; // ~111,954
+// NET_CAPITAL_LOW / NET_CAPITAL_HIGH were removed 2026-07-25 (Ben ruling, Matt model input 3).
+// The capital ask is quoted GROSS ($112,000-$222,000, rough and variable, plausibly reaching
+// ~$200,000) with ALREADY_INVESTED presented BESIDE it as evidence of skin in the game — never
+// subtracted from it. Netting invites "so is it yours or not?", which is the wrong question to
+// invite while the farm plant handover is in progress and the ownership pathway IS the pitch.
+// Two numbers, never one net number. Do not reintroduce a net export.
 export const VOLUME_GATE = 300; // capex only sensible above ~300/yr committed
 export const CONTAINERISE_FREIGHT_DELTA = 70; // -$70/bed long-haul if containerised (ship plant once, not N beds)
 
@@ -251,6 +262,23 @@ export function computeModel(raw: Inputs) {
   // Production-founder share + Kirmos facility + admin + field travel + selected-location rent.
   const fixedBlock = founderProductionCost + kirmosAnnual + i.admin_per_year + i.field_travel_per_year + loc.rentPerYear;
 
+  // ── SITE PRODUCTION BLOCK (pot 2 of 3) ── added 2026-07-25, Matt model input 5.
+  // What BED SALES ALONE should carry at a community site, per year. Deliberately SEPARATE
+  // from `fixedBlock` above (pot 1, the network block that amortises across sites) and from
+  // the wraparound block (pot 3, ~$300K/yr brokerage plus the program share of rent/insurance/
+  // admin, grant funded by design and never touching per-bed economics on paper).
+  //
+  // This is additive: it does not alter `fixedBlock` or any locked break-even, because those
+  // are published figures. It exists because the site cost model used to be one line,
+  // LOCATIONS.on_country.rentPerYear = $24,000, which is a correct RENT figure that was read
+  // as an OPERATING COST. Dividing it into contribution produced the "75 to 100 beds a year"
+  // claim that ruling I retired.
+  //
+  // The supervisor is an OPEN DECISION (Ben and Nic) and sits ON TOP of the $130/bed
+  // fair-wage labour already inside the community path's marginal cost. Do not double count.
+  const siteSupervisorCost = SITE_SUPERVISOR_COST[i.site_supervisor];
+  const siteProductionBlock = SITE_PRODUCTION_BLOCK_BARE + siteSupervisorCost;
+
   // ── BREAKEVEN beds/yr = fixed block ÷ contribution/bed (price − marginal) ──
   // Each path divides by its OWN contribution; non-finite (price ≤ marginal) → Infinity,
   // rendered as '—'. (Previously the panel/community cells guarded on the selected
@@ -267,6 +295,16 @@ export function computeModel(raw: Inputs) {
   const breakevenFactory = breakevenFor(contributionFactory);
   const breakevenCommunity = breakevenFor(contributionCommunity);
   const breakevenSelected = breakevenFor(contributionSelected);
+
+  // Break-even against the SITE PRODUCTION BLOCK, on the COMMUNITY path only: this block
+  // describes a community site, so dividing it by any other path's contribution is meaningless.
+  // At the intended shape (On Country, containerised) contribution is $339.26, giving
+  // 234 bare / 381 half-time supervisor / 529 full-time. The honest denominator is that BAND,
+  // not any single row, and where it lands is decided by who pays the person who runs the line.
+  // Compare 71, which is what the retired $24,000 rent basis gave.
+  const breakevenSiteProduction = breakevenFor(contributionCommunity) === Infinity
+    ? Infinity
+    : Math.round(siteProductionBlock / contributionCommunity);
 
   // ── Fully-loaded (DEMOTED reference only — fixed-cost absorption at pilot volume, NOT marginal) ──
   const fixedPerBed = safeDiv(fixedBlock, i.beds_per_year);
@@ -308,6 +346,7 @@ export function computeModel(raw: Inputs) {
     marginalKit, marginalPanel, marginalFactory, marginalCommunity,
     selectedDirect, selectedMarginal,
     founderTotalCost, founderProductionCost, fixedBlock, fixedPerBed,
+    siteSupervisorCost, siteProductionBlock, breakevenSiteProduction,
     contributionKit, contributionPanel, contributionFactory, contributionCommunity, contributionSelected,
     breakevenKit, breakevenPanel, breakevenFactory, breakevenCommunity, breakevenSelected,
     fullKits, fullPanels, fullFactory, fullCommunity,

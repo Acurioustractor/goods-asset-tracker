@@ -112,7 +112,7 @@
       "priority": "P0",
       "band": "priority-gap",
       "sihPriorityGap": false,
-      "gap": "Verified BOM + $110,046 press capex are solid, but facility/site capex is modelled, not vendor-quoted (112K-222K factory gross; 100K-150K/site on-Country). Needs 3 vendor quotes — the SIH-Advisory deliverable. Notion-added area, no V4 score."
+      "gap": "Verified BOM is solid and $110,046 sunk capex is actual (Ben ruling 2026-07-25), though only ~$43,700 of it is evidenced at bill level so it grades workpaper, not verified. Facility/site capex is still modelled, not vendor-quoted: quote the gross 112K-222K range, rough and variable, plausibly reaching about 200K. The old separate 100K-150K/site on-Country band is retired, as is any reading of the model's 30K community rung as a site price. Needs 3 vendor quotes, the SIH-Advisory deliverable. Notion-added area, no V4 score."
     },
     {
       "id": "12",

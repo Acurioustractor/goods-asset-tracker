@@ -36,8 +36,8 @@ The why-change number: plastic lands at $2.75/kg (~$55/bed) vs the $0.80/kg poly
 | Line | Figure | Source | Label |
 |---|---|---|---|
 | Gross set-up (shredder + press + CNC + benches) | $112-222K (mid ~$167K) | cost-story.ts:239-244 | modelled |
-| Already invested (~$80K TFN + ~$20K ACT) | **$110,046** | canon.ts:250; scenarios.ts:141 | verified |
-| **Net remaining equipment ask** | **~$2-112K** | cost-story.ts:254-257 | modelled |
+| Already invested (sunk, actual) | **$110,046** | canon.ts:250; scenarios.ts:141 | workpaper (~$43,700 bill-evidenced; balance is owned plant with paperwork outstanding) |
+| ~~Net remaining equipment ask~~ | **RETIRED 2026-07-25 (ruling P)** | quote gross only; sunk spend sits beside it as evidence, never subtracted | n/a |
 | Maintenance reserve | 3-5%/yr (~$5-8K) | cost-story.ts:279 | modelled |
 | Per-community-site overhead | ~$24K/yr | cost-story.ts:176-178 | modelled |
 | On-Country site capex | $100-150K/site | qbe-readiness.md:49 | modelled |
@@ -65,13 +65,13 @@ The why-change number: plastic lands at $2.75/kg (~$55/bed) vs the $0.80/kg poly
 
 ## B. THE structural misalignment (where the waste is)
 
-**The $400K QBE ask is not derived from the cost model.** The model's own capital requirement is $112-222K gross equipment, of which $110,046 is already invested — net ~$2-112K (02-financial-model.md:44,49: "$400K appears nowhere in these five files"). The $400K↔model link is asserted only in decks. Every investor who reads both will find the gap.
+**The $400K QBE ask is not derived from the cost model.** The model's own capital requirement is $112-222K gross equipment, quoted gross only, with $110,046 of sunk spend presented beside it as evidence rather than subtracted from it (ruling P; 02-financial-model.md:44,49: "$400K appears nowhere in these five files"). The $400K↔model link is asserted only in decks. Every investor who reads both will find the gap.
 
 **First-principles fix — build the ask BOTTOM-UP so $400K (or whatever it truly is) is a SUM, not a slogan:**
 
 | Use-of-funds block | Range | Source basis |
 |---|---|---|
-| 1. Equipment, net remaining | $2-112K | cost-story.ts:254 |
+| 1. Equipment, gross (never netted, ruling P) | $112-222K, plausibly reaching ~$200K | cost-story.ts capital chapter |
 | 2. 50-bed in-house proof run | $60-80K | cost-story.ts:181 |
 | 3. Working capital to bridge ~120 → ~338 beds/yr (B2B payment cycle — the SEFA job) | to be sized from the engine: ~218 extra beds × $426 marginal, cycle-length adjusted | day8-capital-stack.md:78 (SEFA use) |
 | 4. Fixed block cover while ramping (12-18 mo × $109.5K) | $110-165K | cost-story.ts:195 |
@@ -114,7 +114,7 @@ Each block is one signable instrument, mapped to a gate in the spine. Match-elig
 | 1 | **Working-capital anchor** (SEFA-shaped) | Repayable loan (QBE's preferred flavour) | $300K | Gate 4-5: bridge 120→338 beds/yr B2B cycle | YES | Loan agreement: amount, term, funder legal name, contact SIH can call |
 | 2 | **Fresh philanthropic** (Snow R4/R5-shaped) | Grant | $100K | Gate 3-4: proof run + fixed-block cover | YES | Grant deed/letter of commitment |
 | 3 | **Community-anchored grant** (Centrecorp-shaped) | Grant, separate from bed orders | $75K | Gate 3: community-site scoping | YES | Board-minuted commitment letter |
-| 4 | **Equipment sponsor** | Grant or asset finance against NAMED line items: press $80-150K, shredder $15-30K, CNC $15-40K | net $2-112K | Gate 3 direct | YES | Purchase-order-backed commitment |
+| 4 | **Equipment sponsor** | Grant or asset finance against NAMED line items: press $80-150K, shredder $15-30K, CNC $15-40K | gross $112-222K | Gate 3 direct | YES | Purchase-order-backed commitment |
 | 5 | **Bed orders** (NPY / PICC / Homeland / Centrecorp beds) | Purchase orders at $750/bed | 200-350 / 141 / 65 / ~237 beds | Gate 4: drives break-even, de-risks everything above | NO (revenue ≠ match) but the strongest signal | Signed PO with delivery schedule |
 | 6 | **Site capital, later** (IBA-shaped, post-51% ownership gate) | Larger facility/site finance | $100-150K/site up to $5M | Gate 3 at scale | Post-entity-decision | Not for 31 Aug |
 | ✗ | Equity, QBE itself, DEWR/REAL vehicle | — | — | — | EXCLUDED | — |

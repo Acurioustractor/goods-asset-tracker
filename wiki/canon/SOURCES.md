@@ -17,7 +17,7 @@ project_id; pass the wrong one and you silently query someone else's database.
 |---|---|---|---|---|
 | `NEXT_PUBLIC_SUPABASE_URL` | `cwsyhpiuepvdjtxaozwf` | **Goods** | v2 app: assets register, products, recipients, bed records | `check-asset-drift.mjs` re-derives canon vs live; daily CI once secrets set |
 | `EMPATHY_LEDGER_SUPABASE_URL` | `yvnuayzslukamizrlhwb` | Empathy Ledger Enhanced | EL storytellers, stories, media | manual; `el-*` scripts |
-| `ACT_INFRA_SUPABASE_URL` | `tednluwflfhxyucgwigh` | Empathy Ledger (NOT a project called "ACT infra") | Goods Xero mirror (`xero_invoices`), the money figures | manual reconcile (`/reconcile` + accountant); `check-canon-drift.mjs` flags staleness |
+| `ACT_INFRA_SUPABASE_URL` | `tednluwflfhxyucgwigh` | Empathy Ledger (NOT a project called "ACT infra") | Goods Xero mirror (`xero_invoices`). **⚠ VERIFIED EMPTY 2026-07-25: `xero_invoices` and `xero_transactions` both return 0 rows.** Not a permissions issue (the same key reads 995 rows from `project_knowledge`). The money figures do NOT come from here; they come from human `/reconcile` pulls against live Xero, recorded manually into canon. Treat this mirror as unpopulated until someone fills it | manual reconcile (`/reconcile` + accountant); `check-canon-drift.mjs` flags staleness |
 
 ## The wrong-project trap
 

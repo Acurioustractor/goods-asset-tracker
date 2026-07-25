@@ -22,7 +22,7 @@ One page, six bands, everything rendered LIVE from existing sources (`cost-story
 
 **Band 1 — The one ratio (WGAC pattern).** Full-width: "$65 today → $324 in-house. Five times more of every bed stays." Under it the second number: "~338 beds a year = the business stands without us." Third-party chip: "Revenue $713,827, accountant-signed."
 
-**Band 2 — What we're asking for, as a sum (the anti-slogan).** The five use-of-funds blocks from the audit, stacked to a visible total: equipment net $2-112K · proof run $60-80K · working capital 120→338 · fixed cover 12-18mo · reserve/scoping. Each block: amount, which gate it funds, claim label. The QBE $400K sits BESIDE it as "the match vehicle," not the number itself. Open item chip: "working-capital block sized at the $426 sense-check session."
+**Band 2 — What we're asking for, as a sum (the anti-slogan).** The five use-of-funds blocks from the audit, stacked to a visible total: equipment gross $112-222K (never netted, ruling P; sunk $110,046 shown beside it) · proof run $60-80K · working capital 120→338 · fixed cover 12-18mo · reserve/scoping. Each block: amount, which gate it funds, claim label. The QBE $400K sits BESIDE it as "the match vehicle," not the number itself. Open item chip: "working-capital block sized at the $426 sense-check session."
 
 **Band 3 — The stack (five-Ps ladder).** $475K = SEFA $300K (Price+Patience, repayable — QBE's preferred flavour) · Snow $100K (Purpose, grant) · Centrecorp $75K (Purpose, community-anchored). Status honesty: **$0 signed** · match paper 31 Aug · each layer shows "what signed paper looks like." Excluded list visible (equity, QBE itself, DEWR/REAL).
 
