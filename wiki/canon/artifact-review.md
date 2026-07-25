@@ -8,6 +8,7 @@ None. Every citesCanon id resolves to a canon fact.
 ## Stale artifacts (review)
 - **19-slide deck blueprint**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-02)
+  - stretch-price (canon 2026-07-25 > verified 2026-06-02)
 - **Catalytic pitch bundle (7 docs)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-02)
 - **Pencil designed deck**
@@ -18,6 +19,14 @@ None. Every citesCanon id resolves to a canon fact.
   - revenue-received (canon 2026-06-03 > verified 2026-06-02)
 - **Public pitch page + document (/pitch)**
   - beds-deployed (canon 2026-07-18 > verified 2026-05-30)
+- **Cost Lab (/sites/cost-lab)**
+  - stretch-price (canon 2026-07-25 > verified 2026-06-05)
+- **Investor cockpit (/investors)**
+  - stretch-price (canon 2026-07-25 > verified 2026-06-05)
+- **Cost-story (/cost-story)**
+  - stretch-price (canon 2026-07-25 > verified 2026-06-02)
+- **Cost Lab playbook**
+  - stretch-price (canon 2026-07-25 > verified 2026-06-05)
 - **Impact page (/impact)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-03)
   - washers-in-community (canon 2026-07-21 > verified 2026-06-03)
@@ -26,6 +35,7 @@ None. Every citesCanon id resolves to a canon fact.
   - stretch-beds-deployed (canon 2026-05-30 > verified 2026-05-29)
   - communities-served (canon 2026-05-30 > verified 2026-05-29)
   - plastic-kg (canon 2026-05-30 > verified 2026-05-29)
+  - stretch-price (canon 2026-07-25 > verified 2026-05-29)
   - revenue-received (canon 2026-06-03 > verified 2026-05-29)
   - accounts-receivable (canon 2026-06-03 > verified 2026-05-29)
 - **Asset register + bed records (/bed)**
@@ -44,10 +54,13 @@ None. Every citesCanon id resolves to a canon fact.
   - beds-deployed (canon 2026-07-18 > verified 2026-06-17)
 - **SEFA Loan Fund application brief (DRAFT)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-27)
+  - stretch-price (canon 2026-07-25 > verified 2026-06-27)
 - **Snow Foundation first-mover brief (DRAFT)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-27)
+  - stretch-price (canon 2026-07-25 > verified 2026-06-27)
 - **Centrecorp next-round beds brief (DRAFT)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-27)
+  - stretch-price (canon 2026-07-25 > verified 2026-06-27)
 - **Expanded funding-source audit (web + GrantScope, verified top tier)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-28)
 - **Funding pipeline refresh: open-now shortlist with live-verified dates**
@@ -55,11 +68,13 @@ None. Every citesCanon id resolves to a canon fact.
 - **Investment deck (16 slides, rendered)**
   - beds-deployed (canon 2026-07-18 > verified 2026-07-01)
   - washers-in-community (canon 2026-07-21 > verified 2026-07-01)
+  - stretch-price (canon 2026-07-25 > verified 2026-07-01)
 - **Funder one-pager (rendered)**
   - beds-deployed (canon 2026-07-18 > verified 2026-07-01)
 - **Investment machine review (Notion + design surfaces)**
   - beds-deployed (canon 2026-07-18 > verified 2026-07-02)
   - washers-in-community (canon 2026-07-21 > verified 2026-07-02)
+  - stretch-price (canon 2026-07-25 > verified 2026-07-02)
 - **Investment machine blueprint (GHL + Notion operating system)**
   - cleared-voices (canon 2026-07-21 > verified 2026-07-02)
 - **New outreach drafts (LendForGood, Metro, Tripple)**

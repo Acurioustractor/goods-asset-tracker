@@ -18,6 +18,7 @@
  * Uses NEXT_PUBLIC_SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY from .env.local.
  */
 import { createClient } from '@supabase/supabase-js';
+import { readFileSync } from 'node:fs';
 
 // Mirror of CANONICAL_ASSETS in src/lib/data/asset-canonical.ts. The .ts file
 // is the single source of truth; this is the guard's expected snapshot. Keep
@@ -134,6 +135,39 @@ if (drift.length) {
   }
   console.error('\nFix: reconcile src/lib/data/asset-canonical.ts (and every surface) to live,');
   console.error('or investigate whether a bad write landed in the assets register.');
+  process.exit(1);
+}
+
+// ── Shop price lockstep ──────────────────────────────────────────────────────
+//
+// canon.ts `stretch-price` records the shop price for the only direct-sale
+// product. products.ts deliberately holds no prices ("pricing is handled
+// separately via Stripe/Supabase"), so the live products table is the only
+// source that can verify it. This job already holds the credentials, so the
+// fact does not need to stay manual.
+
+const { data: priceRows, error: priceErr } = await supabase
+  .from('products')
+  .select('slug,price_cents,is_active')
+  .eq('slug', 'stretch-bed-single');
+
+if (priceErr) {
+  console.error('\nprice fetch error:', priceErr.message);
+  process.exit(2);
+}
+
+const canonSrc = readFileSync(new URL('../src/lib/data/canon.ts', import.meta.url), 'utf8');
+const canonPrice = Number((canonSrc.match(/id: 'stretch-price'[\s\S]{0,300}?value:\s*(\d+)/) || [])[1]);
+const liveCents = priceRows?.[0]?.price_cents;
+
+console.log(`\nShop price (stretch-bed-single): live $${(liveCents ?? 0) / 100} · canon $${canonPrice}`);
+
+if (!liveCents || !canonPrice || liveCents !== canonPrice * 100) {
+  console.error(
+    `\nDRIFT — canon 'stretch-price' is $${canonPrice}, live products.price_cents is ${liveCents} ` +
+      `($${(liveCents ?? 0) / 100}).\n` +
+      "Fix: reconcile the canon fact to the live price, or correct the price in Supabase.",
+  );
   process.exit(1);
 }
 
