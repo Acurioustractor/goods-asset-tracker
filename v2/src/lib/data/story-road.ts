@@ -354,11 +354,16 @@ export const storyStops: StoryStop[] = [
       { value: 'pending', label: 'run ledger closed', claim: 'target' },
     ],
     videos: [
+      // Descript, not the local recycling-plant cut, and deliberately so: the
+      // top-level mp4s in public/video are gitignored (v2/.gitignore:45, which
+      // matches `public/video/*.mp4` and therefore NOT the partner subdirectories).
+      // The local file plays perfectly in development and 404s in production. CI
+      // caught it. Anything under /video/partners/ or /video/stretch-bed/ IS
+      // tracked and safe to use.
       {
-        kind: 'local',
-        label: 'Inside the containerised production facility',
-        src: '/video/recycling-plant-desktop.mp4',
-        poster: '/video/recycling-plant-poster.jpg',
+        kind: 'descript',
+        label: 'Inside the recycling production facility',
+        embedUrl: 'https://share.descript.com/embed/haRZJbfJadJ',
         caption: 'Shredding, heating and pressing recycled HDPE into sheet.',
       },
       {
