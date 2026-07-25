@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { PLASTIC_KG_PER_BED, STRETCH_BED } from '@/lib/data/products';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 
 /**
  * Centrecorp Foundation partnership — immersive Utopia story.
@@ -22,7 +23,7 @@ const beds = [
   { v: STRETCH_BED.specs.assemblyTime.replace('minutes', 'min'), l: 'to assemble, no tools' },
   { v: `${PLASTIC_KG_PER_BED}kg`, l: 'of recycled plastic per bed' },
   { v: STRETCH_BED.specs.designLifespan.replace('years', 'yrs'), l: 'design life, 5-year warranty' },
-  { v: '540', l: 'beds in homes across 11 communities since 2023' },
+  { v: String(CANONICAL_ASSETS.bedsDeployed), l: `beds in homes across ${CANONICAL_ASSETS.communitiesServed} communities since 2023` },
 ];
 
 const voices = [
@@ -287,8 +288,8 @@ export default function CentrecorpStory() {
         <div className="cc-wrap">
           <div className="cc-statlead cc-reveal">Where the beds have gone</div>
           <div className="cc-statgrid">
-            <div className="cc-stat cc-reveal"><div className="cc-v">540</div><div className="cc-l">beds in homes since 2023</div></div>
-            <div className="cc-stat cc-reveal cc-d1"><div className="cc-v">9</div><div className="cc-l">communities served</div></div>
+            <div className="cc-stat cc-reveal"><div className="cc-v">{CANONICAL_ASSETS.bedsDeployed}</div><div className="cc-l">beds in homes since 2023</div></div>
+            <div className="cc-stat cc-reveal cc-d1"><div className="cc-v">{CANONICAL_ASSETS.communitiesServed}</div><div className="cc-l">communities served</div></div>
             <div className="cc-stat cc-reveal cc-d1"><div className="cc-v">87</div><div className="cc-l">beds to community, this round</div></div>
             <div className="cc-stat cc-reveal cc-d2"><div className="cc-v">1,740kg</div><div className="cc-l">recycled plastic, this round</div></div>
           </div>

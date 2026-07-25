@@ -183,3 +183,60 @@ design/brand/claude-design/*-preview.png
 
 # RED / sacred-source storyteller transcript extractions — never commit (Ben custodian; keep local only)
 thoughts/shared/handoffs/goods-quote-analysis/
+
+# ── Generated artifact dumps (added 2026-07-25) ────────────────────────────
+# These sat untracked for weeks and made `git status` unreadable, which is why
+# the tree looked "50 files dirty" when only ~20 were real work. All regenerable;
+# none referenced from v2/src (checked by grep before ignoring).
+
+# Root brand-assets/ is generator output, not the kit. The real, committed kit is
+# v2/public/brand/goods/ (landed 3bfc455). Regenerate: tools/generate_goods_brand_kit.py
+# NOTE the leading slash on these: a pattern with no internal "/" matches a dir of
+# that name at EVERY level, so bare `outputs/` would also swallow wiki/outputs/.
+/brand-assets/
+/archive/legacy-brand-assets/
+
+# Deck-export artifacts for the superseded .pen decks. The canonical deck spine is
+# v2/public/deck-slides/slides-source.html; render with scripts/render-deck.mjs
+design/exports/
+design/funder-pathways-deck-assets/
+design/funder-pathways-deck-export.html
+design/funder-pathways-slide-crop.html
+
+# Rendered model diagrams. Keep the .mmd source in git, drop the renders.
+diagrams/*.png
+diagrams/*.svg
+diagrams/*.pdf
+
+# Slide/print exports (PPTX, one-off PDFs). The deck and leave-behind PDFs that
+# ARE canonical live under v2/public/deck-slides/ and v2/public/leave-behind/.
+/outputs/
+v2/snow-dash-print-v2.pdf
+
+# Unreferenced image staging under v2/public (nothing in v2/src points at either).
+v2/public/images/_drafts/
+v2/public/strategy/
+
+# Miro export dumps: hash-named PNGs, not documents. The .md files in wiki/outputs
+# ARE real deliverables and stay tracked.
+wiki/outputs/miro-community-model-assets/
+wiki/outputs/*.png
+
+# v2/sites/goods-voices is its OWN git repository. Left untracked, `git add -A`
+# commits it as a bare gitlink with no .gitmodules, which clones as an empty dir.
+# Ignored so that cannot happen. If it should ship with this repo, make it a real
+# submodule instead of removing this line.
+v2/sites/
+
+# ── Design source + generated audit dumps (added 2026-07-25) ─────────────────
+# Pencil .pen files are encrypted binaries: they diff as noise, bloat every
+# clone, and no code reads them (the Pencil editor opens them from disk). Per
+# the standing rule, big media stays out of git and goes to Supabase Storage.
+# NOTE: design/goods-theory-of-change*.pen are already tracked on main and are
+# deliberately left tracked, so this ignore does not delete them.
+*.pen
+
+# audit/*.json is script output: build-inventory.py writes goods-media-inventory
+# .json, build-mapping.py reads it and writes goods-el-mapping.json. Keep the
+# scripts, regenerate the data.
+audit/*.json

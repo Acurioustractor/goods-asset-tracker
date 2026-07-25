@@ -261,6 +261,22 @@ if (orphanDrafts.length) {
   console.error('\nRun the ledger-story consent gate; remove or clear before this draft ships.');
   process.exit(1);
 }
+// Canon lockstep. This script already computed the pool and already knew when the
+// canon fact disagreed, but it only wrote a ⚠ into a markdown report nobody reads
+// on a normal run. That is how cleared-voices sat wrong for five weeks. The pool
+// is derived from in-repo sources (curated-quotes + trip-stories), so a mismatch
+// is always a stale fact or a real content change, and both want a human to look.
+// The remedy is one number, printed below.
+if (displayDrift) {
+  console.error(
+    `CANON: canon.ts 'display-storyteller-pool' says ${canonDisplayCount}, but the computed ` +
+      `pool is ${pool.length} (curated-quotes + trip-stories cleared VoiceCards).\n` +
+      `  Set the fact's value to ${pool.length} and refresh its asAt. This is a coverage ` +
+      `queue, not a consent decision, so the count follows the content.`,
+  );
+  process.exit(1);
+}
+
 const gapCount = (cadenceOverdue ? 1 : 0) + unfeatured.length + illGaps.length;
 if (gapCount && STRICT) {
   console.warn(`${gapCount} coverage/cadence gap(s) (see wiki/canon/story-coverage.md). Failing under --strict.`);

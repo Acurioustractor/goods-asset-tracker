@@ -92,8 +92,8 @@ export const CANON: CanonFact[] = [
   {
     id: 'washers-in-community', label: 'Washing machines in community', value: CANONICAL_ASSETS.washersInCommunity, unit: 'units',
     domain: 'assets', claimLabel: 'verified', dataClass: 'green',
-    source: 'Curated in-community count (Ben-confirmed 2026-06-11; +2 Maningrida 2026-07-18; +2 Julalikari Tennant Creek 2026-07-19); supersedes the register deployed-row count pending a status cleanup. Purchase ledger: wiki/outputs/2026-05-14-washing-machine-final-reconciliation.md', check: 'manual', asAt: '2026-07-19', owner: 'Ben',
-    definition: '20 Pakkimjalki Kari washing machines in community (16 confirmed 2026-06-11 + 2 Maningrida + 2 Julalikari TC, Jul 2026). Single public figure; not auto-derived from the register.',
+    source: 'Ben ruling 2026-07-21, settled per community against the live register (supersedes the old curated 20). The register still shows 32 deployed washer rows because 10 are stale (Tennant Creek 7, Alice Springs 2, Darwin 1 pending restatus to retired). Purchase ledger: wiki/outputs/2026-05-14-washing-machine-final-reconciliation.md; ruling table: CONTEXT.md', check: 'manual', asAt: '2026-07-21', owner: 'Ben',
+    definition: '22 Pakkimjalki Kari washing machines in community: Maningrida 8, Tennant Creek 9, Palm Island 4, Alice Springs 1, Darwin 0. Single public figure; becomes register-derivable once the 10 stale deployed rows are restatused.',
   },
   {
     id: 'communities-served', label: 'Communities served', value: CANONICAL_ASSETS.communitiesServed, unit: 'communities',
@@ -143,7 +143,7 @@ export const CANON: CanonFact[] = [
   {
     id: 'stretch-price', label: 'Stretch Bed price', value: 750, unit: 'AUD',
     domain: 'product', claimLabel: 'verified', dataClass: 'green',
-    source: 'v2 Supabase `products` (stretch-bed-single, price_cents=75000)', check: 'manual', asAt: '2026-05-29', owner: 'Nic',
+    source: 'v2 Supabase `products` (stretch-bed-single, price_cents=75000). Flipped to check: auto on 2026-07-25 — check-asset-drift.mjs verifies this against the live products row. products.ts deliberately holds no prices, so the live table is the only source that can confirm it, and that job already holds the credentials.', check: 'auto', asAt: '2026-07-25', owner: 'Nic',
     definition: 'Current shop price for the only direct-sale product.',
   },
   {
@@ -161,8 +161,8 @@ export const CANON: CanonFact[] = [
   {
     id: 'marginal-community', label: 'Marginal cost / bed (Community)', value: 421, unit: 'AUD',
     domain: 'cost', claimLabel: 'modelled', dataClass: 'green',
-    source: 'cost-model/engine.ts (free-feedstock + fair-wage assumption)', check: 'manual', asAt: '2026-05-29', owner: 'Ben',
-    definition: 'MODELLED on a fair-wage band ($100-160) and $0 free feedstock. Never group under engine-locked.',
+    source: 'cost-model/engine.ts computeModel(DEFAULTS).marginalCommunity = stateCommunity 270.74 + longHaulFreight 150 = 420.74, rounded to 421. Verified 2026-07-25 and flipped to check: auto — canon.guards.test.ts recomputes it from the engine and fails on a mismatch.', check: 'auto', asAt: '2026-07-25', owner: 'Ben',
+    definition: 'MODELLED on a fair-wage band ($100-160) and $0 free feedstock. Never group under engine-locked. This is the COMMUNITY build, engine field marginalCommunity, not marginalFactory (425.74) and not marginalKit (684.79). The QBE sweep\'s ~$426/bed is the factory figure; do not reconcile the two, they are different build methods.',
   },
   {
     id: 'save-per-bed', label: 'Saving from pressing in-house', value: 194, unit: 'AUD',
@@ -177,24 +177,24 @@ export const CANON: CanonFact[] = [
   // computed live by Loop E (check-story-coverage.mjs). Do NOT conflate them: external claims
   // use cleared-voices; the pool is a coverage queue, not a clearance list.
   {
-    id: 'cleared-voices', label: 'Consent-cleared voices (external use)', value: 32, unit: 'voices',
+    id: 'cleared-voices', label: 'Consent-cleared voices (external use)', value: 34, unit: 'voices',
     domain: 'story', claimLabel: 'verified', dataClass: 'red',
-    source: 'Ben consent pass 2026-06-17 (wiki/outputs/2026-06-17-storyteller-quote-decision-sheet.md); quotes from curated-quotes.ts + trip-stories.ts; supersedes the prior 3-voice strict list (pack 05)', check: 'manual', asAt: '2026-06-17', owner: 'Ben',
-    definition: 'Voices Ben cleared for EXTERNAL use (funder material, public web, QBE) in the 2026-06-17 consent pass: Ivy Johnson, Dianne Stokes, Ray Nelson, Mykel, Kristy Bloomfield, Norman Frank, Linda Turner, Alfred Johnson, Brian Russell, Karen Liddle, Katrina Bloomfield, Annie Morrison, Heather Mundo, Fred Campbell, Gloria Turner, Carmelita & Colette (joint card), Daniel Patrick Noble, Shayne Bloomfield, Jason, Gary, Dorrie Jones (consent confirmed 2026-06-17), Cliff Plummer, Mark, Melissa Jackson, Patricia Frank, Risilda Hogan, Tracy McCartney, Jimmy Frank, Xavier (consent confirmed 2026-06-17; pictured on the main Stretch Bed photo; story told in Fred Campbell\'s voice, no own EL record), + practitioner voices Dr Boe Remenyi, Chloe & Wayne Glenn (label as practitioners, NOT community recipients). RED: never to external models, never auto-published. Broader website roster = display-storyteller-pool.',
+    source: 'Ben consent pass 2026-06-17 (wiki/outputs/2026-06-17-storyteller-quote-decision-sheet.md), which cleared 32; quotes from curated-quotes.ts + trip-stories.ts; supersedes the prior 3-voice strict list (pack 05). Moved to 34 on 2026-07-21 with Margaret Lloyd and Tanya Turner. The asAt is 2026-07-21 because that is the latest documented clearing event (Margaret Lloyd resolved and her portrait made public); if the pass that added Tanya Turner carries a different date, correct asAt to it. Reconciled 2026-07-25: cleared-voices.ts holds 34 distinct people (37 entries, 3 of them alias spellings) and storyteller-registry.ts holds 34 at tier external, matching both directions with no unresolved spellings. Flipped to check: auto on 2026-07-25 — check-storyteller-registry.mjs now fails if this value and the registry tier-external count disagree. Manual protected the decision, not the count, and the count is derivable from the tiers. Ben still owns who is cleared; the tier on a record is how that decision is expressed.', check: 'auto', asAt: '2026-07-21', owner: 'Ben',
+    definition: 'Voices Ben cleared for EXTERNAL use (funder material, public web, QBE). From the 2026-06-17 consent pass: Ivy Johnson, Dianne Stokes, Ray Nelson, Mykel, Kristy Bloomfield, Norman Frank, Linda Turner, Alfred Johnson, Brian Russell, Karen Liddle, Katrina Bloomfield, Annie Morrison, Heather Mundo, Fred Campbell, Gloria Turner, Carmelita & Colette (joint card), Daniel Patrick Noble, Shayne Bloomfield, Jason, Gary, Dorrie Jones (consent confirmed 2026-06-17), Cliff Plummer, Mark, Melissa Jackson, Patricia Frank, Risilda Hogan, Tracy McCartney, Jimmy Frank, Xavier (consent confirmed 2026-06-17; pictured on the main Stretch Bed photo; story told in Fred Campbell\'s voice, no own EL record), + practitioner voices Dr Boe Remenyi, Chloe & Wayne Glenn (label as practitioners, NOT community recipients). Added after that pass, taking the count from 32 to 34: Margaret Lloyd (the Utopia "Margaret", resolved 2026-07-21, crm + EL linked, portrait public), Tanya Turner (Oonchiumpa manager). RED: never to external models, never auto-published. Broader website roster = display-storyteller-pool. The operative gate is cleared-voices.ts; this fact records the count, not the check.',
     reconcilesWith: ['display-storyteller-pool'],
   },
   {
     id: 'display-storyteller-pool', label: 'Website storyteller pool (display tier)', value: 32, unit: 'voices',
     domain: 'story', claimLabel: 'internal-only', dataClass: 'red',
-    source: 'check-story-coverage.mjs computed pool (curated-quotes.ts ∪ trip-stories.ts cleared VoiceCards); mirror of wiki/canon/story-coverage.md', check: 'manual', asAt: '2026-06-16', owner: 'Ben',
+    source: 'check-story-coverage.mjs computed pool (curated-quotes.ts ∪ trip-stories.ts cleared VoiceCards); mirror of wiki/canon/story-coverage.md. Flipped to check: auto on 2026-07-25 — that script computed this number all along and knew when the fact disagreed, but only wrote a warning into a markdown report. It now exits 1 on a mismatch and prints the correct value.', check: 'auto', asAt: '2026-06-16', owner: 'Ben',
     definition: 'Named voices live on the website via a public curated quote or a cleared trip VoiceCard (incl. partners/board). A coverage queue, NOT the external-clearance list — use cleared-voices for any external/funder claim. Mirrors the Loop E computed pool; re-confirm each run (Loop E warns if this drifts from the computed count).',
     reconcilesWith: ['cleared-voices'],
   },
   {
-    id: 'el-published-stories', label: 'Empathy Ledger published stories', value: 0, unit: 'stories',
+    id: 'el-published-stories', label: 'Empathy Ledger published stories (public)', value: 2, unit: 'stories',
     domain: 'story', claimLabel: 'verified', dataClass: 'amber',
-    source: 'Empathy Ledger API (goods-on-country project)', check: 'manual', asAt: '2026-06-03', owner: 'Ben',
-    definition: '240 storytellers, 0 published. Site falls back to local journeyStories until EL publish-flips land.',
+    source: 'Empathy Ledger Supabase, Goods project 6bd47c8a-e676-456f-aa25-ddcbb5a31047. Re-derive with: GET /rest/v1/stories?project_id=eq.<goods>&status=eq.published&select=is_public,has_explicit_consent,consent_withdrawn_at,is_archived — count rows where is_public is true. Still check: manual because CI holds Goods Supabase secrets but not EL ones; flip to auto once EMPATHY_LEDGER_SUPABASE_* reach the workflow.', check: 'manual', asAt: '2026-07-25', owner: 'Ben',
+    definition: 'Goods stories publicly readable from EL. Measured 2026-07-25: 10 rows carry status=published, but only 2 have is_public=true, and those 2 are exactly the ones returned by the canonical stories_for_site syndication RPC. All 10 carry explicit consent and syndication_enabled, so the gate holding the other 8 is the public flip, not consent. This fact counts the 2. The earlier value of 0 was correct on 2026-06-03 and went stale: the publish-flips the old definition was waiting on have partly landed. The site still falls back to local journeyStories for anything it cannot fetch.',
   },
 
   // ── Governance / legal (entity structure — QBE Area 09 keystone. ABNs are public ABR records.) ──
