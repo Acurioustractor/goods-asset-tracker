@@ -1,6 +1,6 @@
 # Handoff — pitch alignment, 2026-07-25
 
-**Branch:** `claude/investment-deck-alignment-y3qc43` · pushed through `0d9d909`
+**Branch:** `claude/investment-deck-alignment-y3qc43` · pushed through `3bfc455`
 **Read first:** `wiki/outputs/2026-07-25-goods-pitch-canonical-map.md` (THE map, supersedes 07-18)
 
 ---
@@ -20,6 +20,8 @@ Four commits:
 | `6d3b03e` | Deck re-cut to the 12-slide model-led spine + `check-deck-overflow.mjs` gate |
 | `4716dcb` | Chrome-free map exports at canon (`render-map-export.mjs`) |
 | `0d9d909` | Canonical pitch surface named; 07-18 map superseded |
+| `89f1051` | Approved grounded lockup onto all 12 deck slides + brand-kit review |
+| `3bfc455` | The approved Goods. identity kit landed (parallel session's work, reviewed) |
 
 **Locked stages:** Yarn / Shape / Resource / Deliver / Transfer / Grow.
 **Nine modules:** Products, Equipment, Place, Skills, People, Systems, Enterprise, **Money**, Story + evidence.
@@ -45,13 +47,18 @@ presenter notes by slide number, so a mismatch silently mislabels every note.
 
 ## ⚠ Before you commit anything
 
-**77 files in the working tree are NOT from this work.** Another session has an uncommitted
-brand/logo refactor in flight: `v2/public/logo.svg` and 13 files under `v2/public/brand/logos/`
-**deleted**, plus `manifest.json`, `layout.tsx`, `site-header`, `site-footer`, newsletter forms,
-SEO components, `admin-sidebar`, `design/brand/tokens.css`, and several `wiki/canon/*` files.
+**50 files in the working tree are NOT from this work**, and they belong to a parallel session.
 
-There are **no cross-session commits**, so it is purely working-tree state. It was deliberately left
-alone. **Do not `git add -A`** — you would commit another session's half-finished logo deletions.
+The **brand/logo half has been reviewed and landed** as `3bfc455` (see the brand review below), so
+those 14 deletions are no longer at risk of being accidentally reverted. What remains dirty is the
+rest of that session's work, which was NOT reviewed and NOT touched: newsletter forms and
+`api/newsletter`, `admin-sidebar` + `admin-routes`, `api/admin/field-note-override`,
+`canberra/follow-form`, `sponsor`, `media-swap-picker`, `stories/trip-story`, `v2/.wiki-content/*`,
+`v2/data/field-note-overrides.json`, four `wiki/canon/*` files, two `wiki/outputs/2026-07-23-*`
+files, and `design/Goods_Final_Deck.pen`.
+
+There are **no cross-session commits**, so it is purely working-tree state. **Do not `git add -A`**
+— stage explicit paths, and leave the above for its owner.
 Stage explicit paths.
 
 `design/Goods_Final_Deck.pen`, `Goods_Deck_SHIP.pen` and the untracked
@@ -60,8 +67,9 @@ spine. `Goods_Funder_Pathways_Deck.pen` is a single **flattened rectangle** and 
 
 ## Review of the other session's brand/logo work (2026-07-25)
 
-**Verdict: it is sound and complete. Keep it.** It was reviewed rather than assumed, because it
-deletes 14 tracked files.
+**Verdict: sound and complete. Reviewed and LANDED as `3bfc455`,** including the generator at
+`tools/generate_goods_brand_kit.py`. It was reviewed rather than assumed, because it deletes 14
+tracked files.
 
 What it did: retired `v2/public/brand/logos/*.svg` (12 files), `v2/public/logo.svg` and
 `brand-board.html`, replacing them with a proper kit at `v2/public/brand/goods/` — 10 outlined SVG
