@@ -12,7 +12,7 @@ problem. Six deck artifacts were built in eight days because the model underneat
 The Notion business plan "Communities Choose What They Need" (2026-07-25) settled it: the unit of
 the story is the pathway a community chooses, not the bed.
 
-Four commits:
+Six commits:
 
 | Commit | What |
 |---|---|
@@ -37,7 +37,7 @@ appeared a **second** time in §6, and "Listen" survived in §3 and §11. **Re-r
 ## Verify in one pass
 
 ```bash
-cd v2 && npm run build && npm run check:drift        # both green as at 0d9d909
+cd v2 && npm run build && npm run check:drift        # both green as at 3bfc455
 NODE_PATH="$(npm root -g)/@playwright/mcp/node_modules" node scripts/check-deck-overflow.mjs   # 12/12
 ```
 
@@ -59,7 +59,6 @@ files, and `design/Goods_Final_Deck.pen`.
 
 There are **no cross-session commits**, so it is purely working-tree state. **Do not `git add -A`**
 — stage explicit paths, and leave the above for its owner.
-Stage explicit paths.
 
 `design/Goods_Final_Deck.pen`, `Goods_Deck_SHIP.pen` and the untracked
 `Goods_Funder_Pathways_Deck.pen` are also other-session artifacts, all now superseded by the HTML
