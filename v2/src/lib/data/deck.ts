@@ -354,7 +354,10 @@ export const deckSlides: DeckSlide[] = [
       // RULING G/H 2026-07-25: not accountant-signed, and not "measured" either. Workpaper.
       { label: 'Revenue · Goods-only carve-out (workpaper)', value: 'AU$713,827' },
       { label: 'Proposed · the ask', value: 'AU$400K QBE Catalysing Impact' },
-      { label: 'Gate', value: 'Signed LOIs by 31 Aug 2026' },
+      // RULING M 2026-07-25: the gate is a dollar test, not a count. The terms say "at least
+      // matched by signed external commitments" with no LOI number. 31 Aug is OUR internal
+      // paper-in date; the program's own deadline is the 14 Sep application.
+      { label: 'Gate', value: 'Signed match paper in by 31 Aug · app 14 Sep' },
     ],
     goDeeper: [
       { label: 'Every number, audited', href: '/register' },

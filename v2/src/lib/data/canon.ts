@@ -230,7 +230,7 @@ export const CANON: CanonFact[] = [
     id: 'signed-lois', label: 'Signed LOIs', value: 0, unit: 'LOIs',
     domain: 'pipeline', claimLabel: 'verified', dataClass: 'amber',
     source: 'GHL Supporter-Journey pipeline (Committed / Signed-LOI stage)', check: 'manual', asAt: '2026-05-30', owner: 'Ben',
-    definition: 'Signed letters of intent across all 3 Goods pipelines. The QBE match gate needs >=3 signed LOIs by 31 Aug 2026; this is the headline conversion metric. A moving number — re-confirm from GHL before citing.',
+    definition: 'Signed letters of intent across all 3 Goods pipelines; the headline conversion metric. The QBE match gate is a DOLLAR test, not a count: the recorded terms say the Stage 2 grant "must be at least matched by signed external commitments" with no number attached (wiki/investor/04-qbe-pipeline.md:9-14). The old ">=3 signed LOIs" assertion had no source and was struck 2026-07-25 (DECISIONS.md ruling M). Match is judged on signed, verifiable paper: amount, instrument, funder legal name, and a contact SIH can call, which is a letter, not a facility agreement. Application is due 14 Sep 2026; 31 Aug is our OWN internal all-paper-in gate, not a program deadline. A moving number, re-confirm from GHL before citing.',
   },
 ];
 

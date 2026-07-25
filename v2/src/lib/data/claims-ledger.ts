@@ -205,7 +205,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   {
     id: 'signed-lois',
     headline: 'Signed match-eligible commitments',
-    statement: 'Zero signed LOIs today. The QBE match gate needs at least three by 31 August 2026; the first signed commitment is the deck’s own claim flipping from future to verified.',
+    statement: 'Zero signed match-eligible commitments today. The QBE terms require the Stage 2 grant to be at least matched by signed external commitments, which is a dollar test with no LOI count attached; match is judged on signed, verifiable paper (amount, instrument, funder legal name, a contact SIH can call). Application is due 14 September 2026, and 31 August is our own internal gate for having the paper in. The first signed commitment is the deck’s own claim flipping from future to verified.',
     status: 'future',
     evidence: [{ label: 'Investor deck', href: '/deck' }],
     asOf: canonFact('signed-lois').asAt,

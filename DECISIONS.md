@@ -146,6 +146,15 @@ gate needs "at least three signed LOIs by 31 August". The recorded program terms
 count, and Ben's own locked answer (`CONTEXT.md:34`) is a dollar figure. **No source exists for
 the number three.** Both files to state what the terms say.
 
+**SWEPT 2026-07-25.** `canon.ts` and `claims-ledger.ts` now state the terms: the gate is a
+DOLLAR test with no count, judged on signed verifiable paper (amount, instrument, funder legal
+name, a contact SIH can call). A second overstatement surfaced during the sweep and was fixed
+with it: both files, and the deck's Gate chip, presented **31 August as the program deadline**.
+It is not. The recorded terms put the application at **14 September 2026** with outcomes in
+November; **31 August is our OWN internal all-paper-in gate**. Presenting an internal target as
+a funder's deadline manufactures urgency we would then have to explain. `deck.ts` Gate chip now
+reads "Signed match paper in by 31 Aug · app 14 Sep".
+
 **The reframe that changes the sequence.** QBE judges match on "signed, verifiable paper:
 amount, instrument, funder legal name, a contact SIH can call". That is a **letter, not a
 facility agreement**. Thirty-seven days from a standing start to executed SEFA facility docs is
