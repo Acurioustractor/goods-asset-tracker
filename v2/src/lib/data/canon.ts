@@ -19,6 +19,35 @@
  */
 import { CANONICAL_ASSETS } from './asset-canonical';
 
+/**
+ * What claim a FACT can carry. One of three claim-ish vocabularies in this
+ * codebase, which look mergeable and are not. Written down because the
+ * temptation to collapse them is real and would lose meaning:
+ *
+ *   ClaimLabel    (here)                  subject: a FACT.
+ *                                         "how well evidenced is this number"
+ *   ClaimStatus   (claims-ledger.ts)      subject: an external CLAIM.
+ *                                         Shares most values, but adds 'locked',
+ *                                         which is a claim we PUBLISH as
+ *                                         deliberately withheld, with a ceiling
+ *                                         and a promised flip date. That is not
+ *                                         the same as 'internal-only' here,
+ *                                         which means the fact is simply not
+ *                                         shown.
+ *   EvidenceState (community-pathways.ts) subject: HOW something was evidenced,
+ *                                         not how strongly. Carries
+ *                                         'community-confirmation', which is a
+ *                                         distinct epistemology from a measured
+ *                                         figure and is the point rather than a
+ *                                         weaker version of 'verified'.
+ *
+ * Separately: the deck-hygiene labels in the standing rules
+ * (observed/requested/agreed/delivered/measured/proposed) are NOT this axis.
+ * They track a commitment through its lifecycle, which the code models as
+ * DemandStatus on bed demand. Do not import them here.
+ *
+ * Labels mirror the QBE Diagnostic Artifact Database and the hub legend.
+ */
 export type ClaimLabel = 'verified' | 'modelled' | 'target' | 'future' | 'internal-only';
 export type CanonDomain = 'assets' | 'money' | 'story' | 'product' | 'cost' | 'pipeline' | 'governance';
 /** GREEN = public-safe. AMBER = internal/management. RED = recipient/storyteller data, never to external models, never auto-published. */
