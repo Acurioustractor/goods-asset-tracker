@@ -153,6 +153,32 @@ for (const name of allowNames) {
   }
 }
 
+// ── Canon lockstep: the cleared-voices fact counts what the registry holds ────
+//
+// The canon fact sat at 32 from the 2026-06-17 pass while the registry and the
+// allowlist both moved to 34 (Margaret Lloyd, Tanya Turner). Nothing noticed for
+// five weeks, because the fact was check: 'manual' and manual meant unchecked.
+//
+// Ben still owns the DECISION about who is cleared. That decision is expressed
+// by the tier on a registry record. This only checks that the canon COUNT
+// matches the decisions already recorded, which is mechanical and should never
+// have been a human's job.
+
+const canonText = readFileSync(join(SRC, 'lib/data/canon.ts'), 'utf8');
+const clearedFact = canonText.match(/id: 'cleared-voices'[\s\S]{0,400}?value:\s*(\d+)/);
+
+if (!clearedFact) {
+  violations.push(
+    "CANON: could not read the 'cleared-voices' fact value from canon.ts — the guard cannot verify it",
+  );
+} else if (Number(clearedFact[1]) !== externalRecords.length) {
+  violations.push(
+    `CANON: canon.ts 'cleared-voices' says ${clearedFact[1]}, but the registry holds ` +
+      `${externalRecords.length} records at tier 'external'. Update the fact's value, asAt and ` +
+      `definition to match the tier decisions, or fix the tier that is wrong.`,
+  );
+}
+
 // ── Report ───────────────────────────────────────────────────────────────────
 
 if (violations.length) {
