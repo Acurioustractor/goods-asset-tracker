@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { getGoodsStorytellers, slugify } from '@/lib/storytellers';
+import { getPublicStorytellers, slugify } from '@/lib/storytellers';
 import { StorytellerAvatar } from '@/components/storyteller-avatar';
 
 export const metadata: Metadata = {
@@ -11,7 +11,9 @@ export const metadata: Metadata = {
 export const revalidate = 300; // 5 min — matches EL cache TTL
 
 export default async function StorytellersIndex() {
-  const storytellers = await getGoodsStorytellers();
+  // Consent gate (default-deny): cleared voices only. This is a public,
+  // indexable route, so an uncleared name must not appear here at all.
+  const storytellers = await getPublicStorytellers();
 
   // Elders first (their voices anchor the project), then alphabetical
   const sorted = [...storytellers].sort((a, b) => {
