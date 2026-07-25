@@ -150,10 +150,23 @@ function Video({ video }: { video: StoryVideo }) {
   );
 }
 
+/**
+ * Gap markers are a REVIEW tool, not public copy.
+ *
+ * They exist so a missing photo or voice stays countable instead of being papered
+ * over by a fallback. But they read as unfinished to a funder, and their text
+ * discusses editorial state, so they render only for someone who asked to see
+ * them: in development, or on ?review=1.
+ *
+ * This is not the same as hiding them. `storyGaps()` still enumerates every one,
+ * and the tests still hold them. The gap stays counted; it just is not published.
+ */
 function Gap({ gap }: { gap: StoryGap }) {
   return (
     <div className="my-8 rounded-md border border-dashed px-5 py-4 text-sm text-muted-foreground">
-      <span className="font-medium text-foreground">Missing {gap.slot}: {gap.wanted}</span>
+      <span className="font-medium text-foreground">
+        Missing {gap.slot}: {gap.wanted}
+      </span>
       <span className="block mt-1">{gap.reason}</span>
     </div>
   );
@@ -181,7 +194,7 @@ function Gallery({ images }: { images: StoryImage[] }) {
   );
 }
 
-function Stop({ stop }: { stop: StoryStop }) {
+function Stop({ stop, showGaps }: { stop: StoryStop; showGaps: boolean }) {
   return (
     <section id={stop.id} className="scroll-mt-24 border-t py-16 md:py-24">
       <p className="text-sm uppercase tracking-[0.14em] text-muted-foreground">{stop.eyebrow}</p>
@@ -227,17 +240,23 @@ function Stop({ stop }: { stop: StoryStop }) {
         <Video key={video.kind === 'local' ? video.src : video.embedUrl} video={video} />
       ))}
 
-      {stop.gaps?.map((gap) => (
-        <Gap key={`${gap.slot}-${gap.wanted}`} gap={gap} />
-      ))}
+      {showGaps &&
+        stop.gaps?.map((gap) => <Gap key={`${gap.slot}-${gap.wanted}`} gap={gap} />)}
     </section>
   );
 }
 
 // ─────────────────────────────────────────────────────────── page
 
-export default function StoryRoadPage() {
+export default async function StoryRoadPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ review?: string }>;
+}) {
   const placeStops = storyStops.filter((s) => s.kind === 'stop');
+  const { review } = await searchParams;
+  // Review mode: everywhere in development, on ?review=1 in production.
+  const showGaps = process.env.NODE_ENV === 'development' || review === '1';
 
   return (
     <main className="mx-auto max-w-3xl px-5 pb-32 pt-16 md:pt-24">
@@ -292,7 +311,7 @@ export default function StoryRoadPage() {
       </nav>
 
       {storyStops.map((stop) => (
-        <Stop key={stop.id} stop={stop} />
+        <Stop key={stop.id} stop={stop} showGaps={showGaps} />
       ))}
 
       <footer className="border-t pt-10 text-sm text-muted-foreground">

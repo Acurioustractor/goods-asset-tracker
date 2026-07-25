@@ -231,7 +231,7 @@ export const storyStops: StoryStop[] = [
       {
         slot: 'video',
         wanted: 'Dianne Stokes on the washing machine',
-        reason: 'Referenced as a Descript cut in the current /story page but never wired to a URL. Not in the Notion media record either.',
+        reason: 'A Dianne Stokes washing-machine cut is referenced in older material but has never been wired to a playable URL, and it is not in the current media record.',
       },
     ],
     note: 'Dr Boe Remenyi is a PRACTITIONER and must be labelled as such in the UI, not as a community recipient (cleared-voices.ts rule). Washer count is 22 from canon, NOT the 20 in the Notion source: Ben\'s 2026-07-21 per-community ruling supersedes it. Washer count is curated, never row-derived.',
@@ -370,12 +370,12 @@ export const storyStops: StoryStop[] = [
     gaps: [
       {
         slot: 'voice',
-        wanted: 'A Maningrida or East Arnhem voice',
+        wanted: 'A Maningrida voice',
         reason:
-          'No cleared voice exists for this stop. The only East Arnhem record in the registry is consent tier "hold", so it cannot be used. This is the one stop on the road carried entirely by our own account of it.',
+          'Confirmed by Ben, 2026-07-25: there is no Maningrida voice yet. This is the one stop on the road carried entirely by our own account of it, and it should say so rather than read as though nobody had anything to say.',
       },
     ],
-    note: 'PHOTOS: the 10 Maningrida/Gamardi trip photos, consent obtained and evidenced per Ben\'s 2026-07-21 ruling (CONTEXT.md:77), cleared for external use INCLUDING the children, the Elder and the identifiable faces. They lived only in `design/starred-images/`, which is gitignored (.gitignore:80), which is why they had never reached any public surface. Originals stay at `design/deck-photos/maningrida-trip/`. ONE THING STILL OPEN on that ruling: the consent evidence is not pointed at from the repo, so when Ben names where it lives (registry entry, EL consent record or signed form) the reference belongs on the manifest rows. THE FACTORY PATH IS PROVEN: 40+ beds pressed and assembled in-house at the farm, and this batch was 60. NEVER write "zero beds pressed in-house" on any surface; that claim has regressed twice. The before/after framing is the Notion source\'s own and is the honest version: capability proven, economics not yet measured.',
+    note: 'VOICE: none exists, confirmed by Ben 2026-07-25. The only East Arnhem record in the registry is tier `hold` and must not be reached for. The consent-tier detail is kept HERE and deliberately not in the rendered gap text: gap markers are public, and the internal consent state of a named person is not something to publish. Getting a Maningrida voice is a field job, not a data job. PHOTOS: the 10 Maningrida/Gamardi trip photos, consent obtained and evidenced per Ben\'s 2026-07-21 ruling (CONTEXT.md:77), cleared for external use INCLUDING the children, the Elder and the identifiable faces. They lived only in `design/starred-images/`, which is gitignored (.gitignore:80), which is why they had never reached any public surface. Originals stay at `design/deck-photos/maningrida-trip/`. ONE THING STILL OPEN on that ruling: the consent evidence is not pointed at from the repo, so when Ben names where it lives (registry entry, EL consent record or signed form) the reference belongs on the manifest rows. THE FACTORY PATH IS PROVEN: 40+ beds pressed and assembled in-house at the farm, and this batch was 60. NEVER write "zero beds pressed in-house" on any surface; that claim has regressed twice. The before/after framing is the Notion source\'s own and is the honest version: capability proven, economics not yet measured.',
   },
 
   // ────────────────────────────────────────────────────────── stop 7
@@ -465,7 +465,7 @@ export const storyStops: StoryStop[] = [
       {
         slot: 'photo',
         wanted: 'A Basket Bed in use, and one intermediate woven/frame trial',
-        reason: 'No cleared Basket Bed photography located under v2/public/images. The product it corrects is invisible on the page, which weakens the correction.',
+        reason: 'No cleared Basket Bed photography exists. The product this stop corrects is invisible on the page, which weakens the correction.',
       },
     ],
     note: 'The Weave Bed is DISCONTINUED and must not be named as a product; the intermediate trials are described generically for that reason. Basket Beds are excluded from the recycled-HDPE total, which is why the plastic figure is Stretch-Bed-only. This stop deliberately holds no lead photo rather than borrowing a Stretch Bed image, which would illustrate the wrong object.',
@@ -497,7 +497,7 @@ export const storyStops: StoryStop[] = [
       {
         slot: 'photo',
         wanted: 'A single image that reads as the five movements',
-        reason: 'Ruling C says the model is earned, not asserted. A diagram here would assert it. Left empty pending a real photo of the transfer work.',
+        reason: 'The model is earned, not asserted, and a diagram here would assert it. Left empty pending a real photo of the transfer work.',
       },
     ],
     note: 'CLAIM CEILING. Goods can say the products support household conditions connected to rest, hygiene, skin health and environmental health. It CANNOT say the beds have reduced rheumatic heart disease, scabies or hospitalisation without a partner-led evaluation measuring those outcomes. scabies-to-RHD is the WHY, never a claimed outcome. Figures are canon (the register), not the Notion page\'s founder-confirmed post-register update.',
@@ -570,7 +570,7 @@ export const storyStops: StoryStop[] = [
       {
         slot: 'photo',
         wanted: 'A closing image: the handover, or the road out',
-        reason: 'No image in the repo reads as transfer rather than delivery. Using a delivery photo here would undercut the sentence it sits beneath.',
+        reason: 'No image we hold reads as transfer rather than delivery. Using a delivery photo here would undercut the sentence it sits beneath.',
       },
     ],
     note: 'The north star is imported as one constant elsewhere in the codebase (NORTH_STAR in content.ts) and is restated here as prose only. If the north star changes, this stop changes with it. "Come to own the making" is the pathway framing and must never harden into a completed claim.',

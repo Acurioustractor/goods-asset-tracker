@@ -151,6 +151,17 @@ describe('media gaps', () => {
     }
   });
 
+  it('keeps repo paths, file names and consent tiers out of gap text', () => {
+    // Gap markers render on ?review=1, which is a URL anyone can guess. Editorial
+    // state belongs in `note`, which never reaches the DOM.
+    for (const gap of storyGaps()) {
+      const text = `${gap.wanted} ${gap.reason}`;
+      expect(text, `${gap.stopId}`).not.toMatch(/v2\/|\.tsx?\b|public\/images|\.mjs\b/);
+      expect(text, `${gap.stopId}`).not.toMatch(/tier ["'`]?(hold|pending|internal)/i);
+      expect(text, `${gap.stopId}`).not.toMatch(/ruling [A-Z]\b/);
+    }
+  });
+
   it('leaves the photo null on any stop that declares a photo gap', () => {
     for (const stop of storyStops) {
       if ((stop.gaps ?? []).some((g) => g.slot === 'photo')) {
