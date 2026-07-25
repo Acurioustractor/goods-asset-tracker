@@ -7,7 +7,9 @@ name: CI
 
 on:
   push:
-    branches: [main, 'feat/**', 'fix/**', 'chore/**']
+    # 'claude/**' matters: every Claude Code session works on a claude/* branch,
+    # so without it a session's pushes ran no checks at all until PR time.
+    branches: [main, 'feat/**', 'fix/**', 'chore/**', 'claude/**', 'docs/**']
   pull_request:
   schedule:
     # Daily live asset-register drift check at 19:00 UTC.
