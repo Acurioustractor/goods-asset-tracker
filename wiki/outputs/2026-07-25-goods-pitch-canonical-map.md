@@ -5,6 +5,22 @@
 **Read this before touching any pitch artifact.** If a deck, diagram, number or photo is not
 pointed to here, it is not canonical.
 
+> ⚠ **PARTIALLY SUPERSEDED, same day. Read `/DECISIONS.md` first; it wins wherever the two disagree.**
+> This map was written before the master strategy alignment session and three rulings landed on it:
+>
+> - **RULING C/F.** This file's model-led 12-slide rebuild (§4 below) was one of **five narrative
+>   spines live at once**, and it is not the spine. **The spine is THE ROAD**: seven stops and the
+>   gap, voices leading each stop, and **the model arriving near the END** as what the road produced.
+>   Money never gets its own section again.
+> - **RULING G/H.** The carve-out is **not accountant-signed**. No signed accountant document exists.
+>   The **figure $713,827 stays**; the word comes off, and the label is workpaper.
+> - **RULING I.** **"Roughly 75 to 100 beds/yr" is retired as a public claim.** It divided $329/bed
+>   into `LOCATIONS.on_country.rentPerYear`, a rent line. The computed replacement is in
+>   `2026-07-25-matt-model-inputs-session-pack.md` §5, and it is an estimate for scenario study,
+>   never a threshold said to a funder.
+>
+> The photo, map, export and asset sections below are unaffected and still canonical.
+
 ---
 
 ## 0. Why this file exists a second time
@@ -105,15 +121,19 @@ community selects, and naming it makes the third money lane visible inside the b
 ## 4. Numbers (canon)
 
 **540 beds** = 363 Basket + 177 Stretch · **22 washers** · **11 communities** · **3,540kg**
-(177 Stretch × 20kg; Basket counts zero) · **$713,827** Goods-only FY26 YTD (accountant-signed
-carve-out).
+(177 Stretch × 20kg; Basket counts zero) · **$713,827** Goods-only FY26 YTD carve-out, **workpaper,
+prepared with the accountant but NOT accountant-signed** (ruling G/H). Never the $403,901 "surplus";
+the entity P&L is a net loss.
 
 SOT is `v2/src/lib/data/canon.ts`. Every figure wears a label: ● verified · ● modelled · ● target.
 
 The money spine (`cost-story.ts`): the bed is per-unit, the block is per-year, never mix them.
-$65 stays today → $324 pressed · block $109,500/yr · break-even 338 · handover at roughly
-75 to 100 beds/yr. **The $324 is modelled, not measured. Say so, every time. The measured run is
-what the money buys.**
+$65 stays today → $324 pressed · block $109,500/yr · break-even 338. **The $324 is modelled, not
+measured. Say so, every time. The measured run is what the money buys.**
+
+**No handover bed number goes here (RULING I).** "Roughly 75 to 100 beds/yr" divided $329 into a
+rent line and is retired as a public claim. The community-site production block is computed in
+`2026-07-25-matt-model-inputs-session-pack.md` §5 and stays an internal scenario estimate.
 
 ## 5. The map (resolved 2026-07-25)
 

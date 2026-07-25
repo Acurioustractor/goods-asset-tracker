@@ -323,13 +323,41 @@ philosophy".
 | Notice of meeting if the company name changes at the AGM | Zandra / board | ~24 Aug |
 | 51% ownership structure of the *selling* entity: decided-and-dated | Ben + Nic + MinterEllison | by 14 Sep |
 | What happened at the 1 July Supply Nation threshold, and what it cost | Ben | unrecorded anywhere |
-| Community-site operating block, counting only what bed sales should carry | Matt + Ben | 3-statement model |
-| Matt's six model inputs (`assumptions-alignment.md:112-117`) | Ben | still all open |
+| Community-site operating block: **computed 2026-07-25**, $79,333/yr bare production block, $129,333 with a half-time line supervisor (`2026-07-25-matt-model-inputs-session-pack.md` §5). Open part is who pays the line supervisor, and whether trainer/WHS is ACT's cost or the site's | Ben + Nic | before the 3-statement build |
+| Matt's six inputs: 1, 2, 3 carry a recommended position ready to confirm; 4 blocked on the CRM rebuild and on Jay; 5 computed; 6 needs a measured run | Ben | pack written 2026-07-25 |
+| Maningrida 40-bed run actuals (time, diesel, plastic yield). Highest-value open input in the model: 250 vs 500 beds/yr is the difference between a site that cannot cover its own production block and one that retires its plant in under three years | Ben | next press run |
+| Modules, not build paths. `engine.ts` cannot price Utopia (shredder only), Tennant Creek (existing shed) or Palm Island (governance first) | Ben, then Matt | before an ask is written for any of the three |
 | Which of the 803-file branch ships publicly, and when | Ben | not yet grilled |
 | Maningrida consent evidence: name where it lives | Ben | unresolved since 2026-07-21 |
 | Kununurra Elder clearance (gates the Variant A opening) | Ben | standing |
 
 ## Findings logged but not yet ruled on
+
+- **The Empathy Ledger syndication API is calling routes this deployment does not serve, and the
+  storyteller pages have been silently building on fallback data.** Found 2026-07-25 while running
+  the build gate. `npm run build` logs **18 soft failures every run** (12 individual storytellers,
+  4 list fetches, 2 project insights). They fail soft by design, so the build stays green and
+  nobody noticed. **EL is source of truth for portraits, so this quietly degrades a public
+  surface.**
+  - The client calls `/api/v1/sites/goods-asset-register/projects/{projectId}/storytellers`.
+    That path **404s**. So does the matching `/projects/{projectId}/insights`.
+  - The flat `/api/v1/sites/goods-asset-register/storytellers` returns **200 but `total: 0`**,
+    under every scoping form tried (`projectId`, `project_id`, `projectCode`, `project`). So it is
+    not a drop-in replacement; the syndication API appears unprovisioned for this site slug.
+  - The **other** API in the same client works and has the data:
+    `/api/v1/content-hub/storytellers` returns 200 storytellers (consistent with the known ~240).
+  - Host, site slug, project id and API key all verified correct;
+    `.env.local` and `.env.production.local` are identical, and Next prefers the latter on build.
+    Without auth the endpoints return 401, not 404, so this is a route-shape problem, not a
+    credentials one.
+  - **Not ruled on, because the fix is a choice:** repoint the syndication calls at content-hub,
+    or have the EL side provision the `/sites/{slug}/projects/{id}/*` routes. Worth checking
+    whether `projectId` actually filters content-hub before repointing (limit=200 returned 200
+    rows with and without it), though the `cleared-voices` allowlist is the person-level gate
+    regardless.
+  - **Fixed meanwhile:** `SyndicationFetchError` now names the URL and whether a key was present.
+    The old message was bare "Upstream 404 Not Found", which cost an hour of testing the wrong
+    endpoint by hand. No secret is exposed; the key travels in a header.
 
 - **GHL has no Transfer stage.** The `Goods — Community Pathways` pipeline (created 2026-07-24)
   runs Invitation → Listening → Brief returned → Community confirmed → Modules selected → Ready
@@ -342,21 +370,46 @@ philosophy".
   Identified, Qualified, Cultivating, Ask made, Committed, Delivering, Stewarding/Reporting,
   Renewing, Lapsed, Declined/Parked. No Signed-LOI stage. The fact cannot be re-derived from
   where it says it lives. The value (0) is nonetheless correct: 0 rows at Committed.
-- **The live asks do not match the published stack.** Reading the first 50 Supporter Journey
-  opportunities: at "Ask made" sit **Minderoo $200K (described as a catalytic QBE-aligned
-  grant)** and **Tim Fairfax $150K**, neither in the $475K stack. **SEFA, the $300K anchor, is
-  not in the first 50 rows at all.** Centrecorp appears only as the historical $123,332, won and
-  acquitted, not the forward $75K. Not paginated beyond 50; not ruled on.
+- **The live asks do not match the published stack.** **Rebuilt 2026-07-25 (later, same day) from
+  all 67 Supporter Journey rows**, which corrects two errors in the first-50 read recorded earlier:
+  **SEFA IS in the CRM** ($300K, Cultivating, "repayable finance anchor"; the earlier note said it
+  was absent), and **Centrecorp's forward $75K ask exists** at Ask made alongside the historical
+  $123,332 at Renewing (the earlier note said only the historical row existed). Standing: **0 rows
+  at Committed**, so canon's `signed-lois: 0` holds. At Ask made, excluding the Oonchiumpa-led
+  **REAL Innovation Fund $2M**: Minderoo $200K (the CRM calls it a catalytic QBE-aligned grant),
+  Tim Fairfax $150K, Snow $100K first-mover, Rotary Eclub $82.5K, Centrecorp $75K, total **$607.5K**.
+  Repayable column at Cultivating: SEFA $300K, White Box SELF $250K, LendForGood $100K (CRM labels
+  it "match candidate"), Metro Finance $60K, total **$710K**. Either column alone clears the $400K
+  QBE match twice over, so **the match is short of paper, not of candidates**. Also live and
+  unrecorded anywhere: **First Nations Finance, whose CRM record reads "no ownership gate"**, which
+  is the standing blocker on most concessional capital. Full read:
+  `wiki/outputs/2026-07-25-matt-model-inputs-session-pack.md` §4. Not ruled on.
 - **Two canon facts assert a QBE gate the program terms do not state.** `canon.ts:233` and
   `claims-ledger.ts:208` both say the match gate needs "at least three signed LOIs by 31 August".
   The recorded program terms (`04-qbe-pipeline.md:9-14`) say only "at least matched by signed
   external commitments", with no count. Ben's own locked answer (`CONTEXT.md:34`) is a dollar
   figure. No source found for the number three.
-- **`check-community-copy.mjs` guards a superseded invariant.** Its header says public surfaces
-  "must say 9 communities served, not 10" and its regexes hunt for "10 communities". Canon is 11.
-  It would not have caught the press page's badged 9.
-- **The banned-word list is enforced nowhere.** No script checks co-design, empower, unlock,
-  journey, beneficiaries, or em dashes. One live prose instance at `community-pathways.ts:236`.
+- ~~**`check-community-copy.mjs` guards a superseded invariant.**~~ **FIXED 2026-07-25.** It hunted
+  for "10 communities" and told you to write 9, while canon was 11: a two-generations-stale guard.
+  Now **derives** the stale set from `CANONICAL_ASSETS.communitiesServed`, so it advances by itself
+  when canon next moves. On first run it caught **7, of which 3 were real rendered defects**, all
+  now reading from canon: `wiki/community/partner-guide/page.tsx:40` (a badged "9 Communities
+  served", the same defect class as the press page found by hand), `deck.ts:115` ("Nine communities
+  across Australia", in a file that already imported canon correctly 170 lines later), and
+  `partner-dashboards.ts:341`. Two were comments (now skipped) and two are allowlisted with reasons.
+  **Flagged, not fixed:** the illustration asset `16-nine-communities` is itself stale and needs
+  regenerating; renaming is a separate asset pass.
+- ~~**The banned-word list is enforced nowhere.**~~ **FIXED 2026-07-25** by `check-voice.mjs`, now in
+  `check:drift` and `check:drift:ci`. This closes the session's own diagnosis, that prose had no
+  drift check. **The rule it encodes: the banned list governs OUR voice, never other people's
+  words.** Verbatim storyteller quotes, funder programme language (Snow's own principle is named
+  "First Nations leadership and empowerment") and registered org names are exempt by path, each with
+  a reason, because rewording someone else's words to fit our style guide is a worse error than the
+  violation. **Two tiers on purpose:** FAIL on seven high-confidence bans, WARN with counts on
+  `unlock` (9), `journey` (16), `catalytic` (13) and **em dashes (251)**, which are ambiguous or have
+  a back-catalogue too large to fail on today without either an unrequested cleanup or an instant
+  mute. **Ben's call to promote any WARN to FAIL.** The one live FAIL, `community-pathways.ts:236`
+  "co-design", is fixed to "designed with community".
 - **The Notion business plan §9 says "34 stories cleared for external use".** 34 is cleared
   *voices*, people, not stories. EL holds 2 published and public. Conflating a person-level
   allowlist with a story count, in a governance section.

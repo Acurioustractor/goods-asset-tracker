@@ -6,7 +6,12 @@
 
 **▶ READ `/DECISIONS.md` FIRST. It supersedes prose in `CONTEXT.md`, the canonical map, and this ledger's predecessors.**
 
-**▶ NEXT SESSION = Matt's six model inputs** (`wiki/outputs/2026-07-23-goc-financial-model-pack/assumptions-alignment.md:112-117`). All six still open, and ruling I made one of them bigger. See "The next session" below.
+**▶ Matt's six model inputs are now PREPPED, not open-ended:
+`wiki/outputs/2026-07-25-matt-model-inputs-session-pack.md`.** Five carry a recommended position
+ready to confirm. Item 4 (capital stack) is blocked on the CRM rebuild and on Jay. **Item 5, the
+honest denominator, is COMPUTED for the first time: bare production block $79,333/yr, $129,333 with
+a half-time line supervisor**, against the DEWR lines split production-vs-program. A seventh item
+(modules, not build paths) is proposed there. Take the pack to the session, not the old §7 list.
 
 ---
 
@@ -53,10 +58,14 @@ Full list in `/DECISIONS.md`. The three that matter most:
 1. **GHL has no Transfer stage.** The `Goods — Community Pathways` pipeline (created 2026-07-24)
    runs Delivery → Operating → Review. `pathway-stages.ts` closed exactly this gap on 2026-07-25
    and the fix never reached the CRM. Sixth stage model, live, in the tool the team uses.
-2. **The live asks do not match the published stack.** At "Ask made": **Minderoo $200K (the CRM
-   itself calls it a catalytic QBE-aligned grant)** and **Tim Fairfax $150K**, neither in any
-   strategy document. **SEFA, the $300K anchor, is not in the first 50 rows at all.** 0 rows at
-   Committed, so canon's `signed-lois: 0` is right.
+2. **The live asks do not match the published stack.** **Rebuilt from all 67 rows** (the first-50
+   read was wrong twice: SEFA IS in the CRM at Cultivating $300K, and Centrecorp's forward $75K ask
+   exists alongside the historical $123,332). 0 rows at Committed, so canon's `signed-lois: 0` is
+   right. **Ask made $607.5K** excl. the Oonchiumpa-led REAL $2M (Minderoo $200K, Tim Fairfax $150K,
+   Snow $100K, Rotary Eclub $82.5K, Centrecorp $75K). **Repayable column $710K** (SEFA $300K, White
+   Box SELF $250K, LendForGood $100K, Metro Finance $60K). Either alone clears the $400K match twice
+   over: **short of paper, not of candidates.** Also live and in no document: **First Nations
+   Finance, "no ownership gate"**. Detail: session pack §4.
 3. **Four things in the meaning layer have no home in code or the deck:** the binary month-6
    ownership test (4 checkpoints, partial counts as NO, "not yet met at any site"); the seven
    proven community-transfer models (Notion §3); "one product, four systems"; and data
@@ -64,7 +73,34 @@ Full list in `/DECISIONS.md`. The three that matter most:
 
 ## The next session: Matt's six model inputs
 
-Source: `wiki/outputs/2026-07-23-goc-financial-model-pack/assumptions-alignment.md`, §7.
+**Worked in full at `wiki/outputs/2026-07-25-matt-model-inputs-session-pack.md`.** What follows is
+the original framing; the pack carries the recommended position, the computed denominator and the
+seventh item.
+
+**The three things the pack settled or moved:**
+
+- **The honest denominator exists now.** DEWR's bare facility ~$152K split production-vs-program
+  gives a **bare production block of $79,333/yr**, and **$129,333** once a half-time line supervisor
+  is paid. Break-even 234 to 529 beds/yr. $24,000 understated it (bed sales carried only rent);
+  $151,666 overstates it (bed sales carry the program). Both were wrong, in opposite directions.
+- **The contribution figure being divided into was the wrong location.** Every published break-even
+  divides into $329.26, the community path at the **Sydney** location ($0 inbound freight). On
+  Country containerised is **$339.26**; On Country not containerised is **$269.26**.
+- **The useful output is a sensitivity, not a payback figure.** At 500 beds/yr, containerised, with a
+  half-time supervisor the scenario clears ~$40,297/yr and retires a ~$105K plant in 2.6 years, but
+  each of three dials flips it on its own: 250/yr and it cannot cover its own production block, not
+  containerised and 2.6 years becomes 19.8, full-time supervisor and it never retires. So the claim
+  is only that **Route B (earn-in) is no longer arithmetically dead**, which makes it a thing to
+  explore rather than rule out. No bed number and no payback period goes in front of anyone until
+  input 6 is measured.
+
+**▶ Frame, per Ben 2026-07-25:** these are **estimates for scenario study, not actuals**. The model
+does not lead. It sits in the conversation and the relationship, not as cut-through numbers. With an
+investor it arrives after the road and shows we know where our own uncertainty is. With a community
+the numbers go in as the questions they came from, and the answers belong to the community. The pack
+has a "Where the model sits in a conversation" section that says what is never said in either room.
+
+Original source: `wiki/outputs/2026-07-23-goc-financial-model-pack/assumptions-alignment.md`, §7.
 
 1. **HDPE per-bed mass and rate.** 20kg @ $2.75 (invoice-verified, Defy INV-1731) vs the GoC Q&A's
    "25kg at $1-2/kg". `cost-story.ts` carries this as a live `conflict` row. **It is the input to
