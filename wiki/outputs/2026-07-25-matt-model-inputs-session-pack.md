@@ -74,6 +74,37 @@ and it becomes 4,425kg on every surface automatically. Do not move it without me
 **Open for Ben:** is the press yield 1:1, or is there measurable offcut? Item 6 answers this from a
 measured run.
 
+### The arithmetic says the yield is NOT 1:1, and it rules one source out
+
+**Derived 2026-07-25 from two figures already in the repo**, prompted by the one-sheet-versus-two
+contradiction at `wiki/articles/enterprise/01-vision-and-ambition.md:154` (the production guide
+says **one sheet per bed**; Notion StretchBed HQ says **two sheets per bed** and **three beds per
+day**).
+
+- Defy HDPE sheet stock is **1200 x 600 x 18mm** (`supplier-quotes.ts:45`)
+- HDPE density is **0.96 g/cm3** (`cost-model-scenarios.json` physics)
+- So one sheet is 120 x 60 x 1.8cm = 12,960cm3 x 0.96 = **12.44kg**
+
+**A finished bed holds 20kg. One sheet is 12.44kg. So "one sheet per bed" is arithmetically
+impossible at that sheet size**, and it would take 1.61 sheets to reach 20kg. Two sheets is
+24.88kg, which clears 20kg with **~4.9kg left over, about 20% of the input**.
+
+**What that means if it holds:** purchased mass is ~24.9kg and in-product mass is 20kg, which is
+exactly the split ruling N created the two fields for, and it would move the costing basis from
+$55/bed to about **$68/bed** (24.88 x $2.75). That is a real change to marginal cost, so it does
+not move until the premise is confirmed.
+
+**The premise that needs confirming, and it is not confirmed.** This assumes the legs are made
+from 1200 x 600 x 18mm stock. They may not be: the legs are described as **pressed in moulds**
+(`content.ts:614`, `product-wiki.ts:293`), not routed from sheet, and 1200 x 600 x 18mm is also
+quoted as the **wall-panel** spec (`products.ts:162`). A press platen and a CNC sheet are not the
+same object. **So this rules out one-sheet-per-bed at that stated size; it does not by itself
+prove two.**
+
+**Question for Nicholas or Defy, and it is now a narrow one:** are the X-legs pressed to shape in
+a mould, or cut from 1200 x 600 x 18mm sheet? If moulded, what is the shot weight? Either answer
+settles yield without waiting for a measured run, and yield is what item 1's two fields need.
+
 ---
 
 ## 2 · Site capex
