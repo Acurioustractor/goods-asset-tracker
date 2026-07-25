@@ -36,12 +36,12 @@ export function SiteHeader() {
         {/* Logo */}
         <Link href="/" className="flex items-center" aria-label="Goods on Country home">
           <Image
-            src="/brand/logos/goods-stacked-black.svg"
+            src="/brand/canonical/goods-on-country-primary-ink.png"
             alt="Goods on Country"
-            width={150}
-            height={100}
+            width={657}
+            height={447}
             priority
-            className="h-12 w-auto"
+            className="h-12 w-auto object-contain"
           />
         </Link>
 

@@ -87,9 +87,9 @@ export function OrganizationJsonLd({
     url: baseUrl,
     logo: {
       '@type': 'ImageObject',
-      url: `${baseUrl}/logo.svg`,
-      width: 512,
-      height: 512,
+      url: `${baseUrl}/brand/canonical/goods-wordmark-square-tile.png`,
+      width: 1024,
+      height: 1024,
     },
     image: [
       `${baseUrl}/images/media-pack/lying-on-stretch-bed.jpg`,

@@ -21,23 +21,17 @@ export const metadata: Metadata = {
     title: 'Press & Brand · Goods on Country',
     description:
       'Wordmark, colours, voice, photos, videos, partners, and links. Everything funders, partners, and media need to write about the work.',
-    images: ['/brand/logos/goods-stacked-on-dark.svg'],
+    images: ['/brand/canonical/goods-on-country-primary-white.png'],
   },
 };
 
 const LAST_UPDATED = '25 May 2026';
 
 const logoVariants = [
-  { file: 'goods-stacked-white.svg', label: 'Stacked, white', surface: 'dark' },
-  { file: 'goods-stacked-black.svg', label: 'Stacked, black', surface: 'light' },
-  { file: 'goods-stacked-on-dark.svg', label: 'Stacked, on charcoal', surface: 'checker' },
-  { file: 'goods-stacked-on-light.svg', label: 'Stacked, on cream', surface: 'checker' },
-  { file: 'goods-inline-white.svg', label: 'Inline, white', surface: 'dark' },
-  { file: 'goods-inline-black.svg', label: 'Inline, black', surface: 'light' },
-  { file: 'goods-inline-on-dark.svg', label: 'Inline, on charcoal', surface: 'checker' },
-  { file: 'goods-inline-on-light.svg', label: 'Inline, on cream', surface: 'checker' },
-  { file: 'goods-chip-on-dark.svg', label: 'Chip, on charcoal', surface: 'checker' },
-  { file: 'goods-chip-on-light.svg', label: 'Chip, on cream', surface: 'checker' },
+  { file: 'goods-primary-white.png', label: 'Goods, white', surface: 'dark' },
+  { file: 'goods-primary-ink.png', label: 'Goods, ink', surface: 'light' },
+  { file: 'goods-on-country-primary-white.png', label: 'Goods on Country, white', surface: 'dark' },
+  { file: 'goods-on-country-primary-ink.png', label: 'Goods on Country, ink', surface: 'light' },
 ] as const;
 
 const keyFacts = [
@@ -123,10 +117,10 @@ export default async function PressPage() {
       <section className="bg-[#0A0A0A] py-24 text-white">
         <div className="container mx-auto max-w-4xl px-6">
           <Image
-            src="/brand/logos/goods-stacked-white.svg"
+            src="/brand/canonical/goods-on-country-primary-white.png"
             alt="Goods on Country"
-            width={460}
-            height={307}
+            width={657}
+            height={447}
             priority
             className="h-auto w-full max-w-[340px]"
           />
@@ -218,7 +212,7 @@ export default async function PressPage() {
           <SectionLabel>Brand system</SectionLabel>
           <h2 className="mt-2 text-3xl font-medium tracking-tight">Wordmark, colours, type, voice</h2>
           <p className="mt-4 max-w-2xl text-muted-foreground">
-            Use the SVGs as supplied. Don&apos;t recolour, stretch, or recreate the wordmark in Canva.
+            Use the supplied transparent PNGs. Don&apos;t recolour, stretch, or recreate the wordmark in Canva.
           </p>
 
           {/* Logo grid */}
@@ -237,10 +231,10 @@ export default async function PressPage() {
                   }
                 >
                   <Image
-                    src={`/brand/logos/${v.file}`}
+                    src={`/brand/canonical/${v.file}`}
                     alt={v.label}
-                    width={600}
-                    height={300}
+                    width={657}
+                    height={447}
                     className="h-auto w-full max-w-[260px]"
                   />
                 </div>
@@ -249,8 +243,8 @@ export default async function PressPage() {
                     <p className="font-medium">{v.label}</p>
                     <p className="font-mono text-[10px] text-muted-foreground">{v.file}</p>
                   </div>
-                  <a href={`/brand/logos/${v.file}`} download className="rounded-md border px-2.5 py-1 font-medium hover:bg-muted">
-                    SVG
+                  <a href={`/brand/canonical/${v.file}`} download className="rounded-md border px-2.5 py-1 font-medium hover:bg-muted">
+                    PNG
                   </a>
                 </figcaption>
               </figure>
@@ -280,7 +274,7 @@ export default async function PressPage() {
               <dl className="mt-4 grid gap-4 text-sm">
                 <div>
                   <dt className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Wordmark</dt>
-                  <dd className="mt-1">Poppins Medium 500</dd>
+                  <dd className="mt-1">Archivo Bold 700</dd>
                 </div>
                 <div>
                   <dt className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Body</dt>
