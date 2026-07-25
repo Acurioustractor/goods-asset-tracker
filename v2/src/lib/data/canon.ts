@@ -143,7 +143,7 @@ export const CANON: CanonFact[] = [
   {
     id: 'stretch-price', label: 'Stretch Bed price', value: 750, unit: 'AUD',
     domain: 'product', claimLabel: 'verified', dataClass: 'green',
-    source: 'v2 Supabase `products` (stretch-bed-single, price_cents=75000)', check: 'manual', asAt: '2026-05-29', owner: 'Nic',
+    source: 'v2 Supabase `products` (stretch-bed-single, price_cents=75000). Flipped to check: auto on 2026-07-25 — check-asset-drift.mjs verifies this against the live products row. products.ts deliberately holds no prices, so the live table is the only source that can confirm it, and that job already holds the credentials.', check: 'auto', asAt: '2026-07-25', owner: 'Nic',
     definition: 'Current shop price for the only direct-sale product.',
   },
   {
@@ -186,7 +186,7 @@ export const CANON: CanonFact[] = [
   {
     id: 'display-storyteller-pool', label: 'Website storyteller pool (display tier)', value: 32, unit: 'voices',
     domain: 'story', claimLabel: 'internal-only', dataClass: 'red',
-    source: 'check-story-coverage.mjs computed pool (curated-quotes.ts ∪ trip-stories.ts cleared VoiceCards); mirror of wiki/canon/story-coverage.md', check: 'manual', asAt: '2026-06-16', owner: 'Ben',
+    source: 'check-story-coverage.mjs computed pool (curated-quotes.ts ∪ trip-stories.ts cleared VoiceCards); mirror of wiki/canon/story-coverage.md. Flipped to check: auto on 2026-07-25 — that script computed this number all along and knew when the fact disagreed, but only wrote a warning into a markdown report. It now exits 1 on a mismatch and prints the correct value.', check: 'auto', asAt: '2026-06-16', owner: 'Ben',
     definition: 'Named voices live on the website via a public curated quote or a cleared trip VoiceCard (incl. partners/board). A coverage queue, NOT the external-clearance list — use cleared-voices for any external/funder claim. Mirrors the Loop E computed pool; re-confirm each run (Loop E warns if this drifts from the computed count).',
     reconcilesWith: ['cleared-voices'],
   },
