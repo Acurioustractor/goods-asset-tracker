@@ -2,19 +2,70 @@
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume. Keep it short. -->
-**Updated:** 2026-07-25. Full-day strategy alignment. **16 questions, 14 rulings + 1 direction, all in `/DECISIONS.md`** (new, append-only, root of repo). **PR #159 open and mergeable against main** (corrections; hermetic CI green in 42s). Feature branch `claude/investment-deck-alignment-y3qc43` at `d28c501`, clean.
+**Updated:** 2026-07-25 (evening). **EVERYTHING IS MERGED. `main` is at `ae5c14a`, working tree clean, no open PRs, no feature branch in flight.** PRs #159, #160 and #161 all landed today. Nothing is waiting on code.
 
-**▶ READ `/STRATEGY.md` FIRST** (new, 2026-07-25): the one master alignment and strategy doc. North
-star, the road, the model, the economics, the raise, the entities, what is open, and §0 names which
-file wins when two disagree. **Then `/DECISIONS.md`** for the judgements themselves. Both supersede
-prose in `CONTEXT.md`, the canonical map, and this ledger's predecessors.
+**▶ READ `/STRATEGY.md` FIRST**, then `/DECISIONS.md`. §0 of STRATEGY names which file wins when two
+disagree. Both supersede prose in `CONTEXT.md`, the canonical map, and this ledger's predecessors.
 
-**▶ Matt's six model inputs are now PREPPED, not open-ended:
-`wiki/outputs/2026-07-25-matt-model-inputs-session-pack.md`.** Five carry a recommended position
-ready to confirm. Item 4 (capital stack) is blocked on the CRM rebuild and on Jay. **Item 5, the
-honest denominator, is COMPUTED for the first time: bare production block $79,333/yr, $129,333 with
-a half-time line supervisor**, against the DEWR lines split production-vs-program. A seventh item
-(modules, not build paths) is proposed there. Take the pack to the session, not the old §7 list.
+**▶ WHAT SHIPPED (PR #160, merge commit `ea744ed`, 546 files).** The branch that had been
+unshippable since 19 July: the deck rebuild on the road spine, the new public routes (`/brand`,
+`/pathways`, `/pitch/funder-pathways`, 4x `/export/*`), and **a cost model that went from pricing
+one of four community pathways to pricing two.**
+
+**▶ THE MODEL WORK, which is the substantive thing to know.**
+- **Site production block** (Matt input 5) is now a first-class concept. The whole site cost model
+  used to be ONE line, `on_country.rentPerYear = $24,000`, a correct RENT figure read as an
+  OPERATING cost, which is what produced the retired "75 to 100 beds a year". Three pots now:
+  network / site production / wraparound, with a `site_supervisor` dial defaulting to `none`.
+  Honest denominator is a **band, 234 to 529 beds/yr**, and where it lands is decided by who pays
+  the person who runs the line.
+- **Capex modules** (Matt input 7) replace the `build_method` ladder for pricing a real pathway.
+  Site base plus modules, for BOTH capex and operating. **Utopia is priceable for the first time:
+  $24,800-39,300 capex, $16,043/yr operating**, against the $79,333 a full facility carries.
+  Palm Island returns **$0 including no site floor**, recorded as the wrong answer rather than a
+  good one, because governance has a real cost that is not plant.
+- Both splits are **guarded lossless**: selecting every module reproduces $79,333 exactly, and the
+  module capex reassembles to the MVF replication total. That guard is the point; keep it.
+
+**▶ RULINGS N, O, P added to `/DECISIONS.md`** (Matt inputs 1-3). O went AGAINST the pack's
+recommendation: **$110,046 is the actual sunk spend**, the ~$75K MVF figure is a bill-level
+subtotal not a competing total, and what changed was the adjective (regraded `workpaper`).
+
+**▶ THE LESSON THAT COST THE MOST TIME, written into `/DECISIONS.md` under ruling H.** Three
+rulings (M, then G/H/A, then K) were logged with correct sweep lists and **never executed**. A
+sweep list is a to-do, not a record. Worse: the G/H/K/M sweep DID exist, in unmerged PR #159, and
+I did not check open PRs before re-doing it. **Check open PRs before auditing anything.**
+
+**▶ Matt's pack** (`wiki/outputs/2026-07-25-matt-model-inputs-session-pack.md`) is now a record of
+what was decided, not a to-do: 1/2/3 ruled, 5 and 7 built, 4 blocked on Jay, **6 PARKED** (the Xero
+mirror is verified EMPTY, so per-bed actuals are not derivable from a desk).
+
+**▶ NEXT SESSION: nothing is blocked on code. Every open item needs a person.**
+
+| Open | Who | Why it matters |
+|---|---|---|
+| **Are the X-legs pressed in a mould, or cut from 1200x600x18mm sheet? If moulded, what shot weight?** | Nicholas / Defy | Settles press yield WITHOUT a measured run. Arithmetic already rules out one-sheet-per-bed: a sheet at 0.96 g/cm3 is 12.44kg and a bed holds 20kg. Two sheets implies ~20% offcut and moves costing $55 to ~$68/bed |
+| **Who pays the line supervisor** | Ben + Nic | The biggest dial in the model: moves the denominator 234 to 529 beds/yr |
+| EL syndication key scoped to this site | EL side | DIAGNOSED, not our config. See below |
+| What SIH accepts as match paper | Ben to Jay | Everything in the capital stack sequencing follows from it |
+| A real collection-and-baling quote | Supplier | Narrows the $5,000-19,500 estimate. **Ask first whether a baler is needed at all** (rigid HDPE is caged, not baled) — that one question is the whole width of the band |
+
+**▶ TRAPS, so nobody re-runs work I already did.**
+- **The Xero mirror is EMPTY.** `xero_invoices` and `xero_transactions` in `tednluwflfhxyucgwigh`
+  both return 0 rows. Not permissions: the same key reads 995 rows from `project_knowledge`.
+  `wiki/canon/SOURCES.md` is corrected. Money figures come from human `/reconcile` pulls.
+- **The EL 404s are NOT our config.** Project id is right (EL's own DB returns it as "Goods on
+  Country", slug `goods`). Auth-checking routes 401, the project route 404s "Project not found",
+  so our key is not valid for that site. Tried three site slugs. **Do not "fix" the ids.** The
+  full diagnosis and the one-line curl that proves it fixed are in `empathy-ledger/client.ts`.
+- **"14 September" is the Butterfly AGM, NOT the QBE application date.** I got this wrong and
+  propagated it into three files before catching it. The recorded terms say only that the
+  application closes late September.
+- **Never write "0 beds pressed in-house".** It is 40, at the farm. Main still carried the "0"
+  version until this session's merge resolved it in our favour.
+
+**▶ `/pathways` is `noindex` by Ben's call** ("don't put it in the menu items for now"). It was
+already absent from every menu; menus were never what exposed it. Reversible in one line.
 
 ---
 
