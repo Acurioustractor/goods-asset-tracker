@@ -66,7 +66,7 @@ const voiceRules = [
   'Centre community voices. Quote people by name, with location, with consent.',
   'Be specific. Real numbers, real materials, real places. "Tennant Creek" beats "remote Australia".',
   'Plain, not polished. Write the way Nic talks at the kitchen table. Short sentences. Concrete nouns.',
-  'Show the model. We design in community, with community, for community. Our job is to become unnecessary.',
+  'Show the model. We design in community, with community, for community, and the making moves into community ownership.',
 ];
 
 const bannedWords = [
@@ -188,7 +188,7 @@ export default async function PressPage() {
             <BoilerplateCard length="One paragraph" text={mediaPack.pressBoilerplate} />
             <BoilerplateCard
               length="The model"
-              text={`Goods on Country is an enterprise designed to transfer manufacturing capability to community-owned production. We design in community, with community, for community. We support communities to realise what they design. The plant moves to community ownership. Our job is to become unnecessary.`}
+              text={`Goods on Country is an enterprise designed to transfer manufacturing capability to community-owned production. We design in community, with community, for community. We support communities to realise what they design. The making moves into community ownership.`}
             />
           </div>
 

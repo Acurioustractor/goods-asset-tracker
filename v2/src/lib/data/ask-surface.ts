@@ -12,16 +12,22 @@
  * Register: a transparency tool, not a victory lap (honesty labels everywhere).
  */
 import type { Solidity } from './cost-story';
+import { NORTH_STAR } from './content';
 
 // ---------------------------------------------------------------------------
 // Band 1: the one ratio (Who Gives A Crap pattern: one number + a label)
 export const ASK_RATIO = {
-  headline: 'The goal was never a bigger Goods.',
-  subline: 'It is a plant that belongs to the people sleeping on the beds.',
+  // RULING E (Ben 2026-07-25). Read from NORTH_STAR in content.ts, never retyped here:
+  // the old line lived in four places at once and that is how it survived being retired.
+  headline: NORTH_STAR.headline,
+  subline: NORTH_STAR.line,
   second:
     'The mechanics: $65 of every bed stays today, $324 when we press our own legs. At ~338 beds a year the business stands without any of us, and the handover is a gift, not a burden.',
-  verification: 'Revenue $713,827: accountant-signed Goods carve-out.',
-  verificationLabel: 'verified' as Solidity,
+  // RULING G/H (Ben 2026-07-25): the figure stays, the adjective goes. There is no signed
+  // accountant document; the carve-out is prepared with the accountant, so it is a workpaper.
+  // Dropping the 'verified' label is the point: a green chip in front of a funder was the leak.
+  verification: 'Revenue $713,827: Goods-only carve-out, workpaper (not accountant-signed).',
+  verificationLabel: 'workpaper' as Solidity,
 };
 
 // ---------------------------------------------------------------------------
@@ -116,7 +122,9 @@ export const STACK_LAYERS: StackLayer[] = [
     signedPaper: 'Board-minuted commitment letter.',
   },
 ];
-export const STACK_TOTAL = '$475K target stack · $0 signed today';
+// Rebuilt 2026-07-25 from all 67 Supporter Journey rows. The old $475K was a smaller and
+// older picture than the CRM holds; $0 signed is the standing fact and 0 rows sit at Committed.
+export const STACK_TOTAL = '$0 signed today · grants at Ask made $607.5K · repayable in Cultivating $710K';
 export const STACK_EXCLUDED =
   'Not match-eligible: equity (we are not selling ownership), QBE itself, the DEWR/REAL vehicle (separate, Oonchiumpa-led), and buyer revenue (orders are the point, not the match).';
 export const STACK_MIRROR_NOTE =
@@ -133,22 +141,30 @@ export const ENTITY_DOORS: EntityDoor[] = [
   {
     verb: 'Donate',
     entity: 'The Butterfly Movement Ltd (DGR)',
-    what: 'Tax-deductible gifts, receiptable today under Butterfly’s interim arrangement (full endorsement FY2026–27). Gifts fund the block and community work: never company equity.',
+    // RULING J 2026-07-25, from the public register: DGR endorsed since 17 Jan 2012 and ACNC
+    // registered since 3 Dec 2012. It was never "interim" or pending FY2026-27. The open
+    // question is the receipting mechanics and whose name goes on the receipt.
+    what: 'Tax-deductible gifts. Butterfly has been DGR-endorsed since January 2012, so the open question is receipting mechanics, not status. Gifts fund the block and community work: never company equity.',
   },
   {
     verb: 'Buy / Order',
-    entity: 'A Curious Tractor Pty Ltd t/a Goods',
+    entity: 'A Curious Tractor Pty Ltd, selling as Goods.',
     what: 'Bed and washing-machine orders at list price. Revenue, not philanthropy. $750 a bed.',
   },
   {
     verb: 'Invest (repayable)',
-    entity: 'A Curious Tractor Pty Ltd t/a Goods',
+    entity: 'A Curious Tractor Pty Ltd, selling as Goods.',
     what: 'Repayable finance sits in the trading company. Australian law puts it here: equity and loans go to the Pty Ltd, deductible gifts go to the DGR.',
   },
 ];
 export const ENTITY_NOTES = [
   'How the charity and the company relate is being formalised in an inter-entity agreement: documentation aligned, completion in progress (July 2026). Once signed it is shown to funders so no one has to take it on faith. (The documented anti-social-washing pattern.)',
-  'Ownership is a pathway: the 51% First Nations ownership decision (post-Butterfly, ~end July) gates IBA/FAC capital. Stated as a pathway, never claimed complete.',
+  // RULING J 2026-07-25: the 51% work was sequenced behind the charity landing "~end July" by
+  // ASSUMPTION, and that assumption cost ~7 weeks and the 1 July Supply Nation threshold. The
+  // AGM is 14 Sep; 51% never depended on it. And the distinction that must never blur:
+  // Aboriginal directors on the CHARITY is not 51% First Nations ownership of the entity that
+  // SELLS, which is what Supply Nation, IPP, IBA and FAC all test.
+  'Ownership is a pathway: the 51% First Nations ownership decision gates IBA/FAC capital and is DECOUPLED from the charity AGM (14 Sep). Aboriginal directors on the charity is not 51% ownership of the selling entity. Stated as a pathway, never claimed complete.',
 ];
 
 // ---------------------------------------------------------------------------

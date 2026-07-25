@@ -279,7 +279,7 @@ export default function CentrecorpStory() {
           Goods on Country is an enterprise, not a giveaway. The Stretch Bed, and the washing machine named Pakkimjalki Kari by Elder Dianne Stokes in Warumungu, come out of years of work with community. An on-Country plant can shred and press recycled plastic into bed legs, and that plant can move to a community and be owned there.
         </p>
         <p className="cc-reveal cc-d2">
-          That is the part Mykel pointed at without knowing it. Alice Springs and Utopia are live candidates for the next place the making happens, not just the next place the beds arrive. The job is to make the making local, and then to become unnecessary.
+          That is the part Mykel pointed at without knowing it. Alice Springs and Utopia are live candidates for the next place the making happens, not just the next place the beds arrive. The job is to make the making local, and then for the community to come to own it.
         </p>
       </section>
 

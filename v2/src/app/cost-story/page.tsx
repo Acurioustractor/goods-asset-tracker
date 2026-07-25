@@ -341,7 +341,7 @@ export default function CostStoryPage() {
           the jobs and the margin move into community hands.
         </p>
         <p className="mt-4 text-xl leading-relaxed text-background md:text-2xl" style={displayFont}>
-          Our goal is to become unnecessary.
+          The goal is a community that can come to own the making.
         </p>
         {/* Ownership-pathway drawing removed pending checkpoint 25 (Ben,
             2026-07-17). Restore from /api/admin/held-asset once approved. */}

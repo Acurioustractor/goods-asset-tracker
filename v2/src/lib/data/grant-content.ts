@@ -9,6 +9,7 @@
  */
 
 import { CANONICAL_ASSETS } from './asset-canonical';
+import { NORTH_STAR } from './content';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Organisation Identity
@@ -36,7 +37,9 @@ export const orgIdentity = {
   oneLiner: 'A good bed is health hardware, not furniture.',
   mission:
     'To transform essential household goods — beds, washing machines, refrigerators — into community-owned assets that improve lives in remote Australia, designed with communities and eventually manufactured by them.',
-  philosophy: 'Our job is to become unnecessary.',
+  // RULING A + E (Ben 2026-07-25): "Our job is to become unnecessary" is retired as weak, and
+  // the north star carries that job now. Read it, never retype it.
+  philosophy: NORTH_STAR.full,
 };
 
 // ─────────────────────────────────────────────────────────────────────────────

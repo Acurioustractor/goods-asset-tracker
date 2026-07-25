@@ -5,6 +5,28 @@ import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 // Core content and messaging for Goods on Country
 // Source: COMPENDIUM_JANUARY_2026.md
 
+/**
+ * THE NORTH STAR. One line, one place. Import it, never retype it.
+ *
+ * RULING E (Ben, 2026-07-25). Supersedes two lines at once:
+ *   - "It is a plant that belongs to the people sleeping on the beds." Ruling D: the object
+ *     is INFRASTRUCTURE, not "a plant" (of four live pathways only Oonchiumpa wants a whole
+ *     plant), and ownership sits with whichever community runs the site.
+ *   - "Our job is to become unnecessary." Retired as weak (ruling A). Ben, 2026-07-25: the
+ *     north star now carries that job, so the old philosophy line is redundant rather than
+ *     needing a replacement slogan. Three dead `philosophy` fields were deleted with it;
+ *     the one that actually rendered (grant-content.ts) reads this constant.
+ *
+ * "Come to own" carries the over-time without saying it, which keeps the line inside the
+ * standing ceiling that ownership is a PATHWAY, never claimed complete.
+ */
+export const NORTH_STAR = {
+  headline: 'The goal was never a bigger Goods.',
+  line: 'It is a community that can collect the plastic, make the goods, and come to own the making.',
+  /** The two halves as one sentence, for surfaces that render a single string. */
+  full: 'The goal was never a bigger Goods. It is a community that can collect the plastic, make the goods, and come to own the making.',
+} as const;
+
 export const brand = {
   name: 'Goods on Country',
   tagline: 'Goods that heal.',
@@ -29,7 +51,6 @@ export const brand = {
 
   // Memorable one-liners
   oneLiner: 'A good bed is health hardware, not furniture.',
-  philosophy: 'Our job is to become unnecessary.',
 };
 
 export const story = {
@@ -75,7 +96,7 @@ The answer became Goods: durable, repairable, community-designed "health hardwar
       },
       {
         title: 'Community Ownership',
-        description: 'Our goal is to transfer manufacturing to community-owned enterprises. We become unnecessary.',
+        description: 'Our goal is to transfer manufacturing to community-owned enterprises, so a community comes to own the making.',
       },
     ],
   },
@@ -271,7 +292,6 @@ export const enterpriseOpportunity = {
     'Supply chain connections',
     'Quality assurance framework',
   ],
-  philosophy: 'Our goal is to become unnecessary.',
   cta: 'Express Interest',
   email: 'hi@act.place',
 };
@@ -1658,7 +1678,7 @@ export const goodsOrbit = [
 // Enterprise vision: for pitch page "Enterprise & Training" section
 export const enterpriseVision = {
   headline: 'Local Enterprise, Not Charity',
-  description: 'The bigger picture is community ownership of manufacturing. Local people collecting waste, making products, running the business. Our job is to become unnecessary.',
+  description: 'The bigger picture is community ownership of manufacturing. Local people collecting waste, making products, running the business, and coming to own the making.',
   jobs: [
     'Plastic collection from community',
     'Shredding and sorting',

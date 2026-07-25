@@ -167,7 +167,7 @@ export default function LeaveBehindPage() {
     { fact: washers, big: String(washers.value), sub: 'washing machines', note: 'Pakkimjalki Kari' },
     { fact: communities, big: String(communities.value), sub: 'communities served', note: '12 distinct communities touched' },
     { fact: plastic, big: Number(plastic.value).toLocaleString(), sub: 'kg recycled HDPE diverted', note: '177 Stretch × 20kg. Basket counts zero.' },
-    { fact: revenue, big: `$${Number(revenue.value).toLocaleString()}`, sub: 'Goods revenue, FY26 YTD', note: 'accountant-signed carve-out' },
+    { fact: revenue, big: `$${Number(revenue.value).toLocaleString()}`, sub: 'Goods revenue, FY26 YTD', note: 'Goods-only carve-out, workpaper' },
   ];
 
   const doors = [
@@ -201,7 +201,7 @@ export default function LeaveBehindPage() {
         </div>
 
         <h1 style={{ fontFamily: SERIF, fontSize: 27, fontWeight: 600, lineHeight: 1.16, letterSpacing: -0.3, marginTop: 9, maxWidth: '68ch' }}>
-          The goal was never a bigger Goods. It is a plant that belongs to the people sleeping on the beds.
+          The goal was never a bigger Goods. It is a community that can collect the plastic, make the goods, and come to own the making.
         </h1>
 
         <p style={{ fontSize: 12.5, color: C.soft, lineHeight: 1.42, marginTop: 8, maxWidth: '104ch' }}>

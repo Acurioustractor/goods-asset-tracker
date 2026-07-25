@@ -11,8 +11,9 @@
  * that carries the handover, and the handover is the centre of the whole story.
  *
  * The gap this file closes: the operating model previously had NO transfer step. The thing the
- * entire pitch centres on - the plant that belongs to the people sleeping on the beds - was not
- * tracked anywhere in the system. It is now step 7.
+ * entire pitch centres on - a community that can collect the plastic, make the goods, and come
+ * to own the making (north star, ruling E, 2026-07-25) - was not tracked anywhere in the system.
+ * It is now operating step 7, and public stage 5 of 6.
  *
  * Any surface showing stages or modules imports from here. Do not redefine them locally.
  */

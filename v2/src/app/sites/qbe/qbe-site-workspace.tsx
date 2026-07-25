@@ -472,7 +472,7 @@ const impactModelRows = [
   },
   {
     dimension: 'Community ownership',
-    proof: 'Oonchiumpa, PICC, community pages, published field stories and the stated aim to become unnecessary.',
+    proof: 'Oonchiumpa, PICC, community pages, published field stories and the stated aim of community-owned making.',
     caution: 'Ownership pathway is proposed and shaped with community, not complete.',
   },
   {

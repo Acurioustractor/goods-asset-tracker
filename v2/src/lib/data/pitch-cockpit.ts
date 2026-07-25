@@ -45,7 +45,7 @@ export const DECK_PLAN: DeckSlide[] = [
   {
     n: 1, id: 'the-line', name: 'The goal was never a bigger Goods',
     why: 'The handover line is the opener AND the destination (Ben, locked 2026-07-21). It frames every number that follows as being in service of the transfer, not of growth. Never open on a dollar.',
-    talkTrack: 'The goal was never a bigger Goods. It is a plant that belongs to the people sleeping on the beds. Communities choose what they need; we supply proven products and production capability; then we hand the making over. Six stages, and the fifth one is Transfer.',
+    talkTrack: 'The goal was never a bigger Goods. It is a community that can collect the plastic, make the goods, and come to own the making. Communities choose what they need; we supply proven products and production capability; then we hand the making over. Six stages, and the fifth one is Transfer.',
     voices: [], visual: 'type',
   },
   {
@@ -70,7 +70,7 @@ export const DECK_PLAN: DeckSlide[] = [
   {
     n: 5, id: 'proof', name: 'Already shipped, and every one is trackable',
     why: 'Canon proof before the model, so the model is read as a description of something real. Every figure labelled.',
-    talkTrack: '540 beds: 177 Stretch and 363 Basket. 22 washing machines. 11 communities. 3,540kg of plastic, which is Stretch only at 20kg each because Basket Beds count zero. $713,827 of Goods revenue FY26 to date on an accountant-signed carve-out. Newest run: 40 Stretch Beds and 2 washers to Maningrida, legs pressed at our own plant, invoiced on INV-0303. And 200 to 350 bed requests we have not filled.',
+    talkTrack: '540 beds: 177 Stretch and 363 Basket. 22 washing machines. 11 communities. 3,540kg of plastic, which is Stretch only at 20kg each because Basket Beds count zero. $713,827 of Goods revenue FY26 to date on a Goods-only carve-out, which is a workpaper prepared with the accountant, not a signed document. Newest run: 40 Stretch Beds and 2 washers to Maningrida, legs pressed at our own plant, invoiced on INV-0303. And 200 to 350 bed requests we have not filled.',
     voices: ['Annie Morrison'], visual: 'stats',
     visualNotes: 'Map: design/deck-photos/map-deployed.png (chrome-free export from /export/map/deployed, washers sum to 22).',
   },
@@ -98,7 +98,7 @@ export const DECK_PLAN: DeckSlide[] = [
   {
     n: 9, id: 'the-hinge', name: 'Pressing on Country is the whole argument',
     why: 'The economic hinge. Everything before it is why, everything after is how much. The honesty about $426/$324 being modelled is the strongest thing on the slide, not the weakest.',
-    talkTrack: '$65 of a $750 bed stays in community today because we buy the legs finished. $324 when the pressing happens on Country. The block is $109,500 a year to run Goods before a single bed is made, so break-even is 338 beds once pressing is ours. A community-owned site stands on its own at roughly 75 to 100 beds a year. Then say the honest thing: the $324 is modelled from verified part prices, not measured at production rate, and the first thing your money buys is the measured run that proves it.',
+    talkTrack: '$65 of a $750 bed stays in community today because we buy the legs finished. $324 when the pressing happens on Country. The block is $109,500 a year to run Goods before a single bed is made, so break-even is 338 beds once pressing is ours. Then say the honest thing: the $324 is modelled from verified part prices, not measured at production rate, and the first thing your money buys is the measured run that proves it.',
     voices: ['Dianne Stokes'], visual: 'stats',
     visualNotes: 'Plastic loop winner: generated-images/goods-illustrations/process-anchors/01-plastic-loop-v2.png. The four old chart PNGs are RETIRED (Ben 2026-07-21): charts are redrawn native.',
   },

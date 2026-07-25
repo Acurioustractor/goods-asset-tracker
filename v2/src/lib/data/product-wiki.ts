@@ -300,7 +300,7 @@ const PLANT: ProductWiki = {
       title: 'A pathway to community ownership',
       body: [
         'The plant is designed to move to community ownership. That transfer has not happened yet, and Goods is careful never to claim it has. The pathway is being built through a first measured production run, a first community operator on payroll, quality control and maintenance, working capital, and a clear transfer of rights and decisions.',
-        'The stated goal of the whole enterprise is to become unnecessary: to move title, contracts, margin, knowledge and decisions into community hands, and then step back.',
+        'The stated goal of the whole enterprise is to move title, contracts, margin, knowledge and decisions into community hands, and then step back.',
       ],
       image: `${P}/process/01-source.jpg`,
     },
@@ -395,7 +395,7 @@ export const GOODS_STORY: { intro: string[]; oneSentence: string; sections: Stor
       heading: 'The plant, and the meaning of ownership',
       body: [
         'The centre of gravity moved from "can we make and deliver a useful product?" to "what would let the making happen closer to Country?" The containerised plant shreds community-collected plastic and presses its own bed legs, which is also what turns the economics around: the same bed leaves far more behind when the plastic processing is owned in community.',
-        'Goods describes A Curious Tractor as the hub for IP, brand, shared services and capital; Goods on Country as the venture in transition; and future community-controlled production entities as spokes that are not yet established. The ambition is to become unnecessary by moving title, contracts, margin, knowledge and decisions. It is not accurate to say that transfer has already happened. Ownership is a pathway.',
+        'Goods describes A Curious Tractor as the hub for IP, brand, shared services and capital; Goods on Country as the venture in transition; and future community-controlled production entities as spokes that are not yet established. The ambition is to move title, contracts, margin, knowledge and decisions into community hands. It is not accurate to say that transfer has already happened. Ownership is a pathway.',
       ],
       video: `${V}/recycling-plant-desktop.mp4`,
       videoPoster: `${V}/recycling-plant-poster.jpg`,

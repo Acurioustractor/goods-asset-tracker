@@ -119,7 +119,6 @@ export const PRODUCTION_FACILITY = {
 
 export const ENTERPRISE = {
   model: 'Community ownership pathway',
-  philosophy: 'Our goal is to become unnecessary',
   pathways: [
     'Sponsor beds',
     'License/transfer model',

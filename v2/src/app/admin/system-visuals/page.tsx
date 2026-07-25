@@ -128,7 +128,7 @@ const CONCEPTS: Concept[] = [
   {
     key: 'ownership',
     label: 'Community ownership — the transfer',
-    blurb: '"We don’t license. We transfer." Goods’s goal is to become unnecessary.',
+    blurb: '"We don’t license. We transfer." The community comes to own the making.',
     // Held pending checkpoint 25 (Ben, 2026-07-17): pulled off /process +
     // /cost-story and moved behind the admin-gated held-asset route.
     live: [{ path: '/api/admin/held-asset/goods-community-ownership-v2.png', usedIn: ['pitch proof drawer (admin review only)'] }],

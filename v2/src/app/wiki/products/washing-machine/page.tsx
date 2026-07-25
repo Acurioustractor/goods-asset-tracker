@@ -408,7 +408,7 @@ export default function WashingMachinePage() {
 
               <div className="border-l-4 border-green-500 pl-4 bg-green-50 p-4 rounded-r">
                 <h3 className="font-semibold mb-2">Community-Owned Manufacturing</h3>
-                <p className="text-gray-700">The long-term goal is the same as the Stretch Bed: transfer manufacturing capability to community-owned enterprises. Local people collecting waste, building housing components, assembling and maintaining machines. Our job is to become unnecessary.</p>
+                <p className="text-gray-700">The long-term goal is the same as the Stretch Bed: transfer manufacturing capability to community-owned enterprises. Local people collecting waste, building housing components, assembling and maintaining machines, and coming to own the making.</p>
               </div>
 
               <div className="border-l-4 border-green-500 pl-4 bg-green-50 p-4 rounded-r">
