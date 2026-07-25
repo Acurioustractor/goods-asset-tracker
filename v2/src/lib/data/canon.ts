@@ -161,8 +161,8 @@ export const CANON: CanonFact[] = [
   {
     id: 'marginal-community', label: 'Marginal cost / bed (Community)', value: 421, unit: 'AUD',
     domain: 'cost', claimLabel: 'modelled', dataClass: 'green',
-    source: 'cost-model/engine.ts (free-feedstock + fair-wage assumption)', check: 'manual', asAt: '2026-05-29', owner: 'Ben',
-    definition: 'MODELLED on a fair-wage band ($100-160) and $0 free feedstock. Never group under engine-locked.',
+    source: 'cost-model/engine.ts computeModel(DEFAULTS).marginalCommunity = stateCommunity 270.74 + longHaulFreight 150 = 420.74, rounded to 421. Verified 2026-07-25 and flipped to check: auto — canon.guards.test.ts recomputes it from the engine and fails on a mismatch.', check: 'auto', asAt: '2026-07-25', owner: 'Ben',
+    definition: 'MODELLED on a fair-wage band ($100-160) and $0 free feedstock. Never group under engine-locked. This is the COMMUNITY build, engine field marginalCommunity, not marginalFactory (425.74) and not marginalKit (684.79). The QBE sweep\'s ~$426/bed is the factory figure; do not reconcile the two, they are different build methods.',
   },
   {
     id: 'save-per-bed', label: 'Saving from pressing in-house', value: 194, unit: 'AUD',
@@ -191,10 +191,10 @@ export const CANON: CanonFact[] = [
     reconcilesWith: ['cleared-voices'],
   },
   {
-    id: 'el-published-stories', label: 'Empathy Ledger published stories', value: 0, unit: 'stories',
+    id: 'el-published-stories', label: 'Empathy Ledger published stories (public)', value: 2, unit: 'stories',
     domain: 'story', claimLabel: 'verified', dataClass: 'amber',
-    source: 'Empathy Ledger API (goods-on-country project)', check: 'manual', asAt: '2026-06-03', owner: 'Ben',
-    definition: '240 storytellers, 0 published. Site falls back to local journeyStories until EL publish-flips land.',
+    source: 'Empathy Ledger Supabase, Goods project 6bd47c8a-e676-456f-aa25-ddcbb5a31047. Re-derive with: GET /rest/v1/stories?project_id=eq.<goods>&status=eq.published&select=is_public,has_explicit_consent,consent_withdrawn_at,is_archived — count rows where is_public is true. Still check: manual because CI holds Goods Supabase secrets but not EL ones; flip to auto once EMPATHY_LEDGER_SUPABASE_* reach the workflow.', check: 'manual', asAt: '2026-07-25', owner: 'Ben',
+    definition: 'Goods stories publicly readable from EL. Measured 2026-07-25: 10 rows carry status=published, but only 2 have is_public=true, and those 2 are exactly the ones returned by the canonical stories_for_site syndication RPC. All 10 carry explicit consent and syndication_enabled, so the gate holding the other 8 is the public flip, not consent. This fact counts the 2. The earlier value of 0 was correct on 2026-06-03 and went stale: the publish-flips the old definition was waiting on have partly landed. The site still falls back to local journeyStories for anything it cannot fetch.',
   },
 
   // ── Governance / legal (entity structure — QBE Area 09 keystone. ABNs are public ABR records.) ──
