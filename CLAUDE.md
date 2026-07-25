@@ -1,7 +1,14 @@
-# Goods on Country
+# Goods
 
-A social enterprise delivering quality furniture to remote Indigenous communities across
-Australia. The flagship product is the **Stretch Bed**.
+**Goods.** is the maker and seller, a social enterprise delivering quality furniture to remote
+Indigenous communities across Australia. The flagship product is the **Stretch Bed**.
+**Goods on Country** is the charity, a registered business name of The Butterfly Movement Ltd.
+They are two different things and conflating them reaches funder documents (ruling K, verified on
+ABN Lookup 2026-07-25).
+
+**▶ Read `/STRATEGY.md` first for the whole picture.** It carries the north star, the road, the
+model, the economics, the raise and what is open, and it names which file wins when two disagree:
+figures in `canon.ts`, judgements in `/DECISIONS.md`, language in `/CONTEXT.md`.
 
 ## The one that will bite you: Supabase project targeting
 

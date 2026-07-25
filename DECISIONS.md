@@ -14,7 +14,8 @@
 > **Format:** every ruling carries a date, the reasoning, what it supersedes, and the
 > sweep it implies. A ruling with no sweep list is a ruling that will silently rot.
 >
-> Glossary and money-model language: `CONTEXT.md`. Canonical map: `wiki/outputs/`.
+> Glossary and money-model language: `CONTEXT.md`. **The whole picture in one place:
+> `/STRATEGY.md`**, which points at this file for every judgement rather than restating them.
 
 ---
 

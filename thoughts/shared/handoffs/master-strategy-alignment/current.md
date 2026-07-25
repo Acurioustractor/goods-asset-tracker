@@ -4,7 +4,10 @@
 <!-- This section is extracted by SessionStart hook for quick resume. Keep it short. -->
 **Updated:** 2026-07-25. Full-day strategy alignment. **16 questions, 14 rulings + 1 direction, all in `/DECISIONS.md`** (new, append-only, root of repo). **PR #159 open and mergeable against main** (corrections; hermetic CI green in 42s). Feature branch `claude/investment-deck-alignment-y3qc43` at `d28c501`, clean.
 
-**▶ READ `/DECISIONS.md` FIRST. It supersedes prose in `CONTEXT.md`, the canonical map, and this ledger's predecessors.**
+**▶ READ `/STRATEGY.md` FIRST** (new, 2026-07-25): the one master alignment and strategy doc. North
+star, the road, the model, the economics, the raise, the entities, what is open, and §0 names which
+file wins when two disagree. **Then `/DECISIONS.md`** for the judgements themselves. Both supersede
+prose in `CONTEXT.md`, the canonical map, and this ledger's predecessors.
 
 **▶ Matt's six model inputs are now PREPPED, not open-ended:
 `wiki/outputs/2026-07-25-matt-model-inputs-session-pack.md`.** Five carry a recommended position
