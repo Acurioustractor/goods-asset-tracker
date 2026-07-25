@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { brand, mediaPack, impactStories } from '@/lib/data/content';
 import { STRETCH_BED, PLASTIC_KG_PER_BED } from '@/lib/data/products';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { communityPartners, funding } from '@/lib/data/compendium';
 import { pressReads, pressCoverage } from '@/lib/data/press-reads';
 import { getApprovedPhotos, getApprovedVideos } from '@/lib/empathy-ledger/press-pack';
@@ -35,8 +36,13 @@ const logoVariants = [
 ] as const;
 
 const keyFacts = [
-  { value: '540', label: 'Beds delivered', verified: true }, // canonical: see asset-canonical.ts (177 Stretch + 363 Basket)
-  { value: '9', label: 'Communities', verified: true },
+  // Read from canon, never retyped. `verified: true` renders a literal "Verified"
+  // badge on a public page, so a hardcoded number here is a claim we are making
+  // about our own evidence. "Communities" sat at 9 against a canon of 11 until
+  // 2026-07-25, badged Verified the whole time, because no drift guard reads
+  // this file.
+  { value: String(CANONICAL_ASSETS.bedsDeployed), label: 'Beds delivered', verified: true },
+  { value: String(CANONICAL_ASSETS.communitiesServed), label: 'Communities', verified: true },
   { value: `${PLASTIC_KG_PER_BED}kg`, label: 'HDPE diverted per bed', verified: true },
   { value: STRETCH_BED.specs.loadCapacity, label: 'Load capacity', verified: true },
   { value: '5 min', label: 'Assembly time, no tools', verified: true },
