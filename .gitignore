@@ -228,3 +228,16 @@ wiki/outputs/*.png
 # Ignored so that cannot happen. If it should ship with this repo, make it a real
 # submodule instead of removing this line.
 v2/sites/
+
+# ── Design source + generated audit dumps (added 2026-07-25) ─────────────────
+# Pencil .pen files are encrypted binaries: they diff as noise, bloat every
+# clone, and no code reads them (the Pencil editor opens them from disk). Per
+# the standing rule, big media stays out of git and goes to Supabase Storage.
+# NOTE: design/goods-theory-of-change*.pen are already tracked on main and are
+# deliberately left tracked, so this ignore does not delete them.
+*.pen
+
+# audit/*.json is script output: build-inventory.py writes goods-media-inventory
+# .json, build-mapping.py reads it and writes goods-el-mapping.json. Keep the
+# scripts, regenerate the data.
+audit/*.json
