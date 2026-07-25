@@ -3,6 +3,8 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { brand, mediaPack, impactStories } from '@/lib/data/content';
 import { STRETCH_BED, PLASTIC_KG_PER_BED } from '@/lib/data/products';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
+import type { ClaimLabel } from '@/lib/data/canon';
 import { communityPartners, funding } from '@/lib/data/compendium';
 import { pressReads, pressCoverage } from '@/lib/data/press-reads';
 import { getApprovedPhotos, getApprovedVideos } from '@/lib/empathy-ledger/press-pack';
@@ -40,13 +42,22 @@ const logoVariants = [
   { file: 'goods-chip-on-light.svg', label: 'Chip, on cream', surface: 'checker' },
 ] as const;
 
-const keyFacts = [
-  { value: '540', label: 'Beds delivered', verified: true }, // canonical: see asset-canonical.ts (177 Stretch + 363 Basket)
-  { value: '9', label: 'Communities', verified: true },
-  { value: `${PLASTIC_KG_PER_BED}kg`, label: 'HDPE diverted per bed', verified: true },
-  { value: STRETCH_BED.specs.loadCapacity, label: 'Load capacity', verified: true },
-  { value: '5 min', label: 'Assembly time, no tools', verified: true },
-  { value: '5 yr', label: 'Warranty (10+ yr design intent, not yet field-proven)', verified: false },
+// Values read from canon, never retyped: "Communities" sat at 9 against a canon
+// of 11 until 2026-07-25 because no drift guard reads this file.
+//
+// `claim` is the canon ClaimLabel, not a loose boolean. This page renders a
+// literal "Verified" badge, which is a statement about our own evidence, so it
+// has to come from the same vocabulary as canon.ts rather than a second one
+// invented here. The warranty row is the case that proves it: a 10-year design
+// life is 'target' (intent we have not field-proven), which is a different thing
+// from "unverified" and reads differently to a journalist.
+const keyFacts: { value: string; label: string; claim: ClaimLabel }[] = [
+  { value: String(CANONICAL_ASSETS.bedsDeployed), label: 'Beds delivered', claim: 'verified' },
+  { value: String(CANONICAL_ASSETS.communitiesServed), label: 'Communities', claim: 'verified' },
+  { value: `${PLASTIC_KG_PER_BED}kg`, label: 'HDPE diverted per bed', claim: 'verified' },
+  { value: STRETCH_BED.specs.loadCapacity, label: 'Load capacity', claim: 'verified' },
+  { value: '5 min', label: 'Assembly time, no tools', claim: 'verified' },
+  { value: '5 yr', label: 'Warranty (10+ yr design intent, not yet field-proven)', claim: 'target' },
 ];
 
 const colourSwatches = [
@@ -197,9 +208,13 @@ export default async function PressPage() {
                 <div key={f.label} className="bg-card p-5">
                   <p className="text-2xl font-semibold tracking-tight">{f.value}</p>
                   <p className="mt-1 text-xs text-muted-foreground">{f.label}</p>
-                  {f.verified && (
+                  {f.claim === 'verified' ? (
                     <span className="mt-3 inline-block rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-emerald-800">
                       Verified
+                    </span>
+                  ) : (
+                    <span className="mt-3 inline-block rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-amber-800">
+                      {f.claim === 'target' ? 'Design intent' : f.claim}
                     </span>
                   )}
                 </div>

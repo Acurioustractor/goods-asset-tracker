@@ -1438,13 +1438,14 @@ export const oonchiumpaPartnership = {
   headline: 'Oonchiumpa / Bloomfield Family',
   subheadline: '100% Aboriginal-owned consultancy, deep roots in Central Australia',
   description: 'Two years designing products in community, "around the fire", building washing machines together, and planning a production facility in Alice Springs. Kristy Bloomfield leads cultural consultation at university-equivalent rates (~$3,800/day).',
-  // TODO: Replace with verified Kristy Bloomfield quote when available
-  kristyQuote: {
-    text: 'We see this as bigger than beds. It\'s about families owning the whole thing: the making, the business, the future.',
-    author: 'Kristy Bloomfield',
-    context: 'Oonchiumpa Consultancy, Alice Springs',
-    verified: false, // PLACEHOLDER: needs real quote from Kristy
-  },
+  // No quote here on purpose. This object used to carry a `kristyQuote` whose
+  // text was invented and attributed by name to Kristy Bloomfield, marked
+  // `verified: false` with a TODO. Nothing rendered it, but it was shaped
+  // exactly like real quote data and one wiring-up away from putting words in a
+  // real person's mouth. Removed 2026-07-25.
+  //
+  // Her actual cleared words live in storyteller-registry.ts (slug
+  // 'kristy-bloomfield', tier 'external'). Read them from there.
   fredVideo: {
     title: 'Community Voices: Fred, Oonchiumpa',
     embedUrl: 'https://share.descript.com/embed/YQwAcYfxzkn',
