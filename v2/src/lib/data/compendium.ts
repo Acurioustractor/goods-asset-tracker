@@ -277,7 +277,7 @@ export const funding: FundingRecord[] = [
   // Government Procurement Pathways (not grants: procurement revenue)
   { id: 'nt-housing', source: 'NT Remote Housing Program', amount: 0, program: '$4B over 10yr, 2700 homes', status: 'pipeline', notes: 'Register on NT Housing Infrastructure Panel when furniture/fitout panel opens. Beds for every new home.' },
   { id: 'qld-qpp', source: 'QLD Government (QPP 2026)', amount: 0, program: 'Social procurement', status: 'pipeline', notes: '$35B annual spend. Social enterprise preference under $500K. Register as social enterprise supplier.' },
-  { id: 'supply-nation', source: 'Supply Nation Certification', amount: 0, program: 'Certification (FREE)', status: 'pipeline', notes: 'CRITICAL: Certified suppliers get 3x more contracts ($2.3B of $3.8B). Apply via Oonchiumpa. DEADLINE: July 1 2026 for 51% ownership rule.' },
+  { id: 'supply-nation', source: 'Supply Nation Certification', amount: 0, program: 'Certification (FREE)', status: 'pipeline', notes: 'Certified suppliers get 3x more contracts ($2.3B of $3.8B). Apply via Oonchiumpa. The 51% ownership threshold deadline of 1 July 2026 has PASSED and nothing records what it cost us (flagged 2026-07-25). Supply Nation tests the entity that SELLS, so the live question is which entity holds the certification, not whether A Curious Tractor restructures.' },
 
   // Outstanding Receivables (Xero-verified, March 27 2026)
   // INV-0291 Centrecorp $85,712: NOW PAID, moved to received trade revenue
