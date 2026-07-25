@@ -1,0 +1,29 @@
+graph TD
+    P["COMMUNITY PATHWAY ID<br/>The shared connecting record"]
+
+    G["GoHighLevel<br/>People · organisations · conversations<br/>opportunities · communications"]
+    W["Goods platform<br/>Pathway · modules · readiness<br/>costing · delivery · reporting"]
+    E["Empathy Ledger<br/>Stories · media · permissions<br/>community return"]
+    N["Notion<br/>Internal knowledge<br/>working notes · decisions"]
+    M["Miro<br/>Strategy · workshops<br/>presentation · sense-making"]
+
+    P --> G
+    P --> W
+    P --> E
+    P --> N
+    P --> M
+
+    G -->|"relationship + opportunity"| W
+    W -->|"delivery evidence"| E
+    E -->|"approved story assets"| M
+    N -->|"working knowledge"| W
+    W -->|"live pathway status"| M
+
+    R["ONE SIMPLE RULE<br/>Enter information once.<br/>Link it everywhere else."] --- P
+
+    classDef hub fill:#B44D2B,stroke:#0A0A0A,color:#F2ECE0,stroke-width:3px;
+    classDef system fill:#F2ECE0,stroke:#5F6E3E,color:#0A0A0A,stroke-width:2px;
+    classDef rule fill:#252220,stroke:#B44D2B,color:#F2ECE0,stroke-width:2px;
+    class P hub;
+    class G,W,E,N,M system;
+    class R rule;

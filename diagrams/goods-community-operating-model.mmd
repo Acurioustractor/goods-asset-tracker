@@ -1,0 +1,19 @@
+graph LR
+    A["1. Invitation<br/>Community names the priority"] --> B["2. Listen<br/>Yarn + what-we-heard brief"]
+    B --> C["3. Choose<br/>Smallest useful modules"]
+    C --> D["4. Price<br/>Complete capability cost"]
+    D --> E["5. Agree<br/>Roles, decisions and ownership"]
+    E --> F["6. Deliver<br/>Install, train and run a real job"]
+    F --> G["7. Return evidence<br/>Results, story and learning"]
+    G --> H["8. Community decides<br/>Grow, pause, share or transfer"]
+    H -. "next community-defined step" .-> B
+
+    C --- M["MODULE MENU<br/>Product · repair · collection · shredder<br/>workspace · production · enterprise"]
+    D --- K["CAPITAL<br/>Place · capability · shared platform"]
+    E --- O["OWNERSHIP TEST<br/>Who decides? operates? owns?<br/>holds contracts and margin?"]
+    G --- P["COMMUNITY-APPROVED PROOF<br/>Story · case study · video<br/>photos · costs · next ask"]
+
+    classDef primary fill:#F2ECE0,stroke:#B44D2B,color:#0A0A0A,stroke-width:2px;
+    classDef support fill:#252220,stroke:#5F6E3E,color:#F2ECE0,stroke-width:2px;
+    class A,B,C,D,E,F,G,H primary;
+    class M,K,O,P support;

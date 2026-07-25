@@ -162,9 +162,9 @@ The lower and right-hand zones hold:
 
 **Job:** Show what changes when a community wants integrated production and enterprise capability.
 
-**Name:** Use Oonchiumpa unless a different entity was intended. Confirm the request and permission.
+**Name and status:** Oonchiumpa is confirmed as the approved flagship partner case. The story, community-ownership framing, youth-justice language and approved media use were confirmed on 24 July 2026.
 
-**Human participation image candidates, clearance required:**
+**Approved human participation image candidates:**
 
 - `v2/public/images/community/alice-springs/oonchiumpa-team-red-bed.jpg`
 - `v2/public/images/community/alice-springs/oonchiumpa-office-joy.jpg`
@@ -174,18 +174,18 @@ The lower and right-hand zones hold:
 
 **Ownership Pencil frame:** `FINAL2 11: The plant moves into community hands` (`Uhxzs`)
 
-**Video candidates, clearance required:**
+**Approved video candidates:**
 
 - `v2/public/video/partners/oonchiumpa/mykel-building-the-bed.mp4` (89s)
 - `v2/public/video/partners/oonchiumpa/karen-liddle-on-beds.mp4` (40s)
 
-**Economics:** Gross equipment $112K to $222K, modelled. Show the additional site, freight, installation, training, wages, working capital, maintenance, demand, governance and evidence layers.
+**Economics:** The Oonchiumpa / DEWR application is recorded at $1.995 million over three years as written, including $300,000 per year for employment-program brokerage and wages. The funding outcome and internal budget reconciliation remain pending. Gross equipment remains a separate modelled range until final supplier quotes are obtained.
 
-**Gaps:**
+**Remaining gates:**
 
-- Confirmed organisational request and mandate
-- Site and readiness evidence
-- A consent-cleared operator or partner voice
+- DEWR funding outcome
+- final reconciliation of the application budget
+- final implementation agreements for the already aligned facility, operator and ownership model
 - A complete quote-backed project budget
 - A visual transfer pathway for contracts, knowledge, margin and decisions
 
@@ -352,9 +352,9 @@ The remaining evidence frames stay on the canvas for questions and deeper explor
 
 ### Verify before external use
 
-- Utopia delivery counts and current asset states
-- Utopia named-person, Elder and young-person media
-- Oonchiumpa partner and participant media
+- Keep the latest verified counts separate: Alice Springs / Oonchiumpa 16 beds; Utopia / Urapuntja 147 beds
+- Continue applying person-specific storyteller attribution rules even though the Oonchiumpa case and media set are approved
+- Confirm the DEWR outcome and reconcile its budget before presenting a final funding ask
 - The Jane example and exact request
 - Current community plant-request map
 

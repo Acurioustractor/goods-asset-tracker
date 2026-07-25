@@ -1,6 +1,6 @@
 # Alice Springs and Oonchiumpa
 
-> Alice Springs is one of the strongest candidates for the next production facility because of the Oonchiumpa relationship and upcoming Central Australia bed delivery work. Treat it as a live pathway, not a fully locked plant location.
+> Alice Springs is the approved flagship example for the Goods community-controlled capability model. Oonchiumpa has approved the partnership story, ownership framing, youth-justice description and use of identifiable young-person media held in the Goods and Oonchiumpa codebases and Empathy Ledger. The DEWR outcome and final budget reconciliation remain pending.
 
 ## Relationship
 
@@ -42,27 +42,48 @@ Jacqueline's feedback connects the circular economy to the buyer reality:
 
 ## Current role
 
-- potential support for the next production facility
+- key community-controlled partner and approved public case-study lead
+- local operator and governance pathway for the Goods Program described in Oonchiumpa's grant material
 - partner in the large Central Australia bed delivery and feedback loop
 - source of local knowledge about what production, delivery and community ownership would need to look like
 - place to test whether the two-container production system can become a real local operating model
 - place to connect youth work, product assembly, cultural consultation and household goods delivery
 
+## Approved external-use status
+
+Confirmed by Ben Knight on 24 July 2026:
+
+- Oonchiumpa approves the overall story and community-ownership framing.
+- Identifiable young people in the approved Oonchiumpa material have usage permission.
+- Oonchiumpa's own website and grant language are the reference for describing its culturally led youth and justice work.
+- Oonchiumpa photos and videos held in the Goods codebase, Oonchiumpa codebase and Oonchiumpa Empathy Ledger collection are approved for use.
+- Oonchiumpa has approved the partnership and is a key Goods partner.
+
+External work must still preserve the storyteller registry's person-specific rules, including Fred narrating Xavier's experience rather than attributing a direct quote to Xavier.
+
+## Current verified place counts
+
+The 23 July 2026 Goods data and figures pack keeps the two places separate:
+
+| Place | Verified beds | Source |
+| --- | ---: | --- |
+| Alice Springs / Oonchiumpa | 16: 1 Basket Bed and 15 Stretch Beds | Goods asset register |
+| Utopia / Urapuntja | 147: 60 Basket Beds and 87 Stretch Beds | Goods asset register and community count reconciliation |
+
+These counts must remain separate in the case study. Utopia is delivery and demand proof connected to the Central Australian pathway; it is not an Alice Springs deployment count.
+
 ## What is still open
 
 - final plant location
-- exact operator structure
-- funding outcome
-- what ownership or revenue relationship would apply
-- staffing and training model
-- whether the public count should say 60 Alice Homelands beds, 24 Utopia beds, 107 approved Utopia pathway beds, or a reconciled total after the asset register is checked
-- which Alice Springs and Utopia photos, videos and quotes are approved for QBE, public web, investor and internal-only use
+- DEWR funding outcome
+- reconciliation of the DEWR application's internal budget totals before they are presented as a final fundable budget
+- final implementation details and agreements that give effect to the facility, operator and ownership structure already aligned in the application
 
 ## Related demand and funding pathway
 
 | Item | Current status | Notes |
 | --- | --- | --- |
-| REAL Innovation Fund, Alice Springs pathway | Applied / pursued | $1.2 million over three years for the Alice Springs site in the wider two-site pathway. Needs current outcome status before being described externally. |
+| REAL Innovation Fund / DEWR pathway | Application position confirmed; outcome pending | The current Goods financial pack records the application at $1.995 million over three years as written. Its internal totals still require reconciliation before being presented as a final budget. |
 | Utopia Homelands beds for every child | Requested | Needs final scope, delivery plan and funding pathway. |
 | Centrecorp 107-bed pathway | Approved source signal | Strong evidence, but delivery count must be reconciled before it becomes a deployed number. |
 | Oonchiumpa cultural consultation | Costed in partner notes | Earlier notes reference about $3,800 per day. Check current agreement before using in a budget. |

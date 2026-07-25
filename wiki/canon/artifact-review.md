@@ -20,7 +20,7 @@ None. Every citesCanon id resolves to a canon fact.
   - beds-deployed (canon 2026-07-18 > verified 2026-05-30)
 - **Impact page (/impact)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-03)
-  - washers-in-community (canon 2026-07-18 > verified 2026-06-03)
+  - washers-in-community (canon 2026-07-21 > verified 2026-06-03)
 - **Canonical numbers sheet**
   - beds-deployed (canon 2026-07-18 > verified 2026-05-29)
   - stretch-beds-deployed (canon 2026-05-30 > verified 2026-05-29)
@@ -52,12 +52,12 @@ None. Every citesCanon id resolves to a canon fact.
   - beds-deployed (canon 2026-07-18 > verified 2026-06-28)
 - **Investment deck (16 slides, rendered)**
   - beds-deployed (canon 2026-07-18 > verified 2026-07-01)
-  - washers-in-community (canon 2026-07-18 > verified 2026-07-01)
+  - washers-in-community (canon 2026-07-21 > verified 2026-07-01)
 - **Funder one-pager (rendered)**
   - beds-deployed (canon 2026-07-18 > verified 2026-07-01)
 - **Investment machine review (Notion + design surfaces)**
   - beds-deployed (canon 2026-07-18 > verified 2026-07-02)
-  - washers-in-community (canon 2026-07-18 > verified 2026-07-02)
+  - washers-in-community (canon 2026-07-21 > verified 2026-07-02)
 - **New outreach drafts (LendForGood, Metro, Tripple)**
   - beds-deployed (canon 2026-07-18 > verified 2026-07-02)
 - **Next-phase one-pager (rendered)**

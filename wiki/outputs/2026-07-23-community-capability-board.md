@@ -223,9 +223,20 @@ There is no forced graduation.
 
 ## Frame 4: Community pathway cards
 
-### Working story A: Jane at Utopia wants a shredder
+### Community pathway A: Jane Wilson at Urapuntja
 
-**Status:** working hypothesis from Ben's brief. Validate Jane's name, role, authority to request, exact place, intended plastic stream and permission to use the story.
+**Status:** established relationship with Jane Wilson, Community Programs Manager, Urapuntja Aboriginal Corporation. Goods and partners completed a May 2026 bed delivery; young men supported the delivery and built beds; Ben and Jane discussed meaningful youth engagement. The specific shredder request still needs to be restated by Jane in her own words and followed by a feedstock, site, operator and offtake assessment.
+
+**What has already happened:**
+
+- Beds were delivered with Urapuntja and Oonchiumpa.
+- Young men participated in bed building.
+- Goods shared community and youth bed-building photo collections.
+- Goods shared the Utopia May 2026 field note for feedback.
+- Ben invited image removals and community correction.
+- Proposed return options included printed photos, a community book, youth photography and video activity, and approved material for community channels.
+
+This means story and evidence return is already part of the relationship. The next conversation should close that loop before opening the shredder module.
 
 **What she is asking for:** local ability to turn suitable waste plastic into clean, usable flake.
 
@@ -256,9 +267,9 @@ There is no forced graduation.
 
 **Funder story:** "Jane did not ask for a factory. She asked for the useful next piece. The funder backed a defined capability, and the next decision belongs to Utopia."
 
-### Working story B: "Nchumba" wants the whole production facility
+### Community pathway B: Oonchiumpa and the full Goods Program pathway
 
-**Status:** working hypothesis from Ben's brief. Confirm whether this refers to Oonchiumpa, and validate the requested scope with the organisation before external use.
+**Status:** Oonchiumpa is confirmed as the approved flagship partner case. The story, youth-justice framing, ownership direction and approved media permissions are confirmed. The DEWR outcome and final application-budget reconciliation remain pending.
 
 **What they may be asking for:** an integrated production enterprise that can turn plastic into finished Stretch Beds and retain capability, work and margin locally.
 
@@ -472,11 +483,11 @@ This is the Goods platform. It makes each local module safer, faster, more hones
 
 ### Consent and verification gates
 
-- Several Utopia and Oonchiumpa clips remain consent-unverified for funder or public use.
-- Utopia young-person quotes should not be used publicly until cleared.
-- Named-person and Elder clearance must be recorded per asset.
-- The May 2026 delivery counts require reconciliation before being repeated as current facts.
-- Jane and "Nchumba" are not external case studies until identity, request and permission are confirmed.
+- Use the approved Oonchiumpa media set and continue following person-specific storyteller attribution rules.
+- Return the May Urapuntja photographs and story in the format community chooses.
+- Keep Alice Springs / Oonchiumpa and Utopia / Urapuntja deployment counts separate.
+- Ask Jane to confirm the shredder request and permission to present that specific request externally.
+- Record any new named-person and Elder clearance per asset.
 
 ### Highest-value media still needed
 
@@ -492,8 +503,9 @@ This is the Goods platform. It makes each local module safer, faster, more hones
 
 ### Community validation
 
-- Confirm Jane's identity, role, place, request and consent.
-- Confirm whether "Nchumba" means Oonchiumpa.
+- Close the media-return loop with Jane Wilson and Urapuntja Aboriginal Corporation.
+- Confirm Jane's shredder request, intended outcome and authority in her own words.
+- Treat Oonchiumpa as the confirmed full-pathway partner and close only the DEWR outcome and budget gates.
 - Validate the capability menu with community partners. Ask what is missing and what feels imposed.
 
 ### Commercial validation
@@ -517,4 +529,3 @@ This is the Goods platform. It makes each local module safer, faster, more hones
 - Put the six-slide funder narrative across the top.
 - Put the media library and evidence gates on the right.
 - Keep a large open "community says" area for workshop notes.
-
