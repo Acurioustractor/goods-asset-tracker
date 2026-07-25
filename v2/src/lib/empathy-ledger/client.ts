@@ -248,7 +248,15 @@ async function fetchFromSyndicationAPI<T>(
 
   if (!response.ok) {
     // Upstream non-2xx. Soft-fail with a typed error caller can handle.
-    throw new SyndicationFetchError(`Upstream ${response.status} ${response.statusText}`);
+    //
+    // The URL is in the message on purpose. These failures are soft, so they only ever
+    // surface as build-log lines, and "Upstream 404 Not Found" with no URL is unactionable:
+    // on 2026-07-25 the build logged 18 of them while every endpoint, host, site slug and
+    // key checked out at 200 by hand. No secret is exposed; the key travels in a header.
+    throw new SyndicationFetchError(
+      `Upstream ${response.status} ${response.statusText} for ${url} ` +
+        `(auth: ${EMPATHY_LEDGER_API_KEY ? 'bearer key present' : 'NO KEY'})`,
+    );
   }
 
   return response.json();
