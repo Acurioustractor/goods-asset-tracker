@@ -214,6 +214,15 @@ export const storyStops: StoryStop[] = [
         alt: 'The name Pakkimjalki Kari on the machine',
         caption: 'The name is authorship, not a label applied after the engineering.',
       },
+      {
+        src: '/images/community/maningrida/washer-lid-dusk.jpg',
+        alt: 'Opening the washing machine lid at dusk, Maningrida',
+        caption: 'Pakkimjalki Kari in use.',
+      },
+      {
+        src: '/images/community/maningrida/group-beside-washer.jpg',
+        alt: 'Four people beside a Pakkimjalki Kari washing machine, Maningrida',
+      },
     ],
     figures: [
       { value: String(WASHERS), label: 'washing machines in community', claim: 'verified' },
@@ -307,10 +316,34 @@ export const storyStops: StoryStop[] = [
       'The Maningrida story also shows the model\'s two-sided demand. Homeland School Company did not ask for an abstract circular-economy demonstration. It needed beds and machines across homelands. The production facility did not make a showcase object. It made a batch with a destination.',
     ],
     photo: {
-      src: '/images/process/container-factory.jpg',
-      alt: 'The containerised production facility at the farm',
+      src: '/images/community/maningrida/whole-run-at-sunset.jpg',
+      alt: 'The whole run of finished Stretch Beds at Gamardi, people sitting on them at sunset',
+      caption:
+        'Gamardi, build day. The batch had a destination before it was made.',
     },
     gallery: [
+      {
+        src: '/images/community/maningrida/wordmark-wall.jpg',
+        alt: 'A young person drilling beside the Goods wordmark sprayed on a wall at Gamardi',
+        caption: 'The community sprayed the wordmark on their own wall.',
+      },
+      {
+        src: '/images/community/maningrida/unrolling-canvas-with-elder.jpg',
+        alt: 'Unrolling the brown canvas with an Elder helping, Gamardi School',
+      },
+      {
+        src: '/images/community/maningrida/tensioning-canvas.jpg',
+        alt: 'Tensioning the canvas onto the X-legs at Gamardi School',
+        caption: 'The canvas is structural. The bed does not stand without it.',
+      },
+      {
+        src: '/images/community/maningrida/kids-carrying-orange-bed.jpg',
+        alt: 'Three young people carrying an orange-canvas Stretch Bed across sandy ground',
+      },
+      {
+        src: '/images/process/container-factory.jpg',
+        alt: 'The containerised production facility at the farm where the batch was pressed',
+      },
       {
         src: '/images/process/hydraulic-press.jpg',
         alt: 'Hydraulic press used in the recycled-plastic process',
@@ -342,7 +375,7 @@ export const storyStops: StoryStop[] = [
           'No cleared voice exists for this stop. The only East Arnhem record in the registry is consent tier "hold", so it cannot be used. This is the one stop on the road carried entirely by our own account of it.',
       },
     ],
-    note: 'THE FACTORY PATH IS PROVEN: 40+ beds pressed and assembled in-house at the farm, and this batch was 60. NEVER write "zero beds pressed in-house" on any surface; that claim has regressed twice. The before/after framing is the Notion source\'s own and is the honest version: capability proven, economics not yet measured.',
+    note: 'PHOTOS: the 10 Maningrida/Gamardi trip photos, consent obtained and evidenced per Ben\'s 2026-07-21 ruling (CONTEXT.md:77), cleared for external use INCLUDING the children, the Elder and the identifiable faces. They lived only in `design/starred-images/`, which is gitignored (.gitignore:80), which is why they had never reached any public surface. Originals stay at `design/deck-photos/maningrida-trip/`. ONE THING STILL OPEN on that ruling: the consent evidence is not pointed at from the repo, so when Ben names where it lives (registry entry, EL consent record or signed form) the reference belongs on the manifest rows. THE FACTORY PATH IS PROVEN: 40+ beds pressed and assembled in-house at the farm, and this batch was 60. NEVER write "zero beds pressed in-house" on any surface; that claim has regressed twice. The before/after framing is the Notion source\'s own and is the honest version: capability proven, economics not yet measured.',
   },
 
   // ────────────────────────────────────────────────────────── stop 7
