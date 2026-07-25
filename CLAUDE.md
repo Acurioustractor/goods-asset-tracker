@@ -14,37 +14,17 @@ Before writing code for a non-trivial task, state your approach in 2-3 bullets: 
 ## What This Is
 A social enterprise delivering quality furniture to remote Indigenous communities across Australia. The flagship product is the **Stretch Bed** — a washable, flat-packable bed made from recycled plastic, heavy-duty canvas, and galvanised steel.
 
-## Project Structure
+## Where to work
 
-```
-v2/                          <- THE ACTIVE CODEBASE (Next.js 16 + React 19)
-  src/app/                   <- App Router pages
-  src/components/            <- auth, cart, empathy-ledger, layout, marketing, shop, ui
-  src/lib/                   <- cart, data, empathy-ledger, ghl, stripe, supabase, types
-  public/video/              <- Background videos (hero, stretch-bed, community)
-wiki/                        <- LLM knowledge base (Karpathy pattern) — see wiki/AGENTS.md
-  raw/                       <- source material (emails, clippings) — never hand-edited
-  articles/                  <- LLM-compiled wiki articles, INDEX.md is the map
-  outputs/                   <- generated briefings/reports
-deploy/                      <- OLD static HTML site (legacy, do not modify)
-tools/                       <- FFmpeg video processing scripts
-media/                       <- Raw video footage and analysis
-```
+**Always work in `v2/`** (Next.js App Router). `deploy/` is the old static site — never modify it.
+`wiki/` is an LLM knowledge base on the Karpathy pattern; its rules live in `wiki/AGENTS.md`.
+For ACT ecosystem knowledge, cross-reference the Tractorpedia at
+`/Users/benknight/Code/act-global-infrastructure/wiki/` (124 articles) rather than duplicating it.
 
-**Goods Wiki:** lightweight LLM knowledge base at `wiki/`. Follows the Karpathy pattern: raw
-sources in `wiki/raw/`, LLM-compiled articles in `wiki/articles/`, rules in `wiki/AGENTS.md`.
-For deep ACT ecosystem knowledge, cross-reference the ACT Tractorpedia at
-`/Users/benknight/Code/act-global-infrastructure/wiki/` (124 articles) — don't duplicate.
-
-**Always work in `v2/`.** The `deploy/` folder is the old site and should not be modified.
-
-## Tech Stack (v2)
-- **Framework:** Next.js 16.1.4 with App Router, Turbopack
-- **UI:** React 19, Tailwind CSS 4, Radix UI, shadcn/ui components
-- **Backend:** Supabase (PostgreSQL, Auth, Storage) — project `cwsyhpiuepvdjtxaozwf`
-- **Payments:** Stripe (only for Stretch Bed purchases)
-- **Deployment:** Vercel
-- **Fonts:** Georgia (display), system sans-serif (body)
+Supabase project for v2 is `cwsyhpiuepvdjtxaozwf` (see CRITICAL above). Fonts are the one
+stack fact worth stating because it is NOT what the code implies: CLAUDE.md and
+`design/brand/tokens.css` both say Georgia is the display face, but the app actually loads
+Playfair Display, and `--goods-font-logo` names Archivo, which is never loaded at all.
 
 ## Products — THE TRUTH
 
@@ -79,16 +59,6 @@ For deep ACT ecosystem knowledge, cross-reference the ACT Tractorpedia at
 
 ## Key Patterns
 
-### Component Organisation
-```
-src/components/
-  ui/          -> shadcn/ui primitives (Button, Card, Dialog, etc.)
-  marketing/   -> Hero, ImpactStats, ProductCard
-  layout/      -> SiteHeader, SiteFooter
-  shop/        -> ProductDetail, AddToCart
-  empathy-ledger/ -> FeaturedStories, CommunityGallery
-```
-
 ### Data Layer
 - `src/lib/data/content.ts` — Brand copy, product categories, community partnerships (static)
 - `src/lib/data/media.ts` — Image/video URLs with Empathy Ledger fallback
@@ -96,33 +66,14 @@ src/components/
 - `src/lib/types/database.ts` — TypeScript types for Supabase tables
 
 ### Video System
-Background videos in `v2/public/video/` with desktop (1080p), mobile (720p), and poster variants:
-- `hero-desktop.mp4` / `hero-mobile.mp4` / `hero-poster.jpg`
-- `stretch-bed-desktop.mp4` / `stretch-bed-mobile.mp4` / `stretch-bed-poster.jpg`
-- `community-desktop.mp4` / `community-mobile.mp4` / `community-poster.jpg`
-
-The Hero component accepts a `videoSrc` prop:
-```tsx
-<Hero videoSrc={{ desktop: '/video/hero-desktop.mp4', mobile: '/video/hero-mobile.mp4', poster: '/video/hero-poster.jpg' }} />
-```
-
-FFmpeg tools in `tools/`:
-- `analyze-video.sh` — Generate thumbnail previews from raw footage
-- `extract-segments.sh` — Extract timestamp ranges into web-ready video
-- `make-background-video.sh` — Concatenate clips with crossfades
+Background video conventions, the Hero `videoSrc` contract and the FFmpeg tools now live in
+the `video-pipeline` skill — it loads on demand instead of every session.
 
 ### Empathy Ledger
 - API at `https://empathy-ledger-v2.vercel.app`
 - Project code: `goods-on-country`
 - Has 240 storytellers but 0 published stories — FeaturedStories component falls back to local `journeyStories` from content.ts
 - When EL stories get published, they automatically take over from local fallbacks
-
-## Commands
-```bash
-cd v2 && npm run dev      # Start dev server (localhost:3000 or next available)
-cd v2 && npm run build    # Production build
-cd v2 && npm run lint     # ESLint
-```
 
 ## Brand Voice
 - Warm, grounded, community-first
@@ -142,8 +93,6 @@ cd v2 && npm run lint     # ESLint
 ## TypeScript Conventions
 - Always ensure clean `npm run build` before considering work complete.
 - Fix Recharts and other library type errors immediately — don't leave them.
-- Use existing patterns in the codebase for imports, API routes, and component structure.
-- When editing files, read them first to understand existing patterns.
 
 ## Mistakes to Avoid
 - Do NOT modify files in `deploy/` — that's the old static site
