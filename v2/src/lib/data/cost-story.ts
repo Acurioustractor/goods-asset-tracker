@@ -56,7 +56,7 @@ export const COST_STORY_SPINE = [
   'Running the business costs about $109.5K a year before any bed is made. At $324/bed that is ~338 beds a year to break even; at $65/bed it is ~1,679 — which is exactly why we in-source.',
   'The equipment costs $112–222K gross; $110,046 is already invested, so the remaining ask is $2–112K net. We do not spend it until ~300+ beds/yr are committed.',
   'Plastic is a paid input today (~$55/bed), not free. Free community feedstock is the end state of the ladder, not the current state.',
-  'The proof: 540 beds in 11 communities, $713,827 accountant-signed revenue, and 1,000+ beds of named demand on the table.',
+  'The proof: 540 beds in 11 communities, $713,827 in Goods-only revenue (workpaper, not yet accountant-signed), and 1,000+ beds of named demand on the table.',
 ] as const;
 
 export const COST_CHAPTERS: CostChapter[] = [
@@ -303,7 +303,7 @@ export const COST_CHAPTERS: CostChapter[] = [
   {
     slug: 'proof',
     title: 'Proof & demand',
-    lede: 'This is not a pre-revenue pitch: real beds in real communities, accountant-signed revenue, and named demand bigger than one year of full-facility output.',
+    lede: 'This is not a pre-revenue pitch: real beds in real communities, revenue prepared with our accountant, and named demand bigger than one year of full-facility output.',
     facts: [
       {
         label: 'Delivered so far',
@@ -316,10 +316,11 @@ export const COST_CHAPTERS: CostChapter[] = [
       {
         label: 'Revenue to date',
         value: 'AU$713,827',
-        solidity: 'verified',
-        means: 'Accountant-signed Goods-only revenue. The business already trades.',
-        watchOut: 'Externally, ONLY this figure — never the $403,901 “surplus” (entity P&L is a net loss).',
-        source: 'Accountant letter / 04 · Verified Financials',
+        // RULING G/H 2026-07-25: no signed accountant document exists. Figure stays, word goes.
+        solidity: 'workpaper',
+        means: 'Goods-only revenue, prepared with our accountant. The business already trades.',
+        watchOut: 'Never call this “signed”: no accountant letter exists yet, and getting one is the next action. Externally, ONLY this figure, never the $403,901 “surplus” (entity P&L is a net loss).',
+        source: 'Workpaper prepared with the accountant / 04 · Verified Financials',
       },
       {
         label: 'Demand on the table',

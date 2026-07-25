@@ -307,6 +307,39 @@ old ruling changed the *figure*, this one changes the *adjective*.
 Also retire or rewrite `claims-ledger.ts:233` (the `consolidated-revenue` locked row) and
 `ANTI_CLAIMS:257`, which describe a discipline not actually followed since June.
 
+**SWEPT 2026-07-25, and the sweep had NOT happened.** A ruling-audit run after ruling M turned
+out to be unswept found "accountant-signed" still live in **nine places**, including six on the
+funder-facing `/sites/qbe-readiness` page and three in `cost-story.ts`, all of them on H's own
+sweep list. Only `ask-surface.ts` had been done. Now corrected:
+
+- `qbe-readiness/page.tsx` ×6, including the metric card's green **Verified** pill, dropped to
+  **Workpaper**. The card previously read "Accountant-signed carve-out" in front of funders.
+- `cost-story.ts` ×3, including a `solidity: 'verified'` row whose `source` cited an
+  **"Accountant letter"** that does not exist.
+- `canon.ts:138` regraded `verified` to **`workpaper`**, and its definition no longer says
+  "Citable accountant-signed". This required adding `workpaper` to the `ClaimLabel` union,
+  which had no honest slot for a figure that is actual but unsigned: `verified` overclaims and
+  `modelled` is simply wrong for real cash. `Solidity` in cost-story.ts has had the grade for
+  longer; the two vocabularies now agree.
+- The two items above that H flagged as "a discipline not actually followed" were both **false
+  statements**, not merely stale. `ANTI_CLAIMS` asserted *"We do not publish an unsigned revenue
+  figure"* while $713,827 rendered on eight surfaces, and the `consolidated-revenue` row claimed
+  the figure was `status: 'locked'` and withheld. An integrity commitment contradicted by
+  practice is worse than no commitment. Both now state what is actually done.
+- Caught in passing: `ANTI_CLAIMS` cited **"the 32 consent-cleared voices"**, which was stale
+  (canon is 34) *and* the wrong tier (32 is the display-storyteller pool, a coverage queue, not
+  a clearance list). Now reads from `canonFact('cleared-voices')` so it cannot drift again.
+
+**Ruling A swept in the same pass.** "Become unnecessary" was still live twice on
+`qbe-readiness/page.tsx`. The scoreboard line now imports `NORTH_STAR.line` rather than
+retyping a slogan, per ruling E.
+
+**The lesson, which is bigger than these files.** Two rulings in a row (M, then G/H/A) were
+logged with a correct sweep list and never executed. A ruling with a sweep list is not swept
+until something checks. Treat the sweep list as a to-do that needs verifying, not a record of
+work done, and re-run a grep for retired language before trusting any "swept" note including
+this one.
+
 ### G. There is no signed accountant document
 
 The $713,827 Goods-only carve-out is **not accountant-signed**. Getting it signed is the next

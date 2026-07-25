@@ -48,7 +48,14 @@ import { CANONICAL_ASSETS } from './asset-canonical';
  *
  * Labels mirror the QBE Diagnostic Artifact Database and the hub legend.
  */
-export type ClaimLabel = 'verified' | 'modelled' | 'target' | 'future' | 'internal-only';
+/**
+ * `workpaper` added 2026-07-25 (ruling H). It fills a real gap: a figure that is ACTUAL, not
+ * modelled, but whose supporting document is not signed. The Goods-only carve-out is the case.
+ * Before this, such a figure had to sit as `verified` (an overclaim: it implies checkable
+ * today) or `modelled` (wrong: it is real cash). Mirrors `Solidity` in cost-story.ts, which
+ * has carried a `workpaper` grade for longer.
+ */
+export type ClaimLabel = 'verified' | 'workpaper' | 'modelled' | 'target' | 'future' | 'internal-only';
 export type CanonDomain = 'assets' | 'money' | 'story' | 'product' | 'cost' | 'pipeline' | 'governance';
 /** GREEN = public-safe. AMBER = internal/management. RED = recipient/storyteller data, never to external models, never auto-published. */
 export type DataClass = 'green' | 'amber' | 'red';
@@ -133,9 +140,12 @@ export const CANON: CanonFact[] = [
   },
   {
     id: 'revenue-carveout', label: 'Goods revenue carve-out', value: 713_827, unit: 'AUD',
-    domain: 'money', claimLabel: 'verified', dataClass: 'amber',
-    source: 'Goods carve-out, pitch blueprint A3', check: 'manual', asAt: '2026-06-02', owner: 'Ben/accountant',
-    definition: 'Citable accountant-signed Goods-only carve-out. No surplus claimed: connected entity runs an FY26 net loss. Use alongside revenue-received ($741,111 all-sources) with the basis named.',
+    // RULING G/H 2026-07-25: cite the figure, never call it signed. No accountant document
+    // exists yet; getting one is the next action. Was claimLabel 'verified', which ruling G
+    // flagged as an overclaim rendering in front of funders.
+    domain: 'money', claimLabel: 'workpaper', dataClass: 'amber',
+    source: 'Goods carve-out workpaper, prepared with the accountant (NOT signed); pitch blueprint A3', check: 'manual', asAt: '2026-06-02', owner: 'Ben/accountant',
+    definition: 'Citable Goods-only carve-out, prepared with our accountant as a workpaper. NOT accountant-signed: no signed document exists, and obtaining one is an open action (claims ledger promised before mid-August 2026). No surplus claimed: connected entity runs an FY26 net loss. Use alongside revenue-received ($741,111 all-sources) with the basis named.',
     reconcilesWith: ['revenue-received'],
   },
 

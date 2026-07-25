@@ -36,6 +36,9 @@ import {
   Target,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+// RULING A + E 2026-07-25: "Our job is to become unnecessary" is retired as weak; the north
+// star carries that job now. Read it from the constant, never retyped.
+import { NORTH_STAR } from '@/lib/data/content';
 
 export const metadata: Metadata = {
   title: 'QBE Readiness One-Pager',
@@ -84,8 +87,10 @@ const METRICS: Array<{ value: string; label: string; sub: string; tier: Tier }> 
   {
     value: 'AU$713,827',
     label: 'Goods-only received',
-    sub: 'Accountant-signed carve-out, within AU$741,111 all-sources received.',
-    tier: 'Verified',
+    // RULING G/H 2026-07-25: there is NO signed accountant document. The figure stays, the
+    // adjective and the badge come off. Getting it signed is the next action.
+    sub: 'Goods-only carve-out, prepared with our accountant but not yet signed. Within AU$741,111 all-sources received.',
+    tier: 'Workpaper',
   },
   {
     value: 'AU$0 signed',
@@ -132,7 +137,7 @@ const PROOFS: Array<{
     number: 1,
     title: 'The money is real',
     owners: 'Ben, Nic, accountant',
-    body: 'The accountant-signed Goods-only figure is done at AU$713,827. The live gap is one signed commitment: an LOI, offtake, term sheet, or facility that QBE accepts as match evidence.',
+    body: 'The Goods-only figure is prepared at AU$713,827, as a workpaper rather than a signed accountant document. Two live gaps, then: getting that signed, and one signed capital commitment (an LOI, offtake, term sheet, or facility) that QBE accepts as match evidence.',
     status: 'In progress',
   },
   {
@@ -169,7 +174,7 @@ const PROOFS: Array<{
 const MILESTONES: Array<{ when: string; what: string; tier?: Tier }> = [
   {
     when: 'As at 3 July 2026',
-    what: 'The documents are done. 540 beds proven and tracked. Accountant-signed Goods-only revenue: AU$713,827. Signed match capital today: AU$0.',
+    what: 'Most documents are done. 540 beds proven and tracked. Goods-only revenue AU$713,827, a workpaper prepared with our accountant, not yet signed. Signed match capital today: AU$0.',
   },
   {
     when: '1 July 2026',
@@ -189,7 +194,7 @@ const PHASES: Array<{ n: number; name: string; horizon: string; body: string }> 
     n: 1,
     name: 'De-risk',
     horizon: 'next ~12 months',
-    body: 'Run the 50-bed proof, close the first ~AU$400K, use the accountant-signed carve-out, decide the legal entity, and put the first community operator on payroll.',
+    body: 'Run the 50-bed proof, close the first ~AU$400K, get the carve-out signed by the accountant, decide the legal entity, and put the first community operator on payroll.',
   },
   {
     n: 2,
@@ -201,7 +206,7 @@ const PHASES: Array<{ n: number; name: string; horizon: string; body: string }> 
     n: 3,
     name: 'Scale On Country',
     horizon: 'the endgame',
-    body: 'Distributed, community-owned production. The central organisation steps back. The job was always to become unnecessary.',
+    body: 'Distributed, community-owned production. The central organisation steps back as a community comes to own the making.',
   },
 ];
 
@@ -223,7 +228,7 @@ const ROWS: Row[] = [
     from: '8',
     to: '9',
     priority: false,
-    line: 'Become unnecessary: communities owning the means to collect, make, repair, and sell.',
+    line: NORTH_STAR.line,
   },
   {
     number: 2,
@@ -247,7 +252,7 @@ const ROWS: Row[] = [
     from: '4',
     to: '7',
     priority: true,
-    line: 'The Goods-only figure is now accountant-signed at AU$713,827. The gates are opening cash, capex quotes, and full workbook review.',
+    line: 'The Goods-only figure is prepared at AU$713,827, as a workpaper and not yet signed. The gates are getting it signed, opening cash, capex quotes, and full workbook review.',
   },
   {
     number: 5,
@@ -441,7 +446,7 @@ export default function QbeReadinessPage() {
             What is left is not more documents. It is real-world evidence.
           </p>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-[#E6DFD1]">
-            Close one signed dollar, use accountant-signed numbers, decide the legal entity, measure
+            Close one signed dollar, get the carve-out signed by the accountant, decide the legal entity, measure
             (not model) the bed cost, and clear consent on impact. Get those and the QBE match doubles
             the money. That is the game between now and 31 August.
           </p>

@@ -233,12 +233,14 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   {
     id: 'consolidated-revenue',
     headline: 'Consolidated revenue figure',
-    statement: 'Total funding received since inception is held from publication until the accountant signs one Goods-only figure. We would rather show you a lock than an unsigned number.',
-    status: 'locked',
-    ceiling: 'No revenue or surplus figure is published or implied anywhere external until sign-off.',
+    // RULING G/H 2026-07-25: this row described a lock that has not been in force since June.
+    // $713,827 is published on eight surfaces. Restated from 'locked' to what is actually true.
+    statement: 'Two figures, two bases, both published with the basis named. The Goods-only carve-out is $713,827 (FY26, Goods-scoped); all-sources cash since inception is $741,111, plus $143,000 in receivables. Both are workpapers prepared with our accountant. Neither is accountant-signed, and we do not describe them as such. No surplus is claimed: the connected entity runs an FY26 net loss.',
+    status: 'future',
+    ceiling: 'Never call either figure “signed” or “audited”, and never publish the $403,901 “surplus”. Always name which basis is meant, because the two figures are not alternatives, they measure different things.',
     evidence: [{ label: 'Reconciliation basis (internal, on request)' }],
-    asOf: '2026-06-03',
-    flip: { when: 'on accountant sign-off (targeted before mid-August 2026)', how: 'The signed Goods-only figure is published here, with its basis named.' },
+    asOf: '2026-07-25',
+    flip: { when: 'on accountant sign-off (targeted before mid-August 2026)', how: 'The label moves from workpaper to signed, with the document named. The figure itself does not change.' },
   },
 ];
 
@@ -254,8 +256,12 @@ export const ANTI_CLAIMS: { statement: string; why: string }[] = [
     why: '200–350 logged bed requests are interest. Revenue is a signed purchase, and only signed purchases are reported as revenue.',
   },
   {
-    statement: 'We do not publish an unsigned revenue figure.',
-    why: 'The consolidated figure stays locked until the accountant reconciles one Goods-only number. See the locked row below.',
+    // RULING G/H 2026-07-25: this anti-claim was FALSE. It asserted a discipline that has not
+    // been followed since June, while $713,827 rendered on eight surfaces. An integrity
+    // commitment contradicted by practice is worse than no commitment, so it now states what
+    // we actually do: publish the figure, label it honestly, and name the missing document.
+    statement: 'We do not publish a revenue figure without naming what backs it.',
+    why: 'The Goods-only carve-out of $713,827 IS published, labelled workpaper, because it is real cash on a named basis. What does not exist yet is an accountant-signed document, and we say so rather than implying one. Getting it signed is an open action, targeted before mid-August 2026.',
   },
   {
     statement: 'We do not claim community ownership has happened.',
@@ -263,7 +269,9 @@ export const ANTI_CLAIMS: { statement: string; why: string }[] = [
   },
   {
     statement: 'We do not use an uncleared voice or photo.',
-    why: 'Only the 32 consent-cleared voices (2026-06-17 pass, default-deny, OCAP®-aligned) appear on external surfaces. If a name is not on the list, it does not render.',
+    // Was hardcoded "32", which was both stale (canon is 34) and the WRONG TIER: 32 is the
+    // display-storyteller-pool, a different list. Reads from canon now so it cannot drift again.
+    why: `Only the ${canonFact('cleared-voices').value} consent-cleared voices (2026-06-17 pass plus later additions, default-deny, OCAP®-aligned) appear on external surfaces. If a name is not on the list, it does not render. Not to be confused with the broader website display-storyteller pool, which is a coverage queue, not a clearance list.`,
   },
 ];
 
