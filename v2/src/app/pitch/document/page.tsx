@@ -8,6 +8,7 @@ import { media } from '@/lib/data/media';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { PLASTIC_KG_PER_BED, STRETCH_BED, WASHING_MACHINE } from '@/lib/data/products';
 import { getStoryteller, type StorytellerRecord } from '@/lib/data/storyteller-registry';
+import { OtherPitchSurfaceNotice } from '@/components/pitch/pitch-surface-notice';
 
 const plainCase = [
   'People are asking for beds that work in heat, dust, freight, and crowded houses.',
@@ -81,6 +82,9 @@ export default function PitchDocumentPage() {
 
   return (
     <>
+      <div className="print:hidden">
+        <OtherPitchSurfaceNotice note="This is the printable pitch document." />
+      </div>
       <style
         dangerouslySetInnerHTML={{
           __html: `

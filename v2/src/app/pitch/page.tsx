@@ -13,6 +13,7 @@ import { CyclingImage } from '@/components/pitch/cycling-image';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { PLASTIC_KG_PER_BED, STRETCH_BED, WASHING_MACHINE } from '@/lib/data/products';
 import { getStoryteller, type StorytellerRecord } from '@/lib/data/storyteller-registry';
+import { OtherPitchSurfaceNotice } from '@/components/pitch/pitch-surface-notice';
 
 export const metadata = {
   title: 'Pitch | Goods on Country',
@@ -171,6 +172,7 @@ export default function PitchPage() {
 
   return (
     <main>
+      <OtherPitchSurfaceNotice note="This is the long-form pitch narrative." />
       <section className="min-h-[86vh] bg-foreground text-background">
         <div className="container mx-auto grid min-h-[86vh] items-center gap-12 px-4 py-20 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
