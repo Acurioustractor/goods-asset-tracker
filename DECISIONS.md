@@ -192,6 +192,14 @@ an adjective is a one-word sweep. Withholding entirely was rejected because it i
 published everywhere; retracting a number funders have seen is a bigger event than relabelling
 it.
 
+**SUPERSEDES A BEN RULING FROM THE DAY BEFORE.** `thoughts/shared/handoffs/investor-wiki/current.md`
+records: *"REVENUE RULING (Ben 2026-07-24): $713,827 carve-out is NOT yet signed → cite $741,111
+externally; do NOT cite $713,827."* Ruling H is the later call, made with the full picture
+(eight surfaces already carrying it, the basis difference between the two figures, and seven
+weeks to submission), and it **replaces** the 2026-07-24 ruling. Both are Ben rulings; if a
+future session finds them pointing opposite ways, H wins on date. The practical difference: the
+old ruling changed the *figure*, this one changes the *adjective*.
+
 **Sweep.** `canon.ts:138` · `cost-story.ts:59,327` · `slides-source.html:168` (and the V chip) ·
 `v2/src/app/sites/qbe-readiness/page.tsx:85,135,172,250` · `ask-surface.ts:23` ·
 `pitch-control-room.ts:145` · `deck.ts:354` · `qbe-areas.json` ·
