@@ -190,7 +190,7 @@ export const DIRECTION = {
   headline: 'One trading company, one charity, ownership moving to community',
   points: [
     'Trading today: Nicholas Marchesi sole trader (ABN 21 591 780 066) — the migration starting point, not the destination.',
-    'Go-forward: A Curious Tractor Pty Ltd (ACN 697 347 676) trading as Goods on Country; operations migrate FY2026-27. Not finished — never present it as done.',
+    'Go-forward: A Curious Tractor Pty Ltd (ACN 697 347 676) trading as Goods., the maker and seller; operations migrate FY2026-27. "Goods on Country" is the CHARITY, a business name of The Butterfly Movement Ltd (ruling K). Not finished — never present it as done.',
     'DGR / charity home: The Butterfly Movement Ltd (ABN 22 155 132 684) — the ONLY deductible vehicle, operational from FY2026-27. No DGR claims before the handover.',
     'A Kind Tractor Ltd is dormant. Never cite it.',
     'The 51% First Nations ownership decision gates IBA / First Australians Capital; target is post-Butterfly (~end July, MinterEllison).',

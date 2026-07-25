@@ -236,8 +236,9 @@ export default async function PartnerPage({
                   Entity and DGR note
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  A Curious Tractor Pty Ltd is the trading company behind Goods on Country. The
-                  Butterfly Movement Ltd is the DGR pathway for eligible giving. The long-term
+                  A Curious Tractor Pty Ltd is the trading company, making and selling as Goods.
+                  Goods on Country is the charity, a registered business name of The Butterfly
+                  Movement Ltd, which is also the DGR pathway for eligible giving. The long-term
                   structure is being designed to protect enterprise discipline and community
                   ownership.
                 </p>

@@ -213,6 +213,29 @@ four public pages asserting the company operates the name.
   the "contracting party / seller-of-record during migration" question that
   `wiki/canon/qbe-readiness.md:36` already had open, now with a date on it.
 
+**PARTLY SWEPT 2026-07-25, and it had not been swept at all.** Found by the full ruling audit.
+Data layer and the one flat misstatement are now corrected:
+
+- `canon.ts` `entity-trading-goforward` value dropped the `t/a Goods on Country` and now reads
+  `t/a Goods.`; its definition said *"Goods on Country is its trading name, not a separate
+  company"*, which ruling K calls wrong in both halves, and now says what the register says.
+- `grant-content.ts` (the orgIdentity comment and the funder-facing trading-entity line) ·
+  `pitch-cockpit.ts` · `partner/page.tsx:239`, which asserted "A Curious Tractor Pty Ltd is the
+  trading company behind Goods on Country".
+
+**DELIBERATELY NOT SWEPT, and this needs Ben.** Four public surfaces state that A Curious
+Tractor *operates* or *runs* the Goods on Country name:
+`terms/page.tsx:32` ("a social enterprise operated by A Curious Tractor") ·
+`about/page.tsx:207,245` ("a project of A Curious Tractor") ·
+`partner/page.tsx:137` ("Goods on Country trades through A Curious Tractor Pty Ltd") ·
+`insiders/login/page.tsx:82`.
+
+These are backwards under ruling K, but rewriting a **Terms** page's operator-and-seller
+statement is the same question ruling K already sent to MinterEllison ("beds are sold by the
+company on a domain named for the charity"). Guessing new wording here could create a worse
+problem than the one it fixes, so they are left intact and flagged rather than edited. They
+should move with the legal advice, not ahead of it.
+
 ### J. The Butterfly transition is executing, not blocking. 51% is decoupled from the AGM.
 
 Verified from primary source: TABOO Foundation board minutes, 20 July 2026.

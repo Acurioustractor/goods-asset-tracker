@@ -217,10 +217,14 @@ export const CANON: CanonFact[] = [
     reconcilesWith: ['entity-trading-goforward'],
   },
   {
-    id: 'entity-trading-goforward', label: 'Go-forward trading entity', value: 'A Curious Tractor Pty Ltd, ACN 697 347 676 / ABN 36 697 347 676, t/a Goods on Country',
+    // RULING K 2026-07-25: the `t/a Goods on Country` is struck. Verified on the public
+    // register: A Curious Tractor Pty Ltd holds NO registered business names at all, and
+    // "Goods on Country" is registered to The Butterfly Movement Ltd (ABN 22 155 132 684)
+    // from 23 July 2026. The company trades as Goods.
+    id: 'entity-trading-goforward', label: 'Go-forward trading entity', value: 'A Curious Tractor Pty Ltd, ACN 697 347 676 / ABN 36 697 347 676, t/a Goods.',
     domain: 'governance', claimLabel: 'verified', dataClass: 'green',
     source: 'grant-content.ts orgIdentity (ABN confirmed 2026-05-29, registered 21 Apr 2026); area-09 review', check: 'manual', asAt: '2026-05-29', owner: 'Ben/Nic',
-    definition: 'Confirmed go-forward trading company; all operations migrate to it in FY2026-27. Goods on Country is its trading name, not a separate company. Do not present the migration as finished externally.',
+    definition: 'Confirmed go-forward trading company; all operations migrate to it in FY2026-27. It trades as Goods., the maker and seller. "Goods on Country" is NOT its trading name: that business name is registered to The Butterfly Movement Ltd (the charity) from 23 July 2026, and this company holds no registered business names at all (ABN Lookup, verified 2026-07-25, ruling K). The two are different things and conflating them has reached funder documents. Open and with MinterEllison: the shop\'s seller of record, since beds are sold by the company on a domain named for the charity. Do not present the migration as finished externally.',
   },
   {
     id: 'entity-dgr-home', label: 'Charity / DGR home', value: 'The Butterfly Movement Ltd, ABN 22 155 132 684',
