@@ -490,10 +490,41 @@ $19,800, and the gap is the collection upstream of it. **Palm Island returns $0*
 recorded as the wrong answer rather than a good one: governance work has a real cost that is not
 plant, it is the most common first step, and it is the most consistently unfunded.
 
-**Still not done on item 7:** the per-module split of the operating block. The $79,333 bare block
-assumes the FULL module set, so a subset carries less and nobody has derived by how much. Until
-that exists, do not quote an operating figure for a partial pathway. That plus a collection quote
-are what make Utopia priceable.
+**The per-module operating split is now DONE (2026-07-25), and it is what makes a partial pathway
+priceable at all.** Capex was never the hard part; the running cost is most of what decides
+whether a site is viable, and the $79,333 block assumed the full module set.
+
+**Two buckets, because not all of it is allocable per module.** A **site floor of $35,000/yr**
+exists the moment anyone works there (admin $15,000, base insurance $8,000, base rent $12,000).
+The remaining **$44,333 scales with the modules run**, on two drivers: plant value ($26,333, being
+machine upkeep plus the plant half of insurance) and floor space ($18,000, the 60% of rent that
+tracks the space a module occupies). This mirrors the site-base-plus-modules shape of the capex,
+which is not a coincidence: the same distinction between *having a site* and *running a line*
+drives both.
+
+| Module | Plant-value share | Floor-space share | Total/yr |
+|---|---|---|---|
+| Collection and baling | $0 | $3,600 | **$3,600** |
+| Shredding | $8,843 | $3,600 | **$12,443** |
+| Pressing, CNC and finishing | $14,638 | $5,400 | **$20,038** |
+| Assembly and workshop | $2,852 | $3,600 | **$6,452** |
+| Sales and delivery | $0 | $1,800 | **$1,800** |
+
+**The guard that matters:** selecting every module reproduces $79,333 exactly, so the split
+neither invented nor lost cost. Eight tests lock it.
+
+**What it says about the pathways.** Utopia (collection plus shredding) carries **$51,043/yr**,
+not $79,333, which is a third off the number that would otherwise have been quoted at it.
+Tennant Creek carries $75,733. **Palm Island carries $0 including no floor**, because with no
+modules there is no production site; its real cost is governance, which is not production and is
+still unpriced. And **pressing/CNC is the most expensive module to run as well as to buy**, which
+is the quantified argument for a community starting earlier in the chain if it wants to.
+
+**Weakest link, stated plainly:** the footprint weights behind the floor-space driver are assumed,
+not surveyed. A floor plan replaces them. Argue with the drivers first, the weights second.
+
+**Still open on item 7:** a collection-and-baling quote. That single number is now the only thing
+between the model and a priceable Utopia.
 
 **Not decided:** the module list is still proposed, not agreed. It is now in code so it can be
 argued with concretely, which is not the same as blessed.

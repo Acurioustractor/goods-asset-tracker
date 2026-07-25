@@ -124,7 +124,36 @@
         "_note": "No capex. Freight already sits in the engine per bed (inbound freight by location, long-haul, and the containerise delta)."
       }
     ],
-    "_operating_allocation_is_not_done": "The $79,333 bare site production block in `site_production_block` assumes the FULL module set. A subset carries less, and the per-module split of machine upkeep, rent share, insurance and admin has NOT been derived. Until it is, do not quote an operating figure for a partial pathway. This is the next piece of work on item 7 and it is why the pathway entries below carry capex only.",
+    "operating_allocation": {
+      "_what_this_is": "The per-module split of the $79,333 bare site production block, derived 2026-07-25. Before this, the block assumed the FULL module set, so the model could price a partial pathway's CAPEX but not its OPERATING cost, which is most of what makes a site viable or not.",
+      "_the_structure": "TWO buckets, because not all of the block is allocable per module. A SITE FLOOR exists the moment you run any module at all: the books get done, the site is insured, the yard is rented. The rest SCALES with which modules you run. This mirrors the site-base-plus-modules shape of the capex, which is not a coincidence: the same distinction between having a site and running a line drives both.",
+      "site_floor": {
+        "total": 35000,
+        "lines": [
+          { "line": "Administration, accounting, IT", "amount": 15000, "share_of_dewr_production": "100%", "basis": "Invoicing, BAS, inventory and board reporting happen once, whether the site runs one module or five." },
+          { "line": "Insurance, base", "amount": 8000, "share_of_dewr_production": "50%", "basis": "Public liability and site cover exist as soon as anyone works there. The other half rides on plant value." },
+          { "line": "Lease and rent, base", "amount": 12000, "share_of_dewr_production": "40%", "basis": "Yard, amenities and storage are needed by any operation. The other 60% rides on floor space." }
+        ],
+        "_applies_only_if_a_module_runs": "A pathway with ZERO modules carries NO site floor, because there is no production site. Palm Island is that case. Its real cost is governance, which is not production and is not priced here."
+      },
+      "module_pool": {
+        "total": 44333,
+        "drivers": [
+          { "driver": "plant_value", "amount": 26333, "made_of": "Machine upkeep, consumables and materials ($18,333, 100%) plus the plant half of insurance ($8,000). Allocated by each module's share of installed plant value, because both scale with the machines, not with the building.", "plant_values": { "shredding": 19800, "pressing_cnc": 32780, "assembly": 6387, "total": 58967 } },
+          { "driver": "floor_space", "amount": 18000, "made_of": "The 60% of lease and rent that scales with the space a module occupies.", "_weakest_link": "Footprint weights below are ASSUMED, not surveyed, and are the softest input in this object. A floor plan replaces them. They are deliberately coarse (1 to 3) rather than falsely precise.", "weights": { "collection_baling": 2, "shredding": 2, "pressing_cnc": 3, "assembly": 2, "sales_delivery": 1, "total": 10 } }
+        ]
+      },
+      "per_module": [
+        { "key": "collection_baling", "plant_value_share": 0, "floor_space_share": 3600, "total": 3600, "_note": "No installed plant inside the facility, so it carries no machine upkeep. It still occupies yard and bale storage, which is real and often forgotten." },
+        { "key": "shredding", "plant_value_share": 8843, "floor_space_share": 3600, "total": 12443 },
+        { "key": "pressing_cnc", "plant_value_share": 14638, "floor_space_share": 5400, "total": 20038, "_note": "The most expensive module to run as well as to buy, which is the argument for a community starting earlier in the chain if it wants to." },
+        { "key": "assembly", "plant_value_share": 2852, "floor_space_share": 3600, "total": 6452 },
+        { "key": "sales_delivery", "plant_value_share": 0, "floor_space_share": 1800, "total": 1800, "_note": "Dispatch and staging space only. Per-bed freight is already in the engine and is not here." }
+      ],
+      "_reconciles": "site_floor 35,000 + module_pool 44,333 = 79,333, exactly the bare production block. Selecting every module reproduces the full block, which is the arithmetic check that the split neither invented nor lost cost. Guarded in capex-modules.guards.test.ts.",
+      "_supervisor_is_not_in_here": "The line supervisor sits ON TOP of this, at site level, and is still an open decision (Ben and Nic). It is not allocated per module because one supervisor runs the line whatever its length.",
+      "_claims_status": "DERIVED, not measured, and one layer further from evidence than the block itself: these are assumptions about how an assumed split of an as-written DEWR budget divides across a proposed module list. Argue with the drivers first, the weights second. No figure here is a quote."
+    },
     "live_pathways": [
       { "key": "oonchiumpa", "label": "Oonchiumpa: a full facility", "modules": ["collection_baling", "shredding", "pressing_cnc", "assembly", "sales_delivery"], "site_base": "full", "priceable": "partly, blocked only on collection_baling being unpriced", "_note": "The only pathway the old ladder could price, and even it assumed collection came free." },
       { "key": "utopia", "label": "Utopia: a shredder", "modules": ["collection_baling", "shredding"], "site_base": "partial", "priceable": "no, collection_baling is unpriced", "_note": "Utopia's own answer to 'what would you want to own first' was a shredder. That answer is worth more than any figure in the model, and the ladder could not price it at all." },

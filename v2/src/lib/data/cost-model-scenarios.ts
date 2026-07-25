@@ -236,6 +236,41 @@ export interface ModuleSelectionPrice {
   priceable: boolean;
 }
 
+export interface ModuleOperatingPrice {
+  /** Site floor: incurred as soon as ANY module runs, zero if none do. */
+  siteFloor: number;
+  /** Sum of the selected modules' own operating shares. */
+  moduleShare: number;
+  /** siteFloor + moduleShare, before any line supervisor. */
+  total: number;
+  /** Per-module breakdown, so a conversation can point at a line rather than a total. */
+  breakdown: Array<{ key: string; amount: number }>;
+}
+
+/**
+ * Annual operating cost a module selection should carry, before any line supervisor.
+ * Added 2026-07-25: this is what made a PARTIAL pathway priceable at all.
+ *
+ * Two buckets, because not all of the block is allocable per module. The site floor exists the
+ * moment anyone works there (books, insurance, yard); the rest scales with the modules run.
+ * A selection with NO modules returns 0, including no floor, because there is no production
+ * site. Palm Island is that case, and its real cost is governance, which is not production.
+ *
+ * DERIVED, not measured. The footprint weights behind the floor-space driver are assumed
+ * rather than surveyed and are the softest input in the whole object.
+ */
+export function priceModuleOperating(keys: readonly string[]): ModuleOperatingPrice {
+  const alloc = scenarios.capex_modules.operating_allocation;
+  const breakdown = alloc.per_module
+    .filter((m) => keys.includes(m.key))
+    .map((m) => ({ key: m.key, amount: m.total }));
+
+  const moduleShare = breakdown.reduce((t, m) => t + m.amount, 0);
+  const siteFloor = breakdown.length > 0 ? alloc.site_floor.total : 0;
+
+  return { siteFloor, moduleShare, total: siteFloor + moduleShare, breakdown };
+}
+
 /**
  * Price a subset of modules. Returns bands, not a point.
  *

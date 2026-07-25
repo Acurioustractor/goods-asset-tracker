@@ -14,7 +14,12 @@
  * These tests do NOT bless the module list: it is proposed, not agreed.
  */
 import { describe, it, expect } from 'vitest';
-import { CAPEX_MODULES, priceModuleSelection } from './cost-model-scenarios';
+import {
+  CAPEX_MODULES,
+  priceModuleSelection,
+  priceModuleOperating,
+  SITE_PRODUCTION_BLOCK_BARE,
+} from './cost-model-scenarios';
 
 describe('capex modules: the site base', () => {
   it('base band is the sum of its own lines: $31,800 to $64,000', () => {
@@ -118,5 +123,76 @@ describe('capex modules: the four live pathways are all represented', () => {
   it('only Oonchiumpa is anywhere near priceable, which is the point of item 7', () => {
     const fully = CAPEX_MODULES.live_pathways.filter((p) => p.priceable.startsWith('no'));
     expect(fully).toHaveLength(3);
+  });
+});
+
+/**
+ * PER-MODULE OPERATING SPLIT (added 2026-07-25).
+ *
+ * This is what made a PARTIAL pathway priceable. Before it, the $79,333 bare block assumed
+ * the full module set, so the model could price Utopia's capex but not its running cost,
+ * which is most of what decides whether a site is viable.
+ *
+ * The load-bearing guard is the reconciliation: selecting every module must reproduce the
+ * bare block exactly. If it does not, the split has invented or lost cost.
+ */
+describe('per-module operating split', () => {
+  const ALL = CAPEX_MODULES.operating_allocation.per_module.map((m) => m.key);
+
+  it('reconciles exactly to the bare production block: 35,000 + 44,333 = 79,333', () => {
+    const alloc = CAPEX_MODULES.operating_allocation;
+    const moduleSum = alloc.per_module.reduce((t, m) => t + m.total, 0);
+
+    expect(alloc.site_floor.total).toBe(35_000);
+    expect(moduleSum).toBe(44_333);
+    expect(alloc.site_floor.total + moduleSum).toBe(SITE_PRODUCTION_BLOCK_BARE);
+  });
+
+  it('the site floor is the sum of its own lines', () => {
+    const sum = CAPEX_MODULES.operating_allocation.site_floor.lines.reduce((t, l) => t + l.amount, 0);
+    expect(sum).toBe(CAPEX_MODULES.operating_allocation.site_floor.total);
+  });
+
+  it('each module total is its two drivers added', () => {
+    for (const m of CAPEX_MODULES.operating_allocation.per_module) {
+      expect(m.plant_value_share + m.floor_space_share).toBe(m.total);
+    }
+  });
+
+  it('selecting every module reproduces the full block', () => {
+    expect(priceModuleOperating(ALL).total).toBe(SITE_PRODUCTION_BLOCK_BARE);
+  });
+
+  it('a partial pathway carries LESS, which is the whole point', () => {
+    const utopia = CAPEX_MODULES.live_pathways.find((p) => p.key === 'utopia')!;
+    const op = priceModuleOperating(utopia.modules);
+
+    // collection 3,600 + shredding 12,443 + the 35,000 floor
+    expect(op.moduleShare).toBe(16_043);
+    expect(op.total).toBe(51_043);
+    expect(op.total).toBeLessThan(SITE_PRODUCTION_BLOCK_BARE);
+  });
+
+  it('no modules means no site floor either, not a bare-floor charge', () => {
+    // Palm Island. There is no production site, so there is no production block. Its real
+    // cost is governance, which is deliberately not priced as production.
+    const pi = CAPEX_MODULES.live_pathways.find((p) => p.key === 'palm_island')!;
+    const op = priceModuleOperating(pi.modules);
+    expect(op.siteFloor).toBe(0);
+    expect(op.total).toBe(0);
+  });
+
+  it('the floor is charged once, not per module', () => {
+    const one = priceModuleOperating(['shredding']);
+    const two = priceModuleOperating(['shredding', 'assembly']);
+    expect(one.siteFloor).toBe(two.siteFloor);
+    expect(two.total - one.total).toBe(6_452); // assembly's own share only
+  });
+
+  it('pressing_cnc is the most expensive module to run, as well as to buy', () => {
+    // The argument for a community starting earlier in the chain if it wants to.
+    const totals = CAPEX_MODULES.operating_allocation.per_module.map((m) => m.total);
+    const press = CAPEX_MODULES.operating_allocation.per_module.find((m) => m.key === 'pressing_cnc')!;
+    expect(press.total).toBe(Math.max(...totals));
   });
 });
