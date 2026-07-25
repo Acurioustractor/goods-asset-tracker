@@ -34,6 +34,8 @@ None. Every citesCanon id resolves to a canon fact.
   - beds-deployed (canon 2026-07-18 > verified 2026-05-18)
   - communities-served (canon 2026-05-30 > verified 2026-05-18)
   - plastic-kg (canon 2026-05-30 > verified 2026-05-18)
+- **Impact measurement method (consent-cleared voices)**
+  - cleared-voices (canon 2026-07-21 > verified 2026-06-17)
 - **Scored risk register (14 risks)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-13)
 - **Investor Alignment Tool (SIH, populated, canonical)**
@@ -58,6 +60,8 @@ None. Every citesCanon id resolves to a canon fact.
 - **Investment machine review (Notion + design surfaces)**
   - beds-deployed (canon 2026-07-18 > verified 2026-07-02)
   - washers-in-community (canon 2026-07-21 > verified 2026-07-02)
+- **Investment machine blueprint (GHL + Notion operating system)**
+  - cleared-voices (canon 2026-07-21 > verified 2026-07-02)
 - **New outreach drafts (LendForGood, Metro, Tripple)**
   - beds-deployed (canon 2026-07-18 > verified 2026-07-02)
 - **Next-phase one-pager (rendered)**
