@@ -12,6 +12,12 @@ import {
 export const metadata = {
   title: 'Community pathways',
   description: 'A community-controlled menu of Goods on Country support.',
+  // Ben, 2026-07-25: keep this out of the menus for now. It is already absent from the header
+  // and footer, but an unlinked page still gets crawled, so "not surfaced" needs noindex to be
+  // true. This page renders per-community pathway state including items marked "Confirm
+  // together", which by definition are NOT yet confirmed with that community.
+  // Same pattern as /export/leave-behind. Reversible in one line when it is ready to be public.
+  robots: { index: false, follow: false },
 };
 
 const evidenceStyle: Record<EvidenceState, string> = {

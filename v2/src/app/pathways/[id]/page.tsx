@@ -29,9 +29,14 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const pathway = communityPathway(id);
+  // noindex on BOTH branches, deliberately. Ben 2026-07-25: out of the menus for now. These are
+  // the per-community pages, so they carry more detail than the index, not less: named modules,
+  // evidence states, and items marked "Confirm together" that are NOT yet confirmed with that
+  // community. Missing the detail pages would have left the sensitive half indexable.
+  const robots = { index: false, follow: false } as const;
   return pathway
-    ? { title: `${pathway.name} community pathway`, description: pathway.invitation }
-    : {};
+    ? { title: `${pathway.name} community pathway`, description: pathway.invitation, robots }
+    : { robots };
 }
 
 const evidenceLabel: Record<EvidenceState, string> = {
