@@ -9,6 +9,14 @@ import { revalidatePath } from 'next/cache';
 
 export const runtime = 'nodejs';
 
+function revalidateOverrideSurface(slug: string) {
+  revalidatePath(`/field-notes/${slug}`);
+  if (slug.startsWith('pathways-')) {
+    revalidatePath(`/pathways/${slug.slice('pathways-'.length)}`);
+    revalidatePath('/pathways');
+  }
+}
+
 interface Body {
   slug?: string;
   key?: string;
@@ -36,7 +44,7 @@ export async function POST(req: Request) {
         if (!u.key) continue;
         setStoryOverride(slug, u.key, u.value ?? null);
       }
-      revalidatePath(`/field-notes/${slug}`);
+      revalidateOverrideSurface(slug);
       return NextResponse.json({ ok: true });
     } catch (e) {
       return NextResponse.json(
@@ -50,7 +58,7 @@ export async function POST(req: Request) {
   }
   try {
     setStoryOverride(slug, key, value ?? null);
-    revalidatePath(`/field-notes/${slug}`);
+    revalidateOverrideSurface(slug);
     return NextResponse.json({ ok: true });
   } catch (e) {
     return NextResponse.json(

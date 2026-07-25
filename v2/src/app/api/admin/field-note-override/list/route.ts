@@ -6,8 +6,9 @@
 // [[el-two-video-tables]] for the trap.
 
 import { NextResponse } from 'next/server';
-import { readdirSync } from 'node:fs';
+import { existsSync, readdirSync } from 'node:fs';
 import { join, relative } from 'node:path';
+import { getLocalImageTags } from '@/lib/data/local-image-tags';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -110,32 +111,79 @@ async function fetchFromMediaAssets(tags: string[], crossProject = false): Promi
 // Triggered by the sentinel tag `__website__` (the "Website images" folder).
 // fs scan works in local dev (where admins do the picking); on Vercel /public
 // is not in the function filesystem, so it returns [] there (EL still works).
-function localWebsiteImages(kind: string): PickerItem[] {
-  if (kind === 'video') return [];
+function inferredLocalTags(url: string): string[] {
+  const tags = new Set(getLocalImageTags()[url] || []);
+  const lower = url.toLowerCase();
+
+  if (lower.includes('/utopia/')) {
+    tags.add('community:utopia-homelands');
+    tags.add('event:bed-delivery');
+  }
+  if (lower.includes('/community/tennant-creek') || lower.includes('tennant-creek')) {
+    tags.add('community:tennant-creek');
+  }
+  if (
+    lower.includes('/community/alice-springs/') ||
+    lower.includes('/images/build/') ||
+    lower.includes('/video/partners/oonchiumpa/')
+  ) {
+    tags.add('community:oonchiumpa');
+    tags.add('event:alice-build');
+  }
+  if (
+    /\/people\/(kristy-bloomfield|mykel|fred-campbell|karen-liddle|xavier-stretch-bed-alice-springs)/.test(lower)
+  ) {
+    tags.add('community:oonchiumpa');
+    tags.add('participant:oonchiumpa-young-people');
+  }
+  if (
+    /\/people\/(linda-turner|dianne-stokes|norman-frank|brian-russell|patricia-frank|melissa-jackson|jimmy-frank|annie-morrison)/.test(lower)
+  ) {
+    tags.add('community:tennant-creek');
+  }
+  return [...tags];
+}
+
+function localWebsiteMedia(kind: string, queryTags: string[] = []): PickerItem[] {
   try {
     const publicDir = join(process.cwd(), 'public');
-    const root = join(publicDir, 'images');
     const out: PickerItem[] = [];
-    const walk = (dir: string) => {
+    const walk = (dir: string, mediaKind: 'photo' | 'video') => {
       for (const ent of readdirSync(dir, { withFileTypes: true })) {
         const full = join(dir, ent.name);
-        if (ent.isDirectory()) { walk(full); continue; }
-        if (!/\.(jpe?g|png|webp)$/i.test(ent.name)) continue;
+        if (ent.isDirectory()) { walk(full, mediaKind); continue; }
+        const isPhoto = /\.(jpe?g|png|webp)$/i.test(ent.name);
+        const isVideo = /\.(mp4|mov|webm|m4v)$/i.test(ent.name);
+        if (mediaKind === 'photo' && !isPhoto) continue;
+        if (mediaKind === 'video' && !isVideo) continue;
         const rel = relative(publicDir, full).split(/[\\/]/).join('/');
         const url = '/' + rel; // e.g. /images/product/stretch-bed-hero.jpg
-        out.push({ id: url, thumb: url, url, title: rel.replace(/^images\//, ''), kind: 'photo' });
+        const tags = inferredLocalTags(url);
+        if (queryTags.length > 0 && !queryTags.every((tag) => tags.includes(tag))) continue;
+        const posterCandidate = mediaKind === 'video'
+          ? url.replace(/\.(mp4|mov|webm|m4v)$/i, '-poster.jpg')
+          : url;
+        const posterPath = join(publicDir, posterCandidate.replace(/^\//, ''));
+        out.push({
+          id: url,
+          thumb: mediaKind === 'video' ? (existsSync(posterPath) ? posterCandidate : '') : url,
+          url,
+          title: rel.replace(/^(images|video)\//, ''),
+          kind: mediaKind,
+          tags,
+        });
       }
     };
-    walk(root);
+    if (kind !== 'video') walk(join(publicDir, 'images'), 'photo');
+    if (kind !== 'photo') walk(join(publicDir, 'video'), 'video');
     return out.sort((a, b) => a.title.localeCompare(b.title));
   } catch (err) {
-    console.error('[picker] local website images scan failed:', err);
+    console.error('[picker] local website media scan failed:', err);
     return [];
   }
 }
 
 export async function GET(req: Request) {
-  if (!EL_URL || !EL_KEY) return NextResponse.json([]);
   const url = new URL(req.url);
   const tags = url.searchParams.getAll('tag');
   const kind = url.searchParams.get('kind') || 'any';
@@ -150,10 +198,13 @@ export async function GET(req: Request) {
   // `?scope=recent` instead of tags.
   // "Website images" folder → serve local /public/images, not EL.
   if (tags.includes('__website__')) {
-    return NextResponse.json(localWebsiteImages(kind));
+    return NextResponse.json(localWebsiteMedia(kind));
   }
 
   if (tags.length === 0 && scope !== 'recent') return NextResponse.json([]);
+
+  const localItems = localWebsiteMedia(kind, tags);
+  if (!EL_URL || !EL_KEY) return NextResponse.json(localItems);
 
   // Query both tables in parallel.
   const [storyRows, assetRows] = await Promise.all([
@@ -220,7 +271,7 @@ export async function GET(req: Request) {
   // De-dupe by id (impossible collision across tables, but cheap to guard).
   const seen = new Set<string>();
   const merged: PickerItem[] = [];
-  for (const it of [...storyItems, ...assetItems]) {
+  for (const it of [...storyItems, ...assetItems, ...localItems]) {
     if (seen.has(it.id)) continue;
     seen.add(it.id);
     merged.push(it);

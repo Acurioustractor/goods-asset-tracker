@@ -29,6 +29,7 @@ interface PickerItem {
   url: string;       // the URL we write to the override
   title: string;
   kind: 'photo' | 'video';
+  tags?: string[];
 }
 
 const EL_URL_HINT = process.env.NEXT_PUBLIC_EL_URL || ''; // not strictly required
@@ -39,6 +40,7 @@ async function fetchPickerItems(
 ): Promise<PickerItem[]> {
   const params = new URLSearchParams();
   for (const t of tagQuery) params.append('tag', t);
+  if (tagQuery.length === 0) params.set('scope', 'recent');
   params.set('kind', kind);
   const res = await fetch(`/api/admin/field-note-override/list?${params.toString()}`, { cache: 'no-store' });
   if (!res.ok) return [];
@@ -189,6 +191,7 @@ function MediaSwapModal({
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [filter, setFilter] = useState<'all' | 'photo' | 'video'>(kind === 'any' ? 'all' : kind);
+  const [search, setSearch] = useState('');
   // When `folders` is provided, scope is the folder index (number).
   // Otherwise we keep the old binary 'filtered' | 'broad' behaviour.
   const usingFolders = !!folders && folders.length > 0;
@@ -308,7 +311,15 @@ function MediaSwapModal({
     };
   }, [onClose]);
 
-  const filtered = filter === 'all' ? items : items.filter((it) => it.kind === filter);
+  const normalisedSearch = search.trim().toLowerCase();
+  const filtered = items.filter((it) => {
+    if (filter !== 'all' && it.kind !== filter) return false;
+    if (!normalisedSearch) return true;
+    return [it.title, it.url, ...(it.tags || [])]
+      .join(' ')
+      .toLowerCase()
+      .includes(normalisedSearch);
+  });
 
   return (
     <div className="ts-swap-modal" role="dialog" aria-modal="true" onClick={onClose}>
@@ -387,6 +398,22 @@ function MediaSwapModal({
             </div>
           )}
         </div>
+
+        <label className="ts-swap-search">
+          <span>Search this folder</span>
+          <input
+            type="search"
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            placeholder="Try Tennant, Barkly, Warumungu or a person’s name"
+            autoComplete="off"
+          />
+          {search ? (
+            <button type="button" onClick={() => setSearch('')} aria-label="Clear media search">
+              ×
+            </button>
+          ) : null}
+        </label>
 
         {loading ? (
           <p className="ts-swap-modal-empty">Loading from Empathy Ledger…</p>
@@ -598,6 +625,49 @@ function MediaSwapModal({
         }
         .ts-swap-modal-empty a {
           color: #fbbf24;
+        }
+        .ts-swap-search {
+          position: relative;
+          display: block;
+          margin: 0 0 1rem;
+        }
+        .ts-swap-search span {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          overflow: hidden;
+          clip: rect(0 0 0 0);
+          white-space: nowrap;
+        }
+        .ts-swap-search input {
+          width: 100%;
+          min-height: 44px;
+          padding: 0.65rem 2.75rem 0.65rem 0.85rem;
+          border: 1px solid rgba(255, 255, 255, 0.16);
+          border-radius: 6px;
+          background: rgba(255, 255, 255, 0.06);
+          color: #f5efe2;
+          font-size: 14px;
+          outline: none;
+        }
+        .ts-swap-search input::placeholder {
+          color: rgba(245, 239, 226, 0.45);
+        }
+        .ts-swap-search input:focus {
+          border-color: #d97706;
+          box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.2);
+        }
+        .ts-swap-search button {
+          position: absolute;
+          top: 50%;
+          right: 0.55rem;
+          transform: translateY(-50%);
+          border: 0;
+          background: transparent;
+          color: rgba(245, 239, 226, 0.75);
+          cursor: pointer;
+          font-size: 20px;
+          line-height: 1;
         }
         .ts-swap-grid {
           display: grid;
