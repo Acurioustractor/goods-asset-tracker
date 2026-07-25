@@ -35,6 +35,7 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
       { href: '/admin/voices', name: 'Voices hub', status: 'hub', note: 'registry, tiers, tabs to all story surfaces' },
       { href: '/admin/voice-impact', name: 'Voice Impact Model', status: 'hub', note: '29 voices, 192 quotes, themes to domains' },
       { href: '/admin/communities', name: 'Communities', status: 'hub', note: 'per-place register + drill pages' },
+      { href: '/admin/pathways', name: 'Community pathways', status: 'hub', note: 'conversations, modules, media and artifacts' },
       { href: '/admin/people', name: 'People', status: 'hub', note: 'crm_contacts, 135 relationships' },
       { href: '/admin/cost-model', name: 'Money story', status: 'hub', note: 'cost model v6, honest numbers' },
       { href: '/admin/deals', name: 'Raise', status: 'hub', note: 'QBE pipeline, LOIs, match spine' },

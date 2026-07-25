@@ -27,6 +27,7 @@ import {
   ChevronDown,
   ChevronRight,
   CornerDownLeft,
+  Route,
 } from 'lucide-react';
 
 type NavItem = { name: string; href: string; icon: React.ComponentType<{ className?: string }> };
@@ -45,6 +46,7 @@ const navigation: NavGroup[] = [
     items: [
       { name: 'The Map',           href: '/admin',                icon: MapIcon },
       { name: 'Communities',       href: '/admin/communities',    icon: MapPin },
+      { name: 'Pathways',          href: '/admin/pathways',       icon: Route },
       { name: 'Media Room',        href: '/admin/media-library',  icon: ImageIcon },
       { name: 'Money',             href: '/admin/cost-model',     icon: CircleDollarSign },
       { name: 'Products & Plant',  href: '/admin/products',       icon: Factory },
@@ -157,10 +159,6 @@ function CommandPalette({ open, onClose }: { open: boolean; onClose: () => void 
     });
   }, [query]);
 
-  useEffect(() => {
-    setActive(0);
-  }, [query]);
-
   const go = useCallback(
     (href: string) => {
       onClose();
@@ -181,7 +179,10 @@ function CommandPalette({ open, onClose }: { open: boolean; onClose: () => void 
           <input
             autoFocus
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setActive(0);
+            }}
             onKeyDown={(e) => {
               if (e.key === 'ArrowDown') { e.preventDefault(); setActive((a) => Math.min(a + 1, results.length - 1)); }
               else if (e.key === 'ArrowUp') { e.preventDefault(); setActive((a) => Math.max(a - 1, 0)); }
