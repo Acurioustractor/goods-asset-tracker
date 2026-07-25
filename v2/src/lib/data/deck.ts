@@ -24,6 +24,8 @@
  * "gated in the code" is not a real gate.
  */
 
+import { CANONICAL_ASSETS } from './asset-canonical';
+
 export interface DeckChip {
   label: string;
   value: string;
@@ -279,9 +281,11 @@ export const deckSlides: DeckSlide[] = [
     photoAlt: 'A delivery day on Country, Utopia',
     place: 'Utopia homelands · May 2026',
     chips: [
-      { label: 'Delivered · beds', value: '540 across 11 communities' },
-      { label: 'Delivered · washing machines', value: '16 in community' },
-      { label: 'Delivered · plastic diverted', value: '3,540kg (Stretch only)' },
+      // Read from canon. The washer figure sat at a retired 16 while canon moved
+      // 16 -> 20 -> 22, on the slide that states what we have delivered.
+      { label: 'Delivered · beds', value: `${CANONICAL_ASSETS.bedsDeployed} across ${CANONICAL_ASSETS.communitiesServed} communities` },
+      { label: 'Delivered · washing machines', value: `${CANONICAL_ASSETS.washersInCommunity} in community` },
+      { label: 'Delivered · plastic diverted', value: `${CANONICAL_ASSETS.plasticKg.toLocaleString()}kg (Stretch only)` },
     ],
     inlineVideo: {
       src: '/video/partners/centrecorp/utopia-delivery-road.mp4',

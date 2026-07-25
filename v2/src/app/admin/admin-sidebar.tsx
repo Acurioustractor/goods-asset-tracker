@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState, useEffect, useMemo, useCallback } from 'react';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import {
   Map as MapIcon,
   MapPin,
@@ -338,7 +339,11 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
               <span className="h-2 w-2 rounded-full bg-emerald-600" aria-hidden />
               <div className="leading-tight">
                 <div className="text-xs font-semibold text-emerald-900">Canon in sync</div>
-                <div className="text-[11px] text-emerald-800/80 tabular-nums">540 · 177 · 20 · 11</div>
+                {/* Derived. This badge claims "Canon in sync" while showing hardcoded
+                    figures, so it read 20 washers against a canon of 22. */}
+                <div className="text-[11px] text-emerald-800/80 tabular-nums">
+                  {CANONICAL_ASSETS.bedsDeployed} · {CANONICAL_ASSETS.stretchBedsDeployed} · {CANONICAL_ASSETS.washersInCommunity} · {CANONICAL_ASSETS.communitiesServed}
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-x-3 px-2 py-2 text-sm font-medium text-muted-foreground border-t">
