@@ -77,7 +77,18 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: '/media', destination: '/press', permanent: true },
-      { source: '/brand', destination: '/press#brand-system', permanent: true },
+      // The '/brand' -> '/press#brand-system' redirect was REMOVED 2026-07-25. It predated the
+      // dedicated /brand page (src/app/brand/page.tsx, the brand kit and guide downloads) and
+      // silently shadowed it: the route shipped in PR #160 and was unreachable in production,
+      // 308-ing to the press page's brand section instead.
+      //
+      // CACHING GOTCHA, because the old rule was `permanent: true` and that is a 308: browsers
+      // and intermediaries cache it hard, so anyone who has already hit /brand keeps getting
+      // redirected until they hard-refresh or clear it. A clean client sees the new page
+      // immediately. If you test and still land on /press, that is the cache, not the config.
+      //
+      // /press#brand-system still exists and is still correct; it is the short version. Do not
+      // re-add a redirect here without checking whether src/app/brand/page.tsx is still live.
     ];
   },
 };
