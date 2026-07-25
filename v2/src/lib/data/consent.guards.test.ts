@@ -209,15 +209,21 @@ describe('registry data integrity', () => {
     // Pinning them here turns "Ben still has to decide" from a note nobody
     // re-reads into a failing test. A third one appearing means someone parked a
     // real person's words without resolving whether they may be published.
+    // Asserted as a subset, not an exact match. Exact equality would also fail
+    // when one of these is RESOLVED, turning good news into a red build, and it
+    // fails on any branch where these records do not exist yet. What we actually
+    // care about is that nothing is awaiting a decision we have not written down.
     const KNOWN_PENDING_TIER_DECISIONS = ['kylie-bloomfield', 'katherine-deadly-heart-trek'];
 
-    const awaiting = STORYTELLER_REGISTRY.filter(
+    const unexpected = STORYTELLER_REGISTRY.filter(
       (r) => r.tier === 'hold' && r.quotes.some((q) => q.status === 'primary' || q.status === 'approved'),
-    ).map((r) => r.slug);
+    )
+      .map((r) => r.slug)
+      .filter((slug) => !KNOWN_PENDING_TIER_DECISIONS.includes(slug));
 
     expect(
-      awaiting.sort(),
+      unexpected.sort(),
       'a held voice has a usable quote and is not a known pending decision. Get the tier ruling before this line reaches a deck, then add the slug here or change the tier.',
-    ).toEqual([...KNOWN_PENDING_TIER_DECISIONS].sort());
+    ).toEqual([]);
   });
 });
