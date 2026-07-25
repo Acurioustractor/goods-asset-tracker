@@ -39,14 +39,16 @@ describe('capex modules: the site base', () => {
 });
 
 describe('capex modules: the reassembly is lossless', () => {
+  // Only these four come FROM the MVF replication table. Collection was added on 2026-07-25 at
+  // estimated market rates and is an ADDITION to that total, not part of it, so it is excluded
+  // here on purpose. Including it would silently break the reconciliation this guard exists for.
+  const MVF_SOURCED = ['shredding', 'pressing_cnc', 'assembly', 'sales_delivery'];
+
   // The MVF replication table totals ~$90,800 to ~$123,000 for a new-site minimal viable
-  // facility. Modules + base must land there, because this is an ALLOCATION of that total.
-  // (The ~$33 difference at each end is the MVF's own rounding of its stated headline.)
-  it('all priced modules plus the base reconcile to the MVF replication total', () => {
-    const allPriced = CAPEX_MODULES.modules
-      .filter((m) => m.capex_low !== null)
-      .map((m) => m.key);
-    const p = priceModuleSelection(allPriced);
+  // facility. MVF-sourced modules + base must land there, because that is an ALLOCATION of an
+  // evidenced total. (The ~$33 at each end is the MVF's own rounding of its stated headline.)
+  it('MVF-sourced modules plus the base reconcile to the MVF replication total', () => {
+    const p = priceModuleSelection(MVF_SOURCED);
 
     expect(p.withBaseLow).toBeGreaterThan(90_700);
     expect(p.withBaseLow).toBeLessThan(90_900);
@@ -54,38 +56,71 @@ describe('capex modules: the reassembly is lossless', () => {
     expect(p.withBaseHigh).toBeLessThan(123_100);
   });
 
+  it('collection sits OUTSIDE the MVF total, so adding it must increase the figure', () => {
+    const mvfOnly = priceModuleSelection(MVF_SOURCED);
+    const withCollection = priceModuleSelection([...MVF_SOURCED, 'collection_baling']);
+    expect(withCollection.withBaseLow).toBeGreaterThan(mvfOnly.withBaseLow);
+    expect(withCollection.capexLow - mvfOnly.capexLow).toBe(5_000);
+  });
+
   it('module capex excludes the base when asked', () => {
-    const allPriced = CAPEX_MODULES.modules.filter((m) => m.capex_low !== null).map((m) => m.key);
-    const withBase = priceModuleSelection(allPriced);
-    const without = priceModuleSelection(allPriced, { includeSiteBase: false });
+    const withBase = priceModuleSelection(MVF_SOURCED);
+    const without = priceModuleSelection(MVF_SOURCED, { includeSiteBase: false });
 
     expect(without.capexLow).toBe(without.withBaseLow);
     expect(withBase.withBaseLow - without.withBaseLow).toBe(CAPEX_MODULES.site_base.capex_low);
   });
 });
 
-describe('capex modules: an unpriced module is never silently $0', () => {
-  it('collection and baling is unpriced, which is a real gap not an oversight', () => {
+describe('capex modules: pricing, and the unpriced guard that still protects it', () => {
+  it('collection is graded estimate, matching how the MVF treats its own unquoted lines', () => {
+    // It sat at null until 2026-07-25, which was stricter than the precedent: the MVF already
+    // carries electrical fit-out, ventilation, site prep and PPE as estimates and nobody treats
+    // those as blockers. A real quote replaces this and narrows the band.
     const collection = CAPEX_MODULES.modules.find((m) => m.key === 'collection_baling')!;
-    expect(collection.capex_low).toBeNull();
-    expect(collection.grade).toBe('unpriced');
+    expect(collection.grade).toBe('estimate');
+    expect(collection.capex_low).toBe(5_000);
+    expect(collection.capex_high).toBe(19_500);
   });
 
-  it('a selection containing it comes back NOT priceable', () => {
-    const p = priceModuleSelection(['collection_baling', 'shredding']);
-    expect(p.priceable).toBe(false);
-    expect(p.unpriced).toContain('collection_baling');
+  it('collection band is the sum of its own lines', () => {
+    const collection = CAPEX_MODULES.modules.find((m) => m.key === 'collection_baling')!;
+    const low = collection.lines!.reduce((t, l) => t + l.low, 0);
+    const high = collection.lines!.reduce((t, l) => t + l.high, 0);
+    expect(low).toBe(collection.capex_low);
+    expect(high).toBe(collection.capex_high);
   });
 
-  it('Utopia, the pathway wanting the earliest module, is the one still unpriceable', () => {
-    // Utopia's own answer to "what would you want to own first" was a shredder. The old
-    // ladder could not price that at all; the basket can price the shredder but not the
-    // collection upstream of it. That is progress and it is not done.
+  it('the baler is the swing item, and may not be needed at all', () => {
+    // Baling is for film and PET. Rigid HDPE is caged and transported, then shredded. If Utopia
+    // needs no baler the module lands near the bottom of the band, so the high end must never be
+    // quoted without asking. This guard exists so the caveat cannot be quietly deleted.
+    const collection = CAPEX_MODULES.modules.find((m) => m.key === 'collection_baling')!;
+    const baler = collection.lines!.find((l) => l.item.includes('Baler'))!;
+    expect(baler.item).toMatch(/OPTIONAL/);
+    const spread = collection.capex_high! - collection.capex_low!;
+    expect(baler.high - baler.low).toBeGreaterThan(spread / 2);
+  });
+
+  it('Utopia is now priceable, which is the point of pricing collection', () => {
+    // Utopia's own answer to "what would you want to own first" was a shredder. The old ladder
+    // could not price that at all. Now: collection 5,000-19,500 (estimate) + shredder 19,800
+    // (evidenced), before whatever site base Utopia actually needs.
     const utopia = CAPEX_MODULES.live_pathways.find((p) => p.key === 'utopia')!;
     const p = priceModuleSelection(utopia.modules);
-    expect(p.priceable).toBe(false);
-    // The shredder itself IS priced, so the gap is specifically collection.
-    expect(p.capexLow).toBe(19_800);
+    expect(p.priceable).toBe(true);
+    expect(p.unpriced).toEqual([]);
+    expect(p.capexLow).toBe(24_800);
+    expect(p.capexHigh).toBe(39_300);
+  });
+
+  it('the unpriced guard still bites if any module is ever nulled again', () => {
+    // The mechanism that protected Utopia has not been removed, only satisfied. Treating a
+    // missing quote as $0 is how a pathway looks cheaper than it is.
+    const p = priceModuleSelection(['definitely-not-a-real-module']);
+    expect(p.capexLow).toBe(0);
+    const anyNull = CAPEX_MODULES.modules.some((m) => m.capex_low === null);
+    expect(anyNull).toBe(false);
   });
 
   it('Tennant Creek prices its modules even though its base is partner-supplied', () => {
@@ -120,9 +155,13 @@ describe('capex modules: the four live pathways are all represented', () => {
     }
   });
 
-  it('only Oonchiumpa is anywhere near priceable, which is the point of item 7', () => {
-    const fully = CAPEX_MODULES.live_pathways.filter((p) => p.priceable.startsWith('no'));
-    expect(fully).toHaveLength(3);
+  it('two of four now price; the two that do not are blocked on people, not numbers', () => {
+    // Was three-of-four unpriceable when the basket was built. Pricing collection moved Utopia.
+    // Tennant Creek waits on what the partner supplies, which is their call, not a missing
+    // figure. Palm Island waits on a governance cost line that is not plant. Neither is fixable
+    // by estimating harder.
+    const blocked = CAPEX_MODULES.live_pathways.filter((p) => p.priceable.startsWith('no'));
+    expect(blocked.map((p) => p.key)).toEqual(['tennant_creek', 'palm_island']);
   });
 });
 

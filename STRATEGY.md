@@ -113,10 +113,23 @@ money, story. `PATHWAY_MODULES` in the same file.
 > was always a category error: it means "having already built a $200K factory, adding the community
 > configuration costs $30K more."
 >
-> **The model cannot price three of the four live pathways.** Utopia wants a shredder. Tennant
-> Creek wants to work through an existing shed. Palm Island starts with governance. Only Oonchiumpa
-> fits what the model can cost. Fixing this means capex becomes a module basket, each with its own
-> capex, operating contribution and throughput constraint. Proposed, not agreed.
+> **FIXED 2026-07-25. The module basket is built** (`capex_modules` in
+> `cost-model-scenarios.json`, `priceModuleSelection()` and `priceModuleOperating()`, 23 guards).
+> Capex is now **site base plus modules** a community selects from, and operating splits the same
+> way: a **$35,000/yr site floor** that exists the moment anyone works there, plus what the chosen
+> modules run. Both reconcile losslessly to their sources, which is the guard that matters.
+>
+> **Two of four pathways now price.** Utopia, which the old ladder could not cost at all, comes to
+> **$24,800-39,300 capex and $16,043/yr**, against the $79,333 a full facility carries. Oonchiumpa
+> prices in full. **The two that do not are blocked on people, not numbers:** Tennant Creek waits on
+> what the partner supplies, which is their call, and Palm Island needs a governance cost line that
+> is not plant. Neither is fixable by estimating harder, and Palm Island returning $0 is recorded as
+> the wrong answer rather than a good one.
+>
+> **Still open:** a real collection quote to narrow the estimate, and whether a baler is needed at
+> all (rigid HDPE is normally caged, not baled) — that single question is the whole width of the
+> band. The module list itself is in code so it can be argued with concretely, which is not the same
+> as blessed.
 
 ### 3.3 Two pots, and the third cost centre nobody had
 
@@ -320,7 +333,7 @@ investor underwrites.
 | Test the 51% direction with MinterEllison and with Kristy | Ben + Nic | Same fortnight as the chair talk |
 | Chair and Secretary; conflicts register if Kristy chairs | Ben + Nic | 3 Aug board meeting |
 | Notice of meeting if the company name changes at the AGM | Zandra / board | ~24 Aug |
-| ~~Modules, not build paths, in the cost engine~~ **BUILT 2026-07-25** (`capex_modules` + `priceModuleSelection()`, 12 guards; the ladder is untouched). Tennant Creek is now priceable at module level. **Utopia still is not, and the reason is now specific: collection and baling is genuinely unpriced and sits upstream of the shredder.** Palm Island returns $0, recorded as the wrong answer, since governance has a real cost that is not plant. **The per-module operating split is now done too**, so a partial pathway is priceable: site floor $35,000/yr plus what the modules run. Utopia carries $51,043/yr, not the full $79,333. **Remaining: ONE collection-and-baling quote, which is now the only thing between the model and a priceable Utopia** | Ben, then Matt | Before an ask is written for Utopia or Palm Island |
+| ~~Modules, not build paths, in the cost engine~~ **BUILT 2026-07-25** (`capex_modules` + `priceModuleSelection()`, 12 guards; the ladder is untouched). Tennant Creek is now priceable at module level. **Utopia still is not, and the reason is now specific: collection and baling is genuinely unpriced and sits upstream of the shredder.** Palm Island returns $0, recorded as the wrong answer, since governance has a real cost that is not plant. **The per-module operating split is now done too**, so a partial pathway is priceable: site floor $35,000/yr plus what the modules run. Utopia carries $51,043/yr, not the full $79,333. **Collection is now priced as an estimate ($5,000-19,500), matching how the MVF already treats its own unquoted lines, so UTOPIA IS PRICEABLE: $24,800-39,300 capex, $16,043/yr operating. Two of four pathways now price; Tennant Creek and Palm Island are blocked on people, not numbers. Remaining: a real collection quote to narrow the band, and confirm whether a baler is needed at all (rigid HDPE is usually caged, not baled), which is the whole width of that band** | Ben, then Matt | Before an ask is written for Utopia or Palm Island |
 | ~~Reconcile $110,046 against the MVF's ~$75K~~ **RESOLVED 2026-07-25 (ruling O):** $110,046 is actual sunk spend and is the figure to quote, regraded workpaper because only ~$43,700 is bill-evidenced. The ~$75K is a bill-level subtotal, not a competing total. Residual: locate the shredder invoice and the larger CNC | Ben | Paperwork, not a blocker |
 | Add a Transfer stage to the GHL pipeline | Ben | Standing |
 | EL syndication API 404s. **DIAGNOSED 2026-07-25, and it is NOT our config.** The project id in our env is right: EL's own database returns it as "Goods on Country" (slug `goods`), verified by direct Supabase read. Auth-checking routes return 401 "Authentication required" while the project route returns 404 "Project not found", so **our API key is not valid for this site** and the API cannot resolve the project within its scope. Tried three site slugs, all identical. **Ask: a syndication key scoped to this site. Do not change the ids.** Verify with the curl in `empathy-ledger/client.ts`. Fallback is working, so this is degraded, not broken | EL side | Storyteller pages on fallback data |

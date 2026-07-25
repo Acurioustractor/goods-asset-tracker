@@ -554,8 +554,29 @@ is the quantified argument for a community starting earlier in the chain if it w
 **Weakest link, stated plainly:** the footprint weights behind the floor-space driver are assumed,
 not surveyed. A floor plan replaces them. Argue with the drivers first, the weights second.
 
-**Still open on item 7:** a collection-and-baling quote. That single number is now the only thing
-between the model and a priceable Utopia.
+**Collection is now priced too (2026-07-25), so UTOPIA IS PRICEABLE.** Leaving it at `null` was
+stricter than this model's own precedent: the MVF replication table already carries electrical
+fit-out, ventilation, site prep and PPE as **estimates at market rates**, and nobody treats those
+as blockers. Collection is now graded the same way, at **$5,000 to $19,500**, built from its own
+line items (cages, bulka bags, baler, scales, sorting bench, signage).
+
+**Utopia, priced for the first time:** capex **$24,800 to $39,300** in modules (collection
+$5,000-19,500 estimate, plus the $19,800 evidenced shredder), before whatever site base Utopia
+actually needs, and **$16,043/yr** operating on top of the $35,000 site floor. Against the
+$79,333 a full facility carries, that is the difference between a conversation and a wall.
+
+**The band is wide because of ONE item, and it may be zero.** The baler is the swing. Baling is
+for film and PET; rigid HDPE (crates, drums, caps) is normally caged, transported and shredded.
+**If Utopia needs no baler the module lands near the bottom of the band, so never quote the high
+end without asking.** The module name "collection and baling" came from the original proposal and
+may itself be importing an assumption. A guard test keeps that caveat from being quietly deleted.
+
+**Two of the four pathways now price. The two that do not are blocked on people, not numbers:**
+Tennant Creek waits on what the partner supplies, which is their call, and Palm Island waits on a
+governance cost line that is not plant. Neither is fixable by estimating harder.
+
+**Still open on item 7:** a real collection quote, which replaces the estimate and narrows the
+band. Not a blocker any more.
 
 **Not decided:** the module list is still proposed, not agreed. It is now in code so it can be
 argued with concretely, which is not the same as blessed.

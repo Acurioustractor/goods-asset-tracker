@@ -75,13 +75,23 @@
     "modules": [
       {
         "key": "collection_baling",
-        "label": "Collection and baling",
-        "capex_low": null,
-        "capex_high": null,
-        "grade": "unpriced",
+        "label": "Collection and sorting",
+        "capex_low": 5000,
+        "capex_high": 19500,
+        "grade": "estimate",
         "requires_feed": null,
-        "produces": "sorted, baled HDPE",
-        "_note": "NOT in the MVF replication table and genuinely unpriced: bins, bags, a baler, local transport. This is a real gap, not an oversight in the table. It is upstream of the shredder, so it is load-bearing for Utopia, which is the pathway asking for the earliest module. Needs a quote before Utopia can be priced."
+        "produces": "sorted, caged HDPE ready to shred",
+        "_priced_2026_07_25": "Was `unpriced` (null), which blocked Utopia entirely. That was STRICTER THAN THE PRECEDENT: the MVF replication table already carries electrical fit-out, ventilation, site prep and PPE as `estimate` at Australian market rates, and nobody treats those as blockers. Collection is now graded the same way, so Utopia is priceable with an honest label instead of not priceable at all. A real quote replaces this and narrows the band.",
+        "lines": [
+          { "item": "Collection cages / bins for community drop-off (x6)", "low": 1200, "high": 3600, "grade": "estimate" },
+          { "item": "Bulka bags", "low": 250, "high": 600, "grade": "estimate" },
+          { "item": "Baler (OPTIONAL, see note)", "low": 2850, "high": 12000, "grade": "estimate" },
+          { "item": "Platform scales", "low": 400, "high": 1500, "grade": "estimate" },
+          { "item": "Sorting bench", "low": 300, "high": 1000, "grade": "estimate" },
+          { "item": "Drop-off point signage and setup", "low": 0, "high": 800, "grade": "estimate" }
+        ],
+        "_the_band_is_wide_because_of_one_item": "The baler is the swing, and it may not be needed at all. Baling is for film and PET; RIGID HDPE (crates, drums, bottle caps) is normally caged and transported, then shredded. If Utopia does not need a baler the module lands near the bottom of the band. ASK THAT BEFORE QUOTING THE HIGH END. The module is named 'collection and baling' in the original proposal, and that name may itself be importing an assumption.",
+        "_note": "NOT in the MVF replication table, so it is an ADDITION to that total rather than part of it. It is upstream of the shredder, which makes it load-bearing for Utopia, the pathway asking for the earliest module."
       },
       {
         "key": "shredding",
@@ -155,8 +165,8 @@
       "_claims_status": "DERIVED, not measured, and one layer further from evidence than the block itself: these are assumptions about how an assumed split of an as-written DEWR budget divides across a proposed module list. Argue with the drivers first, the weights second. No figure here is a quote."
     },
     "live_pathways": [
-      { "key": "oonchiumpa", "label": "Oonchiumpa: a full facility", "modules": ["collection_baling", "shredding", "pressing_cnc", "assembly", "sales_delivery"], "site_base": "full", "priceable": "partly, blocked only on collection_baling being unpriced", "_note": "The only pathway the old ladder could price, and even it assumed collection came free." },
-      { "key": "utopia", "label": "Utopia: a shredder", "modules": ["collection_baling", "shredding"], "site_base": "partial", "priceable": "no, collection_baling is unpriced", "_note": "Utopia's own answer to 'what would you want to own first' was a shredder. That answer is worth more than any figure in the model, and the ladder could not price it at all." },
+      { "key": "oonchiumpa", "label": "Oonchiumpa: a full facility", "modules": ["collection_baling", "shredding", "pressing_cnc", "assembly", "sales_delivery"], "site_base": "full", "priceable": "yes, with collection graded estimate", "_note": "The only pathway the old ladder could price, and even it assumed collection came free." },
+      { "key": "utopia", "label": "Utopia: a shredder", "modules": ["collection_baling", "shredding"], "site_base": "partial", "priceable": "yes, with collection graded estimate", "_note": "Utopia's own answer to 'what would you want to own first' was a shredder. That answer is worth more than any figure in the model, and the ladder could not price it at all. PRICEABLE SINCE 2026-07-25: capex $24,800 to $39,300 in modules (collection $5,000-19,500 estimate + shredder $19,800 evidenced) plus whatever site base Utopia actually needs, and $16,043/yr operating on top of the $35,000 site floor. Every figure is an estimate for scenario study; none of it goes to Utopia as a number." },
       { "key": "tennant_creek", "label": "Tennant Creek: work through an existing shed", "modules": ["shredding", "pressing_cnc", "assembly", "sales_delivery"], "site_base": "partner_supplied", "priceable": "no, the base subtraction is not agreed with the partner", "_note": "The module capex is knowable; what the partner supplies is not, and it is their call, not ours." },
       { "key": "palm_island", "label": "Palm Island: start with governance", "modules": [], "site_base": "none", "priceable": "no, and this is the honest answer", "_note": "Zero plant and a REAL cost. A model that prices this at $0 is wrong in a way that matters, because governance work is the most common first step and the most consistently unfunded. Needs a governance/scoping cost line that is not plant." }
     ],
