@@ -41,7 +41,14 @@
   }
   .slide + .slide{margin-top:40px;}
   .eyebrow{font-family:var(--mono);font-size:20px;letter-spacing:4px;text-transform:uppercase;color:var(--accent,var(--ochre));font-weight:600;}
-  .wordmark{position:absolute;left:104px;bottom:56px;font-family:var(--serif);font-size:22px;color:var(--mut);}
+  .wordmark{position:absolute;left:104px;bottom:46px;line-height:0;}
+  /* The approved grounded Goods on Country lockup (brand kit, approved 2026-07-24):
+     Goods. in Archivo Bold 700 with the terracotta full stop, sentence-case "on Country"
+     over a terracotta rail. Replaces the Georgia text wordmark, which was off-brand.
+     The former tracked all-caps ON COUNTRY lockup is retired. Do not set the mark as text. */
+  /* Constraint: bottom + height must stay <= 88px (the slide padding), or the mark
+     intrudes into the content box and the overflow gate fails every slide. */
+  .wordmark img{height:38px;width:auto;display:block;}
   .tag{position:absolute;right:104px;bottom:56px;font-family:var(--mono);font-size:15px;color:var(--mut);letter-spacing:1px;}
   .accentbar{position:absolute;left:0;top:0;width:14px;height:100%;background:var(--accent,var(--ochre));}
   h1{font-family:var(--serif);font-weight:600;line-height:1.05;letter-spacing:-.5px;}
@@ -90,7 +97,7 @@
   <div style="font-family:var(--mono);font-size:20px;letter-spacing:2.5px;color:var(--mut);">
     YARN &nbsp;→&nbsp; SHAPE &nbsp;→&nbsp; RESOURCE &nbsp;→&nbsp; DELIVER &nbsp;→&nbsp; <span style="color:var(--ochre-deep);font-weight:700;">TRANSFER</span> &nbsp;→&nbsp; GROW
   </div>
-  <div class="wordmark">Goods on Country</div>
+  <div class="wordmark"><img src="../brand/goods/logos/svg/goods-on-country-grounded-primary.svg" alt="Goods on Country"></div>
   <div class="tag">nobody funds Goods forever</div>
 </section>
 
@@ -103,7 +110,7 @@
     <p style="font-family:var(--serif);font-size:31px;color:var(--soft);max-width:78ch;line-height:1.5;">We built the first Basket Bed with Gloria and her relatives at Ninga Mia, then left it outside the tent on a windy, rainy night. We were nervous. When we came back the bed was gone.<br><br>The family had carried it inside. Our field record shows three people on the mattress; the ladies remember all six sharing it. They asked straight away for another double and a single. Later the bed failed, was repaired with rope, and the feedback changed the design.</p>
     <p style="font-family:var(--serif);font-size:36px;color:var(--ink);margin-top:36px;max-width:60ch;line-height:1.35;"><b>The first Basket Bed entered the tent as a prototype. It came out as an obligation.</b></p>
   </div>
-  <div class="wordmark">Goods on Country</div>
+  <div class="wordmark"><img src="../brand/goods/logos/svg/goods-on-country-grounded-primary.svg" alt="Goods on Country"></div>
   <div class="tag">observed field record · Basket Bed (legacy)</div>
 </section>
 
@@ -124,7 +131,7 @@
       </div>
     </div>
   </div>
-  <div class="wordmark">Goods on Country</div>
+  <div class="wordmark"><img src="../brand/goods/logos/svg/goods-on-country-grounded-primary.svg" alt="Goods on Country"></div>
   <div class="tag">FRRR 2022 survey · $3M is a provider estimate, not audited</div>
 </section>
 
@@ -144,7 +151,7 @@
   </div>
   <p style="font-size:26px;color:var(--soft);max-width:96ch;line-height:1.4;">Two crossed recycled-plastic legs, two steel poles, washable canvas. Tension the poles and the canvas braces the frame. Designed in community: the height, the washing, the repair and the transport all came back as feedback and changed it.</p>
   <p style="font-family:var(--serif);font-size:26px;color:var(--ink);margin-top:14px;">&ldquo;Good for me and comfy, easy to put together.&rdquo; <span style="font-family:var(--sans);font-size:20px;color:var(--mut);">· Dorrie Jones, Arlparra</span></p>
-  <div class="wordmark">Goods on Country</div>
+  <div class="wordmark"><img src="../brand/goods/logos/svg/goods-on-country-grounded-primary.svg" alt="Goods on Country"></div>
 </section>
 
 <!-- ═══ 4 · IT TRAVELS (PROOF) ═══ -->
@@ -165,7 +172,7 @@
     </div>
   </div>
   <p style="font-size:25px;color:var(--soft);max-width:98ch;line-height:1.4;">Every bed carries a QR digital twin: GPS, recipient, delivery date. Standing behind these figures are <b>200 to 350 bed requests</b> we have not filled. &ldquo;I was trying to ask them if they can make one for me.&rdquo; <span style="color:var(--mut);">· Annie Morrison, Tennant Creek</span></p>
-  <div class="wordmark">Goods on Country</div>
+  <div class="wordmark"><img src="../brand/goods/logos/svg/goods-on-country-grounded-primary.svg" alt="Goods on Country"></div>
   <div class="tag">register + Xero verified · INV-0303 2026-07-13</div>
 </section>
 
@@ -200,7 +207,7 @@
     </div>
   </div>
   <p style="font-size:26px;color:var(--soft);max-width:104ch;line-height:1.38;"><b>Communities can begin anywhere, move at their own pace, and choose how much support they want.</b> Not every community needs the whole system. Every pathway begins with what is already strong.</p>
-  <div class="wordmark">Goods on Country</div>
+  <div class="wordmark"><img src="../brand/goods/logos/svg/goods-on-country-grounded-primary.svg" alt="Goods on Country"></div>
   <div class="tag">source of truth: pathway-stages.ts</div>
 </section>
 
@@ -247,7 +254,7 @@
     </div>
   </div>
   <p style="font-size:23px;color:var(--soft);max-width:112ch;line-height:1.34;">These are <b>interest and requests</b>, not signed agreements, and we say so.</p>
-  <div class="wordmark">Goods on Country</div>
+  <div class="wordmark"><img src="../brand/goods/logos/svg/goods-on-country-grounded-primary.svg" alt="Goods on Country"></div>
 </section>
 
 <!-- ═══ 7 · THE MAKING IS THE FIRST HANDOVER ═══ -->
@@ -272,7 +279,7 @@
     </div>
   </div>
   <p style="font-family:var(--serif);font-size:29px;color:var(--ink);max-width:96ch;line-height:1.4;">&ldquo;Yeah, I'll be rocking up every day to make them.&rdquo; <span style="font-family:var(--sans);font-size:21px;color:var(--mut);">· Mykel, Oonchiumpa, Alice Springs</span></p>
-  <div class="wordmark">Goods on Country</div>
+  <div class="wordmark"><img src="../brand/goods/logos/svg/goods-on-country-grounded-primary.svg" alt="Goods on Country"></div>
   <div class="tag">video available: mykel-building-the-bed</div>
 </section>
 
@@ -303,7 +310,7 @@
     </div>
   </div>
   <p style="font-size:25px;color:var(--soft);max-width:112ch;line-height:1.38;"><b>Say the honest thing:</b> the $324 is modelled from verified part prices, not yet measured at production rate. The first thing your money buys is the measured run that proves it.</p>
-  <div class="wordmark">Goods on Country</div>
+  <div class="wordmark"><img src="../brand/goods/logos/svg/goods-on-country-grounded-primary.svg" alt="Goods on Country"></div>
   <div class="tag">workpaper: cost-story.ts</div>
 </section>
 
@@ -338,7 +345,7 @@
     <p style="font-family:var(--serif);font-size:31px;color:var(--ink);max-width:96ch;line-height:1.36;"><b>Each stage has its money: gifts buy time, loans bridge orders, sales carry the middle, site capital finishes it.</b></p>
   </div>
   <p style="font-size:24px;color:var(--soft);max-width:104ch;line-height:1.38;">Equity is not sold. Gifts never fund the company. The inter-entity agreement is being formalised, with completion in progress. Aboriginal-led governance is the direction of travel, with the AGM targeted for around 14 September.</p>
-  <div class="wordmark">Goods on Country</div>
+  <div class="wordmark"><img src="../brand/goods/logos/svg/goods-on-country-grounded-primary.svg" alt="Goods on Country"></div>
 </section>
 
 <!-- ═══ 10 · THE ASK (LAST) ═══ -->
@@ -373,7 +380,7 @@
     </div>
   </div>
   <p style="font-size:24px;color:var(--soft);max-width:112ch;line-height:1.34;">Give to Goods on Country, buy from Goods., lend through A Curious Tractor. All three roads end at the same place: a plant in community hands.</p>
-  <div class="wordmark">Goods on Country</div>
+  <div class="wordmark"><img src="../brand/goods/logos/svg/goods-on-country-grounded-primary.svg" alt="Goods on Country"></div>
   <div class="tag">$0 signed as at 2026-07-25 · we say so</div>
 </section>
 
@@ -386,7 +393,7 @@
     <p style="font-size:23px;color:var(--mut);margin-top:24px;">A Goods synthesis of community direction across eleven communities. Not an individual's quote.</p>
     <p style="font-family:var(--serif);font-size:36px;color:var(--ink);margin-top:42px;max-width:52ch;line-height:1.28;"><b>The design principle: nobody funds Goods forever.</b></p>
   </div>
-  <div class="wordmark">Goods on Country</div>
+  <div class="wordmark"><img src="../brand/goods/logos/svg/goods-on-country-grounded-primary.svg" alt="Goods on Country"></div>
   <div class="tag">the return we are building is the transfer itself</div>
 </section>
 
