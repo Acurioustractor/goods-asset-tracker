@@ -204,7 +204,7 @@ export default function AboutPage() {
           The team
         </p>
         <p className="text-base leading-relaxed mb-8" style={{ color: `${CHARCOAL}cc` }}>
-          Goods on Country is a project of A Curious Tractor, founded by Nicholas Marchesi
+          Goods. is a social enterprise inside A Curious Tractor Pty Ltd, founded by Nicholas Marchesi
           and Benjamin Knight in 2023. The day-to-day is run by a small team of designers,
           engineers, and community members across Brisbane, Tennant Creek, and the Top End.
           Elders and community partners shape every product before it reaches a home.
@@ -242,7 +242,7 @@ export default function AboutPage() {
               <span className="block font-semibold" style={{ color: CHARCOAL }}>
                 Nic and Ben
               </span>
-              From the Goods on Country project. A Curious Tractor co-founders.
+              A Curious Tractor co-founders.
             </figcaption>
           </figure>
         </div>

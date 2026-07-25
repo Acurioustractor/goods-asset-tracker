@@ -323,9 +323,10 @@ const snow: PartnerDashboard = {
     {
       heading: 'Done',
       items: [
-        { title: '540 beds delivered across 11 communities' },
+        { title: `${CANONICAL_ASSETS.bedsDeployed} beds delivered across ${CANONICAL_ASSETS.communitiesServed} communities` },
         { title: 'Containerised production plant built (recycled-plastic line)' },
-        { title: '22 washing machines in community' },
+        // Read from canon: this sat at a retired 20 after Ben's 2026-07-21 ruling moved it to 22.
+        { title: `${CANONICAL_ASSETS.washersInCommunity} washing machines in community` },
         { title: 'Utopia + Alice Springs trip, May 2026', note: '87 beds that trip' },
       ],
     },

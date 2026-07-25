@@ -145,7 +145,7 @@ export const CANON: CanonFact[] = [
     // flagged as an overclaim rendering in front of funders.
     domain: 'money', claimLabel: 'workpaper', dataClass: 'amber',
     source: 'Goods carve-out workpaper, prepared with the accountant (NOT signed); pitch blueprint A3', check: 'manual', asAt: '2026-06-02', owner: 'Ben/accountant',
-    definition: 'Citable Goods-only carve-out, prepared with our accountant as a workpaper. NOT accountant-signed: no signed document exists, and obtaining one is an open action (claims ledger promised before mid-August 2026). No surplus claimed: connected entity runs an FY26 net loss. Use alongside revenue-received ($741,111 all-sources) with the basis named.',
+    definition: 'Goods-only FY26 carve-out, prepared with the accountant but NOT YET SIGNED (Ben ruling 2026-07-25, DECISIONS.md ruling G). Cite the figure; never the word signed, until a signed letter exists and is named in this source field. Obtaining one is an open action, promised in the claims ledger before mid-August 2026. No surplus claimed: connected entity runs an FY26 net loss. Use alongside revenue-received ($741,111 all-sources) with the basis named.',
     reconcilesWith: ['revenue-received'],
   },
 
@@ -217,20 +217,19 @@ export const CANON: CanonFact[] = [
     reconcilesWith: ['entity-trading-goforward'],
   },
   {
-    // RULING K 2026-07-25: the `t/a Goods on Country` is struck. Verified on the public
-    // register: A Curious Tractor Pty Ltd holds NO registered business names at all, and
-    // "Goods on Country" is registered to The Butterfly Movement Ltd (ABN 22 155 132 684)
-    // from 23 July 2026. The company trades as Goods.
-    id: 'entity-trading-goforward', label: 'Go-forward trading entity', value: 'A Curious Tractor Pty Ltd, ACN 697 347 676 / ABN 36 697 347 676, t/a Goods.',
+    // RULING K 2026-07-25. The `value` deliberately carries NO trading name: the company holds
+    // no registered business names at all, so asserting one in a canon value is the exact
+    // defect this ruling fixed. The trading-as-Goods. fact lives in the definition instead.
+    id: 'entity-trading-goforward', label: 'Go-forward trading entity', value: 'A Curious Tractor Pty Ltd, ACN 697 347 676 / ABN 36 697 347 676',
     domain: 'governance', claimLabel: 'verified', dataClass: 'green',
     source: 'grant-content.ts orgIdentity (ABN confirmed 2026-05-29, registered 21 Apr 2026); area-09 review', check: 'manual', asAt: '2026-05-29', owner: 'Ben/Nic',
-    definition: 'Confirmed go-forward trading company; all operations migrate to it in FY2026-27. It trades as Goods., the maker and seller. "Goods on Country" is NOT its trading name: that business name is registered to The Butterfly Movement Ltd (the charity) from 23 July 2026, and this company holds no registered business names at all (ABN Lookup, verified 2026-07-25, ruling K). The two are different things and conflating them has reached funder documents. Open and with MinterEllison: the shop\'s seller of record, since beds are sold by the company on a domain named for the charity. Do not present the migration as finished externally.',
+    definition: 'Confirmed go-forward trading company; all operations migrate to it in FY2026-27. It trades as Goods., the maker and seller, and holds NO registered business names (ABN Lookup, checked 2026-07-25). "Goods on Country" is a business name of The Butterfly Movement Ltd, the charity, registered 23 Jul 2026, NOT of this company (Ben ruling 2026-07-25, DECISIONS.md ruling K). The two are different things and conflating them has reached funder documents. Open and with MinterEllison: the shop\'s seller of record, since beds are sold by the company on a domain named for the charity. Do not present the migration as finished externally.',
   },
   {
     id: 'entity-dgr-home', label: 'Charity / DGR home', value: 'The Butterfly Movement Ltd, ABN 22 155 132 684',
     domain: 'governance', claimLabel: 'verified', dataClass: 'green',
     source: 'area-09 review citing ABN Lookup (extracted 2026-05-06): active company, ACNC charity, PBI, GST, DGR Item 1', check: 'manual', asAt: '2026-05-06', owner: 'Ben/Nic',
-    definition: 'The ONLY DGR / public-benevolent vehicle for Goods, operational from FY2026-27 (~1 July 2026), gifted from TABOO Foundation. DGR is never via Goods / A Curious Tractor / A Kind Tractor directly, and not before the FY2026-27 handover.',
+    definition: 'The ONLY DGR / public-benevolent vehicle for Goods. ABN Lookup (checked 2026-07-25) shows DGR endorsement live since 17 Jan 2012 and ACNC charity registration since 3 Dec 2012, so the entity IS DGR today; the open question is the receipting mechanics and whose name is on the receipt, not the status (confirm with the Butterfly side before printing "tax-deductible today" anywhere donor-facing). Also holds the registered business name "Goods on Country" from 23 Jul 2026. Control transferring from TABOO Foundation; AGM 14 Sep 2026. DGR is never via Goods. / A Curious Tractor / A Kind Tractor directly.',
   },
   {
     id: 'entity-dormant', label: 'Dormant entity (do not cite)', value: 'A Kind Tractor Ltd, ABN 73 669 029 341',
@@ -243,8 +242,8 @@ export const CANON: CanonFact[] = [
   {
     id: 'signed-lois', label: 'Signed LOIs', value: 0, unit: 'LOIs',
     domain: 'pipeline', claimLabel: 'verified', dataClass: 'amber',
-    source: 'GHL Supporter-Journey pipeline (Committed / Signed-LOI stage)', check: 'manual', asAt: '2026-05-30', owner: 'Ben',
-    definition: 'Signed letters of intent across all 3 Goods pipelines; the headline conversion metric. The QBE match gate is a DOLLAR test, not a count: the recorded terms say the Stage 2 grant "must be at least matched by signed external commitments" with no number attached (wiki/investor/04-qbe-pipeline.md:9-14). The old ">=3 signed LOIs" assertion had no source and was struck 2026-07-25 (DECISIONS.md ruling M). Match is judged on signed, verifiable paper: amount, instrument, funder legal name, and a contact SIH can call, which is a letter, not a facility agreement. Application is due 14 Sep 2026; 31 Aug is our OWN internal all-paper-in gate, not a program deadline. A moving number, re-confirm from GHL before citing.',
+    source: 'GHL "Goods Supporter Journey" pipeline, stage "Committed" (pipeline id JvBFYpVpyKsw899lkFgj). There is NO "Signed-LOI" stage; the old source named one that does not exist. Verified 2026-07-25: 0 rows at Committed.', check: 'manual', asAt: '2026-05-30', owner: 'Ben',
+    definition: 'Signed match-eligible commitments across all 3 Goods pipelines. The QBE match gate is a DOLLAR test, not a count: the Stage 2 grant must be at least matched by signed external commitments (program terms, wiki/investor/04-qbe-pipeline.md). The prior ">=3 signed LOIs" assertion had no source and was struck 2026-07-25 (DECISIONS.md ruling M). Match is judged on signed, verifiable paper: amount, instrument, funder legal name, and a contact SIH can call, which is a LETTER, not a facility agreement, so a grant-led match papers faster than a loan. Target is AU$400K signed by our own internal gate of 31 Aug 2026; the program\'s own application closes late September 2026, with outcomes in November. Do NOT write "14 Sep" as the application date: that is the Butterfly AGM, a different thing, and no firmer QBE date is sourced. A moving number: re-confirm from GHL before citing.',
   },
 ];
 

@@ -9,7 +9,7 @@
 - Catalysing Impact 2026: 10 enterprises share a $1M pool. Stage 2 grant up to $400K
   ($150K floor), discretionary, must be at least matched by signed external commitments,
   repayable finance preferred. Stage 1 paid $10K flat.
-- Application: online form, submission due 14 September 2026, plus a short pitch + interview.
+- Application: online form, closes late September 2026, plus a short pitch + interview.
   Outcomes November 2026. Match is judged on signed, verifiable paper (amount, instrument,
   funder legal name, a contact SIH can call).
 - Advisory: production cost model with Matt (lead) and Mal (QA). Hackathon: one day,
@@ -20,11 +20,11 @@
 
 | Must-win | Status |
 |---|---|
-| Accountant-signed Goods-only revenue | DONE: $713,827 ($741,111 only when basis = all-sources received) |
+| Accountant-signed Goods-only revenue | **NOT DONE** (corrected 2026-07-25). The $713,827 carve-out is prepared with the accountant but NOT signed; the signature is an open action. $741,111 only when basis = all-sources received. See DECISIONS.md rulings G and H. |
 | First signed match-eligible commitment | OPEN: $0 signed. Warmest: SEFA ($300K repayable proposed), Snow R4/R5 ($100K), Centrecorp ($75K grant side, separate from the bed order) |
-| Entity wording + legal structure | IN PROGRESS: Butterfly DGR + 51% path, expected ~end July (MinterEllison). Entity mismatch in the signed agreement (ACN vs Nic's sole-trader ABN) still NOT raised with SIH |
+| Entity wording + legal structure | IN PROGRESS, and RESEQUENCED 2026-07-25. Butterfly AGM is **14 Sep 2026** (TABOO board minutes 20 Jul), not end July; two Aboriginal directors are already appointed and registered, so the transition is executing rather than blocking. The 51% question is therefore **decoupled** from the AGM and starts now (DECISIONS.md ruling J). Entity mismatch in the signed agreement (ACN vs Nic's sole-trader ABN) still NOT raised with SIH; ruling L sends it in the first half of August. |
 | Cost model v1 usable | Submitted to Matt; measured $685 marginal / modelled $426 in-house; 50-bed run not started |
-| Impact method + cleared stories | IN PROGRESS: 32 cleared voices, claims-status labels live |
+| Impact method + cleared stories | IN PROGRESS: 34 cleared voices (canon `cleared-voices`, auto-checked), claims-status labels live |
 
 Contract flags still open before signing anything further: cl 7.3 (SIH owns cost-model IP,
 confirm our licence) and cl 5.3 (3-year, 45-day co-invest right on future raises).
@@ -48,14 +48,8 @@ All investor materials must carry the program acknowledgement line; QBE logo nee
    passes this week with $0 signed. Needs a refresh pass when Ben reviews.
 3. Centrecorp "130-bed board decision" figure predates the register sweep; verify against
    crm_deals before quoting.
-4. Snow acquittal claim-hygiene: RESOLVED 2026-07-24. Acquittal page (`371e`) impact
-   snapshot rebuilt to current canon (540/177/363/3,540kg/11 communities/22 washers in
-   community, as-at 21 Jul; per-community split re-pulled from the register, sums to 540).
-   Reporting master (`367e`) 25kg to 20kg (x4) + co-designed to designed (x2, Goods prose
-   only; Snow's numbered First Nations Principle headings kept verbatim) + canon note.
-   DEWR Stage-Two hub (`36ce`) submitted table left intact with a dated "superseded, do not
-   copy forward" callout above it (496/28/9 was lodged 2 Jun). Remaining before 31 Jul send
-   is Ben's own review, not a figures gap.
+4. The Snow acquittal (due 31 Jul) still carries 28-washers/25kg/"co-design" per the
+   2026-07-16 Notion audit; Tier A fixes remain staged pending Ben.
 
 ## What this area feeds
 

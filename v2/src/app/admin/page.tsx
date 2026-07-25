@@ -3,6 +3,7 @@ import { createServiceClient } from '@/lib/supabase/server';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { canonValue } from '@/lib/data/canon';
 import { NEEDS_BEN } from '@/lib/data/investor-wiki';
+import type { RouteStatus } from '@/lib/data/admin-routes';
 import MapCard, { type MapCommunity } from './map-card';
 import { ChevronRight, ArrowRight } from 'lucide-react';
 
@@ -181,3 +182,12 @@ export default async function MapHome() {
     </div>
   );
 }
+
+const ROUTE_TONE: Record<RouteStatus, string> = {
+  hub: 'bg-orange-100 text-orange-900',
+  active: 'bg-emerald-100 text-emerald-900',
+  absorbed: 'bg-primary/10 text-primary',
+  utility: 'bg-muted text-foreground',
+  stale: 'bg-muted text-muted-foreground',
+  'one-off': 'bg-muted text-muted-foreground',
+};

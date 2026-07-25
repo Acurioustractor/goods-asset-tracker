@@ -85,7 +85,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   {
     id: 'communities-served',
     headline: 'Communities served',
-    statement: 'Communities served through deployed assets; ten distinct communities touched.',
+    statement: 'Communities served through deployed assets; twelve distinct communities touched.',
     figure: greenFigure('communities-served'),
     factId: 'communities-served',
     status: 'verified',
@@ -205,7 +205,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   {
     id: 'signed-lois',
     headline: 'Signed match-eligible commitments',
-    statement: 'Zero signed match-eligible commitments today. The QBE terms require the Stage 2 grant to be at least matched by signed external commitments, which is a dollar test with no LOI count attached; match is judged on signed, verifiable paper (amount, instrument, funder legal name, a contact SIH can call). Application is due 14 September 2026, and 31 August is our own internal gate for having the paper in. The first signed commitment is the deck’s own claim flipping from future to verified.',
+    statement: 'Zero signed match-eligible commitments today. The QBE grant must be at least matched by signed external commitments, a dollar test with no LOI count attached; the target is AU$400,000 signed by our own internal gate of 31 August 2026, ahead of the application, which closes late September 2026. Match is judged on signed, verifiable paper (amount, instrument, funder legal name, a contact SIH can call). The first signed commitment is the deck’s own claim flipping from future to verified.',
     status: 'future',
     evidence: [{ label: 'Investor deck', href: '/deck' }],
     asOf: canonFact('signed-lois').asAt,
@@ -232,15 +232,18 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   // ── Locked — held until a human signs. No figure. Ever. ──
   {
     id: 'consolidated-revenue',
-    headline: 'Consolidated revenue figure',
-    // RULING G/H 2026-07-25: this row described a lock that has not been in force since June.
-    // $713,827 is published on eight surfaces. Restated from 'locked' to what is actually true.
-    statement: 'Two figures, two bases, both published with the basis named. The Goods-only carve-out is $713,827 (FY26, Goods-scoped); all-sources cash since inception is $741,111, plus $143,000 in receivables. Both are workpapers prepared with our accountant. Neither is accountant-signed, and we do not describe them as such. No surplus is claimed: the connected entity runs an FY26 net loss.',
-    status: 'future',
-    ceiling: 'Never call either figure “signed” or “audited”, and never publish the $403,901 “surplus”. Always name which basis is meant, because the two figures are not alternatives, they measure different things.',
+    headline: 'A signed revenue figure',
+    // Rewritten 2026-07-25 (DECISIONS.md ruling H). The old wording said the figure was held
+    // from publication until signed. It was not held: it shipped on funder surfaces from June.
+    // A gate that describes a discipline nobody follows is worse than no gate, because it reads
+    // as assurance. What IS held is the word "signed". Statement stays digit-free so
+    // assertLedgerSafe keeps protecting the locked class.
+    statement: 'A signed, accountant-certified Goods-only revenue figure does not exist yet. The prepared carve-out is shown on funder-facing surfaces with a workpaper label and its basis named. It is never presented as signed, and no surplus figure is published or implied anywhere.',
+    status: 'locked',
+    ceiling: 'No revenue figure is described as signed or certified until the accountant signs one. No surplus figure, ever.',
     evidence: [{ label: 'Reconciliation basis (internal, on request)' }],
     asOf: '2026-07-25',
-    flip: { when: 'on accountant sign-off (targeted before mid-August 2026)', how: 'The label moves from workpaper to signed, with the document named. The figure itself does not change.' },
+    flip: { when: 'on accountant sign-off (outstanding as at 2026-07-25; the ledger previously targeted mid-August 2026)', how: 'The signed figure and its basis are named here and the workpaper label comes off every surface.' },
   },
 ];
 
@@ -256,12 +259,11 @@ export const ANTI_CLAIMS: { statement: string; why: string }[] = [
     why: '200–350 logged bed requests are interest. Revenue is a signed purchase, and only signed purchases are reported as revenue.',
   },
   {
-    // RULING G/H 2026-07-25: this anti-claim was FALSE. It asserted a discipline that has not
-    // been followed since June, while $713,827 rendered on eight surfaces. An integrity
-    // commitment contradicted by practice is worse than no commitment, so it now states what
-    // we actually do: publish the figure, label it honestly, and name the missing document.
-    statement: 'We do not publish a revenue figure without naming what backs it.',
-    why: 'The Goods-only carve-out of $713,827 IS published, labelled workpaper, because it is real cash on a named basis. What does not exist yet is an accountant-signed document, and we say so rather than implying one. Getting it signed is an open action, targeted before mid-August 2026.',
+    // RULING G/H 2026-07-25: this anti-claim was FALSE as written ("We do not publish an
+    // unsigned revenue figure") while the figure rendered on eight surfaces. An integrity
+    // commitment contradicted by practice is worse than no commitment.
+    statement: 'We do not call a revenue figure signed until it is.',
+    why: 'The Goods-only carve-out is prepared with our accountant and not yet signed. It is shown with a workpaper label and its basis named, never as a certified number. See the locked row below.',
   },
   {
     statement: 'We do not claim community ownership has happened.',
@@ -269,9 +271,9 @@ export const ANTI_CLAIMS: { statement: string; why: string }[] = [
   },
   {
     statement: 'We do not use an uncleared voice or photo.',
-    // Was hardcoded "32", which was both stale (canon is 34) and the WRONG TIER: 32 is the
-    // display-storyteller-pool, a different list. Reads from canon now so it cannot drift again.
-    why: `Only the ${canonFact('cleared-voices').value} consent-cleared voices (2026-06-17 pass plus later additions, default-deny, OCAP®-aligned) appear on external surfaces. If a name is not on the list, it does not render. Not to be confused with the broader website display-storyteller pool, which is a coverage queue, not a clearance list.`,
+    // Reads from canon rather than a hardcoded count, which had gone stale at "32" and was also
+    // the WRONG TIER: 32 is the display-storyteller pool, a coverage queue, not a clearance list.
+    why: `Only the ${canonFact('cleared-voices').value} consent-cleared voices (the 2026-06-17 pass, plus Margaret Lloyd and Tanya Turner; default-deny, OCAP®-aligned) appear on external surfaces. If a name is not on the list, it does not render. Not to be confused with the broader website display-storyteller pool.`,
   },
 ];
 

@@ -39,7 +39,7 @@ const ALLOWED_TYPES = [
 ];
 
 const DGR_NOTE =
-  'DGR-deductible giving is available only through The Butterfly Movement Ltd, an ACNC-registered charity and Item 1 DGR. The Goods on Country giving pathway through Butterfly is being formalised for FY2026-27. Confirm current routing with us before structuring a tax-deductible gift. Goods on Country and A Curious Tractor Pty Ltd are not themselves DGR-endorsed.';
+  'DGR-deductible giving is available only through The Butterfly Movement Ltd, an ACNC-registered charity and Item 1 DGR, which trades as Goods on Country. A Curious Tractor Pty Ltd, which trades as Goods. and sells the products, is NOT DGR-endorsed. The Goods giving pathway through Butterfly is still being formalised, so confirm current routing with us before structuring a tax-deductible gift.';
 
 const backedByPartners = [
   {
@@ -134,7 +134,7 @@ const faq = [
   {
     question: 'Is Goods on Country a charity?',
     answer:
-      'No. Goods on Country trades through A Curious Tractor Pty Ltd. The DGR pathway for eligible giving is through The Butterfly Movement Ltd, not through Goods or A Curious Tractor Pty Ltd directly.',
+      'No. The products are sold by A Curious Tractor Pty Ltd, which trades as Goods. The DGR pathway for eligible giving is through The Butterfly Movement Ltd, which holds the registered business name Goods on Country. A Curious Tractor Pty Ltd is not itself DGR-endorsed.',
   },
   {
     question: 'Can a funder make a DGR-deductible gift?',
@@ -236,11 +236,10 @@ export default async function PartnerPage({
                   Entity and DGR note
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  A Curious Tractor Pty Ltd is the trading company, making and selling as Goods.
-                  Goods on Country is the charity, a registered business name of The Butterfly
-                  Movement Ltd, which is also the DGR pathway for eligible giving. The long-term
-                  structure is being designed to protect enterprise discipline and community
-                  ownership.
+                  A Curious Tractor Pty Ltd is the trading company; it makes and sells the products
+                  as Goods. The Butterfly Movement Ltd is the ACNC-registered charity and DGR, and it
+                  holds the registered business name Goods on Country. The long-term structure is
+                  being designed to protect enterprise discipline and community ownership.
                 </p>
               </div>
             </div>
@@ -397,8 +396,9 @@ export default async function PartnerPage({
                 DGR access without turning Goods into a bed-distribution program.
               </h2>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                The split matters. A Curious Tractor Pty Ltd trades and keeps product discipline.
-                The Butterfly Movement Ltd carries the eligible giving pathway where it fits.
+                The split matters. A Curious Tractor Pty Ltd trades as Goods. and keeps product
+                discipline. The Butterfly Movement Ltd trades as Goods on Country and carries the
+                eligible giving pathway where it fits.
               </p>
             </div>
             <div className="rounded-xl border border-border bg-background p-6">

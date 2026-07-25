@@ -140,6 +140,51 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         context: "Her unprompted vision of community-owned bed-making enterprise and local sales.",
         status: 'approved',
       },
+      {
+        text: "I'm happy. I, I can't tell you how my heart is, uh, hopping and skipping inside me.",
+        context: 'Receiving the washing machine',
+        status: 'approved',
+      },
+      {
+        text: "I will know where to come. If I need to wash my blanket, I don't have to go do it in town. Laundry, do it here.",
+        context: 'What the washer on her homeland changes',
+        status: 'approved',
+      },
+      {
+        text: "If you have an idea what place you'd go to first go and talk to ... the elders. Sit down and talk to them or a group of people and tell them if you can show them how to make them beds, and they'll probably be keen on joining in and helping out.",
+        context: 'Her advice on how to enter a community',
+        status: 'approved',
+      },
+      {
+        text: "They need to hear from the ground, who wants it, who's gonna do it, who's out there, who needs help?",
+        context: 'Decisions from the ground up',
+        status: 'approved',
+      },
+      {
+        text: 'Why do I think it\'s comfortable? Because I was looking for these kinds before having a milk crate and a mattress on top. It was comfortable, but not much. But this is more.',
+        context: 'The bed against what she improvised before',
+        status: 'approved',
+      },
+      {
+        text: "When I first moved in, the only shelter I had was my car. My little car. That was it.",
+        context: "Opening of her life story on her block \u2014 twenty-four years starting with nothing but a car.",
+        status: 'approved',
+      },
+      {
+        text: "We get scared of people sleeping on the ground. You and Nic came over and done this bed... what he's doing is amazing job.",
+        context: "Her opening reflection after the washing machine and bed trip.",
+        status: 'approved',
+      },
+      {
+        text: "Why I'm helping you is 'cause, I'm a traditional owner. And I live here and I wanted to help, to let people know that these two young fellas came to do this for us. We need to respect them... That's how my feeling is to respect.",
+        context: "Why she vouches for Goods in her community.",
+        status: 'approved',
+      },
+      {
+        text: "If we have our own contract doing all these in the communities, they can sell 'em to people... and even to Tennant Creek come where we have NAIDOC week or we have show... marquees sort of sell 'em.",
+        context: "Her unprompted vision of community-owned bed-making enterprise and local sales.",
+        status: 'approved',
+      },
     ],
     portrait: '/images/people/dianne-stokes.jpg',
     notes: 'Refines designs "around the fire" with family. Received 1 bed, returned in 2 weeks asking for 20, offered to self-fund. Quotes 3-7 cleared by Ben 2026-07-20 from the Voice Impact Model deep pass (D1-D5). CONSENT: Ben ruling 2026-07-21 — Dianne has consent for ALL her material AND her image; every gate on this entry is lifted and the bannedFragments guard was removed to match.',
@@ -1257,6 +1302,31 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
       {
         text: "For me, I wanted to see how the beds would be received and for me it was an overwhelming, yes, we want and need these beds ... And you're doing it with community. It's not a for, it's a with, and that's really important too.",
         context: "Her closing verdict on the trip; the with-not-for line lands the design-with-community principle from a funder's mouth.",
+        status: 'approved',
+      },
+      {
+        text: "my mum gets the phone call and she's like, your uncle said they had the best night's sleep just outta these beds, made outta crates with the cushion and the thing. It's like unreal, unreal. The impact that ... you have",
+        context: "Kylie recounts family feedback after Sarah (a nurse volunteer, 'adopted daughter') built beds for extended family at Utopia community.",
+        status: 'approved',
+      },
+      {
+        text: "We've waited so long for this house and no one in Alice Springs would touch it. Get two bloke to bring five contractors in that like, ... done in a week.",
+        context: "Contrasting years of service-system inaction with the one-week community build.",
+        status: 'approved',
+      },
+      {
+        text: "The reaction has been so overwhelmingly positive and for me to get that insight is just, validated what they're doing.",
+        context: "Seeing community response to the beds on the Tennant Creek trip; funder validation in her own words.",
+        status: 'approved',
+      },
+      {
+        text: "For me, I wanted to see how the beds would be received and for me it was an overwhelming, yes, we want and need these beds ... And you're doing it with community. It's not a for, it's a with, and that's really important too.",
+        context: "Her closing verdict on the trip; the with-not-for line lands the design-with-community principle from a funder's mouth.",
+        status: 'approved',
+      },
+      {
+        text: "The goods project Nick and Ben, and together with the family built a bed ... just seeing that family jump on that bed and do it together and have a bit of a laugh and just felt really, you know, welcoming and warm. So that was really special.",
+        context: "Katherine, on the Deadly Heart Trek: watching a family build a Basket Bed together.",
         status: 'approved',
       },
     ],

@@ -356,8 +356,9 @@ export const deckSlides: DeckSlide[] = [
       { label: 'Proposed · the ask', value: 'AU$400K QBE Catalysing Impact' },
       // RULING M 2026-07-25: the gate is a dollar test, not a count. The terms say "at least
       // matched by signed external commitments" with no LOI number. 31 Aug is OUR internal
-      // paper-in date; the program's own deadline is the 14 Sep application.
-      { label: 'Gate', value: 'Signed match paper in by 31 Aug · app 14 Sep' },
+      // paper-in date; the program's own application closes late September. Do NOT write
+      // "14 Sep" here: that is the Butterfly AGM, and no firmer QBE date is sourced.
+      { label: 'Gate', value: 'Signed match paper in by 31 Aug · app late Sep' },
     ],
     goDeeper: [
       { label: 'Every number, audited', href: '/register' },
