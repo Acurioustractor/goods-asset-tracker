@@ -233,7 +233,7 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
         },
       ],
       nextAsk:
-        'Support one reconnection and co-design phase, then cost only the small operational test the Shed and Youth Centre choose.',
+        'Support one reconnection phase, designed with community, then cost only the small operational test the Shed and Youth Centre choose.',
       mediaBasis:
         'Media shown here is limited to the verified Tennant Creek community image and named portraits from the externally cleared voice register.',
       statusNote:

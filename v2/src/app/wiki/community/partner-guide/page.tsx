@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { PLASTIC_KG_PER_BED } from '@/lib/data/products';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 
 export const metadata: Metadata = {
   title: 'Partner Guide | Goods Wiki',
@@ -33,11 +34,11 @@ export default function PartnerGuidePage() {
 
         <div className="grid md:grid-cols-3 gap-6 not-prose my-8">
           <div className="text-center p-4 bg-green-50 rounded-lg">
-            <div className="text-3xl font-bold text-green-600">540</div>
+            <div className="text-3xl font-bold text-green-600">{CANONICAL_ASSETS.bedsDeployed}</div>
             <div className="text-sm text-gray-600 mt-1">Beds deployed</div>
           </div>
           <div className="text-center p-4 bg-green-50 rounded-lg">
-            <div className="text-3xl font-bold text-green-600">9</div>
+            <div className="text-3xl font-bold text-green-600">{CANONICAL_ASSETS.communitiesServed}</div>
             <div className="text-sm text-gray-600 mt-1">Communities served</div>
           </div>
           <div className="text-center p-4 bg-green-50 rounded-lg">
