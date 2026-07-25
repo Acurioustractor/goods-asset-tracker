@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  :root{
+    --paper:#F5F0E4; --surface:#FBF7EE; --ink:#26201A; --soft:#4A4034; --mut:#7C6F5A;
+    --line:#E3D7BE; --ochre:#B9852F; --ochre-deep:#9C6C1C;
+    --terracotta:#B0503C; --teal:#3F7C77; --eucalypt:#5E7350; --bronze:#9A6C34; --amber:#BE8636;
+    --st-v:#4E7C51; --st-m:#BE8636; --st-t:#6B7687;
+    --serif:Georgia,'Times New Roman',serif;
+    --sans:-apple-system,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,Menlo,Consolas,'Liberation Mono',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#33302a;}
+  .slide{
+    width:1600px;height:900px;background:var(--paper);color:var(--ink);
+    font-family:var(--sans);position:relative;overflow:hidden;
+    padding:88px 104px;display:flex;flex-direction:column;
+  }
+  .slide + .slide{margin-top:40px;}
+  .eyebrow{font-family:var(--mono);font-size:20px;letter-spacing:4px;text-transform:uppercase;color:var(--accent,var(--ochre));font-weight:600;}
+  .wordmark{position:absolute;left:104px;bottom:56px;font-family:var(--serif);font-size:22px;color:var(--mut);}
+  .tag{position:absolute;right:104px;bottom:56px;font-family:var(--mono);font-size:15px;color:var(--mut);letter-spacing:1px;}
+  .accentbar{position:absolute;left:0;top:0;width:14px;height:100%;background:var(--accent,var(--ochre));}
+  h1{font-family:var(--serif);font-weight:600;line-height:1.05;letter-spacing:-.5px;}
+  .grow{flex:1;display:flex;flex-direction:column;justify-content:center;}
+  .chip{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:16px;font-weight:700;
+    padding:4px 12px;border-radius:999px;vertical-align:middle;}
+  .chip::before{content:"";width:9px;height:9px;border-radius:50%;background:currentColor;}
+  .v{color:var(--st-v);background:#E4EBDD;} .m{color:var(--st-m);background:#F1E6CC;} .t{color:var(--st-t);background:#E4E7EC;}
+  .flow{display:flex;align-items:stretch;gap:0;flex-wrap:nowrap;}
+  .step{background:var(--surface);border:1px solid var(--line);border-top:6px solid var(--accent,var(--ochre));border-radius:16px;
+    padding:26px 24px;flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;min-height:150px;}
+  .step .st-l{font-family:var(--serif);font-size:26px;line-height:1.12;}
+  .arrow{display:flex;align-items:center;justify-content:center;font-size:40px;color:var(--ochre);padding:0 14px;flex:none;}
+  .num{font-family:var(--serif);font-weight:600;line-height:1;letter-spacing:-1px;}
+</style>
+</head>
+<body>
+
+<!-- 1 · MAIN IDEA -->
+<section class="slide" id="s1" style="--accent:var(--ochre);">
+  <div class="accentbar"></div>
+  <div class="eyebrow">Goods on Country</div>
+  <div class="grow">
+    <h1 style="font-size:118px;">From waste<br>to ownership.</h1>
+    <p style="font-size:34px;color:var(--soft);max-width:24ch;margin-top:34px;line-height:1.32;">Durable beds and washing machines, made from local plastic, designed and built with remote communities, and moving into their hands.</p>
+  </div>
+  <div style="font-family:var(--mono);font-size:22px;letter-spacing:2px;color:var(--mut);">
+    WASTE &nbsp;→&nbsp; PRODUCT &nbsp;→&nbsp; SKILL &nbsp;→&nbsp; WORK &nbsp;→&nbsp; <span style="color:var(--ochre-deep);font-weight:700;">OWNERSHIP</span>
+  </div>
+  <div class="wordmark">Goods on Country</div>
+</section>
+
+<!-- 2 · THE FIRST BED (story) -->
+<section class="slide" id="s2a" style="--accent:var(--terracotta);">
+  <div class="accentbar"></div>
+  <div class="eyebrow">Ninga Mia, Kalgoorlie · where it started</div>
+  <h1 style="font-size:64px;margin-top:22px;">The first bed disappeared overnight.</h1>
+  <div class="grow">
+    <p style="font-family:var(--serif);font-size:31px;color:var(--soft);max-width:78ch;line-height:1.5;">We built the first Basket Bed with Gloria and her relatives at Ninga Mia, then left it outside the tent on a windy, rainy night. We were nervous. When we came back the bed was gone.<br><br>The family had carried it inside. Our field record shows three people on the mattress; the ladies remember all six sharing it. They asked straight away for another double and a single. Later the bed failed, was repaired with rope, and the feedback changed the design.</p>
+    <p style="font-family:var(--serif);font-size:36px;color:var(--ink);margin-top:36px;max-width:60ch;line-height:1.35;"><b>The first Basket Bed entered the tent as a prototype. It came out as an obligation.</b></p>
+  </div>
+  <div class="wordmark">Goods on Country</div>
+  <div class="tag">observed field record · Basket Bed (legacy)</div>
+</section>
+
+<!-- 3 · THE WHY -->
+<section class="slide" id="s2" style="--accent:var(--terracotta);">
+  <div class="accentbar"></div>
+  <div class="eyebrow">The why</div>
+  <h1 style="font-size:66px;margin-top:22px;">A bed is health hardware, not furniture.</h1>
+  <div class="grow" style="align-items:center;">
+    <img src="../images/brand/generated/goods-ill-health-chain.png" alt="A washable bed off the ground breaks the first link in the chain" style="height:430px;border-radius:18px;border:1px solid var(--line);">
+    <div style="font-family:var(--mono);font-size:20px;letter-spacing:2px;color:var(--mut);margin-top:22px;">CROWDING &amp; DIRTY BEDDING → SKIN INFECTIONS &amp; SCABIES → RHEUMATIC FEVER → RHEUMATIC HEART DISEASE</div>
+  </div>
+  <p style="font-family:var(--serif);font-size:28px;color:var(--ink);max-width:80ch;line-height:1.4;">&ldquo;Sleep on a good mattress. For the back, the legs, the muscles.&rdquo; <span style="font-family:var(--sans);font-size:21px;color:var(--mut);">· Gloria Turner, Kalgoorlie</span></p>
+  <p style="font-size:24px;color:var(--soft);max-width:80ch;line-height:1.4;margin-top:14px;">Aboriginal people carry among the highest rates of rheumatic heart disease in the world. We build the conditions that sit <b>upstream</b> of it. We never claim to cure it.</p>
+  <div class="wordmark">Goods on Country</div>
+  <div class="tag">Sources: AIHW 2024 · END RHD CRE / Telethon Kids</div>
+</section>
+
+<!-- 3 · THE PROBLEM -->
+<section class="slide" id="s3" style="--accent:var(--terracotta);">
+  <div class="accentbar"></div>
+  <div class="eyebrow">The problem</div>
+  <div class="grow">
+    <h1 style="font-size:64px;max-width:22ch;">Remote homes pay more for products that die in months.</h1>
+    <div style="display:flex;align-items:baseline;gap:24px;margin-top:44px;">
+      <div class="num" style="font-size:150px;color:var(--terracotta);">59%</div>
+      <p style="font-size:30px;color:var(--soft);max-width:34ch;line-height:1.35;">of surveyed remote homes have no working washing machine at all.</p>
+    </div>
+    <p style="font-size:26px;color:var(--soft);margin-top:36px;max-width:80ch;line-height:1.4;">Freight, repair callouts and suburb-designed appliances stack the cost against the bush. One Alice Springs provider's estimate: about <b>$3M</b> of washing machines sold into nearby communities each year, most dumped within months.</p>
+  </div>
+  <div class="wordmark">Goods on Country</div>
+  <div class="tag">FRRR 2022 survey · provider estimate, calc pending data room</div>
+</section>
+
+<!-- 4 · THE PRODUCT -->
+<section class="slide" id="s4" style="--accent:var(--teal);">
+  <div class="accentbar"></div>
+  <div class="eyebrow">The product</div>
+  <h1 style="font-size:82px;margin-top:20px;">The Stretch Bed</h1>
+  <div class="grow" style="flex-direction:row;align-items:center;gap:40px;">
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;flex:1;">
+      <div class="step"><div class="num" style="font-size:58px;color:var(--teal);">26<span style="font-size:28px;"> kg</span></div><div style="font-size:21px;color:var(--mut);margin-top:8px;">one person carries it</div></div>
+      <div class="step"><div class="num" style="font-size:58px;color:var(--teal);">200<span style="font-size:28px;"> kg</span></div><div style="font-size:21px;color:var(--mut);margin-top:8px;">load it holds</div></div>
+      <div class="step"><div class="num" style="font-size:58px;color:var(--teal);">~5<span style="font-size:28px;"> min</span></div><div style="font-size:21px;color:var(--mut);margin-top:8px;">to build, no tools</div></div>
+      <div class="step"><div class="num" style="font-size:58px;color:var(--teal);">10<span style="font-size:28px;"> yr</span></div><div style="font-size:21px;color:var(--mut);margin-top:8px;">design life</div></div>
+    </div>
+    <img src="../images/brand/generated/goods-ill-x-leg.png" alt="One X-trestle leg: two crossed recycled-plastic planks, pole holes at the top" style="height:400px;border-radius:18px;border:1px solid var(--line);">
+  </div>
+  <p style="font-size:27px;color:var(--soft);max-width:82ch;line-height:1.4;">Recycled-plastic legs, steel poles, washable canvas. Designed in community. Washable, repairable, and made on Country.</p>
+  <p style="font-family:var(--serif);font-size:26px;color:var(--ink);margin-top:16px;">&ldquo;Good for me and comfy, easy to put together.&rdquo; <span style="font-family:var(--sans);font-size:20px;color:var(--mut);">· Dorrie Jones, Arlparra</span></p>
+  <div class="wordmark">Goods on Country</div>
+</section>
+
+<!-- 6 · COMMUNITY AUTHORSHIP -->
+<section class="slide" id="s4b" style="--accent:var(--teal);">
+  <div class="accentbar"></div>
+  <div class="eyebrow">Designed in community</div>
+  <h1 style="font-size:60px;margin-top:22px;">Communities did not validate the design. They changed it.</h1>
+  <div class="grow">
+    <div class="flow" style="margin-bottom:34px;">
+      <div class="step"><div class="st-l">Basket Bed<br><span style="font-size:18px;color:var(--mut);">the prototype that became an obligation</span></div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="st-l">Stretch Bed<br><span style="font-size:18px;color:var(--mut);">rebuilt around height, washing, repair &amp; transport feedback</span></div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="st-l">Pakkimjalki Kari<br><span style="font-size:18px;color:var(--mut);">the washer, named in Warumungu by Elder Dianne Stokes</span></div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px;">
+      <div class="step" style="min-height:auto;padding:24px;text-align:left;"><p style="font-family:var(--serif);font-size:25px;line-height:1.4;">&ldquo;They like to have lower beds, especially for our older people.&rdquo;</p><p style="font-size:19px;color:var(--mut);margin-top:10px;">Melissa Jackson, Tennant Creek</p></div>
+      <div class="step" style="min-height:auto;padding:24px;text-align:left;"><p style="font-family:var(--serif);font-size:25px;line-height:1.4;">&ldquo;These two boys just picked it up straight away. The most important thing is it's actually comfortable.&rdquo;</p><p style="font-size:19px;color:var(--mut);margin-top:10px;">Heather Mundo, Katherine</p></div>
+    </div>
+  </div>
+  <p style="font-size:25px;color:var(--soft);max-width:92ch;line-height:1.4;">Every product change traces to a person and a place. That feedback loop is the asset the capital builds on.</p>
+  <div class="wordmark">Goods on Country</div>
+</section>
+
+<!-- 5 · CIRCULAR -->
+<section class="slide" id="s5" style="--accent:var(--eucalypt);">
+  <div class="accentbar"></div>
+  <div class="eyebrow">How it's made</div>
+  <h1 style="font-size:66px;margin-top:22px;">Local waste becomes a bed.</h1>
+  <div class="grow" style="flex-direction:row;align-items:center;gap:48px;">
+    <img src="../images/brand/generated/goods-ill-plastic-loop.png" alt="The loop: shredded plastic, the heat press, a Stretch Bed, offcuts returning" style="height:470px;border-radius:18px;border:1px solid var(--line);">
+    <div style="font-family:var(--mono);font-size:22px;letter-spacing:2px;color:var(--mut);line-height:2.1;">COLLECT PLASTIC<br>↓<br>SHRED<br>↓<br>PRESS SHEETS<br>↓<br>CUT &amp; ASSEMBLE<br>↓<br><span style="color:var(--ochre-deep);font-weight:700;">A BED</span></div>
+  </div>
+  <div style="display:flex;align-items:baseline;gap:20px;">
+    <div class="num" style="font-size:88px;color:var(--eucalypt);">20 kg</div>
+    <div style="font-size:30px;color:var(--soft);">of plastic diverted per bed <span class="chip m" style="font-size:15px;">M modelled</span></div>
+  </div>
+  <div class="wordmark">Goods on Country</div>
+</section>
+
+<!-- 6 · THE MODEL / OWNERSHIP -->
+<section class="slide" id="s6" style="--accent:var(--ochre);">
+  <div class="accentbar"></div>
+  <div class="eyebrow">The model</div>
+  <h1 style="font-size:66px;margin-top:22px;">The making moves on Country.</h1>
+  <div class="grow">
+    <div class="flow">
+      <div class="step" style="border-top-color:var(--eucalypt);"><div class="st-l" style="color:var(--eucalypt);">WASTE</div></div>
+      <div class="arrow">→</div>
+      <div class="step" style="border-top-color:var(--terracotta);"><div class="st-l" style="color:var(--terracotta);">PRODUCT</div></div>
+      <div class="arrow">→</div>
+      <div class="step" style="border-top-color:var(--teal);"><div class="st-l" style="color:var(--teal);">SKILL</div></div>
+      <div class="arrow">→</div>
+      <div class="step" style="border-top-color:var(--bronze);"><div class="st-l" style="color:var(--bronze);">WORK</div></div>
+      <div class="arrow">→</div>
+      <div class="step" style="border-top-color:var(--ochre-deep);background:#F7EAD0;"><div class="st-l" style="color:var(--ochre-deep);">OWNERSHIP</div></div>
+    </div>
+  </div>
+  <p style="font-size:30px;color:var(--soft);max-width:70ch;line-height:1.38;">Community designs it, builds it, and over time owns the making. <b>Our goal is to become unnecessary.</b></p>
+  <div class="wordmark">Goods on Country</div>
+</section>
+
+<!-- 7 · PROOF -->
+<section class="slide" id="s7" style="--accent:var(--teal);">
+  <div class="accentbar"></div>
+  <div class="eyebrow">Proof</div>
+  <h1 style="font-size:60px;margin-top:22px;">Already shipped, and every one is trackable.</h1>
+  <div class="grow" style="justify-content:center;gap:26px;">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:30px;">
+      <div class="step"><div class="num" style="font-size:78px;color:var(--ink);">536</div><div style="font-size:23px;color:var(--mut);margin-top:8px;">beds deployed <span class="chip v" style="font-size:13px;">V</span></div></div>
+      <div class="step"><div class="num" style="font-size:78px;color:var(--ink);">9</div><div style="font-size:23px;color:var(--mut);margin-top:8px;">communities <span class="chip v" style="font-size:13px;">V</span></div></div>
+      <div class="step"><div class="num" style="font-size:78px;color:var(--ink);">18</div><div style="font-size:23px;color:var(--mut);margin-top:8px;">washing machines <span class="chip v" style="font-size:13px;">V</span></div></div>
+      <div class="step"><div class="num" style="font-size:78px;color:var(--ink);">3,460</div><div style="font-size:23px;color:var(--mut);margin-top:8px;">kg plastic diverted <span class="chip m" style="font-size:13px;">M</span></div><div style="font-size:17px;color:var(--mut);margin-top:4px;">Stretch only: 173 × 20kg. Basket Beds count zero.</div></div>
+    </div>
+    <div class="step" style="min-height:auto;flex:none;padding:20px 26px;text-align:left;border-top-color:var(--ochre-deep);background:#F7EAD0;">
+      <div style="font-size:25px;color:var(--ink);"><b>Newest: 40 Stretch Beds and 2 washing machines to Maningrida Homelands</b> with Homeland School Company, made at our own farm production plant.</div>
+    </div>
+  </div>
+  <p style="font-size:25px;color:var(--soft);max-width:96ch;line-height:1.4;">173 Stretch flagship + 363 Basket legacy. Every bed carries a QR digital twin: GPS, recipient, delivery date. &ldquo;I was trying to ask them if they can make one for me.&rdquo; <span style="color:var(--mut);">· Annie Morrison, Tennant Creek</span></p>
+  <div class="wordmark">Goods on Country</div>
+  <div class="tag">Maningrida +40 · Jul 2026 · matches INV-0303</div>
+</section>
+
+<!-- 8 · IMPACT FOR FUNDERS -->
+<section class="slide" id="s8" style="--accent:var(--ochre);">
+  <div class="accentbar"></div>
+  <div class="eyebrow">The impact</div>
+  <h1 style="font-size:62px;margin-top:22px;">Every bed carries a fixed impact payload.</h1>
+  <div class="grow" style="flex-direction:row;align-items:center;gap:44px;">
+    <img src="../images/brand/generated/goods-ill-impact-per-bed.png" alt="One bed with its four fixed impacts: plastic, a home, a hand, canvas" style="height:440px;border-radius:18px;border:1px solid var(--line);">
+    <div style="display:grid;grid-template-rows:repeat(4,1fr);gap:14px;flex:1;">
+      <div class="step" style="min-height:auto;padding:16px 22px;text-align:left;border-top-color:var(--eucalypt);"><div class="st-l" style="font-size:23px;">20 kg plastic kept off Country <span class="chip m" style="font-size:13px;">M</span></div></div>
+      <div class="step" style="min-height:auto;padding:16px 22px;text-align:left;border-top-color:var(--terracotta);"><div class="st-l" style="font-size:23px;">1 family off the floor <span class="chip v" style="font-size:13px;">V</span></div></div>
+      <div class="step" style="min-height:auto;padding:16px 22px;text-align:left;border-top-color:var(--bronze);"><div class="st-l" style="font-size:23px;">$130 fair wage per bed, on Country <span class="chip m" style="font-size:13px;">M</span></div></div>
+      <div class="step" style="min-height:auto;padding:16px 22px;text-align:left;border-top-color:var(--teal);"><div class="st-l" style="font-size:23px;">A consented story, community-owned <span class="chip v" style="font-size:13px;">V</span></div></div>
+    </div>
+  </div>
+  <p style="font-size:27px;color:var(--soft);max-width:94ch;line-height:1.4;">We label every number <b style="color:var(--st-v);">verified</b>, <b style="color:var(--st-m);">modelled</b>, or <b style="color:var(--st-t);">target</b>. We never overclaim. That honesty is the impact.</p>
+  <div class="wordmark">Goods on Country</div>
+</section>
+
+<!-- 9 · THE ASK -->
+<section class="slide" id="s9" style="--accent:var(--bronze);">
+  <div class="accentbar"></div>
+  <div class="eyebrow">The ask</div>
+  <div class="grow">
+    <h1 style="font-size:88px;">AU$400,000,<br>matched one to one.</h1>
+    <p style="font-size:30px;color:var(--soft);max-width:66ch;margin-top:24px;line-height:1.34;">Through QBE Catalysing Impact, matched by signed commitments. Signed letters by <b>31 August 2026</b>. About $800,000 working once matched.</p>
+    <div style="margin-top:32px;">
+      <div style="font-family:var(--mono);font-size:17px;letter-spacing:2px;color:var(--bronze);margin-bottom:14px;">WHAT IT BUYS: THE BRIDGE</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+        <div class="step" style="min-height:auto;padding:20px;"><div class="st-l" style="font-size:21px;">A 50-bed run in our own plant</div><div style="font-size:17px;color:var(--mut);margin-top:8px;">cost: modelled → measured</div></div>
+        <div class="step" style="min-height:auto;padding:20px;"><div class="st-l" style="font-size:21px;">The first ownership pathway</div><div style="font-size:17px;color:var(--mut);margin-top:8px;">with Oonchiumpa</div></div>
+        <div class="step" style="min-height:auto;padding:20px;"><div class="st-l" style="font-size:21px;">The enterprise-support layer</div><div style="font-size:17px;color:var(--mut);margin-top:8px;">orders, wages, quality, cash</div></div>
+        <div class="step" style="min-height:auto;padding:20px;"><div class="st-l" style="font-size:21px;">Plant capital</div><div style="font-size:17px;color:var(--mut);margin-top:8px;">the first containers</div></div>
+      </div>
+    </div>
+  </div>
+  <p style="font-size:26px;color:var(--soft);max-width:98ch;line-height:1.38;">Ordinary capital will not fund this stage. The return we are building is the transfer itself: the asset, the jobs and the decisions moving to community.</p>
+  <div class="wordmark">Goods on Country</div>
+</section>
+
+<!-- 10 · THE ANCHOR LINE FOR FUNDERS -->
+<section class="slide" id="s10" style="--accent:var(--eucalypt);">
+  <div class="accentbar"></div>
+  <div class="eyebrow">For funders · the anchor line</div>
+  <div class="grow">
+    <h1 style="font-size:104px;">Fair wages cost<br>the model nothing.</h1>
+    <p style="font-size:32px;color:var(--soft);max-width:58ch;margin-top:30px;line-height:1.34;">Community production paying a fair wage lands about <b>$5 a bed below</b> a factory. There is no trade-off between viable economics and paying people properly.</p>
+  </div>
+  <div style="display:flex;gap:56px;align-items:baseline;">
+    <div><span class="num" style="font-size:60px;color:var(--eucalypt);">$420.74</span> <span style="font-size:23px;color:var(--mut);">community path</span></div>
+    <div><span class="num" style="font-size:60px;color:var(--mut);">$425.74</span> <span style="font-size:23px;color:var(--mut);">factory path</span></div>
+    <div style="align-self:center;"><span class="chip m" style="font-size:15px;">M modelled</span></div>
+  </div>
+  <p style="font-family:var(--serif);font-size:27px;color:var(--ink);margin-top:26px;">&ldquo;Yeah, I'll be rocking up every day to make them.&rdquo; <span style="font-family:var(--sans);font-size:20px;color:var(--mut);">· Mykel, Alice Springs (Oonchiumpa)</span></p>
+  <div class="wordmark">Goods on Country</div>
+</section>
+
+<!-- 11 · THE BEST CASE -->
+<section class="slide" id="s11" style="--accent:var(--ochre);">
+  <div class="accentbar"></div>
+  <div class="eyebrow">The best case · modelled</div>
+  <h1 style="font-size:56px;margin-top:18px;">One signed round seeds a fleet that funds itself.</h1>
+  <div class="grow">
+    <div class="flow">
+      <div class="step" style="min-height:132px;"><div class="st-l" style="font-size:21px;">$800K working<br><span style="font-size:16px;color:var(--mut);">$400K + $400K match</span></div></div>
+      <div class="arrow">→</div>
+      <div class="step" style="min-height:132px;"><div class="st-l" style="font-size:21px;">3 containers<br>1,500 beds / yr</div></div>
+      <div class="arrow">→</div>
+      <div class="step" style="min-height:132px;"><div class="st-l" style="font-size:21px;">~$312K / yr surplus<br><span style="font-size:16px;color:var(--mut);">self-funds ~2.5 containers / yr</span></div></div>
+      <div class="arrow">→</div>
+      <div class="step" style="min-height:132px;border-top-color:var(--ochre-deep);background:#F7EAD0;"><div class="st-l" style="font-size:21px;">Year 5:<br>5,000+ beds / yr</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px;">
+      <div class="step" style="min-height:auto;padding:20px;"><div class="num" style="font-size:42px;color:var(--eucalypt);">100+ t</div><div style="font-size:18px;color:var(--mut);margin-top:6px;">plastic diverted / yr</div></div>
+      <div class="step" style="min-height:auto;padding:20px;"><div class="num" style="font-size:42px;color:var(--bronze);">$650K+</div><div style="font-size:18px;color:var(--mut);margin-top:6px;">community wages / yr</div></div>
+      <div class="step" style="min-height:auto;padding:20px;"><div class="num" style="font-size:42px;color:var(--ochre-deep);">~$1M</div><div style="font-size:18px;color:var(--mut);margin-top:6px;">surplus / yr, compounding</div></div>
+    </div>
+  </div>
+  <p style="font-size:26px;color:var(--soft);max-width:98ch;line-height:1.36;">Then each container transfers to a community corporation with its self-feeding loop. What compounds is not Goods revenue. It is <b>community-owned productive capacity.</b></p>
+  <div class="wordmark">Goods on Country</div>
+  <div class="tag">the constraint is signed demand, not cost</div>
+</section>
+
+<!-- 14 · CLOSE -->
+<section class="slide" id="s12" style="--accent:var(--ochre);">
+  <div class="accentbar"></div>
+  <div class="eyebrow">The close</div>
+  <div class="grow">
+    <h1 style="font-size:76px;max-width:26ch;">We know what we need. Sit down and ask us, make it with us, and leave the making with us.</h1>
+    <p style="font-size:24px;color:var(--mut);margin-top:26px;">A Goods synthesis of community direction across nine communities. Not an individual's quote.</p>
+    <p style="font-family:var(--serif);font-size:34px;color:var(--ink);margin-top:44px;"><b>The return we are building is the transfer itself.</b></p>
+  </div>
+  <div class="wordmark">Goods on Country</div>
+</section>
+
+</body>
+</html>

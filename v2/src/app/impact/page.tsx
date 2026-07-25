@@ -372,7 +372,7 @@ function ThroughLinesSection() {
     {
       label: 'Indigenous sovereignty',
       color: '#C45C3E',
-      text: 'Self-determination runs through every layer: cultural (the washing machine named Pakkimjalki Kari in Warumungu), design (named and tested in community), data (consent travels with the story), and economic (jobs, then ownership of the making). Sovereignty is what "become unnecessary" means in practice.',
+      text: 'Self-determination runs through every layer: cultural (the washing machine named Pakkimjalki Kari in Warumungu), design (named and tested in community), data (consent travels with the story), and economic (jobs, then ownership of the making). Sovereignty is what the handover means in practice.',
     },
   ];
 

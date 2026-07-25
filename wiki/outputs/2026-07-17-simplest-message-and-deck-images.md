@@ -1,6 +1,6 @@
 # Goods on Country — the simplest message + the deck image set
 
-> CANON NOTE (2026-07-20): figures in this dated doc predate the final canon (540 beds / 177 Stretch / 20 washers / 11 communities / 3,540kg). Do not copy numbers from here; use canon.ts.
+> CANON NOTE (2026-07-20): figures in this dated doc predate the final canon (540 beds / 177 Stretch / 22 washers / 11 communities / 3,540kg). Do not copy numbers from here; use canon.ts.
 
 **Generated:** 2026-07-17 · Companion to `2026-07-17-investment-deck-alignment.md` and `goods-model-one-page.svg`. This is the pitch stripped to its simplest, strongest form, plus a set of one-idea-per-slide images that carry it. House rules honoured: canon numbers, the claim ceiling, no charity framing, no em dashes.
 

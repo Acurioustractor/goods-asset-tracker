@@ -16,8 +16,6 @@ import {
   breakevenLabel,
   safeDiv,
   DEFAULTS,
-  NET_CAPITAL_LOW,
-  NET_CAPITAL_HIGH,
   VOLUME_GATE,
   CONTAINERISE_FREIGHT_DELTA,
   SHEET_URL,
@@ -29,6 +27,9 @@ import {
   LOCATIONS,
   LEGS_SAVING_PER_BED,
   ALREADY_INVESTED,
+  SITE_PRODUCTION_BLOCK,
+  SITE_PRODUCTION_BLOCK_BARE,
+  SITE_SUPERVISOR_COST,
   SHRED_FLOOR_PER_BED,
   POLYMER_FLOOR_PER_BED,
   STEEL_RAW_FLOOR_PER_BED,
@@ -183,20 +184,22 @@ describe('DEFAULTS invariants', () => {
     expect(DEFAULTS).toBe(DEFAULTS);
   });
 
-  it('NET_CAPITAL_LOW = capital_to_factory_low - ALREADY_INVESTED', () => {
-    // 112_000 - 110_046 = 1_954
-    expect(NET_CAPITAL_LOW).toBe(1_954);
-    expect(NET_CAPITAL_LOW).toBe(DEFAULTS.capital_to_factory_low - ALREADY_INVESTED);
+  // Ben ruling 2026-07-25 (Matt model input 3): the capital ask is quoted GROSS only.
+  // ALREADY_INVESTED sits beside it as evidence, never subtracted from it. The old
+  // NET_CAPITAL_LOW/HIGH exports (~$1,954 / ~$111,954) are retired. This guard fails if
+  // anyone reintroduces a net capital export.
+  it('exports no net capital figure (gross-only ruling)', async () => {
+    const engine = await import('./engine');
+    const netExports = Object.keys(engine).filter((k) => /^NET_CAPITAL/.test(k));
+    expect(netExports).toEqual([]);
   });
 
-  it('NET_CAPITAL_HIGH = capital_to_factory_high - ALREADY_INVESTED', () => {
-    // 222_000 - 110_046 = 111_954
-    expect(NET_CAPITAL_HIGH).toBe(111_954);
-    expect(NET_CAPITAL_HIGH).toBe(DEFAULTS.capital_to_factory_high - ALREADY_INVESTED);
-  });
-
-  it('NET_CAPITAL_LOW < NET_CAPITAL_HIGH (sane ordering)', () => {
-    expect(NET_CAPITAL_LOW).toBeLessThan(NET_CAPITAL_HIGH);
+  it('ALREADY_INVESTED stands alone as sunk spend, not a deduction', () => {
+    // Ben ruling 2026-07-25: $110,046 is actual spend. Grade is `workpaper`, not `verified`
+    // — ~$43,700 is evidenced at bill level in the connected Xero, the balance is plant we
+    // own whose paperwork is outstanding (shredder invoice, larger CNC).
+    expect(ALREADY_INVESTED).toBe(110_046);
+    expect(ALREADY_INVESTED).toBeLessThan(DEFAULTS.capital_to_factory_high);
   });
 
   it('capital_to_factory_low <= capital_to_factory_high', () => {
@@ -843,6 +846,7 @@ describe('computeModel — presets round-trip', () => {
         'marginalKit', 'marginalPanel', 'marginalFactory', 'marginalCommunity',
         'selectedDirect', 'selectedMarginal',
         'fixedBlock', 'fixedPerBed', 'founderTotalCost', 'founderProductionCost',
+        'siteProductionBlock', 'siteSupervisorCost', 'breakevenSiteProduction',
         'contributionKit', 'contributionFactory', 'contributionCommunity', 'contributionSelected',
         'breakevenKit', 'breakevenFactory', 'breakevenCommunity', 'breakevenSelected',
         'fullKits', 'fullFactory', 'fullCommunity', 'fullPanels',
@@ -874,5 +878,118 @@ describe('computeModel — presets round-trip', () => {
     expect(c.stateFactory).toBeCloseTo(335.74, 2);
     // 5 dollar spread maintained.
     expect(c.stateFactory - c.stateCommunity).toBeCloseTo(5, 1);
+  });
+});
+
+/**
+ * SITE PRODUCTION BLOCK (Matt model input 5, added 2026-07-25).
+ *
+ * The honest denominator: what bed sales ALONE should carry at a community site.
+ * Before this existed the whole site cost model was one line, on_country rent of $24,000,
+ * which is a correct RENT figure that was read as an OPERATING COST. Dividing it into
+ * contribution produced the "75 to 100 beds a year" claim that ruling I retired.
+ *
+ * These tests lock the arithmetic in the session pack so a later edit cannot quietly
+ * restate a denominator. They do NOT bless the splits: those are derived assumptions and
+ * are explicitly the thing to argue with. Nothing here is measured.
+ */
+describe('site production block: the honest denominator', () => {
+  it('bare block = the four DEWR production shares = $79,333/yr', () => {
+    const sum = SITE_PRODUCTION_BLOCK.dewr_lines.reduce((t, l) => t + l.production_share, 0);
+    expect(sum).toBe(79_333);
+    expect(SITE_PRODUCTION_BLOCK_BARE).toBe(sum);
+  });
+
+  it('each DEWR production share is a subset of the line it is split from', () => {
+    // The split is production-vs-program. A production share above the DEWR line total
+    // would mean bed sales carrying more than the whole cost, which is incoherent.
+    for (const l of SITE_PRODUCTION_BLOCK.dewr_lines) {
+      expect(l.production_share).toBeLessThanOrEqual(l.per_year);
+      expect(l.production_share).toBeGreaterThan(0);
+    }
+  });
+
+  it('supervisor band: $79,333 bare / $129,333 half-time / $179,333 full-time', () => {
+    expect(SITE_PRODUCTION_BLOCK.blocks.none).toBe(79_333);
+    expect(SITE_PRODUCTION_BLOCK.blocks.half_time).toBe(129_333);
+    expect(SITE_PRODUCTION_BLOCK.blocks.full_time).toBe(179_333);
+    // The blocks are exactly bare + the assumed supervisor cost. No hidden additions.
+    expect(SITE_PRODUCTION_BLOCK.blocks.half_time).toBe(
+      SITE_PRODUCTION_BLOCK_BARE + SITE_SUPERVISOR_COST.half_time,
+    );
+    expect(SITE_PRODUCTION_BLOCK.blocks.full_time).toBe(
+      SITE_PRODUCTION_BLOCK_BARE + SITE_SUPERVISOR_COST.full_time,
+    );
+  });
+
+  it('defaults to no supervisor (the computed floor, not an undecided assumption)', () => {
+    expect(DEFAULTS.site_supervisor).toBe('none');
+    expect(computeModel(def()).siteProductionBlock).toBe(79_333);
+    expect(computeModel(def()).siteSupervisorCost).toBe(0);
+  });
+
+  it('the intended shape is On Country + containerised: contribution $339.26', () => {
+    // NOT the $329.26 every break-even published before 2026-07-25 divided into: that is the
+    // community path at the SYDNEY location, where inbound freight is $0. Wrong location for
+    // a community site. The intended shape is slightly BETTER than what was published.
+    const c = computeModel({ ...def(), ...PRESETS.find((p) => p.key === 'community')!.values });
+    expect(c.marginalCommunity).toBeCloseTo(410.74, 2);
+    expect(c.contributionCommunity).toBeCloseTo(339.26, 2);
+  });
+
+  it('the honest denominator is the BAND 234 to 529 beds/yr, not a point', () => {
+    const community = PRESETS.find((p) => p.key === 'community')!.values;
+    const at = (site_supervisor: 'none' | 'half_time' | 'full_time') =>
+      computeModel({ ...def(), ...community, site_supervisor }).breakevenSiteProduction;
+
+    expect(at('none')).toBe(234);
+    expect(at('half_time')).toBe(381);
+    expect(at('full_time')).toBe(529);
+  });
+
+  it('the retired $24,000 rent basis gave 71, which is why it was retired', () => {
+    // Documents the defect rather than preserving it: $24,000 is on_country RENT, and
+    // dividing it into contribution understates the denominator by roughly 3x to 7x.
+    const c = computeModel({ ...def(), ...PRESETS.find((p) => p.key === 'community')!.values });
+    expect(Math.round(LOCATIONS.on_country.rentPerYear / c.contributionCommunity)).toBe(71);
+    // The bare block is more than three times the rent line it replaced.
+    expect(SITE_PRODUCTION_BLOCK_BARE / LOCATIONS.on_country.rentPerYear).toBeGreaterThan(3);
+  });
+
+  it('not containerised is the case that breaks things: contribution $269.26', () => {
+    // On Country carries $60/bed inbound freight; containerising subtracts $70/bed on the
+    // logic that you ship the plant to the feedstock once rather than beds out N times.
+    const community = PRESETS.find((p) => p.key === 'community')!.values;
+    const notContainerised = computeModel({ ...def(), ...community, containerise: false });
+    expect(notContainerised.contributionCommunity).toBeCloseTo(269.26, 2);
+    // Same block, materially worse denominator.
+    expect(notContainerised.breakevenSiteProduction).toBeGreaterThan(
+      computeModel({ ...def(), ...community }).breakevenSiteProduction,
+    );
+  });
+
+  it('the supervisor is NOT double counted against the $130/bed fair wage', () => {
+    // The community path already carries $130/bed fair-wage production labour inside its
+    // marginal cost. A supervisor sits ON TOP of that, in the block, not inside the per-bed
+    // figure. So changing the supervisor must not move marginal cost or contribution at all.
+    const community = PRESETS.find((p) => p.key === 'community')!.values;
+    const bare = computeModel({ ...def(), ...community, site_supervisor: 'none' });
+    const full = computeModel({ ...def(), ...community, site_supervisor: 'full_time' });
+
+    expect(full.marginalCommunity).toBe(bare.marginalCommunity);
+    expect(full.contributionCommunity).toBe(bare.contributionCommunity);
+    expect(full.siteProductionBlock - bare.siteProductionBlock).toBe(100_000);
+  });
+
+  it('is separate from the network block: the supervisor never moves fixedBlock', () => {
+    // Three pots, not two. The site production block (pot 2) must not leak into the
+    // network block (pot 1, ~$109,500 amortising across sites) or any locked break-even.
+    const community = PRESETS.find((p) => p.key === 'community')!.values;
+    const bare = computeModel({ ...def(), ...community, site_supervisor: 'none' });
+    const full = computeModel({ ...def(), ...community, site_supervisor: 'full_time' });
+
+    expect(full.fixedBlock).toBe(bare.fixedBlock);
+    expect(full.breakevenCommunity).toBe(bare.breakevenCommunity);
+    expect(full.breakevenFactory).toBe(bare.breakevenFactory);
   });
 });

@@ -849,7 +849,7 @@ export default async function StoryPage() {
               </h2>
               <p className="text-lg text-accent-foreground/70 mb-12 max-w-xl mx-auto leading-relaxed">
                 Products that are Aboriginal owned and controlled, sold commercially.
-                Our job is to become unnecessary.
+                The goal is a community that can come to own the making.
               </p>
               <div className="grid gap-4 md:grid-cols-3 mb-12">
                 <div className="bg-accent-foreground/10 rounded-2xl p-8">

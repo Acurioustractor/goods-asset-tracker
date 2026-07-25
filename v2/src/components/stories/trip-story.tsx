@@ -561,6 +561,7 @@ function CaptureForm({ tag, cta, done }: { tag: string; cta?: string; done?: str
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [consent, setConsent] = useState(false);
   const [err, setErr] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
@@ -581,6 +582,7 @@ function CaptureForm({ tag, cta, done }: { tag: string; cta?: string; done?: str
           phone: phone || undefined,
           name: name || undefined,
           tag,
+          consent,
         }),
       });
       if (!res.ok) throw new Error('Submit failed');
@@ -623,6 +625,18 @@ function CaptureForm({ tag, cta, done }: { tag: string; cta?: string; done?: str
           {status === 'submitting' ? 'Sending…' : cta || 'Keep me posted'}
         </button>
       </div>
+      <label className="ts-capture-consent">
+        <input
+          type="checkbox"
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+          required
+        />
+        <span>
+          Yes, send me occasional Goods updates. I can unsubscribe anytime.{' '}
+          <a href="/privacy">Privacy</a>
+        </span>
+      </label>
       {err && <p className="ts-capture-err">{err}</p>}
       {status === 'error' && (
         <p className="ts-capture-err">Something went wrong. Try again or email ben@goodsoncountry.com.</p>

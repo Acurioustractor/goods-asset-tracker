@@ -1,6 +1,7 @@
 import { createServiceClient } from '@/lib/supabase/server';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import AtlasClient, { type AtlasCommunity } from './atlas-client';
+import { getPeopleInMediaByEntity } from '@/lib/data/media-links';
 
 export const dynamic = 'force-dynamic';
 
@@ -75,6 +76,10 @@ export default async function AtlasPage() {
     voices.set(v.community_id as string, list);
   }
 
+  // People tagged (media_links person picker) on media that also belongs to each
+  // community — the read-back for the Media Room's per-item person tagging.
+  const peopleInMediaMap = await getPeopleInMediaByEntity(supabase, 'community');
+
   const communities: AtlasCommunity[] = (commRes.data || [])
     .filter((c) => c.lat != null && c.lng != null)
     .map((c) => {
@@ -104,6 +109,7 @@ export default async function AtlasPage() {
         photoCount: md.photoCount,
         videoCount: md.videoCount,
         voices: voices.get(c.id as string) || [],
+        peopleInMedia: peopleInMediaMap.get(c.id as string) || [],
       };
     });
 

@@ -25,9 +25,152 @@
   "physics": {
     "hdpe_density_g_per_cm3": 0.96,
     "hdpe_kg_per_bed": 20,
+    "hdpe_in_product_kg_per_bed": 20,
+    "_hdpe_split_note": "TWO QUANTITIES, DELIBERATELY SEPARATE (Ben ruling 2026-07-25, Matt model input 1). `hdpe_kg_per_bed` is the PURCHASED mass and is the costing basis: 20kg x $2.75/kg landed = $55/bed (Defy INV-1731, $2/kg shred + $0.75/kg delivery). `hdpe_in_product_kg_per_bed` is the mass in a FINISHED bed and is the only basis for the public diversion claim (mirrored by PLASTIC_KG_PER_BED in products.ts, which feeds CANONICAL_ASSETS.plasticKg). In Matt's workbook these are the cells `hdpe_purchased_kg_per_bed` and `hdpe_in_product_kg_per_bed`. Equal today ONLY because press yield has never been measured; item 6's instrumented run may separate them. Offcut is reshredded rather than landfilled, so purchased >= in-product always. Never collapse them: moving the costing mass would silently restate a public claim.",
     "raw_hdpe_cost_per_bed_no_delivery": 40.00,
     "raw_hdpe_cost_per_bed_with_delivery": 55.00,
     "_delivery_rate": "$0.75/kg ($900 / 1200kg per Defy delivery quote)"
+  },
+  "site_production_block": {
+    "_what_this_is": "What BED SALES ALONE should carry at a community site, per year. Added 2026-07-25 (Matt model input 5). Before this, the entire site cost model was one line: LOCATIONS.on_country.rentPerYear = $24,000. That $24,000 is a CORRECT RENT FIGURE THAT WAS READ AS AN OPERATING COST, and dividing it into contribution is what produced the '75 to 100 beds a year' claim that ruling I retired.",
+    "_why_not_the_dewr_headline": "The Oonchiumpa REAL Innovation Fund Stage Two application gives a bare facility at ~$151,666/yr and a fully staffed one at ~$341,666/yr. Dividing contribution into those gives 447 and 1,007 beds/yr, and BOTH ARE WRONG IN THE OPPOSITE DIRECTION to the $24,000: they make bed sales carry the program's share of rent, insurance and admin, which two-pots forbids. The DEWR budget funds a facility AND a youth employment program in one building. The honest number is a third one, split at the line level below.",
+    "_three_pots": "1) NETWORK BLOCK (~$109,500/yr, the engine's existing `fixedBlock` less location rent: design, quality, training, back office, field travel). Amortises across sites; this is what Goods. is for after a handover. NOTE the DEWR budget already pays INTO this: its 'ACT: community-owned machinery plus Trainer / WHS' line, $63,333/yr, is REVENUE to Goods., not a cost to it, and no model currently shows that. 2) SITE PRODUCTION BLOCK (this object). Carried by bed sales. 3) SITE WRAPAROUND BLOCK ($300,000/yr employment brokerage plus the program share of the lines below). Grant funded by design, and it must never touch per-bed economics on paper.",
+    "dewr_lines": [
+      { "line": "Machine upkeep, consumables, materials", "per_year": 18333, "production_share": 18333, "share_pct": 100, "basis": "The plant exists to make product. No program use." },
+      { "line": "Lease, rent, building and related", "per_year": 60000, "production_share": 30000, "share_pct": 50, "basis": "Anchored on the engine's own rent lines: a production shed On Country reads $24K to $30K. The balance is the office, training room and services the program needs." },
+      { "line": "Insurance", "per_year": 40000, "production_share": 16000, "share_pct": 40, "basis": "Production carries plant, public liability, product liability and workers comp on the production crew. The program adds participant and volunteer cover at a higher premium than a manufacturing crew." },
+      { "line": "Administration, accounting, IT", "per_year": 33333, "production_share": 15000, "share_pct": 45, "basis": "Invoicing, BAS, inventory and board reporting are production. Grant acquittal, DEWR compliance reporting and participant data are program." }
+    ],
+    "bare_production_block": 79333,
+    "_supervisor_is_an_open_decision": "OPEN, Ben and Nic (Matt model input 5). The DEWR $150,000 Project Manager is a REAL Innovation Fund PROGRAM role, not a production supervisor. Production needs a working line supervisor for quality, materials ordering, scheduling and WHS on the press, and that role is in NEITHER model. The costs below are ASSUMED, not costed roles. Default is `none` deliberately: it is the computed floor and the only option that assumes no undecided role. Do not treat any single row as the answer; the honest denominator is the BAND.",
+    "_do_not_double_count": "The community path already carries $130/bed fair-wage production labour inside its marginal cost. A supervisor sits ON TOP of that, not inside it.",
+    "supervisor_options": { "none": 0, "half_time": 50000, "full_time": 100000 },
+    "blocks": { "none": 79333, "half_time": 129333, "full_time": 179333 },
+    "_contribution_correction": "Every break-even published before 2026-07-25 divided into $329.26, which is the community path at the SYDNEY location where inbound freight is $0. That is the wrong location for a community site. On Country carries $60/bed inbound freight, and the engine subtracts $70/bed when containerised (ship the plant to the feedstock once, rather than shipping finished beds out N times). Intended shape, On Country containerised: marginal $410.74, contribution $339.26, which is slightly BETTER than what was published. On Country NOT containerised: marginal $480.74, contribution $269.26, which is materially worse and is the case that breaks things.",
+    "_the_answer": "The honest denominator is 234 to 529 beds a year (bare 234, half-time supervisor 381, full-time 529, all at $339.26 contribution). Where it lands inside that band is decided by one unresolved question: who pays the person who runs the line. Compare: the retired $24,000 rent basis gave 71.",
+    "_fragility_is_the_useful_part": "At Matt's deliberately conservative 500 beds/yr against a ~$105,000 replication plant, three dials each flip the answer on their own. Drop to 250/yr and the site cannot cover its own production block at all. Do not containerise and 2.6 years becomes 19.8. Make the supervisor full-time and it never retires the plant. So the honest read is NOT 'a community site pays off its plant in under three years'. It is that there is a plausible configuration where production alone retires the plant in a few years, and three things we have not measured or decided each decide whether that is real.",
+    "_claims_status": "DEWR figures are AS WRITTEN in the REAL Innovation Fund Stage Two application. The production/program splits are DERIVED here and are assumptions, not stated figures; they are the thing to argue with. Supervisor costs are ASSUMED, not costed roles. Break-evens are ARITHMETIC off those inputs and off a contribution figure that is itself MODELLED from a run whose per-bed actuals were never captured (Matt model input 6). Nothing here is measured. No figure here goes on a slide, in an email, or into a community meeting as a headline."
+  },
+  "capex_modules": {
+    "_what_this_is": "A BASKET OF MODULES a community selects from, replacing the build_method LADDER for the purpose of pricing a real pathway. Added 2026-07-25 (Matt model input 7, created by ruling D: the object is INFRASTRUCTURE, not 'a plant'). `build_states` remains the ladder and is untouched, because its outputs are published; this is the additive structure that can price a subset.",
+    "_the_defect_this_fixes": "Every `build_method` value assumes a WHOLE SITE built in one fixed order, and each `capital_added` is a rung on that ladder. Against the four live pathways the ladder prices exactly one: Oonchiumpa (a full facility). It cannot price Utopia (wants a shredder: no configuration is collection-and-shredding without pressing), Tennant Creek (wants to work through an existing shed: site capex and rent are assumed, not supplied by the partner) or Palm Island (wants to start with governance: no configuration has zero plant and a real cost). Three of four.",
+    "_site_base_is_not_a_module": "The honest structure is SITE BASE + MODULES, not modules alone. Utopia wanting 'a shredder' still needs power, a pad and somewhere to put it. Where a partner supplies the shed, as at Tennant Creek, the base shrinks instead of vanishing, and by how much is a question for that partner, not a number we can assert.",
+    "_source_and_grades": "Capex bands come from the replication table in `2026-07-22-minimal-viable-facility-model.md` (market rates for a NEW site, which are honestly higher than what Nic paid second hand). Grades are per line: `evidenced` from a Xero bill, `ben` from Ben's market figures, `estimate` at Australian market rates, `unpriced` where no figure exists yet. Reassembling these into modules is an ALLOCATION of an evidenced total, not new evidence.",
+    "site_base": {
+      "label": "Site base (required by any production module)",
+      "capex_low": 31800,
+      "capex_high": 64000,
+      "lines": [
+        { "item": "40ft shipping container", "low": 13000, "high": 16000, "grade": "ben" },
+        { "item": "20ft shipping container", "low": 6000, "high": 10000, "grade": "ben" },
+        { "item": "Diesel generator (press-line sized)", "low": 6600, "high": 20000, "grade": "ben" },
+        { "item": "Crane placement + transport", "low": 1200, "high": 2500, "grade": "evidenced" },
+        { "item": "Electrical fit-out (board, three-phase)", "low": 3000, "high": 8000, "grade": "estimate" },
+        { "item": "Ventilation / fume extraction", "low": 1000, "high": 3000, "grade": "estimate" },
+        { "item": "Site prep (pad, levelling)", "low": 500, "high": 3000, "grade": "estimate" },
+        { "item": "PPE + startup consumables", "low": 500, "high": 1500, "grade": "estimate" }
+      ],
+      "_partner_supplied_note": "Where a partner supplies the shed, power or pad, subtract those lines rather than the whole base. Tennant Creek is the live case and the subtraction has not been agreed with them."
+    },
+    "modules": [
+      {
+        "key": "collection_baling",
+        "label": "Collection and sorting",
+        "capex_low": 5000,
+        "capex_high": 19500,
+        "grade": "estimate",
+        "requires_feed": null,
+        "produces": "sorted, caged HDPE ready to shred",
+        "_priced_2026_07_25": "Was `unpriced` (null), which blocked Utopia entirely. That was STRICTER THAN THE PRECEDENT: the MVF replication table already carries electrical fit-out, ventilation, site prep and PPE as `estimate` at Australian market rates, and nobody treats those as blockers. Collection is now graded the same way, so Utopia is priceable with an honest label instead of not priceable at all. A real quote replaces this and narrows the band.",
+        "lines": [
+          { "item": "Collection cages / bins for community drop-off (x6)", "low": 1200, "high": 3600, "grade": "estimate" },
+          { "item": "Bulka bags", "low": 250, "high": 600, "grade": "estimate" },
+          { "item": "Baler (OPTIONAL, see note)", "low": 2850, "high": 12000, "grade": "estimate" },
+          { "item": "Platform scales", "low": 400, "high": 1500, "grade": "estimate" },
+          { "item": "Sorting bench", "low": 300, "high": 1000, "grade": "estimate" },
+          { "item": "Drop-off point signage and setup", "low": 0, "high": 800, "grade": "estimate" }
+        ],
+        "_the_band_is_wide_because_of_one_item": "The baler is the swing, and it may not be needed at all. Baling is for film and PET; RIGID HDPE (crates, drums, bottle caps) is normally caged and transported, then shredded. If Utopia does not need a baler the module lands near the bottom of the band. ASK THAT BEFORE QUOTING THE HIGH END. The module is named 'collection and baling' in the original proposal, and that name may itself be importing an assumption.",
+        "_note": "NOT in the MVF replication table, so it is an ADDITION to that total rather than part of it. It is upstream of the shredder, which makes it load-bearing for Utopia, the pathway asking for the earliest module."
+      },
+      {
+        "key": "shredding",
+        "label": "Shredding",
+        "capex_low": 19800,
+        "capex_high": 19800,
+        "grade": "evidenced",
+        "requires_feed": "collection_baling",
+        "produces": "HDPE shred",
+        "_note": "Telford Smith. Physically confirmed and running; the invoice is not in the connected Xero, which is the outstanding paperwork on ruling O. Priced as a single unit, so no allocation is involved."
+      },
+      {
+        "key": "pressing_cnc",
+        "label": "Pressing, CNC and finishing",
+        "capex_low": 32780,
+        "capex_high": 32780,
+        "grade": "evidenced",
+        "requires_feed": "shredding",
+        "produces": "finished HDPE leg kits",
+        "_note": "Circularity Group INV-0054 covers hot press, cold press AND CNC as ONE bill, so pressing and CNC CANNOT be split from evidence. Deliberately left bundled rather than split on a guessed ratio. NO live pathway currently needs them separate: Utopia stops at shredding, Tennant Creek is a shed question, Palm Island has no plant. Split it when a vendor breakdown exists and a pathway actually requires it."
+      },
+      {
+        "key": "assembly",
+        "label": "Assembly and workshop",
+        "capex_low": 6387,
+        "capex_high": 6387,
+        "grade": "evidenced",
+        "requires_feed": "pressing_cnc",
+        "produces": "finished beds",
+        "_note": "Carbatec Brisbane, two bills. Tagged ACT-HV Harvest in Xero rather than ACT-GD, which is a tagging problem, not a doubt about the spend."
+      },
+      {
+        "key": "sales_delivery",
+        "label": "Sales and delivery",
+        "capex_low": 0,
+        "capex_high": 0,
+        "grade": "evidenced",
+        "requires_feed": "assembly",
+        "produces": "beds in community",
+        "_note": "No capex. Freight already sits in the engine per bed (inbound freight by location, long-haul, and the containerise delta)."
+      }
+    ],
+    "operating_allocation": {
+      "_what_this_is": "The per-module split of the $79,333 bare site production block, derived 2026-07-25. Before this, the block assumed the FULL module set, so the model could price a partial pathway's CAPEX but not its OPERATING cost, which is most of what makes a site viable or not.",
+      "_the_structure": "TWO buckets, because not all of the block is allocable per module. A SITE FLOOR exists the moment you run any module at all: the books get done, the site is insured, the yard is rented. The rest SCALES with which modules you run. This mirrors the site-base-plus-modules shape of the capex, which is not a coincidence: the same distinction between having a site and running a line drives both.",
+      "site_floor": {
+        "total": 35000,
+        "lines": [
+          { "line": "Administration, accounting, IT", "amount": 15000, "share_of_dewr_production": "100%", "basis": "Invoicing, BAS, inventory and board reporting happen once, whether the site runs one module or five." },
+          { "line": "Insurance, base", "amount": 8000, "share_of_dewr_production": "50%", "basis": "Public liability and site cover exist as soon as anyone works there. The other half rides on plant value." },
+          { "line": "Lease and rent, base", "amount": 12000, "share_of_dewr_production": "40%", "basis": "Yard, amenities and storage are needed by any operation. The other 60% rides on floor space." }
+        ],
+        "_applies_only_if_a_module_runs": "A pathway with ZERO modules carries NO site floor, because there is no production site. Palm Island is that case. Its real cost is governance, which is not production and is not priced here."
+      },
+      "module_pool": {
+        "total": 44333,
+        "drivers": [
+          { "driver": "plant_value", "amount": 26333, "made_of": "Machine upkeep, consumables and materials ($18,333, 100%) plus the plant half of insurance ($8,000). Allocated by each module's share of installed plant value, because both scale with the machines, not with the building.", "plant_values": { "shredding": 19800, "pressing_cnc": 32780, "assembly": 6387, "total": 58967 } },
+          { "driver": "floor_space", "amount": 18000, "made_of": "The 60% of lease and rent that scales with the space a module occupies.", "_weakest_link": "Footprint weights below are ASSUMED, not surveyed, and are the softest input in this object. A floor plan replaces them. They are deliberately coarse (1 to 3) rather than falsely precise.", "weights": { "collection_baling": 2, "shredding": 2, "pressing_cnc": 3, "assembly": 2, "sales_delivery": 1, "total": 10 } }
+        ]
+      },
+      "per_module": [
+        { "key": "collection_baling", "plant_value_share": 0, "floor_space_share": 3600, "total": 3600, "_note": "No installed plant inside the facility, so it carries no machine upkeep. It still occupies yard and bale storage, which is real and often forgotten." },
+        { "key": "shredding", "plant_value_share": 8843, "floor_space_share": 3600, "total": 12443 },
+        { "key": "pressing_cnc", "plant_value_share": 14638, "floor_space_share": 5400, "total": 20038, "_note": "The most expensive module to run as well as to buy, which is the argument for a community starting earlier in the chain if it wants to." },
+        { "key": "assembly", "plant_value_share": 2852, "floor_space_share": 3600, "total": 6452 },
+        { "key": "sales_delivery", "plant_value_share": 0, "floor_space_share": 1800, "total": 1800, "_note": "Dispatch and staging space only. Per-bed freight is already in the engine and is not here." }
+      ],
+      "_reconciles": "site_floor 35,000 + module_pool 44,333 = 79,333, exactly the bare production block. Selecting every module reproduces the full block, which is the arithmetic check that the split neither invented nor lost cost. Guarded in capex-modules.guards.test.ts.",
+      "_supervisor_is_not_in_here": "The line supervisor sits ON TOP of this, at site level, and is still an open decision (Ben and Nic). It is not allocated per module because one supervisor runs the line whatever its length.",
+      "_claims_status": "DERIVED, not measured, and one layer further from evidence than the block itself: these are assumptions about how an assumed split of an as-written DEWR budget divides across a proposed module list. Argue with the drivers first, the weights second. No figure here is a quote."
+    },
+    "live_pathways": [
+      { "key": "oonchiumpa", "label": "Oonchiumpa: a full facility", "modules": ["collection_baling", "shredding", "pressing_cnc", "assembly", "sales_delivery"], "site_base": "full", "priceable": "yes, with collection graded estimate", "_note": "The only pathway the old ladder could price, and even it assumed collection came free." },
+      { "key": "utopia", "label": "Utopia: a shredder", "modules": ["collection_baling", "shredding"], "site_base": "partial", "priceable": "yes, with collection graded estimate", "_note": "Utopia's own answer to 'what would you want to own first' was a shredder. That answer is worth more than any figure in the model, and the ladder could not price it at all. PRICEABLE SINCE 2026-07-25: capex $24,800 to $39,300 in modules (collection $5,000-19,500 estimate + shredder $19,800 evidenced) plus whatever site base Utopia actually needs, and $16,043/yr operating on top of the $35,000 site floor. Every figure is an estimate for scenario study; none of it goes to Utopia as a number." },
+      { "key": "tennant_creek", "label": "Tennant Creek: work through an existing shed", "modules": ["shredding", "pressing_cnc", "assembly", "sales_delivery"], "site_base": "partner_supplied", "priceable": "no, the base subtraction is not agreed with the partner", "_note": "The module capex is knowable; what the partner supplies is not, and it is their call, not ours." },
+      { "key": "palm_island", "label": "Palm Island: start with governance", "modules": [], "site_base": "none", "priceable": "no, and this is the honest answer", "_note": "Zero plant and a REAL cost. A model that prices this at $0 is wrong in a way that matters, because governance work is the most common first step and the most consistently unfunded. Needs a governance/scoping cost line that is not plant." }
+    ],
+    "_claims_status": "PROPOSED STRUCTURE, not agreed as a workbook shape. Capex bands are reassembled from evidenced and estimated MVF lines; the reassembly is an allocation. Collection and baling is genuinely unpriced. Per-module operating shares are NOT derived. No figure here is a quote."
   },
   "canonical_bom": {
     "_note": "Mirrors supplier-quotes.ts. Defy-kit path direct materials = $469.79/bed.",
@@ -53,6 +196,7 @@
     "kirmos_facility_per_hour": 45,
     "kirmos_monthly_50pct_to_beds": 2250
   },
+  "_capital_added_note": "READ THIS BEFORE QUOTING ANY `capital_added` VALUE. These are RUNGS ON ONE LADDER, not four site configurations. Each `capital_added` is the INCREMENT over the previous state; `capital_cumulative` is the running total ($2,000 / $38,000 / $160,000 / $30,000, cumulative $230,000). The community state's $30,000 means 'having already built the ~$200,000 central factory, adding the community configuration costs $30,000 more'. It has NEVER meant 'a community site costs $30,000', and quoting it that way is a category error, not a rounding difference (retired as a site price, Ben ruling 2026-07-25, Matt model input 2). Sunk spend on the existing farm facility is ALREADY_INVESTED ($110,046, actual). A fresh site's gross build cost is the rough and variable $112,000-$222,000 range, plausibly reaching about $200,000. Structural fix pending: capex should become a basket of modules a community selects from (collection/baling, shredding, pressing, CNC/finishing, assembly, sales/delivery), because a ladder cannot price Utopia (a shredder only), Tennant Creek (an existing shed) or Palm Island (governance first).",
   "build_states": {
     "state_2_defy_kits": {
       "label": "Defy Kits (buy cut+finished kits, assemble in-house)",

@@ -245,15 +245,15 @@ export interface FundingRecord {
 }
 
 export const funding: FundingRecord[] = [
-  // Confirmed Received ($445,685+)
-  { id: 'snow-1', source: 'Snow Foundation', amount: 193785, program: 'Multiple grants', status: 'received', when: '2024–2026', contact: 'Sally Grimsley-Ballard', contactEmail: 's.grimsley-ballard@snowfoundation.org.au' },
+  // Confirmed Received ($745,030+)
+  { id: 'snow-1', source: 'Snow Foundation', amount: 493130, program: 'Multiple grants + invoiced work, 3yr Xero total ($493,129.79, $0 outstanding — 2026-06-09 reconciliation, wiki/outputs/funder-reports/snow)', status: 'received', when: '2023–2026', contact: 'Sally Grimsley-Ballard', contactEmail: 's.grimsley-ballard@snowfoundation.org.au' },
   { id: 'tfn', source: 'The Funding Network', amount: 130000, program: 'Pitch event', status: 'received', when: 'Sept 2025' },
   { id: 'frrr', source: 'FRRR', amount: 50000, program: 'Backing the Future', status: 'received', when: '2025' },
   { id: 'vfff', source: 'Vincent Fairfax Family Foundation', amount: 50000, program: 'Grant', status: 'received', when: '2025' },
   { id: 'amp', source: 'AMP Spark', amount: 21900, program: 'Program funding', status: 'received', when: '2025' },
 
   // Pending / In Discussion
-  { id: 'snow-4', source: 'Snow Foundation (Round 4)', amount: 130000, status: 'pending', contact: 'Sally Grimsley-Ballard' },
+  { id: 'snow-4', source: 'Snow Foundation (R4/R5 fresh ask)', amount: 100000, status: 'pending', contact: 'Sally Grimsley-Ballard', notes: 'Per 2026-07-03 lead stack (SEFA $300K + Snow $100K + Centrecorp $75K = $475K). Historic Snow receipts sit in snow-1.' },
   { id: 'sefa', source: 'SEFA', amount: 500000, program: 'Social impact loan', status: 'pending', contact: 'Joel Bird', notes: '23 communications' },
   { id: 'real-alice', source: 'REAL Innovation Fund: Alice Springs', amount: 1200000, program: 'Federal grant, 3yr', status: 'pending', notes: 'EOI submitted Mar 2, DEWR. Alice Springs / Central Australia site pathway.' },
   { id: 'real-townsville', source: 'REAL Innovation Fund: Townsville', amount: 1200000, program: 'Federal grant, 3yr', status: 'pending', notes: 'EOI submitted Mar 2, DEWR. Townsville / North Queensland site pathway.' },
@@ -281,7 +281,7 @@ export const funding: FundingRecord[] = [
 
   // Outstanding Receivables (Xero-verified, March 27 2026)
   // INV-0291 Centrecorp $85,712: NOW PAID, moved to received trade revenue
-  { id: 'recv-snow-r4', source: 'Snow Foundation', amount: 132000, status: 'receivable', notes: 'INV-0321 AUTHORISED $132K: beds + production plant. Awaiting payment.' },
+  // INV-0321 Snow $132K: PAID — absorbed into the $493,129.79 3yr total ($0 outstanding, 2026-06-09 reconciliation)
   { id: 'recv-shed-plant-1', source: 'Our Community Shed', amount: 163900, status: 'receivable', notes: 'QU-0011 DRAFT $163,900 (inc GST), Plant Part 1: shredding. 12mo @ $12K/mo + $5K transport.' },
   { id: 'recv-shed-plant-2', source: 'Our Community Shed', amount: 93498, status: 'receivable', notes: 'QU-0012 DRAFT $93,498 (inc GST), Plant Part 2: moulding. 6mo @ $13.3K/mo + $5K transport.' },
   { id: 'recv-picc', source: 'PICC (Palm Island)', amount: 36300, status: 'receivable', notes: 'INV-0317 AUTHORISED $36,300: 40 Stretch Beds @ $750 + $3K delivery' },
@@ -378,13 +378,13 @@ export interface CommunityDeployment {
 // getDeploymentTotals(); content.ts derives its counts from EXPECTED_DEPLOYED_BEDS.
 export const deployments: CommunityDeployment[] = [
   { id: 'palm-island', community: 'Palm Island', traditionalName: 'Bwgcolman', state: 'QLD', beds: 131, washers: 4, status: 'active', partner: 'PICC', contacts: ['Eb & Jahvan Oui'] },
-  { id: 'tennant-creek', community: 'Tennant Creek', traditionalName: 'Wumpurrarni', state: 'NT', beds: 160, washers: 5, status: 'active', partner: 'Wilya Janta', contacts: ['Norman Frank', 'Dr Simon Quilty'] },
-  { id: 'alice-homelands', community: 'Alice Homelands', state: 'NT', beds: 16, washers: 0, status: 'active', partner: 'Oonchiumpa', contacts: ['Kristy Bloomfield'] },
-  { id: 'maningrida', community: 'Maningrida', state: 'NT', beds: 58, washers: 2, status: 'active', partner: 'Homeland Schools Co.' },
+  { id: 'tennant-creek', community: 'Tennant Creek', traditionalName: 'Wumpurrarni', state: 'NT', beds: 160, washers: 9, status: 'active', partner: 'Wilya Janta', contacts: ['Norman Frank', 'Dr Simon Quilty'] },
+  { id: 'alice-homelands', community: 'Alice Homelands', state: 'NT', beds: 16, washers: 1, status: 'active', partner: 'Oonchiumpa', contacts: ['Kristy Bloomfield'] },
+  { id: 'maningrida', community: 'Maningrida', state: 'NT', beds: 58, washers: 8, status: 'active', partner: 'Homeland Schools Co.' },
   { id: 'kalgoorlie', community: 'Kalgoorlie', traditionalName: 'Ninga Mia', state: 'WA', beds: 20, washers: 0, status: 'active', partner: 'The Community Shed' },
   { id: 'utopia', community: 'Utopia Homelands', state: 'NT', beds: 147, washers: 0, status: 'active', partner: 'Oonchiumpa' },
   { id: 'mt-isa', community: 'Mt Isa', traditionalName: 'Kalkadoon', state: 'QLD', beds: 2, washers: 0, status: 'testing', partner: 'BG Fit & Men\'s Shed' },
-  { id: 'darwin', community: 'Darwin', state: 'NT', beds: 1, washers: 1, status: 'testing', partner: 'Red Dust' },
+  { id: 'darwin', community: 'Darwin', state: 'NT', beds: 1, washers: 0, status: 'testing', partner: 'Red Dust' },
   { id: 'canberra', community: 'Canberra', state: 'ACT', beds: 2, washers: 0, status: 'testing' },
   { id: 'kununurra', community: 'Kununurra', state: 'WA', beds: 2, washers: 0, status: 'testing' },
   { id: 'katherine', community: 'Katherine', state: 'NT', beds: 1, washers: 0, status: 'testing' },
@@ -414,6 +414,19 @@ export function getDeploymentTotals() {
     throw new Error(
       `[compendium] deployments bed sum (${sum}) != EXPECTED_DEPLOYED_BEDS (${EXPECTED_DEPLOYED_BEDS}). ` +
         `Reconcile the deployments array to the locked canonical split or update EXPECTED_DEPLOYED_BEDS.`,
+    );
+  }
+}
+
+// Same guard for washing machines. Per-community split is Ben's ruling of
+// 2026-07-21 (Maningrida 8, Tennant Creek 9, Palm Island 4, Alice Springs 1,
+// Darwin 0 = 22), superseding the old curated 20.
+{
+  const sum = deployments.reduce((s, d) => s + d.washers, 0);
+  if (sum !== CANONICAL_ASSETS.washersInCommunity) {
+    throw new Error(
+      `[compendium] deployments washer sum (${sum}) != CANONICAL_ASSETS.washersInCommunity (${CANONICAL_ASSETS.washersInCommunity}). ` +
+        `Reconcile the deployments array to the ruled per-community split or update asset-canonical.ts.`,
     );
   }
 }

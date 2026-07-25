@@ -279,7 +279,7 @@ export const pitchSections: PitchSection[] = [
       local('/images/media-pack/nic-with-elder-on-verandah.jpg', 'Yarning on the verandah with the bed'),
     ],
     decision:
-      'Best deck move: end with the concrete ask, the next 90-day work, and the line that Goods becomes unnecessary when communities hold the making.',
+      'Best deck move: end with the concrete ask, the next 90-day work, and the line that a community comes to own the making.',
   },
 ];
 
@@ -572,7 +572,7 @@ export const deckRun: DeckRunSlide[] = [
   },
   {
     number: '10',
-    title: 'Goods becomes unnecessary',
+    title: 'The community comes to own the making',
     job: 'Close with the philosophy.',
     message: 'The point is not for Goods to own the work forever. The point is to transfer the making, knowledge, and value.',
     photo: local('/images/stories/utopia/11-close.jpg', 'Sandover sunset'),

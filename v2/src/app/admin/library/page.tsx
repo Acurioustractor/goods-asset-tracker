@@ -130,7 +130,7 @@ export default async function LibraryPage() {
         <CountCard label="Deployed" count={deployedRes.count} href="/admin/assets?status=deployed" />
         <CountCard label="Deals" count={dealsRes.count} href="/admin/deals" />
         <CountCard label="Production shifts" count={productionRes.count} href="/admin/production" />
-        <CountCard label="Compassion items" count={compassionRes.count} href="/admin/compassion" />
+        <CountCard label="Compassion items" count={compassionRes.count} href="/admin/media-library" />
         <CountCard label="Bed signals" count={bedSignalsRes.count} href="/admin/bed-signals" />
         <CountCard label="Funder pages" count={FUNDER_PAGES.length} href={`/funders/${FUNDER_PAGES[0]?.slug || ''}`} />
         <CountCard label="Wiki articles" count={WIKI_ARTICLES.length} href="/wiki" />
@@ -358,7 +358,7 @@ export default async function LibraryPage() {
             <ul className="mt-2 space-y-1.5 text-sm">
               <li>→ <Link href="/admin/production" className="underline">Production journal</Link> ({productionRes.count} shifts)</li>
               <li>→ <Link href="/admin/fleet" className="underline">Fleet diagnostics</Link></li>
-              <li>→ <Link href="/admin/compassion" className="underline">Compassion / photo uploads</Link></li>
+              <li>→ <Link href="/admin/media-library" className="underline">Media Room (bed photo uploads)</Link></li>
             </ul>
           </div>
         </div>

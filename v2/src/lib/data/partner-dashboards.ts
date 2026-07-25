@@ -16,7 +16,6 @@
  * To add a partner: add an entry with a unique slug + password, share
  * `/partners/<slug>/dashboard` and the password. Gated in src/proxy.ts.
  */
-
 import { CANONICAL_ASSETS } from './asset-canonical';
 
 export interface KanbanItem {
@@ -341,7 +340,7 @@ const snow: PartnerDashboard = {
     { date: 'Early 2026', title: 'Selected into QBE Catalysing Impact 2026', detail: 'Blended-finance accelerator run by the Social Impact Hub. Stage 2 in September could bring matched catalytic capital.' },
     { date: 'May 2026', title: 'Central Australia deployment', detail: 'Utopia + Alice Springs; 87 beds that trip, with Centrecorp as delivery partner.' },
     { date: 'Jun 2026', title: 'Oonchiumpa REAL Innovation Fund submission', detail: 'A community-owned Alice Springs facility + jobs pathway, decision pending.' },
-    { date: 'To date', title: 'Nine communities, beds in homes, the first plant being commissioned', detail: 'The base the next stage builds on, with a blended raise now underway to scale it.' },
+    { date: 'To date', title: `${CANONICAL_ASSETS.communitiesServed} communities, beds in homes, the first plant being commissioned`, detail: 'The base the next stage builds on, with a blended raise now underway to scale it.' },
   ],
   links: [
     { label: 'Snow + Goods at Tennant Creek', href: 'https://photos.google.com/share/AF1QipMM88kHBqqUV-udXeHpTB0FjhY8my5_dNWw7CeSphrsq20wt4BlLTmy9O-QoRfBwQ?key=TkY0VHA3cVVKR3V1T0NqOHFBSUpXZ0pGX01WSkNR', note: 'Photo album, 2 April 2025', external: true },

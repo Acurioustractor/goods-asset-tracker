@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { PanelLeftOpen, X, Search, Landmark } from 'lucide-react';
 import AUS from '@/lib/data/australia-map.json';
+import { MAP_H, MAP_W, PLANT, px, py, runPath } from '@/components/maps/map-geo';
 
 export interface AtlasCommunity {
   id: string;
@@ -29,6 +30,7 @@ export interface AtlasCommunity {
   photoCount: number;
   videoCount: number;
   voices: Array<{ name: string; elder: boolean; portrait: string | null }>;
+  peopleInMedia: Array<{ personKey: string; name: string; photoSrc?: string; mediaCount: number }>;
 }
 
 interface Canon {
@@ -40,21 +42,12 @@ interface Canon {
 }
 
 /**
- * Real geometry: ABS-derived state boundaries (CC-BY 4.0), pre-projected to
- * Web-Mercator SVG paths at build time into australia-map.json. The
- * projection here MUST match that bake exactly.
+ * Geometry, projection and the plant marker are shared with the deck map
+ * views in src/components/maps/map-geo.ts so every Goods map projects
+ * identically off the same ABS bake (australia-map.json, CC-BY 4.0).
  */
-const W: number = AUS.w;
-const H: number = AUS.h;
-const [LNG_MIN, LNG_MAX, LAT_MIN, LAT_MAX] = AUS.bounds as [number, number, number, number];
-const mercY = (lat: number) => Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
-const Y_TOP = mercY(LAT_MAX);
-const Y_BOT = mercY(LAT_MIN);
-const px = (lng: number) => ((lng - LNG_MIN) / (LNG_MAX - LNG_MIN)) * W;
-const py = (lat: number) => ((Y_TOP - mercY(lat)) / (Y_TOP - Y_BOT)) * H;
-
-/** The on-Country plant (Kirmos facility, Alice Springs) — the runs start here. */
-const PLANT = { lng: 133.8807, lat: -23.698, label: 'the plant' };
+const W = MAP_W;
+const H = MAP_H;
 
 const STATUS_TONE: Record<string, string> = {
   active: '#A34523',
@@ -65,20 +58,6 @@ const STATUS_TONE: Record<string, string> = {
 };
 
 const markerR = (beds: number) => Math.max(6, Math.min(24, 5 + Math.sqrt(beds) * 1.9));
-
-/** Curved "run" from the plant to a community. */
-function runPath(cx: number, cy: number) {
-  const x0 = px(PLANT.lng);
-  const y0 = py(PLANT.lat);
-  const dx = cx - x0;
-  const dy = cy - y0;
-  const dist = Math.hypot(dx, dy);
-  if (dist < 1) return '';
-  const bow = Math.min(60, dist * 0.14);
-  const qx = (x0 + cx) / 2 - (dy / dist) * bow;
-  const qy = (y0 + cy) / 2 + (dx / dist) * bow;
-  return `M${x0},${y0} Q${qx.toFixed(1)},${qy.toFixed(1)} ${cx},${cy}`;
-}
 
 interface Rect { x1: number; y1: number; x2: number; y2: number }
 const overlaps = (a: Rect, b: Rect) => a.x1 < b.x2 && b.x1 < a.x2 && a.y1 < b.y2 && b.y1 < a.y2;
@@ -99,6 +78,7 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
           c.name.toLowerCase().includes(q) ||
           c.keyPeople.some((p) => p.name.toLowerCase().includes(q)) ||
           c.voices.some((v) => v.name.toLowerCase().includes(q)) ||
+          c.peopleInMedia.some((p) => p.name.toLowerCase().includes(q)) ||
           c.procurement.some((p) => p.name.toLowerCase().includes(q)),
       )
     : null;
@@ -457,6 +437,30 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
                       {v.elder && (
                         <span className="rounded-full bg-[#B44D2B]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[#B44D2B]">Elder</span>
                       )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* People appearing in this community's media (media_links person tags) */}
+            {selected.peopleInMedia.length > 0 && (
+              <div className="px-5 pt-4">
+                <h3 className="text-[11px] font-semibold uppercase tracking-wider text-[#A79C8C]">
+                  In our media ({selected.peopleInMedia.length})
+                </h3>
+                <ul className="mt-2 space-y-1.5">
+                  {selected.peopleInMedia.map((p) => (
+                    <li key={p.personKey} className="flex items-center gap-2.5 text-sm">
+                      {p.photoSrc ? (
+                        <img src={p.photoSrc} alt="" className="h-7 w-7 rounded-full object-cover" loading="lazy" />
+                      ) : (
+                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#F5EEE4] text-[10px] font-semibold text-[#8A7F72]">
+                          {p.name.slice(0, 1)}
+                        </span>
+                      )}
+                      <span className="font-medium">{p.name}</span>
+                      {p.mediaCount > 1 && <span className="text-[11px] text-[#A79C8C]">×{p.mediaCount}</span>}
                     </li>
                   ))}
                 </ul>

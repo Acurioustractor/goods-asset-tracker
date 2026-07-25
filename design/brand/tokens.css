@@ -7,9 +7,8 @@
    (scripts/generate_theory_of_change.py, currently hard-coded hex), the Pencil
    deck (design/*.pen), and the goods-illustrations skill.
 
-   Reconciled 2026-06-19 from: the 2026-06-03 brand guide (§4 colour, §5 type),
-   globals.css (the live OKLCH theme), and the cost-story hex palette. Where the
-   guide named two values for the same role, the role decides (see comments).
+   Reconciled 2026-07-24 from the approved Goods. wordmark and grounded
+   Goods on Country lockup, globals.css, and the cost-story hex palette.
 
    Genuine choices flagged [CHOICE]: change the one variable, everything follows.
    ========================================================================== */
@@ -26,7 +25,7 @@
   /* ---- Brand primary ----------------------------------------------------- */
   /* [CHOICE] the Goods terracotta. Logo terracotta is the brand primary; clay
      is the chart/HDPE anchor. They are different roles, not competitors. */
-  --goods-terracotta:   #C45C3E;  /* primary / brand (logo keyline + rule)     */
+  --goods-terracotta:   #C9613C;  /* primary / brand (full stop + ground rail) */
   --goods-clay:         #A8643F;  /* HDPE plastic, the chart anchor            */
 
   /* ---- Secondary accents (connection to Country) ------------------------- */
@@ -39,16 +38,15 @@
 
   /* ---- Ink / text -------------------------------------------------------- */
   --goods-ink:          #2B2A26;  /* body text                                 */
-  --goods-ink-logo:     #2E2E2E;  /* "Goods" wordmark ink                      */
+  --goods-ink-logo:     #1C1A17;  /* "Goods" wordmark ink                      */
   --goods-charcoal:     #0A0A0A;  /* logo on light                            */
   --goods-sub:          #7A7363;  /* captions, sub-text                        */
 
   /* ---- Type -------------------------------------------------------------- */
-  /* Display = Georgia (editorial, public pages). Logo = Poppins Medium 500
-     (logo ONLY, see brand guide §3). Body = system sans. The guide flags the
-     Inter/Playfair/Geist loads in layout.tsx as unused; drop them. */
+  /* Display = Georgia (editorial, public pages). Logo = Archivo Bold 700;
+     the grounded descriptor uses Archivo SemiBold 600. Body = system sans. */
   --goods-font-display: Georgia, "Times New Roman", serif;
-  --goods-font-logo:    "Poppins", "Helvetica Neue", Arial, sans-serif;
+  --goods-font-logo:    "Archivo", "Helvetica Neue", Arial, sans-serif;
   --goods-font-body:    system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
 
   --goods-display-tracking: -0.01em;   /* editorial headings sit tight        */

@@ -112,7 +112,7 @@ export const deckSlides: DeckSlide[] = [
     body: 'Quality furniture and appliances for remote Indigenous communities. Designed in community, made on Country, moving toward community ownership.',
     photo: '/images/product/stretch-bed-community.jpg',
     photoAlt: 'A Stretch Bed set up in a remote community home',
-    place: 'Nine communities across Australia',
+    place: `${CANONICAL_ASSETS.communitiesServed} communities across Australia`,
     goDeeper: [
       { label: 'The work', href: '/the-work' },
       { label: 'The communities', href: '/communities' },
@@ -351,9 +351,14 @@ export const deckSlides: DeckSlide[] = [
     photoAlt: 'The eleven communities served, on the map',
     place: 'Signed letters by 31 August 2026',
     chips: [
-      { label: 'Measured · revenue (accountant-signed carve-out)', value: 'AU$713,827' },
+      // RULING G/H 2026-07-25: not accountant-signed, and not "measured" either. Workpaper.
+      { label: 'Revenue · Goods-only carve-out (workpaper)', value: 'AU$713,827' },
       { label: 'Proposed · the ask', value: 'AU$400K QBE Catalysing Impact' },
-      { label: 'Gate', value: 'Signed LOIs by 31 Aug 2026' },
+      // RULING M 2026-07-25: the gate is a dollar test, not a count. The terms say "at least
+      // matched by signed external commitments" with no LOI number. 31 Aug is OUR internal
+      // paper-in date; the program's own application closes late September. Do NOT write
+      // "14 Sep" here: that is the Butterfly AGM, and no firmer QBE date is sourced.
+      { label: 'Gate', value: 'Signed match paper in by 31 Aug · app late Sep' },
     ],
     goDeeper: [
       { label: 'Every number, audited', href: '/register' },

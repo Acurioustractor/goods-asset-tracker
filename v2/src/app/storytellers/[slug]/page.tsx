@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 import type { Metadata } from 'next';
-import { getStorytellerBySlug, slugify, listStorytellerSlugs } from '@/lib/storytellers';
+import { getStorytellerBySlug, listStorytellerSlugs } from '@/lib/storytellers';
+import { StorytellerAvatar } from '@/components/storyteller-avatar';
 import { empathyLedger } from '@/lib/empathy-ledger';
 import { tripStories } from '@/lib/data/trip-stories';
 import type { TripStory, TripBlock } from '@/lib/data/trip-stories';
@@ -105,17 +105,12 @@ export default async function StorytellerPage({ params }: PageProps) {
     <article className="mx-auto max-w-3xl px-4 py-12 sm:py-16">
       {/* Header */}
       <header className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-start">
-        {teller.avatarUrl && (
-          <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-full border-2 border-amber-300 sm:h-40 sm:w-40">
-            <Image
-              src={teller.avatarUrl}
-              alt={teller.displayName}
-              fill
-              className="object-cover"
-              sizes="160px"
-            />
-          </div>
-        )}
+        <StorytellerAvatar
+          name={teller.displayName}
+          src={teller.avatarUrl}
+          size={160}
+          className="shrink-0 border-2 border-amber-300"
+        />
         <div>
           <p className="text-xs uppercase tracking-widest text-amber-700">Storyteller</p>
           <h1 className="mt-2 font-display text-4xl font-bold leading-tight">

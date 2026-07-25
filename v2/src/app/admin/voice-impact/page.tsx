@@ -9,6 +9,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { createServiceClient } from '@/lib/supabase/server';
+import { StorytellerAvatar } from '@/components/storyteller-avatar';
 import {
   VOICE_IMPACT,
   VOICE_THEMES,
@@ -129,12 +130,12 @@ export default async function VoiceImpactPage() {
         <div className="mt-4 flex flex-wrap gap-4">
           {voices.map((v) => (
             <a key={v.name} href={`#voice-${v.name.replace(/[^a-zA-Z]+/g, '-')}`} className="group w-24 text-center">
-              {v.portrait ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
+              {true ? (
+                <StorytellerAvatar
+                  name={v.name}
                   src={v.portrait}
-                  alt={v.name}
-                  className={`mx-auto h-20 w-20 rounded-full object-cover ring-2 transition group-hover:ring-orange-600 ${v.held ? 'ring-red-300 grayscale' : v.staff ? 'ring-muted' : v.funder ? 'ring-primary/40' : 'ring-border'}`}
+                  size={80}
+                  className={`mx-auto ring-2 transition group-hover:ring-orange-600 ${v.held ? 'ring-red-300 grayscale' : v.staff ? 'ring-muted' : v.funder ? 'ring-primary/40' : 'ring-border'}`}
                 />
               ) : (
                 <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-muted font-serif text-xl text-muted-foreground ring-2 ring-border group-hover:ring-orange-600">
@@ -221,15 +222,7 @@ export default async function VoiceImpactPage() {
               >
                 <div className="flex items-start gap-3">
                   <div className="shrink-0 text-center">
-                    {v.portrait ? (
-                      // EL-hosted portrait; plain img keeps remote domains simple on an admin page.
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={v.portrait} alt={v.name} className="h-14 w-14 rounded-full object-cover" />
-                    ) : (
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-muted font-serif text-lg text-muted-foreground">
-                        {v.name.split(' ').map((p) => p[0]).slice(0, 2).join('')}
-                      </div>
-                    )}
+                    <StorytellerAvatar name={v.name} src={v.portrait} size={56} />
                     <div className="mt-1 text-[10px] font-medium leading-tight text-muted-foreground">
                       {v.transcriptCount}T
                       <br />

@@ -1,6 +1,6 @@
 # Goods on Country — Investment Deck Alignment
 
-> CANON NOTE (2026-07-20): figures in this dated doc predate the final canon (540 beds / 177 Stretch / 20 washers / 11 communities / 3,540kg). Do not copy numbers from here; use canon.ts.
+> CANON NOTE (2026-07-20): figures in this dated doc predate the final canon (540 beds / 177 Stretch / 22 washers / 11 communities / 3,540kg). Do not copy numbers from here; use canon.ts.
 
 **Generated:** 2026-07-17 · **Purpose:** align the Goods investment deck to external best practice, build out the impact model, plan the diagrams, and set a co-create process. **Method:** five parallel research streams (two external: pitch-deck best practice + impact-model/data-viz frameworks; three internal: existing deck system, impact model + financials, investor/capital/product truth) synthesised against the canonical assets, the 2026-05-30 world's-best-deck blueprint, and the real Snow Foundation feedback.
 

@@ -4,6 +4,13 @@
 
 *The master brand document. A designer, funder, or partner can pick this up and use it. Colour and type values are read from the live codebase (`globals.css`, `logo.svg`, `cost-story/cost-charts.tsx`), not guessed. Treat this as a living document: it updates as the brand system consolidates.*
 
+> **Identity update — 24 July 2026.** The former Poppins and tracked, all-caps
+> `ON COUNTRY` logo system is retired. The approved identity uses the complete
+> `Goods.` wordmark in Archivo Bold 700 and the grounded, sentence-case
+> `on Country` lockup with a terracotta rail. The canonical outlined vectors,
+> raster exports and current guide live in
+> `brand-assets/approved/Goods/goods-brand-kit/` and on the site at `/brand`.
+
 ---
 
 ## 1. Brand at a glance
@@ -38,17 +45,24 @@ The voice holds across every audience. What shifts is the lead beat, never the w
 
 ## 3. Logo
 
-The canonical mark is the **Goods.** wordmark, set in **Poppins Medium 500**, with **ON COUNTRY** tracked beside it (inline) or below it (stacked). Charcoal on light, white on dark. The full SVG system lives in `v2/public/brand/logos/` and serves live at `/brand/logos/`. The cream square `logo.svg` is the legacy favicon, not the wordmark.
+The canonical mark is the complete **Goods.** wordmark in **Archivo Bold 700**.
+The terracotta full stop is part of the mark. The approved Goods on Country
+lockup places sentence-case **on Country** beneath it in Archivo SemiBold 600,
+followed by a terracotta ground rail. Ink on light; white on dark.
 
 **Lockups.**
-- **Stacked** (`Goods` over `ON COUNTRY`): `goods-stacked-black.svg`, `-white`, `-on-light`, `-on-dark`. The site header and footer use the stacked mark.
-- **Inline** (`Goods.` then `ON COUNTRY` beside, the period rendered as a round dot): `goods-inline-black.svg`, `-white`, `-on-light`, `-on-dark`.
-- **Chip** (compact): `goods-chip-on-light.svg`, `-on-dark`. App icon, OG card, watermark.
-- Preview every variant at `/brand/logos/preview.html`; usage in `/brand/logos/README.md`.
+- **Goods.** — the master wordmark when context already names the organisation.
+- **Grounded Goods on Country** — the primary organisational lockup for introductions,
+  funder material, partner presentations and signage.
+- **Small use** — below 160px remove the rail if necessary; below 96px use Goods. alone.
+- Preview and download every variant at `/brand`; the packaged files live under
+  `v2/public/brand/goods/`.
 
-**Colour (do not improvise).** Charcoal `#0A0A0A`, Cream `#FDF8F3`, White `#FFFFFF`.
+**Colour (do not improvise).** Ink `#1C1A17`, Terracotta `#C9613C`,
+Cream `#FBF8F1`, White `#FFFFFF`.
 
-**Type.** Poppins Medium 500. `Goods.` letter-spacing -3 at display size; `ON COUNTRY` letter-spacing +8, all caps. Fallback Helvetica Neue, then Arial.
+**Type.** Archivo Bold 700 for Goods.; Archivo SemiBold 600 for `on Country`.
+The supplied SVG masters contain outlined glyphs and must not be retyped.
 
 **Co-branding.** Goods sits alongside Oonchiumpa (lead Indigenous partner), Centrecorp Foundation, and ACT / A Curious Tractor, plus funders QBE and Snow Foundation on the logo wall. Give the Goods mark equal or lesser visual weight when paired with Oonchiumpa, never dominant.
 

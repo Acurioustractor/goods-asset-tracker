@@ -30,33 +30,17 @@ const COMMIT = process.argv.includes('--commit');
 const headers = { Authorization: `Bearer ${TOKEN}`, Version: '2021-07-28', 'Content-Type': 'application/json' };
 
 // Verified DEAD rows to retire (status -> abandoned), matched by name substring.
+// Updated 2026-07-23 to the current funding refresh (wiki/outputs/2026-07-23-funding-refresh/).
+// Prior (June) retire list is in git history; those were applied in the 3 Jul run.
 const RETIRE = [
-  ['Women And Infants', 'CLOSED 10 Apr 2026 — off-mission (biomedical research)'],
-  ['FLEXIBLE AGED CARE', 'Restricted/false positive — aged-care IT for funded providers'],
-  ['Regional Business Gateways', 'NO-fit — funds QLD chambers/councils, not a manufacturer'],
-  ['Indigenous Languages and Arts', 'CLOSED 16 Mar 2026 — off-mission (arts/languages); duplicate rows'],
-  ['Dyslexia Speld', 'Not a grant — DSF sells PD, not a funder'],
-  ['Qld Gives', 'CLOSED 12 Dec 2025 — NFP-only, wrong entity'],
-  ['NAIDOC', 'CLOSED 19 Feb 2026 — off-mission (event funding)'],
-  ['Agricultural Traceability', 'CLOSED 18 Feb 2026 — off-mission (ag traceability)'],
-  ['Various Indigenous', 'Vague catch-all — maps to NIAA IAS (invitation-leaning) + IBA (ownership-gated); no clean actionable target for Goods today. Revisit post entity restructure.'],
+  ['NT Advanced Manufacturing Ecosystem Fund', 'CLOSED to applications on business.gov.au (live-verified 2026-07-23); this round done. Reclassify open->watch. Email applications@amgc.org.au for the reopen date. Watch is tracked in the Notion Funder Pipeline; do not lose the relationship.'],
 ];
 
 // Verified OPEN grants to add (status open, in the Identified stage).
-const ADD = [
-  {
-    name: 'SEDI Capability Building Grants (DSS) — open rolling ~early 2027, up to $120K, no ownership gate',
-    monetaryValue: 120000,
-    contactName: 'SEDI Capability Building Grants',
-    contactCompany: 'Dept of Social Services / Impact Investing Australia',
-  },
-  {
-    name: 'NT Advanced Manufacturing Ecosystem Fund — open rolling, $25K–$500K matched, no gate (the plant)',
-    monetaryValue: 500000,
-    contactName: 'NT Advanced Manufacturing Ecosystem Fund',
-    contactCompany: 'NT Government',
-  },
-];
+// 2026-07-23: nothing to add to GHL. The two new items (Westpac Inclusive Employment,
+// Federal RMF next round) are WATCHES with no live open date, so they live in the Notion
+// Funder Pipeline (Bucket=Workbench, Priority=Monitor), not as open GHL opportunities.
+const ADD = [];
 
 async function ghl(method, urlPath, body) {
   const res = await fetch(`${BASE}${urlPath}`, { method, headers, body: body ? JSON.stringify(body) : undefined });

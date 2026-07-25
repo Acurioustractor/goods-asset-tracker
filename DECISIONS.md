@@ -14,7 +14,98 @@
 > **Format:** every ruling carries a date, the reasoning, what it supersedes, and the
 > sweep it implies. A ruling with no sweep list is a ruling that will silently rot.
 >
-> Glossary and money-model language: `CONTEXT.md`. Canonical map: `wiki/outputs/`.
+> Glossary and money-model language: `CONTEXT.md`. **The whole picture in one place:
+> `/STRATEGY.md`**, which points at this file for every judgement rather than restating them.
+
+---
+
+## 2026-07-25 (later) — Matt's model inputs, items 1 to 3
+
+Three rulings against the recommended positions in
+`wiki/outputs/2026-07-25-matt-model-inputs-session-pack.md`. Decided simultaneously, so they are
+lettered in item order rather than newest-first. Ben ruling throughout.
+
+### N. HDPE is 20kg at $2.75/kg landed. Two fields, not one.
+
+**Confirmed:** 20kg at $2.75/kg landed, $55/bed. Invoice-traceable to Defy INV-1731 ($2/kg shred
+plus $0.75/kg delivery). The GoC Q&A's "25kg at $1-2/kg" is retired as a costing figure and kept
+only as an aspirational floor for the free-feedstock community path, where plastic costs $0 and
+the rate is moot anyway.
+
+**What was actually wrong, and it was not the number.** The two figures were never measuring the
+same thing. 20kg is the mass in a **finished bed**, which is what the public diversion claim is
+derived from. A purchase quantity and a diverted quantity can legitimately differ, because HDPE
+offcut goes back through the shredder rather than to landfill. The model needs both fields.
+
+**The hazard this closes.** The costing mass and the public-claim mass already lived in two
+separate constants (`physics.hdpe_kg_per_bed` and `PLASTIC_KG_PER_BED`) with nothing stating that
+they are different quantities or stopping anyone collapsing them. A costing tweak could have
+silently restated a public impact claim on twenty-odd surfaces. They are equal today **only**
+because press yield has never been measured, which is what ruling item 6 exists to settle.
+
+**Sweep (done 2026-07-25):** `physics.hdpe_in_product_kg_per_bed` added to
+`cost-model-scenarios.json` with a note naming both quantities and Matt's cell names ·
+`PLASTIC_KG_PER_BED` doc comment in `products.ts` now says IN-PRODUCT, not purchase quantity ·
+four guards in `products.guards.test.ts` lock the public claim to the in-product field, assert
+purchased is never below in-product, and re-derive $55/bed from the Defy rates.
+
+### O. $110,000 is the actual sunk spend. Capex is rough and may reach about $200K.
+
+**Ben ruling, overriding the pack's recommendation.** The pack proposed adopting the
+2026-07-22 minimal-viable-facility figure of ~$75K as sunk. Ben: "$110,000 is the actual costs,
+then we want to get up to about $200,000, as this is a very rough estimate with a lot of
+variables."
+
+**Why the ~$75K was not the better number.** It is a bill-level subtotal, not a competing total.
+The MVF's own tiers are ~$43,700 cleanly evidenced and tagged, ~$12,500 evidenced but
+ambiguous, and $19,800 for a shredder that is physically running with no Xero record. Treating a
+Xero pull's coverage as the boundary of what was spent confuses evidence with fact. Ben spent it
+and is the primary source. This also matches what `2026-07-22-the-money-story-grounded-voice.md`
+already said in prose: about $110,000 has gone in, mostly second hand, and the rest is gear we
+own whose paperwork is catching up. A filing job, not a fiction.
+
+**What did change: the adjective, not the figure.** $110,046 carried `solidity: 'verified'`,
+which is not defensible when only ~$43,700 is bill-evidenced. Regraded **workpaper**. This is
+the same correction shape as ruling H on revenue: keep the number, fix the word.
+
+**Treat capex as a range, not a point.** Gross $112,000 to $222,000, rough, plenty of variables,
+plausibly reaching about $200,000. Ben's figure already sits inside the existing band, so no
+competing number was invented.
+
+**Retired:** the $30,000 community rung as a site price (it is a ladder **increment** on top of
+an already-built ~$200,000 factory, never a site cost, and reading it as one is a category error
+rather than a rounding difference) · the separate "$100-150K per site on-Country" band.
+
+**Still open:** the shredder invoice and the larger CNC are the outstanding paperwork. Note the
+gap is wider than the pack assumed: $84,000 is described elsewhere as "cleanly in the connected
+books" against the MVF's $43,700 clean tier, and those two cannot both be right about "clean".
+
+**Sweep (done 2026-07-25):** `cost-story.ts` capital fact regraded to workpaper with the evidence
+split and a do-not-net watch-out · `ALREADY_INVESTED` docstring in `cost-model-scenarios.ts` ·
+`_capital_added_note` in `cost-model-scenarios.json` explaining the ladder · `qbe-areas.json`
+gap text · engine test asserting the figure stands alone rather than as a deduction.
+
+### P. The capital ask is quoted gross only. The net figure is retired.
+
+**Confirmed:** quote gross $112,000 to $222,000, present sunk spend beside it as evidence of
+skin in the game, never netted off. Never quote "$90-200K", which appears in no model and is a
+transcription artefact.
+
+**Why.** Netting invites "so is it yours or not?", which is the wrong question to invite while
+the handover of the farm plant is in progress and the ownership pathway is the pitch itself.
+Gross plus a sunk-spend line answers it before it is asked. Two numbers, never one net number.
+
+**Sweep (done 2026-07-25):** `NET_CAPITAL_LOW` / `NET_CAPITAL_HIGH` deleted from `engine.ts`
+(they were exported constants, ~$1,954 and ~$111,954, with three tests locking them) · a
+replacement guard fails if any `NET_CAPITAL*` export is reintroduced · the "Net remaining ask
+$2-112K" fact removed from `cost-story.ts` and its chapter lede rewritten · `CAPITAL_GROSS_*`
+docstring corrected, since it previously described itself as "net of the $110,046".
+
+**Prose swept the same day:** `wiki/investor/02-financial-model.md` (3 places) ·
+`wiki/investor/15-money-alignment-audit.md` (4) · `wiki/investor/16-ask-surface-design.md` ·
+`ask-surface.ts`, whose live "Equipment, net remaining / $2K-112K" block is now gross.
+`wiki/canon/qbe-readiness.md` regenerated from `qbe-areas.json` by `check:qbe-readiness`.
+Dated `wiki/outputs/` artifacts are historical record and are deliberately left alone.
 
 ---
 
@@ -54,6 +145,15 @@ gate needs "at least three signed LOIs by 31 August". The recorded program terms
 (`04-qbe-pipeline.md:9-14`) say only "at least matched by signed external commitments", with no
 count, and Ben's own locked answer (`CONTEXT.md:34`) is a dollar figure. **No source exists for
 the number three.** Both files to state what the terms say.
+
+**SWEPT 2026-07-25.** `canon.ts` and `claims-ledger.ts` now state the terms: the gate is a
+DOLLAR test with no count, judged on signed verifiable paper (amount, instrument, funder legal
+name, a contact SIH can call). A second overstatement surfaced during the sweep and was fixed
+with it: both files, and the deck's Gate chip, presented **31 August as the program deadline**.
+It is not. The recorded terms put the application at **14 September 2026** with outcomes in
+November; **31 August is our OWN internal all-paper-in gate**. Presenting an internal target as
+a funder's deadline manufactures urgency we would then have to explain. `deck.ts` Gate chip now
+reads "Signed match paper in by 31 Aug · app 14 Sep".
 
 **The reframe that changes the sequence.** QBE judges match on "signed, verifiable paper:
 amount, instrument, funder legal name, a contact SIH can call". That is a **letter, not a
@@ -112,6 +212,29 @@ four public pages asserting the company operates the name.
 - Goes to MinterEllison with the entity-wording block, and onto the 3 August agenda. This is
   the "contracting party / seller-of-record during migration" question that
   `wiki/canon/qbe-readiness.md:36` already had open, now with a date on it.
+
+**PARTLY SWEPT 2026-07-25, and it had not been swept at all.** Found by the full ruling audit.
+Data layer and the one flat misstatement are now corrected:
+
+- `canon.ts` `entity-trading-goforward` value dropped the `t/a Goods on Country` and now reads
+  `t/a Goods.`; its definition said *"Goods on Country is its trading name, not a separate
+  company"*, which ruling K calls wrong in both halves, and now says what the register says.
+- `grant-content.ts` (the orgIdentity comment and the funder-facing trading-entity line) ·
+  `pitch-cockpit.ts` · `partner/page.tsx:239`, which asserted "A Curious Tractor Pty Ltd is the
+  trading company behind Goods on Country".
+
+**DELIBERATELY NOT SWEPT, and this needs Ben.** Four public surfaces state that A Curious
+Tractor *operates* or *runs* the Goods on Country name:
+`terms/page.tsx:32` ("a social enterprise operated by A Curious Tractor") ·
+`about/page.tsx:207,245` ("a project of A Curious Tractor") ·
+`partner/page.tsx:137` ("Goods on Country trades through A Curious Tractor Pty Ltd") ·
+`insiders/login/page.tsx:82`.
+
+These are backwards under ruling K, but rewriting a **Terms** page's operator-and-seller
+statement is the same question ruling K already sent to MinterEllison ("beds are sold by the
+company on a domain named for the charity"). Guessing new wording here could create a worse
+problem than the one it fixes, so they are left intact and flagged rather than edited. They
+should move with the legal advice, not ahead of it.
 
 ### J. The Butterfly transition is executing, not blocking. 51% is decoupled from the AGM.
 
@@ -192,12 +315,53 @@ an adjective is a one-word sweep. Withholding entirely was rejected because it i
 published everywhere; retracting a number funders have seen is a bigger event than relabelling
 it.
 
+**SUPERSEDES A BEN RULING FROM THE DAY BEFORE.** `thoughts/shared/handoffs/investor-wiki/current.md`
+records: *"REVENUE RULING (Ben 2026-07-24): $713,827 carve-out is NOT yet signed → cite $741,111
+externally; do NOT cite $713,827."* Ruling H is the later call, made with the full picture
+(eight surfaces already carrying it, the basis difference between the two figures, and seven
+weeks to submission), and it **replaces** the 2026-07-24 ruling. Both are Ben rulings; if a
+future session finds them pointing opposite ways, H wins on date. The practical difference: the
+old ruling changed the *figure*, this one changes the *adjective*.
+
 **Sweep.** `canon.ts:138` · `cost-story.ts:59,327` · `slides-source.html:168` (and the V chip) ·
 `v2/src/app/sites/qbe-readiness/page.tsx:85,135,172,250` · `ask-surface.ts:23` ·
 `pitch-control-room.ts:145` · `deck.ts:354` · `qbe-areas.json` ·
 `wiki/investor/04-qbe-pipeline.md:23` (must-win marked DONE) · Notion business plan §1.
 Also retire or rewrite `claims-ledger.ts:233` (the `consolidated-revenue` locked row) and
 `ANTI_CLAIMS:257`, which describe a discipline not actually followed since June.
+
+**SWEPT 2026-07-25, and the sweep had NOT happened.** A ruling-audit run after ruling M turned
+out to be unswept found "accountant-signed" still live in **nine places**, including six on the
+funder-facing `/sites/qbe-readiness` page and three in `cost-story.ts`, all of them on H's own
+sweep list. Only `ask-surface.ts` had been done. Now corrected:
+
+- `qbe-readiness/page.tsx` ×6, including the metric card's green **Verified** pill, dropped to
+  **Workpaper**. The card previously read "Accountant-signed carve-out" in front of funders.
+- `cost-story.ts` ×3, including a `solidity: 'verified'` row whose `source` cited an
+  **"Accountant letter"** that does not exist.
+- `canon.ts:138` regraded `verified` to **`workpaper`**, and its definition no longer says
+  "Citable accountant-signed". This required adding `workpaper` to the `ClaimLabel` union,
+  which had no honest slot for a figure that is actual but unsigned: `verified` overclaims and
+  `modelled` is simply wrong for real cash. `Solidity` in cost-story.ts has had the grade for
+  longer; the two vocabularies now agree.
+- The two items above that H flagged as "a discipline not actually followed" were both **false
+  statements**, not merely stale. `ANTI_CLAIMS` asserted *"We do not publish an unsigned revenue
+  figure"* while $713,827 rendered on eight surfaces, and the `consolidated-revenue` row claimed
+  the figure was `status: 'locked'` and withheld. An integrity commitment contradicted by
+  practice is worse than no commitment. Both now state what is actually done.
+- Caught in passing: `ANTI_CLAIMS` cited **"the 32 consent-cleared voices"**, which was stale
+  (canon is 34) *and* the wrong tier (32 is the display-storyteller pool, a coverage queue, not
+  a clearance list). Now reads from `canonFact('cleared-voices')` so it cannot drift again.
+
+**Ruling A swept in the same pass.** "Become unnecessary" was still live twice on
+`qbe-readiness/page.tsx`. The scoreboard line now imports `NORTH_STAR.line` rather than
+retyping a slogan, per ruling E.
+
+**The lesson, which is bigger than these files.** Two rulings in a row (M, then G/H/A) were
+logged with a correct sweep list and never executed. A ruling with a sweep list is not swept
+until something checks. Treat the sweep list as a to-do that needs verifying, not a record of
+work done, and re-run a grep for retired language before trusting any "swept" note including
+this one.
 
 ### G. There is no signed accountant document
 
@@ -315,13 +479,41 @@ philosophy".
 | Notice of meeting if the company name changes at the AGM | Zandra / board | ~24 Aug |
 | 51% ownership structure of the *selling* entity: decided-and-dated | Ben + Nic + MinterEllison | by 14 Sep |
 | What happened at the 1 July Supply Nation threshold, and what it cost | Ben | unrecorded anywhere |
-| Community-site operating block, counting only what bed sales should carry | Matt + Ben | 3-statement model |
-| Matt's six model inputs (`assumptions-alignment.md:112-117`) | Ben | still all open |
+| Community-site operating block: **computed 2026-07-25**, $79,333/yr bare production block, $129,333 with a half-time line supervisor (`2026-07-25-matt-model-inputs-session-pack.md` §5). Open part is who pays the line supervisor, and whether trainer/WHS is ACT's cost or the site's | Ben + Nic | before the 3-statement build |
+| Matt's six inputs: 1, 2, 3 carry a recommended position ready to confirm; 4 blocked on the CRM rebuild and on Jay; 5 computed; 6 needs a measured run | Ben | pack written 2026-07-25 |
+| Maningrida 40-bed run actuals (time, diesel, plastic yield). Highest-value open input in the model: 250 vs 500 beds/yr is the difference between a site that cannot cover its own production block and one that retires its plant in under three years | Ben | next press run |
+| Modules, not build paths. `engine.ts` cannot price Utopia (shredder only), Tennant Creek (existing shed) or Palm Island (governance first) | Ben, then Matt | before an ask is written for any of the three |
 | Which of the 803-file branch ships publicly, and when | Ben | not yet grilled |
 | Maningrida consent evidence: name where it lives | Ben | unresolved since 2026-07-21 |
 | Kununurra Elder clearance (gates the Variant A opening) | Ben | standing |
 
 ## Findings logged but not yet ruled on
+
+- **The Empathy Ledger syndication API is calling routes this deployment does not serve, and the
+  storyteller pages have been silently building on fallback data.** Found 2026-07-25 while running
+  the build gate. `npm run build` logs **18 soft failures every run** (12 individual storytellers,
+  4 list fetches, 2 project insights). They fail soft by design, so the build stays green and
+  nobody noticed. **EL is source of truth for portraits, so this quietly degrades a public
+  surface.**
+  - The client calls `/api/v1/sites/goods-asset-register/projects/{projectId}/storytellers`.
+    That path **404s**. So does the matching `/projects/{projectId}/insights`.
+  - The flat `/api/v1/sites/goods-asset-register/storytellers` returns **200 but `total: 0`**,
+    under every scoping form tried (`projectId`, `project_id`, `projectCode`, `project`). So it is
+    not a drop-in replacement; the syndication API appears unprovisioned for this site slug.
+  - The **other** API in the same client works and has the data:
+    `/api/v1/content-hub/storytellers` returns 200 storytellers (consistent with the known ~240).
+  - Host, site slug, project id and API key all verified correct;
+    `.env.local` and `.env.production.local` are identical, and Next prefers the latter on build.
+    Without auth the endpoints return 401, not 404, so this is a route-shape problem, not a
+    credentials one.
+  - **Not ruled on, because the fix is a choice:** repoint the syndication calls at content-hub,
+    or have the EL side provision the `/sites/{slug}/projects/{id}/*` routes. Worth checking
+    whether `projectId` actually filters content-hub before repointing (limit=200 returned 200
+    rows with and without it), though the `cleared-voices` allowlist is the person-level gate
+    regardless.
+  - **Fixed meanwhile:** `SyndicationFetchError` now names the URL and whether a key was present.
+    The old message was bare "Upstream 404 Not Found", which cost an hour of testing the wrong
+    endpoint by hand. No secret is exposed; the key travels in a header.
 
 - **GHL has no Transfer stage.** The `Goods — Community Pathways` pipeline (created 2026-07-24)
   runs Invitation → Listening → Brief returned → Community confirmed → Modules selected → Ready
@@ -334,21 +526,46 @@ philosophy".
   Identified, Qualified, Cultivating, Ask made, Committed, Delivering, Stewarding/Reporting,
   Renewing, Lapsed, Declined/Parked. No Signed-LOI stage. The fact cannot be re-derived from
   where it says it lives. The value (0) is nonetheless correct: 0 rows at Committed.
-- **The live asks do not match the published stack.** Reading the first 50 Supporter Journey
-  opportunities: at "Ask made" sit **Minderoo $200K (described as a catalytic QBE-aligned
-  grant)** and **Tim Fairfax $150K**, neither in the $475K stack. **SEFA, the $300K anchor, is
-  not in the first 50 rows at all.** Centrecorp appears only as the historical $123,332, won and
-  acquitted, not the forward $75K. Not paginated beyond 50; not ruled on.
+- **The live asks do not match the published stack.** **Rebuilt 2026-07-25 (later, same day) from
+  all 67 Supporter Journey rows**, which corrects two errors in the first-50 read recorded earlier:
+  **SEFA IS in the CRM** ($300K, Cultivating, "repayable finance anchor"; the earlier note said it
+  was absent), and **Centrecorp's forward $75K ask exists** at Ask made alongside the historical
+  $123,332 at Renewing (the earlier note said only the historical row existed). Standing: **0 rows
+  at Committed**, so canon's `signed-lois: 0` holds. At Ask made, excluding the Oonchiumpa-led
+  **REAL Innovation Fund $2M**: Minderoo $200K (the CRM calls it a catalytic QBE-aligned grant),
+  Tim Fairfax $150K, Snow $100K first-mover, Rotary Eclub $82.5K, Centrecorp $75K, total **$607.5K**.
+  Repayable column at Cultivating: SEFA $300K, White Box SELF $250K, LendForGood $100K (CRM labels
+  it "match candidate"), Metro Finance $60K, total **$710K**. Either column alone clears the $400K
+  QBE match twice over, so **the match is short of paper, not of candidates**. Also live and
+  unrecorded anywhere: **First Nations Finance, whose CRM record reads "no ownership gate"**, which
+  is the standing blocker on most concessional capital. Full read:
+  `wiki/outputs/2026-07-25-matt-model-inputs-session-pack.md` §4. Not ruled on.
 - **Two canon facts assert a QBE gate the program terms do not state.** `canon.ts:233` and
   `claims-ledger.ts:208` both say the match gate needs "at least three signed LOIs by 31 August".
   The recorded program terms (`04-qbe-pipeline.md:9-14`) say only "at least matched by signed
   external commitments", with no count. Ben's own locked answer (`CONTEXT.md:34`) is a dollar
   figure. No source found for the number three.
-- **`check-community-copy.mjs` guards a superseded invariant.** Its header says public surfaces
-  "must say 9 communities served, not 10" and its regexes hunt for "10 communities". Canon is 11.
-  It would not have caught the press page's badged 9.
-- **The banned-word list is enforced nowhere.** No script checks co-design, empower, unlock,
-  journey, beneficiaries, or em dashes. One live prose instance at `community-pathways.ts:236`.
+- ~~**`check-community-copy.mjs` guards a superseded invariant.**~~ **FIXED 2026-07-25.** It hunted
+  for "10 communities" and told you to write 9, while canon was 11: a two-generations-stale guard.
+  Now **derives** the stale set from `CANONICAL_ASSETS.communitiesServed`, so it advances by itself
+  when canon next moves. On first run it caught **7, of which 3 were real rendered defects**, all
+  now reading from canon: `wiki/community/partner-guide/page.tsx:40` (a badged "9 Communities
+  served", the same defect class as the press page found by hand), `deck.ts:115` ("Nine communities
+  across Australia", in a file that already imported canon correctly 170 lines later), and
+  `partner-dashboards.ts:341`. Two were comments (now skipped) and two are allowlisted with reasons.
+  **Flagged, not fixed:** the illustration asset `16-nine-communities` is itself stale and needs
+  regenerating; renaming is a separate asset pass.
+- ~~**The banned-word list is enforced nowhere.**~~ **FIXED 2026-07-25** by `check-voice.mjs`, now in
+  `check:drift` and `check:drift:ci`. This closes the session's own diagnosis, that prose had no
+  drift check. **The rule it encodes: the banned list governs OUR voice, never other people's
+  words.** Verbatim storyteller quotes, funder programme language (Snow's own principle is named
+  "First Nations leadership and empowerment") and registered org names are exempt by path, each with
+  a reason, because rewording someone else's words to fit our style guide is a worse error than the
+  violation. **Two tiers on purpose:** FAIL on seven high-confidence bans, WARN with counts on
+  `unlock` (9), `journey` (16), `catalytic` (13) and **em dashes (251)**, which are ambiguous or have
+  a back-catalogue too large to fail on today without either an unrequested cleanup or an instant
+  mute. **Ben's call to promote any WARN to FAIL.** The one live FAIL, `community-pathways.ts:236`
+  "co-design", is fixed to "designed with community".
 - **The Notion business plan §9 says "34 stories cleared for external use".** 34 is cleared
   *voices*, people, not stories. EL holds 2 published and public. Conflating a person-level
   allowlist with a story count, in a governance section.

@@ -167,7 +167,7 @@ const articleJsonLd = {
     '@type': 'Organization',
     name: 'Goods on Country',
     url: 'https://www.goodsoncountry.com',
-    logo: { '@type': 'ImageObject', url: 'https://www.goodsoncountry.com/logo.svg' },
+    logo: { '@type': 'ImageObject', url: 'https://www.goodsoncountry.com/brand/canonical/goods-wordmark-square-tile.png' },
   },
   about: [
     { '@type': 'Organization', name: 'Oonchiumpa Consultancy', url: 'https://oonchiumpa.com.au' },

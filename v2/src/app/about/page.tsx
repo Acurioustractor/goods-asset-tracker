@@ -53,7 +53,7 @@ const VALUES = [
   },
   {
     title: 'Community ownership',
-    body: "Our long-term goal is to transfer manufacturing to community-owned enterprises. We become unnecessary.",
+    body: "Our long-term goal is to transfer manufacturing to community-owned enterprises, so a community comes to own the making.",
   },
 ];
 

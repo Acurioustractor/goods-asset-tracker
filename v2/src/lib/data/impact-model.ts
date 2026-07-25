@@ -518,7 +518,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         confidence: 'modelled',
         name: 'Production Cost per Unit (direct, current build path)',
         unit: '$/bed',
-        current: CANONICAL_BUYKIT_DIRECT_COST, // 534.79 — what we make a bed for TODAY (Defy Buy-Kit path)
+        current: CANONICAL_BUYKIT_DIRECT_COST, // 534.79 — Defy Buy-Kit DIRECT cost only (canon headline marginal incl. freight = $685)
         targets: { year1: 275, year3: 200, vision2030: 271 }, // Factory path: 275.74 → ~200 → Community v6 path: 270.74 (fair-wage paid labour)
         source: 'computed',
         sourceDetail: 'MODELLED: current is the Defy Buy-Kit direct cost ($534.79 — what we make a bed for today) from cost-model-scenarios.ts. The trajectory is cost-DOWN as production in-sources to the on-country Factory path (direct $275.74), then scales toward the Community path ($270.74, v6 — fair-wage paid labour at $130/bed, free community-collected plastic). Direct cost only — excludes fixed-cost absorption at pilot volume.',
@@ -595,7 +595,7 @@ export const FINANCIAL_SUMMARY = {
   totalInvestment: verifiedFinancials.revenueReceived, // 741,111 — denominator for public impact-per-dollar (restated 2026-06-03)
   tradeRevenue: verifiedFinancials.revenueReceived,
   productionPlantInvestment: verifiedFinancials.capexInvested, // 110,046
-  currentCostPerUnit: CANONICAL_BUYKIT_DIRECT_COST, // 534.79 — current Buy-Kit direct cost (what we make a bed for today, MODELLED)
+  currentCostPerUnit: CANONICAL_BUYKIT_DIRECT_COST, // 534.79 — Buy-Kit DIRECT cost (materials+assembly, MODELLED); NOT the $685 canon marginal (which adds ~$150 freight)
   targetCostPerUnit: { year1: 275, year3: 200, vision2030: 271 }, // Factory path (275.74 → ~200) → Community v6 path (270.74, fair-wage paid labour)
   financialsStatus: verifiedFinancials.status,
   financialsLastUpdated: verifiedFinancials.lastUpdated,

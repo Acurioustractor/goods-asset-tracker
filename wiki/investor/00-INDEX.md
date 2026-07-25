@@ -4,7 +4,7 @@
 > own inventory doc in this folder. Once all areas are locked, they drive: (a) the funder deck,
 > (b) a community-facing deck, (c) a buyer/partner deck, (d) the full website alignment pass.
 >
-> Canon (commit 9f2d7b9, Ben rulings 2026-07-19): 540 beds / 177 Stretch / 20 washers in community /
+> Canon (Ben rulings 2026-07-19, washers re-ruled 2026-07-21): 540 beds / 177 Stretch / 22 washers in community /
 > 11 communities / 3,540kg HDPE / $713,827 Goods-only revenue (accountant-signed) / $685 marginal today /
 > $426 measured in-house model / QBE ask $400K signed match-eligible by 31 Aug 2026.
 

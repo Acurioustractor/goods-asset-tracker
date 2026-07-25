@@ -1,203 +1,81 @@
 import Link from 'next/link';
-import { revalidatePath } from 'next/cache';
-import { createClient } from '@/lib/supabase/server';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { formatAmountFromStripe } from '@/lib/stripe';
+import { PRODUCT_WIKIS } from '@/lib/data/product-wiki';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
+import { ArrowRight, BookOpen } from 'lucide-react';
+import { AdminHubTabs } from '../admin-hub-tabs';
 
-export default async function AdminProductsPage() {
-  const supabase = await createClient();
+const PRODUCTS_TABS = [
+  { label: 'Overview', href: '/admin/products' },
+  { label: 'Full story', href: '/admin/products/story' },
+  { label: 'Facility', href: '/admin/facility' },
+  { label: 'Production', href: '/admin/production' },
+];
 
-  const { data: products, error } = await supabase
-    .from('products')
-    .select('*')
-    .order('created_at', { ascending: false });
+export const dynamic = 'force-static';
 
-  if (error) {
-    console.error('Error fetching products:', error);
-  }
+const STATUS_TONE: Record<string, string> = {
+  flagship: 'bg-primary text-primary-foreground',
+  prototype: 'bg-[#4E8F88] text-white',
+  'open-source': 'bg-amber-200 text-amber-900',
+  plant: 'bg-[#5C7048] text-white',
+};
 
-  // Server action to toggle product active status
-  async function toggleProductStatus(formData: FormData) {
-    'use server';
-
-    const productId = formData.get('product_id') as string;
-    const isActive = formData.get('is_active') === 'true';
-
-    const supabase = await createClient();
-
-    const { error } = await supabase
-      .from('products')
-      .update({ is_active: !isActive })
-      .eq('id', productId);
-
-    if (error) {
-      console.error('Failed to update product:', error);
-    }
-
-    revalidatePath('/admin/products');
-  }
-
-  // Server action to update inventory
-  async function updateInventory(formData: FormData) {
-    'use server';
-
-    const productId = formData.get('product_id') as string;
-    const inventoryCount = parseInt(formData.get('inventory_count') as string, 10);
-
-    if (isNaN(inventoryCount)) return;
-
-    const supabase = await createClient();
-
-    const { error } = await supabase
-      .from('products')
-      .update({ inventory_count: inventoryCount })
-      .eq('id', productId);
-
-    if (error) {
-      console.error('Failed to update inventory:', error);
-    }
-
-    revalidatePath('/admin/products');
-  }
-
-  const productTypeLabels: Record<string, string> = {
-    basket_bed: 'Basket Bed',
-    stretch_bed: 'Stretch Bed',
-    washing_machine: 'Washing Machine',
-    accessory: 'Accessory',
-  };
-
+export default function ProductsIndex() {
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-2xl font-bold">Products</h1>
-          <p className="text-gray-500 mt-1">
-            {products?.length || 0} product{(products?.length || 0) !== 1 ? 's' : ''} in catalog
+    <div className="max-w-[1200px] mx-auto space-y-6">
+      <header>
+        <h1 className="font-display text-3xl font-bold" style={{ fontFamily: 'Georgia, serif' }}>Products &amp; Plant</h1>
+        <p className="text-sm text-muted-foreground mt-1 max-w-2xl">
+          A page for each product and the plant, written well, with images and video. The place to
+          walk someone through what Goods makes, how it works, and why it exists.
+        </p>
+      </header>
+
+      <AdminHubTabs tabs={PRODUCTS_TABS} />
+
+      {/* The full Goods story — the marquee entry */}
+      <Link
+        href="/admin/products/story"
+        className="group relative block overflow-hidden rounded-3xl border"
+        style={{ aspectRatio: '21 / 6' }}
+      >
+        <video autoPlay muted loop playsInline poster="/video/community-poster.jpg" className="absolute inset-0 h-full w-full object-cover">
+          <source src="/video/community-desktop.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, rgba(20,17,12,0.92) 0%, rgba(20,17,12,0.55) 55%, rgba(20,17,12,0.1) 100%)' }} />
+        <div className="absolute inset-0 flex flex-col justify-center p-8">
+          <span className="inline-flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-widest text-white/70 mb-1">
+            <BookOpen className="h-3.5 w-3.5" /> The full story
+          </span>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>The Goods story</h2>
+          <p className="mt-1 max-w-xl text-white/80 text-sm">
+            Where it came from, the problem it solves, and why it became a production and ownership project. The whole narrative in one place.
           </p>
+          <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-white">Read the story <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" /></span>
         </div>
-      </div>
+      </Link>
 
-      {/* Products Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products?.map((product) => (
-          <Card key={product.id} className={!product.is_active ? 'opacity-60' : ''}>
-            <CardHeader className="pb-2">
-              {product.featured_image && (
-                <img
-                  src={product.featured_image}
-                  alt={product.name}
-                  className="w-full h-40 object-cover rounded-md mb-4"
-                />
-              )}
-              <div className="flex items-start justify-between">
-                <CardTitle className="text-lg">{product.name}</CardTitle>
-                <Badge
-                  className={
-                    product.is_active
-                      ? 'bg-green-100 text-green-800'
-                      : 'bg-gray-100 text-gray-800'
-                  }
-                >
-                  {product.is_active ? 'Active' : 'Inactive'}
-                </Badge>
-              </div>
-              <Badge variant="outline" className="w-fit">
-                {productTypeLabels[product.product_type] || product.product_type}
-              </Badge>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-sm text-gray-500 line-clamp-2">
-                {product.short_description || product.description}
-              </p>
-
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="text-2xl font-bold">
-                    ${formatAmountFromStripe(product.price_cents)}
-                  </div>
-                  {product.compare_at_price_cents && (
-                    <div className="text-sm text-gray-400 line-through">
-                      ${formatAmountFromStripe(product.compare_at_price_cents)}
-                    </div>
-                  )}
-                </div>
-                {product.track_inventory && (
-                  <div className="text-right">
-                    <div className="text-sm text-gray-500">Stock</div>
-                    <div
-                      className={`font-medium ${
-                        product.inventory_count <= 0
-                          ? 'text-red-600'
-                          : product.inventory_count < 5
-                            ? 'text-yellow-600'
-                            : 'text-green-600'
-                      }`}
-                    >
-                      {product.inventory_count}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Inventory Update Form */}
-              {product.track_inventory && (
-                <form action={updateInventory} className="flex gap-2">
-                  <input type="hidden" name="product_id" value={product.id} />
-                  <input
-                    type="number"
-                    name="inventory_count"
-                    defaultValue={product.inventory_count}
-                    min="0"
-                    className="flex-1 border rounded px-2 py-1 text-sm"
-                  />
-                  <Button type="submit" variant="outline" size="sm">
-                    Update
-                  </Button>
-                </form>
-              )}
-
-              {/* Actions */}
-              <div className="flex gap-2">
-                <form action={toggleProductStatus} className="flex-1">
-                  <input type="hidden" name="product_id" value={product.id} />
-                  <input
-                    type="hidden"
-                    name="is_active"
-                    value={String(product.is_active)}
-                  />
-                  <Button
-                    type="submit"
-                    variant="outline"
-                    size="sm"
-                    className="w-full"
-                  >
-                    {product.is_active ? 'Deactivate' : 'Activate'}
-                  </Button>
-                </form>
-                <Link href={`/shop/${product.slug}`} target="_blank">
-                  <Button variant="outline" size="sm">
-                    View
-                  </Button>
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
+      {/* Product cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {PRODUCT_WIKIS.map((p) => (
+          <Link key={p.slug} href={`/admin/products/${p.slug}`} className="group relative block overflow-hidden rounded-2xl border" style={{ aspectRatio: '16 / 10' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={p.hero.image || p.hero.poster} alt={p.name} className="absolute inset-0 h-full w-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(20,17,12,0.9) 0%, rgba(20,17,12,0.2) 55%, rgba(20,17,12,0) 80%)' }} />
+            <span className={`absolute top-3 right-3 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${STATUS_TONE[p.status]}`}>{p.statusLabel}</span>
+            <div className="absolute bottom-0 left-0 p-5">
+              <p className="text-[12px] font-medium text-white/70">{p.eyebrow}</p>
+              <h3 className="font-display text-2xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>{p.name}</h3>
+            </div>
+          </Link>
         ))}
       </div>
 
-      {(!products || products.length === 0) && (
-        <Card>
-          <CardContent className="text-center py-12">
-            <p className="text-gray-500">No products found</p>
-            <p className="text-sm text-gray-400 mt-2">
-              Run the seed.sql to populate initial products
-            </p>
-          </CardContent>
-        </Card>
-      )}
+      {/* Canon footnote */}
+      <p className="text-xs text-muted-foreground">
+        {CANONICAL_ASSETS.bedsDeployed} beds ({CANONICAL_ASSETS.basketBedsDeployed} Basket, {CANONICAL_ASSETS.stretchBedsDeployed} Stretch) ·{' '}
+        {CANONICAL_ASSETS.washersInCommunity} washing machines · {CANONICAL_ASSETS.plasticKg.toLocaleString()}kg HDPE diverted · register-verified.
+      </p>
     </div>
   );
 }

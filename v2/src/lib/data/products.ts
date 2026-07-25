@@ -3,12 +3,21 @@
 // NO PRICES — pricing is handled separately via Stripe/Supabase.
 
 /**
- * HDPE diverted per Stretch Bed, in kilograms. Single source of truth for the
+ * HDPE **in a finished** Stretch Bed, in kilograms. Single source of truth for the
  * plastic-diverted-per-bed factor used in impact/funder calculations — import
  * this instead of hardcoding `* 20`.
  * Source: STRETCH_BED.specs.plasticDiverted ("20kg HDPE per bed") + CLAUDE.md
  * canonical product data (20kg of HDPE diverted per bed).
  * KEY DATA FLAG: this 20kg figure is the design/spec value, not yet weighbridge-verified.
+ *
+ * IN-PRODUCT MASS, NOT PURCHASE QUANTITY (Ben ruling 2026-07-25, Matt model input 1).
+ * This drives the public diversion claim: CANONICAL_ASSETS.plasticKg = stretchBedsDeployed
+ * × this. The *costing* mass is a separate field, `physics.hdpe_kg_per_bed` in
+ * cost-model-scenarios.json, which is what gets multiplied by $2.75/kg landed for $55/bed.
+ * They are equal today only because press yield is unmeasured. If a measured run shows
+ * offcut, purchase rises and this does NOT — offcut is reshredded, not landfilled.
+ * Never point the cost model at this constant: a costing tweak would silently restate a
+ * public claim. Guarded by products.guards.test.ts.
  */
 export const PLASTIC_KG_PER_BED = 20;
 
@@ -103,7 +112,7 @@ export const BASKET_BED = {
 
 export const PRODUCTION_FACILITY = {
   type: 'Containerised mobile plastic re-production facility',
-  investment: '~$100K invested (TFN + ACT funding)',
+  investment: '$110,046 invested (TFN + ACT funding)',
   capacity: '~30 beds/week when deployed for 2 months',
   model: 'Two-container system (shredder container + production container)',
   machines: [
@@ -119,7 +128,6 @@ export const PRODUCTION_FACILITY = {
 
 export const ENTERPRISE = {
   model: 'Community ownership pathway',
-  philosophy: 'Our goal is to become unnecessary',
   pathways: [
     'Sponsor beds',
     'License/transfer model',

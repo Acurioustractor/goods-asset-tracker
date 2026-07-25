@@ -48,7 +48,14 @@ import { CANONICAL_ASSETS } from './asset-canonical';
  *
  * Labels mirror the QBE Diagnostic Artifact Database and the hub legend.
  */
-export type ClaimLabel = 'verified' | 'modelled' | 'target' | 'future' | 'internal-only';
+/**
+ * `workpaper` added 2026-07-25 (ruling H). It fills a real gap: a figure that is ACTUAL, not
+ * modelled, but whose supporting document is not signed. The Goods-only carve-out is the case.
+ * Before this, such a figure had to sit as `verified` (an overclaim: it implies checkable
+ * today) or `modelled` (wrong: it is real cash). Mirrors `Solidity` in cost-story.ts, which
+ * has carried a `workpaper` grade for longer.
+ */
+export type ClaimLabel = 'verified' | 'workpaper' | 'modelled' | 'target' | 'future' | 'internal-only';
 export type CanonDomain = 'assets' | 'money' | 'story' | 'product' | 'cost' | 'pipeline' | 'governance';
 /** GREEN = public-safe. AMBER = internal/management. RED = recipient/storyteller data, never to external models, never auto-published. */
 export type DataClass = 'green' | 'amber' | 'red';
@@ -133,9 +140,12 @@ export const CANON: CanonFact[] = [
   },
   {
     id: 'revenue-carveout', label: 'Goods revenue carve-out', value: 713_827, unit: 'AUD',
-    domain: 'money', claimLabel: 'verified', dataClass: 'amber',
-    source: 'Goods carve-out, pitch blueprint A3', check: 'manual', asAt: '2026-06-02', owner: 'Ben/accountant',
-    definition: 'Goods-only FY26 carve-out, prepared with the accountant but NOT YET SIGNED (Ben ruling 2026-07-25, DECISIONS.md ruling G). Cite the figure; never the word signed, until a signed letter exists and is named in this source field. No surplus claimed: connected entity runs an FY26 net loss. Use alongside revenue-received ($741,111 all-sources) with the basis named.',
+    // RULING G/H 2026-07-25: cite the figure, never call it signed. No accountant document
+    // exists yet; getting one is the next action. Was claimLabel 'verified', which ruling G
+    // flagged as an overclaim rendering in front of funders.
+    domain: 'money', claimLabel: 'workpaper', dataClass: 'amber',
+    source: 'Goods carve-out workpaper, prepared with the accountant (NOT signed); pitch blueprint A3', check: 'manual', asAt: '2026-06-02', owner: 'Ben/accountant',
+    definition: 'Goods-only FY26 carve-out, prepared with the accountant but NOT YET SIGNED (Ben ruling 2026-07-25, DECISIONS.md ruling G). Cite the figure; never the word signed, until a signed letter exists and is named in this source field. Obtaining one is an open action, promised in the claims ledger before mid-August 2026. No surplus claimed: connected entity runs an FY26 net loss. Use alongside revenue-received ($741,111 all-sources) with the basis named.',
     reconcilesWith: ['revenue-received'],
   },
 
@@ -207,10 +217,13 @@ export const CANON: CanonFact[] = [
     reconcilesWith: ['entity-trading-goforward'],
   },
   {
+    // RULING K 2026-07-25. The `value` deliberately carries NO trading name: the company holds
+    // no registered business names at all, so asserting one in a canon value is the exact
+    // defect this ruling fixed. The trading-as-Goods. fact lives in the definition instead.
     id: 'entity-trading-goforward', label: 'Go-forward trading entity', value: 'A Curious Tractor Pty Ltd, ACN 697 347 676 / ABN 36 697 347 676',
     domain: 'governance', claimLabel: 'verified', dataClass: 'green',
     source: 'grant-content.ts orgIdentity (ABN confirmed 2026-05-29, registered 21 Apr 2026); area-09 review', check: 'manual', asAt: '2026-05-29', owner: 'Ben/Nic',
-    definition: 'Confirmed go-forward trading company; all operations migrate to it in FY2026-27. It trades as Goods. and holds NO registered business names (ABN Lookup, checked 2026-07-25). "Goods on Country" is a business name of The Butterfly Movement Ltd, registered 23 Jul 2026, NOT of this company (Ben ruling 2026-07-25, DECISIONS.md ruling K). Do not present the migration as finished externally.',
+    definition: 'Confirmed go-forward trading company; all operations migrate to it in FY2026-27. It trades as Goods., the maker and seller, and holds NO registered business names (ABN Lookup, checked 2026-07-25). "Goods on Country" is a business name of The Butterfly Movement Ltd, the charity, registered 23 Jul 2026, NOT of this company (Ben ruling 2026-07-25, DECISIONS.md ruling K). The two are different things and conflating them has reached funder documents. Open and with MinterEllison: the shop\'s seller of record, since beds are sold by the company on a domain named for the charity. Do not present the migration as finished externally.',
   },
   {
     id: 'entity-dgr-home', label: 'Charity / DGR home', value: 'The Butterfly Movement Ltd, ABN 22 155 132 684',
@@ -230,7 +243,7 @@ export const CANON: CanonFact[] = [
     id: 'signed-lois', label: 'Signed LOIs', value: 0, unit: 'LOIs',
     domain: 'pipeline', claimLabel: 'verified', dataClass: 'amber',
     source: 'GHL "Goods Supporter Journey" pipeline, stage "Committed" (pipeline id JvBFYpVpyKsw899lkFgj). There is NO "Signed-LOI" stage; the old source named one that does not exist. Verified 2026-07-25: 0 rows at Committed.', check: 'manual', asAt: '2026-05-30', owner: 'Ben',
-    definition: 'Signed match-eligible commitments across all 3 Goods pipelines. The QBE match gate is a DOLLAR test, not a count: the Stage 2 grant must be at least matched by signed external commitments (program terms, wiki/investor/04-qbe-pipeline.md). The prior ">=3 signed LOIs" assertion had no source and was struck 2026-07-25 (DECISIONS.md ruling M). Target is AU$400K signed by 31 Aug 2026. A moving number: re-confirm from GHL before citing.',
+    definition: 'Signed match-eligible commitments across all 3 Goods pipelines. The QBE match gate is a DOLLAR test, not a count: the Stage 2 grant must be at least matched by signed external commitments (program terms, wiki/investor/04-qbe-pipeline.md). The prior ">=3 signed LOIs" assertion had no source and was struck 2026-07-25 (DECISIONS.md ruling M). Match is judged on signed, verifiable paper: amount, instrument, funder legal name, and a contact SIH can call, which is a LETTER, not a facility agreement, so a grant-led match papers faster than a loan. Target is AU$400K signed by our own internal gate of 31 Aug 2026; the program\'s own application closes late September 2026, with outcomes in November. Do NOT write "14 Sep" as the application date: that is the Butterfly AGM, a different thing, and no firmer QBE date is sourced. A moving number: re-confirm from GHL before citing.',
   },
 ];
 

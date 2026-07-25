@@ -7,6 +7,6 @@
   "background_color": "#FDF8F3",
   "theme_color": "#C45C3E",
   "icons": [
-    { "src": "/logo.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any" }
+    { "src": "/brand/canonical/goods-wordmark-square-tile.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any" }
   ]
 }

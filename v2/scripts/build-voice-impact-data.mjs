@@ -82,7 +82,9 @@ const normThemesPresent = (arr) =>
 
 // Registry-banned fragments must never reach v2/src, even in admin data —
 // the guard (check-storyteller-registry.mjs) enforces this. Redact at build.
-const BANNED_FRAGMENTS = ['boundary of my totem'];
+// 'boundary of my totem' (Dianne Stokes) removed 2026-07-21 — Ben ruling: Dianne has
+// consent for all her material and her image, so the fragment is no longer held.
+const BANNED_FRAGMENTS = [];
 function redactText(s) {
   let out = s;
   for (const f of BANNED_FRAGMENTS) out = out.split(f).join('[held fragment redacted]');

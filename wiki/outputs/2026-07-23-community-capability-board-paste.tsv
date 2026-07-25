@@ -1,0 +1,53 @@
+FRAME	TYPE	TITLE	BODY	STATUS
+01 Proposition	Headline	Start where the community is. Build only what they need.	Goods on Country is a modular pathway from a practical need to community-held capability.	Core
+01 Proposition	Sticky	The funder proposition	Fund a community-defined step, see the result, learn from it, and back the next step when the community asks.	Core
+01 Proposition	Sticky	The Goods role	Help communities price, procure, deploy, operate, maintain, measure and tell the story of what they chose.	Core
+02 Live loop	Step	1. Listen	What does the community want to make possible now?	Core
+02 Live loop	Step	2. Scope	Define the smallest useful first step and a 90-day proof.	Core
+02 Live loop	Step	3. Assemble modules	Choose only the equipment, product, training, finance, logistics and story support that is useful now.	Core
+02 Live loop	Step	4. Price the capability	Equipment + place + people + production + continuity + enterprise + evidence + risk.	Core
+02 Live loop	Step	5. Deliver and learn	Install safely, train operators, run a real job, record cost, time, quality and issues.	Core
+02 Live loop	Step	6. Prove and return	Return an honest community-approved evidence pack to the community and funder.	Core
+02 Live loop	Step	7. Grow, pause or transfer	Keep it, add a module, share it, transfer more control, or stop if it is not useful.	Core
+03 Modules	Module	A. Listen, design and scope	Community brief, local asset map, pathway design and first proof.	To price
+03 Modules	Module	B. Product access and delivery	Stretch Beds, delivery, assembly, allocation, QR tracking and repair pathway.	Available
+03 Modules	Module	C. Collection and shred	Shredder, setup, safe operation, training, feedstock standard, maintenance and offtake.	Modelled
+03 Modules	Module	D. Assembly and repair hub	Benches, tools, spares, local assembly, maintenance and repair reporting.	To price
+03 Modules	Module	E. Press and make	Hot press, tooling, recipes, training, quality and measured first run.	Modelled
+03 Modules	Module	F. Cut and finish	CNC, toolpaths, fixtures, training, safety and quality.	Modelled
+03 Modules	Module	G. Full production facility	Integrated shred, press, cut, assemble and quality-control capability.	Modelled
+03 Modules	Module	H. Workforce and enterprise	Paid learning, operator roles, unit economics, buyer pathway and governance.	Modelled
+03 Modules	Module	I. Demand and finance	Committed demand, complete budget, capital stack, milestones and contracts.	To build
+03 Modules	Module	J. Story, evidence and learning	Consent-led photos, video, data, case study, deck and live map update.	Available
+04 Jane pathway	Hypothesis	Jane at Utopia wants a shredder	Validate identity, authority, plastic stream, offtake, site and consent before external use.	Needs validation
+04 Jane pathway	Budget	Shredder equipment	$15K-$30K, modelled pending vendor quotes.	Modelled
+04 Jane pathway	Warning	Do not fund a stranded machine	Confirm suitable feedstock, trained operator, safe site, maintenance and a reliable next use for the shredded plastic.	Critical
+04 Jane pathway	Story	The useful next piece	Jane did not ask for a factory. She asked for the useful next piece. The next decision belongs to Utopia.	Draft
+05 Full facility pathway	Hypothesis	"Nchumba" wants the whole production facility	Confirm whether this means Oonchiumpa and validate the request before external use.	Needs validation
+05 Full facility pathway	Gate	Demand before capex	Current model gates major plant spend at roughly 300+ committed beds per year.	Modelled
+05 Full facility pathway	Budget	Gross equipment	Shredder $15K-$30K + press $80K-$150K + CNC $15K-$40K + benches about $2K = $112K-$222K.	Modelled
+05 Full facility pathway	Warning	Equipment is not the complete project	Add site works, freight, installation, safety, training, wages, working capital, first run, maintenance, governance, evidence and contingency.	Critical
+05 Full facility pathway	Proof	Measured 50-bed run	Target $60K-$80K to convert modelled cost, cycle time and quality into measured evidence.	Target
+05 Full facility pathway	Story	The return is the transfer	Equipment, knowledge, demand, margin and decisions moving together into community hands.	Draft
+06 Pricing	Evidence label	Verified	Invoice, signed document or measured record.	Use
+06 Pricing	Evidence label	Workpaper	Checkable internal calculation.	Use
+06 Pricing	Evidence label	Modelled	Built from inputs, not yet demonstrated at this site.	Use
+06 Pricing	Evidence label	Target	Desired future state.	Use
+06 Pricing	Evidence label	Unknown	Requires a quote or community decision.	Use
+07 Case study	Step	Before	What was asked for, what was already strong and what constraint was in the way?	Template
+07 Case study	Step	Choice	Which modules did community choose, decline or defer?	Template
+07 Case study	Step	Build	What was funded, who did what, what did it cost and what changed?	Template
+07 Case study	Step	Proof	Output, paid participation, capability, cost, voice, problems and learning.	Template
+07 Case study	Step	Next	Keep, improve, add, share, transfer or stop.	Template
+08 Funder deck	Slide	1. Start where the community is	Community chooses the capability and pace.	Draft
+08 Funder deck	Slide	2. One model, many entry points	Show the module menu from delivery to a full facility.	Draft
+08 Funder deck	Slide	3. Two different asks	Place the shredder and full-facility pathways side by side.	Draft
+08 Funder deck	Slide	4. Price capability, not a machine	Show the full cost stack and evidence labels.	Draft
+08 Funder deck	Slide	5. Every project becomes proof	Show data, voice, photos, video and the next community-defined ask.	Draft
+08 Funder deck	Slide	6. The invitation	Back the next community-defined step.	Draft
+09 Evidence	Proof	Utopia delivery	First completed case study for delivery, local distribution, QR tracking and reporting.	Reconcile
+09 Evidence	Gate	Consent	Do not use uncleared Utopia or Oonchiumpa media and quotes in external funder material.	Critical
+10 Actions	Action	Validate community examples	Confirm Jane and "Nchumba"/Oonchiumpa details, mandate and permission.	Next
+10 Actions	Action	Get vendor quotes	Three quotes each for shredder, press and CNC.	Next
+10 Actions	Action	Build full-cost calculator	Separate equipment, complete project and ongoing operating cost.	Next
+10 Actions	Action	Finish one case study	Reconcile counts, clear media and produce the Utopia six-slide story.	Next

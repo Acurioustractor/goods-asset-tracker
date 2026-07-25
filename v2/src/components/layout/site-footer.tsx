@@ -112,11 +112,11 @@ export function SiteFooter() {
           <div>
             <Link href="/" className="inline-block" aria-label="Goods on Country home">
               <Image
-                src="/brand/logos/goods-stacked-black.svg"
+                src="/brand/canonical/goods-on-country-primary-ink.png"
                 alt="Goods on Country"
-                width={180}
-                height={120}
-                className="h-20 w-auto"
+                width={657}
+                height={447}
+                className="h-20 w-auto object-contain"
               />
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">

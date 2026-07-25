@@ -22,7 +22,9 @@ import type {
 } from './types';
 
 // Environment configuration
-const EMPATHY_LEDGER_URL = process.env.EMPATHY_LEDGER_API_URL || 'https://empathy-ledger.vercel.app';
+// Canonical EL platform is https://empathyledger.com (empathy-ledger-v2 deploy).
+// The old https://empathy-ledger.vercel.app (v1) is DEAD — do not fall back to it.
+const EMPATHY_LEDGER_URL = process.env.EMPATHY_LEDGER_API_URL || 'https://empathyledger.com';
 const EMPATHY_LEDGER_API_KEY = process.env.EMPATHY_LEDGER_API_KEY || '';
 const GOODS_PROJECT_CODE = process.env.EMPATHY_LEDGER_PROJECT_CODE || 'goods-on-country';
 const GOODS_SITE_SLUG = process.env.EMPATHY_LEDGER_SITE_SLUG || 'goods-asset-register';
@@ -246,7 +248,36 @@ async function fetchFromSyndicationAPI<T>(
 
   if (!response.ok) {
     // Upstream non-2xx. Soft-fail with a typed error caller can handle.
-    throw new SyndicationFetchError(`Upstream ${response.status} ${response.statusText}`);
+    //
+    // The URL is in the message on purpose. These failures are soft, so they only ever
+    // surface as build-log lines, and "Upstream 404 Not Found" with no URL is unactionable.
+    // No secret is exposed; the key travels in a header.
+    //
+    // DIAGNOSED 2026-07-25, so nobody re-runs this. The 404s are NOT a wrong URL, site slug
+    // or project id, and the earlier note here ("everything checked out at 200 by hand") was
+    // reading a stale result. What is actually happening:
+    //
+    //   /api/v1/sites/<slug>                        -> 401 {"error":"Authentication required"}
+    //   /api/v1/sites/<slug>/projects               -> 401 {"error":"Authentication required"}
+    //   /api/v1/sites/<slug>/projects/<pid>/...     -> 404 {"error":"Project not found"}
+    //
+    // Our config is CORRECT: EL's own database returns that exact project id as
+    // "Goods on Country" (slug `goods`), verified by direct Supabase read. Tried site slugs
+    // `goods-asset-register`, `goods` and `goods-on-country`; all 404 the same way.
+    //
+    // So the routes that check auth REJECT our key, and the one that does not check it cannot
+    // resolve the project within that key's scope, which it reports as "Project not found".
+    // That is an EL-side credential or site-registration problem, not something fixable here.
+    // The fallback path is doing its job meanwhile: storyteller pages serve local data.
+    //
+    // To fix: get a syndication API key scoped to this site from the EL side, then re-run
+    //   curl -s "$EMPATHY_LEDGER_API_URL/api/v1/sites/$EMPATHY_LEDGER_SITE_SLUG/projects" \
+    //     -H "Authorization: Bearer $EMPATHY_LEDGER_API_KEY"
+    // A 200 with the project listed means it is fixed. Do not change the ids: they are right.
+    throw new SyndicationFetchError(
+      `Upstream ${response.status} ${response.statusText} for ${url} ` +
+        `(auth: ${EMPATHY_LEDGER_API_KEY ? 'bearer key present' : 'NO KEY'})`,
+    );
   }
 
   return response.json();

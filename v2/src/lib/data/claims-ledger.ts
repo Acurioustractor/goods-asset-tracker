@@ -205,7 +205,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   {
     id: 'signed-lois',
     headline: 'Signed match-eligible commitments',
-    statement: 'Zero signed match-eligible commitments today. The QBE grant must be at least matched by signed external commitments; the target is AU$400,000 signed by 31 August 2026. The first signed commitment is the deck’s own claim flipping from future to verified.',
+    statement: 'Zero signed match-eligible commitments today. The QBE grant must be at least matched by signed external commitments, a dollar test with no LOI count attached; the target is AU$400,000 signed by our own internal gate of 31 August 2026, ahead of the application, which closes late September 2026. Match is judged on signed, verifiable paper (amount, instrument, funder legal name, a contact SIH can call). The first signed commitment is the deck’s own claim flipping from future to verified.',
     status: 'future',
     evidence: [{ label: 'Investor deck', href: '/deck' }],
     asOf: canonFact('signed-lois').asAt,
@@ -259,6 +259,9 @@ export const ANTI_CLAIMS: { statement: string; why: string }[] = [
     why: '200–350 logged bed requests are interest. Revenue is a signed purchase, and only signed purchases are reported as revenue.',
   },
   {
+    // RULING G/H 2026-07-25: this anti-claim was FALSE as written ("We do not publish an
+    // unsigned revenue figure") while the figure rendered on eight surfaces. An integrity
+    // commitment contradicted by practice is worse than no commitment.
     statement: 'We do not call a revenue figure signed until it is.',
     why: 'The Goods-only carve-out is prepared with our accountant and not yet signed. It is shown with a workpaper label and its basis named, never as a certified number. See the locked row below.',
   },
@@ -268,7 +271,9 @@ export const ANTI_CLAIMS: { statement: string; why: string }[] = [
   },
   {
     statement: 'We do not use an uncleared voice or photo.',
-    why: 'Only the 34 consent-cleared voices (the 2026-06-17 pass, plus Margaret Lloyd and Tanya Turner; default-deny, OCAP®-aligned) appear on external surfaces. If a name is not on the list, it does not render.',
+    // Reads from canon rather than a hardcoded count, which had gone stale at "32" and was also
+    // the WRONG TIER: 32 is the display-storyteller pool, a coverage queue, not a clearance list.
+    why: `Only the ${canonFact('cleared-voices').value} consent-cleared voices (the 2026-06-17 pass, plus Margaret Lloyd and Tanya Turner; default-deny, OCAP®-aligned) appear on external surfaces. If a name is not on the list, it does not render. Not to be confused with the broader website display-storyteller pool.`,
   },
 ];
 

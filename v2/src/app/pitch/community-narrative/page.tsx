@@ -27,6 +27,7 @@ import {
 } from '@/lib/data/community-narrative';
 import { getCuratedQuotes } from '@/lib/data/curated-quotes';
 import { storytellerReview, type StorytellerReview } from '@/lib/data/pitch-photo-review';
+import { OtherPitchSurfaceNotice } from '@/components/pitch/pitch-surface-notice';
 
 export const metadata = {
   title: 'Community narrative | Goods on Country pitch',
@@ -221,6 +222,7 @@ function StorytellerCard({ row }: { row: { person: StorytellerReview; quotes: Tr
 export default function CommunityNarrativePage() {
   return (
     <main className="min-h-screen bg-[#f5f3ea] text-[#1f2623]">
+      <OtherPitchSurfaceNotice note="This is the community-narrative cut." />
       <section className="border-b border-[#203833] bg-[#243d3a] text-white">
         <div className="mx-auto max-w-[1560px] px-4 py-8 md:px-6 md:py-12">
           <div className="mb-8 flex flex-wrap items-center gap-3">

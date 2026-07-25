@@ -156,11 +156,10 @@ export const curatedQuotes: Record<string, CuratedQuote[]> = {
     },
   ],
 
+  // 'It's about empowering communities...' RETIRED 2026-07-21 (Ben ruling, checkpoint B-5b):
+  // banned pitch word "empowering". Registry storyteller-registry.ts:1242 keeps the verbatim
+  // record at status 'retired'. Do not reinstate.
   'Georgina Byron AM': [
-    {
-      text: 'It\'s about empowering communities. They want those beds, and it\'s about supporting inspirational entrepreneurs like Ben.',
-      context: 'On Goods on Country',
-    },
     {
       text: 'Our role is to plug the gaps. There\'s quite a few gaps to plug. We can\'t do it all, but we can do our bit.',
       context: 'Funder rationale',

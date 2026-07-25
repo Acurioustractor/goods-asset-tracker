@@ -1,6 +1,18 @@
+> # ⛔ SUPERSEDED 2026-07-25
+>
+> This map is **retired**. It declared an 11/14-slide product-led deck canonical; that deck
+> drifted to stale canon (536/9/18/3,460) and six more decks were built after this file was
+> written. The model settled on 2026-07-25 (Notion: "Communities Choose What They Need") and the
+> deck was re-cut around it.
+>
+> **Current map: `wiki/outputs/2026-07-25-goods-pitch-canonical-map.md`.**
+>
+> Do not source numbers, slide order, or surface guidance from this file. Kept for the record of
+> what was tried and why it was retired.
+
 # Goods pitch — the canonical map (single source of truth)
 
-> CANON NOTE (2026-07-20): figures in this dated doc predate the final canon (540 beds / 177 Stretch / 20 washers / 11 communities / 3,540kg). Do not copy numbers from here; use canon.ts.
+> CANON NOTE (2026-07-20): figures in this dated doc predate the final canon (540 beds / 177 Stretch / 22 washers / 11 communities / 3,540kg). Do not copy numbers from here; use canon.ts.
 
 **Generated:** 2026-07-18 · **This file is the index for the whole pitch effort.** If a
 deck, diagram, number or photo is not pointed to here, it is not canonical. One deck,

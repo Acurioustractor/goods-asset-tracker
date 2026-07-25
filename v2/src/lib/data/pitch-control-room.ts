@@ -136,13 +136,14 @@ export const investmentBridge = {
     'The product was de-risked by two years of design led by community, on country. Every design change traces to a named person\'s request.',
     "The workforce and the ownership path already exist. Oonchiumpa is 100% Aboriginal-owned, paid roles are already stood up, and they have asked about owning a plant of their own.",
     'The story infrastructure is investable in itself. Empathy Ledger consent architecture means every claim is auditable back to a consenting voice.',
-    'The exit is the point. Success looks like communities owning production and Goods becoming unnecessary.',
+    'The exit is the point. Success looks like a community that has come to own the making.',
   ],
   whatItBuys: [
     { item: 'Beds delivered to date', figure: '540 across 11 communities' },
     { item: 'Washing machines in community', figure: '18' },
     { item: 'Plastic diverted', figure: '3,540 kg (Stretch only)' },
-    { item: 'Revenue (Goods carve-out, accountant-signed)', figure: 'AU$713,827' },
+    // RULING G/H 2026-07-25: no signed accountant document exists. Figure stays, word goes.
+    { item: 'Revenue (Goods carve-out, workpaper)', figure: 'AU$713,827' },
     { item: 'Current ask', figure: 'AU$400K (QBE, signed by 31 Aug 2026) on top of SEFA $300K + Snow $100K + Centrecorp $75K' },
   ],
   perFunder: [

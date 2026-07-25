@@ -25,7 +25,7 @@ const CHECKLIST_AFTER_INSTALL = [
   'Tap "📍 Use my GPS" to pin the location. Wait for accuracy ≤30m before saving.',
   'Set status to "deployed".',
   'Hit Save. Confirmation reads "Saved. The asset register is updated."',
-  'Take a photo of the bed in place. Upload via /admin/compassion with asset ID. Tick "Show on public bed page" only if appropriate.',
+  'Take a photo of the bed in place. Upload via the Media Room (/admin/media-library) → Add media, with the bed asset ID. Tick "Show on the public bed page" only if appropriate.',
 ];
 
 const CHECKLIST_RECIPIENT_HANDOVER = [

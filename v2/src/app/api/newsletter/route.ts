@@ -9,14 +9,9 @@ export async function POST(request: NextRequest) {
     const phone = (body.phone as string | undefined)?.trim() || undefined;
     const name = (body.name as string | undefined)?.trim() || undefined;
     const tag = body.tag as string | undefined;
-    // R8 (Spam Act 2003): explicit consent gate. The newsletter send-trigger
-    // (goods-newsletter / comms:goods-newsletter) is granted ONLY when the form
-    // sends newsletterConsent==='Yes' from a default-OFF opt-in checkbox.
-    // Submitting the form is NOT consent. Accept either an explicit string flag
-    // or a boolean `consent` from the UI. TODO(tag-align): the live Goods
-    // newsletter forms (footer, get-involved, sponsor, canberra) do not yet
-    // render an opt-in checkbox — until they do, signups create leads but are
-    // NOT enrolled (OCAP-safe). Add the default-OFF checkbox at the form.
+    // R8 (Spam Act 2003): explicit consent gate. Submitting an email address is
+    // not newsletter consent, so this endpoint fails closed unless a default-off
+    // checkbox was affirmatively selected.
     const newsletterConsent =
       body.newsletterConsent === 'Yes' || body.consent === true ? 'Yes' : undefined;
 
@@ -37,6 +32,13 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    if (!newsletterConsent) {
+      return NextResponse.json(
+        { error: 'Please confirm that you want to receive Goods updates.' },
+        { status: 400 }
+      );
+    }
+
     const ghlResult = await ghl.addToNewsletter({ email, phone, name, tag, newsletterConsent });
 
     console.log('[Newsletter Signup]', {
@@ -49,8 +51,16 @@ export async function POST(request: NextRequest) {
       ghlSimulated: ghlResult.simulated,
     });
 
+    if (!ghlResult.success || !ghlResult.contact?.id || ghlResult.simulated) {
+      return NextResponse.json(
+        { error: 'We could not confirm your subscription. Please try again.' },
+        { status: 502 }
+      );
+    }
+
     return NextResponse.json({
       success: true,
+      status: 'subscribed',
       message: "You're subscribed! We'll keep you in the loop.",
     });
   } catch (error) {

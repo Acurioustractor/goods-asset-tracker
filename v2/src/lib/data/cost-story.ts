@@ -52,11 +52,11 @@ export interface CostChapter {
 export const COST_STORY_SPINE = [
   'A bed sells for $750. Made the current way (legs bought as a finished kit), the next bed costs about $685 and only ~$65 stays with Goods.',
   'The one hard fact under the whole model: we pay 8.6× the raw-material cost to buy legs finished. The plastic itself is $40–55.',
-  'Press the legs ourselves and the next bed costs about $426 — ~$324 stays. Five times more than today. Beds pressed in-house so far: 0. That honesty is the pitch, not a weakness.',
+  'Press the legs ourselves and the next bed costs about $426 — ~$324 stays. Five times more than today. The Maningrida Stretch run (40 beds, INV-0303) was pressed at our own facility at the farm — the capability is proven. What we have not yet done is press at production rate with measured per-bed costs. That honesty is the pitch, not a weakness.',
   'Running the business costs about $109.5K a year before any bed is made. At $324/bed that is ~338 beds a year to break even; at $65/bed it is ~1,679 — which is exactly why we in-source.',
   'The equipment costs $112–222K gross; $110,046 is already invested, so the remaining ask is $2–112K net. We do not spend it until ~300+ beds/yr are committed.',
   'Plastic is a paid input today (~$55/bed), not free. Free community feedstock is the end state of the ladder, not the current state.',
-  'The proof: 540 beds in 11 communities, $713,827 of Goods-only revenue (prepared with the accountant, not yet signed), and 1,000+ beds of named demand on the table.',
+  'The proof: 540 beds in 11 communities, $713,827 in Goods-only revenue (workpaper, not yet accountant-signed), and 1,000+ beds of named demand on the table.',
 ] as const;
 
 export const COST_CHAPTERS: CostChapter[] = [
@@ -152,15 +152,15 @@ export const COST_CHAPTERS: CostChapter[] = [
   {
     slug: 'making-ourselves',
     title: 'Making it ourselves',
-    lede: 'The in-house case is a credible hypothesis, not yet a result — and we say that first. The 50-bed run is what converts it.',
+    lede: 'The capability is proven — the Maningrida run was pressed at our own facility at the farm. What is not yet proven is the cost at production rate. The measured run is what converts it.',
     facts: [
       {
-        label: 'Beds pressed in-house so far',
-        value: '0',
+        label: 'Beds pressed at our own facility',
+        value: '40 (the Maningrida Stretch run, INV-0303)',
         solidity: 'verified',
-        means: 'The honest number. The in-house case is a credible hypothesis, not yet a result.',
-        watchOut: 'Say this before anyone else does — it builds trust.',
-        source: 'Area 11 key points',
+        means: 'The Maningrida beds were pressed at our production facility at the farm and assembled in community. In-house pressing is a demonstrated capability, not a hypothesis.',
+        watchOut: 'What we have NOT yet done: pressed at production rate with measured per-bed costs — that is what the $426 figure still models, and what the measured run proves. Say this before anyone else does.',
+        source: 'Ben ruling 2026-07-21; invoice INV-0303: 40 Stretch Beds, Xero-verified 2026-07-13 (register total 58 = 40 Stretch + 18 Basket; Basket has no pressed legs). Supersedes the "0 pressed" Area 11 note.',
       },
       {
         label: 'Cost per bed — our own factory',
@@ -233,7 +233,7 @@ export const COST_CHAPTERS: CostChapter[] = [
   {
     slug: 'capital',
     title: 'The capital ask',
-    lede: 'The equipment is $112–222K gross. $110,046 is already invested, so the remaining ask is small — and we don’t spend it until ~300+ beds/yr are committed.',
+    lede: 'The equipment is $112–222K gross, a rough range with a lot of variables in it that could plausibly reach about $200K. Separately, $110,046 is already invested. We quote both side by side and never net one off the other, and we don’t spend it until ~300+ beds/yr are committed.',
     facts: [
       {
         label: 'Factory set-up cost (gross)',
@@ -246,17 +246,10 @@ export const COST_CHAPTERS: CostChapter[] = [
       {
         label: 'Already invested in the facility',
         value: '$110,046',
-        solidity: 'verified',
-        means: 'Facility and tooling already paid for — the reason the remaining ask can be small. (~$80K TFN + ~$20K ACT.)',
-        source: 'Xero / 04 · Verified Financials',
-      },
-      {
-        label: 'Net remaining ask',
-        value: '$2–112K',
-        solidity: 'modelled',
-        means: 'Gross set-up cost minus what’s already invested.',
-        watchOut: 'Always say whether you’re quoting gross or net. Mixing them is the #1 source of confusion in past conversations.',
-        source: 'Area 11 key points',
+        solidity: 'workpaper',
+        means: 'Actual spend standing up the farm production facility, mostly bought second hand. About $43,700 of it is evidenced at bill level in the connected Xero; the balance is plant we own whose paperwork is still catching up, chiefly the shredder ($19,800, running, invoice not yet located) and a recently bought larger CNC. A filing job, not a fiction.',
+        watchOut: 'Present this BESIDE the gross ask as evidence of skin in the game, never subtracted from it. Not “verified”: only the $43,700 is bill-evidenced. The ~$75K in the minimal-viable-facility note is a bill-level subtotal, not a competing total.',
+        source: 'Ben ruling 2026-07-25 (Matt model input 2); Xero bill-level pull 2026-07-22',
       },
       {
         label: 'QBE Stage 2 ask',
@@ -310,7 +303,7 @@ export const COST_CHAPTERS: CostChapter[] = [
   {
     slug: 'proof',
     title: 'Proof & demand',
-    lede: 'This is not a pre-revenue pitch: real beds in real communities, real revenue, and named demand bigger than one year of full-facility output.',
+    lede: 'This is not a pre-revenue pitch: real beds in real communities, revenue prepared with our accountant, and named demand bigger than one year of full-facility output.',
     facts: [
       {
         label: 'Delivered so far',
@@ -323,10 +316,11 @@ export const COST_CHAPTERS: CostChapter[] = [
       {
         label: 'Revenue to date',
         value: 'AU$713,827',
+        // RULING G/H 2026-07-25: no signed accountant document exists. Figure stays, word goes.
         solidity: 'workpaper',
-        means: 'Goods-only revenue, prepared with the accountant. The business already trades.',
-        watchOut: 'NOT YET SIGNED (Ben ruling 2026-07-25). Cite the figure, never the word signed, until a signed letter exists. Externally, ONLY this figure: never the $403,901 “surplus” (entity P&L is a net loss).',
-        source: '04 · Verified Financials. A signed accountant letter is the outstanding artifact.',
+        means: 'Goods-only revenue, prepared with our accountant. The business already trades.',
+        watchOut: 'Never call this “signed”: no accountant letter exists yet, and getting one is the next action. Externally, ONLY this figure, never the $403,901 “surplus” (entity P&L is a net loss).',
+        source: 'Workpaper prepared with the accountant / 04 · Verified Financials',
       },
       {
         label: 'Demand on the table',

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { createServiceClient } from '@/lib/supabase/server';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -7,6 +7,9 @@ import { DemandRowItem, type DemandRow } from './demand-row';
 import { AddDemandForm } from './add-demand-form';
 import { CommunityMetaForm } from './community-meta-form';
 import { getCommunityVoices, getCommunityStories } from '@/lib/data/community-stories';
+import CommunityPresent, { type PresentSlide } from './community-present';
+import { getMediaLinksFor, getPeopleInMediaFor } from '@/lib/data/media-links';
+import { StorytellerAvatar } from '@/components/storyteller-avatar';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -125,7 +128,18 @@ export default async function CommunityDetailPage({
   }
 
   const community = commRes.data as CommunityRow | null;
-  if (!community) notFound();
+  if (!community) {
+    // The canonical key is communities.id (kebab slug). Resolve common variants
+    // so a link built from a name or alias (e.g. "utopia-homelands", "mount-isa")
+    // redirects to the canonical page instead of 404ing.
+    const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const { data: all } = await supabase.from('communities').select('id, name, name_aliases');
+    const match = (all as Array<{ id: string; name: string; name_aliases: string[] | null }> | null)?.find(
+      (c) => slugify(c.name) === id || (c.name_aliases || []).some((a) => slugify(a) === id),
+    );
+    if (match && match.id !== id) redirect(`/admin/communities/${match.id}`);
+    notFound();
+  }
 
   const rollup = (rollupRes.data as RollupRow | null) || {
     id,
@@ -222,8 +236,19 @@ export default async function CommunityDetailPage({
   // Media + registry storytellers for this community
   type MediaItem = { id: string; url: string; poster_url: string | null; media_type: string };
   const mediaItems = (mediaRes.data || []) as MediaItem[];
-  const photos = mediaItems.filter((m) => m.media_type !== 'video');
-  const videos = mediaItems.filter((m) => m.media_type === 'video');
+  // Merge in media tagged to this community via the media_links junction (the
+  // Media Room / backfill), deduped against the content_items set by URL.
+  const taggedComm = await getMediaLinksFor(supabase, 'community', community.id);
+  const existingUrls = new Set(mediaItems.map((m) => m.poster_url || m.url));
+  const extraMedia: MediaItem[] = taggedComm
+    .filter((t) => !existingUrls.has(t.src))
+    .map((t) => ({ id: t.id, url: t.src, poster_url: t.poster ?? null, media_type: t.type === 'video' ? 'video' : 'image' }));
+  const allMediaItems = [...mediaItems, ...extraMedia];
+  const photos = allMediaItems.filter((m) => m.media_type !== 'video');
+  const videos = allMediaItems.filter((m) => m.media_type === 'video');
+  // People tagged (media_links person picker) on media that also belongs to this
+  // community — the read-back for the Media Room's per-item person tagging.
+  const peopleInMedia = await getPeopleInMediaFor(supabase, 'community', community.id);
   const storytellers = ((voicesRes.data || []) as Array<{ id: string; display_name: string; is_elder: boolean; portrait: { url?: string } | Array<{ url?: string }> | null }>).map((v) => ({
     name: v.display_name,
     elder: Boolean(v.is_elder),
@@ -243,6 +268,80 @@ export default async function CommunityDetailPage({
   }
 
   const gap = Math.max(0, rollup.open_demand_qty - rollup.deployed_beds);
+
+  // --- Next-phase support: what this community wants, and the funding to meet it ---
+  const BED_PRICE = 750; // canon retail price (canon.ts bed-price)
+  const isBed = (p: string) => /bed|stretch|basket/i.test(p || '');
+  const isWasher = (p: string) => /wash|machine|pakkimjalki/i.test(p || '');
+  const bedsWanted = demand.filter((d) => isBed(d.product)).reduce((n, d) => n + (d.qty || 0), 0);
+  const washersWanted = demand.filter((d) => isWasher(d.product)).reduce((n, d) => n + (d.qty || 0), 0);
+  const fundingAsk = bedsWanted * BED_PRICE * 100; // cents
+  const raisedCents = rollup.active_pipeline_cents + rollup.won_revenue_cents;
+
+  const supportTiles = [
+    {
+      key: 'beds',
+      label: 'Beds',
+      now: rollup.deployed_beds,
+      want: bedsWanted,
+      href: '/admin/products/stretch-bed',
+      product: 'The Stretch Bed',
+    },
+    {
+      key: 'washers',
+      label: 'Washing machines',
+      now: rollup.deployed_machines,
+      want: washersWanted,
+      href: '/admin/products/pakkimjalki-kari',
+      product: 'Pakkimjalki Kari',
+    },
+    {
+      key: 'facility',
+      label: 'Production facility',
+      now: community.facility_interest || null,
+      want: null,
+      href: '/admin/products/the-plant',
+      product: 'The plant',
+    },
+  ];
+
+  const presentSlides: PresentSlide[] = [
+    { kind: 'title', heading: community.name, sub: `${community.state}${community.traditional_name ? ` · ${community.traditional_name} Country` : ''} · walk-through` },
+    {
+      kind: 'stat',
+      sub: 'Where it is now',
+      heading: 'What Goods has delivered here',
+      lines: [
+        { big: fmt(rollup.deployed_beds), small: 'beds delivered' },
+        { big: fmt(rollup.deployed_machines), small: 'washing machines' },
+      ],
+    },
+    {
+      kind: 'want',
+      sub: 'The next phase',
+      heading: 'What this community wants next',
+      lines: [
+        { big: bedsWanted > 0 ? fmt(bedsWanted) : '—', small: 'more beds' },
+        { big: washersWanted > 0 ? fmt(washersWanted) : '—', small: 'washing machines' },
+        { big: community.facility_interest ? '●' : '—', small: community.facility_interest ? `facility: ${community.facility_interest}` : 'facility not yet assessed' },
+      ],
+    },
+    ...(fundingAsk > 0 || raisedCents > 0
+      ? [{
+          kind: 'funding' as const,
+          sub: 'What it takes to support them',
+          heading: 'The funding we need',
+          lines: [
+            { big: fundingAsk > 0 ? fmtMoney(fundingAsk) : '—', small: `${bedsWanted} beds at $${BED_PRICE}` },
+            { big: raisedCents > 0 ? fmtMoney(raisedCents) : '$0', small: 'raised toward it' },
+          ],
+        }]
+      : []),
+    ...(storytellers.length > 0
+      ? [{ kind: 'voices' as const, sub: 'The people here', heading: 'Whose voices tell this story', names: storytellers.map((v) => v.name) }]
+      : []),
+    ...photos.slice(0, 5).map((ph): PresentSlide => ({ kind: 'photo', photo: ph.poster_url || ph.url, heading: community.name })),
+  ];
 
   return (
     <div className="space-y-8 pb-16">
@@ -286,6 +385,7 @@ export default async function CommunityDetailPage({
       <nav className="sticky top-0 z-20 -mx-4 border-b border-border bg-background/95 px-4 py-2.5 backdrop-blur sm:-mx-6 sm:px-6">
         <div className="flex flex-wrap gap-2 text-xs font-medium">
           {[
+            ['#support', 'Support'],
             ['#people', 'People'],
             ['#demand', `Demand (${demand.length})`],
             ['#voices', `Voices (${storytellers.length + compendiumVoices.length})`],
@@ -309,6 +409,62 @@ export default async function CommunityDetailPage({
         <Kpi label="Ready / Allocated" value={`${fmt(rollup.ready_beds)} / ${fmt(rollup.allocated_beds)}`} sub="awaiting fulfilment" highlight={rollup.ready_beds + rollup.allocated_beds > 0} />
         <Kpi label="Open Demand" value={fmt(rollup.open_demand_qty)} sub={fmtMoney(rollup.open_demand_value_cents)} />
         <Kpi label="Demand Gap" value={fmt(gap)} sub={gap > 0 ? 'beds short of demand' : 'fulfilled or no demand'} highlight={gap > 20} />
+      </section>
+
+      {/* Next phase — how we support this community */}
+      <section id="support" className="scroll-mt-24 rounded-2xl border bg-card p-5">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 className="font-display text-lg font-bold" style={{ fontFamily: 'Georgia, serif' }}>Next phase — how we support {community.name}</h2>
+            <p className="text-xs text-muted-foreground">What they have, what they want, and what it takes to get there. Show them the products; connect the need to the funding.</p>
+          </div>
+          <CommunityPresent community={community.name} slides={presentSlides} />
+        </div>
+
+        {/* Support tiles: beds / washers / facility */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {supportTiles.map((t) => (
+            <Link key={t.key} href={t.href} className="group rounded-xl border bg-background p-4 hover:border-primary/40 transition-colors">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-semibold">{t.label}</span>
+                <span className="text-[11px] text-primary opacity-0 group-hover:opacity-100 transition-opacity">view →</span>
+              </div>
+              <div className="mt-3 flex items-end gap-4">
+                <div>
+                  <div className="font-display text-2xl font-bold tabular-nums" style={{ fontFamily: 'Georgia, serif' }}>
+                    {typeof t.now === 'number' ? fmt(t.now) : t.now ? <span className="text-base capitalize text-emerald-700">{t.now}</span> : '—'}
+                  </div>
+                  <div className="text-[11px] text-muted-foreground">{t.key === 'facility' ? 'interest' : 'here now'}</div>
+                </div>
+                {t.want !== null && (
+                  <div>
+                    <div className="font-display text-2xl font-bold tabular-nums text-primary" style={{ fontFamily: 'Georgia, serif' }}>
+                      {t.want > 0 ? `+${fmt(t.want)}` : '—'}
+                    </div>
+                    <div className="text-[11px] text-muted-foreground">wanted next</div>
+                  </div>
+                )}
+              </div>
+              <div className="mt-3 text-[11px] font-medium text-muted-foreground">{t.product}</div>
+            </Link>
+          ))}
+        </div>
+
+        {/* The demand → funding bridge */}
+        {(fundingAsk > 0 || raisedCents > 0) && (
+          <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 rounded-xl bg-primary/10 px-4 py-3">
+            <div>
+              <div className="font-display text-xl font-bold tabular-nums" style={{ fontFamily: 'Georgia, serif' }}>{fundingAsk > 0 ? fmtMoney(fundingAsk) : '—'}</div>
+              <div className="text-[11px] text-muted-foreground">to meet the ask ({bedsWanted} beds × ${BED_PRICE})</div>
+            </div>
+            <div className="text-2xl text-muted-foreground">→</div>
+            <div>
+              <div className="font-display text-xl font-bold tabular-nums text-emerald-700" style={{ fontFamily: 'Georgia, serif' }}>{fmtMoney(raisedCents)}</div>
+              <div className="text-[11px] text-muted-foreground">raised toward it (pipeline + won)</div>
+            </div>
+            <Link href="/admin/pipeline" className="ml-auto text-sm font-semibold text-primary hover:underline">Open the pipeline →</Link>
+          </div>
+        )}
       </section>
 
       {/* People & facility — live from communities columns (seeded 2026-07-19) */}
@@ -423,14 +579,7 @@ export default async function CommunityDetailPage({
             <div className="flex flex-wrap gap-2">
               {storytellers.map((v) => (
                 <span key={v.name} className="flex items-center gap-2 rounded-full border bg-card px-3 py-1.5 text-sm">
-                  {v.portrait ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={v.portrait} alt="" className="h-6 w-6 rounded-full object-cover" loading="lazy" />
-                  ) : (
-                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-muted text-[10px] font-semibold text-muted-foreground">
-                      {v.name.slice(0, 1)}
-                    </span>
-                  )}
+                  <StorytellerAvatar name={v.name} src={v.portrait} size={24} />
                   <span className="font-medium">{v.name}</span>
                   {v.elder && <span className="rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-semibold text-primary">Elder</span>}
                 </span>
@@ -530,6 +679,23 @@ export default async function CommunityDetailPage({
               </div>
             )}
           </>
+        )}
+        {peopleInMedia.length > 0 && (
+          <div className="pt-3">
+            <h3 className="mb-2 text-sm font-semibold font-display">People appearing in this media</h3>
+            <div className="flex flex-wrap gap-2.5">
+              {peopleInMedia.map((p) => (
+                <div key={p.personKey} className="flex items-center gap-2 rounded-full border border-border bg-card py-1 pl-1 pr-3">
+                  <StorytellerAvatar name={p.name} src={p.photoSrc ?? null} size={28} />
+                  <span className="text-xs font-medium">{p.name}</span>
+                  {p.mediaCount > 1 && <span className="text-[10px] text-muted-foreground">×{p.mediaCount}</span>}
+                </div>
+              ))}
+            </div>
+            <p className="mt-1.5 text-[11px] text-muted-foreground">
+              Tagged in the media library. Tag a person in a photo or video that belongs to {community.name} and they appear here.
+            </p>
+          </div>
         )}
       </section>
 

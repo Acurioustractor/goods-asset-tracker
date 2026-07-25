@@ -83,6 +83,14 @@ export interface MarginRow {
 export type BuildMethod = 'kits' | 'panels' | 'factory' | 'community';
 export type CostModelLocation = 'sydney' | 'sunshine_coast' | 'on_country';
 
+/**
+ * Who pays the person who runs the line, at a community site.
+ * OPEN DECISION (Ben and Nic, Matt model input 5) — these are assumed costs, not costed roles.
+ * The DEWR $150,000 Project Manager is a program role, not a production supervisor.
+ * Default is 'none': the computed floor, and the only option that assumes no undecided role.
+ */
+export type SiteSupervisor = 'none' | 'half_time' | 'full_time';
+
 export interface CostModelInputs {
   // Material per bed
   hdpe_kg_per_bed: number;
@@ -119,6 +127,8 @@ export interface CostModelInputs {
   build_method: BuildMethod;
   location: CostModelLocation;
   containerise: boolean;
+  /** Community-site line supervisor. Sits ON TOP of the $130/bed fair-wage labour already in marginal cost. */
+  site_supervisor: SiteSupervisor;
   // Retail
   retail_price: number;
   commercial_low: number;
@@ -135,9 +145,23 @@ const _bom = scenarios.canonical_bom;
 const _defyRates = scenarios.defy_verified_rates;
 const _counterfactual = scenarios.counterfactual;
 
-/** Capital ask (GROSS capex to reach Factory state). Net of the $110,046 already invested. */
+/**
+ * Capital ask, quoted GROSS ONLY (Ben ruling 2026-07-25, Matt model input 3).
+ * A rough range with a lot of variables in it, plausibly reaching ~$200,000.
+ * NEVER net ALREADY_INVESTED off this — the two are quoted side by side, gross ask plus
+ * sunk spend as evidence of skin in the game. The old net figure (~$2K-112K) is retired.
+ */
 export const CAPITAL_GROSS_LOW = _capex.total_low; // 112,000
 export const CAPITAL_GROSS_HIGH = _capex.total_high; // 222,000
+/**
+ * Sunk spend on the farm production facility. $110,046 is ACTUAL (Ben ruling 2026-07-25,
+ * Matt model input 2), and it is the figure to quote. Evidence grade is `workpaper`, not
+ * `verified`: ~$43,700 is evidenced at bill and bank-line level in the connected sole-trader
+ * Xero, and the balance is plant we own whose paperwork is still catching up — the shredder
+ * ($19,800 Telford Smith, physically confirmed, no Xero record) and a recently bought larger
+ * CNC. A filing job, not a fiction. The ~$75K in the 2026-07-22 minimal-viable-facility note
+ * is a bill-level subtotal, NOT a competing total — do not swap it in here.
+ */
 export const ALREADY_INVESTED =
   _capex.already_invested_facility + _capex.already_invested_carbatec_tooling; // 110,046
 
@@ -149,6 +173,135 @@ export const POLYMER_FLOOR_PER_BED = 16; // 20kg × $0.80/kg (Envirobank recycle
 /** Raw-material floors used as idiot-index divisors (per bed). */
 export const STEEL_RAW_FLOOR_PER_BED = scenarios.first_principles_floor.components[1].cost; // 10.34
 export const CANVAS_RAW_FLOOR_PER_BED = scenarios.first_principles_floor.components[2].cost; // 35
+
+/**
+ * The SITE PRODUCTION BLOCK: what bed sales alone should carry at a community site, per year.
+ * Added 2026-07-25 (Matt model input 5). See `site_production_block` in the JSON for the
+ * DEWR line splits, the claims status and the reasoning.
+ *
+ * THREE POTS, not two. This is pot 2.
+ *   1. Network block  — the engine's existing `fixedBlock` less location rent (~$109,500).
+ *                       Amortises across sites. What Goods. is for after a handover.
+ *   2. Site production block — THIS. Carried by bed sales.
+ *   3. Site wraparound block — ~$300,000/yr brokerage plus the program share of rent,
+ *                       insurance and admin. Grant funded by design; never touches per-bed
+ *                       economics on paper.
+ *
+ * Before this existed, the whole site cost model was `LOCATIONS.on_country.rentPerYear`
+ * ($24,000), which is a correct RENT figure that was read as an OPERATING COST. Dividing it
+ * into contribution is what produced the "75 to 100 beds a year" claim retired by ruling I.
+ *
+ * NOTHING HERE IS MEASURED. The splits are derived assumptions and are the thing to argue with.
+ */
+export const SITE_PRODUCTION_BLOCK = scenarios.site_production_block;
+
+/** Assumed annual cost of a community-site line supervisor. OPEN DECISION (Ben and Nic). */
+export const SITE_SUPERVISOR_COST: Record<SiteSupervisor, number> = {
+  none: scenarios.site_production_block.supervisor_options.none,
+  half_time: scenarios.site_production_block.supervisor_options.half_time,
+  full_time: scenarios.site_production_block.supervisor_options.full_time,
+};
+
+/** Bare site production block before any supervisor: $79,333/yr. */
+export const SITE_PRODUCTION_BLOCK_BARE = scenarios.site_production_block.bare_production_block;
+
+/**
+ * CAPEX MODULES (Matt model input 7, added 2026-07-25; created by ruling D, "the object is
+ * infrastructure, not a plant"). A basket a community selects from, replacing the `build_method`
+ * LADDER for the purpose of pricing a real pathway.
+ *
+ * `build_states` stays as-is because its outputs are published. This is additive.
+ *
+ * The defect it fixes: every `build_method` assumes a whole site built in one fixed order, so
+ * the ladder can price exactly one of the four live pathways (Oonchiumpa). It cannot price
+ * Utopia (a shredder), Tennant Creek (an existing shed) or Palm Island (governance first).
+ *
+ * PROPOSED STRUCTURE, not agreed. Capex is reassembled from the MVF replication table, which
+ * makes it an ALLOCATION of evidenced totals, not new evidence. Collection and baling is
+ * genuinely unpriced. Per-module OPERATING shares are not derived, so this prices capex only.
+ */
+export const CAPEX_MODULES = scenarios.capex_modules;
+export type CapexModuleKey = (typeof scenarios.capex_modules.modules)[number]['key'];
+
+export interface ModuleSelectionPrice {
+  /** Module capex only, excluding the site base. */
+  capexLow: number;
+  capexHigh: number;
+  /** With the site base added. */
+  withBaseLow: number;
+  withBaseHigh: number;
+  /** Modules in the selection that have no price yet. A selection with any of these is NOT priceable. */
+  unpriced: string[];
+  /** False when any selected module is unpriced. Do not quote a total when this is false. */
+  priceable: boolean;
+}
+
+export interface ModuleOperatingPrice {
+  /** Site floor: incurred as soon as ANY module runs, zero if none do. */
+  siteFloor: number;
+  /** Sum of the selected modules' own operating shares. */
+  moduleShare: number;
+  /** siteFloor + moduleShare, before any line supervisor. */
+  total: number;
+  /** Per-module breakdown, so a conversation can point at a line rather than a total. */
+  breakdown: Array<{ key: string; amount: number }>;
+}
+
+/**
+ * Annual operating cost a module selection should carry, before any line supervisor.
+ * Added 2026-07-25: this is what made a PARTIAL pathway priceable at all.
+ *
+ * Two buckets, because not all of the block is allocable per module. The site floor exists the
+ * moment anyone works there (books, insurance, yard); the rest scales with the modules run.
+ * A selection with NO modules returns 0, including no floor, because there is no production
+ * site. Palm Island is that case, and its real cost is governance, which is not production.
+ *
+ * DERIVED, not measured. The footprint weights behind the floor-space driver are assumed
+ * rather than surveyed and are the softest input in the whole object.
+ */
+export function priceModuleOperating(keys: readonly string[]): ModuleOperatingPrice {
+  const alloc = scenarios.capex_modules.operating_allocation;
+  const breakdown = alloc.per_module
+    .filter((m) => keys.includes(m.key))
+    .map((m) => ({ key: m.key, amount: m.total }));
+
+  const moduleShare = breakdown.reduce((t, m) => t + m.amount, 0);
+  const siteFloor = breakdown.length > 0 ? alloc.site_floor.total : 0;
+
+  return { siteFloor, moduleShare, total: siteFloor + moduleShare, breakdown };
+}
+
+/**
+ * Price a subset of modules. Returns bands, not a point.
+ *
+ * Returns `priceable: false` when the selection contains an unpriced module, rather than
+ * silently treating it as $0. Collection and baling is the live case: it is upstream of the
+ * shredder, so Utopia, the pathway asking for the earliest module, is the one the model still
+ * cannot price. Treating a missing quote as zero is how a pathway looks cheaper than it is.
+ */
+export function priceModuleSelection(
+  keys: readonly string[],
+  opts: { includeSiteBase?: boolean } = {},
+): ModuleSelectionPrice {
+  const selected = scenarios.capex_modules.modules.filter((m) => keys.includes(m.key));
+  const unpriced = selected.filter((m) => m.capex_low === null || m.capex_high === null).map((m) => m.key);
+
+  const capexLow = selected.reduce((t, m) => t + (m.capex_low ?? 0), 0);
+  const capexHigh = selected.reduce((t, m) => t + (m.capex_high ?? 0), 0);
+
+  const includeBase = opts.includeSiteBase !== false;
+  const baseLow = includeBase ? scenarios.capex_modules.site_base.capex_low : 0;
+  const baseHigh = includeBase ? scenarios.capex_modules.site_base.capex_high : 0;
+
+  return {
+    capexLow,
+    capexHigh,
+    withBaseLow: capexLow + baseLow,
+    withBaseHigh: capexHigh + baseHigh,
+    unpriced,
+    priceable: unpriced.length === 0,
+  };
+}
 
 export const LOCATIONS: Record<
   CostModelLocation,
@@ -195,6 +348,9 @@ export const CostModelDefaults: CostModelInputs = {
   build_method: 'kits',
   location: 'sydney',
   containerise: false,
+  // 'none' is the computed floor and the only option that assumes no undecided role.
+  // Changing this default changes a denominator, not just a dial. Ben and Nic decide it.
+  site_supervisor: 'none',
   retail_price: WEBSITE_PRICE, // 750 (supplier-quotes.ts canonical)
   commercial_low: _counterfactual.commercial_steel_frame_bed_au_2026_low, // 1500
   commercial_high: _counterfactual.commercial_steel_frame_bed_au_2026_high, // 2000

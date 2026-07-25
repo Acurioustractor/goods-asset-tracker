@@ -59,10 +59,11 @@ const TIER_BADGE: Record<VoiceTier, { label: string; cls: string }> = {
   internal: { label: 'internal', cls: 'bg-muted text-muted-foreground border-border' },
 };
 
-const QUOTE_STATUS_BADGE: Record<'primary' | 'approved' | 'hold', { label: string; cls: string }> = {
+const QUOTE_STATUS_BADGE: Record<'primary' | 'approved' | 'hold' | 'retired', { label: string; cls: string }> = {
   primary: { label: 'primary', cls: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
   approved: { label: 'approved', cls: 'bg-muted text-muted-foreground border-border' },
   hold: { label: 'HOLD', cls: 'bg-red-100 text-red-700 border-red-200' },
+  retired: { label: 'RETIRED', cls: 'bg-zinc-200 text-zinc-600 border-zinc-300 line-through' },
 };
 
 const TIER_OPTIONS: Array<'all' | VoiceTier> = [
