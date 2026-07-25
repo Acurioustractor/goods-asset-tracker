@@ -6,6 +6,7 @@ export function FollowForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [consent, setConsent] = useState(false);
   const [err, setErr] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
@@ -30,6 +31,7 @@ export function FollowForm() {
           phone: phone || undefined,
           name: name || undefined,
           tag: 'canberra-airport-2026',
+          consent,
         }),
       });
       if (!response.ok) throw new Error('Submit failed');
@@ -77,6 +79,19 @@ export function FollowForm() {
         onChange={(e) => setEmail(e.target.value)}
         className="w-full rounded-xl border border-[#2E2E2E]/20 bg-white px-4 py-3 text-base text-[#2E2E2E] placeholder:text-[#2E2E2E]/40 focus:outline-none focus:ring-2 focus:ring-[#C45C3E]/40"
       />
+      <label className="flex items-start gap-2 text-xs text-[#2E2E2E]/70">
+        <input
+          type="checkbox"
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+          required
+          className="mt-0.5 h-4 w-4 shrink-0 accent-[#C45C3E]"
+        />
+        <span>
+          Yes, send me occasional Goods updates. I can unsubscribe anytime.{' '}
+          <a href="/privacy" className="underline underline-offset-2">Privacy</a>
+        </span>
+      </label>
       {err && (
         <p className="text-sm text-[#C45C3E]">{err}</p>
       )}

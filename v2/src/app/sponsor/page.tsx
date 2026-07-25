@@ -89,6 +89,7 @@ function SponsorContent() {
   // don't convert into the comms list. Tagged goods-newsletter +
   // goods-src-sponsor-interest so the GHL Smart Router can nurture them.
   const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterConsent, setNewsletterConsent] = useState(false);
   const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
   const handleNewsletter = async (e: React.FormEvent) => {
@@ -98,11 +99,16 @@ function SponsorContent() {
       const res = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: newsletterEmail, tag: 'sponsor-interest' }),
+        body: JSON.stringify({
+          email: newsletterEmail,
+          tag: 'sponsor-interest',
+          consent: newsletterConsent,
+        }),
       });
       if (!res.ok) throw new Error('Failed');
       setNewsletterStatus('success');
       setNewsletterEmail('');
+      setNewsletterConsent(false);
     } catch {
       setNewsletterStatus('error');
     }
@@ -521,24 +527,39 @@ function SponsorContent() {
               You&apos;re in. We&apos;ll keep you posted as beds land on Country.
             </div>
           ) : (
-            <form onSubmit={handleNewsletter} className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                required
-                value={newsletterEmail}
-                onChange={(e) => setNewsletterEmail(e.target.value)}
-                placeholder="your@email.com"
-                className="flex-1 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2"
-                style={{ backgroundColor: 'white', border: `1px solid ${CHARCOAL}1A`, color: CHARCOAL }}
-              />
-              <button
-                type="submit"
-                disabled={newsletterStatus === 'submitting'}
-                className="rounded-xl px-6 py-3 text-base font-semibold transition disabled:opacity-50 whitespace-nowrap"
-                style={{ backgroundColor: CHARCOAL, color: CREAM }}
-              >
-                {newsletterStatus === 'submitting' ? 'Subscribing…' : 'Keep me updated'}
-              </button>
+            <form onSubmit={handleNewsletter} className="space-y-3">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="email"
+                  required
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  className="flex-1 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2"
+                  style={{ backgroundColor: 'white', border: `1px solid ${CHARCOAL}1A`, color: CHARCOAL }}
+                />
+                <button
+                  type="submit"
+                  disabled={newsletterStatus === 'submitting'}
+                  className="rounded-xl px-6 py-3 text-base font-semibold transition disabled:opacity-50 whitespace-nowrap"
+                  style={{ backgroundColor: CHARCOAL, color: CREAM }}
+                >
+                  {newsletterStatus === 'submitting' ? 'Subscribing…' : 'Keep me updated'}
+                </button>
+              </div>
+              <label className="flex items-start justify-center gap-2 text-xs" style={{ color: `${CHARCOAL}B3` }}>
+                <input
+                  type="checkbox"
+                  checked={newsletterConsent}
+                  onChange={(e) => setNewsletterConsent(e.target.checked)}
+                  required
+                  className="mt-0.5 h-4 w-4 shrink-0"
+                />
+                <span>
+                  Yes, email me occasional Goods updates. I can unsubscribe anytime.{' '}
+                  <a href="/privacy" className="underline underline-offset-2">Privacy</a>
+                </span>
+              </label>
             </form>
           )}
           {newsletterStatus === 'error' && (

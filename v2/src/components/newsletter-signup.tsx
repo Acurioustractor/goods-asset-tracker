@@ -74,7 +74,10 @@ export function NewsletterSignup({
           required
           className="mt-0.5 h-4 w-4 shrink-0 rounded border-input accent-primary"
         />
-        <span>Yes, email me occasional Goods updates. I can unsubscribe anytime.</span>
+        <span>
+          Yes, email me occasional Goods updates. I can unsubscribe anytime.{' '}
+          <a href="/privacy" className="underline underline-offset-2">Privacy</a>
+        </span>
       </label>
       <Button type="submit" className="w-full" disabled={status === 'submitting'}>
         {status === 'submitting' ? 'Submitting...' : buttonText}
