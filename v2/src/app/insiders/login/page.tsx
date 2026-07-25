@@ -79,7 +79,7 @@ function LoginForm() {
           </button>
         </form>
         <p className="mt-8 text-xs text-stone-400">
-          Goods on Country · A Curious Tractor
+          Goods. · A Curious Tractor Pty Ltd
         </p>
       </div>
     </div>

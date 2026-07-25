@@ -85,7 +85,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   {
     id: 'communities-served',
     headline: 'Communities served',
-    statement: 'Communities served through deployed assets; ten distinct communities touched.',
+    statement: 'Communities served through deployed assets; twelve distinct communities touched.',
     figure: greenFigure('communities-served'),
     factId: 'communities-served',
     status: 'verified',
@@ -205,7 +205,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   {
     id: 'signed-lois',
     headline: 'Signed match-eligible commitments',
-    statement: 'Zero signed LOIs today. The QBE match gate needs at least three by 31 August 2026; the first signed commitment is the deck’s own claim flipping from future to verified.',
+    statement: 'Zero signed match-eligible commitments today. The QBE grant must be at least matched by signed external commitments; the target is AU$400,000 signed by 31 August 2026. The first signed commitment is the deck’s own claim flipping from future to verified.',
     status: 'future',
     evidence: [{ label: 'Investor deck', href: '/deck' }],
     asOf: canonFact('signed-lois').asAt,
@@ -232,13 +232,18 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   // ── Locked — held until a human signs. No figure. Ever. ──
   {
     id: 'consolidated-revenue',
-    headline: 'Consolidated revenue figure',
-    statement: 'Total funding received since inception is held from publication until the accountant signs one Goods-only figure. We would rather show you a lock than an unsigned number.',
+    headline: 'A signed revenue figure',
+    // Rewritten 2026-07-25 (DECISIONS.md ruling H). The old wording said the figure was held
+    // from publication until signed. It was not held: it shipped on funder surfaces from June.
+    // A gate that describes a discipline nobody follows is worse than no gate, because it reads
+    // as assurance. What IS held is the word "signed". Statement stays digit-free so
+    // assertLedgerSafe keeps protecting the locked class.
+    statement: 'A signed, accountant-certified Goods-only revenue figure does not exist yet. The prepared carve-out is shown on funder-facing surfaces with a workpaper label and its basis named. It is never presented as signed, and no surplus figure is published or implied anywhere.',
     status: 'locked',
-    ceiling: 'No revenue or surplus figure is published or implied anywhere external until sign-off.',
+    ceiling: 'No revenue figure is described as signed or certified until the accountant signs one. No surplus figure, ever.',
     evidence: [{ label: 'Reconciliation basis (internal, on request)' }],
-    asOf: '2026-06-03',
-    flip: { when: 'on accountant sign-off (targeted before mid-August 2026)', how: 'The signed Goods-only figure is published here, with its basis named.' },
+    asOf: '2026-07-25',
+    flip: { when: 'on accountant sign-off (outstanding as at 2026-07-25; the ledger previously targeted mid-August 2026)', how: 'The signed figure and its basis are named here and the workpaper label comes off every surface.' },
   },
 ];
 
@@ -254,8 +259,8 @@ export const ANTI_CLAIMS: { statement: string; why: string }[] = [
     why: '200–350 logged bed requests are interest. Revenue is a signed purchase, and only signed purchases are reported as revenue.',
   },
   {
-    statement: 'We do not publish an unsigned revenue figure.',
-    why: 'The consolidated figure stays locked until the accountant reconciles one Goods-only number. See the locked row below.',
+    statement: 'We do not call a revenue figure signed until it is.',
+    why: 'The Goods-only carve-out is prepared with our accountant and not yet signed. It is shown with a workpaper label and its basis named, never as a certified number. See the locked row below.',
   },
   {
     statement: 'We do not claim community ownership has happened.',
@@ -263,7 +268,7 @@ export const ANTI_CLAIMS: { statement: string; why: string }[] = [
   },
   {
     statement: 'We do not use an uncleared voice or photo.',
-    why: 'Only the 32 consent-cleared voices (2026-06-17 pass, default-deny, OCAP®-aligned) appear on external surfaces. If a name is not on the list, it does not render.',
+    why: 'Only the 34 consent-cleared voices (the 2026-06-17 pass, plus Margaret Lloyd and Tanya Turner; default-deny, OCAP®-aligned) appear on external surfaces. If a name is not on the list, it does not render.',
   },
 ];
 
