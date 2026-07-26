@@ -12,10 +12,18 @@ import {
   HOME_DOORS,
   homeVoiceQuote,
 } from '@/lib/data/home';
+import { getStoryOverrides } from '@/lib/field-notes/overrides';
+import { createClient } from '@/lib/supabase/server';
+import { MediaSwapZone, type SwapFolder } from '@/components/admin/media-swap-picker';
 
 // Homepage A — "The Bed on Country" (Ben's picked mock, 2026-07-26).
 // Every word renders from lib/data/home.ts, which home.guards.test.ts holds
 // against canon, consent and the road spine. Nothing narrative is authored here.
+// Images can be re-picked by an admin through the Empathy Ledger swap picker
+// (orange pill, local dev or signed in); overrides layer over the guarded
+// defaults via data/field-note-overrides.json under slug 'home'.
+
+const HOME_SLUG = 'home';
 
 const DISPLAY_FONT = { fontFamily: 'var(--font-display, Georgia, serif)' } as const;
 
@@ -25,20 +33,82 @@ const DOOR_TONES = {
   teal: '#3E6363',
 } as const;
 
-export default function HomePage() {
+const HOME_FOLDERS: SwapFolder[] = [
+  { label: 'All recent', emoji: '🕘', tags: [] },
+  { label: 'Website images', emoji: '🖼', tags: ['__website__'] },
+  { label: 'All Stretch Bed', emoji: '🛏', tags: ['product:stretch-bed'] },
+  { label: 'May 2026 trip', emoji: '📅', tags: ['trip:may-2026'] },
+  { label: 'Maningrida', emoji: '🌅', tags: ['community:maningrida'] },
+  { label: 'Alice build', emoji: '🛠', tags: ['event:alice-build'] },
+  { label: 'Utopia delivery', emoji: '🏠', tags: ['community:utopia-homelands', 'event:bed-delivery'] },
+];
+
+export default async function HomePage() {
+  // Admin-only swap widget: local dev or a signed-in user sees the orange
+  // swap pill on each media slot. Public visitors get no chrome.
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const canSwap = !!user || process.env.NODE_ENV !== 'production';
+
+  const overrides = getStoryOverrides(HOME_SLUG);
+  const ov = (key: string, fallback: string) => overrides[key] || fallback;
+
+  // Hero can be overridden to a VIDEO through the picker's smart routing:
+  // a video pick writes hero.videoDesktop/videoMobile/poster and clears
+  // hero.image; a photo pick does the reverse.
+  const heroImage = ov('hero.image', HOME_HERO.image);
+  const heroVideoDesktop = overrides['hero.videoDesktop'];
+  const heroVideoMobile = overrides['hero.videoMobile'];
+  const heroPoster = overrides['hero.poster'];
+
   return (
     <>
       {/* 1. Hero */}
       <section className="relative isolate flex min-h-[76vh] items-end overflow-hidden bg-foreground">
-        <Image
-          src={HOME_HERO.image}
-          alt={HOME_HERO.imageAlt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
+        {heroVideoDesktop ? (
+          <>
+            <video
+              className="absolute inset-0 hidden h-full w-full object-cover sm:block"
+              src={heroVideoDesktop}
+              poster={heroPoster}
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
+            <video
+              className="absolute inset-0 h-full w-full object-cover sm:hidden"
+              src={heroVideoMobile || heroVideoDesktop}
+              poster={heroPoster}
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
+          </>
+        ) : (
+          <Image
+            src={heroImage}
+            alt={HOME_HERO.imageAlt}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-black/70" />
+        {canSwap && (
+          <MediaSwapZone
+            slug={HOME_SLUG}
+            overrideKey="hero.image"
+            currentUrl={heroVideoDesktop || heroImage}
+            tagQuery={['trip:may-2026']}
+            kind="any"
+            label="swap hero"
+            folders={HOME_FOLDERS}
+            smartMediaRoute
+          />
+        )}
         <div className="relative container mx-auto px-4 pb-14 md:pb-20">
           <h1
             className="max-w-3xl text-4xl font-semibold leading-tight text-white md:text-6xl"
@@ -106,12 +176,24 @@ export default function HomePage() {
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-muted">
               <Image
-                src={HOME_BED_SECTION.image}
+                src={ov('bed.image', HOME_BED_SECTION.image)}
                 alt={HOME_BED_SECTION.imageAlt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
+              {canSwap && (
+                <MediaSwapZone
+                  slug={HOME_SLUG}
+                  overrideKey="bed.image"
+                  currentUrl={ov('bed.image', HOME_BED_SECTION.image)}
+                  tagQuery={['product:stretch-bed']}
+                  kind="photo"
+                  label="swap"
+                  broadTag="product:stretch-bed"
+                  folders={HOME_FOLDERS}
+                />
+              )}
             </div>
             <div>
               <p className="mb-4 text-sm uppercase tracking-widest" style={{ color: DOOR_TONES.terracotta }}>
@@ -181,12 +263,23 @@ export default function HomePage() {
             </div>
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-muted">
               <Image
-                src={HOME_FACILITY_SECTION.image}
+                src={ov('facility.image', HOME_FACILITY_SECTION.image)}
                 alt={HOME_FACILITY_SECTION.imageAlt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
+              {canSwap && (
+                <MediaSwapZone
+                  slug={HOME_SLUG}
+                  overrideKey="facility.image"
+                  currentUrl={ov('facility.image', HOME_FACILITY_SECTION.image)}
+                  tagQuery={['use:process']}
+                  kind="photo"
+                  label="swap"
+                  folders={HOME_FOLDERS}
+                />
+              )}
             </div>
           </div>
         </div>
@@ -202,27 +295,42 @@ export default function HomePage() {
             {HOME_VOICES.title}
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
-            {HOME_VOICES.cards.map((card) => (
-              <figure key={card.name} className="overflow-hidden rounded-2xl border border-border bg-background">
-                <div className="relative aspect-[4/3] w-full bg-muted">
-                  <Image
-                    src={card.image}
-                    alt={card.imageAlt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <blockquote className="text-base leading-relaxed text-foreground/90" style={DISPLAY_FONT}>
-                    &ldquo;{homeVoiceQuote(card)}&rdquo;
-                  </blockquote>
-                  <figcaption className="mt-3 text-sm text-muted-foreground">
-                    <span className="font-semibold text-foreground">{card.name}</span> · {card.place}
-                  </figcaption>
-                </div>
-              </figure>
-            ))}
+            {HOME_VOICES.cards.map((card, i) => {
+              const imgKey = `voices.${i}.image`;
+              const imgSrc = ov(imgKey, card.image);
+              return (
+                <figure key={card.name} className="overflow-hidden rounded-2xl border border-border bg-background">
+                  <div className="relative aspect-[4/3] w-full bg-muted">
+                    <Image
+                      src={imgSrc}
+                      alt={card.imageAlt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover"
+                    />
+                    {canSwap && (
+                      <MediaSwapZone
+                        slug={HOME_SLUG}
+                        overrideKey={imgKey}
+                        currentUrl={imgSrc}
+                        tagQuery={['__website__']}
+                        kind="photo"
+                        label="swap"
+                        folders={HOME_FOLDERS}
+                      />
+                    )}
+                  </div>
+                  <div className="p-6">
+                    <blockquote className="text-base leading-relaxed text-foreground/90" style={DISPLAY_FONT}>
+                      &ldquo;{homeVoiceQuote(card)}&rdquo;
+                    </blockquote>
+                    <figcaption className="mt-3 text-sm text-muted-foreground">
+                      <span className="font-semibold text-foreground">{card.name}</span> · {card.place}
+                    </figcaption>
+                  </div>
+                </figure>
+              );
+            })}
           </div>
           <Link
             href={HOME_VOICES.link.href}
