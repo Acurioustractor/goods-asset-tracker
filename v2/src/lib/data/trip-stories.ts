@@ -1030,13 +1030,13 @@ const utopia: TripStory = {
         {
           who: 'Funders',
           title: 'Move the making to Country',
-          body: 'Back the containerised plant and the move to community ownership. Production is around 85% complete. The next round closes the gap and starts local jobs.',
-          cta: { label: 'Back the plant', href: '/partner' },
+          body: 'Back local production and the move toward community ownership. Production is around 85% complete. The next round closes the gap and starts local jobs.',
+          cta: { label: 'Back local production', href: '/partner' },
         },
         {
           who: 'Partners',
           title: 'Build it in your community',
-          body: 'Bring the work to your homelands. The design happens in community with the people who will use it. Goods supports the build and the realising. The community runs and owns the plant.',
+          body: 'Bring the work to your homelands. The design happens in community with the people who will use it. Goods supports the build and the realising, and the making moves toward the community that runs it.',
           cta: { label: 'Start a conversation', href: '/partner' },
         },
       ],
