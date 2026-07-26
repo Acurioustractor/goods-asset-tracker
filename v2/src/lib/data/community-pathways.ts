@@ -102,6 +102,25 @@ export interface NextPhase {
   ask: string;
 }
 
+/**
+ * THE HISTORY LAYER - the dated receipts behind a case study.
+ *
+ * `caseStudy.story` holds thematic beats; nothing held WHEN things happened. The timeline of
+ * deliveries, builds and decisions per community lived scattered across canon definitions and
+ * evidence notes, which meant no surface could show a community's receipts chronologically.
+ *
+ * Rules: every entry is a thing that HAPPENED (never an intention), `date` is 'YYYY' or
+ * 'YYYY-MM' (only as precise as the source supports), and `source` names where the fact is
+ * recorded - a canon id, a file, a register. No entry may be added from memory alone.
+ */
+export interface HistoryEvent {
+  /** 'YYYY' or 'YYYY-MM'. Only as precise as the source supports. */
+  date: string;
+  event: string;
+  /** Where this fact is recorded: canon id, file, register. */
+  source: string;
+}
+
 export interface CommunityPathway {
   id: string;
   name: string;
@@ -117,6 +136,8 @@ export interface CommunityPathway {
   evidenceNote: string;
   mediaState: EvidenceState;
   mediaNote: string;
+  /** Dated receipts, oldest first. See the HistoryEvent docblock. */
+  history: HistoryEvent[];
   modules: PathwayModule[];
   nextActions: string[];
   pilot?: {
@@ -199,6 +220,18 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
     evidenceNote: 'Existing proposal and quote are documented; current site, operators and partner roles need reconfirmation.',
     mediaState: 'community-confirmation',
     mediaNote: 'Bed-building video and images exist. Asset-level permission and Youth Centre approval must be reconfirmed.',
+    history: [
+      {
+        date: '2026',
+        event: 'A Goods washing machine delivered to Our Community Shed; a Stretch Bed recorded at the Barkly Youth Centre (+1 in the register, Ben ruling 2026-07-19). Nine Pakkimjalki Kari in community. Month not recorded, so the bare year is the honest date.',
+        source: "canon 'beds-deployed' and 'washing-machines' definitions; pilot.verified",
+      },
+      {
+        date: '2026-02',
+        event: 'Two-stage, 12-month trial proposal developed with Our Community Shed, priced at $234,000 excluding GST. Still documented; explicitly not the next step.',
+        source: 'pilot.verified in this file',
+      },
+    ],
     modules: [
       pathwayModule('build', 'Community bed build', 'A facilitated build or repair activity with local young people.', 'exploring'),
       pathwayModule('repair', 'Repair and maintenance', 'Local repair skills, parts and maintenance guidance.', 'exploring'),
@@ -334,6 +367,18 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
     evidenceNote: 'The relationship and May bed delivery are verified. Shredder scope remains a working request to confirm.',
     mediaState: 'community-confirmation',
     mediaNote: 'Trip galleries and a field note exist. Community review and asset-level permissions remain the publication gate.',
+    history: [
+      {
+        date: '2026-05',
+        event: 'The May journey: Stretch Beds built in Alice Springs with young people from the Oonchiumpa network, then delivered family-by-family across the homelands with local teams. 147 beds confirmed in community.',
+        source: "caseStudy.story in this file; per-community ledger (wiki/investor/10-community-counts.md); field note /field-notes/utopia-may-2026",
+      },
+      {
+        date: '2026-07',
+        event: 'Jane Wilson opened the conversation about practical opportunities for young people, including what a shredder could make possible locally. The shredder module priced at $24,800 - $39,300 capex.',
+        source: 'nextPhase.cost in this file (priceModuleSelection, cost-model-scenarios.json)',
+      },
+    ],
     modules: [
       pathwayModule('shredder', 'Shredder and training', 'A priced shredder package with safe operation and maintenance support.', 'requested'),
       pathwayModule('youth', 'Youth activity', 'Hands-on making, photography or local storytelling shaped with Jane.', 'exploring'),
@@ -435,6 +480,23 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
     evidenceNote: 'The ownership direction and facility application are developed; final DEWR status and reconciliation are pending.',
     mediaState: 'verified',
     mediaNote: 'Oonchiumpa has approved the overall framing. Each external artifact still uses the recorded audience tier.',
+    history: [
+      {
+        date: '2024',
+        event: 'Partnership begins: cultural advice, youth programs and delivery. Two years old as of the 2026 case study.',
+        source: 'caseStudy.proof in this file',
+      },
+      {
+        date: '2026',
+        event: 'A federal (DEWR) submission developed for a community-controlled production facility in Alice Springs; scope and budget reconciliation pending. Month not recorded, so the bare year is the honest date.',
+        source: 'caseStudy.summary and nextPhase.blockedOn in this file',
+      },
+      {
+        date: '2026-05',
+        event: 'The build days: over two days behind the Oonchiumpa office, young men and young women built Stretch Beds from flat-pack components with Oonchiumpa workers, then the beds travelled east to the homelands. Every young person who built a bed kept one.',
+        source: "caseStudy.story in this file; Mykel's build video /video/partners/oonchiumpa/mykel-building-the-bed.mp4",
+      },
+    ],
     modules: [
       pathwayModule('facility', 'Complete production facility', 'Local shredding, pressing, CNC, training and operating support.', 'requested'),
       pathwayModule('youth', 'Youth pathways', 'Making, work experience and pathways aligned with Oonchiumpa programs.', 'requested'),
@@ -553,6 +615,13 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
     evidenceNote: 'The delivery is in the register: 40 Stretch Beds (Jul 2026, the biggest single-community build) and 8 washing machines including the school unit. In-house pressing of the 40 beds is the proof of the production process.',
     mediaState: 'community-confirmation',
     mediaNote: 'Ten committed trip photos and a produced 3:53 film exist. The film is a reference cut gated on the full-resolution master, production consent for children and unnamed adults on camera, and caption name fixes (Gamardi, Goods on Country) before public use.',
+    history: [
+      {
+        date: '2026-07',
+        event: 'The biggest single-community build: 40 Stretch Beds pressed in-house and built with the Gamardi community and Homeland School Company, plus the school washing machine. Eight Pakkimjalki Kari in community. The trip filmed as the 3:53 feature.',
+        source: "canon 'beds-deployed' (+40 Jul 2026) and 'washing-machines' (Maningrida 8) definitions; home.ts HOME_FEATURE_VIDEO",
+      },
+    ],
     modules: [
       pathwayModule('beds', 'Beds delivered', '40 Stretch Beds built and delivered with community in July 2026.', 'requested'),
       pathwayModule('washers', 'Washing machines', '8 Pakkimjalki Kari in community, including the school unit.', 'requested'),
@@ -602,6 +671,23 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
     evidenceNote: 'The delivery history is real and recorded: 131 beds and 4 washing machines, with Ebony and Jahvan Oui training as future manufacturing leads. Six external-cleared Palm Island voices are on the registry. No community capability audit has been completed, and that history must not be treated as a request.',
     mediaState: 'community-confirmation',
     mediaNote: 'Six cleared voices (Ivy, Alfred Johnson, Carmelita & Colette, Daniel Patrick Noble, Jason, Jahvan Oui), five portraits, twelve committed delivery photos and the cleared Jahvan washing-machine video (descript-videos.ts). The Empathy Ledger also holds 51 Palm Island storytellers, mostly the historical archive project - check project scope and consent before using any of those.',
+    history: [
+      {
+        date: '2026',
+        event: '131 beds and 4 Pakkimjalki Kari recorded in community over the relationship, delivered with PICC. Ebony and Jahvan Oui training with Defy Design as future manufacturing leads, including Jahvan\'s visit to the Defy factory in Sydney.',
+        source: "compendium.ts community row (131 beds, 4 washers, PICC); canon 'washing-machines' definition",
+      },
+      {
+        date: '2026-06',
+        event: 'Five Palm Island voices cleared for external use in the consent pass: Ivy, Alfred Johnson, Carmelita & Colette, Daniel Patrick Noble, Jason - the barge-freight economics told first-hand.',
+        source: "canon 'cleared-voices' (2026-06-17 pass); storyteller-registry.ts",
+      },
+      {
+        date: '2026-07',
+        event: 'The washing-machine delivery filmed with Jahvan; the video cleared and Jahvan added as the 35th external voice, with his quotes taken verbatim from the film.',
+        source: 'descript-videos.ts viewId 6hVl3CzxdqR; storyteller-registry.ts jahvan-oui',
+      },
+    ],
     modules: [
       pathwayModule('listen', 'Listening and capability audit', 'A facilitated conversation and map of existing strengths and priorities.', 'requested'),
       pathwayModule('beds', 'Beds and local delivery', 'Explore need, procurement and local participation only if requested.', 'not-assessed'),
