@@ -19,6 +19,54 @@
 
 ---
 
+## 2026-07-26 (later) — The canonical deck
+
+### R. /pitch/road is the deck. /pitch/simple stays the PDF.
+
+**Ben ruling, 2026-07-26:** "canonical, keep simple as the PDF."
+
+**The problem.** Three full decks were live on three different spines: `/deck` (708 lines),
+`/pitch/deck` and `/pitch/simple`. Two decisions disagreed about which was canonical and **neither
+was a ruling**, so neither could win: the `/pitch/control-room` retirement comment (2026-07-14)
+redirects to `/pitch/deck`, while `pitch-surface-notice.tsx` (2026-07-25) names `/pitch/simple`.
+Both were docstrings. This entry exists so the question stops being re-litigated in comments.
+
+**The ruling.** The canonical deck is **`/pitch/road`**, built on the road spine (rulings C and F),
+with every figure resolved from canon at load and carrying its own claim label. Rather than pick a
+winner among three built on superseded spines, it is a new one on the spine that was actually
+ruled.
+
+**Two roles, not one, and they must not be collapsed.**
+
+- **Canonical DECK** = `/pitch/road`. What a funder is walked through.
+- **Canonical FUNDER SURFACE** = `/pitch/funder-pathways`. Unchanged, and this ruling does not
+  touch it. `pitch-surface-notice.tsx` already separated these; only the deck half moves.
+
+**`/pitch/simple` is NOT retired**, and the reason is load-bearing. It is not merely a page, it is
+the PDF pipeline: `slides-source.html` to `scripts/render-deck.mjs` to `goods-simple-deck.pdf`,
+with an admin cockpit built on it. A funder attachment is a real need `/pitch/road` cannot serve.
+Retiring it would have deleted the ability to send a PDF. The two are not rivals.
+
+**Sweep.** Written at the same time as the ruling, because ruling D shipped without one and the
+retired framing was still on live public pages a day later.
+
+- [x] `/pitch/road` indexable, canonical, docstring stating what it supersedes
+- [x] `pitch-surface-notice.tsx` deck link repointed from `/pitch/simple` to `/pitch/road`
+- [x] `/deck` retired to a redirect on the `/pitch/control-room` pattern
+- [ ] **`/pitch/deck`** is under another session's uncommitted edit and was deliberately not
+      touched. When that work lands it either becomes a redirect to `/pitch/road` or replaces it,
+      and that is a decision, not a merge. **This is the item most likely to rot.**
+- [ ] `/register` still links to `/deck`. It resolves through the redirect, so it is not broken,
+      but it should point at `/pitch/road` directly
+- [ ] Decide whether the PDF pipeline should render the road spine, so the attachment and the deck
+      stop being two different narratives. Real work, not a rename
+
+**On the redirect being TEMPORARY (307), not permanent (308).** Deliberate. A 308 is cached by
+browsers indefinitely, which is the wrong instrument for a decision made today and worth revisiting
+after living with the new deck. Promote it once the choice has settled.
+
+---
+
 ## 2026-07-26 — The month-6 ownership test
 
 ### Q. The ownership test is rebuilt for modules, and the claim is derived from it
