@@ -1362,6 +1362,20 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
     portrait: null,
     notes: 'Filtered out of public storyteller grids.',
   },
+  // ── Palm Island ──────────────────────────────────────────────────────────
+  {
+    slug: 'jahvan-oui',
+    name: 'Jahvan Oui',
+    aliases: ['Jahvan'],
+    role: 'Goods team member and future manufacturing lead, Palm Island. Training with Defy Design; wants to run his own factory.',
+    community: 'Palm Island',
+    tier: 'external',
+    turns: '5 (ownership; the maker who wants the factory)',
+    quotes: [],
+    portrait: null,
+    notes:
+      'Cleared by Ben 2026-07-26: main Goods member with approval, the maker/ownership voice for Palm Island. No verbatim quotes captured yet — the first source is the washing-machine delivery video (descript-videos.ts viewId 6hVl3CzxdqR); transcribe and add quotes verbatim from it, never paraphrase. Partner of Ebony Oui, who is NOT yet cleared as her own voice.',
+  },
 ];
 
 // ── Lookup helpers ──────────────────────────────────────────────────────────

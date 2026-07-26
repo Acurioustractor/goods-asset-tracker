@@ -64,9 +64,9 @@ export const DESCRIPT_VIDEOS: DescriptVideo[] = [
     title: 'Final Video Jahvan (Palm Island washing machines)',
     beat: 'people',
     poster: '/images/community/palm-island/two-men-thumbs-up.jpg',
-    cleared: false,
+    cleared: true,
     canonFresh: true,
-    note: 'HELD. Jahvan delivering washing machines on Palm Island. Jahvan Oui is not on cleared-voices.ts; confirm consent (and whether anyone else is on camera) before any external surface. Feeds the Palm Island pathway once cleared.',
+    note: 'Cleared by Ben 2026-07-26 (Jahvan is a main Goods member with approval; registry slug jahvan-oui). The maker/ownership voice for the Palm Island pathway. If others appear on camera, check them against the registry before cutting segments that feature them.',
   },
   // The six Feb-2026 audience walkthroughs — stale canon. Kept for reference /
   // re-record, never sent as current.

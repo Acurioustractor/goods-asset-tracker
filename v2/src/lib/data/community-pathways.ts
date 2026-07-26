@@ -601,7 +601,7 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
     evidenceState: 'community-confirmation',
     evidenceNote: 'The delivery history is real and recorded: 131 beds and 4 washing machines, with Ebony and Jahvan Oui training as future manufacturing leads. No community capability audit has been completed, and that history must not be treated as a request.',
     mediaState: 'community-confirmation',
-    mediaNote: 'Held but not yet assigned: twelve committed delivery photos, a deep Palm Island voice archive in the Empathy Ledger (including the Pakkimjalki Kari story), and the Jahvan washing-machine delivery video (registered in descript-videos.ts, held pending consent). Nothing publishes to this pathway until people and permissions are verified.',
+    mediaNote: 'Held but not yet assigned: twelve committed delivery photos, a deep Palm Island voice archive in the Empathy Ledger (including the Pakkimjalki Kari story), and the Jahvan washing-machine delivery video (descript-videos.ts, cleared 2026-07-26 - Jahvan Oui is now a registry external voice). Nothing publishes to this pathway until people and permissions are verified.',
     modules: [
       pathwayModule('listen', 'Listening and capability audit', 'A facilitated conversation and map of existing strengths and priorities.', 'requested'),
       pathwayModule('beds', 'Beds and local delivery', 'Explore need, procurement and local participation only if requested.', 'not-assessed'),
@@ -610,7 +610,7 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
     ],
     nextActions: [
       'Confirm Council leadership and preferred contact route',
-      'Confirm consent for the Jahvan washing-machine video (held in descript-videos.ts, viewId 6hVl3CzxdqR)',
+      'Transcribe the Jahvan video and add his verbatim quotes to the registry',
       'Review the Empathy Ledger Palm Island voice archive for project scope and consent',
       'Hold the first listening conversation',
       'Map existing services, assets and community priorities',
