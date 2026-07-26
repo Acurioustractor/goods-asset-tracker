@@ -301,7 +301,7 @@ export default async function CanberraPage() {
         </h2>
         <p className="text-base sm:text-lg leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
           Plastic gets collected on Country, shredded, melted, and pressed into bed components in
-          an on-Country plant that can move to community ownership. Twenty kilograms of recycled
+          an on-Country facility that can move toward community ownership. Twenty kilograms of recycled
           HDPE in every bed. The jobs, the manufacturing, and eventually the ownership stay with
           the communities the beds are built for.
         </p>
