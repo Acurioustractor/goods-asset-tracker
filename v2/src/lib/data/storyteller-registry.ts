@@ -1371,10 +1371,39 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
     community: 'Palm Island',
     tier: 'external',
     turns: '5 (ownership; the maker who wants the factory)',
-    quotes: [],
+    quotes: [
+      {
+        text: "When we got visitors, we don't want our visitors to come and see rubbish laying around here and there everywhere. You know, it's a reflection of the community that we don't care.",
+        context: 'Why the work matters: community pride and how Palm Island is seen',
+        status: 'approved',
+      },
+      {
+        text: "My mom and dad always made sure we had clothes on our back, food on the plate, a roof over our head, and a lot of my mates and stuff didn't have that. So yeah, it's sort of made me feel grateful, you know? To have parents that care.",
+        context: 'Growing up on Palm Island; why he helps',
+        status: 'approved',
+      },
+      {
+        text: "Wherever you go, there's always someone in some place that knows someone from Palm. No matter where you go, we here.",
+        context: 'Palm Island identity',
+        status: 'primary',
+        note: 'The closing "we here" is Speaker 29 in the transcript, finishing his sentence — verify against the video before using the two-voice form.',
+      },
+      {
+        text: "There's gotta be a break in the cycle somewhere. Soon as you break the cycle, all this stuff stop. People stopped going to jail. People stopped fighting amongst each other.",
+        context: 'Breaking the cycle, said during the washing-machine delivery',
+        status: 'hold',
+        note: 'HOLD: transcript labels this Speaker 24, not the Speaker 28 of the main monologue. Ben to confirm it is Jahvan before use.',
+      },
+      {
+        text: "Just wanna say thank yous for coming to our community, listening to our stories. And trying to understand. Not a lot of people are like that, you know, understanding.",
+        context: 'To the Goods crew at the end of the delivery',
+        status: 'hold',
+        note: 'HOLD: same Speaker 24 attribution question as the break-the-cycle line.',
+      },
+    ],
     portrait: null,
     notes:
-      'Cleared by Ben 2026-07-26: main Goods member with approval, the maker/ownership voice for Palm Island. No verbatim quotes captured yet — the first source is the washing-machine delivery video (descript-videos.ts viewId 6hVl3CzxdqR); transcribe and add quotes verbatim from it, never paraphrase. Partner of Ebony Oui, who is NOT yet cleared as her own voice.',
+      'Cleared by Ben 2026-07-26: main Goods member with approval, the maker/ownership voice for Palm Island. Quotes are verbatim from the "Final Video Jahvan" transcript (descript-videos.ts viewId 6hVl3CzxdqR), pasted by Ben 2026-07-26. The transcript has multiple speaker labels: Speaker 28 quotes are attributed to Jahvan (it is his video); Speaker 24 lines are HOLD pending Ben confirming the voice. The unnamed washing-machine recipients (Speakers 22/23) are NOT cleared and none of their words may be quoted. Partner of Ebony Oui, who is NOT yet cleared as her own voice. Portrait gap: add /images/people/jahvan-oui.jpg when a photo is chosen.',
   },
 ];
 
