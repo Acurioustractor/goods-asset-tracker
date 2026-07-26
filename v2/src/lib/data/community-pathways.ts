@@ -532,6 +532,62 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
     },
   },
   {
+    // The proof pathway. Maningrida is the only community where a full delivery has already
+    // run end to end: 40 Stretch Beds (the register's biggest single-community build,
+    // Jul 2026) and 8 Pakkimjalki Kari washing machines, built with the Gamardi community
+    // and Homeland School Company. It enters this file at 'learn' because the work is done
+    // and the open questions are review questions: film consent, and what Maningrida wants
+    // next. No caseStudy block yet - no named community voice is on the cleared register,
+    // and a quote is never invented to fill the field.
+    id: 'maningrida',
+    name: 'Maningrida',
+    region: 'Gamardi, West Arnhem Land, NT',
+    stage: 'learn',
+    stageLabel: 'Delivered, reviewing together',
+    relationship: 'Gamardi community and Homeland School Company',
+    communityLead: 'Gamardi community leadership; contacts held via Homeland School Company',
+    leadOrganisation: 'Homeland School Company',
+    invitation: 'Return the story for community approval, and hear what Maningrida wants next.',
+    nextDecision: 'Confirm production consent for the July 2026 film, then ask what the community wants to build on from the delivery.',
+    evidenceState: 'verified',
+    evidenceNote: 'The delivery is in the register: 40 Stretch Beds (Jul 2026, the biggest single-community build) and 8 washing machines including the school unit. In-house pressing of the 40 beds is the proof of the production process.',
+    mediaState: 'community-confirmation',
+    mediaNote: 'Ten committed trip photos and a produced 3:53 film exist. The film is a reference cut gated on the full-resolution master, production consent for children and unnamed adults on camera, and caption name fixes (Gamardi, Goods on Country) before public use.',
+    modules: [
+      pathwayModule('beds', 'Beds delivered', '40 Stretch Beds built and delivered with community in July 2026.', 'requested'),
+      pathwayModule('washers', 'Washing machines', '8 Pakkimjalki Kari in community, including the school unit.', 'requested'),
+      pathwayModule('story', 'Community-approved story', 'The trip film and photos, returned for approval before any public use.', 'exploring'),
+      pathwayModule('next', 'What comes next', 'Repair, more delivery or local making - defined by community, not proposed by Goods.', 'not-assessed'),
+    ],
+    nextActions: [
+      'Swap the full-resolution film master in at the committed path',
+      'Confirm production consent for everyone on camera, children first',
+      'Fix the caption names and return the film for community review',
+      'Tag the trip media to the community in the Empathy Ledger',
+      'Hold the review conversation: what worked, what Maningrida wants next',
+    ],
+    nextPhase: {
+      headline:
+        'Close the loop on the biggest delivery: community approval of the story, and a conversation about what comes after it.',
+      isNot:
+        'Not a facility proposal and not a new delivery. The delivery already happened; the next phase is review and community direction, and nothing is proposed until that conversation has run.',
+      modules: ['story'],
+      cost: {
+        capexLow: null,
+        capexHigh: null,
+        operatingPerYear: null,
+        status: 'blocked-on-people',
+        costSource: 'Nothing to price until community names what comes next. Not priced.',
+        note: 'The open items are consent and direction, not equipment. Whatever Maningrida asks for next gets priced through the module engine when it is asked for.',
+      },
+      ownsWhat:
+        'The community holds the beds, the washing machines and the decision about the story. Goods holds the footage until consent is confirmed, and publishes nothing before it is.',
+      blockedOn:
+        'Production consent for the film, the full-resolution master, and the review conversation with Gamardi and Homeland School Company.',
+      ask: 'Support the consent and review loop, so the strongest delivery evidence in the system can be told with community approval.',
+    },
+  },
+  {
     id: 'palm-island',
     name: 'Palm Island',
     region: 'Manbarra Country, QLD',
@@ -542,10 +598,10 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
     leadOrganisation: 'Palm Island Aboriginal Shire Council',
     invitation: 'Listen first and only assemble options after Council and community define the opportunity.',
     nextDecision: 'Confirm the right people, decision process and first listening conversation.',
-    evidenceState: 'not-assessed',
-    evidenceNote: 'No community capability audit has been completed. Existing Goods relationships must not be treated as a request.',
-    mediaState: 'not-assessed',
-    mediaNote: 'No media is assigned to this pathway until place, people and permissions are verified.',
+    evidenceState: 'community-confirmation',
+    evidenceNote: 'The delivery history is real and recorded: 131 beds and 4 washing machines, with Ebony and Jahvan Oui training as future manufacturing leads. No community capability audit has been completed, and that history must not be treated as a request.',
+    mediaState: 'community-confirmation',
+    mediaNote: 'Held but not yet assigned: twelve committed delivery photos, a deep Palm Island voice archive in the Empathy Ledger (including the Pakkimjalki Kari story), and a washing-machine delivery video with Jahvan that still needs locating and clearing. Nothing publishes to this pathway until people and permissions are verified.',
     modules: [
       pathwayModule('listen', 'Listening and capability audit', 'A facilitated conversation and map of existing strengths and priorities.', 'requested'),
       pathwayModule('beds', 'Beds and local delivery', 'Explore need, procurement and local participation only if requested.', 'not-assessed'),
@@ -554,6 +610,8 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
     ],
     nextActions: [
       'Confirm Council leadership and preferred contact route',
+      'Locate the Jahvan washing-machine delivery video and confirm its consent',
+      'Review the Empathy Ledger Palm Island voice archive for project scope and consent',
       'Hold the first listening conversation',
       'Map existing services, assets and community priorities',
       'Return a plain-language summary before proposing modules',
