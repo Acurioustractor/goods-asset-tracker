@@ -232,8 +232,8 @@ const SLIDES: { id: string; render: () => React.ReactNode }[] = [
           />
         </div>
         <p className="mt-6 max-w-2xl text-base text-foreground">
-          The magic isn&rsquo;t the bed. It&rsquo;s that <span className="text-primary">the making belongs On Country</span> — the
-          plant can move to community ownership.
+          The magic isn&rsquo;t the bed. It&rsquo;s that <span className="text-primary">the making belongs On Country</span>, and it
+          moves toward community ownership over time.
         </p>
       </Frame>
     ),
@@ -296,7 +296,7 @@ const SLIDES: { id: string; render: () => React.ReactNode }[] = [
         </h2>
         <div className="mt-12 grid gap-8 sm:grid-cols-3">
           {[
-            ['Technology', 'Shred-melt-press micro-manufacturing is now small, cheap and mobile enough to run On Country — the plant can sit where the waste and the need are.'],
+            ['Technology', 'Shred-melt-press micro-manufacturing is now small, cheap and mobile enough to run On Country, so the kit can sit where the waste and the need are.'],
             ['Policy & procurement', 'Closing the Gap and First Nations procurement targets are moving institutional buyers from grant-funded hand-outs toward buying from Indigenous enterprise.'],
             ['Economics', 'Recycled HDPE feedstock plus brutal freight costs make a bed built in community cheaper over its life than one trucked in to break.'],
           ].map(([h, p]) => (
@@ -360,7 +360,7 @@ const SLIDES: { id: string; render: () => React.ReactNode }[] = [
         <div className="mt-10 space-y-6">
           {[
             ['1 · Institutional procurement', 'Health services, land councils and housing bodies with a duty to house people and procurement targets to meet.', 'Proof: Centrecorp funded a 107-bed deployment.'],
-            ['2 · Community co-invest', 'Communities buying their own beds — and their own plant — on their terms.', 'Proof: Dianne Stokes offered to self-fund; PICC offered to buy a plant.'],
+            ['2 · Community co-invest', 'Communities buying their own beds, and their own means of making them, on their terms.', 'Proof: Dianne Stokes offered to self-fund; PICC offered to buy a plant.'],
             ['3 · Direct + catalytic', 'Online Stretch Bed sales and match-eligible catalytic capital that de-risks the scale-up.', 'Proof: live checkout + QBE Catalysing Impact match.'],
           ].map(([h, p, proof]) => (
             <div key={h} className="grid gap-1 border-t border-border pt-4 sm:grid-cols-[1fr_1.3fr]">
@@ -398,7 +398,7 @@ const SLIDES: { id: string; render: () => React.ReactNode }[] = [
             <tbody className="text-muted-foreground">
               {[
                 ['Freighted commercial furniture', 'Familiar, available in cities', 'Freight tax; fails in remote conditions in months', 'Built for country; washable; 10+ yr life'],
-                ['Charity bed drops', 'Free, immediate', 'No jobs, no ownership, no repair path', 'Local jobs + community-owned plant'],
+                ['Charity bed drops', 'Free, immediate', 'No jobs, no ownership, no repair path', 'Local jobs + a path to community-owned making'],
                 ['Do nothing / the floor', 'No cost, no logistics', 'The health and dignity cost people live with', 'A bed off the ground people asked for'],
               ].map((row) => (
                 <tr key={row[0]} className="border-b border-border/60 align-top">
@@ -426,7 +426,7 @@ const SLIDES: { id: string; render: () => React.ReactNode }[] = [
         </h2>
         <div className="mt-10 grid gap-6 sm:grid-cols-2">
           {[
-            ['Ownership, by design', 'Each plant is built to move into community hands (Supply Nation 51% First Nations-ownership path). The model gets more defensible the more it gives away.'],
+            ['Ownership, by design', 'Every site is built to move toward community hands, from a single shredder up to a full facility. The model gets more defensible the more it gives away.'],
             ['A cost-down curve', 'Verified bill of materials + in-sourced plastic drive marginal cost from $685 toward $421 as volume and local capability grow.'],
             ['Field-proven evidence', `${A.bedsDeployed} beds across ${A.communitiesServed} communities, with consent-based stories through the Empathy Ledger — proof procurement buyers can stand on.`],
             ['Relationships, not access', 'Years of design in community, led by Elders. You can copy a bed. You can’t copy trust that was earned On Country.'],
@@ -577,7 +577,7 @@ const SLIDES: { id: string; render: () => React.ReactNode }[] = [
             ['The market is turning', 'Procurement targets, Closing the Gap, recycled feedstock and freight costs all point the same way — toward buying durable goods made in community.'],
             ['There is early proof', `${A.bedsDeployed} beds, ${A.communitiesServed} communities, ${A.plasticKg.toLocaleString()}kg of plastic diverted, and buyers asking for more.`],
             ['This team can win', 'Design in community led by Elders, on-country manufacturing, and consent-based evidence a competitor can’t shortcut.'],
-            ['This round gets us there', 'Measured (not modelled) unit economics, the first procurement-funded revenue, and a plant on the path to community ownership.'],
+            ['This round gets us there', 'Measured (not modelled) unit economics, the first procurement-funded revenue, and a site on the path to community ownership.'],
           ].map(([h, p], i) => (
             <li key={h} className="flex gap-4">
               <span className="text-2xl font-light text-primary" style={display}>{i + 1}</span>
