@@ -148,7 +148,7 @@ export const AUDIENCES: Audience[] = [
     nextAction:
       'A letter naming amount, instrument, funder legal name and a callable contact. A fortnight of work, not a facility agreement.',
     door: 'invest',
-    servedBy: ['/pitch/deck', '/pitch/funder-pathways', '/export'],
+    servedBy: ['/pitch/road', '/pitch/funder-pathways', '/export'],
     open: 'What SIH will accept as match paper is unanswered, and it is worth more than the rest of the sequencing put together.',
   },
   {
@@ -187,7 +187,7 @@ export const AUDIENCES: Audience[] = [
     ],
     nextAction: 'Donate, or join the list.',
     door: 'donate',
-    servedBy: ['/story', '/story/road', '/field-notes'],
+    servedBy: ['/story/road', '/field-notes'],
   },
   {
     id: 'partner',

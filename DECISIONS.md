@@ -19,6 +19,45 @@
 
 ---
 
+## 2026-07-26 (site review) — Six front doors
+
+### S. One canonical surface per audience; the duplicate routes retire as redirects
+
+**Ruling (Ben, 2026-07-26, "fix all"):** the public site is laid out against the audience model
+in `audience.ts`: one front door per audience, everything else supports it, redirects to it, or
+is internal and unlisted. The 117-route review that produced this is at
+`thoughts/shared/reviews/2026-07-26-public-site-review.md`; the Notion alignment page sits under
+the Business Plan page.
+
+The doors: community `/pathways` · funder `/pitch/road` + `/register` · buyer `/shop` ·
+supporter `/story/road` + `/sponsor` · partner `/pathways/[id]` · internal stays noindexed.
+
+**Retired on the control-room pattern** (permanentRedirect plus a dated comment, nothing
+deleted): `/about`, `/the-work`, `/story` (the 1,178-line hardcoded page; `/story/road` is the
+survivor), `/insights` (into `/impact`), `/pitch` and `/pitch/document` (into `/pitch/road`),
+`/pitch/investor-lab` and `/pitch/miro-board` (into `/pitch/workshop`), `/stretch-bed` and
+`/wiki/products/*` (into the shop pages), `/brand` and `/kit` (into `/press`), `/community`
+(into `/communities`; `/community/ideas` lives), `/canberra` and `/design/*` (stale, into `/`).
+`/mission` repointed to `/story/road` to avoid a chain.
+
+**Kept deliberately:** `/process` (unique making walkthrough), `/cost-story` (funder support),
+`/basket-bed-plans` (unique open-source download), `/field-notes`, `/storytellers`, `/gallery`,
+`/press`.
+
+**Sweep list (written with the ruling):**
+- [x] Redirect pages written for every retired route above
+- [x] Header and footer "Our Story" links point at `/story/road`; footer Impact link at `/impact`
+- [x] `audience.ts` servedBy: funder `/pitch/deck` becomes `/pitch/road`; supporter drops `/story`
+- [ ] Delete the dead `/media/page.tsx` (902 lines; the 301 lives in next.config)
+- [ ] `/impact` login is orphaned (no middleware); decide public or gate, then remove or wire it
+- [ ] Server-side gate for `/partners/[slug]/dashboard` and `/production/*`, or rule them public
+- [ ] Rebuild `/shop` to lead with spec, price, lead time, freight, warranty, who fixes it
+- [ ] Grep remaining internal links to retired routes outside the chrome (redirects cover them
+      meanwhile)
+- [ ] Write the one plain mission explanation as guarded data the six doors cut from
+
+---
+
 ## 2026-07-26 (later) — The canonical deck
 
 ### R. /pitch/road is the deck. /pitch/simple stays the PDF.
