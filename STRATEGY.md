@@ -25,6 +25,12 @@ authoritative. So this is the order, and it is not negotiable.
 | 4 | **This file** | The **picture**: what we are doing, why, in what order | Nothing. Keep it honest by hand |
 | 5 | `wiki/`, `thoughts/` | Working notes and dated records | Historical, may be superseded |
 
+**Four things that used to be prose and are now code**, because a paragraph drifts and a guarded
+module cannot: the six stages and nine modules (`pathway-stages.ts`), who we are talking to
+(`audience.ts`), the month-6 ownership test and the ownership sentence it derives
+(`ownership-test.ts`), and what the next phase is at each community (`nextPhase` in
+`community-pathways.ts`). Read those rather than restating them here.
+
 **Two rules that follow from the table.** A number typed by hand instead of read from canon is a
 bug even when it is correct today. And a document dated later does not automatically win: rulings
 win, and a ruling carries its date.
@@ -321,7 +327,58 @@ investor underwrites.
 
 ---
 
-## 8 · What is open
+## 8 · The three artifacts, and what they are cut from
+
+**Three artifacts, three audiences, one source. Each is a CUT of sections 1 to 7, never a new
+document.** They have drifted apart repeatedly for one reason: each was written from scratch.
+
+**Who is reading is now in code**, not prose: `v2/src/lib/data/audience.ts` holds the six
+audiences, what each arrives believing, what each must never see, and the one door each reaches.
+The rule it encodes is the whole of this section: **lead with the thing that audience came for,
+then earn the rest.** Every dead artifact inverted that for its reader.
+
+### 8.1 The pitch deck
+**Funders.** Spine is **the road** (§2): seven stops and the gap, voices leading each stop, the
+model arriving near the end as what the road produced.
+
+**Money never gets its own section again.** Every dead deck bolted money blocks onto story stops,
+and those slides migrated every rebuild. A block with no home moves. A lesson taught by a place
+cannot move. Leading with a framework invites a funder to compare your framework to better ones;
+walked down the road they cannot, because nobody else has been on it.
+
+Lives in `v2/src/lib/data/deck.ts`.
+
+### 8.2 The explainer
+**Communities, buyers and supporters.** Shorter, and it does the opposite of the deck: it leads
+with the object and the method, not the road.
+
+§1 (the object and the loop), then what we make, then the six stages and nine modules (§3.1, 3.2),
+then one pathway from §5 chosen for the reader. **No money model at all.** A community or a buyer
+does not need the denominator. A procurement buyer who cannot find the lead time does not stay for
+the mission.
+
+### 8.3 The business model
+**Funders at diligence depth, and the board.** This one is **model-first**, deliberately. That is
+not a contradiction: a diligence read has a different job from a first meeting, which is why the
+Notion business plan stays model-first while the deck does not.
+
+§3.3 (the two pots), §4 (the economics), §3.2 (modules), then the pathway portfolio, then §5 (the
+money coming in). **$0 signed is stated first, always.**
+
+### 8.4 The pathway portfolio, in code
+What working with each community looks like from here is a `nextPhase` record on each pathway in
+`v2/src/lib/data/community-pathways.ts`, distinct from the retrospective `caseStudy` the public
+pages render. It carries what the next phase is, **what it is not**, the modules, the cost with a
+status, who ends up owning what, what is blocked and on whom, and the ask.
+
+**Two of four price. The two that do not are blocked on people, not numbers**, and the record says
+so rather than filling the cell: Tennant Creek waits on the partner's decision, and Palm Island
+returns $0 because the model has no governance line, recorded as the wrong answer. Guards prevent
+a blocked pathway from ever quietly acquiring figures.
+
+---
+
+## 9 · What is open
 
 | Item | Owner | By |
 |---|---|---|
@@ -335,6 +392,7 @@ investor underwrites.
 | Notice of meeting if the company name changes at the AGM | Zandra / board | ~24 Aug |
 | ~~Modules, not build paths, in the cost engine~~ **BUILT 2026-07-25** (`capex_modules` + `priceModuleSelection()`, 12 guards; the ladder is untouched). Tennant Creek is now priceable at module level. **Utopia still is not, and the reason is now specific: collection and baling is genuinely unpriced and sits upstream of the shredder.** Palm Island returns $0, recorded as the wrong answer, since governance has a real cost that is not plant. **The per-module operating split is now done too**, so a partial pathway is priceable: site floor $35,000/yr plus what the modules run. Utopia carries $51,043/yr, not the full $79,333. **Collection is now priced as an estimate ($5,000-19,500), matching how the MVF already treats its own unquoted lines, so UTOPIA IS PRICEABLE: $24,800-39,300 capex, $16,043/yr operating. Two of four pathways now price; Tennant Creek and Palm Island are blocked on people, not numbers. Remaining: a real collection quote to narrow the band, and confirm whether a baler is needed at all (rigid HDPE is usually caged, not baled), which is the whole width of that band** | Ben, then Matt | Before an ask is written for Utopia or Palm Island |
 | ~~Reconcile $110,046 against the MVF's ~$75K~~ **RESOLVED 2026-07-25 (ruling O):** $110,046 is actual sunk spend and is the figure to quote, regraded workpaper because only ~$43,700 is bill-evidenced. The ~$75K is a bill-level subtotal, not a competing total. Residual: locate the shredder invoice and the larger CNC | Ben | Paperwork, not a blocker |
+| **The governance cost line the model does not have.** Palm Island prices at $0 for a listening-only pathway, and $0 is recorded as the wrong answer rather than a good one: listening, governance and the time of the people doing it have a real cost that is not plant. Until it exists, the earliest-stage pathways cannot be costed at all, which is the stage most communities start at | Ben, then Matt | Before an ask is written for Palm Island |
 | Add a Transfer stage to the GHL pipeline | Ben | Standing |
 | EL syndication API 404s. **DIAGNOSED 2026-07-25, and it is NOT our config.** The project id in our env is right: EL's own database returns it as "Goods on Country" (slug `goods`), verified by direct Supabase read. Auth-checking routes return 401 "Authentication required" while the project route returns 404 "Project not found", so **our API key is not valid for this site** and the API cannot resolve the project within its scope. Tried three site slugs, all identical. **Ask: a syndication key scoped to this site. Do not change the ids.** Verify with the curl in `empathy-ledger/client.ts`. Fallback is working, so this is degraded, not broken | EL side | Storyteller pages on fallback data |
 | Kununurra Elder clearance | Ben | Standing |
@@ -342,21 +400,26 @@ investor underwrites.
 
 ---
 
-## 9 · The four things with no home
+## 10 · The four things with no home: two now have one
 
-Named because they are load-bearing in conversation and exist in no code and no deck:
-
-1. **The binary month-6 ownership test.** Four checkpoints, partial counts as NO, currently "not
-   yet met at any site". This is the thing that would make "ownership is a pathway" checkable
-   rather than asserted.
-2. **The seven proven community-transfer models** (Notion §3).
-3. **"One product, four systems."**
-4. **Data sovereignty as a gate things pass through**, rather than an impact metric counted at the
-   end.
+1. ~~**The binary month-6 ownership test.**~~ **HOUSED 2026-07-26, ruling Q.**
+   `v2/src/lib/data/ownership-test.ts`, rebuilt so it scores a shredder the same way it scores a
+   facility. Binary kept, partial still counts as NO, and the clock is now defined as six months
+   from the start of Deliver. **The public sentence is derived, never written**:
+   `ownershipClaimLine()` computes it from the site records, so the claim and its evidence cannot
+   drift apart. It reads *"no site is yet eligible"*, which is both truer and better than the old
+   "not yet met at any site": no site has entered Deliver as a production site, and the Maningrida
+   run was pressed at the farm. **Oonchiumpa is the first site that will be testable, and month 6
+   of its Deliver is the first date this pitch can be checked against.**
+2. **The seven proven community-transfer models** (Notion §3). Still homeless.
+3. **"One product, four systems."** Still homeless.
+4. ~~**Data sovereignty as a gate.**~~ **HOUSED 2026-07-26, ruling Q2.** It is the gate the
+   ownership test sits behind rather than a fifth checkpoint: *the community controls what is
+   published about this site.*
 
 ---
 
-## 10 · The method that produced this
+## 11 · The method that produced this
 
 Every claim in the 2026-07-25 session was traced to a path, a line number, a register lookup or a
 set of minutes. **Memory was wrong three times and was caught each time by reading the source:** the

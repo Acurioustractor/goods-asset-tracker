@@ -14,7 +14,7 @@ const SAGE = '#8B9D77';
 export const metadata: Metadata = {
   title: 'Get involved | Goods on Country',
   description:
-    'Three real ways to back beds in homes and move the making to Country: sponsor a bed, back the production plant, or build it in your community.',
+    'Three real ways to back beds in homes and move the making to Country: sponsor a bed, back local production, or build it in your community.',
 };
 
 // Real numbers, pulled from the canonical data files (no invented stats).
@@ -35,10 +35,10 @@ const WAYS = [
   },
   {
     eyebrow: 'For funders + foundations',
-    title: 'Back the plant',
+    title: 'Back local production',
     price: '~85% built',
     body: 'The containerised production plant turns community plastic waste into beds On Country. It is roughly 85% complete. The next round closes the gap and starts local jobs, moving toward community ownership.',
-    cta: 'Back the plant',
+    cta: 'Back local production',
     href: '/partner',
     next: 'What happens next: we talk through the round, the gap to close, and the path to community ownership.',
   },
@@ -46,7 +46,7 @@ const WAYS = [
     eyebrow: 'For communities + organisations',
     title: 'Build it in your community',
     price: 'Made with you',
-    body: 'The plant is built to move. Design happens in community, with community, for community, and the community runs and owns the build. We support the making and the realising.',
+    body: 'The making is built to move, and it scales from a single shredder up. Design happens in community, with community, for community, and the making moves toward the community that runs it. We support the making and the realising.',
     cta: 'Start a conversation',
     href: '/partner',
     next: 'What happens next: we map demand, freight, and a realistic timeline for your Country.',
@@ -69,8 +69,8 @@ export default function GetInvolvedPage() {
         </h1>
         <p className="text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto mb-8" style={{ color: `${CHARCOAL}cc` }}>
           On the May 2026 Utopia trip we delivered 87 Stretch Beds in a single run. That is what
-          backing this work looks like: a washable bed off the ground today, and a plant that builds the
-          next ones On Country tomorrow.
+          backing this work looks like: a washable bed off the ground today, and the making of the
+          next ones moving On Country tomorrow.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Button size="lg" className="text-white" style={{ backgroundColor: RUST }} asChild>
@@ -82,7 +82,7 @@ export default function GetInvolvedPage() {
             style={{ borderColor: `${CHARCOAL}33`, color: CHARCOAL, backgroundColor: 'transparent' }}
             asChild
           >
-            <Link href="/partner">Back the plant</Link>
+            <Link href="/partner">Back local production</Link>
           </Button>
         </div>
       </section>
@@ -178,7 +178,7 @@ export default function GetInvolvedPage() {
             Not ready yet? Follow along.
           </h2>
           <p className="text-sm leading-relaxed mb-6" style={{ color: `${CHARCOAL}99` }}>
-            We send updates as beds reach homes and as the plant moves toward community ownership. No noise,
+            We send updates as beds reach homes and as the making moves toward community ownership. No noise,
             just the work.
           </p>
           <NewsletterSignup tag="getinvolved" buttonText="Follow the journey" />

@@ -18,14 +18,14 @@ import { OtherPitchSurfaceNotice } from '@/components/pitch/pitch-surface-notice
 export const metadata = {
   title: 'Pitch | Goods on Country',
   description:
-    'Goods on Country works with First Nations communities to build beds, washing machines, and the production plant that can move into community ownership.',
+    'Goods on Country works with First Nations communities to build beds, washing machines, and the production capability that can move into community ownership.',
 };
 
 const plainCase = [
   'People are asking for beds that work in heat, dust, freight, and crowded houses.',
   `The Stretch Bed exists: ${STRETCH_BED.specs.weight}, ${STRETCH_BED.specs.loadCapacity} load, no tools, recycled HDPE legs, steel poles, canvas.`,
   'Demand has names attached: Dianne Stokes, Utopia Homelands, Homeland Schools, Maningrida.',
-  'The plant is the path from Goods-run production to community-owned making.',
+  'The path runs from Goods-run production to community-owned making.',
 ];
 
 const problemPains = [
@@ -84,7 +84,7 @@ const whyNow = [
       'Dianne Stokes asked for 20 more beds after receiving one. Utopia Homelands, Homeland Schools, health coordinators, and NPY Women\'s Council are live signals.',
   },
   {
-    force: 'The plant is no longer theory',
+    force: 'Local production is no longer theory',
     detail:
       'The press, shredder, CNC, and container workflow are built enough to move from proof to regular production practice.',
   },
@@ -524,7 +524,7 @@ export default function PitchPage() {
                 className="mb-5 text-3xl font-light leading-tight text-foreground md:text-5xl"
                 style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
               >
-                The plant is the bridge from product sales to community ownership.
+                Production is the bridge from product sales to community ownership.
               </h2>
               <p className="mb-8 text-lg leading-relaxed text-muted-foreground">
                 Through {oonchiumpaPartnership.headline}, Goods is building a practical model:
@@ -726,7 +726,7 @@ export default function PitchPage() {
             </h2>
             <p className="mx-auto mb-12 max-w-2xl text-center text-lg leading-relaxed text-background/65">
               The immediate job is to close signed, match-eligible capital for stock, production roles,
-              partner work, and the plant pathway.
+              partner work, and the path to local making.
             </p>
 
             <div className="mb-12 grid gap-4 md:grid-cols-3">
@@ -747,7 +747,7 @@ export default function PitchPage() {
                 Why invest now
               </p>
               <p className="mx-auto max-w-3xl text-background/65">
-                The product exists. The demand is named. The plant pathway is real. The next step is to make production
+                The product exists. The demand is named. The path to local making is real. The next step is to make production
                 less founder-led and easier for community partners to own.
               </p>
             </div>
