@@ -599,9 +599,9 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
     invitation: 'Listen first and only assemble options after Council and community define the opportunity.',
     nextDecision: 'Confirm the right people, decision process and first listening conversation.',
     evidenceState: 'community-confirmation',
-    evidenceNote: 'The delivery history is real and recorded: 131 beds and 4 washing machines, with Ebony and Jahvan Oui training as future manufacturing leads. No community capability audit has been completed, and that history must not be treated as a request.',
+    evidenceNote: 'The delivery history is real and recorded: 131 beds and 4 washing machines, with Ebony and Jahvan Oui training as future manufacturing leads. Six external-cleared Palm Island voices are on the registry. No community capability audit has been completed, and that history must not be treated as a request.',
     mediaState: 'community-confirmation',
-    mediaNote: 'Held but not yet assigned: twelve committed delivery photos, a deep Palm Island voice archive in the Empathy Ledger (including the Pakkimjalki Kari story), and the Jahvan washing-machine delivery video (descript-videos.ts, cleared 2026-07-26 - Jahvan Oui is now a registry external voice). Nothing publishes to this pathway until people and permissions are verified.',
+    mediaNote: 'Six cleared voices (Ivy, Alfred Johnson, Carmelita & Colette, Daniel Patrick Noble, Jason, Jahvan Oui), five portraits, twelve committed delivery photos and the cleared Jahvan washing-machine video (descript-videos.ts). The Empathy Ledger also holds 51 Palm Island storytellers, mostly the historical archive project - check project scope and consent before using any of those.',
     modules: [
       pathwayModule('listen', 'Listening and capability audit', 'A facilitated conversation and map of existing strengths and priorities.', 'requested'),
       pathwayModule('beds', 'Beds and local delivery', 'Explore need, procurement and local participation only if requested.', 'not-assessed'),
@@ -635,6 +635,61 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
       blockedOn:
         'Confirming the right people and the decision process. No capability audit has been completed, and no media is assigned to this pathway until place, people and permissions are verified.',
       ask: 'Fund the listening, and build the governance cost line the model is missing.',
+    },
+    // The caseStudy is retrospective and every word of it is already cleared: six external
+    // voices, five portraits, twelve committed delivery photos. It coexists with the
+    // listening-first stance above - the history is told, and the history is still not a request.
+    caseStudy: {
+      eyebrow: 'Begin with governance and listening',
+      headline: 'The beds are already here. What comes next is Palm Island\'s call.',
+      summary:
+        'Palm Island carries one of the deepest Goods delivery histories: 131 beds, 4 washing machines, and six community voices cleared to tell it - from the barge-freight economics that make local making matter, to Jahvan Oui training to run production himself. None of that history is treated as a request. The next pathway is defined by Council and community, starting with listening.',
+      hero: {
+        src: '/images/community/palm-island/bedding-golden-hour.jpg',
+        alt: 'Bedding laid out at golden hour during a Palm Island delivery',
+      },
+      quote: {
+        text: 'When it comes from an Aboriginal person, it works. That\'s what makes the difference.',
+        name: 'Jason',
+        context: 'Palm Island',
+      },
+      proof: [
+        { label: 'Stretch and Basket Beds', value: '131', note: 'Register count for Palm Island' },
+        { label: 'Pakkimjalki Kari', value: '4', note: 'Washing machines in community' },
+        { label: 'Cleared voices', value: '6', note: 'External-cleared Palm Island storytellers on the registry' },
+      ],
+      story: [
+        {
+          title: 'The freight is the argument',
+          body: 'Everything comes over on the barge, and the cost forces families toward cheap beds that fail within a year or two. Alfred Johnson, Daniel Patrick Noble and Carmelita & Colette all tell the same economics from different ends of it.',
+        },
+        {
+          title: 'A maker is already training',
+          body: 'Jahvan Oui, a Goods team member from Palm Island, is training with Defy Design toward running production himself - the ownership pathway with a name and a face.',
+        },
+        {
+          title: 'The next step is deliberately not a proposal',
+          body: 'No capability audit has been done and the delivery history is not treated as a request. The pathway starts with Council, listening, and a plain-language summary returned before anything is proposed.',
+        },
+      ],
+      gallery: [
+        { src: '/images/people/alfred-johnson.jpg', alt: 'Alfred Johnson, Palm Island community voice' },
+        { src: '/images/people/carmelita-colette.jpg', alt: 'Carmelita and Colette, Palm Island community voices' },
+        { src: '/images/community/palm-island/kids-new-mattress.jpg', alt: 'Kids on a new mattress during a Palm Island delivery' },
+      ],
+      links: [
+        {
+          label: 'See the live pathway',
+          href: '#support-menu',
+          note: 'Listening first; modules only after Council and community define the opportunity',
+        },
+      ],
+      nextAsk:
+        'Fund the listening phase and the governance work, so the first proposal on Palm Island is the one community writes.',
+      mediaBasis:
+        'Every quote is verbatim from the externally cleared voice register; photos are the committed Palm Island delivery set and cleared portraits. The wider Empathy Ledger Palm Island archive (51 storytellers) is a different project and is not drawn on here.',
+      statusNote:
+        'Delivery history and voices are verified. No capability audit exists, and no module beyond listening has been requested by community.',
     },
   },
 ];
