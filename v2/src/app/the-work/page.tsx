@@ -57,12 +57,12 @@ export default function TheWorkPage() {
                 body: `Community plastic waste is shredded, melted, and pressed into the legs. Recycled HDPE plastic, galvanised steel poles, and heavy-duty Australian canvas. ${STRETCH_BED.specs.weight}, ${STRETCH_BED.specs.loadCapacity} capacity, assembled in about five minutes with no tools.`,
               },
               {
-                title: 'A plant that moves',
-                body: 'The production plant is containerised and built to move. It can sit On Country, turning local plastic into beds rather than shipping furniture thousands of kilometres to be dumped within months.',
+                title: 'Infrastructure that moves',
+                body: 'The making is containerised and built to move, and it scales from a single shredder up to a full production facility. It can sit On Country, turning local plastic into beds rather than shipping furniture thousands of kilometres to be dumped within months.',
               },
               {
                 title: 'A path to ownership',
-                body: 'The plant is built to move into community ownership. The community runs and owns the build. Our job is to support the making and the realising, then step back.',
+                body: 'A community chooses what it wants to hold, and the making moves toward local ownership over time. Our job does not end at handover: design, quality, training, parts and back office are what we are for afterwards.',
               },
             ].map((item) => (
               <div
@@ -96,8 +96,8 @@ export default function TheWorkPage() {
             happens in community, with community, for community, and the making moves into community hands.
           </p>
           <p className="text-base sm:text-lg leading-relaxed max-w-2xl mx-auto" style={{ color: `${CHARCOAL}cc` }}>
-            We support the build and the realising. The community runs and owns the plant. That is the
-            difference between a drop-off and something that lasts.
+            We support the build and the realising, and the making moves toward the community that runs it.
+            That is the difference between a drop-off and something that lasts.
           </p>
         </div>
       </section>

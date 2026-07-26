@@ -26,6 +26,9 @@ export const metadata = {
   title: 'Photo review | Goods on Country pitch',
   description:
     'A simple review board for choosing deck photos, storyteller voices, and replacement images for the Goods on Country pitch.',
+  // Internal working surface, not a funder destination. Indexed by accident until
+  // 2026-07-26; the canonical funder surface is /pitch/funder-pathways.
+  robots: { index: false, follow: false },
 };
 
 const featureNames = new Set([

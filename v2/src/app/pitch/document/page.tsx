@@ -14,7 +14,7 @@ const plainCase = [
   'People are asking for beds that work in heat, dust, freight, and crowded houses.',
   `The Stretch Bed exists: ${STRETCH_BED.specs.weight}, ${STRETCH_BED.specs.loadCapacity} load, no tools, recycled HDPE legs, steel poles, canvas.`,
   'Demand has names attached: Dianne Stokes, Utopia Homelands, Homeland Schools, Maningrida.',
-  'The plant is the path from Goods-run production to community-owned making.',
+  'The path runs from Goods-run production to community-owned making.',
 ];
 
 const problemPains = [
@@ -505,7 +505,7 @@ export default function PitchDocumentPage() {
               Why invest now
             </p>
             <p className="mx-auto mb-5 max-w-lg text-sm leading-relaxed text-neutral-600">
-              The product exists. The demand is named. The plant pathway is real. The next step is to make production
+              The product exists. The demand is named. The path to local making is real. The next step is to make production
               less founder-led and easier for community partners to own.
             </p>
             <p className="text-sm font-medium text-black">hi@act.place</p>

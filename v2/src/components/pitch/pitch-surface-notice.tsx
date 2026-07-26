@@ -6,7 +6,8 @@
  * WRONG, which is exactly why the sprawl was hard to notice. The fix is a pointer, not a warning.
  *
  * THE canonical funder surface is /pitch/funder-pathways.
- * THE canonical deck is v2/public/deck-slides/goods-simple-deck.pdf, shown live at /pitch/simple.
+ * THE canonical deck is /pitch/road (ruling R, 2026-07-26), built on the road spine from canon.
+ * /pitch/simple remains the PDF export pipeline and the funder attachment, which is a different job.
  */
 
 const CANONICAL_HREF = '/pitch/funder-pathways';
@@ -16,8 +17,8 @@ export function CanonicalPitchNotice() {
     <div className="border-b border-[#c9b89a] bg-[#f0e5cf] px-5 py-2.5 text-center">
       <p className="text-xs tracking-[0.12em] text-[#6b5836] uppercase">
         Canonical funder surface · deck at{' '}
-        <a href="/pitch/simple" className="underline decoration-[#b9852f] underline-offset-2">
-          /pitch/simple
+        <a href="/pitch/road" className="underline decoration-[#b9852f] underline-offset-2">
+          /pitch/road
         </a>
       </p>
     </div>
