@@ -19,6 +19,74 @@
 
 ---
 
+## 2026-07-26 — The month-6 ownership test
+
+### Q. The ownership test is rebuilt for modules, and the claim is derived from it
+
+**Ben ruling, 2026-07-26.** Three sub-rulings, decided together.
+
+**Q1. Checkpoint 4 is "Decision", not a percentage of production.** It passes when the community
+decides what gets made, when, and who works on it, without needing Goods to agree. The production
+share stays worth reporting and is **not** a checkpoint.
+
+**Q2. Data and story sovereignty is the gate the test sits behind**, not a fifth checkpoint: *the
+community controls what is published about this site.* Five would break a test known as four, and
+this also settles one of the four homeless items in `/STRATEGY.md` §9, which asked for sovereignty
+to be a gate things pass through rather than a metric counted at the end.
+
+**Q3. A production site produces for sale.** Assembly of delivered beds in community is not
+production for sale.
+
+**What this supersedes.** The four checkpoints as recorded in
+`wiki/outputs/2026-05-29-goods-theory-of-change-and-mel.md` (metric 11 and its callout), which is
+now the historical version. Its cited source,
+`JusticeHub/output/goods-on-country/community-ownership-checkpoints.md` in the ACT infra repo,
+**no longer exists at that path** and no renamed copy was found, so that MEL entry was the only
+surviving statement of the test.
+
+**The reasoning, which is mostly about ruling D.** The old checkpoint 1 was "the community holds
+the keys to the factory". The object is **infrastructure, not a plant**, and of four live pathways
+only Oonchiumpa wants a whole facility. Under that wording **Utopia could never pass, not because
+ownership had failed but because there is no factory**: the test scored which module a community
+bought from us. Three further breaks: the test was justified as proof that "our job is to become
+unnecessary", which ruling A retired; "month 6" had no origin, which made a deliberately binary
+test unfailable; and a second 50-percent in a system that already carries the **51% First Nations
+supplier-ownership test** is how a wrong sentence reaches a funder document. Those two tests sit at
+different levels and are now explicitly distinguished in code.
+
+**Kept, because it is the whole value:** binary, per site, **partial counts as NO**. Do not add a
+partial result. A checkpoint that fails when it is nearly met is the only kind that keeps us honest
+about a handover we have not completed.
+
+**The clock:** six months from the start of Deliver at that site.
+
+**The consequence, and it is better than the old wording.** The MEL table said "not yet met at any
+site". Applied with the eligibility rule that is wrong, and wrong in a way that sounds worse than
+the truth. **No site is yet eligible.** Tennant Creek and Palm Island are at Yarn, Utopia at Shape,
+Oonchiumpa at Resource, and the forty Maningrida beds were pressed at the farm, which is not a
+community site. "Not yet met" reads as four failures. **Oonchiumpa is the first site that will be
+testable, and month 6 of its Deliver is the first date this pitch can be checked against.**
+
+**Sweep.**
+
+- [x] Build `v2/src/lib/data/ownership-test.ts` beside `pathway-stages.ts`
+- [x] `ownership-test.guards.test.ts`, 23 guards, including that "factory" cannot return to
+      checkpoint 1 and that not-assessed scores as fail
+- [x] Derive the public sentence via `ownershipClaimLine(asOf)` rather than writing it
+- [x] Record the resolution in `/STRATEGY.md` §10 (worked through in `/FOUNDATION.md` §5.6, since
+      folded into STRATEGY and archived to `_archive/2026-07-26/`)
+- [ ] Set `deliverStartedOn` and `producesForSale` for Oonchiumpa when Deliver begins. **Until then
+      every site reads not-eligible, which is correct, not missing data**
+- [ ] Put checkpoint 3 (a community-controlled entity invoices the buyer directly) to Oonchiumpa.
+      It is currently an unmade decision, not a measurement, and it is the same question as the
+      seller-of-record DIRECTION logged 2026-07-25
+- [ ] Update `wiki/outputs/2026-05-29-goods-theory-of-change-and-mel.md` metric 11 to point here,
+      or mark it superseded
+- [ ] Any deck or public surface stating the ownership claim must call `ownershipClaimLine()`
+      rather than carry a string
+
+---
+
 ## 2026-07-25 (later) — Matt's model inputs, items 1 to 3
 
 Three rulings against the recommended positions in
