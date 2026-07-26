@@ -337,8 +337,8 @@ export default function CostStoryPage() {
       <Beat kicker="The mission" heading="The path to community ownership" tone="dark">
         <p className="text-lg leading-relaxed text-background/70 md:text-xl">
           Cheaper beds aren&rsquo;t the goal. They pay for the real one. Today we buy finished legs
-          from a city supplier. Next, an On-Country plant presses them locally. After that, the plant,
-          the jobs and the margin move into community hands.
+          from a city supplier. Next, an On-Country facility presses them locally. After that, the making,
+          the jobs and the margin move toward community hands.
         </p>
         <p className="mt-4 text-xl leading-relaxed text-background md:text-2xl" style={displayFont}>
           The goal is a community that can come to own the making.

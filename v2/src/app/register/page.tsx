@@ -139,7 +139,7 @@ export default function RegisterPage() {
       </p>
       <div className="mt-6 flex flex-wrap items-center gap-4 text-sm">
         <Link
-          href="/deck"
+          href="/pitch/road"
           className="rounded-full bg-primary px-5 py-2.5 font-medium text-primary-foreground transition hover:opacity-90"
         >
           See the investor deck

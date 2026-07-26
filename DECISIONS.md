@@ -56,8 +56,7 @@ retired framing was still on live public pages a day later.
 - [ ] **`/pitch/deck`** is under another session's uncommitted edit and was deliberately not
       touched. When that work lands it either becomes a redirect to `/pitch/road` or replaces it,
       and that is a decision, not a merge. **This is the item most likely to rot.**
-- [ ] `/register` still links to `/deck`. It resolves through the redirect, so it is not broken,
-      but it should point at `/pitch/road` directly
+- [x] **DONE 2026-07-26.** `/register` now links straight to `/pitch/road`
 - [ ] Decide whether the PDF pipeline should render the road spine, so the attachment and the deck
       stop being two different narratives. Real work, not a rename
 
@@ -128,8 +127,8 @@ testable, and month 6 of its Deliver is the first date this pitch can be checked
 - [ ] Put checkpoint 3 (a community-controlled entity invoices the buyer directly) to Oonchiumpa.
       It is currently an unmade decision, not a measurement, and it is the same question as the
       seller-of-record DIRECTION logged 2026-07-25
-- [ ] Update `wiki/outputs/2026-05-29-goods-theory-of-change-and-mel.md` metric 11 to point here,
-      or mark it superseded
+- [x] **DONE 2026-07-26.** MEL metric 11 marked superseded, with what changed and why, and the
+      historical text kept because it is the only surviving statement of the JusticeHub checkpoints
 - [ ] Any deck or public surface stating the ownership claim must call `ownershipClaimLine()`
       rather than carry a string
 
@@ -195,6 +194,12 @@ rather than a rounding difference) · the separate "$100-150K per site on-Countr
 **Still open:** the shredder invoice and the larger CNC are the outstanding paperwork. Note the
 gap is wider than the pack assumed: $84,000 is described elsewhere as "cleanly in the connected
 books" against the MVF's $43,700 clean tier, and those two cannot both be right about "clean".
+
+**Sweep gap found and closed 2026-07-26.** The 2026-07-25 sweep did not reach
+`/export/leave-behind`, which was still publishing the retired "$100K to $150K per site" band on a
+funder-facing leave-behind. The figure is struck rather than replaced, because the module cost
+model now prices per site properly and inventing a substitute band would repeat the original error.
+This is the third ruling this week whose sweep list turned out to be a to-do rather than a record.
 
 **Sweep (done 2026-07-25):** `cost-story.ts` capital fact regraded to workpaper with the evidence
 split and a do-not-net watch-out · `ALREADY_INVESTED` docstring in `cost-model-scenarios.ts` ·
@@ -568,9 +573,13 @@ Still open, and NOT to be swept blindly:
 - [ ] `/deck` (6 instances, e.g. "each plant is built to move into community hands",
       "community-owned plant"). **Blocked**: the deck data and routes are under another session's
       uncommitted edit
-- [ ] `/process` ("The capital buys the path, not just the press. The plant can transfer to
-      community ownership"), `/canberra`, `/cost-story:340`, `/story:719`, `/partner:209`,
-      `/export/leave-behind`
+- [x] **DONE 2026-07-26.** `/process`, `/canberra` and `/cost-story` carried the plant as the
+      thing that transfers to community ownership; all three now name the making or the facility
+      and use "toward", which keeps them inside the ownership-is-a-pathway rule as well.
+      **`/export/leave-behind` was worse than a naming problem and is covered under ruling O below.**
+      Left alone as legitimate: `/story:719` and `/pitch/simple` describe the actual containerised
+      kit, `/partner:209` and `pitch/document` use plant as a capital line, `/pitch/miro-board` is
+      an internal planning artifact and rewriting it would falsify a record of what was planned
 - [ ] `/partners/[slug]/dashboard` already says "The community owns the plant, the income it makes,
       and what happens next. **This is the destination, and it is still ahead of us.**" That one is
       CORRECT and is the model for the rest: name the object plainly, then say it has not happened

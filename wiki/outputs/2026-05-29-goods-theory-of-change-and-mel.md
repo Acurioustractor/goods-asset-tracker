@@ -77,7 +77,18 @@ A deliberately short list (SIH p6 warned against tracking too much). **Every met
 
 > **Data sovereignty is itself a core impact metric (SIH p3).** Photographs and stories are shared back to community, storytellers are told where and how their stories are used, and they may retract at any time. We count consent-led stories as proof of impact, not just bed counts.
 
-> **Community ownership is a binary terminal outcome, not a soft value (from the JusticeHub handover checkpoints).** At each production site we test four things at month 6, where partial counts as NO: (1) the community holds the keys to the factory; (2) a named community lead is on payroll; (3) a community-controlled entity invoices the buyer directly; (4) at least 50% of production is community-controlled. Passing all four is the clearest proof that "our job is to become unnecessary" is real, and it is readable against OCAP / Indigenous data-governance principles.
+> **SUPERSEDED 2026-07-26 by ruling Q (`/DECISIONS.md`). The live test is `v2/src/lib/data/ownership-test.ts`.**
+> The version below is kept as the historical record, because it was the only surviving statement of the
+> JusticeHub checkpoints (that source file no longer exists at its cited path). What changed and why:
+> checkpoint 1 said "keys to the factory", which under ruling D meant a shredder-only pathway could never
+> pass; checkpoint 4's "50% of production" collided with the 51% First Nations SUPPLIER ownership test and
+> could not be scored, so it is now "Decision"; "month 6" had no origin, making a binary test unfailable,
+> and is now six months from the start of Deliver; and the stated purpose, proving "our job is to become
+> unnecessary", was retired by ruling A. **Binary and partial-counts-as-NO were kept, because that is the
+> whole value.** Applied properly, the current reading is not "not yet met at any site" but **no site is
+> yet eligible**: none has entered Deliver as a production site.
+>
+> *Historical text:* **Community ownership is a binary terminal outcome, not a soft value (from the JusticeHub handover checkpoints).** At each production site we test four things at month 6, where partial counts as NO: (1) the community holds the keys to the factory; (2) a named community lead is on payroll; (3) a community-controlled entity invoices the buyer directly; (4) at least 50% of production is community-controlled. Passing all four is the clearest proof that "our job is to become unnecessary" is real, and it is readable against OCAP / Indigenous data-governance principles.
 
 > **Viability is governed by a unit-economics decision band (from the delivered-cost report):** ≥25% margin = scale · 15–24% = workable · 5–14% = red flag · <5% = stop. Fully-loaded cost is currently ≈$550–600/bed against a $750 price (`impact-model.ts`; bed COGS reconciliation), i.e. roughly the "workable" band today, improving as volume rises. This keeps the "real enterprise, not charity" spine honest.
 

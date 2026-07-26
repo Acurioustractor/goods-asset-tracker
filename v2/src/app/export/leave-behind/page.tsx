@@ -407,7 +407,7 @@ export default function LeaveBehindPage() {
               </div>
               <div style={{ fontSize: 11.5, color: C.soft, marginTop: 6, lineHeight: 1.4 }}>
                 An <b>$800,000</b> program that takes Goods to the point it funds itself and stands up the first
-                on-Country production sites: the measured run, plant capital of roughly $100K to $150K per site, the
+                on-Country production sites: the measured run, the per-site plant capital, the
                 first on-Country operator roles, and working capital. QBE Catalysing Impact submission 14 September
                 2026, outcomes November.
               </div>
@@ -419,7 +419,7 @@ export default function LeaveBehindPage() {
                 Foundation <b>$100K</b> <span style={{ color: C.mut, fontSize: 11 }}>grant</span> &nbsp;·&nbsp;
                 Centrecorp <b>$75K</b> <span style={{ color: C.mut, fontSize: 11 }}>grant</span>
                 <span style={{ display: 'block', borderTop: `1px solid ${C.line}`, marginTop: 5, paddingTop: 5 }}>
-                  Target stack <b>$475K</b> · signed to date <b style={{ color: C.terracotta }}>$0</b>{' '}
+                  Candidate stack <b>$607.5K</b> grants / <b>$710K</b> repayable · signed to date <b style={{ color: C.terracotta }}>$0</b>{' '}
                   <Chip claim="target" /> &nbsp;<span style={{ color: C.mut, fontSize: 11 }}>as at 25 July 2026, and we say so</span>
                 </span>
               </div>
