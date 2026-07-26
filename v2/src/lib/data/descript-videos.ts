@@ -59,6 +59,15 @@ export const DESCRIPT_VIDEOS: DescriptVideo[] = [
     canonFresh: true,
     note: 'HELD. Live on the site but not in cleared-voices.ts; confirm consent before placing on a new external slide.',
   },
+  {
+    viewId: '6hVl3CzxdqR',
+    title: 'Final Video Jahvan (Palm Island washing machines)',
+    beat: 'people',
+    poster: '/images/community/palm-island/two-men-thumbs-up.jpg',
+    cleared: false,
+    canonFresh: true,
+    note: 'HELD. Jahvan delivering washing machines on Palm Island. Jahvan Oui is not on cleared-voices.ts; confirm consent (and whether anyone else is on camera) before any external surface. Feeds the Palm Island pathway once cleared.',
+  },
   // The six Feb-2026 audience walkthroughs — stale canon. Kept for reference /
   // re-record, never sent as current.
   {
