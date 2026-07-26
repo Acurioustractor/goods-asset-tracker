@@ -488,6 +488,47 @@ model puts it with whichever community runs the site, and "belongs" is present t
 standing rule that ownership is a pathway, never claimed complete. Infrastructure scales from a
 shredder to a full facility, which is the modular point.
 
+**Sweep (added 2026-07-26, one day late, and the delay is the point).** This ruling shipped with
+**no sweep list**, and this file's own header says a ruling with no sweep list is one that will
+silently rot. It did, in a day: the retired framing was still doing load-bearing work on live
+public pages, including the sentence two pitch surfaces were built around.
+
+**What the ruling does and does not ban.** "Plant" describing the actual containerised facility,
+which exists, is FINE and stays: the Alice plant team, the plant tour video, the safety briefing,
+capital lines. What is retired is **"the plant" as the thing we offer a community**, because most
+of them do not want one. The audit found roughly 50 occurrences across public routes and the large
+majority are the legitimate kind. Judge per instance. Never find-and-replace this word.
+
+Fixed 2026-07-26:
+
+- [x] `/pitch` and `/pitch/document`: "The plant is the path from Goods-run production to
+      community-owned making", a shared top-level constant and the spine sentence of both, now "The
+      path runs from". Also "the plant is the bridge", "the plant is no longer theory", "the plant
+      pathway", and the page metadata
+- [x] `/the-work`: headline "A plant that moves" now "Infrastructure that moves", with the body
+      naming that it scales from a single shredder up. **Two further rot instances found in the same
+      card set and fixed:** "support the making and the realising, **then step back**" (ruling A,
+      retired) and "The community runs and owns the plant" (present-tense ownership, against the
+      standing rule that ownership is a pathway)
+- [x] `/get-involved`: **"Back the plant" was the offer itself**, as a card title, a CTA and a
+      button, now "Back local production". The community-facing card also said "the community runs
+      and owns the build" in the present tense. This page is the worst of the three because it
+      speaks to funders and to communities at the point of action
+
+Still open, and NOT to be swept blindly:
+
+- [ ] `/deck` (6 instances, e.g. "each plant is built to move into community hands",
+      "community-owned plant"). **Blocked**: the deck data and routes are under another session's
+      uncommitted edit
+- [ ] `/process` ("The capital buys the path, not just the press. The plant can transfer to
+      community ownership"), `/canberra`, `/cost-story:340`, `/story:719`, `/partner:209`,
+      `/export/leave-behind`
+- [ ] `/partners/[slug]/dashboard` already says "The community owns the plant, the income it makes,
+      and what happens next. **This is the destination, and it is still ahead of us.**" That one is
+      CORRECT and is the model for the rest: name the object plainly, then say it has not happened
+- [ ] Admin and wiki surfaces are internal and lower priority, but `/admin/products/the-plant`
+      encodes the retired framing in a route id
+
 ### C. The spine is the road. The model is what the road produces.
 
 The model arrives near the end, not at the start. Voices lead each stop, because each stop is a
