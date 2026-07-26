@@ -300,7 +300,7 @@ const PLANT: ProductWiki = {
       title: 'A pathway to community ownership',
       body: [
         'The plant is designed to move to community ownership. That transfer has not happened yet, and Goods is careful never to claim it has. The pathway is being built through a first measured production run, a first community operator on payroll, quality control and maintenance, working capital, and a clear transfer of rights and decisions.',
-        'The stated goal of the whole enterprise is to move title, contracts, margin, knowledge and decisions into community hands, and then step back.',
+        'The stated goal of the whole enterprise is to move title, contracts, margin, knowledge and decisions toward community hands. Goods does not disappear afterwards: design, quality, training, parts and back office are what it is for.',
       ],
       image: `${P}/process/01-source.jpg`,
     },

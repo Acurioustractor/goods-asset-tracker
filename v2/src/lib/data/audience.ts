@@ -120,7 +120,7 @@ export const AUDIENCES: Audience[] = [
       'A facility proposal before a yarn.',
       'The cost model as a spreadsheet. It is presented as the questions it came from, and the answers belong to the community.',
       'Their own photo, story or name used before they cleared it.',
-      'The words "co-design". The products are designed in community, led by community.',
+      'Never the words "co-design". The products are designed in community, led by community.',
     ],
     nextAction: 'A yarn, with nothing proposed.',
     door: null,

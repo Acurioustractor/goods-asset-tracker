@@ -1687,7 +1687,7 @@ export const enterpriseVision = {
     'Logistics and delivery',
   ],
   youthPathways: 'Young people learning manufacturing, business skills, and robotics through Red Dust partnership. A pathway from community engagement to employment.',
-  ownership: 'Communities eventually own and run the whole operation. We transfer manufacturing capability, supply chain connections, and quality frameworks, then step back.',
+  ownership: 'Communities come to own and run the making over time. We transfer manufacturing capability, supply chain connections and quality frameworks, and afterwards Goods stays useful for design, quality, training, parts and back office.',
 };
 
 // Themes from community voices
