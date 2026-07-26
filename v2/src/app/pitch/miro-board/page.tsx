@@ -29,6 +29,9 @@ export const metadata = {
   title: 'Miro-ready board | Goods on Country pitch',
   description:
     'A Miro-ready brand vision board for the Goods on Country pitch, with message, photos, quotes, places, and deck decisions.',
+  // Internal working surface, not a funder destination. Indexed by accident until
+  // 2026-07-26; the canonical funder surface is /pitch/funder-pathways.
+  robots: { index: false, follow: false },
 };
 
 const featuredNames = new Set([
