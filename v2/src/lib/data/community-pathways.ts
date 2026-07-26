@@ -675,7 +675,7 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
       gallery: [
         { src: '/images/people/alfred-johnson.jpg', alt: 'Alfred Johnson, Palm Island community voice' },
         { src: '/images/people/carmelita-colette.jpg', alt: 'Carmelita and Colette, Palm Island community voices' },
-        { src: '/images/community/palm-island/kids-new-mattress.jpg', alt: 'Kids on a new mattress during a Palm Island delivery' },
+        { src: '/images/people/jahvan-oui.jpg', alt: 'Jahvan Oui, Goods team member and future manufacturing lead from Palm Island' },
       ],
       links: [
         {

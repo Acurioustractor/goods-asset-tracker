@@ -1391,19 +1391,19 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
       {
         text: "There's gotta be a break in the cycle somewhere. Soon as you break the cycle, all this stuff stop. People stopped going to jail. People stopped fighting amongst each other.",
         context: 'Breaking the cycle, said during the washing-machine delivery',
-        status: 'hold',
-        note: 'HOLD: transcript labels this Speaker 24, not the Speaker 28 of the main monologue. Ben to confirm it is Jahvan before use.',
+        status: 'primary',
+        note: 'Speaker 24 confirmed as Jahvan by Ben 2026-07-26. The strongest line in the video.',
       },
       {
         text: "Just wanna say thank yous for coming to our community, listening to our stories. And trying to understand. Not a lot of people are like that, you know, understanding.",
         context: 'To the Goods crew at the end of the delivery',
-        status: 'hold',
-        note: 'HOLD: same Speaker 24 attribution question as the break-the-cycle line.',
+        status: 'approved',
+        note: 'Speaker 24 confirmed as Jahvan by Ben 2026-07-26.',
       },
     ],
-    portrait: null,
+    portrait: '/images/people/jahvan-oui.jpg',
     notes:
-      'Cleared by Ben 2026-07-26: main Goods member with approval, the maker/ownership voice for Palm Island. Quotes are verbatim from the "Final Video Jahvan" transcript (descript-videos.ts viewId 6hVl3CzxdqR), pasted by Ben 2026-07-26. The transcript has multiple speaker labels: Speaker 28 quotes are attributed to Jahvan (it is his video); Speaker 24 lines are HOLD pending Ben confirming the voice. The unnamed washing-machine recipients (Speakers 22/23) are NOT cleared and none of their words may be quoted. Partner of Ebony Oui, who is NOT yet cleared as her own voice. Portrait gap: add /images/people/jahvan-oui.jpg when a photo is chosen.',
+      'Cleared by Ben 2026-07-26: main Goods member with approval, the maker/ownership voice for Palm Island. Quotes are verbatim from the "Final Video Jahvan" transcript (descript-videos.ts viewId 6hVl3CzxdqR), pasted by Ben 2026-07-26; Ben confirmed Speaker 24 is Jahvan, so both delivery-day lines are usable. The unnamed washing-machine recipients (Speakers 22/23) are NOT cleared and none of their words may be quoted. Partner of Ebony Oui, who is NOT yet cleared as her own voice. Portrait supplied by Ben 2026-07-26.',
   },
 ];
 
