@@ -43,6 +43,30 @@ export const HOME_STORY_COMPACT = {
   link: { label: 'Read the full story', href: '/story/road' },
 } as const;
 
+/**
+ * The Maningrida feature film (July 2026 trip, "goods edit v1"). A produced
+ * edit with sound, so it renders as click-to-play with controls, never an
+ * autoplay background. The 640x360 source is a proxy export; swap in the
+ * full-resolution master at the same path when Ben has it.
+ *
+ * The film carries the whole spine in four minutes: the ask from Gamardi and
+ * Homeland School Company, the scabies-to-RHD why, the plastic-to-panel how,
+ * the build, and the washing machine at the school. Its own claims check out
+ * against canon: "over 40 beds, our biggest build in one community" matches
+ * the register's Maningrida +40, and "hundreds of beds around the country"
+ * sits under the 540 deployed. Speakers are Nic plus unnamed community and
+ * school voices; no named storyteller claim is made on this surface.
+ */
+export const HOME_FEATURE_VIDEO = {
+  eyebrow: 'Maningrida, July 2026',
+  title: 'Our biggest build, in one community.',
+  caption:
+    'Forty beds and the school washing machine, built with the Gamardi community and Homeland School Company. Four minutes, worth the sound on.',
+  src: '/video/maningrida/build-feature.mp4',
+  poster: '/video/maningrida/build-feature-poster.jpg',
+  link: { label: 'The whole road that led here', href: '/story/road' },
+} as const;
+
 export const HOME_BED_SECTION = {
   eyebrow: 'The Stretch Bed',
   title: 'A bed built to stay.',

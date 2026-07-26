@@ -5,6 +5,7 @@ import {
   HOME_HERO,
   HOME_PROVENANCE,
   HOME_STORY_COMPACT,
+  HOME_FEATURE_VIDEO,
   HOME_BED_SECTION,
   HOME_FACILITY_SECTION,
   HOME_VOICES,
@@ -166,6 +167,39 @@ export default async function HomePage() {
             >
               {HOME_STORY_COMPACT.link.label} →
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 3b. The Maningrida feature film — a produced edit with sound, so
+          click-to-play with controls, never an autoplay background. */}
+      <section className="bg-foreground py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-4xl">
+            <p className="mb-4 text-sm uppercase tracking-widest" style={{ color: '#C9A227' }}>
+              {HOME_FEATURE_VIDEO.eyebrow}
+            </p>
+            <h2 className="mb-6 text-3xl font-semibold text-background md:text-4xl" style={DISPLAY_FONT}>
+              {HOME_FEATURE_VIDEO.title}
+            </h2>
+            <video
+              className="w-full rounded-2xl"
+              src={HOME_FEATURE_VIDEO.src}
+              poster={HOME_FEATURE_VIDEO.poster}
+              controls
+              preload="none"
+              playsInline
+            />
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
+              <p className="max-w-2xl text-base text-background/60">{HOME_FEATURE_VIDEO.caption}</p>
+              <Link
+                href={HOME_FEATURE_VIDEO.link.href}
+                className="text-base font-semibold"
+                style={{ color: '#C9A227' }}
+              >
+                {HOME_FEATURE_VIDEO.link.label} →
+              </Link>
+            </div>
           </div>
         </div>
       </section>

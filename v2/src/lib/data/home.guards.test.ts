@@ -14,6 +14,7 @@ import {
   HOME_HERO,
   HOME_PROVENANCE,
   HOME_STORY_COMPACT,
+  HOME_FEATURE_VIDEO,
   HOME_BED_SECTION,
   HOME_FACILITY_SECTION,
   HOME_VOICES,
@@ -84,6 +85,16 @@ describe('homepage guards', () => {
       expect(src).not.toContain('starred-images');
       expect(existsSync(join(PUBLIC_DIR, src)), `${src} not found in public/`).toBe(true);
     }
+  });
+
+  it('the feature video and its poster ship (the 404-in-production trap)', () => {
+    for (const src of [HOME_FEATURE_VIDEO.src, HOME_FEATURE_VIDEO.poster]) {
+      expect(existsSync(join(PUBLIC_DIR, src)), `${src} not found in public/`).toBe(true);
+    }
+  });
+
+  it('the feature-video claim stays consistent with the register', () => {
+    expect(HOME_FEATURE_VIDEO.caption).toContain('Forty beds');
   });
 
   it('ownership is a pathway, never claimed complete', () => {
