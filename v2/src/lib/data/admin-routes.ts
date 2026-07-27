@@ -82,6 +82,8 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
     routes: [
       { href: '/admin/funders', name: 'Funders', status: 'absorbed', note: 'via Raise' },
       { href: '/admin/loi-tracker', name: 'LOI tracker', status: 'absorbed', note: 'the match register' },
+      { href: '/admin/pipeline', name: 'Deal pipeline board', status: 'absorbed', note: 'via Raise' },
+      { href: '/admin/ask', name: 'The Ask', status: 'absorbed', note: 'via Raise' },
       { href: '/admin/reports', name: 'Funder reports', status: 'active' },
       { href: '/admin/reports/impact', name: 'Impact reports', status: 'active' },
       { href: '/admin/orders', name: 'Orders', status: 'active' },
@@ -99,6 +101,9 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
       { href: '/admin/install-bulk', name: 'Bulk install', status: 'utility' },
       { href: '/admin/install-checklist', name: 'Install checklist', status: 'utility' },
       { href: '/admin/bed-signals', name: 'Bed signals', status: 'active' },
+      { href: '/admin/maps/deployed', name: 'Map: deployed', status: 'active', note: 'register on the map' },
+      { href: '/admin/maps/need', name: 'Map: need', status: 'active' },
+      { href: '/admin/maps/ask', name: 'Map: ask', status: 'active' },
       { href: '/admin/scans', name: 'Scans', status: 'active' },
       { href: '/admin/fleet', name: 'Fleet', status: 'active', note: 'quarterly' },
       { href: '/admin/operating-systems', name: 'Operating systems', status: 'active' },
@@ -116,6 +121,7 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
       { href: '/admin/brand', name: 'Brand', status: 'stale' },
       { href: '/admin/team', name: 'Team', status: 'stale' },
       { href: '/admin/alice-fill', name: 'Alice fill wizard', status: 'one-off', note: '2026-05-21 trip catch-up' },
+      { href: '/admin/route-review', name: 'Route review', status: 'one-off', note: '2026-07 IA review artifact; produced this directory' },
     ],
   },
 ];

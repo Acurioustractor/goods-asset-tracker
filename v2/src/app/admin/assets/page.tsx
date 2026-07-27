@@ -3,6 +3,7 @@ import { createServiceClient } from '@/lib/supabase/server';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { AssetTable, type AssetRow } from './asset-table';
+import { RegisterScoreboard } from './register-scoreboard';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -122,6 +123,18 @@ export default async function AssetRegisterPage() {
         <Kpi label="Beds Deployed" value={bedsDeployed.toLocaleString()} sub="in community" />
         <Kpi label="Ready for Next Trip" value={readyForTrip.toLocaleString()} sub="Stretch Beds awaiting allocation" highlight />
         <Kpi label="Washing Machines Deployed" value={machinesDeployed.toLocaleString()} sub="across NT + QLD" />
+      </section>
+
+      {/* Per-community integrity vs ruled canon */}
+      <section>
+        <RegisterScoreboard
+          rows={data.map((r) => ({
+            product: r.product,
+            community: r.community,
+            status: r.status,
+            quantity: r.quantity ?? 1,
+          }))}
+        />
       </section>
 
       {/* Pipeline summary */}
