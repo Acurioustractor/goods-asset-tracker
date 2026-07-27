@@ -43,14 +43,11 @@
   --goods-sub:          #7A7363;  /* captions, sub-text                        */
 
   /* ---- Type -------------------------------------------------------------- */
-  /* LOCKED to what the app actually loads (Ben, 2026-07-26): display =
-     Playfair Display (next/font, --font-display), body = Inter (--font-inter).
-     Georgia/Times are the no-JS fallbacks only. Archivo was named here for the
-     wordmark but is never loaded anywhere; the wordmark ships as an asset, so
-     no logo font is loaded and none should be added without a new ruling. */
-  --goods-font-display: "Playfair Display", Georgia, "Times New Roman", serif;
-  --goods-font-logo:    "Playfair Display", Georgia, serif; /* wordmark is an asset; this is fallback-only */
-  --goods-font-body:    "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  /* Display = Georgia (editorial, public pages). Logo = Archivo Bold 700;
+     the grounded descriptor uses Archivo SemiBold 600. Body = system sans. */
+  --goods-font-display: Georgia, "Times New Roman", serif;
+  --goods-font-logo:    "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --goods-font-body:    system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
 
   --goods-display-tracking: -0.01em;   /* editorial headings sit tight        */
   --goods-eyebrow-tracking: 0.12em;    /* all-caps eyebrows / labels          */

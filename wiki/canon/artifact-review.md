@@ -53,7 +53,7 @@ None. Every citesCanon id resolves to a canon fact.
 - **Community Stories + Empathy Ledger (/stories)**
   - el-published-stories (canon 2026-07-25 > verified 2026-06-17)
 - **Impact measurement method (consent-cleared voices)**
-  - cleared-voices (canon 2026-07-26 > verified 2026-06-17)
+  - cleared-voices (canon 2026-07-21 > verified 2026-06-17)
 - **Scored risk register (14 risks)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-13)
 - **Investor Alignment Tool (SIH, populated, canonical)**
@@ -85,7 +85,7 @@ None. Every citesCanon id resolves to a canon fact.
   - washers-in-community (canon 2026-07-21 > verified 2026-07-02)
   - stretch-price (canon 2026-07-25 > verified 2026-07-02)
 - **Investment machine blueprint (GHL + Notion operating system)**
-  - cleared-voices (canon 2026-07-26 > verified 2026-07-02)
+  - cleared-voices (canon 2026-07-21 > verified 2026-07-02)
 - **New outreach drafts (LendForGood, Metro, Tripple)**
   - beds-deployed (canon 2026-07-18 > verified 2026-07-02)
 - **Next-phase one-pager (rendered)**

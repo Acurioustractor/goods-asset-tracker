@@ -89,14 +89,6 @@ const nextConfig: NextConfig = {
       //
       // /press#brand-system still exists and is still correct; it is the short version. Do not
       // re-add a redirect here without checking whether src/app/brand/page.tsx is still live.
-      //
-      // 2026-07-26 (ruling S): /brand is retired again, this time AS a page-level redirect to
-      // /press (src/app/brand/page.tsx), so no config rule is needed for it.
-      //
-      // /community must redirect HERE, not at the page, because the proxy gates /community with
-      // an auth check that would bounce anonymous visitors to /auth/phone-login before the page
-      // redirect ever ran. Config redirects run ahead of the proxy.
-      { source: '/community', destination: '/communities', permanent: true },
     ];
   },
 };

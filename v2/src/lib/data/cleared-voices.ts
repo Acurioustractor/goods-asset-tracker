@@ -52,7 +52,6 @@ const CLEARED_VOICES_EXTERNAL: string[] = [
   'Wayne Glenn',
   'Margaret Lloyd',
   'Tanya Turner',
-  'Jahvan Oui', 'Jahvan',
 ];
 
 function normaliseVoiceName(name: string): string {
