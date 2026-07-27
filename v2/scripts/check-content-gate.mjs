@@ -110,7 +110,7 @@ function parseFrontmatter(text) {
     const kv = line.match(/^(\w[\w_]*):\s*(.*)$/);
     if (kv) fm[kv[1]] = kv[2].trim();
   }
-  return { fm, body: m ? text.slice(m[0].length) : text };
+  return { fm, body: m ? text.slice(m[0].length) : text, offset: m ? m[0].split('\n').length : 0 };
 }
 
 /** Strip verbatim quoted speech: those are other people's words, exempt from
@@ -121,19 +121,23 @@ function stripQuotedSpeech(line) {
 
 function gateConsent(fm, body, findings) {
   const rule = 'cleared-voices.ts: DEFAULT-DENY — a voice appears externally only if its name is on the cleared list';
-  if (!fm.storyteller) {
-    findings.push({ stage: 'consent', line: 0, finding: 'no `storyteller:` in frontmatter', rule });
+  // Single-voice units carry `storyteller:`; multi-voice units (newsletters,
+  // month plans) carry `voices:` naming everyone quoted. Either satisfies the
+  // requirement; every name on either must be cleared.
+  const named = fm.storyteller ?? fm.voices;
+  if (!named) {
+    findings.push({ stage: 'consent', line: 0, finding: 'no `storyteller:` (single voice) or `voices:` (multi-voice) in frontmatter', rule });
   } else {
-    for (const name of fm.storyteller.split(/,|&| and /).map((s) => s.trim()).filter(Boolean)) {
+    for (const name of named.split(/,|&| and /).map((s) => s.trim()).filter(Boolean)) {
       if (!CLEARED.has(normaliseName(name))) {
-        findings.push({ stage: 'consent', line: 0, finding: `storyteller '${name}' is NOT on the cleared-voices list`, rule });
+        findings.push({ stage: 'consent', line: 0, finding: `named voice '${name}' is NOT on the cleared-voices list`, rule });
       }
     }
   }
-  if (!fm.consent_source) {
+  if (!fm.consent_source && !fm.consent) {
     findings.push({
       stage: 'consent', line: 0,
-      finding: 'no `consent_source:` in frontmatter — every draft must record where its clearance comes from',
+      finding: 'no `consent_source:` or `consent:` in frontmatter — every draft must record where its clearance comes from',
       rule: 'ledger-story skill: drafts carry consent provenance; /CONTEXT.md consent gate',
     });
   }
@@ -157,7 +161,9 @@ function gateClaims(body, findings) {
     const line = stripQuotedSpeech(raw);
     for (const fig of RETIRED) {
       const escaped = fig.value.replace(',', '[,]');
-      if (new RegExp(`\\b${escaped}(?![0-9%])`).test(line) && fig.context.test(line)) {
+      // (?![\w%]) so "20kg" never matches the retired washer count 20: a unit
+      // suffix means the number counts something else on the same line.
+      if (new RegExp(`\\b${escaped}(?![\\w%])`).test(line) && fig.context.test(line)) {
         findings.push({
           stage: 'claims', line: i + 1,
           finding: `retired ${fig.what}: ${fig.value} (canon is now ${fig.now})`,
@@ -216,11 +222,12 @@ const results = [];
 let failed = false;
 for (const file of files) {
   const text = readFileSync(resolve(file), 'utf8');
-  const { fm, body } = parseFrontmatter(text);
+  const { fm, body, offset } = parseFrontmatter(text);
   const findings = [];
   gateConsent(fm, body, findings);
   gateClaims(body, findings);
   gateVoice(body, findings);
+  for (const f of findings) if (f.line > 0) f.line += offset; // report file lines, not body lines
   const pass = findings.length === 0;
   if (!pass) failed = true;
   results.push({ file: basename(file), storyteller: fm.storyteller ?? null, status: fm.status ?? null, pass, findings });
