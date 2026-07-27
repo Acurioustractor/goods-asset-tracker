@@ -18,7 +18,7 @@ const navigation: NavItem[] = [
   // 'Field notes' nav entry pulled until Utopia is consent-cleared +
   // published. Re-add this line when ready:
   // { name: 'Field notes', href: '/field-notes' },
-  { name: 'Our Story', href: '/story' },
+  { name: 'Our Story', href: '/story/road' },
   { name: 'Contact', href: '/contact' },
 ];
 

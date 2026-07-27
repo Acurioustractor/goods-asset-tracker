@@ -68,10 +68,10 @@ const footerLinks = {
     { name: 'Washing Machines', href: '/shop/washing-machine' },
   ],
   about: [
-    { name: 'Our Story', href: '/story' },
+    { name: 'Our Story', href: '/story/road' },
     { name: 'Community Stories', href: '/stories' },
     { name: 'Communities', href: '/communities' },
-    { name: 'Impact', href: '/story#impact' },
+    { name: 'Impact', href: '/impact' },
     { name: 'Centrecorp Partnership', href: '/partners/centrecorp' },
     { name: 'Gallery', href: '/gallery' },
   ],

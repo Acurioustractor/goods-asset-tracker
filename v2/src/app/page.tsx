@@ -1,495 +1,433 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Hero, ImpactStats } from '@/components/marketing';
-import { AssemblySequence } from '@/components/pitch/assembly-sequence';
-import { CyclingImage } from '@/components/pitch/cycling-image';
-import { MediaSlot } from '@/components/ui/media-slot';
 import { Button } from '@/components/ui/button';
-import { brand } from '@/lib/data/content';
-import { PLASTIC_KG_PER_BED, STRETCH_BED } from '@/lib/data/products';
-import { videoUrl } from '@/lib/data/media';
-import { canonVideoSrc } from '@/lib/data/canon-videos';
-import { FeaturedStories } from '@/components/empathy-ledger/featured-stories';
-import { FieldNotesTile } from '@/components/marketing/field-notes-tile';
+import {
+  HOME_HERO,
+  HOME_PROVENANCE,
+  HOME_STORY_COMPACT,
+  HOME_FEATURE_VIDEO,
+  HOME_BED_SECTION,
+  HOME_FACILITY_SECTION,
+  HOME_VOICES,
+  HOME_ROAD,
+  HOME_DOORS,
+  homeVoiceQuote,
+} from '@/lib/data/home';
 import { getStoryOverrides } from '@/lib/field-notes/overrides';
 import { createClient } from '@/lib/supabase/server';
 import { MediaSwapZone, type SwapFolder } from '@/components/admin/media-swap-picker';
 
+// Homepage A — "The Bed on Country" (Ben's picked mock, 2026-07-26).
+// Every word renders from lib/data/home.ts, which home.guards.test.ts holds
+// against canon, consent and the road spine. Nothing narrative is authored here.
+// Images can be re-picked by an admin through the Empathy Ledger swap picker
+// (orange pill, local dev or signed in); overrides layer over the guarded
+// defaults via data/field-note-overrides.json under slug 'home'.
+
 const HOME_SLUG = 'home';
 
-// '26.9mm' — pole outside diameter, derived from the canonical frame spec.
-const POLE_OD = STRETCH_BED.materials.frame.detail.split(' ')[0];
+const DISPLAY_FONT = { fontFamily: 'var(--font-display, Georgia, serif)' } as const;
+
+const DOOR_TONES = {
+  terracotta: '#C45C3E',
+  sage: '#6F7F5C',
+  teal: '#3E6363',
+} as const;
 
 const HOME_FOLDERS: SwapFolder[] = [
   { label: 'All recent', emoji: '🕘', tags: [] },
+  { label: 'Website images', emoji: '🖼', tags: ['__website__'] },
   { label: 'All Stretch Bed', emoji: '🛏', tags: ['product:stretch-bed'] },
+  { label: 'May 2026 trip', emoji: '📅', tags: ['trip:may-2026'] },
+  { label: 'Maningrida', emoji: '🌅', tags: ['community:maningrida'] },
   { label: 'Alice build', emoji: '🛠', tags: ['event:alice-build'] },
   { label: 'Utopia delivery', emoji: '🏠', tags: ['community:utopia-homelands', 'event:bed-delivery'] },
-  { label: 'Oonchiumpa young people', emoji: '👥', tags: ['participant:oonchiumpa-young-people'] },
-  { label: 'May 2026 trip', emoji: '📅', tags: ['trip:may-2026'] },
 ];
 
 export default async function HomePage() {
-  // Admin-only swap widget. Local dev or signed-in user gets the orange
-  // swap pill on every media slot. Public visitors see no chrome.
+  // Admin-only swap widget: local dev or a signed-in user sees the orange
+  // swap pill on each media slot. Public visitors get no chrome.
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
-  const isLocalDev = process.env.NODE_ENV !== 'production';
-  const canSwap = !!user || isLocalDev;
+  const canSwap = !!user || process.env.NODE_ENV !== 'production';
 
-  // Manual overrides from data/field-note-overrides.json under slug 'home'.
-  // Keys: materials.0..3, feature-video.image / .videoDesktop / .videoMobile / .poster
   const overrides = getStoryOverrides(HOME_SLUG);
   const ov = (key: string, fallback: string) => overrides[key] || fallback;
+
+  // Hero can be overridden to a VIDEO through the picker's smart routing:
+  // a video pick writes hero.videoDesktop/videoMobile/poster and clears
+  // hero.image; a photo pick does the reverse.
+  const heroImage = ov('hero.image', HOME_HERO.image);
+  const heroVideoDesktop = overrides['hero.videoDesktop'];
+  const heroVideoMobile = overrides['hero.videoMobile'];
+  const heroPoster = overrides['hero.poster'];
+
   return (
     <>
-      {/* 1. Hero: Video bg, Stretch Bed as hero product */}
-      <Hero
-        title={brand.hero.home.headline}
-        subtitle={brand.hero.home.subheadline}
-        primaryCta={{ text: 'Shop the Stretch Bed', href: '/shop/stretch-bed-single' }}
-        secondaryCta={{ text: 'Back the work', href: '/partner' }}
-        videoSrc={canonVideoSrc('video-hero', {
-          desktop: videoUrl('hero-desktop.mp4'),
-          mobile: videoUrl('hero-mobile.mp4'),
-          poster: '/video/hero-poster.jpg',
-        })}
-        imageSrc="/images/media-pack/lying-on-stretch-bed.jpg"
-        imageAlt="A young man lying full-length on a Stretch Bed on country: recycled plastic legs, galvanised steel poles, heavy-duty canvas"
-      />
-
-      {/* 2. The Stretch Bed: Materials + Assembly + Price comparison */}
-      <section className="py-16 md:py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <p className="text-sm uppercase tracking-widest text-accent mb-4">
-              The Stretch Bed
-            </p>
-            <h2
-              className="text-3xl md:text-4xl font-light text-foreground mb-4 leading-snug"
-              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
+      {/* 1. Hero */}
+      <section className="relative isolate flex min-h-[76vh] items-end overflow-hidden bg-foreground">
+        {heroVideoDesktop ? (
+          <>
+            <video
+              className="absolute inset-0 hidden h-full w-full object-cover sm:block"
+              src={heroVideoDesktop}
+              poster={heroPoster}
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
+            <video
+              className="absolute inset-0 h-full w-full object-cover sm:hidden"
+              src={heroVideoMobile || heroVideoDesktop}
+              poster={heroPoster}
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
+          </>
+        ) : (
+          <Image
+            src={heroImage}
+            alt={HOME_HERO.imageAlt}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-black/70" />
+        {canSwap && (
+          <MediaSwapZone
+            slug={HOME_SLUG}
+            overrideKey="hero.image"
+            currentUrl={heroVideoDesktop || heroImage}
+            tagQuery={['trip:may-2026']}
+            kind="any"
+            label="swap hero"
+            folders={HOME_FOLDERS}
+            smartMediaRoute
+          />
+        )}
+        <div className="relative container mx-auto px-4 pb-14 md:pb-20">
+          <h1
+            className="max-w-3xl text-4xl font-semibold leading-tight text-white md:text-6xl"
+            style={DISPLAY_FONT}
+          >
+            {HOME_HERO.headline}
+          </h1>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Button size="lg" className="text-white hover:opacity-90" style={{ backgroundColor: DOOR_TONES.terracotta }} asChild>
+              <Link href={HOME_HERO.primaryCta.href}>{HOME_HERO.primaryCta.label}</Link>
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white bg-transparent text-white hover:bg-white/10"
+              asChild
             >
-              Three materials. No tools. Five minutes.
-            </h2>
-            <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
-              {STRETCH_BED.specs.weight}, supports {STRETCH_BED.specs.loadCapacity}, designed to last {STRETCH_BED.specs.designLifespan}. Each bed diverts {PLASTIC_KG_PER_BED}kg of plastic from landfill.
+              <Link href={HOME_HERO.secondaryCta.href}>{HOME_HERO.secondaryCta.label}</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Provenance strip */}
+      <section className="bg-foreground py-4">
+        <div className="container mx-auto flex flex-wrap items-center justify-center gap-x-12 gap-y-2 px-4">
+          {HOME_PROVENANCE.map((item) => (
+            <span
+              key={item}
+              className="font-mono text-xs uppercase tracking-widest text-background/60"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* 3. Compact story */}
+      <section className="bg-background py-16 md:py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl">
+            <p className="mb-4 text-sm uppercase tracking-widest text-accent">
+              {HOME_STORY_COMPACT.eyebrow}
             </p>
+            <p
+              className="text-2xl font-semibold leading-snug text-foreground md:text-3xl"
+              style={DISPLAY_FONT}
+            >
+              {HOME_STORY_COMPACT.line}
+            </p>
+            <Link
+              href={HOME_STORY_COMPACT.link.href}
+              className="mt-6 inline-block text-base font-semibold"
+              style={{ color: DOOR_TONES.terracotta }}
+            >
+              {HOME_STORY_COMPACT.link.label} →
+            </Link>
+          </div>
+        </div>
+      </section>
 
-            <div className="grid gap-12 lg:grid-cols-2 items-start">
-              {/* Left: 4 material boxes */}
-              <div className="grid gap-4 grid-cols-2">
-                {[
-                  {
-                    key: 'materials.0',
-                    fallback: '/images/pitch/bed-frame-legs.jpg',
-                    alt: 'Recycled HDPE plastic legs, pressed from community waste',
-                    label: 'Recycled plastic legs',
-                    title: 'Recycled Plastic Frame',
-                    body: `HDPE legs from community plastic. ${PLASTIC_KG_PER_BED}kg diverted per bed.`,
-                  },
-                  {
-                    key: 'materials.1',
-                    fallback: '/images/pitch/bed-poles.jpg',
-                    alt: `Galvanised steel pole, ${POLE_OD} OD`,
-                    label: 'Steel pole',
-                    title: 'Galvanised Steel Poles',
-                    body: `Two ${POLE_OD} poles thread through canvas sleeves.`,
-                  },
-                  {
-                    key: 'materials.2',
-                    fallback: '/images/pitch/bed-canvas.jpg',
-                    alt: 'Heavy-duty Australian canvas with Goods. branding',
-                    label: 'Canvas',
-                    title: 'Heavy-Duty Canvas',
-                    body: 'Washable, repairable, built for remote conditions.',
-                  },
-                  {
-                    key: 'materials.3',
-                    fallback: '/images/media-pack/nic-with-elder-on-verandah.jpg',
-                    alt: 'Nic sitting on a Stretch Bed with an elder on a verandah, ongoing support and connection',
-                    label: 'Support system',
-                    title: 'Support System',
-                    body: 'Every bed tracked. Ask questions, stay connected, get support.',
-                  },
-                ].map((card) => {
-                  const src = ov(card.key, card.fallback);
-                  return (
-                    <div
-                      key={card.key}
-                      className="rounded-xl border border-border overflow-hidden bg-muted/30"
-                    >
-                      <div className="relative">
-                        <MediaSlot src={src} alt={card.alt} label={card.label} aspect="4/3" />
-                        {canSwap && (
-                          <MediaSwapZone
-                            slug={HOME_SLUG}
-                            overrideKey={card.key}
-                            currentUrl={src}
-                            tagQuery={['product:stretch-bed']}
-                            kind="photo"
-                            label="swap"
-                            broadTag="product:stretch-bed"
-                            folders={HOME_FOLDERS}
-                          />
-                        )}
-                      </div>
-                      <div className="p-3">
-                        <h3 className="font-semibold text-foreground text-sm mb-0.5">{card.title}</h3>
-                        <p className="text-xs text-muted-foreground">{card.body}</p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Right: Assembly sequence + price comparison */}
-              <div>
-                <AssemblySequence />
-              </div>
+      {/* 3b. The Maningrida feature film — a produced edit with sound, so
+          click-to-play with controls, never an autoplay background. */}
+      <section className="bg-foreground py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-4xl">
+            <p className="mb-4 text-sm uppercase tracking-widest" style={{ color: '#C9A227' }}>
+              {HOME_FEATURE_VIDEO.eyebrow}
+            </p>
+            <h2 className="mb-6 text-3xl font-semibold text-background md:text-4xl" style={DISPLAY_FONT}>
+              {HOME_FEATURE_VIDEO.title}
+            </h2>
+            <video
+              className="w-full rounded-2xl"
+              src={HOME_FEATURE_VIDEO.src}
+              poster={HOME_FEATURE_VIDEO.poster}
+              controls
+              preload="none"
+              playsInline
+            />
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
+              <p className="max-w-2xl text-base text-background/60">{HOME_FEATURE_VIDEO.caption}</p>
+              <Link
+                href={HOME_FEATURE_VIDEO.link.href}
+                className="text-base font-semibold"
+                style={{ color: '#C9A227' }}
+              >
+                {HOME_FEATURE_VIDEO.link.label} →
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2b. Full-bleed video band — beds being made.
-          Sits as a visual pause between the materials breakdown and the
-          production-flow grid. Default = local building-together loop.
-          Admin can swap to any EL video via the orange pill. */}
-      {(() => {
-        const videoDesktop = ov('feature-video.videoDesktop', '/video/building-together-desktop.mp4');
-        const videoMobile = ov('feature-video.videoMobile', '/video/building-together-mobile.mp4');
-        const poster = ov('feature-video.poster', '/video/building-together-poster.jpg');
-        const overrideImage = overrides['feature-video.image']; // photo-mode fallback when admin picks a still
-        return (
-          <section className="relative isolate overflow-hidden bg-foreground">
-            {overrideImage ? (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img
-                src={overrideImage}
-                alt="Beds assembled on Country"
-                className="absolute inset-0 h-full w-full object-cover opacity-70"
-              />
-            ) : (
-              <>
-                <video
-                  className="absolute inset-0 hidden h-full w-full object-cover opacity-70 sm:block"
-                  src={videoDesktop}
-                  poster={poster}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                />
-                <video
-                  className="absolute inset-0 h-full w-full object-cover opacity-70 sm:hidden"
-                  src={videoMobile}
-                  poster={poster}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                />
-              </>
-            )}
-            <div className="absolute inset-0 bg-gradient-to-b from-foreground/30 via-foreground/40 to-foreground/70" />
-            <div className="relative container mx-auto px-4 py-24 md:py-32">
-              <div className="max-w-3xl mx-auto text-center text-background">
-                <p className="text-xs uppercase tracking-[0.25em] text-background/70 mb-4">
-                  Toward manufacturing on Country
-                </p>
-                <h2
-                  className="text-3xl md:text-5xl font-light leading-tight"
-                  style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-                >
-                  Beds assembled by the people who&rsquo;ll sleep on them.
-                </h2>
-              </div>
-            </div>
-            {canSwap && (
-              <MediaSwapZone
-                slug={HOME_SLUG}
-                overrideKey="feature-video.image"
-                currentUrl={overrideImage || videoDesktop}
-                tagQuery={['use:process']}
-                kind="any"
-                label="swap video"
-                broadTag="product:stretch-bed"
-                folders={HOME_FOLDERS}
-                smartMediaRoute
-              />
-            )}
-          </section>
-        );
-      })()}
-
-      {/* 3. From Rubbish to Bed: 5-step production flow, dark bg */}
-      <section className="py-16 md:py-20 bg-foreground text-background">
+      {/* 4. The Stretch Bed, with buy */}
+      <section className="bg-muted/30 py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <p className="text-sm uppercase tracking-widest text-background/40 mb-4">
-              Toward On-Country Manufacturing
-            </p>
-            <h2
-              className="text-3xl md:text-4xl font-light mb-4 leading-snug"
-              style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-            >
-              From rubbish to bed
-            </h2>
-            <p className="text-background/60 mb-12 max-w-2xl">
-              A containerised production plant that turns community plastic waste into bed components. Local people do the making.
-            </p>
-
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
-              {/* Step 1: Collect */}
-              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
-                <MediaSlot
-                  src="/images/process/color-samples.jpg"
-                  alt="Sorted recycled plastic from community waste"
-                  label="Collect"
-                  aspect="4/3"
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-muted">
+              <Image
+                src={ov('bed.image', HOME_BED_SECTION.image)}
+                alt={HOME_BED_SECTION.imageAlt}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+              {canSwap && (
+                <MediaSwapZone
+                  slug={HOME_SLUG}
+                  overrideKey="bed.image"
+                  currentUrl={ov('bed.image', HOME_BED_SECTION.image)}
+                  tagQuery={['product:stretch-bed']}
+                  kind="photo"
+                  label="swap"
+                  broadTag="product:stretch-bed"
+                  folders={HOME_FOLDERS}
                 />
-                <div className="p-5">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">1</div>
-                    <h3 className="text-lg font-semibold text-background">Collect</h3>
-                  </div>
-                  <p className="text-sm text-background/60 leading-relaxed">Local people gather plastic waste from around community. Sorted by colour, cleaned, ready for shredding.</p>
-                </div>
-              </div>
-
-              {/* Step 2: Shred */}
-              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
-                <MediaSlot
-                  src="/images/process/container-factory.jpg"
-                  alt="Plastic shredder inside containerised production plant"
-                  label="Shred"
-                  aspect="4/3"
-                />
-                <div className="p-5">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">2</div>
-                    <h3 className="text-lg font-semibold text-background">Shred</h3>
-                  </div>
-                  <p className="text-sm text-background/60 leading-relaxed">Plastic goes into the shredder: a containerised unit that stays on site between production runs.</p>
-                </div>
-              </div>
-
-              {/* Step 3: Press */}
-              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
-                <CyclingImage
-                  images={[
-                    { src: '/images/process/hydraulic-press.jpg', alt: 'Hydraulic press compressing recycled plastic into sheets' },
-                    { src: '/images/process/pressed-sheets.jpg', alt: 'Stack of pressed recycled plastic legs in multiple colours' },
-                  ]}
-                  aspect="4/3"
-                />
-                <div className="p-5">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">3</div>
-                    <h3 className="text-lg font-semibold text-background">Press</h3>
-                  </div>
-                  <p className="text-sm text-background/60 leading-relaxed">Shredded plastic is heated and pressed into durable sheets. Each colour is unique, made from whatever plastic the community collected.</p>
-                </div>
-              </div>
-
-              {/* Step 4: Cut */}
-              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
-                <MediaSlot
-                  src="/images/process/cnc-cutter.jpg"
-                  alt="CNC router cutting bed leg components from pressed plastic sheet"
-                  label="Cut"
-                  aspect="4/3"
-                />
-                <div className="p-5">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">4</div>
-                    <h3 className="text-lg font-semibold text-background">Cut</h3>
-                  </div>
-                  <p className="text-sm text-background/60 leading-relaxed">A CNC router cuts bed leg components from the pressed sheets. Precise, repeatable, minimal waste.</p>
-                </div>
-              </div>
-
-              {/* Step 5: Assemble */}
-              <div className="rounded-xl bg-background/5 border border-background/10 overflow-hidden">
-                <CyclingImage
-                  images={[
-                    { src: '/images/pitch/bed-seq-1-leg-pole.jpg', alt: 'First pole threads through canvas sleeve' },
-                    { src: '/images/pitch/bed-seq-2-legs-pole.jpg', alt: 'Second pole through the other side' },
-                    { src: '/images/pitch/bed-seq-3-all-parts.jpg', alt: 'Both poles thread through the X-leg holes' },
-                    { src: '/images/pitch/bed-assembled.jpg', alt: 'Assembled Stretch Bed' },
-                  ]}
-                  aspect="4/3"
-                />
-                <div className="p-5">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold flex-shrink-0">5</div>
-                    <h3 className="text-lg font-semibold text-background">Assemble</h3>
-                  </div>
-                  <p className="text-sm text-background/60 leading-relaxed">Thread a pole through each canvas sleeve and the X-leg holes, then tension. Done in under 5 minutes, no tools.</p>
-                </div>
-              </div>
+              )}
             </div>
-
-            <div className="text-center">
-              <p className="text-background/40 text-sm">~30 beds per week &middot; {PLASTIC_KG_PER_BED}kg plastic diverted per bed</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3b. Designed in community — the Oonchiumpa partnership.
-          Bridges "how it's made" (production) and "what it adds up to"
-          (impact). Lands the relationship before the numbers. */}
-      <section className="py-16 md:py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto grid gap-12 md:grid-cols-2 md:items-center">
             <div>
-              <div className="flex items-center gap-3 mb-5">
-                <Image
-                  src="/images/partners/oonchiumpa.png"
-                  alt="Oonchiumpa Consultancy"
-                  width={560}
-                  height={350}
-                  className="h-12 sm:h-14 w-auto"
-                />
-                <span aria-hidden className="text-2xl text-muted-foreground/40">
-                  ×
-                </span>
-                <span className="text-sm uppercase tracking-[0.2em] text-muted-foreground">
-                  Goods on Country
-                </span>
-              </div>
-
-              <p className="text-sm uppercase tracking-widest text-accent mb-4">
-                Designed in community
+              <p className="mb-4 text-sm uppercase tracking-widest" style={{ color: DOOR_TONES.terracotta }}>
+                {HOME_BED_SECTION.eyebrow}
               </p>
-              <h2
-                className="text-3xl md:text-4xl font-light text-foreground mb-5 leading-snug"
-                style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-              >
-                Two years around the fire with the Bloomfield family.
+              <h2 className="mb-4 text-3xl font-semibold text-foreground md:text-4xl" style={DISPLAY_FONT}>
+                {HOME_BED_SECTION.title}
               </h2>
-              <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-                Oonchiumpa Consultancy is a 100% Aboriginal-owned business in Alice Springs. The
-                Stretch Bed and Pakkimjalki Kari washing machine were both designed there, in
-                community, with Elders and young people pulling apart prototypes and putting them
-                back together.
+              <p className="mb-7 max-w-xl text-lg leading-relaxed text-muted-foreground">
+                {HOME_BED_SECTION.body}
               </p>
-              <p className="text-lg text-muted-foreground mb-7 leading-relaxed">
-                What started as a design partnership is becoming an enterprise: a production
-                facility in Alice Springs, young people building beds, and a pipeline from local
-                knowledge to local jobs.
-              </p>
-
-              <blockquote
-                className="border-l-4 pl-5 mb-7 text-lg italic leading-relaxed text-foreground/85"
-                style={{ borderColor: 'var(--color-accent, #8B9D77)', fontFamily: 'Georgia, serif' }}
-              >
-                “We want to create a safe space for our young people. There’s a lack of housing,
-                which leads to a lack of sleep, which leads to low school attendance.”
-                <footer className="not-italic mt-2 text-sm text-muted-foreground font-sans">
-                  Kristy Bloomfield, Director, Oonchiumpa Consultancy
-                </footer>
-              </blockquote>
-
-              <Button asChild size="lg">
-                <Link href="/partners/oonchiumpa">
-                  See the Oonchiumpa partnership →
+              <div className="flex flex-wrap items-center gap-5">
+                <Button size="lg" className="text-white hover:opacity-90" style={{ backgroundColor: DOOR_TONES.terracotta }} asChild>
+                  <Link href={HOME_BED_SECTION.buyCta.href}>{HOME_BED_SECTION.buyCta.label}</Link>
+                </Button>
+                <Link
+                  href={HOME_BED_SECTION.moreLink.href}
+                  className="text-base font-semibold"
+                  style={{ color: DOOR_TONES.terracotta }}
+                >
+                  {HOME_BED_SECTION.moreLink.label} →
                 </Link>
-              </Button>
+              </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="space-y-3">
-              {(() => {
-                const heroSrc = ov('oonchiumpa.hero', '/images/product/stretch-bed-kids-building.jpg');
-                return (
-                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl bg-muted shadow-sm">
+      {/* 5. The production facility, six stages */}
+      <section className="bg-background py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <div>
+              <p className="mb-4 text-sm uppercase tracking-widest" style={{ color: DOOR_TONES.sage }}>
+                {HOME_FACILITY_SECTION.eyebrow}
+              </p>
+              <h2 className="mb-4 text-3xl font-semibold text-foreground md:text-4xl" style={DISPLAY_FONT}>
+                {HOME_FACILITY_SECTION.title}
+              </h2>
+              <p className="mb-7 max-w-xl text-lg leading-relaxed text-muted-foreground">
+                {HOME_FACILITY_SECTION.body}
+              </p>
+              <div className="mb-7 flex flex-wrap gap-2.5">
+                {HOME_FACILITY_SECTION.stages.map((stage) => (
+                  <span
+                    key={stage.id}
+                    title={stage.line}
+                    className="rounded-full border px-3.5 py-1.5 text-sm font-medium"
+                    style={{ borderColor: DOOR_TONES.sage, color: DOOR_TONES.sage }}
+                  >
+                    {stage.label}
+                  </span>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-6">
+                {HOME_FACILITY_SECTION.links.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-base font-semibold"
+                    style={{ color: DOOR_TONES.sage }}
+                  >
+                    {link.label} →
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-muted">
+              <Image
+                src={ov('facility.image', HOME_FACILITY_SECTION.image)}
+                alt={HOME_FACILITY_SECTION.imageAlt}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+              {canSwap && (
+                <MediaSwapZone
+                  slug={HOME_SLUG}
+                  overrideKey="facility.image"
+                  currentUrl={ov('facility.image', HOME_FACILITY_SECTION.image)}
+                  tagQuery={['use:process']}
+                  kind="photo"
+                  label="swap"
+                  folders={HOME_FOLDERS}
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Voices */}
+      <section className="bg-muted/30 py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <p className="mb-4 text-sm uppercase tracking-widest" style={{ color: DOOR_TONES.terracotta }}>
+            {HOME_VOICES.eyebrow}
+          </p>
+          <h2 className="mb-10 max-w-3xl text-3xl font-semibold text-foreground md:text-4xl" style={DISPLAY_FONT}>
+            {HOME_VOICES.title}
+          </h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            {HOME_VOICES.cards.map((card, i) => {
+              const imgKey = `voices.${i}.image`;
+              const imgSrc = ov(imgKey, card.image);
+              return (
+                <figure key={card.name} className="overflow-hidden rounded-2xl border border-border bg-background">
+                  <div className="relative aspect-[4/3] w-full bg-muted">
                     <Image
-                      src={heroSrc}
-                      alt="The Oonchiumpa team with a Stretch Bed at the Alice Springs production facility"
+                      src={imgSrc}
+                      alt={card.imageAlt}
                       fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-cover"
                     />
                     {canSwap && (
                       <MediaSwapZone
                         slug={HOME_SLUG}
-                        overrideKey="oonchiumpa.hero"
-                        currentUrl={heroSrc}
-                        tagQuery={['participant:oonchiumpa-young-people']}
+                        overrideKey={imgKey}
+                        currentUrl={imgSrc}
+                        tagQuery={['__website__']}
                         kind="photo"
                         label="swap"
-                        broadTag="product:stretch-bed"
                         folders={HOME_FOLDERS}
                       />
                     )}
                   </div>
-                );
-              })()}
-              <div className="grid grid-cols-3 gap-3">
-                {[
-                  { key: 'oonchiumpa.thumb1', fallback: '/images/partners/centrecorp/utopia/hero-elder-bed.jpg', alt: 'Two men seated with a Stretch Bed' },
-                  { key: 'oonchiumpa.thumb2', fallback: '/images/partners/centrecorp/utopia/community-build.jpg', alt: 'A young person with a Stretch Bed at the Alice Springs build' },
-                  { key: 'oonchiumpa.thumb3', fallback: '/images/partners/centrecorp/utopia/verandah-test.jpg', alt: 'Building a Stretch Bed leg from recycled plastic in Alice Springs' },
-                ].map((t) => {
-                  const src = ov(t.key, t.fallback);
-                  return (
-                    <div key={t.key} className="relative aspect-square w-full overflow-hidden rounded-xl bg-muted">
-                      <Image
-                        src={src}
-                        alt={t.alt}
-                        fill
-                        sizes="(max-width: 768px) 33vw, 17vw"
-                        className="object-cover"
-                      />
-                      {canSwap && (
-                        <MediaSwapZone
-                          slug={HOME_SLUG}
-                          overrideKey={t.key}
-                          currentUrl={src}
-                          tagQuery={['product:stretch-bed']}
-                          kind="photo"
-                          label="swap"
-                          broadTag="product:stretch-bed"
-                          folders={HOME_FOLDERS}
-                        />
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+                  <div className="p-6">
+                    <blockquote className="text-base leading-relaxed text-foreground/90" style={DISPLAY_FONT}>
+                      &ldquo;{homeVoiceQuote(card)}&rdquo;
+                    </blockquote>
+                    <figcaption className="mt-3 text-sm text-muted-foreground">
+                      <span className="font-semibold text-foreground">{card.name}</span> · {card.place}
+                    </figcaption>
+                  </div>
+                </figure>
+              );
+            })}
           </div>
+          <Link
+            href={HOME_VOICES.link.href}
+            className="mt-8 inline-block text-base font-semibold"
+            style={{ color: DOOR_TONES.terracotta }}
+          >
+            {HOME_VOICES.link.label} →
+          </Link>
         </div>
       </section>
 
-      {/* 4. Impact Stats */}
-      <ImpactStats />
-
-      {/* 4b. Field notes — most recent published scrollytelling story.
-          Self-hides until at least one story has published: true. */}
-      <FieldNotesTile />
-
-      {/* 5. Community Voices: from Empathy Ledger */}
-      <FeaturedStories
-        title="Community Voices"
-        subtitle="32 storytellers across remote Australia have shaped and validated the Goods approach"
-        maxStories={3}
-      />
-
-      {/* 6. Final CTA — single clear next step */}
-      <section className="bg-accent py-16 md:py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-accent-foreground md:text-4xl">
-            {brand.oneLiner}
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-accent-foreground/80">
-            Community-designed. Assembled on Country. Built to last more than ten years in remote Australia.
+      {/* 7. The road, as lessons */}
+      <section className="bg-foreground py-16 md:py-24 text-background">
+        <div className="container mx-auto px-4">
+          <p className="mb-4 text-sm uppercase tracking-widest" style={{ color: '#C9A227' }}>
+            {HOME_ROAD.eyebrow}
           </p>
-          <div className="mt-8 flex justify-center">
-            <Button size="lg" className="bg-background text-foreground hover:bg-background/90" asChild>
-              <Link href="/shop/stretch-bed-single">Shop the Stretch Bed</Link>
-            </Button>
+          <h2 className="mb-12 max-w-3xl text-3xl font-semibold leading-snug md:text-4xl" style={DISPLAY_FONT}>
+            {HOME_ROAD.title}
+          </h2>
+          <ol className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4 lg:grid-cols-7">
+            {HOME_ROAD.stops.map((stop, i) => (
+              <li key={stop.id} className="flex flex-col items-center gap-2.5 text-center">
+                <span
+                  aria-hidden
+                  className="h-3.5 w-3.5 rounded-full"
+                  style={{ backgroundColor: i === HOME_ROAD.stops.length - 1 ? DOOR_TONES.terracotta : 'rgba(255,255,255,0.35)' }}
+                />
+                <span className="text-sm text-background/70" title={stop.what}>
+                  {stop.taught}
+                </span>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-12 max-w-2xl text-lg text-background/60" style={DISPLAY_FONT}>
+            {HOME_ROAD.gapLine}
+          </p>
+          <Button
+            size="lg"
+            variant="outline"
+            className="mt-8 border-[#C9A227] bg-transparent text-[#C9A227] hover:bg-[#C9A227]/10"
+            asChild
+          >
+            <Link href={HOME_ROAD.cta.href}>{HOME_ROAD.cta.label}</Link>
+          </Button>
+        </div>
+      </section>
+
+      {/* 8. Three doors */}
+      <section className="bg-background py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="grid gap-6 md:grid-cols-3">
+            {HOME_DOORS.map((door) => (
+              <div key={door.title} className="flex flex-col rounded-2xl border border-border bg-muted/20 p-8">
+                <h3 className="mb-2 text-2xl font-semibold text-foreground" style={DISPLAY_FONT}>
+                  {door.title}
+                </h3>
+                <p className="mb-6 flex-1 text-base leading-relaxed text-muted-foreground">{door.body}</p>
+                <Button className="self-start text-white hover:opacity-90" style={{ backgroundColor: DOOR_TONES[door.tone] }} asChild>
+                  <Link href={door.cta.href}>{door.cta.label}</Link>
+                </Button>
+              </div>
+            ))}
           </div>
         </div>
       </section>

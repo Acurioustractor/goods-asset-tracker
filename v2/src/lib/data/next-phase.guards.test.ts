@@ -156,3 +156,30 @@ describe('claims', () => {
     }
   });
 });
+
+describe('history layer', () => {
+  it('every pathway carries dated receipts', () => {
+    for (const p of COMMUNITY_PATHWAYS) {
+      expect(p.history.length, `${p.id} has no history entries`).toBeGreaterThan(0);
+    }
+  });
+
+  it('dates are YYYY or YYYY-MM and sorted oldest first', () => {
+    for (const p of COMMUNITY_PATHWAYS) {
+      for (const h of p.history) {
+        expect(h.date, `${p.id}: bad date "${h.date}"`).toMatch(/^\d{4}(-\d{2})?$/);
+      }
+      const dates = p.history.map((h) => h.date);
+      expect(dates, `${p.id} history is not oldest-first`).toEqual([...dates].sort());
+    }
+  });
+
+  it('every entry names its source - no receipts from memory alone', () => {
+    for (const p of COMMUNITY_PATHWAYS) {
+      for (const h of p.history) {
+        expect(h.source.trim().length, `${p.id}: "${h.event.slice(0, 40)}..." has no source`).toBeGreaterThan(5);
+        expect(h.event, `em dash in ${p.id} history`).not.toMatch(/—/);
+      }
+    }
+  });
+});

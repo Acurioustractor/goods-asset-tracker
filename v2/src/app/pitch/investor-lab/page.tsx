@@ -1,14 +1,8 @@
-import { InvestorLabClient } from './investor-lab-client';
+import { permanentRedirect } from 'next/navigation';
 
-export const metadata = {
-  title: 'Investor narrative lab | Goods on Country pitch',
-  description:
-    'An interactive workspace for shaping the Goods on Country investor narrative around story, photos, maps, community proof, and deck decisions.',
-  // Internal working surface, not a funder destination. Indexed by accident until
-  // 2026-07-26; the canonical funder surface is /pitch/funder-pathways.
-  robots: { index: false, follow: false },
-};
-
-export default function InvestorNarrativeLabPage() {
-  return <InvestorLabClient />;
+// Retired 2026-07-26 (ruling S, the six-front-doors site review). One of
+// three near-identical internal pitch workshop tools. /pitch/workshop is the
+// survivor; the other two redirect there.
+export default function InvestorLabRedirectPage() {
+  permanentRedirect('/pitch/workshop');
 }
