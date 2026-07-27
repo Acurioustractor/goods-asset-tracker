@@ -1,7 +1,7 @@
 {
   "generatedNote": "run npm run check:content-gate -- --report to refresh",
   "gated": 7,
-  "passed": 4,
+  "passed": 5,
   "stages": [
     "consent",
     "claims",
@@ -45,7 +45,7 @@
         {
           "stage": "consent",
           "line": 0,
-          "finding": "storyteller 'Jahvan Oui' is NOT on the cleared-voices list",
+          "finding": "named voice 'Jahvan Oui' is NOT on the cleared-voices list",
           "rule": "cleared-voices.ts: DEFAULT-DENY — a voice appears externally only if its name is on the cleared list"
         }
       ]
@@ -54,21 +54,8 @@
       "file": "2026-08-content-month.md",
       "storyteller": null,
       "status": "draft (nothing publishes without Ben)",
-      "pass": false,
-      "findings": [
-        {
-          "stage": "consent",
-          "line": 0,
-          "finding": "no `storyteller:` in frontmatter",
-          "rule": "cleared-voices.ts: DEFAULT-DENY — a voice appears externally only if its name is on the cleared list"
-        },
-        {
-          "stage": "consent",
-          "line": 0,
-          "finding": "no `consent_source:` in frontmatter — every draft must record where its clearance comes from",
-          "rule": "ledger-story skill: drafts carry consent provenance; /CONTEXT.md consent gate"
-        }
-      ]
+      "pass": true,
+      "findings": []
     },
     {
       "file": "2026-08-newsletter-community-model.md",
@@ -79,20 +66,8 @@
         {
           "stage": "consent",
           "line": 0,
-          "finding": "no `storyteller:` in frontmatter",
+          "finding": "named voice 'Jahvan Oui' is NOT on the cleared-voices list",
           "rule": "cleared-voices.ts: DEFAULT-DENY — a voice appears externally only if its name is on the cleared list"
-        },
-        {
-          "stage": "consent",
-          "line": 0,
-          "finding": "no `consent_source:` in frontmatter — every draft must record where its clearance comes from",
-          "rule": "ledger-story skill: drafts carry consent provenance; /CONTEXT.md consent gate"
-        },
-        {
-          "stage": "claims",
-          "line": 31,
-          "finding": "retired washers in community: 20 (canon is now 22)",
-          "rule": "check-retired-figures.mjs — Ben 2026-07-21"
         }
       ]
     }
