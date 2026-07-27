@@ -1,0 +1,100 @@
+{
+  "generatedNote": "run npm run check:content-gate -- --report to refresh",
+  "gated": 7,
+  "passed": 4,
+  "stages": [
+    "consent",
+    "claims",
+    "voice"
+  ],
+  "results": [
+    {
+      "file": "2026-08-03-alfred-johnson.md",
+      "storyteller": "Alfred Johnson",
+      "status": "reserve (swapped out of week 1 so the month spans the full project; Palm Island week is Jahvan. Use this as a spare or a September opener.)",
+      "pass": true,
+      "findings": []
+    },
+    {
+      "file": "2026-08-03-dianne-stokes.md",
+      "storyteller": "Dianne Stokes",
+      "status": "draft",
+      "pass": true,
+      "findings": []
+    },
+    {
+      "file": "2026-08-10-mykel.md",
+      "storyteller": "Mykel",
+      "status": "draft",
+      "pass": true,
+      "findings": []
+    },
+    {
+      "file": "2026-08-17-dorrie-jones.md",
+      "storyteller": "Dorrie Jones",
+      "status": "draft",
+      "pass": true,
+      "findings": []
+    },
+    {
+      "file": "2026-08-24-jahvan-oui.md",
+      "storyteller": "Jahvan Oui",
+      "status": "draft",
+      "pass": false,
+      "findings": [
+        {
+          "stage": "consent",
+          "line": 0,
+          "finding": "storyteller 'Jahvan Oui' is NOT on the cleared-voices list",
+          "rule": "cleared-voices.ts: DEFAULT-DENY — a voice appears externally only if its name is on the cleared list"
+        }
+      ]
+    },
+    {
+      "file": "2026-08-content-month.md",
+      "storyteller": null,
+      "status": "draft (nothing publishes without Ben)",
+      "pass": false,
+      "findings": [
+        {
+          "stage": "consent",
+          "line": 0,
+          "finding": "no `storyteller:` in frontmatter",
+          "rule": "cleared-voices.ts: DEFAULT-DENY — a voice appears externally only if its name is on the cleared list"
+        },
+        {
+          "stage": "consent",
+          "line": 0,
+          "finding": "no `consent_source:` in frontmatter — every draft must record where its clearance comes from",
+          "rule": "ledger-story skill: drafts carry consent provenance; /CONTEXT.md consent gate"
+        }
+      ]
+    },
+    {
+      "file": "2026-08-newsletter-community-model.md",
+      "storyteller": null,
+      "status": "draft",
+      "pass": false,
+      "findings": [
+        {
+          "stage": "consent",
+          "line": 0,
+          "finding": "no `storyteller:` in frontmatter",
+          "rule": "cleared-voices.ts: DEFAULT-DENY — a voice appears externally only if its name is on the cleared list"
+        },
+        {
+          "stage": "consent",
+          "line": 0,
+          "finding": "no `consent_source:` in frontmatter — every draft must record where its clearance comes from",
+          "rule": "ledger-story skill: drafts carry consent provenance; /CONTEXT.md consent gate"
+        },
+        {
+          "stage": "claims",
+          "line": 31,
+          "finding": "retired washers in community: 20 (canon is now 22)",
+          "rule": "check-retired-figures.mjs — Ben 2026-07-21"
+        }
+      ]
+    }
+  ]
+}

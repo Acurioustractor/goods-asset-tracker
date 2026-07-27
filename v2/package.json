@@ -31,7 +31,8 @@
     "prebuild": "npm run wiki:sync",
     "check:retired-figures": "node scripts/check-retired-figures.mjs",
     "check:voice": "node scripts/check-voice.mjs",
-    "check:register": "node --env-file=.env.local scripts/check-register-integrity.mjs"
+    "check:register": "node --env-file=.env.local scripts/check-register-integrity.mjs",
+    "check:content-gate": "node scripts/check-content-gate.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.74.0",

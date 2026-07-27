@@ -7,6 +7,7 @@
 // The sweep now = elder-review the "showing" media to promote it to "cleared".
 
 import { createServiceClient } from '@/lib/supabase/server';
+import { ContentGatePanel } from './content-gate-panel';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -107,6 +108,8 @@ export default async function ConsentPage() {
           </p>
         )}
       </header>
+
+      <ContentGatePanel />
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
         <Stat n={showingCount} label="showing (public)" tone="green" />
