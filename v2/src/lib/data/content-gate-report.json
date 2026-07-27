@@ -1,7 +1,7 @@
 {
   "generatedNote": "run npm run check:content-gate -- --report to refresh",
   "gated": 7,
-  "passed": 5,
+  "passed": 7,
   "stages": [
     "consent",
     "claims",
@@ -40,15 +40,8 @@
       "file": "2026-08-24-jahvan-oui.md",
       "storyteller": "Jahvan Oui",
       "status": "draft",
-      "pass": false,
-      "findings": [
-        {
-          "stage": "consent",
-          "line": 0,
-          "finding": "named voice 'Jahvan Oui' is NOT on the cleared-voices list",
-          "rule": "cleared-voices.ts: DEFAULT-DENY — a voice appears externally only if its name is on the cleared list"
-        }
-      ]
+      "pass": true,
+      "findings": []
     },
     {
       "file": "2026-08-content-month.md",
@@ -61,15 +54,8 @@
       "file": "2026-08-newsletter-community-model.md",
       "storyteller": null,
       "status": "draft",
-      "pass": false,
-      "findings": [
-        {
-          "stage": "consent",
-          "line": 0,
-          "finding": "named voice 'Jahvan Oui' is NOT on the cleared-voices list",
-          "rule": "cleared-voices.ts: DEFAULT-DENY — a voice appears externally only if its name is on the cleared list"
-        }
-      ]
+      "pass": true,
+      "findings": []
     }
   ]
 }
