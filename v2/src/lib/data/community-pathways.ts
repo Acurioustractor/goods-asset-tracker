@@ -102,25 +102,6 @@ export interface NextPhase {
   ask: string;
 }
 
-/**
- * THE HISTORY LAYER - the dated receipts behind a case study.
- *
- * `caseStudy.story` holds thematic beats; nothing held WHEN things happened. The timeline of
- * deliveries, builds and decisions per community lived scattered across canon definitions and
- * evidence notes, which meant no surface could show a community's receipts chronologically.
- *
- * Rules: every entry is a thing that HAPPENED (never an intention), `date` is 'YYYY' or
- * 'YYYY-MM' (only as precise as the source supports), and `source` names where the fact is
- * recorded - a canon id, a file, a register. No entry may be added from memory alone.
- */
-export interface HistoryEvent {
-  /** 'YYYY' or 'YYYY-MM'. Only as precise as the source supports. */
-  date: string;
-  event: string;
-  /** Where this fact is recorded: canon id, file, register. */
-  source: string;
-}
-
 export interface CommunityPathway {
   id: string;
   name: string;
@@ -136,8 +117,6 @@ export interface CommunityPathway {
   evidenceNote: string;
   mediaState: EvidenceState;
   mediaNote: string;
-  /** Dated receipts, oldest first. See the HistoryEvent docblock. */
-  history: HistoryEvent[];
   modules: PathwayModule[];
   nextActions: string[];
   pilot?: {
@@ -220,18 +199,6 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
     evidenceNote: 'Existing proposal and quote are documented; current site, operators and partner roles need reconfirmation.',
     mediaState: 'community-confirmation',
     mediaNote: 'Bed-building video and images exist. Asset-level permission and Youth Centre approval must be reconfirmed.',
-    history: [
-      {
-        date: '2026',
-        event: 'A Goods washing machine delivered to Our Community Shed; a Stretch Bed recorded at the Barkly Youth Centre (+1 in the register, Ben ruling 2026-07-19). Nine Pakkimjalki Kari in community. Month not recorded, so the bare year is the honest date.',
-        source: "canon 'beds-deployed' and 'washing-machines' definitions; pilot.verified",
-      },
-      {
-        date: '2026-02',
-        event: 'Two-stage, 12-month trial proposal developed with Our Community Shed, priced at $234,000 excluding GST. Still documented; explicitly not the next step.',
-        source: 'pilot.verified in this file',
-      },
-    ],
     modules: [
       pathwayModule('build', 'Community bed build', 'A facilitated build or repair activity with local young people.', 'exploring'),
       pathwayModule('repair', 'Repair and maintenance', 'Local repair skills, parts and maintenance guidance.', 'exploring'),
@@ -367,18 +334,6 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
     evidenceNote: 'The relationship and May bed delivery are verified. Shredder scope remains a working request to confirm.',
     mediaState: 'community-confirmation',
     mediaNote: 'Trip galleries and a field note exist. Community review and asset-level permissions remain the publication gate.',
-    history: [
-      {
-        date: '2026-05',
-        event: 'The May journey: Stretch Beds built in Alice Springs with young people from the Oonchiumpa network, then delivered family-by-family across the homelands with local teams. 147 beds confirmed in community.',
-        source: "caseStudy.story in this file; per-community ledger (wiki/investor/10-community-counts.md); field note /field-notes/utopia-may-2026",
-      },
-      {
-        date: '2026-07',
-        event: 'Jane Wilson opened the conversation about practical opportunities for young people, including what a shredder could make possible locally. The shredder module priced at $24,800 - $39,300 capex.',
-        source: 'nextPhase.cost in this file (priceModuleSelection, cost-model-scenarios.json)',
-      },
-    ],
     modules: [
       pathwayModule('shredder', 'Shredder and training', 'A priced shredder package with safe operation and maintenance support.', 'requested'),
       pathwayModule('youth', 'Youth activity', 'Hands-on making, photography or local storytelling shaped with Jane.', 'exploring'),
@@ -480,23 +435,6 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
     evidenceNote: 'The ownership direction and facility application are developed; final DEWR status and reconciliation are pending.',
     mediaState: 'verified',
     mediaNote: 'Oonchiumpa has approved the overall framing. Each external artifact still uses the recorded audience tier.',
-    history: [
-      {
-        date: '2024',
-        event: 'Partnership begins: cultural advice, youth programs and delivery. Two years old as of the 2026 case study.',
-        source: 'caseStudy.proof in this file',
-      },
-      {
-        date: '2026',
-        event: 'A federal (DEWR) submission developed for a community-controlled production facility in Alice Springs; scope and budget reconciliation pending. Month not recorded, so the bare year is the honest date.',
-        source: 'caseStudy.summary and nextPhase.blockedOn in this file',
-      },
-      {
-        date: '2026-05',
-        event: 'The build days: over two days behind the Oonchiumpa office, young men and young women built Stretch Beds from flat-pack components with Oonchiumpa workers, then the beds travelled east to the homelands. Every young person who built a bed kept one.',
-        source: "caseStudy.story in this file; Mykel's build video /video/partners/oonchiumpa/mykel-building-the-bed.mp4",
-      },
-    ],
     modules: [
       pathwayModule('facility', 'Complete production facility', 'Local shredding, pressing, CNC, training and operating support.', 'requested'),
       pathwayModule('youth', 'Youth pathways', 'Making, work experience and pathways aligned with Oonchiumpa programs.', 'requested'),
@@ -594,69 +532,6 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
     },
   },
   {
-    // The proof pathway. Maningrida is the only community where a full delivery has already
-    // run end to end: 40 Stretch Beds (the register's biggest single-community build,
-    // Jul 2026) and 8 Pakkimjalki Kari washing machines, built with the Gamardi community
-    // and Homeland School Company. It enters this file at 'learn' because the work is done
-    // and the open questions are review questions: film consent, and what Maningrida wants
-    // next. No caseStudy block yet - no named community voice is on the cleared register,
-    // and a quote is never invented to fill the field.
-    id: 'maningrida',
-    name: 'Maningrida',
-    region: 'Gamardi, West Arnhem Land, NT',
-    stage: 'learn',
-    stageLabel: 'Delivered, reviewing together',
-    relationship: 'Gamardi community and Homeland School Company',
-    communityLead: 'Gamardi community leadership; contacts held via Homeland School Company',
-    leadOrganisation: 'Homeland School Company',
-    invitation: 'Return the story for community approval, and hear what Maningrida wants next.',
-    nextDecision: 'Confirm production consent for the July 2026 film, then ask what the community wants to build on from the delivery.',
-    evidenceState: 'verified',
-    evidenceNote: 'The delivery is in the register: 40 Stretch Beds (Jul 2026, the biggest single-community build) and 8 washing machines including the school unit. In-house pressing of the 40 beds is the proof of the production process.',
-    mediaState: 'community-confirmation',
-    mediaNote: 'Ten committed trip photos and a produced 3:53 film exist. The film is a reference cut gated on the full-resolution master, production consent for children and unnamed adults on camera, and caption name fixes (Gamardi, Goods on Country) before public use.',
-    history: [
-      {
-        date: '2026-07',
-        event: 'The biggest single-community build: 40 Stretch Beds pressed in-house and built with the Gamardi community and Homeland School Company, plus the school washing machine. Eight Pakkimjalki Kari in community. The trip filmed as the 3:53 feature.',
-        source: "canon 'beds-deployed' (+40 Jul 2026) and 'washing-machines' (Maningrida 8) definitions; home.ts HOME_FEATURE_VIDEO",
-      },
-    ],
-    modules: [
-      pathwayModule('beds', 'Beds delivered', '40 Stretch Beds built and delivered with community in July 2026.', 'requested'),
-      pathwayModule('washers', 'Washing machines', '8 Pakkimjalki Kari in community, including the school unit.', 'requested'),
-      pathwayModule('story', 'Community-approved story', 'The trip film and photos, returned for approval before any public use.', 'exploring'),
-      pathwayModule('next', 'What comes next', 'Repair, more delivery or local making - defined by community, not proposed by Goods.', 'not-assessed'),
-    ],
-    nextActions: [
-      'Swap the full-resolution film master in at the committed path',
-      'Confirm production consent for everyone on camera, children first',
-      'Fix the caption names and return the film for community review',
-      'Tag the trip media to the community in the Empathy Ledger',
-      'Hold the review conversation: what worked, what Maningrida wants next',
-    ],
-    nextPhase: {
-      headline:
-        'Close the loop on the biggest delivery: community approval of the story, and a conversation about what comes after it.',
-      isNot:
-        'Not a facility proposal and not a new delivery. The delivery already happened; the next phase is review and community direction, and nothing is proposed until that conversation has run.',
-      modules: ['story'],
-      cost: {
-        capexLow: null,
-        capexHigh: null,
-        operatingPerYear: null,
-        status: 'blocked-on-people',
-        costSource: 'Nothing to price until community names what comes next. Not priced.',
-        note: 'The open items are consent and direction, not equipment. Whatever Maningrida asks for next gets priced through the module engine when it is asked for.',
-      },
-      ownsWhat:
-        'The community holds the beds, the washing machines and the decision about the story. Goods holds the footage until consent is confirmed, and publishes nothing before it is.',
-      blockedOn:
-        'Production consent for the film, the full-resolution master, and the review conversation with Gamardi and Homeland School Company.',
-      ask: 'Support the consent and review loop, so the strongest delivery evidence in the system can be told with community approval.',
-    },
-  },
-  {
     id: 'palm-island',
     name: 'Palm Island',
     region: 'Manbarra Country, QLD',
@@ -667,27 +542,10 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
     leadOrganisation: 'Palm Island Aboriginal Shire Council',
     invitation: 'Listen first and only assemble options after Council and community define the opportunity.',
     nextDecision: 'Confirm the right people, decision process and first listening conversation.',
-    evidenceState: 'community-confirmation',
-    evidenceNote: 'The delivery history is real and recorded: 131 beds and 4 washing machines, with Ebony and Jahvan Oui training as future manufacturing leads. Six external-cleared Palm Island voices are on the registry. No community capability audit has been completed, and that history must not be treated as a request.',
-    mediaState: 'community-confirmation',
-    mediaNote: 'Six cleared voices (Ivy, Alfred Johnson, Carmelita & Colette, Daniel Patrick Noble, Jason, Jahvan Oui), five portraits, twelve committed delivery photos and the cleared Jahvan washing-machine video (descript-videos.ts). The Empathy Ledger also holds 51 Palm Island storytellers, mostly the historical archive project - check project scope and consent before using any of those.',
-    history: [
-      {
-        date: '2026',
-        event: '131 beds and 4 Pakkimjalki Kari recorded in community over the relationship, delivered with PICC. Ebony and Jahvan Oui training with Defy Design as future manufacturing leads, including Jahvan\'s visit to the Defy factory in Sydney.',
-        source: "compendium.ts community row (131 beds, 4 washers, PICC); canon 'washing-machines' definition",
-      },
-      {
-        date: '2026-06',
-        event: 'Five Palm Island voices cleared for external use in the consent pass: Ivy, Alfred Johnson, Carmelita & Colette, Daniel Patrick Noble, Jason - the barge-freight economics told first-hand.',
-        source: "canon 'cleared-voices' (2026-06-17 pass); storyteller-registry.ts",
-      },
-      {
-        date: '2026-07',
-        event: 'The washing-machine delivery filmed with Jahvan; the video cleared and Jahvan added as the 35th external voice, with his quotes taken verbatim from the film.',
-        source: 'descript-videos.ts viewId 6hVl3CzxdqR; storyteller-registry.ts jahvan-oui',
-      },
-    ],
+    evidenceState: 'not-assessed',
+    evidenceNote: 'No community capability audit has been completed. Existing Goods relationships must not be treated as a request.',
+    mediaState: 'not-assessed',
+    mediaNote: 'No media is assigned to this pathway until place, people and permissions are verified.',
     modules: [
       pathwayModule('listen', 'Listening and capability audit', 'A facilitated conversation and map of existing strengths and priorities.', 'requested'),
       pathwayModule('beds', 'Beds and local delivery', 'Explore need, procurement and local participation only if requested.', 'not-assessed'),
@@ -696,8 +554,6 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
     ],
     nextActions: [
       'Confirm Council leadership and preferred contact route',
-      'Transcribe the Jahvan video and add his verbatim quotes to the registry',
-      'Review the Empathy Ledger Palm Island voice archive for project scope and consent',
       'Hold the first listening conversation',
       'Map existing services, assets and community priorities',
       'Return a plain-language summary before proposing modules',
@@ -721,61 +577,6 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
       blockedOn:
         'Confirming the right people and the decision process. No capability audit has been completed, and no media is assigned to this pathway until place, people and permissions are verified.',
       ask: 'Fund the listening, and build the governance cost line the model is missing.',
-    },
-    // The caseStudy is retrospective and every word of it is already cleared: six external
-    // voices, five portraits, twelve committed delivery photos. It coexists with the
-    // listening-first stance above - the history is told, and the history is still not a request.
-    caseStudy: {
-      eyebrow: 'Begin with governance and listening',
-      headline: 'The beds are already here. What comes next is Palm Island\'s call.',
-      summary:
-        'Palm Island carries one of the deepest Goods delivery histories: 131 beds, 4 washing machines, and six community voices cleared to tell it - from the barge-freight economics that make local making matter, to Jahvan Oui training to run production himself. None of that history is treated as a request. The next pathway is defined by Council and community, starting with listening.',
-      hero: {
-        src: '/images/community/palm-island/bedding-golden-hour.jpg',
-        alt: 'Bedding laid out at golden hour during a Palm Island delivery',
-      },
-      quote: {
-        text: 'When it comes from an Aboriginal person, it works. That\'s what makes the difference.',
-        name: 'Jason',
-        context: 'Palm Island',
-      },
-      proof: [
-        { label: 'Stretch and Basket Beds', value: '131', note: 'Register count for Palm Island' },
-        { label: 'Pakkimjalki Kari', value: '4', note: 'Washing machines in community' },
-        { label: 'Cleared voices', value: '6', note: 'External-cleared Palm Island storytellers on the registry' },
-      ],
-      story: [
-        {
-          title: 'The freight is the argument',
-          body: 'Everything comes over on the barge, and the cost forces families toward cheap beds that fail within a year or two. Alfred Johnson, Daniel Patrick Noble and Carmelita & Colette all tell the same economics from different ends of it.',
-        },
-        {
-          title: 'A maker is already training',
-          body: 'Jahvan Oui, a Goods team member from Palm Island, is training with Defy Design toward running production himself - the ownership pathway with a name and a face.',
-        },
-        {
-          title: 'The next step is deliberately not a proposal',
-          body: 'No capability audit has been done and the delivery history is not treated as a request. The pathway starts with Council, listening, and a plain-language summary returned before anything is proposed.',
-        },
-      ],
-      gallery: [
-        { src: '/images/people/alfred-johnson.jpg', alt: 'Alfred Johnson, Palm Island community voice' },
-        { src: '/images/people/carmelita-colette.jpg', alt: 'Carmelita and Colette, Palm Island community voices' },
-        { src: '/images/people/jahvan-oui.jpg', alt: 'Jahvan Oui, Goods team member and future manufacturing lead from Palm Island' },
-      ],
-      links: [
-        {
-          label: 'See the live pathway',
-          href: '#support-menu',
-          note: 'Listening first; modules only after Council and community define the opportunity',
-        },
-      ],
-      nextAsk:
-        'Fund the listening phase and the governance work, so the first proposal on Palm Island is the one community writes.',
-      mediaBasis:
-        'Every quote is verbatim from the externally cleared voice register; photos are the committed Palm Island delivery set and cleared portraits. The wider Empathy Ledger Palm Island archive (51 storytellers) is a different project and is not drawn on here.',
-      statusNote:
-        'Delivery history and voices are verified. No capability audit exists, and no module beyond listening has been requested by community.',
     },
   },
 ];

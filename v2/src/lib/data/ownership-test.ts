@@ -218,14 +218,6 @@ export const SITE_OWNERSHIP_TESTS: SiteOwnershipTest[] = [
     note: 'At Yarn, reconfirming. Blocked on the partner, not on numbers.',
   },
   {
-    pathwayId: 'maningrida',
-    siteName: 'Maningrida',
-    deliverStartedOn: null,
-    producesForSale: false,
-    results: { ...NONE_ASSESSED },
-    note: 'At Grow, reviewing. The biggest delivery in the register, but community assembly of delivered beds is not production for sale (PRODUCTION_SITE_RULE), so the site is not eligible and the honest state is not-eligible, not fail.',
-  },
-  {
     pathwayId: 'palm-island',
     siteName: 'Palm Island',
     deliverStartedOn: null,
