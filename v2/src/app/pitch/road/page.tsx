@@ -13,7 +13,29 @@ import { ZoomableBedImage } from './zoomable-bed-image';
 import { ProductionFacilityExperience } from './production-facility-experience';
 import { MykelStoryMedia } from './mykel-story-media';
 import { getStoryOverrides } from '@/lib/field-notes/overrides';
-import { ASK_BLOCKS, ASK_HEADLINE } from '@/lib/data/ask-surface';
+import { ASK_HEADLINE, ASK_MATCH_VEHICLE } from '@/lib/data/ask-surface';
+import { STAGE_RULE } from '@/lib/data/pathway-stages';
+import { NORTH_STAR } from '@/lib/data/content';
+import {
+  BED_LADDER,
+  BUY_LIST_TOTAL,
+  CLOSING_TAIL,
+  DOORS,
+  DOORS_NOTE,
+  FIRST_SITE_RULE,
+  LEG_RATIO,
+  PATHWAY_ASKS,
+  STOPWATCH_COMMITMENT,
+  STOPWATCH_NO_VOICE,
+  THE_BUY_LIST,
+  THE_RUNNING_COST,
+  THE_TRADING,
+  VOICE_FOUR_ASKS,
+  VOICE_ONE_BED,
+  VOICE_THE_LETTER,
+  type EndingVoice,
+} from '@/lib/data/road-ending';
+import { LetterLines } from './letter-lines';
 
 export const metadata: Metadata = {
   title: { absolute: 'The road to ownership | Goods.' },
@@ -47,33 +69,6 @@ const roadTileChapters: Record<string, string> = {
   'stop-7-oonchiumpa': 'Own the making',
 };
 
-const fundingOutcomes = [
-  {
-    number: '01',
-    value: '$400K + $400K',
-    title: 'Every eligible dollar can land twice',
-    body: 'QBE can match $400K in signed external commitments dollar for dollar.',
-  },
-  {
-    number: '02',
-    value: '50 beds',
-    title: 'Measure the real production cost',
-    body: 'The run turns the modelled $426 per bed into a measured production figure.',
-  },
-  {
-    number: '03',
-    value: '338 beds/yr',
-    title: 'Test the self-funding point',
-    body: 'This is the modelled break-even point when Goods presses its own legs. It is a target to test, not a promised return.',
-  },
-  {
-    number: '04',
-    value: '1 pathway',
-    title: 'Prepare the first community production pathway',
-    body: 'Fund the equipment, training, governance and agreements for a pathway defined with the community.',
-  },
-] as const;
-
 const principleImages = [
   '/images/people/linda-turner.jpg',
   '/images/process/heat-press-full.jpg',
@@ -81,26 +76,57 @@ const principleImages = [
   '/images/community/alice-springs/oonchiumpa-team-red-bed.jpg',
 ] as const;
 
-const fundingReturns = [
-  {
-    number: '01',
-    title: 'Grant',
-    return: 'No financial return',
-    body: 'The return is public-good impact and the QBE match that can double the commitment.',
-  },
-  {
-    number: '02',
-    title: 'Repayable capital',
-    return: 'Repaid from bed revenue',
-    body: 'Rate, term and repayment profile must be agreed. No investment return is promised before the measured run.',
-  },
-  {
-    number: '03',
-    title: 'Product order',
-    return: 'Beds delivered',
-    body: 'An order buys products for community. It is revenue, not match capital.',
-  },
-] as const;
+/** A cleared voice, rendered the same way in every ending section. Portrait only
+ *  when the registry actually holds one: the guard test asserts we never invent
+ *  a face for a voice-only storyteller. */
+function EndingVoiceBlock({
+  voice,
+  dark = false,
+  className = '',
+}: {
+  voice: EndingVoice;
+  dark?: boolean;
+  className?: string;
+}) {
+  return (
+    <figure className={`grid gap-6 ${voice.portrait ? 'sm:grid-cols-[auto_1fr] sm:items-center' : ''} ${className}`}>
+      {voice.portrait && (
+        <Image
+          src={voice.portrait}
+          alt={voice.attribution}
+          width={280}
+          height={280}
+          className="h-24 w-24 shrink-0 rounded-full object-cover sm:h-32 sm:w-32"
+        />
+      )}
+      <div className={voice.portrait ? '' : 'border-l-2 border-[#c45c3e] pl-5'}>
+        <blockquote className="goods-pitch-display text-2xl leading-snug md:text-3xl">
+          &quot;{voice.text}&quot;
+        </blockquote>
+        <figcaption
+          className={`mt-4 text-sm leading-5 ${dark ? 'text-[#a8a196]' : 'text-[#7a7363]'}`}
+        >
+          {voice.attribution}
+        </figcaption>
+      </div>
+    </figure>
+  );
+}
+
+/** The status label that sits beside a money figure. The section this replaced
+ *  rendered five money figures with no label at all, on a page whose whole
+ *  discipline is that every figure carries its status. */
+function StatusChip({ label, dark = false }: { label: string; dark?: boolean }) {
+  return (
+    <span
+      className={`font-mono text-[9px] uppercase tracking-[0.16em] ${
+        dark ? 'text-[#a8a196]' : 'text-[#7a7363]'
+      }`}
+    >
+      {label}
+    </span>
+  );
+}
 
 function resolveLeadVoice(slide: DeckSlide) {
   for (const name of slide.voiceNames ?? []) {
@@ -220,7 +246,7 @@ export default function RoadPitchPage() {
               <a href="#road" className="hover:text-white">The road</a>
               <a href="#map" className="hover:text-white">The map</a>
               <a href="#model" className="hover:text-white">The model</a>
-              <a href="#decision" className="hover:text-white">The decision</a>
+              <a href="#one-bed" className="hover:text-white">The money</a>
             </div>
           </nav>
 
@@ -737,210 +763,342 @@ export default function RoadPitchPage() {
         </div>
       </section>
 
-      <section
-        id="three-cost-centres"
-        className="min-h-screen bg-[#171714] text-[#fbf8f1]"
-      >
-        <div className="mx-auto grid min-h-screen max-w-[1800px] lg:grid-cols-[0.9fr_1.1fr]">
+      <section id="one-bed" className="border-b border-[#d9d1c3] bg-[#fbf8f1] px-6 py-14 md:px-10 lg:px-14 lg:py-20">
+        <div className="mx-auto max-w-[1600px]">
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
+            One bed, plainly
+          </p>
+
+          <EndingVoiceBlock voice={VOICE_ONE_BED} className="mt-8 max-w-4xl" />
+
+          <div className="mt-12 grid gap-8 border-t border-[#d9d1c3] pt-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+            <div>
+              <h2 className="goods-pitch-display text-5xl leading-[0.98] md:text-6xl">
+                Sixty five dollars does not buy a shredder.
+              </h2>
+              <p className="mt-6 max-w-xl text-lg leading-8 text-[#6d675c]">
+                Jimmy is describing what the bed has to survive. So it is built to last and it is
+                priced to last. Every bed sells for $750. Making it and getting it on a truck costs
+                about $685 today, because we buy the legs finished. About $65 stays with Goods.
+                Press the legs ourselves and the same bed costs about $426, and about $324 stays.
+                Same bed, same price, same community. One part changes.
+              </p>
+            </div>
+
+            <ol className="grid gap-px border border-[#d9d1c3] bg-[#d9d1c3] sm:grid-cols-2">
+              {BED_LADDER.map((column) => (
+                <li key={column.column} className="flex flex-col bg-[#f1ece4] p-6 lg:p-8">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#c45c3e]">
+                    {column.column}
+                  </p>
+                  <dl className="mt-6 space-y-6">
+                    {column.rows.map((row) => (
+                      <div key={row.line}>
+                        <dt className="goods-pitch-display text-4xl lg:text-5xl">{row.figure}</dt>
+                        <dd className="mt-2 text-sm leading-5 text-[#6d675c]">{row.line}</dd>
+                        <dd className="mt-1">
+                          <StatusChip label={row.label} />
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <p className="mt-auto border-t border-[#d9d1c3] pt-5 text-xs leading-5 text-[#7a7363]">
+                    {column.foot}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div className="mt-12 grid gap-8 border-t border-[#d9d1c3] pt-10 md:grid-cols-3 lg:gap-12">
+            <p className="text-base leading-7 text-[#2b2a26] md:text-lg md:leading-8">
+              {LEG_RATIO.copy}
+            </p>
+            <p className="text-base leading-7 text-[#6d675c] md:text-lg md:leading-8">
+              {THE_RUNNING_COST.copy}
+            </p>
+            <p className="text-base leading-7 text-[#6d675c] md:text-lg md:leading-8">
+              {THE_TRADING.copy}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="the-stopwatch" className="bg-[#171714] text-[#fbf8f1]">
+        <div className="mx-auto grid max-w-[1800px] lg:grid-cols-[0.85fr_1.15fr]">
           <div className="relative min-h-[45vh] lg:min-h-screen">
             <Image
-              src="/images/media-pack/community-testing-bed-golden-hour.jpg"
-              alt="A Stretch Bed being tested in community"
+              src="/images/process/heat-press-full.jpg"
+              alt="The heat press at the production facility at the farm"
               fill
-              sizes="(max-width: 1024px) 100vw, 45vw"
+              sizes="(max-width: 1024px) 100vw, 42vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6 pt-20 md:p-9">
+              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#e88461]">
+                The press at the farm
+              </p>
+            </div>
           </div>
-          <div className="flex flex-col justify-center px-6 py-12 md:px-10 lg:px-14">
+
+          <div className="flex flex-col justify-center px-6 py-14 md:px-10 lg:px-14 lg:py-20">
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e88461]">
-              The raise
+              What the money does first
             </p>
-            <h2 className="goods-pitch-display mt-5 text-5xl leading-[0.98] md:text-7xl">
-              $400K signed. QBE can match it. $800K to do the work.
+            <h2 className="goods-pitch-display mt-5 max-w-3xl text-5xl leading-[0.98] md:text-6xl">
+              The first thing the money buys is a stopwatch.
             </h2>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-[#cfc8bc]">
-              We are raising $400K in signed commitments. QBE can match eligible commitments
-              dollar for dollar, creating an $800K program.
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#cfc8bc]">
+              Forty Stretch Beds for Maningrida were pressed end to end at our own facility at the
+              farm, then assembled in community by young people. So the making is proven. What we
+              have never done is time it and cost it across a full run at a steady rate. Fifty beds,
+              pressed at production rate and costed with receipts, is the first thing on the list.
             </p>
-            <div className="mt-9 grid grid-cols-2 border-y border-white/20">
-              <div className="py-5 pr-5">
+
+            <div className="mt-8 border-l-2 border-[#c45c3e] pl-5">
+              <p className="goods-pitch-display text-2xl leading-snug md:text-3xl">
+                $426 is modelled from verified part prices; the first thing your money buys is the
+                measured run that proves it.
+              </p>
+              <p className="mt-4 text-base leading-7 text-[#e88461]">{STOPWATCH_COMMITMENT}</p>
+            </div>
+
+            <p className="mt-7 max-w-2xl text-sm leading-6 text-[#a8a196]">{STOPWATCH_NO_VOICE}</p>
+
+            <ol className="mt-10 divide-y divide-white/15 border-y border-white/20">
+              {THE_BUY_LIST.map((row) => (
+                <li key={row.n} className="grid gap-2 py-5 sm:grid-cols-[auto_1fr_auto] sm:items-baseline sm:gap-6">
+                  <span className="font-mono text-[10px] text-[#e88461]">{row.n}</span>
+                  <span>
+                    <span className="block text-base font-semibold">{row.name}</span>
+                    <span className="mt-1 block max-w-xl text-sm leading-5 text-white/60">
+                      {row.sentence}
+                    </span>
+                  </span>
+                  <span className="sm:text-right">
+                    {row.amount ? (
+                      <>
+                        <span className="goods-pitch-display block text-2xl">{row.amount}</span>
+                        <StatusChip label={row.label ?? ''} dark />
+                      </>
+                    ) : (
+                      <span className="inline-block border border-dashed border-white/35 px-6 py-2 text-xs uppercase tracking-[0.14em] text-white/45">
+                        not yet sized
+                      </span>
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ol>
+
+            <p className="mt-6 max-w-2xl text-sm leading-6 text-[#a8a196]">
+              The lines we can size add to between ${BUY_LIST_TOTAL.low.toLocaleString('en-AU')} and
+              ${BUY_LIST_TOTAL.high.toLocaleString('en-AU')}, plus the one we cannot.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="four-asks" className="border-b border-[#d9d1c3] bg-[#f1ece4]">
+        <div className="mx-auto max-w-[1600px] px-6 py-14 md:px-10 lg:px-14 lg:py-20">
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
+            Where they are, in what they asked for
+          </p>
+          <EndingVoiceBlock voice={VOICE_FOUR_ASKS} className="mt-8 max-w-4xl" />
+          <div className="mt-12 grid gap-8 border-t border-[#d9d1c3] pt-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
+            <h2 className="goods-pitch-display text-5xl leading-[0.99] md:text-6xl">
+              Four communities asked for four different things.
+            </h2>
+            <p className="max-w-2xl text-lg leading-8 text-[#6d675c]">
+              Nobody gets sold a facility. A community says what it would want to own first, we
+              price that, at that size, and where a partner already supplies the shed or the power
+              we take those lines out instead of assuming them. None of these four is an order, and
+              none of them is signed.
+            </p>
+          </div>
+        </div>
+
+        {PATHWAY_ASKS.map((ask) => {
+          const dark = ask.ground === 'dark';
+          const ground =
+            ask.ground === 'dark'
+              ? 'bg-[#22211e] text-[#fbf8f1]'
+              : ask.ground === 'warm'
+                ? 'bg-[#e9e1d2]'
+                : 'bg-[#fbf8f1]';
+          return (
+            <div key={ask.id} className={`border-t border-[#d9d1c3] ${ground}`}>
+              <div className="mx-auto grid max-w-[1600px] gap-6 px-6 py-12 md:px-10 lg:grid-cols-[0.5fr_1.5fr] lg:gap-14 lg:px-14 lg:py-16">
+                <div>
+                  <h3 className="goods-pitch-display text-4xl leading-none md:text-5xl">
+                    {ask.place}
+                  </h3>
+                  <p
+                    className={`mt-3 font-mono text-[10px] uppercase tracking-[0.16em] ${
+                      dark ? 'text-[#a8a196]' : 'text-[#7a7363]'
+                    }`}
+                  >
+                    {ask.country}
+                  </p>
+                  <p className="goods-pitch-display mt-6 text-2xl text-[#c45c3e]">{ask.size}</p>
+                </div>
+                <div className="grid gap-6 sm:grid-cols-2 lg:gap-10">
+                  <div>
+                    <p
+                      className={`font-mono text-[9px] uppercase tracking-[0.16em] ${
+                        dark ? 'text-[#a8a196]' : 'text-[#7a7363]'
+                      }`}
+                    >
+                      {ask.field}
+                    </p>
+                    <p className="mt-3 text-base leading-7 lg:text-lg lg:leading-8">{ask.body}</p>
+                  </div>
+                  <div>
+                    <p
+                      className={`font-mono text-[9px] uppercase tracking-[0.16em] ${
+                        dark ? 'text-[#a8a196]' : 'text-[#7a7363]'
+                      }`}
+                    >
+                      What we can say about the money
+                    </p>
+                    <p
+                      className={`mt-3 text-base leading-7 ${
+                        dark ? 'text-[#cfc8bc]' : 'text-[#6d675c]'
+                      }`}
+                    >
+                      {ask.whatWeCanSay}
+                    </p>
+                    <p
+                      className={`mt-5 border-t pt-4 text-xs leading-5 ${
+                        dark
+                          ? 'border-white/20 text-[#a8a196]'
+                          : 'border-[#d9d1c3] text-[#7a7363]'
+                      }`}
+                    >
+                      Whose call: {ask.whoseCall}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+
+        <div className="border-t border-[#d9d1c3] bg-[#f1ece4]">
+          <div className="mx-auto max-w-[1600px] px-6 py-12 md:px-10 lg:px-14">
+            <p className="max-w-4xl text-lg leading-8 text-[#2b2a26]">{STAGE_RULE}</p>
+            <p className="mt-4 max-w-4xl text-base leading-7 text-[#6d675c]">{FIRST_SITE_RULE}</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="the-letter" className="bg-[#171714] px-6 py-16 text-[#fbf8f1] md:px-10 lg:px-14 lg:py-20">
+        <div className="mx-auto max-w-[1600px]">
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e88461]">
+            The ask
+          </p>
+
+          <div className="mt-8 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-16">
+            <div>
+              <EndingVoiceBlock voice={VOICE_THE_LETTER} dark className="max-w-2xl" />
+              <h2 className="goods-pitch-display mt-10 max-w-3xl text-5xl leading-[0.98] md:text-6xl">
+                We are not asking you for money today. We are asking you for a letter.
+              </h2>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-[#cfc8bc]">
+                One page on your letterhead saying four things. That letter is what QBE counts as
+                match, and it is the whole request.
+              </p>
+              <div className="mt-9">
+                <LetterLines />
+              </div>
+            </div>
+
+            <div className="border-y border-white/20">
+              <div className="py-7">
                 <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/55">
                   Signed today
                 </p>
-                <p className="goods-pitch-display mt-2 text-4xl text-[#e88461]">$0</p>
+                <p className="goods-pitch-display mt-2 text-6xl text-[#e88461]">$0</p>
+                <p className="mt-3 text-sm leading-6 text-white/60">
+                  Nobody has signed anything yet. We say that every time, including here.
+                </p>
               </div>
-              <div className="border-l border-white/20 py-5 pl-5">
+              <div className="border-t border-white/20 py-7">
                 <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/55">
-                  Internal paper gate
+                  The raise, in one sentence
                 </p>
-                <p className="goods-pitch-display mt-2 text-4xl">31 August</p>
+                <p className="mt-3 text-lg leading-8">{ASK_HEADLINE.line}</p>
+              </div>
+              <div className="border-t border-white/20 py-7">
+                <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/55">
+                  What that figure is
+                </p>
+                <p className="mt-3 text-base leading-7 text-white/70">
+                  It is the ceiling the match tops out at. What the work costs is built from the
+                  bottom, and one of those lines we cannot size until the run is measured.
+                </p>
+              </div>
+              <div className="border-t border-white/20 py-7">
+                <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/55">
+                  The match vehicle
+                </p>
+                <p className="mt-3 text-base leading-7 text-white/70">
+                  {ASK_MATCH_VEHICLE.name}. It is discretionary, it is an application, and it is
+                  not a cheque waiting for us.
+                </p>
+              </div>
+              <div className="border-t border-white/20 py-7">
+                <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/55">
+                  Letters in by
+                </p>
+                <p className="goods-pitch-display mt-2 text-4xl">31 August 2026</p>
+                <p className="mt-3 text-sm leading-6 text-white/60">Our date, not QBE&apos;s.</p>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section
-        id="production-case"
-        className="min-h-screen bg-[#fbf8f1] px-6 py-12 md:px-10 lg:px-14"
-      >
-        <div className="mx-auto flex min-h-[calc(100vh-6rem)] max-w-[1500px] flex-col justify-center">
-          <div className="grid gap-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
-                What the $800K funds
-              </p>
-              <h2 className="goods-pitch-display mt-4 text-5xl leading-[1.01] md:text-6xl">
-                Equipment. A measured run. Working capital. The first local pathway.
-              </h2>
-            </div>
-            <p className="max-w-2xl text-lg leading-8 text-[#6d675c] lg:justify-self-end">
-              These are the current use-of-funds blocks. Working capital is still being sized and
-              stays visibly open until the production run gives us the real number.
-            </p>
-          </div>
-          <ol className="mt-9 grid border border-[#d9d1c3] bg-[#d9d1c3] sm:grid-cols-2 lg:grid-cols-5 lg:gap-px">
-            {ASK_BLOCKS.map((block, index) => (
-              <li
-                key={block.name}
-                className="flex min-h-[240px] flex-col bg-[#f1ece4] p-5"
-              >
-                <span className="goods-pitch-display text-3xl text-[#c45c3e]">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <h3 className="mt-6 text-base font-semibold leading-6">{block.name}</h3>
-                <p className="goods-pitch-display mt-2 text-2xl">{block.amount}</p>
-                <p className="mt-auto pt-6 text-xs leading-5 text-[#6d675c]">
-                  {block.fundsWhat.split('.')[0]}.
+          <ol className="mt-14 grid gap-3 border-t border-white/20 pt-10 md:grid-cols-3">
+            {DOORS.map((door) => (
+              <li key={door.verb} className="border-t-2 border-[#c45c3e] bg-[#22211e] p-6 lg:p-8">
+                <h3 className="goods-pitch-display text-3xl">{door.verb}</h3>
+                <p className="mt-3 text-sm font-semibold leading-5 text-[#e88461]">{door.entity}</p>
+                <p className="mt-4 text-sm leading-6 text-white/70">{door.body}</p>
+                <p className="mt-5 border-t border-white/15 pt-4 font-mono text-[9px] uppercase tracking-[0.16em] text-white/50">
+                  {door.match}
                 </p>
               </li>
             ))}
           </ol>
-        </div>
-      </section>
+          <p className="mt-6 max-w-3xl text-sm leading-6 text-white/55">{DOORS_NOTE}</p>
 
-      <section
-        id="funding-impact"
-        className="min-h-screen bg-[#171714] px-6 py-12 text-[#fbf8f1] md:px-10 lg:px-14"
-      >
-        <div className="mx-auto flex min-h-[calc(100vh-6rem)] max-w-[1500px] flex-col justify-center">
-          <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e88461]">
-                What changes
-              </p>
-              <h2 className="goods-pitch-display mt-4 text-5xl leading-[1.01] md:text-6xl">
-                The return is leverage, measured economics and a real pathway to local production.
-              </h2>
-            </div>
-            <p className="max-w-2xl text-lg leading-8 text-[#b9b3a8] lg:justify-self-end">
-              We can promise the work and the evidence. We cannot promise a financial return,
-              completed ownership or a production rate before the measured run.
+          <div className="mt-12 flex flex-wrap items-center gap-4 border-t border-white/20 pt-10">
+            <p className="mr-4 max-w-md text-lg leading-8">
+              The decision available this week is small: a fifteen minute call. If it still makes
+              sense at the end of it, a one page letter follows.
             </p>
-          </div>
-          <ol className="mt-9 grid gap-px border border-white/15 bg-white/15 sm:grid-cols-2">
-            {fundingOutcomes.map((outcome) => (
-              <li key={outcome.title} className="bg-[#22211e] p-6 lg:p-8">
-                <div className="flex items-start justify-between gap-5">
-                  <span className="goods-pitch-display text-3xl text-[#e88461]">{outcome.number}</span>
-                  <span className="goods-pitch-display text-3xl">{outcome.value}</span>
-                </div>
-                <h3 className="mt-8 text-lg font-semibold">{outcome.title}</h3>
-                <p className="mt-3 max-w-xl text-sm leading-6 text-white/65">{outcome.body}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section className="min-h-screen bg-[#f1ece4] px-6 py-12 md:px-10 lg:px-14">
-        <div className="mx-auto flex min-h-[calc(100vh-6rem)] max-w-[1500px] flex-col justify-center">
-          <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
-            <div className="max-w-3xl">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
-                What comes back
-            </p>
-            <h2 className="goods-pitch-display mt-4 text-5xl leading-[1.02] md:text-6xl">
-                Grant, repayable capital and orders do different jobs.
-            </h2>
-          </div>
-            <p className="max-w-2xl text-lg leading-8 text-[#6d675c] lg:justify-self-end">
-              The instrument determines the return. We should never describe a grant, a loan and
-              a product order as though they are the same money.
-            </p>
-          </div>
-          <ol className="mt-9 grid gap-3 md:grid-cols-3">
-            {fundingReturns.map((item) => (
-              <li key={item.title} className="border-t-2 border-[#c45c3e] bg-[#fbf8f1] p-6 lg:p-8">
-                <span className="goods-pitch-display text-3xl text-[#c45c3e]">{item.number}</span>
-                <h3 className="goods-pitch-display mt-7 text-3xl">{item.title}</h3>
-                <p className="mt-4 text-base font-semibold">{item.return}</p>
-                <p className="mt-3 text-sm leading-6 text-[#6d675c]">{item.body}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section
-        id="decision"
-        className="min-h-screen bg-[#171714] px-6 py-16 text-[#fbf8f1] md:px-10 lg:px-14"
-      >
-        <div className="mx-auto grid min-h-[calc(100vh-8rem)] max-w-[1500px] gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e88461]">
-              The ask
-            </p>
-            <h2 className="goods-pitch-display mt-5 max-w-4xl text-5xl leading-[0.98] md:text-7xl">
-              Help us close $400K in signed commitments.
-            </h2>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-[#cfc8bc]">
-              A signed commitment can be a grant or repayable capital. It states the amount,
-              instrument, funder legal name and a contact who can verify it.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link
-                href="/contact"
-                className="bg-[#c45c3e] px-6 py-3 text-sm font-semibold text-white hover:bg-[#d26a4a]"
-              >
-                Start the conversation
-              </Link>
-              <Link
-                href="/cost-story"
-                className="border border-white/30 px-6 py-3 text-sm font-semibold hover:border-white"
-              >
-                Inspect the economics
-              </Link>
-            </div>
-          </div>
-          <div className="border-y border-white/20">
-            <div className="py-6">
-              <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/55">
-                Target
-              </p>
-              <p className="goods-pitch-display mt-2 text-5xl">$400K signed</p>
-            </div>
-            <div className="border-t border-white/20 py-6">
-              <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/55">
-                Match
-              </p>
-              <p className="goods-pitch-display mt-2 text-5xl">Up to $400K from QBE</p>
-            </div>
-            <div className="border-t border-white/20 py-6">
-              <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/55">
-                Status
-              </p>
-              <p className="goods-pitch-display mt-2 text-5xl text-[#e88461]">$0 signed today</p>
-            </div>
-            <p className="border-t border-white/20 py-5 text-sm leading-6 text-white/60">
-              {ASK_HEADLINE.ifShort}
-            </p>
+            <Link
+              href="/contact"
+              className="bg-[#c45c3e] px-6 py-3 text-sm font-semibold text-white hover:bg-[#d26a4a]"
+            >
+              Sit down with us
+            </Link>
+            <Link
+              href="/register"
+              className="border border-white/30 px-6 py-3 text-sm font-semibold hover:border-white"
+            >
+              Every figure, with its source
+            </Link>
+            <Link
+              href="/cost-story"
+              className="border border-white/30 px-6 py-3 text-sm font-semibold hover:border-white"
+            >
+              Where the money goes
+            </Link>
           </div>
         </div>
       </section>
 
-      <footer data-road-media="closing.photo" className="relative min-h-[620px] overflow-hidden bg-[#171714] text-white">
+      <footer data-road-media="closing.photo" className="relative min-h-screen overflow-hidden bg-[#171714] text-white">
         <Image
           src={closingSlide?.photo ?? '/images/media-pack/lying-on-stretch-bed.jpg'}
           alt={closingSlide?.photoAlt ?? ''}
@@ -948,17 +1106,23 @@ export default function RoadPitchPage() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-[#171714]/70" />
-        <div className="relative mx-auto flex min-h-[620px] max-w-[1500px] items-end px-6 py-16 md:px-10 lg:px-14">
+        <div className="absolute inset-0 bg-gradient-to-t from-[#171714] via-[#171714]/55 to-transparent" />
+        <div className="relative mx-auto flex min-h-screen max-w-[1500px] items-end px-6 py-16 md:px-10 lg:px-14">
           <div className="max-w-4xl">
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#d97a59]">
-              {closingSlide?.eyebrow}
+              The promise
             </p>
             <h2 data-road-text="closing.headline" className="goods-pitch-display mt-5 text-5xl leading-[1.01] md:text-7xl">
-              {closingSlide?.headline}
+              {NORTH_STAR.headline}
             </h2>
-            <p data-road-text="closing.body" className="mt-7 max-w-2xl text-lg leading-8 text-white/75">
-              {closingSlide?.body}
+            <p data-road-text="closing.body" className="mt-7 max-w-3xl text-xl leading-9 text-white/80 md:text-2xl">
+              {NORTH_STAR.line}
+            </p>
+            <p className="mt-10 border-t border-white/25 pt-6 text-lg leading-8 text-[#e88461]">
+              {CLOSING_TAIL}
+            </p>
+            <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.14em] text-white/45">
+              Updated {deckUpdated} · every figure on this page carries its status at /register
             </p>
           </div>
         </div>
