@@ -55,6 +55,19 @@ function buildQueryString(params: Record<string, unknown>): string {
 }
 
 /**
+ * One cache tag for everything read from Empathy Ledger.
+ *
+ * Every read in this file carries it, so a single revalidateTag() drops all of
+ * it. That is what /api/webhooks/empathy-ledger uses when somebody withdraws
+ * consent, turning a five minute wait into seconds.
+ *
+ * Before this, the only bound on a withdrawal reaching this site was the 300
+ * second revalidate window — five minutes of showing a person's story after they
+ * said stop. This site holds 27 grants across 18 people.
+ */
+export const EMPATHY_LEDGER_CACHE_TAG = 'empathy-ledger';
+
+/**
  * Make authenticated request to Empathy Ledger API
  */
 async function fetchFromEmpathyLedger<T>(
@@ -76,7 +89,12 @@ async function fetchFromEmpathyLedger<T>(
 
   const response = await fetch(url, {
     headers,
-    next: { revalidate: options.revalidate ?? 300 }, // Cache for 5 minutes by default
+    next: {
+      revalidate: options.revalidate ?? 300,
+      // Tagged so a withdrawal can drop this immediately instead of waiting out
+      // the five minute window. See EMPATHY_LEDGER_CACHE_TAG.
+      tags: [EMPATHY_LEDGER_CACHE_TAG],
+    },
   });
 
   if (!response.ok) {
@@ -108,7 +126,7 @@ async function fetchFromPlainAPI<T>(
 
   const response = await fetch(url, {
     headers,
-    next: { revalidate: options.revalidate ?? 300 },
+    next: { revalidate: options.revalidate ?? 300, tags: [EMPATHY_LEDGER_CACHE_TAG] },
   });
 
   if (!response.ok) {
@@ -238,7 +256,7 @@ async function fetchFromSyndicationAPI<T>(
   try {
     response = await fetch(url, {
       headers,
-      next: { revalidate: options.revalidate ?? 300 },
+      next: { revalidate: options.revalidate ?? 300, tags: [EMPATHY_LEDGER_CACHE_TAG] },
     });
   } catch (networkError) {
     // Network failure (DNS, timeout, etc). Soft-fail so caller can fall back.
@@ -342,7 +360,7 @@ async function fetchFromELSupabase<T>(
       'apikey': EL_SUPABASE_KEY,
       'Authorization': `Bearer ${EL_SUPABASE_KEY}`,
     },
-    next: { revalidate: options.revalidate ?? 300 },
+    next: { revalidate: options.revalidate ?? 300, tags: [EMPATHY_LEDGER_CACHE_TAG] },
   });
   if (!response.ok) {
     const body = await response.text().catch(() => '');
@@ -372,7 +390,7 @@ async function fetchFromELSupabaseRpc<T>(
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
-    next: { revalidate: options.revalidate ?? 60 },
+    next: { revalidate: options.revalidate ?? 60, tags: [EMPATHY_LEDGER_CACHE_TAG] },
   });
   if (!response.ok) {
     const responseBody = await response.text().catch(() => '');
