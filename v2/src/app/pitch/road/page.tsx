@@ -13,21 +13,29 @@ import { ZoomableBedImage } from './zoomable-bed-image';
 import { ProductionFacilityExperience } from './production-facility-experience';
 import { MykelStoryMedia } from './mykel-story-media';
 import { getStoryOverrides } from '@/lib/field-notes/overrides';
-import { ASK_HEADLINE, ASK_MATCH_VEHICLE } from '@/lib/data/ask-surface';
+import { ASK_HEADLINE } from '@/lib/data/ask-surface';
 import { STAGE_RULE } from '@/lib/data/pathway-stages';
 import { NORTH_STAR } from '@/lib/data/content';
 import {
+  ASK_BELIEVABILITY,
+  ASK_INTRO,
+  ASK_NEXT_STEP,
+  ASK_STATUS_ROWS,
   BED_LADDER,
   BUY_LIST_TOTAL,
+  CHAIN_HONESTY,
+  CHAIN_INTRO,
   CLOSING_TAIL,
   DOORS,
   DOORS_NOTE,
   FIRST_SITE_RULE,
   LEG_RATIO,
   PATHWAY_ASKS,
+  SITE_BASE,
+  SITE_OPERATING,
   STOPWATCH_COMMITMENT,
-  STOPWATCH_NO_VOICE,
   THE_BUY_LIST,
+  THE_CHAIN,
   THE_RUNNING_COST,
   THE_TRADING,
   VOICE_FOUR_ASKS,
@@ -246,6 +254,7 @@ export default function RoadPitchPage() {
               <a href="#road" className="hover:text-white">The road</a>
               <a href="#map" className="hover:text-white">The map</a>
               <a href="#model" className="hover:text-white">The model</a>
+              <a href="#the-chain" className="hover:text-white">What it costs</a>
               <a href="#one-bed" className="hover:text-white">The money</a>
             </div>
           </nav>
@@ -858,12 +867,10 @@ export default function RoadPitchPage() {
             <div className="mt-8 border-l-2 border-[#c45c3e] pl-5">
               <p className="goods-pitch-display text-2xl leading-snug md:text-3xl">
                 $426 is modelled from verified part prices; the first thing your money buys is the
-                measured run that proves it.
+                fifty beds that test it.
               </p>
               <p className="mt-4 text-base leading-7 text-[#e88461]">{STOPWATCH_COMMITMENT}</p>
             </div>
-
-            <p className="mt-7 max-w-2xl text-sm leading-6 text-[#a8a196]">{STOPWATCH_NO_VOICE}</p>
 
             <ol className="mt-10 divide-y divide-white/15 border-y border-white/20">
               {THE_BUY_LIST.map((row) => (
@@ -899,6 +906,114 @@ export default function RoadPitchPage() {
         </div>
       </section>
 
+      <section id="the-chain" className="border-b border-[#d9d1c3] bg-[#fbf8f1] px-6 py-14 md:px-10 lg:px-14 lg:py-20">
+        <div className="mx-auto max-w-[1600px]">
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
+            {CHAIN_INTRO.eyebrow}
+          </p>
+          <div className="mt-8 grid gap-8 border-t border-[#d9d1c3] pt-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
+            <h2 className="goods-pitch-display text-5xl leading-[0.99] md:text-6xl">
+              {CHAIN_INTRO.headline}
+            </h2>
+            <p className="max-w-2xl text-lg leading-8 text-[#6d675c]">{CHAIN_INTRO.body}</p>
+          </div>
+
+          <ol className="mt-12 grid gap-px border-y border-[#d9d1c3] bg-[#d9d1c3] sm:grid-cols-2 lg:grid-cols-5">
+            {THE_CHAIN.map((step) => (
+              <li key={step.n} className="flex flex-col bg-[#fbf8f1] p-6">
+                <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#7a7363]">
+                  Needs
+                </p>
+                <p className="mt-1 font-mono text-[11px] leading-4 text-[#c45c3e]">{step.needs}</p>
+
+                <div className="mt-5 border-t-[3px] border-[#c45c3e] pt-4">
+                  <span className="goods-pitch-display text-3xl text-[#c45c3e]">{step.n}</span>
+                  <h3 className="mt-3 text-base font-semibold leading-5">{step.label}</h3>
+                  <p className="goods-pitch-display mt-3 text-2xl">{step.amount}</p>
+                  <p className="mt-1 flex flex-wrap items-center gap-x-2">
+                    <StatusChip label={step.label_status} />
+                    <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#a8a196]">
+                      {step.grade}
+                    </span>
+                  </p>
+                  <p className="mt-4 text-xs leading-5 text-[#6d675c]">{step.sentence}</p>
+                </div>
+
+                <p className="mt-auto border-t border-[#d9d1c3] pt-4 font-mono text-[9px] uppercase tracking-[0.16em] text-[#7a7363]">
+                  Makes
+                </p>
+                <p className="mt-1 font-mono text-[11px] leading-4 text-[#c45c3e]">
+                  {step.produces}
+                </p>
+              </li>
+            ))}
+          </ol>
+
+          <div className="mt-12 grid gap-10 border-t border-[#d9d1c3] pt-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
+                Underneath all five
+              </p>
+              <div className="mt-4 flex flex-wrap items-baseline gap-4">
+                <h3 className="goods-pitch-display text-4xl">{SITE_BASE.label}</h3>
+                <span className="goods-pitch-display text-3xl text-[#c45c3e]">
+                  {SITE_BASE.amount}
+                </span>
+                <StatusChip label={SITE_BASE.label_status} />
+              </div>
+              <p className="mt-5 max-w-xl text-base leading-7 text-[#6d675c]">
+                {SITE_BASE.sentence}
+              </p>
+              <dl className="mt-6 divide-y divide-[#d9d1c3] border-y border-[#d9d1c3]">
+                {SITE_BASE.lines.map((line) => (
+                  <div key={line.item} className="flex items-baseline justify-between gap-4 py-2.5">
+                    <dt className="text-sm leading-5">{line.item}</dt>
+                    <dd className="shrink-0 text-right">
+                      <span className="text-sm">{line.amount}</span>
+                      <span className="ml-2 font-mono text-[9px] uppercase tracking-[0.16em] text-[#a8a196]">
+                        {line.grade}
+                      </span>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
+                What it costs to run, each year
+              </p>
+              <div className="mt-4 grid grid-cols-3 gap-4 border-y border-[#d9d1c3] py-5">
+                {[
+                  { v: SITE_OPERATING.floorAmount, l: 'The site floor' },
+                  { v: SITE_OPERATING.poolAmount, l: 'All five steps' },
+                  { v: SITE_OPERATING.totalAmount, l: 'Together' },
+                ].map((cell) => (
+                  <div key={cell.l}>
+                    <p className="goods-pitch-display text-2xl lg:text-3xl">{cell.v}</p>
+                    <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.16em] text-[#7a7363]">
+                      {cell.l}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-5 text-base leading-7 text-[#6d675c]">
+                {SITE_OPERATING.floorSentence}
+              </p>
+              <p className="mt-4 text-base leading-7 text-[#6d675c]">
+                {SITE_OPERATING.poolSentence}
+              </p>
+              <p className="mt-4 text-base leading-7 text-[#2b2a26]">
+                {SITE_OPERATING.reconciliationSentence}
+              </p>
+            </div>
+          </div>
+
+          <p className="mt-10 max-w-4xl border-t border-[#d9d1c3] pt-8 text-sm leading-6 text-[#7a7363]">
+            {CHAIN_HONESTY}
+          </p>
+        </div>
+      </section>
       <section id="four-asks" className="border-b border-[#d9d1c3] bg-[#f1ece4]">
         <div className="mx-auto max-w-[1600px] px-6 py-14 md:px-10 lg:px-14 lg:py-20">
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
@@ -911,9 +1026,10 @@ export default function RoadPitchPage() {
             </h2>
             <p className="max-w-2xl text-lg leading-8 text-[#6d675c]">
               Nobody gets sold a facility. A community says what it would want to own first, we
-              price that, at that size, and where a partner already supplies the shed or the power
-              we take those lines out instead of assuming them. None of these four is an order, and
-              none of them is signed.
+              price that, at that size, and where a partner already has the shed or the power we
+              take those lines out instead of assuming them. Each of these has a number against it
+              in our own planning. None of those numbers has gone to the community it belongs to,
+              so none of them is on this page. None of these four is an order, and none is signed.
             </p>
           </div>
         </div>
@@ -1002,58 +1118,40 @@ export default function RoadPitchPage() {
             <div>
               <EndingVoiceBlock voice={VOICE_THE_LETTER} dark className="max-w-2xl" />
               <h2 className="goods-pitch-display mt-10 max-w-3xl text-5xl leading-[0.98] md:text-6xl">
-                We are not asking you for money today. We are asking you for a letter.
+                {ASK_INTRO.headline}
               </h2>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-[#cfc8bc]">
-                One page on your letterhead saying four things. That letter is what QBE counts as
-                match, and it is the whole request.
-              </p>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-[#cfc8bc]">{ASK_INTRO.body}</p>
               <div className="mt-9">
                 <LetterLines />
               </div>
             </div>
 
-            <div className="border-y border-white/20">
-              <div className="py-7">
-                <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/55">
-                  Signed today
-                </p>
-                <p className="goods-pitch-display mt-2 text-6xl text-[#e88461]">$0</p>
-                <p className="mt-3 text-sm leading-6 text-white/60">
-                  Nobody has signed anything yet. We say that every time, including here.
-                </p>
+            <div>
+              <p className="goods-pitch-display text-3xl leading-tight md:text-4xl">
+                {ASK_HEADLINE.line}
+              </p>
+              <div className="mt-9 border-y border-white/20">
+                {ASK_STATUS_ROWS.map((row) => (
+                  <div key={row.label} className="border-t border-white/20 py-7 first:border-t-0">
+                    <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/55">
+                      {row.label}
+                    </p>
+                    <p
+                      className={
+                        row.value === '$0'
+                          ? 'goods-pitch-display mt-2 text-6xl text-[#e88461]'
+                          : 'goods-pitch-display mt-2 text-3xl'
+                      }
+                    >
+                      {row.value}
+                    </p>
+                    {row.supporting && (
+                      <p className="mt-3 text-sm leading-6 text-white/60">{row.supporting}</p>
+                    )}
+                  </div>
+                ))}
               </div>
-              <div className="border-t border-white/20 py-7">
-                <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/55">
-                  The raise, in one sentence
-                </p>
-                <p className="mt-3 text-lg leading-8">{ASK_HEADLINE.line}</p>
-              </div>
-              <div className="border-t border-white/20 py-7">
-                <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/55">
-                  What that figure is
-                </p>
-                <p className="mt-3 text-base leading-7 text-white/70">
-                  It is the ceiling the match tops out at. What the work costs is built from the
-                  bottom, and one of those lines we cannot size until the run is measured.
-                </p>
-              </div>
-              <div className="border-t border-white/20 py-7">
-                <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/55">
-                  The match vehicle
-                </p>
-                <p className="mt-3 text-base leading-7 text-white/70">
-                  {ASK_MATCH_VEHICLE.name}. It is discretionary, it is an application, and it is
-                  not a cheque waiting for us.
-                </p>
-              </div>
-              <div className="border-t border-white/20 py-7">
-                <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/55">
-                  Letters in by
-                </p>
-                <p className="goods-pitch-display mt-2 text-4xl">31 August 2026</p>
-                <p className="mt-3 text-sm leading-6 text-white/60">Our date, not QBE&apos;s.</p>
-              </div>
+              <p className="mt-7 text-base leading-7 text-white/70">{ASK_BELIEVABILITY}</p>
             </div>
           </div>
 
@@ -1062,7 +1160,14 @@ export default function RoadPitchPage() {
               <li key={door.verb} className="border-t-2 border-[#c45c3e] bg-[#22211e] p-6 lg:p-8">
                 <h3 className="goods-pitch-display text-3xl">{door.verb}</h3>
                 <p className="mt-3 text-sm font-semibold leading-5 text-[#e88461]">{door.entity}</p>
-                <p className="mt-4 text-sm leading-6 text-white/70">{door.body}</p>
+                <p className="mt-6 font-mono text-[9px] uppercase tracking-[0.16em] text-white/45">
+                  What it pays for
+                </p>
+                <p className="mt-2 text-sm leading-6 text-white/75">{door.does}</p>
+                <p className="mt-5 font-mono text-[9px] uppercase tracking-[0.16em] text-white/45">
+                  What comes back
+                </p>
+                <p className="mt-2 text-sm leading-6 text-white/75">{door.returns}</p>
                 <p className="mt-5 border-t border-white/15 pt-4 font-mono text-[9px] uppercase tracking-[0.16em] text-white/50">
                   {door.match}
                 </p>
@@ -1071,29 +1176,28 @@ export default function RoadPitchPage() {
           </ol>
           <p className="mt-6 max-w-3xl text-sm leading-6 text-white/55">{DOORS_NOTE}</p>
 
-          <div className="mt-12 flex flex-wrap items-center gap-4 border-t border-white/20 pt-10">
-            <p className="mr-4 max-w-md text-lg leading-8">
-              The decision available this week is small: a fifteen minute call. If it still makes
-              sense at the end of it, a one page letter follows.
-            </p>
-            <Link
-              href="/contact"
-              className="bg-[#c45c3e] px-6 py-3 text-sm font-semibold text-white hover:bg-[#d26a4a]"
-            >
-              Sit down with us
-            </Link>
-            <Link
-              href="/register"
-              className="border border-white/30 px-6 py-3 text-sm font-semibold hover:border-white"
-            >
-              Every figure, with its source
-            </Link>
-            <Link
-              href="/cost-story"
-              className="border border-white/30 px-6 py-3 text-sm font-semibold hover:border-white"
-            >
-              Where the money goes
-            </Link>
+          <div className="mt-12 grid gap-8 border-t border-white/20 pt-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <p className="max-w-2xl text-lg leading-8">{ASK_NEXT_STEP.sentence}</p>
+            <div className="flex flex-wrap items-center gap-4">
+              <Link
+                href={ASK_NEXT_STEP.primary.href}
+                className="bg-[#c45c3e] px-6 py-3 text-sm font-semibold text-white hover:bg-[#d26a4a]"
+              >
+                {ASK_NEXT_STEP.primary.label}
+              </Link>
+              <Link
+                href={ASK_NEXT_STEP.secondary.href}
+                className="border border-white/30 px-6 py-3 text-sm font-semibold hover:border-white"
+              >
+                {ASK_NEXT_STEP.secondary.label}
+              </Link>
+              <Link
+                href={ASK_NEXT_STEP.tertiary.href}
+                className="border-b border-[#d97a59] pb-1 text-sm text-white/70 hover:text-white"
+              >
+                {ASK_NEXT_STEP.tertiary.label}
+              </Link>
+            </div>
           </div>
         </div>
       </section>

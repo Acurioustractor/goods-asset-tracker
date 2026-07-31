@@ -20,7 +20,12 @@ import {
   LEG_RATIO,
   LETTER_LINES,
   PATHWAY_ASKS,
+  CHAIN_HONESTY,
+  CHAIN_INTRO,
+  SITE_BASE,
+  SITE_OPERATING,
   THE_BUY_LIST,
+  THE_CHAIN,
   THE_RUNNING_COST,
   THE_TRADING,
   VOICE_FOUR_ASKS,
@@ -44,7 +49,15 @@ const ALL_COPY: string[] = [
   ...BED_LADDER.flatMap((c) => [c.column, c.foot, ...c.rows.flatMap((r) => [r.figure, r.line])]),
   ...THE_BUY_LIST.flatMap((r) => [r.name, r.sentence, r.amount ?? '']),
   ...PATHWAY_ASKS.flatMap((p) => [p.place, p.country, p.size, p.body, p.whatWeCanSay, p.whoseCall]),
-  ...DOORS.flatMap((d) => [d.verb, d.entity, d.body, d.match]),
+  ...DOORS.flatMap((d) => [d.verb, d.entity, d.does, d.returns, d.match]),
+  ...THE_CHAIN.flatMap((c) => [c.label, c.needs, c.produces, c.amount, c.sentence]),
+  CHAIN_INTRO.headline,
+  CHAIN_INTRO.body,
+  CHAIN_HONESTY,
+  SITE_BASE.sentence,
+  SITE_OPERATING.floorSentence,
+  SITE_OPERATING.poolSentence,
+  SITE_OPERATING.reconciliationSentence,
   ...LETTER_LINES.flatMap((l) => [l.label, l.detail]),
 ];
 
@@ -116,12 +129,15 @@ describe('road-ending: no figure is stated without its status', () => {
     }
   });
 
-  it('working capital stays visibly unsized', () => {
-    const wc = THE_BUY_LIST.find((r) => r.name === 'Working capital')!;
-    expect(wc.amount).toBeNull();
-    expect(wc.low).toBeNull();
-    expect(wc.high).toBeNull();
-    expect(wc.sentence.toLowerCase()).toContain('do not know');
+  it('exactly one buy-list row stays visibly unsized, and says why', () => {
+    // Found by its empty amount, never by its label: the row is deliberately
+    // named in plain words rather than "working capital", so asserting the
+    // accounting term here would re-import the register we just removed.
+    const unsized = THE_BUY_LIST.filter((r) => r.amount === null);
+    expect(unsized).toHaveLength(1);
+    expect(unsized[0].low).toBeNull();
+    expect(unsized[0].high).toBeNull();
+    expect(unsized[0].sentence.toLowerCase()).toContain('do not know');
   });
 });
 
@@ -243,28 +259,91 @@ describe('road-ending: the retired and the banned', () => {
   });
 });
 
+describe('road-ending: the chain is the model, and it stays generic', () => {
+  it('each step produces exactly what the next step needs, letter for letter', () => {
+    // The picture on the page IS the model. If a label drifts, the chain stops
+    // being true and becomes decoration.
+    for (let i = 0; i < THE_CHAIN.length - 1; i += 1) {
+      expect(
+        THE_CHAIN[i + 1].needs,
+        `step ${THE_CHAIN[i + 1].n} needs "${THE_CHAIN[i + 1].needs}" but step ${THE_CHAIN[i].n} makes "${THE_CHAIN[i].produces}"`,
+      ).toBe(THE_CHAIN[i].produces);
+    }
+  });
+
+  it('no community, region or Country is named anywhere in the chain section', () => {
+    // Rows 01 and 02 add to $24,800-39,300, which is the internal Utopia figure
+    // to the dollar. The section prices the menu, never a community's pathway.
+    const chainCopy = [
+      CHAIN_INTRO.headline,
+      CHAIN_INTRO.body,
+      CHAIN_HONESTY,
+      SITE_BASE.sentence,
+      SITE_OPERATING.floorSentence,
+      SITE_OPERATING.poolSentence,
+      SITE_OPERATING.reconciliationSentence,
+      ...THE_CHAIN.map((c) => `${c.label} ${c.needs} ${c.produces} ${c.sentence}`),
+    ].join(' ');
+    for (const place of [
+      ...PATHWAY_ASKS.map((p) => p.place),
+      ...PATHWAY_ASKS.map((p) => p.country),
+      'Urapuntja',
+      'Oonchiumpa',
+      'Utopia',
+      'Maningrida',
+      'Alice Springs',
+      'Warumungu',
+      'Manbarra',
+    ]) {
+      expect(chainCopy, `the chain section names ${place}`).not.toContain(place);
+    }
+  });
+
+  it('the yearly figures say the wage of the person running the line is not in them', () => {
+    // Without this, a reader divides $79,333 by the $324-a-bed figure two screens
+    // up, gets 245, and has reconstructed the bed threshold ruling I retired.
+    expect(SITE_OPERATING.poolSentence).toContain('Neither figure pays anybody to run the line');
+  });
+
+  it('an allocation is never described as evidence', () => {
+    expect(CHAIN_HONESTY).toContain('it is not new evidence');
+    expect(CHAIN_HONESTY).toContain('no community has been quoted from it');
+  });
+
+  it('every step carries a legal Solidity label and a real grade', () => {
+    for (const step of THE_CHAIN) {
+      expect(SOLIDITY, `${step.label} carries "${step.label_status}"`).toContain(step.label_status);
+      expect(['evidenced', 'estimate']).toContain(step.grade);
+    }
+    expect(SOLIDITY).toContain(SITE_BASE.label_status);
+    expect(SOLIDITY).toContain(SITE_OPERATING.label_status);
+  });
+});
+
 describe('road-ending: the letter is the ask', () => {
   it('the letter names exactly the four things QBE counts as match paper', () => {
     expect(LETTER_LINES).toHaveLength(4);
-    const labels = LETTER_LINES.map((l) => l.label.toLowerCase()).join(' ');
-    expect(labels).toContain('amount');
-    expect(labels).toContain('instrument');
-    expect(labels).toContain('legal name');
-    expect(labels).toContain('ring');
+    // Assert the MEANING, not the vocabulary. "Instrument" was removed from the
+    // copy on purpose, so the guard reads the detail line rather than the label.
+    const all = LETTER_LINES.map((l) => `${l.label} ${l.detail}`.toLowerCase()).join(' ');
+    expect(all).toContain('amount');
+    expect(all, 'the grant-or-loan line').toMatch(/grant.*loan|loan.*grant/);
+    expect(all, 'the legal name line').toContain('legal name');
+    expect(all, 'the callable contact line').toMatch(/ring|confirm/);
   });
 
   it('the give door does not promise a deductible receipt outright', () => {
     // Ruling J: DGR endorsement is verified since Jan 2012, but the receipting
     // mechanics are open, and a wrong deductibility claim is an ATO problem.
     const give = DOORS.find((d) => d.verb === 'Give')!;
-    expect(give.body).toContain('confirming the receipting mechanics');
-    expect(give.body).not.toMatch(/^A tax deductible gift\./);
+    expect(give.returns).toContain('still working out how the receipt actually gets issued');
+    expect(give.returns).not.toMatch(/^A tax deductible gift\./);
   });
 
   it('gifts never fund the company and orders never count as match', () => {
     const give = DOORS.find((d) => d.verb === 'Give')!;
     expect(give.entity).toContain('Butterfly');
-    expect(give.body).toContain('never buys a share');
+    expect(give.does).toContain('never buys a share');
     const order = DOORS.find((d) => d.verb === 'Buy beds')!;
     expect(order.match).toContain('Outside the QBE match');
   });

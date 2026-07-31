@@ -76,13 +76,18 @@ export const ASK_BLOCKS: AskBlock[] = [
 export const ASK_HEADLINE = {
   line: 'We are raising $400K in signed commitments by 31 August. QBE matches it dollar for dollar: an $800K program that takes Goods to the point it funds itself.',
   ifMore: 'Above $400K the match stops, so extra brings the first on-Country site forward. We can put about $550K to work; past that, buy beds instead.',
-  ifShort: 'QBE’s floor is $150K matched: even the small version funds the measured run. Every signed dollar lands twice.',
+  ifShort: "QBE's floor is $150K matched: even the small version funds the measured run. Every signed dollar lands twice.",
 };
 
 export const ASK_MATCH_VEHICLE = {
   name: 'QBE Catalysing Impact, Stage 2',
   amount: 'up to $400K ($150K floor)',
-  rule: 'Must be at least matched by SIGNED external commitments. Repayable finance preferred. Match paper 31 Aug; submission due 14 September; outcomes November 2026.',
+  // 14 September STRUCK 2026-07-31. canon.ts signed-lois states it plainly: "Do NOT write
+  // '14 Sep' as the application date: that is the Butterfly AGM, a different thing, and no
+  // firmer QBE date is sourced." Canon is authority 1, so this string stops asserting a date
+  // canon forbids. Our own 31 Aug gate and the November outcome are both sourced; the
+  // program's own close is late September and nobody has pinned the day. Ask Jay.
+  rule: 'Must be at least matched by SIGNED external commitments. Repayable finance preferred. Our own match-paper gate is 31 Aug; the program closes late September 2026, exact date unconfirmed; outcomes November 2026.',
   note: 'The match vehicle that doubles every signed dollar: not the ask itself. The ask is the sum of the blocks.',
 };
 
