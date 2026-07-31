@@ -19,6 +19,55 @@
 
 ---
 
+## 2026-07-31 — the pitch ending, and the four communities
+
+Ben rulings, taken while rebuilding the ending of `/pitch/road`.
+
+### S. The four communities have each said yes to being named on the funder page.
+
+**Cleared:** Utopia Homelands (Urapuntja), Oonchiumpa, Tennant Creek and Palm Island may be named
+on `/pitch/road`, with what each asked for, as the copy in `v2/src/lib/data/road-ending.ts`
+`PATHWAY_ASKS` states it. Ben confirms each community has said yes.
+
+**What this clearance does NOT do, and the distinction is the whole point.** Consent to be named
+is not consent to be priced, and it does not change a single fact about where a relationship
+actually sits. All three of these stand exactly as they were and the guards stay:
+
+- **No dollar figure goes on any named community's pathway.** Goods holds a full costing for
+  Oonchiumpa and a module price for Utopia. Neither has been put to the community it describes.
+  The page still says so, and `road-ending.guards.test.ts` still fails the build if a price
+  appears next to a community. Oonchiumpa sees their number before anybody else does.
+- **Palm Island's field still reads "Where this sits", never "Asked for".**
+  `community-pathways.ts` records `evidenceState: 'not-assessed'` and "Existing Goods
+  relationships must not be treated as a request". Nobody has been asked, and being cleared to
+  be named does not retrospectively make a request exist.
+- **Tennant Creek still says the reconnection email is written and unsent**, because it is.
+
+**⚠ The evidence is not yet pointed at from the repo.** Same gap as the Maningrida photo
+clearance (`CONTEXT.md`, 2026-07-21), and it is recorded here rather than left implicit: this
+entry currently rests on Ben's word in a session, with no reference to where each yes lives.
+**Sweep: when Ben names the form each clearance took (a call, an email, a signed note, an EL
+consent record), add the reference per community to `PATHWAY_ASKS` so a future session can
+verify rather than trust.** Until then it is a dated ruling, not evidence.
+
+### T. Canon loses two conflicts it was on the wrong side of.
+
+`marginal-factory` ($426) and `save-per-bed` ($194) regraded `verified` to **`modelled`** in
+`canon.ts`. The BOM arithmetic is verified; the per-bed cost at a sustained production rate has
+never been measured, which is what the funded fifty-bed run buys. `cost-story.ts`,
+`ask-surface.ts`, `deck.ts` stop-6 and the standing hard rule all already said modelled, and
+`deck.ts` had written down the reasoning without anyone acting on it. Any component reading
+`claimLabel` straight from canon was one import away from printing "verified" beside $426 in
+front of a funder.
+
+**"14 September" struck from `ASK_MATCH_VEHICLE.rule`.** `canon.ts` says plainly: do not write it
+as the application date, that is the Butterfly AGM, a different thing, and no firmer QBE date is
+sourced. Canon is authority 1, so the string moved, not canon. `/pitch/road` prints no QBE date
+at all. **Sweep: ask Jay what the actual program close date is, early August, and correct
+`ask-surface.ts` once from a source.**
+
+---
+
 ## 2026-07-25 (later) — Matt's model inputs, items 1 to 3
 
 Three rulings against the recommended positions in

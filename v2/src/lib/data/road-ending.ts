@@ -230,6 +230,17 @@ export const STOPWATCH_COMMITMENT =
 // records evidenceState 'not-assessed' and "Existing Goods relationships must not
 // be treated as a request". Writing their listening step as their ask would put
 // a request in the mouth of a community that has not been approached.
+//
+// CLEARED TO BE NAMED (ruling S, Ben, 2026-07-31): all four communities have said
+// yes to appearing here with what each asked for. That clearance is about being
+// NAMED and nothing else. It does not price anybody, it does not turn Palm
+// Island's listening step into a request, and it does not make Tennant Creek's
+// unsent email sent. The guards below stay for exactly that reason.
+//
+// ⚠ The evidence for each yes is not yet pointed at from this repo, the same gap
+// the Maningrida photo clearance carried. When Ben names the form each one took,
+// add a `clearance` reference per community here so a future session can verify
+// rather than trust. Until then this rests on a dated ruling, not on a record.
 export interface PathwayAsk {
   id: string;
   place: string;
