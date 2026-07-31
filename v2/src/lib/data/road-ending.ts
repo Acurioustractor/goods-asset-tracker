@@ -117,7 +117,7 @@ export const LEG_RATIO = {
   landed: 'about $55',
   ratio: '8.6 times',
   copy:
-    'The recycled plastic legs cost $344.05, close to half the bed. The plastic inside them is about $40 of shred at $2 a kilo, about $55 by the time it reaches us. We pay 8.6 times the raw cost of that plastic for somebody else to press it into legs. Pressing them ourselves is the one part of the bed we can change.',
+    'The recycled plastic legs cost $344.05, close to half the bed. The plastic inside them is about $40 of shred at $2 a kilo, about $55 by the time it reaches us. We pay 8.6 times the raw cost, that $40, for somebody else to press it into legs. Pressing them ourselves is the one part of the bed we can change.',
   label: 'verified' as Solidity,
   source: 'cost-model-scenarios.json idiot_index, leg element: raw_low 40.00, current 344.05, index 8.6',
 };
@@ -169,7 +169,7 @@ export const THE_BUY_LIST: BuyRow[] = [
     amount: '$60,000 to $80,000',
     label: 'target',
     sentence:
-      'Fifty beds pressed one after another at full pace, with the hours, the power, the plastic used and the plastic wasted all written down as we go.',
+      'Fifty beds pressed one after another at full pace, with the hours, the power, the plastic used and the plastic wasted all written down as we go. Most of that figure is the labour and machine time nobody has been paid for yet. The beds themselves go to communities that have ordered them.',
     low: 60000,
     high: 80000,
   },
@@ -185,7 +185,7 @@ export const THE_BUY_LIST: BuyRow[] = [
   },
   {
     n: '04',
-    name: 'Keeping the doors open',
+    name: 'The months before the beds pay for it',
     amount: '$110,000 to $165,000',
     label: 'workpaper',
     sentence:
@@ -199,7 +199,7 @@ export const THE_BUY_LIST: BuyRow[] = [
     amount: '$5,000 to $8,000 a year',
     label: 'modelled',
     sentence:
-      'Three to five percent of what the machines cost, every year, for parts and servicing. Plus the time and travel to work out what a first site On Country would need.',
+      'Parts and servicing every year, once the machines are running. Plus the time and travel to work out what a first site On Country would need.',
     low: 5000,
     high: 8000,
   },
@@ -261,7 +261,7 @@ export const PATHWAY_ASKS: PathwayAsk[] = [
     size: 'One machine',
     field: 'Asked for',
     body:
-      'We asked Urapuntja what they would want to own first. They said a shredder. One machine, so the plastic collected around the homelands becomes clean flake on Country, with young people doing the work.',
+      'Asked what they would want to own first, Urapuntja said a shredder. One machine, so the plastic collected around the homelands becomes clean flake on Country, with young people doing the work. It is a request we are still scoping with Jane Wilson.',
     whatWeCanSay:
       'We can price the shredder. Power, a pad, somewhere to stand it and somebody to run it are the parts we have not worked out with Urapuntja, and none of our numbers have gone to them.',
     whoseCall: 'Jane Wilson and Urapuntja Aboriginal Corporation.',
@@ -311,7 +311,7 @@ export const PATHWAY_ASKS: PathwayAsk[] = [
 /** Where the first site goes is not ours alone to settle, and four named
  *  communities are reading. State the process, never the outcome. */
 export const FIRST_SITE_RULE =
-  'Where the first site goes is not settled, and it is not ours alone to settle. The first fifty beds get pressed on the gear we already own, because the risk of going first is ours to carry. What moves to Country is the version that already works, at the size that community asked for.';
+  'Where the first site goes is not settled, and it is not ours alone to settle. The fifty get pressed on the gear we already own, because the risk of going first is ours to carry. What moves to Country is the version that already works, at the size that community asked for.';
 
 // ---------------------------------------------------------------------------
 // Section 4: the letter.
@@ -384,7 +384,7 @@ export const DOORS_NOTE =
 export const ASK_INTRO = {
   headline: 'What we need from you fits on one page.',
   body:
-    'One page on your letterhead saying how much, in what form, the legal name that would sign it, and somebody we can ring. That page is what counts toward the match, and it is the whole request today. The money itself follows, on the terms you set.',
+    'One page on your letterhead saying how much, in what form, the legal name that would sign it, and somebody we can ring. That page is what QBE counts as match, and it is the whole request today. The money itself follows, in whichever of the three forms below suits you, on terms we write together.',
 };
 
 export interface AskRow {
@@ -402,17 +402,17 @@ export const ASK_STATUS_ROWS: AskRow[] = [
     label: 'What the match is',
     value: 'QBE Catalysing Impact, Stage 2',
     supporting:
-      'They can say no. It is an application, not a cheque waiting for us. The figure in the sentence above is where the match tops out, and what the work costs is built from the bottom, line by line.',
+      'They can say no. It is an application, not a cheque waiting for us. The match tops out at what we are raising and starts at a $150K floor. Past the top, extra money stops being doubled. What the work costs is built from the bottom, line by line.',
   },
 ];
 
 export const ASK_BELIEVABILITY =
-  'Nothing is signed, so the record is what there is to look at. Beds are in community and people sleep on them. We already sell beds and get paid for them. The machines were bought with our own money before we asked for yours, and we can show bills for part of that, not all of it.';
+  'The record is what there is to look at. Beds are in community and people sleep on them. We already sell beds and get paid for them. The machines were bought with our own money before we asked for yours, and we can show bills for part of that, not all of it.';
 
 export const ASK_NEXT_STEP = {
   sentence:
-    'The smallest step is fifteen minutes on the phone. If it still makes sense at the end of it, the four lines above are the letter, and on your own letterhead they take about five minutes. We are asking for letters by 31 August. That is our own gate, set early so there is time to check the paperwork before the program closes.',
-  primary: { label: 'Book fifteen minutes', href: '/contact' },
+    'The smallest step is fifteen minutes on the phone. If it still makes sense at the end of it, the four lines above are the letter, and on your own letterhead they take about five minutes. We set the 31 August date ourselves, early, so there is time to check the paperwork before the program closes.',
+  primary: { label: 'Ask for a fifteen minute call', href: '/contact' },
   secondary: { label: 'Every figure, with its source', href: '/register' },
   tertiary: { label: 'Where the money goes', href: '/cost-story' },
 };
@@ -476,7 +476,7 @@ export const THE_CHAIN: ChainStep[] = [
     grade: 'evidenced',
     label_status: 'workpaper',
     sentence:
-      'One machine, priced as one machine, with nothing split up to get there. We own one and it runs. The invoice for it is not in the books our accountant works from, so we hold this figure at workpaper until we can show it to you.',
+      'One machine, priced as one machine, with nothing split up to get there. We own one and it runs. The invoice for it is not in the books our accountant works from, so we call it a workpaper until we can put the bill in front of you.',
   },
   {
     n: '03',
@@ -487,7 +487,7 @@ export const THE_CHAIN: ChainStep[] = [
     grade: 'evidenced',
     label_status: 'verified',
     sentence:
-      'Hot press, cold press and the machine that cuts the legs arrived on one bill, so pressing cannot be split from cutting without guessing a ratio, and we have not guessed one. The dearest step to buy and the dearest to run, which is one reason a community might want to start earlier in the chain.',
+      'Hot press, cold press and the machine that cuts the legs arrived on one bill, so pressing and cutting are priced together. The dearest step to buy and the dearest to run, which is one reason a community might want to start earlier in the chain.',
   },
   {
     n: '04',
@@ -542,7 +542,7 @@ export const SITE_OPERATING = {
   // is what stops a reader dividing $79,333 by the $324-a-bed figure two screens
   // up and reconstructing a bed threshold that ruling I retired.
   poolSentence:
-    'Then each step costs something to run on top of that: servicing, consumables and the floor space it takes up. Running all five adds about $44,333 a year, and pressing carries the biggest share of it, because that is where the machines and the floor space are. Neither figure pays anybody to run the line. Who pays that person is the biggest thing we have not settled, and it changes this picture more than anything else on the page.',
+    'Then each step costs something to run on top of that: servicing, consumables and the space it takes up. Running all five adds about $44,333 a year, and pressing carries the biggest share, because that is where the machines and the space are. Neither figure pays anybody to run the line. Who pays that person is the biggest thing we have not settled, and it changes this picture more than anything else on the page.',
   reconciliationSentence:
     '$35,000 and $44,333 come to $79,333. That is what we model bed sales alone carrying at a site, per year. It is the number we split into steps, and the steps add back to it exactly.',
 };
@@ -552,4 +552,4 @@ export const SITE_OPERATING = {
  *  workbook shape... Reassembling these into modules is an ALLOCATION of an
  *  evidenced total, not new evidence. No figure here is a quote." */
 export const CHAIN_HONESTY =
-  'Two words do the work here. Evidenced means we bought it at that price. Estimate means an Australian market rate with nobody\'s quote against it yet. The bills we hold are for our own gear at the farm, mostly bought second hand, so splitting those totals into steps is arithmetic on numbers we already had, and it is not new evidence. The yearly figures sit one step further out again: they take a costed facility budget that already exists, written for a federal application we are part of but do not own, and divide it by how much plant and floor space each step uses. The floor space part is assumed rather than measured. Nothing here is a quote for a site in a community, and no community has been quoted from it. The structure is ours, it is proposed, and it is a thing to argue with. None of it is funded and nothing is signed.';
+  'Evidenced means we bought it and there is a bill behind it. Estimate means an Australian market rate with nobody\'s quote against it yet. These are our own numbers for our own gear at the farm, mostly bought second hand. Splitting one total into five steps is arithmetic on what we already had, and it is not new evidence. The yearly figures come out of a costed facility budget written for a federal application we are part of but do not own. Nothing here is a quote for a site in a community, and no community has been quoted from it.';

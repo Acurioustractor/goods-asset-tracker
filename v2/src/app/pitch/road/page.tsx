@@ -860,14 +860,14 @@ export default function RoadPitchPage() {
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[#cfc8bc]">
               Forty Stretch Beds for Maningrida were pressed end to end at our own facility at the
               farm, then assembled in community by young people. So the making is proven. What we
-              have never done is time it and cost it across a full run at a steady rate. Fifty beds,
-              pressed at production rate and costed with receipts, is the first thing on the list.
+              have never done is time it and cost it across a full run at a steady pace. Fifty beds,
+              timed and costed with receipts, is the first thing on the list.
             </p>
 
             <div className="mt-8 border-l-2 border-[#c45c3e] pl-5">
               <p className="goods-pitch-display text-2xl leading-snug md:text-3xl">
                 $426 is modelled from verified part prices; the first thing your money buys is the
-                fifty beds that test it.
+                measured run that proves it.
               </p>
               <p className="mt-4 text-base leading-7 text-[#e88461]">{STOPWATCH_COMMITMENT}</p>
             </div>
@@ -918,7 +918,23 @@ export default function RoadPitchPage() {
             <p className="max-w-2xl text-lg leading-8 text-[#6d675c]">{CHAIN_INTRO.body}</p>
           </div>
 
-          <ol className="mt-12 grid gap-px border-y border-[#d9d1c3] bg-[#d9d1c3] sm:grid-cols-2 lg:grid-cols-5">
+          <figure className="mt-10">
+            <div className="relative aspect-[21/9] w-full overflow-hidden bg-[#24231f]">
+              <Image
+                src="/images/process/20260329-factory-panorama.jpg"
+                alt="The production facility at the farm, with the press line and benches in use"
+                fill
+                sizes="(max-width: 1024px) 100vw, 1600px"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-[#7a7363]">
+              Every machine below is one we already own and run. This is where the forty Maningrida
+              beds were pressed.
+            </figcaption>
+          </figure>
+
+          <ol className="mt-10 grid gap-px border-y border-[#d9d1c3] bg-[#d9d1c3] sm:grid-cols-2 lg:grid-cols-5">
             {THE_CHAIN.map((step) => (
               <li key={step.n} className="flex flex-col bg-[#fbf8f1] p-6">
                 <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#7a7363]">
@@ -1120,6 +1136,9 @@ export default function RoadPitchPage() {
               <h2 className="goods-pitch-display mt-10 max-w-3xl text-5xl leading-[0.98] md:text-6xl">
                 {ASK_INTRO.headline}
               </h2>
+              <p className="goods-pitch-display mt-7 max-w-3xl text-3xl leading-tight text-[#e88461] md:text-4xl">
+                {ASK_HEADLINE.line}
+              </p>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-[#cfc8bc]">{ASK_INTRO.body}</p>
               <div className="mt-9">
                 <LetterLines />
@@ -1127,10 +1146,7 @@ export default function RoadPitchPage() {
             </div>
 
             <div>
-              <p className="goods-pitch-display text-3xl leading-tight md:text-4xl">
-                {ASK_HEADLINE.line}
-              </p>
-              <div className="mt-9 border-y border-white/20">
+              <div className="border-y border-white/20">
                 {ASK_STATUS_ROWS.map((row) => (
                   <div key={row.label} className="border-t border-white/20 py-7 first:border-t-0">
                     <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/55">

@@ -306,8 +306,15 @@ describe('road-ending: the chain is the model, and it stays generic', () => {
   });
 
   it('an allocation is never described as evidence', () => {
-    expect(CHAIN_HONESTY).toContain('it is not new evidence');
-    expect(CHAIN_HONESTY).toContain('no community has been quoted from it');
+    // The bands are an ALLOCATION of an evidenced total, which the source JSON
+    // says of itself. Assert the two ideas rather than one exact phrasing, so a
+    // later rewrite has to keep the meaning and not just the words.
+    expect(CHAIN_HONESTY, 'must say the split is not new evidence').toMatch(
+      /not new evidence|is not evidence/,
+    );
+    expect(CHAIN_HONESTY, 'must say no community has been quoted from it').toMatch(
+      /no community has been quoted/,
+    );
   });
 
   it('every step carries a legal Solidity label and a real grade', () => {
