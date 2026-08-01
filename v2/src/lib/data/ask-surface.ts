@@ -82,7 +82,11 @@ export const ASK_HEADLINE = {
 export const ASK_MATCH_VEHICLE = {
   name: 'QBE Catalysing Impact, Stage 2',
   amount: 'up to $400K ($150K floor)',
-  rule: 'Must be at least matched by SIGNED external commitments. Repayable finance preferred. Match paper 31 Aug; submission due 14 September; outcomes November 2026.',
+  // SOURCED 2026-08-01: Jay Boolkin (Social Impact Hub) to the Stage 2 cohort, 14 July 2026:
+  // "The formal application will open via an online form, closing in late September." No firmer
+  // date has been circulated. "14 September" was the Butterfly AGM and was never QBE's.
+  // Full terms: wiki/investor/19-qbe-stage2-application-requirements.md
+  rule: 'Must be at least matched by SIGNED external commitments. Repayable finance preferred. Our own match-paper gate is 31 Aug; the program closes late September 2026, exact day not yet circulated; outcomes November 2026.',
   note: 'The match vehicle that doubles every signed dollar: not the ask itself. The ask is the sum of the blocks.',
 };
 

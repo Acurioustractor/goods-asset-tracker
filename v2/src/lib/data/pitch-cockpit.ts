@@ -112,7 +112,7 @@ export const DECK_PLAN: DeckSlide[] = [
   {
     n: 11, id: 'the-ask', name: 'AU$400,000 signed by 31 August',
     why: 'The ask sits LAST, after the hinge and the doors have earned it. The $400K is what gets signed; QBE is the match vehicle, not the ask.',
-    talkTrack: '$400,000 in signed commitments by 31 August, and QBE matches it dollar for dollar: an $800,000 program that takes Goods to the point it funds itself. Submission 14 September, outcomes November. It buys the measured run, the per-site plant capital, the first on-Country operator roles, and working capital. On the stack: grants at ask made total $607.5K and repayable at cultivating totals $710K, so either column alone clears the match twice over. The match is short of paper, not short of candidates, and grants paper faster than loans. Signed to date: zero. We say so.',
+    talkTrack: '$400,000 in signed commitments by 31 August, and QBE matches it dollar for dollar: an $800,000 program that takes Goods to the point it funds itself. The program closes late September, outcomes November. It buys the measured run, the per-site plant capital, the first on-Country operator roles, and working capital. On the stack: grants at ask made total $607.5K and repayable at cultivating totals $710K, so either column alone clears the match twice over. The match is short of paper, not short of candidates, and grants paper faster than loans. Signed to date: zero. We say so.',
     voices: [], visual: 'stats',
     visualNotes: 'Floor is $150K matched. Above $400K the match stops. REAL is a separate vehicle, excluded from the match.',
   },

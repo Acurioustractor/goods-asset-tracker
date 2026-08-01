@@ -408,7 +408,7 @@ export default function LeaveBehindPage() {
               <div style={{ fontSize: 11.5, color: C.soft, marginTop: 6, lineHeight: 1.4 }}>
                 An <b>$800,000</b> program that takes Goods to the point it funds itself and stands up the first
                 on-Country production sites: the measured run, the per-site plant capital, the
-                first on-Country operator roles, and working capital. QBE Catalysing Impact submission 14 September
+                first on-Country operator roles, and working capital. QBE Catalysing Impact closes late September
                 2026, outcomes November.
               </div>
             </div>
