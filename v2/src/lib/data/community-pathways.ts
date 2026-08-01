@@ -45,6 +45,63 @@ export interface PathwayCaseStudy {
   statusNote?: string;
 }
 
+/**
+ * THE NEXT PHASE - what working with this community actually looks like from here.
+ *
+ * Distinct from `caseStudy`, which is retrospective and is what the public pathway pages render.
+ * This is forward-looking and answers the question a funder and a partner both ask: what happens
+ * next, what does it cost, who ends up owning it, and what is stopping it.
+ *
+ * Two fields exist because of specific failures rather than for completeness:
+ *
+ *   `isNot` - every one of these pathways has been misread in the same direction, as a facility
+ *   proposal. Utopia is one shredder. Tennant Creek is one small activity. Palm Island is a
+ *   conversation. Stating what the next phase is NOT is what stops the module model collapsing
+ *   back into the plant model it replaced (ruling D).
+ *
+ *   `cost.status` - `blocked-on-people` and `wrong-answer` are not the same as "unknown", and
+ *   flattening them into a blank cell is how a real finding gets lost. Palm Island prices at $0
+ *   because the model has no governance line, and $0 is the WRONG answer, recorded as such.
+ *   Neither blockage is fixable by estimating harder.
+ *
+ * Figures here MIRROR the module cost engine (`lib/cost-model/engine.ts` and
+ * `cost-model-scenarios.json`), which is where they are computed. `costSource` names the origin
+ * for every one. Do not tune a number here to make a page read better.
+ */
+export type NextPhaseCostStatus =
+  /** The engine prices it. */
+  | 'modelled'
+  /** Priceable in principle, but the input is a person's decision to make, not ours to estimate. */
+  | 'blocked-on-people'
+  /** The engine returns a number that is known to be wrong, and the wrongness is the finding. */
+  | 'wrong-answer';
+
+export interface NextPhaseCost {
+  capexLow: number | null;
+  capexHigh: number | null;
+  operatingPerYear: number | null;
+  status: NextPhaseCostStatus;
+  /** Where the figure is computed. Never "estimated by hand". */
+  costSource: string;
+  note: string;
+}
+
+export interface NextPhase {
+  /** What the next phase is, in one line. */
+  headline: string;
+  /** What it is not. Guards against the facility misread. */
+  isNot: string;
+  /** Module ids from MODULES that this phase actually involves. */
+  modules: string[];
+  cost: NextPhaseCost;
+  /** Who holds what at the end of this phase. */
+  ownsWhat: string;
+  /** What is stopping it, and whose call it is. */
+  blockedOn: string;
+  /** What we are asking for. */
+  ask: string;
+}
+
 export interface CommunityPathway {
   id: string;
   name: string;
@@ -70,6 +127,8 @@ export interface CommunityPathway {
     crmBoundary: string;
   };
   caseStudy?: PathwayCaseStudy;
+  /** Forward-looking. See the NextPhase docblock. */
+  nextPhase?: NextPhase;
 }
 
 export const PATHWAY_AGENTS: PathwayAgent[] = [
@@ -152,6 +211,26 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
       'Review the existing quote and CBF requirements',
       'Select one small activity and document the decision',
     ],
+    nextPhase: {
+      headline:
+        'One small operational pilot, chosen by the Shed and the Youth Centre: a facilitated build or repair activity with local young people.',
+      isNot:
+        'Not the two-stage facility from the February proposal. That proposal still exists and is not the next step.',
+      modules: ['products', 'skills', 'people'],
+      cost: {
+        capexLow: null,
+        capexHigh: null,
+        operatingPerYear: null,
+        status: 'blocked-on-people',
+        costSource: 'Priceable at module level once scope is confirmed. Not priced.',
+        note: 'The number depends on what the partner supplies, which is their call to make and not ours to estimate. The February two-stage proposal was $234,000 excluding GST and is the old scope, not this one.',
+      },
+      ownsWhat:
+        'Our Community Shed and the Youth Centre hold the activity, the site and the local relationships. Goods supplies facilitation and materials.',
+      blockedOn:
+        'People, not numbers. Five things are recorded as assumptions rather than facts: whether the Shed still wants the same pathway, whether the CBF compliance issue is resolved, whether the Youth Centre wants a formal role, whether the old pricing holds, and whether existing bed-building media may be reused.',
+      ask: 'Support one reconnection phase designed with community, then cost only the small test they choose.',
+    },
     pilot: {
       status: 'Outreach drafted · awaiting review and send',
       verified: [
@@ -267,6 +346,27 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
       'Prepare good, better and staged cost options',
       'Return the pathway and media gallery for community correction',
     ],
+    nextPhase: {
+      headline:
+        'One machine. A shredder with training, safe operation and a maintenance pathway.',
+      isNot:
+        'Not a complete production facility. That is marked later, and only if community chooses it.',
+      modules: ['equipment', 'skills', 'people'],
+      cost: {
+        capexLow: 24800,
+        capexHigh: 39300,
+        operatingPerYear: 16043,
+        status: 'modelled',
+        costSource:
+          'priceModuleSelection() and priceModuleOperating(), capex_modules in cost-model-scenarios.json',
+        note: 'The pathway the old build-path ladder could not cost at all, against $79,333/yr for a full facility. Operating is the $35,000/yr site floor apportioned plus the chosen modules. The width of the capex band is almost entirely one question: whether a baler is needed, given rigid HDPE is normally caged rather than baled. Collection is a $5,000 to $19,500 estimate, priced the way the DEWR budget already treats its own unquoted lines.',
+      },
+      ownsWhat:
+        'Urapuntja owns the machine. Goods supplies training, the maintenance pathway and parts.',
+      blockedOn:
+        'A real collection quote to narrow the band, and confirming the baler question. Both answerable without a measured run.',
+      ask: 'Fund a community-confirmed shredder module, only after the operator, site, feedstock, safety and maintenance pathway are agreed.',
+    },
     caseStudy: {
       eyebrow: 'A focused equipment pathway',
       headline: 'Beds arrived. Young people helped. The next request can start with one machine.',
@@ -347,6 +447,27 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
       'Build public and funder-only evidence packs',
       'Agree the first delivery milestone',
     ],
+    nextPhase: {
+      headline:
+        'The first transfer. The complete production pathway, and the site where ownership stops being a claim and becomes testable.',
+      isNot:
+        'Not a pilot. This is the only pathway of the four that has asked for a whole facility, and the only one where the month-6 ownership test will have an eligible site.',
+      modules: ['place', 'equipment', 'products', 'skills', 'people', 'systems', 'enterprise', 'story'],
+      cost: {
+        capexLow: null,
+        capexHigh: null,
+        operatingPerYear: null,
+        status: 'modelled',
+        costSource:
+          'Prices in full through priceModuleSelection() and priceModuleOperating(). Computed there, deliberately not mirrored here, because the scope is still being reconciled against DEWR.',
+        note: 'The site production block runs $79,333/yr bare. Where it actually lands is decided by one open question, who pays the line supervisor, which moves the denominator from 234 to 529 beds a year. That is the biggest dial in the model and it is not an Oonchiumpa question, it is ours.',
+      },
+      ownsWhat:
+        'The direction to test, and it is not yet a decision: the Oonchiumpa production entity is the seller, with Goods. as its supplier and service provider. Under that reading 51% stops being a governance concession and becomes the handover executing. OONCHIUMPA HAS NOT BEEN ASKED.',
+      blockedOn:
+        'Reconciling the DEWR scope and budget, then agreeing the funder-ready version. Separately, the seller-of-record direction needs MinterEllison as a legal question and Kristy as a conversation, and a conflicts register if Kristy chairs Butterfly while directing Oonchiumpa.',
+      ask: 'Agree the reconciled scope, and test the seller-of-record direction with the people it affects before it appears in any document.',
+    },
     caseStudy: {
       eyebrow: 'The first complete ownership pathway',
       headline: 'Young people are already making. The next step is moving production locally.',
@@ -437,6 +558,26 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
       'Map existing services, assets and community priorities',
       'Return a plain-language summary before proposing modules',
     ],
+    nextPhase: {
+      headline:
+        'A listening conversation, and a plain-language summary returned to Council before anything is proposed.',
+      isNot:
+        'Not a bed order and not a proposal. Every module except listening is marked not assessed, and existing Goods relationships must not be treated as a request.',
+      modules: ['story'],
+      cost: {
+        capexLow: 0,
+        capexHigh: 0,
+        operatingPerYear: 0,
+        status: 'wrong-answer',
+        costSource: 'priceModuleSelection() returns $0 for a listening-only selection.',
+        note: 'RECORDED AS THE WRONG ANSWER, NOT A GOOD ONE. Listening, governance and the time of the people doing it have a real cost, and the model has no line that is not plant. That gap is the finding. This is the pathway that tests whether the six stages are real, because it is the only one starting from zero.',
+      },
+      ownsWhat:
+        'Council holds the process and the decision about who is in the room. Nothing is transferred at this stage because nothing has been built.',
+      blockedOn:
+        'Confirming the right people and the decision process. No capability audit has been completed, and no media is assigned to this pathway until place, people and permissions are verified.',
+      ask: 'Fund the listening, and build the governance cost line the model is missing.',
+    },
   },
 ];
 

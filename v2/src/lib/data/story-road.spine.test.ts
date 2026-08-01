@@ -7,37 +7,51 @@
  * work has been. That is the failure ruling C exists to prevent: five spines were
  * live at once, and nothing was checking.
  *
- * The right long-term fix is a shared `road-spine.ts` that both import. These tests
- * are the stand-in until that refactor is safe to do.
+ * DONE 2026-07-26: `road-spine.ts` landed on main as that shared definition, so this test now
+ * asserts against IT rather than against `deck.ts`. Three things improve.
+ *
+ * It is UNCONDITIONAL. The old version could not assert anything until the deck grew a road, so
+ * it reported instead of checking. The spine is on main now, so divergence fails immediately.
+ *
+ * It no longer imports `deck.ts`, which was both a type error once the two SlideKind unions
+ * diverged and a standing merge risk while the deck is under edit in another session.
+ *
+ * And it no longer needs to compare the story to the deck at all: `deck-road.guards.test.ts`
+ * asserts the deck against the same spine, so the two surfaces agree transitively. That is the
+ * shared-spine design doing its job rather than two surfaces watching each other.
  */
 
 import { describe, it, expect } from 'vitest';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { deckSlides } from './deck';
+import { ROAD_STOPS } from './road-spine';
 import { storyStops, storyStopIds, storyGaps, storyOpening } from './story-road';
 import { isClearedForExternal } from './cleared-voices';
 
-const deckStopIds = deckSlides.filter((s) => s.kind === 'stop').map((s) => s.id);
 const storyRoadStopIds = storyStops.filter((s) => s.kind === 'stop').map((s) => s.id);
 
+/**
+ * Story ids carry their position and full title (`stop-3-the-machine-with-a-name`); spine ids are
+ * the bare slug (`the-machine`). Strip the ordinal and require the spine id as the prefix, which
+ * still catches a reorder, an addition or a drop.
+ */
+const storyIdToSpineSlug = (id: string) => id.replace(/^stop-\d+-/, '');
+
 describe('the road spine', () => {
-  /**
-   * The deck's road spine is not on main yet: at the time of writing it exists
-   * only in another session's working tree, and `deckSlides` there has no slides
-   * of kind 'stop' at all. CI caught this by failing against an empty list, which
-   * is the correct outcome and a reminder not to guard against uncommitted work.
-   *
-   * So: the assertion is conditional on the deck HAVING a road. The day the deck
-   * rebuild lands, this starts enforcing and any divergence fails immediately.
-   * Until then it reports rather than pretending to check.
-   */
-  it('matches the deck stop-for-stop, once the deck has a road', () => {
-    if (deckStopIds.length === 0) {
-      expect(storyRoadStopIds.length).toBeGreaterThan(0);
-      return;
-    }
-    expect(storyRoadStopIds).toEqual(deckStopIds);
+  it('matches the canonical spine stop-for-stop, in order', () => {
+    const spineIds = ROAD_STOPS.map((s) => s.id);
+    const storySlugs = storyRoadStopIds.map(storyIdToSpineSlug);
+
+    expect(storySlugs).toHaveLength(spineIds.length);
+    storySlugs.forEach((slug, i) => {
+      expect(slug, `story stop ${i + 1} is "${slug}", spine says "${spineIds[i]}"`).toMatch(
+        new RegExp(`^${spineIds[i]}`),
+      );
+    });
+  });
+
+  it('carries the same places as the spine, so neither can quietly gain or lose one', () => {
+    expect(storyRoadStopIds).toHaveLength(ROAD_STOPS.length);
   });
 
   it('has seven stops, because ruling C says the road has seven', () => {

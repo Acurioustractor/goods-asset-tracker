@@ -506,7 +506,7 @@ export default async function ProcessPage() {
             {/* Ownership-pathway drawing removed pending checkpoint 25 (Ben,
                 2026-07-17). Restore from /api/admin/held-asset once approved. */}
             <p className="text-sm text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
-              The capital buys the path, not just the press. The plant can transfer to community ownership and run from their own yard.
+              The capital buys the path, not just the press. The making can transfer toward community ownership and run from their own yard.
             </p>
 
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl bg-muted shadow-sm mb-4">

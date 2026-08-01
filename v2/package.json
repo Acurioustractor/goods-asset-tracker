@@ -19,7 +19,7 @@
     "check:artifacts": "node scripts/check-artifact-drift.mjs",
     "check:qbe-readiness": "node scripts/check-qbe-readiness.mjs",
     "check:story-coverage": "node scripts/check-story-coverage.mjs",
-    "check:drift": "npm run check:community-copy && npm run check:qbe-guardrails && npm run check:canon && npm run check:artifacts && npm run check:qbe-readiness && npm run check:story-coverage && npm run check:asset-drift && npm run check:retired-figures && npm run check:voice",
+    "check:drift": "npm run check:community-copy && npm run check:qbe-guardrails && npm run check:canon && npm run check:artifacts && npm run check:qbe-readiness && npm run check:story-coverage && npm run check:asset-drift && npm run check:register && npm run check:retired-figures && npm run check:voice",
     "check:drift:ci": "npm run check:community-copy && npm run check:qbe-guardrails && npm run check:canon && npm run check:artifacts && npm run check:qbe-readiness && npm run check:story-coverage && npm run check:retired-figures && npm run check:voice",
     "funding:sweep": "node scripts/funding-sweep.mjs",
     "audit:model": "node --env-file=.env.local scripts/audit-data-model.mjs",
@@ -30,7 +30,9 @@
     "wiki:sync": "if [ -d ../wiki/articles ]; then rm -rf .wiki-content && mkdir -p .wiki-content && cp -R ../wiki/articles/. .wiki-content/; else echo 'wiki:sync skipped (../wiki/articles absent; using tracked .wiki-content/)'; fi",
     "prebuild": "npm run wiki:sync",
     "check:retired-figures": "node scripts/check-retired-figures.mjs",
-    "check:voice": "node scripts/check-voice.mjs"
+    "check:voice": "node scripts/check-voice.mjs",
+    "check:register": "node --env-file=.env.local scripts/check-register-integrity.mjs",
+    "check:content-gate": "node scripts/check-content-gate.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.74.0",

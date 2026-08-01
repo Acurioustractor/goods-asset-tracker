@@ -50,6 +50,29 @@ entry currently rests on Ben's word in a session, with no reference to where eac
 consent record), add the reference per community to `PATHWAY_ASKS` so a future session can
 verify rather than trust.** Until then it is a dated ruling, not evidence.
 
+### U. `/pitch/road` is the scrolling page, not the slide deck. Ruling R superseded on form.
+
+**Decided:** the long-form scrolling page wins the `/pitch/road` route. `deck-road-client.tsx` is
+deleted. Ben, 2026-07-31, after reviewing the page.
+
+**What was actually wrong.** Two entirely different products were sitting at one URL without
+anybody noticing. Ruling R (2026-07-26) built a slide deck there: fixed shell, progress bar,
+click-zones, dot nav, every word resolved from `deck-road.ts`. Separately, a session wrote a
+969-line scrolling page over the top of it in the working tree and never committed it, so it read
+as untracked, and the branch it was found on was eleven commits behind main and therefore had no
+history of the tracked file at all. Merging without looking would have replaced the canonical
+funder deck silently.
+
+**What survives from R.** Its content rulings, all of them: the road leads and the model follows,
+the spine is the seven stops, the model arrives as what the road produced. R is superseded on
+**form**, not on argument. `/pitch/simple` still keeps its job as the PDF pipeline, untouched.
+
+**`deck-road.ts` is kept, not deleted.** Its guards assert it against `road-spine.ts`, and
+`story-road.spine.test.ts` asserts the story surface against the same spine, so the two live
+surfaces still agree transitively through those tests. Deleting the module would delete that
+agreement. It carries a header saying it renders nowhere. **Sweep: do not wire it to a route
+without a ruling.**
+
 ### T. Canon loses two conflicts it was on the wrong side of.
 
 `marginal-factory` ($426) and `save-per-bed` ($194) regraded `verified` to **`modelled`** in
@@ -65,6 +88,118 @@ as the application date, that is the Butterfly AGM, a different thing, and no fi
 sourced. Canon is authority 1, so the string moved, not canon. `/pitch/road` prints no QBE date
 at all. **Sweep: ask Jay what the actual program close date is, early August, and correct
 `ask-surface.ts` once from a source.**
+## 2026-07-26 (later) — The canonical deck
+
+### R. /pitch/road is the deck. /pitch/simple stays the PDF.
+
+**Ben ruling, 2026-07-26:** "canonical, keep simple as the PDF."
+
+**The problem.** Three full decks were live on three different spines: `/deck` (708 lines),
+`/pitch/deck` and `/pitch/simple`. Two decisions disagreed about which was canonical and **neither
+was a ruling**, so neither could win: the `/pitch/control-room` retirement comment (2026-07-14)
+redirects to `/pitch/deck`, while `pitch-surface-notice.tsx` (2026-07-25) names `/pitch/simple`.
+Both were docstrings. This entry exists so the question stops being re-litigated in comments.
+
+**The ruling.** The canonical deck is **`/pitch/road`**, built on the road spine (rulings C and F),
+with every figure resolved from canon at load and carrying its own claim label. Rather than pick a
+winner among three built on superseded spines, it is a new one on the spine that was actually
+ruled.
+
+**Two roles, not one, and they must not be collapsed.**
+
+- **Canonical DECK** = `/pitch/road`. What a funder is walked through.
+- **Canonical FUNDER SURFACE** = `/pitch/funder-pathways`. Unchanged, and this ruling does not
+  touch it. `pitch-surface-notice.tsx` already separated these; only the deck half moves.
+
+**`/pitch/simple` is NOT retired**, and the reason is load-bearing. It is not merely a page, it is
+the PDF pipeline: `slides-source.html` to `scripts/render-deck.mjs` to `goods-simple-deck.pdf`,
+with an admin cockpit built on it. A funder attachment is a real need `/pitch/road` cannot serve.
+Retiring it would have deleted the ability to send a PDF. The two are not rivals.
+
+**Sweep.** Written at the same time as the ruling, because ruling D shipped without one and the
+retired framing was still on live public pages a day later.
+
+- [x] `/pitch/road` indexable, canonical, docstring stating what it supersedes
+- [x] `pitch-surface-notice.tsx` deck link repointed from `/pitch/simple` to `/pitch/road`
+- [x] `/deck` retired to a redirect on the `/pitch/control-room` pattern
+- [ ] **`/pitch/deck`** is under another session's uncommitted edit and was deliberately not
+      touched. When that work lands it either becomes a redirect to `/pitch/road` or replaces it,
+      and that is a decision, not a merge. **This is the item most likely to rot.**
+- [x] **DONE 2026-07-26.** `/register` now links straight to `/pitch/road`
+- [ ] Decide whether the PDF pipeline should render the road spine, so the attachment and the deck
+      stop being two different narratives. Real work, not a rename
+
+**On the redirect being TEMPORARY (307), not permanent (308).** Deliberate. A 308 is cached by
+browsers indefinitely, which is the wrong instrument for a decision made today and worth revisiting
+after living with the new deck. Promote it once the choice has settled.
+
+---
+
+## 2026-07-26 — The month-6 ownership test
+
+### Q. The ownership test is rebuilt for modules, and the claim is derived from it
+
+**Ben ruling, 2026-07-26.** Three sub-rulings, decided together.
+
+**Q1. Checkpoint 4 is "Decision", not a percentage of production.** It passes when the community
+decides what gets made, when, and who works on it, without needing Goods to agree. The production
+share stays worth reporting and is **not** a checkpoint.
+
+**Q2. Data and story sovereignty is the gate the test sits behind**, not a fifth checkpoint: *the
+community controls what is published about this site.* Five would break a test known as four, and
+this also settles one of the four homeless items in `/STRATEGY.md` §9, which asked for sovereignty
+to be a gate things pass through rather than a metric counted at the end.
+
+**Q3. A production site produces for sale.** Assembly of delivered beds in community is not
+production for sale.
+
+**What this supersedes.** The four checkpoints as recorded in
+`wiki/outputs/2026-05-29-goods-theory-of-change-and-mel.md` (metric 11 and its callout), which is
+now the historical version. Its cited source,
+`JusticeHub/output/goods-on-country/community-ownership-checkpoints.md` in the ACT infra repo,
+**no longer exists at that path** and no renamed copy was found, so that MEL entry was the only
+surviving statement of the test.
+
+**The reasoning, which is mostly about ruling D.** The old checkpoint 1 was "the community holds
+the keys to the factory". The object is **infrastructure, not a plant**, and of four live pathways
+only Oonchiumpa wants a whole facility. Under that wording **Utopia could never pass, not because
+ownership had failed but because there is no factory**: the test scored which module a community
+bought from us. Three further breaks: the test was justified as proof that "our job is to become
+unnecessary", which ruling A retired; "month 6" had no origin, which made a deliberately binary
+test unfailable; and a second 50-percent in a system that already carries the **51% First Nations
+supplier-ownership test** is how a wrong sentence reaches a funder document. Those two tests sit at
+different levels and are now explicitly distinguished in code.
+
+**Kept, because it is the whole value:** binary, per site, **partial counts as NO**. Do not add a
+partial result. A checkpoint that fails when it is nearly met is the only kind that keeps us honest
+about a handover we have not completed.
+
+**The clock:** six months from the start of Deliver at that site.
+
+**The consequence, and it is better than the old wording.** The MEL table said "not yet met at any
+site". Applied with the eligibility rule that is wrong, and wrong in a way that sounds worse than
+the truth. **No site is yet eligible.** Tennant Creek and Palm Island are at Yarn, Utopia at Shape,
+Oonchiumpa at Resource, and the forty Maningrida beds were pressed at the farm, which is not a
+community site. "Not yet met" reads as four failures. **Oonchiumpa is the first site that will be
+testable, and month 6 of its Deliver is the first date this pitch can be checked against.**
+
+**Sweep.**
+
+- [x] Build `v2/src/lib/data/ownership-test.ts` beside `pathway-stages.ts`
+- [x] `ownership-test.guards.test.ts`, 23 guards, including that "factory" cannot return to
+      checkpoint 1 and that not-assessed scores as fail
+- [x] Derive the public sentence via `ownershipClaimLine(asOf)` rather than writing it
+- [x] Record the resolution in `/STRATEGY.md` §10 (worked through in `/FOUNDATION.md` §5.6, since
+      folded into STRATEGY and archived to `_archive/2026-07-26/`)
+- [ ] Set `deliverStartedOn` and `producesForSale` for Oonchiumpa when Deliver begins. **Until then
+      every site reads not-eligible, which is correct, not missing data**
+- [ ] Put checkpoint 3 (a community-controlled entity invoices the buyer directly) to Oonchiumpa.
+      It is currently an unmade decision, not a measurement, and it is the same question as the
+      seller-of-record DIRECTION logged 2026-07-25
+- [x] **DONE 2026-07-26.** MEL metric 11 marked superseded, with what changed and why, and the
+      historical text kept because it is the only surviving statement of the JusticeHub checkpoints
+- [ ] Any deck or public surface stating the ownership claim must call `ownershipClaimLine()`
+      rather than carry a string
 
 ---
 
@@ -128,6 +263,12 @@ rather than a rounding difference) · the separate "$100-150K per site on-Countr
 **Still open:** the shredder invoice and the larger CNC are the outstanding paperwork. Note the
 gap is wider than the pack assumed: $84,000 is described elsewhere as "cleanly in the connected
 books" against the MVF's $43,700 clean tier, and those two cannot both be right about "clean".
+
+**Sweep gap found and closed 2026-07-26.** The 2026-07-25 sweep did not reach
+`/export/leave-behind`, which was still publishing the retired "$100K to $150K per site" band on a
+funder-facing leave-behind. The figure is struck rather than replaced, because the module cost
+model now prices per site properly and inventing a substitute band would repeat the original error.
+This is the third ruling this week whose sweep list turned out to be a to-do rather than a record.
 
 **Sweep (done 2026-07-25):** `cost-story.ts` capital fact regraded to workpaper with the evidence
 split and a do-not-net watch-out · `ALREADY_INVESTED` docstring in `cost-model-scenarios.ts` ·
@@ -468,6 +609,51 @@ Oonchiumpa wants a plant. It also put ownership with the people sleeping on the 
 model puts it with whichever community runs the site, and "belongs" is present tense against a
 standing rule that ownership is a pathway, never claimed complete. Infrastructure scales from a
 shredder to a full facility, which is the modular point.
+
+**Sweep (added 2026-07-26, one day late, and the delay is the point).** This ruling shipped with
+**no sweep list**, and this file's own header says a ruling with no sweep list is one that will
+silently rot. It did, in a day: the retired framing was still doing load-bearing work on live
+public pages, including the sentence two pitch surfaces were built around.
+
+**What the ruling does and does not ban.** "Plant" describing the actual containerised facility,
+which exists, is FINE and stays: the Alice plant team, the plant tour video, the safety briefing,
+capital lines. What is retired is **"the plant" as the thing we offer a community**, because most
+of them do not want one. The audit found roughly 50 occurrences across public routes and the large
+majority are the legitimate kind. Judge per instance. Never find-and-replace this word.
+
+Fixed 2026-07-26:
+
+- [x] `/pitch` and `/pitch/document`: "The plant is the path from Goods-run production to
+      community-owned making", a shared top-level constant and the spine sentence of both, now "The
+      path runs from". Also "the plant is the bridge", "the plant is no longer theory", "the plant
+      pathway", and the page metadata
+- [x] `/the-work`: headline "A plant that moves" now "Infrastructure that moves", with the body
+      naming that it scales from a single shredder up. **Two further rot instances found in the same
+      card set and fixed:** "support the making and the realising, **then step back**" (ruling A,
+      retired) and "The community runs and owns the plant" (present-tense ownership, against the
+      standing rule that ownership is a pathway)
+- [x] `/get-involved`: **"Back the plant" was the offer itself**, as a card title, a CTA and a
+      button, now "Back local production". The community-facing card also said "the community runs
+      and owns the build" in the present tense. This page is the worst of the three because it
+      speaks to funders and to communities at the point of action
+
+Still open, and NOT to be swept blindly:
+
+- [ ] `/deck` (6 instances, e.g. "each plant is built to move into community hands",
+      "community-owned plant"). **Blocked**: the deck data and routes are under another session's
+      uncommitted edit
+- [x] **DONE 2026-07-26.** `/process`, `/canberra` and `/cost-story` carried the plant as the
+      thing that transfers to community ownership; all three now name the making or the facility
+      and use "toward", which keeps them inside the ownership-is-a-pathway rule as well.
+      **`/export/leave-behind` was worse than a naming problem and is covered under ruling O below.**
+      Left alone as legitimate: `/story:719` and `/pitch/simple` describe the actual containerised
+      kit, `/partner:209` and `pitch/document` use plant as a capital line, `/pitch/miro-board` is
+      an internal planning artifact and rewriting it would falsify a record of what was planned
+- [ ] `/partners/[slug]/dashboard` already says "The community owns the plant, the income it makes,
+      and what happens next. **This is the destination, and it is still ahead of us.**" That one is
+      CORRECT and is the model for the rest: name the object plainly, then say it has not happened
+- [ ] Admin and wiki surfaces are internal and lower priority, but `/admin/products/the-plant`
+      encodes the retired framing in a route id
 
 ### C. The spine is the road. The model is what the road produces.
 
