@@ -7,7 +7,8 @@
  *
  * THE canonical funder surface is /pitch/funder-pathways.
  * THE canonical deck is /pitch/road (ruling R, 2026-07-26), built on the road spine from canon.
- * /pitch/simple remains the PDF export pipeline and the funder attachment, which is a different job.
+ * /pitch/simple was retired 2026-08-02 (ruling W) and now redirects here. Its PDF pipeline was
+ * broken: the renderer it named did not exist, so nothing had regenerated since 25 July.
  */
 
 const CANONICAL_HREF = '/pitch/funder-pathways';

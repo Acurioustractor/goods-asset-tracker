@@ -77,6 +77,13 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: '/media', destination: '/press', permanent: true },
+      // /pitch/simple RETIRED 2026-08-02, ruling W. Ruling R kept it for one reason, that it was
+      // the PDF pipeline, and the pipeline was broken: the renderer it told you to run,
+      // scripts/render-deck.mjs, does not exist in this repo. Nothing had regenerated since
+      // 25 July, three deck generations were layered in public/deck-slides so the route served
+      // every slide two or three times, and slide 1 still carried the north star retired by
+      // rulings D and E. Archived with a restore note at _archive/2026-08-02-pitch-simple/.
+      { source: '/pitch/simple', destination: '/pitch/road', permanent: true },
       // The '/brand' -> '/press#brand-system' redirect was REMOVED 2026-07-25. It predated the
       // dedicated /brand page (src/app/brand/page.tsx, the brand kit and guide downloads) and
       // silently shadowed it: the route shipped in PR #160 and was unreachable in production,

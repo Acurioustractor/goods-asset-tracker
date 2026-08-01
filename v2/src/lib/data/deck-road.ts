@@ -1,6 +1,17 @@
 /**
  * THE DECK, on the road spine, built from current facts.
  *
+ * ⚠ NO LONGER RENDERED ANYWHERE (ruling U, Ben 2026-07-31). `/pitch/road` is now the scrolling
+ * long-form page in `v2/src/app/pitch/road/page.tsx`, and `deck-road-client.tsx`, the slide shell
+ * that was this module's only consumer, is deleted. Ruling R named this deck THE deck; ruling U
+ * supersedes that on FORM while keeping its content decisions.
+ *
+ * KEPT ON PURPOSE rather than deleted, for two reasons. `deck-road.guards.test.ts` asserts this
+ * against `road-spine.ts`, and `story-road.spine.test.ts` asserts the story surface against the
+ * same spine, so the two live surfaces still agree transitively through these guards. And the
+ * slide sequence is the argument in its most compressed form, which is what a PDF pipeline would
+ * need if one is wanted again. Do not wire it to a route without a ruling.
+ *
  * Commissioned 2026-07-26 to be THE deck. Three full decks were live (`/deck`, `/pitch/deck`,
  * `/pitch/simple`) and two undated decisions disagreed about which was canonical, so rather than
  * pick a winner among three that were each built on a different spine, this is one built on the

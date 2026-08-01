@@ -10,6 +10,15 @@ ABN Lookup 2026-07-25).
 model, the economics, the raise and what is open, and it names which file wins when two disagree:
 figures in `canon.ts`, judgements in `/DECISIONS.md`, language in `/CONTEXT.md`.
 
+**▶ Before touching the raise, the QBE application or any money surface, read
+`thoughts/shared/handoffs/2026-08-01-qbe-stage2-reality-and-the-raise.md`.** It carries two
+findings that contradict older documents and older Notion pages. QBE is **one pool of up to
+$1.1M shared across ten enterprises**, and the grant is **catalytic, not a dollar-for-dollar
+match** (ruling V), so $400K is the top of a range rather than a plan. And the FY26 books show
+**$0 cost of goods sold** with **83.6% of income unclassified**, so Goods has no financial
+identity separate from the sole trader it trades through. Both change what can honestly be said
+to a funder.
+
 ## The one that will bite you: Supabase project targeting
 
 The org has 9 Supabase projects and the Supabase MCP can reach all of them. It takes an
@@ -54,7 +63,17 @@ remote communities, most of which are in dumps within months.
 **Basket Bed** — the first prototype. Sales discontinued, design being open-sourced. Download
 Plans link only.
 
-**Weave Bed** — discontinued, never produced at scale. Remove references when found. Supabase
+**Weave Bed** — discontinued as a product line. Remove references when found on PUBLIC surfaces.
+
+⚠ **One deliberate exception, confirmed by Ben 2026-08-02: Centrecorp invoices and quotes.**
+`INV-0291` (107 beds, Nov 2025) and `QU-0014` (130 beds, May 2026) both read "Goods Weave Bed
+v2.3". **Those are Stretch Beds.** The line name was kept consistent across the Centrecorp
+paper trail on purpose, so their finance team sees the same description invoice to invoice.
+Do NOT "correct" those documents, and do not treat them as evidence the Weave Bed was produced
+at scale. Randle Walker calls them Stretch beds in correspondence, which is the right name
+everywhere else.
+
+Supabase
 rows carrying `product_type: weave_bed` or `weave-bed-*` slugs are wrong; they should be
 `stretch_bed` / `stretch-bed-*`.
 

@@ -447,7 +447,7 @@ export default function QbeReadinessPage() {
           </p>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-[#E6DFD1]">
             Close one signed dollar, get the carve-out signed by the accountant, decide the legal entity, measure
-            (not model) the bed cost, and clear consent on impact. Get those and the QBE match doubles
+            (not model) the bed cost, and clear consent on impact. Get those and a QBE grant has something to sit on
             the money. That is the game between now and 31 August.
           </p>
         </div>

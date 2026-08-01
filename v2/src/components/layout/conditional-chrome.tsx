@@ -20,7 +20,6 @@ const STANDALONE_PATH_PREFIXES = [
   '/pitch/community-narrative',
   '/pitch/investor-lab',
   '/pitch/miro-board',
-  '/pitch/simple',
   '/deck',
 ];
 

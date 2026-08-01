@@ -164,9 +164,9 @@ export const CANON: CanonFact[] = [
   },
   {
     id: 'marginal-factory', label: 'Marginal cost / bed (Factory)', value: 426, unit: 'AUD',
-    domain: 'cost', claimLabel: 'verified', dataClass: 'green',
-    source: 'cost-model/engine.ts (engine-locked BOM)', check: 'auto', asAt: '2026-05-29', owner: 'Ben',
-    definition: 'Marginal cost pressing our own legs. Engine-locked.',
+    domain: 'cost', claimLabel: 'modelled', dataClass: 'green',
+    source: 'cost-model/engine.ts (engine-locked BOM)', check: 'auto', asAt: '2026-07-31', owner: 'Ben',
+    definition: 'Marginal cost pressing our own legs. Engine-locked BOM, so the ARITHMETIC is verified; the per-bed cost at a sustained production rate has never been measured. Regraded verified -> modelled 2026-07-31: cost-story.ts, ask-surface.ts SPEND_SEPARATION, deck.ts stop-6 and the standing hard rule all said modelled while canon said verified, and deck.ts:368 already wrote down why ("a verified BOM computation, not a measured production cost"). Any surface reading claimLabel straight from canon was one import away from printing "verified" beside $426 in front of a funder. The measured 50-bed run is what changes this.',
   },
   {
     id: 'marginal-community', label: 'Marginal cost / bed (Community)', value: 421, unit: 'AUD',
@@ -176,9 +176,9 @@ export const CANON: CanonFact[] = [
   },
   {
     id: 'save-per-bed', label: 'Saving from pressing in-house', value: 194, unit: 'AUD',
-    domain: 'cost', claimLabel: 'verified', dataClass: 'green',
-    source: 'cost-model/engine.ts (BOM: $344 finished leg vs ~$40 raw plastic)', check: 'auto', asAt: '2026-05-29', owner: 'Ben',
-    definition: '8.6x markup on the recycled-plastic leg. The whole capital case.',
+    domain: 'cost', claimLabel: 'modelled', dataClass: 'green',
+    source: 'cost-model/engine.ts (BOM: $344.05 finished leg vs $40.00 raw shred ex-delivery)', check: 'auto', asAt: '2026-07-31', owner: 'Ben',
+    definition: '8.6x markup on the recycled-plastic leg. The whole capital case. THE RATIO DIVIDES BY $40, THE RAW SHRED EX-DELIVERY (cost-model-scenarios.json raw_hdpe_cost_per_bed_no_delivery, and idiot_index raw_low 40.00 / index_low 8.6), NOT the $55 landed figure sitting one line away from it: $344.05/$55 is 6.3 and a funder breaks it with a calculator. Regraded verified -> modelled 2026-07-31 for the same reason as marginal-factory, which it derives from.',
   },
 
   // ── Story / consent (RED data class — recipient/storyteller; never auto-published) ──
