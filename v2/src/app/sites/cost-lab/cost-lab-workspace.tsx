@@ -768,7 +768,7 @@ export function CostLabWorkspace() {
             <NumberField label="Beds/yr per container" value={sim.bedsPerContainerYear} step={50} onChange={(n) => setSimField({ bedsPerContainerYear: Math.max(1, n) })} />
             <NumberField label="Cost per new container" prefix="$" value={sim.containerCost} step={5_000} onChange={(n) => setSimField({ containerCost: Math.max(0, n) })} hint={`Mid-range from the coster above: ${fmt(capexMid)}`} />
             <NumberField label="Site overhead per container/yr" prefix="$" value={sim.siteOverheadPerYear} step={1_000} onChange={(n) => setSimField({ siteOverheadPerYear: Math.max(0, n) })} />
-            <NumberField label="Containers funded up-front" value={sim.startingContainers} onChange={(n) => setSimField({ startingContainers: Math.min(12, Math.max(1, Math.round(n))) })} hint="What the raise buys on day one. Seed fleet of 3 = the $800K best case" />
+            <NumberField label="Containers funded up-front" value={sim.startingContainers} onChange={(n) => setSimField({ startingContainers: Math.min(12, Math.max(1, Math.round(n))) })} hint="What the raise buys on day one. Seed fleet of 3 is the best case, and it assumes a grant we have not been given" />
             <label className="block">
               <span className="text-xs font-medium uppercase tracking-wide text-stone-500">Production path</span>
               <select

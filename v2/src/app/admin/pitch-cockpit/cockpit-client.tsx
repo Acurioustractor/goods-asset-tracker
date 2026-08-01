@@ -70,7 +70,7 @@ export function CockpitClient({ data }: { data: CockpitData }) {
         <p className="mt-1 text-sm text-muted-foreground">
           The whole pitch on one page: the deck slide by slide, every choosable cleared quote, the
           starred media, the ask and everyone around it, the drawings, and the numbers with their
-          Notion alignment block. Present from <a className="underline" href="/pitch/simple">/pitch/simple</a>.
+          Notion alignment block. Present from <a className="underline" href="/pitch/road">/pitch/road</a>.
         </p>
       </header>
       <nav className="mb-6 flex flex-wrap gap-2">

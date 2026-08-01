@@ -72,18 +72,45 @@ export const ASK_BLOCKS: AskBlock[] = [
     label: 'modelled',
   },
 ];
-/** THE raise answer, locked by Ben 2026-07-21. Say this sentence, everywhere. */
+/**
+ * THE raise answer. Say this sentence, everywhere.
+ *
+ * REPLACED 2026-08-01, ruling V. The 2026-07-21 lock claimed QBE matched our raise one to one
+ * and called the result an eight-hundred-thousand-dollar program. Both halves failed against
+ * the program's own published terms, researched from source and recorded in
+ * wiki/investor/20-qbe-program-economics.md. The retired wording is quoted in full there and
+ * in DECISIONS.md ruling V, which is where it belongs.
+ *
+ * Social Impact Hub calls the money CATALYTIC, never matching, and the recorded terms bind the
+ * GRANT: it "must be at least matched by SIGNED external commitments". That is a coverage test
+ * on whatever QBE decides to give. Raising $400,000 creates no obligation on QBE at all.
+ *
+ * The eight-hundred-thousand figure also assumed the maximum grant. The pool is up to $1.1M across TEN
+ * enterprises; 2025 paid $1.02M across ten, averaging about $102,000. $400K is the top of a
+ * stated $150K-$400K range and 36% of the whole pool.
+ *
+ * The sentence keeps Ben's target and his own 31 August gate, which are his to set, and keeps
+ * "funds itself", which rests on Goods' own economics rather than on QBE.
+ */
 export const ASK_HEADLINE = {
-  line: 'We are raising $400K in signed commitments by 31 August. QBE matches it dollar for dollar: an $800K program that takes Goods to the point it funds itself.',
-  ifMore: 'Above $400K the match stops, so extra brings the first on-Country site forward. We can put about $550K to work; past that, buy beds instead.',
-  ifShort: 'QBE’s floor is $150K matched: even the small version funds the measured run. Every signed dollar lands twice.',
+  line: 'We are raising $400,000 in signed commitments by 31 August. That covers the equipment, a measured fifty-bed run and the months before beds pay for themselves, with the cash-cycle line still to be sized after the run. QBE can add a grant on top of signed paper, at their discretion. $0 is signed today.',
+  ifMore: 'More signed paper raises the most a grant could cover. How much they give is still theirs to decide. Past our own ceiling of about $550,000 the extra is better spent buying beds.',
+  ifShort: 'A smaller raise still funds the measured run, and a smaller grant is what fits a smaller stack. Every signed dollar is one a grant can sit on.',
 };
 
 export const ASK_MATCH_VEHICLE = {
   name: 'QBE Catalysing Impact, Stage 2',
-  amount: 'up to $400K ($150K floor)',
-  rule: 'Must be at least matched by SIGNED external commitments. Repayable finance preferred. Match paper 31 Aug; submission due 14 September; outcomes November 2026.',
-  note: 'The match vehicle that doubles every signed dollar: not the ask itself. The ask is the sum of the blocks.',
+  // "$150K floor" STRUCK 2026-08-01, ruling V. SIH says grants are "typically AU$150,000 to
+  // AU$400,000", a typical RANGE, not a guaranteed minimum award. $400K is the top of it and
+  // 36% of a $1.1M pool shared across ten enterprises.
+  amount: 'up to $400K, typically $150K to $400K, from a pool of up to $1.1M across ten enterprises',
+  // 14 September STRUCK 2026-07-31. canon.ts signed-lois states it plainly: "Do NOT write
+  // '14 Sep' as the application date: that is the Butterfly AGM, a different thing, and no
+  // firmer QBE date is sourced." Canon is authority 1, so this string stops asserting a date
+  // canon forbids. Our own 31 Aug gate and the November outcome are both sourced; the
+  // program's own close is late September and nobody has pinned the day. Ask Jay.
+  rule: 'Must be at least matched by SIGNED external commitments. Repayable finance preferred. Our own match-paper gate is 31 Aug; the program closes late September 2026, exact date unconfirmed; outcomes November 2026.',
+  note: 'A discretionary grant that sits on top of signed external paper. The ask is the sum of the blocks, never a slogan number.',
 };
 
 // ---------------------------------------------------------------------------
@@ -113,18 +140,24 @@ export const STACK_LAYERS: StackLayer[] = [
     status: 'Warm. Not signed.',
     signedPaper: 'Grant deed or letter of commitment.',
   },
-  {
-    funder: 'Centrecorp',
-    amount: '$75K',
-    instrument: 'Grant: community-anchored, separate from bed orders',
-    concession: 'Purpose + Position: community-first capital. $123,332 already paid.',
-    status: 'Not signed.',
-    signedPaper: 'Board-minuted commitment letter.',
-  },
+  // CENTRECORP REMOVED FROM THE STACK 2026-08-02, Ben. They are a BUYER and will not give a
+  // grant. They were carried here as a $75K grant ask, which inflated the grant column of the
+  // match stack by $75,000 and pointed the relationship at the wrong conversation. Bed orders
+  // are revenue and are explicitly excluded from the match: see STACK_EXCLUDED below.
+  //
+  // What is true: $123,332 paid across two invoices, most recently INV-0291 on 26 Nov 2025 for
+  // $85,712, being 107 beds at $560 to Utopia Homelands plus three bed-building workshops.
+  // That is trading income and it is the relationship worth growing. The next move with Randle
+  // Walker is a quote for the next order, not an ask.
 ];
 // Rebuilt 2026-07-25 from all 67 Supporter Journey rows. The old $475K was a smaller and
 // older picture than the CRM holds; $0 signed is the standing fact and 0 rows sit at Committed.
-export const STACK_TOTAL = '$0 signed today · grants at Ask made $607.5K · repayable in Cultivating $710K';
+// $607.5K was the grants-at-Ask-made total as at 2026-07-25. It included Centrecorp at $75K,
+// which came out on 2026-08-02 when Ben confirmed they are a buyer and will not give a grant,
+// so the grant column is $75K lighter than this string says. Re-derive it from GHL rather than
+// patching the number here: the six live asks now carry monetaryValue in the CRM, which is what
+// makes the stack derivable instead of asserted.
+export const STACK_TOTAL = '$0 signed today · grants and repayable asks are live in GHL, and Centrecorp is a buyer, not a grant line';
 export const STACK_EXCLUDED =
   'Not match-eligible: equity (we are not selling ownership), QBE itself, the DEWR/REAL vehicle (separate, Oonchiumpa-led), and buyer revenue (orders are the point, not the match).';
 export const STACK_MIRROR_NOTE =
@@ -207,7 +240,7 @@ export const GROWTH_STAGES: GrowthStage[] = [
     stage: 'Today',
     beds: '~120 beds/yr',
     means: 'Legs bought as kits. ~$65 of every bed stays. Philanthropy carries the block.',
-    fundedBy: 'Orders + existing grants (Snow ~$493K delivered, Centrecorp $123,332, TFN $130K and others).',
+    fundedBy: 'Orders (Centrecorp $123,332 of beds, and others) plus existing grants (Snow ~$493K delivered, TFN $130K and others).',
   },
   {
     stage: 'Break-even',

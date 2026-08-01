@@ -52,7 +52,7 @@ The strategic sentence: **one product, four systems, one pathway out.** Funders 
 06 · Maningrida ordered more. We pressed their beds ourselves. *(All 40, at the farm, built in community. The press works; the next run gets the stopwatch.)*
 07 · Built by the people who sleep on them. *(Young people chose a bed as wages. About $100 a day, next to more than $3,600 a day for detention.)*
 08 · Watch where each $750 goes. *($65 stays today. $324 when we press here. The bars tell it.)*
-09 · $400K signed by 31 August. QBE doubles it. *(An $800K program that ends the asking. Submission 14 September.)*
+09 · $400K signed by 31 August. QBE can add a discretionary grant on top. *(Typically $150K to $400K, from one pool across ten enterprises. The program closes late September.)*
 10 · Nobody funds Goods forever. That is the design. *(Gifts end at break-even. Loans go home. Sales carry it. Then it changes owner.)*
 11 · The plant moves into community hands. *(Four communities already asking.)*
 12 · "Every time I go away, it's like it's calling me. Come back home." *(Dianne Stokes, Warumungu Elder, who named Pakkimjalki Kari.)*

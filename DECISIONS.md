@@ -19,6 +19,196 @@
 
 ---
 
+## 2026-07-31 — the pitch ending, and the four communities
+
+Ben rulings, taken while rebuilding the ending of `/pitch/road`.
+
+### S. The four communities have each said yes to being named on the funder page.
+
+**Cleared:** Utopia Homelands (Urapuntja), Oonchiumpa, Tennant Creek and Palm Island may be named
+on `/pitch/road`, with what each asked for, as the copy in `v2/src/lib/data/road-ending.ts`
+`PATHWAY_ASKS` states it. Ben confirms each community has said yes.
+
+**What this clearance does NOT do, and the distinction is the whole point.** Consent to be named
+is not consent to be priced, and it does not change a single fact about where a relationship
+actually sits. All three of these stand exactly as they were and the guards stay:
+
+- **No dollar figure goes on any named community's pathway.** Goods holds a full costing for
+  Oonchiumpa and a module price for Utopia. Neither has been put to the community it describes.
+  The page still says so, and `road-ending.guards.test.ts` still fails the build if a price
+  appears next to a community. Oonchiumpa sees their number before anybody else does.
+- **Palm Island's field still reads "Where this sits", never "Asked for".**
+  `community-pathways.ts` records `evidenceState: 'not-assessed'` and "Existing Goods
+  relationships must not be treated as a request". Nobody has been asked, and being cleared to
+  be named does not retrospectively make a request exist.
+- **Tennant Creek still says the reconnection email is written and unsent**, because it is.
+
+**⚠ The evidence is not yet pointed at from the repo.** Same gap as the Maningrida photo
+clearance (`CONTEXT.md`, 2026-07-21), and it is recorded here rather than left implicit: this
+entry currently rests on Ben's word in a session, with no reference to where each yes lives.
+**Sweep: when Ben names the form each clearance took (a call, an email, a signed note, an EL
+consent record), add the reference per community to `PATHWAY_ASKS` so a future session can
+verify rather than trust.** Until then it is a dated ruling, not evidence.
+
+### W. /pitch/simple is retired. Ruling R's carve-out for it has expired.
+
+**Decided 2026-08-02, Ben.** `/pitch/simple` 308-redirects to `/pitch/road`. The route and the
+whole `public/deck-slides` directory are archived at `_archive/2026-08-02-pitch-simple/` with a
+restore note.
+
+**Ruling R kept it for exactly one reason.** `/pitch/road` became THE deck, `/deck` went to a
+redirect, and `/pitch/simple` was spared because **it was the PDF pipeline** and a funder
+attachment is a real need a scrolling page cannot serve. That reason no longer holds.
+
+**Four faults, all live on an open URL until today.**
+
+1. **The pipeline did not exist.** `simple-deck-client.tsx` told anyone who looked to "Run: node
+   scripts/render-deck.mjs". **That script is nowhere in the repo.** Nothing had regenerated
+   since 25 July 2026 and nothing could.
+2. **Three deck generations were layered.** 35 PNGs across 12 slide numbers. `page.tsx` read the
+   directory and sorted, so the route served every slide two or three times, from three eras.
+3. **Slide 1 carried the retired north star**: "a plant that belongs to the people sleeping on
+   the beds". Rulings D and E retired it. The object is **infrastructure, not a plant**, and
+   ownership sits with whichever community runs the site. Canon has said so since 2026-07-25.
+4. **The ask slide carried the retired QBE mechanic.** Ruling V swept the HTML source on
+   2026-08-01, but the PNGs and the PDF could not be regenerated, so the rendered artifacts kept
+   telling funders their signature triggers a matching dollar.
+
+The HTML and the PNGs had also drifted apart: the HTML puts the ask at slide 11, the PNGs name
+slide 09 "ask". They came from different deck plans.
+
+**What answers the funder-attachment need now.** Jay Boolkin at Social Impact Hub, 14 July 2026:
+*"Pitch materials, simply whatever you've already used to secure external capital, so no need to
+create anything new."* `/pitch/road` satisfies it.
+
+**Archived, not deleted**, per the standing rule that retire means move. Everything is under
+`_archive/2026-08-02-pitch-simple/` with `RESTORE.md`, which lists all four faults that must be
+fixed before it could ever come back.
+
+**SWEEP.** `next.config.ts` redirect added. `pitch-surface-notice.tsx` no longer claims
+`/pitch/simple` is the PDF pipeline. The `/admin/pitch-cockpit` link points at `/pitch/road`.
+`conditional-chrome.tsx` entry removed. `pitch-cockpit.ts` `DECK_PLAN` is retained: it still
+backs `/admin/pitch-cockpit`, which is gated and is now its only consumer. **This also closes
+the last open item of ruling V**, since the stale PDF and slide 09 PNG are out of the served
+tree. Gates: tsc, 415 tests, voice, canon, retired-figures, qbe-guardrails, production build.
+
+### V. The raise sentence stops describing a program rule we cannot source.
+
+**Decided 2026-08-01, Ben.** `ASK_HEADLINE.line` replaced. It read: *"We are raising $400K in
+signed commitments by 31 August. QBE matches it dollar for dollar: an $800K program that takes
+Goods to the point it funds itself."* Locked 2026-07-21. Both halves fail against the program's
+own published terms.
+
+**What the research found**, from Social Impact Hub and QBE Foundation primary sources on
+2026-08-01, recorded in `wiki/investor/20-qbe-program-economics.md`:
+
+- A Curious Tractor is **one of ten** in the 2026 cohort. The pool is **up to AU$1.1 million
+  across all ten**. In 2025 QBE paid **AU$1.02M across ten**, averaging about **AU$102,000**.
+- SIH states grants are **"typically AU$150,000 to AU$400,000"**. So $400K is the TOP of the
+  range and 36% of the entire pool, not a plan.
+- SIH calls the money **"catalytic, helping you unlock additional investment"**. Never matching.
+- The recorded terms bind the **grant**: it **"must be at least matched by SIGNED external
+  commitments"**. That is a coverage test on whatever QBE decides to give. **Raising $400,000
+  creates no obligation on QBE.**
+- Their published metric is **leverage**: $1.02M leveraged $2.75M external in 2025, 3.7x.
+
+**Why this mattered enough to unlock a Ben-locked string.** The old sentence rendered at display
+size on `/pitch/road`, which is an open URL with no auth, and ruling R makes that page THE deck.
+It told funders that their signature triggers a matching dollar. It does not. Jay Boolkin runs
+the program and would have had to correct it.
+
+**There is no $150K floor.** That was read off a typical range and hardened into a guarantee.
+
+**What survives:** the $400,000 target and the 31 August gate, both Ben's to set and both inside
+the bottom-up need of $367,000 to $620,000 derived 2026-08-01. And "funds itself", which rests
+on Goods' own economics rather than on QBE.
+
+**SWEEP LIST.** Public code first, before `feat/pitch-road-ending` merges.
+
+1. `ask-surface.ts` ASK_HEADLINE.line, ifMore, ifShort, ASK_MATCH_VEHICLE.amount and .note. DONE.
+2. `CONTEXT.md` lines 58 and 74. DONE. Line 121, the second Ben-locked line asserting
+   "submission due 14 September 2026, supersedes late September", corrected in the same pass.
+3. `road-ending.ts` ASK_STATUS_ROWS: "the match tops out at what we are raising", "$150K floor",
+   "extra money stops being doubled". Renders public on `/pitch/road`. **OPEN.**
+4. `pitch-cockpit.ts:115` talkTrack. Renders public on `/pitch/simple`. Carries the retired
+   mechanic AND "Submission 14 September". **OPEN.**
+5. `v2/public/deck-slides/slides-source.html` lines 356, 357, 378, plus the tracked PNG
+   `goods-slide-09-ask.png` and `goods-simple-deck.pdf`. **The most-distributed public artifact
+   and the hardest: the renderer named in the repo, `scripts/render-deck.mjs`, does not exist,
+   so slide 09 and the PDF must be regenerated by hand. Treat the stale PDF as a release
+   blocker. OPEN.**
+6. `deck.ts:535`, `deck/page.tsx`, `pitch/page.tsx`, `pitch/document/page.tsx`,
+   `export/leave-behind/page.tsx`, `sites/cost-lab/*` (the "$800K best case" button). **OPEN.**
+7. `STRATEGY.md` section 5. `wiki/investor/19-the-whole-picture.md:55`,
+   `04-qbe-pipeline.md:9-11`, `15-money-alignment-audit.md:59`. **OPEN.**
+8. Notion: "Goods x QBE - Start Here" states the ask as $400K matched 1:1, and separately claims
+   the accountant's letter is DONE when rulings G and H say it is a workpaper. **OPEN.**
+9. Extend `check-qbe-guardrails.mjs` to catch the retired mechanic, and to scan `CONTEXT.md`,
+   `STRATEGY.md`, `DECISIONS.md` and `wiki/`, which it has never covered. Exclude
+   `wiki/investor/20-qbe-program-economics.md`, which quotes the retired line on purpose.
+   **OPEN.**
+
+**SWEEP COMPLETED 2026-08-01**, same day, items 1 to 7 and 9. `road-ending.ts`,
+`pitch-cockpit.ts`, `deck.ts`, `export/leave-behind`, `slides-source.html`, `cost-lab`
+playbook and workspace, `STRATEGY.md`, and the three wiki files are all swept. The guard now
+covers `CONTEXT.md`, `STRATEGY.md`, `DECISIONS.md` and `wiki/`, which it never had, and `.html`
+so it reaches the deck slides. It was falsified by reintroducing the retired wording into
+`deck.ts` and confirming it fails.
+
+The guard found one hit the hand sweep missed: `sites/qbe-readiness/page.tsx:450`, "the QBE
+match doubles". That is the argument for the guard in one line.
+
+**TWO ITEMS REMAIN OPEN.**
+
+- **The rendered deck artifacts.** `slides-source.html` is fixed, but the tracked PNG
+  `goods-slide-09-ask.png` and `goods-simple-deck.pdf` at `/pitch/simple` are stale, and the
+  renderer the repo names, `scripts/render-deck.mjs`, **does not exist**. Slide 09 and the PDF
+  must be regenerated by hand. **Treat the stale PDF as a release blocker: it is the most
+  distributed public artifact and it still carries the retired mechanic.**
+- **Notion.** "Goods x QBE - Start Here" states the ask as $400K matched one to one, and
+  separately claims the accountant's letter is DONE when rulings G and H say it is a workpaper.
+  Both are logged as rows in the QBE Stage 2 readiness register.
+
+Ruling E's lesson is that the old north star survived retirement because it lived in four
+places at once. This one lived in about twenty, and nineteen are closed.
+### U. `/pitch/road` is the scrolling page, not the slide deck. Ruling R superseded on form.
+
+**Decided:** the long-form scrolling page wins the `/pitch/road` route. `deck-road-client.tsx` is
+deleted. Ben, 2026-07-31, after reviewing the page.
+
+**What was actually wrong.** Two entirely different products were sitting at one URL without
+anybody noticing. Ruling R (2026-07-26) built a slide deck there: fixed shell, progress bar,
+click-zones, dot nav, every word resolved from `deck-road.ts`. Separately, a session wrote a
+969-line scrolling page over the top of it in the working tree and never committed it, so it read
+as untracked, and the branch it was found on was eleven commits behind main and therefore had no
+history of the tracked file at all. Merging without looking would have replaced the canonical
+funder deck silently.
+
+**What survives from R.** Its content rulings, all of them: the road leads and the model follows,
+the spine is the seven stops, the model arrives as what the road produced. R is superseded on
+**form**, not on argument. `/pitch/simple` still keeps its job as the PDF pipeline, untouched.
+
+**`deck-road.ts` is kept, not deleted.** Its guards assert it against `road-spine.ts`, and
+`story-road.spine.test.ts` asserts the story surface against the same spine, so the two live
+surfaces still agree transitively through those tests. Deleting the module would delete that
+agreement. It carries a header saying it renders nowhere. **Sweep: do not wire it to a route
+without a ruling.**
+
+### T. Canon loses two conflicts it was on the wrong side of.
+
+`marginal-factory` ($426) and `save-per-bed` ($194) regraded `verified` to **`modelled`** in
+`canon.ts`. The BOM arithmetic is verified; the per-bed cost at a sustained production rate has
+never been measured, which is what the funded fifty-bed run buys. `cost-story.ts`,
+`ask-surface.ts`, `deck.ts` stop-6 and the standing hard rule all already said modelled, and
+`deck.ts` had written down the reasoning without anyone acting on it. Any component reading
+`claimLabel` straight from canon was one import away from printing "verified" beside $426 in
+front of a funder.
+
+**"14 September" struck from `ASK_MATCH_VEHICLE.rule`.** `canon.ts` says plainly: do not write it
+as the application date, that is the Butterfly AGM, a different thing, and no firmer QBE date is
+sourced. Canon is authority 1, so the string moved, not canon. `/pitch/road` prints no QBE date
+at all. **Sweep: ask Jay what the actual program close date is, early August, and correct
+`ask-surface.ts` once from a source.**
 ## 2026-07-26 (later) — The canonical deck
 
 ### R. /pitch/road is the deck. /pitch/simple stays the PDF.

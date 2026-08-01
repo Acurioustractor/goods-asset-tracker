@@ -403,12 +403,12 @@ export default function LeaveBehindPage() {
             <div style={{ flex: '1 1 52%' }}>
               <SectionLabel>The ask</SectionLabel>
               <div style={{ fontFamily: SERIF, fontSize: 20, lineHeight: 1.18, marginTop: 5, fontWeight: 600 }}>
-                AU$400,000 in signed commitments by 31 August. QBE matches it dollar for dollar.
+                AU$400,000 in signed commitments by 31 August. QBE can add a discretionary grant on top.
               </div>
               <div style={{ fontSize: 11.5, color: C.soft, marginTop: 6, lineHeight: 1.4 }}>
                 An <b>$800,000</b> program that takes Goods to the point it funds itself and stands up the first
                 on-Country production sites: the measured run, the per-site plant capital, the
-                first on-Country operator roles, and working capital. QBE Catalysing Impact submission 14 September
+                first on-Country operator roles, and working capital. QBE Catalysing Impact closes late September
                 2026, outcomes November.
               </div>
             </div>

@@ -241,3 +241,13 @@ v2/sites/
 # .json, build-mapping.py reads it and writes goods-el-mapping.json. Keep the
 # scripts, regenerate the data.
 audit/*.json
+
+# ── Funder quotes, invoices and commitment paper (added 2026-08-02) ──────────
+# These carry a funder's name, a live dollar figure and our ABN, and they land
+# in the repo root by accident when someone drops one in to be read. Xero is the
+# system of record for a quote or an invoice; GHL carries the ask and its status.
+# The repo should hold neither. QU0014.pdf reached the root this way.
+Quote *.pdf
+Invoice *.pdf
+INV-*.pdf
+QU-*.pdf

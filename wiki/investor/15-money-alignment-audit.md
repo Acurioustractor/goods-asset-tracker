@@ -56,7 +56,7 @@ The why-change number: plastic lands at $2.75/kg (~$55/bed) vs the $0.80/kg poly
 ### Gate 5 — The raise (what we're asking for, and the rules)
 | Line | Figure | Source | Status |
 |---|---|---|---|
-| QBE Stage 2 | up to **$400K** ($150K floor), repayable preferred | 04-qbe-pipeline.md:9-11 | discretionary; Stage 1 $10K paid |
+| QBE Stage 2 | typically **$150K-$400K**, from a pool of up to $1.1M across ten enterprises, repayable preferred | 20-qbe-program-economics.md | discretionary; Stage 1 $10K paid |
 | Match rule | grant **at least matched by SIGNED external commitments** (paper SIH can verify) | 04-qbe-pipeline.md:10,13-14 | hard gate |
 | Match-paper deadline | **31 Aug 2026**; form closes late Sept; outcomes Nov | 04-qbe-pipeline.md:12-13; 2026-07-16-notion-alignment-plan.md:273 | dates |
 | Lead stack | **$475K = SEFA $300K + Snow $100K + Centrecorp $75K** | 2026-07-03-investor-asset-alignment.md:3 | **$0 signed today** |
