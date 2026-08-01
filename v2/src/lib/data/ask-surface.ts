@@ -75,16 +75,17 @@ export const ASK_BLOCKS: AskBlock[] = [
 /**
  * THE raise answer. Say this sentence, everywhere.
  *
- * REPLACED 2026-08-01, ruling V. The 2026-07-21 lock read "QBE matches it dollar for dollar:
- * an $800K program". Both halves failed against the program's own published terms, researched
- * from source and recorded in wiki/investor/20-qbe-program-economics.md.
+ * REPLACED 2026-08-01, ruling V. The 2026-07-21 lock claimed QBE matched our raise one to one
+ * and called the result an eight-hundred-thousand-dollar program. Both halves failed against
+ * the program's own published terms, researched from source and recorded in
+ * wiki/investor/20-qbe-program-economics.md. The retired wording is quoted in full there and
+ * in DECISIONS.md ruling V, which is where it belongs.
  *
  * Social Impact Hub calls the money CATALYTIC, never matching, and the recorded terms bind the
  * GRANT: it "must be at least matched by SIGNED external commitments". That is a coverage test
- * on whatever QBE decides to give, not a promise to double what we raise. Raising $400,000
- * creates no obligation on QBE at all.
+ * on whatever QBE decides to give. Raising $400,000 creates no obligation on QBE at all.
  *
- * And "$800K program" assumed the maximum grant. The pool is up to $1.1M across TEN
+ * The eight-hundred-thousand figure also assumed the maximum grant. The pool is up to $1.1M across TEN
  * enterprises; 2025 paid $1.02M across ten, averaging about $102,000. $400K is the top of a
  * stated $150K-$400K range and 36% of the whole pool.
  *

@@ -402,7 +402,7 @@ export const ASK_STATUS_ROWS: AskRow[] = [
     label: 'What the match is',
     value: 'QBE Catalysing Impact, Stage 2',
     supporting:
-      'They can say no. It is an application, not a cheque waiting for us. The match tops out at what we are raising and starts at a $150K floor. Past the top, extra money stops being doubled. What the work costs is built from the bottom, line by line.',
+      'They can say no. It is an application, not a cheque waiting for us. Grants run from about $150,000 to $400,000 and come out of one pool shared across ten enterprises, so the size is theirs to set. What the work costs is built from the bottom, line by line.',
   },
 ];
 

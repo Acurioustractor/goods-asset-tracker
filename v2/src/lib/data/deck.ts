@@ -532,7 +532,7 @@ export const deckSlides: DeckSlide[] = [
       // by the same diff that added the chip. No QBE date is printed anywhere until Jay
       // gives us a sourced one.
       { label: 'Outcomes', value: 'Nov 2026' },
-      { label: 'The match vehicle', value: 'Catalysing Impact: up to AU$400K, AU$150K floor, discretionary' },
+      { label: 'The grant', value: 'Catalysing Impact: discretionary, typically AU$150K to AU$400K, from one pool across ten enterprises' },
     ],
     goDeeper: [
       { label: 'Where the money goes', href: '/cost-story' },

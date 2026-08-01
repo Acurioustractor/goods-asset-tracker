@@ -6,9 +6,14 @@
 
 ## Program mechanics (agreed, in writing from SIH)
 
-- Catalysing Impact 2026: 10 enterprises share a $1M pool. Stage 2 grant up to $400K
-  ($150K floor), discretionary, must be at least matched by signed external commitments,
-  repayable finance preferred. Stage 1 paid $10K flat.
+- Catalysing Impact 2026: 10 enterprises share a pool of **up to $1.1M**. Stage 2 grants are
+  discretionary and **typically $150K to $400K**, so $400K is the top of the range and 36% of
+  the whole pool, not a plan. The lower bound is the bottom of a typical range, not a
+  guaranteed minimum award, and no floor of any kind is promised. The grant **must be at least matched by signed external
+  commitments**, which is a coverage test on whatever QBE gives, NOT a doubling of what we
+  raise. Repayable finance preferred. Stage 1 paid $10K flat. 2025 paid $1.02M across ten,
+  averaging ~$102K, leveraging $2.75M external (3.7x). Source and full terms:
+  `20-qbe-program-economics.md` (ruling V, 2026-08-01).
 - Application: online form, closes late September 2026, plus a short pitch + interview.
   Outcomes November 2026. Match is judged on signed, verifiable paper (amount, instrument,
   funder legal name, a contact SIH can call).
