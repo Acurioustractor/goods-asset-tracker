@@ -140,18 +140,24 @@ export const STACK_LAYERS: StackLayer[] = [
     status: 'Warm. Not signed.',
     signedPaper: 'Grant deed or letter of commitment.',
   },
-  {
-    funder: 'Centrecorp',
-    amount: '$75K',
-    instrument: 'Grant: community-anchored, separate from bed orders',
-    concession: 'Purpose + Position: community-first capital. $123,332 already paid.',
-    status: 'Not signed.',
-    signedPaper: 'Board-minuted commitment letter.',
-  },
+  // CENTRECORP REMOVED FROM THE STACK 2026-08-02, Ben. They are a BUYER and will not give a
+  // grant. They were carried here as a $75K grant ask, which inflated the grant column of the
+  // match stack by $75,000 and pointed the relationship at the wrong conversation. Bed orders
+  // are revenue and are explicitly excluded from the match: see STACK_EXCLUDED below.
+  //
+  // What is true: $123,332 paid across two invoices, most recently INV-0291 on 26 Nov 2025 for
+  // $85,712, being 107 beds at $560 to Utopia Homelands plus three bed-building workshops.
+  // That is trading income and it is the relationship worth growing. The next move with Randle
+  // Walker is a quote for the next order, not an ask.
 ];
 // Rebuilt 2026-07-25 from all 67 Supporter Journey rows. The old $475K was a smaller and
 // older picture than the CRM holds; $0 signed is the standing fact and 0 rows sit at Committed.
-export const STACK_TOTAL = '$0 signed today · grants at Ask made $607.5K · repayable in Cultivating $710K';
+// $607.5K was the grants-at-Ask-made total as at 2026-07-25. It included Centrecorp at $75K,
+// which came out on 2026-08-02 when Ben confirmed they are a buyer and will not give a grant,
+// so the grant column is $75K lighter than this string says. Re-derive it from GHL rather than
+// patching the number here: the six live asks now carry monetaryValue in the CRM, which is what
+// makes the stack derivable instead of asserted.
+export const STACK_TOTAL = '$0 signed today · grants and repayable asks are live in GHL, and Centrecorp is a buyer, not a grant line';
 export const STACK_EXCLUDED =
   'Not match-eligible: equity (we are not selling ownership), QBE itself, the DEWR/REAL vehicle (separate, Oonchiumpa-led), and buyer revenue (orders are the point, not the match).';
 export const STACK_MIRROR_NOTE =
@@ -234,7 +240,7 @@ export const GROWTH_STAGES: GrowthStage[] = [
     stage: 'Today',
     beds: '~120 beds/yr',
     means: 'Legs bought as kits. ~$65 of every bed stays. Philanthropy carries the block.',
-    fundedBy: 'Orders + existing grants (Snow ~$493K delivered, Centrecorp $123,332, TFN $130K and others).',
+    fundedBy: 'Orders (Centrecorp $123,332 of beds, and others) plus existing grants (Snow ~$493K delivered, TFN $130K and others).',
   },
   {
     stage: 'Break-even',
