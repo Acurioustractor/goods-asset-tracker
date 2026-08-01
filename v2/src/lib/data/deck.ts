@@ -263,8 +263,14 @@ export const deckSlides: DeckSlide[] = [
     eyebrow: 'The product · between delivery and making',
     headline: 'Three component types. Five minutes. No tools.',
     body: 'Two steel poles tension a washable canvas between recycled-plastic X-frames. It packs flat, repairs by part, and is designed so more of the making can move into community.',
-    photo: '/images/_drafts/story-spine/03-exploded-view.png',
-    photoAlt: 'An exploded illustration of the Stretch Bed components',
+    // WAS /images/_drafts/story-spine/03-exploded-view.png, which .gitignore:218 ignores, so it
+    // shipped as a guaranteed 404 on /pitch/deck (that surface renders slide.photo directly and
+    // has no override path). Repointed 2026-08-01 to a git-tracked file that is also present on
+    // disk. The brand illustration set is NOT usable here: those .png files are mid-rename to
+    // .jpg, so the tracked name is deleted in the working tree and the working name is untracked.
+    // Verify any replacement with `git ls-files`, never `ls`.
+    photo: '/images/pitch/bed-seq-3-all-parts.jpg',
+    photoAlt: 'The Stretch Bed components laid out: poles, canvas and recycled-plastic X-frames',
     place: 'The Stretch Bed',
     steps: [
       'Collect and shred local HDPE plastic.',
@@ -352,7 +358,7 @@ export const deckSlides: DeckSlide[] = [
     voiceNames: ['Shayne Bloomfield', 'Fred Campbell'],
     chips: [
       { label: 'Delivered · the run', value: '40 Stretch Beds' },
-      { label: 'Verified · the ratio', value: '8.6x raw material cost to buy legs finished' },
+      { label: 'Modelled · the ratio', value: '8.6x the raw shred cost (about $40) to buy legs finished' },
       { label: 'Verified · marginal, buying legs', value: aud(Number(marginalBuyKit)) },
       { label: 'Modelled · marginal, pressing our own', value: aud(Number(marginalFactory)) },
     ],
@@ -458,20 +464,29 @@ export const deckSlides: DeckSlide[] = [
     kind: 'economics',
     eyebrow: 'The economics',
     headline: 'Who pays the person running the line?',
-    body: 'A bare production site needs about 234 bed sales a year to cover its annual costs. With a half-time supervisor it needs 381; with a full-time supervisor, 529. The open question is who employs and pays the person running the line.',
+    body: 'A bare production site costs about AU$79,333 a year to run. Add a half-time supervisor and it is AU$129,333; a full-time one, AU$179,333. That single hiring decision moves the annual bill by more than a hundred thousand dollars, and nobody has made it yet. It is the biggest open question in the model.',
     photo: '/images/process/pressed-sheets.jpg',
     photoAlt: 'Pressed recycled-plastic sheets, the material the economics rest on',
     place: 'Modelled 2026-07-25, not yet measured',
     chips: [
-      { label: 'Modelled · bare production block', value: `${aud(SITE_PRODUCTION_BLOCK_BARE)}/yr = 234 beds` },
-      { label: 'Modelled · plus a half-time supervisor', value: `${aud(SITE_PRODUCTION_BLOCK_BARE + SITE_SUPERVISOR_COST.half_time)}/yr = 381 beds` },
-      { label: 'Modelled · plus a full-time supervisor', value: `${aud(SITE_PRODUCTION_BLOCK_BARE + SITE_SUPERVISOR_COST.full_time)}/yr = 529 beds` },
-      { label: 'Retired · do not use', value: '"75 to 100 beds a year"' },
+      // The "= N beds" conversions are GONE (2026-08-01). STRATEGY.md: "no bed number goes
+      // in front of anyone until the measured run happens" and "Never said in either room:
+      // a bed number as a threshold." The dollar blocks are the honest way to say the same
+      // thing, and they carry the open question instead of a target.
+      //
+      // The "Retired · do not use" chip is gone too. A chip labelled retired still PRINTS the
+      // retired sentence to a funder, which is publication, not quarantine. Ruling I kept
+      // "75 to 100 beds a year" as an internal estimate; the history now lives in `note`,
+      // which no public renderer reads.
+      { label: 'Modelled · bare production block', value: `${aud(SITE_PRODUCTION_BLOCK_BARE)}/yr` },
+      { label: 'Modelled · plus a half-time supervisor', value: `${aud(SITE_PRODUCTION_BLOCK_BARE + SITE_SUPERVISOR_COST.half_time)}/yr` },
+      { label: 'Modelled · plus a full-time supervisor', value: `${aud(SITE_PRODUCTION_BLOCK_BARE + SITE_SUPERVISOR_COST.full_time)}/yr` },
+      { label: 'Still open', value: 'Who employs and pays the line supervisor' },
     ],
     goDeeper: [{ label: 'Where the money goes', href: '/cost-story' }],
     script:
-      'We used to say a site needed 75 to 100 beds a year. That number divided by rent and left out the person running the line, insurance, administration, maintenance and safety. We retired it. The bare production block is 79,333 dollars a year, or 234 beds at the modelled contribution. Add a half-time supervisor and it becomes 381. Full-time makes it 529. Employment support and youth work sit in a separate grant-funded budget. The open question on this slide is ordinary and decisive: who employs the line supervisor, and from which budget?',
-    note: 'Ruling I retired "75 to 100 beds a year" and it is shown here ONLY as a retired figure, which is the safe way to state it because the chip label says retired. The denominator table is modelled on DERIVED splits of stated DEWR figures and the supervisor costs are ASSUMED, not costed roles. The three-dial payback figures (2.6 years, 19.8 years) exist only in prose in STRATEGY.md and the session pack: they are NOT in code and NOT drift-checked, so they are spoken in the script and never chipped.',
+      'We used to quote a bed number a site had to hit. It divided by rent and left out the person running the line, insurance, administration, maintenance and safety, so we retired it and we are not replacing it with another one. What we can give you is the bill. A bare production site is 79,333 dollars a year. A half-time supervisor takes it to 129,333, a full-time one to 179,333. Employment support and youth work sit in a separate grant-funded budget. The open question on this slide is ordinary and decisive: who employs the line supervisor, and from which budget?',
+    note: 'Ruling I retired "75 to 100 beds a year". It was previously CHIPPED here under a "Retired - do not use" label, which was wrong: a chip still prints the sentence to a funder, and labelling it retired does not unprint it. Removed 2026-08-01; the history stays here, in a field no public renderer reads. The "= N beds" conversions were removed at the same time under STRATEGY.md ("no bed number goes in front of anyone until the measured run happens"). The denominator table is modelled on DERIVED splits of stated DEWR figures and the supervisor costs are ASSUMED, not costed roles. The three-dial payback figures (2.6 years, 19.8 years) exist only in prose in STRATEGY.md and the session pack: they are NOT in code and NOT drift-checked, so they are spoken in the script and never chipped.',
   },
 
   // ────────────────────────────────────────────────────────── the money
@@ -511,7 +526,11 @@ export const deckSlides: DeckSlide[] = [
     chips: [
       { label: 'What the letter states', value: 'Amount · instrument · funder legal name · a contact' },
       { label: 'Our gate', value: '31 Aug 2026 (ours, not QBE\'s)' },
-      { label: 'QBE submission', value: '14 Sep 2026' },
+      // 14 Sep DELETED 2026-08-01 (ruling T). canon.ts signed-lois says verbatim: "Do NOT
+      // write '14 Sep' as the application date: that is the Butterfly AGM, a different thing,
+      // and no firmer QBE date is sourced." A guard comment saying exactly this was deleted
+      // by the same diff that added the chip. No QBE date is printed anywhere until Jay
+      // gives us a sourced one.
       { label: 'Outcomes', value: 'Nov 2026' },
       { label: 'The match vehicle', value: 'Catalysing Impact: up to AU$400K, AU$150K floor, discretionary' },
     ],
