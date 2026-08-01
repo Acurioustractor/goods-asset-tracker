@@ -1362,6 +1362,49 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
     portrait: null,
     notes: 'Filtered out of public storyteller grids.',
   },
+  // ── Palm Island ──────────────────────────────────────────────────────────
+  {
+    slug: 'jahvan-oui',
+    name: 'Jahvan Oui',
+    aliases: ['Jahvan'],
+    role: 'Goods team member and future manufacturing lead, Palm Island. Training with Defy Design; wants to run his own factory.',
+    community: 'Palm Island',
+    tier: 'external',
+    turns: '5 (ownership; the maker who wants the factory)',
+    quotes: [
+      {
+        text: "When we got visitors, we don't want our visitors to come and see rubbish laying around here and there everywhere. You know, it's a reflection of the community that we don't care.",
+        context: 'Why the work matters: community pride and how Palm Island is seen',
+        status: 'approved',
+      },
+      {
+        text: "My mom and dad always made sure we had clothes on our back, food on the plate, a roof over our head, and a lot of my mates and stuff didn't have that. So yeah, it's sort of made me feel grateful, you know? To have parents that care.",
+        context: 'Growing up on Palm Island; why he helps',
+        status: 'approved',
+      },
+      {
+        text: "Wherever you go, there's always someone in some place that knows someone from Palm. No matter where you go, we here.",
+        context: 'Palm Island identity',
+        status: 'primary',
+        note: 'The closing "we here" is Speaker 29 in the transcript, finishing his sentence — verify against the video before using the two-voice form.',
+      },
+      {
+        text: "There's gotta be a break in the cycle somewhere. Soon as you break the cycle, all this stuff stop. People stopped going to jail. People stopped fighting amongst each other.",
+        context: 'Breaking the cycle, said during the washing-machine delivery',
+        status: 'primary',
+        note: 'Speaker 24 confirmed as Jahvan by Ben 2026-07-26. The strongest line in the video.',
+      },
+      {
+        text: "Just wanna say thank yous for coming to our community, listening to our stories. And trying to understand. Not a lot of people are like that, you know, understanding.",
+        context: 'To the Goods crew at the end of the delivery',
+        status: 'approved',
+        note: 'Speaker 24 confirmed as Jahvan by Ben 2026-07-26.',
+      },
+    ],
+    portrait: '/images/people/jahvan-oui.jpg',
+    notes:
+      'Cleared by Ben 2026-07-26: main Goods member with approval, the maker/ownership voice for Palm Island. Quotes are verbatim from the "Final Video Jahvan" transcript (descript-videos.ts viewId 6hVl3CzxdqR), pasted by Ben 2026-07-26; Ben confirmed Speaker 24 is Jahvan, so both delivery-day lines are usable. The unnamed washing-machine recipients (Speakers 22/23) are NOT cleared and none of their words may be quoted. Partner of Ebony Oui, who is NOT yet cleared as her own voice. Portrait supplied by Ben 2026-07-26.',
+  },
 ];
 
 // ── Lookup helpers ──────────────────────────────────────────────────────────

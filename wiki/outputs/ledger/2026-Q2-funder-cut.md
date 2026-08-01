@@ -1,6 +1,14 @@
+---
+voices: Ray Nelson, Alfred Johnson, Kristy Bloomfield, Linda Turner, Dr Boe Remenyi
+community: multiple
+consent_source: cleared-voices.ts (all five verified on the allowlist 2026-08-01); quotes verbatim from curated-quotes.ts and the storyteller registry
+status: draft
+note: Practitioner voices must stay labelled as practitioners, not recipients. Dr Boe Remenyi is a practitioner.
+---
+
 # Goods on Country, ledger cut, 2026 Q2
 
-*Draft for Ben, 2026-06-18. Evidence with a human face for the raise. Stories carry the page, the canon numbers anchor it. Every voice is consent-cleared and verbatim; every number is from `asset-canonical.ts`. Mykel is held pending youth consent. Practitioners are labelled as such. This is a draft. It is not published and goes nowhere external until you clear it.*
+*Draft for Ben, 2026-06-18. Canon figures refreshed 2026-08-01: every count below moved in the 19 and 21 July canon passes and this draft still carried the superseded ones. Nothing else in it was touched, and it is still a draft. Evidence with a human face for the raise. Stories carry the page, the canon numbers anchor it. Every voice is consent-cleared and verbatim; every number is from `asset-canonical.ts`. Mykel is held pending youth consent. Practitioners are labelled as such. This is a draft. It is not published and goes nowhere external until you clear it.*
 
 ## Five voices, five things a report cannot show on its own
 
@@ -31,9 +39,9 @@ Why a washing machine is health hardware.
 
 ## What the ledger shows (canon only)
 
-- 496 beds deployed across 9 communities (`bedsDeployed`, `communitiesServed`). Of those, 133 are the current Stretch Bed and 363 are the earlier Basket Bed (`stretchBedsDeployed`, `basketBedsDeployed`).
-- 16 washing machines in community (`washersInCommunity`).
-- 2,660kg of HDPE plastic diverted, at 20kg per bed, Stretch beds only (`plasticKg`, modelled).
+- 540 beds deployed across 11 communities (`bedsDeployed`, `communitiesServed`). Of those, 177 are the current Stretch Bed and 363 are the earlier Basket Bed (`stretchBedsDeployed`, `basketBedsDeployed`).
+- 22 washing machines in community (`washersInCommunity`).
+- 3,540kg of HDPE plastic diverted, at 20kg per bed, Stretch beds only (`plasticKg`, modelled).
 
 These are deployment and diversion numbers, verified against the asset register. They are not health outcomes. A reduction in rheumatic heart disease is not claimed. That measure waits on a partner method with Miwatj and equivalent ACCHOs.
 
@@ -56,7 +64,7 @@ These are deployment and diversion numbers, verified against the asset register.
 
 - Mykel: cleared by Ben 2026-06-18 (canon and the Snow dashboard). He is the strongest spine for domains 4 and 5 and can now be featured. This cut currently runs on five voices; say the word and I add him. The stale pending flag in `02-storyteller-voices.md` still needs updating to match.
 - Portraits: Ray Nelson and Dr Boe Remenyi have no confirmed portrait file. Shoot-list gap, or confirm an existing cleared image before this cut carries faces for them.
-- Circular-economy domain has no cleared community voice yet (Mykel held). It runs on the 2,660kg number until his consent lands.
+- Circular-economy domain has no cleared community voice yet (Mykel held). It runs on the 3,540kg number until his consent lands.
 - Practitioner voices (Dr Boe Remenyi, and if added Wayne Glenn, Chloe, Cliff Plummer, Tracy McCartney) must stay labelled as practitioners, not recipients.
 - Jessica Allardyce (Miwatj) has a strong rheumatic-heart-disease-pathway quote but is not on the cleared-for-external set. Excluded from this cut. Confirm consent if you want her in.
 - Place and Elder-status conflicts noted in the 2026-06-08 ledger drafts (Annie Morrison, Gloria Turner, Tracy McCartney) are unresolved and are not used in this cut.

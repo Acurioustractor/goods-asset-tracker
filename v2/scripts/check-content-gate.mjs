@@ -128,9 +128,23 @@ function gateConsent(fm, body, findings) {
   if (!named) {
     findings.push({ stage: 'consent', line: 0, finding: 'no `storyteller:` (single voice) or `voices:` (multi-voice) in frontmatter', rule });
   } else {
-    for (const name of named.split(/,|&| and /).map((s) => s.trim()).filter(Boolean)) {
-      if (!CLEARED.has(normaliseName(name))) {
-        findings.push({ stage: 'consent', line: 0, finding: `named voice '${name}' is NOT on the cleared-voices list`, rule });
+    // Check the WHOLE string against the allowlist before splitting it. Some
+    // people are cleared as a unit, not individually: cleared-voices.ts carries
+    // 'Carmelita & Colette' (and the 'and' spelling) as one entry, because that
+    // is how the clearance was given. Splitting first tore the pair in half and
+    // rejected both halves, which read as a consent failure on a draft whose
+    // frontmatter names them exactly as the allowlist does.
+    //
+    // Splitting is still right for multi-voice units, where `voices:` lists
+    // several separately-cleared people. So: whole first, parts only if the
+    // whole is not itself cleared. This cannot loosen the gate. A name still
+    // passes only by appearing on the list, and clearing a pair as a unit is a
+    // decision only Ben can make by editing that file.
+    if (!CLEARED.has(normaliseName(named))) {
+      for (const name of named.split(/,|&| and /).map((s) => s.trim()).filter(Boolean)) {
+        if (!CLEARED.has(normaliseName(name))) {
+          findings.push({ stage: 'consent', line: 0, finding: `named voice '${name}' is NOT on the cleared-voices list`, rule });
+        }
       }
     }
   }

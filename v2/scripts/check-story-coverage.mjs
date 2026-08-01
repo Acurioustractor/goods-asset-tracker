@@ -56,7 +56,52 @@ const normName = (s) => String(s || '').split('·')[0].toLowerCase().replace(/\s
 // cleared, but not draftable as a "one face, one voice, one place" weekly post.
 const ANON = /^(elder|elders|family member|household member|community member|a worker|young person|kids?|the team)$/i;
 
-// ── 1. Cleared-voice roster (the consent gate, read-only) ────────────────────
+// ── 1a. THE CONSENT GATE: cleared-voices.ts, and nothing else ───────────────
+//
+// This is the canonical person-level allowlist. STRATEGY.md section 7: "cleared-voices.ts
+// (34 people) is the person-level allowlist. EL has no per-storyteller consent column, so
+// the allowlist is the only gate."
+//
+// It is read separately from the DRAFTABLE POOL below because the two answer different
+// questions, and conflating them is the bug this section fixes (2026-08-01). The pool is
+// built from curated-quotes keys and trip-story VoiceCards, which is a coverage queue: it
+// says who has quotable material ready to draft a weekly post from. Using it as the consent
+// gate reported Mykel and Dorrie Jones as possible consent leaks when both sit in
+// cleared-voices.ts and are tier 'external' in the registry. Two false alarms next to one
+// real one (Jahvan Oui, genuinely uncleared) is how a real leak gets scrolled past.
+//
+// cleared-voices.ts warns about this exact mistake in its own header: "The broader
+// display-storyteller-pool is a coverage queue, NOT a clearance list."
+const clearedSrc = await slurp(path.join(dataDir, 'cleared-voices.ts'));
+// Scope to the array body first, then take EVERY string literal in it. A line-anchored
+// regex silently drops the second name on lines like `'Ivy Johnson', 'Ivy',`, which made
+// a cleared person look uncleared. Under-parsing this list produces false consent
+// failures; over-parsing it would produce false clearances, so the array is bounded
+// exactly and the count is asserted against canon below.
+const clearedArrayBody = clearedSrc.match(
+  /const CLEARED_VOICES_EXTERNAL:\s*string\[\]\s*=\s*\[([\s\S]*?)\n\];/,
+)?.[1];
+if (!clearedArrayBody) {
+  console.error('FATAL: could not locate CLEARED_VOICES_EXTERNAL in cleared-voices.ts. Refusing to run a consent check without the allowlist.');
+  process.exit(1);
+}
+const clearedGateNames = [...clearedArrayBody.matchAll(/'([^']+)'/g)].map((m) => m[1]);
+const clearedGate = new Set(clearedGateNames.map(normName).filter(Boolean));
+if (clearedGate.size === 0) {
+  console.error('FATAL: parsed 0 names out of cleared-voices.ts. Refusing to run a consent check with an empty allowlist.');
+  process.exit(1);
+}
+// The allowlist holds one entry per SPELLING, not per person: 'Ivy Johnson' and 'Ivy' are
+// one person, as are the Carmelita and Boe Remenyi pairs. So the literal count sits a few
+// above the canon head-count of people, and a parse that comes back at or BELOW the canon
+// count means spellings were dropped, which reads as a false consent failure. Cheap tripwire.
+const clearedAliasLines = (clearedArrayBody.match(/^.*'.*'.*'.*$/gm) || []).length;
+if (clearedGateNames.length < clearedAliasLines) {
+  console.error(`FATAL: parsed ${clearedGateNames.length} names but found ${clearedAliasLines} multi-spelling lines. The allowlist parser is dropping names.`);
+  process.exit(1);
+}
+
+// ── 1b. Draftable-voice pool (COVERAGE, never consent) ──────────────────────
 const curatedSrc = await slurp(path.join(dataDir, 'curated-quotes.ts'));
 const curatedVoices = [...curatedSrc.matchAll(/^ {2}'([^']+)':\s*\[/gm)].map((m) => m[1]);
 
@@ -104,8 +149,10 @@ for (const f of ledgerFiles) {
   if (dateInName && (!newestLedgerDate || dateInName > newestLedgerDate)) newestLedgerDate = dateInName;
   if (storyteller) {
     const key = normName(storyteller);
+    // Consent is judged against the allowlist. Coverage is judged against the pool.
+    // A cleared person with no curated quote yet is a DRAFTING gap, not a leak.
+    if (!clearedGate.has(key)) orphanDrafts.push({ file: f, storyteller });
     if (poolMap.has(key)) featured.set(key, { storyteller, file: f, date: dateInName || null });
-    else orphanDrafts.push({ file: f, storyteller });
   }
 }
 const unfeatured = pool.filter((v) => !featured.has(normName(v.name)));
@@ -179,7 +226,7 @@ console.log('Goods story + illustration coverage scan (Loop E)\n');
 console.log(`Storyteller pool (display tier): ${pool.length} named computed (curated-quotes + trip-stories cleared VoiceCards; ${anonClearedSet.size} unnamed role label(s) excluded). Canon: cleared-voices (external strict) = ${canonClearedCount ?? '?'}, display-storyteller-pool = ${canonDisplayCount ?? '?'}.`);
 console.log(`Weekly posts: ${featured.size} voice(s) featured, ${unfeatured.length} unfeatured. Cadence: ${cadenceDays === null ? 'never posted' : `${cadenceDays}d since last`}${cadenceOverdue ? ' [OVERDUE]' : ''}.`);
 console.log(`Illustrations: ${illTopics.filter((t) => t.status === 'promoted').length}/${illTopics.length} topics promoted, ${illGaps.length} gap(s).`);
-if (orphanDrafts.length) console.log(`\n⚠ ${orphanDrafts.length} ledger draft(s) feature a storyteller not in the cleared roster (see report).`);
+if (orphanDrafts.length) console.log(`\n⚠ ${orphanDrafts.length} ledger draft(s) feature a storyteller who is NOT in cleared-voices.ts (see report).`);
 console.log('\nBuild queue (top 5):');
 for (const q of queue.slice(0, 5)) console.log(`  [${q.kind}] ${q.label}`);
 console.log('');
@@ -200,8 +247,8 @@ const md = [
   '',
   'Sources: the cleared-voice pool = curated-quotes.ts keys ∪ trip-stories.ts VoiceCards with `consent: \'cleared\'` (mirrors ledger-story/CONSENT.md sources 1-2; EL live check is out of scope for a hermetic script). Weekly coverage = front-matter `storyteller:` in wiki/outputs/ledger/*.md. Illustration coverage = goods-ill-*.png in v2/public/images/brand vs draft sets in generated-images/goods-illustrations/. RED-safe: counts + already-public display_names only, never quotes or recipient data.',
   '',
-  orphanDrafts.length ? '## ⚠ Possible consent leak (fix first)' : '## Consent integrity\nEvery weekly ledger draft features a storyteller in the cleared roster.',
-  ...orphanDrafts.map((o) => `- \`${o.file}\` features **${o.storyteller}**, who is not in the cleared roster. Verify consent or remove. (Run the ledger-story consent gate.)`),
+  orphanDrafts.length ? '## ⚠ Possible consent leak (fix first)' : '## Consent integrity\nEvery weekly ledger draft features a storyteller on the cleared-voices allowlist.',
+  ...orphanDrafts.map((o) => `- \`${o.file}\` features **${o.storyteller}**, who is NOT in \`cleared-voices.ts\`. Clear them there with a source, or remove the draft.`),
   '',
   '## Weekly cadence',
   '',
@@ -258,6 +305,7 @@ await writeFile(path.join(canonDir, 'story-coverage.md'), md);
 if (orphanDrafts.length) {
   console.error('CONSENT INTEGRITY — ledger draft(s) feature a storyteller not in the cleared roster:');
   for (const o of orphanDrafts) console.error(`  - ${o.file} -> ${o.storyteller}`);
+  console.error(`  Gate: cleared-voices.ts (${clearedGate.size} names). Add the person there with a source, or drop the draft.`);
   console.error('\nRun the ledger-story consent gate; remove or clear before this draft ships.');
   process.exit(1);
 }
