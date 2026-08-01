@@ -72,23 +72,44 @@ export const ASK_BLOCKS: AskBlock[] = [
     label: 'modelled',
   },
 ];
-/** THE raise answer, locked by Ben 2026-07-21. Say this sentence, everywhere. */
+/**
+ * THE raise answer. Say this sentence, everywhere.
+ *
+ * REPLACED 2026-08-01, ruling V. The 2026-07-21 lock read "QBE matches it dollar for dollar:
+ * an $800K program". Both halves failed against the program's own published terms, researched
+ * from source and recorded in wiki/investor/20-qbe-program-economics.md.
+ *
+ * Social Impact Hub calls the money CATALYTIC, never matching, and the recorded terms bind the
+ * GRANT: it "must be at least matched by SIGNED external commitments". That is a coverage test
+ * on whatever QBE decides to give, not a promise to double what we raise. Raising $400,000
+ * creates no obligation on QBE at all.
+ *
+ * And "$800K program" assumed the maximum grant. The pool is up to $1.1M across TEN
+ * enterprises; 2025 paid $1.02M across ten, averaging about $102,000. $400K is the top of a
+ * stated $150K-$400K range and 36% of the whole pool.
+ *
+ * The sentence keeps Ben's target and his own 31 August gate, which are his to set, and keeps
+ * "funds itself", which rests on Goods' own economics rather than on QBE.
+ */
 export const ASK_HEADLINE = {
-  line: 'We are raising $400K in signed commitments by 31 August. QBE matches it dollar for dollar: an $800K program that takes Goods to the point it funds itself.',
-  ifMore: 'Above $400K the match stops, so extra brings the first on-Country site forward. We can put about $550K to work; past that, buy beds instead.',
-  ifShort: "QBE's floor is $150K matched: even the small version funds the measured run. Every signed dollar lands twice.",
+  line: 'We are raising $400,000 in signed commitments by 31 August. That covers the equipment, a measured fifty-bed run and the months before beds pay for themselves, with the cash-cycle line still to be sized after the run. QBE can add a grant on top of signed paper, at their discretion. $0 is signed today.',
+  ifMore: 'More signed paper raises the most a grant could cover. How much they give is still theirs to decide. Past our own ceiling of about $550,000 the extra is better spent buying beds.',
+  ifShort: 'A smaller raise still funds the measured run, and a smaller grant is what fits a smaller stack. Every signed dollar is one a grant can sit on.',
 };
 
 export const ASK_MATCH_VEHICLE = {
   name: 'QBE Catalysing Impact, Stage 2',
-  amount: 'up to $400K ($150K floor)',
+  // "$150K floor" STRUCK 2026-08-01, ruling V. SIH says grants are "typically AU$150,000 to
+  // AU$400,000", a typical RANGE, not a guaranteed minimum award. $400K is the top of it and
+  // 36% of a $1.1M pool shared across ten enterprises.
+  amount: 'up to $400K, typically $150K to $400K, from a pool of up to $1.1M across ten enterprises',
   // 14 September STRUCK 2026-07-31. canon.ts signed-lois states it plainly: "Do NOT write
   // '14 Sep' as the application date: that is the Butterfly AGM, a different thing, and no
   // firmer QBE date is sourced." Canon is authority 1, so this string stops asserting a date
   // canon forbids. Our own 31 Aug gate and the November outcome are both sourced; the
   // program's own close is late September and nobody has pinned the day. Ask Jay.
   rule: 'Must be at least matched by SIGNED external commitments. Repayable finance preferred. Our own match-paper gate is 31 Aug; the program closes late September 2026, exact date unconfirmed; outcomes November 2026.',
-  note: 'The match vehicle that doubles every signed dollar: not the ask itself. The ask is the sum of the blocks.',
+  note: 'A discretionary grant that sits on top of signed external paper. The ask is the sum of the blocks, never a slogan number.',
 };
 
 // ---------------------------------------------------------------------------

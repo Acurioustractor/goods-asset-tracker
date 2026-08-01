@@ -2,6 +2,40 @@
 
 > **VOICE RULE (Ben, 2026-07-21, standing):** no formal/static grant language anywhere. Write like `Jeremy_Donovan_The_Fire_and_the_Road.docx` and `ACT_The_Field_Between_Us.docx` (both in ~/Downloads): open with a person/place/object, never a claim; numbers arrive inside sentences that carry a scene; plain verbs; self-implicating honesty; with-not-for. Tables can be tables; the prose around them must talk like a person. Memory: [[goods-grounded-voice-references]].
 
+### The grounded Goods voice
+
+**Source shelf, reaffirmed by Ben 2026-07-30:** `Goods-on-Country-The-Work-That-Stays.docx`,
+`Jeremy_Donovan_The_Fire_and_the_Road.docx` and `ACT_The_Field_Between_Us.docx` in
+`~/Downloads`. These documents govern cadence and moral posture, not current facts. Any figure,
+entity description or status in them loses to canon and dated rulings.
+
+- Let a person, place or ordinary object enter before the explanation. A mattress on red dirt, a
+  bed carried into a tent, a barge, a washing machine with a Warumungu name, a young person
+  learning the pattern.
+- Put events in their real order. Scene first. What somebody said or did next. Meaning after that.
+  Do not announce the lesson before the reader has something concrete to stand on.
+- Alternate observation with short sentences. Use fragments only when the scene has earned them.
+  A row of slogans is not rhythm.
+- Prefer plain verbs: asked, carried, named, built, washed, pressed, paid, returned. Remove
+  abstract substitutes such as activated, enabled, unlocked, transformed, catalysed or leveraged.
+- Keep Goods inside the moral frame. Use `we` when naming a wrong assumption, a missing measure,
+  a cost we do not know, a promise we have not kept or power we still hold.
+- Let community voices alter the argument. Never use a quote as decoration beneath a conclusion
+  Goods had already reached.
+- Attach numbers to their scene and status. `Forty beds went to Maningrida under INV-0303` is
+  stronger than `demonstrated scalable impact`. Modelled, verified, delivered, proposed and signed
+  are different conditions.
+- Use physical transitions rather than deck-management language. Say what the truck carried, what
+  remained, who held the tool or where the wage went. Avoid telling the audience where an idea is
+  “allowed to arrive”, what a slide “proves”, or that a page is a “front door”.
+- Contrast is useful only when it exposes a real tension. Do not repeat the AI-shaped formula
+  `not X, but Y`, `not just X`, or `more than X`; show the two concrete conditions instead.
+- End on an image, decision or obligation. Avoid inflated declarations about significance,
+  broader trends, transformation, legacy, patterns proving patterns or relationships changing in
+  unspecified ways.
+- Keep Country, Culture and language specific and held. They are not atmosphere, brand texture or
+  metaphors available to Goods.
+
 > Canonical language for the money model and the raise. Started 2026-07-21 during the money-alignment grill.
 > Code sources of truth: `v2/src/lib/data/cost-story.ts` (cost narrative), `canon.ts` (canon facts), `ask-surface.ts` (/admin/ask).
 
@@ -21,7 +55,7 @@
 
 **The measured run** — the funded 50-bed run whose purpose is to press at production rate and measure per-bed cost with receipts. It converts $426 from Modelled toward Measured. (Renamed from "proof run" — capability is already proven by the pressed run.)
 
-**The ask** — the SUM of use-of-funds blocks (equipment net + measured run + ramp cover + working capital + reserve), never a slogan number. QBE's up-to-$400K is the **match vehicle** (doubles signed external dollars), not the ask.
+**The ask** — the SUM of use-of-funds blocks (equipment net + measured run + ramp cover + working capital + reserve), never a slogan number. QBE's up-to-$400K is a **discretionary catalytic grant that sits on top of signed external paper**, not the ask, and not a doubling of what we raise (ruling V).
 
 **The north star (RULING E, Ben 2026-07-25, superseding the 2026-07-21 opening line)** — *"The goal was never a bigger Goods. It is a community that can collect the plastic, make the goods, and come to own the making."* Never open with a dollar figure.
 
@@ -37,7 +71,9 @@ The retired version read "It is a plant that belongs to the people sleeping on t
 
 **The 338 defence (locked 2026-07-21, Ben)** — when challenged that self-funding rests on the unmeasured $426: own it as the point. *"$426 is modelled from verified part prices; the first thing your money buys is the measured run that proves it."* Never soften "funds itself"; never claim $426 is measured before the run.
 
-**The raise answer (locked 2026-07-21, Ben)** — when asked "how much are you raising?": *"$400K in signed commitments by 31 August; QBE matches it dollar for dollar — an $800K program that takes Goods to the point it funds itself."* Above $400K the match stops (extra brings the first on-Country site forward; absorbable ceiling ~$550K). Floor: $150K matched. The stack is the internal who-signs-it plan with headroom over the $400K; see the rebuilt version below. Source: `ask-surface.ts` `ASK_HEADLINE`.
+**The raise answer (REPLACED 2026-08-01, ruling V, superseding the 2026-07-21 lock)** — when asked "how much are you raising?": *"We are raising $400,000 in signed commitments by 31 August. That covers the equipment, a measured fifty-bed run and the months before beds pay for themselves, with the cash-cycle line still to be sized after the run. QBE can add a grant on top of signed paper, at their discretion. $0 is signed today."*
+
+The retired line said QBE "matches it dollar for dollar" for "an $800K program". Neither is supportable. SIH calls the money **catalytic**, and the terms bind the GRANT: it must be at least matched by signed external commitments, which is a coverage test on whatever they decide to give. And $800K assumed the maximum: the pool is **up to $1.1M across ten enterprises**, and 2025 paid $1.02M across ten, averaging about $102,000. There is **no $150K floor**; SIH states a typical range of $150K to $400K. Absorbable ceiling ~$550K stands, as our own judgement. Full research: `wiki/investor/20-qbe-program-economics.md`. The stack is the internal who-signs-it plan with headroom over the $400K; see the rebuilt version below. Source: `ask-surface.ts` `ASK_HEADLINE`.
 
 **The stack (rebuilt 2026-07-25 from all 67 Supporter Journey rows)** — the old "$475K = SEFA $300K + Snow $100K + Centrecorp $75K" is a smaller and older picture than the CRM holds. **0 rows at Committed, so $0 signed remains the standing fact and is always stated.** Two live columns, each of which alone clears the $400K match:
 
@@ -82,7 +118,9 @@ The Butterfly transition is **executing, not blocking**: Kristy Bloomfield and A
 
 **REAL Innovation Fund (LOCKED, Ben 2026-07-21)** — status = **APPLIED at ~$2 million over 3 years** (with Oonchiumpa, Alice Springs production facility, 16-20 near-full-time young people). NOT secured; the word "secured" comes out of any doc that carries it. Supersedes both the old "$2.4M across two sites" framing and the BMD doc's "$1.73M secured". Excluded from QBE match (separate vehicle); belongs in the story as the youth-employment engine.
 
-**QBE submission date (LOCKED, Ben 2026-07-21)** — submission due **14 September 2026**. Supersedes "late September". Match paper still 31 August; outcomes November.
+**QBE submission date (CORRECTED 2026-08-01, sourced)** — there is **no firm submission date**. Jay Boolkin (Social Impact Hub) to the Stage 2 cohort, 14 July 2026: *"The formal application will open via an online form, closing in late September."* Nothing narrower has been circulated. Final cohort check-in **Thursday 3 September 2026, 2-3pm**, then a short pitch and interview before conditional offers. Match-paper gate stays **31 August, and it is OURS, not QBE's**. Outcomes November.
+
+This **supersedes the 2026-07-21 lock**, which read "submission due 14 September 2026, supersedes late September" and had it exactly backwards. **14 September is the Butterfly AGM.** `canon.ts` forbade it by name before any source existed; ruling T struck it; Jay's email confirms canon was right. Full terms: `wiki/investor/19-qbe-stage2-application-requirements.md`.
 
 **Detention benchmark (verified 2026-07-21)** — youth detention costs ~$1.3M per child per year, more than $3,600 a day (Productivity Commission Report on Government Services, early 2026; NT detains 95% First Nations children). Goods/REAL pathway side ≈ $100/day at the locked $2M/3yr/16-20 young people. External wording: "about $100 a day, next to more than $3,600 a day for detention". Never print $91 or $3,852 without their exact source lines.
 
