@@ -63,7 +63,17 @@ remote communities, most of which are in dumps within months.
 **Basket Bed** — the first prototype. Sales discontinued, design being open-sourced. Download
 Plans link only.
 
-**Weave Bed** — discontinued, never produced at scale. Remove references when found. Supabase
+**Weave Bed** — discontinued as a product line. Remove references when found on PUBLIC surfaces.
+
+⚠ **One deliberate exception, confirmed by Ben 2026-08-02: Centrecorp invoices and quotes.**
+`INV-0291` (107 beds, Nov 2025) and `QU-0014` (130 beds, May 2026) both read "Goods Weave Bed
+v2.3". **Those are Stretch Beds.** The line name was kept consistent across the Centrecorp
+paper trail on purpose, so their finance team sees the same description invoice to invoice.
+Do NOT "correct" those documents, and do not treat them as evidence the Weave Bed was produced
+at scale. Randle Walker calls them Stretch beds in correspondence, which is the right name
+everywhere else.
+
+Supabase
 rows carrying `product_type: weave_bed` or `weave-bed-*` slugs are wrong; they should be
 `stretch_bed` / `stretch-bed-*`.
 
