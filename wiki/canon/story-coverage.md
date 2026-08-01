@@ -9,7 +9,7 @@ Every weekly ledger draft features a storyteller on the cleared-voices allowlist
 
 ## Weekly cadence
 
-🟠 Overdue: 54 days since the last post (2026-06-08), target 7 days.
+🟢 On track: -23 days since the last post (2026-08-24).
 
 ## Cleared-voice pool
 
@@ -19,14 +19,14 @@ Every weekly ledger draft features a storyteller on the cleared-voices allowlist
 
 | Voice | Sources | Weekly post |
 |---|---|---|
-| Alfred  Johnson | curated-quotes | 🟢 2026-06-08-alfred-johnson.md |
+| Alfred  Johnson | curated-quotes | 🟢 2026-08-03-alfred-johnson.md |
 | Annie Morrison | curated-quotes | 🟢 2026-06-08-annie-morrison.md |
 | Brian Russell | curated-quotes | 🟢 2026-06-08-brian-russell.md |
 | Carmelita &  Colette | curated-quotes | 🟢 2026-06-08-carmelita-colette.md |
 | Chloe | curated-quotes | 🟢 2026-06-08-chloe.md |
 | Cliff Plummer | curated-quotes | 🟢 2026-06-08-cliff-plummer.md |
 | Daniel  Patrick Noble | curated-quotes | 🟢 2026-06-08-daniel-patrick-noble.md |
-| Dianne Stokes | curated-quotes | 🟢 2026-06-08-dianne-stokes.md |
+| Dianne Stokes | curated-quotes | 🟢 2026-08-03-dianne-stokes.md |
 | Dr Boe Remenyi | curated-quotes | 🔴 none |
 | Fred Campbell | curated-quotes | 🟢 2026-06-08-fred-campbell.md |
 | Gary | curated-quotes | 🟢 2026-06-08-gary.md |
@@ -70,31 +70,29 @@ Every weekly ledger draft features a storyteller on the cleared-voices allowlist
 
 Deterministic ranking: overdue weekly cadence first, then unfeatured cleared voices, then illustration gaps (missing before draft-only). Feed the top item to the named skill; it re-gates consent and writes a draft only.
 
-1. **[weekly-post]** Weekly ledger post overdue (54d since last, target 7d)
-   - /ledger-story — pick one unfeatured cleared voice below
-2. **[voice-backlog]** Cleared voice with no weekly post: Dr Boe Remenyi
+1. **[voice-backlog]** Cleared voice with no weekly post: Dr Boe Remenyi
    - /ledger-story for Dr Boe Remenyi (sources: curated-quotes)
-3. **[voice-backlog]** Cleared voice with no weekly post: Georgina Byron AM
+2. **[voice-backlog]** Cleared voice with no weekly post: Georgina Byron AM
    - /ledger-story for Georgina Byron AM (sources: curated-quotes)
-4. **[voice-backlog]** Cleared voice with no weekly post: Kylie Bloomfield
+3. **[voice-backlog]** Cleared voice with no weekly post: Kylie Bloomfield
    - /ledger-story for Kylie Bloomfield (sources: curated-quotes)
-5. **[voice-backlog]** Cleared voice with no weekly post: Mark
+4. **[voice-backlog]** Cleared voice with no weekly post: Mark
    - /ledger-story for Mark (sources: curated-quotes)
-6. **[voice-backlog]** Cleared voice with no weekly post: Nicholas Marchesi
+5. **[voice-backlog]** Cleared voice with no weekly post: Nicholas Marchesi
    - /ledger-story for Nicholas Marchesi (sources: curated-quotes)
-7. **[voice-backlog]** Cleared voice with no weekly post: Walter
+6. **[voice-backlog]** Cleared voice with no weekly post: Walter
    - /ledger-story for Walter (sources: curated-quotes)
-8. **[illustration]** Illustration missing: Stretch Bed anatomy
+7. **[illustration]** Illustration missing: Stretch Bed anatomy
    - /goods-illustrations — draft "bed"
-9. **[illustration]** Illustration missing: On-country container plant
+8. **[illustration]** Illustration missing: On-country container plant
    - /goods-illustrations — draft "container-plant"
-10. **[illustration]** Illustration missing: Ownership handover to community
+9. **[illustration]** Illustration missing: Ownership handover to community
    - /goods-illustrations — draft "ownership-handover"
-11. **[illustration]** Illustration missing: Bed breaks the health chain
+10. **[illustration]** Illustration missing: Bed breaks the health chain
    - /goods-illustrations — draft "health-chain"
-12. **[illustration]** Illustration missing: Order to country journey
+11. **[illustration]** Illustration missing: Order to country journey
    - /goods-illustrations — draft "order-to-country"
-13. **[illustration]** Illustration missing: Demand as capital (LOIs fund builds)
+12. **[illustration]** Illustration missing: Demand as capital (LOIs fund builds)
    - /goods-illustrations — draft "demand-as-capital"
 
 ## How to act
