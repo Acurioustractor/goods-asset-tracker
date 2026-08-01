@@ -50,6 +50,48 @@ entry currently rests on Ben's word in a session, with no reference to where eac
 consent record), add the reference per community to `PATHWAY_ASKS` so a future session can
 verify rather than trust.** Until then it is a dated ruling, not evidence.
 
+### W. /pitch/simple is retired. Ruling R's carve-out for it has expired.
+
+**Decided 2026-08-02, Ben.** `/pitch/simple` 308-redirects to `/pitch/road`. The route and the
+whole `public/deck-slides` directory are archived at `_archive/2026-08-02-pitch-simple/` with a
+restore note.
+
+**Ruling R kept it for exactly one reason.** `/pitch/road` became THE deck, `/deck` went to a
+redirect, and `/pitch/simple` was spared because **it was the PDF pipeline** and a funder
+attachment is a real need a scrolling page cannot serve. That reason no longer holds.
+
+**Four faults, all live on an open URL until today.**
+
+1. **The pipeline did not exist.** `simple-deck-client.tsx` told anyone who looked to "Run: node
+   scripts/render-deck.mjs". **That script is nowhere in the repo.** Nothing had regenerated
+   since 25 July 2026 and nothing could.
+2. **Three deck generations were layered.** 35 PNGs across 12 slide numbers. `page.tsx` read the
+   directory and sorted, so the route served every slide two or three times, from three eras.
+3. **Slide 1 carried the retired north star**: "a plant that belongs to the people sleeping on
+   the beds". Rulings D and E retired it. The object is **infrastructure, not a plant**, and
+   ownership sits with whichever community runs the site. Canon has said so since 2026-07-25.
+4. **The ask slide carried the retired QBE mechanic.** Ruling V swept the HTML source on
+   2026-08-01, but the PNGs and the PDF could not be regenerated, so the rendered artifacts kept
+   telling funders their signature triggers a matching dollar.
+
+The HTML and the PNGs had also drifted apart: the HTML puts the ask at slide 11, the PNGs name
+slide 09 "ask". They came from different deck plans.
+
+**What answers the funder-attachment need now.** Jay Boolkin at Social Impact Hub, 14 July 2026:
+*"Pitch materials, simply whatever you've already used to secure external capital, so no need to
+create anything new."* `/pitch/road` satisfies it.
+
+**Archived, not deleted**, per the standing rule that retire means move. Everything is under
+`_archive/2026-08-02-pitch-simple/` with `RESTORE.md`, which lists all four faults that must be
+fixed before it could ever come back.
+
+**SWEEP.** `next.config.ts` redirect added. `pitch-surface-notice.tsx` no longer claims
+`/pitch/simple` is the PDF pipeline. The `/admin/pitch-cockpit` link points at `/pitch/road`.
+`conditional-chrome.tsx` entry removed. `pitch-cockpit.ts` `DECK_PLAN` is retained: it still
+backs `/admin/pitch-cockpit`, which is gated and is now its only consumer. **This also closes
+the last open item of ruling V**, since the stale PDF and slide 09 PNG are out of the served
+tree. Gates: tsc, 415 tests, voice, canon, retired-figures, qbe-guardrails, production build.
+
 ### V. The raise sentence stops describing a program rule we cannot source.
 
 **Decided 2026-08-01, Ben.** `ASK_HEADLINE.line` replaced. It read: *"We are raising $400K in
