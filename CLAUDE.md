@@ -10,6 +10,15 @@ ABN Lookup 2026-07-25).
 model, the economics, the raise and what is open, and it names which file wins when two disagree:
 figures in `canon.ts`, judgements in `/DECISIONS.md`, language in `/CONTEXT.md`.
 
+**▶ Before touching the raise, the QBE application or any money surface, read
+`thoughts/shared/handoffs/2026-08-01-qbe-stage2-reality-and-the-raise.md`.** It carries two
+findings that contradict older documents and older Notion pages. QBE is **one pool of up to
+$1.1M shared across ten enterprises**, and the grant is **catalytic, not a dollar-for-dollar
+match** (ruling V), so $400K is the top of a range rather than a plan. And the FY26 books show
+**$0 cost of goods sold** with **83.6% of income unclassified**, so Goods has no financial
+identity separate from the sole trader it trades through. Both change what can honestly be said
+to a funder.
+
 ## The one that will bite you: Supabase project targeting
 
 The org has 9 Supabase projects and the Supabase MCP can reach all of them. It takes an
