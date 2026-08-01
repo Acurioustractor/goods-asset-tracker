@@ -34,6 +34,7 @@ interface CommunityMapProps {
   storytellers: StorytellerProfile[];
   selectedCommunity?: string | null;
   onSelectCommunity?: (id: string | null) => void;
+  heightClassName?: string;
 }
 
 // Brand-aligned palette pulled from globals.css so the map sits in the
@@ -52,6 +53,7 @@ export function CommunityMap({
   storytellers,
   selectedCommunity,
   onSelectCommunity,
+  heightClassName = 'h-[520px] md:h-[640px]',
 }: CommunityMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
@@ -213,6 +215,13 @@ export function CommunityMap({
       });
     });
 
+    if (locations.length > 0) {
+      map.fitBounds(
+        L.latLngBounds(locations.map((location) => [location.lat, location.lng] as [number, number])),
+        { padding: [42, 42], maxZoom: 5 },
+      );
+    }
+
     mapInstanceRef.current = map;
 
     return () => {
@@ -221,9 +230,17 @@ export function CommunityMap({
     };
   }, [locations, storytellers, onSelectCommunity]);
 
-  // Fly to selected community
+  // Fly to a selected community, then return to the national extent when cleared.
   useEffect(() => {
-    if (!mapInstanceRef.current || !selectedCommunity) return;
+    if (!mapInstanceRef.current) return;
+    if (!selectedCommunity) {
+      if (locations.length === 0) return;
+      mapInstanceRef.current.fitBounds(
+        L.latLngBounds(locations.map((location) => [location.lat, location.lng] as [number, number])),
+        { padding: [42, 42], maxZoom: 5, animate: true },
+      );
+      return;
+    }
     const loc = locations.find((l) => l.id === selectedCommunity);
     if (loc) {
       mapInstanceRef.current.flyTo([loc.lat, loc.lng], 7.5, { duration: 1 });
@@ -320,7 +337,7 @@ export function CommunityMap({
 
       <div
         ref={mapRef}
-        className="w-full h-[520px] md:h-[640px] rounded-3xl overflow-hidden shadow-[0_2px_20px_rgba(64,51,41,0.06)]"
+        className={`w-full overflow-hidden rounded-3xl shadow-[0_2px_20px_rgba(64,51,41,0.06)] ${heightClassName}`}
       />
 
       {/* Quiet caption replaces the old boxed legend. The heatposts
