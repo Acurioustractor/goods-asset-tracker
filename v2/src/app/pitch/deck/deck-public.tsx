@@ -271,15 +271,27 @@ function SlideSection({
           {slide.body}
         </p>
 
-        {/* The narration: told in the first person, the way it gets told in the room */}
-        {slide.script && (
-          <p
-            className="mt-5 text-lg leading-relaxed text-foreground/90"
-            style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
-          >
-            {slide.script}
-          </p>
-        )}
+        {/*
+         * `slide.script` is DELIBERATELY NOT RENDERED. It is the in-room narration, written in
+         * the first person for a presenter, and it was published here until 2026-08-02 on a
+         * route that carries no `noindex` and that audience.ts points funders at.
+         *
+         * What that published: the money slide's script names every funder in the pipeline with
+         * their amount and stage (Minderoo, Tim Fairfax, Snow, Rotary Eclub, Centrecorp, SEFA,
+         * White Box, LendForGood, Metro Finance), to an audience that includes those same
+         * people. The ask slide's script carried "thirty seven days from a standing start",
+         * a relative date measured from a deadline that no longer exists.
+         *
+         * It also broke the guards. `deck.guards.test.ts` builds PUBLIC_STRINGS from headline,
+         * body, eyebrow, place, chips and steps, and excludes `script` on the stated premise
+         * that no public renderer reads it. That premise was false HERE and only here, so every
+         * claim check ran against a string set that omitted the longest prose on the page.
+         * Removing this render is what makes the premise true; a test in that file now asserts
+         * it rather than trusting a comment.
+         *
+         * /pitch/road has never rendered `script`. If a rehearsal surface is wanted, it belongs
+         * behind the /admin gate, not on an open route.
+         */}
 
         {slide.steps && (
           <ol className="mt-7 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
