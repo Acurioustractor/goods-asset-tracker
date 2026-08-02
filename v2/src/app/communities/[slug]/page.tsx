@@ -16,6 +16,7 @@ import { StorytellerAvatar } from '@/components/storyteller-avatar';
 import { isClearedForExternal } from '@/lib/data/cleared-voices';
 import { getGoodsStorytellers, slugify } from '@/lib/storytellers';
 import { makeCommunityMatcher } from '@/lib/data/community-match';
+import { communityRecord, isPublishable } from '@/lib/data/community-record';
 import type { EmpathyLedgerStoryteller } from '@/lib/empathy-ledger/types';
 import { CommunityMapClient } from '../map-wrapper';
 
@@ -161,7 +162,21 @@ export default async function CommunityPage({ params }: PageProps) {
   );
 
   const storytellerCount = storytellers.length > 0 ? storytellers.length : community.storytellerCount;
-  const plasticKg = community.bedsDelivered * PLASTIC_KG_PER_BED;
+
+  // One record, assembled from the canon modules that already own each number. Only the
+  // `cleared` fields are read here: this page is open and indexed, so stage, modules and the
+  // next decision (all 'confirm-together') never reach it. See community-record.ts.
+  const record = communityRecord(slug);
+  const assets = record?.assets && isPublishable(record.assets) ? record.assets.value : null;
+
+  // Plastic is diverted by Stretch Beds, which are pressed from recycled HDPE. Basket Beds are
+  // not, and this line multiplied EVERY delivered bed by 20kg until 2026-08-02, which overstated
+  // it at every community holding Basket Beds (Utopia read 2,940kg against a canon 1,740kg).
+  // CANONICAL_ASSETS.plasticKg is 3,540 = 177 Stretch x 20kg, so canon always used the narrower
+  // basis and this surface disagreed with it. The record computes it the canon way; the fallback
+  // only runs for a community with no canon row, where the old basis is all there is.
+  const plasticKg = assets ? assets.plasticKg : community.bedsDelivered * PLASTIC_KG_PER_BED;
+  const washers = assets?.washers ?? 0;
 
   return (
     <article className="mx-auto max-w-5xl px-4 py-12 sm:py-16">
@@ -202,6 +217,22 @@ export default async function CommunityPage({ params }: PageProps) {
           </div>
           <div className="mt-1 text-xs uppercase tracking-wider text-stone-500">Beds delivered</div>
         </div>
+        {washers > 0 && (
+          <div className="rounded-lg border border-stone-200 bg-white p-4">
+            <div className="font-display text-3xl font-bold text-amber-700">{washers}</div>
+            <div className="mt-1 text-xs uppercase tracking-wider text-stone-500">
+              Washing machine{washers === 1 ? '' : 's'}
+              <span className="block normal-case tracking-normal text-stone-400">
+                in community
+              </span>
+            </div>
+          </div>
+        )}
+        {/* Hidden at zero rather than printed as "0kg". Palm Island holds 131 Basket Beds and no
+            Stretch Beds, so on the canon basis it diverts none, and a bare 0kg on a community's
+            own page reads as a failure rather than as a different product mix. The other two
+            cards in this band already appear conditionally. */}
+        {plasticKg > 0 && (
         <div className="rounded-lg border border-stone-200 bg-white p-4">
           <div className="font-display text-3xl font-bold text-amber-700">
             {plasticKg.toLocaleString()}kg
@@ -209,10 +240,11 @@ export default async function CommunityPage({ params }: PageProps) {
           <div className="mt-1 text-xs uppercase tracking-wider text-stone-500">
             Plastic diverted
             <span className="block normal-case tracking-normal text-stone-400">
-              modelled at {PLASTIC_KG_PER_BED}kg per bed
+              modelled at {PLASTIC_KG_PER_BED}kg per Stretch Bed
             </span>
           </div>
         </div>
+        )}
         {storytellerCount > 0 && (
           <div className="rounded-lg border border-stone-200 bg-white p-4">
             <div className="font-display text-3xl font-bold text-amber-700">{storytellerCount}</div>
