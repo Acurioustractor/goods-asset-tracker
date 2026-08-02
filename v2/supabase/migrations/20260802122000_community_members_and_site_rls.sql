@@ -153,9 +153,18 @@ alter table public.production_inventory enable row level security;
 alter table public.production_journal enable row level security;
 
 -- Close the anonymous read path explicitly as well as through RLS.
+--
+-- Both halves are needed. RLS alone left the three new tables answering an
+-- anonymous request with [] rather than a refusal, because every policy is
+-- `to authenticated` and anon still held the SELECT grant. An empty array is
+-- indistinguishable from "there is nothing here", which is the shape a leak
+-- hides in. Verified after applying, 2026-08-02: all six now return 42501.
 revoke all on public.production_inventory from anon;
 revoke all on public.production_journal from anon;
 revoke all on public.production_shifts from anon;
+revoke all on public.production_sites from anon;
+revoke all on public.site_maintenance_requests from anon;
+revoke all on public.community_members from anon;
 
 drop policy if exists production_inventory_select on public.production_inventory;
 create policy production_inventory_select on public.production_inventory
