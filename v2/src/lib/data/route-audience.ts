@@ -1309,6 +1309,17 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     verdict: 'keep',
   },
   {
+    route: '/partners',
+    audience: 'partner',
+    access: 'open',
+    leadsWithNow: {
+      heading: 'Nine modules. You take the ones that are yours.',
+      eyebrow: 'For delivery partners',
+      body: 'Every pathway begins with what is already strong. The modules, pace, partners and ownership destination are decided with each community.',
+    },
+    verdict: 'keep',
+  },
+  {
     route: '/partners/[slug]/dashboard',
     audience: 'partner',
     access: 'open',

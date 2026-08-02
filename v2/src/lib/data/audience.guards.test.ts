@@ -89,11 +89,12 @@ describe('front doors', () => {
     }
   });
 
-  it('records the partner gap rather than papering over it', () => {
-    // /partners does not exist yet (wayfinder #187). The null is deliberate and is reported by
-    // check:audience on every run. If someone sets it, the page had better be there.
-    const partner = audience('partner');
-    expect(partner.frontDoor).toBeNull();
+  it('sends delivery partners to the page built for them', () => {
+    // /partners was built 2026-08-02 (wayfinder #187), closing the last null front door. It leads
+    // with the nine modules because partner.leadWith says so, and carries no figure at all because
+    // partner.mustNeverSee forbids "a number that assumes a whole site when they are taking one
+    // module". check:audience asserts the route exists, is not retired, and is not noindexed.
+    expect(audience('partner').frontDoor).toBe('/partners');
   });
 });
 
