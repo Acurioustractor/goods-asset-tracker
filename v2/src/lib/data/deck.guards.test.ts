@@ -45,10 +45,10 @@ const PUBLIC_STRINGS: { where: string; text: string }[] = deckSlides.flatMap((s)
 describe('no public renderer reads note or script', () => {
   // The premise PUBLIC_STRINGS rests on. A comment cannot hold it: this exact
   // claim was written down on 2026-08-01 and was already untrue for `script`.
-  const PUBLIC_RENDERERS = [
-    'src/app/pitch/deck/deck-public.tsx',
-    'src/app/pitch/road/page.tsx',
-  ];
+  // /pitch/deck was deleted 2026-08-02 (map #177, ticket #183): it rendered the same 16 slides
+  // from the same module as /pitch/road, and the only difference was the presenter script this
+  // guard was written to stop publishing. /pitch/road never rendered it.
+  const PUBLIC_RENDERERS = ['src/app/pitch/road/page.tsx'];
 
   it.each(PUBLIC_RENDERERS)('%s renders neither slide.note nor slide.script', (rel) => {
     const source = readFileSync(join(process.cwd(), rel), 'utf8');

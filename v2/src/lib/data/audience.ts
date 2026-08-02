@@ -70,15 +70,25 @@ export function entityDoor(door: DoorId): EntityDoor {
 }
 
 // ---------------------------------------------------------------------------
-// The six audiences
+// The eight audiences
 // ---------------------------------------------------------------------------
 
+/**
+ * `press` and `operator` were added 2026-08-02, when the six were laid against the real 202 routes
+ * for the first time and seventeen of them turned out to have a reader who was none of the six.
+ * `partner` was the nearest fit for the wiki and it was wrong: a plant safety briefing is not
+ * "which of the nine modules is theirs, and which is ours". Since `leadWith` is what every surface
+ * derives its instruction from, a near-miss audience produces a classification that is precise and
+ * wrong, which is worse than an absent one.
+ */
 export type AudienceId =
   | 'community'
   | 'funder'
   | 'buyer'
   | 'supporter'
   | 'partner'
+  | 'operator'
+  | 'press'
   | 'internal';
 
 export interface Audience {
@@ -95,10 +105,29 @@ export interface Audience {
   mustNeverSee: string[];
   /** One action. If a surface offers this audience two, it is serving two audiences. */
   nextAction: string;
-  /** Which of the three money doors, if any. Internal and partner audiences have none. */
+  /** Which of the three money doors, if any. Internal, partner, operator and press have none. */
   door: DoorId | null;
-  /** Surfaces that serve them. Routes where they exist. */
-  servedBy: string[];
+  /**
+   * The ONE route this audience is sent to. Hand-set, because it is a judgement about where a
+   * conversation starts rather than a fact derivable from route data.
+   *
+   * Null means the door does not exist yet. That is legal and it is COUNTED: `check:audience`
+   * reports the number of audiences with no front door on every run, so a known gap stays in build
+   * output rather than living only in a ticket someone can close.
+   *
+   * This replaced `servedBy`, an unordered `string[]` that mixed real routes, routes that did not
+   * exist (`/products`, `/export`), repo files and one human channel. Because it was unordered the
+   * model could not answer the only question that matters — where do I send a funder — and when
+   * that question was finally asked out loud on 2026-08-02, four of six answers contradicted what
+   * `servedBy` listed first.
+   */
+  frontDoor: string | null;
+  /**
+   * Everything that reaches this audience and is NOT an app route: a person, a repo file, a printed
+   * thing. Hand-authored, because nothing else in the system can hold it and deriving the route
+   * list would have silently deleted it. 'a person they already know' is the truest line here.
+   */
+  alsoReachedVia: string[];
   /** Anything unresolved that changes how we treat this audience. */
   open?: string;
 }
@@ -124,7 +153,8 @@ export const AUDIENCES: Audience[] = [
     ],
     nextAction: 'A yarn, with nothing proposed.',
     door: null,
-    servedBy: ['/pathways', '/field-notes', 'a person they already know'],
+    frontDoor: '/communities',
+    alsoReachedVia: ['a person they already know'],
   },
   {
     id: 'funder',
@@ -148,7 +178,8 @@ export const AUDIENCES: Audience[] = [
     nextAction:
       'A letter naming amount, instrument, funder legal name and a callable contact. A fortnight of work, not a facility agreement.',
     door: 'invest',
-    servedBy: ['/pitch/deck', '/pitch/funder-pathways', '/export'],
+    frontDoor: '/pitch/road',
+    alsoReachedVia: [],
     open: 'What SIH will accept as match paper is unanswered, and it is worth more than the rest of the sequencing put together.',
   },
   {
@@ -168,7 +199,8 @@ export const AUDIENCES: Audience[] = [
     ],
     nextAction: 'An order, or a quote.',
     door: 'buy',
-    servedBy: ['/shop', '/shop/stretch-bed-single', '/products'],
+    frontDoor: '/shop',
+    alsoReachedVia: [],
     open: 'The 51% ownership gate blocks the procurement lane most of the time. The direction to test, not yet a decision, is that the community production entity is the seller with Goods. as its supplier.',
   },
   {
@@ -187,7 +219,8 @@ export const AUDIENCES: Audience[] = [
     ],
     nextAction: 'Donate, or join the list.',
     door: 'donate',
-    servedBy: ['/story', '/story/road', '/field-notes'],
+    frontDoor: '/story',
+    alsoReachedVia: [],
   },
   {
     id: 'partner',
@@ -206,7 +239,55 @@ export const AUDIENCES: Audience[] = [
     ],
     nextAction: 'Agree scope and roles in writing.',
     door: null,
-    servedBy: ['/pathways', '/admin/pathways'],
+    // Null until /partners is built. Counted by check:audience every run, not quietly satisfied
+    // by /pathways, which is noindexed for a consent reason and cannot be a front door.
+    frontDoor: null,
+    alsoReachedVia: [],
+  },
+  {
+    id: 'operator',
+    label: 'Operators',
+    who: 'People running a plant, pressing sheets, or handing a bed over in a home.',
+    arrivesBelieving:
+      'That they already know how, because the last person showed them once.',
+    leadWith: 'The procedure, in the order it is actually done.',
+    needsToSee: [
+      'The step they are on, and the one immediately after it.',
+      'The number that says whether it is working: temperature, throughput, tolerance.',
+      'Who to ask when it goes wrong, by name.',
+    ],
+    mustNeverSee: [
+      'A step reordered to read better. The order is the safety.',
+      'A specification without its tolerance, which reads as though any value will do.',
+      'A figure typed by hand rather than read from the product data. The heat press is 180C; the 190C that circulated for months came from a document nobody could source.',
+    ],
+    nextAction: 'Do the next step.',
+    door: null,
+    frontDoor: '/wiki',
+    alsoReachedVia: ['a printed handbook in the container', 'the person who trained them'],
+    open: 'The wiki is publicly readable. Whether an operator surface should be open, gated or printed has never been decided, and safety content on an open route is a different risk from marketing content.',
+  },
+  {
+    id: 'press',
+    label: 'Press',
+    who: 'Journalists and editors writing about the work.',
+    arrivesBelieving:
+      'That this is a charity story about beds, and that the community is the subject rather than the author.',
+    leadWith: 'The wordmark, the cleared photographs, and a person they can ring.',
+    needsToSee: [
+      'Which images and words are cleared for publication, stated as such.',
+      'Whose story it is, and how to credit them correctly.',
+      'A contact who can answer the same day.',
+    ],
+    mustNeverSee: [
+      'A photograph, name or quote that is not consent-cleared. A journalist republishes it and no gate we hold can reach into a masthead afterwards.',
+      'Goods. and Goods on Country used interchangeably. One is the maker and seller, the other is the charity, and conflating them has already reached funder documents.',
+      'A modelled figure without its label, which will be printed as fact.',
+    ],
+    nextAction: 'Take the kit, and ring the contact before publishing.',
+    door: null,
+    frontDoor: '/press',
+    alsoReachedVia: ['a direct approach to Ben or Nic'],
   },
   {
     id: 'internal',
@@ -225,7 +306,8 @@ export const AUDIENCES: Audience[] = [
     ],
     nextAction: 'Read /STRATEGY.md, then /DECISIONS.md.',
     door: null,
-    servedBy: ['/STRATEGY.md', '/DECISIONS.md', '/CONTEXT.md'],
+    frontDoor: '/admin',
+    alsoReachedVia: ['/STRATEGY.md', '/DECISIONS.md', '/CONTEXT.md'],
   },
 ];
 
@@ -277,6 +359,7 @@ export function audienceAssertions(): string[] {
       a.leadWith,
       a.nextAction,
       ...a.needsToSee,
+      ...a.alsoReachedVia,
       ...(a.open ? [a.open] : []),
     ]),
   ];

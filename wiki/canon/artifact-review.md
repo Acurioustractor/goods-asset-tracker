@@ -9,29 +9,42 @@ None. Every citesCanon id resolves to a canon fact.
 - **19-slide deck blueprint**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-02)
   - stretch-price (canon 2026-07-25 > verified 2026-06-02)
+  - marginal-factory (canon 2026-07-31 > verified 2026-06-02)
   - marginal-community (canon 2026-07-25 > verified 2026-06-02)
+  - save-per-bed (canon 2026-07-31 > verified 2026-06-02)
 - **Catalytic pitch bundle (7 docs)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-02)
+  - save-per-bed (canon 2026-07-31 > verified 2026-06-02)
 - **Pencil designed deck**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-02)
   - revenue-received (canon 2026-06-03 > verified 2026-06-02)
+  - save-per-bed (canon 2026-07-31 > verified 2026-06-02)
 - **Pitch Page and Documents (Notion)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-02)
   - revenue-received (canon 2026-06-03 > verified 2026-06-02)
+  - save-per-bed (canon 2026-07-31 > verified 2026-06-02)
 - **Public pitch page + document (/pitch)**
   - beds-deployed (canon 2026-07-18 > verified 2026-05-30)
 - **Cost Lab (/sites/cost-lab)**
+  - marginal-factory (canon 2026-07-31 > verified 2026-06-05)
   - marginal-community (canon 2026-07-25 > verified 2026-06-05)
+  - save-per-bed (canon 2026-07-31 > verified 2026-06-05)
   - stretch-price (canon 2026-07-25 > verified 2026-06-05)
 - **Investor cockpit (/investors)**
+  - marginal-factory (canon 2026-07-31 > verified 2026-06-05)
   - stretch-price (canon 2026-07-25 > verified 2026-06-05)
 - **Cost-story (/cost-story)**
+  - save-per-bed (canon 2026-07-31 > verified 2026-06-02)
   - stretch-price (canon 2026-07-25 > verified 2026-06-02)
 - **Cost model v6 engine**
+  - marginal-factory (canon 2026-07-31 > verified 2026-05-29)
   - marginal-community (canon 2026-07-25 > verified 2026-05-29)
+  - save-per-bed (canon 2026-07-31 > verified 2026-05-29)
 - **Best-case scenario (seed fleet of 3)**
+  - marginal-factory (canon 2026-07-31 > verified 2026-06-05)
   - marginal-community (canon 2026-07-25 > verified 2026-06-05)
 - **Cost Lab playbook**
+  - save-per-bed (canon 2026-07-31 > verified 2026-06-05)
   - stretch-price (canon 2026-07-25 > verified 2026-06-05)
 - **Impact page (/impact)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-03)
@@ -53,7 +66,7 @@ None. Every citesCanon id resolves to a canon fact.
 - **Community Stories + Empathy Ledger (/stories)**
   - el-published-stories (canon 2026-07-25 > verified 2026-06-17)
 - **Impact measurement method (consent-cleared voices)**
-  - cleared-voices (canon 2026-07-21 > verified 2026-06-17)
+  - cleared-voices (canon 2026-08-01 > verified 2026-06-17)
 - **Scored risk register (14 risks)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-13)
 - **Investor Alignment Tool (SIH, populated, canonical)**
@@ -63,10 +76,14 @@ None. Every citesCanon id resolves to a canon fact.
 - **SEFA Loan Fund application brief (DRAFT)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-27)
   - stretch-price (canon 2026-07-25 > verified 2026-06-27)
+  - marginal-factory (canon 2026-07-31 > verified 2026-06-27)
   - marginal-community (canon 2026-07-25 > verified 2026-06-27)
+  - save-per-bed (canon 2026-07-31 > verified 2026-06-27)
 - **Snow Foundation first-mover brief (DRAFT)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-27)
   - stretch-price (canon 2026-07-25 > verified 2026-06-27)
+  - marginal-factory (canon 2026-07-31 > verified 2026-06-27)
+  - save-per-bed (canon 2026-07-31 > verified 2026-06-27)
 - **Centrecorp next-round beds brief (DRAFT)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-27)
   - stretch-price (canon 2026-07-25 > verified 2026-06-27)
@@ -78,6 +95,8 @@ None. Every citesCanon id resolves to a canon fact.
   - beds-deployed (canon 2026-07-18 > verified 2026-07-01)
   - washers-in-community (canon 2026-07-21 > verified 2026-07-01)
   - stretch-price (canon 2026-07-25 > verified 2026-07-01)
+  - marginal-factory (canon 2026-07-31 > verified 2026-07-01)
+  - save-per-bed (canon 2026-07-31 > verified 2026-07-01)
 - **Funder one-pager (rendered)**
   - beds-deployed (canon 2026-07-18 > verified 2026-07-01)
 - **Investment machine review (Notion + design surfaces)**
@@ -85,7 +104,7 @@ None. Every citesCanon id resolves to a canon fact.
   - washers-in-community (canon 2026-07-21 > verified 2026-07-02)
   - stretch-price (canon 2026-07-25 > verified 2026-07-02)
 - **Investment machine blueprint (GHL + Notion operating system)**
-  - cleared-voices (canon 2026-07-21 > verified 2026-07-02)
+  - cleared-voices (canon 2026-08-01 > verified 2026-07-02)
 - **New outreach drafts (LendForGood, Metro, Tripple)**
   - beds-deployed (canon 2026-07-18 > verified 2026-07-02)
 - **Next-phase one-pager (rendered)**

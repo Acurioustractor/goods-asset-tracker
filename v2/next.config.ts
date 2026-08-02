@@ -76,6 +76,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // /media -> /press. Predates the route sweep; the page it shadowed was deleted 2026-08-02.
       { source: '/media', destination: '/press', permanent: true },
       // /pitch/simple RETIRED 2026-08-02, ruling W. Ruling R kept it for one reason, that it was
       // the PDF pipeline, and the pipeline was broken: the renderer it told you to run,
@@ -84,6 +85,41 @@ const nextConfig: NextConfig = {
       // every slide two or three times, and slide 1 still carried the north star retired by
       // rulings D and E. Archived with a restore note at _archive/2026-08-02-pitch-simple/.
       { source: '/pitch/simple', destination: '/pitch/road', permanent: true },
+      // ── Route sweep, 2026-08-02. Wayfinder map #177; every entry cites the ticket that
+      // ruled it. All ship as 307 (permanent: false) and are promoted to 308 only once they have
+      // held: the /brand rule below is why. A wrong 308 kept redirecting AFTER its rule was
+      // deleted, because browsers cache it hard and we cannot reach them.
+
+      // #182 — one telling. /story keeps the URL and takes /story/road's content.
+      { source: '/story/road', destination: '/story', permanent: false },
+      { source: '/about', destination: '/story', permanent: false },
+      { source: '/the-work', destination: '/story', permanent: false },
+      { source: '/mission', destination: '/story', permanent: false },
+
+      // #183 — one deck. /pitch/road is the front door; /pitch/deck rendered the same 16 slides
+      // from the same module, and /pitch was only ever the index that /pitch/road now is.
+      { source: '/pitch', destination: '/pitch/road', permanent: false },
+      { source: '/pitch/deck', destination: '/pitch/road', permanent: false },
+      { source: '/pitch/control-room', destination: '/pitch/road', permanent: false },
+      { source: '/deck', destination: '/pitch/road', permanent: false },
+
+      // #183 — internal tooling moves behind the admin gate. noindex was never a gate: a
+      // noindexed page is fully readable by anyone holding the URL, and these sat on a
+      // funder-facing path prefix.
+      { source: '/pitch/investor-lab', destination: '/admin/investor-lab', permanent: false },
+      { source: '/pitch/workshop', destination: '/admin/pitch-workshop', permanent: false },
+      { source: '/pitch/miro-board', destination: '/admin/miro-board', permanent: false },
+      { source: '/pitch/photo-review', destination: '/admin/deck-photo-review', permanent: false },
+
+      // #185 — products.ts says the canonical slug is stretch-bed; the live URL is
+      // stretch-bed-single and sits in Stripe checkout flows, so the canonical slug redirects
+      // rather than the live URL moving.
+      { source: '/shop/stretch-bed', destination: '/shop/stretch-bed-single', permanent: false },
+
+      // #188 — marked retire 2026-07-20 in route-review.ts and never executed: a live admin page
+      // reading Supabase products while products.ts is canon.
+      { source: '/admin/products', destination: '/admin', permanent: false },
+
       // The '/brand' -> '/press#brand-system' redirect was REMOVED 2026-07-25. It predated the
       // dedicated /brand page (src/app/brand/page.tsx, the brand kit and guide downloads) and
       // silently shadowed it: the route shipped in PR #160 and was unreachable in production,

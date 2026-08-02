@@ -38,11 +38,13 @@ const EXPECTED_IDS: AudienceId[] = [
   'buyer',
   'supporter',
   'partner',
+  'operator',
+  'press',
   'internal',
 ];
 
 describe('shape', () => {
-  it('is the six audiences, in the ruled order', () => {
+  it('is the eight audiences, in the ruled order', () => {
     expect(AUDIENCES.map((a) => a.id)).toEqual(EXPECTED_IDS);
   });
 
@@ -53,6 +55,45 @@ describe('shape', () => {
   it('resolves every audience by id, and throws on an unknown one', () => {
     for (const id of EXPECTED_IDS) expect(audience(id).id).toBe(id);
     expect(() => audience('funders' as AudienceId)).toThrow(/unknown audience/i);
+  });
+});
+
+describe('front doors', () => {
+  // `servedBy` was replaced 2026-08-02. It was an unordered string[] mixing real routes, routes
+  // that did not exist, repo files and one human channel, and it had never been checked against
+  // the filesystem. These guards exist so its successor cannot rot the same way.
+
+  it('gives every audience a front door field, null only where the door does not exist yet', () => {
+    for (const a of AUDIENCES) {
+      expect(a, `${a.id} must declare frontDoor, even if null`).toHaveProperty('frontDoor');
+      if (a.frontDoor !== null) {
+        expect(a.frontDoor, `${a.id}.frontDoor must be an app route`).toMatch(/^\//);
+      }
+    }
+  });
+
+  it('sends no two audiences to the same front door', () => {
+    const doors = AUDIENCES.map((a) => a.frontDoor).filter((d): d is string => d !== null);
+    expect(new Set(doors).size, `duplicate front door: ${doors.join(', ')}`).toBe(doors.length);
+  });
+
+  it('keeps alsoReachedVia free of app routes', () => {
+    // If it is a route it belongs in route-audience.ts. This is the mixed-bag failure servedBy had.
+    for (const a of AUDIENCES) {
+      for (const via of a.alsoReachedVia) {
+        expect(
+          via.startsWith('/') && !via.endsWith('.md'),
+          `${a.id}.alsoReachedVia contains "${via}", which looks like an app route`,
+        ).toBe(false);
+      }
+    }
+  });
+
+  it('records the partner gap rather than papering over it', () => {
+    // /partners does not exist yet (wayfinder #187). The null is deliberate and is reported by
+    // check:audience on every run. If someone sets it, the page had better be there.
+    const partner = audience('partner');
+    expect(partner.frontDoor).toBeNull();
   });
 });
 
