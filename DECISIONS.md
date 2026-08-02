@@ -19,6 +19,116 @@
 
 ---
 
+## 2026-08-02 — the routes, and who each one is for
+
+Ben rulings, taken working the wayfinding map
+[#177](https://github.com/Acurioustractor/goods-asset-tracker/issues/177) through twelve tickets.
+The map is the long form; each ruling below cites the ticket that resolved it.
+
+The problem these answer: `audience.ts` was written 2026-07-26, describes who we talk to and what
+each of them came for, and had **never been applied to a single route**. Its own header names the
+failure it exists for, and nothing was checking.
+
+### Z. The sweep. One telling, one deck, and four things that had earned retirement.
+
+**Executed and merged the same day (PR #191, `main` `af53e45`), verified live.** This ruling is
+recorded after the fact deliberately: this repo has twice found a ruling whose sweep was written
+and never run, so the entry is written when the sweep is done, not when it is decided.
+
+**One telling.** `/about`, `/story`, `/the-work` and `/story/road` retold one thing, and the first
+three were the same sentence rearranged: "Made by community", "Built with communities, not for
+them", "Led by community". **`/story` keeps its URL and takes `/story/road`'s content**, which was
+the only one of the four not opening with a slogan and the one that matches ruling C. The other
+three redirect to it.
+
+**The other twelve candidates are NOT retellings and they keep.** `/stories`, `/field-notes`,
+`/gallery`, `/insights`, `/communities`, `/process`, `/cost-story`, `/pathways`, `/press` are
+distinct content types. The brief that opened this work said "one story told eight ways"; reading
+all sixteen from production showed it is told **four** ways, and collapsing the rest would have
+been a loss (ticket #182).
+
+**One deck.** `/pitch` and `/pitch/deck` redirect to `/pitch/road`. Once the presenter script was
+removed (PR #190) the two rendered the same sixteen slides from the same module; `/pitch` was only
+ever the index `/pitch/road` now is (ticket #183).
+
+**Four internal tools move behind the admin gate**: `investor-lab`, `pitch-workshop`, `miro-board`,
+`deck-photo-review`. Two said so in their own source, "Internal working surface, not a funder
+destination. Indexed by accident until 2026-07-26." **`noindex` was never a gate.** A noindexed
+page is fully readable by anyone holding the URL, and these sat on a funder-facing path prefix.
+
+**Retired, each having earned it.** `retire` requires zero inbound links AND never shared
+externally; anything else redirects, and when unsure, redirect (ticket #184). `/shop/[slug]` queried
+Supabase while `products.ts` is canon and resolved nothing. `/media/page.tsx` was shadowed by its own
+config redirect and unreachable, and it is **the open sweep item from ruling S**. The four `/design/*` mocks
+were already 404ing. `/admin/products` was marked retire on 2026-07-20 in `route-review.ts` and never
+executed: thirteen days a live page reading a source that contradicts canon.
+
+**All redirects ship 307, promoted to 308 only once they hold.** The reason is in `next.config.ts`:
+the `/brand` rule was a 308, shadowed a real page, and **kept redirecting after it was deleted**,
+because browsers cache it hard and we cannot reach them.
+
+**Sweep, still open.** Move the 14 admin page-level redirects into `next.config.ts` · absorb
+`route-review.ts` (migrate `job` and `dataSources`, delete the file, re-render
+`/admin/route-review`) · `/partners` built and awaiting merge (PR #192).
+
+### Y. The audience model gains `operator` and `press`. Six was never enough; nobody had checked.
+
+Laying the six against the real 202 routes for the first time found **seventeen with a reader who
+was none of them**. `/press` serves journalists. The fifteen `/wiki/*` routes are
+`Operations Handbook`, `Machine Specifications`, `Plant safety briefing` and `Recipient handover
+script`. They serve operators running a plant or handing over a bed.
+
+`partner` was the nearest fit for the wiki and it was wrong: a plant safety briefing is not "which of
+the nine modules is theirs, and which is ours."
+
+**Why a near miss was worse than an absence.** `shouldLeadWith` is DERIVED from the audience, so
+forcing seventeen routes into an audience that does not describe their reader hands every one of
+them an instruction that does not fit, and the guard then measures them against it. The
+classification would have been precise and wrong.
+
+Both carry `door: null`. Front doors: `press` → `/press`, `operator` → `/wiki`.
+
+**⚠ Open, and recorded rather than left implicit:** the wiki is publicly readable, and **safety
+content on an open route is a different risk from marketing content**. Whether the operator surface
+should be open, gated or printed has never been decided. Held in `operator.open`.
+
+### X. Exactly one audience per route. No primary, no secondary, no escape but `plumbing`.
+
+A route that serves two readers is a route that has not been split yet, and saying so is the point.
+
+`/pathways` claimed both `community` and `partner`, and those two want **opposite** things from it:
+community must lead with a yarn and must never see a facility proposal; partner must lead with which
+of the nine modules is theirs, which is close to a facility proposal. One page cannot do both without
+failing one of them (ticket #178).
+
+**A correction this supersedes.** `nextAction`'s note, *"If a surface offers this audience two, it
+is serving two audiences"*, was read as already forbidding this. It does not. It says two actions
+are **evidence** of a second audience. The prohibition is new here.
+
+**`shouldLeadWith` is derived, not stored.** One lead per audience, living in `audience.ts`, so
+changing `buyer.leadWith` moves every buyer route at once. This is what makes the audience model
+load-bearing rather than decorative.
+
+**`servedBy` is deleted.** It was an unordered `string[]` mixing real routes, routes that never
+existed (`/products`, `/export`), repo files and one human channel, and had never once been checked
+against the filesystem. Being unordered it could not answer the only question that matters, which is where
+do I send a funder, and when that was finally asked out loud, **four of six answers contradicted
+what `servedBy` listed first**. Replaced by `frontDoor: string | null` and `alsoReachedVia`, which
+keeps 'a person they already know', the truest line in the model and the one a derived list would
+have silently deleted (ticket #180).
+
+**The verdict vocabulary is `keep · rewrite · redirect · retire · plumbing`.** `rewrite` is the one
+that matters: right reader, wrong lead. Without it the audit produces a tidy-up instead of a
+diagnosis. **The `rewrite` count is the number this reports, and it is nine.** Two of them are front
+doors breaking their own audience's `mustNeverSee` word for word: `/shop` leads with impact ahead of
+the spec, `/story` leads with aggregate language where a person should be.
+
+**`check:audience` enforces all of it**, in `check:drift` and `check:drift:ci`, citing the rule it
+fails on. Coverage is checked in both directions, because the failure this exists to prevent is not
+a bad record. It is **a new route shipped without anyone asking who it is for**.
+
+---
+
 ## 2026-07-31 — the pitch ending, and the four communities
 
 Ben rulings, taken while rebuilding the ending of `/pitch/road`.
