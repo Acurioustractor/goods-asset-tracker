@@ -4,7 +4,9 @@ import { FUNDER_PAGES } from '@/lib/data/funder-pages'
 import { PARTNER_DASHBOARDS } from '@/lib/data/partner-dashboards'
 
 // Routes that require user authentication (phone-based)
-const protectedUserRoutes = ['/my-items', '/community', '/production']
+// /site is the community production portal. It was gated from its first commit;
+// /portal, which predates it, still is not — see ticket in the branch notes.
+const protectedUserRoutes = ['/my-items', '/community', '/production', '/site']
 
 // Routes protected by simple password (cookie-based)
 const passwordProtectedRoutes = ['/impact', '/api/impact']
