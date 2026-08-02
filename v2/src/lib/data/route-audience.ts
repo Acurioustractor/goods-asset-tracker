@@ -1651,7 +1651,7 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
       body: 'Every purchase supports remote First Nations communities across Australia. Each bed diverts',
     },
     verdict: 'rewrite',
-    why: 'buyer.mustNeverSee, verbatim: "The impact story ahead of the spec. A procurement buyer who cannot find the lead time does not stay for the mission." Leads "Shop Beds / Every purchase supports remote First Nations communities across Australia." The spec-first rebuild exists unmerged on origin/feat/six-front-doors.',
+    why: 'buyer.mustNeverSee, verbatim: the impact story ahead of the spec. A procurement buyer who cannot find the lead time does not stay for the mission. FIX WRITTEN 2026-08-02 on fix/shop-spec-first: the page leads "The straight answers, before the buy button" over SHOP_ANSWERS in the ruled order, spec then price then lead time then freight then life then who fixes it. The verdict stays rewrite until it is DEPLOYED and re-read, because leadsWithNow is production truth and production still serves the old page. Re-run scripts/read-route-leads.mjs after merge, then flip to keep.',
   },
   {
     route: '/shop/[slug]',
