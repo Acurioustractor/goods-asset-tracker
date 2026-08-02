@@ -112,7 +112,7 @@ const SCENARIOS: Array<{
   {
     key: 'seed-fleet',
     label: 'Seed fleet of 3 (best case)',
-    hint: 'The QBE stack ($400K signed + $400K match) funds 3 containers up-front, then surplus compounds. Modelled.',
+    hint: '$400K of signed external capital funds 3 containers up-front, then surplus compounds. A QBE grant, if awarded, would sit on top and is not modelled here. Modelled.',
     inputs: { build_method: 'community', beds_per_year: 1500, location: 'on_country', containerise: true },
     sim: { startingContainers: 3, path: 'community', bedsPerContainerYear: 500, containerCost: 125_000, siteOverheadPerYear: 24_000, signedExternal: 400_000, horizonYears: 8 },
   },
@@ -268,8 +268,10 @@ export function CostLabWorkspace() {
   // ── Container coster derived values ──
   const capexLow = capexRows.reduce((s, r) => s + (Number.isFinite(r.low) ? r.low : 0), 0);
   const capexHigh = capexRows.reduce((s, r) => s + (Number.isFinite(r.high) ? r.high : 0), 0);
-  const netLow = Math.max(0, capexLow - ALREADY_INVESTED);
-  const netHigh = Math.max(0, capexHigh - ALREADY_INVESTED);
+  // RULING P, 2026-07-25: capital is quoted GROSS ONLY and sunk spend sits beside it, never
+  // netted. NET_CAPITAL_LOW/HIGH were deleted from engine.ts and are guarded there; this file
+  // recomputed them privately and rendered the result as "Net remaining ask", which is the same
+  // claim by another route. Removed 2026-08-02.
   const capexMid = (capexLow + capexHigh) / 2;
   const paybackBedsMid = safeDiv(capexMid, LEGS_SAVING_PER_BED);
   const paybackYearsMid = safeDiv(paybackBedsMid, inputs.beds_per_year);
@@ -314,9 +316,22 @@ export function CostLabWorkspace() {
   // Crew estimate: beds/yr per container ÷ (beds/day × ~220 working days) = crews needed, modelled.
   const crewPerContainer = safeDiv(sim.bedsPerContainerYear, inputs.community_beds_per_day * 220);
 
-  // ── QBE match math ──
-  const qbeMatch = Math.min(sim.signedExternal, MATCH_TARGET.cap);
-  const stackTotal = sim.signedExternal + qbeMatch;
+  // ── QBE coverage test ──────────────────────────────────────────────────────
+  // RULING V, 2026-08-01. There is no match arithmetic, and there used to be:
+  //   qbeMatch  = Math.min(signedExternal, cap)
+  //   stackTotal = signedExternal + qbeMatch
+  // which paid a matching dollar for every signed dollar and reported the result as "leverage
+  // on signed dollars, 2.0x". That is the mechanic ruling V retired. The program is CATALYTIC
+  // and discretionary: typically $150K to $400K, from a pool of up to $1.1M shared across TEN
+  // enterprises (2025 paid $1.02M across ten, averaging about $102K). Signing paper does not
+  // oblige QBE to anything.
+  //
+  // What the terms DO bind is the grant: it "must be at least matched by signed external
+  // commitments". That is a COVERAGE TEST on the grant, not a doubling of our money. So the only
+  // honest thing to compute is whether signed capital would cover a grant at each end of the
+  // range, and it is a gate, not a total.
+  const coversLowEnd = sim.signedExternal >= MATCH_TARGET.typicalLow;
+  const coversCap = sim.signedExternal >= MATCH_TARGET.cap;
 
   // ── Per-container impact (the support-people numbers, modelled) ──
   const wagesPerContainer = sim.bedsPerContainerYear * inputs.community_labour_per_bed;
@@ -333,10 +348,10 @@ export function CostLabWorkspace() {
       `Price ${fmt(inputs.retail_price)} | Marginal: kit ${fmt(model.marginalKit)} / factory ${fmt(model.marginalFactory)} / community ${fmt(model.marginalCommunity)}`,
       `Contribution: kit ${fmt(model.contributionKit)} / factory ${fmt(model.contributionFactory)} / community ${fmt(model.contributionCommunity)}`,
       `Fixed block ${fmt(model.fixedBlock)}/yr | Break-even (selected path) ${fmtInt(model.breakevenSelected)} beds/yr`,
-      `Container capex: gross ${fmt(capexLow)} to ${fmt(capexHigh)} | net of invested ${fmt(netLow)} to ${fmt(netHigh)} (modelled)`,
+      `Container capex: gross ${fmt(capexLow)} to ${fmt(capexHigh)}, with ${fmt(ALREADY_INVESTED)} already invested stated separately, never netted (ruling P, modelled)`,
       `Compounding (${sim.path}, ${fmtInt(sim.bedsPerContainerYear)} beds/yr/container, container ${fmt(sim.containerCost)}): start ${sim.startingContainers}, ${firstSelfFunded ? `first self-funded container year ${firstSelfFunded.year}` : 'no self-funded container in horizon'}, ${fmtInt(finalContainers)} containers by year ${sim.horizonYears}, ${fmtInt(totalBeds)} cumulative beds`,
       `Per container per year (modelled): wages ${fmt(wagesPerContainer)}, plastic ${fmtInt(Math.round(plasticPerContainer))}kg, surplus ${fmt(surplusPerContainer)}`,
-      `QBE stack: signed ${fmt(sim.signedExternal)} + match ${fmt(qbeMatch)} = ${fmt(stackTotal)} (match not secured until awarded)`,
+      `Signed external capital ${fmt(sim.signedExternal)}. QBE is catalytic and discretionary, typically ${fmt(MATCH_TARGET.typicalLow)} to ${fmt(MATCH_TARGET.cap)} from a pool of up to ${fmt(MATCH_TARGET.pool)} across ten enterprises; it is not added to our signed capital and signing does not oblige it.`,
       '',
       'Notes and decisions:',
       notes.trim() || '(none captured)',
@@ -620,7 +635,7 @@ export function CostLabWorkspace() {
           <div className="space-y-3">
             <StatChip label="Gross build cost" value={`${fmt(capexLow)} to ${fmt(capexHigh)}`} sub="Sum of the line items" />
             <StatChip label="Already invested" value={fmt(ALREADY_INVESTED)} sub="Facility + tooling to date" />
-            <StatChip label="Net remaining ask" value={`${fmt(netLow)} to ${fmt(netHigh)}`} sub="Gross minus already invested. Always say which basis you are quoting." />
+            <StatChip label="Basis" value="Gross" sub="Ruling P: capital is quoted gross, with sunk spend beside it. Never a net figure." />
             <StatChip
               label="Payback (mid-range)"
               value={`${fmtInt(Math.round(paybackBedsMid))} beds`}
@@ -690,10 +705,11 @@ export function CostLabWorkspace() {
             <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#A0532B]">
               <Factory className="h-4 w-4" aria-hidden /> Production capex
             </p>
-            <p className="mt-2 text-2xl font-semibold">{fmt(netLow)} to {fmt(netHigh)}</p>
+            <p className="mt-2 text-2xl font-semibold">{fmt(capexLow)} to {fmt(capexHigh)}</p>
             <p className="mt-1 text-xs leading-5 text-stone-500">
-              Net of {fmt(ALREADY_INVESTED)} invested. Fit: recoverable grant or catalytic capital with a
-              transfer trigger to community ownership. This is the block QBE match dollars amplify.
+              Gross, with {fmt(ALREADY_INVESTED)} already invested stated beside it rather than
+              subtracted from it. Fit: recoverable grant or catalytic capital with a transfer
+              trigger to community ownership.
             </p>
           </div>
           <div className="rounded-lg border border-stone-200 bg-white p-5">
@@ -719,37 +735,42 @@ export function CostLabWorkspace() {
         </div>
 
         <div className="mt-6 rounded-lg border border-stone-200 bg-[#2B2A26] p-6 text-[#FDF8F3]">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#BBA255]">QBE Stage 2 match math</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#BBA255]">QBE Stage 2 coverage test</p>
           <div className="mt-4 grid items-end gap-4 sm:grid-cols-[280px_1fr]">
             <NumberField
-              label="Signed match-eligible capital"
+              label="Signed external capital"
               prefix="$"
               value={sim.signedExternal}
               step={25_000}
               onChange={(n) => setSimField({ signedExternal: Math.max(0, n) })}
               hint="Legally binding commitments only. SIH verifies directly with the funder."
             />
-            <div className="grid gap-3 sm:grid-cols-3">
+            <div className="grid gap-3 sm:grid-cols-2">
               <div>
-                <p className="text-xs uppercase tracking-wide text-[#E6DFD1]/70">QBE match (up to $400K)</p>
-                <p className="mt-1 text-xl font-semibold">{fmt(qbeMatch)}</p>
+                <p className="text-xs uppercase tracking-wide text-[#E6DFD1]/70">
+                  Would cover a grant at {fmt(MATCH_TARGET.typicalLow)}
+                </p>
+                <p className="mt-1 text-xl font-semibold">{coversLowEnd ? 'Yes' : 'Not yet'}</p>
               </div>
               <div>
-                <p className="text-xs uppercase tracking-wide text-[#E6DFD1]/70">Total stack</p>
-                <p className="mt-1 text-xl font-semibold">{fmt(stackTotal)}</p>
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-wide text-[#E6DFD1]/70">Leverage on signed dollars</p>
-                <p className="mt-1 text-xl font-semibold">{safeDiv(stackTotal, sim.signedExternal, 0).toFixed(1)}x</p>
+                <p className="text-xs uppercase tracking-wide text-[#E6DFD1]/70">
+                  Would cover a grant at {fmt(MATCH_TARGET.cap)}
+                </p>
+                <p className="mt-1 text-xl font-semibold">{coversCap ? 'Yes' : 'Not yet'}</p>
               </div>
             </div>
           </div>
           <p className="mt-4 text-xs leading-5 text-[#E6DFD1]">
-            Up to $400,000 from a $1M shared pool, at least matched by signed external capital, awarded at Steering
-            Committee discretion. Application September 2026, outcomes November 2026. Repayable finance is prioritised,
-            which suits recoverable-grant structures. Innovation framing: the capex block IS the innovation (mobile
-            recycled-plastic manufacturing that transfers to community ownership), which opens innovation funds that
-            plain bed-buying grants never reach.
+            {MATCH_TARGET.note}
+          </p>
+          <p className="mt-2 text-xs leading-5 text-[#E6DFD1]/80">
+            There is no total to read here on purpose. A QBE grant is not added to signed capital
+            and signing does not oblige QBE: the requirement runs the other way, and signed capital
+            is what a grant would have to be covered by. 2025 paid {fmt(1_020_000)} across{' '}
+            {MATCH_TARGET.cohort} enterprises, averaging about {fmt(102_000)}. Innovation framing:
+            the capex block is itself the innovation, mobile recycled-plastic manufacturing that
+            transfers to community ownership, which opens innovation funds that plain bed-buying
+            grants never reach.
           </p>
         </div>
       </section>

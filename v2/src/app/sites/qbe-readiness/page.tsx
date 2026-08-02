@@ -94,14 +94,14 @@ const METRICS: Array<{ value: string; label: string; sub: string; tier: Tier }> 
   },
   {
     value: 'AU$0 signed',
-    label: 'of a ~AU$400K target',
+    label: 'of signed external capital',
     sub: 'First match-eligible capital, due signed by 31 August 2026.',
     tier: 'Open',
   },
   {
     value: 'Up to AU$400K',
     label: 'QBE match',
-    sub: 'At least 1:1 against secured capital. Repayable finance preferred.',
+    sub: 'Catalytic and discretionary, typically AU$150K to AU$400K from a pool of up to AU$1.1M across ten enterprises. Must be at least matched by signed external capital raised first. Repayable finance preferred.',
     tier: 'Target',
   },
 ];
@@ -112,7 +112,7 @@ const STACK: Array<{ label: string; amount: string; detail: string; tier: Tier }
   {
     label: 'QBE match',
     amount: 'up to AU$400K',
-    detail: 'at least 1:1 vs secured capital, repayable preferred',
+    detail: 'discretionary, must be at least matched by signed capital raised first, repayable preferred',
     tier: 'Target',
   },
   { label: 'SEFA', amount: 'AU$300K', detail: 'concessional working-capital line', tier: 'Target' },
@@ -182,11 +182,11 @@ const MILESTONES: Array<{ when: string; what: string; tier?: Tier }> = [
   },
   {
     when: 'By 31 August 2026',
-    what: 'Close the first ~AU$400K of signed, match-eligible capital. This is the one deadline that matters.',
+    what: 'Close the first signed, match-eligible capital. This is the one deadline that matters. AU$400K is the QBE program ceiling, not our capital requirement, which is built bottom up from equipment, a measured run and working capital.',
     tier: 'Open',
   },
   { when: 'September 2026', what: 'QBE Stage 2 application submitted.' },
-  { when: 'November 2026', what: 'QBE outcome decided. The match is paid against capital already raised.' },
+  { when: 'November 2026', what: 'QBE outcome decided at Steering Committee discretion. Nothing is owed to us before that, whatever we have signed.' },
 ];
 
 const PHASES: Array<{ n: number; name: string; horizon: string; body: string }> = [
@@ -461,7 +461,8 @@ export default function QbeReadinessPage() {
             Close the first{' '}
             <span className="font-semibold">~AU$400K of signed, match-eligible capital by 31
             August 2026.</span>{' '}
-            QBE then adds up to AU$400K, but only as a match, so signed external money has to come
+            QBE may then grant up to AU$400K at its own discretion, and only where signed external
+            money came
             first. Today that number is{' '}
             <span className="font-semibold text-rose-700">AU$0 signed</span>. The entire stage is the
             work of getting it off zero. A conversation problem, not a discovery problem.

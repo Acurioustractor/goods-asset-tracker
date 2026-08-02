@@ -31,6 +31,21 @@ const SCANNED_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.jsx', '.md', '.mdx',
  * $150K floor: SIH states a typical range of $150K to $400K, from a pool of up to $1.1M
  * shared across ten enterprises. Full research: wiki/investor/20-qbe-program-economics.md.
  */
+/**
+ * A line that NEGATES the retired mechanic is enforcing the rule, not breaking it.
+ *
+ * Ported from `check-retired-figures.mjs`, whose own comment records this as "the fourth time in
+ * one week a guard has flagged the field that enforces the thing it guards". This is the fifth:
+ * on 2026-08-02 this guard fired on a comment in loi-pipeline.ts reading "It is not dollar for
+ * dollar, there is no floor", which is ruling V stated correctly. A guard that punishes the
+ * correction is a guard that gets muted, and a muted guard catches nothing.
+ *
+ * Same deliberate tradeoff as the original: a negation ANYWHERE on the line suppresses that line,
+ * so a long line that both negates one claim and asserts another slips through. Accepted, because
+ * the failure direction of the alternative is worse.
+ */
+const NEGATED = /\b(not|never|no longer|retired|banned|instead of|rather than|do not|don't|avoid|stop using|is wrong|superseded)\b/i;
+
 const RETIRED_MATCH_PATTERNS = [
   /dollar[- ]for[- ]dollar/i,
   /\$?150K?\s*floor/i,
@@ -133,6 +148,7 @@ for (const root of [...scanRoots, ...extraRoots]) {
 
       if (
         !isHistoryFile &&
+        !NEGATED.test(line) &&
         !RETIRED_MATCH_ALLOWED_CONTEXT.test(line) &&
         RETIRED_MATCH_PATTERNS.some((pattern) => pattern.test(line))
       ) {

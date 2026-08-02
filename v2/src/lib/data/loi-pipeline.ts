@@ -91,15 +91,41 @@ export const STAGE_TO_RUNG: Record<string, LoiRung> = {
 
 /**
  * QBE Stage-2 funding. Program cap CONFIRMED at $400K by the Catalysing Impact
- * 2026 induction deck (31 Mar 2026): up to $400,000 from a $1M shared pool,
- * must be AT LEAST matched by external capital secured (legally binding
- * commitments), repayable finance prioritised over grants. Awarded at Steering
- * Committee discretion — application Sept 2026, outcomes Nov 2026.
+ * 2026 induction deck (31 Mar 2026). Must be AT LEAST matched by external capital
+ * secured (legally binding commitments), repayable finance prioritised over grants.
+ * Awarded at Steering Committee discretion, application Sept 2026, outcomes Nov 2026.
  * Do not present the funding as secured until awarded.
+ *
+ * The induction deck said "$1M shared pool". Program sources read 2026-08-01 put the 2026 pool at
+ * up to $1.1M across ten enterprises (ruling V, wiki/investor/20-qbe-program-economics.md), so the
+ * pool figure below comes from those and not from the deck. Kept here because a superseded source
+ * is worth naming: the deck is still the confirmation for the $400K cap.
+ */
+/**
+ * QBE Catalysing Impact Stage 2, as the program's own sources describe it. Researched from Social
+ * Impact Hub and QBE Foundation primary material 2026-08-01 (ruling V,
+ * `wiki/investor/20-qbe-program-economics.md`), which corrected several things this constant used
+ * to imply.
+ *
+ * The grant is CATALYTIC and discretionary. It is not dollar for dollar, there is no floor, and a
+ * signature does not oblige QBE to anything. What the terms bind is the grant itself: it must be
+ * at least matched by signed external commitments, which is a COVERAGE TEST on the grant, not a
+ * doubling of our money.
+ *
+ * `cap` is the top of the range and 36% of the whole pool, so planning as though it is the
+ * expected amount is planning on the best case. 2025 paid $1.02M across ten enterprises,
+ * averaging about $102K.
  */
 export const MATCH_TARGET = {
+  /** Bottom of the stated typical range. NOT a floor: nothing guarantees this much. */
+  typicalLow: 150_000,
+  /** Top of the stated typical range, and the program cap. */
   cap: 400_000,
-  note: 'QBE Stage-2 funding is up to $400K (program cap, $1M shared pool) and must be at least matched by signed external commitments raised first. Application Sept 2026, outcomes Nov 2026, Steering Committee discretion. Do not present as secured until awarded.',
+  /** The whole 2026 pool, shared across ten enterprises. Was recorded as $1M until 2026-08-02. */
+  pool: 1_100_000,
+  /** Enterprises sharing the pool. */
+  cohort: 10,
+  note: 'QBE Stage-2 funding is catalytic and discretionary, typically $150K to $400K, from a pool of up to $1.1M shared across ten enterprises, and must be at least matched by signed external commitments raised first. Application Sept 2026, outcomes Nov 2026, Steering Committee discretion. Do not present as secured until awarded, and do not present $400K as our capital requirement.',
 };
 
 /**
