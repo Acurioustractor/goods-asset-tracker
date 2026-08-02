@@ -1646,12 +1646,12 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     audience: 'buyer',
     access: 'open',
     leadsWithNow: {
-      heading: 'Shop Beds',
-      eyebrow: 'Our Products',
-      body: 'Every purchase supports remote First Nations communities across Australia. Each bed diverts',
+      heading: 'The straight answers, before the buy button.',
+      eyebrow: 'The Stretch Bed',
+      body: '188 × 92 × 25cm, 26kg, supports 200kg. Recycled HDPE X-trestle legs, two galvanised steel poles',
     },
-    verdict: 'rewrite',
-    why: 'buyer.mustNeverSee, verbatim: the impact story ahead of the spec. A procurement buyer who cannot find the lead time does not stay for the mission. FIX WRITTEN 2026-08-02 on fix/shop-spec-first: the page leads "The straight answers, before the buy button" over SHOP_ANSWERS in the ruled order, spec then price then lead time then freight then life then who fixes it. The verdict stays rewrite until it is DEPLOYED and re-read, because leadsWithNow is production truth and production still serves the old page. Re-run scripts/read-route-leads.mjs after merge, then flip to keep.',
+    verdict: 'keep',
+    why: 'Leads with the spec, per buyer.leadWith. PR #194 changed the heading to "The straight answers, before the buy button" over SHOP_ANSWERS in the ruled order. The re-read on 2026-08-02 found that INCOMPLETE and the verdict stayed rewrite one more round: the heading was right but the impact paragraph still sat between it and the answers, so production still served the impact story ahead of the spec, which is buyer.mustNeverSee verbatim. That paragraph moved below the answers in the same change as this flip. It is not deleted; the buyer still reads it, one screen after the lead time. VERIFY AFTER DEPLOY: re-run scripts/read-route-leads.mjs and confirm the body is the spec answer, because leadsWithNow is production truth and this record was written from the branch.',
   },
   {
     route: '/shop/[slug]',
