@@ -239,9 +239,9 @@ export const AUDIENCES: Audience[] = [
     ],
     nextAction: 'Agree scope and roles in writing.',
     door: null,
-    // Null until /partners is built. Counted by check:audience every run, not quietly satisfied
-    // by /pathways, which is noindexed for a consent reason and cannot be a front door.
-    frontDoor: null,
+    // Built 2026-08-02 (map #177, ticket #187) from pathway-stages.ts: the nine modules and the
+    // six stages, with no per-community state, so unlike /pathways it can be public and indexed.
+    frontDoor: '/partners',
     alsoReachedVia: [],
   },
   {
