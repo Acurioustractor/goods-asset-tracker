@@ -1,0 +1,3099 @@
+[
+ {
+  "route": "/",
+  "file": "src/app/page.tsx",
+  "lines": 499,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/components/insiders/article-renderer.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/components/layout/site-header.tsx",
+   "src/components/seo/product-json-ld.tsx",
+   "src/lib/data/admin-routes.guards.test.ts",
+   "src/lib/data/cleared-voices.ts",
+   "src/lib/data/community-canonical.ts",
+   "src/lib/data/community-media-resolver.ts",
+   "src/lib/data/content.ts",
+   "src/lib/data/local-images.ts",
+   "src/lib/data/media-links.ts",
+   "src/lib/empathy-ledger/media-tier.ts",
+   "src/lib/field-notes/resolve-gallery.ts",
+   "src/lib/finance/xero-reconciliation.ts",
+   "src/lib/ghl/canonical-tags.ts",
+   "src/lib/wiki/loader.ts",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/about",
+  "file": "src/app/about/page.tsx",
+  "lines": 285,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/site-content/page.tsx",
+   "src/app/contact/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/admin",
+  "file": "src/app/admin/page.tsx",
+  "lines": 194,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/api/auth/signout/route.ts",
+   "src/app/robots.ts",
+   "src/components/layout/conditional-chrome.tsx",
+   "src/components/layout/impact-banner.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/components/layout/site-header.tsx",
+   "src/lib/data/admin-routes.guards.test.ts",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts",
+   "src/proxy.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/alice-fill",
+  "file": "src/app/admin/alice-fill/page.tsx",
+  "lines": 9,
+  "redirect": {
+   "kind": "redirect",
+   "target": "/admin/assets"
+  },
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/scans/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/announcements",
+  "file": "src/app/admin/announcements/page.tsx",
+  "lines": 9,
+  "redirect": {
+   "kind": "redirect",
+   "target": "/admin/reach-out"
+  },
+  "noindex": false,
+  "inbound": [
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/ask",
+  "file": "src/app/admin/ask/page.tsx",
+  "lines": 205,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/lib/data/admin-routes.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/assets",
+  "file": "src/app/admin/assets/page.tsx",
+  "lines": 265,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/alice-fill/actions.ts",
+   "src/app/admin/alice-fill/page.tsx",
+   "src/app/admin/bed-preflight/page.tsx",
+   "src/app/admin/communities/[id]/page.tsx",
+   "src/app/admin/library/page.tsx",
+   "src/app/admin/orders/[id]/page.tsx",
+   "src/app/admin/today/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/assets/[unique_id]",
+  "file": "src/app/admin/assets/[unique_id]/page.tsx",
+  "lines": 471,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/alice-fill/actions.ts",
+   "src/app/admin/alice-fill/page.tsx",
+   "src/app/admin/assets/asset-table.tsx",
+   "src/app/admin/assets/batch/[batch]/page.tsx",
+   "src/app/admin/assets/page.tsx",
+   "src/app/admin/bed-preflight/page.tsx",
+   "src/app/admin/communities/[id]/page.tsx",
+   "src/app/admin/fleet/[machine_id]/page.tsx",
+   "src/app/admin/library/page.tsx",
+   "src/app/admin/orders/[id]/page.tsx",
+   "src/app/admin/today/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/assets/batch/[batch]",
+  "file": "src/app/admin/assets/batch/[batch]/page.tsx",
+  "lines": 202,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/assets/asset-table.tsx",
+   "src/app/admin/assets/page.tsx",
+   "src/app/admin/library/page.tsx"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/atlas",
+  "file": "src/app/admin/atlas/page.tsx",
+  "lines": 126,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/bed-preflight",
+  "file": "src/app/admin/bed-preflight/page.tsx",
+  "lines": 352,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/today/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/bed-signals",
+  "file": "src/app/admin/bed-signals/page.tsx",
+  "lines": 285,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/bed-preflight/page.tsx",
+   "src/app/admin/library/page.tsx",
+   "src/app/admin/page.tsx",
+   "src/app/admin/today/page.tsx",
+   "src/app/wiki/guides/recipient-handover/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/brand",
+  "file": "src/app/admin/brand/page.tsx",
+  "lines": 9,
+  "redirect": {
+   "kind": "redirect",
+   "target": "/admin"
+  },
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/library/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/canon",
+  "file": "src/app/admin/canon/page.tsx",
+  "lines": 302,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/media-library/page.tsx",
+   "src/app/admin/system-visuals/page.tsx",
+   "src/app/api/admin/canon-el-pick/route.ts",
+   "src/app/api/admin/canon-remove/route.ts",
+   "src/app/api/admin/canon-slot-add/route.ts",
+   "src/app/api/admin/canon-slot-set/route.ts",
+   "src/app/api/admin/canon-upload/route.ts",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/pitch-photo-review.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/communities",
+  "file": "src/app/admin/communities/page.tsx",
+  "lines": 588,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/bed-preflight/page.tsx",
+   "src/app/admin/community-stories/page.tsx",
+   "src/app/admin/library/page.tsx",
+   "src/app/admin/page.tsx",
+   "src/app/admin/today/page.tsx",
+   "src/app/bed/[id]/install-logger.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/communities/[id]",
+  "file": "src/app/admin/communities/[id]/page.tsx",
+  "lines": 902,
+  "redirect": {
+   "kind": "redirect",
+   "target": "/admin/communities/${match.id}"
+  },
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/atlas/atlas-client.tsx",
+   "src/app/admin/bed-preflight/page.tsx",
+   "src/app/admin/bed-signals/page.tsx",
+   "src/app/admin/communities/page.tsx",
+   "src/app/admin/community-stories/community-stories-client.tsx",
+   "src/app/admin/community-stories/page.tsx",
+   "src/app/admin/library/page.tsx",
+   "src/app/admin/map-card.tsx",
+   "src/app/admin/page.tsx",
+   "src/app/admin/today/page.tsx",
+   "src/app/admin/voice-impact/page.tsx",
+   "src/app/bed/[id]/community-beds.tsx",
+   "src/app/bed/[id]/install-logger.tsx",
+   "src/components/fleet/machine-list-table.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/community-stories",
+  "file": "src/app/admin/community-stories/page.tsx",
+  "lines": 166,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/atlas/atlas-client.tsx",
+   "src/app/admin/system-visuals/page.tsx",
+   "src/app/admin/voices/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/compassion",
+  "file": "src/app/admin/compassion/page.tsx",
+  "lines": 12,
+  "redirect": {
+   "kind": "redirect",
+   "target": "/admin/media-library"
+  },
+  "noindex": false,
+  "inbound": [
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/consent",
+  "file": "src/app/admin/consent/page.tsx",
+  "lines": 184,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/funders/[slug]/video-brief/page.tsx",
+   "src/app/admin/voices/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/cost-model",
+  "file": "src/app/admin/cost-model/page.tsx",
+  "lines": 139,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/facility/page.tsx",
+   "src/app/admin/page.tsx",
+   "src/app/admin/today/page.tsx",
+   "src/lib/cost-model/engine.ts",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/ask-surface.ts",
+   "src/lib/data/investor-wiki.ts",
+   "src/lib/data/product-wiki.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/dashboard-images",
+  "file": "src/app/admin/dashboard-images/page.tsx",
+  "lines": 115,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/media-library/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/deals",
+  "file": "src/app/admin/deals/page.tsx",
+  "lines": 26,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/library/page.tsx",
+   "src/app/admin/loi-tracker/page.tsx",
+   "src/app/admin/people/people-client.tsx",
+   "src/app/admin/pipeline/page.tsx",
+   "src/app/admin/today/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/investor-wiki.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/deck",
+  "file": "src/app/admin/deck/page.tsx",
+  "lines": 163,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/photos/actions.ts",
+   "src/app/admin/photos/bulk-tag-actions.ts",
+   "src/app/admin/reports/actions.ts",
+   "src/app/admin/reports/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/deck-builder",
+  "file": "src/app/admin/deck-builder/page.tsx",
+  "lines": 12,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/el-stories",
+  "file": "src/app/admin/el-stories/page.tsx",
+  "lines": 146,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/voices/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/el-stories/[id]/edit",
+  "file": "src/app/admin/el-stories/[id]/edit/page.tsx",
+  "lines": 322,
+  "redirect": {
+   "kind": "redirect",
+   "target": "/stories/${id}?saved=1"
+  },
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/el-stories/new/actions.ts",
+   "src/app/admin/el-stories/new/create-form.tsx",
+   "src/app/admin/el-stories/new/page.tsx",
+   "src/app/admin/el-stories/page.tsx",
+   "src/app/admin/voices/page.tsx",
+   "src/app/stories/[id]/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/el-stories/new",
+  "file": "src/app/admin/el-stories/new/page.tsx",
+  "lines": 55,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/el-stories/page.tsx"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/el-storytellers",
+  "file": "src/app/admin/el-storytellers/page.tsx",
+  "lines": 65,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/people/page.tsx",
+   "src/app/admin/quotes/page.tsx",
+   "src/app/admin/quotes/quotes-client.tsx",
+   "src/app/admin/story-atlas/atlas-client.tsx",
+   "src/app/admin/story-atlas/page.tsx",
+   "src/app/admin/storytellers/page.tsx",
+   "src/app/admin/voices/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/el-storytellers/new",
+  "file": "src/app/admin/el-storytellers/new/page.tsx",
+  "lines": 146,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/el-storytellers/page.tsx"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/facility",
+  "file": "src/app/admin/facility/page.tsx",
+  "lines": 262,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/page.tsx",
+   "src/app/admin/products/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/field-notes",
+  "file": "src/app/admin/field-notes/page.tsx",
+  "lines": 176,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/field-notes/[slug]",
+  "file": "src/app/admin/field-notes/[slug]/page.tsx",
+  "lines": 21,
+  "redirect": {
+   "kind": "redirect",
+   "target": "/field-notes/${slug}"
+  },
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/field-notes/library/page.tsx",
+   "src/app/admin/field-notes/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/field-notes/library",
+  "file": "src/app/admin/field-notes/library/page.tsx",
+  "lines": 46,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/field-notes/page.tsx"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/fleet",
+  "file": "src/app/admin/fleet/page.tsx",
+  "lines": 562,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/communities/[id]/page.tsx",
+   "src/app/admin/library/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/fleet/[machine_id]",
+  "file": "src/app/admin/fleet/[machine_id]/page.tsx",
+  "lines": 445,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/communities/[id]/page.tsx",
+   "src/app/admin/library/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/funders",
+  "file": "src/app/admin/funders/page.tsx",
+  "lines": 90,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/people/people-client.tsx",
+   "src/app/admin/today/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/funders/[slug]/video-brief",
+  "file": "src/app/admin/funders/[slug]/video-brief/page.tsx",
+  "lines": 291,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/funders/actions.ts",
+   "src/app/admin/funders/new/add-funder-form.tsx",
+   "src/app/admin/funders/new/page.tsx",
+   "src/app/admin/funders/page.tsx",
+   "src/app/admin/people/people-client.tsx",
+   "src/app/admin/today/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/funders/new",
+  "file": "src/app/admin/funders/new/page.tsx",
+  "lines": 35,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/funders/page.tsx"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/install-bulk",
+  "file": "src/app/admin/install-bulk/page.tsx",
+  "lines": 70,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/install-checklist",
+  "file": "src/app/admin/install-checklist/page.tsx",
+  "lines": 223,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/bed-preflight/page.tsx",
+   "src/app/admin/library/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/library",
+  "file": "src/app/admin/library/page.tsx",
+  "lines": 483,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/login",
+  "file": "src/app/admin/login/page.tsx",
+  "lines": 88,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/photo-review/raw/route.ts",
+   "src/app/admin/unauthorized/page.tsx",
+   "src/app/api/auth/signout/route.ts",
+   "src/lib/data/admin-routes.guards.test.ts",
+   "src/proxy.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/loi-tracker",
+  "file": "src/app/admin/loi-tracker/page.tsx",
+  "lines": 270,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/people/people-client.tsx",
+   "src/app/admin/pipeline/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/maps/ask",
+  "file": "src/app/admin/maps/ask/page.tsx",
+  "lines": 11,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/lib/data/admin-routes.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/maps/deployed",
+  "file": "src/app/admin/maps/deployed/page.tsx",
+  "lines": 11,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/lib/data/admin-routes.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/maps/need",
+  "file": "src/app/admin/maps/need/page.tsx",
+  "lines": 11,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/lib/data/admin-routes.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/media-gaps",
+  "file": "src/app/admin/media-gaps/page.tsx",
+  "lines": 160,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/media-library/page.tsx",
+   "src/app/admin/system-visuals/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/media-library",
+  "file": "src/app/admin/media-library/page.tsx",
+  "lines": 93,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/atlas/atlas-client.tsx",
+   "src/app/admin/bed-preflight/page.tsx",
+   "src/app/admin/canon/page.tsx",
+   "src/app/admin/communities/[id]/page.tsx",
+   "src/app/admin/communities/page.tsx",
+   "src/app/admin/compassion/page.tsx",
+   "src/app/admin/deck-builder/deck-builder-client.tsx",
+   "src/app/admin/deck/page.tsx",
+   "src/app/admin/el-stories/new/actions.ts",
+   "src/app/admin/funders/[slug]/video-brief/page.tsx",
+   "src/app/admin/library/page.tsx",
+   "src/app/admin/page.tsx",
+   "src/app/admin/pathways/[id]/page.tsx",
+   "src/app/admin/pathways/page.tsx",
+   "src/app/admin/photo-align/page.tsx",
+   "src/app/admin/photo-review/page.tsx",
+   "src/app/admin/photos-browser/page.tsx",
+   "src/app/admin/photos/page.tsx",
+   "src/app/admin/pitch-cockpit/cockpit-client.tsx",
+   "src/app/admin/system-visuals/page.tsx",
+   "src/app/admin/today/page.tsx",
+   "src/app/api/admin/local-image-tag/route.ts",
+   "src/app/pitch/investor-lab/investor-lab-client.tsx",
+   "src/app/wiki/guides/recipient-handover/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/investor-wiki.ts",
+   "src/lib/data/pitch-photo-review.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/messages",
+  "file": "src/app/admin/messages/page.tsx",
+  "lines": 9,
+  "redirect": {
+   "kind": "redirect",
+   "target": "/admin/reach-out"
+  },
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/fleet/[machine_id]/page.tsx",
+   "src/app/admin/fleet/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/operating-systems",
+  "file": "src/app/admin/operating-systems/page.tsx",
+  "lines": 225,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/pipeline/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/orders",
+  "file": "src/app/admin/orders/page.tsx",
+  "lines": 231,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/orders/[id]",
+  "file": "src/app/admin/orders/[id]/page.tsx",
+  "lines": 726,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/orders/launch-checklist/page.tsx",
+   "src/app/admin/orders/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/orders/launch-checklist",
+  "file": "src/app/admin/orders/launch-checklist/page.tsx",
+  "lines": 376,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/orders/page.tsx"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/pathways",
+  "file": "src/app/admin/pathways/page.tsx",
+  "lines": 233,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/audience.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/pathways/[id]",
+  "file": "src/app/admin/pathways/[id]/page.tsx",
+  "lines": 304,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/pathways/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/audience.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/people",
+  "file": "src/app/admin/people/page.tsx",
+  "lines": 69,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/el-storytellers/page.tsx",
+   "src/app/admin/pipeline/page.tsx",
+   "src/app/admin/team/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/investor-wiki.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/photo-align",
+  "file": "src/app/admin/photo-align/page.tsx",
+  "lines": 10,
+  "redirect": {
+   "kind": "redirect",
+   "target": "/admin/media-library"
+  },
+  "noindex": false,
+  "inbound": [
+   "src/lib/data/admin-routes.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/photo-review",
+  "file": "src/app/admin/photo-review/page.tsx",
+  "lines": 12,
+  "redirect": {
+   "kind": "redirect",
+   "target": "/admin/media-library"
+  },
+  "noindex": false,
+  "inbound": [
+   "src/lib/data/admin-routes.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/photos",
+  "file": "src/app/admin/photos/page.tsx",
+  "lines": 14,
+  "redirect": {
+   "kind": "redirect",
+   "target": "/admin/media-library"
+  },
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/photos-browser/photos-browser-client.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/photos-browser",
+  "file": "src/app/admin/photos-browser/page.tsx",
+  "lines": 10,
+  "redirect": {
+   "kind": "redirect",
+   "target": "/admin/media-library"
+  },
+  "noindex": false,
+  "inbound": [
+   "src/lib/data/admin-routes.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/pipeline",
+  "file": "src/app/admin/pipeline/page.tsx",
+  "lines": 166,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/communities/[id]/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/ask-surface.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/pitch-cockpit",
+  "file": "src/app/admin/pitch-cockpit/page.tsx",
+  "lines": 133,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/investor-wiki.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/production",
+  "file": "src/app/admin/production/page.tsx",
+  "lines": 468,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/facility/page.tsx",
+   "src/app/admin/library/page.tsx",
+   "src/app/admin/products/page.tsx",
+   "src/app/admin/today/page.tsx",
+   "src/app/wiki/manufacturing/safety-briefing/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/products",
+  "file": "src/app/admin/products/page.tsx",
+  "lines": 82,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/orders/launch-checklist/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/products/[slug]",
+  "file": "src/app/admin/products/[slug]/page.tsx",
+  "lines": 223,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/communities/[id]/page.tsx",
+   "src/app/admin/orders/launch-checklist/page.tsx",
+   "src/app/admin/products/legacy-page.tsx",
+   "src/app/admin/products/page.tsx",
+   "src/app/admin/products/story/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/products/story",
+  "file": "src/app/admin/products/story/page.tsx",
+  "lines": 95,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/products/page.tsx"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/quote-cards",
+  "file": "src/app/admin/quote-cards/page.tsx",
+  "lines": 14,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/media-library/page.tsx",
+   "src/app/admin/story-atlas/atlas-client.tsx",
+   "src/app/admin/story-atlas/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/quotes",
+  "file": "src/app/admin/quotes/page.tsx",
+  "lines": 71,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/voices/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/reach-out",
+  "file": "src/app/admin/reach-out/page.tsx",
+  "lines": 161,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/announcements/page.tsx",
+   "src/app/admin/messages/page.tsx",
+   "src/app/admin/reports/impact/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/reports",
+  "file": "src/app/admin/reports/page.tsx",
+  "lines": 117,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/deck/page.tsx",
+   "src/app/admin/funders/actions.ts",
+   "src/app/admin/funders/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/reports/impact",
+  "file": "src/app/admin/reports/impact/page.tsx",
+  "lines": 81,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/reports/impact/[templateId]",
+  "file": "src/app/admin/reports/impact/[templateId]/page.tsx",
+  "lines": 114,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/reach-out/page.tsx",
+   "src/app/admin/reports/impact/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/report-templates.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/requests",
+  "file": "src/app/admin/requests/page.tsx",
+  "lines": 165,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/fleet/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/roadmap",
+  "file": "src/app/admin/roadmap/page.tsx",
+  "lines": 42,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/route-review",
+  "file": "src/app/admin/route-review/page.tsx",
+  "lines": 146,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/lib/data/admin-routes.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/scans",
+  "file": "src/app/admin/scans/page.tsx",
+  "lines": 403,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/alice-fill/actions.ts",
+   "src/app/admin/alice-fill/legacy-page.tsx",
+   "src/app/admin/trip-receipts/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/site-content",
+  "file": "src/app/admin/site-content/page.tsx",
+  "lines": 154,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/investor-wiki.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/stories",
+  "file": "src/app/admin/stories/page.tsx",
+  "lines": 91,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/voices/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/story-atlas",
+  "file": "src/app/admin/story-atlas/page.tsx",
+  "lines": 300,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/voices/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/storytellers",
+  "file": "src/app/admin/storytellers/page.tsx",
+  "lines": 332,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/system-visuals/page.tsx",
+   "src/app/admin/voices/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/system-visuals",
+  "file": "src/app/admin/system-visuals/page.tsx",
+  "lines": 845,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/media-library/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/investor-wiki.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/team",
+  "file": "src/app/admin/team/page.tsx",
+  "lines": 9,
+  "redirect": {
+   "kind": "redirect",
+   "target": "/admin/people"
+  },
+  "noindex": false,
+  "inbound": [
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/today",
+  "file": "src/app/admin/today/page.tsx",
+  "lines": 618,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/trip-receipts",
+  "file": "src/app/admin/trip-receipts/page.tsx",
+  "lines": 195,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/unauthorized",
+  "file": "src/app/admin/unauthorized/page.tsx",
+  "lines": 32,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/layout.tsx",
+   "src/lib/data/admin-routes.guards.test.ts",
+   "src/proxy.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/voice-impact",
+  "file": "src/app/admin/voice-impact/page.tsx",
+  "lines": 317,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/atlas/atlas-client.tsx",
+   "src/app/admin/products/[slug]/page.tsx",
+   "src/app/admin/voices/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/investor-wiki.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/voices",
+  "file": "src/app/admin/voices/page.tsx",
+  "lines": 171,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/investor-wiki.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/admin/xero-reconciliation",
+  "file": "src/app/admin/xero-reconciliation/page.tsx",
+  "lines": 426,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/today/page.tsx",
+   "src/lib/data/admin-routes.ts",
+   "src/lib/data/route-review.ts"
+  ],
+  "admin": true
+ },
+ {
+  "route": "/auth/phone-login",
+  "file": "src/app/auth/phone-login/page.tsx",
+  "lines": 132,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/auth/verify-otp/page.tsx",
+   "src/app/bed/[id]/recipient-panel.tsx",
+   "src/app/my-items/layout.tsx",
+   "src/components/production/production-header.tsx",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/auth/verify-otp",
+  "file": "src/app/auth/verify-otp/page.tsx",
+  "lines": 214,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/components/auth/phone-login-form.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/basket-bed-plans",
+  "file": "src/app/basket-bed-plans/page.tsx",
+  "lines": 285,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/shop/[slug]/page.tsx",
+   "src/app/shop/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/bed/[id]",
+  "file": "src/app/bed/[id]/page.tsx",
+  "lines": 443,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/assets/[unique_id]/page.tsx",
+   "src/app/admin/assets/asset-table.tsx",
+   "src/app/admin/assets/batch/[batch]/page.tsx",
+   "src/app/admin/bed-preflight/page.tsx",
+   "src/app/admin/bed-signals/page.tsx",
+   "src/app/admin/communities/[id]/page.tsx",
+   "src/app/admin/library/page.tsx",
+   "src/app/admin/media-library/add-media-dialog.tsx",
+   "src/app/admin/orders/[id]/page.tsx",
+   "src/app/admin/scans/page.tsx",
+   "src/app/admin/today/page.tsx",
+   "src/components/layout/conditional-chrome.tsx",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/brand",
+  "file": "src/app/brand/page.tsx",
+  "lines": 322,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [],
+  "admin": false
+ },
+ {
+  "route": "/canberra",
+  "file": "src/app/canberra/page.tsx",
+  "lines": 505,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/components/layout/conditional-chrome.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/checkout",
+  "file": "src/app/checkout/page.tsx",
+  "lines": 339,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/robots.ts",
+   "src/components/cart/cart-drawer.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/checkout/success",
+  "file": "src/app/checkout/success/page.tsx",
+  "lines": 307,
+  "redirect": {
+   "kind": "redirect",
+   "target": "/shop"
+  },
+  "noindex": false,
+  "inbound": [],
+  "admin": false
+ },
+ {
+  "route": "/claim/[asset_id]",
+  "file": "src/app/claim/[asset_id]/page.tsx",
+  "lines": 199,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/library/page.tsx",
+   "src/app/bed/[id]/bed-faq.tsx",
+   "src/app/bed/[id]/recipient-card.tsx",
+   "src/app/bed/[id]/recipient-panel.tsx",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/communities",
+  "file": "src/app/communities/page.tsx",
+  "lines": 181,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/field-notes/library/library-client.tsx",
+   "src/app/sites/qbe/qbe-site-workspace.tsx",
+   "src/app/storytellers/page.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/lib/data/claims-ledger.ts",
+   "src/lib/data/deck.ts",
+   "src/lib/data/trip-stories.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/communities/[slug]",
+  "file": "src/app/communities/[slug]/page.tsx",
+  "lines": 527,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/field-notes/library/library-client.tsx",
+   "src/app/communities/page.tsx",
+   "src/app/pitch/road/road-map.tsx",
+   "src/app/sites/qbe/qbe-site-workspace.tsx",
+   "src/app/stories/page.tsx",
+   "src/app/storytellers/page.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/lib/data/claims-ledger.ts",
+   "src/lib/data/deck.ts",
+   "src/lib/data/trip-stories.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/community",
+  "file": "src/app/community/page.tsx",
+  "lines": 692,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/site-content/page.tsx",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/community/ideas",
+  "file": "src/app/community/ideas/page.tsx",
+  "lines": 236,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/community/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/community/ideas/new",
+  "file": "src/app/community/ideas/new/page.tsx",
+  "lines": 160,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/community/ideas/page.tsx",
+   "src/app/community/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/contact",
+  "file": "src/app/contact/page.tsx",
+  "lines": 435,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/field-notes/library/library-client.tsx",
+   "src/app/admin/site-content/page.tsx",
+   "src/app/basket-bed-plans/page.tsx",
+   "src/app/communities/[slug]/page.tsx",
+   "src/app/get-involved/page.tsx",
+   "src/app/kit/page.tsx",
+   "src/app/partners/centrecorp/centrecorp-story.tsx",
+   "src/app/pitch/deck/deck-public.tsx",
+   "src/app/pitch/funder-pathways/page.tsx",
+   "src/app/pitch/page.tsx",
+   "src/app/shop/washing-machine/page.tsx",
+   "src/app/support/page.tsx",
+   "src/app/wiki/community/partner-guide/page.tsx",
+   "src/app/wiki/products/washing-machine/page.tsx",
+   "src/app/wiki/support/faq/page.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/components/layout/site-header.tsx",
+   "src/lib/data/deck.ts",
+   "src/lib/data/road-ending.ts",
+   "src/lib/data/trip-stories.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/cost-story",
+  "file": "src/app/cost-story/page.tsx",
+  "lines": 415,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/story-atlas/page.tsx",
+   "src/app/sites/qbe/qbe-site-workspace.tsx",
+   "src/lib/data/claims-ledger.ts",
+   "src/lib/data/deck.ts",
+   "src/lib/data/road-ending.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/dashboard",
+  "file": "src/app/dashboard/page.tsx",
+  "lines": 208,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [],
+  "admin": false
+ },
+ {
+  "route": "/dashboard/feedback",
+  "file": "src/app/dashboard/feedback/page.tsx",
+  "lines": 229,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/dashboard/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/deck",
+  "file": "src/app/deck/page.tsx",
+  "lines": 18,
+  "redirect": {
+   "kind": "redirect",
+   "target": "/pitch/road"
+  },
+  "noindex": false,
+  "inbound": [
+   "src/components/layout/conditional-chrome.tsx",
+   "src/lib/data/claims-ledger.ts",
+   "src/lib/data/deck-road.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/design",
+  "file": "src/app/design/page.tsx",
+  "lines": 214,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [],
+  "admin": false
+ },
+ {
+  "route": "/design/community-voices",
+  "file": "src/app/design/community-voices/page.tsx",
+  "lines": 300,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/design/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/design/country-first",
+  "file": "src/app/design/country-first/page.tsx",
+  "lines": 247,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/design/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/design/mission-forward",
+  "file": "src/app/design/mission-forward/page.tsx",
+  "lines": 360,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/design/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/export/leave-behind",
+  "file": "src/app/export/leave-behind/page.tsx",
+  "lines": 444,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [],
+  "admin": false
+ },
+ {
+  "route": "/export/map/ask",
+  "file": "src/app/export/map/ask/page.tsx",
+  "lines": 9,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [],
+  "admin": false
+ },
+ {
+  "route": "/export/map/deployed",
+  "file": "src/app/export/map/deployed/page.tsx",
+  "lines": 9,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [],
+  "admin": false
+ },
+ {
+  "route": "/export/map/need",
+  "file": "src/app/export/map/need/page.tsx",
+  "lines": 9,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [],
+  "admin": false
+ },
+ {
+  "route": "/field-notes",
+  "file": "src/app/field-notes/page.tsx",
+  "lines": 45,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/site-content/page.tsx",
+   "src/app/storytellers/page.tsx",
+   "src/components/layout/conditional-chrome.tsx",
+   "src/components/layout/site-header.tsx",
+   "src/components/marketing/field-notes-tile.tsx",
+   "src/lib/data/audience.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/field-notes/[slug]",
+  "file": "src/app/field-notes/[slug]/page.tsx",
+  "lines": 132,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/field-notes/[slug]/page.tsx",
+   "src/app/admin/field-notes/page.tsx",
+   "src/app/admin/site-content/page.tsx",
+   "src/app/admin/story-atlas/page.tsx",
+   "src/app/api/admin/field-note-override/route.ts",
+   "src/app/communities/[slug]/page.tsx",
+   "src/app/field-notes/page.tsx",
+   "src/app/get-involved/page.tsx",
+   "src/app/kit/page.tsx",
+   "src/app/partners/[slug]/dashboard/page.tsx",
+   "src/app/partners/centrecorp/centrecorp-story.tsx",
+   "src/app/pitch/miro-board/page.tsx",
+   "src/app/pitch/workshop/workshop-client.tsx",
+   "src/app/sites/qbe/qbe-site-workspace.tsx",
+   "src/app/stories/page.tsx",
+   "src/app/storytellers/[slug]/page.tsx",
+   "src/app/storytellers/page.tsx",
+   "src/app/the-work/page.tsx",
+   "src/components/layout/conditional-chrome.tsx",
+   "src/components/layout/site-header.tsx",
+   "src/components/marketing/field-notes-tile.tsx",
+   "src/components/stories/trip-story.tsx",
+   "src/lib/data/audience.ts",
+   "src/lib/data/community-pathways.ts",
+   "src/lib/data/deck.ts",
+   "src/lib/data/partner-dashboards.ts",
+   "src/lib/data/pitch-control-room.ts",
+   "src/lib/data/pitch-photo-review.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/funders/[slug]",
+  "file": "src/app/funders/[slug]/page.tsx",
+  "lines": 675,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/library/page.tsx",
+   "src/components/layout/conditional-chrome.tsx",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/funders/[slug]/communities",
+  "file": "src/app/funders/[slug]/communities/page.tsx",
+  "lines": 591,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/library/page.tsx",
+   "src/app/funders/[slug]/login/page.tsx",
+   "src/app/funders/[slug]/page.tsx",
+   "src/components/layout/conditional-chrome.tsx",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/funders/[slug]/login",
+  "file": "src/app/funders/[slug]/login/page.tsx",
+  "lines": 112,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/library/page.tsx",
+   "src/app/funders/[slug]/communities/page.tsx",
+   "src/app/funders/[slug]/page.tsx",
+   "src/components/layout/conditional-chrome.tsx",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/gallery",
+  "file": "src/app/gallery/page.tsx",
+  "lines": 279,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/site-content/page.tsx",
+   "src/app/funders/[slug]/page.tsx",
+   "src/app/insights/page.tsx",
+   "src/components/layout/site-footer.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/get-involved",
+  "file": "src/app/get-involved/page.tsx",
+  "lines": 219,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/site-content/page.tsx",
+   "src/app/pitch/deck/deck-public.tsx",
+   "src/lib/data/deck.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/impact",
+  "file": "src/app/impact/page.tsx",
+  "lines": 1142,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/field-notes/library/library-client.tsx",
+   "src/app/admin/site-content/page.tsx",
+   "src/app/admin/story-atlas/page.tsx",
+   "src/app/admin/voice-impact/page.tsx",
+   "src/app/checkout/success/page.tsx",
+   "src/app/register/page.tsx",
+   "src/components/shop/sustainability-impact.tsx",
+   "src/lib/data/claims-ledger.ts",
+   "src/lib/data/deck.ts",
+   "src/lib/data/partner-dashboards.ts",
+   "src/lib/data/trip-stories.ts",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/impact/login",
+  "file": "src/app/impact/login/page.tsx",
+  "lines": 113,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/insiders",
+  "file": "src/app/insiders/page.tsx",
+  "lines": 79,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/components/insiders/breadcrumbs.tsx",
+   "src/components/insiders/sidebar.tsx",
+   "src/components/layout/conditional-chrome.tsx",
+   "src/lib/wiki/href.ts",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/insiders/[...slug]",
+  "file": "src/app/insiders/[...slug]/page.tsx",
+  "lines": 134,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/insiders/login/page.tsx",
+   "src/app/insiders/page.tsx",
+   "src/components/insiders/breadcrumbs.tsx",
+   "src/components/insiders/sidebar.tsx",
+   "src/components/layout/conditional-chrome.tsx",
+   "src/lib/wiki/href.ts",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/insiders/login",
+  "file": "src/app/insiders/login/page.tsx",
+  "lines": 96,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/insights",
+  "file": "src/app/insights/page.tsx",
+  "lines": 367,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [],
+  "admin": false
+ },
+ {
+  "route": "/investors",
+  "file": "src/app/investors/page.tsx",
+  "lines": 29,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/admin-sidebar.tsx",
+   "src/app/admin/site-content/page.tsx",
+   "src/components/layout/conditional-chrome.tsx",
+   "src/lib/data/ask-surface.ts",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/investors/login",
+  "file": "src/app/investors/login/page.tsx",
+  "lines": 97,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/kit",
+  "file": "src/app/kit/page.tsx",
+  "lines": 296,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [],
+  "admin": false
+ },
+ {
+  "route": "/login",
+  "file": "src/app/login/page.tsx",
+  "lines": 105,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/unauthorized/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/media",
+  "file": "src/app/media/page.tsx",
+  "lines": 903,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [],
+  "admin": false
+ },
+ {
+  "route": "/mission",
+  "file": "src/app/mission/page.tsx",
+  "lines": 6,
+  "redirect": {
+   "kind": "redirect",
+   "target": "/story"
+  },
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/site-content/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/my-items",
+  "file": "src/app/my-items/page.tsx",
+  "lines": 222,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/auth/phone-login/page.tsx",
+   "src/app/auth/verify-otp/page.tsx",
+   "src/app/bed/[id]/recipient-card.tsx",
+   "src/app/bed/[id]/recipient-panel.tsx",
+   "src/app/claim/[asset_id]/claim-button.tsx",
+   "src/app/claim/[asset_id]/page.tsx",
+   "src/components/layout/auth-nav-item.tsx",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/partner",
+  "file": "src/app/partner/page.tsx",
+  "lines": 511,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/about/page.tsx",
+   "src/app/communities/[slug]/page.tsx",
+   "src/app/communities/page.tsx",
+   "src/app/community/page.tsx",
+   "src/app/cost-story/page.tsx",
+   "src/app/get-involved/page.tsx",
+   "src/app/page.tsx",
+   "src/app/partners/oonchiumpa/page.tsx",
+   "src/app/pathways/[id]/page.tsx",
+   "src/app/pitch/funder-pathways/page.tsx",
+   "src/app/pitch/page.tsx",
+   "src/app/process/page.tsx",
+   "src/app/shop/stretch-bed-single/page.tsx",
+   "src/app/story/page.tsx",
+   "src/app/wiki/community/partner-guide/page.tsx",
+   "src/app/wiki/products/washing-machine/page.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/components/layout/site-header.tsx",
+   "src/lib/data/community-funding.ts",
+   "src/lib/data/partner-dashboards.ts",
+   "src/lib/data/trip-stories.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/partners/[slug]/dashboard",
+  "file": "src/app/partners/[slug]/dashboard/page.tsx",
+  "lines": 842,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/site-content/page.tsx",
+   "src/app/api/admin/dashboard-image/route.ts",
+   "src/app/impact/page.tsx",
+   "src/app/page.tsx",
+   "src/app/partner/page.tsx",
+   "src/app/partners/[slug]/login/page.tsx",
+   "src/app/partners/[slug]/outcomes/page.tsx",
+   "src/app/partners/oonchiumpa/page.tsx",
+   "src/app/pitch/workshop/workshop-client.tsx",
+   "src/app/sites/qbe/qbe-site-workspace.tsx",
+   "src/app/stories/page.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/lib/data/claims-ledger.ts",
+   "src/lib/data/community-funding.ts",
+   "src/lib/data/community-pathways.ts",
+   "src/lib/data/partner-dashboards.ts",
+   "src/lib/data/trip-stories.ts",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/partners/[slug]/login",
+  "file": "src/app/partners/[slug]/login/page.tsx",
+  "lines": 102,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/site-content/page.tsx",
+   "src/app/api/admin/dashboard-image/route.ts",
+   "src/app/impact/page.tsx",
+   "src/app/page.tsx",
+   "src/app/partner/page.tsx",
+   "src/app/partners/[slug]/outcomes/page.tsx",
+   "src/app/partners/oonchiumpa/page.tsx",
+   "src/app/pitch/workshop/workshop-client.tsx",
+   "src/app/sites/qbe/qbe-site-workspace.tsx",
+   "src/app/stories/page.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/lib/data/claims-ledger.ts",
+   "src/lib/data/community-funding.ts",
+   "src/lib/data/community-pathways.ts",
+   "src/lib/data/partner-dashboards.ts",
+   "src/lib/data/trip-stories.ts",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/partners/[slug]/outcomes",
+  "file": "src/app/partners/[slug]/outcomes/page.tsx",
+  "lines": 369,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/site-content/page.tsx",
+   "src/app/api/admin/dashboard-image/route.ts",
+   "src/app/impact/page.tsx",
+   "src/app/page.tsx",
+   "src/app/partner/page.tsx",
+   "src/app/partners/[slug]/login/page.tsx",
+   "src/app/partners/oonchiumpa/page.tsx",
+   "src/app/pitch/workshop/workshop-client.tsx",
+   "src/app/sites/qbe/qbe-site-workspace.tsx",
+   "src/app/stories/page.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/lib/data/claims-ledger.ts",
+   "src/lib/data/community-funding.ts",
+   "src/lib/data/community-pathways.ts",
+   "src/lib/data/partner-dashboards.ts",
+   "src/lib/data/trip-stories.ts",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/partners/centrecorp",
+  "file": "src/app/partners/centrecorp/page.tsx",
+  "lines": 111,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/impact/page.tsx",
+   "src/app/partner/page.tsx",
+   "src/app/partners/oonchiumpa/page.tsx",
+   "src/app/stories/page.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/lib/data/claims-ledger.ts",
+   "src/lib/data/community-funding.ts",
+   "src/lib/data/trip-stories.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/partners/oonchiumpa",
+  "file": "src/app/partners/oonchiumpa/page.tsx",
+  "lines": 896,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/site-content/page.tsx",
+   "src/app/page.tsx",
+   "src/app/pitch/workshop/workshop-client.tsx",
+   "src/app/sites/qbe/qbe-site-workspace.tsx",
+   "src/app/stories/page.tsx",
+   "src/lib/data/community-funding.ts",
+   "src/lib/data/community-pathways.ts",
+   "src/lib/data/partner-dashboards.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/pathways",
+  "file": "src/app/pathways/page.tsx",
+  "lines": 153,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/pathways/page.tsx",
+   "src/app/api/admin/field-note-override/route.ts",
+   "src/app/pitch/funder-pathways/page.tsx",
+   "src/lib/data/audience.ts",
+   "src/lib/data/deck.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/pathways/[id]",
+  "file": "src/app/pathways/[id]/page.tsx",
+  "lines": 440,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/admin/pathways/page.tsx",
+   "src/app/api/admin/field-note-override/route.ts",
+   "src/app/pathways/page.tsx",
+   "src/app/pitch/funder-pathways/page.tsx",
+   "src/lib/data/audience.ts",
+   "src/lib/data/deck.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/pitch",
+  "file": "src/app/pitch/page.tsx",
+  "lines": 775,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/media/page.tsx",
+   "src/app/sites/qbe/qbe-site-workspace.tsx",
+   "src/lib/data/supplier-quotes.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/pitch/community-narrative",
+  "file": "src/app/pitch/community-narrative/page.tsx",
+  "lines": 593,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/pitch/miro-board/page.tsx",
+   "src/app/pitch/workshop/workshop-client.tsx",
+   "src/components/layout/conditional-chrome.tsx",
+   "src/lib/data/investor-narrative-lab.ts",
+   "src/lib/data/pitch-photo-review.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/pitch/control-room",
+  "file": "src/app/pitch/control-room/page.tsx",
+  "lines": 10,
+  "redirect": {
+   "kind": "permanentRedirect",
+   "target": "/pitch/deck"
+  },
+  "noindex": false,
+  "inbound": [],
+  "admin": false
+ },
+ {
+  "route": "/pitch/deck",
+  "file": "src/app/pitch/deck/page.tsx",
+  "lines": 12,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/deck-builder/deck-builder-client.tsx",
+   "src/app/admin/story-atlas/page.tsx",
+   "src/app/pitch/control-room/page.tsx",
+   "src/app/pitch/page.tsx",
+   "src/app/pitch/road/page.tsx",
+   "src/lib/data/audience.ts",
+   "src/lib/data/deck-road.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/pitch/document",
+  "file": "src/app/pitch/document/page.tsx",
+  "lines": 518,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/pitch/page.tsx",
+   "src/app/sites/qbe/qbe-site-workspace.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/pitch/funder-pathways",
+  "file": "src/app/pitch/funder-pathways/page.tsx",
+  "lines": 792,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/components/pitch/pitch-surface-notice.tsx",
+   "src/lib/data/audience.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/pitch/investor-lab",
+  "file": "src/app/pitch/investor-lab/page.tsx",
+  "lines": 15,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/pitch/community-narrative/page.tsx",
+   "src/app/pitch/miro-board/page.tsx",
+   "src/app/pitch/page.tsx",
+   "src/app/pitch/workshop/workshop-client.tsx",
+   "src/components/layout/conditional-chrome.tsx",
+   "src/lib/data/pitch-photo-review.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/pitch/miro-board",
+  "file": "src/app/pitch/miro-board/page.tsx",
+  "lines": 735,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/pitch/community-narrative/page.tsx",
+   "src/app/pitch/investor-lab/investor-lab-client.tsx",
+   "src/app/pitch/workshop/workshop-client.tsx",
+   "src/components/layout/conditional-chrome.tsx",
+   "src/lib/data/investor-narrative-lab.ts",
+   "src/lib/data/pitch-photo-review.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/pitch/photo-review",
+  "file": "src/app/pitch/photo-review/page.tsx",
+  "lines": 513,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/pitch/community-narrative/page.tsx",
+   "src/app/pitch/investor-lab/investor-lab-client.tsx",
+   "src/app/pitch/miro-board/page.tsx",
+   "src/app/pitch/page.tsx",
+   "src/app/pitch/workshop/workshop-client.tsx",
+   "src/lib/data/investor-narrative-lab.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/pitch/road",
+  "file": "src/app/pitch/road/page.tsx",
+  "lines": 1254,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/pitch-cockpit/cockpit-client.tsx",
+   "src/app/deck/page.tsx",
+   "src/app/register/page.tsx",
+   "src/components/pitch/pitch-surface-notice.tsx",
+   "src/lib/data/deck-road.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/pitch/workshop",
+  "file": "src/app/pitch/workshop/page.tsx",
+  "lines": 16,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/pitch/community-narrative/page.tsx",
+   "src/app/pitch/investor-lab/investor-lab-client.tsx",
+   "src/app/pitch/miro-board/page.tsx",
+   "src/app/pitch/page.tsx",
+   "src/lib/data/investor-narrative-lab.ts",
+   "src/lib/data/pitch-photo-review.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/portal",
+  "file": "src/app/portal/page.tsx",
+  "lines": 107,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [],
+  "admin": false
+ },
+ {
+  "route": "/portal/ask-goods",
+  "file": "src/app/portal/ask-goods/page.tsx",
+  "lines": 345,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/portal/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/portal/goals",
+  "file": "src/app/portal/goals/page.tsx",
+  "lines": 303,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/portal/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/portal/our-story",
+  "file": "src/app/portal/our-story/page.tsx",
+  "lines": 397,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/portal/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/portal/projects",
+  "file": "src/app/portal/projects/page.tsx",
+  "lines": 400,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/portal/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/press",
+  "file": "src/app/press/page.tsx",
+  "lines": 666,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/site-content/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/privacy",
+  "file": "src/app/privacy/page.tsx",
+  "lines": 121,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/canberra/follow-form.tsx",
+   "src/app/sponsor/page.tsx",
+   "src/components/layout/newsletter-form.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/components/newsletter-signup.tsx",
+   "src/components/stories/trip-story.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/process",
+  "file": "src/app/process/page.tsx",
+  "lines": 585,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/site-content/page.tsx",
+   "src/app/basket-bed-plans/page.tsx",
+   "src/app/funders/[slug]/page.tsx",
+   "src/app/partner/page.tsx",
+   "src/app/pitch/road/production-facility-experience.tsx",
+   "src/app/sites/qbe/qbe-site-workspace.tsx",
+   "src/app/story/page.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/components/layout/site-header.tsx",
+   "src/lib/data/deck.ts",
+   "src/lib/data/funder-shared-content.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/production",
+  "file": "src/app/production/page.tsx",
+  "lines": 38,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/facility/page.tsx",
+   "src/app/auth/phone-login/page.tsx",
+   "src/app/wiki/manufacturing/facility-manual/page.tsx",
+   "src/app/wiki/manufacturing/throughput/page.tsx",
+   "src/components/production/production-nav.tsx",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/production/inventory",
+  "file": "src/app/production/inventory/page.tsx",
+  "lines": 36,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/wiki/manufacturing/facility-manual/page.tsx",
+   "src/components/production/production-nav.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/production/journal",
+  "file": "src/app/production/journal/page.tsx",
+  "lines": 36,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/production/progress/progress-dashboard.tsx",
+   "src/app/wiki/manufacturing/facility-manual/page.tsx",
+   "src/components/production/production-nav.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/production/progress",
+  "file": "src/app/production/progress/page.tsx",
+  "lines": 36,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/wiki/manufacturing/facility-manual/page.tsx",
+   "src/components/production/production-nav.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/register",
+  "file": "src/app/register/page.tsx",
+  "lines": 234,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/story-atlas/page.tsx",
+   "src/app/pitch/deck/deck-public.tsx",
+   "src/lib/data/deck.ts",
+   "src/lib/data/road-ending.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/shop",
+  "file": "src/app/shop/page.tsx",
+  "lines": 279,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/site-content/page.tsx",
+   "src/app/checkout/page.tsx",
+   "src/app/checkout/success/page.tsx",
+   "src/app/community/page.tsx",
+   "src/app/contact/page.tsx",
+   "src/app/impact/page.tsx",
+   "src/app/media/page.tsx",
+   "src/app/stories/page.tsx",
+   "src/components/cart/cart-drawer.tsx",
+   "src/components/marketing/hero.tsx",
+   "src/lib/data/audience.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/shop/[slug]",
+  "file": "src/app/shop/[slug]/page.tsx",
+  "lines": 397,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/about/page.tsx",
+   "src/app/admin/field-notes/library/library-client.tsx",
+   "src/app/admin/products/legacy-page.tsx",
+   "src/app/admin/site-content/page.tsx",
+   "src/app/basket-bed-plans/page.tsx",
+   "src/app/canberra/page.tsx",
+   "src/app/checkout/page.tsx",
+   "src/app/checkout/success/page.tsx",
+   "src/app/community/page.tsx",
+   "src/app/contact/page.tsx",
+   "src/app/cost-story/page.tsx",
+   "src/app/funders/[slug]/page.tsx",
+   "src/app/impact/page.tsx",
+   "src/app/media/page.tsx",
+   "src/app/page.tsx",
+   "src/app/partners/centrecorp/centrecorp-story.tsx",
+   "src/app/pitch/funder-pathways/page.tsx",
+   "src/app/process/page.tsx",
+   "src/app/shop/page.tsx",
+   "src/app/shop/stretch-bed-single/page.tsx",
+   "src/app/shop/washing-machine/page.tsx",
+   "src/app/sponsor/page.tsx",
+   "src/app/stories/page.tsx",
+   "src/app/story/page.tsx",
+   "src/app/stretch-bed/page.tsx",
+   "src/app/wiki/products/page.tsx",
+   "src/app/wiki/products/stretch-bed/page.tsx",
+   "src/components/cart/cart-drawer.tsx",
+   "src/components/layout/conditional-chrome.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/components/layout/site-header.tsx",
+   "src/components/marketing/hero.tsx",
+   "src/components/marketing/product-card.tsx",
+   "src/lib/data/audience.ts",
+   "src/lib/data/claims-ledger.ts",
+   "src/lib/data/funder-shared-content.ts",
+   "src/lib/data/trip-stories.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/shop/stretch-bed-single",
+  "file": "src/app/shop/stretch-bed-single/page.tsx",
+  "lines": 453,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/about/page.tsx",
+   "src/app/admin/field-notes/library/library-client.tsx",
+   "src/app/basket-bed-plans/page.tsx",
+   "src/app/canberra/page.tsx",
+   "src/app/cost-story/page.tsx",
+   "src/app/funders/[slug]/page.tsx",
+   "src/app/page.tsx",
+   "src/app/partners/centrecorp/centrecorp-story.tsx",
+   "src/app/pitch/funder-pathways/page.tsx",
+   "src/app/process/page.tsx",
+   "src/app/shop/page.tsx",
+   "src/app/sponsor/page.tsx",
+   "src/app/story/page.tsx",
+   "src/app/stretch-bed/page.tsx",
+   "src/app/wiki/products/page.tsx",
+   "src/app/wiki/products/stretch-bed/page.tsx",
+   "src/components/layout/conditional-chrome.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/components/layout/site-header.tsx",
+   "src/lib/data/audience.ts",
+   "src/lib/data/claims-ledger.ts",
+   "src/lib/data/funder-shared-content.ts",
+   "src/lib/data/trip-stories.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/shop/washing-machine",
+  "file": "src/app/shop/washing-machine/page.tsx",
+  "lines": 400,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/shop/page.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/components/layout/site-header.tsx",
+   "src/lib/data/trip-stories.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/sites/cost-lab",
+  "file": "src/app/sites/cost-lab/page.tsx",
+  "lines": 17,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/sites/qbe-readiness/page.tsx",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/sites/cost-lab/playbook",
+  "file": "src/app/sites/cost-lab/playbook/page.tsx",
+  "lines": 41,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/sites/cost-lab/cost-lab-workspace.tsx",
+   "src/app/sites/qbe-readiness/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/sites/qbe",
+  "file": "src/app/sites/qbe/page.tsx",
+  "lines": 17,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/app/sites/cost-lab/cost-lab-workspace.tsx",
+   "src/app/sites/qbe-readiness/page.tsx",
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/sites/qbe-readiness",
+  "file": "src/app/sites/qbe-readiness/page.tsx",
+  "lines": 695,
+  "redirect": null,
+  "noindex": true,
+  "inbound": [
+   "src/proxy.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/sponsor",
+  "file": "src/app/sponsor/page.tsx",
+  "lines": 589,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/canberra/page.tsx",
+   "src/app/communities/[slug]/page.tsx",
+   "src/app/communities/page.tsx",
+   "src/app/community/page.tsx",
+   "src/app/contact/page.tsx",
+   "src/app/get-involved/page.tsx",
+   "src/app/impact/page.tsx",
+   "src/app/process/page.tsx",
+   "src/app/shop/page.tsx",
+   "src/app/shop/stretch-bed-single/page.tsx",
+   "src/app/stories/page.tsx",
+   "src/app/story/page.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/components/marketing/hero.tsx",
+   "src/lib/data/community-funding.ts",
+   "src/lib/data/trip-stories.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/stories",
+  "file": "src/app/stories/page.tsx",
+  "lines": 973,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/el-stories/new/actions.ts",
+   "src/app/admin/site-content/page.tsx",
+   "src/app/community/page.tsx",
+   "src/app/insights/page.tsx",
+   "src/app/press/page.tsx",
+   "src/app/shop/page.tsx",
+   "src/app/sponsor/page.tsx",
+   "src/app/story/page.tsx",
+   "src/app/storytellers/page.tsx",
+   "src/app/wiki/page.tsx",
+   "src/components/empathy-ledger/featured-stories.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/components/marketing/theme-spotlight.tsx",
+   "src/lib/data/claims-ledger.ts",
+   "src/lib/empathy-ledger/client.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/stories/[id]",
+  "file": "src/app/stories/[id]/page.tsx",
+  "lines": 369,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/communities/[id]/page.tsx",
+   "src/app/admin/el-stories/[id]/edit/page.tsx",
+   "src/app/admin/el-stories/new/actions.ts",
+   "src/app/admin/el-stories/page.tsx",
+   "src/app/admin/fleet/[machine_id]/page.tsx",
+   "src/app/admin/fleet/page.tsx",
+   "src/app/admin/site-content/page.tsx",
+   "src/app/admin/stories/stories-dashboard.tsx",
+   "src/app/communities/[slug]/page.tsx",
+   "src/app/community/page.tsx",
+   "src/app/insights/page.tsx",
+   "src/app/press/page.tsx",
+   "src/app/shop/page.tsx",
+   "src/app/sponsor/page.tsx",
+   "src/app/stories/page.tsx",
+   "src/app/story/page.tsx",
+   "src/app/storytellers/[slug]/page.tsx",
+   "src/app/storytellers/page.tsx",
+   "src/app/wiki/page.tsx",
+   "src/components/empathy-ledger/featured-stories.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/components/marketing/theme-spotlight.tsx",
+   "src/lib/data/claims-ledger.ts",
+   "src/lib/empathy-ledger/client.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/story",
+  "file": "src/app/story/page.tsx",
+  "lines": 1179,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/about/page.tsx",
+   "src/app/admin/field-notes/library/library-client.tsx",
+   "src/app/admin/site-content/page.tsx",
+   "src/app/bed/[id]/page.tsx",
+   "src/app/funders/[slug]/page.tsx",
+   "src/app/mission/page.tsx",
+   "src/app/shop/stretch-bed-single/page.tsx",
+   "src/app/sites/qbe/qbe-site-workspace.tsx",
+   "src/app/stories/page.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/components/layout/site-header.tsx",
+   "src/lib/data/audience.ts",
+   "src/lib/data/funder-shared-content.ts",
+   "src/lib/data/trip-stories.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/story/road",
+  "file": "src/app/story/road/page.tsx",
+  "lines": 328,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/lib/data/audience.ts",
+   "src/lib/data/deck.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/storytellers",
+  "file": "src/app/storytellers/page.tsx",
+  "lines": 120,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/el-storytellers/new/actions.ts",
+   "src/lib/empathy-ledger/client.ts",
+   "src/lib/storytellers.consent.test.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/storytellers/[slug]",
+  "file": "src/app/storytellers/[slug]/page.tsx",
+  "lines": 215,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/atlas/atlas-client.tsx",
+   "src/app/admin/communities/[id]/page.tsx",
+   "src/app/admin/communities/page.tsx",
+   "src/app/admin/el-storytellers/new/actions.ts",
+   "src/app/admin/el-storytellers/storytellers-client.tsx",
+   "src/app/admin/quotes/quotes-client.tsx",
+   "src/app/communities/[slug]/page.tsx",
+   "src/app/stories/page.tsx",
+   "src/app/storytellers/page.tsx",
+   "src/components/admin/voice-status-panel.tsx",
+   "src/components/stories/trip-story.tsx",
+   "src/lib/empathy-ledger/client.ts",
+   "src/lib/storytellers.consent.test.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/stretch-bed",
+  "file": "src/app/stretch-bed/page.tsx",
+  "lines": 381,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/pitch/road/zoomable-bed-image.tsx",
+   "src/lib/data/deck.ts",
+   "src/lib/data/partner-dashboards.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/support",
+  "file": "src/app/support/page.tsx",
+  "lines": 545,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/fleet/[machine_id]/page.tsx",
+   "src/app/admin/fleet/page.tsx",
+   "src/app/auth/phone-login/page.tsx",
+   "src/app/my-items/layout.tsx",
+   "src/app/portal/layout.tsx",
+   "src/app/wiki/page.tsx",
+   "src/app/wiki/support/faq/page.tsx",
+   "src/components/layout/site-footer.tsx",
+   "src/components/my-items/items-tab.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/terms",
+  "file": "src/app/terms/page.tsx",
+  "lines": 138,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/components/layout/site-footer.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/the-work",
+  "file": "src/app/the-work/page.tsx",
+  "lines": 145,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/lib/data/claims-ledger.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/unauthorized",
+  "file": "src/app/unauthorized/page.tsx",
+  "lines": 55,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/components/auth/protected-route.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/wiki",
+  "file": "src/app/wiki/page.tsx",
+  "lines": 335,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/library/page.tsx",
+   "src/components/wiki/wiki-search.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/wiki/community/partner-guide",
+  "file": "src/app/wiki/community/partner-guide/page.tsx",
+  "lines": 143,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/library/page.tsx",
+   "src/app/wiki/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/wiki/community/tracking-model",
+  "file": "src/app/wiki/community/tracking-model/page.tsx",
+  "lines": 140,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/library/page.tsx",
+   "src/app/wiki/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/wiki/guides/operations",
+  "file": "src/app/wiki/guides/operations/page.tsx",
+  "lines": 134,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/library/page.tsx",
+   "src/app/wiki/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/wiki/guides/recipient-handover",
+  "file": "src/app/wiki/guides/recipient-handover/page.tsx",
+  "lines": 227,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/bed-preflight/page.tsx",
+   "src/app/admin/library/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/wiki/guides/story-templates",
+  "file": "src/app/wiki/guides/story-templates/page.tsx",
+  "lines": 181,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/library/page.tsx",
+   "src/app/wiki/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/wiki/manufacturing/facility-manual",
+  "file": "src/app/wiki/manufacturing/facility-manual/page.tsx",
+  "lines": 885,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/facility/page.tsx",
+   "src/app/admin/library/page.tsx",
+   "src/app/wiki/manufacturing/throughput/page.tsx",
+   "src/app/wiki/page.tsx",
+   "src/components/wiki/wiki-search.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/wiki/manufacturing/machine-specs",
+  "file": "src/app/wiki/manufacturing/machine-specs/page.tsx",
+  "lines": 387,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/library/page.tsx",
+   "src/app/wiki/manufacturing/plastic-processing/page.tsx",
+   "src/app/wiki/page.tsx",
+   "src/components/wiki/wiki-search.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/wiki/manufacturing/plastic-processing",
+  "file": "src/app/wiki/manufacturing/plastic-processing/page.tsx",
+  "lines": 358,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/library/page.tsx",
+   "src/app/wiki/manufacturing/machine-specs/page.tsx",
+   "src/app/wiki/page.tsx",
+   "src/components/wiki/wiki-search.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/wiki/manufacturing/safety-briefing",
+  "file": "src/app/wiki/manufacturing/safety-briefing/page.tsx",
+  "lines": 246,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/library/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/wiki/manufacturing/throughput",
+  "file": "src/app/wiki/manufacturing/throughput/page.tsx",
+  "lines": 343,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/library/page.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/wiki/products",
+  "file": "src/app/wiki/products/page.tsx",
+  "lines": 253,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/library/page.tsx",
+   "src/components/wiki/wiki-search.tsx",
+   "src/lib/data/claims-ledger.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/wiki/products/stretch-bed",
+  "file": "src/app/wiki/products/stretch-bed/page.tsx",
+  "lines": 420,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/library/page.tsx",
+   "src/app/wiki/page.tsx",
+   "src/app/wiki/products/washing-machine/page.tsx",
+   "src/components/wiki/wiki-search.tsx"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/wiki/products/washing-machine",
+  "file": "src/app/wiki/products/washing-machine/page.tsx",
+  "lines": 693,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/fleet/[machine_id]/page.tsx",
+   "src/app/admin/fleet/page.tsx",
+   "src/app/admin/library/page.tsx",
+   "src/app/shop/washing-machine/page.tsx",
+   "src/app/wiki/page.tsx",
+   "src/components/wiki/wiki-search.tsx",
+   "src/lib/data/deck.ts"
+  ],
+  "admin": false
+ },
+ {
+  "route": "/wiki/support/faq",
+  "file": "src/app/wiki/support/faq/page.tsx",
+  "lines": 168,
+  "redirect": null,
+  "noindex": false,
+  "inbound": [
+   "src/app/admin/library/page.tsx",
+   "src/app/wiki/page.tsx"
+  ],
+  "admin": false
+ }
+]
