@@ -126,10 +126,10 @@ for (const r of records) {
     );
   }
   // ── 5. why required for plumbing and retire ───────────────────────────────
-  if ((isPlumbing || r.verdict === 'retire') && !r.why) {
+  if ((isPlumbing || r.verdict === 'retire' || r.verdict === 'rewrite') && !r.why) {
     fail(
       `${r.route}: verdict='${r.verdict}' with no why`,
-      "'retire' must be EARNED and 'plumbing' must be justified. The why records which test it passed (ticket #184).",
+      "'retire' must be EARNED, 'plumbing' must be justified, and a 'rewrite' must say WHICH rule the lead breaks. An unexplained rewrite is an opinion (tickets #178, #184).",
     );
   }
   // ── 7. plumbing allowlist ─────────────────────────────────────────────────

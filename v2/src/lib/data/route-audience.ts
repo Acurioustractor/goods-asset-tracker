@@ -107,7 +107,8 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
       heading: 'The Stretch Bed',
       body: 'Recycled plastic, galvanised steel, heavy-duty canvas. 26kg, flat-packs, no tools. Every bed supports remote First Nations communities across Australia.',
     },
-    verdict: 'keep',
+    verdict: 'rewrite',
+    why: 'Supporter front page leading with the product spec. supporter.leadWith is "one face, one voice, one place"; this opens "The Stretch Bed / Recycled plastic, galvanised steel, heavy-duty canvas. 26kg, flat-packs, no tools." That is buyer copy.',
   },
   {
     route: '/about',
@@ -1475,7 +1476,8 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
       heading: 'G\'day, partner',
       body: 'Your enterprise support system. What do you need?',
     },
-    verdict: 'keep',
+    verdict: 'rewrite',
+    why: 'partner.leadWith is "which of the nine modules is theirs, and which is ours". Leads "G\'day, partner / Your enterprise support system. What do you need?" The modules are never named.',
   },
   {
     route: '/portal/ask-goods',
@@ -1493,7 +1495,8 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
       heading: 'Where We\'re Heading',
       body: 'Your community\'s goals and aspirations',
     },
-    verdict: 'keep',
+    verdict: 'rewrite',
+    why: 'Partner surface that never names which of the nine modules is theirs.',
   },
   {
     route: '/portal/our-story',
@@ -1503,7 +1506,8 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
       heading: 'Our Story',
       body: 'Build your enterprise report',
     },
-    verdict: 'keep',
+    verdict: 'rewrite',
+    why: 'Partner surface that never names which of the nine modules is theirs.',
   },
   {
     route: '/portal/projects',
@@ -1513,7 +1517,8 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
       heading: 'Walk Together',
       body: 'Your enterprise projects and milestones',
     },
-    verdict: 'keep',
+    verdict: 'rewrite',
+    why: 'Partner surface that never names which of the nine modules is theirs.',
   },
   {
     route: '/press',
@@ -1547,7 +1552,8 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
       eyebrow: 'How it’s made',
       body: 'Plastic gathered on Country. Pressed and cut inside a shipping-container factory. Built in five minutes by the family who’ll sleep on it.',
     },
-    verdict: 'keep',
+    verdict: 'rewrite',
+    why: 'Buyer surface leading with the making story rather than the specification.',
   },
   {
     route: '/production',
@@ -1601,7 +1607,8 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
       eyebrow: 'Our Products',
       body: 'Every purchase supports remote First Nations communities across Australia. Each bed diverts',
     },
-    verdict: 'keep',
+    verdict: 'rewrite',
+    why: 'buyer.mustNeverSee, verbatim: "The impact story ahead of the spec. A procurement buyer who cannot find the lead time does not stay for the mission." Leads "Shop Beds / Every purchase supports remote First Nations communities across Australia." The spec-first rebuild exists unmerged on origin/feat/six-front-doors.',
   },
   {
     route: '/shop/[slug]',
@@ -1630,7 +1637,8 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
       heading: 'Pakkimjalki Kari',
       body: 'Named in Warumungu language by Elder Dianne Stokes',
     },
-    verdict: 'keep',
+    verdict: 'rewrite',
+    why: 'Buyer surface leading with naming provenance rather than spec, price and lead time. The provenance is right and belongs one element lower.',
   },
   {
     route: '/sites/cost-lab',
@@ -1700,7 +1708,8 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
       eyebrow: 'A good bed is health hardware, not furniture.',
       body: 'Beds, washing machines, and essential goods designed with remote Indigenous communities. Manufactured sustainably, eventually owned by them.',
     },
-    verdict: 'keep',
+    verdict: 'rewrite',
+    why: 'supporter.mustNeverSee: "Aggregate impact language in place of a person." Leads "Built with communities, not for them / Beds, washing machines, and essential goods designed with remote Indigenous communities." No face, no voice, no place.',
   },
   {
     route: '/story/road',
