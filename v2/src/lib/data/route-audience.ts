@@ -299,6 +299,14 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     verdict: 'keep',
   },
   {
+    route: '/admin/deck-photo-review',
+    audience: 'internal',
+    access: 'admin',
+    leadsWithNow: null,
+    whyUnread: 'admin surface, client-rendered behind the admin gate',
+    verdict: 'keep',
+  },
+  {
     route: '/admin/el-stories',
     audience: 'internal',
     access: 'admin',
@@ -427,6 +435,14 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     verdict: 'keep',
   },
   {
+    route: '/admin/investor-lab',
+    audience: 'internal',
+    access: 'admin',
+    leadsWithNow: null,
+    whyUnread: 'admin surface, client-rendered behind the admin gate',
+    verdict: 'keep',
+  },
+  {
     route: '/admin/library',
     audience: 'internal',
     access: 'admin',
@@ -493,6 +509,14 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
   },
   {
     route: '/admin/messages',
+    audience: 'internal',
+    access: 'admin',
+    leadsWithNow: null,
+    whyUnread: 'admin surface, client-rendered behind the admin gate',
+    verdict: 'keep',
+  },
+  {
+    route: '/admin/miro-board',
     audience: 'internal',
     access: 'admin',
     leadsWithNow: null,
@@ -597,6 +621,14 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
   },
   {
     route: '/admin/pitch-cockpit',
+    audience: 'internal',
+    access: 'admin',
+    leadsWithNow: null,
+    whyUnread: 'admin surface, client-rendered behind the admin gate',
+    verdict: 'keep',
+  },
+  {
+    route: '/admin/pitch-workshop',
     audience: 'internal',
     access: 'admin',
     leadsWithNow: null,
@@ -1443,7 +1475,7 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
       body: 'Use this to decide which images carry production, delivery, young makers, and community voice. The final check stays in Empathy Ledger or the canon board before the deck goes out.',
     },
     verdict: 'redirect',
-    target: '/admin/photo-review',
+    target: '/admin/deck-photo-review',
   },
   {
     route: '/pitch/road',

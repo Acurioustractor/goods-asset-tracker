@@ -117,11 +117,17 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
       { href: '/admin/messages', name: 'Messages', status: 'stale' },
       { href: '/admin/announcements', name: 'Announcements', status: 'stale' },
       { href: '/admin/compassion', name: 'Compassion', status: 'stale' },
-      { href: '/admin/products', name: 'Products', status: 'stale' },
       { href: '/admin/brand', name: 'Brand', status: 'stale' },
       { href: '/admin/team', name: 'Team', status: 'stale' },
       { href: '/admin/alice-fill', name: 'Alice fill wizard', status: 'one-off', note: '2026-05-21 trip catch-up' },
       { href: '/admin/route-review', name: 'Route review', status: 'one-off', note: '2026-07 IA review artifact; produced this directory' },
+      // Moved off /pitch/* on 2026-08-02 (route sweep, map #177 ticket #183). They were internal
+      // working surfaces on a funder-facing path prefix, relying on noindex, which was never a
+      // gate: a noindexed page is fully readable by anyone holding the URL.
+      { href: '/admin/investor-lab', name: 'Investor narrative lab', status: 'stale', note: 'was /pitch/investor-lab' },
+      { href: '/admin/pitch-workshop', name: 'Pitch workshop', status: 'stale', note: 'was /pitch/workshop' },
+      { href: '/admin/miro-board', name: 'Miro board', status: 'stale', note: 'was /pitch/miro-board' },
+      { href: '/admin/deck-photo-review', name: 'Deck photo review', status: 'stale', note: 'was /pitch/photo-review; /admin/photo-review is a different, older redirect stub' },
     ],
   },
 ];

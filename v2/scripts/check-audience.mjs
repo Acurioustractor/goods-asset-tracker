@@ -214,17 +214,30 @@ for (const { id, door } of FRONT_DOORS) {
   seenDoors.set(door, id);
 }
 
-// ── 16. every next.config retirement carries a dated comment ────────────────
+// ── 16. every next.config retirement carries a dated comment naming its ruling ──
+// Comment RUNS, not a fixed lookback: a section comment covering a group of related redirects is
+// better documentation than repeating a date on every line, and an earlier fixed-distance version
+// of this check flagged ten entries that were already documented by the block above them.
 const redirectBlock = (nextConfig.match(/async redirects\(\)[\s\S]*?\n  \},/) || [''])[0];
-for (const m of redirectBlock.matchAll(/\{ source: '([^']+)'/g)) {
-  const idx = redirectBlock.indexOf(m[0]);
-  const before = redirectBlock.slice(Math.max(0, idx - 600), idx);
-  if (!/\/\/[^\n]*\d{4}-\d{2}-\d{2}|\/\/[^\n]*ruling/i.test(before)) {
-    fail(
-      `next.config.ts redirect for ${m[1]} has no dated comment naming its ruling`,
-      'A ruling with no sweep list is a ruling that will rot. 18-bmd-partnership.md said "canon updated everywhere" while contradicting canon.',
-    );
+let lastComment = '';
+for (const line of redirectBlock.split('\n')) {
+  const trimmed = line.trim();
+  if (trimmed.startsWith('//')) {
+    lastComment += ` ${trimmed}`;
+    continue;
   }
+  const entry = trimmed.match(/^\{ source: '([^']+)'/);
+  if (entry) {
+    if (!/\d{4}-\d{2}-\d{2}|#\d+|ruling/i.test(lastComment)) {
+      fail(
+        `next.config.ts redirect for ${entry[1]} has no comment carrying a date or a ruling`,
+        'A ruling with no sweep list is a ruling that will rot. 18-bmd-partnership.md said "canon updated everywhere" while contradicting canon.',
+      );
+    }
+    continue;
+  }
+  if (trimmed === '' || trimmed === '];' || trimmed === 'return [') continue;
+  lastComment = '';
 }
 
 // ── Reports. These never fail. ──────────────────────────────────────────────
