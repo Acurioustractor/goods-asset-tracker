@@ -416,11 +416,13 @@ export default function LeaveBehindPage() {
               <SectionLabel>The stack we are asking to sign</SectionLabel>
               <div style={{ fontSize: 12, lineHeight: 1.7, marginTop: 5 }}>
                 SEFA <b>$300K</b> <span style={{ color: C.mut, fontSize: 11 }}>repayable</span> &nbsp;·&nbsp; Snow
-                Foundation <b>$100K</b> <span style={{ color: C.mut, fontSize: 11 }}>grant</span> &nbsp;·&nbsp;
-                Centrecorp <b>$75K</b> <span style={{ color: C.mut, fontSize: 11 }}>grant</span>
+                Foundation <b>$100K</b> <span style={{ color: C.mut, fontSize: 11 }}>grant</span>
                 <span style={{ display: 'block', borderTop: `1px solid ${C.line}`, marginTop: 5, paddingTop: 5 }}>
-                  Candidate stack <b>$607.5K</b> grants / <b>$710K</b> repayable · signed to date <b style={{ color: C.terracotta }}>$0</b>{' '}
-                  <Chip claim="target" /> &nbsp;<span style={{ color: C.mut, fontSize: 11 }}>as at 25 July 2026, and we say so</span>
+                  Signed to date <b style={{ color: C.terracotta }}>$0</b>{' '}
+                  <Chip claim="verified" /> &nbsp;<span style={{ color: C.mut, fontSize: 11 }}>
+                    Candidate asks are live in the CRM and move week to week, so no stack total is
+                    printed here. Centrecorp is a buyer, not a grant line.
+                  </span>
                 </span>
               </div>
               <div style={{ fontSize: 10.5, color: C.mut, marginTop: 6, lineHeight: 1.38 }}>

@@ -495,21 +495,25 @@ export const deckSlides: DeckSlide[] = [
     kind: 'money',
     eyebrow: 'Where the money actually is',
     headline: `The signed total is ${signedLois}. The conversations are still conversations.`,
-    body: 'The CRM has AU$607,500 in grant asks and AU$710,000 in repayable-capital conversations. Either amount could cover the QBE match. Today, none of it is signed.',
+    body: 'Grant asks and repayable-capital conversations are both live in the CRM and both move week to week, so no stack total is quoted here. Today, none of it is signed.',
     photo: '/images/process/color-samples.jpg',
     photoAlt: 'Recycled-plastic colour samples',
     place: 'Rebuilt 25 July 2026 from all 67 Supporter Journey rows',
     chips: [
       { label: 'Verified · signed, match-eligible', value: `${signedLois}` },
-      { label: 'Proposed · grants at "Ask made"', value: 'AU$607,500' },
-      { label: 'Proposed · repayable at "Cultivating"', value: 'AU$710,000' },
+      // The AU$607,500 / AU$710,000 pair was removed 2026-08-02. It was a hand-typed CRM snapshot
+      // dated 2026-07-25, and the grant column included Centrecorp at $75K, which Ben confirmed
+      // that day is a BUYER and will not give a grant. ask-surface.ts records the correction and
+      // says plainly: re-derive from GHL rather than patching the number here. Until it is
+      // derived, the honest chip is the one that is true every day.
+      { label: 'Verified · signed', value: '$0' },
       { label: 'Workpaper · Goods-only FY26 revenue', value: aud(Number(revenueCarveout.value)) },
       { label: 'Workpaper · already invested', value: aud(ALREADY_INVESTED) },
       { label: 'Modelled · equipment, gross', value: `${aud(CAPITAL_GROSS_LOW)} to ${aud(CAPITAL_GROSS_HIGH)}` },
     ],
     goDeeper: [{ label: 'Every number, audited', href: '/register' }],
     script:
-      'Nothing is signed today. Grant asks in the CRM total 607,500: Minderoo, Tim Fairfax, Snow, Rotary Eclub and Centrecorp. Repayable-capital conversations total 710,000: SEFA, White Box, LendForGood and Metro Finance. Either amount could cover the QBE match, but neither has produced the paper yet. Goods-only FY26 revenue is 713,827 in a workpaper prepared with our accountant; it is not accountant-signed. We have invested 110,046. About 43,700 is evidenced at bill level, while paperwork for the remaining equipment is still being assembled. The gross equipment requirement is between 112,000 and 222,000. We show the requirement and our existing investment separately because the ownership of new equipment must be agreed, not assumed.',
+      'Nothing is signed today. There are live grant asks and live repayable-capital conversations in the CRM, and I am not going to quote you a stack total because it moves week to week and the last one we published counted a bed buyer as a grant. Neither column has produced paper yet. Goods-only FY26 revenue is 713,827 in a workpaper prepared with our accountant; it is not accountant-signed. We have invested 110,046. About 43,700 is evidenced at bill level, while paperwork for the remaining equipment is still being assembled. The gross equipment requirement is between 112,000 and 222,000. We show the requirement and our existing investment separately because the ownership of new equipment must be agreed, not assumed.',
     note: 'Ruling H: cite $713,827, never call it signed, label it workpaper. canon.ts already grades revenue-carveout claimLabel "workpaper" (verified by reading the record on 2026-07-25; an audit pass that claimed otherwise had misread the neighbouring revenue-xero-paid entry). Ruling P: capital is quoted GROSS ONLY, sunk spend sits beside it and is NEVER netted; NET_CAPITAL_* were deleted from engine.ts and a guard fails if reintroduced. Ruling O regraded $110,046 to workpaper. The $607.5K / $710K figures are a MOVING CRM number rebuilt 2026-07-25, not canon, which is why they are chipped Proposed and dated in the place line.',
   },
 
