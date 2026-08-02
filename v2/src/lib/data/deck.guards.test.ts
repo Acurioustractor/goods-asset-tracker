@@ -16,12 +16,20 @@
  * inside a chip value), and its term list has no rule for several banned words.
  */
 
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, it, expect } from 'vitest';
 import { deckSlides } from './deck';
 
 /** Every string a viewer can see. `note` and `script` are excluded deliberately:
- *  no public renderer reads `note` (verified against deck-public.tsx and
- *  pitch/road/page.tsx), and it is where retired history is allowed to live. */
+ *  neither is read by a public renderer, and `note` is where retired history is
+ *  allowed to live.
+ *
+ *  That exclusion was ASSERTED here from 2026-08-01 and was false for `script`:
+ *  deck-public.tsx rendered it on /pitch/deck, an open route with no `noindex`
+ *  that audience.ts points funders at, so the longest prose on the page escaped
+ *  every check below. The render was removed 2026-08-02 and the exclusion is now
+ *  enforced by 'no public renderer reads note or script' rather than trusted. */
 const PUBLIC_STRINGS: { where: string; text: string }[] = deckSlides.flatMap((s) => [
   { where: `${s.id}.headline`, text: s.headline ?? '' },
   { where: `${s.id}.body`, text: s.body ?? '' },
@@ -33,6 +41,33 @@ const PUBLIC_STRINGS: { where: string; text: string }[] = deckSlides.flatMap((s)
   ]),
   ...(s.steps ?? []).map((step, i) => ({ where: `${s.id}.steps[${i}]`, text: step })),
 ]);
+
+describe('no public renderer reads note or script', () => {
+  // The premise PUBLIC_STRINGS rests on. A comment cannot hold it: this exact
+  // claim was written down on 2026-08-01 and was already untrue for `script`.
+  const PUBLIC_RENDERERS = [
+    'src/app/pitch/deck/deck-public.tsx',
+    'src/app/pitch/road/page.tsx',
+  ];
+
+  it.each(PUBLIC_RENDERERS)('%s renders neither slide.note nor slide.script', (rel) => {
+    const source = readFileSync(join(process.cwd(), rel), 'utf8');
+    // Strip comments first: this file's own explanation of the removal names the
+    // fields, and a naive grep would fail on the fix that created it.
+    const code = source
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/^\s*\/\/.*$/gm, '');
+
+    for (const field of ['note', 'script'] as const) {
+      expect(
+        new RegExp(`\\bslide\\.${field}\\b|\\b${field}\\s*:\\s*slide\\.`).test(code),
+        `${rel} references slide.${field}. Both fields are excluded from PUBLIC_STRINGS, so ` +
+          `rendering either publishes prose that no claim guard in this file has checked. ` +
+          `A presenter or rehearsal view belongs behind the /admin gate.`,
+      ).toBe(false);
+    }
+  });
+});
 
 describe('deck.ts: no bed number is offered as a threshold', () => {
   it('publishes no "= N beds" conversion and no beds-per-year rate', () => {
