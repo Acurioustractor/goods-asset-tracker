@@ -880,14 +880,18 @@ OPEN_QUESTIONS = [
      "$19,800 shredder is physical-only. Some container costs are ambiguously tagged.", "TBC", "Ben + bookkeeper",
      "answered", "Determines opening assets and evidence quality.",
      "Locate invoices or formally document owned, invoice to locate.",
-     "Partly. The $19,800 Telford Smith shredder is confirmed physically by Ben with no invoice in the connected "
-     "Xero. Container-side records ARE located: 20ft Monument Grey $3,320 (Bionic Self Storage, 2026-04-29), crane "
-     "placement $1,041 (GM Crane Hire, 2026-06-29), transport $193 (Rapid Container, 2026-06-24). Two items stay "
-     "excluded: the $6,600 generators (Orange Sky, no project tag) and the $5,904 larger container (tagged Mounty "
-     "Yarns, flagged on-sold). Treatment: include the shredder at $19,800 with a stated 'owned, invoice to locate' "
-     "note; exclude the two ambiguous items.",
-     "Shredder in at $19,800; generators and larger container OUT", "evidenced / physical-only mix",
-     "Ben + bookkeeper - written asset register entry"),
+     "UPDATED 2026-08-03: the shredder invoice EXISTS, and it is DELETED. Telford Smith Engineering, "
+     "23 December 2025, TWO lines of $19,800 each - 'Telford Smith Engine' and 'Zerma GSL-300/400 Granulator' - "
+     "both carrying status DELETED, which is exactly why a live P&L shows nothing and canon recorded 'no Xero "
+     "record'. The two lines matter: it is not yet clear whether that is one machine entered twice and voided, or "
+     "a genuine $39,600 engine-plus-granulator pair. That question decides whether $19,800 or $39,600 belongs in "
+     "opening PP&E. Container-side records ARE located and clean: 20ft Monument Grey $3,320 (Bionic Self Storage, "
+     "2026-04-29), crane placement $1,041 (GM Crane Hire, 2026-06-29), transport $193 (Rapid Container, "
+     "2026-06-24). Two items stay excluded: the $6,600 generators (Orange Sky, no project tag) and the $5,904 "
+     "larger container (tagged Mounty Yarns, flagged on-sold).",
+     "Shredder in at $19,800 pending the one-or-two question; generators and container OUT",
+     "invoice located, status DELETED",
+     "Bookkeeper - why voided on 23 Dec, and is it one machine or two?"),
 
     ("Critical", "Was the 40-bed run measured for time, diesel and yield?",
      "Factory process proven on 40 Maningrida beds. Per-bed cost remains modelled.", "Short measured run",
