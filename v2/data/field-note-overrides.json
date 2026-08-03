@@ -62,5 +62,9 @@
     "gallery.0": "/images/community/unplaced/rec-assembly-05-pole-sleeve.jpg",
     "gallery.1": "/images/media-pack/speed-queen-controls.jpg",
     "gallery.2": "/images/media-pack/snow-tennant-creek-april-2025.jpg"
+  },
+  "pitch-road": {
+    "the-stretch-bed.photo": "/images/brand/goods-ill-assembly.jpg",
+    "stop-5-utopia.making-photo": "https://yvnuayzslukamizrlhwb.supabase.co/storage/v1/object/public/media/goods/migrated/build__build-001.jpg"
   }
 }

@@ -8310,7 +8310,8 @@
                   "fill": "$onDarkDim",
                   "content": "Voices",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -8333,7 +8334,8 @@
                   "fill": "$onDarkDim",
                   "content": "Money Story",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -8356,7 +8358,8 @@
                   "fill": "$onDarkDim",
                   "content": "People",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -8379,7 +8382,8 @@
                   "fill": "$onDarkDim",
                   "content": "Raise",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -8402,7 +8406,8 @@
                   "fill": "$onDarkDim",
                   "content": "Visuals",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -8425,7 +8430,8 @@
                   "fill": "$onDarkDim",
                   "content": "Media",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -8448,7 +8454,8 @@
                   "fill": "$onDarkDim",
                   "content": "Pitch",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -9905,7 +9912,8 @@
                   "fill": "$onDarkDim",
                   "content": "Dashboard",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -9952,7 +9960,8 @@
                   "fill": "$onDarkDim",
                   "content": "Money Story",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -9975,7 +9984,8 @@
                   "fill": "$onDarkDim",
                   "content": "People",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -9998,7 +10008,8 @@
                   "fill": "$onDarkDim",
                   "content": "Raise",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -10021,7 +10032,8 @@
                   "fill": "$onDarkDim",
                   "content": "Visuals",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -10044,7 +10056,8 @@
                   "fill": "$onDarkDim",
                   "content": "Media",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -10067,7 +10080,8 @@
                   "fill": "$onDarkDim",
                   "content": "Pitch",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -10347,7 +10361,8 @@
                       "fill": "$ink-muted",
                       "content": "Registry",
                       "fontFamily": "$body",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -10369,7 +10384,8 @@
                       "fill": "$ink-muted",
                       "content": "Quote bank",
                       "fontFamily": "$body",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -10391,7 +10407,8 @@
                       "fill": "$ink-muted",
                       "content": "EL stories",
                       "fontFamily": "$body",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -10413,7 +10430,8 @@
                       "fill": "$ink-muted",
                       "content": "EL storytellers",
                       "fontFamily": "$body",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -10435,7 +10453,8 @@
                       "fill": "$ink-muted",
                       "content": "Curated",
                       "fontFamily": "$body",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -10457,7 +10476,8 @@
                       "fill": "$ink-muted",
                       "content": "Community lens",
                       "fontFamily": "$body",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 }
@@ -10656,7 +10676,8 @@
                               "fill": "$ink-muted",
                               "content": "Tennant Creek",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -10691,7 +10712,8 @@
                               "fill": "$ink-muted",
                               "content": "5 transcripts",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -10708,7 +10730,8 @@
                               "fill": "$ink",
                               "content": "12",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -10725,7 +10748,8 @@
                               "fill": "$ink-muted",
                               "content": "Rest · Self-det · Jobs",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -10777,7 +10801,8 @@
                               "fill": "$ink-muted",
                               "content": "Tennant Creek",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -10812,7 +10837,8 @@
                               "fill": "$ink-muted",
                               "content": "Verified clip",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -10829,7 +10855,8 @@
                               "fill": "$ink",
                               "content": "6",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -10846,7 +10873,8 @@
                               "fill": "$ink-muted",
                               "content": "Jobs & ownership",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -10898,7 +10926,8 @@
                               "fill": "$ink-muted",
                               "content": "Tennant Creek",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -10933,7 +10962,8 @@
                               "fill": "$ink-muted",
                               "content": "Transcript",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -10950,7 +10980,8 @@
                               "fill": "$ink",
                               "content": "5",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -10967,7 +10998,8 @@
                               "fill": "$ink-muted",
                               "content": "Rest & health",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -11019,7 +11051,8 @@
                               "fill": "$ink-muted",
                               "content": "Tennant Creek",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -11054,7 +11087,8 @@
                               "fill": "$ink-muted",
                               "content": "Transcript",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -11071,7 +11105,8 @@
                               "fill": "$ink",
                               "content": "4",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -11088,7 +11123,8 @@
                               "fill": "$ink-muted",
                               "content": "Self-determination",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -11140,7 +11176,8 @@
                               "fill": "$ink-muted",
                               "content": "Utopia",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -11175,7 +11212,8 @@
                               "fill": "$ink-muted",
                               "content": "Transcript",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -11192,7 +11230,8 @@
                               "fill": "$ink",
                               "content": "3",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -11209,7 +11248,8 @@
                               "fill": "$ink-muted",
                               "content": "Dignity & safety",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -11261,7 +11301,8 @@
                               "fill": "$ink-muted",
                               "content": "Tennant Creek",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -11296,7 +11337,8 @@
                               "fill": "$terracotta-ink",
                               "content": "NONE — gap",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -11313,7 +11355,8 @@
                               "fill": "$ink",
                               "content": "1",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -11330,7 +11373,8 @@
                               "fill": "$ink-muted",
                               "content": "Rest & health",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -11382,7 +11426,8 @@
                               "fill": "$ink-muted",
                               "content": "—",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -11417,7 +11462,8 @@
                               "fill": "$terracotta-ink",
                               "content": "held",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -11434,7 +11480,8 @@
                               "fill": "$ink",
                               "content": "—",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -11451,7 +11498,8 @@
                               "fill": "$ink-muted",
                               "content": "—",
                               "fontFamily": "$body",
-                              "fontSize": 12.5
+                              "fontSize": 12.5,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -12003,7 +12051,8 @@
                   "fill": "$onDarkDim",
                   "content": "Voices",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -12026,7 +12075,8 @@
                   "fill": "$onDarkDim",
                   "content": "Money Story",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -12049,7 +12099,8 @@
                   "fill": "$onDarkDim",
                   "content": "People",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -12072,7 +12123,8 @@
                   "fill": "$onDarkDim",
                   "content": "Raise",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -12095,7 +12147,8 @@
                   "fill": "$onDarkDim",
                   "content": "Visuals",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -12118,7 +12171,8 @@
                   "fill": "$onDarkDim",
                   "content": "Media",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -12141,7 +12195,8 @@
                   "fill": "$onDarkDim",
                   "content": "Pitch",
                   "fontFamily": "$body",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -13808,6 +13863,2718 @@
           ]
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "G94Vg",
+      "x": 18440,
+      "y": 0,
+      "name": "Homepage A — The Bed on Country",
+      "clip": true,
+      "width": 1440,
+      "fill": "$cream",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "ancy3",
+          "name": "Nav",
+          "width": "fill_container",
+          "fill": "$cream",
+          "padding": [
+            20,
+            64
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "K6ddhT",
+              "name": "Logo",
+              "fill": "$ink",
+              "content": "Goods.",
+              "fontFamily": "Playfair Display",
+              "fontSize": 26,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "z1P8WD",
+              "name": "Links",
+              "gap": 32,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tGdzc",
+                  "name": "The road",
+                  "fill": "$ink-muted",
+                  "content": "The road",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "r9eogH",
+                  "name": "Shop",
+                  "fill": "$ink-muted",
+                  "content": "Shop",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "gDDy0",
+                  "name": "Communities",
+                  "fill": "$ink-muted",
+                  "content": "Communities",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "Fq2tk",
+                  "name": "Press",
+                  "fill": "$ink-muted",
+                  "content": "Press",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "r01of",
+                  "name": "Nav CTA",
+                  "fill": "$terracotta",
+                  "cornerRadius": 24,
+                  "padding": [
+                    10,
+                    20
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "LctLU",
+                      "name": "Label",
+                      "fill": "#FFFFFF",
+                      "content": "Buy a bed",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "kWy9u",
+          "name": "Hero",
+          "metadata": {
+            "type": "unsplash",
+            "username": "jack1van",
+            "link": "https://unsplash.com/@jack1van",
+            "author": "Jack van Tricht"
+          },
+          "clip": true,
+          "width": "fill_container",
+          "height": 760,
+          "fill": [
+            {
+              "type": "image",
+              "enabled": true,
+              "url": "starred-images/community--maningrida--the-whole-run-of-finished-beds-with-people-sitting-on-them-at-sunset--build-day-hero.jpg",
+              "mode": "fill"
+            },
+            {
+              "type": "gradient",
+              "gradientType": "linear",
+              "enabled": true,
+              "rotation": 180,
+              "size": {
+                "height": 1
+              },
+              "colors": [
+                {
+                  "color": "#00000000",
+                  "position": 0.35
+                },
+                {
+                  "color": "#000000B3",
+                  "position": 1
+                }
+              ]
+            }
+          ],
+          "layout": "vertical",
+          "justifyContent": "end",
+          "children": [
+            {
+              "type": "frame",
+              "id": "O2GpG",
+              "name": "Hero Content",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 24,
+              "padding": [
+                0,
+                64,
+                56,
+                64
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "K1dzd",
+                  "name": "Headline",
+                  "fill": "#FFFFFF",
+                  "textGrowth": "fixed-width",
+                  "width": 820,
+                  "content": "A bed made on Country, from the plastic that was already here.",
+                  "lineHeight": 1.1,
+                  "fontFamily": "Playfair Display",
+                  "fontSize": 56,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "K9mLgx",
+                  "name": "Hero CTAs",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "InHrB",
+                      "name": "Buy",
+                      "fill": "$terracotta",
+                      "cornerRadius": 28,
+                      "padding": [
+                        14,
+                        28
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "IevFq",
+                          "name": "Label",
+                          "fill": "#FFFFFF",
+                          "content": "Buy the Stretch Bed — $750",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "NRYpT",
+                      "name": "Road",
+                      "cornerRadius": 28,
+                      "stroke": "#FFFFFF",
+                      "strokeWidth": 1.5,
+                      "padding": [
+                        14,
+                        28
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "WuFbS",
+                          "name": "Label",
+                          "fill": "#FFFFFF",
+                          "content": "Walk the road",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "EKJLe",
+          "name": "Provenance Strip",
+          "width": "fill_container",
+          "fill": "$dark",
+          "gap": 48,
+          "padding": [
+            18,
+            64
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "BAjFw",
+              "name": "Pressed at Maningrida",
+              "fill": "$onDarkDim",
+              "content": "40 BEDS PRESSED END TO END",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 13,
+              "fontWeight": "normal",
+              "letterSpacing": 1
+            },
+            {
+              "type": "text",
+              "id": "y9zvU",
+              "name": "20kg of HDPE per bed",
+              "fill": "$onDarkDim",
+              "content": "20KG OF HDPE PER BED",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 13,
+              "fontWeight": "normal",
+              "letterSpacing": 1
+            },
+            {
+              "type": "text",
+              "id": "CYshm",
+              "name": "Designed in community, led by community",
+              "fill": "$onDarkDim",
+              "content": "DESIGNED IN COMMUNITY, LED BY COMMUNITY",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 13,
+              "fontWeight": "normal",
+              "letterSpacing": 1
+            },
+            {
+              "type": "text",
+              "id": "vOMgp",
+              "name": "Ownership is a pathway",
+              "fill": "$onDarkDim",
+              "content": "OWNERSHIP IS A PATHWAY",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 13,
+              "fontWeight": "normal",
+              "letterSpacing": 1
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "h1vum",
+          "name": "Story Compact",
+          "width": "fill_container",
+          "fill": "$paper",
+          "gap": 48,
+          "padding": 64,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "E1GbEL",
+              "name": "Text",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "TcyNm",
+                  "name": "Eyebrow",
+                  "fill": "$terracotta",
+                  "content": "ABOUT GOODS",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "j84ts",
+                  "name": "Line",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Beds donated to remote communities kept disappearing. So communities started making their own: quality furniture, pressed from the plastic already on Country, on a road to owning the making itself.",
+                  "lineHeight": 1.25,
+                  "fontFamily": "Playfair Display",
+                  "fontSize": 30,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "nwIYq",
+                  "name": "Link",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "caFDR",
+                      "name": "Label",
+                      "fill": "$terracotta",
+                      "content": "Read the full story →",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "k02YAg",
+          "name": "Stretch Bed Section",
+          "width": "fill_container",
+          "fill": "$cream",
+          "gap": 48,
+          "padding": [
+            80,
+            64
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "WNkjO",
+              "name": "Bed Photo",
+              "clip": true,
+              "width": 620,
+              "height": 440,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "starred-images/community--maningrida--men-looking-over-a-finished-stretch-bed--x-trestle-tension-visible.jpg",
+                "mode": "fill"
+              },
+              "cornerRadius": 12
+            },
+            {
+              "type": "frame",
+              "id": "AcaRj",
+              "name": "Text",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "HAavJ",
+                  "name": "Eyebrow",
+                  "fill": "$terracotta",
+                  "content": "THE STRETCH BED",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "PkOoG",
+                  "name": "Title",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "A bed built to stay.",
+                  "lineHeight": 1.15,
+                  "fontFamily": "Playfair Display",
+                  "fontSize": 36,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "D9gJJj",
+                  "name": "Body",
+                  "fill": "$ink-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Two steel poles thread through the canvas and the crossed recycled-plastic legs; tensioning locks it all together. 20kg of HDPE diverted per bed. Flat-packs, assembles anywhere, and the canvas is the structure.",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "V1MIOF",
+                  "name": "CTAs",
+                  "gap": 16,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "KD81M",
+                      "name": "Buy",
+                      "fill": "$terracotta",
+                      "cornerRadius": 26,
+                      "padding": [
+                        13,
+                        26
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "QMS42",
+                          "name": "Label",
+                          "fill": "#FFFFFF",
+                          "content": "Buy the Stretch Bed — $750",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "Vzmab",
+                      "name": "More",
+                      "fill": "$terracotta",
+                      "content": "More about the bed →",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "x0I9l",
+          "name": "Facility Section",
+          "width": "fill_container",
+          "fill": "$paper",
+          "gap": 48,
+          "padding": [
+            80,
+            64
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "qNaOn",
+              "name": "Text",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "y9LNGB",
+                  "name": "Eyebrow",
+                  "fill": "$sage-ink",
+                  "content": "THE PRODUCTION FACILITY",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "Fe6RI",
+                  "name": "Title",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "A factory that can move to community ownership.",
+                  "lineHeight": 1.15,
+                  "fontFamily": "Playfair Display",
+                  "fontSize": 36,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "lyVQ3",
+                  "name": "Body",
+                  "fill": "$ink-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "A containerised plant that shreds the plastic, presses the sheets and cuts the legs. Forty beds pressed end to end prove the process. Each community picks the pieces it wants to run, and the pathway is walked together.",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "eJQNs",
+                  "name": "Stages",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "u3WZAA",
+                      "name": "Yarn",
+                      "cornerRadius": 16,
+                      "stroke": "$sage-ink",
+                      "strokeWidth": 1,
+                      "padding": [
+                        7,
+                        14
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "pHmp2",
+                          "name": "Label",
+                          "fill": "$sage-ink",
+                          "content": "Yarn",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "FV8CT",
+                      "name": "Shape",
+                      "cornerRadius": 16,
+                      "stroke": "$sage-ink",
+                      "strokeWidth": 1,
+                      "padding": [
+                        7,
+                        14
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "MWBXR",
+                          "name": "Label",
+                          "fill": "$sage-ink",
+                          "content": "Shape",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "cntnY",
+                      "name": "Resource",
+                      "cornerRadius": 16,
+                      "stroke": "$sage-ink",
+                      "strokeWidth": 1,
+                      "padding": [
+                        7,
+                        14
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "qvKmZ",
+                          "name": "Label",
+                          "fill": "$sage-ink",
+                          "content": "Resource",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "wWZqY",
+                      "name": "Deliver",
+                      "cornerRadius": 16,
+                      "stroke": "$sage-ink",
+                      "strokeWidth": 1,
+                      "padding": [
+                        7,
+                        14
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "fkUfx",
+                          "name": "Label",
+                          "fill": "$sage-ink",
+                          "content": "Deliver",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "En4gG",
+                      "name": "Transfer",
+                      "cornerRadius": 16,
+                      "stroke": "$sage-ink",
+                      "strokeWidth": 1,
+                      "padding": [
+                        7,
+                        14
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "lZDis",
+                          "name": "Label",
+                          "fill": "$sage-ink",
+                          "content": "Transfer",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "FOzN6",
+                      "name": "Grow",
+                      "cornerRadius": 16,
+                      "stroke": "$sage-ink",
+                      "strokeWidth": 1,
+                      "padding": [
+                        7,
+                        14
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "r83pZ",
+                          "name": "Label",
+                          "fill": "$sage-ink",
+                          "content": "Grow",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "KuYAK",
+                  "name": "Links",
+                  "gap": 24,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "V7TFi",
+                      "name": "L1",
+                      "fill": "$sage-ink",
+                      "content": "About the facility →",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "T1Vgp",
+                      "name": "L2",
+                      "fill": "$sage-ink",
+                      "content": "The pathways to ownership →",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "apbpl",
+              "name": "Plant Photo",
+              "clip": true,
+              "width": 620,
+              "height": 440,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "starred-images/process--plant-panorama--this-is-the-main-image-to-use-for-the-on-country-production-facility--factory-panorama.jpg",
+                "mode": "fill"
+              },
+              "cornerRadius": 12
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "e6SUEa",
+          "name": "People Section",
+          "width": "fill_container",
+          "fill": "$cream",
+          "layout": "vertical",
+          "gap": 48,
+          "padding": [
+            96,
+            64
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "a25dV",
+              "name": "Section Head",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "eA34j",
+                  "name": "Eyebrow",
+                  "fill": "$terracotta",
+                  "content": "VOICES LEAD THE ROAD",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "X5u41v",
+                  "name": "Title",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": 760,
+                  "content": "Every stop on the road is a person saying something.",
+                  "lineHeight": 1.15,
+                  "fontFamily": "Playfair Display",
+                  "fontSize": 38,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "L9NfEU",
+              "name": "Story Rail",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Wpvvl",
+                  "name": "Card Gloria Turner",
+                  "clip": true,
+                  "width": "fill_container",
+                  "fill": "$paper",
+                  "cornerRadius": 16,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "S0JkJ",
+                      "name": "Photo",
+                      "metadata": {
+                        "type": "unsplash",
+                        "username": "_zacferguson_",
+                        "link": "https://unsplash.com/@_zacferguson_",
+                        "author": "Zachary Ferguson"
+                      },
+                      "width": "fill_container",
+                      "height": 300,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "starred-images/people--gloria-turner--portrait.jpg",
+                        "mode": "fill"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "M6Ffz",
+                      "name": "Text",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": 24,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "TqNOA",
+                          "name": "Name",
+                          "fill": "$ink",
+                          "content": "Gloria Turner",
+                          "fontFamily": "Playfair Display",
+                          "fontSize": 20,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "EqKk2",
+                          "name": "Role",
+                          "fill": "$ink-muted",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Kalgoorlie. Where we learned that donated beds disappear.",
+                          "lineHeight": 1.5,
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "WLroE",
+                  "name": "Card Dianne Stokes",
+                  "clip": true,
+                  "width": "fill_container",
+                  "fill": "$paper",
+                  "cornerRadius": 16,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "TGteo",
+                      "name": "Photo",
+                      "metadata": {
+                        "type": "unsplash",
+                        "username": "alesdusa",
+                        "link": "https://unsplash.com/@alesdusa",
+                        "author": "Ales Dusa"
+                      },
+                      "width": "fill_container",
+                      "height": 300,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "starred-images/people--tennant-creek--dianne-stokes--portrait.jpg",
+                        "mode": "fill"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "BQjE1",
+                      "name": "Text",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": 24,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "P16Qgy",
+                          "name": "Name",
+                          "fill": "$ink",
+                          "content": "Elder Dianne Stokes",
+                          "fontFamily": "Playfair Display",
+                          "fontSize": 20,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "qC9d2",
+                          "name": "Role",
+                          "fill": "$ink-muted",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Tennant Creek. Named the washing machine Pakkimjalki Kari, in Warumungu.",
+                          "lineHeight": 1.5,
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "o0oy0",
+                  "name": "Card Fred Campbell",
+                  "clip": true,
+                  "width": "fill_container",
+                  "fill": "$paper",
+                  "cornerRadius": 16,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "HF4OX",
+                      "name": "Photo",
+                      "metadata": {
+                        "type": "unsplash",
+                        "username": "metujiiiiiiin",
+                        "link": "https://unsplash.com/@metujiiiiiiin",
+                        "author": "Temuujin Purevjav"
+                      },
+                      "width": "fill_container",
+                      "height": 300,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "starred-images/people--alice-springs--fred-campbell--portrait.png",
+                        "mode": "fill"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "h0esYl",
+                      "name": "Text",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": 24,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "xfScz",
+                          "name": "Name",
+                          "fill": "$ink",
+                          "content": "Fred Campbell",
+                          "fontFamily": "Playfair Display",
+                          "fontSize": 20,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "BRZHA",
+                          "name": "Role",
+                          "fill": "$ink-muted",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Alice Springs. On Xavier and the farm, where the economics land.",
+                          "lineHeight": 1.5,
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "jR4Fl",
+          "name": "Road Section",
+          "width": "fill_container",
+          "fill": "$dark",
+          "layout": "vertical",
+          "gap": 40,
+          "padding": [
+            96,
+            64
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "k0xYg",
+              "name": "Head",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "jJgc4",
+                  "name": "Eyebrow",
+                  "fill": "$gold",
+                  "content": "THE ROAD TO OWNERSHIP",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "g0BdmU",
+                  "name": "Title",
+                  "fill": "$onDark",
+                  "textGrowth": "fixed-width",
+                  "width": 820,
+                  "content": "The goal was never a bigger Goods. It is a community that can collect the plastic, make the goods, and come to own the making.",
+                  "lineHeight": 1.15,
+                  "fontFamily": "Playfair Display",
+                  "fontSize": 38,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "BPPvH",
+              "name": "Stops",
+              "width": "fill_container",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "FHiCq",
+                  "name": "Stop Kalgoorlie",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "n5QEtF",
+                      "name": "Dot",
+                      "width": 14,
+                      "height": 14,
+                      "fill": "$onDarkDim",
+                      "cornerRadius": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "p4vlXB",
+                      "name": "Label",
+                      "fill": "$onDarkDim",
+                      "content": "The bed disappeared",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f4w31",
+                  "name": "Stop Tennant Creek",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "C72Y2H",
+                      "name": "Dot",
+                      "width": 14,
+                      "height": 14,
+                      "fill": "$onDarkDim",
+                      "cornerRadius": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "W5nL9",
+                      "name": "Label",
+                      "fill": "$onDarkDim",
+                      "content": "Who gets asked",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ijZkO",
+                  "name": "Stop The machine",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Z6PAo3",
+                      "name": "Dot",
+                      "width": 14,
+                      "height": 14,
+                      "fill": "$onDarkDim",
+                      "cornerRadius": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "ZI8YZ",
+                      "name": "Label",
+                      "fill": "$onDarkDim",
+                      "content": "A machine with a name",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "nVMkd",
+                  "name": "Stop Palm Island",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "daN1p",
+                      "name": "Dot",
+                      "width": 14,
+                      "height": 14,
+                      "fill": "$onDarkDim",
+                      "cornerRadius": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "k6FSQY",
+                      "name": "Label",
+                      "fill": "$onDarkDim",
+                      "content": "Money enters",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "OBhSI",
+                  "name": "Stop Utopia",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "kr5yI",
+                      "name": "Dot",
+                      "width": 14,
+                      "height": 14,
+                      "fill": "$onDarkDim",
+                      "cornerRadius": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "qtjms",
+                      "name": "Label",
+                      "fill": "$onDarkDim",
+                      "content": "Arrival is not the ending",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "T1a6d",
+                  "name": "Stop Maningrida",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "dDFLn",
+                      "name": "Dot",
+                      "width": 14,
+                      "height": 14,
+                      "fill": "$onDarkDim",
+                      "cornerRadius": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "JjUCN",
+                      "name": "Label",
+                      "fill": "$onDarkDim",
+                      "content": "The economics land",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "O3unu",
+                  "name": "Stop Oonchiumpa",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "cB47m",
+                      "name": "Dot",
+                      "width": 14,
+                      "height": 14,
+                      "fill": "$terracotta",
+                      "cornerRadius": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "WWrER",
+                      "name": "Label",
+                      "fill": "$onDarkDim",
+                      "content": "The first transfer",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "E4OFlw",
+              "name": "Road CTA",
+              "cornerRadius": 26,
+              "stroke": "$gold",
+              "strokeWidth": 1.5,
+              "padding": [
+                13,
+                26
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "bXIHZ",
+                  "name": "Label",
+                  "fill": "$gold",
+                  "content": "Walk all seven stops",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "dUk53",
+          "name": "Three Doors",
+          "width": "fill_container",
+          "fill": "$cream",
+          "gap": 24,
+          "padding": [
+            96,
+            64
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "r4MBm",
+              "name": "Door Buy a bed",
+              "width": "fill_container",
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "stroke": "$border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 32,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "pigNu",
+                  "name": "Title",
+                  "fill": "$ink",
+                  "content": "Buy a bed",
+                  "fontFamily": "Playfair Display",
+                  "fontSize": 24,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "oaaem",
+                  "name": "Body",
+                  "fill": "$ink-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "$750. Spec, freight and lead time up front.",
+                  "lineHeight": 1.55,
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "j4COpD",
+                  "name": "CTA",
+                  "fill": "$terracotta",
+                  "cornerRadius": 22,
+                  "padding": [
+                    11,
+                    22
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "bRyIA",
+                      "name": "Label",
+                      "fill": "#FFFFFF",
+                      "content": "Shop",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "bfyoF",
+              "name": "Door Sponsor a bed",
+              "width": "fill_container",
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "stroke": "$border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 32,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "B21Amz",
+                  "name": "Title",
+                  "fill": "$ink",
+                  "content": "Sponsor a bed",
+                  "fontFamily": "Playfair Display",
+                  "fontSize": 24,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "G1mfp",
+                  "name": "Body",
+                  "fill": "$ink-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "One bed, one community, one receipt.",
+                  "lineHeight": 1.55,
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "fzQkU",
+                  "name": "CTA",
+                  "fill": "$sage-ink",
+                  "cornerRadius": 22,
+                  "padding": [
+                    11,
+                    22
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "HjDPJ",
+                      "name": "Label",
+                      "fill": "#FFFFFF",
+                      "content": "Sponsor",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "fQhci",
+              "name": "Door Back the making",
+              "width": "fill_container",
+              "fill": "$paper",
+              "cornerRadius": 16,
+              "stroke": "$border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 32,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "OTUzS",
+                  "name": "Title",
+                  "fill": "$ink",
+                  "content": "Back the making",
+                  "fontFamily": "Playfair Display",
+                  "fontSize": 24,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "cuNXS",
+                  "name": "Body",
+                  "fill": "$ink-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Repayable capital for the plant that communities come to own.",
+                  "lineHeight": 1.55,
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "uAK7h",
+                  "name": "CTA",
+                  "fill": "$teal-ink",
+                  "cornerRadius": 22,
+                  "padding": [
+                    11,
+                    22
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "vnE1Q",
+                      "name": "Label",
+                      "fill": "#FFFFFF",
+                      "content": "Talk to us",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "TgODA",
+          "name": "Footer",
+          "width": "fill_container",
+          "fill": "$dark",
+          "padding": [
+            40,
+            64
+          ],
+          "justifyContent": "space_between",
+          "children": [
+            {
+              "type": "text",
+              "id": "C3RU3k",
+              "name": "Wordmark",
+              "fill": "$onDark",
+              "content": "Goods on Country",
+              "fontFamily": "Playfair Display",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "Jka0G",
+              "name": "Line",
+              "fill": "$onDarkDim",
+              "content": "Made on Country · Owned on the road",
+              "fontFamily": "Inter",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "vFVKX",
+      "x": 20000,
+      "y": 0,
+      "name": "Homepage B — Elder-Led",
+      "clip": true,
+      "width": 1440,
+      "fill": "$harvest-paper",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "G2XeHM",
+          "name": "Nav",
+          "width": "fill_container",
+          "padding": [
+            20,
+            64
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "j2pWmg",
+              "name": "Logo",
+              "fill": "$harvest-ink",
+              "content": "Goods.",
+              "fontFamily": "Playfair Display",
+              "fontSize": 26,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "V1cv5",
+              "name": "Links",
+              "gap": 32,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "P0MeZd",
+                  "name": "Voices",
+                  "fill": "$harvest-muted",
+                  "content": "Voices",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "JTbeG",
+                  "name": "The road",
+                  "fill": "$harvest-muted",
+                  "content": "The road",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "JuU4C",
+                  "name": "Shop",
+                  "fill": "$harvest-muted",
+                  "content": "Shop",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "jXVcn",
+                  "name": "Communities",
+                  "fill": "$harvest-muted",
+                  "content": "Communities",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "KKmJK",
+          "name": "Quote Hero",
+          "width": "fill_container",
+          "gap": 64,
+          "padding": [
+            96,
+            64
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "uwwf7",
+              "name": "Portrait",
+              "metadata": {
+                "type": "unsplash",
+                "username": "andalenie",
+                "link": "https://unsplash.com/@andalenie",
+                "author": "Andrea Nieblas"
+              },
+              "clip": true,
+              "width": 480,
+              "height": 560,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "starred-images/community--dianne-stokes--sitting-around-the-fire-with-dianne-stokes-designing-building-and--bush-camp-fire.jpg",
+                "mode": "fill"
+              },
+              "cornerRadius": 8
+            },
+            {
+              "type": "frame",
+              "id": "HRWLG",
+              "name": "Quote Column",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 28,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "F6Rcn",
+                  "name": "Quote",
+                  "fill": "$harvest-ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "“[REAL QUOTE FROM THE EMPATHY LEDGER GOES HERE — never invent one]”",
+                  "lineHeight": 1.18,
+                  "fontFamily": "Playfair Display",
+                  "fontSize": 52,
+                  "fontWeight": "normal",
+                  "fontStyle": "italic"
+                },
+                {
+                  "type": "frame",
+                  "id": "K1K5b",
+                  "name": "Attribution",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "lBA4K",
+                      "name": "Name",
+                      "fill": "$harvest-clay",
+                      "content": "Elder Dianne Stokes",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "BbcmU",
+                      "name": "Where",
+                      "fill": "$harvest-muted",
+                      "content": "Warumungu Elder, Tennant Creek. She named the washing machine: Pakkimjalki Kari.",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "EDt7E",
+                  "name": "Hero CTA",
+                  "fill": "$harvest-clay",
+                  "cornerRadius": 26,
+                  "padding": [
+                    13,
+                    26
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "wlRlK",
+                      "name": "Label",
+                      "fill": "#FFFFFF",
+                      "content": "Hear the voices",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "awZNq",
+          "name": "What She Means",
+          "width": "fill_container",
+          "fill": "$harvest-bg",
+          "gap": 24,
+          "padding": [
+            80,
+            64
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "q4SZFr",
+              "name": "The Stretch Bed",
+              "clip": true,
+              "width": "fill_container",
+              "fill": "$harvest-paper",
+              "cornerRadius": 10,
+              "stroke": "$harvest-line",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "k9u9x",
+                  "name": "Photo",
+                  "metadata": {
+                    "type": "unsplash",
+                    "username": "iayshaz",
+                    "link": "https://unsplash.com/@iayshaz",
+                    "author": "ayysha ."
+                  },
+                  "width": "fill_container",
+                  "height": 340,
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "starred-images/community--maningrida--men-looking-over-a-finished-stretch-bed--x-trestle-tension-visible.jpg",
+                    "mode": "fill"
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "OWS0V",
+                  "name": "Text",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 28,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "YUokV",
+                      "name": "Title",
+                      "fill": "$harvest-ink",
+                      "content": "The Stretch Bed",
+                      "fontFamily": "Playfair Display",
+                      "fontSize": 24,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "M80iBb",
+                      "name": "Body",
+                      "fill": "$harvest-muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Recycled HDPE X-legs, steel poles, structural canvas. $750, spec and lead time up front.",
+                      "lineHeight": 1.55,
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "WXdc8",
+              "name": "Pakkimjalki Kari",
+              "clip": true,
+              "width": "fill_container",
+              "fill": "$harvest-paper",
+              "cornerRadius": 10,
+              "stroke": "$harvest-line",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "hfqNr",
+                  "name": "Photo",
+                  "metadata": {
+                    "type": "unsplash",
+                    "username": "camila_mof",
+                    "link": "https://unsplash.com/@camila_mof",
+                    "author": "Camila Mofsovich"
+                  },
+                  "width": "fill_container",
+                  "height": 340,
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "starred-images/community--maningrida--opening-the-washing-machine-lid-at-dusk--pakkimjalki-kari-in-use.jpg",
+                    "mode": "fill"
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "w3yxA",
+                  "name": "Text",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 28,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "VbAm6",
+                      "name": "Title",
+                      "fill": "$harvest-ink",
+                      "content": "Pakkimjalki Kari",
+                      "fontFamily": "Playfair Display",
+                      "fontSize": 24,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "D0VTL",
+                      "name": "Body",
+                      "fill": "$harvest-muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "The washing machine Elder Dianne Stokes named in Warumungu. Prototype, working in communities now.",
+                      "lineHeight": 1.55,
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "MR7M5",
+          "name": "The Making",
+          "width": "fill_container",
+          "gap": 48,
+          "padding": [
+            80,
+            64
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "x1TQ8",
+              "name": "Text",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "qhPvd",
+                  "name": "Eyebrow",
+                  "fill": "$harvest-leaf",
+                  "content": "THE MAKING",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "EabSG",
+                  "name": "Title",
+                  "fill": "$harvest-ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Collect the plastic. Make the goods. Come to own the making.",
+                  "lineHeight": 1.15,
+                  "fontFamily": "Playfair Display",
+                  "fontSize": 36,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "zLuS3",
+                  "name": "Body",
+                  "fill": "$harvest-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Forty Maningrida beds pressed end to end at the farm. Ownership is a pathway, and no one walks it for the community.",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "L7qUW",
+              "name": "Photo",
+              "metadata": {
+                "type": "unsplash",
+                "username": "robwingate",
+                "link": "https://unsplash.com/@robwingate",
+                "author": "Rob Wingate"
+              },
+              "clip": true,
+              "width": 560,
+              "height": 400,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "starred-images/process--plant-panorama--this-is-the-main-image-to-use-for-the-on-country-production-facility--factory-panorama.jpg",
+                "mode": "fill"
+              },
+              "cornerRadius": 8
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "lYoll",
+          "name": "Buy Band",
+          "width": "fill_container",
+          "fill": "$harvest-ink",
+          "padding": 64,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "b33AkZ",
+              "name": "Line",
+              "fill": "$harvest-paper",
+              "textGrowth": "fixed-width",
+              "width": 760,
+              "content": "Buying a bed is how the making gets owned.",
+              "lineHeight": 1.2,
+              "fontFamily": "Playfair Display",
+              "fontSize": 30,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "E1zawu",
+              "name": "CTA",
+              "fill": "$harvest-ochre",
+              "cornerRadius": 28,
+              "padding": [
+                14,
+                28
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "TeHQJ",
+                  "name": "Label",
+                  "fill": "#FFFFFF",
+                  "content": "Shop the Stretch Bed — $750",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "pScZG",
+      "x": 21560,
+      "y": 0,
+      "name": "Homepage C — The Factory Ledger",
+      "clip": true,
+      "width": 1440,
+      "fill": "$paper",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "idVyx",
+          "name": "Nav",
+          "width": "fill_container",
+          "fill": "$paper",
+          "padding": [
+            20,
+            64
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "hxEQm",
+              "name": "Logo",
+              "fill": "$ink",
+              "content": "Goods.",
+              "fontFamily": "Playfair Display",
+              "fontSize": 26,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "b5f3J",
+              "name": "Links",
+              "gap": 32,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "gZyTU",
+                  "name": "Register",
+                  "fill": "$ink-muted",
+                  "content": "Register",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "XVtR6",
+                  "name": "The road",
+                  "fill": "$ink-muted",
+                  "content": "The road",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "q3h36",
+                  "name": "Shop",
+                  "fill": "$ink-muted",
+                  "content": "Shop",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "h0Mbu",
+                  "name": "Communities",
+                  "fill": "$ink-muted",
+                  "content": "Communities",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "K4G7uc",
+          "name": "Split Hero",
+          "width": "fill_container",
+          "height": 640,
+          "children": [
+            {
+              "type": "frame",
+              "id": "N25hL",
+              "name": "Workshop Photo",
+              "metadata": {
+                "type": "unsplash",
+                "username": "zoshuacolah",
+                "link": "https://unsplash.com/@zoshuacolah",
+                "author": "Zoshua Colah"
+              },
+              "clip": true,
+              "width": 820,
+              "height": "fill_container",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "starred-images/community--maningrida--tensioning-the-canvas-onto-the-x-legs--gamardi-school.jpg",
+                "mode": "fill"
+              }
+            },
+            {
+              "type": "frame",
+              "id": "a0IWyn",
+              "name": "Ledger Panel",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "$dark",
+              "layout": "vertical",
+              "gap": 36,
+              "padding": [
+                56,
+                48
+              ],
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "A9bfJ",
+                  "name": "Headline",
+                  "fill": "$onDark",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "The making, on the record.",
+                  "lineHeight": 1.15,
+                  "fontFamily": "Playfair Display",
+                  "fontSize": 36,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "LbUJv",
+                  "name": "Stat 540",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "kSOew",
+                      "name": "Top",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "GyBDn",
+                          "name": "Value",
+                          "fill": "$gold",
+                          "content": "540",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 34,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "EhQvF",
+                          "name": "Tag",
+                          "cornerRadius": 4,
+                          "stroke": "$gold",
+                          "strokeWidth": 1,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "RCVJJ",
+                              "name": "Label",
+                              "fill": "$gold",
+                              "content": "VERIFIED",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 10,
+                              "fontWeight": "normal",
+                              "letterSpacing": 1
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "kBonw",
+                      "name": "Caption",
+                      "fill": "$onDarkDim",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "beds delivered across eleven communities",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "LJ2Uy",
+                  "name": "Stat 40",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "M8cfn9",
+                      "name": "Top",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "aQIdn",
+                          "name": "Value",
+                          "fill": "$gold",
+                          "content": "40",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 34,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ftzYG",
+                          "name": "Tag",
+                          "cornerRadius": 4,
+                          "stroke": "$gold",
+                          "strokeWidth": 1,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "qsfeO",
+                              "name": "Label",
+                              "fill": "$gold",
+                              "content": "VERIFIED",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 10,
+                              "fontWeight": "normal",
+                              "letterSpacing": 1
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "AxZuU",
+                      "name": "Caption",
+                      "fill": "$onDarkDim",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "beds pressed end to end at Maningrida",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "hqaf6",
+                  "name": "Stat 20kg",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "JOytk",
+                      "name": "Top",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "C96xW",
+                          "name": "Value",
+                          "fill": "$gold",
+                          "content": "20kg",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 34,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "g5cuND",
+                          "name": "Tag",
+                          "cornerRadius": 4,
+                          "stroke": "$gold",
+                          "strokeWidth": 1,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "fn8ep",
+                              "name": "Label",
+                              "fill": "$gold",
+                              "content": "VERIFIED",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 10,
+                              "fontWeight": "normal",
+                              "letterSpacing": 1
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "IhY6F",
+                      "name": "Caption",
+                      "fill": "$onDarkDim",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "HDPE diverted per bed",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "L7s6l",
+                  "name": "Stat 10+ yrs",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "BCJbg",
+                      "name": "Top",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Ry8y8",
+                          "name": "Value",
+                          "fill": "$onDarkDim",
+                          "content": "10+ yrs",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 34,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "C4TtX",
+                          "name": "Tag",
+                          "cornerRadius": 4,
+                          "stroke": "$onDarkDim",
+                          "strokeWidth": 1,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "D9af9y",
+                              "name": "Label",
+                              "fill": "$onDarkDim",
+                              "content": "STATED, NOT YET EVIDENCED",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 10,
+                              "fontWeight": "normal",
+                              "letterSpacing": 1
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "GMawg",
+                      "name": "Caption",
+                      "fill": "$onDarkDim",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "design life",
+                      "lineHeight": 1.4,
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Jc03U",
+          "name": "Product Row",
+          "width": "fill_container",
+          "fill": "$paper",
+          "gap": 48,
+          "padding": [
+            80,
+            64
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "d2rCK",
+              "name": "Bed Photo",
+              "metadata": {
+                "type": "unsplash",
+                "username": "chetyeary",
+                "link": "https://unsplash.com/@chetyeary",
+                "author": "Chet Yeary II"
+              },
+              "clip": true,
+              "width": 620,
+              "height": 420,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "starred-images/pitch--bed-assembled.jpg",
+                "mode": "fill"
+              },
+              "cornerRadius": 8
+            },
+            {
+              "type": "frame",
+              "id": "N7Cul",
+              "name": "Spec",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "W1OO2",
+                  "name": "Title",
+                  "fill": "$ink",
+                  "content": "The Stretch Bed — $750",
+                  "fontFamily": "Playfair Display",
+                  "fontSize": 32,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "f9Sea",
+                  "name": "Line",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "kMffc",
+                      "name": "Tick",
+                      "width": 8,
+                      "height": 8,
+                      "fill": "$sage",
+                      "cornerRadius": 4
+                    },
+                    {
+                      "type": "text",
+                      "id": "weqy1",
+                      "name": "Text",
+                      "fill": "$ink-muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Recycled HDPE X-legs, galvanised steel, structural canvas",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Mk1A1",
+                  "name": "Line",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "CFCJi",
+                      "name": "Tick",
+                      "width": 8,
+                      "height": 8,
+                      "fill": "$sage",
+                      "cornerRadius": 4
+                    },
+                    {
+                      "type": "text",
+                      "id": "D1Scs",
+                      "name": "Text",
+                      "fill": "$ink-muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Lead time and freight quoted up front",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "YA1g9",
+                  "name": "Line",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "bYjII",
+                      "name": "Tick",
+                      "width": 8,
+                      "height": 8,
+                      "fill": "$sage",
+                      "cornerRadius": 4
+                    },
+                    {
+                      "type": "text",
+                      "id": "bdvUa",
+                      "name": "Text",
+                      "fill": "$ink-muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Flat-packs, assembles with no tools",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "hjWU9",
+                  "name": "Line",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "l2Gefp",
+                      "name": "Tick",
+                      "width": 8,
+                      "height": 8,
+                      "fill": "$sage",
+                      "cornerRadius": 4
+                    },
+                    {
+                      "type": "text",
+                      "id": "cFeVk",
+                      "name": "Text",
+                      "fill": "$ink-muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Who fixes it: we do",
+                      "lineHeight": 1.5,
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "lxugZ",
+                  "name": "CTA",
+                  "fill": "$terracotta",
+                  "cornerRadius": 26,
+                  "padding": [
+                    13,
+                    26
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "F4YA3",
+                      "name": "Label",
+                      "fill": "#FFFFFF",
+                      "content": "Order or get a quote",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "PwaNX",
+          "name": "Map Section",
+          "width": "fill_container",
+          "fill": "$creamMuted",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            80,
+            64
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "J5sVC",
+              "name": "Eyebrow",
+              "fill": "$terracotta",
+              "content": "WHERE THE BEDS ARE",
+              "fontFamily": "Inter",
+              "fontSize": 13,
+              "fontWeight": "600",
+              "letterSpacing": 2
+            },
+            {
+              "type": "text",
+              "id": "ZcrOx",
+              "name": "Title",
+              "fill": "$ink",
+              "textGrowth": "fixed-width",
+              "width": 720,
+              "content": "Eleven communities. One road to ownership.",
+              "lineHeight": 1.15,
+              "fontFamily": "Playfair Display",
+              "fontSize": 34,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "MAbvG",
+              "name": "Map Placeholder",
+              "width": "fill_container",
+              "height": 420,
+              "fill": "$paper",
+              "cornerRadius": 8,
+              "stroke": "$border",
+              "strokeWidth": 1,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "uS0Ib",
+                  "name": "Note",
+                  "fill": "$ink-muted",
+                  "content": "[ live deployment map — /export/map/deployed ]",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "BBwPY",
+          "name": "Footer",
+          "width": "fill_container",
+          "fill": "$dark",
+          "padding": [
+            40,
+            64
+          ],
+          "justifyContent": "space_between",
+          "children": [
+            {
+              "type": "text",
+              "id": "NVl2t",
+              "name": "Wordmark",
+              "fill": "$onDark",
+              "content": "Goods on Country",
+              "fontFamily": "Playfair Display",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "b92TNn",
+              "name": "Line",
+              "fill": "$onDarkDim",
+              "content": "Every figure resolves from the public claims register",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
     }
   ],
   "variables": {
@@ -13913,7 +16680,7 @@
     },
     "display": {
       "type": "string",
-      "value": "Lora"
+      "value": "Playfair Display"
     },
     "onDark": {
       "type": "color",
@@ -13965,11 +16732,11 @@
     },
     "font-display": {
       "type": "string",
-      "value": "Newsreader"
+      "value": "Playfair Display"
     },
     "font-body": {
       "type": "string",
-      "value": "Funnel Sans"
+      "value": "Inter"
     },
     "font-mono": {
       "type": "string",

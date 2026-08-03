@@ -146,6 +146,37 @@
   }
 }
 
+.goods-pitch-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+.road-pitch-editable {
+  border-radius: 0.2rem;
+  outline: 1px dashed rgba(196, 92, 62, 0.75);
+  outline-offset: 0.35rem;
+  cursor: text;
+}
+
+.road-pitch-editable:focus {
+  outline-style: solid;
+  background: rgba(196, 92, 62, 0.08);
+}
+
+/* Mobile uses the photograph as a full-bleed background, so it needs a reading
+   veil. Desktop is a deliberate split composition: clean dark copy panel on
+   the left, untouched photograph on the right. */
+.road-pitch-hero-fade {
+  background:
+    linear-gradient(to top, rgba(23, 23, 20, 0.72) 0%, transparent 52%),
+    linear-gradient(to right, rgba(23, 23, 20, 0.82) 0%, rgba(23, 23, 20, 0.38) 58%, rgba(23, 23, 20, 0.16) 100%);
+}
+
+@media (min-width: 1024px) {
+  .road-pitch-hero-fade {
+    display: none;
+  }
+}
+
 /* Custom animations */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }

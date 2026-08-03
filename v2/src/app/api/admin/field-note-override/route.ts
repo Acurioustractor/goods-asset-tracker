@@ -11,6 +11,9 @@ export const runtime = 'nodejs';
 
 function revalidateOverrideSurface(slug: string) {
   revalidatePath(`/field-notes/${slug}`);
+  if (slug === 'pitch-road') {
+    revalidatePath('/pitch/road');
+  }
   if (slug.startsWith('pathways-')) {
     revalidatePath(`/pathways/${slug.slice('pathways-'.length)}`);
     revalidatePath('/pathways');
