@@ -270,5 +270,10 @@ v2/design-qa-evidence/
 # ── GOC entity model build artifacts (mirrors the rules on main) ─────────────
 deliverables/*.xlsx
 deliverables/*.pptx
+# Emitted from v2/src/lib/cost-model/community-model.ts by tools/emit-community-model.ts.
+# Untracked on purpose: a committed copy that drifts from the model is worse than an
+# absent one, and the workbook generator fails loudly with the regenerate command when
+# it is missing rather than falling back to a stale file.
+deliverables/community-model.json
 tools/.gsheet-targets.json
 .venv-sheets/

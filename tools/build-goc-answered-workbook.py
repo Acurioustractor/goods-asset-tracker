@@ -38,6 +38,7 @@ Usage:
 Then push it to the live Google Sheet with tools/push-xlsx-to-gsheet.py.
 """
 import argparse
+import json
 import pathlib
 
 from openpyxl import Workbook
@@ -264,8 +265,14 @@ def build_model(wb):
         "The 40-bed Maningrida run proved the process but was not measured for time, diesel or yield. "
         "$425.74 stays modelled.",
         "No GOC bank account exists. Opening cash is a carve-out decision at the handover date, not a bank fact.",
-        "The FY26 expense figure of $309,126 is one aggregate with no category split. The accountant carve-out "
-        "is the highest-value item outstanding.",
+        # Was: "one aggregate with no category split, the accountant carve-out is the
+        # highest-value item outstanding". That stopped being true on 2026-08-03 and this
+        # line kept saying it, on the tab Matt opens first, while the Xero FY26 Actuals tab
+        # answered it two tabs over. Three surfaces told him the biggest item was open and
+        # one told him it was done.
+        "The FY26 expense split IS now known - $337,296 opex / $41,547 capex, see the Xero FY26 Actuals tab. "
+        "What remains is the COGS reclassification: ~$90,852 of Defy manufacturing spend sits in Consulting & "
+        "Accounting and Advertising & Marketing, which is why a live P&L reads $0 cost of goods sold.",
         "Central overhead of $53,000 is a budget with no source. Replace with actuals.",
         "The entity is mid-migration. Historical trading sits in the sole trader; the Pty Ltd transfer is not executed.",
     ]):
@@ -955,7 +962,10 @@ OPEN_QUESTIONS = [
      "locked figure, treatment decided", "Ben + Matt - agreed treatment"),
 
     ("High", "Can historical $309,126 expenses be split by category?",
-     "Only an aggregate cash-basis Goods expense figure is available here.", "TBC", "Accountant + bookkeeper", "open",
+     # Status was 'open' while the answer below began "ANSWERED 2026-08-03". The sheet
+     # sorts and counts by this flag, so it reported its own solved question as unsolved.
+     "Only an aggregate cash-basis Goods expense figure is available here.", "TBC", "Accountant + bookkeeper",
+     "answered",
      "Matt needs a recurring overhead base, not one aggregate.",
      "Provide accountant carve-out by direct cost, payroll, travel, professional services and other.",
      "ANSWERED 2026-08-03, and it did not need the accountant. The split is on the 'Xero FY26 Actuals' tab, "
@@ -1140,6 +1150,149 @@ def build_open_questions(wb):
     ws.freeze_panes = "B5"
 
 
+# ── Sheet 9: Community Economics ────────────────────────────────────────────
+COMMUNITY_JSON = pathlib.Path(__file__).parent.parent / "deliverables" / "community-model.json"
+
+
+def load_community_model():
+    """
+    Read the community model emitted from TypeScript.
+
+    Fails loudly rather than degrading. The alternative - retyping these figures into
+    this file - is what put Utopia's operating cost $35,000 under the engine for months.
+    Regenerate with:  cd v2 && npx tsx ../tools/emit-community-model.ts
+    """
+    if not COMMUNITY_JSON.exists():
+        raise SystemExit(
+            f"MISSING {COMMUNITY_JSON}\n"
+            "Run:  cd v2 && npx tsx ../tools/emit-community-model.ts\n"
+            "This file is generated from v2/src/lib/cost-model/community-model.ts and is "
+            "deliberately not retyped here."
+        )
+    return json.loads(COMMUNITY_JSON.read_text())
+
+
+def build_community_economics(wb):
+    cm = load_community_model()
+    ws = wb.create_sheet("Community Economics")
+
+    rows = [
+        ("What a community gets, which no earlier version of this model could answer",),
+        ("Every other tab answers Goods' question: does the bed business wash its own face. This one answers the "
+         "community's: what would this mean for us. It is generated from the same code as the app, so it cannot "
+         "drift from what a community is actually shown.",),
+        ("NOTHING HERE HAS BEEN OFFERED TO ANY COMMUNITY. No community sees a price for their own pathway before "
+         "they have been walked through it in person.",),
+        (),
+        ("1. THE VALUE LADDER - what each step of the chain is worth, per bed's worth of material",),
+        ("Every priced rung is what Goods ALREADY PAYS Defy today, from a named invoice. That is what makes the "
+         "offer checkable rather than aspirational: this money goes to Sydney now, and we would rather it went "
+         "to the community doing the work.",),
+        ("Step", "What the community ends up holding", "Worth per bed $", "Grade", "Source"),
+    ]
+    for r in cm["value_ladder"]:
+        rows.append((
+            r["module"].replace("_", " "),
+            r["output"],
+            r["per_bed_equivalent"] if r["per_bed_equivalent"] is not None else "no price exists",
+            r["grade"],
+            r["source"],
+        ))
+    rows += [
+        ("THE STEP THAT MATTERS: shred to pressed kits multiplies what a bed is worth to a community by 8.6x "
+         "($40 to $344.05). Everything before it is preparation.",),
+        (),
+        ("2. THE FOUR LIVE PATHWAYS", f"at {cm['planning_volume']} beds' worth of material a year"),
+        ("Community", "Produces", "Setup low $", "Setup high $", "Earns/yr $", "Running cost/yr $",
+         "Left over/yr $", "Note"),
+    ]
+    for p in cm["pathways"]:
+        if not p.get("modelled"):
+            continue
+        note = ""
+        if p["net_to_community"] is not None and p["net_to_community"] < 0:
+            # NOT "the community is short". No community puts in capital or covers running
+            # costs; that is grant-carried, the way the wraparound always is. A negative
+            # here means the step does not yet pay for itself out of what it sells, which
+            # is a statement about which POT it sits in, not about a community in deficit.
+            note = ("NEEDS GRANT BEHIND IT - not a community out of pocket. This step does not pay for itself "
+                    "out of what it sells, because the $35,000 site floor lands the moment anyone works there "
+                    "at all. It is a Pot 2 proposition until the chain reaches pressing or selling. See the "
+                    "options block below: selling closes this gap without a press.")
+        elif p["buys_input_in"]:
+            note = ("Reads high because the plastic it must BUY IN is not costed here. The true figure is lower "
+                    "and we do not yet know by how much.")
+        elif not p["modules"]:
+            note = "Asked for governance, not production. No site, no cost, no income - and the model says so."
+        rows.append((
+            p["name"],
+            p["produces"] or "nothing - no production modules",
+            p["setup_low"], p["setup_high"],
+            p["gross_earnings"] if p["gross_earnings"] is not None else "-",
+            p["operating_cost"],
+            p["net_to_community"] if p["net_to_community"] is not None else "-",
+            note,
+        ))
+
+    rows += [
+        (),
+        ("3. THE OPTIONS OPEN TO A COMMUNITY THAT STARTED EARLY - the live Utopia question",),
+        ("Selling and delivering does NOT depend on making. An earlier version of this model treated it as the "
+         "last link of a physical chain and so quietly forbade the most interesting option a shredder community "
+         f"has: supplying beds to its own people. The spread is ${cm['sales_spread_per_bed']}/bed, the retail "
+         "price less the cost of a finished bed. FREIGHT COMES OUT OF THAT AND IS NOT MODELLED - right shape, "
+         "unproven size.",),
+        ("Option", "Setup low $", "Setup high $", "Earns/yr $", "Running cost/yr $", "Left over/yr $"),
+    ]
+    for o in cm["options"]:
+        rows.append((
+            o["label"], o["setup_low"], o["setup_high"],
+            o["gross_earnings"] if o["gross_earnings"] is not None else "-",
+            o["operating_cost"],
+            o["net_to_community"] if o["net_to_community"] is not None else "-",
+        ))
+    rows += [
+        ("THE FINDING: selling is worth MORE than pressing and needs NO extra capex, because the site base is "
+         "already there. Two decisions sit behind it that are not ours alone - what a community pays for a "
+         "finished bed, and who carries freight.",),
+        (),
+        ("4. THE NETWORK FEE - why the third site is in the FIRST community's interest",),
+        (f"The shared team behind every site costs ${cm['network_block_per_year']:,}/yr whether there is one site "
+         "or five. So every community that joins makes every other community's share smaller. NOT AGREED WITH "
+         "ANY COMMUNITY - this is the arithmetic, not an offer.",),
+        ("Sites in the network", "Shared cost per site $"),
+    ]
+    for f in cm["network_fee_by_sites"]:
+        rows.append((f["sites"], f["fee_per_site"]))
+
+    rows += [
+        (),
+        ("5. WHAT THIS MODEL DELIBERATELY WILL NOT SAY",),
+        ("It never splits the money arriving at a community into wages and surplus. That split is the "
+         "community's decision, and a model that guesses it repeats exactly the mistake this tab replaces: "
+         "putting a number where a conversation belongs.",),
+        ("It does not cost bought-in feedstock for a pathway that starts partway down the chain.",),
+        ("It does not price a site base for a community that asked for no production modules.",),
+    ]
+
+    write_rows(ws, rows)
+    ws["A1"].font = TITLE
+    ws["A3"].font = KEY
+    # Find the section and header rows rather than hard-coding them: this sheet's row
+    # numbers move every time a pathway or a ladder rung is added, and a hard-coded list
+    # silently styles the wrong line rather than failing.
+    for row in range(1, ws.max_row + 1):
+        text = ws.cell(row=row, column=1).value
+        if not isinstance(text, str):
+            continue
+        if text[:2] in ("1.", "2.", "3.", "4.", "5."):
+            ws.cell(row=row, column=1).font = SECTION
+        elif text in ("Step", "Community", "Sites in the network", "Option"):
+            header_row(ws, row, 8)
+    set_widths(ws, [30, 40, 15, 15, 15, 17, 15, 60])
+    wrap_all(ws, 8)
+
+
 # ── Entry point ─────────────────────────────────────────────────────────────
 def main() -> int:
     ap = argparse.ArgumentParser()
@@ -1160,6 +1313,7 @@ def main() -> int:
     build_facility_modules(wb)
     build_case_studies(wb)
     build_xero_actuals(wb)
+    build_community_economics(wb)
     build_open_questions(wb)
 
     out = pathlib.Path(args.output)

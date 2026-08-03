@@ -355,11 +355,16 @@ export const COMMUNITY_PATHWAYS: CommunityPathway[] = [
       cost: {
         capexLow: 24800,
         capexHigh: 39300,
-        operatingPerYear: 16043,
+        // 2026-08-03: was 16043, which was the MODULE SHARE only. The note below always
+        // claimed the $35,000 site floor was included and it never was, understating the
+        // running cost of Utopia's own pathway by 3.2x. Nothing rendered this field, so it
+        // never reached a page - the community-model one-pager is its first reader, and it
+        // computes from priceModuleOperating() rather than trusting this number.
+        operatingPerYear: 51043,
         status: 'modelled',
         costSource:
           'priceModuleSelection() and priceModuleOperating(), capex_modules in cost-model-scenarios.json',
-        note: 'The pathway the old build-path ladder could not cost at all, against $79,333/yr for a full facility. Operating is the $35,000/yr site floor apportioned plus the chosen modules. The width of the capex band is almost entirely one question: whether a baler is needed, given rigid HDPE is normally caged rather than baled. Collection is a $5,000 to $19,500 estimate, priced the way the DEWR budget already treats its own unquoted lines.',
+        note: 'The pathway the old build-path ladder could not cost at all, against $79,333/yr for a full facility. Operating is the $35,000/yr site floor PLUS $16,043 of chosen module share. The floor is most of it, and it is incurred the moment anyone works on the site at all, which is why the earliest module in the chain is the hardest one to make pay. The width of the capex band is almost entirely one question: whether a baler is needed, given rigid HDPE is normally caged rather than baled. Collection is a $5,000 to $19,500 estimate, priced the way the DEWR budget already treats its own unquoted lines.',
       },
       ownsWhat:
         'Urapuntja owns the machine. Goods supplies training, the maintenance pathway and parts.',

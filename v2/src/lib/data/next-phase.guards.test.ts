@@ -115,7 +115,12 @@ describe('the priced pathways', () => {
     expect(c.capexLow!).toBeLessThan(c.capexHigh!);
     expect(c.capexLow).toBe(24800);
     expect(c.capexHigh).toBe(39300);
-    expect(c.operatingPerYear).toBe(16043);
+    // 2026-08-03: was pinned at 16043, the MODULE SHARE alone. priceModuleOperating()
+    // returns the $35,000 site floor PLUS the share, and the note on the record always
+    // said the floor was included. This guard held the understatement in place: the
+    // figure and the test agreed with each other and both disagreed with the engine.
+    // Assert the composition, not just the total, so it cannot drift back.
+    expect(c.operatingPerYear).toBe(35000 + 16043);
     expect(c.costSource).toMatch(/priceModule/);
   });
 

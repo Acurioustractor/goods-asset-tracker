@@ -1409,6 +1409,14 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     verdict: 'keep',
   },
   {
+    route: '/pathways/[id]/numbers',
+    audience: 'community',
+    access: 'open',
+    leadsWithNow: null,
+    whyUnread: 'dynamic route with no nameable representative instance',
+    verdict: 'keep',
+  },
+  {
     route: '/pitch',
     audience: 'funder',
     access: 'open',
