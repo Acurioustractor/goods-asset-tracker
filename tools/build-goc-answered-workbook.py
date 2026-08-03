@@ -712,7 +712,123 @@ def build_case_studies(wb):
     wrap_all(ws, 7)
 
 
-# ── Sheet 7: Open Questions ─────────────────────────────────────────────────
+# ── Sheet 7: Xero FY26 Actuals ──────────────────────────────────────────────
+# Pulled 2026-08-03 from the ACT Xero mirror (Supabase `tednluwflfhxyucgwigh`,
+# xero_transactions synced 2026-08-02). This is the category split Matt asked for in
+# Q10 and could not get. It did NOT need the accountant: it is a query.
+#
+# METHOD, because it is easy to get wrong and I got it wrong first time:
+#   - Source is ACCPAY bills (status PAID or AUTHORISED) plus SPEND transactions
+#     (status AUTHORISED), project_code ACT-GD, dated FY26.
+#   - DELETED and VOIDED rows are EXCLUDED. This matters enormously: 136 of the 204
+#     ACT-GD spend transactions carry status DELETED, $229,127 worth, almost certainly
+#     Dext re-imports replacing originals. A query that does not filter on status
+#     overstates the total roughly threefold.
+#   - Account names are derived from the SUPPLIERS on each code, not from the Xero
+#     default chart, which does not apply to this customised chart of accounts.
+#   - Basis is closer to accrual than cash (it includes authorised-but-unpaid bills),
+#     so it does NOT tie to the $309,126 cash figure and is not meant to.
+XERO_FY26_ACTUALS = [
+    # code, inferred name, total, share, evidence (suppliers), flag
+    ("446", "Materials & Supplies", 131845.58, 0.348,
+     "Bunnings, Steelmart, Centre Canvas, Metal Manufactures, The Plasticians, Barkly Hardware, Defy", ""),
+    ("486", "Sub-contractors", 58186.82, 0.154,
+     "Oonchiumpa Consultancy and Services, Joseph Kirmos, Adriana Beach", ""),
+    ("412", "Consulting & Accounting", 52157.28, 0.138,
+     "Defy Manufacturing ONLY", "MISBOOKED - this is bed manufacturing, not consulting"),
+    ("400", "Advertising & Marketing", 38694.89, 0.102,
+     "Defy Manufacturing, Oonchiumpa Consultancy", "PARTLY MISBOOKED - Defy lines are manufacturing"),
+    ("750", "Plant & Equipment (FIXED ASSET)", 36622.72, 0.097,
+     "Circularity Group, Multicam Systems", "CAPEX, not an expense - belongs on the balance sheet"),
+    ("425", "Freight & Courier", 20851.21, 0.055, "Peak Up Transport, Sendle, ePrint", ""),
+    ("421", "Light meals & refreshments", 6542.91, 0.017,
+     "121 small lines: cafes, roadhouses, supermarkets on field trips", ""),
+    ("493", "Travel - National", 6340.07, 0.017, "Qantas, Virgin, SIXT, regional hotels", ""),
+    ("449", "MV - Fuel & Oil", 6016.82, 0.016, "BP, Ampol, Shell, remote roadhouses", ""),
+    ("710", "Office/site equipment (FIXED ASSET)", 4705.00, 0.012, "Bionic Group (containers)",
+     "CAPEX, not an expense"),
+    ("429", "General Expenses", 4317.88, 0.011,
+     "Loadshift Sydney, Bargain Car Rentals, Orange Sky, Metal Manufactures", ""),
+    ("451", "(unmapped)", 3901.83, 0.010, "", "Confirm name in Xero"),
+    ("447", "(unmapped)", 2154.47, 0.006, "", "Confirm name in Xero"),
+    ("485", "(unmapped)", 1674.27, 0.004, "", "Confirm name in Xero"),
+    ("420", "Entertainment", 1421.37, 0.004, "", ""),
+    ("430", "(unmapped)", 1078.68, 0.003, "", "Confirm name in Xero"),
+    ("453", "(unmapped)", 1010.82, 0.003, "", "Confirm name in Xero"),
+    ("452", "Hire Expenses", 597.02, 0.002, "Van hire", ""),
+    ("473", "(unmapped)", 259.95, 0.001, "", "Confirm name in Xero"),
+    ("448", "(unmapped)", 142.70, 0.000, "", "Confirm name in Xero"),
+    ("720", "Fixed asset (minor)", 117.28, 0.000, "", "CAPEX"),
+    ("700", "Fixed asset (minor)", 102.43, 0.000, "", "CAPEX"),
+    ("445", "Light, Power, Heating", 101.77, 0.000, "", ""),
+]
+
+
+def build_xero_actuals(wb):
+    ws = wb.create_sheet("Xero FY26 Actuals")
+    rows = [
+        ("Goods (ACT-GD) FY26 expenses, split by account - pulled from Xero 2026-08-03",),
+        ("This is the category split Matt asked for in Q10 and was told needed an accountant. It did not. "
+         "It is a query against the Xero mirror. Account names are derived from the SUPPLIERS on each code, "
+         "because the Xero default chart does not apply to this customised chart of accounts. Confirm the "
+         "handful marked (unmapped) in Xero settings - about thirty seconds.",),
+        (),
+        ("Account code", "Inferred name", "FY26 total $", "Share", "Evidence (suppliers on this code)", "Flag"),
+    ]
+    for code, name, total, share, evidence, flag in XERO_FY26_ACTUALS:
+        rows.append((code, name, total, share, evidence, flag))
+    rows += [
+        ("TOTAL", "", 378843.77, 1.0, "380 lines", ""),
+        (),
+        ("THE SPLIT THAT MATTERS FOR A 3-STATEMENT MODEL",),
+        ("Bucket", "Amount $", "Lines", "Treatment", "", ""),
+        ("OPEX", 337296.34, 373, "Profit and loss", "", ""),
+        ("CAPEX (7xx asset accounts)", 41547.43, 7, "Balance sheet, then depreciated", "", ""),
+        ("TOTAL", 378843.77, 380, "", "", ""),
+        (),
+        ("METHOD, AND WHY THE OBVIOUS QUERY IS WRONG",),
+        ("Source: ACCPAY bills (PAID or AUTHORISED) plus SPEND transactions (AUTHORISED), project_code "
+         "ACT-GD, dated 2025-07-01 to 2026-06-30.",),
+        ("DELETED and VOIDED rows are EXCLUDED. 136 of the 204 ACT-GD spend transactions carry status "
+         "DELETED, worth $229,127, almost certainly Dext re-imports replacing originals. A query that does "
+         "not filter on status overstates the total roughly threefold. This is the single biggest trap in "
+         "this data.",),
+        ("Basis is closer to accrual than cash, because it includes authorised-but-unpaid bills. It "
+         "therefore does NOT tie to the $309,126 cash figure in Inputs, and is not meant to. For the record, "
+         "paid bills ($193,395) plus authorised spend ($95,762) is $289,157, which lands about $20,000 short "
+         "of $309,126 - roughly the size of the shredder.",),
+        (),
+        ("THREE FINDINGS AN INVESTOR'S ACCOUNTANT WOULD REACH ON THEIR OWN",),
+        ("1. THIS IS WHY COGS READS $0. About $90,852 of Defy Manufacturing spend - the bed kits, the actual "
+         "cost of making the product - is booked to Consulting & Accounting (412) and Advertising & Marketing "
+         "(400). It is not that nobody tracks unit economics; it is that the manufacturing spend is sitting in "
+         "two overhead accounts. Reclassifying it to cost of sales would give Goods a real gross margin line "
+         "for the first time.",),
+        ("2. CAPEX IS INCONSISTENTLY TREATED. Circularity's $32,780 press-and-CNC went to 750, a fixed asset "
+         "account. The Telford Smith shredder went to 446, Materials & Supplies. Same class of purchase, "
+         "opposite treatment. $41,547 is correctly capitalised; an unknown amount sitting in 446 is not.",),
+        ("3. THE MISSING SHREDDER INVOICE EXISTS, BUT IS DELETED. Telford Smith Engineering, 23 December 2025, "
+         "two lines of $19,800: 'Telford Smith Engine' and 'Zerma GSL-300/400 Granulator'. Both records carry "
+         "status DELETED, which is why a live P&L shows nothing and canon records 'no Xero record'. This does "
+         "not close open question 4, but it turns 'find a missing invoice' into 'ask the bookkeeper why these "
+         "two were deleted on 23 Dec'. Supplier, date, amount and machine model are all now known.",),
+        (),
+        ("SOURCE: Supabase project tednluwflfhxyucgwigh (the ACT Xero mirror). xero_transactions synced "
+         "2026-08-02. NOTE: xero_bank_transactions is 7 months stale (last sync 2025-12-30) and carries no "
+         "ACT-GD tracking - do not use that table.",),
+    ]
+    write_rows(ws, rows)
+    ws["A1"].font = TITLE
+    header_row(ws, 4, 6)
+    for r in (len(XERO_FY26_ACTUALS) + 7, len(XERO_FY26_ACTUALS) + 13, len(XERO_FY26_ACTUALS) + 19):
+        ws.cell(row=r, column=1).font = SECTION
+    set_widths(ws, [16, 34, 18, 10, 62, 46])
+    wrap_all(ws, 6)
+    for r in range(5, 5 + len(XERO_FY26_ACTUALS)):
+        ws.cell(row=r, column=4).number_format = "0.0%"
+
+
+# ── Sheet 8: Open Questions ─────────────────────────────────────────────────
 # Each row: priority, question, current evidence, working placeholder, owner,
 # status, why it matters, next action, ANSWER, use-this-figure, grade, who closes.
 OPEN_QUESTIONS = [
@@ -829,13 +945,15 @@ OPEN_QUESTIONS = [
      "Only an aggregate cash-basis Goods expense figure is available here.", "TBC", "Accountant + bookkeeper", "open",
      "Matt needs a recurring overhead base, not one aggregate.",
      "Provide accountant carve-out by direct cost, payroll, travel, professional services and other.",
-     "Not from anything in this repo - the $309,126 exists only as a single cash-basis aggregate (ACT-GD bank spend "
-     "less the 1300-Washer reclass). Matt is right that he needs a category split, and it cannot be "
-     "reverse-engineered credibly. This is a request to the accountant, and it is the highest-value single item on "
-     "this list because it converts a one-line history into a real recurring overhead base. Ask for FY26 Goods-only "
-     "actuals split: direct materials, subcontract/assembly, payroll, travel, facility, professional services, other.",
-     "Request accountant carve-out by 7 categories", "open - blocks the P&L base",
-     "Accountant + bookkeeper - HIGHEST PRIORITY ASK"),
+     "ANSWERED 2026-08-03, and it did not need the accountant. The split is on the 'Xero FY26 Actuals' tab, "
+     "pulled from the Xero mirror: Materials & Supplies $131,846, Sub-contractors $58,187, Consulting & "
+     "Accounting $52,157, Advertising & Marketing $38,695, Plant & Equipment $36,623, Freight $20,851, then a "
+     "long tail. $337,296 opex and $41,547 capex across 380 lines. Two caveats: DELETED rows must be excluded "
+     "(136 of 204 spend transactions are deleted, and including them overstates by roughly threefold), and the "
+     "basis is accrual-ish so it does not tie to the $309,126 cash figure. The accountant is still worth asking "
+     "to confirm the reclassifications below, but the base is no longer missing.",
+     "See 'Xero FY26 Actuals' tab: $337,296 opex / $41,547 capex", "verified from Xero mirror",
+     "Accountant to confirm the COGS reclassification"),
 
     ("High", "Site manager or coordinator?",
      "DEWR prices $150K incl. super. Alternative $90K coordinator is an assumption.", 150000,
@@ -1028,6 +1146,7 @@ def main() -> int:
     build_known_costs(wb)
     build_facility_modules(wb)
     build_case_studies(wb)
+    build_xero_actuals(wb)
     build_open_questions(wb)
 
     out = pathlib.Path(args.output)
