@@ -21,6 +21,8 @@ import { dirname, resolve } from 'node:path';
 
 import {
   VALUE_LADDER,
+  SALES_SPREAD_PER_BED,
+  modelCommunity,
   modelPathway,
   networkFeePerSite,
   NETWORK_BLOCK_PER_YEAR,
@@ -47,6 +49,34 @@ const out = {
     grade: r.grade,
     source: r.source,
   })),
+  sales_spread_per_bed: SALES_SPREAD_PER_BED,
+  /**
+   * The options open to a community that has taken the earliest modules, which is the
+   * live Utopia question. Selling turns out to be worth more than pressing and to need
+   * no extra capex at all, because the site base is already there.
+   */
+  options: (
+    [
+      ['Collect and shred (today’s ask)', ['collection_baling', 'shredding']],
+      ['Collect, shred and SELL', ['collection_baling', 'shredding', 'sales_delivery']],
+      ['Collect, shred and PRESS', ['collection_baling', 'shredding', 'pressing_cnc']],
+      ['Sell and deliver only, no plant', ['sales_delivery']],
+      [
+        'The whole chain',
+        ['collection_baling', 'shredding', 'pressing_cnc', 'assembly', 'sales_delivery'],
+      ],
+    ] as Array<[string, string[]]>
+  ).map(([label, modules]) => {
+    const m = modelCommunity(modules, PLANNING_VOLUME);
+    return {
+      label,
+      setup_low: m.setup.capexLow,
+      setup_high: m.setup.capexHigh,
+      gross_earnings: m.annual.grossEarnings,
+      operating_cost: m.annual.operatingCost,
+      net_to_community: m.annual.netToCommunity,
+    };
+  }),
   pathways: COMMUNITY_PATHWAYS.map((p) => {
     const m = modelPathway(p.id, PLANNING_VOLUME);
     if (!m) return { id: p.id, name: p.name, modelled: false };

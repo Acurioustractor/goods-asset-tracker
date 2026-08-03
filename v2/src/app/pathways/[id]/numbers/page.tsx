@@ -210,9 +210,19 @@ export default async function PathwayNumbersPage({
                     <p className="mt-3 font-display text-3xl text-[#2b2a26]">
                       {money(model.annual.grossEarnings)} in, {money(model.annual.operatingCost)} out
                     </p>
+                    {model.sells && model.makingPerBed !== null && (
+                      /* Two different kinds of work, and a community should see which is
+                         which. Making is what comes off the line; selling is the spread
+                         on getting a bed into a home, whoever built it. */
+                      <p className="mt-2 text-sm leading-6 text-[#6b6358]">
+                        Of that, {money(model.makingPerBed * PLANNING_VOLUME)} is for what you make
+                        and {money(model.sellingPerBed! * PLANNING_VOLUME)} is for getting beds into
+                        homes.
+                      </p>
+                    )}
                     <p className="mt-3 text-lg font-semibold text-[#2b2a26]">
                       {net !== null && net < 0
-                        ? `That is ${money(Math.abs(net))} a year short.`
+                        ? `This step needs about ${money(Math.abs(net))} a year of grant behind it.`
                         : `That leaves ${money(net ?? 0)} a year in community.`}
                     </p>
                     {model.buysInputIn && (
@@ -229,11 +239,13 @@ export default async function PathwayNumbersPage({
                     <p className="mt-3 leading-7 text-[#5f584e]">
                       {net !== null && net < 0 ? (
                         <>
-                          We would rather say this out loud now than have it turn up later. The
-                          first step in the chain is the one most communities want and the one that
-                          cannot pay for itself yet. It is a real step, and Goods carrying that gap
-                          on purpose is a decision we should make together and in the open &mdash;
-                          not a number to bury.
+                          <strong>This is not money the community is out of pocket.</strong> Nobody
+                          here puts in capital or covers running costs &mdash; that is carried by
+                          grant funding, the way the wraparound always is. What the figure means is
+                          that this step does not yet pay for itself out of what it sells, so it
+                          needs grant behind it until the chain goes further. Two things change
+                          that: pressing, which takes a bed&rsquo;s worth from $40 to $344, or
+                          selling and delivering beds, which does not need a press at all.
                         </>
                       ) : (
                         <>

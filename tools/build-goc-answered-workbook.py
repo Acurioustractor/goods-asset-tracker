@@ -1211,8 +1211,14 @@ def build_community_economics(wb):
             continue
         note = ""
         if p["net_to_community"] is not None and p["net_to_community"] < 0:
-            note = ("SHORT. The earliest module is the one most communities ask for and the one that cannot pay "
-                    "for itself: the $35,000 site floor lands the moment anyone works there at all.")
+            # NOT "the community is short". No community puts in capital or covers running
+            # costs; that is grant-carried, the way the wraparound always is. A negative
+            # here means the step does not yet pay for itself out of what it sells, which
+            # is a statement about which POT it sits in, not about a community in deficit.
+            note = ("NEEDS GRANT BEHIND IT - not a community out of pocket. This step does not pay for itself "
+                    "out of what it sells, because the $35,000 site floor lands the moment anyone works there "
+                    "at all. It is a Pot 2 proposition until the chain reaches pressing or selling. See the "
+                    "options block below: selling closes this gap without a press.")
         elif p["buys_input_in"]:
             note = ("Reads high because the plastic it must BUY IN is not costed here. The true figure is lower "
                     "and we do not yet know by how much.")
@@ -1230,7 +1236,27 @@ def build_community_economics(wb):
 
     rows += [
         (),
-        ("3. THE NETWORK FEE - why the third site is in the FIRST community's interest",),
+        ("3. THE OPTIONS OPEN TO A COMMUNITY THAT STARTED EARLY - the live Utopia question",),
+        ("Selling and delivering does NOT depend on making. An earlier version of this model treated it as the "
+         "last link of a physical chain and so quietly forbade the most interesting option a shredder community "
+         f"has: supplying beds to its own people. The spread is ${cm['sales_spread_per_bed']}/bed, the retail "
+         "price less the cost of a finished bed. FREIGHT COMES OUT OF THAT AND IS NOT MODELLED - right shape, "
+         "unproven size.",),
+        ("Option", "Setup low $", "Setup high $", "Earns/yr $", "Running cost/yr $", "Left over/yr $"),
+    ]
+    for o in cm["options"]:
+        rows.append((
+            o["label"], o["setup_low"], o["setup_high"],
+            o["gross_earnings"] if o["gross_earnings"] is not None else "-",
+            o["operating_cost"],
+            o["net_to_community"] if o["net_to_community"] is not None else "-",
+        ))
+    rows += [
+        ("THE FINDING: selling is worth MORE than pressing and needs NO extra capex, because the site base is "
+         "already there. Two decisions sit behind it that are not ours alone - what a community pays for a "
+         "finished bed, and who carries freight.",),
+        (),
+        ("4. THE NETWORK FEE - why the third site is in the FIRST community's interest",),
         (f"The shared team behind every site costs ${cm['network_block_per_year']:,}/yr whether there is one site "
          "or five. So every community that joins makes every other community's share smaller. NOT AGREED WITH "
          "ANY COMMUNITY - this is the arithmetic, not an offer.",),
@@ -1241,7 +1267,7 @@ def build_community_economics(wb):
 
     rows += [
         (),
-        ("4. WHAT THIS MODEL DELIBERATELY WILL NOT SAY",),
+        ("5. WHAT THIS MODEL DELIBERATELY WILL NOT SAY",),
         ("It never splits the money arriving at a community into wages and surplus. That split is the "
          "community's decision, and a model that guesses it repeats exactly the mistake this tab replaces: "
          "putting a number where a conversation belongs.",),
@@ -1259,9 +1285,9 @@ def build_community_economics(wb):
         text = ws.cell(row=row, column=1).value
         if not isinstance(text, str):
             continue
-        if text[:2] in ("1.", "2.", "3.", "4."):
+        if text[:2] in ("1.", "2.", "3.", "4.", "5."):
             ws.cell(row=row, column=1).font = SECTION
-        elif text in ("Step", "Community", "Sites in the network"):
+        elif text in ("Step", "Community", "Sites in the network", "Option"):
             header_row(ws, row, 8)
     set_widths(ws, [30, 40, 15, 15, 15, 17, 15, 60])
     wrap_all(ws, 8)

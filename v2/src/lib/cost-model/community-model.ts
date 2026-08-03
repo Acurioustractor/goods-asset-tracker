@@ -111,18 +111,43 @@ export const VALUE_LADDER: LadderRung[] = [
 ];
 
 /**
- * The furthest rung a selection reaches, which is what decides its income line.
+ * The four steps that physically depend on each other. You cannot press what was never
+ * shredded, so a run through these must be contiguous.
  *
- * Returns null on a selection with a hole in it (pressing without shredding), because
- * such a run produces nothing: the value of what you hold is set by the LAST step you
- * can actually complete, and you cannot complete a step whose input never arrives.
+ * `sales_delivery` is deliberately NOT one of them. Selling and delivering beds does not
+ * require having made them, and treating it as the last link of a physical chain was a
+ * modelling error that hid a real option: a community can supply beds to its own people
+ * without pressing a single leg. The original rule quietly forbade the most interesting
+ * thing Utopia could do.
  */
-export function furthestRung(keys: readonly string[]): LadderRung | null {
-  const ordered = FEED_ORDER.filter((k) => keys.includes(k));
+export const PHYSICAL_CHAIN = FEED_ORDER.filter((k) => k !== 'sales_delivery');
+
+/**
+ * What selling and delivering is worth per bed: the retail price less the cost of a
+ * finished bed ready to go.
+ *
+ * GROSS, NOT PROFIT. Freight into remote communities comes out of this and is not
+ * modelled anywhere, because we do not have the number. In Central Australia it is not
+ * small. Treat the shape as right and the size as unproven.
+ */
+export const SALES_SPREAD_PER_BED =
+  (VALUE_LADDER.find((r) => r.module === 'sales_delivery')!.perBedEquivalent ?? 0) -
+  (VALUE_LADDER.find((r) => r.module === 'assembly')!.perBedEquivalent ?? 0);
+
+/**
+ * The furthest PHYSICAL rung a selection reaches - what the community actually makes.
+ *
+ * Returns null on a run with a hole in it (pressing without shredding), because such a
+ * run produces nothing: the value of what you hold is set by the last step you can
+ * complete, and you cannot complete a step whose input never arrives. Also null when a
+ * community only sells, which is not a defect - they make nothing and earn on the spread.
+ */
+export function furthestPhysicalRung(keys: readonly string[]): LadderRung | null {
+  const ordered = PHYSICAL_CHAIN.filter((k) => keys.includes(k));
   if (ordered.length === 0) return null;
 
-  const first = FEED_ORDER.indexOf(ordered[0]);
-  const contiguous = ordered.every((k, i) => k === FEED_ORDER[first + i]);
+  const first = PHYSICAL_CHAIN.indexOf(ordered[0]);
+  const contiguous = ordered.every((k, i) => k === PHYSICAL_CHAIN[first + i]);
   if (!contiguous) return null;
 
   const last = ordered[ordered.length - 1];
@@ -132,8 +157,13 @@ export function furthestRung(keys: readonly string[]): LadderRung | null {
 export interface CommunityEconomics {
   /** Modules the community selected, in feed order. */
   modules: readonly string[];
-  /** What they end up holding, and what it is worth per bed's worth of material. */
+  /** The furthest thing they MAKE, and what it is worth. Null when they only sell. */
   rung: LadderRung | null;
+  /** True when the selection includes selling and delivering. */
+  sells: boolean;
+  /** Per bed: what making earns, what selling earns. Either may be null. */
+  makingPerBed: number | null;
+  sellingPerBed: number | null;
   /** True when the selection has a hole in it, e.g. pressing with no shredding. */
   brokenChain: boolean;
   /**
@@ -179,14 +209,19 @@ export function modelCommunity(
   opts: { includeSiteBase?: boolean } = {},
 ): CommunityEconomics {
   const ordered = FEED_ORDER.filter((k) => keys.includes(k));
-  const rung = furthestRung(ordered);
+  const rung = furthestPhysicalRung(ordered);
+  const sells = ordered.includes('sales_delivery');
+  const makesFinishedBeds = rung?.module === 'assembly';
 
   // A run of modules must be CONTIGUOUS in feed order: you cannot press what was
   // never shredded. It need not START at collection, though - Tennant Creek is the
   // live case, buying shred in rather than collecting it - so that is a separate
   // fact reported below, not a broken chain.
-  const firstIndex = ordered.length > 0 ? FEED_ORDER.indexOf(ordered[0]) : -1;
-  const brokenChain = ordered.some((k, i) => k !== FEED_ORDER[firstIndex + i]);
+  // Contiguity is judged over the PHYSICAL chain only. Sales is excluded because it
+  // does not consume the step before it.
+  const physical = PHYSICAL_CHAIN.filter((k) => keys.includes(k));
+  const firstIndex = physical.length > 0 ? PHYSICAL_CHAIN.indexOf(physical[0]) : -1;
+  const brokenChain = physical.some((k, i) => k !== PHYSICAL_CHAIN[firstIndex + i]);
   const buysInputIn = firstIndex > 0 && !brokenChain;
 
   // No production modules means no production site, so no site base either. This
@@ -199,7 +234,24 @@ export function modelCommunity(
     : { withBaseLow: 0, withBaseHigh: 0, priceable: true, unpriced: [] as string[], capexLow: 0, capexHigh: 0 };
   const operating = priceModuleOperating(ordered);
 
-  const perUnit = rung?.perBedEquivalent ?? null;
+  // Two income lines that stack, because they are different work.
+  //
+  // MAKING earns the value of the furthest physical step completed. SELLING earns the
+  // spread between a finished bed and a bed in a home, whether or not this community
+  // made that bed - a community that sells beds pressed elsewhere is running a real
+  // distribution business, and the earlier model refused to see it.
+  //
+  // The two are consistent at the top of the chain: assembly ($400) plus the sales
+  // spread ($350) is the $750 retail price, which is exactly what the ladder says a
+  // community holding a bed in a home has.
+  const makingPerBed = rung?.perBedEquivalent ?? null;
+  const sellingPerBed = sells ? SALES_SPREAD_PER_BED : null;
+
+  const perUnit =
+    makingPerBed === null && sellingPerBed === null
+      ? null
+      : (makingPerBed ?? 0) + (sellingPerBed ?? 0);
+
   const grossEarnings = perUnit === null ? null : perUnit * volume;
   const netToCommunity = grossEarnings === null ? null : grossEarnings - operating.total;
 
@@ -220,6 +272,20 @@ export function modelCommunity(
       'Broken chain: a module is selected with nothing to feed it. This selection produces nothing, so it has no income line at all.',
     );
   }
+  if (sells) {
+    openDecisions.push(
+      `Selling is counted at the gross spread of $${SALES_SPREAD_PER_BED} a bed, which is the retail price less ` +
+        'the cost of a finished bed. Freight into community comes out of that and is NOT modelled anywhere. ' +
+        'In Central Australia it is not small, so treat this line as the right shape and an unproven size.',
+    );
+  }
+  if (sells && !makesFinishedBeds) {
+    openDecisions.push(
+      'This community would sell beds it did not build, buying them in finished. That is a real business and a ' +
+        'different relationship from making them - worth putting to community as its own question, not as a ' +
+        'smaller version of a factory.',
+    );
+  }
   if (buysInputIn) {
     openDecisions.push(
       `This run starts at ${ordered[0]}, so its input is bought in rather than collected on Country. ` +
@@ -236,6 +302,9 @@ export function modelCommunity(
   return {
     modules: ordered,
     rung,
+    sells,
+    makingPerBed,
+    sellingPerBed,
     brokenChain,
     buysInputIn,
     setup: {

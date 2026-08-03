@@ -11,8 +11,9 @@ import { describe, expect, it } from 'vitest';
 import {
   FEED_ORDER,
   NETWORK_BLOCK_PER_YEAR,
+  SALES_SPREAD_PER_BED,
   VALUE_LADDER,
-  furthestRung,
+  furthestPhysicalRung,
   modelCommunity,
   modelPathway,
   networkFeePerSite,
@@ -53,22 +54,28 @@ describe('the value ladder', () => {
   });
 });
 
-describe('furthestRung', () => {
+describe('furthestPhysicalRung', () => {
   it('reads the last completable step, not the most valuable one selected', () => {
-    expect(furthestRung(['collection_baling', 'shredding'])!.module).toBe('shredding');
+    expect(furthestPhysicalRung(['collection_baling', 'shredding'])!.module).toBe('shredding');
   });
 
   it('allows a run that starts partway down and buys its input in', () => {
-    expect(furthestRung(['shredding', 'pressing_cnc'])!.module).toBe('pressing_cnc');
+    expect(furthestPhysicalRung(['shredding', 'pressing_cnc'])!.module).toBe('pressing_cnc');
   });
 
   it('returns null for a run with a hole in it', () => {
     // Pressing with no shredding: the press has nothing to press.
-    expect(furthestRung(['collection_baling', 'pressing_cnc'])).toBeNull();
+    expect(furthestPhysicalRung(['collection_baling', 'pressing_cnc'])).toBeNull();
   });
 
   it('returns null for an empty selection', () => {
-    expect(furthestRung([])).toBeNull();
+    expect(furthestPhysicalRung([])).toBeNull();
+  });
+
+  it('ignores sales, because selling makes nothing', () => {
+    // The whole point of the fix: sales is not the last link of a physical chain.
+    expect(furthestPhysicalRung(['sales_delivery'])).toBeNull();
+    expect(furthestPhysicalRung(['shredding', 'sales_delivery'])!.module).toBe('shredding');
   });
 });
 
@@ -195,5 +202,53 @@ describe('live pathways read from the recorded module selections', () => {
     const utopia = modelPathway('utopia', 450)!;
     expect(utopia.rung!.module).toBe('shredding');
     expect(utopia.annual.netToCommunity!).toBeLessThan(0);
+  });
+});
+
+describe('selling stands alone', () => {
+  it('does not need the step before it, unlike every physical module', () => {
+    // Utopia could sell beds pressed elsewhere. The original contiguity rule quietly
+    // forbade this, which hid the most interesting option a shredder community has.
+    const sellOnly = modelCommunity(['sales_delivery'], 450);
+    expect(sellOnly.brokenChain).toBe(false);
+    expect(sellOnly.rung).toBeNull(); // makes nothing
+    expect(sellOnly.sells).toBe(true);
+    expect(sellOnly.annual.grossEarnings).toBe(SALES_SPREAD_PER_BED * 450);
+  });
+
+  it('stacks with making, and reconciles to the retail price at the top of the chain', () => {
+    // assembly ($400) + spread ($350) must equal the $750 a bed in a home is worth,
+    // or the two income lines are double counting.
+    const full = modelCommunity([...FEED_ORDER], 450);
+    expect(full.makingPerBed! + full.sellingPerBed!).toBe(750);
+    expect(full.annual.grossEarnings).toBe(750 * 450);
+  });
+
+  it('prices the spread as retail less a finished bed', () => {
+    expect(SALES_SPREAD_PER_BED).toBe(350);
+  });
+
+  it('flags freight as the unmodelled number whenever selling is counted', () => {
+    const s = modelCommunity(['sales_delivery'], 450);
+    expect(s.openDecisions.some((d) => d.includes('Freight'))).toBe(true);
+  });
+});
+
+describe('shred plus sell: the option the old rule hid', () => {
+  const shredSell = modelCommunity(['collection_baling', 'shredding', 'sales_delivery'], 450);
+  const shredOnly = modelCommunity(['collection_baling', 'shredding'], 450);
+
+  it('turns a shredder-only gap into a positive result', () => {
+    expect(shredOnly.annual.netToCommunity!).toBeLessThan(0);
+    expect(shredSell.annual.netToCommunity!).toBeGreaterThan(0);
+  });
+
+  it('earns shred plus the spread, without pressing a single leg', () => {
+    expect(shredSell.makingPerBed).toBe(40);
+    expect(shredSell.sellingPerBed).toBe(350);
+  });
+
+  it('says the beds would be bought in, because that is a different relationship', () => {
+    expect(shredSell.openDecisions.some((d) => d.includes('did not build'))).toBe(true);
   });
 });
