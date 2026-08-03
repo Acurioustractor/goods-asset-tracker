@@ -303,8 +303,18 @@ def build_inputs(wb):
         ("Opening cash", 50000, "assumption",
          "Most important single input (base placeholder). See Open Questions Q1: no GOC bank account exists, "
          "so this is a carve-out decision, not a bank fact."),
-        ("Plant & equipment (sunk, evidenced)", 75000, "evidenced",
-         "MVF hardware, mostly used deals (Nic). Ownership handover targeted end-Aug 2026."),
+        # RECONCILED 2026-08-03. Matt's original carried $75,000 graded 'evidenced'. Both were
+        # wrong. Canon (cost-model-scenarios.ts:157, Ben ruling 2026-07-25) sets sunk spend at
+        # $110,046 and grades it `workpaper`, because ~$43,700 is evidenced at bill level and the
+        # balance is plant we own whose paperwork is catching up. The $75,000 in the 2026-07-22
+        # MVF note is a bill-level SUBTOTAL of hardware, explicitly NOT a competing total.
+        ("Plant & equipment (sunk spend on the farm facility)", 110046, "workpaper",
+         "$100,000 facility + $10,046 Carbatec tooling. ~$43,700 evidenced at bill and bank-line "
+         "level in the sole-trader Xero; the balance is owned plant whose paperwork is catching up "
+         "(the $19,800 Telford Smith shredder, physically confirmed with no Xero record, and a "
+         "recently bought larger CNC). A filing job, not a fiction. Do NOT substitute the ~$75,000 "
+         "from the MVF note - that is a bill-level hardware subtotal, not a competing total. "
+         "Ownership handover targeted end-Aug 2026."),
         ("Borrowings (today)", 0, "verified", "No debt; AP ~$0 owed."),
         ("Opening contributed capital", "=B15+B16", "derived",
          "Opening cash plus sunk plant, so the opening balance sheet balances."),
@@ -446,9 +456,14 @@ def build_known_costs(wb):
         (),
         ("1. EXISTING PLANT AND HARDWARE: ACTUAL OR PHYSICALLY CONFIRMED",),
         ("Cost item", "Low", "High", "Selected/current", "Unit", "Status", "Source", "Notes"),
-        ("Evidenced sunk hardware total", None, None, 75000, "AUD", "evidenced/mixed",
+        ("SUNK SPEND ON THE FARM FACILITY (the figure to quote)", None, None, 110046, "AUD", "workpaper",
+         "cost-model-scenarios.ts ALREADY_INVESTED; Ben ruling 2026-07-25",
+         "$100,000 facility + $10,046 Carbatec tooling. Quoted BESIDE the capital ask as skin in the game, "
+         "NEVER netted off it. The old net figure (~$2K-$112K) is retired."),
+        ("  of which: evidenced hardware subtotal (bill level)", None, None, 75000, "AUD", "evidenced/mixed",
          "MVF reconciliation, 2026-07-22",
-         "About $43.7K cleanly tagged, $12.5K ambiguous and $19.8K physical-only shredder. Rounded total."),
+         "About $43.7K cleanly tagged, $12.5K ambiguous and $19.8K physical-only shredder. This is a SUBTOTAL "
+         "of the line above, not a competing total. Do not swap it in for $110,046."),
         ("Press + cold press + CNC bundle", None, None, 32780, "AUD inc GST", "evidenced",
          "Xero INV-0054, 2025-12-17, ACT-GD", "Existing purchase, not a fresh-site quote."),
         ("Workshop tools", None, None, 6387, "AUD inc GST", "evidenced, tagged Harvest",

@@ -77,8 +77,9 @@ Grants and philanthropy are the bonus on top, not the thing propping it up.
 ## 4. Where the money is
 
 - FY26 revenue, accountant-signed Goods-only carve-out: **$713,827**. About 89% grant funded today.
-- Sunk, evidenced plant already in the ground: **~$75,000**. Skin in the game, shown beside the ask, never subtracted from it.
-- The ask: **$112,000 to $222,000 gross** per site, plus working capital.
+- Sunk spend already in the ground: **$110,046** ($100,000 facility + $10,046 tooling). Skin in the game, shown beside the ask, never subtracted from it. Graded workpaper: about $43,700 is evidenced at bill level, and the balance is plant we own whose paperwork is catching up.
+- The ask, turnkey scope: **$207,450** site capex, plus **$38,387** working capital and a **$28,791** first-year ramp. About **$275,000** for one site, fully funded.
+- The older **$112,000 to $222,000** range is minimal-viable scope, built on second-hand kit we already own. Still the right figure for a replication that reuses our equipment, but it is not what a funder is being asked to buy. Quote one scope and name it.
 - Proposed capital stack: SEFA $300K debt, anchor philanthropy $500K, QBE $400K repayable as upside.
 - **Signed match-eligible capital today: $0.** The QBE money is catalytic, not dollar-for-dollar, and there is no $150K floor.
 

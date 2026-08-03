@@ -50,6 +50,10 @@ OAUTH_CLIENT = CONFIG / "goods-sheets-oauth.json"      # your own Desktop client
 OAUTH_TOKEN = CONFIG / "goods-sheets-token.json"       # cached after the first login
 SERVICE_ACCOUNT = CONFIG / "goods-sheets-sa.json"
 
+# Suffix for staging tabs. Sheets will not let us delete the last worksheet, so new tabs
+# are built alongside the old ones and renamed at the end.
+TEMP_SUFFIX = " (new)"
+
 
 def authorize() -> gspread.Client:
     """Return an authorised gspread client, trying the routes most likely to work first."""
@@ -117,6 +121,14 @@ def main() -> int:
 
     wb = openpyxl.load_workbook(path, data_only=False)
 
+    # A push that dies partway (network reset, API blip) leaves "<name> (new)" staging
+    # tabs behind, and the next run then collides with them. Clear them first so a retry
+    # is always safe. They are pure scratch: every tab is rebuilt from the workbook below.
+    for ws in sh.worksheets():
+        if ws.title.endswith(TEMP_SUFFIX):
+            print(f"  clearing stale staging tab: {ws.title}")
+            sh.del_worksheet(ws)
+
     # Google Sheets refuses to delete the last remaining worksheet, so we build the
     # new tabs first and only then remove whatever was there before.
     pre_existing = {ws.title: ws for ws in sh.worksheets()}
@@ -127,7 +139,7 @@ def main() -> int:
         n_rows = max(len(rows), 1)
         n_cols = max((len(r) for r in rows), default=1)
 
-        target_name = name if name not in pre_existing else f"{name} (new)"
+        target_name = name if name not in pre_existing else f"{name}{TEMP_SUFFIX}"
         ws = sh.add_worksheet(title=target_name, rows=n_rows + 20, cols=n_cols + 5)
         if rows:
             ws.update(rows, "A1", value_input_option="USER_ENTERED")
