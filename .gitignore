@@ -259,3 +259,16 @@ deliverables/*.xlsx
 deliverables/*.pptx
 tools/.gsheet-targets.json
 .venv-sheets/
+
+# ── Review and QA screenshots (added 2026-08-03) ─────────────────────────────
+# Standing rule: no large media in git, not even LFS. The 2026-07-29 web pitch
+# audit alone is ~9MB of PNGs against 7 markdown files. Keep the findings, which
+# are text and diff cleanly; drop the screenshots, which do neither.
+thoughts/shared/reviews/**/*.png
+v2/design-qa-evidence/
+
+# ── GOC entity model build artifacts (mirrors the rules on main) ─────────────
+deliverables/*.xlsx
+deliverables/*.pptx
+tools/.gsheet-targets.json
+.venv-sheets/

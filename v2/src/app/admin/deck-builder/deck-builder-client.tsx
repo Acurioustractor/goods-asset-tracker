@@ -21,7 +21,7 @@ import {
 import { deckSlides, deckUpdated, type DeckSlide } from '@/lib/data/deck';
 import { getStoryteller, STORYTELLER_REGISTRY } from '@/lib/data/storyteller-registry';
 
-/** Item shape served by /api/admin/media-pick (local, committed media only). */
+/** Normalised item shape shared by the local library and Empathy Ledger picker feed. */
 interface MediaPickItem {
   id: string;
   url: string;
@@ -865,9 +865,40 @@ export function DeckClient() {
     (slideId: string, kind: 'image' | 'video') => {
       setPicker({ slideId, kind });
       if (pickItems === null) {
-        fetch('/api/admin/media-pick')
-          .then((r) => r.json())
-          .then((d) => setPickItems(Array.isArray(d.items) ? d.items : []))
+        Promise.all([
+          fetch('/api/admin/media-pick').then((r) => r.json()),
+          fetch('/api/admin/field-note-override/list?scope=recent&kind=any').then((r) => r.json()),
+        ])
+          .then(([local, empathyLedger]) => {
+            const committed = Array.isArray(local.items) ? (local.items as MediaPickItem[]) : [];
+            const elItems = Array.isArray(empathyLedger)
+              ? empathyLedger.map(
+                  (item: {
+                    id: string;
+                    url: string;
+                    thumb?: string;
+                    kind: 'photo' | 'video';
+                    tags?: string[];
+                  }): MediaPickItem => ({
+                    id: `el:${item.id}`,
+                    url: item.url,
+                    poster_url: item.thumb || null,
+                    media_type: item.kind === 'photo' ? 'image' : 'video',
+                    area: 'Empathy Ledger',
+                    starred: false,
+                    tags: ['Empathy Ledger', ...(item.tags ?? [])],
+                  }),
+                )
+              : [];
+            const seen = new Set<string>();
+            setPickItems(
+              [...committed, ...elItems].filter((item) => {
+                if (seen.has(item.url)) return false;
+                seen.add(item.url);
+                return true;
+              }),
+            );
+          })
           .catch(() => setPickItems([]));
       }
     },
@@ -1015,8 +1046,9 @@ export function DeckClient() {
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-background/70">
             Ten slides on the signed six-turn spine. Click any headline, paragraph or script to
-            edit it in place — your changes save in this browser; export them for Claude to
-            commit. The public page at /pitch/deck renders the committed version. Hit{' '}
+            edit it in place, or swap a photo from the committed website library and the
+            consent-filtered Empathy Ledger feed. Changes save in this browser; export them for
+            Claude to commit. The public page at /pitch/deck renders the committed version. Hit{' '}
             <span className="font-semibold text-background">Present</span> to open the main deck,
             and press <span className="font-semibold text-background">N</span> in Present for
             speaker notes. Updated {deckUpdated}.

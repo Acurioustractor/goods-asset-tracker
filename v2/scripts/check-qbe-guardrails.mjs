@@ -74,8 +74,17 @@ const RETIRED_MATCH_ALLOWED_FILES = [
 
 const BLOCKED_PATTERNS = [
   {
-    reason: 'retired net/gross capital ask; use $112-222K gross OR ~$2-112K net',
+    reason:
+      'retired transcription artefact; quote $112-222K GROSS only. Ruling P (2026-07-25) retired every net figure: sunk spend sits beside the gross ask, never subtracted from it.',
     pattern: /\b(?:AU\$|\$)?90\s*[-–]\s*200K\b/i,
+  },
+  {
+    // Ruling P deleted the NET_CAPITAL_* exports and engine.test.ts fails if they
+    // come back. Nothing stopped the figure being retyped as PROSE, which is exactly
+    // how it survived in cost-story.ts's 30-second spine until 2026-07-25.
+    reason:
+      'retired net capital ask (ruling P 2026-07-25); quote $112-222K gross with the sunk spend beside it, never a net number',
+    pattern: /(?:AU\$|\$)?2\s*[-–]\s*112K\s*net\b/i,
   },
   {
     reason: 'retired fully-loaded reference; use $1,780 at 100/yr with $685 marginal + $1,095 fixed',

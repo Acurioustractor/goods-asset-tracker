@@ -21,7 +21,9 @@
  *
  * LOCKED (2026-05-29): founder $560/day, $84K/yr, production share $16,800; fixed block ~$109,500;
  * marginal Buy-Kit $684.79 / Factory $425.74; breakeven 338 (Factory); idiot index 8.6× (shred $40) +
- * 21.5× (polymer $16); capital $112-222K gross / ~$2-112K net; price $750; in-house legs saving $194.05/bed.
+ * 21.5× (polymer $16); capital $112-222K GROSS (ruling P 2026-07-25 retired the net figure, and the
+ * $110,046 sunk spend now sits beside the gross ask rather than being subtracted from it); price $750;
+ * in-house legs saving $194.05/bed.
  */
 import {
   CostModelDefaults,

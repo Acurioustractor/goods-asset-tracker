@@ -33,7 +33,8 @@ export default async function ImpactReportPage({
     // keep the static model
   }
 
-  // Resolve featured metrics: current values if present, else the Year-1 target.
+  // Resolve featured metrics. Missing current evidence stays missing; audience
+  // reports must never substitute a target for an observed value.
   const metricById = new Map<string, ImpactDimension['metrics'][number]>();
   for (const d of dimensions) for (const m of d.metrics) metricById.set(m.id, m);
   const metrics: ResolvedReportMetric[] = template.featuredMetricIds
@@ -43,7 +44,7 @@ export default async function ImpactReportPage({
       id: m.id,
       name: m.name,
       unit: m.unit,
-      value: m.current ?? m.targets.year1 ?? null,
+      value: m.current,
       isLive: m.current != null,
       sourceDetail: m.sourceDetail,
     }));

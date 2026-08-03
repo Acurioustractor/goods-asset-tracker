@@ -2,13 +2,13 @@ import Image from 'next/image';
 import type { ImpactReportTemplate } from '@/lib/data/report-templates';
 import type { EmpathyLedgerStory } from '@/lib/empathy-ledger/types';
 
-/** A metric resolved against the current impact snapshot (or its target fallback). */
+/** A metric resolved against the current impact snapshot. */
 export interface ResolvedReportMetric {
   id: string;
   name: string;
   unit: string;
   value: number | null;
-  /** true if `value` is a current figure, false if it's a target fallback. */
+  /** True when current evidence exists. Missing values remain visibly unavailable. */
   isLive: boolean;
   sourceDetail: string;
 }
@@ -64,7 +64,7 @@ export function ImpactReport({ template, metrics, dimensions, stories, generated
                 <div className="font-serif text-2xl font-bold text-gray-900">{formatValue(m)}</div>
                 <div className="mt-1 text-xs font-medium text-gray-700">{m.name}</div>
                 <div className="mt-1 text-[10px] uppercase tracking-wide text-gray-400">
-                  {m.isLive ? 'Current' : 'Year-1 target'}
+                  {m.isLive ? 'Current' : 'Not yet measured'}
                 </div>
               </div>
             ))}
@@ -149,8 +149,8 @@ export function ImpactReport({ template, metrics, dimensions, stories, generated
       </section>
 
       <footer className="border-t border-gray-200 pt-4 text-xs text-gray-400">
-        Generated {generatedAt}. Metrics resolve against the current impact model (Year-1 targets shown where
-        a current value isn’t yet measured); stories are consent-filtered from Empathy Ledger. Template:{' '}
+        Generated {generatedAt}. Metrics resolve against the current impact model; missing current
+        evidence remains unavailable. Stories are consent-filtered from Empathy Ledger. Template:{' '}
         <code>{template.id}</code>.
       </footer>
     </article>

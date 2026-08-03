@@ -29,7 +29,11 @@ function looksLikeBot(ua: string | null): boolean {
 
 function hashIp(ip: string | null): string | null {
   if (!ip) return null;
-  const salt = process.env.SCAN_IP_HASH_SALT || 'goods-on-country-default-salt';
+  const salt = process.env.SCAN_IP_HASH_SALT;
+  // A shared fallback makes hashes linkable across misconfigured environments.
+  // Preserve the scan event but omit the IP-derived identifier when no
+  // environment-specific salt has been configured.
+  if (!salt) return null;
   return createHash('sha256').update(salt + ip).digest('hex').slice(0, 32);
 }
 

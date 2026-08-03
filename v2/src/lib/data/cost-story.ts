@@ -54,7 +54,7 @@ export const COST_STORY_SPINE = [
   'The one hard fact under the whole model: we pay 8.6× the raw-material cost to buy legs finished. The plastic itself is $40–55.',
   'Press the legs ourselves and the next bed costs about $426 — ~$324 stays. Five times more than today. The Maningrida Stretch run (40 beds, INV-0303) was pressed at our own facility at the farm — the capability is proven. What we have not yet done is press at production rate with measured per-bed costs. That honesty is the pitch, not a weakness.',
   'Running the business costs about $109.5K a year before any bed is made. At $324/bed that is ~338 beds a year to break even; at $65/bed it is ~1,679 — which is exactly why we in-source.',
-  'The equipment costs $112–222K gross; $110,046 is already invested, so the remaining ask is $2–112K net. We do not spend it until ~300+ beds/yr are committed.',
+  'The equipment costs $112–222K gross. $110,046 is already invested and sits beside that figure as evidence of skin in the game, never netted off it. We do not spend it until ~300+ beds/yr are committed.',
   'Plastic is a paid input today (~$55/bed), not free. Free community feedstock is the end state of the ladder, not the current state.',
   'The proof: 540 beds in 11 communities, $713,827 in Goods-only revenue (workpaper, not yet accountant-signed), and 1,000+ beds of named demand on the table.',
 ] as const;

@@ -1,0 +1,41 @@
+---
+session: general
+date: 2026-07-29
+status: complete
+outcome: SUCCEEDED
+---
+
+goal: Hand GrantScope's Goods evidence-and-decision model into the Goods repository as durable Codex context.
+now: Read /GRANTSCOPE.md before changing any Goods funder, pathway, impact, cost-model, relationship or narrative surface.
+test: npm --prefix v2 run build
+
+done_this_session:
+  - task: Added a cross-system decision-layer contract covering narrative, evidence, entities, money doors, place reads and source locations.
+    files: [GRANTSCOPE.md]
+  - task: Made the contract part of mandatory agent context without overriding Goods canon, decisions, language or strategy.
+    files: [CLAUDE.md]
+
+blockers: [The relational-review migration is not deployed in GrantScope; 10 stale washer rows still need restatusing in Goods.]
+
+questions: [Resolve the per-bed $259.05 contribution-change versus $194 canon definition, Resolve modelled 3540kg design mass versus verified diversion language.]
+
+decisions:
+  - source_precedence: Goods canon and dated human rulings continue to win; GrantScope conflicts are surfaced, not silently imported.
+  - surface_pattern: Use authority, requested-now, what-happened, coordination-not-consent, next-action and evidence-health instead of readiness scores.
+  - input_policy: Read existing systems and ask for human judgement only where evidence cannot decide; do not create another transactional model.
+
+findings:
+  - relationship_changes_model: Relationship evidence determines design, money door, authority and next action rather than decorating a fixed plan.
+  - four_place_reads: Oonchiumpa, Utopia, Tennant Creek and Palm Island expose concrete matching, invoice, lifecycle and governance conflicts.
+
+worked: [Exact identifier crosswalks, source-status separation, conflict quarantine, story-first model, explicit unknowns.]
+failed: [Fuzzy community matching, treating CRM stages as consent, treating modelled need as demand, blending wraparound into unit economics.]
+
+next:
+  - Use the contract when building the next Goods investor, pathway or community surface.
+  - Obtain human rulings for the two cross-repo definition conflicts before publishing them as one canonical claim.
+  - Restatus the ten stale washer rows so 22 becomes register-derived.
+
+files:
+  created: [GRANTSCOPE.md, thoughts/shared/handoffs/general/2026-07-29_05-17_grantscope-goods-decision-layer.yaml]
+  modified: [CLAUDE.md]

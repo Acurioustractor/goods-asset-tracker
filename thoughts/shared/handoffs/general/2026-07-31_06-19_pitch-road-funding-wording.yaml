@@ -1,0 +1,64 @@
+---
+session: general
+date: 2026-07-31
+status: partial
+outcome: PARTIAL_PLUS
+---
+
+goal: Rebuild the end of the Goods road pitch so the funding ask, use of funds, impact and return are explicit and evidence-safe.
+now: Review the wording of the four new funding slides in v2/src/app/pitch/road/page.tsx, tighten it in the established Goods voice, and visually inspect the complete transition from the road story into the ask.
+test: cd v2 && npx eslint src/app/pitch/road/page.tsx && npx tsc --noEmit && npm run build
+
+done_this_session:
+  - task: Replaced the confusing economics, handover, evidence-library, release-gate and signed-letter ending with four direct funding sections.
+    files: [v2/src/app/pitch/road/page.tsx]
+  - task: Connected the pitch to the canonical ask blocks and locked funding language instead of duplicating numbers.
+    files: [v2/src/app/pitch/road/page.tsx, v2/src/lib/data/ask-surface.ts]
+  - task: Verified lint, TypeScript and the complete 209-page production build.
+    files: [v2/src/app/pitch/road/page.tsx]
+
+blockers: []
+
+questions:
+  - Is the investor ending now short and emotionally legible enough after the long community road story?
+  - Should the deck lead with the AU$400K commitment ask or the matched AU$800K program?
+  - What exact repayable-capital language is acceptable before the measured production run establishes real cost and cycle time?
+  - Working capital is still explicitly TO BE SIZED; do not invent a number.
+
+decisions:
+  - funding_story: Answer four questions only: how much is being raised, what it funds, what changes, and what each funding instrument returns.
+  - raise_language: Seek AU$400K in eligible signed commitments; QBE can match up to AU$400K, creating an AU$800K program. Signed today remains AU$0.
+  - return_language: Grants have public-good impact rather than financial return; repayable-capital terms cannot be promised before measurement; product orders buy beds and are revenue, not match capital.
+  - evidence_status: Keep 338 beds per year and AU$426 per bed as modelled targets to test, never verified performance or promised return.
+  - ownership: Describe one responsible community production pathway, never completed ownership or a finished handover.
+
+findings:
+  - user_need: The previous slides mixed operating thresholds, governance caveats, CRM pipeline, QBE mechanics and evidence links without answering the funding decision.
+  - canonical_ask: ASK_BLOCKS currently covers equipment AU$112K–222K, a 50-bed measured run AU$60K–80K, working capital TO BE SIZED, fixed-block cover AU$110K–165K, and maintenance/site scoping AU$5K–8K per year plus.
+  - locked_context: CONTEXT.md locks the short raise answer as AU$400K signed by 31 August with a dollar-for-dollar QBE match, but QBE remains the match vehicle rather than the external ask.
+  - validation: Production build succeeds; existing Empathy Ledger upstream 404s fall back and remain unrelated warnings.
+  - working_tree: v2/src/app/pitch/road/page.tsx is currently untracked in git; preserve it and do not assume changes can be recovered from git history.
+
+worked:
+  - Reusing ASK_BLOCKS and ASK_HEADLINE from the canonical data layer.
+  - Separating grant, repayable capital and product-order returns.
+  - Stating AU$0 signed and modelled/unknown values directly.
+  - Keeping the established editorial type, cream/black palette and road-story visual system.
+
+failed:
+  - Dense threshold tables and caveat-heavy investor language obscured the actual ask.
+  - Repeating 540 beds, 11 communities and 3540kg across unrelated slides added noise rather than evidence.
+  - Internal invoice identifiers, CRM totals and administrative QBE letter requirements felt like diligence notes rather than pitch copy.
+  - Combining community pathways, ownership caveats and capital mechanics on one slide made the narrative difficult to follow.
+
+next:
+  - Read CLAUDE.md, STRATEGY.md, CONTEXT.md, DECISIONS.md and GRANTSCOPE.md before editing.
+  - Review page.tsx around the new funding-ask, funding-use, funding-impact, funding-returns and decision sections.
+  - Tighten wording without changing canonical amounts, evidence status or the four-question structure.
+  - Inspect the page at common desktop and laptop heights using the user's current browser; do not use Playwright without permission.
+  - Keep every section within one screen where possible and remove any sentence that does not help a funder decide.
+  - Run eslint, TypeScript and the full production build after edits.
+
+files:
+  created: [thoughts/shared/handoffs/general/2026-07-31_06-19_pitch-road-funding-wording.yaml]
+  modified: [v2/src/app/pitch/road/page.tsx]

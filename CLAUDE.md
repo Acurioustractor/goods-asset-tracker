@@ -19,6 +19,12 @@ match** (ruling V), so $400K is the top of a range rather than a plan. And the F
 identity separate from the sole trader it trades through. Both change what can honestly be said
 to a funder.
 
+**▶ Also read `/GRANTSCOPE.md` for any funder, investor, pathway, community, relationship,
+impact, cost-model or narrative surface.** It is the cross-system evidence-and-decision contract:
+how to connect people, place, authority, trade, evidence and next actions without turning Goods
+into another transactional dashboard. It never overrides canon, dated rulings, language or
+strategy; it makes conflicts visible so a human can resolve them.
+
 ## The one that will bite you: Supabase project targeting
 
 The org has 9 Supabase projects and the Supabase MCP can reach all of them. It takes an
