@@ -23,6 +23,42 @@ import { CANONICAL_ASSETS, WASHERS_IN_COMMUNITY_BY_COMMUNITY } from './asset-can
  * `registerName` is the exact string in the register's `community` column
  * (the register's real column is `product`/`community`, not `type`).
  */
+/**
+ * A line on a real Xero invoice, recorded so a bed count can be traced to paper.
+ *
+ * THE DISTINCTION THAT KEEPS BEING LOST, and the reason this type exists:
+ * the register counts ASSETS IN COMMUNITY, an invoice records A SALE. They are
+ * not the same measure and they are not supposed to tie. Beds and machines reach
+ * a community as prototypes, in-kind, replacements and earlier deliveries that
+ * never appear as a sold line, so the register is always the larger number.
+ *
+ * Maningrida is the worked example. The register holds 18 Basket, 40 Stretch and
+ * 8 washers. The invoices evidence 13 Basket, 40 Stretch and 2 washers. The
+ * washer gap is already explained in asset-canonical.ts ("8 = 6 existing + 2
+ * new") and INV-0303 is exactly those 2 new, which confirms the pattern rather
+ * than contradicting it. The 5 uninvoiced Basket Beds are the same shape and
+ * have not been individually traced.
+ *
+ * So: quote the REGISTER for what is in community, quote the INVOICE for what was
+ * sold and what it fetched. Never present one as a check on the other.
+ */
+export interface CommunityInvoiceLine {
+  /** Xero invoice number, e.g. INV-0303 */
+  invoice: string;
+  /** Xero contact. Often NOT the community's name, which is why searches miss it. */
+  contact: string;
+  /** Invoice date, ISO. */
+  date: string;
+  /** Xero status. DELETED and VOIDED lines are evidence of nothing. */
+  status: 'PAID' | 'AUTHORISED' | 'VOIDED' | 'DELETED';
+  /** Line description, verbatim from the invoice. */
+  description: string;
+  quantity: number;
+  unitAmount: number;
+  /** Anything that makes the line hard to find or easy to misread. */
+  note?: string;
+}
+
 export interface CommunityBedCanon {
   /** communities.id slug */
   id: string;
@@ -118,6 +154,56 @@ export const COMMUNITY_BED_CANON: readonly CommunityBedCanon[] = [
  *  weave_bed variant) is a known bad write — the product was discontinued and
  *  never produced at scale; rows carrying it should be stretch_bed. */
 export const ALLOWED_REGISTER_PRODUCTS = ['Stretch Bed', 'Basket Bed', 'Washing Machine'] as const;
+
+/**
+ * The commercial paper trail, per community, where it has been traced.
+ *
+ * Kept OUT of COMMUNITY_BED_CANON on purpose: check-register-integrity.mjs parses
+ * that array as text and splits entries on the first `},`, so a nested object
+ * inside an entry breaks the judge. It is also a different concern - that array is
+ * what is in community, this is what was sold.
+ *
+ * A community missing here has NOT been traced. It does not mean no invoice exists.
+ */
+export const COMMUNITY_INVOICE_PROVENANCE: Record<string, readonly CommunityInvoiceLine[]> = {
+  // Traced against the Xero mirror 2026-08-04, because "how many Maningrida beds"
+  // kept coming back with a different answer. It has three answers because there are
+  // TWO invoices, seven months apart, for TWO different products. Whoever finds one
+  // says 13 or 40; whoever finds both says 53. The register says 58 beds, because 5
+  // Basket Beds arrived by a route that was never invoiced.
+  maningrida: [
+    {
+      invoice: 'INV-0283',
+      contact: 'Mala’la Health Service Aboriginal Corporation',
+      date: '2025-10-21',
+      status: 'PAID',
+      description: 'Goods Basket Bed v2.1',
+      quantity: 13,
+      unitAmount: 380,
+      note:
+        'Mala’la IS Maningrida. The community name appears nowhere on the invoice, which is why a ' +
+        'Xero search for "Maningrida" returns nothing and why this stayed unresolved. Shipping was ' +
+        'listed at $3,200 and charged at $0. Total $5,434 = $4,940 + GST. The register holds 18 ' +
+        'Basket, so 5 arrived by some route other than this sale and are not individually traced.',
+    },
+    {
+      invoice: 'INV-0303',
+      contact: 'Homeland School Company',
+      date: '2026-05-18',
+      status: 'PAID',
+      description: 'Goods Stretch Bed - Single Bed, Poles, Canvas',
+      quantity: 40,
+      unitAmount: 750,
+      note:
+        'THE 40, at the canonical $750. Destination is provable from the freight line "Delivery of ' +
+        'Goods ex BNE - DRW - MNG": Brisbane to Darwin to Maningrida. The same invoice carries 2 ' +
+        'washing machines at $4,500 (the "+2 new" in asset-canonical.ts), an $8,000 program-support ' +
+        'trip, $5,900 freight and a -$14,190 in-kind credit, tying to $44,000 exactly. This invoice ' +
+        'evidences the SALE and the delivery. It cannot evidence where the beds were pressed, ' +
+        'because in-house production raises no invoice - do not cite it for the in-house claim.',
+    },
+  ],
+};
 
 /** Washer rows still marked `deployed` that Ben's 2026-07-21 ruling says are
  *  stale (await restatus to `retired`): Tennant Creek 7, Alice Springs 2,
