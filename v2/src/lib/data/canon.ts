@@ -88,7 +88,9 @@ export const CANON: CanonFact[] = [
     id: 'beds-deployed', label: 'Beds deployed', value: CANONICAL_ASSETS.bedsDeployed, unit: 'units',
     domain: 'assets', claimLabel: 'verified', dataClass: 'green',
     source: 'v2 Supabase `assets` (status=deployed) via asset-canonical.ts', check: 'auto', asAt: '2026-07-18', owner: 'Ben',
-    definition: 'Deployed bed units in the register: 363 Basket (legacy) + 177 Stretch (flagship; incl. Maningrida +40 Jul 2026, and Kununurra +2 / Katherine +1 / Tennant youth centre +1, Ben rulings 2026-07-19).',
+    // Date corrected 2026-08-04: said "Jul 2026", INV-0303 is dated 18 May 2026 (PAID).
+    // Invoice-level provenance for Maningrida lives on COMMUNITY_BED_CANON.
+    definition: 'Deployed bed units in the register: 363 Basket (legacy) + 177 Stretch (flagship; incl. Maningrida +40, INV-0303 18 May 2026, and Kununurra +2 / Katherine +1 / Tennant youth centre +1, Ben rulings 2026-07-19).',
   },
   {
     id: 'stretch-beds-deployed', label: 'Stretch Beds deployed', value: CANONICAL_ASSETS.stretchBedsDeployed, unit: 'units',
