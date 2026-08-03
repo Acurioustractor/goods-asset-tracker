@@ -724,8 +724,10 @@ def build_case_studies(wb):
 #     ACT-GD spend transactions carry status DELETED, $229,127 worth, almost certainly
 #     Dext re-imports replacing originals. A query that does not filter on status
 #     overstates the total roughly threefold.
-#   - Account names are derived from the SUPPLIERS on each code, not from the Xero
-#     default chart, which does not apply to this customised chart of accounts.
+#   - Account names were first derived from the SUPPLIERS on each code, then CONFIRMED
+#     2026-08-03 against the exported chart of accounts
+#     (act-global-infrastructure/config/xero-chart.json, 118 accounts). All 23 matched.
+#     The Xero DEFAULT chart does not apply here, so do not map codes from it.
 #   - Basis is closer to accrual than cash (it includes authorised-but-unpaid bills),
 #     so it does NOT tie to the $309,126 cash figure and is not meant to.
 XERO_FY26_ACTUALS = [
@@ -745,21 +747,21 @@ XERO_FY26_ACTUALS = [
      "121 small lines: cafes, roadhouses, supermarkets on field trips", ""),
     ("493", "Travel - National", 6340.07, 0.017, "Qantas, Virgin, SIXT, regional hotels", ""),
     ("449", "MV - Fuel & Oil", 6016.82, 0.016, "BP, Ampol, Shell, remote roadhouses", ""),
-    ("710", "Office/site equipment (FIXED ASSET)", 4705.00, 0.012, "Bionic Group (containers)",
+    ("710", "Office Equipment (FIXED ASSET)", 4705.00, 0.012, "Bionic Group (containers)",
      "CAPEX, not an expense"),
     ("429", "General Expenses", 4317.88, 0.011,
      "Loadshift Sydney, Bargain Car Rentals, Orange Sky, Metal Manufactures", ""),
-    ("451", "(unmapped)", 3901.83, 0.010, "", "Confirm name in Xero"),
-    ("447", "(unmapped)", 2154.47, 0.006, "", "Confirm name in Xero"),
-    ("485", "(unmapped)", 1674.27, 0.004, "", "Confirm name in Xero"),
+    ("451", "MV - Repairs & Maintenance", 3901.83, 0.010, "", ""),
+    ("447", "Minor Tools & Equipment < $1k", 2154.47, 0.006, "", ""),
+    ("485", "Subscriptions", 1674.27, 0.004, "", ""),
     ("420", "Entertainment", 1421.37, 0.004, "", ""),
-    ("430", "(unmapped)", 1078.68, 0.003, "", "Confirm name in Xero"),
-    ("453", "(unmapped)", 1010.82, 0.003, "", "Confirm name in Xero"),
-    ("452", "Hire Expenses", 597.02, 0.002, "Van hire", ""),
-    ("473", "(unmapped)", 259.95, 0.001, "", "Confirm name in Xero"),
-    ("448", "(unmapped)", 142.70, 0.000, "", "Confirm name in Xero"),
-    ("720", "Fixed asset (minor)", 117.28, 0.000, "", "CAPEX"),
-    ("700", "Fixed asset (minor)", 102.43, 0.000, "", "CAPEX"),
+    ("430", "Gifts", 1078.68, 0.003, "", ""),
+    ("453", "Office Expenses", 1010.82, 0.003, "", ""),
+    ("452", "Parking, Tolls & Taxis", 597.02, 0.002, "Van hire", ""),
+    ("473", "Repairs and Maintenance", 259.95, 0.001, "", ""),
+    ("448", "Farm Equipment - Fuel, oil & maintenance", 142.70, 0.000, "", ""),
+    ("720", "Computer Equipment (FIXED ASSET)", 117.28, 0.000, "", "CAPEX"),
+    ("700", "Motor Vehicle (FIXED ASSET)", 102.43, 0.000, "", "CAPEX"),
     ("445", "Light, Power, Heating", 101.77, 0.000, "", ""),
 ]
 
@@ -770,10 +772,9 @@ def build_xero_actuals(wb):
         ("Goods (ACT-GD) FY26 expenses, split by account - pulled from Xero 2026-08-03",),
         ("This is the category split Matt asked for in Q10 and was told needed an accountant. It did not. "
          "It is a query against the Xero mirror. Account names are derived from the SUPPLIERS on each code, "
-         "because the Xero default chart does not apply to this customised chart of accounts. Confirm the "
-         "handful marked (unmapped) in Xero settings - about thirty seconds.",),
+         "then CONFIRMED against the exported chart of accounts (118 accounts, act-global-infrastructure/config/xero-chart.json). All 23 matched. The Xero DEFAULT chart does not apply to this org.",),
         (),
-        ("Account code", "Inferred name", "FY26 total $", "Share", "Evidence (suppliers on this code)", "Flag"),
+        ("Account code", "Account name (confirmed)", "FY26 total $", "Share", "Evidence (suppliers on this code)", "Flag"),
     ]
     for code, name, total, share, evidence, flag in XERO_FY26_ACTUALS:
         rows.append((code, name, total, share, evidence, flag))
@@ -860,12 +861,20 @@ OPEN_QUESTIONS = [
     ("Critical", "What did the bigger CNC cost, and who owns it?",
      "Recently purchased. About $5,135 installation booked.", "TBC", "Ben + bookkeeper", "open",
      "Opening PP&E and ownership cannot reconcile without it.", "Locate invoice and purchasing entity.",
-     "Still open, and it is paperwork not modelling. What is known: about $5,135 of installation is booked "
-     "separately, and the machine is physically on site. Until the invoice and the purchasing entity are found, "
+     "ESTABLISHED 2026-08-03: the machine is NOT in this Xero organisation. A full bank-feed re-sync (all four "
+     "accounts, 3,612 reconciled transactions, 400-day window) finds no CNC purchase as a bill, a spend or an "
+     "uncoded bank line, at any amount. What IS there is Multicam Systems $5,134.71 across two paid invoices "
+     "(31093, 2026-06-15, $4,226.99 tagged ACT-GD; RB21121883670, 2026-07-09, $907.72 UNTAGGED), and the line "
+     "reads '1 day installation, commissioning, training package'. That is the $5,135 canon refers to. So "
+     "Multicam sold and installed it, and the machine was paid some other way: another entity, personally, or "
+     "financed under a lease or chattel mortgage, which would not appear as a lump outgoing at all. A Multicam "
+     "router is typically $30,000-$80,000 new, so this is a larger hole in opening PP&E than the shredder. "
+     "Next step is a question for Nic, not a search. Until the invoice and the purchasing entity are found, "
      "EXCLUDE the CNC purchase price from opening PP&E and disclose it as an unrecorded owned asset. Do not plug a "
      "number - a guessed asset value on an opening balance sheet is the single easiest thing for an investor's "
      "accountant to pull apart.",
-     "Exclude from opening PP&E; disclose as note", "open", "Ben + bookkeeper - locate invoice"),
+     "Exclude from opening PP&E; disclose as note", "open - established absent from Xero",
+     "Nic - which entity or card paid for it, or is it financed?"),
 
     ("Critical", "Have the shredder and container ownership records been located?",
      "$19,800 shredder is physical-only. Some container costs are ambiguously tagged.", "TBC", "Ben + bookkeeper",
