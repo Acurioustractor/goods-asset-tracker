@@ -82,7 +82,7 @@ const CONCEPTS: Concept[] = [
       { path: '/images/pitch/bed-frame-legs.jpg', usedIn: ['stretch-bed page (component tile: legs)'] },
     ],
     generated: [],
-    warning: 'Illustrated/rendered calibration images for this concept (goods-ill-leg.png, goods-leg-studio-v1.png, goods-bed-studio-v3.png, etc.) were retired from the live pages in favour of the real pitch/ photoset above — do not reintroduce them here.',
+    warning: 'Illustrated/rendered calibration images for this concept (goods-ill-leg.jpg, goods-leg-studio-v1.jpg, goods-bed-studio-v3.jpg, etc.) were retired from the live pages in favour of the real pitch/ photoset above — do not reintroduce them here.',
   },
   {
     key: 'bed-assembly',
@@ -102,8 +102,8 @@ const CONCEPTS: Concept[] = [
       'assembly-guide/06-canvas-care.png',
       'test-batch/02-assembly-thread-pole.png',
     ],
-    calibration: ['goods-ill-assembly.png'],
-    warning: 'Illustrated 6-step assembly-guide/ sequence and goods-ill-assembly.png calibration image are superseded by real photography on the live pages — treat as archive, not a candidate to place.',
+    calibration: ['goods-ill-assembly.jpg'],
+    warning: 'Illustrated 6-step assembly-guide/ sequence and goods-ill-assembly.jpg calibration image are superseded by real photography on the live pages — treat as archive, not a candidate to place.',
   },
   {
     key: 'plastic-loop',
@@ -111,7 +111,7 @@ const CONCEPTS: Concept[] = [
     blurb: 'Collect, shred, press. 20kg of HDPE diverted per bed.',
     live: [{ path: '/goods-plastic-journey.jpg', usedIn: ['process page', 'cost-story page'] }],
     generated: ['process-anchors/01-plastic-loop-v2.png', 'test-batch/01-plastic-loop.png'],
-    calibration: ['goods-ill-plastic-loop.png', 'goods-plastic-loop-v1.png', 'goods-20kg-plastic-one-bed.png'],
+    calibration: ['goods-ill-plastic-loop.jpg', 'goods-plastic-loop-v1.jpg', 'goods-20kg-plastic-one-bed.jpg'],
   },
   {
     key: 'plant',
@@ -123,7 +123,7 @@ const CONCEPTS: Concept[] = [
       note: 'Promoted 2026-07-13 from the generated pool below. Supplements, not replaces, the real container-factory.jpg photography per the brand guide’s "real photography over stock" rule.',
     }],
     generated: ['process-anchors/02-container-plant.png'],
-    calibration: ['goods-ill-plant.png'],
+    calibration: ['goods-ill-plant.jpg'],
   },
   {
     key: 'ownership',
