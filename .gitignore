@@ -251,3 +251,11 @@ Quote *.pdf
 Invoice *.pdf
 INV-*.pdf
 QU-*.pdf
+
+# GOC entity model: the workbook is a BUILD ARTIFACT, not source.
+# Regenerate with tools/build-goc-answered-workbook.py, push with tools/push-xlsx-to-gsheet.py.
+# Binaries do not diff, and a committed .xlsx nobody can regenerate is worse than none.
+deliverables/*.xlsx
+deliverables/*.pptx
+tools/.gsheet-targets.json
+.venv-sheets/
