@@ -303,6 +303,43 @@ export function priceModuleSelection(
   };
 }
 
+/**
+ * THE FACTORY THROUGHPUT CONFLICT. Logged 2026-08-04, unresolved, worth $20/bed.
+ *
+ * The model disagrees with itself about its single most sensitive input:
+ *
+ *   `CostModelDefaults.factory_beds_per_day`            = 5
+ *   `build_states.state_4_factory.components` labour     = "$400/day ÷ 5 beds" = $80/bed
+ *   `build_states.state_4_factory.throughput_beds_per_day` = 4
+ *
+ * At 5 beds/day the factory marginal cost is $425.74, which is the figure quoted
+ * externally, in the workbook, and to Matt. At 4 beds/day it is $445.74.
+ *
+ * This is logged rather than silently aligned because nobody knows which is right.
+ * The 40-bed Maningrida run reconciles to the $425.74 build almost exactly on the
+ * money side (contribution $326.76/bed actual against $324.26 modelled, using the
+ * $5,900 freight on INV-0303), but that run was never timed, so it cannot settle
+ * beds per operator day. Only the measured week can.
+ *
+ * WHY IT IS THE ONE TO MEASURE: of the three unmeasured inputs, throughput moves
+ * the answer most. 4 rather than 5 beds/day is +$20/bed. Yield at 80% rather than
+ * 100% is +$13.75. Diesel at 8L/bed rather than 5 is +$9.00. Everyone worries about
+ * yield and it is the smallest of the three.
+ *
+ * TO RESOLVE: run the measured week, pick the number, make all three agree, and
+ * delete this constant. The guard in cost-model-conflicts.guards.test.ts fails when
+ * the disagreement changes shape, so it cannot be resolved by accident.
+ */
+export const FACTORY_THROUGHPUT_CONFLICT = {
+  defaultsSays: 5,
+  buildStateSays: scenarios.build_states.state_4_factory.throughput_beds_per_day,
+  labourLineImplies: 5,
+  costPerBedAtFive: 425.74,
+  costPerBedAtFour: 445.74,
+  resolvedBy: 'the measured production week',
+  owner: 'Ben + production lead',
+} as const;
+
 export const LOCATIONS: Record<
   CostModelLocation,
   { label: string; rentPerYear: number; inboundFreightPerBed: number }
@@ -327,6 +364,8 @@ export const CostModelDefaults: CostModelInputs = {
   canvas_per_bed: _bom.canvas.amount, // 93.50
   hardware_per_bed: _bom.end_caps.amount + _bom.screws.amount + _bom.bolts.amount, // 5.24
   labour_per_day: _labour.production_operator_per_day, // 400
+  // 5, and the JSON's own state_4_factory says 4. See FACTORY_THROUGHPUT_CONFLICT
+  // below: this is an OPEN DISAGREEMENT worth $20/bed, not a typo to quietly align.
   factory_beds_per_day: 5,
   defy_kits_beds_per_day: 10,
   defy_panels_beds_per_day: 7.5,
