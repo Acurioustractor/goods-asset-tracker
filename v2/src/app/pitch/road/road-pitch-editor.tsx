@@ -169,7 +169,7 @@ export function RoadPitchEditor() {
 
   return (
     <>
-      <div className="fixed bottom-5 right-5 z-[100] flex items-center gap-2 rounded-full border border-white/15 bg-[#171714] p-2 text-white shadow-2xl">
+      <div className="road-pitch-editor fixed bottom-5 right-5 z-[100] flex items-center gap-2 rounded-full border border-white/15 bg-[#171714] p-2 text-white shadow-2xl">
         <button
           type="button"
           onClick={() => setEditing((value) => !value)}
