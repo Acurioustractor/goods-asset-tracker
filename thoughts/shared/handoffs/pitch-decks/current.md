@@ -75,19 +75,21 @@ Whether Design can reach parity is an open question nobody has actually asked.
 
 ---
 
-## The one manual step (blocking the gallery)
+## ~~The one manual step~~ SOLVED 2026-08-05 (research session)
 
-Open **claude.ai/design** → project "Goods on Country — Investor Materials" → in-app chat, paste:
+**The reindex trigger is the sentinel file `_ds_needs_recompile`.** Write it (empty) via
+`finalize_plan` + `write_files`; the app rebuilds `_ds_manifest.json` from the `@dsCard` markers
+next time the project is opened, and dangling entries for deleted files drop automatically.
+The sentinel has been WRITTEN to `b333c5aa` — **the gallery fixes itself the next time Ben opens
+the project.** No chat paste needed. This also explains the old behaviour: fresh projects compile
+on first open; later batches never indexed because no sentinel was written.
 
-> Reindex the design system cards. `preview/invest-funder-pipeline.html` was deleted and its
-> manifest entry is dangling. Pick up the new `Deck chrome` group (4 cards),
-> `preview/invest-loi-ladder.html`, and `preview/invest-next-phase.html`, and refresh the card
-> names and subtitles from the `@dsCard` markers.
-
-**Until this runs the gallery is WORSE than before**, because the manifest still points at the
-deleted `invest-funder-pipeline.html` and will render "file not found" — the exact dangling-entry
-failure that caused the migration off project `a24f62c8` in July. File contents are all correct
-and live; only the index lags.
+Source: the `/design-sync` skill, which turned out to be **built into Claude Code** (binary
+2.1.220, `claude-cli-design-sync`) — unlisted but loadable with `Skill(skill:"design-sync")`;
+converter scripts at `/private/tmp/claude-501/bundled-skills/2.1.220/…/design-sync/`. Full recipe
+per the skill: sentinel before a big push, files, sentinel re-write after every push; pin
+projectId in `.design-sync/config.json`; `_ds_sync.json` anchor written last; never use
+`register_assets`.
 
 ---
 
