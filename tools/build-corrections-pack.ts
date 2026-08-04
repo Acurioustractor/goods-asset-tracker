@@ -1,6 +1,15 @@
 /**
  * Build the NT Corrective Services production pack.
  *
+ * ⚠ SUPERSEDED AS THE THING WE SEND. 2026-08-04, after the call with Defy.
+ * The EXTERNAL document is now tools/build-corrections-onepager.ts, which is
+ * deliberately narrow: washing and shredding, and utility panel pressing, with an
+ * exclusive sell-back clause. This pack proposes a scope that goes through to
+ * assembled beds, which would make a government-backed facility a producer of the
+ * finished product and compete with the community enterprises Goods exists to build.
+ * Keep this as INTERNAL background for the equipment, process and safety detail.
+ * Do not send it.
+ *
  * WHAT THIS IS FOR
  * ----------------
  * Bodie asked to see three things: the products they could make, the equipment
@@ -80,7 +89,7 @@ const doc = `# Goods on Country and NT Corrective Services
 
 ## A production and training capability: products, equipment and process
 
-*Prepared for Bodie, NT Corrective Services. Generated from the Goods cost model, so every figure
+*INTERNAL BACKGROUND, not for sending. The external document is the one-pager. Generated from the Goods cost model, so every figure
 traces to a source named in the last section. A working document for discussion, not a quotation.*
 
 ---

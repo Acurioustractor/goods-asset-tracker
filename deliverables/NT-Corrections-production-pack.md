@@ -2,7 +2,7 @@
 
 ## A production and training capability: products, equipment and process
 
-*Prepared for Bodie, NT Corrective Services. Generated from the Goods cost model, so every figure
+*INTERNAL BACKGROUND, not for sending. The external document is the one-pager. Generated from the Goods cost model, so every figure
 traces to a source named in the last section. A working document for discussion, not a quotation.*
 
 ---
