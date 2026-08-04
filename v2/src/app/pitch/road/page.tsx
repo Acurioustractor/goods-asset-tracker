@@ -9,6 +9,7 @@ import { deckSlides, deckUpdated, type DeckSlide } from '@/lib/data/deck';
 import { getStoryteller } from '@/lib/data/storyteller-registry';
 import { RoadPitchMap } from './road-map';
 import { RoadPitchEditor } from './road-pitch-editor';
+import { PitchChrome } from './pitch-chrome';
 import { ZoomableBedImage } from './zoomable-bed-image';
 import { ProductionFacilityExperience } from './production-facility-experience';
 import { MykelStoryMedia } from './mykel-story-media';
@@ -228,7 +229,7 @@ export default function RoadPitchPage() {
 
   return (
     <article className="road-pitch-scroll overflow-x-hidden bg-[#fbf8f1] text-[#2b2a26]">
-      <header className="relative min-h-screen overflow-hidden bg-[#171714] text-[#fbf8f1]">
+      <header id="cover" data-pitch-panel="cover" className="relative min-h-screen overflow-hidden bg-[#171714] text-[#fbf8f1]">
         <div data-road-media="cover.photo" className="absolute inset-y-0 right-0 w-full lg:w-[56%]">
           <Image
             src="/images/media-pack/lying-on-stretch-bed.jpg"
@@ -277,12 +278,12 @@ export default function RoadPitchPage() {
                 >
                   Walk the road
                 </a>
-                <Link
-                  href="/pitch/deck"
+                <a
+                  href="?view=slides"
                   className="border border-white/35 px-6 py-3 text-sm font-semibold text-white hover:border-white"
                 >
-                  Open the slide deck
-                </Link>
+                  Present as slides
+                </a>
               </div>
               <p className="mt-8 border-t border-white/20 pt-5 font-mono text-[10px] uppercase leading-6 tracking-[0.13em] text-white/55">
                 <span className="text-white">{CANONICAL_ASSETS.bedsDeployed}</span> beds
@@ -298,7 +299,9 @@ export default function RoadPitchPage() {
         </div>
       </header>
 
-      <section id="road" className="border-b border-[#e6dfd1] lg:h-[100svh] lg:min-h-[760px] lg:overflow-hidden">
+      <PitchChrome />
+
+      <section id="road" data-pitch-panel="road" className="border-b border-[#e6dfd1] lg:h-[100svh] lg:min-h-[760px] lg:overflow-hidden">
         <div className="mx-auto flex h-full max-w-[1600px] flex-col px-6 py-10 md:px-10 lg:px-14 lg:py-8">
           <div className="grid gap-8 lg:grid-cols-2 lg:items-end">
             <div>
@@ -371,6 +374,7 @@ export default function RoadPitchPage() {
             <section
               key={stop.id}
               id={stop.id}
+              data-pitch-panel={stop.id}
               className="border-b border-[#d9d1c3] bg-[#fbf8f1] px-5 py-7 md:px-8 md:py-9 lg:h-[100svh] lg:min-h-[720px] lg:overflow-hidden lg:px-10"
             >
               <div className="mx-auto grid h-full max-w-[1700px] gap-5 lg:grid-rows-[auto_minmax(0,1fr)]">
@@ -456,6 +460,7 @@ export default function RoadPitchPage() {
           <Fragment key={stop.id}>
           <section
             id={stop.id}
+            data-pitch-panel={stop.id}
             className={`border-b border-[#e6dfd1] lg:h-[100svh] lg:min-h-[680px] lg:overflow-hidden ${
               index === 4 || index === 6 ? 'bg-[#22211e] text-[#fbf8f1]' : 'bg-[#fbf8f1]'
             }`}
@@ -586,6 +591,7 @@ export default function RoadPitchPage() {
           {index === 3 && resolvedProductSlide && (
             <section
               id={resolvedProductSlide.id}
+              data-pitch-panel={resolvedProductSlide.id}
               className="border-b border-[#d9d1c3] bg-[#fbf8f1] px-6 py-8 md:min-h-screen md:px-10 md:py-10 lg:px-14"
             >
               <div className="mx-auto flex max-w-[1600px] flex-col justify-center md:min-h-[calc(100vh-5rem)]">
@@ -712,7 +718,7 @@ export default function RoadPitchPage() {
         );
       })}
 
-      <section id="map" className="min-h-screen bg-[#171714] px-6 py-10 text-[#fbf8f1] md:px-10 md:py-12 lg:px-14">
+      <section id="map" data-pitch-panel="map" className="min-h-screen bg-[#171714] px-6 py-10 text-[#fbf8f1] md:px-10 md:py-12 lg:px-14">
         <div className="mx-auto max-w-[1500px]">
           <div className="mb-8 grid gap-5 sm:grid-cols-[0.9fr_1.1fr] sm:items-end">
             <div>
@@ -733,7 +739,7 @@ export default function RoadPitchPage() {
         </div>
       </section>
 
-      <section id="model" className="border-b border-[#d9d1c3] bg-[#f1ece4] px-6 py-12 md:px-10 lg:min-h-screen lg:px-14">
+      <section id="model" data-pitch-panel="model" className="border-b border-[#d9d1c3] bg-[#f1ece4] px-6 py-12 md:px-10 lg:min-h-screen lg:px-14">
         <div className="mx-auto flex max-w-[1500px] flex-col justify-center lg:min-h-[calc(100vh-6rem)]">
           <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
             <div className="max-w-3xl">
@@ -772,7 +778,7 @@ export default function RoadPitchPage() {
         </div>
       </section>
 
-      <section id="one-bed" className="border-b border-[#d9d1c3] bg-[#fbf8f1] px-6 py-14 md:px-10 lg:px-14 lg:py-20">
+      <section id="one-bed" data-pitch-panel="one-bed" className="border-b border-[#d9d1c3] bg-[#fbf8f1] px-6 py-14 md:px-10 lg:px-14 lg:py-20">
         <div className="mx-auto max-w-[1600px]">
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
             One bed, plainly
@@ -833,7 +839,7 @@ export default function RoadPitchPage() {
         </div>
       </section>
 
-      <section id="the-stopwatch" className="bg-[#171714] text-[#fbf8f1]">
+      <section id="the-stopwatch" data-pitch-panel="the-stopwatch" className="bg-[#171714] text-[#fbf8f1]">
         <div className="mx-auto grid max-w-[1800px] lg:grid-cols-[0.85fr_1.15fr]">
           <div className="relative min-h-[45vh] lg:min-h-screen">
             <Image
@@ -906,7 +912,7 @@ export default function RoadPitchPage() {
         </div>
       </section>
 
-      <section id="the-chain" className="border-b border-[#d9d1c3] bg-[#fbf8f1] px-6 py-14 md:px-10 lg:px-14 lg:py-20">
+      <section id="the-chain" data-pitch-panel="the-chain" className="border-b border-[#d9d1c3] bg-[#fbf8f1] px-6 py-14 md:px-10 lg:px-14 lg:py-20">
         <div className="mx-auto max-w-[1600px]">
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
             {CHAIN_INTRO.eyebrow}
@@ -1030,7 +1036,7 @@ export default function RoadPitchPage() {
           </p>
         </div>
       </section>
-      <section id="four-asks" className="border-b border-[#d9d1c3] bg-[#f1ece4]">
+      <section id="four-asks" data-pitch-panel="four-asks" className="border-b border-[#d9d1c3] bg-[#f1ece4]">
         <div className="mx-auto max-w-[1600px] px-6 py-14 md:px-10 lg:px-14 lg:py-20">
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
             Where they are, in what they asked for
@@ -1124,7 +1130,7 @@ export default function RoadPitchPage() {
         </div>
       </section>
 
-      <section id="the-letter" className="bg-[#171714] px-6 py-16 text-[#fbf8f1] md:px-10 lg:px-14 lg:py-20">
+      <section id="the-letter" data-pitch-panel="the-letter" className="bg-[#171714] px-6 py-16 text-[#fbf8f1] md:px-10 lg:px-14 lg:py-20">
         <div className="mx-auto max-w-[1600px]">
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e88461]">
             The ask
@@ -1218,7 +1224,7 @@ export default function RoadPitchPage() {
         </div>
       </section>
 
-      <footer data-road-media="closing.photo" className="relative min-h-screen overflow-hidden bg-[#171714] text-white">
+      <footer id="closing" data-pitch-panel="closing" data-road-media="closing.photo" className="relative min-h-screen overflow-hidden bg-[#171714] text-white">
         <Image
           src={closingSlide?.photo ?? '/images/media-pack/lying-on-stretch-bed.jpg'}
           alt={closingSlide?.photoAlt ?? ''}

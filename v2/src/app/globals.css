@@ -177,6 +177,68 @@
   }
 }
 
+/* ---------------------------------------------------------------------------
+   The pitch deck, presented and printed.
+
+   `/pitch/road` is authored as one panel per viewport and then served as a
+   scroll. These two blocks are the other two ways to read it, and neither
+   duplicates the content: slide mode is the same DOM with one panel shown, and
+   the print path is the same DOM again with a page break between panels.
+
+   This is what retires the drifting PowerPoint in `deliverables/`. A deck that
+   can be presented and printed from the page it is written on cannot fall out
+   of step with the page it is written on.
+   --------------------------------------------------------------------------- */
+
+/* Slide mode. The chrome bar is fixed to the bottom, so the panel needs room
+   under it, and panels authored with `min-h-screen` must not exceed the screen
+   or the transport scrolls away. */
+body[data-pitch-mode='slides'] [data-pitch-panel] {
+  min-height: calc(100svh - 3.25rem) !important;
+  height: auto;
+}
+
+body[data-pitch-mode='slides'] .road-pitch-scroll {
+  padding-bottom: 3.25rem;
+}
+
+@media print {
+  /* The apparatus is not part of the artifact. */
+  [data-pitch-bar],
+  .road-pitch-editor,
+  /* The in-hero anchor cluster only. The <nav> itself stays, because it carries
+     the wordmark and the cover needs its branding on paper. */
+  header nav a[href^='#'] {
+    display: none !important;
+  }
+
+  /* One panel per page. `break-inside: avoid` keeps a stop from splitting
+     across a page boundary, which is what made the old PDF unreadable. */
+  [data-pitch-panel] {
+    break-after: page;
+    break-inside: avoid;
+    min-height: 0 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  [data-pitch-panel]:last-of-type {
+    break-after: auto;
+  }
+
+  /* The deck is dark-on-light in places and light-on-dark in others. Without
+     this, the dark panels print as white text on white paper. */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  html,
+  body {
+    background: #fbf8f1;
+  }
+}
+
 /* Custom animations */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
