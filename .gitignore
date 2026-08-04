@@ -270,6 +270,9 @@ v2/design-qa-evidence/
 # ── GOC entity model build artifacts (mirrors the rules on main) ─────────────
 deliverables/*.xlsx
 deliverables/*.pptx
+# CSV exports of the same workbooks. Same reason: an export is an artifact of a
+# spreadsheet, not source, and a stale one in git is worse than none.
+deliverables/*.csv
 # Emitted from v2/src/lib/cost-model/community-model.ts by tools/emit-community-model.ts.
 # Untracked on purpose: a committed copy that drifts from the model is worse than an
 # absent one, and the workbook generator fails loudly with the regenerate command when
