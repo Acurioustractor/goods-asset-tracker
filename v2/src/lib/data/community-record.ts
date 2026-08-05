@@ -116,6 +116,18 @@ export const PATHWAY_TO_COMMUNITY: Record<string, string> = {
   oonchiumpa: 'alice-springs',
 };
 
+/**
+ * /communities/[slug] runs on communityLocations ids (content.ts), and one of the four differs
+ * from the canon id: the page says `utopia-homelands`, the register says `utopia`. That single
+ * mismatch made communityRecord() return null for Utopia, so the page fell back to the
+ * every-bed-is-HDPE arithmetic — 2,940kg — which is the precise overstatement this module
+ * exists to fix, at the precise community it was fixed for. Resolved here rather than in the
+ * page so every caller gets the same aliasing.
+ */
+export const COMMUNITY_ID_FOR_SLUG: Record<string, string> = {
+  'utopia-homelands': 'utopia',
+};
+
 export function communityIdForPathway(pathwayId: string): string {
   return PATHWAY_TO_COMMUNITY[pathwayId] ?? pathwayId;
 }
@@ -188,6 +200,7 @@ export function communityRecord(
   // non-deterministic at build time by reaching for today's date to satisfy a signature.
   opts: { asOf?: string } = {},
 ): CommunityRecord | null {
+  communityId = COMMUNITY_ID_FOR_SLUG[communityId] ?? communityId;
   const canon = COMMUNITY_BED_CANON.find((c) => c.id === communityId);
   const pathway = pathwayForCommunity(communityId);
   if (!canon && !pathway) return null;

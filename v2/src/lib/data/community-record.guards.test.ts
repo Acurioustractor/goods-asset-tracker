@@ -190,6 +190,19 @@ describe('absence is reported as absence', () => {
     expect(record.handover).toBeNull();
   });
 
+  it('every /communities/[slug] page id resolves to a record with publishable assets', async () => {
+    // The page runs on communityLocations ids and the register runs on canon ids. When one
+    // drifts (utopia-homelands vs utopia), communityRecord() returns null and the page falls
+    // back to multiplying every bed by 20kg — the overstatement this module exists to fix,
+    // invisible to every module-level guard because the join itself is what broke.
+    const { communityLocations } = await import('./content');
+    for (const c of communityLocations) {
+      const record = communityRecord(c.id, { asOf: AS_OF });
+      expect(record, `communityRecord('${c.id}') must not be null`).not.toBeNull();
+      expect(record!.assets, `communityRecord('${c.id}').assets must exist`).not.toBeNull();
+    }
+  });
+
   it('is pure: the same asOf gives the same answer', () => {
     const a = communityRecord('utopia', { asOf: AS_OF });
     const b = communityRecord('utopia', { asOf: AS_OF });
