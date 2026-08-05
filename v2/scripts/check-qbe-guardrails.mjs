@@ -74,6 +74,18 @@ const RETIRED_MATCH_ALLOWED_FILES = [
 
 const BLOCKED_PATTERNS = [
   {
+    // The factory path is PROVEN: 40 Maningrida Stretch Beds were pressed and assembled at our
+    // own facility (INV-0303, reconciled 2026-08-04). "0 beds built in-house" survived on
+    // /sites/qbe-readiness until 2026-08-06 — the third regression of this exact claim. What is
+    // true is that no run has been TIMED AND COSTED at a sustained rate; say that instead.
+    reason:
+      'the factory path is proven (40 Maningrida beds pressed in-house); say "no timed, costed run yet", never that zero beds were built/pressed in-house',
+    pattern: /\b(?:0|zero|no)\s+beds\s+(?:built|made|assembled|pressed)\s+in[- ]house/i,
+    // The rule's own statements ("NEVER write \"zero beds pressed in-house\"") must be able to
+    // quote the phrase. Same negation tradeoff as the ruling V patterns below.
+    negatable: true,
+  },
+  {
     reason:
       'retired transcription artefact; quote $112-222K GROSS only. Ruling P (2026-07-25) retired every net figure: sunk spend sits beside the gross ask, never subtracted from it.',
     pattern: /\b(?:AU\$|\$)?90\s*[-–]\s*200K\b/i,
@@ -149,8 +161,8 @@ for (const root of [...scanRoots, ...extraRoots]) {
     const isHistoryFile = RETIRED_MATCH_ALLOWED_FILES.some((allowed) => rel.endsWith(allowed));
 
     lines.forEach((line, index) => {
-      for (const { pattern, reason } of BLOCKED_PATTERNS) {
-        if (!isHistoryFile && pattern.test(line)) {
+      for (const { pattern, reason, negatable } of BLOCKED_PATTERNS) {
+        if (!isHistoryFile && pattern.test(line) && !(negatable && NEGATED.test(line))) {
           violations.push({ file: rel, line: index + 1, reason, text: line.trim() });
         }
       }

@@ -39,6 +39,7 @@ import { Badge } from '@/components/ui/badge';
 // RULING A + E 2026-07-25: "Our job is to become unnecessary" is retired as weak; the north
 // star carries that job now. Read it from the constant, never retyped.
 import { NORTH_STAR } from '@/lib/data/content';
+import { canonValue } from '@/lib/data/canon';
 
 export const metadata: Metadata = {
   title: 'QBE Readiness One-Pager',
@@ -156,14 +157,14 @@ const PROOFS: Array<{
     number: 3,
     title: 'The cost-down is measured, not modelled',
     owners: 'Nic, accountant, SIH cost advisor',
-    body: 'The 50-bed in-source run (about AU$60K to AU$80K) that turns the AU$426 in-house bed cost from modelled to measured. Today: 0 beds built in-house.',
+    body: 'The 50-bed in-source run (about AU$60K to AU$80K) that turns the AU$426 in-house bed cost from modelled to measured. The 40 Maningrida beds were pressed at our own facility; a timed, costed run at a steady pace has not been done.',
     status: 'Not started',
   },
   {
     number: 4,
     title: 'Impact and consent hold up',
     owners: 'Ben',
-    body: 'The named impact method is in place and 32 voices are cleared for external use. The live discipline is keeping every public claim labelled verified, modelled, target, or future.',
+    body: `The named impact method is in place and ${canonValue('cleared-voices')} voices are cleared for external use. The live discipline is keeping every public claim labelled verified, modelled, target, or future.`,
     status: 'In progress',
   },
   {
@@ -483,7 +484,8 @@ export default function QbeReadinessPage() {
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
           <SectionHeading icon={CircleDollarSign}>The ask</SectionHeading>
           <p className="mt-4 max-w-2xl text-base leading-7 text-stone-700">
-            AU$900K to AU$1M, blended and non-equity. A de-risking round, not a growth round. No
+            AU$400K in signed commitments by 31 August, inside our own ceiling of about AU$550K.
+            Blended and non-equity. A de-risking round, not a growth round. No
             equity, because the end-state is community-owned production, so capital that needs an exit
             would contradict the thing being built.
           </p>
@@ -689,7 +691,7 @@ export default function QbeReadinessPage() {
           <p className="mt-3 max-w-3xl text-xs leading-5 text-stone-500">
             This page distils the full 12-area strategic pack held in the repo (2026-06-13), where
             every number traces. A draft for founder review. Modelled figures are planning
-            assumptions (0 beds assembled in-house). Workpaper figures are unaudited Xero mirror
+            assumptions (no timed, costed production run yet). Workpaper figures are unaudited Xero mirror
             data and are not yet a Goods-only carve-out. Re-pull Xero and apply the entity-wording
             and number-audit checks before any external send.
           </p>
