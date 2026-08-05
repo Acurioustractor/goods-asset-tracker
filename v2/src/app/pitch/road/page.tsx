@@ -277,6 +277,15 @@ export default function RoadPitchPage() {
                 >
                   Walk the road
                 </a>
+                {/* Opens the five-line summary overlay; PitchChrome owns the state and listens
+                    for this attribute so the cover can stay server-rendered. */}
+                <button
+                  type="button"
+                  data-opener-trigger
+                  className="border border-[#e88461]/60 px-6 py-3 text-sm font-semibold text-[#e88461] hover:border-[#e88461]"
+                >
+                  Read this first
+                </button>
                 <a
                   href="?view=slides"
                   className="border border-white/35 px-6 py-3 text-sm font-semibold text-white hover:border-white"
