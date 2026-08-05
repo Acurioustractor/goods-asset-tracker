@@ -2,24 +2,38 @@
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-08-05T06:30:00Z
-**Goal:** Make the pitch deck easier to read and understand, and clean the funder-facing
-design-system cards. Code work is DONE and green. **PR #206 is OPEN and NOT MERGED.**
-**Branch:** `feat/pitch-readability` = `0b624b2`, one commit ahead of `origin/main` = `68433c1`.
-**Test:** `cd v2 && npm test && npm run check:audience && npm run check:voice && npm run check:retired-figures && npm run build`
+**Updated:** 2026-08-05T08:15:00Z
+**Goal:** DONE for this thread. The Claude Design CLI bridge is SOLVED (sentinel), the project
+is fully corrected + stocked with 138 photos, and `tools/design-push.mjs` makes it a render
+target of the spine. **PR #206 is OPEN and NOT MERGED** — awaiting Ben's eyes only.
+**Branch:** `feat/pitch-readability` = `d54880b` (5 commits), pushed through `32274d2`.
+**Test:** `cd v2 && npm test && npm run check:audience && npm run check:voice && npm run check:retired-figures && npm run build` · `node tools/design-push.mjs --check-only`
 
 ### Now
-[->] **NEXT TOPIC = DEEP RESEARCH: how to drive Claude Design fully from the Claude CLI.**
-     Read "The research question" below FIRST. The premise that this cannot be done is WRONG
-     and was my error, not a finding. Most of it already works.
+[->] **PR #206 needs a human call.** Green, MERGEABLE. Do NOT merge without Ben saying he has
+     looked (the 2026-07-27 revert). Preview:
+     https://goods-on-country-git-feat-pitc-2d336d-benjamin-knights-projects.vercel.app/pitch/road
+[->] **Ben must RELOAD the Design project** (claude.ai/design → Goods on Country — Investor
+     Materials) so the armed sentinel rebuilds the card index: Image library card, Deck chrome
+     group, LOI ladder appear; the dangling funder-pipeline entry disappears. If a real
+     close-and-reopen still shows the old list, the recompile machinery needs digging.
+[->] **The standing flow from here:** edit `canon.ts` or a card → `node tools/design-push.mjs`
+     → a Claude session executes `.push/push-plan.json` via DesignSync (≤10 files/call,
+     sentinel LAST). Deck prompt for the in-app design agent is in the 2026-08-05 transcript.
 
-[->] **PR #206 needs a human call.** Green, MERGEABLE, CLEAN, preview verified. Ben opened the
-     preview but had not reported back before the session ended. Do NOT merge without him
-     saying he has looked: the 2026-07-27 six-front-doors revert happened exactly this way.
-     Preview: https://goods-on-country-git-feat-pitc-2d336d-benjamin-knights-projects.vercel.app/pitch/road
-
-[->] **Claude Design gallery is in a broken intermediate state until someone reindexes.**
-     See "The one manual step" below. This is the ONLY thing today that a human had to do.
+### Landed this session (research + hardening, all in the Design project + repo)
+- **Reindex solved**: `_ds_needs_recompile` sentinel (see below). `/design-sync` is BUILT INTO
+  Claude Code — `Skill(skill:"design-sync")` loads it even though unlisted.
+- **README rewritten** with corrected figures + a Claim ceiling section (it is inlined into the
+  design agent's system prompt — it was carrying $475K/accountant-signed/496/9 until today).
+- **138 photos uploaded** to `images/` (resized 1600px from `design/starred-images/`, filenames
+  carry community/person metadata) + `preview/image-library.html` gallery card mapping usage.
+- **Stale funder briefs DELETED from `downloads/`** (sefa/snow/centrecorp, June exports, $475K +
+  Centrecorp-as-funder). Wiki originals untouched. `downloads/investor-deck-full.pdf` replaced
+  with a fresh render: deck HTML's "accountant-signed" label fixed (ruling G/H),
+  `canon-numbers.json` rebuilt (was stale: 496/9 → 540/11).
+- **`tools/design-push.mjs`**: stage → bake CANON tokens → negation-aware claim-ceiling gate →
+  push plan + sentinel. Proven end-to-end. `invest-funder-pipeline.html` on a hard never-push list.
 
 ---
 
