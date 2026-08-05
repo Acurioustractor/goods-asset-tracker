@@ -42,6 +42,7 @@ export function PitchChrome() {
   const [index, setIndex] = useState(0);
   const [ready, setReady] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
+  const [openerOpen, setOpenerOpen] = useState(false);
 
   const panels = useMemo(() => panelsForPack(pack), [pack]);
 
@@ -122,6 +123,25 @@ export function PitchChrome() {
     return () => window.removeEventListener('keydown', onKey);
   }, [mode, go]);
 
+  // "Read this first" can be triggered from server-rendered markup (the cover button carries
+  // data-opener-trigger); one delegated listener keeps the trigger a plain <button>. Escape
+  // closes it from anywhere.
+  useEffect(() => {
+    const onClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (target?.closest('[data-opener-trigger]')) setOpenerOpen(true);
+    };
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpenerOpen(false);
+    };
+    document.addEventListener('click', onClick);
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('click', onClick);
+      window.removeEventListener('keydown', onKey);
+    };
+  }, []);
+
   // Scrollspy, so the nav names where you are rather than only where you can go.
   useEffect(() => {
     if (!ready || mode !== 'scroll') return;
@@ -148,27 +168,40 @@ export function PitchChrome() {
 
   return (
     <>
-      {/* The "if you read nothing else" block. First panel only, and never in slide mode, where
-          the cover carries the same job with a photograph. */}
-      {mode === 'scroll' && (
-        <aside
+      {/* The "if you read nothing else" summary. Ben, 2026-08-06: as a beige block above the
+          cover it read off-brand, so it is now an overlay behind a "Read this first" button
+          (one on the cover via data-opener-trigger, one in the bar). Click anywhere or Escape
+          to dismiss. */}
+      {openerOpen && (
+        <div
           data-pitch-opener
-          className="border-b border-[#d9d1c3] bg-[#f1ece4] px-6 py-10 md:px-10 lg:px-14"
+          role="dialog"
+          aria-modal="true"
+          aria-label={OPENER_HEADING}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#171714]/97 px-6 py-10 text-[#fbf8f1] backdrop-blur-sm"
+          onClick={() => setOpenerOpen(false)}
         >
-          <div className="mx-auto max-w-[1100px]">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
+          <div className="max-h-full w-full max-w-[1000px] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#e88461]">
               {OPENER_HEADING}
             </p>
-            <ol className="mt-6 space-y-4">
+            <ol className="mt-8 space-y-6">
               {OPENER_LINES.map((line, i) => (
-                <li key={line} className="flex gap-4 text-lg leading-8 text-[#2b2a26] md:text-xl md:leading-9">
-                  <span className="font-mono text-[11px] leading-9 text-[#c45c3e]">{i + 1}</span>
+                <li key={line} className="flex gap-5 text-xl leading-9 md:text-2xl md:leading-10">
+                  <span className="goods-pitch-display text-2xl leading-9 text-[#e88461] md:text-3xl md:leading-10">{i + 1}</span>
                   <span>{line}</span>
                 </li>
               ))}
             </ol>
+            <button
+              type="button"
+              onClick={() => setOpenerOpen(false)}
+              className="mt-10 border border-white/35 px-6 py-3 text-sm font-semibold text-white hover:border-white"
+            >
+              Walk the road
+            </button>
           </div>
-        </aside>
+        </div>
       )}
 
       {/* The bar. Sticky in scroll mode so wayfinding survives past the hero; fixed to the bottom
@@ -233,6 +266,13 @@ export function PitchChrome() {
                 </option>
               ))}
             </select>
+            <button
+              type="button"
+              onClick={() => setOpenerOpen(true)}
+              className="border border-[#c45c3e] px-3 py-1 text-xs text-[#e88461] hover:border-[#e88461]"
+            >
+              Read this first
+            </button>
             <button
               type="button"
               onClick={() => {
