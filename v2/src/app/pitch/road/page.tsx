@@ -18,7 +18,6 @@ import { ASK_HEADLINE } from '@/lib/data/ask-surface';
 import { STAGE_RULE } from '@/lib/data/pathway-stages';
 import { NORTH_STAR } from '@/lib/data/content';
 import {
-  ASK_BELIEVABILITY,
   ASK_INTRO,
   ASK_NEXT_STEP,
   ASK_STATUS_ROWS,
@@ -28,7 +27,6 @@ import {
   CHAIN_INTRO,
   CLOSING_TAIL,
   DOORS,
-  DOORS_NOTE,
   FIRST_SITE_RULE,
   LEG_RATIO,
   PATHWAY_ASKS,
@@ -109,7 +107,10 @@ function EndingVoiceBlock({
         />
       )}
       <div className={voice.portrait ? '' : 'border-l-2 border-[#c45c3e] pl-5'}>
-        <blockquote className="goods-pitch-display text-2xl leading-snug md:text-3xl">
+        {/* Quotes render verbatim (they are consent-cleared as approved wordings, never trimmed);
+            the compression is typographic, so a long quote no longer costs most of a screen
+            before the section's argument starts. */}
+        <blockquote className="goods-pitch-display max-w-3xl text-xl leading-snug md:text-2xl">
           &quot;{voice.text}&quot;
         </blockquote>
         <figcaption
@@ -229,6 +230,11 @@ export default function RoadPitchPage() {
 
   return (
     <article className="road-pitch-scroll overflow-x-hidden bg-[#fbf8f1] text-[#2b2a26]">
+      {/* Chrome (the opener + the bar) sits ABOVE the cover since 2026-08-06: "If you read
+          nothing else" is the skim spine's first rung, so it must be the first thing a skimming
+          funder meets, not screen two. */}
+      <PitchChrome />
+
       <header id="cover" data-pitch-panel="cover" className="relative min-h-screen overflow-hidden bg-[#171714] text-[#fbf8f1]">
         <div data-road-media="cover.photo" className="absolute inset-y-0 right-0 w-full lg:w-[56%]">
           <Image
@@ -251,13 +257,6 @@ export default function RoadPitchPage() {
               height={467}
               className="h-11 w-auto object-contain"
             />
-            <div className="hidden items-center gap-6 border border-white/15 bg-[#171714]/88 px-5 py-3 text-[11px] uppercase tracking-[0.14em] text-white shadow-lg backdrop-blur-md md:flex">
-              <a href="#road" className="hover:text-white">The road</a>
-              <a href="#map" className="hover:text-white">The map</a>
-              <a href="#model" className="hover:text-white">The model</a>
-              <a href="#the-chain" className="hover:text-white">What it costs</a>
-              <a href="#one-bed" className="hover:text-white">The money</a>
-            </div>
           </nav>
 
           <div className="flex flex-1 items-end pb-14 pt-28 md:pb-20 lg:items-center lg:pb-8">
@@ -299,8 +298,6 @@ export default function RoadPitchPage() {
         </div>
       </header>
 
-      <PitchChrome />
-
       <section id="road" data-pitch-panel="road" className="border-b border-[#e6dfd1] lg:h-[100svh] lg:min-h-[760px] lg:overflow-hidden">
         <div className="mx-auto flex h-full max-w-[1600px] flex-col px-6 py-10 md:px-10 lg:px-14 lg:py-8">
           <div className="grid gap-8 lg:grid-cols-2 lg:items-end">
@@ -309,7 +306,7 @@ export default function RoadPitchPage() {
                 Seven stops
               </p>
               <h2 className="goods-pitch-display mt-3 max-w-3xl text-5xl leading-[0.98] md:text-6xl lg:text-[clamp(3.5rem,5.4vw,5.6rem)]">
-                Seven stops before the model.
+                Seven places changed what Goods is.
               </h2>
             </div>
             <p className="max-w-2xl text-base leading-7 text-[#6d675c] lg:justify-self-end">
@@ -706,14 +703,18 @@ export default function RoadPitchPage() {
           )}
 
           {index === 3 && finishedBedSlide && (
-            <>
+            <div id="bed-in-detail" data-pitch-panel="bed-in-detail">
               <ZoomableBedImage
                 src={finishedBedSlide.photo}
                 alt={finishedBedSlide.photoAlt}
               />
-            </>
+            </div>
           )}
-          {index === 6 && <ProductionFacilityExperience />}
+          {index === 6 && (
+            <div id="the-farm" data-pitch-panel="the-farm">
+              <ProductionFacilityExperience />
+            </div>
+          )}
           </Fragment>
         );
       })}
@@ -726,13 +727,12 @@ export default function RoadPitchPage() {
                 Products and pathways
               </p>
               <h2 className="goods-pitch-display mt-3 max-w-3xl text-4xl leading-[1.02] md:text-5xl lg:text-6xl">
-                Where products have travelled. Where making is being asked for.
+                The products went everywhere. The making is asked for in four places.
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-6 text-[#b9b3a8] sm:justify-self-end lg:text-lg lg:leading-8">
               Start with the whole national extent. Select a place to see delivered products,
-              cleared voices and whether a production pathway is open. A pathway is not consent
-              or an order; the community still decides what happens next.
+              cleared voices and whether a production pathway is open.
             </p>
           </div>
           <RoadPitchMap locations={communityLocations} />
@@ -793,10 +793,8 @@ export default function RoadPitchPage() {
               </h2>
               <p className="mt-6 max-w-xl text-lg leading-8 text-[#6d675c]">
                 Jimmy is describing what the bed has to survive. So it is built to last and it is
-                priced to last. Every bed sells for $750. Making it and getting it on a truck costs
-                about $685 today, because we buy the legs finished. About $65 stays with Goods.
-                Press the legs ourselves and the same bed costs about $426, and about $324 stays.
-                Same bed, same price, same community. One part changes.
+                priced to last. The ladder beside this is the whole story: same bed, same price,
+                same community. One part changes, and five times as much stays.
               </p>
             </div>
 
@@ -837,10 +835,12 @@ export default function RoadPitchPage() {
             </p>
           </div>
         </div>
-      </section>
 
-      <section id="the-stopwatch" data-pitch-panel="the-stopwatch" className="bg-[#171714] text-[#fbf8f1]">
-        <div className="mx-auto grid max-w-[1800px] lg:grid-cols-[0.85fr_1.15fr]">
+        {/* Merged from the former `the-stopwatch` panel (2026-08-06): one-bed says the legs are
+            the swing factor, this says the first money buys proof of the swing. One argument,
+            one panel. */}
+        <div className="mx-auto mt-14 max-w-[1600px] bg-[#171714] text-[#fbf8f1]">
+          <div className="mx-auto grid lg:grid-cols-[0.85fr_1.15fr]">
           <div className="relative min-h-[45vh] lg:min-h-screen">
             <Image
               src="/images/process/heat-press-full.jpg"
@@ -864,16 +864,14 @@ export default function RoadPitchPage() {
               The first thing the money buys is a stopwatch.
             </h2>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[#cfc8bc]">
-              Forty Stretch Beds for Maningrida were pressed end to end at our own facility at the
-              farm, then assembled in community by young people. So the making is proven. What we
-              have never done is time it and cost it across a full run at a steady pace. Fifty beds,
-              timed and costed with receipts, is the first thing on the list.
+              The making is proven. What we have never done is time it and cost it across a full
+              run at a steady pace. Fifty beds, timed and costed with receipts, is the first thing
+              on the list.
             </p>
 
             <div className="mt-8 border-l-2 border-[#c45c3e] pl-5">
               <p className="goods-pitch-display text-2xl leading-snug md:text-3xl">
-                $426 is modelled from verified part prices; the first thing your money buys is the
-                measured run that proves it.
+                The first thing your money buys is the measured run that proves the number.
               </p>
               <p className="mt-4 text-base leading-7 text-[#e88461]">{STOPWATCH_COMMITMENT}</p>
             </div>
@@ -908,6 +906,7 @@ export default function RoadPitchPage() {
               The lines we can size add to between ${BUY_LIST_TOTAL.low.toLocaleString('en-AU')} and
               ${BUY_LIST_TOTAL.high.toLocaleString('en-AU')}, plus the one we cannot.
             </p>
+          </div>
           </div>
         </div>
       </section>
@@ -1025,9 +1024,6 @@ export default function RoadPitchPage() {
               <p className="mt-4 text-base leading-7 text-[#6d675c]">
                 {SITE_OPERATING.poolSentence}
               </p>
-              <p className="mt-4 text-base leading-7 text-[#2b2a26]">
-                {SITE_OPERATING.reconciliationSentence}
-              </p>
             </div>
           </div>
 
@@ -1051,76 +1047,47 @@ export default function RoadPitchPage() {
               price that, at that size, and where a partner already has the shed or the power we
               take those lines out instead of assuming them. Each of these has a number against it
               in our own planning. None of those numbers has gone to the community it belongs to,
-              so none of them is on this page. None of these four is an order, and none is signed.
+              so none of them is on this page.
             </p>
           </div>
         </div>
 
-        {PATHWAY_ASKS.map((ask) => {
-          const dark = ask.ground === 'dark';
-          const ground =
-            ask.ground === 'dark'
-              ? 'bg-[#22211e] text-[#fbf8f1]'
-              : ask.ground === 'warm'
-                ? 'bg-[#e9e1d2]'
-                : 'bg-[#fbf8f1]';
-          return (
-            <div key={ask.id} className={`border-t border-[#d9d1c3] ${ground}`}>
-              <div className="mx-auto grid max-w-[1600px] gap-6 px-6 py-12 md:px-10 lg:grid-cols-[0.5fr_1.5fr] lg:gap-14 lg:px-14 lg:py-16">
-                <div>
-                  <h3 className="goods-pitch-display text-4xl leading-none md:text-5xl">
-                    {ask.place}
-                  </h3>
-                  <p
-                    className={`mt-3 font-mono text-[10px] uppercase tracking-[0.16em] ${
-                      dark ? 'text-[#a8a196]' : 'text-[#7a7363]'
-                    }`}
-                  >
-                    {ask.country}
-                  </p>
-                  <p className="goods-pitch-display mt-6 text-2xl text-[#c45c3e]">{ask.size}</p>
-                </div>
-                <div className="grid gap-6 sm:grid-cols-2 lg:gap-10">
-                  <div>
-                    <p
-                      className={`font-mono text-[9px] uppercase tracking-[0.16em] ${
-                        dark ? 'text-[#a8a196]' : 'text-[#7a7363]'
-                      }`}
-                    >
-                      {ask.field}
-                    </p>
-                    <p className="mt-3 text-base leading-7 lg:text-lg lg:leading-8">{ask.body}</p>
-                  </div>
-                  <div>
-                    <p
-                      className={`font-mono text-[9px] uppercase tracking-[0.16em] ${
-                        dark ? 'text-[#a8a196]' : 'text-[#7a7363]'
-                      }`}
-                    >
-                      What we can say about the money
-                    </p>
-                    <p
-                      className={`mt-3 text-base leading-7 ${
-                        dark ? 'text-[#cfc8bc]' : 'text-[#6d675c]'
-                      }`}
-                    >
-                      {ask.whatWeCanSay}
-                    </p>
-                    <p
-                      className={`mt-5 border-t pt-4 text-xs leading-5 ${
-                        dark
-                          ? 'border-white/20 text-[#a8a196]'
-                          : 'border-[#d9d1c3] text-[#7a7363]'
-                      }`}
-                    >
-                      Whose call: {ask.whoseCall}
-                    </p>
-                  </div>
-                </div>
+        {/* One row per community rather than one screen per community: the section's claim is
+            "four communities asked for four DIFFERENT things", and the difference only becomes
+            visible when the four sit within one viewport. */}
+        <div className="mx-auto max-w-[1600px] px-6 pb-4 md:px-10 lg:px-14">
+          {PATHWAY_ASKS.map((ask) => (
+            <div
+              key={ask.id}
+              className="grid gap-4 border-t border-[#d9d1c3] py-8 lg:grid-cols-[0.55fr_0.9fr_1fr] lg:gap-10"
+            >
+              <div>
+                <h3 className="goods-pitch-display text-3xl leading-none md:text-4xl">
+                  {ask.place}
+                </h3>
+                <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.16em] text-[#7a7363]">
+                  {ask.country}
+                </p>
+                <p className="goods-pitch-display mt-4 text-2xl text-[#c45c3e]">{ask.size}</p>
+              </div>
+              <div>
+                <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#7a7363]">
+                  {ask.field}
+                </p>
+                <p className="mt-3 text-base leading-7">{ask.body}</p>
+              </div>
+              <div>
+                <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#7a7363]">
+                  What we can say about the money
+                </p>
+                <p className="mt-3 text-base leading-7 text-[#6d675c]">{ask.whatWeCanSay}</p>
+                <p className="mt-4 border-t border-[#d9d1c3] pt-3 text-xs leading-5 text-[#7a7363]">
+                  Whose call: {ask.whoseCall}
+                </p>
               </div>
             </div>
-          );
-        })}
+          ))}
+        </div>
 
         <div className="border-t border-[#d9d1c3] bg-[#f1ece4]">
           <div className="mx-auto max-w-[1600px] px-6 py-12 md:px-10 lg:px-14">
@@ -1173,7 +1140,6 @@ export default function RoadPitchPage() {
                   </div>
                 ))}
               </div>
-              <p className="mt-7 text-base leading-7 text-white/70">{ASK_BELIEVABILITY}</p>
             </div>
           </div>
 
@@ -1196,7 +1162,6 @@ export default function RoadPitchPage() {
               </li>
             ))}
           </ol>
-          <p className="mt-6 max-w-3xl text-sm leading-6 text-white/55">{DOORS_NOTE}</p>
 
           <div className="mt-12 grid gap-8 border-t border-white/20 pt-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <p className="max-w-2xl text-lg leading-8">{ASK_NEXT_STEP.sentence}</p>

@@ -35,12 +35,17 @@ describe('pitch panels mirror the deck rather than duplicating it', () => {
    * fails first instead.
    */
   it('the places chapter matches the deck source, in deck order', () => {
+    // Two panels are page-level components rather than deck slides: the zoomable bed image and
+    // the production-facility experience. They joined PITCH_PANELS on 2026-08-06 so the pack
+    // filter and slide mode can see them (before that they leaked into every pack). They have
+    // no deck row to mirror, so the deck-order assertion names and skips them.
+    const PAGE_LEVEL_PANELS = new Set(['bed-in-detail', 'the-farm']);
     const fromDeck = deckSlides
       .filter((slide) => slide.kind === 'stop' || slide.id === 'the-stretch-bed')
       .map((slide) => slide.id);
-    const fromPanels = PITCH_PANELS.filter((panel) => panel.chapter === 'the-places').map(
-      (panel) => panel.id,
-    );
+    const fromPanels = PITCH_PANELS.filter(
+      (panel) => panel.chapter === 'the-places' && !PAGE_LEVEL_PANELS.has(panel.id),
+    ).map((panel) => panel.id);
     expect(fromPanels).toEqual(fromDeck);
   });
 });
