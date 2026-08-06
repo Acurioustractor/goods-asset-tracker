@@ -646,6 +646,63 @@ export const empathyLedger = {
    *
    * Returns {} on any failure (cockpit degrades to no verdict, never throws).
    */
+  /**
+   * Newsletter issues, written in Empathy Ledger and syndicated here (Ben, 2026-08-06).
+   *
+   * An issue is an EL story with story_type 'newsletter' that passes the canonical
+   * stories_for_site gate — published + public + explicit consent + not withdrawn +
+   * elder-review satisfied + syndication enabled. Writing happens in EL so storytellers
+   * ride under EL's consent machinery: withdrawing consent there pulls them from the
+   * issue at the source, and the site follows on the next render. We call the RPC and
+   * filter; we never reimplement the gate.
+   *
+   * Returns [] on any failure or when EL is disabled — /news falls back to the local
+   * issue in news.ts, exactly like FeaturedStories falls back to journeyStories.
+   */
+  async getNewsletterIssues(): Promise<
+    {
+      id: string;
+      title: string;
+      excerpt: string | null;
+      /** Raw EL content: HTML when it starts with a tag, plain/markdown-ish otherwise. */
+      content: string;
+      isHtml: boolean;
+      publishedAt: string | null;
+    }[]
+  > {
+    if (!ENABLE_EMPATHY_LEDGER || !EL_SUPABASE_URL || !EL_SUPABASE_KEY) return [];
+    try {
+      const rows = await fetchFromELSupabaseRpc<
+        {
+          id: string;
+          title: string | null;
+          excerpt: string | null;
+          summary: string | null;
+          content: string | null;
+          story_type: string | null;
+          published_at: string | null;
+          created_at: string | null;
+        }[]
+      >('stories_for_site', { p_site_slug: GOODS_SITE_SLUG });
+      return rows
+        .filter((r) => (r.story_type ?? '').toLowerCase() === 'newsletter' && r.content)
+        .sort((a, b) =>
+          (b.published_at ?? b.created_at ?? '').localeCompare(a.published_at ?? a.created_at ?? ''),
+        )
+        .map((r) => ({
+          id: r.id,
+          title: r.title ?? 'The letter',
+          excerpt: r.excerpt ?? r.summary,
+          content: r.content as string,
+          isHtml: /^\s*</.test(r.content as string),
+          publishedAt: r.published_at ?? r.created_at,
+        }));
+    } catch (error) {
+      logUnexpectedELSupabaseError('[EmpathyLedger] Failed to fetch newsletter issues:', error);
+      return [];
+    }
+  },
+
   async getGoodsSiteClearance(): Promise<Record<string, { cleared: number; candidate: number }>> {
     if (!ENABLE_EMPATHY_LEDGER || !EL_SUPABASE_URL || !EL_SUPABASE_KEY) return {};
     try {
