@@ -269,11 +269,14 @@ export default async function GalleryPage() {
   const videos = mapVideos();
 
   return (
-    <GalleryClient
-      photos={photos}
-      storytellers={storytellers}
-      videos={videos}
-      communityLocations={communityLocations}
-    />
+    <>
+      <GalleryClient
+        photos={photos}
+        storytellers={storytellers}
+        videos={videos}
+        communityLocations={communityLocations}
+      />
+      <DoorsBand />
+    </>
   );
 }
