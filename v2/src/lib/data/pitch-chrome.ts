@@ -111,6 +111,8 @@ export const PITCH_PANELS: PitchPanel[] = [
   // be handed a funding ask as though it were a fact about the organisation.
   // The five-number strip investors actually read; every later money panel is evidence for it.
   { id: 'money-at-a-glance', label: 'Five numbers', chapter: 'the-money', packs: ['funder'] },
+  // The plain-English facility overview: stand it up / prove it / run it, and the three doors.
+  { id: 'the-facility', label: 'The facility', chapter: 'the-money', packs: ['funder'] },
   { id: 'model', label: 'The model', chapter: 'the-money', packs: ['funder'] },
   // `the-stopwatch` merged into `one-bed` 2026-08-06: one argument, one panel.
   { id: 'one-bed', label: 'One bed', chapter: 'the-money', packs: ['funder'] },

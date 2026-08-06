@@ -782,6 +782,60 @@ export default function RoadPitchPage() {
         </div>
       </section>
 
+      {/* The facility, simply (Ben, 2026-08-06): the plain-English overview of what the
+          production facility costs to stand up and run, and the three ways in. Ranges match
+          ask-surface/road-ending; the per-site annual figure is deliberately NOT printed here
+          because it is an open decision (GOC-site-cost-decision.md). */}
+      <section id="the-facility" data-pitch-panel="the-facility" className="border-b border-[#d9d1c3] bg-[#f1ece4] px-6 py-14 md:px-10 lg:min-h-[80svh] lg:px-14 lg:py-20">
+        <div className="mx-auto flex h-full max-w-[1600px] flex-col justify-center">
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
+            The facility, simply
+          </p>
+          <h2 className="goods-pitch-display mt-4 max-w-4xl text-4xl leading-[1.02] md:text-5xl">
+            The money stands up a production line, proves its numbers, and keeps the lights on
+            while beds start paying.
+          </h2>
+          <div className="mt-10 grid gap-px border border-[#d9d1c3] bg-[#d9d1c3] md:grid-cols-3">
+            {[
+              {
+                step: '01 · Stand it up',
+                amount: '$112K to $222K',
+                chip: 'modelled',
+                line: 'Shredder, press, cutter, container, power. We have already put $110,046 of our own in; it sits beside this number, never subtracted.',
+              },
+              {
+                step: '02 · Prove it',
+                amount: '$60K to $80K',
+                chip: 'target',
+                line: 'Fifty beds, timed and costed with receipts. Turns the $426 bed from modelled to measured. The beds go to communities that ordered them.',
+              },
+              {
+                step: '03 · Run it',
+                amount: '~$109.5K a year',
+                chip: 'workpaper',
+                line: 'The block that keeps Goods running: shed, books, travel. What a community-owned site costs to run is being settled with the first community, so it is not printed here.',
+              },
+            ].map((cell) => (
+              <div key={cell.step} className="bg-[#fbf8f1] p-6 lg:p-8">
+                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#c45c3e]">{cell.step}</p>
+                <p className="goods-pitch-display mt-3 text-4xl">{cell.amount}</p>
+                <div className="mt-2"><StatusChip label={cell.chip} /></div>
+                <p className="mt-4 text-sm leading-6 text-[#6d675c]">{cell.line}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-[#d9d1c3] pt-6">
+            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#7a7363]">Three ways in</p>
+            {DOORS.map((door) => (
+              <a key={door.verb} href="#the-letter" className="group text-base">
+                <span className="goods-pitch-display text-2xl text-[#c45c3e] group-hover:text-[#d26a4a]">{door.verb}</span>
+                <span className="ml-2 text-sm text-[#6d675c]">{door.entity}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="model" data-pitch-panel="model" className="border-b border-[#d9d1c3] bg-[#f1ece4] px-6 py-12 md:px-10 lg:min-h-screen lg:px-14">
         <div className="mx-auto flex max-w-[1500px] flex-col justify-center lg:min-h-[calc(100vh-6rem)]">
           <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
