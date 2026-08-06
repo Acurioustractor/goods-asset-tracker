@@ -130,8 +130,8 @@ export default function TrackingModelPage() {
         <h2>The Economic Argument</h2>
         <p>
           Without lifecycle tracking, remote communities are trapped in a cycle of cheap procurement and rapid failure.
-          By tracking what lasts and what doesn&apos;t, we can prove that a $500 Stretch Bed lasting {STRETCH_BED.specs.designLifespan}
-          costs less than replacing $50 beds every 6 months — and the data makes the grant case for quality goods.
+          By tracking what lasts and what doesn&apos;t, we can prove that one durable bed lasting {STRETCH_BED.specs.designLifespan}
+          costs less than replacing a cheap bed every six months — and the data makes the grant case for quality goods.
         </p>
       </div>
     </div>

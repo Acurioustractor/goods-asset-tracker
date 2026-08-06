@@ -450,7 +450,7 @@ export interface ChainStep {
 
 export const CHAIN_INTRO = {
   eyebrow: 'What each step costs',
-  headline: 'One machine, or all five.',
+  headline: 'A community can own one machine, or the whole line.',
   body:
     'Each step makes exactly what the next step needs. Collect and you have sorted plastic in cages. Shred and you have flake. Press and you have leg kits. Assemble and you have beds. A community can take the first step and stop there. Underneath all five sits the same base: a container, power and a pad, and where a partner already has those, the lines come out of it.',
 };
@@ -552,4 +552,4 @@ export const SITE_OPERATING = {
  *  workbook shape... Reassembling these into modules is an ALLOCATION of an
  *  evidenced total, not new evidence. No figure here is a quote." */
 export const CHAIN_HONESTY =
-  'Evidenced means we bought it and there is a bill behind it. Estimate means an Australian market rate with nobody\'s quote against it yet. These are our own numbers for our own gear at the farm, mostly bought second hand. Splitting one total into five steps is arithmetic on what we already had, and it is not new evidence. The yearly figures come out of a costed facility budget written for a federal application we are part of but do not own. Nothing here is a quote for a site in a community, and no community has been quoted from it.';
+  'These are our own numbers for our own gear at the farm, mostly bought second hand; splitting one total into five steps is arithmetic on what we already had, not new evidence. Nothing here is a quote for a site in a community, and no community has been quoted from it.';

@@ -2,36 +2,36 @@
   "_comment": "GENERATED from v2/src/lib/data/canon.ts by v2/scripts/canon-numbers.mjs — do not hand-edit. Artifacts reference these as CANON:num:<id>; canon-render.mjs bakes the formatted value. Verify with: node v2/scripts/canon-numbers.mjs --check",
   "numbers": {
     "beds-deployed": {
-      "value": "536",
-      "raw": 536,
+      "value": "540",
+      "raw": 540,
       "unit": "units",
       "label": "Beds deployed",
       "asAt": "2026-07-18"
     },
     "stretch-beds-deployed": {
-      "value": "173",
-      "raw": 173,
+      "value": "177",
+      "raw": 177,
       "unit": "units",
       "label": "Stretch Beds deployed",
       "asAt": "2026-05-30"
     },
     "washers-in-community": {
-      "value": "18",
-      "raw": 18,
+      "value": "22",
+      "raw": 22,
       "unit": "units",
       "label": "Washing machines in community",
-      "asAt": "2026-07-18"
+      "asAt": "2026-07-21"
     },
     "communities-served": {
-      "value": "9",
-      "raw": 9,
+      "value": "11",
+      "raw": 11,
       "unit": "communities",
       "label": "Communities served",
       "asAt": "2026-05-30"
     },
     "plastic-kg": {
-      "value": "3,460kg",
-      "raw": 3460,
+      "value": "3,540kg",
+      "raw": 3540,
       "unit": "kg",
       "label": "Recycled HDPE diverted",
       "asAt": "2026-05-30"
@@ -69,7 +69,7 @@
       "raw": 750,
       "unit": "AUD",
       "label": "Stretch Bed price",
-      "asAt": "2026-05-29"
+      "asAt": "2026-07-25"
     },
     "marginal-buykit": {
       "value": "$685",
@@ -83,28 +83,28 @@
       "raw": 426,
       "unit": "AUD",
       "label": "Marginal cost / bed (Factory)",
-      "asAt": "2026-05-29"
+      "asAt": "2026-07-31"
     },
     "marginal-community": {
       "value": "$421",
       "raw": 421,
       "unit": "AUD",
       "label": "Marginal cost / bed (Community)",
-      "asAt": "2026-05-29"
+      "asAt": "2026-07-25"
     },
     "save-per-bed": {
       "value": "$194",
       "raw": 194,
       "unit": "AUD",
       "label": "Saving from pressing in-house",
-      "asAt": "2026-05-29"
+      "asAt": "2026-07-31"
     },
     "cleared-voices": {
-      "value": "32",
-      "raw": 32,
+      "value": "35",
+      "raw": 35,
       "unit": "voices",
       "label": "Consent-cleared voices (external use)",
-      "asAt": "2026-06-17"
+      "asAt": "2026-08-01"
     },
     "display-storyteller-pool": {
       "value": "32",
@@ -114,11 +114,11 @@
       "asAt": "2026-06-16"
     },
     "el-published-stories": {
-      "value": "0",
-      "raw": 0,
+      "value": "2",
+      "raw": 2,
       "unit": "stories",
-      "label": "Empathy Ledger published stories",
-      "asAt": "2026-06-03"
+      "label": "Empathy Ledger published stories (public)",
+      "asAt": "2026-07-25"
     },
     "signed-lois": {
       "value": "0",

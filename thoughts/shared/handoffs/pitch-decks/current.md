@@ -1,0 +1,199 @@
+# Pitch decks, the reading apparatus, and the Claude Design bridge
+
+## Ledger
+<!-- This section is extracted by SessionStart hook for quick resume -->
+**Updated:** 2026-08-05T08:15:00Z
+**Goal:** DONE for this thread. The Claude Design CLI bridge is SOLVED (sentinel), the project
+is fully corrected + stocked with 138 photos, and `tools/design-push.mjs` makes it a render
+target of the spine. **PR #206 is OPEN and NOT MERGED** — awaiting Ben's eyes only.
+**Branch:** `feat/pitch-readability` = `d54880b` (5 commits), pushed through `32274d2`.
+**Test:** `cd v2 && npm test && npm run check:audience && npm run check:voice && npm run check:retired-figures && npm run build` · `node tools/design-push.mjs --check-only`
+
+### Now
+[->] **PR #206 needs a human call.** Green, MERGEABLE. Do NOT merge without Ben saying he has
+     looked (the 2026-07-27 revert). Preview:
+     https://goods-on-country-git-feat-pitc-2d336d-benjamin-knights-projects.vercel.app/pitch/road
+[->] **Ben must RELOAD the Design project** (claude.ai/design → Goods on Country — Investor
+     Materials) so the armed sentinel rebuilds the card index: Image library card, Deck chrome
+     group, LOI ladder appear; the dangling funder-pipeline entry disappears. If a real
+     close-and-reopen still shows the old list, the recompile machinery needs digging.
+[->] **The standing flow from here:** edit `canon.ts` or a card → `node tools/design-push.mjs`
+     → a Claude session executes `.push/push-plan.json` via DesignSync (≤10 files/call,
+     sentinel LAST). Deck prompt for the in-app design agent is in the 2026-08-05 transcript.
+
+### Landed this session (research + hardening, all in the Design project + repo)
+- **Reindex solved**: `_ds_needs_recompile` sentinel (see below). `/design-sync` is BUILT INTO
+  Claude Code — `Skill(skill:"design-sync")` loads it even though unlisted.
+- **README rewritten** with corrected figures + a Claim ceiling section (it is inlined into the
+  design agent's system prompt — it was carrying $475K/accountant-signed/496/9 until today).
+- **138 photos uploaded** to `images/` (resized 1600px from `design/starred-images/`, filenames
+  carry community/person metadata) + `preview/image-library.html` gallery card mapping usage.
+- **Stale funder briefs DELETED from `downloads/`** (sefa/snow/centrecorp, June exports, $475K +
+  Centrecorp-as-funder). Wiki originals untouched. `downloads/investor-deck-full.pdf` replaced
+  with a fresh render: deck HTML's "accountant-signed" label fixed (ruling G/H),
+  `canon-numbers.json` rebuilt (was stale: 496/9 → 540/11).
+- **`tools/design-push.mjs`**: stage → bake CANON tokens → negation-aware claim-ceiling gate →
+  push plan + sentinel. Proven end-to-end. `invest-funder-pipeline.html` on a hard never-push list.
+
+---
+
+## The research question for the next session
+
+**Do not start from "can we connect Claude Design to the CLI". We already have.**
+
+Verified working today via the `DesignSync` MCP tool, all from the CLI:
+`list_projects` · `get_project` · `list_files` · `get_file` · `create_project` ·
+`finalize_plan` · `write_files` (11 files) · `delete_files` (1 file).
+
+The write flow is: `finalize_plan` (locks exact paths + a `localDir`, requires BOTH `writes` and
+`deletes` keys even when one is empty) returns a `planId`, then `write_files` with
+`localPath` per file reads from disk and uploads without the content entering context.
+
+**The ONE thing that did not work: rebuilding the card index (`_ds_manifest.json`).**
+Files upload correctly and `list_files` confirms them, but the gallery does not show them until
+something app-side recompiles the manifest from the `<!-- @dsCard ... -->` marker on line 2 of
+each preview HTML. Observed behaviour, twice, five weeks apart:
+
+- A FIRST batch written to a FRESHLY CREATED project indexes automatically.
+- LATER batches to an EXISTING project do not, and no amount of waiting or hard-refreshing fixes
+  it. `preview/invest-next-phase.html` has been sitting unindexed since before today, which is
+  independent evidence this is not about how I uploaded.
+- `register_assets` / `unregister_assets` report success and change nothing. The tool description
+  now calls them **legacy** outright and says the index comes from `@dsCard` markers.
+
+**Leads I dismissed instead of chasing. Start here:**
+
+1. **The `/design-sync` skill is referenced in the DesignSync tool description and is NOT
+   installed on this machine.** Nothing in `~/.claude/skills/` matches. If it exists upstream it
+   very likely carries the correct end-to-end recipe, including whatever triggers the reindex.
+   Find it, install it, read it. **This is the single highest-value lead.**
+2. **`/design-login`** is also referenced (a dedicated design authorization for sessions without
+   a claude.ai login). Unexamined.
+3. **`report_validate` and the `counts` parameter** on DesignSync mention a `.render-check.json`
+   and an app-side "self-check" that COMPILES the manifest. That self-check is the thing we need
+   to trigger. Its trigger condition is unknown and is the crux of the whole problem.
+4. **`_ds_bundle.js` and `_adherence.oxlintrc.json`** exist at the project root and were never
+   opened. They may describe the build/validate contract.
+5. Whether writing a **deliberately modified `_ds_manifest.json`** directly via `write_files`
+   works, or whether it is regenerated and overwritten. Never tested. Cheap to test.
+
+**Test project:** "Goods on Country — Investor Materials" `b333c5aa-2dfa-4043-ab5f-ef7460692623`.
+Old project `a24f62c8-2be7-4811-887d-f5f8a24f3cf9` still exists and is a fine sacrificial target
+for destructive experiments. Do not experiment on `b333c5aa`, it is now the real one.
+
+**Also worth researching, separately:** whether the round trip can be closed. Today it is
+one-way-plus-manual: repo → Design (automatic), Design → repo (`get_file`, then a HAND PORT into
+React). Nothing binds an HTML card to `pitch-chrome.tsx`. Pencil round-trips both ways via MCP,
+which is why `design/goods-theory-of-change-v2.pen` was chosen as the canonical editable deck.
+Whether Design can reach parity is an open question nobody has actually asked.
+
+---
+
+## ~~The one manual step~~ SOLVED 2026-08-05 (research session)
+
+**The reindex trigger is the sentinel file `_ds_needs_recompile`.** Write it (empty) via
+`finalize_plan` + `write_files`; the app rebuilds `_ds_manifest.json` from the `@dsCard` markers
+next time the project is opened, and dangling entries for deleted files drop automatically.
+The sentinel has been WRITTEN to `b333c5aa` — **the gallery fixes itself the next time Ben opens
+the project.** No chat paste needed. This also explains the old behaviour: fresh projects compile
+on first open; later batches never indexed because no sentinel was written.
+
+Source: the `/design-sync` skill, which turned out to be **built into Claude Code** (binary
+2.1.220, `claude-cli-design-sync`) — unlisted but loadable with `Skill(skill:"design-sync")`;
+converter scripts at `/private/tmp/claude-501/bundled-skills/2.1.220/…/design-sync/`. Full recipe
+per the skill: sentinel before a big push, files, sentinel re-write after every push; pin
+projectId in `.design-sync/config.json`; `_ds_sync.json` anchor written last; never use
+`register_assets`.
+
+---
+
+## What landed this session
+
+### PR #206 — the deck's reading apparatus (OPEN, not merged)
+
+`/pitch/road` is the canonical deck (ruling R) and its CONTENT was never the problem. It is a
+**deck rendered as a document**: 18 panels, each already authored one-per-viewport
+(`lg:h-[100svh]`), served as one scroll with no pagination, no map, no print path and no shorter
+cut for a non-funder. That is why five pitch artifacts existed instead of one.
+
+- **New module `v2/src/lib/data/pitch-chrome.ts`** holds the apparatus, not the content: panel
+  order (mirrored from `deckSlides`, guarded), packs, appendices, the opener. **19 guards** in
+  `pitch-chrome.guards.test.ts`.
+- **New client `v2/src/app/pitch/road/pitch-chrome.tsx`** works on the rendered DOM by panel id
+  rather than owning the markup, so the server-rendered deck keeps streaming and priority hints.
+  Reads state from `window.location` and writes back with `replaceState` (using
+  `useSearchParams` would force a Suspense boundary around the whole deck for a nav bar).
+- **`page.tsx`**: 13 `data-pitch-panel` tags added (renders as 18 panels at runtime).
+- **`globals.css`**: slide mode + a print block giving one panel per page.
+- Modes: contents bar with scrollspy · `?view=slides` (arrows, space, Escape) · print · `?for=`.
+
+**Two live defects fixed on the way:**
+1. The hero's "Open the slide deck" button linked to `/pitch/deck`, which `next.config` 302s
+   straight back to `/pitch/road`. **A redirect loop on the deck's own cover.** Now opens slide mode.
+2. `pitch-surface-notice.tsx` hardcoded `/pitch/funder-pathways` as "THE canonical funder
+   surface" while ruling R, `audience.ts` (`funder.frontDoor`) and seven `next.config` redirects
+   all said `/pitch/road`. **Every appendix was signposting funders away from the front door** —
+   the exact failure that component was written to prevent. Now derives from `audience.ts`, with
+   a guard asserting it never goes back to a hardcoded string.
+
+### Claude Design: 5 cards added, 6 corrected, 1 deleted
+
+New **Deck chrome** group (4): `deck-opener`, `deck-contents-bar`, `deck-pack-switcher`,
+`deck-slide-transport`. Plus `invest-loi-ladder`.
+
+**Three separate rulings had never been swept into the Investment cards:**
+- **Ruling V (2026-08-01).** Cards claimed the QBE grant was matched "at least 1:1" and drew a
+  "$150K floor" tick on a progress track. Neither exists. Catalytic and discretionary, typically
+  $150K–$400K, pool up to $1.1M across TEN enterprises. Raising $400K obliges QBE to nothing.
+- **Ben, 2026-08-02.** Centrecorp still in the capital stack as a $75K grant. They are a BUYER.
+  Inflated the grant column by $75,000. Stack is **$400K** (confirmed by Ben 2026-08-05), not $475K.
+- **Ruling G/H (2026-07-25).** Three cards read "signed FY revenue (Goods-only,
+  accountant-signed)". There is no accountant-signed document; it is a **workpaper**.
+  *Caught only by reading a file back AFTER writing it. I had not scanned for it.*
+- **Canon drift:** beds 496→**540**, communities 9→**11**, HDPE 2,660kg→**3,540kg**.
+
+**Deleted (Ben, explicit):** `preview/invest-funder-pipeline.html`. It named fifteen funders with
+an amount and a stage each, captioned "as at 3 Jul 2026". It could NOT be rebuilt from
+`loi-pipeline.ts`, because that file holds only the ladder config, three GHL pipeline ids and a
+23-stage map — **no names, no amounts**. Those come from GHL, read live by `/admin/loi-tracker`.
+It was also the same content class as the `/pitch/deck` presenter-script leak fixed 2026-08-02.
+Replaced by `invest-loi-ladder.html`, which mirrors STRUCTURE and points at the tracker for STATE.
+Local copy retained at `design/brand/claude-design/preview/invest-funder-pipeline.html`.
+
+---
+
+## Decisions
+
+- **Three packs on `/pitch/road`, not six.** `buyer.frontDoor` is `/shop` and
+  `buyer.mustNeverSee` forbids the impact story ahead of the spec, which is this page's entire
+  first half. `community.mustNeverSee` forbids arriving with a proposal instead of a yarn, and
+  this page is a proposal from panel one. A guard refuses to add either.
+- **The opener is the highest-risk prose in the system** and is guarded accordingly: no bed
+  threshold, no payback promise, **no site count and no break-even claim**, and it must say
+  plainly that nothing is signed.
+- **`/pitch/document`, `/pitch/funder-pathways`, `/pitch/community-narrative` are APPENDICES**,
+  linked from the deck's contents, not retired. `/pitch/document` carries prose the deck does not
+  (competition table, why-now, the pains); deleting it loses content rather than duplication.
+- **If a figure or a name is typed into HTML, it will be wrong within a month.** Every card
+  corrected today was accurate when written. Use `CANON:num:<id>` and `CANON:<slot>` tokens.
+
+## Gotchas found
+
+- `design/brand/claude-design/` is **gitignored**. The 11 card files exist ONLY there and in the
+  Design project. They are not in git and PR #206 does not contain them.
+- `design/brand/kit/render.sh` is **not executable**; run it as `bash design/brand/kit/render.sh
+  <file.html>`. Verified working: outputs `.pdf` + `-preview.png`, ~8 seconds.
+- `check:retired-figures` scans ALL of `src/`, including ban-list literals. Writing `'co-designed'`
+  inside an OPENER_BANNED array trips it. Do not restate global voice rules in local lists.
+- `finalize_plan` requires both `writes` and `deletes` keys, even when one is `[]`.
+
+## Open
+
+- **UNRESOLVED, blocks the investor number: what a site costs to run for a year.** Four live
+  answers ($15,000 / $48,333 / $64,333 / $79,333), moving break-even from 2.0 to 4.6 sites.
+  `deliverables/GOC-site-cost-decision.md` is ready to settle it: three questions, options priced,
+  blank decision lines. Half an hour with Nic. **Do NOT print a site count until then.**
+- Email to Matt drafted 2026-08-04, still NOT sent. Sheet still not shared with Matt/Mal.
+- `invest-funder-card.html` retains a "Match-eligible" chip. Judged acceptable: ruling V struck
+  the 1:1 and the floor, not the coverage test, and `ASK_MATCH_VEHICLE.rule` still uses coverage
+  language. Flagged in case a future reader disagrees.

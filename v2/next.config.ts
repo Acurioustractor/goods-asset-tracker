@@ -85,6 +85,11 @@ const nextConfig: NextConfig = {
       // every slide two or three times, and slide 1 still carried the north star retired by
       // rulings D and E. Archived with a restore note at _archive/2026-08-02-pitch-simple/.
       { source: '/pitch/simple', destination: '/pitch/road', permanent: true },
+      // /cost-story RETIRED 2026-08-06 (Ben: money is spoken in full in ONE place). It was a
+      // second public telling of the whole cost model — ~35 figures, break-even, unit economics
+      // — that had to be kept in lockstep with the deck's money half by hand. The deck and
+      // /sites/cost-lab carry everything it did. 307 first; promote to 308 once held.
+      { source: '/cost-story', destination: '/pitch/road', permanent: false },
       // ── Route sweep, 2026-08-02. Wayfinder map #177; every entry cites the ticket that
       // ruled it. All ship as 307 (permanent: false) and are promoted to 308 only once they have
       // held: the /brand rule below is why. A wrong 308 kept redirecting AFTER its rule was

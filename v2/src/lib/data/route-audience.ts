@@ -1012,21 +1012,13 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     },
     verdict: 'keep',
   },
-  {
-    route: '/cost-story',
-    audience: 'funder',
-    access: 'open',
-    leadsWithNow: {
-      heading: 'What a bed really costs',
-      eyebrow: 'Cost model v6 · 2026',
-      body: 'People looked at our books and said we lose a thousand dollars on every bed. That’s not quite right. Making one more bed costs about',
-    },
-    verdict: 'keep',
-  },
+  // /cost-story RETIRED 2026-08-06 (one-money-surface rule): it was a second full public
+  // telling of the cost model. 307s to /pitch/road; archived at _archive/2026-08-06-cost-story.
   {
     route: '/dashboard',
     audience: 'community',
-    access: 'open',
+    // Gated 2026-08-06 (Ben: live revenue charts were on an open route). Investors cookie.
+    access: 'gated',
     leadsWithNow: null,
     whyUnread: 'no server-rendered heading inside <main> (client-rendered)',
     verdict: 'keep',
@@ -1034,7 +1026,7 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
   {
     route: '/dashboard/feedback',
     audience: 'community',
-    access: 'open',
+    access: 'gated',
     leadsWithNow: null,
     whyUnread: 'no server-rendered heading inside <main> (client-rendered)',
     verdict: 'keep',
@@ -1411,7 +1403,9 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
   {
     route: '/pathways/[id]/numbers',
     audience: 'community',
-    access: 'open',
+    // Gated 2026-08-06 (Ben): per-community cost numbers sit next to the rule that no
+    // community reads its own price on a public page before seeing it in person.
+    access: 'gated',
     leadsWithNow: null,
     whyUnread: 'dynamic route with no nameable representative instance',
     verdict: 'keep',
@@ -1462,6 +1456,46 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     },
     verdict: 'redirect',
     target: '/pitch/road',
+  },
+  {
+    route: '/news',
+    audience: 'supporter',
+    access: 'open',
+    // 2026-08-06: the monthly letter, assembled ONLY from already-cleared, already-public
+    // artifacts (news.ts). The email version is this page sent, so they cannot diverge.
+    leadsWithNow: {
+      heading: 'The making is proven',
+      eyebrow: 'The letter',
+      body: 'What happened in community, who is stepping up, and where the road to ownership is.',
+    },
+    verdict: 'keep',
+  },
+  {
+    route: '/case-studies/[slug]',
+    audience: 'partner',
+    access: 'open',
+    // 2026-08-06: "how we did it" packs, one per PROVEN run (Maningrida first). Written for a
+    // community/org asking "how would this work for us" and a funder asking "did this happen".
+    // Counts derive from the register; quotes from cleared registry tiers; no dollar figures.
+    leadsWithNow: {
+      heading: 'Forty beds, pressed at the farm, assembled in community',
+      eyebrow: 'Case study',
+      body: 'A community-controlled organisation asked for beds and washing machines for homeland families.',
+    },
+    verdict: 'keep',
+  },
+  {
+    route: '/pitch/onepager',
+    audience: 'funder',
+    access: 'open',
+    // 2026-08-06: the sendable/printable one-page cut of the deck. Writes nothing new;
+    // renders from canon, ask-surface and road-ending, so it cannot drift from /pitch/road.
+    leadsWithNow: {
+      heading: 'Goods on Country — one page',
+      eyebrow: 'The road to ownership · one page',
+      body: 'The numbers, the facility, the three ways in, on one printable page.',
+    },
+    verdict: 'keep',
   },
   {
     route: '/pitch/document',

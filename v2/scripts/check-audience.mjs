@@ -78,6 +78,12 @@ const gatedPrefixes = [
     ...[...proxyRaw.matchAll(/^const \w*[Rr]outes = \[([^\]]*)\]/gm)].flatMap((m) =>
       [...m[1].matchAll(/'(\/[a-z0-9/-]+)'/g)].map((x) => x[1]),
     ),
+    // Third form (added 2026-08-06 with the /pathways/[id]/numbers gate): a dynamic-segment
+    // gate written as a regex test, e.g. /^\/pathways\/[^/]+\/numbers(\/|$)/.test(pathname).
+    // The [^/]+ segment maps to the [id] the route table uses.
+    ...[...proxyRaw.matchAll(/\/\^(\\\/[^ ]*?)\(\\\/\|\$\)\/\.test\(pathname\)/g)].map((m) =>
+      m[1].replaceAll('\\/', '/').replace('[^/]+', '[id]'),
+    ),
   ]),
 ];
 function expectedAccess(route) {

@@ -64,7 +64,14 @@ export async function proxy(request: NextRequest) {
       pathname === '/sites/qbe-readiness' ||
       pathname.startsWith('/sites/qbe-readiness/') ||
       pathname === '/sites/cost-lab' ||
-      pathname.startsWith('/sites/cost-lab/')) &&
+      pathname.startsWith('/sites/cost-lab/') ||
+      // Ben, 2026-08-06 ("don't make this public"): the live revenue dashboard and the
+      // per-community cost numbers move behind the same shared gate. The pathway numbers
+      // also sit next to the standing rule that no community reads its own price on a
+      // public page before they have seen it in person.
+      pathname === '/dashboard' ||
+      pathname.startsWith('/dashboard/') ||
+      /^\/pathways\/[^/]+\/numbers(\/|$)/.test(pathname)) &&
     pathname !== '/investors/login' &&
     pathname !== '/api/investors/auth'
   ) {
