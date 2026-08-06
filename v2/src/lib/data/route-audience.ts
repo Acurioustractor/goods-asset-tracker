@@ -1458,6 +1458,19 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     target: '/pitch/road',
   },
   {
+    route: '/pitch/onepager',
+    audience: 'funder',
+    access: 'open',
+    // 2026-08-06: the sendable/printable one-page cut of the deck. Writes nothing new;
+    // renders from canon, ask-surface and road-ending, so it cannot drift from /pitch/road.
+    leadsWithNow: {
+      heading: 'Goods on Country — one page',
+      eyebrow: 'The road to ownership · one page',
+      body: 'The numbers, the facility, the three ways in, on one printable page.',
+    },
+    verdict: 'keep',
+  },
+  {
     route: '/pitch/document',
     audience: 'funder',
     access: 'open',
