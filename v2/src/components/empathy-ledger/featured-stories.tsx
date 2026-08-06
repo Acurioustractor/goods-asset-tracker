@@ -32,9 +32,17 @@ export async function FeaturedStories({
   viewAllLink = '/stories',
   maxStories = 3,
 }: FeaturedStoriesProps) {
-  const stories = await empathyLedger.getGoodsStories({ limit: maxStories });
+  const elStories = await empathyLedger.getGoodsStories({ limit: maxStories });
 
-  // If EL has stories, use them
+  // Published in EL is necessary but not sufficient for the FRONT PAGE (Ben, 2026-08-06):
+  // a 2026-07-27 bulk publish in EL put three stories here that no one had chosen for this
+  // surface. A story renders on the homepage only after Ben adds its id below, once the
+  // Empathy Ledger curation process has been through it. Empty list = the crafted local
+  // fallback. Other EL surfaces (/stories, /news) are not gated by this.
+  const HOMEPAGE_REVIEWED_STORY_IDS: string[] = [];
+  const stories = elStories.filter((s) => HOMEPAGE_REVIEWED_STORY_IDS.includes(s.id));
+
+  // If EL has homepage-reviewed stories, use them
   if (stories.length > 0) {
     return (
       <section className="py-16 md:py-20">
