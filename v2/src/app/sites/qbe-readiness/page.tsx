@@ -108,7 +108,12 @@ const METRICS: Array<{ value: string; label: string; sub: string; tier: Tier }> 
 
 // ── The ask (the stack, junior to senior) ──────────────────────────────────
 const STACK: Array<{ label: string; amount: string; detail: string; tier: Tier }> = [
-  { label: 'Grants', amount: '~AU$225K', detail: 'Snow R4/R5, Centrecorp, VFFF', tier: 'Target' },
+  // CENTRECORP REMOVED 2026-08-02, Ben: they are a BUYER and will not give a grant, so listing
+  // them here itemised a bed order inside a grants total. The ~AU$225K went with them rather
+  // than being reduced by $75K, because that total was asserted here rather than derived, and
+  // ask-surface.ts rules that the stack is re-derived from GHL and never patched by hand. The
+  // six live asks now carry monetaryValue in the CRM, which is what makes the figure derivable.
+  { label: 'Grants', amount: 'Live in GHL', detail: 'Snow R4/R5, VFFF', tier: 'Target' },
   {
     label: 'QBE match',
     amount: 'up to AU$400K',
@@ -314,7 +319,10 @@ const ROWS: Row[] = [
     name: 'Investor Alignment',
     label: 'Populated',
     priority: false,
-    line: 'Goods own filter (8 knockout, 14 fit) now scores a warmest-first shortlist: SEFA, Snow, Centrecorp, Minderoo, and VFFF lead the first ~AU$400K.',
+    // Centrecorp dropped from this shortlist 2026-08-02, Ben: a capital shortlist is grants and
+    // repayable finance, and they are a buyer. The relationship is real and larger than the line
+    // it sat on ($123,332 of beds paid); it belongs to demand, which proof 10 above states.
+    line: 'Goods own filter (8 knockout, 14 fit) now scores a warmest-first shortlist: SEFA, Snow, Minderoo and VFFF lead the first ~AU$400K.',
   },
 ];
 

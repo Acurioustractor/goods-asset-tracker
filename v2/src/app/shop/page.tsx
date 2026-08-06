@@ -94,10 +94,6 @@ export default function ShopPage() {
             <h1 className="text-4xl md:text-5xl font-light mb-6" style={{ color: '#2E2E2E', fontFamily: 'var(--font-display, Georgia, serif)' }}>
               The straight answers, before the buy button.
             </h1>
-            <p className="text-lg mb-4" style={{ color: '#5E5E5E' }}>
-              Every purchase supports remote First Nations communities across Australia.
-              Each bed diverts {PLASTIC_KG_PER_BED}kg of plastic from landfill.
-            </p>
           </div>
 
           <div className="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2 max-w-5xl">
@@ -110,6 +106,17 @@ export default function ShopPage() {
               </div>
             ))}
           </div>
+
+          {/* The impact line sits BELOW the answers, not between the heading and them. It was
+              directly under the h1 until 2026-08-02: a page headed "the straight answers, before
+              the buy button" whose next paragraph was the impact story is buyer.mustNeverSee
+              verbatim, "the impact story ahead of the spec". The heading changed in PR #194 and
+              this paragraph did not move, so the route stayed a rewrite. It is true here and it
+              still reaches every reader, one screen later. */}
+          <p className="mt-10 text-lg max-w-3xl" style={{ color: '#5E5E5E' }}>
+            Every purchase supports remote First Nations communities across Australia.
+            Each bed diverts {PLASTIC_KG_PER_BED}kg of plastic from landfill.
+          </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
             <Button size="lg" style={{ backgroundColor: '#C45C3E' }} asChild>
