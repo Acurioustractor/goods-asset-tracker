@@ -109,6 +109,8 @@ export const PITCH_PANELS: PitchPanel[] = [
 
   // The money half. A supporter did not come for the unit economics and a press reader must never
   // be handed a funding ask as though it were a fact about the organisation.
+  // The five-number strip investors actually read; every later money panel is evidence for it.
+  { id: 'money-at-a-glance', label: 'Five numbers', chapter: 'the-money', packs: ['funder'] },
   { id: 'model', label: 'The model', chapter: 'the-money', packs: ['funder'] },
   // `the-stopwatch` merged into `one-bed` 2026-08-06: one argument, one panel.
   { id: 'one-bed', label: 'One bed', chapter: 'the-money', packs: ['funder'] },
