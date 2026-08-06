@@ -202,6 +202,14 @@ body[data-pitch-mode='slides'] .road-pitch-scroll {
   padding-bottom: 3.25rem;
 }
 
+/* The road-overview grid sizes its tiles from the section's fixed 100svh height
+   (flex-1 + grid-rows-2 + lg:min-h-0). The `height: auto` above removes that
+   height in slide mode, so without a floor the tiles collapse to 0px and the
+   slide shows only its heading. */
+body[data-pitch-mode='slides'] #road ol li > a {
+  min-height: 250px;
+}
+
 @media print {
   /* The apparatus is not part of the artifact. */
   [data-pitch-bar],

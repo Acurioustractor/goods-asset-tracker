@@ -213,10 +213,11 @@ export function PitchChrome() {
         }`}
       >
         <div className="mx-auto flex max-w-[1600px] flex-wrap items-center gap-x-5 gap-y-2 px-6 py-2.5 md:px-10 lg:px-14">
-          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/45">
+          {/* Fixed-width counter and buttons BEFORE the variable-width label, so Prev/Next
+              never shift as the slide title changes length. */}
+          <span className="w-12 font-mono text-[10px] uppercase tracking-[0.16em] text-white/45">
             {index + 1}/{panels.length}
           </span>
-          <span className="max-w-[42vw] truncate text-sm font-semibold">{current?.label}</span>
 
           {mode === 'slides' ? (
             <span className="flex items-center gap-2">
@@ -236,16 +237,20 @@ export function PitchChrome() {
               >
                 Next
               </button>
+              <span className="ml-3 max-w-[38vw] truncate text-sm font-semibold">{current?.label}</span>
             </span>
           ) : (
-            <button
-              type="button"
-              onClick={() => setNavOpen((open) => !open)}
-              className="border border-white/25 px-3 py-1 text-xs"
-              aria-expanded={navOpen}
-            >
-              {navOpen ? 'Hide contents' : 'Contents'}
-            </button>
+            <span className="flex items-center gap-4">
+              <span className="max-w-[38vw] truncate text-sm font-semibold">{current?.label}</span>
+              <button
+                type="button"
+                onClick={() => setNavOpen((open) => !open)}
+                className="border border-white/25 px-3 py-1 text-xs"
+                aria-expanded={navOpen}
+              >
+                {navOpen ? 'Hide contents' : 'Contents'}
+              </button>
+            </span>
           )}
 
           <span className="ml-auto flex items-center gap-2">
