@@ -3,10 +3,37 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import { communityLocations } from '@/lib/data/content';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
-import { resolveAllCommunityMedia } from '@/lib/data/community-media-resolver';
+import { COMMUNITY_BED_CANON } from '@/lib/data/community-canonical';
+import { communityRecord, isPublishable } from '@/lib/data/community-record';
 import { canonVideoSrc } from '@/lib/data/canon-videos';
 import { getPublishedCommunities, getPublishedStories } from '@/lib/notion/community-os';
+import { tripStories } from '@/lib/data/trip-stories';
 import { CommunityMapClient } from './map-wrapper';
+
+/**
+ * One curated photograph per community, chosen by hand rather than taken from the
+ * library's sort order (which put whatever ranked first — often a build shot —
+ * on every card). All files ship in /public already, i.e. the same consent
+ * clearance class as the [slug] page galleries that surface them today.
+ * A community without a row renders as a text card, never a stock image.
+ */
+const CARD_PHOTOS: Record<string, { src: string; alt: string }> = {
+  utopia: { src: '/images/utopia/utopia-01.jpg', alt: 'Bed delivery across the Utopia homelands' },
+  'tennant-creek': { src: '/images/community/tennant-creek.jpg', alt: 'Tennant Creek delivery' },
+  'palm-island': { src: '/images/community/palm-island/family-dogs-new-bed.jpg', alt: 'A family with their new bed on Palm Island' },
+  maningrida: { src: '/images/community/maningrida/kids-carrying-orange-bed.jpg', alt: 'Kids carrying a Stretch Bed in Maningrida' },
+  kalgoorlie: { src: '/images/community/kalgoorlie/man-new-mattress.jpg', alt: 'A new mattress at Ninga Mia, Kalgoorlie' },
+  'alice-springs': { src: '/images/community/alice-springs/oonchiumpa-team-red-bed.jpg', alt: 'The Oonchiumpa team with a red Stretch Bed, Alice Springs' },
+  darwin: { src: '/images/community/darwin/deadly-heart-first-lie-down.jpg', alt: 'First lie-down on a new bed, Darwin' },
+};
+
+/** /communities/[slug] runs on communityLocations ids; the register runs on canon ids.
+ *  The only divergent pair is Utopia. */
+const PAGE_SLUG_FOR_ID: Record<string, string> = { utopia: 'utopia-homelands' };
+const PAGE_SLUG_FOR_ID_REVERSE: Record<string, string> = { 'utopia-homelands': 'utopia' };
+const PAGE_IDS = new Set(
+  communityLocations.map((c) => PAGE_SLUG_FOR_ID_REVERSE[c.id] ?? c.id),
+);
 
 export const metadata: Metadata = {
   title: 'Communities — Goods on Country',
@@ -20,13 +47,20 @@ const COMMUNITY_FILM = canonVideoSrc('video-community', {
 });
 
 export default async function CommunitiesIndex() {
-  const sorted = [...communityLocations].sort((a, b) => b.bedsDelivered - a.bedsDelivered);
+  // Every community in the register, largest first — not just the four with their own
+  // pages. The old grid showed 4 cards under a headline claiming 11 communities.
+  const records = COMMUNITY_BED_CANON
+    .map((c) => ({ canon: c, record: communityRecord(c.id) }))
+    .sort((a, b) => (b.canon.basketBeds + b.canon.stretchBeds) - (a.canon.basketBeds + a.canon.stretchBeds));
+  const descriptionById = new Map(
+    communityLocations.map((c) => [PAGE_SLUG_FOR_ID_REVERSE[c.id] ?? c.id, c.description]),
+  );
+  const fieldNotes = tripStories.filter((s) => s.published);
   // Consent-gated: only rows explicitly cleared + published in the Notion hub.
   // Returns [] until the Community OS integration is switched on (see v2/COMMUNITY-OS.md).
-  const [published, voices, mediaBySlug] = await Promise.all([
+  const [published, voices] = await Promise.all([
     getPublishedCommunities(),
     getPublishedStories(),
-    resolveAllCommunityMedia(communityLocations.map((c) => ({ id: c.id, name: c.name }))),
   ]);
 
   return (
@@ -68,45 +102,104 @@ export default async function CommunitiesIndex() {
 
       <section id="all">
         <h2 className="mb-4 text-sm font-medium uppercase tracking-wider text-stone-500">All communities</h2>
-        <ul className="grid gap-3 sm:grid-cols-2">
-          {sorted.map((c) => {
-            const media = mediaBySlug[c.id];
-            return (
-              <li key={c.id}>
-                <Link
-                  href={`/communities/${c.id}`}
-                  className="block overflow-hidden rounded-lg border border-stone-200 bg-white transition-colors hover:border-amber-300 hover:bg-amber-50/40"
-                >
-                  {media.hero && (
-                    <div className="relative aspect-[21/9] w-full overflow-hidden bg-stone-100">
-                      <Image
-                        src={media.hero.src}
-                        alt={media.hero.alt}
-                        fill
-                        sizes="(max-width: 640px) 100vw, 50vw"
-                        className="object-cover"
-                      />
-                    </div>
-                  )}
-                  <div className="p-4">
-                    <div className="flex items-baseline justify-between gap-3">
-                      <h3 className="font-display text-lg font-medium text-stone-900">{c.name}</h3>
-                      <span className="shrink-0 text-sm font-bold text-amber-700">{c.bedsDelivered} beds</span>
-                    </div>
-                    <p className="mt-1 text-xs text-stone-500">
-                      {c.region}
-                      {c.storytellerCount > 0 && (
-                        <span> · {c.storytellerCount} storyteller{c.storytellerCount === 1 ? '' : 's'}</span>
-                      )}
-                    </p>
-                    <p className="mt-2 line-clamp-2 text-sm text-stone-600">{c.description}</p>
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {records.map(({ canon, record }) => {
+            const photo = CARD_PHOTOS[canon.id];
+            const hasPage = PAGE_IDS.has(canon.id);
+            const href = hasPage
+              ? `/communities/${PAGE_SLUG_FOR_ID[canon.id] ?? canon.id}`
+              : undefined;
+            const beds = canon.basketBeds + canon.stretchBeds;
+            const washers =
+              record?.assets && isPublishable(record.assets) ? record.assets.value.washers : 0;
+            const stage =
+              record?.stage && isPublishable(record.stage) ? record.stage.value.label : null;
+            const description = descriptionById.get(canon.id);
+            const card = (
+              <>
+                {photo && (
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-stone-100">
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
                   </div>
-                </Link>
+                )}
+                <div className="p-4">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <h3 className="font-display text-lg font-medium text-stone-900">
+                      {canon.registerName}
+                    </h3>
+                    <span className="shrink-0 text-sm font-bold text-amber-700">
+                      {beds} bed{beds === 1 ? '' : 's'}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-xs text-stone-500">
+                    {canon.stretchBeds > 0 && <span>{canon.stretchBeds} Stretch</span>}
+                    {canon.stretchBeds > 0 && canon.basketBeds > 0 && <span> · </span>}
+                    {canon.basketBeds > 0 && <span>{canon.basketBeds} Basket</span>}
+                    {washers > 0 && (
+                      <span> · {washers} washing machine{washers === 1 ? '' : 's'}</span>
+                    )}
+                  </p>
+                  {description ? (
+                    <p className="mt-2 line-clamp-2 text-sm text-stone-600">{description}</p>
+                  ) : null}
+                  {stage && (
+                    <p className="mt-2 inline-block rounded-full bg-amber-100 px-2.5 py-0.5 text-[11px] font-medium text-amber-800">
+                      {stage}
+                    </p>
+                  )}
+                </div>
+              </>
+            );
+            return (
+              <li key={canon.id}>
+                {href ? (
+                  <Link
+                    href={href}
+                    className="group block h-full overflow-hidden rounded-lg border border-stone-200 bg-white transition-colors hover:border-amber-300 hover:bg-amber-50/40"
+                  >
+                    {card}
+                  </Link>
+                ) : (
+                  <div className="h-full overflow-hidden rounded-lg border border-stone-200 bg-white">
+                    {card}
+                  </div>
+                )}
               </li>
             );
           })}
         </ul>
       </section>
+
+      {fieldNotes.length > 0 && (
+        <section id="field-notes" className="mt-12">
+          <h2 className="mb-1 text-sm font-medium uppercase tracking-wider text-stone-500">
+            Field notes
+          </h2>
+          <p className="mb-4 text-xs text-stone-400">
+            Trip stories from deliveries and build days, published with consent.
+          </p>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {fieldNotes.map((s) => (
+              <li key={s.slug}>
+                <Link
+                  href={`/field-notes/${s.slug}`}
+                  className="block h-full rounded-lg border border-stone-200 bg-white p-4 transition-colors hover:border-amber-300 hover:bg-amber-50/40"
+                >
+                  <h3 className="font-display text-lg font-medium text-stone-900">{s.title}</h3>
+                  <p className="mt-1 text-xs text-stone-500">{s.dateline}</p>
+                  <p className="mt-2 line-clamp-3 text-sm text-stone-600">{s.summary}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {published.length > 0 && (
         <section className="mt-12">
