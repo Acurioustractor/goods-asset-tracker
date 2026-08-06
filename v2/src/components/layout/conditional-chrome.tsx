@@ -25,6 +25,8 @@ const STANDALONE_PATH_PREFIXES = [
   // its own chrome (opener, contents bar, pack switcher) and its own stat line on the cover.
   '/pitch/road',
   '/deck',
+  // Printable one-pager family (2026-08-06): print artifacts with their own masthead.
+  '/onepagers',
 ];
 
 // Standalone routes matched by pattern rather than prefix. The gated partner

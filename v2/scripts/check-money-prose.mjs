@@ -45,6 +45,7 @@ const ALLOWED_APP_PREFIXES = [
   'partner', // the public capital page: its ask renders from ask-surface.ts (import-locked),
   //           and its QBE lines state the program terms per ruling V
   'wiki/products/washing-machine', // the sourced "$3M/yr of washers" story fact
+  'onepagers/stretch-bed', // the printed product sheet: the one $750 price a buyer acts on
   'pathways/', // consent-shaped per-community numbers; its own rules live in that module
   'field-notes/', // trip stories quote real invoices with consent-cleared context
 ];
