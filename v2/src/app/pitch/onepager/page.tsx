@@ -59,6 +59,20 @@ export default function OnePagerPage() {
         </p>
       </section>
 
+      {/* Proof photos: the making and the delivery, one strip. Real photos, never
+          illustrations. Same consent class as the deck (all ship in /public). */}
+      <section className="mt-5 grid grid-cols-3 gap-1">
+        {[
+          { src: '/images/community/maningrida/whole-run-at-sunset.jpg', alt: 'The forty-bed Maningrida run at sunset' },
+          { src: '/images/process/heat-press-full.jpg', alt: 'The heat press at the production facility' },
+          { src: '/images/community/maningrida/kids-carrying-orange-bed.jpg', alt: 'Kids carrying an orange Stretch Bed in Maningrida' },
+        ].map((photo) => (
+          <div key={photo.src} className="relative aspect-[4/3] overflow-hidden">
+            <Image src={photo.src} alt={photo.alt} fill sizes="33vw" className="object-cover" />
+          </div>
+        ))}
+      </section>
+
       {/* Five numbers */}
       <section className="mt-6 grid grid-cols-5 gap-px border border-[#2b2a26]/25 bg-[#2b2a26]/25 max-sm:grid-cols-2 print:grid-cols-5">
         {FIVE_NUMBERS.map((cell) => (
@@ -107,7 +121,11 @@ export default function OnePagerPage() {
       {/* Footer */}
       <footer className="mt-8 flex items-baseline justify-between border-t border-[#2b2a26]/25 pt-3">
         <p className="text-[11px] text-[#6d675c]">
-          The whole road, with evidence:{' '}
+          Watch the run: case study + film at{' '}
+          <Link href="/case-studies/maningrida" className="underline decoration-[#c45c3e] underline-offset-2">
+            /case-studies/maningrida
+          </Link>{' '}
+          · The whole road, with evidence:{' '}
           <Link href="/pitch/road" className="underline decoration-[#c45c3e] underline-offset-2">
             goodsoncountry.com/pitch/road
           </Link>{' '}

@@ -1458,6 +1458,20 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     target: '/pitch/road',
   },
   {
+    route: '/case-studies/[slug]',
+    audience: 'partner',
+    access: 'open',
+    // 2026-08-06: "how we did it" packs, one per PROVEN run (Maningrida first). Written for a
+    // community/org asking "how would this work for us" and a funder asking "did this happen".
+    // Counts derive from the register; quotes from cleared registry tiers; no dollar figures.
+    leadsWithNow: {
+      heading: 'Forty beds, pressed at the farm, assembled in community',
+      eyebrow: 'Case study',
+      body: 'A community-controlled organisation asked for beds and washing machines for homeland families.',
+    },
+    verdict: 'keep',
+  },
+  {
     route: '/pitch/onepager',
     audience: 'funder',
     access: 'open',
