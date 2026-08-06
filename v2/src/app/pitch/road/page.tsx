@@ -21,24 +21,11 @@ import {
   ASK_INTRO,
   ASK_NEXT_STEP,
   ASK_STATUS_ROWS,
-  BED_LADDER,
-  BUY_LIST_TOTAL,
-  CHAIN_HONESTY,
-  CHAIN_INTRO,
   CLOSING_TAIL,
   DOORS,
   FIRST_SITE_RULE,
-  LEG_RATIO,
   PATHWAY_ASKS,
-  SITE_BASE,
-  SITE_OPERATING,
-  STOPWATCH_COMMITMENT,
-  THE_BUY_LIST,
-  THE_CHAIN,
-  THE_RUNNING_COST,
-  THE_TRADING,
   VOICE_FOUR_ASKS,
-  VOICE_ONE_BED,
   VOICE_THE_LETTER,
   type EndingVoice,
 } from '@/lib/data/road-ending';
@@ -833,6 +820,10 @@ export default function RoadPitchPage() {
               </a>
             ))}
           </div>
+          <p className="mt-4 text-sm leading-6 text-[#7a7363]">
+            The full working — every part price, the buy list, the cost chain — lives at{' '}
+            <Link href="/register" className="underline decoration-[#c45c3e] underline-offset-2">/register</Link>, each figure with its status.
+          </p>
         </div>
       </section>
 
@@ -875,260 +866,10 @@ export default function RoadPitchPage() {
         </div>
       </section>
 
-      <section id="one-bed" data-pitch-panel="one-bed" className="border-b border-[#d9d1c3] bg-[#fbf8f1] px-6 py-14 md:px-10 lg:px-14 lg:py-20">
-        <div className="mx-auto max-w-[1600px]">
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
-            One bed, plainly
-          </p>
-
-          <EndingVoiceBlock voice={VOICE_ONE_BED} className="mt-8 max-w-4xl" />
-
-          <div className="mt-12 grid gap-8 border-t border-[#d9d1c3] pt-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
-            <div>
-              <h2 className="goods-pitch-display text-5xl leading-[0.98] md:text-6xl">
-                Sixty five dollars does not buy a shredder.
-              </h2>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-[#6d675c]">
-                Jimmy is describing what the bed has to survive. So it is built to last and it is
-                priced to last. The ladder beside this is the whole story: same bed, same price,
-                same community. One part changes, and five times as much stays.
-              </p>
-            </div>
-
-            <ol className="grid gap-px border border-[#d9d1c3] bg-[#d9d1c3] sm:grid-cols-2">
-              {BED_LADDER.map((column) => (
-                <li key={column.column} className="flex flex-col bg-[#f1ece4] p-6 lg:p-8">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#c45c3e]">
-                    {column.column}
-                  </p>
-                  <dl className="mt-6 space-y-6">
-                    {column.rows.map((row) => (
-                      <div key={row.line}>
-                        <dt className="goods-pitch-display text-4xl lg:text-5xl">{row.figure}</dt>
-                        <dd className="mt-2 text-sm leading-5 text-[#6d675c]">{row.line}</dd>
-                        <dd className="mt-1">
-                          <StatusChip label={row.label} />
-                        </dd>
-                      </div>
-                    ))}
-                  </dl>
-                  <p className="mt-auto border-t border-[#d9d1c3] pt-5 text-xs leading-5 text-[#7a7363]">
-                    {column.foot}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </div>
-
-          <div className="mt-12 grid gap-8 border-t border-[#d9d1c3] pt-10 md:grid-cols-3 lg:gap-12">
-            <p className="text-base leading-7 text-[#2b2a26] md:text-lg md:leading-8">
-              {LEG_RATIO.copy}
-            </p>
-            <p className="text-base leading-7 text-[#6d675c] md:text-lg md:leading-8">
-              {THE_RUNNING_COST.copy}
-            </p>
-            <p className="text-base leading-7 text-[#6d675c] md:text-lg md:leading-8">
-              {THE_TRADING.copy}
-            </p>
-          </div>
-        </div>
-
-        {/* Merged from the former `the-stopwatch` panel (2026-08-06): one-bed says the legs are
-            the swing factor, this says the first money buys proof of the swing. One argument,
-            one panel. */}
-        <div className="mx-auto mt-14 max-w-[1600px] bg-[#171714] text-[#fbf8f1]">
-          <div className="mx-auto grid lg:grid-cols-[0.85fr_1.15fr]">
-          <div className="relative min-h-[45vh] lg:min-h-screen">
-            <Image
-              src="/images/process/heat-press-full.jpg"
-              alt="The heat press at the production facility at the farm"
-              fill
-              sizes="(max-width: 1024px) 100vw, 42vw"
-              className="object-cover"
-            />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6 pt-20 md:p-9">
-              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#e88461]">
-                The press at the farm
-              </p>
-            </div>
-          </div>
-
-          <div className="flex flex-col justify-center px-6 py-14 md:px-10 lg:px-14 lg:py-20">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e88461]">
-              What the money does first
-            </p>
-            <h2 className="goods-pitch-display mt-5 max-w-3xl text-5xl leading-[0.98] md:text-6xl">
-              The first thing the money buys is a stopwatch.
-            </h2>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#cfc8bc]">
-              The making is proven. What we have never done is time it and cost it across a full
-              run at a steady pace. Fifty beds, timed and costed with receipts, is the first thing
-              on the list.
-            </p>
-
-            <div className="mt-8 border-l-2 border-[#c45c3e] pl-5">
-              <p className="goods-pitch-display text-2xl leading-snug md:text-3xl">
-                The first thing your money buys is the measured run that proves the number.
-              </p>
-              <p className="mt-4 text-base leading-7 text-[#e88461]">{STOPWATCH_COMMITMENT}</p>
-            </div>
-
-            <ol className="mt-10 divide-y divide-white/15 border-y border-white/20">
-              {THE_BUY_LIST.map((row) => (
-                <li key={row.n} className="grid gap-2 py-5 sm:grid-cols-[auto_1fr_auto] sm:items-baseline sm:gap-6">
-                  <span className="font-mono text-[10px] text-[#e88461]">{row.n}</span>
-                  <span>
-                    <span className="block text-base font-semibold">{row.name}</span>
-                    <span className="mt-1 block max-w-xl text-sm leading-5 text-white/60">
-                      {row.sentence}
-                    </span>
-                  </span>
-                  <span className="sm:text-right">
-                    {row.amount ? (
-                      <>
-                        <span className="goods-pitch-display block text-2xl">{row.amount}</span>
-                        <StatusChip label={row.label ?? ''} dark />
-                      </>
-                    ) : (
-                      <span className="inline-block border border-dashed border-white/35 px-6 py-2 text-xs uppercase tracking-[0.14em] text-white/45">
-                        not yet sized
-                      </span>
-                    )}
-                  </span>
-                </li>
-              ))}
-            </ol>
-
-            <p className="mt-6 max-w-2xl text-sm leading-6 text-[#a8a196]">
-              The lines we can size add to between ${BUY_LIST_TOTAL.low.toLocaleString('en-AU')} and
-              ${BUY_LIST_TOTAL.high.toLocaleString('en-AU')}, plus the one we cannot.
-            </p>
-          </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="the-chain" data-pitch-panel="the-chain" className="border-b border-[#d9d1c3] bg-[#fbf8f1] px-6 py-14 md:px-10 lg:px-14 lg:py-20">
-        <div className="mx-auto max-w-[1600px]">
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
-            {CHAIN_INTRO.eyebrow}
-          </p>
-          <div className="mt-8 grid gap-8 border-t border-[#d9d1c3] pt-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
-            <h2 className="goods-pitch-display text-5xl leading-[0.99] md:text-6xl">
-              {CHAIN_INTRO.headline}
-            </h2>
-            <p className="max-w-2xl text-lg leading-8 text-[#6d675c]">{CHAIN_INTRO.body}</p>
-          </div>
-
-          <figure className="mt-10">
-            <div className="relative aspect-[21/9] w-full overflow-hidden bg-[#24231f]">
-              <Image
-                src="/images/process/20260329-factory-panorama.jpg"
-                alt="The production facility at the farm, with the press line and benches in use"
-                fill
-                sizes="(max-width: 1024px) 100vw, 1600px"
-                className="object-cover"
-              />
-            </div>
-            <figcaption className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-[#7a7363]">
-              Every machine below is one we already own and run. This is where the forty Maningrida
-              beds were pressed.
-            </figcaption>
-          </figure>
-
-          <ol className="mt-10 grid gap-px border-y border-[#d9d1c3] bg-[#d9d1c3] sm:grid-cols-2 lg:grid-cols-5">
-            {THE_CHAIN.map((step) => (
-              <li key={step.n} className="flex flex-col bg-[#fbf8f1] p-6">
-                <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#7a7363]">
-                  Needs
-                </p>
-                <p className="mt-1 font-mono text-[11px] leading-4 text-[#c45c3e]">{step.needs}</p>
-
-                <div className="mt-5 border-t-[3px] border-[#c45c3e] pt-4">
-                  <span className="goods-pitch-display text-3xl text-[#c45c3e]">{step.n}</span>
-                  <h3 className="mt-3 text-base font-semibold leading-5">{step.label}</h3>
-                  <p className="goods-pitch-display mt-3 text-2xl">{step.amount}</p>
-                  <p className="mt-1 flex flex-wrap items-center gap-x-2">
-                    <StatusChip label={step.label_status} />
-                    <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#a8a196]">
-                      {step.grade}
-                    </span>
-                  </p>
-                  <p className="mt-4 text-xs leading-5 text-[#6d675c]">{step.sentence}</p>
-                </div>
-
-                <p className="mt-auto border-t border-[#d9d1c3] pt-4 font-mono text-[9px] uppercase tracking-[0.16em] text-[#7a7363]">
-                  Makes
-                </p>
-                <p className="mt-1 font-mono text-[11px] leading-4 text-[#c45c3e]">
-                  {step.produces}
-                </p>
-              </li>
-            ))}
-          </ol>
-
-          <div className="mt-12 grid gap-10 border-t border-[#d9d1c3] pt-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
-                Underneath all five
-              </p>
-              <div className="mt-4 flex flex-wrap items-baseline gap-4">
-                <h3 className="goods-pitch-display text-4xl">{SITE_BASE.label}</h3>
-                <span className="goods-pitch-display text-3xl text-[#c45c3e]">
-                  {SITE_BASE.amount}
-                </span>
-                <StatusChip label={SITE_BASE.label_status} />
-              </div>
-              <p className="mt-5 max-w-xl text-base leading-7 text-[#6d675c]">
-                {SITE_BASE.sentence}
-              </p>
-              <dl className="mt-6 divide-y divide-[#d9d1c3] border-y border-[#d9d1c3]">
-                {SITE_BASE.lines.map((line) => (
-                  <div key={line.item} className="flex items-baseline justify-between gap-4 py-2.5">
-                    <dt className="text-sm leading-5">{line.item}</dt>
-                    <dd className="shrink-0 text-right">
-                      <span className="text-sm">{line.amount}</span>
-                      <span className="ml-2 font-mono text-[9px] uppercase tracking-[0.16em] text-[#a8a196]">
-                        {line.grade}
-                      </span>
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
-                What it costs to run, each year
-              </p>
-              <div className="mt-4 grid grid-cols-3 gap-4 border-y border-[#d9d1c3] py-5">
-                {[
-                  { v: SITE_OPERATING.floorAmount, l: 'The site floor' },
-                  { v: SITE_OPERATING.poolAmount, l: 'All five steps' },
-                  { v: SITE_OPERATING.totalAmount, l: 'Together' },
-                ].map((cell) => (
-                  <div key={cell.l}>
-                    <p className="goods-pitch-display text-2xl lg:text-3xl">{cell.v}</p>
-                    <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.16em] text-[#7a7363]">
-                      {cell.l}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-5 text-base leading-7 text-[#6d675c]">
-                {SITE_OPERATING.floorSentence}
-              </p>
-              <p className="mt-4 text-base leading-7 text-[#6d675c]">
-                {SITE_OPERATING.poolSentence}
-              </p>
-            </div>
-          </div>
-
-          <p className="mt-10 max-w-4xl border-t border-[#d9d1c3] pt-8 text-sm leading-6 text-[#7a7363]">
-            {CHAIN_HONESTY}
-          </p>
-        </div>
-      </section>
+      {/* The one-bed ladder, the stopwatch and the cost chain were cut from the deck on
+          2026-08-06 (Ben: "from here it gets super confusing, heaps of writing"). The five
+          numbers + the facility panel now carry the money story; the full working lives at
+          /register and the cost lab, linked from the facility panel. Data modules unchanged. */}
       <section id="four-asks" data-pitch-panel="four-asks" className="border-b border-[#d9d1c3] bg-[#f1ece4]">
         <div className="mx-auto max-w-[1600px] px-6 py-14 md:px-10 lg:px-14 lg:py-20">
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">

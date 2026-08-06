@@ -114,9 +114,9 @@ export const PITCH_PANELS: PitchPanel[] = [
   // The plain-English facility overview: stand it up / prove it / run it, and the three doors.
   { id: 'the-facility', label: 'The facility', chapter: 'the-money', packs: ['funder'] },
   { id: 'model', label: 'The model', chapter: 'the-money', packs: ['funder'] },
-  // `the-stopwatch` merged into `one-bed` 2026-08-06: one argument, one panel.
-  { id: 'one-bed', label: 'One bed', chapter: 'the-money', packs: ['funder'] },
-  { id: 'the-chain', label: 'What it costs', chapter: 'the-money', packs: ['funder'] },
+  // `one-bed` (with the merged stopwatch) and `the-chain` were cut from the deck 2026-08-06:
+  // the five-number strip + the facility panel carry the money story; the working lives at
+  // /register. The data modules behind them are unchanged.
   { id: 'four-asks', label: 'The four asks', chapter: 'the-money', packs: ['funder'] },
 
   { id: 'the-letter', label: 'The letter', chapter: 'the-close', packs: ['funder', 'supporter'] },
