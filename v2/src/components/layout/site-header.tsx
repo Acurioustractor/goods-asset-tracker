@@ -2,29 +2,50 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { CartButton } from '@/components/cart';
+
+/**
+ * Site header, rebuilt 2026-08-06 (Ben: the old top menu never sat right, and the
+ * 300px mobile sheet was cramped). Desktop: a short nav in reading order plus the two
+ * CTAs. Mobile: a FULL-SCREEN overlay — big type a thumb cannot miss, the primary
+ * pages first, then the same four doors the homepage ends on, so wherever someone is
+ * they can reach their next step in one tap.
+ */
 
 type NavItem = { name: string; href: string; subtitle?: string };
 
 const navigation: NavItem[] = [
-  { name: 'Stretch Bed', href: '/shop/stretch-bed-single' },
-  { name: 'Pakkimjalki Kari', subtitle: 'Washing Machine', href: '/shop/washing-machine' },
-  { name: 'How It\'s Made', href: '/process' },
-  { name: 'Back the work', href: '/partner' },
-  // 'Field notes' nav entry pulled until Utopia is consent-cleared +
-  // published. Re-add this line when ready:
-  // { name: 'Field notes', href: '/field-notes' },
-  { name: 'Our Story', href: '/story' },
+  { name: 'The Stretch Bed', href: '/shop/stretch-bed-single' },
+  { name: 'How it’s made', href: '/process' },
+  { name: 'Communities', href: '/communities' },
+  { name: 'Our story', href: '/story' },
+  { name: 'Invest', href: '/invest' },
   { name: 'Contact', href: '/contact' },
+];
+
+/** The same four audience doors the homepage closes on (home.ts HOME_DOORS order). */
+const menuDoors = [
+  { name: 'Buy a bed', href: '/shop/stretch-bed-single', color: '#C45C3E' },
+  { name: 'Sponsor a bed', href: '/sponsor', color: '#C9A227' },
+  { name: 'Want this where you are?', href: '/communities', color: '#6F7F5C' },
+  { name: 'Back the making', href: '/invest', color: '#3E6363' },
 ];
 
 export function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+
+  // Close the overlay on navigation and lock body scroll while it is open.
+  useEffect(() => setMobileMenuOpen(false), [pathname]);
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
 
   if (pathname?.startsWith('/admin')) {
     return null;
@@ -41,92 +62,120 @@ export function SiteHeader() {
             width={657}
             height={447}
             priority
-            className="h-12 w-auto object-contain"
+            className="h-11 w-auto object-contain"
           />
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex md:items-center md:gap-6">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="group text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
-            >
-              <span>{item.name}</span>
-              {item.subtitle && (
-                <span className="ml-1 text-xs text-muted-foreground group-hover:text-primary/70">
-                  ({item.subtitle})
-                </span>
-              )}
-            </Link>
-          ))}
-        </div>
-
-        {/* CTA Buttons & Cart */}
-        <div className="hidden md:flex md:items-center md:gap-3">
-          <Button size="sm" variant="outline" asChild>
-            <Link href="/partner">Back the work</Link>
-          </Button>
-          <Button size="sm" asChild>
-            <Link href="/shop/stretch-bed-single">Buy Now</Link>
-          </Button>
-          <CartButton />
-        </div>
-
-        {/* Mobile Cart & Menu */}
-        <div className="flex items-center gap-2 md:hidden">
-          <CartButton />
-          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-            <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" aria-label="Open menu">
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
+        {/* Desktop navigation */}
+        <div className="hidden lg:flex lg:items-center lg:gap-7">
+          {navigation.map((item) => {
+            const active = pathname === item.href || (item.href !== '/' && pathname?.startsWith(`${item.href}/`));
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`relative text-sm font-medium transition-colors hover:text-[#C45C3E] ${
+                  active ? 'text-[#C45C3E]' : 'text-foreground/70'
+                }`}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                />
+                {item.name}
+                {active && (
+                  <span className="absolute -bottom-[22px] left-0 right-0 h-0.5 bg-[#C45C3E]" aria-hidden />
+                )}
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* Desktop CTAs & cart */}
+        <div className="hidden lg:flex lg:items-center lg:gap-3">
+          <Button size="sm" className="bg-[#C45C3E] text-white hover:bg-[#C45C3E]/90" asChild>
+            <Link href="/shop/stretch-bed-single">Buy a bed</Link>
+          </Button>
+          <CartButton />
+        </div>
+
+        {/* Mobile: cart + menu trigger */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <CartButton />
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open menu"
+            aria-expanded={mobileMenuOpen}
+            className="flex h-10 w-10 items-center justify-center rounded-md text-foreground hover:bg-muted"
+          >
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.8" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 7h16.5M3.75 12h16.5m-16.5 5h16.5" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      {/* Full-screen mobile menu */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-[60] flex flex-col bg-[#fbf8f1] lg:hidden" role="dialog" aria-modal="true">
+          <div className="flex h-16 items-center justify-between border-b border-[#2b2a26]/10 px-4">
+            <Link href="/" aria-label="Goods on Country home" onClick={() => setMobileMenuOpen(false)}>
+              <Image
+                src="/brand/canonical/goods-on-country-primary-ink.png"
+                alt="Goods on Country"
+                width={657}
+                height={447}
+                className="h-11 w-auto object-contain"
+              />
+            </Link>
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-label="Close menu"
+              className="flex h-10 w-10 items-center justify-center rounded-md text-[#2b2a26] hover:bg-black/5"
+            >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.8" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
               </svg>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-            <nav className="flex flex-col gap-4 mt-8">
-              {navigation.map((item) => (
+            </button>
+          </div>
+
+          <nav className="flex flex-1 flex-col justify-between overflow-y-auto px-6 pb-10 pt-8">
+            <div className="space-y-1">
+              {navigation.map((item, i) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
                   onClick={() => setMobileMenuOpen(false)}
+                  className="block py-2.5 text-3xl font-semibold text-[#2b2a26] transition-colors hover:text-[#C45C3E]"
+                  style={{ fontFamily: 'var(--font-display, Georgia, serif)', transitionDelay: `${i * 15}ms` }}
                 >
                   {item.name}
-                  {item.subtitle && (
-                    <span className="ml-2 text-sm text-muted-foreground">({item.subtitle})</span>
-                  )}
                 </Link>
               ))}
-              <div className="mt-4 flex flex-col gap-3">
-                <Button variant="outline" asChild>
-                  <Link href="/partner" onClick={() => setMobileMenuOpen(false)}>
-                    Back the work
+            </div>
+
+            <div className="mt-10">
+              <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-[#7a7363]">
+                Where do you want to go?
+              </p>
+              <div className="grid grid-cols-2 gap-2.5">
+                {menuDoors.map((door) => (
+                  <Link
+                    key={door.name}
+                    href={door.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="rounded-xl px-4 py-4 text-sm font-semibold leading-snug text-white"
+                    style={{ backgroundColor: door.color }}
+                  >
+                    {door.name}
                   </Link>
-                </Button>
-                <Button asChild>
-                  <Link href="/shop/stretch-bed-single" onClick={() => setMobileMenuOpen(false)}>
-                    Buy Now
-                  </Link>
-                </Button>
+                ))}
               </div>
-            </nav>
-          </SheetContent>
-          </Sheet>
+              <p className="mt-6 text-sm text-[#7a7363]">
+                hello@goodsoncountry.com
+              </p>
+            </div>
+          </nav>
         </div>
-      </nav>
+      )}
     </header>
   );
 }

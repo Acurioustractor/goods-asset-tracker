@@ -103,12 +103,15 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     route: '/',
     audience: 'supporter',
     access: 'open',
+    // 2026-08-06: Homepage A revived (six-front-doors #171, reverted unseen #173, regrafted
+    // for the wayfinding review). Renders entirely from home.ts (guarded); ends on FOUR
+    // doors, one per audience next-action, so buyer/community/funder each find their front
+    // door from here without the supporter lead serving them first.
     leadsWithNow: {
-      heading: 'The Stretch Bed',
-      body: 'Recycled plastic, galvanised steel, heavy-duty canvas. 26kg, flat-packs, no tools. Every bed supports remote First Nations communities across Australia.',
+      heading: 'A bed made on Country, from the plastic that was already here.',
+      body: 'Beds donated to remote communities kept disappearing. So communities started making their own.',
     },
-    verdict: 'rewrite',
-    why: 'Supporter front page leading with the product spec. supporter.leadWith is "one face, one voice, one place"; this opens "The Stretch Bed / Recycled plastic, galvanised steel, heavy-duty canvas. 26kg, flat-packs, no tools." That is buyer copy.',
+    verdict: 'keep',
   },
   {
     route: '/about',
@@ -1260,6 +1263,20 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     whyUnread: 'proxy-gated, the public response is the login page',
     verdict: 'plumbing',
     why: 'a per-surface password gate',
+  },
+  {
+    route: '/invest',
+    audience: 'funder',
+    access: 'open',
+    // 2026-08-06 (Ben): the structural page /partner never was — the three entities as three
+    // doors (ENTITY_DOORS, import-locked), which giver fits which door, and the levels the
+    // work supports. Figures stay on /pitch/road; this page routes, /partner converses.
+    leadsWithNow: {
+      heading: 'Support communities where they are at. The bed is the entry point, never the whole point.',
+      eyebrow: 'Back the work',
+      body: 'One piece of work touches health, enterprise, young people and learning at once.',
+    },
+    verdict: 'keep',
   },
   {
     route: '/kit',
