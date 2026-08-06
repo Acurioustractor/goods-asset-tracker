@@ -1,3 +1,4 @@
+import { DoorsBand } from '@/components/marketing/doors-band';
 import { Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -981,6 +982,7 @@ export default async function StoriesPage() {
           </div>
         </div>
       </section>
+      <DoorsBand />
     </main>
   );
 }

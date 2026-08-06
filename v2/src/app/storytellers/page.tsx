@@ -1,3 +1,4 @@
+import { DoorsBand } from '@/components/marketing/doors-band';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getPublicStorytellers, slugify } from '@/lib/storytellers';
@@ -114,6 +115,7 @@ export default async function StorytellersIndex() {
           </Link>
         </div>
       </footer>
+      <DoorsBand />
     </article>
   );
 }

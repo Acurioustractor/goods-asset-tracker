@@ -17,6 +17,7 @@
  * you stop knowing what you are missing.
  */
 
+import { DoorsBand } from '@/components/marketing/doors-band';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -322,6 +323,7 @@ export default async function StoryRoadPage({
           the two must not read alike.
         </p>
       </footer>
+      <DoorsBand />
     </main>
   );
 }

@@ -1,3 +1,4 @@
+import { DoorsBand } from '@/components/marketing/doors-band';
 import { empathyLedger } from '@/lib/empathy-ledger';
 import {
   communityLocations,
