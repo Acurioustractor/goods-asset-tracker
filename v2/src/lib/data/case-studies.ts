@@ -62,7 +62,9 @@ export const CASE_STUDIES: CaseStudy[] = [
     partner: {
       name: 'Homeland School Company',
       role: 'a community-controlled homeland education organisation',
-      nameCleared: false,
+      // Ben, 2026-08-06: "Homeland School, yes 100%. They are going to be the public case
+      // study" — and we reach out to them as the film finishes.
+      nameCleared: true,
     },
     steps: [
       {
