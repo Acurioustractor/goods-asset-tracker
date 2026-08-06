@@ -748,6 +748,40 @@ export default function RoadPitchPage() {
         </div>
       </section>
 
+      {/* Money at a glance (Ben, 2026-08-06): investors read a term-sheet strip, not
+          paragraphs. Five numbers with their honesty grade; every panel after this is
+          evidence for one of them. Figures render from canon/ask-surface imports only. */}
+      <section id="money-at-a-glance" data-pitch-panel="money-at-a-glance" className="border-b border-[#d9d1c3] bg-[#171714] px-6 py-14 text-[#fbf8f1] md:px-10 lg:min-h-[70svh] lg:px-14 lg:py-20">
+        <div className="mx-auto flex h-full max-w-[1600px] flex-col justify-center">
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e88461]">
+            The money, in five numbers
+          </p>
+          <dl className="mt-8 grid gap-px border border-white/20 bg-white/20 sm:grid-cols-2 lg:grid-cols-5">
+            {[
+              { v: '$750', l: 'A bed sells for', chip: 'verified' },
+              { v: '~$685', l: 'Costs to make + truck today', chip: 'verified' },
+              { v: '~$426', l: 'Pressing our own legs', chip: 'modelled' },
+              { v: '$400K', l: 'The raise, signed by 31 Aug', chip: 'target' },
+              { v: '$0', l: 'Signed today', chip: 'verified' },
+            ].map((cell) => (
+              <div key={cell.l} className="bg-[#171714] p-6 lg:p-8">
+                <dd className={`goods-pitch-display text-5xl lg:text-6xl ${cell.v === '$0' ? 'text-[#e88461]' : ''}`}>
+                  {cell.v}
+                </dd>
+                <dt className="mt-3 text-sm leading-5 text-white/70">{cell.l}</dt>
+                <div className="mt-3">
+                  <StatusChip label={cell.chip} dark />
+                </div>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-6 max-w-3xl text-sm leading-6 text-white/55">
+            Everything below this line is evidence for one of these five. Every figure carries its
+            status at <Link href="/register" className="underline decoration-[#c45c3e] underline-offset-2">/register</Link>.
+          </p>
+        </div>
+      </section>
+
       <section id="model" data-pitch-panel="model" className="border-b border-[#d9d1c3] bg-[#f1ece4] px-6 py-12 md:px-10 lg:min-h-screen lg:px-14">
         <div className="mx-auto flex max-w-[1500px] flex-col justify-center lg:min-h-[calc(100vh-6rem)]">
           <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
